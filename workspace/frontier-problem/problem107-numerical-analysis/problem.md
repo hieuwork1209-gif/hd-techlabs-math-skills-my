@@ -38,6 +38,6 @@ $$
 
 ## Domain Explanation
 
-This problem involves selecting a symmetric numerical differentiation stencil on a geometric mesh while minimizing coefficient amplification, which is part of Optimization and Numerical Mathematics and Numerical analysis.
-The solution also uses interpolation weights and concentration of independent Bernoulli variables, which connect the stencil problem with probability and discrete algebra.
-However, those tools only locate the minimizing stencil asymptotically, while the main object remains a high-order numerical differentiation rule.
+This problem involves selecting a symmetric numerical differentiation stencil on a geometric mesh while minimizing coefficient amplification, which are part of Optimization and Numerical Mathematics and Numerical analysis.
+The problem also involves interpolation weights and concentration of independent Bernoulli variables, which are part of Linear Algebra and Probability and Statistics.
+However, these tools only locate the minimizing stencil asymptotically, while the main object remains a high-order numerical differentiation rule.
