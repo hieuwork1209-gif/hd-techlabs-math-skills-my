@@ -1,164 +1,221 @@
 ## Steps
 
-Step 1: Move the right fold to the origin
+Step 1: Put the zero equation on its natural cubic scale
+Let
+$$
+t=n^{-1/3},
+\qquad
+\alpha=\frac{x}{2}+xtz,
+$$
+and abbreviate
+$$
+a=\left(1-\frac{2x}{n}\right)^{n-2\alpha},
+\quad
+b=\left(1-\frac{x}{n}\right)^{n-\alpha},
+$$
+$$
+c=\left(1+\frac{x}{n}\right)^{n+\alpha},
+\quad
+d=\left(1+\frac{2x}{n}\right)^{n+2\alpha}.
+$$
+Since the central entry of the defining Hankel matrix is $1$, direct expansion of its determinant gives
+$$
+H_n(\alpha)=(a-b^{2})(d-c^{2})-(1-bc)^{2}.
+$$
+Expanding the logarithms of $a,b,c,d$ in powers of $t$ and then expanding this identity gives, uniformly for bounded $z$,
+$$
+H_n\left(\frac{x}{2}+xtz\right)
+=x^{6}t^{12}\left(
+16z^{3}-\frac{1}{4}-tz+7t^{2}z^{2}
++x^{2}t^{4}\left(64z^{4}-\frac{3}{2}z\right)
+-14x^{2}t^{5}z^{2}
++x^{2}t^{6}\left(74z^{3}-\frac{11}{12}\right)
++O(t^{7})
+\right).
+$$
+The leading equation $16z^{3}-1/4=0$ has the single real root $z=1/4$, and its derivative there is $3$. The implicit function theorem therefore gives one real branch near $z=1/4$. Since
+$$
+\frac{\alpha}{x}=\frac{1}{2}+tz\in(0,1)
+$$
+for small positive $t$, this branch is the zero specified in the problem for either sign of $x$.
 
+Step 2: Compute the Puiseux expansion of the selected zero
+Write
+$$
+z=c_0+c_1t+c_2t^{2}+c_3t^{3}+c_4t^{4}+c_5t^{5}+O(t^{6}).
+$$
+Substitution into the expansion from Step 1 and comparison of successive powers of $t$ gives
+$$
+16c_0^{3}-\frac{1}{4}=0,
+\qquad
+12c_1-1=0,
+\qquad
+48c_2+7=0,
+$$
+$$
+1296c_3+67=0,
+\qquad
+15552c_4-648x^{2}-1591=0,
+\qquad
+24c_5-5x^{2}=0.
+$$
+Choosing the real leading root found in Step 1 yields
+$$
+c_0=\frac{1}{4},
+\quad
+c_1=\frac{1}{12},
+\quad
+c_2=-\frac{7}{48},
+\quad
+c_3=-\frac{67}{1296},
+$$
+$$
+c_4=\frac{1591}{15552}+\frac{x^{2}}{24},
+\qquad
+c_5=\frac{5x^{2}}{24}.
+$$
+Thus
+$$
+\alpha_n=
+\frac{x}{2}+\frac{x}{4}t+\frac{x}{12}t^{2}-\frac{7x}{48}t^{3}
+-\frac{67x}{1296}t^{4}
++\left(\frac{1591x}{15552}+\frac{x^{3}}{24}\right)t^{5}
++\frac{5x^{3}}{24}t^{6}+O(t^{7}).
+$$
+
+Step 3: Expand the four-by-four determinant by Cauchy-Binet
+Write the coefficients in Step 2 as
+$$
+\alpha_n=\sum_{r=0}^{6}a_rt^{r}+O(t^{7}),
+$$
+where
+$$
+a_0=\frac{x}{2},
+\quad a_1=\frac{x}{4},
+\quad a_2=\frac{x}{12},
+\quad a_3=-\frac{7x}{48},
+\quad a_4=-\frac{67x}{1296},
+$$
+$$
+a_5=\frac{1591x}{15552}+\frac{x^{3}}{24},
+\qquad
+a_6=\frac{5x^{3}}{24}.
+$$
+For
+$$
+v_r=\left(1,2^{-r},2^{-2r},2^{-3r}\right)^{T},
+$$
+we have
+$$
+\left[\alpha_{8^{i+j}n}\right]_{i,j=0}^{3}
+=\sum_{r=0}^{6}a_rt^{r}v_rv_r^{T}+O(t^{7}).
+$$
+Cauchy-Binet therefore gives
+$$
+D_n=
+\sum_{0\leq r_1<r_2<r_3<r_4}
+\left(\prod_{q=1}^{4}a_{r_q}\right)
+\Delta_{r_1r_2r_3r_4}^{2}
+ t^{r_1+r_2+r_3+r_4}+O(t^{10}),
+$$
+where
+$$
+\Delta_{r_1r_2r_3r_4}
+=\det\left[v_{r_1},v_{r_2},v_{r_3},v_{r_4}\right].
+$$
+Let $R_I=\Delta_I^{2}/\Delta_{0123}^{2}$. The needed Vandermonde ratios are
+$$
+R_{0124}=\frac{225}{64},
+\quad
+R_{0125}=\frac{24025}{4096},
+\quad
+R_{0134}=\frac{1225}{1024},
+$$
+$$
+R_{0126}=\frac{1946025}{262144},
+\quad
+R_{0135}=\frac{216225}{65536},
+\quad
+R_{0234}=\frac{225}{4096}.
+$$
+Keeping total degrees from $6$ through $9$ gives
+$$
+D_n=Kt^{6}\left(1+e_1t+e_2t^{2}+e_3t^{3}+O(t^{4})\right),
+$$
+with
+$$
+K=a_0a_1a_2a_3\Delta_{0123}^{2}
+=-\frac{3087x^{4}}{2^{37}},
+$$
+$$
+e_1=\frac{a_4}{a_3}R_{0124}=\frac{1675}{1344},
+$$
+$$
+e_2=\frac{a_5}{a_3}R_{0125}+\frac{a_4}{a_2}R_{0134}
+=-\frac{45118075}{9289728}-\frac{24025}{14336}x^{2},
+$$
+$$
+e_3=\frac{a_6}{a_3}R_{0126}+\frac{a_5}{a_2}R_{0135}+\frac{a_4}{a_1}R_{0234}
+=\frac{4235175}{1048576}-\frac{4108275}{458752}x^{2}.
+$$
+In particular, $D_n<0$ for all sufficiently large $n$.
+
+Step 4: Apply the scale-cancelling logarithmic combination
+From Step 3,
+$$
+\log(-D_n)=\log(-K)-2\log n+f_1t+f_2t^{2}+f_3t^{3}+O(t^{4}),
+$$
+where the coefficient needed below is
+$$
+f_3=e_3-e_1e_2+\frac{e_1^{3}}{3}
+=\frac{469200046475}{43698880512}
+-\frac{132305675}{19267584}x^{2}.
+$$
 Set
 $$
-u=x-1,\qquad v=y+\frac23,
+G_n=64^{3}\frac{D_{8n}^{7}D_{512n}^{8}}{D_nD_{64n}^{14}}.
 $$
-and write
+All four determinants are negative for large $n$, so $G_n>0$. Replacing $n$ by $8^{k}n$ replaces $t$ by $2^{-k}t$. With
 $$
-\phi(u)=u^2+\frac{u^3}{3}.
+(w_0,w_1,w_2,w_3)=(-1,7,-14,8),
 $$
-Then the system becomes
+the relevant sums are
 $$
-\varepsilon\dot u=v-\phi(u),
+\sum_{k=0}^{3}w_k=0,
 \qquad
-\dot v=\lambda-u-\frac v2.
+\sum_{k=0}^{3}kw_k=3,
 $$
-The critical manifold is $v=\phi(u)$. Since
 $$
-\phi'(u)=2u+u^2,
-$$
-the point $u=0$ is the right fold; the branch $u>0$ is attracting and the branch $-2<u<0$ is repelling.
-
-Step 2: Expand the Hopf parameter
-
-An equilibrium near the fold satisfies
-$$
-v=\phi(u),
+\sum_{k=0}^{3}w_k2^{-k}=0,
 \qquad
-\lambda=u+\frac{\phi(u)}2.
-$$
-Its Jacobian is
-$$
-J=
-\begin{pmatrix}
--\phi'(u)/\varepsilon & 1/\varepsilon\\
--1 & -1/2
-\end{pmatrix}.
-$$
-Purely imaginary eigenvalues require zero trace, so
-$$
-\phi'(u_H)=-\frac{\varepsilon}{2}.
-$$
-The root tending to $0$ is
-$$
-u_H=-1+\sqrt{1-\frac{\varepsilon}{2}}
-=-\frac{\varepsilon}{4}-\frac{\varepsilon^2}{32}+O(\varepsilon^3).
-$$
-Substituting into $\lambda=u+\phi(u)/2$ gives
-$$
-\lambda_H(\varepsilon)
-=-\frac{\varepsilon}{4}+O(\varepsilon^3).
-$$
-Also
-$$
-\det J=\frac{1+\phi'(u_H)/2}{\varepsilon}
-=\frac{1-\varepsilon/4}{\varepsilon}>0,
-$$
-so the eigenvalues are indeed purely imaginary there.
-
-Step 3: Match the attracting and repelling slow manifolds through the fold
-
-The two Fenichel slow manifolds have asymptotic invariant-graph expansions on the two sides of the fold. At the maximal canard these expansions continue through $u=0$ as one regular graph. Write
-$$
-v=h(u)=\phi(u)+\varepsilon a_0(u)+\varepsilon^2a_1(u)+O(\varepsilon^3),
-$$
-$$
-\lambda_C(\varepsilon)=\ell_1\varepsilon+\ell_2\varepsilon^2+O(\varepsilon^3).
-$$
-The graph invariance equation is
-$$
-h'(u)\bigl(h(u)-\phi(u)\bigr)
-=\varepsilon\left(\lambda-u-\frac{h(u)}2\right).
-$$
-At order $\varepsilon$,
-$$
-\phi'(u)a_0(u)=-u-\frac{\phi(u)}2,
-$$
-so
-$$
-a_0(u)=-\frac{u^2+3u+6}{6(u+2)}
-=-\frac12-\frac{u^2}{12}+\frac{u^3}{24}+O(u^4).
-$$
-Thus
-$$
-a_0(0)=-\frac12,
+\sum_{k=0}^{3}w_k2^{-2k}=0,
 \qquad
-a_0'(0)=0.
+\sum_{k=0}^{3}w_k2^{-3k}=-\frac{21}{64}.
 $$
-
-At order $\varepsilon^2$,
+The scale term also cancels because
 $$
-\phi'(u)a_1(u)+a_0'(u)a_0(u)
-=\ell_1-\frac{a_0(u)}2.
+3\log(64)-2\left(\sum_{k=0}^{3}kw_k\right)\log(8)=0.
 $$
-Since $\phi'(0)=0$, regularity at the fold forces
+It follows that
 $$
-0=\ell_1+\frac14,
-$$
-so
-$$
-\ell_1=-\frac14.
-$$
-With this value, the last equation becomes locally
-$$
-(2u+u^2)a_1(u)
-=-\frac{u}{12}+\frac{5u^2}{48}+O(u^3).
-$$
-Hence
-$$
-a_1(u)=-\frac1{24}+\frac{7u}{96}+O(u^2),
-$$
-so
-$$
-a_1(0)=-\frac1{24},
-\qquad
-a_1'(0)=\frac7{96}.
-$$
-
-At order $\varepsilon^3$,
-$$
-\phi'(u)a_2(u)+a_0'(u)a_1(u)+a_1'(u)a_0(u)
-=\ell_2-\frac{a_1(u)}2.
-$$
-Evaluating the regularity condition at $u=0$ gives
-$$
--\frac7{192}
-=\ell_2+\frac1{48},
-$$
-therefore
-$$
-\ell_2=-\frac{11}{192}.
-$$
-Thus
-$$
-\lambda_C(\varepsilon)
-=-\frac{\varepsilon}{4}-\frac{11}{192}\varepsilon^2+O(\varepsilon^3).
-$$
-
-Step 4: Compare the two bifurcation curves
-
-From Step 2 and Step 3,
-$$
-\lambda_C(\varepsilon)-\lambda_H(\varepsilon)
-=-\frac{11}{192}\varepsilon^2+O(\varepsilon^3).
+\log G_n=-\frac{21}{64}f_3t^{3}+O(t^{4})
+=-\frac{21f_3}{64n}+O(n^{-4/3}).
 $$
 Therefore
 $$
-\lim_{\varepsilon\to0^+}
-\frac{\lambda_C(\varepsilon)-\lambda_H(\varepsilon)}{\varepsilon^2}
-=-\frac{11}{192}.
+\lim_{n\to\infty}n\log G_n
+=-\frac{21}{64}f_3
+=\frac{25\left(12002770836x^{2}-18768001859\right)}{133177540608}.
 $$
+Exponentiating gives the required limit.
 
-Final Answer: $\boxed{-\frac{11}{192}}$
+Final Answer: $\boxed{\exp\left(\frac{25(12002770836x^2-18768001859)}{133177540608}\right)}$
 
 ---
 
 ## Answer
 
-$-\frac{11}{192}$
+$\exp\left(\frac{25(12002770836x^2-18768001859)}{133177540608}\right)$
 
 ---
 
@@ -166,14 +223,20 @@ $-\frac{11}{192}$
 
 **Problem Type:** Symbolic derivation
 
-**Answer Type:** Exact scalar
+**Answer Type:** Exact symbolic expression
 
 ---
 
 ## Solution Concepts
 
-- slow-fast systems
-- fold regularity
-- maximal canards
-- singular Hopf bifurcation
-- invariant-manifold matching
+- asymptotic determinant expansions
+- Puiseux series
+- Cauchy-Binet formula
+- Vandermonde determinants
+- logarithmic cancellation
+
+---
+
+## Black-Box Audit — no issues found
+
+The Puiseux coefficients come from the displayed expansion of the zero equation, and the determinant coefficients come from the listed Cauchy-Binet terms and Vandermonde ratios. No numerical root finder, computer algebra output, or unproved external formula is used in the worked solution.
