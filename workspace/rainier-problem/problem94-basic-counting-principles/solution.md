@@ -60,8 +60,10 @@ $$
 $$
 Every such orbit has size $2n$, so the number of full dihedral orbits is
 $$
-\boxed{\frac{(3n)!-(1+n/2)2^{3n/2}(3n/2)!+(n/2)2^{3n/2}(3n/4)!}{6n}}.
+\frac{(3n)!-(1+n/2)2^{3n/2}(3n/2)!+(n/2)2^{3n/2}(3n/4)!}{6n}.
 $$
+
+Final Answer: $\boxed{\frac{(3n)!-(1+n/2)2^{3n/2}(3n/2)!+(n/2)2^{3n/2}(3n/4)!}{6n}}$
 
 ---
 
