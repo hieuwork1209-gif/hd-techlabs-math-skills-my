@@ -1,155 +1,142 @@
 ## Steps
 
-Step 1: Pass to logarithmic coordinates and determine the dyadic orbit
+Step 1: Convert the two integral means to logarithmic coordinates
 
 Put
 $$
-g(s)=f(e^s),\qquad J(s)=\int_0^s(s-u)g(u)\,du,\qquad B(s)=A(e^s)=\frac{2J(s)}{s^2}.
+g(s)=f(e^s),\qquad a(s)=A(e^s),\qquad b(s)=B(e^s).
 $$
-Write
+Then
 $$
-T(y)=\frac{5y+2}{y+4}.
+a(s)=\frac{1}{s}\int_0^s g(u)\,du,
+\qquad
+b(s)=\frac{2}{s^2}\int_0^s(s-u)g(u)\,du.
 $$
-The assumptions become
+Let
 $$
-B(2s)=T(B(s)),\qquad B(1)=\frac{1}{2}.
+K(s)=\int_0^s g(u)\,du,\qquad J(s)=\int_0^s(s-u)g(u)\,du.
 $$
-For
+The assumed convergence and the continuity of $g$ on every compact subinterval of $(0,\infty)$ give
 $$
-q(y)=\frac{y-2}{y+1},
+K'(s)=g(s),\qquad J'(s)=K(s).
 $$
-algebra gives
+Since $K(s)=sa(s)$ and $J(s)=\frac{s^2}{2}b(s)$,
 $$
-q\left(\frac{5y+2}{y+4}\right)=\frac{1}{2}q(y).
+sa(s)=J'(s)=sb(s)+\frac{s^2}{2}b'(s),
 $$
-The fractional linear map is one-to-one on its domain, with inverse
+and therefore
 $$
-T^{-1}(z)=\frac{4z-2}{5-z}.
+a(s)=b(s)+\frac{s}{2}b'(s).
 $$
-The relation can therefore be iterated both forward and backward along the orbit of $1$. Since $q(B(1))=-1$, for every integer $n$,
+The given algebraic condition is
 $$
-q(B(2^n))=-2^{-n},\qquad
-B(2^n)=\frac{2^{n+1}-1}{2^n+1}.
-$$
-In particular,
-$$
-\lim_{n\to-\infty}B(2^n)=-1.
+a^2+8ab-60a+b^3-14b^2+48b+36=0.
 $$
 
-Step 2: Find the endpoint value forced by concavity
+Step 2: Locate the admissible branch of the algebraic curve
 
-Changing variables $u=sv$ in the definition of $B$ gives
+Regard the last equation as a quadratic in $a$. Its discriminant is
 $$
-B(s)=2\int_0^1(1-v)g(sv)\,dv.
+(8b-60)^2-4(b^3-14b^2+48b+36)
+=-4(b-12)^2(b-6).
 $$
-A finite concave function on $(0,\infty)$ has a limit at $0$ in $\mathbb{R}\cup\{-\infty\}$. Indeed, its secant slopes are nonincreasing, so the function is monotone on some interval next to $0$. The value $+\infty$ is impossible: for fixed $0<a<b$ and $0<s<a$, concavity gives
+Thus every real point of the curve has either $b\leq6$ or $b=12$. At $s=1$, the condition $a(1)=\frac38$ gives
 $$
-\frac{g(a)-g(s)}{a-s}\geq\frac{g(b)-g(a)}{b-a},
+64P\left(\frac38,b\right)
+=(4b+1)(16b^2-228b+873)=0,
 $$
-which bounds $g(s)$ from above by an affine function of $s$.
+where the second factor has discriminant $-3888$. Hence
+$$
+b(1)=-\frac14.
+$$
+The function $b$ is continuous. Its image is connected, while the allowed real $b$-values lie in $(-\infty,6]\cup\{12\}$. Since $b(1)=-\frac14$, it follows that
+$$
+b(s)\leq6
+$$
+for every $s>0$.
 
-The weighted averages $B(s)$ have the same endpoint limit as $g(s)$. For a finite limit, every $sv$ lies near $0$ when $s$ is small. If $g(s)\to-\infty$, the whole integrand is eventually below any prescribed constant, so $B(s)\to-\infty$. The dyadic limit from Step 1 is $-1$, and therefore
-$$
-\lim_{s\downarrow0}g(s)=\lim_{s\downarrow0}B(s)=-1.
-$$
-Set $g(0)=-1$. Taking a limit in the concavity inequality shows that this extension is concave on $[0,\infty)$.
+Step 3: Discover a parameter that rationalizes both means
 
-Step 3: Determine the endpoint secant slope
-
-For $s>0$, define
+Because $b\leq6$, define
 $$
-h(s)=\frac{g(s)+1}{s}.
+z(s)=\frac{6-a(s)-2b(s)}{12-b(s)}.
 $$
-Concavity of the extension from Step 2 gives, for $0<s<t$,
+The denominator is at least $6$. Rearranging this definition gives
 $$
-g(s)\geq\frac{s}{t}g(t)+\left(1-\frac{s}{t}\right)g(0),
+a=6-2b+(b-12)z.
 $$
-so $h$ is nonincreasing. The extended limit
+Substitution into the algebraic curve yields the exact identity
 $$
-D=\lim_{s\downarrow0}h(s)
+0=(12-b)^2\bigl(b-2+4z+z^2\bigr).
 $$
-therefore exists in $\mathbb{R}\cup\{+\infty\}$. Using $g(sv)+1=svh(sv)$ in the weighted average gives
+Therefore
 $$
-\frac{B(s)+1}{s}=2\int_0^1v(1-v)h(sv)\,dv.
+b=2-4z-z^2.
 $$
-For small $s$, the functions $h(sv)$ are bounded below by a fixed value of $h$. Subtracting this lower bound produces nonnegative functions, so monotone convergence applies as $s\downarrow0$. Since
+Putting this back into the formula for $a$ gives
 $$
-2\int_0^1v(1-v)\,dv=\frac{1}{3},
+a=2-2z-2z^2-z^3.
 $$
-the last display tends to $D/3$, with the same conclusion if $D=+\infty$.
-
-On the dyadic sequence $s=2^n$ with $n\to-\infty$, Step 1 gives
+At $s=1$, using $a(1)=\frac38$ and $b(1)=-\frac14$ in the definition of $z$ gives
 $$
-\frac{B(s)+1}{s}=\frac{3}{1+s}\longrightarrow3.
-$$
-The two limits force $D=9$ and
-$$
-B(s)+1\sim3s\qquad(s\downarrow0).
+z(1)=\frac12.
 $$
 
-Step 4: Eliminate every log-periodic alternative
+Step 4: Use the differential coupling to determine the hidden parameter
 
-The last asymptotic shows that $B(s)>-1$ for all sufficiently small $s$. In fact, $B$ never equals $-1$. If $B(s_0)=-1$, then the equation at $s_0/2$ and the equivalence
+Differentiate $b=2-4z-z^2$ and substitute into
 $$
-\frac{5y+2}{y+4}=-1\quad\Longleftrightarrow\quad y=-1
+a=b+\frac{s}{2}b'.
 $$
-would give $B(2^{-m}s_0)=-1$ for every positive integer $m$, contradicting the endpoint asymptotic.
-
-The function
+Comparing with $a=2-2z-2z^2-z^3$ gives
 $$
-F(s)=s\frac{B(s)-2}{B(s)+1}
+(z+2)\bigl(sz'-z^2+z\bigr)=0.
 $$
-is now defined for every $s>0$. The conjugacy from Step 1 gives $F(2s)=F(s)$. Also, Step 3 yields
+On the connected interval containing $s=1$ on which $z\neq-2$, this reduces to
 $$
-\lim_{s\downarrow0}F(s)=\lim_{s\downarrow0}s\frac{B(s)-2}{B(s)+1}=-1.
+sz'=z(z-1).
 $$
-For fixed $s>0$,
+The solution through $z(1)=\frac12$ is
 $$
-F(s)=F(2^{-m}s)\longrightarrow-1,
+z(s)=\frac{1}{1+s}.
 $$
-so $F(s)=-1$ on the whole domain. Solving
+This formula is positive. If its maximal interval containing $1$ had a finite endpoint inside $(0,\infty)$, continuity would give a positive limiting value there, so $z$ would still be different from $-2$ and the same differential equation would extend the solution. Hence the interval is all of $(0,\infty)$. Consequently
 $$
-s\frac{B(s)-2}{B(s)+1}=-1
+b(s)=2-\frac{4}{1+s}-\frac{1}{(1+s)^2},
 $$
-gives
+and
 $$
-B(s)=\frac{2s-1}{s+1}.
+a(s)=2-\frac{2}{1+s}-\frac{2}{(1+s)^2}-\frac{1}{(1+s)^3}.
 $$
 
-Step 5: Recover the function and check all conditions
+Step 5: Recover the original function and verify the conditions
 
-The convergence of $J(s)$ for every $s$ also gives convergence of $\int_0^s g(u)\,du$. To verify this, choose $0<s_1<s_2$ and subtract the two integrals with a common lower cutoff. Their difference contains
+Since
 $$
-(s_2-s_1)\int_0^{s_1}g(u)\,du
+\int_0^s g(u)\,du=sa(s),
 $$
-plus an ordinary integral over $[s_1,s_2]$. The other terms have limits, so the displayed improper integral converges. Since $g$ is continuous away from $0$,
+we have $g(s)=(sa(s))'$. Differentiating the formula for $a$ gives
 $$
-J'(s)=\int_0^s g(u)\,du,\qquad J''(s)=g(s).
+g(s)=2-\frac{2}{(1+s)^3}-\frac{3}{(1+s)^4}.
 $$
-Using the formula for $B$ from Step 4,
+Its second derivative is
 $$
-J(s)=\frac{s^2B(s)}{2}=s^2-\frac{3}{2}\left(s-1+\frac{1}{s+1}\right).
+g''(s)=-\frac{12(2s+7)}{(1+s)^6},
 $$
-Two differentiations give
+so in particular the recovered function is continuous. Conversely, for this $g$, the functions
 $$
-g(s)=2-\frac{3}{(s+1)^3}.
+a(s)=2-\frac{2}{1+s}-\frac{2}{(1+s)^2}-\frac{1}{(1+s)^3},
+\qquad
+b(s)=2-\frac{4}{1+s}-\frac{1}{(1+s)^2}
 $$
-This function is concave because
-$$
-g''(s)=-\frac{36}{(s+1)^5}<0.
-$$
-The displayed formula for $J$ has $J(0)=J'(0)=0$. Its difference from the weighted integral of $g$ has zero second derivative. Its value and first derivative vanish at $0$, so the two functions agree. It gives $B(1)=1/2$. Also,
-$$
-\frac{B(s)-2}{B(s)+1}=-\frac{1}{s},
-$$
-and replacing $s$ by $2s$ verifies the required fractional linear relation. Returning to $s=\log x$ finishes the recovery.
-Final Answer: $\boxed{f(x)=2-\frac{3}{(1+\log x)^3}}$
+satisfy $(sa)'=g$ and $\left(\frac{s^2}{2}b\right)'=sa$, with both integral primitives vanishing at $s=0$. Hence they are exactly the two means in the problem. They also give $a(1)=\frac38$, and substituting the displayed parametrization into the polynomial makes it identically zero. Returning to $s=\log x$ gives the required function.
+Final Answer: $\boxed{f(x)=2-\frac{2}{(1+\log x)^3}-\frac{3}{(1+\log x)^4}}$
 
 ---
 
 ## Answer
 
-$f(x)=2-\frac{3}{(1+\log x)^3}$
+$f(x)=2-\frac{2}{(1+\log x)^3}-\frac{3}{(1+\log x)^4}$
 
 ---
 
@@ -163,7 +150,7 @@ $f(x)=2-\frac{3}{(1+\log x)^3}$
 
 ## Solution Concepts
 
-- concave functions and endpoint secants
 - weighted integral means
-- fractional linear transformations
-- dyadic scaling rigidity
+- algebraic curve parametrization
+- separable differential equations
+- Volterra integral differentiation
