@@ -74,4 +74,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for an extremal sum of multiplicities of conjugate irreducible Specht modules inside an induced tensor-cube module over the complex group algebra of a symmetric group. The admissible simple modules are restricted by simultaneous occurrence in two induced modules related by a sign twist, so the calculation depends on induction, tensor products, decomposition into simples, conjugation of partitions, and comparison of module spectra. Specht modules index the simple modules concretely, but the requested quantity is a module-multiplicity invariant, making Abstract Algebra / Module theory the primary classification.
+This problem involves induced modules, tensor powers, and multiplicities of irreducible Specht modules, which are part of Abstract Algebra and Module theory. The problem also involves partitions and their conjugates through the indexing of symmetric group representations, which are part of combinatorics. However, the partition language records the module decomposition and does not replace the module-multiplicity calculation as the main task.
