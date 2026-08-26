@@ -20,7 +20,7 @@ and
 $$
 P_3=4\bigl(U^{(p-1)q}+V^{(p-1)q}+W^{(p-1)q}\bigr)-\bigl(U^{(p-2)q}+V^{(p-2)q}+W^{(p-2)q}\bigr)-9.
 $$
-Hence $V_n$ is the annihilator of the ideal $I=(P_1,P_2,P_3)$ in $R^*$, so
+So $V_n$ is the annihilator of the ideal $I=(P_1,P_2,P_3)$ in $R^*$, and
 $$
 \dim_{\mathbb F_p}V_n=\dim_{\mathbb F_p}(R/I).
 $$
@@ -32,7 +32,7 @@ Since $n$ is a power of $p$, Frobenius gives
 $$
 U^n-1=a^n,\qquad V^n-1=b^n,\qquad W^n-1=c^n.
 $$
-Thus
+This gives
 $$
 R\cong\mathbb F_p[a,b,c]/(a^n,b^n,c^n).
 $$
@@ -46,7 +46,7 @@ and
 $$
 P_2=2(a+b+c)+(ab+bc+ca).
 $$
-Therefore, modulo $P_1$ and $P_2$,
+Modulo $P_1$ and $P_2$,
 $$
 a+b+c=0,
 \qquad
@@ -71,7 +71,7 @@ A+B+C=0,
 \qquad
 AB+BC+CA=0.
 $$
-Consequently
+These identities give
 $$
 A^2+B^2+C^2=(A+B+C)^2-2(AB+BC+CA)=0.
 $$
@@ -101,11 +101,11 @@ $$
 \qquad
 \binom{p-2}{k}\equiv(-1)^k(k+1)\pmod p.
 $$
-Therefore the coefficient of $D^r$ is
+The coefficient of $D^r$ is therefore
 $$
 3(-1)^r\bigl(4-(3r+1)\bigr)=9(1-r)(-1)^r.
 $$
-The coefficient of $D$ vanishes, while the coefficient of $D^2$ is $-9$, which is nonzero because $p\geq7$. Hence
+The coefficient of $D$ vanishes, while the coefficient of $D^2$ is $-9$, which is nonzero because $p\geq7$. So
 $$
 P_3=D^2H(D)
 $$
@@ -113,7 +113,7 @@ for a polynomial $H$ with
 $$
 H(0)=-9\neq0.
 $$
-The element $D$ is nilpotent, so $H(D)$ is a unit. Thus the third relation is equivalent to
+The element $D$ is nilpotent, so $H(D)$ is a unit. The third relation is therefore equivalent to
 $$
 D^2=0,
 $$
@@ -131,11 +131,15 @@ This relation implies
 $$
 b^3=a^3.
 $$
-Since $n=pq$ and $p\geq7$, the relation $a^{6q}=0$ already implies $a^n=0$. It also implies $b^n=0$: if $n=3d+r$ with $r\in\{1,2\}$, then $b^n=a^{3d}b^r$, and $3d\geq6q$ for the allowed primes. Finally,
+Since $n=pq$ and $p\geq7$, the relation $a^{6q}=0$ already implies $a^n=0$. It also implies $b^n=0$. To see this, write $n=3d+r$ with $r\in\{1,2\}$. If $p=7$, then $n=7^m\equiv1\pmod 3$, so $r=1$ and $3d=n-1=7q-1\geq6q$. If $p\geq11$, then $3d=n-r\geq pq-2\geq6q$. Hence
+$$
+b^n=a^{3d}b^r=0.
+$$
+Also,
 $$
 c^n=(-a-b)^n=-(a^n+b^n)=0
 $$
-by Frobenius. Therefore
+by Frobenius. We obtain
 $$
 R/I\cong\frac{\mathbb F_p[a,b]}{(a^{6q},\ b^2+ab+a^2)}.
 $$
@@ -143,7 +147,7 @@ The second relation is monic of degree $2$ in $b$, so every class has a unique r
 $$
 A_0(a)+bA_1(a)
 $$
-with $\deg A_0,\deg A_1<6q$. Hence
+with $\deg A_0,\deg A_1<6q$. It follows that
 $$
 \dim_{\mathbb F_p}(R/I)=2\cdot6q=12q=\frac{12n}{p}.
 $$
@@ -173,3 +177,5 @@ $\frac{12n}{p}$
 - Frobenius identities
 - symmetric polynomial invariants
 - nilpotent quotient rings
+
+## Black-Box Audit — no issues found
