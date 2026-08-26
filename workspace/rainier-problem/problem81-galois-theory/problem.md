@@ -2,57 +2,103 @@
 
 ## LaTeX (Normalized)
 
-Let $q$ be a rational prime with $q\equiv2\pmod3$, and put $n=79q^2$. Let $f\in\mathbb Q[y]$ be monic of degree $n$, and suppose its splitting field $K$ satisfies
+Let $q$ be a rational prime with
 $$
-\operatorname{Gal}(K/\mathbb Q)\cong S_n
+q\equiv5\pmod9,
 $$
-through its action on the roots $y_1,\ldots,y_n$ of $f$. Write $\Delta$ for the discriminant of $f$.
+and put $n=4q^2$. Let $K/\mathbb Q$ be a Galois extension together with a fixed identification
+$$
+\operatorname{Gal}(K/\mathbb Q)\cong S_n,
+$$
+where $S_n$ acts naturally on $[n]=\{1,\ldots,n\}$. Let $\omega$ be a primitive cube root of unity, assume $\omega\notin K$, and put $M=K(\omega)$.
 
-Let $a,c\in\mathbb Q^\times$ satisfy
+Choose elements
 $$
-(-1)^n f(-a)=c^3,
+g_1,\ldots,g_n,h_1,\ldots,h_n\in K^\times
 $$
-and suppose that $-3\Delta$ is not a square in $\mathbb Q$.
-
-Assume there is a prime $p\equiv1\pmod3$ such that the coefficients of $f$ and the number $a$ are $p$-integral, meaning their denominators are not divisible by $p$, and
+such that for every $\tau\in S_n$,
 $$
-p\nmid \Delta f(-a).
-$$
-Suppose further that
-$$
-f(y)\equiv(y-u)(y-v)h(y)\pmod p,
-$$
-where $u,v\in\mathbb F_p$ are distinct, $h\in\mathbb F_p[y]$ is irreducible of degree $n-2$, $a+u$ is not a cube in $\mathbb F_p^\times$, and $a+v$ is a cube in $\mathbb F_p^\times$.
-
-For ordered pairs $i\neq j$, put
-$$
-B_{ij}=\frac{a+y_i}{a+y_j},
-$$
-and define
-$$
-R(z)=\prod_{i\neq j}(z-B_{ij})\in\mathbb Q[z],
+\tau(g_i)=g_{\tau(i)},
 \qquad
-N=n(n-1).
+\tau(h_i)=h_{\tau(i)}.
 $$
-For $k\in\{0,1,2\}$, set
+Choose $p_1,p_2\in\mathbb Q^\times$. Assume that the cubic relations among these elements are exactly the following: for
 $$
-P_k(x)=p^{kN}R\left(\frac{x^3}{p^k}\right),
+a_i,b_i,s,t\in\mathbb F_3,
 $$
-and let $L$ be the splitting field of
+the element
 $$
-f(y)P_0(x)P_1(x)P_2(x)
+p_1^s p_2^t\prod_{i=1}^n g_i^{a_i}h_i^{b_i}
 $$
-over $\mathbb Q$. Let $\omega\in L$ be a primitive cube root of unity. For $\sigma\in\operatorname{Gal}(L/\mathbb Q)$, let $\pi_\sigma\in S_n$ be the permutation induced by restricting $\sigma$ to $K$.
+is a cube in $M$ if and only if
+$$
+s=t=0
+$$
+and there exist $\lambda,\mu\in\mathbb F_3$ such that
+$$
+a_1=\cdots=a_n=\lambda,
+\qquad
+b_1=\cdots=b_n=\mu.
+$$
 
-Fix a permutation $\pi\in S_n$ having exactly $2q^2$ cycles of length $2$ and exactly $15q^2$ cycles of length $5$. Determine the number of automorphisms $\sigma\in\operatorname{Gal}(L/\mathbb Q)$ such that $\sigma$ fixes $\omega$, $\pi_\sigma=\pi$, and the three permutations induced by $\sigma$ on the roots of $P_0$, $P_1$, and $P_2$ have the same cycle type.
+Choose cube roots
+$$
+\alpha_i^3=g_i,
+\qquad
+\beta_i^3=h_i,
+\qquad
+\rho_1^3=p_1,
+\qquad
+\rho_2^3=p_2,
+$$
+with $\prod_i\alpha_i,\prod_i\beta_i\in M$, and put
+$$
+L=M(\alpha_1,\ldots,\alpha_n,\beta_1,\ldots,\beta_n,\rho_1,\rho_2).
+$$
+For $\sigma\in\operatorname{Gal}(L/\mathbb Q(\omega))$, let $\pi_\sigma\in S_n$ be its restriction to $M$.
+
+Fix a permutation $\pi\in S_n$ consisting of exactly $2q^2$ disjoint transpositions. For $(k,\ell)\in\mathbb F_3^2$, define the finite set
+$$
+\Omega_{k,\ell}
+=
+\left\{
+\left(
+\omega^u\rho_1^k\frac{\alpha_i}{\alpha_j},
+\omega^v\rho_2^\ell\frac{\beta_i}{\beta_j}
+\right)
+:
+i\neq j,\ u,v\in\mathbb F_3
+\right\}.
+$$
+The assumed cubic-relation condition implies that the displayed elements are distinct, so each $\Omega_{k,\ell}$ has $9n(n-1)$ elements and is stable under $\operatorname{Gal}(L/\mathbb Q(\omega))$.
+
+Determine the number of automorphisms $\sigma\in\operatorname{Gal}(L/\mathbb Q(\omega))$ such that
+$$
+\pi_\sigma=\pi,
+\qquad
+\sigma(\rho_1)\neq\rho_1,
+\qquad
+\sigma(\rho_2)\neq\rho_2,
+$$
+and the nine permutations induced by $\sigma$ on the sets
+$$
+\Omega_{k,\ell},
+\qquad
+(k,\ell)\in\mathbb F_3^2,
+$$
+all have the same cycle type.
 
 Use the multinomial notation
 $$
-\binom{m}{r,s,t}=\frac{m!}{r!s!t!},
+\binom{m}{m_1,\ldots,m_9}
+=
+\frac{m!}{m_1!\cdots m_9!},
 $$
 and set
 $$
-A_q=\frac{q(2q-1)}{3}.
+H_q=\frac{2q^2+8q}{9},
+\qquad
+L_q=\frac{2q^2-q}{9}.
 $$
 
 ---
@@ -70,4 +116,4 @@ $$
 
 ## Domain Explanation
 
-This problem belongs to abstract algebra because it counts lifts of a prescribed permutation through a radical extension of a symmetric splitting field. Its primary sub-domain is Galois theory, since the main work is to determine the radical kernel and translate field automorphisms into orbit data. The number-theoretic norm argument is a supporting classification tool rather than the object being studied.
+This problem is a Galois-theoretic counting problem for a two-dimensional cubic Kummer kernel. The cycle-type constraint becomes a correlation problem on the phase group $\mathbb F_3^2$, and its classification requires Fourier analysis on that group together with norms in the Eisenstein integers.
