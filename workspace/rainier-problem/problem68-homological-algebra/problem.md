@@ -53,8 +53,8 @@ $$
 
 | Field | Value |
 |---|---|
-| **Domain** | Abstract Algebra |
-| **Sub-domain** | Computational algebra |
+| **Domain** | Discrete Mathematics and Combinatorics |
+| **Sub-domain** | Generating functions |
 | **Problem Type** | Symbolic derivation |
 | **Answer Type** | Polynomial or rational function |
 
@@ -62,4 +62,4 @@ $$
 
 ## Domain Explanation
 
-This problem asks for an explicit Poincare series from a finite algebra presentation and a cyclic module relation, which places it in Abstract Algebra and Computational algebra. The derivation also uses minimal resolutions and extension groups from homological algebra. Computational algebra is the better fit because the requested output is a concrete rational function obtained from the stated presentation rather than a general theorem about homological invariants.
+This problem asks for the Poincare series of a sequence of Betti numbers, so the requested object is a generating function and the best currently available taxonomy fit is Discrete Mathematics and Combinatorics / Generating functions. The derivation uses module presentations, minimal resolutions, Tor groups, and circulant linear operators from algebra. However, the current taxonomy snapshot has no available Abstract Algebra row, while the final task is explicitly to derive the rational generating function of the homological dimensions.
