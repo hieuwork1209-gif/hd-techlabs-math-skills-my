@@ -1,0 +1,1973 @@
+#!/usr/bin/env python3
+"""adv — adversarial difficulty loop for Rainier frontier problems.
+
+Runs the manual workflow across many problems at once without ever mixing them
+up. Both models stay in ChatGPT web, driven by you; this tool never touches
+chatgpt.com. It only reads and writes your clipboard, tracks which problem is at
+which stage, and rewrites problem.md / solution.md when the author hardens one.
+
+Routing is by tag. Every prompt starts with
+
+    === PROBLEM: problem90 ===
+
+and asks the model to copy that line back. Replies therefore identify
+themselves, so you can juggle any number of chats in any order.
+
+The tag is the problem NUMBER, never the folder name. Hardening often moves a
+problem to another taxonomy slot, and the folder suffix follows the Sub-domain
+declared in problem.md — so `adv` renames the folder itself after each harden
+and nothing you have already pasted into a chat goes stale.
+
+Commands:
+    adv new [domain]         reserve the next number, ask a new Sol chat to author it\n    adv add [--force] <slug>... register problems (fetches first, refuses a stale copy)
+    adv next <slug>          load the solver prompt into the clipboard\n    adv brief <slug>         one-time output contract for that problem's Sol chat\n    adv attempt <slug>       put the captured solver attempt back on the clipboard\n    adv format <slug>        ask the author to rewrite solution.md to the repo standard\n    adv harder <slug> [hint] force another hardening pass even though it passed\n    adv submit <slug>        pull, gate-check, then walk the portal fields\n    adv fix <slug>           turn reviewer feedback on the clipboard into a fix request
+    adv watch                daemon: capture replies, apply them, advance state
+    adv status               board of every registered problem\n    adv push                 send commits that adv made but could not push
+    adv catch <slug>         force-route the current clipboard to <slug>\n    adv replay [n] [slug]    list payloads the watcher saw, or re-apply one
+    adv show <slug>          detail and history
+    adv reseed <slug>        re-send problem+solution on the next author prompt
+    adv redo <slug>          discard the captured attempt, back to the solver step
+    adv drop <slug>...       unregister
+"""
+from __future__ import annotations
+
+import hashlib
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+LIB = ROOT / "scripts" / "adv-lib"
+PROBLEM_ROOT = ROOT / "workspace" / "rainier-problem"
+# ADV_STATE keeps throwaway runs off the real board — never point a test at
+# the default path, deleting it wipes live state mid-session.
+STATE_DIR = Path(os.environ.get("ADV_STATE") or ROOT / ".tmp" / "adv")
+STATE_FILE = STATE_DIR / "state.json"
+
+
+def git(*args: str, check: bool = True) -> str:
+    """Run git in the repo root and return stdout."""
+    r = subprocess.run(["git", "-C", str(ROOT), *args],
+                       capture_output=True, text=True)
+    if check and r.returncode != 0:
+        raise RuntimeError((r.stderr or r.stdout).strip())
+    return r.stdout.strip()
+
+
+def repo_slug() -> str:
+    url = git("remote", "get-url", "origin", check=False)
+    m = re.search(r"[:/]([^/:]+/[^/]+?)(?:\.git)?$", url)
+    return m.group(1) if m else "(no remote)"
+
+
+def branch() -> str:
+    return git("branch", "--show-current", check=False) or "main"
+
+TAG_RE = re.compile(r"^===\s*PROBLEM:\s*(\S+?)\s*===\s*$", re.M)
+FILE_RE = re.compile(r"^===\s*FILE:\s*(\S+?)\s*===\s*$", re.M)
+END_ATTEMPT = "=== END OF ATTEMPT ==="
+# Stamped into every prompt this tool generates. Prompts quote the reply markers
+# as instructions, so without this the watcher would capture its own output the
+# moment `adv next` put it on the clipboard.
+PROMPT_SENTINEL = "=== ADV-PROMPT ==="
+VERDICT_PASS = "=== VERDICT: PASS ==="
+VERDICT_EASY = "=== VERDICT: TOO_EASY ==="
+VERDICT_STALE = "=== VERDICT: STALE ==="
+VERDICT_REFORMAT = "=== VERDICT: REFORMAT ==="
+VERDICT_HARDENED = "=== VERDICT: HARDENED ==="
+VERDICT_CEILING = "=== VERDICT: AT-CEILING ==="
+VERDICT_NEW = "=== VERDICT: NEW ==="
+VERDICT_FIXED = "=== VERDICT: FIXED ==="
+
+WAIT_SOLVE, WAIT_CHECK, WAIT_DONE = "solve", "check", "done"
+
+C = {"red": "\033[31m", "grn": "\033[32m", "yel": "\033[33m",
+     "cyn": "\033[36m", "dim": "\033[90m", "bld": "\033[1m", "off": "\033[0m"}
+if not sys.stderr.isatty():
+    C = {k: "" for k in C}
+
+
+def die(msg: str) -> None:
+    print(f"{C['red']}error:{C['off']} {msg}", file=sys.stderr)
+    sys.exit(1)
+
+
+def info(msg: str) -> None:
+    print(f"{C['cyn']}[adv]{C['off']} {msg}", file=sys.stderr, flush=True)
+
+
+def now() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def ago(iso: str | None) -> str:
+    if not iso:
+        return "—"
+    secs = (datetime.now(timezone.utc) - datetime.fromisoformat(iso)).total_seconds()
+    if secs < 90:
+        return "just now"
+    if secs < 3600:
+        return f"{int(secs // 60)}m ago"
+    if secs < 86400:
+        return f"{int(secs // 3600)}h ago"
+    return f"{int(secs // 86400)}d ago"
+
+
+# ------------------------------------------------------------------ clipboard
+def clip_read() -> str:
+    try:
+        out = subprocess.run(
+            ["powershell.exe", "-NoProfile", "-Command",
+             "[Console]::OutputEncoding=[Text.Encoding]::UTF8; Get-Clipboard -Raw"],
+            capture_output=True, timeout=20)
+    except (subprocess.TimeoutExpired, FileNotFoundError, OSError):
+        return ""
+    return out.stdout.decode("utf-8", "replace").replace("\r", "")
+
+
+def clip_write(text: str) -> None:
+    # clip.exe decodes stdin with the console codepage, which mangles every
+    # non-ASCII character (em dashes, Greek letters, ≤, ∫, Vietnamese). Round-trip
+    # through Set-Clipboard with the input encoding forced to UTF-8 instead.
+    script = ("[Console]::InputEncoding=[Text.Encoding]::UTF8; "
+              "$t=[Console]::In.ReadToEnd(); Set-Clipboard -Value $t")
+    try:
+        subprocess.run(["powershell.exe", "-NoProfile", "-Command", script],
+                       input=text.encode("utf-8"), timeout=30, check=True,
+                       capture_output=True)
+    except Exception:
+        die("could not write the clipboard (needs powershell.exe from WSL)")
+
+
+def require_clipboard() -> None:
+    if not shutil.which("powershell.exe"):
+        die("needs powershell.exe on PATH (WSL clipboard bridge)")
+
+
+# ---------------------------------------------------------------------- state
+def load_state() -> dict:
+    if STATE_FILE.exists():
+        return json.loads(STATE_FILE.read_text(encoding="utf-8"))
+    return {"problems": {}, "seen": []}
+
+
+def save_state(state: dict) -> None:
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
+    # Bound the dedupe log; only a recent capture can plausibly be re-copied.
+    state["seen"] = state.get("seen", [])[-300:]
+    tmp = STATE_FILE.with_suffix(".json.tmp")
+    tmp.write_text(json.dumps(state, indent=2, ensure_ascii=False), encoding="utf-8")
+    tmp.replace(STATE_FILE)
+
+
+def resolve(target: str) -> Path:
+    d = Path(target)
+    if d.is_dir():
+        return d.resolve()
+    matches = sorted(p for p in PROBLEM_ROOT.glob(f"{target}*") if p.is_dir())
+    if len(matches) == 1:
+        return matches[0].resolve()
+    if matches:
+        die(f"'{target}' is ambiguous:\n" +
+            "\n".join(f"    {m.name}" for m in matches) +
+            "\n  type more characters")
+    # Nothing matched. Show what this repo actually has — the usual cause is a
+    # slug from a different clone.
+    all_dirs = sorted(x.name for x in PROBLEM_ROOT.glob("problem*") if x.is_dir())
+    stem = re.match(r"(problem\d*)", target)
+    near = [n for n in all_dirs if stem and n.startswith(stem.group(1)[:8])][:8]
+    hint = ("\n  nearby: " + ", ".join(near)) if near else ""
+    die(f"'{target}' matched no problem folder under {PROBLEM_ROOT.relative_to(ROOT)}"
+        f"\n  this repo has {len(all_dirs)}: {all_dirs[0]} .. {all_dirs[-1]}{hint}")
+
+
+def entry(state: dict, slug: str) -> dict:
+    p = state["problems"].get(slug)
+    if not p:
+        die(f"'{slug}' is not registered — run: adv add {slug}")
+    return p
+
+
+def find_slug(state: dict, target: str) -> str:
+    if target in state["problems"]:
+        return target
+    for slug, p in state["problems"].items():
+        if target in p.get("aliases", []):
+            return slug
+    hits = [s for s in state["problems"] if s.startswith(target)]
+    if len(hits) != 1:
+        die(f"'{target}' matched {len(hits)} registered problems")
+    return hits[0]
+
+
+def slug_for_tag(state: dict, tag: str) -> str | None:
+    """Resolve a tag from a reply, including slugs renamed mid-flight.
+
+    Chats opened before a rename still echo the old tag, so aliases must keep
+    routing to the current folder.
+    """
+    if tag in state["problems"]:
+        return tag
+    for slug, p in state["problems"].items():
+        if tag in p.get("aliases", []):
+            return slug
+    return None
+
+
+def workdir(slug: str) -> Path:
+    d = STATE_DIR / slug
+    d.mkdir(parents=True, exist_ok=True)
+    return d
+
+
+
+def last_line(path: Path) -> str:
+    """Last non-empty line of a file — the freshness fingerprint."""
+    for line in reversed(path.read_text(encoding="utf-8").splitlines()):
+        if line.strip():
+            return line.strip()
+    return ""
+
+
+def publish(pdir: Path, message: str) -> tuple[str, str | None, str]:
+    """Commit the problem folder and try to push it.
+
+    Returns (short SHA, error, what actually happened). The third value used to
+    be inferred from the other two, which reported "committed X, pushed" even
+    when the files were unchanged and nothing left the machine — so it is
+    measured here instead of guessed.
+    """
+    rel = str(pdir.relative_to(ROOT))
+    git("add", "--", rel)
+    committed = False
+    if git("status", "--porcelain", "--", rel):
+        git("commit", "-q", "-m", message)
+        committed = True
+    sha = git("rev-parse", "--short", "HEAD")
+    if os.environ.get("ADV_NO_PUSH") == "1":
+        return sha, "ADV_NO_PUSH=1", ("committed " + sha if committed else "no change")
+    br = branch()
+    pushed = False
+    try:
+        if git("rev-parse", "--verify", "--quiet", f"origin/{br}", check=False) == "":
+            git("push", "-q", "-u", "origin", br)
+            pushed = True
+        else:
+            ahead = git("rev-list", "--count", f"origin/{br}..{br}", check=False)
+            if ahead and ahead != "0":
+                git("push", "-q", "origin", br)
+                pushed = True
+    except (RuntimeError, OSError) as exc:
+        # git prints "To <url>" first and the real cause after, so the first line
+        # is never the useful one. Prefer the diagnosis; name the common case.
+        lines = [l.strip() for l in str(exc).strip().splitlines() if l.strip()]
+        cause = next((l for l in lines if l.startswith(("error:", "fatal:", "!"))),
+                     lines[-1] if lines else "push failed")
+        if any("behind its remote" in l or "fetch first" in l
+               or "non-fast-forward" in l for l in lines):
+            cause = "remote has newer commits — run: git pull --rebase origin main"
+        return sha, cause, ("committed " + sha if committed else "no change")
+    if not committed:
+        return sha, None, "no change"
+    return sha, None, f"committed {sha}" + (", pushed" if pushed else "")
+
+
+FORCE_EMBED = os.environ.get("ADV_EMBED") == "1"
+
+
+def body_with_tag(tag: str, body: str) -> str:
+    return tag + body
+
+
+# -------------------------------------------------------------------- prompts
+NUM_RE = re.compile(r"^(problem\d+)$")
+SUBDOMAIN_RE = re.compile(r"^\|\s*\*\*Sub-?domain\*\*\s*\|\s*(.+?)\s*\|\s*$",
+                          re.M | re.I)
+STATEMENT_HEAD = re.compile(r"^##\s*LaTeX\s*\(Normalized\)\s*$", re.M | re.I)
+NEXT_HEAD = re.compile(r"^##\s+", re.M)
+LEAKY_HEAD = re.compile(r"^##\s*(Domain Classification|Domain Explanation)\s*$",
+                        re.M | re.I)
+LEAKY_BOLD = re.compile(r"^\*\*(Domain|Sub-?domain|Domain Explanation|Problem Type|"
+                        r"Answer Type|Difficulty)\b", re.M | re.I)
+
+
+def slugify(text: str) -> str:
+    return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", text.lower())).strip("-")
+
+
+def problem_dir(key: str) -> Path:
+    """Resolve a problem's folder from its key, every time it is needed.
+
+    The key is the number alone (`problem90`) so the domain suffix can change
+    underneath without breaking anything that already went out to a chat.
+    """
+    if NUM_RE.match(key):
+        hits = sorted(d for d in PROBLEM_ROOT.glob(f"{key}-*") if d.is_dir())
+        if len(hits) == 1:
+            return hits[0]
+        if not hits:
+            die(f"{key}: no folder named {key}-* under "
+                f"{PROBLEM_ROOT.relative_to(ROOT)}")
+        die(f"{key} is ambiguous:\n" + "\n".join(f"    {h.name}" for h in hits) +
+            "\n  register it by full slug instead")
+    d = PROBLEM_ROOT / key
+    if not d.is_dir():
+        die(f"{key}: folder is gone — {d}")
+    return d
+
+
+def autoname(key: str) -> str | None:
+    """Rename the folder to match the Sub-domain declared in problem.md."""
+    if not NUM_RE.match(key):
+        return None
+    pdir = problem_dir(key)
+    m = SUBDOMAIN_RE.search((pdir / "problem.md").read_text(encoding="utf-8"))
+    if not m or not slugify(m.group(1)):
+        return None
+    want = f"{key}-{slugify(m.group(1))}"
+    if want == pdir.name:
+        return None
+    target = pdir.parent / want
+    if target.exists():
+        return (f"{C['yel']}skipped rename{C['off']}: {want} already exists, "
+                f"folder stays {pdir.name}")
+    try:
+        git("mv", str(pdir.relative_to(ROOT)), str(target.relative_to(ROOT)))
+    except RuntimeError:
+        pdir.rename(target)
+    return f"renamed {pdir.name} → {want} (Sub-domain: {m.group(1)})"
+
+
+def statement_only(text: str) -> str:
+    """The problem as a reviewer's model sees it — statement, nothing else.
+
+    problem.md also carries a taxonomy table and a "Domain Explanation" naming
+    the mechanism the problem is built on. Feeding those to the solver hands it
+    the approach and makes the difficulty verdict worthless.
+    """
+    m = STATEMENT_HEAD.search(text)
+    if m:
+        rest = text[m.end():]
+        nxt = NEXT_HEAD.search(rest)
+        body = rest[:nxt.start()] if nxt else rest
+        return body.strip().strip("-").strip() + "\n"
+    cuts = [x.start() for x in (LEAKY_HEAD.search(text), LEAKY_BOLD.search(text)) if x]
+    return (text[:min(cuts)] if cuts else text).strip() + "\n"
+
+
+CASE_C_RE = re.compile(
+    r"^CASE C —.*?(?=^---$)", re.M | re.S)
+
+
+def drop_case_c(body: str) -> str:
+    """Remove the STALE branch from a prompt that carries the current files.
+
+    CASE C exists for the chat to say "you and I hold different versions". Once
+    the current files travel with the attempt there is no such disagreement to
+    report, and leaving the branch in invites a STALE reply that would try to
+    push the chat's older memory back over the repo.
+    """
+    body = body.replace(
+        "exactly — `PASS`, `TOO_EASY`, `STALE`.",
+        "exactly — `PASS` or `TOO_EASY`.")
+    out, n = CASE_C_RE.subn(
+        "CASE C does not apply to this message: the current files are pasted "
+        "below and\noverride anything you remember. Never reply STALE here.\n\n",
+        body)
+    if not n:
+        info(f"{C['yel']}warning{C['off']}: check-prompt.md no longer has a "
+             f"CASE C section to remove — the STALE branch may still be live")
+    return out
+
+
+def chat_fp(pdir: Path) -> str:
+    """Fingerprint of the two files an author chat must hold to judge anything.
+
+    The chat is only a valid judge of the version it actually holds. Anything
+    that edits the folder from outside the loop — a reviewer pass done in another
+    conversation, a hand edit, a `git pull`, a merged PR — moves this value and
+    makes the chat's copy obsolete without the chat ever noticing.
+    """
+    h = hashlib.sha256()
+    for name in ("problem.md", "solution.md"):
+        f = pdir / name
+        h.update(f.read_bytes() if f.exists() else b"")
+    return h.hexdigest()
+
+
+def chat_synced(p: dict, pdir: Path) -> None:
+    """Record that the author chat now holds exactly the files on disk."""
+    p["chat_holds"] = chat_fp(pdir)
+    p["reseed"] = False
+
+
+def needs_context(p: dict, pdir: Path) -> bool:
+    """Whether the next author paste must carry the current files with it.
+
+    True whenever we cannot prove the chat holds what is on disk: it was never
+    sent them (`adv add`), they changed underneath it, or a reseed was asked for.
+    Sending only the solver attempt in that state produces a verdict about the
+    wrong statement — usually STALE, and previously that answer overwrote the
+    repo with the chat's older copy.
+    """
+    return bool(p.get("reseed") or FORCE_EMBED
+                or p.get("chat_holds") != chat_fp(pdir))
+
+
+def context_block(pdir: Path) -> str:
+    """The current problem (and ground truth, when there is one) to paste."""
+    out = "\n=== CURRENT problem.md ===\n\n"
+    out += (pdir / "problem.md").read_text(encoding="utf-8")
+    sol = pdir / "solution.md"
+    if sol.exists() and sol.stat().st_size:
+        out += "\n=== CURRENT solution.md ===\n\n"
+        out += sol.read_text(encoding="utf-8")
+    return out
+
+
+AUTHORITATIVE = """
+The problem and ground truth pasted below are the current ones, and they
+override anything you remember from earlier in this conversation. The statement
+may have been revised outside this chat since you last saw it. Judge the solver
+attempt against the pasted version only, and do not reply STALE — you now hold
+the current files by definition.
+"""
+
+
+def build_prompt(state: dict, slug: str) -> tuple[str, str, str]:
+    """Return (prompt, where to paste, hint) for this problem's next step."""
+    p = entry(state, slug)
+    pdir = problem_dir(slug)
+    tag = f"=== PROBLEM: {slug} ===\n{PROMPT_SENTINEL}\n\n"
+
+    if p["waiting"] == WAIT_DONE:
+        die(f"{slug} is finished ({p['status']}) — nothing to paste")
+
+    if p["waiting"] == WAIT_SOLVE:
+        body = (LIB / "attack-prompt.md").read_text(encoding="utf-8")
+        body += "\n" + statement_only(
+            (pdir / "problem.md").read_text(encoding="utf-8"))
+        # Temporary Chat is the only reliable isolation: it bypasses both saved
+        # memories and reference-chat-history, so the solver cannot recall the
+        # author chat where this problem's ground truth was worked out.
+        p["stmt_hash"] = hashlib.sha256(
+            (pdir / "problem.md").read_bytes()).hexdigest()
+        save_state(state)
+        return (tag + body,
+                "TEMPORARY chat -> GPT-5.5 (Thinking / medium)",
+                "Temporary Chat (the ⧉ icon) — it ignores memory and past chats, "
+                "so the solver cannot recall the answer from the Sol chat")
+
+    attempt = workdir(slug) / "attempt.md"
+    if not attempt.exists():
+        die(f"{slug} is waiting on the author but no solver attempt was captured")
+    # An attempt is only evidence about the statement it was given. Pasting one
+    # from an earlier round makes the author grade answer A against ground truth
+    # B, and the verdict is worthless.
+    stamped = p.get("stmt_hash")
+    current = hashlib.sha256((pdir / "problem.md").read_bytes()).hexdigest()
+    if stamped and stamped != current:
+        die(f"{slug}: problem.md changed after the solver prompt was issued.\n"
+            f"  The captured attempt answers an older statement, so the author "
+            f"would grade it against the wrong ground truth.\n"
+            f"  Re-run the solver on the current problem: adv next {slug} "
+            f"(after: adv redo {slug})")
+
+    # The author is allowed to read the repo — it already knows the answer. The
+    # solver never is, because solution.md sits next to problem.md.
+    if p.get("needs_solution"):
+        # No ground truth on disk — the authoring chat holds it.
+        body = (LIB / "check-prompt-nosolution.md").read_text(encoding="utf-8")
+        body += "\n" + (pdir / "problem.md").read_text(encoding="utf-8")
+        body += "\n--- SOLVER ATTEMPT ---\n"
+        embedded = True
+    elif needs_context(p, pdir):
+        # The chat cannot be shown to hold what is on disk, so send the files
+        # with the attempt rather than trusting its memory of them.
+        body = (LIB / "check-prompt.md").read_text(encoding="utf-8")
+        body = body.replace(
+            "This is the problem you authored in this conversation. Use the "
+            "statement and the\nground truth you already hold here — nothing "
+            "needs to be re-read.",
+            AUTHORITATIVE.strip())
+        body = drop_case_c(body)
+        body += context_block(pdir)
+        body += "\n--- SOLVER ATTEMPT (continued) ---\n"
+        embedded = True
+    else:
+        # The chat already holds the problem; sending only the attempt keeps the
+        # paste small and removes any chance of a stale repo read.
+        body = (LIB / "check-prompt.md").read_text(encoding="utf-8")
+        embedded = False
+    publish(pdir, f"adv: {slug} round {p['round']} — snapshot before review")
+    p["last_embed"] = embedded
+    if embedded:
+        chat_synced(p, pdir)
+    save_state(state)
+    body += "\n" + attempt.read_text(encoding="utf-8")
+    return (tag + body,
+            f"the Sol chat for {slug}",
+            "continue that conversation — do NOT open a new chat")
+
+
+# ------------------------------------------------------------------ capturing
+REQUIRED_SECTIONS = ("## Steps", "## Answer", "## Classification")
+
+
+def check_solution_shape(body: str) -> None:
+    """Reject a solution.md missing the sections the submission gates read.
+
+    An author reply that stops after `## Steps` looks complete but silently
+    breaks rainier-submit later, long after the chat that could fix it is cold.
+    """
+    missing = [h for h in REQUIRED_SECTIONS if not re.search(rf"^{re.escape(h)}\s*$",
+                                                            body, re.M)]
+    if missing:
+        raise ValueError(
+            "solution.md is missing " + ", ".join(missing) +
+            " — ask the author chat to resend the full file with every section")
+
+
+def check_problem_shape(body: str) -> None:
+    """Reject a problem.md whose skeleton the rest of the pipeline cannot read.
+
+    The statement extractor, the folder auto-namer and the portal field mapper all
+    key off `## LaTeX (Normalized)` and the two-column classification table. A
+    four-column table or a missing heading silently empties five portal fields, so
+    it is cheaper to refuse the reply than to store it.
+    """
+    problems = []
+    if not re.search(r"^##\s*LaTeX\s*\(Normalized\)\s*$", body, re.M | re.I):
+        problems.append("no `## LaTeX (Normalized)` heading")
+    if not re.search(r"^##\s*Domain Explanation\s*$", body, re.M | re.I):
+        problems.append("no `## Domain Explanation` section")
+    fields = classification(body)
+    missing = [f for f in ("domain", "subdomain", "problem type", "answer type")
+               if not fields.get(f)]
+    if missing:
+        problems.append(
+            "the classification table is not the two-column `| Field | Value |` "
+            f"form with **bold** field names (missing: {', '.join(missing)})")
+    if problems:
+        raise ValueError("problem.md does not follow the required skeleton — "
+                         + "; ".join(problems)
+                         + ". Ask the author to resend it in the exact skeleton.")
+
+
+def split_files(text: str, out_dir: Path) -> list[str]:
+    """Write each `=== FILE: name ===` section. Returns the names written."""
+    marks = list(FILE_RE.finditer(text))
+    written = []
+    for i, m in enumerate(marks):
+        name = m.group(1).strip().strip("`")
+        if name not in ("problem.md", "solution.md"):
+            continue
+        end = marks[i + 1].start() if i + 1 < len(marks) else len(text)
+        body = text[m.end():end].strip("\n")
+        body = re.sub(r"\A```[a-zA-Z]*\n", "", body)
+        body = re.sub(r"\n```\s*\Z", "", body)
+        body = body.strip() + "\n"
+        if len(body) < 40:
+            raise ValueError(f"section '{name}' is only {len(body)} chars")
+        if name == "solution.md":
+            check_solution_shape(body)
+        if name == "problem.md":
+            check_problem_shape(body)
+        (out_dir / name).write_text(body, encoding="utf-8")
+        written.append(name)
+    return written
+
+
+SETEXT_RE = re.compile(r"^={3,}\s*$", re.M)
+
+
+def mangled_lines(text: str) -> int:
+    """Count setext-heading scars left by copying unfenced display math.
+
+    A `=` alone on a line inside `$$...$$` is read as a heading underline, so the
+    formula above it is replaced by a row of `=`. The maths is unrecoverable at
+    that point; the only fix is to ask for the reply again.
+    """
+    return len([m for m in SETEXT_RE.finditer(text)])
+
+
+KNOWN_VERDICTS = (VERDICT_PASS, VERDICT_EASY, VERDICT_STALE, VERDICT_REFORMAT,
+                  VERDICT_HARDENED, VERDICT_CEILING, VERDICT_NEW,
+                  VERDICT_FIXED)
+ANY_VERDICT_RE = re.compile(r"^===\s*VERDICT:\s*(.+?)\s*===\s*$", re.M)
+
+
+def classify(text: str) -> str | None:
+    if PROMPT_SENTINEL in text:
+        return None  # our own prompt, echoed back by the clipboard
+    if (VERDICT_PASS in text or VERDICT_EASY in text
+            or VERDICT_STALE in text or VERDICT_REFORMAT in text
+            or VERDICT_HARDENED in text or VERDICT_CEILING in text
+            or VERDICT_NEW in text or VERDICT_FIXED in text):
+        return "verdict"
+    if END_ATTEMPT in text:
+        return "attempt"
+    if ANY_VERDICT_RE.search(text):
+        return "unknown-verdict"
+    return None
+
+
+def apply_capture(state: dict, slug: str, text: str, kind: str,
+                  force: bool = False) -> str:
+    """Advance one problem. Returns a log line. Raises ValueError on refusal."""
+    p = entry(state, slug)
+    pdir = problem_dir(slug)
+    wd = workdir(slug)
+    rnd = p["round"]
+
+    # A reformat is out of band: it rewrites solution.md without advancing
+    # the loop, so it must work whatever stage the problem is at.
+    if VERDICT_REFORMAT in text:
+        (wd / f"round{rnd:02d}-reformat.md").write_text(
+            text, encoding="utf-8")
+        staging = wd / "staging"
+        staging.mkdir(exist_ok=True)
+        if "solution.md" not in split_files(text, staging):
+            raise ValueError("REFORMAT reply carried no solution.md")
+        versions = wd / "versions"
+        versions.mkdir(exist_ok=True)
+        if (pdir / "solution.md").exists():
+            shutil.copy2(pdir / "solution.md",
+                         versions / f"solution.preformat-r{rnd}.md")
+        shutil.copy2(staging / "solution.md", pdir / "solution.md")
+        p["needs_solution"] = False
+        chat_synced(p, pdir)
+        # Fingerprint what was formatted. A later harden rewrites solution.md,
+        # which makes the fingerprint stop matching and flags it as due again.
+        p["fmt_hash"] = hashlib.sha256((pdir / "solution.md").read_bytes()).hexdigest()
+        p["last"] = now()
+        _, push_err, what = publish(pdir, f"adv: {slug} solution reformatted")
+        tail = f", {what}" + (f" ({C['yel']}not pushed: {push_err}{C['off']})"
+                              if push_err and what != "no change" else "")
+        return (f"{slug}: solution.md reformatted{tail} "
+                f"(previous kept in versions/solution.preformat-r{rnd}.md)")
+
+
+    # A forced harden exists precisely to reopen a finished problem, so it is the
+    # one verdict allowed through this gate.
+    out_of_band = (VERDICT_HARDENED in text or VERDICT_CEILING in text
+                   or VERDICT_NEW in text or VERDICT_FIXED in text)
+    if p["waiting"] == WAIT_DONE and not out_of_band:
+        raise ValueError(f"{slug} already finished ({p['status']}) — "
+                         f"use 'adv harder {slug}' to reopen it")
+
+    if kind == "attempt":
+        if p["waiting"] != WAIT_SOLVE:
+            raise ValueError(f"{slug} awaits the author verdict, not a solver attempt")
+        scars = mangled_lines(text)
+        if scars:
+            info(f"{C['yel']}warning{C['off']}: the attempt has {scars} mangled "
+                 f"formula line(s) (rows of '='). The solver put '=' at the start "
+                 f"of a line in display math and copying flattened it. Usable if "
+                 f"the final answer survived; otherwise: adv redo {slug}")
+        (wd / "attempt.md").write_text(text, encoding="utf-8")
+        (wd / f"round{rnd:02d}-attempt.md").write_text(text, encoding="utf-8")
+        p["waiting"] = WAIT_CHECK
+        p["last"] = now()
+        return (f"{slug}: solver attempt captured (round {rnd}) "
+                f"→ next: paste into the Sol chat  [adv next {slug}]")
+
+    if p["waiting"] != WAIT_CHECK and not out_of_band:
+        raise ValueError(f"{slug} awaits a solver attempt, not an author verdict")
+
+    (wd / f"round{rnd:02d}-verdict.md").write_text(text, encoding="utf-8")
+
+    if VERDICT_FIXED in text:
+        # A reviewer pass rewrites both files without touching the loop: the
+        # problem is not newly cracked, it is the same problem made defensible.
+        staging = wd / "staging"
+        staging.mkdir(exist_ok=True)
+        written = split_files(text, staging)
+        if sorted(written) != ["problem.md", "solution.md"]:
+            raise ValueError(f"FIXED but the reply carried {written or 'no files'}")
+        versions = wd / "versions"
+        versions.mkdir(exist_ok=True)
+        for name in ("problem.md", "solution.md"):
+            if (pdir / name).exists():
+                shutil.copy2(pdir / name,
+                             versions / f"{name[:-3]}.prefix-r{rnd}.md")
+            shutil.copy2(staging / name, pdir / name)
+        p["fmt_hash"] = None
+        p["needs_solution"] = False
+        p["last"] = now()
+        p.setdefault("history", []).append({"round": rnd, "verdict": "FIXED"})
+        renamed = autoname(slug)
+        if renamed:
+            info(f"{slug}: {renamed}")
+            pdir = problem_dir(slug)
+        chat_synced(p, pdir)
+        _, push_err, what = publish(pdir, f"adv: {slug} reviewer feedback applied")
+        tail = f", {what}" + (f" ({C['yel']}not pushed: {push_err}{C['off']})"
+                              if push_err and what != "no change" else "")
+        return (f"{slug}: {C['grn']}FIXED{C['off']} → reviewer feedback applied{tail} "
+                f"→ check with: adv submit {slug}")
+
+    if VERDICT_NEW in text:
+        staging = wd / "staging"
+        staging.mkdir(exist_ok=True)
+        written = split_files(text, staging)
+        if sorted(written) != ["problem.md", "solution.md"]:
+            raise ValueError(f"NEW but the reply carried {written or 'no files'}")
+        shutil.copy2(staging / "problem.md", pdir / "problem.md")
+        shutil.copy2(staging / "solution.md", pdir / "solution.md")
+        p.update(round=1, waiting=WAIT_SOLVE, status="active",
+                 needs_solution=False, stmt_hash=None, last=now())
+        renamed = autoname(slug)
+        if renamed:
+            info(f"{slug}: {renamed}")
+            pdir = problem_dir(slug)
+        chat_synced(p, pdir)
+        _, push_err, what = publish(pdir, f"adv: {slug} authored")
+        tail = f", {what}" + (f" ({C['yel']}not pushed: {push_err}{C['off']})"
+                              if push_err and what != "no change" else "")
+        return (f"{slug}: {C['grn']}NEW{C['off']} → {pdir.name} created{tail} "
+                f"→ next: NEW 5.5 chat  [adv next {slug}]")
+
+    if VERDICT_CEILING in text:
+        note = " ".join(l for l in text.splitlines()
+                        if l.strip() and not l.startswith("==="))[:220]
+        p.setdefault("history", []).append(
+            {"round": rnd, "verdict": "AT-CEILING", "note": note})
+        p["last"] = now()
+        return (f"{slug}: {C['yel']}AT-CEILING{C['off']} — the author declined to "
+                f"harden further: {note}")
+
+    if VERDICT_STALE in text:
+        # STALE only ever means "the chat holds a version the repo does not".
+        # That can only be believed when the chat was NOT just handed the current
+        # files. If it was, its copy is a memory of an older round and adopting it
+        # would silently revert whatever changed the folder — a reviewer pass done
+        # in another conversation, a hand edit, a pulled branch.
+        if p.get("last_embed"):
+            raise ValueError(
+                f"{slug}: the current problem.md and solution.md were pasted into "
+                f"that chat with this attempt, so STALE cannot mean the repo is "
+                f"behind — the chat is answering from an older memory.\n"
+                f"  Nothing was written. Start a fresh Sol chat and re-send the "
+                f"context: adv reseed {slug} && adv next {slug}")
+        # The chat and the repo disagree about which statement is current. The
+        # author is the source of truth, so adopt whatever it holds and rerun the
+        # solver against that; grading an attempt across versions proves nothing.
+        staging = wd / "staging"
+        staging.mkdir(exist_ok=True)
+        written = split_files(text, staging)
+        if sorted(written) == ["problem.md", "solution.md"]:
+            versions = wd / "versions"
+            versions.mkdir(exist_ok=True)
+            shutil.copy2(pdir / "problem.md", versions / f"problem.stale-r{rnd}.md")
+            if (pdir / "solution.md").exists():
+                shutil.copy2(pdir / "solution.md",
+                             versions / f"solution.stale-r{rnd}.md")
+            shutil.copy2(staging / "problem.md", pdir / "problem.md")
+            shutil.copy2(staging / "solution.md", pdir / "solution.md")
+            (wd / "attempt.md").unlink(missing_ok=True)
+            p["waiting"] = WAIT_SOLVE
+            p["needs_solution"] = False
+            p["stmt_hash"] = None
+            p["last"] = now()
+            renamed = autoname(slug)
+            if renamed:
+                info(f"{slug}: {renamed}")
+                pdir = problem_dir(slug)
+            chat_synced(p, pdir)
+            publish(pdir, f"adv: {slug} synced from the author chat")
+            return (f"{slug}: {C['yel']}STALE{C['off']} → repo updated from the "
+                    f"author chat, attempt discarded → next: NEW 5.5 chat  "
+                    f"[adv next {slug}]")
+        raise ValueError(
+            f"the author chat says it does not hold the current {slug}. "
+            f"Re-send it the full context: adv reseed {slug} && adv attempt {slug}")
+
+    if VERDICT_PASS in text:
+        if p.get("needs_solution"):
+            staging = wd / "staging"
+            staging.mkdir(exist_ok=True)
+            if "solution.md" not in split_files(text, staging):
+                raise ValueError(
+                    "PASS accepted, but this problem still has no solution.md and "
+                    "the reply did not carry one. Ask the author chat to resend "
+                    "with a '=== FILE: solution.md ===' section.")
+            shutil.copy2(staging / "solution.md", pdir / "solution.md")
+            p["needs_solution"] = False
+            chat_synced(p, pdir)
+            info(f"{slug}: wrote the missing solution.md from the author reply")
+        p["waiting"] = WAIT_DONE
+        p["status"] = "pass"
+        p["last"] = now()
+        # Drop any `=== FILE: ... ===` payload so the note is the author's
+        # reasoning, not the solution file it just attached.
+        marks = list(FILE_RE.finditer(text))
+        prose = text[:marks[0].start()] if marks else text
+        note = " ".join(l for l in prose.splitlines()
+                        if l.strip() and not l.startswith("==="))[:200]
+        if not note.strip():
+            tail = text[marks[-1].end():] if marks else ""
+            note = " ".join(l for l in tail.splitlines()
+                            if l.strip() and not l.startswith("==="))[:200]
+        p.setdefault("history", []).append({"round": rnd, "verdict": "PASS", "note": note})
+        return f"{slug}: {C['grn']}PASS after {rnd} round(s){C['off']} — {note}"
+
+    # TOO_EASY and HARDENED share this path: both replace the problem with a
+    # harder one — only the reason differs, cracked versus deliberately raised.
+    # The reply must carry both complete files, or nothing is written.
+    forced = VERDICT_HARDENED in text
+    staging = wd / "staging"
+    staging.mkdir(exist_ok=True)
+    written = split_files(text, staging)
+    if sorted(written) != ["problem.md", "solution.md"]:
+        raise ValueError(f"TOO_EASY but the reply carried {written or 'no files'}")
+
+    versions = wd / "versions"
+    versions.mkdir(exist_ok=True)
+    # A problem added without a ground truth has no solution.md to archive yet.
+    for name in ("problem.md", "solution.md"):
+        if (pdir / name).exists():
+            shutil.copy2(pdir / name, versions / f"{name[:-3]}.r{rnd}.md")
+    shutil.copy2(staging / "problem.md", pdir / "problem.md")
+    shutil.copy2(staging / "solution.md", pdir / "solution.md")
+
+    p["round"] = rnd + 1
+    p["waiting"] = WAIT_SOLVE
+    p["needs_solution"] = False
+    p["last"] = now()
+    p["status"] = "active"
+    p.setdefault("history", []).append(
+        {"round": rnd, "verdict": "HARDENED" if forced else "TOO_EASY"})
+    renamed = autoname(slug)
+    if renamed:
+        info(f"{slug}: {renamed}")
+        pdir = problem_dir(slug)
+    chat_synced(p, pdir)
+    _, push_err, what = publish(pdir, f"adv: {slug} hardened after round {rnd}")
+    pushed = f", {what}" + (f" ({C['yel']}not pushed: {push_err}{C['off']})"
+                            if push_err and what != "no change" else "")
+    tag = (f"{C['cyn']}HARDENED{C['off']}" if forced
+           else f"{C['red']}TOO_EASY{C['off']}")
+    return (f"{slug}: {tag} → now round {rnd + 1}{pushed} "
+            f"→ next: NEW 5.5 chat  [adv next {slug}]")
+
+
+def route(state: dict, text: str, forced_slug: str | None = None,
+          force: bool = False) -> str | None:
+    """Route one clipboard payload. Returns a log line, or None to stay silent."""
+    kind = classify(text)
+    if kind is None:
+        return None
+
+    # Archive every marker-bearing payload before deciding what to do with it.
+    # The clipboard holds one thing; a reply is lost the moment anything else is
+    # copied, and refusals used to discard the text entirely. `adv replay` reads
+    # this back.
+    inbox = STATE_DIR / "inbox"
+    inbox.mkdir(parents=True, exist_ok=True)
+    tag_m = TAG_RE.search(text)
+    stamp = datetime.now().strftime("%Y%m%d-%H%M%S-%f")[:-3]
+    (inbox / f"{stamp}-{tag_m.group(1) if tag_m else 'untagged'}-{kind}.md").write_text(
+        text, encoding="utf-8")
+    for old_file in sorted(inbox.glob("*.md"))[:-60]:
+        old_file.unlink(missing_ok=True)
+    if kind == "unknown-verdict":
+        got = ANY_VERDICT_RE.search(text).group(1)
+        names = ", ".join(v.split(": ")[1].rstrip(" =") for v in KNOWN_VERDICTS)
+        return (f"{C['red']}unknown verdict{C['off']} '{got}' — nothing applied.\n"
+                f"           Valid: {names}.\n"
+                f"           If the solver matched the ground truth the author "
+                f"should send TOO_EASY with both files.")
+
+    if forced_slug:
+        slug = forced_slug
+    else:
+        m = TAG_RE.search(text)
+        if not m:
+            return (f"{C['yel']}ignored{C['off']}: reply carries no "
+                    f"'=== PROBLEM: <slug> ===' tag  (use: adv catch <slug>)")
+        tag = m.group(1)
+        slug = slug_for_tag(state, tag)
+        if slug is None:
+            return f"{C['yel']}ignored{C['off']}: '{tag}' is not registered"
+        if slug != tag:
+            info(f"{C['dim']}routed {tag} → {slug} (renamed){C['off']}")
+
+    digest = hashlib.sha256(text.encode("utf-8")).hexdigest()
+    if digest in state.get("seen", []):
+        # Saying nothing here reads as "the daemon is broken". It usually means an
+        # old reply was re-copied from an old chat, which is worth naming.
+        return (f"{C['dim']}already applied{C['off']}: this exact text was captured "
+                f"before. If you expected a new one, the chat you copied from is "
+                f"an earlier round.")
+    try:
+        line = apply_capture(state, slug, text, kind, force=force)
+    except ValueError as exc:
+        # The daemon log scrolls away; keep the reason on the problem so `next`
+        # and `status` can say why it is stuck.
+        state["problems"][slug]["refused"] = f"{now()}\n{exc}"
+        save_state(state)
+        return f"{C['yel']}refused{C['off']}: {exc}"
+    except Exception as exc:
+        # The watcher runs unattended for hours; an unexpected failure on one
+        # reply must not end the session and lose every later capture.
+        import traceback
+        (STATE_DIR / "last-error.txt").write_text(traceback.format_exc(),
+                                                  encoding="utf-8")
+        return (f"{C['red']}error{C['off']} on {slug}: {type(exc).__name__}: {exc}"
+                f"  (trace in {(STATE_DIR / 'last-error.txt')})")
+    state["problems"][slug].pop("refused", None)
+    state.setdefault("seen", []).append(digest)
+    save_state(state)
+    return line
+
+
+# ------------------------------------------------------------------- commands
+def _watch_record() -> tuple[int, float] | None:
+    """(pid, script mtime it started with) for a live watcher, else None."""
+    pidfile = STATE_DIR / "watch.pid"
+    if not pidfile.exists():
+        return None
+    parts = pidfile.read_text().split()
+    try:
+        pid = int(parts[0])
+        os.kill(pid, 0)
+    except (ValueError, IndexError, ProcessLookupError, PermissionError, OSError):
+        return None
+    mtime = float(parts[1]) if len(parts) > 1 else 0.0
+    return pid, mtime
+
+
+def is_watching() -> bool:
+    return _watch_record() is not None
+
+
+def warn_if_watcher_stale() -> None:
+    """A watcher started before an edit keeps running the old code in memory.
+
+    That silently produced wrong results once — the daemon accepted a verdict a
+    newer rule would have refused — so say so loudly rather than assume.
+    """
+    rec = _watch_record()
+    if rec and rec[1] and abs(rec[1] - Path(__file__).stat().st_mtime) > 1:
+        print(f"  {C['yel']}warning:{C['off']} the running 'adv watch' (pid {rec[0]}) "
+              f"started before this script was last edited.\n"
+              f"           Restart it, or it will keep applying the old rules.\n",
+              file=sys.stderr)
+
+
+
+def fetch_origin() -> str | None:
+    """Refresh every remote ref. Returns a reason string when it could not.
+
+    Offline is not a failure worth stopping for — it just means the freshness
+    check below can only compare against whatever was last fetched, so the caller
+    says so instead of pretending the check was conclusive.
+    """
+    if git("remote", check=False) == "":
+        return "no git remote configured"
+    try:
+        subprocess.run(["git", "-C", str(ROOT), "fetch", "--quiet", "origin"],
+                       capture_output=True, text=True, timeout=45, check=True)
+    except subprocess.TimeoutExpired:
+        return "git fetch timed out after 45s"
+    except subprocess.CalledProcessError as exc:
+        lines = [l.strip() for l in (exc.stderr or exc.stdout or "").splitlines()
+                 if l.strip()]
+        return lines[-1] if lines else "git fetch failed"
+    except OSError as exc:
+        return str(exc)
+    return None
+
+
+def newer_elsewhere(pdir: Path) -> list[tuple[str, int]]:
+    """Remote branches carrying commits to this folder that HEAD does not have.
+
+    A problem revised in another clone, or on a PR branch that was never merged
+    into the checked-out branch, is invisible to everything else in this tool:
+    every read goes to the working tree. Registering it in that state runs the
+    whole loop against a version that is already superseded.
+    """
+    rel = str(pdir.relative_to(ROOT))
+    out = []
+    for ref in git("for-each-ref", "--format=%(refname:short)", "refs/remotes",
+                   check=False).splitlines():
+        ref = ref.strip()
+        if not ref or ref.endswith("/HEAD"):
+            continue
+        n = git("rev-list", "--count", f"HEAD..{ref}", "--", rel, check=False)
+        if n.isdigit() and int(n):
+            out.append((ref, int(n)))
+    return sorted(out, key=lambda x: -x[1])
+
+
+def check_fresh(slug: str, pdir: Path, force: bool) -> None:
+    """Refuse to register a problem whose newest version is not on disk."""
+    why = fetch_origin()
+    if why:
+        info(f"{C['yel']}warning{C['off']}: could not reach the remote ({why}) — "
+             f"freshness is only checked against the last fetch")
+    behind = newer_elsewhere(pdir)
+    dirty = git("status", "--porcelain", "--", str(pdir.relative_to(ROOT)),
+                check=False)
+    if dirty:
+        info(f"{C['yel']}note{C['off']}: {pdir.name} has uncommitted local "
+             f"changes — those are what will be registered")
+    if not behind:
+        return
+    where = "\n".join(f"    {ref}  ({n} commit(s) this folder does not have)"
+                      for ref, n in behind)
+    msg = (f"{pdir.name}: a newer version of this problem exists on the remote, "
+           f"not in your working tree:\n{where}\n"
+           f"  Everything in adv reads the working tree, so registering it now "
+           f"would run the whole loop against the superseded copy.\n"
+           f"  Bring it in first, e.g.:\n"
+           f"    git pull --rebase origin {branch()}\n"
+           f"    git checkout {behind[0][0].split('/', 1)[-1]}   # if it is still "
+           f"an unmerged branch\n"
+           f"  Registering the working-tree copy on purpose: "
+           f"adv add {slug} --force")
+    if force:
+        info(f"{C['yel']}--force{C['off']}: {msg}")
+        return
+    die(msg)
+
+
+def mark_issued(state: dict, slug: str, what: str) -> None:
+    """Stamp when a prompt for this problem was last put on the clipboard.
+
+    Lets `status` say whether the ball is in your court (nothing pulled yet) or
+    the model's (pulled, waiting on a reply).
+    """
+    entry(state, slug)["issued"] = f"{now()} {what}"
+    save_state(state)
+
+
+def cmd_add(args: list[str]) -> None:
+    force = "--force" in args
+    args = [a for a in args if a != "--force"]
+    if not args:
+        die("usage: adv add [--force] <slug>...")
+    state = load_state()
+    for target in args:
+        pdir = resolve(target)
+        # Identity is the number. The domain suffix changes whenever the author
+        # moves the problem to another taxonomy slot, so it must not be part of
+        # the key, the tag, or anything a chat echoes back.
+        num = re.match(r"(problem\d+)-", pdir.name)
+        slug = num.group(1) if num else pdir.name
+        if not (pdir / "problem.md").exists():
+            die(f"{pdir.name}: missing problem.md")
+        if slug in state["problems"]:
+            info(f"{slug}: already registered (round {state['problems'][slug]['round']})")
+            continue
+        # Before anything is recorded: is the working-tree copy the newest one?
+        check_fresh(slug, pdir, force)
+        # A problem hardened in chat often has no solution.md written yet. The
+        # authoring chat still holds the ground truth, so run in a mode that asks
+        # it to emit solution.md and let the repo catch up.
+        sol = pdir / "solution.md"
+        needs_solution = not (sol.exists() and sol.stat().st_size > 0)
+        # `chat_holds` stays None: a problem added from disk was not authored
+        # by any chat this tool briefed, so the first author paste must carry
+        # problem.md and solution.md with it.
+        state["problems"][slug] = {
+            "round": 1, "waiting": WAIT_SOLVE,
+            "status": "active", "last": None, "history": [], "reseed": False,
+            "needs_solution": needs_solution, "chat_holds": None}
+        if needs_solution:
+            info(f"{slug}: {C['yel']}no solution.md{C['off']} — the author chat must "
+                 f"supply the ground truth, and will be asked to write the file")
+        info(f"{slug}: registered ({pdir.name}) → next: NEW 5.5 chat  "
+             f"[adv next {slug}]")
+        info(f"{slug}: {C['dim']}the author paste will carry problem.md and "
+             f"solution.md, so the Sol chat can be a fresh one{C['off']}")
+    save_state(state)
+
+
+def cmd_next(args: list[str]) -> None:
+    if len(args) != 1:
+        die("usage: adv next <slug>")
+    require_clipboard()
+    state = load_state()
+    warn_if_watcher_stale()
+    slug = find_slug(state, args[0])
+    p = entry(state, slug)
+    if p["waiting"] == WAIT_CHECK:
+        # The Sol chat normally already holds the problem and the contract, so
+        # the only thing to hand over is the solver's answer itself. Loading it
+        # here keeps `next` meaning "give me the next thing to paste" at every
+        # stage. When the chat cannot be shown to hold the current files, fall
+        # through to build_prompt instead, which sends them along with it.
+        f = workdir(slug) / "attempt.md"
+        if f.exists() and not p.get("needs_solution") and not needs_context(
+                p, problem_dir(slug)):
+            text = f.read_text(encoding="utf-8")
+            p["last_embed"] = False
+            mark_issued(state, slug, "attempt")
+            clip_write(text)
+            print(f"\n  {C['yel']}Solver attempt in clipboard "
+                  f"({text.count(chr(10)) + 1} lines) for {C['bld']}{slug}{C['off']}"
+                  f"\n", file=sys.stderr)
+            print(f"    1. ChatGPT web -> {C['bld']}the Sol chat for {slug}"
+                  f"{C['off']}", file=sys.stderr)
+            print(f"       {C['dim']}continue that conversation — do NOT open a "
+                  f"new chat{C['off']}", file=sys.stderr)
+            print("    2. Ctrl+V, Enter", file=sys.stderr)
+            print("    3. When it finishes, click ChatGPT's Copy button\n",
+                  file=sys.stderr)
+            if p.get("refused"):
+                when, _, why = p["refused"].partition("\n")
+                print(f"  {C['red']}Last reply was refused{C['off']} ({ago(when)}):",
+                      file=sys.stderr)
+                print(f"    {why}\n", file=sys.stderr)
+            return
+        if not f.exists():
+            print(f"\n  {C['yel']}{slug}{C['off']} is waiting on the author.\n",
+                  file=sys.stderr)
+            if p.get("refused"):
+                when, _, why = p["refused"].partition("\n")
+                print(f"  {C['red']}Last reply was refused{C['off']} "
+                      f"({ago(when)}):", file=sys.stderr)
+                print(f"    {why}\n", file=sys.stderr)
+            print(f"    Paste the solver's answer straight into the Sol chat for "
+                  f"{C['bld']}{slug}{C['off']}, then copy its verdict.",
+                  file=sys.stderr)
+            print(f"    {C['dim']}Chat not briefed yet? adv brief {slug}"
+                  f"{C['off']}\n", file=sys.stderr)
+            return
+        info(f"{slug}: the Sol chat has not been sent the current files — "
+             f"pasting them with the attempt")
+    prompt, where, hint = build_prompt(state, slug)
+    mark_issued(state, slug, "problem")
+    state.setdefault("seen", []).append(
+        hashlib.sha256(prompt.encode("utf-8")).hexdigest())
+    save_state(state)
+    clip_write(prompt)
+    print(f"\n  {C['yel']}Prompt in clipboard ({prompt.count(chr(10)) + 1} lines) for "
+          f"{C['bld']}{slug}{C['off']}\n", file=sys.stderr)
+    print(f"    1. ChatGPT web -> {C['bld']}{where}{C['off']}", file=sys.stderr)
+    print(f"       {C['dim']}{hint}{C['off']}", file=sys.stderr)
+    print("    2. Ctrl+V, Enter", file=sys.stderr)
+    print("    3. When it finishes, click ChatGPT's Copy button\n", file=sys.stderr)
+    if not is_watching():
+        print(f"  {C['yel']}note:{C['off']} no 'adv watch' daemon running — "
+              f"start one or the reply will not be captured.\n", file=sys.stderr)
+
+
+
+def cmd_brief(args: list[str]) -> None:
+    """Load the output contract for a problem's author chat.
+
+    Paste this once, when the Sol chat for a problem starts. Every later round is
+    just the solver's answer pasted raw — the chat already knows what to emit,
+    so nothing has to be assembled here.
+    """
+    if len(args) != 1:
+        die("usage: adv brief <slug>")
+    require_clipboard()
+    state = load_state()
+    slug = find_slug(state, args[0])
+    entry(state, slug)
+    tpl = (LIB / "check-prompt.md").read_text(encoding="utf-8")
+    tpl = tpl.split("--- SOLVER ATTEMPT ---")[0].rstrip()
+    body = (f"=== PROBLEM: {slug} ===\n{PROMPT_SENTINEL}\n\n"
+            "Standing instructions for this conversation.\n\n"
+            "From now on, every message I paste here is a solver model's attempt "
+            "at the problem you authored above. Each time, apply the rules below "
+            "and reply in exactly that format — I will not repeat them.\n\n"
+            + tpl + (LIB / "problem-template.md").read_text(encoding="utf-8")
+            + "\n")
+    mark_issued(state, slug, "brief")
+    clip_write(body)
+    print(f"\n  {C['yel']}Contract in clipboard ({body.count(chr(10)) + 1} lines) "
+          f"for {C['bld']}{slug}{C['off']}\n", file=sys.stderr)
+    print(f"    Paste it ONCE into the Sol chat for {slug}.", file=sys.stderr)
+    print(f"    {C['dim']}After that, paste each solver answer raw — no command "
+          f"needed.{C['off']}\n", file=sys.stderr)
+
+
+
+def cmd_attempt(args: list[str]) -> None:
+    """Put the captured solver attempt back on the clipboard.
+
+    The author hop is a manual paste, so the attempt has to survive the clipboard
+    being used for anything else in between.
+    """
+    if len(args) != 1:
+        die("usage: adv attempt <slug>")
+    require_clipboard()
+    state = load_state()
+    slug = find_slug(state, args[0])
+    f = workdir(slug) / "attempt.md"
+    if not f.exists():
+        die(f"{slug}: no solver attempt captured yet")
+    p = entry(state, slug)
+    if p.get("needs_solution") or needs_context(p, problem_dir(slug)):
+        # Same rule as `next`: an attempt alone would be graded against whatever
+        # the chat happens to remember. Send the current files with it.
+        die(f"{slug}: the Sol chat has not been sent the current problem.md and "
+            f"solution.md, so a bare attempt would be graded against the wrong "
+            f"version.\n  Use: adv next {slug}")
+    text = f.read_text(encoding="utf-8")
+    mark_issued(state, slug, "attempt")
+    clip_write(text)
+    print(f"\n  {C['yel']}Solver attempt in clipboard ({text.count(chr(10)) + 1} "
+          f"lines) for {C['bld']}{slug}{C['off']}\n", file=sys.stderr)
+    print(f"    Paste it into the Sol chat for {slug}, then copy its verdict.\n",
+          file=sys.stderr)
+
+
+
+def cmd_format(args: list[str]) -> None:
+    """Ask the author chat to rewrite solution.md to the repo's standard.
+
+    The loop's own prompt only enforces section order; the real formatting rules
+    live in skills/format-solution. This is the pass that applies them, without
+    touching the mathematics.
+    """
+    if len(args) != 1:
+        die("usage: adv format <slug>")
+    require_clipboard()
+    state = load_state()
+    slug = find_slug(state, args[0])
+    p = entry(state, slug)
+    pdir = problem_dir(slug)
+    body = (f"=== PROBLEM: {slug} ===\n{PROMPT_SENTINEL}\n\n"
+            + (LIB / "format-prompt.md").read_text(encoding="utf-8"))
+    if needs_context(p, pdir):
+        # Reformatting from memory would rewrite a version of solution.md that
+        # is no longer on disk, and the reply overwrites the file.
+        body += AUTHORITATIVE + context_block(pdir)
+        chat_synced(p, pdir)
+        save_state(state)
+    mark_issued(state, slug, "format")
+    clip_write(body)
+    print(f"\n  {C['yel']}Reformat request in clipboard "
+          f"({body.count(chr(10)) + 1} lines) for {C['bld']}{slug}{C['off']}\n",
+          file=sys.stderr)
+    print(f"    Paste into the Sol chat for {slug}, then copy its reply.",
+          file=sys.stderr)
+    print(f"    {C['dim']}It rewrites solution.md only — the maths and the answer "
+          f"stay put.{C['off']}\n", file=sys.stderr)
+
+
+
+def cmd_harder(args: list[str]) -> None:
+    """Ask the author to harden a problem that already passed.
+
+    Surviving one solver is weak evidence — the reviewer grades with a stronger
+    model. This forces another turn of the screw without waiting for a crack.
+    """
+    if not args:
+        die('usage: adv harder <slug> ["optional steer, e.g. close the divided-difference route"]')
+    require_clipboard()
+    state = load_state()
+    slug = find_slug(state, args[0])
+    p = entry(state, slug)
+    pdir = problem_dir(slug)
+    body = (f"=== PROBLEM: {slug} ===\n{PROMPT_SENTINEL}\n\n"
+            + (LIB / "harder-prompt.md").read_text(encoding="utf-8")
+            + (LIB / "problem-template.md").read_text(encoding="utf-8"))
+    if needs_context(p, pdir):
+        # Hardening from memory would harden a statement the repo no longer has,
+        # and the reply overwrites both files.
+        body += AUTHORITATIVE + context_block(pdir)
+        chat_synced(p, pdir)
+        save_state(state)
+    if len(args) > 1:
+        body += "\nSpecific steer from me: " + " ".join(args[1:]) + "\n"
+    mark_issued(state, slug, "harder")
+    clip_write(body)
+    print(f"\n  {C['yel']}Harden request in clipboard ({body.count(chr(10)) + 1} "
+          f"lines) for {C['bld']}{slug}{C['off']}\n", file=sys.stderr)
+    print(f"    Paste into the Sol chat for {slug}, then copy its reply.",
+          file=sys.stderr)
+    print(f"    {C['dim']}It bumps the round and sends you back to the solver "
+          f"step.{C['off']}\n", file=sys.stderr)
+
+
+
+def next_free_number() -> str:
+    """One past the highest problemNN on disk.
+
+    Gaps are left alone: a freed number usually means a shelved problem that may
+    come back, and reusing it would collide with its history.
+    """
+    used = [int(m.group(1)) for d in PROBLEM_ROOT.glob("problem*")
+            if d.is_dir() and (m := re.match(r"problem(\d+)", d.name))]
+    return f"problem{max(used, default=0) + 1:02d}"
+
+
+def cmd_new(args: list[str]) -> None:
+    """Reserve the next problem number and ask a fresh Sol chat to author it.
+
+    The folder is created as `problemNN-pending` because the real suffix is the
+    Sub-domain, which is only known once the author has chosen a slot; the
+    capture renames it.
+    """
+    require_clipboard()
+    state = load_state()
+    slug = next_free_number()
+    pdir = PROBLEM_ROOT / f"{slug}-pending"
+    if slug in state["problems"] or pdir.exists():
+        die(f"{slug} is already taken — clean it up first")
+    pdir.mkdir(parents=True)
+    (pdir / "problem.md").write_text(
+        f"# {slug}\n\nPlaceholder — awaiting the authoring reply.\n",
+        encoding="utf-8")
+    state["problems"][slug] = {
+        "round": 1, "waiting": WAIT_CHECK, "status": "active", "last": None,
+        "history": [], "reseed": False, "needs_solution": True}
+
+    body = (f"=== PROBLEM: {slug} ===\n{PROMPT_SENTINEL}\n\n"
+            + (LIB / "new-prompt.md").read_text(encoding="utf-8")
+            + (LIB / "problem-template.md").read_text(encoding="utf-8"))
+    if args:
+        body += "\nDomain / sub-domain I want: " + " ".join(args) + "\n"
+    save_state(state)
+    mark_issued(state, slug, "new")
+    clip_write(body)
+    print(f"\n  {C['yel']}Authoring request in clipboard "
+          f"({body.count(chr(10)) + 1} lines) for {C['bld']}{slug}{C['off']}\n",
+          file=sys.stderr)
+    print(f"    1. ChatGPT web -> {C['bld']}NEW chat{C['off']} -> GPT-5.6 Sol "
+          f"(Thinking)", file=sys.stderr)
+    print(f"       {C['dim']}this chat becomes the author chat for {slug} — "
+          f"name it {slug} and keep it{C['off']}", file=sys.stderr)
+    print("    2. Ctrl+V, Enter", file=sys.stderr)
+    print("    3. When it finishes, click ChatGPT's Copy button\n", file=sys.stderr)
+    print(f"    {C['dim']}Then: adv brief {slug}  (the standing contract for that "
+          f"chat){C['off']}\n", file=sys.stderr)
+
+
+
+# ------------------------------------------------------------------ submitting
+# Mirrors the live portal form. The two repeatable fields matter most: the portal
+# wants one textarea per step and one per concept, so a single blob would have to
+# be re-split by hand at paste time.
+PROMPT_MAX = 2000          # textarea-math_problem_prompt maxlength
+ANSWER_MAX = 102           # textarea-answer maxlength
+CONCEPT_MAX = 100          # "under 100 characters", per the field description
+CONCEPT_LIMIT = 5          # "at least one and no more than five"
+
+DOMAIN_OPTIONS = [
+    "Abstract Algebra", "Probability and Statistics",
+    "Discrete Mathematics and Combinatorics", "Number Theory",
+    "Topology and Geometry", "Analysis",
+    "Optimization and Numerical Mathematics",
+    "Euclidean, Coordinate, and Transformational Geometry",
+    "Differential Equations and Dynamical Systems", "Linear Algebra",
+    "Logic, Set Theory, and Foundations", "Algebra, Functions, and Trigonometry",
+    "Calculus",
+]
+PROBLEM_TYPE_OPTIONS = [
+    "Exact computation", "Symbolic derivation", "Numerical approximation",
+    "Solve for unknowns", "Construction under constraints", "Optimization",
+    "Exhaustive enumeration", "Canonicalization or normalization",
+    "Transformation between representations", "Parameter identification", "Other",
+]
+ANSWER_TYPE_OPTIONS = [
+    "Exact scalar", "Numerical scalar approximation", "Exact symbolic expression",
+    "Polynomial or rational function", "Equation or inequality",
+    "Interval or region description", "Vector", "Matrix", "Tuple or ordered list",
+    "Set or multiset of objects", "Sequence or series representation",
+    "Function or mapping", "Canonical form", "Other",
+]
+
+CLASSIF_RE = re.compile(r"^\|\s*\*\*(.+?)\*\*\s*\|\s*(.+?)\s*\|\s*$", re.M)
+STEP_SPLIT_RE = re.compile(r"^(?=Step\s*\d+\s*:)", re.M)
+
+
+def section(text: str, name: str) -> str:
+    """Body of a `## <name>` section, up to the next `##` heading."""
+    m = re.search(rf"^##\s*{re.escape(name)}\s*$", text, re.M | re.I)
+    if not m:
+        return ""
+    rest = text[m.end():]
+    nxt = re.search(r"^##\s+", rest, re.M)
+    body = rest[:nxt.start()] if nxt else rest
+    return body.strip().strip("-").strip()
+
+
+def classification(text: str) -> dict:
+    return {k.strip().lower().replace("-", ""): v.strip()
+            for k, v in CLASSIF_RE.findall(text)}
+
+
+def split_steps(steps: str) -> list[str]:
+    """One entry per `Step N:` block — the portal has a textarea for each."""
+    parts = [b.strip().strip("-").strip() for b in STEP_SPLIT_RE.split(steps)]
+    return [b for b in parts if b]
+
+
+def split_concepts(text: str) -> list[str]:
+    out = []
+    for line in text.splitlines():
+        line = line.strip()
+        if line.startswith(("-", "*", "+")):
+            line = line[1:].strip()
+        elif re.match(r"^\d+[.)]\s", line):
+            line = re.split(r"^\d+[.)]\s", line, maxsplit=1)[1].strip()
+        elif not line:
+            continue
+        if line:
+            out.append(line)
+    return out
+
+
+def submit_fields(pdir: Path) -> tuple[dict, list[str]]:
+    """Map a problem folder onto the portal form. Returns (fields, gate failures)."""
+    prob = (pdir / "problem.md").read_text(encoding="utf-8")
+    sol = (pdir / "solution.md").read_text(encoding="utf-8")
+    pc, sc = classification(prob), classification(sol)
+
+    answer = section(sol, "Answer")
+    answer = re.sub(r"\\boxed\s*\{(.*)\}", r"\1", answer, flags=re.S).strip()
+    if answer and not answer.startswith("$"):
+        answer = f"${answer}$"
+
+    steps_body = section(sol, "Steps")
+    f = {
+        "prompt": statement_only(prob).strip(),
+        "domain": pc.get("domain", ""),
+        "subdomain": pc.get("subdomain", ""),
+        "explanation": section(prob, "Domain Explanation"),
+        "steps": split_steps(steps_body),
+        "answer": answer,
+        "problem_type": pc.get("problem type", "") or sc.get("problem type", ""),
+        "answer_type": pc.get("answer type", "") or sc.get("answer type", ""),
+        "concepts": split_concepts(section(sol, "Solution Concepts")),
+        "routing": "DEFAULT: Quality Review",
+    }
+
+    bad = []
+    if not f["prompt"]:
+        bad.append("Math Problem (Prompt) is empty")
+    elif len(f["prompt"]) > PROMPT_MAX:
+        bad.append(f"Math Problem (Prompt) is {len(f['prompt'])} chars — the field "
+                   f"caps at {PROMPT_MAX}")
+    if not answer:
+        bad.append("Answer is empty")
+    elif len(answer) > ANSWER_MAX:
+        bad.append(f"Answer is {len(answer)} chars — the field caps at {ANSWER_MAX}")
+    if "\\boxed" in answer:
+        bad.append("Answer still contains \\boxed — the portal field forbids it")
+    if not f["explanation"]:
+        bad.append("Domain Explanation is empty")
+
+    if not f["steps"]:
+        bad.append("No `Step N:` blocks found in ## Steps")
+    else:
+        for i, st in enumerate(f["steps"], 1):
+            if not re.match(rf"^Step\s*{i}\s*:", st):
+                bad.append(f"Step {i} does not start with 'Step {i}:'")
+        if "Final Answer:" not in f["steps"][-1]:
+            bad.append("The last step must end with 'Final Answer: $\\boxed{...}$'")
+        elif "\\boxed" not in f["steps"][-1]:
+            bad.append("The last step's Final Answer must use \\boxed{...}")
+
+    n = len(f["concepts"])
+    if not 1 <= n <= CONCEPT_LIMIT:
+        bad.append(f"{n} concepts — the portal wants 1 to {CONCEPT_LIMIT}")
+    for c in f["concepts"]:
+        if len(c) >= CONCEPT_MAX:
+            bad.append(f"Concept '{c[:40]}...' is {len(c)} chars — keep it under "
+                       f"{CONCEPT_MAX}")
+
+    for key, label, options in (("domain", "Domain", DOMAIN_OPTIONS),
+                                ("problem_type", "Problem Type", PROBLEM_TYPE_OPTIONS),
+                                ("answer_type", "Answer Type", ANSWER_TYPE_OPTIONS)):
+        if not f[key]:
+            bad.append(f"{label} is empty")
+        elif f[key] not in options:
+            near = [o for o in options if o.lower() == f[key].lower()]
+            bad.append(f"{label} '{f[key]}' is not one of the portal's options"
+                       + (f" — did you mean '{near[0]}'?" if near else ""))
+    if not f["subdomain"]:
+        bad.append("Sub-domain is empty")
+    for key, label in (("problem type", "Problem Type"), ("answer type", "Answer Type")):
+        a, b = pc.get(key, ""), sc.get(key, "")
+        if a and b and a != b:
+            bad.append(f"{label} differs: problem.md says '{a}', solution.md says '{b}'")
+    return f, bad
+
+
+def submit_plan(f: dict) -> list[tuple[str, str, str]]:
+    """(label, value, kind) in the form's own order."""
+    plan = [("Math Problem (Prompt)", f["prompt"], "paste"),
+            ("Domain", f["domain"], "select"),
+            ("Sub-domain", f["subdomain"], "select"),
+            ("Domain Explanation", f["explanation"], "paste")]
+    for i, st in enumerate(f["steps"], 1):
+        plan.append((f"Step-by-Step Solution — box {i}", st, "paste"))
+    plan.append(("Answer", f["answer"], "paste"))
+    plan.append(("Problem Type", f["problem_type"], "select"))
+    plan.append(("Answer Type", f["answer_type"], "select"))
+    for i, c in enumerate(f["concepts"], 1):
+        plan.append((f"Solution Concepts — box {i}", c, "paste"))
+    plan.append(("Submission Routing", f["routing"], "select"))
+    return plan
+
+
+def cmd_submit(args: list[str]) -> None:
+    """Walk one problem's portal fields, one clipboard load at a time.
+
+    Pulls first: the portal copy must match what is in the repo, and another
+    machine may have revised the problem since this one last synced.
+    """
+    skip_pull = "--no-pull" in args
+    args = [a for a in args if a != "--no-pull"]
+    if len(args) != 1:
+        die("usage: adv submit <slug> [--no-pull]")
+    require_clipboard()
+    state = load_state()
+    slug = find_slug(state, args[0]) if args[0] in state["problems"] else args[0]
+
+    if not skip_pull:
+        info("pulling latest before mapping fields...")
+        try:
+            before = git("rev-parse", "HEAD")
+            git("pull", "--rebase", "-q", "origin", branch())
+            if git("rev-parse", "HEAD") != before:
+                info(f"{C['yel']}repo moved during pull{C['off']} — fields below "
+                     f"reflect the updated files")
+        except RuntimeError as exc:
+            die(f"pull failed: {str(exc).splitlines()[0]}\n"
+                f"  resolve it, or rerun with --no-pull to map the local copy")
+
+    pdir = problem_dir(slug)
+    for name in ("problem.md", "solution.md"):
+        if not (pdir / name).exists():
+            die(f"{slug}: missing {name}")
+    fields, bad = submit_fields(pdir)
+
+    if bad:
+        print(f"\n  {C['red']}Not ready to submit{C['off']} — {len(bad)} problem(s):\n",
+              file=sys.stderr)
+        for b in bad:
+            print(f"    · {b}", file=sys.stderr)
+        print(file=sys.stderr)
+        die("fix these first (adv format may resolve the formatting ones)")
+
+    plan = submit_plan(fields)
+    total = len(plan)
+    print(f"\n  {C['grn']}{slug}{C['off']} — {pdir.name}, all gates pass",
+          file=sys.stderr)
+    print(f"  {C['dim']}{len(fields['steps'])} step boxes · "
+          f"{len(fields['concepts'])} concept boxes{C['off']}", file=sys.stderr)
+    print(f"  {C['dim']}Enter = trường sau · b = quay lại · r = nạp lại · "
+          f"<số> = nhảy tới · l = xem danh sách · q = thoát{C['off']}\n",
+          file=sys.stderr)
+
+    i = 0
+    while 0 <= i < total:
+        label, val, kind = plan[i]
+        if kind == "select":
+            print(f"  [{i + 1}/{total}] {C['bld']}{label}{C['off']}  "
+                  f"{C['dim']}(chọn trong danh sách){C['off']}", file=sys.stderr)
+            print(f"          → {C['cyn']}{val}{C['off']}", file=sys.stderr)
+        else:
+            clip_write(val)
+            print(f"  [{i + 1}/{total}] {C['bld']}{label}{C['off']}  "
+                  f"{C['dim']}→ clipboard ({len(val)} ký tự){C['off']}",
+                  file=sys.stderr)
+        try:
+            cmd = input("          > ").strip().lower()
+        except EOFError:
+            return
+        if cmd in ("q", "quit"):
+            print(file=sys.stderr)
+            return
+        if cmd in ("b", "back", "p"):
+            # Stepping back re-copies that field, which is the point of going back.
+            i = max(0, i - 1)
+            continue
+        if cmd in ("r", "again"):
+            continue
+        if cmd == "l":
+            for n, (lb, v, k) in enumerate(plan, 1):
+                mark = "→" if n == i + 1 else " "
+                tag = "select" if k == "select" else "      "
+                print(f"    {mark} {n:>2}. {tag} {lb:<34} {len(v):>5} ký tự",
+                      file=sys.stderr)
+            continue
+        if cmd.isdigit():
+            n = int(cmd)
+            if 1 <= n <= total:
+                i = n - 1
+                continue
+            print(f"          {C['yel']}chỉ có {total} trường{C['off']}",
+                  file=sys.stderr)
+            continue
+        if cmd:
+            print(f"          {C['yel']}không hiểu '{cmd}'{C['off']} — Enter/b/r/"
+                  f"<số>/l/q", file=sys.stderr)
+            continue
+        i += 1
+
+    print(f"\n  {C['grn']}Hết trường.{C['off']} Chạy 'Check LaTeX, and Final Answer "
+          f"Length and Formatting' trong portal rồi Submit.\n", file=sys.stderr)
+
+
+
+def cmd_fix(args: list[str]) -> None:
+    """Turn reviewer feedback on the clipboard into a correction request.
+
+    The feedback is read from the clipboard because that is where it already is
+    after copying it out of the portal; it is archived per round so a later
+    rejection can be compared against an earlier one.
+    """
+    src = None
+    if "--file" in args:
+        i = args.index("--file")
+        if i + 1 >= len(args):
+            die("--file needs a path")
+        src = args[i + 1]
+        args = args[:i] + args[i + 2:]
+    if len(args) != 1:
+        die("usage: adv fix <slug> [--file <path>]\n"
+            "  or copy the feedback first and run: adv fix <slug>\n"
+            "  or pipe it in:                      adv fix <slug> < feedback.txt")
+    require_clipboard()
+    state = load_state()
+    slug = find_slug(state, args[0]) if args[0] in state["problems"] else args[0]
+    problem_dir(slug)
+
+    # Three ways in, because the clipboard is the easiest to lose: an explicit
+    # file, piped stdin, or whatever was last copied.
+    if src:
+        f = Path(src)
+        if not f.exists():
+            die(f"no such file: {src}")
+        feedback, where = f.read_text(encoding="utf-8").strip(), src
+    elif not sys.stdin.isatty():
+        feedback, where = sys.stdin.read().strip(), "stdin"
+    else:
+        feedback, where = clip_read().strip(), "the clipboard"
+
+    if PROMPT_SENTINEL in feedback:
+        die(f"{where} holds an adv prompt, not reviewer feedback —\n"
+            f"  copy the reviewer's message from the portal first")
+    if len(feedback) < 80:
+        die(f"{where} holds only {len(feedback)} characters — that does not look "
+            f"like reviewer feedback.\n"
+            f"  Copy the reviewer's message, then rerun; or pass it as a file:\n"
+            f"    adv fix {args[0]} --file feedback.txt")
+
+    wd = workdir(slug)
+    rnd = state["problems"].get(slug, {}).get("round", 0)
+    (wd / f"feedback-r{rnd}.md").write_text(feedback, encoding="utf-8")
+
+    body = (f"=== PROBLEM: {slug} ===\n{PROMPT_SENTINEL}\n\n"
+            + (LIB / "fix-prompt.md").read_text(encoding="utf-8")
+            + (LIB / "problem-template.md").read_text(encoding="utf-8")
+            + "\n--- REVIEWER FEEDBACK ---\n" + feedback + "\n")
+    if slug in state["problems"]:
+        mark_issued(state, slug, "fix")
+    clip_write(body)
+    print(f"\n  {C['yel']}Fix request in clipboard ({body.count(chr(10)) + 1} "
+          f"lines) for {C['bld']}{slug}{C['off']}", file=sys.stderr)
+    print(f"  {C['dim']}feedback archived at "
+          f"{(wd / f'feedback-r{rnd}.md').relative_to(ROOT)}{C['off']}\n",
+          file=sys.stderr)
+    print(f"    Paste into the Sol chat for {slug}, then copy its reply.",
+          file=sys.stderr)
+    print(f"    {C['dim']}It rewrites both files; the previous pair is kept in "
+          f"versions/.{C['off']}\n", file=sys.stderr)
+
+
+
+def cmd_replay(args: list[str]) -> None:
+    """List or re-apply payloads the watcher has seen.
+
+    Anything the daemon captured is kept, including replies it refused. This is
+    the way back when the clipboard was overwritten before the reply landed.
+    """
+    inbox = STATE_DIR / "inbox"
+    files = sorted(inbox.glob("*.md"), reverse=True) if inbox.exists() else []
+    if not files:
+        info("nothing captured yet")
+        return
+    if not args:
+        print(f"\n  {C['bld']}Gần nhất trước{C['off']}  "
+              f"{C['dim']}(adv replay <số> để áp lại){C['off']}\n", file=sys.stderr)
+        for i, f in enumerate(files[:20], 1):
+            date, hms, _ms, *rest = f.stem.split("-")
+            slug, kind = "-".join(rest[:-1]), rest[-1]
+            when = f"{hms[:2]}:{hms[2:4]}:{hms[4:6]}"
+            print(f"    {i:>2}. {date[4:6]}/{date[6:]} {when}  {slug:<28} "
+                  f"{kind:<9} {f.stat().st_size:>6}B", file=sys.stderr)
+        print(file=sys.stderr)
+        return
+    if not args[0].isdigit() or not 1 <= int(args[0]) <= len(files):
+        die(f"usage: adv replay [<1..{len(files)}>]")
+    f = files[int(args[0]) - 1]
+    forced = args[1] if len(args) > 1 else None
+    state = load_state()
+    # Drop it from the dedupe log so a previously applied payload can be redone.
+    digest = hashlib.sha256(f.read_bytes()).hexdigest()
+    if digest in state.get("seen", []):
+        state["seen"].remove(digest)
+        save_state(state)
+    line = route(state, f.read_text(encoding="utf-8"),
+                 forced_slug=find_slug(state, forced) if forced else None)
+    info(line or f"{f.name}: nothing to apply")
+
+
+
+def unpushed() -> int:
+    """Commits on this branch that the remote does not have."""
+    br = branch()
+    n = git("rev-list", "--count", f"origin/{br}..{br}", check=False)
+    return int(n) if n.isdigit() else 0
+
+
+def gh_account_hint() -> str:
+    """Which logged-in gh account should be active for this remote, if any.
+
+    The active account is global state that other sessions flip, and the symptom
+    is always a bare 403 here. Naming the fix beats explaining it.
+    """
+    owner = repo_slug().split("/")[0]
+    try:
+        out = subprocess.run(["gh", "auth", "status"], capture_output=True,
+                             text=True, timeout=20).stdout
+    except Exception:
+        return ""
+    accounts = re.findall(r"account (\S+)", out)
+    active = re.search(r"account (\S+) .*?\n\s*- Active account: true", out, re.S)
+    active = active.group(1) if active else ""
+    if owner in accounts and active != owner:
+        return (f"\n  active gh account is '{active or 'unknown'}'; this repo "
+                f"belongs to '{owner}'.\n  fix: gh auth switch --user {owner}")
+    return ""
+
+
+def cmd_push(args: list[str]) -> None:
+    """Send whatever `adv` committed but could not push.
+
+    Every capture commits locally and then tries to push. When that push fails —
+    expired credentials, a diverged remote — the work is safe but invisible to
+    everyone else, and re-copying the reply cannot help because the files are
+    already written. This is the way to catch up afterwards.
+    """
+    br = branch()
+    try:
+        git("fetch", "-q", "origin", br)
+    except RuntimeError as exc:
+        die(f"fetch failed: {str(exc).strip().splitlines()[-1]}")
+
+    ahead, behind = unpushed(), 0
+    n = git("rev-list", "--count", f"{br}..origin/{br}", check=False)
+    behind = int(n) if n.isdigit() else 0
+
+    if not ahead and not behind:
+        info("nothing to push — local and remote match")
+        return
+
+    if behind:
+        info(f"remote is {behind} commit(s) ahead — rebasing first")
+        try:
+            git("pull", "--rebase", "-q", "origin", br)
+        except RuntimeError as exc:
+            die("rebase stopped — resolve it by hand, then rerun:\n"
+                f"  {str(exc).strip().splitlines()[-1]}\n"
+                "  git status   # see the conflict\n"
+                "  git rebase --continue")
+
+    ahead = unpushed()
+    if not ahead:
+        info("nothing left to push after the rebase")
+        return
+    for line in git("log", "--oneline", f"origin/{br}..{br}").splitlines():
+        print(f"    {line}", file=sys.stderr)
+    try:
+        git("push", "-q", "origin", br)
+    except RuntimeError as exc:
+        lines = [l.strip() for l in str(exc).strip().splitlines() if l.strip()]
+        cause = next((l for l in lines if l.startswith(("error:", "fatal:", "!"))),
+                     lines[-1] if lines else "push failed")
+        if "403" in cause or "denied" in cause.lower():
+            cause += (gh_account_hint()
+                      or "\n  the stored GitHub credential cannot write here — "
+                         "check: gh auth status")
+        die(f"push failed: {cause}")
+    info(f"pushed {ahead} commit(s) to origin/{br}")
+
+
+def cmd_watch(args: list[str]) -> None:
+    require_clipboard()
+    interval = float(args[0]) if args else 2.0
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
+    pidfile = STATE_DIR / "watch.pid"
+    if is_watching():
+        die(f"a watcher is already running (pid {pidfile.read_text().strip()})")
+    pidfile.write_text(f"{os.getpid()} {Path(__file__).stat().st_mtime}")
+    info(f"watching clipboard every {interval:g}s — Ctrl+C to stop")
+    me = Path(__file__).resolve()
+    my_mtime = me.stat().st_mtime
+    # Do NOT snapshot the clipboard here. A reply is often already sitting in it
+    # when the watcher (re)starts — after an edit-triggered reload, or after the
+    # daemon was restarted precisely because it missed something. Snapshotting
+    # would mark that reply "already seen" and drop it silently. The `seen`
+    # hashes below stop anything from being applied twice.
+    last = None
+    try:
+        while True:
+            time.sleep(interval)
+            # Python loaded this file once at start, so an edited script would
+            # otherwise keep running the old rules and drop replies it no longer
+            # recognises. Re-exec instead of warning and hoping.
+            if me.stat().st_mtime != my_mtime:
+                info(f"{C['yel']}script changed — reloading{C['off']}")
+                pidfile.unlink(missing_ok=True)
+                os.execv(sys.executable, [sys.executable, str(me), *sys.argv[1:]])
+            text = clip_read()
+            if text == last or not text.strip():
+                continue
+            last = text
+            line = route(load_state(), text)
+            if line:
+                info(line)
+    except KeyboardInterrupt:
+        info("stopped")
+    finally:
+        pidfile.unlink(missing_ok=True)
+
+
+def cmd_catch(args: list[str]) -> None:
+    force = "--force" in args
+    args = [a for a in args if a != "--force"]
+    if len(args) != 1:
+        die("usage: adv catch <slug> [--force]")
+    require_clipboard()
+    state = load_state()
+    slug = find_slug(state, args[0])
+    text = clip_read()
+    if not classify(text):
+        die("clipboard holds no '=== END OF ATTEMPT ===' or '=== VERDICT: ... ===' marker")
+    info(route(state, text, forced_slug=slug, force=force)
+         or "already captured — nothing to do")
+
+
+def cmd_status(args: list[str]) -> None:
+    warn_if_watcher_stale()
+    state = load_state()
+    if not state["problems"]:
+        info("nothing registered yet — adv add <slug>...")
+        return
+    label = {WAIT_SOLVE: "5.5 solve", WAIT_CHECK: "Sol check"}
+    width = max(len(s) for s in state["problems"]) + 2
+    print(f"\n{C['bld']}{'SLUG':<{width}}{'ROUND':>6}  {'WAITING FOR':<14}"
+          f"{'COPIED':<12}{'FORMAT':<11}LAST{C['off']}")
+    for slug, p in sorted(state["problems"].items()):
+        done = p["waiting"] == WAIT_DONE
+        if done:
+            plain = "PASS ✓" if p["status"] == "pass" else p["status"]
+            colour = C["grn"] if p["status"] == "pass" else C["yel"]
+            wait = f"{colour}{plain}{C['off']}" + " " * max(0, 14 - len(plain))
+        else:
+            mark = "!" if p.get("refused") else ""
+            wait = f"{label[p['waiting']] + mark:<14}"
+            if mark:
+                wait = f"{C['red']}{label[p['waiting']]}!{C['off']}" + \
+                       " " * max(0, 14 - len(label[p['waiting']]) - 1)
+
+        issued = (p.get("issued") or "").split(" ")
+        stamp = issued[0] if issued[0] else None
+        # Pulled after the last state change means the prompt is out and a reply
+        # is owed; otherwise the next prompt still has to be pulled.
+        if done:
+            copied = f"{C['dim']}—{C['off']}" + " " * 11
+        elif stamp and (not p["last"] or stamp >= p["last"]):
+            txt = ago(stamp)
+            copied = f"{C['grn']}{txt}{C['off']}" + " " * max(0, 12 - len(txt))
+        else:
+            copied = f"{C['yel']}chưa lấy{C['off']}" + " " * 4
+        sol = problem_dir(slug) / "solution.md"
+        if not sol.exists():
+            fmt = f"{C['dim']}chưa có{C['off']}" + " " * 4
+        elif p.get("fmt_hash") == hashlib.sha256(sol.read_bytes()).hexdigest():
+            fmt = f"{C['grn']}đã format{C['off']}" + " " * 2
+        else:
+            fmt = f"{C['yel']}chưa{C['off']}" + " " * 7
+        print(f"{slug:<{width}}{p['round']:>6}  {wait}{copied}{fmt}{ago(p['last'])}")
+    print()
+    print(f"  {C['dim']}COPIED: xanh = đã lấy prompt, đang chờ trả lời · "
+          f"vàng = tới lượt bạn chạy adv next/attempt{C['off']}")
+    print(f"  {C['dim']}FORMAT: solution.md hiện tại đã qua adv format chưa "
+          f"(harden lại sẽ reset){C['off']}")
+    n = unpushed()
+    if n:
+        print(f"  {C['yel']}{n} commit chưa đẩy lên GitHub{C['off']} — adv push")
+    print()
+
+
+def cmd_show(args: list[str]) -> None:
+    if len(args) != 1:
+        die("usage: adv show <slug>")
+    state = load_state()
+    slug = find_slug(state, args[0])
+    print(json.dumps(entry(state, slug), indent=2, ensure_ascii=False))
+    print(f"\nartifacts: {workdir(slug).relative_to(ROOT)}")
+
+
+def cmd_drop(args: list[str]) -> None:
+    if not args:
+        die("usage: adv drop <slug>...")
+    state = load_state()
+    for target in args:
+        slug = find_slug(state, target)
+        del state["problems"][slug]
+        info(f"{slug}: unregistered (files and artifacts kept)")
+    save_state(state)
+
+
+def cmd_reseed(args: list[str]) -> None:
+    if len(args) != 1:
+        die("usage: adv reseed <slug>")
+    state = load_state()
+    slug = find_slug(state, args[0])
+    entry(state, slug)["reseed"] = True
+    save_state(state)
+    info(f"{slug}: the next author prompt will re-send problem.md and solution.md")
+
+
+
+
+def cmd_redo(args: list[str]) -> None:
+    """Discard the captured attempt and go back to the solver step."""
+    if len(args) != 1:
+        die("usage: adv redo <slug>")
+    state = load_state()
+    slug = find_slug(state, args[0])
+    p = entry(state, slug)
+    (workdir(slug) / "attempt.md").unlink(missing_ok=True)
+    was = p["status"]
+    p["waiting"] = WAIT_SOLVE
+    p["status"] = "active"
+    p["stmt_hash"] = None
+    if was != "active":
+        info(f"{slug}: reopened (was {was})")
+    p["last"] = now()
+    save_state(state)
+    info(f"{slug}: attempt discarded → next: TEMPORARY 5.5 chat  [adv next {slug}]")
+
+
+COMMANDS = {"new": cmd_new, "add": cmd_add, "next": cmd_next, "watch": cmd_watch, "status": cmd_status, "push": cmd_push,
+            "brief": cmd_brief, "attempt": cmd_attempt, "format": cmd_format, "submit": cmd_submit, "fix": cmd_fix, "harder": cmd_harder, "catch": cmd_catch, "replay": cmd_replay, "show": cmd_show, "drop": cmd_drop, "redo": cmd_redo, "reseed": cmd_reseed}
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2 or sys.argv[1] in ("-h", "--help"):
+        print(__doc__)
+        sys.exit(0)
+    if sys.argv[1] not in COMMANDS:
+        die(f"unknown command '{sys.argv[1]}' — one of: {', '.join(COMMANDS)}")
+    COMMANDS[sys.argv[1]](sys.argv[2:])
