@@ -27,59 +27,41 @@ and
 $$
 Se_i=f_{gi},\qquad Sf_i=e_{gi},
 $$
-where all indices are taken modulo $\ell$.
-
-Define an alternating bilinear form $\omega$ on $V$ by
+with all indices modulo $\ell$. Define an alternating bilinear form $\omega$ by
 $$
-\omega(e_i,e_j)=\omega(f_i,f_j)=0,
-$$
-$$
-\omega(e_i,f_j)=\delta_{ij},
-\qquad
+\omega(e_i,e_j)=\omega(f_i,f_j)=0,\qquad
+\omega(e_i,f_j)=\delta_{ij},\qquad
 \omega(f_j,e_i)=-\delta_{ij}.
 $$
 
 Put
 $$
 F=\operatorname{span}\{f_i:i\in\mathbb Z/\ell\mathbb Z\},
-$$
-and
-$$
-D=\operatorname{span}\{e_i+f_i:i\in\mathbb Z/\ell\mathbb Z\}.
-$$
-
-Let $\mathcal L_{p,\ell}$ be the set of subspaces $L\leq V$ satisfying
-$$
-\dim_{\mathbb F_p}L=\ell,
 \qquad
-\omega|_{L\times L}=0,
-\qquad
-T(L)\subseteq L,
-\qquad
-S(L)\subseteq L,
+D=\operatorname{span}\{e_i+f_{i+1}:i\in\mathbb Z/\ell\mathbb Z\}.
 $$
-and
+Let
 $$
-L\cap F=\{0\}.
+P_{p,\ell}(z)=
+\sum_L z^{\,2\dim_{\mathbb F_p}(L\cap F)+\dim_{\mathbb F_p}(L\cap D)},
 $$
-For $L\in\mathcal L_{p,\ell}$ define
+where the sum is over all subspaces $L\leq V$ satisfying
 $$
-d(L)=\dim_{\mathbb F_p}(L\cap D),
-$$
-and set
-$$
-P_{p,\ell}(z)=\sum_{L\in\mathcal L_{p,\ell}}z^{d(L)}.
+\dim_{\mathbb F_p}L=\ell,\qquad
+\omega|_{L\times L}=0,\qquad
+T(L)\subseteq L,\qquad
+S(L)\subseteq L.
 $$
 
 Write
 $$
-r=\operatorname{ord}_{\ell}(p),
+r=\operatorname{ord}_{\ell}(p),\qquad c=\gcd(4,r),
 $$
-and for any assertion $\mathcal P$ let $[\mathcal P]$ denote $1$ if $\mathcal P$ is true and $0$ otherwise.
+and let $[\mathcal P]$ equal $1$ or $0$ according as the assertion $\mathcal P$ is true or false.
 
 Determine $P_{p,\ell}(z)$ exactly for every allowed $p,\ell$.
 
-Give a rigorous, self-contained derivation. Any structural decomposition or finite-field counting fact used in the proof must be established in the precise form required here rather than cited as a black box. Numerical experimentation, computer algebra, code, and external sources may not replace any part of the proof.
+Give a rigorous, self-contained derivation. Any structural decomposition or finite-field counting fact used in the proof must be established in the precise form required here rather than cited as a black box.
 
 ---
 
