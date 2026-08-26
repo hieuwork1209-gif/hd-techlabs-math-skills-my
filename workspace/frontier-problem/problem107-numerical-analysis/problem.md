@@ -2,27 +2,25 @@
 
 ## LaTeX (Normalized)
 
-Fix $h>0$. For real coefficients $c_1,\ldots,c_6$, define the symmetric differentiation rule
+Fix a real number $a>0$. For each integer $N\geq 2$, put
 $$
-(D_h f)(0)=\frac{1}{h}\sum_{j=1}^{6}c_j\bigl(f(jh)-f(-jh)\bigr).
+q_N=e^{-a/N}.
 $$
+Consider all real coefficient vectors $(c_0,\ldots,c_N)$ such that
+$$
+\sum_{j=0}^{N}c_j\bigl(p(q_N^j)-p(-q_N^j)\bigr)=p'(0)
+$$
+for every real polynomial $p$ of degree at most $2N$.
 
-Assume that $D_h$ is exact at the origin for every real polynomial $p$ of degree at most $6$ and also for the Fourier mode
+Among all such vectors, minimize
 $$
-s_h(x)=\sin\left(\frac{\pi x}{2h}\right).
+\sum_{j=0}^{N}|c_j|.
 $$
-Thus
-$$
-(D_h p)(0)=p'(0)
-$$
-for every such polynomial $p$, and
-$$
-(D_h s_h)(0)=s_h'(0).
-$$
+Let $k_N$ be the smallest index $k\in\{0,\ldots,N\}$ for which some minimizing vector has $c_k=0$.
 
-Among all coefficient vectors $(c_1,\ldots,c_6)$ satisfying these exactness conditions, determine the exact value of
+Determine the exact value of
 $$
-\min\sum_{j=1}^{6}|c_j|.
+\lim_{N\to\infty}\frac{k_N}{N}.
 $$
 
 ---
@@ -34,12 +32,12 @@ $$
 | **Domain** | Optimization and Numerical Mathematics |
 | **Sub-domain** | Numerical analysis |
 | **Problem Type** | Optimization |
-| **Answer Type** | Exact scalar |
+| **Answer Type** | Exact symbolic expression |
 
 ---
 
 ## Domain Explanation
 
-This problem optimizes a symmetric finite-difference differentiation rule under polynomial exactness and Fourier-mode exactness, which are part of Optimization and Numerical Mathematics and Numerical analysis.
-The problem also uses absolute-value optimization and a dual certificate, which could resemble linear programming.
-However, the primary object is a numerical differentiation stencil and the constraints encode accuracy and frequency response, so Numerical analysis is the best fit.
+This problem involves selecting a symmetric numerical differentiation stencil on a geometric mesh while minimizing coefficient amplification, which is part of Optimization and Numerical Mathematics and Numerical analysis.
+The solution also uses interpolation weights and concentration of independent Bernoulli variables, which connect the stencil problem with probability and discrete algebra.
+However, those tools only locate the minimizing stencil asymptotically, while the main object remains a high-order numerical differentiation rule.
