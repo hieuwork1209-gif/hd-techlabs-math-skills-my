@@ -28,14 +28,14 @@ and therefore
 $$
 a(s)=b(s)+\frac{s}{2}b'(s).
 $$
-The given algebraic condition is
+Write the given algebraic condition as $P(a,b)=0$, where
 $$
-a^2+8ab-60a+b^3-14b^2+48b+36=0.
+P(a,b)=a^2+8ab-60a+b^3-14b^2+48b+36.
 $$
 
 Step 2: Locate the admissible branch of the algebraic curve
 
-Regard the last equation as a quadratic in $a$. Its discriminant is
+Regard $P(a,b)=0$ as a quadratic in $a$. Its discriminant is
 $$
 (8b-60)^2-4(b^3-14b^2+48b+36)
 =-4(b-12)^2(b-6).
@@ -65,7 +65,7 @@ The denominator is at least $6$. Rearranging this definition gives
 $$
 a=6-2b+(b-12)z.
 $$
-Substitution into the algebraic curve yields the exact identity
+Substitution into $P(a,b)=0$ yields the exact identity
 $$
 0=(12-b)^2\bigl(b-2+4z+z^2\bigr).
 $$
@@ -129,7 +129,7 @@ a(s)=2-\frac{2}{1+s}-\frac{2}{(1+s)^2}-\frac{1}{(1+s)^3},
 \qquad
 b(s)=2-\frac{4}{1+s}-\frac{1}{(1+s)^2}
 $$
-satisfy $(sa)'=g$ and $\left(\frac{s^2}{2}b\right)'=sa$, with both integral primitives vanishing at $s=0$. Hence they are exactly the two means in the problem. They also give $a(1)=\frac38$, and substituting the displayed parametrization into the polynomial makes it identically zero. Returning to $s=\log x$ gives the required function.
+satisfy $(sa)'=g$ and $\left(\frac{s^2}{2}b\right)'=sa$, with both integral primitives vanishing at $s=0$. Hence they are exactly the two means in the problem. They also give $a(1)=\frac38$, and substituting the displayed parametrization into $P(a,b)$ makes it identically zero. Returning to $s=\log x$ gives the required function.
 Final Answer: $\boxed{f(x)=2-\frac{2}{(1+\log x)^3}-\frac{3}{(1+\log x)^4}}$
 
 ---
