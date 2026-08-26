@@ -136,13 +136,17 @@ Required preflight checks:
 - Answer must be nonempty and at most `102` characters.
 - The standalone Answer field must not contain `\boxed`; boxing belongs only in the final solution step.
 - `## Steps` must split into consecutive blocks beginning exactly with `Step 1:`, `Step 2:`, and so on.
-- The last step must contain `Final Answer: $\boxed{...}$` and use `\boxed{...}`.
+- The last step must **end with** the exact suffix `Final Answer: $\boxed{...}$`; merely containing a boxed display or containing that phrase earlier in the step is not sufficient.
+- Treat the final-answer gate as a strict suffix check: after the `Final Answer: $\boxed{...}$` line, there must be no period, prose, display equation, or other non-whitespace content inside the final step block.
+- It is fine to derive or display the final formula immediately before the required suffix, but the final non-whitespace line of the final step must be `Final Answer: $\boxed{...}$`.
 - Solution Concepts must contain between `1` and `5` entries, each under `100` characters.
 - Domain, Problem Type, and Answer Type must be valid portal options; Sub-domain and Domain Explanation must be nonempty.
 - Problem Type and Answer Type must agree between `problem.md` and `solution.md`.
 - LaTeX must remain portal-safe after normalization.
 
-Do not declare a package portal-ready merely because the mathematics is correct. A failure such as `Answer is 172 chars — the field caps at 102` is a `SUBMISSION GATES FAIL` and must be repaired before handing the problem to the user for portal submission.
+Observed validator example on 2026-08-26: a final step ending only in a display `\boxed{...}` was rejected with `The last step must end with 'Final Answer: $\boxed{...}$'`. When this occurs, repair the final step itself before reporting `SUBMISSION GATES PASS`.
+
+Do not declare a package portal-ready merely because the mathematics is correct. A failure such as `Answer is 172 chars — the field caps at 102` or a final-step suffix failure is a `SUBMISSION GATES FAIL` and must be repaired before handing the problem to the user for portal submission.
 
 ## Harden workflow after Rainier difficulty failure
 
