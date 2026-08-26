@@ -1,200 +1,151 @@
 ## Steps
 
-Step 1: Interpret the form as a norm and determine the class group
+Step 1: Pass to the order of discriminant $-80$
 Let
 $$
-K=\mathbb Q(\sqrt{-5}),
-\qquad
-\mathcal O_K=\mathbb Z[\sqrt{-5}].
-$$
-Its discriminant is $-20$, its units are only $\pm1$, and
-$$
-N(x+y\sqrt{-5})=x^2+5y^2.
-$$
-Thus $r_m(p)$ counts elements of norm $p^m$ in $\mathcal O_K$.
-
-We need the ideal class group of $\mathcal O_K$. For an imaginary quadratic field of discriminant $D$, every ideal class contains an integral ideal of norm at most
-$$
-\frac{2}{\pi}\sqrt{|D|}.
-$$
-For $D=-20$ this bound is less than $3$, so every class has a representative of norm $1$ or $2$.
-
-The ideal
-$$
-\mathfrak q=(2,1+\sqrt{-5})
-$$
-has norm $2$. It is not principal, because a principal ideal of norm $2$ would give an integer solution of
-$$
-x^2+5y^2=2,
-$$
-which is impossible. Hence there are exactly two ideal classes. Write the nontrivial class as $c$; then
-$$
-c^2=1.
-$$
-
-Step 2: Use quadratic reciprocity to determine split and inert residue classes
-For an odd prime $p\ne5$, splitting in $K$ is controlled by
-$$
-\left(\frac{-20}{p}\right)=\left(\frac{-5}{p}\right)
-=\left(\frac{-1}{p}\right)\left(\frac5p\right).
-$$
-Since $5\equiv1\pmod4$, quadratic reciprocity gives
-$$
-\left(\frac5p\right)=\left(\frac p5\right).
-$$
-Checking the eight possible odd residue classes modulo $20$ gives
-$$
-\left(\frac{-5}{p}\right)=1
-\quad\Longleftrightarrow\quad
-p\equiv1,3,7,9\pmod{20},
-$$
-and
-$$
-\left(\frac{-5}{p}\right)=-1
-\quad\Longleftrightarrow\quad
-p\equiv11,13,17,19\pmod{20}.
-$$
-Thus the first four classes are split and the last four are inert.
-
-Step 3: Distinguish the two ideal classes among split primes
-Suppose first that a prime ideal $\mathfrak p\mid p$ is principal. Then
-$$
-p=x^2+5y^2
-$$
-for some integers $x,y$. Since $p$ is odd, exactly one of $x,y$ is odd, so
-$$
-p\equiv1\pmod4.
-$$
-Also $p\equiv x^2\pmod5$, and $p\ne5$, so
-$$
-p\equiv1,4\pmod5.
-$$
-Hence
-$$
-p\equiv1,9\pmod{20}.
-$$
-
-Now suppose $\mathfrak p$ is nonprincipal. Since the class group has order $2$, the ideal $\mathfrak p\mathfrak q$ is principal. Let
-$$
-\mathfrak p\mathfrak q=(\alpha).
-$$
-Its norm is $2p$, and because $\alpha\in\mathfrak q$ we may write
-$$
-\alpha=2u+(1+\sqrt{-5})v.
+\mathcal O=\mathbb Z[2\sqrt{-5}]\subset\mathbb Q(\sqrt{-5}).
 $$
 Then
 $$
-2p=N(\alpha)
-=(2u+v)^2+5v^2
-=2\left(2u^2+2uv+3v^2\right),
+N(x+2y\sqrt{-5})=x^2+20y^2,
 $$
-so
+and the only units of $\mathcal O$ are $\pm1$. The primitive reduced positive definite binary quadratic forms of discriminant $-80$ are
 $$
-p=2u^2+2uv+3v^2.
+Q_0=[1,0,20],\qquad Q_1=[3,2,7],\qquad Q_2=[4,0,5],\qquad Q_3=[3,-2,7].
 $$
-For this value to be odd, $v$ must be odd, and then directly modulo $4$,
+Thus the proper ideal class group of $\mathcal O$ has four elements. The forms $Q_1$ and $Q_3$ are inverses, while Gauss composition gives
 $$
-p\equiv3\pmod4.
+Q_1^2\sim Q_2.
 $$
-Because $p$ is already known to split, this forces
+Since $Q_2$ is nonprincipal and ambiguous, it has order $2$. Hence
 $$
-p\equiv3,7\pmod{20}.
+\operatorname{Pic}(\mathcal O)\cong C_4,
 $$
-Therefore the split primes divide into the two ideal classes as follows:
+with class orders
 $$
-\begin{array}{c|c}
-p\bmod20&[\mathfrak p]\\ \hline
-1,9&1,\\
-3,7&c.
-\end{array}
+\operatorname{ord}(Q_0)=1,\qquad
+\operatorname{ord}(Q_2)=2,\qquad
+\operatorname{ord}(Q_1)=\operatorname{ord}(Q_3)=4.
 $$
 
-Step 4: Count representations of $p^m$ in the three cases
-Every solution
-$$
-x^2+5y^2=p^m
-$$
-corresponds to a principal ideal $(x+y\sqrt{-5})$ of norm $p^m$. Conversely, each such principal ideal has exactly two generators, differing by the units $\pm1$. Thus it is enough to count principal ideals of norm $p^m$ and multiply by $2$.
+Step 2: Identify the prime-ideal class in cases (A), (B), and (C)
+Because $p\nmid10$ and $\left(\frac{-5}{p}\right)=1$, the prime $p$ splits in $\mathbb Q(\sqrt{-5})$, hence also into two invertible prime ideals of norm $p$ in the order $\mathcal O$.
 
-If $p\equiv1,9\pmod{20}$, then
+In case (A), write $b=2c$. Then
 $$
-(p)=\mathfrak p\overline{\mathfrak p}
+p=a^2+5b^2=a^2+20c^2,
 $$
-with both prime ideals principal. The ideals of norm $p^m$ are
+so $p$ is represented by the principal form $Q_0$. Therefore the prime-ideal class has order
+$$
+d=1.
+$$
+
+In case (B), $b$ is odd. Since $p\equiv1,9\pmod{20}$, in particular $p\equiv1\pmod4$. From
+$$
+p=a^2+5b^2
+$$
+and $b$ odd, it follows that $a$ is even; write $a=2c$. Then
+$$
+p=4c^2+5b^2,
+$$
+so $p$ is represented by $Q_2$, whose class has order
+$$
+d=2.
+$$
+
+In case (C), $p\equiv3,7\pmod{20}$. Primitive odd prime values represented by $Q_0=x^2+20y^2$ or $Q_2=4x^2+5y^2$ are congruent to $1$ or $9$ modulo $20$. Therefore a split prime in classes $3,7\pmod{20}$ must be represented by $Q_1$ or $Q_3$. Hence its prime-ideal class has order
+$$
+d=4.
+$$
+
+Step 3: Convert representations into a class-group congruence
+Write
+$$
+p\mathcal O=\mathfrak p\overline{\mathfrak p},
+$$
+where both prime ideals have norm $p$, and let
+$$
+c=[\mathfrak p]\in\operatorname{Pic}(\mathcal O),
+\qquad \operatorname{ord}(c)=d.
+$$
+Every invertible ideal of norm $p^m$ is uniquely
 $$
 \mathfrak p^j\overline{\mathfrak p}^{\,m-j},
-\qquad 0\le j\le m,
+\qquad 0\le j\le m.
 $$
-and all $m+1$ are principal. Hence
+Since
 $$
-r_m(p)=2(m+1).
+[\overline{\mathfrak p}]=c^{-1},
 $$
-
-If $p\equiv3,7\pmod{20}$, then both $\mathfrak p$ and $\overline{\mathfrak p}$ have class $c$. Therefore
+its class is
 $$
-\left[\mathfrak p^j\overline{\mathfrak p}^{\,m-j}\right]
-=c^m,
+c^j(c^{-1})^{m-j}=c^{2j-m}.
 $$
-independently of $j$. Hence all $m+1$ ideals are principal when $m$ is even and none are principal when $m$ is odd. Thus
+Thus it is principal exactly when
 $$
-r_m(p)=
-\begin{cases}
-2(m+1),&m\text{ even},\\
-0,&m\text{ odd}.
-\end{cases}
+d\mid(2j-m).
+$$
+Because $p$ is coprime to the conductor $2$, these ideals are invertible, and every principal ideal of norm $p^m$ has exactly two generators differing by the units $\pm1$. Therefore
+$$
+r_m(p)=2\#\{0\le j\le m:d\mid(2j-m)\}.
 $$
 
-If $p\equiv11,13,17,19\pmod{20}$, then $p$ is inert, so $(p)$ itself is prime of norm $p^2$. A principal ideal of norm $p^m$ can therefore occur only when $m=2k$, in which case the only possibility is
+Step 4: Sum the class condition by a roots-of-unity filter
+Put $k=m-j$. Then the condition is
 $$
-(p)^k=(p^k).
+j-k\equiv0\pmod d.
 $$
-Its two generators are $\pm p^k$, so
+Hence
 $$
-r_m(p)=
-\begin{cases}
-2,&m\text{ even},\\
-0,&m\text{ odd}.
-\end{cases}
+R_p(T)=2\sum_{\substack{j,k\ge0\\j\equiv k\ (\mathrm{mod}\ d)}}T^{j+k}.
+$$
+For a primitive $d$-th root filter,
+$$
+\mathbf 1_{j\equiv k\ (\mathrm{mod}\ d)}
+=\frac1d\sum_{\zeta^d=1}\zeta^{j-k}.
+$$
+Therefore
+$$
+R_p(T)
+=\frac2d\sum_{\zeta^d=1}
+\left(\sum_{j\ge0}(\zeta T)^j\right)
+\left(\sum_{k\ge0}(\zeta^{-1}T)^k\right)
+=\frac2d\sum_{\zeta^d=1}
+\frac1{(1-\zeta T)(1-\zeta^{-1}T)}.
 $$
 
-Step 5: Sum the generating functions
-For $p\equiv1,9\pmod{20}$,
+Step 5: Evaluate the three possible class orders
+For case (A), $d=1$, so
 $$
-R_p(T)=2\sum_{m\ge0}(m+1)T^m
-=\frac{2}{(1-T)^2}.
+R_p(T)=\frac{2}{(1-T)^2}.
 $$
 
-For $p\equiv3,7\pmod{20}$,
+For case (B), $d=2$, so
 $$
-R_p(T)=2\sum_{k\ge0}(2k+1)T^{2k}
+R_p(T)
+=\frac1{(1-T)^2}+\frac1{(1+T)^2}
 =\frac{2(1+T^2)}{(1-T^2)^2}.
 $$
 
-For $p\equiv11,13,17,19\pmod{20}$,
+For case (C), $d=4$. Using the fourth roots $1,-1,i,-i$,
 $$
-R_p(T)=2\sum_{k\ge0}T^{2k}
-=\frac{2}{1-T^2}.
-$$
-
-Step 6: Compress the three cases for the submission field
-Set
-$$
-a=\left(\frac{-5}{p}\right),
-\qquad
-b=\left(\frac{-1}{p}\right).
-$$
-For $p\equiv1,9\pmod{20}$ we have $(a,b)=(1,1)$; for $p\equiv3,7\pmod{20}$ we have $(a,b)=(1,-1)$; and for $p\equiv11,13,17,19\pmod{20}$ we have $a=-1$. Therefore the three rational functions above combine to
-$$
-R_p(T)=\frac{2+(1+a)(1+b)T+2aT^2}{(1-T^2)^2}.
+R_p(T)
+=\frac12\left(
+\frac1{(1-T)^2}+\frac1{(1+T)^2}+\frac{2}{1+T^2}
+\right)
+=\frac{2(1+T^2)(1+T^4)}{(1-T^4)^2}.
 $$
 
-Final Answer: $\boxed{R_p(T)=\frac{2+(1+a)(1+b)T+2aT^2}{(1-T^2)^2},\ a=(\frac{-5}{p}),b=(\frac{-1}{p})}$
+Step 6: State the result in the requested cases
+The three class orders are $1,2,4$ in cases (A), (B), and (C), respectively, so the three rational functions above give the required ordinary generating functions.
+
+Final Answer: $\boxed{R_p(T)=\frac2{(1-T)^2}(A),\frac{2(1+T^2)}{(1-T^2)^2}(B),\frac{2(1+T^2)(1+T^4)}{(1-T^4)^2}(C)}$
 
 ---
 
 ## Answer
 
-$R_p(T)=\frac{2+(1+a)(1+b)T+2aT^2}{(1-T^2)^2},\ a=(\frac{-5}{p}),b=(\frac{-1}{p})$
+$R_p(T)=\frac2{(1-T)^2}(A),\frac{2(1+T^2)}{(1-T^2)^2}(B),\frac{2(1+T^2)(1+T^4)}{(1-T^4)^2}(C)$
 
 ---
 
@@ -208,8 +159,8 @@ $R_p(T)=\frac{2+(1+a)(1+b)T+2aT^2}{(1-T^2)^2},\ a=(\frac{-5}{p}),b=(\frac{-1}{p}
 
 ## Solution Concepts
 
-- quadratic reciprocity
-- binary quadratic forms of discriminant $-20$
-- ideal class group of $\mathbb Q(\sqrt{-5})$
-- split and inert primes in quadratic fields
-- prime-power representation counts
+- quadratic reciprocity and split primes
+- binary quadratic forms of discriminant $-80$
+- cyclic ideal class group of order $4$
+- Gauss composition
+- roots-of-unity filters
