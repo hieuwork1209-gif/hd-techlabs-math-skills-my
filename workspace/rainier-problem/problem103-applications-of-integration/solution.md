@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Convert the two integral means to logarithmic coordinates
+Step 1: Convert the integral means into differential data
 
 Put
 $$
@@ -12,131 +12,142 @@ a(s)=\frac{1}{s}\int_0^s g(u)\,du,
 \qquad
 b(s)=\frac{2}{s^2}\int_0^s(s-u)g(u)\,du.
 $$
-Let
+The improper integrals converge by assumption, and $g$ is continuous away from the lower endpoint. Therefore
 $$
-K(s)=\int_0^s g(u)\,du,\qquad J(s)=\int_0^s(s-u)g(u)\,du.
+(sa(s))'=g(s),
+\qquad
+\left(\frac{s^2b(s)}{2}\right)'=sa(s).
 $$
-The assumed convergence and the continuity of $g$ on every compact subinterval of $(0,\infty)$ give
-$$
-K'(s)=g(s),\qquad J'(s)=K(s).
-$$
-Since $K(s)=sa(s)$ and $J(s)=\frac{s^2}{2}b(s)$,
-$$
-sa(s)=J'(s)=sb(s)+\frac{s^2}{2}b'(s),
-$$
-and therefore
+This gives
 $$
 a(s)=b(s)+\frac{s}{2}b'(s).
 $$
-Write the given algebraic condition as $P(a,b)=0$, where
+Write
 $$
-P(a,b)=a^2+8ab-60a+b^3-14b^2+48b+36.
+d(s)=a(s)-b(s)=\frac{s}{2}b'(s).
 $$
+Because $g>0$, the integral defining $b$ has a positive kernel, so $b(s)>0$ for every $s>0$.
 
-Step 2: Locate the admissible branch of the algebraic curve
+Step 2: Extract the hidden parameter from the algebraic constraint
 
-Regard $P(a,b)=0$ as a quadratic in $a$. Its discriminant is
+Substituting $a=b+d$ into the polynomial relation and collecting powers of $d$ gives
 $$
-(8b-60)^2-4(b^3-14b^2+48b+36)
-=-4(b-12)^2(b-6).
+16d^4+(160b^2-88b+12)d^2+b^2(4b-1)^2(16b-3)=0.
 $$
-Thus every real point of the curve has either $b\leq6$ or $b=12$. At $s=1$, the condition $a(1)=\frac38$ gives
+This is a quadratic equation in $d^2$. Its discriminant is
 $$
-64P\left(\frac38,b\right)
-=(4b+1)(16b^2-228b+873)=0,
+-16(4b-3)^2(4b-1)^3.
 $$
-where the second factor has discriminant $-3888$. Hence
+A real nonnegative value of $d^2$ cannot occur when $b>\frac14$. The exceptional value $b=\frac34$ gives $d^2=-\frac98$, so it is impossible as well. We obtain
 $$
-b(1)=-\frac14.
+0<b\leq\frac14.
 $$
-The function $b$ is continuous. Its image is connected, while the allowed real $b$-values lie in $(-\infty,6]\cup\{12\}$. Since $b(1)=-\frac14$, it follows that
+Set
 $$
-b(s)\leq6
+r=\sqrt{1-4b}.
 $$
-for every $s>0$.
+Solving the quadratic for $d^2$ after substituting $b=\frac{1-r^2}{4}$ gives two formal roots,
+$$
+\frac{r^2(r-1)^2(2r-1)}{16}
+\quad\text{and}\quad
+-\frac{r^2(r+1)^2(2r+1)}{16}.
+$$
+Only the first can be nonnegative. At $s=1$, the initial data give $d(1)=0$ and $b(1)=\frac{3}{16}$, so $r(1)=\frac12$. Continuity prevents $r$ from crossing the forbidden interval between $0$ and $\frac12$, while $b>0$ gives $r<1$. It follows that
+$$
+\frac12\leq r<1.
+$$
+Define
+$$
+q=\frac{4d}{r(1-r)}.
+$$
+The preceding root formula becomes
+$$
+q^2=2r-1.
+$$
+It follows that
+$$
+r=\frac{1+q^2}{2},
+\qquad
+b=\frac{(1-q^2)(3+q^2)}{16},
+\qquad
+d=\frac{q(1-q^4)}{16}.
+$$
+In particular, $q(1)=0$ and $|q|<1$.
 
-Step 3: Discover a parameter that rationalizes both means
+Step 3: Derive the nonconstant branch equation
 
-Because $b\leq6$, define
+Differentiate the formula for $b$ with respect to $q$:
 $$
-z(s)=\frac{6-a(s)-2b(s)}{12-b(s)}.
+\frac{db}{dq}=-\frac{q(1+q^2)}{4}.
 $$
-The denominator is at least $6$. Rearranging this definition gives
+Using $d=\frac{s}{2}b'$ and the displayed formulas for $b$ and $d$ yields
 $$
-a=6-2b+(b-12)z.
+q(1+q^2)\left(2sq'+1-q^2\right)=0.
 $$
-Substitution into $P(a,b)=0$ yields the exact identity
+On every interval where $q\neq0$,
 $$
-0=(12-b)^2\bigl(b-2+4z+z^2\bigr).
+2sq'=q^2-1.
 $$
-Therefore
+Separating variables gives
 $$
-b=2-4z-z^2.
+\frac{1-q}{1+q}=\frac{s}{C}
 $$
-Putting this back into the formula for $a$ gives
+for a positive constant $C$, which gives
 $$
-a=2-2z-2z^2-z^3.
+q(s)=\frac{C-s}{C+s}.
 $$
-At $s=1$, using $a(1)=\frac38$ and $b(1)=-\frac14$ in the definition of $z$ gives
-$$
-z(1)=\frac12.
-$$
+Such a branch has its only zero at $s=C$.
 
-Step 4: Use the differential coupling to determine the hidden parameter
+Step 4: Use continuity to rule out stationary patching
 
-Differentiate $b=2-4z-z^2$ and substitute into
+If $q=0$ throughout an interval, then the formulas in Step 2 give
 $$
-a=b+\frac{s}{2}b'.
+b=a=\frac{3}{16},
 $$
-Comparing with $a=2-2z-2z^2-z^3$ gives
+so $g=(sa)'=\frac{3}{16}$ on that interval. On the other hand, a nonconstant branch that meets $q=0$ at $s=C$ has
 $$
-(z+2)\bigl(sz'-z^2+z\bigr)=0.
+q(s)=\frac{C-s}{C+s}.
 $$
-On the connected interval containing $s=1$ on which $z\neq-2$, this reduces to
+Substitution into $a=b+d$ and $g=(sa)'$ gives
 $$
-sz'=z(z-1).
+g(s)=\frac{sC^3(7s^2+3C^2)}{(C+s)^6},
 $$
-The solution through $z(1)=\frac12$ is
+whose value at $s=C$ is $\frac{5}{32}$. Since $\frac{5}{32}\neq\frac{3}{16}$, continuity of $g$ forbids joining a zero interval to a nonconstant branch.
+
+Because $q(1)=0$, there are only two global possibilities. Either $q\equiv0$, or the nonconstant branch crosses zero at $s=1$, in which case $C=1$ and
 $$
-z(s)=\frac{1}{1+s}.
+q(s)=\frac{1-s}{1+s}.
 $$
-This formula is positive. If its maximal interval containing $1$ had a finite endpoint inside $(0,\infty)$, continuity would give a positive limiting value there, so $z$ would still be different from $-2$ and the same differential equation would extend the solution. Hence the interval is all of $(0,\infty)$. Consequently
+The first possibility would give $g\equiv\frac{3}{16}$, contradicting the assumption that $g(s)\to0$ as $s\to\infty$. Therefore the second possibility holds on all of $(0,\infty)$.
+
+Step 5: Recover the function and verify the integral identities
+
+Substituting $q(s)=\frac{1-s}{1+s}$ into the formulas from Step 2 gives
 $$
-b(s)=2-\frac{4}{1+s}-\frac{1}{(1+s)^2},
+b(s)=\frac{s(s^2+s+1)}{(1+s)^4}
 $$
 and
 $$
-a(s)=2-\frac{2}{1+s}-\frac{2}{(1+s)^2}-\frac{1}{(1+s)^3}.
+a(s)=\frac{s(s^3+5s^2+3s+3)}{2(1+s)^5}.
 $$
-
-Step 5: Recover the original function and verify the conditions
-
-Since
+This gives
 $$
-\int_0^s g(u)\,du=sa(s),
+g(s)=(sa(s))'=\frac{s(7s^2+3)}{(1+s)^6}.
 $$
-we have $g(s)=(sa(s))'$. Differentiating the formula for $a$ gives
+This function is positive and tends to $0$ at infinity. It also satisfies
 $$
-g(s)=2-\frac{2}{(1+s)^3}-\frac{3}{(1+s)^4}.
-$$
-Its second derivative is
-$$
-g''(s)=-\frac{12(2s+7)}{(1+s)^6},
-$$
-so in particular the recovered function is continuous. Conversely, for this $g$, the functions
-$$
-a(s)=2-\frac{2}{1+s}-\frac{2}{(1+s)^2}-\frac{1}{(1+s)^3},
+(sa(s))'=g(s),
 \qquad
-b(s)=2-\frac{4}{1+s}-\frac{1}{(1+s)^2}
+\left(\frac{s^2b(s)}{2}\right)'=sa(s),
 $$
-satisfy $(sa)'=g$ and $\left(\frac{s^2}{2}b\right)'=sa$, with both integral primitives vanishing at $s=0$. Hence they are exactly the two means in the problem. They also give $a(1)=\frac38$, and substituting the displayed parametrization into $P(a,b)$ makes it identically zero. Returning to $s=\log x$ gives the required function.
-Final Answer: $\boxed{f(x)=2-\frac{2}{(1+\log x)^3}-\frac{3}{(1+\log x)^4}}$
+and both primitives vanish at $s=0$. The displayed $a$ and $b$ are exactly the two integral means. They satisfy $a(1)=b(1)=\frac{3}{16}$, and the parametrization in Step 2 makes the polynomial relation identically zero. Returning to $s=\log x$ completes the recovery.
+Final Answer: $\boxed{f(x)=\frac{\log x\left(7(\log x)^2+3\right)}{(1+\log x)^6}}$
 
 ---
 
 ## Answer
 
-$f(x)=2-\frac{2}{(1+\log x)^3}-\frac{3}{(1+\log x)^4}$
+$f(x)=\frac{\log x\left(7(\log x)^2+3\right)}{(1+\log x)^6}$
 
 ---
 
@@ -151,6 +162,6 @@ $f(x)=2-\frac{2}{(1+\log x)^3}-\frac{3}{(1+\log x)^4}$
 ## Solution Concepts
 
 - weighted integral means
-- algebraic curve parametrization
-- separable differential equations
-- Volterra integral differentiation
+- algebraic elimination
+- degenerate differential branches
+- continuity rigidity
