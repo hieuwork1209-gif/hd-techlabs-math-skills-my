@@ -126,6 +126,24 @@ Do not use one generic `PASS`.
 6. `RAINIER DIFFICULTY PASS` — current portal threshold satisfied on the exact statement.
 7. `RAINIER ACCEPTED` — freeze final version.
 
+## Submission-gate preflight
+
+Before reporting `PORTAL READY` or `SUBMISSION GATES PASS`, validate the exact fields that `./scripts/adv submit problemNN` maps to the Rainier portal. The current repository validator is authoritative when these limits change.
+
+Required preflight checks:
+
+- Math Problem (Prompt) must be nonempty and at most `2000` characters.
+- Answer must be nonempty and at most `102` characters.
+- The standalone Answer field must not contain `\boxed`; boxing belongs only in the final solution step.
+- `## Steps` must split into consecutive blocks beginning exactly with `Step 1:`, `Step 2:`, and so on.
+- The last step must contain `Final Answer: $\boxed{...}$` and use `\boxed{...}`.
+- Solution Concepts must contain between `1` and `5` entries, each under `100` characters.
+- Domain, Problem Type, and Answer Type must be valid portal options; Sub-domain and Domain Explanation must be nonempty.
+- Problem Type and Answer Type must agree between `problem.md` and `solution.md`.
+- LaTeX must remain portal-safe after normalization.
+
+Do not declare a package portal-ready merely because the mathematics is correct. A failure such as `Answer is 172 chars — the field caps at 102` is a `SUBMISSION GATES FAIL` and must be repaired before handing the problem to the user for portal submission.
+
 ## Harden workflow after Rainier difficulty failure
 
 A `100% / 100%` or other above-threshold result is a problem-design failure, not a formatting failure.
