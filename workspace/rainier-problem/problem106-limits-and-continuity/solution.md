@@ -6,31 +6,85 @@ The numbers $1,\sqrt{2},\sqrt{3}$ are linearly independent over $\mathbb{Q}$. To
 $$
 3r^2=p^2+2q^2+2pq\sqrt{2},
 $$
-so $pq=0$. The cases $p=0$ and $q=0$ would respectively give $3r^2=2q^2$ and $3r^2=p^2$, both impossible by comparing prime valuations; if $r=0$, irrationality of $\sqrt{2}$ gives $p=q=0$. This leaves, for every nonzero $k\in\mathbb{Z}^{3}$,
+so $pq=0$. The cases $p=0$ and $q=0$ would respectively give $3r^2=2q^2$ and $3r^2=p^2$, both impossible by comparing prime valuations; if $r=0$, irrationality of $\sqrt{2}$ gives $p=q=0$. Thus, for every nonzero $k=(k_1,k_2,k_3)\in\mathbb{Z}^3$,
 $$
-k_1+k_2\sqrt{2}+k_3\sqrt{3}\ne 0.
+\omega_k=k_1+k_2\sqrt{2}+k_3\sqrt{3}\ne 0.
 $$
-For $\omega=k_1+k_2\sqrt{2}+k_3\sqrt{3}\ne 0$, the relevant character average is
+For every fixed $S\ge 0$,
 $$
-\frac{1}{T}\int_0^T e^{i\omega t}\,dt
-=\frac{e^{i\omega T}-1}{i\omega T}\longrightarrow 0.
+\frac1T\int_S^{S+T}e^{i\omega_k t}\,dt
+=e^{i\omega_k S}\frac{e^{i\omega_k T}-1}{i\omega_k T}\longrightarrow 0.
 $$
-The same calculation works on every interval beginning at a fixed positive time. The trigonometric-polynomial form of the Weyl criterion then shows that
+Hence, if
 $$
-t\longmapsto(e^{it},e^{i\sqrt{2}t},e^{i\sqrt{3}t})
+P(\theta_1,\theta_2,\theta_3)=\sum_{k\in F}c_ke^{i(k_1\theta_1+k_2\theta_2+k_3\theta_3)}
 $$
-is dense in the three-dimensional unit torus. Every tail of this orbit is also dense.
+is any trigonometric polynomial, termwise integration gives
+$$
+\frac1T\int_S^{S+T}P(t,\sqrt2t,\sqrt3t)\,dt\longrightarrow c_0,
+$$
+and $c_0$ is exactly the normalized average of $P$ over the three-dimensional unit torus.
+
+We now prove directly that every tail of
+$$
+t\longmapsto(e^{it},e^{i\sqrt2t},e^{i\sqrt3t})
+$$
+is dense. Fix a target $(e^{i\alpha_1},e^{i\alpha_2},e^{i\alpha_3})$ and a neighborhood of it. Choose $0<\delta<\pi$ so that the angular box
+$$
+d(\theta_j,\alpha_j)<\delta\qquad(j=1,2,3),
+$$
+where $d$ is circular distance modulo $2\pi$, lies inside that neighborhood. Put
+$$
+\rho=\frac{1+\cos\delta}{2}<1
+$$
+and, for a positive integer $N$, define the nonnegative trigonometric polynomial
+$$
+P_N(\theta_1,\theta_2,\theta_3)
+=\prod_{j=1}^3\left(\frac{1+\cos(\theta_j-\alpha_j)}2\right)^N.
+$$
+The normalized one-dimensional average of each factor is
+$$
+\frac1{2\pi}\int_0^{2\pi}\left(\frac{1+\cos x}{2}\right)^Ndx
+=\frac{\binom{2N}{N}}{4^N},
+$$
+so the torus average of $P_N$ is
+$$
+M_N=\left(\frac{\binom{2N}{N}}{4^N}\right)^3.
+$$
+Since $\binom{2N}{N}$ is the largest of the $2N+1$ coefficients in $(1+x)^{2N}$,
+$$
+\binom{2N}{N}\ge\frac{4^N}{2N+1},
+$$
+and therefore
+$$
+M_N\ge\frac1{(2N+1)^3}.
+$$
+Choose $N$ so large that $M_N>\rho^N$, which is possible because $0<\rho<1$. If some tail $t\ge S$ never entered the chosen angular box, then at each such $t$ at least one circular distance would be at least $\delta$, so $P_N(t,\sqrt2t,\sqrt3t)\le\rho^N$. Consequently
+$$
+\frac1T\int_S^{S+T}P_N(t,\sqrt2t,\sqrt3t)\,dt\le\rho^N
+$$
+for every $T>0$, whereas the trigonometric-polynomial average computed above says that the left side tends to $M_N>\rho^N$, a contradiction. Thus every tail is dense.
 
 Put
 $$
 \lambda_1=e^{it},\quad \lambda_2=e^{i\sqrt{2}t},\quad \lambda_3=e^{i\sqrt{3}t},\quad
 \lambda_4=e^{-i(1+\sqrt{2}+\sqrt{3})t}.
 $$
-Then $|\lambda_j|=1$ and $\lambda_1\lambda_2\lambda_3\lambda_4=1$. Density and compactness show that the possible joint cluster points of $(A(t),B(t))$ are exactly
+Then $|\lambda_j|=1$ and $\lambda_1\lambda_2\lambda_3\lambda_4=1$. If $(A(t_n),B(t_n))$ converges along $t_n\to\infty$, compactness of the three-torus gives a subsequence on which $(\lambda_1,\lambda_2,\lambda_3)$ converges; the fourth coordinate then converges to the inverse of their product. Hence every joint cluster point has the form
 $$
 \left(\sum_{j=1}^{4}\lambda_j,\sum_{j=1}^{4}\lambda_j^2\right)
 $$
-over all unit complex numbers $\lambda_j$ with product $1$. The assertion includes the converse: after choosing any three of the $\lambda_j$, density supplies arbitrarily large $t$ approaching them, and the fourth coordinate follows from the product condition.
+for unit complex numbers $\lambda_j$ with product $1$. Conversely, given any such quadruple, density of every tail lets us choose $t_n\ge n$ with
+$$
+(e^{it_n},e^{i\sqrt2t_n},e^{i\sqrt3t_n})\longrightarrow(\lambda_1,\lambda_2,\lambda_3).
+$$
+Then
+$$
+e^{-i(1+\sqrt2+\sqrt3)t_n}
+=\left(e^{it_n}e^{i\sqrt2t_n}e^{i\sqrt3t_n}\right)^{-1}
+\longrightarrow(\lambda_1\lambda_2\lambda_3)^{-1}=\lambda_4,
+$$
+so the displayed pair is indeed realized as a joint cluster point.
 
 Step 2: Express the conditional fiber by one real coefficient.
 
@@ -153,4 +207,4 @@ Answer Type: Interval or region description
 
 ## Black-Box Audit
 
-No issues found.
+No issues found. Step 1 now contains a self-contained trigonometric-polynomial certificate for density of every tail of the torus orbit.
