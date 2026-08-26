@@ -1,173 +1,180 @@
 ## Steps
 
-Step 1: Determine the cubic radical kernel
-Put $g_i=a+y_i$ and $M=K(\omega)$. The discriminant square root changes sign under odd permutations, so the unique quadratic subfield of $K$ is $\mathbb Q(\sqrt{\Delta})$. Since $-3\Delta$ is not a rational square, $K\cap\mathbb Q(\omega)=\mathbb Q$, and therefore $\operatorname{Gal}(M/\mathbb Q(\omega))\cong S_n$.
+Step 1: Determine the radical kernel and all lifts of the fixed permutation
+Put $g_i=a+y_i$ and $M=K(\omega)$. The only quadratic subfield of the $S_n$-extension $K/\mathbb Q$ is $\mathbb Q(\sqrt{\Delta})$. Thus $-3\Delta\notin(\mathbb Q^\times)^2$ gives $K\cap\mathbb Q(\omega)=\mathbb Q$, so $\operatorname{Gal}(M/\mathbb Q(\omega))\cong S_n$.
 
-Let $\mathcal R$ be the set of vectors $e=(e_1,\ldots,e_n)\in\mathbb F_3^n$ for which $\prod_i g_i^{e_i}$ is a cube in $M$. Since $\prod_i g_i=c^3$, the all-ones vector lies in $\mathcal R$. We show that there is no nonconstant relation. Because $p\nmid\Delta$, the reductions of the roots are distinct at every prime above $p$, so inertia fixes every root and is trivial. Frobenius on the residue field acts by $z\mapsto z^p$; its orbits on the reduced roots are exactly the irreducible factors of $f$ modulo $p$. Hence a prime of $M$ above $p$ has residue field $\mathbb F_{p^{n-2}}$, with two roots reducing to $u$ and $v$.
+Let $\mathcal R\subset\mathbb F_3^n$ consist of the vectors $e=(e_i)$ for which $\prod_i g_i^{e_i}$ is a cube in $M$. Since $\prod_i g_i=c^3$, the all-ones vector belongs to $\mathcal R$. If $\mathcal R$ contained a nonconstant vector, subtracting its image under a transposition of two unequal coordinates would put some nonzero multiple of $e_i-e_j$ in $\mathcal R$; $S_n$-stability would then put every coordinate difference in $\mathcal R$.
 
-If $z\in\mathbb F_p^\times$ is a noncube, then $z^{(p-1)/3}$ is a nontrivial cube root of unity. Since $p\equiv1\pmod3$ and $n-2\equiv1\pmod3$,
+The factorization modulo $p$ gives a prime of $M$ whose residue field contains the two roots reducing to $u,v$ and has degree $n-2$ over $\mathbb F_p$ on the remaining orbit. A noncube $z\in\mathbb F_p^\times$ remains a noncube there, because $p\equiv1\pmod3$ and
 $$
-z^{(p^{n-2}-1)/3}
-=
-\left(z^{(p-1)/3}\right)^{1+p+\cdots+p^{n-3}}
-\neq1.
+1+p+\cdots+p^{n-3}\equiv n-2\equiv2\pmod3.
 $$
-Thus a noncube in $\mathbb F_p^\times$ remains a noncube in $\mathbb F_{p^{n-2}}^\times$. The root reducing to $u$ therefore gives a noncube $g_i$, while the root reducing to $v$ gives a cube residue.
-
-The space $\mathcal R$ is $S_n$-stable. If it contained a nonconstant vector, subtracting its image under a transposition of two unequal coordinates would put a nonzero multiple of $e_i-e_j$ in $\mathcal R$; conjugating gives every difference $e_r-e_s$. In particular, the quotient of the two $g$'s reducing to $a+u$ and $a+v$ would be a cube in $M$, but its residue is a noncube divided by a cube, a contradiction. Hence
+Hence the quotient of the $g_i$ reducing to $a+u$ by the $g_j$ reducing to $a+v$ is not a cube, contradicting the presence of every coordinate difference. Therefore
 $$
 \mathcal R=\langle(1,\ldots,1)\rangle.
 $$
+Also every $g_i$ is a unit at primes above $p$, whereas $v(p)=1$, so the class of $p$ is independent of the classes of the $g_i$.
 
-Choose $\alpha_i^3=g_i$ with $\prod_i\alpha_i=c$, put $\beta_{ij}=\alpha_i\alpha_j$, and choose $\eta^3=p$. The pair classes span $\mathbb F_3^n/\langle(1,\ldots,1)\rangle$, since for distinct $i,j,k$,
+Choose $\alpha_i^3=g_i$ with $\prod_i\alpha_i=c$, and choose $\eta^3=p$. The ratio classes generate all classes of the $g_i$: since $n\equiv1\pmod3$,
 $$
-2e_i=(e_i+e_j)+(e_i+e_k)-(e_j+e_k).
+\prod_{j\neq i}\frac{g_i}{g_j}=\frac{g_i^n}{c^3}
 $$
-Also $p$ is independent of those classes: every $g_i$ is a $p$-adic unit because their nonnegative valuations sum to $v(c^3)=0$, whereas $v(p)=1$, which is not divisible by $3$.
-
-For completeness, if a field contains $\omega$ and $m$ cube classes are independent, adjoining their cube roots has degree $3^m$ and each root may be multiplied independently by a power of $\omega$. Induct on $m$: if the last class became a cube in the previous radical field, a cube root would be a common eigenvector for all previous phase automorphisms; the monomial basis shows it equals a base-field element times a monomial in the previous radicals, contradicting independence. Thus the last cubic is irreducible and triples the degree.
-
-The roots of $P_0$ contain all $\beta_{ij}$, and
+has the same cube class as $g_i$. More explicitly, write $n=3h+1$ and choose roots $\gamma_{ij}=\alpha_i/\alpha_j$ of $x^3-B_{ij}$. Then
 $$
-\alpha_i=\frac{(\beta_{ij}\beta_{ik}/\beta_{jk})^2}{g_i},
+\frac{c\prod_{j\neq i}\gamma_{ij}}{g_i^h}=\alpha_i.
 $$
-so they generate all $\alpha_i$. The roots of $P_1$ then recover $\eta$ by division by a corresponding root of $P_0$; $P_2$ adds nothing further. Consequently every automorphism fixing $M$ is uniquely given by $\xi_1,\ldots,\xi_n,s\in\mathbb F_3$ with
+Thus the roots of $P_0$ generate all $\alpha_i$. Dividing a root $\eta\gamma_{ij}$ of $P_1$ by the corresponding root $\gamma_{ij}$ of $P_0$ recovers $\eta$ up to a power of $\omega$, and
+$$
+L=M(\alpha_1,\ldots,\alpha_n,\eta).
+$$
+The verified cube-class relations and the independence of $p$ let Kummer theory identify $\operatorname{Gal}(L/M)$ with the dual of an $n$-dimensional $\mathbb F_3$-space. Consequently every lift of the fixed $\pi$ that fixes $\omega$ is uniquely given by $\xi_1,\ldots,\xi_n,s\in\mathbb F_3$ with
 $$
 \sum_i\xi_i=0,
 $$
 through
 $$
-\alpha_i\mapsto\omega^{\xi_i}\alpha_i,\qquad
-\eta\mapsto\omega^s\eta.
-$$
-The $S_n$-action on $M$ permutes the $g_i$ and fixes $p$, so every $\pi\in S_n$ extends by $\alpha_i\mapsto\alpha_{\pi(i)}$ and $\eta\mapsto\eta$. Composing with the phase kernel gives all lifts fixing $\omega$.
-
-Step 2: Translate equal cycle types into orbit-sum conditions
-Fix an admissible permutation $\pi$ of type $5^{3t}7^{3t}$. For an automorphism fixing $\omega$ and inducing $\pi$,
-$$
-\sigma(\alpha_i)=\omega^{\xi_i}\alpha_{\pi(i)},\qquad
+\sigma(\alpha_i)=\omega^{\xi_i}\alpha_{\pi(i)},
+\qquad
 \sigma(\eta)=\omega^s\eta.
 $$
-The numbers $B_{ij}$ are distinct. Indeed, equality for pairs sharing an index forces two distinct roots to coincide; if $\{i,j\}$ and $\{k,l\}$ are disjoint, applying a transposition that moves $i$ to a fifth index while fixing $j,k,l$ gives a second equality whose quotient again forces two distinct $g$'s to coincide.
 
-A root of $P_k$ has the form $\omega^q\eta^k\alpha_i\alpha_j$. Let an orbit of the unordered pair $\{i,j\}$ under $\pi$ have length $\ell$, and let
-$$
-T=\sum_{\{r,s\}\text{ in the orbit}}(\xi_r+\xi_s).
-$$
-After one turn around the pair orbit, the phase coordinate is translated by $T+k\ell s$. Hence this orbit contributes three $\ell$-cycles when $T+k\ell s=0$, and one $3\ell$-cycle otherwise.
+Step 2: Convert the three cycle types into orbit-phase conditions
+The values $B_{ij}$ are distinct. Suppose $g_i/g_j=g_k/g_l$. If $i=k$ or $j=l$, then the other indices also agree. If $i,j,k,l$ are distinct, choose $m$ outside them and apply the transposition $(i\,m)$, which fixes $j,k,l$; comparison with the original equality gives $g_i=g_m$, impossible. If exactly one index is shared in the crossed position, for example $i=l$, move one of the two unshared indices while fixing the other two and compare again. For the reversed pair $(k,l)=(j,i)$, the equality gives $g_i^2=g_j^2$; moving $j$ through three distinct indices would force more than two distinct $g$-values to have the same square, again impossible. Thus $(i,j)=(k,l)$.
 
-Write $x_a$ for the sum of the $\xi$-coordinates on the $a$th $5$-cycle of $\pi$, and $y_b$ for the corresponding sum on the $b$th $7$-cycle. Inside an odd cycle of length $\ell$, each distance class gives one pair orbit and every vertex occurs twice, so its accumulated phase is minus the cycle sum. Between cycles of lengths $r_1,r_2$, there are $\gcd(r_1,r_2)$ pair orbits of length $\operatorname{lcm}(r_1,r_2)$. Therefore the pair orbits are:
-- two length-$5$ orbits inside each $5$-cycle, each with phase $-x_a$;
-- five length-$5$ orbits between two $5$-cycles, each with phase $x_a+x_{a'}$;
-- three length-$7$ orbits inside each $7$-cycle, each with phase $-y_b$;
-- seven length-$7$ orbits between two $7$-cycles, each with phase $y_b+y_{b'}$;
-- one length-$35$ orbit between a $5$- and a $7$-cycle, with phase $7x_a+5y_b=x_a-y_b$ in $\mathbb F_3$.
-
-If $s=0$, the three actions on $P_0,P_1,P_2$ are identical. Suppose $s\neq0$. Since $5,7,35$ are nonzero modulo $3$, for every fixed pair orbit the three values $T+k\ell s$, $k=0,1,2$, run through all of $\mathbb F_3$. The root-cycle lengths arising from base lengths $5,7,35$ are respectively $5,15$, $7,21$, and $35,105$, all distinct. Thus the three full cycle types are equal exactly when, separately for base lengths $5$, $7$, and $35$, the accumulated phases $T$ are equally distributed among $0,1,2$.
-
-Step 3: Classify the phase sums on the index cycles
-Let $m_a$ be the number of $5$-cycles whose sum is $a\in\mathbb F_3$. The numbers of length-$5$ pair orbits with accumulated phases $0,1,2$ are
+A root of $P_k$ has the form
 $$
-A_0=2m_0+5\left(\binom{m_0}{2}+m_1m_2\right),
+\omega^r\eta^k\frac{\alpha_i}{\alpha_j},
+\qquad r\in\mathbb F_3,
+\quad i\neq j.
 $$
+Let an orbit of the ordered pair $(i,j)$ under $\pi$ have length $d$. If $i$ lies in a cycle $C$ of length $r_C$ and $j$ lies in a cycle $D$ of length $r_D$, write
 $$
-A_1=2m_2+5\left(m_0m_1+\binom{m_2}{2}\right),
+x_C=\sum_{i\in C}\xi_i,
 \qquad
-A_2=2m_1+5\left(m_0m_2+\binom{m_1}{2}\right).
+x_D=\sum_{j\in D}\xi_j.
 $$
-The two differences factor as
+For distinct cycles, one turn around the ordered-pair orbit accumulates the phase
 $$
-A_0-A_1=\frac{m_0-m_2}{2}\left(5m_0-10m_1+5m_2-1\right),
+T=\frac{d}{r_C}x_C-\frac{d}{r_D}x_D.
 $$
-$$
-A_1-A_2=\frac{m_1-m_2}{2}\left(10m_0-5m_1-5m_2+1\right).
-$$
-The second factors are congruent to $-1$ and $1$ modulo $5$, respectively, so neither can vanish. Hence $A_0=A_1=A_2$ forces
-$$
-m_0=m_1=m_2=t.
-$$
+For two entries in the same cycle the accumulated phase is $0$. After one turn, the fiber coordinate is translated by $T+kds$. Hence that orbit contributes three $d$-cycles when $T+kds=0$, and one $3d$-cycle otherwise.
 
-Similarly, let $q_a$ count the $7$-cycles of sum $a$. Their phase counts are
+Write $C_1,\ldots,C_{2q^2}$ for the $2$-cycles and $D_1,\ldots,D_{15q^2}$ for the $5$-cycles, and set
 $$
-C_0=3q_0+7\left(\binom{q_0}{2}+q_1q_2\right),
-$$
-$$
-C_1=3q_2+7\left(q_0q_1+\binom{q_2}{2}\right),
+x_a=\sum_{i\in C_a}\xi_i,
 \qquad
-C_2=3q_1+7\left(q_0q_2+\binom{q_1}{2}\right).
+y_b=\sum_{i\in D_b}\xi_i.
 $$
-Now
-$$
-C_0-C_1=\frac{q_0-q_2}{2}\left(7q_0-14q_1+7q_2-1\right),
-$$
-$$
-C_1-C_2=\frac{q_1-q_2}{2}\left(14q_0-7q_1-7q_2+1\right),
-$$
-whose second factors are nonzero modulo $7$. Thus equality of the length-$7$ phase counts forces
-$$
-q_0=q_1=q_2=t.
-$$
-With these two uniform distributions, the number of length-$35$ pair orbits of any prescribed phase $c$ is
-$$
-\sum_{a-b=c}m_aq_b=3t^2,
-$$
-so the length-$35$ condition is automatic. Therefore for $s\neq0$, equal cycle type is equivalent exactly to having $t$ index cycles of each phase in both the $5$-cycle family and the $7$-cycle family.
+The ordered-pair orbit lengths are $2$, $5$, and $10$, producing the six distinct root-cycle lengths $2,6,5,15,10,30$. If $s=0$, the three actions are identical. If $s\neq0$, the three cycle types agree exactly when, separately for each base length, the phases $T$ are equally distributed among $0,1,2$.
 
-Step 4: Count the phase vectors for a fixed admissible permutation
-For $s=0$, every phase vector satisfying $\sum_i\xi_i=0$ works. This space has dimension $n-1=36t-1$, so there are
+Step 3: Express equidistribution by two Eisenstein norms and one orthogonality relation
+Put
 $$
-3^{36t-1}
+X=\sum_{a=1}^{2q^2}\omega^{x_a},
+\qquad
+Y=\sum_{b=1}^{15q^2}\omega^{y_b}.
 $$
-choices.
+For the length-$2$ class, each $2$-cycle contributes one internal ordered-pair orbit of phase $0$, and every ordered pair of distinct $2$-cycles contributes two orbits of phase $x_a-x_{a'}$. Therefore its nontrivial character sum is
+$$
+2q^2+2\sum_{a\neq a'}\omega^{x_a-x_{a'}}
+=2|X|^2-2q^2.
+$$
+It vanishes exactly when
+$$
+|X|^2=q^2.
+$$
+Similarly, the length-$5$ class has four internal orbits per $5$-cycle and five orbits for every ordered pair of distinct $5$-cycles, so its character sum is
+$$
+60q^2+5\sum_{b\neq b'}\omega^{y_b-y_{b'}}
+=5|Y|^2-15q^2.
+$$
+Thus
+$$
+|Y|^2=3q^2.
+$$
+Between a $2$-cycle and a $5$-cycle there is one orbit in each direction. Their phases are $y_b-x_a$ and $x_a-y_b$, so the length-$10$ character sum is
+$$
+Y\overline X+X\overline Y=2\operatorname{Re}(X\overline Y).
+$$
+The nonzero-$s$ condition is therefore equivalent to
+$$
+|X|^2=q^2,
+\qquad
+|Y|^2=3q^2,
+\qquad
+\operatorname{Re}(X\overline Y)=0.
+$$
 
-Now fix one of the two nonzero values of $s$. The $3t$ labeled $5$-cycles may receive sums $0,1,2$, each exactly $t$ times, in
+Step 4: Classify the norm solutions and impose the global phase relation
+Work in the Euclidean ring $\mathbb Z[\omega]$, whose norm is $N(z)=|z|^2$. Because $q\equiv2\pmod3$, the rational prime $q$ remains prime in $\mathbb Z[\omega]$. The first norm equation therefore gives $X=q\varepsilon$ for a unit $\varepsilon$. Since $X$ is a sum of $2q^2$ powers of $\omega$, reduction modulo $1-\omega$ gives
 $$
-\frac{(3t)!}{(t!)^3}
+X\equiv2q^2\equiv q\pmod{1-\omega}.
 $$
-ways, and independently the same number of choices is available for the $7$-cycles. Once every cycle sum is fixed, a cycle of length $\ell$ has $3^{\ell-1}$ assignments of its coordinates. Across all $3t$ five-cycles and $3t$ seven-cycles this gives
+Only the units $1,\omega,\omega^2$ satisfy this congruence, so
 $$
-3^{4\cdot3t+6\cdot3t}=3^{30t}.
-$$
-The prescribed uniform cycle sums have total sum $0$ in $\mathbb F_3$, so the global constraint $\sum_i\xi_i=0$ is automatic. Hence the two nonzero values of $s$ contribute
-$$
-2\cdot3^{30t}\left(\frac{(3t)!}{(t!)^3}\right)^2.
-$$
-For each fixed admissible $\pi$, the total number of lifts is therefore
-$$
-3^{36t-1}+2\cdot3^{30t}\left(\frac{(3t)!}{(t!)^3}\right)^2.
+X\in\{q,q\omega,q\omega^2\}.
 $$
 
-Step 5: Count the admissible permutations and combine the factors
-A permutation of $36t$ letters with $3t$ cycles of length $5$ and $3t$ cycles of length $7$ can be formed in
+The norm equation $N(Y)=3q^2$ forces $q\mid Y$: the only prime of $\mathbb Z[\omega]$ above the inert rational prime $q$ is $q$ itself. For a fixed such $X$, put $Z=Y/X$. Then $Z\in\mathbb Z[\omega]$, $N(Z)=3$, and $\operatorname{Re}(Z)=0$. Writing $Z=a+b\omega$, the second condition gives $2a-b=0$, and the norm gives $a^2-ab+b^2=3$. Hence $a=\pm1$, so
 $$
-\frac{(36t)!}{5^{3t}7^{3t}(3t)!^2}
-=
-\frac{(36t)!}{35^{3t}(3t)!^2}
+Y=\pm X(1+2\omega).
 $$
-ways. Multiplying by the lift count from Step 4 and cancelling $(3t)!^2$ in the second term gives
-$$
-\frac{(36t)!}{35^{3t}}
-\left(
-\frac{3^{36t-1}}{(3t)!^2}
-+
-\frac{2\cdot3^{30t}}{(t!)^6}
-\right).
-$$
-For $t=1$, the nonzero-$s$ condition requires the three $5$-cycle sums and the three $7$-cycle sums each to be a permutation of $0,1,2$, agreeing with the classification in Step 3 and providing the smallest-parameter boundary check.
 
-Final Answer: $\boxed{\frac{(36t)!}{35^{3t}}(\frac{3^{36t-1}}{(3t)!^2}+\frac{2\cdot3^{30t}}{(t!)^6})}$
+If a multiset of residues has character sum $U=A+B\omega$, then its residue sum is congruent to $B$ modulo $3$: writing its multiplicities as $(m_0,m_1,m_2)$ gives $B=m_1-m_2$ and $m_1+2m_2\equiv B\pmod3$. The relation $\sum_i\xi_i=0$ is therefore the condition that the $\omega$-coefficients of $X$ and $Y$ add to $0$ modulo $3$. If $X=q$, the two signs give coefficient sums $\pm2q$, so neither works. If $X=q\omega$, only the positive sign works, while if $X=q\omega^2$, only the negative sign works. Thus exactly two pairs remain:
+$$
+(X,Y)=\bigl(q\omega,q\omega(1+2\omega)\bigr)
+$$
+and
+$$
+(X,Y)=\bigl(q\omega^2,-q\omega^2(1+2\omega)\bigr).
+$$
+
+Step 5: Count the phase assignments
+For the first pair, the multiplicities of the $2$-cycle sums $0,1,2$ are
+$$
+(A_q,A_q+q,A_q),
+$$
+and for the conjugate pair they are
+$$
+(A_q,A_q,A_q+q).
+$$
+Both profiles occur in
+$$
+\binom{2q^2}{A_q,A_q,A_q+q}
+$$
+ways. The corresponding multiplicities of the $5$-cycle sums are
+$$
+(5q^2-q,5q^2,5q^2+q)
+$$
+and
+$$
+(5q^2-q,5q^2+q,5q^2),
+$$
+so each occurs in
+$$
+\binom{15q^2}{5q^2-q,5q^2,5q^2+q}
+$$
+ways.
+
+For prescribed sums, a $2$-cycle has $3$ phase assignments and a $5$-cycle has $3^4$ phase assignments. Hence each profile has
+$$
+3^{2q^2+4\cdot15q^2}=3^{62q^2}
+$$
+preimages. There are two profiles and two nonzero values of $s$, contributing four times this quantity. When $s=0$, every vector with coordinate sum $0$ works, contributing $3^{n-1}=3^{79q^2-1}$ lifts. For the smallest parameter $q=2$, the two admissible profiles are $(2,4,2)$ with $(18,20,22)$ and $(2,2,4)$ with $(18,22,20)$, which directly checks the boundary case. Adding the two cases gives the required count.
+
+Final Answer: $\boxed{3^{79q^2-1}+4\cdot3^{62q^2}\binom{2q^2}{A_q,A_q,A_q+q}\binom{15q^2}{5q^2-q,5q^2,5q^2+q}}$
 
 ---
 
 ## Answer
 
-$\frac{(36t)!}{35^{3t}}(\frac{3^{36t-1}}{(3t)!^2}+\frac{2\cdot3^{30t}}{(t!)^6})$
+$3^{79q^2-1}+4\cdot3^{62q^2}\binom{2q^2}{A_q,A_q,A_q+q}\binom{15q^2}{5q^2-q,5q^2,5q^2+q}$
 
 ---
 
 ## Classification
 
-**Problem Type:** Symbolic derivation
+**Problem Type:** Exact computation
 
 **Answer Type:** Exact symbolic expression
 
@@ -176,7 +183,7 @@ $\frac{(36t)!}{35^{3t}}(\frac{3^{36t-1}}{(3t)!^2}+\frac{2\cdot3^{30t}}{(t!)^6})$
 ## Solution Concepts
 
 - cubic Kummer theory
-- finite-field Frobenius
-- permutation actions on two-subsets
-- modular orbit sums
+- permutation orbits on ordered pairs
+- character sums over cyclic phases
+- norms in the Eisenstein integers
 - multinomial counting
