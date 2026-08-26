@@ -69,15 +69,36 @@ P_p
 $$
 
 Step 4: Evaluate the two group products
-Since the elements of the cyclic group $G$ are the $n$ roots of $T^n-1$ in the relevant split or quadratic algebra,
+First consider
 $$
-\prod_{\substack{z\in G\\z\ne1}}(1-z)=n.
+Q:=\prod_{\substack{z\in G\\z\ne1}}(1-z).
 $$
-Therefore
+If $\varepsilon=-1$, then $A\cong\mathbb F_{p^2}$ and $G$ is exactly the set of roots of $T^n-1$ in the field. Differentiating at $T=1$ gives
+$$
+Q=n.
+$$
+If $\varepsilon=1$, identify
+$$
+G=\{(t,t^{-1}):t\in\mathbb F_p^\times\}.
+$$
+Then
+$$
+Q=
+\left(
+\prod_{t\ne1}(1-t),
+\prod_{t\ne1}(1-t^{-1})
+\right).
+$$
+The first component equals $p-1=n$ by differentiating $T^{p-1}-1$ at $T=1$, and inversion permutes $\mathbb F_p^\times\setminus\{1\}$, so the second component is the same. Thus again
+$$
+Q=n.
+$$
+Therefore in both cases
 $$
 \left(\prod_{z\ne1}(z-1)\right)^2=n^2.
 $$
-Also $n=p-\varepsilon$ is even. A cyclic group of even order has a unique element of order $2$, namely $-1$, so the product of all its elements is $-1$. Thus
+
+Also $n=p-\varepsilon$ is even. In a cyclic group of even order, all elements pair with their inverses except $1$ and the unique element of order $2$, which is $-1$. Hence
 $$
 \prod_{z\ne1}z=-1.
 $$
