@@ -2,49 +2,58 @@
 
 ## LaTeX (Normalized)
 
-Let $r\geq2$ be an integer and put $n=2r+1$. Let $K/\mathbb Q$ be a Galois extension together with a fixed identification
+Let $q$ be a rational prime with $q\equiv2\pmod3$, and put $n=79q^2$. Let $f\in\mathbb Q[y]$ be monic of degree $n$, and suppose its splitting field $K$ satisfies
 $$
-\operatorname{Gal}(K/\mathbb Q)\cong S_n,
+\operatorname{Gal}(K/\mathbb Q)\cong S_n
 $$
-where $S_n$ acts naturally on $[n]=\{1,\ldots,n\}$. Let $\omega$ be a primitive cube root of unity, assume $\omega\notin K$, and put $M=K(\omega)$.
+through its action on the roots $y_1,\ldots,y_n$ of $f$. Write $\Delta$ for the discriminant of $f$.
 
-For every $r$-element subset $I\subset[n]$, choose $a_I\in K^\times$ such that
+Let $a,c\in\mathbb Q^\times$ satisfy
 $$
-\tau(a_I)=a_{\tau(I)}
+(-1)^n f(-a)=c^3,
 $$
-for every $\tau\in S_n$. Assume that the cubic relations among the $a_I$ are exactly the following ones: for exponents $e_I\in\{0,1,2\}$, the element
-$$
-\prod_{|I|=r}a_I^{e_I}
-$$
-is a cube in $M$ if and only if there exist coefficients $\lambda_{uv}\in\mathbb F_3$, indexed by the two-element subsets $\{u,v\}\subset[n]$, such that
-$$
-e_I=\sum_{\{u,v\}\subset I}\lambda_{uv}
-\qquad\text{in }\mathbb F_3
-$$
-for every $r$-element subset $I$.
+and suppose that $-3\Delta$ is not a square in $\mathbb Q$.
 
-Choose cube roots $\alpha_I^3=a_I$ and put
+Assume there is a prime $p\equiv1\pmod3$ such that the coefficients of $f$ and the number $a$ are $p$-integral, meaning their denominators are not divisible by $p$, and
 $$
-E=M\bigl(\alpha_I:|I|=r\bigr),\qquad
-\Gamma=\operatorname{Gal}(E/\mathbb Q(\omega)),\qquad
-A=\operatorname{Gal}(E/M).
+p\nmid \Delta f(-a).
 $$
-Assume that the restriction sequence
+Suppose further that
 $$
-1\longrightarrow A\longrightarrow\Gamma\longrightarrow S_n\longrightarrow1
+f(y)\equiv(y-u)(y-v)h(y)\pmod p,
 $$
-splits.
+where $u,v\in\mathbb F_p$ are distinct, $h\in\mathbb F_p[y]$ is irreducible of degree $n-2$, $a+u$ is not a cube in $\mathbb F_p^\times$, and $a+v$ is a cube in $\mathbb F_p^\times$.
 
-A subgroup $C\leq\Gamma$ is called a complement to $A$ if $C\cap A=1$ and $AC=\Gamma$. Two complements are regarded as equivalent when they are conjugate by an element of $A$.
+For ordered pairs $i\neq j$, put
+$$
+B_{ij}=\frac{a+y_i}{a+y_j},
+$$
+and define
+$$
+R(z)=\prod_{i\neq j}(z-B_{ij})\in\mathbb Q[z],
+\qquad
+N=n(n-1).
+$$
+For $k\in\{0,1,2\}$, set
+$$
+P_k(x)=p^{kN}R\left(\frac{x^3}{p^k}\right),
+$$
+and let $L$ be the splitting field of
+$$
+f(y)P_0(x)P_1(x)P_2(x)
+$$
+over $\mathbb Q$. Let $\omega\in L$ be a primitive cube root of unity. For $\sigma\in\operatorname{Gal}(L/\mathbb Q)$, let $\pi_\sigma\in S_n$ be the permutation induced by restricting $\sigma$ to $K$.
 
-For a three-element subset $T\subset[n]$, let $H_T\leq S_n$ be its setwise stabilizer, and let $\Gamma_T$ be the full preimage of $H_T$ in $\Gamma$.
+Fix a permutation $\pi\in S_n$ having exactly $2q^2$ cycles of length $2$ and exactly $15q^2$ cycles of length $5$. Determine the number of automorphisms $\sigma\in\operatorname{Gal}(L/\mathbb Q)$ such that $\sigma$ fixes $\omega$, $\pi_\sigma=\pi$, and the three permutations induced by $\sigma$ on the roots of $P_0$, $P_1$, and $P_2$ have the same cycle type.
 
-Determine exactly those integers $r\geq2$ for which both conditions below hold:
-
-1. There exist two inequivalent complements to $A$ in $\Gamma$.
-2. For every three-element subset $T\subset[n]$, any two inequivalent complements $C_1,C_2$ to $A$ have $C_1\cap\Gamma_T$ and $C_2\cap\Gamma_T$ inequivalent under conjugation by $A$.
-
-Give the set of all such $r$ by an explicit condition on the base-$3$ expansion of $r$.
+Use the multinomial notation
+$$
+\binom{m}{r,s,t}=\frac{m!}{r!s!t!},
+$$
+and set
+$$
+A_q=\frac{q(2q-1)}{3}.
+$$
 
 ---
 
@@ -54,11 +63,11 @@ Give the set of all such $r$ by an explicit condition on the base-$3$ expansion 
 |---|---|
 | **Domain** | Abstract Algebra |
 | **Sub-domain** | Galois theory |
-| **Problem Type** | Parameter identification |
-| **Answer Type** | Set or multiset of objects |
+| **Problem Type** | Exact computation |
+| **Answer Type** | Exact symbolic expression |
 
 ---
 
 ## Domain Explanation
 
-This problem studies complements in a split cubic Kummer extension whose radical relations are coupled across the natural symmetric-group action on subsets. The requested parameter classification depends on when distinct global complements remain distinct after restriction to setwise stabilizers of three-element subsets.
+This problem belongs to abstract algebra because it counts lifts of a prescribed permutation through a radical extension of a symmetric splitting field. Its primary sub-domain is Galois theory, since the main work is to determine the radical kernel and translate field automorphisms into orbit data. The number-theoretic norm argument is a supporting classification tool rather than the object being studied.
