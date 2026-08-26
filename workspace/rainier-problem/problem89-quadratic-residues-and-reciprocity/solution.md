@@ -164,19 +164,13 @@ P_p=
 $$
 where $2^{-1}$ denotes the inverse of $2$ in $\mathbb F_p$.
 
-Final Answer: $\boxed{P_p=-2\text{ if }p\equiv1,4\pmod5,\quad P_p=-2^{-1}\text{ if }p\equiv2,3\pmod5}$
+Final Answer: $\boxed{P_p=\begin{cases}-2,&p\equiv1,4\pmod5,\\-2^{-1},&p\equiv2,3\pmod5.\end{cases}}$
 
 ---
 
 ## Answer
 
-$$
-P_p=
-\begin{cases}
--2, & p\equiv1,4\pmod5,\\[4pt]
--2^{-1}, & p\equiv2,3\pmod5.
-\end{cases}
-$$
+$P_p=\begin{cases}-2,&p\equiv1,4\pmod5,\\-2^{-1},&p\equiv2,3\pmod5.\end{cases}$
 
 ---
 
