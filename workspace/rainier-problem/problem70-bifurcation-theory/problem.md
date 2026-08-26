@@ -2,21 +2,32 @@
 
 ## LaTeX (Normalized)
 
-For $0<\varepsilon\ll1$ and real $\lambda$, consider
+Fix a nonzero real number $x$. For every real $\alpha$ and every integer $n>2|x|$, define
 $$
-\varepsilon\dot x=y-\frac{x^3}{3}+x,
-\qquad
-\dot y=\lambda+1-x-\frac12\left(y+\frac23\right).
+H_n(\alpha)=
+\det\left[
+\left(1+\frac{(i+j)x}{n}\right)^{n+\alpha(i+j)}
+\right]_{i,j=-1}^{1}.
 $$
 
-For every sufficiently small $\varepsilon>0$, let $\lambda_H(\varepsilon)$ be the parameter value for which the equilibrium converging to $(1,-2/3)$ has purely imaginary eigenvalues.
+For every sufficiently large $n$, let $\alpha_n$ be the unique real zero of $H_n(\alpha)$ satisfying
+$$
+\min\{0,x\}<\alpha_n<\max\{0,x\}.
+$$
 
-Let $\lambda_C(\varepsilon)$ be the maximal-canard parameter through the right fold: the parameter for which the attracting slow manifold associated with $x>1$ and the repelling slow manifold associated with $|x|<1$ join through a single orbit near $(1,-2/3)$.
+Set
+$$
+D_n=\det\left[\alpha_{8^{i+j}n}\right]_{i,j=0}^{3}.
+$$
 
 Determine
 $$
-\lim_{\varepsilon\to0^+}
-\frac{\lambda_C(\varepsilon)-\lambda_H(\varepsilon)}{\varepsilon^2}.
+\lim_{n\to\infty}
+\left(
+64^3
+\frac{D_{8n}^{\,7}D_{512n}^{\,8}}
+{D_nD_{64n}^{\,14}}
+\right)^n.
 $$
 
 ---
@@ -25,14 +36,13 @@ $$
 
 | Field | Value |
 |---|---|
-| **Domain** | Differential Equations and Dynamical Systems |
-| **Sub-domain** | Bifurcation theory |
+| **Domain** | Linear Algebra |
+| **Sub-domain** | Determinants |
 | **Problem Type** | Symbolic derivation |
-| **Answer Type** | Exact scalar |
+| **Answer Type** | Exact symbolic expression |
 
 ---
 
 ## Domain Explanation
 
-This problem compares the singular Hopf bifurcation curve with the maximal-canard curve of a planar slow-fast family near a fold, so the requested quantity is a bifurcation invariant in parameter space.
-Stability of the equilibrium is used to locate the Hopf curve, but the main task is the second-order separation of two bifurcation loci, making Bifurcation theory more appropriate than Stability theory.
+This problem studies asymptotic expansions of parameter-dependent Hankel determinants, which places it in Linear Algebra and the sub-domain of Determinants. It also uses limits and Puiseux series from analysis to track the distinguished zero. Those analytic tools serve the determinant calculation, which remains the central task.
