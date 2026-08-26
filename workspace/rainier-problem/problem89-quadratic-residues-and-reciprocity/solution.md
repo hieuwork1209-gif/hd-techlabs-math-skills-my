@@ -176,13 +176,25 @@ R_p(T)=2\sum_{k\ge0}T^{2k}
 =\frac{2}{1-T^2}.
 $$
 
-Final Answer: $\boxed{R_p(T)=\begin{cases}\dfrac{2}{(1-T)^2},&p\equiv1,9\pmod{20},\\\dfrac{2(1+T^2)}{(1-T^2)^2},&p\equiv3,7\pmod{20},\\\dfrac{2}{1-T^2},&p\equiv11,13,17,19\pmod{20}.\end{cases}}$
+Step 6: Compress the three cases for the submission field
+Set
+$$
+a=\left(\frac{-5}{p}\right),
+\qquad
+b=\left(\frac{-1}{p}\right).
+$$
+For $p\equiv1,9\pmod{20}$ we have $(a,b)=(1,1)$; for $p\equiv3,7\pmod{20}$ we have $(a,b)=(1,-1)$; and for $p\equiv11,13,17,19\pmod{20}$ we have $a=-1$. Therefore the three rational functions above combine to
+$$
+R_p(T)=\frac{2+(1+a)(1+b)T+2aT^2}{(1-T^2)^2}.
+$$
+
+Final Answer: $\boxed{R_p(T)=\frac{2+(1+a)(1+b)T+2aT^2}{(1-T^2)^2},\ a=(\frac{-5}{p}),b=(\frac{-1}{p})}$
 
 ---
 
 ## Answer
 
-$R_p(T)=\begin{cases}\dfrac{2}{(1-T)^2},&p\equiv1,9\pmod{20},\\\dfrac{2(1+T^2)}{(1-T^2)^2},&p\equiv3,7\pmod{20},\\\dfrac{2}{1-T^2},&p\equiv11,13,17,19\pmod{20}.\end{cases}$
+$R_p(T)=\frac{2+(1+a)(1+b)T+2aT^2}{(1-T^2)^2},\ a=(\frac{-5}{p}),b=(\frac{-1}{p})$
 
 ---
 
