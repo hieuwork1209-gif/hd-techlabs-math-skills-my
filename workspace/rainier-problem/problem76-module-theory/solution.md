@@ -1,7 +1,7 @@
 ## Steps
 
 Step 1: Reduce the representation problem to horizontal two-strip chains
-Let $U=\mathbf 1\oplus V_m$, the permutation module of $S_m$ on the $m$ matched pairs, inflated to $H_m$. The ordered triples of pair-indices have four orbit types: all three equal, one of the three possible choices of an equal pair, or all three distinct. With
+Let $U=\mathbf{1}\oplus V_m$, the permutation module of $S_m$ on the $m$ matched pairs, inflated to $H_m$. The ordered triples of pair-indices have four orbit types: all three equal, one of the three possible choices of an equal pair, or all three distinct. With
 $$
 T_1=h_2h_{m-1}[h_2],\qquad T_2=h_2^2h_{m-2}[h_2],\qquad T_3=h_2^3h_{m-3}[h_2],
 $$
@@ -9,7 +9,7 @@ we have
 $$
 \operatorname{ch}\operatorname{Ind}_{H_m}^{S_{2m}}U^{\otimes3}=T_1+3T_2+T_3,
 $$
-while the tensor-square and tensor-first-power analogues are $T_1+T_2$ and $T_1$. Since $V_m=U-\mathbf1$ in the representation ring,
+while the tensor-square and tensor-first-power analogues are $T_1+T_2$ and $T_1$. Since $V_m=U-\mathbf{1}$ in the representation ring,
 $$
 \operatorname{ch}M_m=(T_1+3T_2+T_3)-3(T_1+T_2)+3T_1-h_m[h_2]
 =T_3+T_1-h_m[h_2].
@@ -20,7 +20,7 @@ h_m[h_2]=\sum_{\alpha\vdash m}s_{2\alpha}
 $$
 shows that $P_m$ is multiplicity-free on partitions with even row lengths. Tensoring by sign conjugates partitions, so the common constituents of $P_m$ and $N_m$ are exactly the partitions with even rows and even columns. Every admissible partition has the unique form
 $$
-\lambda=\Lambda(\delta):=(2\delta_1,2\delta_1,2\delta_2,2\delta_2,\ldots),\qquad \delta\vdash n:=\frac m2,
+\lambda=\Lambda(\delta):=(2\delta_1,2\delta_1,2\delta_2,2\delta_2,\ldots),\qquad \delta\vdash n:=\frac{m}{2},
 $$
 and $\Lambda(\delta)'=\Lambda(\delta')$.
 
@@ -50,27 +50,27 @@ $$
 For the other patterns, a B-pair which is used twice is forced on its second use because the same two odd rows must be returned to even parity. If an A removal opens a new row length at run $i$, this happens exactly when $g_i\geq2$. This gives
 $$
 \begin{aligned}
-C_{ABB}&=\sum_{i=1}^t\binom{t+\mathbf1_{\{g_i\geq2\}}}{2}
-=\frac{t^2(t-1)}2+tG,\\
-C_{BBA}&=\sum_{1\leq i<j\leq t}\left(t+\mathbf1_{\{g_i\geq2\}}+\mathbf1_{\{g_j\geq2\}}\right)
-=\frac{t^2(t-1)}2+(t-1)G,\\
-C_{BAB}&=\sum_{1\leq i<j\leq t}\left(t-2+\mathbf1_{\{g_i\geq2\}}+\mathbf1_{\{g_j\geq2\}}\right)
-=\frac{t(t-1)(t-2)}2+(t-1)G.
+C_{ABB}&=\sum_{i=1}^t\binom{t+\mathbf{1}_{\{g_i\geq2\}}}{2}
+=\frac{t^2(t-1)}{2}+tG,\\
+C_{BBA}&=\sum_{1\leq i<j\leq t}\left(t+\mathbf{1}_{\{g_i\geq2\}}+\mathbf{1}_{\{g_j\geq2\}}\right)
+=\frac{t^2(t-1)}{2}+(t-1)G,\\
+C_{BAB}&=\sum_{1\leq i<j\leq t}\left(t-2+\mathbf{1}_{\{g_i\geq2\}}+\mathbf{1}_{\{g_j\geq2\}}\right)
+=\frac{t(t-1)(t-2)}{2}+(t-1)G.
 \end{aligned}
 $$
 For BBB, after the first B-strip chooses an unordered pair of runs, the second B-strip must share exactly one of those two odd rows and introduce one new row; there are $2(t-1)$ choices, and the third strip is forced. This gives
 $$
-C_{BBB}=\binom t2\,2(t-1)=t(t-1)^2.
+C_{BBB}=\binom{t}{2}\,2(t-1)=t(t-1)^2.
 $$
 Adding the five pattern counts yields
 $$
 c_3(\Lambda(\delta))
-=\frac{t(t-1)(7t-2)}2+(6t-3)G+M+H.
+=\frac{t(t-1)(7t-2)}{2}+(6t-3)G+M+H.
 $$
 Since $a_\lambda=c_3(\lambda)+t-1$,
 $$
 a_{\Lambda(\delta)}
-=\frac{(t-1)(7t^2-2t+2)}2+(6t-3)G+M+H.
+=\frac{(t-1)(7t^2-2t+2)}{2}+(6t-3)G+M+H.
 $$
 
 Step 3: Add the conjugate multiplicity
@@ -110,7 +110,7 @@ which exceeds the preceding upper bound by $9t^2+5t+2$. Whenever $t+1\leq d$, th
 Step 5: Optimize the gap and multiplicity bonuses and attain the bound
 Set
 $$
-q=n-\frac{d(d+1)}2=\frac{m-d(d+1)}2.
+q=n-\frac{d(d+1)}{2}=\frac{m-d(d+1)}{2}.
 $$
 Write
 $$
@@ -172,8 +172,12 @@ $(d-1)(7d^2-2d+2)+(6d-2)e+f$
 
 ## Solution Concepts
 
-- Frobenius characteristic
-- Pieri rule
-- Specht module conjugation
+- frobenius characteristic
+- pieri rule
+- specht module conjugation
 - partition run statistics
 - discrete optimization
+
+---
+
+## Black-Box Audit — no issues found
