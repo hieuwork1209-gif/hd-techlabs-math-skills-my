@@ -2,28 +2,17 @@
 
 ## LaTeX (Normalized)
 
-Let $p$ be an odd prime with $p\ne5$ and $\left(\frac{-5}{p}\right)=1$. If $p\equiv1,9\pmod{20}$, let $(a,b)$ be the positive pair in the representation
+Let $k\ge5$ and put $q=2^{k-4}$. For $m\ge1$, let $c_{m,k}$ be the number of primitive pairs $(x,y)\in\mathbb Z^2$ satisfying
 $$
-p=a^2+5b^2,
+x^2+5y^2=(61\cdot89)^m,\qquad y\ne0,\qquad v_2(y)=k,
 $$
-which is unique up to changing signs before requiring $a,b>0$. Consider the three cases
+where primitive means $\gcd(x,y)=1$, and $v_2(y)$ is the largest integer $e\ge0$ for which $2^e\mid y$.
+
+Determine the ordinary generating function
 $$
-\text{(A) }p\equiv1,9\pmod{20},\ b\text{ even},\qquad
-\text{(B) }p\equiv1,9\pmod{20},\ b\text{ odd},
+C_k(T)=\sum_{m=1}^{\infty}c_{m,k}T^m
 $$
-and
-$$
-\text{(C) }p\equiv3,7\pmod{20}.
-$$
-For each integer $m\ge0$, define
-$$
-r_m(p)=\#\left\{(x,y)\in\mathbb Z^2:x^2+20y^2=p^m\right\},
-$$
-and form
-$$
-R_p(T)=\sum_{m=0}^{\infty}r_m(p)T^m.
-$$
-Determine $R_p(T)$ explicitly in cases (A), (B), and (C).
+as a rational function of $T$ and $q$.
 
 ---
 
@@ -32,7 +21,7 @@ Determine $R_p(T)$ explicitly in cases (A), (B), and (C).
 | Field | Value |
 |---|---|
 | **Domain** | Number Theory |
-| **Sub-domain** | Quadratic residues and reciprocity |
+| **Sub-domain** | Elementary number theory |
 | **Problem Type** | Symbolic derivation |
 | **Answer Type** | Polynomial or rational function |
 
@@ -40,4 +29,4 @@ Determine $R_p(T)$ explicitly in cases (A), (B), and (C).
 
 ## Domain Explanation
 
-The problem is organized by quadratic-residue splitting of $p$ in $\mathbb Q(\sqrt{-5})$, detected by $\left(\frac{-5}{p}\right)$ and quadratic reciprocity, and by the genus/residue classes modulo $20$ of binary quadratic forms of discriminant $-80$. The parity of $b$ in $p=a^2+5b^2$ distinguishes the two split classes inside the principal genus. Ideal-class arithmetic is the mechanism for the prime-power count, but quadratic residues, reciprocity, and the resulting form classes are the decisive arithmetic data, making this a better fit than the broader Elementary number theory alternative.
+This problem belongs to Number Theory, specifically elementary number theory, because it asks for an exact generating function encoding primitive representations by a positive quadratic form with a prescribed power-of-two divisibility condition. The decisive work is the arithmetic classification of primitive norm representations together with a valuation argument for coefficients of powers in a quadratic integer ring. Generating functions only package the resulting exponent classes, so they are secondary to the number-theoretic structure.
