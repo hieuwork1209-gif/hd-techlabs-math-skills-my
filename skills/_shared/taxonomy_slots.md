@@ -2,13 +2,13 @@
 
 This file is the source of truth for currently usable taxonomy slots. Update it whenever the portal capacity changes. Skills must read this file before choosing or changing a Domain/Sub-domain, Problem Type, or Answer Type.
 
-Last updated from user-provided portal snapshot: **2026-08-26**. The portal snapshot contains **68 currently available Domain/Sub-domain rows across 12 Domains**. The table below is derived directly from `available_segments`; any Domain/Sub-domain pair absent from that list must be treated as unavailable for the current snapshot rather than carried forward from older snapshots.
+Last updated from user-provided portal snapshot: **2026-08-26**. The portal snapshot contains **69 Domain/Sub-domain rows across 12 Domains**: **68 currently usable rows with positive remaining capacity and 1 exhausted row with 0 remaining slots**. The table below is derived directly from `available_segments`; any Domain/Sub-domain pair absent from that list must be treated as unavailable for the current snapshot rather than carried forward from older snapshots.
 
 ## Selection Rules
 
 - Determine the Domain/Sub-domain by what the problem fundamentally asks, rather than by the solution methods or tools used.
 - If a problem involves multiple domains, classify it by the highest-level concepts fundamental to the problem.
-- Use only Domain/Sub-domain pairs present in the current `available_segments` table below.
+- Use only Domain/Sub-domain pairs present in the current `available_segments` table below with a positive remaining-slot count.
 - Treat a row with `0` remaining slots, or a row absent from the current portal snapshot, as unavailable.
 - Never force a taxonomy label merely because it has more or fewer remaining slots. Primary mathematical content decides the label.
 - For the Domain Explanation, state why the selected Domain/Sub-domain is the best fit and why it is more appropriate than the next-best alternative.
@@ -43,8 +43,8 @@ Last updated from user-provided portal snapshot: **2026-08-26**. The portal snap
 | Differential Equations and Dynamical Systems | Bifurcation theory | 9 | open | 2026-08-26 user-provided portal snapshot. |
 | Differential Equations and Dynamical Systems | Boundary value problems | 9 | open | 2026-08-26 user-provided portal snapshot. |
 | Differential Equations and Dynamical Systems | First-order ordinary differential equations | 9 | open | 2026-08-26 user-provided portal snapshot. |
+| Differential Equations and Dynamical Systems | Higher-order ordinary differential equations | 10 | open | 2026-08-26 user-provided portal snapshot. |
 | Differential Equations and Dynamical Systems | Systems of differential equations | 10 | open | 2026-08-26 user-provided portal snapshot. |
-| Differential Equations and Dynamical Systems | Higher-order ordinary differential equations | 11 | open | 2026-08-26 user-provided portal snapshot. |
 | Differential Equations and Dynamical Systems | Initial value problems | 12 | open | 2026-08-26 user-provided portal snapshot. |
 | Differential Equations and Dynamical Systems | Numerical differential equations | 12 | open | 2026-08-26 user-provided portal snapshot. |
 | Discrete Mathematics and Combinatorics | Matroid theory | 1 | open | 2026-08-26 user-provided portal snapshot. |
@@ -53,6 +53,7 @@ Last updated from user-provided portal snapshot: **2026-08-26**. The portal snap
 | Euclidean, Coordinate, and Transformational Geometry | Transformational geometry | 5 | open | 2026-08-26 user-provided portal snapshot. |
 | Euclidean, Coordinate, and Transformational Geometry | Analytic geometry | 6 | open | 2026-08-26 user-provided portal snapshot. |
 | Euclidean, Coordinate, and Transformational Geometry | Computational geometry | 6 | open | 2026-08-26 user-provided portal snapshot. |
+| Linear Algebra | Vectors and vector spaces | 0 | unavailable | 2026-08-26 user-provided portal snapshot; exhausted. |
 | Linear Algebra | Determinants | 1 | open | 2026-08-26 user-provided portal snapshot. |
 | Linear Algebra | Systems of linear equations | 4 | open | 2026-08-26 user-provided portal snapshot. |
 | Linear Algebra | Numerical linear algebra | 13 | open | 2026-08-26 user-provided portal snapshot. |
@@ -84,7 +85,7 @@ Last updated from user-provided portal snapshot: **2026-08-26**. The portal snap
 | Probability and Statistics | Limit theorems | 10 | open | 2026-08-26 user-provided portal snapshot. |
 | Probability and Statistics | Experimental design and causal inference | 11 | open | 2026-08-26 user-provided portal snapshot. |
 | Topology and Geometry | Symplectic and contact geometry | 1 | open | 2026-08-26 user-provided portal snapshot. |
-| Topology and Geometry | Differential topology | 4 | open | 2026-08-26 user-provided portal snapshot. |
+| Topology and Geometry | Differential topology | 3 | open | 2026-08-26 user-provided portal snapshot. |
 | Topology and Geometry | Differential geometry | 6 | open | 2026-08-26 user-provided portal snapshot. |
 
 ## Problem Type Slots
