@@ -1,150 +1,202 @@
 ## Steps
 
-Step 1: Convert polynomial exactness into an interpolation moment problem
-Let $q=q_N$ for the fixed value of $N$. Even monomials satisfy the required identity automatically. Applying the condition to $p(x)=x^{2r+1}$ for $0\leq r\leq N-1$ gives
+Step 1: Convert the exactness conditions into a cubic interpolation family
+Fix $N$ and write $q=q_N$ and $x_j=q^{2j}$. Applying the condition to the odd monomials $p(x)=x^{2r+1}$ for $0\leq r\leq N-3$ gives
 $$
-2\sum_{j=0}^{N}c_jq^{(2r+1)j}=\begin{cases}1,&r=0,\\0,&1\leq r\leq N-1.\end{cases}
+2\sum_{j=0}^{N}c_jq^{(2r+1)j}=\delta_{r0}.
 $$
-Set
+Set $b_j=2q^jc_j$. Then
 $$
-x_j=q^{2j},\qquad d_j=2q^jc_j.
+\sum_{j=0}^{N}b_jP(x_j)=P(0)
 $$
-The constraints become
-$$
-\sum_{j=0}^{N}d_jx_j^r=\delta_{r0},\qquad 0\leq r\leq N-1.
-$$
-Equivalently,
-$$
-\sum_{j=0}^{N}d_jP(x_j)=P(0)
-$$
-for every polynomial $P$ of degree at most $N-1$. The $N$ moment rows form a Vandermonde matrix of rank $N$, so the feasible vectors form an affine line in $\mathbb R^{N+1}$.
+for every polynomial $P$ of degree at most $N-3$.
 
-Step 2: Reduce the coefficient minimization to omitting one mesh point
-In the $d$ variables the objective is
-$$
-\frac{1}{2}\sum_{j=0}^{N}q^{-j}|d_j|.
-$$
-Along the one-dimensional feasible affine line this is a continuous convex piecewise-linear function that tends to infinity in both directions. A minimum therefore exists. If a minimum lies inside a segment on which no $d_j$ vanishes, the objective is affine there; either its slope is nonzero, which rules out an interior minimum, or its slope is zero, in which case an endpoint of that segment is also minimizing. So some minimizing vector has one zero coordinate.
-
-If $d_k=0$, the remaining $N$ weights must reproduce evaluation at zero for all polynomials of degree at most $N-1$ on the nodes $x_j$ with $j\ne k$. They are the unique Lagrange weights
-$$
-d_j^{(k)}=\prod_{\substack{0\leq r\leq N\\r\ne j,k}}\frac{-x_r}{x_j-x_r},\qquad j\ne k,
-$$
-with $d_k^{(k)}=0$. No such vector can have a second zero coordinate: otherwise fewer than $N$ nodes would reproduce evaluation at zero, while the product of the corresponding linear factors would be a polynomial of degree at most $N-1$ that vanishes at every active node but not at zero. The indices described in the problem are exactly the indices $k$ minimizing the norms of these omit-one stencils.
-
-Step 3: Turn adjacent stencil comparisons into a weighted median condition
 Let
 $$
-\lambda_j=\prod_{\substack{0\leq r\leq N\\r\ne j}}\frac{-x_r}{x_j-x_r}
+\Lambda_j=\prod_{\substack{0\leq s\leq N\\s\ne j}}\frac{-x_s}{x_j-x_s}
 $$
-be the Lagrange weights for evaluation at zero using all $N+1$ nodes. Removing the factor with $r=k$ gives
+be the Lagrange weights for evaluation at zero on all $N+1$ nodes. If $A$ is any polynomial of degree at most three with $A(0)=1$, then
 $$
-d_j^{(k)}=(1-q^{2(j-k)})\lambda_j,\qquad j\ne k.
+b_j=\Lambda_jA(x_j)
 $$
-Write
+is feasible, because $AP$ has degree at most $N$ and
 $$
-L_k=\frac{1}{2}\sum_{j\ne k}q^{-j}|1-q^{2(j-k)}|\,|\lambda_j|,
+\sum_{j=0}^{N}\Lambda_jA(x_j)P(x_j)=(AP)(0)=P(0).
+$$
+The moment matrix has rank $N-2$, so its feasible affine space has dimension three. The polynomials $A$ with degree at most three and $A(0)=1$ also form a three-dimensional affine space, and the map $A\mapsto(\Lambda_jA(x_j))_{j=0}^{N}$ is injective. It therefore gives every feasible vector.
+
+Put $y_j=x_j^{-1}=q^{-2j}$ and write
+$$
+A(x)=x^3R(x^{-1}),
+$$
+where $R$ is monic of degree three. The objective becomes
+$$
+\sum_{j=0}^{N}|c_j|
+=\frac12\sum_{j=0}^{N}w_{N,j}|R(y_j)|,
 \qquad
-m_j=q^j|\lambda_j|.
-$$
-Splitting the terms at $j=k$ and comparing $L_{k+1}$ with $L_k$ yields
-$$
-L_{k+1}-L_k
-=\frac{1-q^2}{2q^{2k+2}}
-\left(
-\sum_{j=0}^{k}m_j-\sum_{j=k+1}^{N}m_j
-\right).
-$$
-The positive prefactor shows that $L_k$ decreases until the cumulative mass of the $m_j$ reaches half the total mass and increases afterward. It follows that
-$$
-k_N=\min\left\{k:\sum_{j=0}^{k}m_j\geq\frac{1}{2}\sum_{j=0}^{N}m_j\right\}.
+w_{N,j}=q^{5j}|\Lambda_j|.
 $$
 
-Step 4: Identify the median weights with a Bernoulli sum
-Put $Q=q^2$ and write $t=N-j$. From the product defining $\lambda_j$,
+Step 2: Show that a minimizing vector can be chosen with exactly three zero coordinates
+Write $R(y)=y^3+uy^2+vy+w$. The function
 $$
-|\lambda_{N-t}|=
-\frac{Q^{t(t+1)/2}}
-{\displaystyle\prod_{r=1}^{t}(1-Q^r)\prod_{r=1}^{N-t}(1-Q^r)}.
+(u,v,w)\longmapsto\frac12\sum_{j=0}^{N}w_{N,j}|y_j^3+uy_j^2+vy_j+w|
 $$
-It follows that
-$$
-m_{N-t}=
-\frac{q^{N+t^2}}
-{\displaystyle\prod_{r=1}^{t}(1-Q^r)\prod_{r=1}^{N-t}(1-Q^r)}.
-$$
-After multiplication by the same positive factor for every $t$, these masses are proportional to
-$$
-w_{N,t}=q^{t^2}
-\frac{\displaystyle\prod_{r=1}^{N}(1-Q^r)}
-{\displaystyle\prod_{r=1}^{t}(1-Q^r)\prod_{r=1}^{N-t}(1-Q^r)}.
-$$
-The finite identity
-$$
-\prod_{r=0}^{N-1}(1+zq^{2r+1})=\sum_{t=0}^{N}w_{N,t}z^t
-$$
-follows by induction. The displayed product formula for $w_{N,t}$ gives
-$$
-w_{N+1,t}=w_{N,t}+q^{2N+1}w_{N,t-1},
-$$
-with missing boundary terms interpreted as zero. This is the coefficient recurrence obtained after multiplying by $1+zq^{2N+1}$.
+is coercive and convex polyhedral, so it has a compact nonempty minimizing set. On every cell cut out by the hyperplanes $R(y_j)=0$, the objective is affine. If a minimum lies in the interior of such a cell, that affine function is constant there, and one may move to its boundary without increasing the value. Repeating this inside lower-dimensional faces reaches a minimizing vertex.
 
+At a vertex, at least three independent hyperplanes $R(y_j)=0$ meet. Hyperplanes belonging to three distinct nodes are independent because their coefficient matrix is a Vandermonde matrix. A monic cubic cannot vanish at more than three distinct nodes. A minimizing vertex therefore has exactly three zero coordinates, so $\Delta_N$ is well defined. Conversely, any minimizing vector with three zero coordinates comes from the intersection of three independent hyperplanes and is therefore such a vertex. For zero indices $k<m<\ell$, the three roots of $R$ are $y_k,y_m,y_\ell$.
+
+Step 3: Identify the coefficient weights with a Bernoulli sum
+Put $t=q^2$ and $(t;t)_r=\prod_{s=1}^{r}(1-t^s)$. Directly from the product defining $\Lambda_j$,
+$$
+q^j|\Lambda_j|
+=\frac{q^N}{(t;t)_N}\binom{N}{j}_tq^{(N-j)^2},
+$$
+where $\binom{N}{j}_t=(t;t)_N/((t;t)_j(t;t)_{N-j})$. The finite $q$-binomial identity gives
+$$
+\sum_{j=0}^{N}q^j|\Lambda_j|z^j
+=C_N\prod_{r=0}^{N-1}(z+q^{2r+1})
+$$
+for a positive constant $C_N$ independent of $z$. Since $w_{N,j}=q^{4j}(q^j|\Lambda_j|)$,
+$$
+\sum_{j=0}^{N}w_{N,j}z^j
+=C_N\prod_{r=0}^{N-1}(q^4z+q^{2r+1}).
+$$
 After division by the value at $z=1$, this is the probability generating function of
 $$
-T_N=\sum_{r=0}^{N-1}B_{N,r},
+J_N=\sum_{r=0}^{N-1}B_{N,r},
 $$
-where the $B_{N,r}$ are independent Bernoulli variables with
+where the variables are independent and
 $$
-\mathbb P(B_{N,r}=1)=\frac{q^{2r+1}}{1+q^{2r+1}}.
+\mathbb P(B_{N,r}=1)
+=\frac{q^4}{q^4+q^{2r+1}}
+=\frac{1}{1+q^{2r-3}}.
 $$
-The median condition in Step 3 says that $t_N=N-k_N$ is a median of $T_N$: both $\mathbb P(T_N\leq t_N)$ and $\mathbb P(T_N\geq t_N)$ are at least $1/2$.
-
-Step 5: Locate the median by concentration and evaluate its limit
-Now restore $q=q_N=e^{-a/N}$. The mean of $T_N$ is
+Let $\mu_N=\mathbb E[J_N]$ and $\sigma_N^2=\operatorname{Var}(J_N)$. Ordinary Riemann sums apply because the fixed index shift contributes only an $O(N^{-1})$ change in the sampling points. They give
 $$
-\mu_N=\sum_{r=0}^{N-1}\frac{1}{1+e^{a(2r+1)/N}},
+\frac{\mu_N}{N}\longrightarrow
+\int_0^1\frac{dx}{1+e^{-2ax}},
 $$
 and
 $$
-\operatorname{Var}(T_N)\leq\frac{N}{4}.
+\frac{\sigma_N^2}{N}\longrightarrow
+V_a:=\int_0^1\frac{dx}{4\cosh^2(ax)}
+=\frac{\tanh a}{4a}.
 $$
-For every fixed $\varepsilon>0$, Chebyshev's inequality gives
+The Bernoulli summands are bounded and $\sigma_N^2$ is asymptotic to a positive multiple of $N$. The Lindeberg central limit theorem therefore yields
 $$
-\mathbb P\left(|T_N-\mu_N|\geq\varepsilon N\right)
-\leq\frac{1}{4\varepsilon^2N}\longrightarrow0.
+Z_N:=\frac{J_N-\mu_N}{\sigma_N}\ \Longrightarrow\ Z,
+\qquad Z\sim N(0,1).
 $$
-Since $t_N$ is a median, this forces
+Hoeffding's lemma also gives uniformly bounded moments of every fixed order for $Z_N$.
+
+Step 4: Rescale the discrete minimization to a Gaussian cubic problem
+Set
 $$
-\frac{t_N-\mu_N}{N}\longrightarrow0.
+Y_N=e^{2a\mu_N/N},
+\qquad
+h_N=\frac{2a\sigma_N}{N},
+\qquad
+X_N=\frac{q^{-2J_N}-Y_N}{Y_Nh_N}.
 $$
-The midpoint Riemann sum for the mean gives
+Then
 $$
-\frac{\mu_N}{N}\longrightarrow
-\int_0^1\frac{dx}{1+e^{2ax}}.
+X_N=\frac{e^{h_NZ_N}-1}{h_N}.
 $$
-Because
+Since $h_N\to0$, the convergence $Z_N\Longrightarrow Z$ and the uniform moment bounds for $Z_N$ imply that $X_N\Longrightarrow Z$ and that the moments of every fixed order of $X_N$ are uniformly bounded.
+
+For a monic cubic $R$, define another monic cubic by
 $$
-\frac{d}{dx}\log(1+e^{-2ax})=-\frac{2a}{1+e^{2ax}},
+S(z)=\frac{R(Y_N+Y_Nh_Nz)}{(Y_Nh_N)^3}.
 $$
-the integral equals
+This is a bijection between monic cubics. If $W_N=\sum_jw_{N,j}$, then the objective, after multiplication by a positive constant independent of $S$, is exactly
 $$
-\frac{1}{2a}\log\frac{2}{1+e^{-2a}}
-=\frac{1}{2}-\frac{\log(\cosh a)}{2a}.
+F_N(S)=\mathbb E|S(X_N)|.
 $$
-Finally, $k_N=N-t_N$, so
+Multiplication by this positive factor does not change the minimizing cubics.
+
+The coefficients of all minimizing $S$ remain bounded. Indeed, $F_N(S)$ is no larger than $F_N(z^3)$, which is uniformly bounded. Suppose instead that for minimizers
 $$
-\lim_{N\to\infty}\frac{k_N}{N}
-=1-\left(\frac{1}{2}-\frac{\log(\cosh a)}{2a}\right)
-=\frac{1}{2}+\frac{\log(\cosh a)}{2a}.
+S_N(z)=z^3+b_Nz^2+c_Nz+d_N
+$$
+the quantity $M_N=\max(|b_N|,|c_N|,|d_N|)$ tends to infinity. After passing to a subsequence, the normalized quadratic
+$$
+Q_N(z)=M_N^{-1}(b_Nz^2+c_Nz+d_N)
+$$
+converges coefficientwise to a nonzero quadratic $Q$. Uniform moment bounds give
+$$
+\frac{F_N(S_N)}{M_N}
+=\mathbb E\left|Q_N(X_N)+\frac{X_N^3}{M_N}\right|
+\longrightarrow \mathbb E|Q(Z)|>0,
+$$
+whereas $F_N(S_N)\leq F_N(z^3)=O(1)$ makes the left side tend to zero. This contradiction proves boundedness.
+
+Every sequence of minimizing cubics therefore has a coefficientwise convergent subsequence. If $S_N$ converges coefficientwise to $S$, the uniform moment bounds imply $F_N(S_N)\to\mathbb E|S(Z)|$. Comparing with every fixed monic cubic shows that $S$ minimizes
+$$
+F(S)=\mathbb E|S(Z)|
+$$
+among monic cubics.
+
+Step 5: Solve the limiting cubic problem and recover the index spacing
+Write a monic cubic as
+$$
+S(z)=O(z)+E(z),
+\qquad
+O(z)=z^3+cz,
+\qquad
+E(z)=bz^2+d.
+$$
+By symmetry of $Z$,
+$$
+F(S)
+=\frac12\mathbb E\bigl(|O(Z)+E(Z)|+|O(Z)-E(Z)|\bigr)
+\geq\mathbb E|O(Z)|.
+$$
+It remains to minimize
+$$
+\mathbb E\bigl[|Z|\,|Z^2+c|\bigr].
+$$
+Under the probability measure obtained by weighting the standard normal law by $|Z|$, the variable $U=Z^2$ has density
+$$
+\frac12e^{-u/2},\qquad u>0.
+$$
+Therefore $-c$ must be the unique median of this exponential distribution. Since
+$$
+1-e^{-u/2}=\frac12
+$$
+at $u=2\ln2$, the unique odd minimizer is
+$$
+S_*(z)=z\bigl(z^2-2\ln2\bigr).
+$$
+Equality in the pointwise triangle inequality used to obtain $F(S)\geq\mathbb E|O(Z)|$ requires $|E(z)|\leq|O(z)|$ almost everywhere. Continuity then forces the quadratic $E$ to vanish at all three roots of $S_*$, so $E=0$. This proves that $S_*$ is the unique monic cubic minimizing $F$.
+
+The limiting minimizer is unique. Therefore every sequence of minimizing cubics converges coefficientwise to $S_*$, since any subsequence has a further subsequence with that same limit. The roots of $S_*$ are simple, so every minimizing vertex in Step 2 has its three rescaled roots converging, in increasing order, to
+$$
+-\sqrt{2\ln2},\qquad 0,\qquad \sqrt{2\ln2}.
+$$
+In particular the corresponding indices lie within order $\sqrt N$ of $\mu_N$. For such indices, the exponential expansion in Step 4 gives
+$$
+\frac{q^{-2j}-Y_N}{Y_Nh_N}
+=\frac{j-\mu_N}{\sigma_N}+o(1).
+$$
+Every minimizing triple $k<m<\ell$ therefore satisfies
+$$
+\frac{\ell-k}{\sigma_N}\longrightarrow2\sqrt{2\ln2}.
+$$
+The same limit holds for the smallest such span $\Delta_N$. Using $\sigma_N/\sqrt N\to\sqrt{V_a}$ gives
+$$
+\lim_{N\to\infty}\frac{\Delta_N}{\sqrt N}
+=2\sqrt{2\ln2}\sqrt{\frac{\tanh a}{4a}}
+=\sqrt{\frac{2\ln2\,\tanh a}{a}}.
 $$
 
-Final Answer: $\boxed{\frac{1}{2}+\frac{\log(\cosh a)}{2a}}$
+Final Answer: $\boxed{\sqrt{\frac{2\ln2\,\tanh a}{a}}}$
 
 ---
 
 ## Answer
 
-$\frac{1}{2}+\frac{\log(\cosh a)}{2a}$
+$\sqrt{\frac{2\ln2\,\tanh a}{a}}$
 
 ---
 
@@ -158,14 +210,14 @@ $\frac{1}{2}+\frac{\log(\cosh a)}{2a}$
 
 ## Solution Concepts
 
-- high-order finite difference exactness
-- Lagrange interpolation weights
-- weighted median for L1 minimization
+- geometric finite-difference exactness
+- Lagrange interpolation parameterization
+- weighted absolute-deviation polynomial optimization
 - finite q-binomial identity
-- concentration of Bernoulli sums
+- Gaussian scaling and size-biased medians
 
 ---
 
 ## Black-Box Audit — no issues found
 
-The moment reduction, omit-one characterization, adjacent-norm comparison, finite generating-function identity, and median concentration argument are all derived explicitly. No software calculation or unshown finite search is needed for the final expression.
+The affine parameterization, existence of a three-zero minimizing vertex, Bernoulli representation, Gaussian rescaling, compactness argument, and limiting cubic minimization are all justified explicitly. No numerical fitting, software calculation, or unshown finite search is used.
