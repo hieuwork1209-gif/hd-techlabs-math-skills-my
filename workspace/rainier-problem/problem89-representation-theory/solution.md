@@ -16,7 +16,7 @@ $$
 \varphi=\kappa_U\widehat M.
 $$
 
-If $M$ commutes with both $\rho$ and $\sigma$ on $V$, then $\widehat M$ commutes with them on all of $L$, because the two compositions agree on the free generators. Hence
+If $M$ commutes with the action of $D$ on $V$, then $\widehat M$ commutes with $D$ on all of $L$, because the two compositions agree on the free generators. Hence
 $$
 \left|C_{\operatorname{Aut}(L)}(D)\right|
 =
@@ -37,36 +37,36 @@ d=\dim_{\mathbb F_p}\operatorname{Hom}_D(V,L_2\oplus L_3).
 $$
 
 Step 2: Compute the linear centralizer of the dihedral action
-The maps satisfy
+The rotation $r$ acts on $V$ with characteristic polynomial
 $$
-\rho^5=\sigma^2=1,
-\qquad
-\sigma\rho\sigma=\rho^{-1}.
+\Phi_5(T)=T^4+T^3+T^2+T+1,
 $$
-On the permutation module $\mathbb F_p^5$, the characteristic polynomial of $\rho$ is $T^5-1$. Since $p\ne5$, the fixed line of constant vectors is complementary to $V$, so on $V$ the characteristic polynomial is
+because $p\ne5$ and the fixed line of constant vectors is complementary to $V$ in the permutation module $\mathbb F_p^5$.
+
+The vector $e_0-e_1$ is cyclic for $r$ on $V$, so every endomorphism commuting with $r$ is a polynomial in $r$. Hence
 $$
-\Phi_5(T)=T^4+T^3+T^2+T+1.
-$$
-The vector $(1,-1,0,0,0)$ is cyclic for $\rho$ on $V$, so every endomorphism commuting with $\rho$ is a polynomial in $\rho$. Hence
-$$
-\operatorname{End}_{\langle\rho\rangle}(V)
+\operatorname{End}_{\langle r\rangle}(V)
 \cong
 R:=\mathbb F_p[T]/(\Phi_5(T)).
 $$
 
-Conjugation by $\sigma$ sends $T$ to $T^{-1}$. Thus the endomorphisms commuting with all of $D$ form the fixed subalgebra $R^{\iota}$ for the involution $\iota(T)=T^{-1}$. In $R$, the fixed vectors are spanned by $1$ and
+Conjugation by $s$ sends $r$ to $r^{-1}$, so the endomorphisms commuting with all of $D$ form the fixed subalgebra $R^{\iota}$ for the involution $\iota(T)=T^{-1}$. In $R$, the fixed vectors are spanned by $1$ and
 $$
-s=T+T^{-1}.
+u=T+T^{-1}.
 $$
-Indeed inversion pairs $T$ with $T^4$ and $T^2$ with $T^3$, while $1+T+T^2+T^3+T^4=0$. Dividing this relation by $T^2$ gives
+Indeed inversion pairs $T$ with $T^4$ and $T^2$ with $T^3$, while
+$$
+1+T+T^2+T^3+T^4=0.
+$$
+Dividing by $T^2$ gives
 $$
 (T+T^{-1})^2+(T+T^{-1})-1=0,
 $$
 so
 $$
-R^{\iota}\cong\mathbb F_p[s]/(s^2+s-1).
+R^{\iota}\cong\mathbb F_p[u]/(u^2+u-1).
 $$
-Its discriminant is $5$. If $\left(\frac{5}{p}\right)=1$, this algebra is $\mathbb F_p\times\mathbb F_p$ and has $(p-1)^2$ units. If $\left(\frac{5}{p}\right)=-1$, it is $\mathbb F_{p^2}$ and has $p^2-1$ units. Both cases are
+Its discriminant is $5$. If $\left(\frac{5}{p}\right)=1$, this algebra is $\mathbb F_p\times\mathbb F_p$ and has $(p-1)^2$ units. If $\left(\frac{5}{p}\right)=-1$, it is $\mathbb F_{p^2}$ and has $p^2-1$ units. Thus in both cases
 $$
 \left|C_{\operatorname{GL}(V)}(D)\right|
 =(p-1)\left(p-\left(\frac{5}{p}\right)\right).
@@ -106,7 +106,7 @@ W=L_2\oplus L_3.
 $$
 
 Step 4: Compute the dihedral weight multiplicities in the Lie layers
-Extend scalars to a field containing a primitive fifth root $\zeta$. This does not change the dimension of the space of $D$-equivariant maps. The $5$-cycle $\rho$ has on $V$ the four one-dimensional weight spaces
+Extend scalars to a field containing a primitive fifth root $\zeta$. This does not change the dimension of the space of $D$-equivariant maps. The rotation $r$ has on $V$ the four one-dimensional weight spaces
 $$
 \zeta,\ \zeta^2,\ \zeta^3,\ \zeta^4,
 $$
@@ -127,16 +127,12 @@ For $V\otimes\Lambda^2V$, the weight-$0$ multiplicity is $4$, while every nonzer
 $$
 4,4,4,4,4
 $$
-for weights $0,1,2,3,4$. Consequently $W=L_2\oplus L_3$ has multiplicity $6$ at weight $0$ and multiplicity
-$$
-5
-$$
-at each of the four nonzero weights.
+for weights $0,1,2,3,4$. Consequently $W=L_2\oplus L_3$ has multiplicity $6$ at weight $0$ and multiplicity $5$ at each of the four nonzero weights.
 
 Step 5: Count the equivariant IA-automorphisms
-A map $U:V\to W$ commuting with $\rho$ must send the weight-$i$ line of $V$ into the weight-$i$ subspace of $W$. The reflection $\sigma$ sends weight $i$ to weight $-i$. Thus the choices for weights $1$ and $4$ are coupled by $\sigma$, and the choices for weights $2$ and $3$ are coupled similarly.
+A map $U:V\to W$ commuting with $r$ must send the weight-$i$ line of $V$ into the weight-$i$ subspace of $W$. The reflection $s$ sends weight $i$ to weight $-i$. Thus the choices for weights $1$ and $4$ are coupled by $s$, and the choices for weights $2$ and $3$ are coupled similarly.
 
-Choosing the image of one nonzero vector in the weight-$1$ line gives an arbitrary vector in the $5$-dimensional weight-$1$ space of $W$, after which equivariance with $\sigma$ uniquely determines the image on weight $4$. This contributes $5$ dimensions. The pair of weights $2,3$ contributes another $5$ dimensions. Hence
+Choosing the image of one nonzero vector in the weight-$1$ line gives an arbitrary vector in the $5$-dimensional weight-$1$ space of $W$, after which equivariance with $s$ uniquely determines the image on weight $4$. This contributes $5$ dimensions. The pair of weights $2,3$ contributes another $5$ dimensions. Hence
 $$
 d=\dim\operatorname{Hom}_D(V,W)=10,
 $$
@@ -180,8 +176,8 @@ $p^{10}(p-1)\left(p-\left(\frac{5}{p}\right)\right)$
 
 ## Solution Concepts
 
+- dihedral groups
+- centralizers in automorphism groups
 - free nilpotent Lie algebras
-- dihedral group representations
-- augmentation modules
-- cyclotomic endomorphism algebras
+- augmentation modules over finite fields
 - equivariant homomorphisms
