@@ -7,37 +7,27 @@ $$
 n=2^r.
 $$
 
-Work in the simply typed linear lambda calculus with exchange, no constants, atomic types
-$$
-p,\qquad q_i\quad(i\in\mathbb Z/n\mathbb Z),
-$$
-linear implication $\multimap$, and tensor $\otimes$. There is no weakening or contraction: every bound variable is used exactly once, while applications and tensor introductions split their contexts disjointly.
+Work in the simply typed linear lambda calculus with exchange, no constants, atomic types $p$ and $q_i$ $(i\in\mathbb Z/n\mathbb Z)$, linear implication $\multimap$, and tensor $\otimes$. There is no weakening or contraction.
 
-Consider the type whose curried arguments, in order, are
+Let $\Theta_n$ have curried arguments
 $$
-b_i:p\multimap p\multimap p,
-\qquad
-h_i:p\multimap q_i,
-\qquad
-x_i:p,
-\qquad
-y_i:p
+b_i:p\multimap p\multimap p,\qquad h_i:p\multimap q_i,\qquad x_i:p,\qquad y_i:p
 $$
-for $i=0,\ldots,n-1$, followed by the result type
+for $i=0,\ldots,n-1$, followed by result type
 $$
 q_0\otimes q_1\otimes\cdots\otimes q_{n-1}.
 $$
-Denote this type by $\Theta_n$.
+Let $\mathcal N_n$ be the closed beta-eta-long normal inhabitants of $\Theta_n$, up to alpha-conversion.
 
-Let $\mathcal N_n$ be the set of closed beta-eta-long normal inhabitants of $\Theta_n$, identified up to alpha-conversion.
-
-The cyclic group of order $n$ acts on $\mathcal N_n$ by simultaneously adding $1$ modulo $n$ to every subscript of
+Let $c$ add $1$ modulo $n$ to every subscript and then restore the binders and tensor components to displayed index order. Define $s$ by
 $$
-b_i,\ h_i,\ x_i,\ y_i,\ q_i,
+s(x_i)=x_{-i},\quad s(y_i)=y_{-i},\quad
+s(b_iUV)=b_{-i}s(V)s(U),\quad
+s(h_iU)=h_{-i}s(U),
 $$
-and then restoring the binders and tensor components to the displayed index order.
+with all indices modulo $n$, again restoring binders and tensor components to displayed index order. Thus $s^2=1$ and $scs=c^{-1}$, so $c,s$ generate a dihedral group $D_{2n}$ of order $2n$ acting on $\mathcal N_n$.
 
-Determine the number of cyclic orbits of size exactly $n$ in $\mathcal N_n$.
+Determine the number of $D_{2n}$-orbits of size exactly $2n$.
 
 ---
 
@@ -54,4 +44,4 @@ Determine the number of cyclic orbits of size exactly $n$ in $\mathcal N_n$.
 
 ## Domain Explanation
 
-This problem reduces closed linear lambda terms to labeled plane binary forests and then counts those forests and their symmetry-fixed configurations using direct counting, the reflection principle, and cyclic orbit counting. These are discrete counting arguments, so the best available taxonomy fit is Discrete Mathematics and Combinatorics / Basic counting principles. The typed calculus supplies the objects being counted, while the decisive work is combinatorial enumeration and symmetry counting.
+The normal inhabitants are labeled plane binary forests. The hard part is then a dihedral stabilizer count: rotational periodicity, the two reflection classes for even $n$, and their stabilizer intersections must all be controlled exactly. This is an enumerative-combinatorics problem using direct counting and finite group actions.
