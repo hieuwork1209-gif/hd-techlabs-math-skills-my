@@ -24,9 +24,9 @@ In the $d$ variables the objective is
 $$
 \frac{1}{2}\sum_{j=0}^{N}q^{-j}|d_j|.
 $$
-Along the one-dimensional feasible affine line this is a continuous convex piecewise-linear function that tends to infinity in both directions. A minimum therefore exists. If a minimum lies inside a segment on which no $d_j$ vanishes, the objective is affine there; either its slope is nonzero, which rules out an interior minimum, or its slope is zero, in which case an endpoint of that segment is also minimizing. Hence some minimizing vector has one zero coordinate.
+Along the one-dimensional feasible affine line this is a continuous convex piecewise-linear function that tends to infinity in both directions. A minimum therefore exists. If a minimum lies inside a segment on which no $d_j$ vanishes, the objective is affine there; either its slope is nonzero, which rules out an interior minimum, or its slope is zero, in which case an endpoint of that segment is also minimizing. So some minimizing vector has one zero coordinate.
 
-If $d_k=0$, the remaining $N$ weights must reproduce evaluation at zero for all polynomials of degree at most $N-1$ on the nodes $x_j$ with $j\ne k$. They are therefore the unique Lagrange weights
+If $d_k=0$, the remaining $N$ weights must reproduce evaluation at zero for all polynomials of degree at most $N-1$ on the nodes $x_j$ with $j\ne k$. They are the unique Lagrange weights
 $$
 d_j^{(k)}=\prod_{\substack{0\leq r\leq N\\r\ne j,k}}\frac{-x_r}{x_j-x_r},\qquad j\ne k,
 $$
@@ -55,7 +55,7 @@ L_{k+1}-L_k
 \sum_{j=0}^{k}m_j-\sum_{j=k+1}^{N}m_j
 \right).
 $$
-The positive prefactor shows that $L_k$ decreases until the cumulative mass of the $m_j$ reaches half the total mass and increases afterward. Therefore
+The positive prefactor shows that $L_k$ decreases until the cumulative mass of the $m_j$ reaches half the total mass and increases afterward. It follows that
 $$
 k_N=\min\left\{k:\sum_{j=0}^{k}m_j\geq\frac{1}{2}\sum_{j=0}^{N}m_j\right\}.
 $$
@@ -67,7 +67,7 @@ $$
 \frac{Q^{t(t+1)/2}}
 {\displaystyle\prod_{r=1}^{t}(1-Q^r)\prod_{r=1}^{N-t}(1-Q^r)}.
 $$
-Hence
+It follows that
 $$
 m_{N-t}=
 \frac{q^{N+t^2}}
@@ -83,11 +83,11 @@ The finite identity
 $$
 \prod_{r=0}^{N-1}(1+zq^{2r+1})=\sum_{t=0}^{N}w_{N,t}z^t
 $$
-follows by induction. Indeed, the displayed product formula for $w_{N,t}$ gives
+follows by induction. The displayed product formula for $w_{N,t}$ gives
 $$
 w_{N+1,t}=w_{N,t}+q^{2N+1}w_{N,t-1},
 $$
-which is exactly the coefficient recurrence obtained after multiplying by $1+zq^{2N+1}$.
+with missing boundary terms interpreted as zero. This is the coefficient recurrence obtained after multiplying by $1+zq^{2N+1}$.
 
 After division by the value at $z=1$, this is the probability generating function of
 $$
