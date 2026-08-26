@@ -2,32 +2,11 @@
 
 ## LaTeX (Normalized)
 
-Fix an integer $r\geq2$ and put
-$$
-n=2^r.
-$$
+Fix an integer $r\geq3$ and put $n=2^r$. Label the vertices of a regular $n$-gon by $\mathbb Z/n\mathbb Z$.
 
-Work in the simply typed linear lambda calculus with exchange, no constants, atomic types $p$ and $q_i$ $(i\in\mathbb Z/n\mathbb Z)$, linear implication $\multimap$, and tensor $\otimes$. There is no weakening or contraction.
+Color every vertex either black or white. A coloring is admissible if the number of sides whose endpoints are both black plus the number of diameters joining opposite black vertices is odd.
 
-Let $\Theta_n$ have curried arguments
-$$
-b_i:p\multimap p\multimap p,\qquad h_i:p\multimap q_i,\qquad x_i:p,\qquad y_i:p
-$$
-for $i=0,\ldots,n-1$, followed by result type
-$$
-q_0\otimes q_1\otimes\cdots\otimes q_{n-1}.
-$$
-Let $\mathcal N_n$ be the closed beta-eta-long normal inhabitants of $\Theta_n$, up to alpha-conversion.
-
-Let $c$ add $1$ modulo $n$ to every subscript and then restore the binders and tensor components to displayed index order. Define $s$ by
-$$
-s(x_i)=x_{-i},\quad s(y_i)=y_{-i},\quad
-s(b_iUV)=b_{-i}s(V)s(U),\quad
-s(h_iU)=h_{-i}s(U),
-$$
-with all indices modulo $n$, again restoring binders and tensor components to displayed index order. Thus $s^2=1$ and $scs=c^{-1}$, so $c,s$ generate a dihedral group $D_{2n}$ of order $2n$ acting on $\mathcal N_n$.
-
-Determine the number of $D_{2n}$-orbits of size exactly $2n$.
+The dihedral group $D_{2n}$ of order $2n$ acts on admissible colorings by the symmetries of the polygon. Determine the number of $D_{2n}$-orbits whose size is exactly $2n$.
 
 ---
 
@@ -44,4 +23,4 @@ Determine the number of $D_{2n}$-orbits of size exactly $2n$.
 
 ## Domain Explanation
 
-The normal inhabitants are labeled plane binary forests. The hard part is then a dihedral stabilizer count: rotational periodicity, the two reflection classes for even $n$, and their stabilizer intersections must all be controlled exactly. This is an enumerative-combinatorics problem using direct counting and finite group actions.
+This problem involves exact counting under a dihedral group, which is part of discrete mathematics and combinatorics. It also involves a parity constraint coupling neighboring and opposite colored vertices, which uses elementary algebra over two states. However, that algebra is only the counting mechanism; the main task is the combinatorial orbit and stabilizer analysis.
