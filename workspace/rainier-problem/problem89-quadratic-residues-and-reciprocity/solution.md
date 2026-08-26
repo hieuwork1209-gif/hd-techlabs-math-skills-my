@@ -1,191 +1,203 @@
 ## Steps
 
-Step 1: Encode the conic as a norm-one set
+Step 1: Interpret the form as a norm and determine the class group
 Let
 $$
-A=\mathbb F_p[\omega]/(\omega^2-5),
+K=\mathbb Q(\sqrt{-5}),
+\qquad
+\mathcal O_K=\mathbb Z[\sqrt{-5}].
 $$
-with conjugation determined by $\overline\omega=-\omega$. For $z=x+y\omega$,
+Its discriminant is $-20$, its units are only $\pm1$, and
 $$
-N(z)=z\overline z=x^2-5y^2.
+N(x+y\sqrt{-5})=x^2+5y^2.
 $$
-Hence the map
+Thus $r_m(p)$ counts elements of norm $p^m$ in $\mathcal O_K$.
+
+We need the ideal class group of $\mathcal O_K$. For an imaginary quadratic field of discriminant $D$, every ideal class contains an integral ideal of norm at most
 $$
-(x,y)\longmapsto z=x+y\omega
+\frac{2}{\pi}\sqrt{|D|}.
 $$
-is a bijection from $S_p$ onto
+For $D=-20$ this bound is less than $3$, so every class has a representative of norm $1$ or $2$.
+
+The ideal
 $$
-G=\{z\in A^\times:N(z)=1\}.
+\mathfrak q=(2,1+\sqrt{-5})
 $$
-For $z\in G$, we have $\overline z=z^{-1}$, so the corresponding first coordinate is
+has norm $2$. It is not principal, because a principal ideal of norm $2$ would give an integer solution of
 $$
-x=\frac{z+z^{-1}}2.
+x^2+5y^2=2,
+$$
+which is impossible. Hence there are exactly two ideal classes. Write the nontrivial class as $c$; then
+$$
+c^2=1.
 $$
 
-Step 2: Determine the size of the norm-one group
-Write
+Step 2: Use quadratic reciprocity to determine split and inert residue classes
+For an odd prime $p\ne5$, splitting in $K$ is controlled by
 $$
-\varepsilon=\left(\frac5p\right)\in\{1,-1\}.
+\left(\frac{-20}{p}\right)=\left(\frac{-5}{p}\right)
+=\left(\frac{-1}{p}\right)\left(\frac5p\right).
 $$
-If $\varepsilon=1$, then $5$ is a square in $\mathbb F_p$ and
-$$
-A\cong\mathbb F_p\times\mathbb F_p.
-$$
-The norm-one elements are then of the form $(t,t^{-1})$ with $t\in\mathbb F_p^\times$, so
-$$
-|G|=p-1.
-$$
-If $\varepsilon=-1$, then
-$$
-A\cong\mathbb F_{p^2},
-$$
-and $G$ is the kernel of the field norm
-$$
-\mathbb F_{p^2}^\times\to\mathbb F_p^\times.
-$$
-Therefore
-$$
-|G|=\frac{p^2-1}{p-1}=p+1.
-$$
-Thus, in both cases,
-$$
-n:=|G|=p-\varepsilon.
-$$
-The group $G$ is cyclic: in the split case it is isomorphic to $\mathbb F_p^\times$, and in the nonsplit case it is a subgroup of the cyclic group $\mathbb F_{p^2}^\times$.
-
-Step 3: Rewrite each factor $x-1$ in terms of $z$
-The point $(1,0)$ corresponds to $z=1$. For $z\ne1$,
-$$
-x-1
-=\frac{z+z^{-1}}2-1
-=\frac{(z-1)^2}{2z}.
-$$
-Hence
-$$
-P_p
-=\prod_{\substack{z\in G\\z\ne1}}\frac{(z-1)^2}{2z}
-=\frac{\left(\prod_{z\ne1}(z-1)\right)^2}
-{2^{n-1}\prod_{z\ne1}z}.
-$$
-
-Step 4: Evaluate the two group products
-First consider
-$$
-Q:=\prod_{\substack{z\in G\\z\ne1}}(1-z).
-$$
-If $\varepsilon=-1$, then $A\cong\mathbb F_{p^2}$ and $G$ is exactly the set of roots of $T^n-1$ in the field. Differentiating at $T=1$ gives
-$$
-Q=n.
-$$
-If $\varepsilon=1$, identify
-$$
-G=\{(t,t^{-1}):t\in\mathbb F_p^\times\}.
-$$
-Then
-$$
-Q=
-\left(
-\prod_{t\ne1}(1-t),
-\prod_{t\ne1}(1-t^{-1})
-\right).
-$$
-The first component equals $p-1=n$ by differentiating $T^{p-1}-1$ at $T=1$, and inversion permutes $\mathbb F_p^\times\setminus\{1\}$, so the second component is the same. Thus again
-$$
-Q=n.
-$$
-Therefore in both cases
-$$
-\left(\prod_{z\ne1}(z-1)\right)^2=n^2.
-$$
-
-Also $n=p-\varepsilon$ is even. In a cyclic group of even order, all elements pair with their inverses except $1$ and the unique element of order $2$, which is $-1$. Hence
-$$
-\prod_{z\ne1}z=-1.
-$$
-Substituting these identities gives
-$$
-P_p=-\frac{n^2}{2^{n-1}}.
-$$
-Since $n=p-\varepsilon$,
-$$
-n\equiv-\varepsilon\pmod p,
-$$
-so $n^2\equiv1\pmod p$. Hence
-$$
-P_p=-2^{-(n-1)}.
-$$
-
-Step 5: Separate the two quadratic-residue cases
-If $\varepsilon=1$, then $n=p-1$, so by Fermat's theorem
-$$
-2^{n-1}=2^{p-2}=2^{-1}
-$$
-in $\mathbb F_p$. Therefore
-$$
-P_p=-2.
-$$
-If $\varepsilon=-1$, then $n=p+1$, so
-$$
-2^{n-1}=2^p=2
-$$
-in $\mathbb F_p$. Therefore
-$$
-P_p=-2^{-1}.
-$$
-Equivalently,
-$$
-P_p=-2^{\left(\frac5p\right)}.
-$$
-
-Step 6: Use quadratic reciprocity to express the answer by $p\bmod 5$
-Because $5\equiv1\pmod4$, quadratic reciprocity gives
+Since $5\equiv1\pmod4$, quadratic reciprocity gives
 $$
 \left(\frac5p\right)=\left(\frac p5\right).
 $$
-The nonzero quadratic residues modulo $5$ are $1$ and $4$. Hence
+Checking the eight possible odd residue classes modulo $20$ gives
 $$
-\left(\frac5p\right)=1
+\left(\frac{-5}{p}\right)=1
 \quad\Longleftrightarrow\quad
-p\equiv1,4\pmod5,
+p\equiv1,3,7,9\pmod{20},
 $$
 and
 $$
-\left(\frac5p\right)=-1
+\left(\frac{-5}{p}\right)=-1
 \quad\Longleftrightarrow\quad
-p\equiv2,3\pmod5.
+p\equiv11,13,17,19\pmod{20}.
 $$
-Therefore
+Thus the first four classes are split and the last four are inert.
+
+Step 3: Distinguish the two ideal classes among split primes
+Suppose first that a prime ideal $\mathfrak p\mid p$ is principal. Then
 $$
-P_p=
+p=x^2+5y^2
+$$
+for some integers $x,y$. Since $p$ is odd, exactly one of $x,y$ is odd, so
+$$
+p\equiv1\pmod4.
+$$
+Also $p\equiv x^2\pmod5$, and $p\ne5$, so
+$$
+p\equiv1,4\pmod5.
+$$
+Hence
+$$
+p\equiv1,9\pmod{20}.
+$$
+
+Now suppose $\mathfrak p$ is nonprincipal. Since the class group has order $2$, the ideal $\mathfrak p\mathfrak q$ is principal. Let
+$$
+\mathfrak p\mathfrak q=(\alpha).
+$$
+Its norm is $2p$, and because $\alpha\in\mathfrak q$ we may write
+$$
+\alpha=2u+(1+\sqrt{-5})v.
+$$
+Then
+$$
+2p=N(\alpha)
+=(2u+v)^2+5v^2
+=2\left(2u^2+2uv+3v^2\right),
+$$
+so
+$$
+p=2u^2+2uv+3v^2.
+$$
+For this value to be odd, $v$ must be odd, and then directly modulo $4$,
+$$
+p\equiv3\pmod4.
+$$
+Because $p$ is already known to split, this forces
+$$
+p\equiv3,7\pmod{20}.
+$$
+Therefore the split primes divide into the two ideal classes as follows:
+$$
+\begin{array}{c|c}
+p\bmod20&[\mathfrak p]\\ \hline
+1,9&1,\\
+3,7&c.
+\end{array}
+$$
+
+Step 4: Count representations of $p^m$ in the three cases
+Every solution
+$$
+x^2+5y^2=p^m
+$$
+corresponds to a principal ideal $(x+y\sqrt{-5})$ of norm $p^m$. Conversely, each such principal ideal has exactly two generators, differing by the units $\pm1$. Thus it is enough to count principal ideals of norm $p^m$ and multiply by $2$.
+
+If $p\equiv1,9\pmod{20}$, then
+$$
+(p)=\mathfrak p\overline{\mathfrak p}
+$$
+with both prime ideals principal. The ideals of norm $p^m$ are
+$$
+\mathfrak p^j\overline{\mathfrak p}^{\,m-j},
+\qquad 0\le j\le m,
+$$
+and all $m+1$ are principal. Hence
+$$
+r_m(p)=2(m+1).
+$$
+
+If $p\equiv3,7\pmod{20}$, then both $\mathfrak p$ and $\overline{\mathfrak p}$ have class $c$. Therefore
+$$
+\left[\mathfrak p^j\overline{\mathfrak p}^{\,m-j}\right]
+=c^m,
+$$
+independently of $j$. Hence all $m+1$ ideals are principal when $m$ is even and none are principal when $m$ is odd. Thus
+$$
+r_m(p)=
 \begin{cases}
--2, & p\equiv1,4\pmod5,\\[4pt]
--2^{-1}, & p\equiv2,3\pmod5,
+2(m+1),&m\text{ even},\\
+0,&m\text{ odd}.
 \end{cases}
 $$
-where $2^{-1}$ denotes the inverse of $2$ in $\mathbb F_p$.
 
-Final Answer: $\boxed{P_p=\begin{cases}-2,&p\equiv1,4\pmod5,\\-2^{-1},&p\equiv2,3\pmod5.\end{cases}}$
+If $p\equiv11,13,17,19\pmod{20}$, then $p$ is inert, so $(p)$ itself is prime of norm $p^2$. A principal ideal of norm $p^m$ can therefore occur only when $m=2k$, in which case the only possibility is
+$$
+(p)^k=(p^k).
+$$
+Its two generators are $\pm p^k$, so
+$$
+r_m(p)=
+\begin{cases}
+2,&m\text{ even},\\
+0,&m\text{ odd}.
+\end{cases}
+$$
+
+Step 5: Sum the generating functions
+For $p\equiv1,9\pmod{20}$,
+$$
+R_p(T)=2\sum_{m\ge0}(m+1)T^m
+=\frac{2}{(1-T)^2}.
+$$
+
+For $p\equiv3,7\pmod{20}$,
+$$
+R_p(T)=2\sum_{k\ge0}(2k+1)T^{2k}
+=\frac{2(1+T^2)}{(1-T^2)^2}.
+$$
+
+For $p\equiv11,13,17,19\pmod{20}$,
+$$
+R_p(T)=2\sum_{k\ge0}T^{2k}
+=\frac{2}{1-T^2}.
+$$
+
+Final Answer: $\boxed{R_p(T)=\begin{cases}\dfrac{2}{(1-T)^2},&p\equiv1,9\pmod{20},\\\dfrac{2(1+T^2)}{(1-T^2)^2},&p\equiv3,7\pmod{20},\\\dfrac{2}{1-T^2},&p\equiv11,13,17,19\pmod{20}.\end{cases}}$
 
 ---
 
 ## Answer
 
-$P_p=\begin{cases}-2,&p\equiv1,4\pmod5,\\-2^{-1},&p\equiv2,3\pmod5.\end{cases}$
+$R_p(T)=\begin{cases}\dfrac{2}{(1-T)^2},&p\equiv1,9\pmod{20},\\\dfrac{2(1+T^2)}{(1-T^2)^2},&p\equiv3,7\pmod{20},\\\dfrac{2}{1-T^2},&p\equiv11,13,17,19\pmod{20}.\end{cases}$
 
 ---
 
 ## Classification
 
-**Problem Type:** Exact computation
+**Problem Type:** Symbolic derivation
 
-**Answer Type:** Exact symbolic expression
+**Answer Type:** Polynomial or rational function
 
 ---
 
 ## Solution Concepts
 
 - quadratic reciprocity
-- Legendre symbols
-- norm-one conics over finite fields
-- cyclic multiplicative groups
-- roots-of-unity product identities
+- binary quadratic forms of discriminant $-20$
+- ideal class group of $\mathbb Q(\sqrt{-5})$
+- split and inert primes in quadratic fields
+- prime-power representation counts
