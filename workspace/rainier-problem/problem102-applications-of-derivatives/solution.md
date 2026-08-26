@@ -1,121 +1,104 @@
 ## Steps
 
-Step 1: Convert the integral mean to logarithmic coordinates
+Step 1: Pass to logarithmic coordinates and resolve the branch signs
 
-Put
+Let
 $$
 g(s)=f(e^s),\qquad H(s)=\int_0^s g(u)\,du,\qquad a(s)=A(e^s)=\frac{H(s)}{s}.
 $$
-The improper integral in the problem makes $H$ well defined, and concavity makes $g$ continuous on $(0,\infty)$. Therefore
+The improper integral assumption makes $H$ finite, while concavity makes $g$ continuous on $(0,\infty)$. Hence $a$ is continuous. The two hypotheses become
 $$
-H'(s)=g(s).
+\bigl(a(2s)-a(s)\bigr)^2=(\log2)^2,
+\qquad
+\bigl(a(3s)-a(s)\bigr)^2=(\log3)^2.
 $$
-The functional equation and normalization become
+Each difference is continuous and takes values only in a two-point set, so on the connected interval $(0,\infty)$ its sign is constant. Thus there are $\varepsilon_2,\varepsilon_3\in\{-1,1\}$ such that
 $$
-a(2s)=\frac{5a(s)+2}{a(s)+4},\qquad a(1)=\frac{1}{2}.
-$$
-
-For
-$$
-r(y)=\frac{y-2}{y+1},
-$$
-substitution gives
-$$
-r\left(\frac{5y+2}{y+4}\right)=\frac{1}{2}r(y).
-$$
-Since $r(a(1))=-1$, induction yields
-$$
-r(a(2^n))=-2^{-n},
-$$
-and solving for $a(2^n)$ gives
-$$
-a(2^n)=\frac{2^{n+1}-1}{2^n+1}\longrightarrow 2.
+a(2s)-a(s)=\varepsilon_2\log2,
+\qquad
+a(3s)-a(s)=\varepsilon_3\log3.
 $$
 
-Step 2: Use concavity to recover the pointwise bound
+Step 2: Couple the two scales to force a single slope
 
-A concave function on $(0,\infty)$ has a limit in the extended real line. If one secant slope is negative, every later secant slope is at most that negative number, so the function tends to $-\infty$. Otherwise its secant slopes are nonnegative, so the function is nondecreasing and has a finite limit or tends to $+\infty$.
-
-The integral means of a function with an extended limit have the same limit. For a finite limit, split the integral at a fixed point: the fixed initial part divided by $s$ tends to $0$, while the tail average is trapped near the limit. If the limit is $+\infty$ or $-\infty$, the same split shows that the tail forces the means to the same infinity. Since Step 1 gives a subsequence of $a(s)$ converging to $2$, both limits must be finite and equal to $2$:
+Set $B(u)=a(e^u)$. Then
 $$
-\lim_{s\to\infty}g(s)=\lim_{s\to\infty}a(s)=2.
+B(u+\log2)-B(u)=\varepsilon_2\log2,
+\qquad
+B(u+\log3)-B(u)=\varepsilon_3\log3.
 $$
-
-The function $g$ cannot decrease. If $g(v)<g(u)$ for some $u<v$, concavity gives
+Define
 $$
-\frac{g(t)-g(v)}{t-v}\leq\frac{g(v)-g(u)}{v-u}<0
+C(u)=B(u)-\varepsilon_2u.
 $$
-for every $t>v$, forcing $g(t)\to-\infty$, contrary to the limit above. Therefore $g$ is nondecreasing, and
+The first relation makes $C$ periodic with period $\log2$, hence bounded. The second gives
 $$
-g(s)\leq 2\qquad(s>0).
+C(u+\log3)-C(u)=(\varepsilon_3-\varepsilon_2)\log3.
 $$
-
-Step 3: Eliminate the dyadic-periodic freedom
-
-The value $a(s)=-1$ cannot occur, because the functional equation would give $a(2^ns)=-1$ for every $n\geq0$, contradicting Step 2. Define
+Iterating this identity would make $C$ unbounded unless $\varepsilon_3=\varepsilon_2$. Therefore
 $$
-q(s)=\frac{a(s)-2}{a(s)+1},\qquad p(s)=sq(s).
+\varepsilon_2=\varepsilon_3=: \varepsilon.
 $$
-The fractional linear identity from Step 1 gives
+Now $C(u)=B(u)-\varepsilon u$ has both periods $\log2$ and $\log3$. Since $\log2/\log3$ is irrational, integer combinations of these periods are dense in $\mathbb R$. By continuity, $C$ is constant. Hence
 $$
-q(2s)=\frac{1}{2}q(s),\qquad p(2s)=p(s).
-$$
-Solving the definition of $q$ for $a$ gives
-$$
-a(s)=\frac{2s+p(s)}{s-p(s)}.
-$$
-Therefore
-$$
-H(s)=sa(s)=2s+\frac{3sp(s)}{s-p(s)}.
-$$
-Set
-$$
-K(s)=H(s)-2s.
-$$
-By Step 2,
-$$
-K'(s)=g(s)-2\leq0,
-$$
-so $K$ is nonincreasing and has an extended limit at infinity. For each fixed $u>0$, dyadic periodicity gives
-$$
-K(2^nu)=\frac{3(2^nu)p(u)}{2^nu-p(u)}\longrightarrow3p(u).
-$$
-This finite subsequential limit must equal the single limit of $K$, so it cannot depend on $u$. Hence $p$ is constant. The normalization gives
-$$
-p(1)=q(1)=\frac{\frac{1}{2}-2}{\frac{1}{2}+1}=-1,
+B(u)=\varepsilon u+c,
 $$
 so
 $$
-p(s)=-1\qquad(s>0).
+a(s)=\varepsilon\log s+c.
+$$
+The normalization $A(e)=a(1)=-9$ gives $c=-9$.
+
+Step 3: Recover the candidate functions
+
+Since $H(s)=sa(s)$,
+$$
+H(s)=s(\varepsilon\log s-9).
+$$
+Differentiating gives
+$$
+g(s)=H'(s)=\varepsilon\log s+\varepsilon-9.
+$$
+Thus the two algebraically possible branches are
+$$
+g(s)=\log s-8
+$$
+and
+$$
+g(s)=-\log s-10.
 $$
 
-Step 4: Recover the function and verify the conditions
+Step 4: Use concavity to select the unique branch and verify it
 
-Substituting $p=-1$ into the formula from Step 3 gives
+For the general branch,
 $$
-a(s)=\frac{2s-1}{s+1},\qquad H(s)=sa(s)=2s-3+\frac{3}{s+1}.
+g''(s)=-\frac{\varepsilon}{s^2}.
 $$
-Differentiating yields
+Concavity requires $g''(s)\le0$, so necessarily $\varepsilon=1$. Therefore
 $$
-g(s)=2-\frac{3}{(s+1)^2}.
+g(s)=\log s-8.
 $$
-This function is concave because
+The improper integral converges because $\int_0^s\log u\,du$ is finite. Also
 $$
-g''(s)=-\frac{18}{(s+1)^4}<0.
+H(s)=s\log s-9s,
+\qquad
+a(s)=\log s-9,
 $$
-Also $H(0+)=0$, so the improper integral converges and equals $H(s)$. The formula for $a$ gives $a(1)=\frac{1}{2}$, while
+so $a(1)=-9$, while
 $$
-\frac{a(s)-2}{a(s)+1}=-\frac{1}{s}
+a(2s)-a(s)=\log2,
+\qquad
+a(3s)-a(s)=\log3,
 $$
-and replacement of $s$ by $2s$ gives the required fractional linear relation. Returning to $s=\log x$ completes the recovery.
+which verifies both squared relations. Returning to $s=\log x$ yields the required function.
 
-Final Answer: $\boxed{f(x)=2-\frac{3}{(1+\log x)^2}}$
+Final Answer: $\boxed{f(x)=\log(\log x)-8}$
 
 ---
 
 ## Answer
 
-$f(x)=2-\frac{3}{(1+\log x)^2}$
+$f(x)=\log(\log x)-8$
 
 ---
 
@@ -129,7 +112,7 @@ $f(x)=2-\frac{3}{(1+\log x)^2}$
 
 ## Solution Concepts
 
-- concave functions and secant slopes
-- Cesaro integral means
-- fractional linear transformations
-- dyadic scaling rigidity
+- concavity and branch selection
+- incommensurate periods
+- logarithmic coordinate changes
+- differentiation of integral means
