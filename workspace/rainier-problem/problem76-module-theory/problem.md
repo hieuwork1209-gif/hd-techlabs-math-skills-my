@@ -12,7 +12,7 @@ $$
 $$
 Let
 $$
-V_m=\left\{(x_1,\ldots,x_m)\in\mathbb C^m:x_1+\cdots+x_m=0\right\},
+V_m=\left\{(x_1,\ldots,x_m)\in\mathbb{C}^{m}:x_1+\cdots+x_m=0\right\},
 $$
 where $S_m$ permutes coordinates, and regard $V_m$ as an $H_m$-module through $\pi$.
 
@@ -21,13 +21,13 @@ $$
 M_m=\operatorname{Ind}_{H_m}^{S_{2m}}\left(V_m^{\otimes3}\right),
 $$
 $$
-P_m=\operatorname{Ind}_{H_m}^{S_{2m}}\mathbf 1,
+P_m=\operatorname{Ind}_{H_m}^{S_{2m}}\mathbf{1},
 \qquad
 N_m=\operatorname{sgn}_{S_{2m}}\otimes P_m.
 $$
 For a partition $\lambda\vdash2m$, let $\lambda'$ be its conjugate partition, let $S^\lambda$ be the corresponding irreducible complex Specht module, and put
 $$
-a_\lambda=\dim_{\mathbb C}\operatorname{Hom}_{S_{2m}}(S^\lambda,M_m).
+a_\lambda=\dim_{\mathbb{C}}\operatorname{Hom}_{S_{2m}}(S^\lambda,M_m).
 $$
 
 For compactness, set
