@@ -2,15 +2,15 @@
 
 ## LaTeX (Normalized)
 
-Let $p$ be an odd prime with $p\ne 5$, and define
+Let $p$ be an odd prime with $p\ne 5$. For each integer $m\ge 0$, define
 $$
-S_p=\left\{(x,y)\in\mathbb F_p^2:x^2-5y^2=1\right\}.
+r_m(p)=\#\left\{(x,y)\in\mathbb Z^2:x^2+5y^2=p^m\right\}.
 $$
-In $\mathbb F_p$, set
+Form the ordinary generating function
 $$
-P_p=\prod_{\substack{(x,y)\in S_p\\(x,y)\ne(1,0)}}(x-1).
+R_p(T)=\sum_{m=0}^{\infty}r_m(p)T^m.
 $$
-Determine $P_p$ explicitly as a function of the residue class of $p$ modulo $5$.
+Determine $R_p(T)$ explicitly as a rational function of $T$ for every possible residue class of $p$ modulo $20$.
 
 ---
 
@@ -20,11 +20,11 @@ Determine $P_p$ explicitly as a function of the residue class of $p$ modulo $5$.
 |---|---|
 | **Domain** | Number Theory |
 | **Sub-domain** | Quadratic residues and reciprocity |
-| **Problem Type** | Exact computation |
-| **Answer Type** | Exact symbolic expression |
+| **Problem Type** | Symbolic derivation |
+| **Answer Type** | Polynomial or rational function |
 
 ---
 
 ## Domain Explanation
 
-The problem is governed by whether $5$ is a quadratic residue modulo $p$. That quadratic character determines whether the Pell-type conic $x^2-5y^2=1$ is split or nonsplit over $\mathbb F_p$, which changes the size of its norm-one parametrization and therefore the product $P_p$. Quadratic reciprocity then converts $\left(\frac{5}{p}\right)$ into an explicit condition on $p\bmod 5$. Finite-field norm groups provide the calculation mechanism, but the residue character of $5$ and its reciprocity law are the decisive arithmetic features, making this classification more precise than the broader Elementary number theory alternative.
+The problem asks for prime-power representation counts by the binary quadratic form $x^2+5y^2$, whose discriminant is $-20$. The decisive arithmetic is the quadratic-residue behavior of $-5$ and $5$ modulo $p$: quadratic reciprocity determines whether $p$ is inert or split in $\mathbb Q(\sqrt{-5})$, and among split primes the residue class modulo $20$ distinguishes the principal form $x^2+5y^2$ from the other class of discriminant $-20$. The generating function only packages these residue-controlled local representation counts, so Quadratic residues and reciprocity is more precise than the broader Multiplicative functions alternative.
