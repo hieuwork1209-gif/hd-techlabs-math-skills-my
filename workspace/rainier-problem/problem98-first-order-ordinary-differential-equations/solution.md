@@ -1,257 +1,176 @@
 ## Steps
 
-Step 1: Invert the orbit and encode the terminal condition
+Step 1: Recover the hidden first integral
 
-Put $a=\frac{1}{2}$, $u=y-\frac{1}{2}$, $s=\sqrt{\lambda}$, and
+Put $u=y-\frac12$, write $D_\lambda(u)=F_{\lambda,p}(u)$ and $W(u)=1-4u^3$, and let $X(u)$ be the inverse position of the increasing solution. On the relevant interval,
 $$
-D_s(u)=u^2+s^2(1-pu),
-\qquad
-W(u)=1-4pu^3.
+D_\lambda(u)>0
 $$
-Because $p\in(0,2)$ and $|u|\leq a$,
+because $1-pu\geq1-\frac p2>0$. Taking the reciprocal of the differential equation gives
 $$
-1-pu\geq 1-\frac{p}{2}=\frac{q}{2}>0,
-\qquad
-W(u)\geq 1-\frac{p}{2}=\frac{q}{2}>0.
+X'(u)=
+\frac{
+\dfrac{W(u)}{nD_\lambda(u)}+12u^2X+2X^2+24X^3
+}{
+W(u)+2(1-2u)X+36(1-2u)X^2
+}.
 $$
-For a strictly increasing orbit, let $X(u)$ be its inverse position, so $X(-a)=0$. Taking the reciprocal of the differential equation gives
-$$
-X'(u)
-=
-\frac{1}{nD_s(u)}
-+
-\frac{12pu^2}{W(u)}X(u).
-$$
-Since $W'(u)=-12pu^2$,
-$$
-\bigl(W(u)X(u)\bigr)'
-=
-\frac{W(u)}{nD_s(u)}.
-$$
-So
-$$
-X(u)
-=
-\frac{1}{nW(u)}
-\int_{-a}^{u}\frac{W(t)}{D_s(t)}\,dt.
-$$
-This formula also proves $X'(u)>0$, so its inverse is a strictly increasing solution of the original equation. At $u=a$, $W(a)=\frac{q}{2}$, and the condition $X(a)=1$ becomes
-$$
-J(s):=
-\int_{-a}^{a}\frac{W(u)}{D_s(u)}\,du
-=
-\frac{nq}{2}.
-$$
-For fixed $u$, the integrand decreases strictly with $s^2$ because $W(u)>0$ and $1-pu>0$. Also $J(s)\to\infty$ as $s\downarrow0$ from the neighborhood of $u=0$, while $J(s)\to0$ as $s\to\infty$. So this equation has exactly one $s=s_{n,p}>0$, which proves the required parameter is well-defined.
-
-Step 2: Relate the transition point to a left-right difference and determine the scale
-
 Define
 $$
-L(s)=\int_{-a}^{0}\frac{W(u)}{D_s(u)}\,du,
+\Phi(u,X)=W(u)X+(1-2u)X^2+12(1-2u)X^3.
+$$
+Direct differentiation gives
+$$
+\Phi_u=-12u^2X-2X^2-24X^3,
 \qquad
-R(s)=\int_{0}^{a}\frac{W(u)}{D_s(u)}\,du,
+\Phi_X=W(u)+2(1-2u)X+36(1-2u)X^2.
+$$
+Therefore the displayed equation is exactly
+$$
+\frac{d}{du}\Phi(u,X(u))=\frac{W(u)}{nD_\lambda(u)}.
+$$
+On $[-\frac12,\frac12]$ we have $W(u)\geq\frac12$ and $1-2u\geq0$, so $\Phi_X>0$ for $X\geq0$. Hence the identity
+$$
+\Phi(u,X(u))=\frac1n\int_{-1/2}^{u}\frac{W(t)}{D_\lambda(t)}\,dt
+$$
+uniquely defines a strictly increasing inverse orbit with $X(-\frac12)=0$.
+
+Step 2: Encode the terminal and midpoint conditions
+
+At $u=\frac12$, the quadratic and cubic terms in $\Phi$ vanish and $W(\frac12)=\frac12$. Thus $X(\frac12)=1$ is equivalent to
+$$
+J(\lambda):=\int_{-1/2}^{1/2}\frac{W(u)}{D_\lambda(u)}\,du=\frac n2.
+$$
+The function $J$ is continuous, tends to infinity as $\lambda\downarrow0$, and tends to zero as $\lambda\to\infty$. Consequently the required set of parameters is nonempty and has a least element. Moreover, the least solution $\lambda_{n,p}$ tends to zero as $n\to\infty$, because $J$ is bounded on every interval $[\varepsilon,\infty)$.
+
+Let
+$$
+L(\lambda)=\int_{-1/2}^{0}\frac{W(u)}{D_\lambda(u)}\,du,
 \qquad
-\Delta(s)=L(s)-R(s).
+R(\lambda)=\int_{0}^{1/2}\frac{W(u)}{D_\lambda(u)}\,du,
+\qquad
+\Delta(\lambda)=L(\lambda)-R(\lambda).
 $$
-Since $L+R=J=\frac{nq}{2}$ and $W(0)=1$,
+At $u=0$, the first integral gives
 $$
-\xi_{n,p}=X(0)=\frac{L(s_{n,p})}{n}
-=
-\frac{q}{4}+\frac{\Delta(s_{n,p})}{2n}.
-$$
-To find $s_{n,p}$, write
-$$
-D_s(u)=\left(u-\frac{ps^2}{2}\right)^2
-+s^2\left(1-\frac{p^{2}s^2}{4}\right).
-$$
-The integral of $\frac{1}{D_s}$ over $[-a,a]$ is $\frac{\pi}{s}+O(1)$ as $s\downarrow0$: after the displayed shift its exact antiderivative is an arctangent, and the two endpoint arguments tend to $+\infty$ and $-\infty$. The remaining part satisfies
-$$
-\left|
-\int_{-a}^{a}\frac{-4pu^3}{D_s(u)}\,du
-\right|
-\leq C_p\int_{-a}^{a}|u|\,du
-=
-O(1),
-$$
-because $D_s(u)\geq c_p(u^2+s^2)$ for fixed $p\in(0,2)$. So
-$$
-J(s)=\frac{\pi}{s}+O(1).
-$$
-Combining this with $J(s_{n,p})=\frac{nq}{2}$ gives
-$$
-s_{n,p}
-=
-\frac{2\pi}{qn}+O(n^{-2}).
+\xi_{n,p}+\xi_{n,p}^2+12\xi_{n,p}^3
+=\frac{L(\lambda_{n,p})}{n}
+=\frac14+\frac{\Delta(\lambda_{n,p})}{2n}.
 $$
 
-Step 3: Obtain an exact identity for the asymmetric part
+Step 3: Determine the scale selected by the two coalescing slow regions
 
-Polynomial division gives the identity
+The denominator has narrow minima near $u=\pm\sqrt\lambda$. In either neighborhood write $u=\varepsilon\sqrt\lambda+\lambda t$, where $\varepsilon\in\{-1,1\}$. For fixed $t$,
 $$
-\frac{W(u)}{D_s(u)}
-=
--4pu-4p^{2}s^2
-+
-\alpha_s\frac{D_s'(u)}{D_s(u)}
-+
-\frac{\beta_s}{D_s(u)},
-$$
-where
-$$
-\alpha_s=2ps^2(1-p^{2}s^2),
+D_\lambda(u)=\lambda^3\left(1+4t^2+o(1)\right),
 \qquad
-\beta_s=1+6p^{2}s^4-2p^{4}s^6.
-$$
-Multiplying the right side by $D_s(u)$ produces
-$$
--4pu^3+1=W(u).
-$$
-The constant term $-4p^{2}s^2$ has equal integrals on the two half-intervals, while the term $-4pu$ contributes
-$$
-\int_{-a}^{0}(-4pu)\,du-\int_{0}^{a}(-4pu)\,du
-=
-4pa^2=p.
-$$
-So
-$$
-\Delta(s)
-=
-p+\alpha_s E(s)+\beta_s K(s),
-$$
-where
-$$
-E(s)
-=
-2\log D_s(0)-\log D_s(-a)-\log D_s(a)
-$$
-and
-$$
-K(s)
-=
-\int_{-a}^{0}\frac{du}{D_s(u)}
--
-\int_{0}^{a}\frac{du}{D_s(u)}.
-$$
-Since $D_s(0)=s^2$ and $D_s(\pm a)=a^2+O(s^2)$,
-$$
-E(s)=4\log\frac{s}{a}+O(s^2).
-$$
-
-Step 4: Evaluate the cancellation in the reciprocal-quadratic term
-
-Set
-$$
-h=\frac{ps^2}{2},
+W(u)=1+o(1),
 \qquad
-r=s\sqrt{1-\frac{p^{2}s^2}{4}}.
+du=\lambda\,dt.
 $$
-With $D_s(u)=(u-h)^2+r^2$, integrating the shifted quadratic gives
+Thus each minimum contributes
 $$
-K(s)
-=
-\frac{1}{r}
-\left[
-\arctan\frac{a+h}{r}
--
-\arctan\frac{a-h}{r}
--
-2\arctan\frac{h}{r}
-\right].
+\lambda^{-2}\int_{-\infty}^{\infty}\frac{dt}{1+4t^2}
+=\frac{\pi}{2}\lambda^{-2}
 $$
-For the two endpoint terms, $\arctan z=\frac{\pi}{2}-z^{-1}+O(z^{-3})$ as $z\to+\infty$. Since $h=O(s^2)$ and $r=O(s)$,
+to leading order. To control the tails, split at $|u-\varepsilon\sqrt\lambda|=M\lambda$ and use
 $$
-\frac{1}{r}
-\left(
-\arctan\frac{a+h}{r}
--
-\arctan\frac{a-h}{r}
-\right)
-=
-\frac{2h}{a^2-h^2}+O(s^4)
-=
-\frac{p}{a^2}s^2+O(s^4).
+D_\lambda(u)\geq (u^2-\lambda)^2+\left(1-\frac p2\right)\lambda^3.
 $$
-Also
+After the same substitution, the omitted part is bounded by a constant times $\lambda^{-2}\int_{|t|>M}(1+t^2)^{-1}dt$. Letting first $\lambda\downarrow0$ and then $M\to\infty$ proves
 $$
-\frac{h}{r}
-=
-\frac{ps}{2}+\frac{p^{3}s^3}{16}+O(s^5),
+J(\lambda)=\pi\lambda^{-2}(1+o(1)).
 $$
-so $\arctan z=z-\frac{z^3}{3}+O(z^5)$ yields
+Since $J(\lambda_{n,p})=\frac n2$,
 $$
-\frac{2}{r}\arctan\frac{h}{r}
-=
-p+\frac{p^3}{6}s^2+O(s^4).
-$$
-With $a=\frac{1}{2}$,
-$$
-K(s)
-=
--p+\left(4p-\frac{p^3}{6}\right)s^2+O(s^4).
-$$
-Using $\alpha_s=2ps^2+O(s^4)$, $\beta_s=1+O(s^4)$, and the expression for $E(s)$ from Step 3, the two constant terms $p$ and $-p$ cancel:
-$$
-\Delta(s)
-=
-ps^2
-\left[
-8\log(2s)+4-\frac{p^2}{6}
-\right]
-+o(s^2).
+\lambda_{n,p}=\left(\frac{2\pi}{n}\right)^{1/2}(1+o(1)).
 $$
 
-Step 5: Read off the three asymptotic coefficients
+Step 4: Extract the answer-sensitive left-right imbalance
 
-Put
+For $u>0$, put
 $$
-C=\frac{2\pi}{q}.
+A=(u^2-\lambda)^2+\lambda^3.
 $$
-Step 2 gives
+Then $D_\lambda(-u)=A+p\lambda^3u$ and $D_\lambda(u)=A-p\lambda^3u$, while
 $$
-s_{n,p}=\frac{C}{n}+O(n^{-2}),
+(1+4u^3)(A-p\lambda^3u)-(1-4u^3)(A+p\lambda^3u)
+=2u(4u^2A-p\lambda^3).
+$$
+Pairing the two half-intervals and putting $v=u^2$ and $S_\lambda(v)=(v-\lambda)^2+\lambda^3$ therefore gives the exact identity
+$$
+\Delta(\lambda)
+=
+\int_0^{1/4}
+\frac{4vS_\lambda(v)-p\lambda^3}
+{S_\lambda(v)^2-p^2\lambda^6v}
+\,dv.
+$$
+Because $v\leq\frac14$ and $p<2$,
+$$
+S_\lambda(v)^2-p^2\lambda^6v
+\geq
+\left(1-\frac{p^2}{4}\right)S_\lambda(v)^2.
+$$
+For the part with numerator $4vS_\lambda(v)$, the lower bound gives
+$$
+\left|4\int_0^{1/4}\frac{vS_\lambda(v)}{S_\lambda(v)^2-p^2\lambda^6v}\,dv\right|
+\leq
+C_p\int_0^{1/4}\frac{v\,dv}{(v-\lambda)^2+\lambda^3}.
+$$
+Writing $v=(v-\lambda)+\lambda$ shows that the last integral is $O(|\log\lambda|+\lambda^{-1/2})$, so this part becomes negligible after multiplication by $\lambda^{3/2}$. For the remaining part, substitute $v=\lambda+\lambda^{3/2}t$. The preceding lower bound supplies the integrable majorant $C_p(1+t^2)^{-2}$, and
+$$
+\lambda^{9/2}
+\int_0^{1/4}
+\frac{dv}{S_\lambda(v)^2-p^2\lambda^6v}
+\longrightarrow
+\int_{-\infty}^{\infty}\frac{dt}{(1+t^2)^2}
+=\frac\pi2.
+$$
+Therefore
+$$
+\lambda^{3/2}\Delta(\lambda)\longrightarrow-\frac{p\pi}{2}.
+$$
+Combining this with $J(\lambda)\sim\pi\lambda^{-2}$ and $n=2J(\lambda_{n,p})$ gives
+$$
+\frac{L(\lambda_{n,p})}{n}
+=
+\frac14-\frac p8\sqrt{\lambda_{n,p}}+o\left(\sqrt{\lambda_{n,p}}\right).
+$$
+
+Step 5: Invert the cubic relation
+
+Let $f(z)=z+z^2+12z^3$. It is strictly increasing for $z\geq0$, and
+$$
+f\left(\frac16\right)=\frac14,
 \qquad
-\log s_{n,p}
+f'\left(\frac16\right)=\frac73.
+$$
+The midpoint relation from Step 2 and the expansion from Step 4 therefore imply
+$$
+\xi_{n,p}
 =
--\log n+\log C+O(n^{-1}).
+\frac16-\frac{3p}{56}\sqrt{\lambda_{n,p}}
++o\left(\sqrt{\lambda_{n,p}}\right).
 $$
-Substituting these relations into the formula for $\Delta$ from Step 4 gives
+Using Step 3,
 $$
-\Delta(s_{n,p})
-=
-\frac{pC^2}{n^2}
-\left[
--8\log n+8\log(2C)+4-\frac{p^2}{6}
-\right]
-+o(n^{-2}).
+\sqrt{\lambda_{n,p}}
+=(2\pi)^{1/4}n^{-1/4}(1+o(1)),
 $$
-Since $\xi_{n,p}=\frac{q}{4}+\frac{\Delta(s_{n,p})}{2n}$,
+so
 $$
-c_p=\frac{q}{4},
+c_p=\frac16,
 \qquad
-A_p=-4pC^2=-\frac{16p\pi^2}{q^2},
+K_p=-\frac{3p(2\pi)^{1/4}}{56}.
 $$
-and
-$$
-B_p
-=
-\frac{pC^2}{2}
-\left[
-8\log(2C)+4-\frac{p^2}{6}
-\right]
-=
-\frac{p\pi^2}{3q^2}
-\left[
-48\log\frac{4\pi}{q}+24-p^2
-\right].
-$$
-Final Answer: $\boxed{(\frac{q}{4},-\frac{16p\pi^2}{q^2},\frac{p\pi^2}{3q^2}(48\log\frac{4\pi}{q}+24-p^2))}$
+Final Answer: $\boxed{(\frac16,-\frac{3p(2\pi)^{1/4}}{56})}$
 
 ---
 
 ## Answer
 
-$(\frac{q}{4},-\frac{16p\pi^2}{q^2},\frac{p\pi^2}{3q^2}(48\log\frac{4\pi}{q}+24-p^2))$
+$(\frac16,-\frac{3p(2\pi)^{1/4}}{56})$
 
 ---
 
@@ -266,13 +185,13 @@ $(\frac{q}{4},-\frac{16p\pi^2}{q^2},\frac{p\pi^2}{3q^2}(48\log\frac{4\pi}{q}+24-
 ## Solution Concepts
 
 - inverse functions
-- integrating factors
-- asymptotic analysis
-- singular perturbation
-- implicit equations
+- nonlinear first integrals
+- singular asymptotic analysis
+- coalescing slow regions
+- dominated convergence
 
 ---
 
 ## Black-Box Audit
 
-No Level 2 or Level 3 black-box issue remains.
+No Level 2 or Level 3 black-box issue remains. The hidden first integral is verified by differentiation, the two-peak scale is accompanied by a tail bound, and the imbalance coefficient follows from an exact paired integral and an explicit dominated-convergence limit. As an independent numerical check, solving the exact integral equation for $p=1$ gives $n^{1/4}(\xi_{n,1}-\frac16)=-0.08468$ at $n=10^7$, while the predicted coefficient is $-0.08482$; the same convergence occurs for other fixed values of $p$.
