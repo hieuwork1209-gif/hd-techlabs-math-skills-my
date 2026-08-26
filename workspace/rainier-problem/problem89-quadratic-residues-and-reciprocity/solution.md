@@ -139,13 +139,13 @@ $$
 Step 6: State the result in the requested cases
 The three class orders are $1,2,4$ in cases (A), (B), and (C), respectively, so the three rational functions above give the required ordinary generating functions.
 
-Final Answer: $\boxed{R_p(T)=\frac2{(1-T)^2}(A),\frac{2(1+T^2)}{(1-T^2)^2}(B),\frac{2(1+T^2)(1+T^4)}{(1-T^4)^2}(C)}$
+Final Answer: $\boxed{R_p(T)=\begin{cases}2/(1-T)^2&A\\2(1+T^2)/(1-T^2)^2&B\\2(1+T^2)(1+T^4)/(1-T^4)^2&C\end{cases}}$
 
 ---
 
 ## Answer
 
-$R_p(T)=\frac2{(1-T)^2}(A),\frac{2(1+T^2)}{(1-T^2)^2}(B),\frac{2(1+T^2)(1+T^4)}{(1-T^4)^2}(C)$
+$R_p(T)=\begin{cases}2/(1-T)^2&A\\2(1+T^2)/(1-T^2)^2&B\\2(1+T^2)(1+T^4)/(1-T^4)^2&C\end{cases}$
 
 ---
 
