@@ -88,7 +88,11 @@ $$
 Z_N:=\frac{J_N-\mu_N}{\sigma_N}\ \Longrightarrow\ Z,
 \qquad Z\sim N(0,1).
 $$
-Hoeffding's lemma also gives uniformly bounded moments of every fixed order for $Z_N$.
+Each centered Bernoulli summand has range length one. Hoeffding's lemma and $\sigma_N^2/N\to V_a>0$ therefore give, for every fixed real $t$,
+$$
+\mathbb E e^{tZ_N}\leq e^{C_at^2}
+$$
+with a constant $C_a$ independent of $N$. This uniform sub-Gaussian bound gives uniformly bounded moments of every fixed order for $Z_N$.
 
 Step 4: Rescale the discrete minimization to a Gaussian cubic problem
 Set
@@ -103,7 +107,11 @@ Then
 $$
 X_N=\frac{e^{h_NZ_N}-1}{h_N}.
 $$
-Since $h_N\to0$, the convergence $Z_N\Longrightarrow Z$ and the uniform moment bounds for $Z_N$ imply that $X_N\Longrightarrow Z$ and that the moments of every fixed order of $X_N$ are uniformly bounded.
+Since $h_N\to0$, Taylor expansion on bounded sets and the tightness of $Z_N$ give $X_N\Longrightarrow Z$. The inequality
+$$
+|X_N|\leq |Z_N|e^{h_N|Z_N|}
+$$
+together with the uniform sub-Gaussian bound gives uniformly bounded moments of every fixed order for $X_N$.
 
 For a monic cubic $R$, define another monic cubic by
 $$
