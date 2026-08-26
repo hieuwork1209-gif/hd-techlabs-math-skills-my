@@ -2,36 +2,45 @@
 
 ## LaTeX (Normalized)
 
-Let $p\geq 7$ be a prime and let $n$ be a positive power of $p$. Put
+Let $p\geq 29$ be a prime, let $n$ be a positive power of $p$, and put
 $$
 q=\frac{n}{p},
 \qquad
-\Gamma=(\mathbb Z/n\mathbb Z)^3,
+\Gamma=(\mathbb Z/n\mathbb Z)^3.
 $$
-with all coordinates read modulo $n$.
+All coordinates below are read modulo $n$.
 
-Let $V_n$ be the vector space over $\mathbb F_p$ of all functions
+For functions $f:\Gamma\to\mathbb F_p$, let $T_1,T_2,T_3$ be the coordinate shifts
 $$
-f:\Gamma\to\mathbb F_p
+(T_1f)(x,y,z)=f(x+1,y,z),
+\quad
+(T_2f)(x,y,z)=f(x,y+1,z),
+\quad
+(T_3f)(x,y,z)=f(x,y,z+1),
 $$
-such that, for every $(x,y,z)\in\Gamma$,
+and let $I$ be the identity operator. Define
 $$
-f(x+1,y,z)+f(x,y+1,z)+f(x,y,z+1)=3f(x,y,z),
+A=T_1^qT_2^q+T_2^qT_3^q+T_3^qT_1^q-3I,
 $$
 $$
-f(x+1,y+1,z)+f(x,y+1,z+1)+f(x+1,y,z+1)=3f(x,y,z),
+B=T_1^qT_2^qT_3^q-
+\bigl(T_1^qT_2^q+T_2^qT_3^q+T_3^qT_1^q\bigr)+2I.
+$$
+
+Let $V_n$ be the vector space over $\mathbb F_p$ of all such functions satisfying
+$$
+f(y,z,x)=f(x,y,z)
+$$
+for every $(x,y,z)\in\Gamma$, together with
+$$
+(T_1+T_2+T_3-3I)f=0,
+$$
+$$
+(A^2+B^3+B^5)f=0,
 $$
 and
 $$
-\begin{aligned}
-&4\Bigl(
-f(x+(p-1)q,y,z)+f(x,y+(p-1)q,z)+f(x,y,z+(p-1)q)
-\Bigr)\\
-&\quad-\Bigl(
-f(x+(p-2)q,y,z)+f(x,y+(p-2)q,z)+f(x,y,z+(p-2)q)
-\Bigr)\\
-&=9f(x,y,z).
-\end{aligned}
+\bigl((I+A+B)(A^2+B^3)+B^5\bigr)f=0.
 $$
 
 Determine, in closed form as a function of $p$ and $n$,
