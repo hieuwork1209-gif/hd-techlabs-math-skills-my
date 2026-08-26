@@ -1,164 +1,162 @@
 ## Steps
 
-Step 1: Convert the translation equations into a quotient-dimension problem
+Step 1: Convert the shift equations to a local quotient
 Let
 $$
-R=\mathbb F_p[U,V,W]/(U^n-1,V^n-1,W^n-1).
+R=\mathbb F_p[X,Y,Z]/(X^n-1,Y^n-1,Z^n-1),
 $$
-For a function $f:(\mathbb Z/n\mathbb Z)^3\to\mathbb F_p$, define a linear functional $\lambda_f\in R^*$ by
+where multiplication by $X,Y,Z$ represents $T_1,T_2,T_3$. Sending $f$ to the functional
 $$
-\lambda_f(U^xV^yW^z)=f(x,y,z).
+\lambda_f(X^xY^yZ^z)=f(x,y,z)
 $$
-The three families of equations say that $\lambda_f$ vanishes on every monomial translate of
+identifies the simultaneous solution space with the dual of the quotient of $R$ by the three operator polynomials in the statement. The cyclic permutation $(X,Y,Z)\mapsto(Y,Z,X)$ preserves that quotient. Since $p\neq3$, averaging over the cyclic group shows that the invariant subspace of the dual has the same dimension as the invariant subspace of the quotient. Thus $\dim_{\mathbb F_p}V_n$ is the cyclic-invariant dimension of that quotient.
+
+Set
 $$
-P_1=U+V+W-3,
+a=X-1,
+\qquad
+b=Y-1,
+\qquad
+c=Z-1.
 $$
+Since $n$ is a power of $p$,
 $$
-P_2=UV+VW+UW-3,
+X^n-1=a^n,
+\qquad
+Y^n-1=b^n,
+\qquad
+Z^n-1=c^n.
+$$
+Thus $R$ is the local Artinian ring $\mathbb F_p[a,b,c]/(a^n,b^n,c^n)$. The first equation gives
+$$
+a+b+c=0.
+$$
+
+Step 2: Recover the two hidden invariants
+In the quotient by $a+b+c$, put
+$$
+s=ab+bc+ca,
+\qquad
+t=abc.
+$$
+Because $q$ is a power of $p$,
+$$
+X^q=1+a^q,
+\qquad
+Y^q=1+b^q,
+\qquad
+Z^q=1+c^q.
+$$
+Also $a^q+b^q+c^q=0$. Expanding the operators from the statement now gives
+$$
+A=(ab+bc+ca)^q=s^q,
 $$
 and
 $$
-P_3=4\bigl(U^{(p-1)q}+V^{(p-1)q}+W^{(p-1)q}\bigr)-\bigl(U^{(p-2)q}+V^{(p-2)q}+W^{(p-2)q}\bigr)-9.
+B=(abc)^q=t^q.
 $$
-So $V_n$ is the annihilator of the ideal $I=(P_1,P_2,P_3)$ in $R^*$, and
+The two long-shift equations therefore generate the same ideal as
 $$
-\dim_{\mathbb F_p}V_n=\dim_{\mathbb F_p}(R/I).
-$$
-Write
-$$
-a=U-1,\qquad b=V-1,\qquad c=W-1.
-$$
-Since $n$ is a power of $p$, Frobenius gives
-$$
-U^n-1=a^n,\qquad V^n-1=b^n,\qquad W^n-1=c^n.
-$$
-This gives
-$$
-R\cong\mathbb F_p[a,b,c]/(a^n,b^n,c^n).
-$$
-
-Step 2: Extract the hidden cubic invariant forced by the first two equations
-In the variables $a,b,c$,
-$$
-P_1=a+b+c
+F=s^{2q}+t^{3q}+t^{5q}
 $$
 and
 $$
-P_2=2(a+b+c)+(ab+bc+ca).
+G=s^qt^{5q}+t^{6q}.
 $$
-Modulo $P_1$ and $P_2$,
+Indeed, if $F_0=A^2+B^3$, then the displayed equations are $F_0+B^5=0$ and $(1+A+B)F_0+B^5=0$; subtracting $(1+A+B)$ times the first from the second gives $-(A+B)B^5=0$. Since $q$ is a $p$-power, these two generators are
 $$
-a+b+c=0,
+F=(s^2+t^3+t^5)^q,
 \qquad
-ab+bc+ca=0.
-$$
-If $e_3=abc$, then
-$$
-(t-a)(t-b)(t-c)=t^3-e_3,
-$$
-so
-$$
-a^3=b^3=c^3=e_3.
-$$
-Put
-$$
-A=a^q,\qquad B=b^q,\qquad C=c^q,
-\qquad D=a^{3q}=b^{3q}=c^{3q}.
-$$
-Because $q$ is also a power of $p$,
-$$
-A+B+C=0,
-\qquad
-AB+BC+CA=0.
-$$
-These identities give
-$$
-A^2+B^2+C^2=(A+B+C)^2-2(AB+BC+CA)=0.
-$$
-Together with $A^3=B^3=C^3=D$, this gives, for every $k\geq1$,
-$$
-A^k+B^k+C^k=
-\begin{cases}
-3D^r,&k=3r,\\
-0,&k\not\equiv0\pmod 3.
-\end{cases}
+G=((s+t)t^5)^q.
 $$
 
-Step 3: Use the designed cancellation in the long-shift equation
-Frobenius gives
+Step 3: Select the cyclic-invariant part
+Let $\rho$ be the cycle $(a,b,c)\mapsto(b,c,a)$ and put
 $$
-U^{(p-1)q}=(1+A)^{p-1},
+\Delta=(a-b)(b-c)(c-a).
+$$
+A polynomial fixed by $\rho$ splits uniquely into a symmetric part and an alternating part. Indeed, if $\tau$ swaps $a$ and $b$ and $h$ is fixed by $\rho$, then
+$$
+h=\frac{h+\tau h}{2}+\frac{h-\tau h}{2}.
+$$
+The first summand is fixed by $\rho$ and $\tau$, hence by all of $S_3$. The second is fixed by $\rho$ and changes sign under $\tau$, hence is alternating. Every alternating polynomial vanishes when any two variables agree, so it is divisible by $\Delta$; after division, the quotient is symmetric. On the plane $a+b+c=0$, every symmetric polynomial is a polynomial in
+$$
+s=ab+bc+ca,
 \qquad
-U^{(p-2)q}=(1+A)^{p-2},
+t=abc.
 $$
-with identical formulas for $V$ and $W$. Expanding the third relation and using the power sums from Step 2 leaves only exponents divisible by $3$:
+Consequently
 $$
-P_3=3\sum_{r\geq1}\left(4\binom{p-1}{3r}-\binom{p-2}{3r}\right)D^r.
+\left(\frac{\mathbb F_p[a,b,c]_{(a,b,c)}}{(a+b+c)}\right)^{\langle\rho\rangle}
+=\mathbb F_p[s,t]_{(s,t)}\oplus
+\Delta\mathbb F_p[s,t]_{(s,t)}.
 $$
-For $0\leq k\leq p-1$,
+The sum is direct because a nonzero polynomial cannot be both symmetric and alternating when $2$ is invertible. Therefore the cyclic-invariant part is free of rank $2$ over the local invariant ring. The elements $F$ and $G$ are symmetric, and averaging is exact because $3$ is invertible, so quotienting by $(F,G)$ acts coefficientwise on these two summands. It remains to compute the length of
 $$
-\binom{p-1}{k}\equiv(-1)^k\pmod p,
-\qquad
-\binom{p-2}{k}\equiv(-1)^k(k+1)\pmod p.
-$$
-The coefficient of $D^r$ is therefore
-$$
-3(-1)^r\bigl(4-(3r+1)\bigr)=9(1-r)(-1)^r.
-$$
-The coefficient of $D$ vanishes, while the coefficient of $D^2$ is $-9$, which is nonzero because $p\geq7$. So
-$$
-P_3=D^2H(D)
-$$
-for a polynomial $H$ with
-$$
-H(0)=-9\neq0.
-$$
-The element $D$ is nilpotent, so $H(D)$ is a unit. The third relation is therefore equivalent to
-$$
-D^2=0,
-$$
-that is,
-$$
-a^{6q}=0.
+C=\frac{\mathbb F_p[s,t]_{(s,t)}}{(F,G)}.
 $$
 
-Step 4: Count a basis of the resulting quotient
-Eliminating $c=-a-b$, the relation $ab+bc+ca=0$ becomes
+Step 4: Count the coupled local quotient
+From $F=G=0$,
 $$
-a^2+ab+b^2=0.
+s^{2q}=-t^{3q}-t^{5q},
+\qquad
+s^qt^{5q}=-t^{6q}.
 $$
-This relation implies
+Multiplying the first relation by $t^{5q}$, the second by $s^q$, and also the second by $t^q$ yields
 $$
-b^3=a^3.
+t^{7q}(1+t^q+t^{3q})=0.
 $$
-Since $n=pq$ and $p\geq7$, the relation $a^{6q}=0$ already implies $a^n=0$. It also implies $b^n=0$. To see this, write $n=3d+r$ with $r\in\{1,2\}$. If $p=7$, then $n=7^m\equiv1\pmod 3$, so $r=1$ and $3d=n-1=7q-1\geq6q$. If $p\geq11$, then $3d=n-r\geq pq-2\geq6q$. Hence
+The factor in parentheses has constant term $1$, so it is a unit in the local ring and
 $$
-b^n=a^{3d}b^r=0.
+t^{7q}=0.
 $$
-Also,
+Thus every class in $C$ reduces uniquely to a linear combination of
 $$
-c^n=(-a-b)^n=-(a^n+b^n)=0
+\mathcal B=
+\left\{s^it^j:0\leq i<2q,
+\ 0\leq j<7q,
+\ \text{and not both }i\geq q,
+\ j\geq5q\right\}.
 $$
-by Frobenius. We obtain
+The leading monomials are $s^{2q}$, $s^qt^{5q}$, and $t^{7q}$. The overlap of the first two is exactly the displayed unit multiple of $t^{7q}$; overlaps involving $t^{7q}$ reduce immediately because they are divisible by $t^{7q}$. Hence these reductions form a local standard basis, so no nonzero linear combination of the displayed monomials lies in $(F,G)$. Therefore
 $$
-R/I\cong\frac{\mathbb F_p[a,b]}{(a^{6q},\ b^2+ab+a^2)}.
+\dim_{\mathbb F_p}C
+=(2q)(7q)-(q)(2q)=12q^2.
 $$
-The second relation is monic of degree $2$ in $b$, so every class has a unique representative
+As an independent check, for $q=1$ the local intersection splits through
 $$
-A_0(a)+bA_1(a)
+(s+t)t^5.
 $$
-with $\deg A_0,\deg A_1<6q$. It follows that
+The branch $t=0$ has intersection order $2$ with $s^2+t^3+t^5$, while the branch $s+t=0$ also has order $2$. Its total multiplicity is therefore $5\cdot2+2=12$, and taking $q$-th powers multiplies the two intersection orders by $q^2$.
+
+Step 5: Restore the translation quotient and finish the count
+The two cyclic-invariant summands from Step 3 are independent copies of $C$, so the untruncated cyclic-invariant quotient has dimension
 $$
-\dim_{\mathbb F_p}(R/I)=2\cdot6q=12q=\frac{12n}{p}.
+2\cdot12q^2=24q^2.
+$$
+Use the filtration by total degree in $a,b,c$, for which $s$ has degree $2$ and $t$ has degree $3$. The lowest-degree terms of the three reduction relations in Step 4 are $s^{2q}$, $s^qt^{5q}$, and $t^{7q}$, so the same monomial set is a basis of the associated graded invariant quotient. Its largest possible degree is
+$$
+2(q-1)+3(7q-1)=23q-5.
+$$
+The two module generators $1$ and $\Delta$ from Step 3 have degrees $0$ and $3$, so every associated graded component of degree at least $23q-1$ vanishes. Hence the maximal ideal itself satisfies
+$$
+(a,b,c)^{23q-1}=0.
+$$
+Since $n=pq\geq29q$, the relations $a^n=b^n=c^n=0$ are already automatic and do not change the local quotient.
+
+Therefore
+$$
+\dim_{\mathbb F_p}V_n=24q^2=24\left(\frac{n}{p}\right)^2.
 $$
 
-Final Answer: $\boxed{\frac{12n}{p}}$
+Final Answer: $\boxed{24\left(\frac{n}{p}\right)^2}$
 
 ---
 
 ## Answer
 
-$\frac{12n}{p}$
+$24\left(\frac{n}{p}\right)^2$
 
 ---
 
@@ -173,9 +171,11 @@ $\frac{12n}{p}$
 ## Solution Concepts
 
 - cyclic translation operators
-- quotient dimension by annihilator duality
-- Frobenius identities
+- finite-field Frobenius map
 - symmetric polynomial invariants
-- nilpotent quotient rings
+- local quotient length
+- alternating polynomial factorization
 
-## Black-Box Audit — no issues found
+## Black-Box Audit
+
+No Level 2 or Level 3 black-box issue remains. The invariant reduction, rank-two cyclic decomposition, overlap calculation, local basis, and truncation bound are all displayed explicitly.
