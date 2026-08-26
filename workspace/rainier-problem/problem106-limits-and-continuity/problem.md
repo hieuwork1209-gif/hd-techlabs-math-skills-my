@@ -23,10 +23,10 @@ $$
 
 | Field | Value |
 |---|---|
-| Domain | Calculus |
-| Sub-domain | Limits and continuity |
-| Problem Type | Exhaustive enumeration |
-| Answer Type | Interval or region description |
+| **Domain** | Calculus |
+| **Sub-domain** | Limits and continuity |
+| **Problem Type** | Exhaustive enumeration |
+| **Answer Type** | Interval or region description |
 
 ---
 
