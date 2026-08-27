@@ -2,9 +2,9 @@
 
 ## LaTeX (Normalized)
 
-Let $r$ and $m$ be positive integers, put $q=3^{2r}$ and $n=2m+1$, and let $V$ be a $2n$-dimensional vector space over $\mathbb{F}_q$ with basis
+Let $r$ be a positive integer and put $q=3^{2r}$. Let $V$ be a $6$-dimensional vector space over $\mathbb{F}_q$ with basis
 $$
-e_1,\dots,e_n,f_1,\dots,f_n
+e_1,e_2,e_3,f_1,f_2,f_3
 $$
 and nondegenerate alternating form $\omega$ determined by
 $$
@@ -13,30 +13,29 @@ $$
 $$
 Put
 $$
-E=\operatorname{span}(e_1,\dots,e_n),\qquad
-F=\operatorname{span}(f_1,\dots,f_n).
+E=\operatorname{span}(e_1,e_2,e_3),\qquad
+F=\operatorname{span}(f_1,f_2,f_3).
 $$
-Let $\chi:\mathbb{F}_q\to\{-1,0,1\}$ be the quadratic character, with $\chi(0)=0$. Choose $\iota\in\mathbb{F}_q$ with $\iota^2=-1$, and put
+Choose $\iota\in\mathbb{F}_q$ with $\iota^2=-1$, and put
 $$
 R=\{0,1,-1,\iota,-\iota\}.
 $$
-For $t\in R$, define the symplectic shear $\tau_t$ by
+For $t\in R$, define the symplectic shear $\sigma_t$ by
 $$
-\tau_t(e_1)=e_1+t f_1
+\sigma_t(e_j)=e_j+t f_j,\qquad
+\sigma_t(f_j)=f_j
 $$
-and by fixing every other basis vector.
+for $j=1,2,3$.
 
-Let the sum below range over all Lagrangian subspaces $L$ satisfying $L\cap F=0$. Projection along $F$ identifies $L$ with $E$, so there is a unique linear map $S_L:E\to F$ such that
+Let $N_r$ be the number of Lagrangian subspaces $L$ of $V$ such that
 $$
-L=\{x+S_Lx:x\in E\}.
+L\cap F=0
 $$
-The same graph construction defines $S_{\tau_t(L)}$ for every $t\in R$. Using the ordered bases above to define determinants, set
+and
 $$
-H_{m,r}
-=
-\sum_L\prod_{t\in R}\chi(\det S_{\tau_t(L)}).
+\sigma_t(L)\cap E=0
 $$
-Determine $H_{m,r}$ exactly.
+for every $t\in R$. Determine $N_r$ exactly.
 
 ---
 
@@ -53,4 +52,4 @@ Determine $H_{m,r}$ exactly.
 
 ## Domain Explanation
 
-This problem studies Lagrangian subspaces relative to a fixed symplectic polarization and compares their images under a family of symplectic shears. The five determinant factors form a coupled invariant created by those symplectic transformations, so Topology and Geometry with Symplectic and contact geometry is the best fit. Finite-field character sums and algebraic curves are tools used to evaluate that geometric correlation.
+This problem counts Lagrangian subspaces relative to a fixed symplectic polarization and a family of symplectic shears. The defining constraints are transversality conditions among Lagrangians, so Topology and Geometry with Symplectic and contact geometry is the best fit. Finite-field symmetric forms and subspace incidence counting are tools used to evaluate that symplectic count.
