@@ -59,7 +59,17 @@ K_A
 1+\frac{4(4-A)}{\sqrt{A(8-A)}}
 -\frac{3(A-L)}{\sqrt{4-3(A-L)^2}}.
 $$
-The second and third terms are decreasing functions of $A$. At $A=A_0$ their sum also decreases as $L$ increases. Therefore
+The second and third terms are decreasing functions of $A$. At $A=A_0=L^2/2$, they become
+$$
+\frac{4(8-L^2)}{L\sqrt{16-L^2}}
+\quad\text{and}\quad
+-\frac{3L(L-2)}{\sqrt{16-3L^2(L-2)^2}},
+$$
+respectively. The derivative of the first expression is
+$$
+-\frac{512}{L^2(16-L^2)^{3/2}}<0,
+$$
+while $X\mapsto 3X/\sqrt{16-3X^2}$ is increasing and $X=L(L-2)$ increases for $L>1$. Therefore $K_A(A_0,L)$ decreases with $L$, and
 $$
 K_A
 \leq
