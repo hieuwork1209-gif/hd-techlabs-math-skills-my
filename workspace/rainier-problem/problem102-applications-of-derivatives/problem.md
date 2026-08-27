@@ -8,13 +8,14 @@ A(x)=\frac{1}{\log x}\int_1^x\frac{f(t)}{t}\,dt.
 $$
 For each $x>1$, put
 $$
-U=\log\log x,\qquad Z=A(x)+\log x.
+S=\log x,\qquad Z=A(x)+S.
 $$
 Assume that $A(e)=-1$ and that, for every $x>1$,
 $$
-\bigl(U^3+U^2Z-3UZ^2+2Z^3+Z\bigr)\bigl(f(x)-A(x)+\log x\bigr)
+Z\bigl(2S^3-2S^2Z^2+3S^2-Z^4-2Z^2+3\bigr)
+\bigl(f(x)-A(x)+S\bigr)
 =
-4U^3-3U^2Z-UZ^2+U+Z^3.
+S\bigl(S^2Z^2+S^2-SZ^4+3SZ^2-Z^4-2Z^2-1\bigr).
 $$
 Determine $f(x)$ for all $x>1$.
 
@@ -33,4 +34,4 @@ Determine $f(x)$ for all $x>1$.
 
 ## Domain Explanation
 
-After two logarithmic coordinate changes, the integral mean turns $f-A$ into a derivative. The displayed nonlinear relation then hides an exact differential and a conserved quartic invariant. The normalization forces the invariant to factor into two differentiable global branches, and concavity selects the unique admissible branch. These derivative and concavity arguments make Applications of derivatives the primary sub-domain.
+The logarithmic integral mean converts the gap $f-A$ into a derivative. The nonlinear relation does not form an exact differential directly; its solution requires recovering a hidden rational first integral, resolving the resulting algebraic branches, and then using differentiability and concavity to select the unique branch. These derivative and branch-rigidity arguments make Applications of derivatives the primary sub-domain.
