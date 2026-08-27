@@ -46,21 +46,58 @@ is coercive and convex polyhedral, so it has a compact nonempty minimizing set. 
 
 At a vertex, at least three independent hyperplanes $R(y_j)=0$ meet. Hyperplanes belonging to three distinct nodes are independent because their coefficient matrix is a Vandermonde matrix. A monic cubic cannot vanish at more than three distinct nodes. A minimizing vertex therefore has exactly three zero coordinates, so $\Delta_N$ is well defined. Conversely, any minimizing vector with three zero coordinates comes from the intersection of three independent hyperplanes and is therefore such a vertex. For zero indices $k<m<\ell$, the three roots of $R$ are $y_k,y_m,y_\ell$.
 
-Step 3: Identify the coefficient weights with a Bernoulli sum
-Put $t=q^2$ and $(t;t)_r=\prod_{s=1}^{r}(1-t^s)$. Directly from the product defining $\Lambda_j$,
+Step 3: Derive the weight product and identify a Bernoulli sum
+Put $t=q^2$ and $(t;t)_r=\prod_{s=1}^{r}(1-t^s)$. Splitting the factors in the definition of $\Lambda_j$ at $s=j$ gives
+$$
+|\Lambda_j|
+=\prod_{s=0}^{j-1}\frac{1}{1-t^{j-s}}
+\prod_{s=j+1}^{N}\frac{t^{s-j}}{1-t^{s-j}}
+=\frac{t^{(N-j)(N-j+1)/2}}{(t;t)_j(t;t)_{N-j}}.
+$$
+Therefore
 $$
 q^j|\Lambda_j|
+=\frac{q^{N+(N-j)^2}}{(t;t)_j(t;t)_{N-j}}
 =\frac{q^N}{(t;t)_N}\binom{N}{j}_tq^{(N-j)^2},
 $$
-where $\binom{N}{j}_t=(t;t)_N/((t;t)_j(t;t)_{N-j})$. The finite $q$-binomial identity gives
+where
+$$
+\binom{N}{j}_t=\frac{(t;t)_N}{(t;t)_j(t;t)_{N-j}}.
+$$
+We now derive the needed product formula rather than invoke it externally. With binomial coefficients outside their natural range interpreted as zero, the product definition gives
+$$
+\binom{N}{j-1}_t+t^j\binom{N}{j}_t
+=\frac{(t;t)_N\bigl((1-t^j)+t^j(1-t^{N-j+1})\bigr)}{(t;t)_j(t;t)_{N-j+1}}
+=\binom{N+1}{j}_t.
+$$
+Define
+$$
+A_{N,j}=q^{(N-j)^2}\binom{N}{j}_t.
+$$
+The preceding recurrence and $t=q^2$ imply
+$$
+A_{N+1,j}=A_{N,j-1}+q^{2N+1}A_{N,j}.
+$$
+Thus the polynomial $P_N(z)=\sum_{j=0}^{N}A_{N,j}z^j$ satisfies
+$$
+P_0(z)=1,
+\qquad
+P_{N+1}(z)=(z+q^{2N+1})P_N(z).
+$$
+Induction now gives the exact coefficient identity
+$$
+\sum_{j=0}^{N}\binom{N}{j}_tq^{(N-j)^2}z^j
+=\prod_{r=0}^{N-1}(z+q^{2r+1}).
+$$
+Combining this identity with the formula for $q^j|\Lambda_j|$ yields
 $$
 \sum_{j=0}^{N}q^j|\Lambda_j|z^j
-=C_N\prod_{r=0}^{N-1}(z+q^{2r+1})
+=\frac{q^N}{(t;t)_N}\prod_{r=0}^{N-1}(z+q^{2r+1}).
 $$
-for a positive constant $C_N$ independent of $z$. Since $w_{N,j}=q^{4j}(q^j|\Lambda_j|)$,
+Since $w_{N,j}=q^{4j}(q^j|\Lambda_j|)$,
 $$
 \sum_{j=0}^{N}w_{N,j}z^j
-=C_N\prod_{r=0}^{N-1}(q^4z+q^{2r+1}).
+=\frac{q^N}{(t;t)_N}\prod_{r=0}^{N-1}(q^4z+q^{2r+1}).
 $$
 After division by the value at $z=1$, this is the probability generating function of
 $$
@@ -88,9 +125,9 @@ $$
 Z_N:=\frac{J_N-\mu_N}{\sigma_N}\ \Longrightarrow\ Z,
 \qquad Z\sim N(0,1).
 $$
-Each centered Bernoulli summand has range length one. Hoeffding's lemma and $\sigma_N^2/N\to V_a>0$ therefore give, for every fixed real $t$,
+Each centered Bernoulli summand has range length one. Hoeffding's lemma and $\sigma_N^2/N\to V_a>0$ therefore give, for every fixed real $s$,
 $$
-\mathbb E e^{tZ_N}\leq e^{C_at^2}
+\mathbb E e^{sZ_N}\leq e^{C_as^2}
 $$
 with a constant $C_a$ independent of $N$. This uniform sub-Gaussian bound gives uniformly bounded moments of every fixed order for $Z_N$.
 
@@ -221,11 +258,11 @@ $\sqrt{\frac{2\ln2\,\tanh a}{a}}$
 - geometric finite-difference exactness
 - Lagrange interpolation parameterization
 - weighted absolute-deviation polynomial optimization
-- finite q-binomial identity
+- Gaussian-binomial coefficient recurrence
 - Gaussian scaling and size-biased medians
 
 ---
 
 ## Black-Box Audit — no issues found
 
-The affine parameterization, existence of a three-zero minimizing vertex, Bernoulli representation, Gaussian rescaling, compactness argument, and limiting cubic minimization are all justified explicitly. No numerical fitting, software calculation, or unshown finite search is used.
+The affine parameterization, existence of a three-zero minimizing vertex, coefficient recurrence for the Bernoulli generating function, Gaussian rescaling, compactness argument, and limiting cubic minimization are all justified explicitly. No numerical fitting, software calculation, or unshown finite search is used.
