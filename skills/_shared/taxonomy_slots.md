@@ -2,7 +2,7 @@
 
 This file is the source of truth for currently usable taxonomy slots. Update it whenever the portal capacity changes. Skills must read this file before choosing or changing a Domain/Sub-domain, Problem Type, or Answer Type.
 
-Last updated from user-provided portal snapshot: **2026-08-26**. The portal snapshot contains **69 Domain/Sub-domain rows across 12 Domains**: **68 currently usable rows with positive remaining capacity and 1 exhausted row with 0 remaining slots**. The table below is derived directly from `available_segments`; any Domain/Sub-domain pair absent from that list must be treated as unavailable for the current snapshot rather than carried forward from older snapshots.
+Last updated from user-provided portal snapshot: **2026-08-26**. Reviewer taxonomy feedback incorporated: **2026-08-27**. The portal snapshot contains **69 Domain/Sub-domain rows across 12 Domains**: **68 currently usable rows with positive remaining capacity and 1 exhausted row with 0 remaining slots**. The table below is derived directly from `available_segments`; any Domain/Sub-domain pair absent from that list must be treated as unavailable for the current snapshot rather than carried forward from older snapshots.
 
 ## Selection Rules
 
@@ -11,6 +11,8 @@ Last updated from user-provided portal snapshot: **2026-08-26**. The portal snap
 - Use only Domain/Sub-domain pairs present in the current `available_segments` table below with a positive remaining-slot count.
 - Treat a row with `0` remaining slots, or a row absent from the current portal snapshot, as unavailable.
 - Never force a taxonomy label merely because it has more or fewer remaining slots. Primary mathematical content decides the label.
+- If the mathematically correct Sub-domain is unavailable, do not relabel the same prompt into a nearby open Sub-domain. Materially redesign the prompt so that its fundamental content genuinely fits an open slot.
+- Treat explicit reviewer classification feedback as a taxonomy guardrail for future choices until superseded by newer portal or reviewer evidence.
 - For the Domain Explanation, state why the selected Domain/Sub-domain is the best fit and why it is more appropriate than the next-best alternative.
 - If the user provides a newer portal snapshot in chat, that newer snapshot supersedes this file for the current run.
 
@@ -53,7 +55,7 @@ Last updated from user-provided portal snapshot: **2026-08-26**. The portal snap
 | Euclidean, Coordinate, and Transformational Geometry | Transformational geometry | 5 | open | 2026-08-26 user-provided portal snapshot. |
 | Euclidean, Coordinate, and Transformational Geometry | Analytic geometry | 6 | open | 2026-08-26 user-provided portal snapshot. |
 | Euclidean, Coordinate, and Transformational Geometry | Computational geometry | 6 | open | 2026-08-26 user-provided portal snapshot. |
-| Linear Algebra | Vectors and vector spaces | 0 | unavailable | 2026-08-26 user-provided portal snapshot; exhausted. |
+| Linear Algebra | Vectors and vector spaces | 0 | unavailable | 2026-08-26 user-provided portal snapshot; exhausted. Reviewer feedback also confirms this is not a valid fallback for prompts whose core is invariant subspaces/operator action. |
 | Linear Algebra | Determinants | 1 | open | 2026-08-26 user-provided portal snapshot. |
 | Linear Algebra | Systems of linear equations | 4 | open | 2026-08-26 user-provided portal snapshot. |
 | Linear Algebra | Numerical linear algebra | 13 | open | 2026-08-26 user-provided portal snapshot. |
@@ -87,6 +89,12 @@ Last updated from user-provided portal snapshot: **2026-08-26**. The portal snap
 | Topology and Geometry | Symplectic and contact geometry | 1 | open | 2026-08-26 user-provided portal snapshot. |
 | Topology and Geometry | Differential topology | 3 | open | 2026-08-26 user-provided portal snapshot. |
 | Topology and Geometry | Differential geometry | 6 | open | 2026-08-26 user-provided portal snapshot. |
+
+## Reviewer-Confirmed Taxonomy Guardrails
+
+- **Linear Algebra → Linear transformations** is confirmed closed/unavailable by reviewer feedback dated 2026-08-26. It is absent from the current `available_segments` snapshot and must not be selected.
+- Prompts whose core task is classification or counting of subspaces invariant under specified linear operators, or whose defining structure is eigenspace/spectral decomposition and operator action, belong to **Linear transformations**, not **Vectors and vector spaces**.
+- Do not relabel such prompts to **Vectors and vector spaces** or another nearby open Sub-domain merely because **Linear transformations** is closed. Significantly revise the prompt so that the mathematical object being asked about genuinely belongs to a different open Sub-domain.
 
 ## Problem Type Slots
 
