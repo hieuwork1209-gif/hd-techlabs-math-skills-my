@@ -1,147 +1,141 @@
 ## Steps
 
-Step 1: Convert the integral mean into a derivative in the doubly logarithmic variable
+Step 1: Convert the integral mean into a differential equation
 
 Let
 $$
-g(s)=f(e^s),\qquad a(s)=A(e^s)=\frac1s\int_0^s g(v)\,dv.
+g(s)=f(e^s),\qquad a(s)=A(e^s)=\frac1s\int_0^s g(v)\,dv,\qquad z(s)=a(s)+s.
 $$
-Concavity makes $g$ continuous on $(0,\infty)$, and the improper integral hypothesis makes the integral finite. Hence
+The improper integral hypothesis makes the integral finite, while concavity makes $g$ continuous on $(0,\infty)$. Hence
 $$
-g(s)-a(s)=sa'(s).
+g(s)-a(s)=sa'(s)
 $$
-Now put
+and therefore
 $$
-u=\log s,\qquad y(u)=a(e^u).
+s z'(s)=g(s)-a(s)+s.
 $$
-Then
+Thus, after setting $S=s$ and $Z=z(s)$, the displayed relation becomes
 $$
-y'(u)=e^u a'(e^u)=g(e^u)-a(e^u).
+zK(s,z)z'=L(s,z),
 $$
-For $x=e^{e^u}$ this says
+where
 $$
-y'(u)=f(x)-A(x).
-$$
-Define
-$$
-z(u)=y(u)+e^u.
-$$
-Since $e^u=\log x$, the quantities in the statement are exactly
-$$
-U=u,\qquad Z=z(u),
+K(s,z)=2s^3-2s^2z^2+3s^2-z^4-2z^2+3
 $$
 and
 $$
-z'(u)=f(x)-A(x)+\log x.
-$$
-
-Step 2: Recover the hidden conserved quartic
-
-The given relation becomes
-$$
-\bigl(u^3+u^2z-3uz^2+2z^3+z\bigr)z'
-=
-4u^3-3u^2z-uz^2+u+z^3.
-$$
-Consider
-$$
-\Phi(u,z)=-2u^4+2u^3z+u^2z^2-u^2-2uz^3+z^4+z^2.
-$$
-Its partial derivatives are
-$$
-\Phi_z=2\bigl(u^3+u^2z-3uz^2+2z^3+z\bigr),
-$$
-and
-$$
-\Phi_u=-2\bigl(4u^3-3u^2z-uz^2+u+z^3\bigr).
-$$
-Therefore the displayed differential relation is precisely
-$$
-\frac{d}{du}\Phi(u,z(u))=0.
-$$
-So $\Phi(u,z(u))$ is constant. At $u=0$ we have $x=e$, hence
-$$
-y(0)=A(e)=-1,\qquad z(0)=y(0)+1=0.
-$$
-Thus the constant is $0$, and
-$$
-\Phi(u,z)=0.
-$$
-The quartic factors as
-$$
-\Phi(u,z)=(z-u)(z+u)\bigl((z-u)^2+u^2+1\bigr).
-$$
-The last factor is always positive, so for every $u$,
-$$
-z(u)=u\qquad\text{or}\qquad z(u)=-u.
-$$
-
-Step 3: Use differentiability and concavity to select the global branch
-
-For $u\ne0$, the continuous quotient $z(u)/u$ only takes the values $1$ and $-1$, so its value is constant on each of the intervals $(-\infty,0)$ and $(0,\infty)$. Since $z$ is differentiable at $0$, the two sides cannot choose different signs. Hence there are only two global possibilities.
-
-If $z(u)=u$, then
-$$
-y(u)=u-e^u,\qquad y'(u)=1-e^u.
-$$
-Thus, with $s=e^u$,
-$$
-g(s)=y(u)+y'(u)=\log s+1-2s,
-$$
-and
-$$
-g''(s)=-\frac1{s^2}<0.
-$$
-So this branch is concave.
-
-If $z(u)=-u$, then
-$$
-y(u)=-u-e^u,\qquad y'(u)=-1-e^u,
-$$
-hence
-$$
-g(s)=-\log s-1-2s,
-$$
-for which
-$$
-g''(s)=\frac1{s^2}>0.
-$$
-This branch is convex and is forbidden. Therefore
-$$
-z(u)=u.
-$$
-
-Step 4: Return to $x$ and verify the solution
-
-From $z(u)=u$ and $z=y+e^u$,
-$$
-A(x)=\log\log x-\log x.
+L(s,z)=s^2z^2+s^2-sz^4+3sz^2-z^4-2z^2-1.
 $$
 Also
 $$
-f(x)-A(x)=1-\log x,
+z(1)=A(e)+1=0.
 $$
-so
-$$
-f(x)=\log\log x+1-2\log x.
-$$
-For this function, after the substitution $s=\log t$,
-$$
-\int_1^x\frac{f(t)}{t}\,dt
-=
-\int_0^{\log x}(\log s+1-2s)\,ds
-=
-(\log x)\log\log x-(\log x)^2,
-$$
-and the improper integral converges because $s\log s\to0$ as $s\to0^+$. Dividing by $\log x$ gives the stated $A(x)$. Moreover $Z=U$ and $f-A+\log x=1$, so both sides of the nonlinear relation equal $U^3+U$.
 
-Final Answer: $\boxed{f(x)=\log\log x+1-2\log x}$
+Step 2: Recover the hidden rational first integral
+
+Define
+$$
+F(s,z)=(z^2-s-1)^2-4s,\qquad G(s,z)=s^2+z^2+1.
+$$
+A direct differentiation and simplification gives
+$$
+GF_s-FG_s=2L(s,z)
+$$
+and
+$$
+GF_z-FG_z=-2zK(s,z).
+$$
+Since $G>0$, along the solution curve,
+$$
+\frac{d}{ds}\left(\frac{F(s,z(s))}{G(s,z(s))}\right)
+=
+\frac{2L-2zKz'}{G^2}=0.
+$$
+At $s=1$ and $z=0$,
+$$
+F(1,0)=0.
+$$
+Consequently the constant ratio is zero, so
+$$
+F(s,z(s))=0
+$$
+for every $s>0$.
+
+Step 3: Resolve the algebraic branches
+
+The equation $F=0$ gives
+$$
+(z^2-s-1)^2=4s,
+$$
+hence
+$$
+z^2=(\sqrt{s}+1)^2
+\qquad\text{or}\qquad
+z^2=(\sqrt{s}-1)^2.
+$$
+The branches $z=\pm(\sqrt{s}+1)$ do not pass through $(1,0)$. The only branches through that point are
+$$
+z=\sqrt{s}-1
+\qquad\text{and}\qquad
+z=1-\sqrt{s}.
+$$
+Continuity prevents switching away from these branches on either side of $s=1$. Moreover $z$ is differentiable at $1$, whereas the two displayed branches have derivatives $1/2$ and $-1/2$ there. Therefore the left and right choices must agree, leaving exactly two global possibilities.
+
+Step 4: Use concavity, recover the function, and verify it
+
+If
+$$
+z(s)=\sqrt{s}-1,
+$$
+then
+$$
+a(s)=\sqrt{s}-1-s
+$$
+and
+$$
+g(s)=a(s)+sa'(s)=\frac32\sqrt{s}-1-2s.
+$$
+Here
+$$
+g''(s)=-\frac{3}{8s^{3/2}}<0.
+$$
+For the other branch,
+$$
+z(s)=1-\sqrt{s},
+$$
+one obtains
+$$
+g(s)=1-\frac32\sqrt{s}-2s,
+\qquad
+g''(s)=\frac{3}{8s^{3/2}}>0,
+$$
+which contradicts concavity. Hence only the first branch is admissible.
+
+Returning to $s=\log x$ gives
+$$
+f(x)=\frac32\sqrt{\log x}-1-2\log x.
+$$
+Indeed,
+$$
+\int_0^S\left(\frac32\sqrt{s}-1-2s\right)\,ds
+=S^{3/2}-S-S^2,
+$$
+so the improper integral converges and
+$$
+A(x)=\sqrt{S}-1-S.
+$$
+Writing $r=\sqrt S$, we have $Z=r-1$ and $f-A+S=r/2$; both sides of the required nonlinear relation reduce to
+$$
+2r^2(r-1)(r^4+r^2-2r+2).
+$$
+
+Final Answer: $\boxed{f(x)=\frac32\sqrt{\log x}-1-2\log x}$
 
 ---
 
 ## Answer
 
-$f(x)=\log\log x+1-2\log x$
+$f(x)=\frac32\sqrt{\log x}-1-2\log x$
 
 ---
 
@@ -155,8 +149,8 @@ $f(x)=\log\log x+1-2\log x$
 
 ## Solution Concepts
 
-- logarithmic-coordinate integral means
-- hidden exact differential
-- conserved quartic invariant
-- differentiability branch rigidity
+- logarithmic integral means
+- hidden rational first integral
+- algebraic branch geometry
+- differentiability at a branch crossing
 - concavity branch selection
