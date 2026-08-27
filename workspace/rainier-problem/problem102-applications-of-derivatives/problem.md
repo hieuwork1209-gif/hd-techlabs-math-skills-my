@@ -6,13 +6,15 @@ All logarithms are natural. Let $f:(1,\infty)\to\mathbb R$, and assume that the 
 $$
 A(x)=\frac{1}{\log x}\int_1^x\frac{f(t)}{t}\,dt.
 $$
-Assume that, for every $x>1$,
+For each $x>1$, put
 $$
-\bigl(1+\cosh(2A(x))\bigr)\bigl(f(x)-A(x)\bigr)^2=2,
+U=\log\log x,\qquad Z=A(x)+\log x.
 $$
-and that
+Assume that $A(e)=-1$ and that, for every $x>1$,
 $$
-A(e^e)+A(e^{1/e})=0.
+\bigl(U^3+U^2Z-3UZ^2+2Z^3+Z\bigr)\bigl(f(x)-A(x)+\log x\bigr)
+=
+4U^3-3U^2Z-UZ^2+U+Z^3.
 $$
 Determine $f(x)$ for all $x>1$.
 
@@ -31,4 +33,4 @@ Determine $f(x)$ for all $x>1$.
 
 ## Domain Explanation
 
-The logarithmic-coordinate integral mean converts the gap $f-A$ into a derivative after a second logarithmic change of variables. The nonlinear hyperbolic relation then becomes a first-order differential constraint; the nonlocal symmetry fixes its integration constant, and concavity selects the unique admissible branch. These derivative and concavity arguments make Applications of derivatives the primary sub-domain.
+After two logarithmic coordinate changes, the integral mean turns $f-A$ into a derivative. The displayed nonlinear relation then hides an exact differential and a conserved quartic invariant. The normalization forces the invariant to factor into two differentiable global branches, and concavity selects the unique admissible branch. These derivative and concavity arguments make Applications of derivatives the primary sub-domain.
