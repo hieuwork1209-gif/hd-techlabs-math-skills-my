@@ -1,133 +1,114 @@
 ## Steps
 
-Step 1: Reduce boundedness to coefficient inequalities
+Step 1: Convert boundedness to a uniform polynomial bound
 
-For fixed $s$, write
+For fixed $s$, the recurrence gives
 $$
-A_s=1+B_s-s(1-s),
+u_m=R_{a,b}(s)^m u_0.
+$$
+It is bounded for every real $u_0$ exactly when $|R_{a,b}(s)|\leq1$. Hence $\rho(a,b)$ is the largest initial interval on which
+$$
+|1-s+as^2+bs^3|\leq1.
+$$
+
+Step 2: Prove the sharp endpoint certificate for cubics
+
+Let $q$ be any real polynomial of degree at most $3$. Differentiating its Lagrange interpolation formula at the four nodes
+$$
+1,\quad \frac12,\quad -\frac12,\quad -1
+$$
+gives the identity
+$$
+q'(1)=\frac{19}{6}q(1)-4q\left(\frac12\right)
++\frac43q\left(-\frac12\right)-\frac12q(-1).
+$$
+This identity can also be checked directly on the basis $1,x,x^2,x^3$, so no general extremal theorem is being assumed.
+
+If $|q(x)|\leq1$ for $-1\leq x\leq1$, then each term on the right is at most its coefficient's absolute value. Therefore
+$$
+q'(1)\leq \frac{19}{6}+4+\frac43+\frac12=9.
+$$
+Moreover, equality can hold only if
+$$
+q(1)=1,
+\qquad q\left(\frac12\right)=-1,
+\qquad q\left(-\frac12\right)=1,
+\qquad q(-1)=-1.
+$$
+The unique cubic with these four values is
+$$
+q(x)=4x^3-3x.
+$$
+
+Step 3: Obtain the universal upper bound
+
+Fix $(a,b)$ and take any $L<\rho(a,b)$. Map $[0,L]$ onto $[-1,1]$ by setting
+$$
+q_L(x)=R_{a,b}\left(\frac{L}{2}(1-x)\right).
+$$
+Then $|q_L(x)|\leq1$ on $[-1,1]$, while
+$$
+q_L'(1)=-\frac{L}{2}R_{a,b}'(0)=\frac{L}{2},
+$$
+because $R_{a,b}'(0)=-1$. Step 2 yields $L/2\leq9$, so $L\leq18$. Letting $L$ increase to $\rho(a,b)$ gives
+$$
+\rho(a,b)\leq18
+$$
+for every pair $(a,b)$, and therefore $\rho_*\leq18$.
+
+Step 4: Attain the bound and prove uniqueness
+
+Take
+$$
+a_* = \frac{4}{27},
 \qquad
-p_s(r)=r^{2}-A_s r+B_s.
+b_*=-\frac{4}{729}.
 $$
-Every solution of the recurrence is bounded for every starting pair exactly when both roots of $p_s$ lie in the closed unit disk and every unit-modulus root is simple. This follows from the terms $r^{m}$ for a simple root and $m r^{m}$ for a repeated root.
-
-Since $p_s$ is real and monic, the closed Jury criterion puts both roots in the closed unit disk exactly when
+The corresponding amplification polynomial satisfies the exact factorizations
 $$
-1-A_s+B_s\geq0,
+R_{a_*,b_*}(s)-1=-\frac{s(2s-27)^2}{729},
 \qquad
-1+A_s+B_s\geq0,
-\qquad
-1-B_s\geq0.
+R_{a_*,b_*}(s)+1=\frac{(18-s)(2s-9)^2}{729}.
 $$
-For real roots, the first two left sides are $(1-r_1)(1-r_2)$ and $(1+r_1)(1+r_2)$; for nonreal roots, $B_s$ is their squared modulus. The same argument covers the non-strict boundary cases.
-
-Here the three left sides are
+Thus $-1\leq R_{a_*,b_*}(s)\leq1$ for $0\leq s\leq18$. For every $s>18$, the second factorization gives $R_{a_*,b_*}(s)<-1$. Hence
 $$
-s(1-s),
-\qquad
-2+2B_s-s(1-s),
-\qquad
-1-B_s.
-$$
-So the closed-disk condition for every $s\in[0,1]$ is equivalent to
-$$
--1+\frac{1}{2}s(1-s)\leq B_s\leq1
-\qquad(0\leq s\leq1).
+\rho(a_*,b_*)=18.
 $$
 
-Step 2: Derive the exact quadratic envelopes
+Now suppose another pair has stability radius $18$. Continuity gives $|R_{a,b}(s)|\leq1$ on the whole interval $[0,18]$. With
+$$
+q(x)=R_{a,b}(9(1-x)),
+$$
+we have $|q|\leq1$ on $[-1,1]$ and $q'(1)=9$. Equality must therefore hold in the certificate of Step 2, forcing
+$$
+q(x)=4x^3-3x.
+$$
+Consequently
+$$
+R_{a,b}(s)=4\left(1-\frac{s}{9}\right)^3-3\left(1-\frac{s}{9}\right)
+=1-s+\frac{4}{27}s^2-\frac{4}{729}s^3.
+$$
+Thus $(a,b)=(a_*,b_*)$, proving uniqueness.
 
-For real $x,c$, consider
-$$
-xs+cs(1-s)\leq1
-\qquad(0\leq s\leq1).
-$$
-The endpoint $s=1$ requires $x\leq1$. Under this condition, put $v=\sqrt{1-x}$. For $0<s<1$, the inequality is equivalent to
-$$
-c\leq\frac{1-xs}{s(1-s)}=\frac{1}{s}+\frac{v^{2}}{1-s}.
-$$
-The exact gap identity
-$$
-\frac{1}{s}+\frac{v^{2}}{1-s}-(1+v)^{2}
-=\frac{((1+v)s-1)^{2}}{s(1-s)}
-$$
-shows that the infimum is $(1+v)^{2}$. It is attained at $s=\frac{1}{1+v}$ when $v>0$ and approached as $s\to1$ when $v=0$. So
-$$
-xs+cs(1-s)\leq1\quad(0\leq s\leq1)
-$$
-holds exactly when
-$$
-x\leq1,
-\qquad
-c\leq(1+\sqrt{1-x})^{2}.
-$$
-
-Apply this envelope to $B_s=as+bs(1-s)\leq1$. It gives
-$$
-a\leq1,
-\qquad
-b\leq(1+\sqrt{1-a})^{2}.
-$$
-The lower stability inequality from Step 1 is equivalent to
-$$
-(-a)s+\left(\frac{1}{2}-b\right)s(1-s)\leq1.
-$$
-The same envelope with $x=-a$ and $c=\frac{1}{2}-b$ gives
-$$
-a\geq-1,
-\qquad
-b\geq\frac{1}{2}-(1+\sqrt{1+a})^{2}.
-$$
-So every characteristic root lies in the closed unit disk for every $s\in[0,1]$ exactly on
-$$
--1\leq a\leq1,
-\qquad
-\frac{1}{2}-(1+\sqrt{1+a})^{2}\leq b\leq(1+\sqrt{1-a})^{2}.
-$$
-
-Step 3: Remove the defective unit-root edge
-
-A repeated unit root of a real quadratic must be $1$ or $-1$. If $1$ is a root, then $p_s(1)=s(1-s)=0$, so $s=0$ or $s=1$. At $s=0$,
-$$
-p_0(r)=r(r-1),
-$$
-whose roots are simple. At $s=1$, since $B_1=a$,
-$$
-p_1(r)=(r-1)(r-a).
-$$
-The root $1$ is repeated exactly when $a=1$; the recurrence then has solutions containing the unbounded term $m$.
-
-A repeated root $-1$ would require $B_s=1$ and $A_s=-2$. But $B_s=1$ gives
-$$
-A_s=2-s(1-s)\geq\frac{7}{4},
-$$
-so this case is impossible. The closed region from Step 2 loses precisely the edge $a=1$. Every remaining unit-circle root is simple.
-
-Final Answer: $\boxed{\{(a,b):-1\leq a<1,\frac{1}{2}-(1+\sqrt{1+a})^{2}\leq b\leq(1+\sqrt{1-a})^{2}\}}$
-
----
+Final Answer: $\boxed{(18,\frac{4}{27},-\frac{4}{729})}$
 
 ## Answer
 
-$\{(a,b):-1\leq a<1,\frac{1}{2}-(1+\sqrt{1+a})^{2}\leq b\leq(1+\sqrt{1-a})^{2}\}$
-
----
+$(18,\frac{4}{27},-\frac{4}{729})$
 
 ## Classification
 
-**Problem Type:** Exhaustive enumeration
+**Problem Type:** Optimization
 
-**Answer Type:** Interval or region description
-
----
+**Answer Type:** Tuple or ordered list
 
 ## Solution Concepts
 
-- quadratic root condition
-- uniform stability envelope
-- repeated unit root
-
----
+- absolute stability polynomial
+- extremal cubic interpolation
+- equioscillation certificate
+- sharp stability radius
 
 ## Black-Box Audit
 
-No issues found.
+The sharp cubic derivative bound is proved directly from a four-node interpolation identity. No external theorem or computational black box is used.
