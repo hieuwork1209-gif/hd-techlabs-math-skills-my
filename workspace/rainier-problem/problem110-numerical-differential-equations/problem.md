@@ -2,21 +2,27 @@
 
 ## LaTeX (Normalized)
 
-For real parameters $a,b$, consider the one-step family applied to the decaying test equation $y'=-\kappa y$, where $\kappa>0$. With $s=h\kappa\geq0$, define
+For real parameters $a,b$, define the cubic stability polynomial
 $$
-R_{a,b}(s)=1-s+as^{2}+bs^{3},
-\qquad
-u_{m+1}=R_{a,b}(s)u_m\qquad(m\geq0).
+R_{a,b}(z)=1-z+az^2+bz^3.
 $$
-For each $(a,b)$, let
+For $L\geq0$, let
 $$
-\rho(a,b)=\sup\left\{L\geq0:\text{ for every }s\in[0,L]\text{ and every }u_0\in\mathbb R,\ (u_m)_{m\geq0}\text{ is bounded}\right\}.
+\Sigma_L=[0,L]\cup i[0,L/2].
 $$
-Let
+For each fixed $z\in\Sigma_L$ and $u_0\in\mathbb C$, consider
 $$
-\rho_* = \sup_{(a,b)\in\mathbb R^2}\rho(a,b).
+u_{m+1}=R_{a,b}(z)u_m\qquad(m\geq0).
 $$
-Show that the supremum is attained by a unique pair $(a_*,b_*)$, and determine the ordered triple $(\rho_*,a_*,b_*)$. Any extremal polynomial inequality used in the proof must be established directly rather than quoted as a black box.
+Set
+$$
+\rho(a,b)=\sup\left\{L\geq0:\text{ for every }z\in\Sigma_L\text{ and every }u_0\in\mathbb C,\ (u_m)_{m\geq0}\text{ is bounded}\right\},
+$$
+and
+$$
+\rho_*=\sup_{(a,b)\in\mathbb R^2}\rho(a,b).
+$$
+Show that $\rho_*$ is attained by a unique pair $(a_*,b_*)$, and determine the ordered triple $(\rho_*,a_*,b_*)$ exactly.
 
 ---
 
@@ -33,4 +39,4 @@ Show that the supremum is attained by a unique pair $(a_*,b_*)$, and determine t
 
 ## Domain Explanation
 
-This problem asks for the sharp real-axis stability radius of a parameterized one-step discretization and for the unique coefficients attaining it. Amplification polynomials and bounded discrete dynamics are central topics in numerical differential equations. The extremal-polynomial argument supplies the sharp optimization certificate.
+This problem asks for the sharp stability window of a cubic one-step amplification polynomial on coupled dissipative and oscillatory spectral segments. The real- and imaginary-axis constraints interact through the same method coefficients, making it a numerical stability optimization problem.
