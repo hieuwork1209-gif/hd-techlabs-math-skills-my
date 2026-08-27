@@ -11,9 +11,9 @@ We first determine $A_m$. Fix
 $$
 C=K\cap E_m,\qquad c=\dim C,
 $$
-and put $d=m-c$. There are ${m\brack c}_q$ choices for $C$, where
+and put $d=m-c$. There are $G_q(m,c)$ choices for $C$, where
 $$
-{m\brack c}_q=
+G_q(m,c)=
 \prod_{j=0}^{c-1}\frac{q^{m-j}-1}{q^{c-j}-1}.
 $$
 If
@@ -40,22 +40,22 @@ The preceding parametrization gives
 $$
 A_m
 =
-\sum_{c=0}^{m}(-1)^c{m\brack c}_q q^{(m-c)(m-c+1)/2}.
+\sum_{c=0}^{m}(-1)^cG_q(m,c)q^{(m-c)(m-c+1)/2}.
 $$
 Replacing $c$ by $m-d$ yields
 $$
 A_m
 =
-(-1)^m\sum_{d=0}^{m}(-1)^d{m\brack d}_q
+(-1)^m\sum_{d=0}^{m}(-1)^dG_q(m,d)
 q^{d(d-1)/2}q^d.
 $$
 The finite Gaussian identity
 $$
-\sum_{d=0}^{m}(-1)^d{m\brack d}_q q^{d(d-1)/2}z^d
+\sum_{d=0}^{m}(-1)^dG_q(m,d)q^{d(d-1)/2}z^d
 =
 \prod_{i=0}^{m-1}(1-zq^i)
 $$
-follows by expanding the product. The coefficient of $(-z)^d$ is the sum of $q^{i_1+\cdots+i_d}$ over $0\leq i_1<\cdots<i_d\leq m-1$; separating these subsets according to whether they contain $m-1$ gives the same recurrence and initial values as $q^{d(d-1)/2}{m\brack d}_q$. Setting $z=q$ gives
+follows by expanding the product. The coefficient of $(-z)^d$ is the sum of $q^{i_1+\cdots+i_d}$ over $0\leq i_1<\cdots<i_d\leq m-1$; separating these subsets according to whether they contain $m-1$ gives the same recurrence and initial values as $q^{d(d-1)/2}G_q(m,d)$. Setting $z=q$ gives
 $$
 A_m
 =
@@ -99,7 +99,7 @@ $$
 (-1)^{\dim(L\cap E)}
 =A_{n-r}.
 $$
-There are ${n\brack r}_q$ choices for $U$. For each one, the number of ordered $(n+1)$-tuples spanning $U$ is the number of surjective maps from $\mathbb{F}_q^{n+1}$ onto $U$. After a basis of $U$ is chosen, the transpose has $r$ independent columns, which may be selected successively in $q^{n+1}-q^j$ ways. Hence the number is
+There are $G_q(n,r)$ choices for $U$. For each one, the number of ordered $(n+1)$-tuples spanning $U$ is the number of surjective maps from $\mathbb{F}_q^{n+1}$ onto $U$. After a basis of $U$ is chosen, the transpose has $r$ independent columns, which may be selected successively in $q^{n+1}-q^j$ ways. Hence the number is
 $$
 \prod_{j=0}^{r-1}(q^{n+1}-q^j).
 $$
@@ -107,7 +107,7 @@ Consequently,
 $$
 T_{n,q}
 =
-\sum_{r=0}^{n}{n\brack r}_q
+\sum_{r=0}^{n}G_q(n,r)
 \left(\prod_{j=0}^{r-1}(q^{n+1}-q^j)\right)A_{n-r}.
 $$
 
@@ -119,7 +119,7 @@ D_s=\prod_{i=1}^{s}(q^i-1),
 $$
 so $A_s=D_s$. The identity
 $$
-{n\brack r}_qD_{n-r}=\frac{D_n}{D_r}
+G_q(n,r)D_{n-r}=\frac{D_n}{D_r}
 $$
 gives
 $$
@@ -132,23 +132,23 @@ Since
 $$
 \frac{\prod_{j=0}^{r-1}(q^{n+1}-q^j)}{D_r}
 =
-q^{r(r-1)/2}{n+1\brack r}_q,
+q^{r(r-1)/2}G_q(n+1,r),
 $$
 we obtain
 $$
 T_{n,q}
 =
-D_n\sum_{r=0}^{n}q^{r(r-1)/2}{n+1\brack r}_q.
+D_n\sum_{r=0}^{n}q^{r(r-1)/2}G_q(n+1,r).
 $$
 Applying the Gaussian identity from Step 2 with $m=n+1$ and $z=-1$ gives
 $$
-\sum_{r=0}^{n+1}q^{r(r-1)/2}{n+1\brack r}_q
+\sum_{r=0}^{n+1}q^{r(r-1)/2}G_q(n+1,r)
 =
 \prod_{i=0}^{n}(1+q^i).
 $$
 Our tuple span lies in the $n$-dimensional space $F$, so rank $n+1$ is impossible. The omitted top term is
 $$
-q^{n(n+1)/2}{n+1\brack n+1}_q=q^{n(n+1)/2}.
+q^{n(n+1)/2}G_q(n+1,n+1)=q^{n(n+1)/2}.
 $$
 Therefore
 $$
