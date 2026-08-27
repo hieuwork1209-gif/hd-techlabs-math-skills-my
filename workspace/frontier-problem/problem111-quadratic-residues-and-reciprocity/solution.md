@@ -5,7 +5,7 @@ For $a\in\mathbb F_q$, set $D_a(X)=F(X+a)-F(X)$. The identity
 $$
 \prod_{a\in\mathbb F_q}(Z-D_a(X))=Z^q-Z=\prod_{b\in\mathbb F_q}(Z-b)
 $$
-holds in $\mathbb F_q(X)[Z]$. Since the roots on the right are distinct, every $D_a(X)$ is a constant in $\mathbb F_q$, and $a\mapsto D_a$ is a bijection. Moreover
+holds in $\mathbb F_q(X)[Z]$. Since $(Z^q-Z)'=-1$, the polynomial $Z^q-Z$ is separable and has the $q$ distinct roots of $\mathbb F_q$. Unique factorization in $\mathbb F_q(X)[Z]$ therefore forces every $D_a(X)$ to equal one of these roots, so $D_a(X)$ is a constant in $\mathbb F_q$, and $a\mapsto D_a$ is a bijection. Moreover
 $$
 D_{a+b}=D_a+D_b,
 $$
@@ -47,7 +47,7 @@ For one ordered summand
 $$
 (z_j-z_i)^2(z_k-z_i)^4,
 $$
-the coefficient of $z_i^2z_j^2z_k^2$ is $\binom{4}{2}=6$. There are six ordered triples of distinct indices, so the coefficient of $z_1^2z_2^2z_3^2$ in $\Psi$ is $6\cdot6=36=1$ in $\mathbb F_7$. Therefore the coefficient of $x_u^2x_v^2x_w^2$ in $\mathcal C(x)$ is $1$ exactly when $\{u,v,w\}\in\mathscr H$, and is $0$ otherwise. Since $L$ only permutes coordinates, $\mathcal C(Lx)=\mathcal C(x)$ for all $x$ is equivalent to
+the coefficient of $z_i^2z_j^2z_k^2$ is $\binom{4}{2}=6$. There are six ordered triples of distinct indices, so the coefficient of $z_1^2z_2^2z_3^2$ in $\Psi$ is $6\cdot6=36=1$ in $\mathbb F_7$. A summand of $\mathcal C$ indexed by $\{r,s,t\}$ involves only the variables $x_r,x_s,x_t$, so the monomial $x_u^2x_v^2x_w^2$ can receive a contribution only from the triple $\{u,v,w\}$. Therefore its coefficient in $\mathcal C(x)$ is $1$ exactly when $\{u,v,w\}\in\mathscr H$, and is $0$ otherwise. Since $L$ only permutes coordinates, $\mathcal C(Lx)=\mathcal C(x)$ for all $x$ is equivalent to
 $$
 \{u,v,w\}\in\mathscr H
 \iff
