@@ -32,10 +32,10 @@ Determine $P_{n,q}$ exactly for all prime powers $q$ and all $n\ge4$. Give a sel
 
 | Field | Value |
 |---|---|
-| Domain | Topology and Geometry |
-| Sub-domain | Symplectic and contact geometry |
-| Problem Type | Symbolic derivation |
-| Answer Type | Polynomial or rational function |
+| **Domain** | Topology and Geometry |
+| **Sub-domain** | Symplectic and contact geometry |
+| **Problem Type** | Symbolic derivation |
+| **Answer Type** | Polynomial or rational function |
 
 ---
 
