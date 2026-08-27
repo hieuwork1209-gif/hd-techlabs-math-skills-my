@@ -1,158 +1,245 @@
 ## Steps
 
-Step 1: Reduce the recurrence to two coupled stability inequalities
+Step 1: Convert boundedness into three stability constraints
 
-For fixed $z$, the recurrence gives
+For fixed $z$,
 $$
-u_m=R_{a,b}(z)^m u_0.
+u_m=R_{a,b}(z)^m u_0,
 $$
-Thus it is bounded for every complex $u_0$ exactly when $|R_{a,b}(z)|\leq1$. Hence an admissible $L$ must satisfy this bound on both pieces of $\Sigma_L$.
+so boundedness for every $u_0$ is equivalent to $|R_{a,b}(z)|\leq1$.
 
-If $L>2$, put
+Let $L>0$ be admissible and set
 $$
-u=a+bL.
+A=aL^2,\qquad B=bL^3.
 $$
-At the real endpoint $z=L$, the lower bound $R_{a,b}(L)\geq-1$ gives
+On the imaginary ray,
 $$
-u\geq\frac{L-2}{L^2}. \tag{1}
+|R_{a,b}(iy)|^2-1
+=(1-2a)y^2+(a^2+2b)y^4+b^2y^6.
 $$
-At the imaginary endpoint $z=iL/2$,
+Hence stability for all sufficiently small $y>0$ forces
 $$
-|R_{a,b}(iL/2)|^2
-=\left(1-\frac{aL^2}{4}\right)^2
-+\frac{L^2}{4}\left(1+\frac{bL^2}{4}\right)^2. \tag{2}
+a\geq\frac12,\qquad A\geq A_0:=\frac{L^2}{2}. \tag{1}
 $$
-
-Step 2: Derive a sharp upper bound from a hidden square completion
-
-Substitute $a=u-bL$ into the right side of (2). Direct expansion gives the exact identity
+At $y=L/2$,
 $$
-|R_{a,b}(iL/2)|^2
-=
-\frac15\left(L-1+\frac{L^2u}{4}\right)^2
-+\frac{5L^6}{64}
-\left(
-b-\frac{4(L^2u-L-4)}{5L^3}
-\right)^2. \tag{3}
+(B+4L)^2\leq4A(8-A),
 $$
-If $L$ is admissible, then the left side is at most $1$. By (1), for $L>2$,
+so $0\leq A\leq8$ and
 $$
-L-1+\frac{L^2u}{4}
-\geq L-1+\frac{L-2}{4}
-=\frac{5L-6}{4}>0.
-$$
-Therefore (3) implies
-$$
-1\geq\frac{(5L-6)^2}{80}.
-$$
-Thus every admissible $L>2$ satisfies
-$$
-L\leq r:=\frac{6+4\sqrt5}{5}.
-$$
-Since $r>2$, the same bound is automatic when $L\leq2$. Hence
-$$
-\rho(a,b)\leq r
-$$
-for every pair $(a,b)$.
-
-Step 3: Determine the only possible equality pair
-
-Suppose $L=r$ is admissible. Equality must hold at every stage of Step 2. Hence
-$$
-u=\frac{r-2}{r^2}
-$$
-and the second square in (3) must vanish. Consequently
-$$
-b_*=-\frac{24}{5r^3},
-\qquad
-a_*=u-b_*r=\frac{5r+14}{5r^2}. \tag{4}
-$$
-Since $r=(6+4\sqrt5)/5$, these simplify to
-$$
-a_*=\frac{425-155\sqrt5}{121},
-\qquad
-b_*=\frac{15525-7050\sqrt5}{1331}. \tag{5}
-$$
-Thus any maximizer, if it exists, is unique.
-
-Step 4: Verify the real-axis constraint for the candidate
-
-From (4),
-$$
-a_*+b_*r=\frac{r-2}{r^2},
-$$
-so
-$$
-R_{a_*,b_*}(r)=-1.
-$$
-Also
-$$
-R_{a_*,b_*}'(s)=-1+2a_*s+3b_*s^2.
-$$
-The discriminant of this quadratic is $4(a_*^2+3b_*)$. Using
-$$
-25r^2-60r-44=0
-$$
-one obtains
-$$
-a_*^2+3b_*=
-\frac{25r^2-220r+196}{25r^4}
-=\frac{80(3-2r)}{25r^4}<0,
-$$
-because $2<r<3$. Hence $R_{a_*,b_*}'(s)<0$ for every real $s$. Therefore $R_{a_*,b_*}$ decreases from $1$ at $s=0$ to $-1$ at $s=r$, and
-$$
-|R_{a_*,b_*}(s)|\leq1
-\qquad(0\leq s\leq r).
+B\leq U(A,L):=-4L+2\sqrt{A(8-A)}. \tag{2}
 $$
 
-Step 5: Verify the imaginary-axis constraint and finish uniqueness
-
-For $y\in[0,r/2]$, put $t=y^2$. Then
+Now put $q=e^{i\pi/3}$. Since $q^2=-\frac12+\frac{\sqrt3}{2}i$ and $q^3=-1$,
 $$
-|R_{a_*,b_*}(iy)|^2-1
-=tG(t),
-$$
-where
-$$
-G(t)=1-2a_*+(a_*^2+2b_*)t+b_*^2t^2.
-$$
-The polynomial $G$ is convex because its quadratic coefficient is $b_*^2>0$. Also $a_*>1/2$, so $G(0)<0$. Equality in (3) at $L=r$ gives
-$$
-|R_{a_*,b_*}(ir/2)|=1,
-$$
-hence $G(r^2/4)=0$. A convex function lies below the chord joining its endpoint values, so
-$$
-G(t)\leq0
-\qquad\left(0\leq t\leq\frac{r^2}{4}\right).
+|R_{a,b}(qL)|^2
+=\left(1-\frac{A+L}{2}-B\right)^2+\frac34(A-L)^2.
 $$
 Thus
 $$
-|R_{a_*,b_*}(iy)|\leq1
-\qquad(0\leq y\leq r/2).
+D:=4-3(A-L)^2\geq0
 $$
-Therefore $\rho(a_*,b_*)\geq r$, while Step 2 gives $\rho_*\leq r$. Hence $\rho_* = r$.
+and
+$$
+B\geq V(A,L):=\frac{2-A-L-\sqrt D}{2}. \tag{3}
+$$
+The intervals in (2) and (3) must overlap, so
+$$
+K(A,L):=4\sqrt{A(8-A)}+\sqrt{4-3(A-L)^2}+A-7L-2\geq0. \tag{4}
+$$
 
-If another pair had $\rho(a,b)=r$, continuity would make $r$ admissible, and the equality conditions in Steps 2 and 3 would force exactly the coefficients in (4). Thus the maximizing pair is unique.
+Step 2: Show that the local imaginary constraint becomes active at the optimum
 
-Final Answer: $\boxed{(\frac{6+4\sqrt5}{5},\frac{425-155\sqrt5}{121},\frac{15525-7050\sqrt5}{1331})}$
+If $L<8/3$, it is already below the sharp value found below. Assume $L\geq8/3$.
+
+On the feasible range, $A\geq A_0>L$. Differentiating (4) with respect to $A$ gives
+$$
+K_A
+=
+1+\frac{4(4-A)}{\sqrt{A(8-A)}}
+-\frac{3(A-L)}{\sqrt{4-3(A-L)^2}}.
+$$
+The second and third terms are decreasing functions of $A$. At $A=A_0$ their sum also decreases as $L$ increases. Therefore
+$$
+K_A
+\leq
+1+\frac1{\sqrt5}-\frac{12}{\sqrt{33}}<0, \tag{5}
+$$
+where the right side is the value at $L=8/3$, $A_0=32/9$. Hence $K(A,L)$ is strictly decreasing in $A$, and (1),(4) imply
+$$
+0\leq K(A,L)\leq H(L):=K(A_0,L),
+$$
+where
+$$
+H(L)=2L\sqrt{16-L^2}
++\sqrt{4-\frac34L^2(L-2)^2}
++\frac{L^2}{2}-7L-2. \tag{6}
+$$
+If the second radical in (6) is not real, then (3) is already impossible for every $A\geq A_0$.
+
+Where (6) is real and $L\geq8/3$,
+$$
+H'(L)
+=
+\frac{4(8-L^2)}{\sqrt{16-L^2}}
+-\frac{3L(L-2)(L-1)}
+{2\sqrt{4-\frac34L^2(L-2)^2}}
++L-7<0. \tag{7}
+$$
+Indeed, on $[8/3,\sqrt8]$ the first term is less than $16/9$ while $L-7<-4$, and for $L\geq\sqrt8$ the first term is nonpositive.
+
+Also
+$$
+H(8/3)=\frac{64\sqrt5+2\sqrt{33}-154}{9}>0,
+$$
+while
+$$
+H(11/4)=\frac{132\sqrt{15}+\sqrt{829}-559}{32}<0.
+$$
+Thus there is a unique
+$$
+r\in(8/3,11/4)
+$$
+such that $H(r)=0$, and every admissible $L$ satisfies $L\leq r$.
+
+Step 3: Identify the exact algebraic value of the sharp bound
+
+Put
+$$
+s=\sqrt{16-r^2}.
+$$
+At $A=A_0=r^2/2$, equality $H(r)=0$ means that the upper endpoint from (2) equals the lower endpoint from (3). The common value is
+$$
+B_*=-4r+rs.
+$$
+Substituting $A=r^2/2$ and $B=B_*$ into the oblique endpoint equality gives
+$$
+3r^3+10r^2-114r-28+(-2r^2+28r+8)s=0. \tag{8}
+$$
+On $(8/3,11/4)$ the coefficient of $s$ is positive and the remaining cubic expression is negative, so squaring (8) introduces no sign ambiguity. Using $s^2=16-r^2$ gives
+$$
+P(r)=0,
+$$
+where
+$$
+P(x)=13x^6-52x^5+104x^4-208x^3+468x^2-784x-240. \tag{9}
+$$
+Conversely, any root of $P$ in $(8/3,11/4)$ satisfies (8), hence $H=0$. By Step 2 this root is unique. Therefore
+$$
+r=\operatorname{Root}_{(8/3,11/4)}(P).
+$$
+
+Step 4: Construct the candidate and verify the real and imaginary rays
+
+Define
+$$
+a_*=rac12,\qquad
+b_*=-\frac{1}{4+s}.
+$$
+Since $r^2=(4-s)(4+s)$,
+$$
+b_*r^2=s-4,\qquad b_*r^3=B_*.
+$$
+Thus both complex endpoint constraints used above are equalities.
+
+For the imaginary ray,
+$$
+|R_{a_*,b_*}(iy)|^2-1
+=
+y^4\left(\frac14+2b_*+b_*^2y^2\right).
+$$
+The bracket is affine increasing in $y^2$ and vanishes at $y=r/2$. Also $r>8/3>\sqrt7$ gives $s<3$, so $b_*<-1/7$ and the bracket is negative at $0$. Hence
+$$
+|R_{a_*,b_*}(iy)|\leq1\qquad(0\leq y\leq r/2). \tag{10}
+$$
+
+On the real ray,
+$$
+R_{a_*,b_*}'(x)=-1+x+3b_*x^2.
+$$
+Its discriminant is $1+12b_*<1-12/7<0$, so $R_{a_*,b_*}'(x)<0$ for every real $x$. Moreover
+$$
+R_{a_*,b_*}(r)+1
+=
+J(r):=
+2-5r+\frac{r^2}{2}+r\sqrt{16-r^2}.
+$$
+Moreover
+$$
+J'(L)=-5+L+\frac{16-2L^2}{\sqrt{16-L^2}}
+<-\frac94+\frac{64}{99}<0
+\qquad(8/3<L<11/4),
+$$
+so $J$ is decreasing there, and
+$$
+J(11/4)=\frac{66\sqrt{15}-255}{32}>0.
+$$
+Therefore $-1<R_{a_*,b_*}(r)<1$, and monotonicity gives
+$$
+|R_{a_*,b_*}(x)|\leq1\qquad(0\leq x\leq r). \tag{11}
+$$
+
+Step 5: Verify the oblique ray and prove uniqueness
+
+Let $u=3-r$, so $1/4<u<1/3$. Using (8), a direct expansion for $0\leq t\leq1$ gives
+$$
+|R_{a_*,b_*}(rtq)|^2-1
+=
+\frac{rt(t-1)}{4(14r+4-r^2)}\,Q_r(t), \tag{12}
+$$
+where $Q_r$ has the degree-$4$ Bernstein expansion
+$$
+Q_r(t)=\sum_{k=0}^{4}c_k\binom4k t^k(1-t)^{4-k},
+$$
+with
+$$
+\begin{aligned}
+c_0&=4(14r+4-r^2),\\
+c_1&=\frac{(10-r)(14r+4-r^2)}2,\\
+c_2&=\frac{435-u^4-22u^2-28u}{3},\\
+c_3&=\frac{-u^5+u^4+18u^3-158u^2+215u+565}{4},\\
+c_4&=-5u^5+55u^4-264u^3+620u^2-795u+725.
+\end{aligned}
+$$
+All five coefficients are positive for $1/4<u<1/3$: the first two are immediate, while
+$$
+c_2>\frac{384}{3},\qquad
+c_3>\frac{406}{4},\qquad
+c_4>725-265-\frac{264}{27}-\frac5{243}>0.
+$$
+Hence $Q_r(t)>0$ on $[0,1]$. Since $t(t-1)\leq0$, (12) proves
+$$
+|R_{a_*,b_*}(z)|\leq1
+\qquad\left(z\in e^{i\pi/3}[0,r]\right). \tag{13}
+$$
+Together with (10),(11), this shows $\rho(a_*,b_*)\geq r$. Step 2 gives the reverse inequality, so $\rho_*=r$.
+
+Finally, if another pair attained $r$, then (1) gives $A\geq r^2/2$, while (4) and the strict decrease in (5) give
+$$
+0\leq K(A,r)\leq K(r^2/2,r)=H(r)=0.
+$$
+Thus $A=r^2/2$, so $a=1/2$. The two endpoint intervals (2),(3) then touch at a single value $B=B_*$, forcing $b=b_*$. Hence the maximizing pair is unique.
+
+Final Answer: $\boxed{\operatorname{Root}_{(8/3,11/4)}(13x^6-52x^5+104x^4-208x^3+468x^2-784x-240)}$
 
 ## Answer
 
-$(\frac{6+4\sqrt5}{5},\frac{425-155\sqrt5}{121},\frac{15525-7050\sqrt5}{1331})$
+$\operatorname{Root}_{(8/3,11/4)}(13x^6-52x^5+104x^4-208x^3+468x^2-784x-240)$
 
 ## Classification
 
 **Problem Type:** Optimization
 
-**Answer Type:** Tuple or ordered list
+**Answer Type:** Exact scalar
 
 ## Solution Concepts
 
-- coupled real and imaginary stability
-- endpoint square completion
+- coupled stability on multiple spectral rays
+- endpoint interval overlap
+- leading-order degeneracy
+- Bernstein positivity certificate
 - equality-case rigidity
-- convex quadratic envelope
 
 ## Black-Box Audit
 
-The sharp bound comes from the explicit identity (3), followed by elementary endpoint and convexity arguments. No extremal-polynomial theorem or computational black box is used.
+The upper bound is obtained from explicit endpoint inequalities and monotonicity. The oblique-ray verification uses a displayed Bernstein-basis identity with coefficient signs proved on the isolating interval. No numerical optimizer or external extremal theorem is used.
