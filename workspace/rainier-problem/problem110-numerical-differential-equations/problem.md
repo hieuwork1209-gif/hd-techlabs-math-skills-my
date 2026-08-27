@@ -2,23 +2,23 @@
 
 ## LaTeX (Normalized)
 
-For real parameters $a,b$ and $s\geq0$, set
+For real parameters $a,b$ and $s\geq0$, define
 $$
-R_{a,b}(s)=1-s+as^2+bs^3,\qquad c=\frac3{25},
-$$
-and define
-$$
-A_s=\begin{pmatrix}1&cs\\0&R_{a,b}(s)\end{pmatrix},
+R_{a,b}(s)=1-s+as^2+bs^3,
 \qquad
-B_s=\begin{pmatrix}R_{a,b}(s)&0\\-cs&1\end{pmatrix}.
+S_{a,b}(s)=R_{a,b}(s)+\frac{s^2}{4}R_{a,b}''(s),
 $$
-For each fixed $s$ and $v_0\in\mathbb R^2$, define
+and
 $$
-v_{m+1}=
-\begin{cases}
-A_s v_m,&m\ \text{even},\\
-B_s v_m,&m\ \text{odd}.
-\end{cases}
+M_{a,b}(s)=
+\begin{pmatrix}
+R_{a,b}(s)&s\bigl(R_{a,b}(s)-S_{a,b}(s)\bigr)\\
+0&S_{a,b}(s)
+\end{pmatrix}.
+$$
+For each fixed $s$ and $v_0\in\mathbb R^2$, consider
+$$
+v_{m+1}=M_{a,b}(s)v_m\qquad(m\geq0).
 $$
 Set
 $$
@@ -28,7 +28,7 @@ and
 $$
 \rho_*=\sup_{(a,b)\in\mathbb R^2}\rho(a,b).
 $$
-Show that $\rho_*$ is attained by a unique pair $(a_*,b_*)$, and determine the ordered triple $(\rho_*,a_*,b_*)$ exactly.
+Show that $\rho_*$ is attained by a unique pair $(a_*,b_*)$, and determine $\rho_*$ exactly. You may use $\operatorname{Root}_I(P)$ to denote the unique real root of a polynomial $P$ in an interval $I$.
 
 ---
 
@@ -39,10 +39,10 @@ Show that $\rho_*$ is attained by a unique pair $(a_*,b_*)$, and determine the o
 | **Domain** | Differential Equations and Dynamical Systems |
 | **Sub-domain** | Numerical differential equations |
 | **Problem Type** | Optimization |
-| **Answer Type** | Tuple or ordered list |
+| **Answer Type** | Exact scalar |
 
 ---
 
 ## Domain Explanation
 
-This problem asks for the sharp stability interval of a periodically alternating two-stage amplification scheme. Power boundedness is controlled by the two-step monodromy matrix, whose unit-disk root conditions interact with the cubic scalar amplification polynomial.
+This problem asks for the sharp simultaneous stability interval of a cubic amplification mode and a curvature-corrected companion mode. Their competing unit-disk constraints force an interior tangency together with two opposed endpoint contacts.
