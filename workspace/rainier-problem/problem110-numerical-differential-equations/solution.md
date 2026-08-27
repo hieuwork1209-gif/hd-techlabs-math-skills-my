@@ -1,255 +1,188 @@
 ## Steps
 
-Step 1: Convert boundedness into three stability constraints
+Step 1: Reduce the alternating recurrence to two scalar inequalities
 
-For fixed $z$,
+Fix $s\geq0$ and abbreviate $R=R_{a,b}(s)$ and $c=3/25$. Then
 $$
-u_m=R_{a,b}(z)^m u_0,
+v_{2k}=C_s^k v_0,\qquad v_{2k+1}=A_sC_s^k v_0,
 $$
-so boundedness for every $u_0$ is equivalent to $|R_{a,b}(z)|\leq1$.
-
-Let $L>0$ be admissible and set
+where
 $$
-A=aL^2,\qquad B=bL^3.
-$$
-On the imaginary ray,
-$$
-|R_{a,b}(iy)|^2-1
-=(1-2a)y^2+(a^2+2b)y^4+b^2y^6.
-$$
-Hence stability for all sufficiently small $y>0$ forces
-$$
-a\geq\frac12,\qquad A\geq A_0:=\frac{L^2}{2}. \tag{1}
-$$
-At $y=L/2$,
-$$
-(B+4L)^2\leq4A(8-A),
-$$
-so $0\leq A\leq8$ and
-$$
-B\leq U(A,L):=-4L+2\sqrt{A(8-A)}. \tag{2}
-$$
-
-Now put $q=e^{i\pi/3}$. Since $q^2=-\frac12+\frac{\sqrt3}{2}i$ and $q^3=-1$,
-$$
-|R_{a,b}(qL)|^2
-=\left(1-\frac{A+L}{2}-B\right)^2+\frac34(A-L)^2.
-$$
-Thus
-$$
-D:=4-3(A-L)^2\geq0
-$$
-and
-$$
-B\geq V(A,L):=\frac{2-A-L-\sqrt D}{2}. \tag{3}
-$$
-The intervals in (2) and (3) must overlap, so
-$$
-K(A,L):=4\sqrt{A(8-A)}+\sqrt{4-3(A-L)^2}+A-7L-2\geq0. \tag{4}
-$$
-
-Step 2: Show that the local imaginary constraint becomes active at the optimum
-
-If $L<8/3$, it is already below the sharp value found below. Assume $L\geq8/3$.
-
-On the feasible range, $A\geq A_0>L$. Differentiating (4) with respect to $A$ gives
-$$
-K_A
+C_s=B_sA_s
 =
-1+\frac{4(4-A)}{\sqrt{A(8-A)}}
--\frac{3(A-L)}{\sqrt{4-3(A-L)^2}}.
+\begin{pmatrix}
+R&cRs\\
+-cs&R-c^2s^2
+\end{pmatrix}.
 $$
-The second and third terms are decreasing functions of $A$. At $A=A_0=L^2/2$, they become
+Thus the alternating recurrence is bounded for every $v_0$ exactly when $C_s$ is power bounded.
+
+The characteristic polynomial of $C_s$ is
 $$
-\frac{4(8-L^2)}{L\sqrt{16-L^2}}
-\quad\text{and}\quad
--\frac{3L(L-2)}{\sqrt{16-3L^2(L-2)^2}},
+p_s(\lambda)
+=
+\lambda^2-(2R-c^2s^2)\lambda+R^2.
 $$
-respectively. The derivative of the first expression is
+For a real monic quadratic with product of roots $D\in[0,1]$, its roots lie in the closed unit disk exactly when its values at $1$ and $-1$ are nonnegative. Indeed, nonreal roots are conjugate and have modulus $\sqrt D\leq1$; for real roots, a root outside $[-1,1]$ makes one of the endpoint values negative unless both roots lie beyond the same endpoint, which would force $D>1$.
+
+Here
 $$
--\frac{512}{L^2(16-L^2)^{3/2}}<0,
+p_s(1)=(1-R)^2+c^2s^2,
+\qquad
+p_s(-1)=(1+R)^2-c^2s^2.
 $$
-while $X\mapsto 3X/\sqrt{16-3X^2}$ is increasing and $X=L(L-2)$ increases for $L>1$. Therefore $K_A(A_0,L)$ decreases with $L$, and
+Hence, for $0<s<50/3$, all roots lie in the closed unit disk exactly when
 $$
-K_A
+cs-1\leq R\leq1. \tag{1}
+$$
+There is no defective unit-root case under (1): if $p_s(-1)=0$, then $-1$ is simple unless $R=1$ and $cs=2$, excluded by $s<50/3$; if $R=1$, the two unit roots are distinct for $0<cs<2$. At $s=0$, $C_0=I$.
+
+Therefore, on every interval contained in $[0,50/3)$, boundedness is equivalent to (1). Put
+$$
+P(s):=1-R_{a,b}(s)=s-as^2-bs^3.
+$$
+Then (1) becomes the pair of inequalities
+$$
+0\leq P(s)\leq 2-\frac{3s}{25}. \tag{2}
+$$
+
+Step 2: Prove the sharp upper bound by a hidden interpolation identity
+
+For every cubic of the form
+$$
+P(s)=s+\alpha s^2+\beta s^3,
+$$
+the following identity holds:
+$$
+3P\left(\frac{25}{6}\right)
+-\frac{48}{25}P\left(\frac{125}{12}\right)
++P\left(\frac{25}{2}\right)
+=5. \tag{3}
+$$
+This follows by substituting $P$: the displayed weights annihilate both the $s^2$ and $s^3$ terms, while their weighted sum on the linear term is $5$.
+
+Suppose $\rho(a,b)>25/2$. Since admissible lengths are downward closed, there is an admissible interval longer than $25/2$ but still shorter than $50/3$. Applying (2) at
+$$
+x_1=\frac{25}{6},\qquad
+x_2=\frac{125}{12},\qquad
+x_3=\frac{25}{2},
+$$
+gives
+$$
+P(x_1)\leq\frac32,\qquad
+P(x_2)\geq0,\qquad
+P(x_3)\leq\frac12.
+$$
+Using these in (3),
+$$
+5
+=
+3P(x_1)-\frac{48}{25}P(x_2)+P(x_3)
 \leq
-1+\frac1{\sqrt5}-\frac{12}{\sqrt{33}}<0, \tag{5}
+3\cdot\frac32+\frac12
+=5.
 $$
-where the right side is the value at $L=8/3$, $A_0=32/9$. Hence $K(A,L)$ is strictly decreasing in $A$, and (1),(4) imply
+Thus equality must hold in all three inequalities:
 $$
-0\leq K(A,L)\leq H(L):=K(A_0,L),
+P(x_1)=\frac32,\qquad P(x_2)=0,\qquad P(x_3)=\frac12. \tag{4}
 $$
-where
+The unique cubic with fixed linear coefficient $1$ satisfying (4) is
 $$
-H(L)=2L\sqrt{16-L^2}
-+\sqrt{4-\frac34L^2(L-2)^2}
-+\frac{L^2}{2}-7L-2. \tag{6}
-$$
-If the second radical in (6) is not real, then (3) is already impossible for every $A\geq A_0$.
-
-Where (6) is real and $L\geq8/3$,
-$$
-H'(L)
+P_*(s)
 =
-\frac{4(8-L^2)}{\sqrt{16-L^2}}
--\frac{3L(L-2)(L-1)}
-{2\sqrt{4-\frac34L^2(L-2)^2}}
-+L-7<0. \tag{7}
-$$
-Indeed, on $[8/3,\sqrt8]$ the first term is less than $16/9$ while $L-7<-4$, and for $L\geq\sqrt8$ the first term is nonpositive.
-
-Also
-$$
-H(8/3)=\frac{64\sqrt5+2\sqrt{33}-154}{9}>0,
-$$
-while
-$$
-H(11/4)=\frac{132\sqrt{15}+\sqrt{829}-559}{32}<0.
-$$
-Thus there is a unique
-$$
-r\in(8/3,11/4)
-$$
-such that $H(r)=0$, and every admissible $L$ satisfies $L\leq r$.
-
-Step 3: Identify the exact algebraic value of the sharp bound
-
-Put
-$$
-s=\sqrt{16-r^2}.
-$$
-At $A=A_0=r^2/2$, equality $H(r)=0$ means that the upper endpoint from (2) equals the lower endpoint from (3). The common value is
-$$
-B_*=-4r+rs.
-$$
-Substituting $A=r^2/2$ and $B=B_*$ into the oblique endpoint equality gives
-$$
-3r^3+10r^2-114r-28+(-2r^2+28r+8)s=0. \tag{8}
-$$
-On $(8/3,11/4)$ the coefficient of $s$ is positive and the remaining cubic expression is negative, so squaring (8) introduces no sign ambiguity. Using $s^2=16-r^2$ gives
-$$
-P(r)=0,
-$$
-where
-$$
-P(x)=13x^6-52x^5+104x^4-208x^3+468x^2-784x-240. \tag{9}
-$$
-Conversely, any root of $P$ in $(8/3,11/4)$ satisfies (8), hence $H=0$. By Step 2 this root is unique. Therefore
-$$
-r=\operatorname{Root}_{(8/3,11/4)}(P).
-$$
-
-Step 4: Construct the candidate and verify the real and imaginary rays
-
-Define
-$$
-a_*=rac12,\qquad
-b_*=-\frac{1}{4+s}.
-$$
-Since $r^2=(4-s)(4+s)$,
-$$
-b_*r^2=s-4,\qquad b_*r^3=B_*.
-$$
-Thus both complex endpoint constraints used above are equalities.
-
-For the imaginary ray,
-$$
-|R_{a_*,b_*}(iy)|^2-1
+s\left(1-\frac{12s}{125}\right)^2
 =
-y^4\left(\frac14+2b_*+b_*^2y^2\right).
+s-\frac{24}{125}s^2+\frac{144}{15625}s^3. \tag{5}
 $$
-The bracket is affine increasing in $y^2$ and vanishes at $y=r/2$. Also $r>8/3>\sqrt7$ gives $s<3$, so $b_*<-1/7$ and the bracket is negative at $0$. Hence
+For this polynomial,
 $$
-|R_{a_*,b_*}(iy)|\leq1\qquad(0\leq y\leq r/2). \tag{10}
-$$
-
-On the real ray,
-$$
-R_{a_*,b_*}'(x)=-1+x+3b_*x^2.
-$$
-Its discriminant is $1+12b_*<1-12/7<0$, so $R_{a_*,b_*}'(x)<0$ for every real $x$. Moreover
-$$
-R_{a_*,b_*}(r)+1
+2-\frac{3s}{25}-P_*(s)
 =
-J(r):=
-2-5r+\frac{r^2}{2}+r\sqrt{16-r^2}.
+\frac{2(25-2s)(6s-25)^2}{15625}. \tag{6}
 $$
-Moreover
+The right side is negative for every $s>25/2$ sufficiently close to $25/2$, contradicting (2). Therefore
 $$
-J'(L)=-5+L+\frac{16-2L^2}{\sqrt{16-L^2}}
-<-\frac94+\frac{64}{99}<0
-\qquad(8/3<L<11/4),
+\rho(a,b)\leq\frac{25}{2}
 $$
-so $J$ is decreasing there, and
-$$
-J(11/4)=\frac{66\sqrt{15}-255}{32}>0.
-$$
-Therefore $-1<R_{a_*,b_*}(r)<1$, and monotonicity gives
-$$
-|R_{a_*,b_*}(x)|\leq1\qquad(0\leq x\leq r). \tag{11}
-$$
+for every pair $(a,b)$.
 
-Step 5: Verify the oblique ray and prove uniqueness
+Step 3: Construct and verify the extremizer
 
-Let $u=3-r$, so $1/4<u<1/3$. Using (8), a direct expansion for $0\leq t\leq1$ gives
+Take
 $$
-|R_{a_*,b_*}(rtq)|^2-1
+a_*=\frac{24}{125},
+\qquad
+b_*=-\frac{144}{15625}.
+$$
+Then (5) gives
+$$
+1-R_{a_*,b_*}(s)
 =
-\frac{rt(t-1)}{4(14r+4-r^2)}\,Q_r(t), \tag{12}
+\frac{s(12s-125)^2}{15625}\geq0.
 $$
-where $Q_r$ has the degree-$4$ Bernstein expansion
+Also, by (6),
 $$
-Q_r(t)=\sum_{k=0}^{4}c_k\binom4k t^k(1-t)^{4-k},
+R_{a_*,b_*}(s)-\frac{3s}{25}+1
+=
+\frac{2(25-2s)(6s-25)^2}{15625}\geq0
+\qquad
+\left(0\leq s\leq\frac{25}{2}\right).
 $$
-with
+Hence
 $$
-\begin{aligned}
-c_0&=4(14r+4-r^2),\\
-c_1&=\frac{(10-r)(14r+4-r^2)}2,\\
-c_2&=\frac{435-u^4-22u^2-28u}{3},\\
-c_3&=\frac{-u^5+u^4+18u^3-158u^2+215u+565}{4},\\
-c_4&=-5u^5+55u^4-264u^3+620u^2-795u+725.
-\end{aligned}
+\frac{3s}{25}-1
+\leq
+R_{a_*,b_*}(s)
+\leq1
+\qquad
+\left(0\leq s\leq\frac{25}{2}\right).
 $$
-All five coefficients are positive for $1/4<u<1/3$: the first two are immediate, while
+Since $25/2<50/3$, Step 1 shows that the alternating recurrence is bounded for every initial vector throughout this interval. Thus
 $$
-c_2>\frac{384}{3},\qquad
-c_3>\frac{406}{4},\qquad
-c_4>725-265-\frac{264}{27}-\frac5{243}>0.
+\rho(a_*,b_*)\geq\frac{25}{2}.
 $$
-Hence $Q_r(t)>0$ on $[0,1]$. Since $t(t-1)\leq0$, (12) proves
+Together with Step 2,
 $$
-|R_{a_*,b_*}(z)|\leq1
-\qquad\left(z\in e^{i\pi/3}[0,r]\right). \tag{13}
+\rho_*=\frac{25}{2}.
 $$
-Together with (10),(11), this shows $\rho(a_*,b_*)\geq r$. Step 2 gives the reverse inequality, so $\rho_*=r$.
 
-Finally, if another pair attained $r$, then (1) gives $A\geq r^2/2$, while (4) and the strict decrease in (5) give
-$$
-0\leq K(A,r)\leq K(r^2/2,r)=H(r)=0.
-$$
-Thus $A=r^2/2$, so $a=1/2$. The two endpoint intervals (2),(3) then touch at a single value $B=B_*$, forcing $b=b_*$. Hence the maximizing pair is unique.
+Step 4: Prove uniqueness
 
-Final Answer: $\boxed{\operatorname{Root}_{(8/3,11/4)}(13x^6-52x^5+104x^4-208x^3+468x^2-784x-240)}$
+Suppose $\rho(a,b)=25/2$. Every interval $[0,L]$ with $L<25/2$ is admissible. Hence (2) holds at $x_1$ and $x_2$, and by continuity it also holds at $x_3=25/2$. Applying the identity (3) again forces equality in all three bounds, so (4) holds.
+
+As in Step 2, these values uniquely determine
+$$
+P(s)=P_*(s)
+=
+s-\frac{24}{125}s^2+\frac{144}{15625}s^3.
+$$
+Since $P(s)=s-as^2-bs^3$, this forces
+$$
+a=\frac{24}{125},
+\qquad
+b=-\frac{144}{15625}.
+$$
+Therefore the maximizing pair is unique.
+
+Final Answer: $\boxed{(\frac{25}{2},\frac{24}{125},-\frac{144}{15625})}$
 
 ## Answer
 
-$\operatorname{Root}_{(8/3,11/4)}(13x^6-52x^5+104x^4-208x^3+468x^2-784x-240)$
+$(\frac{25}{2},\frac{24}{125},-\frac{144}{15625})$
 
 ## Classification
 
 **Problem Type:** Optimization
 
-**Answer Type:** Exact scalar
+**Answer Type:** Tuple or ordered list
 
 ## Solution Concepts
 
-- coupled stability on multiple spectral rays
-- endpoint interval overlap
-- leading-order degeneracy
-- Bernstein positivity certificate
+- two-step monodromy matrix
+- direct unit-disk root criterion
+- sharp interpolation certificate
 - equality-case rigidity
 
 ## Black-Box Audit
 
-The upper bound is obtained from explicit endpoint inequalities and monotonicity. The oblique-ray verification uses a displayed Bernstein-basis identity with coefficient signs proved on the isolating interval. No numerical optimizer or external extremal theorem is used.
+The matrix power-boundedness criterion is derived directly from the characteristic quadratic, including the unit-root cases. The sharp upper bound comes from the explicit interpolation identity (3), and the extremizer is verified by the factorizations (5) and (6). No optimization theorem, root-location black box, or numerical search is used.
