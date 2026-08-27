@@ -20,10 +20,10 @@ for every $x\in[0,2\pi n]$, let $M(y)$ be the maximum of $y$ on the closure of t
 
 | Field | Value |
 |---|---|
-| Domain | Differential Equations and Dynamical Systems |
-| Sub-domain | Boundary value problems |
-| Problem Type | Exhaustive enumeration |
-| Answer Type | Set or multiset of objects |
+| **Domain** | Differential Equations and Dynamical Systems |
+| **Sub-domain** | Boundary value problems |
+| **Problem Type** | Exhaustive enumeration |
+| **Answer Type** | Set or multiset of objects |
 
 ---
 
