@@ -64,27 +64,27 @@ where
 $$
 \binom{N}{j}_t=\frac{(t;t)_N}{(t;t)_j(t;t)_{N-j}}.
 $$
-We now derive the needed product formula rather than invoke it externally. With binomial coefficients outside their natural range interpreted as zero, the product definition gives
+We now derive the needed product formula rather than invoke it externally. Keep the present value $q=q_N$ fixed. For an auxiliary integer $n\geq0$, interpret binomial coefficients outside their natural range as zero. The product definition gives
 $$
-\binom{N}{j-1}_t+t^j\binom{N}{j}_t
-=\frac{(t;t)_N\bigl((1-t^j)+t^j(1-t^{N-j+1})\bigr)}{(t;t)_j(t;t)_{N-j+1}}
-=\binom{N+1}{j}_t.
+\binom{n}{j-1}_t+t^j\binom{n}{j}_t
+=\frac{(t;t)_n\bigl((1-t^j)+t^j(1-t^{n-j+1})\bigr)}{(t;t)_j(t;t)_{n-j+1}}
+=\binom{n+1}{j}_t.
 $$
 Define
 $$
-A_{N,j}=q^{(N-j)^2}\binom{N}{j}_t.
+A_{n,j}=q^{(n-j)^2}\binom{n}{j}_t.
 $$
 The preceding recurrence and $t=q^2$ imply
 $$
-A_{N+1,j}=A_{N,j-1}+q^{2N+1}A_{N,j}.
+A_{n+1,j}=A_{n,j-1}+q^{2n+1}A_{n,j}.
 $$
-Thus the polynomial $P_N(z)=\sum_{j=0}^{N}A_{N,j}z^j$ satisfies
+Thus the polynomial $P_n(z)=\sum_{j=0}^{n}A_{n,j}z^j$ satisfies
 $$
 P_0(z)=1,
 \qquad
-P_{N+1}(z)=(z+q^{2N+1})P_N(z).
+P_{n+1}(z)=(z+q^{2n+1})P_n(z).
 $$
-Induction now gives the exact coefficient identity
+Induction, followed by setting $n=N$, gives the exact coefficient identity
 $$
 \sum_{j=0}^{N}\binom{N}{j}_tq^{(N-j)^2}z^j
 =\prod_{r=0}^{N-1}(z+q^{2r+1}).
