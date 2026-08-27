@@ -2,27 +2,33 @@
 
 ## LaTeX (Normalized)
 
-For real parameters $a,b$, define
+For real parameters $a,b$ and $s\geq0$, set
 $$
-R_{a,b}(z)=1-z+az^2+bz^3.
+R_{a,b}(s)=1-s+as^2+bs^3,\qquad c=\frac3{25},
 $$
-For $L\geq0$, let
+and define
 $$
-\Gamma_L=[0,L]\cup i[0,L/2]\cup e^{i\pi/3}[0,L].
+A_s=\begin{pmatrix}1&cs\\0&R_{a,b}(s)\end{pmatrix},
+\qquad
+B_s=\begin{pmatrix}R_{a,b}(s)&0\\-cs&1\end{pmatrix}.
 $$
-For each fixed $z\in\Gamma_L$ and $u_0\in\mathbb C$, consider
+For each fixed $s$ and $v_0\in\mathbb R^2$, define
 $$
-u_{m+1}=R_{a,b}(z)u_m\qquad(m\geq0).
+v_{m+1}=
+\begin{cases}
+A_s v_m,&m\ \text{even},\\
+B_s v_m,&m\ \text{odd}.
+\end{cases}
 $$
 Set
 $$
-\rho(a,b)=\sup\left\{L\geq0:\text{ for every }z\in\Gamma_L\text{ and every }u_0\in\mathbb C,\ (u_m)_{m\geq0}\text{ is bounded}\right\},
+\rho(a,b)=\sup\left\{L\geq0:\text{ for every }s\in[0,L]\text{ and every }v_0\in\mathbb R^2,\ (v_m)_{m\geq0}\text{ is bounded}\right\},
 $$
 and
 $$
 \rho_*=\sup_{(a,b)\in\mathbb R^2}\rho(a,b).
 $$
-Show that $\rho_*$ is attained by a unique pair $(a_*,b_*)$, and determine $\rho_*$ exactly. You may use $\operatorname{Root}_I(P)$ to denote the unique real root of a polynomial $P$ in an interval $I$.
+Show that $\rho_*$ is attained by a unique pair $(a_*,b_*)$, and determine the ordered triple $(\rho_*,a_*,b_*)$ exactly.
 
 ---
 
@@ -33,10 +39,10 @@ Show that $\rho_*$ is attained by a unique pair $(a_*,b_*)$, and determine $\rho
 | **Domain** | Differential Equations and Dynamical Systems |
 | **Sub-domain** | Numerical differential equations |
 | **Problem Type** | Optimization |
-| **Answer Type** | Exact scalar |
+| **Answer Type** | Tuple or ordered list |
 
 ---
 
 ## Domain Explanation
 
-This problem asks for the largest simultaneous stability scale of a cubic amplification polynomial on three coupled spectral rays. The imaginary ray imposes a local order constraint, while the oblique ray creates a competing nonlocal stability regime.
+This problem asks for the sharp stability interval of a periodically alternating two-stage amplification scheme. Power boundedness is controlled by the two-step monodromy matrix, whose unit-disk root conditions interact with the cubic scalar amplification polynomial.
