@@ -1,146 +1,220 @@
 ## Steps
 
-Step 1: Linearize the recurrence in a quadratic algebra
+Step 1: Reveal the hidden quadratic recurrence
+Put
+$$
+\psi(y)=\frac{y+1}{2y+3}.
+$$
+A direct calculation gives
+$$
+\psi(y^2-2)
+=\frac{\psi(y)(5\psi(y)-2)}{14\psi(y)^2-8\psi(y)+1}.
+$$
+Since $\psi(3)=4/9$, the given sequence is
+$$
+x_k=\psi(y_k),
+\qquad
+y_0=3,\qquad y_{k+1}=y_k^2-2.
+$$
+Modulo $5$, the sequence $y_k$ is $3,2,2,\ldots$, and modulo $11$ it alternates between $3$ and $7$. Hence $2y_k+3$ and $2y_k^2-1$ are units modulo both primes. Indeed
+$$
+14\psi(y)^2-8\psi(y)+1
+=\frac{2y^2-1}{(2y+3)^2},
+$$
+so every step in the original recurrence is uniquely defined.
+
+Moreover,
+$$
+\psi(u)-\psi(v)
+=\frac{u-v}{(2u+3)(2v+3)}.
+$$
+Thus $\psi$ preserves equality throughout the orbit, and the sequences $(x_k)$ and $(y_k)$ have the same preperiod and period.
+
+Step 2: Determine the local preperiods and periods
 Let $\alpha$ satisfy
 $$
 \alpha^2-3\alpha+1=0.
 $$
-Then $\alpha+\alpha^{-1}=3$, and induction gives
-$$
-x_k=\alpha^{2^k}+\alpha^{-2^k}\qquad(k\geq0),
-$$
-because replacing an exponent $a$ by $2a$ sends $\alpha^a+\alpha^{-a}$ to its square minus $2$. We analyze this trace separately over the $5$-adic and $11$-adic components of $R_n$.
-
-Step 2: Determine the ramified $5$-adic preperiod and period
-In $K=\mathbb Q_5(\pi)$ with $\pi^2=5$, take
-$$
-\alpha=\frac{3+\pi}{2},\qquad u=\alpha^2=\frac{7+3\pi}{2}.
-$$
 Then
 $$
-u-1=\frac{\pi(\pi+3)}2,
+y_k=\alpha^{2^k}+\alpha^{-2^k}.
 $$
-so $v_\pi(u-1)=1$, where $v_\pi(\pi)=1$ and $5^n=\pi^{2n}$. For $k\geq1$,
-$$
-x_k=u^{2^{k-1}}+u^{-2^{k-1}}.
-$$
-Also $x_0\equiv3\pmod5$, whereas $x_k\equiv2\pmod5$ for every $k\geq1$, so the local preperiod is exactly $1$.
 
-For every nonzero integer $m$, the lifting-the-exponent calculation in $K$ gives
+For the $5$-adic component, work in $\mathbb Q_5(\pi)$ with $\pi^2=5$ and put
 $$
-v_\pi(u^m-1)=1+2v_5(m).
+u=\alpha^2=\frac{7+3\pi}{2}.
 $$
-If $a,b$ are powers of $2$ and $X(a)=u^a+u^{-a}$, then
+Since $v_\pi(u-1)=1$,
+$$
+v_\pi(u^m-1)=1+2v_5(m)
+$$
+for every nonzero integer $m$. If $X(a)=u^a+u^{-a}$ and $a,b$ are powers of $2$, then
 $$
 X(a)-X(b)=u^{-a}(u^{a-b}-1)(u^{a+b}-1).
 $$
-The integers $a-b$ and $a+b$ cannot both be divisible by $5$. Hence
+The integers $a-b$ and $a+b$ cannot both be divisible by $5$, so
 $$
-v_\pi(X(a)-X(b))=2+2\max\{v_5(a-b),v_5(a+b)\}.
+X(a)\equiv X(b)\pmod{5^n}
+\iff
+a\equiv\pm b\pmod{5^{n-1}}.
 $$
-Thus $X(a)\equiv X(b)\pmod{5^n}$ exactly when $a\equiv\pm b\pmod{5^{n-1}}$. A return after $d$ steps therefore requires
+Also $y_0\equiv3\pmod5$, while $y_k\equiv2\pmod5$ for $k\geq1$. Therefore
 $$
-2^d\equiv\pm1\pmod{5^{n-1}}.
-$$
-Since $\operatorname{ord}_{5^{n-1}}(2)=4\cdot5^{n-2}$, the least such $d$ is
-$$
+\mu_5=1,
+\qquad
 L_5=2\cdot5^{n-2}.
 $$
 
-Step 3: Compute one ramified $5$-adic cycle sum
-Let $\ell=\log u$, so $v_\pi(\ell)=1$. For $j\geq0$,
+For the $11$-adic component, choose the Hensel root $\alpha\equiv9\pmod{11}$. The relation $\alpha^2=3\alpha-1$ gives
 $$
-x_{1+j}=2+\sum_{r\geq1}\frac{2\ell^{2r}}{(2r)!}4^{rj}.
+\alpha^5-1=11(5\alpha-2),
 $$
-Put $L=L_5$ and
+where $5\alpha-2$ is an $11$-adic unit. Hence
 $$
-A_r=\sum_{j=0}^{L-1}4^{rj}.
+\operatorname{ord}_{11^n}(\alpha)=5\cdot11^{n-1}.
 $$
-Because $L=\operatorname{ord}_{5^{n-1}}(4)$, LTE gives
+The same factorization shows that equality of two trace values is equivalent to congruence of their exponents up to sign modulo $5\cdot11^{n-1}$. A positive return has length
 $$
-v_\pi(A_r)=
-\begin{cases}
-2(n-1+v_5(r)),&r\text{ odd},\\
-2(n-2),&r\text{ even}.
-\end{cases}
+\operatorname{lcm}\!\left(\operatorname{ord}_5(2),
+\operatorname{ord}_{11^{n-1}}(2)\right)
+=20\cdot11^{n-2}.
 $$
-Also
+A negative return is impossible: modulo $5$ it would require an even exponent congruent to $2$ modulo $4$, while modulo $11^{n-1}$ it would require an odd exponent. Thus
 $$
-v_\pi\!\left(\frac{2\ell^{2r}}{(2r)!}\right)=2r-2v_5((2r)!).
-$$
-For odd $r$ the two displayed valuations sum to at least $2n$, and for even $r$ this follows from $r-v_5((2r)!)\geq2$. Every nonconstant contribution therefore vanishes modulo $\pi^{2n}=5^n$. The local cycle sum is
-$$
-C_5\equiv2L_5=4\cdot5^{n-2}\pmod{5^n}.
-$$
-
-Step 4: Determine the split $11$-adic period and cycle sum
-The polynomial $T^2-3T+1$ has a Hensel root $\alpha\in\mathbb Z_{11}$ with $\alpha\equiv5\pmod{11}$. From $\alpha^2=3\alpha-1$ one obtains
-$$
-\alpha^5=55\alpha-21,
-$$
-so
-$$
-\alpha^5-1=11(5\alpha-2),\qquad 5\alpha-2\equiv1\pmod{11}.
-$$
-Consequently
-$$
-\operatorname{ord}_{11^n}(\alpha)=5\cdot11^{n-1}=:N.
-$$
-For powers $a,b$ of $2$, the same trace factorization shows that equality modulo $11^n$ is equivalent to $a\equiv\pm b\pmod N$; the two factors cannot both be divisible by $11$, since that would force $5\mid a-b$ and $5\mid a+b$. Thus the local sequence is purely periodic, and its period is the least $d>0$ with $2^d\equiv\pm1\pmod N$.
-
-Now
-$$
-\operatorname{ord}_{5}(2)=4,
+\mu_{11}=0,
 \qquad
-\operatorname{ord}_{11^{n-1}}(2)=10\cdot11^{n-2},
-$$
-so the least positive return is $20\cdot11^{n-2}$. A negative return is impossible: modulo $5$ it would force $d\equiv2\pmod4$, while modulo $11^{n-1}$ it would force $d\equiv5\cdot11^{n-2}\pmod{10\cdot11^{n-2}}$, an odd integer. Hence
-$$
 L_{11}=20\cdot11^{n-2}.
 $$
 
-The subgroup generated by $2$ has index $2$ in $(\mathbb Z/N\mathbb Z)^\times$, and $-1$ is not in it. Therefore the local cycle sum is
+Consequently
 $$
-C_{11}=\sum_{(a,N)=1}\alpha^a.
+\mu_n=1,
+\qquad
+\lambda_n=\operatorname{lcm}(L_5,L_{11})
+=4\cdot55^{n-2}.
 $$
-With $S_d=\sum_{b=1}^{N/d}\alpha^{db}$, inclusion-exclusion gives
+
+Step 3: Establish the cycle-sum lifting rule
+Let $C_p(m)$ denote one local cycle sum of the $x$-sequence modulo $p^m$, using the tail cycle when $p=5$. The exponent descriptions in Step 2 show that reduction from level $m$ to level $m-1$ maps the local cycle $p$-to-$1$.
+
+For a fixed lower-level exponent $a$, its lifts have the form $a+jM$, where $0\leq j<p$. The valuation formulas above imply
 $$
-C_{11}=S_1-S_5-S_{11}+S_{55}.
+Y(a+jM)=Y(a)+jp^{m-1}c_a\pmod{p^m},
 $$
-The geometric sums satisfy $S_1\equiv S_{11}\equiv0\pmod{11^n}$. Since $v_{11}(\alpha^5-1)=1$ and $v_{11}(\alpha^{55}-1)=2$, binomial expansion of the remaining geometric sums gives
+where $Y(a)$ is the relevant trace and $c_a$ is a $p$-adic unit. For $p=5$, this follows because the ramified increment has $\pi$-valuation $2m-3$ and is multiplied by $u^a-u^{-a}$, which has $\pi$-valuation $1$. For $p=11$, it follows directly from
 $$
-S_5\equiv11^{n-1},\qquad S_{55}\equiv11^{n-2}\pmod{11^n}.
+\alpha^M=1+c\,11^{m-1}\pmod{11^m}.
+$$
+
+Since
+$$
+\psi'(y)=\frac{1}{(2y+3)^2}
+$$
+is a unit on the orbit,
+$$
+\psi(Y(a+jM))
+=\psi(Y(a))+jp^{m-1}d_a\pmod{p^m}
+$$
+for another unit $d_a$. Summing over $j$ and using
+$$
+\sum_{j=0}^{p-1}j=\frac{p(p-1)}2
+$$
+gives
+$$
+C_p(m)\equiv pC_p(m-1)\pmod{p^m}.
+$$
+
+Step 4: Compute the two base cycle sums
+Modulo $25$, the tail cycle of $y_k$ is $7,22$. Therefore
+$$
+\psi(7)\equiv24,
+\qquad
+\psi(22)\equiv9\pmod{25},
+$$
+so
+$$
+C_5(2)\equiv8\pmod{25}.
+$$
+Step 3 yields
+$$
+C_5(n)\equiv8\cdot5^{n-2}\pmod{5^n}.
+$$
+
+For the $11$-adic base, the root $\alpha\equiv9\pmod{11}$ is
+$$
+\alpha\equiv86=9\cdot23\pmod{121},
+$$
+where $9$ has order $5$ and $23=1+22$ has order $11$. Let
+$$
+H=\langle2\rangle\subset(\mathbb Z/55\mathbb Z)^\times.
+$$
+For each $r\in\{1,2,3,4\}$, the set
+$$
+H_r=\{a\in H:a\equiv r\pmod5\}
+$$
+has five elements and satisfies
+$$
+\sum_{a\in H_r}a\equiv0\pmod{11};
+$$
+indeed, the kernel of $H\to(\mathbb Z/5\mathbb Z)^\times$ maps to the order-$5$ subgroup of $\mathbb F_{11}^\times$, whose elements sum to $0$.
+
+Since $23^a\equiv1+22a\pmod{121}$, the first-order corrections cancel inside each $H_r$. Hence
+$$
+C_{11}(2)
+\equiv
+5\sum_{r=1}^4
+\psi(9^r+9^{-r})
+\pmod{121}.
+$$
+The four trace values are $36,84,84,36$, and
+$$
+\psi(36)\equiv86,
+\qquad
+\psi(84)\equiv38\pmod{121}.
 $$
 Thus
 $$
-C_{11}\equiv-10\cdot11^{n-2}\pmod{11^n}.
+C_{11}(2)\equiv5(86+38+38+86)\equiv30\pmod{121}.
+$$
+Step 3 gives
+$$
+C_{11}(n)\equiv30\cdot11^{n-2}\pmod{11^n}.
 $$
 
-Step 5: Combine the local data by the Chinese remainder theorem
-The local preperiods are $1$ and $0$, so $\mu_n=1$. For $n\geq3$,
+Step 5: Reconstruct the global cycle sum
+Modulo $5^n$, the global cycle contains
 $$
-\lambda_n=\operatorname{lcm}(L_5,L_{11})=4\cdot55^{n-2}.
+\frac{\lambda_n}{L_5}=2\cdot11^{n-2}
 $$
-A global cycle contains $2\cdot11^{n-2}$ complete $5$-adic cycles and $5^{n-3}$ complete $11$-adic cycles. Hence
+local cycles, so
 $$
-s_n\equiv8\cdot55^{n-2}\pmod{5^n},
+s_n\equiv16\cdot55^{n-2}\pmod{5^n}.
+$$
+Modulo $11^n$, it contains
+$$
+\frac{\lambda_n}{L_{11}}=5^{n-3}
+$$
+local cycles, so
+$$
+s_n\equiv6\cdot55^{n-2}\pmod{11^n}.
+$$
+Write $s_n=55^{n-2}c$. Then
+$$
+c\equiv16\pmod{25},
 \qquad
-s_n\equiv-2\cdot55^{n-2}\pmod{11^n}.
+c\equiv6\pmod{121}.
 $$
-Write $s_n=55^{n-2}t$. After cancellation, the two congruences become
+The unique solution modulo $3025$ is $c=1216$. Since $0\leq1216<3025$,
 $$
-t\equiv8\pmod{25},
-\qquad
-t\equiv-2\pmod{121}.
+s_n=1216\cdot55^{n-2}.
 $$
-Their unique solution modulo $3025$ is $t=1208$. Since $0\leq1208<3025$, the required representative is $s_n=1208\cdot55^{n-2}$.
-Final Answer: $\boxed{(1,4\cdot55^{n-2},1208\cdot55^{n-2})}$
+Final Answer: $\boxed{(1,4\cdot55^{n-2},1216\cdot55^{n-2})}$
 
 ---
 
 ## Answer
 
-$(1,4\cdot55^{n-2},1208\cdot55^{n-2})$
+$(1,4\cdot55^{n-2},1216\cdot55^{n-2})$
 
 ---
 
@@ -154,8 +228,8 @@ $(1,4\cdot55^{n-2},1208\cdot55^{n-2})$
 
 ## Solution Concepts
 
-- trace linearization of quadratic recurrences
-- ramified quadratic extensions
+- Möbius conjugacy of rational recurrences
+- trace dynamics in quadratic extensions
 - multiplicative order lifting
-- cycle sums over unit groups
+- prime-power orbit-sum lifting
 - Chinese remainder theorem
