@@ -6,11 +6,13 @@ All logarithms are natural. Let $f:(1,\infty)\to\mathbb R$, and assume that the 
 $$
 A(x)=\frac{1}{\log x}\int_1^x\frac{f(t)}{t}\,dt.
 $$
-Assume that $A(e)=-9$ and that, for every $x>1$,
+Assume that, for every $x>1$,
 $$
-\bigl(A(x^2)-A(x)\bigr)^2=(\log 2)^2,
-\qquad
-\bigl(A(x^3)-A(x)\bigr)^2=(\log 3)^2.
+\bigl(1+\cosh(2A(x))\bigr)\bigl(f(x)-A(x)\bigr)^2=2,
+$$
+and that
+$$
+A(e^e)+A(e^{1/e})=0.
 $$
 Determine $f(x)$ for all $x>1$.
 
@@ -29,4 +31,4 @@ Determine $f(x)$ for all $x>1$.
 
 ## Domain Explanation
 
-The problem uses concavity to select the only admissible branch after two scale relations are resolved, and it recovers the unknown function by differentiating its logarithmic-coordinate integral mean. The decisive rigidity comes from combining the two multiplicative scales with the derivative-based concavity condition, so Applications of derivatives is the primary sub-domain.
+The logarithmic-coordinate integral mean converts the gap $f-A$ into a derivative after a second logarithmic change of variables. The nonlinear hyperbolic relation then becomes a first-order differential constraint; the nonlocal symmetry fixes its integration constant, and concavity selects the unique admissible branch. These derivative and concavity arguments make Applications of derivatives the primary sub-domain.
