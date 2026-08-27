@@ -6,10 +6,15 @@ Fix an integer $n\geq3$ and let
 $$
 R_n=\mathbb Z/55^n\mathbb Z.
 $$
-Define a sequence in $R_n$ by
+Define a sequence in $R_n$ as follows. Let $x_0$ be the unique element satisfying
 $$
-x_0=3,\qquad x_{k+1}=x_k^2-2\quad(k\geq0).
+9x_0=4.
 $$
+Having defined $x_k$, let $x_{k+1}$ be the unique element satisfying
+$$
+\left(14x_k^2-8x_k+1\right)x_{k+1}=x_k(5x_k-2)
+$$
+for every integer $k\geq0$.
 
 Let $(\mu_n,\lambda_n)$ be the lexicographically least pair of integers with $\mu_n\geq0$ and $\lambda_n\geq1$ such that
 $$
@@ -41,4 +46,4 @@ Determine $(\mu_n,\lambda_n,s_n)$ in closed form.
 
 ## Domain Explanation
 
-The problem asks for the exact preperiod, period, and cycle sum of a quadratic recurrence modulo two prime powers. Its decisive work is the analysis of a ramified quadratic unit at $5$, a split quadratic unit at $11$, local order lifting, and Chinese remainder reconstruction, so Computational number theory is the primary sub-domain.
+The problem asks for the exact preperiod, period, and cycle sum of a rational recurrence modulo two prime powers. Its decisive work is uncovering a hidden Möbius conjugacy, analyzing ramified and split quadratic units, lifting nonlinear orbit sums, and reconstructing the result by the Chinese remainder theorem, so Computational number theory is the primary sub-domain.
