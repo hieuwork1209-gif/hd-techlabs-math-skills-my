@@ -89,11 +89,17 @@ $$
 \qquad
 \frac{\sigma_N^2}{N}\to V_a:=\frac{\tanh a}{4a}>0.
 $$
-For Lindeberg-Feller, set
+We use the following normalized form of the Lindeberg-Feller theorem. If, for each $N$, the variables $X_{N,r}$ are independent and centered, their variances sum to one, and for every $\varepsilon>0$,
+$$
+\sum_r\mathbb E\left[X_{N,r}^2\mathbf 1_{\{|X_{N,r}|>\varepsilon\}}\right]\to0,
+$$
+then $\sum_rX_{N,r}\Longrightarrow N(0,1)$.
+
+Here set
 $$
 X_{N,r}=\frac{B_{N,r}-\mathbb E[B_{N,r}]}{\sigma_N}.
 $$
-They are independent and centered, with total variance one. Moreover $|B_{N,r}-\mathbb E[B_{N,r}]|\leq1$ and $\sigma_N\asymp\sqrt N\to\infty$. Thus for every $\varepsilon>0$, eventually $|X_{N,r}|<\varepsilon$ for every $r$, so the Lindeberg sum is zero. Consequently
+They are independent and centered, and their variances sum to one. Moreover $|B_{N,r}-\mathbb E[B_{N,r}]|\leq1$ and $\sigma_N\asymp\sqrt N\to\infty$. Thus for every $\varepsilon>0$, eventually $|X_{N,r}|<\varepsilon$ for every $r$, so the displayed Lindeberg sum is zero. The theorem therefore gives
 $$
 Z_N:=\frac{J_N-\mu_N}{\sigma_N}\Longrightarrow Z,
 \qquad Z\sim N(0,1).
@@ -218,4 +224,4 @@ $\sqrt{\frac{2\ln2\,\tanh a}{a}}$
 
 ## Black-Box Audit — no issues found
 
-The interpolation parameterization, three-zero vertex reduction, generating-function recurrence, Lindeberg check, Gaussian rescaling, coefficient compactness, and uniform root convergence are all derived explicitly. No numerical fitting, software calculation, or unshown finite search is used.
+The interpolation parameterization, three-zero vertex reduction, generating-function recurrence, Lindeberg theorem statement and hypothesis check, Gaussian rescaling, coefficient compactness, and uniform root convergence are all derived explicitly. No numerical fitting, software calculation, or unshown finite search is used.
