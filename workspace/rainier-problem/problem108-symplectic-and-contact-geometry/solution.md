@@ -1,153 +1,212 @@
 ## Steps
 
-Step 1: Translate the Lagrangian correlation into a rank-one determinant correlation.
+Step 1: Convert the three Lagrangian determinants into a cubic determinant correlation.
 
 Let $A_L$ be the matrix of $S_L$ in the ordered bases from the problem. For coordinate columns $x,y\in E$,
 $$
-\omega(x+S_Lx,y+S_Ly)
-=
-x^TA_Ly-y^TA_Lx
-=
-x^T(A_L-A_L^T)y.
+\omega(x+S_Lx,y+S_Ly)=x^T(A_L-A_L^T)y.
 $$
-Thus $L$ is Lagrangian exactly when $A_L$ is symmetric. Conversely, every symmetric matrix gives a Lagrangian graph transverse to $F$.
+Thus $L$ is Lagrangian exactly when $A_L$ is symmetric, and every symmetric matrix gives a Lagrangian graph transverse to $F$.
 
-Let $P$ be the matrix with a single $1$ in the $(1,1)$ entry and zeros elsewhere. Since $\tau(e_1)=e_1+f_1$ and $\tau$ fixes the other basis vectors,
+Let $P$ have a single $1$ in the $(1,1)$ entry. The two transvections preserve the $E$-component and add $\pm x_1f_1$ to the $F$-component, so
 $$
-A_{\tau(L)}=A_L+P.
+A_{\tau_{-1}(L)}=A_L-P,\qquad
+A_{\tau_1(L)}=A_L+P.
 $$
-Therefore
+Hence
 $$
-C_{m,q}
+K_{m,r}
 =
-\sum_{A\in\operatorname{Sym}_n(\mathbb{F}_q)}
-\chi(\det A)\chi(\det(A+P)).
+\sum_{A\in\operatorname{Sym}_n(\mathbb F_q)}
+\chi(\det(A-P))\chi(\det A)\chi(\det(A+P)).
 $$
 
-Step 2: Use the determinant lemma and invert the symmetric matrix.
+Step 2: Block the matrix and isolate the cubic character sum.
 
-Only invertible $A$ contribute. For such $A$, the matrix determinant lemma gives
+Put $d=2m=n-1$ and write
 $$
-\det(A+P)
-=
-\det A\left(1+e_1^TA^{-1}e_1\right).
+A=
+\begin{pmatrix}
+a&u^T\\
+u&B
+\end{pmatrix},
 $$
-Since $\chi(\det A)^2=1$,
+where $B$ is symmetric of size $d$. Let
 $$
-\chi(\det A)\chi(\det(A+P))
-=
-\chi\left(1+(A^{-1})_{11}\right).
+\Delta=\det B,\qquad
+c=-u^T\operatorname{adj}(B)u.
 $$
-This identity also gives zero when $A+P$ is singular. Inversion is a bijection on the invertible symmetric matrices, so
+Then for $t\in\{-1,0,1\}$,
 $$
-C_{m,q}
-=
-\sum_{\substack{B\in\operatorname{Sym}_n(\mathbb{F}_q)\\ \det B\ne0}}
-\chi(1+b_{11}).
+\det(A+tP)=c+(a+t)\Delta.
 $$
 
-Step 3: Count invertible symmetric matrices with a prescribed first diagonal entry.
+If $B$ is invertible, put $x=a+c/\Delta$. Summing over $a$ gives
+$$
+\sum_{a\in\mathbb F_q}
+\prod_{t=-1}^{1}\chi(c+(a+t)\Delta)
+=
+\chi(\Delta)J_q,
+$$
+where
+$$
+J_q=\sum_{x\in\mathbb F_q}\chi(x^3-x).
+$$
+There are $q^d$ choices for $u$, so the total contribution from invertible $B$ is
+$$
+q^dJ_qD_d,
+\qquad
+D_s:=\sum_{B\in\operatorname{Sym}_s(\mathbb F_q)}\chi(\det B).
+$$
 
-Let $N_r$ be the number of invertible symmetric $r\times r$ matrices over $\mathbb{F}_q$, with $N_0=1$. Fix $a\in\mathbb{F}_q$ and write
+If $\operatorname{rank}B\le d-2$, then $\operatorname{adj}(B)=0$ and the contribution is zero. If $\operatorname{rank}B=d-1$, choose coordinates in which
 $$
 B=
 \begin{pmatrix}
-a&v^T\\
-v&D
-\end{pmatrix}.
-$$
-
-If $a\ne0$, then
-$$
-\det B
-=
-a\det\left(D-a^{-1}vv^T\right).
-$$
-For every $v$, translation by $a^{-1}vv^T$ is a bijection on the symmetric matrices of size $n-1$. Hence the number of invertible $B$ with $b_{11}=a$ is
-$$
-q^{n-1}N_{n-1}.
-$$
-
-Now let $a=0$. The case $v=0$ is singular. For each nonzero $v$, a change of basis in the last $n-1$ coordinates sends $v$ to the first coordinate vector and preserves invertibility. The resulting matrix has the form
-$$
-\begin{pmatrix}
-0&1&0\\
-1&c&w^T\\
-0&w&H
+C&0\\
+0&0
 \end{pmatrix},
-$$
-whose determinant is $-\det H$. There are $q^{n-1}$ choices for $c$ and $w$, so the number with $b_{11}=0$ is
-$$
-q^{n-1}(q^{n-1}-1)N_{n-2}.
-$$
-
-Because
-$$
-\sum_{a\in\mathbb{F}_q^\times}\chi(1+a)=-1,
-$$
-we obtain
-$$
-C_{m,q}
-=
-q^{n-1}\left((q^{n-1}-1)N_{n-2}-N_{n-1}\right).
-$$
-
-Step 4: Evaluate the symmetric-matrix counts by parity.
-
-Applying the same first-entry split to an arbitrary size $r$ gives
-$$
-N_r
-=
-q^{r-1}(q-1)N_{r-1}
-+
-q^{r-1}(q^{r-1}-1)N_{r-2}.
-$$
-Starting from $N_0=1$ and $N_1=q-1$, this recurrence implies
-$$
-N_{2s}=q^{2s}N_{2s-1},
 \qquad
-N_{2s+1}=(q^{2s+1}-1)N_{2s}.
+u=(v,t).
 $$
-Indeed, if $N_{2s-1}=(q^{2s-1}-1)N_{2s-2}$, the recurrence at size $2s$ gives the first identity. Substituting that identity into the recurrence at size $2s+1$ gives the second.
+Then all three determinants equal $-t^2\det C$. Since $q$ is a square, $\chi(-1)=1$. After summing over $a,v,t$ and then over the radical line, this singular contribution is
+$$
+q^d(q^d-1)D_{d-1}.
+$$
 
+Step 3: Evaluate the auxiliary determinant masses and remove the singular sector.
+
+The same one-row bordering argument gives, for $s\ge2$,
+$$
+D_s
+=
+\chi(-1)q^{s-1}(q^{s-1}-1)D_{s-2}.
+$$
+Indeed, an invertible lower block contributes zero after summing over the new diagonal entry; a block of corank at least two cannot produce a nonzero determinant; and a corank-one block contributes
+$$
+q^{s-1}(q-1)\chi(-1)\chi(\det C)
+$$
+for its induced nonsingular quotient form. Summing over the
+$$
+\frac{q^{s-1}-1}{q-1}
+$$
+possible radical lines gives the recurrence.
+
+Here $q=3^{2r}$, so $\chi(-1)=1$. With $D_0=1$ and $D_1=0$,
+$$
+D_{2m}
+=
+q^{m^2}\prod_{j=1}^{m}(q^{2j-1}-1),
+\qquad
+D_{2m-1}=0.
+$$
+Therefore the entire singular contribution from Step 2 vanishes and
+$$
+K_{m,r}=q^{2m}J_qD_{2m}.
+$$
+
+Step 4: Turn the cubic character sum into a trace-zero quadratic-form count.
+
+Let $T(x)=x^3-x$ on $\mathbb F_q$. This is $\mathbb F_3$-linear, its kernel is $\mathbb F_3$, and
+$$
+\operatorname{Tr}_{\mathbb F_q/\mathbb F_3}(T(x))=0.
+$$
+Both the image of $T$ and the trace-zero hyperplane have size $q/3$, so they are equal. Every element of that hyperplane has three preimages. Hence
+$$
+J_q
+=
+3\sum_{\operatorname{Tr}(y)=0}\chi(y).
+$$
+
+Let
+$$
+N=\#\{z\in\mathbb F_q:\operatorname{Tr}(z^2)=0\}.
+$$
+If $A$ is the number of nonzero squares in the trace-zero hyperplane, then $N=1+2A$. Since that hyperplane has $q/3$ elements,
+$$
+\sum_{\operatorname{Tr}(y)=0}\chi(y)
+=
+N-\frac q3.
+$$
+Thus
+$$
+J_q=3N-q.
+$$
+
+Step 5: Compute the trace-form discriminant and its number of zeros.
+
+View $\mathbb F_q$ as a $2r$-dimensional vector space over $\mathbb F_3$ and choose a basis $\alpha_1,\dots,\alpha_{2r}$. Let
+$$
+G_{ij}=\operatorname{Tr}(\alpha_i\alpha_j).
+$$
+If $U$ is the Moore matrix with entries $U_{ji}=\alpha_i^{3^j}$ for $0\le j<2r$, then
+$$
+G=U^TU,
+\qquad
+\det G=(\det U)^2.
+$$
+The Moore determinant is nonzero because the $\alpha_i$ are linearly independent. Cubing every entry of $U$ cyclically permutes its $2r$ rows, so
+$$
+(\det U)^3=-\det U.
+$$
+Therefore
+$$
+\det G=-1
+$$
+in $\mathbb F_3$.
+
+Now count zeros of the nondegenerate quadratic form
+$$
+Q(z)=\operatorname{Tr}(z^2).
+$$
+Diagonalize it over $\mathbb F_3$ as $\sum_i d_ix_i^2$, and let $\zeta=e^{2\pi i/3}$. Orthogonality of additive characters gives
+$$
+N
+=
+\frac13\sum_{t\in\mathbb F_3}
+\prod_{i=1}^{2r}
+\left(\sum_{x\in\mathbb F_3}\zeta^{td_ix^2}\right).
+$$
+For $t\ne0$, each one-variable sum is $\eta(td_i)i\sqrt3$, where $\eta$ is the quadratic character of $\mathbb F_3$. Since the dimension is even and $\eta(\det G)=-1$, each nonzero $t$ contributes
+$$
+(-1)^{r+1}3^r.
+$$
 Consequently,
 $$
-N_{2m-1}
-=
-q^{m(m-1)}
-\prod_{j=1}^{m}(q^{2j-1}-1),
+N=3^{2r-1}+2(-1)^{r+1}3^{r-1},
 $$
-and
+and Step 4 gives
 $$
-N_{2m}=q^{2m}N_{2m-1}.
+J_q=2(-1)^{r+1}3^r.
 $$
 
-Step 5: Substitute the odd dimension forced by the problem.
+Step 6: Combine the two independent structural factors.
 
-Since $n=2m+1$, Step 3 gives
+Using Steps 3 and 5,
 $$
-C_{m,q}
+K_{m,r}
 =
-q^{2m}\left((q^{2m}-1)N_{2m-1}-N_{2m}\right).
-$$
-Using $N_{2m}=q^{2m}N_{2m-1}$,
-$$
-C_{m,q}
-=
--q^{2m}N_{2m-1}
-=
--q^{m(m+1)}
+q^{2m}
+\left(2(-1)^{r+1}3^r\right)
+q^{m^2}
 \prod_{j=1}^{m}(q^{2j-1}-1).
 $$
-For $m=1$, direct enumeration of symmetric $3\times3$ matrices gives $-q^2(q-1)$, which agrees with the formula.
+Since $m^2+2m=m(m+2)$,
+$$
+K_{m,r}
+=
+2(-1)^{r+1}3^r q^{m(m+2)}
+\prod_{j=1}^{m}(q^{2j-1}-1).
+$$
+For $m=r=1$, so $q=9$, direct enumeration gives $34992$, agreeing with the formula.
 
-Final Answer: $\boxed{-q^{m(m+1)}\prod_{j=1}^{m}(q^{2j-1}-1)}$
+Final Answer: $\boxed{2(-1)^{r+1}3^r q^{m(m+2)}\prod_{j=1}^{m}(q^{2j-1}-1)}$
 
 ---
 
 ## Answer
 
-$-q^{m(m+1)}\prod_{j=1}^{m}(q^{2j-1}-1)$
+$2(-1)^{r+1}3^r q^{m(m+2)}\prod_{j=1}^{m}(q^{2j-1}-1)$
 
 ---
 
@@ -161,11 +220,11 @@ $-q^{m(m+1)}\prod_{j=1}^{m}(q^{2j-1}-1)$
 
 ## Solution Concepts
 
-- lagrangian graphs over a symplectic polarization
-- symplectic transvection as a rank-one update
-- matrix determinant lemma and inversion
-- fibers of invertible symmetric matrices
-- parity recurrence for symmetric matrix counts
+- lagrangian graphs and symmetric matrices
+- triple symplectic transvection correlation
+- cubic quadratic-character sums in characteristic three
+- trace-zero hyperplanes and trace quadratic forms
+- Moore determinant and finite-field discriminants
 
 ---
 
