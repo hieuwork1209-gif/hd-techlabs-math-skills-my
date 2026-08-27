@@ -118,9 +118,17 @@ and
 $$
 \frac{\sigma_N^2}{N}\longrightarrow
 V_a:=\int_0^1\frac{dx}{4\cosh^2(ax)}
-=\frac{\tanh a}{4a}.
+=\frac{\tanh a}{4a}>0.
 $$
-The Bernoulli summands are bounded and $\sigma_N^2$ is asymptotic to a positive multiple of $N$. The Lindeberg central limit theorem therefore yields
+For the Lindeberg-Feller theorem, set
+$$
+X_{N,r}=\frac{B_{N,r}-\mathbb E[B_{N,r}]}{\sigma_N}.
+$$
+These variables are independent and centered, and their variances sum to one. Also $|B_{N,r}-\mathbb E[B_{N,r}]|\leq1$, while $\sigma_N\asymp\sqrt N\to\infty$. Hence for every $\varepsilon>0$, all $|X_{N,r}|<\varepsilon$ once $N$ is large, so the Lindeberg sum
+$$
+\sum_{r=0}^{N-1}\mathbb E\left[X_{N,r}^2\mathbf 1_{\{|X_{N,r}|>\varepsilon\}}\right]
+$$
+is eventually zero. Therefore
 $$
 Z_N:=\frac{J_N-\mu_N}{\sigma_N}\ \Longrightarrow\ Z,
 \qquad Z\sim N(0,1).
@@ -215,20 +223,29 @@ S_*(z)=z\bigl(z^2-2\ln2\bigr).
 $$
 Equality in the pointwise triangle inequality used to obtain $F(S)\geq\mathbb E|O(Z)|$ requires $|E(z)|\leq|O(z)|$ almost everywhere. Continuity then forces the quadratic $E$ to vanish at all three roots of $S_*$, so $E=0$. This proves that $S_*$ is the unique monic cubic minimizing $F$.
 
-The limiting minimizer is unique. Therefore every sequence of minimizing cubics converges coefficientwise to $S_*$, since any subsequence has a further subsequence with that same limit. The roots of $S_*$ are simple, so every minimizing vertex in Step 2 has its three rescaled roots converging, in increasing order, to
+Let $\mathcal M_N$ be the set of minimizing monic cubics. The coefficient boundedness in Step 4 and uniqueness of $S_*$ imply the uniform convergence
+$$
+\sup_{S\in\mathcal M_N}\|\operatorname{coeff}(S)-\operatorname{coeff}(S_*)\|\longrightarrow0.
+$$
+Indeed, otherwise some $\varepsilon>0$ and a sequence of minimizers would stay at coefficient distance at least $\varepsilon$ from $S_*$. A convergent subsequence would then have a limiting cubic minimizing $F$, which must equal $S_*$, a contradiction. Since the three roots of $S_*$ are simple, roots depend continuously on the coefficients in a neighborhood of $S_*$. Thus the ordered roots of every minimizing vertex converge uniformly to
 $$
 -\sqrt{2\ln2},\qquad 0,\qquad \sqrt{2\ln2}.
 $$
-In particular the corresponding indices lie within order $\sqrt N$ of $\mu_N$. For such indices, the exponential expansion in Step 4 gives
+
+For a minimizing vertex with zero indices $k<m<\ell$, put $u_j=(j-\mu_N)/\sigma_N$. Its rescaled root is
 $$
-\frac{q^{-2j}-Y_N}{Y_Nh_N}
-=\frac{j-\mu_N}{\sigma_N}+o(1).
+\frac{q^{-2j}-Y_N}{Y_Nh_N}=\frac{e^{h_Nu_j}-1}{h_N}.
 $$
-Every minimizing triple $k<m<\ell$ therefore satisfies
+The uniform boundedness of the three rescaled roots implies $u_k,u_m,u_\ell=O(1)$ uniformly over all minimizing vertices. Since $h_N\to0$, Taylor expansion is then uniform and gives
 $$
-\frac{\ell-k}{\sigma_N}\longrightarrow2\sqrt{2\ln2}.
+\frac{q^{-2j}-Y_N}{Y_Nh_N}=\frac{j-\mu_N}{\sigma_N}+o(1)
 $$
-The same limit holds for the smallest such span $\Delta_N$. Using $\sigma_N/\sqrt N\to\sqrt{V_a}$ gives
+uniformly for these three indices. Consequently
+$$
+\sup_{\substack{k<m<\ell\\\text{minimizing triple}}}
+\left|\frac{\ell-k}{\sigma_N}-2\sqrt{2\ln2}\right|\longrightarrow0.
+$$
+Taking the minimum over all minimizing triples therefore preserves the same limit. Since $\sigma_N/\sqrt N\to\sqrt{V_a}$,
 $$
 \lim_{N\to\infty}\frac{\Delta_N}{\sqrt N}
 =2\sqrt{2\ln2}\sqrt{\frac{\tanh a}{4a}}
@@ -265,4 +282,4 @@ $\sqrt{\frac{2\ln2\,\tanh a}{a}}$
 
 ## Black-Box Audit — no issues found
 
-The affine parameterization, existence of a three-zero minimizing vertex, coefficient recurrence for the Bernoulli generating function, Gaussian rescaling, compactness argument, and limiting cubic minimization are all justified explicitly. No numerical fitting, software calculation, or unshown finite search is used.
+The affine parameterization, existence of a three-zero minimizing vertex, coefficient recurrence for the Bernoulli generating function, Lindeberg check, Gaussian rescaling, compactness argument, and uniform convergence of minimizing roots are all justified explicitly. No numerical fitting, software calculation, or unshown finite search is used.
