@@ -11,19 +11,13 @@ $$
 \omega(e_i,f_j)=\delta_{ij},\qquad
 \omega(e_i,e_j)=\omega(f_i,f_j)=0.
 $$
-Put
-$$
-E=\operatorname{span}(e_1,\dots,e_n),\qquad
-F=\operatorname{span}(f_1,\dots,f_n),
-$$
-and let $\Lambda_n(q)$ be the set of all Lagrangian subspaces of $V$.
-
-Define the integer
+Let the sum below range over all Lagrangian subspaces $L$ of $V$. Define the integer
 $$
 T_{n,q}
 =
-\sum_{L\in\Lambda_n(q)}
-(-1)^{\dim(L\cap E)}q^{(n+1)\dim(L\cap F)}.
+\sum_L
+(-1)^{\dim\left(L\cap\operatorname{span}(e_1,\dots,e_n)\right)}
+q^{(n+1)\dim\left(L\cap\operatorname{span}(f_1,\dots,f_n)\right)}.
 $$
 Determine $T_{n,q}$ exactly for every prime power $q$ and positive integer $n$.
 
@@ -42,4 +36,4 @@ Determine $T_{n,q}$ exactly for every prime power $q$ and positive integer $n$.
 
 ## Domain Explanation
 
-This problem studies the incidence of Lagrangian subspaces with two complementary Lagrangian coordinate subspaces in a finite symplectic vector space. Its central structure is the Lagrangian Grassmannian and the passage between transverse Lagrangians and symmetric bilinear forms, so Symplectic and contact geometry is the best fit. Finite-field counting and Gaussian coefficients support the calculation, but they serve the symplectic incidence geometry rather than define the subject.
+This problem involves Lagrangian subspaces, complementary Lagrangians, and symplectic reduction, which are part of Topology and Geometry and Symplectic and contact geometry. The problem also involves finite-field counting and Gaussian coefficients, which are part of Discrete Mathematics and Combinatorics. However, those tools only evaluate the symplectic incidence sum and do not determine the mathematical subject of the problem.
