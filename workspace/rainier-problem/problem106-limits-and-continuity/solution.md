@@ -158,11 +158,27 @@ shows that the critical pairs occur in cyclic order
 $$
 (u_+,v>0),\ (u_+,v<0),\ (u_-,v<0),\ (u_-,v>0).
 $$
-Their corresponding values of $h$ are $-c_+,c_+,-c_-,c_-$. Between consecutive critical points the function is strictly monotone. A horizontal level meets the graph four times, with tangencies counted twice, exactly for
+Call these successive critical points $C_1,C_2,C_3,C_4$. Their corresponding values are
+$$
+h(C_1)=-c_+,\qquad h(C_2)=c_+,\qquad h(C_3)=-c_-,\qquad h(C_4)=c_-.
+$$
+Because there are no other critical points, $h$ is strictly monotone on the four open arcs between successive $C_j$. Thus the four successive arc ranges are
+$$
+[-c_+,c_+],\qquad [-c_-,c_+],\qquad [-c_-,c_-],\qquad [-c_+,c_-],
+$$
+with the directions respectively increasing, decreasing, increasing, decreasing.
+
+The endpoint tangencies are genuinely quadratic. Since $u'=v$,
+$$
+h''(\theta)=2(4u-a)v.
+$$
+At $u=u_+$ we have $4u_+-a=D$, while at $u=u_-$ we have $4u_--a=-D$. Also $v\ne0$ at every critical point because $|u_\pm|<\sqrt2$. Hence $h''(C_j)\ne0$ for all four $j$. In particular, at the levels $s=\pm c_+$ the zero of $h(\theta)-s$ at the tangency has multiplicity exactly two.
+
+Now count intersections arc by arc. If $|s|<c_+$, then $s$ lies in the interior of all four arc ranges, giving four distinct simple solutions. If $s=c_+$, the point $C_2$ is a double solution and there is one additional simple solution on each of the third and fourth arcs, for total multiplicity $2+1+1=4$. Similarly, if $s=-c_+$, the point $C_1$ is double and there is one simple solution on each of the second and third arcs, again giving total multiplicity four. For $c_+<|s|<c_-$ there are only two simple intersections. At $s=\pm c_-$ there is only the corresponding nondegenerate tangency, counted twice, and for $|s|>c_-$ there are no intersections. Therefore the level equation has four solutions on one period, counted with multiplicity, exactly when
 $$
 |s|\leq c_+.
 $$
-For $c_+<|s|\leq c_-$ it meets the graph only twice when multiplicity is counted, and beyond $c_-$ it does not meet it. This proves both necessity and sufficiency for all four roots of $q_s$ to lie on the unit circle.
+This proves both necessity and sufficiency for all four roots of $q_s$ to lie on the unit circle.
 
 Step 4: Simplify the endpoint and state the cluster set.
 
