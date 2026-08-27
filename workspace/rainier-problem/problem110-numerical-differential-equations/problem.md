@@ -2,15 +2,21 @@
 
 ## LaTeX (Normalized)
 
-For real parameters $a,b$, consider a two-step discretization of the decaying test equation $y'=-\kappa y$, where $\kappa>0$. With $s=h\kappa$, set
+For real parameters $a,b$, consider the one-step family applied to the decaying test equation $y'=-\kappa y$, where $\kappa>0$. With $s=h\kappa\geq0$, define
 $$
-B_s=as+bs(1-s)
+R_{a,b}(s)=1-s+as^{2}+bs^{3},
+\qquad
+u_{m+1}=R_{a,b}(s)u_m\qquad(m\geq0).
 $$
-and define
+For each $(a,b)$, let
 $$
-u_{m+2}=\bigl(1+B_s-s(1-s)\bigr)u_{m+1}-B_s u_m\qquad(m\geq 0).
+\rho(a,b)=\sup\left\{L\geq0:\text{ for every }s\in[0,L]\text{ and every }u_0\in\mathbb R,\ (u_m)_{m\geq0}\text{ is bounded}\right\}.
 $$
-Call $(a,b)$ interval-stable if, for every $s\in[0,1]$ and every real starting pair $(u_0,u_1)$, the resulting sequence $(u_m)_{m\geq 0}$ is bounded. Determine the set of all interval-stable pairs $(a,b)$.
+Let
+$$
+\rho_* = \sup_{(a,b)\in\mathbb R^2}\rho(a,b).
+$$
+Show that the supremum is attained by a unique pair $(a_*,b_*)$, and determine the ordered triple $(\rho_*,a_*,b_*)$. Any extremal polynomial inequality used in the proof must be established directly rather than quoted as a black box.
 
 ---
 
@@ -20,13 +26,11 @@ Call $(a,b)$ interval-stable if, for every $s\in[0,1]$ and every real starting p
 |---|---|
 | **Domain** | Differential Equations and Dynamical Systems |
 | **Sub-domain** | Numerical differential equations |
-| **Problem Type** | Exhaustive enumeration |
-| **Answer Type** | Interval or region description |
+| **Problem Type** | Optimization |
+| **Answer Type** | Tuple or ordered list |
 
 ---
 
 ## Domain Explanation
 
-This problem involves stability of a two-step discretization over a full interval of step parameters, which is part of Differential Equations and Dynamical Systems and Numerical differential equations.
-The problem also involves quadratic characteristic roots and exact parameter envelopes, which are part of Algebra.
-However, the algebraic tools support the stability classification and are not the main subject.
+This problem asks for the sharp real-axis stability radius of a parameterized one-step discretization and for the unique coefficients attaining it. Amplification polynomials and bounded discrete dynamics are central topics in numerical differential equations. The extremal-polynomial argument supplies the sharp optimization certificate.
