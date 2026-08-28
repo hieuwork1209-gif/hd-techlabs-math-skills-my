@@ -35,11 +35,11 @@ Thus the unsigned part of one $T_n$ reduction sends $x^{(k)}$ to $x^{(k+1)}$. Th
 
 Step 2: Count the two possible Hamming weights along the cycle
 
-Let $W=|b|$. Since $z_0=0$, the cyclic word $z$ has exactly $W$ entries equal to $1$ and $N-W$ entries equal to $0$. For a basepoint with $z_k=0$, the word $x^{(k)}$ records which of the other entries differ from $0$, so
+Let $W=|b|$. Since $z_0=0$, the cyclic word $z$ has exactly $W$ entries equal to $1$ and $N-W$ entries equal to $0$. As $i$ runs from $1$ to $n$, the indices $k+i$ modulo $N$ run through every position except $k$. For a basepoint with $z_k=0$, the word $x^{(k)}$ therefore records exactly the $W$ entries that differ from $0$, so
 $$
 |x^{(k)}|=W.
 $$
-For a basepoint with $z_k=1$, it records which entries differ from $1$, namely the zero entries, so
+For a basepoint with $z_k=1$, it records exactly the zero entries; there are $N-W$ of them, and the omitted basepoint is not one of them, so
 $$
 |x^{(k)}|=N-W.
 $$
