@@ -2,7 +2,7 @@
 
 This file is the source of truth for currently usable taxonomy slots. Update it whenever the portal capacity changes. Skills must read this file before choosing or changing a Domain/Sub-domain, Problem Type, or Answer Type.
 
-Last updated from user-provided portal snapshot: **2026-08-26**. Reviewer taxonomy feedback incorporated: **2026-08-27**. The portal snapshot contains **69 Domain/Sub-domain rows across 12 Domains**: **68 currently usable rows with positive remaining capacity and 1 exhausted row with 0 remaining slots**. The table below is derived directly from `available_segments`; any Domain/Sub-domain pair absent from that list must be treated as unavailable for the current snapshot rather than carried forward from older snapshots.
+Last updated from user-provided portal snapshot: **2026-08-28**. Reviewer taxonomy feedback incorporated: **2026-08-27**. The current portal snapshot contains **64 Domain/Sub-domain rows across 12 Domains**, and **all 64 currently listed rows have positive remaining capacity**. The table below is derived directly from `available_segments`; any Domain/Sub-domain pair absent from that list must be treated as unavailable for the current snapshot rather than carried forward from older snapshots.
 
 ## Selection Rules
 
@@ -20,79 +20,75 @@ Last updated from user-provided portal snapshot: **2026-08-26**. Reviewer taxono
 
 | Domain | Sub-domain | Remaining slots | Status | Notes |
 |---|---|---:|---|---|
-| Algebra, Functions, and Trigonometry | Polynomial and rational functions | 6 | open | 2026-08-26 user-provided portal snapshot. |
-| Algebra, Functions, and Trigonometry | Sequences and elementary recurrence relations | 10 | open | 2026-08-26 user-provided portal snapshot. |
-| Algebra, Functions, and Trigonometry | Systems of equations | 10 | open | 2026-08-26 user-provided portal snapshot. |
-| Algebra, Functions, and Trigonometry | Equations and inequalities | 11 | open | 2026-08-26 user-provided portal snapshot. |
-| Algebra, Functions, and Trigonometry | Trigonometry | 12 | open | 2026-08-26 user-provided portal snapshot. |
-| Algebra, Functions, and Trigonometry | Algebraic expressions and manipulation | 13 | open | 2026-08-26 user-provided portal snapshot. |
-| Algebra, Functions, and Trigonometry | Elementary mathematical modeling | 13 | open | 2026-08-26 user-provided portal snapshot. |
-| Algebra, Functions, and Trigonometry | Exponential and logarithmic functions | 13 | open | 2026-08-26 user-provided portal snapshot. |
-| Algebra, Functions, and Trigonometry | Functions and graphs | 13 | open | 2026-08-26 user-provided portal snapshot. |
-| Analysis | Fourier analysis | 1 | open | 2026-08-26 user-provided portal snapshot. |
-| Analysis | Metric spaces | 7 | open | 2026-08-26 user-provided portal snapshot. |
-| Calculus | Multivariable calculus | 7 | open | 2026-08-26 user-provided portal snapshot. |
-| Calculus | Integration | 8 | open | 2026-08-26 user-provided portal snapshot. |
-| Calculus | Applications of integration | 10 | open | 2026-08-26 user-provided portal snapshot. |
-| Calculus | Single-variable calculus | 11 | open | 2026-08-26 user-provided portal snapshot. |
-| Calculus | Applications of derivatives | 12 | open | 2026-08-26 user-provided portal snapshot. |
-| Calculus | Infinite sequences and series | 12 | open | 2026-08-26 user-provided portal snapshot. |
-| Calculus | Vector calculus | 12 | open | 2026-08-26 user-provided portal snapshot. |
-| Calculus | Differentiation | 13 | open | 2026-08-26 user-provided portal snapshot. |
-| Calculus | Limits and continuity | 15 | open | 2026-08-26 user-provided portal snapshot. |
-| Differential Equations and Dynamical Systems | Partial differential equations | 5 | open | 2026-08-26 user-provided portal snapshot. |
-| Differential Equations and Dynamical Systems | Stability theory | 5 | open | 2026-08-26 user-provided portal snapshot. |
-| Differential Equations and Dynamical Systems | Bifurcation theory | 9 | open | 2026-08-26 user-provided portal snapshot. |
-| Differential Equations and Dynamical Systems | Boundary value problems | 9 | open | 2026-08-26 user-provided portal snapshot. |
-| Differential Equations and Dynamical Systems | First-order ordinary differential equations | 9 | open | 2026-08-26 user-provided portal snapshot. |
-| Differential Equations and Dynamical Systems | Higher-order ordinary differential equations | 10 | open | 2026-08-26 user-provided portal snapshot. |
-| Differential Equations and Dynamical Systems | Systems of differential equations | 10 | open | 2026-08-26 user-provided portal snapshot. |
-| Differential Equations and Dynamical Systems | Initial value problems | 12 | open | 2026-08-26 user-provided portal snapshot. |
-| Differential Equations and Dynamical Systems | Numerical differential equations | 12 | open | 2026-08-26 user-provided portal snapshot. |
-| Discrete Mathematics and Combinatorics | Matroid theory | 1 | open | 2026-08-26 user-provided portal snapshot. |
-| Discrete Mathematics and Combinatorics | Generating functions | 4 | open | 2026-08-26 user-provided portal snapshot. |
-| Euclidean, Coordinate, and Transformational Geometry | Trigonometric geometry | 3 | open | 2026-08-26 user-provided portal snapshot. |
-| Euclidean, Coordinate, and Transformational Geometry | Transformational geometry | 5 | open | 2026-08-26 user-provided portal snapshot. |
-| Euclidean, Coordinate, and Transformational Geometry | Analytic geometry | 6 | open | 2026-08-26 user-provided portal snapshot. |
-| Euclidean, Coordinate, and Transformational Geometry | Computational geometry | 6 | open | 2026-08-26 user-provided portal snapshot. |
-| Linear Algebra | Vectors and vector spaces | 0 | unavailable | 2026-08-26 user-provided portal snapshot; exhausted. Reviewer feedback also confirms this is not a valid fallback for prompts whose core is invariant subspaces/operator action. |
-| Linear Algebra | Determinants | 1 | open | 2026-08-26 user-provided portal snapshot. |
-| Linear Algebra | Systems of linear equations | 4 | open | 2026-08-26 user-provided portal snapshot. |
-| Linear Algebra | Numerical linear algebra | 13 | open | 2026-08-26 user-provided portal snapshot. |
-| Logic, Set Theory, and Foundations | Computability theory | 6 | open | 2026-08-26 user-provided portal snapshot. |
-| Logic, Set Theory, and Foundations | Mathematical logic | 8 | open | 2026-08-26 user-provided portal snapshot. |
-| Logic, Set Theory, and Foundations | Model theory | 8 | open | 2026-08-26 user-provided portal snapshot. |
-| Logic, Set Theory, and Foundations | Category theory | 12 | open | 2026-08-26 user-provided portal snapshot. |
-| Logic, Set Theory, and Foundations | Complexity theory | 12 | open | 2026-08-26 user-provided portal snapshot. |
-| Logic, Set Theory, and Foundations | Proof theory | 13 | open | 2026-08-26 user-provided portal snapshot. |
-| Logic, Set Theory, and Foundations | Type theory and formal systems | 13 | open | 2026-08-26 user-provided portal snapshot. |
-| Number Theory | Elementary number theory | 2 | open | 2026-08-26 user-provided portal snapshot. |
-| Number Theory | Quadratic residues and reciprocity | 6 | open | 2026-08-26 user-provided portal snapshot. |
-| Number Theory | Multiplicative functions | 11 | open | 2026-08-26 user-provided portal snapshot. |
-| Number Theory | Analytic number theory | 12 | open | 2026-08-26 user-provided portal snapshot. |
-| Number Theory | Computational number theory | 12 | open | 2026-08-26 user-provided portal snapshot. |
-| Optimization and Numerical Mathematics | Linear programming | 2 | open | 2026-08-26 user-provided portal snapshot. |
-| Optimization and Numerical Mathematics | Discrete and integer optimization | 3 | open | 2026-08-26 user-provided portal snapshot. |
-| Optimization and Numerical Mathematics | Dynamic programming and optimal control | 6 | open | 2026-08-26 user-provided portal snapshot. |
-| Optimization and Numerical Mathematics | Numerical optimization | 8 | open | 2026-08-26 user-provided portal snapshot. |
-| Optimization and Numerical Mathematics | Error analysis and stability | 9 | open | 2026-08-26 user-provided portal snapshot. |
-| Optimization and Numerical Mathematics | Numerical analysis | 9 | open | 2026-08-26 user-provided portal snapshot. |
-| Optimization and Numerical Mathematics | Scientific computing | 10 | open | 2026-08-26 user-provided portal snapshot. |
-| Probability and Statistics | Statistical inference | 2 | open | 2026-08-26 user-provided portal snapshot. |
-| Probability and Statistics | Expectation and variance | 4 | open | 2026-08-26 user-provided portal snapshot. |
-| Probability and Statistics | Probability foundations | 5 | open | 2026-08-26 user-provided portal snapshot. |
-| Probability and Statistics | Regression and statistical modeling | 8 | open | 2026-08-26 user-provided portal snapshot. |
-| Probability and Statistics | Bayesian statistics | 9 | open | 2026-08-26 user-provided portal snapshot. |
-| Probability and Statistics | Statistical computing and simulation | 9 | open | 2026-08-26 user-provided portal snapshot. |
-| Probability and Statistics | Limit theorems | 10 | open | 2026-08-26 user-provided portal snapshot. |
-| Probability and Statistics | Experimental design and causal inference | 11 | open | 2026-08-26 user-provided portal snapshot. |
-| Topology and Geometry | Symplectic and contact geometry | 1 | open | 2026-08-26 user-provided portal snapshot. |
-| Topology and Geometry | Differential topology | 3 | open | 2026-08-26 user-provided portal snapshot. |
-| Topology and Geometry | Differential geometry | 6 | open | 2026-08-26 user-provided portal snapshot. |
+| Algebra, Functions, and Trigonometry | Polynomial and rational functions | 5 | open | 2026-08-28 user-provided portal snapshot. |
+| Algebra, Functions, and Trigonometry | Sequences and elementary recurrence relations | 10 | open | 2026-08-28 user-provided portal snapshot. |
+| Algebra, Functions, and Trigonometry | Systems of equations | 10 | open | 2026-08-28 user-provided portal snapshot. |
+| Algebra, Functions, and Trigonometry | Equations and inequalities | 11 | open | 2026-08-28 user-provided portal snapshot. |
+| Algebra, Functions, and Trigonometry | Trigonometry | 11 | open | 2026-08-28 user-provided portal snapshot. |
+| Algebra, Functions, and Trigonometry | Algebraic expressions and manipulation | 13 | open | 2026-08-28 user-provided portal snapshot. |
+| Algebra, Functions, and Trigonometry | Elementary mathematical modeling | 13 | open | 2026-08-28 user-provided portal snapshot. |
+| Algebra, Functions, and Trigonometry | Exponential and logarithmic functions | 13 | open | 2026-08-28 user-provided portal snapshot. |
+| Algebra, Functions, and Trigonometry | Functions and graphs | 13 | open | 2026-08-28 user-provided portal snapshot. |
+| Analysis | Fourier analysis | 1 | open | 2026-08-28 user-provided portal snapshot. |
+| Analysis | Metric spaces | 7 | open | 2026-08-28 user-provided portal snapshot. |
+| Calculus | Multivariable calculus | 6 | open | 2026-08-28 user-provided portal snapshot. |
+| Calculus | Integration | 8 | open | 2026-08-28 user-provided portal snapshot. |
+| Calculus | Applications of derivatives | 10 | open | 2026-08-28 user-provided portal snapshot. |
+| Calculus | Applications of integration | 10 | open | 2026-08-28 user-provided portal snapshot. |
+| Calculus | Infinite sequences and series | 11 | open | 2026-08-28 user-provided portal snapshot. |
+| Calculus | Single-variable calculus | 11 | open | 2026-08-28 user-provided portal snapshot. |
+| Calculus | Vector calculus | 12 | open | 2026-08-28 user-provided portal snapshot. |
+| Calculus | Differentiation | 13 | open | 2026-08-28 user-provided portal snapshot. |
+| Calculus | Limits and continuity | 14 | open | 2026-08-28 user-provided portal snapshot. |
+| Differential Equations and Dynamical Systems | Partial differential equations | 4 | open | 2026-08-28 user-provided portal snapshot. |
+| Differential Equations and Dynamical Systems | Stability theory | 4 | open | 2026-08-28 user-provided portal snapshot. |
+| Differential Equations and Dynamical Systems | Bifurcation theory | 9 | open | 2026-08-28 user-provided portal snapshot. |
+| Differential Equations and Dynamical Systems | Boundary value problems | 9 | open | 2026-08-28 user-provided portal snapshot. |
+| Differential Equations and Dynamical Systems | First-order ordinary differential equations | 9 | open | 2026-08-28 user-provided portal snapshot. |
+| Differential Equations and Dynamical Systems | Systems of differential equations | 9 | open | 2026-08-28 user-provided portal snapshot. |
+| Differential Equations and Dynamical Systems | Higher-order ordinary differential equations | 10 | open | 2026-08-28 user-provided portal snapshot. |
+| Differential Equations and Dynamical Systems | Numerical differential equations | 11 | open | 2026-08-28 user-provided portal snapshot. |
+| Differential Equations and Dynamical Systems | Initial value problems | 12 | open | 2026-08-28 user-provided portal snapshot. |
+| Discrete Mathematics and Combinatorics | Generating functions | 2 | open | 2026-08-28 user-provided portal snapshot. |
+| Euclidean, Coordinate, and Transformational Geometry | Trigonometric geometry | 2 | open | 2026-08-28 user-provided portal snapshot. |
+| Euclidean, Coordinate, and Transformational Geometry | Transformational geometry | 4 | open | 2026-08-28 user-provided portal snapshot. |
+| Euclidean, Coordinate, and Transformational Geometry | Analytic geometry | 5 | open | 2026-08-28 user-provided portal snapshot. |
+| Euclidean, Coordinate, and Transformational Geometry | Computational geometry | 6 | open | 2026-08-28 user-provided portal snapshot. |
+| Linear Algebra | Systems of linear equations | 3 | open | 2026-08-28 user-provided portal snapshot. |
+| Linear Algebra | Numerical linear algebra | 12 | open | 2026-08-28 user-provided portal snapshot. |
+| Logic, Set Theory, and Foundations | Computability theory | 5 | open | 2026-08-28 user-provided portal snapshot. |
+| Logic, Set Theory, and Foundations | Mathematical logic | 8 | open | 2026-08-28 user-provided portal snapshot. |
+| Logic, Set Theory, and Foundations | Model theory | 8 | open | 2026-08-28 user-provided portal snapshot. |
+| Logic, Set Theory, and Foundations | Complexity theory | 9 | open | 2026-08-28 user-provided portal snapshot. |
+| Logic, Set Theory, and Foundations | Category theory | 12 | open | 2026-08-28 user-provided portal snapshot. |
+| Logic, Set Theory, and Foundations | Proof theory | 13 | open | 2026-08-28 user-provided portal snapshot. |
+| Logic, Set Theory, and Foundations | Type theory and formal systems | 13 | open | 2026-08-28 user-provided portal snapshot. |
+| Number Theory | Quadratic residues and reciprocity | 3 | open | 2026-08-28 user-provided portal snapshot. |
+| Number Theory | Computational number theory | 9 | open | 2026-08-28 user-provided portal snapshot. |
+| Number Theory | Multiplicative functions | 11 | open | 2026-08-28 user-provided portal snapshot. |
+| Number Theory | Analytic number theory | 12 | open | 2026-08-28 user-provided portal snapshot. |
+| Optimization and Numerical Mathematics | Linear programming | 2 | open | 2026-08-28 user-provided portal snapshot. |
+| Optimization and Numerical Mathematics | Dynamic programming and optimal control | 6 | open | 2026-08-28 user-provided portal snapshot. |
+| Optimization and Numerical Mathematics | Numerical optimization | 7 | open | 2026-08-28 user-provided portal snapshot. |
+| Optimization and Numerical Mathematics | Error analysis and stability | 8 | open | 2026-08-28 user-provided portal snapshot. |
+| Optimization and Numerical Mathematics | Numerical analysis | 9 | open | 2026-08-28 user-provided portal snapshot. |
+| Optimization and Numerical Mathematics | Scientific computing | 10 | open | 2026-08-28 user-provided portal snapshot. |
+| Probability and Statistics | Statistical inference | 2 | open | 2026-08-28 user-provided portal snapshot. |
+| Probability and Statistics | Expectation and variance | 4 | open | 2026-08-28 user-provided portal snapshot. |
+| Probability and Statistics | Probability foundations | 5 | open | 2026-08-28 user-provided portal snapshot. |
+| Probability and Statistics | Limit theorems | 7 | open | 2026-08-28 user-provided portal snapshot. |
+| Probability and Statistics | Regression and statistical modeling | 8 | open | 2026-08-28 user-provided portal snapshot. |
+| Probability and Statistics | Bayesian statistics | 9 | open | 2026-08-28 user-provided portal snapshot. |
+| Probability and Statistics | Statistical computing and simulation | 9 | open | 2026-08-28 user-provided portal snapshot. |
+| Probability and Statistics | Experimental design and causal inference | 10 | open | 2026-08-28 user-provided portal snapshot. |
+| Topology and Geometry | Symplectic and contact geometry | 1 | open | 2026-08-28 user-provided portal snapshot. |
+| Topology and Geometry | Differential topology | 2 | open | 2026-08-28 user-provided portal snapshot. |
+| Topology and Geometry | Differential geometry | 4 | open | 2026-08-28 user-provided portal snapshot. |
 
 ## Reviewer-Confirmed Taxonomy Guardrails
 
 - **Linear Algebra → Linear transformations** is confirmed closed/unavailable by reviewer feedback dated 2026-08-26. It is absent from the current `available_segments` snapshot and must not be selected.
+- **Linear Algebra → Vectors and vector spaces** is also absent from the 2026-08-28 `available_segments` snapshot and is unavailable in the current snapshot.
 - Prompts whose core task is classification or counting of subspaces invariant under specified linear operators, or whose defining structure is eigenspace/spectral decomposition and operator action, belong to **Linear transformations**, not **Vectors and vector spaces**.
 - Do not relabel such prompts to **Vectors and vector spaces** or another nearby open Sub-domain merely because **Linear transformations** is closed. Significantly revise the prompt so that the mathematical object being asked about genuinely belongs to a different open Sub-domain.
 
