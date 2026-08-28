@@ -2,7 +2,7 @@
 
 This file is the source of truth for currently usable taxonomy slots. Update it whenever the portal capacity changes. Skills must read this file before choosing or changing a Domain/Sub-domain, Problem Type, or Answer Type.
 
-Last updated from user-provided portal snapshot: **2026-08-28**. Reviewer taxonomy feedback incorporated: **2026-08-27**. The current portal snapshot contains **64 Domain/Sub-domain rows across 12 Domains**, and **all 64 currently listed rows have positive remaining capacity**. The table below is derived directly from `available_segments`; any Domain/Sub-domain pair absent from that list must be treated as unavailable for the current snapshot rather than carried forward from older snapshots.
+Last updated from user-provided portal snapshot: **2026-08-28**. Reviewer taxonomy feedback incorporated: **2026-08-28**. The current portal snapshot contains **64 Domain/Sub-domain rows across 12 Domains**, and **all 64 currently listed rows have positive remaining capacity**. The table below is derived directly from `available_segments`; any Domain/Sub-domain pair absent from that list must be treated as unavailable for the current snapshot rather than carried forward from older snapshots.
 
 ## Selection Rules
 
@@ -34,7 +34,7 @@ Last updated from user-provided portal snapshot: **2026-08-28**. Reviewer taxono
 | Calculus | Multivariable calculus | 6 | open | 2026-08-28 user-provided portal snapshot. |
 | Calculus | Integration | 8 | open | 2026-08-28 user-provided portal snapshot. |
 | Calculus | Applications of derivatives | 10 | open | 2026-08-28 user-provided portal snapshot. |
-| Calculus | Applications of integration | 10 | open | 2026-08-28 user-provided portal snapshot. |
+| Calculus | Applications of integration | 9 | open | 2026-08-28 user-provided portal snapshot. |
 | Calculus | Infinite sequences and series | 11 | open | 2026-08-28 user-provided portal snapshot. |
 | Calculus | Single-variable calculus | 11 | open | 2026-08-28 user-provided portal snapshot. |
 | Calculus | Vector calculus | 12 | open | 2026-08-28 user-provided portal snapshot. |
@@ -54,20 +54,20 @@ Last updated from user-provided portal snapshot: **2026-08-28**. Reviewer taxono
 | Euclidean, Coordinate, and Transformational Geometry | Transformational geometry | 4 | open | 2026-08-28 user-provided portal snapshot. |
 | Euclidean, Coordinate, and Transformational Geometry | Analytic geometry | 5 | open | 2026-08-28 user-provided portal snapshot. |
 | Euclidean, Coordinate, and Transformational Geometry | Computational geometry | 6 | open | 2026-08-28 user-provided portal snapshot. |
-| Linear Algebra | Systems of linear equations | 3 | open | 2026-08-28 user-provided portal snapshot. |
+| Linear Algebra | Systems of linear equations | 2 | open | 2026-08-28 user-provided portal snapshot. |
 | Linear Algebra | Numerical linear algebra | 12 | open | 2026-08-28 user-provided portal snapshot. |
 | Logic, Set Theory, and Foundations | Computability theory | 5 | open | 2026-08-28 user-provided portal snapshot. |
 | Logic, Set Theory, and Foundations | Mathematical logic | 8 | open | 2026-08-28 user-provided portal snapshot. |
 | Logic, Set Theory, and Foundations | Model theory | 8 | open | 2026-08-28 user-provided portal snapshot. |
 | Logic, Set Theory, and Foundations | Complexity theory | 9 | open | 2026-08-28 user-provided portal snapshot. |
-| Logic, Set Theory, and Foundations | Category theory | 12 | open | 2026-08-28 user-provided portal snapshot. |
+| Logic, Set Theory, and Foundations | Category theory | 11 | open | 2026-08-28 user-provided portal snapshot. |
 | Logic, Set Theory, and Foundations | Proof theory | 13 | open | 2026-08-28 user-provided portal snapshot. |
 | Logic, Set Theory, and Foundations | Type theory and formal systems | 13 | open | 2026-08-28 user-provided portal snapshot. |
 | Number Theory | Quadratic residues and reciprocity | 3 | open | 2026-08-28 user-provided portal snapshot. |
 | Number Theory | Computational number theory | 9 | open | 2026-08-28 user-provided portal snapshot. |
 | Number Theory | Multiplicative functions | 11 | open | 2026-08-28 user-provided portal snapshot. |
-| Number Theory | Analytic number theory | 12 | open | 2026-08-28 user-provided portal snapshot. |
-| Optimization and Numerical Mathematics | Linear programming | 2 | open | 2026-08-28 user-provided portal snapshot. |
+| Number Theory | Analytic number theory | 10 | open | 2026-08-28 user-provided portal snapshot. |
+| Optimization and Numerical Mathematics | Linear programming | 1 | open | 2026-08-28 user-provided portal snapshot. |
 | Optimization and Numerical Mathematics | Dynamic programming and optimal control | 6 | open | 2026-08-28 user-provided portal snapshot. |
 | Optimization and Numerical Mathematics | Numerical optimization | 7 | open | 2026-08-28 user-provided portal snapshot. |
 | Optimization and Numerical Mathematics | Error analysis and stability | 8 | open | 2026-08-28 user-provided portal snapshot. |
@@ -91,6 +91,9 @@ Last updated from user-provided portal snapshot: **2026-08-28**. Reviewer taxono
 - **Linear Algebra → Vectors and vector spaces** is also absent from the 2026-08-28 `available_segments` snapshot and is unavailable in the current snapshot.
 - Prompts whose core task is classification or counting of subspaces invariant under specified linear operators, or whose defining structure is eigenspace/spectral decomposition and operator action, belong to **Linear transformations**, not **Vectors and vector spaces**.
 - Do not relabel such prompts to **Vectors and vector spaces** or another nearby open Sub-domain merely because **Linear transformations** is closed. Significantly revise the prompt so that the mathematical object being asked about genuinely belongs to a different open Sub-domain.
+- Reviewer feedback dated 2026-08-28 confirms that problems whose central objects are commutative rings/modules and whose target is a Poincare series encoding Betti numbers through `Tor`, minimal resolutions, fiber products, socle quotients, annihilators, and Yoneda/Ext structure belong to **Abstract Algebra → Commutative algebra**, not **Discrete Mathematics and Combinatorics → Generating functions**.
+- A rational function in the series variable does not by itself make such a problem a Generating functions problem; the series is only packaging homological dimensions after the algebraic structure is understood.
+- **Abstract Algebra → Commutative algebra** is absent from the current 2026-08-28 `available_segments` snapshot. Therefore an unchanged commutative/homological algebra prompt of this kind has **no currently usable Domain/Sub-domain slot**. Do not submit it under **Generating functions** or another nearby open row merely to fit capacity; materially redesign the prompt if it must use a currently open slot.
 
 ## Problem Type Slots
 
