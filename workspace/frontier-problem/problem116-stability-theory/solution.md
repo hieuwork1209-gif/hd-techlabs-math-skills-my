@@ -28,7 +28,7 @@ Then
 $$
 \dot y=-y\left((y-2)^2+c\right).
 $$
-If $c\leq0$, the factor in parentheses vanishes at a real point: for $c=0$, $y=2$ is an additional equilibrium, while for $c<0$ there are two nonzero equilibria $y=2\pm\sqrt{-c}$. Hence global convergence to zero is impossible.
+If $c\leq0$, the factor in parentheses has a real zero: for $c=0$, $y=2$ is an additional equilibrium, while for $c<0$ its roots are $y=2\pm\sqrt{-c}$ and at least one of them is nonzero. Hence global convergence to zero is impossible.
 
 If $c>0$, then $((y-2)^2+c)>0$ for every real $y$, so $y\dot y<0$ whenever $y\neq0$. Therefore $|y(t)|$ decreases, so every forward solution is bounded and hence exists for all $t\geq0$. Its limit exists. Any nonzero limit would keep $|\dot y|$ bounded away from zero, so the only possible limit is $0$. The origin is also Lyapunov stable for this scalar equation because $|y(t)|$ never increases. Hence the y-equation is globally asymptotically stable exactly when
 $$
@@ -44,7 +44,7 @@ Then
 $$
 \dot u=-u\left((u-1)^2+d\right).
 $$
-If $d\leq0$, the factor in parentheses has a real zero: for $d=0$, $u=1$ is an additional equilibrium, while for $d<0$ there are two nonzero equilibria $u=1\pm\sqrt{-d}$. Hence global convergence to zero is impossible.
+If $d\leq0$, the factor in parentheses has a real zero: for $d=0$, $u=1$ is an additional equilibrium, while for $d<0$ its roots are $u=1\pm\sqrt{-d}$ and at least one of them is nonzero. Hence global convergence to zero is impossible.
 
 If $d>0$, then $((u-1)^2+d)>0$ for every real $u$, so $u\dot u<0$ whenever $u\neq0$. Thus $|u(t)|$ decreases, every forward solution is bounded and global, and the same limiting argument forces $u(t)\to0$. Lyapunov stability follows from monotonicity of $|u(t)|$. Therefore the u-equation is globally asymptotically stable exactly when
 $$
