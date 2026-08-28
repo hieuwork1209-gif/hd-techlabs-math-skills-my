@@ -24,31 +24,24 @@ $$
 (-1)^{\binom{|p|}{2}}|u\rangle,
 $$
 because $u$ was defined as the prefix-parity word of $p^{\leftarrow}$.
-Thus the first normalized exponent is
-$$
-E_1=\binom{|p|}{2}.
-$$
 
 Step 3: Apply the cut and the second reversal
 
 Each $Z_i$ is diagonal and leaves the bit word unchanged. Its exponent is $1$ precisely at a descent $u_i=1,u_{i+1}=0$. Therefore
 $$
-K_n|u\rangle=(-1)^{d(u)}|u\rangle,
+K_n|u\rangle=(-1)^{d(u)}|u\rangle.
 $$
-so
-$$
-E_2=d(u).
-$$
-By Step 1, the following reversal contributes
+By Step 1, the following reversal contributes another factor
 $$
 R_n|u\rangle
 =
-(-1)^{\binom{|u|}{2}}|u^{\leftarrow}\rangle,
+(-1)^{\binom{|u|}{2}}|u^{\leftarrow}\rangle.
 $$
-and hence
+Thus, immediately before $H_n$, the accumulated sign is
 $$
-E_3=\binom{|u|}{2}.
+(-1)^{\binom{|p|}{2}+d(u)+\binom{|u|}{2}},
 $$
+and the current word is $u^{\leftarrow}$.
 
 Step 4: Compute the block-exchange sign and combine all factors
 
@@ -63,36 +56,21 @@ H_n|v\rangle
 (-1)^{\lambda(v)}
 |\text{the two blocks of }v\text{ exchanged}\rangle.
 $$
-Here $v=u^{\leftarrow}$, so
-$$
-E_4=\lambda(u^{\leftarrow}).
-$$
-Keeping the four stage contributions separate in the required normalized order gives
-$$
-(E_1,E_2,E_3,E_4)
-=
-\left(\binom{|p|}{2},\ d(u),\ \binom{|u|}{2},\ \lambda(u^{\leftarrow})\right),
-$$
-and therefore
+Here $v=u^{\leftarrow}$, so this last factor is $(-1)^{\lambda(u^{\leftarrow})}$. Multiplying the four independent sign contributions gives
 $$
 \omega_n(b)
 =
 (-1)^{\binom{|p|}{2}+d(u)+\binom{|u|}{2}+\lambda(u^{\leftarrow})}.
 $$
+The four terms are left in the specified-statistics form required by the problem, without canceling or simplifying them modulo $2$.
 
-Final Answer: $\boxed{\left(E_1,E_2,E_3,E_4\right)=\left(\binom{|p|}{2},d(u),\binom{|u|}{2},\lambda(u^{\leftarrow})\right)}$, and
-$$
-\boxed{\omega_n(b)=(-1)^{\binom{|p|}{2}+d(u)+\binom{|u|}{2}+\lambda(u^{\leftarrow})}}.
-$$
+Final Answer: $\boxed{(-1)^{\binom{|p|}{2}+d(u)+\binom{|u|}{2}+\lambda(u^{\leftarrow})}}$
 
 ---
 
 ## Answer
 
-$\left(\binom{|p|}{2},d(u),\binom{|u|}{2},\lambda(u^{\leftarrow})\right)$, hence
-$$
-\omega_n(b)=(-1)^{\binom{|p|}{2}+d(u)+\binom{|u|}{2}+\lambda(u^{\leftarrow})}.
-$$
+$(-1)^{\binom{|p|}{2}+d(u)+\binom{|u|}{2}+\lambda(u^{\leftarrow})}$
 
 ---
 
@@ -117,4 +95,4 @@ Answer Type: Function or mapping
 
 ## Black-Box Audit
 
-No issues found. The final output is constrained to an ordered four-term normalized form, so algebraically equivalent rewrites are not accepted in place of the specified statistics.
+No issues found. The final answer is constrained to the specified statistics, preventing rewrites in the original bits or modulo-$2$ cancellations while leaving the decomposition to the solver.
