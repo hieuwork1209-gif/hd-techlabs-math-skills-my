@@ -19,7 +19,7 @@ Q(t)=\frac{1}{2\pi}\int_0^{2\pi} f(x+3t)^3\overline{f(x+t)}\,dx.
 $$
 Assume that
 $$
-\widehat D(2m)=m+1+(-1)^m m i
+\widehat D(2m)=m+1+(-1)^{m}m i
 \qquad\left(1\leq m\leq\left\lfloor\frac{N}{2}\right\rfloor\right),
 $$
 $$
