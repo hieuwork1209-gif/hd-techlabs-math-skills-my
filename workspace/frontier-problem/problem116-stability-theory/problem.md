@@ -26,4 +26,4 @@ Determine all pairs $(a,b)$ for which the equilibrium $(0,0)$ is globally asympt
 
 ## Domain Explanation
 
-This problem involves global asymptotic stability of an equilibrium in a planar polynomial system, which is part of Differential Equations and Dynamical Systems and Stability theory. The problem also involves a nonlinear algebraic change of variables and scalar factorization, which are part of algebraic manipulation. However, those tools only expose the decoupled dynamics, while the requested parameter region is determined by global stability.
+This problem involves global asymptotic stability of an equilibrium in a planar polynomial system, which is part of Differential Equations and Dynamical Systems and Stability theory. The problem also involves a nonlinear algebraic change of variables and scalar factorization, which are part of Algebra, Functions, and Trigonometry. However, those tools only expose the decoupled dynamics, while the requested parameter region is determined by global stability.
