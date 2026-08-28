@@ -2,9 +2,9 @@
 
 ## LaTeX (Normalized)
 
-Let $k\ge5$ and put $q=2^{k-4}$. For $m\ge1$, let $c_{m,k}$ be the number of primitive pairs $(x,y)\in\mathbb Z^2$ satisfying
+Let $k\ge2$ and put $q=2^{k-1}$. For $m\ge1$, let $c_{m,k}$ be the number of primitive pairs $(x,y)\in\mathbb Z^2$ satisfying
 $$
-x^2+5y^2=(61\cdot89)^m,\qquad y\ne0,\qquad v_2(y)=k,
+x^2+14y^2=15^m,\qquad y\ne0,\qquad v_2(y)=k,
 $$
 where primitive means $\gcd(x,y)=1$, and $v_2(y)$ is the largest integer $e\ge0$ for which $2^e\mid y$.
 
@@ -29,4 +29,4 @@ as a rational function of $T$ and $q$.
 
 ## Domain Explanation
 
-This problem belongs to Number Theory, specifically elementary number theory, because it asks for an exact generating function encoding primitive representations by a positive quadratic form with a prescribed power-of-two divisibility condition. The decisive work is the arithmetic classification of primitive norm representations together with a valuation argument for coefficients of powers in a quadratic integer ring. Generating functions only package the resulting exponent classes, so they are secondary to the number-theoretic structure.
+This problem belongs to Number Theory because it asks for an exact generating function encoding primitive representations by the quadratic norm form $x^2+14y^2$ with a prescribed $2$-adic valuation. The main difficulty is that the split prime ideals above $3$ and $5$ are nonprincipal: one must determine which primitive ideal factorizations become principal before analyzing coefficient valuations. The generating function only packages the resulting exponent classes.
