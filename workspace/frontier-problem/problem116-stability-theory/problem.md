@@ -26,4 +26,4 @@ Determine all pairs $(a,b)$ for which the equilibrium $(0,0)$ is globally asympt
 
 ## Domain Explanation
 
-This problem asks for the parameter region in which the origin is globally asymptotically stable for a planar polynomial system, so its primary content is stability theory. The key issue is global behavior rather than local linearization because additional equilibria can appear away from the origin. An algebraic change of variables is a tool for exposing the dynamics and does not change the primary classification.
+This problem involves global asymptotic stability of an equilibrium in a planar polynomial system, which is part of Differential Equations and Dynamical Systems and Stability theory. The problem also involves a nonlinear algebraic change of variables and scalar factorization, which are part of algebraic manipulation. However, those tools only expose the decoupled dynamics, while the requested parameter region is determined by global stability.
