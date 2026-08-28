@@ -39,7 +39,7 @@ Show that $\rho_*$ is attained by a unique pair $(a_*,b_*)$, and determine $\rho
 | **Domain** | Differential Equations and Dynamical Systems |
 | **Sub-domain** | Numerical differential equations |
 | **Problem Type** | Optimization |
-| **Answer Type** | Exact scalar |
+| **Answer Type** | Tuple or ordered list |
 
 ---
 
