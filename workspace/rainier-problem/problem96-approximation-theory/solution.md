@@ -158,7 +158,63 @@ $$
 g_-(c)=\frac{91175-32768\sqrt3}{30371328}
 +\left(\frac{5\sqrt6}{624}-\frac{9\sqrt2}{416}\right)c.
 $$
-For $\beta^+$, impose the five contact-value equations at $-1,-b,0,a,1$ and stationarity at the three interior nodes. For $\beta^-$, use $-1,-b,-a,0,1$. The corresponding value interpolation matrices have determinants $-91/18$ and $91/18$, and all displayed contact curvatures are nonzero. Hence the implicit function theorem gives both local five-contact branches. Let $\ell_{-a}^+(c)$ be the second-order value required by the omitted contact $-a$ on the plus branch, and define $\ell_a^-(c)$ analogously. Substitution in the omitted inequalities gives
+
+To certify that these bounds come from actual local branches, write
+$$
+p_{\varepsilon,c}(x)=x^6+Ax^5+Bx^4+\varepsilon x^3+Cx^2+
+\left(-\frac{\varepsilon}{9}+c\varepsilon^2\right)x+D.
+$$
+For the plus branch take moving nodes $(s_1,s_2,s_3)$ with base point $(-b,0,a)$ and signs $(1,-1,-1,1,1)$ at $(-1,s_1,s_2,s_3,1)$. For the minus branch use base point $(-b,-a,0)$ and signs $(1,-1,1,-1,1)$. With
+$$
+y=(A,B,C,D,L,s_1,s_2,s_3),
+$$
+define $\Phi_\pm(\varepsilon,y)$ by the five equations
+$$
+p_{\varepsilon,c}(x_j)-\sigma_jLw(x_j)=0
+$$
+at those five nodes and the three stationarity equations
+$$
+p_{\varepsilon,c}'(s_i)-\sigma_iLw'(s_i)=0\qquad(i=1,2,3).
+$$
+We use the following local solvability criterion: if a continuously differentiable system $\Phi(\varepsilon,y)=0$ satisfies $\Phi(0,y_0)=0$ and $\det D_y\Phi(0,y_0)\neq0$, then there is a unique continuously differentiable solution $y(\varepsilon)$ near $\varepsilon=0$ with $y(0)=y_0$.
+
+At $\varepsilon=0$, the Jacobian is block triangular. Its value-equation blocks are
+$$
+M_+=\begin{pmatrix}
+-1&1&1&1&-11\\
+-b^5&b^4&b^2&1&9\\
+0&0&0&1&1\\
+a^5&a^4&a^2&1&-4\\
+1&1&1&1&-11
+\end{pmatrix},
+\qquad
+M_-=\begin{pmatrix}
+-1&1&1&1&-11\\
+-b^5&b^4&b^2&1&9\\
+-a^5&a^4&a^2&1&-4\\
+0&0&0&1&1\\
+1&1&1&1&-11
+\end{pmatrix},
+$$
+where the columns are $(A,B,C,D,L)$. Direct elimination gives
+$$
+\det M_+=-\frac{91}{18},\qquad \det M_-=\frac{91}{18}.
+$$
+The moving-node blocks are diagonal because each base contact is stationary:
+$$
+\operatorname{diag}(C_{-b},C_0,C_a)
+\quad\text{and}\quad
+\operatorname{diag}(C_{-b},C_{-a},C_0).
+$$
+Hence
+$$
+\det D_y\Phi_+(0,y_0)=\frac{18193357}{944784},
+\qquad
+\det D_y\Phi_-(0,y_0)=-\frac{18193357}{944784},
+$$
+so both five-contact branches exist uniquely. Differentiating their five value equalities twice gives the second-order coefficient $g$. Because $\beta^+$ and $\beta^-$ are supported exactly on the corresponding five contacts, summing those equalities with the dual masses gives equality in the two formulas above, so the branch coefficients are precisely $g_+(c)$ and $g_-(c)$.
+
+Let $\ell_{-a}^+(c)$ be the second-order value required by the omitted contact $-a$ on the plus branch, and define $\ell_a^-(c)$ analogously. Substitution in the omitted inequalities gives
 $$
 g_+(c)-\ell_{-a}^+(c)=\frac{91}{32}\left(g_+(c)-g_-(c)\right),
 $$
