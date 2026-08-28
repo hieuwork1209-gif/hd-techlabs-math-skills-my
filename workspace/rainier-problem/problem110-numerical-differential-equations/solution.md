@@ -221,17 +221,17 @@ so $R_{a_*,b_*}(s)>1$ immediately to the right of $r$, a contradiction. Hence $\
 
 Finally, if $\rho(a,b)=r$, downward closure and continuity imply that the pair is stable at $s=r$ itself, so the same certificate forces $(a,b)=(a_*,b_*)$. The maximizer is therefore unique.
 
-Final Answer: $\boxed{\operatorname{Root}_{(11,12)}(x^4-8x^3+52x^2-864x-1984)}$
+Final Answer: $\boxed{(r,\frac{3r+4}{2r^2},-\frac{r+4}{2r^3}),\ r=\operatorname{Root}_{(11,12)}(x^4-8x^3+52x^2-864x-1984)}$
 
 ## Answer
 
-$\operatorname{Root}_{(11,12)}(x^4-8x^3+52x^2-864x-1984)$
+$(r,\frac{3r+4}{2r^2},-\frac{r+4}{2r^3}),\ r=\operatorname{Root}_{(11,12)}(x^4-8x^3+52x^2-864x-1984)$
 
 ## Classification
 
 **Problem Type:** Optimization
 
-**Answer Type:** Exact scalar
+**Answer Type:** Tuple or ordered list
 
 ## Solution Concepts
 
