@@ -1,322 +1,188 @@
 ## Steps
 
-Step 1: Separate the random-walk reference law from the endpoint perturbation
+Step 1: Isolate the endpoint tilt
 
-Let $D_n=X_n-X_0$. The path part of the precision matrix is
+Let $D_n=X_n-X_0$. The precision separates as
 $$
-x^{T}\Omega^{\mathrm{ref}}_{n,q}x
-=\frac1n x_0^{T}A_qx_0+\sum_{k=1}^{n}(x_k-x_{k-1})^{T}B_q(x_k-x_{k-1}),
+x^T\Omega^{\mathrm{ref}}_{n,q}x
+=\frac1n x_0^TA_qx_0+\sum_{k=1}^n(x_k-x_{k-1})^TB_q(x_k-x_{k-1}),
 $$
-and the only remaining term is
+plus
 $$
-\frac{1}{nq}(e^{T}D_n)^2.
+\frac1{nq}(e^TD_n)^2.
 $$
-Thus the given law is the reference Gaussian law tilted by
+Hence the given law is obtained from the Gaussian random-walk reference law by the single tilt
 $$
-\exp\!\left(-\frac{(e^{T}D_n)^2}{2nq}\right).
+\exp\!\left(-\frac{(e^TD_n)^2}{2nq}\right).
 $$
+The point of this separation is that the tilt depends only on the endpoint increment $D_n$; the bridge fluctuations of the walk are unchanged.
 
-Under the reference law the innovations $\varepsilon_k=X_k-X_{k-1}$ are independent of $X_0$, with
-$$
-\operatorname{Cov}(X_0)=nA_q^{-1},
-\qquad
-\operatorname{Cov}(\varepsilon_k)=B_q^{-1}.
-$$
-If
-$$
-P=\frac13\mathbf1\mathbf1^{T},\qquad P_\perp=I_3-P,
-$$
-then
-$$
-A_q^{-1}=9qP+P_\perp,\qquad B_q^{-1}=P+qP_\perp.
-$$
-This is the main structural reduction: a Gaussian random walk plus one rank-one endpoint update.
-
-Step 2: Reduce the asymptotics to three scalar modes
+Step 2: Pass to the three independent modes and identify the limiting channel
 
 Use the orthonormal basis
 $$
-u=\frac1{\sqrt3}(1,1,1)^T,\quad
-w=\frac1{\sqrt6}(2,-1,-1)^T,\quad
+u=\frac1{\sqrt3}(1,1,1)^T,\qquad
+w=\frac1{\sqrt6}(2,-1,-1)^T,\qquad
 h=\frac1{\sqrt2}(0,1,-1)^T.
 $$
-The three reference modes are independent scalar random walks. Their initial/increment variance parameters $(c,r)$ are $(9q,1)$ on $u$ and $(1/q,q)$ on $w,h$. Put
+In this basis, under the reference law,
 $$
-T_n=\frac1n\sum_{k=1}^{n-1}X_k.
-$$
-For one scalar mode,
-$$
-\frac1n\operatorname{Cov}(X_0,X_n,T_n,D_n)
-\longrightarrow
-r\begin{pmatrix}
-c&c&c&0\\
-c&c+1&c+\frac12&1\\
-c&c+\frac12&c+\frac13&\frac12\\
-0&1&\frac12&1
-\end{pmatrix}.
-$$
-In the $(u,w,h)$ basis,
-$$
-e=\begin{pmatrix}1/\sqrt3\\ \sqrt{2/3}\\0\end{pmatrix},
+\frac1n\operatorname{Cov}(X_0)=A=\operatorname{diag}(9q,1,1),
 \qquad
-A=\operatorname{diag}(9q,1,1),
-\qquad
-R=\operatorname{diag}(1,q,q).
-$$
-Writing $E=ee^T$, define
-$$
-H=A+\frac13R-\frac12(RE+ER)+ERE,
-$$
-$$
-V=A+R,\qquad
-N=A+\frac12R-RE,\qquad
-L=\frac12R-RE.
-$$
-These are the scaled limits of $\operatorname{Cov}(Y_n)$, $\operatorname{Cov}(X_n)$, $\operatorname{Cov}(X_n,Y_n)$, and $\operatorname{Cov}(D_n,Y_n)$. In particular,
-$$
-H=
-\begin{pmatrix}
-\frac{83q+1}{9}&\frac{\sqrt2(q-1)}{18}&0\\
-\frac{\sqrt2(q-1)}{18}&\frac{q+11}{9}&0\\
-0&0&\frac{q+3}{3}
-\end{pmatrix}.
-$$
-Because $e_h=0$, every nontrivial correction is confined to the $(u,w)$ plane.
-
-Step 3: Compute the reference conditional determinant ratio by Schur complements
-
-Let
-$$
-H_0=H-A,\qquad H_n=H-N^TV^{-1}N.
-$$
-For a symmetric $2\times2$ matrix
-$$
-M=\begin{pmatrix}a&b\\b&c\end{pmatrix},
-$$
-we use only
-$$
-\det M=ac-b^2,\qquad
-x^TM^{-1}x=\frac{cx_1^2-2bx_1x_2+ax_2^2}{ac-b^2}.
-$$
-The active blocks needed for $H_n$ are
-$$
-N_{uw}=\begin{pmatrix}
-9q+\frac16&-\frac{\sqrt2}{3}\\
--\frac{\sqrt2q}{3}&1-\frac q6
-\end{pmatrix},
-\qquad
-V_{uw}=\operatorname{diag}(9q+1,q+1).
-$$
-Substitution in $H_n=H-N^TV^{-1}N$ gives
-$$
-(H_n)_{uw}=\begin{pmatrix}
-\dfrac{324q^2+263q+3}{36(q+1)(9q+1)}&
-\dfrac{2\sqrt2q(27q+13)}{9(q+1)(9q+1)}\\[6pt]
-\dfrac{2\sqrt2q(27q+13)}{9(q+1)(9q+1)}&
-\dfrac{q(27q^2+543q+124)}{36(q+1)(9q+1)}
-\end{pmatrix}.
-$$
-Put $P_n=324q^2+2963q+124$. Applying $ac-b^2$ directly to this block gives
-$$
-\det(H_n)_{uw}=\frac{qP_n}{432(q+1)(9q+1)}.
-$$
-The $h$ entry is independent of that block and equals
-$$
-(H_n)_{hh}=\frac{q(q+4)}{12(q+1)}.
-$$
-Hence
-$$
-\det H_n=
-\frac{q^2(q+4)P_n}{5184(q+1)^2(9q+1)}.
-$$
-The same $2\times2$ identity applied to $H$ and $H_0$ gives
-$$
-\det H=\frac{(q+3)(55q^2+610q+7)}{162},
-\qquad
-\det H_0=\frac{q(q^2+4q+1)}{162}.
-$$
-
-Let $\overline K_{00}$, $\overline K_{nn}$ and $\overline K$ be the scaled reference conditional covariance matrices of $X_0$, $X_n$, and $(X_0,X_n)$ given $Y_n$. Schur-complement determinant identities therefore give
-$$
-\det\overline K_{00}
-=\det A\,\frac{\det H_0}{\det H}
-=\frac{9q^2(q^2+4q+1)}{(q+3)(55q^2+610q+7)},
-$$
-and, since $\det V=(9q+1)(q+1)^2$,
-$$
-\det\overline K_{nn}
-=\det V\,\frac{\det H_n}{\det H}
-=\frac{q^2(q+4)P_n}{32(q+3)(55q^2+610q+7)}.
-$$
-
-The shear $(X_0,X_n,T_n)\mapsto(X_0,X_n,Y_n)$ has determinant $1$. For a scalar mode, the limiting covariance determinant of $(X_0,X_n,T_n)$ is $cr^3/12$, so multiplication over the three independent modes gives
-$$
-\det\overline{\operatorname{Cov}}(X_0,X_n,Y_n)=\frac{q^5}{192},
-$$
-and therefore
-$$
-\det\overline K
-=\frac{27q^5}{32(q+3)(55q^2+610q+7)}.
-$$
-Thus the reference determinant ratio is
-$$
-R_0=
-\frac{(q+4)(q^2+4q+1)P_n}{3q(q+3)(55q^2+610q+7)}.
-$$
-
-Step 4: Apply the rank-one endpoint update
-
-Let $d_n=e^TD_n$. We need the scaled reference conditional variances
-$$
-v=\lim_{n\to\infty}\frac1n\operatorname{Var}(d_n\mid Y_n),
-\quad
-v_0=\lim_{n\to\infty}\frac1n\operatorname{Var}(d_n\mid Y_n,X_0),
-\quad
-v_n=\lim_{n\to\infty}\frac1n\operatorname{Var}(d_n\mid Y_n,X_n).
-$$
-Gaussian conditioning gives
-$$
-v=e^T(R-LH^{-1}L^T)e,
-\qquad
-v_0=e^T(R-LH_0^{-1}L^T)e.
-$$
-For the last one set
-$$
-R_n=R-RV^{-1}R,\qquad L_n=L-RV^{-1}N,
-$$
-so that
-$$
-v_n=e^T(R_n-L_nH_n^{-1}L_n^T)e.
-$$
-Only the $(u,w)$ plane contributes. To keep the calculation transparent without expanding large polynomials, we solve each active $2\times2$ system first and then take one dot product.
-
-For $v$, put
-$$
-y=L^Te=
-\begin{pmatrix}
-\dfrac{\sqrt3(1-4q)}{18}\\[4pt]
--\dfrac{\sqrt6(q+2)}{18}
-\end{pmatrix},
-\qquad e^TRe=\frac{2q+1}{3}.
-$$
-The required active inverse is
-$$
-H_{uw}^{-1}
-=\frac1{55q^2+610q+7}
-\begin{pmatrix}
-6(q+11)&-3\sqrt2(q-1)\\
--3\sqrt2(q-1)&6(83q+1)
-\end{pmatrix},
-$$
-and its action on $y$ simplifies before the final contraction:
-$$
-H_{uw}^{-1}y=
-\begin{pmatrix}
--\dfrac{\sqrt3(q^2+14q-3)}{55q^2+610q+7}\\[5pt]
--\dfrac{\sqrt6(54q^2+113q+1)}{2(55q^2+610q+7)}
-\end{pmatrix}.
-$$
-Thus
-$$
-y^TH_{uw}^{-1}y
-=\frac{58q^3+276q^2+201q+5}{6(55q^2+610q+7)},
-$$
-so
-$$
-v=\frac{54q^3+758q^2+349q+3}{2(55q^2+610q+7)}.
-$$
-
-For $v_0$ the vector $y$ is unchanged, while
-$$
-(H_0)_{uw}^{-1}
-=\frac1{q^2+4q+1}
-\begin{pmatrix}
-6(q+2)&-3\sqrt2(q-1)\\
--3\sqrt2(q-1)&6(2q+1)
-\end{pmatrix},
-$$
-$$
-(H_0)_{uw}^{-1}y=
-\begin{pmatrix}
--\dfrac{\sqrt3q(q+2)}{q^2+4q+1}\\[5pt]
--\dfrac{\sqrt6(5q+1)}{2(q^2+4q+1)}
-\end{pmatrix}.
-$$
-Hence
-$$
-y^T(H_0)_{uw}^{-1}y
-=\frac{(q+2)(2q+1)^2}{6(q^2+4q+1)},
-\qquad
-v_0=\frac{q(2q+1)}{2(q^2+4q+1)}.
-$$
-
-For $v_n$, the active blocks are
-$$
-(R_n)_{uw}=\begin{pmatrix}
-\dfrac{9q}{9q+1}&0\\[4pt]
-0&\dfrac{q}{q+1}
-\end{pmatrix},
-$$
-$$
-(L_n)_{uw}=\begin{pmatrix}
--\dfrac{15q}{2(9q+1)}&-\dfrac{3\sqrt2q}{9q+1}\\[6pt]
--\dfrac{\sqrt2q}{3(q+1)}&-\dfrac{7q}{6(q+1)}
-\end{pmatrix}.
-$$
-Therefore
-$$
-e^T(R_n)_{uw}e=\frac{q(27q+11)}{3(q+1)(9q+1)},
+\frac1n\operatorname{Cov}(D_n)=R=\operatorname{diag}(1,q,q),
 $$
 and
 $$
-y_n:=(L_n)_{uw}^Te=
+e=\begin{pmatrix}1/\sqrt3\\ \sqrt{2/3}\\0\end{pmatrix},
+\qquad E=ee^T.
+$$
+Because the tilt in Step 1 is quadratic in $D_n$, it replaces the scaled covariance $R$ by
+$$
+\widetilde R=(R^{-1}+q^{-1}E)^{-1}
+=R-\frac{Ree^TR}{q+e^TRe}.
+$$
+Thus
+$$
+\widetilde R=
 \begin{pmatrix}
--\dfrac{\sqrt3q(81q+49)}{18(q+1)(9q+1)}\\[6pt]
--\dfrac{\sqrt6q(81q+25)}{18(q+1)(9q+1)}
-\end{pmatrix}.
-$$
-The inverse of the active block from Step 3 is
-$$
-(H_n)_{uw}^{-1}
-=\frac1{P_n}
-\begin{pmatrix}
-12(27q^2+543q+124)&-96\sqrt2(27q+13)\\[4pt]
--96\sqrt2(27q+13)&\dfrac{12(324q^2+263q+3)}q
-\end{pmatrix}.
-$$
-Again its action is much simpler than a full expansion:
-$$
-(H_n)_{uw}^{-1}y_n=
-\begin{pmatrix}
--\dfrac{2\sqrt3q(81q+292)}{P_n}\\[5pt]
--\dfrac{2\sqrt6(324q+25)}{P_n}
-\end{pmatrix}.
-$$
-Consequently
-$$
-y_n^T(H_n)_{uw}^{-1}y_n
-=\frac{q\bigl(q(81q+49)(81q+292)+2(81q+25)(324q+25)\bigr)}{3(q+1)(9q+1)P_n},
-$$
-and subtraction gives
-$$
-v_n=\frac{q(81q+38)}{P_n}.
+\dfrac{5q}{5q+1}&-\dfrac{\sqrt2q}{5q+1}&0\\[5pt]
+-\dfrac{\sqrt2q}{5q+1}&\dfrac{q(3q+1)}{5q+1}&0\\[5pt]
+0&0&q
+\end{pmatrix},
+\qquad
+\det\widetilde R=\frac{3q^3}{5q+1}.
 $$
 
-Conditioned on $Y_n$, the tilt from Step 1 adds $\alpha aa^T$ to the endpoint precision, where
+Now put
 $$
-\alpha=\frac1{nq},
+T_n=\frac1n\sum_{k=1}^{n-1}X_k,
+\qquad G_n=T_n-X_0.
+$$
+For each scalar increment mode, if
+$$
+a_n=\frac{n-1}{2n},
+\qquad \eta_n=G_n-a_nD_n,
+$$
+then $\eta_n$ is Gaussian and independent of $D_n$, and
+$$
+\frac1n\operatorname{Cov}(\eta_n)\longrightarrow\frac1{12}R.
+$$
+Since the endpoint tilt depends only on $D_n$, this independence is preserved. Therefore, at the level of the scaled limiting covariance, we may work with independent Gaussian vectors
+$$
+X_0\sim A,\qquad D\sim\widetilde R,\qquad \eta\sim\frac1{12}R,
+$$
+and
+$$
+Y=X_0+CD+\eta,
+\qquad C=\frac12I-E.
+$$
+This is the structural reduction: the original path problem becomes one finite-dimensional Gaussian observation channel.
+
+Step 3: Compute the three conditional determinants from one covariance identity
+
+Let
+$$
+H=\operatorname{Cov}(Y)
+=A+C\widetilde RC^T+\frac1{12}R,
+$$
+$$
+H_0=\operatorname{Cov}(Y\mid X_0)
+=C\widetilde RC^T+\frac1{12}R,
+$$
+$$
+V=\operatorname{Cov}(X_n)=A+\widetilde R.
+$$
+Conditioning on $X_n=X_0+D$, the covariance of $D$ becomes
+$$
+Q=(A^{-1}+\widetilde R^{-1})^{-1},
+$$
+so
+$$
+H_n=\operatorname{Cov}(Y\mid X_n)
+=(C-I)Q(C-I)^T+\frac1{12}R.
+$$
+For any jointly Gaussian pair $(Z,Y)$,
+$$
+\det\operatorname{Cov}(Z\mid Y)
+=\det\operatorname{Cov}(Z)\,
+\frac{\det\operatorname{Cov}(Y\mid Z)}{\det\operatorname{Cov}(Y)}.
+$$
+Thus the entire reference-ratio calculation is reduced to four $3\times3$ determinants. Each matrix splits into the active $(u,w)$ block and an independent $h$ entry, so only $2\times2$ determinants occur.
+
+Write
+$$
+D_q=27q^2+57q+14,
 \qquad
-a=\begin{pmatrix}-e\\e\end{pmatrix}.
+M_q=164q^3+1978q^2+363q+3.
 $$
-The matrix determinant lemma changes the joint conditional determinant by $(1+\alpha\operatorname{Var}(d_n\mid Y_n))^{-1}$, and the analogous marginal factors are obtained after also conditioning on $X_0$ or $X_n$. Hence
+Directly from the displayed covariance formulas,
 $$
-R
-=R_0\frac{(1+v_0/q)(1+v_n/q)}{1+v/q}
-=\frac{2(q+4)(2q^2+10q+3)(162q^2+1522q+81)}{3(q+3)(164q^3+1978q^2+363q+3)}.
+\det H=\frac{(q+3)M_q}{108(5q+1)},
+\qquad
+\det H_0=\frac{q^2(2q^2+10q+3)}{108(5q+1)},
+$$
+$$
+\det V=\frac{q(q+1)D_q}{5q+1}.
+$$
+For completeness, the only less immediate block is
+$$
+(H_n)_{uw}=
+\begin{pmatrix}
+\dfrac{162q^2+172q+7}{6D_q}&
+\dfrac{\sqrt2q(216q+77)}{12D_q}\\[6pt]
+\dfrac{\sqrt2q(216q+77)}{12D_q}&
+\dfrac{q(9q^2+190q+54)}{4D_q}
+\end{pmatrix},
+$$
+while
+$$
+(H_n)_{hh}=\frac{q(q+4)}{12(q+1)}.
+$$
+Hence one application of $ac-b^2$ gives
+$$
+\det H_n
+=\frac{q^2(q+4)(162q^2+1522q+81)}{864(q+1)D_q}.
+$$
+Therefore, writing $\overline K_{00}$ and $\overline K_{nn}$ for the scaled conditional covariance matrices of $X_0$ and $X_n$ given $Y$,
+$$
+\det\overline K_{00}
+=\det A\,\frac{\det H_0}{\det H}
+=\frac{9q^3(2q^2+10q+3)}{(q+3)M_q},
+$$
+$$
+\det\overline K_{nn}
+=\det V\,\frac{\det H_n}{\det H}
+=\frac{q^3(q+4)(162q^2+1522q+81)}{8(q+3)M_q}.
+$$
+
+Step 4: Assemble the joint determinant and mutual information
+
+The linear map
+$$
+(X_0,D,\eta)\longmapsto(X_0,X_n,Y)
+$$
+has determinant $1$. Since the three inputs are independent in the limiting channel,
+$$
+\det\overline{\operatorname{Cov}}(X_0,X_n,Y)
+=\det A\,\det\widetilde R\,\det(R/12)
+=\frac{q^6}{64(5q+1)}.
+$$
+Hence, if $\overline K$ is the scaled conditional covariance of $(X_0,X_n)$ given $Y$,
+$$
+\det\overline K
+=\frac{\det\overline{\operatorname{Cov}}(X_0,X_n,Y)}{\det H}
+=\frac{27q^6}{16(q+3)M_q}.
 $$
 For jointly Gaussian vectors,
 $$
-I(X_0;X_n\mid Y_n)=\frac12\log R.
+I(X_0;X_n\mid Y_n)
+\longrightarrow
+\frac12\log\frac{\det\overline K_{00}\det\overline K_{nn}}{\det\overline K}.
+$$
+Substitution gives
+$$
+\frac{\det\overline K_{00}\det\overline K_{nn}}{\det\overline K}
+=\frac{2(q+4)(2q^2+10q+3)(162q^2+1522q+81)}{3(q+3)(164q^3+1978q^2+363q+3)}.
 $$
 
 Final Answer: $\boxed{\frac{1}{2}\log\frac{2(q+4)(2q^2+10q+3)(162q^2+1522q+81)}{3(q+3)(164q^3+1978q^2+363q+3)}}$
