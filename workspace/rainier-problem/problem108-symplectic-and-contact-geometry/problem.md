@@ -2,7 +2,7 @@
 
 ## LaTeX (Normalized)
 
-Let $q$ be an odd prime power. Let $V$ be an $8$-dimensional vector space over $\mathbb{F}_q$ with basis
+Let $r$ be a positive integer and put $q=3^{2r}$. Let $V$ be an $8$-dimensional vector space over $\mathbb{F}_q$ with basis
 $$
 e_1,e_2,e_3,e_4,f_1,f_2,f_3,f_4
 $$
@@ -24,21 +24,21 @@ Since $\omega(v_t,f_1)=1$, define $\rho_t\in\operatorname{Sp}(V)$ by
 $$
 \rho_t(v_t)=f_1,\qquad \rho_t(f_1)=-v_t,
 $$
-and by letting $\rho_t$ act as the identity on $\langle v_t,f_1\rangle^\perp$. Define $\rho_\infty$ similarly by
-$$
-\rho_\infty(e_4)=f_4,\qquad \rho_\infty(f_4)=-e_4,
-$$
-and by fixing $\langle e_4,f_4\rangle^\perp$.
+and by letting $\rho_t$ act as the identity on $\langle v_t,f_1\rangle^\perp$.
 
-Let $M_q$ be the number of Lagrangian subspaces $L$ of $V$ such that
+Let $L$ range over the Lagrangian subspaces satisfying $L\cap F=0$. Projection along $F$ gives a unique map $S_L:E\to F$ with
 $$
-L\cap F=0
+L=\{x+S_Lx:x\in E\}.
+$$
+Write the matrix of $S_L$ as $(s_{ij})$ in the ordered bases above. Let $M_r$ be the number of such $L$ satisfying
+$$
+s_{44}=1,\qquad s_{34}=0,\qquad s_{33}+2s_{24}=0
 $$
 and
 $$
 \rho_t(L)\cap F=0
 $$
-for every $t\in\mathbb{F}_q\cup\{\infty\}$. Determine $M_q$ exactly.
+for every $t\in\mathbb{F}_q$. Determine $M_r$ exactly.
 
 ---
 
@@ -55,4 +55,4 @@ for every $t\in\mathbb{F}_q\cup\{\infty\}$. Determine $M_q$ exactly.
 
 ## Domain Explanation
 
-This problem counts Lagrangian graphs that remain transverse after a projectively parameterized family of partial symplectic Fourier transforms. The defining geometry is the interaction of the Lagrangian Grassmannian with a twisted-cubic family of symplectic planes, so Topology and Geometry with Symplectic and contact geometry is the best fit. Binary forms and finite-field inclusion-exclusion are tools used to evaluate that symplectic count.
+This problem counts normalized Lagrangian graphs that remain transverse after a twisted-cubic family of partial symplectic Fourier transforms. The defining objects are the Lagrangian Grassmannian, a fixed symplectic polarization, and symplectic transformations, so Topology and Geometry with Symplectic and contact geometry is the best fit. Finite-field Fourier analysis and subset counting are tools used to evaluate the resulting symplectic incidence condition.
