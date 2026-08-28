@@ -76,9 +76,9 @@ $(-1)^{\binom{|p|}{2}+d(u)+\binom{|u|}{2}+\lambda(u^{\leftarrow})}$
 
 ## Classification
 
-Problem Type: Symbolic derivation
+**Problem Type:** Symbolic derivation
 
-Answer Type: Function or mapping
+**Answer Type:** Function or mapping
 
 ---
 
@@ -89,10 +89,3 @@ Answer Type: Function or mapping
 - prefix-parity scan
 - descent counting
 - block-crossing parity
-- canonical answer normalization
-
----
-
-## Black-Box Audit
-
-No issues found. The final answer is constrained to the specified statistics, preventing rewrites in the original bits or modulo-$2$ cancellations while leaving the decomposition to the solver.
