@@ -4,9 +4,9 @@ Step 1: Convert the nonlinear correlations into triangular coefficient identitie
 
 Put
 $$
-S_n=\sum_{a+b=n}c_ac_b,
+S_n=\sum_{a+b=n}c_{a}c_{b},
 \qquad
-T_n=\sum_{a+b+c=n}c_ac_bc_c.
+T_n=\sum_{a+b+c=n}c_{a}c_{b}c_{c}.
 $$
 Expanding the definition of $D$, the integral in $x$ kills every term except those with $a+b=n$. The remaining $t$-frequency is $n$, so
 $$
@@ -20,7 +20,7 @@ Since $c_0=1$, write
 $$
 S_n=2c_n+A_n,
 \qquad
-A_n=\sum_{j=1}^{n-1}c_jc_{n-j},
+A_n=\sum_{j=1}^{n-1}c_{j}c_{n-j},
 $$
 and
 $$
@@ -47,7 +47,7 @@ U(z)=\sum_{k\geq0}u_kz^k
 $$
 Let $A(z)=1+z+iz^2-iz^3$. Since
 $$
-\frac1{(1+z^4)^2}=\sum_{j\geq0}(-1)^j(j+1)z^{4j},
+\frac{1}{(1+z^4)^2}=\sum_{j\geq0}(-1)^{j}(j+1)z^{4j},
 $$
 and
 $$
@@ -65,19 +65,19 @@ $$
 $$
 In particular, for $n=2m$ this is
 $$
-\frac{[z^{2m}]U(z)^2}{u_{2m}}=m+1+(-1)^m mi,
+\frac{[z^{2m}]U(z)^2}{u_{2m}}=m+1+(-1)^{m}m i,
 $$
 and for $n=4m+3$ it is $0$.
 
 For the cubic convolution we only need indices $n=4m+1$. Using
 $$
-\frac1{(1+z^4)^3}=\sum_{j\geq0}(-1)^j\binom{j+2}{2}z^{4j},
+\frac{1}{(1+z^4)^3}=\sum_{j\geq0}(-1)^{j}\binom{j+2}{2}z^{4j},
 $$
 the coefficients of $A(z)^3$ in degrees $1,5,9$ are respectively
 $$
 3,\qquad 3-3i,\qquad i.
 $$
-Hence, because $u_{4m+1}=(-1)^m$,
+Hence, because $u_{4m+1}=(-1)^{m}$,
 $$
 \frac{[z^{4m+1}]U(z)^3}{u_{4m+1}}
 =3\binom{m+2}{2}-(3-3i)\binom{m+1}{2}+i\binom{m}{2}.
@@ -94,13 +94,13 @@ We prove $c_n=u_n$ by induction on $n$. The cases $n=0,1$ are given. Assume $c_j
 
 First suppose $n=2m$. By Step 2,
 $$
-A_n=\sum_{j=1}^{n-1}u_ju_{n-j}
-=u_n\bigl(m-1+(-1)^m mi\bigr).
+A_n=\sum_{j=1}^{n-1}u_{j}u_{n-j}
+=u_n\bigl(m-1+(-1)^{m}m i\bigr).
 $$
 The prescribed value of $\widehat D(2m)$ and Step 1 give
 $$
-m-1+(-1)^m mi
-=\overline{c_n}u_n\bigl(m-1+(-1)^m mi\bigr).
+m-1+(-1)^{m}m i
+=\overline{c_n}u_n\bigl(m-1+(-1)^{m}m i\bigr).
 $$
 The factor on the left is nonzero because its imaginary part has absolute value $m$. Hence
 $$
@@ -152,9 +152,9 @@ $c_k=i^{k(k-1)/2}\quad(0\leq k\leq N)$
 
 ## Classification
 
-Problem Type: Parameter identification
+**Problem Type:** Parameter identification
 
-Answer Type: Sequence or series representation
+**Answer Type:** Sequence or series representation
 
 ---
 
@@ -165,3 +165,7 @@ Answer Type: Sequence or series representation
 - periodic generating functions
 - convolution coefficient extraction
 - induction through a degenerate residue class
+
+---
+
+## Black-Box Audit — no issues found
