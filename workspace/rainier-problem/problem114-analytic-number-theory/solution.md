@@ -182,29 +182,19 @@ C_p
 =
 \frac{2(p-1)^2}{\pi^2p(p+1)}.
 $$
-Using the Legendre symbol, these combine as
+Since $(-1)^{(p-1)/2}=1$ for $p\equiv1\pmod4$ and $-1$ for $p\equiv3\pmod4$, the two cases combine as
 $$
-C_p
-=
-\frac{2(p-1)\left(p-2-\left(\frac{-1}{p}\right)\right)}{\pi^2p(p+1)}.
+C_p=
+\frac{2(p-1)\left(p-2-(-1)^{(p-1)/2}\right)}{\pi^2p(p+1)}.
 $$
 
-Final Answer: $\boxed{\dfrac{2(p-1)\left(p-2-\left(\frac{-1}{p}\right)\right)}{\pi^2p(p+1)}}$
+Final Answer: $\boxed{\dfrac{2(p-1)(p-2-(-1)^{(p-1)/2})}{\pi^2p(p+1)}}$
 
 ---
 
 ## Answer
 
-$\dfrac{2(p-1)\left(p-2-\left(\frac{-1}{p}\right)\right)}{\pi^2p(p+1)}$
-
-Equivalently,
-$$
-C_p=
-\begin{cases}
-\dfrac{2(p-1)(p-3)}{\pi^2p(p+1)},&p\equiv1\pmod4,\\[3mm]
-\dfrac{2(p-1)^2}{\pi^2p(p+1)},&p\equiv3\pmod4.
-\end{cases}
-$$
+$\dfrac{2(p-1)(p-2-(-1)^{(p-1)/2})}{\pi^2p(p+1)}$
 
 ---
 
@@ -228,4 +218,4 @@ Answer Type: Exact symbolic expression
 
 ## Black-Box Audit
 
-The prompt, domain classification, solution, and final answer are mutually consistent. The piecewise constant agrees with the automated feedback supplied with the source submission.
+The prompt, domain classification, solution, and final answer are mutually consistent. The compact answer is self-contained and equivalent to the verified piecewise constant.
