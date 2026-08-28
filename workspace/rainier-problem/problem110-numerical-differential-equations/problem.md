@@ -28,7 +28,7 @@ and
 $$
 \rho_*=\sup_{(a,b)\in\mathbb R^2}\rho(a,b).
 $$
-Show that $\rho_*$ is attained by a unique pair $(a_*,b_*)$, and determine the ordered triple $(\rho_*,a_*,b_*)$ exactly. You may use $\operatorname{Root}_I(P)$ to denote the unique real root of a polynomial $P$ in an interval $I$.
+Show that $\rho_*$ is attained by a unique pair $(a_*,b_*)$, and determine $\rho_*$ exactly. You may use $\operatorname{Root}_I(P)$ to denote the unique real root of a polynomial $P$ in an interval $I$.
 
 ---
 
