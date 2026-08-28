@@ -1,76 +1,82 @@
 ## Steps
 
-Step 1: Compute the sign of a reversal
+Step 1: Encode the unsigned update as a cyclic change of basepoint
 
-Let $v\in\{0,1\}^n$. In the fixed adjacent-exchange term $R_n$, every pair of tensor positions crosses exactly once. A crossing contributes $-1$ exactly when both crossed entries are $1$. Hence the total number of negative crossings is the number of unordered pairs of $1$ entries:
+Put $N=n+1$ and form the auxiliary cyclic bit word
 $$
-R_n|v\rangle
+(z_0,z_1,\ldots,z_n)=(0,b_1,\ldots,b_n).
+$$
+For $0\leq k<N$, define a length-$n$ word by
+$$
+x_i^{(k)}=z_k+z_{k+i},
+\qquad 1\leq i\leq n,
+$$
+where the subscripts of $z$ are read modulo $N$. At $k=0$ this gives $x^{(0)}=b$. If the current word is $x^{(k)}$, then for $1\leq i<n$,
+$$
+x_1^{(k)}+x_{i+1}^{(k)}
 =
-(-1)^{\binom{|v|}{2}}|v^{\leftarrow}\rangle.
-$$
-
-Step 2: Follow the first scan and reversal
-
-The first constructor applied to $|b\rangle$ is $P_n$, so
-$$
-P_n|b\rangle=|p\rangle.
-$$
-Applying the first reversal and then the second scan gives
-$$
-(P_n\circ R_n\circ P_n)|b\rangle
+(z_k+z_{k+1})+(z_k+z_{k+i+1})
 =
-(-1)^{\binom{|p|}{2}}P_n|p^{\leftarrow}\rangle
+z_{k+1}+z_{k+i+1}
 =
-(-1)^{\binom{|p|}{2}}|u\rangle,
+x_i^{(k+1)},
 $$
-because $u$ was defined as the prefix-parity word of $p^{\leftarrow}$.
-
-Step 3: Apply the cut and the second reversal
-
-Each $Z_i$ is diagonal and leaves the bit word unchanged. Its exponent is $1$ precisely at a descent $u_i=1,u_{i+1}=0$. Therefore
+while
 $$
-K_n|u\rangle=(-1)^{d(u)}|u\rangle.
-$$
-By Step 1, the following reversal contributes another factor
-$$
-R_n|u\rangle
+x_1^{(k)}
 =
-(-1)^{\binom{|u|}{2}}|u^{\leftarrow}\rangle.
-$$
-Thus, immediately before $H_n$, the accumulated sign is
-$$
-(-1)^{\binom{|p|}{2}+d(u)+\binom{|u|}{2}},
-$$
-and the current word is $u^{\leftarrow}$.
-
-Step 4: Compute the block-exchange sign and combine all factors
-
-For any input word $v$, the term $H_n$ crosses every position in its first block with every position in its second block exactly once. Hence
-$$
-H_n|v\rangle
+z_k+z_{k+1}
 =
-(-1)^{\left(\sum_{i=1}^{m}v_i\right)
-\left(\sum_{i=m+1}^{n}v_i\right)}
-|\text{the two blocks of }v\text{ exchanged}\rangle
+z_{k+1}+z_k
 =
-(-1)^{\lambda(v)}
-|\text{the two blocks of }v\text{ exchanged}\rangle.
+x_n^{(k+1)}.
 $$
-Here $v=u^{\leftarrow}$, so this last factor is $(-1)^{\lambda(u^{\leftarrow})}$. Multiplying the four independent sign contributions gives
-$$
-\omega_n(b)
-=
-(-1)^{\binom{|p|}{2}+d(u)+\binom{|u|}{2}+\lambda(u^{\leftarrow})}.
-$$
-The four terms are left in the specified-statistics form required by the problem, without canceling or simplifying them modulo $2$.
+Thus the unsigned part of one $T_n$ reduction sends $x^{(k)}$ to $x^{(k+1)}$. Therefore the $n+1=N$ successive reductions run once around the cyclic choices of basepoint.
 
-Final Answer: $\boxed{(-1)^{\binom{|p|}{2}+d(u)+\binom{|u|}{2}+\lambda(u^{\leftarrow})}}$
+Step 2: Count the two possible Hamming weights along the cycle
+
+Let $W=|b|$. Since $z_0=0$, the cyclic word $z$ has exactly $W$ entries equal to $1$ and $N-W$ entries equal to $0$. For a basepoint with $z_k=0$, the word $x^{(k)}$ records which of the other entries differ from $0$, so
+$$
+|x^{(k)}|=W.
+$$
+For a basepoint with $z_k=1$, it records which entries differ from $1$, namely the zero entries, so
+$$
+|x^{(k)}|=N-W.
+$$
+Among the $N$ basepoints, the first case occurs $N-W$ times and the second occurs $W$ times. Hence the exact accumulated exponent is
+$$
+E_n(b)
+=
+(N-W)\binom{W}{2}
++
+W\binom{N-W}{2}.
+$$
+
+Step 3: Simplify the accumulated exponent
+
+Using the two pair counts from Step 2,
+$$
+\begin{aligned}
+E_n(b)
+&=
+\frac{(N-W)W(W-1)+W(N-W)(N-W-1)}{2}\\
+&=
+\frac{W(N-W)(N-2)}{2}.
+\end{aligned}
+$$
+Substituting $N=n+1$ and $W=|b|$ yields
+$$
+E_n(b)=\frac{(n-1)|b|(n+1-|b|)}{2}.
+$$
+This is an integer because it was obtained as a sum of binomial coefficients; equivalently, if $n-1$ is odd then $n+1$ is odd, so $|b|(n+1-|b|)$ is even.
+
+Final Answer: $\boxed{\frac{(n-1)|b|(n+1-|b|)}{2}}$
 
 ---
 
 ## Answer
 
-$(-1)^{\binom{|p|}{2}+d(u)+\binom{|u|}{2}+\lambda(u^{\leftarrow})}$
+$\frac{(n-1)|b|(n+1-|b|)}{2}$
 
 ---
 
@@ -78,14 +84,14 @@ $(-1)^{\binom{|p|}{2}+d(u)+\binom{|u|}{2}+\lambda(u^{\leftarrow})}$
 
 **Problem Type:** Symbolic derivation
 
-**Answer Type:** Function or mapping
+**Answer Type:** Exact symbolic expression
 
 ---
 
 ## Solution Concepts
 
-- typed term reduction
-- graded exchange signs
-- prefix-parity scan
-- descent counting
-- block-crossing parity
+- signed term reduction
+- cyclic orbit encoding
+- Hamming weight
+- binary linear transformations
+- combinatorial pair counting
