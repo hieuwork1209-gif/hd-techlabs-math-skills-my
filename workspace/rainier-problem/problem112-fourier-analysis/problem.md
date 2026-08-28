@@ -14,10 +14,10 @@ Let $P_{m,k}$ be the number of ordered pairs $(r,s)\in(\mathbb{Z}/2^{m}\mathbb{Z
 
 | Field | Value |
 |---|---|
-| Domain | Analysis |
-| Sub-domain | Fourier analysis |
-| Problem Type | Exact computation |
-| Answer Type | Tuple or ordered list |
+| **Domain** | Analysis |
+| **Sub-domain** | Fourier analysis |
+| **Problem Type** | Exact computation |
+| **Answer Type** | Tuple or ordered list |
 
 ---
 
