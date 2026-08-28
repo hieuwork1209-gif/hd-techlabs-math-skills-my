@@ -1,141 +1,232 @@
 ## Steps
 
-Step 1: Convert the integral mean into a differential equation
+Step 1: Pass to logarithmic coordinates and derive the weighted-mean hierarchy
 
 Let
 $$
-g(s)=f(e^s),\qquad a(s)=A(e^s)=\frac1s\int_0^s g(v)\,dv,\qquad z(s)=a(s)+s.
+g(s)=f(e^s),\qquad a(s)=A(e^s),\qquad b(s)=B(e^s),\qquad c(s)=C(e^s).
 $$
-The improper integral hypothesis makes the integral finite, while concavity makes $g$ continuous on $(0,\infty)$. Hence
+Then
 $$
-g(s)-a(s)=sa'(s)
+a(s)=\frac1s\int_0^s g(u)\,du,
 $$
-and therefore
 $$
-s z'(s)=g(s)-a(s)+s.
-$$
-Thus, after setting $S=s$ and $Z=z(s)$, the displayed relation becomes
-$$
-zK(s,z)z'=L(s,z),
-$$
-where
-$$
-K(s,z)=2s^3-2s^2z^2+3s^2-z^4-2z^2+3
+b(s)=\frac2{s^2}\int_0^s(s-u)g(u)\,du,
 $$
 and
 $$
-L(s,z)=s^2z^2+s^2-sz^4+3sz^2-z^4-2z^2-1.
+c(s)=\frac3{s^3}\int_0^s(s-u)^2g(u)\,du.
 $$
-Also
+Concavity makes $g$ continuous on $(0,\infty)$, so these functions are differentiable there. Direct differentiation gives
 $$
-z(1)=A(e)+1=0.
+g=a+sa',
 $$
-
-Step 2: Recover the hidden rational first integral
-
-Define
 $$
-F(s,z)=(z^2-s-1)^2-4s,\qquad G(s,z)=s^2+z^2+1.
-$$
-A direct differentiation and simplification gives
-$$
-GF_s-FG_s=2L(s,z)
+sb'=2(a-b),
 $$
 and
 $$
-GF_z-FG_z=-2zK(s,z).
+sc'=3(b-c).
 $$
-Since $G>0$, along the solution curve,
+Now define
 $$
-\frac{d}{ds}\left(\frac{F(s,z(s))}{G(s,z(s))}\right)
-=
-\frac{2L-2zKz'}{G^2}=0.
+X=2-c,
 $$
-At $s=1$ and $z=0$,
 $$
-F(1,0)=0.
-$$
-Consequently the constant ratio is zero, so
-$$
-F(s,z(s))=0
-$$
-for every $s>0$.
-
-Step 3: Resolve the algebraic branches
-
-The equation $F=0$ gives
-$$
-(z^2-s-1)^2=4s,
-$$
-hence
-$$
-z^2=(\sqrt{s}+1)^2
-\qquad\text{or}\qquad
-z^2=(\sqrt{s}-1)^2.
-$$
-The branches $z=\pm(\sqrt{s}+1)$ do not pass through $(1,0)$. The only branches through that point are
-$$
-z=\sqrt{s}-1
-\qquad\text{and}\qquad
-z=1-\sqrt{s}.
-$$
-Continuity prevents switching away from these branches on either side of $s=1$. Moreover $z$ is differentiable at $1$, whereas the two displayed branches have derivatives $1/2$ and $-1/2$ there. Therefore the left and right choices must agree, leaving exactly two global possibilities.
-
-Step 4: Use concavity, recover the function, and verify it
-
-If
-$$
-z(s)=\sqrt{s}-1,
-$$
-then
-$$
-a(s)=\sqrt{s}-1-s
+Y=2-3b+2c,
 $$
 and
 $$
-g(s)=a(s)+sa'(s)=\frac32\sqrt{s}-1-2s.
+Z=2-3a+3b-c.
 $$
-Here
+The differential identities above become
 $$
-g''(s)=-\frac{3}{8s^{3/2}}<0.
+sX'=Y-X,
 $$
-For the other branch,
 $$
-z(s)=1-\sqrt{s},
+sY'=2(Z-Y).
 $$
-one obtains
+The hypotheses become
 $$
-g(s)=1-\frac32\sqrt{s}-2s,
+Y^2=X^4,
 \qquad
-g''(s)=\frac{3}{8s^{3/2}}>0,
+Z^2=X^6,
 $$
-which contradicts concavity. Hence only the first branch is admissible.
-
-Returning to $s=\log x$ gives
+and the normalization gives
 $$
-f(x)=\frac32\sqrt{\log x}-1-2\log x.
-$$
-Indeed,
-$$
-\int_0^S\left(\frac32\sqrt{s}-1-2s\right)\,ds
-=S^{3/2}-S-S^2,
-$$
-so the improper integral converges and
-$$
-A(x)=\sqrt{S}-1-S.
-$$
-Writing $r=\sqrt S$, we have $Z=r-1$ and $f-A+S=r/2$; both sides of the required nonlinear relation reduce to
-$$
-2r^2(r-1)(r^4+r^2-2r+2).
+X(1)^2=\frac14.
 $$
 
-Final Answer: $\boxed{f(x)=\frac32\sqrt{\log x}-1-2\log x}$
+Step 2: Resolve the algebraic signs and use the differential hierarchy
+
+On any interval on which $X\ne0$, continuity gives fixed signs $\varepsilon,\delta\in\{-1,1\}$ such that
+$$
+Y=\varepsilon X^2,
+\qquad
+Z=\delta X^3.
+$$
+From the first differential identity,
+$$
+sX'=\varepsilon X^2-X=X(\varepsilon X-1).
+$$
+Differentiating $Y=\varepsilon X^2$ and using this equation gives
+$$
+sY'=2X^2(X-\varepsilon).
+$$
+But the second differential identity also gives
+$$
+sY'=2(\delta X^3-\varepsilon X^2)=2X^2(\delta X-\varepsilon).
+$$
+Hence $\delta=1$ wherever $X\ne0$.
+
+There are now four local possibilities, according to $X(1)=\pm\frac12$ and $\varepsilon=\pm1$.
+
+If $\varepsilon=1$, then
+$$
+sX'=X(X-1),
+$$
+so
+$$
+\frac{X-1}{X}=Ks.
+$$
+Thus
+$$
+X(1)=\frac12\Longrightarrow X(s)=\frac1{1+s},
+$$
+whereas
+$$
+X(1)=-\frac12\Longrightarrow X(s)=\frac1{1-3s}.
+$$
+The latter has a pole at $s=\frac13$, impossible because $C(e^s)$ is finite for every $s>0$.
+
+If $\varepsilon=-1$, then
+$$
+sX'=-X(X+1),
+$$
+so
+$$
+\frac{X}{X+1}=\frac Ks.
+$$
+Hence
+$$
+X(1)=\frac12\Longrightarrow X(s)=\frac1{3s-1},
+$$
+which again has a pole at $s=\frac13$, while
+$$
+X(1)=-\frac12\Longrightarrow X(s)=-\frac1{1+s}.
+$$
+Therefore only two global branches remain:
+$$
+(X,Y,Z)=\left(\frac1{1+s},\frac1{(1+s)^2},\frac1{(1+s)^3}\right),
+$$
+or
+$$
+(X,Y,Z)=\left(-\frac1{1+s},-\frac1{(1+s)^2},-\frac1{(1+s)^3}\right).
+$$
+
+Step 3: Recover the two candidate functions and use concavity
+
+Put
+$$
+\alpha=2-a.
+$$
+From the definitions of $X,Y,Z$,
+$$
+\alpha=\frac{X+Y+Z}{3}.
+$$
+Also, since $g=a+sa'$, we have
+$$
+2-g=\alpha+s\alpha'.
+$$
+
+For the first global branch,
+$$
+Y=X^2,
+\qquad
+Z=X^3,
+\qquad
+sX'=X^2-X.
+$$
+Thus
+$$
+\alpha=\frac{X+X^2+X^3}{3},
+$$
+and a direct differentiation gives
+$$
+\alpha+s\alpha'=X^4.
+$$
+Hence
+$$
+g(s)=2-\frac1{(1+s)^4}.
+$$
+Its second derivative is
+$$
+g''(s)=-\frac{20}{(1+s)^6}<0.
+$$
+
+For the second global branch,
+$$
+Y=-X^2,
+\qquad
+Z=X^3,
+\qquad
+sX'=-X^2-X.
+$$
+Then
+$$
+\alpha=\frac{X-X^2+X^3}{3},
+$$
+and
+$$
+\alpha+s\alpha'=-X^4.
+$$
+Therefore
+$$
+g(s)=2+\frac1{(1+s)^4},
+$$
+whose second derivative is
+$$
+g''(s)=\frac{20}{(1+s)^6}>0.
+$$
+This branch is convex and contradicts the hypothesis. Hence only the first branch is admissible.
+
+Step 4: Return to $x$ and verify the solution
+
+Since $g(s)=f(e^s)$,
+$$
+f(x)=2-\frac1{(1+\log x)^4}.
+$$
+For $r=(1+s)^{-1}$, direct integration gives
+$$
+a(s)=2-\frac{r+r^2+r^3}{3},
+$$
+$$
+b(s)=2-\frac{2r+r^2}{3},
+$$
+and
+$$
+c(s)=2-r.
+$$
+Hence
+$$
+2-3b+2c=r^2,
+$$
+$$
+2-3a+3b-c=r^3,
+$$
+and
+$$
+2-c=r.
+$$
+Thus both algebraic identities hold. Also $c(1)=\frac32$, so $(C(e)-2)^2=\frac14$. The integrands are bounded near the lower endpoint because $g(s)\to1$ as $s\to0^+$, so all three improper integrals converge.
+
+Final Answer: $\boxed{f(x)=2-\frac1{(1+\log x)^4}}$
 
 ---
 
 ## Answer
 
-$f(x)=\frac32\sqrt{\log x}-1-2\log x$
+$f(x)=2-\frac1{(1+\log x)^4}$
 
 ---
 
@@ -149,8 +240,8 @@ $f(x)=\frac32\sqrt{\log x}-1-2\log x$
 
 ## Solution Concepts
 
-- logarithmic integral means
-- hidden rational first integral
-- algebraic branch geometry
-- differentiability at a branch crossing
+- logarithmic weighted integral means
+- differential hierarchy of means
+- algebraic sign branches
+- global ODE continuation
 - concavity branch selection
