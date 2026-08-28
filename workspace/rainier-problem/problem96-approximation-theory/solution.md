@@ -139,9 +139,15 @@ Differentiating the contact-value equation twice and using stationarity cancels 
 $$
 g\geq\frac{\sigma_zJ(z)}{w(z)}-\frac{\sigma_zr_z}{2w(z)}.
 $$
-Multiplying the inequality at $z$ by the nonnegative mass $\beta_z\sigma_z$ and summing eliminates $K$, so
+Multiplying the inequality at $z$ by the nonnegative mass $\beta_z\sigma_z$ and summing eliminates $K$. Define
 $$
-g\geq c\sum_{z\in S}\beta_zz-\frac12\sum_{z\in S}\beta_zr_z.
+A(\beta)=\sum_{z\in S}\beta_zz,
+\qquad
+B(\beta)=\sum_{z\in S}\beta_zr_z.
+$$
+Then
+$$
+g\geq cA(\beta)-\frac12B(\beta).
 $$
 At the two endpoints this becomes
 $$
