@@ -1,34 +1,29 @@
 ## Steps
 
-Step 1: Parametrize all triples using the square-product condition
+Step 1: Parametrize the triples and isolate the scale variable
 
 Let
 $$
 g=\gcd(a,c),\qquad a=gA,\qquad c=gC,
 $$
-with $\gcd(A,C)=1$. Since
+with $\gcd(A,C)=1$. Since $ac=g^2AC$ is a perfect square and $A,C$ are coprime, both $A$ and $C$ are squares. Hence there are coprime positive integers $r<s$ such that
 $$
-ac=g^2AC
+a=gr^2,\qquad c=gs^2,
 $$
-is a perfect square and $A,C$ are coprime, both $A$ and $C$ must be perfect squares. Hence there are coprime positive integers $r<s$ such that
+and the arithmetic-progression condition gives
 $$
-a=gr^2,\qquad c=gs^2.
+b=\frac{g(r^2+s^2)}2.
 $$
-The arithmetic-progression condition gives
-$$
-b=\frac{a+c}{2}=\frac{g(r^2+s^2)}{2}.
-$$
-Because $\gcd(r,s)=1$, the pair $(r,s)$ is either both odd or of opposite parity. If $r,s$ are both odd, then $r^2+s^2$ is even and every positive $g$ makes $b$ integral. If they have opposite parity, then $r^2+s^2$ is odd, so $g$ must be even.
+
+Because $\gcd(r,s)=1$, either $r,s$ are both odd or they have opposite parity. If they are both odd, then $r^2+s^2$ is even and every positive $g$ makes $b$ integral. If they have opposite parity, then $r^2+s^2$ is odd, so $g$ must be even.
 
 Since $p$ is odd,
 $$
 p\nmid abc
+\iff
+p\nmid g,\quad p\nmid r,\quad p\nmid s,\quad p\nmid r^2+s^2.
 $$
-is equivalent to
-$$
-p\nmid g,\qquad p\nmid r,\qquad p\nmid s,\qquad p\nmid r^2+s^2.
-$$
-Define the parity weight
+Define
 $$
 \eta(r,s)=
 \begin{cases}
@@ -36,17 +31,15 @@ $$
 \dfrac12,&r,s\text{ of opposite parity}.
 \end{cases}
 $$
-Then, uniformly for admissible coprime $r<s$,
+For fixed admissible $(r,s)$, the condition $c=gs^2\le X$ gives $g\le X/s^2$. Therefore
 $$
-\#\{g:\ gs^2\le X,\ g\text{ satisfies the parity and }p\text{-conditions}\}
+\#\{g:\text{all conditions hold}\}
 =
 \left(1-\frac1p\right)\eta(r,s)\frac{X}{s^2}+O(1).
 $$
-Summing over $r<s\le \sqrt X$ yields
+Summing over $1\le r<s\le\sqrt X$ gives
 $$
-T_p(X)
-=
-\left(1-\frac1p\right)X\,S_p(\sqrt X)+O(X),
+T_p(X)=\left(1-\frac1p\right)X\,S_p(\sqrt X)+O(X),
 $$
 where
 $$
@@ -55,48 +48,48 @@ S_p(R)=
 \frac{\eta(r,s)}{s^2}.
 $$
 
-Step 2: Compute the local density of weighted primitive pairs
+Step 2: Compute the weighted density of admissible primitive pairs
 
-Let $D_p$ denote the weighted density of pairs $(r,s)$ satisfying the conditions in $S_p(R)$.
+Let $D_p$ be the density, among ordered integer pairs $(r,s)$, obtained from the local restrictions appearing in $S_p(R)$.
 
-At the prime $2$, the three primitive parity classes modulo $2$ are $(1,1),(1,0),(0,1)$. Their weights are respectively $1,\frac12,\frac12$, so the total weighted contribution is
+At the prime $2$, the primitive residue classes are $(1,1),(1,0),(0,1)$. Their weights are respectively $1,\frac12,\frac12$, so the weighted local factor is
 $$
-\frac14\cdot1+\frac14\cdot\frac12+\frac14\cdot\frac12
-=\frac12.
+\frac14\cdot1+\frac14\cdot\frac12+\frac14\cdot\frac12=\frac12.
 $$
 
-For every prime $q\ne2,p$, the only local restriction is that $q$ cannot divide both $r$ and $s$, giving the factor
+For every prime $q\ne2,p$, the only restriction is that $q$ cannot divide both $r$ and $s$, giving the factor
 $$
 1-\frac1{q^2}.
 $$
 
-At the prime $p$, both $r$ and $s$ must be nonzero and
+At $p$, we require $r,s\not\equiv0\pmod p$ and
 $$
 r^2+s^2\not\equiv0\pmod p.
 $$
-There are $(p-1)^2$ ordered pairs with $r,s\not\equiv0\pmod p$. Writing $t=r/s$, the forbidden congruence is
+There are $(p-1)^2$ ordered pairs with $r,s\ne0$. For each nonzero $s$, the forbidden pairs correspond to solutions of
 $$
-t^2\equiv-1\pmod p.
+(r/s)^2\equiv-1\pmod p.
 $$
-If $p\equiv1\pmod4$, then $-1$ has two square roots modulo $p$, so there are $2(p-1)$ forbidden pairs. Thus
+Thus the number $N_p$ of allowed ordered residue pairs is
 $$
-N_p=(p-1)^2-2(p-1)=(p-1)(p-3).
+N_p=
+\begin{cases}
+(p-1)(p-3),&p\equiv1\pmod4,\\[2mm]
+(p-1)^2,&p\equiv3\pmod4.
+\end{cases}
 $$
-If $p\equiv3\pmod4$, then $-1$ is not a quadratic residue, hence
+Indeed, when $p\equiv1\pmod4$, the congruence $x^2\equiv-1\pmod p$ has two roots, giving $2(p-1)$ forbidden pairs; when $p\equiv3\pmod4$, it has no roots.
+
+Hence
 $$
-N_p=(p-1)^2.
-$$
-Therefore
-$$
-D_p
-=
+D_p=
 \frac12\frac{N_p}{p^2}
-\prod_{\substack{q\ \mathrm{prime}\\q\ne2,p}}
+\prod_{\substack{q\text{ prime}\\q\ne2,p}}
 \left(1-\frac1{q^2}\right).
 $$
-Using
+Using the Euler product identity
 $$
-\prod_q\left(1-\frac1{q^2}\right)=\frac1{\zeta(2)}=\frac6{\pi^2},
+\prod_{q\text{ prime}}\left(1-\frac1{q^2}\right)=\frac6{\pi^2},
 $$
 we obtain
 $$
@@ -106,95 +99,77 @@ $$
 =
 \frac8{\pi^2(1-1/p^2)}.
 $$
-Hence
+Therefore
 $$
-D_p=\frac{4N_p}{\pi^2(p^2-1)}.
-$$
-Equivalently,
-$$
-D_p=
+D_p=\frac{4N_p}{\pi^2(p^2-1)}
+=
 \begin{cases}
 \dfrac{4(p-3)}{\pi^2(p+1)},&p\equiv1\pmod4,\\[3mm]
 \dfrac{4(p-1)}{\pi^2(p+1)},&p\equiv3\pmod4.
 \end{cases}
 $$
 
-Step 3: Extract the logarithmic growth by partial summation
+Step 3: Convert the density into the logarithmic asymptotic
 
-Let
+Set
 $$
 A_p(R)=
 \sum_{\substack{1\le r<s\le R\\(r,s)=1\\p\nmid rs(r^2+s^2)}}
 \eta(r,s).
 $$
-Möbius inversion for the coprimality condition, together with the Chinese remainder theorem for the local conditions at $2$ and $p$, gives
+Möbius inversion for $\gcd(r,s)=1$, together with the Chinese remainder theorem for the fixed local conditions at $2$ and $p$, yields the standard lattice-density estimate
 $$
 A_p(R)=\frac{D_p}{2}R^2+O(R\log R).
 $$
-The factor $1/2$ appears because only the half-region $r<s$ is counted.
+The factor $1/2$ comes from restricting the square $1\le r,s\le R$ to the half-region $r<s$.
 
-Now
-$$
-S_p(R)=\int_{1^-}^{R}\frac1{t^2}\,dA_p(t).
-$$
-By partial summation,
+Since $r<s$, the upper variable in $S_p(R)$ is exactly $s$, so partial summation gives
 $$
 S_p(R)
 =
 \frac{A_p(R)}{R^2}
 +2\int_1^R\frac{A_p(t)}{t^3}\,dt.
 $$
-Substituting the asymptotic formula for $A_p(t)$ gives
+Substituting the estimate for $A_p(t)$ gives
 $$
 S_p(R)=D_p\log R+O(1).
 $$
-Setting $R=\sqrt X$,
-$$
-S_p(\sqrt X)=\frac{D_p}{2}\log X+O(1).
-$$
 Therefore
+$$
+S_p(\sqrt X)=\frac{D_p}{2}\log X+O(1),
+$$
+and Step 1 becomes
 $$
 T_p(X)
 =
-\left(1-\frac1p\right)
-\frac{D_p}{2}X\log X+O(X).
+\left(1-\frac1p\right)\frac{D_p}{2}X\log X+O(X).
 $$
-Thus
+Hence
 $$
 C_p=\left(1-\frac1p\right)\frac{D_p}{2}.
 $$
 
-Step 4: Simplify the constant in the two residue classes modulo $4$
+Step 4: Simplify the constant and give a compact self-contained answer
 
 If $p\equiv1\pmod4$, then
 $$
-C_p
-=
-\frac{p-1}{p}\cdot\frac{2(p-3)}{\pi^2(p+1)}
-=
-\frac{2(p-1)(p-3)}{\pi^2p(p+1)}.
+C_p=\frac{2(p-1)(p-3)}{\pi^2p(p+1)}.
 $$
 If $p\equiv3\pmod4$, then
 $$
-C_p
-=
-\frac{p-1}{p}\cdot\frac{2(p-1)}{\pi^2(p+1)}
-=
-\frac{2(p-1)^2}{\pi^2p(p+1)}.
+C_p=\frac{2(p-1)^2}{\pi^2p(p+1)}.
 $$
-Since $(-1)^{(p-1)/2}=1$ for $p\equiv1\pmod4$ and $-1$ for $p\equiv3\pmod4$, the two cases combine as
+Because $(-1)^{(p-1)/2}=1$ in the first case and $-1$ in the second, these combine into
 $$
-C_p=
-\frac{2(p-1)\left(p-2-(-1)^{(p-1)/2}\right)}{\pi^2p(p+1)}.
+C_p=\frac{2(p-1)(p-2-(-1)^{(p-1)/2})}{\pi^2p(p+1)}.
 $$
-
-Final Answer: $\boxed{\dfrac{2(p-1)(p-2-(-1)^{(p-1)/2})}{\pi^2p(p+1)}}$
+Final Answer: $\boxed{\frac{2(p-1)(p-2-(-1)^{(p-1)/2})}{\pi^2p(p+1)}}$
 
 ---
 
 ## Answer
 
-$\dfrac{2(p-1)(p-2-(-1)^{(p-1)/2})}{\pi^2p(p+1)}$
+$\frac{2(p-1)(p-2-(-1)^{(p-1)/2})}{\pi^2p(p+1)}$
 
 ---
 
@@ -213,9 +188,3 @@ Answer Type: Exact symbolic expression
 - local congruence densities
 - Euler products and Mobius inversion
 - partial summation
-
----
-
-## Black-Box Audit
-
-The prompt, domain classification, solution, and final answer are mutually consistent. The compact answer is self-contained and equivalent to the verified piecewise constant.
