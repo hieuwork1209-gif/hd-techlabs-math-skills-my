@@ -30,7 +30,7 @@ then
 $$
 A_q^{-1}=9qP+P_\perp,\qquad B_q^{-1}=P+qP_\perp.
 $$
-This converts the problem into a Gaussian random walk plus one rank-one endpoint update.
+This is the main structural reduction: a Gaussian random walk plus one rank-one endpoint update.
 
 Step 2: Reduce the asymptotics to three scalar modes
 
@@ -61,9 +61,9 @@ e=\begin{pmatrix}1/\sqrt3\\ \sqrt{2/3}\\0\end{pmatrix},
 \qquad
 A=\operatorname{diag}(9q,1,1),
 \qquad
-R=\operatorname{diag}(1,q,q),
+R=\operatorname{diag}(1,q,q).
 $$
-where $A$ and $R$ are the scaled covariance matrices of $X_0$ and $D_n$. Writing $E=ee^T$, define
+Writing $E=ee^T$, define
 $$
 H=A+\frac13R-\frac12(RE+ER)+ERE,
 $$
@@ -72,10 +72,7 @@ V=A+R,\qquad
 N=A+\frac12R-RE,\qquad
 L=\frac12R-RE.
 $$
-Then $H,V,N,L$ are respectively the scaled limits of
-$\operatorname{Cov}(Y_n)$, $\operatorname{Cov}(X_n)$,
-$\operatorname{Cov}(X_n,Y_n)$, and $\operatorname{Cov}(D_n,Y_n)$.
-In particular,
+These are the scaled limits of $\operatorname{Cov}(Y_n)$, $\operatorname{Cov}(X_n)$, $\operatorname{Cov}(X_n,Y_n)$, and $\operatorname{Cov}(D_n,Y_n)$. In particular,
 $$
 H=
 \begin{pmatrix}
@@ -84,6 +81,7 @@ H=
 0&0&\frac{q+3}{3}
 \end{pmatrix}.
 $$
+Because $e_h=0$, every nontrivial correction is confined to the $(u,w)$ plane.
 
 Step 3: Compute the reference conditional determinant ratio by Schur complements
 
@@ -91,9 +89,7 @@ Let
 $$
 H_0=H-A,\qquad H_n=H-N^TV^{-1}N.
 $$
-The $h$-mode is already diagonal, while every effect of $E$ lies in
-$\operatorname{span}\{u,w\}$. Hence all nontrivial algebra is only $2\times2$.
-For
+For a symmetric $2\times2$ matrix
 $$
 M=\begin{pmatrix}a&b\\b&c\end{pmatrix},
 $$
@@ -111,7 +107,7 @@ N_{uw}=\begin{pmatrix}
 \qquad
 V_{uw}=\operatorname{diag}(9q+1,q+1).
 $$
-Substituting them into $H_n=H-N^TV^{-1}N$ gives the active block
+Substitution in $H_n=H-N^TV^{-1}N$ gives
 $$
 (H_n)_{uw}=\begin{pmatrix}
 \dfrac{324q^2+263q+3}{36(q+1)(9q+1)}&
@@ -120,57 +116,40 @@ $$
 \dfrac{q(27q^2+543q+124)}{36(q+1)(9q+1)}
 \end{pmatrix}.
 $$
-Its determinant is therefore
+Put $P_n=324q^2+2963q+124$. Applying $ac-b^2$ directly to this block gives
 $$
-\begin{aligned}
-\det(H_n)_{uw}
-&=\frac{q(324q^2+263q+3)(27q^2+543q+124)-128q^2(27q+13)^2}
-{1296(q+1)^2(9q+1)^2}\\
-&=\frac{q(324q^2+2963q+124)}{432(q+1)(9q+1)}.
-\end{aligned}
+\det(H_n)_{uw}=\frac{qP_n}{432(q+1)(9q+1)}.
 $$
-The remaining diagonal entry is
+The $h$ entry is independent of that block and equals
 $$
-(H_n)_{hh}
-=\frac{q+3}{3}-\frac{(1+q/2)^2}{q+1}
-=\frac{q(q+4)}{12(q+1)}.
+(H_n)_{hh}=\frac{q(q+4)}{12(q+1)}.
 $$
-Applying the same two formulas to $H$ and $H_0$, and multiplying the active determinant above by $(H_n)_{hh}$, gives
+Hence
+$$
+\det H_n=
+\frac{q^2(q+4)P_n}{5184(q+1)^2(9q+1)}.
+$$
+The same $2\times2$ identity applied to $H$ and $H_0$ gives
 $$
 \det H=\frac{(q+3)(55q^2+610q+7)}{162},
 \qquad
-\det H_0=\frac{q(q^2+4q+1)}{162},
+\det H_0=\frac{q(q^2+4q+1)}{162}.
 $$
-$$
-\det H_n=
-\frac{q^2(q+4)(324q^2+2963q+124)}
-{5184(q+1)^2(9q+1)}.
-$$
-No larger determinant is needed.
 
-Let $\overline K_{00}$, $\overline K_{nn}$ and $\overline K$ be the scaled reference conditional covariance matrices of $X_0$, $X_n$, and $(X_0,X_n)$ given $Y_n$. Schur-complement determinant identities give
+Let $\overline K_{00}$, $\overline K_{nn}$ and $\overline K$ be the scaled reference conditional covariance matrices of $X_0$, $X_n$, and $(X_0,X_n)$ given $Y_n$. Schur-complement determinant identities therefore give
 $$
 \det\overline K_{00}
 =\det A\,\frac{\det H_0}{\det H}
-=\frac{9q^2(q^2+4q+1)}
-{(q+3)(55q^2+610q+7)},
+=\frac{9q^2(q^2+4q+1)}{(q+3)(55q^2+610q+7)},
 $$
 and, since $\det V=(9q+1)(q+1)^2$,
 $$
-\begin{aligned}
 \det\overline K_{nn}
-&=\det V\,\frac{\det H_n}{\det H}\\
-&=(9q+1)(q+1)^2
-\frac{q^2(q+4)(324q^2+2963q+124)}{5184(q+1)^2(9q+1)}
-\frac{162}{(q+3)(55q^2+610q+7)}\\
-&=\frac{q^2(q+4)(324q^2+2963q+124)}
-{32(q+3)(55q^2+610q+7)}.
-\end{aligned}
+=\det V\,\frac{\det H_n}{\det H}
+=\frac{q^2(q+4)P_n}{32(q+3)(55q^2+610q+7)}.
 $$
 
-The shear $(X_0,X_n,T_n)\mapsto(X_0,X_n,Y_n)$ has determinant $1$.
-For a scalar mode, the limiting covariance determinant of
-$(X_0,X_n,T_n)$ is $cr^3/12$. Multiplying the three modes gives
+The shear $(X_0,X_n,T_n)\mapsto(X_0,X_n,Y_n)$ has determinant $1$. For a scalar mode, the limiting covariance determinant of $(X_0,X_n,T_n)$ is $cr^3/12$, so multiplication over the three independent modes gives
 $$
 \det\overline{\operatorname{Cov}}(X_0,X_n,Y_n)=\frac{q^5}{192},
 $$
@@ -182,8 +161,7 @@ $$
 Thus the reference determinant ratio is
 $$
 R_0=
-\frac{(q+4)(q^2+4q+1)(324q^2+2963q+124)}
-{3q(q+3)(55q^2+610q+7)}.
+\frac{(q+4)(q^2+4q+1)P_n}{3q(q+3)(55q^2+610q+7)}.
 $$
 
 Step 4: Apply the rank-one endpoint update
@@ -196,7 +174,7 @@ v_0=\lim_{n\to\infty}\frac1n\operatorname{Var}(d_n\mid Y_n,X_0),
 \quad
 v_n=\lim_{n\to\infty}\frac1n\operatorname{Var}(d_n\mid Y_n,X_n).
 $$
-Gaussian conditioning gives them directly in matrix form:
+Gaussian conditioning gives
 $$
 v=e^T(R-LH^{-1}L^T)e,
 \qquad
@@ -204,30 +182,38 @@ v_0=e^T(R-LH_0^{-1}L^T)e.
 $$
 For the last one set
 $$
-R_n=R-RV^{-1}R,\qquad
-L_n=L-RV^{-1}N;
+R_n=R-RV^{-1}R,\qquad L_n=L-RV^{-1}N,
 $$
-then
+so that
 $$
 v_n=e^T(R_n-L_nH_n^{-1}L_n^T)e.
 $$
-Again only the $(u,w)$ block contributes. First,
+Only the $(u,w)$ plane contributes. To keep the calculation transparent without expanding large polynomials, we solve each active $2\times2$ system first and then take one dot product.
+
+For $v$, put
 $$
-e^TRe=\frac{2q+1}{3},
-\qquad
-y:=L^Te=
+y=L^Te=
 \begin{pmatrix}
 \dfrac{\sqrt3(1-4q)}{18}\\[4pt]
 -\dfrac{\sqrt6(q+2)}{18}
-\end{pmatrix}.
+\end{pmatrix},
+\qquad e^TRe=\frac{2q+1}{3}.
 $$
-From the active block of $H$ in Step 2,
+The required active inverse is
 $$
 H_{uw}^{-1}
 =\frac1{55q^2+610q+7}
 \begin{pmatrix}
 6(q+11)&-3\sqrt2(q-1)\\
 -3\sqrt2(q-1)&6(83q+1)
+\end{pmatrix},
+$$
+and its action on $y$ simplifies before the final contraction:
+$$
+H_{uw}^{-1}y=
+\begin{pmatrix}
+-\dfrac{\sqrt3(q^2+14q-3)}{55q^2+610q+7}\\[5pt]
+-\dfrac{\sqrt6(54q^2+113q+1)}{2(55q^2+610q+7)}
 \end{pmatrix}.
 $$
 Thus
@@ -235,38 +221,35 @@ $$
 y^TH_{uw}^{-1}y
 =\frac{58q^3+276q^2+201q+5}{6(55q^2+610q+7)},
 $$
-and hence
+so
 $$
-\begin{aligned}
-v
-&=\frac{2q+1}{3}
--\frac{58q^3+276q^2+201q+5}{6(55q^2+610q+7)}\\
-&=\frac{54q^3+758q^2+349q+3}{2(55q^2+610q+7)}.
-\end{aligned}
+v=\frac{54q^3+758q^2+349q+3}{2(55q^2+610q+7)}.
 $$
-For $v_0$ the active vector is the same $y$, while
+
+For $v_0$ the vector $y$ is unchanged, while
 $$
 (H_0)_{uw}^{-1}
 =\frac1{q^2+4q+1}
 \begin{pmatrix}
 6(q+2)&-3\sqrt2(q-1)\\
 -3\sqrt2(q-1)&6(2q+1)
+\end{pmatrix},
+$$
+$$
+(H_0)_{uw}^{-1}y=
+\begin{pmatrix}
+-\dfrac{\sqrt3q(q+2)}{q^2+4q+1}\\[5pt]
+-\dfrac{\sqrt6(5q+1)}{2(q^2+4q+1)}
 \end{pmatrix}.
 $$
-Therefore
+Hence
 $$
 y^T(H_0)_{uw}^{-1}y
 =\frac{(q+2)(2q+1)^2}{6(q^2+4q+1)},
+\qquad
+v_0=\frac{q(2q+1)}{2(q^2+4q+1)}.
 $$
-so
-$$
-\begin{aligned}
-v_0
-&=\frac{2q+1}{3}
--\frac{(q+2)(2q+1)^2}{6(q^2+4q+1)}\\
-&=\frac{q(2q+1)}{2(q^2+4q+1)}.
-\end{aligned}
-$$
+
 For $v_n$, the active blocks are
 $$
 (R_n)_{uw}=\begin{pmatrix}
@@ -280,20 +263,19 @@ $$
 -\dfrac{\sqrt2q}{3(q+1)}&-\dfrac{7q}{6(q+1)}
 \end{pmatrix}.
 $$
-Consequently
+Therefore
 $$
-e^T(R_n)_{uw}e
-=\frac{q(27q+11)}{3(q+1)(9q+1)},
+e^T(R_n)_{uw}e=\frac{q(27q+11)}{3(q+1)(9q+1)},
 $$
-and the active contraction vector is
+and
 $$
-y_n:=(L_n)_{uw}^Te
-=\begin{pmatrix}
+y_n:=(L_n)_{uw}^Te=
+\begin{pmatrix}
 -\dfrac{\sqrt3q(81q+49)}{18(q+1)(9q+1)}\\[6pt]
 -\dfrac{\sqrt6q(81q+25)}{18(q+1)(9q+1)}
 \end{pmatrix}.
 $$
-Writing $P_n=324q^2+2963q+124$, the inverse of the active block found in Step 3 is
+The inverse of the active block from Step 3 is
 $$
 (H_n)_{uw}^{-1}
 =\frac1{P_n}
@@ -302,38 +284,35 @@ $$
 -96\sqrt2(27q+13)&\dfrac{12(324q^2+263q+3)}q
 \end{pmatrix}.
 $$
-The quadratic form now simplifies to
+Again its action is much simpler than a full expansion:
+$$
+(H_n)_{uw}^{-1}y_n=
+\begin{pmatrix}
+-\dfrac{2\sqrt3q(81q+292)}{P_n}\\[5pt]
+-\dfrac{2\sqrt6(324q+25)}{P_n}
+\end{pmatrix}.
+$$
+Consequently
 $$
 y_n^T(H_n)_{uw}^{-1}y_n
-=\frac{q(6561q^3+80109q^2+34558q+1250)}
-{3(q+1)(9q+1)(324q^2+2963q+124)}.
+=\frac{q\bigl(q(81q+49)(81q+292)+2(81q+25)(324q+25)\bigr)}{3(q+1)(9q+1)P_n},
 $$
-Subtracting it from $e^T(R_n)_{uw}e$ gives
+and subtraction gives
 $$
-\begin{aligned}
-v_n
-&=\frac{q(27q+11)}{3(q+1)(9q+1)}
--\frac{q(6561q^3+80109q^2+34558q+1250)}
-{3(q+1)(9q+1)(324q^2+2963q+124)}\\
-&=\frac{q(81q+38)}{324q^2+2963q+124}.
-\end{aligned}
+v_n=\frac{q(81q+38)}{P_n}.
 $$
 
-Conditioned on $Y_n$, the tilt in Step 1 adds
-$\alpha aa^T$ to the endpoint precision, where
+Conditioned on $Y_n$, the tilt from Step 1 adds $\alpha aa^T$ to the endpoint precision, where
 $$
 \alpha=\frac1{nq},
 \qquad
 a=\begin{pmatrix}-e\\e\end{pmatrix}.
 $$
-The matrix determinant lemma therefore changes the joint conditional determinant by
-$(1+\alpha\operatorname{Var}(d_n\mid Y_n))^{-1}$.
-Applying the same lemma after also conditioning on $X_0$ or on $X_n$ gives the two marginal correction factors. Consequently the limiting determinant ratio is
+The matrix determinant lemma changes the joint conditional determinant by $(1+\alpha\operatorname{Var}(d_n\mid Y_n))^{-1}$, and the analogous marginal factors are obtained after also conditioning on $X_0$ or $X_n$. Hence
 $$
 R
 =R_0\frac{(1+v_0/q)(1+v_n/q)}{1+v/q}
-=\frac{2(q+4)(2q^2+10q+3)(162q^2+1522q+81)}
-{3(q+3)(164q^3+1978q^2+363q+3)}.
+=\frac{2(q+4)(2q^2+10q+3)(162q^2+1522q+81)}{3(q+3)(164q^3+1978q^2+363q+3)}.
 $$
 For jointly Gaussian vectors,
 $$
