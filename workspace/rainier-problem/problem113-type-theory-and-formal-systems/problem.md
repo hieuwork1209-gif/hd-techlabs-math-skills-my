@@ -70,6 +70,12 @@ $$
 $$
 Determine the function $\omega_n$ explicitly for every $n\geq2$ and every $b\in\{0,1\}^n$.
 
+For verifiability, give the final result in the normalized form
+$$
+\omega_n(b)=(-1)^{E_1+E_2+E_3+E_4},
+$$
+where $(E_1,E_2,E_3,E_4)$ is the ordered list of the integer exponents contributed, respectively, by the first occurrence of $R_n$, by $K_n$, by the second occurrence of $R_n$, and by $H_n$ in the reduction of $\Theta_n|b\rangle$. Each $E_j$ must be written only in terms of the already specified statistics $|p|$, $d(u)$, $|u|$, and $\lambda(u^{\leftarrow})$; use binomial-coefficient notation for pair-count contributions. Do not reduce, cancel, combine, or otherwise simplify the four exponents modulo $2$, and do not rewrite them in terms of the original bits $b_i$. Report the ordered tuple $(E_1,E_2,E_3,E_4)$ together with $\omega_n(b)$.
+
 ---
 
 ## Domain Classification
