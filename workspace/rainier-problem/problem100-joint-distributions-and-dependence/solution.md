@@ -111,7 +111,31 @@ N_{uw}=\begin{pmatrix}
 \qquad
 V_{uw}=\operatorname{diag}(9q+1,q+1).
 $$
-Applying the two formulas above to the active block gives
+Substituting them into $H_n=H-N^TV^{-1}N$ gives the active block
+$$
+(H_n)_{uw}=\begin{pmatrix}
+\dfrac{324q^2+263q+3}{36(q+1)(9q+1)}&
+\dfrac{2\sqrt2q(27q+13)}{9(q+1)(9q+1)}\\[6pt]
+\dfrac{2\sqrt2q(27q+13)}{9(q+1)(9q+1)}&
+\dfrac{q(27q^2+543q+124)}{36(q+1)(9q+1)}
+\end{pmatrix}.
+$$
+Its determinant is therefore
+$$
+\begin{aligned}
+\det(H_n)_{uw}
+&=\frac{q(324q^2+263q+3)(27q^2+543q+124)-128q^2(27q+13)^2}
+{1296(q+1)^2(9q+1)^2}\\
+&=\frac{q(324q^2+2963q+124)}{432(q+1)(9q+1)}.
+\end{aligned}
+$$
+The remaining diagonal entry is
+$$
+(H_n)_{hh}
+=\frac{q+3}{3}-\frac{(1+q/2)^2}{q+1}
+=\frac{q(q+4)}{12(q+1)}.
+$$
+Applying the same two formulas to $H$ and $H_0$, and multiplying the active determinant above by $(H_n)_{hh}$, gives
 $$
 \det H=\frac{(q+3)(55q^2+610q+7)}{162},
 \qquad
@@ -131,11 +155,17 @@ $$
 =\frac{9q^2(q^2+4q+1)}
 {(q+3)(55q^2+610q+7)},
 $$
+and, since $\det V=(9q+1)(q+1)^2$,
 $$
+\begin{aligned}
 \det\overline K_{nn}
-=\det V\,\frac{\det H_n}{\det H}
-=\frac{q^2(q+4)(324q^2+2963q+124)}
+&=\det V\,\frac{\det H_n}{\det H}\\
+&=(9q+1)(q+1)^2
+\frac{q^2(q+4)(324q^2+2963q+124)}{5184(q+1)^2(9q+1)}
+\frac{162}{(q+3)(55q^2+610q+7)}\\
+&=\frac{q^2(q+4)(324q^2+2963q+124)}
 {32(q+3)(55q^2+610q+7)}.
+\end{aligned}
 $$
 
 The shear $(X_0,X_n,T_n)\mapsto(X_0,X_n,Y_n)$ has determinant $1$.
@@ -181,14 +211,112 @@ then
 $$
 v_n=e^T(R_n-L_nH_n^{-1}L_n^T)e.
 $$
-Again only the $(u,w)$ block contributes, so the same $2\times2$ identity from Step 3 yields
+Again only the $(u,w)$ block contributes. First,
 $$
-v=\frac{54q^3+758q^2+349q+3}{2(55q^2+610q+7)},
-$$
-$$
-v_0=\frac{q(2q+1)}{2(q^2+4q+1)},
+e^TRe=\frac{2q+1}{3},
 \qquad
-v_n=\frac{q(81q+38)}{324q^2+2963q+124}.
+y:=L^Te=
+\begin{pmatrix}
+\dfrac{\sqrt3(1-4q)}{18}\\[4pt]
+-\dfrac{\sqrt6(q+2)}{18}
+\end{pmatrix}.
+$$
+From the active block of $H$ in Step 2,
+$$
+H_{uw}^{-1}
+=\frac1{55q^2+610q+7}
+\begin{pmatrix}
+6(q+11)&-3\sqrt2(q-1)\\
+-3\sqrt2(q-1)&6(83q+1)
+\end{pmatrix}.
+$$
+Thus
+$$
+y^TH_{uw}^{-1}y
+=\frac{58q^3+276q^2+201q+5}{6(55q^2+610q+7)},
+$$
+and hence
+$$
+\begin{aligned}
+v
+&=\frac{2q+1}{3}
+-\frac{58q^3+276q^2+201q+5}{6(55q^2+610q+7)}\\
+&=\frac{54q^3+758q^2+349q+3}{2(55q^2+610q+7)}.
+\end{aligned}
+$$
+For $v_0$ the active vector is the same $y$, while
+$$
+(H_0)_{uw}^{-1}
+=\frac1{q^2+4q+1}
+\begin{pmatrix}
+6(q+2)&-3\sqrt2(q-1)\\
+-3\sqrt2(q-1)&6(2q+1)
+\end{pmatrix}.
+$$
+Therefore
+$$
+y^T(H_0)_{uw}^{-1}y
+=\frac{(q+2)(2q+1)^2}{6(q^2+4q+1)},
+$$
+so
+$$
+\begin{aligned}
+v_0
+&=\frac{2q+1}{3}
+-\frac{(q+2)(2q+1)^2}{6(q^2+4q+1)}\\
+&=\frac{q(2q+1)}{2(q^2+4q+1)}.
+\end{aligned}
+$$
+For $v_n$, the active blocks are
+$$
+(R_n)_{uw}=\begin{pmatrix}
+\dfrac{9q}{9q+1}&0\\[4pt]
+0&\dfrac{q}{q+1}
+\end{pmatrix},
+$$
+$$
+(L_n)_{uw}=\begin{pmatrix}
+-\dfrac{15q}{2(9q+1)}&-\dfrac{3\sqrt2q}{9q+1}\\[6pt]
+-\dfrac{\sqrt2q}{3(q+1)}&-\dfrac{7q}{6(q+1)}
+\end{pmatrix}.
+$$
+Consequently
+$$
+e^T(R_n)_{uw}e
+=\frac{q(27q+11)}{3(q+1)(9q+1)},
+$$
+and the active contraction vector is
+$$
+y_n:=(L_n)_{uw}^Te
+=\begin{pmatrix}
+-\dfrac{\sqrt3q(81q+49)}{18(q+1)(9q+1)}\\[6pt]
+-\dfrac{\sqrt6q(81q+25)}{18(q+1)(9q+1)}
+\end{pmatrix}.
+$$
+Writing $P_n=324q^2+2963q+124$, the inverse of the active block found in Step 3 is
+$$
+(H_n)_{uw}^{-1}
+=\frac1{P_n}
+\begin{pmatrix}
+12(27q^2+543q+124)&-96\sqrt2(27q+13)\\[4pt]
+-96\sqrt2(27q+13)&\dfrac{12(324q^2+263q+3)}q
+\end{pmatrix}.
+$$
+The quadratic form now simplifies to
+$$
+y_n^T(H_n)_{uw}^{-1}y_n
+=\frac{q(6561q^3+80109q^2+34558q+1250)}
+{3(q+1)(9q+1)(324q^2+2963q+124)}.
+$$
+Subtracting it from $e^T(R_n)_{uw}e$ gives
+$$
+\begin{aligned}
+v_n
+&=\frac{q(27q+11)}{3(q+1)(9q+1)}
+-\frac{q(6561q^3+80109q^2+34558q+1250)}
+{3(q+1)(9q+1)(324q^2+2963q+124)}\\
+&=\frac{q(81q+38)}{324q^2+2963q+124}.
+\end{aligned}
 $$
 
 Conditioned on $Y_n$, the tilt in Step 1 adds
