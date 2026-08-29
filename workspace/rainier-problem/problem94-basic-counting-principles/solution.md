@@ -110,7 +110,7 @@ $\frac{2^{n-1}-\frac n2(3\cdot2^{n/2-1}-2^{n/4})}{2n}$
 | Domain | Discrete Mathematics and Combinatorics |
 | Sub-domain | Basic counting principles |
 | Problem Type | Exact computation |
-| Answer Type | Exact scalar |
+| Answer Type | Exact symbolic expression |
 
 ## Solution Concepts
 
