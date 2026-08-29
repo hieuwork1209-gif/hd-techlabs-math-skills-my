@@ -17,7 +17,7 @@ The dihedral group $D_{2n}$ of order $2n$ acts on admissible colorings by the sy
 | **Domain** | Discrete Mathematics and Combinatorics |
 | **Sub-domain** | Basic counting principles |
 | **Problem Type** | Exact computation |
-| **Answer Type** | Exact scalar |
+| **Answer Type** | Exact symbolic expression |
 
 ---
 
