@@ -24,7 +24,7 @@ exists for every real $c$. Determine $G(c)$ exactly for all real $c$.
 | Field | Value |
 |---|---|
 | **Domain** | Optimization and Numerical Mathematics |
-| **Sub-domain** | Error analysis and stability |
+| **Sub-domain** | Approximation theory |
 | **Problem Type** | Symbolic derivation |
 | **Answer Type** | Function or mapping |
 
@@ -32,4 +32,4 @@ exists for every real $c$. Determine $G(c)$ exactly for all real $c$.
 
 ## Domain Explanation
 
-This problem involves a singular second-order sensitivity calculation for a weighted minimax value, which is part of the Optimization and Numerical Mathematics domain, specifically Error analysis and stability. The problem also involves polynomial interpolation and coefficient identities, which are part of Algebra, Functions, and Trigonometry. However, those algebraic tools support the stability analysis rather than define the requested function.
+This problem is a weighted minimax polynomial approximation problem. Its main structure comes from extremal contacts, alternation-type identities, dual certificates, and perturbation of the optimal polynomial, so it belongs to Optimization and Numerical Mathematics, specifically Approximation theory. The second-order sensitivity calculation measures the perturbation of an approximation-theoretic extremal value rather than the stability of a numerical algorithm.
