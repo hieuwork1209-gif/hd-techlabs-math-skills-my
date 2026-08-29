@@ -35,12 +35,12 @@ and an even part $E$ of degree at most $4$. For every such $E$,
 $$
 -\frac{E(0)}{16}+\frac{8E(a)}{91}-\frac{9E(b)}{208}+\frac{E(1)}{56}=0.
 $$
-Applying this identity to the four paired contact inequalities gives the sharp linearized value
+Let $d$ be a candidate first-order norm coefficient. Pairing the inequalities at $\pm a$, $\pm b$, and $\pm1$, and using the one-sided inequality at $0$, gives bounds on the even values whose widths are twice the corresponding odd values. Substituting the extremal endpoints of those intervals into the displayed identity yields
 $$
-F(u)=\left(\frac1{1456\sqrt2}+\frac1{56}\right)\left|u+\frac89\right|
+d\geq F(u):=\left(\frac1{1456\sqrt2}+\frac1{56}\right)\left|u+\frac89\right|
 +\frac{\sqrt6}{624}|4u+5|.
 $$
-Since
+Thus $F(u)$ is exactly the sharp linearized minimax value for fixed $u$. Since
 $$
 \frac1{1456\sqrt2}+\frac1{56}>\frac{\sqrt6}{156},
 $$
@@ -48,7 +48,7 @@ the unique weighted median is $u=-8/9$. Hence, for every $c$,
 $$
 \Lambda_c'(0+)=d_0:=\frac{13\sqrt6}{5616}.
 $$
-The equality conditions determine
+At $u=-8/9$, the equality conditions in the paired inequalities and in the even identity determine
 $$
 E_0(x)=d_0(-32x^4+44x^2-1),
 $$
@@ -56,11 +56,11 @@ $$
 O_0(x)=-\frac89x^5+x^3-\frac19x,
 \qquad H_0=E_0+O_0.
 $$
-The first-order equalities occur at
+Direct substitution shows that the first-order equalities occur at
 $$
 -1,-b,-a,0,a,1,
 $$
-while $b$ has strict first-order slack. In particular, both $-a$ and $a$ remain active at first order. This is the degeneracy that controls the requested second-order function.
+whereas at $b$ the linearized inequality is strict. Consequently $E_0$ actually attains the lower bound $F(-8/9)=d_0$, with strict slack at $b$. In particular, both $-a$ and $a$ remain active at first order. This is the degeneracy that controls the requested second-order function.
 
 Step 3: Describe the complete dual segment at the degenerate contact set
 
@@ -95,7 +95,7 @@ $$
 $$
 Substitution verifies the five moment equations, and every nonzero entry has the required sign. Thus every feasible dual vector is a convex combination of $\beta^+$ and $\beta^-$. The first endpoint omits $-a$, while the second omits $a$.
 
-Step 4: Compute the two competing second-order branches
+Step 4: Compute the two competing second-order branches and show they exhaust all minimizers
 
 Write
 $$
@@ -139,13 +139,13 @@ Differentiating the contact-value equation twice and using stationarity cancels 
 $$
 g\geq\frac{\sigma_zJ(z)}{w(z)}-\frac{\sigma_zr_z}{2w(z)}.
 $$
-Multiplying the inequality at $z$ by the nonnegative mass $\beta_z\sigma_z$ and summing eliminates $K$. Define
+Multiply this inequality by the nonnegative weight $(\beta_z\sigma_z)w(z)$ and sum over $S$. The $K$-terms vanish by the dual moment equations, while the normalization gives coefficient $1$ on $g$. Defining
 $$
 A(\beta)=\sum_{z\in S}\beta_zz,
 \qquad
-B(\beta)=\sum_{z\in S}\beta_zr_z.
+B(\beta)=\sum_{z\in S}\beta_zr_z,
 $$
-Then
+we obtain
 $$
 g\geq cA(\beta)-\frac12B(\beta).
 $$
@@ -157,6 +157,10 @@ $$
 $$
 g_-(c)=\frac{91175-32768\sqrt3}{30371328}
 +\left(\frac{5\sqrt6}{624}-\frac{9\sqrt2}{416}\right)c.
+$$
+Since every feasible dual vector is a convex combination of the two endpoints, this already gives the universal lower bound
+$$
+g\geq\max\{g_+(c),g_-(c)\}.
 $$
 
 To certify that these bounds come from actual local branches, write
@@ -214,6 +218,10 @@ $$
 $$
 so both five-contact branches exist uniquely. Differentiating their five value equalities twice gives the second-order coefficient $g$. Because $\beta^+$ and $\beta^-$ are supported exactly on the corresponding five contacts, summing those equalities with the dual masses gives equality in the two formulas above, so the branch coefficients are precisely $g_+(c)$ and $g_-(c)$.
 
+It remains to prove that no other contact pattern can produce a smaller second-order value. From Step 1, the quotient $|P_0(x)|/w(x)$ is strictly below $1/192$ off arbitrarily small neighborhoods of the seven original contacts. By compactness there is therefore a fixed gap $\eta>0$ on the complement of such neighborhoods. Any family with norm $1/192+O(\varepsilon)$ is uniformly $O(\varepsilon)$-close in coefficients to $P_0+\varepsilon H_0$, so for sufficiently small $\varepsilon$ that fixed gap prevents any new contact from appearing away from those neighborhoods. The strict first-order slack at $b$ similarly gives a margin of order $\varepsilon$, so $b$ cannot become active for small positive $\varepsilon$.
+
+Thus every small-$\varepsilon$ minimizer can have active contacts only near the six nodes in $S$. A minimax polynomial with the four free coefficients $(A,B,C,D)$ and norm level $L$ needs at least five active signed contacts; otherwise the active linear inequalities would leave a nonzero feasible first-order direction lowering $L$. Hence among the six possible nodes in $S$, at most one can be omitted. The complete dual segment from Step 3 shows more: the only five-point supports carrying a positive dual certificate are precisely the supports of $\beta^+$ and $\beta^-$, obtained by omitting $-a$ or $a$. If all six nodes are active, both endpoint certificates apply and force $g_+(c)=g_-(c)$; this is exactly the crossing case where the two local branches meet to second order. Therefore every minimizer is locally on one of the two branches, with the six-contact case occurring only at their tie.
+
 Let $\ell_{-a}^+(c)$ be the second-order value required by the omitted contact $-a$ on the plus branch, and define $\ell_a^-(c)$ analogously. Substitution in the omitted inequalities gives
 $$
 g_+(c)-\ell_{-a}^+(c)=\frac{91}{32}\left(g_+(c)-g_-(c)\right),
@@ -221,7 +229,7 @@ $$
 $$
 g_-(c)-\ell_a^-(c)=\frac{91}{32}\left(g_-(c)-g_+(c)\right).
 $$
-Thus the plus branch is feasible exactly when $g_+(c)\geq g_-(c)$, and the minus branch is feasible exactly when the reverse inequality holds. The dual bound, the fixed gap away from the original contacts, and the first-order slack at $b$ therefore give
+Thus the plus branch is feasible exactly when $g_+(c)\geq g_-(c)$, and the minus branch is feasible exactly when the reverse inequality holds. Combining branch feasibility with the universal dual lower bound proves
 $$
 G(c)=\max\{g_+(c),g_-(c)\}.
 $$
