@@ -26,97 +26,192 @@ $$
 $$
 Indeed, these inequalities make every entry of the displayed power bounded, while the diagonal entries show necessity.
 
-Step 2: Derive the algebraic candidate from the active contacts
+Step 2: Derive the sharp length from a positive dual inequality
 
-We first locate a candidate by imposing the contact pattern
+Assume that a pair $(a,b)$ is stable on $[0,L]$, and fix any $x\in(0,1)$. Put
 $$
-R(t)=-1,\qquad R'(t)=0,\qquad R(L)=1,\qquad S(L)=-1,
+E_1=R_{a,b}(xL)+1,\qquad
+E_2=1-R_{a,b}(L),\qquad
+E_3=S_{a,b}(L)+1.
 $$
-with $0<t<L$. Step 4 will give a positive certificate proving that this candidate is globally forced.
-
-The two endpoint equations give
+By (1),
 $$
-a=\frac{3L+4}{2L^2},
+E_1,E_2,E_3\geq0.
+$$
+Now set
+$$
+\beta=\frac{x^2(5-3x)}2,
 \qquad
-b=-\frac{L+4}{2L^3}. \tag{2}
+\gamma=x^2(1-x).
 $$
-Put $x=t/L$. The two conditions at $t$ become
+Both weights are positive for $0<x<1$. Moreover,
 $$
-3(L+4)x^2-2(3L+4)x+2L=0, \tag{3}
+x^2-\beta+\frac32\gamma=0,
+\qquad
+x^3-\beta+\frac52\gamma=0. \tag{2}
 $$
-and
+Consequently, in the combination $E_1+\beta E_2+\gamma E_3$, the coefficients of $a$ and $b$ cancel. Expanding the remaining terms gives the identity
 $$
-4-2Lx+(3L+4)x^2-(L+4)x^3=0. \tag{4}
-$$
-Eliminating $x$ from (3) and (4) gives
-$$
--4(L+4)P(L)=0,
+E_1+\beta E_2+\gamma E_3
+=\frac{x(1-x)(2-x)}2\bigl(\Phi(x)-L\bigr), \tag{3}
 $$
 where
 $$
-P(L)=L^4-8L^3+52L^2-864L-1984. \tag{5}
+\Phi(x)=\frac{4\bigl(1+x^2(1-x)\bigr)}{x(1-x)(2-x)}. \tag{4}
 $$
-Now
+The left side of (3) is nonnegative, and the prefactor on the right is positive. Hence every stable interval satisfies
+$$
+L\leq\Phi(x)\qquad(0<x<1). \tag{5}
+$$
+Thus the minimax geometry itself gives the universal upper bound
+$$
+L\leq\min_{0<x<1}\Phi(x). \tag{6}
+$$
+
+We now determine this minimum. Differentiating (4),
+$$
+\Phi'(x)
+=\frac{4D(x)}{x^2(1-x)^2(2-x)^2},
+$$
+where
+$$
+D(x)=2x^4-4x^3-x^2+6x-2. \tag{7}
+$$
+Also
+$$
+D'(x)=2(x-1)(4x^2-2x-3).
+$$
+The quadratic factor is negative on $(0,1)$, so $D'(x)>0$ there. Since
+$$
+D(0)=-2,\qquad D(1)=1,
+$$
+there is a unique $x_0\in(0,1)$ with
+$$
+D(x_0)=0. \tag{8}
+$$
+Because $\Phi(x)\to+\infty$ as $x\to0^+$ or $x\to1^-$, this $x_0$ is the unique global minimizer. Define
+$$
+r=\Phi(x_0). \tag{9}
+$$
+Then (5) implies that every stable interval has length at most $r$, so
+$$
+\rho_*\leq r. \tag{10}
+$$
+
+It remains to identify $r$ in the requested exact form. Let
+$$
+P(y)=y^4-8y^3+52y^2-864y-1984.
+$$
+A direct substitution of (4) gives
+$$
+P(\Phi(x))
+=\frac{64D(x)^2\bigl(12x^4-36x^3+25x^2+2x+1\bigr)}
+{x^4(1-x)^4(2-x)^4}. \tag{11}
+$$
+Hence (8) yields $P(r)=0$. To locate this root, note that
 $$
 P(11)=-1203,\qquad P(12)=2048,
 $$
 and
 $$
-P'(L)=4\bigl(L^3-6L^2+26L-216\bigr)>0
-\qquad(11\leq L\leq12),
+P'(y)=4g(y),
+\qquad
+g(y)=y^3-6y^2+26y-216.
 $$
-because the cubic in parentheses is already positive at $11$ and has derivative
+Since
 $$
-3L^2-12L+26=3(L-2)^2+14>0.
+g'(y)=3(y-2)^2+14>0,
 $$
-Hence there is a unique
+$g$ is strictly increasing. Thus $P$ first decreases and then increases on $(0,\infty)$. As $P(0)<0$ and $P(y)\to+\infty$, $P$ has exactly one positive root. Therefore
 $$
-r=\operatorname{Root}_{(11,12)}(P).
+r=\operatorname{Root}_{(11,12)}(P). \tag{12}
 $$
-Define
+
+Step 3: Equality in the dual bound forces the contact pattern and the candidate
+
+The active contacts are now consequences of equality in the bound, rather than assumptions used to guess the extremizer. Suppose a pair $(a,b)$ is stable on $[0,r]$. In (3), take $L=r$ and $x=x_0$. By (9), the right side is zero, while
+$$
+E_1\geq0,\qquad \beta E_2\geq0,\qquad \gamma E_3\geq0
+$$
+and $\beta,\gamma>0$. Hence all three slacks vanish:
+$$
+R_{a,b}(x_0r)=-1,
+\qquad
+R_{a,b}(r)=1,
+\qquad
+S_{a,b}(r)=-1. \tag{13}
+$$
+Put
+$$
+t=x_0r.
+$$
+Since $0<t<r$ and stability gives $R_{a,b}(s)\geq-1$ throughout $[0,r]$, the first equality in (13) is an interior minimum. Therefore
+$$
+R_{a,b}'(t)=0. \tag{14}
+$$
+Thus the full contact pattern
+$$
+R(t)=-1,\qquad R'(t)=0,\qquad R(r)=1,\qquad S(r)=-1
+$$
+is forced by the minimax equality case.
+
+The two endpoint equations in (13) already determine the coefficients. Writing
+$$
+A=ar^2,\qquad B=br^3,
+$$
+we obtain
+$$
+A+B=r,
+\qquad
+\frac32A+\frac52B=r-2.
+$$
+Hence
+$$
+A=\frac{3r+4}{2},
+\qquad
+B=-\frac{r+4}{2},
+$$
+so necessarily
 $$
 a_*=\frac{3r+4}{2r^2},
 \qquad
-b_*=-\frac{r+4}{2r^3}, \tag{6}
+b_*=-\frac{r+4}{2r^3}. \tag{15}
 $$
-and put
-$$
-d=\sqrt{3r^2+16},
-\qquad
-x=\frac{3r+4-d}{3(r+4)},
-\qquad
-t=rx.
-$$
-Then $0<x<1$, equation (3) holds, and therefore $R_{a_*,b_*}'(t)=0$. Also
+This gives the only possible extremizing pair.
+
+We also recover the interior contacts algebraically for this candidate without assuming feasibility. By construction,
 $$
 R_{a_*,b_*}(r)=1,
 \qquad
-S_{a_*,b_*}(r)=-1. \tag{7}
+S_{a_*,b_*}(r)=-1,
 $$
-Finally,
+so $E_2=E_3=0$. Since $r=\Phi(x_0)$, identity (3) then gives
 $$
-R_{a_*,b_*}(t)+1
-=
--\frac{(3r^2+16)^{3/2}-(18r^2+432r+928)}
-{27(r+4)^2}. \tag{8}
+R_{a_*,b_*}(t)=-1. \tag{16}
 $$
-The identity
+Furthermore, after substituting $r=\Phi(x)$ into the derivative of the candidate,
 $$
-(3r^2+16)^3-(18r^2+432r+928)^2
-=27(r+4)^2P(r)=0
+R_{a_*,b_*}'(rx)
+=\frac{D(x)}{2\bigl(1+x^2(1-x)\bigr)}.
 $$
-and positivity of both square roots show that the numerator in (8) vanishes. Thus
+At $x=x_0$, (8) therefore gives
 $$
-R_{a_*,b_*}(t)=-1. \tag{9}
+R_{a_*,b_*}'(t)=0. \tag{17}
 $$
 
-Step 3: Verify both stability bands on the full interval
+Step 4: Verify feasibility on the full interval and conclude uniqueness
 
-The derivative $R_{a_*,b_*}'$ is a downward-opening quadratic. The number $t$ is its smaller root, while
+The derivative $R_{a_*,b_*}'$ is a downward-opening quadratic because $b_*<0$. We have
 $$
-R_{a_*,b_*}'(r)=\frac12-\frac2r>0.
+R_{a_*,b_*}'(0)=-1,
+\qquad
+R_{a_*,b_*}'(t)=0,
 $$
-Hence the other critical point lies to the right of $r$. Using
+and
+$$
+R_{a_*,b_*}'(r)=\frac12-\frac2r>0
+$$
+because $r>11$. Hence $t$ is the smaller critical point and the other critical point lies to the right of $r$. Using
 $$
 R_{a_*,b_*}(0)=R_{a_*,b_*}(r)=1,
 \qquad
@@ -125,14 +220,13 @@ $$
 we obtain
 $$
 |R_{a_*,b_*}(s)|\leq1
-\qquad(0\leq s\leq r). \tag{10}
+\qquad(0\leq s\leq r). \tag{18}
 $$
 
 For the companion mode,
 $$
 1-S_{a_*,b_*}(s)
-=
-s\left(
+=s\left(
 1-\frac{3(3r+4)}{4r^2}s
 +\frac{5(r+4)}{4r^3}s^2
 \right).
@@ -144,82 +238,37 @@ $$
 for $11<r<12$, and its leading coefficient is positive. Thus
 $$
 S_{a_*,b_*}(s)\leq1
-\qquad(s\geq0). \tag{11}
+\qquad(s\geq0). \tag{19}
 $$
 Moreover,
 $$
 1+S_{a_*,b_*}(s)
-=
-\frac{(r-s)Q_r(s)}{4r^3},
+=\frac{(r-s)Q_r(s)}{4r^3},
 $$
 where
 $$
 Q_r(s)
 =(5r+20)s^2+(-4r^2+8r)s+8r^2.
 $$
-The discriminant of $Q_r$ equals
+Its discriminant is
 $$
 16r^2(r^2-14r-36)<0,
 $$
 so $Q_r(s)>0$ for all real $s$. Therefore
 $$
 S_{a_*,b_*}(s)\geq-1
-\qquad(0\leq s\leq r). \tag{12}
+\qquad(0\leq s\leq r). \tag{20}
 $$
-Equations (1), (10), (11), and (12) prove
+Equations (1), (18), (19), and (20) show that
 $$
-\rho(a_*,b_*)\geq r. \tag{13}
+\rho(a_*,b_*)\geq r. \tag{21}
+$$
+Combined with the universal upper bound (10), this proves
+$$
+\rho_*=r.
 $$
 
-Step 4: Prove the sharp upper bound and uniqueness by a positive certificate
-
-Let $\widehat R,\widehat S$ be the two modes associated with any real pair $(a,b)$ that is stable on $[0,r]$. Define
-$$
-E_1=\widehat R(t)+1,\qquad
-E_2=1-\widehat R(r),\qquad
-E_3=\widehat S(r)+1.
-$$
-By stability, all three numbers are nonnegative. With $x=t/r$, set
-$$
-\beta=\frac{x^2(5-3x)}2,
-\qquad
-\gamma=x^2(1-x).
-$$
-Since $0<x<1$, both weights are positive. The exact identity
-$$
-E_1+\beta E_2+\gamma E_3=0 \tag{14}
-$$
-holds for every pair $(a,b)$. To see this, the coefficients of $a$ and $b$ on the left are respectively
-$$
-r^2\left(x^2-\beta+\frac32\gamma\right)=0,
-\qquad
-r^3\left(x^3-\beta+\frac52\gamma\right)=0.
-$$
-The remaining expression is independent of $(a,b)$; evaluating it at $(a_*,b_*)$, where all three contact terms vanish by (7) and (9), shows that it is zero.
-
-Because (14) is a positive combination of nonnegative quantities, it forces
-$$
-E_1=E_2=E_3=0.
-$$
-In particular,
-$$
-\widehat R(r)=1,\qquad \widehat S(r)=-1.
-$$
-Solving these two endpoint equations gives exactly
-$$
-a=\frac{3r+4}{2r^2},
-\qquad
-b=-\frac{r+4}{2r^3}.
-$$
-Thus $(a_*,b_*)$ is the only pair stable through $r$.
-
-If some pair were stable on $[0,L]$ with $L>r$, it would first have to equal $(a_*,b_*)$ on $[0,r]$. But
-$$
-R_{a_*,b_*}'(r)=\frac12-\frac2r>0,
-$$
-so $R_{a_*,b_*}(s)>1$ immediately to the right of $r$, a contradiction. Hence $\rho_*\leq r$, while (13) gives equality.
-
-Finally, if $\rho(a,b)=r$, downward closure and continuity imply that the pair is stable at $s=r$ itself, so the same certificate forces $(a,b)=(a_*,b_*)$. The maximizer is therefore unique.
+Finally, suppose $\rho(a,b)=r$. The set of stable interval lengths is downward closed, so the pair is stable on every $[0,L]$ with $L<r$; continuity of $R_{a,b}$ and $S_{a,b}$ then extends the inequalities to $s=r$. Thus the pair is stable on $[0,r]$, and the equality argument in Step 3 forces the endpoint contacts in (13), hence the unique coefficients (15). Therefore the maximizer is unique.
 
 Final Answer: $\boxed{(r,\frac{3r+4}{2r^2},-\frac{r+4}{2r^3}),\ r=\operatorname{Root}_{(11,12)}(x^4-8x^3+52x^2-864x-1984)}$
 
@@ -236,11 +285,11 @@ $(r,\frac{3r+4}{2r^2},-\frac{r+4}{2r^3}),\ r=\operatorname{Root}_{(11,12)}(x^4-8
 ## Solution Concepts
 
 - power-bounded triangular amplification
+- positive dual minimax certificate
+- equality-case contact forcing
 - competing cubic stability modes
-- active-contact elimination
-- positive dual certificate
 - equality-case rigidity
 
 ## Black-Box Audit
 
-Power boundedness is proved from an explicit formula for the matrix powers. The sharp bound is certified by the displayed positive identity (14), and all interval inequalities are verified by elementary discriminant and monotonicity arguments. No numerical optimizer, root-location theorem, or external extremal-polynomial result is used.
+Power boundedness is proved from an explicit formula for the matrix powers. The sharp interval bound is derived before the candidate from the positive dual identity (3); equality in that bound forces the active contact pattern, after which the coefficients are determined. The full stability interval is then checked by elementary derivative, factorization, and discriminant arguments. No numerical optimizer, root-location theorem, or external extremal-polynomial result is used.
