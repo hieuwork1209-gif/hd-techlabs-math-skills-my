@@ -60,7 +60,7 @@ Feasibility therefore requires $b_A(a)\le b_B(a)$, which on the present interval
 $$
 \frac4{25}\le a\le a_*:=\frac{58}{175}-\frac{\sqrt{3306}}{350}<\frac{17}{100}. \tag{2}
 $$
-In particular $b$ lies in the narrow interval between $b_A(a)$ and $\min\{1/2,b_B(a)\}$.
+In particular $b$ lies between $b_A(a)$ and $\min\{1/2,b_B(a)\}$.
 
 Step 3: Prove the endpoint certificate for the third step
 Define
@@ -75,7 +75,7 @@ with equality only at
 $$
 (a,b)=\left(\frac4{25},\frac12\right).
 $$
-Here is the needed monotonic check. On the feasible strip from (2), direct differentiation gives
+On the feasible strip from (2), direct differentiation gives
 $$
 \frac{\partial F}{\partial b}
 =2\left(980a^2b-560a^2-1120ab+468a+140b-55\right)<0.
@@ -101,11 +101,22 @@ A-\frac{147}{370}
 $$
 on this interval. This proves (3) and its equality statement.
 
-Now fix any admissible third step $c=\alpha_2$. Since $B\ge3/10$ on the feasible strip and $A\le21/50$, we have $A\le5B$. Therefore the minimum over $0<c\le1/2$ of
+We also need the location of the one-variable balance in the third step. Since $b\ge b_A(a)$,
+$$
+B\ge (7a-1)(7b_A(a)-1),
+$$
+and a simplification gives
+$$
+(7a-1)(7b_A(a)-1)-\frac3{10}
+=\frac{21(2a-1)(25a-4)}{25(a-1)}\ge0.
+$$
+Thus $B\ge3/10$, while $A\le21/50$, so $A\le5B$.
+
+Now fix any admissible third step $c=\alpha_2$. The minimum over $0<c\le1/2$ of
 $$
 \max\{A(1-c),B|1-7c|\}
 $$
-is attained with $1/7\le c\le1/2$ when the two terms are equal. Solving
+is therefore attained with $1/7\le c\le1/2$ when the two terms are equal. Solving
 $$
 A(1-c)=B(7c-1)
 $$
