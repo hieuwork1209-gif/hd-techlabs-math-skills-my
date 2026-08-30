@@ -2,15 +2,19 @@
 
 ## LaTeX (Normalized)
 
-Fix an integer $s\ge2$. For $m\ge1$, let $a_{m,s}$ be the number of residue classes $x\in\mathbb Z/2^m\mathbb Z$ satisfying
+For a positive integer $N$, let $v_2(N)$ denote the exponent of $2$ in $N$. For $m\ge1$, let $a_m$ be the number of integers $n$ with
 $$
-(x^2-1)\bigl(x^2-(1+2^s)^2\bigr)\equiv0\pmod{2^m}.
+0\le n<2^m
+$$
+such that
+$$
+\left|v_2\!\binom{3n}{n}-v_2(n+1)\right|=1.
 $$
 Determine the ordinary generating function
 $$
-A_s(T)=\sum_{m=1}^{\infty}a_{m,s}T^m
+A(T)=\sum_{m=1}^{\infty}a_mT^m
 $$
-as a rational function of $T$ (with $s$ fixed).
+as a rational function of $T$.
 
 ---
 
@@ -27,4 +31,4 @@ as a rational function of $T$ (with $s$ fixed).
 
 ## Domain Explanation
 
-This is an elementary number-theory problem about congruences modulo powers of $2$. The essential structure is the $2$-adic separation of the four roots $\pm1$ and $\pm(1+2^s)$: two pairs coincide through level $2^s$ and then separate. Counting the lifts across that transition determines the coefficients of the generating function.
+This problem is controlled by binary arithmetic. Legendre's formula converts $v_2\binom{3n}{n}$ into the number of carries in the binary addition $n+2n$, while $v_2(n+1)$ records the length of the trailing block of $1$'s in $n$. The main task is to determine which carry patterns can differ from that trailing-block length by exactly one and then enumerate the resulting binary words.
