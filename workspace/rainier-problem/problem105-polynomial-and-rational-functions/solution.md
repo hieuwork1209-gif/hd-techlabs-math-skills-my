@@ -8,8 +8,8 @@ P(x)P(-x)=P(x^2-2)
 $$
 gives
 $$
-a^2(-1)^n=a,
-\qquad	ext{hence}\qquad
+a^2(-1)^n=a
+\qquad\Longrightarrow\qquad
 a=(-1)^n.
 $$
 Since $P(0)\ne0$, comparison of root multiplicities gives, for every $z$,
