@@ -2,25 +2,31 @@
 
 ## LaTeX (Normalized)
 
-Let
+For every odd integer $m\geq 3$, let $C_m(x)$ be the monic minimal polynomial over $\mathbb{Q}$ of
 $$
-C_9(x)=x^3-3x+1,
+2\cos\frac{2\pi}{m},
 $$
-the monic minimal polynomial over $\mathbb{Q}$ of $2\cos\frac{2\pi}{9}$.
-
-Among all polynomials $P(x)\in\mathbb{Z}[x]$ satisfying
+and put
+$$
+R_m(x)=(-1)^{\deg C_m}C_m(x).
+$$
+Determine the polynomial $P(x)\in\mathbb{Z}[x]$ satisfying
 $$
 P(0)\in\{-1,1\},
 $$
 $$
 P(x)P(-x)=P(x^2-2),
 $$
-and
 $$
 C_9(x)\operatorname{Res}_y\bigl(P(y),y^3-3y-x\bigr)
 =(-1)^{\deg P}(x-2)^3P(x),
 $$
-determine the polynomial of least possible degree. Here $\operatorname{Res}_y$ denotes the resultant with respect to $y$. Give your answer in expanded form.
+$$
+\deg P=23,
+\qquad
+P(2)=-2835.
+$$
+Here $\operatorname{Res}_y$ denotes the resultant with respect to $y$. Give the final answer in canonical $R_m$-factorized form, with the subscripts in increasing order.
 
 ---
 
@@ -30,11 +36,11 @@ determine the polynomial of least possible degree. Here $\operatorname{Res}_y$ d
 |---|---|
 | **Domain** | Algebra, Functions, and Trigonometry |
 | **Sub-domain** | Polynomial and rational functions |
-| **Problem Type** | Optimization |
+| **Problem Type** | Construction under constraints |
 | **Answer Type** | Polynomial or rational function |
 
 ---
 
 ## Domain Explanation
 
-The problem asks for the minimum-degree integer polynomial satisfying coupled polynomial functional and resultant identities, so its fundamental content is polynomial structure and optimization within a polynomial constraint set. Resultants and algebraic conjugacy are solution tools, but the requested object itself is a polynomial optimizer, making Algebra, Functions, and Trigonometry / Polynomial and rational functions the best fit.
+The problem asks for a uniquely determined integer polynomial under coupled functional, resultant, degree, and evaluation constraints. Its fundamental object is a polynomial and the central task is to construct that polynomial from structural polynomial identities. Cyclotomic traces and resultants are essential tools in the solution, but they serve the polynomial construction rather than changing the primary domain.
