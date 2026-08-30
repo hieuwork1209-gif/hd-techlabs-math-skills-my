@@ -1,170 +1,152 @@
 ## Steps
 
-Step 1: Convert the nonlinear correlations into triangular coefficient identities
+Step 1: Encode the positive-frequency part of $f$
 
-Put
+Because $f$ is real and has zero mean, there are coefficients $a_1,\ldots,a_N\in\mathbb C$, not all zero, such that
 $$
-S_n=\sum_{a+b=n}c_{a}c_{b},
+f(x)=F(x)+\overline{F(x)},
 \qquad
-T_n=\sum_{a+b+c=n}c_{a}c_{b}c_{c}.
+F(x)=\sum_{n=1}^{N}a_n e^{inx}.
 $$
-Expanding the definition of $D$, the integral in $x$ kills every term except those with $a+b=n$. The remaining $t$-frequency is $n$, so
+For positive frequencies the periodic Hilbert transform multiplies by $-i$, and for negative frequencies by $i$. Hence
 $$
-\widehat D(n)=\overline{c_n}S_n.
+Hf=-iF+i\overline F.
 $$
-Likewise, in $Q$ the $x$-integral forces $a+b+c=n$, and the remaining $t$-frequency is $2n$. Hence
+
+Step 2: Rewrite the nonlinear Hilbert-transform identity
+
+We have
 $$
-\widehat Q(2n)=\overline{c_n}T_n.
+f^2=F^2+2F\overline F+\overline F^{\,2}.
 $$
-Since $c_0=1$, write
+The functions $F^2$ and $\overline F^{\,2}$ contain only positive and negative frequencies, respectively. Also $F\overline F=|F|^2$ is real. Therefore
 $$
-S_n=2c_n+A_n,
+H(F^2)=-iF^2,
 \qquad
-A_n=\sum_{j=1}^{n-1}c_{j}c_{n-j},
+H(\overline F^{\,2})=i\overline F^{\,2}.
 $$
-and
+Thus
 $$
-T_n=3c_n+B_n,
+H(f^2)=-iF^2+i\overline F^{\,2}+2H(|F|^2).
 $$
-where $B_n$ is the sum over triples $a+b+c=n$ with all three indices strictly less than $n$. Because $|c_n|=1$,
+On the other hand,
 $$
-\widehat D(n)=2+\overline{c_n}A_n,
-\qquad
-\widehat Q(2n)=3+\overline{c_n}B_n.
+fHf=(F+\overline F)(-iF+i\overline F)
+=-iF^2+i\overline F^{\,2}.
 $$
-Thus both identities are triangular: once $c_0,\ldots,c_{n-1}$ are known, either one can determine $c_n$ provided its coefficient of $\overline{c_n}$ is nonzero.
+The assumed identity $H(f^2)=fHf$ therefore reduces exactly to
+$$
+H(|F|^2)=0.
+$$
 
-Step 2: Compute the two convolution laws for the candidate sequence
+Step 3: Deduce that $|F|$ is constant
 
-Define
+A trigonometric polynomial has zero periodic Hilbert transform if and only if all of its nonzero Fourier coefficients vanish. Since $|F|^2$ is real, the condition
 $$
-u_k=i^{k(k-1)/2}.
+H(|F|^2)=0
 $$
-Then $u_0=u_1=1$ and $u_{k+4}=-u_k$. Therefore its ordinary generating function is
+implies that $|F(x)|^2$ is constant in $x$. Hence there is a constant $\rho>0$ such that
 $$
-U(z)=\sum_{k\geq0}u_kz^k
-=\frac{1+z+iz^2-iz^3}{1+z^4}.
+|F(x)|=\rho
 $$
-Let $A(z)=1+z+iz^2-iz^3$. Since
-$$
-\frac{1}{(1+z^4)^2}=\sum_{j\geq0}(-1)^{j}(j+1)z^{4j},
-$$
-and
-$$
-A(z)^2=1+2z+(1+2i)z^2-(1+2i)z^4+2z^5-z^6,
-$$
-coefficient extraction from $U(z)^2$ gives
-$$
-\frac{[z^n]U(z)^2}{u_n}=
-\begin{cases}
-2m+1+2mi,&n=4m,\\
-2,&n=4m+1,\\
-2m+2-(2m+1)i,&n=4m+2,\\
-0,&n=4m+3.
-\end{cases}
-$$
-In particular, for $n=2m$ this is
-$$
-\frac{[z^{2m}]U(z)^2}{u_{2m}}=m+1+(-1)^{m}m i,
-$$
-and for $n=4m+3$ it is $0$.
+for every $x$.
 
-For the cubic convolution we only need indices $n=4m+1$. Using
-$$
-\frac{1}{(1+z^4)^3}=\sum_{j\geq0}(-1)^{j}\binom{j+2}{2}z^{4j},
-$$
-the coefficients of $A(z)^3$ in degrees $1,5,9$ are respectively
-$$
-3,\qquad 3-3i,\qquad i.
-$$
-Hence, because $u_{4m+1}=(-1)^{m}$,
-$$
-\frac{[z^{4m+1}]U(z)^3}{u_{4m+1}}
-=3\binom{m+2}{2}-(3-3i)\binom{m+1}{2}+i\binom{m}{2}.
-$$
-The right-hand side simplifies to
-$$
-3(m+1)+m(2m+1)i.
-$$
-Thus the sequence $(u_k)$ satisfies every correlation identity in the statement.
+Step 4: Classify analytic trigonometric polynomials of constant modulus
 
-Step 3: Prove that the quadratic data force all indices except one residue class
+Write
+$$
+P(z)=\sum_{n=1}^{N}a_n z^n,
+$$
+so that $F(x)=P(e^{ix})$. The preceding step gives
+$$
+|P(z)|=\rho
+\qquad(|z|=1).
+$$
+Let $m$ be the smallest index for which $a_m\neq0$, and factor
+$$
+P(z)=z^m Q(z),
+$$
+where $Q(0)\neq0$. Then $|Q(z)|=\rho$ on the unit circle.
 
-We prove $c_n=u_n$ by induction on $n$. The cases $n=0,1$ are given. Assume $c_j=u_j$ for every $j<n$.
+Define the reversed polynomial
+$$
+Q^*(z)=z^d\overline{Q(1/\overline z)},
+$$
+where $d=\deg Q$. On $|z|=1$,
+$$
+Q(z)Q^*(z)=z^d|Q(z)|^2=\rho^2 z^d.
+$$
+Both sides are polynomials, so the identity holds for every $z\in\mathbb C$:
+$$
+Q(z)Q^*(z)=\rho^2 z^d.
+$$
+Since $Q(0)\neq0$, the left side can have a zero at $0$ only through $Q^*$. The right side has no zeros except at $0$. Therefore $Q$ has no zeros anywhere in $\mathbb C$. By the fundamental theorem of algebra, $Q$ must be constant.
 
-First suppose $n=2m$. By Step 2,
+Consequently
 $$
-A_n=\sum_{j=1}^{n-1}u_{j}u_{n-j}
-=u_n\bigl(m-1+(-1)^{m}m i\bigr).
+F(x)=a_m e^{imx}
 $$
-The prescribed value of $\widehat D(2m)$ and Step 1 give
-$$
-m-1+(-1)^{m}m i
-=\overline{c_n}u_n\bigl(m-1+(-1)^{m}m i\bigr).
-$$
-The factor on the left is nonzero because its imaginary part has absolute value $m$. Hence
-$$
-\overline{c_n}u_n=1,
-$$
-so $c_n=u_n$.
+for some $1\le m\le N$.
 
-Now suppose $n=4m+3$. Step 2 gives
-$$
-A_n=-2u_n.
-$$
-Since $\widehat D(n)=0$, Step 1 yields
-$$
--2=-2\overline{c_n}u_n,
-$$
-again forcing $c_n=u_n$.
+Step 5: Apply the $L^2$ normalization
 
-Therefore the quadratic correlation determines every even index and every index congruent to $3$ modulo $4$. Its only degeneracy occurs at indices congruent to $1$ modulo $4$, where Step 2 gives $A_n=0$.
+Since
+$$
+f(x)=a_m e^{imx}+\overline{a_m}e^{-imx},
+$$
+Parseval gives
+$$
+\frac1{2\pi}\int_0^{2\pi}f(x)^2\,dx
+=|a_m|^2+|a_m|^2
+=2|a_m|^2.
+$$
+The normalization equals $1$, so
+$$
+|a_m|=\frac1{\sqrt2}.
+$$
+Write
+$$
+a_m=\frac{e^{i\theta}}{\sqrt2}.
+$$
+Then
+$$
+f(x)=\sqrt2\cos(mx+\theta).
+$$
+Conversely, every function of this form has zero mean, degree at most $N$, unit $L^2$ norm, and satisfies
+$$
+H(f^2)=fHf.
+$$
 
-Step 4: Use the cubic data to repair the quadratic degeneracy
-
-It remains to treat $n=4m+1$ with $m\geq1$. Under the induction hypothesis, Step 2 gives
+Final Answer:
 $$
-B_n=u_n\left(3m+m(2m+1)i\right).
+\boxed{f(x)=\sqrt2\cos(mx+\theta),\qquad 1\le m\le N,\ \theta\in\mathbb R.}
 $$
-Indeed, the full cubic convolution equals
-$$
-T_n=u_n\left(3(m+1)+m(2m+1)i\right),
-$$
-and subtracting the three terms containing $c_n$ leaves the displayed $B_n$.
-
-The prescribed value of $\widehat Q(2n)$ and Step 1 therefore imply
-$$
-3m+m(2m+1)i
-=\overline{c_n}u_n\left(3m+m(2m+1)i\right).
-$$
-Because $m\geq1$, this factor is nonzero. Thus $\overline{c_n}u_n=1$, so $c_n=u_n$.
-
-This closes the induction for every $0\leq n\leq N$. Existence was verified in Step 2, while Steps 3 and 4 prove uniqueness.
-Final Answer: $\boxed{c_k=i^{k(k-1)/2}\quad(0\leq k\leq N)}$
 
 ---
 
 ## Answer
 
-$c_k=i^{k(k-1)/2}\quad(0\leq k\leq N)$
+$$
+\left\{\sqrt2\cos(mx+\theta):1\le m\le N,\ \theta\in\mathbb R\right\}.
+$$
 
 ---
 
 ## Classification
 
-**Problem Type:** Parameter identification
+**Problem Type:** Exhaustive enumeration
 
-**Answer Type:** Sequence or series representation
+**Answer Type:** Set or multiset of objects
 
 ---
 
 ## Solution Concepts
 
-- nonlinear Fourier correlation identities
-- triangular coefficient recovery
-- periodic generating functions
-- convolution coefficient extraction
-- induction through a degenerate residue class
+- periodic Hilbert transform as a Fourier multiplier
+- positive and negative frequency decomposition
+- constant-modulus analytic trigonometric polynomials
+- reversed-polynomial identity on the unit circle
+- Parseval normalization
 
 ---
 
