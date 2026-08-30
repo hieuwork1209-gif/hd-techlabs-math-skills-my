@@ -1,160 +1,200 @@
 ## Steps
 
-Step 1: Encode the positive-frequency part of $f$
+Step 1: Reduce the nonlinear identity to modulus data for the positive-frequency part
 
-Because $f$ is real and has zero mean, there are coefficients $a_1,\ldots,a_N\in\mathbb C$, not all zero, such that
+Set
 $$
-f(x)=F(x)+\overline{F(x)},
+F(x)=\sum_{k=1}^4\widehat f(k)e^{ikx}.
+$$
+Because $f$ is real and $\widehat f(0)=0$,
+$$
+f=F+\overline F,
 \qquad
-F(x)=\sum_{n=1}^{N}a_n e^{inx}.
-$$
-For positive frequencies the periodic Hilbert transform multiplies by $-i$, and for negative frequencies by $i$. Hence
-$$
 Hf=-iF+i\overline F.
 $$
-
-Step 2: Rewrite the nonlinear Hilbert-transform identity
-
-We have
+Hence
 $$
-f^2=F^2+2F\overline F+\overline F^{\,2}.
+f^2=F^2+2|F|^2+\overline F^{\,2},
 $$
-The functions $F^2$ and $\overline F^{\,2}$ contain only positive and negative frequencies, respectively. Also $F\overline F=|F|^2$ is real. Therefore
-$$
-H(F^2)=-iF^2,
-\qquad
-H(\overline F^{\,2})=i\overline F^{\,2}.
-$$
-Thus
+and, since $F^2$ and $\overline F^{\,2}$ contain only positive and negative frequencies respectively,
 $$
 H(f^2)=-iF^2+i\overline F^{\,2}+2H(|F|^2).
 $$
-On the other hand,
+Also
 $$
 fHf=(F+\overline F)(-iF+i\overline F)
 =-iF^2+i\overline F^{\,2}.
 $$
-The assumed identity $H(f^2)=fHf$ therefore reduces exactly to
+Therefore
 $$
-H(|F|^2)=0.
+H(f^2)-fHf=2H(|F|^2).
+$$
+The hypothesis becomes
+$$
+2H(|F|^2)
+=\frac{-1250\sin x+331\sin(2x)-30\sin(3x)}{981}.
 $$
 
-Step 3: Deduce that $|F|$ is constant
+Step 2: Recover $|F|^2$ completely
 
-A trigonometric polynomial has zero periodic Hilbert transform if and only if all of its nonzero Fourier coefficients vanish. Hence
+With the stated convention, $H(\cos kx)=\sin kx$ for $k>0$. Thus the preceding identity determines every nonzero Fourier mode of $|F|^2$:
 $$
-H(|F|^2)=0
+|F(x)|^2=C+\frac{-2500\cos x+662\cos(2x)-60\cos(3x)}{3924}
 $$
-implies that $|F(x)|^2$ is constant in $x$. Since $F$ is nonzero, there is a constant $\rho>0$ such that
-$$
-|F(x)|=\rho
-$$
-for every $x$.
+for some constant $C$.
 
-Step 4: Classify analytic trigonometric polynomials of constant modulus
+Averaging
+$$
+f^2=F^2+2|F|^2+\overline F^{\,2}
+$$
+over one period kills $F^2$ and $\overline F^{\,2}$. Since the mean of $f^2$ is $1$,
+$$
+2C=1,
+\qquad C=\frac12.
+$$
+Hence
+$$
+|F(x)|^2
+=\frac{1962-2500\cos x+662\cos(2x)-60\cos(3x)}{3924}.
+$$
 
-Write
+Step 3: Convert the recovered modulus into a finite spectral-factor problem
+
+Put $z=e^{ix}$ and define
 $$
-P(z)=\sum_{n=1}^{N}a_n z^n,
+A(z)=2\sqrt{981}\,F(x).
 $$
-so that $F(x)=P(e^{ix})$. The preceding step gives
+Then $A$ is a polynomial involving only $z,z^2,z^3,z^4$, and
 $$
-|P(z)|=\rho
+|A(z)|^2
+=1962-2500\cos x+662\cos(2x)-60\cos(3x)
 \qquad(|z|=1).
 $$
-Let $m$ be the smallest index for which $a_m\neq0$, and factor
+A direct expansion gives the factorization
 $$
-P(z)=z^m Q(z),
+1962-2500\cos x+662\cos(2x)-60\cos(3x)
+=|(z-2)(z-3)(z-5)|^2.
 $$
-where $Q(0)\neq0$. Then $|Q(z)|=\rho$ on the unit circle.
+The nonzero frequency-$3$ term shows that the smallest and largest exponents occurring in $A$ differ by $3$. Because $A$ has no constant term and degree at most $4$, those exponents must be $1$ and $4$. Thus
+$$
+A(z)=zB(z)
+$$
+with $B$ a cubic having nonzero constant and leading coefficients, and
+$$
+|B(z)|=|(z-2)(z-3)(z-5)|
+\qquad(|z|=1).
+$$
 
-Define the reversed polynomial
+Let
 $$
-Q^*(z)=z^d\overline{Q(1/\overline z)},
+B^*(z)=z^3\overline{B(1/\overline z)}.
 $$
-where $d=\deg Q$. On $|z|=1$,
+Equality of the boundary moduli implies the polynomial identity
 $$
-Q(z)Q^*(z)=z^d|Q(z)|^2=\rho^2 z^d.
+B(z)B^*(z)=Q(z)Q^*(z),
+\qquad
+Q(z)=(z-2)(z-3)(z-5).
 $$
-Both sides are polynomials, so the identity holds for every $z\in\mathbb C$:
+The six zeros on the right are
 $$
-Q(z)Q^*(z)=\rho^2 z^d.
+2,\ 3,\ 5,\ \frac12,\ \frac13,\ \frac15,
 $$
-If $Q$ had a zero $\alpha$, then $\alpha\neq0$ because $Q(0)\neq0$, while the displayed identity would give $\rho^2\alpha^d=0$, a contradiction. Thus $Q$ has no complex zero. By the fundamental theorem of algebra, $Q$ is constant.
+all simple. Since zeros of $B^*$ are reciprocal conjugates of zeros of $B$, a cubic spectral factor $B$ must choose exactly one zero from each reciprocal pair
+$$
+\left\{2,\frac12\right\},
+\quad
+\left\{3,\frac13\right\},
+\quad
+\left\{5,\frac15\right\}.
+$$
+Thus there are $2^3$ root-choice patterns before fixing the unimodular phase.
 
+Step 4: Use $f(0)$ to fix the phase of every spectral factor
+
+From $A=2\sqrt{981}F$ and $f=F+\overline F$,
+$$
+f(x)=\frac{\operatorname{Re}A(e^{ix})}{\sqrt{981}}.
+$$
+At $x=0$, the recovered modulus gives $|A(1)|=8$, while the condition $f(0)=8/\sqrt{981}$ gives $\operatorname{Re}A(1)=8$. Hence
+$$
+A(1)=B(1)=8.
+$$
+This fixes the unimodular phase uniquely for each root-choice pattern.
+
+A convenient normalized list is
+$$
+B_S(z)=\prod_{r\in S}(r-z)\prod_{r\in\{2,3,5\}\setminus S}(rz-1),
+\qquad S\subseteq\{2,3,5\},
+$$
+because each factor has the required boundary modulus and every $B_S(1)=8$.
+
+Step 5: Use the second point value to select the unique spectral factor
+
+At $x=\pi/2$ we have $z=i$ and $A(i)=iB(i)$. Therefore
+$$
+f\!\left(\frac\pi2\right)=-\frac{36}{\sqrt{981}}
+$$
+is equivalent to
+$$
+\operatorname{Re}(iB(i))=-36,
+\qquad	ext{or equivalently}\qquad
+\operatorname{Im}B(i)=36.
+$$
+For the eight normalized factors $B_S$, the values of $\operatorname{Im}B_S(i)$ are
+$$
+-20,-20,-12,36,-2,34,30,-30,
+$$
+corresponding respectively to
+$$
+S=\varnothing,\{5\},\{3\},\{3,5\},\{2\},\{2,5\},\{2,3\},\{2,3,5\}.
+$$
+Thus the unique choice is
+$$
+S=\{3,5\}.
+$$
+Hence
+$$
+B(z)=(2z-1)(3-z)(5-z)=2z^3-17z^2+38z-15,
+$$
+so
+$$
+A(z)=2z^4-17z^3+38z^2-15z.
+$$
 Consequently
 $$
-F(x)=a_m e^{imx}
+f(x)=\frac{-15\cos x+38\cos(2x)-17\cos(3x)+2\cos(4x)}{\sqrt{981}}.
 $$
-for some $1\le m\le N$.
+The squared coefficient sum is
+$$
+15^2+38^2+17^2+2^2=1962,
+$$
+so the mean of $f^2$ is $1962/(2\cdot981)=1$. The factorization above gives exactly the recovered $|F|^2$, so Step 1 verifies the nonlinear Hilbert-transform identity, and the two point values are immediate from the displayed formula.
 
-Step 5: Apply the two normalizations
-
-Since
-$$
-f(x)=a_m e^{imx}+\overline{a_m}e^{-imx},
-$$
-Parseval gives
-$$
-\frac1{2\pi}\int_0^{2\pi}f(x)^2\,dx
-=2|a_m|^2.
-$$
-The $L^2$ normalization therefore yields
-$$
-|a_m|=\frac1{\sqrt2}.
-$$
-Write
-$$
-a_m=\frac{e^{i\theta}}{\sqrt2}.
-$$
-Then
-$$
-f(x)=\sqrt2\cos(mx+\theta).
-$$
-Finally,
-$$
-f(0)=\sqrt2\cos\theta=\sqrt2,
-$$
-so $\cos\theta=1$. Hence $\theta\equiv0\pmod{2\pi}$ and
-$$
-f(x)=\sqrt2\cos(mx).
-$$
-
-Conversely, for every integer $m$ with $1\le m\le N$, the function $f(x)=\sqrt2\cos(mx)$ has zero mean, degree at most $N$, unit $L^2$ norm, satisfies $f(0)=\sqrt2$, and obeys
-$$
-H(f^2)=H(1+\cos(2mx))=\sin(2mx)=fHf.
-$$
-
-Final Answer:
-$$
-\boxed{\left\{\sqrt2\cos(mx):1\le m\le N\right\}.}
-$$
+Final Answer: $\boxed{f(x)=\frac{-15\cos x+38\cos(2x)-17\cos(3x)+2\cos(4x)}{\sqrt{981}}}$
 
 ---
 
 ## Answer
 
-$$
-\left\{\sqrt2\cos(mx):1\le m\le N\right\}.
-$$
+$\displaystyle \frac{-15\cos x+38\cos(2x)-17\cos(3x)+2\cos(4x)}{\sqrt{981}}$
 
 ---
 
 ## Classification
 
-**Problem Type:** Exhaustive enumeration
+**Problem Type:** Construction under constraints
 
-**Answer Type:** Set or multiset of objects
+**Answer Type:** Function or mapping
 
 ---
 
 ## Solution Concepts
 
 - periodic Hilbert transform as a Fourier multiplier
-- positive and negative frequency decomposition
-- constant-modulus analytic trigonometric polynomials
-- reversed-polynomial identity on the unit circle
-- Parseval normalization
+- positive-frequency analytic signal
+- finite spectral factorization
+- reciprocal-polynomial root pairing
+- phase selection from point constraints
 
 ---
 
