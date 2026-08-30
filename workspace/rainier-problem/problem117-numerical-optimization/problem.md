@@ -40,4 +40,4 @@ Determine the ordered pair $(R_*,\alpha_*)$, where $\alpha_*=(\alpha_0,\alpha_1,
 
 ## Domain Explanation
 
-The task is to tune a periodic gradient-descent schedule for a strongly convex quadratic under a transient-sensitive minimax convergence criterion. The decisive structure couples one-, two-, and three-step convergence factors, so the problem is fundamentally Numerical optimization; prefix polynomials and interpolation identities provide optimality certificates for that algorithmic tuning problem.
+The task is to tune a periodic gradient-descent schedule for a strongly convex quadratic under a transient-sensitive minimax convergence criterion. The decisive structure couples one-, two-, and three-step convergence factors, and the optimality proof uses prefix spectral products together with an endpoint minimax certificate. Thus the problem is fundamentally Numerical optimization rather than a standalone approximation problem.
