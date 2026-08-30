@@ -2,29 +2,23 @@
 
 ## LaTeX (Normalized)
 
-Fix a real number $x$. For each integer $n\ge 6$, put
+For integers $n\ge2$ and real $a>0$, define
 $$
-t_k=\frac{k}{n}\qquad(1\le k\le n).
+S_r(n,a)=\sum_{k=0}^n\frac{(-1)^k\binom nk}{(k+a)^r}\qquad(1\le r\le5)
 $$
-For $j=1,2,3$, define
+and
 $$
-f_{j,n,x}(t)=\exp\!\left(\frac{jxt}{n^{1/3}}\right)+\frac{3j^3t^4}{n}.
+D_n(a)=\det\!\left[(i+j)!\,S_{i+j+1}(n,a)\right]_{i,j=0}^{2}.
 $$
-Set
+For each $n\ge2$, let $a_n>0$ be the unique number satisfying
 $$
-\phi_0(t)=1,\quad \phi_1(t)=t,\quad \phi_2(t)=t^2,
-\quad \phi_{2+j}(t)=f_{j,n,x}(t)\quad(j=1,2,3),
+D_n(a_n)=(\log n)^9,
 $$
-and let
-$$
-G_n(x)=\left[\sum_{k=1}^n\phi_r(t_k)\phi_s(t_k)\right]_{r,s=0}^{5}.
-$$
-Let $H_n$ be the leading $3\times3$ principal submatrix of $G_n(x)$.
+where $\log$ is the natural logarithm.
 
 Determine
 $$
-\lim_{n\to\infty}
-n^5\frac{\det G_n(x)}{\det H_n}.
+\lim_{n\to\infty}a_n\log n.
 $$
 
 ---
@@ -35,11 +29,11 @@ $$
 |---|---|
 | **Domain** | Linear Algebra |
 | **Sub-domain** | Determinants |
-| **Problem Type** | Symbolic derivation |
+| **Problem Type** | Parameter identification |
 | **Answer Type** | Exact symbolic expression |
 
 ---
 
 ## Domain Explanation
 
-The problem asks for a degenerate asymptotic ratio of Gram determinants. After a block Schur complement, three residual columns have successive rank deficiencies, so the leading nonzero term is found by a structured elimination before evaluating the limiting Gram volume.
+The problem is built around a Hankel determinant of structured alternating-binomial sums. The determinant becomes a positive moment Gram determinant after a hidden integral transform, and its asymptotic scale identifies an implicitly defined parameter.
