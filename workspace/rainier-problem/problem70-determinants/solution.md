@@ -1,148 +1,148 @@
 ## Steps
 
-Step 1: Reduce the determinant ratio to a three-vector residual Gram determinant
-Put
+Step 1: Reveal the positive moment determinant and monotonicity
+For every integer $r\ge0$,
 $$
-\langle u,v\rangle_n=\frac1n\sum_{k=1}^n u(t_k)v(t_k),
-\qquad V=\operatorname{span}\{1,t,t^2\},
+\frac{r!}{(k+a)^{r+1}}
+=\int_0^1 t^{k+a-1}(-\log t)^r\,dt.
 $$
-and let $P_n$ be the orthogonal projection onto $V$. For $j=1,2,3$, set
+After summing against $(-1)^k\binom nk$,
 $$
-R_{j,n}=(I-P_n)f_{j,n,x}.
+r!S_{r+1}(n,a)
+=\int_0^1 t^{a-1}(1-t)^n(-\log t)^r\,dt.
 $$
-The Gram matrices for the normalized inner product are $G_n(x)/n$ and $H_n/n$. A block Schur complement therefore gives
+Thus $D_n(a)$ is the Gram determinant of $1,Y,Y^2$, where $Y=-\log t$, for the positive measure
 $$
-\frac{\det(G_n/n)}{\det(H_n/n)}
-=\det\Gamma_n(R_{1,n},R_{2,n},R_{3,n}),
+d\mu_{n,a}(t)=t^{a-1}(1-t)^n\,dt.
 $$
-where $\Gamma_n$ denotes the $3\times3$ Gram matrix for $\langle\cdot,\cdot\rangle_n$. Since the two matrices have sizes $6$ and $3$,
+In particular $D_n(a)>0$.
+
+If $b>a$, then
 $$
-\frac{\det G_n(x)}{\det H_n}
-=n^3\det\Gamma_n(R_{1,n},R_{2,n},R_{3,n}).
+M_n(a)-M_n(b)
+=\int_0^1 t^{a-1}(1-t)^n(1-t^{b-a})
+\begin{pmatrix}1\\Y\\Y^2\end{pmatrix}
+\begin{pmatrix}1&Y&Y^2\end{pmatrix}dt
+$$
+is positive definite, where $M_n(a)$ is the $3\times3$ moment matrix whose determinant is $D_n(a)$. Hence $D_n(a)$ is strictly decreasing in $a$. Also $D_n(a)\to0$ as $a\to\infty$; the divergence $D_n(a)\to\infty$ as $a\downarrow0$ follows from Step 2. Therefore the defining equation for $a_n$ has exactly one positive solution.
+
+Step 2: Express the determinant through Beta cumulants
+The total mass is
+$$
+S_1(n,a)=B(a,n+1)=\frac{\Gamma(a)\Gamma(n+1)}{\Gamma(n+a+1)}.
+$$
+Normalize $\mu_{n,a}$ to a probability measure and let $\kappa_r$ be the cumulants of $Y=-\log t$. Dividing the moment matrix by $S_1(n,a)$ gives
+$$
+D_n(a)=S_1(n,a)^3F_n(a),
+$$
+where translation $Y\mapsto Y-\mathbb EY$ is a determinant-one change of the basis $(1,Y,Y^2)$, so
+$$
+F_n(a)=2\kappa_2^3+\kappa_2\kappa_4-\kappa_3^2.
+$$
+Indeed the centered moment matrix is
+$$
+\begin{pmatrix}
+1&0&\kappa_2\\
+0&\kappa_2&\kappa_3\\
+\kappa_2&\kappa_3&\kappa_4+3\kappa_2^2
+\end{pmatrix}.
 $$
 
-Step 2: Expose the rank filtration in the three residual columns
-Let $\varepsilon=n^{-1/3}$. Uniformly for $0\le t\le1$,
+The moment generating function is
 $$
-f_{j,n,x}(t)
-=p_{j,n}(t)+j^3\varepsilon^3q(t)
-+j^4\varepsilon^4r(t)+j^5\varepsilon^5s(t)+O(\varepsilon^6),
+\mathbb E e^{sY}=\frac{B(a-s,n+1)}{B(a,n+1)},
 $$
-where $p_{j,n}\in V$ and
+so, with $\psi_m$ denoting the order-$m$ polygamma function,
 $$
-q(t)=\frac{x^3}{6}t^3+3t^4,
-\qquad r(t)=\frac{x^4}{24}t^4,
-\qquad s(t)=\frac{x^5}{120}t^5.
+\kappa_r=(-1)^r\bigl(\psi_{r-1}(a)-\psi_{r-1}(a+n+1)\bigr).
 $$
-Write
+Using
 $$
-U_n=(I-P_n)q,\qquad V_n=(I-P_n)r,\qquad W_n=(I-P_n)s.
+\psi_1(a)=\frac1{a^2}+O(1),\qquad
+\psi_2(a)=-\frac2{a^3}+O(1),\qquad
+\psi_3(a)=\frac6{a^4}+O(1)
 $$
-Projection is contractive, so
+as $a\downarrow0$, while the terms at $a+n+1$ stay bounded, gives
 $$
-R_{j,n}=j^3\varepsilon^3U_n+j^4\varepsilon^4V_n
-+j^5\varepsilon^5W_n+O(\varepsilon^6)
-$$
-in the normalized discrete norm.
-
-Now make the determinant-one triangular change of residual columns
-$$
-A_n=R_{1,n},
-$$
-$$
-B_n=R_{2,n}-8R_{1,n},
-$$
-$$
-C_n=R_{3,n}-\frac{27}{4}R_{2,n}+27R_{1,n}.
-$$
-The order-$\varepsilon^3$ part cancels from $B_n$, while both the order-$\varepsilon^3$ and order-$\varepsilon^4$ parts cancel from $C_n$. Explicitly,
-$$
-A_n=\varepsilon^3U_n+O(\varepsilon^4),
-$$
-$$
-B_n=8\varepsilon^4V_n+24\varepsilon^5W_n+O(\varepsilon^6),
-$$
-$$
-C_n=54\varepsilon^5W_n+O(\varepsilon^6).
-$$
-Hence the squared three-dimensional Gram volume satisfies
-$$
-\det\Gamma_n(R_{1,n},R_{2,n},R_{3,n})
-=\varepsilon^{24}\det\Gamma_n(U_n,8V_n,54W_n)+O(\varepsilon^{25}).
-$$
-Since $n^3=\varepsilon^{-9}$ and $n^5=\varepsilon^{-15}$,
-$$
-n^5\frac{\det G_n(x)}{\det H_n}
-=\det\Gamma_n(U_n,8V_n,54W_n)+O(\varepsilon).
-$$
-The normalized discrete moments converge to the moments on $[0,1]$, so the projection coefficients converge to those of the $L^2[0,1]$ projection $P$ onto $V$. Thus the desired limit is the continuous Gram determinant of
-$$
-U=(I-P)q,\qquad 8V=8(I-P)r,\qquad 54W=54(I-P)s.
-$$
-
-Step 3: Compute the limiting Gram volume in a shifted Legendre basis
-Use
-$$
-L_3(t)=20t^3-30t^2+12t-1,
-$$
-$$
-L_4(t)=70t^4-140t^3+90t^2-20t+1,
-$$
-$$
-L_5(t)=252t^5-630t^4+560t^3-210t^2+30t-1.
-$$
-These are mutually orthogonal on $[0,1]$, orthogonal to $V$, and
-$$
-\int_0^1L_3^2dt=\frac17,\qquad
-\int_0^1L_4^2dt=\frac19,\qquad
-\int_0^1L_5^2dt=\frac1{11}.
-$$
-Modulo $V$,
-$$
-t^3\equiv\frac1{20}L_3,
-\qquad
-t^4\equiv\frac1{10}L_3+\frac1{70}L_4.
+\kappa_2\sim a^{-2},\qquad
+\kappa_3\sim2a^{-3},\qquad
+\kappa_4\sim6a^{-4}.
 $$
 Therefore
 $$
-U=\frac{x^3+36}{120}L_3+\frac3{70}L_4,
+F_n(a)\sim\frac4{a^6},\qquad
+S_1(n,a)\sim\frac1a,
 $$
-$$
-8V=\frac{x^4}{30}L_3+\frac{x^4}{210}L_4.
-$$
-Also $L_5$ has leading coefficient $252$, so the $L_5$ coefficient of $54W$ is
-$$
-54\cdot\frac{x^5}{120}\cdot\frac1{252}=\frac{x^5}{560}.
-$$
-The $L_3,L_4$ coefficients of $54W$ do not affect the coordinate determinant, because the first two vectors have no $L_5$ component. Hence their coordinate determinant in the orthogonal basis $(L_3,L_4,L_5)$ is
-$$
-\left(
-\frac{x^3+36}{120}\frac{x^4}{210}
--\frac3{70}\frac{x^4}{30}
-\right)\frac{x^5}{560}
-=\frac{x^{12}}{14112000}.
-$$
-For an orthogonal basis, the Gram determinant is the square of the coordinate determinant times the product of the basis norms. Thus
-$$
-\det\Gamma(U,8V,54W)
-=\frac1{7\cdot9\cdot11}
-\left(\frac{x^{12}}{14112000}\right)^2
-=\frac{x^{24}}{138009940992000000}.
-$$
+for fixed $n$, and hence $D_n(a)\sim4a^{-9}\to\infty$ as $a\downarrow0$.
 
-Final Answer: $\boxed{\frac{x^{24}}{138009940992000000}}$
+Step 3: Find the two-scale asymptotic profile
+Put $L=\log n$ and let
+$$
+a=\frac{c}{L},
+$$
+where $c$ remains in a fixed compact subset of $(0,\infty)$. Stirling's formula, uniformly in this regime, gives
+$$
+\frac{\Gamma(n+1)}{\Gamma(n+a+1)}
+=n^{-a}(1+o(1))=e^{-c}(1+o(1)),
+$$
+while $\Gamma(a)=a^{-1}(1+o(1))$. Thus
+$$
+S_1(n,a)=\frac{Le^{-c}}{c}(1+o(1)).
+$$
+For the cumulants, the series formulas for the polygamma functions give uniformly
+$$
+\kappa_2=a^{-2}(1+o(1)),\qquad
+\kappa_3=2a^{-3}(1+o(1)),\qquad
+\kappa_4=6a^{-4}(1+o(1)),
+$$
+because the corresponding terms at $n+a+1$ are $O(n^{-1})$, $O(n^{-2})$, and $O(n^{-3})$. Consequently
+$$
+F_n(a)=4a^{-6}(1+o(1)).
+$$
+Combining the two factors,
+$$
+\frac{D_n(c/L)}{L^9}
+\longrightarrow
+\Phi(c):=\frac{4e^{-3c}}{c^9},
+$$
+uniformly for $c$ in compact subsets of $(0,\infty)$.
+
+Step 4: Pin down the implicit root
+The function
+$$
+\Phi(c)=\frac{4e^{-3c}}{c^9}
+$$
+is continuous and strictly decreasing from $+\infty$ to $0$. Choose fixed $0<A<B$ with $\Phi(A)>1>\Phi(B)$. By the uniform limit in Step 3, for all sufficiently large $n$,
+$$
+D_n(A/L)>L^9>D_n(B/L).
+$$
+Since $D_n$ is strictly decreasing,
+$$
+A<a_nL<B.
+$$
+Thus every subsequential limit $c$ of $a_nL$ lies in $(0,\infty)$ and satisfies $\Phi(c)=1$. The solution is unique, so the whole sequence converges to the positive root of
+$$
+c^9e^{3c}=4.
+$$
+Taking ninth roots,
+$$
+\frac c3e^{c/3}=\frac{4^{1/9}}3.
+$$
+Therefore, with $W_0$ the principal Lambert $W$ function,
+
+Final Answer: $\boxed{3W_0\!\left(\frac{4^{1/9}}3\right)}$
 
 ---
 
 ## Answer
 
-$\frac{x^{24}}{138009940992000000}$
+$3W_0\!\left(\frac{4^{1/9}}3\right)$
 
 ---
 
 ## Classification
 
-**Problem Type:** Symbolic derivation
+**Problem Type:** Parameter identification
 
 **Answer Type:** Exact symbolic expression
 
@@ -150,13 +150,14 @@ $\frac{x^{24}}{138009940992000000}$
 
 ## Solution Concepts
 
-- block Schur complement for Gram matrices
-- rank filtration under structured column elimination
-- discrete-to-continuous projection convergence
-- shifted Legendre Gram volume
+- Beta-integral transform of alternating binomial sums
+- positive Hankel moment determinants
+- cumulants and polygamma asymptotics
+- two-scale implicit asymptotics
+- Lambert W inversion
 
 ---
 
 ## Black-Box Audit — no issues found
 
-The solution does not expand a large determinant entry by entry. It first identifies the residual three-volume, then uses a determinant-one elimination to reveal the successive ranks at orders $n^{-1}$, $n^{-4/3}$, and $n^{-5/3}$. The final constant comes from one orthogonal-coordinate volume computation.
+The key reductions are derived from the reciprocal-power integral and the moment generating function. The determinant is handled structurally through centering and cumulants, while existence and uniqueness of the implicit root follow from positive-definite measure ordering rather than numerical evidence.
