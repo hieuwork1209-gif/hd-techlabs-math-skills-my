@@ -2,17 +2,15 @@
 
 ## LaTeX (Normalized)
 
-Let $k\ge2$ and put $q=2^{k-1}$. For $m\ge1$, let $c_{m,k}$ be the number of primitive pairs $(x,y)\in\mathbb Z^2$ satisfying
+Fix an integer $s\ge2$. For $m\ge1$, let $a_{m,s}$ be the number of residue classes $x\in\mathbb Z/2^m\mathbb Z$ satisfying
 $$
-x^2+14y^2=15^m,\qquad y\ne0,\qquad v_2(y)=k,
+(x^2-1)\bigl(x^2-(1+2^s)^2\bigr)\equiv0\pmod{2^m}.
 $$
-where primitive means $\gcd(x,y)=1$, and $v_2(y)$ is the largest integer $e\ge0$ for which $2^e\mid y$.
-
 Determine the ordinary generating function
 $$
-C_k(T)=\sum_{m=1}^{\infty}c_{m,k}T^m
+A_s(T)=\sum_{m=1}^{\infty}a_{m,s}T^m
 $$
-as a rational function of $T$ and $q$.
+as a rational function of $T$ (with $s$ fixed).
 
 ---
 
@@ -29,4 +27,4 @@ as a rational function of $T$ and $q$.
 
 ## Domain Explanation
 
-This problem belongs to Number Theory because it asks for an exact generating function encoding primitive representations by the quadratic norm form $x^2+14y^2$ with a prescribed $2$-adic valuation. The main difficulty is that the split prime ideals above $3$ and $5$ are nonprincipal: one must determine which primitive ideal factorizations become principal before analyzing coefficient valuations. The generating function only packages the resulting exponent classes.
+This is an elementary number-theory problem about congruences modulo powers of $2$. The essential structure is the $2$-adic separation of the four roots $\pm1$ and $\pm(1+2^s)$: two pairs coincide through level $2^s$ and then separate. Counting the lifts across that transition determines the coefficients of the generating function.
