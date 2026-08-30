@@ -64,7 +64,40 @@ The endpoint expansion in Step 2 gives $y^{(4)}=24$ at every component endpoint.
 
 An even chain of $2r$ components has total length $2\pi r$. An odd chain has total length $2\pi r+2\alpha$, which cannot equal $2\pi n$ because $0<\alpha<\pi$. This leaves exactly $2n$ components.
 
-Take the positive fourth root on the first component and alternate its sign on successive components. Call the resulting function $v$. The first integral, the linear component equation, and the parameter sign change show that its endpoint derivatives agree through order two, so $v\in C^2([0,2\pi n])$ and $y=v^4$. The sign alternation turns the component equations into one global equation. If $c$ is the first component parameter, then
+Write the components as $I_j=(a_j,b_j)$, let $u_j=y^{1/4}>0$ on $I_j$, and let $c_j$ be its parameter. Put $\varepsilon_j=(-1)^{j-1}$ and define $v=\varepsilon_j u_j$ on the closure of $I_j$. At a common zero $x_j=b_j=a_{j+1}$, the first integral gives $u_j'(x_j-)^2=u_{j+1}'(x_j+)^2=1$. Because $u_j$ decreases to zero at its right endpoint while $u_{j+1}$ increases from zero at its left endpoint,
+$$
+u_j(x_j)=u_{j+1}(x_j)=0,
+\qquad
+u_j'(x_j-)=-1,
+\qquad
+u_{j+1}'(x_j+)=1.
+$$
+Also, taking endpoint limits in $u''+u=c/2$ gives
+$$
+u_j''(x_j-)=\frac{c_j}{2},
+\qquad
+u_{j+1}''(x_j+)=\frac{c_{j+1}}{2}=-\frac{c_j}{2}.
+$$
+Since $\varepsilon_{j+1}=-\varepsilon_j$ and $c_{j+1}=-c_j$, the two one-sided jets of $v$ are therefore
+$$
+v(x_j-)=0=v(x_j+),
+$$
+$$
+v'(x_j-)=\varepsilon_j(-1)=-\varepsilon_j
+=\varepsilon_{j+1}(1)=v'(x_j+),
+$$
+and
+$$
+v''(x_j-)=\varepsilon_j\frac{c_j}{2}
+=\varepsilon_{j+1}\frac{c_{j+1}}{2}=v''(x_j+).
+$$
+Thus $v$, $v'$, and $v''$ match across every common zero, so $v\in C^2([0,2\pi n])$ and $y=v^4$.
+
+On $I_j$,
+$$
+v''+v=\varepsilon_j(u_j''+u_j)=\frac{\varepsilon_j c_j}{2}.
+$$
+Both $\varepsilon_j$ and $c_j$ change sign from one component to the next, hence $\varepsilon_jc_j=c_1$ for every $j$. If $c=c_1$, the signed root satisfies the single global equation
 $$
 v''+v=\frac{c}{2},
 \qquad
@@ -79,18 +112,66 @@ $$
 
 Step 4: Use the integral condition to determine the parameter magnitude.
 
-Over one period, terms containing an odd power of $\sin x$ integrate to zero. The required even moments are
+We evaluate the three period integrals explicitly. First, the power-reduction identity
 $$
-\int_0^{2\pi}\sin^4x\, dx=\frac{3\pi}{4},
+\sin^4x=\frac{3-4\cos2x+\cos4x}{8}
 $$
+gives
 $$
-\int_0^{2\pi}\sin^2x(1-\cos x)^2\, dx=\frac{5\pi}{4},
+\int_0^{2\pi}\sin^4x\,dx
+=\frac{3}{8}(2\pi)=\frac{3\pi}{4}.
+$$
+Next,
+$$
+\int_0^{2\pi}\sin^2x(1-\cos x)^2\,dx
+=\int_0^{2\pi}\sin^2x\,dx
+-2\int_0^{2\pi}\sin^2x\cos x\,dx
++\int_0^{2\pi}\sin^2x\cos^2x\,dx.
+$$
+Here
+$$
+\int_0^{2\pi}\sin^2x\,dx=\pi,
 \qquad
-\int_0^{2\pi}(1-\cos x)^4\, dx=\frac{35\pi}{4}.
+\int_0^{2\pi}\sin^2x\cos x\,dx
+=\frac13[\sin^3x]_0^{2\pi}=0,
 $$
-Expanding the fourth power of the global signed root gives
+and, since $\sin^2x\cos^2x=\frac18(1-\cos4x)$,
 $$
-\int_0^{2\pi}v(x)^4\, dx
+\int_0^{2\pi}\sin^2x\cos^2x\,dx=\frac{\pi}{4}.
+$$
+Therefore
+$$
+\int_0^{2\pi}\sin^2x(1-\cos x)^2\,dx=\frac{5\pi}{4}.
+$$
+Finally,
+$$
+(1-\cos x)^4=1-4\cos x+6\cos^2x-4\cos^3x+\cos^4x.
+$$
+Over a full period, the odd cosine moments vanish, while
+$$
+\int_0^{2\pi}1\,dx=2\pi,
+\qquad
+\int_0^{2\pi}\cos^2x\,dx=\pi,
+\qquad
+\int_0^{2\pi}\cos^4x\,dx=\frac{3\pi}{4}.
+$$
+Hence
+$$
+\int_0^{2\pi}(1-\cos x)^4\,dx
+=2\pi+6\pi+\frac{3\pi}{4}
+=\frac{35\pi}{4}.
+$$
+
+Expanding
+$$
+v^4=\sin^4x+4d\sin^3x(1-\cos x)
++6d^2\sin^2x(1-\cos x)^2
++4d^3\sin x(1-\cos x)^3
++d^4(1-\cos x)^4,
+$$
+the two terms containing an odd power of $\sin x$ integrate to zero over $[0,2\pi]$. Using the three evaluations above,
+$$
+\int_0^{2\pi}v(x)^4\,dx
 =\frac{\pi}{4}(3+30d^2+35d^4).
 $$
 Since $y=v^4$ is $2\pi$-periodic, the prescribed integral is equivalent to
