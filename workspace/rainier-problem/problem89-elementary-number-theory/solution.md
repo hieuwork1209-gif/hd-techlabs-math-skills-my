@@ -1,89 +1,86 @@
 ## Steps
 
-Step 1: Reduce to four $2$-adic root neighborhoods
+Step 1: Split the odd residues into two sign clusters
 Let
 $$
 f_s(x)=(x^2-1)\bigl(x^2-(1+2^s)^2\bigr).
 $$
-The four integral roots are
+Its four integral roots are
 $$
-1,-1,1+2^s,-1-2^s.
+1,\quad 1+2^s,\quad -1,\quad -1-2^s.
 $$
-Their pairwise $2$-adic distances are asymmetric: the two positive roots differ by $2^s$, the two negative roots differ by $2^s$, while every positive root differs from every negative root by exactly one factor of $2$. Thus, after the first bit is fixed, the counting problem splits into two identical clusters. It is enough to count residues in the odd class near $1$ and then double.
+An even residue cannot be a solution, since every difference from these four odd roots is then odd. For odd $x$, exactly one of
+$$
+x\equiv1\pmod4,\qquad x\equiv-1\pmod4
+$$
+holds.
 
-Write an odd residue as
+If $x\equiv1\pmod4$, then the differences from $1$ and $1+2^s$ are divisible by $4$, whereas
 $$
-x=1+2u.
+v_2(x+1)=v_2\bigl(x+1+2^s\bigr)=1.
 $$
-Then
+The case $x\equiv-1\pmod4$ is symmetric. Hence every odd residue satisfies $v_2(f_s(x))\ge6$. Therefore
 $$
-x^2-1=4u(u+1),
-$$
-and
-$$
-x^2-(1+2^s)^2=(x-(1+2^s))(x+(1+2^s)).
-$$
-Because $x+(1+2^s)$ is exactly divisible by $2$, while
-$$
-x-(1+2^s)=2\bigl(u-2^{s-1}\bigr),
-$$
-we obtain
-$$
-v_2(f_s(x))=6+v_2(u)+v_2(u+1)+v_2\bigl(u-2^{s-1}\bigr).
-$$
-Since $u$ and $u+1$ are consecutive, exactly one is even.
-
-Step 2: Count the initial levels
-For $m\le4$, every odd residue modulo $2^m$ is a solution because each quadratic factor is divisible by $8$ on odd inputs. Hence
-$$
-a_{1,s}=1,\qquad a_{2,s}=2,\qquad a_{3,s}=4,\qquad a_{4,s}=8.
-$$
-For $m\ge5$, there are two sign clusters, and the positive cluster is controlled by the congruence
-$$
-u\bigl(u-2^{s-1}\bigr)\equiv0\pmod{2^{m-4}},
-$$
-after discarding the odd factor among $u$ and $u+1$.
-
-Thus, if $n=m-4$, the number of solutions in one cluster equals the number $b_{n,s}$ of residues $u\pmod{2^n}$ satisfying
-$$
-u\bigl(u-2^{s-1}\bigr)\equiv0\pmod{2^n}.
-$$
-Therefore
-$$
-a_{m,s}=2b_{m-4,s}\qquad(m\ge5).
+a_{m,s}=2^{m-1}\qquad(1\le m\le6).
 $$
 
-Step 3: Count $b_{n,s}$ before the two roots separate
-Put $d=s-1$. For
+Step 2: Reduce one cluster to a two-root congruence
+Assume $m\ge7$ and consider $x\equiv1\pmod4$. Write
 $$
-u(u-2^d)\equiv0\pmod{2^n},
+x=1+4z,
 $$
-write
+where $z$ is taken modulo $2^{m-2}$. Put $d=s-2\ge0$. Then
 $$
-r=v_2(u),\qquad t=v_2(u-2^d).
+x-1=4z,\qquad x-(1+2^s)=4(z-2^d),
 $$
-When $n\le2d$, the two roots $0$ and $2^d$ have not fully separated modulo $2^n$. A direct valuation split gives
+while the other two factors have exact $2$-adic valuation $1$. Consequently
 $$
-b_{n,s}=2^{\lfloor n/2\rfloor+1}\qquad(1\le n\le2d+2).
+v_2(f_s(x))=6+v_2(z)+v_2(z-2^d).
 $$
-Equivalently, returning to $m=n+4$,
+Thus this sign cluster is a solution precisely when
 $$
-a_{m,s}=2^{\lfloor m/2\rfloor+2}\qquad(5\le m\le2s+2).
-$$
-
-This formula can be checked by separating the cases $r<d$, $r=d$, and $r>d$: for $r<d$ one has $t=r$, so the condition is $2r\ge n$; for $r>d$ one has $t=d$, so $r+d\ge n$; and for $r=d$ the extra valuation of the odd difference supplies exactly the boundary terms. Summing the allowed residue classes yields the stated power of $2$.
-
-Step 4: Count after separation
-Once
-$$
-m\ge2s+3,
-$$
-the two positive roots are $2$-adically separated enough that the condition decomposes into disjoint neighborhoods of $1$ and $1+2^s$. Each neighborhood contributes $2^{s+3}$ residues modulo $2^m$, and the negative cluster contributes the same amount. Hence
-$$
-a_{m,s}=2^{s+4}\qquad(m\ge2s+3).
+z(z-2^d)\equiv0\pmod{2^{m-6}}.
 $$
 
-Combining the three regimes,
+Let $b_{n,d}$ denote the number of residues $z\pmod{2^n}$ satisfying
+$$
+z(z-2^d)\equiv0\pmod{2^n}.
+$$
+For $n=m-6$, each admissible class modulo $2^n$ has $2^4$ lifts modulo $2^{m-2}$. The negative sign cluster contributes identically, so
+$$
+a_{m,s}=32b_{m-6,d},\qquad d=s-2,\quad m\ge7.
+$$
+
+Step 3: Count the two-root congruence
+First suppose $1\le n\le2d$. If $r=v_2(z)<d$, then
+$$
+v_2(z-2^d)=r,
+$$
+so the condition is $2r\ge n$. If $r\ge d$, the condition is automatic because $2d\ge n$. Hence the solutions are exactly
+$$
+z\equiv0\pmod{2^{\lceil n/2\rceil}},
+$$
+and therefore
+$$
+b_{n,d}=2^{\lfloor n/2\rfloor}\qquad(1\le n\le2d).
+$$
+
+Now suppose $n\ge2d+1$. A residue with $v_2(z)<d$ cannot work, because then the two valuations are equal and their sum is at most $2d-2<n$. The remaining solutions split into two disjoint neighborhoods:
+$$
+z\equiv0\pmod{2^{n-d}}
+$$
+or
+$$
+z\equiv2^d\pmod{2^{n-d}}.
+$$
+Each neighborhood contains $2^d$ residues modulo $2^n$, so
+$$
+b_{n,d}=2^{d+1}\qquad(n\ge2d+1).
+$$
+This also covers $d=0$, when the two roots already lie in different parity classes.
+
+Step 4: Recover the coefficients $a_{m,s}$
+Since $d=s-2$, Step 3 and the identity $a_{m,s}=32b_{m-6,d}$ give
 $$
 a_{m,s}=
 \begin{cases}
@@ -92,18 +89,19 @@ a_{m,s}=
 2^{s+4},&m\ge2s+3.
 \end{cases}
 $$
+Indeed, the middle formula also gives $16$ and $32$ at $m=5,6$, agreeing with Step 1.
 
 Step 5: Sum the generating function
 The first four terms are
 $$
 T+2T^2+4T^3+8T^4.
 $$
-For the middle regime, group odd and even exponents:
+Pairing the odd and even exponents in the middle range gives
 $$
 \sum_{m=5}^{2s+2}2^{\lfloor m/2\rfloor+2}T^m
-=16T^5(1+2T)\sum_{j=0}^{s-2}(2T^2)^j.
+=16T^5(1+2T)\sum_{j=0}^{s-2}(2T^2)^j,
 $$
-Therefore
+so
 $$
 \sum_{m=5}^{2s+2}2^{\lfloor m/2\rfloor+2}T^m
 =\frac{16T^5(1+2T)\bigl(1-(2T^2)^{s-1}\bigr)}{1-2T^2}.
@@ -113,7 +111,7 @@ $$
 \sum_{m=2s+3}^{\infty}2^{s+4}T^m
 =\frac{2^{s+4}T^{2s+3}}{1-T}.
 $$
-Hence
+Therefore
 $$
 A_s(T)=T+2T^2+4T^3+8T^4
 +\frac{16T^5(1+2T)\bigl(1-(2T^2)^{s-1}\bigr)}{1-2T^2}
