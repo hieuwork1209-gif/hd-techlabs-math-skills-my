@@ -2,36 +2,29 @@
 
 ## LaTeX (Normalized)
 
-Fix an integer $N\geq 5$. Let
+Fix an integer $N\geq 2$. For a $2\pi$-periodic trigonometric polynomial $g$, let $H g$ denote its periodic Hilbert transform, defined by
 $$
-f(x)=\sum_{k=0}^{N}c_k e^{ikx},
+\widehat{Hg}(k)=-i\,\operatorname{sgn}(k)\widehat g(k),
+\qquad k\in\mathbb Z,
 $$
-where $c_k\in\mathbb C$, $|c_k|=1$, $c_0=c_1=1$, and $i^2=-1$. For every $2\pi$-periodic integrable function $h$, write
+where $\operatorname{sgn}(0)=0$ and
 $$
-\widehat h(r)=\frac{1}{2\pi}\int_0^{2\pi}h(t)e^{-irt}\,dt.
+\widehat g(k)=\frac{1}{2\pi}\int_0^{2\pi}g(x)e^{-ikx}\,dx.
 $$
-Define
+
+Let $f$ be a nonzero real trigonometric polynomial of degree at most $N$ satisfying
 $$
-D(t)=\frac{1}{2\pi}\int_0^{2\pi} f(x+2t)^2\overline{f(x+t)}\,dx,
+\widehat f(0)=0,
+\qquad
+\frac{1}{2\pi}\int_0^{2\pi}f(x)^2\,dx=1.
 $$
+Assume that the nonlinear identity
 $$
-Q(t)=\frac{1}{2\pi}\int_0^{2\pi} f(x+3t)^3\overline{f(x+t)}\,dx.
+H(f^2)(x)=f(x)\,Hf(x)
 $$
-Assume that
-$$
-\widehat D(2m)=m+1+(-1)^{m}m i
-\qquad\left(1\leq m\leq\left\lfloor\frac{N}{2}\right\rfloor\right),
-$$
-$$
-\widehat D(4m+3)=0
-\qquad(4m+3\leq N),
-$$
-and
-$$
-\widehat Q(2(4m+1))=3(m+1)+m(2m+1)i
-\qquad(m\geq1,\ 4m+1\leq N).
-$$
-Determine $c_k$ for every $0\leq k\leq N$.
+holds for every $x\in\mathbb R$.
+
+Determine all possible functions $f$.
 
 ---
 
@@ -41,11 +34,11 @@ Determine $c_k$ for every $0\leq k\leq N$.
 |---|---|
 | **Domain** | Analysis |
 | **Sub-domain** | Fourier analysis |
-| **Problem Type** | Parameter identification |
-| **Answer Type** | Sequence or series representation |
+| **Problem Type** | Exhaustive enumeration |
+| **Answer Type** | Set or multiset of objects |
 
 ---
 
 ## Domain Explanation
 
-This problem involves nonlinear Fourier coefficients and harmonic-frequency matching, which are part of Analysis, specifically Fourier analysis. The problem also involves generating functions and induction, which are algebraic tools used to recover the coefficient sequence. However, those tools are secondary because the defining data and the decisive triangular identities come from Fourier correlations.
+The defining operator is the periodic Hilbert transform, a Fourier multiplier, and the constraint couples the Fourier structure of $f$ and $f^2$. Solving the problem requires separating positive and negative frequencies and exploiting the effect of the Hilbert-transform multiplier on those frequency blocks. This makes Fourier analysis the primary subject; the polynomial argument used after the frequency reduction is secondary.
