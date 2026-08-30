@@ -137,7 +137,7 @@ $$
 is equivalent to
 $$
 \operatorname{Re}(iB(i))=-36,
-\qquad	ext{or equivalently}\qquad
+\qquad\text{or equivalently}\qquad
 \operatorname{Im}B(i)=36.
 $$
 For the eight normalized factors $B_S$, the values of $\operatorname{Im}B_S(i)$ are
@@ -176,7 +176,7 @@ Final Answer: $\boxed{f(x)=\frac{-15\cos x+38\cos(2x)-17\cos(3x)+2\cos(4x)}{\sqr
 
 ## Answer
 
-$\displaystyle \frac{-15\cos x+38\cos(2x)-17\cos(3x)+2\cos(4x)}{\sqrt{981}}$
+$f(x)=\frac{-15\cos x+38\cos(2x)-17\cos(3x)+2\cos(4x)}{\sqrt{981}}$
 
 ---
 
