@@ -2,31 +2,31 @@
 
 ## LaTeX (Normalized)
 
-Fix an integer $N\geq 2$. For a $2\pi$-periodic trigonometric polynomial $g$, let $H g$ denote its periodic Hilbert transform, defined by
+For a $2\pi$-periodic trigonometric polynomial $g$, define its periodic Hilbert transform by
 $$
 \widehat{Hg}(k)=-i\,\operatorname{sgn}(k)\widehat g(k),
-\qquad k\in\mathbb Z,
+\qquad
+\widehat g(k)=\frac1{2\pi}\int_0^{2\pi}g(x)e^{-ikx}\,dx,
 $$
-where $\operatorname{sgn}(0)=0$ and
-$$
-\widehat g(k)=\frac{1}{2\pi}\int_0^{2\pi}g(x)e^{-ikx}\,dx.
-$$
+with $\operatorname{sgn}(0)=0$.
 
-Let $f$ be a nonzero real trigonometric polynomial of degree at most $N$ satisfying
+Let $f$ be a real trigonometric polynomial of degree at most $4$ such that
 $$
 \widehat f(0)=0,
 \qquad
-\frac{1}{2\pi}\int_0^{2\pi}f(x)^2\,dx=1,
+\frac1{2\pi}\int_0^{2\pi}f(x)^2\,dx=1,
+$$
+$$
+f(0)=\frac8{\sqrt{981}},
 \qquad
-f(0)=\sqrt2.
+f\!\left(\frac\pi2\right)=-\frac{36}{\sqrt{981}}.
 $$
-Assume that the nonlinear identity
+Assume that, for every real $x$,
 $$
-H(f^2)(x)=f(x)\,Hf(x)
+981\bigl(H(f^2)(x)-f(x)Hf(x)\bigr)
+=-1250\sin x+331\sin(2x)-30\sin(3x).
 $$
-holds for every $x\in\mathbb R$.
-
-Determine all possible functions $f$.
+Determine $f$.
 
 ---
 
@@ -36,11 +36,11 @@ Determine all possible functions $f$.
 |---|---|
 | **Domain** | Analysis |
 | **Sub-domain** | Fourier analysis |
-| **Problem Type** | Exhaustive enumeration |
-| **Answer Type** | Set or multiset of objects |
+| **Problem Type** | Construction under constraints |
+| **Answer Type** | Function or mapping |
 
 ---
 
 ## Domain Explanation
 
-The defining operator is the periodic Hilbert transform, a Fourier multiplier, and the constraint couples the Fourier structure of $f$ and $f^2$. Solving the problem requires separating positive and negative frequencies and exploiting the effect of the Hilbert-transform multiplier on those frequency blocks. This makes Fourier analysis the primary subject; the polynomial argument used after the frequency reduction is secondary.
+The decisive structure comes from the periodic Hilbert transform as a Fourier multiplier. The nonlinear identity determines the modulus of the positive-frequency part of $f$, after which one must perform a finite spectral factorization of a reciprocal polynomial and use the point constraints to select the correct factor. This is fundamentally a Fourier-analysis problem rather than an algebraic factorization problem, because the spectral factorization arises only after the Hilbert-transform frequency decomposition.
