@@ -33,19 +33,19 @@ S_1(n,a)=B(a,n+1)=\frac{\Gamma(a)\Gamma(n+1)}{\Gamma(n+a+1)}.
 $$
 Normalize $\mu_{n,a}$ to a probability measure and let $\kappa_r$ be the cumulants of $Y=-\log t$. Dividing the moment matrix by $S_1(n,a)$ gives
 $$
-D_n(a)=S_1(n,a)^3F_n(a),
+D_n(a)=S_1(n,a)^3F_n(a).
 $$
-where translation $Y\mapsto Y-\mathbb EY$ is a determinant-one change of the basis $(1,Y,Y^2)$, so
-$$
-F_n(a)=2\kappa_2^3+\kappa_2\kappa_4-\kappa_3^2.
-$$
-Indeed the centered moment matrix is
+Translation $Y\mapsto Y-\mathbb EY$ is a determinant-one change of the basis $(1,Y,Y^2)$, so the centered moment matrix is
 $$
 \begin{pmatrix}
 1&0&\kappa_2\\
 0&\kappa_2&\kappa_3\\
 \kappa_2&\kappa_3&\kappa_4+3\kappa_2^2
-\end{pmatrix}.
+\end{pmatrix}
+$$
+and therefore
+$$
+F_n(a)=2\kappa_2^3+\kappa_2\kappa_4-\kappa_3^2.
 $$
 
 The moment generating function is
@@ -56,13 +56,22 @@ so, with $\psi_m$ denoting the order-$m$ polygamma function,
 $$
 \kappa_r=(-1)^r\bigl(\psi_{r-1}(a)-\psi_{r-1}(a+n+1)\bigr).
 $$
-Using
+For $z>0$ the needed polygamma functions have the elementary series
 $$
-\psi_1(a)=\frac1{a^2}+O(1),\qquad
-\psi_2(a)=-\frac2{a^3}+O(1),\qquad
-\psi_3(a)=\frac6{a^4}+O(1)
+\psi_1(z)=\sum_{m=0}^{\infty}\frac1{(m+z)^2},
 $$
-as $a\downarrow0$, while the terms at $a+n+1$ stay bounded, gives
+$$
+-\psi_2(z)=2\sum_{m=0}^{\infty}\frac1{(m+z)^3},
+\qquad
+\psi_3(z)=6\sum_{m=0}^{\infty}\frac1{(m+z)^4}.
+$$
+Hence, as $a\downarrow0$,
+$$
+\psi_1(a)=a^{-2}+O(1),\qquad
+\psi_2(a)=-2a^{-3}+O(1),\qquad
+\psi_3(a)=6a^{-4}+O(1).
+$$
+For fixed $n$ this gives
 $$
 \kappa_2\sim a^{-2},\qquad
 \kappa_3\sim2a^{-3},\qquad
@@ -70,17 +79,16 @@ $$
 $$
 Therefore
 $$
-F_n(a)\sim\frac4{a^6},\qquad
-S_1(n,a)\sim\frac1a,
+F_n(a)\sim4a^{-6},\qquad S_1(n,a)\sim a^{-1},
 $$
-for fixed $n$, and hence $D_n(a)\sim4a^{-9}\to\infty$ as $a\downarrow0$.
+so $D_n(a)\sim4a^{-9}\to\infty$ as $a\downarrow0$.
 
 Step 3: Find the two-scale asymptotic profile
 Put $L=\log n$ and let
 $$
 a=\frac{c}{L},
 $$
-where $c$ remains in a fixed compact subset of $(0,\infty)$. Stirling's formula, uniformly in this regime, gives
+where $c$ remains in a fixed compact subset of $(0,\infty)$. Stirling's formula gives uniformly in this regime
 $$
 \frac{\Gamma(n+1)}{\Gamma(n+a+1)}
 =n^{-a}(1+o(1))=e^{-c}(1+o(1)),
@@ -89,13 +97,19 @@ while $\Gamma(a)=a^{-1}(1+o(1))$. Thus
 $$
 S_1(n,a)=\frac{Le^{-c}}{c}(1+o(1)).
 $$
-For the cumulants, the series formulas for the polygamma functions give uniformly
+The series in Step 2 and integral comparison give
+$$
+\psi_1(n+a+1)=O(n^{-1}),\qquad
+\psi_2(n+a+1)=O(n^{-2}),\qquad
+\psi_3(n+a+1)=O(n^{-3}).
+$$
+Consequently, uniformly for such $c$,
 $$
 \kappa_2=a^{-2}(1+o(1)),\qquad
 \kappa_3=2a^{-3}(1+o(1)),\qquad
 \kappa_4=6a^{-4}(1+o(1)),
 $$
-because the corresponding terms at $n+a+1$ are $O(n^{-1})$, $O(n^{-2})$, and $O(n^{-3})$. Consequently
+and hence
 $$
 F_n(a)=4a^{-6}(1+o(1)).
 $$
@@ -160,4 +174,4 @@ $3W_0\!\left(\frac{4^{1/9}}3\right)$
 
 ## Black-Box Audit — no issues found
 
-The key reductions are derived from the reciprocal-power integral and the moment generating function. The determinant is handled structurally through centering and cumulants, while existence and uniqueness of the implicit root follow from positive-definite measure ordering rather than numerical evidence.
+The reciprocal-power integral, moment generating function, and polygamma series are written explicitly. The determinant is handled structurally through centering and cumulants, while existence and uniqueness of the implicit root follow from positive-definite measure ordering rather than numerical evidence.
