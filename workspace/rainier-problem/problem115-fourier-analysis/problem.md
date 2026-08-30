@@ -16,7 +16,9 @@ Let $f$ be a nonzero real trigonometric polynomial of degree at most $N$ satisfy
 $$
 \widehat f(0)=0,
 \qquad
-\frac{1}{2\pi}\int_0^{2\pi}f(x)^2\,dx=1.
+\frac{1}{2\pi}\int_0^{2\pi}f(x)^2\,dx=1,
+\qquad
+f(0)=\sqrt2.
 $$
 Assume that the nonlinear identity
 $$
