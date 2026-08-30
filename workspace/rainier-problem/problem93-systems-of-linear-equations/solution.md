@@ -63,12 +63,13 @@ and
 $$
 G=s^qt^{5q}+t^{6q}.
 $$
-Indeed, if $F_0=A^2+B^3$, then the displayed equations are $F_0+B^5=0$ and $(1+A+B)F_0+B^5=0$; subtracting $(1+A+B)$ times the first from the second gives $-(A+B)B^5=0$. Since $q$ is a $p$-power, these two generators are
+Indeed, if $F_0=A^2+B^3$, then the displayed equations are $F_0+B^5=0$ and $(1+A+B)F_0+B^5=0$; subtracting $(1+A+B)$ times the first from the second gives $-(A+B)B^5=0$. Conversely the second equation is recovered from the first together with this difference. Since $q$ is a $p$-power, these two generators are
 $$
 F=(s^2+t^3+t^5)^q,
 \qquad
 G=((s+t)t^5)^q.
 $$
+For Steps 3--4 we temporarily omit the truncation $(a^n,b^n,c^n)$; Step 5 proves that this omission does not change the cyclic-invariant quotient.
 
 Step 3: Select the cyclic-invariant part
 Let $\rho$ be the cycle $(a,b,c)\mapsto(b,c,a)$ and put
@@ -91,7 +92,17 @@ $$
 =\mathbb F_p[s,t]_{(s,t)}\oplus
 \Delta\mathbb F_p[s,t]_{(s,t)}.
 $$
-The sum is direct because a nonzero polynomial cannot be both symmetric and alternating when $2$ is invertible. Therefore the cyclic-invariant part is free of rank $2$ over the local invariant ring. The elements $F$ and $G$ are symmetric, and averaging is exact because $3$ is invertible, so quotienting by $(F,G)$ acts coefficientwise on these two summands. It remains to compute the length of
+The sum is direct because a nonzero polynomial cannot be both symmetric and alternating when $2$ is invertible. Therefore the cyclic-invariant part is free of rank $2$ over the local invariant ring.
+
+The elements $F$ and $G$ are invariant. Because $3$ is invertible, the Reynolds averaging operator
+$$
+\mathcal R(h)=\frac{h+\rho h+\rho^2h}{3}
+$$
+is a projection onto invariants, so taking $\langle\rho\rangle$-invariants is exact. Moreover, if an invariant element belongs to $(F,G)$, average its coefficients in an expression $F u+G v$ to obtain invariant coefficients. Hence
+$$
+((F,G))^{\langle\rho\rangle}=(F,G)\left(\mathbb F_p[s,t]_{(s,t)}\oplus\Delta\mathbb F_p[s,t]_{(s,t)}\right).
+$$
+Thus the invariant quotient is two independent copies of
 $$
 C=\frac{\mathbb F_p[s,t]_{(s,t)}}{(F,G)}.
 $$
@@ -103,47 +114,114 @@ s^{2q}=-t^{3q}-t^{5q},
 \qquad
 s^qt^{5q}=-t^{6q}.
 $$
-Multiplying the first relation by $t^{5q}$, the second by $s^q$, and also the second by $t^q$ yields
+A direct combination gives
 $$
-t^{7q}(1+t^q+t^{3q})=0.
+t^{5q}F-s^qG+t^qG
+=t^{7q}(1+t^q+t^{3q}).
 $$
-The factor in parentheses has constant term $1$, so it is a unit in the local ring and
+The factor $1+t^q+t^{3q}$ has constant term $1$, hence is a unit in the local ring. Therefore
 $$
-t^{7q}=0.
+t^{7q}\in(F,G).
 $$
-Thus every class in $C$ reduces uniquely to a linear combination of
+
+We now use the local standard-basis criterion explicitly. Fix a local weighted degree-lexicographic monomial order with weights
+$$
+\operatorname{wt}(s)=2,
+\qquad
+\operatorname{wt}(t)=3,
+$$
+so that smaller weighted degree is leading, with ties broken by $s>t$. For a finite set of generators in a local polynomial ring, the criterion says: if every critical $S$-overlap reduces to $0$ with respect to the generators, then they form a local standard basis; consequently their leading monomials generate the initial ideal, and the monomials outside that initial ideal form a vector-space basis of the quotient.
+
+Take
+$$
+f_1=F,
+\qquad
+f_2=G,
+\qquad
+f_3=t^{7q}.
+$$
+Their leading monomials are
+$$
+s^{2q},
+\qquad
+s^qt^{5q},
+\qquad
+t^{7q}.
+$$
+The three critical overlaps reduce as follows:
+$$
+t^{5q}f_1-s^qf_2
+=(1+t^q+t^{3q})f_3-t^qf_2,
+$$
+$$
+t^{7q}f_1-s^{2q}f_3
+=t^{3q}f_3+t^{5q}f_3,
+$$
+$$
+t^{2q}f_2-s^qf_3=t^qf_3.
+$$
+Thus all critical overlaps reduce to $0$, so $f_1,f_2,f_3$ form a local standard basis. Hence the residue classes of the monomials
 $$
 \mathcal B=
 \left\{s^it^j:0\leq i<2q,
 \ 0\leq j<7q,
 \ \text{and not both }i\geq q,
-\ j\geq5q\right\}.
+\ j\geq5q\right\}
 $$
-The leading monomials are $s^{2q}$, $s^qt^{5q}$, and $t^{7q}$. The overlap of the first two is exactly the displayed unit multiple of $t^{7q}$; overlaps involving $t^{7q}$ reduce immediately because they are divisible by $t^{7q}$. Hence these reductions form a local standard basis, so no nonzero linear combination of the displayed monomials lies in $(F,G)$. Therefore
+form a basis of $C$. Therefore
 $$
 \dim_{\mathbb F_p}C
 =(2q)(7q)-(q)(2q)=12q^2.
 $$
-As an independent check, for $q=1$ the local intersection splits through
-$$
-(s+t)t^5.
-$$
-The branch $t=0$ has intersection order $2$ with $s^2+t^3+t^5$, while the branch $s+t=0$ also has order $2$. Its total multiplicity is therefore $5\cdot2+2=12$, and taking $q$-th powers multiplies the two intersection orders by $q^2$.
 
-Step 5: Restore the translation quotient and finish the count
-The two cyclic-invariant summands from Step 3 are independent copies of $C$, so the untruncated cyclic-invariant quotient has dimension
+Step 5: Restore the truncation and finish the count
+Let
 $$
-2\cdot12q^2=24q^2.
+D=\frac{\mathbb F_p[a,b,c]_{(a,b,c)}}{(a+b+c,F,G)}
 $$
-Use the filtration by total degree in $a,b,c$, for which $s$ has degree $2$ and $t$ has degree $3$. The lowest-degree terms of the three reduction relations in Step 4 are $s^{2q}$, $s^qt^{5q}$, and $t^{7q}$, so the same monomial set is a basis of the associated graded invariant quotient. Its largest possible degree is
+be the untruncated local quotient. By Steps 3--4,
+$$
+D^{\langle\rho\rangle}\cong C\oplus\Delta C,
+\qquad
+\dim_{\mathbb F_p}D^{\langle\rho\rangle}=24q^2.
+$$
+Filter $D$ by powers of the maximal ideal $\mathfrak m=(a,b,c)$. Since $s$ and $t$ have total degrees $2$ and $3$, the local weighted order used in Step 4 computes the associated graded invariant quotient. In the $C$ summand, the largest possible weighted degree among the basis monomials is
 $$
 2(q-1)+3(7q-1)=23q-5.
 $$
-The two module generators $1$ and $\Delta$ from Step 3 have degrees $0$ and $3$, so every associated graded component of degree at least $23q-1$ vanishes. Hence the maximal ideal itself satisfies
+The second summand is multiplied by $\Delta$, which has degree $3$, so its largest possible degree is $23q-2$. Therefore
 $$
-(a,b,c)^{23q-1}=0.
+(\mathfrak m^dD)^{\langle\rho\rangle}=0
+\qquad(d\geq23q-1).
 $$
-Since $n=pq\geq29q$, the relations $a^n=b^n=c^n=0$ are already automatic and do not change the local quotient.
+Here we use again that averaging preserves the $\mathfrak m$-adic filtration, so taking invariants commutes with the associated graded pieces.
+
+Now let
+$$
+K=(a^n,b^n,c^n)D.
+$$
+This ideal is $\rho$-stable and satisfies $K\subseteq\mathfrak m^nD$. Since
+$$
+n=pq\geq29q>23q-2,
+$$
+we get
+$$
+K^{\langle\rho\rangle}\subseteq(\mathfrak m^nD)^{\langle\rho\rangle}=0.
+$$
+Finally, because $3$ is invertible in $\mathbb F_p$, taking cyclic invariants is exact. Applying invariants to
+$$
+0\longrightarrow K\longrightarrow D\longrightarrow D/K\longrightarrow0
+$$
+gives
+$$
+0\longrightarrow K^{\langle\rho\rangle}\longrightarrow D^{\langle\rho\rangle}
+\longrightarrow(D/K)^{\langle\rho\rangle}\longrightarrow0.
+$$
+Since $K^{\langle\rho\rangle}=0$, the map
+$$
+D^{\langle\rho\rangle}\longrightarrow(D/K)^{\langle\rho\rangle}
+$$
+is an isomorphism. Thus the truncation relations $a^n=b^n=c^n=0$ do not change the cyclic-invariant dimension.
 
 Therefore
 $$
@@ -173,9 +251,9 @@ $24\left(\frac{n}{p}\right)^2$
 - cyclic translation operators
 - finite-field Frobenius map
 - symmetric polynomial invariants
-- local quotient length
-- alternating polynomial factorization
+- local standard bases
+- exactness of finite-group invariants
 
 ## Black-Box Audit
 
-No Level 2 or Level 3 black-box issue remains. The invariant reduction, rank-two cyclic decomposition, overlap calculation, local basis, and truncation bound are all displayed explicitly.
+No Level 2 or Level 3 black-box issue remains. The invariant reduction, rank-two cyclic decomposition, local standard-basis criterion and overlaps, local quotient basis, and truncation-via-invariants argument are all stated explicitly.
