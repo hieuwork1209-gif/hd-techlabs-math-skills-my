@@ -81,7 +81,7 @@ $$
 
 Step 4: Verify the resultant identity and conclude minimality and uniqueness.
 
-Because $T(-1)=2$ and the three roots of $C_9$ are mapped by $T$ to the three roots of $C_3(x)=x+1$, the product formula for the resultant gives
+Because $T(-1)=2$ and every root of $C_9$ is mapped by $T$ to the root $-1$ of $C_3(x)=x+1$, the product formula for the resultant gives
 $$
 \operatorname{Res}_y\bigl((y+1)^3,y^3-3y-x\bigr)=(x-2)^3
 $$
