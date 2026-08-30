@@ -2,42 +2,29 @@
 
 ## LaTeX (Normalized)
 
-Fix a nonzero real number $x$. For every nonzero real number $u$ and every sufficiently large integer $n$ with $n>2|u|$, let $\alpha_n(u)$ be the unique real number satisfying
+Fix a real number $x$. For each integer $n\ge 3$, put
 $$
-\min\{0,u\}<\alpha_n(u)<\max\{0,u\}
+t_k=\frac{k}{n}\qquad(1\le k\le n)
 $$
-and
+and define
 $$
-\det\left[
-\left(1+\frac{(i+j)u}{n}\right)^{n+\alpha_n(u)(i+j)}
-\right]_{i,j=-1}^{1}=0.
+f_{n,x}(t)=\exp\!\left(\frac{xt}{n^{1/3}}\right)+\frac{3t^4}{n}.
 $$
-
-For all sufficiently large $n$, define
+Set
 $$
-Q_n(u)=
-\frac{
-\left(\alpha_n(u)-\alpha_{8n}(u)\right)
-\left(\alpha_{64n}(u)-\alpha_{512n}(u)\right)
-}{
-\left(\alpha_n(u)-\alpha_{64n}(u)\right)
-\left(\alpha_{8n}(u)-\alpha_{512n}(u)\right)
-}.
+\phi_0(t)=1,\qquad \phi_1(t)=t,\qquad \phi_2(t)=t^2,\qquad
+\phi_3(t)=f_{n,x}(t),
 $$
-Let $\beta_n$ be the unique real number satisfying
+and let
 $$
-\frac{1}{2}<\beta_n<1+\frac{|x|}{4}
+G_n(x)=\left[\sum_{k=1}^n \phi_r(t_k)\phi_s(t_k)\right]_{r,s=0}^{3}.
 $$
-and
-$$
-\frac{Q_n(\beta_n)}{Q_n(1)}
-=
-\frac{Q_{8n}(x)}{Q_{8n}(1)}.
-$$
+Let $H_n$ be the leading $3\times3$ principal submatrix of $G_n(x)$.
 
 Determine
 $$
-\lim_{n\to\infty}\beta_n.
+\lim_{n\to\infty}
+n\,\frac{\det G_n(x)}{\det H_n}.
 $$
 
 ---
@@ -55,6 +42,4 @@ $$
 
 ## Domain Explanation
 
-This problem involves parameter-dependent determinant equations and distinguished real zeros, which are part of Linear Algebra and Determinants.
-The problem also involves asymptotic expansions and limits, which are part of Calculus or Analysis.
-However, those analytic tools track how the determinant-defined zeros change with scale rather than replacing the determinant structure.
+The problem asks for the asymptotic ratio of two Gram determinants. The determinant ratio is controlled by a Schur complement, while the limiting evaluation uses finite-dimensional orthogonal projection and polynomial orthogonality.
