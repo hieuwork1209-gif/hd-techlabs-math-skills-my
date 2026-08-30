@@ -25,24 +25,32 @@ $$
 $$
 Hence
 $$
-f_{n,x}(t)
-=q_n(t)+\frac{g_x(t)}n+O(n^{-4/3}),
+f_{n,x}(t)=q_n(t)+\frac{g_x(t)}n+r_n(t),
 $$
-where $q_n\in V_n$ and
+where $q_n\in V_n$,
 $$
-g_x(t)=\frac{x^3}{6}t^3+3t^4.
+g_x(t)=\frac{x^3}{6}t^3+3t^4,
 $$
-Let $P_n$ denote the orthogonal projection onto $V_n$ for $\langle\cdot,\cdot\rangle_n$. Since $P_nq_n=q_n$,
+and $\sup_{0\le t\le1}|r_n(t)|=O(n^{-4/3})$.
+
+Let $P_n$ be the orthogonal projection onto $V_n$, and write
 $$
-(I-P_n)f_{n,x}
-=\frac1n(I-P_n)g_x+O(n^{-4/3})
+\|h\|_n^2=\sum_{k=1}^n h(t_k)^2.
 $$
-uniformly on the grid. Therefore
+Since $P_nq_n=q_n$ and $I-P_n$ is a contraction for this norm,
+$$
+(I-P_n)f_{n,x}=\frac1n(I-P_n)g_x+(I-P_n)r_n,
+$$
+with
+$$
+\|(I-P_n)r_n\|_n\le \|r_n\|_n=O(n^{-5/6}).
+$$
+Also $\|(I-P_n)g_x\|_n=O(n^{1/2})$. Squaring the preceding decomposition therefore gives
 $$
 n\frac{\det G_n(x)}{\det H_n}
 =\frac1n\sum_{k=1}^n\bigl((I-P_n)g_x(t_k)\bigr)^2+o(1).
 $$
-The discrete moments $n^{-1}\sum t_k^m$ converge to $\int_0^1t^m\,dt$, so the finite-dimensional projection coefficients converge to those of the $L^2[0,1]$ projection $P$ onto $\operatorname{span}\{1,t,t^2\}$. Hence
+The discrete moments $n^{-1}\sum t_k^m$ converge to $\int_0^1t^m\,dt$. Consequently the $3\times3$ normal-equation matrices for the projections converge to the positive-definite Hilbert moment matrix, so the coefficients of $P_ng_x$ converge to those of the $L^2[0,1]$ projection $Pg_x$ onto $\operatorname{span}\{1,t,t^2\}$. Hence
 $$
 \lim_{n\to\infty}n\frac{\det G_n(x)}{\det H_n}
 =\int_0^1\bigl((I-P)g_x(t)\bigr)^2\,dt.
@@ -113,4 +121,4 @@ $\frac{7x^6+504x^3+9216}{705600}$
 
 ## Black-Box Audit — no issues found
 
-The determinant ratio is identified exactly as a least-squares residual before taking limits. The asymptotic argument keeps only the first term not annihilated by quadratic projection, and the remaining integral is evaluated structurally by orthogonal polynomial decomposition rather than coefficient-heavy determinant expansion.
+The determinant ratio is identified exactly as a least-squares residual before taking limits. The error term is controlled in the discrete Hilbert norm using projection contractivity, and the remaining integral is evaluated structurally by orthogonal polynomial decomposition rather than coefficient-heavy determinant expansion.
