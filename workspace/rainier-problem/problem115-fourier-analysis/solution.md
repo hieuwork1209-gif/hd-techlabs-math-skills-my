@@ -136,8 +136,10 @@ f\!\left(\frac\pi2\right)=-\frac{36}{\sqrt{981}}
 $$
 is equivalent to
 $$
-\operatorname{Re}(iB(i))=-36,
-\qquad\text{or equivalently}\qquad
+\operatorname{Re}(iB(i))=-36.
+$$
+Equivalently,
+$$
 \operatorname{Im}B(i)=36.
 $$
 For the eight normalized factors $B_S$, the values of $\operatorname{Im}B_S(i)$ are
