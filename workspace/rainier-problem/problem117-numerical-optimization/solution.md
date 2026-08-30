@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Reduce the transient objective to scalar mode constraints
+Step 1: Reduce the transient objective to scalar prefix products
 The Hessian is
 $$
 A=\operatorname{diag}(1,3,5,7),
@@ -11,121 +11,150 @@ $$
 (1-\alpha_0\lambda)(1-\alpha_1\lambda),\qquad
 \prod_{j=0}^2(1-\alpha_j\lambda).
 $$
-Therefore $R\leq r$ is equivalent to the three families of inequalities
+Consequently, if $R\le r$, then at the endpoint modes $\lambda=1,7$ we have
 $$
-|1-\alpha_0\lambda|\leq \frac{14}{5}r,
-$$
-$$
-|(1-\alpha_0\lambda)(1-\alpha_1\lambda)|\leq \frac75r,
+\max\{|1-\alpha_0|,|1-7\alpha_0|\}\le \frac{14}{5}r,
 $$
 $$
-\left|\prod_{j=0}^2(1-\alpha_j\lambda)\right|\leq r
+\max\{|(1-\alpha_0)(1-\alpha_1)|,
+|(1-7\alpha_0)(1-7\alpha_1)|\}\le \frac75r,
 $$
-for all $\lambda\in\{1,3,5,7\}$.
+and
+$$
+\max\left\{\prod_{j=0}^2|1-\alpha_j|,
+\prod_{j=0}^2|1-7\alpha_j|\right\}\le r.
+$$
+We will prove that these endpoint conditions alone force $r\ge3/10$.
 
-Step 2: Prove the sharp lower bound from the two-step prefix
-Assume $R\leq 3/10$ and set
+Step 2: Analyze the first two prefixes at the putative level $3/10$
+Suppose $R\le3/10$ and put
 $$
-g(t)=(1-\alpha_0 t)(1-\alpha_1 t).
+a=\alpha_0,\qquad b=\alpha_1,\qquad
+A=(1-a)(1-b),\qquad B=|1-7a|\,|1-7b|.
 $$
-Then
+The one-step endpoint bound gives
 $$
-|g(1)|,|g(3)|,|g(5)|,|g(7)|\leq \frac{21}{50}.
-$$
-Because $0<\alpha_0,\alpha_1\leq1/2$,
-$$
-g(2)=(1-2\alpha_0)(1-2\alpha_1)\geq0,
-$$
-and $g(1)>0$. For every quadratic $g$ with $g(0)=1$, interpolation at $1,2,7$ gives
-$$
-1=\frac73g(1)-\frac75g(2)+\frac1{15}g(7).
-$$
-Hence
-$$
-1\leq \frac73g(1)+\frac1{15}|g(7)|
-\leq \frac73\cdot\frac{21}{50}+\frac1{15}\cdot\frac{21}{50}=1.
-$$
-Thus equality holds throughout, so necessarily
-$$
-g(1)=\frac{21}{50},\qquad g(2)=0,\qquad g(7)=\frac3{10}.
-$$
-Since $g(2)=0$, one of the first two step sizes is $1/2$. Writing the other as $a$ and using $g(1)=21/50$ gives
-$$
-\frac12(1-a)=\frac{21}{50},
+1-a\le\frac{21}{25},\qquad |1-7a|\le\frac{21}{25},
 $$
 so
 $$
-a=\frac4{25}.
+\frac4{25}\le a\le\frac{46}{175}.
 $$
-Therefore any schedule with $R\leq3/10$ must have
+The two-step endpoint bound gives
 $$
-\{\alpha_0,\alpha_1\}=\left\{\frac4{25},\frac12\right\}.
+A\le\frac{21}{50},\qquad B\le\frac{21}{50}. \tag{1}
+$$
+From $A\le21/50$ and the displayed range of $a$ we get $b>1/7$. Also $a>1/7$, so in fact
+$$
+B=(7a-1)(7b-1).
+$$
+The first inequality in (1) is equivalent to
+$$
+b\ge b_A(a):=1-\frac{21}{50(1-a)},
+$$
+while the second is equivalent to
+$$
+b\le b_B(a):=\frac17\left(1+\frac{21}{50(7a-1)}\right).
+$$
+Feasibility therefore requires $b_A(a)\le b_B(a)$, which on the present interval yields
+$$
+\frac4{25}\le a\le a_*:=\frac{58}{175}-\frac{\sqrt{3306}}{350}<\frac{17}{100}. \tag{2}
+$$
+In particular $b$ lies in the narrow interval between $b_A(a)$ and $\min\{1/2,b_B(a)\}$.
+
+Step 3: Prove the endpoint certificate for the third step
+Define
+$$
+F(a,b)=20AB-A-7B.
+$$
+We claim that every pair allowed by Step 2 satisfies
+$$
+F(a,b)\ge0, \tag{3}
+$$
+with equality only at
+$$
+(a,b)=\left(\frac4{25},\frac12\right).
+$$
+Here is the needed monotonic check. On the feasible strip from (2), direct differentiation gives
+$$
+\frac{\partial F}{\partial b}
+=2\left(980a^2b-560a^2-1120ab+468a+140b-55\right)<0.
+$$
+Indeed this derivative decreases with $b$, and at $b=b_A(a)$ it equals
+$$
+\frac25(2100a^2-1202a+131)<0
+$$
+throughout $4/25\le a\le a_*$. Hence, for fixed $a$, $F$ is smallest at the largest admissible $b$.
+
+If $4/25\le a\le146/875$, that largest value is $b=1/2$, and
+$$
+F\left(a,\frac12\right)=-(7a-2)(25a-4)\ge0,
+$$
+with equality only at $a=4/25$. If $146/875\le a\le a_*$, the largest admissible value is $b=b_B(a)$, so $B=21/50$ and
+$$
+F=\frac{37}{5}A-\frac{147}{50}.
+$$
+Substitution of $b=b_B(a)$ gives
+$$
+A-\frac{147}{370}
+=-\frac{3(12950a^2-8927a+1122)}{6475(7a-1)}>0
+$$
+on this interval. This proves (3) and its equality statement.
+
+Now fix any admissible third step $c=\alpha_2$. Since $B\ge3/10$ on the feasible strip and $A\le21/50$, we have $A\le5B$. Therefore the minimum over $0<c\le1/2$ of
+$$
+\max\{A(1-c),B|1-7c|\}
+$$
+is attained with $1/7\le c\le1/2$ when the two terms are equal. Solving
+$$
+A(1-c)=B(7c-1)
+$$
+gives
+$$
+c=\frac{A+B}{A+7B},\qquad
+\min_c\max\{A(1-c),B|1-7c|\}
+=\frac{6AB}{A+7B}.
+$$
+By (3),
+$$
+\frac{6AB}{A+7B}\ge\frac3{10}.
+$$
+Thus every schedule has $R\ge3/10$. Equality forces
+$$
+a=\frac4{25},\qquad b=\frac12,\qquad
+A=\frac{21}{50},\qquad B=\frac3{10},
+$$
+and then the balancing formula forces
+$$
+c=\frac27.
 $$
 
-Step 3: Use the one-step transient bound to fix the order
-If $\alpha_0=1/2$, then at $\lambda=7$ the one-step multiplier has magnitude
+Step 4: Verify all four modes and attain the lower bound
+Take
 $$
-|1-7\alpha_0|=\frac52,
+\alpha_*=\left(\frac4{25},\frac12,\frac27\right).
+$$
+After one step the multipliers at $\lambda=1,3,5,7$ are
+$$
+\frac{21}{25},\quad\frac{13}{25},\quad\frac15,\quad-\frac3{25},
 $$
 so the weighted one-step contribution is
 $$
-\frac5{14}\cdot\frac52=\frac{25}{28}>\frac3{10}.
-$$
-Hence an optimizer with $R\leq3/10$ cannot start with $1/2$. Consequently
-$$
-\alpha_0=\frac4{25},\qquad \alpha_1=\frac12.
-$$
-For this ordered pair,
-$$
-g(1)=\frac{21}{50},\quad g(3)=\frac{13}{50},\quad g(5)=-\frac3{10},\quad g(7)=\frac3{10},
-$$
-so the weighted two-step contribution is exactly
-$$
-\frac57\max_{\lambda}|g(\lambda)|
-=\frac57\cdot\frac{21}{50}=\frac3{10}.
-$$
-Also the weighted one-step contribution is at most $3/10$ because
-$$
-\max_{\lambda\in\{1,3,5,7\}}|1-\tfrac4{25}\lambda|
-=\frac{21}{25},
-$$
-so
-$$
 \frac5{14}\cdot\frac{21}{25}=\frac3{10}.
 $$
-
-Step 4: Determine the third step and attain the bound
-Now let $c=\alpha_2$. The three-step multipliers at $\lambda=1$ and $\lambda=7$ are
+After two steps the multipliers are
 $$
-\frac{21}{50}(1-c),
-\qquad
-\frac3{10}(1-7c).
+\frac{21}{50},\quad-\frac{13}{50},\quad-\frac3{10},\quad\frac3{10},
 $$
-To keep both magnitudes at most $3/10$, the first inequality gives
+so the weighted two-step contribution is
 $$
-\frac{21}{50}(1-c)\leq\frac3{10}
-\quad\Longrightarrow\quad
-c\geq\frac27,
+\frac57\cdot\frac{21}{50}=\frac3{10}.
 $$
-while the second gives
+After three steps they are
 $$
-\frac3{10}|1-7c|\leq\frac3{10}
-\quad\Longrightarrow\quad
-0\leq c\leq\frac27.
+\frac3{10},\quad-\frac{13}{350},\quad\frac9{70},\quad-\frac3{10},
 $$
-Hence necessarily
-$$
-\alpha_2=\frac27.
-$$
-For
-$$
-\alpha_*=\left(\frac4{25},\frac12,\frac27\right),
-$$
-the three-step multipliers are
-$$
-\frac3{10},\quad -\frac{13}{350},\quad \frac9{70},\quad -\frac3{10},
-$$
-so the three-step contribution is $3/10$. Steps 2 and 3 already showed that the weighted one- and two-step contributions are also at most $3/10$. Therefore the lower bound is attained, and the equality argument proves uniqueness of the ordered optimizer.
+whose largest absolute value is $3/10$. Hence $R(\alpha_*)=3/10$. Together with Step 3, this proves both optimality and uniqueness of the ordered triple.
 Final Answer: $\boxed{\left(\frac3{10},\left(\frac4{25},\frac12,\frac27\right)\right)}$
 
 ---
@@ -148,9 +177,9 @@ $\left(\frac3{10},\left(\frac4{25},\frac12,\frac27\right)\right)$
 
 - periodic gradient descent
 - transient growth control
-- prefix convergence polynomials
-- interpolation certificates
-- minimax step-size optimization
+- prefix convergence products
+- endpoint minimax certificate
+- constrained step-size optimization
 
 ---
 
