@@ -109,7 +109,7 @@ D_p=\frac{4N_p}{\pi^2(p^2-1)}
 \end{cases}
 $$
 
-Step 3: Convert the density into the logarithmic asymptotic
+Step 3: Derive the lattice density and convert it into the logarithmic asymptotic
 
 Set
 $$
@@ -117,13 +117,72 @@ A_p(R)=
 \sum_{\substack{1\le r<s\le R\\(r,s)=1\\p\nmid rs(r^2+s^2)}}
 \eta(r,s).
 $$
-Möbius inversion for $\gcd(r,s)=1$, together with the Chinese remainder theorem for the fixed local conditions at $2$ and $p$, yields the standard lattice-density estimate
-$$
-A_p(R)=\frac{D_p}{2}R^2+O(R\log R).
-$$
-The factor $1/2$ comes from restricting the square $1\le r,s\le R$ to the half-region $r<s$.
+We now derive its asymptotic rather than invoking a lattice-density theorem.
 
-Since $r<s$, the upper variable in $S_p(R)$ is exactly $s$, so partial summation gives
+First ignore coprimality at odd primes. For $Y\ge1$, let
+$$
+B_p(Y)=
+\sum_{\substack{1\le u,v\le Y\\
+(u,v)\not\equiv(0,0)\pmod2\\
+p\nmid uv(u^2+v^2)}}
+\eta(u,v),
+$$
+where the three allowed parity classes $(1,1),(1,0),(0,1)$ have weights $1,\frac12,\frac12$. Their total weight modulo $2$ is therefore $2$, while modulo $p$ there are exactly $N_p$ admissible ordered classes. By the Chinese remainder theorem, modulo $2p$ the weighted total of admissible residue-pair classes is $2N_p$.
+
+For each fixed residue pair modulo $2p$, the number of representatives in $[1,Y]^2$ is
+$$
+\left(\frac{Y}{2p}+O(1)\right)^2
+=\frac{Y^2}{4p^2}+O_p(Y+1).
+$$
+Since $p$ is fixed, summing over the admissible classes gives
+$$
+B_p(Y)=\frac{N_p}{2p^2}Y^2+O_p(Y+1).
+$$
+
+Now impose $\gcd(r,s)=1$ by Möbius inversion. Every pair counted here is not both even and is prime to $p$ in each coordinate, so any common divisor $d$ that occurs is automatically coprime to $2p$. Conversely, for $(d,2p)=1$, writing $r=du$, $s=dv$ preserves both the parity class and the condition $p\nmid uv(u^2+v^2)$. Thus the weighted count in the full square is
+$$
+\begin{aligned}
+C_p(R)
+&:=\sum_{\substack{1\le r,s\le R\\(r,s)=1\\p\nmid rs(r^2+s^2)}}\eta(r,s)\\
+&=\sum_{\substack{d\le R\\(d,2p)=1}}\mu(d)
+B_p\!\left(\frac{R}{d}\right).
+\end{aligned}
+$$
+Substituting the estimate for $B_p$ yields
+$$
+C_p(R)
+=\frac{N_p}{2p^2}R^2
+\sum_{\substack{d\le R\\(d,2p)=1}}\frac{\mu(d)}{d^2}
++O_p\!\left(
+R\sum_{d\le R}\frac1d+\sum_{d\le R}1
+\right).
+$$
+The error is $O_p(R\log R)$. Also, absolute convergence gives
+$$
+\sum_{\substack{(d,2p)=1}}\frac{\mu(d)}{d^2}
+=\prod_{q\ne2,p}\left(1-\frac1{q^2}\right),
+$$
+and the omitted tail is
+$$
+\sum_{d>R}\frac1{d^2}=O\!\left(\frac1R\right),
+$$
+which contributes only $O_p(R)$ after multiplication by $R^2$. Therefore
+$$
+C_p(R)
+=\frac{N_p}{2p^2}
+\prod_{q\ne2,p}\left(1-\frac1{q^2}\right)R^2
++O_p(R\log R)
+=D_pR^2+O_p(R\log R).
+$$
+
+The summand and all local conditions are symmetric in $r,s$. In the full square, the only primitive diagonal pair is $(1,1)$, so its total contribution is $1$. Hence
+$$
+A_p(R)=\frac{C_p(R)-1}{2}
+=\frac{D_p}{2}R^2+O_p(R\log R).
+$$
+Since $p$ is fixed, we may write the error simply as $O(R\log R)$.
+
+Because $r<s$, the upper variable in $S_p(R)$ is exactly $s$, so partial summation gives
 $$
 S_p(R)
 =
