@@ -1,101 +1,138 @@
 ## Steps
 
-Step 1: Reduce one cycle of gradient descent to a convergence polynomial
+Step 1: Reduce the transient objective to scalar mode constraints
 The Hessian is
 $$
 A=\operatorname{diag}(1,3,5,7),
 $$
-so $\nabla f(x)=Ax$. For
+so every eigencoordinate with eigenvalue $\lambda\in\{1,3,5,7\}$ is multiplied successively by
 $$
-p(t)=\prod_{j=0}^2(1-\alpha_j t),
+1-\alpha_0\lambda,\qquad
+(1-\alpha_0\lambda)(1-\alpha_1\lambda),\qquad
+\prod_{j=0}^2(1-\alpha_j\lambda).
 $$
-three successive steps give
+Therefore $R\leq r$ is equivalent to the three families of inequalities
 $$
-x_3=p(A)x_0.
+|1-\alpha_0\lambda|\leq \frac{14}{5}r,
 $$
-Since $A$ is diagonal,
 $$
-\rho(\alpha_0,\alpha_1,\alpha_2)
-=\max\{|p(1)|,|p(3)|,|p(5)|,|p(7)|\}.
+|(1-\alpha_0\lambda)(1-\alpha_1\lambda)|\leq \frac75r,
 $$
-Also $p(0)=1$. The step-size restriction is not a per-step contraction condition; what it gives directly is
 $$
-p(2)=\prod_{j=0}^2(1-2\alpha_j)\geq0,
+\left|\prod_{j=0}^2(1-\alpha_j\lambda)\right|\leq r
 $$
-because every factor is nonnegative.
+for all $\lambda\in\{1,3,5,7\}$.
 
-Step 2: Obtain a sharp lower bound from the step-size cap
-Every such $p$ has degree at most $3$. Evaluating its Lagrange interpolation formula through the nodes $0,1,5,7$ at $t=2$ gives
+Step 2: Prove the sharp lower bound from the two-step prefix
+Assume $R\leq 3/10$ and set
 $$
-p(2)=-\frac37p(0)+\frac54p(1)+\frac14p(5)-\frac1{14}p(7).
+g(t)=(1-\alpha_0 t)(1-\alpha_1 t).
 $$
-Using $p(0)=1$ and $p(2)\geq0$,
+Then
 $$
-\frac37
-\leq
-\frac54p(1)+\frac14p(5)-\frac1{14}p(7).
+|g(1)|,|g(3)|,|g(5)|,|g(7)|\leq \frac{21}{50}.
 $$
-If $\rho=\rho(\alpha_0,\alpha_1,\alpha_2)$, then
+Because $0<\alpha_0,\alpha_1\leq1/2$,
 $$
-\frac54p(1)+\frac14p(5)-\frac1{14}p(7)
-\leq
-\left(\frac54+\frac14+\frac1{14}\right)\rho
-=\frac{11}{7}\rho.
+g(2)=(1-2\alpha_0)(1-2\alpha_1)\geq0,
 $$
-Hence every admissible three-step schedule satisfies
+and $g(1)>0$. For every quadratic $g$ with $g(0)=1$, interpolation at $1,2,7$ gives
 $$
-\rho\geq\frac3{11}.
+1=\frac73g(1)-\frac75g(2)+\frac1{15}g(7).
 $$
-
-Step 3: Determine the equality polynomial and its step sizes
-Equality $\rho=3/11$ forces equality in both estimates above. Therefore
+Hence
 $$
-p(2)=0,\qquad
-p(1)=p(5)=\frac3{11},\qquad
-p(7)=-\frac3{11}.
+1\leq \frac73g(1)+\frac1{15}|g(7)|
+\leq \frac73\cdot\frac{21}{50}+\frac1{15}\cdot\frac{21}{50}=1.
 $$
-Since $p(0)=1$ and $p(2)=0$, write
+Thus equality holds throughout, so necessarily
 $$
-p(t)=\left(1-\frac t2\right)(1-st+rt^2).
+g(1)=\frac{21}{50},\qquad g(2)=0,\qquad g(7)=\frac3{10}.
 $$
-The conditions at $t=1$ and $t=5$ become
+Since $g(2)=0$, one of the first two step sizes is $1/2$. Writing the other as $a$ and using $g(1)=21/50$ gives
 $$
-1-s+r=\frac6{11},
-\qquad
-1-5s+25r=-\frac2{11},
+\frac12(1-a)=\frac{21}{50},
 $$
 so
 $$
-s=\frac{28}{55},\qquad r=\frac3{55}.
+a=\frac4{25}.
 $$
-Thus
+Therefore any schedule with $R\leq3/10$ must have
 $$
-p(t)=\left(1-\frac t2\right)
-\left(1-\frac{28}{55}t+\frac3{55}t^2\right)
+\{\alpha_0,\alpha_1\}=\left\{\frac4{25},\frac12\right\}.
 $$
-and the quadratic factor splits as
-$$
-\left(1-\frac{14-\sqrt{31}}{55}t\right)
-\left(1-\frac{14+\sqrt{31}}{55}t\right).
-$$
-The three resulting step sizes are positive and admissible: $\sqrt{31}<6$ gives $(14+\sqrt{31})/55<20/55<1/2$.
 
-Step 4: Verify the remaining eigenvalue and close the optimization
-For this polynomial,
+Step 3: Use the one-step transient bound to fix the order
+If $\alpha_0=1/2$, then at $\lambda=7$ the one-step multiplier has magnitude
 $$
-p(1)=\frac3{11},\qquad
-p(3)=\frac1{55},\qquad
-p(5)=\frac3{11},\qquad
-p(7)=-\frac3{11}.
+|1-7\alpha_0|=\frac52,
 $$
-Hence its worst-case three-step contraction is exactly $3/11$, so the lower bound is attained. Moreover, equality in Step 2 fixes the convergence polynomial, hence fixes the unordered multiset of its reciprocal roots; only the order of the three steps can vary.
-Final Answer: $\boxed{\left(\frac3{11},\{\frac12,\frac{14-\sqrt{31}}{55},\frac{14+\sqrt{31}}{55}\}\right)}$
+so the weighted one-step contribution is
+$$
+\frac5{14}\cdot\frac52=\frac{25}{28}>\frac3{10}.
+$$
+Hence an optimizer with $R\leq3/10$ cannot start with $1/2$. Consequently
+$$
+\alpha_0=\frac4{25},\qquad \alpha_1=\frac12.
+$$
+For this ordered pair,
+$$
+g(1)=\frac{21}{50},\quad g(3)=\frac{13}{50},\quad g(5)=-\frac3{10},\quad g(7)=\frac3{10},
+$$
+so the weighted two-step contribution is exactly
+$$
+\frac57\max_{\lambda}|g(\lambda)|
+=\frac57\cdot\frac{21}{50}=\frac3{10}.
+$$
+Also the weighted one-step contribution is at most $3/10$ because
+$$
+\max_{\lambda\in\{1,3,5,7\}}|1-\tfrac4{25}\lambda|
+=\frac{21}{25},
+$$
+so
+$$
+\frac5{14}\cdot\frac{21}{25}=\frac3{10}.
+$$
+
+Step 4: Determine the third step and attain the bound
+Now let $c=\alpha_2$. The three-step multipliers at $\lambda=1$ and $\lambda=7$ are
+$$
+\frac{21}{50}(1-c),
+\qquad
+\frac3{10}(1-7c).
+$$
+To keep both magnitudes at most $3/10$, the first inequality gives
+$$
+\frac{21}{50}(1-c)\leq\frac3{10}
+\quad\Longrightarrow\quad
+c\geq\frac27,
+$$
+while the second gives
+$$
+\frac3{10}|1-7c|\leq\frac3{10}
+\quad\Longrightarrow\quad
+0\leq c\leq\frac27.
+$$
+Hence necessarily
+$$
+\alpha_2=\frac27.
+$$
+For
+$$
+\alpha_*=\left(\frac4{25},\frac12,\frac27\right),
+$$
+the three-step multipliers are
+$$
+\frac3{10},\quad -\frac{13}{350},\quad \frac9{70},\quad -\frac3{10},
+$$
+so the three-step contribution is $3/10$. Steps 2 and 3 already showed that the weighted one- and two-step contributions are also at most $3/10$. Therefore the lower bound is attained, and the equality argument proves uniqueness of the ordered optimizer.
+Final Answer: $\boxed{\left(\frac3{10},\left(\frac4{25},\frac12,\frac27\right)\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac3{11},\{\frac12,\frac{14-\sqrt{31}}{55},\frac{14+\sqrt{31}}{55}\}\right)$
+$\left(\frac3{10},\left(\frac4{25},\frac12,\frac27\right)\right)$
 
 ---
 
@@ -110,10 +147,10 @@ $\left(\frac3{11},\{\frac12,\frac{14-\sqrt{31}}{55},\frac{14+\sqrt{31}}{55}\}\ri
 ## Solution Concepts
 
 - periodic gradient descent
-- convergence polynomials
-- worst-case spectral contraction
-- Lagrange interpolation certificate
-- constrained step-size optimization
+- transient growth control
+- prefix convergence polynomials
+- interpolation certificates
+- minimax step-size optimization
 
 ---
 
