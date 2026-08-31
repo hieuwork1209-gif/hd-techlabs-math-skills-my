@@ -53,7 +53,19 @@ so
 $$
 H(1)=\frac1{e^3}\det\begin{pmatrix}3&9&32\\9&32&132\\32&132&626\end{pmatrix}=\frac{382}{e^3}.
 $$
-Therefore, if $c_n=a_nL$, the defining equation and monotonicity imply
+Let $c_n=a_nL$. For any fixed $\varepsilon\in(0,1)$,
+$$
+H(1-\varepsilon)>H(1)>H(1+\varepsilon).
+$$
+The uniform convergence above gives, for all large $n$,
+$$
+\Delta_n((1-\varepsilon)/L)>H(1)L^9>\Delta_n((1+\varepsilon)/L).
+$$
+Since $\Delta_n$ is strictly decreasing and $\Delta_n(a_n)=H(1)L^9$,
+$$
+1-\varepsilon<c_n<1+\varepsilon.
+$$
+Therefore
 $$
 c_n\longrightarrow1.
 $$
