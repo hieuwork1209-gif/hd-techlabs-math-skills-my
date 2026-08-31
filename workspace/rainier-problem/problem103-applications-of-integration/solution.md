@@ -128,22 +128,35 @@ The ratio $\alpha/\beta=\log2/\log3$ is irrational, since a rational relation wo
 $$
 \delta_j=|m_j\alpha-n_j\beta|\to0.
 $$
-Each $\delta_j$ is also a period of $W$ sufficiently far out. For example, if $\delta_j=m_j\alpha-n_j\beta>0$, then for $r\geq R$,
+Each $\delta_j$ is also a period of $W$ on the tail. For example, if $\delta_j=m_j\alpha-n_j\beta>0$, then for $r\geq R$,
 $$
 W(r+\delta_j)=W(r+\delta_j+n_j\beta)=W(r+m_j\alpha)=W(r).
 $$
 Given tail points $r_1<r_2$, choose integers $k_j$ with $r_1+k_j\delta_j\to r_2$. Periodicity and continuity give $W(r_2)=W(r_1)$, so $W$ is constant on the tail.
 
-That constant is $0$. Indeed, (3), monotonicity, and $V(0)=0$ imply
+That constant is $0$. First (3) at $r=0$ gives
+$$
+V(\alpha)=\alpha,\qquad V(\beta)=\beta.
+$$
+Suppose inductively that
+$$
+V(r)=r,
+\qquad r=m\alpha+n\beta>0.
+$$
+Every such $r$ satisfies $r\geq\alpha$, and
+$$
+\alpha>\frac\beta2
+$$
+because $64>27$. Hence, for $c\in\{\alpha,\beta\}$,
+$$
+|r-c|<r<V(r+c).
+$$
+Relation (3) therefore forces $V(r+c)=r+c$. Thus
 $$
 V(m\alpha+n\beta)=m\alpha+n\beta
 \qquad(m,n\geq0).
 $$
-To see the induction, the first positive such number is at least $\alpha$, and
-$$
-\alpha>\frac\beta2
-$$
-because $64>27$; hence the reflected value in (3) is smaller than the current value and cannot be chosen by a strictly increasing $V$. These semigroup points are unbounded, so the constant tail value of $W$ must be $0$.
+These points are unbounded, so the constant tail value of $W$ is $0$.
 
 Now fix $r\geq0$ and choose $N$ with $r+N\alpha\geq R$. Put $v_j=V(r+j\alpha)$. The sequence is strictly increasing, and (3) gives
 $$
@@ -176,11 +189,19 @@ Inductively, assume $T(8^{-n})=2^{-n}$ and put
 $$
 \tau=T(8^{-(n+1)})<2^{-n}.
 $$
-Relation (1), together with $h(x)=h(y)$ iff $y=x$ or $1/x$, gives four possible values for $\tau$; the only one below $2^{-n}$ is
+Relation (1) says that either
 $$
-\tau=2^{-(n+1)}.
+h(2\tau)=h(2^{-n})
 $$
-Therefore
+or
+$$
+h(\tau/2)=h(2^{-n}).
+$$
+Since $h(x)=h(y)$ exactly for $x=y$ or $x=1/y$, the four possibilities are
+$$
+\tau\in\left\{2^{-(n+1)},\ 2^{n-1},\ 2^{1-n},\ 2^{n+1}\right\}.
+$$
+The only one strictly below $2^{-n}$ is $2^{-(n+1)}$. Hence
 $$
 T(8^{-n})=2^{-n}\qquad(n\geq1),
 $$
@@ -188,9 +209,23 @@ and monotonicity implies $T(s)\to0$ as $s\downarrow0$.
 
 Define
 $$
-\widehat T(s)=\frac1{T(1/s)}.
+\widehat T(s)=\frac1{T(1/s)},
+\qquad
+\widehat Y(s)=h(\widehat T(s)).
 $$
-Then $\widehat T$ is continuous and strictly increasing, $\widehat T(1)=1$, and $\widehat T(s)\to\infty$ as $s\to\infty$. The polynomials $F_2$ and $F_3$ are symmetric in their two arguments, while $h(t)=h(1/t)$. Hence the pair of relations (1)-(2) is invariant under $T(s)\mapsto1/T(1/s)$, so $\widehat T$ satisfies the same two correspondences. Applying Step 3 to $\widehat T$ yields
+Because $h(t)=h(1/t)$,
+$$
+\widehat Y(s)=Y(1/s).
+$$
+Both $F_2$ and $F_3$ are symmetric in their two arguments. Applying the original $F_2$ relation at $1/(8s)$ therefore gives
+$$
+F_2(\widehat Y(s),\widehat Y(8s))=0,
+$$
+and applying the $F_3$ relation at $1/(27s)$ gives
+$$
+F_3(\widehat Y(s),\widehat Y(27s))=0.
+$$
+Thus $\widehat T$ satisfies the same two correspondences (1)-(2). It is continuous and strictly increasing, $\widehat T(1)=1$, and $\widehat T(s)\to\infty$ as $s\to\infty$. Applying Step 3 to $\widehat T$ yields
 $$
 \widehat T(s)=s^{1/3}\qquad(s\geq1).
 $$
