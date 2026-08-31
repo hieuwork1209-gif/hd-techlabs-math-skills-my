@@ -1,178 +1,209 @@
 ## Steps
 
-Step 1: Convert the three binomial scales to one positive moment determinant
+Step 1: Recover the leading threshold profile and locate the root
 For every integer $r\ge0$,
 $$
-\frac{r!}{(k+a)^{r+1}}
-=\int_0^1 t^{k+a-1}(-\log t)^r\,dt.
+\frac{r!}{(k+a)^{r+1}}=\int_0^\infty y^r e^{-(k+a)y}\,dy.
 $$
-Set
+Hence, with
 $$
-W_n(t)=(1-t)^n+e(1-t)^{n^2}+e^2(1-t)^{n^3}.
+R_n(y)=\sum_{q=1}^3 e^{q-1}(1-e^{-y})^{n^q},
 $$
-Summing the integral identity gives
+we have
 $$
-r!T_{r+1}(n,a)
-=\int_0^1 t^{a-1}W_n(t)(-\log t)^r\,dt.
+r!T_{r+1}(n,a)=\int_0^\infty y^r e^{-ay}R_n(y)\,dy.
 $$
-Hence $\Delta_n(a)$ is the Gram determinant of $1,Y,Y^2$, with $Y=-\log t$, for the positive measure
+Thus $\Delta_n(a)$ is the Gram determinant of $1,y,y^2$ for the positive measure $e^{-ay}R_n(y)\,dy$. If $b>a$, the difference of the two moment matrices is the integral of
 $$
-d\mu_{n,a}(t)=t^{a-1}W_n(t)\,dt.
+(e^{-ay}-e^{-by})R_n(y)
+\begin{pmatrix}1\\y\\y^2\end{pmatrix}
+\begin{pmatrix}1&y&y^2\end{pmatrix},
 $$
-It is therefore positive. If $b>a$, then, writing
-$$
-v(t)=\begin{pmatrix}1\\Y\\Y^2\end{pmatrix},
-$$
-the corresponding moment matrices satisfy
-$$
-M_n(a)-M_n(b)
-=\int_0^1\bigl(t^{a-1}-t^{b-1}\bigr)W_n(t)v(t)v(t)^T\,dt.
-$$
-For every nonzero vector $u$, the quadratic form equals the integral of a strictly positive weight times the square of the nonzero polynomial $u_0+u_1Y+u_2Y^2$, so the difference is positive definite. If
-$$
-Q=M_n(b)^{-1/2}\bigl(M_n(a)-M_n(b)\bigr)M_n(b)^{-1/2},
-$$
-then $Q$ is positive definite and
-$$
-\frac{\det M_n(a)}{\det M_n(b)}=\det(I+Q)>1,
-$$
-because every eigenvalue of $I+Q$ exceeds $1$. Thus $\Delta_n(a)$ is strictly decreasing.
+so it is positive definite. Conjugating by the inverse square root of the matrix at $b$ shows $\Delta_n(a)>\Delta_n(b)$.
 
-Also $W_n(t)\le C:=1+e+e^2$, so every entry of $M_n(a)$ tends to $0$ as $a\to\infty$. For $a\downarrow0$, put $y=-\log t$. Then
+Put $L=\log n$ and
 $$
-I_r(a):=r!T_{r+1}(n,a)
-=\int_0^\infty e^{-ay}W_n(e^{-y})y^r\,dy.
+B_{r,n}(c)=\frac{r!T_{r+1}(n,c/L)}{L^{r+1}}.
 $$
-After $z=ay$,
+After $y=Lx$,
 $$
-a^{r+1}I_r(a)
-=\int_0^\infty e^{-z}W_n(e^{-z/a})z^r\,dz
-\longrightarrow C\,r!
+B_{r,n}(c)=\int_0^\infty e^{-cx}x^r\sum_{q=1}^3e^{q-1}(1-n^{-x})^{n^q}\,dx.
 $$
-by dominated convergence. Therefore
+For $x\ne q$,
 $$
-\Delta_n(a)\sim
-C^3a^{-9}\det
-\begin{pmatrix}
-1&1&2\\
-1&2&6\\
-2&6&24
-\end{pmatrix}
-=4C^3a^{-9}\to\infty.
+(1-n^{-x})^{n^q}\longrightarrow \mathbf1_{x>q}.
 $$
-So the defining equation for $a_n$ has exactly one positive solution.
-
-Step 2: Derive the three-threshold limiting measure
-Let $L=\log n$ and set $a=c/L$, where $c$ stays in a compact subset of $(0,\infty)$. In the moment integral use $t=n^{-x}$. For $0\le r\le4$,
+Dominated convergence, uniformly for $c$ in compact subsets of $(0,\infty)$, gives
 $$
-\frac{r!T_{r+1}(n,c/L)}{L^{r+1}}
-=\int_0^\infty e^{-cx}W_n(n^{-x})x^r\,dx.
+B_{r,n}(c)\longrightarrow m_r(c):=\sum_{q=1}^3e^{q-1}\int_q^\infty e^{-cx}x^r\,dx.
 $$
-For each $q\in\{1,2,3\}$ and $x\ne q$,
+Let
 $$
-(1-n^{-x})^{n^q}\longrightarrow
-\begin{cases}
-0,&x<q,\\
-1,&x>q.
-\end{cases}
+G(c)=[m_{i+j}(c)]_{i,j=0}^2,\qquad H(c)=\det G(c).
 $$
-Hence
-$$
-W_n(n^{-x})\longrightarrow
-w(x):=\mathbf 1_{x>1}+e\,\mathbf 1_{x>2}+e^2\mathbf 1_{x>3}.
-$$
-If $c\in[A,B]\subset(0,\infty)$, the error is dominated by
-$$
-2(1+e+e^2)e^{-Ax}x^r,
-$$
-which is integrable. Thus the convergence is uniform in $c\in[A,B]$:
-$$
-\frac{r!T_{r+1}(n,c/L)}{L^{r+1}}
-\longrightarrow
-m_r(c):=\int_0^\infty e^{-cx}w(x)x^r\,dx.
-$$
-Define
-$$
-G(c)=\bigl[m_{i+j}(c)\bigr]_{i,j=0}^2,
-\qquad
-H(c)=\det G(c).
-$$
-Every term in the $3\times3$ determinant has total power $L^9$, so uniformly on compact subsets of $(0,\infty)$,
+Factoring the powers of $L$ from rows and columns yields
 $$
 \frac{\Delta_n(c/L)}{L^9}\longrightarrow H(c).
 $$
+The same positive-definite comparison shows that $H$ is strictly decreasing. At $c=1$,
+$$
+(m_0,m_1,m_2,m_3,m_4)=\frac1e(3,9,32,132,626),
+$$
+so
+$$
+H(1)=\frac1{e^3}\det\begin{pmatrix}3&9&32\\9&32&132\\32&132&626\end{pmatrix}=\frac{382}{e^3}.
+$$
+Therefore, if $c_n=a_nL$, the defining equation and monotonicity imply
+$$
+c_n\longrightarrow1.
+$$
 
-Step 3: Identify the limiting root without expanding the whole profile
-For $d>c>0$,
+Step 2: Compute the first correction to each scaled moment
+Fix $q\in\{1,2,3\}$ and put $N=n^q$. Let $E_1,\ldots,E_N$ be independent exponential random variables with density $e^{-t}$ on $t>0$, and let
 $$
-G(c)-G(d)
-=\int_0^\infty\bigl(e^{-cx}-e^{-dx}\bigr)w(x)
-\begin{pmatrix}1\\x\\x^2\end{pmatrix}
-\begin{pmatrix}1&x&x^2\end{pmatrix}dx
+X_N=\max(E_1,\ldots,E_N).
 $$
-is positive definite by the same polynomial-square argument as in Step 1. Since $G(d)$ is positive definite, the same conjugation argument gives
+Then
 $$
-\frac{\det G(c)}{\det G(d)}
-=\det\!\left(I+G(d)^{-1/2}(G(c)-G(d))G(d)^{-1/2}\right)>1.
+\mathbb P(X_N\le t)=(1-e^{-t})^N.
 $$
-Thus $H$ is strictly decreasing.
+For
+$$
+\phi_{r,c}(x)=e^{-cx}x^r,\qquad
+A_{r,c}(s)=\int_s^\infty\phi_{r,c}(x)\,dx,
+$$
+integration by parts against the distribution of $X_N/L$ gives the exact identity
+$$
+\int_0^\infty\phi_{r,c}(x)(1-n^{-x})^{n^q}\,dx
+=\mathbb E\,A_{r,c}(X_N/L).
+$$
+Also
+$$
+\mathbb EX_N
+=\int_0^\infty\bigl(1-(1-e^{-t})^N\bigr)dt
+=\int_0^1\frac{1-(1-u)^N}{u}\,du
+=\sum_{j=1}^N\frac1j.
+$$
+Writing $H_N=\sum_{j=1}^N1/j$ and
+$$
+\gamma=\lim_{N\to\infty}(H_N-\log N),
+$$
+we obtain
+$$
+\mathbb E(X_N-\log N)=\gamma+o(1).
+$$
+Moreover, for $y\ge0$,
+$$
+\mathbb P(X_N-\log N>y)\le e^{-y},
+$$
+and, for $0\le y\le\log N$,
+$$
+\mathbb P(\log N-X_N>y)
+=(1-e^y/N)^N\le e^{-e^y}.
+$$
+Hence $\mathbb E(X_N-\log N)^2=O(1)$ uniformly in $N$.
 
-It remains to evaluate $H(1)$. For $0\le r\le4$,
+Since $\log N=qL$ and $A'_{r,c}=-\phi_{r,c}$, Taylor's formula around $q$ now gives, uniformly for $c$ near $1$,
 $$
-m_r(1)
-=\sum_{q=1}^3 e^{q-1}\int_q^\infty e^{-x}x^r\,dx
-=\frac1e\sum_{q=1}^3\int_0^\infty e^{-y}(y+q)^r\,dy.
+\mathbb E\,A_{r,c}(X_N/L)
+=A_{r,c}(q)-\frac{\gamma}{L}\phi_{r,c}(q)+o(L^{-1}).
 $$
-Using $\int_0^\infty e^{-y}y^j\,dy=j!$ gives
+Summing the three values of $q$ therefore yields
 $$
-(m_0(1),m_1(1),m_2(1),m_3(1),m_4(1))
-=\frac1e(3,9,32,132,626).
+B_{r,n}(c)
+=m_r(c)-\frac{\gamma}{L}d_r(c)+o(L^{-1}),
+$$
+where
+$$
+d_r(c)=\sum_{q=1}^3e^{q-1}e^{-cq}q^r.
+$$
+
+Step 3: Pass the boundary correction through the determinant
+Define
+$$
+D(c)=[d_{i+j}(c)]_{i,j=0}^2.
+$$
+Step 2 gives, uniformly for $c$ near $1$,
+$$
+[B_{i+j,n}(c)]_{i,j=0}^2
+=G(c)-\frac{\gamma}{L}D(c)+o(L^{-1}).
+$$
+Since the determinant is a polynomial in the entries,
+$$
+\frac{\Delta_n(c/L)}{L^9}
+=H(c)-\frac{\gamma}{L}K(c)+o(L^{-1}),
+$$
+where
+$$
+K(c)=\operatorname{tr}(\operatorname{adj}(G(c))D(c)).
+$$
+At $c=1$, also
+$$
+m_5(1)=\frac{3406}{e},
+$$
+and
+$$
+G(1)=\frac1eA,\qquad D(1)=\frac1eB,\qquad G'(1)=-\frac1eC,
+$$
+with
+$$
+A=\begin{pmatrix}3&9&32\\9&32&132\\32&132&626\end{pmatrix},\quad
+B=\begin{pmatrix}3&6&14\\6&14&36\\14&36&98\end{pmatrix},
+$$
+$$
+C=\begin{pmatrix}9&32&132\\32&132&626\\132&626&3406\end{pmatrix}.
+$$
+A direct cofactor computation gives
+$$
+\operatorname{adj}(A)=
+\begin{pmatrix}
+2608&-1410&164\\
+-1410&854&-108\\
+164&-108&15
+\end{pmatrix}.
 $$
 Therefore
 $$
-H(1)
-=\frac1{e^3}
-\det\begin{pmatrix}
-3&9&32\\
-9&32&132\\
-32&132&626
-\end{pmatrix}
-=\frac{382}{e^3},
+K(1)=\frac1{e^3}\operatorname{tr}(\operatorname{adj}(A)B)
+=\frac{1146}{e^3},
 $$
-because the determinant equals
+while
 $$
-3(32\cdot626-132^2)-9(9\cdot626-132\cdot32)+32(9\cdot132-32^2)=382.
+H'(1)=\operatorname{tr}(\operatorname{adj}(G(1))G'(1))
+=-\frac1{e^3}\operatorname{tr}(\operatorname{adj}(A)C)
+=-\frac{5130}{e^3}.
 $$
 
-Step 4: Localize the implicit parameter and pass to the limit
-Choose fixed $A<1<B$. Since $H$ is strictly decreasing,
+Step 4: Extract the second-order location of the implicit root
+The defining equation is
 $$
-H(A)>\frac{382}{e^3}>H(B).
+\frac{\Delta_n(c_n/L)}{L^9}=H(1),
+\qquad c_n=a_nL.
 $$
-By the uniform convergence from Step 2, for all sufficiently large $n$,
+Using Step 3 and $c_n\to1$ from Step 1,
 $$
-\Delta_n(A/L)>\frac{382}{e^3}L^9>\Delta_n(B/L).
+0=H(c_n)-H(1)-\frac{\gamma}{L}K(c_n)+o(L^{-1}).
 $$
-Since $\Delta_n$ is strictly decreasing,
+Because $H'(1)\ne0$, the mean value theorem first gives $c_n-1=O(L^{-1})$. Multiplying the preceding identity by $L$ and using Taylor's formula at $1$ gives
 $$
-A<a_nL<B.
+H'(1)L(c_n-1)-\gamma K(1)\longrightarrow0.
 $$
-Thus $a_nL$ stays in a compact subset of $(0,\infty)$. If a subsequence satisfies $a_{n_j}L_{n_j}\to c$, uniform convergence on $[A,B]$ and the defining equation give
+Hence
 $$
-H(c)=\frac{382}{e^3}=H(1).
+L(c_n-1)\longrightarrow
+\frac{\gamma K(1)}{H'(1)}
+=-\frac{1146}{5130}\gamma
+=-\frac{191}{855}\gamma.
 $$
-The strict monotonicity of $H$ forces $c=1$. Every convergent subsequence has the same limit, hence
-$$
-\lim_{n\to\infty}a_n\log n=1.
-$$
+Since $c_n=a_n\log n$ and $L=\log n$,
 
-Final Answer: $\boxed{1}$
+Final Answer: $\boxed{-\frac{191\gamma}{855}}$
 
 ---
 
 ## Answer
 
-$1$
+$-\frac{191\gamma}{855}$
 
 ---
 
@@ -186,14 +217,14 @@ $1$
 
 ## Solution Concepts
 
-- alternating-binomial moment transform
-- multiscale substitution $t=n^{-x}$
-- threshold limiting measure
-- positive Gram determinants
-- Loewner monotonicity and root localization
+- Hankel Gram determinants
+- multiscale threshold limits
+- maxima of exponentials and harmonic numbers
+- boundary-layer moment correction
+- determinant directional derivatives
 
 ---
 
 ## Black-Box Audit — no issues found
 
-The reciprocal-power integral is derived explicitly, all limiting steps use a stated dominating function, and determinant monotonicity is reduced to positive quadratic forms. The constant $382/e^3$ is computed from the limiting moment matrix rather than inserted as an unexplained match.
+The alternating-binomial transform is written as an explicit positive moment integral. The first correction is derived from the exact distribution of a maximum of exponential variables, including its mean and a uniform second-moment bound. The determinant correction and the constants $1146$ and $5130$ are then reduced to displayed finite matrices and cofactors.
