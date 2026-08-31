@@ -1,207 +1,164 @@
 ## Steps
 
-Step 1: Reduce the integral mean and build a monotone coordinate
+Step 1: Convert the integral means into differential data
 
 Put
 $$
-g(s)=f(e^s),\qquad a(s)=A(e^s).
+g(s)=f(e^s),\qquad a(s)=A(e^s),\qquad b(s)=B(e^s).
 $$
 Then
 $$
-a(s)=\frac1s\int_0^s g(u)\,du,
+a(s)=\frac{1}{s}\int_0^s g(u)\,du,
 \qquad
-(sa(s))'=g(s).
+b(s)=\frac{2}{s^2}\int_0^s(s-u)g(u)\,du.
 $$
-Because $g$ is strictly decreasing,
+The improper integrals converge by assumption, and $g$ is continuous away from the lower endpoint. Therefore
 $$
-g(s)<\frac1s\int_0^s g(u)\,du=a(s),
+(sa(s))'=g(s),
+\qquad
+\left(\frac{s^2b(s)}{2}\right)'=sa(s).
+$$
+This gives
+$$
+a(s)=b(s)+\frac{s}{2}b'(s).
+$$
+Write
+$$
+d(s)=a(s)-b(s)=\frac{s}{2}b'(s).
+$$
+Because $g>0$, the integral defining $b$ has a positive kernel, so $b(s)>0$ for every $s>0$.
+
+Step 2: Extract the natural coordinate on the algebraic branch
+
+Substituting $a=b+d$ into the polynomial relation and collecting powers of $d$ gives
+$$
+16d^4+(160b^2-88b+12)d^2+b^2(4b-1)^2(16b-3)=0.
+$$
+This is a quadratic equation in $d^2$. Its discriminant is
+$$
+-16(4b-3)^2(4b-1)^3.
+$$
+If $b>\frac14$, this discriminant is negative except at $b=\frac34$; at that exceptional value the quadratic has the single value $d^2=-\frac98$. Hence no real solution occurs with $b>\frac14$. Since Step 1 gives $b>0$,
+$$
+0<b\leq\frac14.
+$$
+Thus it is natural to remove the repeated factor $4b-1$ by setting
+$$
+r=\sqrt{1-4b},
+\qquad
+b=\frac{1-r^2}{4},
+$$
+with $0\leq r<1$. After this substitution, the quartic relation factors as
+$$
+\frac1{16}
+\Bigl(16d^2-r^2(1-r)^2(2r-1)\Bigr)
+\Bigl(16d^2+r^2(1+r)^2(2r+1)\Bigr)=0.
+$$
+For $r>0$, the second factor is strictly positive, so the admissible branch must satisfy
+$$
+16d^2=r^2(1-r)^2(2r-1).
+$$
+At $s=1$, the initial data give $d(1)=0$ and $b(1)=\frac{3}{16}$, hence $r(1)=\frac12$. The displayed branch equation has no real solution for $0<r<\frac12$, and continuity therefore prevents $r$ from passing from $\frac12$ to $0$. Together with $r<1$, this yields
+$$
+\frac12\leq r<1.
+$$
+Now the branch equation itself shows what coordinate to use: the factor $r^2(1-r)^2$ is already a perfect square, so divide $4d$ by its signed square root $r(1-r)$. Define
+$$
+q=\frac{4d}{r(1-r)}.
+$$
+This is well-defined because $\frac12\leq r<1$, and the branch equation immediately becomes
+$$
+q^2=2r-1.
+$$
+Thus this is not an auxiliary substitution chosen to simplify the later differential equation; it is the signed normalization forced by the factored algebraic constraint. Solving for $r$ and substituting back gives
+$$
+r=\frac{1+q^2}{2},
 $$
 so
 $$
-a'(s)=\frac{g(s)-a(s)}s<0.
+b=\frac{1-r^2}{4}
+=\frac{(1-q^2)(3+q^2)}{16},
 $$
-Also $0<a(s)<1$, and $g(s)\to0$ implies $a(s)\to0$: split the average at a fixed $S$, let $s\to\infty$, and then let $S\to\infty$. Since $a(1)=1/2$, define
+and, from $4d=q r(1-r)$,
 $$
-T(s)=\frac{1-a(s)}{a(s)}.
+d=\frac{q(1-q^4)}{16}.
 $$
-Then $T:(0,\infty)\to(0,\infty)$ is continuous and strictly increasing,
+In particular, $q(1)=0$ and $|q|<1$.
+
+Step 3: Derive the nonconstant branch equation
+
+Because $b$ is differentiable, $r\geq\frac12$, and $r(1-r)$ never vanishes, the definition of $q$ above makes $q$ differentiable. Differentiate the formula for $b$ with respect to $q$:
 $$
-T(1)=1,
+\frac{db}{dq}=-\frac{q(1+q^2)}{4}.
+$$
+Using $d=\frac{s}{2}b'$ and the displayed formulas for $b$ and $d$ yields
+$$
+q(1+q^2)\left(2sq'+1-q^2\right)=0.
+$$
+On every interval where $q\neq0$,
+$$
+2sq'=q^2-1.
+$$
+Separating variables gives
+$$
+\frac{1-q}{1+q}=\frac{s}{C}
+$$
+for a positive constant $C$, which gives
+$$
+q(s)=\frac{C-s}{C+s}.
+$$
+Such a branch has its only zero at $s=C$.
+
+Step 4: Use continuity to rule out stationary patching
+
+If $q=0$ throughout an interval, then the formulas in Step 2 give
+$$
+b=a=\frac{3}{16},
+$$
+so $g=(sa)'=\frac{3}{16}$ on that interval. On the other hand, a nonconstant branch that meets $q=0$ at $s=C$ has
+$$
+q(s)=\frac{C-s}{C+s}.
+$$
+Substitution into $a=b+d$ and $g=(sa)'$ gives
+$$
+g(s)=\frac{sC^3(7s^2+3C^2)}{(C+s)^6},
+$$
+whose value at $s=C$ is $\frac{5}{32}$. Since $\frac{5}{32}\neq\frac{3}{16}$, continuity of $g$ forbids joining a zero interval to a nonconstant branch.
+
+Because $q(1)=0$, there are only two global possibilities. Either $q\equiv0$, or the nonconstant branch crosses zero at $s=1$, in which case $C=1$ and
+$$
+q(s)=\frac{1-s}{1+s}.
+$$
+The first possibility would give $g\equiv\frac{3}{16}$, contradicting the assumption that $g(s)\to0$ as $s\to\infty$. Therefore the second possibility holds on all of $(0,\infty)$.
+
+Step 5: Recover the function and verify the integral identities
+
+Substituting $q(s)=\frac{1-s}{1+s}$ into the formulas from Step 2 gives
+$$
+b(s)=\frac{s(s^2+s+1)}{(1+s)^4}
+$$
+and
+$$
+a(s)=\frac{s(s^3+5s^2+3s+3)}{2(1+s)^5}.
+$$
+This gives
+$$
+g(s)=(sa(s))'=\frac{s(7s^2+3)}{(1+s)^6}.
+$$
+This function is positive and tends to $0$ at infinity. It also satisfies
+$$
+(sa(s))'=g(s),
 \qquad
-T(s)\to\infty\quad(s\to\infty).
+\left(\frac{s^2b(s)}{2}\right)'=sa(s),
 $$
-If
-$$
-h(t)=\frac{t}{(1+t)^2},
-$$
-then
-$$
-a(s)(1-a(s))=h(T(s)).
-$$
-
-Step 2: Factor the two algebraic correspondences
-
-Write
-$$
-Y(s)=a(s)(1-a(s))=h(T(s)).
-$$
-For
-$$
-F_2(u,v)=u^2v^2+4u^2v+4u^2+4uv^2-10uv+4v^2,
-$$
-direct substitution of $u=h(t)$ gives
-$$
-(1+t)^4F_2(h(t),v)
-=\bigl((t+2)^2v-2t\bigr)\bigl((2t+1)^2v-2t\bigr).
-$$
-Since $H(x^8)=Y(8s)$ when $x=e^s$, the first constraint is equivalent to
-$$
-h(T(8s))\in\left\{h(2T(s)),\ h\!\left(\frac{T(s)}2\right)\right\}. \tag{1}
-$$
-Similarly,
-$$
-(1+t)^4F_3(h(t),w)
-=\bigl((t+3)^2w-3t\bigr)\bigl((3t+1)^2w-3t\bigr),
-$$
-so the second constraint becomes
-$$
-h(T(27s))\in\left\{h(3T(s)),\ h\!\left(\frac{T(s)}3\right)\right\}. \tag{2}
-$$
-Because $h(t)=h(1/t)$, set
-$$
-U(r)=\log T(e^r),
-\qquad
-V(r)=3U(r),
-\qquad
-\alpha=\log8,
-\qquad
-\beta=\log27.
-$$
-Relations (1)-(2) become
-$$
-|V(r+c)|\in\{|V(r)+c|,\ |V(r)-c|\},
-\qquad c\in\{\alpha,\beta\}. \tag{3}
-$$
-The function $V$ is continuous, strictly increasing, $V(0)=0$, and $V(r)\to\infty$ as $r\to\infty$.
-
-Step 3: Prove the two-scale rigidity for $r\geq0$
-
-Choose $R$ so large that $V(r)>\beta/2$ for $r\geq R$. Then $V(r+c)>V(r)$, whereas
-$$
-|V(r)-c|<V(r)
-\qquad(c=\alpha,\beta),
-$$
-so (3) forces
-$$
-V(r+c)=V(r)+c
-\qquad(r\geq R).
-$$
-Thus $W(r)=V(r)-r$ has periods $\alpha$ and $\beta$ on the tail.
-
-The ratio $\alpha/\beta=\log2/\log3$ is irrational, since a rational relation would give $2^m=3^n$ for nonzero integers $m,n$. By the pigeonhole principle there are positive numbers
-$$
-\delta_j=|m_j\alpha-n_j\beta|\to0.
-$$
-Each $\delta_j$ is also a period of $W$ sufficiently far out. For example, if $\delta_j=m_j\alpha-n_j\beta>0$, then
-$$
-W(r+\delta_j)=W(r+\delta_j+n_j\beta)=W(r+m_j\alpha)=W(r).
-$$
-For tail points $r_1<r_2$, choose integers $k_j$ with $r_1+k_j\delta_j\to r_2$. Periodicity and continuity then give $W(r_2)=W(r_1)$, so $W$ is constant on the tail.
-
-That constant is $0$. Indeed, (3), monotonicity, and $V(0)=0$ imply by induction that
-$$
-V(m\alpha+n\beta)=m\alpha+n\beta
-\qquad(m,n\geq0).
-$$
-Every positive number of this form is at least $\alpha$, and $\alpha>\beta/2$ because $64>27$, so the reflected choice in (3) cannot increase $V$. These points are unbounded, so the constant tail value of $W$ is $0$.
-
-Now fix $r\geq0$ and choose $N$ with $r+N\alpha\geq R$. Put $v_j=V(r+j\alpha)$. This sequence is strictly increasing, and (3) gives
-$$
-v_{j+1}\in\{v_j+\alpha,\ |v_j-\alpha|\}.
-$$
-If $v_j\geq\alpha/2$, only the first value is larger than $v_j$. If $v_0<\alpha/2$, the reflected choice can occur only at the first step, after which the first value is forced. Hence
-$$
-V(r+N\alpha)=V(r)+N\alpha
-$$
-or
-$$
-V(r+N\alpha)=N\alpha-V(r).
-$$
-The left side equals $r+N\alpha$ on the tail. Therefore $V(r)=r$ or $V(r)=-r$; since both $r$ and $V(r)$ are nonnegative,
-$$
-V(r)=r
-\qquad(r\geq0). \tag{4}
-$$
-Thus
-$$
-T(s)=s^{1/3}
-\qquad(s\geq1). \tag{5}
-$$
-
-Step 4: Recover the coordinate for $0<s\leq1$
-
-Use (1) at $s=1/8$. Since $T(1)=1$ and $T(1/8)<1$, the equality $h(z)=1/4$ only at $z=1$ forces
-$$
-T(8^{-1})=2^{-1}.
-$$
-Inductively, if $T(8^{-n})=2^{-n}$ and $\tau=T(8^{-(n+1)})<2^{-n}$, relation (1), together with $h(z)=h(1/z)$, leaves only
-$$
-\tau=2^{-(n+1)}.
-$$
-Therefore
-$$
-T(8^{-n})=2^{-n}
-\qquad(n\geq1),
-$$
-and monotonicity gives $T(s)\to0$ as $s\downarrow0$.
-
-Define
-$$
-\widehat T(s)=\frac1{T(1/s)}.
-$$
-Then $\widehat T$ is continuous, strictly increasing, $\widehat T(1)=1$, and tends to infinity. Since $F_2,F_3$ are symmetric in their two variables and $h(t)=h(1/t)$, the function $\widehat T$ satisfies the same correspondences (1)-(2). Applying Steps 2-3 to $\widehat T$ yields
-$$
-\widehat T(s)=s^{1/3}
-\qquad(s\geq1).
-$$
-Hence
-$$
-T(s)=s^{1/3}
-\qquad(0<s\leq1).
-$$
-Together with (5),
-$$
-T(s)=s^{1/3}
-\qquad(s>0).
-$$
-
-Step 5: Recover and verify the function
-
-Since $T=(1-a)/a$,
-$$
-a(s)=\frac1{1+s^{1/3}}.
-$$
-Using $(sa)'=g$ and writing $z=s^{1/3}$,
-$$
-g(s)=\left(\frac{s}{1+s^{1/3}}\right)'
-=\frac{3+2s^{1/3}}{3(1+s^{1/3})^2}.
-$$
-The derivative with respect to $z$ is
-$$
--\frac{4+2z}{3(1+z)^3}<0,
-$$
-so this $g$ is strictly decreasing; it also lies in $(0,1)$ and tends to $0$. Moreover
-$$
-Y(s)=a(s)(1-a(s))=h(s^{1/3}),
-$$
-so $Y(8s)=h(2s^{1/3})$ and $Y(27s)=h(3s^{1/3})$, making both factored constraints in Step 2 vanish. Returning to $s=\log x$ gives the required function.
-Final Answer: $\boxed{f(x)=\frac{3+2(\log x)^{1/3}}{3(1+(\log x)^{1/3})^2}}$
+and both primitives vanish at $s=0$. The displayed $a$ and $b$ are exactly the two integral means. They satisfy $a(1)=b(1)=\frac{3}{16}$, and the parametrization in Step 2 makes the polynomial relation identically zero. Returning to $s=\log x$ completes the recovery.
+Final Answer: $\boxed{f(x)=\frac{\log x\left(7(\log x)^2+3\right)}{(1+\log x)^6}}$
 
 ---
 
 ## Answer
 
-$f(x)=\frac{3+2(\log x)^{1/3}}{3(1+(\log x)^{1/3})^2}$
+$f(x)=\frac{\log x\left(7(\log x)^2+3\right)}{(1+\log x)^6}$
 
 ---
 
@@ -215,8 +172,7 @@ $f(x)=\frac{3+2(\log x)^{1/3}}{3(1+(\log x)^{1/3})^2}$
 
 ## Solution Concepts
 
-- logarithmic integral means
-- algebraic correspondences
-- hidden monotone coordinate
-- incommensurate dilation rigidity
-- cubic-root scaling
+- weighted integral means
+- algebraic elimination
+- degenerate differential branches
+- continuity rigidity
