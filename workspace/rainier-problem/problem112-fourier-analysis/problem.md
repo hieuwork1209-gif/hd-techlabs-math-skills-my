@@ -14,8 +14,8 @@ Let $P_{m,k}$ be the number of ordered pairs $(r,s)\in(\mathbb{Z}/2^{m}\mathbb{Z
 
 | Field | Value |
 |---|---|
-| **Domain** | Analysis |
-| **Sub-domain** | Fourier analysis |
+| **Domain** | Number Theory |
+| **Sub-domain** | Modular arithmetic and congruences |
 | **Problem Type** | Exact computation |
 | **Answer Type** | Tuple or ordered list |
 
@@ -23,6 +23,4 @@ Let $P_{m,k}$ be the number of ordered pairs $(r,s)\in(\mathbb{Z}/2^{m}\mathbb{Z
 
 ## Domain Explanation
 
-This problem involves exact phase counts in the discrete Fourier transform of a quadratic chirp over power-of-two cyclic groups, which is part of Analysis and Fourier analysis.
-It also involves two-adic congruences and quadratic Gauss sums, which are part of Number Theory.
-However, those arithmetic tools evaluate the Fourier coefficients, while the requested object is their sign distribution.
+This problem is fundamentally about quadratic exponential sums modulo powers of $2$, together with $2$-adic divisibility and the solution and counting of quadratic congruences. The main technical work is the evaluation of quadratic Gauss sums over residue classes modulo $2^m$ and the resulting congruence conditions on $(r,s)$. Although the sums can be viewed through a finite Fourier-transform lens, Fourier analysis is only a secondary viewpoint here; the core structure and methods are number-theoretic. Therefore the best classification is Number Theory, with sub-domain Modular arithmetic and congruences.
