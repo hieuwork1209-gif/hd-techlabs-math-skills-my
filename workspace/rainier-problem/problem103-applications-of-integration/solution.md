@@ -28,7 +28,7 @@ d(s)=a(s)-b(s)=\frac{s}{2}b'(s).
 $$
 Because $g>0$, the integral defining $b$ has a positive kernel, so $b(s)>0$ for every $s>0$.
 
-Step 2: Extract the hidden parameter from the algebraic constraint
+Step 2: Extract the natural coordinate on the algebraic branch
 
 Substituting $a=b+d$ into the polynomial relation and collecting powers of $d$ gives
 $$
@@ -38,45 +38,56 @@ This is a quadratic equation in $d^2$. Its discriminant is
 $$
 -16(4b-3)^2(4b-1)^3.
 $$
-A real nonnegative value of $d^2$ cannot occur when $b>\frac14$. The exceptional value $b=\frac34$ gives $d^2=-\frac98$, so it is impossible as well. We obtain
+If $b>\frac14$, this discriminant is negative except at $b=\frac34$; at that exceptional value the quadratic has the single value $d^2=-\frac98$. Hence no real solution occurs with $b>\frac14$. Since Step 1 gives $b>0$,
 $$
 0<b\leq\frac14.
 $$
-Set
+Thus it is natural to remove the repeated factor $4b-1$ by setting
 $$
-r=\sqrt{1-4b}.
+r=\sqrt{1-4b},
+\qquad
+b=\frac{1-r^2}{4},
 $$
-Solving the quadratic for $d^2$ after substituting $b=\frac{1-r^2}{4}$ gives two formal roots,
+with $0\leq r<1$. After this substitution, the quartic relation factors as
 $$
-\frac{r^2(r-1)^2(2r-1)}{16}
-\quad\text{and}\quad
--\frac{r^2(r+1)^2(2r+1)}{16}.
+\frac1{16}
+\Bigl(16d^2-r^2(1-r)^2(2r-1)\Bigr)
+\Bigl(16d^2+r^2(1+r)^2(2r+1)\Bigr)=0.
 $$
-Only the first can be nonnegative. At $s=1$, the initial data give $d(1)=0$ and $b(1)=\frac{3}{16}$, so $r(1)=\frac12$. Continuity prevents $r$ from crossing the forbidden interval between $0$ and $\frac12$, while $b>0$ gives $r<1$. It follows that
+For $r>0$, the second factor is strictly positive, so the admissible branch must satisfy
+$$
+16d^2=r^2(1-r)^2(2r-1).
+$$
+At $s=1$, the initial data give $d(1)=0$ and $b(1)=\frac{3}{16}$, hence $r(1)=\frac12$. The displayed branch equation has no real solution for $0<r<\frac12$, and continuity therefore prevents $r$ from passing from $\frac12$ to $0$. Together with $r<1$, this yields
 $$
 \frac12\leq r<1.
 $$
-Define
+Now the branch equation itself shows what coordinate to use: the factor $r^2(1-r)^2$ is already a perfect square, so divide $4d$ by its signed square root $r(1-r)$. Define
 $$
 q=\frac{4d}{r(1-r)}.
 $$
-The preceding root formula becomes
+This is well-defined because $\frac12\leq r<1$, and the branch equation immediately becomes
 $$
 q^2=2r-1.
 $$
-It follows that
+Thus this is not an auxiliary substitution chosen to simplify the later differential equation; it is the signed normalization forced by the factored algebraic constraint. Solving for $r$ and substituting back gives
 $$
 r=\frac{1+q^2}{2},
-\qquad
-b=\frac{(1-q^2)(3+q^2)}{16},
-\qquad
+$$
+so
+$$
+b=\frac{1-r^2}{4}
+=\frac{(1-q^2)(3+q^2)}{16},
+$$
+and, from $4d=q r(1-r)$,
+$$
 d=\frac{q(1-q^4)}{16}.
 $$
 In particular, $q(1)=0$ and $|q|<1$.
 
 Step 3: Derive the nonconstant branch equation
 
-Differentiate the formula for $b$ with respect to $q$:
+Because $b$ is differentiable, $r\geq\frac12$, and $r(1-r)$ never vanishes, the definition of $q$ above makes $q$ differentiable. Differentiate the formula for $b$ with respect to $q$:
 $$
 \frac{db}{dq}=-\frac{q(1+q^2)}{4}.
 $$
