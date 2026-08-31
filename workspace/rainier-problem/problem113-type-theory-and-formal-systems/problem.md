@@ -2,9 +2,9 @@
 
 ## LaTeX (Normalized)
 
-Consider the following typed term-rewriting system with one ground type $B$. There is a constant $z:B$, a unary constructor $a:B\to B$, and unary constructors $d_q:B\to B$ for $2\leq q\leq n$. Write $a^r(t)$ for the $r$-fold iterate of $a$, with $a^0(t)=t$.
+Consider the following formal term-rewriting system. Terms are generated from a constant $z$, a unary constructor $a$, and unary constructors $d_q$ for $2\leq q\leq n$. Write $a^r(t)$ for the $r$-fold iterate of $a$, with $a^0(t)=t$.
 
-The only reduction rules are, for every well-typed term $t$,
+The only reduction rules are, for every term $t$,
 $$
 d_q(a(t))\longrightarrow a^q(d_q(t)),
 \qquad 2\leq q\leq n,
@@ -39,4 +39,4 @@ Determine $L_n$ exactly as a closed-form expression in $n$.
 
 ## Domain Explanation
 
-This problem involves normalization and reduction order in a typed term-rewriting system, which are part of Logic, Set Theory, and Foundations and Type theory and formal systems. The problem also involves exact minimization and inversion counting, which are part of optimization and discrete mathematics. However, those calculations arise from the rewrite semantics and are not the primary mathematical structure.
+This problem involves normalization and reduction order in a formal term-rewriting system, which are part of Logic, Set Theory, and Foundations and Type theory and formal systems. The problem also involves exact minimization and inversion counting, which are part of optimization and discrete mathematics. However, those calculations arise from the rewrite semantics and are not the primary mathematical structure.
