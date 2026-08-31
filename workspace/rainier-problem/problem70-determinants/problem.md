@@ -20,7 +20,7 @@ where $\log$ is the natural logarithm and $e$ is Euler's number.
 
 Determine
 $$
-\lim_{n\to\infty}a_n\log n.
+\lim_{n\to\infty}(\log n)\bigl(a_n\log n-1\bigr).
 $$
 
 ---
@@ -38,4 +38,4 @@ $$
 
 ## Domain Explanation
 
-The problem centers on a structured Hankel determinant. Its alternating-binomial entries combine three distinct scales into one positive Gram determinant, and identifying the parameter requires deriving the determinant's multiscale limiting measure rather than reducing to a single Beta profile.
+The problem centers on a structured Hankel determinant. Its three alternating-binomial scales form a positive Gram determinant whose leading threshold limit is degenerate for the requested quantity, so the parameter is determined by the first boundary-layer correction to that determinant.
