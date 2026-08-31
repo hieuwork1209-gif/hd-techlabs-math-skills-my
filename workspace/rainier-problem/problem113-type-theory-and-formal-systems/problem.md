@@ -2,22 +2,27 @@
 
 ## LaTeX (Normalized)
 
-Work in the following signed term-reduction system. For $n\geq2$, the canonical values are
-$$
-|x_1\cdots x_n\rangle,
-\qquad x_i\in\{0,1\}.
-$$
-All bit sums below are modulo $2$, and $|x|$ denotes Hamming weight. Define the constructor $T_n$ by
-$$
-T_n|x_1\cdots x_n\rangle
-=
-(-1)^{\binom{|x|}{2}}
-|x_1+x_2,\ x_1+x_3,\ \ldots,\ x_1+x_n,\ x_1\rangle.
-$$
+Consider the following typed term-rewriting system with one ground type $B$. There is a constant $z:B$, a unary constructor $a:B\to B$, and unary constructors $d_q:B\to B$ for $2\leq q\leq n$. Write $a^r(t)$ for the $r$-fold iterate of $a$, with $a^0(t)=t$.
 
-Starting from $|b\rangle$, apply this reduction rule exactly $n+1$ times. Let $E_n(b)$ be the sum in $\mathbb{Z}$ of the $n+1$ nonnegative integer exponents $\binom{|x|}{2}$ encountered along those successive reductions, before taking parity. Determine $E_n(b)$ explicitly for every $n\geq2$ and every $b\in\{0,1\}^n$.
+The only reduction rules are, for every well-typed term $t$,
+$$
+d_q(a(t))\longrightarrow a^q(d_q(t)),
+\qquad 2\leq q\leq n,
+$$
+and
+$$
+d_q(d_p(t))\longrightarrow d_p(d_q(t)),
+\qquad 2\leq p<q\leq n.
+$$
+A reduction may be applied to any matching subterm, and each rule application counts as one step.
 
-For verifiability, write the final answer only in terms of $n$ and $|b|$, as one exact closed-form integer expression. Do not give a recurrence, orbit sum, case split, or an expression reduced modulo $2$.
+For $n\geq2$, define
+$$
+M_n=d_n(d_{n-1}(\cdots d_2(a(z))\cdots)).
+$$
+A complete reduction is a reduction sequence from $M_n$ to a term with no applicable rule. Different choices of redex can give different sequence lengths. Let $L_n$ be the minimum number of steps in a complete reduction of $M_n$.
+
+Determine $L_n$ exactly as a closed-form expression in $n$.
 
 ---
 
@@ -27,11 +32,11 @@ For verifiability, write the final answer only in terms of $n$ and $|b|$, as one
 |---|---|
 | **Domain** | Logic, Set Theory, and Foundations |
 | **Sub-domain** | Type theory and formal systems |
-| **Problem Type** | Symbolic derivation |
+| **Problem Type** | Optimization |
 | **Answer Type** | Exact symbolic expression |
 
 ---
 
 ## Domain Explanation
 
-This problem involves repeated normalization in a signed symbolic reduction system, which is part of Logic, Set Theory, and Foundations and Type theory and formal systems. The problem also involves binary transformations and Hamming-weight counting, which are part of discrete algebraic reasoning. However, those calculations support the reduction semantics and are not the primary subject of the problem.
+This problem involves normalization and reduction order in a typed term-rewriting system, which are part of Logic, Set Theory, and Foundations and Type theory and formal systems. The problem also involves exact minimization and inversion counting, which are part of optimization and discrete mathematics. However, those calculations arise from the rewrite semantics and are not the primary mathematical structure.
