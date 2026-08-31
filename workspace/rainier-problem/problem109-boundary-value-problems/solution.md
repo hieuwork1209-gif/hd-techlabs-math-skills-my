@@ -46,11 +46,33 @@ At its maximum, the first integral yields $u^2-cu-1=0$. The positive root is
 $$
 \max_Iu=\frac{c+\sqrt{c^2+4}}{2}.
 $$
-Expanding the component formula at the two endpoints gives
+To compute the endpoint jet explicitly, expand the formula from Step 1 at the left endpoint. Since
 $$
-y(a+t)=t^4+ct^5+O(t^6),
+\sin t=t-\frac{t^3}{6}+O(t^5),
 \qquad
-y(b+t)=t^4-ct^5+O(t^6).
+1-\cos t=\frac{t^2}{2}-\frac{t^4}{24}+O(t^6),
+$$
+we have
+$$
+u(a+t)=t+\frac{c}{4}t^2-\frac16t^3+O(t^4)
+=t\left(1+\frac{c}{4}t+O(t^2)\right).
+$$
+Therefore
+$$
+y(a+t)=u(a+t)^4
+=t^4\left(1+\frac{c}{4}t+O(t^2)\right)^4
+=t^4+ct^5+O(t^6).
+$$
+At the right endpoint $b=a+2\alpha$, the first integral gives $u'(b-)^2=1$. Because $u>0$ immediately to the left of $b$ and decreases to $0$ there, $u'(b-)=-1$. Also $u''+u=c/2$ gives $u''(b-)=c/2$. Thus, with local coordinate $t=x-b$,
+$$
+u(b+t)=-t+\frac{c}{4}t^2+O(t^3)
+=-t\left(1-\frac{c}{4}t+O(t^2)\right),
+$$
+so
+$$
+y(b+t)=u(b+t)^4
+=t^4\left(1-\frac{c}{4}t+O(t^2)\right)^4
+=t^4-ct^5+O(t^6).
 $$
 If consecutive components have parameters $c_j$ and $c_{j+1}$, continuity of $y^{(5)}$ at their common zero forces
 $$
@@ -60,7 +82,27 @@ The corresponding angles are $\alpha$ and $\pi-\alpha$, so adjacent component le
 
 Step 3: Close the component chain and construct a global signed root.
 
-The endpoint expansion in Step 2 gives $y^{(4)}=24$ at every component endpoint. A zero interval is impossible because its fourth derivative is zero, contradicting continuity at an adjacent endpoint. The zeros cannot accumulate either: Taylor expansion along a sequence of zeros approaching a limit zero would successively force the first four derivatives there to vanish, while continuity of $y^{(4)}$ from the component endpoints gives $24$. The components therefore form a finite consecutive chain filling $[0,2\pi n]$.
+The endpoint expansions in Step 2 give $y^{(4)}=24$ at every component endpoint. A zero interval is impossible because $y^{(4)}=0$ in its interior, contradicting continuity of $y^{(4)}$ at an adjacent component endpoint.
+
+The zeros cannot accumulate. Indeed, suppose that they accumulate at some $z_*\in[0,2\pi n]$. Since zero intervals have already been ruled out, every neighborhood of $z_*$ contains a nonzero point and therefore a component endpoint; hence we can choose distinct component endpoints $z_k\to z_*$. Passing to a monotone subsequence, assume $z_k\downarrow z_*$. Since $y(z_k)=y(z_{k+1})=0$, Rolle's theorem gives a point $z_k^{(1)}\in(z_{k+1},z_k)$ such that
+$$
+y'(z_k^{(1)})=0.
+$$
+The points $z_k^{(1)}$ also decrease to $z_*$. Applying Rolle's theorem to $y'$ on each interval $[z_{k+1}^{(1)},z_k^{(1)}]$ gives points $z_k^{(2)}\to z_*$ with
+$$
+y''(z_k^{(2)})=0.
+$$
+Repeating the same argument twice more produces sequences $z_k^{(3)}\to z_*$ and $z_k^{(4)}\to z_*$ satisfying
+$$
+y'''(z_k^{(3)})=0,
+\qquad
+y^{(4)}(z_k^{(4)})=0.
+$$
+By continuity of the derivatives,
+$$
+y'(z_*)=y''(z_*)=y'''(z_*)=y^{(4)}(z_*)=0.
+$$
+On the other hand, every $z_k$ is a component endpoint, so $y^{(4)}(z_k)=24$; continuity gives $y^{(4)}(z_*)=24$, a contradiction. Thus the zero set has no accumulation points. Together with the exclusion of zero intervals, this shows that the components form a finite consecutive chain filling $[0,2\pi n]$.
 
 An even chain of $2r$ components has total length $2\pi r$. An odd chain has total length $2\pi r+2\alpha$, which cannot equal $2\pi n$ because $0<\alpha<\pi$. This leaves exactly $2n$ components.
 
@@ -189,7 +231,44 @@ The maximum formula from Step 2 gives $\sqrt{1+d^2}+d$ for the maximum of $v$ on
 $$
 M(y)=(\sqrt{1+d^2}+d)^4.
 $$
-The value of $d^2$ from Step 4 permits the two signs of $d$, producing the two values in the answer. Conversely, choose either sign of $d$ with that square, define $v(x)=\sin x+d(1-\cos x)$, and set $y=v^4$. Then $y$ is nonnegative and smooth, its endpoints vanish, and
+The value of $d^2$ from Step 4 permits the two signs of $d$, producing the two values in the answer. Conversely, choose either sign of $d$ with that square, define
+$$
+v(x)=\sin x+d(1-\cos x),
+\qquad
+y(x)=v(x)^4.
+$$
+Then $y$ is nonnegative and smooth and its endpoints vanish. Direct differentiation gives
+$$
+v'(x)=\cos x+d\sin x,
+\qquad
+v''(x)=-\sin x+d\cos x,
+$$
+so
+$$
+v''+v=d.
+$$
+The required first integral is also verified directly:
+$$
+\begin{aligned}
+v'^2+v^2-2dv
+&=(\cos x+d\sin x)^2+(\sin x+d(1-\cos x))^2\\
+&\qquad-2d(\sin x+d(1-\cos x))\\
+&=\cos^2x+\sin^2x\\
+&\qquad+2d\sin x\bigl(\cos x+1-\cos x-1\bigr)\\
+&\qquad+d^2\bigl(\sin^2x+(1-\cos x)^2-2(1-\cos x)\bigr)\\
+&=1.
+\end{aligned}
+$$
+Using $v''=d-v$ and this first integral,
+$$
+\begin{aligned}
+2vv''-v'^2+v^2+1
+&=2v(d-v)-v'^2+v^2+1\\
+&=2dv-v^2-v'^2+1\\
+&=0.
+\end{aligned}
+$$
+Therefore
 $$
 8yy''-7y'^2+16y^2+16y^{3/2}
 =16v^6(2vv''-v'^2+v^2+1)=0.
