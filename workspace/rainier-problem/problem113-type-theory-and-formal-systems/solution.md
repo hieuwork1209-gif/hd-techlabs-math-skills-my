@@ -1,88 +1,97 @@
 ## Steps
 
-Step 1: Encode the unsigned update as a cyclic change of basepoint
+Step 1: Identify the unique normal form
+Define an integer interpretation $\nu$ on terms by
+$$
+\nu(z)=0,\qquad
+\nu(a(t))=\nu(t)+1,\qquad
+\nu(d_q(t))=q\nu(t).
+$$
+The first rewrite rule preserves this value because
+$$
+\nu(d_q(a(t)))=q(\nu(t)+1)=q\nu(t)+q
+=\nu(a^q(d_q(t))).
+$$
+The second rule also preserves it because multiplication is commutative:
+$$
+\nu(d_q(d_p(t)))=qp\nu(t)=pq\nu(t)
+=\nu(d_p(d_q(t))).
+$$
+The starting term therefore has value
+$$
+\nu(M_n)=2\cdot3\cdots n=n!.
+$$
+In any normal form, no occurrence of $a$ can lie inside a $d_q$, since the innermost such occurrence would create a redex of the first kind. Hence all copies of $a$ are outermost. Also, the $d_q$ labels must increase from outside to inside, since an adjacent pair $d_q(d_p(\cdot))$ with $p<q$ would be a redex of the second kind. Every complete reduction must therefore end at
+$$
+a^m(d_2(d_3(\cdots d_n(z)\cdots))).
+$$
+Its value under $\nu$ is $m$, so invariance forces $m=n!$. Thus the normal form is unique.
 
-Put $N=n+1$ and form the auxiliary cyclic bit word
+Step 2: Count the unavoidable interchange steps
+Read the $d$ labels from outside to inside. Initially they are
 $$
-(z_0,z_1,\ldots,z_n)=(0,b_1,\ldots,b_n).
+n,n-1,\ldots,2,
 $$
-For $0\leq k<N$, define a length-$n$ word by
+while in the normal form they are
 $$
-x_i^{(k)}=z_k+z_{k+i},
-\qquad 1\leq i\leq n,
+2,3,\ldots,n.
 $$
-where the subscripts of $z$ are read modulo $N$. At $k=0$ this gives $x^{(0)}=b$. If the current word is $x^{(k)}$, then for $1\leq i<n$,
+The first rewrite rule does not change their order. Each application of the second rule swaps one adjacent inverted pair and reduces the inversion count by exactly one. The initial order has
 $$
-x_1^{(k)}+x_{i+1}^{(k)}
-=
-(z_k+z_{k+1})+(z_k+z_{k+i+1})
-=
-z_{k+1}+z_{k+i+1}
-=
-x_i^{(k+1)},
+\binom{n-1}{2}
 $$
-while
-$$
-x_1^{(k)}
-=
-z_k+z_{k+1}
-=
-z_{k+1}+z_k
-=
-x_n^{(k+1)}.
-$$
-Thus the unsigned part of one $T_n$ reduction sends $x^{(k)}$ to $x^{(k+1)}$. Therefore the $n+1=N$ successive reductions run once around the cyclic choices of basepoint.
+inversions, so every complete reduction uses exactly that many applications of the second rule.
 
-Step 2: Count the two possible Hamming weights along the cycle
-
-Let $W=|b|$. Since $z_0=0$, the cyclic word $z$ has exactly $W$ entries equal to $1$ and $N-W$ entries equal to $0$. As $i$ runs from $1$ to $n$, the indices $k+i$ modulo $N$ run through every position except $k$. For a basepoint with $z_k=0$, the word $x^{(k)}$ therefore records exactly the $W$ entries that differ from $0$, so
+Step 3: Build a lower bound for the expansion steps
+For a finite set $S$ of labels, let $f(S)$ be the smallest number of first-rule applications needed to move one copy of $a$ outward through all multipliers in $S$ if their order may be chosen freely, and put $f(\varnothing)=0$. If the labels are used in the order $q_1,\ldots,q_r$, then the successive numbers of copies that must be moved are
 $$
-|x^{(k)}|=W.
+1,\ q_1,\ q_1q_2,\ \ldots,\ q_1q_2\cdots q_{r-1}.
 $$
-For a basepoint with $z_k=1$, it records exactly the zero entries; there are $N-W$ of them, and the omitted basepoint is not one of them, so
+Thus the cost is their sum. If adjacent labels satisfy $q_i>q_{i+1}$, swapping them decreases the term of the sum where only the first of the two has acted, while every later product is unchanged. Hence the minimum occurs when the labels are increasing. In particular,
 $$
-|x^{(k)}|=N-W.
-$$
-Among the $N$ basepoints, the first case occurs $N-W$ times and the second occurs $W$ times. Hence the exact accumulated exponent is
-$$
-E_n(b)
+f(\{2,3,\ldots,n\})
 =
-(N-W)\binom{W}{2}
-+
-W\binom{N-W}{2}.
+1+2+2\cdot3+\cdots+2\cdot3\cdots(n-1)
+=
+\sum_{k=1}^{n-1}k!.
 $$
 
-Step 3: Simplify the accumulated exponent
+For any intermediate term, associate to each occurrence of $a$ the set of labels of the $d_q$ constructors lying outside it, and let $\Phi$ be the sum of $f(S)$ over all occurrences of $a$. An interchange step does not change any such set because the swapped constructors are adjacent with no $a$ between them. For a first-rule step
+$$
+d_q(a(t))\longrightarrow a^q(d_q(t)),
+$$
+suppose the rewritten copy of $a$ has outer-label set $S\cup\{q\}$. It is replaced by $q$ copies whose outer-label set is $S$. Since using $q$ first is one admissible order,
+$$
+f(S\cup\{q\})\leq1+qf(S).
+$$
+Therefore one first-rule application can decrease $\Phi$ by at most $1$. Initially $\Phi=f(\{2,\ldots,n\})$, while the normal form has $\Phi=0$. Every complete reduction consequently uses at least
+$$
+\sum_{k=1}^{n-1}k!
+$$
+applications of the first rule.
 
-Using the two pair counts from Step 2,
+Step 4: Attain the lower bound and combine the counts
+Do not interchange any $d$ constructors until all first-rule reductions are finished. The innermost multiplier $d_2$ crosses the single initial copy of $a$ in $1=1!$ step and leaves $2!$ copies outside it. Then $d_3$ crosses those $2!$ copies, after which there are $3!$ copies. Continuing outward, $d_q$ crosses exactly $(q-1)!$ copies and leaves $q!$ copies. Hence this reduction uses exactly
 $$
-\begin{aligned}
-E_n(b)
-&=
-\frac{(N-W)W(W-1)+W(N-W)(N-W-1)}{2}\\
-&=
-\frac{W(N-W)(N-2)}{2}.
-\end{aligned}
+\sum_{k=1}^{n-1}k!
 $$
-Substituting $N=n+1$ and $W=|b|$ yields
+first-rule applications, attaining the lower bound from Step 3. The remaining descending string of $d$ constructors is then sorted using the $\binom{n-1}{2}$ mandatory interchange steps from Step 2. Therefore
 $$
-E_n(b)=\frac{(n-1)|b|(n+1-|b|)}{2}.
+L_n=\sum_{k=1}^{n-1}k!+\binom{n-1}{2}.
 $$
-This is an integer because it was obtained as a sum of binomial coefficients; equivalently, if $n-1$ is odd then $n+1$ is odd, so $|b|(n+1-|b|)$ is even.
-
-Final Answer: $\boxed{\frac{(n-1)|b|(n+1-|b|)}{2}}$
+Final Answer: $\boxed{\sum_{k=1}^{n-1}k!+\binom{n-1}{2}}$
 
 ---
 
 ## Answer
 
-$\frac{(n-1)|b|(n+1-|b|)}{2}$
+$\sum_{k=1}^{n-1}k!+\binom{n-1}{2}$
 
 ---
 
 ## Classification
 
-**Problem Type:** Symbolic derivation
+**Problem Type:** Optimization
 
 **Answer Type:** Exact symbolic expression
 
@@ -90,8 +99,8 @@ $\frac{(n-1)|b|(n+1-|b|)}{2}$
 
 ## Solution Concepts
 
-- signed term reduction
-- cyclic orbit encoding
-- Hamming weight
-- binary linear transformations
-- combinatorial pair counting
+- typed term rewriting
+- normal forms
+- reduction length
+- potential function
+- inversion counting
