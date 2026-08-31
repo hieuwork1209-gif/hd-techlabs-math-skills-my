@@ -58,8 +58,8 @@ $$
 
 | Field | Value |
 |---|---|
-| **Domain** | Calculus |
-| **Sub-domain** | Limits and continuity |
+| **Domain** | Analysis |
+| **Sub-domain** | Asymptotic analysis |
 | **Problem Type** | Symbolic derivation |
 | **Answer Type** | Exact symbolic expression |
 
@@ -67,6 +67,5 @@ $$
 
 ## Domain Explanation
 
-This problem involves a singular one-sided limit for a moment determinant whose weight concentrates at two endpoint minima and an asymmetric interior minimum, which are part of Calculus and Limits and continuity.
-The problem also involves competing Vandermonde particle clusters, Gaussian and Laguerre moment identities, and a weak perturbation that couples successive asymptotic layers, which are part of Linear Algebra and Determinants.
-However, those determinant structures are used to determine the dependent fractional-order coefficients required by the stated limit, so the limiting analysis is primary.
+This problem is fundamentally an asymptotic-analysis problem: the determinant is evaluated by localizing the defining moment integral near three competing minima, rescaling each well on its natural $t$-dependent scale, and matching Gaussian and Laguerre asymptotic contributions through order $t^{3/2}$.
+The determinant and Vandermonde structure organize the local contributions, but the central task is the singular small-$t$ expansion and the control of the associated remainders, so Analysis / Asymptotic analysis is the most appropriate classification.
