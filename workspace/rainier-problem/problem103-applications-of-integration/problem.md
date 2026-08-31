@@ -2,18 +2,23 @@
 
 ## LaTeX (Normalized)
 
-All logarithms are natural. Let $f:(1,\infty)\to\mathbb R$, and assume that the improper integrals below converge for every $x>1$. Suppose that $s\mapsto f(e^s)$ is positive and continuous on $(0,\infty)$ and tends to $0$ as $s\to\infty$. Define
+All logarithms are natural. Let $f:(1,\infty)\to\mathbb R$, and suppose $g(s):=f(e^s)$ is continuous, strictly decreasing, takes values in $(0,1)$, and tends to $0$ as $s\to\infty$. Assume the improper integral below converges for every $x>1$, and define
 $$
-A(x)=\frac{1}{\log x}\int_1^x\frac{f(t)}{t}\,dt,
+A(x)=\frac1{\log x}\int_1^x\frac{f(t)}t\,dt,
 \qquad
-B(x)=\frac{2}{(\log x)^2}\int_1^x\log\left(\frac{x}{t}\right)\frac{f(t)}{t}\,dt.
+H(x)=A(x)(1-A(x)).
 $$
-Assume that $A(e)=B(e)=\frac{3}{16}$ and that, for every $x>1$,
+Suppose $A(e)=\frac12$. For every $x>1$, let
 $$
-\begin{aligned}
-&16A(x)^4-64A(x)^3B(x)+256A(x)^2B(x)^2-88A(x)^2B(x)+12A(x)^2\\
-&\quad-384A(x)B(x)^3+176A(x)B(x)^2-24A(x)B(x)+256B(x)^5-48B(x)^3+9B(x)^2=0
-\end{aligned}
+u=H(x),\qquad v=H(x^8),\qquad w=H(x^{27}).
+$$
+Assume
+$$
+u^2v^2+4u^2v+4u^2+4uv^2-10uv+4v^2=0
+$$
+and
+$$
+16u^2w^2+24u^2w+9u^2+24uw^2-30uw+9w^2=0.
 $$
 Determine $f(x)$ for all $x>1$.
 
@@ -32,4 +37,4 @@ Determine $f(x)$ for all $x>1$.
 
 ## Domain Explanation
 
-This problem involves recovering an unknown function from two nested weighted integral means, which are part of Calculus and Applications of integration. The problem also involves extracting a hidden parameter from a nonlinear algebraic constraint and resolving a degenerate differential branch, which are part of algebra and differential equations. However, those tools serve the integral reconstruction, while the central task remains determining the function from its accumulated integral data.
+The central object is an integral mean of the unknown function after a logarithmic change of variables. The two nonlinear dilation constraints must be converted into a rigidity statement for a hidden coordinate before differentiating the accumulated integral to recover the original function. The algebraic correspondences and scaling argument are structural tools inside an integral-reconstruction problem, so Calculus -> Applications of integration remains the best fit.
