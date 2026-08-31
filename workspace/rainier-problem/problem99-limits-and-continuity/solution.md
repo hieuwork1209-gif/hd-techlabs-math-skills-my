@@ -69,7 +69,19 @@ and
 $$
 G_n=\pi^{n/2}2^{-n(n-1)/2}\prod_{j=0}^{n-1}j!.
 $$
-These are the Laguerre and Gaussian Vandermonde integrals for the local weights $e^{-u}$ and $e^{-z^2}$.
+For labeled variables, the corresponding Vandermonde integrals are
+$$
+\int_{[0,\infty)^n}\Delta(u)^2e^{-\sum_i u_i}\,du_1\cdots du_n=n!L_n,
+$$
+and
+$$
+\int_{\mathbb R^n}\Delta(z)^2e^{-\sum_i z_i^2}\,dz_1\cdots dz_n=n!G_n.
+$$
+When the Andréief integral is split among the three wells, the allocation $(k,l,r)$ occurs with multinomial factor
+$$
+\frac{(4m+2)!}{k!l!r!}.
+$$
+This cancels the prefactor $1/(4m+2)!$ in Andréief and leaves $1/(k!l!r!)$, which in turn cancels the factors $k!l!r!$ coming from the three labeled local Vandermonde integrals. Hence the cluster constants below are correctly written in terms of $L_kL_rG_l$ with no additional factorials.
 
 For a cluster $(k,l,r)$, the right-endpoint scaling contributes $4^{-r^2}$ and the center scaling contributes $2^{-l^2/2}$. The limiting squared distances from the center to the left and right clusters are $1/9$ and $4/9$. Therefore
 $$
@@ -155,7 +167,41 @@ C =
 9\sqrt2\left(U_1-\frac{V_1}{16}\right)Z_1+
 \frac{9\sqrt2}{16}(8k-r)Z_3.
 $$
-The $O(q^4)$ remainder may be integrated termwise: after restricting to the fixed wells from Step 1, the scaled domains expand to half-lines or the real line, and the remainders are polynomially bounded against the leading Laguerre and Gaussian exponential tails. In particular, $A$ and $C$ are odd in the Gaussian variables, while $B$ is even.
+
+It remains to justify integrating this expansion on the expanding scaled domains. Put
+$$
+R_q=q^{-1/8}
+$$
+and first restrict to the core region
+$$
+0\le u_i,v_i\le R_q,\qquad |z_i|\le R_q.
+$$
+There
+$$
+q|z_i|=O(q^{7/8}),\qquad q^2u_i,q^2v_i=O(q^{15/8}),
+$$
+so all logarithmic Taylor expansions above are uniform. For example,
+$$
+\frac{\phi(q^2u)}{q^2}
+=u-7q^2u^2+15q^4u^3-9q^6u^4,
+$$
+so after retaining terms through order $q^3$ its omitted part is bounded uniformly on the core by
+$$
+O(q^4R_q^3)=O(q^{29/8})=o(q^3),
+$$
+and the right-endpoint phase is treated identically. The fourth-order remainder in each cross-cluster logarithm is bounded by a constant times the fourth power of its small argument; the worst case is therefore
+$$
+O((qR_q)^4)=O(q^{7/2})=o(q^3).
+$$
+Thus the complete local logarithmic expansion is uniform through order $q^3$ on the core.
+
+For the complement of the core inside the fixed wells, shrinking the wells if necessary gives constants $c,C>0$, independent of small $q$, such that
+$$
+\frac{\phi(q^2u)}{q^2}\ge cu,\qquad
+\frac{\phi(1/3+qz/\sqrt2)}{q^2}\ge cz^2,\qquad
+\frac{\phi(1-q^2v/4)}{q^2}\ge cv.
+$$
+All Vandermonde and perturbative factors are polynomial in the scaled variables on these wells. Hence the part with some $u_i>R_q$ or $v_i>R_q$ is bounded by a polynomial times $e^{-cR_q}$, while the part with some $|z_i|>R_q$ is bounded by a polynomial times $e^{-cR_q^2}$. Since $R_q=q^{-1/8}$, both are smaller than every power of $q$, in particular $o(q^3)$. This proves that the expansion may be integrated termwise through order $q^3$. In particular, $A$ and $C$ are odd in the Gaussian variables, while $B$ is even.
 
 Step 4: Evaluate the moments and add the perturbation
 
