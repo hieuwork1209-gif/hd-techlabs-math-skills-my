@@ -55,7 +55,6 @@ f(\{2,3,\ldots,n\})
 =
 \sum_{k=1}^{n-1}k!.
 $$
-
 For any intermediate term, associate to each occurrence of $a$ the set of labels of the $d_q$ constructors lying outside it, and let $\Phi$ be the sum of $f(S)$ over all occurrences of $a$. An interchange step does not change any such set because the swapped constructors are adjacent with no $a$ between them. For a first-rule step
 $$
 d_q(a(t))\longrightarrow a^q(d_q(t)),
@@ -99,7 +98,7 @@ $\sum_{k=1}^{n-1}k!+\binom{n-1}{2}$
 
 ## Solution Concepts
 
-- typed term rewriting
+- term rewriting systems
 - normal forms
 - reduction length
 - potential function
