@@ -1,156 +1,178 @@
 ## Steps
 
-Step 1: Reveal the positive moment determinant and monotonicity
+Step 1: Convert the three binomial scales to one positive moment determinant
 For every integer $r\ge0$,
 $$
 \frac{r!}{(k+a)^{r+1}}
 =\int_0^1 t^{k+a-1}(-\log t)^r\,dt.
 $$
-After summing against $(-1)^k\binom nk$,
+Set
 $$
-r!S_{r+1}(n,a)
-=\int_0^1 t^{a-1}(1-t)^n(-\log t)^r\,dt.
+W_n(t)=(1-t)^n+e(1-t)^{n^2}+e^2(1-t)^{n^3}.
 $$
-Thus $D_n(a)$ is the Gram determinant of $1,Y,Y^2$, where $Y=-\log t$, for the positive measure
+Summing the integral identity gives
 $$
-d\mu_{n,a}(t)=t^{a-1}(1-t)^n\,dt.
+r!T_{r+1}(n,a)
+=\int_0^1 t^{a-1}W_n(t)(-\log t)^r\,dt.
 $$
-In particular $D_n(a)>0$.
-
-If $b>a$, then
+Hence $\Delta_n(a)$ is the Gram determinant of $1,Y,Y^2$, with $Y=-\log t$, for the positive measure
+$$
+d\mu_{n,a}(t)=t^{a-1}W_n(t)\,dt.
+$$
+It is therefore positive. If $b>a$, then, writing
+$$
+v(t)=\begin{pmatrix}1\\Y\\Y^2\end{pmatrix},
+$$
+the corresponding moment matrices satisfy
 $$
 M_n(a)-M_n(b)
-=\int_0^1 t^{a-1}(1-t)^n(1-t^{b-a})
-\begin{pmatrix}1\\Y\\Y^2\end{pmatrix}
-\begin{pmatrix}1&Y&Y^2\end{pmatrix}dt
+=\int_0^1\bigl(t^{a-1}-t^{b-1}\bigr)W_n(t)v(t)v(t)^T\,dt.
 $$
-is positive definite, where $M_n(a)$ is the $3\times3$ moment matrix whose determinant is $D_n(a)$. Hence $D_n(a)$ is strictly decreasing in $a$. Also $D_n(a)\to0$ as $a\to\infty$; the divergence $D_n(a)\to\infty$ as $a\downarrow0$ follows from Step 2. Therefore the defining equation for $a_n$ has exactly one positive solution.
+For every nonzero vector $u$, the quadratic form equals the integral of a strictly positive weight times the square of the nonzero polynomial $u_0+u_1Y+u_2Y^2$, so the difference is positive definite. If
+$$
+Q=M_n(b)^{-1/2}\bigl(M_n(a)-M_n(b)\bigr)M_n(b)^{-1/2},
+$$
+then $Q$ is positive definite and
+$$
+\frac{\det M_n(a)}{\det M_n(b)}=\det(I+Q)>1,
+$$
+because every eigenvalue of $I+Q$ exceeds $1$. Thus $\Delta_n(a)$ is strictly decreasing.
 
-Step 2: Express the determinant through Beta cumulants
-The total mass is
+Also $W_n(t)\le C:=1+e+e^2$, so every entry of $M_n(a)$ tends to $0$ as $a\to\infty$. For $a\downarrow0$, put $y=-\log t$. Then
 $$
-S_1(n,a)=B(a,n+1)=\frac{\Gamma(a)\Gamma(n+1)}{\Gamma(n+a+1)}.
+I_r(a):=r!T_{r+1}(n,a)
+=\int_0^\infty e^{-ay}W_n(e^{-y})y^r\,dy.
 $$
-Normalize $\mu_{n,a}$ to a probability measure and let $\kappa_r$ be the cumulants of $Y=-\log t$. Dividing the moment matrix by $S_1(n,a)$ gives
+After $z=ay$,
 $$
-D_n(a)=S_1(n,a)^3F_n(a).
+a^{r+1}I_r(a)
+=\int_0^\infty e^{-z}W_n(e^{-z/a})z^r\,dz
+\longrightarrow C\,r!
 $$
-Translation $Y\mapsto Y-\mathbb EY$ is a determinant-one change of the basis $(1,Y,Y^2)$, so the centered moment matrix is
+by dominated convergence. Therefore
 $$
+\Delta_n(a)\sim
+C^3a^{-9}\det
 \begin{pmatrix}
-1&0&\kappa_2\\
-0&\kappa_2&\kappa_3\\
-\kappa_2&\kappa_3&\kappa_4+3\kappa_2^2
+1&1&2\\
+1&2&6\\
+2&6&24
 \end{pmatrix}
+=4C^3a^{-9}\to\infty.
 $$
-and therefore
+So the defining equation for $a_n$ has exactly one positive solution.
+
+Step 2: Derive the three-threshold limiting measure
+Let $L=\log n$ and set $a=c/L$, where $c$ stays in a compact subset of $(0,\infty)$. In the moment integral use $t=n^{-x}$. For $0\le r\le4$,
 $$
-F_n(a)=2\kappa_2^3+\kappa_2\kappa_4-\kappa_3^2.
+\frac{r!T_{r+1}(n,c/L)}{L^{r+1}}
+=\int_0^\infty e^{-cx}W_n(n^{-x})x^r\,dx.
+$$
+For each $q\in\{1,2,3\}$ and $x\ne q$,
+$$
+(1-n^{-x})^{n^q}\longrightarrow
+\begin{cases}
+0,&x<q,\\
+1,&x>q.
+\end{cases}
+$$
+Hence
+$$
+W_n(n^{-x})\longrightarrow
+w(x):=\mathbf 1_{x>1}+e\,\mathbf 1_{x>2}+e^2\mathbf 1_{x>3}.
+$$
+If $c\in[A,B]\subset(0,\infty)$, the error is dominated by
+$$
+2(1+e+e^2)e^{-Ax}x^r,
+$$
+which is integrable. Thus the convergence is uniform in $c\in[A,B]$:
+$$
+\frac{r!T_{r+1}(n,c/L)}{L^{r+1}}
+\longrightarrow
+m_r(c):=\int_0^\infty e^{-cx}w(x)x^r\,dx.
+$$
+Define
+$$
+G(c)=\bigl[m_{i+j}(c)\bigr]_{i,j=0}^2,
+\qquad
+H(c)=\det G(c).
+$$
+Every term in the $3\times3$ determinant has total power $L^9$, so uniformly on compact subsets of $(0,\infty)$,
+$$
+\frac{\Delta_n(c/L)}{L^9}\longrightarrow H(c).
 $$
 
-The moment generating function is
+Step 3: Identify the limiting root without expanding the whole profile
+For $d>c>0$,
 $$
-\mathbb E e^{sY}=\frac{B(a-s,n+1)}{B(a,n+1)},
+G(c)-G(d)
+=\int_0^\infty\bigl(e^{-cx}-e^{-dx}\bigr)w(x)
+\begin{pmatrix}1\\x\\x^2\end{pmatrix}
+\begin{pmatrix}1&x&x^2\end{pmatrix}dx
 $$
-so, with $\psi_m$ denoting the order-$m$ polygamma function,
+is positive definite by the same polynomial-square argument as in Step 1. Since $G(d)$ is positive definite, the same conjugation argument gives
 $$
-\kappa_r=(-1)^r\bigl(\psi_{r-1}(a)-\psi_{r-1}(a+n+1)\bigr).
+\frac{\det G(c)}{\det G(d)}
+=\det\!\left(I+G(d)^{-1/2}(G(c)-G(d))G(d)^{-1/2}\right)>1.
 $$
-For $z>0$ the needed polygamma functions have the elementary series
+Thus $H$ is strictly decreasing.
+
+It remains to evaluate $H(1)$. For $0\le r\le4$,
 $$
-\psi_1(z)=\sum_{m=0}^{\infty}\frac1{(m+z)^2},
+m_r(1)
+=\sum_{q=1}^3 e^{q-1}\int_q^\infty e^{-x}x^r\,dx
+=\frac1e\sum_{q=1}^3\int_0^\infty e^{-y}(y+q)^r\,dy.
 $$
+Using $\int_0^\infty e^{-y}y^j\,dy=j!$ gives
 $$
--\psi_2(z)=2\sum_{m=0}^{\infty}\frac1{(m+z)^3},
-\qquad
-\psi_3(z)=6\sum_{m=0}^{\infty}\frac1{(m+z)^4}.
-$$
-Hence, as $a\downarrow0$,
-$$
-\psi_1(a)=a^{-2}+O(1),\qquad
-\psi_2(a)=-2a^{-3}+O(1),\qquad
-\psi_3(a)=6a^{-4}+O(1).
-$$
-For fixed $n$ this gives
-$$
-\kappa_2\sim a^{-2},\qquad
-\kappa_3\sim2a^{-3},\qquad
-\kappa_4\sim6a^{-4}.
+(m_0(1),m_1(1),m_2(1),m_3(1),m_4(1))
+=\frac1e(3,9,32,132,626).
 $$
 Therefore
 $$
-F_n(a)\sim4a^{-6},\qquad S_1(n,a)\sim a^{-1},
+H(1)
+=\frac1{e^3}
+\det\begin{pmatrix}
+3&9&32\\
+9&32&132\\
+32&132&626
+\end{pmatrix}
+=\frac{382}{e^3},
 $$
-so $D_n(a)\sim4a^{-9}\to\infty$ as $a\downarrow0$.
+because the determinant equals
+$$
+3(32\cdot626-132^2)-9(9\cdot626-132\cdot32)+32(9\cdot132-32^2)=382.
+$$
 
-Step 3: Find the two-scale asymptotic profile
-Put $L=\log n$ and let
+Step 4: Localize the implicit parameter and pass to the limit
+Choose fixed $A<1<B$. Since $H$ is strictly decreasing,
 $$
-a=\frac{c}{L},
+H(A)>\frac{382}{e^3}>H(B).
 $$
-where $c$ remains in a fixed compact subset of $(0,\infty)$. Stirling's formula gives uniformly in this regime
+By the uniform convergence from Step 2, for all sufficiently large $n$,
 $$
-\frac{\Gamma(n+1)}{\Gamma(n+a+1)}
-=n^{-a}(1+o(1))=e^{-c}(1+o(1)),
+\Delta_n(A/L)>\frac{382}{e^3}L^9>\Delta_n(B/L).
 $$
-while $\Gamma(a)=a^{-1}(1+o(1))$. Thus
-$$
-S_1(n,a)=\frac{Le^{-c}}{c}(1+o(1)).
-$$
-The series in Step 2 and integral comparison give
-$$
-\psi_1(n+a+1)=O(n^{-1}),\qquad
-\psi_2(n+a+1)=O(n^{-2}),\qquad
-\psi_3(n+a+1)=O(n^{-3}).
-$$
-Consequently, uniformly for such $c$,
-$$
-\kappa_2=a^{-2}(1+o(1)),\qquad
-\kappa_3=2a^{-3}(1+o(1)),\qquad
-\kappa_4=6a^{-4}(1+o(1)),
-$$
-and hence
-$$
-F_n(a)=4a^{-6}(1+o(1)).
-$$
-Combining the two factors,
-$$
-\frac{D_n(c/L)}{L^9}
-\longrightarrow
-\Phi(c):=\frac{4e^{-3c}}{c^9},
-$$
-uniformly for $c$ in compact subsets of $(0,\infty)$.
-
-Step 4: Pin down the implicit root
-The function
-$$
-\Phi(c)=\frac{4e^{-3c}}{c^9}
-$$
-is continuous and strictly decreasing from $+\infty$ to $0$. Choose fixed $0<A<B$ with $\Phi(A)>1>\Phi(B)$. By the uniform limit in Step 3, for all sufficiently large $n$,
-$$
-D_n(A/L)>L^9>D_n(B/L).
-$$
-Since $D_n$ is strictly decreasing,
+Since $\Delta_n$ is strictly decreasing,
 $$
 A<a_nL<B.
 $$
-Thus every subsequential limit $c$ of $a_nL$ lies in $(0,\infty)$ and satisfies $\Phi(c)=1$. The solution is unique, so the whole sequence converges to the positive root of
+Thus $a_nL$ stays in a compact subset of $(0,\infty)$. If a subsequence satisfies $a_{n_j}L_{n_j}\to c$, uniform convergence on $[A,B]$ and the defining equation give
 $$
-c^9e^{3c}=4.
+H(c)=\frac{382}{e^3}=H(1).
 $$
-Taking ninth roots,
+The strict monotonicity of $H$ forces $c=1$. Every convergent subsequence has the same limit, hence
 $$
-\frac c3e^{c/3}=\frac{4^{1/9}}3.
+\lim_{n\to\infty}a_n\log n=1.
 $$
-Therefore, with $W_0$ the principal Lambert $W$ function,
 
-Final Answer: $\boxed{3W_0\!\left(\frac{4^{1/9}}3\right)}$
+Final Answer: $\boxed{1}$
 
 ---
 
 ## Answer
 
-$3W_0\!\left(\frac{4^{1/9}}3\right)$
+$1$
 
 ---
 
@@ -164,14 +186,14 @@ $3W_0\!\left(\frac{4^{1/9}}3\right)$
 
 ## Solution Concepts
 
-- Beta-integral transform of alternating binomial sums
-- positive Hankel moment determinants
-- cumulants and polygamma asymptotics
-- two-scale implicit asymptotics
-- Lambert W inversion
+- alternating-binomial moment transform
+- multiscale substitution $t=n^{-x}$
+- threshold limiting measure
+- positive Gram determinants
+- Loewner monotonicity and root localization
 
 ---
 
 ## Black-Box Audit — no issues found
 
-The reciprocal-power integral, moment generating function, and polygamma series are written explicitly. The determinant is handled structurally through centering and cumulants, while existence and uniqueness of the implicit root follow from positive-definite measure ordering rather than numerical evidence.
+The reciprocal-power integral is derived explicitly, all limiting steps use a stated dominating function, and determinant monotonicity is reduced to positive quadratic forms. The constant $382/e^3$ is computed from the limiting moment matrix rather than inserted as an unexplained match.
