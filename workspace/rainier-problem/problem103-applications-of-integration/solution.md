@@ -20,7 +20,7 @@ so
 $$
 a'(s)=\frac{g(s)-a(s)}s<0.
 $$
-Also $0<a(s)<1$, and the assumption $g(s)\to0$ implies $a(s)\to0$: for fixed $S$, split the average over $(0,S)$ and $(S,s)$ and then let first $s\to\infty$ and next $S\to\infty$. Since $a(1)=1/2$, define
+Also $0<a(s)<1$, and $g(s)\to0$ implies $a(s)\to0$: split the average at a fixed $S$, let $s\to\infty$, and then let $S\to\infty$. Since $a(1)=1/2$, define
 $$
 T(s)=\frac{1-a(s)}{a(s)}.
 $$
@@ -54,49 +54,51 @@ $$
 (1+t)^4F_2(h(t),v)
 =\bigl((t+2)^2v-2t\bigr)\bigl((2t+1)^2v-2t\bigr).
 $$
-Therefore $F_2(Y(s),Y(2s))=0$ is equivalent to
+Since $H(x^8)=Y(8s)$ when $x=e^s$, the first constraint is equivalent to
 $$
-h(T(2s))\in\left\{h(2T(s)),\ h\!\left(\frac{T(s)}2\right)\right\}. \tag{1}
+h(T(8s))\in\left\{h(2T(s)),\ h\!\left(\frac{T(s)}2\right)\right\}. \tag{1}
 $$
-Similarly, for the second displayed polynomial,
+Similarly,
 $$
 (1+t)^4F_3(h(t),w)
 =\bigl((t+3)^2w-3t\bigr)\bigl((3t+1)^2w-3t\bigr),
 $$
-so
+so the second constraint becomes
 $$
-h(T(3s))\in\left\{h(3T(s)),\ h\!\left(\frac{T(s)}3\right)\right\}. \tag{2}
+h(T(27s))\in\left\{h(3T(s)),\ h\!\left(\frac{T(s)}3\right)\right\}. \tag{2}
 $$
-The map $h$ satisfies $h(t)=h(1/t)$. Thus, with
+Because $h(t)=h(1/t)$, set
 $$
 U(r)=\log T(e^r),
 \qquad
-\alpha=\log2,
+V(r)=3U(r),
 \qquad
-\beta=\log3,
+\alpha=\log8,
+\qquad
+\beta=\log27.
 $$
-relations (1)-(2) become
+Relations (1)-(2) become
 $$
-|U(r+c)|\in\{|U(r)+c|,\ |U(r)-c|\},
+|V(r+c)|\in\{|V(r)+c|,\ |V(r)-c|\},
 \qquad c\in\{\alpha,\beta\}. \tag{3}
 $$
-Moreover $U$ is continuous, strictly increasing, $U(0)=0$, and $U(r)\to\infty$ as $r\to\infty$.
+The function $V$ is continuous, strictly increasing, $V(0)=0$, and $V(r)\to\infty$ as $r\to\infty$.
 
 Step 3: Prove the two-scale rigidity for $r\geq0$
 
-Choose $R$ so large that $U(r)>\beta/2$ for $r\geq R$. Then $U(r+c)>U(r)$, while
+Choose $R$ so large that $V(r)>\beta/2$ for $r\geq R$. Then $V(r+c)>V(r)$, whereas
 $$
-|U(r)-c|<U(r)
+|V(r)-c|<V(r)
 \qquad(c=\alpha,\beta),
 $$
 so (3) forces
 $$
-U(r+c)=U(r)+c
+V(r+c)=V(r)+c
 \qquad(r\geq R).
 $$
-Hence $W(r)=U(r)-r$ has periods $\alpha$ and $\beta$ on the tail $[R,\infty)$.
+Thus $W(r)=V(r)-r$ has periods $\alpha$ and $\beta$ on the tail.
 
-The ratio $\alpha/\beta$ is irrational, since a rational relation would give $2^m=3^n$ for nonzero integers $m,n$. By the pigeonhole principle, there are positive numbers
+The ratio $\alpha/\beta=\log2/\log3$ is irrational, since a rational relation would give $2^m=3^n$ for nonzero integers $m,n$. By the pigeonhole principle there are positive numbers
 $$
 \delta_j=|m_j\alpha-n_j\beta|\to0.
 $$
@@ -104,54 +106,72 @@ Each $\delta_j$ is also a period of $W$ sufficiently far out. For example, if $\
 $$
 W(r+\delta_j)=W(r+\delta_j+n_j\beta)=W(r+m_j\alpha)=W(r).
 $$
-Given two tail points $r_1<r_2$, choose such a period $\delta_j$ and an integer $k_j$ with $r_1+k_j\delta_j\to r_2$. Periodicity gives $W(r_1+k_j\delta_j)=W(r_1)$, so continuity gives $W(r_2)=W(r_1)$. Thus $W$ is constant on the tail.
+For tail points $r_1<r_2$, choose integers $k_j$ with $r_1+k_j\delta_j\to r_2$. Periodicity and continuity then give $W(r_2)=W(r_1)$, so $W$ is constant on the tail.
 
-That constant is $0$. Indeed, (3), monotonicity, and $U(0)=0$ give
+That constant is $0$. Indeed, (3), monotonicity, and $V(0)=0$ imply by induction that
 $$
-U(m\alpha+n\beta)=m\alpha+n\beta
-\qquad(m,n\geq0)
+V(m\alpha+n\beta)=m\alpha+n\beta
+\qquad(m,n\geq0).
 $$
-by induction. Every positive number of this form is at least $\alpha$, and $\alpha>\beta/2$ because $4>3$, so the reflected choice in (3) cannot increase $U$. These points are unbounded, hence the constant tail value of $W$ is $0$.
+Every positive number of this form is at least $\alpha$, and $\alpha>\beta/2$ because $64>27$, so the reflected choice in (3) cannot increase $V$. These points are unbounded, so the constant tail value of $W$ is $0$.
 
-Now fix $r\geq0$ and choose $N$ with $r+N\alpha\geq R$. Put $u_j=U(r+j\alpha)$. The sequence is strictly increasing, and (3) gives
+Now fix $r\geq0$ and choose $N$ with $r+N\alpha\geq R$. Put $v_j=V(r+j\alpha)$. This sequence is strictly increasing, and (3) gives
 $$
-u_{j+1}\in\{u_j+\alpha,\ |u_j-\alpha|\}.
+v_{j+1}\in\{v_j+\alpha,\ |v_j-\alpha|\}.
 $$
-If $u_j\geq\alpha/2$, only the first value is larger than $u_j$. If $u_0<\alpha/2$, the reflected choice can occur only at the first step, after which the first value is forced. Consequently
+If $v_j\geq\alpha/2$, only the first value is larger than $v_j$. If $v_0<\alpha/2$, the reflected choice can occur only at the first step, after which the first value is forced. Hence
 $$
-U(r+N\alpha)=U(r)+N\alpha
+V(r+N\alpha)=V(r)+N\alpha
 $$
 or
 $$
-U(r+N\alpha)=N\alpha-U(r).
+V(r+N\alpha)=N\alpha-V(r).
 $$
-The left side equals $r+N\alpha$ on the tail. Therefore $U(r)=r$ or $U(r)=-r$; since both are nonnegative,
+The left side equals $r+N\alpha$ on the tail. Therefore $V(r)=r$ or $V(r)=-r$; since both $r$ and $V(r)$ are nonnegative,
 $$
-U(r)=r
+V(r)=r
 \qquad(r\geq0). \tag{4}
+$$
+Thus
+$$
+T(s)=s^{1/3}
+\qquad(s\geq1). \tag{5}
 $$
 
 Step 4: Recover the coordinate for $0<s\leq1$
 
-First, (1) with $s=1/2$ and $T(1)=1$ gives $T(1/2)=1/2$, because $h(z)=1/4$ only at $z=1$. Inductively, assume $T(2^{-n})=2^{-n}$ and put $\tau=T(2^{-(n+1)})<2^{-n}$. Relation (1), together with $h(z)=h(1/z)$, gives four possible values for $\tau$; the only one below $2^{-n}$ is $2^{-(n+1)}$. Hence
+Use (1) at $s=1/8$. Since $T(1)=1$ and $T(1/8)<1$, the equality $h(z)=1/4$ only at $z=1$ forces
 $$
-T(2^{-n})=2^{-n}
+T(8^{-1})=2^{-1}.
+$$
+Inductively, if $T(8^{-n})=2^{-n}$ and $\tau=T(8^{-(n+1)})<2^{-n}$, relation (1), together with $h(z)=h(1/z)$, leaves only
+$$
+\tau=2^{-(n+1)}.
+$$
+Therefore
+$$
+T(8^{-n})=2^{-n}
 \qquad(n\geq1),
 $$
-and monotonicity implies $T(s)\to0$ as $s\downarrow0$.
+and monotonicity gives $T(s)\to0$ as $s\downarrow0$.
 
 Define
 $$
 \widehat T(s)=\frac1{T(1/s)}.
 $$
-Then $\widehat T$ is continuous, strictly increasing, $\widehat T(1)=1$, and tends to infinity. Since both $F_2$ and $F_3$ are symmetric in their two variables and $h(t)=h(1/t)$, the function $\widehat T$ satisfies the same two correspondences (1)-(2). Applying Step 3 to $\widehat T$ gives $\widehat T(s)=s$ for $s\geq1$. Therefore
+Then $\widehat T$ is continuous, strictly increasing, $\widehat T(1)=1$, and tends to infinity. Since $F_2,F_3$ are symmetric in their two variables and $h(t)=h(1/t)$, the function $\widehat T$ satisfies the same correspondences (1)-(2). Applying Steps 2-3 to $\widehat T$ yields
 $$
-T(s)=s
+\widehat T(s)=s^{1/3}
+\qquad(s\geq1).
+$$
+Hence
+$$
+T(s)=s^{1/3}
 \qquad(0<s\leq1).
 $$
-Together with (4),
+Together with (5),
 $$
-T(s)=s
+T(s)=s^{1/3}
 \qquad(s>0).
 $$
 
@@ -159,28 +179,29 @@ Step 5: Recover and verify the function
 
 Since $T=(1-a)/a$,
 $$
-a(s)=\frac1{1+s}.
+a(s)=\frac1{1+s^{1/3}}.
 $$
-Using $(sa)'=g$,
+Using $(sa)'=g$ and writing $z=s^{1/3}$,
 $$
-g(s)=\left(\frac{s}{1+s}\right)'=\frac1{(1+s)^2}.
+g(s)=\left(\frac{s}{1+s^{1/3}}\right)'
+=\frac{3+2s^{1/3}}{3(1+s^{1/3})^2}.
 $$
-Thus
+The derivative with respect to $z$ is
 $$
-f(x)=g(\log x)=\frac1{(1+\log x)^2}.
+-\frac{4+2z}{3(1+z)^3}<0,
 $$
-This $g$ is continuous, strictly decreasing, takes values in $(0,1)$, and tends to $0$. Also $a(1)=1/2$, and
+so this $g$ is strictly decreasing; it also lies in $(0,1)$ and tends to $0$. Moreover
 $$
-Y(s)=a(s)(1-a(s))=\frac{s}{(1+s)^2}=h(s),
+Y(s)=a(s)(1-a(s))=h(s^{1/3}),
 $$
-so the factorizations in Step 2 make both dilation relations vanish identically.
-Final Answer: $\boxed{f(x)=\frac1{(1+\log x)^2}$}
+so $Y(8s)=h(2s^{1/3})$ and $Y(27s)=h(3s^{1/3})$, making both factored constraints in Step 2 vanish. Returning to $s=\log x$ gives the required function.
+Final Answer: $\boxed{f(x)=\frac{3+2(\log x)^{1/3}}{3(1+(\log x)^{1/3})^2}}$
 
 ---
 
 ## Answer
 
-$f(x)=\frac1{(1+\log x)^2}$
+$f(x)=\frac{3+2(\log x)^{1/3}}{3(1+(\log x)^{1/3})^2}$
 
 ---
 
@@ -198,4 +219,4 @@ $f(x)=\frac1{(1+\log x)^2}$
 - algebraic correspondences
 - hidden monotone coordinate
 - incommensurate dilation rigidity
-- continuity and monotonicity
+- cubic-root scaling
