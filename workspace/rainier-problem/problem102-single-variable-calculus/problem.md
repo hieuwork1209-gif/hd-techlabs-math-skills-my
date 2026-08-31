@@ -24,7 +24,7 @@ $$
 $$
 \bigl(2-3A(x)+3B(x)-C(x)\bigr)^2=\bigl(2-C(x)\bigr)^6.
 $$
-Determine $f(x)$ for all $x>1$.
+Determine $f(x)$ for all $x>1$. For grading, write the final answer as $f(x)=\cdots$ in unexpanded fraction notation: use $\frac{1}{(\cdots)^4}$ rather than a negative fourth power, write the logarithm as $\log x$, and do not expand or rearrange the denominator.
 
 ---
 
@@ -33,7 +33,7 @@ Determine $f(x)$ for all $x>1$.
 | Field | Value |
 |---|---|
 | **Domain** | Calculus |
-| **Sub-domain** | Applications of derivatives |
+| **Sub-domain** | Single-variable calculus |
 | **Problem Type** | Solve for unknowns |
 | **Answer Type** | Function or mapping |
 
@@ -41,4 +41,4 @@ Determine $f(x)$ for all $x>1$.
 
 ## Domain Explanation
 
-After the logarithmic change of variables, the three weighted means form a differential hierarchy. The nonlinear constraints determine only algebraic sign branches of that hierarchy; global continuation rules out the singular branches, and concavity eliminates the remaining convex branch. The decisive steps use differentiation, first-order differential equations, and concavity, so Applications of derivatives is the primary sub-domain.
+After the logarithmic change of variables, the three weighted means form a differential hierarchy in one real variable. The nonlinear constraints determine algebraic sign branches of that hierarchy; a continuation argument rules out the singular branches, and concavity eliminates the remaining convex branch. The solution combines differentiation, integration, first-order differential relations, continuity, and concavity in one variable, so Single-variable calculus is the best-fit sub-domain.

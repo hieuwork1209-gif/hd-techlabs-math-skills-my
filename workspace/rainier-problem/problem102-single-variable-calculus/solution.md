@@ -79,6 +79,8 @@ sY'=2(\delta X^3-\varepsilon X^2)=2X^2(\delta X-\varepsilon).
 $$
 Hence $\delta=1$ wherever $X\ne0$.
 
+Let $I$ be the connected component of $\{s>0:X(s)\ne0\}$ containing $s=1$. On $I$, the signs above are fixed and the corresponding explicit ODE formula for $X$ is valid. We will use the following continuation observation. Suppose that a finite endpoint $s_0>0$ of $I$ occurs before any pole of that explicit formula. Then the formula has a finite nonzero limit $L$ as $s\to s_0$ from within $I$. Since $X=2-c$ and $c$ is continuous on $(0,\infty)$, continuity gives $X(s_0)=L\ne0$. Hence $X$ remains nonzero on a neighborhood of $s_0$, contradicting the maximality of $I$. Therefore the formula cannot cease to hold at a finite point before its first pole; starting from $s=1$, it continues throughout $I$ up to the boundary of $(0,\infty)$ or to that pole.
+
 There are now four local possibilities, according to $X(1)=\pm\frac12$ and $\varepsilon=\pm1$.
 
 If $\varepsilon=1$, then
@@ -97,7 +99,7 @@ whereas
 $$
 X(1)=-\frac12\Longrightarrow X(s)=\frac1{1-3s}.
 $$
-The latter has a pole at $s=\frac13$, impossible because $C(e^s)$ is finite for every $s>0$.
+For the latter branch, the continuation observation forces the formula to persist from $s=1$ down to its first pole at $s=\frac13$. Thus $|X(s)|\to\infty$ as $s\downarrow\frac13$, impossible because $X(s)=2-C(e^s)$ is finite and continuous at $s=\frac13$.
 
 If $\varepsilon=-1$, then
 $$
@@ -111,7 +113,7 @@ Hence
 $$
 X(1)=\frac12\Longrightarrow X(s)=\frac1{3s-1},
 $$
-which again has a pole at $s=\frac13$, while
+which is ruled out in exactly the same way by its pole at $s=\frac13$, while
 $$
 X(1)=-\frac12\Longrightarrow X(s)=-\frac1{1+s}.
 $$
