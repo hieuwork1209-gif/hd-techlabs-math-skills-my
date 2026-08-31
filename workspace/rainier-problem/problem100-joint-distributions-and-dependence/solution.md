@@ -45,7 +45,16 @@ S^{-1}=R^{-1}+q^{-1}E.
 $$
 The Sherman--Morrison formula gives
 $$
-S=R-\frac{Ree^TR}{q+e^TRe},
+S=R-\frac{Ree^TR}{q+e^TRe}.
+$$
+Here $e^TRe=(1+2q)/3$, so
+$$
+S=\frac1{5q+1}
+\begin{pmatrix}
+5q&-\sqrt2q&0\\
+-\sqrt2q&q(3q+1)&0\\
+0&0&q(5q+1)
+\end{pmatrix},
 \qquad
 \det S=\frac{3q^3}{5q+1}.
 $$
@@ -122,7 +131,28 @@ I(X;Z\mid Y)
 $$
 Thus only the two diagonal precision blocks and one total determinant are needed.
 
-Given $Y$, the posterior precision in variables $(X,D)$ is
+For fixed $Y$, the posterior negative log-density of $(X,D)$ differs from
+$$
+\frac12\Bigl[
+X^TA^{-1}X+D^TS^{-1}D+(Y-X-CD)^TN^{-1}(Y-X-CD)
+\Bigr]
+$$
+only by a constant. Expanding the last term gives
+$$
+\begin{aligned}
+&(Y-X-CD)^TN^{-1}(Y-X-CD)\\
+&=Y^TN^{-1}Y+X^TN^{-1}X+D^TCN^{-1}CD
+-2Y^TN^{-1}X-2Y^TN^{-1}CD
++2X^TN^{-1}CD.
+\end{aligned}
+$$
+Therefore the quadratic terms in $(X,D)$ are
+$$
+X^T(A^{-1}+N^{-1})X
++2X^TN^{-1}CD
++D^T(S^{-1}+CN^{-1}C)D,
+$$
+so
 $$
 J_{XD}
 =\begin{pmatrix}
@@ -130,14 +160,76 @@ A^{-1}+N^{-1}&N^{-1}C\\
 CN^{-1}&S^{-1}+CN^{-1}C
 \end{pmatrix}.
 $$
-Replacing $D$ by $Z-X$ is a determinant-one linear change of variables. Therefore
+Now
+$$
+\binom XD=
+\begin{pmatrix}I&0\\-I&I\end{pmatrix}\binom XZ,
+$$
+and this change of variables has determinant $1$. Substituting $D=Z-X$ into the quadratic form yields
 $$
 J_{XX}=A^{-1}+S^{-1}+(I-C)N^{-1}(I-C),
 $$
 $$
 J_{ZZ}=S^{-1}+CN^{-1}C.
 $$
-Using $N^{-1}=12R^{-1}$ and $S^{-1}=R^{-1}+q^{-1}E$, these become
+
+The matrix arithmetic can be kept in the active $(u,w)$ block. Explicitly,
+$$
+E=\frac13
+\begin{pmatrix}
+1&\sqrt2&0\\
+\sqrt2&2&0\\
+0&0&0
+\end{pmatrix},
+\quad
+C=\frac16
+\begin{pmatrix}
+1&-2\sqrt2&0\\
+-2\sqrt2&-1&0\\
+0&0&3
+\end{pmatrix},
+$$
+$$
+I-C=\frac16
+\begin{pmatrix}
+5&2\sqrt2&0\\
+2\sqrt2&7&0\\
+0&0&3
+\end{pmatrix},
+\qquad
+R^{-1}=\operatorname{diag}(1,q^{-1},q^{-1}).
+$$
+Since $N^{-1}=12R^{-1}$ and $S^{-1}=R^{-1}+q^{-1}E$,
+$$
+S^{-1}=\frac1{3q}
+\begin{pmatrix}
+3q+1&\sqrt2&0\\
+\sqrt2&5&0\\
+0&0&3
+\end{pmatrix},
+$$
+and direct multiplication gives
+$$
+CN^{-1}C=\frac1{3q}
+\begin{pmatrix}
+q+8&2\sqrt2(1-q)&0\\
+2\sqrt2(1-q)&8q+1&0\\
+0&0&9
+\end{pmatrix},
+$$
+$$
+(I-C)N^{-1}(I-C)=\frac1{3q}
+\begin{pmatrix}
+25q+8&2\sqrt2(5q+7)&0\\
+2\sqrt2(5q+7)&8q+49&0\\
+0&0&9
+\end{pmatrix}.
+$$
+Together with
+$$
+A^{-1}=\frac1{9q}\operatorname{diag}(1,9q,9q),
+$$
+these sums give
 $$
 J_{ZZ}=\frac1{3q}
 \begin{pmatrix}
@@ -173,23 +265,68 @@ $$
 
 It remains to find $\det J$ without expanding a $6\times6$ matrix. Write
 $$
-P=\operatorname{diag}(A^{-1},S^{-1}),\qquad L=(I\ \ C).
+P=\operatorname{diag}(A^{-1},S^{-1}),\qquad L=(I\ \ C),
 $$
-Then
+so
 $$
 J_{XD}=P+L^TN^{-1}L.
 $$
-The matrix determinant lemma and Sylvester's identity give
+For invertible $P$ and conformable $U,V$, the matrix determinant lemma is
+$$
+\det(P+UV)=\det(P)\det(I+VP^{-1}U).
+$$
+Here take
+$$
+U=L^T,\qquad V=N^{-1}L.
+$$
+Thus
+$$
+\det J=\det P\,
+\det\!\left(I_3+N^{-1}LP^{-1}L^T\right).
+$$
+The equivalent dimension reduction is Sylvester's determinant identity
+$$
+\det(I_m+UV)=\det(I_r+VU),
+$$
+applied with
+$$
+U=P^{-1}L^T\in\mathbb R^{6\times3},\qquad
+V=N^{-1}L\in\mathbb R^{3\times6}.
+$$
+Finally, if $K=LP^{-1}L^T$, then
+$$
+I_3+N^{-1}K=N^{-1}(N+K),
+$$
+so
 $$
 \det J
 =\det P\,\det N^{-1}\,
 \det\bigl(N+LP^{-1}L^T\bigr).
 $$
-But
+
+Because $P^{-1}=\operatorname{diag}(A,S)$,
 $$
 H:=N+LP^{-1}L^T=A+CSC+N=\operatorname{Cov}(Y).
 $$
-In the same basis,
+Using the explicit $S$ from Step 2 and the displayed matrix for $C$,
+$$
+CSC=\frac1{12(5q+1)}
+\begin{pmatrix}
+q(8q+7)&\sqrt2q(2q-5)&0\\
+\sqrt2q(2q-5)&q(q+11)&0\\
+0&0&3q(5q+1)
+\end{pmatrix}.
+$$
+In the same denominator,
+$$
+A=\frac1{12(5q+1)}
+\operatorname{diag}\bigl(108q(5q+1),\,12(5q+1),\,12(5q+1)\bigr),
+$$
+$$
+N=\frac1{12(5q+1)}
+\operatorname{diag}\bigl(5q+1,\,q(5q+1),\,q(5q+1)\bigr).
+$$
+Adding these three matrices gives
 $$
 H=\frac1{12(5q+1)}
 \begin{pmatrix}
