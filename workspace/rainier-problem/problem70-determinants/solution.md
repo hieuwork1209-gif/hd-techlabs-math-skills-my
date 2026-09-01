@@ -1,184 +1,153 @@
 ## Steps
 
-Step 1: Normalize the Hankel determinant and identify the leading root
-Put $L=\log n$ and, for $0\le r\le4$,
+Step 1: Convert the two determinant constraints into log-derivative invariants
+Put $L=\log n$ and, for fixed $n,b$, write
 $$
-B_{r,n}(c)=\frac{r!\,T_{r+1}(n,c/L)}{L^{r+1}}.
-$$
-Using
-$$
-\frac{r!}{(k+a)^{r+1}}=\int_0^\infty y^r e^{-(k+a)y}\,dy
-$$
-and summing the binomial expansion gives
-$$
-B_{r,n}(c)=\int_0^\infty e^{-cx}x^r
-\sum_{q=1}^3e^{q-1}(1-n^{-x})^{n^q}\,dx.
-$$
-Hence, locally uniformly for $c>0$,
-$$
-B_{r,n}(c)\to m_r(c):=\sum_{q=1}^3e^{q-1}\int_q^\infty e^{-cx}x^r\,dx.
-$$
-Let
-$$
-M_n(c)=[B_{i+j,n}(c)]_{i,j=0}^2,\qquad M(c)=[m_{i+j}(c)]_{i,j=0}^2,
-$$
-and define the scale-free ratio
-$$
-Q_n(c)=\frac{\det M_n(c)}{B_{0,n}(c)^3},\qquad
-Q(c)=\frac{\det M(c)}{m_0(c)^3}.
+f(a)=T_1(n,a,b),\qquad g(a)=\log f(a).
 $$
 Because
 $$
-\Delta_n(c/L)=L^9\det M_n(c),\qquad T_1(n,c/L)=LB_{0,n}(c),
+f^{(m)}(a)=(-1)^m m!\,T_{m+1}(n,a,b),
 $$
-the defining equation is simply
+the row/column signs cancel and
 $$
-Q_n(c_n)=\frac{382}{27},\qquad c_n=a_nL.
-$$
-At $c=1$,
-$$
-(m_0,m_1,m_2,m_3,m_4,m_5)(1)
-=\frac1e(3,9,32,132,626,3406).
-$$
-Thus, with
-$$
-A=\begin{pmatrix}3&9&32\\9&32&132\\32&132&626\end{pmatrix},
-$$
-we have $\det A=382$ and therefore
-$$
-Q(1)=\frac{382/e^3}{(3/e)^3}=\frac{382}{27}.
-$$
-Also $m_r'(c)=-m_{r+1}(c)$. A cofactor calculation gives
-$$
-\det M(1)'=-\frac{5130}{e^3}.
-$$
-Consequently
-$$
-Q'(1)=\frac{-5130/e^3}{(3/e)^3}
--3\frac{382/e^3}{(3/e)^4}\frac{-9}{e}
-=-\frac{188}{3}\ne0.
-$$
-So the selected solution satisfies $c_n\to1$; the nonzero derivative also gives local uniqueness for all sufficiently large $n$.
-
-Step 2: Find the second-order boundary-layer correction
-Fix $q\in\{1,2,3\}$, put $N=n^q$, and let $X_N$ be the maximum of $N$ independent exponential random variables of mean $1$. Then
-$$
-\mathbb P(X_N\le t)=(1-e^{-t})^N.
-$$
-For
-$$
-\phi_{r,c}(x)=e^{-cx}x^r,\qquad A_{r,c}(s)=\int_s^\infty\phi_{r,c}(x)\,dx,
-$$
-integration by parts gives the exact identity
-$$
-\int_0^\infty \phi_{r,c}(x)(1-n^{-x})^{n^q}\,dx
-=\mathbb E\,A_{r,c}(X_N/L).
-$$
-Write $Z_N=X_N-\log N$. The exponential order-statistic spacings are independent exponentials with rates $N,N-1,\ldots,1$, so
-$$
-\mathbb EX_N=H_N,\qquad \operatorname{Var}(X_N)=\sum_{j=1}^N\frac1{j^2}.
-$$
-Hence
-$$
-\mathbb EZ_N=\gamma+o(L^{-2}),\qquad
-\mathbb EZ_N^2=\gamma^2+\frac{\pi^2}{6}+o(1),
-$$
-and the centered third moments stay bounded. Since $\log N=qL$, Taylor expansion at $q$ yields, uniformly for $c$ near $1$,
-$$
-\mathbb E A_{r,c}(q+Z_N/L)
-=A_{r,c}(q)-\frac{\gamma}{L}\phi_{r,c}(q)
--\frac{\gamma^2+\pi^2/6}{2L^2}\phi_{r,c}'(q)+o(L^{-2}).
-$$
-Introduce the purely translated leading moments
-$$
-m_r^{(\delta)}(c)=\sum_{q=1}^3e^{q-1}A_{r,c}(q+\delta).
-$$
-Then the preceding expansion becomes
-$$
-B_{r,n}(c)=m_r^{(\gamma/L)}(c)
--\frac{\pi^2}{12L^2}s_r(c)+o(L^{-2}),
-$$
-where
-$$
-s_r(c)=\sum_{q=1}^3e^{q-1}\phi_{r,c}'(q).
-$$
-This separates the universal first-order displacement from the genuinely second-order deformation.
-
-Step 3: Use translation invariance to eliminate the entire first correction
-For the shifted moments, substitute $x=y+\delta$ in each tail integral. The moment matrix transforms as
-$$
-M^{(\delta)}(c)=e^{-c\delta}P_\delta M(c)P_\delta^T,
-$$
-where $P_\delta$ is the lower-triangular change-of-basis matrix sending
-$1,y,y^2$ to $1,y+\delta,(y+\delta)^2$. Thus $\det P_\delta=1$, and
-$$
-\frac{\det M^{(\delta)}(c)}{m_0^{(\delta)}(c)^3}
-=\frac{\det M(c)}{m_0(c)^3}=Q(c).
-$$
-So the whole $\gamma/L$ displacement, including its $\gamma^2/L^2$ Taylor contribution, disappears from $Q_n$.
-
-At $c=1$,
-$$
-e(s_0,s_1,s_2,s_3,s_4)=(-3,-3,-2,6,46).
-$$
-Therefore the residual perturbation of the dimensionless Hankel matrix $A$ is
-$$
-\frac{\pi^2}{12L^2}E,\qquad
-E=\begin{pmatrix}3&3&2\\3&2&-6\\2&-6&-46\end{pmatrix}.
+\Delta=\det[f^{(i+j)}]_{i,j=0}^2.
 $$
 Also
 $$
-\operatorname{adj}(A)=
-\begin{pmatrix}
-2608&-1410&164\\
--1410&854&-108\\
-164&-108&15
-\end{pmatrix},
+\Lambda=ff''-(f')^2=f^2g'',
 $$
-so
+and
 $$
-\operatorname{tr}(\operatorname{adj}(A)E)=2334.
+\Omega=f^2f'''-3ff'f''+2(f')^3=f^3g'''.
 $$
-For $J(A)=\det(A)/A_{00}^3$, its directional derivative in direction $E$ is
+Writing the derivatives of $f=e^g$ through order $4$ and substituting into the $3\times3$ determinant gives
 $$
-DJ_A(E)=\frac{2334}{27}
--3\frac{382}{3^4}\cdot3
-=44.
+\frac{\Delta}{f^3}=2(g'')^3+g''g''''-(g''')^2.
 $$
-Consequently
+Define the dimensionless quantities
 $$
-Q_n(c)=Q(c)+\frac{44\pi^2}{12L^2}+o(L^{-2})
+A=\frac{g''}{L^2},\qquad B=\frac{g'''}{L^3},\qquad C=\frac{g''''}{L^4}.
 $$
-uniformly for $c$ near $1$.
+Then the two defining equations for $(a_n,b_n)$ are exactly
+$$
+A=\frac53,
+$$
+and
+$$
+H(A,B,C):=2A^3+AC-B^2-4B=\frac{598}{27}.
+$$
+Thus the problem is a coupled system of two scale-free Hankel invariants.
 
-Step 4: Extract the hardened root displacement
-Since $Q_n(c_n)=Q(1)$, $c_n\to1$, and $Q'(1)=-188/3$, Step 3 gives first that
+Step 2: Resolve the two independent scales
+Set
 $$
-c_n-1=O(L^{-2}).
+x=aL,\qquad d=x-b.
 $$
-Writing $c_n=1+\kappa_n/L^2$ and expanding at $1$,
+The beta identity gives
 $$
-0=Q'(1)\frac{\kappa_n}{L^2}
-+\frac{44\pi^2}{12L^2}+o(L^{-2}).
+f(a)=\sum_{q=1}^3e^{b(q-1)}B(a,n^q+1).
 $$
-Therefore
+Since $x$ and $b$ stay in fixed small neighborhoods of $1$,
 $$
-\kappa_n\to
--\frac{44\pi^2/12}{-188/3}
-=\frac{11\pi^2}{188}.
+B(a,n^q+1)=\Gamma(a)n^{-qa}\bigl(1+O(n^{-q})\bigr),
 $$
-Since $c_n=a_n\log n$,
+uniformly together with the first four $a$-derivatives after the appropriate powers of $L$ are removed. Hence
 $$
-(\log n)^2(a_n\log n-1)=\kappa_n\longrightarrow\frac{11\pi^2}{188}.
+f(a)=\Gamma(a)e^{-b}\left(e^{-d}+e^{-2d}+e^{-3d}\right)(1+o(L^{-4})).
+$$
+Let
+$$
+\phi(d)=\log\left(e^{-d}+e^{-2d}+e^{-3d}\right).
+$$
+From the Euler product for $\Gamma$,
+$$
+\log\Gamma z=-\log z-\gamma z+\sum_{m=2}^{\infty}\frac{(-1)^m\zeta(m)}m z^m
+$$
+for small positive $z$. Therefore, uniformly near $(x,d)=(1,0)$,
+$$
+A=x^{-2}+\phi''(d)+\frac{\zeta(2)}{L^2}+O(L^{-3}),
+$$
+$$
+B=-2x^{-3}+\phi'''(d)+O(L^{-3}),
+$$
+$$
+C=6x^{-4}+\phi''''(d)+O(L^{-4}).
+$$
+Here only the $\zeta(2)$ term survives at order $L^{-2}$.
+
+Step 3: Expose the singular Jacobian and the quadratic branch splitting
+Since
+$$
+\phi(d)=-2d+\log(1+2\cosh d),
+$$
+the elementary Taylor expansion at $0$ is
+$$
+\phi(d)=\log3-2d+\frac{d^2}{3}-\frac{d^4}{36}+\frac{13d^6}{3240}+O(d^8).
+$$
+Write $u=x-1$. Then
+$$
+A=\frac53-2u-\frac{d^2}{3}+\frac{\zeta(2)}{L^2}
++O(u^2+d^4+L^{-3}),
+$$
+$$
+B=-2+6u-\frac{2d}{3}+O(u^2+d^3+L^{-3}),
+$$
+and
+$$
+C=\frac{16}{3}-24u+\frac{13d^2}{9}
++O(u^2+d^4+L^{-4}).
+$$
+The first equation $A=5/3$ therefore gives
+$$
+-2u-\frac{d^2}{3}+\frac{\zeta(2)}{L^2}
+=O(u^2+d^4+L^{-3}). \tag{1}
+$$
+Substituting the displayed expansions into
+$H=2A^3+AC-B^2-4B$ gives
+$$
+H-\frac{598}{27}
+=-84u-\frac{145}{27}d^2+\frac{22\zeta(2)}{L^2}
++O(u^2+|u||d|+|d|^3+L^{-3}). \tag{2}
+$$
+There is no term linear in $d$: this is the designed singularity of the leading Jacobian.
+
+Eliminate $u$ from (1) and (2). Because the admissible window is fixed and small, the remainder may be absorbed locally, and one obtains first
+$$
+d=O(L^{-1}),\qquad u=O(L^{-2}).
+$$
+Using these bounds back in (1)-(2) yields the sharper relation
+$$
+\frac{233}{27}d^2-\frac{20\zeta(2)}{L^2}=o(L^{-2}). \tag{3}
+$$
+The positive condition $a_nL>b_n$ selects the positive branch of this quadratic splitting. Moreover, the derivative of the left side of (3) with respect to $d$ is positive on that branch for large $n$, which gives the claimed local uniqueness.
+
+Step 4: Extract the relative-scale limit
+For $d_n=a_nL-b_n>0$, multiply (3) by $L^2$:
+$$
+\frac{233}{27}(Ld_n)^2\longrightarrow20\zeta(2).
+$$
+The classical product
+$$
+\frac{\sin\pi z}{\pi z}=\prod_{m=1}^{\infty}\left(1-\frac{z^2}{m^2}\right)
+$$
+shows by comparing the $z^2$ coefficient that $\zeta(2)=\pi^2/6$. Hence
+$$
+(Ld_n)^2\longrightarrow\frac{540}{233}\cdot\frac{\pi^2}{6}
+=\frac{90\pi^2}{233}.
+$$
+Taking the positive square root and recalling $d_n=a_n\log n-b_n$ gives
+$$
+(\log n)(a_n\log n-b_n)\longrightarrow3\pi\sqrt{\frac{10}{233}}.
 $$
 
-Final Answer: $\boxed{\frac{11\pi^2}{188}}$
+Final Answer: $\boxed{3\pi\sqrt{\frac{10}{233}}}$
 
 ---
 
 ## Answer
 
-$\frac{11\pi^2}{188}$
+$3\pi\sqrt{\frac{10}{233}}$
 
 ---
 
@@ -192,14 +161,14 @@ $\frac{11\pi^2}{188}$
 
 ## Solution Concepts
 
-- Hankel Gram determinants
-- translation-invariant moment ratios
-- exponential order statistics
-- second-order boundary layers
-- determinant directional derivatives
+- Hankel determinant invariants
+- logarithmic derivative identities
+- coupled singular implicit systems
+- quadratic branch splitting
+- Gamma-function asymptotics
 
 ---
 
 ## Black-Box Audit — no issues found
 
-The alternating-binomial sums are converted to explicit positive moment integrals. The first-order boundary displacement is derived from exponential maxima and then eliminated structurally by translation invariance of the normalized determinant ratio. The surviving second-order term is obtained from the explicitly derived variance $\sum_{j\ge1}j^{-2}=\pi^2/6$, and the remaining constants are reduced to displayed finite matrices and cofactors.
+The alternating-binomial sums are reduced explicitly to beta functions, the determinant and auxiliary polynomial are converted to displayed log-derivative invariants, and the singularity is exhibited by the cancellation of the linear relative-scale term. The surviving quadratic coefficient and the $\zeta(2)$ correction are both derived in the displayed expansions, with $\zeta(2)=\pi^2/6$ justified from the sine product.
