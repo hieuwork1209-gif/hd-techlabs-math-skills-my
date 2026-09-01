@@ -4,17 +4,19 @@
 
 For each integer $n\geq1$ and real $\lambda$, define
 $$
-I_n(\lambda)=\int_0^1 (2x-1)\exp\!\left(-n x^2(1-x)^2+\lambda(2x-1)\right)
-\left(1+(2x-1)\exp\!\left(-\frac1{x(1-x)}\right)\right)\,dx,
+I_n(\lambda)=2\int_0^1\!\int_0^1\left[
+\sinh(\lambda)e^{-n(xy)^2}
++\left(1-\sqrt[3]{2n}\,xy\right)^5
+\exp\!\left(-n(xy)^2-\frac1{xy}\right)
+\right]dx\,dy,
 $$
-where the factor $\exp(-1/(x(1-x)))$ is interpreted as $0$ at $x=0,1$.
-For each $n$, let $\lambda_n$ be the unique real number satisfying
+where the second exponential is interpreted as $0$ when $xy=0$. For each $n$, let $\lambda_n$ be the unique real number satisfying
 $$
 I_n(\lambda_n)=0.
 $$
-Determine the constants $c>0$ and $L\neq0$ such that
+Determine the unique constants $\alpha>0$, $c>0$, and $L\neq0$ such that
 $$
-\lim_{n\to\infty} e^{c n^{1/3}}\lambda_n=L.
+\lim_{n\to\infty}n^\alpha e^{c n^{1/3}}\lambda_n=L.
 $$
 
 ---
@@ -32,4 +34,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for the exponentially small displacement of an implicitly defined root of a definite integral. The symmetric endpoint contributions cancel to every algebraic order, so the decisive contribution comes from a flat perturbation whose dominant region moves toward the endpoints on a different scale. Determining that scale and evaluating the resulting saddle asymptotics are applications of integration and asymptotic evaluation of definite integrals, so Calculus -> Applications of integration is the best fit.
+The problem asks for a sharp asymptotic quantity defined by a two-dimensional definite integral. The product $xy$ creates a logarithmic density after reduction to one variable, while the flat exponential term creates a moving saddle at scale $n^{-1/3}$. Its amplitude has a fifth-order zero exactly at that saddle, so several ordinary Laplace contributions cancel before the first nonzero term appears. Determining the surviving balance and the implicit root is an application of asymptotic integration, so Calculus -> Applications of integration is the best fit.
