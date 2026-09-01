@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Reduce the determinant and its minor to log-derivative invariants
+Step 1: Reduce the three algebraic invariants to log derivatives
 Put $L=\log n$ and, for fixed $n$, write
 $$
 f(a)=T_1(n,a),\qquad g(a)=\log f(a).
@@ -9,17 +9,21 @@ Since
 $$
 f^{(m)}(a)=(-1)^m m!\,T_{m+1}(n,a),
 $$
-the row/column signs cancel in the Hankel determinant, and
+the row/column signs cancel and
 $$
-\Delta_n(a)=\det[f^{(i+j)}(a)]_{i,j=0}^2.
+\Delta_n=\det[f^{(i+j)}]_{i,j=0}^2.
 $$
 Also
 $$
-\Lambda_n(a)=ff''-(f')^2=f^2g''.
+\Lambda_n=ff''-(f')^2=f^2g'',
 $$
-Writing the derivatives of $f=e^g$ through order $4$ and simplifying the $3\times3$ determinant gives
+while
 $$
-\frac{\Delta_n(a)}{f(a)^3}=2(g'')^3+g''g''''-(g''')^2.
+\Omega_n=f^2f'''-3ff'f''+2(f')^3=f^3g'''.
+$$
+Expanding the $3\times3$ determinant for $f=e^g$ gives
+$$
+\frac{\Delta_n}{f^3}=2(g'')^3+g''g''''-(g''')^2.
 $$
 For $c=aL$, define
 $$
@@ -29,132 +33,148 @@ C_n(c)=\frac{g''''}{L^4}.
 $$
 After division by $L^6f^3$, the defining equation is
 $$
-\mathcal F_n(c_n)=-\frac{608}{27},\qquad c_n=a_nL,
+\mathcal F_n(c_n)=0,\qquad c_n=a_nL,
 $$
 where
 $$
-\mathcal F_n(c)=2A_n(c)^3+A_n(c)C_n(c)-B_n(c)^2-22A_n(c).
+\mathcal F(A,B,C)
+=27(2A^3+AC-B^2)-594A-108B+392.
 $$
-Thus the hardening is only the subtraction of the normalized $2\times2$ principal minor from the original normalized $3\times3$ determinant.
 
-Step 2: Expand the same beta-function model one order deeper
+Step 2: Expand the same beta-function model through fourth order
 The beta identity gives
 $$
 f(a)=\sum_{q=1}^3e^{q-1}B(a,n^q+1).
 $$
 For $c$ in a fixed neighborhood of $1$,
 $$
-B(a,n^q+1)=\Gamma(a)n^{-qa}\bigl(1+O(n^{-q})\bigr),
+B(c/L,n^q+1)=\Gamma(c/L)e^{-qc}\bigl(1+O(n^{-q})\bigr),
 $$
-uniformly together with the first four $a$-derivatives after division by the corresponding powers of $L$. Therefore, with $d=c-1$,
+uniformly together with the first four $a$-derivatives after division by the corresponding powers of $L$. Hence, with $d=c-1$,
 $$
 f(c/L)=\Gamma(c/L)e^{-1}
-\left(e^{-d}+e^{-2d}+e^{-3d}\right)\bigl(1+o(L^{-4})\bigr).
+\left(e^{-d}+e^{-2d}+e^{-3d}\right)(1+o(L^{-5})).
 $$
 Set
 $$
 \phi(d)=\log\left(e^{-d}+e^{-2d}+e^{-3d}\right).
 $$
-The Euler product
-$$
-\frac1{\Gamma z}=ze^{\gamma z}\prod_{m=1}^{\infty}
-\left(1+\frac zm\right)e^{-z/m}
-$$
-gives, after taking logarithms and expanding $\log(1+z/m)$,
+From the Euler product for $\Gamma$,
 $$
 \log\Gamma z=-\log z-\gamma z
-+\frac{\zeta(2)}2z^2-\frac{\zeta(3)}3z^3+O(z^4).
++\frac{\zeta(2)}2z^2-\frac{\zeta(3)}3z^3
++\frac{\zeta(4)}4z^4+O(z^5).
 $$
-Differentiating and using $a=c/L$ yields, uniformly near $c=1$,
+Differentiating and putting $a=c/L$ yields
 $$
 A_n(c)=c^{-2}+\phi''(d)+\frac{\zeta(2)}{L^2}
--\frac{2c\zeta(3)}{L^3}+O(L^{-4}),
+-\frac{2c\zeta(3)}{L^3}
++\frac{3c^2\zeta(4)}{L^4}+O(L^{-5}),
 $$
 $$
-B_n(c)=-2c^{-3}+\phi'''(d)-\frac{2\zeta(3)}{L^3}+O(L^{-4}),
+B_n(c)=-2c^{-3}+\phi'''(d)
+-\frac{2\zeta(3)}{L^3}
++\frac{6c\zeta(4)}{L^4}+O(L^{-5}),
 $$
 $$
-C_n(c)=6c^{-4}+\phi''''(d)+O(L^{-4}).
+C_n(c)=6c^{-4}+\phi''''(d)
++\frac{6\zeta(4)}{L^4}+O(L^{-5}).
 $$
 
-Step 3: Use the added minor to cancel the $\zeta(2)$ shortcut
+Step 3: Cancel the $\zeta(3)$ shortcut and keep the quadratic $\zeta(2)^2$ term
 Since
 $$
 \phi(d)=\log3-2d+\frac{d^2}{3}-\frac{d^4}{36}+O(d^6),
 $$
-at $c=1$ we have
+at $c=1$ the leading values are
 $$
-A_0=\frac53,\qquad B_0=-2,\qquad C_0=\frac{16}{3}.
+A_0=\frac53,\qquad B_0=-2,\qquad C_0=\frac{16}{3},
 $$
-Hence
-$$
-2A_0^3+A_0C_0-B_0^2=\frac{382}{27},
-$$
-and therefore
-$$
-\mathcal F_0(1)=\frac{382}{27}-22\cdot\frac53=-\frac{608}{27}.
-$$
-Also
+with
 $$
 A_0'(1)=-2,\qquad B_0'(1)=\frac{16}{3},\qquad C_0'(1)=-24.
 $$
-Thus the derivative of the original determinant invariant is
+Direct substitution gives
 $$
-(6A_0^2+C_0)A_0'+A_0C_0'-2B_0B_0'=-\frac{188}{3},
+\mathcal F(A_0,B_0,C_0)=0.
 $$
-so
+Moreover,
 $$
-\mathcal F_0'(1)=-\frac{188}{3}-22(-2)=-\frac{56}{3}\ne0.
+\mathcal F_A(A_0,B_0,C_0)=0,\qquad
+\mathcal F_B(A_0,B_0,C_0)=0,\qquad
+\mathcal F_C(A_0,B_0,C_0)=45.
 $$
-The implicit-function theorem therefore produces a root near $1$; the uniqueness assumed in the statement identifies it with $c_n$.
+Thus both the $L^{-2}$ correction from $\zeta(2)$ and the $L^{-3}$ correction from $\zeta(3)$ are invisible to first order. The leading root derivative is nevertheless nonzero:
+$$
+\mathcal F_0'(1)
+=45\,C_0'(1)=-1080.
+$$
 
-Now inspect the finite-$L$ correction at $c=1$. For
+At $c=1$,
 $$
-\mathcal F(A,B,C)=2A^3+AC-B^2-22A,
+A_n=A_0+\frac{\zeta(2)}{L^2}
+-\frac{2\zeta(3)}{L^3}
++\frac{3\zeta(4)}{L^4}+O(L^{-5}),
 $$
-we have
 $$
-\frac{\partial\mathcal F}{\partial A}(A_0,B_0,C_0)
-=6A_0^2+C_0-22=0.
+B_n=B_0-\frac{2\zeta(3)}{L^3}
++\frac{6\zeta(4)}{L^4}+O(L^{-5}),
 $$
-Therefore the entire $\zeta(2)L^{-2}$ correction in $A_n$ cancels, exactly targeting the shortcut used in the previous portal trace. The $L^{-3}$ contribution from $A_n$ cancels for the same reason, while
 $$
-\frac{\partial\mathcal F}{\partial B}(A_0,B_0,C_0)=-2B_0=4.
+C_n=C_0+\frac{6\zeta(4)}{L^4}+O(L^{-5}).
 $$
-Since the $L^{-3}$ correction in $B_n(1)$ is $-2\zeta(3)L^{-3}$,
+Because the first derivatives in the $A$ and $B$ directions vanish, one must retain the quadratic effect of the $L^{-2}$ perturbation in $A$. Since
+$$
+\mathcal F_{AA}(A_0,B_0,C_0)=540,
+$$
+Taylor expansion gives
 $$
 \mathcal F_n(1)
-=-\frac{608}{27}-\frac{8\zeta(3)}{L^3}+O(L^{-4}).
+=\frac{45\cdot6\,\zeta(4)}{L^4}
++\frac{540}{2}\frac{\zeta(2)^2}{L^4}
++O(L^{-5})
+=\frac{270(\zeta(4)+\zeta(2)^2)}{L^4}+O(L^{-5}).
 $$
-So the new condition goes exactly one structural layer beyond the old $\pi^2/6$ correction rather than redesigning the problem.
+This is the extra layer missed if one tracks only the next linear zeta term.
 
-Step 4: Extract the one-order-deeper root displacement
-Because $\mathcal F_0'(1)=-56/3$, the preceding expansion first gives
+Step 4: Extract the fourth-order root displacement
+Since $\mathcal F_0'(1)=-1080\ne0$, the preceding expansion implies
 $$
-c_n-1=O(L^{-3}).
+c_n-1=O(L^{-4}).
 $$
-Expanding the defining equation at $c=1$,
+Expanding the root equation at $c=1$,
 $$
-0=\mathcal F_n(c_n)+\frac{608}{27}
-=-\frac{56}{3}(c_n-1)-\frac{8\zeta(3)}{L^3}+o(L^{-3}).
+0=-1080(c_n-1)
++\frac{270(\zeta(4)+\zeta(2)^2)}{L^4}
++o(L^{-4}).
 $$
-Hence
+Therefore
 $$
-L^3(c_n-1)\longrightarrow
--\frac{3\zeta(3)}7.
+L^4(c_n-1)\longrightarrow
+\frac{\zeta(4)+\zeta(2)^2}{4}.
+$$
+Using
+$$
+\zeta(2)=\frac{\pi^2}{6},\qquad
+\zeta(4)=\frac{\pi^4}{90},
+$$
+we obtain
+$$
+\frac14\left(\frac{\pi^4}{90}+\frac{\pi^4}{36}\right)
+=\frac{7\pi^4}{720}.
 $$
 Since $c_n=a_n\log n$,
 $$
-(\log n)^3(a_n\log n-1)\longrightarrow-\frac{3\zeta(3)}7.
+(\log n)^4(a_n\log n-1)\longrightarrow\frac{7\pi^4}{720}.
 $$
 
-Final Answer: $\boxed{-\frac{3\zeta(3)}7}$
+Final Answer: $\boxed{\frac{7\pi^4}{720}}$
 
 ---
 
 ## Answer
 
-$-\frac{3\zeta(3)}7$
+$\frac{7\pi^4}{720}$
 
 ---
 
@@ -170,12 +190,12 @@ $-\frac{3\zeta(3)}7$
 
 - Hankel determinant invariants
 - principal-minor cancellation
-- beta and Gamma asymptotics
-- logarithmic derivative identities
-- zeta-value corrections
+- third log-derivative invariant
+- Gamma-function asymptotics
+- quadratic zeta correction
 
 ---
 
 ## Black-Box Audit — no issues found
 
-The statement preserves the original one-parameter beta/Hankel construction. The added principal minor cancels the full $L^{-2}$ curvature correction algebraically, while the surviving $L^{-3}$ term comes from the explicitly displayed cubic term in the Euler-product expansion of $\log\Gamma$. All constants used in the root extraction are derived in the displayed calculations.
+The statement preserves the same one-parameter beta/Hankel construction. The added invariant is exactly $f^3g'''$, so it cancels the cubic Gamma correction without changing the architecture. At fourth order, the direct $\zeta(4)$ term and the quadratic $\zeta(2)^2$ contribution are both displayed and retained; the root derivative remains nonzero.
