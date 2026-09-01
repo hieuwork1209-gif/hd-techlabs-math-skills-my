@@ -2,21 +2,25 @@
 
 ## LaTeX (Normalized)
 
-For each integer $n\geq1$ and real $\lambda$, define
+All logarithms are natural. For each integer $n\geq1$, real $\lambda$, and $(x_1,x_2,x_3,x_4)\in[0,1]^4$, put
 $$
-I_n(\lambda)=2\int_0^1\!\int_0^1\left[
-\sinh(\lambda)e^{-n(xy)^2}
-+\left(1-\sqrt[3]{2n}\,xy\right)^5
-\exp\!\left(-n(xy)^2-\frac1{xy}\right)
-\right]dx\,dy,
+T=x_1x_2x_3x_4.
 $$
-where the second exponential is interpreted as $0$ when $xy=0$. For each $n$, let $\lambda_n$ be the unique real number satisfying
+Define
+$$
+\begin{aligned}
+I_n(\lambda)=\int_{[0,1]^4}\Bigg[&\sinh(\lambda)e^{-nT^2}\\
+&+\sum_{j=0}^3(-1)^{3-j}\binom3j2^j\left(1-(2n)^{1/3}2^jT\right)^5
+\exp\!\left(-4^j nT^2-\frac1{2^jT}\right)\Bigg]d\mathbf x,
+\end{aligned}
+$$
+where each exponential containing $1/T$ is interpreted as $0$ when $T=0$. For each $n$, let $\lambda_n$ be the unique real number satisfying
 $$
 I_n(\lambda_n)=0.
 $$
-Determine the unique constants $\alpha>0$, $c>0$, and $L\neq0$ such that
+Determine the unique constants $\alpha>0$, $\beta>0$, $c>0$, and $L\neq0$ such that
 $$
-\lim_{n\to\infty}n^\alpha e^{c n^{1/3}}\lambda_n=L.
+\lim_{n\to\infty}n^\alpha(\log n)^\beta e^{c n^{1/3}}\lambda_n=L.
 $$
 
 ---
@@ -34,4 +38,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for a sharp asymptotic quantity defined by a two-dimensional definite integral. The product $xy$ creates a logarithmic density after reduction to one variable, while the flat exponential term creates a moving saddle at scale $n^{-1/3}$. Its amplitude has a fifth-order zero exactly at that saddle, so several ordinary Laplace contributions cancel before the first nonzero term appears. Determining the surviving balance and the implicit root is an application of asymptotic integration, so Calculus -> Applications of integration is the best fit.
+The problem asks for the sharp asymptotics of an implicitly defined root of a four-dimensional definite integral. Reducing the product variable creates a cubic logarithmic density; four scaled flat phases have the same moving saddle and are arranged as a third finite difference, cancelling the three dominant logarithmic orders. The surviving saddle contribution is further delayed by a fifth-order zero of the amplitude. These are applications of asymptotic integration, so Calculus -> Applications of integration is the best fit.
