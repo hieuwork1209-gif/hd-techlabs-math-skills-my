@@ -32,7 +32,7 @@ Determine exactly the right-hand sensitivity
 $$
 \kappa_*=\lim_{h\downarrow0}\frac{\rho_*(\tfrac14+h)-\rho_*(\tfrac14)}{h}.
 $$
-Your determination must also establish that this limit exists. You may use $\operatorname{Root}_I(P)$ to denote the unique real root of a polynomial $P$ in an interval $I$.
+You may use $\operatorname{Root}_I(P)$ to denote the unique real root of a polynomial $P$ in an interval $I$.
 
 ---
 
