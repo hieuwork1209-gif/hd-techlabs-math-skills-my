@@ -25,9 +25,9 @@ which is the variance of $x$ under a positive density on $(0,1)$. Hence $M_n'(\l
 $$
 M_n(\lambda)\to0\quad(\lambda\to-\infty),
 \qquad
-M_n(\lambda)\to1\quad(\lambda\to+\infty).
+M_n(\lambda)\to1\quad(\lambda\to+\infty),
 $$
-Therefore there is exactly one $\lambda_n$ for which $M_n(\lambda_n)=1/2$, equivalently $I_n(\lambda_n)=0$.
+because exponential tilting by $e^{\lambda x}$ concentrates the normalized density arbitrarily close to $0$ or $1$, respectively. Therefore there is exactly one $\lambda_n$ for which $M_n(\lambda_n)=1/2$, equivalently $I_n(\lambda_n)=0$.
 
 Step 2: Compute the two endpoint contributions through the first correction
 
@@ -97,13 +97,17 @@ $$
 +\frac{e^\lambda(1-2\lambda)}{8n}
 +O(n^{-3/2}). \tag{2}
 $$
-Combining (1) and (2), uniformly for $\lambda$ in compact sets,
+
+For completeness, these remainder estimates follow directly from the displayed Taylor formulas. Choose $\varepsilon>0$ so small that $V(x)\geq x^2/2$ on $[0,\varepsilon]$ and $V(1-y)\geq y^2$ on $[0,\varepsilon]$. After the substitutions above, split at $t=n^{1/10}$. On $0\leq t\leq n^{1/10}$ the Taylor remainders are bounded by a fixed polynomial in $t$ times $n^{-1}$, hence by an integrable polynomial times a Gaussian after multiplication by $e^{-t^2/2}$ or $e^{-t^2}$. On the remaining scaled tail the quadratic lower bounds give $O(e^{-c n^{1/5}})$. Thus termwise integration is valid and the $O(n^{-3/2})$ errors are uniform for $\lambda$ in compact sets.
+
+Combining (1) and (2),
 $$
 I_n(\lambda)
 =\frac{\sqrt\pi}{2\sqrt n}\left(-1+\frac{e^\lambda}{\sqrt2}\right)
 +\frac1n\left(\frac{1-\lambda}{2}+\frac{e^\lambda(1-2\lambda)}8\right)
-+O(n^{-3/2}). \tag{3}
++O(n^{-3/2}), \tag{3}
 $$
+uniformly for $\lambda$ in compact sets.
 
 Step 3: Locate $\lambda_n$ at the correct scale
 
