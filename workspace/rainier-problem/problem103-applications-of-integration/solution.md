@@ -1,201 +1,197 @@
 ## Steps
 
-Step 1: Prove that the implicit root is unique
+Step 1: Separate the implicit root from the asymptotic integral
 
-Put
+Define
 $$
-\sigma(x)=2x-1,\qquad y=x(1-x),\qquad h(x)=\exp\!\left(-\frac1{x(1-x)}\right).
-$$
-Since $0<y\leq1/4$ on $(0,1)$,
-$$
-0<h(x)\leq e^{-4},
-$$
-so
-$$
-1+\sigma(x)h(x)>0.
-$$
-Define the positive weight
-$$
-W_n(x)=e^{-ny^2}\bigl(1+\sigma(x)h(x)\bigr)
+A_n=\int_0^1\!\int_0^1 e^{-n(xy)^2}\,dx\,dy
 $$
 and
 $$
-Z_n(\lambda)=\int_0^1 W_n(x)e^{\lambda\sigma(x)}\,dx.
+J_n=\int_0^1\!\int_0^1
+\left(1-\sqrt[3]{2n}\,xy\right)^5
+\exp\!\left(-n(xy)^2-\frac1{xy}\right)dx\,dy.
 $$
 Then
 $$
-I_n(\lambda)=Z_n'(\lambda),
+I_n(\lambda)=2A_n\sinh\lambda+2J_n.
 $$
-and
+Since $A_n>0$, the function $I_n$ is strictly increasing in $\lambda$ and tends to $\pm\infty$ as $\lambda\to\pm\infty$. Hence the root is unique and satisfies
 $$
-I_n'(\lambda)=Z_n''(\lambda)
-=\int_0^1\sigma(x)^2W_n(x)e^{\lambda\sigma(x)}\,dx>0.
+\sinh\lambda_n=-\frac{J_n}{A_n}. \tag{1}
 $$
-Thus $I_n$ is strictly increasing. As $\lambda\to+\infty$, any fixed interval near $x=1$ gives a positive exponentially growing contribution while the part with $\sigma\leq0$ stays bounded; hence $I_n(\lambda)\to+\infty$. Similarly $I_n(\lambda)\to-\infty$ as $\lambda\to-\infty$. Therefore the root $\lambda_n$ exists and is unique.
+Thus the problem reduces to finding the first nonzero asymptotic term of $J_n/A_n$.
 
-Step 2: Isolate the beyond-all-orders asymmetry
+Step 2: Reduce the product integrals to one variable and evaluate $A_n$
 
-The functions $y=x(1-x)$ and $h(x)$ are invariant under $x\mapsto1-x$, while
+For every integrable function $F$ on $(0,1)$,
 $$
-\sigma(1-x)=-\sigma(x).
+\int_0^1\!\int_0^1 F(xy)\,dx\,dy
+=\int_0^1(-\log t)F(t)\,dt. \tag{2}
 $$
-At $\lambda=0$ the symmetric part cancels exactly:
+Indeed, for fixed $x$, put $t=xy$ and then reverse the order of integration:
 $$
-\int_0^1\sigma(x)e^{-ny^2}\,dx=0.
+\int_0^1\frac1x\int_0^xF(t)\,dt\,dx
+=\int_0^1F(t)\int_t^1\frac{dx}{x}\,dt.
+$$
+Applying (2),
+$$
+A_n=\int_0^1(-\log t)e^{-nt^2}\,dt.
+$$
+With $s=\sqrt n\,t$,
+$$
+A_n=\frac1{\sqrt n}\left[
+\frac12\log n\int_0^{\sqrt n}e^{-s^2}\,ds
+-\int_0^{\sqrt n}(\log s)e^{-s^2}\,ds
+\right].
+$$
+The second integral converges to a finite constant, while the first tends to
+$$
+\frac12\log n\cdot\frac{\sqrt\pi}{2}.
 $$
 Therefore
 $$
-I_n(0)=J_n,
+A_n\sim\frac{\sqrt\pi}{4}\,n^{-1/2}\log n. \tag{3}
+$$
+It will be convenient to write
+$$
+N=n^{1/3}.
+$$
+Then (3) becomes
+$$
+A_n\sim\frac{3\sqrt\pi}{4}(\log N)N^{-3/2}. \tag{4}
+$$
+
+Step 3: Locate the moving saddle in $J_n$
+
+Using (2) again and then $t=z/N$,
+$$
+J_n
+=\frac1N\int_0^N(\log N-\log z)
+\left(1-2^{1/3}z\right)^5e^{-N\Phi(z)}\,dz, \tag{5}
 $$
 where
 $$
-J_n=\int_0^1\sigma(x)^2\exp\!\left(-ny^2-\frac1y\right)\,dx>0. \tag{1}
+\Phi(z)=z^2+\frac1z.
 $$
-The derivative has another exact symmetry cancellation:
+Now
 $$
-I_n'(0)
-=\int_0^1\sigma(x)^2e^{-ny^2}\,dx
-+\int_0^1\sigma(x)^3e^{-ny^2-1/y}\,dx
-=K_n, \tag{2}
+\Phi'(z)=2z-\frac1{z^2},
 $$
-where
+so the unique critical point on $(0,\infty)$ is
 $$
-K_n=\int_0^1\sigma(x)^2e^{-ny^2}\,dx.
+r=2^{-1/3}.
 $$
-The second integral in (2) vanishes because its integrand is antisymmetric.
-
-Step 3: Evaluate the ordinary endpoint scale $K_n$
-
-On $0\leq x\leq1/2$, the change of variable
+It is the unique minimum, with
 $$
-y=x(1-x)
-$$
-gives
-$$
-\sigma(x)^2=1-4y,
+c:=\Phi(r)=\frac{3}{2^{2/3}},
 \qquad
- dx=\frac{dy}{\sqrt{1-4y}}.
-$$
-Using symmetry about $x=1/2$,
-$$
-K_n=2\int_0^{1/4}\sqrt{1-4y}\,e^{-ny^2}\,dy.
-$$
-Set $y=t/\sqrt n$. Then
-$$
-\sqrt n\,K_n
-=2\int_0^{\sqrt n/4}\sqrt{1-\frac{4t}{\sqrt n}}\,e^{-t^2}\,dt.
-$$
-For every fixed $t$ the square-root factor tends to $1$, and the Gaussian tail gives domination. Hence
-$$
-\sqrt n\,K_n\longrightarrow2\int_0^\infty e^{-t^2}\,dt=\sqrt\pi,
-$$
-so
-$$
-K_n\sim\sqrt\pi\,n^{-1/2}. \tag{3}
-$$
-
-Step 4: Find the moving saddle created by the flat perturbation
-
-Applying the same change of variable to (1),
-$$
-J_n=2\int_0^{1/4}\sqrt{1-4y}\,
-\exp\!\left(-ny^2-\frac1y\right)\,dy.
-$$
-Let
-$$
-N=n^{1/3},\qquad y=\frac zN.
-$$
-Then
-$$
-J_n=\frac2N\int_0^{N/4}\sqrt{1-\frac{4z}{N}}\,e^{-N\Phi(z)}\,dz,
+\Phi''(r)=6,
 \qquad
-\Phi(z)=z^2+\frac1z. \tag{4}
+\Phi'''(r)=-6\,2^{4/3}. \tag{6}
 $$
-The function $\Phi$ has a unique critical point on $(0,\infty)$ because
+The amplitude in (5) has a fifth-order zero at the same point:
 $$
-\Phi'(z)=2z-\frac1{z^2}=0
-\iff z=z_0:=2^{-1/3}.
+\left(1-2^{1/3}z\right)^5
+=-2^{5/3}(z-r)^5. \tag{7}
 $$
-It is the unique minimum, and
-$$
-\Phi(z_0)=\frac{3}{2^{2/3}}=:c,
-\qquad
-\Phi''(z_0)=6. \tag{5}
-$$
-To extract the constant in (4), write
-$$
-z=z_0+\frac u{\sqrt N}.
-$$
-Taylor's formula at $z_0$ gives, for bounded $u$,
-$$
-N\bigl(\Phi(z)-c\bigr)=3u^2+O\!\left(\frac{|u|^3}{\sqrt N}\right),
-$$
-and the square-root amplitude in (4) tends to $1$. On the complement of any fixed neighborhood of $z_0$, continuity and the uniqueness of the minimum give $\Phi\geq c+\eta$ for some $\eta>0$; inside that neighborhood the positive second derivative gives a Gaussian majorant after shrinking it if necessary. Thus the rescaled integral converges to the Gaussian integral, and
-$$
-\int_0^{N/4}\sqrt{1-\frac{4z}{N}}\,e^{-N\Phi(z)}\,dz
-\sim e^{-cN}\frac1{\sqrt N}\int_{-\infty}^{\infty}e^{-3u^2}\,du
-=e^{-cN}\sqrt{\frac{\pi}{3N}}.
-$$
-Substituting into (4),
-$$
-J_n\sim2\sqrt{\frac\pi3}\,n^{-1/2}
-\exp\!\left(-\frac{3}{2^{2/3}}n^{1/3}\right). \tag{6}
-$$
-In particular, (3) and (6) imply $J_n/K_n\to0$.
+This is the decisive cancellation.
 
-Step 5: Convert the asymmetry into the root displacement
+Set
+$$
+z=r+\frac{u}{\sqrt N}.
+$$
+Taylor expansion of the phase gives
+$$
+N\bigl(\Phi(z)-c\bigr)
+=3u^2+\frac{\Phi'''(r)}{6\sqrt N}u^3
++O\!\left(\frac{u^4}{N}\right).
+$$
+Hence, uniformly for $|u|\leq N^{1/10}$,
+$$
+e^{-N(\Phi(z)-c)}
+=e^{-3u^2}\left[
+1-\frac{\Phi'''(r)}{6\sqrt N}u^3
++O\!\left(\frac{u^4+u^6}{N}\right)
+\right]. \tag{8}
+$$
+Also, by (7),
+$$
+\left(1-2^{1/3}z\right)^5
+=-\frac{2^{5/3}u^5}{N^{5/2}}. \tag{9}
+$$
+The product of the leading terms in (8) and (9) is odd in $u$, so its integral over the asymptotically symmetric saddle neighborhood vanishes. The first nonzero term is obtained by multiplying (9) by the cubic correction in (8). Its coefficient is
+$$
+(-2^{5/3})\left(-\frac{\Phi'''(r)}6\right)=-8. \tag{10}
+$$
+Moreover
+$$
+\log N-\log z=\log N+O(1)+O\!\left(\frac{|u|}{\sqrt N}\right)
+$$
+near the saddle. Thus only the $\log N$ part contributes to the leading coefficient.
 
-For $-1\leq\lambda\leq0$,
+The contribution outside a fixed neighborhood of $r$ is exponentially smaller because $r$ is the unique minimum of $\Phi$. Inside that neighborhood, (8) gives a Gaussian majorant, so the expansion may be integrated term by term. Using
 $$
-I_n'(\lambda)
-=\int_0^1\sigma^2 e^{-ny^2+\lambda\sigma}(1+\sigma h)\,dx
-\geq e^{-1}(1-e^{-4})K_n.
+\int_{-\infty}^{\infty}u^8e^{-3u^2}\,du
+=\frac{35\sqrt\pi}{432\sqrt3},
 $$
-Since $I_n(0)=J_n$ and $J_n/K_n\to0$, we have $I_n(-1)<0$ for all sufficiently large $n$. Hence
+we obtain from (5), (8), (9), and (10)
 $$
--1<\lambda_n<0.
-$$
-By the mean value theorem, for some $\xi_n\in(\lambda_n,0)$,
-$$
-0=I_n(\lambda_n)=J_n+\lambda_n I_n'(\xi_n),
-$$
-so
-$$
--\lambda_n=\frac{J_n}{I_n'(\xi_n)}. \tag{7}
-$$
-The lower bound above and $J_n/K_n\to0$ first give $\lambda_n\to0$, hence $\xi_n\to0$. Moreover,
-$$
-\int_0^1\sigma^2e^{-ny^2}\bigl(e^{\xi_n\sigma}-1\bigr)\,dx=O(|\xi_n|K_n),
-$$
-and
-$$
-\left|\int_0^1\sigma^3h\,e^{-ny^2+\xi_n\sigma}\,dx\right|
-\leq e^{|\xi_n|}J_n=o(K_n).
+J_n
+\sim
+-8(\log N)e^{-cN}N^{-9/2}
+\int_{-\infty}^{\infty}u^8e^{-3u^2}\,du.
 $$
 Therefore
 $$
-I_n'(\xi_n)\sim K_n.
+J_n
+\sim
+-\frac{35\sqrt\pi}{54\sqrt3}
+(\log N)N^{-9/2}
+\exp\!\left(-\frac{3}{2^{2/3}}N\right). \tag{11}
 $$
-Using (3), (6), and (7),
+
+Step 4: Recover the root and identify all three constants
+
+Combining (4) and (11),
+$$
+\frac{J_n}{A_n}
+\sim
+-\frac{70}{81\sqrt3}
+N^{-3}
+\exp\!\left(-\frac{3}{2^{2/3}}N\right).
+$$
+Since $N^3=n$,
+$$
+-\frac{J_n}{A_n}
+\sim
+\frac{70}{81\sqrt3}\,
+\frac1n
+\exp\!\left(-\frac{3}{2^{2/3}}n^{1/3}\right). \tag{12}
+$$
+The right side tends to $0$, so from (1) and $\operatorname{arsinh}u\sim u$,
 $$
 \lambda_n
-\sim-\frac{J_n}{K_n}
-\sim-\frac2{\sqrt3}
+\sim
+\frac{70}{81\sqrt3}\,
+\frac1n
 \exp\!\left(-\frac{3}{2^{2/3}}n^{1/3}\right).
 $$
-Consequently the requested constants are
+Hence the unique constants are
 $$
+\alpha=1,
+\qquad
 c=\frac{3}{2^{2/3}},
 \qquad
-L=-\frac2{\sqrt3}.
+L=\frac{70}{81\sqrt3}.
 $$
-Final Answer: $\boxed{\left(\frac{3}{2^{2/3}},-\frac2{\sqrt3}\right)}$
+Final Answer: $\boxed{\left(1,\frac{3}{2^{2/3}},\frac{70}{81\sqrt3}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{3}{2^{2/3}},-\frac2{\sqrt3}\right)$
+$\left(1,\frac{3}{2^{2/3}},\frac{70}{81\sqrt3}\right)$
 
 ---
 
@@ -209,8 +205,8 @@ $\left(\frac{3}{2^{2/3}},-\frac2{\sqrt3}\right)$
 
 ## Solution Concepts
 
-- implicit integral roots
-- exact symmetry cancellation
-- flat endpoint perturbation
-- moving-saddle Laplace scaling
-- beyond-all-orders asymptotics
+- product-integral reduction
+- logarithmic density
+- moving-saddle asymptotics
+- high-order saddle cancellation
+- implicit root asymptotics
