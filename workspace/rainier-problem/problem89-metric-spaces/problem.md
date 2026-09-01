@@ -2,29 +2,19 @@
 
 ## LaTeX (Normalized)
 
-Let
+Let $G$ be the weighted graph with vertex set
 $$
-E=\{x=(x_1,\ldots,x_8)\in\mathbb F_2^8:\operatorname{wt}(x)\text{ is even}\},
-\qquad \mathbf1=(1,\ldots,1),
+Y=\{\ast,0,1,\ldots,12\}.
 $$
-and let $Y=E\cup\{\ast\}$. For $x\in E$, let $q(x)\in\{0,1\}$ be determined by
+For indices modulo $13$, join $i$ to $i+1$ by an edge of length $4$. In addition, join $\ast$ to
 $$
-q(x)\equiv \frac{\operatorname{wt}(x)}2\pmod2.
+0,1,2,5,10
 $$
-For distinct $x,y\in E$, define
+by edges of lengths
 $$
-d(x,y)=
-\begin{cases}
-24,&x+y=\mathbf1,\\
-16,&x+y\ne\mathbf1,
-\end{cases}
+7,7,7,13,15,
 $$
-and define
-$$
-d(\ast,x)=12+x_1\bigl(1+2q(x)\bigr),
-\qquad d(\ast,\ast)=0.
-$$
-(These values define a metric on $Y$.)
+respectively. Let $d$ be the shortest-path metric on $Y$.
 
 For $p>0$, say that $(Y,d)$ has $p$-negative type if, for every family of real numbers $(a_z)_{z\in Y}$ with $\sum_{z\in Y}a_z=0$,
 $$
@@ -50,4 +40,4 @@ $$
 
 ## Domain Explanation
 
-The target $\wp$ is the supremal negative-type exponent of a finite metric space, so the central issue is conditional negative definiteness of powers of the metric. The binary data provide an antipodal core together with an asymmetric one-point extension; those symmetries are tools for analyzing the metric invariant, not the object being classified.
+The quantity $\wp$ is a metric-space invariant defined by conditional negative definiteness of powers of the shortest-path metric. The weighted graph is only a compact presentation of the finite metric; the central work is metric negative type, Gram matrices, and convexity rather than graph-theoretic classification.

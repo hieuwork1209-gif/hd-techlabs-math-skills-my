@@ -1,188 +1,156 @@
 ## Steps
 
-Step 1: Verify the metric and identify the two antipodal modes
+Step 1: Resolve the shortest-path distances
 
-Let $P$ be the involution on functions on $E$ defined by
+Let
 $$
-(Pf)(x)=f(x+\mathbf1).
+\rho(i,j)=4\min\{|i-j|,13-|i-j|\}
 $$
-Among distinct points of $E$, the distance is $24$ for the unique antipode and $16$ otherwise. Hence a triangle contained in $E$ has largest side at most $24$ and its other two nonzero sides are at least $16$.
-
-For the new point $\ast$, the possible distances are $12$, $13$, and $15$. Thus in a triangle containing $\ast$, the sum of the two incident sides is at least $24$, while their difference is at most $3<16$. Hence all triangle inequalities hold.
-
-Define
+be the metric on the $13$-cycle. For the five vertices joined directly to $\ast$, write
 $$
-\varepsilon(x)=(-1)^{q(x)},
-\qquad
-\sigma(x)=(-1)^{x_1}.
+(w_0,w_1,w_2,w_5,w_{10})=(7,7,7,13,15).
 $$
-Adding $\mathbf1$ preserves $q(x)$ and flips $x_1$, so
+A direct check on these five vertices gives
 $$
-P\varepsilon=\varepsilon,
-\qquad
-P\sigma=-\sigma.
+\rho(r,s)\le w_r+w_s
 $$
-The four classes $(q(x),x_1)=(0,0),(0,1),(1,0),(1,1)$ have sizes $36,36,28,28$, respectively. Therefore
+for every pair of anchors $r,s$. Hence a path through $\ast$ never shortens the distance between two cycle vertices, so
 $$
-\sum_E\varepsilon=16,
-\qquad
-\sum_E\sigma=0,
-\qquad
-\sum_E\varepsilon\sigma=0.
-$$
-Let $\mathbf e$ be the all-ones vector in $\mathbb R^E$ and put
-$$
-w=\varepsilon-\frac18\mathbf e.
-$$
-Then $w\perp\mathbf e$ and
-$$
-\|w\|^2=126.
-$$
-
-At exponent $1$, the distance vector from $\ast$ to $E$ is
-$$
-h(x)=12+x_1(1+2q(x))
-=13-\frac12\varepsilon(x)-\sigma(x)+\frac12\varepsilon(x)\sigma(x).
-$$
-Hence
-$$
-h=\frac{207}{16}\mathbf e+h_++h_-,
-$$
-where
-$$
-h_+=-\frac12w,
-\qquad
-h_-=-\sigma+\frac12\varepsilon\sigma.
-$$
-Here $Ph_+=h_+$, $Ph_-=-h_-$, and
-$$
-\|h_+\|^2=\frac{63}{2}.
+d(i,j)=\rho(i,j)\qquad(0\le i,j\le12).
 $$
 Also
 $$
-\langle\sigma,\varepsilon\sigma\rangle=\sum_E\varepsilon=16,
+d(\ast,i)=\min_{r\in\{0,1,2,5,10\}}\bigl(w_r+\rho(r,i)\bigr),
 $$
-so
+which gives, for $i=0,1,\ldots,12$,
 $$
-\|h_-\|^2
-=128+\frac14\cdot128-16
-=144.
+(d(\ast,i))=(7,7,7,11,15,13,17,21,23,19,15,15,11).
 $$
 
 Step 2: Prove that $p=1$ has negative type
 
-Let $D$ be the distance matrix on $E$ at exponent $1$. Since every non-antipodal off-diagonal entry is $16$,
+Fix the base point $0$. For $u,v\in Y\setminus\{0\}$ define
 $$
-D=16(J-I)+8P.
+G_{uv}=\frac{d(u,0)+d(v,0)-d(u,v)}2.
 $$
-Thus
+For coefficients $(c_u)_{u\ne0}$, put $c_0=-\sum_{u\ne0}c_u$. Expanding and using $\sum c_u=0$ gives
 $$
-D\mathbf e=2040\mathbf e.
+c^TGc=-\frac12\sum_{u,v\in Y}c_uc_vd(u,v).
 $$
-On the $+1$ eigenspace of $P$ orthogonal to $\mathbf e$, $D$ acts by $-8$, while on the $-1$ eigenspace of $P$, it acts by $-24$.
+Thus $1$-negative type is equivalent to $G\succeq0$.
 
-Take arbitrary real coefficients $(a_z)_{z\in Y}$ with total sum zero. Write the coefficients on $E$ as
+Index $G$ by $1,2,\ldots,12,\ast$, with standard basis $e_1,\ldots,e_{12},e_\ast$. Set
 $$
-a=\alpha\mathbf e+u_++u_-,
-$$
-where
-$$
-Pu_+=u_+,
+b_1=e_1,
 \qquad
-u_+\perp\mathbf e,
+b_k=e_k-e_{k-1}\quad(2\le k\le12),
 \qquad
-Pu_-=-u_-.
+b_\ast=e_\ast.
 $$
-The coefficient at $\ast$ is then
+After reordering the basis as
 $$
-a_\ast=-128\alpha.
+(b_7,b_1,b_8,b_2,b_9,b_3,b_{10},b_4,b_{11},b_5,b_{12},b_6,b_\ast),
 $$
-The negative-type quadratic form is
+the distance formulas in Step 1 give the congruent matrix
 $$
-Q_1=a^TDa+2a_\ast h^Ta.
+\widetilde G=
+\begin{pmatrix}
+2C&v\\
+v^T&7
+\end{pmatrix},
 $$
-Using the decompositions above,
+where $C$ is the $12\times12$ tridiagonal matrix
+$$
+C=
+\begin{pmatrix}
+2&-1&&&\\
+-1&2&-1&&\\
+&\ddots&\ddots&\ddots&\\
+&&-1&2&-1\\
+&&&-1&2
+\end{pmatrix}
+$$
+and
+$$
+v=(-2,2,-3,2,0,0,0,0,-2,3,0,0)^T.
+$$
+The matrix $C$ is positive definite; explicitly,
+$$
+(C^{-1})_{ij}=\frac{\min(i,j)\bigl(13-\max(i,j)\bigr)}{13},
+\qquad 1\le i,j\le12,
+$$
+which is verified by multiplying by the tridiagonal matrix $C$. Substituting the displayed vector $v$ gives
+$$
+v^T(2C)^{-1}v=7.
+$$
+Therefore the Schur complement of $2C$ in $\widetilde G$ is zero. Hence
+$$
+\widetilde G\succeq0,
+$$
+and so $G\succeq0$. Thus $(Y,d)$ has $1$-negative type.
+
+Step 3: Extract the unique equality direction
+
+Since $C$ is positive definite and the Schur complement in Step 2 is zero, $G$ has a one-dimensional kernel. Undoing the basis change gives the following zero-sum coefficients on
+$$
+0,1,\ldots,12,\ast:
+$$
+$$
+(a_z)=(-2,1,0,0,2,-2,-2,0,2,0,0,1,-2,2).
+$$
+Indeed their sum is zero, and the kernel relation from Step 2 gives
+$$
+\sum_{z,w\in Y}a_za_wd(z,w)=0.
+$$
+This global equality direction will be used at every exponent $p>1$.
+
+Step 4: Show that the equality direction becomes positive for every $p>1$
+
+For the coefficients in Step 3, group the ordered pairs by their distance. Direct counting gives
 $$
 \begin{aligned}
-Q_1
-&=128\cdot2040\,\alpha^2-8\|u_+\|^2-24\|u_-\|^2\\
-&\quad-256\alpha\left(128\cdot\frac{207}{16}\alpha+\langle h_+,u_+\rangle+\langle h_-,u_-\rangle\right).
+\frac12Q_p
+&:=\frac12\sum_{z,w\in Y}a_za_wd(z,w)^p\\
+&=14\cdot24^p+4\cdot23^p+6\cdot15^p+12^p\\
+&\quad-8\cdot20^p-4\cdot17^p-6\cdot16^p-4\cdot13^p\\
+&\quad-4\cdot11^p-12\cdot8^p-2\cdot7^p.
 \end{aligned}
 $$
-Because $h_+=-w/2$, $\|w\|^2=126$, and $\|h_-\|^2=144$, completing the two squares gives the exact identity
-$$
-Q_1
-=-8\|u_+-8\alpha w\|^2
--24\left\|u_-+\frac{16}{3}\alpha h_-\right\|^2
-\le0.
-$$
-Therefore $(Y,d)$ has $1$-negative type.
+At $p=1$ the positive and negative sides both equal $530$.
 
-Step 3: Use the forced null direction to rule out every $p>1$
+Consider the decreasing $40$-tuples
+$$
+X=(24^{[14]},23^{[4]},15^{[6]},12,0^{[15]})
+$$
+and
+$$
+Z=(20^{[8]},17^{[4]},16^{[6]},13^{[4]},11^{[4]},8^{[12]},7^{[2]}),
+$$
+where $r^{[m]}$ means $m$ copies of $r$. Both tuples have sum $530$. Because the entries are constant on blocks, it is enough to compare cumulative sums at the block endpoints. For
+$$
+k=8,12,14,18,22,24,25,26,38,40,
+$$
+the differences
+$$
+\sum_{i=1}^kX_i-\sum_{i=1}^kZ_i
+$$
+are respectively
+$$
+32,60,76,104,112,120,121,110,14,0.
+$$
+Hence $X$ strictly majorizes $Z$.
 
-Equality in Step 2 forces both square terms to vanish. A convenient scaled zero-sum vector from that null direction is
+The majorization principle says that if two decreasing tuples have equal total and all partial sums of the first dominate those of the second, then every convex function has at least as large a sum on the first tuple. This follows by successively replacing two unequal entries by two closer entries with the same sum; convexity can only decrease the total. Since $t\mapsto t^p$ is strictly convex for $p>1$, strict majorization yields
 $$
-a_\ast=-24
+\sum_iX_i^p>\sum_iZ_i^p.
 $$
-and, on $E$,
+By the formula for $Q_p$, this is exactly
 $$
-a_x=
-\begin{cases}
-2,&q(x)=0,\ x_1=0,\\
-1,&q(x)=0,\ x_1=1,\\
-0,&q(x)=1,\ x_1=0,\\
--3,&q(x)=1,\ x_1=1.
-\end{cases}
+Q_p>0.
 $$
-Indeed,
-$$
-36\cdot2+36\cdot1+28\cdot0+28(-3)-24=0.
-$$
+Thus $(Y,d)$ fails $p$-negative type for every $p>1$.
 
-For general $p>0$, the distance-power matrix on $E$ is
-$$
-D_p=16^p(J-I)+(24^p-16^p)P.
-$$
-For the displayed vector on $E$,
-$$
-\sum_E a_x=24,
-\qquad
-\sum_E a_x^2=432,
-\qquad
-\sum_E a_xa_{x+\mathbf1}=144.
-$$
-Hence
-$$
-a^TD_pa
-=16^p(24^2-432)+(24^p-16^p)144
-=144\cdot24^p.
-$$
-The cross term with $\ast$ is
-$$
-2(-24)\left(72\cdot12^p+36\cdot13^p-84\cdot15^p\right).
-$$
-Therefore
-$$
-Q_p
-=144\left(24^p-24\cdot12^p-12\cdot13^p+28\cdot15^p\right).
-$$
-After dividing by $13^p$, its sign is the sign of
-$$
-H(p)=\left(\frac{24}{13}\right)^p
--24\left(\frac{12}{13}\right)^p
--12
-+28\left(\frac{15}{13}\right)^p.
-$$
-Now $H(1)=0$, while
-$$
-H'(p)=
-\left(\frac{24}{13}\right)^p\log\frac{24}{13}
--24\left(\frac{12}{13}\right)^p\log\frac{12}{13}
-+28\left(\frac{15}{13}\right)^p\log\frac{15}{13}>0
-$$
-for every $p>0$. Thus $H(p)>0$ for every $p>1$, so the displayed zero-sum coefficients violate the $p$-negative-type inequality for every $p>1$.
-
-Since $p=1$ works and no exponent larger than $1$ works, the supremum is $1$.
+Since $p=1$ works and every larger exponent fails,
 
 Final Answer: $\boxed{1}$
 
@@ -205,7 +173,7 @@ $1$
 ## Solution Concepts
 
 - negative type of finite metric spaces
-- antipodal involution eigenspaces
-- symmetric and antisymmetric coupling
-- conditional negative definiteness
-- completing quadratic forms
+- shortest-path metrics
+- Schoenberg Gram matrices
+- Cartan matrix Schur complements
+- majorization and strict convexity
