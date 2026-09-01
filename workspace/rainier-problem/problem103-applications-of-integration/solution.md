@@ -1,173 +1,201 @@
 ## Steps
 
-Step 1: Establish the implicit root and its monotonicity
+Step 1: Prove that the implicit root is unique
 
 Put
 $$
-V(x)=x^2(1-x)^2(1+x),
+\sigma(x)=2x-1,\qquad y=x(1-x),\qquad h(x)=\exp\!\left(-\frac1{x(1-x)}\right).
 $$
-and define
+Since $0<y\leq1/4$ on $(0,1)$,
 $$
-Z_n(\lambda)=\int_0^1 e^{-nV(x)+\lambda x}\,dx,
-\qquad
-M_n(\lambda)=\frac{\int_0^1 x e^{-nV(x)+\lambda x}\,dx}{Z_n(\lambda)}.
-$$
-Then
-$$
-I_n(\lambda)=Z_n(\lambda)\bigl(2M_n(\lambda)-1\bigr).
-$$
-Differentiating the normalized mean gives
-$$
-M_n'(\lambda)
-=\frac{\int_0^1 x^2e^{-nV+\lambda x}\,dx}{Z_n(\lambda)}-M_n(\lambda)^2,
-$$
-which is the variance of $x$ under a positive density on $(0,1)$. Hence $M_n'(\lambda)>0$. Also
-$$
-M_n(\lambda)\to0\quad(\lambda\to-\infty),
-\qquad
-M_n(\lambda)\to1\quad(\lambda\to+\infty),
-$$
-because exponential tilting by $e^{\lambda x}$ concentrates the normalized density arbitrarily close to $0$ or $1$, respectively. Therefore there is exactly one $\lambda_n$ for which $M_n(\lambda_n)=1/2$, equivalently $I_n(\lambda_n)=0$.
-
-Step 2: Compute the two endpoint contributions through the first correction
-
-The only zeros of $V$ on $[0,1]$ are the endpoints. On every fixed interval $[\varepsilon,1-\varepsilon]$, $V$ is bounded below by a positive constant, so that part of $I_n(\lambda)$ is exponentially small, uniformly for $\lambda$ in a fixed compact set.
-
-Near $x=0$,
-$$
-V(x)=x^2-x^3-x^4+O(x^5),
-$$
-and
-$$
-(2x-1)e^{\lambda x}=-1+(2-\lambda)x+O(x^2).
-$$
-Set $x=t/\sqrt n$. Expanding the exponential to relative order $n^{-1/2}$ gives
-$$
-e^{-nV(t/\sqrt n)}
-=e^{-t^2}\left(1+\frac{t^3}{\sqrt n}+O\left(\frac{t^4+t^6}{n}\right)\right).
-$$
-Hence the contribution from $x=0$ is
-$$
--\frac{1}{\sqrt n}\int_0^\infty e^{-t^2}\,dt
-+\frac1n\int_0^\infty\bigl((2-\lambda)t-t^3\bigr)e^{-t^2}\,dt
-+O(n^{-3/2}).
-$$
-Using
-$$
-\int_0^\infty e^{-t^2}\,dt=\frac{\sqrt\pi}{2},
-\qquad
-\int_0^\infty te^{-t^2}\,dt
-=\int_0^\infty t^3e^{-t^2}\,dt=\frac12,
-$$
-this becomes
-$$
--\frac{\sqrt\pi}{2\sqrt n}+\frac{1-\lambda}{2n}+O(n^{-3/2}). \tag{1}
-$$
-
-For the endpoint $x=1$, write $y=1-x$. Then
-$$
-V(1-y)=2y^2-5y^3+4y^4+O(y^5),
-$$
-and
-$$
-(2x-1)e^{\lambda x}=e^\lambda\bigl(1-(\lambda+2)y+O(y^2)\bigr).
-$$
-With $y=t/\sqrt n$,
-$$
-e^{-nV(1-t/\sqrt n)}
-=e^{-2t^2}\left(1+\frac{5t^3}{\sqrt n}+O\left(\frac{t^4+t^6}{n}\right)\right).
-$$
-Therefore the contribution from $x=1$ is
-$$
-\frac{e^\lambda}{\sqrt n}\int_0^\infty e^{-2t^2}\,dt
-+\frac{e^\lambda}{n}\int_0^\infty\bigl(- (\lambda+2)t+5t^3\bigr)e^{-2t^2}\,dt
-+O(n^{-3/2}).
-$$
-Since
-$$
-\int_0^\infty e^{-2t^2}\,dt=\frac{\sqrt\pi}{2\sqrt2},
-\qquad
-\int_0^\infty te^{-2t^2}\,dt=\frac14,
-\qquad
-\int_0^\infty t^3e^{-2t^2}\,dt=\frac18,
-$$
-this equals
-$$
-\frac{e^\lambda\sqrt\pi}{2\sqrt{2n}}
-+\frac{e^\lambda(1-2\lambda)}{8n}
-+O(n^{-3/2}). \tag{2}
-$$
-
-For completeness, these remainder estimates follow directly from the displayed Taylor formulas. Choose $\varepsilon>0$ so small that $V(x)\geq x^2/2$ on $[0,\varepsilon]$ and $V(1-y)\geq y^2$ on $[0,\varepsilon]$. After the substitutions above, split at $t=n^{1/10}$. On $0\leq t\leq n^{1/10}$ the Taylor remainders are bounded by a fixed polynomial in $t$ times $n^{-1}$, hence by an integrable polynomial times a Gaussian after multiplication by $e^{-t^2/2}$ or $e^{-t^2}$. On the remaining scaled tail the quadratic lower bounds give $O(e^{-c n^{1/5}})$. Thus termwise integration is valid and the $O(n^{-3/2})$ errors are uniform for $\lambda$ in compact sets.
-
-Combining (1) and (2),
-$$
-I_n(\lambda)
-=\frac{\sqrt\pi}{2\sqrt n}\left(-1+\frac{e^\lambda}{\sqrt2}\right)
-+\frac1n\left(\frac{1-\lambda}{2}+\frac{e^\lambda(1-2\lambda)}8\right)
-+O(n^{-3/2}), \tag{3}
-$$
-uniformly for $\lambda$ in compact sets.
-
-Step 3: Locate $\lambda_n$ at the correct scale
-
-Let
-$$
-L=\frac12\log2.
-$$
-For any fixed $\eta>0$, the leading term in (3) is negative at $L-\eta$ and positive at $L+\eta$ for all sufficiently large $n$. Since $I_n$ has a unique zero,
-$$
-\lambda_n\to L.
-$$
-Using (3) at $\lambda=\lambda_n$ now gives
-$$
-0=\frac{\sqrt\pi}{2\sqrt n}\left(-1+\frac{e^{\lambda_n}}{\sqrt2}\right)+O(n^{-1}),
+0<h(x)\leq e^{-4},
 $$
 so
 $$
-\frac{e^{\lambda_n}}{\sqrt2}=1+O(n^{-1/2}).
+1+\sigma(x)h(x)>0.
 $$
-Thus
+Define the positive weight
 $$
-\lambda_n-L=O(n^{-1/2}).
+W_n(x)=e^{-ny^2}\bigl(1+\sigma(x)h(x)\bigr)
 $$
-Write
+and
 $$
-\delta_n=\sqrt n\,(\lambda_n-L).
+Z_n(\lambda)=\int_0^1 W_n(x)e^{\lambda\sigma(x)}\,dx.
 $$
-Then $(\delta_n)$ is bounded.
+Then
+$$
+I_n(\lambda)=Z_n'(\lambda),
+$$
+and
+$$
+I_n'(\lambda)=Z_n''(\lambda)
+=\int_0^1\sigma(x)^2W_n(x)e^{\lambda\sigma(x)}\,dx>0.
+$$
+Thus $I_n$ is strictly increasing. As $\lambda\to+\infty$, any fixed interval near $x=1$ gives a positive exponentially growing contribution while the part with $\sigma\leq0$ stays bounded; hence $I_n(\lambda)\to+\infty$. Similarly $I_n(\lambda)\to-\infty$ as $\lambda\to-\infty$. Therefore the root $\lambda_n$ exists and is unique.
 
-Step 4: Extract the first nonzero balance
+Step 2: Isolate the beyond-all-orders asymmetry
 
-Since $e^L=\sqrt2$,
+The functions $y=x(1-x)$ and $h(x)$ are invariant under $x\mapsto1-x$, while
 $$
-\frac{e^{\lambda_n}}{\sqrt2}
-=e^{\delta_n/\sqrt n}
-=1+\frac{\delta_n}{\sqrt n}+O(n^{-1}).
+\sigma(1-x)=-\sigma(x).
 $$
-Substitute this and $\lambda_n=L+o(1)$ into (3). Multiplying by $n$ gives
+At $\lambda=0$ the symmetric part cancels exactly:
 $$
-0=\frac{\sqrt\pi}{2}\delta_n
-+\frac{1-L}{2}
-+\frac{\sqrt2(1-2L)}8
-+o(1).
+\int_0^1\sigma(x)e^{-ny^2}\,dx=0.
 $$
-Hence
+Therefore
 $$
-\delta_n\to
--\frac{2}{\sqrt\pi}\left(\frac{1-L}{2}+\frac{\sqrt2(1-2L)}8\right).
+I_n(0)=J_n,
 $$
-With $L=\frac12\log2$, this simplifies to
+where
 $$
-\frac{\log4-4+\sqrt2(\log2-1)}{4\sqrt\pi}.
+J_n=\int_0^1\sigma(x)^2\exp\!\left(-ny^2-\frac1y\right)\,dx>0. \tag{1}
 $$
-Final Answer: $\boxed{\frac{\log4-4+\sqrt2(\log2-1)}{4\sqrt\pi}}$
+The derivative has another exact symmetry cancellation:
+$$
+I_n'(0)
+=\int_0^1\sigma(x)^2e^{-ny^2}\,dx
++\int_0^1\sigma(x)^3e^{-ny^2-1/y}\,dx
+=K_n, \tag{2}
+$$
+where
+$$
+K_n=\int_0^1\sigma(x)^2e^{-ny^2}\,dx.
+$$
+The second integral in (2) vanishes because its integrand is antisymmetric.
+
+Step 3: Evaluate the ordinary endpoint scale $K_n$
+
+On $0\leq x\leq1/2$, the change of variable
+$$
+y=x(1-x)
+$$
+gives
+$$
+\sigma(x)^2=1-4y,
+\qquad
+ dx=\frac{dy}{\sqrt{1-4y}}.
+$$
+Using symmetry about $x=1/2$,
+$$
+K_n=2\int_0^{1/4}\sqrt{1-4y}\,e^{-ny^2}\,dy.
+$$
+Set $y=t/\sqrt n$. Then
+$$
+\sqrt n\,K_n
+=2\int_0^{\sqrt n/4}\sqrt{1-\frac{4t}{\sqrt n}}\,e^{-t^2}\,dt.
+$$
+For every fixed $t$ the square-root factor tends to $1$, and the Gaussian tail gives domination. Hence
+$$
+\sqrt n\,K_n\longrightarrow2\int_0^\infty e^{-t^2}\,dt=\sqrt\pi,
+$$
+so
+$$
+K_n\sim\sqrt\pi\,n^{-1/2}. \tag{3}
+$$
+
+Step 4: Find the moving saddle created by the flat perturbation
+
+Applying the same change of variable to (1),
+$$
+J_n=2\int_0^{1/4}\sqrt{1-4y}\,
+\exp\!\left(-ny^2-\frac1y\right)\,dy.
+$$
+Let
+$$
+N=n^{1/3},\qquad y=\frac zN.
+$$
+Then
+$$
+J_n=\frac2N\int_0^{N/4}\sqrt{1-\frac{4z}{N}}\,e^{-N\Phi(z)}\,dz,
+\qquad
+\Phi(z)=z^2+\frac1z. \tag{4}
+$$
+The function $\Phi$ has a unique critical point on $(0,\infty)$ because
+$$
+\Phi'(z)=2z-\frac1{z^2}=0
+\iff z=z_0:=2^{-1/3}.
+$$
+It is the unique minimum, and
+$$
+\Phi(z_0)=\frac{3}{2^{2/3}}=:c,
+\qquad
+\Phi''(z_0)=6. \tag{5}
+$$
+To extract the constant in (4), write
+$$
+z=z_0+\frac u{\sqrt N}.
+$$
+Taylor's formula at $z_0$ gives, for bounded $u$,
+$$
+N\bigl(\Phi(z)-c\bigr)=3u^2+O\!\left(\frac{|u|^3}{\sqrt N}\right),
+$$
+and the square-root amplitude in (4) tends to $1$. On the complement of any fixed neighborhood of $z_0$, continuity and the uniqueness of the minimum give $\Phi\geq c+\eta$ for some $\eta>0$; inside that neighborhood the positive second derivative gives a Gaussian majorant after shrinking it if necessary. Thus the rescaled integral converges to the Gaussian integral, and
+$$
+\int_0^{N/4}\sqrt{1-\frac{4z}{N}}\,e^{-N\Phi(z)}\,dz
+\sim e^{-cN}\frac1{\sqrt N}\int_{-\infty}^{\infty}e^{-3u^2}\,du
+=e^{-cN}\sqrt{\frac{\pi}{3N}}.
+$$
+Substituting into (4),
+$$
+J_n\sim2\sqrt{\frac\pi3}\,n^{-1/2}
+\exp\!\left(-\frac{3}{2^{2/3}}n^{1/3}\right). \tag{6}
+$$
+In particular, (3) and (6) imply $J_n/K_n\to0$.
+
+Step 5: Convert the asymmetry into the root displacement
+
+For $-1\leq\lambda\leq0$,
+$$
+I_n'(\lambda)
+=\int_0^1\sigma^2 e^{-ny^2+\lambda\sigma}(1+\sigma h)\,dx
+\geq e^{-1}(1-e^{-4})K_n.
+$$
+Since $I_n(0)=J_n$ and $J_n/K_n\to0$, we have $I_n(-1)<0$ for all sufficiently large $n$. Hence
+$$
+-1<\lambda_n<0.
+$$
+By the mean value theorem, for some $\xi_n\in(\lambda_n,0)$,
+$$
+0=I_n(\lambda_n)=J_n+\lambda_n I_n'(\xi_n),
+$$
+so
+$$
+-\lambda_n=\frac{J_n}{I_n'(\xi_n)}. \tag{7}
+$$
+The lower bound above and $J_n/K_n\to0$ first give $\lambda_n\to0$, hence $\xi_n\to0$. Moreover,
+$$
+\int_0^1\sigma^2e^{-ny^2}\bigl(e^{\xi_n\sigma}-1\bigr)\,dx=O(|\xi_n|K_n),
+$$
+and
+$$
+\left|\int_0^1\sigma^3h\,e^{-ny^2+\xi_n\sigma}\,dx\right|
+\leq e^{|\xi_n|}J_n=o(K_n).
+$$
+Therefore
+$$
+I_n'(\xi_n)\sim K_n.
+$$
+Using (3), (6), and (7),
+$$
+\lambda_n
+\sim-\frac{J_n}{K_n}
+\sim-\frac2{\sqrt3}
+\exp\!\left(-\frac{3}{2^{2/3}}n^{1/3}\right).
+$$
+Consequently the requested constants are
+$$
+c=\frac{3}{2^{2/3}},
+\qquad
+L=-\frac2{\sqrt3}.
+$$
+Final Answer: $\boxed{\left(\frac{3}{2^{2/3}},-\frac2{\sqrt3}\right)}$
 
 ---
 
 ## Answer
 
-$\frac{\log4-4+\sqrt2(\log2-1)}{4\sqrt\pi}$
+$\left(\frac{3}{2^{2/3}},-\frac2{\sqrt3}\right)$
 
 ---
 
@@ -175,13 +203,14 @@ $\frac{\log4-4+\sqrt2(\log2-1)}{4\sqrt\pi}$
 
 **Problem Type:** Exact computation
 
-**Answer Type:** Exact symbolic expression
+**Answer Type:** Tuple or ordered list
 
 ---
 
 ## Solution Concepts
 
 - implicit integral roots
-- competing endpoint asymptotics
-- Laplace scaling
-- first-order balance
+- exact symmetry cancellation
+- flat endpoint perturbation
+- moving-saddle Laplace scaling
+- beyond-all-orders asymptotics
