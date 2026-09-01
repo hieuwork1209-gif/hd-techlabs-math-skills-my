@@ -4,30 +4,35 @@
 
 Let
 $$
-X=\{x\in\mathbb F_2^8:\operatorname{wt}(x)\ \text{is even}\},
+E=\{x\in\mathbb F_2^8:\operatorname{wt}(x)\text{ is even}\},
+\qquad \mathbf1=(1,\ldots,1),
 $$
-where $\operatorname{wt}(x)$ is the Hamming weight. For $x,y\in X$, set
-$$
-r(x,y)=\min\{\operatorname{wt}(x+y),\,8-\operatorname{wt}(x+y)\}
-$$
-and
+and let $Y=E\cup\{\ast\}$. Define $d$ on $Y$ as follows. For distinct $x,y\in E$,
 $$
 d(x,y)=
 \begin{cases}
-0,&x=y,\\
-16,&x\ne y\text{ and }r(x,y)=0,\\
-6+r(x,y),&r(x,y)>0.
+24,&x+y=\mathbf1,\\
+20,&x+y\ne\mathbf1,
 \end{cases}
 $$
-(Thus the nonzero distances are $8,10,16$.)
+while
+$$
+d(\ast,x)=
+\begin{cases}
+13,&\operatorname{wt}(x)\equiv0\pmod4,\\
+15,&\operatorname{wt}(x)\equiv2\pmod4,
+\end{cases}
+\qquad d(\ast,\ast)=0.
+$$
+(These values define a metric on $Y$.)
 
-For $p>0$, say that $(X,d)$ has $p$-negative type if, for every family of real numbers $(a_x)_{x\in X}$ with $\sum_{x\in X}a_x=0$,
+For $p>0$, say that $(Y,d)$ has $p$-negative type if, for every family of real numbers $(a_z)_{z\in Y}$ with $\sum_{z\in Y}a_z=0$,
 $$
-\sum_{x,y\in X}a_xa_y\,d(x,y)^p\le0.
+\sum_{z,w\in Y}a_za_w\,d(z,w)^p\le0.
 $$
-Determine the supremum
+Determine
 $$
-\wp=\sup\{p>0:(X,d)\text{ has }p\text{-negative type}\}.
+\wp=\sup\{p>0:(Y,d)\text{ has }p\text{-negative type}\}.
 $$
 
 ---
@@ -45,4 +50,4 @@ $$
 
 ## Domain Explanation
 
-The quantity $\wp$ is an intrinsic negative-type invariant of a finite metric space. The decisive question is when the distance-power kernel is conditionally negative semidefinite on the zero-sum subspace. Finite Fourier analysis is only the tool used to diagonalize that kernel; the object being determined is fundamentally a metric-space invariant.
+The target $\wp$ is the supremal negative-type exponent of a finite metric space, so the core question is conditional negative definiteness of powers of the metric. The binary-vector description supplies a compact antipodal symmetry and a two-radius one-point extension, but the object being determined is intrinsically a metric-space invariant rather than a coding-theory or finite-group classification.

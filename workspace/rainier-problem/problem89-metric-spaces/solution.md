@@ -1,133 +1,196 @@
 ## Steps
 
-Step 1: Record the metric and its translation-invariant distance kernel
+Step 1: Verify the metric and isolate the antipodal symmetry
 
-Every nonzero distance is $8$, $10$, or $16$. If $x,z$ are antipodal then $d(x,z)=16$, while any two distinct non-antipodal points have distance at least $8$; hence
-$$
-d(x,z)\le d(x,y)+d(y,z)
-$$
-for every intermediate $y$. The other metric axioms are immediate, so $d$ is indeed a metric.
+Let $P:E\to E$ be the involution $P(x)=x+\mathbf1$. Among distinct points of $E$, the distance is $24$ exactly for antipodal pairs and is $20$ otherwise. Thus a triangle contained in $E$ has largest side at most $24$ and the other two sides are at least $20$.
 
-Under addition, $X$ is a $7$-dimensional vector space over $\mathbb F_2$. For fixed $p>0$, put
+For triangles containing $\ast$, the two incident sides are $13$ or $15$, so their sum is at least $26>24$, while their difference is at most $2<20$. Hence all triangle inequalities hold and $d$ is a metric.
+
+Define
 $$
-K_p(z)=d(0,z)^p.
-$$
-Then the matrix $D_p=(d(x,y)^p)_{x,y\in X}$ is the convolution matrix
-$$
-D_p(x,y)=K_p(x+y).
-$$
-Its values depend only on the Hamming weight of $z$:
-$$
-K_p(z)=
+\varepsilon(x)=
 \begin{cases}
-0,&\operatorname{wt}(z)=0,\\
-8^p,&\operatorname{wt}(z)=2\text{ or }6,\\
-10^p,&\operatorname{wt}(z)=4,\\
-16^p,&\operatorname{wt}(z)=8.
+1,&\operatorname{wt}(x)\equiv0\pmod4,\\
+-1,&\operatorname{wt}(x)\equiv2\pmod4.
 \end{cases}
 $$
+There are
+$$
+\binom80+\binom84+\binom88=72
+$$
+points with $\varepsilon=1$ and
+$$
+\binom82+\binom86=56
+$$
+with $\varepsilon=-1$. Therefore
+$$
+\sum_{x\in E}\varepsilon(x)=16,
+\qquad
+\|\varepsilon\|^2=128.
+$$
+Because adding $\mathbf1$ replaces the weight by $8-\operatorname{wt}(x)$, it preserves the weight modulo $4$; hence
+$$
+P\varepsilon=\varepsilon.
+$$
 
-Step 2: Diagonalize the kernel by characters
+Step 2: Prove that $d$ itself has negative type
 
-Let $\mathbf 1=(1,\ldots,1)$. The characters of $X$ are
+Let $a=(a_x)_{x\in E}$ and let $b$ be the coefficient at $\ast$. Put
 $$
-\chi_u(x)=(-1)^{u\cdot x},
+S=\sum_{x\in E}a_x,
+\qquad
+T=\sum_{x\in E}\varepsilon(x)a_x.
 $$
-with $u\in\mathbb F_2^8$ taken modulo $u\sim u+\mathbf1$. Choose the representative with
-$$
-t=\operatorname{wt}(u)\in\{0,1,2,3,4\}.
-$$
-For such a character,
-$$
-(D_p\chi_u)(x)
-=\chi_u(x)\sum_{z\in X}K_p(z)\chi_u(z),
-$$
-so $\chi_u$ is an eigenvector. The characters are mutually orthogonal: if $\chi_u\chi_v$ is nontrivial, choose $a\in X$ on which it equals $-1$ and pair $x$ with $x+a$ in the character sum. Since there are $128=|X|$ characters, they form a basis.
+The zero-sum condition gives $b=-S$.
 
-For a weight-$w$ shell, the character sum depends only on $t$ and equals
+On $E$, the distance matrix at exponent $1$ is
 $$
-S_w(t)=\sum_j(-1)^j\binom tj\binom{8-t}{w-j},
+D=20(J-I-P)+24P=20J-20I+4P.
 $$
-because $j$ is the overlap of the supports of $u$ and $z$. Direct evaluation gives
+The vector of distances from $\ast$ to $E$ is
 $$
-\begin{array}{c|rrrr}
-t&1&2&3&4\\ \hline
-S_2(t)&14&4&-2&-4\\
-S_4(t)&0&-10&0&6\\
-S_6(t)&-14&4&2&-4
-\end{array}
+h=14\mathbf1-\varepsilon.
 $$
-and $\chi_u(\mathbf1)=(-1)^t$. Therefore the four nonconstant eigenvalue types are
+Hence the negative-type quadratic form is
 $$
-\lambda_1=-16^p,\qquad
-\lambda_3=-16^p,
+\begin{aligned}
+Q
+&=a^TDa+2b\,h^Ta\\
+&=-8S^2+2ST-20\|a\|^2+4\langle a,Pa\rangle.
+\end{aligned}
 $$
+
+Decompose $a=a_++a_-$ into the $+1$ and $-1$ eigenspaces of $P$. Since both $\mathbf1$ and $\varepsilon$ lie in the $+1$ eigenspace, $S$ and $T$ depend only on $a_+$. Also
 $$
-\lambda_2=16^p+8\cdot8^p-10\cdot10^p,
+-20\|a\|^2+4\langle a,Pa\rangle
+=-16\|a_+\|^2-24\|a_-\|^2.
+$$
+Now set
+$$
+w=\varepsilon-\frac18\mathbf1.
+$$
+Then $\langle\mathbf1,w\rangle=0$ and
+$$
+\|w\|^2=128-\frac{2}{8}\cdot16+\frac{128}{64}=126.
+$$
+Write
+$$
+a_+=\alpha\mathbf1+\beta w+z,
+\qquad
+z\perp\mathbf1,w.
+$$
+Then
+$$
+S=128\alpha,
+\qquad
+T=16\alpha+126\beta,
 $$
 and
 $$
-\lambda_4=16^p-8\cdot8^p+6\cdot10^p.
+\|a_+\|^2=128\alpha^2+126\beta^2+\|z\|^2.
+$$
+Substitution gives the exact sum-of-squares identity
+$$
+Q=-24\|a_-\|^2-2016(8\alpha-\beta)^2-16\|z\|^2\le0.
+$$
+Thus $(Y,d)$ has $1$-negative type. Equality is possible only in the direction proportional to
+$$
+a_x=\varepsilon(x)\quad(x\in E),
+\qquad a_\ast=-16.
 $$
 
-Step 3: Translate negative type into eigenvalue inequalities
+Step 3: Show that every exponent $0<p<1$ also works
 
-For real coefficients $a_x$, define
+We prove the needed downward-closure statement. Fix a base point $o\in Y$. Since $d$ has $1$-negative type, the matrix indexed by $Y\setminus\{o\}$,
 $$
-\widehat a(u)=\sum_{x\in X}a_x\chi_u(x).
+G_{ij}=\frac{d(i,o)+d(j,o)-d(i,j)}2,
 $$
-Orthogonality of the character basis gives
+is positive semidefinite. Indeed, for coefficients $c_i$ on $Y\setminus\{o\}$, set $c_o=-\sum_{i\ne o}c_i$; then direct expansion gives
 $$
-\sum_{x,y\in X}a_xa_y\,d(x,y)^p
-=\frac1{128}\sum_u\lambda_{\operatorname{wt}(u)}\,\widehat a(u)^2.
+\sum_{i,j\ne o}c_ic_jG_{ij}
+=-\frac12\sum_{i,j\in Y}c_ic_jd(i,j)\ge0.
 $$
-The condition $\sum_xa_x=0$ is exactly $\widehat a(0)=0$. Hence $(X,d)$ has $p$-negative type if and only if every nonconstant eigenvalue is nonpositive.
-
-The types $t=1,3$ are always negative. For $0\le p\le1$,
+Hence there are Euclidean vectors $u_i$ with
 $$
-\frac{\lambda_2}{8^p}
-=2^p+8-10\left(\frac54\right)^p.
+d(i,j)=\|u_i-u_j\|^2.
 $$
-Set
+For every $s>0$, the kernel
 $$
-g(p)=10\left(\frac54\right)^p-2^p-8.
+K_s(i,j)=e^{-s d(i,j)}
 $$
-Then $g(0)=1$, and on $[0,1]$,
+is positive semidefinite, because
 $$
-g'(p)\ge10\log\frac54-2\log2>0,
-$$
-because $(5/4)^5>2$. Thus $\lambda_2<0$ throughout $[0,1]$.
-
-Step 4: Find the first eigenvalue that reaches zero
-
-For the remaining eigenvalue,
-$$
-\frac{\lambda_4}{8^p}
-=f(p):=2^p-8+6\left(\frac54\right)^p.
-$$
-Now
-$$
-f(0)=-1,\qquad f(1)=\frac32,
+e^{-s\|u_i-u_j\|^2}
+=e^{-s\|u_i\|^2}e^{-s\|u_j\|^2}e^{2s\langle u_i,u_j\rangle},
 $$
 and
 $$
-f'(p)=2^p\log2+6\left(\frac54\right)^p\log\frac54>0.
+e^{2s\langle u_i,u_j\rangle}
+=\sum_{k=0}^\infty\frac{(2s)^k}{k!}\langle u_i^{\otimes k},u_j^{\otimes k}\rangle
 $$
-So there is a unique $p_0\in(0,1)$ satisfying
-$$
-2^{p_0}+6\left(\frac54\right)^{p_0}=8.
-$$
-For $0<p\le p_0$, all nonconstant eigenvalues are nonpositive. For $p>p_0$, $\lambda_4>0$, so taking a nonzero character of type $t=4$ as the coefficient vector violates the negative-type inequality.
+is a nonnegative sum of Gram kernels.
 
-Therefore $\wp=p_0$ (numerically $p_0\approx0.450076$).
+For $0<p<1$, the integral
+$$
+I_p=\int_0^\infty(1-e^{-s})s^{-p-1}\,ds
+$$
+converges and is positive: near $0$ the integrand is $O(s^{-p})$, and near infinity it is $O(s^{-p-1})$. Scaling $s\mapsto st$ yields
+$$
+t^p=I_p^{-1}\int_0^\infty(1-e^{-st})s^{-p-1}\,ds.
+$$
+Therefore, for any zero-sum coefficients $(c_i)$,
+$$
+\begin{aligned}
+\sum_{i,j}c_ic_jd(i,j)^p
+&=-I_p^{-1}\int_0^\infty c^TK_sc\,s^{-p-1}\,ds\\
+&\le0.
+\end{aligned}
+$$
+So $(Y,d)$ has $p$-negative type for every $0<p\le1$.
 
-Final Answer: $\boxed{p_0\text{, where }2^{p_0}+6\left(\frac54\right)^{p_0}=8,\ p_0>0}$
+Step 4: Produce a violating vector for every $p>1$
+
+Use the zero-sum coefficients
+$$
+a_x=\varepsilon(x)\quad(x\in E),
+\qquad a_\ast=-16.
+$$
+For general $p>0$, the distance-power matrix on $E$ is
+$$
+D_p=20^p(J-I-P)+24^pP.
+$$
+Since $P\varepsilon=\varepsilon$, $\sum\varepsilon=16$, and $\|\varepsilon\|^2=128$, the entire $20^p$ contribution cancels and
+$$
+\varepsilon^TD_p\varepsilon=128\cdot24^p.
+$$
+The cross term with $\ast$ is
+$$
+2(-16)\left(72\cdot13^p-56\cdot15^p\right).
+$$
+Thus
+$$
+Q_p=128\left(24^p-18\cdot13^p+14\cdot15^p\right).
+$$
+After division by $15^p$, its sign is the sign of
+$$
+H(p)=\left(\frac85\right)^p-18\left(\frac{13}{15}\right)^p+14.
+$$
+Now $H(1)=0$, while
+$$
+H'(p)=\left(\frac85\right)^p\log\frac85
+-18\left(\frac{13}{15}\right)^p\log\frac{13}{15}>0
+$$
+for every $p>0$, because $\log(8/5)>0$ and $\log(13/15)<0$. Hence $H(p)>0$ for every $p>1$, so the displayed zero-sum vector violates the $p$-negative-type inequality for every such $p$.
+
+Combining Steps 2--4, the admissible exponents are exactly $(0,1]$.
+
+Final Answer: $\boxed{1}$
 
 ---
 
 ## Answer
 
-$p_0\text{, where }2^{p_0}+6\left(\frac54\right)^{p_0}=8,\ p_0>0$
+$1$
 
 ---
 
@@ -142,7 +205,7 @@ $p_0\text{, where }2^{p_0}+6\left(\frac54\right)^{p_0}=8,\ p_0>0$
 ## Solution Concepts
 
 - negative type of metric spaces
-- finite abelian-group Fourier diagonalization
-- Hamming-weight shell character sums
-- conditional negative semidefiniteness
-- monotonicity of exponential equations
+- antipodal involution decomposition
+- conditional negative definiteness
+- Euclidean kernel representation
+- Gaussian positive-definite kernels
