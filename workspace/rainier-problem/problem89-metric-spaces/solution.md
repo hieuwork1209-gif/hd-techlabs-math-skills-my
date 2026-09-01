@@ -171,7 +171,7 @@ $(1,\log\frac{2^{20}3^{219}23^{46}}{5^{35}7^7 11^{22}13^{26}17^{34}})$
 
 **Problem Type:** Exact computation
 
-**Answer Type:** Exact tuple
+**Answer Type:** Tuple or ordered list
 
 ---
 
