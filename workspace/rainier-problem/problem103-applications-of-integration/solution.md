@@ -111,7 +111,7 @@ The leading product from (9) and the first term in (10) is proportional to $v^5e
 $$
 (-2^{5/3})\left(-\frac{\Phi'''(r)}6\right)=-8. \tag{11}
 $$
-As usual, outside a fixed neighborhood of $r$ the phase is at least $c+\eta$, while inside the neighborhood the quadratic term gives a Gaussian majorant. Hence termwise integration is justified. Since
+Outside a fixed neighborhood of $r$ the phase is at least $c+\eta$, while inside that neighborhood the quadratic term gives a Gaussian majorant. Hence termwise integration is justified. Since
 $$
 \int_{-\infty}^{\infty}v^8e^{-3v^2}\,dv
 =\frac{35\sqrt\pi}{432\sqrt3},
@@ -137,7 +137,7 @@ $$
 -\frac{J_n}{A_n}
 \sim
 \frac{560}{9\sqrt3}(\log2)^3
-afrac{1}{n(\log n)^3}
+\frac{1}{n(\log n)^3}
 \exp\!\left(-\frac3{2^{2/3}}n^{1/3}\right). \tag{14}
 $$
 The right side tends to $0$, so (1) and $\operatorname{arsinh}u\sim u$ imply
