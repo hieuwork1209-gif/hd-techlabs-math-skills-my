@@ -45,7 +45,7 @@ Determine the ordered pair $(\wp,\tau)$.
 | **Domain** | Analysis |
 | **Sub-domain** | Metric spaces |
 | **Problem Type** | Exact computation |
-| **Answer Type** | Exact tuple |
+| **Answer Type** | Tuple or ordered list |
 
 ---
 
