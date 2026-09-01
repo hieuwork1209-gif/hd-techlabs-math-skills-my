@@ -1,16 +1,14 @@
 ## Steps
 
-Step 1: Reduce power boundedness to two competing scalar bands
+Step 1: Reduce power boundedness and derive a parameterized dual bound
 
-Write
+Fix $c>0$ and $s\geq0$, and abbreviate
 $$
-R=R_{a,b}(s),\qquad
-S=S_{a,b}(s)
-=1-s+\frac32as^2+\frac52bs^3.
+R=R_{a,b}(s),\qquad S=S^{(c)}_{a,b}(s).
 $$
 A direct induction gives
 $$
-M_{a,b}(s)^m
+\left(M^{(c)}_{a,b}(s)\right)^m
 =
 \begin{pmatrix}
 R^m&s(R^m-S^m)\\
@@ -18,278 +16,285 @@ R^m&s(R^m-S^m)\\
 \end{pmatrix}
 \qquad(m\geq1).
 $$
-Therefore the orbit is bounded for every initial vector exactly when
+Hence the orbit is bounded for every initial vector exactly when
 $$
-|R_{a,b}(s)|\leq1
-\quad\text{and}\quad
-|S_{a,b}(s)|\leq1. \tag{1}
-$$
-Indeed, these inequalities make every entry of the displayed power bounded, while the diagonal entries show necessity.
-
-Step 2: Derive the sharp length from a positive dual inequality
-
-Assume that a pair $(a,b)$ is stable on $[0,L]$, and fix any $x\in(0,1)$. Put
-$$
-E_1=R_{a,b}(xL)+1,\qquad
-E_2=1-R_{a,b}(L),\qquad
-E_3=S_{a,b}(L)+1.
-$$
-By (1),
-$$
-E_1,E_2,E_3\geq0.
-$$
-Now set
-$$
-\beta=\frac{x^2(5-3x)}2,
+|R_{a,b}(s)|\leq1,
 \qquad
-\gamma=x^2(1-x).
+|S^{(c)}_{a,b}(s)|\leq1. \tag{1}
 $$
-Both weights are positive for $0<x<1$. Moreover,
+
+Assume $(a,b)$ is stable on $[0,L]$, and fix $x\in(0,1)$. Set
 $$
-x^2-\beta+\frac32\gamma=0,
+E_1=R_{a,b}(xL)+1,
 \qquad
-x^3-\beta+\frac52\gamma=0. \tag{2}
+E_2=1-R_{a,b}(L),
+\qquad
+E_3=S^{(c)}_{a,b}(L)+1.
 $$
-Consequently, in the combination $E_1+\beta E_2+\gamma E_3$, the coefficients of $a$ and $b$ cancel. Expanding the remaining terms gives the identity
+By (1), all three are nonnegative. Since
 $$
-E_1+\beta E_2+\gamma E_3
-=\frac{x(1-x)(2-x)}2\bigl(\Phi(x)-L\bigr), \tag{3}
+S^{(c)}_{a,b}(s)=1-s+(1+2c)as^2+(1+6c)bs^3,
+$$
+define
+$$
+\gamma_c=\frac{x^2(1-x)}{4c},
+\qquad
+\beta_c=x^2+(1+2c)\gamma_c.
+$$
+Both weights are positive, and
+$$
+x^2-\beta_c+(1+2c)\gamma_c=0,
+\qquad
+x^3-\beta_c+(1+6c)\gamma_c=0. \tag{2}
+$$
+Thus the $a$- and $b$-terms cancel in $E_1+\beta_cE_2+\gamma_cE_3$. Expanding the remaining terms gives
+$$
+E_1+\beta_cE_2+\gamma_cE_3
+=
+\frac{x(1-x)(2-x)}2\bigl(\Phi_c(x)-L\bigr), \tag{3}
 $$
 where
 $$
-\Phi(x)=\frac{4\bigl(1+x^2(1-x)\bigr)}{x(1-x)(2-x)}. \tag{4}
+\Phi_c(x)=
+\frac{4c+x^2(1-x)}{c\,x(1-x)(2-x)}. \tag{4}
 $$
-The left side of (3) is nonnegative, and the prefactor on the right is positive. Hence every stable interval satisfies
+The left side of (3) is nonnegative and the prefactor is positive, so every stable interval satisfies
 $$
-L\leq\Phi(x)\qquad(0<x<1). \tag{5}
+L\leq\Phi_c(x)\qquad(0<x<1).
 $$
-Thus the minimax geometry itself gives the universal upper bound
+Therefore
 $$
-L\leq\min_{0<x<1}\Phi(x). \tag{6}
-$$
-
-We now determine this minimum. Differentiating (4),
-$$
-\Phi'(x)
-=\frac{4D(x)}{x^2(1-x)^2(2-x)^2},
-$$
-where
-$$
-D(x)=2x^4-4x^3-x^2+6x-2. \tag{7}
-$$
-Also
-$$
-D'(x)=2(x-1)(4x^2-2x-3).
-$$
-The quadratic factor is negative on $(0,1)$, so $D'(x)>0$ there. Since
-$$
-D(0)=-2,\qquad D(1)=1,
-$$
-there is a unique $x_0\in(0,1)$ with
-$$
-D(x_0)=0. \tag{8}
-$$
-Because $\Phi(x)\to+\infty$ as $x\to0^+$ or $x\to1^-$, this $x_0$ is the unique global minimizer. Define
-$$
-r=\Phi(x_0). \tag{9}
-$$
-Then (5) implies that every stable interval has length at most $r$, so
-$$
-\rho_*\leq r. \tag{10}
+\rho_*(c)\leq m(c):=\min_{0<x<1}\Phi_c(x). \tag{5}
 $$
 
-It remains to identify $r$ in the requested exact form. Let
+Step 2: Prove that the dual bound is locally sharp at $c=1/4$
+
+Put $c_0=1/4$. Then
 $$
-P(y)=y^4-8y^3+52y^2-864y-1984.
-$$
-A direct substitution of (4) gives
-$$
-P(\Phi(x))
-=\frac{64D(x)^2\bigl(12x^4-36x^3+25x^2+2x+1\bigr)}
-{x^4(1-x)^4(2-x)^4}. \tag{11}
-$$
-Hence (8) yields $P(r)=0$. To locate this root, note that
-$$
-P(11)=-1203,\qquad P(12)=2048,
+\Phi_{c_0}(x)=\frac{4\bigl(1+x^2(1-x)\bigr)}{x(1-x)(2-x)},
 $$
 and
 $$
-P'(y)=4g(y),
+\Phi_{c_0}'(x)
+=
+\frac{4D(x)}{x^2(1-x)^2(2-x)^2},
 \qquad
-g(y)=y^3-6y^2+26y-216.
-$$
-Since
-$$
-g'(y)=3(y-2)^2+14>0,
-$$
-$g$ is strictly increasing. Thus $P$ first decreases and then increases on $(0,\infty)$. As $P(0)<0$ and $P(y)\to+\infty$, $P$ has exactly one positive root. Therefore
-$$
-r=\operatorname{Root}_{(11,12)}(P). \tag{12}
-$$
-
-Step 3: Equality in the dual bound forces the contact pattern and the candidate
-
-The active contacts are now consequences of equality in the bound, rather than assumptions used to guess the extremizer. Suppose a pair $(a,b)$ is stable on $[0,r]$. In (3), take $L=r$ and $x=x_0$. By (9), the right side is zero, while
-$$
-E_1\geq0,\qquad \beta E_2\geq0,\qquad \gamma E_3\geq0
-$$
-and $\beta,\gamma>0$. Hence all three slacks vanish:
-$$
-R_{a,b}(x_0r)=-1,
-\qquad
-R_{a,b}(r)=1,
-\qquad
-S_{a,b}(r)=-1. \tag{13}
-$$
-Put
-$$
-t=x_0r.
-$$
-Since $0<t<r$ and stability gives $R_{a,b}(s)\geq-1$ throughout $[0,r]$, the first equality in (13) is an interior minimum. Therefore
-$$
-R_{a,b}'(t)=0. \tag{14}
-$$
-Thus the full contact pattern
-$$
-R(t)=-1,\qquad R'(t)=0,\qquad R(r)=1,\qquad S(r)=-1
-$$
-is forced by the minimax equality case.
-
-The two endpoint equations in (13) already determine the coefficients. Writing
-$$
-A=ar^2,\qquad B=br^3,
-$$
-we obtain
-$$
-A+B=r,
-\qquad
-\frac32A+\frac52B=r-2.
-$$
-Hence
-$$
-A=\frac{3r+4}{2},
-\qquad
-B=-\frac{r+4}{2},
-$$
-so necessarily
-$$
-a_*=\frac{3r+4}{2r^2},
-\qquad
-b_*=-\frac{r+4}{2r^3}. \tag{15}
-$$
-This gives the only possible extremizing pair.
-
-We also recover the interior contacts algebraically for this candidate without assuming feasibility. By construction,
-$$
-R_{a_*,b_*}(r)=1,
-\qquad
-S_{a_*,b_*}(r)=-1,
-$$
-so $E_2=E_3=0$. Since $r=\Phi(x_0)$, identity (3) then gives
-$$
-R_{a_*,b_*}(t)=-1. \tag{16}
-$$
-Furthermore, after substituting $r=\Phi(x)$ into the derivative of the candidate,
-$$
-R_{a_*,b_*}'(rx)
-=\frac{D(x)}{2\bigl(1+x^2(1-x)\bigr)}.
-$$
-At $x=x_0$, (8) therefore gives
-$$
-R_{a_*,b_*}'(t)=0. \tag{17}
-$$
-
-Step 4: Verify feasibility on the full interval and conclude uniqueness
-
-The derivative $R_{a_*,b_*}'$ is a downward-opening quadratic because $b_*<0$. We have
-$$
-R_{a_*,b_*}'(0)=-1,
-\qquad
-R_{a_*,b_*}'(t)=0,
-$$
-and
-$$
-R_{a_*,b_*}'(r)=\frac12-\frac2r>0
-$$
-because $r>11$. Hence $t$ is the smaller critical point and the other critical point lies to the right of $r$. Using
-$$
-R_{a_*,b_*}(0)=R_{a_*,b_*}(r)=1,
-\qquad
-R_{a_*,b_*}(t)=-1,
-$$
-we obtain
-$$
-|R_{a_*,b_*}(s)|\leq1
-\qquad(0\leq s\leq r). \tag{18}
-$$
-
-For the companion mode,
-$$
-1-S_{a_*,b_*}(s)
-=s\left(
-1-\frac{3(3r+4)}{4r^2}s
-+\frac{5(r+4)}{4r^3}s^2
-\right).
-$$
-The discriminant of the quadratic in parentheses is
-$$
-\frac{r^2-104r+144}{16r^4}<0
-$$
-for $11<r<12$, and its leading coefficient is positive. Thus
-$$
-S_{a_*,b_*}(s)\leq1
-\qquad(s\geq0). \tag{19}
+D(x)=2x^4-4x^3-x^2+6x-2. \tag{6}
 $$
 Moreover,
 $$
-1+S_{a_*,b_*}(s)
-=\frac{(r-s)Q_r(s)}{4r^3},
+D'(x)=2(x-1)(4x^2-2x-3)>0
+\qquad(0<x<1),
+$$
+because both factors are negative there. Since $D(0)=-2$ and $D(1)=1$, there is a unique minimizer $x_0\in(0,1)$. In fact,
+$$
+D\left(\frac38\right)=-\frac{127}{2048}<0,
+\qquad
+D\left(\frac25\right)=\frac{22}{625}>0,
+$$
+so
+$$
+\frac38<x_0<\frac25. \tag{7}
+$$
+Let
+$$
+r_0=\Phi_{c_0}(x_0).
+$$
+For
+$$
+P(y)=y^4-8y^3+52y^2-864y-1984,
+$$
+direct substitution gives
+$$
+P(\Phi_{c_0}(x))
+=
+\frac{64D(x)^2(12x^4-36x^3+25x^2+2x+1)}
+{x^4(1-x)^4(2-x)^4}. \tag{8}
+$$
+Hence $P(r_0)=0$. Also $P(11)=-1203$ and $P(12)=2048$. Writing
+$$
+P'(y)=4g(y),
+\qquad
+g(y)=y^3-6y^2+26y-216,
+$$
+we have
+$$
+g'(y)=3(y-2)^2+14>0.
+$$
+Thus $P$ decreases once and then increases, so it has exactly one positive root. Consequently
+$$
+11<r_0<12. \tag{9}
+$$
+
+Now let $c\downarrow c_0$ and choose a minimizer $x_c$ of $\Phi_c$. Because $\Phi_c(x)\to+\infty$ at both endpoints, such a minimizer exists. Also $x_c\to x_0$: otherwise a sequence $c_n\to c_0$ would have minimizers staying away from $x_0$; after passing to a convergent subsequence, continuity of $\Phi_c$ would produce a second minimizer of $\Phi_{c_0}$, contradicting uniqueness. Hence
+$$
+r_c:=m(c)=\Phi_c(x_c)\to r_0. \tag{10}
+$$
+
+Define
+$$
+a_c=\frac{3r_c+c^{-1}}{2r_c^2},
+\qquad
+b_c=-\frac{r_c+c^{-1}}{2r_c^3}. \tag{11}
+$$
+Then
+$$
+R_{a_c,b_c}(r_c)=1,
+\qquad
+S^{(c)}_{a_c,b_c}(r_c)=-1. \tag{12}
+$$
+Indeed, with $A=a_cr_c^2$ and $B=b_cr_c^3$,
+$$
+A+B=r_c,
+\qquad
+(1+2c)A+(1+6c)B=r_c-2.
+$$
+Taking $L=r_c$ and $x=x_c$ in (3), the last two slacks vanish by (12), while $r_c=\Phi_c(x_c)$, so
+$$
+R_{a_c,b_c}(x_cr_c)=-1. \tag{13}
+$$
+Since $x_c$ is an interior minimizer of $\Phi_c$, differentiating (4) in $x$ gives zero there. A direct substitution of (11) shows that the same numerator occurs in
+$$
+R'_{a_c,b_c}(x_cr_c),
+$$
+so
+$$
+R'_{a_c,b_c}(x_cr_c)=0. \tag{14}
+$$
+
+It remains to check that these contacts really give stability for $c$ close to $c_0$. Put $y=s/r_c$. From (11),
+$$
+R_{a_c,b_c}(r_cy)-1
+=-\frac{y(y-1)}{2c}\bigl((cr_c+1)y-2cr_c\bigr). \tag{15}
+$$
+At $c=c_0$, (9) gives $c_0r_0>1$, so by (10) the factor in parentheses is negative on $0\leq y\leq1$ for all $c$ sufficiently close to $c_0$. Hence $R\leq1$.
+
+The derivative of $R_{a_c,b_c}(r_cy)$ is a downward-opening quadratic. One root is $x_c$ by (14), and the other root $z_c$ satisfies
+$$
+x_cz_c=\frac{2r_c}{3(r_c+c^{-1})}. \tag{16}
+$$
+At $c=c_0$, using (7) and (9),
+$$
+z_0>
+\frac{2r_0}{3(r_0+4)(2/5)}
+=
+\frac{5r_0}{3(r_0+4)}>1.
+$$
+Thus $z_c>1$ for $c$ sufficiently close to $c_0$. Since $R(0)=1$, (13), and the derivative changes from negative to positive at $x_c$, we obtain
+$$
+-1\leq R_{a_c,b_c}(s)\leq1
+\qquad(0\leq s\leq r_c). \tag{17}
+$$
+
+For the companion mode, direct factorization gives
+$$
+1-S^{(c)}_{a_c,b_c}(r_cy)=\frac{yQ_{c,r_c}(y)}{2c},
+\qquad
+1+S^{(c)}_{a_c,b_c}(r_cy)=\frac{(1-y)H_{c,r_c}(y)}{2c}, \tag{18}
 $$
 where
 $$
-Q_r(s)
-=(5r+20)s^2+(-4r^2+8r)s+8r^2.
+Q_{c,r}(y)
+=(6c^2r+cr+6c+1)y^2
+-(6c^2r+3cr+2c+1)y
++2cr,
 $$
-Its discriminant is
+and
 $$
-16r^2(r^2-14r-36)<0,
+H_{c,r}(y)
+=(6c^2r+cr+6c+1)y^2
++(-2cr+4c)y
++4c.
 $$
-so $Q_r(s)>0$ for all real $s$. Therefore
+At $c=c_0$, their discriminants are
 $$
-S_{a_*,b_*}(s)\geq-1
-\qquad(0\leq s\leq r). \tag{20}
+\Delta_Q=\frac{r_0^2-104r_0+144}{64}<0,
+\qquad
+\Delta_H=\frac{r_0^2-14r_0-36}{4}<0
 $$
-Equations (1), (18), (19), and (20) show that
+by (9), while both leading coefficients are positive. By (10) and continuity, the discriminants remain negative for $c$ sufficiently close to $c_0$. Hence both quadratics in (18) stay positive, so
 $$
-\rho(a_*,b_*)\geq r. \tag{21}
+-1\leq S^{(c)}_{a_c,b_c}(s)\leq1
+\qquad(0\leq s\leq r_c). \tag{19}
 $$
-Combined with the universal upper bound (10), this proves
+Equations (1), (17), and (19) show that the candidate is stable on $[0,r_c]$. Together with (5), this proves that for all $c>c_0$ sufficiently close to $c_0$,
 $$
-\rho_*=r.
+\rho_*(c)=m(c)=\min_{0<x<1}\Phi_c(x). \tag{20}
 $$
 
-Finally, suppose $\rho(a,b)=r$. The set of stable interval lengths is downward closed, so the pair is stable on every $[0,L]$ with $L<r$; continuity of $R_{a,b}$ and $S_{a,b}$ then extends the inequalities to $s=r$. Thus the pair is stable on $[0,r]$, and the equality argument in Step 3 forces the endpoint contacts in (13), hence the unique coefficients (15). Therefore the maximizer is unique.
+Step 3: Compute the right derivative without invoking an envelope theorem
 
-Final Answer: $\boxed{(r,\frac{3r+4}{2r^2},-\frac{r+4}{2r^3}),\ r=\operatorname{Root}_{(11,12)}(x^4-8x^3+52x^2-864x-1984)}$
+Let $h>0$ be small, put $c_h=c_0+h$, and let $x_h$ minimize $\Phi_{c_h}$. By Step 2, $x_h\to x_0$ and
+$$
+\rho_*(c_h)=\Phi_{c_h}(x_h),
+\qquad
+\rho_*(c_0)=\Phi_{c_0}(x_0).
+$$
+Since $x_0$ minimizes $\Phi_{c_0}$ and $x_h$ minimizes $\Phi_{c_h}$,
+$$
+\Phi_{c_h}(x_h)-\Phi_{c_0}(x_h)
+\leq
+\rho_*(c_h)-\rho_*(c_0)
+\leq
+\Phi_{c_h}(x_0)-\Phi_{c_0}(x_0). \tag{21}
+$$
+Divide by $h$. From (4),
+$$
+\frac{\partial\Phi_c}{\partial c}(x)
+=-\frac{x}{c^2(2-x)}. \tag{22}
+$$
+The two outer difference quotients in (21) therefore converge, using $x_h\to x_0$, to the same value
+$$
+-\frac{x_0}{c_0^2(2-x_0)}
+=-\frac{16x_0}{2-x_0}. \tag{23}
+$$
+Hence the requested right-hand limit exists and
+$$
+\kappa_*=-\frac{16x_0}{2-x_0}. \tag{24}
+$$
+
+Step 4: Eliminate the hidden contact point
+
+Set
+$$
+k=-\frac{16x_0}{2-x_0}.
+$$
+Then
+$$
+x_0=\frac{2k}{k-16}.
+$$
+Substituting this into $D(x_0)=0$ from (6) gives
+$$
+D\left(\frac{2k}{k-16}\right)
+=
+\frac{2\bigl(3k^4+96k^3+2560k^2-8192k-65536\bigr)}{(k-16)^4}=0. \tag{25}
+$$
+By (7), $3/8<x_0<2/5$. The map $x\mapsto-16x/(2-x)$ is strictly decreasing, so
+$$
+-4<k<-\frac{48}{13}<-3. \tag{26}
+$$
+Conversely, any root of the quartic in $(-4,-3)$ maps through $x=2k/(k-16)$ to a root of $D$ in $(0,1)$. Since Step 2 proved that $D$ has only one root in $(0,1)$, the quartic has exactly one root in $(-4,-3)$. Combining this with (24) yields the required exact sensitivity.
+
+Final Answer: $\boxed{\operatorname{Root}_{(-4,-3)}(3x^4+96x^3+2560x^2-8192x-65536)}$
 
 ## Answer
 
-$(r,\frac{3r+4}{2r^2},-\frac{r+4}{2r^3}),\ r=\operatorname{Root}_{(11,12)}(x^4-8x^3+52x^2-864x-1984)$
+$\operatorname{Root}_{(-4,-3)}(3x^4+96x^3+2560x^2-8192x-65536)$
 
 ## Classification
 
 **Problem Type:** Optimization
 
-**Answer Type:** Tuple or ordered list
+**Answer Type:** Exact scalar
 
 ## Solution Concepts
 
-- power-bounded triangular amplification
-- positive dual minimax certificate
-- equality-case contact forcing
-- competing cubic stability modes
-- equality-case rigidity
+- power-bounded triangular families
+- parameterized stability minimax
+- positive dual certificate
+- optimal-value sensitivity
+- algebraic elimination
 
 ## Black-Box Audit
 
-Power boundedness is proved from an explicit formula for the matrix powers. The sharp interval bound is derived before the candidate from the positive dual identity (3); equality in that bound forces the active contact pattern, after which the coefficients are determined. The full stability interval is then checked by elementary derivative, factorization, and discriminant arguments. No numerical optimizer, root-location theorem, or external extremal-polynomial result is used.
+Power boundedness is derived from an explicit matrix-power formula. The parameterized upper bound comes from a positive dual identity with displayed weights. Local sharpness is proved by an explicit candidate, factorization, critical-point geometry, and discriminant signs. The derivative of the optimal value is obtained from the two elementary minimizer inequalities in (21), not from an envelope theorem. The final algebraic value follows by direct substitution and root localization; no numerical optimizer or external extremal theorem is used.
