@@ -2,27 +2,35 @@
 
 ## LaTeX (Normalized)
 
-For integers $n\ge2$ and real $a>0$, define
+For integers $n\ge2$, $a>0$, and $b\in\mathbb R$, define
 $$
-T_r(n,a)=\sum_{q=1}^3 e^{q-1}\sum_{k=0}^{n^q}
-\frac{(-1)^k\binom{n^q}{k}}{(k+a)^r}
-\qquad(1\le r\le5)
+T_r(n,a,b)=\sum_{q=1}^3e^{b(q-1)}\sum_{k=0}^{n^q}
+\frac{(-1)^k\binom{n^q}{k}}{(k+a)^r}\qquad(1\le r\le5),
+$$
+$$
+\Delta=\det\!\left[(i+j)!T_{i+j+1}\right]_{i,j=0}^2,
+\qquad \Lambda=2T_1T_3-T_2^2,
 $$
 and
 $$
-\Delta_n(a)=\det\!\left[(i+j)!\,T_{i+j+1}(n,a)\right]_{i,j=0}^{2}.
+\Omega=-6T_1^2T_4+6T_1T_2T_3-2T_2^3,
 $$
-For all sufficiently large $n$, let $a_n>0$ be the unique solution with
+where all $T_r$ in $\Delta,\Lambda,\Omega$ are evaluated at $(n,a,b)$.
+
+For all sufficiently large $n$, let $(a_n,b_n)$ be the unique pair satisfying
 $$
-\left|a_n\log n-1\right|<\frac1{10}
+|a_n\log n-1|<\frac1{10},\qquad |b_n-1|<\frac1{10},\qquad a_n\log n>b_n,
 $$
-of
+and
 $$
-27\,\Delta_n(a_n)=382\,(\log n)^6\,T_1(n,a_n)^3.
+3\Lambda=5(\log n)^2T_1^2,
+$$
+$$
+27\Delta-108(\log n)^3\Omega=598(\log n)^6T_1^3.
 $$
 Determine
 $$
-\lim_{n\to\infty}(\log n)^2\bigl(a_n\log n-1\bigr).
+\lim_{n\to\infty}(\log n)\bigl(a_n\log n-b_n\bigr).
 $$
 
 ---
@@ -40,4 +48,4 @@ $$
 
 ## Domain Explanation
 
-The problem is governed by a scale-free Hankel determinant ratio. The normalization by $T_1^3$ makes the first boundary displacement invisible by translation invariance, so the parameter is selected only by the second-order deformation of the moment determinant.
+The problem couples two scale-free Hankel determinant invariants. Their leading Jacobian is singular in the relative-scale direction, so the selected branch is determined only after a quadratic splitting of the determinant constraints.
