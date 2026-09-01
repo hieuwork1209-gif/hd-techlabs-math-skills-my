@@ -1,197 +1,169 @@
 ## Steps
 
-Step 1: Separate the implicit root from the asymptotic integral
+Step 1: Separate the root from the asymptotic term
 
-Define
+Write
 $$
-A_n=\int_0^1\!\int_0^1 e^{-n(xy)^2}\,dx\,dy
+A_n=\int_{[0,1]^4}e^{-nT^2}\,d\mathbf x
 $$
-and
+and let $J_n$ denote the sum of the four remaining integrals in the definition of $I_n$. Then
 $$
-J_n=\int_0^1\!\int_0^1
-\left(1-\sqrt[3]{2n}\,xy\right)^5
-\exp\!\left(-n(xy)^2-\frac1{xy}\right)dx\,dy.
+I_n(\lambda)=A_n\sinh\lambda+J_n.
 $$
-Then
-$$
-I_n(\lambda)=2A_n\sinh\lambda+2J_n.
-$$
-Since $A_n>0$, the function $I_n$ is strictly increasing in $\lambda$ and tends to $\pm\infty$ as $\lambda\to\pm\infty$. Hence the root is unique and satisfies
+Since $A_n>0$, this is strictly increasing in $\lambda$ and tends to $\pm\infty$ as $\lambda\to\pm\infty$. Hence the root is unique and
 $$
 \sinh\lambda_n=-\frac{J_n}{A_n}. \tag{1}
 $$
-Thus the problem reduces to finding the first nonzero asymptotic term of $J_n/A_n$.
+Thus it remains to determine the first nonzero asymptotic term of $J_n/A_n$.
 
-Step 2: Reduce the product integrals to one variable and evaluate $A_n$
+Step 2: Reduce four product variables to one variable
 
-For every integrable function $F$ on $(0,1)$,
+For every integrable $F$ on $(0,1)$,
 $$
-\int_0^1\!\int_0^1 F(xy)\,dx\,dy
-=\int_0^1(-\log t)F(t)\,dt. \tag{2}
+\int_{[0,1]^4}F(x_1x_2x_3x_4)\,d\mathbf x
+=\frac16\int_0^1(-\log t)^3F(t)\,dt. \tag{2}
 $$
-Indeed, for fixed $x$, put $t=xy$ and then reverse the order of integration:
+Indeed, set $x_i=e^{-u_i}$. Then $d\mathbf x=e^{-(u_1+\cdots+u_4)}d\mathbf u$. For fixed $s=u_1+\cdots+u_4$, the simplex $u_i\geq0$ has three-dimensional volume $s^3/6$. Finally put $t=e^{-s}$.
+
+Applying (2) to $A_n$ gives
 $$
-\int_0^1\frac1x\int_0^xF(t)\,dt\,dx
-=\int_0^1F(t)\int_t^1\frac{dx}{x}\,dt.
+A_n=\frac16\int_0^1(-\log t)^3e^{-nt^2}\,dt.
 $$
-Applying (2),
+With $t=s/\sqrt n$,
 $$
-A_n=\int_0^1(-\log t)e^{-nt^2}\,dt.
+A_n=\frac1{6\sqrt n}\int_0^{\sqrt n}
+\left(\frac12\log n-\log s\right)^3e^{-s^2}\,ds.
 $$
-With $s=\sqrt n\,t$,
+The terms containing fewer than three powers of $\log n$ are lower order, so
 $$
-A_n=\frac1{\sqrt n}\left[
-\frac12\log n\int_0^{\sqrt n}e^{-s^2}\,ds
--\int_0^{\sqrt n}(\log s)e^{-s^2}\,ds
-\right].
-$$
-The second integral converges to a finite constant, while the first tends to
-$$
-\frac12\log n\cdot\frac{\sqrt\pi}{2}.
-$$
-Therefore
-$$
-A_n\sim\frac{\sqrt\pi}{4}\,n^{-1/2}\log n. \tag{3}
-$$
-It will be convenient to write
-$$
-N=n^{1/3}.
-$$
-Then (3) becomes
-$$
-A_n\sim\frac{3\sqrt\pi}{4}(\log N)N^{-3/2}. \tag{4}
+A_n\sim\frac{\sqrt\pi}{96}\,n^{-1/2}(\log n)^3. \tag{3}
 $$
 
-Step 3: Locate the moving saddle in $J_n$
+Step 3: Expose the hidden third finite difference
 
-Using (2) again and then $t=z/N$,
+Put
 $$
-J_n
-=\frac1N\int_0^N(\log N-\log z)
-\left(1-2^{1/3}z\right)^5e^{-N\Phi(z)}\,dz, \tag{5}
+a_n(u)=\left(1-(2n)^{1/3}u\right)^5,
+\qquad
+E_n(u)=\exp\!\left(-nu^2-\frac1u\right).
+$$
+For the term indexed by $j$, apply (2) and then substitute $u=2^jt$. The factor $2^j$ in the statement cancels the Jacobian, giving
+$$
+\frac{(-1)^{3-j}}6\binom3j
+\int_0^{2^j}\bigl(-\log u+j\log2\bigr)^3a_n(u)E_n(u)\,du. \tag{4}
+$$
+On $0<u<1$, all four integrals in (4) are present. Since the third forward difference of a cubic is constant,
+$$
+\sum_{j=0}^3(-1)^{3-j}\binom3j(X+jh)^3=6h^3, \tag{5}
+$$
+with $h=\log2$. The portions with $u\geq1$ are $O(n^C e^{-n})$ for some fixed $C$, because $E_n(u)\leq e^{-n}$ there. Therefore
+$$
+J_n=(\log2)^3K_n+O(n^Ce^{-n}), \tag{6}
 $$
 where
 $$
-\Phi(z)=z^2+\frac1z.
+K_n=\int_0^\infty a_n(u)E_n(u)\,du.
 $$
-Now
-$$
-\Phi'(z)=2z-\frac1{z^2},
-$$
-so the unique critical point on $(0,\infty)$ is
-$$
-r=2^{-1/3}.
-$$
-It is the unique minimum, with
-$$
-c:=\Phi(r)=\frac{3}{2^{2/3}},
-\qquad
-\Phi''(r)=6,
-\qquad
-\Phi'''(r)=-6\,2^{4/3}. \tag{6}
-$$
-The amplitude in (5) has a fifth-order zero at the same point:
-$$
-\left(1-2^{1/3}z\right)^5
-=-2^{5/3}(z-r)^5. \tag{7}
-$$
-This is the decisive cancellation.
+The extension of the upper limit to infinity changes the integral only by another $O(n^Ce^{-n})$ term.
+
+Step 4: Evaluate the first surviving moving-saddle term
 
 Set
 $$
-z=r+\frac{u}{\sqrt N}.
+N=n^{1/3},\qquad u=\frac zN,
+\qquad
+\Phi(z)=z^2+\frac1z.
 $$
-Taylor expansion of the phase gives
+Then
 $$
-N\bigl(\Phi(z)-c\bigr)
-=3u^2+\frac{\Phi'''(r)}{6\sqrt N}u^3
-+O\!\left(\frac{u^4}{N}\right).
+K_n=\frac1N\int_0^\infty
+\left(1-2^{1/3}z\right)^5e^{-N\Phi(z)}\,dz. \tag{7}
 $$
-Hence, uniformly for $|u|\leq N^{1/10}$,
+The unique minimum of $\Phi$ occurs at
+$$
+r=2^{-1/3},
+$$
+because $\Phi'(z)=2z-z^{-2}$. At this point
+$$
+c:=\Phi(r)=\frac3{2^{2/3}},
+\qquad
+\Phi''(r)=6,
+\qquad
+\Phi'''(r)=-6\,2^{4/3}. \tag{8}
+$$
+The amplitude has a fifth-order zero at exactly the same point:
+$$
+\left(1-2^{1/3}z\right)^5=-2^{5/3}(z-r)^5. \tag{9}
+$$
+Now set $z=r+v/\sqrt N$. Taylor expansion gives
+$$
+N(\Phi(z)-c)
+=3v^2+\frac{\Phi'''(r)}{6\sqrt N}v^3
++O\!\left(\frac{v^4}{N}\right),
+$$
+so
 $$
 e^{-N(\Phi(z)-c)}
-=e^{-3u^2}\left[
-1-\frac{\Phi'''(r)}{6\sqrt N}u^3
-+O\!\left(\frac{u^4+u^6}{N}\right)
-\right]. \tag{8}
+=e^{-3v^2}\left[1-\frac{\Phi'''(r)}{6\sqrt N}v^3
++O\!\left(\frac{v^4+v^6}{N}\right)\right]. \tag{10}
 $$
-Also, by (7),
+The leading product from (9) and the first term in (10) is proportional to $v^5e^{-3v^2}$ and integrates to zero. The first nonzero term comes from the cubic correction. Its coefficient is
 $$
-\left(1-2^{1/3}z\right)^5
-=-\frac{2^{5/3}u^5}{N^{5/2}}. \tag{9}
+(-2^{5/3})\left(-\frac{\Phi'''(r)}6\right)=-8. \tag{11}
 $$
-The product of the leading terms in (8) and (9) is odd in $u$, so its integral over the asymptotically symmetric saddle neighborhood vanishes. The first nonzero term is obtained by multiplying (9) by the cubic correction in (8). Its coefficient is
+As usual, outside a fixed neighborhood of $r$ the phase is at least $c+\eta$, while inside the neighborhood the quadratic term gives a Gaussian majorant. Hence termwise integration is justified. Since
 $$
-(-2^{5/3})\left(-\frac{\Phi'''(r)}6\right)=-8. \tag{10}
-$$
-Moreover
-$$
-\log N-\log z=\log N+O(1)+O\!\left(\frac{|u|}{\sqrt N}\right)
-$$
-near the saddle. Thus only the $\log N$ part contributes to the leading coefficient.
-
-The contribution outside a fixed neighborhood of $r$ is exponentially smaller because $r$ is the unique minimum of $\Phi$. Inside that neighborhood, (8) gives a Gaussian majorant, so the expansion may be integrated term by term. Using
-$$
-\int_{-\infty}^{\infty}u^8e^{-3u^2}\,du
+\int_{-\infty}^{\infty}v^8e^{-3v^2}\,dv
 =\frac{35\sqrt\pi}{432\sqrt3},
 $$
-we obtain from (5), (8), (9), and (10)
+(7)-(11) yield
 $$
-J_n
-\sim
--8(\log N)e^{-cN}N^{-9/2}
-\int_{-\infty}^{\infty}u^8e^{-3u^2}\,du.
+K_n\sim
+-\frac{35\sqrt\pi}{54\sqrt3}\,
+N^{-9/2}e^{-cN}. \tag{12}
 $$
-Therefore
+Because $N^{-9/2}=n^{-3/2}$,
 $$
-J_n
-\sim
--\frac{35\sqrt\pi}{54\sqrt3}
-(\log N)N^{-9/2}
-\exp\!\left(-\frac{3}{2^{2/3}}N\right). \tag{11}
+J_n\sim
+-\frac{35\sqrt\pi(\log2)^3}{54\sqrt3}\,
+n^{-3/2}
+\exp\!\left(-\frac3{2^{2/3}}n^{1/3}\right). \tag{13}
 $$
 
-Step 4: Recover the root and identify all three constants
+Step 5: Recover the implicit root
 
-Combining (4) and (11),
-$$
-\frac{J_n}{A_n}
-\sim
--\frac{70}{81\sqrt3}
-N^{-3}
-\exp\!\left(-\frac{3}{2^{2/3}}N\right).
-$$
-Since $N^3=n$,
+Combining (3) and (13),
 $$
 -\frac{J_n}{A_n}
 \sim
-\frac{70}{81\sqrt3}\,
-\frac1n
-\exp\!\left(-\frac{3}{2^{2/3}}n^{1/3}\right). \tag{12}
+\frac{560}{9\sqrt3}(\log2)^3
+afrac{1}{n(\log n)^3}
+\exp\!\left(-\frac3{2^{2/3}}n^{1/3}\right). \tag{14}
 $$
-The right side tends to $0$, so from (1) and $\operatorname{arsinh}u\sim u$,
+The right side tends to $0$, so (1) and $\operatorname{arsinh}u\sim u$ imply
 $$
-\lambda_n
-\sim
-\frac{70}{81\sqrt3}\,
-\frac1n
-\exp\!\left(-\frac{3}{2^{2/3}}n^{1/3}\right).
+\lambda_n\sim
+\frac{560}{9\sqrt3}(\log2)^3
+\frac{1}{n(\log n)^3}
+\exp\!\left(-\frac3{2^{2/3}}n^{1/3}\right).
 $$
-Hence the unique constants are
+Since $560/(9\sqrt3)=560\sqrt3/27$, the unique constants are
 $$
 \alpha=1,
 \qquad
-c=\frac{3}{2^{2/3}},
+\beta=3,
 \qquad
-L=\frac{70}{81\sqrt3}.
+c=\frac3{2^{2/3}},
+\qquad
+L=\frac{560\sqrt3(\log2)^3}{27}.
 $$
-Final Answer: $\boxed{\left(1,\frac{3}{2^{2/3}},\frac{70}{81\sqrt3}\right)}$
+Final Answer: $\boxed{\left(1,3,\frac3{2^{2/3}},\frac{560\sqrt3(\log2)^3}{27}\right)}$
 
 ---
 
 ## Answer
 
-$\left(1,\frac{3}{2^{2/3}},\frac{70}{81\sqrt3}\right)$
+$\left(1,3,\frac3{2^{2/3}},\frac{560\sqrt3(\log2)^3}{27}\right)$
 
 ---
 
@@ -206,7 +178,7 @@ $\left(1,\frac{3}{2^{2/3}},\frac{70}{81\sqrt3}\right)$
 ## Solution Concepts
 
 - product-integral reduction
+- finite-difference cancellation
 - logarithmic density
-- moving-saddle asymptotics
 - high-order saddle cancellation
 - implicit root asymptotics
