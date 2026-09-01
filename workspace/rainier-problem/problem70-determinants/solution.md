@@ -1,221 +1,184 @@
 ## Steps
 
-Step 1: Recover the leading threshold profile and locate the root
-For every integer $r\ge0$,
+Step 1: Normalize the Hankel determinant and identify the leading root
+Put $L=\log n$ and, for $0\le r\le4$,
 $$
-\frac{r!}{(k+a)^{r+1}}=\int_0^\infty y^r e^{-(k+a)y}\,dy.
+B_{r,n}(c)=\frac{r!\,T_{r+1}(n,c/L)}{L^{r+1}}.
 $$
-Hence, with
+Using
 $$
-R_n(y)=\sum_{q=1}^3 e^{q-1}(1-e^{-y})^{n^q},
+\frac{r!}{(k+a)^{r+1}}=\int_0^\infty y^r e^{-(k+a)y}\,dy
 $$
-we have
+and summing the binomial expansion gives
 $$
-r!T_{r+1}(n,a)=\int_0^\infty y^r e^{-ay}R_n(y)\,dy.
+B_{r,n}(c)=\int_0^\infty e^{-cx}x^r
+\sum_{q=1}^3e^{q-1}(1-n^{-x})^{n^q}\,dx.
 $$
-Thus $\Delta_n(a)$ is the Gram determinant of $1,y,y^2$ for the positive measure $e^{-ay}R_n(y)\,dy$. If $b>a$, the difference of the two moment matrices is the integral of
+Hence, locally uniformly for $c>0$,
 $$
-(e^{-ay}-e^{-by})R_n(y)
-\begin{pmatrix}1\\y\\y^2\end{pmatrix}
-\begin{pmatrix}1&y&y^2\end{pmatrix},
-$$
-so it is positive definite. Conjugating by the inverse square root of the matrix at $b$ shows $\Delta_n(a)>\Delta_n(b)$.
-
-Put $L=\log n$ and
-$$
-B_{r,n}(c)=\frac{r!T_{r+1}(n,c/L)}{L^{r+1}}.
-$$
-After $y=Lx$,
-$$
-B_{r,n}(c)=\int_0^\infty e^{-cx}x^r\sum_{q=1}^3e^{q-1}(1-n^{-x})^{n^q}\,dx.
-$$
-For $x\ne q$,
-$$
-(1-n^{-x})^{n^q}\longrightarrow \mathbf1_{x>q}.
-$$
-Dominated convergence, uniformly for $c$ in compact subsets of $(0,\infty)$, gives
-$$
-B_{r,n}(c)\longrightarrow m_r(c):=\sum_{q=1}^3e^{q-1}\int_q^\infty e^{-cx}x^r\,dx.
+B_{r,n}(c)\to m_r(c):=\sum_{q=1}^3e^{q-1}\int_q^\infty e^{-cx}x^r\,dx.
 $$
 Let
 $$
-G(c)=[m_{i+j}(c)]_{i,j=0}^2,\qquad H(c)=\det G(c).
+M_n(c)=[B_{i+j,n}(c)]_{i,j=0}^2,\qquad M(c)=[m_{i+j}(c)]_{i,j=0}^2,
 $$
-Factoring the powers of $L$ from rows and columns yields
+and define the scale-free ratio
 $$
-\frac{\Delta_n(c/L)}{L^9}\longrightarrow H(c).
+Q_n(c)=\frac{\det M_n(c)}{B_{0,n}(c)^3},\qquad
+Q(c)=\frac{\det M(c)}{m_0(c)^3}.
 $$
-The same positive-definite comparison shows that $H$ is strictly decreasing. At $c=1$,
+Because
 $$
-(m_0,m_1,m_2,m_3,m_4)=\frac1e(3,9,32,132,626),
+\Delta_n(c/L)=L^9\det M_n(c),\qquad T_1(n,c/L)=LB_{0,n}(c),
 $$
-so
+the defining equation is simply
 $$
-H(1)=\frac1{e^3}\det\begin{pmatrix}3&9&32\\9&32&132\\32&132&626\end{pmatrix}=\frac{382}{e^3}.
+Q_n(c_n)=\frac{382}{27},\qquad c_n=a_nL.
 $$
-Let $c_n=a_nL$. For any fixed $\varepsilon\in(0,1)$,
+At $c=1$,
 $$
-H(1-\varepsilon)>H(1)>H(1+\varepsilon).
+(m_0,m_1,m_2,m_3,m_4,m_5)(1)
+=\frac1e(3,9,32,132,626,3406).
 $$
-The uniform convergence above gives, for all large $n$,
+Thus, with
 $$
-\Delta_n((1-\varepsilon)/L)>H(1)L^9>\Delta_n((1+\varepsilon)/L).
+A=\begin{pmatrix}3&9&32\\9&32&132\\32&132&626\end{pmatrix},
 $$
-Since $\Delta_n$ is strictly decreasing and $\Delta_n(a_n)=H(1)L^9$,
+we have $\det A=382$ and therefore
 $$
-1-\varepsilon<c_n<1+\varepsilon.
+Q(1)=\frac{382/e^3}{(3/e)^3}=\frac{382}{27}.
 $$
-Therefore
+Also $m_r'(c)=-m_{r+1}(c)$. A cofactor calculation gives
 $$
-c_n\longrightarrow1.
+\det M(1)'=-\frac{5130}{e^3}.
 $$
+Consequently
+$$
+Q'(1)=\frac{-5130/e^3}{(3/e)^3}
+-3\frac{382/e^3}{(3/e)^4}\frac{-9}{e}
+=-\frac{188}{3}\ne0.
+$$
+So the selected solution satisfies $c_n\to1$; the nonzero derivative also gives local uniqueness for all sufficiently large $n$.
 
-Step 2: Compute the first correction to each scaled moment
-Fix $q\in\{1,2,3\}$ and put $N=n^q$. Let $E_1,\ldots,E_N$ be independent exponential random variables with density $e^{-t}$ on $t>0$, and let
-$$
-X_N=\max(E_1,\ldots,E_N).
-$$
-Then
+Step 2: Find the second-order boundary-layer correction
+Fix $q\in\{1,2,3\}$, put $N=n^q$, and let $X_N$ be the maximum of $N$ independent exponential random variables of mean $1$. Then
 $$
 \mathbb P(X_N\le t)=(1-e^{-t})^N.
 $$
 For
 $$
-\phi_{r,c}(x)=e^{-cx}x^r,\qquad
-A_{r,c}(s)=\int_s^\infty\phi_{r,c}(x)\,dx,
+\phi_{r,c}(x)=e^{-cx}x^r,\qquad A_{r,c}(s)=\int_s^\infty\phi_{r,c}(x)\,dx,
 $$
-integration by parts against the distribution of $X_N/L$ gives the exact identity
+integration by parts gives the exact identity
 $$
-\int_0^\infty\phi_{r,c}(x)(1-n^{-x})^{n^q}\,dx
+\int_0^\infty \phi_{r,c}(x)(1-n^{-x})^{n^q}\,dx
 =\mathbb E\,A_{r,c}(X_N/L).
 $$
+Write $Z_N=X_N-\log N$. The exponential order-statistic spacings are independent exponentials with rates $N,N-1,\ldots,1$, so
+$$
+\mathbb EX_N=H_N,\qquad \operatorname{Var}(X_N)=\sum_{j=1}^N\frac1{j^2}.
+$$
+Hence
+$$
+\mathbb EZ_N=\gamma+o(L^{-2}),\qquad
+\mathbb EZ_N^2=\gamma^2+\frac{\pi^2}{6}+o(1),
+$$
+and the centered third moments stay bounded. Since $\log N=qL$, Taylor expansion at $q$ yields, uniformly for $c$ near $1$,
+$$
+\mathbb E A_{r,c}(q+Z_N/L)
+=A_{r,c}(q)-\frac{\gamma}{L}\phi_{r,c}(q)
+-\frac{\gamma^2+\pi^2/6}{2L^2}\phi_{r,c}'(q)+o(L^{-2}).
+$$
+Introduce the purely translated leading moments
+$$
+m_r^{(\delta)}(c)=\sum_{q=1}^3e^{q-1}A_{r,c}(q+\delta).
+$$
+Then the preceding expansion becomes
+$$
+B_{r,n}(c)=m_r^{(\gamma/L)}(c)
+-\frac{\pi^2}{12L^2}s_r(c)+o(L^{-2}),
+$$
+where
+$$
+s_r(c)=\sum_{q=1}^3e^{q-1}\phi_{r,c}'(q).
+$$
+This separates the universal first-order displacement from the genuinely second-order deformation.
+
+Step 3: Use translation invariance to eliminate the entire first correction
+For the shifted moments, substitute $x=y+\delta$ in each tail integral. The moment matrix transforms as
+$$
+M^{(\delta)}(c)=e^{-c\delta}P_\delta M(c)P_\delta^T,
+$$
+where $P_\delta$ is the lower-triangular change-of-basis matrix sending
+$1,y,y^2$ to $1,y+\delta,(y+\delta)^2$. Thus $\det P_\delta=1$, and
+$$
+\frac{\det M^{(\delta)}(c)}{m_0^{(\delta)}(c)^3}
+=\frac{\det M(c)}{m_0(c)^3}=Q(c).
+$$
+So the whole $\gamma/L$ displacement, including its $\gamma^2/L^2$ Taylor contribution, disappears from $Q_n$.
+
+At $c=1$,
+$$
+e(s_0,s_1,s_2,s_3,s_4)=(-3,-3,-2,6,46).
+$$
+Therefore the residual perturbation of the dimensionless Hankel matrix $A$ is
+$$
+\frac{\pi^2}{12L^2}E,\qquad
+E=\begin{pmatrix}3&3&2\\3&2&-6\\2&-6&-46\end{pmatrix}.
+$$
 Also
-$$
-\mathbb EX_N
-=\int_0^\infty\bigl(1-(1-e^{-t})^N\bigr)dt
-=\int_0^1\frac{1-(1-u)^N}{u}\,du
-=\sum_{j=1}^N\frac1j.
-$$
-Writing $H_N=\sum_{j=1}^N1/j$ and
-$$
-\gamma=\lim_{N\to\infty}(H_N-\log N),
-$$
-we obtain
-$$
-\mathbb E(X_N-\log N)=\gamma+o(1).
-$$
-Moreover, for $y\ge0$,
-$$
-\mathbb P(X_N-\log N>y)\le e^{-y},
-$$
-and, for $0\le y\le\log N$,
-$$
-\mathbb P(\log N-X_N>y)
-=(1-e^y/N)^N\le e^{-e^y}.
-$$
-Hence $\mathbb E(X_N-\log N)^2=O(1)$ uniformly in $N$.
-
-Since $\log N=qL$ and $A'_{r,c}=-\phi_{r,c}$, Taylor's formula around $q$ now gives, uniformly for $c$ near $1$,
-$$
-\mathbb E\,A_{r,c}(X_N/L)
-=A_{r,c}(q)-\frac{\gamma}{L}\phi_{r,c}(q)+o(L^{-1}).
-$$
-Summing the three values of $q$ therefore yields
-$$
-B_{r,n}(c)
-=m_r(c)-\frac{\gamma}{L}d_r(c)+o(L^{-1}),
-$$
-where
-$$
-d_r(c)=\sum_{q=1}^3e^{q-1}e^{-cq}q^r.
-$$
-
-Step 3: Pass the boundary correction through the determinant
-Define
-$$
-D(c)=[d_{i+j}(c)]_{i,j=0}^2.
-$$
-Step 2 gives, uniformly for $c$ near $1$,
-$$
-[B_{i+j,n}(c)]_{i,j=0}^2
-=G(c)-\frac{\gamma}{L}D(c)+o(L^{-1}).
-$$
-Since the determinant is a polynomial in the entries,
-$$
-\frac{\Delta_n(c/L)}{L^9}
-=H(c)-\frac{\gamma}{L}K(c)+o(L^{-1}),
-$$
-where
-$$
-K(c)=\operatorname{tr}(\operatorname{adj}(G(c))D(c)).
-$$
-At $c=1$, also
-$$
-m_5(1)=\frac{3406}{e},
-$$
-and
-$$
-G(1)=\frac1eA,\qquad D(1)=\frac1eB,\qquad G'(1)=-\frac1eC,
-$$
-with
-$$
-A=\begin{pmatrix}3&9&32\\9&32&132\\32&132&626\end{pmatrix},\quad
-B=\begin{pmatrix}3&6&14\\6&14&36\\14&36&98\end{pmatrix},
-$$
-$$
-C=\begin{pmatrix}9&32&132\\32&132&626\\132&626&3406\end{pmatrix}.
-$$
-A direct cofactor computation gives
 $$
 \operatorname{adj}(A)=
 \begin{pmatrix}
 2608&-1410&164\\
 -1410&854&-108\\
 164&-108&15
-\end{pmatrix}.
+\end{pmatrix},
+$$
+so
+$$
+\operatorname{tr}(\operatorname{adj}(A)E)=2334.
+$$
+For $J(A)=\det(A)/A_{00}^3$, its directional derivative in direction $E$ is
+$$
+DJ_A(E)=\frac{2334}{27}
+-3\frac{382}{3^4}\cdot3
+=44.
+$$
+Consequently
+$$
+Q_n(c)=Q(c)+\frac{44\pi^2}{12L^2}+o(L^{-2})
+$$
+uniformly for $c$ near $1$.
+
+Step 4: Extract the hardened root displacement
+Since $Q_n(c_n)=Q(1)$, $c_n\to1$, and $Q'(1)=-188/3$, Step 3 gives first that
+$$
+c_n-1=O(L^{-2}).
+$$
+Writing $c_n=1+\kappa_n/L^2$ and expanding at $1$,
+$$
+0=Q'(1)\frac{\kappa_n}{L^2}
++\frac{44\pi^2}{12L^2}+o(L^{-2}).
 $$
 Therefore
 $$
-K(1)=\frac1{e^3}\operatorname{tr}(\operatorname{adj}(A)B)
-=\frac{1146}{e^3},
+\kappa_n\to
+-\frac{44\pi^2/12}{-188/3}
+=\frac{11\pi^2}{188}.
 $$
-while
+Since $c_n=a_n\log n$,
 $$
-H'(1)=\operatorname{tr}(\operatorname{adj}(G(1))G'(1))
-=-\frac1{e^3}\operatorname{tr}(\operatorname{adj}(A)C)
-=-\frac{5130}{e^3}.
+(\log n)^2(a_n\log n-1)=\kappa_n\longrightarrow\frac{11\pi^2}{188}.
 $$
 
-Step 4: Extract the second-order location of the implicit root
-The defining equation is
-$$
-\frac{\Delta_n(c_n/L)}{L^9}=H(1),
-\qquad c_n=a_nL.
-$$
-Using Step 3 and $c_n\to1$ from Step 1,
-$$
-0=H(c_n)-H(1)-\frac{\gamma}{L}K(c_n)+o(L^{-1}).
-$$
-Because $H'(1)\ne0$, the mean value theorem first gives $c_n-1=O(L^{-1})$. Multiplying the preceding identity by $L$ and using Taylor's formula at $1$ gives
-$$
-H'(1)L(c_n-1)-\gamma K(1)\longrightarrow0.
-$$
-Hence
-$$
-L(c_n-1)\longrightarrow
-\frac{\gamma K(1)}{H'(1)}
-=-\frac{1146}{5130}\gamma
-=-\frac{191}{855}\gamma.
-$$
-Since $c_n=a_n\log n$ and $L=\log n$,
-
-Final Answer: $\boxed{-\frac{191\gamma}{855}}$
+Final Answer: $\boxed{\frac{11\pi^2}{188}}$
 
 ---
 
 ## Answer
 
-$-\frac{191\gamma}{855}$
+$\frac{11\pi^2}{188}$
 
 ---
 
@@ -230,13 +193,13 @@ $-\frac{191\gamma}{855}$
 ## Solution Concepts
 
 - Hankel Gram determinants
-- multiscale threshold limits
-- maxima of exponentials and harmonic numbers
-- boundary-layer moment correction
+- translation-invariant moment ratios
+- exponential order statistics
+- second-order boundary layers
 - determinant directional derivatives
 
 ---
 
 ## Black-Box Audit — no issues found
 
-The alternating-binomial transform is written as an explicit positive moment integral. The first correction is derived from the exact distribution of a maximum of exponential variables, including its mean and a uniform second-moment bound. The determinant correction and the constants $1146$ and $5130$ are then reduced to displayed finite matrices and cofactors.
+The alternating-binomial sums are converted to explicit positive moment integrals. The first-order boundary displacement is derived from exponential maxima and then eliminated structurally by translation invariance of the normalized determinant ratio. The surviving second-order term is obtained from the explicitly derived variance $\sum_{j\ge1}j^{-2}=\pi^2/6$, and the remaining constants are reduced to displayed finite matrices and cofactors.
