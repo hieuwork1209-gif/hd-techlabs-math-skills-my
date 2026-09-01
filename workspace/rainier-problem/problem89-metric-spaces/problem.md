@@ -4,24 +4,24 @@
 
 Let
 $$
-E=\{x\in\mathbb F_2^8:\operatorname{wt}(x)\text{ is even}\},
+E=\{x=(x_1,\ldots,x_8)\in\mathbb F_2^8:\operatorname{wt}(x)\text{ is even}\},
 \qquad \mathbf1=(1,\ldots,1),
 $$
-and let $Y=E\cup\{\ast\}$. Define $d$ on $Y$ as follows. For distinct $x,y\in E$,
+and let $Y=E\cup\{\ast\}$. For $x\in E$, let $q(x)\in\{0,1\}$ be determined by
+$$
+q(x)\equiv \frac{\operatorname{wt}(x)}2\pmod2.
+$$
+For distinct $x,y\in E$, define
 $$
 d(x,y)=
 \begin{cases}
 24,&x+y=\mathbf1,\\
-20,&x+y\ne\mathbf1,
+16,&x+y\ne\mathbf1,
 \end{cases}
 $$
-while
+and define
 $$
-d(\ast,x)=
-\begin{cases}
-13,&\operatorname{wt}(x)\equiv0\pmod4,\\
-15,&\operatorname{wt}(x)\equiv2\pmod4,
-\end{cases}
+d(\ast,x)=12+x_1\bigl(1+2q(x)\bigr),
 \qquad d(\ast,\ast)=0.
 $$
 (These values define a metric on $Y$.)
@@ -50,4 +50,4 @@ $$
 
 ## Domain Explanation
 
-The target $\wp$ is the supremal negative-type exponent of a finite metric space, so the core question is conditional negative definiteness of powers of the metric. The binary-vector description supplies a compact antipodal symmetry and a two-radius one-point extension, but the object being determined is intrinsically a metric-space invariant rather than a coding-theory or finite-group classification.
+The target $\wp$ is the supremal negative-type exponent of a finite metric space, so the central issue is conditional negative definiteness of powers of the metric. The binary data provide an antipodal core together with an asymmetric one-point extension; those symmetries are tools for analyzing the metric invariant, not the object being classified.
