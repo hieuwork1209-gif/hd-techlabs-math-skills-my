@@ -19,7 +19,7 @@ where all $T_r$ in $\Delta,\Lambda,\Omega$ are evaluated at $(n,a,b)$.
 
 For all sufficiently large $n$, let $(a_n,b_n)$ be the unique pair satisfying
 $$
-|a_n\log n-1|<\frac1{10},\qquad |b_n-1|<\frac1{10},\qquad a_n\log n>b_n,
+|a_n\log n-1|<\frac1{100},\qquad |b_n-1|<\frac1{100},\qquad a_n\log n>b_n,
 $$
 and
 $$
