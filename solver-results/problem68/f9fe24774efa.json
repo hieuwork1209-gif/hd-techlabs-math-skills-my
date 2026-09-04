@@ -1,0 +1,22 @@
+{
+  "problem": "problem68",
+  "branch": "adversary/problem68",
+  "problem_path": "workspace/rainier-problem/problem68-homological-algebra/problem.md",
+  "source_commit_sha": "f5efca348a9a1a0149e0d33eaaf15c5eca31d32d",
+  "problem_blob_sha": "f9fe24774efadfa719674dd4f5b7ca93f87ed53a",
+  "statement_sha256": "e1ad2026989d30012c2d745a9dd9b518505eedca9815f0a6d896c30a34e27135",
+  "requested_model": "gpt-5.4",
+  "requested_reasoning_effort": "high",
+  "runs": 1,
+  "started_at": "2026-09-04T16:55:56+00:00",
+  "status": "timeout",
+  "exit_code": null,
+  "stderr": "timeout after 1200s; Codex process group terminated",
+  "final_answer": "",
+  "completed_at": "2026-09-04T17:15:57+00:00",
+  "timeout_seconds": 1200,
+  "local_verdict": "LOCAL_STUMPED_BY_TIMEOUT",
+  "recommended_action": "PROMOTE_TO_MAIN_FOR_RAINIER",
+  "promotion_ready": true,
+  "result_file": "solver-results/problem68/f9fe24774efa.json"
+}
