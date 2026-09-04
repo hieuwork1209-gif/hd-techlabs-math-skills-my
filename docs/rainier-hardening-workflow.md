@@ -1,258 +1,373 @@
-# Rainier Authoring and Hardening Workflow
+# Rainier Authoring, Submission, and Local Check Workflow
 
-This is the human-facing source of truth for creating, testing, hardening, and resubmitting a Rainier problem. The user-facing workflow is intentionally simple: say the problem number and run `/rainier-next`; the orchestrator performs every safe agent-side stage automatically and stops only when the user must interact with Rainier portal or a real mathematical/design blocker exists.
+This is the human-facing source of truth for moving a Rainier problem from repository draft to official portal submission.
 
-## Current portal evidence
-
-The following calibration comes from a user-provided Rainier export observed on 2026-08-23/24. Portal behavior can change; a newer portal export overrides this section.
-
-- The observed official difficulty check ran `@openai/gpt-5.4` and `@bedrock/anthropic.claude-opus-4-8`.
-- The observed run used 8 attempts per model.
-- The observed acceptance rule was: at least one of the two models must have success rate `<= 75%`.
-- Different answer strings are not evidence of instability by themselves; use portal correctness/equivalence fields.
-- `No Response` is not reliable stump evidence unless the portal explicitly scores it that way.
-
-Internal target: do not aim exactly at the 75% boundary. Prefer a meaningful buffer, ideally one model solving at most 4–5 of 8 attempts when failures are conceptual rather than arithmetic noise.
-
-## One-command policy
-
-The command to remember is:
+The workflow now has **two separate commands with different responsibilities**:
 
 ```text
 /rainier-next problemNN
+/rainier-next-check problemNN
 ```
 
-`/rainier-next` is an orchestrator, not merely a navigator. It automatically executes the necessary agent-side chain in the same run:
+Do not merge their contracts.
+
+## 1. Command responsibilities
+
+### `/rainier-next`
+
+Use `/rainier-next` for the normal Rainier authoring/reviewer pipeline:
+
+- create/resolve the problem;
+- solve or repair a stale solution;
+- normalize problem/solution;
+- repair reviewer feedback;
+- validate taxonomy, answer type, formatting, and portal fields;
+- produce a clean portal-ready version.
+
+`/rainier-next` may work on the portal-submission version and keeps its existing behavior. The local Codex adversary branch is **not** part of this command.
+
+### `/rainier-next-check`
+
+Use `/rainier-next-check` for the separate local adversarial difficulty preflight:
+
+- ensure `adversary/problemNN` exists;
+- keep all difficulty hardening on that branch;
+- use one cold GPT-5.4 High solve per `problem.md` blob;
+- stop each solve after 20 minutes by default;
+- review returned answers mathematically;
+- harden again only when the solver is correct;
+- promote the exact candidate pair to `main` when the solver is wrong or times out;
+- never promote on a runner/infrastructure error.
+
+Detailed state machine: `docs/codex-adversary-loop.md`.
+
+## 2. Recommended end-to-end sequence
+
+For an existing problem:
+
+```text
+/rainier-next problem89
+        |
+        v
+problem + solution clean on main
+        |
+        v
+/rainier-next-check problem89
+        |
+        +--> create/reuse adversary/problem89
+        |
+        v
+local watcher: GPT-5.4 High x1 per candidate, <=20m
+        |
+        v
+user: next
+        |
+   +----+----------------+
+   |                     |
+solver correct       wrong / timeout
+   |                     |
+   v                     v
+harden adversary       promote exact pair
+and test again           to main
+   |                     |
+   +---------------------+
+                         v
+                 ./scripts/adv submit problem89
+                         |
+                         v
+                    Rainier portal
+```
+
+If the user does not want the local check, `/rainier-next` may still prepare a problem directly for portal testing. `/rainier-next-check` is an additional adversarial preflight, not a replacement.
+
+## 3. User boundaries
+
+The assistant owns all safe repository-side work that can be executed with available tools.
+The user owns:
+
+- running the local watcher process on their machine;
+- sending `next` after a watcher attempt completes;
+- running `./scripts/adv submit problemNN` when `main` is ready;
+- running the official Rainier portal checks;
+- bringing back portal feedback, score summaries, JSON, or full traces when needed.
+
+The web chat cannot wake itself solely because GitHub changed. During `/rainier-next-check`, `next` is the one-message handoff.
+
+## 4. Current portal calibration
+
+Observed Rainier evidence from 2026-08-23/24 used:
+
+- `@openai/gpt-5.4`;
+- `@bedrock/anthropic.claude-opus-4-8`;
+- 8 attempts per model;
+- difficulty accepted when at least one model had success rate `<=75%`.
+
+Portal behavior may change. A newer user-provided export overrides this calibration.
+
+Do not aim exactly at the threshold when redesigning. Prefer conceptual failures with a meaningful buffer rather than arithmetic noise.
+
+## 5. Evidence priority
+
+For Rainier difficulty/reviewer analysis, prefer:
+
+1. full trace HTML;
+2. full attempt-level JSON;
+3. raw model attempts;
+4. score summary only.
+
+Different answer strings do not imply different mathematical outcomes when Rainier marks them equivalent.
+`No Response` is not reliable stump evidence unless the portal explicitly scores it that way.
+
+Never fabricate repeated independent attempts from one ChatGPT-web reasoning run.
+
+## 6. Core status model
+
+Do not use one generic `PASS`.
+
+```text
+VALIDITY PASS
+CORRECTNESS PASS
+SOLUTION QUALITY PASS
+SUBMISSION GATES PASS
+LOCAL_STUMPED / LOCAL_NOT_STUMPED / UNMEASURED
+RAINIER DIFFICULTY PASS / FAIL / BORDERLINE / UNTESTED
+RAINIER ACCEPTED
+```
+
+Local Codex evidence is preflight only. No local status may be called `RAINIER DIFFICULTY PASS`.
+
+## 7. Submission-gate preflight
+
+Before declaring `PORTAL READY`, `MAIN_READY_FOR_RAINIER`, or `SUBMISSION GATES PASS`, validate the fields mapped by `./scripts/adv submit problemNN`.
+
+Required checks include:
+
+- Math Problem prompt is nonempty and at most `2000` characters.
+- Answer is nonempty and at most `102` characters.
+- Standalone Answer contains no `\\boxed`.
+- `## Steps` splits into consecutive `Step 1:`, `Step 2:`, ... blocks.
+- The final non-whitespace line of the final step is exactly a `Final Answer: $\\boxed{...}$` line.
+- There is no period, prose, display equation, or other content after that final-answer line.
+- Solution Concepts contains `1` to `5` entries.
+- Each concept is under `100` characters.
+- Domain, Sub-domain, Domain Explanation, Problem Type, and Answer Type are present and portal-compatible.
+- Problem Type and Answer Type agree between `problem.md` and `solution.md`.
+- LaTeX remains portal-safe after normalization.
+
+Mathematical correctness alone is not enough. A format failure is a `SUBMISSION GATES FAIL` and must be repaired before portal handoff.
+
+## 8. `/rainier-next` normal loop
+
+`/rainier-next` remains the normal authoring/repair orchestrator.
+
+Typical transitions:
 
 ```text
 problem missing
   -> math-clone
   -> math-solve
   -> normalize-all
-  -> Rainier package
-  -> STOP: user portal test
+  -> PORTAL READY
 
-problem hardened / solution stale
+solution missing/stale
   -> math-solve
   -> normalize-all
-  -> Rainier package
-  -> STOP: user portal test
+  -> PORTAL READY
 
-Rainier difficulty fail + enough trace/JSON evidence
+solution-quality feedback
+  -> repair with math-solve / format-solution / normalize-all
+  -> PORTAL READY
+
+Rainier difficulty FAIL + strong trace/JSON
   -> evaluate-responses when needed
   -> math-harder
   -> math-solve
   -> normalize-all
-  -> Rainier package
-  -> STOP: user portal test
+  -> PORTAL READY
 ```
 
-The user should not have to manually relay `/math-solve`, `/normalize-all`, `/rainier-submit`, `/math-harder`, or `/evaluate-responses` between stages when the agent can execute them directly.
+This command should not silently create or manage `adversary/problemNN`. Use `/rainier-next-check` when the user asks for the local adversary/Codex loop.
 
-Important: `normalize-all` already runs `rainier-submit` as Phase 4. A successful normalization therefore already produces the submission package; there is no separate manual `/rainier-submit` step afterward.
+## 9. `/rainier-next-check` local loop
 
-## User boundaries
+`/rainier-next-check` assumes the problem already exists and has a current problem/solution pair on `main`.
 
-The automatic loop stops only at one of these boundaries:
-
-1. **PORTAL READY** — package is clean; user must run Rainier Automated/Difficulty Checks.
-2. **NEED PORTAL EVIDENCE** — only score summary exists but full trace/JSON must be downloaded by the user.
-3. **ACCEPTED** — exact version is accepted; freeze it.
-4. **REAL BLOCKER** — correctness cannot be established, a hard gate cannot be repaired safely, or redesign reaches a genuine ceiling.
-
-Missing Codex CLI, local credentials, local model runners, or inability to spawn independent attempts are not real blockers.
-
-## GPT-web / no-CLI policy
-
-The project does not require Codex CLI, Codex credentials, or any local provider to save a generated or hardened candidate.
-
-Local model difficulty checks are optional preflight evidence:
+Branch roles:
 
 ```text
-independent local model evidence available -> record it
-no independent harness available          -> LOCAL_DIFFICULTY_UNMEASURED
+main                 = portal submission / frozen accepted version
+adversary/problemNN  = active local difficulty design branch
 ```
 
-`LOCAL_DIFFICULTY_UNMEASURED` is not a failure and does not block save when validity, correctness, originality, solution quality, Triviality Probe, and hard gates pass.
+First invocation:
 
-The saved statement must then be tested on the Rainier portal. Only the portal result for the exact unchanged statement may be called `RAINIER DIFFICULTY PASS`.
+1. resolve exact `problemNN-*` on `main`;
+2. ensure `adversary/problemNN` exists;
+3. create it from current `main` only if absent;
+4. never reset an existing adversary branch silently;
+5. inspect current candidate/result state;
+6. if the current blob is untested, stop at `WAIT_CODEX`.
 
-Do not simulate or invent repeated independent attempts from one ChatGPT web run. In GPT web, perform adversarial structural review and clearly label it heuristic/local only.
+Local watcher command:
 
-## Roles
+```bash
+python scripts/codex-adversary-watch.py problemNN --watch
+```
 
-### Assistant / agent owns
-
-- Problem design or targeted redesign.
-- Mathematical validity and uniqueness.
-- Solving and ground-truth verification.
-- Heuristic local difficulty preflight and shortcut search.
-- Trace-driven diagnosis after Rainier feedback.
-- Hardening the earliest robust shortcut rather than increasing computation.
-- Reference-solution architecture and zero-black-box quality.
-- Domain/Sub-domain, Problem Type, Answer Type, concepts, formatting, and hard gates.
-- Fetching current `problem.md` and `solution.md` from GitHub once `problemNN` is known.
-- Automatically advancing through all agent-side workflow stages.
-
-### User owns
-
-- Saying which problem is active when ambiguous; `problem91`, `problem104`, etc. is enough.
-- Running the actual Rainier portal check/submission.
-- Bringing new portal feedback back when a problem is rejected or borderline.
-- When necessary, downloading full difficulty trace HTML and/or full Rainier JSON from the portal.
-
-The user does not need to copy repository `problem.md` or `solution.md` into chat.
-
-## Repository lookup rule
-
-Current Rainier work may exist under either path:
+Watcher defaults:
 
 ```text
-workspace/rainier-problem/
-workspace/frontier-problem/
+gpt-5.4 / high
+1 run per problem.md blob
+1200s timeout
+45s poll interval
 ```
 
-`/rainier-next problemNN` probes both and resolves exactly that problem number.
+After a completed attempt, the user sends:
 
-## Core status model
+```text
+next
+```
 
-Do not use one generic `PASS`.
+Then ChatGPT reads `solver-results/problemNN/latest.json` and the full result when needed.
 
-1. `VALIDITY PASS` — well-posed and unique.
-2. `CORRECTNESS PASS` — ground truth verified.
-3. `LOCAL DIFFICULTY CANDIDATE` or `LOCAL_DIFFICULTY_UNMEASURED` — local preflight only.
-4. `SOLUTION QUALITY PASS` — genuine reasoning, zero-black-box, not bookkeeping-dominated.
-5. `SUBMISSION GATES PASS` — formatting/taxonomy/length/LaTeX/concepts clean.
-6. `RAINIER DIFFICULTY PASS` — current portal threshold satisfied on the exact statement.
-7. `RAINIER ACCEPTED` — freeze final version.
+Decision:
 
-## Submission-gate preflight
+```text
+solver mathematically correct
+  -> LOCAL_NOT_STUMPED
+  -> diagnose actual shortcut
+  -> harden structurally on adversary
+  -> solution.md first
+  -> problem.md second
+  -> watcher tests new blob once
 
-Before reporting `PORTAL READY` or `SUBMISSION GATES PASS`, validate the exact fields that `./scripts/adv submit problemNN` maps to the Rainier portal. The current repository validator is authoritative when these limits change.
+solver wrong/materially incomplete
+  -> LOCAL_STUMPED
+  -> submission gates
+  -> promote exact pair to main
 
-Required preflight checks:
+20-minute timeout
+  -> LOCAL_STUMPED_BY_TIMEOUT
+  -> submission gates
+  -> promote exact pair to main
 
-- Math Problem (Prompt) must be nonempty and at most `2000` characters.
-- Answer must be nonempty and at most `102` characters.
-- The standalone Answer field must not contain `\boxed`; boxing belongs only in the final solution step.
-- `## Steps` must split into consecutive blocks beginning exactly with `Step 1:`, `Step 2:`, and so on.
-- The last step must **end with** the exact suffix `Final Answer: $\boxed{...}$`; merely containing a boxed display or containing that phrase earlier in the step is not sufficient.
-- Treat the final-answer gate as a strict suffix check: after the `Final Answer: $\boxed{...}$` line, there must be no period, prose, display equation, or other non-whitespace content inside the final step block.
-- It is fine to derive or display the final formula immediately before the required suffix, but the final non-whitespace line of the final step must be `Final Answer: $\boxed{...}$`.
-- Solution Concepts must contain between `1` and `5` entries, each under `100` characters.
-- Domain, Problem Type, and Answer Type must be valid portal options; Sub-domain and Domain Explanation must be nonempty.
-- Problem Type and Answer Type must agree between `problem.md` and `solution.md`.
-- LaTeX must remain portal-safe after normalization.
+runner/infrastructure error
+  -> BLOCKED_RUNNER
+  -> no promotion
+```
 
-Observed validator example on 2026-08-26: a final step ending only in a display `\boxed{...}` was rejected with `The last step must end with 'Final Answer: $\boxed{...}$'`. When this occurs, repair the final step itself before reporting `SUBMISSION GATES PASS`.
+## 10. Structural hardening policy
 
-Do not declare a package portal-ready merely because the mathematics is correct. A failure such as `Answer is 172 chars — the field caps at 102` or a final-step suffix failure is a `SUBMISSION GATES FAIL` and must be repaired before handing the problem to the user for portal submission.
+When difficulty evidence shows a solver shortcut, identify:
 
-## Harden workflow after Rainier difficulty failure
+```text
+COMMON ENTRY:
+COMMON REDUCTION:
+COMMON SCALING/REPRESENTATION:
+FIRST DECISIVE RECOGNITION:
+RECOVERY PATH:
+EARLIEST ROBUST SHORTCUT:
+```
 
-A `100% / 100%` or other above-threshold result is a problem-design failure, not a formatting failure.
-
-Preferred evidence order:
-
-1. Full difficulty trace HTML.
-2. Full Rainier JSON with attempt-level correctness/responses.
-3. Raw model attempts.
-4. Success-rate summary only.
-
-When full trace HTML exists, `/rainier-next` should automatically run the response-analysis stage before hardening. With full attempt-level JSON, it may harden directly from that evidence. With only a score summary and no detailed evidence available to the agent, the loop stops only because the user must obtain the export.
-
-### Trace Attack Analysis
-
-Extract:
-
-- `COMMON ENTRY`
-- `COMMON REDUCTION`
-- `COMMON SCALING/REPRESENTATION`
-- `FIRST DECISIVE RECOGNITION`
-- `RECOVERY PATH`
-- `EARLIEST ROBUST SHORTCUT`
-
-Harden the earliest robust shortcut, not later arithmetic.
-
-### Good hardening moves
+Harden the earliest robust shortcut.
 
 Prefer:
 
-- competing regimes whose dominance must be derived;
+- hidden representation or invariant discovery;
 - coupled implicit conditions;
-- leading-order degeneracy forcing a next-order structural argument;
-- hidden representation/invariant discovery;
-- a tempting standard route that fails structurally;
+- competing regimes whose dominance must be derived;
+- leading-order degeneracy forcing a structural next step;
+- a tempting standard route that fails mathematically;
 - a necessary lemma/certificate before a short finish;
-- an asymmetric/secondary contribution that is answer-sensitive.
+- answer-sensitive asymmetric/secondary contributions.
 
-### Bad hardening moves
-
-Do not use these as difficulty by themselves:
+Do not count these as meaningful hardening by themselves:
 
 - more Taylor orders;
-- larger matrices/determinants only for more arithmetic;
-- more coefficients/cases/partitions;
-- longer recurrences/searches;
+- bigger determinants or matrices only for arithmetic volume;
+- longer coefficient/case/partition tables;
+- longer recurrences or brute-force searches;
 - extra parameters without a new dependency;
 - uglier constants or longer symbolic simplification.
 
-## What happens when local preflight is unavailable
+## 11. Promotion discipline
 
-A clean hardening run may report:
+During `/rainier-next-check`, ordinary hardening must not modify `main`.
 
-```text
-VALIDITY: PASS
-CORRECTNESS: PASS
-QUALITY: PASS
-HARD GATES: PASS
-LOCAL DIFFICULTY: UNMEASURED
-SAVE DECISION: SAVED
-RAINIER DIFFICULTY: UNTESTED
-```
+At the local stopping point:
 
-The orchestrator then continues automatically. If the statement changed, it solves the new version, normalizes it, packages it, and stops only when the exact package is ready for Rainier portal testing.
+1. repair any submission-format issues on the adversary branch;
+2. capture the exact candidate pair;
+3. update `main` `solution.md` first;
+4. update `main` `problem.md` second;
+5. re-fetch and verify both match the selected adversary candidate;
+6. then report `MAIN_READY_FOR_RAINIER`.
 
-## What to send back after Rainier
+Do not copy `solver-results/` to `main` unless explicitly requested.
+
+## 12. Rainier portal loop
+
+After the exact `main` version is tested:
+
+### Difficulty PASS
+
+Freeze the exact statement. Do not harden it further.
 
 ### Difficulty FAIL or borderline
 
-Give `/rainier-next` the problem number and new Rainier evidence. Full trace HTML/JSON is preferred. Do not resend repository problem/solution files.
+Use the strongest available portal trace/JSON as new evidence.
+When using `/rainier-next-check`, continue design work on the existing adversary branch while leaving the failed submitted version on `main` for version traceability.
 
-### Solution-quality FAIL
+### Solution / format / taxonomy FAIL
 
-Send the problem number and exact feedback. The orchestrator fetches the current files and applies the appropriate repair path automatically.
+Repair the narrowest issue. Preserve the difficulty-producing statement structure whenever possible.
 
-### Format / LaTeX / concept / taxonomy FAIL
+Any statement change invalidates all older difficulty percentages.
 
-Send the problem number and relevant feedback. The orchestrator applies the narrowest safe repair and rebuilds the package.
+## 13. Version discipline
 
-### ACCEPTED
-
-No JSON required. Optionally archive traces for learning. Freeze the accepted exact version.
-
-## Version discipline
-
-Never carry difficulty percentages across a changed statement.
+Never transfer percentages between changed statements.
 
 ```text
-v1: GPT 8/8, Claude 8/8 -> TOO EASY
-v2: harden + solve + normalize/package automatically
-v2 portal: GPT 7/8, Claude 4/8 -> DIFFICULTY PASS
-v3 statement edit -> previous percentages stale
+v1 portal: GPT 8/8, Claude 8/8 -> TOO EASY
+v2: statement hardened
+v1 scores are now stale
+v2 portal: fresh official measurement required
 ```
 
-## Usage
+Solution-only formatting changes do not change the tested statement blob, but the final package must still pass all submission gates.
+
+## 14. Parallel problems
+
+The `/rainier-next-check` workflow may run for several problem numbers in parallel because each problem uses separate branches and result/state paths.
+
+Use one watcher per problem. Do not run two watchers for the same problem.
+
+## 15. Usage
+
+Normal preparation:
 
 ```text
 /rainier-next problem98
 ```
 
-With new feedback:
+Then optional local adversarial preflight:
 
 ```text
-/rainier-next problem98
-<paste Rainier feedback or JSON>
+/rainier-next-check problem98
 ```
 
-If context already uniquely identifies the problem, the number may be omitted. If genuinely ambiguous, the orchestrator asks only for `problemNN`.
+After each completed local attempt:
+
+```text
+next
+```
+
+When `main` is promoted and gate-clean:
+
+```bash
+./scripts/adv submit problem98
+```
+
+With new official feedback, provide the problem number and the strongest available Rainier evidence to the appropriate command. If context already uniquely identifies the active problem, the number may be omitted only when there is no ambiguity.
