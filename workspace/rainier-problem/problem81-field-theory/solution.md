@@ -153,7 +153,7 @@ Finally, each $s_j$ has $\ell-1$ nonzero choices, contributing $(\ell-1)^r$. The
 $$
 \boxed{(\ell-1)^r\ell^{2rq^2}\frac{(2q^2)!}{H!(L_0!)^{Q-1}}}.
 $$
-Final Answer: $\boxed{(\ell-1)^r\ell^{2rq^2}\frac{(2q^2)!}{H!(L_0!)^{Q-1}}}$.
+Final Answer: $\boxed{(\ell-1)^r\ell^{2rq^2}\frac{(2q^2)!}{H!(L_0!)^{Q-1}}}$
 
 ---
 
@@ -174,8 +174,7 @@ $(\ell-1)^r\ell^{2rq^2}(2q^2)!/[H!(L_0!)^{Q-1}]$
 ## Solution Concepts
 
 - Kummer extensions of prime degree
-- cyclotomic inertness and algebraic norms
-- Kronecker's root-of-unity lemma
+- cyclotomic inertness, algebraic norms, and Kronecker's lemma
 - finite Fourier analysis on $\mathbb F_\ell^r$
 - affine-hyperplane incidence
 - multinomial counting
