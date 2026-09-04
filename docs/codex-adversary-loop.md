@@ -1,73 +1,109 @@
 # Reusable Chat Web + Codex Adversary Loop
 
-This runbook describes the reusable local difficulty loop used for Rainier problems.
-It is intended to work for any `problemNN` under `workspace/rainier-problem/`.
+This runbook is the source of truth for the **optional local difficulty preflight** driven by `/rainier-next-check`.
+It is deliberately separate from `/rainier-next`.
 
-The design goal is:
+## Command split
 
 ```text
-ChatGPT web hardens the problem
-        -> pushes candidate to adversary/problemNN
-local watcher sees the new problem.md blob
-        -> Codex GPT-5.4 High solves exactly once, cold
-        -> result + latest.json are pushed to the adversary branch
-user sends `next` in the same ChatGPT web thread
-        -> ChatGPT reads latest.json and decides what happens next
+/rainier-next problemNN
+    -> normal Rainier authoring / solving / normalization / reviewer repair
+    -> works on the portal-submission version
+
+/rainier-next-check problemNN
+    -> local adversary branch + Codex GPT-5.4 High preflight
+    -> hardens only on adversary/problemNN
+    -> promotes to main only at the local stopping point
 ```
 
-The official Rainier portal remains the final authority. Local Codex results are only preflight evidence.
+Do not retrofit the adversary loop into `/rainier-next`. The two commands have different responsibilities.
 
-## 1. Naming convention
+## Design goal
 
-For a problem such as `problem103`:
+```text
+main contains a current problem + solution
+        |
+        v
+/rainier-next-check problemNN
+        |
+        +--> ensure adversary/problemNN exists
+        |       create from current main only if absent
+        |
+        v
+local watcher sees current adversary problem.md blob
+        |
+        v
+Codex GPT-5.4 High solves exactly once, cold, <=20m
+        |
+        v
+result + latest.json pushed to adversary/problemNN
+        |
+        v
+user sends: next
+        |
+        v
+ChatGPT web reviews result
+   +----+-------------------+
+   |                        |
+correct                wrong / timeout
+   |                        |
+   v                        v
+harden structurally      promotion gates
+on adversary                |
+solution first               v
+problem second            promote exact pair
+   |                     to main
+   v                        |
+new blob -> watcher          v
+                         Rainier portal
+```
+
+The Rainier portal remains the only official difficulty authority.
+
+## 1. Naming and state
+
+For `problem103`:
 
 ```text
 main
 adversary/problem103
 workspace/rainier-problem/problem103-*/problem.md
 workspace/rainier-problem/problem103-*/solution.md
-solver-results/problem103/
+solver-results/problem103/<problem-blob-prefix>.json
+solver-results/problem103/latest.json
 ```
 
-The watcher resolves exactly one `problem103-*/problem.md` under `workspace/rainier-problem/`.
-If zero or multiple matching files exist, it stops with an error rather than guessing.
+The watcher resolves exactly one `problem103-*/problem.md`. Zero or multiple matches are an error.
 
-## 2. One-time setup for a new problem
+## 2. Starting a new local check
 
-Start from the current `main`:
-
-```bash
-git switch main
-git pull --ff-only origin main
-git switch -c adversary/problem103
-git push -u origin adversary/problem103
-```
-
-If the adversary branch already exists:
-
-```bash
-git fetch origin
-git switch adversary/problem103
-git pull --ff-only origin adversary/problem103
-```
-
-The generic watcher lives on `main` at:
+First make sure the problem exists on `main`, normally via `/rainier-next`.
+Then invoke:
 
 ```text
-scripts/codex-adversary-watch.py
+/rainier-next-check problem103
 ```
 
-It accepts the problem number as an argument, so no code change is required per problem.
+The skill must:
 
-## 3. Start the local watcher
+1. resolve the exact problem on `main`;
+2. verify a matching `problem.md` and `solution.md` exist;
+3. check for `adversary/problem103`;
+4. create that branch from current `main` only if it does not exist;
+5. reuse an existing adversary branch without silently resetting it;
+6. inspect whether the current adversary `problem.md` blob already has a matching local result.
 
-From the repository root:
+If the current blob has no result, stop at `WAIT_CODEX`. The first measured candidate may be identical to `main`; do not harden blindly unless current Rainier trace/feedback already exposes a concrete shortcut.
+
+## 3. Local watcher
+
+From the repository root, keep one watcher running per active problem:
 
 ```bash
 python scripts/codex-adversary-watch.py problem103 --watch
 ```
 
-Normal defaults are:
+Defaults:
 
 ```text
 branch             adversary/problem103
@@ -78,68 +114,41 @@ timeout             1200 seconds / 20 minutes
 poll interval       45 seconds
 ```
 
-Expected startup output:
+Expected startup:
 
 ```text
 [codex-adversary] watching origin/adversary/problem103; one gpt-5.4/high run per new problem.md; timeout=1200s
 ```
 
-Keep this terminal running while ChatGPT web performs the hardening loop.
+Do not use `--force` in the normal protocol.
 
-## 4. ChatGPT web hardening contract
+## 4. Isolation contract
 
-The web hardener works only on `adversary/problemNN` until the candidate is ready for Rainier.
+For each unseen `problem.md` blob, the watcher:
 
-For each new candidate, ChatGPT must:
+1. fetches `origin/adversary/problemNN`;
+2. extracts only the normalized mathematical statement;
+3. removes taxonomy/domain explanation from solver input;
+4. creates a fresh temp directory outside the Rainier repo;
+5. runs one ephemeral `gpt-5.4` solve at `high` effort, read-only;
+6. instructs the solver not to use memory, prior conversations, GitHub, web, connected apps, or external files;
+7. waits at most 20 minutes;
+8. kills the Codex process group on timeout;
+9. publishes the result to the same adversary branch.
 
-1. Inspect the current problem, solution, previous solver result, and reviewer/difficulty evidence.
-2. Diagnose the earliest robust shortcut used by the solver.
-3. Harden structurally, not by adding blind arithmetic or bookkeeping.
-4. Re-derive and verify the new ground truth.
-5. Update `solution.md` first.
-6. Update `problem.md` second.
-7. Do not change `main` during ordinary hardening iterations.
+## 5. Result files
 
-Updating `solution.md` first prevents a transient state where a new problem statement exists without its matching reference solution.
-
-The watcher keys attempts by the Git blob SHA of `problem.md` only.
-Changing `solution.md`, scripts, docs, or solver-result files does not trigger another solve.
-
-## 5. What the watcher sends to Codex
-
-For each previously unseen `problem.md` blob, the watcher:
-
-1. Fetches `origin/adversary/problemNN`.
-2. Extracts only the normalized mathematical statement.
-3. Removes domain/taxonomy explanation from the cold-solve input.
-4. Creates a clean temporary directory outside the Rainier repository.
-5. Runs exactly one ephemeral Codex solve:
+Each completed attempt produces:
 
 ```text
-model: gpt-5.4
-reasoning effort: high
-sandbox: read-only
-```
-
-6. Instructs the solver not to use memory, prior conversations, GitHub, web search, browsing, connected apps, or external files.
-7. Waits at most 20 minutes.
-8. Publishes the result back to the adversary branch.
-
-Do not use `--force` in the normal workflow. One candidate blob gets one measured solve.
-
-## 6. Result files
-
-Each attempt produces:
-
-```text
-solver-results/problem103/<problem-blob-prefix>.json
+solver-results/problem103/<blob-prefix>.json
 solver-results/problem103/latest.json
 ```
 
-The blob-specific JSON is the immutable run record.
-`latest.json` is the compact handoff file for the next ChatGPT web turn.
+The blob-specific file is the immutable run record.
+`latest.json` is the compact handoff for ChatGPT web.
 
-Important fields include:
+Important fields:
 
 ```text
 problem_blob_sha
@@ -155,11 +164,22 @@ timeout_seconds
 result_file
 ```
 
-## 7. Verdict semantics
+Never reuse a verdict whose `problem_blob_sha` does not equal the current adversary candidate blob.
 
-### A. Solver returned an answer before 20 minutes
+## 6. User handoff
 
-The watcher records:
+The web chat cannot wake itself when GitHub changes.
+After a watcher attempt completes, the only user message needed is:
+
+```text
+next
+```
+
+A bare `next` in an active `/rainier-next-check` conversation means: read `latest.json`, follow `result_file` if needed, compare against the exact current solution, and continue the state machine.
+
+## 7. Solver returned before timeout
+
+Watcher metadata:
 
 ```text
 status = success
@@ -168,39 +188,53 @@ recommended_action = REVIEW_SOLVER_ANSWER
 promotion_ready = false
 ```
 
-`status=success` means only that Codex completed and returned text.
-It does NOT mean the mathematical answer is correct.
+`status=success` means only that Codex returned text. It is **not** a mathematical verdict.
 
-The user sends:
+ChatGPT web must compare the response with the matching candidate solution.
+
+### Solver is correct
+
+Treat this as `LOCAL_NOT_STUMPED` and harden again on `adversary/problemNN`.
+
+Diagnose the actual route:
 
 ```text
-next
+COMMON ENTRY:
+COMMON REDUCTION:
+COMMON SCALING/REPRESENTATION:
+FIRST DECISIVE RECOGNITION:
+RECOVERY PATH:
+EARLIEST ROBUST SHORTCUT:
 ```
 
-ChatGPT web then reads `latest.json` and the full result file, compares the solver answer against the reference solution, and decides:
+Harden the earliest robust shortcut structurally. Prefer hidden representation/invariant, coupled conditions, competing regimes, leading-order degeneracy, a mathematically failing standard route, or a necessary certificate.
 
-```text
-solver answer correct
-    -> diagnose the shortcut
-    -> harden again on adversary/problemNN
-    -> push solution.md, then problem.md
-    -> watcher automatically tests the new blob
+Do not use longer expansions, bigger matrices, more cases, uglier constants, brute force, or extra parameters by themselves as difficulty.
 
-solver answer wrong / materially incomplete
-    -> local stump
-    -> stop hardening
-    -> promote the exact candidate to main for Rainier testing
-```
+For every new candidate:
 
-### B. Solver exceeds 20 minutes
+1. re-derive validity, uniqueness, and answer;
+2. ensure the solution is self-contained and reasoning-dominant;
+3. preserve submission gates;
+4. update `solution.md` first;
+5. update `problem.md` second;
+6. do not change `main`;
+7. let the watcher test the new blob once.
 
-The watcher terminates the Codex process group and records:
+### Solver is wrong or materially incomplete
+
+Treat the exact candidate as locally stumped. Do not harden further. Run promotion gates and promote the pair to `main`.
+
+## 8. Timeout
+
+On timeout the watcher should record:
 
 ```text
 status = timeout
 local_verdict = LOCAL_STUMPED_BY_TIMEOUT
 recommended_action = PROMOTE_TO_MAIN_FOR_RAINIER
 promotion_ready = true
+timeout_seconds = 1200
 ```
 
 Expected terminal output:
@@ -209,19 +243,11 @@ Expected terminal output:
 [codex-adversary] problem103: timeout after 1200s -> ...; LOCAL_STUMPED_BY_TIMEOUT; candidate ready for main/Rainier
 ```
 
-The user sends:
+A timeout is the local stopping rule, not an official Rainier pass.
 
-```text
-next
-```
+## 9. Runner error
 
-ChatGPT web reads `latest.json`, sees `promotion_ready=true`, stops local hardening, and promotes the exact matching `problem.md` and `solution.md` from `adversary/problem103` to `main`.
-
-A local timeout is not an official Rainier difficulty pass. It is only the local stopping rule for this workflow.
-
-### C. Runner error
-
-The watcher records:
+For infrastructure errors:
 
 ```text
 local_verdict = SOLVER_ERROR
@@ -229,142 +255,71 @@ recommended_action = INSPECT_RUNNER
 promotion_ready = false
 ```
 
-Do not promote on an infrastructure error. Fix or inspect the runner first.
+Do not promote. Fix/inspect the harness first.
 
-## 8. The only user message needed between local rounds
+## 10. Promotion gates
 
-After the watcher prints `success`, `timeout`, or another completed verdict, the user only needs to send:
+Before copying anything to `main`, check the current `./scripts/adv submit problemNN` contract, including at least:
 
-```text
-next
-```
+- Math Problem prompt: nonempty, <=2000 characters;
+- Answer: nonempty, <=102 characters, no `\\boxed`;
+- steps begin consecutively with `Step 1:`, `Step 2:`, ...;
+- the final non-whitespace line of the last step is exactly `Final Answer: $\\boxed{...}$`, with no period/prose afterward;
+- Solution Concepts: 1–5 entries, each under 100 characters;
+- Domain, Sub-domain, Domain Explanation, Problem Type, Answer Type present and valid;
+- Problem Type and Answer Type agree between `problem.md` and `solution.md`.
 
-ChatGPT web owns the rest of the decision logic.
+If only solution formatting is wrong, repair it on the adversary branch first. A solution-only edit does not trigger another solver attempt because the statement blob is unchanged.
 
-The web chat cannot currently wake itself solely because GitHub changed, so this one user message is the handoff trigger.
+## 11. Promotion to `main`
 
-## 9. Promotion to main
+Promotion happens only at the local stopping point.
 
-Promotion happens only when the local loop decides to stop and the user wants to test the candidate on Rainier.
+1. capture the exact selected adversary `solution.md` and `problem.md`;
+2. update `main` `solution.md` first;
+3. update `main` `problem.md` second;
+4. re-fetch both from `main` and verify they match the selected candidate;
+5. do not copy `solver-results/` to `main` unless separately requested;
+6. report `MAIN_READY_FOR_RAINIER`.
 
-Promote the exact candidate pair:
-
-```text
-adversary/problemNN: problem.md  -> main: problem.md
-adversary/problemNN: solution.md -> main: solution.md
-```
-
-The problem and solution must correspond to the same hardened candidate.
-Never promote only one of them.
-
-Before telling the user to submit, verify on `main` that the resulting blob/content SHAs match the chosen candidate.
-
-Do not copy `solver-results/` into `main` unless there is a separate reason to archive local evidence there.
-
-## 10. Rainier decision loop
-
-After promotion, the user runs the official Rainier checks.
-
-```text
-RAINIER DIFFICULTY PASS
-    -> freeze that exact main version
-    -> do not harden further
-
-RAINIER DIFFICULTY FAIL
-    -> bring the new Rainier trace/JSON/feedback back to ChatGPT
-    -> continue hardening on adversary/problemNN
-    -> old success percentages are stale as soon as problem.md changes
-
-SOLUTION / FORMAT / TAXONOMY FAIL
-    -> repair the narrow issue
-    -> preserve the difficulty-producing structure whenever possible
-```
-
-The portal result for the exact unchanged statement is the only thing that may be called `RAINIER DIFFICULTY PASS`.
-
-## 11. Full reusable state machine
-
-```text
-START problemNN
-    |
-    v
-create/use adversary/problemNN
-    |
-    v
-ChatGPT hardens + verifies solution
-    |
-    +--> push solution.md
-    +--> push problem.md
-              |
-              v
-watcher detects new problem.md blob
-              |
-              v
-Codex GPT-5.4 High x1, cold, <= 20m
-              |
-        +-----+---------------------+
-        |                           |
-        v                           v
-answer returned                 timeout
-        |                           |
-        v                           v
-user: next                  latest.json says
-        |                    promotion_ready=true
-        v                           |
-ChatGPT checks correctness           v
-        |                       user: next
-   +----+----+                      |
-   |         |                      v
- correct    wrong              promote candidate
-   |         |                   to main
-   v         v                      |
-harden     promote                  v
-again      to main              Rainier test
-   |         |                      |
-   +---------+----------------------+
-                                |
-                        +-------+-------+
-                        |               |
-                      PASS             FAIL
-                        |               |
-                      FREEZE       adversary loop
-```
-
-## 12. Example: reuse for another problem
-
-For `problem112`:
+The user can then run:
 
 ```bash
-git switch main
-git pull --ff-only origin main
-git switch -c adversary/problem112
-git push -u origin adversary/problem112
-python scripts/codex-adversary-watch.py problem112 --watch
+./scripts/adv submit problemNN
 ```
 
-Then in ChatGPT web:
+and the official Rainier portal checks.
+
+## 12. Rainier feedback
+
+- `RAINIER DIFFICULTY PASS` -> freeze the exact `main` statement.
+- Difficulty FAIL/borderline -> keep the failed submitted version on `main`, continue design work on the existing adversary branch, and use the new Rainier trace/JSON as stronger evidence.
+- Solution/format/taxonomy feedback -> repair the narrow issue while preserving the difficulty-producing structure whenever possible.
+- Any statement edit invalidates all older portal difficulty percentages.
+
+## 13. Parallel use
+
+Different problems may run in parallel because each has a separate branch, state file, result directory, and temp solve.
+
+Example:
+
+```bash
+python scripts/codex-adversary-watch.py problem103 --watch
+python scripts/codex-adversary-watch.py problem104 --watch
+python scripts/codex-adversary-watch.py problem105 --watch
+```
+
+Do not run two watchers for the same problem. Start with a modest number of concurrent GPT-5.4 High runs to avoid account concurrency/rate-limit pressure.
+
+## 14. Compact state outputs
+
+`/rainier-next-check` should end with one of:
 
 ```text
-/rainier-next problem112
+RAINIER CHECK: WAIT_CODEX
+RAINIER CHECK: HARDENED_WAIT_CODEX
+RAINIER CHECK: MAIN_READY_FOR_RAINIER
+RAINIER CHECK: BLOCKED_RUNNER
 ```
 
-After each completed local attempt:
-
-```text
-next
-```
-
-After Rainier returns official feedback, paste that feedback into the same problem conversation and continue from the exact submitted version.
-
-## 13. Operational rules
-
-- Exactly one GPT-5.4 High run per new `problem.md` blob.
-- Default local timeout is 20 minutes.
-- Do not repeatedly retry the same blob because the first result was inconvenient.
-- Do not call a CLI `success` a solver success until the mathematical answer is reviewed.
-- Do not call a local timeout an official Rainier pass.
-- Keep hardening work on `adversary/problemNN`.
-- Update `solution.md` before `problem.md` for each candidate.
-- Promote both files together to `main` only at the local stopping point.
-- Any statement change invalidates all older Rainier difficulty percentages for that problem.
-- `main` is the version intended for portal submission; `adversary/problemNN` is the active design/test branch.
+Include only the problem number, adversary branch, candidate blob prefix, one-line status, and the next real user action.
