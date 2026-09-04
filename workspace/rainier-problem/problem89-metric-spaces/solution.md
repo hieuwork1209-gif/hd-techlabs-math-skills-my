@@ -217,7 +217,6 @@ $(1,\log\frac{2^{20}3^{219}23^{46}}{5^{35}7^7 11^{22}13^{26}17^{34}})$
 
 - negative type of finite metric spaces
 - shortest-path metrics
-- cut metrics and cut decompositions
-- strict negative type on an odd cycle
+- cut decomposition for strict negative type on an odd cycle
 - majorization and convexity
 - transversality of the critical exponent
