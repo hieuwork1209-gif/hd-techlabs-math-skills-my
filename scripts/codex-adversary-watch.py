@@ -189,7 +189,7 @@ def main() -> int:
     ap.add_argument("--interval", type=int, default=45)
     ap.add_argument("--model", default="gpt-5.4")
     ap.add_argument("--effort", default="high")
-    ap.add_argument("--timeout", type=int, default=3600)
+    ap.add_argument("--timeout", type=int, default=1800)
     ap.add_argument("--force", action="store_true")
     args = ap.parse_args()
     args.branch = args.branch or f"adversary/{args.problem}"
