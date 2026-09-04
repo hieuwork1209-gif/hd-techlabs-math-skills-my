@@ -4,6 +4,11 @@
 The watcher never runs Codex inside the Rainier repo. It extracts only the
 normalized statement into a temporary directory, runs one ephemeral Codex exec,
 and writes the result back under solver-results/<problem>/.
+
+Each completed attempt also updates solver-results/<problem>/latest.json so a
+later ChatGPT web turn can immediately see the latest local verdict. A timeout
+is recorded explicitly as LOCAL_STUMPED_BY_TIMEOUT and marks the candidate as
+ready to promote to main for official Rainier testing.
 """
 from __future__ import annotations
 
@@ -13,6 +18,7 @@ import json
 import os
 import re
 import shutil
+import signal
 import subprocess
 import sys
 import tempfile
@@ -46,10 +52,41 @@ def now() -> str:
 
 
 def run(cmd: list[str], cwd: Path = ROOT, check: bool = True, timeout: int | None = None):
-    p = subprocess.run(cmd, cwd=str(cwd), text=True, capture_output=True, timeout=timeout)
-    if check and p.returncode != 0:
-        raise RuntimeError((p.stderr or p.stdout or f"exit {p.returncode}").strip())
-    return p
+    """Run a command and kill its whole process group if the timeout expires."""
+    p = subprocess.Popen(
+        cmd,
+        cwd=str(cwd),
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        start_new_session=True,
+    )
+    try:
+        stdout, stderr = p.communicate(timeout=timeout)
+    except subprocess.TimeoutExpired as exc:
+        try:
+            os.killpg(p.pid, signal.SIGTERM)
+        except ProcessLookupError:
+            pass
+        try:
+            stdout, stderr = p.communicate(timeout=5)
+        except subprocess.TimeoutExpired:
+            try:
+                os.killpg(p.pid, signal.SIGKILL)
+            except ProcessLookupError:
+                pass
+            stdout, stderr = p.communicate()
+        raise subprocess.TimeoutExpired(
+            cmd,
+            timeout,
+            output=stdout,
+            stderr=stderr,
+        ) from exc
+
+    completed = subprocess.CompletedProcess(cmd, p.returncode, stdout, stderr)
+    if check and completed.returncode != 0:
+        raise RuntimeError((completed.stderr or completed.stdout or f"exit {completed.returncode}").strip())
+    return completed
 
 
 def git(*args: str, check: bool = True, cwd: Path = ROOT) -> str:
@@ -95,6 +132,23 @@ def load_state(problem: str) -> dict:
 def save_state(problem: str, state: dict) -> None:
     STATE_ROOT.mkdir(parents=True, exist_ok=True)
     state_file(problem).write_text(json.dumps(state, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def annotate_result(result: dict, timeout: int) -> None:
+    status = result.get("status")
+    result["timeout_seconds"] = timeout
+    if status == "timeout":
+        result["local_verdict"] = "LOCAL_STUMPED_BY_TIMEOUT"
+        result["recommended_action"] = "PROMOTE_TO_MAIN_FOR_RAINIER"
+        result["promotion_ready"] = True
+    elif status == "success":
+        result["local_verdict"] = "SOLVER_ANSWER_RETURNED"
+        result["recommended_action"] = "REVIEW_SOLVER_ANSWER"
+        result["promotion_ready"] = False
+    else:
+        result["local_verdict"] = "SOLVER_ERROR"
+        result["recommended_action"] = "INSPECT_RUNNER"
+        result["promotion_ready"] = False
 
 
 def solve_once(problem: str, branch: str, model: str, effort: str, timeout: int, force: bool) -> bool:
@@ -149,13 +203,46 @@ def solve_once(problem: str, branch: str, model: str, effort: str, timeout: int,
             result["final_answer"] = final.read_text(encoding="utf-8", errors="replace").strip() if final.exists() else ""
             result["status"] = "success" if p.returncode == 0 and result["final_answer"] else "error"
         except subprocess.TimeoutExpired:
-            result.update(status="timeout", exit_code=None, stderr=f"timeout after {timeout}s", final_answer="")
+            result.update(
+                status="timeout",
+                exit_code=None,
+                stderr=f"timeout after {timeout}s; Codex process group terminated",
+                final_answer="",
+            )
 
     result["completed_at"] = now()
-    attempted[blob] = {"at": result["completed_at"], "status": result["status"], "source_commit_sha": commit}
+    annotate_result(result, timeout)
+    attempted[blob] = {
+        "at": result["completed_at"],
+        "status": result["status"],
+        "local_verdict": result["local_verdict"],
+        "source_commit_sha": commit,
+    }
     save_state(problem, state)
 
-    rel = Path("solver-results") / problem / f"{blob[:12]}.json"
+    result_dir = Path("solver-results") / problem
+    rel = result_dir / f"{blob[:12]}.json"
+    latest_rel = result_dir / "latest.json"
+    result["result_file"] = str(rel).replace(os.sep, "/")
+
+    latest = {
+        "problem": problem,
+        "branch": branch,
+        "problem_path": problem_path,
+        "problem_blob_sha": blob,
+        "source_commit_sha": commit,
+        "status": result["status"],
+        "local_verdict": result["local_verdict"],
+        "recommended_action": result["recommended_action"],
+        "promotion_ready": result["promotion_ready"],
+        "requested_model": model,
+        "requested_reasoning_effort": effort,
+        "runs": 1,
+        "timeout_seconds": timeout,
+        "completed_at": result["completed_at"],
+        "result_file": result["result_file"],
+    }
+
     for attempt in range(2):
         fetch_branch(branch)
         with tempfile.TemporaryDirectory(prefix="rainier-publish-") as td:
@@ -163,9 +250,17 @@ def solve_once(problem: str, branch: str, model: str, effort: str, timeout: int,
             git("worktree", "add", "--detach", "-q", str(wt), f"origin/{branch}")
             try:
                 target = wt / rel
+                latest_target = wt / latest_rel
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-                git("add", "--", str(rel).replace(os.sep, "/"), cwd=wt)
+                latest_target.write_text(json.dumps(latest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+                git(
+                    "add",
+                    "--",
+                    str(rel).replace(os.sep, "/"),
+                    str(latest_rel).replace(os.sep, "/"),
+                    cwd=wt,
+                )
                 diff = run(["git", "diff", "--cached", "--quiet"], cwd=wt, check=False)
                 if diff.returncode == 0:
                     break
@@ -177,7 +272,19 @@ def solve_once(problem: str, branch: str, model: str, effort: str, timeout: int,
                     raise RuntimeError((push.stderr or push.stdout).strip())
             finally:
                 git("worktree", "remove", "--force", str(wt), check=False)
-    print(f"[codex-adversary] {problem}: {result['status']} -> {rel}", flush=True)
+
+    if result["status"] == "timeout":
+        print(
+            f"[codex-adversary] {problem}: timeout after {timeout}s -> {rel}; "
+            "LOCAL_STUMPED_BY_TIMEOUT; candidate ready for main/Rainier",
+            flush=True,
+        )
+    else:
+        print(
+            f"[codex-adversary] {problem}: {result['status']} -> {rel}; "
+            f"{result['local_verdict']}",
+            flush=True,
+        )
     return True
 
 
@@ -205,7 +312,10 @@ def main() -> int:
         solve_once(args.problem, args.branch, args.model, args.effort, args.timeout, args.force)
         return 0
 
-    print(f"[codex-adversary] watching origin/{args.branch}; one {args.model}/{args.effort} run per new problem.md")
+    print(
+        f"[codex-adversary] watching origin/{args.branch}; one {args.model}/{args.effort} "
+        f"run per new problem.md; timeout={args.timeout}s"
+    )
     while True:
         try:
             solve_once(args.problem, args.branch, args.model, args.effort, args.timeout, args.force)
