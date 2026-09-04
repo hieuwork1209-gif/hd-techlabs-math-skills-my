@@ -16,7 +16,7 @@ It is deliberately separate from `/rainier-next`.
     -> promotes to main only at the local stopping point
 ```
 
-Do not retrofit the adversary loop into `/rainier-next`. The two commands have different responsibilities.
+Do not retrofit the adversary loop into `/rainier-next`.
 
 ## Design goal
 
@@ -37,6 +37,9 @@ Codex GPT-5.4 High solves exactly once, cold, <=20m
         |
         v
 result + latest.json pushed to adversary/problemNN
+        |
+        +--> desktop notification on supported systems
+        |       WSL2 -> native Windows toast
         |
         v
 user sends: next
@@ -71,9 +74,11 @@ workspace/rainier-problem/problem103-*/problem.md
 workspace/rainier-problem/problem103-*/solution.md
 solver-results/problem103/<problem-blob-prefix>.json
 solver-results/problem103/latest.json
+.tmp/codex-adversary/problem103.json
+.tmp/codex-adversary/chat-urls.json
 ```
 
-The watcher resolves exactly one `problem103-*/problem.md`. Zero or multiple matches are an error.
+The `.tmp/` files are local-only and gitignored. In particular, ChatGPT conversation URLs are never written to `solver-results/` and never pushed to GitHub.
 
 ## 2. Starting a new local check
 
@@ -93,11 +98,35 @@ The skill must:
 5. reuse an existing adversary branch without silently resetting it;
 6. inspect whether the current adversary `problem.md` blob already has a matching local result.
 
-If the current blob has no result, stop at `WAIT_CODEX`. The first measured candidate may be identical to `main`; do not harden blindly unless current Rainier trace/feedback already exposes a concrete shortcut.
+If the current blob has no result, stop at `WAIT_CODEX`.
 
-## 3. Local watcher
+## 3. Local working-tree rule
 
-From the repository root, keep one watcher running per active problem:
+**Do not checkout every adversary branch in the main watcher clone.** A normal Git working tree can only have one checked-out branch at a time.
+
+Keep the main local clone on `main`:
+
+```bash
+git switch main
+git pull --ff-only origin main
+```
+
+The watcher explicitly reads `origin/adversary/problemNN`; the currently checked-out branch is not used as the solver input.
+When publishing a result it creates its own temporary detached Git worktree.
+
+Therefore multiple problem watchers can run from the same local repo while that repo stays on `main`:
+
+```bash
+python scripts/codex-adversary-watch.py problem103 --watch
+python scripts/codex-adversary-watch.py problem104 --watch
+python scripts/codex-adversary-watch.py problem105 --watch
+```
+
+Use one terminal/tmux pane/process per problem. Do not run two watchers for the same problem.
+
+If a watcher was already started while the clone happened to be checked out on `adversary/problemNN`, that measured run is still valid. Let it finish; switch the clone back to `main` afterward rather than restarting the same blob.
+
+## 4. Local watcher defaults
 
 ```bash
 python scripts/codex-adversary-watch.py problem103 --watch
@@ -112,17 +141,68 @@ reasoning effort   high
 runs per blob      1
 timeout             1200 seconds / 20 minutes
 poll interval       45 seconds
-```
-
-Expected startup:
-
-```text
-[codex-adversary] watching origin/adversary/problem103; one gpt-5.4/high run per new problem.md; timeout=1200s
+desktop notify     enabled when a supported backend exists
 ```
 
 Do not use `--force` in the normal protocol.
 
-## 4. Isolation contract
+## 5. WSL2 desktop notifications
+
+The watcher prefers native Windows notifications when it detects WSL and `powershell.exe`.
+No PowerShell module is required.
+
+For each completed attempt it:
+
+1. pushes the result JSON to the adversary branch;
+2. copies the literal text `next` to the Windows clipboard;
+3. shows a Windows toast;
+4. makes a configured ChatGPT conversation the default click target;
+5. exposes `Open Chat` and `Open Result` actions when those URLs are available.
+
+### Register a problem's ChatGPT conversation
+
+Copy the exact URL of that problem's ChatGPT conversation from the browser, then run once:
+
+```bash
+python scripts/codex-adversary-watch.py problem103 \
+  --chat-url 'https://chatgpt.com/c/...' \
+  --notify-test
+```
+
+This does **not** run Codex. It saves the mapping locally in:
+
+```text
+.tmp/codex-adversary/chat-urls.json
+```
+
+and sends a test toast.
+
+After that, normal watcher starts do not need `--chat-url` again:
+
+```bash
+python scripts/codex-adversary-watch.py problem103 --watch
+```
+
+The configured URL may also be supplied through `RAINIER_CHAT_PROBLEM103` or the generic `RAINIER_CHAT_URL` environment variable.
+
+### Toast behavior
+
+With a chat URL configured:
+
+```text
+click toast  -> open exact problem ChatGPT conversation
+Open Chat    -> same exact conversation
+Open Result  -> immutable solver result JSON on GitHub
+clipboard    -> next
+```
+
+Without a chat URL, the toast still appears when possible and opens the GitHub result instead.
+
+Use `--no-notify` to disable desktop notifications.
+
+A watcher process already running before the notification-capable script was loaded will not hot-reload the new code; let that run finish normally and use notifications on subsequent runs.
+
+## 6. Isolation contract
 
 For each unseen `problem.md` blob, the watcher:
 
@@ -134,9 +214,10 @@ For each unseen `problem.md` blob, the watcher:
 6. instructs the solver not to use memory, prior conversations, GitHub, web, connected apps, or external files;
 7. waits at most 20 minutes;
 8. kills the Codex process group on timeout;
-9. publishes the result to the same adversary branch.
+9. publishes the result to the same adversary branch;
+10. emits a desktop notification when enabled and available.
 
-## 5. Result files
+## 7. Result files
 
 Each completed attempt produces:
 
@@ -166,7 +247,7 @@ result_file
 
 Never reuse a verdict whose `problem_blob_sha` does not equal the current adversary candidate blob.
 
-## 6. User handoff
+## 8. User handoff
 
 The web chat cannot wake itself when GitHub changes.
 After a watcher attempt completes, the only user message needed is:
@@ -175,9 +256,10 @@ After a watcher attempt completes, the only user message needed is:
 next
 ```
 
+The WSL2 toast copies this text to the clipboard for convenience.
 A bare `next` in an active `/rainier-next-check` conversation means: read `latest.json`, follow `result_file` if needed, compare against the exact current solution, and continue the state machine.
 
-## 7. Solver returned before timeout
+## 9. Solver returned before timeout
 
 Watcher metadata:
 
@@ -190,27 +272,7 @@ promotion_ready = false
 
 `status=success` means only that Codex returned text. It is **not** a mathematical verdict.
 
-ChatGPT web must compare the response with the matching candidate solution.
-
-### Solver is correct
-
-Treat this as `LOCAL_NOT_STUMPED` and harden again on `adversary/problemNN`.
-
-Diagnose the actual route:
-
-```text
-COMMON ENTRY:
-COMMON REDUCTION:
-COMMON SCALING/REPRESENTATION:
-FIRST DECISIVE RECOGNITION:
-RECOVERY PATH:
-EARLIEST ROBUST SHORTCUT:
-```
-
-Harden the earliest robust shortcut structurally. Prefer hidden representation/invariant, coupled conditions, competing regimes, leading-order degeneracy, a mathematically failing standard route, or a necessary certificate.
-
-Do not use longer expansions, bigger matrices, more cases, uglier constants, brute force, or extra parameters by themselves as difficulty.
-
+If the solver is mathematically correct, treat this as `LOCAL_NOT_STUMPED`, diagnose the earliest robust shortcut, and harden again on `adversary/problemNN`.
 For every new candidate:
 
 1. re-derive validity, uniqueness, and answer;
@@ -221,13 +283,11 @@ For every new candidate:
 6. do not change `main`;
 7. let the watcher test the new blob once.
 
-### Solver is wrong or materially incomplete
+If the solver is wrong or materially incomplete, treat the exact candidate as locally stumped. Do not harden further. Run promotion gates and promote the pair to `main`.
 
-Treat the exact candidate as locally stumped. Do not harden further. Run promotion gates and promote the pair to `main`.
+## 10. Timeout
 
-## 8. Timeout
-
-On timeout the watcher should record:
+On timeout the watcher records:
 
 ```text
 status = timeout
@@ -237,15 +297,9 @@ promotion_ready = true
 timeout_seconds = 1200
 ```
 
-Expected terminal output:
-
-```text
-[codex-adversary] problem103: timeout after 1200s -> ...; LOCAL_STUMPED_BY_TIMEOUT; candidate ready for main/Rainier
-```
-
 A timeout is the local stopping rule, not an official Rainier pass.
 
-## 9. Runner error
+## 11. Runner error
 
 For infrastructure errors:
 
@@ -257,7 +311,7 @@ promotion_ready = false
 
 Do not promote. Fix/inspect the harness first.
 
-## 10. Promotion gates
+## 12. Promotion gates
 
 Before copying anything to `main`, check the current `./scripts/adv submit problemNN` contract, including at least:
 
@@ -271,7 +325,7 @@ Before copying anything to `main`, check the current `./scripts/adv submit probl
 
 If only solution formatting is wrong, repair it on the adversary branch first. A solution-only edit does not trigger another solver attempt because the statement blob is unchanged.
 
-## 11. Promotion to `main`
+## 13. Promotion to `main`
 
 Promotion happens only at the local stopping point.
 
@@ -290,28 +344,14 @@ The user can then run:
 
 and the official Rainier portal checks.
 
-## 12. Rainier feedback
+## 14. Rainier feedback
 
 - `RAINIER DIFFICULTY PASS` -> freeze the exact `main` statement.
 - Difficulty FAIL/borderline -> keep the failed submitted version on `main`, continue design work on the existing adversary branch, and use the new Rainier trace/JSON as stronger evidence.
 - Solution/format/taxonomy feedback -> repair the narrow issue while preserving the difficulty-producing structure whenever possible.
 - Any statement edit invalidates all older portal difficulty percentages.
 
-## 13. Parallel use
-
-Different problems may run in parallel because each has a separate branch, state file, result directory, and temp solve.
-
-Example:
-
-```bash
-python scripts/codex-adversary-watch.py problem103 --watch
-python scripts/codex-adversary-watch.py problem104 --watch
-python scripts/codex-adversary-watch.py problem105 --watch
-```
-
-Do not run two watchers for the same problem. Start with a modest number of concurrent GPT-5.4 High runs to avoid account concurrency/rate-limit pressure.
-
-## 14. Compact state outputs
+## 15. Compact state outputs
 
 `/rainier-next-check` should end with one of:
 
