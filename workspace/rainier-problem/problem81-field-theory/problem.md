@@ -4,7 +4,7 @@
 
 Let $r\ge3$, let $q$ be a prime satisfying $2q\equiv1\pmod{3^r}$, and put $n=4q^2$. Let $K/\mathbb Q$ be Galois with $\operatorname{Gal}(K/\mathbb Q)\cong S_n$ acting on $[n]$, let $\omega\notin K$ be a primitive cube root of unity, and put $M=K(\omega)$.
 
-For $1\le j\le r$, choose $S_n$-equivariant elements $g_i^{(j)}\in K^\times$ $(1\le i\le n)$ and $p_j\in\mathbb Q^\times$. Assume
+For $1\le j\le r$, choose $g_i^{(j)}\in K^\times$ $(1\le i\le n)$ such that $\tau(g_i^{(j)})=g_{\tau(i)}^{(j)}$ for every $\tau\in S_n$, and choose $p_j\in\mathbb Q^\times$. Assume
 $$
 \prod_{j=1}^r p_j^{s_j}\prod_{i=1}^n\prod_{j=1}^r(g_i^{(j)})^{a_i^{(j)}}\in(M^\times)^3
 $$
