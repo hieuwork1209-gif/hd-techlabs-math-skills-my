@@ -14,7 +14,7 @@ argument-hint: problemNN or folder path, optionally Rainier feedback/JSON/trace;
 - **Task:** run the separate local adversarial difficulty loop for an already-existing Rainier problem.
 - **Branch discipline:** `main` is the portal-submission/frozen branch. All local difficulty hardening happens on `adversary/problemNN`.
 - **First invocation:** resolve the exact `problemNN-*` on `main`, verify a matching `problem.md` + `solution.md` exist, then ensure `adversary/problemNN` exists. Create it from current `main` only if absent. Never silently reset an existing adversary branch.
-- **Independent solver:** use the result format produced by `scripts/codex-adversary-watch.py`, which runs exactly one cold `gpt-5.4` / `high` solve per unseen `problem.md` blob with a default timeout of 1200 seconds.
+- **Independent solver:** use `scripts/codex-adversary-watch.py`, exactly one cold `gpt-5.4` / `high` solve per unseen `problem.md` blob, default timeout 1200 seconds.
 - **One blob, one measured solve.** Do not use `--force` in the normal loop.
 - **Success is not correctness.** `status=success` only means Codex returned text; compare the returned mathematics against the exact matching candidate solution.
 - **Correct solver answer:** diagnose the actual earliest robust shortcut, harden structurally, verify the new ground truth, then update `solution.md` first and `problem.md` second on the adversary branch. Do not touch `main`.
@@ -49,22 +49,75 @@ solver-results/problem103/latest.json
 
 Resolve exactly one matching problem folder. Never infer another problem number from ordering.
 
-### First use / no result for the current blob
+## Local working-tree rule
+
+Do not instruct the user to checkout `adversary/problemNN` just to run the watcher.
+A normal local working tree can only have one checked-out branch, while this workflow is intended to support multiple problems in parallel.
+
+The preferred local state is:
+
+```bash
+git switch main
+git pull --ff-only origin main
+```
+
+Then different terminals may run:
+
+```bash
+python scripts/codex-adversary-watch.py problem103 --watch
+python scripts/codex-adversary-watch.py problem104 --watch
+python scripts/codex-adversary-watch.py problem105 --watch
+```
+
+The watcher explicitly reads `origin/adversary/problemNN` and publishes through a temporary detached Git worktree, so the main checkout can remain on `main`.
+Do not run two watchers for the same problem.
+
+If a measured run was already started while the clone was checked out on the corresponding adversary branch, do not restart it merely to switch branches. Let that run finish and return the main checkout to `main` afterward.
+
+## First use / no result for current blob
 
 1. Resolve the current `main` problem and solution.
 2. Ensure `adversary/problemNN` exists; create it from current `main` if absent.
 3. Read the candidate pair from the adversary branch.
 4. Check `solver-results/problemNN/latest.json` if present.
-5. If there is no result whose `problem_blob_sha` equals the current adversary `problem.md` blob, do **not** reuse an older verdict and do not harden blindly unless current Rainier trace/feedback already exposes a concrete shortcut.
-6. Stop at `WAIT_CODEX` and give the exact local command:
+5. If no result has `problem_blob_sha` equal to the current adversary `problem.md` blob, do not reuse an older verdict and do not harden blindly unless current Rainier evidence already exposes a concrete shortcut.
+6. Stop at `WAIT_CODEX`.
+
+Give the normal watcher command:
 
 ```bash
 python scripts/codex-adversary-watch.py problemNN --watch
 ```
 
-The first measured candidate may be identical to `main`.
+For WSL2, also mention the optional one-time click-to-chat setup when useful:
 
-### `next` follow-up
+```bash
+python scripts/codex-adversary-watch.py problemNN \
+  --chat-url 'https://chatgpt.com/c/...' \
+  --notify-test
+```
+
+The user copies the exact current conversation URL from the browser. The watcher stores it only in `.tmp/codex-adversary/chat-urls.json`, which is gitignored. Never ask to commit or publish that URL.
+
+Once configured, normal future watcher starts need no `--chat-url`.
+
+### Desktop handoff semantics
+
+On WSL2, the watcher prefers a native Windows toast through `powershell.exe` with no extra PowerShell module required.
+After a completed attempt it copies `next` to the Windows clipboard.
+With a configured chat URL:
+
+```text
+click toast -> exact problem ChatGPT conversation
+Open Chat   -> exact problem ChatGPT conversation
+Open Result -> solver result JSON on GitHub
+clipboard   -> next
+```
+
+Without a configured chat URL, the toast may open the GitHub result instead.
+A process that was already running before the updated watcher code was loaded will not hot-reload notification support; do not restart the same measured blob just for notification behavior.
+
+## `next` follow-up
 
 In a conversation already running this skill, interpret a bare `next` as:
 
@@ -88,7 +141,7 @@ Fetch the full run record and current adversary solution.
 
 If the solver is mathematically correct:
 
-1. Extract the route actually used, including when possible:
+1. Extract the actual route, including when possible:
 
 ```text
 COMMON ENTRY:
@@ -126,7 +179,7 @@ promotion_ready = true
 timeout_seconds = 1200
 ```
 
-Unless the user explicitly chose a different timeout for that run, 1200 seconds is the stopping rule. Then run promotion preflight and promote the exact pair to `main`.
+Unless the user explicitly chose a different timeout, 1200 seconds is the stopping rule. Then run promotion preflight and promote the exact pair to `main`.
 
 ### D — runner/infrastructure error
 
