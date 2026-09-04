@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "6ab4ff93b4b263d325bfd7b3f4160f9d9667daca",
+  "problem_blob_sha": "15e6620b8c836d8089555f284b1d6c131b33cf0c",
+  "statement_sha256": "d1f365ca1541e1e7ee15af9772368cb68cdabe505403267fb3005e279ad588f6",
+  "requested_model": "gpt-5.4",
+  "requested_reasoning_effort": "high",
+  "runs": 1,
+  "started_at": "2026-09-04T16:22:03+00:00",
+  "status": "timeout",
+  "exit_code": null,
+  "stderr": "timeout after 1200s; Codex process group terminated",
+  "final_answer": "",
+  "completed_at": "2026-09-04T16:42:04+00:00",
+  "timeout_seconds": 1200,
+  "local_verdict": "LOCAL_STUMPED_BY_TIMEOUT",
+  "recommended_action": "PROMOTE_TO_MAIN_FOR_RAINIER",
+  "promotion_ready": true,
+  "result_file": "solver-results/problem89/15e6620b8c83.json"
+}
