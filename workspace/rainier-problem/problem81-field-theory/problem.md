@@ -2,32 +2,27 @@
 
 ## LaTeX (Normalized)
 
-Let $q$ be a prime with $q\equiv5\pmod9$ and put $n=4q^2$. Let $K/\mathbb Q$ be Galois with $\operatorname{Gal}(K/\mathbb Q)\cong S_n$ acting on $[n]$, let $\omega\notin K$ be a primitive cube root of unity, and put $M=K(\omega)$.
+Let $r\ge3$, let $q$ be a prime satisfying $2q\equiv1\pmod{3^r}$, and put $n=4q^2$. Let $K/\mathbb Q$ be Galois with $\operatorname{Gal}(K/\mathbb Q)\cong S_n$ acting on $[n]$, let $\omega\notin K$ be a primitive cube root of unity, and put $M=K(\omega)$.
 
-Choose $g_i,h_i\in K^\times$ $(1\le i\le n)$ with $\tau(g_i)=g_{\tau(i)}$ and $\tau(h_i)=h_{\tau(i)}$ for every $\tau\in S_n$, and choose $p_1,p_2\in\mathbb Q^\times$. Assume
+For $1\le j\le r$, choose $S_n$-equivariant elements $g_i^{(j)}\in K^\times$ $(1\le i\le n)$ and $p_j\in\mathbb Q^\times$. Assume
 $$
-p_1^sp_2^t\prod_i g_i^{a_i}h_i^{b_i}\in(M^\times)^3
+\prod_{j=1}^r p_j^{s_j}\prod_{i=1}^n\prod_{j=1}^r(g_i^{(j)})^{a_i^{(j)}}\in(M^\times)^3
 $$
-for $a_i,b_i,s,t\in\mathbb F_3$ iff $s=t=0$ and there are $\lambda,\mu\in\mathbb F_3$ with $a_i=\lambda,\ b_i=\mu$ for all $i$.
+for $a_i^{(j)},s_j\in\mathbb F_3$ if and only if every $s_j=0$ and, for each $j$, the values $a_i^{(j)}$ are constant in $i$.
 
-Choose $\alpha_i^3=g_i,\ \beta_i^3=h_i,\ \rho_1^3=p_1,\ \rho_2^3=p_2$, with $\prod_i\alpha_i,\prod_i\beta_i\in M$, and set
+Choose $(\alpha_i^{(j)})^3=g_i^{(j)}$ and $\rho_j^3=p_j$, with $\prod_i\alpha_i^{(j)}\in M$ for every $j$, and let
 $$
-L=M(\alpha_1,\ldots,\alpha_n,\beta_1,\ldots,\beta_n,\rho_1,\rho_2).
+L=M\left(\alpha_i^{(j)},\rho_j:1\le i\le n,\ 1\le j\le r\right).
 $$
 For $\sigma\in\operatorname{Gal}(L/\mathbb Q(\omega))$, let $\pi_\sigma\in S_n$ be its restriction to $M$.
 
-Fix $\pi\in S_n$ consisting of $2q^2$ transpositions. For $(k,\ell)\in\mathbb F_3^2$, let
+Fix $\pi\in S_n$ consisting of $2q^2$ transpositions. For $k=(k_1,\ldots,k_r)\in\mathbb F_3^r$, let
 $$
-\Omega_{k,\ell}=\left\{\left(\omega^u\rho_1^k\frac{\alpha_i}{\alpha_j},\omega^v\rho_2^\ell\frac{\beta_i}{\beta_j}\right):i\ne j,\ u,v\in\mathbb F_3\right\}.
+\Omega_k=\left\{\left(\omega^{u_j}\rho_j^{k_j}\frac{\alpha_i^{(j)}}{\alpha_\ell^{(j)}}\right)_{j=1}^r:i\ne\ell,\ u=(u_1,\ldots,u_r)\in\mathbb F_3^r\right\}.
 $$
 The relation hypothesis implies these elements are distinct.
 
-Determine the number of $\sigma\in\operatorname{Gal}(L/\mathbb Q(\omega))$ such that $\pi_\sigma=\pi$, $\sigma(\rho_1)\ne\rho_1$, $\sigma(\rho_2)\ne\rho_2$, and the nine induced permutations on $\Omega_{k,\ell}$ have the same cycle type.
-
-Use $\binom{m}{m_1,\ldots,m_9}=m!/(m_1!\cdots m_9!)$ and set
-$$
-H_q=\frac{2q^2+8q}{9},\qquad L_q=\frac{2q^2-q}{9}.
-$$
+Determine the number of $\sigma\in\operatorname{Gal}(L/\mathbb Q(\omega))$ such that $\pi_\sigma=\pi$, $\sigma(\rho_j)\ne\rho_j$ for every $j$, and the $3^r$ induced permutations on the sets $\Omega_k$ all have the same cycle type. Give a closed formula in $r$ and $q$.
 
 ---
 
@@ -44,4 +39,4 @@ $$
 
 ## Domain Explanation
 
-The problem fundamentally asks for the number of lifts of a fixed permutation through a cubic Kummer extension. The admissible lifts are determined by the cube-class relation space in $M^\times/(M^\times)^3$ and the corresponding Kummer Galois kernel. The finite Fourier and Eisenstein-integer arguments classify the resulting phase profile only after this field-theoretic reduction, so Field theory is more appropriate than Galois theory or Fourier analysis.
+The problem asks for the number of lifts of a fixed permutation through a family of cubic Kummer extensions. The cube-class relation space determines the Kummer Galois kernel and the admissible lifts; the higher-dimensional finite Fourier and affine-hyperplane incidence arguments classify their phase profile only after this field-theoretic reduction, so Field theory is the appropriate sub-domain.
