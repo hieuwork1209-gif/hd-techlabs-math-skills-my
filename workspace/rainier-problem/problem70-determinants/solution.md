@@ -182,7 +182,7 @@ $\frac{7\pi^4}{720}$
 
 **Problem Type:** Parameter identification
 
-**Answer Type:** exact_scalar
+**Answer Type:** Exact scalar
 
 ---
 
