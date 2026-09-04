@@ -43,7 +43,7 @@ $$
 | **Domain** | Linear Algebra |
 | **Sub-domain** | Determinants |
 | **Problem Type** | Parameter identification |
-| **Answer Type** | exact_scalar |
+| **Answer Type** | Exact scalar |
 
 ---
 
