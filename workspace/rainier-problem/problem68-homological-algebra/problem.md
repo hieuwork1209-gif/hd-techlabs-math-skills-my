@@ -4,7 +4,7 @@
 
 Let $\Bbbk$ be a field of characteristic $2$. Fix integers
 $$
-a\geq7,\qquad 7\mid a,\qquad b,c\geq2.
+a\geq21,\qquad 21\mid a,\qquad b,c\geq2.
 $$
 Let $R$ be the quotient of
 $$
@@ -37,7 +37,7 @@ g_1\\
 g_a
 \end{pmatrix},
 \qquad
-g_i=X_i+X_{i+1}+X_{i+3},
+g_i=X_i+X_{i+2}+X_{i+4}+X_{i+8}+X_{i+14},
 $$
 where the indices on the $X_i$ are read modulo $a$.
 
@@ -62,4 +62,4 @@ $$
 
 ## Domain Explanation
 
-This problem is fundamentally about the structure of a commutative quotient ring $R$ and the homological invariants of the $R$-module $R^a/Rg$. Determining the requested Poincare series requires understanding the ring through fiber-product and socle-quotient structure, analyzing annihilators, and computing minimal free resolutions and the resulting $\operatorname{Tor}$ groups. The rational function in $t$ merely packages the Betti numbers $\beta_n^R(R^a/Rg)=\dim_{\Bbbk}\operatorname{Tor}_n^R(R^a/Rg,\Bbbk)$ after the commutative and homological algebra has been established. Therefore Abstract Algebra / Commutative algebra is the appropriate classification, rather than Discrete Mathematics and Combinatorics / Generating functions.
+This problem is fundamentally about the structure of a commutative quotient ring $R$ and the homological invariants of the $R$-module $R^a/Rg$. Determining the requested Poincare series requires understanding the ring through fiber-product and socle-quotient structure, analyzing a cyclic annihilator map in characteristic $2$ (including repeated polynomial factors), and computing minimal free resolutions and the resulting $\operatorname{Tor}$ groups. The rational function in $t$ merely packages the Betti numbers $\beta_n^R(R^a/Rg)=\dim_{\Bbbk}\operatorname{Tor}_n^R(R^a/Rg,\Bbbk)$ after the commutative and homological algebra has been established. Therefore Abstract Algebra / Commutative algebra is the appropriate classification, rather than Discrete Mathematics and Combinatorics / Generating functions.
