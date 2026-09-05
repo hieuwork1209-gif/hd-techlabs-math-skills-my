@@ -31,6 +31,16 @@ Read `references/workflow.md` before acting.
 - After promotion to `MAIN_READY_FOR_RAINIER`, upsert `solver-results/problemNN/terminal.json` on the adversary branch for the exact promoted problem blob. A matching marker makes the watcher exit successfully instead of repeating `already tested`.
 - PowerShell notifications must route through the exact locally bound Chrome HWND. If that binding is missing or stale, do not fall back to another browser/account.
 
+## No-leak self-contained Answer gate
+
+Treat this as a **problem-design gate**, not a cosmetic formatting rule.
+
+- The standalone `## Answer` must be interpretable from the problem statement alone. Every nonstandard symbol used in the Answer must already be defined in the problem statement; standard mathematical notation is allowed.
+- Do **not** make an Answer self-contained by adding aliases to the statement when those aliases encode quantities that the solver is supposed to discover. In particular, never expose solution-derived multiplicities, hidden flags/subspaces, extremizers, regime boundaries, recovered invariants, special coefficients, or other load-bearing intermediate structure merely to shorten the Answer.
+- If the Answer cannot satisfy the portal length/format limits using only the problem's natural input variables and harmless notation, classify that as a **design/hardening failure**. Structurally redesign or harden the adversary candidate until the final result has a concise self-contained expression without leaking the intended route.
+- A statement edit made for this reason creates a new `problem.md` blob and therefore requires a fresh cold solver measurement. Never reuse the previous local or portal difficulty result for the changed statement.
+- Before promotion, compare the standalone Answer with the interior of the final `Final Answer: $\boxed{...}$` line. They must denote the same expression and, when the portal checker requires textual equality, use the same representation.
+
 ## Follow-up `next`
 
 In a conversation already using this skill, interpret a bare `next` as: read `solver-results/problemNN/latest.json` from `adversary/problemNN`, follow its `result_file` when needed, compare against the exact candidate solution, and continue the state machine without asking the user to restate the problem.
