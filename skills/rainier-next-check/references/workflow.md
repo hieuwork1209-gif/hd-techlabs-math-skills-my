@@ -68,7 +68,7 @@ solver finishes
 -> handler validates problem + ChatGPT host + /c/ path
 -> handler validates HWND still exists and belongs to the saved Chrome PID
 -> handler focuses only that HWND
--> handler navigates that Chrome window to the exact conversation
+-> handler opens the exact conversation in a new tab of that Chrome window
 -> clipboard becomes: next
 ```
 
@@ -116,19 +116,34 @@ timeout_seconds = 2100
 
 Never promote on `SOLVER_ERROR` or infrastructure failure.
 
+## No-leak self-contained Answer design gate
+
+Run this gate whenever a candidate is created, hardened, repaired after portal feedback, or considered for promotion.
+
+1. Parse the standalone `## Answer` and list every nonstandard symbol it uses.
+2. Every such symbol must already be defined in the problem statement. Standard notation such as factorials, powers, binomial coefficients, products, sums, and ordinary named functions is allowed when its meaning is conventional.
+3. Reject any repair that makes the Answer self-contained by inserting solution-derived aliases into the statement. Forbidden examples include aliases for recovered multiplicities, hidden flags/subspaces, extremizers, phase alignments, regime boundaries, reconstructed invariants, or special coefficients whose derivation is part of the intended difficulty.
+4. If a concise Answer within the portal limit cannot be written using the statement's natural input variables without such leakage, do not classify the issue as formatting-only. Treat the candidate as a design/hardening failure and structurally redesign/harden it so the final result is concise and self-contained without exposing the solution route.
+5. Any statement edit creates a new problem blob and invalidates earlier solver/portal difficulty evidence for that statement.
+6. The standalone Answer and the interior of the final `Final Answer: $\boxed{...}$` line must use the same final expression representation when the portal checker compares them textually.
+
+This gate is specifically intended to prevent a failure mode where submission-format pressure accidentally weakens the problem by publishing quantities that the solver was supposed to recover.
+
 ## Promotion preflight
 
 Before writing to `main`, require at least:
 
 - prompt nonempty and at most 2000 characters
 - standalone Answer nonempty, at most 102 characters, no `\\boxed`
+- standalone Answer passes the no-leak self-contained Answer design gate above
 - consecutive `Step 1:`, `Step 2:`, ...
 - final non-whitespace line of the last step exactly `Final Answer: $\\boxed{...}$`
+- final boxed expression matches the standalone Answer representation required by the portal checker
 - 1 to 5 Solution Concepts, each under 100 characters
 - Domain, Sub-domain, Domain Explanation, Problem Type, Answer Type present and compatible
 - Problem Type and Answer Type agree between problem and solution
 
-Formatting-only solution repairs do not require another solver run because the measured statement blob is unchanged.
+A true formatting-only solution repair does not require another solver run because the measured statement blob is unchanged. A repair that alters the statement to satisfy Answer self-containment is not formatting-only and must be freshly measured.
 
 ## Promotion and terminal marker
 
@@ -160,6 +175,7 @@ Official portal evidence outranks local evidence.
 
 - difficulty PASS -> freeze the exact `main` statement
 - difficulty FAIL/borderline -> continue on the existing adversary branch using the portal trace/JSON as stronger evidence
+- solution/format/taxonomy feedback that would require leaking solution-derived structure into the statement -> treat as a design/hardening problem, not a cosmetic repair
 - any statement edit invalidates all earlier portal percentages
 
 ## Compact states
