@@ -50,4 +50,4 @@ Let $Z(R)$ denote the center of $R$. Determine $Z(R)$ as an explicit $k$-subalge
 
 ## Domain Explanation
 
-This problem asks for the center of a PBW-type noncommutative algebra with three noncommuting skew generators acting linearly on a polynomial coefficient algebra. The main task is to identify the hidden Lie action, determine its polynomial invariants, and prove that no positive skew-degree central element survives the PBW filtration.
+This problem asks for the center of a noncommutative algebra defined by coupled linear commutation relations. The main task is to determine all polynomial combinations that commute with every generator and to prove that no additional terms involving the noncommuting generators can occur.
