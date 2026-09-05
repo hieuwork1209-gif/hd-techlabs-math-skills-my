@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-field-theory/problem.md",
+  "source_commit_sha": "1b6ed3812adc0ba1a6bc6d914bd9cedd29e55b97",
+  "problem_blob_sha": "9cfe18d57e6e07d617bee653e14c3e3ad42e3f1a",
+  "statement_sha256": "f819d578df6f9e31df7cb17320e201636be41637d765c005f225330ec246f4a9",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T07:41:38+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(G=\\mathbb F_\\ell^r\\) and \\(Q=|G|=\\ell^r\\). The number is\n\n\\[\n\\boxed{\n\\ell^{r-2}\\bigl(\\ell^{r-1}-1\\bigr)\n+\\mathbf 1_{\\,r\\mid(\\ell-1)}(r-1)(\\ell-1)(\\ell-1-r)\\ell^{r-3}\\bigl(\\ell^{r-2}-1\\bigr)\n}.\n\\]\n\nHere \\(\\mathbf 1_{\\,r\\mid(\\ell-1)}\\) is \\(1\\) if \\(r\\mid \\ell-1\\), and \\(0\\) otherwise.\n\n**Solution.**  \nWrite\n\n\\[\n\\sigma(\\alpha_i^{(j)})=\\zeta^{a_i^{(j)}}\\alpha_{\\pi(i)}^{(j)},\\qquad\n\\sigma(\\rho_j)=\\zeta^{s_j}\\rho_j .\n\\]\n\nThe relation \\(\\prod_i\\alpha_i^{(j)}=\\rho_{j+1}\\) gives\n\n\\[\n\\sum_i a_i^{(j)}=s_{j+1}.\n\\]\n\nLet the \\(m=n/2=2q^2\\) transposition blocks of \\(\\pi\\) be \\(T\\), and define\n\n\\[\nB_T=(a_i^{(1)}+a_{\\pi(i)}^{(1)},\\ldots,a_i^{(r)}+a_{\\pi(i)}^{(r)})\\in G.\n\\]\n\nThe multiset \\(\\{B_T\\}\\) has total sum\n\n\\[\n\\sum_T B_T=Ps.\n\\]\n\nFor fixed \\(k\\), \\(\\sigma\\) acts on \\(\\Omega_k\\) by\n\n\\[\n(i,h,u)\\mapsto\n\\left(\\pi i,\\pi h,\\ u+ks+a_i-a_h\\right),\n\\]\n\nso \\(\\sigma^2\\) fixes the ordered pair of transposition blocks and translates \\(u\\) by\n\n\\[\n2ks+B_T-B_{T'}.\n\\]\n\nThus a \\(2\\)-cycle occurs exactly when this translation is zero. If\n\n\\[\nN_x=\\#\\{T:B_T=x\\},\n\\qquad\nR(d)=\\sum_x N_xN_{x-d},\n\\]\n\nthen the number \\(C_k\\) of \\(2\\)-cycles is\n\n\\[\nC_k=\nQ\\bigl(2R(-2ks)-m\\mathbf 1_{k=0}\\bigr).\n\\]\n\nSince every \\(s_j\\ne0\\), the map \\(k\\mapsto -2ks\\) is a bijection of \\(G\\). Therefore the given three-level condition on \\(C_k\\) is equivalent to\n\n\\[\nR(d)=R_O\n+4\\ell(q+3Q)\\mathbf 1_U(d)\n+4\\ell^2(q+Q)\\mathbf 1_W(d)\n+q^2\\mathbf 1_{\\{0\\}}(d).\n\\]\n\nTaking Fourier transforms on \\(G\\),\n\n\\[\n|\\widehat N(\\chi)|=\n\\begin{cases}\n2q^2,& \\chi=0,\\\\\nq+4Q,& \\chi\\in U^\\perp\\setminus\\{0\\},\\\\\nq+2Q,& \\chi\\in W^\\perp\\setminus U^\\perp,\\\\\nq,& \\chi\\notin W^\\perp.\n\\end{cases}\n\\]\n\nBecause \\(2\\) generates \\(\\mathbb F_\\ell^\\times\\), the primes \\(q,q+2Q,q+4Q\\) are inert in \\(\\mathbb Q(\\zeta)\\). Also\n\n\\[\n2q\\equiv 1\\pmod Q\n\\]\n\nforces the root-of-unity signs in these Fourier coefficients to be positive. Fourier inversion then gives one conjugacy orbit for each admissible triple \\((s,U,W)\\), with the translation fixed by\n\n\\[\n\\sum_TB_T=Ps.\n\\]\n\nSo it remains only to count admissible \\((s,U,W)\\).\n\nThe condition\n\n\\[\n\\mathbf 1\\in \\operatorname{span}\\{s,Ps\\}\n\\]\n\nmeans that for some \\(A,B\\in\\mathbb F_\\ell\\),\n\n\\[\ns_{j+1}=A+Bs_j\n\\]\n\ncyclically. There are two cases.\n\nIf \\(s\\) is constant, then there are \\(\\ell-1\\) choices. Here \\(c_s=\\mathbf 1\\). The number of flags with \\(\\mathbf 1\\in U\\setminus W\\) is\n\n\\[\n\\frac{\\ell^{r-1}-1}{\\ell-1}\\cdot \\ell^{r-2}.\n\\]\n\nThis contributes\n\n\\[\n(\\ell-1)\\frac{\\ell^{r-1}-1}{\\ell-1}\\ell^{r-2}\n=\n\\ell^{r-2}(\\ell^{r-1}-1).\n\\]\n\nIf \\(s\\) is nonconstant, then \\(B\\) must have order \\(r\\), so this case exists only when \\(r\\mid \\ell-1\\). For each element \\(B\\) of order \\(r\\), the affine recurrence has\n\n\\[\n(\\ell-1)(\\ell-1-r)\n\\]\n\nsolutions with all \\(s_j\\ne0\\) and \\(\\mathbf 1\\in\\operatorname{span}\\{s,Ps\\}\\). There are \\(r-1\\) such \\(B\\). In this case \\(\\mathbf 1\\) and \\(c_s\\) are linearly independent. The number of flags with\n\n\\[\n\\mathbf 1,c_s\\in U\\setminus W\n\\]\n\nis\n\n\\[\n\\frac{\\ell^{r-2}-1}{\\ell-1}\\cdot \\ell^{r-3}(\\ell-1)\n=\n\\ell^{r-3}(\\ell^{r-2}-1).\n\\]\n\nThus the nonconstant contribution is\n\n\\[\n\\mathbf 1_{\\,r\\mid(\\ell-1)}\n(r-1)(\\ell-1)(\\ell-1-r)\n\\ell^{r-3}(\\ell^{r-2}-1).\n\\]\n\nAdding the two contributions gives the boxed formula.",
+  "status": "success",
+  "completed_at": "2026-09-05T07:45:17+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/9cfe18d57e6e.json"
+}
