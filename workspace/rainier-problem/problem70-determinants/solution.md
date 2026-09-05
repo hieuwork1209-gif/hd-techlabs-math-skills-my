@@ -1,9 +1,9 @@
 ## Steps
 
-Step 1: Reduce the tangency system to one scalar equation
-Put $L=\log n$, $c=aL$, $d=c-1$, and for fixed $n$ write
+Step 1: Normalize the two determinant equations
+Put $c=aL$, $d=c-1$, $\varepsilon=L^{-1}$ and, for fixed $(n,\lambda)$, write
 $$
-f(a)=T_1(n,a),\qquad g(a)=\log f(a).
+f(a)=T_1(n,a,\lambda),\qquad g(a)=\log f(a).
 $$
 Since $f^{(m)}=(-1)^m m!T_{m+1}$,
 $$
@@ -12,133 +12,140 @@ $$
 $$
 Define
 $$
-A_n(c)=\frac{g''}{L^2},\qquad B_n(c)=\frac{g'''}{L^3},\qquad C_n(c)=\frac{g''''}{L^4},
+A=\frac{g''}{L^2},\qquad B=\frac{g'''}{L^3},\qquad C=\frac{g''''}{L^4}.
 $$
-and
+After division by the common powers of $L$ and $f$, the two equations become
 $$
-P_n(c)=81(2A_n^3+A_nC_n-B_n^2)+2238A_n-324B_n-135C_n-1206A_n^2-1454.
+R(A,B,C):=60A+144B+27C+44=0,
 $$
-For the expression $E_n(a,\lambda)$ in the problem statement,
 $$
-E_n(a,\lambda)=L^6f(a)^4\bigl(P_n(c)+\lambda d\bigr).
-$$
-At a zero of $E_n$, differentiation with respect to $a$ gives
-$$
-\frac{\partial E_n}{\partial a}=L^7f^4\bigl(P_n'(c)+\lambda\bigr),
-$$
-because the derivative of the prefactor is multiplied by the already vanishing bracket. Hence the coupled equations are equivalent to
-$$
-P_n(c)+\lambda d=0,\qquad P_n'(c)+\lambda=0.
-$$
-Eliminating $\lambda$ gives the load-bearing tangency equation
-$$
-Q_n(d):=P_n(1+d)-dP_n'(1+d)=0.
+P(A,B,C):=81(2A^3+AC-B^2)+2238A-324B-135C-1206A^2-1454=0.
 $$
 
-Step 2: Expand the normalized invariants near the degenerate point
-The beta identity yields
+Step 2: Expand the deformed Beta model
+The beta identity gives
 $$
-f(a)=\sum_{q=1}^3e^{q-1}B(a,n^q+1).
+f(a)=\sum_{q=1}^3e^{q-1+\lambda(q-2)^2}B(a,n^q+1).
 $$
-Uniformly for $|d|\le L^{-1}$ and through four normalized derivatives,
+Uniformly for $|d|,|\lambda|\le L^{-1}$ and through four normalized $a$-derivatives,
 $$
-f(c/L)=\Gamma(c/L)e^{-1}\left(e^{-d}+e^{-2d}+e^{-3d}\right)(1+o(L^{-5})).
+f(c/L)=\Gamma(c/L)e^{-1}
+\left(e^{-d+\lambda}+e^{-2d}+e^{-3d+\lambda}\right)(1+o(L^{-5})).
 $$
 Set
 $$
-\phi(d)=\log(e^{-d}+e^{-2d}+e^{-3d}).
+\phi(d,\lambda)=\log\left(e^{-d+\lambda}+e^{-2d}+e^{-3d+\lambda}\right).
 $$
 Using
 $$
-\log\Gamma z=-\log z-\gamma z+\frac{\zeta(2)}2z^2-\frac{\zeta(3)}3z^3+\frac{\zeta(4)}4z^4+O(z^5),
+\log\Gamma z=-\log z-\gamma z+\frac{\zeta(2)}2z^2-\frac{\zeta(3)}3z^3+O(z^4),
 $$
-we obtain
+we have
 $$
-A_n=A_0+\frac{\zeta(2)}{L^2}-\frac{2c\zeta(3)}{L^3}+O(L^{-4}),
+A=c^{-2}+\phi_{dd}+\zeta(2)\varepsilon^2+O(\varepsilon^3),
 $$
 $$
-B_n=B_0-\frac{2\zeta(3)}{L^3}+O(L^{-4}),\qquad C_n=C_0+O(L^{-4}),
+B=-2c^{-3}+\phi_{ddd}+O(\varepsilon^3),\qquad
+C=6c^{-4}+\phi_{dddd}+O(\varepsilon^4).
 $$
-where
+At $(d,\lambda)=(0,0)$ the limiting values are
 $$
-A_0=c^{-2}+\phi''(d),\quad B_0=-2c^{-3}+\phi'''(d),\quad C_0=6c^{-4}+\phi''''(d).
+(A,B,C)=\left(\frac53,-2,\frac{16}{3}\right),
 $$
-Since
+with $d$-derivative
 $$
-\phi(d)=\log3-2d+\frac{d^2}{3}-\frac{d^4}{36}+\frac{13d^6}{3240}+O(d^8),
+\left(-2,\frac{16}{3},-24\right)
 $$
-direct substitution into $P_n$ gives the differentiable uniform expansion
+and $\lambda$-derivative
 $$
-P_n(1+d)=-1842d^3-\frac{360\zeta(2)}{L^2}d-\frac{396\zeta(2)^2}{L^4}
-+O\!\left(d^4+\frac{d^2}{L^2}+\frac{|d|}{L^3}+L^{-5}\right),
+\left(\frac29,0,-\frac23\right).
 $$
-and therefore
+Also
 $$
-P_n'(1+d)=-5526d^2-\frac{360\zeta(2)}{L^2}
-+O\!\left(d^3+\frac{|d|}{L^2}+L^{-3}\right).
+(A_{dd},B_{dd},C_{dd})=\left(\frac{16}{3},-24,\frac{1106}{9}\right).
+$$
+Therefore Taylor expansion of the first equation gives
+$$
+R=-\frac{14}{3}\lambda+91d^2+60\zeta(2)\varepsilon^2
++O\!\left(|d|^3+|d\lambda|+\lambda^2+\varepsilon^2|d|+\varepsilon^3\right).
+$$
+Since $R_\lambda=-14/3+o(1)$, the first equation determines a unique local branch
+$$
+\lambda=\frac{90}{7}\zeta(2)\varepsilon^2+\frac{39}{2}d^2
++O\!\left(|d|^3+\varepsilon^2|d|+\varepsilon^3\right).
 $$
 
-Step 3: Use tangency to cancel the apparent leading perturbation
-Substituting the two expansions from Step 2 into $Q_n(d)=P_n-dP_n'$ makes the mixed $\zeta(2)d/L^2$ term cancel exactly. Thus
+Step 3: Expand the determinant equation on the singular branch
+At the base point $P=P_A=P_B=P_C=0$. The nonzero Hessian entries are
 $$
-Q_n(d)=3684d^3-\frac{396\zeta(2)^2}{L^4}
-+O\!\left(d^4+\frac{d^2}{L^2}+\frac{|d|}{L^3}+L^{-5}\right).
+P_{AA}=-792,\qquad P_{AC}=81,\qquad P_{BB}=-162.
 $$
-This cancellation is precisely why solving only the first equation at a fixed parameter gives the wrong scale.
+For the limiting curve with $\lambda=0$,
+$$
+P=-1842d^3+O(d^4).
+$$
+Using the $d$-, $\lambda$-, and $\zeta(2)\varepsilon^2$-directions from Step 2 in the Hessian gives
+$$
+\begin{aligned}
+P={}&-1842d^3+28d\lambda-\frac{284}{9}\lambda^2
+-360\zeta(2)\varepsilon^2d-230\zeta(2)\varepsilon^2\lambda\\
+&-396\zeta(2)^2\varepsilon^4
++O\!\left(d^4+d^2|\lambda|+|d|\lambda^2+|\lambda|^3
++\varepsilon^2d^2+\varepsilon^3(|d|+|\lambda|)+\varepsilon^5\right).
+\end{aligned}
+$$
+Substitute the branch for $\lambda$. The mixed term cancels exactly because
+$$
+28\cdot\frac{90}{7}=360.
+$$
+The cubic coefficient becomes
+$$
+-1842+28\cdot\frac{39}{2}=-1296,
+$$
+and the constant $\varepsilon^4$ coefficient is
+$$
+-\frac{284}{9}\left(\frac{90}{7}\right)^2
+-230\left(\frac{90}{7}\right)-396
+=-\frac{419904}{49}.
+$$
+Hence the reduced equation is
+$$
+-1296d^3-\frac{419904}{49}\zeta(2)^2\varepsilon^4
++o\!\left(|d|^3+\varepsilon^4\right)=0.
+$$
 
-Step 4: Locate the unique tangency point
-For $d\le0$ with $|d|<L^{-1}$, the cubic and constant displayed in Step 3 are both negative and dominate the error, so $Q_n(d)<0$ for all sufficiently large $n$. At $d=L^{-1}$,
+Step 4: Locate the unique nearby pair
+The implicit-function argument from Step 2 gives exactly one $\lambda=\lambda_n(d)$ for each $|d|<\varepsilon$. On this branch the reduced equation is positive at $d=-\varepsilon$ and negative at $d=0$. Moreover, away from a smaller $O(\varepsilon^{3/2})$ neighborhood of zero its derivative is
 $$
-Q_n(L^{-1})=3684L^{-3}+o(L^{-3})>0,
+-3888d^2+o(d^2)<0,
 $$
-so a positive zero exists.
+while inside that smaller neighborhood the negative constant term of order $\varepsilon^4$ prevents another zero. Thus there is exactly one root in $|d|<\varepsilon$, and it is negative. The formula in Step 2 also gives $\lambda_n=O(\varepsilon^2)$, so the required parameter window holds.
 
-Moreover,
+Step 5: Extract the fractional scale
+The reduced equation forces $d_n=O(\varepsilon^{4/3})$. Multiplying by $\varepsilon^{-4}$ gives
 $$
-Q_n'(d)=-dP_n''(1+d).
-$$
-From Step 2,
-$$
-P_n''(1+d)=-11052d+O(d^2+L^{-2}).
-$$
-Hence, after an initial interval $0\le d\le C L^{-2}$ on which $Q_n(d)$ remains negative because its constant term is of order $-L^{-4}$, one has $P_n''(1+d)<0$ and therefore $Q_n'(d)>0$. Thus the zero in $|d|<L^{-1}$ is unique. Once $d_n$ is fixed, the second tangency equation determines uniquely
-$$
-\lambda_n=-P_n'(1+d_n)=O(L^{-2}),
-$$
-which lies in the stated parameter window.
-
-Step 5: Extract the new fractional scale
-The equation in Step 3 first forces
-$$
-d_n=O(L^{-4/3});
-$$
-if $|d_n|$ were asymptotically larger, the cubic term would dominate, while if it were smaller the nonzero $L^{-4}$ term would dominate. Put
-$$
-s_n=L^{4/3}d_n.
-$$
-Multiplying the tangency equation by $L^4$ now gives
-$$
-0=3684s_n^3-396\zeta(2)^2+o(1).
+1296\left(\varepsilon^{-4/3}d_n\right)^3
++\frac{419904}{49}\zeta(2)^2\longrightarrow0.
 $$
 Therefore
 $$
-s_n^3\longrightarrow \frac{396}{3684}\zeta(2)^2
-=\frac{33}{307}\left(\frac{\pi^2}{6}\right)^2
-=\frac{11\pi^4}{3684}.
+\left(\varepsilon^{-4/3}d_n\right)^3
+\longrightarrow-\frac{324}{49}\zeta(2)^2
+=-\frac{9\pi^4}{49}.
 $$
-The unique nearby root is positive, so
+Since the nearby root is negative,
 $$
-(\log n)^{4/3}(a_n\log n-1)
-\longrightarrow \left(\frac{11\pi^4}{3684}\right)^{1/3}.
+L^{4/3}(a_nL-1)\longrightarrow
+-\left(\frac{9\pi^4}{49}\right)^{1/3}.
 $$
 
-Final Answer: $\boxed{\left(\frac{11\pi^4}{3684}\right)^{1/3}}$
+Final Answer: $\boxed{-\left(\frac{9\pi^4}{49}\right)^{1/3}}$
 
 ---
 
 ## Answer
 
-$\left(\frac{11\pi^4}{3684}\right)^{1/3}$
+$-\left(\frac{9\pi^4}{49}\right)^{1/3}$
 
 ---
 
@@ -153,13 +160,13 @@ $\left(\frac{11\pi^4}{3684}\right)^{1/3}$
 ## Solution Concepts
 
 - Hankel determinant invariants
-- log-derivative normalization
-- coupled tangency condition
-- asymptotic cancellation
+- deformed Beta weights
+- singular coupled system
+- Gamma asymptotics
 - fractional root scaling
 
 ---
 
 ## Black-Box Audit — no issues found
 
-The hardening is structural rather than computational. The auxiliary parameter is load-bearing because the zero and tangency equations must be combined before taking asymptotics. Eliminating it cancels the apparent mixed Gamma perturbation and changes the natural displacement scale from an integer power of $\log n$ to $(\log n)^{-4/3}$.
+The hardening replaces a directly eliminable nuisance parameter by a deformation of the underlying Beta weights. The first invariant equation determines that deformation only after a singular linearization, and substituting it into the determinant equation cancels the apparent mixed Gamma term before the cubic balance can be read off.
