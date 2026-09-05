@@ -5,22 +5,25 @@
 For integers $n\ge5$, real $a>0$, and $r\in\{1,2\}$, define
 $$
 S_r(N,a)=\sum_{k=0}^{N}\frac{(-1)^k\binom Nk}{(k+a)^r},
-\qquad
-T_r(n,a)=\sum_{q=1}^3 e^{q-1}S_r(n^q,a).
+\qquad T_r(n,a)=\sum_{q=1}^3e^{q-1}S_r(n^q,a).
 $$
-Put $L=\log n$ and
+Put $L=\log n$, $t_n=n^{-1/2}$, and
 $$
-p_n=\frac34-\frac{9}{8L},\qquad
-m_n=\left\lfloor\frac{n^2}{3}\right\rfloor.
+m_{j,n}=\lfloor jn^{5/2}\rfloor\qquad(j=1,2,3),
+$$
+$$
+b_{1,n}=\frac{27-5t_n}{19},\qquad
+b_{2,n}=\frac{-9+10t_n}{19},\qquad
+b_{3,n}=\frac{1-5t_n}{19}.
 $$
 Define
 $$
 U_r(n,a)=S_r(n,a)+eS_r(n^2,a)
-+e^2\left(p_nS_r(n^3+m_n,a)+(1-p_n)S_r(n^3+n^2,a)\right).
++e^2\sum_{j=1}^3b_{j,n}S_r(n^3+m_{j,n},a).
 $$
 For all sufficiently large $n$, let $a_n>0$ be the unique solution satisfying
 $$
-\left|a_nL-1\right|<\frac1{10}
+|a_nL-1|<\frac1{10}
 $$
 of
 $$
@@ -31,7 +34,7 @@ T_2(n,a_n)&U_2(n,a_n)
 $$
 Determine
 $$
-\lim_{n\to\infty}nL^3\bigl(a_nL-1\bigr).
+\lim_{n\to\infty}n^{3/2}L\,(a_nL-1).
 $$
 
 ---
@@ -49,4 +52,4 @@ $$
 
 ## Domain Explanation
 
-The determinant compares a base Beta-moment column with a logarithmically varying two-cutoff mixture. The mixture is tuned so two finite-size corrections cancel, forcing the root to be selected by the variation of a hidden shift-moment ratio at the next asymptotic scale.
+The determinant compares a base Beta-moment column with a signed three-cutoff stencil. Its coefficients cancel the leading second shift moment, so the root is selected by a coupled second/third-moment correction at a new mesoscopic scale.
