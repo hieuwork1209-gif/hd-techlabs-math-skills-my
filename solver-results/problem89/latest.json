@@ -2,8 +2,8 @@
   "problem": "problem89",
   "branch": "adversary/problem89",
   "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
-  "problem_blob_sha": "0359c1ea2dfe4ce4010cf332752d685fd65baad1",
-  "source_commit_sha": "88718fbfc024aef27c0fe91d2198fa8f647b2b7e",
+  "problem_blob_sha": "0fdc08ec3a3f5be8c162241505abbbb166979fd0",
+  "source_commit_sha": "8d52c2be19ee183bd94a6ae9d8be496f20aa2a84",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-05T01:55:40+00:00",
-  "result_file": "solver-results/problem89/0359c1ea2dfe.json"
+  "completed_at": "2026-09-05T02:20:55+00:00",
+  "result_file": "solver-results/problem89/0fdc08ec3a3f.json"
 }

@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "8d52c2be19ee183bd94a6ae9d8be496f20aa2a84",
+  "problem_blob_sha": "0fdc08ec3a3f5be8c162241505abbbb166979fd0",
+  "statement_sha256": "7145edf8e220282b1ac91cdca3d9fdcde3f82eaf939e086989ce2788a3dc8ce7",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T02:18:09+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let the vertex order be\n\\[\n(\\ast,0,1,\\ldots,12).\n\\]\nComputing the shortest-path distances at \\(s=0\\), the unique normalized zero-sum vector is\n\\[\na=(2,-2,1,0,0,2,-2,-2,0,2,0,0,1,-2).\n\\]\nIndeed\n\\[\n\\sum_z a_z=0,\\qquad \n\\sum_{z,w}a_za_wd_0(z,w)=0.\n\\]\n\nFor \\(p=1\\),\n\\[\n\\left.\\frac{d}{dp}\\right|_{p=1}\n\\sum_{z,w}a_za_wd_0(z,w)^p\n=\n\\sum_{z,w}a_za_wd_0(z,w)\\log d_0(z,w),\n\\]\nso, after grouping equal distances,\n\\[\n\\tau=\n-7\\log 7-48\\log 8-22\\log 11+6\\log 12-26\\log 13\n+45\\log 15-48\\log 16-34\\log 17\n-80\\log 20+46\\log 23+168\\log 24.\n\\]\nNumerically,\n\\[\n\\tau\\approx 112.9684377902>0.\n\\]\n\nThe restricted \\(p=1\\) distance form is negative semidefinite with one-dimensional kernel spanned by \\(a\\), hence \\(\\wp(0)=1\\). Since \\(\\tau>0\\), the form becomes positive in the \\(a\\)-direction for \\(p>1\\), while negative type is monotone downward in \\(p\\).\n\nFor the one-sided perturbation, write \\(p=1+t\\). The first-order \\(s\\)-term vanishes:\n\\[\na^TL_\\pm a=0.\n\\]\nSolving the second-order correction equation on the zero-sum subspace gives\n\\[\nx_+^TL_+a=\\frac{36}{13},\\qquad x_-^TL_-a=\\frac92.\n\\]\nThus, from\n\\[\n0=4\\tau\\,t+s^2x_\\pm^TL_\\pm a+o(s^2),\n\\]\nwe get\n\\[\n\\wp''(0^\\pm)=-\\frac{x_\\pm^TL_\\pm a}{2\\tau}.\n\\]\nTherefore\n\\[\n\\alpha_+=\\tau\\wp''(0^+)=-\\frac{18}{13},\n\\qquad\n\\alpha_-=\\tau\\wp''(0^-)=-\\frac94.\n\\]\n\n\\[\n\\boxed{\n(\\wp(0),\\tau,\\alpha_-,\\alpha_+)\n=\n\\left(\n1,\\,\n-7\\log 7-48\\log 8-22\\log 11+6\\log 12-26\\log 13\n+45\\log 15-48\\log 16-34\\log 17\n-80\\log 20+46\\log 23+168\\log 24,\\,\n-\\frac94,\\,\n-\\frac{18}{13}\n\\right)\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T02:20:55+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/0fdc08ec3a3f.json"
+}
