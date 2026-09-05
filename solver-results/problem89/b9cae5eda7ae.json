@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "f85a8522c038dbbdf5808687d948f3fdaaa674dd",
+  "problem_blob_sha": "b9cae5eda7ae74dc973da05081b12661aa382215",
+  "statement_sha256": "e196701885176a548a27f8ed663d58ee68907abc2c8e2176bef8935eb63ab9e7",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T07:19:52+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(\\chi\\) be the quadratic character of \\(\\mathbb F_q\\), extended by \\(\\chi(0)=0\\). Since \\(q\\equiv 1\\pmod 4\\), \\(-1\\) is a square, so the Paley graph is undirected. Its distance matrix for exponent \\(p\\) is\n\\[\nD_p=(d(x,y)^p)_{x,y}.\n\\]\nIf \\(A\\) is the adjacency matrix and \\(J\\) is the all-ones matrix, then, because every distinct pair is either adjacent or at distance \\(2\\),\n\\[\nD_p=A+2^p(J-I-A)=2^p(J-I)+(1-2^p)A.\n\\]\nFor every zero-sum vector \\(c\\), \\(Jc=0\\), hence\n\\[\nc^TD_pc=-2^p\\|c\\|^2+(1-2^p)c^TAc.\n\\]\n\nNow compute the eigenvalues of \\(A\\) on the zero-sum subspace. The number of common neighbors of two distinct vertices \\(x,y\\), with \\(z=y-x\\neq0\\), is\n\\[\n\\sum_t \\frac{1+\\chi(t)-\\delta_0(t)}2\\cdot\n\\frac{1+\\chi(t-z)-\\delta_0(t-z)}2.\n\\]\nUsing\n\\[\n\\sum_t \\chi(t)\\chi(t-z)=-1\n\\]\nfor \\(z\\neq0\\), this equals\n\\[\n\\frac{q-3-2\\chi(z)}4.\n\\]\nThus adjacent pairs have \\((q-5)/4\\) common neighbors, and nonadjacent pairs have \\((q-1)/4\\). Therefore, on the zero-sum subspace,\n\\[\nA^2=\\frac{q-1}{4}I-A.\n\\]\nSo the restricted eigenvalues of \\(A\\) are\n\\[\nr=\\frac{-1+\\sqrt q}{2},\\qquad s=\\frac{-1-\\sqrt q}{2},\n\\]\neach with multiplicity \\((q-1)/2\\).\n\nFor an \\(A\\)-eigenvector with eigenvalue \\(\\theta\\), the corresponding eigenvalue of \\(D_p\\) on the zero-sum subspace is\n\\[\n\\mu_p(\\theta)=-2^p+(1-2^p)\\theta.\n\\]\nSince \\(1-2^p<0\\), the largest value occurs at the smaller adjacency eigenvalue \\(s\\). Hence \\(p\\)-negative type holds exactly when\n\\[\n-2^p+(1-2^p)\\frac{-1-\\sqrt q}{2}\\le 0.\n\\]\nLet \\(a=2^p\\). This becomes\n\\[\na(\\sqrt q-1)\\le \\sqrt q+1,\n\\]\nso\n\\[\n2^p\\le \\frac{\\sqrt q+1}{\\sqrt q-1}.\n\\]\nTherefore\n\\[\n\\wp=\\log_2\\!\\left(\\frac{\\sqrt q+1}{\\sqrt q-1}\\right).\n\\]\n\nAt \\(p=\\wp\\), equality occurs exactly on the \\(s\\)-eigenspace of \\(A\\), whose dimension is \\((q-1)/2\\). Thus\n\\[\n\\boxed{\\left(\\log_2\\!\\left(\\frac{\\sqrt q+1}{\\sqrt q-1}\\right),\\frac{q-1}{2}\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T07:20:46+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/b9cae5eda7ae.json"
+}
