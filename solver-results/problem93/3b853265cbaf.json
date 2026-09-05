@@ -1,0 +1,22 @@
+{
+  "problem": "problem93",
+  "branch": "adversary/problem93",
+  "problem_path": "workspace/rainier-problem/problem93-systems-of-linear-equations/problem.md",
+  "source_commit_sha": "54c55e03130c5ad10dde5e221402b06bc5bc1bda",
+  "problem_blob_sha": "3b853265cbaf6904b31475a9d61dba314dfec03e",
+  "statement_sha256": "6f0cb07f04f2b9fb8b1ef4cb47b2519116a3aee5de6a9ea9eab4d8cbee77b9b6",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T09:20:07+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nX_i=T_i-I\\qquad (i=1,2,3).\n\\]\nSince \\(n\\) is a power of \\(p\\), over \\(\\mathbb F_p\\),\n\\[\nT_i^n-I=(1+X_i)^n-1=X_i^n.\n\\]\nThus the shift module is modeled by\n\\[\nR=\\mathbb F_p[x,y,z]/(x^n,y^n,z^n),\n\\]\nwith \\(x,y,z\\) corresponding to \\(X_1,X_2,X_3\\).\n\nPut\n\\[\nu=x+y+z.\n\\]\nBecause \\(n\\) is a \\(p\\)-power, the linear change of variables \\((x,y,z)\\mapsto(u,y,z)\\) preserves the truncated form:\n\\[\nR\\cong \\mathbb F_p[u,v,w]/(u^n,v^n,w^n).\n\\]\nThe condition\n\\[\n(T_1+T_2+T_3-3I)f=0\n\\]\nis simply\n\\[\nuf=0,\n\\]\nso\n\\[\nf=u^{n-1}g(v,w),\n\\qquad\ng\\in S:=\\mathbb F_p[v,w]/(v^n,w^n).\n\\]\n\nOn this subspace we may set \\(x=-v-w,\\ y=v,\\ z=w\\). Since \\(q\\) is a \\(p\\)-power,\n\\[\nx^q=-(v^q+w^q),\\qquad y^q=v^q,\\qquad z^q=w^q.\n\\]\nLet \\(r=v^q,\\ t=w^q\\). Then\n\\[\nA=xy+yz+zx \\text{ at } q\\text{-level}=-(r^2+rt+t^2),\n\\]\n\\[\nB=xyz \\text{ at } q\\text{-level}=-rt(r+t),\n\\]\nand\n\\[\nC=(x^q-y^q)(y^q-z^q)(z^q-x^q).\n\\]\n\nNow extend scalars to a field containing a primitive cube root of unity \\(\\omega\\). This does not change dimension. Diagonalize the cyclic permutation by coordinates \\(\\xi,\\eta\\) on the plane \\(x+y+z=0\\), so that the cyclic action has eigenvalues \\(\\omega,\\omega^2\\). Then\n\\[\nS\\cong K[\\xi,\\eta]/(\\xi^n,\\eta^n),\n\\]\nand a monomial \\(\\xi^i\\eta^j\\) is cyclically invariant exactly when\n\\[\ni\\equiv j\\pmod 3.\n\\]\n\nIn these coordinates,\n\\[\nxy+yz+zx\\sim \\xi\\eta,\n\\]\n\\[\nr^2+rt+t^2=(xy+yz+zx)^q\\sim \\xi^q\\eta^q.\n\\]\nHence\n\\[\nD^{(q-1)/2}A\\sim (\\xi\\eta)^{(q-1)/2}\\xi^q\\eta^q\n=\\xi^L\\eta^L,\n\\]\nwhere\n\\[\nL=\\frac{3q-1}{2}.\n\\]\n\nAlso \\(B\\) and \\(C\\) become two independent linear combinations of \\(\\xi^{3q}\\) and \\(\\eta^{3q}\\). Therefore the conditions \\(Bg=0\\) and \\(Cg=0\\) are equivalent to\n\\[\n\\xi^{3q}g=0,\\qquad \\eta^{3q}g=0.\n\\]\n\nSo a monomial \\(\\xi^i\\eta^j\\) survives exactly when\n\\[\ni\\ge n-3q=(p-3)q,\\qquad j\\ge (p-3)q,\n\\]\nand\n\\[\ni\\ge n-L \\quad\\text{or}\\quad j\\ge n-L.\n\\]\nSet\n\\[\na=(p-3)q,\\qquad h=n-L.\n\\]\nInside the square \\(a\\le i,j\\le n-1\\), shift \\(i=a+I,\\ j=a+J\\). Then\n\\[\n0\\le I,J\\le 3q-1,\n\\]\nand the final condition becomes\n\\[\n\\max(I,J)\\ge h-a=\\frac{3q+1}{2}.\n\\]\nThe congruence condition remains \\(I\\equiv J\\pmod 3\\).\n\nThere are \\(q\\) integers of each residue class modulo \\(3\\) in \\(\\{0,\\dots,3q-1\\}\\), so the total congruent pairs are\n\\[\n3q^2.\n\\]\nWe subtract the pairs with\n\\[\n0\\le I,J<\\frac{3q+1}{2}.\n\\]\nSince \\(q\\) is odd, among these \\((3q+1)/2\\) integers the residue counts are\n\\[\n\\frac{q+1}{2},\\quad \\frac{q+1}{2},\\quad \\frac{q-1}{2}.\n\\]\nThus the excluded number is\n\\[\n2\\left(\\frac{q+1}{2}\\right)^2+\\left(\\frac{q-1}{2}\\right)^2\n=\\frac{3q^2+2q+3}{4}.\n\\]\nTherefore\n\\[\n\\dim_{\\mathbb F_p}V_n\n=3q^2-\\frac{3q^2+2q+3}{4}\n=\\frac{9q^2-2q-3}{4}.\n\\]\n\nSince \\(q=n/p\\), the final answer is\n\\[\n\\boxed{\\frac{9(n/p)^2-2(n/p)-3}{4}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T09:22:16+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem93/3b853265cbaf.json"
+}
