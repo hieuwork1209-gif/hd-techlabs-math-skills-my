@@ -1,0 +1,22 @@
+{
+  "problem": "problem118",
+  "branch": "adversary/problem118",
+  "problem_path": "workspace/rainier-problem/problem118-ring-theory/problem.md",
+  "source_commit_sha": "ce0ed51da9dceafc29424b3ac84cda6fab156de7",
+  "problem_blob_sha": "56f0531a65489bd1e38bcb5f427989514b6bb342",
+  "statement_sha256": "15e6b70be50016c7dd0cb642b2ddcf214f1896781814c2d5ce33a5262ff65142",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T08:30:25+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\na=v+u^2,\\qquad b=w+u(v+u^2)=w+ua .\n\\]\nThen \\(A=k[u,a,b]\\), since\n\\[\nv=a-u^2,\\qquad w=b-ua.\n\\]\nIn these coordinates the given automorphism becomes\n\\[\n\\sigma(u)=u+1-3a^2-8b^2,\\qquad \\sigma(a)=2a,\\qquad \\sigma(b)=3b.\n\\]\nIndeed,\n\\[\n\\sigma(a)=\\sigma(v)+\\sigma(u)^2=2(v+u^2)=2a,\n\\]\nand\n\\[\n\\sigma(b)=\\sigma(w)+\\sigma(u)\\sigma(a)\n=3b-2\\sigma(u)a+2\\sigma(u)a=3b.\n\\]\n\nNow set\n\\[\nt=u+a^2+b^2.\n\\]\nThen\n\\[\n\\sigma(t)=\\sigma(u)+\\sigma(a)^2+\\sigma(b)^2\n=u+1-3a^2-8b^2+4a^2+9b^2=t+1.\n\\]\nSo\n\\[\nA=k[t,a,b],\\qquad \\sigma(t)=t+1,\\quad \\sigma(a)=2a,\\quad \\sigma(b)=3b.\n\\]\n\nWe first compute \\(A^\\sigma\\). Write\n\\[\nF=\\sum_{p,q\\ge 0} c_{p,q}(t)a^p b^q\\in k[t,a,b].\n\\]\nThe condition \\(\\sigma(F)=F\\) gives\n\\[\n2^p3^q c_{p,q}(t+1)=c_{p,q}(t)\n\\]\nfor every \\(p,q\\). If \\((p,q)\\ne(0,0)\\), then \\(2^p3^q\\ne 1\\), so comparison of leading coefficients in \\(t\\) forces \\(c_{p,q}=0\\). For \\((p,q)=(0,0)\\), the equation is \\(c(t+1)=c(t)\\), hence \\(c\\in k\\) because \\(\\operatorname{char} k=0\\). Thus\n\\[\nA^\\sigma=k.\n\\]\n\nAlso \\(\\sigma\\) has infinite order, since\n\\[\n\\sigma^n(a)=2^n a\n\\]\nfor \\(n\\ne0\\), and \\(2^n\\ne1\\) in characteristic \\(0\\).\n\nEvery element of \\(R\\) has a unique finite form\n\\[\nz=\\sum_{i,j\\ge0} f_{i,j}x^i y^j,\\qquad f_{i,j}\\in A.\n\\]\nFor \\(g\\in A\\),\n\\[\nx^i y^j g=\\sigma^{i-j}(g)x^i y^j.\n\\]\nIf \\(z\\) is central, then \\(zg=gz\\) for all \\(g\\in A\\), so for every nonzero \\(f_{i,j}\\),\n\\[\n\\sigma^{i-j}(g)=g\\qquad \\forall g\\in A.\n\\]\nSince \\(\\sigma\\) has infinite order, this forces \\(i=j\\). Hence\n\\[\nz=\\sum_{i\\ge0} f_i (xy)^i.\n\\]\nNow centrality with \\(x\\) gives\n\\[\nxz=\\sum_i \\sigma(f_i)x^{i+1}y^i,\\qquad zx=\\sum_i f_i x^{i+1}y^i,\n\\]\nso \\(\\sigma(f_i)=f_i\\). Therefore \\(f_i\\in A^\\sigma=k\\).\n\nFinally, \\(xy\\) is central because\n\\[\nxy\\,g=x\\sigma^{-1}(g)y=gxy\n\\]\nfor all \\(g\\in A\\), and \\(x,y\\) commute with \\(xy\\).\n\nTherefore\n\\[\n\\boxed{Z(R)=k[xy]}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T08:31:26+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem118/56f0531a6548.json"
+}
