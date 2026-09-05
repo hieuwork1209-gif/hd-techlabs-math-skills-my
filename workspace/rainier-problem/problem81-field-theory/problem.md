@@ -8,7 +8,7 @@ For $1\le j\le r$, choose $g_i^{(j)}\in K^\times$ with $\tau(g_i^{(j)})=g_{\tau(
 $$
 \prod_jp_j^{s_j}\prod_{i,j}(g_i^{(j)})^{a_i^{(j)}}\in(M^\times)^\ell
 $$
-iff every $s_j=0$ and, for each $j$, the $a_i^{(j)}$ are constant in $i$. Choose $(\alpha_i^{(j)})^\ell=g_i^{(j)}$, $\rho_j^\ell=p_j$, with $\prod_i\alpha_i^{(j)}\in M$, and set $L=M(\alpha_i^{(j)},\rho_j)$. Put $\Gamma=\operatorname{Gal}(L/\mathbb Q(\zeta))$, and for $\sigma\in\Gamma$ let $\pi_\sigma$ be its restriction to $M$.
+iff every $s_j=0$, the $a_i^{(j)}$ are constant in $i$ for each $j<r$, and $a_i^{(r)}=0$ for every $i$. Choose $(\alpha_i^{(j)})^\ell=g_i^{(j)}$, $\rho_j^\ell=p_j$, with $\prod_i\alpha_i^{(j)}\in M$ for $j<r$, and set $L=M(\alpha_i^{(j)},\rho_j)$. Put $\Gamma=\operatorname{Gal}(L/\mathbb Q(\zeta))$, and for $\sigma\in\Gamma$ let $\pi_\sigma$ be its restriction to $M$.
 
 Fix $\pi\in S_n$ consisting of $2q^2$ transpositions, and put
 $$
@@ -41,4 +41,4 @@ Give a closed formula.
 
 ## Domain Explanation
 
-The Kummer lift parameters reduce the cycle data to a three-level autocorrelation spectrum. Three inert rational primes determine different Fourier magnitudes on a hidden dual flag, while affine-hyperplane incidence aligns phases; the final orbit count also uses conjugation by the centralizer preimage, so Field theory remains the appropriate sub-domain.
+The Kummer lift parameters reduce the cycle data to a three-level autocorrelation spectrum. Inert primes control Fourier magnitudes, affine-hyperplane incidence is needed to recover phases, and the final count requires conjugation by a centralizer preimage, so Field theory remains the appropriate sub-domain.
