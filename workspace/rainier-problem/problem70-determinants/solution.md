@@ -1,151 +1,134 @@
 ## Steps
 
-Step 1: Normalize the two determinant equations
-Put $c=aL$, $d=c-1$, $\varepsilon=L^{-1}$ and, for fixed $(n,\lambda)$, write
+Step 1: Convert the determinant condition to a stationary ratio
+For
 $$
-f(a)=T_1(n,a,\lambda),\qquad g(a)=\log f(a).
+S_r(N,a)=\sum_{k=0}^{N}\frac{(-1)^k\binom Nk}{(k+a)^r},
 $$
-Since $f^{(m)}=(-1)^m m!T_{m+1}$,
+the beta identity gives
 $$
-\frac{\Delta_n}{f^3}=2(g'')^3+g''g''''-(g''')^2,
-\quad \Lambda_n=f^2g'',\quad \Omega_n=f^3g''',\quad \Psi_n=f^4g''''.
+S_1(N,a)=B(a,N+1),\qquad S_2(N,a)=-\frac{\partial}{\partial a}B(a,N+1).
 $$
-Define
+Write
 $$
-A=\frac{g''}{L^2},\qquad B=\frac{g'''}{L^3},\qquad C=\frac{g''''}{L^4}.
+F(a)=T_1(n,a),\qquad G(a)=U_1(n,a).
 $$
-After division by the common powers of $L$ and $f$, the two equations become
+Then $T_2=-F'$ and $U_2=-G'$, so
 $$
-R(A,B,C):=60A+144B+27C+44=0,
+\det\begin{pmatrix}T_1&U_1\\ T_2&U_2\end{pmatrix}
+=F'G-FG'.
 $$
+Thus the required root is characterized by
 $$
-P(A,B,C):=81(2A^3+AC-B^2)+2238A-324B-135C-1206A^2-1454=0.
+\frac{d}{da}\log\frac{G(a)}{F(a)}=0.
 $$
 
-Step 2: Expand the deformed Beta model
-The beta identity gives
+Step 2: Isolate the single finite-cutoff perturbation exactly
+Put $N=n^3$ and
 $$
-f(a)=\sum_{q=1}^3e^{q-1+\lambda(q-2)^2}B(a,n^q+1).
+B_q(a)=B(a,n^q+1).
 $$
-Uniformly for $|d|,|\lambda|\le L^{-1}$ and through four normalized $a$-derivatives,
+Only the $q=3$ cutoff differs between $F$ and $G$. The beta recurrence
 $$
-f(c/L)=\Gamma(c/L)e^{-1}
-\left(e^{-d+\lambda}+e^{-2d}+e^{-3d+\lambda}\right)(1+o(L^{-5})).
+B(a,N+2)=\frac{N+1}{N+a+1}B(a,N+1)
+$$
+gives
+$$
+G=F-e^2\frac{a}{N+a+1}B_3.
 $$
 Set
 $$
-\phi(d,\lambda)=\log\left(e^{-d+\lambda}+e^{-2d}+e^{-3d+\lambda}\right).
+p_n(a)=\frac{e^2B_3(a)}{F(a)}.
 $$
-Using
+Since $0<p_n<1$, the stationary condition is equivalent to
 $$
-\log\Gamma z=-\log z-\gamma z+\frac{\zeta(2)}2z^2-\frac{\zeta(3)}3z^3+O(z^4),
+\frac{d}{da}\log\left(\frac{a\,p_n(a)}{N+a+1}\right)=0.
 $$
-we have
+With $L=\log n$ and $c=aL$, define
 $$
-A=c^{-2}+\phi_{dd}+\zeta(2)\varepsilon^2+O(\varepsilon^3),
+H_n(c)=\frac1c+\frac{d}{dc}\log p_n(c/L)-\frac{1}{L(N+c/L+1)}.
 $$
+Then $c_n=a_nL$ is the unique nearby zero of $H_n$.
+
+Step 3: Write the exact normalized weight equation
+The common factor $\Gamma(a)$ cancels from $p_n$. Put
 $$
-B=-2c^{-3}+\phi_{ddd}+O(\varepsilon^3),\qquad
-C=6c^{-4}+\phi_{dddd}+O(\varepsilon^4).
+R_q(a)=\frac{\Gamma(n^q+1)}{\Gamma(n^q+a+1)},
+\qquad
+\rho_q(a)=\frac{e^{q-1}R_q(a)}{\sum_{j=1}^3e^{j-1}R_j(a)}.
 $$
-At $(d,\lambda)=(0,0)$ the limiting values are
+Then
 $$
-(A,B,C)=\left(\frac53,-2,\frac{16}{3}\right),
+p_n=\rho_3,
 $$
-with $d$-derivative
+and differentiation gives the exact formula
 $$
-\left(-2,\frac{16}{3},-24\right)
+H_n(c)=\frac1c+rac1L\left(\sum_{q=1}^3\rho_q\,\psi(n^q+a+1)-\psi(n^3+a+1)\right)
+-\frac{1}{L(n^3+a+1)}.
 $$
-and $\lambda$-derivative
+At fixed $c$, as $n\to\infty$,
 $$
-\left(\frac29,0,-\frac23\right).
+\rho_q\to \pi_q(c):=
+\frac{e^{q-1-qc}}{\sum_{j=1}^3e^{j-1-jc}}.
 $$
-Also
+Hence
 $$
-(A_{dd},B_{dd},C_{dd})=\left(\frac{16}{3},-24,\frac{1106}{9}\right).
+H_n(c)\to H_0(c)=\frac1c+\sum_{q=1}^3q\pi_q(c)-3.
 $$
-Therefore Taylor expansion of the first equation gives
+At $c=1$, the three limiting weights are equal, so $H_0(1)=0$. Moreover
 $$
-R=-\frac{14}{3}\lambda+91d^2+60\zeta(2)\varepsilon^2
-+O\!\left(|d|^3+|d\lambda|+\lambda^2+\varepsilon^2|d|+\varepsilon^3\right).
-$$
-Since $R_\lambda=-14/3+o(1)$, the first equation determines a unique local branch
-$$
-\lambda=\frac{90}{7}\zeta(2)\varepsilon^2+\frac{39}{2}d^2
-+O\!\left(|d|^3+\varepsilon^2|d|+\varepsilon^3\right).
+H_0'(1)=-1-\operatorname{Var}_{\{1,2,3\}}(q)
+=-1-\frac23=-\frac53.
 $$
 
-Step 3: Expand the determinant equation on the singular branch
-At the base point $P=P_A=P_B=P_C=0$. The nonzero Hessian entries are
+Step 4: Retain the first correction that the continuum limit discards
+At $c=1$ we have $a=1/L$. Uniformly for fixed $q$,
 $$
-P_{AA}=-792,\qquad P_{AC}=81,\qquad P_{BB}=-162.
+R_q(a)=e^{-q}\left(1-\frac{a(a+1)}{2n^q}+O(n^{-2q})\right).
 $$
-For the limiting curve with $\lambda=0$,
+Thus only $q=1$ contributes at order $(nL)^{-1}$:
 $$
-P=-1842d^3+O(d^4).
+\rho_1=\frac13-\frac{1}{9nL}+o((nL)^{-1}),
 $$
-Using the $d$-, $\lambda$-, and $\zeta(2)\varepsilon^2$-directions from Step 2 in the Hessian gives
 $$
-\begin{aligned}
-P={}&-1842d^3+28d\lambda-\frac{284}{9}\lambda^2
--360\zeta(2)\varepsilon^2d-230\zeta(2)\varepsilon^2\lambda\\
-&-396\zeta(2)^2\varepsilon^4
-+O\!\left(d^4+d^2|\lambda|+|d|\lambda^2+|\lambda|^3
-+\varepsilon^2d^2+\varepsilon^3(|d|+|\lambda|)+\varepsilon^5\right).
-\end{aligned}
-$$
-Substitute the branch for $\lambda$. The mixed term cancels exactly because
-$$
-28\cdot\frac{90}{7}=360.
-$$
-The cubic coefficient becomes
-$$
--1842+28\cdot\frac{39}{2}=-1296,
-$$
-and the constant $\varepsilon^4$ coefficient is
-$$
--\frac{284}{9}\left(\frac{90}{7}\right)^2
--230\left(\frac{90}{7}\right)-396
-=-\frac{419904}{49}.
-$$
-Hence the reduced equation is
-$$
--1296d^3-\frac{419904}{49}\zeta(2)^2\varepsilon^4
-+o\!\left(|d|^3+\varepsilon^4\right)=0.
-$$
-
-Step 4: Locate the unique nearby pair
-The implicit-function argument from Step 2 gives exactly one $\lambda=\lambda_n(d)$ for each $|d|<\varepsilon$. On this branch the reduced equation is positive at $d=-\varepsilon$ and negative at $d=0$. Moreover, away from a smaller $O(\varepsilon^{3/2})$ neighborhood of zero its derivative is
-$$
--3888d^2+o(d^2)<0,
-$$
-while inside that smaller neighborhood the negative constant term of order $\varepsilon^4$ prevents another zero. Thus there is exactly one root in $|d|<\varepsilon$, and it is negative. The formula in Step 2 also gives $\lambda_n=O(\varepsilon^2)$, so the required parameter window holds.
-
-Step 5: Extract the fractional scale
-The reduced equation forces $d_n=O(\varepsilon^{4/3})$. Multiplying by $\varepsilon^{-4}$ gives
-$$
-1296\left(\varepsilon^{-4/3}d_n\right)^3
-+\frac{419904}{49}\zeta(2)^2\longrightarrow0.
+\rho_2=\rho_3=\frac13+\frac{1}{18nL}+o((nL)^{-1}).
 $$
 Therefore
 $$
-\left(\varepsilon^{-4/3}d_n\right)^3
-\longrightarrow-\frac{324}{49}\zeta(2)^2
-=-\frac{9\pi^4}{49}.
+\sum_{q=1}^3q\rho_q
+=2+\frac{1}{6nL}+o((nL)^{-1}).
 $$
-Since the nearby root is negative,
+Also
 $$
-L^{4/3}(a_nL-1)\longrightarrow
--\left(\frac{9\pi^4}{49}\right)^{1/3}.
+\psi(n^q+a+1)=qL+\frac{a+1/2}{n^q}+O(n^{-2q}),
+$$
+so the nonlogarithmic digamma correction contributes another
+$$
+\frac{1}{6nL}+o((nL)^{-1}).
+$$
+The final term in $H_n$ is $O((Ln^3)^{-1})$. Consequently
+$$
+H_n(1)=\frac{1}{3nL}+o((nL)^{-1}).
 $$
 
-Final Answer: $\boxed{-\left(\frac{9\pi^4}{49}\right)^{1/3}}$
+Step 5: Extract the finite-size root displacement
+Since $H_n\to H_0$ in $C^1$ near $1$ and $H_0'(1)=-5/3$, the unique nearby zero satisfies
+$$
+c_n-1=-\frac{H_n(1)}{H_0'(1)}+o((nL)^{-1})
+=\frac{1}{5nL}+o((nL)^{-1}).
+$$
+Because $c_n=a_n\log n$,
+$$
+n\log n\,(a_n\log n-1)\longrightarrow\frac15.
+$$
+
+Final Answer: $\boxed{\frac15}$
 
 ---
 
 ## Answer
 
-$-\left(\frac{9\pi^4}{49}\right)^{1/3}$
+$\frac15$
 
 ---
 
@@ -159,14 +142,14 @@ $-\left(\frac{9\pi^4}{49}\right)^{1/3}$
 
 ## Solution Concepts
 
-- Hankel determinant invariants
-- deformed Beta weights
-- singular coupled system
-- Gamma asymptotics
-- fractional root scaling
+- Beta-function recurrence
+- determinant stationary condition
+- finite-size asymptotics
+- digamma expansion
+- singular continuum cancellation
 
 ---
 
 ## Black-Box Audit — no issues found
 
-The hardening replaces a directly eliminable nuisance parameter by a deformation of the underlying Beta weights. The first invariant equation determines that deformation only after a singular linearization, and substituting it into the determinant equation cancels the apparent mixed Gamma term before the cubic balance can be read off.
+The leading Beta/Gamma continuum model places the root exactly at $a\log n=1$ and therefore cannot determine the requested limit. The answer is controlled by the first finite-cutoff correction, with the $q=1$ denominator effect competing against the $q=3$ one-step perturbation through the stationary ratio equation.
