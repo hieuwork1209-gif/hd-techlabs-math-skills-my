@@ -2,19 +2,19 @@
 
 ## LaTeX (Normalized)
 
-Let $q\ge5$ be a prime power with $q\equiv1\pmod4$. Let $P(q)$ be the Paley graph on $\mathbb F_q$: distinct vertices $x,y$ are adjacent exactly when $x-y$ is a nonzero square in $\mathbb F_q$. Let $d$ be its shortest-path metric.
+Let $k\ge2$ and $n\ge3k-1$. Let $KG(n,k)$ be the Kneser graph whose vertices are the $k$-subsets of $[n]=\{1,\ldots,n\}$, with two vertices adjacent exactly when they are disjoint. Let $d$ be its shortest-path metric.
 
-For $p>0$, say that $(\mathbb F_q,d)$ has $p$-negative type if every real family $(c_x)_{x\in\mathbb F_q}$ with $\sum_xc_x=0$ satisfies
+For $p>0$, say that the vertex set has $p$-negative type if every real family $(c_S)$ with $\sum_S c_S=0$ satisfies
 $$
-\sum_{x,y\in\mathbb F_q}c_xc_y\,d(x,y)^p\le0.
+\sum_{S,T}c_Sc_T\,d(S,T)^p\le0.
 $$
 Let
 $$
-\wp=\sup\{p>0:(\mathbb F_q,d)\text{ has }p\text{-negative type}\}.
+\wp=\sup\{p>0:KG(n,k)\text{ has }p\text{-negative type}\}.
 $$
-At $p=\wp$, define the equality space
+At $p=\wp$, define
 $$
-E=\left\{c\in\mathbb R^{\mathbb F_q}:\sum_xc_x=0,\ \sum_{x,y}c_xc_y\,d(x,y)^{\wp}=0\right\}.
+E=\left\{c:\sum_Sc_S=0,\ \sum_{S,T}c_Sc_T\,d(S,T)^{\wp}=0\right\}.
 $$
 Determine the ordered pair $(\wp,\dim E)$.
 
@@ -33,4 +33,4 @@ Determine the ordered pair $(\wp,\dim E)$.
 
 ## Domain Explanation
 
-The problem asks for the maximal negative-type exponent of a finite graph metric and the dimension of its boundary equality space. The Paley graph's strong regularity makes the threshold a spectral property of the powered distance matrix.
+The problem asks for the maximal negative-type exponent of a finite graph metric and the dimension of its boundary equality space. The decisive structure is the natural inclusion filtration of functions on the Kneser graph, which reveals the least adjacency eigenspace and hence the powered-distance threshold.
