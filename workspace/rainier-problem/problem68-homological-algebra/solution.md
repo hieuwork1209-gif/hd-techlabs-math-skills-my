@@ -126,13 +126,13 @@ $$
 P_{R^a/Rg}^{R}(t)=a+tP_N^R(t).
 $$
 Using $r=a-d$ and then writing $q=1-t$ yields the self-contained form below.
-Final Answer: $\boxed{a+\frac{(1+t)q^{a-d}+(a-d)t-1}{q^a+q^b+q^c-2-2t^2},\ q=1-t,\ d=2\min(4,2^{v_2(a)})+3\min(2,2^{v_2(a)})}$
+Final Answer: $\boxed{a+\frac{(1+t)q^{a-d}+(a-d)t-1}{q^a+q^b+q^c-2-2t^2},q=1-t,d=2\min(4,2^{v_2(a)})+3\min(2,2^{v_2(a)})}$
 
 ---
 
 ## Answer
 
-$a+\frac{(1+t)q^{a-d}+(a-d)t-1}{q^a+q^b+q^c-2-2t^2},\ q=1-t,\ d=2\min(4,2^{v_2(a)})+3\min(2,2^{v_2(a)})$
+$a+\frac{(1+t)q^{a-d}+(a-d)t-1}{q^a+q^b+q^c-2-2t^2},q=1-t,d=2\min(4,2^{v_2(a)})+3\min(2,2^{v_2(a)})$
 
 ---
 
