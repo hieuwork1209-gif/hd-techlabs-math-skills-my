@@ -1,37 +1,41 @@
 ## Steps
 
-Step 1: Resolve the two one-sided shortest-path regimes
+Step 1: Resolve the two one-sided metric expansions
 
 Let
 $$
 \rho(i,j)=4\min\{|i-j|,13-|i-j|\}
 $$
-be the $13$-cycle metric. At $s=0$, the chord $\{7,9\}$ has length $8=\rho(7,9)$ and the chord $\{3,8\}$ has length $20=\rho(3,8)$, so adding them does not change the metric. Thus the vector of distances from $\ast$ is
+be the $13$-cycle metric and let
 $$
 r=(7,7,7,11,15,13,17,21,23,19,15,15,11)^T.
 $$
-For either chord, every path from $\ast$ that uses it is at least $6$ longer than the corresponding shortest $\ast$-path at $s=0$. Hence, for $|s|<\frac12$, all distances from $\ast$ remain equal to $r$.
+At $s=0$, the new chords have lengths $24=\rho(0,7)$ and $20=\rho(3,8)$, so they do not change the metric. Since every spoke length is shifted by the same $h(s)$, the minimizing spoke for each cycle vertex is unchanged for $|s|<\frac12$. The active shortened chord is still at least $7$ away from changing any distance from $\ast$, so
+$$
+(d_s(\ast,i))_{i=0}^{12}=r+h(s)\mathbf1.
+$$
 
-Put $t=|s|$. If $s=-t<0$, the chord $\{7,9\}$ has length $8-t$ while the other chord is longer than its cycle arc. The only cycle-pair distances that decrease by $t$ are
+Write $t=|s|$. For $s=-t<0$,
 $$
-\begin{aligned}
-P_- = \{&(0,7),(3,9),(4,9),(4,10),(5,9),(5,10),(5,11),\\
-&(6,9),(6,10),(6,11),(6,12),(7,9),(7,10),(7,11),(7,12)\}.
-\end{aligned}
+h(-t)=\frac{11}{52}t^2,
 $$
-If $s=t>0$, only the chord $\{3,8\}$ is shorter than its cycle arc, and the distances that decrease by $t$ are
+and only the chord $\{0,7\}$ is shorter than its cycle arc. It decreases only $d(0,7)$ by $t$. For $s=t>0$,
 $$
-P_+=\{(2,8),(3,8),(3,9)\}.
+h(t)=\frac9{26}t^2,
 $$
-These lists follow by replacing the active chord by its equal cycle arc at $t=0$: a distance changes exactly when its unique cycle geodesic contains that entire arc. The inactive chord can always be replaced by a strictly shorter cycle arc.
+and only the chord $\{3,8\}$ is shorter; it decreases exactly the three distances
+$$
+(2,8),\qquad(3,8),\qquad(3,9)
+$$
+by $t$. The inactive chord is longer than its cycle arc and can always be replaced by that arc.
 
 Step 2: Identify the unique equality direction at $s=0$, $p=1$
 
-Let $C=(\rho(i,j))$. For $k\in\mathbb Z/13\mathbb Z$, put
+Let $C=(\rho(i,j))$. For $k\in\mathbb Z/13\mathbb Z$, set
 $$
 S_k=\{k,k+1,\ldots,k+5\}.
 $$
-Exactly $2m$ of the sets $S_k$ separate two vertices at cyclic distance $m\leq6$, hence
+If two cycle vertices have cyclic distance $m\leq6$, exactly $2m$ of the sets $S_k$ separate them, hence
 $$
 C_{ij}=2\sum_{k=0}^{12}\delta_{S_k}(i,j).
 $$
@@ -39,34 +43,28 @@ For every $y$ with $\mathbf1^Ty=0$,
 $$
 y^TCy=-4\sum_{k=0}^{12}\left(\sum_{i\in S_k}y_i\right)^2\leq0.
 $$
-Equality forces all six-term block sums to vanish. Subtracting consecutive block equations gives $y_k=y_{k+6}$; since $\gcd(6,13)=1$, all coordinates are equal and therefore $y=0$. Thus $C$ is strictly negative on the zero-sum subspace.
+Equality forces all six-term block sums to vanish. Subtracting consecutive block equations gives $y_k=y_{k+6}$; since $\gcd(6,13)=1$, all coordinates are equal, so $y=0$. Thus $C$ is strictly negative on the zero-sum subspace.
 
 Define
 $$
 \mu=\left(1,-\frac12,0,0,-1,1,1,0,-1,0,0,-\frac12,1\right)^T.
 $$
-Its entries satisfy
+It satisfies
 $$
-\mathbf1^T\mu=1,
-\qquad
-C\mu=r-\mathbf1,
-\qquad
-\mu^Tr=-1,
-\qquad
-\mu^TC\mu=-2.
+\mathbf1^T\mu=1,\qquad C\mu=r-\mathbf1,\qquad \mu^Tr=-1,\qquad \mu^TC\mu=-2.
 $$
-For a zero-sum family $c=(c_\ast,b)$, so $\mathbf1^Tb=-c_\ast$, the $p=1$ quadratic form is
+For a zero-sum family $c=(c_\ast,b)$,
 $$
 \sum_{z,w}c_zc_wd_0(z,w)=(b+c_\ast\mu)^TC(b+c_\ast\mu)\leq0.
 $$
-Equality is possible only when $b=-c_\ast\mu$. With $a_\ast=2$,
+Equality therefore forces $b=-c_\ast\mu$. With $a_\ast=2$,
 $$
 (a_\ast,a_0,\ldots,a_{12})=(2,-2,1,0,0,2,-2,-2,0,2,0,0,1,-2).
 $$
 
-Step 3: Compute $\wp(0)$ and $\tau$
+Step 3: Show that $\wp(0)=1$ and $\tau>0$
 
-For this equality vector let
+For the equality vector $a$, put
 $$
 Q_p=\sum_{z,w\in Y}a_za_wd_0(z,w)^p.
 $$
@@ -79,11 +77,7 @@ $$
 &\quad-4\cdot11^p-12\cdot8^p-2\cdot7^p.
 \end{aligned}
 $$
-Differentiating at $p=1$ yields
-$$
-\tau=\log\frac{2^{20}3^{219}23^{46}}{5^{35}7^7 11^{22}13^{26}17^{34}}.
-$$
-To see that $\tau>0$, compare the decreasing $40$-tuples
+Let
 $$
 X=(24^{[14]},23^{[4]},15^{[6]},12,0^{[15]})
 $$
@@ -95,103 +89,169 @@ Their partial-sum differences at the breakpoints $8,12,14,18,22,24,25,26,38,40$ 
 $$
 32,60,76,104,112,120,121,110,14,0.
 $$
-Thus $X$ strictly majorizes $Z$, and strict convexity of $x\log x$ gives $Q'_1=4\tau>0$. Therefore $Q_p>0$ for all $p>1$ sufficiently close to $1$. Since negative type is downward monotone in the exponent, no exponent greater than $1$ can have negative type. Together with Step 2,
+Thus $X$ strictly majorizes $Z$. Strict convexity of $x^p$ gives $Q_p>0$ for every $p>1$, while strict convexity of $x\log x$ gives
+$$
+Q'_1=4\tau>0.
+$$
+Together with Step 2 and the interval property of negative-type exponents,
 $$
 \wp(0)=1.
 $$
 
-Step 4: Compute the left-hand second derivative
+Step 4: Compute the left-hand cubic splitting
 
 For cycle coefficients $b\in\mathbb R^{13}$ set $c_\ast=-\mathbf1^Tb$ and
 $$
 R_0=C-\mathbf1r^T-r\mathbf1^T.
 $$
-The kernel of $R_0$ is generated by
+Its kernel is generated by
 $$
 k=(-2,1,0,0,2,-2,-2,0,2,0,0,1,-2)^T,
 \qquad N=k^Tk=26.
 $$
-For $s=-t<0$, write
+For $s=-t<0$,
 $$
-R_-(t)=R_0+tH_-.
+R_-(t)=R_0+tH_-+t^2T_-,
 $$
-Here $H_-$ is symmetric, has entry $-1$ at the pairs in $P_-$ and their transposes, and is zero elsewhere. Every product $k_ik_j$ on $P_-$ sums to zero, so
+where $H_-$ has entries $-1$ only at $(0,7)$ and $(7,0)$, and
 $$
-k^TH_-k=0.
+T_-=-\frac{11}{26}\mathbf1\mathbf1^T.
 $$
-Use the vector
+Take
 $$
-w_-=\left(-\frac1{26},-\frac3{13},-\frac12,0,\frac7{13},-\frac1{26},-\frac1{26},\frac12,-\frac{25}{26},0,0,\frac{10}{13},-\frac1{26}\right)^T.
+w_-=\left(\frac{56}{169},\frac{239}{676},-\frac2{13},-\frac2{13},-\frac{47}{338},-\frac{57}{338},-\frac{57}{338},\frac{11}{13},-\frac{47}{338},-\frac2{13},-\frac2{13},-\frac{99}{676},-\frac{57}{338}\right)^T.
 $$
-Substitution into the explicitly defined matrices gives
+From the displayed matrices,
 $$
-k^Tw_-=0,
+k^Tw_-=0,\qquad H_-k=2e_7,\qquad R_0w_-=-2e_7,
+$$
+so $w_-$ is the first eigenvector correction. Also
+$$
+\mathbf1^Tw_-=-\frac5{338},
+$$
+$$
+k^TH_-w_-=2(w_-)_7=\frac{22}{13},
 \qquad
-R_0w_-=-H_-k,
-\qquad
-k^TH_-w_-=\frac92.
+k^TT_-k=-\frac{11}{26}(-2)^2=-\frac{22}{13}.
 $$
-If $\lambda_-(t)$ is the simple eigenvalue issuing from $0$ and its eigenvector is $k+tw_-+O(t^2)$, the order-$t^2$ equation gives
+Hence the $t^2$ eigenvalue coefficient vanishes.
+
+Write the simple eigenvalue as $\lambda_-(t)=\lambda_{3,-}t^3+O(t^4)$. If $u_-$ is the second eigenvector correction, then
 $$
-\lambda_-(t)=\frac{k^TH_-w_-}{N}t^2+O(t^3)
-=\frac9{52}t^2+O(t^3).
+R_0u_-+H_-w_-+T_-k=0.
+$$
+Using symmetry and $R_0w_-=-H_-k$,
+$$
+k^TH_-u_-=w_-^TH_-w_-+w_-^TT_-k.
+$$
+Therefore
+$$
+\lambda_{3,-}N=w_-^TH_-w_-+2k^TT_-w_-.
+$$
+Because $H_-$ has only one off-diagonal pair,
+$$
+w_-^TH_-w_-=-2(w_-)_0(w_-)_7=-\frac{1232}{2197},
+$$
+and
+$$
+k^TT_-w_-=-\frac{11}{26}(-2)\left(-\frac5{338}\right)=-\frac{55}{4394}.
+$$
+Thus
+$$
+\lambda_{3,-}=-\frac{99}{4394}.
 $$
 
-Step 5: Compute the right-hand second derivative
+Step 5: Compute the right-hand cubic splitting
 
-For $s=t>0$ write
+For $s=t>0$,
 $$
-R_+(t)=R_0+tH_+,
+R_+(t)=R_0+tH_++t^2T_+,
 $$
-where $H_+$ is symmetric with entry $-1$ at the three pairs in $P_+$ and their transposes. Again $k^TH_+k=0$. Take
+where $H_+$ has entries $-1$ at the three pairs $(2,8),(3,8),(3,9)$ and their transposes, and
+$$
+T_+=-\frac9{13}\mathbf1\mathbf1^T.
+$$
+Take
 $$
 w_+=\left(\frac{31}{169},\frac{125}{338},-\frac9{13},-\frac9{13},\frac{73}{169},\frac{31}{169},\frac{31}{169},\frac4{13},-\frac{23}{338},-\frac9{13},-\frac5{26},\frac{125}{338},\frac{31}{169}\right)^T.
 $$
 Then
 $$
-k^Tw_+=0,
-\qquad
-R_0w_+=-H_+k,
-\qquad
-k^TH_+w_+=\frac{36}{13}.
-$$
-Therefore the corresponding simple eigenvalue satisfies
-$$
-\lambda_+(t)=\frac{18}{169}t^2+O(t^3).
-$$
-
-Step 6: Convert the eigenvalue splittings to the critical exponent
-
-At $(p,s)=(1,0)$,
-$$
-k^TR_p(1,0)k=Q'_1=4\tau,
-$$
-so the derivative of the simple eigenvalue with respect to $p$ is
-$$
-\lambda_p=\frac{4\tau}{26}=\frac{2\tau}{13}>0.
-$$
-All other eigenvalues remain negative near the base point. Hence on each side the zero of the simple eigenvalue is the critical exponent branch. Since both first-order $s$-splittings vanish,
-$$
-\wp''(0^-)=-\frac{2(9/52)}{2\tau/13}=-\frac{9}{4\tau},
+k^Tw_+=0,\qquad H_+k=-2e_2-2e_3,\qquad R_0w_+=2e_2+2e_3,
 $$
 and
 $$
-\wp''(0^+)=-\frac{2(18/169)}{2\tau/13}=-\frac{18}{13\tau}.
+\mathbf1^Tw_+=-\frac{21}{169}.
 $$
 Thus
 $$
-\alpha_-=-\frac94,
+k^TH_+w_+=-2(w_+)_2-2(w_+)_3=\frac{36}{13},
 \qquad
-\alpha_+=-\frac{18}{13}.
+k^TT_+k=-\frac9{13}(-2)^2=-\frac{36}{13},
+$$
+so the $t^2$ coefficient again vanishes.
+
+As in Step 4,
+$$
+\lambda_{3,+}N=w_+^TH_+w_++2k^TT_+w_+.
+$$
+Using the three active pairs,
+$$
+w_+^TH_+w_+=-2\bigl((w_+)_2(w_+)_8+(w_+)_3(w_+)_8+(w_+)_3(w_+)_9\bigr)=-\frac{2520}{2197},
+$$
+while
+$$
+k^TT_+w_+=-\frac9{13}(-2)\left(-\frac{21}{169}\right)=-\frac{378}{2197}.
+$$
+Hence
+$$
+\lambda_{3,+}=-\frac{126}{2197}.
 $$
 
-Final Answer: $\boxed{(1,\log\frac{2^{20}3^{219}23^{46}}{5^{35}7^7 11^{22}13^{26}17^{34}},-\frac{9}{4},-\frac{18}{13})}$
+Step 6: Convert the one-sided cubic splittings to the requested invariants
+
+At the base point,
+$$
+k^TR_p(1,0)k=Q'_1=4\tau,
+$$
+so the $p$-derivative of the simple eigenvalue is
+$$
+\lambda_p=\frac{4\tau}{26}=\frac{2\tau}{13}>0.
+$$
+All other eigenvalues remain negative near the base point, so on each side the local zero of the simple eigenvalue gives the critical exponent branch.
+
+For $s=-t<0$,
+$$
+0=\lambda_p(\wp(-t)-1)+\lambda_{3,-}t^3+O(t^4).
+$$
+Since $t=-s$,
+$$
+\wp'''(0^-)=\frac{6\lambda_{3,-}}{\lambda_p},
+$$
+and therefore
+$$
+\beta_-=\tau\wp'''(0^-)=39\lambda_{3,-}=-\frac{297}{338}.
+$$
+For $s=t>0$,
+$$
+0=\lambda_p(\wp(t)-1)+\lambda_{3,+}t^3+O(t^4),
+$$
+so
+$$
+\wp'''(0^+)=-\frac{6\lambda_{3,+}}{\lambda_p},
+$$
+and hence
+$$
+\beta_+=\tau\wp'''(0^+)=-39\lambda_{3,+}=\frac{378}{169}.
+$$
+
+Final Answer: $\boxed{(1,-\frac{297}{338},\frac{378}{169})}$
 
 ---
 
 ## Answer
 
-$(1,\log\frac{2^{20}3^{219}23^{46}}{5^{35}7^7 11^{22}13^{26}17^{34}},-\frac{9}{4},-\frac{18}{13})$
+$(1,-\frac{297}{338},\frac{378}{169})$
 
 ---
 
@@ -209,4 +269,4 @@ $(1,\log\frac{2^{20}3^{219}23^{46}}{5^{35}7^7 11^{22}13^{26}17^{34}},-\frac{9}{4
 - shortest-path regime changes
 - cut decomposition on odd cycles
 - majorization and convexity
-- one-sided simple-eigenvalue perturbation
+- one-sided eigenvalue perturbation
