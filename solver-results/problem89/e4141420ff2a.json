@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "a14df1b59d103cf2be97fbc7bc5f0fcfaa6956bb",
+  "problem_blob_sha": "e4141420ff2a466c986bc05f81d94fdf7abd9ade",
+  "statement_sha256": "ad88c65764408904eccd238c4d24a9b56a01695015e37252792bdd79f7109267",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T08:20:30+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(L(g)=d(e,g)\\). Since the metric is left-invariant,\n\n\\[\nd(g,h)=L(g^{-1}h),\n\\]\n\nso the quadratic form is the convolution form associated to the function \\(L^p\\).\n\nA direct word-length calculation gives\n\n\\[\n\\#\\{g:L(g)=0,1,2,3\\}=1,6,16,4.\n\\]\n\nMore explicitly, the only lengths needed below are that \\(L\\) takes values \\(0,1,2,3\\). Put\n\n\\[\nA=2^p,\\qquad B=3^p.\n\\]\n\nThe convolution operator with kernel \\(L^p\\) diagonalizes under the irreducible representations of the Heisenberg group \\(H\\). There are:\n\n- nine \\(1\\)-dimensional representations, of which the trivial one corresponds to constants;\n- two \\(3\\)-dimensional representations, each appearing with multiplicity \\(3\\) in the regular representation.\n\nFor the nontrivial \\(1\\)-dimensional representations, the eigenvalues are\n\n\\[\n3-2A-2B \\quad \\text{and} \\quad B-2A.\n\\]\n\nFor the \\(3\\)-dimensional representations, the relevant matrix is\n\n\\[\nM=\n\\begin{pmatrix}\n1-2A & 1-B & 1-B\\\\\n1-B & -2+A & 1-3A+2B\\\\\n1-B & 1-3A+2B & -2+A\n\\end{pmatrix}.\n\\]\n\nOne eigenvalue is\n\n\\[\n-3+4A-2B,\n\\]\n\nand the remaining two have trace\n\n\\[\n2B-4A\n\\]\n\nand determinant\n\n\\[\n\\Delta(p)=4A^2-4AB-2B^2+6B-3.\n\\]\n\nThus negative type holds exactly while all these nontrivial eigenvalues are \\(\\le 0\\). The first obstruction is when\n\n\\[\n\\Delta(p)=0,\n\\]\n\ni.e.\n\n\\[\n4\\cdot 4^p-4\\cdot 6^p-2\\cdot 9^p+6\\cdot 3^p-3=0.\n\\]\n\nThis equation has a unique positive root in \\((0,1)\\), numerically\n\n\\[\n\\wp \\approx 0.4450296403639729.\n\\]\n\nAt \\(p=\\wp\\), exactly one eigenvalue in each of the two \\(3\\)-dimensional irreducible blocks vanishes. Since each such representation occurs with multiplicity \\(3\\), the equality space has dimension\n\n\\[\n2\\cdot 3=6.\n\\]\n\nTherefore\n\n\\[\n\\boxed{(\\wp,\\dim E)=\\left(\\rho,6\\right)}\n\\]\n\nwhere \\(\\rho\\) is the unique positive solution of\n\n\\[\n\\boxed{4\\cdot 4^\\rho-4\\cdot 6^\\rho-2\\cdot 9^\\rho+6\\cdot 3^\\rho-3=0}\n\\]\n\nand \\(\\rho\\approx 0.4450296403639729\\).",
+  "status": "success",
+  "completed_at": "2026-09-05T08:23:01+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/e4141420ff2a.json"
+}
