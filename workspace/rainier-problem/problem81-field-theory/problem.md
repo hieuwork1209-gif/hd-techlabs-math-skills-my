@@ -2,7 +2,7 @@
 
 ## LaTeX (Normalized)
 
-Let $\ell\ge5$ be prime with $2$ generating $\mathbb F_\ell^\times$, let $r\ge2$, put $Q=\ell^r$, and let $q$ be prime such that $2q\equiv1\pmod Q$ and $q+2Q$ is prime. Put $n=4q^2$. Let $K/\mathbb Q$ be Galois with group $S_n$ on $[n]$, let $\zeta$ be a primitive $\ell$th root of unity, assume $K\cap\mathbb Q(\zeta)=\mathbb Q$, and set $M=K(\zeta)$.
+Let $\ell\ge5$ be prime with $2$ generating $\mathbb F_\ell^\times$, let $r\ge3$, put $Q=\ell^r$, and suppose $q,q+2Q,q+4Q$ are prime with $2q\equiv1\pmod Q$. Put $n=4q^2$. Let $K/\mathbb Q$ be Galois with group $S_n$ on $[n]$, let $\zeta$ be a primitive $\ell$th root of unity, assume $K\cap\mathbb Q(\zeta)=\mathbb Q$, and set $M=K(\zeta)$.
 
 For $1\le j\le r$, choose $g_i^{(j)}\in K^\times$ with $\tau(g_i^{(j)})=g_{\tau(i)}^{(j)}$ and $p_j\in\mathbb Q^\times$. Assume
 $$
@@ -16,7 +16,11 @@ $$
 $$
 These elements are distinct by the relation hypothesis.
 
-Determine the number of $\sigma$ with $\pi_\sigma=\pi$ and $\sigma(\rho_j)\ne\rho_j$ for all $j$ for which there exists a codimension-one $\mathbb F_\ell$-subspace $U\subset\mathbb F_\ell^r$ such that all $\Omega_k$ with $k\in U$ have one cycle type, all $\Omega_k$ with $k\notin U$ have a second cycle type, and the first type has exactly $8\ell Q(Q+q)$ more $2$-cycles than the second. Give a closed formula in $\ell,r,q$.
+Determine the number of $\sigma$ with $\pi_\sigma=\pi$ and $\sigma(\rho_j)\ne\rho_j$ for all $j$ for which there is a flag $W\subset U\subset\mathbb F_\ell^r$ with $\operatorname{codim}U=1$, $\operatorname{codim}W=2$, such that the cycle type on $\Omega_k$ is constant on each of $W$, $U\setminus W$, and $\mathbb F_\ell^r\setminus U$. If their numbers of $2$-cycles are $C_W,C_U,C_O$, respectively, require
+$$
+C_W-C_U=8\ell^2Q(q+Q),\qquad C_U-C_O=8\ell Q(q+3Q).
+$$
+Give a closed formula in $\ell,r,q$.
 
 ---
 
@@ -33,4 +37,4 @@ Determine the number of $\sigma$ with $\pi_\sigma=\pi$ and $\sigma(\rho_j)\ne\rh
 
 ## Domain Explanation
 
-The Kummer lift parameters reduce the cycle condition to a two-level autocorrelation spectrum. Two inert rational primes control the two Fourier magnitudes, while affine-hyperplane incidence is needed to align their phases and recover the integral label profile, so Field theory is the appropriate sub-domain.
+The Kummer lift parameters reduce the cycle data to a three-level autocorrelation spectrum. Three inert rational primes determine different Fourier magnitudes on a hidden dual flag, while affine-hyperplane incidence is needed to align phases and reconstruct the primal flag, so Field theory remains the appropriate sub-domain.
