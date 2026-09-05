@@ -1,14 +1,13 @@
 ## Steps
 
-Step 1: Reveal the hidden wild coordinates
+Step 1: Reveal common coordinates for the two hidden automorphisms
 Let
 $$
-A=k[u,v,w]
-$$
-and put
-$$
+A=k[u,v,w],
+\qquad
 \Delta=v^2+uw,
 $$
+and set
 $$
 p=u-2v\Delta-w\Delta^2,
 \qquad
@@ -16,11 +15,11 @@ q=v+w\Delta,
 \qquad
 r=w.
 $$
-A direct calculation gives
+Since
 $$
-q^2+pr=\Delta.
+q^2+pr=\Delta,
 $$
-Hence this is an invertible polynomial change of coordinates: if
+this is an invertible polynomial change of coordinates: if
 $$
 \delta=q^2+pr,
 $$
@@ -32,39 +31,7 @@ v=q-r\delta,
 \qquad
 w=r.
 $$
-Thus $A=k[p,q,r]$.
-
-In these coordinates define
-$$
-P=2p-q+2r,
-\qquad
-Q=3q-2r,
-\qquad
-R=5r.
-$$
-Then
-$$
-E=Q^2+PR.
-$$
-Applying the inverse coordinate change to $(P,Q,R)$ gives
-$$
-u'=P+2QE-RE^2,
-\qquad
-v'=Q-RE,
-\qquad
-w'=R,
-$$
-which is exactly the automorphism displayed in the problem. Therefore
-$$
-\sigma(p)=2p-q+2r,
-\qquad
-\sigma(q)=3q-2r,
-\qquad
-\sigma(r)=5r.
-$$
-
-Step 2: Diagonalize the hidden action and compute its fixed ring
-Set
+Thus $A=k[p,q,r]$. Now put
 $$
 a=p+q,
 \qquad
@@ -72,113 +39,144 @@ b=q+r,
 \qquad
 c=r.
 $$
-This is an invertible linear change, with
-$$
-r=c,
-\qquad
-q=b-c,
-\qquad
-p=a-b+c.
-$$
-The formulas from Step 1 become
-$$
-\sigma(a)=2a,
-\qquad
-\sigma(b)=3b,
-\qquad
-\sigma(c)=5c.
-$$
-Hence $A=k[a,b,c]$.
+Then $A=k[a,b,c]$.
 
-If
+For the first automorphism, the triple used in the problem is
 $$
-F=\sum_{i,j,\ell\geq0}\lambda_{i,j,\ell}a^ib^jc^\ell
+P=-8p+19q-98r,
+\qquad
+Q=-27q+98r,
+\qquad
+R=-125r.
 $$
-is fixed by $\sigma$, then every monomial occurring with nonzero coefficient must satisfy
+Applying the inverse Nagata change to $(P,Q,R)$ is exactly the displayed formula for $\sigma(u),\sigma(v),\sigma(w)$. Therefore
 $$
-2^i3^j5^\ell=1.
+\sigma(p)=P,
+\qquad
+\sigma(q)=Q,
+\qquad
+\sigma(r)=R,
 $$
-Because $k$ has characteristic $0$, the prime field is $\mathbb Q$, so this equality of positive rational integers is possible only for
+and hence
 $$
-i=j=\ell=0.
+\sigma(a)=-8a,
+\qquad
+\sigma(b)=-27b,
+\qquad
+\sigma(c)=-125c.
 $$
-Therefore
+Similarly the second triple is
 $$
-A^\sigma=k.
+\widetilde P=-\frac14p-\frac5{36}q+\frac{16}{225}r,
 $$
-Also $\sigma$ has infinite order, since
 $$
-\sigma^n(a)=2^na
+\widetilde Q=-\frac19q-\frac{16}{225}r,
+\qquad
+\widetilde R=-\frac1{25}r,
 $$
-for every positive integer $n$.
+so
+$$
+\tau(a)=-\frac14a,
+\qquad
+\tau(b)=-\frac19b,
+\qquad
+\tau(c)=-\frac1{25}c.
+$$
+In particular $\sigma$ and $\tau$ commute.
 
-Step 3: Eliminate every nonzero skew degree
-The defining relations are
+Step 2: Compute the common fixed ring and the relation lattice
+The product $\sigma\tau$ acts by
 $$
-xf=\sigma(f)x,
+a\mapsto2a,
 \qquad
-yf=\sigma^{-1}(f)y
-\qquad(f\in A),
-$$
-together with $yx=xy$. Thus $R$ has a unique PBW normal form
-$$
-\sum_{m,n\geq0}f_{m,n}x^my^n,
+b\mapsto3b,
 \qquad
-f_{m,n}\in A.
+c\mapsto5c.
+$$
+If a polynomial in $A$ is fixed by both $\sigma$ and $\tau$, then it is fixed by $\sigma\tau$. For a monomial $a^ib^jc^\ell$, this multiplies it by
+$$
+2^i3^j5^\ell.
+$$
+Because the characteristic is zero, this equals $1$ only for $i=j=\ell=0$. Hence
+$$
+A^{\langle\sigma,\tau\rangle}=k.
+$$
+
+For integers $m,n$, the automorphism $\sigma^m\tau^n$ acts on $a$ by
+$$
+(-1)^{m+n}2^{3m-2n}.
+$$
+Thus $\sigma^m\tau^n=\operatorname{id}$ forces
+$$
+3m-2n=0
+$$
+and $m+n$ even. Writing $m=2r$, $n=3r$, the parity condition becomes $5r$ even, so $r$ is even. Therefore
+$$
+\sigma^m\tau^n=\operatorname{id}
+\quad\Longleftrightarrow\quad
+(m,n)=(4s,6s)
+$$
+for some $s\in\mathbb Z$.
+
+Step 3: Translate the automorphism lattice into central skew degrees
+Let the four skew generators be $x,y,z,t$, where $x,y$ use $\sigma,\sigma^{-1}$ and $z,t$ use $\tau,\tau^{-1}$. Since $\sigma$ and $\tau$ commute and the four skew generators commute pairwise, $R$ has PBW basis
+$$
+f_{i,j,k,\ell}x^iy^jz^kt^\ell,
+\qquad
+f_{i,j,k,\ell}\in A.
 $$
 For $g\in A$,
 $$
-x^my^ng=\sigma^{m-n}(g)x^my^n.
+x^iy^jz^kt^\ell g
+=
+\sigma^{i-j}\tau^{k-\ell}(g)x^iy^jz^kt^\ell.
 $$
-If a central element has $f_{m,n}\neq0$, then commuting with every $g\in A$ and using the domain property of $A$ forces
+Hence a nonzero term in a central element must satisfy
 $$
-\sigma^{m-n}(g)=g
+(i-j,k-\ell)=(4s,6s)
 $$
-for all $g\in A$. Since $\sigma$ has infinite order, this implies
-$$
-m=n.
-$$
-Hence every central element has the form
-$$
-\sum_{n=0}^N f_n(xy)^n.
-$$
+for some integer $s$.
 
-Step 4: Compute the remaining coefficients
+Also, commuting a coefficient with $x$ and $z$ forces it to be fixed by both $\sigma$ and $\tau$, so by Step 2 every central coefficient lies in $k$.
+
+Step 4: Generate the full central semigroup
 Set
 $$
-C=xy.
+C=xy,
+\qquad
+D=zt,
+\qquad
+M=x^4z^6,
+\qquad
+N=y^4t^6.
 $$
-Because $x$ and $y$ commute and act on $A$ by inverse automorphisms,
+The relation lattice from Step 2 shows that all four are central.
+
+Conversely, let $x^iy^jz^kt^\ell$ be central. If $s\geq0$, then
 $$
-C\in Z(R).
+i=j+4s,
+\qquad
+k=\ell+6s,
 $$
-Now
+so
 $$
-x\left(\sum_{n=0}^N f_nC^n\right)
-=
-\sum_{n=0}^N \sigma(f_n)C^n x,
+x^iy^jz^kt^\ell=C^jD^\ell M^s.
 $$
-whereas
+If $s<0$, the same argument gives a product of powers of $C,D,N$. Therefore every central monomial lies in
 $$
-\left(\sum_{n=0}^N f_nC^n\right)x
-=
-\sum_{n=0}^N f_nC^n x.
+k[C,D,M,N].
 $$
-Thus centrality forces
+Thus
 $$
-\sigma(f_n)=f_n
+Z(R)=k[xy,zt,x^4z^6,y^4t^6].
 $$
-for every $n$. By Step 2, each $f_n\in k$. Therefore
-$$
-Z(R)=k[C]=k[xy].
-$$
-Final Answer: $\boxed{k[xy]}$
+Final Answer: $\boxed{k[xy,zt,x^4z^6,y^4t^6]}$
 
 ---
 
 ## Answer
 
-$k[xy]$
+$k[xy,zt,x^4z^6,y^4t^6]$
 
 ---
 
@@ -192,11 +190,11 @@ $k[xy]$
 
 ## Solution Concepts
 
-- skew polynomial rings
-- wild polynomial automorphisms
-- hidden coordinate conjugacy
+- iterated skew polynomial rings
+- simultaneous polynomial conjugacy
+- automorphism relation lattices
 - invariant subrings
-- graded-center arguments
+- affine semigroup generators
 
 ---
 
