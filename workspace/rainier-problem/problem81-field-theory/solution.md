@@ -1,112 +1,177 @@
 ## Steps
 
-Step 1: Parameterize the lifts and the transposition labels.
+Step 1: Parameterize the lifts and the block labels.
 Put
 $$
-Q=\ell^r,\qquad h=\ell^{r-1},\qquad m=2q^2,\qquad d=\frac{q(2q-1)}Q,
+Q=\ell^r,\qquad h=\ell^{r-1},\qquad g=\ell^{r-2},\qquad m=2q^2,
 $$
 $$
-D=\frac{Q-1}{\ell-1},\qquad A=d+q+2\ell-2,\qquad B=d+2\ell-2,\qquad C=d-2.
+d=\frac{q(2q-1)}Q,\qquad D_1=\frac{Q-1}{\ell-1},\qquad D_2=\frac{h-1}{\ell-1}.
 $$
-Let $q_*=q+2Q$, which is prime by hypothesis. Since $2q\equiv1\pmod Q$, both $q$ and $q_*$ are congruent to $2^{-1}$ modulo $\ell$, hence are primitive modulo $\ell$; therefore both are inert in $\mathbb Q(\zeta)$.
+Also set
+$$
+A=d+q+2\ell+2\ell^2-4,\quad B=d+2\ell+2\ell^2-4,
+$$
+$$
+C=d+2\ell-4,\qquad E=d-4.
+$$
+The three primes $q,q+2Q,q+4Q$ are all congruent to $2^{-1}$ modulo $\ell$. Since $2$ generates $\mathbb F_\ell^\times$, so does $2^{-1}$; hence all three primes are inert in $\mathbb Q(\zeta)$.
 
-A lift of the fixed $\pi$ has the form
+A lift of the fixed permutation $\pi$ has the form
 $$
 \sigma(\alpha_i^{(j)})=\zeta^{a_i^{(j)}}\alpha_{\pi(i)}^{(j)},\qquad
 \sigma(\rho_j)=\zeta^{s_j}\rho_j,
 $$
-with $s_j\ne0$ and $\sum_i a_i^{(j)}=0$ for each $j$. The sum condition follows because $\prod_i\alpha_i^{(j)}\in M$ defines a homomorphism $S_n\to\mu_\ell$, which is trivial since $S_n^{\rm ab}\cong C_2$ and $\ell$ is odd.
+with $s_j\ne0$ and
+$$
+\sum_i a_i^{(j)}=0\qquad(1\le j\le r).
+$$
+Indeed, if $A_j=\prod_i\alpha_i^{(j)}\in M$, then $\tau\mapsto\tau(A_j)/A_j$ is a homomorphism $S_n\to\mu_\ell$, hence is trivial because $S_n^{\rm ab}\cong C_2$ and $\ell$ is odd. The Kummer-independence hypothesis gives no further phase relation.
 
-For each transposition block $T$ of $\pi$, set
+For each transposition block $T$ of $\pi$, define
 $$
 Z_T=\left(\sum_{i\in T}a_i^{(1)},\ldots,\sum_{i\in T}a_i^{(r)}\right)\in G:=\mathbb F_\ell^r,
 $$
 and let $m_z$ be the number of blocks with label $z$. Then
 $$
-\sum_zm_z=m,\qquad \sum_zm_zz=0.
+\sum_zm_z=m,\qquad \sum_zm_zz=0. \tag{1}
 $$
 
-Step 2: Read the two cycle types as a two-level Fourier spectrum.
-On the index set $(i,h,u)$ for $\Omega_k$, two applications of $\sigma$ translate the fiber by
+Step 2: Convert the three cycle-type regimes into three Fourier magnitudes.
+For an index $(i,h,u)$ of $\Omega_k$, if $i$ lies in block $T$ and $h$ lies in block $R$, two applications of $\sigma$ translate the fiber by
 $$
-w+Z_T-Z_E,\qquad w=2(k_1s_1,\ldots,k_rs_r),
+w+Z_T-Z_R,\qquad w=2(k_1s_1,\ldots,k_rs_r).
 $$
-when $i$ lies in transposition $T$ and $h$ in transposition $E$. Put
+Since every $s_j\ne0$, $k\mapsto w$ is an automorphism of $G$, so it carries a flag of the kind in the statement to another flag of the same kind. We therefore rename the image flag $W\subset U$.
+
+Put
 $$
 N_w=\sum_{z\in G}m_zm_{z+w}.
 $$
-The number of base pair-orbits with zero two-step translation is
+For distinct transposition blocks an ordered block-pair contributes two base orbits, while a diagonal block contributes one internal orbit when $w=0$. Hence the number of base orbits whose two-step translation is zero is
 $$
-R_w=2N_w-m\,\delta_{w,0}.
+R_w=2N_w-m\delta_{w,0}. \tag{2}
 $$
-Indeed, for distinct transposition blocks an ordered block-pair gives two base orbits, while a diagonal block contributes only the single internal orbit. A zero base orbit gives $Q$ cycles of length $2$, and a nonzero one gives $Q/\ell$ cycles of length $2\ell$.
+Each such base orbit gives exactly $Q$ cycles of length $2$. Thus the two stated gaps in the numbers of $2$-cycles are equivalent to
+$$
+R_w=R_0+8\ell(q+3Q)1_U(w)+8\ell^2(q+Q)1_W(w) \tag{3}
+$$
+for some constant $R_0$.
 
-Because every $s_j\ne0$, $k\mapsto w$ is an automorphism of $G$. Thus the subspace $U$ in the statement maps to a hyperplane $H\le G$. The stated difference of $8\ell Q(Q+q)$ two-cycles means
-$$
-R_w=R+8\ell(Q+q)\,1_H(w)
-$$
-for some constant $R$. For a character $\chi$ of $G$, write
+For an additive character $\chi$ of $G$, write
 $$
 M(\chi)=\sum_zm_z\chi(z).
 $$
-Taking Fourier transforms and using $\widehat{1_H}(\chi)=h$ on the nontrivial characters in $H^\perp$ and $0$ on all other nontrivial characters gives
+With the unnormalized Fourier transform, $\widehat N(\chi)=|M(\chi)|^2$. For nontrivial $\chi$, equations (2) and (3) give
+$$
+2|M(\chi)|^2-m=
+8Q(q+Q)1_{W^\perp}(\chi)+8Q(q+3Q)1_{U^\perp}(\chi),
+$$
+where the right side is understood only for nontrivial characters. Since $m=2q^2$, this is exactly
 $$
 |M(\chi)|=
 \begin{cases}
-q_*=q+2Q,&\chi\in H^\perp\setminus\{1\},\\
-q,&\chi\notin H^\perp.
-\end{cases} \tag{1}
+q+4Q,&\chi\in U^\perp\setminus\{1\},\\
+q+2Q,&\chi\in W^\perp\setminus U^\perp,\\
+q,&\chi\notin W^\perp.
+\end{cases} \tag{4}
 $$
+Here $W^\perp$ has dimension $2$ and $U^\perp$ is a line inside it.
 
-Step 3: Align the phases by inertness and affine-hyperplane incidence.
-Fix a nontrivial projective character direction. All its Galois conjugates have the same absolute value, equal either to $q$ or to $q_*$. Since the corresponding rational prime is inert, the principal ideal generated by $M(\chi)$ is $(q)$ or $(q_*)$. Hence $M(\chi)$ divided by that prime is an algebraic integer all of whose conjugates have absolute value $1$, so Kronecker's lemma makes it a root of unity.
+Step 3: Recover the hidden flag and align all Fourier phases.
+Fix a nontrivial projective character direction $L$. Its $\ell-1$ nontrivial characters are Galois conjugate under $\zeta\mapsto\zeta^a$, and by (4) all have one common absolute value
+$$
+p_L\in\{q,q+2Q,q+4Q\}.
+$$
+Because $p_L$ is inert, the principal ideal generated by $M(\chi)$ has the same norm as $(p_L)$, hence $(M(\chi))=(p_L)$. Therefore $M(\chi)/p_L$ is an algebraic integer all of whose conjugates have absolute value $1$. By Kronecker's lemma it is a root of unity.
 
-Modulo $\mathfrak l=(1-\zeta)$, every character value is $1$, hence $M(\chi)\equiv m=2q^2$. Since $q_*\equiv q\pmod\ell$ and $2q\equiv1\pmod\ell$, the resulting root of unity is congruent to $1$ modulo $\mathfrak l$; it is therefore an $\ell$th root of unity, not its negative. Consequently each of the $D$ projective dual directions determines one distinguished affine hyperplane. The special direction $H^\perp$ has amplitude $q_*$ and every other direction has amplitude $q$.
+Let $\lambda=1-\zeta$. Since every character value is $1$ modulo $\lambda$,
+$$
+M(\chi)\equiv m=2q^2\pmod\lambda.
+$$
+Also $p_L\equiv q\pmod\ell$, so
+$$
+\frac{M(\chi)}{p_L}\equiv2q\equiv1\pmod\lambda.
+$$
+The roots of unity in $\mathbb Q(\zeta)$ are $\pm\zeta^c$, and only $\zeta^c$ is congruent to $1$ modulo $\lambda$. Hence each projective direction $L$ determines a distinguished affine hyperplane $A_L$ such that the nontrivial Fourier coefficients on $L$ are $p_L$ times the corresponding $\ell$th-root phases of $A_L$.
 
-Let $e(z)$ be the number of these $D$ distinguished affine hyperplanes containing $z$, and let $I_*(z)$ indicate the special one. Fourier inversion gives
+Let
 $$
-Qm_z=m-qD-2Q+\ell q\,e(z)+2\ell Q\,I_*(z). \tag{2}
+D=\frac{Q-1}{\ell-1},
 $$
-Reducing modulo $Q$, using $2q\equiv1\pmod Q$, yields
+let $e(z)$ be the number of all $D$ distinguished affine hyperplanes containing $z$, let $\mathcal S=\mathbb P(W^\perp)$ be the $\ell+1$ special directions, let $f(z)$ count the distinguished hyperplanes from $\mathcal S$ containing $z$, and let $I(z)$ be the indicator of the distinguished hyperplane for the line $U^\perp$. Fourier inversion gives
 $$
-1-D+\ell e(z)\equiv0\pmod Q.
+Qm_z=m-qD-2Q(\ell+2)+\ell q\,e(z)+2\ell Q\,f(z)+2\ell Q\,I(z). \tag{5}
 $$
-If
+Reducing (5) modulo $Q$ and using $m=2q^2\equiv q\pmod Q$ yields
 $$
-d_0=\frac{h-1}{\ell-1},
+1-D+\ell e(z)\equiv0\pmod Q. \tag{6}
 $$
-then $D=d_0+h$ and $D-1=\ell d_0$, so $e(z)\equiv d_0\pmod h$. Since $0\le e(z)\le D$, every $e(z)$ is $d_0$ or $D$. Counting incidences over the $D$ affine hyperplanes shows that exactly one point $z_0$ has $e(z_0)=D$; hence all distinguished hyperplanes meet at $z_0$.
+Set
+$$
+d_0=\frac{h-1}{\ell-1}.
+$$
+Then $D=d_0+h$ and $D-1=\ell d_0$. Equation (6) says
+$$
+e(z)\equiv d_0\pmod h.
+$$
+Since $0\le e(z)\le D=d_0+h$, every $e(z)$ equals either $d_0$ or $D$. If $x$ points have value $D$, counting incidences with the $D$ affine hyperplanes gives
+$$
+d_0Q+hx=Dh.
+$$
+As $Q=\ell h$ and $D=1+\ell d_0$, this forces $x=1$. Thus all $D$ distinguished affine hyperplanes pass through a unique point $z_0$.
 
-Equation (2) now becomes
+The $\ell+1$ special hyperplanes have normals spanning $W^\perp$, so their common intersection is the affine codimension-two space $z_0+W$. Consequently
 $$
-m_z=d-2+2\ell\,1_{A_*}(z)+q\,\delta_{z_0}(z), \tag{3}
+f(z)=1+\ell\,1_{z_0+W}(z),
 $$
-where $A_*$ is the distinguished affine hyperplane in the special direction and contains $z_0$. Finally $\sum_zm_zz=0$. The sum of the points of any affine hyperplane in $\mathbb F_\ell^r$ is $0$ because $r\ge2$, so (3) gives $qz_0=0$, hence $z_0=0$. Therefore $A_*$ is the linear hyperplane $H$ and
+and the distinguished hyperplane for $U^\perp$ is $z_0+U$, so
 $$
-m_0=A,\qquad m_z=B\ (z\in H\setminus\{0\}),\qquad m_z=C\ (z\notin H). \tag{4}
+I(z)=1_{z_0+U}(z).
 $$
-Conversely, (4) has autocorrelation
+Also $e(z)=d_0+h\delta_{z_0}(z)$. Substituting these into (5) gives
 $$
-N_w=\text{constant}+4\ell(Q+q)1_H(w)+q^2\delta_{w,0},
+m_z=d-4+2\ell^2 1_{z_0+W}(z)+2\ell 1_{z_0+U}(z)+q\delta_{z_0}(z). \tag{7}
 $$
-so $R_w=2N_w-m\delta_{w,0}$ has exactly the two required levels, with the required $2$-cycle gap.
+Because $r\ge3$, both $W$ and $U$ have positive dimension, so the sum of the points of every affine coset of either subspace is $0$ in $G$. Using (1) in (7) therefore gives $qz_0=0$, hence $z_0=0$.
+
+Thus the multiplicities are forced to be
+$$
+m_0=A,
+$$
+$$
+m_z=B\quad(z\in W\setminus\{0\}),\qquad
+m_z=C\quad(z\in U\setminus W),\qquad
+m_z=E\quad(z\notin U). \tag{8}
+$$
+Conversely, (8) has Fourier magnitudes exactly as in (4), so its autocorrelation satisfies (3), hence it gives precisely the required three cycle types and the two prescribed $2$-cycle gaps.
 
 Step 4: Count the lifts.
-There are $D=(Q-1)/(\ell-1)$ choices for the hyperplane $H$. For fixed $H$, the $m=2q^2$ labeled transposition blocks receive the multiplicities in (4) in
+There are
 $$
-\frac{(2q^2)!}{A!(B!)^{h-1}(C!)^{Q-h}}
+D_1=\frac{Q-1}{\ell-1}
 $$
-ways. Once the block label is fixed, each transposition and each Kummer family has exactly $\ell$ choices for the ordered pair of endpoint phases, contributing $\ell^{rm}=\ell^{2rq^2}$. Finally the $s_j$ have $(\ell-1)^r$ nonzero choices. Thus
+choices for the hyperplane $U$. For fixed $U$, there are
 $$
-D(\ell-1)^r\ell^{2rq^2}\frac{(2q^2)!}{A!(B!)^{h-1}(C!)^{Q-h}}.
+D_2=\frac{h-1}{\ell-1}
 $$
-Final Answer: $\boxed{D(\ell-1)^r\ell^{2rq^2}\frac{(2q^2)!}{A!(B!)^{h-1}(C!)^{Q-h}}}$
+choices for the codimension-two subspace $W\subset U$. The profile (8) recovers the flag, so there is no overcount.
+
+For a fixed flag, the $m=2q^2$ labeled transposition blocks receive the forced labels in
+$$
+\frac{(2q^2)!}{A!(B!)^{g-1}(C!)^{h-g}(E!)^{Q-h}}
+$$
+ways. Once a block label is fixed, each transposition and each of the $r$ Kummer families has exactly $\ell$ choices for the ordered endpoint phases, giving $\ell^{rm}=\ell^{2rq^2}$. Finally the nonzero $s_j$ contribute $(\ell-1)^r$ choices. Therefore
+$$
+D_1D_2(\ell-1)^r\ell^{2rq^2}\frac{(2q^2)!}{A!(B!)^{g-1}(C!)^{h-g}(E!)^{Q-h}}.
+$$
+Final Answer: $\boxed{D_1D_2(\ell-1)^r\ell^{2rq^2}\frac{(2q^2)!}{A!(B!)^{g-1}(C!)^{h-g}(E!)^{Q-h}}}$
 
 ---
 
 ## Answer
 
-$D(\ell-1)^r\ell^{2rq^2}(2q^2)!/[A!(B!)^{h-1}(C!)^{Q-h}]$
+$D_1D_2(\ell-1)^r\ell^{2rq^2}(2q^2)!/[A!(B!)^{g-1}(C!)^{h-g}(E!)^{Q-h}]$
 
 ---
 
@@ -121,7 +186,7 @@ $D(\ell-1)^r\ell^{2rq^2}(2q^2)!/[A!(B!)^{h-1}(C!)^{Q-h}]$
 ## Solution Concepts
 
 - Kummer extensions and lift parametrization
-- two-level autocorrelation on a finite vector space
+- three-level autocorrelation on a finite vector space
 - inert primes in a cyclotomic field
-- affine-hyperplane incidence
+- affine-hyperplane incidence and flags
 - multinomial counting
