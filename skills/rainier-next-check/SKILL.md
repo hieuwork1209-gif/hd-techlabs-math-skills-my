@@ -1,249 +1,40 @@
 ---
 name: rainier-next-check
-description: Run the Rainier local adversarial difficulty loop for an existing problem. Use for `/rainier-next-check problemNN`, for requests to create or continue `adversary/problemNN`, and for `next` follow-ups in a conversation already running this loop. Keep hardening off `main`, use one cold GPT-5.4 High solve per problem blob with a 20-minute timeout, review returned answers against the matching reference solution, harden again only when the solver is correct, and promote the exact problem/solution pair to `main` when the solver is wrong or times out.
+description: Run the Rainier local adversarial difficulty loop for an existing problem. Use for `/rainier-next-check problemNN <chat_url>`, requests to create or continue `adversary/problemNN`, and bare `next` follow-ups in an active loop. Keep hardening off `main`, use one cold GPT-5.5 Medium solve per unseen statement blob with a 2100-second timeout, route WSL2 desktop notifications to the locally bound Chrome window, and promote the exact tested pair when the solver is wrong or times out.
 user-invocable: true
 disable-model-invocation: false
-argument-hint: problemNN or folder path, optionally Rainier feedback/JSON/trace; bare `next` continues the active check loop
+argument-hint: problemNN plus ChatGPT conversation URL on first use; later `next` continues the active check
 ---
 
-# Rainier Next Check — Adversary/Codex Preflight
+# Rainier Next Check
 
-## Contract
+Use this skill as the local adversarial preflight layer **after** the normal Rainier authoring/repair flow. Do not replace or alter `/rainier-next`.
 
-- **Do not replace or modify `/rainier-next`.** `/rainier-next` remains the normal Rainier authoring, normalization, reviewer-repair, and portal-package orchestrator.
-- **Task:** run the separate local adversarial difficulty loop for an already-existing Rainier problem.
-- **Branch discipline:** `main` is the portal-submission/frozen branch. All local difficulty hardening happens on `adversary/problemNN`.
-- **First invocation:** resolve the exact `problemNN-*` on `main`, verify a matching `problem.md` + `solution.md` exist, then ensure `adversary/problemNN` exists. Create it from current `main` only if absent. Never silently reset an existing adversary branch.
-- **Independent solver:** use `scripts/codex-adversary-watch.py`, exactly one cold `gpt-5.4` / `high` solve per unseen `problem.md` blob, default timeout 1200 seconds.
-- **One blob, one measured solve.** Do not use `--force` in the normal loop.
-- **Success is not correctness.** `status=success` only means Codex returned text; compare the returned mathematics against the exact matching candidate solution.
-- **Correct solver answer:** diagnose the actual earliest robust shortcut, harden structurally, verify the new ground truth, then update `solution.md` first and `problem.md` second on the adversary branch. Do not touch `main`.
-- **Wrong/materially incomplete solver answer:** treat the candidate as locally stumped, stop hardening, run promotion gates, and promote the exact pair to `main`.
-- **Timeout:** when `latest.json` records `LOCAL_STUMPED_BY_TIMEOUT` and `promotion_ready=true`, stop hardening, run promotion gates, and promote the exact pair to `main`.
-- **Runner error:** never promote on `SOLVER_ERROR` or another infrastructure failure.
-- A local stump/timeout is only preflight evidence. Only the official portal may be called `RAINIER DIFFICULTY PASS`.
+Read `references/workflow.md` before acting.
 
-## Authoritative references
+## Core contract
 
-Read these before acting:
+- Treat `main` as the portal-submission/frozen branch.
+- Treat `adversary/problemNN` as the only branch for local difficulty hardening.
+- On first use, accept the ChatGPT web conversation URL supplied with the command, e.g. `/rainier-next-check problem89 https://chatgpt.com/c/<conversation-id>`.
+- Immediately upsert that URL into `solver-results/problemNN/chat-binding.json` on `adversary/problemNN`. Never copy it to `main`.
+- On WSL2, after the chat binding exists, make the next user action `python scripts/rainier-bind-window.py problemNN`. The user clicks the Chrome window/account that owns this chat. The binder stores only local HWND/PID/window metadata; it never reads or stores account email/profile credentials.
+- Window bindings live only in `.tmp/codex-adversary/problemNN-window.json` plus the Windows runtime copy under `%LOCALAPPDATA%\Rainier\window-bindings\`. They are never committed.
+- After a valid window binding, use `python scripts/codex-adversary-watch-chat.py problemNN --watch` as the independent local solver harness.
+- The wrapper supplies GPT-5.5 Medium and a 2100-second timeout unless explicitly overridden.
+- One unseen `problem.md` blob gets exactly one GPT-5.5 Medium solve. Do not use `--force` in the normal loop.
+- A watcher `success` means only that text was returned. Compare it mathematically with the matching `solution.md` before deciding.
+- If the solver is correct, diagnose its earliest robust shortcut, structurally harden, verify the new ground truth, then update `solution.md` first and `problem.md` second on the adversary branch.
+- If the solver is wrong/materially incomplete or the watcher records `LOCAL_STUMPED_BY_TIMEOUT`, stop local hardening, pass submission gates, and promote the exact matching `solution.md` then `problem.md` to `main`.
+- Never promote on `SOLVER_ERROR` or an infrastructure failure.
+- Never call a local stump or timeout an official Rainier difficulty pass.
+- After promotion to `MAIN_READY_FOR_RAINIER`, upsert `solver-results/problemNN/terminal.json` on the adversary branch for the exact promoted problem blob. A matching marker makes the watcher exit successfully instead of repeating `already tested`.
+- PowerShell notifications must route through the exact locally bound Chrome HWND. If that binding is missing or stale, do not fall back to another browser/account.
 
-- `docs/codex-adversary-loop.md`
-- `docs/rainier-hardening-workflow.md`
-- `skills/_shared/harden_loop.md`
-- current portal/reviewer evidence for this exact problem, when supplied
+## Follow-up `next`
 
-A newer user-provided Rainier trace/JSON overrides older local evidence.
+In a conversation already using this skill, interpret a bare `next` as: read `solver-results/problemNN/latest.json` from `adversary/problemNN`, follow its `result_file` when needed, compare against the exact candidate solution, and continue the state machine without asking the user to restate the problem.
 
-## State resolution
+## User boundary
 
-For `problem103`, use:
-
-```text
-main
-adversary/problem103
-workspace/rainier-problem/problem103-*/problem.md
-workspace/rainier-problem/problem103-*/solution.md
-solver-results/problem103/<blob-prefix>.json
-solver-results/problem103/latest.json
-solver-results/problem103/terminal.json
-```
-
-Resolve exactly one matching problem folder. Never infer another problem number from ordering.
-
-`terminal.json` is an adversary-only watcher control marker. It is effective only when its `problem_blob_sha` exactly matches the current adversary `problem.md` blob, so a later hardening edit automatically invalidates an older terminal marker.
-
-## Local working-tree rule
-
-Do not instruct the user to checkout `adversary/problemNN` just to run the watcher.
-A normal local working tree can only have one checked-out branch, while this workflow is intended to support multiple problems in parallel.
-
-The preferred local state is:
-
-```bash
-git switch main
-git pull --ff-only origin main
-```
-
-Then different terminals may run:
-
-```bash
-python scripts/codex-adversary-watch.py problem103 --watch
-python scripts/codex-adversary-watch.py problem104 --watch
-python scripts/codex-adversary-watch.py problem105 --watch
-```
-
-The watcher explicitly reads `origin/adversary/problemNN` and publishes through a temporary detached Git worktree, so the main checkout can remain on `main`.
-Do not run two watchers for the same problem.
-
-If a measured run was already started while the clone was checked out on the corresponding adversary branch, do not restart it merely to switch branches. Let that run finish and return the main checkout to `main` afterward.
-
-## First use / no result for current blob
-
-1. Resolve the current `main` problem and solution.
-2. Ensure `adversary/problemNN` exists; create it from current `main` if absent.
-3. Read the candidate pair from the adversary branch.
-4. Check `solver-results/problemNN/latest.json` if present.
-5. If no result has `problem_blob_sha` equal to the current adversary `problem.md` blob, do not reuse an older verdict and do not harden blindly unless current Rainier evidence already exposes a concrete shortcut.
-6. Stop at `WAIT_CODEX`.
-
-Give the normal watcher command:
-
-```bash
-python scripts/codex-adversary-watch.py problemNN --watch
-```
-
-For WSL2, also mention the optional one-time click-to-chat setup when useful:
-
-```bash
-python scripts/codex-adversary-watch.py problemNN \
-  --chat-url 'https://chatgpt.com/c/...' \
-  --notify-test
-```
-
-The user copies the exact current conversation URL from the browser. The watcher stores it only in `.tmp/codex-adversary/chat-urls.json`, which is gitignored. Never ask to commit or publish that URL.
-
-Once configured, normal future watcher starts need no `--chat-url`.
-
-### Desktop handoff semantics
-
-On WSL2, the watcher prefers a native Windows toast through `powershell.exe` with no extra PowerShell module required.
-After a completed attempt it copies `next` to the Windows clipboard.
-With a configured chat URL:
-
-```text
-click toast -> exact problem ChatGPT conversation
-Open Chat   -> exact problem ChatGPT conversation
-Open Result -> solver result JSON on GitHub
-clipboard   -> next
-```
-
-Without a configured chat URL, the toast may open the GitHub result instead.
-A process that was already running before the updated watcher code was loaded will not hot-reload notification or terminal-marker support; do not restart the same measured blob just for notification behavior, but after pulling the updated wrapper a matching terminal marker will stop future watcher processes cleanly.
-
-## `next` follow-up
-
-In a conversation already running this skill, interpret a bare `next` as:
-
-1. read `solver-results/problemNN/latest.json` from `adversary/problemNN`;
-2. verify its `problem_blob_sha` equals the current adversary candidate blob;
-3. follow `result_file` when needed;
-4. compare the solver result with the exact current candidate solution;
-5. continue the state machine below without asking the user to restate the problem.
-
-The web chat cannot wake itself when GitHub changes. `next` is the single user handoff between completed local rounds.
-
-## Result state machine
-
-### A — Current blob has no matching result
-
-Return `RAINIER CHECK: WAIT_CODEX`. Do not mutate the statement.
-
-### B — `status=success`
-
-Fetch the full run record and current adversary solution.
-
-If the solver is mathematically correct:
-
-1. Extract the actual route, including when possible:
-
-```text
-COMMON ENTRY:
-COMMON REDUCTION:
-COMMON SCALING/REPRESENTATION:
-FIRST DECISIVE RECOGNITION:
-RECOVERY PATH:
-EARLIEST ROBUST SHORTCUT:
-```
-
-2. Harden the earliest robust shortcut structurally. Prefer hidden representation/invariant, coupled conditions, competing regimes, leading-order degeneracy, a standard route that fails for a mathematical reason, or a necessary certificate.
-3. Do not manufacture difficulty with longer expansions, bigger matrices, larger case tables, ugly constants, brute force, or extra parameters without a new dependency.
-4. Re-derive validity, uniqueness, and the intended answer.
-5. Ensure the reference solution is self-contained and reasoning-dominant.
-6. Preserve submission gates.
-7. Write `solution.md` first.
-8. Write `problem.md` second.
-9. Verify the new `problem.md` blob changed and stop at `RAINIER CHECK: HARDENED_WAIT_CODEX`.
-
-If the solver is wrong or materially incomplete:
-
-1. Record the local judgment as `LOCAL_STUMPED`.
-2. Do not harden again.
-3. Run promotion preflight.
-4. Promote the exact adversary pair to `main`.
-
-### C — `status=timeout`
-
-Require the run metadata to support the timeout verdict, normally:
-
-```text
-local_verdict = LOCAL_STUMPED_BY_TIMEOUT
-recommended_action = PROMOTE_TO_MAIN_FOR_RAINIER
-promotion_ready = true
-timeout_seconds = 1200
-```
-
-Unless the user explicitly chose a different timeout, 1200 seconds is the stopping rule. Then run promotion preflight and promote the exact pair to `main`.
-
-### D — runner/infrastructure error
-
-If the latest run is `SOLVER_ERROR`, malformed, missing its matching candidate, or otherwise infrastructure-failed, return `RAINIER CHECK: BLOCKED_RUNNER`. Do not promote and do not count it as stump evidence.
-
-## Promotion preflight
-
-Before writing to `main`, check the current repository submission contract, including at least:
-
-- prompt nonempty and at most 2000 characters;
-- standalone Answer nonempty, at most 102 characters, and containing no `\\boxed`;
-- consecutive `Step 1:`, `Step 2:`, ... blocks;
-- the final non-whitespace line of the last step is exactly a `Final Answer: $\\boxed{...}$` line, with no punctuation/prose afterward;
-- Solution Concepts has 1–5 entries, each under 100 characters;
-- Domain, Sub-domain, Domain Explanation, Problem Type, and Answer Type are present and portal-compatible;
-- Problem Type and Answer Type agree between problem and solution.
-
-If only solution formatting needs repair, fix it on the adversary branch first. A solution-only repair does not require another Codex solve because the measured statement blob is unchanged.
-
-## Promote to `main`
-
-1. Capture the exact selected adversary `solution.md` and `problem.md`.
-2. Update `main` `solution.md` first.
-3. Update `main` `problem.md` second.
-4. Re-fetch both from `main` and verify they match the selected candidate.
-5. Upsert `solver-results/problemNN/terminal.json` on `adversary/problemNN` for the exact promoted problem blob using this shape:
-
-```json
-{
-  "problem": "problemNN",
-  "state": "MAIN_READY_FOR_RAINIER",
-  "problem_blob_sha": "<exact adversary problem.md blob>",
-  "main_problem_blob_sha": "<verified matching main problem.md blob>",
-  "main_solution_blob_sha": "<verified matching main solution.md blob>",
-  "main_commit_sha": "<main commit containing the promoted problem.md>",
-  "reason": "LOCAL_STUMPED_PROMOTED_TO_MAIN"
-}
-```
-
-6. Never copy `terminal.json`, `chat-binding.json`, or other `solver-results/` control/result files to `main` unless explicitly requested.
-7. Return `RAINIER CHECK: MAIN_READY_FOR_RAINIER` and tell the user to run `./scripts/adv submit problemNN` / the official portal checks.
-
-The ChatGPT-linked watcher must treat the marker as terminal only when `state=MAIN_READY_FOR_RAINIER` and `problem_blob_sha` exactly equals the current adversary statement blob. On a match it exits successfully instead of repeatedly printing `already tested`. If later Rainier feedback causes a statement edit, the blob changes and the old marker becomes stale automatically; it need not be deleted before hardening resumes.
-
-## After official Rainier feedback
-
-- Difficulty PASS: freeze the exact `main` statement.
-- Difficulty FAIL/borderline: keep the failed submitted version on `main`, continue design work on the existing adversary branch, and use the new Rainier trace/JSON as stronger hardening evidence. A new `problem.md` blob automatically invalidates the previous terminal marker.
-- Statement edits invalidate all previous portal difficulty percentages.
-
-## Output
-
-Use one compact state:
-
-```text
-RAINIER CHECK: <WAIT_CODEX | HARDENED_WAIT_CODEX | MAIN_READY_FOR_RAINIER | BLOCKED_RUNNER>
-PROBLEM: problemNN
-BRANCH: adversary/problemNN
-CANDIDATE: <problem blob prefix>
-STATUS: <one line>
-YOUR ACTION: <only the next real user action>
-```
-
-Do not narrate every internal GitHub operation.
+The web chat cannot wake itself when GitHub changes. After a watcher attempt finishes, the only user handoff needed is `next`. The user supplies the web-chat URL on first invocation and performs the one-time local Chrome-window binding. Later turns reuse both bindings until the user explicitly rebinds or the Chrome HWND becomes stale.
