@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "a4dd39d99212e329ac98d3dc97b3fb8c273097dc",
+  "problem_blob_sha": "4305d472dee6d51e8ea319d3fba95ce634ef89ea",
+  "statement_sha256": "0dfb8791f238b644d6066d3f0ccf4562275adec82cd36c1c90a778fdaf20a4a5",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T08:31:33+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(a=2^p\\), so \\(4^p=a^2\\), and write \\(c=3^p\\).\n\nThe graph is the incidence graph between the \\(15\\) edges of \\(K_6\\) and its \\(15\\) perfect matchings. Its distances are:\n\n- between two edges: \\(2\\) if disjoint, \\(4\\) if intersecting;\n- between two matchings: \\(2\\) if they share a block, \\(4\\) otherwise;\n- between an edge and a matching: \\(1\\) if incident, \\(3\\) otherwise.\n\nThus the matrix \\(D_p=(d(x,y)^p)\\) is \\(S_6\\)-equivariant, so it decomposes into invariant eigenspaces. The relevant eigenvalue inequalities on the zero-sum subspace are:\n\n\\[\n2a^2-3a\\le 0,\n\\]\nfrom a \\(5\\)-dimensional edge subspace and a \\(5\\)-dimensional matching subspace;\n\n\\[\n2c+a-2a^2-2\\le 0,\n\\]\nfrom the coupled \\(9+9\\)-dimensional part;\n\nand\n\n\\[\n8a^2+6a-3-12c\\le 0,\n\\]\nfrom the one-dimensional subspace constant on \\(P\\) and oppositely constant on \\(S\\).\n\nThe first condition gives \\(a\\le 3/2\\), i.e. \\(p\\le \\log_2(3/2)\\). On this interval the coupled condition is automatically strict, since \\(c=3^p=a^{\\log_2 3}<a^2\\), hence\n\n\\[\n2c+a-2a^2-2 < a-2<0.\n\\]\n\nTherefore the first obstruction is the one-dimensional constant-opposite subspace. Hence \\(\\wp\\) is the unique positive root of\n\n\\[\n8\\cdot 4^p+6\\cdot 2^p-12\\cdot 3^p-3=0.\n\\]\n\nNumerically,\n\n\\[\n\\wp \\approx 0.3475.\n\\]\n\nAt this value, only that one-dimensional constant-opposite subspace has eigenvalue \\(0\\); all other zero-sum eigenspaces still have negative eigenvalue. Therefore\n\n\\[\n\\dim E=1.\n\\]\n\n\\[\n\\boxed{\\left(\\wp, \\dim E\\right)=\\left(\\text{the unique positive root of }8\\cdot 4^p+6\\cdot 2^p-12\\cdot 3^p-3=0,\\ 1\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T08:33:47+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/4305d472dee6.json"
+}
