@@ -2,105 +2,128 @@
 
 Step 1: Determine the graph distances
 
-Let $C$ be the set of the $20$ three-cycles in $A_5$. The graph is the Cayley graph $\operatorname{Cay}(A_5,C)$, so it is vertex-transitive and
+Let
 $$
-d(\sigma,\tau)=d(e,\sigma^{-1}\tau).
+V=[n]\sqcup\binom{[n]}2
 $$
-Every nonidentity element of $A_5$ is a three-cycle, a double transposition, or a five-cycle. Three-cycles have distance $1$. The identities
+be the vertex set. For distinct $i,j\in[n]$, the two singleton vertices are joined through the edge-vertex $\{i,j\}$, so
 $$
-(12)(34)=(123)(234),
+d(i,j)=2.
 $$
+For $i\in[n]$ and $e\in\binom{[n]}2$,
 $$
-(12345)=(123)(345)
+d(i,e)=
+\begin{cases}
+1,&i\in e,\\
+3,&i\notin e.
+\end{cases}
 $$
-show that representatives of the other two cycle types are products of two three-cycles. Conjugating gives the same conclusion for every element of those types. Hence the graph has diameter $2$: distinct vertices are at distance $1$ exactly when their quotient is a three-cycle, and otherwise at distance $2$.
+Indeed, in the nonincident case the graph is bipartite, so the distance is at least $3$, and if $e=\{j,k\}$ then
+$$
+i-\{i,j\}-j-\{j,k\}
+$$
+is a path of length $3$.
 
-Step 2: Determine the adjacency spectrum
+For distinct edge-vertices $e,f$,
+$$
+d(e,f)=
+\begin{cases}
+2,&e\cap f\ne\varnothing,\\
+4,&e\cap f=\varnothing.
+\end{cases}
+$$
+The first case uses their common endpoint. In the disjoint case a length-$4$ path exists, and no shorter even path can connect them because they have no common endpoint.
 
-Let $A$ be the adjacency matrix. Since $C$ is a conjugacy class, the adjacency operator is the class sum of the three-cycles and acts by a scalar on each irreducible representation.
+Step 2: Find a squared-Euclidean representation
 
-First use the natural action of $A_5$ on five points. It is $2$-transitive, so its permutation representation is the direct sum of the constants and an irreducible $4$-dimensional representation $V$. A three-cycle fixes two points, so
+Let $e_1,\ldots,e_n$ be the standard basis of $\mathbb R^n$, and define
 $$
-\chi_V((123))=2-1=1.
-$$
-Therefore the class sum acts on $V$ by
-$$
-\frac{|C|\chi_V((123))}{\dim V}=\frac{20}{4}=5.
-$$
-In the regular representation this contributes an adjacency eigenspace of dimension $4^2=16$.
-
-Next let $A_5$ act by conjugation on its six Sylow $5$-subgroups. The stabilizer of one such subgroup is its normalizer, of order $10$, and it acts transitively on the other five Sylow subgroups; hence this action is $2$-transitive. Thus the corresponding permutation representation is the constants plus an irreducible $5$-dimensional representation $W$. A three-cycle fixes no Sylow $5$-subgroup, because a Sylow normalizer has order $10$ and contains no element of order $3$. Hence
-$$
-\chi_W((123))=0-1=-1,
-$$
-so the class sum acts on $W$ by
-$$
-\frac{20(-1)}5=-4.
-$$
-This contributes an eigenspace of dimension $5^2=25$ in the regular representation.
-
-The constant vector has eigenvalue $20$. Since the graph is simple and $20$-regular on $60$ vertices,
-$$
-\operatorname{tr}A=0,
+\phi(i)=e_i,
 \qquad
-\operatorname{tr}A^2=60\cdot20=1200.
+\phi(\{i,j\})=e_i+e_j.
 $$
-The eigenvalues already found contribute
+The distances from Step 1 give, case by case,
 $$
-20^2+16\cdot5^2+25\cdot(-4)^2=1200.
+d(x,y)=\|\phi(x)-\phi(y)\|^2
 $$
-Because $A$ is symmetric, every remaining eigenvalue is therefore $0$. Thus the adjacency spectrum is
+for all vertices $x,y$.
+
+Now let $(c_x)$ satisfy $\sum_xc_x=0$. Expanding the squared norm,
 $$
-20^{[1]},\qquad 5^{[16]},\qquad 0^{[18]},\qquad (-4)^{[25]}.
+\begin{aligned}
+\sum_{x,y}c_xc_y d(x,y)
+&=\sum_{x,y}c_xc_y\|\phi(x)-\phi(y)\|^2\\
+&=-2\left\|\sum_xc_x\phi(x)\right\|^2\le0.
+\end{aligned}
+$$
+Hence the metric has $1$-negative type. Equality holds exactly when
+$$
+\sum_xc_x\phi(x)=0.
 $$
 
-Step 3: Find the maximal negative-type exponent
+Step 3: Show that every exponent $p>1$ fails
 
-Put $x=2^p$. Since the graph has diameter $2$, the powered distance matrix is
+Choose three distinct indices $i,j,k$. Consider the four vertices
 $$
-D_p=A+x(J-I-A).
+A=i,\qquad B=\{i,k\},\qquad C=\{j,k\},\qquad D=j.
 $$
-On the zero-sum subspace, $J$ vanishes. If $Av=\theta v$ with $v\perp\mathbf1$, then
+Their relevant distances are
 $$
-D_pv=\bigl(-x+(1-x)\theta\bigr)v.
-$$
-For the three nonconstant adjacency eigenvalues this gives
-$$
-\theta=5:\quad 5-6x<0,
+d(A,C)=d(B,D)=3,
 $$
 $$
-\theta=0:\quad -x<0,
+d(A,B)=d(C,D)=1,
 $$
 $$
-\theta=-4:\quad 3x-4.
+d(A,D)=d(B,C)=2.
 $$
-Hence $D_p$ is negative semidefinite on the zero-sum subspace exactly when
+Assign coefficients $1,-1,1,-1$ to $A,B,C,D$, respectively. The powered quadratic form is
 $$
-3\cdot2^p-4\le0.
+4\bigl(3^p-2^p-1\bigr).
 $$
-Therefore
+For $p>1$, strict convexity gives
 $$
-\wp=\log_2\frac43.
+3^p=(2+1)^p>2^p+1,
+$$
+so this quadratic form is positive. Therefore no exponent larger than $1$ has negative type, and
+$$
+\wp=1.
 $$
 
 Step 4: Compute the equality-space dimension
 
-At $p=\wp$, the powered-distance eigenvalue is zero exactly on the adjacency eigenspace with eigenvalue $-4$. The other two nonconstant powered-distance eigenvalues are strictly negative. Consequently
+At $p=1$, the equality space is the kernel of
 $$
-E=\ker(A+4I),
+c\longmapsto\left(\sum_xc_x,\sum_xc_x\phi(x)\right).
 $$
-and Step 2 gives
+Thus its codimension is one plus the affine dimension of the point set $\phi(V)$.
+
+The points $e_1,\ldots,e_n$ affinely span the hyperplane
 $$
-\dim E=25.
+x_1+\cdots+x_n=1,
+$$
+which has dimension $n-1$. The point
+$$
+e_1+e_2
+$$
+has coordinate sum $2$, so it lies outside that hyperplane. Hence $\phi(V)$ affinely spans all of $\mathbb R^n$, and the displayed map has rank $n+1$.
+
+Since
+$$
+|V|=n+\binom n2=\frac{n(n+1)}2,
+$$
+we get
+$$
+\dim E=\frac{n(n+1)}2-(n+1)=\frac{(n-2)(n+1)}2.
 $$
 
-Final Answer: $\boxed{(\log_2\frac43,25)}$
+Final Answer: $\boxed{(1,\frac{(n-2)(n+1)}2)}$
 
 ---
 
 ## Answer
 
-$(\log_2\frac43,25)$
+$(1,\frac{(n-2)(n+1)}2)$
 
 ---
 
@@ -114,7 +137,7 @@ $(\log_2\frac43,25)$
 
 ## Solution Concepts
 
-- normal Cayley graph metrics
-- representation theory of $A_5$
-- adjacency spectra from class sums
+- incidence graph metrics
+- squared-Euclidean embeddings
 - negative type of finite metric spaces
+- affine dependence and equality spaces
