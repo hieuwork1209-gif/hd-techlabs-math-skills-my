@@ -130,7 +130,7 @@ $$
 N_s=\frac{r-1}{2}\cdot r\cdot\frac{3(r-1)}4=\frac{3r(r-1)^2}{8}. \tag{16}
 $$
 
-Step 5: Count hyperplanes avoiding the conic orbit.
+Step 5: Count hyperplanes avoiding the conic orbit and prove the orbit classification.
 For a phase vector (12), let
 $$
 H_s=\operatorname{span}\{\mathbf1,(\omega^{j-1})_j,(\omega^{-(j-1)})_j\}.
@@ -157,7 +157,50 @@ For each kernel line there are $\ell^{r-4}$ extensions to a hyperplane of $\over
 $$
 F=\ell^{r-4}\frac{\ell^{r-3}-1}{\ell-1}\frac{5r^2+7r+6}{2}. \tag{19}
 $$
-As in the previous conjugation calculation, $s$ and the multiplicity profile classify the $\widetilde C_\pi$-orbits. Multiplying (16) and (19) gives the required count.
+
+It remains to justify that multiplying $N_s$ by $F$ counts conjugacy orbits rather than merely parameter pairs. Let $\tau\in\widetilde C_\pi$ have base permutation $c=\pi_\tau\in C_{S_n}(\pi)$, and write
+$$
+\tau(\alpha_i^{(j)})=\zeta^{b_i^{(j)}}\alpha_{c(i)}^{(j)},\qquad
+\tau(\rho_j)=\zeta^{u_j}\rho_j.
+$$
+The relation $\prod_i\alpha_i^{(j)}=\rho_{j+1}$ forces
+$$
+u_{j+1}=\sum_i b_i^{(j)}. \tag{20}
+$$
+Conversely, because the displayed product relations are the only Kummer relations, any choice of $c$ and the $b_i^{(j)}$ satisfying (20) defines such a lift after setting the $u_j$ accordingly.
+
+For $\sigma'=\tau\sigma\tau^{-1}$, direct substitution gives
+$$
+s_j'=s_j,
+$$
+$$
+a_i'^{(j)}=a_{c^{-1}(i)}^{(j)}+b_{\pi c^{-1}(i)}^{(j)}-b_{c^{-1}(i)}^{(j)}. \tag{21}
+$$
+Since $c$ commutes with $\pi$, summing (21) over the two endpoints of a transposition block $T$ cancels the two $b$-terms and yields
+$$
+Z_T'=Z_{c^{-1}T}. \tag{22}
+$$
+Thus $s$ and the multiplicity profile $z\mapsto m_z$ are invariants of a $\widetilde C_\pi$-conjugacy orbit.
+
+Conversely, let $\sigma$ and $\sigma'$ have the same $s$ and the same multiplicity profile. Since
+$$
+C_{S_n}(\pi)\cong C_2\wr S_m
+$$
+permutes the $m$ transposition blocks arbitrarily, choose $c\in C_{S_n}(\pi)$ so that $Z_T'=Z_{c^{-1}T}$ for every block $T$. Conjugate $\sigma$ by any lift of this $c$; by (22) we may now assume the two lifts have exactly the same label on every block. Write the remaining endpoint differences as
+$$
+\Delta_i^{(j)}=a_i'^{(j)}-a_i^{(j)}.
+$$
+Equality of the block labels gives
+$$
+\Delta_{\pi(i)}^{(j)}=-\Delta_i^{(j)}. \tag{23}
+$$
+For one endpoint $i$ of each transposition block choose $b_i^{(j)}=0$ and
+$$
+b_{\pi(i)}^{(j)}=\Delta_i^{(j)}.
+$$
+Set $u_{j+1}=\sum_i b_i^{(j)}$ as in (20). The resulting element $\kappa\in\Gamma$ has base permutation equal to the identity, hence lies in $\widetilde C_\pi$, and (21) with $c=1$ changes $a_i^{(j)}$ by exactly $\Delta_i^{(j)}$ on both endpoints because of (23). It leaves every $s_j$ unchanged. Therefore $\kappa$ conjugates the first lift to the second. Hence two qualifying lifts are conjugate if and only if they have the same $s$ and the same multiplicity profile.
+
+Finally, the four distinct levels in (8) recover $z_0,\overline W,\overline U$, so distinct admissible flags give distinct profiles. Thus there is exactly one conjugacy orbit for each admissible pair consisting of a phase vector and a flag, and multiplying (16) and (19) gives the required count.
 Final Answer: $\boxed{\frac{3r(r-1)^2(5r^2+7r+6)}{16}\ell^{r-4}\frac{\ell^{r-3}-1}{\ell-1}}$
 
 ---
