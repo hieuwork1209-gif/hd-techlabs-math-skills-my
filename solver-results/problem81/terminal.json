@@ -3,7 +3,8 @@
   "state": "MAIN_READY_FOR_RAINIER",
   "problem_blob_sha": "ff50a0fc29787da306277767cd8ab550797b1e06",
   "main_problem_blob_sha": "ff50a0fc29787da306277767cd8ab550797b1e06",
-  "main_solution_blob_sha": "181bf730304f3c5979cc3d88ddb7682d0eb9e1b7",
+  "main_solution_blob_sha": "113065633ddd8185e03330568d5e4974cb32a06a",
   "main_commit_sha": "bd721e5639a31296c8c601b7e923908cbcad49d9",
+  "solution_format_repair_commit_sha": "6c34445f302e1dcd5c6219f40f7e3772df4b2095",
   "reason": "LOCAL_STUMPED_PROMOTED_TO_MAIN"
 }
