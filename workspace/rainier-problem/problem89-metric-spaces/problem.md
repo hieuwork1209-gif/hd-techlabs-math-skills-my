@@ -2,19 +2,27 @@
 
 ## LaTeX (Normalized)
 
-Let $m\ge3$. Form a graph $B_m$ from two disjoint copies of $K_m$ by choosing one distinguished vertex in each copy and joining those two distinguished vertices by a single edge. Let $d$ be the shortest-path metric on $B_m$.
-
-For $p>0$, say that $(B_m,d)$ has $p$-negative type if every real family $(c_x)_{x\in B_m}$ with $\sum_xc_x=0$ satisfies
+Let
 $$
-\sum_{x,y\in B_m}c_xc_y\,d(x,y)^p\le0.
+P=\binom{[6]}2
+$$
+be the set of $2$-subsets of $[6]$, and let $S$ be the set of partitions of $[6]$ into three unordered $2$-subsets. Form a bipartite graph $G$ on
+$$
+P\sqcup S
+$$
+by joining $p\in P$ to $s\in S$ exactly when $p$ is one of the three blocks of the partition $s$. Let $d$ be the shortest-path metric on $G$.
+
+For $p>0$, say that $(G,d)$ has $p$-negative type if every real family $(c_x)$ with $\sum_xc_x=0$ satisfies
+$$
+\sum_{x,y}c_xc_y\,d(x,y)^p\le0.
 $$
 Let
 $$
-\wp=\sup\{p>0:(B_m,d)\text{ has }p\text{-negative type}\}.
+\wp=\sup\{p>0:(G,d)\text{ has }p\text{-negative type}\}.
 $$
 At $p=\wp$, define the equality space
 $$
-E=\left\{c\in\mathbb R^{B_m}:\sum_xc_x=0,\ \sum_{x,y}c_xc_y\,d(x,y)^{\wp}=0\right\}.
+E=\left\{c:\sum_xc_x=0,\ \sum_{x,y}c_xc_y\,d(x,y)^{\wp}=0\right\}.
 $$
 Determine the ordered pair $(\wp,\dim E)$.
 
@@ -33,4 +41,4 @@ Determine the ordered pair $(\wp,\dim E)$.
 
 ## Domain Explanation
 
-The problem asks for the maximal negative-type exponent of the natural barbell-graph metric and the dimension of its boundary equality space. The graph has two vertex orbits inside each clique, so the decisive step is a symmetry decomposition of the powered-distance quadratic form into competing even and odd modes.
+The problem asks for the maximal negative-type exponent of a finite incidence-graph metric and the dimension of its boundary equality space. The structure comes from the incidence geometry of pairs and pair-partitions of a six-element set.
