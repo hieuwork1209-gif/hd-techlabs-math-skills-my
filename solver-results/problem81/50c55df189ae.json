@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-field-theory/problem.md",
+  "source_commit_sha": "f26bfa77316ba21684905f44c3b373adfc1c65d3",
+  "problem_blob_sha": "50c55df189aee856f30ae3a48f78e7da0102b322",
+  "statement_sha256": "8d5d7433f9e38bd780e52e2b73c5e3673c2ce99a50753a3ef27d4568b8204986",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T07:15:54+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(m=n/2=2q^2\\), the number of transposition blocks of \\(\\pi\\).  \nThe required number of \\(\\widetilde C_\\pi\\)-conjugacy orbits is\n\n\\[\n\\boxed{\\ell(\\ell-1)^{r-2}(\\ell^r-1)(\\ell^{r-1}-1)}.\n\\]\n\nHere is the derivation.\n\nFor \\(\\sigma\\in\\Gamma\\) with \\(\\pi_\\sigma=\\pi\\), write\n\n\\[\n\\sigma(\\rho_j)=\\zeta^{c_j}\\rho_j,\\qquad c_j\\in\\mathbb F_\\ell^\\times,\n\\]\n\nand\n\n\\[\n\\sigma(\\alpha_i^{(j)})=\\zeta^{a_i^{(j)}}\\alpha_{\\pi(i)}^{(j)}.\n\\]\n\nFor a transposition block \\(B=\\{i,\\pi(i)\\}\\), define\n\n\\[\nS_B=(a_i^{(1)}+a_{\\pi(i)}^{(1)},\\dots,a_i^{(r)}+a_{\\pi(i)}^{(r)})\\in\\mathbb F_\\ell^r.\n\\]\n\nThe Kummer relation hypothesis implies that, up to \\(\\widetilde C_\\pi\\)-conjugacy, only the multiset of the \\(S_B\\)’s matters, together with \\(c=(c_1,\\dots,c_r)\\). Since every \\(c_j\\ne0\\), rescale coordinates and put\n\n\\[\nx_B=\\frac{S_B}{2c}\\in\\mathbb F_\\ell^r.\n\\]\n\nLet \\(f(x)\\) be the multiplicity of \\(x\\) among the \\(x_B\\)’s. Then\n\n\\[\n\\sum_x f(x)=m=2q^2.\n\\]\n\nFor \\(k\\in\\mathbb F_\\ell^r\\), the number of \\(2\\)-cycles on \\(\\Omega_k\\) is\n\n\\[\nC(k)=\\ell^r\\left(2\\sum_x f(x)f(x+k)-m\\delta_{k,0}\\right).\n\\]\n\nThe stated differences therefore force the autocorrelation\n\n\\[\nA(k):=2\\sum_x f(x)f(x+k)-m\\delta_{k,0}\n\\]\n\nto have three levels on a flag\n\n\\[\nW\\subset U\\subset\\mathbb F_\\ell^r,\\qquad \\operatorname{codim}U=1,\\quad \\operatorname{codim}W=2,\n\\]\n\nwith\n\n\\[\nA_W-A_U=8\\ell^2(q+Q),\\qquad A_U-A_O=8\\ell(q+3Q).\n\\]\n\nFourier transforming, the corresponding Fourier magnitudes are\n\n\\[\n|\\widehat f(\\chi)|=\n\\begin{cases}\nq+4Q, & \\chi\\in U^\\perp\\setminus\\{0\\},\\\\\nq+2Q, & \\chi\\in W^\\perp\\setminus U^\\perp,\\\\\nq, & \\chi\\notin W^\\perp.\n\\end{cases}\n\\]\n\nBecause \\(2\\) generates \\(\\mathbb F_\\ell^\\times\\), the primes \\(q,q+2Q,q+4Q\\) are inert in the \\(\\ell\\)-cyclotomic field; hence each nonzero Fourier coefficient is forced to be that prime times a root of unity. The integrality and nonnegativity of \\(f\\) then force the common phase form, giving exactly one multiplicity function for each translate \\(y\\) and flag:\n\n\\[\nf(x)=dq-4+2\\ell\\,1_{x-y\\in U}+2\\ell^2\\,1_{x-y\\in W}+q\\,1_{x=y},\n\\]\n\nwhere\n\n\\[\nd=\\frac{2q-1}{Q}.\n\\]\n\nThe relations for \\(j<r\\) impose\n\n\\[\n\\sum_x f(x)x_j=0\\qquad (1\\le j<r),\n\\]\n\nso the translate \\(y\\) must have first \\(r-1\\) coordinates zero. Thus there are exactly \\(\\ell\\) choices for \\(y\\).\n\nNow count choices:\n\n- \\(c\\in(\\mathbb F_\\ell^\\times)^r\\): \\((\\ell-1)^r\\) choices.\n- Flags \\(W\\subset U\\subset\\mathbb F_\\ell^r\\):\n\n\\[\n\\frac{\\ell^r-1}{\\ell-1}\\cdot \\frac{\\ell^{r-1}-1}{\\ell-1}.\n\\]\n\n- Allowed translates \\(y\\): \\(\\ell\\) choices.\n\nTherefore the number of \\(\\widetilde C_\\pi\\)-conjugacy orbits is\n\n\\[\n(\\ell-1)^r\\cdot \\ell\\cdot\n\\frac{\\ell^r-1}{\\ell-1}\\cdot\n\\frac{\\ell^{r-1}-1}{\\ell-1}\n=\n\\boxed{\\ell(\\ell-1)^{r-2}(\\ell^r-1)(\\ell^{r-1}-1)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T07:19:07+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/50c55df189ae.json"
+}
