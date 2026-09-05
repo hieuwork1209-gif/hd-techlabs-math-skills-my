@@ -1,173 +1,170 @@
 ## Steps
 
-Step 1: Reveal the hidden triangular coordinates
-Put
+Step 1: Reveal the hidden Lie basis and PBW structure
+Let
 $$
-q=b+a^2,
+A=k[a,b,c,d].
+$$
+Define
+$$
+E=\frac{X+Y}{2},
 \qquad
-r=c+ab.
-$$
-Since
-$$
-b=q-a^2,
+F=\frac{X-Y}{2},
 \qquad
-c=r-aq+a^3,
+H=Z.
 $$
-we have
+The displayed commutator relations give
 $$
-k[a,b,c]=k[a,q,r].
-$$
-Now define
-$$
-P=X+aY,
+[H,E]=2E,
 \qquad
-Q=Y+qZ,
+[H,F]=-2F,
 \qquad
-S=Z.
+[E,F]=H.
 $$
-The change is invertible because
+Their actions on $A$ are
 $$
-Z=S,
-\qquad
-Y=Q-qS,
-\qquad
-X=P-aQ+aqS.
+E(a)=0,
+\quad E(b)=a,
+\quad E(c)=2b,
+\quad E(d)=3c,
 $$
-Using the defining relations,
 $$
-[P,u]=a,
-\qquad
-[Q,u]=q,
-\qquad
-[S,u]=r.
-$$
-Moreover $P,Q,S$ commute pairwise and commute with $a,q,r$. Thus $R$ has PBW normal form over $k[a,q,r,u]$ in the commuting skew variables $P,Q,S$.
-
-Step 2: Reduce centrality to one nonfree invariant ring
-Let $z\in Z(R)$. Since $P$ commutes with $q,r,P,Q,S$ and satisfies $[P,u]=a$, commutation with $P$ gives
-$$
-[P,z]=a\,\partial_u z=0.
-$$
-The algebra is a domain and has characteristic zero, so $z$ is independent of $u$. Hence
-$$
-z\in B:=k[a,q,r,P,Q,S].
-$$
-Commutation with $u$ is now equivalent to
-$$
-D(z)=0,
-$$
-where
-$$
-D=a\partial_P+q\partial_Q+r\partial_S.
-$$
-Conversely, every element of $\ker D\subseteq B$ commutes with $u,P,Q,S,a,q,r$. Therefore
-$$
-Z(R)=\ker D.
-$$
-
-Step 3: Compute the kernel and its saturation
-Set
-$$
-U=qP-aQ,
-\qquad
-V=rP-aS,
-\qquad
-W=rQ-qS.
-$$
-Then
-$$
-D(U)=D(V)=D(W)=0,
+F(a)=3b,
+\quad F(b)=2c,
+\quad F(c)=d,
+\quad F(d)=0,
 $$
 and
 $$
-aW=qV-rU.
+H(a)=3a,
+\quad H(b)=b,
+\quad H(c)=-c,
+\quad H(d)=-3d.
+$$
+These derivations satisfy the same Lie brackets as $E,F,H$. Hence the presentation is the enveloping algebra of the semidirect product of the abelian span of $a,b,c,d$ by the three-dimensional Lie algebra spanned by $E,F,H$. PBW therefore gives a basis
+$$
+a^ib^jc^kd^\ell E^mH^nF^r,
+$$
+and the associated graded algebra for total $E,F,H$-degree is the polynomial domain
+$$
+\operatorname{gr}R=A[e,h,f].
+$$
+
+Step 2: Compute the invariant polynomials in the coefficient ring
+Set
+$$
+p=ac-b^2,
+$$
+$$
+q=a^2d-3abc+2b^3,
+$$
+and
+$$
+\Delta=a^2d^2-6abcd+4ac^3+4b^3d-3b^2c^2.
+$$
+Direct calculation gives
+$$
+E(p)=E(q)=E(\Delta)=0
+$$
+and
+$$
+a^2\Delta=q^2+4p^3.
+$$
+We first determine $\ker E$. Localize at $a$ and put
+$$
+t=\frac ba.
+$$
+Then $E(t)=1$, while
+$$
+c=\frac pa+at^2,
+$$
+$$
+d=\frac q{a^2}+\frac{3tp}{a}+at^3.
 $$
 Thus
 $$
-C:=k[a,q,r,U,V,W]\subseteq\ker D.
+A_a=k[a,a^{-1},t,p,q],
+$$
+and $E$ is differentiation with respect to $t$. Therefore
+$$
+(\ker E)_a=k[a,a^{-1},p,q].
 $$
 
-Localize at $a$. Since
+To intersect back with $A$, write an element as $a^{-N}G(a,p,q)$ with $N\geq0$ minimal. If $N>0$, reducing the numerator modulo $a$ gives
 $$
-D\left(\frac Pa\right)=1,
+G(0,-b^2,2b^3)=0.
 $$
-and
+The kernel of
 $$
-Q=\frac{qP-U}{a},
+k[p,q]\to k[b],
 \qquad
-S=\frac{rP-V}{a},
+p\mapsto-b^2,
+\quad q\mapsto2b^3,
 $$
-we get
+is the principal ideal $(q^2+4p^3)$: after division by this polynomial, a remainder has the form $A(p)+qB(p)$, and substitution separates even and odd powers of $b$. Hence
 $$
-(\ker D)_a=k[a,a^{-1},q,r,U,V].
+G(0,p,q)=(q^2+4p^3)G_0(p,q).
 $$
-It remains to intersect back with $B$. Let
+Using $q^2+4p^3=a^2\Delta$ lowers the negative power of $a$, contradicting minimality. Consequently
 $$
-f=a^{-N}F(a,q,r,U,V)\in B
-$$
-with $N\ge0$ minimal. If $N>0$, reducing the numerator modulo $a$ gives
-$$
-F(0,q,r,qP,rP)=0.
-$$
-Consider
-$$
-\phi:k[q,r,U,V]\longrightarrow k[q,r,P],
-\qquad
-U\mapsto qP,
-\quad
-V\mapsto rP.
-$$
-We claim
-$$
-\ker\phi=(rU-qV).
-$$
-The polynomial $rU-qV$ is primitive and linear in $V$ over the UFD $k[q,r,U]$, hence irreducible and therefore prime in $k[q,r,U,V]$. After localizing at $q$, the equation $rU-qV=0$ gives
-$$
-V=\frac rqU,
-$$
-so the localized kernel is exactly $(rU-qV)_q$. Thus if $G\in\ker\phi$, some power $q^mG$ lies in $(rU-qV)$. Since this prime ideal does not contain $q$, it follows that $G\in(rU-qV)$, proving the claim.
-
-Hence
-$$
-F(0,q,r,U,V)=(rU-qV)G_0.
-$$
-But
-$$
-rU-qV=-aW.
-$$
-Lifting $G_0$ therefore lowers the negative power of $a$, contradicting minimality. Thus $N=0$, so
-$$
-\ker D=C=k[a,q,r,U,V,W].
+\ker E=k[a,p,q,\Delta].
 $$
 
-Step 4: Return to the original generators
-Substituting
+The $H$-weights of $a,p,q,\Delta$ are respectively
 $$
-q=b+a^2,
-\qquad
-r=c+ab,
+3,
+\qquad2,
+\qquad3,
+\qquad0.
 $$
-and the definitions of $P,Q,S$ gives
+Therefore the weight-zero part of $\ker E$ is exactly $k[\Delta]$. Any polynomial fixed by $E,F,H$ is in particular fixed by $E$ and $H$, so it lies in $k[\Delta]$. A direct substitution also gives $F(\Delta)=0$. Hence
 $$
-U=qX+a(q-1)Y-aqZ,
+A^{E,F,H}=k[\Delta].
 $$
+
+Step 3: Exclude every positive skew degree from the center
+Let $z\in Z(R)$ and suppose its total $E,F,H$-degree is $N$. Let
 $$
-V=rX+arY-aZ,
+s\in A[e,h,f]
 $$
+be its leading symbol. For any $g\in A$, the degree-$(N-1)$ symbol of $[z,g]$ is
 $$
-W=rY+q(r-1)Z.
+E(g)\,\partial_e s+H(g)\,\partial_h s+F(g)\,\partial_f s.
 $$
-Because $k[a,q,r]=k[a,b,c]$, we conclude
+Since $z$ is central, this vanishes for every $g\in A$.
+
+Over the fraction field of $A$, the derivations $E,H,F$ are linearly independent. Indeed, the coefficient matrix obtained from their values on $a,b,c$ has a $3\times3$ determinant which specializes to a nonzero value at
 $$
-Z(R)=k[a,b,c,U,V,W].
+a=1,
+\qquad b=c=0,
+\qquad d=1.
 $$
-Final Answer: $\boxed{k[a,b,c,qX+a(q-1)Y-aqZ,rX+arY-aZ,rY+q(r-1)Z]}$
+Thus
+$$
+\partial_e s=\partial_h s=\partial_f s=0.
+$$
+Because the characteristic is zero, $s$ is independent of $e,h,f$. This is impossible when $N>0$. Therefore every central element has skew degree zero, so
+$$
+Z(R)\subseteq A.
+$$
+
+Step 4: Assemble the center
+An element of $A$ commutes with $E,F,H$, equivalently with $X,Y,Z$, exactly when it belongs to
+$$
+A^{E,F,H}=k[\Delta].
+$$
+Conversely $\Delta$ commutes with $A$ and is killed by $E,F,H$, so it is central. Therefore
+$$
+Z(R)=k[\Delta]
+=k[a^2d^2-6abcd+4ac^3+4b^3d-3b^2c^2].
+$$
+Final Answer: $\boxed{k[a^2d^2-6abcd+4ac^3+4b^3d-3b^2c^2]}$
 
 ---
 
 ## Answer
 
-$k[a,b,c,qX+a(q-1)Y-aqZ,rX+arY-aZ,rY+q(r-1)Z]$
+$k[a^2d^2-6abcd+4ac^3+4b^3d-3b^2c^2]$
 
 ---
 
@@ -181,11 +178,11 @@ $k[a,b,c,qX+a(q-1)Y-aqZ,rX+arY-aZ,rY+q(r-1)Z]$
 
 ## Solution Concepts
 
-- differential Ore extensions
-- nonfree syzygy modules
-- locally nilpotent derivations
-- saturation of invariant rings
-- PBW normal forms
+- PBW filtrations
+- semidirect enveloping algebras
+- hidden Lie actions
+- invariant subrings
+- binary cubic discriminants
 
 ---
 
