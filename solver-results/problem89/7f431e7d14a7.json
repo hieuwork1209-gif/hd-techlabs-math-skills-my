@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "46d2a3aae23600d00ba4347eafb168e4a4b9af11",
+  "problem_blob_sha": "7f431e7d14a706cb9e02be8d195c9c55746f5410",
+  "statement_sha256": "e134ece62687a1113db50cadd97f4e3a425b32cb9010c70ca4152dfd93f5c86b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T07:24:55+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(X\\) be the set of \\(k\\)-subsets of \\([n]\\), and let \\(A\\) be the adjacency matrix of \\(KG(n,k)\\).\n\nSince \\(n\\ge 3k-1\\), if \\(S,T\\in X\\) intersect and \\(S\\ne T\\), then\n\\[\n|[n]\\setminus(S\\cup T)|=n-|S\\cup T|\\ge n-(2k-1)\\ge k,\n\\]\nso there exists a \\(k\\)-set disjoint from both \\(S\\) and \\(T\\). Hence\n\\[\nd(S,T)=\n\\begin{cases}\n0,&S=T,\\\\\n1,&S\\cap T=\\varnothing,\\\\\n2,&S\\ne T,\\ S\\cap T\\ne\\varnothing.\n\\end{cases}\n\\]\nThus, writing \\(q=2^p\\),\n\\[\nD_p=(d(S,T)^p)_{S,T}=A+q(J-I-A)=q(J-I)+(1-q)A.\n\\]\nOn the zero-sum subspace \\(J=0\\), so the relevant operator is\n\\[\n-qI+(1-q)A.\n\\]\n\nThe Kneser adjacency eigenvalues are\n\\[\n\\lambda_j=(-1)^j\\binom{n-k-j}{k-j},\\qquad j=0,1,\\dots,k,\n\\]\nwith multiplicity\n\\[\nm_j=\\binom nj-\\binom n{j-1}.\n\\]\nFor completeness, these come from the filtration spanned by indicators of \\(k\\)-sets containing a fixed \\(j\\)-set: modulo the previous level, \\(A\\) acts by\n\\[\n(-1)^j\\binom{n-k-j}{k-j}.\n\\]\n\nTherefore the eigenvalue of \\(D_p\\) on the \\(j\\)-th nonconstant eigenspace is\n\\[\n\\mu_j(p)=\\lambda_j-q(1+\\lambda_j).\n\\]\nIf \\(j\\) is even, \\(\\lambda_j>0\\), so \\(\\mu_j(p)<0\\) for all \\(q>1\\). If \\(j\\) is odd, write\n\\[\nb_j=\\binom{n-k-j}{k-j},\n\\]\nso \\(\\lambda_j=-b_j\\). Then\n\\[\n\\mu_j(p)=q(b_j-1)-b_j.\n\\]\nThus we need\n\\[\nq\\le \\frac{b_j}{b_j-1}\n\\]\nfor every odd \\(j\\) with \\(b_j>1\\).\n\nThe numbers \\(b_j\\) strictly decrease with \\(j\\), since\n\\[\n\\frac{b_j}{b_{j+1}}=\\frac{n-k-j}{k-j}>1\n\\]\nfor \\(j<k\\). Hence the strongest condition is at \\(j=1\\). Put\n\\[\nB=\\binom{n-k-1}{k-1}.\n\\]\nThen\n\\[\n2^p\\le \\frac{B}{B-1},\n\\]\nso\n\\[\n\\wp=\\log_2\\!\\left(\\frac{B}{B-1}\\right).\n\\]\n\nAt \\(p=\\wp\\), equality occurs only for \\(j=1\\), because \\(b_j\\) is strictly decreasing. Therefore \\(E\\) is exactly the first nonconstant eigenspace, whose dimension is\n\\[\nm_1=\\binom n1-\\binom n0=n-1.\n\\]\n\n\\[\n\\boxed{\\left(\\log_2\\!\\left(\\frac{\\binom{n-k-1}{k-1}}{\\binom{n-k-1}{k-1}-1}\\right),\\ n-1\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T07:25:57+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/7f431e7d14a7.json"
+}
