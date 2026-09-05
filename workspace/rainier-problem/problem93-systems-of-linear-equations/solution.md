@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Convert the shift equations to a local quotient
+Step 1: Pass to the local cyclic-invariant quotient
 Let
 $$
 R=\mathbb F_p[X,Y,Z]/(X^n-1,Y^n-1,Z^n-1),
@@ -9,232 +9,187 @@ where multiplication by $X,Y,Z$ represents $T_1,T_2,T_3$. Sending $f$ to the fun
 $$
 \lambda_f(X^xY^yZ^z)=f(x,y,z)
 $$
-identifies the simultaneous solution space with the dual of the quotient of $R$ by the three operator polynomials in the statement. The cyclic permutation $(X,Y,Z)\mapsto(Y,Z,X)$ preserves that quotient. Since $p\neq3$, averaging over the cyclic group shows that the invariant subspace of the dual has the same dimension as the invariant subspace of the quotient. Thus $\dim_{\mathbb F_p}V_n$ is the cyclic-invariant dimension of that quotient.
+identifies the simultaneous kernel with the dual of the quotient by the operator polynomials. The cycle
+$$
+\rho:(X,Y,Z)\mapsto(Y,Z,X)
+$$
+preserves that quotient. Since $p\ne3$, Reynolds averaging makes taking $\langle\rho\rangle$-invariants exact, and the invariant subspace of the dual has the same dimension as the invariant subspace of the quotient.
 
+Put
+$$
+a=X-1,\qquad b=Y-1,\qquad c=Z-1.
+$$
+Because $n$ is a power of $p$,
+$$
+X^n-1=a^n,\qquad Y^n-1=b^n,\qquad Z^n-1=c^n.
+$$
+The first operator equation becomes $a+b+c=0$. We temporarily omit the truncation $a^n=b^n=c^n=0$ and restore it in Step 5.
+
+On the plane $a+b+c=0$, define
+$$
+s=ab+bc+ca,\qquad t=abc,\qquad \Delta=(a-b)(b-c)(c-a).
+$$
+Every polynomial fixed by the cycle splits uniquely into a symmetric part plus $\Delta$ times a symmetric part. Hence the cyclic invariant ring is
+$$
+E=\mathbb F_p[s,t,\Delta]\Big/(\Delta^2+4s^3+27t^2).
+$$
+
+Step 2: Reduce the operator equations
+Let $q=n/p$. Since $q$ is a power of $p$,
+$$
+X^q=1+a^q,\qquad Y^q=1+b^q,\qquad Z^q=1+c^q,
+$$
+and $a^q+b^q+c^q=0$. Expanding the operators gives
+$$
+A=s^q,\qquad B=t^q.
+$$
+For
+$$
+C=(T_1-T_2)(T_2-T_3)(T_3-T_1)
+$$
+we have simply $C=\Delta$. Therefore the untruncated cyclic-invariant quotient is
+$$
+Q=E/(s^{2q},t^q,\Delta^{2(q-1)}).
+$$
+Put
+$$
+H=4s^3+27t^2.
+$$
+Since $\Delta^2=-H$,
+$$
+\Delta^{2(q-1)}=(-1)^{q-1}H^{q-1}=H^{q-1}.
+$$
+Also $E=\mathbb F_p[s,t]\oplus\Delta\mathbb F_p[s,t]$ as a module over $\mathbb F_p[s,t]$. Thus, with
+$$
+R_0=\mathbb F_p[s,t]/(s^{2q},t^q),
+$$
+we have
+$$
+\dim Q=2\dim R_0/(H^{q-1}).
+$$
+It remains to determine the rank of multiplication by $H^{q-1}$ on $R_0$.
+
+Step 3: Split into six residue blocks
 Set
 $$
-a=X-1,
+X=s^3,\qquad Y=t^2.
+$$
+Decompose $R_0$ according to the exponent of $s$ modulo $3$ and the exponent of $t$ modulo $2$:
+$$
+R_0=\bigoplus_{r=0}^2\bigoplus_{e=0}^1
+s^rt^e\,\mathbb F_p[X,Y]/(X^{A_r},Y^{B_e}),
+$$
+where
+$$
+A_r=\#\{0\le i<2q:i\equiv r\pmod3\},
+$$
+$$
+B_e=\#\{0\le j<q:j\equiv e\pmod2\}.
+$$
+Hence
+$$
+\sum_{r=0}^2A_r=2q,
 \qquad
-b=Y-1,
-\qquad
-c=Z-1.
+\sum_{e=0}^1B_e=q.
 $$
-Since $n$ is a power of $p$,
+Each block is preserved by multiplication by
 $$
-X^n-1=a^n,
-\qquad
-Y^n-1=b^n,
-\qquad
-Z^n-1=c^n.
+H^{q-1}=(4X+27Y)^{q-1}.
 $$
-Thus $R$ is the local Artinian ring $\mathbb F_p[a,b,c]/(a^n,b^n,c^n)$. The first equation gives
-$$
-a+b+c=0.
-$$
+Rescaling $X,Y$ by nonzero constants does not affect rank, so it suffices to study multiplication by $(X+Y)^{q-1}$.
 
-Step 2: Recover the two hidden invariants
-In the quotient by $a+b+c$, put
-$$
-s=ab+bc+ca,
-\qquad
-t=abc.
-$$
 Because $q$ is a power of $p$,
 $$
-X^q=1+a^q,
-\qquad
-Y^q=1+b^q,
-\qquad
-Z^q=1+c^q.
+(1+z)^q=1+z^q.
 $$
-Also $a^q+b^q+c^q=0$. Expanding the operators from the statement now gives
+Since $q$ is odd,
 $$
-A=(ab+bc+ca)^q=s^q,
+(1+z)^{q-1}=1-z+z^2-\cdots+z^{q-1}.
 $$
-and
-$$
-B=(abc)^q=t^q.
-$$
-The two long-shift equations therefore generate the same ideal as
-$$
-F=s^{2q}+t^{3q}+t^{5q}
-$$
-and
-$$
-G=s^qt^{5q}+t^{6q}.
-$$
-Indeed, if $F_0=A^2+B^3$, then the displayed equations are $F_0+B^5=0$ and $(1+A+B)F_0+B^5=0$; subtracting $(1+A+B)$ times the first from the second gives $-(A+B)B^5=0$. Conversely the second equation is recovered from the first together with this difference. Since $q$ is a $p$-power, these two generators are
-$$
-F=(s^2+t^3+t^5)^q,
-\qquad
-G=((s+t)t^5)^q.
-$$
-For Steps 3--4 we temporarily omit the truncation $(a^n,b^n,c^n)$; Step 5 proves that this omission does not change the cyclic-invariant quotient.
+Thus all coefficients of $(X+Y)^{q-1}$ alternate between $1$ and $-1$.
 
-Step 3: Select the cyclic-invariant part
-Let $\rho$ be the cycle $(a,b,c)\mapsto(b,c,a)$ and put
+Step 4: Compute the Frobenius-degenerate rank
+Fix one block
 $$
-\Delta=(a-b)(b-c)(c-a).
+S_{A,B}=\mathbb F_p[X,Y]/(X^A,Y^B)
 $$
-A polynomial fixed by $\rho$ splits uniquely into a symmetric part and an alternating part. Indeed, if $\tau$ swaps $a$ and $b$ and $h$ is fixed by $\rho$, then
+with $A=A_r$ and $B=B_e$, and put
 $$
-h=\frac{h+\tau h}{2}+\frac{h-\tau h}{2}.
+R=A+B-q.
 $$
-The first summand is fixed by $\rho$ and $\tau$, hence by all of $S_3$. The second is fixed by $\rho$ and changes sign under $\tau$, hence is alternating. Every alternating polynomial vanishes when any two variables agree, so it is divisible by $\Delta$; after division, the quotient is symmetric. On the plane $a+b+c=0$, every symmetric polynomial is a polynomial in
-$$
-s=ab+bc+ca,
-\qquad
-t=abc.
-$$
-Consequently
-$$
-\left(\frac{\mathbb F_p[a,b,c]_{(a,b,c)}}{(a+b+c)}\right)^{\langle\rho\rangle}
-=\mathbb F_p[s,t]_{(s,t)}\oplus
-\Delta\mathbb F_p[s,t]_{(s,t)}.
-$$
-The sum is direct because a nonzero polynomial cannot be both symmetric and alternating when $2$ is invertible. Therefore the cyclic-invariant part is free of rank $2$ over the local invariant ring.
+Since $q\ge p\ge29$, all six values of $R$ are positive.
 
-The elements $F$ and $G$ are invariant. Because $3$ is invertible, the Reynolds averaging operator
+Multiplication by $(X+Y)^{q-1}$ raises total degree by $q-1$. The source degrees that can contribute are exactly
 $$
-\mathcal R(h)=\frac{h+\rho h+\rho^2h}{3}
+d=0,1,\dots,R-1.
 $$
-is a projection onto invariants, so taking $\langle\rho\rangle$-invariants is exact. Moreover, if an invariant element belongs to $(F,G)$, average its coefficients in an expression $F u+G v$ to obtain invariant coefficients. Hence
+For such a $d$, the degree-$d$ source has basis
 $$
-((F,G))^{\langle\rho\rangle}=(F,G)\left(\mathbb F_p[s,t]_{(s,t)}\oplus\Delta\mathbb F_p[s,t]_{(s,t)}\right).
+X^aY^{d-a}\qquad(0\le a\le d),
 $$
-Thus the invariant quotient is two independent copies of
+and the degree-$d+q-1$ target has $R-d$ basis monomials. Because $R<A,B$, every source basis vector can connect to every target basis vector without crossing either truncation bound.
+
+If the target $X$-exponent is $c$, the corresponding coefficient is, up to a fixed sign,
 $$
-C=\frac{\mathbb F_p[s,t]_{(s,t)}}{(F,G)}.
+(-1)^{a+c}.
+$$
+Therefore the matrix on this graded piece is an outer product of a sign column and a sign row, so it has rank exactly $1$. Distinct total degrees do not mix. Hence
+$$
+\operatorname{rank}\bigl((X+Y)^{q-1}:S_{A,B}\to S_{A,B}\bigr)=A+B-q.
+$$
+Summing over the six blocks gives
+$$
+\operatorname{rank}(H^{q-1}:R_0\to R_0)
+=\sum_{r=0}^2\sum_{e=0}^1(A_r+B_e-q).
+$$
+Using the two counting identities from Step 3,
+$$
+\operatorname{rank}(H^{q-1})
+=2(2q)+3(q)-6q=q.
+$$
+Since $\dim R_0=2q^2$,
+$$
+\dim R_0/(H^{q-1})=2q^2-q,
+$$
+and therefore
+$$
+\dim Q=4q^2-2q.
 $$
 
-Step 4: Count the coupled local quotient
-From $F=G=0$,
+Step 5: Restore the truncation and finish
+Before restoring $a^n,b^n,c^n$, the invariant quotient $Q$ is spanned by classes of
 $$
-s^{2q}=-t^{3q}-t^{5q},
-\qquad
-s^qt^{5q}=-t^{6q}.
+s^it^j,\qquad \Delta s^it^j,
 $$
-A direct combination gives
+with $0\le i<2q$ and $0\le j<q$. Since $\deg s=2$, $\deg t=3$, and $\deg\Delta=3$, every such class has degree at most
 $$
-t^{5q}F-s^qG+t^qG
-=t^{7q}(1+t^q+t^{3q}).
-$$
-The factor $1+t^q+t^{3q}$ has constant term $1$, hence is a unit in the local ring. Therefore
-$$
-t^{7q}\in(F,G).
+2(2q-1)+3(q-1)+3=7q-2.
 $$
 
-We now use the local standard-basis criterion explicitly. Fix a local weighted degree-lexicographic monomial order with weights
+Let $\mathcal M$ be the corresponding untruncated quotient before taking cyclic invariants, and let
 $$
-\operatorname{wt}(s)=2,
-\qquad
-\operatorname{wt}(t)=3,
+K_0=(a^n,b^n,c^n)\mathcal M.
 $$
-so that smaller weighted degree is leading, with ties broken by $s>t$. For a finite set of generators in a local polynomial ring, the criterion says: if every critical $S$-overlap reduces to $0$ with respect to the generators, then they form a local standard basis; consequently their leading monomials generate the initial ideal, and the monomials outside that initial ideal form a vector-space basis of the quotient.
-
-Take
+Then $K_0\subseteq\mathfrak m^n\mathcal M$, where $\mathfrak m=(a,b,c)$. Since $n=pq\ge29q>7q-2$, the invariant part of $\mathfrak m^n\mathcal M$ is zero, so $K_0^{\langle\rho\rangle}=0$. Exactness of cyclic invariants applied to
 $$
-f_1=F,
-\qquad
-f_2=G,
-\qquad
-f_3=t^{7q}.
+0\to K_0\to\mathcal M\to\mathcal M/K_0\to0
 $$
-Their leading monomials are
-$$
-s^{2q},
-\qquad
-s^qt^{5q},
-\qquad
-t^{7q}.
-$$
-The three critical overlaps reduce as follows:
-$$
-t^{5q}f_1-s^qf_2
-=(1+t^q+t^{3q})f_3-t^qf_2,
-$$
-$$
-t^{7q}f_1-s^{2q}f_3
-=t^{3q}f_3+t^{5q}f_3,
-$$
-$$
-t^{2q}f_2-s^qf_3=t^qf_3.
-$$
-Thus all critical overlaps reduce to $0$, so $f_1,f_2,f_3$ form a local standard basis. Hence the residue classes of the monomials
-$$
-\mathcal B=
-\left\{s^it^j:0\leq i<2q,
-\ 0\leq j<7q,
-\ \text{and not both }i\geq q,
-\ j\geq5q\right\}
-$$
-form a basis of $C$. Therefore
-$$
-\dim_{\mathbb F_p}C
-=(2q)(7q)-(q)(2q)=12q^2.
-$$
-
-Step 5: Restore the truncation and finish the count
-Let
-$$
-D=\frac{\mathbb F_p[a,b,c]_{(a,b,c)}}{(a+b+c,F,G)}
-$$
-be the untruncated local quotient. By Steps 3--4,
-$$
-D^{\langle\rho\rangle}\cong C\oplus\Delta C,
-\qquad
-\dim_{\mathbb F_p}D^{\langle\rho\rangle}=24q^2.
-$$
-Filter $D$ by powers of the maximal ideal $\mathfrak m=(a,b,c)$. Since $s$ and $t$ have total degrees $2$ and $3$, the local weighted order used in Step 4 computes the associated graded invariant quotient. In the $C$ summand, the largest possible weighted degree among the basis monomials is
-$$
-2(q-1)+3(7q-1)=23q-5.
-$$
-The second summand is multiplied by $\Delta$, which has degree $3$, so its largest possible degree is $23q-2$. Therefore
-$$
-(\mathfrak m^dD)^{\langle\rho\rangle}=0
-\qquad(d\geq23q-1).
-$$
-Here we use again that averaging preserves the $\mathfrak m$-adic filtration, so taking invariants commutes with the associated graded pieces.
-
-Now let
-$$
-K=(a^n,b^n,c^n)D.
-$$
-This ideal is $\rho$-stable and satisfies $K\subseteq\mathfrak m^nD$. Since
-$$
-n=pq\geq29q>23q-2,
-$$
-we get
-$$
-K^{\langle\rho\rangle}\subseteq(\mathfrak m^nD)^{\langle\rho\rangle}=0.
-$$
-Finally, because $3$ is invertible in $\mathbb F_p$, taking cyclic invariants is exact. Applying invariants to
-$$
-0\longrightarrow K\longrightarrow D\longrightarrow D/K\longrightarrow0
-$$
-gives
-$$
-0\longrightarrow K^{\langle\rho\rangle}\longrightarrow D^{\langle\rho\rangle}
-\longrightarrow(D/K)^{\langle\rho\rangle}\longrightarrow0.
-$$
-Since $K^{\langle\rho\rangle}=0$, the map
-$$
-D^{\langle\rho\rangle}\longrightarrow(D/K)^{\langle\rho\rangle}
-$$
-is an isomorphism. Thus the truncation relations $a^n=b^n=c^n=0$ do not change the cyclic-invariant dimension.
+shows that restoring $a^n=b^n=c^n=0$ does not change the required dimension.
 
 Therefore
 $$
-\dim_{\mathbb F_p}V_n=24q^2=24\left(\frac{n}{p}\right)^2.
+\dim_{\mathbb F_p}V_n
+=4q^2-2q
+=4\left(\frac np\right)^2-2\left(\frac np\right).
 $$
 
-Final Answer: $\boxed{24\left(\frac{n}{p}\right)^2}$
+Final Answer: $\boxed{4\left(\frac np\right)^2-2\left(\frac np\right)}$
 
 ---
 
 ## Answer
 
-$24\left(\frac{n}{p}\right)^2$
+$4\left(\frac np\right)^2-2\left(\frac np\right)$
 
 ---
 
@@ -249,11 +204,11 @@ $24\left(\frac{n}{p}\right)^2$
 ## Solution Concepts
 
 - cyclic translation operators
-- finite-field Frobenius map
-- symmetric polynomial invariants
-- local standard bases
-- exactness of finite-group invariants
+- symmetric and alternating invariants
+- Frobenius binomial degeneration
+- residue-class module decomposition
+- graded rank counting
 
 ## Black-Box Audit
 
-No Level 2 or Level 3 black-box issue remains. The invariant reduction, rank-two cyclic decomposition, local standard-basis criterion and overlaps, local quotient basis, and truncation-via-invariants argument are all stated explicitly.
+The invariant ring, operator reduction, six-block decomposition, characteristic-$p$ rank collapse, rank sum, and truncation argument are all derived explicitly.
