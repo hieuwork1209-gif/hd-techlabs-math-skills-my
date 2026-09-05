@@ -1,0 +1,22 @@
+{
+  "problem": "problem70",
+  "branch": "adversary/problem70",
+  "problem_path": "workspace/rainier-problem/problem70-determinants/problem.md",
+  "source_commit_sha": "1da282b6803cacac926c1445c9beb053e8b9dca2",
+  "problem_blob_sha": "467cea273b1cc03a2d6af343c28a00d5fbbeaddc",
+  "statement_sha256": "512fc8866631b90d6ca626009448159906cc39c64172bfc1c5bd721a1b812bce",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T07:25:02+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nx=aL-1,\\qquad \\varepsilon=\\frac1L,\\qquad F(x)=e^{-x}+e^{-2x}+e^{-3x}.\n\\]\n\nUsing\n\n\\[\n\\sum_{k=0}^{N}\\frac{(-1)^k\\binom Nk}{(k+a)^r}\n=\\frac{(-1)^{r-1}}{(r-1)!}\\frac{d^{r-1}}{da^{r-1}}\n\\left(\\frac{\\Gamma(a)\\Gamma(N+1)}{\\Gamma(N+1+a)}\\right),\n\\]\n\nand \\(\\Gamma(N+1)/\\Gamma(N+1+a)=N^{-a}(1+o(L^{-M}))\\), uniformly here, we get\n\n\\[\nT_r=e^{-1}L^r t_r(x,\\varepsilon)+o(L^r\\varepsilon^M),\n\\]\n\nwhere\n\n\\[\nt_r=\\frac{(-1)^{r-1}}{(r-1)!}\\varepsilon\n\\frac{d^{r-1}}{dx^{r-1}}\\left(\\Gamma(\\varepsilon(1+x))F(x)\\right).\n\\]\n\nExpanding\n\n\\[\n\\Gamma u=\\frac1u-\\gamma+\n\\left(\\frac{\\gamma^2}{2}+\\frac{\\pi^2}{12}\\right)u+O(u^2),\n\\]\n\nand substituting into the given polynomial expression, after dividing by the common factor \\(e^{-4}L^{10}\\), the non-\\(\\lambda\\) part is\n\n\\[\nP(x,\\varepsilon)\n=\n-149202x^3-4860\\pi^2\\varepsilon^2x-891\\pi^4\\varepsilon^4\n+O(x^4+\\varepsilon x^3+\\varepsilon^2x^2+\\varepsilon^3x+\\varepsilon^4|x|+\\varepsilon^5).\n\\]\n\nAlso\n\n\\[\nT_1^4=e^{-4}L^4(81+O(x+\\varepsilon)).\n\\]\n\nThus the normalized equation has form\n\n\\[\nP(x,\\varepsilon)+\\lambda x(81+O(x+\\varepsilon))=0.\n\\]\n\nThe derivative condition gives\n\n\\[\n\\lambda=-\\frac{P_x(x,\\varepsilon)}{81+O(x+\\varepsilon)}.\n\\]\n\nSubstituting this back cancels the linear \\(\\varepsilon^2x\\) contribution to leading order, leaving\n\n\\[\n-891\\pi^4\\varepsilon^4+298404x^3=o(\\varepsilon^4).\n\\]\n\nTherefore\n\n\\[\nx^3\\sim \\frac{891\\pi^4}{298404}\\varepsilon^4\n=\\frac{11\\pi^4}{3684}\\varepsilon^4.\n\\]\n\nSince \\(x=a_nL-1\\) and \\(\\varepsilon=1/L\\),\n\n\\[\n\\boxed{\\lim_{n\\to\\infty}L^{4/3}(a_nL-1)\n=\n\\left(\\frac{11\\pi^4}{3684}\\right)^{1/3}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T07:29:05+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem70/467cea273b1c.json"
+}
