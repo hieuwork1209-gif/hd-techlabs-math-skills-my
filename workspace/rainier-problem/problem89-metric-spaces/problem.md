@@ -2,19 +2,19 @@
 
 ## LaTeX (Normalized)
 
-For $|s|<\frac12$, let $G_s$ be the weighted graph with vertex set
+For $|s|<\frac14$, let $G_s$ be the weighted graph with vertex set
 $$
-Y=\{\ast,0,1,\ldots,12\}.
+Y=\{\ast,a_1,a_2,a_3,b_1,b_2,b_3\}.
 $$
-For indices modulo $13$, join $i$ to $i+1$ by an edge of length $4$. Put
+The vertices $\ast,a_1,a_2,a_3$ form a $4$-cycle and the vertices $\ast,b_1,b_2,b_3$ form another $4$-cycle; every cycle edge has length $1$. Add three chords
 $$
-h(s)=\frac{29s^2+7s|s|}{104}.
+\{a_1,a_3\},\qquad \{b_1,b_3\},\qquad \{a_2,b_2\}
 $$
-Join $\ast$ to $0,1,2,5,10$ by edges of lengths
+of lengths
 $$
-7+h(s),\ 7+h(s),\ 7+h(s),\ 13+h(s),\ 15+h(s),
+2-s,\qquad 2-2s,\qquad 4-s,
 $$
-respectively. Finally add chords $\{0,7\}$ and $\{3,8\}$ of lengths $24+s$ and $20-s$, respectively. Let $d_s$ be the shortest-path metric on $Y$.
+respectively. Let $d_s$ be the shortest-path metric on $Y$.
 
 For $p>0$, say that $(Y,d_s)$ has $p$-negative type if every real family $(c_z)_{z\in Y}$ with $\sum_zc_z=0$ satisfies
 $$
@@ -24,19 +24,15 @@ Let
 $$
 \wp(s)=\sup\{p>0:(Y,d_s)\text{ has }p\text{-negative type}\}.
 $$
-
-At $s=0$ and $p=1$, let $(a_z)_{z\in Y}$ be the unique nonzero zero-sum family normalized by $a_\ast=2$ and satisfying
+Put
 $$
-\sum_{z,w\in Y}a_za_w\,d_0(z,w)=0.
+U=4\log\frac{128}{27},\qquad V=12\log\frac32.
 $$
-Define
+Determine the ordered triple
 $$
-\tau=\frac14\left.\frac{d}{dp}\right|_{p=1}\sum_{z,w\in Y}a_za_w\,d_0(z,w)^p,
+\left(\wp(0),\wp'(0^-),\wp'(0^+)\right),
 $$
-$$
-\beta_-=\tau\,\wp'''(0^-),\qquad \beta_+=\tau\,\wp'''(0^+),
-$$
-where the third derivatives are taken one-sided. Determine the ordered triple $(\wp(0),\beta_-,\beta_+)$.
+where the derivatives are one-sided.
 
 ---
 
@@ -53,4 +49,4 @@ where the third derivatives are taken one-sided. Determine the ordered triple $(
 
 ## Domain Explanation
 
-The problem studies the supremal negative-type exponent of a finite shortest-path metric across two different one-sided geodesic regimes, with a coupled spoke perturbation that cancels the quadratic eigenvalue splitting. The key objects are conditional negative definiteness and third-order one-sided perturbation of a simple boundary eigenvalue.
+The problem concerns the supremal negative-type exponent of a finite shortest-path metric at a two-dimensional critical kernel. The active chords create a one-sided degenerate eigenvalue splitting, so the boundary is determined by a generalized two-dimensional perturbation rather than a simple eigenvalue correction.
