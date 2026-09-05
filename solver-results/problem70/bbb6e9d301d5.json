@@ -1,0 +1,22 @@
+{
+  "problem": "problem70",
+  "branch": "adversary/problem70",
+  "problem_path": "workspace/rainier-problem/problem70-determinants/problem.md",
+  "source_commit_sha": "ca58da9808462e208d9d8b5d601bec343011aeb1",
+  "problem_blob_sha": "bbb6e9d301d55621a6a517835720eca0a777a9cf",
+  "statement_sha256": "364d3a766dbc3b500ee5dea5f4ea7f14a9169ca1d92364cc8856f16efc0e1fda",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T07:49:28+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nA_m(a)=\\sum_{k=0}^m\\frac{(-1)^k\\binom mk}{k+a}.\n\\]\nUsing\n\\[\n\\frac1{k+a}=\\int_0^1 x^{k+a-1}\\,dx,\n\\]\nwe get\n\\[\nA_m(a)=\\int_0^1 x^{a-1}(1-x)^m\\,dx\n=B(a,m+1)=\\frac{\\Gamma(a)\\Gamma(m+1)}{\\Gamma(m+a+1)}.\n\\]\nAlso\n\\[\n\\sum_{k=0}^m\\frac{(-1)^k\\binom mk}{(k+a)^2}\n=-A_m'(a)=A_m(a)H_m(a),\n\\]\nwhere\n\\[\nH_m(a)=\\sum_{j=0}^m\\frac1{a+j}.\n\\]\n\nWrite\n\\[\nB_q=e^{q-1}A_{n^q}(a),\\qquad H_q=H_{n^q}(a),\n\\]\nand put \\(N=n^3\\). Since\n\\[\nA_{N+1}(a)=A_N(a)\\frac{N+1}{N+1+a},\n\\]\nlet\n\\[\n\\rho=\\frac{N+1}{N+1+a}.\n\\]\nThe determinant condition says that the weighted average of the \\(H\\)'s is unchanged after replacing the third term by \\(N+1\\). A direct expansion gives the exact equivalent equation\n\\[\na\\{B_1(H_1-H_3)+B_2(H_2-H_3)\\}+\\rho(B_1+B_2+B_3)=0. \\tag{1}\n\\]\n\nNow set\n\\[\nL=\\log n,\\qquad s=aL.\n\\]\nThe solution satisfies \\(|s-1|<1/10\\). Uniformly in that range,\n\\[\nA_{n^q}(a)=\\Gamma(a)n^{-qa}\\left(1-\\frac{a(a+1)}{2n^q}+O(n^{-2q})\\right).\n\\]\nThus\n\\[\n\\frac{B_q}{\\Gamma(a)e^{-1}}\n=e^{q(1-s)}\\left(1-\\frac{a(a+1)}{2n^q}+O(n^{-2q})\\right).\n\\]\nAlso\n\\[\nH_1-H_3=-2L+\\frac{a+\\frac12}{n}+O(n^{-2}),\n\\]\n\\[\nH_2-H_3=-L+O(n^{-2}),\n\\]\nand\n\\[\n\\rho=1+O(n^{-3}L^{-1}).\n\\]\n\nKeeping terms through order \\((nL)^{-1}\\), write \\(s=1+\\varepsilon\\). Then\n\\[\n\\frac{B_1}{\\Gamma(a)e^{-1}}=1-\\varepsilon-\\frac1{2nL}+o((nL)^{-1}),\n\\]\n\\[\n\\frac{B_2}{\\Gamma(a)e^{-1}}=1-2\\varepsilon+o((nL)^{-1}),\n\\]\n\\[\n\\frac{B_3}{\\Gamma(a)e^{-1}}=1-3\\varepsilon+o((nL)^{-1}),\n\\]\nand\n\\[\n1+a(H_1-H_3)=-1-2\\varepsilon+\\frac1{2nL}+o((nL)^{-1}),\n\\]\n\\[\n1+a(H_2-H_3)=-\\varepsilon+o((nL)^{-1}).\n\\]\nSubstituting into (1), after division by the positive common factor \\(\\Gamma(a)e^{-1}\\), gives\n\\[\n\\left(-1-\\varepsilon+\\frac1{nL}\\right)\n+(-\\varepsilon)\n+(1-3\\varepsilon)\n+o((nL)^{-1})=0.\n\\]\nHence\n\\[\n-5\\varepsilon+\\frac1{nL}+o((nL)^{-1})=0,\n\\]\nso\n\\[\nnL(s-1)\\to \\frac15.\n\\]\nSince \\(s=a_n\\log n\\), the required limit is\n\\[\n\\boxed{\\frac15}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T07:51:10+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem70/bbb6e9d301d5.json"
+}
