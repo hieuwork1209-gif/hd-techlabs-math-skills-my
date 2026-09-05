@@ -18,7 +18,21 @@ The spectrum of $A$ is obtained directly. The constant vector has eigenvalue $6$
 $$
 Af_i=3(1-f_i),
 $$
-so the $5$-dimensional span of the differences $f_i-f_j$ has eigenvalue $-3$. The remaining subspace has dimension $9$, and since $\operatorname{tr}A=0$, its eigenvalue is $1$. Thus
+so the $5$-dimensional span of the differences $f_i-f_j$ has eigenvalue $-3$.
+
+Let $W$ be the orthogonal complement of the span of the constant function and the $f_i$. If $h\in W$ and $T=\{i,j\}$, then
+$$
+\sum_R h(R)=0,
+\qquad
+\sum_{R\ni i}h(R)=\sum_{R\ni j}h(R)=0.
+$$
+Therefore
+$$
+(Ah)(T)
+=\sum_{R\cap T=\varnothing}h(R)
+=h(T).
+$$
+Thus $A$ has eigenvalue $1$ on the $9$-dimensional space $W$. Hence
 $$
 \operatorname{Spec}(A)=6^{[1]},\ (-3)^{[5]},\ 1^{[9]}.
 $$
@@ -133,7 +147,7 @@ For $0\le p\le\alpha$, we have $1\le x<\sqrt2$. Since $y\ge x$,
 $$
 \lambda_2\le2-x-2x^2<0.
 $$
-Since $q<2$, we have $y<x^2$ for $p>0$, so
+At $p=0$, $\lambda_{-2}=-1$. For $p>0$, since $q<2$, we have $y<x^2$, and hence
 $$
 \lambda_{-2}<-2+x<0.
 $$
