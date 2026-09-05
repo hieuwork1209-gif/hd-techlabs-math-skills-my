@@ -40,11 +40,11 @@ $$
 (T_1+T_2+T_3-3I)f=0,
 $$
 $$
-(C+AB)f=0,
-$$
-and
-$$
-(A^3+B^2)f=0.
+Af=0,
+\qquad
+Bf=0,
+\qquad
+Cf=0.
 $$
 
 Determine, in closed form as a function of $p$ and $n$,
@@ -67,4 +67,4 @@ $$
 
 ## Domain Explanation
 
-This problem asks for the dimension of a simultaneous solution space of homogeneous translation equations over a finite field. Cyclic invariants and finite-field polynomial identities are the structural tools used to reduce that linear system.
+This problem asks for the dimension of a simultaneous solution space of homogeneous translation equations over a finite field. Cyclic invariants, Frobenius powers, and a finite local quotient are structural tools used to reduce that linear system.
