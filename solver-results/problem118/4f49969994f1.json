@@ -1,0 +1,22 @@
+{
+  "problem": "problem118",
+  "branch": "adversary/problem118",
+  "problem_path": "workspace/rainier-problem/problem118-ring-theory/problem.md",
+  "source_commit_sha": "a3044ee67af70d97fe605343abda300edc5a6942",
+  "problem_blob_sha": "4f49969994f1640c417081fd5b9ef2c1caebf164",
+  "statement_sha256": "e0a60a9fe32a184ea50beec8253bd4dbc21bb230f60a86d0e91210dde52c021d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T08:20:32+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\np=2ht-s^2-3h^2s\\in k[h,s,t].\n\\]\nThen the center is\n\\[\n\\boxed{\nZ(R)=k\\bigl[h^5,\\;h(2ht-s^2-3h^2s),\\;(2ht-s^2-3h^2s)^5,\\;xy\\bigr].\n}\n\\]\n\n**Solution.** Let \\(A=k[h,s,t]\\). The relations say \\(R=A[x,y;\\sigma,\\sigma^{-1}]\\), with \\(x a=\\sigma(a)x\\), \\(y a=\\sigma^{-1}(a)y\\), where\n\\[\n\\sigma(h)=\\zeta h,\\qquad\n\\sigma(s)=\\zeta^2(s+h^2),\\qquad\n\\sigma(t)=\\zeta^3(t+hs+2h^3).\n\\]\nIndeed the displayed formulas for \\(y\\) give \\(\\sigma^{-1}\\), and \\(xy=yx\\).\n\nFirst compute the \\(\\sigma\\)-invariants of \\(A\\). A direct substitution gives\n\\[\n\\sigma(p)=\\zeta^4p.\n\\]\nThus \\(h^5\\), \\(hp\\), and \\(p^5\\) are fixed by \\(\\sigma\\).\n\nTo see these are all invariants, localize at \\(h\\), and set\n\\[\nu=\\frac{s}{h^2},\\qquad q=\\frac{p}{2h^4}.\n\\]\nThen\n\\[\n\\sigma(h)=\\zeta h,\\qquad \\sigma(u)=u+1,\\qquad \\sigma(q)=q.\n\\]\nHence \\(\\sigma^5\\) fixes \\(h,q\\) and sends \\(u\\mapsto u+5\\). Since \\(\\operatorname{char}k=0\\), a polynomial invariant under \\(u\\mapsto u+5\\) is independent of \\(u\\). Therefore every invariant in \\(A_h\\) lies in \\(k[h,h^{-1},q]\\). Invariance under \\(\\sigma\\) then forces only powers \\(h^{5m}\\), so\n\\[\n(A_h)^\\sigma=k[h^5,h^{-5},q].\n\\]\nSince \\(q=p/(2h^4)\\), intersecting with \\(A=k[h,s,t]\\) gives precisely the span of monomials\n\\[\nh^a p^b\\quad\\text{with}\\quad a,b\\ge 0,\\qquad a+4b\\equiv 0\\pmod 5.\n\\]\nWriting \\(b=5c+r\\), \\(0\\le r\\le 4\\), this congruence gives \\(a=r+5\\ell\\), so\n\\[\nh^a p^b=(h^5)^\\ell (hp)^r(p^5)^c.\n\\]\nThus\n\\[\nA^\\sigma=k[h^5,hp,p^5].\n\\]\n\nNow let \\(z\\in Z(R)\\). Since \\(R\\) has \\(A\\)-basis \\(\\{x^m y^n:m,n\\ge0\\}\\), write\n\\[\nz=\\sum_{m,n} a_{mn}x^m y^n,\\qquad a_{mn}\\in A.\n\\]\nFor \\(a\\in A\\),\n\\[\nx^m y^n a=\\sigma^{m-n}(a)x^m y^n.\n\\]\nCommuting with \\(h,s,t\\) forces \\(\\sigma^{m-n}=\\mathrm{id}\\) on \\(A\\). But\n\\[\n\\sigma^r(h)=\\zeta^r h,\n\\]\nso \\(r\\) must be divisible by \\(5\\), and then\n\\[\n\\sigma^r(s)=s+r h^2,\n\\]\nwhich equals \\(s\\) only when \\(r=0\\). Hence \\(m=n\\). Therefore every central element has the form\n\\[\nz=\\sum_n a_n(xy)^n.\n\\]\nThe element \\(xy\\) is central, because\n\\[\nxy\\,a=x\\sigma^{-1}(a)y=a\\,xy\n\\]\nfor all \\(a\\in A\\), and \\(xy=yx\\). Finally, commuting with \\(x\\) forces\n\\[\n\\sigma(a_n)=a_n,\n\\]\nso \\(a_n\\in A^\\sigma\\). Hence\n\\[\nZ(R)=A^\\sigma[xy]\n=k[h^5,hp,p^5,xy],\n\\]\nwith \\(p=2ht-s^2-3h^2s\\).",
+  "status": "success",
+  "completed_at": "2026-09-05T08:22:14+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem118/4f49969994f1.json"
+}
