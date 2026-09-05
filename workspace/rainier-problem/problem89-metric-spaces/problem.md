@@ -2,7 +2,11 @@
 
 ## LaTeX (Normalized)
 
-Let $X=M_3(\mathbb F_2)$ be the set of $3\times3$ matrices over $\mathbb F_2$. Let $G$ be the graph on $X$ in which distinct matrices $A,B$ are adjacent exactly when
+Let
+$$
+X=\operatorname{Sym}_3(\mathbb F_3)
+$$
+be the set of symmetric $3\times3$ matrices over $\mathbb F_3$. Let $G$ be the graph on $X$ in which distinct matrices $A,B$ are adjacent exactly when
 $$
 \operatorname{rank}(A-B)=1.
 $$
@@ -37,4 +41,4 @@ Determine the ordered pair $(\wp,\dim E)$.
 
 ## Domain Explanation
 
-The problem asks for the maximal negative-type exponent of the natural rank metric on binary $3\times3$ matrices and the dimension of its boundary equality space. The key structure is Fourier diagonalization on the additive matrix group, with the spectral modes organized by matrix rank.
+The problem asks for the maximal negative-type exponent of a natural finite metric induced by rank-one moves on symmetric matrices, together with the dimension of the boundary equality space.
