@@ -1,0 +1,17 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-field-theory/problem.md",
+  "problem_blob_sha": "700ad955296218d52cceed44250ece3b124199f3",
+  "source_commit_sha": "e797ebe25b6ff104525e688131c273692fba0381",
+  "status": "success",
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "timeout_seconds": 2100,
+  "completed_at": "2026-09-05T02:17:40+00:00",
+  "result_file": "solver-results/problem81/700ad9552962.json"
+}
