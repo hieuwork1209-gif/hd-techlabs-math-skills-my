@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-field-theory/problem.md",
+  "source_commit_sha": "48f90d8e7591f3e724935f8f20c1f7764660dc20",
+  "problem_blob_sha": "03f5c6531f4df2c0a60b2c97b364a6ce7e9fe3a9",
+  "statement_sha256": "e2b3a206530deefa2af586643dfb8addcf1a4dcf33cab9ec94283c5d7bf41f27",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T07:49:25+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(m=2q^2\\), so \\(n=2m\\).  The answer is\n\n\\[\n\\boxed{\\,r(r-1)\\,\\ell^{r-3}(\\ell+1-r)\\frac{\\ell^{r-2}-1}{\\ell-1}\\, } .\n\\]\n\nHere is the derivation.\n\nFor \\(\\sigma\\in \\Gamma\\) with \\(\\pi_\\sigma=\\pi\\), write\n\n\\[\n\\sigma(\\alpha_i^{(j)})=\\zeta^{a_i^{(j)}}\\alpha_{\\pi(i)}^{(j)},\\qquad\n\\sigma(\\rho_j)=\\zeta^{s_j}\\rho_j .\n\\]\n\nThe relation \\(\\prod_i\\alpha_i^{(j)}=\\rho_{j+1}\\) gives\n\n\\[\n\\sum_i a_i^{(j)}=s_{j+1}.\n\\]\n\nPair the \\(n=4q^2\\) indices into the \\(m=2q^2\\) transpositions of \\(\\pi\\).  For a transposition \\(T=\\{i,\\pi(i)\\}\\), put\n\n\\[\nx_T^{(j)}=a_i^{(j)}+a_{\\pi(i)}^{(j)}.\n\\]\n\nThen\n\n\\[\n\\sum_T x_T^{(j)}=s_{j+1}.\n\\]\n\nOn \\(\\Omega_k\\), after applying \\(\\sigma^2\\), the \\(u\\)-coordinate is translated by\n\n\\[\n2k_js_j+x_T^{(j)}-x_{T'}^{(j)}.\n\\]\n\nThus the number of \\(2\\)-cycles depends only on the multiset \\(\\{x_T\\}_{T}\\subset \\mathbb F_\\ell^r\\).  Conjugation by the lifted centralizer of \\(\\pi\\) permutes the transpositions and does not change \\(s\\), so the conjugacy orbit is determined by \\(s\\) together with that multiset.\n\nThe imposed three-level cycle-count condition is equivalent, via finite Fourier transform on \\(\\mathbb F_\\ell^r\\), to the autocorrelation spectrum\n\n\\[\n|\\widehat a(\\chi)|=\n\\begin{cases}\nq+4Q,& \\chi\\in U^\\perp\\setminus\\{1\\},\\\\\nq+2Q,& \\chi\\in W^\\perp\\setminus U^\\perp,\\\\\nq,& \\chi\\notin W^\\perp,\n\\end{cases}\n\\]\n\nwhere \\(a(x)\\) is the multiplicity of \\(x\\) among the \\(x_T\\).  Because \\(q,q+2Q,q+4Q\\equiv 2^{-1}\\pmod \\ell\\) and \\(2\\) generates \\(\\mathbb F_\\ell^\\times\\), these primes are inert in the \\(\\ell\\)-cyclotomic character field.  Hence each Fourier coefficient is forced, up to a common translate, and the moment condition\n\n\\[\n\\sum_T x_T=Ps\n\\]\n\nfixes that translate uniquely.  Therefore, for each admissible triple \\((s,W,U)\\), there is exactly one \\(\\widetilde C_\\pi\\)-conjugacy orbit.\n\nIt remains to count admissible \\(s\\) and flags.\n\nThe condition\n\n\\[\n\\mathbf 1\\in \\operatorname{span}\\{s,Ps\\}\n\\]\n\nmeans there exist \\(A,B\\in\\mathbb F_\\ell\\), not both zero, such that\n\n\\[\nA s_j+B s_{j+1}=1\n\\]\n\nfor all \\(j\\).  The nonconstant solutions are exactly\n\n\\[\ns_j=1+\\mu\\lambda^{j-1},\n\\]\n\nwhere \\(\\lambda\\) has order \\(r\\) and \\(\\mu^r=1\\).  The conditions \\(\\sum_j s_j=r\\) and \\(\\prod_j s_j=2\\) force precisely this form, and all entries are nonzero.  There are\n\n\\[\nr(r-1)\n\\]\n\nsuch vectors \\(s\\).\n\nFor such an \\(s\\),\n\n\\[\nc_s^{(t)}=\\left(\\frac{s_{1+t}}{s_1},\\ldots,\\frac{s_{r+t}}{s_r}\\right)\n\\]\n\nlies in a fixed \\(2\\)-dimensional subspace \\(C\\), and the \\(r\\) projective directions \\(c_s^{(t)}\\) are distinct.  A hyperplane \\(U\\) containing \\(C\\) can be chosen in\n\n\\[\n\\frac{\\ell^{r-2}-1}{\\ell-1}\n\\]\n\nways.  For each such \\(U\\), the number of codimension-\\(2\\) subspaces \\(W\\subset U\\) avoiding all \\(r\\) directions \\(c_s^{(t)}\\) is\n\n\\[\n\\ell^{r-3}(\\ell+1-r).\n\\]\n\nMultiplying gives\n\n\\[\nr(r-1)\\cdot \\frac{\\ell^{r-2}-1}{\\ell-1}\\cdot \\ell^{r-3}(\\ell+1-r).\n\\]\n\nSo the required number is\n\n\\[\n\\boxed{\\,r(r-1)\\,\\ell^{r-3}(\\ell+1-r)\\frac{\\ell^{r-2}-1}{\\ell-1}\\, } .\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T07:53:01+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/03f5c6531f4d.json"
+}
