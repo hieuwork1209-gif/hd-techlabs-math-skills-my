@@ -2,59 +2,21 @@
 
 ## LaTeX (Normalized)
 
-For $|s|<\frac18$, let $G_s$ be the weighted graph with vertex set
-$$
-Y=\{\ast,a_1,a_2,a_3,b_1,b_2,b_3\}.
-$$
-The vertices $\ast,a_1,a_2,a_3$ form a $4$-cycle and $\ast,b_1,b_2,b_3$ form another $4$-cycle; every cycle edge has length $1$.
+Let $q\ge5$ be a prime power with $q\equiv1\pmod4$. Let $P(q)$ be the Paley graph on $\mathbb F_q$: distinct vertices $x,y$ are adjacent exactly when $x-y$ is a nonzero square in $\mathbb F_q$. Let $d$ be its shortest-path metric.
 
-Put
+For $p>0$, say that $(\mathbb F_q,d)$ has $p$-negative type if every real family $(c_x)_{x\in\mathbb F_q}$ with $\sum_xc_x=0$ satisfies
 $$
-L=\log2,\qquad M=\log\frac32,
-$$
-$$
-U=16L-12M,\qquad V=12M,
-$$
-$$
-C_+=-3L^2-6LM+3M^2-16L+12M,
-$$
-$$
-C_-=13L^2-30LM+15M^2-12M,
-$$
-$$
-D_+=\frac{-34L^3+144L^2M+57L^2-198LM^2-54LM+48L+102M^3+45M^2-36M}{3},
-$$
-$$
-D_-=-4L^3-30L^2M-13L^2+48LM^2+54LM-16M^3-33M^2+12M.
-$$
-Define
-$$
-g=-\frac{C_++C_-}{4},\qquad h=\frac{C_--C_+}{2},
-$$
-$$
-u=\frac{5-D_+-D_-}{4},\qquad v=\frac{1-D_+-D_-}{4},\qquad w=\frac{D_--D_+-1}{2}.
-$$
-Add the chords $\{a_1,a_3\},\{b_1,b_3\},\{a_2,b_2\}$ of lengths
-$$
-2-4Ls+gs^2+us^3,\qquad 2-4Ls+gs^2+vs^3,
-$$
-$$
-4-(8L-12M)s+hs^2+ws^3,
-$$
-respectively. Let $d_s$ be the shortest-path metric on $Y$.
-
-For $p>0$, say that $(Y,d_s)$ has $p$-negative type if every real family $(c_z)_{z\in Y}$ with $\sum_zc_z=0$ satisfies
-$$
-\sum_{z,w\in Y}c_zc_w\,d_s(z,w)^p\leq0.
+\sum_{x,y\in\mathbb F_q}c_xc_y\,d(x,y)^p\le0.
 $$
 Let
 $$
-\wp(s)=\sup\{p>0:(Y,d_s)\text{ has }p\text{-negative type}\}.
+\wp=\sup\{p>0:(\mathbb F_q,d)\text{ has }p\text{-negative type}\}.
 $$
-Determine
+At $p=\wp$, define the equality space
 $$
-\left(\wp(0),\wp'(0^+),\wp''(0^+),\wp'''(0^+)\right).
+E=\left\{c\in\mathbb R^{\mathbb F_q}:\sum_xc_x=0,\ \sum_{x,y}c_xc_y\,d(x,y)^{\wp}=0\right\}.
 $$
+Determine the ordered pair $(\wp,\dim E)$.
 
 ---
 
@@ -71,4 +33,4 @@ $$
 
 ## Domain Explanation
 
-The problem studies a finite shortest-path metric with a two-dimensional critical kernel. The chord coefficients cancel the complete first- and second-order kernel splittings, so the first decisive boundary term appears only after a third-order Schur-complement reduction.
+The problem asks for the maximal negative-type exponent of a finite graph metric and the dimension of its boundary equality space. The Paley graph's strong regularity makes the threshold a spectral property of the powered distance matrix.
