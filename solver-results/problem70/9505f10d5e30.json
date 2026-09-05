@@ -1,0 +1,22 @@
+{
+  "problem": "problem70",
+  "branch": "adversary/problem70",
+  "problem_path": "workspace/rainier-problem/problem70-determinants/problem.md",
+  "source_commit_sha": "64d626c5a49df402092a0435f6dc96c057af370a",
+  "problem_blob_sha": "9505f10d5e30e5582c9fe9c0c61269b1ce29b499",
+  "statement_sha256": "77cce7ce50e4066b0fdbe2c9ee064a3050dab36faacb59041ac7acf394531bc4",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T07:11:01+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nL=\\log n,\\qquad x=aL.\n\\]\nFor \\(N=n^q\\), define\n\\[\nS_r(N,a)=\\sum_{k=0}^N\\frac{(-1)^k\\binom Nk}{(k+a)^r}.\n\\]\nUsing\n\\[\nS_r(N,a)=\\frac{(-1)^{r-1}}{(r-1)!}\\frac{\\partial^{r-1}}{\\partial a^{r-1}}\nB(a,N+1),\n\\]\nand\n\\[\nB(a,N+1)=\\frac{\\Gamma(a)\\Gamma(N+1)}{\\Gamma(N+a+1)}\n=\\Gamma(a)N^{-a}(1+o(L^{-10}))\n\\]\nuniformly in the given window \\(x=1+O(L^{-1})\\), we get\n\\[\nT_r(n,a)=\\sum_{q=1}^3 e^{q-1}S_r(n^q,a).\n\\]\n\nThe leading part comes from \\(\\Gamma(a)\\sim 1/a\\). Thus\n\\[\nT_r=e^{-1}L^r A_r(x)+O(L^{r-1}),\n\\]\nwhere\n\\[\nA_r(x)=\\sum_{q=1}^3 e^{q(1-x)}\n\\sum_{m=0}^{r-1}\\frac{q^m}{m!x^{r-m}}.\n\\]\nPut the whole equation in the form \\(E_n(x)=0\\). The common factor \\(e^{-3}L^9\\) gives the leading function\n\\[\nF(x)=54D-1188A_1(2A_1A_3-A_2^2)\n+189(-6A_1^2A_4+6A_1A_2A_3-2A_2^3)\n+1594A_1^3,\n\\]\nwhere\n\\[\nD=\\det[(i+j)!A_{i+j+1}]_{i,j=0}^2.\n\\]\nExpanding at \\(x=1+t\\) gives\n\\[\nF(1+t)=104922t^2+O(t^3).\n\\]\nSo \\(x=1\\) is a double root of the leading equation.\n\nWe now need the first nonzero constant correction at \\(x=1\\). Use the Laurent expansion\n\\[\n\\Gamma(a)=\\frac1a+c_0+c_1a+c_2a^2+O(a^3),\n\\]\nwith\n\\[\nc_0=-\\gamma,\\qquad\nc_1=\\frac{\\gamma^2}{2}+\\frac{\\pi^2}{12},\\qquad\nc_2=-\\frac{\\gamma^3}{6}-\\frac{\\gamma\\pi^2}{12}-\\frac{\\zeta(3)}3.\n\\]\nSubstituting the expansion of \\(T_r\\) into \\(E_n(1)\\), all \\(L^8\\) and \\(L^7\\) constant terms cancel, and the \\(L^6\\) term is\n\\[\n21870(c_0^3-3c_0c_1+3c_2)L^6\n=-21870\\zeta(3)L^6.\n\\]\nTherefore, for \\(t=x-1\\),\n\\[\nE_n(1+t)=e^{-3}\\left(104922L^9t^2-21870\\zeta(3)L^6+o(L^6)\\right).\n\\]\nThe two nearby roots satisfy\n\\[\n104922L^9t^2\\sim 21870\\zeta(3)L^6,\n\\]\nso\n\\[\nL^{3/2}t\\to \\pm\\sqrt{\\frac{21870}{104922}\\zeta(3)}\n=\\pm\\sqrt{\\frac{405\\zeta(3)}{1943}}.\n\\]\nSince \\(a_n\\) is the larger solution, we take the positive sign.\n\n\\[\n\\boxed{\\sqrt{\\frac{405\\zeta(3)}{1943}}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T07:14:29+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem70/9505f10d5e30.json"
+}
