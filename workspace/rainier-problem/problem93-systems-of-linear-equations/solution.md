@@ -41,7 +41,7 @@ D=(T_1-I)(T_2-I)+(T_2-I)(T_3-I)+(T_3-I)(T_1-I).
 $$
 In the quotient by $a+b+c=0$, multiplication by $D$ is multiplication by $s$.
 
-Let $q=n/p$. Since $q$ is a power of $p$,
+Let $q=n/p$. Since $p$ is odd, $q$ is odd, so $(q-1)/2$ is an integer. Since $q$ is a power of $p$,
 $$
 X^q=1+a^q,\qquad Y^q=1+b^q,\qquad Z^q=1+c^q,
 $$
@@ -51,13 +51,17 @@ A=s^q,\qquad B=t^q,\qquad C=\Delta^q.
 $$
 Hence
 $$
-D^{q-1}A^2=s^{q-1}s^{2q}=s^{3q-1}.
+D^{(q-1)/2}A=s^{(q-1)/2}s^q=s^{(3q-1)/2}.
+$$
+Put
+$$
+m=\frac{3q-1}{2}.
 $$
 Therefore the untruncated cyclic-invariant quotient is
 $$
-Q=E/(s^{3q-1},t^q,\Delta^q).
+Q=E/(s^m,t^q,\Delta^q).
 $$
-This is the load-bearing mixed-scale step: the first exponent is not a pure Frobenius multiple of $q$.
+The cutoff $m$ lies strictly inside the nilpotent range, so this is not a complete-intersection count with only a top socle correction.
 
 Step 3: Convert the surface singularity to $uv=w^3$
 Extend scalars to a field $K/\mathbb F_p$ of degree at most $2$ containing an element $\alpha$ with
@@ -78,10 +82,10 @@ Because $q$ is a $p$-power, $u^q,v^q$ are invertible $K$-linear combinations of 
 $$
 Q\otimes_{\mathbb F_p}K
 \cong
-\frac{K[u,v,w]}{(uv-w^3,u^q,v^q,w^{3q-1})}.
+\frac{K[u,v,w]}{(uv-w^3,u^q,v^q,w^m)}.
 $$
 
-Step 4: Count the surviving semigroup monomials
+Step 4: Count the two monomial regimes
 The ring
 $$
 K[u,v,w]/(uv-w^3)
@@ -94,75 +98,75 @@ Hence every monomial has a unique normal form of one of the types
 $$
 w^j,\qquad u^iw^j\ (i\ge1),\qquad v^iw^j\ (i\ge1).
 $$
+There are $m$ surviving pure $w$-monomials.
 
-The pure $w$-monomials surviving modulo $w^{3q-1}$ are
-$$
-1,w,\dots,w^{3q-2},
-$$
-so there are $3q-1$ of them.
-
-For $1\le i<q$, the relation
+For $1\le i<q$, the identity
 $$
 u^qv^{q-i}=u^i(uv)^{q-i}=u^iw^{3(q-i)}
 $$
-shows that $u^iw^j$ is killed once $j\ge3(q-i)$. Since
+shows that $u^iw^j$ survives exactly for
 $$
-3(q-i)\le3q-3<3q-1,
+0\le j<\min\{m,3(q-i)\}.
 $$
-the generator $w^{3q-1}$ gives no earlier cutoff. Thus the number of surviving $u$-monomials is
+The same holds for the $v$-monomials. Therefore
 $$
-\sum_{i=1}^{q-1}3(q-i)=\frac{3q(q-1)}2.
+\dim Q=m+2\sum_{i=1}^{q-1}\min\{m,3(q-i)\}.
 $$
-The same count holds for the $v$-monomials. Therefore
+Write $q=2k+1$, so $m=3k+1$. Replacing $q-i$ by $r$ splits the sum at $r=k$:
 $$
-\dim_{\mathbb F_p}Q
-=(3q-1)+2\cdot\frac{3q(q-1)}2
-=3q^2-1.
+\sum_{r=1}^{2k}\min\{3k+1,3r\}
+=
+3\sum_{r=1}^{k}r+k(3k+1)
+=
+\frac{9k^2+5k}{2}.
 $$
-This also covers $q=1$, when the two sums are empty and the quotient is $K[w]/(w^2)$.
+Hence
+$$
+\dim Q
+=3k+1+9k^2+5k
+=9k^2+8k+1
+=\frac{9q^2-2q-3}{4}.
+$$
 
 Step 5: Restore the truncation and finish
 Let
 $$
-M=\frac{\mathbb F_p[a,b,c]_{(a,b,c)}}{(a+b+c,s^{3q-1},t^q,\Delta^q)}.
+\mathcal M=\frac{\mathbb F_p[a,b,c]_{(a,b,c)}}{(a+b+c,s^m,t^q,\Delta^q)}.
 $$
-Then $M^{\langle\rho\rangle}=Q$. Give $u,v$ degree $3$ and $w$ degree $2$. The largest degree among the surviving monomials in Step 4 is at most
+Then $\mathcal M^{\langle\rho\rangle}=Q$. Give $u,v$ degree $3$ and $w$ degree $2$. From the two regimes in Step 4, every surviving invariant monomial has degree less than $5q$. Hence
 $$
-6q-4.
-$$
-Hence
-$$
-(\mathfrak m^dM)^{\langle\rho\rangle}=0
-\qquad(d>6q-4),
+(\mathfrak m^{5q}\mathcal M)^{\langle\rho\rangle}=0,
 $$
 where $\mathfrak m=(a,b,c)$.
 
 Let
 $$
-K_0=(a^n,b^n,c^n)M.
+K_0=(a^n,b^n,c^n)\mathcal M.
 $$
-This ideal is $\rho$-stable and lies in $\mathfrak m^nM$. Since
+This ideal is $\rho$-stable and lies in $\mathfrak m^n\mathcal M$. Since
 $$
-n=pq\ge29q>6q-4,
+n=pq\ge29q>5q,
 $$
 we have $K_0^{\langle\rho\rangle}=0$. Exactness of cyclic invariants applied to
 $$
-0\to K_0\to M\to M/K_0\to0
+0\to K_0\to\mathcal M\to\mathcal M/K_0\to0
 $$
 shows that restoring $a^n=b^n=c^n=0$ does not change the required invariant dimension.
 
 Therefore
 $$
-\dim_{\mathbb F_p}V_n=3q^2-1=3\left(\frac np\right)^2-1.
+\dim_{\mathbb F_p}V_n
+=\frac{9q^2-2q-3}{4}
+=\frac{9(n/p)^2-2(n/p)-3}{4}.
 $$
 
-Final Answer: $\boxed{3\left(\frac np\right)^2-1}$
+Final Answer: $\boxed{\frac{9(n/p)^2-2(n/p)-3}{4}}$
 
 ---
 
 ## Answer
 
-$3\left(\frac np\right)^2-1$
+$\frac{9(n/p)^2-2(n/p)-3}{4}$
 
 ---
 
@@ -178,10 +182,10 @@ $3\left(\frac np\right)^2-1$
 
 - cyclic translation operators
 - symmetric and alternating invariants
-- mixed Frobenius exponents
+- mixed nilpotent cutoff
 - $A_2$ surface singularity
 - semigroup monomial counting
 
 ## Black-Box Audit
 
-The cyclic invariant ring, mixed-scale operator reduction, scalar extension, $uv=w^3$ model, monomial survival thresholds, and truncation argument are all derived explicitly.
+The invariant ring, mixed exponent reduction, scalar extension, $uv=w^3$ model, two-regime monomial count, and truncation argument are derived explicitly.
