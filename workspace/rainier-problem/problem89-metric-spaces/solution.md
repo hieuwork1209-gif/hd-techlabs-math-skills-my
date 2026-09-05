@@ -1,168 +1,167 @@
 ## Steps
 
-Step 1: Decompose the zero-sum space by the tree symmetries
+Step 1: Identify the distance by alternating-cycle structure
 
-Let $T$ be the complete rooted binary tree of height $3$. Its vertices are the binary words of lengths $0,1,2,3$, with an edge from a word to each one-letter extension. Thus the level sizes are
-$$
-1,2,4,8.
-$$
-Write
-$$
-a_k=k^p\qquad(2\le k\le6).
-$$
-The powered-distance matrix is invariant under every independent swap of the two children of an internal vertex.
+Let $X$ be the set of perfect matchings of $[8]$. Two matchings are adjacent when one is obtained from the other by choosing two matched edges and replacing them by one of the other two perfect matchings on the same four endpoints.
 
-Use these swaps to split the zero-sum space into mutually orthogonal invariant pieces:
-- four leaf-pair contrast lines;
-- two copies of a $2$-dimensional depth-$1$ contrast space;
-- one $3$-dimensional root-contrast space;
-- one $3$-dimensional radial zero-sum space.
+For $M,N\in X$, the multigraph $M\cup N$ is a disjoint union of alternating even cycles, where a common edge is counted as a doubled $2$-cycle. Let $c(M,N)$ be the number of these components. A single flip can change $c(M,N)$ by at most $1$, while any alternating cycle of length at least $4$ can be split by one flip. Hence
+$$
+d(M,N)=4-c(M,N).
+$$
+Thus the possible distances are $0,1,2,3$.
 
-The dimensions are
+Fix a base matching $M_0$. The cycle-size partitions of $4$ give five stabilizer orbits:
 $$
-4+2\cdot2+3+3=14,
+1+1+1+1,\qquad2+1+1,\qquad2+2,\qquad3+1,\qquad4,
 $$
-which is the full zero-sum dimension.
+with sizes
+$$
+1,\qquad12,\qquad12,\qquad32,\qquad48.
+$$
+The first two are the distance-$0$ and distance-$1$ orbits, the middle two together form distance $2$, and the last orbit has distance $3$.
 
-For $p=1$, the tree metric is a sum of edge-cut metrics. If $A_e$ is one side of the cut defined by an edge $e$, then for every zero-sum family $(c_x)$,
-$$
-\sum_{x,y}c_xc_y d(x,y)
-=-2\sum_e\left(\sum_{x\in A_e}c_x\right)^2\le0.
-$$
-Moreover, for $0<p<1$,
-$$
-t^p=\frac{p}{\Gamma(1-p)}\int_0^\infty(1-e^{-st})s^{-p-1}\,ds.
-$$
-For a tree metric, $e^{-sd}$ is positive semidefinite because it is the entrywise product, over the edges, of the positive semidefinite kernels $e^{-s\delta_e}$ of the cut metrics. Hence $d^p$ is conditionally negative definite for every $0<p\le1$.
+Step 2: Recover the adjacency spectrum from the five orbit types
 
-Step 2: Write the four symmetry blocks
-
-A leaf-pair contrast vector has quadratic value
+Let $A$ be the adjacency matrix of the flip graph. Choosing which two edges to flip and tracking the resulting cycle partition gives the quotient matrix
 $$
--2a_2 t^2,
-$$
-so these four lines are always strictly negative.
-
-For either depth-$1$ vertex, take as basis the contrast of its two child vertices and the contrast of the two corresponding pairs of leaves. The block is
-$$
-B_p=
+Q=
 \begin{pmatrix}
--2a_2&4-4a_3\\
-4-4a_3&4a_2-8a_4
+0&12&0&0&0\\
+1&1&2&8&0\\
+0&2&2&0&8\\
+0&3&0&3&6\\
+0&0&2&4&6
 \end{pmatrix}.
 $$
-
-For the root-contrast space, use the differences between the left and right halves on levels $1,2,3$. The block is
+Its characteristic polynomial is
 $$
-C_p=
-\begin{pmatrix}
--2a_2&4-4a_3&8a_2-8a_4\\
-4-4a_3&4a_2-8a_4&8a_3-16a_5+8\\
-8a_2-8a_4&8a_3-16a_5+8&8a_2+16a_4-32a_6
-\end{pmatrix}.
+(\theta-12)(\theta-5)(\theta-2)(\theta+1)(\theta+6).
 $$
 
-Finally, let $r_j$ be $1$ on level $j$, $-2^j$ at the root, and $0$ elsewhere. In the basis $(r_1,r_2,r_3)$, the radial zero-sum block is
+There are exactly five orbitals for the action of $S_8$ on ordered pairs of perfect matchings, indexed by the same cycle partitions. Every orbital is symmetric, so every $S_8$-invariant matrix is symmetric. Since products of invariant matrices are again invariant, this invariant algebra is commutative. It has dimension $5$.
+
+The quotient already exhibits five distinct eigenvalues of $A$, so the minimal polynomial of $A$ has degree $5$. Therefore $A$ generates the whole invariant algebra, and every distance-shell matrix is a polynomial in $A$. Hence the five quotient modes give all simultaneous eigenspaces.
+
+The graph is $12$-regular on
 $$
-R_p=
-\begin{pmatrix}
-2a_2-8&-8a_2+4a_3-4&8a_2-16a_3+8a_4-16\\
--8a_2+4a_3-4&-28a_2+8a_4&-32a_2-24a_3+16a_5+8\\
-8a_2-16a_3+8a_4-16&-32a_2-24a_3+16a_5+8&8a_2-128a_3+16a_4+32a_6
-\end{pmatrix}.
+|X|=7\cdot5\cdot3\cdot1=105
+$$
+vertices. Let the multiplicities of $5,2,-1,-6$ be $m_5,m_2,m_{-1},m_{-6}$. Since the graph is connected, the eigenvalue $12$ has multiplicity $1$. Also
+$$
+\operatorname{tr}A=0,
+\qquad
+\operatorname{tr}A^2=105\cdot12.
+$$
+Each vertex lies in exactly $6$ triangles: choose two of its four matched edges, and the three perfect matchings on those four endpoints form one triangle. Hence
+$$
+\operatorname{tr}A^3=105\cdot12.
+$$
+These four trace equations give
+$$
+(m_5,m_2,m_{-1},m_{-6})=(20,14,56,14).
 $$
 
-Step 3: Isolate the only block that can become singular first
+Step 3: Obtain the distance-shell eigenvalues
 
-Apply Sylvester's criterion to the displayed blocks. Expanding the relevant principal minors as exponential polynomials and differentiating on
+Let $A_r$ be the matrix of the distance-$r$ relation. For a quotient eigenvector normalized to have value $1$ on the base orbit, the $A_r$-eigenvalue is the orbit-size-weighted sum of its coordinates over the distance-$r$ orbits. Solving the five equations $(Q-\theta I)\phi=0$ gives
 $$
-1\le p\le\frac75
+\begin{array}{c|c|ccc}
+\theta&\text{multiplicity}&A_1&A_2&A_3\\
+\hline
+12&1&12&44&48\\
+5&20&5&2&-8\\
+2&14&2&-1&-2\\
+-1&56&-1&-4&4\\
+-6&14&-6&11&-6
+\end{array}
 $$
-gives the uniform bounds
-$$
-\det B_p>24,
-$$
-$$
-\det C_p<-168,
-$$
-while the first two leading principal minors of $C_p$ have the alternating signs required for negative definiteness.
 
-For the radial block, throughout the same interval,
-$$
-(R_p)_{11}<-2,
-$$
-$$
-\det (R_p)_{\{1,2\}\times\{1,2\}}>7.
-$$
-Thus the sign of the full determinant
-$$
-\Delta(p)=\det R_p
-$$
-controls the first radial loss of negative definiteness.
+Step 4: Find the maximal negative-type exponent
 
-The same direct differentiation gives
+Put
 $$
-\Delta'(p)>600
-\qquad\left(1\le p\le\frac75\right).
+x=2^p,\qquad y=3^p.
 $$
-Also
+Since
 $$
-\Delta\left(\frac43\right)<-35,
+D_p=A_1+xA_2+yA_3,
 $$
-whereas
+the four eigenvalues on the zero-sum subspace are
 $$
-\Delta\left(\frac75\right)>17.
+\mu_5=5+2x-8y,
 $$
-Therefore there is a unique
 $$
-\alpha\in\left(\frac43,\frac75\right)
+\mu_2=2-x-2y,
+$$
+$$
+\mu_{-1}=-1-4x+4y,
+$$
+$$
+\mu_{-6}=-6+11x-6y.
+$$
+The first two are strictly negative for every $p\ge0$.
+
+The function
+$$
+f(p)=\mu_{-1}(p)=4(3^p-2^p)-1
+$$
+is strictly increasing, with $f(0)=-1$ and
+$$
+f\left(\frac12\right)=4(\sqrt3-\sqrt2)-1>0.
+$$
+Hence there is a unique
+$$
+\alpha\in\left(0,\frac12\right)
 $$
 with
 $$
-\Delta(\alpha)=0.
+4(3^\alpha-2^\alpha)=1.
+$$
+
+It remains to check the $-6$ mode. Its derivative vanishes at most once, so its maximum occurs at $p=0$, at infinity, or at a point $p_0$ satisfying
+$$
+\left(\frac32\right)^{p_0}=\frac{11\log2}{6\log3}.
+$$
+Using $3\log2<2\log3$, this ratio is less than $11/9<\sqrt{3/2}$, so $p_0<1/2$ and $2^{p_0}<\sqrt2<16/11$. At such a critical point,
+$$
+\mu_{-6}(p_0)
+=-6+11\cdot2^{p_0}\frac{\log(3/2)}{\log3}.
+$$
+Since $3^5<2^8$, we have
+$$
+\frac{\log(3/2)}{\log3}<\frac38.
+$$
+Therefore
+$$
+\mu_{-6}(p_0)< -6+11\cdot\frac{16}{11}\cdot\frac38=0.
+$$
+Thus $\mu_{-6}<0$ for all $p\ge0$.
+
+Consequently the first loss of negative type occurs exactly when $\mu_{-1}=0$, and
+$$
+\wp=\alpha.
 $$
 Numerically,
 $$
-\alpha\approx1.3743135549.
-$$
-
-Step 4: Determine the supremal negative type
-
-For $1\le p<\alpha$, the leaf contrasts are strictly negative, both $B_p$ blocks are negative definite, $C_p$ is negative definite, and the three leading principal minors of $R_p$ have signs
-$$
--,+,-.
-$$
-Hence the powered-distance form is negative definite on the zero-sum subspace.
-
-At $p=\alpha$, the same statements remain strict except that
-$$
-\det R_\alpha=0.
-$$
-The first two radial leading minors are still nonzero, so $R_\alpha$ has a one-dimensional kernel and two negative eigenvalues.
-
-For $p>\alpha$ sufficiently close to $\alpha$, the first two radial leading minors keep their signs while
-$$
-\det R_p>0,
-$$
-so $R_p$ has a positive direction. Thus negative type fails immediately above $\alpha$. Together with Step 1, this proves
-$$
-\wp=\alpha.
+\alpha\approx0.4219679708.
 $$
 
 Step 5: Compute the equality-space dimension
 
-At $p=\alpha$, every nonradial symmetry block is strictly negative. The radial block has nullity exactly $1$. Consequently the equality space is precisely that radial kernel, so
+At $p=\alpha$, the modes corresponding to adjacency eigenvalues $5,2,-6$ remain strictly negative. The only zero mode is the adjacency eigenvalue $-1$, whose multiplicity is $56$.
+
+Hence
 $$
-\dim E=1.
+\dim E=56.
 $$
 
-Final Answer: $\boxed{(\alpha,1),\quad\alpha=\min\{p>1:\det R_p=0\}}$
+Final Answer: $\boxed{(\alpha,56),\quad4(3^\alpha-2^\alpha)=1,\quad0<\alpha<\frac12}$
 
 ---
 
 ## Answer
 
-$(\alpha,1),\quad\alpha=\min\{p>1:\det R_p=0\}$
+$(\alpha,56),\quad4(3^\alpha-2^\alpha)=1,\quad0<\alpha<\frac12$
 
 ---
 
@@ -176,8 +175,8 @@ $(\alpha,1),\quad\alpha=\min\{p>1:\det R_p=0\}$
 
 ## Solution Concepts
 
-- complete binary tree metrics
-- hierarchical Haar symmetry decomposition
-- conditional negative type
-- Sylvester criterion on symmetry blocks
-- radial boundary mode
+- perfect-matching flip graph
+- alternating-cycle decomposition
+- symmetry quotient and invariant algebra
+- spectral negative type
+- trace multiplicities
