@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-field-theory/problem.md",
+  "source_commit_sha": "1a814bb5bac4bb6d41632b92ad89dd3ed835f291",
+  "problem_blob_sha": "cca7511e256996ada81653a79707c58bd6494cb9",
+  "statement_sha256": "3fbccb2af87bfc67a5fae73c1f147663328278b77b3e49fce029fac804c23c39",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T07:34:26+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(V=\\mathbb F_\\ell^r\\), \\(Q=\\ell^r\\), and let\n\\[\nm=\\frac n2=2q^2\n\\]\nbe the number of transpositions of \\(\\pi\\).\n\nFor \\(\\sigma\\) above \\(\\pi\\), write\n\\[\n\\sigma(\\alpha_i^{(j)})=\\zeta^{a_i^{(j)}}\\alpha_{\\pi(i)}^{(j)},\\qquad\n\\sigma(\\rho_j)=\\zeta^{s_j}\\rho_j ,\n\\]\nwith every \\(s_j\\ne0\\). For a transposition block \\(T=\\{i,\\pi(i)\\}\\), put\n\\[\nb_T^{(j)}=a_i^{(j)}+a_{\\pi(i)}^{(j)},\\qquad\ny_T^{(j)}=\\frac{b_T^{(j)}}{2s_j}.\n\\]\nThe product relation gives\n\\[\n\\sum_T y_T=\\frac12\\left(\\frac{s_2}{s_1},\\ldots,\\frac{s_1}{s_r}\\right)=\\frac{c_s}{2}.\n\\]\n\nFor \\(k\\in V\\), the number of \\(2\\)-cycles on \\(\\Omega_k\\) is\n\\[\nC_k=Q A_k,\n\\]\nwhere\n\\[\nA_k=m\\mathbf 1_{k=0}+2N_k,\n\\]\nand \\(N_k\\) is the number of ordered distinct pairs \\((T,T')\\) with\n\\[\ny_{T'}-y_T=k.\n\\]\n\nThus the problem is equivalent to counting multisets \\(\\{y_T\\}_{T=1}^m\\subset V\\) whose difference autocorrelation has the prescribed three-level form. The given differences force the Fourier magnitudes of the multiplicity function \\(f(y)=\\#\\{T:y_T=y\\}\\) to be\n\\[\n|\\widehat f(\\chi)|=\n\\begin{cases}\n2q^2,&\\chi=1,\\\\\nq+4Q,&0\\ne\\chi\\in U^\\perp,\\\\\nq+2Q,&\\chi\\in W^\\perp\\setminus U^\\perp,\\\\\nq,&\\chi\\notin W^\\perp .\n\\end{cases}\n\\]\nUsing \\(2q\\equiv1\\pmod Q\\) and the primitivity of \\(2\\) modulo \\(\\ell\\), the usual cyclotomic rigidity gives equality only for\n\\[\nf\n=\nA\\cdot 1_V\n+q\\,\\delta_{c_s}\n+2\\ell^2\\,1_{c_s+W}\n+2\\ell\\,1_{c_s+U},\n\\]\nwith\n\\[\nA=\\frac{2q^2-q-4Q}{Q}.\n\\]\nThe sum condition indeed gives\n\\[\n\\sum_y yf(y)=q\\,c_s=\\frac{c_s}{2},\n\\]\nsince \\(q\\equiv 1/2\\pmod\\ell\\). Hence for every admissible pair \\((s,W\\subset U)\\) there is exactly one \\(\\widetilde C_\\pi\\)-conjugacy orbit.\n\nSo it remains only to count \\(s\\) and flags with\n\\[\n\\mathbf 1,c_s\\in U\\setminus W.\n\\]\nThe map\n\\[\ns\\mapsto c_s=\\left(\\frac{s_2}{s_1},\\ldots,\\frac{s_1}{s_r}\\right)\n\\]\nhas image\n\\[\n\\{c\\in(\\mathbb F_\\ell^\\times)^r:\\prod_i c_i=1\\},\n\\]\nand every \\(c\\) has exactly \\(\\ell-1\\) preimages.\n\nLet\n\\[\nd=\\gcd(r,\\ell-1).\n\\]\nThere are \\(d\\) scalar vectors \\(c=\\lambda\\mathbf 1\\) with \\(\\prod c_i=1\\). For such \\(c\\), the number of flags with \\(\\mathbf1\\in U\\setminus W\\) is\n\\[\n\\ell^{r-2}\\frac{\\ell^{r-1}-1}{\\ell-1}.\n\\]\nFor the remaining \\((\\ell-1)^{r-1}-d\\) vectors, \\(\\mathbf1\\) and \\(c\\) are independent, and the number of flags is\n\\[\n\\ell^{r-3}(\\ell^{r-2}-1).\n\\]\n\nTherefore the required number of conjugacy orbits is\n\\[\n\\boxed{\nd\\ell^{r-2}(\\ell^{r-1}-1)\n+(\\ell-1)\\bigl((\\ell-1)^{r-1}-d\\bigr)\\ell^{r-3}(\\ell^{r-2}-1)\n}\n\\]\nwhere \\(d=\\gcd(r,\\ell-1)\\).",
+  "status": "success",
+  "completed_at": "2026-09-05T07:37:29+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/cca7511e2569.json"
+}
