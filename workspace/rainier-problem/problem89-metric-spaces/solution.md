@@ -1,139 +1,95 @@
 ## Steps
 
-Step 1: Resolve the shortest-path distances
+Step 1: Resolve the perturbed shortest-path distances
 
 Let
 $$
 \rho(i,j)=4\min\{|i-j|,13-|i-j|\}
 $$
-be the metric on the $13$-cycle. For the five vertices joined directly to $\ast$, write
+be the metric on the $13$-cycle. For $|s|<1$, the spoke lengths are
 $$
-(w_0,w_1,w_2,w_5,w_{10})=(7,7,7,13,15).
+(w_0,w_1,w_2,w_5,w_{10})=(7,7,7-s,13,15+s).
 $$
-For every two anchors $r,s\in\{0,1,2,5,10\}$ one checks that
+For every pair of spoke endpoints, the cycle distance is still strictly smaller than the sum of the two spoke lengths, so a path between cycle vertices never becomes shorter by passing through $\ast$. Hence
 $$
-\rho(r,s)\le w_r+w_s.
+d_s(i,j)=\rho(i,j)\qquad(0\le i,j\le12).
 $$
-Hence a path between cycle vertices that passes through $\ast$ cannot be shorter than a cycle path: if such a path enters $\ast$ through $r$ and leaves through $s$, then
+The unique minimizing spoke for each cycle vertex is unchanged for $|s|<1$, giving
 $$
-\rho(i,r)+w_r+w_s+\rho(s,j)
-\ge \rho(i,r)+\rho(r,s)+\rho(s,j)
-\ge \rho(i,j).
+r(s):=(d_s(\ast,i))_{i=0}^{12}=r+s e,
 $$
-Therefore
+where
 $$
-d(i,j)=\rho(i,j)\qquad(0\le i,j\le12).
+r=(7,7,7,11,15,13,17,21,23,19,15,15,11)^T
 $$
-Also
+and
 $$
-d(\ast,i)=\min_{r\in\{0,1,2,5,10\}}\bigl(w_r+\rho(r,i)\bigr),
-$$
-so evaluating these five candidates gives
-$$
-r:=(d(\ast,i))_{i=0}^{12}
-=(7,7,7,11,15,13,17,21,23,19,15,15,11).
+e=(0,0,-1,-1,-1,0,0,0,1,1,1,0,0)^T.
 $$
 
-Step 2: Prove strict $1$-negative type on the cycle
+Step 2: Identify the unique equality direction at $s=0$, $p=1$
 
-For $k\in\mathbb Z/13\mathbb Z$, let
+Let $C=(\rho(i,j))_{0\le i,j\le12}$. For $k\in\mathbb Z/13\mathbb Z$, put
 $$
-S_k=\{k,k+1,\ldots,k+5\},
+S_k=\{k,k+1,\ldots,k+5\}.
 $$
-and let $\delta_{S_k}(i,j)$ be $1$ when exactly one of $i,j$ lies in $S_k$, and $0$ otherwise.
+If the cyclic distance between $i$ and $j$ is $m\in\{0,1,\ldots,6\}$, exactly $2m$ of the sets $S_k$ separate $i$ and $j$. Thus
+$$
+C_{ij}=2\sum_{k=0}^{12}\delta_{S_k}(i,j),
+$$
+where $\delta_{S_k}$ is the cut metric of $S_k$.
 
-If the cyclic distance between $i$ and $j$ is $m\in\{0,1,\ldots,6\}$, exactly $2m$ of the thirteen sets $S_k$ separate $i$ and $j$. Hence the cycle distance matrix $C=(\rho(i,j))$ satisfies
-$$
-C_{ij}=2\sum_{k=0}^{12}\delta_{S_k}(i,j).
-$$
-Now let $y=(y_0,\ldots,y_{12})$ satisfy $\sum_i y_i=0$. For one cut $S$,
+For every $y$ with $\sum_i y_i=0$,
 $$
 \sum_{i,j}y_i y_j\delta_S(i,j)
-=2\left(\sum_{i\in S}y_i\right)\left(\sum_{j\notin S}y_j\right)
-=-2\left(\sum_{i\in S}y_i\right)^2.
+=-2\left(\sum_{i\in S}y_i\right)^2,
 $$
-Therefore
+so
 $$
-y^TCy
-=-4\sum_{k=0}^{12}\left(\sum_{i\in S_k}y_i\right)^2\le0.
+y^TCy=-4\sum_{k=0}^{12}\left(\sum_{i\in S_k}y_i\right)^2\le0.
 $$
-If equality holds, every six-term block sum vanishes. Subtracting the equations for $S_k$ and $S_{k+1}$ gives
-$$
-y_k=y_{k+6}\qquad(k\bmod 13).
-$$
-Since $\gcd(6,13)=1$, all coordinates of $y$ are equal; because their sum is $0$, $y=0$. Thus the cycle metric has strict $1$-negative type.
+Equality forces all six-term block sums to vanish. Subtracting the equations for $S_k$ and $S_{k+1}$ gives $y_k=y_{k+6}$; since $\gcd(6,13)=1$, all coordinates are equal, hence $y=0$. Therefore the cycle metric has strict $1$-negative type.
 
-Step 3: Extend the negative-type inequality to the vertex $\ast$
-
-Define, in the order $0,1,\ldots,12$,
+Now define
 $$
 \mu=\left(1,-\frac12,0,0,-1,1,1,0,-1,0,0,-\frac12,1\right)^T.
 $$
-Its coordinates sum to $1$. Using $C_{ij}=4\min\{|i-j|,13-|i-j|\}$ and the sparse support of $\mu$,
+Its coordinates sum to $1$, and direct multiplication using the cycle distances gives
 $$
-C\mu
-=(6,6,6,10,14,12,16,20,22,18,14,14,10)^T
-=r-\mathbf1.
+C\mu=r-\mathbf1,
+\qquad
+\mu^Tr=-1,
+\qquad
+\mu^TC\mu=-2.
 $$
-Also
+For a zero-sum family $c=(t,b)$, with $t=c_\ast$ and $b=(c_0,\ldots,c_{12})^T$, one has $\mathbf1^Tb=-t$ and therefore
 $$
-\mu^Tr
-=7-\frac72-15+13+17-23-\frac{15}{2}+11=-1.
+\sum_{z,w}c_zc_wd_0(z,w)
+=(b+t\mu)^TC(b+t\mu)\le0.
 $$
-Consequently
-$$
-\mu^TC\mu=\mu^T(r-\mathbf1)=-1-1=-2.
-$$
-
-Take any zero-sum family $c=(t,b)$, where $t=c_\ast$ and $b=(c_0,\ldots,c_{12})^T$. Then
-$$
-\mathbf1^Tb=-t.
-$$
-Using $C\mu=r-\mathbf1$,
-$$
-\begin{aligned}
-(b+t\mu)^TC(b+t\mu)
-&=b^TCb+2t\mu^TCb+t^2\mu^TC\mu\\
-&=b^TCb+2t(r-\mathbf1)^Tb-2t^2\\
-&=b^TCb+2t\,r^Tb.
-\end{aligned}
-$$
-The last expression is exactly
-$$
-\sum_{z,w\in Y}c_zc_wd(z,w).
-$$
-Moreover
-$$
-\mathbf1^T(b+t\mu)=-t+t=0.
-$$
-Step 2 therefore gives
-$$
-\sum_{z,w\in Y}c_zc_wd(z,w)\le0.
-$$
-Thus $(Y,d)$ has $1$-negative type. Equality holds exactly when $b+t\mu=0$.
-
-With the normalization $a_\ast=2$, this gives
+Equality holds exactly when $b+t\mu=0$. With $a_\ast=2$ this gives
 $$
 (a_\ast,a_0,\ldots,a_{12})
 =(2,-2,1,0,0,2,-2,-2,0,2,0,0,1,-2).
 $$
-This is the unique normalized nonzero equality family.
+Thus the equality direction is unique.
 
-Step 4: Show that every exponent $p>1$ fails
+Step 3: Compute $\wp(0)$ and $\tau$
 
-For this vector $a$, group the unordered pairs according to their distance. Since the full quadratic form counts both orientations,
+Let
+$$
+Q_p=\sum_{z,w\in Y}a_za_wd_0(z,w)^p.
+$$
+Grouping unordered pairs by distance gives
 $$
 \begin{aligned}
 \frac12Q_p
-&:=\frac12\sum_{z,w\in Y}a_za_wd(z,w)^p\\
 &=14\cdot24^p+4\cdot23^p+6\cdot15^p+12^p\\
 &\quad-8\cdot20^p-4\cdot17^p-6\cdot16^p-4\cdot13^p\\
 &\quad-4\cdot11^p-12\cdot8^p-2\cdot7^p.
 \end{aligned}
 $$
-At $p=1$, the positive and negative contributions both sum to $530$, in agreement with $Q_1=0$.
-
-Write the positive and negative distance multisets as decreasing $40$-tuples
+At $p=1$, the positive and negative contributions both sum to $530$. Introduce decreasing $40$-tuples
 $$
 X=(24^{[14]},23^{[4]},15^{[6]},12,0^{[15]})
 $$
@@ -141,35 +97,19 @@ and
 $$
 Z=(20^{[8]},17^{[4]},16^{[6]},13^{[4]},11^{[4]},8^{[12]},7^{[2]}).
 $$
-They have the same total sum, $530$. At every breakpoint where either tuple changes value, the partial-sum differences
-$$
-\sum_{i=1}^kX_i-\sum_{i=1}^kZ_i
-$$
-are
+Their partial-sum differences at all breakpoints are
 $$
 \begin{array}{c|rrrrrrrrrr}
 k&8&12&14&18&22&24&25&26&38&40\\ \hline
-\text{difference}&32&60&76&104&112&120&121&110&14&0.
+\sum_{i\le k}(X_i-Z_i)&32&60&76&104&112&120&121&110&14&0.
 \end{array}
 $$
-Between breakpoints the difference is linear in $k$, so all partial sums are nonnegative and at least one is strictly positive. Thus $X$ strictly majorizes $Z$.
-
-For decreasing vectors with equal total sum, majorization implies
+Hence $X$ strictly majorizes $Z$. Applying the majorization inequality to the strictly convex function $t\mapsto t^p$ gives $Q_p>0$ for every $p>1$. Together with Step 2,
 $$
-\sum_i\phi(X_i)\ge\sum_i\phi(Z_i)
-$$
-for every convex function $\phi$; the inequality is strict here for strictly convex $\phi$ because $X$ and $Z$ are not permutations of one another. Taking $\phi(t)=t^p$, which is strictly convex for $p>1$, gives
-$$
-\sum_iX_i^p>\sum_iZ_i^p.
-$$
-Hence $Q_p>0$ for every $p>1$. Therefore no exponent larger than $1$ has negative type, while Step 3 shows that $p=1$ does. Thus
-$$
-\wp=1.
+\wp(0)=1.
 $$
 
-Step 5: Compute $\tau$
-
-Differentiate the expression from Step 4 at $p=1$. Since $Q_p=2(\frac12Q_p)$,
+Differentiating at $p=1$ gives
 $$
 \begin{aligned}
 \tau
@@ -182,26 +122,158 @@ $$
 \Bigr).
 \end{aligned}
 $$
-Here $\log$ is the natural logarithm, as it arises from $\frac{d}{dp}d^p=d^p\log d$. Collecting the coefficients of the prime logarithms yields
+Collecting prime logarithms,
 $$
 \tau=
 20\log2+219\log3+46\log23
--35\log5-7\log7-22\log11-26\log13-34\log17.
+-35\log5-7\log7-22\log11-26\log13-34\log17,
+$$
+so
+$$
+\tau=\log\frac{2^{20}3^{219}23^{46}}
+{5^{35}7^7 11^{22}13^{26}17^{34}}.
+$$
+It is positive: the same strict majorization, now applied to the strictly convex function $t\mapsto t\log t$ with $0\log0:=0$, shows $Q'_1>0$.
+
+Step 4: Reduce the perturbed problem to one simple eigenvalue
+
+For a cycle coefficient vector $b\in\mathbb R^{13}$, impose the zero-sum condition by taking
+$$
+c_\ast=-\mathbf1^Tb.
+$$
+Define the symmetric matrix
+$$
+R(p,s)_{ij}=\rho(i,j)^p-d_s(\ast,i)^p-d_s(\ast,j)^p.
+$$
+Then
+$$
+\sum_{z,w}c_zc_wd_s(z,w)^p=b^TR(p,s)b.
+$$
+At $(p,s)=(1,0)$ write $R_0=R(1,0)$. By Step 2, $R_0$ is negative semidefinite with one-dimensional kernel generated by
+$$
+k=(-2,1,0,0,2,-2,-2,0,2,0,0,1,-2)^T,
+$$
+and
+$$
+N:=k^Tk=26.
+$$
+All other eigenvalues are strictly negative. Therefore the eigenvalue $\lambda(p,s)$ issuing from $0$ is simple and controls the critical exponent near $(1,0)$.
+
+Since $r(s)=r+se$,
+$$
+S:=\left.\frac{\partial R}{\partial s}\right|_{(1,0)}
+=-(\mathbf1e^T+e\mathbf1^T).
+$$
+Now
+$$
+\mathbf1^Tk=-2,
+\qquad
+e^Tk=0,
+$$
+so
+$$
+Sk=2e,
+\qquad
+k^TSk=0.
+$$
+Consequently the first $s$-derivative of the critical eigenvalue vanishes.
+
+Step 5: Compute the second-order splitting
+
+Choose the local eigenvector $v(s)$ of $R(1,s)$ so that
+$$
+v(0)=k,
+\qquad
+k^Tv(s)=N,
+$$
+and write $w=v'(0)$. Then $k^Tw=0$. Differentiating
+$$
+R(1,s)v(s)=\lambda(1,s)v(s)
+$$
+at $s=0$ gives
+$$
+Sk+R_0w=\lambda_s k.
+$$
+Multiplying by $k^T$ yields
+$$
+\lambda_sN=k^TSk=0,
+$$
+so $\lambda_s=0$ and
+$$
+R_0w=-Sk=-2e.
+$$
+A convenient solution orthogonal to $k$ is
+$$
+w=\left(0,\frac12,0,0,-\frac12,0,0,0,\frac12,0,0,-\frac12,0\right)^T.
+$$
+Indeed $\mathbf1^Tw=0$, $r^Tw=0$, and direct multiplication by the cycle matrix gives
+$$
+Cw=(0,0,2,2,2,0,0,0,-2,-2,-2,0,0)^T=-2e,
+$$
+so $R_0w=-2e$; also $k^Tw=0$. Moreover
+$$
+e^Tw=1.
+$$
+
+Differentiate the eigenvalue equation a second time. Since $\lambda_s=0$,
+$$
+2Sw+R_0v''(0)=\lambda_{ss}k+\lambda(1,0)v''(0).
+$$
+Because $\lambda(1,0)=0$, multiplication by $k^T$ gives
+$$
+\lambda_{ss}N=2k^TSw.
+$$
+Using $e^Tk=0$, $\mathbf1^Tk=-2$, and $e^Tw=1$,
+$$
+k^TSw
+=-(k^T\mathbf1)(e^Tw)-(k^Te)(\mathbf1^Tw)=2.
+$$
+Hence
+$$
+\lambda_{ss}=\frac4{26}=\frac2{13}.
+$$
+
+For the $p$-derivative,
+$$
+k^T\left.\frac{\partial R}{\partial p}\right|_{(1,0)}k
+=Q'_1=4\tau,
+$$
+so the simple-eigenvalue derivative is
+$$
+\lambda_p=\frac{4\tau}{26}=\frac{2\tau}{13}>0.
+$$
+The standard monotonicity of negative type says that if a metric has $p$-negative type, then it has $q$-negative type for every $0<q<p$. Since the other eigenvalues remain negative nearby and $\lambda_p>0$, the local zero set
+$$
+\lambda(\wp(s),s)=0
+$$
+is exactly the critical exponent branch for small $s$.
+
+Differentiate this identity. First,
+$$
+\lambda_p\wp'(0)+\lambda_s=0,
+$$
+so $\wp'(0)=0$. Differentiating again and using $\wp'(0)=0$ gives
+$$
+\lambda_p\wp''(0)+\lambda_{ss}=0.
 $$
 Therefore
 $$
-\tau=
-\log\frac{2^{20}3^{219}23^{46}}
-{5^{35}7^7 11^{22}13^{26}17^{34}}.
+\wp''(0)
+=-\frac{\lambda_{ss}}{\lambda_p}
+=-\frac1\tau,
+$$
+and hence
+$$
+\kappa=\tau\wp''(0)=-1.
 $$
 
-Final Answer: $\boxed{\left(1,\log\frac{2^{20}3^{219}23^{46}}{5^{35}7^7 11^{22}13^{26}17^{34}}\right)}$
+Final Answer: $\boxed{\left(1,\log\frac{2^{20}3^{219}23^{46}}{5^{35}7^7 11^{22}13^{26}17^{34}},-1\right)}$
 
 ---
 
 ## Answer
 
-$(1,\log\frac{2^{20}3^{219}23^{46}}{5^{35}7^7 11^{22}13^{26}17^{34}})$
+$(1,\log\frac{2^{20}3^{219}23^{46}}{5^{35}7^7 11^{22}13^{26}17^{34}},-1)$
 
 ---
 
@@ -217,6 +289,6 @@ $(1,\log\frac{2^{20}3^{219}23^{46}}{5^{35}7^7 11^{22}13^{26}17^{34}})$
 
 - negative type of finite metric spaces
 - shortest-path metrics
-- cut decomposition for strict negative type on an odd cycle
+- cut decomposition on odd cycles
 - majorization and convexity
-- transversality of the critical exponent
+- simple-eigenvalue perturbation
