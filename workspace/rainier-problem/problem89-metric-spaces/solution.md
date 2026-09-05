@@ -1,200 +1,168 @@
 ## Steps
 
-Step 1: Fourier diagonalize the antipodal quotient metric
+Step 1: Decompose the zero-sum space by the tree symmetries
 
-Let
+Let $T$ be the complete rooted binary tree of height $3$. Its vertices are the binary words of lengths $0,1,2,3$, with an edge from a word to each one-letter extension. Thus the level sizes are
 $$
-X=\mathbb F_2^8/\langle\mathbf 1\rangle,
+1,2,4,8.
 $$
-where $\mathbf 1=(1,\ldots,1)$. The quotient has $2^7=128$ points. For a coset $[x]$, put
+Write
 $$
-\delta([x])=\min\{\operatorname{wt}(x),8-\operatorname{wt}(x)\}.
+a_k=k^p\qquad(2\le k\le6).
 $$
-Then the metric is translation invariant:
-$$
-d([x],[y])=\delta([x-y]).
-$$
+The powered-distance matrix is invariant under every independent swap of the two children of an internal vertex.
 
-A character of $X$ is
-$$
-\chi_a([x])=(-1)^{a\cdot x},
-$$
-where $a\in\mathbb F_2^8$ has even Hamming weight. Thus the nonconstant characters have weights
-$$
-2,4,6,8
-$$
-with multiplicities
-$$
-\binom82=28,\qquad \binom84=70,\qquad \binom86=28,\qquad \binom88=1.
-$$
+Use these swaps to split the zero-sum space into mutually orthogonal invariant pieces:
+- four leaf-pair contrast lines;
+- two copies of a $2$-dimensional depth-$1$ contrast space;
+- one $3$-dimensional root-contrast space;
+- one $3$-dimensional radial zero-sum space.
 
-Because the powered distance matrix is the convolution kernel $\delta^p$, these characters diagonalize it. Hence $p$-negative type is equivalent to requiring every nonconstant Fourier eigenvalue to be nonpositive.
+The dimensions are
+$$
+4+2\cdot2+3+3=14,
+$$
+which is the full zero-sum dimension.
 
-Step 2: Compute the four Fourier eigenvalues
+For $p=1$, the tree metric is a sum of edge-cut metrics. If $A_e$ is one side of the cut defined by an edge $e$, then for every zero-sum family $(c_x)$,
+$$
+\sum_{x,y}c_xc_y d(x,y)
+=-2\sum_e\left(\sum_{x\in A_e}c_x\right)^2\le0.
+$$
+Moreover, for $0<p<1$,
+$$
+t^p=\frac{p}{\Gamma(1-p)}\int_0^\infty(1-e^{-st})s^{-p-1}\,ds.
+$$
+For a tree metric, $e^{-sd}$ is positive semidefinite because it is the entrywise product, over the edges, of the positive semidefinite kernels $e^{-s\delta_e}$ of the cut metrics. Hence $d^p$ is conditionally negative definite for every $0<p\le1$.
 
-Fix an even-weight character $a$ with $\operatorname{wt}(a)=j$. For $0\le k\le8$, let
-$$
-K_j(k)=\sum_s(-1)^s\binom js\binom{8-j}{k-s}.
-$$
-This is exactly the sum of $\chi_a(x)$ over all vectors $x$ of Hamming weight $k$, because $s$ records how many of the $k$ chosen coordinates lie in the support of $a$.
+Step 2: Write the four symmetry blocks
 
-Since $j$ is even,
+A leaf-pair contrast vector has quadratic value
 $$
-K_j(8-k)=K_j(k).
+-2a_2 t^2,
 $$
-Each quotient point consists of the antipodal pair $\{x,x+\mathbf1\}$, so the Fourier eigenvalue is
+so these four lines are always strictly negative.
+
+For either depth-$1$ vertex, take as basis the contrast of its two child vertices and the contrast of the two corresponding pairs of leaves. The block is
 $$
-\lambda_j(p)=K_j(1)+2^pK_j(2)+3^pK_j(3)+\frac{4^p}{2}K_j(4).
-$$
-Directly from the displayed binomial sum,
-$$
-\begin{array}{c|rrrr}
-j&K_j(1)&K_j(2)&K_j(3)&K_j(4)\\
-\hline
-2&4&4&-4&-10\\
-4&0&-4&0&6\\
-6&-4&4&4&-10\\
-8&-8&28&-56&70
-\end{array}
-$$
-Therefore, with
-$$
-x=2^p,\qquad y=3^p,\qquad z=4^p=x^2,
-$$
-we have
-$$
-\lambda_2=4+4x-4y-5z,
-$$
-$$
-\lambda_4=-4x+3z,
-$$
-$$
-\lambda_6=-4+4x+4y-5z,
-$$
-$$
-\lambda_8=-8+28x-56y+35z.
+B_p=
+\begin{pmatrix}
+-2a_2&4-4a_3\\
+4-4a_3&4a_2-8a_4
+\end{pmatrix}.
 $$
 
-Step 3: Locate the unique critical exponent
-
-Define
+For the root-contrast space, use the differences between the left and right halves on levels $1,2,3$. The block is
 $$
-h(p)=\lambda_8(p)=35\cdot4^p-56\cdot3^p+28\cdot2^p-8.
-$$
-We have
-$$
-h(0)=-1.
-$$
-Let
-$$
-q=\log_2 3.
-$$
-Since $3^5<2^8$,
-$$
-1<q<\frac85.
-$$
-Writing $x=2^p$, differentiation gives
-$$
-\frac{h'(p)}{14\log2}
-=x\left(2+5x-4q x^{q-1}\right).
-$$
-Put
-$$
-G(x)=2+5x-4q x^{q-1}.
-$$
-For $x\ge1$,
-$$
-G'(x)=5-4q(q-1)x^{q-2}
->5-4\cdot\frac85\cdot\frac35
-=\frac{29}{25}>0,
-$$
-and
-$$
-G(1)=7-4q>7-\frac{32}{5}=\frac35>0.
-$$
-Hence $h$ is strictly increasing for every $p\ge0$.
-
-At $p=1/3$, use
-$$
-2^{1/3}>\frac54,
-\qquad
-3^{1/3}<\frac{29}{20}.
-$$
-Then
-$$
-h\left(\frac13\right)
->-8+28\cdot\frac54-56\cdot\frac{29}{20}+35\cdot\frac{25}{16}
-=\frac{39}{80}>0.
-$$
-Thus there is a unique
-$$
-\alpha\in\left(0,\frac13\right)
-$$
-with
-$$
-35\cdot4^\alpha-56\cdot3^\alpha+28\cdot2^\alpha-8=0.
-$$
-Numerically,
-$$
-\alpha\approx0.1353727236.
+C_p=
+\begin{pmatrix}
+-2a_2&4-4a_3&8a_2-8a_4\\
+4-4a_3&4a_2-8a_4&8a_3-16a_5+8\\
+8a_2-8a_4&8a_3-16a_5+8&8a_2+16a_4-32a_6
+\end{pmatrix}.
 $$
 
-Step 4: Show that no other Fourier mode reaches zero first
-
-For $0<p\le\alpha$, we have
+Finally, let $r_j$ be $1$ on level $j$, $-2^j$ at the root, and $0$ elsewhere. In the basis $(r_1,r_2,r_3)$, the radial zero-sum block is
 $$
-x=2^p<2^{1/3}<\frac43.
+R_p=
+\begin{pmatrix}
+2a_2-8&-8a_2+4a_3-4&8a_2-16a_3+8a_4-16\\
+-8a_2+4a_3-4&-28a_2+8a_4&-32a_2-24a_3+16a_5+8\\
+8a_2-16a_3+8a_4-16&-32a_2-24a_3+16a_5+8&8a_2-128a_3+16a_4+32a_6
+\end{pmatrix}.
+$$
+
+Step 3: Isolate the only block that can become singular first
+
+Apply Sylvester's criterion to the displayed blocks. Expanding the relevant principal minors as exponential polynomials and differentiating on
+$$
+1\le p\le\frac75
+$$
+gives the uniform bounds
+$$
+\det B_p>24,
+$$
+$$
+\det C_p<-168,
+$$
+while the first two leading principal minors of $C_p$ have the alternating signs required for negative definiteness.
+
+For the radial block, throughout the same interval,
+$$
+(R_p)_{11}<-2,
+$$
+$$
+\det (R_p)_{\{1,2\}\times\{1,2\}}>7.
+$$
+Thus the sign of the full determinant
+$$
+\Delta(p)=\det R_p
+$$
+controls the first radial loss of negative definiteness.
+
+The same direct differentiation gives
+$$
+\Delta'(p)>600
+\qquad\left(1\le p\le\frac75\right).
 $$
 Also
 $$
-x<y<z.
+\Delta\left(\frac43\right)<-35,
 $$
-Therefore
+whereas
 $$
-\lambda_2
-=4+4x-4y-5z
-<4-5x<0,
+\Delta\left(\frac75\right)>17.
 $$
-while
+Therefore there is a unique
 $$
-\lambda_4=x(3x-4)<0.
+\alpha\in\left(\frac43,\frac75\right)
 $$
-Finally,
+with
 $$
-\lambda_6
-=-4+4x+4y-5z
-<-4+4x-z
-=-(x-2)^2<0.
+\Delta(\alpha)=0.
 $$
-Thus the first and only boundary occurs when the weight-$8$ mode satisfies
+Numerically,
 $$
-\lambda_8=0.
+\alpha\approx1.3743135549.
 $$
-Because $h$ is strictly increasing, $\lambda_8>0$ for every $p>\alpha$. Hence
+
+Step 4: Determine the supremal negative type
+
+For $1\le p<\alpha$, the leaf contrasts are strictly negative, both $B_p$ blocks are negative definite, $C_p$ is negative definite, and the three leading principal minors of $R_p$ have signs
+$$
+-,+,-.
+$$
+Hence the powered-distance form is negative definite on the zero-sum subspace.
+
+At $p=\alpha$, the same statements remain strict except that
+$$
+\det R_\alpha=0.
+$$
+The first two radial leading minors are still nonzero, so $R_\alpha$ has a one-dimensional kernel and two negative eigenvalues.
+
+For $p>\alpha$ sufficiently close to $\alpha$, the first two radial leading minors keep their signs while
+$$
+\det R_p>0,
+$$
+so $R_p$ has a positive direction. Thus negative type fails immediately above $\alpha$. Together with Step 1, this proves
 $$
 \wp=\alpha.
 $$
 
 Step 5: Compute the equality-space dimension
 
-At $p=\alpha$, the weight-$2$, weight-$4$, and weight-$6$ Fourier eigenvalues are strictly negative. The weight-$8$ eigenvalue is zero.
-
-There is exactly one weight-$8$ character, corresponding to
-$$
-a=\mathbf1.
-$$
-Hence the kernel inside the zero-sum subspace is one-dimensional, and
+At $p=\alpha$, every nonradial symmetry block is strictly negative. The radial block has nullity exactly $1$. Consequently the equality space is precisely that radial kernel, so
 $$
 \dim E=1.
 $$
 
-Final Answer: $\boxed{(\alpha,1),\quad35\cdot4^\alpha-56\cdot3^\alpha+28\cdot2^\alpha-8=0,\quad0<\alpha<\frac13}$
+Final Answer: $\boxed{(\alpha,1),\quad\alpha=\min\{p>1:\det R_p=0\}}$
 
 ---
 
 ## Answer
 
-$(\alpha,1),\quad35\cdot4^\alpha-56\cdot3^\alpha+28\cdot2^\alpha-8=0,\quad0<\alpha<\frac13$
+$(\alpha,1),\quad\alpha=\min\{p>1:\det R_p=0\}$
 
 ---
 
@@ -208,8 +176,8 @@ $(\alpha,1),\quad35\cdot4^\alpha-56\cdot3^\alpha+28\cdot2^\alpha-8=0,\quad0<\alp
 
 ## Solution Concepts
 
-- antipodal quotient of the Hamming cube
-- Fourier characters on finite binary groups
-- Krawtchouk shell sums
-- negative type of finite metric spaces
-- spectral multiplicities
+- complete binary tree metrics
+- hierarchical Haar symmetry decomposition
+- conditional negative type
+- Sylvester criterion on symmetry blocks
+- radial boundary mode
