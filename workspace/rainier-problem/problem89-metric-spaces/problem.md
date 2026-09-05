@@ -2,11 +2,16 @@
 
 ## LaTeX (Normalized)
 
-Let $X$ be the set of perfect matchings of the complete graph $K_8$ on vertex set $[8]$. Form a graph $G$ on $X$ by joining two perfect matchings when one is obtained from the other by choosing two matched edges and replacing them by one of the other two perfect matchings on the same four endpoints. Let $d$ be the shortest-path metric on $G$.
-
-For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_M)_{M\in X}$ with $\sum_Mc_M=0$ satisfies
+Let $X$ be the set of complete flags
 $$
-\sum_{M,N\in X}c_Mc_N\,d(M,N)^p\le0.
+0<V_1<V_2<V_3<\mathbb F_2^4,
+\qquad \dim V_i=i.
+$$
+Form a graph $G$ on $X$ by joining two flags exactly when they differ in one of the three subspaces $V_1,V_2,V_3$. Let $d$ be the shortest-path metric on $G$.
+
+For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_F)_{F\in X}$ with $\sum_Fc_F=0$ satisfies
+$$
+\sum_{F,H\in X}c_Fc_H\,d(F,H)^p\le0.
 $$
 Let
 $$
@@ -14,7 +19,7 @@ $$
 $$
 At $p=\wp$, define the equality space
 $$
-E=\left\{c\in\mathbb R^X:\sum_Mc_M=0,\ \sum_{M,N}c_Mc_N\,d(M,N)^{\wp}=0\right\}.
+E=\left\{c\in\mathbb R^X:\sum_Fc_F=0,\ \sum_{F,H}c_Fc_H\,d(F,H)^{\wp}=0\right\}.
 $$
 Determine the ordered pair $(\wp,\dim E)$.
 
@@ -33,4 +38,4 @@ Determine the ordered pair $(\wp,\dim E)$.
 
 ## Domain Explanation
 
-The problem asks for the maximal negative-type exponent of a natural flip metric on perfect matchings and the dimension of its boundary equality space. The key structure is the alternating-cycle decomposition of two matchings together with the five symmetry types under the stabilizer of one matching.
+The problem asks for the maximal negative-type exponent of the chamber metric on complete flags in $\mathbb F_2^4$ and the dimension of its boundary equality space. The hidden structure is the type-$A_3$ Bruhat geometry: distance shells lie in the noncommutative Iwahori-Hecke algebra $H_2(S_4)$, so the critical mode is detected only after the Hecke-module decomposition.
