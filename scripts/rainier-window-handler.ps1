@@ -68,6 +68,9 @@ public static class RainierWindow {
     public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint processId);
 
     [DllImport("user32.dll")]
+    public static extern IntPtr GetForegroundWindow();
+
+    [DllImport("user32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static extern bool BringWindowToTop(IntPtr hWnd);
 
@@ -112,11 +115,20 @@ public static class RainierWindow {
 
     # Do not call ShowWindowAsync/SW_RESTORE here. The user may have the
     # target Chrome window snapped or positioned on a specific monitor.
-    Start-Sleep -Milliseconds 350
+    Start-Sleep -Milliseconds 250
+    if ([RainierWindow]::GetForegroundWindow() -ne $hwnd) {
+        throw "the bound Chrome window for $problem did not become foreground"
+    }
+
+    # Preserve the user's currently focused tab. Open a fresh tab in the
+    # already-bound Chrome window and navigate that new tab to the chat URL.
     $shell = New-Object -ComObject WScript.Shell
     Set-Clipboard -Value $chatUrl
-    $shell.SendKeys('^l')
-    Start-Sleep -Milliseconds 120
+    $shell.SendKeys('^t')
+    Start-Sleep -Milliseconds 180
+    if ([RainierWindow]::GetForegroundWindow() -ne $hwnd) {
+        throw "Chrome focus changed before opening the Rainier chat for $problem"
+    }
     $shell.SendKeys('^v')
     Start-Sleep -Milliseconds 80
     $shell.SendKeys('{ENTER}')
