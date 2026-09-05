@@ -1,0 +1,22 @@
+{
+  "problem": "problem70",
+  "branch": "adversary/problem70",
+  "problem_path": "workspace/rainier-problem/problem70-determinants/problem.md",
+  "source_commit_sha": "950dcb910260d299a55bd5b749ff473bdd5a4a56",
+  "problem_blob_sha": "683f70f35eaafee88f573948aa36e746dbfcb3d0",
+  "statement_sha256": "ea788b7f0b9f4ef131114d45026bfdcfc1f4f06f0b1ac15da824a20c932c763d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T09:30:48+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\ns=aL,\\qquad t=n^{-1/2}.\n\\]\nWe use\n\\[\nS_1(N,a)=B(a,N+1)=\\frac{\\Gamma(a)\\Gamma(N+1)}{\\Gamma(N+a+1)}\n\\]\nand\n\\[\nS_2(N,a)=-\\partial_a S_1(N,a)\n=S_1(N,a)\\bigl(\\psi(N+a+1)-\\psi(a)\\bigr).\n\\]\nThus the determinant condition says that the two weighted averages of\n\\(\\psi(N+a+1)\\) are equal. Since \\(\\psi(N+a+1)=\\log N+O(1/N)\\), this becomes a weighted-average condition for \\(\\log N\\), with errors smaller than the terms below.\n\nFor \\(N=n^3+m_{j,n}\\),\n\\[\nN=n^3(1+jt+O(n^{-3})),\\qquad u_j:=\\log(1+jt).\n\\]\nAlso\n\\[\n\\frac{\\Gamma(N+1)}{\\Gamma(N+a+1)}\n=N^{-a}\\left(1-\\frac{a(a+1)}{2N}+O(N^{-2})\\right).\n\\]\nWriting the determinant equation in terms of \\(s=aL\\), the only needed expansion near \\(s=1\\) is\n\\[\ns-1=-\\frac1{10}\\frac{t^2}{L}+o\\!\\left(\\frac{t^2}{L}\\right).\n\\]\nHere is the key coefficient computation. The chosen \\(b_{j,n}\\) satisfy\n\\[\n\\sum b_j=1,\\qquad\n\\sum b_j j=\\frac{12}{19},\\qquad\n\\sum b_j j^2=-\\frac{10}{19}t,\n\\]\nso\n\\[\n\\sum b_j u_j=\\frac{12}{19}t+O(t^3),\n\\qquad\n\\sum b_j u_j^2=\\frac{8}{19}t^3+O(t^4).\n\\]\nThe finite-\\(N\\) correction from the \\(S_1(n,a)\\) denominator contributes\n\\[\n\\frac{a(a+1)}{2n}=\\frac{t^2}{2L}+o\\!\\left(\\frac{t^2}{L}\\right).\n\\]\nCombining these terms gives the determinant residual at \\(s=1\\):\n\\[\n-\\frac{6}{19}\\frac{t^3}{L^2}+o\\!\\left(\\frac{t^3}{L^2}\\right),\n\\]\nand its derivative with respect to \\(s\\):\n\\[\n-\\frac{60}{19}\\frac{t}{L}+o\\!\\left(\\frac{t}{L}\\right).\n\\]\nTherefore\n\\[\na_nL-1=s-1\n=-\\frac1{10}\\frac{t^2}{L}+o\\!\\left(\\frac{t^2}{L}\\right).\n\\]\nSince \\(t=n^{-1/2}\\),\n\\[\nn^{3/2}L(a_nL-1)\n=-\\frac1{10}n^{1/2}+o(n^{1/2})\\to -\\infty.\n\\]\n\n\\[\n\\boxed{-\\infty}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T09:33:17+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem70/683f70f35eaa.json"
+}
