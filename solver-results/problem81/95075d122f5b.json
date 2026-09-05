@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-field-theory/problem.md",
+  "source_commit_sha": "7c8eb0c174cc1b00494e0a86631647eb7605d424",
+  "problem_blob_sha": "95075d122f5b56462d8cfb7fb735754726626201",
+  "statement_sha256": "912e1a061a619350bdb0179c7ecf80a215af71845e1705762ad6d005028a2e5d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T07:24:06+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(m=2q^2\\), the number of transpositions in \\(\\pi\\).\n\nFor a lift \\(\\sigma\\) of \\(\\pi\\), write\n\\[\n\\sigma(\\rho_j)=\\zeta^{s_j}\\rho_j,\\qquad\n\\sigma(\\alpha_i^{(j)})=\\zeta^{a_i^{(j)}}\\alpha_{\\pi(i)}^{(j)} .\n\\]\nThe Kummer relations give\n\\[\n\\sum_i a_i^{(j)}=0\\quad(j<r),\\qquad\n\\sum_i a_i^{(r)}=\\sum_{j=1}^r s_j.\n\\]\nConjugating by \\(\\operatorname{Gal}(L/M)\\) changes \\(a_i^{(j)}\\) by coboundaries\n\\[\na_i^{(j)}\\mapsto a_i^{(j)}+b_{\\pi(i)}^{(j)}-b_i^{(j)},\n\\]\nso the invariant data are the pair-sums\n\\[\nv_t=\\bigl(a_i^{(1)}+a_{\\pi(i)}^{(1)},\\dots,a_i^{(r)}+a_{\\pi(i)}^{(r)}\\bigr)\\in\\mathbb F_\\ell^r\n\\]\nfor the \\(m=2q^2\\) transposition pairs. The centralizer of \\(\\pi\\) only permutes these pairs, hence an orbit is a multiset \\(\\{v_t\\}_{t=1}^m\\) with\n\\[\n\\sum_t v_t=\\Bigl(\\sum_{j=1}^r s_j\\Bigr)e_r.\n\\]\n\nFor \\(k\\in\\mathbb F_\\ell^r\\), a \\(2\\)-cycle on \\(\\Omega_k\\) occurs from an ordered pair of transposition-pairs \\((x,y)\\) exactly when\n\\[\ny-x=2(k_1s_1,\\dots,k_rs_r),\n\\]\nwith the special same-pair contribution at \\(k=0\\). Thus the required three-level cycle-count condition is exactly a three-level autocorrelation condition for the multiset of \\(v_t\\).\n\nThe stated numerical differences force the autocorrelation Fourier magnitudes to be\n\\[\nq,\\qquad q+2Q,\\qquad q+4Q\n\\]\non the three dual layers. Since\n\\[\nq,\\ q+2Q,\\ q+4Q\\equiv q\\equiv 2^{-1}\\pmod \\ell\n\\]\nand \\(2\\) generates \\(\\mathbb F_\\ell^\\times\\), these primes are inert in \\(\\mathbb Q(\\zeta)\\). Hence the multiplier argument forces the multiset to be uniquely determined by the flag and \\(s\\). Its distinguished point is\n\\[\na=2\\Bigl(\\sum_{j=1}^r s_j\\Bigr)e_r,\n\\]\nwhich is exactly compatible with\n\\[\n\\sum_t v_t=\\Bigl(\\sum_{j=1}^r s_j\\Bigr)e_r\n\\]\nbecause \\(q\\equiv 2^{-1}\\pmod \\ell\\).\n\nSo the count is just:\n\n- choose \\(s=(s_1,\\dots,s_r)\\in(\\mathbb F_\\ell^\\times)^r\\) with \\(S=\\sum s_j\\neq0\\);\n- choose a flag \\(W\\subset U\\subset\\mathbb F_\\ell^r\\) with \\(\\operatorname{codim}U=1\\), \\(\\operatorname{codim}W=2\\), and \\(Se_r\\in U\\setminus W\\).\n\nThe number of such \\(s\\) is\n\\[\n(l-1)^r-\\frac{(l-1)^r+(l-1)(-1)^r}{l}\n=\n\\frac{(l-1)\\bigl((l-1)^r-(-1)^r\\bigr)}{l}.\n\\]\nFor each nonzero \\(S\\), the number of flags with \\(Se_r\\in U\\setminus W\\) is\n\\[\n\\frac{\\ell^{r-1}-1}{\\ell-1}\\cdot \\ell^{r-2}.\n\\]\nMultiplying gives\n\\[\n\\boxed{\\ell^{r-3}\\bigl(\\ell^{r-1}-1\\bigr)\\bigl((\\ell-1)^r-(-1)^r\\bigr)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T07:26:36+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/95075d122f5b.json"
+}
