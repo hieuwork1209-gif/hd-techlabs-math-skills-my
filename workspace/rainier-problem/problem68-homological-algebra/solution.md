@@ -183,40 +183,23 @@ $$
 Using $r=a-d$ gives
 $$
 P_M^R(t)
-=a+\frac{(1+t)(1-t)^{a-d}+(a-d)t-1}{(1-t)^a+(1-t)^b+(1-t)^c-2-2t^2},
+=a+\frac{(1+t)(1-t)^r+rt-1}{D(t)},
 $$
 where
 $$
-d=2\min(4,2^{v_2(a)})+3\min(2,2^{v_2(a)}).
+D(t)=(1-t)^a+(1-t)^b+(1-t)^c-2-2t^2,
 $$
-Equivalently,
+and
 $$
-d=\begin{cases}
-5,&v_2(a)=0,\\
-10,&v_2(a)=1,\\
-14,&v_2(a)\ge2.
-\end{cases}
+d=2\min(4,2^{v_2(a)})+3\min(2,2^{v_2(a)}),\qquad r=a-d.
 $$
-
-Final Answer:
-$$
-\boxed{
-P_{R^a/Rg}^{R}(t)
-=a+\frac{(1+t)(1-t)^{a-d}+(a-d)t-1}{(1-t)^a+(1-t)^b+(1-t)^c-2-2t^2},
-\quad
-d=2\min(4,2^{v_2(a)})+3\min(2,2^{v_2(a)})
-}
-$$
+Final Answer: $\boxed{P_{R^a/Rg}^{R}(t)=a+\frac{(1+t)(1-t)^r+rt-1}{D(t)}}$
 
 ---
 
 ## Answer
 
-$$
-a+\frac{(1+t)(1-t)^{a-d}+(a-d)t-1}{(1-t)^a+(1-t)^b+(1-t)^c-2-2t^2},
-\qquad
-d=2\min(4,2^{v_2(a)})+3\min(2,2^{v_2(a)}).
-$$
+$a+\frac{(1+t)(1-t)^r+rt-1}{D(t)}$
 
 ---
 
@@ -233,6 +216,5 @@ $$
 - minimal free resolutions
 - fiber product Poincare series
 - socle quotient resolutions
-- circulant linear operators
-- repeated factors in characteristic $2$
+- circulant operators in characteristic $2$
 - Yoneda multiplication
