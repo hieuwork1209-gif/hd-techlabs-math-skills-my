@@ -1,92 +1,129 @@
 ## Steps
 
-Step 1: Put the presentation into a normal form
-Let
+Step 1: Reveal the hidden Takiff splitting
+Put
 $$
-A=k[x]/(x^{n+1})
+X=U-p,
+\qquad
+Y=V-q,
+\qquad
+Z=W-r.
 $$
-and define a $k$-derivation $\delta:A\to A$ by
+The defining relations become
 $$
-\delta(f)=x^r f'(x).
+[Z,X]=2Y,
+\qquad [Z,Y]=2X,
+\qquad [X,Y]=-2Z,
 $$
-This is well defined because $\delta(x^{n+1})=(n+1)x^{n+r}=0$ in $A$. The defining relation is therefore
+while $p,q,r$ commute pairwise and
 $$
-ya=ay+\delta(a)\qquad(a\in A).
+[Z,p]=2q,
+\qquad [Z,q]=2p,
+\qquad [Z,r]=0,
 $$
-In particular,
 $$
-yx^q=x^q y+q x^{q+r-1}\qquad(0\leq q\leq n).
+[X,p]=0,
+\qquad [X,q]=-2r,
+\qquad [X,r]=-2q,
 $$
-The relation moves every $y$ to the right of every coefficient from $A$. For uniqueness, take the free left $A$-module with basis $1,y,y^2,\ldots$ and define multiplication by $ya=ay+\delta(a)$; associativity follows from $\delta(ab)=\delta(a)b+a\delta(b)$. Its generators satisfy the stated relations, while rewriting every word in the presented algebra gives the same normal monomials, so the two constructions are inverse. Hence every element of $R_{n,r}$ has a unique form
+and
 $$
-z=\sum_{j=0}^{m}a_j(x)y^j,\qquad a_j(x)\in A.
+[Y,p]=2r,
+\qquad [Y,q]=0,
+\qquad [Y,r]=-2p.
+$$
+Thus $X,Y,Z$ form a copy of $\mathfrak{sl}_2$ in a nonstandard basis, and the abelian span of $p,q,r$ is its adjoint module. Hence $R$ is the enveloping algebra of the corresponding Takiff Lie algebra and has a PBW basis.
+
+Step 2: Compute the Poisson center of the associated graded algebra
+Filter $R$ by total degree in the six Lie generators. Then
+$$
+\operatorname{gr}R=k[x,y,z,p,q,r]
+$$
+with the Lie-Poisson bracket induced by the relations.
+
+First take invariants under the abelian ideal spanned by $p,q,r$. On $k(p,q,r)[x,y,z]$ its Hamiltonian derivations are constant vector fields of generic rank $2$, and the common linear invariant is
+$$
+B=xp-yq+zr.
+$$
+Therefore the common kernel over $k(p,q,r)$ is $k(p,q,r)[B]$. Since $B$ is primitive linear over the UFD $k[p,q,r]$, Gauss's lemma gives the exact polynomial intersection
+$$
+k[x,y,z,p,q,r]^{\langle p,q,r\rangle}=k[p,q,r,B].
 $$
 
-Step 2: Determine which coefficients can commute with $y$
-Set
+It remains to impose invariance under $X,Y,Z$. The element $B$ is already invariant. Set
 $$
-s=n-r+2.
+e=\frac{p+q}{2},
+\qquad
+f=\frac{p-q}{2},
+\qquad
+h=r.
 $$
-For $1\leq q\leq n$,
+In these coordinates the action is the adjoint $\mathfrak{sl}_2$ action. If a polynomial is fixed by the Cartan element, it is a polynomial in $h$ and $s=ef$. The raising operator then gives
 $$
-\delta(x^q)=q x^{q+r-1}.
+-2\partial_h P+h\partial_sP=0,
 $$
-Since the characteristic is zero, this vanishes in $A$ exactly when $q+r-1\geq n+1$, equivalently $q\geq s$. Thus
+whose polynomial solutions are exactly polynomials in
 $$
-\ker\delta=k\oplus x^sA.
+h^2+4s=p^2-q^2+r^2.
 $$
-If $z=\sum a_jy^j$ is central, then
+Thus, with
 $$
-0=[y,z]=\sum_{j=0}^{m}\delta(a_j)y^j,
+A=p^2-q^2+r^2,
 $$
-so uniqueness of the normal form gives $a_j\in k\oplus x^sA$ for every $j$.
-
-Step 3: Eliminate scalar coefficients of positive powers of $y$
-Write
+we have
 $$
-a_j=c_j+b_j,\qquad c_j\in k,\quad b_j\in x^sA.
-$$
-Induction from $yx=xy+x^r$ gives, for $j\geq1$,
-$$
-y^j x=xy^j+jx^r y^{j-1}+\text{terms of degree at most }j-2\text{ in }y,
-$$
-and every coefficient in $[y^j,x]$ is divisible by $x^r$. Since $s+r=n+2$, every $b_j\in x^sA$ annihilates those coefficients.
-
-Assume some $c_j$ with $j\geq1$ is nonzero, and choose the largest such index $m$. In $[z,x]$, the coefficient of $y^{m-1}$ contributed by scalar parts is
-$$
-m c_m x^r.
-$$
-No lower scalar term reaches $y^{m-1}$, and all $b_j$ contributions vanish as noted above. Because $r\leq n$, the class of $x^r$ in $A$ is nonzero; because the characteristic is zero, $m c_m\neq0$. This contradicts $[z,x]=0$. Hence $c_j=0$ for all $j\geq1$, so every central element lies in
-$$
-k+x^sR_{n,r}.
+Z_{\mathrm{Pois}}(\operatorname{gr}R)=k[A,B].
 $$
 
-Step 4: Verify that the candidate subalgebra is central and that the threshold is sharp
-A normal monomial in $x^sR_{n,r}$ has the form $x^{s+q}y^j$ with $q,j\geq0$ and $s+q\leq n$. Its commutator with $y$ is
+Step 3: Lift the two invariants to central elements
+Because $p,q,r$ commute,
 $$
-[y,x^{s+q}y^j]=(s+q)x^{s+q+r-1}y^j=0,
+A=p^2-q^2+r^2
 $$
-because $s+r-1=n+1$. Its commutator with $x$ also vanishes: every coefficient of $[y^j,x]$ is divisible by $x^r$, while
-$$
-x^{s+q}x^r=0
-$$
-in $A$. Therefore $x^sR_{n,r}\subseteq Z(R_{n,r})$.
+is central in $R$.
 
-The exponent cannot be lowered, since
+Also
 $$
-[y,x^{s-1}]=(s-1)x^n\neq0.
+C=Xp-Yq+Zr
 $$
-Combining this with Step 3 yields
+is the symmetrization of the invariant $B$. Here no ordering correction is needed because
 $$
-Z(R_{n,r})=k+x^{n-r+2}R_{n,r}.
+[X,p]=[Y,q]=[Z,r]=0.
 $$
-Final Answer: $\boxed{k+x^{n-r+2}R_{n,r}}$
+Hence $C$ is central. Returning to the original generators,
+$$
+C=(U-p)p-(V-q)q+(W-r)r
+=Up-Vq+Wr-A.
+$$
+Therefore
+$$
+D:=Up-Vq+Wr=C+A
+$$
+is central as well, and
+$$
+k[A,D]\subseteq Z(R).
+$$
+
+Step 4: Prove that these generate the full center
+Let $z\in Z(R)$ and let $s$ be its leading PBW symbol. Then $s$ lies in the Poisson center computed in Step 2, so
+$$
+s\in k[A,B]=k[A,D].
+$$
+Since $A$ and $D$ are central elements of $R$ with those leading symbols, subtracting a polynomial in $A,D$ having leading symbol $s$ lowers the PBW degree of $z$. Induction on the degree gives
+$$
+Z(R)=k[A,D].
+$$
+Substituting the definitions,
+$$
+Z(R)=k[p^2-q^2+r^2,\,Up-Vq+Wr].
+$$
+Final Answer: $\boxed{k[p^2-q^2+r^2,Up-Vq+Wr]}$
 
 ---
 
 ## Answer
 
-$k+x^{n-r+2}R_{n,r}$
+$k[p^2-q^2+r^2,Up-Vq+Wr]$
 
 ---
 
@@ -100,11 +137,11 @@ $k+x^{n-r+2}R_{n,r}$
 
 ## Solution Concepts
 
-- noncommutative ring center
-- derivations of truncated polynomial rings
-- normal forms in skew polynomial rings
-- leading-degree commutator analysis
-- annihilator ideals
+- PBW filtrations
+- Takiff Lie algebras
+- semidirect products
+- Poisson centers
+- invariant subrings
 
 ---
 
