@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-field-theory/problem.md",
+  "source_commit_sha": "7e817dae0fdf5806807882e309828724d226d612",
+  "problem_blob_sha": "ff50a0fc29787da306277767cd8ab550797b1e06",
+  "statement_sha256": "f9415d212d34b1d2f06799de072ac7752c6ce108ae1f5ca89e4ec1b758a45aca",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T02:39:01+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nQ=\\ell^r,\\qquad N=2q^2,\\qquad t=\\frac{2q-1}{Q}.\n\\]\nSo \\(t\\in\\mathbb Z\\). The answer is\n\\[\n\\boxed{\n(\\ell-1)^r\\ell^{rN}\\,Q\\,\n\\frac{Q-1}{\\ell-1}\\,\n\\frac{\\ell^{r-1}-1}{\\ell-1}\\,\n\\frac{N!}{\nA_0!\\,(A_W!)^{Q/\\ell^2-1}\\,(A_U!)^{Q/\\ell-Q/\\ell^2}\\,(A_O!)^{Q-Q/\\ell}\n}}\n\\]\nwhere\n\\[\nA_0=qt+q+2\\ell^2+2\\ell-4,\n\\]\n\\[\nA_W=qt+2\\ell^2+2\\ell-4,\\qquad\nA_U=qt+2\\ell-4,\\qquad\nA_O=qt-4,\n\\]\nand \\(N=2q^2\\).\n\n**Reason.** For a lift \\(\\sigma\\) above the fixed \\(\\pi\\), write\n\\[\n\\sigma(\\rho_j)=\\zeta^{b_j}\\rho_j,\\qquad b_j\\in\\mathbb F_\\ell^\\times,\n\\]\nand\n\\[\n\\sigma(\\alpha_i^{(j)})=\\zeta^{c_i^{(j)}}\\alpha_{\\pi(i)}^{(j)}.\n\\]\nFor each transposition block \\(e=\\{i,\\pi(i)\\}\\), define\n\\[\nz_e=(c_i^{(1)}+c_{\\pi(i)}^{(1)},\\dots,c_i^{(r)}+c_{\\pi(i)}^{(r)})\\in\\mathbb F_\\ell^r.\n\\]\nThere are \\(N=2q^2\\) such blocks. For fixed block sums \\(z_e\\), the number of choices of the \\(c_i^{(j)}\\)’s is \\(\\ell^{rN}\\), and the \\(b_j\\)’s contribute \\((\\ell-1)^r\\).\n\nLet \\(A_x\\) be the number of transposition blocks with \\(z_e=x\\). The number of \\(2\\)-cycles on \\(\\Omega_k\\) depends only on the autocorrelation of \\(A\\). The required jumps force the Fourier magnitudes\n\\[\n|\\widehat A(\\chi)|=\n\\begin{cases}\nq+4Q,& \\chi\\in U^\\perp\\setminus\\{1\\},\\\\\nq+2Q,& \\chi\\in W^\\perp\\setminus U^\\perp,\\\\\nq,& \\chi\\notin W^\\perp.\n\\end{cases}\n\\]\nBecause \\(2\\) generates \\(\\mathbb F_\\ell^\\times\\), the primes \\(q,q+2Q,q+4Q\\) are inert in \\(\\mathbb Q(\\zeta)\\). Hence each corresponding Fourier coefficient must be that prime times an \\(\\ell\\)-th root of unity. The congruence \\(2q\\equiv1\\pmod Q\\) forces the selected affine hyperplanes to form a pencil through one point \\(y\\in\\mathbb F_\\ell^r\\).\n\nThus the multiplicities are exactly\n\\[\nA_y=A_0,\n\\]\n\\[\nA_x=A_W\\quad(x\\in y+W,\\ x\\ne y),\n\\]\n\\[\nA_x=A_U\\quad(x\\in y+U,\\ x\\notin y+W),\n\\]\n\\[\nA_x=A_O\\quad(x\\notin y+U).\n\\]\nFor each flag \\(W\\subset U\\), there are \\(Q\\) choices of \\(y\\), and then the labeled block assignments contribute the multinomial factor above.\n\nThe number of flags is\n\\[\n\\frac{Q-1}{\\ell-1}\\cdot\\frac{\\ell^{r-1}-1}{\\ell-1},\n\\]\nso multiplying by the \\((\\ell-1)^r\\) choices of the nontrivial \\(\\rho_j\\)-actions and the \\(\\ell^{rN}\\) choices inside the transposition blocks gives the boxed formula.",
+  "status": "success",
+  "completed_at": "2026-09-05T02:43:20+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/ff50a0fc2978.json"
+}
