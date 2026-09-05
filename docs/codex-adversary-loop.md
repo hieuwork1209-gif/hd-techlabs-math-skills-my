@@ -58,6 +58,12 @@ problem second            promote exact pair
    |                     to main
    v                        |
 new blob -> watcher          v
+                         write terminal.json
+                              |
+                              v
+                         watcher exits cleanly
+                              |
+                              v
                          Rainier portal
 ```
 
@@ -74,11 +80,14 @@ workspace/rainier-problem/problem103-*/problem.md
 workspace/rainier-problem/problem103-*/solution.md
 solver-results/problem103/<problem-blob-prefix>.json
 solver-results/problem103/latest.json
+solver-results/problem103/terminal.json
 .tmp/codex-adversary/problem103.json
 .tmp/codex-adversary/chat-urls.json
 ```
 
 The `.tmp/` files are local-only and gitignored. In particular, ChatGPT conversation URLs are never written to `solver-results/` and never pushed to GitHub.
+
+`terminal.json` is different: it is an adversary-branch control marker written only after an exact candidate has been promoted to `main`. It is keyed by `problem_blob_sha`, so it applies only to that exact statement blob.
 
 ## 2. Starting a new local check
 
@@ -146,6 +155,8 @@ desktop notify     enabled when a supported backend exists
 
 Do not use `--force` in the normal protocol.
 
+For the ChatGPT-linked wrapper, a matching terminal marker makes the process exit with code 0 before it reaches the normal `already tested` branch. This lets the watcher remain alive across hardening rounds but terminate once the exact candidate is ready for Rainier.
+
 ## 5. WSL2 desktop notifications
 
 The watcher prefers native Windows notifications when it detects WSL and `powershell.exe`.
@@ -200,7 +211,7 @@ Without a chat URL, the toast still appears when possible and opens the GitHub r
 
 Use `--no-notify` to disable desktop notifications.
 
-A watcher process already running before the notification-capable script was loaded will not hot-reload the new code; let that run finish normally and use notifications on subsequent runs.
+A watcher process already running before the notification/terminal-marker-capable script was loaded will not hot-reload the new code. Pull `main` and restart that watcher process once to pick up the new behavior; do not re-run Codex for the same blob.
 
 ## 6. Isolation contract
 
@@ -333,8 +344,31 @@ Promotion happens only at the local stopping point.
 2. update `main` `solution.md` first;
 3. update `main` `problem.md` second;
 4. re-fetch both from `main` and verify they match the selected candidate;
-5. do not copy `solver-results/` to `main` unless separately requested;
-6. report `MAIN_READY_FOR_RAINIER`.
+5. write `solver-results/problemNN/terminal.json` on `adversary/problemNN` for the exact promoted blob;
+6. do not copy solver results or control files to `main` unless separately requested;
+7. report `MAIN_READY_FOR_RAINIER`.
+
+Use this marker shape:
+
+```json
+{
+  "problem": "problemNN",
+  "state": "MAIN_READY_FOR_RAINIER",
+  "problem_blob_sha": "<exact adversary problem.md blob>",
+  "main_problem_blob_sha": "<verified matching main problem.md blob>",
+  "main_solution_blob_sha": "<verified matching main solution.md blob>",
+  "main_commit_sha": "<main commit containing the promoted problem.md>",
+  "reason": "LOCAL_STUMPED_PROMOTED_TO_MAIN"
+}
+```
+
+The wrapper accepts the marker only when both the problem name and `problem_blob_sha` match the current adversary candidate. On a match it prints a terminal line such as:
+
+```text
+[codex-adversary] problem81: ff50a0fc2978 MAIN_READY_FOR_RAINIER; stopping watcher
+```
+
+and exits successfully. A later statement edit changes the blob SHA, so the old marker becomes stale automatically and the watcher resumes normal behavior without requiring marker deletion.
 
 The user can then run:
 
@@ -347,7 +381,7 @@ and the official Rainier portal checks.
 ## 14. Rainier feedback
 
 - `RAINIER DIFFICULTY PASS` -> freeze the exact `main` statement.
-- Difficulty FAIL/borderline -> keep the failed submitted version on `main`, continue design work on the existing adversary branch, and use the new Rainier trace/JSON as stronger evidence.
+- Difficulty FAIL/borderline -> keep the failed submitted version on `main`, continue design work on the existing adversary branch, and use the new Rainier trace/JSON as stronger evidence. The first new statement blob automatically invalidates the previous terminal marker.
 - Solution/format/taxonomy feedback -> repair the narrow issue while preserving the difficulty-producing structure whenever possible.
 - Any statement edit invalidates all older portal difficulty percentages.
 
