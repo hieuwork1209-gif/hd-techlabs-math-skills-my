@@ -1,204 +1,200 @@
 ## Steps
 
-Step 1: Split the triangulations by dihedral symmetry
+Step 1: Fourier diagonalize the antipodal quotient metric
 
-Label the vertices of a convex hexagon cyclically. The flip graph has the $14$ triangulations as vertices, with graph distance given by the minimum number of diagonal flips.
-
-Under the dihedral group $D_6$, the triangulations form three orbits:
-- $A$: the $6$ fans, in which all three diagonals are incident with one vertex;
-- $C$: the $2$ triangulations containing the alternating central triangle;
-- $B$: the remaining $6$ triangulations.
-
-Let $U$ be the space of functions constant on each of $A,B,C$, and let $W=U^\perp$. Thus $\dim U=3$, $\dim W=11$, and every vector in $W$ has coordinate sum $0$.
-
-The distance counts from one representative of each orbit are
+Let
 $$
-\begin{array}{c|ccc}
-& A&B&C\\
+X=\mathbb F_2^8/\langle\mathbf 1\rangle,
+$$
+where $\mathbf 1=(1,\ldots,1)$. The quotient has $2^7=128$ points. For a coset $[x]$, put
+$$
+\delta([x])=\min\{\operatorname{wt}(x),8-\operatorname{wt}(x)\}.
+$$
+Then the metric is translation invariant:
+$$
+d([x],[y])=\delta([x-y]).
+$$
+
+A character of $X$ is
+$$
+\chi_a([x])=(-1)^{a\cdot x},
+$$
+where $a\in\mathbb F_2^8$ has even Hamming weight. Thus the nonconstant characters have weights
+$$
+2,4,6,8
+$$
+with multiplicities
+$$
+\binom82=28,\qquad \binom84=70,\qquad \binom86=28,\qquad \binom88=1.
+$$
+
+Because the powered distance matrix is the convolution kernel $\delta^p$, these characters diagonalize it. Hence $p$-negative type is equivalent to requiring every nonconstant Fourier eigenvalue to be nonpositive.
+
+Step 2: Compute the four Fourier eigenvalues
+
+Fix an even-weight character $a$ with $\operatorname{wt}(a)=j$. For $0\le k\le8$, let
+$$
+K_j(k)=\sum_s(-1)^s\binom js\binom{8-j}{k-s}.
+$$
+This is exactly the sum of $\chi_a(x)$ over all vectors $x$ of Hamming weight $k$, because $s$ records how many of the $k$ chosen coordinates lie in the support of $a$.
+
+Since $j$ is even,
+$$
+K_j(8-k)=K_j(k).
+$$
+Each quotient point consists of the antipodal pair $\{x,x+\mathbf1\}$, so the Fourier eigenvalue is
+$$
+\lambda_j(p)=K_j(1)+2^pK_j(2)+3^pK_j(3)+\frac{4^p}{2}K_j(4).
+$$
+Directly from the displayed binomial sum,
+$$
+\begin{array}{c|rrrr}
+j&K_j(1)&K_j(2)&K_j(3)&K_j(4)\\
 \hline
-A&3\times2,\ 2\times3&1\times2,\ 2\times2,\ 3\times2&1\times1,\ 3\times1\\
-B&1\times2,\ 2\times2,\ 3\times2&1\times1,\ 2\times1,\ 3\times2,\ 4\times1&2\times2\\
-C&1\times3,\ 3\times3&2\times6&4\times1
+2&4&4&-4&-10\\
+4&0&-4&0&6\\
+6&-4&4&4&-10\\
+8&-8&28&-56&70
 \end{array}
 $$
-where, for example, $3\times2$ means two vertices at distance $3$. These counts also show that the diameter is $4$.
-
-Step 2: Control every non-invariant symmetry mode for $0<p<1$
-
-Put
+Therefore, with
 $$
-x=2^p,\qquad y=3^p,\qquad z=4^p,
+x=2^p,\qquad y=3^p,\qquad z=4^p=x^2,
 $$
-and define the consecutive increments
+we have
 $$
-u=x-1,\qquad v=y-x,\qquad w=z-y.
-$$
-For $0<p<1$, strict concavity of $t^p$ gives
-$$
-1>u>v>w>0.
-$$
-
-For distinct vertices define three fixed kernels
-$$
-H_1=\mathbf1_{\{d\ge2\}},
+\lambda_2=4+4x-4y-5z,
 $$
 $$
-H_2=\min(d-1,2),
+\lambda_4=-4x+3z,
 $$
 $$
-H_3=d-1,
+\lambda_6=-4+4x+4y-5z,
 $$
-with zero diagonal. Since the distance values are $1,2,3,4$,
 $$
-D_p=(J-I)+(u-v)H_1+(v-w)H_2+wH_3.
+\lambda_8=-8+28x-56y+35z.
 $$
 
-To bound these kernels on $W$, diagonalize the $60^\circ$ rotation. Each rotation mode has dimension at most $3$, and the resulting spectra are
-$$
-\operatorname{Spec}(H_1|_W)=
-\left\{-3^{[2]},-(1+\sqrt3),(-\sqrt2)^{[2]},(-1)^{[2]},0,\sqrt3-1,(\sqrt2)^{[2]}\right\},
-$$
-$$
-\operatorname{Spec}(H_2|_W)=
-\left\{\left(\frac{-7-\sqrt{33}}2\right)^{[2]},-6,\left(\frac{-7+\sqrt{33}}2\right)^{[2]},0^{[2]},1^{[4]}\right\},
-$$
-$$
-\operatorname{Spec}(H_3|_W)=
-\left\{(-7)^{[2]},-(3+2\sqrt3),0^{[5]},2\sqrt3-3,1^{[2]}\right\}.
-$$
-Hence
-$$
-\lambda_{\max}(H_1|_W)=\sqrt2,
-\qquad
-\lambda_{\max}(H_2|_W)=\lambda_{\max}(H_3|_W)=1.
-$$
-Because $J$ vanishes on $W$, the Rayleigh quotient gives
-$$
-\lambda_{\max}(D_p|_W)
-\le-1+\sqrt2(u-v)+(v-w)+w
-=-1+L(p),
-$$
-where
-$$
-L(p)=\sqrt2(u-v)+v.
-$$
-Now
-$$
-L'(p)
-=(2\sqrt2-1)(\log2)2^p-(\sqrt2-1)(\log3)3^p.
-$$
-Since
-$$
-\log_2 3<\frac85,
-\qquad
-\left(\frac32\right)^p\le\frac32
-$$
-for $0\le p\le1$,
-$$
-\frac{L'(p)}{(\log2)2^p}
->2\sqrt2-1-\frac{12}{5}(\sqrt2-1)
-=\frac{7-2\sqrt2}{5}>0.
-$$
-Thus $L$ is strictly increasing and $L(1)=1$. Therefore
-$$
-D_p|_W<0
-$$
-for every $0<p<1$.
-
-Step 3: Reduce the invariant zero-sum space to a $2\times2$ form
-
-Let the coefficient at every triangulation in $A,B,C$ be respectively $a,b,c$. The zero-sum condition is
-$$
-6a+6b+2c=0,
-$$
-so
-$$
-c=-3a-3b.
-$$
-Using the distance counts from Step 1, the powered-distance quadratic form on this two-dimensional zero-sum space is
-$$
-Q_p=(a,b)R_p(a,b)^T,
-$$
-where
-$$
-R_p=
-\begin{pmatrix}
-18x-24y+18z-36&-24x-6y+18z-6\\
--24x-6y+18z-6&-66x+12y+24z+6
-\end{pmatrix}.
-$$
-Its determinant is
-$$
-\det R_p=-36F(p),
-$$
-with
-$$
-F(p)=49x^2-42xy-3xz-61x+9y^2+4yz+18y-3z^2+15z+7.
-$$
-Also, in terms of the increments from Step 2, the upper-left entry is
-$$
--24+12u-6v+18w.
-$$
-Since $0\le w\le v\le u<1$ for $0<p<1$,
-$$
--24+12u-6v+18w
-\le-24+24u<0.
-$$
-Thus, for $0<p<1$, the sign change of this $2\times2$ form is controlled exactly by $F(p)$.
-
-Step 4: Locate the first loss of negative type
-
-We have
-$$
-F(0)=-7,
-\qquad
-F(1)=0.
-$$
-Moreover, differentiating $F(2^p,3^p,4^p)$ at $p=1$ gives
-$$
-F'(1)=6\log\frac9{32}<0.
-$$
-Hence $F(p)>0$ for some $p<1$ sufficiently close to $1$.
+Step 3: Locate the unique critical exponent
 
 Define
 $$
-\alpha=\inf\{p\in(0,1):F(p)>0\}.
+h(p)=\lambda_8(p)=35\cdot4^p-56\cdot3^p+28\cdot2^p-8.
+$$
+We have
+$$
+h(0)=-1.
+$$
+Let
+$$
+q=\log_2 3.
+$$
+Since $3^5<2^8$,
+$$
+1<q<\frac85.
+$$
+Writing $x=2^p$, differentiation gives
+$$
+\frac{h'(p)}{14\log2}
+=x\left(2+5x-4q x^{q-1}\right).
+$$
+Put
+$$
+G(x)=2+5x-4q x^{q-1}.
+$$
+For $x\ge1$,
+$$
+G'(x)=5-4q(q-1)x^{q-2}
+>5-4\cdot\frac85\cdot\frac35
+=\frac{29}{25}>0,
+$$
+and
+$$
+G(1)=7-4q>7-\frac{32}{5}=\frac35>0.
+$$
+Hence $h$ is strictly increasing for every $p\ge0$.
+
+At $p=1/3$, use
+$$
+2^{1/3}>\frac54,
+\qquad
+3^{1/3}<\frac{29}{20}.
 $$
 Then
 $$
-0<\alpha<1,
-\qquad
-F(\alpha)=0,
+h\left(\frac13\right)
+>-8+28\cdot\frac54-56\cdot\frac{29}{20}+35\cdot\frac{25}{16}
+=\frac{39}{80}>0.
 $$
-and numerically
+Thus there is a unique
 $$
-\alpha\approx0.7921831403.
+\alpha\in\left(0,\frac13\right)
 $$
-For every $p<\alpha$, $F(p)\le0$, so Step 3 shows that the invariant zero-sum block is negative semidefinite; Step 2 shows that all modes in $W$ are strictly negative. Hence the metric has $p$-negative type for every $p<\alpha$, and also at $p=\alpha$.
+with
+$$
+35\cdot4^\alpha-56\cdot3^\alpha+28\cdot2^\alpha-8=0.
+$$
+Numerically,
+$$
+\alpha\approx0.1353727236.
+$$
 
-For values $p>\alpha$ arbitrarily close to $\alpha$ we have $F(p)>0$, so $\det R_p<0$ and the quadratic form has a positive direction. Thus negative type fails immediately above the boundary. The set of negative-type exponents is downward closed: if $d^r$ is conditionally negative definite and $0<s<r$, then $d^s=(d^r)^{s/r}$ is conditionally negative definite by the standard Bernstein-function closure of conditionally negative definite kernels. Consequently
+Step 4: Show that no other Fourier mode reaches zero first
+
+For $0<p\le\alpha$, we have
+$$
+x=2^p<2^{1/3}<\frac43.
+$$
+Also
+$$
+x<y<z.
+$$
+Therefore
+$$
+\lambda_2
+=4+4x-4y-5z
+<4-5x<0,
+$$
+while
+$$
+\lambda_4=x(3x-4)<0.
+$$
+Finally,
+$$
+\lambda_6
+=-4+4x+4y-5z
+<-4+4x-z
+=-(x-2)^2<0.
+$$
+Thus the first and only boundary occurs when the weight-$8$ mode satisfies
+$$
+\lambda_8=0.
+$$
+Because $h$ is strictly increasing, $\lambda_8>0$ for every $p>\alpha$. Hence
 $$
 \wp=\alpha.
 $$
 
 Step 5: Compute the equality-space dimension
 
-At $p=\alpha$, Step 2 gives strict negativity on the $11$-dimensional space $W$. In the invariant zero-sum space, the upper-left entry of $R_\alpha$ is strictly negative while
+At $p=\alpha$, the weight-$2$, weight-$4$, and weight-$6$ Fourier eigenvalues are strictly negative. The weight-$8$ eigenvalue is zero.
+
+There is exactly one weight-$8$ character, corresponding to
 $$
-\det R_\alpha=0.
+a=\mathbf1.
 $$
-Therefore $R_\alpha$ has a one-dimensional kernel. Hence
+Hence the kernel inside the zero-sum subspace is one-dimensional, and
 $$
 \dim E=1.
 $$
 
-Final Answer: $\boxed{(\alpha,1)}$
+Final Answer: $\boxed{(\alpha,1),\quad35\cdot4^\alpha-56\cdot3^\alpha+28\cdot2^\alpha-8=0,\quad0<\alpha<\frac13}$
 
 ---
 
 ## Answer
 
-$(\alpha,1)$
+$(\alpha,1),\quad35\cdot4^\alpha-56\cdot3^\alpha+28\cdot2^\alpha-8=0,\quad0<\alpha<\frac13$
 
 ---
 
@@ -212,8 +208,8 @@ $(\alpha,1)$
 
 ## Solution Concepts
 
-- flip graph of polygon triangulations
-- dihedral symmetry decomposition
-- concavity of powered distances
+- antipodal quotient of the Hamming cube
+- Fourier characters on finite binary groups
+- Krawtchouk shell sums
 - negative type of finite metric spaces
-- symmetry-reduced quadratic forms
+- spectral multiplicities
