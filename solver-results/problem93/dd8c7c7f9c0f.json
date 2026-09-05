@@ -1,0 +1,22 @@
+{
+  "problem": "problem93",
+  "branch": "adversary/problem93",
+  "problem_path": "workspace/rainier-problem/problem93-systems-of-linear-equations/problem.md",
+  "source_commit_sha": "2050e16fd81e42c4ede8ef119810943460dcacd6",
+  "problem_blob_sha": "dd8c7c7f9c0f1ba6e8b6641aa754b5882323c61c",
+  "statement_sha256": "ee348e87649a392c3643db409291b68fca98a81c199490874a92641f0871d995",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T09:00:32+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nR=\\mathbb F_p[a,b,c]/(a^n,b^n,c^n),\n\\]\nwhere \\(a=T_1-I,\\ b=T_2-I,\\ c=T_3-I\\). Via the regular representation, the function space is \\(R\\), with the shifts acting by multiplication by \\(1+a,1+b,1+c\\).\n\nPut\n\\[\nL=a+b+c.\n\\]\nSince \\(n\\) is a power of \\(p\\),\n\\[\nc^n=(L-a-b)^n=L^n-a^n-b^n=L^n,\n\\]\nso after the linear change of variables\n\\[\nR\\cong \\mathbb F_p[a,b,L]/(a^n,b^n,L^n).\n\\]\nHence\n\\[\nLf=0\n\\]\nmeans exactly\n\\[\nf=L^{n-1}g(a,b),\\qquad g\\in S:=\\mathbb F_p[a,b]/(a^n,b^n).\n\\]\nThus the first equation cuts the dimension down to \\(n^2\\), before the remaining constraints.\n\nNow write\n\\[\nx=a^q,\\qquad y=b^q,\\qquad z=c^q.\n\\]\nOn \\(L^{n-1}S\\), we have\n\\[\nz=(L-a-b)^q=L^q-a^q-b^q=-x-y,\n\\]\nbecause \\(L^{n-1}L^q=0\\). Also\n\\[\nx+y+z=0.\n\\]\nTherefore, on this subspace,\n\\[\nA=xy+yz+zx=:t,\\qquad B=xyz=:r.\n\\]\nSo the two remaining operator equations become\n\\[\n(C+tr)g=0,\\qquad (t^3+r^2)g=0\n\\]\ninside \\(S\\), with\n\\[\nz=-x-y.\n\\]\n\nCompute\n\\[\nt=-(x^2+xy+y^2),\\qquad r=-xy(x+y),\n\\]\nand\n\\[\nC=(x-y)(y-z)(z-x)=-(x-y)(x+2y)(2x+y).\n\\]\nLet\n\\[\nP=C+tr,\\qquad Q=t^3+r^2.\n\\]\nThe ring \\(S\\) is free of rank \\(q^2\\) over\n\\[\nE:=\\mathbb F_p[x,y]/(x^p,y^p),\n\\]\nwith basis \\(a^i b^j\\), \\(0\\le i,j<q\\). Since \\(P,Q\\in E\\),\n\\[\n\\dim_{\\mathbb F_p}\\operatorname{Ann}_S(P,Q)\n=\nq^2\\dim_{\\mathbb F_p}\\operatorname{Ann}_E(P,Q).\n\\]\n\nBecause \\(E\\) is a finite Frobenius algebra,\n\\[\n\\dim \\operatorname{Ann}_E(P,Q)=\\dim E/(P,Q).\n\\]\nIt remains to compute this length.\n\nThe lowest homogeneous part of \\(P\\) is\n\\[\nC=-(x-y)(x+2y)(2x+y),\n\\]\na product of three distinct linear factors since \\(p\\ge 29\\). Thus \\(P=0\\) has three smooth local branches with tangent lines\n\\[\nx=y,\\qquad x=-2y,\\qquad 2x=-y.\n\\]\nOn each of these tangent lines,\n\\[\nQ=t^3+r^2=-23\\,u^6+O(u^7),\n\\]\nfor a local parameter \\(u\\). Since \\(p\\ge29\\), \\(-23\\ne0\\) in \\(\\mathbb F_p\\). Hence \\(Q\\) cuts each branch with multiplicity \\(6\\), so\n\\[\n\\dim E/(P,Q)=3\\cdot 6=18.\n\\]\nTherefore the common kernel of the three operator equations before cyclic symmetry has dimension\n\\[\n18q^2.\n\\]\n\nNow impose\n\\[\nf(y,z,x)=f(x,y,z).\n\\]\nThe cyclic permutation acts on \\(S\\) by\n\\[\n(a,b)\\mapsto (b,-a-b),\n\\]\nan order-\\(3\\) linear map. Since \\(p\\ne3\\), the fixed-space dimension is\n\\[\n\\frac{1}{3}\\bigl(\\dim W+\\operatorname{tr}\\tau|_W+\\operatorname{tr}\\tau^2|_W\\bigr),\n\\]\nwhere \\(W=\\operatorname{Ann}_S(P,Q)\\).\n\nThe equations \\(P,Q\\) are cyclically invariant. Over a field containing a primitive cube root of unity, diagonalize the cyclic action with eigenvalues \\(\\omega,\\omega^2\\). The associated graded quotient is a complete intersection cut out by two invariant forms of degrees \\(3q\\) and \\(6q\\), so its cyclic character is\n\\[\n\\frac{(1-t^{3q})(1-t^{6q})}{(1-\\omega t)(1-\\omega^2t)}.\n\\]\nEvaluating at \\(t=1\\) gives trace \\(0\\). The same holds for \\(\\tau^2\\). Thus\n\\[\n\\dim V_n=\\frac{18q^2}{3}=6q^2.\n\\]\nSince \\(q=n/p\\), the final answer is\n\\[\n\\boxed{6\\left(\\frac np\\right)^2}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T09:03:40+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem93/dd8c7c7f9c0f.json"
+}
