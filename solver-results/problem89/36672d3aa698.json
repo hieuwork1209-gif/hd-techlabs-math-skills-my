@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "de237951811a4d97113491a344f50a1c134d783f",
+  "problem_blob_sha": "36672d3aa698c108c5e89707f13ec720f2c6ec69",
+  "statement_sha256": "45e410f92388eb9a4506ad84eb82c8855a3d5438dc48765006ea79b6972e5b04",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T09:15:42+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(G=X=\\mathbb F_2^8/\\langle \\mathbf 1\\rangle\\). This is an abelian group of order \\(128\\). Since the kernel\n\\[\nK(u,v)=d(u,v)^p\n\\]\nis translation-invariant, the negative-type condition on the zero-sum subspace is equivalent to requiring every nontrivial Fourier eigenvalue of \\(g\\mapsto d(0,g)^p\\) to be \\(\\le 0\\).\n\nCharacters of \\(G\\) correspond to vectors \\(a\\in\\mathbb F_2^8\\) of even Hamming weight. The eigenvalue depends only on \\(m=\\operatorname{wt}(a)\\in\\{0,2,4,6,8\\}\\). For nontrivial characters, \\(m=2,4,6,8\\). Using\n\\[\n\\lambda_m=\\frac12\\sum_{z\\in\\mathbb F_2^8}\\min(\\operatorname{wt}z,8-\\operatorname{wt}z)^p(-1)^{a\\cdot z},\n\\]\nthe needed Krawtchouk values for \\(j=1,2,3,4\\) are\n\\[\n\\begin{array}{c|rrrr}\nm & j=1&j=2&j=3&j=4\\\\ \\hline\n2&4&4&-4&-10\\\\\n4&0&-4&0&6\\\\\n6&-4&4&4&-10\\\\\n8&-8&28&-56&70\n\\end{array}\n\\]\nso\n\\[\n\\begin{aligned}\n\\lambda_2&=4+4\\,2^p-4\\,3^p-5\\,4^p,\\\\\n\\lambda_4&=-4\\,2^p+3\\,4^p,\\\\\n\\lambda_6&=-4+4\\,2^p+4\\,3^p-5\\,4^p,\\\\\n\\lambda_8&=-8+28\\,2^p-56\\,3^p+35\\,4^p.\n\\end{aligned}\n\\]\n\nThe first eigenvalue to vanish is \\(\\lambda_8\\). Let \\(\\rho\\) be the unique positive root of\n\\[\n35\\,4^\\rho-56\\,3^\\rho+28\\,2^\\rho-8=0.\n\\]\nNumerically,\n\\[\n\\rho=0.13537272355672772\\ldots\n\\]\nOn \\(0<p\\le \\rho\\), one has \\(\\lambda_2,\\lambda_4,\\lambda_6<0\\) and \\(\\lambda_8\\le0\\). For \\(p>\\rho\\), either \\(\\lambda_8>0\\) before \\(\\log_2(4/3)\\), or \\(\\lambda_4>0\\) after that point, so negative type fails. Hence\n\\[\n\\wp=\\rho.\n\\]\n\nAt \\(p=\\wp\\), the only zero nontrivial eigenspace is the \\(m=8\\) Fourier layer, which has multiplicity \\(\\binom88=1\\). Therefore\n\\[\n\\dim E=1.\n\\]\n\n\\[\n\\boxed{\\left(\\rho,1\\right)}\n\\]\nwhere \\(\\rho\\) is the unique positive solution of\n\\[\n35\\,4^\\rho-56\\,3^\\rho+28\\,2^\\rho-8=0.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T09:18:09+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/36672d3aa698.json"
+}
