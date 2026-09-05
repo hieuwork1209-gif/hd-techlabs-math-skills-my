@@ -90,7 +90,7 @@ $$
 (\ker E)_a=k[a,a^{-1},p,q].
 $$
 
-To intersect back with $A$, write an element as $a^{-N}G(a,p,q)$ with $N\geq0$ minimal. If $N>0$, reducing the numerator modulo $a$ gives
+To intersect back with $A$, write an element as $a^{-N}G(a,p,q)$ with $N\geq0$. If $N>0$, polynomiality in $A$ gives
 $$
 G(0,-b^2,2b^3)=0.
 $$
@@ -105,7 +105,19 @@ is the principal ideal $(q^2+4p^3)$: after division by this polynomial, a remain
 $$
 G(0,p,q)=(q^2+4p^3)G_0(p,q).
 $$
-Using $q^2+4p^3=a^2\Delta$ lowers the negative power of $a$, contradicting minimality. Consequently
+Lift $G_0$ and write
+$$
+G=(q^2+4p^3)G_1+aG_2.
+$$
+Using $q^2+4p^3=a^2\Delta$ gives
+$$
+a^{-N}G=a^{-(N-2)}\Delta G_1+a^{-(N-1)}G_2.
+$$
+Induction on $N$ therefore yields
+$$
+A\cap k[a,a^{-1},p,q]=k[a,p,q,\Delta],
+$$
+so
 $$
 \ker E=k[a,p,q,\Delta].
 $$
