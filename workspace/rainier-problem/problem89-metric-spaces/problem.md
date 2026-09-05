@@ -8,17 +8,17 @@ Y=\{\ast,0,1,\ldots,12\}.
 $$
 For indices modulo $13$, join $i$ to $i+1$ by an edge of length $4$. In addition, join $\ast$ to $0,1,2,5,10$ by edges of lengths
 $$
-7+\frac{s^2}{4},\quad
-7+\frac{s^2}{4},\quad
-7-s+\frac{5s^2}{12},\quad
-13+\frac{s^2}{4},\quad
-15+s+\frac{s^2}{12},
+7+\frac{s^2}{4}-\frac{s^3}{12},\quad
+7+\frac{s^2}{4}-\frac{s^3}{12},\quad
+7-s+\frac{5s^2}{12}-\frac{s^3}{12},\quad
+13+\frac{s^2}{4}-\frac{s^3}{12},\quad
+15+s+\frac{s^2}{12}-\frac{s^3}{12},
 $$
 respectively. Let $d_s$ be the shortest-path metric on $Y$.
 
 For $p>0$, say that $(Y,d_s)$ has $p$-negative type if every real family $(c_z)_{z\in Y}$ with $\sum_zc_z=0$ satisfies
 $$
-\sum_{z,w\in Y}c_zc_w\,d_s(z,w)^p\le0.
+\sum_{z,w\in Y}c_zc_w\,d_s(z,w)^p\leq0.
 $$
 Let
 $$
@@ -34,9 +34,9 @@ $$
 \tau=\frac14\left.\frac{d}{dp}\right|_{p=1}
 \sum_{z,w\in Y}a_za_w\,d_0(z,w)^p,
 \qquad
-\eta=\tau\,\wp'''(0).
+\xi=\tau\,\wp''''(0).
 $$
-Determine the ordered triple $(\wp(0),\tau,\eta)$.
+Determine the ordered triple $(\wp(0),\tau,\xi)$.
 
 ---
 
@@ -53,4 +53,4 @@ Determine the ordered triple $(\wp(0),\tau,\eta)$.
 
 ## Domain Explanation
 
-The task asks for the supremal negative-type exponent of a finite shortest-path metric and the first nonvanishing response of its critical equality direction under a coupled perturbation. The key ideas are conditional negative definiteness and third-order perturbation of a simple boundary eigenvalue.
+The task asks for the supremal negative-type exponent of a finite shortest-path metric and the first nonvanishing response of its critical equality direction under a coupled perturbation. The key ideas are conditional negative definiteness and fourth-order perturbation of a simple boundary eigenvalue.
