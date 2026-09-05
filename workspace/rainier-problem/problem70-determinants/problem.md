@@ -4,19 +4,18 @@
 
 For integers $n\ge2$, real $a>0$, and $r\in\{1,2\}$, define
 $$
-T_r(n,a)=\sum_{q=1}^3 e^{q-1}\sum_{k=0}^{n^q}
-\frac{(-1)^k\binom{n^q}{k}}{(k+a)^r}.
+S_r(N,a)=\sum_{k=0}^{N}\frac{(-1)^k\binom Nk}{(k+a)^r},
+\qquad
+T_r(n,a)=\sum_{q=1}^3 e^{q-1}S_r(n^q,a).
 $$
 Let
 $$
-m_n=\left\lfloor\frac{2n^2}{3}\right\rfloor,
+m_n=\left\lfloor\frac{n^2}{3}\right\rfloor,
 $$
 and define
 $$
-U_r(n,a)=\sum_{q=1}^2 e^{q-1}\sum_{k=0}^{n^q}
-\frac{(-1)^k\binom{n^q}{k}}{(k+a)^r}
-+e^2\sum_{k=0}^{n^3+m_n}
-\frac{(-1)^k\binom{n^3+m_n}{k}}{(k+a)^r}.
+U_r(n,a)=S_r(n,a)+eS_r(n^2,a)
++e^2\left(\frac34S_r(n^3+m_n,a)+\frac14S_r(n^3+n^2,a)\right).
 $$
 For all sufficiently large $n$, let $a_n>0$ be the unique solution satisfying
 $$
@@ -49,4 +48,4 @@ $$
 
 ## Domain Explanation
 
-The determinant compares a base Beta-moment column with a mesoscopically shifted cutoff column. The shift $m_n\asymp n^2$ is tuned so its first finite-size effect cancels the $q=1$ Beta bias, forcing the root to be selected by a smaller competing asymptotic scale.
+The determinant compares a base Beta-moment column with a two-cutoff mesoscopic mixture. The first finite-size cancellation depends on a hidden ratio of shift moments rather than on a single effective cutoff, while the root is still selected by the next logarithmic correction.
