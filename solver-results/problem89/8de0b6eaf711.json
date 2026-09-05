@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "acd2c0408de50f5b8f0377e5fb09ef2adbd28c9b",
+  "problem_blob_sha": "8de0b6eaf7115c3d657490a4e7cc5c35d2c559a7",
+  "statement_sha256": "95a95917f78d89673faa92b4c34eea565bc3f9dcc2888e89736598f88037aa6e",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T08:11:54+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(V=\\operatorname{Sym}_3(\\mathbb F_3)\\). Since every symmetric matrix over \\(\\mathbb F_3\\) diagonalizes by congruence, a rank \\(r\\) symmetric matrix is a sum of \\(r\\) rank-one symmetric matrices, and not fewer by rank subadditivity. Hence\n\n\\[\nd(A,B)=\\operatorname{rank}(A-B).\n\\]\n\nSo this is a translation-invariant metric on the additive group \\(V\\).\n\nFor a character indexed by \\(Y\\in V\\), write\n\n\\[\n\\widehat f(Y)=\\sum_{X\\in V} \\operatorname{rank}(X)^p\\,\\chi_Y(X).\n\\]\n\nThe \\(p\\)-negative type condition is equivalent to\n\n\\[\n\\widehat f(Y)\\le 0\\qquad \\text{for every }Y\\ne0.\n\\]\n\nA direct finite Fourier count by congruence class of \\(Y\\) gives the nontrivial eigenvalues, with \\(a=2^p\\), \\(b=3^p\\):\n\n\\[\n\\begin{array}{c|c}\n\\text{type of }Y & \\widehat f(Y)\\\\ \\hline\n\\operatorname{rank}Y=1 & -1+18a-18b\\\\\n\\operatorname{rank}Y=2,\\ \\text{anisotropic} & -10+27a-18b\\\\\n\\operatorname{rank}Y=2,\\ \\text{hyperbolic} & 8+9a-18b\\\\\n\\operatorname{rank}Y=3 & -1-9a+9b\n\\end{array}\n\\]\n\nThe first three remain negative up to the critical point. The last one is increasing and vanishes exactly when\n\n\\[\n-1-9\\cdot 2^p+9\\cdot 3^p=0,\n\\]\n\ni.e.\n\n\\[\n3^p-2^p=\\frac19.\n\\]\n\nThus \\(\\wp\\) is the unique positive real number \\(\\rho\\) satisfying\n\n\\[\n3^\\rho-2^\\rho=\\frac19.\n\\]\n\nAt \\(p=\\rho\\), equality occurs exactly on the full-rank nonzero Fourier characters. The number of nonsingular symmetric \\(3\\times3\\) matrices over \\(\\mathbb F_3\\) is \\(468\\), so\n\n\\[\n\\dim E=468.\n\\]\n\n\\[\n\\boxed{(\\wp,\\dim E)=\\left(\\rho,468\\right),\\quad 3^\\rho-2^\\rho=\\frac19}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T08:14:43+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/8de0b6eaf711.json"
+}
