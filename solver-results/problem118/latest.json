@@ -2,8 +2,8 @@
   "problem": "problem118",
   "branch": "adversary/problem118",
   "problem_path": "workspace/rainier-problem/problem118-ring-theory/problem.md",
-  "problem_blob_sha": "ef4ec95ccefc066f16bcf2074c40c25a31ea1dba",
-  "source_commit_sha": "9fec943a8e4fca89ed12113855c9d175791e6cf7",
+  "problem_blob_sha": "9949935d65a521928236a16cadbbf6cfad1ac8d2",
+  "source_commit_sha": "291526bec4f0268d3e06e0ca391281704a67da84",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-05T09:11:58+00:00",
-  "result_file": "solver-results/problem118/ef4ec95ccefc.json"
+  "completed_at": "2026-09-05T09:22:46+00:00",
+  "result_file": "solver-results/problem118/9949935d65a5.json"
 }

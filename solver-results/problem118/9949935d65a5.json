@@ -1,0 +1,22 @@
+{
+  "problem": "problem118",
+  "branch": "adversary/problem118",
+  "problem_path": "workspace/rainier-problem/problem118-ring-theory/problem.md",
+  "source_commit_sha": "291526bec4f0268d3e06e0ca391281704a67da84",
+  "problem_blob_sha": "9949935d65a521928236a16cadbbf6cfad1ac8d2",
+  "statement_sha256": "76b204202ec8cd7a8311a2d38fcf7d360c4295cc4a6f53f595e1de2c83cafa32",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T09:21:14+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nA:=p^2-q^2+r^2,\\qquad B:=pU-qV+rW.\n\\]\n\nI claim\n\n\\[\n\\boxed{Z(R)=k[A,B]=k\\!\\left[p^2-q^2+r^2,\\;pU-qV+rW\\right].}\n\\]\n\nDefine shifted generators\n\n\\[\nu=U-p,\\qquad v=V-q,\\qquad w=W-r.\n\\]\n\nThen the relations become\n\n\\[\n[w,u]=2v,\\qquad [w,v]=2u,\\qquad [u,v]=-2w,\n\\]\n\nand \\(p,q,r\\) span an abelian ideal on which \\(u,v,w\\) act by\n\n\\[\n[u,p]=0,\\quad [u,q]=-2r,\\quad [u,r]=-2q,\n\\]\n\\[\n[v,p]=2r,\\quad [v,q]=0,\\quad [v,r]=-2p,\n\\]\n\\[\n[w,p]=2q,\\quad [w,q]=2p,\\quad [w,r]=0.\n\\]\n\nThus \\(R\\) is the enveloping algebra of the semidirect product\n\\[\n\\mathfrak h=\\mathfrak{sl}_2\\ltimes \\mathfrak{sl}_2^{\\mathrm{ab}},\n\\]\nwhere \\(p,q,r\\) are the adjoint module.\n\nFirst, \\(A\\) is central because the above action preserves the quadratic form\n\n\\[\np^2-q^2+r^2.\n\\]\n\nIndeed each of \\(u,v,w\\), hence also \\(U,V,W\\), kills \\(A\\), and \\(p,q,r\\) commute with it.\n\nNext write\n\n\\[\nT:=up-vq+wr.\n\\]\n\nA direct check using the displayed commutators gives\n\n\\[\n[x,T]=0\n\\]\n\nfor every \\(x\\in\\{u,v,w,p,q,r\\}\\). Hence \\(T\\) is central. Since\n\n\\[\nB=pU-qV+rW\n= p(u+p)-q(v+q)+r(w+r)\n= T+A,\n\\]\n\n\\(B\\) is central as well.\n\nIt remains to show these generate the whole center. Filter \\(R=U(\\mathfrak h)\\) by degree. Then \\(\\operatorname{gr}R\\simeq S(\\mathfrak h)\\), and the leading term of every central element is Poisson-central in \\(S(\\mathfrak h)\\).\n\nThe Poisson invariants of \\(S(\\mathfrak h)=k[u,v,w,p,q,r]\\) are exactly\n\n\\[\nk\\left[p^2-q^2+r^2,\\;up-vq+wr\\right].\n\\]\n\nReason: invariance under the abelian ideal \\(kp+kq+kr\\) forces a polynomial to depend on \\(u,v,w\\) only through the invariant pairing \\(up-vq+wr\\), together with \\(p,q,r\\). Then invariance under the \\(\\mathfrak{sl}_2\\)-part leaves only the quadratic adjoint invariant \\(p^2-q^2+r^2\\). Hence\n\n\\[\nS(\\mathfrak h)^{\\mathfrak h}\n=\nk[A,\\operatorname{gr}B].\n\\]\n\nNow take any \\(z\\in Z(R)\\). Its highest filtered part is a polynomial in \\(A\\) and \\(\\operatorname{gr}B\\). Subtract the corresponding polynomial in the actual central elements \\(A,B\\). This lowers the degree. Repeating by induction shows \\(z\\in k[A,B]\\).\n\nTherefore\n\n\\[\n\\boxed{Z(R)=k\\!\\left[p^2-q^2+r^2,\\;pU-qV+rW\\right].}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T09:22:46+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem118/9949935d65a5.json"
+}
