@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "b63f3d87948516339599acb2d2c8c46817707729",
+  "problem_blob_sha": "8e7e9328eddb04bade15d0f79f3409d6b868375c",
+  "statement_sha256": "59ae2434dac3f9e118d514fe94b2b12f8bda3981fd8ac8cb70e13f6a52b008bf",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T08:26:19+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(n=m-1\\). Thus \\(n\\ge 2\\). Write the two distinguished vertices as \\(a,b\\), and the two sets of non-distinguished clique vertices as \\(L,R\\), each of size \\(n\\).\n\nSet\n\\[\nt=2^p,\\qquad s=3^p.\n\\]\nThe distances are:\n\n\\[\nd(a,b)=1,\\quad d(a,R)=d(b,L)=2,\\quad d(L,R)=3,\n\\]\nand all distinct vertices inside either clique have distance \\(1\\).\n\nBy symmetry, decompose any zero-sum coefficient vector into:\n\n1. leaf-contrast parts inside \\(L\\) or \\(R\\), whose coefficients sum to \\(0\\);\n2. a part constant on \\(L\\) and constant on \\(R\\).\n\nFor a leaf-contrast vector \\(u\\) supported on one clique with \\(\\sum u_i=0\\),\n\\[\n\\sum_{x,y}u_xu_y d(x,y)^p\n=\\sum_{i\\ne j}u_i u_j\n= -\\sum_i u_i^2<0,\n\\]\nso these directions never create equality.\n\nIt remains to analyze the \\(4\\)-parameter space where coefficients are\n\\[\na:\\alpha,\\qquad b:\\beta,\\qquad L:\\lambda,\\qquad R:\\rho,\n\\]\nwith\n\\[\n\\alpha+\\beta+n\\lambda+n\\rho=0.\n\\]\n\nSplit further into symmetric and antisymmetric parts.\n\nFor the symmetric part, take\n\\[\n\\alpha=\\beta=A,\\qquad \\lambda=\\rho=\\Lambda.\n\\]\nThe zero-sum condition gives \\(A=-n\\Lambda\\). A direct summation gives\n\\[\nQ_{\\mathrm{sym}}\n=2n\\Lambda^2\\bigl(-1-2nt+ns\\bigr).\n\\]\nHence the symmetric direction is nonpositive exactly when\n\\[\ns\\le 2t+\\frac1n.\n\\tag{1}\n\\]\n\nFor the antisymmetric part, take\n\\[\n\\alpha=x,\\qquad \\beta=-x,\\qquad \\lambda=y,\\qquad \\rho=-y.\n\\]\nThen\n\\[\nQ_{\\mathrm{anti}}\n=\n2\\left[-x^2+2n(1-t)xy+n\\bigl((n-1)-ns\\bigr)y^2\\right].\n\\]\nThis quadratic form is nonpositive exactly when its determinant is nonnegative:\n\\[\nn\\left(ns-n+1-n(t-1)^2\\right)\\ge0,\n\\]\nequivalently\n\\[\ns\\ge t^2-2t+2-\\frac1n.\n\\tag{2}\n\\]\n\nThus \\(B_m\\) has \\(p\\)-negative type iff both\n\\[\n3^p\\le 2\\cdot 2^p+\\frac1n\n\\]\nand\n\\[\n3^p\\ge 4^p-2\\cdot 2^p+2-\\frac1n.\n\\]\n\nThe first inequality is the limiting one. Indeed, define \\(p_m\\in(1,2)\\) as the unique solution of\n\\[\n3^{p_m}=2\\cdot 2^{p_m}+\\frac1n.\n\\tag{3}\n\\]\nUniqueness follows because \\(3^p-2\\cdot 2^p\\) is strictly increasing on \\([1,2]\\), with values \\(-1\\) at \\(p=1\\) and \\(1\\) at \\(p=2\\).\n\nAt this \\(p=p_m\\), the antisymmetric inequality is still strict. To see this, put \\(T=2^{p_m}\\in(2,4)\\). If antisymmetry failed, then\n\\[\n\\frac1n\\le \\frac{T^2-4T+2}{2},\n\\]\nso using \\(T^{\\log_2 3}=2T+\\frac1n\\),\n\\[\nT^{\\log_2 3}\\le \\frac{T^2}{2}+1.\n\\]\nBut for \\(2<T<4\\),\n\\[\nT^{\\log_2 3}>\\frac{T^2}{2}+1,\n\\]\nsince the two sides agree at \\(T=2,4\\), and their difference has a single interior maximum. Contradiction. Hence equality occurs only in the symmetric direction.\n\nTherefore\n\\[\n\\wp=p_m,\n\\]\nwhere \\(p_m\\) is the unique number in \\((1,2)\\) satisfying\n\\[\n3^{p_m}=2\\cdot 2^{p_m}+\\frac1{m-1}.\n\\]\n\nAt \\(p=\\wp\\), equality is attained exactly by scalar multiples of\n\\[\nc_a=c_b=-(m-1),\\qquad c_x=1\\quad \\text{for all other vertices }x.\n\\]\nSo \\(\\dim E=1\\).\n\n\\[\n\\boxed{\\left(p_m,\\,1\\right)}\n\\]\nwhere \\(p_m\\in(1,2)\\) is uniquely determined by\n\\[\n\\boxed{3^{p_m}=2\\cdot 2^{p_m}+\\frac1{m-1}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T08:28:15+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/8e7e9328eddb.json"
+}
