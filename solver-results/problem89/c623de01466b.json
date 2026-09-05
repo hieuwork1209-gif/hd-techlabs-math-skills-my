@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "51a80d994f133b156334fef70fe1a479c94330ca",
+  "problem_blob_sha": "c623de01466b926b9e2b8eb3fb095b5c1abd2530",
+  "statement_sha256": "24c4957d9ee58b327442505beb89a7ede1db7607cdcc033c8852002e48b8fa3d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T08:57:18+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nf(p)=3\\cdot 16^p+3\\cdot 8^p-64\\cdot 4^p+61\\cdot 2^p+42\\cdot 6^p\n-4\\cdot 12^p-18\\cdot 3^p-9\\cdot 9^p-7 .\n\\]\n\nThe supremal negative type is the first positive zero of this exponential polynomial:\n\n\\[\n\\wp \\approx 0.7921831449751005.\n\\]\n\nMore precisely,\n\n\\[\n\\wp=\\text{the unique root of }f(p)=0\\text{ in }(0,1).\n\\]\n\nSketch of the computation. The 14 triangulations split under the dihedral action into three orbits:\n\n- 6 fan triangulations,\n- 6 mixed triangulations,\n- 2 alternating triangulations.\n\nFor an orbit-constant coefficient vector taking values \\(a,b,c\\) on these three orbits, the zero-sum condition is\n\n\\[\n6a+6b+2c=0,\\qquad c=-3a-3b.\n\\]\n\nWriting \\(x=2^p,\\ y=3^p\\), the conditional quadratic form on the \\((a,b)\\)-plane has matrix entries\n\n\\[\nH_{00}=-36-24y+18x+18x^2,\n\\]\n\n\\[\nH_{01}=-6-6y-24x+18x^2,\n\\]\n\n\\[\nH_{11}=6+12y-66x+24x^2.\n\\]\n\nThus its determinant is\n\n\\[\n36f(p).\n\\]\n\nThe remaining Fourier blocks under rotation are strictly negative at this first zero and remain negative up to it, so the first loss of conditional negative definiteness occurs exactly when\n\n\\[\n\\det H=0.\n\\]\n\nAt \\(p=\\wp\\), this determinant has a simple zero while the other blocks are nonsingular negative, so the equality space is one-dimensional. Explicitly, it is spanned by the orbit-constant vector with\n\n\\[\n(a,b,c)=\\left(1,\\,-\\frac{H_{00}}{H_{01}},\\,-3-3\\left(-\\frac{H_{00}}{H_{01}}\\right)\\right)_{p=\\wp}.\n\\]\n\nNumerically this is proportional to\n\n\\[\n(1,\\,-1.031140859,\\ 0.093422577)\n\\]\n\non the three orbit types above.\n\nTherefore\n\n\\[\n\\boxed{(\\wp,\\dim E)=\\left(\\wp,1\\right)}\n\\]\n\nwhere \\(\\wp\\) is the unique root in \\((0,1)\\) of \\(f(p)=0\\), approximately \\(0.7921831449751005\\).",
+  "status": "success",
+  "completed_at": "2026-09-05T09:02:22+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/c623de01466b.json"
+}
