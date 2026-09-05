@@ -1,150 +1,167 @@
 ## Steps
 
-Step 1: Reduce the zero-sum space by symmetry
+Step 1: Recover the adjacency spectrum from the incidence geometry
 
-Let the two copies of $K_m$ have distinguished bridge vertices $a,b$, and write
+Let
 $$
-L=\{\ell_1,\ldots,\ell_r\},\qquad R=\{r_1,\ldots,r_r\},\qquad r=m-1.
+P=\binom{[6]}2
 $$
-Thus $a\cup L$ and $b\cup R$ are the two cliques, and $a$ is joined to $b$. Put
-$$
-x=2^p,\qquad y=3^p.
-$$
-The nonzero distances are $1,2,3$: vertices in one clique are at distance $1$, the bridge endpoints are at distance $1$, a bridge endpoint is at distance $2$ from an ordinary vertex in the opposite clique, and ordinary vertices in opposite cliques are at distance $3$.
+be the set of $15$ two-subsets, and let $S$ be the set of partitions of $[6]$ into three unordered pairs. There are also $15$ such partitions. Let $N$ be the $15\times15$ incidence matrix between $P$ and $S$.
 
-If a coefficient vector is supported on $L$ and has sum $0$, the powered distance matrix acts on it as $-I$, because all rows outside $L$ are constant on $L$. The same holds for the corresponding subspace on $R$. These two always-negative subspaces have total dimension
+Each pair lies in exactly $3$ partitions. Two distinct pairs lie in a common partition exactly when they are disjoint, and then that partition is unique. Hence
 $$
-2(r-1).
+NN^T=3I+A,
 $$
-It remains to study coefficient vectors that are constant on $L$ and on $R$.
+where $A$ is the adjacency matrix of the graph on $P$ joining disjoint pairs.
 
-Step 2: Compute the even mode
-
-Write the coefficient at $a$ as $s$, the total coefficient on $L$ as $u$, the coefficient at $b$ as $t$, and the total coefficient on $R$ as $v$. Thus each vertex of $L$ has coefficient $u/r$ and each vertex of $R$ has coefficient $v/r$. The zero-sum condition is
+The spectrum of $A$ is obtained directly. The constant vector has eigenvalue $6$. For $i\in[6]$, let $f_i(T)=\mathbf1_{i\in T}$. Then
 $$
-s+u+t+v=0.
+Af_i=3(1-f_i),
 $$
-Reflection across the bridge splits this space into even and odd parts.
-
-In the even part,
+so the $5$-dimensional span of the differences $f_i-f_j$ has eigenvalue $-3$. The remaining subspace has dimension $9$, and since $\operatorname{tr}A=0$, its eigenvalue is $1$. Thus
 $$
-t=s,\qquad v=u,
+\operatorname{Spec}(A)=6^{[1]},\ (-3)^{[5]},\ 1^{[9]}.
 $$
-so zero sum gives $u=-s$. Directly summing the ordered pairs gives
+Therefore the singular values of $N$ are
 $$
-Q_p=2s^2\left(y-2x-\frac1r\right).
+3^{[1]},\ 0^{[5]},\ 2^{[9]}.
 $$
-Hence this mode is nonpositive exactly when
+If $M$ is the adjacency matrix of the bipartite incidence graph, then
 $$
-y-2x\le\frac1r.
+M=\begin{pmatrix}0&N\\N^T&0\end{pmatrix},
 $$
-Define $\alpha$ by
+so
 $$
-3^\alpha-2^{\alpha+1}=\frac1r.
-$$
-For $0\le p\le1$, we have $(3/2)^p<2$, so the left side before subtracting $1/r$ is negative. For $p\ge1$ its derivative is positive because
-$$
-\frac{3^p\log3}{2^{p+1}\log2}
-\ge\frac{3\log3}{4\log2}>1.
-$$
-Also the defining left side equals $-1-1/r$ at $p=1$ and $1-1/r>0$ at $p=2$. Since $r\ge2$, there is a unique
-$$
-\alpha\in(1,2).
+\operatorname{Spec}(M)=3^{[1]},\ (-3)^{[1]},\ 2^{[9]},\ (-2)^{[9]},\ 0^{[10]}.
 $$
 
-Step 3: Compute the odd block
+Step 2: Express the distance matrices as polynomials in $M$
 
-In the odd part,
+Fix a pair $p\in P$. From the incidence rules, the distance partition has intersection array
 $$
-t=-s,\qquad v=-u,
+\{3,2,2,2;1,1,1,3\}.
 $$
-and the zero-sum condition is automatic. The quadratic form becomes
-$$
-Q_p=2\left[-s^2+2(1-x)su+\left(1-\frac1r-y\right)u^2\right].
-$$
-Since the coefficient of $s^2$ is negative, this $2\times2$ form is negative semidefinite exactly when
-$$
-F(p):=y-1+\frac1r-(x-1)^2\ge0.
-$$
+Indeed, a partition containing $p$ has two other pairs; a pair disjoint from $p$ has one common partition with $p$; a partition not containing $p$ contains exactly one pair disjoint from $p$; and a pair meeting $p$ has all three incident partitions one step closer.
 
-We show that this condition still holds strictly at the even threshold. Put
+Let $A_i$ be the distance-$i$ matrix. The distance-regular recurrence gives
 $$
-q=\log_2 3,
+A_1=M,
 $$
-so $y=x^q$. At $p=\alpha$, the defining equation gives $1/r=y-2x$, hence
 $$
-F(\alpha)=2x^q-x^2-2.
+A_2=M^2-3I,
 $$
-Now $x=2^\alpha\in(2,4)$. Since $3^5<2^8$, we have $q<8/5$, so
 $$
-q(q-1)<1.
+A_3=MA_2-2M,
 $$
-Therefore the function
 $$
-H(x)=2x^q-x^2-2
+A_4=\frac{MA_3-2A_2}{3}.
 $$
-is strictly concave for $x\ge1$, because
+Hence on an $M$-eigenvector with eigenvalue $\theta$, the eigenvalues of $(A_1,A_2,A_3,A_4)$ are
 $$
-H''(x)=2q(q-1)x^{q-2}-2<0.
-$$
-Moreover
-$$
-H(2)=H(4)=0.
-$$
-Thus
-$$
-F(\alpha)=H(2^\alpha)>0.
+\begin{array}{c|cccc}
+\theta&A_1&A_2&A_3&A_4\\
+\hline
+3&3&6&12&8\\
+-3&-3&6&-12&8\\
+2&2&1&-2&-2\\
+-2&-2&1&2&-2\\
+0&0&-3&0&2
+\end{array}
 $$
 
-Step 4: Verify that no odd obstruction occurs earlier
+Step 3: Diagonalize the powered distance matrix
 
-In terms of $x=2^p$, the odd determinant is
+Put
 $$
-F(x)=x^q-x^2+2x-2+\frac1r.
+x=2^p,\qquad y=3^p,\qquad z=4^p.
 $$
-Its second derivative satisfies
+Since the graph has diameter $4$,
 $$
-F''(x)=q(q-1)x^{q-2}-2<0,
+D_p=A_1+xA_2+yA_3+zA_4.
 $$
-so $F$ is concave on $[1,2^\alpha]$. Its endpoint values are
+On the four nonconstant spectral modes, the eigenvalues are
 $$
-F(1)=\frac1r>0
+\lambda_{-3}=-3+6x-12y+8z,
 $$
-and, by Step 3,
 $$
-F(2^\alpha)>0.
+\lambda_2=2+x-2y-2z,
 $$
-A concave function lies above the chord joining its endpoint values, so
 $$
-F(p)>0\qquad(0\le p\le\alpha).
+\lambda_{-2}=-2+x+2y-2z,
 $$
-Hence the odd block is strictly negative definite throughout this interval. Together with the two standard subspaces from Step 1, the first loss of negative type occurs only in the even mode. Therefore
+$$
+\lambda_0=-3x+2z.
+$$
+Thus $p$-negative type is equivalent to all four quantities being nonpositive.
+
+Step 4: Identify the first mode to reach zero
+
+Let
+$$
+q=\log_2 3
+$$
+and write $x=2^p$. Then
+$$
+\lambda_{-3}=g(x):=8x^2-12x^q+6x-3.
+$$
+Since $3^3<2^5$, we have $q<5/3$. For $x\ge1$,
+$$
+g''(x)=16-12q(q-1)x^{q-2}>0,
+$$
+and
+$$
+g'(1)=22-12q>0.
+$$
+Hence $g$ is strictly increasing on $[1,\infty)$. Also
+$$
+g(1)=-1,
+$$
+while
+$$
+g(\sqrt2)=13+6\sqrt2-12\sqrt3>0,
+$$
+because $\sqrt2>7/5$ and $\sqrt3<7/4$. Therefore there is a unique
+$$
+\alpha\in\left(0,\frac12\right)
+$$
+satisfying
+$$
+8\cdot4^\alpha-12\cdot3^\alpha+6\cdot2^\alpha-3=0.
+$$
+
+For $0\le p\le\alpha$, we have $1\le x<\sqrt2$. Since $y\ge x$,
+$$
+\lambda_2\le2-x-2x^2<0.
+$$
+Since $q<2$, we have $y<x^2$ for $p>0$, so
+$$
+\lambda_{-2}<-2+x<0.
+$$
+Finally,
+$$
+\lambda_0=x(2x-3)<0
+$$
+because $x<\sqrt2<3/2$. Thus the first loss of negative type occurs exactly in the $-3$ adjacency mode, and
 $$
 \wp=\alpha.
 $$
 
 Step 5: Compute the equality-space dimension
 
-At $p=\alpha$, the internal standard subspaces have eigenvalue $-1$, and the odd block is still strictly negative definite. The even zero-sum subspace is one-dimensional, and its quadratic form vanishes exactly at $p=\alpha$.
+The adjacency eigenvalue $-3$ has multiplicity $1$. Its eigenvector is the bipartite sign vector, constant $+1$ on $P$ and $-1$ on $S$, so it lies in the zero-sum subspace because $|P|=|S|=15$.
 
-Thus the equality space is one-dimensional. A spanning equality vector has coefficient $1$ at each bridge endpoint and coefficient
-$$
--\frac1{m-1}
-$$
-at every other vertex.
-
-Therefore
+At $p=\alpha$, every other nonconstant powered-distance eigenvalue is strictly negative. Hence the equality space is exactly this one-dimensional mode, and
 $$
 \dim E=1.
 $$
 
-Final Answer: $\boxed{(\alpha,1),\quad3^\alpha-2^{\alpha+1}=\frac1{m-1},\quad1<\alpha<2}$
+Final Answer: $\boxed{(\alpha,1),\quad8\cdot4^\alpha-12\cdot3^\alpha+6\cdot2^\alpha-3=0,\quad0<\alpha<\frac12}$
 
 ---
 
 ## Answer
 
-$(\alpha,1),\quad3^\alpha-2^{\alpha+1}=\frac1{m-1},\quad1<\alpha<2$
+$(\alpha,1),\quad8\cdot4^\alpha-12\cdot3^\alpha+6\cdot2^\alpha-3=0,\quad0<\alpha<\frac12$
 
 ---
 
@@ -158,7 +175,8 @@ $(\alpha,1),\quad3^\alpha-2^{\alpha+1}=\frac1{m-1},\quad1<\alpha<2$
 
 ## Solution Concepts
 
-- barbell graph metrics
-- symmetry decomposition of quadratic forms
+- finite incidence graph metrics
+- incidence matrix singular values
+- Kneser graph eigenspaces
+- distance-regular recurrence
 - negative type of finite metric spaces
-- concavity comparison of spectral modes
