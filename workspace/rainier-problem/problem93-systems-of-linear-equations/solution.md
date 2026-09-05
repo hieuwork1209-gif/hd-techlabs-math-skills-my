@@ -29,144 +29,167 @@ On the plane $a+b+c=0$, define
 $$
 s=ab+bc+ca,\qquad t=abc,\qquad \Delta=(a-b)(b-c)(c-a).
 $$
-Every polynomial fixed by the cycle splits uniquely into a symmetric part plus $\Delta$ times a symmetric part. Thus the cyclic invariant ring is
+Every polynomial fixed by the cycle splits uniquely into a symmetric part plus $\Delta$ times a symmetric part. Hence the cyclic invariant ring is
 $$
-E=\mathbb F_p[s,t,\Delta]_{(s,t,\Delta)}\Big/(\Delta^2+4s^3+27t^2).
+E=\mathbb F_p[s,t,\Delta]\Big/(\Delta^2+4s^3+27t^2).
 $$
 
-Step 2: Identify the mixed-scale generators
-Define
-$$
-D=(T_1-I)(T_2-I)+(T_2-I)(T_3-I)+(T_3-I)(T_1-I).
-$$
-In the quotient by $a+b+c=0$, multiplication by $D$ is multiplication by $s$.
-
-Let $q=n/p$. Since $p$ is odd, $q$ is odd, so $(q-1)/2$ is an integer. Since $q$ is a power of $p$,
+Step 2: Reduce the operator equations
+Let $q=n/p$. Since $q$ is a power of $p$,
 $$
 X^q=1+a^q,\qquad Y^q=1+b^q,\qquad Z^q=1+c^q,
 $$
 and $a^q+b^q+c^q=0$. Expanding the operators gives
 $$
-A=s^q,\qquad B=t^q,\qquad C=\Delta^q.
+A=s^q,\qquad B=t^q.
 $$
-Hence
+For
 $$
-D^{(q-1)/2}A=s^{(q-1)/2}s^q=s^{(3q-1)/2}.
+C=(T_1-T_2)(T_2-T_3)(T_3-T_1)
+$$
+we have simply $C=\Delta$. Therefore the untruncated cyclic-invariant quotient is
+$$
+Q=E/(s^{2q},t^q,\Delta^{2(q-1)}).
 $$
 Put
 $$
-m=\frac{3q-1}{2}.
+H=4s^3+27t^2.
 $$
-Therefore the untruncated cyclic-invariant quotient is
+Since $\Delta^2=-H$,
 $$
-Q=E/(s^m,t^q,\Delta^q).
+\Delta^{2(q-1)}=(-1)^{q-1}H^{q-1}=H^{q-1}.
 $$
-The cutoff $m$ lies strictly inside the nilpotent range, so this is not a complete-intersection count with only a top socle correction.
+Also $E=\mathbb F_p[s,t]\oplus\Delta\mathbb F_p[s,t]$ as a module over $\mathbb F_p[s,t]$. Thus, with
+$$
+R_0=\mathbb F_p[s,t]/(s^{2q},t^q),
+$$
+we have
+$$
+\dim Q=2\dim R_0/(H^{q-1}).
+$$
+It remains to determine the rank of multiplication by $H^{q-1}$ on $R_0$.
 
-Step 3: Convert the surface singularity to $uv=w^3$
-Extend scalars to a field $K/\mathbb F_p$ of degree at most $2$ containing an element $\alpha$ with
+Step 3: Split into six residue blocks
+Set
 $$
-\alpha^2=-27.
+X=s^3,\qquad Y=t^2.
 $$
-Scalar extension does not change vector-space dimension. Set
+Decompose $R_0$ according to the exponent of $s$ modulo $3$ and the exponent of $t$ modulo $2$:
 $$
-u=\Delta+\alpha t,\qquad
-v=-\frac14(\Delta-\alpha t),\qquad
-w=s.
+R_0=\bigoplus_{r=0}^2\bigoplus_{e=0}^1
+s^rt^e\,\mathbb F_p[X,Y]/(X^{A_r},Y^{B_e}),
 $$
-Then
+where
 $$
-uv=-\frac14(\Delta^2+27t^2)=s^3=w^3.
+A_r=\#\{0\le i<2q:i\equiv r\pmod3\},
 $$
-Because $q$ is a $p$-power, $u^q,v^q$ are invertible $K$-linear combinations of $\Delta^q,t^q$. Thus
 $$
-Q\otimes_{\mathbb F_p}K
-\cong
-\frac{K[u,v,w]}{(uv-w^3,u^q,v^q,w^m)}.
-$$
-
-Step 4: Count the two monomial regimes
-The ring
-$$
-K[u,v,w]/(uv-w^3)
-$$
-embeds into $K[\xi,\eta]$ by
-$$
-u=\xi^3,\qquad v=\eta^3,\qquad w=\xi\eta.
-$$
-Hence every monomial has a unique normal form of one of the types
-$$
-w^j,\qquad u^iw^j\ (i\ge1),\qquad v^iw^j\ (i\ge1).
-$$
-There are $m$ surviving pure $w$-monomials.
-
-For $1\le i<q$, the identity
-$$
-u^qv^{q-i}=u^i(uv)^{q-i}=u^iw^{3(q-i)}
-$$
-shows that $u^iw^j$ survives exactly for
-$$
-0\le j<\min\{m,3(q-i)\}.
-$$
-The same holds for the $v$-monomials. Therefore
-$$
-\dim Q=m+2\sum_{i=1}^{q-1}\min\{m,3(q-i)\}.
-$$
-Write $q=2k+1$, so $m=3k+1$. Replacing $q-i$ by $r$ splits the sum at $r=k$:
-$$
-\sum_{r=1}^{2k}\min\{3k+1,3r\}
-=
-3\sum_{r=1}^{k}r+k(3k+1)
-=
-\frac{9k^2+5k}{2}.
+B_e=\#\{0\le j<q:j\equiv e\pmod2\}.
 $$
 Hence
 $$
-\dim Q
-=3k+1+9k^2+5k
-=9k^2+8k+1
-=\frac{9q^2-2q-3}{4}.
+\sum_{r=0}^2A_r=2q,
+\qquad
+\sum_{e=0}^1B_e=q.
+$$
+Each block is preserved by multiplication by
+$$
+H^{q-1}=(4X+27Y)^{q-1}.
+$$
+Rescaling $X,Y$ by nonzero constants does not affect rank, so it suffices to study multiplication by $(X+Y)^{q-1}$.
+
+Because $q$ is a power of $p$,
+$$
+(1+z)^q=1+z^q.
+$$
+Since $q$ is odd,
+$$
+(1+z)^{q-1}=1-z+z^2-\cdots+z^{q-1}.
+$$
+Thus all coefficients of $(X+Y)^{q-1}$ alternate between $1$ and $-1$.
+
+Step 4: Compute the Frobenius-degenerate rank
+Fix one block
+$$
+S_{A,B}=\mathbb F_p[X,Y]/(X^A,Y^B)
+$$
+with $A=A_r$ and $B=B_e$, and put
+$$
+R=A+B-q.
+$$
+Since $q\ge p\ge29$, all six values of $R$ are positive.
+
+Multiplication by $(X+Y)^{q-1}$ raises total degree by $q-1$. The source degrees that can contribute are exactly
+$$
+d=0,1,\dots,R-1.
+$$
+For such a $d$, the degree-$d$ source has basis
+$$
+X^aY^{d-a}\qquad(0\le a\le d),
+$$
+and the degree-$d+q-1$ target has $R-d$ basis monomials. Because $R<A,B$, every source basis vector can connect to every target basis vector without crossing either truncation bound.
+
+If the target $X$-exponent is $c$, the corresponding coefficient is, up to a fixed sign,
+$$
+(-1)^{a+c}.
+$$
+Therefore the matrix on this graded piece is an outer product of a sign column and a sign row, so it has rank exactly $1$. Distinct total degrees do not mix. Hence
+$$
+\operatorname{rank}\bigl((X+Y)^{q-1}:S_{A,B}\to S_{A,B}\bigr)=A+B-q.
+$$
+Summing over the six blocks gives
+$$
+\operatorname{rank}(H^{q-1}:R_0\to R_0)
+=\sum_{r=0}^2\sum_{e=0}^1(A_r+B_e-q).
+$$
+Using the two counting identities from Step 3,
+$$
+\operatorname{rank}(H^{q-1})
+=2(2q)+3(q)-6q=q.
+$$
+Since $\dim R_0=2q^2$,
+$$
+\dim R_0/(H^{q-1})=2q^2-q,
+$$
+and therefore
+$$
+\dim Q=4q^2-2q.
 $$
 
 Step 5: Restore the truncation and finish
-Let
+Before restoring $a^n,b^n,c^n$, the invariant quotient $Q$ is spanned by classes of
 $$
-\mathcal M=\frac{\mathbb F_p[a,b,c]_{(a,b,c)}}{(a+b+c,s^m,t^q,\Delta^q)}.
+s^it^j,\qquad \Delta s^it^j,
 $$
-Then $\mathcal M^{\langle\rho\rangle}=Q$. Give $u,v$ degree $3$ and $w$ degree $2$. From the two regimes in Step 4, every surviving invariant monomial has degree less than $5q$. Hence
+with $0\le i<2q$ and $0\le j<q$. Since $\deg s=2$, $\deg t=3$, and $\deg\Delta=3$, every such class has degree at most
 $$
-(\mathfrak m^{5q}\mathcal M)^{\langle\rho\rangle}=0,
+2(2q-1)+3(q-1)+3=7q-2.
 $$
-where $\mathfrak m=(a,b,c)$.
 
-Let
+Let $\mathcal M$ be the corresponding untruncated quotient before taking cyclic invariants, and let
 $$
 K_0=(a^n,b^n,c^n)\mathcal M.
 $$
-This ideal is $\rho$-stable and lies in $\mathfrak m^n\mathcal M$. Since
-$$
-n=pq\ge29q>5q,
-$$
-we have $K_0^{\langle\rho\rangle}=0$. Exactness of cyclic invariants applied to
+Then $K_0\subseteq\mathfrak m^n\mathcal M$, where $\mathfrak m=(a,b,c)$. Since $n=pq\ge29q>7q-2$, the invariant part of $\mathfrak m^n\mathcal M$ is zero, so $K_0^{\langle\rho\rangle}=0$. Exactness of cyclic invariants applied to
 $$
 0\to K_0\to\mathcal M\to\mathcal M/K_0\to0
 $$
-shows that restoring $a^n=b^n=c^n=0$ does not change the required invariant dimension.
+shows that restoring $a^n=b^n=c^n=0$ does not change the required dimension.
 
 Therefore
 $$
 \dim_{\mathbb F_p}V_n
-=\frac{9q^2-2q-3}{4}
-=\frac{9(n/p)^2-2(n/p)-3}{4}.
+=4q^2-2q
+=4\left(\frac np\right)^2-2\left(\frac np\right).
 $$
 
-Final Answer: $\boxed{\frac{9(n/p)^2-2(n/p)-3}{4}}$
+Final Answer: $\boxed{4\left(\frac np\right)^2-2\left(\frac np\right)}$
 
 ---
 
 ## Answer
 
-$\frac{9(n/p)^2-2(n/p)-3}{4}$
+$4\left(\frac np\right)^2-2\left(\frac np\right)$
 
 ---
 
@@ -182,10 +205,10 @@ $\frac{9(n/p)^2-2(n/p)-3}{4}$
 
 - cyclic translation operators
 - symmetric and alternating invariants
-- mixed nilpotent cutoff
-- $A_2$ surface singularity
-- semigroup monomial counting
+- Frobenius binomial degeneration
+- residue-class module decomposition
+- graded rank counting
 
 ## Black-Box Audit
 
-The invariant ring, mixed exponent reduction, scalar extension, $uv=w^3$ model, two-regime monomial count, and truncation argument are derived explicitly.
+The invariant ring, operator reduction, six-block decomposition, characteristic-$p$ rank collapse, rank sum, and truncation argument are all derived explicitly.
