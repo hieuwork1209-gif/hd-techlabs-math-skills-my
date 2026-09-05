@@ -1,0 +1,22 @@
+{
+  "problem": "problem70",
+  "branch": "adversary/problem70",
+  "problem_path": "workspace/rainier-problem/problem70-determinants/problem.md",
+  "source_commit_sha": "b8ab46ae7b6daaebaf535af9e9b4cdf2a9969bb1",
+  "problem_blob_sha": "ddeb3f3ba314380cfc7099379d6f76452029765a",
+  "statement_sha256": "98504998bbb92fac4b2070b3463f7706dab97d545919d4a0ff5d89a10b77eed3",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T09:25:02+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nF_N(a)=S_1(N,a).\n\\]\nUsing\n\\[\nS_1(N,a)=\\int_0^1 x^{a-1}(1-x)^N\\,dx\n=\\frac{\\Gamma(a)\\Gamma(N+1)}{\\Gamma(N+a+1)},\n\\]\nwe have\n\\[\nS_2(N,a)=-\\frac{\\partial}{\\partial a}S_1(N,a)\n=S_1(N,a)\\bigl(\\psi(N+a+1)-\\psi(a)\\bigr).\n\\]\nWrite\n\\[\nH_N(a)=\\psi(N+a+1)-\\psi(a).\n\\]\n\nThe determinant condition says the weighted average of \\(H_N\\) in \\(T\\) equals the corresponding weighted average in \\(U\\). Since \\(T\\) and \\(U\\) differ only in the \\(n^3\\)-term, this is equivalent to\n\\[\n\\frac{\\Delta(FH)}{\\Delta F}\n=\n\\frac{\\sum_{q=1}^3 e^{q-1}F_{n^q}H_{n^q}}\n{\\sum_{q=1}^3 e^{q-1}F_{n^q}},\n\\]\nwhere\n\\[\n\\Delta F=e^2\\left(p_nF_{n^3+m_n}+(1-p_n)F_{n^3+n^2}-F_{n^3}\\right).\n\\]\n\nPut\n\\[\nx=aL.\n\\]\nWe need \\(x=1+o(1)\\). For \\(N=n^q\\),\n\\[\nF_N(a)=\\Gamma(a)N^{-a}\\left(1-\\frac{a(a+1)}{2N}+O(N^{-2})\\right),\n\\]\nand\n\\[\nH_N(a)=\\log N-\\psi(a)+\\frac{a+1/2}{N}+O(N^{-2}).\n\\]\n\nFor the \\(T\\)-average, at \\(x=1\\) the three main weights are equal because\n\\[\ne^{q-1}n^{-qa}=e^{q-1-q}=e^{-1}.\n\\]\nOnly the \\(q=1\\) correction contributes at order \\(1/n\\). Thus\n\\[\n\\frac1L\\left(\n\\frac{\\sum e^{q-1}F_{n^q}H_{n^q}}{\\sum e^{q-1}F_{n^q}}\n-H_{n^3}\n\\right)\n=\n-1+\\frac1n\\left(\\frac1{3L}+\\frac1{2L^2}\\right)\n-\\frac23(x-1)+o\\!\\left(\\frac1{nL^3}\\right).\n\\]\n\nNow consider the perturbation in \\(U\\). For \\(s\\in\\{1/3,1\\}\\),\n\\[\nn^3+s n^2=n^3(1+s/n),\n\\]\nand\n\\[\n\\frac{F_{n^3+sn^2}}{F_{n^3}}\n=\n\\exp\\left(-a\\log(1+s/n)\\right)+O(n^{-2}).\n\\]\nLet\n\\[\nz_s=\\frac{\\log(1+s/n)}{L}.\n\\]\nThen\n\\[\n\\frac1L\\left(\\frac{\\Delta(FH)}{\\Delta F}-H_{n^3}\\right)\n=\n\\frac{p_ne^{-xz_{1/3}}z_{1/3}+(1-p_n)e^{-xz_1}z_1}\n{p_ne^{-xz_{1/3}}+(1-p_n)e^{-xz_1}-1}\n+o\\!\\left(\\frac1{nL^3}\\right).\n\\]\nExpanding in \\(z_s=O(1/(nL))\\),\n\\[\n= -\\frac1x+\\frac12\\frac{p_nz_{1/3}^2+(1-p_n)z_1^2}\n{p_nz_{1/3}+(1-p_n)z_1}\n+o\\!\\left(\\frac1{nL^3}\\right).\n\\]\nSince \\(z_s=s/(nL)+O(n^{-2})\\),\n\\[\n\\frac{p_nz_{1/3}^2+(1-p_n)z_1^2}\n{p_nz_{1/3}+(1-p_n)z_1}\n=\n\\frac1{nL}\n\\frac{p_n/9+(1-p_n)}{p_n/3+(1-p_n)}\n+O(n^{-2}).\n\\]\nUsing\n\\[\np_n=\\frac34-\\frac{9}{8L},\n\\]\none gets\n\\[\n\\frac{p_n/9+(1-p_n)}{p_n/3+(1-p_n)}\n=\n\\frac{4(L+3)}{3(2L+3)}\n=\n\\frac23+\\frac1L-\\frac{3}{2L^2}+O(L^{-3}).\n\\]\nTherefore the \\(U\\)-side equals\n\\[\n-1+(x-1)\n+\\frac1n\\left(\\frac1{3L}+\\frac1{2L^2}-\\frac{3}{4L^3}\\right)\n+o\\!\\left(\\frac1{nL^3}\\right).\n\\]\n\nEquating the two sides gives\n\\[\n-1+(x-1)+\\frac1n\\left(\\frac1{3L}+\\frac1{2L^2}-\\frac{3}{4L^3}\\right)\n=\n-1-\\frac23(x-1)+\\frac1n\\left(\\frac1{3L}+\\frac1{2L^2}\\right)\n+o\\!\\left(\\frac1{nL^3}\\right).\n\\]\nHence\n\\[\n\\frac53(x-1)=\\frac{3}{4nL^3}+o\\!\\left(\\frac1{nL^3}\\right),\n\\]\nso\n\\[\nx-1=a_nL-1=\\frac{9}{20nL^3}+o\\!\\left(\\frac1{nL^3}\\right).\n\\]\n\nThus\n\\[\n\\boxed{\\lim_{n\\to\\infty} nL^3(a_nL-1)=\\frac{9}{20}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T09:26:42+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem70/ddeb3f3ba314.json"
+}
