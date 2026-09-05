@@ -42,12 +42,12 @@ For $w(u)=e^{-u}$ on $[0,\infty)$, Rodrigues gives the monic Laguerre polynomial
 $$
 p_j(u)=(-1)^je^u\frac{d^j}{du^j}(e^{-u}u^j).
 $$
-Integrating by parts $j$ times, with vanishing boundary terms,
+The same Rodrigues formula, integrated against any polynomial of degree below $j$, gives orthogonality. Integrating by parts $j$ times, with vanishing boundary terms,
 $$
 h_j=(-1)^j\int_0^\infty p_j\frac{d^j}{du^j}(e^{-u}u^j)\,du
 =\int_0^\infty e^{-u}u^jp_j^{(j)}\,du=(j!)^2.
 $$
-For $w(z)=e^{-z^2}$, $H_j=(-1)^je^{z^2}\frac{d^j}{dz^j}e^{-z^2}$ has leading coefficient $2^j$, so $p_j=2^{-j}H_j$. Again integrating by parts,
+For $w(z)=e^{-z^2}$, $H_j=(-1)^je^{z^2}\frac{d^j}{dz^j}e^{-z^2}$ has leading coefficient $2^j$, so $p_j=2^{-j}H_j$; the same integration-by-parts argument gives orthogonality. Moreover,
 $$
 \int_{\mathbb R}e^{-z^2}H_j^2\,dz
 =\int_{\mathbb R}H_j^{(j)}e^{-z^2}\,dz
@@ -146,7 +146,7 @@ $$
 $$
 \frac{\phi(1-\frac{q^2v}{4})}{q^2}=v-q^2v^2+\frac{21}{64}q^4v^3-\frac9{256}q^6v^4.
 $$
-On $u_i,v_i,|z_i|\leq R_q$, the omitted phase terms are $O(q^4R_q^3)$, the logarithmic fourth-order remainders are $O((qR_q)^4)$, and $A=O(R_q^3)$, $B=O(R_q^4)$, $C=O(R_q^3)$. Thus the full logarithmic correction $S_q=O(qR_q^3)$ and
+On $u_i,v_i,|z_i|\leq R_q$, the omitted phase terms are $O(q^4R_q^3)$, the logarithmic fourth-order remainders are $O((qR_q)^4)$, and $A=O(R_q^3)$, $B=O(R_q^4)$, $C=O(R_q^3)$. The perturbing factor $\prod_i(1+q(3x_i-1))$ contributes $O(q(1+R_q))$ to its logarithm on the core, so the full logarithmic correction still satisfies $S_q=O(qR_q^3)$ and
 $$
 \left|e^{S_q}-1-S_q-\frac{S_q^2}{2}-\frac{S_q^3}{6}\right|
 \leq C|S_q|^4=O(q^4R_q^{12})=O(q^{13/4})=o(q^3).
