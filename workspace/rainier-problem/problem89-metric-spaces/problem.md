@@ -2,27 +2,19 @@
 
 ## LaTeX (Normalized)
 
-Let
-$$
-P=\binom{[6]}2
-$$
-be the set of $2$-subsets of $[6]$, and let $S$ be the set of partitions of $[6]$ into three unordered $2$-subsets. Form a bipartite graph $G$ on
-$$
-P\sqcup S
-$$
-by joining $p\in P$ to $s\in S$ exactly when $p$ is one of the three blocks of the partition $s$. Let $d$ be the shortest-path metric on $G$.
+Let $X$ be the set of triangulations of a convex hexagon by noncrossing diagonals. Form a graph $G$ on $X$ by joining two triangulations exactly when one is obtained from the other by a single diagonal flip. Let $d$ be the shortest-path metric on $G$.
 
-For $p>0$, say that $(G,d)$ has $p$-negative type if every real family $(c_x)$ with $\sum_xc_x=0$ satisfies
+For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_T)_{T\in X}$ with $\sum_Tc_T=0$ satisfies
 $$
-\sum_{x,y}c_xc_y\,d(x,y)^p\le0.
+\sum_{T,U\in X}c_Tc_U\,d(T,U)^p\le0.
 $$
 Let
 $$
-\wp=\sup\{p>0:(G,d)\text{ has }p\text{-negative type}\}.
+\wp=\sup\{p>0:(X,d)\text{ has }p\text{-negative type}\}.
 $$
 At $p=\wp$, define the equality space
 $$
-E=\left\{c:\sum_xc_x=0,\ \sum_{x,y}c_xc_y\,d(x,y)^{\wp}=0\right\}.
+E=\left\{c\in\mathbb R^X:\sum_Tc_T=0,\ \sum_{T,U}c_Tc_U\,d(T,U)^{\wp}=0\right\}.
 $$
 Determine the ordered pair $(\wp,\dim E)$.
 
@@ -41,4 +33,4 @@ Determine the ordered pair $(\wp,\dim E)$.
 
 ## Domain Explanation
 
-The problem asks for the maximal negative-type exponent of a finite incidence-graph metric and the dimension of its boundary equality space. The structure comes from the incidence geometry of pairs and pair-partitions of a six-element set.
+The problem asks for the maximal negative-type exponent of the flip-graph metric on the triangulations of a convex hexagon and the dimension of its boundary equality space. The decisive structure is a dihedral-symmetry decomposition together with the concavity of the powered distance increments.
