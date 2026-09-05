@@ -1,167 +1,210 @@
 ## Steps
 
-Step 1: Identify the distance by alternating-cycle structure
+Step 1: Encode the flag graph by the Hecke algebra
 
-Let $X$ be the set of perfect matchings of $[8]$. Two matchings are adjacent when one is obtained from the other by choosing two matched edges and replacing them by one of the other two perfect matchings on the same four endpoints.
+Let $X$ be the set of complete flags
+$$
+0<V_1<V_2<V_3<\mathbb F_2^4,
+\qquad \dim V_i=i.
+$$
+There are
+$$
+15\cdot7\cdot3=315
+$$
+such flags. Two flags are adjacent when exactly one of the three subspaces is changed.
 
-For $M,N\in X$, the multigraph $M\cup N$ is a disjoint union of alternating even cycles, where a common edge is counted as a doubled $2$-cycle. Let $c(M,N)$ be the number of these components. A single flip can change $c(M,N)$ by at most $1$, while any alternating cycle of length at least $4$ can be split by one flip. Hence
+Put $G=\operatorname{GL}_4(2)$ and let $B$ be the stabilizer of one fixed flag, so $X=G/B$. For $i=1,2,3$, let $T_i$ be the operator summing over the two neighbors obtained by changing only $V_i$. A panel contains three chambers, so
 $$
-d(M,N)=4-c(M,N).
+T_i^2=T_i+2I.
 $$
-Thus the possible distances are $0,1,2,3$.
-
-Fix a base matching $M_0$. The cycle-size partitions of $4$ give five stabilizer orbits:
+The usual two-panel and three-panel refinements give
 $$
-1+1+1+1,\qquad2+1+1,\qquad2+2,\qquad3+1,\qquad4,
+T_iT_j=T_jT_i\quad(|i-j|>1),
 $$
-with sizes
 $$
-1,\qquad12,\qquad12,\qquad32,\qquad48.
+T_iT_{i+1}T_i=T_{i+1}T_iT_{i+1}.
 $$
-The first two are the distance-$0$ and distance-$1$ orbits, the middle two together form distance $2$, and the last orbit has distance $3$.
-
-Step 2: Recover the adjacency spectrum from the five orbit types
-
-Let $A$ be the adjacency matrix of the flip graph. Choosing which two edges to flip and tracking the resulting cycle partition gives the quotient matrix
+Thus the $T_i$ generate the Iwahori-Hecke algebra $H_2(S_4)$. For a reduced word $w=s_{i_1}\cdots s_{i_r}$ put
 $$
-Q=
-\begin{pmatrix}
-0&12&0&0&0\\
-1&1&2&8&0\\
-0&2&2&0&8\\
-0&3&0&3&6\\
-0&0&2&4&6
-\end{pmatrix}.
+T_w=T_{i_1}\cdots T_{i_r}.
 $$
-Its characteristic polynomial is
+Bruhat decomposition gives a unique relative-position permutation $w\in S_4$ for two flags, and changing one member of a flag corresponds to multiplication by one simple reflection. Hence the graph distance is the Coxeter length $\ell(w)$. Therefore the distance-$r$ matrix is
 $$
-(\theta-12)(\theta-5)(\theta-2)(\theta+1)(\theta+6).
+A_r=\sum_{\ell(w)=r}T_w,
 $$
-
-There are exactly five orbitals for the action of $S_8$ on ordered pairs of perfect matchings, indexed by the same cycle partitions. Every orbital is symmetric, so every $S_8$-invariant matrix is symmetric. Since products of invariant matrices are again invariant, this invariant algebra is commutative. It has dimension $5$.
-
-The quotient already exhibits five distinct eigenvalues of $A$, so the minimal polynomial of $A$ has degree $5$. Therefore $A$ generates the whole invariant algebra, and every distance-shell matrix is a polynomial in $A$. Hence the five quotient modes give all simultaneous eigenspaces.
-
-The graph is $12$-regular on
+and
 $$
-|X|=7\cdot5\cdot3\cdot1=105
-$$
-vertices. Let the multiplicities of $5,2,-1,-6$ be $m_5,m_2,m_{-1},m_{-6}$. Since the graph is connected, the eigenvalue $12$ has multiplicity $1$. Also
-$$
-\operatorname{tr}A=0,
-\qquad
-\operatorname{tr}A^2=105\cdot12.
-$$
-Each vertex lies in exactly $6$ triangles: choose two of its four matched edges, and the three perfect matchings on those four endpoints form one triangle. Hence
-$$
-\operatorname{tr}A^3=105\cdot12.
-$$
-These four trace equations give
-$$
-(m_5,m_2,m_{-1},m_{-6})=(20,14,56,14).
+D_p=\sum_{r=1}^6 r^pA_r.
 $$
 
-Step 3: Obtain the distance-shell eigenvalues
+Step 2: Decompose the chamber representation
 
-Let $A_r$ be the matrix of the distance-$r$ relation. For a quotient eigenvector normalized to have value $1$ on the base orbit, the $A_r$-eigenvalue is the orbit-size-weighted sum of its coordinates over the distance-$r$ orbits. Solving the five equations $(Q-\theta I)\phi=0$ gives
+The double-centralizer decomposition for $G/B$ and $H_2(S_4)$ is indexed by partitions $\lambda\vdash4$. The Hecke-module dimensions are the ordinary tableau numbers $f^\lambda$, and the corresponding $G$-module dimensions are given by the $q$-hook formula
 $$
-\begin{array}{c|c|ccc}
-\theta&\text{multiplicity}&A_1&A_2&A_3\\
+d_\lambda(2)
+=2^{\sum_i(i-1)\lambda_i}
+\frac{\prod_{j=1}^4(2^j-1)}{\prod_{u\in\lambda}(2^{h(u)}-1)}.
+$$
+Thus
+$$
+\begin{array}{c|ccccc}
+\lambda&(4)&(31)&(22)&(211)&(1111)\\
 \hline
-12&1&12&44&48\\
-5&20&5&2&-8\\
-2&14&2&-1&-2\\
--1&56&-1&-4&4\\
--6&14&-6&11&-6
+f^\lambda&1&3&2&3&1\\
+d_\lambda(2)&1&14&20&56&64
 \end{array}
 $$
+and indeed
+$$
+1+14\cdot3+20\cdot2+56\cdot3+64=315.
+$$
+On the $\lambda$-isotypic piece, $D_p$ acts as
+$$
+I_{d_\lambda(2)}\otimes M_\lambda(p).
+$$
+The $(4)$ piece is the constant functions, so only the other four Hecke blocks matter for negative type.
 
-Step 4: Find the maximal negative-type exponent
+Step 3: Isolate the critical Hecke eigenvalue
 
-Put
+Write
 $$
-x=2^p,\qquad y=3^p.
+x_r=r^p\qquad(2\le r\le6).
 $$
-Since
+For the $(31)$ module, induce the trivial representation from the parabolic generated by $s_2,s_3$. In the basis of minimal coset representatives, the Hecke multiplication rule is
 $$
-D_p=A_1+xA_2+yA_3,
+T_i m_w=
+\begin{cases}
+m_{s_iw},&\ell(s_iw)=\ell(w)+1,\\
+2m_{s_iw}+m_w,&\ell(s_iw)=\ell(w)-1,
+\end{cases}
 $$
-the four eigenvalues on the zero-sum subspace are
+with $m_{wu}=2^{\ell(u)}m_w$ for $u$ in that parabolic. Removing the one-dimensional trivial summand gives a $3$-dimensional block. It has the eigenvalue
 $$
-\mu_5=5+2x-8y,
+L(p)=3+2x_2-6x_3-16x_4+16x_6,
 $$
+and the remaining two eigenvalues are those of
 $$
-\mu_2=2-x-2y,
+Q_{31}(p)=
+\begin{pmatrix}
+8x_2+10x_3+8x_4-16x_5-16x_6+5&4x_2+4x_3-8x_4\\
+11x_2+14x_3-4x_4-24x_5+3&-2x_2-4x_3+4x_4+16x_5-16x_6+1
+\end{pmatrix}.
 $$
-$$
-\mu_{-1}=-1-4x+4y,
-$$
-$$
-\mu_{-6}=-6+11x-6y.
-$$
-The first two are strictly negative for every $p\ge0$.
 
-The function
+The function $L$ is strictly increasing for $p\ge0$. Indeed,
 $$
-f(p)=\mu_{-1}(p)=4(3^p-2^p)-1
+L'(0)=2\log\frac{243}{128}>0,
 $$
-is strictly increasing, with $f(0)=-1$ and
+and
 $$
-f\left(\frac12\right)=4(\sqrt3-\sqrt2)-1>0.
+L''(p)
+=2(\log2)^2 2^p-6(\log3)^2 3^p-16(\log4)^2 4^p+16(\log6)^2 6^p>0.
+$$
+For the last inequality, use $6^p\ge4^p\ge3^p$ and
+$$
+16\big((\log6)^2-(\log4)^2\big)>6(\log3)^2.
+$$
+Also direct evaluation gives
+$$
+L\left(\frac14\right)<-\frac1{10},
+\qquad
+L\left(\frac13\right)>\frac12.
 $$
 Hence there is a unique
 $$
-\alpha\in\left(0,\frac12\right)
+\alpha\in\left(\frac14,\frac13\right)
 $$
-with
+such that
 $$
-4(3^\alpha-2^\alpha)=1.
-$$
-
-It remains to check the $-6$ mode. Its derivative vanishes at most once, so its maximum occurs at $p=0$, at infinity, or at a point $p_0$ satisfying
-$$
-\left(\frac32\right)^{p_0}=\frac{11\log2}{6\log3}.
-$$
-Using $3\log2<2\log3$, this ratio is less than $11/9<\sqrt{3/2}$, so $p_0<1/2$ and $2^{p_0}<\sqrt2<16/11$. At such a critical point,
-$$
-\mu_{-6}(p_0)
-=-6+11\cdot2^{p_0}\frac{\log(3/2)}{\log3}.
-$$
-Since $3^5<2^8$, we have
-$$
-\frac{\log(3/2)}{\log3}<\frac38.
-$$
-Therefore
-$$
-\mu_{-6}(p_0)< -6+11\cdot\frac{16}{11}\cdot\frac38=0.
-$$
-Thus $\mu_{-6}<0$ for all $p\ge0$.
-
-Consequently the first loss of negative type occurs exactly when $\mu_{-1}=0$, and
-$$
-\wp=\alpha.
+3+2\cdot2^\alpha-6\cdot3^\alpha-16\cdot4^\alpha+16\cdot6^\alpha=0.
 $$
 Numerically,
 $$
-\alpha\approx0.4219679708.
+\alpha\approx0.2655412194.
+$$
+
+Step 4: Verify that every other mode is strictly negative at $p=\alpha$
+
+The remaining Hecke blocks are obtained by the same multiplication rule. For $(211)$, induce the sign representation from the same parabolic; after removing the one-dimensional sign summand, one eigenvalue is
+$$
+L_{211}=-4x_2+3x_3+2x_4-6x_5+4x_6,
+$$
+and the other two are the eigenvalues of
+$$
+Q_{211}=
+\begin{pmatrix}
+7x_3-12x_4+10x_5-4x_6-2&2x_2+2x_3-4x_4\\
+-2x_3+3x_4-2x_5+1&-3x_2-4x_3+6x_4+2x_5-4x_6+2
+\end{pmatrix}.
+$$
+For $(22)$ one may take
+$$
+T_1=T_3=\begin{pmatrix}2&0\\0&-1\end{pmatrix},
+\qquad
+T_2=\begin{pmatrix}-1/3&14/9\\1&4/3\end{pmatrix},
+$$
+which satisfy the Hecke quadratic and braid relations. This gives
+$$
+Q_{22}=
+\begin{pmatrix}
+\frac43x_2-8x_3-\frac{26}3x_4+\frac83x_5+8x_6+\frac{11}3&
+\frac{28}9x_2-\frac{14}3x_3-\frac{56}9x_4+\frac{56}9x_5+\frac{14}9\\
+2x_2-3x_3-4x_4+4x_5+1&
+-\frac{13}3x_2+8x_3+\frac83x_4-\frac{44}3x_5+8x_6-\frac23
+\end{pmatrix}.
+$$
+Finally, on the sign module $(1111)$ the scalar is
+$$
+S=-3+5x_2-6x_3+5x_4-3x_5+x_6.
+$$
+
+Because $\alpha\in(1/4,1/3)$, elementary interval estimates applied to the displayed expressions give
+$$
+\operatorname{tr}Q_{31}<-12,
+\qquad
+\det Q_{31}>11,
+$$
+$$
+L_{211}< -\frac12,
+\qquad
+\operatorname{tr}Q_{211}<-2,
+\qquad
+\det Q_{211}>1,
+$$
+$$
+\operatorname{tr}Q_{22}<-1,
+\qquad
+\det Q_{22}>\frac12,
+\qquad
+S<-\frac12.
+$$
+For example, each trace or determinant is monotone on $[1/4,1/3]$ after differentiation, and the stated safe bounds follow by evaluating the appropriate endpoint. Since these blocks represent self-adjoint operators, their eigenvalues are real; negative trace and positive determinant force both eigenvalues of each $2\times2$ block to be negative.
+
+Thus at $p=\alpha$ every nonconstant mode is strictly negative except the single zero eigenvalue $L(\alpha)=0$ in the $(31)$ Hecke block. Therefore $D_\alpha$ is conditionally negative semidefinite.
+
+For $0<p<\alpha$, conditional negative definiteness follows from the standard Bernstein closure: if a nonnegative zero-diagonal kernel $K$ is conditionally negative definite, then $K^t$ is conditionally negative definite for $0<t\le1$. Apply this to $K=d^\alpha$ and $t=p/\alpha$. For $p>\alpha$, the strictly increasing function $L(p)$ is positive, so negative type fails. Hence
+$$
+\wp=\alpha.
 $$
 
 Step 5: Compute the equality-space dimension
 
-At $p=\alpha$, the modes corresponding to adjacency eigenvalues $5,2,-6$ remain strictly negative. The only zero mode is the adjacency eigenvalue $-1$, whose multiplicity is $56$.
-
-Hence
+At $p=\alpha$, the zero eigenvalue inside the $3$-dimensional $(31)$ Hecke module is simple. By Step 2, that Hecke module is tensored with the corresponding $G$-module of dimension
 $$
-\dim E=56.
+d_{(31)}(2)=14.
+$$
+Every other nonconstant block is nonsingular. Hence
+$$
+\dim E=14.
 $$
 
-Final Answer: $\boxed{(\alpha,56),\quad4(3^\alpha-2^\alpha)=1,\quad0<\alpha<\frac12}$
+Final Answer: $\boxed{(\alpha,14),\quad3+2\cdot2^\alpha-6\cdot3^\alpha-16\cdot4^\alpha+16\cdot6^\alpha=0}$
 
 ---
 
 ## Answer
 
-$(\alpha,56),\quad4(3^\alpha-2^\alpha)=1,\quad0<\alpha<\frac12$
+$(\alpha,14),\quad3+2\cdot2^\alpha-6\cdot3^\alpha-16\cdot4^\alpha+16\cdot6^\alpha=0$
 
 ---
 
@@ -175,8 +218,8 @@ $(\alpha,56),\quad4(3^\alpha-2^\alpha)=1,\quad0<\alpha<\frac12$
 
 ## Solution Concepts
 
-- perfect-matching flip graph
-- alternating-cycle decomposition
-- symmetry quotient and invariant algebra
-- spectral negative type
-- trace multiplicities
+- complete flag graph metrics
+- Iwahori-Hecke algebra of type $A_3$
+- Bruhat length and gallery distance
+- Hecke double-centralizer decomposition
+- negative type of finite metric spaces
