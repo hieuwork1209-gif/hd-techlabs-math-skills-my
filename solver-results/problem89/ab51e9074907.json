@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "d37a6fb0eeb2f751f62ff3f0395675eedbf0067b",
+  "problem_blob_sha": "ab51e9074907b33f3c69e880a530694caeed5e3d",
+  "statement_sha256": "4cffd566c74d1a496fa451afb78c6a0c0ab3b5550fc12a1b4e61d1eada736af5",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T01:41:21+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let the cycle vertices be ordered as \\(0,\\ldots,12\\), and write a zero-sum vector as\n\\[\nc_\\ast=-\\sum_{i=0}^{12}x_i .\n\\]\nThen\n\\[\n\\sum_{z,w}c_zc_w d_s(z,w)^p=x^T M(s,p)x,\n\\]\nwhere\n\\[\nM_{ij}(s,p)=d_s(i,j)^p-d_s(\\ast,i)^p-d_s(\\ast,j)^p .\n\\]\n\nNear \\(s=0\\), the cycle-to-cycle distances remain the ordinary 13-cycle distances\n\\[\nd_s(i,j)=4\\min(|i-j|,13-|i-j|),\n\\]\nand only the \\(\\ast\\)-distances vary. At \\(s=0,p=1\\), the null vector is\n\\[\na=(2,-2,1,0,0,2,-2,-2,0,2,0,0,1,-2).\n\\]\nEquivalently,\n\\[\nx_0=(-2,1,0,0,2,-2,-2,0,2,0,0,1,-2).\n\\]\n\nThe conditional matrix \\(M(0,1)\\) is negative semidefinite with one-dimensional kernel spanned by \\(x_0\\). A direct LDL certificate is obtained by deleting coordinate \\(0\\) from \\(-M(0,1)\\); the pivots are\n\\[\n14,\\frac{48}{7},8,8,5,8,8,6,\\frac{14}{5},\\frac{18}{7},\\frac{208}{81},1,\n\\]\nall positive. Since \\(x_{0,0}\\ne0\\), this proves the claimed kernel and negative semidefiniteness.\n\nFor \\(p>1\\),\n\\[\n\\left.\\frac{d}{dp}\\right|_{p=1}\\sum_{z,w}a_za_wd_0(z,w)^p=4\\tau>0,\n\\]\nso \\(p=1\\) is the endpoint at \\(s=0\\). Hence\n\\[\n\\wp(0)=1.\n\\]\n\nGrouping the ordered pairs by their distance gives\n\\[\n\\tau=\n20\\log 2+219\\log 3-35\\log 5-7\\log 7-22\\log 11-26\\log 13-34\\log 17+46\\log 23.\n\\]\n\nIt remains to compute the cubic variation of the endpoint. Write\n\\[\nd_s(\\ast,i)=r_i+s u_i+s^2v_i,\n\\]\nwith\n\\[\nu=(0,0,-1,-1,-1,0,0,0,1,1,1,0,0).\n\\]\nExpanding the kernel equation\n\\[\nM(s,\\wp(s))x(s)=0\n\\]\nwith\n\\[\n\\wp(s)=1+ks^3+O(s^4),\\qquad x(s)=x_0+sx_1+s^2x_2+O(s^3),\n\\]\ngives\n\\[\nx_1=\\left(0,\\frac12,0,0,-\\frac12,0,0,0,\\frac12,0,0,-\\frac12,0\\right),\n\\]\n\\[\nx_2=\\left(0,-\\frac1{12},0,0,\\frac1{12},0,0,0,-\\frac1{12},0,0,\\frac1{12},0\\right).\n\\]\nThe order \\(s^3\\) solvability condition is\n\\[\nx_0^T(M_1x_2+M_2x_1)+k\\,x_0^TM_p x_0=0.\n\\]\nHere\n\\[\nx_0^T(M_1x_2+M_2x_1)=-\\frac23,\n\\qquad\nx_0^TM_p x_0=4\\tau.\n\\]\nThus\n\\[\nk=\\frac{1}{6\\tau},\n\\qquad\n\\wp'''(0)=6k=\\frac1{\\tau}.\n\\]\nTherefore\n\\[\n\\eta=\\tau\\,\\wp'''(0)=1.\n\\]\n\n\\[\n\\boxed{\\left(1,\\;20\\log 2+219\\log 3-35\\log 5-7\\log 7-22\\log 11-26\\log 13-34\\log 17+46\\log 23,\\;1\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T01:45:16+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/ab51e9074907.json"
+}
