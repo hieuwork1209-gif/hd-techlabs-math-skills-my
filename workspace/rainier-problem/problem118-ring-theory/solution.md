@@ -48,7 +48,7 @@ a_j=c_j+b_j,\qquad c_j\in k,\quad b_j\in x^sA.
 $$
 Induction from $yx=xy+x^r$ gives, for $j\geq1$,
 $$
-y^j x=xy^j+jx^r y^{j-1}+\text{terms of $y$-degree at most $j-2$},
+y^j x=xy^j+jx^r y^{j-1}+\text{terms of degree at most }j-2\text{ in }y,
 $$
 and every coefficient in $[y^j,x]$ is divisible by $x^r$. Since $s+r=n+2$, every $b_j\in x^sA$ annihilates those coefficients.
 
