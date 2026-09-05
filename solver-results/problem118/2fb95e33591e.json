@@ -1,0 +1,22 @@
+{
+  "problem": "problem118",
+  "branch": "adversary/problem118",
+  "problem_path": "workspace/rainier-problem/problem118-ring-theory/problem.md",
+  "source_commit_sha": "3875f7debe568bc4b9dd81c40640186edb20ae16",
+  "problem_blob_sha": "2fb95e33591eb7bc74fc6e06c63d24088687bf8d",
+  "statement_sha256": "0ec1c1e4fa73e2d1c32a98480e1710da7c470cee9870817019d1c34e4068b749",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T08:38:47+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\n\\delta=v^2+uw,\\qquad a=v+w\\delta,\\qquad b=u-2v\\delta-w\\delta^2.\n\\]\nThen\n\\[\na^2+wb=(v+w\\delta)^2+w(u-2v\\delta-w\\delta^2)=v^2+uw=\\delta,\n\\]\nso\n\\[\nu=b+2a(a^2+wb)-w(a^2+wb)^2,\\qquad v=a-w(a^2+wb).\n\\]\nThus \\(A=k[a,b,w]\\).\n\nNow rewrite the definitions:\n\\[\nP=2b-a+2w,\\qquad Q=3a-2w,\\qquad 5w=5w.\n\\]\nAlso\n\\[\nE=Q^2+5wP.\n\\]\nFor\n\\[\nU=\\sigma(u)=P+2QE-5wE^2,\\quad V=\\sigma(v)=Q-5wE,\\quad W=\\sigma(w)=5w,\n\\]\nwe have\n\\[\nV^2+UW=E.\n\\]\nTherefore the transformed \\(a,b,w\\)-coordinates are\n\\[\n\\sigma(a)=V+WE=Q=3a-2w,\n\\]\n\\[\n\\sigma(b)=U-2VE-WE^2=P=2b-a+2w,\n\\]\n\\[\n\\sigma(w)=5w.\n\\]\nSo \\(\\sigma\\) is conjugate to the linear map\n\\[\n(a,b,w)\\mapsto (3a-2w,\\;2b-a+2w,\\;5w).\n\\]\n\nDiagonalize this linear action using\n\\[\nA_1=a+w,\\qquad B_1=a+b,\\qquad C_1=w.\n\\]\nThen\n\\[\n\\sigma(A_1)=3A_1,\\qquad \\sigma(B_1)=2B_1,\\qquad \\sigma(C_1)=5C_1.\n\\]\nHence if \\(F\\in A^\\sigma\\), writing\n\\[\nF=\\sum c_{ijk}B_1^iA_1^jC_1^k\n\\]\ngives\n\\[\nc_{ijk}(2^i3^j5^k-1)=0\n\\]\nfor every \\(i,j,k\\). Since \\(\\operatorname{char} k=0\\), this forces \\(i=j=k=0\\). Thus\n\\[\nA^\\sigma=k.\n\\]\nAlso \\(\\sigma\\) has infinite order, since \\(\\sigma(B_1)=2B_1\\).\n\nEvery element of \\(R\\) has a unique finite form\n\\[\nz=\\sum_{m,n\\ge 0} a_{mn}x^m y^n,\\qquad a_{mn}\\in A.\n\\]\nFor \\(f\\in A\\),\n\\[\nx^m y^n f=\\sigma^{m-n}(f)x^m y^n.\n\\]\nIf \\(z\\) commutes with all \\(f\\in A\\), then any nonzero \\(a_{mn}\\) requires \\(\\sigma^{m-n}=\\mathrm{id}\\). Since \\(\\sigma\\) has infinite order, this forces \\(m=n\\). Thus\n\\[\nz=\\sum_{n\\ge 0} a_n(xy)^n.\n\\]\nCommuting with \\(x\\) gives \\(\\sigma(a_n)=a_n\\), so \\(a_n\\in A^\\sigma=k\\). Conversely, \\(xy\\) is central:\n\\[\nxyf=x\\sigma^{-1}(f)y=fxy,\n\\]\nand \\(xy\\) commutes with \\(x,y\\) because \\(yx=xy\\).\n\nTherefore\n\\[\n\\boxed{Z(R)=k[xy]}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T08:40:17+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem118/2fb95e33591e.json"
+}
