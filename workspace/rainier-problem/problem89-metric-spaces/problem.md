@@ -2,31 +2,19 @@
 
 ## LaTeX (Normalized)
 
-Let
-$$
-X=\mathbb F_2^8/\langle\mathbf1\rangle,
-$$
-where $\mathbf1=(1,\ldots,1)$. Thus a point of $X$ is an antipodal pair
-$$
-[x]=\{x,x+\mathbf1\}
-$$
-of vertices of the $8$-dimensional Hamming cube. Define
-$$
-d([x],[y])=\min\{\operatorname{wt}(x-y),\ 8-\operatorname{wt}(x-y)\},
-$$
-where $\operatorname{wt}$ denotes Hamming weight.
+Let $T$ be the complete rooted binary tree of height $3$: its vertices are the binary words of lengths $0,1,2,3$, and a word is joined to each one-letter extension. Let $d$ be the shortest-path metric on the $15$ vertices of $T$.
 
-For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_u)_{u\in X}$ with $\sum_uc_u=0$ satisfies
+For $p>0$, say that $(T,d)$ has $p$-negative type if every real family $(c_x)_{x\in T}$ with $\sum_xc_x=0$ satisfies
 $$
-\sum_{u,v\in X}c_uc_v\,d(u,v)^p\le0.
+\sum_{x,y\in T}c_xc_y\,d(x,y)^p\le0.
 $$
 Let
 $$
-\wp=\sup\{p>0:(X,d)\text{ has }p\text{-negative type}\}.
+\wp=\sup\{p>0:(T,d)\text{ has }p\text{-negative type}\}.
 $$
 At $p=\wp$, define the equality space
 $$
-E=\left\{c\in\mathbb R^X:\sum_uc_u=0,\ \sum_{u,v}c_uc_v\,d(u,v)^{\wp}=0\right\}.
+E=\left\{c\in\mathbb R^T:\sum_xc_x=0,\ \sum_{x,y\in T}c_xc_y\,d(x,y)^{\wp}=0\right\}.
 $$
 Determine the ordered pair $(\wp,\dim E)$.
 
@@ -45,4 +33,4 @@ Determine the ordered pair $(\wp,\dim E)$.
 
 ## Domain Explanation
 
-The problem asks for the maximal negative-type exponent of the antipodal quotient of the $8$-cube with its quotient Hamming metric, together with the dimension of the boundary equality space. The key structure is the Fourier decomposition of the quotient, whose characters are indexed by even-weight binary vectors.
+The problem asks for the maximal negative-type exponent of a canonical finite tree metric and the dimension of its boundary equality space. The decisive structure is the hierarchical decomposition induced by the independent child-swaps of the rooted binary tree.
