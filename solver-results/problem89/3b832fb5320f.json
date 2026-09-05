@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "1c88bf01be349424261e5845d2905a9e38fde12d",
+  "problem_blob_sha": "3b832fb5320f9793563bfde192e49cb7c5b34944",
+  "statement_sha256": "9dfc3057d640a2ee8f2fc5b3dae1f49b9ba99a85b4746b5efe4bead71a2b1425",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T07:51:37+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let coefficients on the original vertices be \\(a_i\\), and coefficients on edge-vertices be \\(b_{ij}=b_{\\{i,j\\}}\\). Put\n\\[\nA=\\sum_i a_i,\\qquad B=\\sum_{i<j}b_{ij},\\qquad s_i=\\sum_{j\\ne i}b_{ij}.\n\\]\nThe zero-sum condition is \\(A+B=0\\).\n\nFor \\(p=1\\), the distances are:\n\\[\nd(i,j)=2,\\quad d(i,uv)=\n\\begin{cases}\n1,&i\\in uv,\\\\\n3,&i\\notin uv,\n\\end{cases}\n\\]\nand between edge-vertices the distance is \\(2\\) if the two edges meet and \\(4\\) if they are disjoint.\n\nLet\n\\[\nQ=\\sum_{x,y}c_xc_y d(x,y).\n\\]\nThe point-point contribution is\n\\[\n2\\sum_{i\\ne j}a_ia_j=2(A^2-\\sum_i a_i^2).\n\\]\nThe point-edge contribution, counting both orders, is\n\\[\n2\\sum_i a_i\\bigl(s_i+3(B-s_i)\\bigr)\n=6AB-4\\sum_i a_is_i.\n\\]\nFor the edge-edge part, let \\(T\\) be the ordered sum of \\(b_eb_f\\) over distinct edge-vertices sharing an endpoint. Then\n\\[\n\\sum_i s_i^2=2\\sum_{i<j}b_{ij}^2+T,\n\\]\nso the edge-edge contribution is\n\\[\n4(B^2-\\sum b_{ij}^2)-2T=4B^2-2\\sum_i s_i^2.\n\\]\nTherefore\n\\[\nQ=2A^2+6AB+4B^2-2\\sum_i a_i^2-4\\sum_i a_is_i-2\\sum_i s_i^2.\n\\]\nSince \\(A+B=0\\), the scalar term vanishes:\n\\[\n2A^2+6AB+4B^2=2(A+B)(A+2B)=0.\n\\]\nThus\n\\[\nQ=-2\\sum_i(a_i+s_i)^2\\le 0.\n\\]\nSo \\((\\Gamma_n,d)\\) has \\(1\\)-negative type.\n\nNow show no \\(p>1\\) works. Use coefficients supported only on four edge-vertices:\n\\[\nb_{12}=1,\\quad b_{34}=1,\\quad b_{13}=-1,\\quad b_{24}=-1,\n\\]\nall other coefficients zero. The total sum is \\(0\\). The only nonzero unordered cross terms give\n\\[\n2\\bigl(2\\cdot 4^p-4\\cdot 2^p\\bigr)\n=4\\cdot 4^p-8\\cdot 2^p\n=4\\cdot 2^p(2^p-2)>0\n\\]\nfor \\(p>1\\). Hence \\(p>1\\) is impossible, so\n\\[\n\\wp=1.\n\\]\n\nAt \\(p=1\\), equality means\n\\[\na_i+s_i=0\\quad\\text{for every }i.\n\\]\nSumming gives \\(A+2B=0\\), while the zero-sum condition gives \\(A+B=0\\), hence \\(B=0\\). Conversely, any edge coefficients \\(b_{ij}\\) with \\(B=0\\), together with\n\\[\na_i=-s_i=-\\sum_{j\\ne i}b_{ij},\n\\]\ngive equality. Thus \\(E\\) is parametrized by all edge coefficient families with total sum zero. Since there are \\(\\binom n2\\) edge-vertices,\n\\[\n\\dim E=\\binom n2-1=\\frac{n(n-1)}2-1.\n\\]\n\n\\[\n\\boxed{\\left(1,\\frac{n(n-1)}2-1\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T07:53:05+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/3b832fb5320f.json"
+}
