@@ -1,129 +1,155 @@
 ## Steps
 
-Step 1: Determine the graph distances
+Step 1: Determine the distance-regular structure
+
+Let $X$ be the set of $3$-dimensional subspaces of $\mathbb F_2^6$. If $U,W\in X$, then
+$$
+d(U,W)=3-\dim(U\cap W).
+$$
+Indeed, one graph step can change the intersection dimension with $W$ by at most $1$, while replacing one basis direction at a time gives a path attaining this bound.
+
+Fix $U\in X$. The number of vertices at distance $i$ from $U$ is
+$$
+k_i=2^{i^2}{3\brack i}_2^2,
+$$
+where ${3\brack i}_2$ is the Gaussian binomial coefficient. Thus
+$$
+(k_0,k_1,k_2,k_3)=(1,98,784,512).
+$$
+For a vertex at distance $i$, the number of neighbors one step closer to $U$ is
+$$
+c_i={i\brack1}_2^2,
+$$
+so
+$$
+(c_1,c_2,c_3)=(1,9,49).
+$$
+Using $k_i b_i=k_{i+1}c_{i+1}$ gives
+$$
+(b_0,b_1,b_2)=(98,72,32).
+$$
+Hence the intersection array is
+$$
+\{98,72,32;1,9,49\}.
+$$
+
+Step 2: Obtain the adjacency and distance spectra
+
+Let $A=A_1$ be the adjacency matrix and let $A_i$ be the distance-$i$ matrices. The distance-regular recurrence is
+$$
+AA_i=b_{i-1}A_{i-1}+a_iA_i+c_{i+1}A_{i+1},
+$$
+with $a_i=98-b_i-c_i$. Therefore
+$$
+A_2=\frac{A^2-25A-98I}{9},
+$$
+$$
+A_3=\frac{AA_2-72A-57A_2}{49}.
+$$
+The corresponding tridiagonal recurrence has characteristic polynomial
+$$
+(t-98)(t-35)(t-5)(t+7),
+$$
+so the nonconstant adjacency eigenvalues are
+$$
+35,\qquad5,\qquad-7.
+$$
+Their multiplicities follow from the total dimension, $\operatorname{tr}A=0$, and $\operatorname{tr}A^2=1395\cdot98$:
+$$
+62,\qquad588,\qquad744,
+$$
+respectively.
+
+Evaluating the two displayed polynomials in $A$ gives the $(A_2,A_3)$ eigenvalues
+$$
+(28,-64),\qquad(-22,16),\qquad(14,-8)
+$$
+for adjacency eigenvalues $35,5,-7$.
+
+Step 3: Diagonalize the powered distance matrix
+
+Put
+$$
+x=2^p,\qquad y=3^p.
+$$
+Since the graph has diameter $3$,
+$$
+D_p=A_1+xA_2+yA_3.
+$$
+On the three nonconstant adjacency eigenspaces, the eigenvalues of $D_p$ are
+$$
+\lambda_{35}=35+28x-64y,
+$$
+$$
+\lambda_5=5-22x+16y,
+$$
+$$
+\lambda_{-7}=-7+14x-8y.
+$$
+Thus $p$-negative type is equivalent to all three quantities being nonpositive.
+
+Step 4: Identify the first spectral mode to reach zero
+
+For $p\ge0$, $\lambda_{35}(0)=-1$, and
+$$
+\lambda_{35}'(p)=28(\log2)2^p-64(\log3)3^p<0,
+$$
+so $\lambda_{35}<0$.
 
 Let
 $$
-V=[n]\sqcup\binom{[n]}2
+f(p)=\lambda_5(p)=5-22\cdot2^p+16\cdot3^p.
 $$
-be the vertex set. For distinct $i,j\in[n]$, the two singleton vertices are joined through the edge-vertex $\{i,j\}$, so
+Because $16\log3>22\log2$ and $(3/2)^p$ increases, we have $f'(p)>0$ for $p\ge0$. Also
 $$
-d(i,j)=2.
+f(0)=-1,
 $$
-For $i\in[n]$ and $e\in\binom{[n]}2$,
+and
 $$
-d(i,e)=
-\begin{cases}
-1,&i\in e,\\
-3,&i\notin e.
-\end{cases}
+f\left(\frac12\right)=5-22\sqrt2+16\sqrt3>0.
 $$
-Indeed, in the nonincident case the graph is bipartite, so the distance is at least $3$, and if $e=\{j,k\}$ then
+Hence there is a unique
 $$
-i-\{i,j\}-j-\{j,k\}
+\alpha\in\left(0,\frac12\right)
 $$
-is a path of length $3$.
-
-For distinct edge-vertices $e,f$,
+with
 $$
-d(e,f)=
-\begin{cases}
-2,&e\cap f\ne\varnothing,\\
-4,&e\cap f=\varnothing.
-\end{cases}
-$$
-The first case uses their common endpoint. In the disjoint case a length-$4$ path exists, and no shorter even path can connect them because they have no common endpoint.
-
-Step 2: Find a squared-Euclidean representation
-
-Let $e_1,\ldots,e_n$ be the standard basis of $\mathbb R^n$, and define
-$$
-\phi(i)=e_i,
-\qquad
-\phi(\{i,j\})=e_i+e_j.
-$$
-The distances from Step 1 give, case by case,
-$$
-d(x,y)=\|\phi(x)-\phi(y)\|^2
-$$
-for all vertices $x,y$.
-
-Now let $(c_x)$ satisfy $\sum_xc_x=0$. Expanding the squared norm,
-$$
-\begin{aligned}
-\sum_{x,y}c_xc_y d(x,y)
-&=\sum_{x,y}c_xc_y\|\phi(x)-\phi(y)\|^2\\
-&=-2\left\|\sum_xc_x\phi(x)\right\|^2\le0.
-\end{aligned}
-$$
-Hence the metric has $1$-negative type. Equality holds exactly when
-$$
-\sum_xc_x\phi(x)=0.
+16\cdot3^\alpha-22\cdot2^\alpha+5=0.
 $$
 
-Step 3: Show that every exponent $p>1$ fails
+It remains to check the third mode. Put $t=2^p\ge1$ and $r=\log_2 3>3/2$. Then
+$$
+3^p=t^r\ge t^{3/2}.
+$$
+Writing $s=\sqrt t$,
+$$
+7-14t+8t^{3/2}=8s^3-14s^2+7.
+$$
+This cubic has its positive minimum at $s=7/6$, where its value is $35/54$. Therefore
+$$
+\lambda_{-7}<0
+$$
+for every $p\ge0$.
 
-Choose three distinct indices $i,j,k$. Consider the four vertices
+Consequently the first boundary occurs exactly when $\lambda_5=0$, so
 $$
-A=i,\qquad B=\{i,k\},\qquad C=\{j,k\},\qquad D=j.
-$$
-Their relevant distances are
-$$
-d(A,C)=d(B,D)=3,
-$$
-$$
-d(A,B)=d(C,D)=1,
-$$
-$$
-d(A,D)=d(B,C)=2.
-$$
-Assign coefficients $1,-1,1,-1$ to $A,B,C,D$, respectively. The powered quadratic form is
-$$
-4\bigl(3^p-2^p-1\bigr).
-$$
-For $p>1$, strict convexity gives
-$$
-3^p=(2+1)^p>2^p+1,
-$$
-so this quadratic form is positive. Therefore no exponent larger than $1$ has negative type, and
-$$
-\wp=1.
+\wp=\alpha.
 $$
 
-Step 4: Compute the equality-space dimension
+Step 5: Compute the equality-space dimension
 
-At $p=1$, the equality space is the kernel of
+At $p=\alpha$, the $35$- and $-7$-eigenmodes remain strictly negative, while the $5$-eigenspace is exactly the kernel of $D_\alpha$ inside the zero-sum subspace. Its multiplicity is $588$. Hence
 $$
-c\longmapsto\left(\sum_xc_x,\sum_xc_x\phi(x)\right).
-$$
-Thus its codimension is one plus the affine dimension of the point set $\phi(V)$.
-
-The points $e_1,\ldots,e_n$ affinely span the hyperplane
-$$
-x_1+\cdots+x_n=1,
-$$
-which has dimension $n-1$. The point
-$$
-e_1+e_2
-$$
-has coordinate sum $2$, so it lies outside that hyperplane. Hence $\phi(V)$ affinely spans all of $\mathbb R^n$, and the displayed map has rank $n+1$.
-
-Since
-$$
-|V|=n+\binom n2=\frac{n(n+1)}2,
-$$
-we get
-$$
-\dim E=\frac{n(n+1)}2-(n+1)=\frac{(n-2)(n+1)}2.
+\dim E=588.
 $$
 
-Final Answer: $\boxed{(1,\frac{(n-2)(n+1)}2)}$
+Final Answer: $\boxed{(\alpha,588),\quad16\cdot3^\alpha-22\cdot2^\alpha+5=0,\quad0<\alpha<\frac12}$
 
 ---
 
 ## Answer
 
-$(1,\frac{(n-2)(n+1)}2)$
+$(\alpha,588),\quad16\cdot3^\alpha-22\cdot2^\alpha+5=0,\quad0<\alpha<\frac12$
 
 ---
 
@@ -137,7 +163,8 @@ $(1,\frac{(n-2)(n+1)}2)$
 
 ## Solution Concepts
 
-- incidence graph metrics
-- squared-Euclidean embeddings
+- Grassmann graph metrics
+- distance-regular graph recurrence
+- spectral decomposition of powered distances
+- Gaussian binomial counting
 - negative type of finite metric spaces
-- affine dependence and equality spaces
