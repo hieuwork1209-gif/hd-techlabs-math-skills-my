@@ -1,162 +1,173 @@
 ## Steps
 
-Step 1: Identify the graph distance with matrix rank
+Step 1: Identify the graph distance with symmetric rank
 
 Let
 $$
-V=M_3(\mathbb F_2).
+V=\operatorname{Sym}_3(\mathbb F_3).
 $$
-Two matrices are adjacent exactly when their difference has rank $1$. Since adding a rank-one matrix can change rank by at most $1$, every path from $A$ to $B$ has length at least
+Two vertices are adjacent exactly when their difference has rank $1$. Rank subadditivity shows that every path from $A$ to $B$ has length at least $\operatorname{rank}(A-B)$.
+
+Conversely, over a field of odd characteristic, simultaneous row and column elimination diagonalizes every symmetric matrix by congruence. Thus a rank-$r$ symmetric matrix is congruent to
 $$
-\operatorname{rank}(A-B).
+\operatorname{diag}(a_1,\ldots,a_r,0,\ldots,0),
+\qquad a_i\ne0,
 $$
-Conversely, every rank-$r$ matrix is a sum of $r$ rank-one matrices, by taking a rank factorization and expanding it into $r$ outer products. Hence
+and is therefore a sum of $r$ symmetric rank-one matrices. Hence
 $$
 d(A,B)=\operatorname{rank}(A-B).
 $$
-Thus the possible distances are $0,1,2,3$. Let $A_i$ denote the distance-$i$ matrix.
+The possible distances are $0,1,2,3$.
 
-Step 2: Diagonalize the adjacency matrix by Fourier characters
+Step 2: Fourier diagonalize the distance kernels
 
-For $B\in M_3(\mathbb F_2)$ define
+Let $\omega=e^{2\pi i/3}$. For $B\in V$, define
 $$
-\chi_B(X)=(-1)^{\operatorname{tr}(B^TX)}.
+\chi_B(X)=\omega^{\operatorname{tr}(BX)}.
 $$
-These $512$ characters form an orthogonal basis of functions on the additive group $M_3(\mathbb F_2)$, so they diagonalize every translation-invariant distance matrix.
+Because $2\ne0$ in $\mathbb F_3$, the trace pairing is nondegenerate on $V$, so these $3^6=729$ characters form an orthogonal basis. Every translation-invariant distance matrix is therefore diagonal in this basis.
 
-A rank-one matrix is uniquely $uv^T$ with nonzero $u,v\in\mathbb F_2^3$. If $r=\operatorname{rank}B$, the $A_1$-eigenvalue on $\chi_B$ is
+For $r=1,2,3$, put
 $$
-\theta_r=\sum_{u,v\ne0}(-1)^{u^TBv}.
+K_r(B)=\sum_{\operatorname{rank}X=r}\chi_B(X).
 $$
-For fixed nonzero $u$, the inner sum over $v\ne0$ equals $7$ when $B^Tu=0$, and equals $-1$ otherwise. There are $2^{3-r}-1$ nonzero vectors in $\ker B^T$, so
+If
 $$
-\theta_r=8(2^{3-r}-1)-7=2^{6-r}-15.
+x=2^p,\qquad y=3^p,
 $$
-Therefore
+then the $D_p$-eigenvalue on $\chi_B$, for $B\ne0$, is
 $$
-\theta_0=49,\qquad \theta_1=17,\qquad \theta_2=1,\qquad \theta_3=-7.
+\lambda_B(p)=K_1(B)+xK_2(B)+yK_3(B).
 $$
-The numbers of matrices of ranks $1,2,3$ are
-$$
-49,\qquad294,\qquad168,
-$$
-respectively: rank $1$ gives $7\cdot7=49$, rank $3$ gives
-$$
-|GL(3,2)|=(8-1)(8-2)(8-4)=168,
-$$
-and the remaining $512-1-49-168=294$ matrices have rank $2$.
 
-Step 3: Obtain the other distance eigenvalues
+Step 3: Compute the three shell transforms from quadratic-form geometry
 
-Fix a matrix $X$ of rank $i$. Among the $49$ rank-one increments $uv^T$, the number that raise the rank is
+Write
 $$
-b_i=(8-2^i)^2,
+q_B(v)=v^TBv.
 $$
-because this happens exactly when $u$ lies outside the column space of $X$ and $v$ lies outside its row space.
+There are $13$ projective lines in $\mathbb F_3^3$. Every rank-one symmetric matrix is uniquely
+$$
+a vv^T,
+\qquad a\in\mathbb F_3^\times,
+$$
+with $[v]$ a projective line. If $z(B)$ is the number of projective zeros of $q_B$, then
+$$
+K_1(B)
+=\sum_{[v]}\sum_{a\ne0}\omega^{a q_B(v)}
+=3z(B)-13.
+$$
 
-The number that lower the rank is
+Next let
 $$
-c_i=2^{i-1}(2^i-1).
+S(B)=1+K_1(B)+K_2(B)
+=\sum_{\operatorname{rank}X\le2}\chi_B(X).
 $$
-Indeed, after reducing $X$ to $\operatorname{diag}(I_i,0)$, choose a nonzero $u$ in its column space and then one of the $2^{i-1}$ vectors $v$ in its row space satisfying the single equation $v^Tu=1$.
+For a symmetric $X$, Möbius inversion on the lattice of subspaces of $\ker X$ gives
+$$
+\mathbf1_{\operatorname{rank}X\le2}
+=\sum_{\substack{U\le\ker X\\ \dim U=1}}1
+-3\sum_{\substack{U\le\ker X\\ \dim U=2}}1
++27\mathbf1_{X=0}.
+$$
+For fixed $U$, the character sum over symmetric matrices with $U\subseteq\ker X$ vanishes unless the orthogonal complement $U^\perp$ is totally isotropic for the bilinear form $B$; when it does not vanish, its value is $27$ for $\dim U=1$ and $3$ for $\dim U=2$. Therefore
+$$
+S(B)=27t(B)-9z(B)+27,
+$$
+where $t(B)$ is the number of totally isotropic $2$-planes for $B$.
 
-Hence
+The four nonzero congruence types give
 $$
-(b_0,b_1,b_2)=(49,36,16),
-\qquad
-(c_1,c_2,c_3)=(1,6,28).
-$$
-With $A=A_1$, the distance-regular recurrence gives
-$$
-A_2=\frac{A^2-12A-49I}{6},
-$$
-$$
-A_3=\frac{AA_2-36A-27A_2}{28}.
-$$
-Evaluating these polynomials at the three nonconstant adjacency eigenvalues gives
-$$
-\begin{array}{c|ccc}
-\operatorname{rank}B&A_1&A_2&A_3\\
+\begin{array}{c|c|c|c|c|c}
+\text{type of }B&\text{multiplicity}&z(B)&t(B)&K_1(B)&S(B)\\
 \hline
-1&17&6&-24\\
-2&1&-10&8\\
-3&-7&14&-8
+\operatorname{rank}1&26&4&1&-1&18\\
+\operatorname{rank}2\text{ anisotropic}&78&1&0&-10&18\\
+\operatorname{rank}2\text{ split}&156&7&2&8&18\\
+\operatorname{rank}3&468&4&0&-1&-9
 \end{array}
 $$
-with multiplicities $49,294,168$.
+Indeed, the rank-two quotient is either anisotropic or split; for a fixed radical line there are respectively $6$ and $12$ nondegenerate symmetric $2\times2$ forms of these two types. Since there are $13$ radical lines, the multiplicities are $78$ and $156$. Also there are $26$ rank-one forms, and the remaining
+$$
+729-1-26-78-156=468
+$$
+are nonsingular.
 
-Step 4: Find the maximal negative-type exponent
-
-Put
+For $B\ne0$, the total character sum is $0$, so
 $$
-x=2^p,\qquad y=3^p.
+1+K_1(B)+K_2(B)+K_3(B)=0.
 $$
-Since
+Hence
 $$
-D_p=A_1+xA_2+yA_3,
-$$
-the three eigenvalues on the zero-sum subspace are
-$$
-\lambda_1=17+6x-24y,
-$$
-$$
-\lambda_2=1-10x+8y,
-$$
-$$
-\lambda_3=-7+14x-8y.
-$$
-The first is strictly decreasing for $p\ge0$, so $\lambda_1<-1<0$ for $p>0$.
-
-Let
-$$
-f(p)=1-10\cdot2^p+8\cdot3^p.
-$$
-Since
-$$
-8\log3>10\log2
-$$
-and $(3/2)^p$ increases, we have $f'(p)>0$ for $p\ge0$. Also
-$$
-f(0)=-1,
-$$
-while
-$$
-f\left(\frac12\right)=1-10\sqrt2+8\sqrt3>0.
-$$
-Thus there is a unique
-$$
-\alpha\in\left(0,\frac12\right)
-$$
-with
-$$
-8\cdot3^\alpha-10\cdot2^\alpha+1=0.
+\begin{array}{c|ccc}
+\text{type of }B&K_1&K_2&K_3\\
+\hline
+\operatorname{rank}1&-1&18&-18\\
+\operatorname{rank}2\text{ anisotropic}&-10&27&-18\\
+\operatorname{rank}2\text{ split}&8&9&-18\\
+\operatorname{rank}3&-1&-9&9
+\end{array}
 $$
 
-For the third mode, $3^p\ge2^{3p/2}$. Setting $s=2^{p/2}\ge1$ gives
-$$
-\lambda_3\le-7+14s^2-8s^3.
-$$
-The cubic on the right has maximum at $s=7/6$, where its value is $-35/54$. Hence $\lambda_3<0$ for all $p\ge0$.
+Step 4: Find the first Fourier mode to reach zero
 
-Therefore the first boundary occurs exactly when $\lambda_2=0$, so
+The four nonconstant eigenvalue functions are
+$$
+\lambda_1=-1+18x-18y,
+$$
+$$
+\lambda_{2a}=-10+27x-18y,
+$$
+$$
+\lambda_{2s}=8+9x-18y,
+$$
+$$
+\lambda_3=-1-9x+9y.
+$$
+At $p=0$ they all equal $-1$.
+
+The first function is strictly decreasing. For the anisotropic rank-two mode,
+$$
+\lambda_{2a}'(p)
+=27(\log2)2^p-18(\log3)3^p<0,
+$$
+because $3\log2<2\log3$ and $(3/2)^p\ge1$. The split rank-two mode is also strictly decreasing. Thus these three modes remain negative for every $p>0$.
+
+The rank-three mode is
+$$
+\lambda_3(p)=9(3^p-2^p)-1,
+$$
+and
+$$
+\lambda_3'(p)=9\bigl((\log3)3^p-(\log2)2^p\bigr)>0.
+$$
+Since $\lambda_3(0)=-1$ and $\lambda_3(1)=8$, there is a unique
+$$
+\alpha\in(0,1)
+$$
+such that
+$$
+9(3^\alpha-2^\alpha)=1.
+$$
+Therefore
 $$
 \wp=\alpha.
 $$
 
 Step 5: Compute the equality-space dimension
 
-At $p=\alpha$, the rank-$1$ and rank-$3$ Fourier modes remain strictly negative, while the rank-$2$ modes are exactly the kernel of $D_\alpha$ inside the zero-sum subspace. There are $294$ rank-$2$ matrices $B$, hence
+At $p=\alpha$, only the rank-three Fourier modes have eigenvalue $0$; all rank-one and rank-two modes are still strictly negative. There are $468$ nonsingular symmetric matrices $B$, and their characters are linearly independent. Hence
 $$
-\dim E=294.
+\dim E=468.
 $$
 
-Final Answer: $\boxed{(\alpha,294),\quad8\cdot3^\alpha-10\cdot2^\alpha+1=0,\quad0<\alpha<\frac12}$
+Final Answer: $\boxed{(\alpha,468),\quad9(3^\alpha-2^\alpha)=1,\quad0<\alpha<1}$
 
 ---
 
 ## Answer
 
-$(\alpha,294),\quad8\cdot3^\alpha-10\cdot2^\alpha+1=0,\quad0<\alpha<\frac12$
+$(\alpha,468),\quad9(3^\alpha-2^\alpha)=1,\quad0<\alpha<1$
 
 ---
 
@@ -170,8 +181,8 @@ $(\alpha,294),\quad8\cdot3^\alpha-10\cdot2^\alpha+1=0,\quad0<\alpha<\frac12$
 
 ## Solution Concepts
 
-- rank metric on binary matrices
+- symmetric matrix rank metric
 - finite Fourier characters
-- rank-one perturbations
-- distance-regular recurrence
+- quadratic forms over finite fields
+- isotropic subspaces and Witt type
 - negative type of finite metric spaces
