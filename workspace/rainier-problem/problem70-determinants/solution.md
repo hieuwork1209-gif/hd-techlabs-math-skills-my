@@ -5,13 +5,13 @@ For
 $$
 A_N(a)=S_1(N,a)=B(a,N+1),
 $$
-we have $S_2(N,a)=-A_N'(a)$. Put $L=\log n$, $N=n^3$,
+we have $S_2(N,a)=-A_N'(a)$. Put $L=\log n$, $N=n^3$, $t=n^{-1/2}$,
 $$
-m_1=\left\lfloor\frac{n^2}{3}\right\rfloor,\qquad m_2=n^2,
+m_j=\lfloor jn^{5/2}\rfloor\qquad(j=1,2,3),
 $$
 and
 $$
-p_n=\frac34-\frac{9}{8L}.
+b_1=\frac{27-5t}{19},\qquad b_2=\frac{-9+10t}{19},\qquad b_3=\frac{1-5t}{19}.
 $$
 Write
 $$
@@ -20,17 +20,17 @@ $$
 Then $T_2=-F'$ and $U_2=-G'$, so the determinant condition is $(G/F)'=0$. Define
 $$
 \rho_n(a)=\frac{e^2A_N(a)}{F(a)},\qquad
-r_i(a)=\frac{A_{N+m_i}(a)}{A_N(a)}\quad(i=1,2),
+r_j(a)=\frac{A_{N+m_j}(a)}{A_N(a)},
 $$
 $$
-h_n(a)=1-p_nr_1(a)-(1-p_n)r_2(a).
+h_n(a)=1-\sum_{j=1}^3b_jr_j(a).
 $$
-Since $G/F=1-\rho_nh_n$, the root equation is exactly
+Since $b_1+b_2+b_3=1$ and $G/F=1-\rho_nh_n$, the root equation is exactly
 $$
-\frac{d}{da}\log \rho_n(a)+\frac{d}{da}\log h_n(a)=0.
+\frac{d}{da}\log\rho_n(a)+\frac{d}{da}\log h_n(a)=0.
 $$
 
-Step 2: Identify the limiting equation and its simple root
+Step 2: Identify the unchanged limiting equation
 Put $c=aL$. With
 $$
 R_q(a)=\frac{\Gamma(n^q+1)}{\Gamma(n^q+a+1)},\qquad
@@ -38,24 +38,30 @@ w_q(a)=\frac{e^{q-1}R_q(a)}{\sum_{j=1}^3e^{j-1}R_j(a)},
 $$
 we have
 $$
-\frac1L\frac{d}{da}\log \rho_n
+\frac1L\frac{d}{da}\log\rho_n
 =\frac1L\left(\sum_{q=1}^3w_q\psi(n^q+a+1)-\psi(n^3+a+1)\right).
 $$
-Because both shifts are $O(n^2)$, $h_n(a)=a\Theta(n^{-1})(1+o(1))$. Hence for fixed $c$ near $1$ the normalized root equation tends to
+For
+$$
+s_j=\sum_{k=1}^{m_j}\frac1{N+k},
+$$
+one has $r_j=e^{-as_j}(1+o(n^{-2}))$. Also
+$$
+\sum_{j=1}^3b_js_j=\frac{12}{19}t+O(t^3)>0,
+$$
+so $h_n=a\Theta(t)(1+o(1))$. Hence the normalized root equation tends to
 $$
 H_0(c)=\frac1c+\sum_{q=1}^3q\pi_q(c)-3,
-$$
-where
-$$
+\qquad
 \pi_q(c)=\frac{e^{q-1-qc}}{\sum_{j=1}^3e^{j-1-jc}}.
 $$
-At $c=1$ the weights are uniform, so $H_0(1)=0$ and
+At $c=1$ the weights are uniform, so
 $$
-H_0'(1)=-1-\operatorname{Var}_{\{1,2,3\}}(q)=-\frac53.
+H_0(1)=0,\qquad H_0'(1)=-1-\operatorname{Var}_{\{1,2,3\}}(q)=-\frac53.
 $$
 Thus the nearby limiting root is simple and unique.
 
-Step 3: Keep the base-column expansion through the second canceled scale
+Step 3: Record the base-column finite-size bias
 At $c=1$, so $a=1/L$,
 $$
 R_q(a)=n^{-qa}\left(1-\frac{a(a+1)}{2n^q}+O\!\left(\frac{a}{n^{2q}}\right)\right),
@@ -64,84 +70,86 @@ and
 $$
 \psi(n^q+a+1)=qL+\frac{a+1/2}{n^q}+O(n^{-2q}).
 $$
-Only $q=1$ contributes at order $n^{-1}$. Expanding the normalized weighted average gives
+Only $q=1$ contributes before order $n^{-3/2}$. Therefore
 $$
-\frac1L\frac{d}{da}\log \rho_n
-=-1+\frac{a(a+1)}{6n}+\frac{a+1/2}{3nL}
-+o((nL^3)^{-1}).
-$$
-Substituting $a=1/L$,
-$$
-\frac1L\frac{d}{da}\log \rho_n
+\frac1L\frac{d}{da}\log\rho_n
 =-1+\frac{1}{3nL}+\frac{1}{2nL^2}
-+o((nL^3)^{-1}).
++o\!\left(\frac1{n^{3/2}L}\right).
 $$
-There is no $1/(nL^3)$ term from the base column.
 
-Step 4: Track the varying hidden shift-moment ratio
-Let
+Step 4: Expose the signed-stencil moment cancellation
+Set
 $$
-s_i=\sum_{j=1}^{m_i}\frac1{N+j},\qquad
-\mu_k=p_ns_1^k+(1-p_n)s_2^k.
+\mu_k=\sum_{j=1}^3b_js_j^k.
 $$
-The product formula for $r_i$ gives
+Since
 $$
-h_n=a\mu_1-\frac{a^2}{2}\mu_2+O(a^2n^{-4}+a^3n^{-3}),
+s_j=\log(1+jt)+O(t^6),
 $$
-so
+direct expansion gives
 $$
-\frac{d}{da}\log h_n
-=\frac1a-\frac{\mu_2}{2\mu_1}+O(an^{-2}).
+\mu_1=\frac{12}{19}t-\frac1{19}t^3-\frac{11}{19}t^4+O(t^5),
 $$
-Now
 $$
-s_1=\frac{1}{3n}+O(n^{-2}),\qquad s_2=\frac1n+O(n^{-2}).
+\mu_2=\frac8{19}t^3+\frac{27}{19}t^4+O(t^5),
 $$
-Therefore
 $$
-\frac{\mu_2}{\mu_1}
-=\frac1n\,
-\frac{p_n/9+(1-p_n)}{p_n/3+(1-p_n)}+O(n^{-2}).
-$$
-Writing $z=L^{-1}$ and using $p_n=3/4-9z/8$, the rational factor is
-$$
-\frac{4(1+3z)}{3(2+3z)}
-=\frac23+z-\frac32z^2+O(z^3).
+\mu_3=-\frac{18}{19}t^3-\frac6{19}t^4+O(t^5),
+\qquad
+\mu_4=-\frac{36}{19}t^4+O(t^5).
 $$
 Hence
 $$
-\frac{\mu_2}{\mu_1}
-=\frac1n\left(\frac23+\frac1L-\frac{3}{2L^2}+O(L^{-3})\right)+O(n^{-2}).
+\frac{\mu_2}{\mu_1}=\frac23t^2+\frac94t^3+O(t^4),
 $$
-At $a=1/L$ this yields
+$$
+\frac{\mu_3}{\mu_1}=-\frac32t^2-\frac12t^3+O(t^4),
+\qquad
+\frac{\mu_4}{\mu_1}=-3t^3+O(t^4).
+$$
+The key point is that the $t^2$ term of $\mu_2$ vanishes: the signed coefficients force the second shift moment to start one order later.
+
+From
+$$
+h_n=a\mu_1-\frac{a^2}{2}\mu_2+\frac{a^3}{6}\mu_3-\frac{a^4}{24}\mu_4+\cdots,
+$$
+we obtain
+$$
+\frac{d}{da}\log h_n
+=\frac1a-\frac{\mu_2}{2\mu_1}
++a\left(\frac{\mu_3}{3\mu_1}-\frac{\mu_2^2}{4\mu_1^2}\right)
+-a^2\frac{\mu_4}{8\mu_1}+O(t^4).
+$$
+Substituting $a=L^{-1}$ and the ratios above,
 $$
 \frac1L\frac{d}{da}\log h_n
 =1-\frac{1}{3nL}-\frac{1}{2nL^2}
-+\frac{3}{4nL^3}+o((nL^3)^{-1}).
++\frac1{n^{3/2}}\left(-\frac{9}{8L}-\frac{1}{6L^2}+\frac{3}{8L^3}\right)
++O(n^{-2}).
 $$
-Thus the first two finite-size scales cancel against Step 3, and
+The two order-$1/n$ terms cancel Step 3, while the new surviving term comes from the coupled second/third/fourth stencil moments. Thus
 $$
-H_n(1)=\frac{3}{4nL^3}+o((nL^3)^{-1}).
+H_n(1)=-\frac{9}{8n^{3/2}L}+o\!\left(\frac1{n^{3/2}L}\right).
 $$
 
-Step 5: Extract the third-scale root displacement
+Step 5: Extract the new mesoscopic root displacement
 Since $H_n\to H_0$ in $C^1$ near $1$ and $H_0'(1)=-5/3$, the unique nearby zero $c_n=a_nL$ satisfies
 $$
-c_n-1=-\frac{H_n(1)}{H_0'(1)}+o((nL^3)^{-1})
-=\frac{9}{20nL^3}+o((nL^3)^{-1}).
+c_n-1=-\frac{H_n(1)}{H_0'(1)}+o\!\left(\frac1{n^{3/2}L}\right)
+=-\frac{27}{40n^{3/2}L}+o\!\left(\frac1{n^{3/2}L}\right).
 $$
 Therefore
 $$
-n(\log n)^3(a_n\log n-1)\longrightarrow\frac9{20}.
+n^{3/2}(\log n)(a_n\log n-1)\longrightarrow-\frac{27}{40}.
 $$
 
-Final Answer: $\boxed{\frac9{20}}$
+Final Answer: $\boxed{-\frac{27}{40}}$
 
 ---
 
 ## Answer
 
-$\frac9{20}$
+$-\frac{27}{40}$
 
 ---
 
@@ -156,13 +164,13 @@ $\frac9{20}$
 ## Solution Concepts
 
 - determinant stationary condition
-- adaptive cutoff mixture
-- shift-moment ratio
-- nested asymptotic cancellation
-- finite-size root displacement
+- signed mesoscopic stencil
+- shift-moment cancellation
+- Beta and digamma asymptotics
+- mesoscopic root displacement
 
 ---
 
 ## Black-Box Audit — no issues found
 
-The hardening remains structural and local. The mixture weights now drift on the logarithmic scale, so the second-to-first shift-moment ratio must itself be expanded. This cancels both earlier finite-size terms and exposes a third asymptotic scale without enlarging the determinant or adding bookkeeping-heavy invariants.
+The hardening changes the asymptotic mechanism rather than merely adding another logarithmic Taylor term. A signed three-cutoff stencil cancels the leading second shift moment, so the first uncanceled perturbation occurs at the $n^{-3/2}$ scale and requires tracking the interaction of several shift moments.
