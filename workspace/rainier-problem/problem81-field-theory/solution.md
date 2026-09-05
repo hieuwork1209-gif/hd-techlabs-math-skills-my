@@ -1,165 +1,111 @@
 ## Steps
 
-Step 1: Parameterize the lifts.
-Let $\ell$ be the prime in the statement, let $\zeta=\zeta_\ell$, and put
+Step 1: Parameterize the lifts and transposition labels.
+Put
 $$
-Q=\ell^r,\qquad m=2q^2,\qquad D=\frac{Q-1}{\ell-1}.
+Q=\ell^r,\qquad m=2q,\qquad d=\frac{2q-1}{Q},\qquad G=\mathbb F_\ell^r.
 $$
-For $1\le j\le r$, the relation hypothesis in $M^\times/(M^\times)^\ell$ shows by Kummer theory that a lift $\sigma$ of the fixed $\pi$ is uniquely described by
+Write the fixed-point-free involution as a product of its $m$ transpositions. As in the Kummer parametrization, every lift $\sigma$ of $\pi$ is uniquely described by
 $$
-\sigma(\alpha_i^{(j)})=\zeta^{a_i^{(j)}}\alpha_{\pi(i)}^{(j)},
-\qquad
+\sigma(\alpha_i^{(j)})=\zeta^{a_i^{(j)}}\alpha_{\pi(i)}^{(j)},\qquad
 \sigma(\rho_j)=\zeta^{s_j}\rho_j,
 $$
-with $a_i^{(j)},s_j\in\mathbb F_\ell$ and
+where $a_i^{(j)},s_j\in\mathbb F_\ell$, $s_j\ne0$, and
 $$
-\sum_{i=1}^n a_i^{(j)}=0\qquad(1\le j\le r).
+\sum_i a_i^{(j)}=0\qquad(1\le j\le r).
 $$
-Here is the constraint explicitly. Put $A_j=\prod_i\alpha_i^{(j)}\in M$. Its $\ell$th power $\prod_i g_i^{(j)}$ is fixed by $S_n$, hence lies in $\mathbb Q^\times$. For $\tau\in\operatorname{Gal}(M/\mathbb Q(\zeta))\cong S_n$, the quotient $\tau(A_j)/A_j\in\mu_\ell$ defines a homomorphism $S_n\to\mu_\ell$. Since $S_n^{\rm ab}\cong C_2$ and $\ell$ is odd, this homomorphism is trivial. Thus $A_j$ is fixed and the displayed sum is $0$. Conversely, the class span is $\pi$-stable, so the lifts form a torsor under the Kummer kernel and these are the only constraints. The condition $\sigma(\rho_j)\ne\rho_j$ is exactly $s_j\ne0$.
+Indeed $A_j=\prod_i\alpha_i^{(j)}\in M$ has $A_j^\ell\in\mathbb Q^\times$, so $\tau\mapsto\tau(A_j)/A_j$ is a homomorphism $S_n\to\mu_\ell$; it is trivial because $S_n^{\rm ab}\cong C_2$ and $\ell$ is odd.
 
-For each transposition $C$ of $\pi$, define its label
+For a transposition $C$, set
 $$
-Z_C=\left(\sum_{i\in C}a_i^{(1)},\ldots,\sum_{i\in C}a_i^{(r)}\right)\in G:=\mathbb F_\ell^r.
+Z_C=\left(\sum_{i\in C}a_i^{(1)},\ldots,\sum_{i\in C}a_i^{(r)}\right)\in G,
 $$
-If $m_z$ is the number of transpositions carrying label $z$, then
+and let $m_z$ be the number of transpositions with label $z$. Then
 $$
-\sum_{z\in G}m_z=m,
-\qquad
-\sum_{z\in G}m_zz=0.
+\sum_zm_z=m,\qquad \sum_zm_zz=0.
 $$
 
-Step 2: Convert equal cycle types to flat Fourier magnitude.
-For $k\in G$, the action on the fiber coordinate $u\in G$ above an ordered pair $(i,h)$ is
+Step 2: Convert the twisted cycle condition into a nonlinear Fourier equation.
+An element of $\Omega_k$ is indexed by $(i,h,u)$ with $h\notin\{i,\pi(i)\}$ and $u\in G$. Under $\sigma$ it goes to
 $$
-(i,h,u)\longmapsto
-\left(\pi(i),\pi(h),u+(k_js_j+a_i^{(j)}-a_h^{(j)})_{j=1}^r\right).
+(\pi(i),\pi(h),u+(k_js_j+a_i^{(j)}-2a_h^{(j)})_{j=1}^r).
 $$
-If $i$ lies in transposition $C$ and $h$ in transposition $E$, then after two steps the fiber is translated by
+If $i$ lies in transposition $C$ and $h$ in a different transposition $E$, then after two steps the fiber is translated by
 $$
-2(k_1s_1,\ldots,k_rs_r)+Z_C-Z_E.
+w+Z_C-2Z_E,\qquad w=2(k_1s_1,\ldots,k_rs_r).
 $$
-A zero translation gives $Q$ cycles of length $2$ over that base orbit, whereas a nonzero translation has additive order $\ell$ and gives $Q/\ell$ cycles of length $2\ell$. Since $2s_j\ne0$, the twist vector runs through all of $G$ as $k$ varies.
+All base orbits have size $2$. A zero translation gives $Q$ cycles of length $2$, while a nonzero translation gives $Q/\ell$ cycles of length $2\ell$. Since every $s_j\ne0$, the vector $w$ runs through all of $G$ as $k$ varies.
 
-Set
+Let
 $$
-N_w=\sum_{z\in G}m_zm_{z+w}.
+T_w=\#\{(C,E):Z_C-2Z_E=-w\},
 $$
-For twist $0$, the number of base pair-orbits with zero accumulated phase is $2N_0-m$; for $w\ne0$ it is $2N_w$. Hence all $Q$ induced permutations have the same cycle type exactly when
-$$
-N_0-N_w=q^2\qquad(w\ne0).
-$$
-For a character $\chi$ of $G$, define
+where the ordered pair is allowed to have $C=E$. The forbidden diagonal $C=E$ contributes exactly $m_w$, because then $Z_C-2Z_C=-Z_C=-w$. Thus equal cycle type for all $k$ is equivalent to $T_w-m_w$ being constant in $w$.
+
+For an additive character $\chi$ of $G$, put
 $$
 \widehat m(\chi)=\sum_zm_z\chi(z).
 $$
-Taking the Fourier transform of the autocorrelation gives, for every nontrivial $\chi$,
+The Fourier transform of $T_w$ is
 $$
-|\widehat m(\chi)|^2=q^2.
+\widehat m(\chi^2)\,\overline{\widehat m(\chi)},
 $$
-
-Step 3: Recover the phase profile through the cyclotomic field.
-Fix a nontrivial character $\chi(z)=\zeta^{\lambda(z)}$ with nonzero linear form $\lambda:G\to\mathbb F_\ell$, and put
+so for every nontrivial $\chi$ we obtain
 $$
-z_\chi=\widehat m(\chi)\in\mathbb Z[\zeta].
-$$
-For $a\in\mathbb F_\ell^\times$, the Galois automorphism $\zeta\mapsto\zeta^a$ sends $z_\chi$ to $\widehat m(\chi^a)$, whose complex absolute value is again $q$. Thus every one of the $\ell-1$ conjugates of $z_\chi$ has absolute value $q$, so
-$$
-N_{\mathbb Q(\zeta)/\mathbb Q}(z_\chi)=q^{\ell-1}.
+\widehat m(\chi^2)\,\overline{\widehat m(\chi)}=\widehat m(\chi). \tag{1}
 $$
 
-We next show that $q$ is inert in $\mathbb Z[\zeta]$. The congruence $2q\equiv1\pmod\ell$ gives $q\equiv2^{-1}\pmod\ell$. Since $2$ generates $\mathbb F_\ell^\times$, so does $q$, hence $q$ has order $\ell-1$ modulo $\ell$. A primitive $\ell$th root of unity lies in $\mathbb F_{q^d}$ exactly when $\ell\mid q^d-1$; the least such $d$ is therefore $\ell-1$. Thus the degree-$\ell+1-2=\ell-1$ polynomial $\Phi_\ell$ is irreducible modulo $q$, and
-$$
-\mathbb Z[\zeta]/(q)\cong\mathbb F_{q^{\ell-1}}.
-$$
-In particular $(q)$ is prime. Reducing multiplication by $z_\chi$ modulo $q$, its determinant is the algebraic norm modulo $q$, hence is $0$. Multiplication by a nonzero element of a field is invertible, so $z_\chi\equiv0\pmod q$. Therefore
-$$
-z_\chi=q\varepsilon_\chi
-$$
-with $\varepsilon_\chi\in\mathbb Z[\zeta]$ an algebraic integer all of whose conjugates have absolute value $1$.
+Step 3: Classify the integral profiles forced by (1).
+Fix a nontrivial character $\chi$. If $\widehat m(\chi)=0$, then every Galois conjugate $\widehat m(\chi^a)$ is also $0$. Otherwise, (1) gives $|\widehat m(\chi^2)|=1$. Because $2$ generates $\mathbb F_\ell^\times$, iterating through powers of $2$ shows that every conjugate $\widehat m(\chi^a)$ has absolute value $1$, including $\widehat m(\chi)$ itself. By Kronecker's lemma, $\widehat m(\chi)$ is a root of unity in $\mathbb Q(\zeta)$.
 
-We use the following elementary form of Kronecker's lemma. If an algebraic integer $\varepsilon$ has all conjugates of absolute value $1$, then $\varepsilon$ is a root of unity: for every $n\ge1$, the monic polynomial whose roots are the conjugates of $\varepsilon^n$ has integral coefficients, and each coefficient is bounded in absolute value by a binomial coefficient depending only on the degree. Only finitely many such polynomials occur, hence only finitely many values $\varepsilon^n$ occur, so two powers coincide.
+For a root of unity $\varepsilon=\widehat m(\chi)$, equation (1) becomes $\tau_2(\varepsilon)=\varepsilon^2$. The roots of unity in $\mathbb Q(\zeta)$ are $\pm\zeta^c$; the minus sign is impossible because $\tau_2(-\zeta^c)=-\zeta^{2c}\ne\zeta^{2c}$. Hence every nonzero Fourier coefficient in a one-dimensional dual direction has the form
+$$
+\widehat m(\chi^a)=\zeta^{ac}\qquad(a\in\mathbb F_\ell^\times).
+$$
+Thus each active projective dual direction determines one distinguished affine hyperplane. Let $s$ be the number of active directions, let $D=(Q-1)/(\ell-1)$, and let $e(z)$ be the number of their distinguished affine hyperplanes containing $z$. Fourier inversion gives
+$$
+Qm_z=m-s+\ell e(z). \tag{2}
+$$
+Since $m=2q\equiv1\pmod Q$, integrality in (2) implies all values $e(z)$ are congruent modulo $L=\ell^{r-1}$. Because $0\le e(z)\le s\le D<2L$, there is an integer $a$ such that each $e(z)$ is either $a$ or $a+L$.
 
-Let $\mathfrak l=(1-\zeta)$. Since $\mathbb Z[\zeta]/\mathfrak l\cong\mathbb F_\ell$, every character value is $1$ modulo $\mathfrak l$. Hence
+Let $x$ be the number of points with value $a+L$. Counting incidences with the $s$ affine hyperplanes gives
 $$
-z_\chi\equiv\sum_zm_z=2q^2\pmod{\mathfrak l}.
+Qa+xL=sL,
 $$
-Because $2q\equiv1\pmod\ell$ and $q\not\equiv0\pmod\ell$, division by $q$ gives
+so $\ell a+x=s$. Reducing (2) at a point with value $a$ modulo $Q$ gives
 $$
-\varepsilon_\chi\equiv1\pmod{\mathfrak l}.
+1-s+\ell a=1-x\equiv0\pmod Q.
 $$
-A root of unity in $\mathbb Q(\zeta)$ with this congruence must be an $\ell$th root of unity. Indeed, if its order is $\ell^a s$ with $(s,\ell)=1$, its $s$-primary part $\eta$ is also $1$ modulo $\mathfrak l$. If $s>1$, then $1+\eta+\cdots+\eta^{s-1}=0$, while reduction modulo $\mathfrak l$ gives $s\ne0$, a contradiction. Thus the order is an $\ell$-power. It cannot be divisible by $\ell^2$, since a primitive $\ell^2$th root has degree $\ell(\ell-1)>[\mathbb Q(\zeta):\mathbb Q]$. Therefore
+As $0\le x\le Q$, we get $x=1$. Hence $s=\ell a+1$. The unique high point requires $a+L\le s$, while $s\le D$; these inequalities force
 $$
-\widehat m(\chi)=q\zeta^{c_\chi}
+a=\frac{L-1}{\ell-1},\qquad s=D.
 $$
-for some $c_\chi\in\mathbb F_\ell$.
-
-Now group the nonzero characters into the $D$ one-dimensional directions of the dual space. For a representative $\lambda$ of one direction, write
+So all projective directions are active and their distinguished affine hyperplanes meet in one point $z_0$. Equation (2) now yields
 $$
-S_t=\sum_{\lambda(z)=t}m_z\qquad(t\in\mathbb F_\ell).
+m_{z_0}=d+1,\qquad m_z=d\quad(z\ne z_0).
 $$
-If $\widehat m(\lambda)=q\zeta^c$, then its powers give $q\zeta^{ac}$ for $a\ne0$. The $\ell$-term inverse Fourier transform shows that exactly one affine hyperplane $\lambda(z)=c$ has total
+Finally $\sum_zm_zz=0$ and $\sum_{z\in G}z=0$ give $z_0=0$. Conversely, the profile
 $$
-\frac{2q^2+(\ell-1)q}{\ell},
+m_0=d+1,\qquad m_z=d\ (z\ne0)
 $$
-and each of the other $\ell-1$ parallel hyperplanes has total $(2q^2-q)/\ell$. Call the first one distinguished.
-
-Let $d(z)$ be the number of distinguished hyperplanes, one from each of the $D$ directions, that contain $z$. Fourier inversion grouped by directions gives
-$$
-Qm_z=2q^2+q(\ell d(z)-D).
-$$
-Because $m_z$ is integral and $q$ is prime to $Q$,
-$$
-2q+\ell d(z)-D\equiv0\pmod Q.
-$$
-Using $2q\equiv1\pmod Q$ and
-$$
-D-1=\ell d_0,\qquad d_0:=\frac{\ell^{r-1}-1}{\ell-1},
-$$
-we get
-$$
-d(z)\equiv d_0\pmod{\ell^{r-1}}.
-$$
-Since $0\le d(z)\le D=d_0+\ell^{r-1}$, every point has $d(z)=d_0$ or $d(z)=D$. The $D$ distinguished hyperplanes contain $D\ell^{r-1}$ incidences. If $x$ points have value $D$, then
-$$
-xD+(Q-x)d_0=D\ell^{r-1}.
-$$
-Using $D-d_0=\ell^{r-1}$ and $D-\ell d_0=1$ gives $x=1$. Thus there is a unique point $z_0$ lying on every distinguished hyperplane.
-
-Define
-$$
-H=\frac{2q^2+(Q-1)q}{Q},\qquad
-L_0=\frac{2q^2-q}{Q}.
-$$
-Then
-$$
-m_{z_0}=H,\qquad m_z=L_0\quad(z\ne z_0).
-$$
-These are integers because $Q\mid2q-1$, and $H-L_0=q$. Also $\sum_{z\in G}z=0$, so the global phase constraint becomes
-$$
-0=\sum_zm_zz=qz_0.
-$$
-As $q\not\equiv0\pmod\ell$, we get $z_0=0$. Conversely, this heavy-at-zero profile has every nontrivial Fourier coefficient equal to $q$, so it satisfies the required cycle condition.
+has every nontrivial Fourier coefficient equal to $1$, so it satisfies (1) and hence the cycle condition.
 
 Step 4: Count the lifts.
-The transposition labels can be assigned in
+The $m=2q$ labeled transpositions can receive the forced labels in
 $$
-\frac{(2q^2)!}{H!(L_0!)^{Q-1}}
+\frac{(2q)!}{(d+1)!(d!)^{Q-1}}
 $$
-ways. Once a label is fixed, for each transposition and each of the $r$ Kummer families there are exactly $\ell$ ordered phase pairs with the prescribed sum. Hence the internal phase choices contribute
+ways. For each transposition and each of the $r$ Kummer families, fixing the label sum leaves exactly $\ell$ choices for the ordered phase pair, giving $\ell^{rm}=\ell^{2rq}$. Finally each $s_j$ has $\ell-1$ nonzero choices. Therefore
 $$
-\ell^{rm}=\ell^{2rq^2}.
+(\ell-1)^r\ell^{2rq}\frac{(2q)!}{(d+1)!(d!)^{Q-1}}.
 $$
-Finally, each $s_j$ has $\ell-1$ nonzero choices, contributing $(\ell-1)^r$. Therefore
-$$
-\boxed{(\ell-1)^r\ell^{2rq^2}\frac{(2q^2)!}{H!(L_0!)^{Q-1}}}.
-$$
-Final Answer: $\boxed{(\ell-1)^r\ell^{2rq^2}\frac{(2q^2)!}{H!(L_0!)^{Q-1}}}$
+Final Answer: $\boxed{(\ell-1)^r\ell^{2rq}\frac{(2q)!}{(d+1)!(d!)^{\ell^r-1}}}$
 
 ---
 
 ## Answer
 
-$(\ell-1)^r\ell^{2rq^2}(2q^2)!/[H!(L_0!)^{Q-1}]$
+$(\ell-1)^r\ell^{2rq}(2q)!/[(d+1)!(d!)^{\ell^r-1}],\ d=(2q-1)/\ell^r$
 
 ---
 
@@ -173,8 +119,8 @@ $(\ell-1)^r\ell^{2rq^2}(2q^2)!/[H!(L_0!)^{Q-1}]$
 
 ## Solution Concepts
 
-- Kummer extensions of prime degree
-- cyclotomic inertness, algebraic norms, and Kronecker's lemma
-- finite Fourier analysis on $\mathbb F_\ell^r$
+- Kummer extensions and lift parametrization
+- nonlinear Fourier constraints on finite vector spaces
+- cyclotomic roots of unity and Kronecker's lemma
 - affine-hyperplane incidence
 - multinomial counting
