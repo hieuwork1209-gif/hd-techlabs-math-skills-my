@@ -2,20 +2,22 @@
 """Strict ChatGPT-linked wrapper for codex-adversary-watch.py.
 
 The base watcher remains responsible for solving and publishing solver results.
-This wrapper adds four guarantees:
+This wrapper adds five guarantees:
 
 1. Default solver settings are GPT-5.5 / medium / 2100 seconds.
 2. Before every desktop notification, refresh
    solver-results/<problem>/chat-binding.json from origin/adversary/<problem>.
-3. A clickable PowerShell toast targets only the bound ChatGPT conversation;
-   GitHub result URLs are never used as a notification fallback.
-4. A matching solver-results/<problem>/terminal.json with state
+3. On WSL2, a clickable PowerShell toast routes through the locally bound
+   Chrome HWND for this problem; it never guesses another browser/account.
+4. GitHub result URLs are never used as a notification fallback.
+5. A matching solver-results/<problem>/terminal.json with state
    MAIN_READY_FOR_RAINIER stops the watcher cleanly instead of repeating
    "already tested" forever.
 """
 from __future__ import annotations
 
 import argparse
+import base64
 import importlib.util
 import json
 import re
@@ -93,12 +95,18 @@ def url_from_binding(raw: str) -> str | None:
     return None
 
 
+def protocol_url(problem: str, chat_url: str) -> str:
+    payload = base64.urlsafe_b64encode(chat_url.encode("utf-8")).decode("ascii").rstrip("=")
+    return f"rainier-chat://{problem}/{payload}"
+
+
 def main() -> int:
     route = parse_route_args(sys.argv)
     inject_defaults(sys.argv)
     base = load_base()
     binding_path = f"solver-results/{route.problem}/chat-binding.json"
     terminal_path = f"solver-results/{route.problem}/terminal.json"
+    window_binding_path = base.ROOT / ".tmp" / "codex-adversary" / f"{route.problem}-window.json"
     explicit_chat = valid_chat_url(route.chat_url)
 
     def remote_chat_url() -> str | None:
@@ -108,6 +116,22 @@ def main() -> int:
         except Exception:
             return None
         return url_from_binding(raw)
+
+    def local_window_binding_ready() -> bool:
+        try:
+            data = json.loads(window_binding_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            return False
+        if not isinstance(data, dict):
+            return False
+        if str(data.get("problem") or "") != route.problem:
+            return False
+        if str(data.get("process_name") or "").lower() != "chrome":
+            return False
+        try:
+            return int(data.get("hwnd") or 0) > 0 and int(data.get("pid") or 0) > 0
+        except (TypeError, ValueError):
+            return False
 
     def matching_terminal_state() -> dict | None:
         """Return the terminal marker only when it matches the current problem blob."""
@@ -182,18 +206,27 @@ def main() -> int:
             body = 'Codex returned an answer. Open this chat and send "next" for review.'
         elif status == "test":
             title = f"Rainier {problem} - notification test"
-            body = 'Toast is linked to this ChatGPT conversation; "next" is copied.'
+            body = 'Toast is linked to this problem\'s bound Chrome window; "next" is copied.'
         else:
             title = f"Rainier {problem} - runner error"
             body = "Codex runner errored. Open this chat to inspect it; do not promote yet."
 
         if base.is_wsl() and shutil.which("powershell.exe"):
-            return base.windows_toast(title, body, target, None)
+            if not local_window_binding_ready():
+                return False, (
+                    f"missing local Chrome window binding at "
+                    f"{window_binding_path.relative_to(base.ROOT)}; run "
+                    f"python scripts/rainier-bind-window.py {route.problem}"
+                )
+            return base.windows_toast(title, body, protocol_url(problem, target), None)
+
         ok, detail = base.linux_notify(title, body)
         if ok:
             return ok, detail
         if shutil.which("powershell.exe"):
-            return base.windows_toast(title, body, target, None)
+            # Outside WSL we cannot prove a Chrome HWND binding. Do not route a
+            # click into an arbitrary signed-in browser window.
+            return False, "PowerShell notification routing requires the WSL2 window binder"
         return False, detail
 
     base.chat_url_for = chat_url_for
