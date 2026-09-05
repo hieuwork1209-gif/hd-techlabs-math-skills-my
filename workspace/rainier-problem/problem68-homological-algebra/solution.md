@@ -193,7 +193,7 @@ and
 $$
 d=2\min(4,2^{v_2(a)})+3\min(2,2^{v_2(a)}),\qquad r=a-d.
 $$
-Final Answer: $\boxed{P_{R^a/Rg}^{R}(t)=a+\frac{(1+t)(1-t)^r+rt-1}{D(t)}}$
+Final Answer: $\boxed{a+\frac{(1+t)(1-t)^r+rt-1}{D(t)}}$
 
 ---
 
