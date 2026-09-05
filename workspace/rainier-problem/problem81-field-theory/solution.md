@@ -171,7 +171,7 @@ Final Answer: $\boxed{D_1D_2(\ell-1)^r\ell^{2rq^2}\frac{(2q^2)!}{A!(B!)^{g-1}(C!
 
 ## Answer
 
-$D_1D_2(\ell-1)^r\ell^{2rq^2}(2q^2)!/[A!(B!)^{g-1}(C!)^{h-g}(E!)^{Q-h}]$
+$D_1D_2(\ell-1)^r\ell^{2rq^2}\frac{(2q^2)!}{A!(B!)^{g-1}(C!)^{h-g}(E!)^{Q-h}}$
 
 ---
 
