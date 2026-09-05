@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Pass to the local quotient and cyclic invariants
+Step 1: Pass to the local cyclic-invariant quotient
 Let
 $$
 R=\mathbb F_p[X,Y,Z]/(X^n-1,Y^n-1,Z^n-1),
@@ -9,7 +9,11 @@ where multiplication by $X,Y,Z$ represents $T_1,T_2,T_3$. Sending $f$ to the fun
 $$
 \lambda_f(X^xY^yZ^z)=f(x,y,z)
 $$
-identifies the simultaneous solution space with the dual of the quotient of $R$ by the operator polynomials in the statement. The cycle $\rho:(X,Y,Z)\mapsto(Y,Z,X)$ preserves that quotient. Since $p\neq3$, Reynolds averaging shows that taking $\langle\rho\rangle$-invariants is exact, and the invariant subspace of the dual has the same dimension as the invariant subspace of the quotient.
+identifies the simultaneous kernel with the dual of the quotient by the operator polynomials. The cycle
+$$
+\rho:(X,Y,Z)\mapsto(Y,Z,X)
+$$
+preserves the quotient. Since $p\ne3$, Reynolds averaging makes taking $\langle\rho\rangle$-invariants exact, and the invariant subspace of the dual has the same dimension as the invariant subspace of the quotient.
 
 Put
 $$
@@ -19,152 +23,153 @@ Because $n$ is a power of $p$,
 $$
 X^n-1=a^n,\qquad Y^n-1=b^n,\qquad Z^n-1=c^n.
 $$
-The first operator equation becomes
-$$
-a+b+c=0.
-$$
-We first omit the truncation $a^n=b^n=c^n=0$ and restore it in Step 5.
+The first operator equation becomes $a+b+c=0$. We temporarily omit the truncation $a^n=b^n=c^n=0$ and restore it in Step 5.
 
-Step 2: Recover all cyclic generators, including the alternating one
 On the plane $a+b+c=0$, define
 $$
 s=ab+bc+ca,\qquad t=abc,\qquad \Delta=(a-b)(b-c)(c-a).
 $$
-Every polynomial fixed by the cycle $\rho$ splits uniquely into a symmetric part plus $\Delta$ times a symmetric part. Since symmetric polynomials on $a+b+c=0$ are polynomials in $s,t$, the cyclic invariant ring is
+A polynomial fixed by the cycle splits uniquely into a symmetric part plus $\Delta$ times a symmetric part. Hence the cyclic invariant ring is
 $$
 E=\mathbb F_p[s,t,\Delta]_{(s,t,\Delta)}\Big/(\Delta^2+4s^3+27t^2).
 $$
-The displayed relation is the discriminant identity for the cubic
+The relation is the discriminant identity for
 $$
 (u-a)(u-b)(u-c)=u^3+su-t.
 $$
 
-Because $q=n/p$ is a power of $p$,
+Step 2: Identify the three Frobenius-power generators
+Let $q=n/p$. Since $q$ is a power of $p$,
 $$
 X^q=1+a^q,\qquad Y^q=1+b^q,\qquad Z^q=1+c^q,
 $$
-and $a^q+b^q+c^q=0$. Expanding the operators gives
+and $a^q+b^q+c^q=0$. Expanding the three operators gives
 $$
-A=s^q,\qquad B=t^q.
+A=s^q,\qquad B=t^q,\qquad C=\Delta^q.
 $$
-For
+Therefore the untruncated cyclic-invariant quotient to be counted is
 $$
-C=(T_1^q-T_2^q)(T_2^q-T_3^q)(T_3^q-T_1^q),
+Q=E/(s^q,t^q,\Delta^q).
 $$
-we likewise have
+Thus the problem is no longer a complete-intersection count: three Frobenius-power generators meet at the singular point of the surface
 $$
-C=\Delta^q.
-$$
-Hence the two remaining equations become
-$$
-(\Delta+st)^q=0,
-\qquad
-(s^3+t^2)^q=0
-$$
-in the invariant quotient. Thus, before truncation, we must count
-$$
-Q=E\Big/\bigl((\Delta+st)^q,(s^3+t^2)^q\bigr).
+\Delta^2+4s^3+27t^2=0.
 $$
 
-Step 3: Use the forced leading-order degeneration
-Filter $E$ by total degree in $a,b,c$, so
+Step 3: Convert the singularity to $uv=w^3$
+Extend scalars to a field $K/\mathbb F_p$ of degree at most $2$ containing an element $\alpha$ with
 $$
-\deg s=2,\qquad \deg t=3,\qquad \deg\Delta=3.
+\alpha^2=-27.
+$$
+Scalar extension does not change vector-space dimension. Set
+$$
+u=\Delta+\alpha t,\qquad
+v=-\frac14(\Delta-\alpha t),\qquad
+w=s.
+$$
+Then
+$$
+uv=-\frac14(\Delta^2+27t^2)=s^3=w^3.
+$$
+Because $q$ is a $p$-power, $u^q,v^q$ are invertible $K$-linear combinations of $\Delta^q,t^q$. Hence
+$$
+Q\otimes_{\mathbb F_p}K
+\cong
+\frac{K[u,v,w]}{(uv-w^3,u^q,v^q,w^q)}.
+$$
+It remains to compute the length of this monomial Frobenius quotient.
+
+Step 4: Count the surviving semigroup monomials
+The ring
+$$
+K[u,v,w]/(uv-w^3)
+$$
+embeds into $K[\xi,\eta]$ by
+$$
+u=\xi^3,\qquad v=\eta^3,\qquad w=\xi\eta.
+$$
+Thus monomials are linearly independent according to their exponent pairs, and every monomial has a unique form of one of the types
+$$
+w^j,\qquad u^iw^j\ (i\ge1),\qquad v^iw^j\ (i\ge1).
+$$
+In the quotient by $(u^q,v^q,w^q)$, the pure $w$-monomials surviving are
+$$
+1,w,\dots,w^{q-1}.
+$$
+For $1\le i<q$, the monomial $u^iw^j$ is killed by $w^q$ when $j\ge q$. It is also killed by $u^q$ exactly from the threshold
+$$
+u^qv^{q-i}=u^i(uv)^{q-i}=u^iw^{3(q-i)},
+$$
+so the surviving $u$-monomials are precisely
+$$
+u^iw^j,
+\qquad
+0\le j<\min\{q,3(q-i)\}.
+$$
+The same count holds for the $v$-monomials. Therefore
+$$
+\dim_{\mathbb F_p}Q
+=q+2\sum_{i=1}^{q-1}\min\{q,3(q-i)\}.
 $$
 Put
 $$
-g=\Delta+st,\qquad h=s^3+t^2.
+a_0=\left\lfloor\frac{q-1}{3}\right\rfloor.
 $$
-Then the lowest-degree homogeneous parts are
+After replacing $q-i$ by $r$,
 $$
-\operatorname{in}(g)=\Delta,
-\qquad
-\operatorname{in}(h)=h.
+\sum_{i=1}^{q-1}\min\{q,3(q-i)\}
+=
+\frac{3a_0(a_0+1)}2+q(q-1-a_0).
 $$
-We verify that $\Delta,h$ form a regular pair in $E$. The ring $E$ is a subring of the domain $\mathbb F_p[a,b,c]/(a+b+c)$, so $\Delta$ is a non-zero-divisor. Modulo $\Delta$ we obtain
+Since $q$ is a power of the prime $p\ne3$, we have $q\equiv1$ or $2\pmod3$. Substituting $q=3m+1$ or $q=3m+2$ into the preceding expression gives in both cases
 $$
-\mathbb F_p[s,t]_{(s,t)}/(4s^3+27t^2).
-$$
-The polynomials $4s^3+27t^2$ and $s^3+t^2$ are coprime: their linear combinations give $23s^3$ and $23t^2$, and $23\neq0$ because $p\ge29$. Therefore $h$ is a non-zero-divisor modulo $\Delta$. Powers of this regular pair remain regular.
-
-Now consider any combination
-$$
-r g^q+u h^q.
-$$
-If its lowest-degree terms cancel, then the initial coefficients give a syzygy on the regular pair $\Delta^q,h^q$. Such a syzygy is a multiple of $(h^q,-\Delta^q)$: indeed, from $r_0\Delta^q+u_0h^q=0$, regularity gives $u_0\in(\Delta^q)$ and then $r_0\in(h^q)$. Subtracting the corresponding multiple of $(h^q,-g^q)$ raises the lowest degree. Repeating removes all cancellation. Hence the initial ideal is generated by $\Delta^q,h^q$, so
-$$
-\operatorname{gr}Q\cong E/(\Delta^q,h^q).
-$$
-Thus $Q$ and $E/(\Delta^q,h^q)$ have the same dimension.
-
-Step 4: Compute the Hilbert series and the length
-Give $s,t,\Delta$ weights $2,3,3$. Since
-$$
-\Delta^2+4s^3+27t^2
-$$
-has degree $6$, the Hilbert series of $E$ is
-$$
-H_E(z)=\frac{1-z^6}{(1-z^2)(1-z^3)^2}.
-$$
-Because $\Delta^q,h^q$ are a homogeneous regular pair of degrees $3q$ and $6q$, quotienting multiplies the Hilbert series by
-$$
-(1-z^{3q})(1-z^{6q}).
-$$
-Therefore
-$$
-H_{\operatorname{gr}Q}(z)
-=\frac{(1-z^6)(1-z^{3q})(1-z^{6q})}{(1-z^2)(1-z^3)^2}.
-$$
-Using $1-z^6=(1-z^3)(1+z^3)$,
-$$
-H_{\operatorname{gr}Q}(z)
-=(1+z^3)
-\left(\sum_{j=0}^{q-1}z^{3j}\right)
-\left(\sum_{i=0}^{3q-1}z^{2i}\right).
-$$
-Evaluating at $z=1$ gives
-$$
-\dim_{\mathbb F_p}Q=2\cdot q\cdot 3q=6q^2.
-$$
-The largest degree occurring is
-$$
-3+3(q-1)+2(3q-1)=9q-2.
+\dim_{\mathbb F_p}Q=\frac{5q^2-2}{3}.
 $$
 
 Step 5: Restore the truncation
-Let $D$ be the untruncated quotient before taking cyclic invariants, so $D^{\langle\rho\rangle}=Q$. Let
+Let
 $$
-K=(a^n,b^n,c^n)D.
+D=\frac{\mathbb F_p[a,b,c]_{(a,b,c)}}{(a+b+c,s^q,t^q,\Delta^q)}.
 $$
-This ideal is $\rho$-stable and lies in filtration degree at least $n$. By Step 4,
+Then $D^{\langle\rho\rangle}=Q$. In Step 4, after scalar extension, every spanning monomial has weighted degree at most
+$$
+3(q-1)+2(q-1)=5q-5,
+$$
+where $u,v$ have degree $3$ and $w$ has degree $2$. Hence
 $$
 (\mathfrak m^dD)^{\langle\rho\rangle}=0
-\qquad(d>9q-2),
+\qquad(d>5q-5),
 $$
-where $\mathfrak m=(a,b,c)$. Since
+with $\mathfrak m=(a,b,c)$.
+
+Now let
 $$
-n=pq\ge29q>9q-2,
+K_0=(a^n,b^n,c^n)D.
 $$
-we have $K^{\langle\rho\rangle}=0$. Exactness of cyclic invariants applied to
+This ideal is $\rho$-stable and lies in $\mathfrak m^nD$. Since
 $$
-0\to K\to D\to D/K\to0
+n=pq\ge29q>5q-5,
 $$
-therefore gives
+we get $K_0^{\langle\rho\rangle}=0$. Exactness of cyclic invariants applied to
 $$
-(D/K)^{\langle\rho\rangle}\cong D^{\langle\rho\rangle}=Q.
+0\to K_0\to D\to D/K_0\to0
 $$
-Thus the truncation does not change the required dimension, and
+shows that restoring $a^n=b^n=c^n=0$ does not change the cyclic-invariant dimension.
+
+Therefore
 $$
-\dim_{\mathbb F_p}V_n=6q^2=6\left(\frac np\right)^2.
+\dim_{\mathbb F_p}V_n
+=\frac{5q^2-2}{3}
+=\frac{5(n/p)^2-2}{3}.
 $$
 
-Final Answer: $\boxed{6\left(\frac{n}{p}\right)^2}$
+Final Answer: $\boxed{\frac{5(n/p)^2-2}{3}}$
 
 ---
 
 ## Answer
 
-$6\left(\frac{n}{p}\right)^2$
+$\frac{5(n/p)^2-2}{3}$
 
 ---
 
@@ -180,10 +185,10 @@ $6\left(\frac{n}{p}\right)^2$
 
 - cyclic translation operators
 - symmetric and alternating invariants
-- discriminant relation
-- filtered regular sequences
-- Hilbert series of a graded quotient
+- $A_2$ surface singularity
+- Frobenius-power quotient length
+- semigroup monomial counting
 
 ## Black-Box Audit
 
-The cyclic invariant decomposition, discriminant relation, regular-pair check, filtered initial-ideal argument, Hilbert-series count, and truncation argument are all stated explicitly.
+The cyclic invariant ring, discriminant relation, scalar extension, $uv=w^3$ reduction, monomial survival criterion, finite sum, and truncation argument are all derived explicitly.
