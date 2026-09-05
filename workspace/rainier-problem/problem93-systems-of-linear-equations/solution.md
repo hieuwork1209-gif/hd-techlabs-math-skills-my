@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Convert the shift equations to a local quotient
+Step 1: Pass to the local quotient and cyclic invariants
 Let
 $$
 R=\mathbb F_p[X,Y,Z]/(X^n-1,Y^n-1,Z^n-1),
@@ -9,232 +9,162 @@ where multiplication by $X,Y,Z$ represents $T_1,T_2,T_3$. Sending $f$ to the fun
 $$
 \lambda_f(X^xY^yZ^z)=f(x,y,z)
 $$
-identifies the simultaneous solution space with the dual of the quotient of $R$ by the three operator polynomials in the statement. The cyclic permutation $(X,Y,Z)\mapsto(Y,Z,X)$ preserves that quotient. Since $p\neq3$, averaging over the cyclic group shows that the invariant subspace of the dual has the same dimension as the invariant subspace of the quotient. Thus $\dim_{\mathbb F_p}V_n$ is the cyclic-invariant dimension of that quotient.
+identifies the simultaneous solution space with the dual of the quotient of $R$ by the operator polynomials in the statement. The cycle $\rho:(X,Y,Z)\mapsto(Y,Z,X)$ preserves that quotient. Since $p\neq3$, Reynolds averaging shows that taking $\langle\rho\rangle$-invariants is exact, and the invariant subspace of the dual has the same dimension as the invariant subspace of the quotient.
 
-Set
+Put
 $$
-a=X-1,
-\qquad
-b=Y-1,
-\qquad
-c=Z-1.
+a=X-1,\qquad b=Y-1,\qquad c=Z-1.
 $$
-Since $n$ is a power of $p$,
+Because $n$ is a power of $p$,
 $$
-X^n-1=a^n,
-\qquad
-Y^n-1=b^n,
-\qquad
-Z^n-1=c^n.
+X^n-1=a^n,\qquad Y^n-1=b^n,\qquad Z^n-1=c^n.
 $$
-Thus $R$ is the local Artinian ring $\mathbb F_p[a,b,c]/(a^n,b^n,c^n)$. The first equation gives
+The first operator equation becomes
 $$
 a+b+c=0.
 $$
+We first omit the truncation $a^n=b^n=c^n=0$ and restore it in Step 5.
 
-Step 2: Recover the two hidden invariants
-In the quotient by $a+b+c$, put
+Step 2: Recover all cyclic generators, including the alternating one
+On the plane $a+b+c=0$, define
 $$
-s=ab+bc+ca,
-\qquad
-t=abc.
+s=ab+bc+ca,\qquad t=abc,\qquad \Delta=(a-b)(b-c)(c-a).
 $$
-Because $q$ is a power of $p$,
+Every polynomial fixed by the cycle $\rho$ splits uniquely into a symmetric part plus $\Delta$ times a symmetric part. Since symmetric polynomials on $a+b+c=0$ are polynomials in $s,t$, the cyclic invariant ring is
 $$
-X^q=1+a^q,
-\qquad
-Y^q=1+b^q,
-\qquad
-Z^q=1+c^q.
+E=\mathbb F_p[s,t,\Delta]_{(s,t,\Delta)}\Big/(\Delta^2+4s^3+27t^2).
 $$
-Also $a^q+b^q+c^q=0$. Expanding the operators from the statement now gives
+The displayed relation is the discriminant identity for the cubic
 $$
-A=(ab+bc+ca)^q=s^q,
-$$
-and
-$$
-B=(abc)^q=t^q.
-$$
-The two long-shift equations therefore generate the same ideal as
-$$
-F=s^{2q}+t^{3q}+t^{5q}
-$$
-and
-$$
-G=s^qt^{5q}+t^{6q}.
-$$
-Indeed, if $F_0=A^2+B^3$, then the displayed equations are $F_0+B^5=0$ and $(1+A+B)F_0+B^5=0$; subtracting $(1+A+B)$ times the first from the second gives $-(A+B)B^5=0$. Conversely the second equation is recovered from the first together with this difference. Since $q$ is a $p$-power, these two generators are
-$$
-F=(s^2+t^3+t^5)^q,
-\qquad
-G=((s+t)t^5)^q.
-$$
-For Steps 3--4 we temporarily omit the truncation $(a^n,b^n,c^n)$; Step 5 proves that this omission does not change the cyclic-invariant quotient.
-
-Step 3: Select the cyclic-invariant part
-Let $\rho$ be the cycle $(a,b,c)\mapsto(b,c,a)$ and put
-$$
-\Delta=(a-b)(b-c)(c-a).
-$$
-A polynomial fixed by $\rho$ splits uniquely into a symmetric part and an alternating part. Indeed, if $\tau$ swaps $a$ and $b$ and $h$ is fixed by $\rho$, then
-$$
-h=\frac{h+\tau h}{2}+\frac{h-\tau h}{2}.
-$$
-The first summand is fixed by $\rho$ and $\tau$, hence by all of $S_3$. The second is fixed by $\rho$ and changes sign under $\tau$, hence is alternating. Every alternating polynomial vanishes when any two variables agree, so it is divisible by $\Delta$; after division, the quotient is symmetric. On the plane $a+b+c=0$, every symmetric polynomial is a polynomial in
-$$
-s=ab+bc+ca,
-\qquad
-t=abc.
-$$
-Consequently
-$$
-\left(\frac{\mathbb F_p[a,b,c]_{(a,b,c)}}{(a+b+c)}\right)^{\langle\rho\rangle}
-=\mathbb F_p[s,t]_{(s,t)}\oplus
-\Delta\mathbb F_p[s,t]_{(s,t)}.
-$$
-The sum is direct because a nonzero polynomial cannot be both symmetric and alternating when $2$ is invertible. Therefore the cyclic-invariant part is free of rank $2$ over the local invariant ring.
-
-The elements $F$ and $G$ are invariant. Because $3$ is invertible, the Reynolds averaging operator
-$$
-\mathcal R(h)=\frac{h+\rho h+\rho^2h}{3}
-$$
-is a projection onto invariants, so taking $\langle\rho\rangle$-invariants is exact. Moreover, if an invariant element belongs to $(F,G)$, average its coefficients in an expression $F u+G v$ to obtain invariant coefficients. Hence
-$$
-((F,G))^{\langle\rho\rangle}=(F,G)\left(\mathbb F_p[s,t]_{(s,t)}\oplus\Delta\mathbb F_p[s,t]_{(s,t)}\right).
-$$
-Thus the invariant quotient is two independent copies of
-$$
-C=\frac{\mathbb F_p[s,t]_{(s,t)}}{(F,G)}.
+(u-a)(u-b)(u-c)=u^3+su-t.
 $$
 
-Step 4: Count the coupled local quotient
-From $F=G=0$,
+Because $q=n/p$ is a power of $p$,
 $$
-s^{2q}=-t^{3q}-t^{5q},
+X^q=1+a^q,\qquad Y^q=1+b^q,\qquad Z^q=1+c^q,
+$$
+and $a^q+b^q+c^q=0$. Expanding the operators gives
+$$
+A=s^q,\qquad B=t^q.
+$$
+For
+$$
+C=(T_1^q-T_2^q)(T_2^q-T_3^q)(T_3^q-T_1^q),
+$$
+we likewise have
+$$
+C=\Delta^q.
+$$
+Hence the two remaining equations become
+$$
+(\Delta+st)^q=0,
 \qquad
-s^qt^{5q}=-t^{6q}.
+(s^3+t^2)^q=0
 $$
-A direct combination gives
+in the invariant quotient. Thus, before truncation, we must count
 $$
-t^{5q}F-s^qG+t^qG
-=t^{7q}(1+t^q+t^{3q}).
-$$
-The factor $1+t^q+t^{3q}$ has constant term $1$, hence is a unit in the local ring. Therefore
-$$
-t^{7q}\in(F,G).
+Q=E\Big/\bigl((\Delta+st)^q,(s^3+t^2)^q\bigr).
 $$
 
-We now use the local standard-basis criterion explicitly. Fix a local weighted degree-lexicographic monomial order with weights
+Step 3: Use the forced leading-order degeneration
+Filter $E$ by total degree in $a,b,c$, so
 $$
-\operatorname{wt}(s)=2,
+\deg s=2,\qquad \deg t=3,\qquad \deg\Delta=3.
+$$
+Put
+$$
+g=\Delta+st,\qquad h=s^3+t^2.
+$$
+Then the lowest-degree homogeneous parts are
+$$
+\operatorname{in}(g)=\Delta,
 \qquad
-\operatorname{wt}(t)=3,
+\operatorname{in}(h)=h.
 $$
-so that smaller weighted degree is leading, with ties broken by $s>t$. For a finite set of generators in a local polynomial ring, the criterion says: if every critical $S$-overlap reduces to $0$ with respect to the generators, then they form a local standard basis; consequently their leading monomials generate the initial ideal, and the monomials outside that initial ideal form a vector-space basis of the quotient.
+We verify that $\Delta,h$ form a regular pair in $E$. The ring $E$ is a subring of the domain $\mathbb F_p[a,b,c]/(a+b+c)$, so $\Delta$ is a non-zero-divisor. Modulo $\Delta$ we obtain
+$$
+\mathbb F_p[s,t]_{(s,t)}/(4s^3+27t^2).
+$$
+The polynomials $4s^3+27t^2$ and $s^3+t^2$ are coprime: their linear combinations give $23s^3$ and $23t^2$, and $23\neq0$ because $p\ge29$. Therefore $h$ is a non-zero-divisor modulo $\Delta$. Powers of this regular pair remain regular.
 
-Take
+Now consider any combination
 $$
-f_1=F,
-\qquad
-f_2=G,
-\qquad
-f_3=t^{7q}.
+r g^q+u h^q.
 $$
-Their leading monomials are
+If its lowest-degree terms cancel, then the initial coefficients give a syzygy on the regular pair $\Delta^q,h^q$. Such a syzygy is a multiple of $(h^q,-\Delta^q)$: indeed, from $r_0\Delta^q+u_0h^q=0$, regularity gives $u_0\in(\Delta^q)$ and then $r_0\in(h^q)$. Subtracting the corresponding multiple of $(h^q,-g^q)$ raises the lowest degree. Repeating removes all cancellation. Hence the initial ideal is generated by $\Delta^q,h^q$, so
 $$
-s^{2q},
-\qquad
-s^qt^{5q},
-\qquad
-t^{7q}.
+\operatorname{gr}Q\cong E/(\Delta^q,h^q).
 $$
-The three critical overlaps reduce as follows:
+Thus $Q$ and $E/(\Delta^q,h^q)$ have the same dimension.
+
+Step 4: Compute the Hilbert series and the length
+Give $s,t,\Delta$ weights $2,3,3$. Since
 $$
-t^{5q}f_1-s^qf_2
-=(1+t^q+t^{3q})f_3-t^qf_2,
+\Delta^2+4s^3+27t^2
 $$
+has degree $6$, the Hilbert series of $E$ is
 $$
-t^{7q}f_1-s^{2q}f_3
-=t^{3q}f_3+t^{5q}f_3,
+H_E(z)=\frac{1-z^6}{(1-z^2)(1-z^3)^2}.
 $$
+Because $\Delta^q,h^q$ are a homogeneous regular pair of degrees $3q$ and $6q$, quotienting multiplies the Hilbert series by
 $$
-t^{2q}f_2-s^qf_3=t^qf_3.
+(1-z^{3q})(1-z^{6q}).
 $$
-Thus all critical overlaps reduce to $0$, so $f_1,f_2,f_3$ form a local standard basis. Hence the residue classes of the monomials
+Therefore
 $$
-\mathcal B=
-\left\{s^it^j:0\leq i<2q,
-\ 0\leq j<7q,
-\ \text{and not both }i\geq q,
-\ j\geq5q\right\}
+H_{\operatorname{gr}Q}(z)
+=\frac{(1-z^6)(1-z^{3q})(1-z^{6q})}{(1-z^2)(1-z^3)^2}.
 $$
-form a basis of $C$. Therefore
+Using $1-z^6=(1-z^3)(1+z^3)$,
 $$
-\dim_{\mathbb F_p}C
-=(2q)(7q)-(q)(2q)=12q^2.
+H_{\operatorname{gr}Q}(z)
+=(1+z^3)
+\left(\sum_{j=0}^{q-1}z^{3j}\right)
+\left(\sum_{i=0}^{3q-1}z^{2i}\right).
+$$
+Evaluating at $z=1$ gives
+$$
+\dim_{\mathbb F_p}Q=2\cdot q\cdot 3q=6q^2.
+$$
+The largest degree occurring is
+$$
+3+3(q-1)+2(3q-1)=9q-2.
 $$
 
-Step 5: Restore the truncation and finish the count
-Let
-$$
-D=\frac{\mathbb F_p[a,b,c]_{(a,b,c)}}{(a+b+c,F,G)}
-$$
-be the untruncated local quotient. By Steps 3--4,
-$$
-D^{\langle\rho\rangle}\cong C\oplus\Delta C,
-\qquad
-\dim_{\mathbb F_p}D^{\langle\rho\rangle}=24q^2.
-$$
-Filter $D$ by powers of the maximal ideal $\mathfrak m=(a,b,c)$. Since $s$ and $t$ have total degrees $2$ and $3$, the local weighted order used in Step 4 computes the associated graded invariant quotient. In the $C$ summand, the largest possible weighted degree among the basis monomials is
-$$
-2(q-1)+3(7q-1)=23q-5.
-$$
-The second summand is multiplied by $\Delta$, which has degree $3$, so its largest possible degree is $23q-2$. Therefore
-$$
-(\mathfrak m^dD)^{\langle\rho\rangle}=0
-\qquad(d\geq23q-1).
-$$
-Here we use again that averaging preserves the $\mathfrak m$-adic filtration, so taking invariants commutes with the associated graded pieces.
-
-Now let
+Step 5: Restore the truncation
+Let $D$ be the untruncated quotient before taking cyclic invariants, so $D^{\langle\rho\rangle}=Q$. Let
 $$
 K=(a^n,b^n,c^n)D.
 $$
-This ideal is $\rho$-stable and satisfies $K\subseteq\mathfrak m^nD$. Since
+This ideal is $\rho$-stable and lies in filtration degree at least $n$. By Step 4,
 $$
-n=pq\geq29q>23q-2,
+(\mathfrak m^dD)^{\langle\rho\rangle}=0
+\qquad(d>9q-2),
 $$
-we get
+where $\mathfrak m=(a,b,c)$. Since
 $$
-K^{\langle\rho\rangle}\subseteq(\mathfrak m^nD)^{\langle\rho\rangle}=0.
+n=pq\ge29q>9q-2,
 $$
-Finally, because $3$ is invertible in $\mathbb F_p$, taking cyclic invariants is exact. Applying invariants to
+we have $K^{\langle\rho\rangle}=0$. Exactness of cyclic invariants applied to
 $$
-0\longrightarrow K\longrightarrow D\longrightarrow D/K\longrightarrow0
+0\to K\to D\to D/K\to0
 $$
-gives
+therefore gives
 $$
-0\longrightarrow K^{\langle\rho\rangle}\longrightarrow D^{\langle\rho\rangle}
-\longrightarrow(D/K)^{\langle\rho\rangle}\longrightarrow0.
+(D/K)^{\langle\rho\rangle}\cong D^{\langle\rho\rangle}=Q.
 $$
-Since $K^{\langle\rho\rangle}=0$, the map
+Thus the truncation does not change the required dimension, and
 $$
-D^{\langle\rho\rangle}\longrightarrow(D/K)^{\langle\rho\rangle}
-$$
-is an isomorphism. Thus the truncation relations $a^n=b^n=c^n=0$ do not change the cyclic-invariant dimension.
-
-Therefore
-$$
-\dim_{\mathbb F_p}V_n=24q^2=24\left(\frac{n}{p}\right)^2.
+\dim_{\mathbb F_p}V_n=6q^2=6\left(\frac np\right)^2.
 $$
 
-Final Answer: $\boxed{24\left(\frac{n}{p}\right)^2}$
+Final Answer: $\boxed{6\left(\frac{n}{p}\right)^2}$
 
 ---
 
 ## Answer
 
-$24\left(\frac{n}{p}\right)^2$
+$6\left(\frac{n}{p}\right)^2$
 
 ---
 
@@ -249,11 +179,11 @@ $24\left(\frac{n}{p}\right)^2$
 ## Solution Concepts
 
 - cyclic translation operators
-- finite-field Frobenius map
-- symmetric polynomial invariants
-- local standard bases
-- exactness of finite-group invariants
+- symmetric and alternating invariants
+- discriminant relation
+- filtered regular sequences
+- Hilbert series of a graded quotient
 
 ## Black-Box Audit
 
-No Level 2 or Level 3 black-box issue remains. The invariant reduction, rank-two cyclic decomposition, local standard-basis criterion and overlaps, local quotient basis, and truncation-via-invariants argument are all stated explicitly.
+The cyclic invariant decomposition, discriminant relation, regular-pair check, filtered initial-ideal argument, Hilbert-series count, and truncation argument are all stated explicitly.
