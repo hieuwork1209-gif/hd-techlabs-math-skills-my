@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "364690e1ebb447150ac1487d407bf6afe296f4d4",
+  "problem_blob_sha": "d1d77964030a903f2bde7ced3f82fe72a3e15663",
+  "statement_sha256": "78d44bb3bda6add772a78281eb6af57dbdd66dd2215066b41cf4ef99c40b3740",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T07:29:18+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(N=\\binom n2\\). For each unordered pair \\(\\{i,j\\}\\), define\n\\[\nx_{ij}(\\sigma)=\n\\begin{cases}\n1,& i\\text{ appears before }j\\text{ in }\\sigma,\\\\\n0,& j\\text{ appears before }i\\text{ in }\\sigma.\n\\end{cases}\n\\]\nThe adjacent-swap distance is Kendall tau distance:\n\\[\nd(\\sigma,\\tau)=\\sum_{1\\le i<j\\le n}|x_{ij}(\\sigma)-x_{ij}(\\tau)|.\n\\]\nIndeed, each adjacent swap changes the relative order of exactly one pair, and sorting \\(\\sigma\\) into \\(\\tau\\) requires exactly the number of pairwise relative-order disagreements.\n\nFor \\(p=1\\), if \\(\\sum_\\sigma c_\\sigma=0\\), then for one cut coordinate \\(x_{ij}\\),\n\\[\n\\sum_{\\sigma,\\tau}c_\\sigma c_\\tau |x_{ij}(\\sigma)-x_{ij}(\\tau)|\n=-2\\left(\\sum_{\\sigma:x_{ij}(\\sigma)=1}c_\\sigma\\right)^2\\le 0.\n\\]\nSumming over all \\(\\binom n2\\) pairs gives \\(1\\)-negative type.\n\nFor any \\(p>1\\), since \\(n\\ge4\\), the four permutations\n\\[\n1234\\cdots,\\quad 2134\\cdots,\\quad 1243\\cdots,\\quad 2143\\cdots\n\\]\nform an isometric square with side lengths \\(1\\) and diagonals \\(2\\). Taking coefficients \\(+1,-1,-1,+1\\) around the square gives\n\\[\n2(2^p+2^p)-2(1^p+1^p+1^p+1^p)\n=4(2^p-2)>0,\n\\]\nso \\(p\\)-negative type fails. Hence\n\\[\n\\wp=1.\n\\]\n\nAt \\(p=1\\), equality holds exactly when every cut contribution vanishes:\n\\[\n\\sum_{\\sigma:x_{ij}(\\sigma)=1}c_\\sigma=0\n\\quad\\text{for every }1\\le i<j\\le n,\n\\]\ntogether with \\(\\sum_\\sigma c_\\sigma=0\\). Thus \\(E\\) is the orthogonal complement of the span of\n\\[\n1,\\ x_{ij}\\quad (1\\le i<j\\le n).\n\\]\nThese \\(1+\\binom n2\\) functions are linearly independent: if\n\\[\na_0+\\sum_{i<j}a_{ij}x_{ij}(\\sigma)=0\n\\]\nfor every \\(\\sigma\\), swap adjacent entries \\(i,j\\) in a permutation where they are adjacent. Only \\(x_{ij}\\) changes, so \\(a_{ij}=0\\). Then \\(a_0=0\\).\n\nTherefore\n\\[\n\\dim E=n!-1-\\binom n2.\n\\]\n\n\\[\n\\boxed{\\left(1,\\ n!-1-\\binom n2\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T07:30:18+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/d1d77964030a.json"
+}
