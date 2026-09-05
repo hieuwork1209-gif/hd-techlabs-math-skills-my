@@ -45,9 +45,12 @@ workspace/rainier-problem/problem103-*/problem.md
 workspace/rainier-problem/problem103-*/solution.md
 solver-results/problem103/<blob-prefix>.json
 solver-results/problem103/latest.json
+solver-results/problem103/terminal.json
 ```
 
 Resolve exactly one matching problem folder. Never infer another problem number from ordering.
+
+`terminal.json` is an adversary-only watcher control marker. It is effective only when its `problem_blob_sha` exactly matches the current adversary `problem.md` blob, so a later hardening edit automatically invalidates an older terminal marker.
 
 ## Local working-tree rule
 
@@ -115,7 +118,7 @@ clipboard   -> next
 ```
 
 Without a configured chat URL, the toast may open the GitHub result instead.
-A process that was already running before the updated watcher code was loaded will not hot-reload notification support; do not restart the same measured blob just for notification behavior.
+A process that was already running before the updated watcher code was loaded will not hot-reload notification or terminal-marker support; do not restart the same measured blob just for notification behavior, but after pulling the updated wrapper a matching terminal marker will stop future watcher processes cleanly.
 
 ## `next` follow-up
 
@@ -205,13 +208,29 @@ If only solution formatting needs repair, fix it on the adversary branch first. 
 2. Update `main` `solution.md` first.
 3. Update `main` `problem.md` second.
 4. Re-fetch both from `main` and verify they match the selected candidate.
-5. Do not copy `solver-results/` to `main` unless explicitly requested.
-6. Return `RAINIER CHECK: MAIN_READY_FOR_RAINIER` and tell the user to run `./scripts/adv submit problemNN` / the official portal checks.
+5. Upsert `solver-results/problemNN/terminal.json` on `adversary/problemNN` for the exact promoted problem blob using this shape:
+
+```json
+{
+  "problem": "problemNN",
+  "state": "MAIN_READY_FOR_RAINIER",
+  "problem_blob_sha": "<exact adversary problem.md blob>",
+  "main_problem_blob_sha": "<verified matching main problem.md blob>",
+  "main_solution_blob_sha": "<verified matching main solution.md blob>",
+  "main_commit_sha": "<main commit containing the promoted problem.md>",
+  "reason": "LOCAL_STUMPED_PROMOTED_TO_MAIN"
+}
+```
+
+6. Never copy `terminal.json`, `chat-binding.json`, or other `solver-results/` control/result files to `main` unless explicitly requested.
+7. Return `RAINIER CHECK: MAIN_READY_FOR_RAINIER` and tell the user to run `./scripts/adv submit problemNN` / the official portal checks.
+
+The ChatGPT-linked watcher must treat the marker as terminal only when `state=MAIN_READY_FOR_RAINIER` and `problem_blob_sha` exactly equals the current adversary statement blob. On a match it exits successfully instead of repeatedly printing `already tested`. If later Rainier feedback causes a statement edit, the blob changes and the old marker becomes stale automatically; it need not be deleted before hardening resumes.
 
 ## After official Rainier feedback
 
 - Difficulty PASS: freeze the exact `main` statement.
-- Difficulty FAIL/borderline: keep the failed submitted version on `main`, continue design work on the existing adversary branch, and use the new Rainier trace/JSON as stronger hardening evidence.
+- Difficulty FAIL/borderline: keep the failed submitted version on `main`, continue design work on the existing adversary branch, and use the new Rainier trace/JSON as stronger hardening evidence. A new `problem.md` blob automatically invalidates the previous terminal marker.
 - Statement edits invalidate all previous portal difficulty percentages.
 
 ## Output
