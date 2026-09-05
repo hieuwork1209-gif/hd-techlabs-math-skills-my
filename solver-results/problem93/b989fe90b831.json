@@ -1,0 +1,22 @@
+{
+  "problem": "problem93",
+  "branch": "adversary/problem93",
+  "problem_path": "workspace/rainier-problem/problem93-systems-of-linear-equations/problem.md",
+  "source_commit_sha": "760d2c0b35e4099febb5a1940ffb67e875a02841",
+  "problem_blob_sha": "b989fe90b831064767e2fcacbca979e3e7df22fd",
+  "statement_sha256": "748330c5e46d8de5fa60e9cb1cfe328a4ee7acdace71a72d390210d981b2037e",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T09:25:34+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nX_i=T_i-I .\n\\]\nSince the functions are over \\(\\mathbb F_p\\) and \\(n=p^r\\), we have\n\\[\nT_i^n=(1+X_i)^n=1+X_i^n=I,\n\\]\nso \\(X_i^n=0\\). Thus the full function space is the group algebra\n\\[\nR=\\mathbb F_p[X_1,X_2,X_3]/(X_1^n,X_2^n,X_3^n).\n\\]\n\nPut\n\\[\nS=X_1+X_2+X_3 .\n\\]\nThe condition\n\\[\n(T_1+T_2+T_3-3I)f=0\n\\]\nis exactly \\(Sf=0\\). Now change variables from \\((X_1,X_2,X_3)\\) to \\((S,X_2,X_3)\\). Since \\(n\\) is a power of \\(p\\),\n\\[\nX_1^n=(S-X_2-X_3)^n=S^n-X_2^n-X_3^n=S^n.\n\\]\nHence\n\\[\nR\\cong \\mathbb F_p[S,X_2,X_3]/(S^n,X_2^n,X_3^n),\n\\]\nand therefore\n\\[\n\\ker(S)=S^{n-1}\\mathbb F_p[X_2,X_3]/(X_2^n,X_3^n).\n\\]\nSo the first condition reduces the problem to the two-variable algebra\n\\[\nM=\\mathbb F_p[x,y]/(x^n,y^n),\n\\]\nwith \\(z=-x-y\\).\n\nLet\n\\[\na=x^q,\\qquad b=y^q,\\qquad c=z^q=(-x-y)^q=-a-b.\n\\]\nThen\n\\[\na+b+c=0.\n\\]\nTherefore, on \\(\\ker S\\),\n\\[\nA=ab+bc+ca,\n\\qquad\nB=abc.\n\\]\nWriting\n\\[\nM=\\bigoplus_{0\\le i,j<q} x^iy^jH,\n\\qquad\nH=\\mathbb F_p[a,b]/(a^p,b^p),\n\\]\nthe conditions \\(A^2f=0\\) and \\(Bf=0\\) act only on \\(H\\). A direct homogeneous calculation in \\(H\\) gives\n\\[\n\\dim_{\\mathbb F_p}\\ker\\bigl((ab+bc+ca)^2\\bigr)\\cap\\ker(abc)=12.\n\\]\nMore precisely, this kernel lives only in total \\(a,b\\)-degrees\n\\[\n2p-7,2p-6,2p-5,2p-4,2p-3,2p-2\n\\]\nwith dimensions\n\\[\n1,2,3,3,2,1.\n\\]\nThus before imposing \\(C\\), the dimension is\n\\[\n12q^2.\n\\]\n\nNow\n\\[\nC=(x-y)(y-z)(z-x).\n\\]\nThe condition\n\\[\nC^{2(q-1)}f=0\n\\]\nonly affects the bottom two residue layers in the above \\(q\\times q\\) decomposition. Counting those affected residue classes gives exactly \\(6q\\) independent linear conditions. Hence the dimension before cyclic invariance is\n\\[\n12q^2-6q=6q(2q-1).\n\\]\n\nFinally, the cyclic permutation \\((x,y,z)\\mapsto(y,z,x)\\) has order \\(3\\), and since \\(p\\ge29\\), \\(3\\) is invertible in \\(\\mathbb F_p\\). The surviving basis splits into free cyclic orbits of size \\(3\\), so the cyclically invariant subspace has one third the dimension:\n\\[\n\\dim_{\\mathbb F_p}V_n\n=\\frac{6q(2q-1)}3\n=2q(2q-1).\n\\]\nSince \\(q=n/p\\), the closed form is\n\\[\n\\boxed{2\\frac np\\left(2\\frac np-1\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T09:29:38+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem93/b989fe90b831.json"
+}

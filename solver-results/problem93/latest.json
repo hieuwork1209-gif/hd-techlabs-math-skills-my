@@ -2,8 +2,8 @@
   "problem": "problem93",
   "branch": "adversary/problem93",
   "problem_path": "workspace/rainier-problem/problem93-systems-of-linear-equations/problem.md",
-  "problem_blob_sha": "3b853265cbaf6904b31475a9d61dba314dfec03e",
-  "source_commit_sha": "54c55e03130c5ad10dde5e221402b06bc5bc1bda",
+  "problem_blob_sha": "b989fe90b831064767e2fcacbca979e3e7df22fd",
+  "source_commit_sha": "760d2c0b35e4099febb5a1940ffb67e875a02841",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-05T09:22:16+00:00",
-  "result_file": "solver-results/problem93/3b853265cbaf.json"
+  "completed_at": "2026-09-05T09:29:38+00:00",
+  "result_file": "solver-results/problem93/b989fe90b831.json"
 }
