@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-field-theory/problem.md",
+  "source_commit_sha": "79c4c57ec135fedba0445d268a56cf0bca3e2490",
+  "problem_blob_sha": "a289b15b79ca3260157a21b789059cc637d7a001",
+  "statement_sha256": "93594f13c3dc1f655eeaf529caea70b93f3e57bff33d4dd17baf69aa27d6f96b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T07:59:35+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "The number is\n\n\\[\n\\boxed{\\frac{3r(r-1)^2}{8}}.\n\\]\n\nSketch of the reduction:\n\nFor \\(\\pi_\\sigma=\\pi\\), write\n\n\\[\n\\sigma(\\alpha_i^{(j)})=\\zeta^{a_i^{(j)}}\\alpha_{\\pi(i)}^{(j)},\\qquad\n\\sigma(\\rho_j)=\\zeta^{s_j}\\rho_j .\n\\]\n\nThe product relation gives\n\n\\[\n\\sum_i a_i^{(j)}=s_{j+1}.\n\\]\n\nOn \\(\\Omega_k\\), the square of \\(\\sigma\\) translates the \\(u\\)-coordinate by\n\n\\[\n2k_js_j+a_i^{(j)}+a_{\\pi(i)}^{(j)}\n-a_h^{(j)}-a_{\\pi(h)}^{(j)}.\n\\]\n\nThus the required cycle-count conditions depend only on the block-values\n\\[\nb_{\\{i,\\pi(i)\\}}^{(j)}\n=a_i^{(j)}+a_{\\pi(i)}^{(j)},\n\\]\nand conjugation by \\(\\widetilde C_\\pi\\) identifies exactly the same choices modulo permutation of the \\(2q^2\\) transposition-blocks. The imposed three-level autocorrelation equations force the admissible block data uniquely up to that permutation once \\(s\\) is fixed, so the orbit count is the number of admissible \\(s\\).\n\nNow the condition\n\n\\[\n\\mathbf 1\\in \\operatorname{span}\\{s,Ps+P^{-1}s\\}\n\\]\n\nmeans there are \\(A,B\\in\\mathbb F_\\ell\\) and a nontrivial \\(r\\)-th root \\(\\lambda\\in\\mathbb F_\\ell^\\times\\) such that, cyclically,\n\n\\[\ns_j=1+A\\lambda^j+B\\lambda^{-j}.\n\\]\n\nSince \\(\\sum_j s_j=r\\), the constant term is indeed \\(1\\). Also\n\n\\[\n\\prod_j(s_j-1)\n=\\prod_j(A\\lambda^j+B\\lambda^{-j})\n=A^r+B^r.\n\\]\n\nBecause \\(2\\) generates \\(\\mathbb F_\\ell^\\times\\), the subgroup of \\(r\\)-th roots is the quadratic-residue subgroup \\(H\\), and \\(x^r=\\pm1\\). The equation\n\n\\[\nA^r+B^r=2\n\\]\n\ntherefore forces \\(A,B\\in H\\).\n\nThe remaining nonvanishing condition is that\n\n\\[\n1+A\\lambda^j+B\\lambda^{-j}\\ne0\n\\]\n\nfor all \\(j\\). With \\(D=AB\\in H\\), this fails exactly when there is \\(x\\in H\\) with\n\n\\[\n1+x+D/x=0,\n\\]\n\nequivalently \\(x\\in H\\) and \\(-1-x\\in H\\). The number of such \\(x\\) is\n\n\\[\n\\frac{r+1}{2},\n\\]\n\nand these give\n\n\\[\n\\frac{r+3}{4}\n\\]\n\nbad values of \\(D\\). Hence the number of good \\(D\\in H\\) is\n\n\\[\nr-\\frac{r+3}{4}=\\frac{3(r-1)}4.\n\\]\n\nFor each good \\(D\\), there are \\(r\\) pairs \\((A,B)\\in H^2\\) with \\(AB=D\\), and there are \\(r-1\\) choices of nontrivial \\(\\lambda\\in H\\). Finally,\n\n\\[\n(\\lambda,A,B)\\quad\\text{and}\\quad(\\lambda^{-1},B,A)\n\\]\n\ngive the same \\(s\\), and these are the only duplications. Therefore the number of admissible \\(s\\), hence the number of \\(\\widetilde C_\\pi\\)-conjugacy orbits, is\n\n\\[\n\\frac{1}{2}(r-1)\\cdot r\\cdot \\frac{3(r-1)}4\n=\n\\boxed{\\frac{3r(r-1)^2}{8}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T08:02:55+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/a289b15b79ca.json"
+}
