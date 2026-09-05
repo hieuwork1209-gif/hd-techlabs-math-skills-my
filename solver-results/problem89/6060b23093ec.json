@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "1e0e53c9662635e3281004a64bf4138186f12414",
+  "problem_blob_sha": "6060b23093ec2d2fda98ed9f134ccb4481929fd6",
+  "statement_sha256": "928ef363edb0891d97e81e93d8e2a2483006aa4f9577f4c7818e11c3e595f747",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T09:36:25+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(A_i\\) be the \\(105\\times105\\) adjacency matrix joining two perfect matchings at distance \\(i\\). For two matchings, their union decomposes into alternating cycles; if the corresponding partition of \\(4\\) has \\(r\\) parts, then\n\n\\[\nd(M,N)=4-r.\n\\]\n\nThus the distance shells have sizes\n\n\\[\n1,\\ 12,\\ 44,\\ 48\n\\]\n\nfor distances \\(0,1,2,3\\), and\n\n\\[\nD_p=A_1+2^pA_2+3^pA_3.\n\\]\n\nThe action of \\(S_8\\) on perfect matchings is multiplicity-free, with irreducible dimensions\n\n\\[\n1,\\ 20,\\ 14,\\ 56,\\ 14.\n\\]\n\nOn the nonconstant components, the eigenvalues of \\(D_p\\) are:\n\n\\[\n\\begin{array}{c|c}\n\\text{dimension} & \\lambda(p)\\\\\n\\hline\n20 & 5+2\\cdot 2^p-8\\cdot 3^p\\\\\n14 & -6+11\\cdot 2^p-6\\cdot 3^p\\\\\n56 & -1-4\\cdot 2^p+4\\cdot 3^p\\\\\n14 & 2-2^p-2\\cdot 3^p\n\\end{array}\n\\]\n\nThe metric has \\(p\\)-negative type exactly when all these nonconstant eigenvalues are \\(\\le 0\\). The only first crossing comes from the \\(56\\)-dimensional component:\n\n\\[\n-1-4\\cdot 2^p+4\\cdot 3^p=0,\n\\]\n\ni.e.\n\n\\[\n4(3^p-2^p)=1.\n\\]\n\nThis equation has a unique positive root because \\(3^p-2^p\\) is strictly increasing for \\(p>0\\). Numerically,\n\n\\[\n\\wp \\approx 0.4219679707924078.\n\\]\n\nAt this value, only the \\(56\\)-dimensional eigenspace has eigenvalue \\(0\\), so\n\n\\[\n\\dim E=56.\n\\]\n\nTherefore\n\n\\[\n\\boxed{(\\wp,\\dim E)=\\left(\\text{the unique positive root of }4(3^p-2^p)=1,\\ 56\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T09:39:25+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/6060b23093ec.json"
+}
