@@ -2,23 +2,23 @@
 
 ## LaTeX (Normalized)
 
-Let $n\ge4$. Let $\Gamma_n$ be the incidence graph of the complete graph $K_n$: its vertex set is
+Let $X$ be the set of $3$-dimensional subspaces of $\mathbb F_2^6$. Let $G$ be the graph on $X$ in which distinct subspaces $U,W$ are adjacent exactly when
 $$
-[n]\sqcup\binom{[n]}2,
+\dim(U\cap W)=2.
 $$
-and $i\in[n]$ is adjacent to $e\in\binom{[n]}2$ exactly when $i\in e$. Let $d$ be the shortest-path metric on $\Gamma_n$.
+Let $d$ be the shortest-path metric on $G$.
 
-For $p>0$, say that $(\Gamma_n,d)$ has $p$-negative type if every real family $(c_x)$ with $\sum_xc_x=0$ satisfies
+For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_U)_{U\in X}$ with $\sum_Uc_U=0$ satisfies
 $$
-\sum_{x,y}c_xc_y\,d(x,y)^p\le0.
+\sum_{U,W\in X}c_Uc_W\,d(U,W)^p\le0.
 $$
 Let
 $$
-\wp=\sup\{p>0:(\Gamma_n,d)\text{ has }p\text{-negative type}\}.
+\wp=\sup\{p>0:(X,d)\text{ has }p\text{-negative type}\}.
 $$
 At $p=\wp$, define the equality space
 $$
-E=\left\{c:\sum_xc_x=0,\ \sum_{x,y}c_xc_y\,d(x,y)^{\wp}=0\right\}.
+E=\left\{c\in\mathbb R^X:\sum_Uc_U=0,\ \sum_{U,W}c_Uc_W\,d(U,W)^{\wp}=0\right\}.
 $$
 Determine the ordered pair $(\wp,\dim E)$.
 
@@ -37,4 +37,4 @@ Determine the ordered pair $(\wp,\dim E)$.
 
 ## Domain Explanation
 
-The problem asks for the maximal negative-type exponent of a natural finite incidence-graph metric and the dimension of its boundary equality space. The decisive structure is a hidden squared-Euclidean representation of graph distance by the vectors attached to vertices and edges of $K_n$.
+The problem asks for the maximal negative-type exponent of the Grassmann graph metric on $3$-subspaces of $\mathbb F_2^6$ and the dimension of its boundary equality space. The key structure is the graph's distance-regular recurrence, which diagonalizes the powered distance matrix into competing spectral modes.
