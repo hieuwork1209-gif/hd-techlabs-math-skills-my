@@ -1,64 +1,76 @@
 ## Steps
 
-Step 1: Identify the graph metric with inversion Hamming distance
+Step 1: Realize the graph as a chamber graph
 
-For a permutation $\sigma\in S_n$ and $1\le i<j\le n$, let
+Let $\mathcal A$ be the hyperplane arrangement in $\mathbb R^n$ consisting of
 $$
-x_{ij}(\sigma)=\mathbf1\{\sigma^{-1}(i)>\sigma^{-1}(j)\}.
+H_i=\{x_i=0\}\qquad(1\le i\le n)
 $$
-Thus $x_{ij}(\sigma)$ records whether the values $i$ and $j$ occur in reversed order in the one-line notation of $\sigma$.
+and
+$$
+H_{ij}^{\pm}=\{x_i=\pm x_j\}\qquad(1\le i<j\le n).
+$$
+There are
+$$
+n+2\binom n2=n^2
+$$
+hyperplanes.
 
-If two permutations differ by swapping adjacent entries, exactly one relative order changes. Hence every path from $\sigma$ to $\tau$ has length at least
+For a signed permutation $w=(w_1,\ldots,w_n)$, write $x_{-j}=-x_j$ and define
 $$
-\sum_{i<j}|x_{ij}(\sigma)-x_{ij}(\tau)|.
+C_w=\{x\in\mathbb R^n:0<x_{w_1}<x_{w_2}<\cdots<x_{w_n}\}.
 $$
-Conversely, repeatedly swapping adjacent inverted pairs transforms $\sigma$ into $\tau$ and decreases this number by exactly $1$ at each step. Therefore
+These are exactly the chambers of $\mathcal A$. Swapping two adjacent entries of $w$ crosses one wall of the form $x_i=\pm x_j$, while changing the sign of $w_1$ crosses one wall $x_i=0$. Hence the graph in the problem is exactly the chamber-adjacency graph of $\mathcal A$.
+
+For each $H\in\mathcal A$, let $\varepsilon_H(w)\in\{0,1\}$ record which side of $H$ contains $C_w$. Any graph path from $u$ to $v$ must cross every hyperplane that separates $C_u$ from $C_v$, so
 $$
-d(\sigma,\tau)=\sum_{i<j}|x_{ij}(\sigma)-x_{ij}(\tau)|.
+d(u,v)\ge\sum_{H\in\mathcal A}|\varepsilon_H(u)-\varepsilon_H(v)|.
 $$
-So the permutahedron metric is the Hamming metric on the inversion vectors.
+Conversely, choose interior points of $C_u$ and $C_v$ so that the segment joining them meets no two hyperplanes simultaneously. A linear defining form for $H$ changes sign along the segment exactly when $H$ separates the two chambers, and then it vanishes exactly once. The successive chambers crossed by the segment therefore give a path of exactly that length. Thus
+$$
+d(u,v)=\sum_{H\in\mathcal A}|\varepsilon_H(u)-\varepsilon_H(v)|.
+$$
+So the metric is a Hamming metric on the $n^2$ chamber-side coordinates.
 
 Step 2: Prove $1$-negative type
 
-Let $(c_\sigma)_{\sigma\in S_n}$ satisfy $\sum_\sigma c_\sigma=0$. Since each $x_{ij}$ is $0$ or $1$,
+Let $(c_w)$ satisfy $\sum_wc_w=0$. For one binary coordinate $\varepsilon_H$,
 $$
-|x_{ij}(\sigma)-x_{ij}(\tau)|
-=x_{ij}(\sigma)+x_{ij}(\tau)-2x_{ij}(\sigma)x_{ij}(\tau).
+|\varepsilon_H(u)-\varepsilon_H(v)|
+=\varepsilon_H(u)+\varepsilon_H(v)-2\varepsilon_H(u)\varepsilon_H(v).
 $$
-Summing against $c_\sigma c_\tau$, the first two terms vanish because the coefficients sum to $0$. Hence
+Summing against $c_uc_v$, the first two terms vanish. Therefore
 $$
-\sum_{\sigma,\tau}c_\sigma c_\tau d(\sigma,\tau)
-=-2\sum_{i<j}\left(\sum_\sigma c_\sigma x_{ij}(\sigma)\right)^2\le0.
+\sum_{u,v}c_uc_vd(u,v)
+=-2\sum_{H\in\mathcal A}\left(\sum_wc_w\varepsilon_H(w)\right)^2\le0.
 $$
-Thus the metric has $1$-negative type.
-
-Equality holds exactly when
+Hence the metric has $1$-negative type. Equality holds exactly when
 $$
-\sum_\sigma c_\sigma x_{ij}(\sigma)=0
+\sum_wc_w\varepsilon_H(w)=0
 $$
-for every $i<j$.
+for every $H\in\mathcal A$.
 
 Step 3: Show that every exponent $p>1$ fails
 
-Because $n\ge4$, the adjacent swaps of the first two and the third and fourth entries commute. Consider
+Because $n\ge3$, consider
 $$
-e=(1,2,3,4,\ldots),
+e=(1,2,3,4,\ldots,n),
 $$
 $$
-a=(2,1,3,4,\ldots),
+a=(-1,2,3,4,\ldots,n),
 \qquad
-b=(1,2,4,3,\ldots),
+b=(1,3,2,4,\ldots,n),
 $$
 $$
-ab=(2,1,4,3,\ldots).
+ab=(-1,3,2,4,\ldots,n).
 $$
-These four vertices form an isometric square: its four edges have length $1$ and its two diagonals have length $2$.
+Changing the sign of the first entry and swapping the second and third entries commute, so these four vertices form an isometric square: four edges have length $1$ and the two diagonals have length $2$.
 
-Assign coefficients $1,-1,-1,1$ to $e,a,b,ab$, respectively. Their sum is $0$, and the powered quadratic form is
+Assign coefficients $1,-1,-1,1$ to $e,a,b,ab$. Their sum is $0$, and the powered quadratic form is
 $$
-2\left(2\cdot2^p-4\right)=4\cdot2^p-8.
+4\cdot2^p-8>0
 $$
-This is positive for every $p>1$. Hence no exponent larger than $1$ has negative type, so
+for every $p>1$. Thus no exponent larger than $1$ has negative type. Since Step 2 gives $1$-negative type,
 $$
 \wp=1.
 $$
@@ -68,35 +80,32 @@ Step 4: Compute the equality-space dimension
 At $p=1$, the equality space is the kernel of the linear map
 $$
 c\longmapsto
-\left(
-\sum_\sigma c_\sigma,
-\left(\sum_\sigma c_\sigma x_{ij}(\sigma)\right)_{i<j}
-\right).
+\left(\sum_wc_w,\left(\sum_wc_w\varepsilon_H(w)\right)_{H\in\mathcal A}\right).
 $$
-It remains to show that the constant function together with the $\binom n2$ functions $x_{ij}$ are linearly independent on $S_n$.
+It remains to compute its rank.
 
-Suppose
+The constant function together with the $n^2$ side-indicator functions $\varepsilon_H$ are linearly independent. Indeed, suppose
 $$
-a_0+\sum_{i<j}a_{ij}x_{ij}(\sigma)=0
+a_0+\sum_{H\in\mathcal A}a_H\varepsilon_H(w)=0
 $$
-for every permutation $\sigma$. Fix $i<j$ and choose a permutation in which the entries $i$ and $j$ are adjacent. Swapping those two adjacent entries changes only $x_{ij}$, so subtracting the two equations gives $a_{ij}=0$. Since this holds for every pair, all $a_{ij}$ vanish, and then $a_0=0$.
+for every chamber $C_w$. Fix $H\in\mathcal A$ and choose a point of $H$ lying on no other hyperplane of $\mathcal A$. Two sufficiently close points on opposite sides of $H$ lie in adjacent chambers that differ only in the coordinate $\varepsilon_H$. Subtracting the two corresponding equations gives $a_H=0$. Doing this for every $H$ leaves $a_0=0$.
 
-Therefore the map has rank
+Thus the map has rank
 $$
-1+\binom n2.
+1+n^2.
 $$
-Since there are $n!$ permutations,
+There are $2^n n!$ signed permutations, so
 $$
-\dim E=n!-\binom n2-1.
+\dim E=2^n n!-n^2-1.
 $$
 
-Final Answer: $\boxed{(1,n!-\binom{n}{2}-1)}$
+Final Answer: $\boxed{(1,2^n n!-n^2-1)}$
 
 ---
 
 ## Answer
 
-$(1,n!-\binom{n}{2}-1)$
+$(1,2^n n!-n^2-1)$
 
 ---
 
@@ -110,8 +119,8 @@ $(1,n!-\binom{n}{2}-1)$
 
 ## Solution Concepts
 
-- permutahedron graph metric
-- inversion vectors
-- Hamming embeddings
+- hyperoctahedral group
+- type B hyperplane arrangement
+- chamber graphs and Hamming embeddings
 - negative type of finite metric spaces
-- commuting adjacent transpositions
+- commuting simple reflections
