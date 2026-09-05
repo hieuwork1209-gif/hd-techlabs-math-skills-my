@@ -2,19 +2,19 @@
 
 ## LaTeX (Normalized)
 
-Let $T$ be the complete rooted binary tree of height $3$: its vertices are the binary words of lengths $0,1,2,3$, and a word is joined to each one-letter extension. Let $d$ be the shortest-path metric on the $15$ vertices of $T$.
+Let $X$ be the set of perfect matchings of the complete graph $K_8$ on vertex set $[8]$. Form a graph $G$ on $X$ by joining two perfect matchings when one is obtained from the other by choosing two matched edges and replacing them by one of the other two perfect matchings on the same four endpoints. Let $d$ be the shortest-path metric on $G$.
 
-For $p>0$, say that $(T,d)$ has $p$-negative type if every real family $(c_x)_{x\in T}$ with $\sum_xc_x=0$ satisfies
+For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_M)_{M\in X}$ with $\sum_Mc_M=0$ satisfies
 $$
-\sum_{x,y\in T}c_xc_y\,d(x,y)^p\le0.
+\sum_{M,N\in X}c_Mc_N\,d(M,N)^p\le0.
 $$
 Let
 $$
-\wp=\sup\{p>0:(T,d)\text{ has }p\text{-negative type}\}.
+\wp=\sup\{p>0:(X,d)\text{ has }p\text{-negative type}\}.
 $$
 At $p=\wp$, define the equality space
 $$
-E=\left\{c\in\mathbb R^T:\sum_xc_x=0,\ \sum_{x,y\in T}c_xc_y\,d(x,y)^{\wp}=0\right\}.
+E=\left\{c\in\mathbb R^X:\sum_Mc_M=0,\ \sum_{M,N}c_Mc_N\,d(M,N)^{\wp}=0\right\}.
 $$
 Determine the ordered pair $(\wp,\dim E)$.
 
@@ -33,4 +33,4 @@ Determine the ordered pair $(\wp,\dim E)$.
 
 ## Domain Explanation
 
-The problem asks for the maximal negative-type exponent of a canonical finite tree metric and the dimension of its boundary equality space. The decisive structure is the hierarchical decomposition induced by the independent child-swaps of the rooted binary tree.
+The problem asks for the maximal negative-type exponent of a natural flip metric on perfect matchings and the dimension of its boundary equality space. The key structure is the alternating-cycle decomposition of two matchings together with the five symmetry types under the stabilizer of one matching.
