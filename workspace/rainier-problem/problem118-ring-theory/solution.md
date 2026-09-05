@@ -1,155 +1,117 @@
 ## Steps
 
-Step 1: Reveal the coupled quantum coordinates
-Let
-$$
-t=x(1+x)^{-1},
-\qquad
-u=y-t,
-\qquad
-v=z-t.
-$$
-The change from $x$ to $t$ is invertible because $x$ is nilpotent, with
-$$
-x=t(1-t)^{-1}.
-$$
-Put
-$$
-D=1+(1-\zeta)x.
-$$
-The first twisted relation gives
-$$
-yx=\frac{\zeta x}{D}y+\frac{(1-\zeta)x^2}{D}.
-$$
-If $\sigma(x)=\zeta x/D$, then
-$$
-x-\sigma(x)=\frac{(1-\zeta)x(1+x)}{D},
-$$
-so the constant term is $(x-\sigma(x))t$. Hence $u=y-t$ satisfies $ux=\sigma(x)u$. Substituting $x=t(1-t)^{-1}$ gives $\sigma(t)=\zeta t$, and therefore
-$$
-ut=\zeta tu.
-$$
-The second twisted relation is identical with $\zeta$ replaced by $\zeta^{-1}$, so
-$$
-vt=\zeta^{-1}tv.
-$$
-Dividing the third relation by $(1+x)^2$ rewrites it as
-$$
-zy=\zeta yz+(\zeta^{-1}-\zeta)tz+(1-\zeta^2)ty+(\zeta^2-\zeta^{-1})t^2.
-$$
-The two relations already obtained imply
-$$
-yt=\zeta ty+(1-\zeta)t^2,
-\qquad
-zt=\zeta^{-1}tz+(1-\zeta^{-1})t^2.
-$$
-Substituting these identities into $(z-t)(y-t)-\zeta(y-t)(z-t)$ makes every term cancel, so
-$$
-vu=\zeta uv.
-$$
-Also $t^{5m+1}=0$. Thus the original presentation is equivalent to
-$$
-t^{5m+1}=0,
-\qquad
-ut=\zeta tu,
-\qquad
-vt=\zeta^{-1}tv,
-\qquad
-vu=\zeta uv.
-$$
-Adjoin first $u$ to $k[t]/(t^{5m+1})$ using $ut=\zeta tu$, then adjoin $v$ using $vt=\zeta^{-1}tv$ and $vu=\zeta uv$. The two scaling rules are automorphisms and preserve the first relation, so every element has a unique normal form
-$$
-\sum_{a=0}^{5m}\sum_{b,d\geq0}c_{a,b,d}t^a u^b v^d.
-$$
-
-Step 2: Determine the central exponent lattice
-Consider one normal monomial
-$$
-M=t^a u^b v^d.
-$$
-Using the three commutation rules,
-$$
-Mt=\zeta^{b-d}t^{a+1}u^b v^d,
-$$
-$$
-uM=\zeta^a t^a u^{b+1}v^d,
-\qquad
-Mu=\zeta^d t^a u^{b+1}v^d,
-$$
-and
-$$
-vM=\zeta^{b-a}t^a u^b v^{d+1},
-\qquad
-Mv=t^a u^b v^{d+1}.
-$$
-If $a<5m$, commutation with $t,u,v$ is therefore equivalent to
-$$
-b-d\equiv0,
-\qquad
-a-d\equiv0,
-\qquad\ b-a\equiv0\pmod5.
-$$
-If $a=5m$, the first equality is automatic because $t^{5m+1}=0$, but the other two still force $b\equiv d\equiv0\pmod5$, which is the same conclusion because $a\equiv0\pmod5$. Hence in every case
-$$
-M\text{ is central}\quad\Longleftrightarrow\quad a\equiv b\equiv d\pmod5.
-$$
-The commutators above are diagonal on the normal monomial basis, so linear independence shows that every monomial occurring with nonzero coefficient in a central element satisfies this same congruence.
-
-Step 3: Convert the lattice condition into algebra generators
+Step 1: Remove the affine part of the commutation laws
 Set
 $$
-T=t^5,
-\qquad
-U=u^5,
-\qquad
-V=v^5,
-\qquad
-W=tuv.
+a=x-1,
+\qquad b=y,
+\qquad c=z,
+\qquad d=w-1.
 $$
-The fifth powers are central because $\zeta^5=1$. The element $W$ is also central. For example,
+Then the defining relations become
 $$
-Wt=tuvt=t^2uv=tW,
+ab=\zeta ba,
+\qquad ac=\zeta ca,
+\qquad bd=\zeta db,
+\qquad cd=\zeta dc,
+$$
+$$
+bc=cb,
+\qquad ad-da=(\zeta-\zeta^{-1})bc.
+$$
+These relations give a PBW normal form
+$$
+a^r b^s c^t d^u,
+\qquad r,s,t,u\geq0.
+$$
+Indeed, start with the commutative algebra $k[b,c]$, adjoin $a$ with $ab=\zeta ba$ and $ac=\zeta ca$, and then adjoin $d$ using
+$$
+db=\zeta^{-1}bd,
+\qquad dc=\zeta^{-1}cd,
+\qquad da=ad-(\zeta-\zeta^{-1})bc.
+$$
+The last rule is compatible with the first two because applying it to $ab-\zeta ba$ or $ac-\zeta ca$ gives zero. Thus every word reduces uniquely to the displayed ordered monomials.
+
+Step 2: Construct the hidden central determinant and a basis adapted to it
+Define
+$$
+\Delta=ad-\zeta bc.
+$$
+We verify that $\Delta$ commutes with the generators. The relations with $b$ and $c$ give
+$$
+ad\,b=b\,ad,
+\qquad ad\,c=c\,ad,
+$$
+so $[\Delta,b]=[\Delta,c]=0$. Also
+$$
+da=ad-(\zeta-\zeta^{-1})bc,
+$$
+and $bc\,a=\zeta^{-2}a\,bc$, hence
+$$
+\Delta a
+=ada-\zeta bca
+=a^2d-(\zeta-\zeta^{-1})abc-\zeta^{-1}abc
+=a^2d-\zeta abc
+=a\Delta.
+$$
+The calculation with $d$ is symmetric, so $\Delta$ is central.
+
+Using $ad=\Delta+\zeta bc$, every PBW monomial containing both a positive power of $a$ and a positive power of $d$ can be reduced by one such pair. Repeating gives a spanning family
+$$
+\Delta^h a^r b^s c^t
+\quad(r\geq0),
+\qquad
+\Delta^h b^s c^t d^u
+\quad(u\geq1).
+$$
+It is linearly independent: the first family has leading PBW monomial with $(a,d)$-exponents $(h+r,h)$, while the second has leading exponents $(h,h+u)$, and these pairs are distinct. Hence this is a basis.
+
+Step 3: Force the exponents of every central element
+Because $\zeta$ has order $5$, the elements $a^5$ and $d^5$ commute with $b$ and $c$. They also commute with the opposite corner. For example,
+$$
+a^5d=a^4(\Delta+\zeta bc)=a^4\Delta+\zeta a^4bc,
 $$
 while
 $$
-uW=utu v=\zeta tu^2v=Wu
+da^5=(\Delta+\zeta^{-1}bc)a^4
+=a^4\Delta+\zeta^{-1}\zeta^{-8}a^4bc
+=a^4\Delta+\zeta a^4bc.
 $$
-and
-$$
-vW=vtu v=\zeta^{-1}tvuv=tuv^2=Wv.
-$$
-Now let $t^a u^b v^d$ be central and write their common residue modulo $5$ as $r$. Then
-$$
-a=5A+r,
-\qquad b=5B+r,
-\qquad d=5D+r
-$$
-with $0\leq r<5$. Reordering $W^r$ only contributes a nonzero power of $\zeta$, so the monomial is a nonzero scalar multiple of
-$$
-T^A U^B V^D W^r.
-$$
-Therefore every central element lies in $k[T,U,V,W]$, and the reverse inclusion was just proved. Hence
-$$
-Z(R_m)=k[t^5,u^5,v^5,tuv].
-$$
+Thus $a^5$ is central, and similarly $d^5$ is central.
 
-Step 4: Return to the original generators
-By definition,
+Now expand a central element in the basis of Step 2. Commuting with $b$ multiplies a basis term containing $a^r$ by $\zeta^{-r}$ on one side, and a basis term containing $d^u$ by $\zeta^{-u}$ on the other side. Linear independence therefore forces
 $$
-t=x(1+x)^{-1},
-\qquad
-u=y-x(1+x)^{-1},
-\qquad
-v=z-x(1+x)^{-1}.
+r\equiv0\pmod5,
+\qquad u\equiv0\pmod5.
 $$
-Substituting these three expressions into the center found in Step 3 gives the required subalgebra in the original generators.
-Final Answer: $\boxed{k[(x(1+x)^{-1})^5,(y-x(1+x)^{-1})^5,(z-x(1+x)^{-1})^5,x(1+x)^{-1}(y-x(1+x)^{-1})(z-x(1+x)^{-1})]}$
+After factoring the already central elements $\Delta$, $a^5$, and $d^5$, the remaining coefficients lie in $k[b,c]$. Since
+$$
+a b^s c^t=\zeta^{s+t}b^s c^t a,
+$$
+centrality with $a$ forces
+$$
+s+t\equiv0\pmod5.
+$$
+The same condition also gives commutation with $d$.
+
+Step 4: Identify the full center and return to the original generators
+A monomial $b^s c^t$ with $s+t$ divisible by $5$ is a product of degree-$5$ monomials
+$$
+b^i c^{5-i},
+\qquad 0\leq i\leq5.
+$$
+Conversely, each of these degree-$5$ monomials commutes with $a$ and $d$ because the total $b,c$-degree is $5$, and it plainly commutes with $b,c$. Therefore
+$$
+Z(R_m)=k\left[a^5,d^5,\Delta,b^i c^{5-i}\ (0\leq i\leq5)\right].
+$$
+Substituting $a=x-1$, $b=y$, $c=z$, $d=w-1$, and $\Delta=(x-1)(w-1)-\zeta yz$ gives the required subalgebra in the original generators.
+Final Answer: $\boxed{k[(x-1)^5,(w-1)^5,(x-1)(w-1)-\zeta yz,y^iz^{5-i}\ (0\leq i\leq5)]}$
 
 ---
 
 ## Answer
 
-$k[(x(1+x)^{-1})^5,(y-x(1+x)^{-1})^5,(z-x(1+x)^{-1})^5,x(1+x)^{-1}(y-x(1+x)^{-1})(z-x(1+x)^{-1})]$
+$k[(x-1)^5,(w-1)^5,(x-1)(w-1)-\zeta yz,y^iz^{5-i}\ (0\leq i\leq5)]$
 
 ---
 
@@ -164,10 +126,10 @@ $k[(x(1+x)^{-1})^5,(y-x(1+x)^{-1})^5,(z-x(1+x)^{-1})^5,x(1+x)^{-1}(y-x(1+x)^{-1}
 ## Solution Concepts
 
 - centers of noncommutative algebras
-- finite-order skew automorphisms
-- nilpotent coordinate changes
-- quantum affine space
-- central exponent lattices
+- PBW normal forms
+- quantum determinant construction
+- root-of-unity central powers
+- Veronese subrings
 
 ---
 
