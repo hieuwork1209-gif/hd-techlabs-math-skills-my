@@ -20,7 +20,7 @@ Determine the number of $\sigma$ with $\pi_\sigma=\pi$ and $\sigma(\rho_j)\ne\rh
 $$
 C_W-C_U=8\ell^2Q(q+Q),\qquad C_U-C_O=8\ell Q(q+3Q).
 $$
-Give a closed formula in $\ell,r,q$.
+For the answer, write $h=\ell^{r-1}$, $g=\ell^{r-2}$, $d=q(2q-1)/Q$, $D_1=(Q-1)/(\ell-1)$, $D_2=(h-1)/(\ell-1)$, and $A=d+q+2\ell+2\ell^2-4$, $B=d+2\ell+2\ell^2-4$, $C=d+2\ell-4$, $E=d-4$. Give a closed formula in $\ell,r,q$.
 
 ---
 
