@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-field-theory/problem.md",
+  "source_commit_sha": "baeaecb17d097992e18aa8d2137c2f23ddd18e93",
+  "problem_blob_sha": "ba862c0ebafc15b140d9c21ec5a53baa247fc336",
+  "statement_sha256": "803db7cbd9a86b95326ed922e72688676610cef32d9c6fc1ad7600805e69f1a8",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T07:09:02+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let the transpositions of \\(\\pi\\) be the \\(m=2q^2\\) pairs\n\\[\nP_1,\\dots,P_m,\\qquad n=2m=4q^2.\n\\]\n\nFor \\(\\sigma\\in\\Gamma\\) with \\(\\pi_\\sigma=\\pi\\), write\n\\[\n\\sigma(\\rho_j)=\\zeta^{c_j}\\rho_j,\\qquad\n\\sigma(\\alpha_i^{(j)})=\\zeta^{b_i^{(j)}}\\alpha_{\\pi(i)}^{(j)}.\n\\]\nThe condition \\(\\sigma(\\rho_j)\\ne \\rho_j\\) for all \\(j\\) is exactly\n\\[\nc=(c_1,\\dots,c_r)\\in(\\mathbb F_\\ell^\\times)^r.\n\\]\n\nFor a transposition pair \\(P_a=\\{i,\\pi(i)\\}\\), define\n\\[\ny_a=\\bigl(b_i^{(j)}+b_{\\pi(i)}^{(j)}\\bigr)_{j=1}^r\\in\\mathbb F_\\ell^r.\n\\]\nThis is independent of the chosen element \\(i\\in P_a\\). Also, since \\(\\prod_i\\alpha_i^{(j)}\\in M\\), applying \\(\\sigma^2\\) gives\n\\[\n\\sum_{a=1}^m y_a=0.\n\\]\n\nNow fix \\(k\\in\\mathbb F_\\ell^r\\). On \\(\\Omega_k\\),\n\\[\n(i,h,u)\\mapsto\n\\left(\\pi(i),\\pi(h),\\,u+k c+b_i-b_h\\right),\n\\]\nwhere \\(kc=(k_1c_1,\\dots,k_rc_r)\\). Squaring gives translation by\n\\[\n2kc+y_a-y_b\n\\]\nwhen \\(i\\in P_a\\), \\(h\\in P_b\\). Thus a \\(2\\)-cycle occurs exactly when this translation is \\(0\\).\n\nLet\n\\[\nA(x)=\\#\\{a:y_a=x\\},\\qquad \nF(v)=\\sum_x A(x)A(x+v).\n\\]\nThen the number of \\(2\\)-cycles on \\(\\Omega_k\\), with \\(v=2kc\\), is\n\\[\nC(v)=\n\\begin{cases}\n\\ell^r(2F(0)-m),&v=0,\\\\\n2\\ell^rF(v),&v\\ne0.\n\\end{cases}\n\\]\nSince \\(c\\in(\\mathbb F_\\ell^\\times)^r\\), the map \\(k\\mapsto v=2kc\\) is a bijection of \\(\\mathbb F_\\ell^r\\).\n\nThe required differences force\n\\[\nF(v)=F_O+4\\ell(q+3Q)\\mathbf 1_U(v)\n+4\\ell^2(q+Q)\\mathbf 1_W(v)\n+q^2\\delta_0(v),\n\\]\nwhere \\(\\dim U=r-1\\), \\(\\dim W=r-2\\). Summing over all \\(v\\) and using \\(\\sum_vF(v)=m^2=4q^4\\) determines \\(F_O\\).\n\nTaking Fourier transforms gives\n\\[\n|\\widehat A(\\chi)|=\n\\begin{cases}\n2q^2,&\\chi=1,\\\\\nq+4Q,&1\\ne\\chi\\in U^\\perp,\\\\\nq+2Q,&\\chi\\in W^\\perp\\setminus U^\\perp,\\\\\nq,&\\chi\\notin W^\\perp.\n\\end{cases}\n\\]\nBecause \\(2\\) generates \\(\\mathbb F_\\ell^\\times\\), the primes \\(q,q+2Q,q+4Q\\) are inert in \\(\\mathbb Q(\\zeta)\\). Also \\(2q\\equiv1\\pmod Q\\), and \\(\\sum_a y_a=0\\), so the root-of-unity ambiguity in each Fourier coefficient is forced to be trivial. Hence \\(A\\) is uniquely determined by the flag \\(W\\subset U\\). Explicitly,\n\\[\nA(x)=\\frac{2q^2-q}{Q}-4+q\\delta_0(x)+2\\ell^2\\mathbf 1_W(x)+2\\ell\\mathbf 1_U(x).\n\\]\nThus each flag \\(W\\subset U\\subset\\mathbb F_\\ell^r\\) gives exactly one conjugacy orbit for each \\(c\\in(\\mathbb F_\\ell^\\times)^r\\).\n\nThe number of such flags is\n\\[\n\\frac{\\ell^r-1}{\\ell-1}\\cdot \\frac{\\ell^{r-1}-1}{\\ell-1}.\n\\]\nThe number of possible \\(c\\)'s is \\((\\ell-1)^r\\). Therefore the required number of \\(\\widetilde C_\\pi\\)-conjugacy orbits is\n\\[\n\\boxed{(\\ell-1)^{r-2}(\\ell^r-1)(\\ell^{r-1}-1)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T07:11:46+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/ba862c0ebafc.json"
+}
