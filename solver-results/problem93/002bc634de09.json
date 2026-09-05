@@ -1,0 +1,22 @@
+{
+  "problem": "problem93",
+  "branch": "adversary/problem93",
+  "problem_path": "workspace/rainier-problem/problem93-systems-of-linear-equations/problem.md",
+  "source_commit_sha": "437e13f719d7b181dfac27e037917c140d0d1fd8",
+  "problem_blob_sha": "002bc634de09513d5ebb5e37112d5dc332b45b6f",
+  "statement_sha256": "6c1c863fbd27554f81f195c048256321b0eee73dd5d88c627d4ef4eaaa848166",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T08:54:02+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nu=T_1-I,\\qquad v=T_2-I,\\qquad w=T_3-I.\n\\]\nSince \\(n\\) is a power of \\(p\\),\n\\[\nT_i^n=I,\\qquad (T_i-I)^n=0,\n\\]\nso the function space is the group algebra\n\\[\nR=\\mathbb F_p[u,v,w]/(u^n,v^n,w^n).\n\\]\n\nPut\n\\[\ns=u+v+w.\n\\]\nThe equation \\((T_1+T_2+T_3-3I)f=0\\) is simply\n\\[\nsf=0.\n\\]\nNow \\(w=s-u-v\\), and because \\(n\\) is a \\(p\\)-power,\n\\[\nw^n=(s-u-v)^n=s^n-u^n-v^n,\n\\]\nso\n\\[\nR\\cong \\mathbb F_p[u,v,s]/(u^n,v^n,s^n).\n\\]\nThus\n\\[\n\\ker(s)=s^{n-1}\\mathbb F_p[u,v]/(u^n,v^n).\n\\]\n\nLet\n\\[\nq=\\frac np,\\qquad x=u^q,\\qquad y=v^q.\n\\]\nOn \\(\\ker(s)\\), we have\n\\[\nw^q=(s-u-v)^q=s^q-u^q-v^q=-x-y,\n\\]\nbecause \\(s^q s^{n-1}=0\\). Hence on \\(\\ker(s)\\),\n\\[\nA=xy+y(-x-y)+(-x-y)x=-(x^2+xy+y^2),\n\\]\nand\n\\[\nB=xy(-x-y)=-x^2y-xy^2.\n\\]\n\nSo the remaining two equations depend only on \\(x,y\\), where\n\\[\nx^p=y^p=0.\n\\]\nWrite\n\\[\na=-(x^2+xy+y^2),\\qquad b=-xy(x+y).\n\\]\nThe equations are\n\\[\n(a^2+b^3+b^5)g=0,\n\\]\n\\[\n((1+a+b)(a^2+b^3)+b^5)g=0.\n\\]\nSubtracting gives\n\\[\n(a+b)(a^2+b^3)g=0.\n\\]\nEquivalently, in the quotient algebra for the annihilator count, we impose\n\\[\na^2+b^3+b^5=0,\\qquad b^5(a+b)=0.\n\\]\n\nNow \\(a,b\\) are the elementary symmetric invariants of \\(x,y,-x-y\\). The polynomial algebra \\(\\mathbb F_p[x,y]\\) is free of rank \\(6\\) over \\(\\mathbb F_p[a,b]\\). A convenient coinvariant basis has dimension \\(6\\), and under the cyclic rotation \\((x,y,-x-y)\\mapsto(y,-x-y,x)\\), its nontrivial trace is \\(0\\), so its invariant part has dimension \\(2\\).\n\nIt remains to count the local quotient\n\\[\nL=\\mathbb F_p[a,b]/(a^2+b^3+b^5,\\ b^5(a+b)).\n\\]\nFrom \\(b^5(a+b)=0\\),\n\\[\nb^5a=-b^6.\n\\]\nMultiplying by \\(a\\) and using \\(a^2=-b^3-b^5\\),\n\\[\nb^5a^2=-b^6a\n\\]\ngives\n\\[\n-b^8-b^{10}=b^7,\n\\]\nso\n\\[\nb^7(1+b+b^3)=0.\n\\]\nSince \\(1+b+b^3\\) has constant term \\(1\\), it is a unit in the nilpotent local algebra, hence\n\\[\nb^7=0.\n\\]\nThus \\(L\\) has basis\n\\[\n1,b,\\dots,b^6,\\qquad a,ab,\\dots,ab^4,\n\\]\nso\n\\[\n\\dim_{\\mathbb F_p}L=7+5=12.\n\\]\n\nTherefore the quotient by the two polynomial constraints has dimension\n\\[\n6\\cdot 12=72,\n\\]\nand its cyclic-invariant part has dimension\n\\[\n2\\cdot 12=24.\n\\]\n\nFinally,\n\\[\n\\mathbb F_p[u,v]/(u^n,v^n)\n\\]\nis a free module of rank \\(q^2\\) over\n\\[\n\\mathbb F_p[x,y]/(x^p,y^p),\n\\]\nusing residue classes \\(u^r v^s\\) with \\(0\\le r,s<q\\). The cyclic trace on this residue factor is \\(1\\), so the invariant annihilator dimension scales by exactly \\(q^2\\). Hence\n\\[\n\\dim_{\\mathbb F_p}V_n=24q^2.\n\\]\n\nSince \\(q=n/p\\), the final answer is\n\\[\n\\boxed{24\\left(\\frac np\\right)^2}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T08:57:12+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem93/002bc634de09.json"
+}
