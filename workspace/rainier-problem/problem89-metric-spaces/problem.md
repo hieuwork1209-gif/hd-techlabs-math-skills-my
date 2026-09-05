@@ -6,7 +6,7 @@ For $|s|<\frac18$, let $G_s$ be the weighted graph with vertex set
 $$
 Y=\{\ast,a_1,a_2,a_3,b_1,b_2,b_3\}.
 $$
-The vertices $\ast,a_1,a_2,a_3$ form a $4$-cycle and the vertices $\ast,b_1,b_2,b_3$ form another $4$-cycle; every cycle edge has length $1$.
+The vertices $\ast,a_1,a_2,a_3$ form a $4$-cycle and $\ast,b_1,b_2,b_3$ form another $4$-cycle; every cycle edge has length $1$.
 
 Put
 $$
@@ -16,18 +16,30 @@ $$
 U=16L-12M,\qquad V=12M,
 $$
 $$
-A=-3L^2-6LM+3M^2-16L+12M+1,
+C_+=-3L^2-6LM+3M^2-16L+12M,
 $$
 $$
-B=13L^2-30LM+15M^2-12M+1.
+C_-=13L^2-30LM+15M^2-12M,
 $$
-Add the chords
 $$
-\{a_1,a_3\},\qquad \{b_1,b_3\},\qquad \{a_2,b_2\}
+D_+=\frac{-34L^3+144L^2M+57L^2-198LM^2-54LM+48L+102M^3+45M^2-36M}{3},
 $$
-of lengths
 $$
-2-4Ls+s^2,\qquad 2-4Ls,\qquad 4-(8L-12M)s,
+D_-=-4L^3-30L^2M-13L^2+48LM^2+54LM-16M^3-33M^2+12M.
+$$
+Define
+$$
+g=-\frac{C_++C_-}{4},\qquad h=\frac{C_--C_+}{2},
+$$
+$$
+u=\frac{5-D_+-D_-}{4},\qquad v=\frac{1-D_+-D_-}{4},\qquad w=\frac{D_--D_+-1}{2}.
+$$
+Add the chords $\{a_1,a_3\},\{b_1,b_3\},\{a_2,b_2\}$ of lengths
+$$
+2-4Ls+gs^2+us^3,\qquad 2-4Ls+gs^2+vs^3,
+$$
+$$
+4-(8L-12M)s+hs^2+ws^3,
 $$
 respectively. Let $d_s$ be the shortest-path metric on $Y$.
 
@@ -39,11 +51,10 @@ Let
 $$
 \wp(s)=\sup\{p>0:(Y,d_s)\text{ has }p\text{-negative type}\}.
 $$
-Determine the ordered triple
+Determine
 $$
-\left(\wp(0),\wp'(0^+),\wp''(0^+)\right),
+\left(\wp(0),\wp'(0^+),\wp''(0^+),\wp'''(0^+)\right).
 $$
-where the derivatives are taken from the right.
 
 ---
 
@@ -60,4 +71,4 @@ where the derivatives are taken from the right.
 
 ## Domain Explanation
 
-The problem concerns the supremal negative-type exponent of a finite shortest-path metric at a two-dimensional critical kernel. The first-order kernel pencil is fully degenerate, while an asymmetric quadratic chord correction creates a coupled second-order critical matrix that must be resolved after a Schur-complement reduction.
+The problem studies a finite shortest-path metric with a two-dimensional critical kernel. The chord coefficients cancel the complete first- and second-order kernel splittings, so the first decisive boundary term appears only after a third-order Schur-complement reduction.
