@@ -1,134 +1,134 @@
 ## Steps
 
-Step 1: Convert the determinant condition to a stationary ratio
+Step 1: Convert the determinant to a stationary product
 For
 $$
-S_r(N,a)=\sum_{k=0}^{N}\frac{(-1)^k\binom Nk}{(k+a)^r},
+A_N(a)=\sum_{k=0}^{N}\frac{(-1)^k\binom Nk}{k+a}=B(a,N+1),
 $$
-the beta identity gives
+we have
 $$
-S_1(N,a)=B(a,N+1),\qquad S_2(N,a)=-\frac{\partial}{\partial a}B(a,N+1).
+\sum_{k=0}^{N}\frac{(-1)^k\binom Nk}{(k+a)^2}=-A_N'(a).
 $$
-Write
+Write $L=\log n$, $N=n^3$, $m=m_n=\lfloor2n^2/3\rfloor$, and
 $$
 F(a)=T_1(n,a),\qquad G(a)=U_1(n,a).
 $$
-Then $T_2=-F'$ and $U_2=-G'$, so
+Then the determinant condition is
 $$
-\det\begin{pmatrix}T_1&U_1\\ T_2&U_2\end{pmatrix}
-=F'G-FG'.
+F'G-FG'=0,
 $$
-Thus the required root is characterized by
+so $(G/F)'=0$. Put
 $$
-\frac{d}{da}\log\frac{G(a)}{F(a)}=0.
+p_n(a)=\frac{e^2A_N(a)}{F(a)},\qquad
+r_n(a)=\frac{A_{N+m}(a)}{A_N(a)},\qquad h_n(a)=1-r_n(a).
 $$
-
-Step 2: Isolate the single finite-cutoff perturbation exactly
-Put $N=n^3$ and
+Since $G/F=1-p_nh_n$, the root condition is exactly
 $$
-B_q(a)=B(a,n^q+1).
-$$
-Only the $q=3$ cutoff differs between $F$ and $G$. The beta recurrence
-$$
-B(a,N+2)=\frac{N+1}{N+a+1}B(a,N+1)
-$$
-gives
-$$
-G=F-e^2\frac{a}{N+a+1}B_3.
-$$
-Set
-$$
-p_n(a)=\frac{e^2B_3(a)}{F(a)}.
-$$
-Since $0<p_n<1$, the stationary condition is equivalent to
-$$
-\frac{d}{da}\log\left(\frac{a\,p_n(a)}{N+a+1}\right)=0.
-$$
-With $L=\log n$ and $c=aL$, define
-$$
-H_n(c)=\frac1c+\frac{d}{dc}\log p_n(c/L)-\frac{1}{L(N+c/L+1)}.
-$$
-Then $c_n=a_nL$ is the unique nearby zero of $H_n$.
-
-Step 3: Write the exact normalized weight equation
-The common factor $\Gamma(a)$ cancels from $p_n$. Put
-$$
-R_q(a)=\frac{\Gamma(n^q+1)}{\Gamma(n^q+a+1)},
-\qquad
-\rho_q(a)=\frac{e^{q-1}R_q(a)}{\sum_{j=1}^3e^{j-1}R_j(a)}.
-$$
-Then
-$$
-p_n=\rho_3,
-$$
-and differentiation gives the exact formula
-$$
-H_n(c)=\frac1c+rac1L\left(\sum_{q=1}^3\rho_q\,\psi(n^q+a+1)-\psi(n^3+a+1)\right)
--\frac{1}{L(n^3+a+1)}.
-$$
-At fixed $c$, as $n\to\infty$,
-$$
-\rho_q\to \pi_q(c):=
-\frac{e^{q-1-qc}}{\sum_{j=1}^3e^{j-1-jc}}.
-$$
-Hence
-$$
-H_n(c)\to H_0(c)=\frac1c+\sum_{q=1}^3q\pi_q(c)-3.
-$$
-At $c=1$, the three limiting weights are equal, so $H_0(1)=0$. Moreover
-$$
-H_0'(1)=-1-\operatorname{Var}_{\{1,2,3\}}(q)
-=-1-\frac23=-\frac53.
+\frac{d}{da}\log p_n(a)+\frac{d}{da}\log h_n(a)=0.
 $$
 
-Step 4: Retain the first correction that the continuum limit discards
-At $c=1$ we have $a=1/L$. Uniformly for fixed $q$,
+Step 2: Identify the limiting equation
+Put $c=aL$. As before, with
 $$
-R_q(a)=e^{-q}\left(1-\frac{a(a+1)}{2n^q}+O(n^{-2q})\right).
+R_q(a)=\frac{\Gamma(n^q+1)}{\Gamma(n^q+a+1)},\qquad
+\rho_q(a)=\frac{e^{q-1}R_q(a)}{\sum_{j=1}^3e^{j-1}R_j(a)},
 $$
-Thus only $q=1$ contributes at order $(nL)^{-1}$:
+we have $p_n=\rho_3$ and therefore
 $$
-\rho_1=\frac13-\frac{1}{9nL}+o((nL)^{-1}),
-$$
-$$
-\rho_2=\rho_3=\frac13+\frac{1}{18nL}+o((nL)^{-1}).
-$$
-Therefore
-$$
-\sum_{q=1}^3q\rho_q
-=2+\frac{1}{6nL}+o((nL)^{-1}).
+\frac1L\frac{d}{da}\log p_n
+=\frac1L\left(\sum_{q=1}^3\rho_q\psi(n^q+a+1)-\psi(n^3+a+1)\right).
 $$
 Also
 $$
+r_n(a)=\prod_{j=1}^{m}\frac{N+j}{N+a+j}.
+$$
+For fixed $c$ near $1$, the second logarithmic derivative term tends to $1/c$. Hence the normalized root equation tends to
+$$
+H_0(c)=\frac1c+\sum_{q=1}^3q\pi_q(c)-3,
+$$
+where
+$$
+\pi_q(c)=\frac{e^{q-1-qc}}{\sum_{j=1}^3e^{j-1-jc}}.
+$$
+At $c=1$ the weights are uniform, so $H_0(1)=0$, and
+$$
+H_0'(c)=-\frac1{c^2}-\operatorname{Var}_{\pi(c)}(q),
+\qquad H_0'(1)=-\frac53.
+$$
+Thus the limiting root is simple and unique.
+
+Step 3: Expand the base-column bias one order beyond the canceled term
+At $c=1$, so $a=1/L$,
+$$
+R_q(a)=n^{-qa}\left(1-\frac{a(a+1)}{2n^q}+O\!\left(\frac{a}{n^{2q}}\right)\right).
+$$
+Hence
+$$
+\sum_{q=1}^3q\rho_q
+=2+\frac{a(a+1)}{6n}+O\!\left(\frac{a}{n^2}\right).
+$$
+Moreover
+$$
 \psi(n^q+a+1)=qL+\frac{a+1/2}{n^q}+O(n^{-2q}),
 $$
-so the nonlogarithmic digamma correction contributes another
+so the $q=1$ digamma correction contributes
 $$
-\frac{1}{6nL}+o((nL)^{-1}).
+\frac{a+1/2}{3nL}+o((nL^2)^{-1}).
 $$
-The final term in $H_n$ is $O((Ln^3)^{-1})$. Consequently
+Substituting $a=1/L$ gives
 $$
-H_n(1)=\frac{1}{3nL}+o((nL)^{-1}).
-$$
-
-Step 5: Extract the finite-size root displacement
-Since $H_n\to H_0$ in $C^1$ near $1$ and $H_0'(1)=-5/3$, the unique nearby zero satisfies
-$$
-c_n-1=-\frac{H_n(1)}{H_0'(1)}+o((nL)^{-1})
-=\frac{1}{5nL}+o((nL)^{-1}).
-$$
-Because $c_n=a_n\log n$,
-$$
-n\log n\,(a_n\log n-1)\longrightarrow\frac15.
+\frac1L\frac{d}{da}\log p_n
+=-1+\frac{1}{3nL}+\frac{1}{2nL^2}
++o((nL^2)^{-1}).
 $$
 
-Final Answer: $\boxed{\frac15}$
+Step 4: Use the mesoscopic cutoff to cancel the entire first finite-size scale
+Let
+$$
+s_n=\sum_{j=1}^{m}\frac1{N+j}.
+$$
+Since $m=\lfloor2n^2/3\rfloor$ and $N=n^3$,
+$$
+s_n=\frac{2}{3n}+O(n^{-2}).
+$$
+From the product for $r_n$,
+$$
+-\log r_n(a)=a s_n+O(a^2n^{-4}).
+$$
+Therefore, with $h_n=1-r_n$,
+$$
+\frac{d}{da}\log h_n
+=\frac1a-\frac{s_n}{2}+O(as_n^2),
+$$
+and at $a=1/L$,
+$$
+\frac1L\frac{d}{da}\log h_n
+=1-\frac{1}{3nL}+o((nL^2)^{-1}).
+$$
+The $1/(nL)$ term cancels the one from Step 3, leaving for the exact normalized equation
+$$
+H_n(1)=\frac{1}{2nL^2}+o((nL^2)^{-1}).
+$$
+This cancellation is why the one-step cutoff analysis no longer sees the required scale.
+
+Step 5: Extract the root displacement
+The normalized equations converge in $C^1$ near $c=1$, while $H_0'(1)=-5/3$. Hence the unique nearby zero $c_n=a_nL$ satisfies
+$$
+c_n-1=-\frac{H_n(1)}{H_0'(1)}+o((nL^2)^{-1})
+=\frac{3}{10nL^2}+o((nL^2)^{-1}).
+$$
+Therefore
+$$
+n(\log n)^2(a_n\log n-1)\longrightarrow\frac3{10}.
+$$
+
+Final Answer: $\boxed{\frac3{10}}$
 
 ---
 
 ## Answer
 
-$\frac15$
+$\frac3{10}$
 
 ---
 
@@ -142,14 +142,14 @@ $\frac15$
 
 ## Solution Concepts
 
-- Beta-function recurrence
 - determinant stationary condition
-- finite-size asymptotics
-- digamma expansion
-- singular continuum cancellation
+- mesoscopic Beta cutoff
+- finite-size cancellation
+- digamma asymptotics
+- competing asymptotic scales
 
 ---
 
 ## Black-Box Audit — no issues found
 
-The leading Beta/Gamma continuum model places the root exactly at $a\log n=1$ and therefore cannot determine the requested limit. The answer is controlled by the first finite-cutoff correction, with the $q=1$ denominator effect competing against the $q=3$ one-step perturbation through the stationary ratio equation.
+The hardening is structural: the third cutoff is moved by a mesoscopic amount of order $n^2$, and its first finite-size effect is tuned to cancel the $q=1$ Beta bias. The root is therefore determined by the next logarithmic correction rather than by the continuum model or a one-step Beta recurrence.
