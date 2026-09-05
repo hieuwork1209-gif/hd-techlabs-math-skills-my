@@ -1,0 +1,9 @@
+{
+  "problem": "problem81",
+  "state": "MAIN_READY_FOR_RAINIER",
+  "problem_blob_sha": "ff50a0fc29787da306277767cd8ab550797b1e06",
+  "main_problem_blob_sha": "ff50a0fc29787da306277767cd8ab550797b1e06",
+  "main_solution_blob_sha": "181bf730304f3c5979cc3d88ddb7682d0eb9e1b7",
+  "main_commit_sha": "bd721e5639a31296c8c601b7e923908cbcad49d9",
+  "reason": "LOCAL_STUMPED_PROMOTED_TO_MAIN"
+}
