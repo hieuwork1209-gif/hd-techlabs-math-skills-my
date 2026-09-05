@@ -2,13 +2,16 @@
 """Strict ChatGPT-linked wrapper for codex-adversary-watch.py.
 
 The base watcher remains responsible for solving and publishing solver results.
-This wrapper adds three guarantees:
+This wrapper adds four guarantees:
 
 1. Default solver settings are GPT-5.5 / medium / 2100 seconds.
 2. Before every desktop notification, refresh
    solver-results/<problem>/chat-binding.json from origin/adversary/<problem>.
 3. A clickable PowerShell toast targets only the bound ChatGPT conversation;
    GitHub result URLs are never used as a notification fallback.
+4. A matching solver-results/<problem>/terminal.json with state
+   MAIN_READY_FOR_RAINIER stops the watcher cleanly instead of repeating
+   "already tested" forever.
 """
 from __future__ import annotations
 
@@ -23,6 +26,7 @@ from urllib.parse import urlparse
 
 HERE = Path(__file__).resolve().parent
 BASE_PATH = HERE / "codex-adversary-watch.py"
+TERMINAL_STATE = "MAIN_READY_FOR_RAINIER"
 
 
 def load_base():
@@ -94,6 +98,7 @@ def main() -> int:
     inject_defaults(sys.argv)
     base = load_base()
     binding_path = f"solver-results/{route.problem}/chat-binding.json"
+    terminal_path = f"solver-results/{route.problem}/terminal.json"
     explicit_chat = valid_chat_url(route.chat_url)
 
     def remote_chat_url() -> str | None:
@@ -104,7 +109,31 @@ def main() -> int:
             return None
         return url_from_binding(raw)
 
+    def matching_terminal_state() -> dict | None:
+        """Return the terminal marker only when it matches the current problem blob."""
+        try:
+            base.fetch_branch(route.branch)
+            ref = f"origin/{route.branch}"
+            problem_path = base.resolve_problem_path(route.problem, route.branch)
+            current_blob = base.git("rev-parse", f"{ref}:{problem_path}")
+            raw = base.git("show", f"{ref}:{terminal_path}", check=False)
+            if not raw:
+                return None
+            data = json.loads(raw)
+        except Exception:
+            return None
+        if not isinstance(data, dict):
+            return None
+        if str(data.get("problem") or "") != route.problem:
+            return None
+        if str(data.get("state") or "") != TERMINAL_STATE:
+            return None
+        if str(data.get("problem_blob_sha") or "") != current_blob:
+            return None
+        return data
+
     original_chat_url_for = base.chat_url_for
+    original_solve_once = base.solve_once
 
     def chat_url_for(problem: str, cli_url: str | None = None) -> str | None:
         # Explicit CLI binding is strongest. Otherwise prefer the GitHub relay
@@ -113,6 +142,20 @@ def main() -> int:
         if explicit:
             return explicit
         return remote_chat_url() or valid_chat_url(original_chat_url_for(problem, None))
+
+    def solve_once(*args, **kwargs):
+        terminal = matching_terminal_state()
+        if terminal:
+            blob = str(terminal["problem_blob_sha"])
+            print(
+                f"[codex-adversary] {route.problem}: {blob[:12]} "
+                f"{TERMINAL_STATE}; stopping watcher",
+                flush=True,
+            )
+            # SystemExit is deliberately used instead of Exception so the base
+            # watch loop's retry handler does not swallow the terminal signal.
+            raise SystemExit(0)
+        return original_solve_once(*args, **kwargs)
 
     def strict_notification(
         problem: str,
@@ -154,6 +197,7 @@ def main() -> int:
         return False, detail
 
     base.chat_url_for = chat_url_for
+    base.solve_once = solve_once
     base.send_desktop_notification = strict_notification
     return base.main()
 
