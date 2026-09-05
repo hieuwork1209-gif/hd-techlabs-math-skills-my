@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Parameterize the lifts and expose the cyclic phase coupling.
+Step 1: Parameterize the lifts and the cyclic first moment.
 Put
 $$
 Q=\ell^r,\qquad h=\ell^{r-1},\qquad m=2q^2,\qquad d=\frac{q(2q-1)}Q.
@@ -12,7 +12,7 @@ $$
 $$
 C=d+2\ell-4,\qquad E=d-4.
 $$
-The primes $q,q+2Q,q+4Q$ are all congruent to $2^{-1}$ modulo $\ell$, hence are inert in $\mathbb Q(\zeta)$ because $2$ generates $\mathbb F_\ell^\times$.
+The primes $q,q+2Q,q+4Q$ are congruent to $2^{-1}$ modulo $\ell$, hence are inert in $\mathbb Q(\zeta)$ because $2$ generates $\mathbb F_\ell^\times$.
 
 Write indices cyclically and let $P(s_1,\ldots,s_r)=(s_2,\ldots,s_r,s_1)$. A lift of $\pi$ has the form
 $$
@@ -33,11 +33,11 @@ $$
 $$
 
 Step 2: Convert the cycle data into a Fourier-magnitude flag.
-Let $D_s=\operatorname{diag}(s_1,\ldots,s_r)$. For $i$ in block $T$ and $h$ in block $R$, two applications of $\sigma$ on $\Omega_k$ translate the fiber by
+Let $D_s=\operatorname{diag}(s_1,\ldots,s_r)$. Two applications of $\sigma$ on $\Omega_k$, with indices in blocks $T,R$, translate the fiber by
 $$
 w+Z_T-Z_R,\qquad w=2D_sk.
 $$
-Since $D_s$ is invertible, put $\overline W=2D_sW$ and $\overline U=2D_sU$. If
+Put $\overline W=2D_sW$ and $\overline U=2D_sU$. If
 $$
 N_w=\sum_zm_zm_{z+w},
 $$
@@ -45,7 +45,7 @@ then the number of base orbits with zero two-step translation is
 $$
 R_w=2N_w-m\delta_{w,0}. \tag{3}
 $$
-Each such base orbit yields $Q$ cycles of length $2$, while every nonzero translation has order $\ell$. Hence the two prescribed gaps are equivalent to
+Each such base orbit yields $Q$ cycles of length $2$, while every nonzero translation has order $\ell$. Thus the prescribed gaps are equivalent to
 $$
 R_w=R_0+8\ell(q+3Q)1_{\overline U}(w)+8\ell^2(q+Q)1_{\overline W}(w). \tag{4}
 $$
@@ -58,23 +58,19 @@ q+2Q,&\chi\in\overline W^\perp\setminus\overline U^\perp,\\
 q,&\chi\notin\overline W^\perp.
 \end{cases} \tag{5}
 $$
-For $0\le t<r$, define
-$$
-c_s^{(t)}=\left(\frac{s_{1+t}}{s_1},\ldots,\frac{s_{r+t}}{s_r}\right)
-$$
-with cyclic indices. Then $D_sc_s^{(t)}=P^ts$, so the extra incidence condition becomes
+For $c_s^{(t)}=(s_{1+t}/s_1,\ldots,s_{r+t}/s_r)$, one has $D_sc_s^{(t)}=P^ts$. Hence the incidence condition is
 $$
 P^ts\in\overline U\setminus\overline W\qquad(0\le t<r). \tag{6}
 $$
 
 Step 3: Recover the affine flag and its phase center.
-Fix a nontrivial projective character direction $L$. By (5), its nontrivial Fourier coefficients have one absolute value $p_L\in\{q,q+2Q,q+4Q\}$. Since $p_L$ is inert, $(M(\chi))=(p_L)$, so $M(\chi)/p_L$ is an algebraic integer all of whose conjugates have absolute value $1$ and therefore is a root of unity.
+Fix a nontrivial projective character direction $L$. By (5), its nontrivial Fourier coefficients have one absolute value $p_L\in\{q,q+2Q,q+4Q\}$. Since $p_L$ is inert, $(M(\chi))=(p_L)$, so $M(\chi)/p_L$ is an algebraic integer all of whose conjugates have absolute value $1$, hence a root of unity.
 
-Let $\lambda=1-\zeta$. Since every character value is $1$ modulo $\lambda$,
+Let $\lambda=1-\zeta$. Every character value is $1$ modulo $\lambda$, so
 $$
 M(\chi)\equiv2q^2\pmod\lambda,
 $$
-and $p_L\equiv q\pmod\ell$, hence $M(\chi)/p_L\equiv1\pmod\lambda$. Thus every projective direction determines a distinguished affine hyperplane carrying the Fourier phase.
+and $p_L\equiv q\pmod\ell$ gives $M(\chi)/p_L\equiv1\pmod\lambda$. Therefore each projective direction determines a distinguished affine hyperplane carrying the Fourier phase.
 
 Put
 $$
@@ -84,11 +80,7 @@ Let $e(z)$ count all distinguished hyperplanes through $z$, let $f(z)$ count tho
 $$
 Qm_z=m-qD-2Q(\ell+2)+\ell q\,e(z)+2\ell Q\,f(z)+2\ell Q\,I(z). \tag{7}
 $$
-Reducing modulo $Q$ gives $e(z)\equiv d_0\pmod h$. Since $0\le e(z)\le D=d_0+h$, every $e(z)$ is either $d_0$ or $D$. Counting incidences shows exactly one point has value $D$; call it $z_0$. Therefore
-$$
-f(z)=1+\ell 1_{z_0+\overline W}(z),\qquad I(z)=1_{z_0+\overline U}(z),
-$$
-and
+Reducing modulo $Q$ gives $e(z)\equiv d_0\pmod h$. Since $0\le e(z)\le D=d_0+h$, every $e(z)$ is either $d_0$ or $D$. Counting incidences shows exactly one point has value $D$; call it $z_0$. Hence
 $$
 m_z=d-4+2\ell^2 1_{z_0+\overline W}(z)+2\ell 1_{z_0+\overline U}(z)+q\delta_{z_0}(z). \tag{8}
 $$
@@ -96,62 +88,83 @@ Taking the first moment and using (2) gives
 $$
 qz_0=Ps. \tag{9}
 $$
-The four multiplicity levels are $A,B,C,E$, so the profile recovers $z_0$ and the transformed flag. Conversely, every admissible $s$ and transformed flag satisfying (6) gives exactly one profile of the form (8).
+The four multiplicity levels $A,B,C,E$ are distinct, so the profile recovers $z_0$ and the transformed flag. Conversely, every admissible $s$ and transformed flag satisfying (6) gives exactly one such profile.
 
-Step 4: Identify the conjugacy invariants.
-For $\tau\in\widetilde C_\pi$ with base permutation in $C_{S_n}(\pi)$, direct conjugation gives
-$$
-s_j'=s_j,\qquad Z_T'=Z_{c^{-1}T}. \tag{10}
-$$
-Thus $s$ and the multiplicity profile are orbit invariants. Conversely, the wreath product $C_{S_n}(\pi)\cong C_2\wr S_m$ permutes the transposition blocks arbitrarily, and an element over $M$ removes the remaining opposite endpoint phases. Hence two qualifying lifts are conjugate exactly when they have the same $s$ and the same multiplicity profile.
-
-Step 5: Solve the periodic affine recurrence and count the flags.
+Step 4: Classify the reciprocal-mode phase vectors.
 The statement imposes
 $$
-\mathbf1\in\operatorname{span}\{s,Ps\},\qquad \sum_js_j=r,\qquad \prod_js_j=2. \tag{11}
+\mathbf1\in\operatorname{span}\{s,Ps+P^{-1}s\},\qquad \sum_js_j=r,\qquad \prod_j(s_j-1)=2. \tag{10}
 $$
-If $s$ and $Ps$ were dependent, (11) would force $s$ to be constant. The sum condition would then give $s=\mathbf1$, contradicting the product condition. Thus $s,Ps$ are independent, and uniquely
+If the coefficient of $Ps+P^{-1}s$ vanished, $s$ would be constant; the sum condition would give $s=\mathbf1$, contradicting the product condition. Thus
 $$
-Ps=a\mathbf1+bs
+Ps+P^{-1}s=a\mathbf1+bs.
 $$
-with $a\ne0$. Summing coordinates and using $\sum_js_j=r$ gives $a=1-b$. Therefore
+Summing coordinates gives $a+b=2$. After putting $y=s-\mathbf1$, we obtain
 $$
-s_{j+1}=1-b+bs_j. \tag{12}
+Py+P^{-1}y=by. \tag{11}
 $$
-The cases $b=0$ or $1$ are constant, so $b\ne0,1$. Writing $u=s_1-1\ne0$ gives
+A nonconstant $r$-periodic solution therefore has
 $$
-s_j=1+ub^{j-1}. \tag{13}
+s_j=1+u\omega^{j-1}+v\omega^{-(j-1)}, \tag{12}
 $$
-Cyclic periodicity forces $b^r=1$. Since $r$ is prime and $r\mid\ell-1$, $b$ has order $r$, and there are $r-1$ choices for $b$. As $r$ is odd,
-$$
-\prod_{j=0}^{r-1}(1+ub^j)=1+u^r.
-$$
-The product condition in (11) is therefore $u^r=1$, giving exactly $r$ choices for $u$. Because the subgroup of order $r$ has odd order, it does not contain $-1$, so every coordinate in (13) is nonzero. Thus there are exactly
-$$
-r(r-1) \tag{14}
-$$
-admissible phase vectors $s$.
+where $\omega$ is a nontrivial $r$th root of unity. Since $r$ is prime, $\omega$ has order $r$. Replacing $\omega$ by $\omega^{-1}$ swaps $u,v$, so there are $(r-1)/2$ choices of reciprocal frequency pair.
 
-Let $H=\operatorname{span}\{s,Ps\}$. From (12),
+Because $r$ is odd,
 $$
-P^ts=(1-b^t)\mathbf1+b^ts,
+\prod_{j=0}^{r-1}(u\omega^j+v\omega^{-j})=u^r+v^r.
 $$
-so all $P^ts$ lie in $H$, and their $r$ projective lines are distinct. The number of hyperplanes $\overline U$ containing $H$ is
+Now $\ell=2r+1$, so every nonzero $x\in\mathbb F_\ell$ has $x^r=\pm1$. The product condition in (10) forces
 $$
-\frac{\ell^{r-2}-1}{\ell-1}. \tag{15}
+u^r=v^r=1. \tag{13}
 $$
-For fixed $\overline U$, a hyperplane $\overline W\subset\overline U$ avoids all $r$ vectors $P^ts$ exactly when the kernel line of its restriction to $H$ avoids those $r$ projective points. There are $\ell+1-r$ possible kernel lines, and each has $\ell^{r-3}$ extensions to $\overline U$. Hence
+Let $H\subset\mathbb F_\ell^\times$ be the subgroup of order $r$. For fixed reciprocal frequencies, $u,v\in H$. Put $c=uv\in H$. As $j$ varies, $a=u\omega^j$ runs through $H$, and $s_j=0$ exactly when
 $$
-F=(\ell+1-r)\ell^{r-3}\frac{\ell^{r-2}-1}{\ell-1}. \tag{16}
+a^2+a+c=0. \tag{14}
 $$
-Multiplying (14) and (16) gives the number of conjugacy orbits.
-Final Answer: $\boxed{r(r-1)(\ell+1-r)\ell^{r-3}\frac{\ell^{r-2}-1}{\ell-1}}$
+Let $\chi$ be the quadratic character. Since $2$ is primitive, $\chi(2)=-1$; also $\ell\equiv3\pmod4$, so $\chi(-1)=-1$. For $a\in H$, the value $c=-a(a+1)$ lies in $H$ exactly when $\chi(a+1)=-1$. The number of such $a$ is
+$$
+\frac14\sum_{a\ne0,-1}(1+\chi(a))(1-\chi(a+1))=\frac{\ell+1}{4}=\frac{r+1}{2}. \tag{15}
+$$
+The map $a\mapsto-a(a+1)$ pairs $a$ with $-1-a$, with the single fixed point $a=-1/2\in H$. Hence the number of bad products $c\in H$ is $(r+3)/4$, and the number of good products is $3(r-1)/4$. For each good $c$ there are $r$ pairs $(u,v)\in H^2$ with $uv=c$. Thus the number of admissible phase vectors is
+$$
+N_s=\frac{r-1}{2}\cdot r\cdot\frac{3(r-1)}4=\frac{3r(r-1)^2}{8}. \tag{16}
+$$
+
+Step 5: Count hyperplanes avoiding the conic orbit.
+For a phase vector (12), let
+$$
+H_s=\operatorname{span}\{\mathbf1,(\omega^{j-1})_j,(\omega^{-(j-1)})_j\}.
+$$
+It has dimension $3$, and in projective coordinates on $\mathbb P(H_s)$ the $r$ points $[P^ts]$ are
+$$
+[1:u\omega^t:v\omega^{-t}],
+$$
+so they lie on the nonsingular conic $YZ=uvX^2$. In particular, they are distinct and no three are collinear.
+
+The number of hyperplanes $\overline U\subset G$ containing $H_s$ is
+$$
+\frac{\ell^{r-3}-1}{\ell-1}. \tag{17}
+$$
+Fix one. A hyperplane $\overline W\subset\overline U$ avoids all $r$ orbit vectors precisely when the projective kernel line of its restriction to $H_s$ avoids all $r$ conic points. There are $\ell^2+\ell+1$ projective lines in $\mathbb P(H_s)$. The union of the lines through at least one selected conic point has size
+$$
+r(\ell+1)-\binom r2,
+$$
+because no line contains three selected points. Hence the number of allowable kernel lines is
+$$
+L_0=\ell^2+\ell+1-r(\ell+1)+\binom r2=\frac{5r^2+7r+6}{2}. \tag{18}
+$$
+For each kernel line there are $\ell^{r-4}$ extensions to a hyperplane of $\overline U$. Therefore the number of flags for each admissible $s$ is
+$$
+F=\ell^{r-4}\frac{\ell^{r-3}-1}{\ell-1}\frac{5r^2+7r+6}{2}. \tag{19}
+$$
+As in the previous conjugation calculation, $s$ and the multiplicity profile classify the $\widetilde C_\pi$-orbits. Multiplying (16) and (19) gives the required count.
+Final Answer: $\boxed{\frac{3r(r-1)^2(5r^2+7r+6)}{16}\ell^{r-4}\frac{\ell^{r-3}-1}{\ell-1}}$
 
 ---
 
 ## Answer
 
-$r(r-1)(\ell+1-r)\ell^{r-3}\frac{\ell^{r-2}-1}{\ell-1}$
+$\frac{3r(r-1)^2(5r^2+7r+6)}{16}\ell^{r-4}\frac{\ell^{r-3}-1}{\ell-1}$
 
 ---
 
@@ -167,6 +180,6 @@ $r(r-1)(\ell+1-r)\ell^{r-3}\frac{\ell^{r-2}-1}{\ell-1}$
 
 - cyclic Kummer coupling of total phases
 - three-level autocorrelation on a finite vector space
-- affine-hyperplane phase recovery
-- periodic affine recurrences over finite fields
-- projective incidence for a cyclic orbit
+- reciprocal-mode cyclic recurrences
+- quadratic-character exclusion of zero phases
+- conic incidence in a projective plane
