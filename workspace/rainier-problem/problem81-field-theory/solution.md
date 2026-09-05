@@ -1,12 +1,12 @@
 ## Steps
 
-Step 1: Parameterize the lifts, including the unconstrained total phase.
+Step 1: Parameterize the lifts and derive the coupled total phase.
 Put
 $$
 Q=\ell^r,\qquad h=\ell^{r-1},\qquad g=\ell^{r-2},\qquad m=2q^2,
 $$
 $$
-d=\frac{q(2q-1)}Q,\qquad D_1=\frac{Q-1}{\ell-1},\qquad D_2=\frac{h-1}{\ell-1}.
+d=\frac{q(2q-1)}Q.
 $$
 Also set
 $$
@@ -26,11 +26,15 @@ with every $s_j\ne0$. For $j<r$, the chosen product $\prod_i\alpha_i^{(j)}\in M$
 $$
 \sum_i a_i^{(j)}=0.
 $$
-For $j=r$, the relation hypothesis says that the classes of the $g_i^{(r)}$ are fully independent, so there is no corresponding sum constraint. Write
+For the last family, the chosen relation
 $$
-t=\sum_i a_i^{(r)}\in\mathbb F_\ell.
+\prod_i\alpha_i^{(r)}=\prod_{j=1}^r\rho_j
 $$
-Thus $t$ is arbitrary.
+gives, after applying $\sigma$,
+$$
+\sum_i a_i^{(r)}=\sum_{j=1}^r s_j=:t. \tag{1}
+$$
+Thus the total phase is no longer independent of the nonzero vector $s=(s_1,\ldots,s_r)$.
 
 For each transposition block $T$ of $\pi$, define
 $$
@@ -38,8 +42,9 @@ Z_T=\left(\sum_{i\in T}a_i^{(1)},\ldots,\sum_{i\in T}a_i^{(r)}\right)\in G:=\mat
 $$
 and let $m_z$ be the number of blocks with label $z$. If $e_r$ is the last standard basis vector, then
 $$
-\sum_zm_z=m,\qquad \sum_zm_zz=t e_r. \tag{1}
+\sum_zm_z=m,\qquad \sum_zm_zz=t e_r. \tag{2}
 $$
+The extra condition in the statement is $t e_r\in U\setminus W$, so necessarily $t\ne0$.
 
 Step 2: Convert the three cycle-type regimes into three Fourier magnitudes.
 For an index $(i,h,u)$ of $\Omega_k$, if $i$ lies in block $T$ and $h$ lies in block $R$, two applications of $\sigma$ translate the fiber by
@@ -54,11 +59,11 @@ N_w=\sum_{z\in G}m_zm_{z+w}.
 $$
 For distinct transposition blocks an ordered block-pair contributes two base orbits, while a diagonal block contributes one internal orbit when $w=0$. Hence the number of base orbits whose two-step translation is zero is
 $$
-R_w=2N_w-m\delta_{w,0}. \tag{2}
+R_w=2N_w-m\delta_{w,0}. \tag{3}
 $$
 Each such base orbit gives exactly $Q$ cycles of length $2$, while a nonzero translation has order $\ell$ and gives cycles of length $2\ell$. Thus the full cycle type is determined by $R_w$. The stated gaps are therefore equivalent to
 $$
-R_w=R_0+8\ell(q+3Q)1_U(w)+8\ell^2(q+Q)1_W(w) \tag{3}
+R_w=R_0+8\ell(q+3Q)1_U(w)+8\ell^2(q+Q)1_W(w) \tag{4}
 $$
 for some constant $R_0$.
 
@@ -66,7 +71,7 @@ For an additive character $\chi$ of $G$, write
 $$
 M(\chi)=\sum_zm_z\chi(z).
 $$
-With the unnormalized Fourier transform, $\widehat N(\chi)=|M(\chi)|^2$. For nontrivial $\chi$, equations (2) and (3) give
+With the unnormalized Fourier transform, $\widehat N(\chi)=|M(\chi)|^2$. For nontrivial $\chi$, equations (3) and (4) give
 $$
 2|M(\chi)|^2-m=
 8Q(q+Q)1_{W^\perp}(\chi)+8Q(q+3Q)1_{U^\perp}(\chi).
@@ -78,12 +83,12 @@ $$
 q+4Q,&\chi\in U^\perp\setminus\{1\},\\
 q+2Q,&\chi\in W^\perp\setminus U^\perp,\\
 q,&\chi\notin W^\perp.
-\end{cases} \tag{4}
+\end{cases} \tag{5}
 $$
 Here $W^\perp$ has dimension $2$ and $U^\perp$ is a line inside it.
 
-Step 3: Recover the affine flag and its nontrivial center.
-Fix a nontrivial projective character direction $L$. Its $\ell-1$ nontrivial characters are Galois conjugate under $\zeta\mapsto\zeta^a$, and by (4) all have one common absolute value
+Step 3: Recover the affine flag and its center.
+Fix a nontrivial projective character direction $L$. Its $\ell-1$ nontrivial characters are Galois conjugate under $\zeta\mapsto\zeta^a$, and by (5) all have one common absolute value
 $$
 p_L\in\{q,q+2Q,q+4Q\}.
 $$
@@ -105,17 +110,17 @@ D=\frac{Q-1}{\ell-1},
 $$
 let $e(z)$ be the number of all $D$ distinguished affine hyperplanes containing $z$, let $\mathcal S=\mathbb P(W^\perp)$ be the $\ell+1$ special directions, let $f(z)$ count the distinguished hyperplanes from $\mathcal S$ containing $z$, and let $I(z)$ be the indicator of the distinguished hyperplane for the line $U^\perp$. Fourier inversion gives
 $$
-Qm_z=m-qD-2Q(\ell+2)+\ell q\,e(z)+2\ell Q\,f(z)+2\ell Q\,I(z). \tag{5}
+Qm_z=m-qD-2Q(\ell+2)+\ell q\,e(z)+2\ell Q\,f(z)+2\ell Q\,I(z). \tag{6}
 $$
-Reducing (5) modulo $Q$ and using $m=2q^2\equiv q\pmod Q$ yields
+Reducing (6) modulo $Q$ and using $m=2q^2\equiv q\pmod Q$ yields
 $$
-1-D+\ell e(z)\equiv0\pmod Q. \tag{6}
+1-D+\ell e(z)\equiv0\pmod Q. \tag{7}
 $$
 Set
 $$
 d_0=\frac{h-1}{\ell-1}.
 $$
-Then $D=d_0+h$ and $D-1=\ell d_0$, so (6) gives
+Then $D=d_0+h$ and $D-1=\ell d_0$, so (7) gives
 $$
 e(z)\equiv d_0\pmod h.
 $$
@@ -133,20 +138,18 @@ and the distinguished hyperplane for $U^\perp$ is $z_0+U$, so
 $$
 I(z)=1_{z_0+U}(z).
 $$
-Also $e(z)=d_0+h\delta_{z_0}(z)$. Substituting into (5) gives
+Also $e(z)=d_0+h\delta_{z_0}(z)$. Substituting into (6) gives
 $$
-m_z=d-4+2\ell^2 1_{z_0+W}(z)+2\ell 1_{z_0+U}(z)+q\delta_{z_0}(z). \tag{7}
+m_z=d-4+2\ell^2 1_{z_0+W}(z)+2\ell 1_{z_0+U}(z)+q\delta_{z_0}(z). \tag{8}
 $$
-Because $r\ge3$, both $W$ and $U$ have positive dimension. In the vector space $G$, the sum of all points of $G$, of $z_0+W$, and of $z_0+U$ is therefore $0$. Taking the first moment of (7) and using (1) gives
+Taking the first moment of (8) and using (2) gives
 $$
 qz_0=t e_r,
 $$
 so
 $$
-z_0=q^{-1}t e_r. \tag{8}
+z_0=q^{-1}t e_r. \tag{9}
 $$
-Thus the phase center is not forced to be $0$; it records the unconstrained total phase $t$.
-
 The four multiplicity levels are
 $$
 m_{z_0}=A,
@@ -156,51 +159,54 @@ m_z=B\quad(z\in z_0+W\setminus\{z_0\}),\qquad
 m_z=C\quad(z\in z_0+U\setminus(z_0+W)),
 $$
 $$
-m_z=E\quad(z\notin z_0+U). \tag{9}
+m_z=E\quad(z\notin z_0+U). \tag{10}
 $$
-They are distinct, so the profile recovers $z_0$ and the flag. Conversely, for every $t\in\mathbb F_\ell$ and every flag $W\subset U$ of the required codimensions, taking $z_0=q^{-1}t e_r$ and using (9) gives total mass $m$, first moment $t e_r$, and Fourier magnitudes (4), hence exactly the required cycle data.
+They are distinct, so the profile recovers $z_0$ and the flag. Since scalar multiplication by $q^{-1}$ preserves the linear strata, the condition $t e_r\in U\setminus W$ is equivalent to $z_0\in U\setminus W$. Conversely, every nonzero $t$ and every flag with $e_r\in U\setminus W$ gives exactly one qualifying profile by (10).
 
-Step 4: Classify the centralizer-conjugacy orbits.
-Let $\tau\in\widetilde C_\pi$ have base permutation $c=\pi_\tau\in C_{S_n}(\pi)$, and write
+Step 4: Classify and count the centralizer-conjugacy orbits.
+Let $\tau\in\widetilde C_\pi$ have base permutation $c=\pi_\tau\in C_{S_n}(\pi)$. The same conjugation calculation as for the block labels gives
 $$
-\tau(\alpha_i^{(j)})=\zeta^{b_i^{(j)}}\alpha_{c(i)}^{(j)},\qquad
-\tau(\rho_j)=\zeta^{u_j}\rho_j.
+s_j'=s_j,\qquad Z_T'=Z_{c^{-1}T}.
 $$
-A direct conjugation calculation gives
+Hence $s$, and therefore $t=\sum_j s_j$, together with the multiplicity profile are orbit invariants. Conversely, if two lifts have the same $s$ and the same profile, the wreath product
 $$
-s_j'=s_j,
+C_{S_n}(\pi)\cong C_2\wr S_m
 $$
-$$
-a_i'^{(j)}=a_{c^{-1}(i)}^{(j)}+b_{\pi c^{-1}(i)}^{(j)}-b_{c^{-1}(i)}^{(j)}.
-$$
-Hence $t'=t$ and, for each transposition block $T$,
-$$
-Z_T'=Z_{c^{-1}T}. \tag{10}
-$$
-Therefore $s=(s_1,\ldots,s_r)$, $t$, and the multiplicity profile are orbit invariants.
+permutes the transposition blocks to match equal labels, and an element over $M$ removes the remaining opposite endpoint phases on each block. Thus the orbits are classified exactly by $s$ and the profile.
 
-Conversely, suppose two lifts have the same $s$, $t$, and profile. Since $C_{S_n}(\pi)\cong C_2\wr S_m$ permutes the $m$ transposition blocks arbitrarily, choose $c$ matching blocks label by label. After conjugating by a lift of $c$, the two lifts have the same block sum on every transposition. Their remaining exponent difference on each block is therefore of the form $(\delta,-\delta)$ in every Kummer family. Choose the $b_i^{(j)}$ block by block so that
+It remains to count the allowed $s$ and flags. Let $N_0$ be the number of tuples in $(\mathbb F_\ell^\times)^r$ with zero sum. Using additive-character orthogonality,
 $$
-b_{\pi(i)}^{(j)}-b_i^{(j)}=\delta.
+N_0=\frac1\ell\left((\ell-1)^r+(\ell-1)(-1)^r\right).
 $$
-For $j<r$, the additive constant on each block is free and can be chosen so that $\sum_i b_i^{(j)}=0$; for $j=r$ there is no sum constraint. Hence these $b_i^{(j)}$ define an element over $M$ that removes all remaining endpoint differences. Thus the orbits are classified exactly by $(s,t)$ and the profile.
+Therefore the number with $t=\sum_j s_j\ne0$ is
+$$
+N_s=(\ell-1)^r-N_0
+=\frac{\ell-1}{\ell}\left((\ell-1)^r-(-1)^r\right). \tag{11}
+$$
 
-There are $(\ell-1)^r$ choices for $s$ and $\ell$ choices for $t$. By Step 3, for each $t$ the qualifying profiles are in bijection with flags $W\subset U$ with codimensions $2$ and $1$. Their number is
+Now fix the line $L=\langle e_r\rangle$. The number of hyperplanes $U\subset G$ containing $L$ is
 $$
-\frac{\ell^r-1}{\ell-1}\frac{\ell^{r-1}-1}{\ell-1}.
+\frac{\ell^{r-1}-1}{\ell-1}.
 $$
-Therefore the number of conjugacy orbits is
+For such a fixed $U$, the number of hyperplanes $W\subset U$ not containing $L$ is
 $$
-\ell(\ell-1)^r\frac{\ell^r-1}{\ell-1}\frac{\ell^{r-1}-1}{\ell-1}
-=\ell(\ell^r-1)(\ell^{r-1}-1)(\ell-1)^{r-2}.
+\frac{\ell^{r-1}-1}{\ell-1}-\frac{\ell^{r-2}-1}{\ell-1}=\ell^{r-2}. \tag{12}
 $$
-Final Answer: $\boxed{\ell(\ell^r-1)(\ell^{r-1}-1)(\ell-1)^{r-2}}$
+Thus the number of flags with $e_r\in U\setminus W$ is
+$$
+\ell^{r-2}\frac{\ell^{r-1}-1}{\ell-1}. \tag{13}
+$$
+Multiplying (11) and (13), the required number of conjugacy orbits is
+$$
+\ell^{r-3}(\ell^{r-1}-1)\left((\ell-1)^r-(-1)^r\right).
+$$
+Final Answer: $\boxed{\ell^{r-3}(\ell^{r-1}-1)((\ell-1)^r-(-1)^r)}$
 
 ---
 
 ## Answer
 
-$\ell(\ell^r-1)(\ell^{r-1}-1)(\ell-1)^{r-2}$
+$\ell^{r-3}(\ell^{r-1}-1)((\ell-1)^r-(-1)^r)$
 
 ---
 
@@ -214,8 +220,8 @@ $\ell(\ell^r-1)(\ell^{r-1}-1)(\ell-1)^{r-2}$
 
 ## Solution Concepts
 
-- Kummer extensions with one unconstrained total phase
+- Kummer relations coupling total and nonzero phases
 - three-level autocorrelation on a finite vector space
 - affine-hyperplane phase recovery
 - centralizer conjugation and orbit invariants
-- finite-field flag counting
+- finite-field incidence and character counting
