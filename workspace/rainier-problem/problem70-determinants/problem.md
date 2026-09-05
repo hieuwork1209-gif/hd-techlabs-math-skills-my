@@ -18,20 +18,20 @@ $$
 $$
 where the $T_r$ in $\Lambda_n,\Omega_n$ are evaluated at $(n,a)$.
 
-For all sufficiently large $n$, let $a_n>0$ be the unique solution with
+For all sufficiently large $n$, let $a_n>0$ be the larger of the two solutions satisfying
 $$
-\left|a_n\log n-1\right|<\frac1{10}
+\left|a_n\log n-1\right|<\frac1{\log n}
 $$
 of
 $$
-27\Delta_n(a_n)-594(\log n)^4T_1\Lambda_n
--108(\log n)^3\Omega_n
-+392(\log n)^6T_1^3=0,
+54\Delta_n(a_n)-1188(\log n)^4T_1\Lambda_n
++189(\log n)^3\Omega_n
++1594(\log n)^6T_1^3=0,
 $$
 where $T_1,\Lambda_n,\Omega_n$ are evaluated at $(n,a_n)$.
 Determine
 $$
-\lim_{n\to\infty}(\log n)^4\bigl(a_n\log n-1\bigr).
+\lim_{n\to\infty}(\log n)^{3/2}\bigl(a_n\log n-1\bigr).
 $$
 
 ---
@@ -49,4 +49,4 @@ $$
 
 ## Domain Explanation
 
-The same one-parameter Hankel construction is retained. The added third log-derivative invariant cancels the cubic Gamma correction, so the root is selected by a fourth-order interaction between the direct $\zeta(4)$ term and the quadratic $\zeta(2)^2$ contribution.
+The Hankel determinant and its derivative invariants are tuned so the normalized limiting equation has a degenerate root. Resolving the larger nearby branch requires combining the determinant identity with the next asymptotic perturbation.
