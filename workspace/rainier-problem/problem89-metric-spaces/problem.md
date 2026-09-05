@@ -2,19 +2,23 @@
 
 ## LaTeX (Normalized)
 
-Let $\Gamma$ be the Cayley graph on $A_5$ in which two vertices $\sigma,\tau$ are adjacent exactly when $\sigma^{-1}\tau$ is a $3$-cycle. Let $d$ be the shortest-path metric on $\Gamma$.
-
-For $p>0$, say that $(A_5,d)$ has $p$-negative type if every real family $(c_\sigma)_{\sigma\in A_5}$ with $\sum_\sigma c_\sigma=0$ satisfies
+Let $n\ge4$. Let $\Gamma_n$ be the incidence graph of the complete graph $K_n$: its vertex set is
 $$
-\sum_{\sigma,\tau\in A_5}c_\sigma c_\tau\,d(\sigma,\tau)^p\le0.
+[n]\sqcup\binom{[n]}2,
+$$
+and $i\in[n]$ is adjacent to $e\in\binom{[n]}2$ exactly when $i\in e$. Let $d$ be the shortest-path metric on $\Gamma_n$.
+
+For $p>0$, say that $(\Gamma_n,d)$ has $p$-negative type if every real family $(c_x)$ with $\sum_xc_x=0$ satisfies
+$$
+\sum_{x,y}c_xc_y\,d(x,y)^p\le0.
 $$
 Let
 $$
-\wp=\sup\{p>0:(A_5,d)\text{ has }p\text{-negative type}\}.
+\wp=\sup\{p>0:(\Gamma_n,d)\text{ has }p\text{-negative type}\}.
 $$
 At $p=\wp$, define the equality space
 $$
-E=\left\{c\in\mathbb R^{A_5}:\sum_\sigma c_\sigma=0,\ \sum_{\sigma,\tau}c_\sigma c_\tau\,d(\sigma,\tau)^{\wp}=0\right\}.
+E=\left\{c:\sum_xc_x=0,\ \sum_{x,y}c_xc_y\,d(x,y)^{\wp}=0\right\}.
 $$
 Determine the ordered pair $(\wp,\dim E)$.
 
@@ -33,4 +37,4 @@ Determine the ordered pair $(\wp,\dim E)$.
 
 ## Domain Explanation
 
-The problem asks for the maximal negative-type exponent of a natural finite Cayley graph metric and the dimension of its boundary equality space. The key invariant is the spectrum of the normal Cayley adjacency operator, obtained from the representation theory of $A_5$.
+The problem asks for the maximal negative-type exponent of a natural finite incidence-graph metric and the dimension of its boundary equality space. The decisive structure is a hidden squared-Euclidean representation of graph distance by the vectors attached to vertices and edges of $K_n$.
