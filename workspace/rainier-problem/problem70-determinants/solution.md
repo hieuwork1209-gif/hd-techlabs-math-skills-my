@@ -1,43 +1,50 @@
 ## Steps
 
-Step 1: Reduce the algebraic quantities to normalized log derivatives
-Put $L=\log n$, $c=aL$, and for fixed $n$ write
+Step 1: Reduce the tangency system to one scalar equation
+Put $L=\log n$, $c=aL$, $d=c-1$, and for fixed $n$ write
 $$
 f(a)=T_1(n,a),\qquad g(a)=\log f(a).
 $$
 Since $f^{(m)}=(-1)^m m!T_{m+1}$,
 $$
 \frac{\Delta_n}{f^3}=2(g'')^3+g''g''''-(g''')^2,
-\quad \Lambda_n=f^2g'',\quad \Omega_n=f^3g'''.
-$$
-Also the fourth logarithmic derivative satisfies
-$$
-f^4g''''=f^3f''''-4f^2f'f'''-3f^2(f'')^2+12f(f')^2f''-6(f')^4=\Psi_n.
+\quad \Lambda_n=f^2g'',\quad \Omega_n=f^3g''',\quad \Psi_n=f^4g''''.
 $$
 Define
 $$
-A_n(c)=\frac{g''}{L^2},\qquad B_n(c)=\frac{g'''}{L^3},\qquad C_n(c)=\frac{g''''}{L^4}.
+A_n(c)=\frac{g''}{L^2},\qquad B_n(c)=\frac{g'''}{L^3},\qquad C_n(c)=\frac{g''''}{L^4},
 $$
-After division by $L^6f^4$, the equation is
+and
 $$
-\mathcal F(A_n,B_n,C_n)=0,
+P_n(c)=81(2A_n^3+A_nC_n-B_n^2)+2238A_n-324B_n-135C_n-1206A_n^2-1454.
 $$
-where
+For the expression $E_n(a,\lambda)$ in the problem statement,
 $$
-\mathcal F(A,B,C)=81(2A^3+AC-B^2)+2238A-324B-135C-1206A^2-1454.
+E_n(a,\lambda)=L^6f(a)^4\bigl(P_n(c)+\lambda d\bigr).
+$$
+At a zero of $E_n$, differentiation with respect to $a$ gives
+$$
+\frac{\partial E_n}{\partial a}=L^7f^4\bigl(P_n'(c)+\lambda\bigr),
+$$
+because the derivative of the prefactor is multiplied by the already vanishing bracket. Hence the coupled equations are equivalent to
+$$
+P_n(c)+\lambda d=0,\qquad P_n'(c)+\lambda=0.
+$$
+Eliminating $\lambda$ gives the load-bearing tangency equation
+$$
+Q_n(d):=P_n(1+d)-dP_n'(1+d)=0.
 $$
 
-Step 2: Obtain the uniform Beta--Gamma expansion
-The beta identity gives
+Step 2: Expand the normalized invariants near the degenerate point
+The beta identity yields
 $$
 f(a)=\sum_{q=1}^3e^{q-1}B(a,n^q+1).
 $$
-For $c$ in a fixed neighborhood of $1$,
+Uniformly for $|d|\le L^{-1}$ and through four normalized derivatives,
 $$
-f(c/L)=\Gamma(c/L)e^{-1}\left(e^{-d}+e^{-2d}+e^{-3d}\right)(1+o(L^{-4})),
-\qquad d=c-1,
+f(c/L)=\Gamma(c/L)e^{-1}\left(e^{-d}+e^{-2d}+e^{-3d}\right)(1+o(L^{-5})).
 $$
-uniformly through four normalized derivatives. Set
+Set
 $$
 \phi(d)=\log(e^{-d}+e^{-2d}+e^{-3d}).
 $$
@@ -45,93 +52,93 @@ Using
 $$
 \log\Gamma z=-\log z-\gamma z+\frac{\zeta(2)}2z^2-\frac{\zeta(3)}3z^3+\frac{\zeta(4)}4z^4+O(z^5),
 $$
-we have
+we obtain
 $$
 A_n=A_0+\frac{\zeta(2)}{L^2}-\frac{2c\zeta(3)}{L^3}+O(L^{-4}),
 $$
 $$
 B_n=B_0-\frac{2\zeta(3)}{L^3}+O(L^{-4}),\qquad C_n=C_0+O(L^{-4}),
 $$
-with
+where
 $$
 A_0=c^{-2}+\phi''(d),\quad B_0=-2c^{-3}+\phi'''(d),\quad C_0=6c^{-4}+\phi''''(d).
 $$
-
-Step 3: Identify the stationary triple degeneracy
-From
+Since
 $$
 \phi(d)=\log3-2d+\frac{d^2}{3}-\frac{d^4}{36}+\frac{13d^6}{3240}+O(d^8),
 $$
-one gets at $c=1$
+direct substitution into $P_n$ gives the differentiable uniform expansion
 $$
-(A_0,B_0,C_0)=\left(\frac53,-2,\frac{16}{3}\right),
-\quad (A_0',B_0',C_0')=\left(-2,\frac{16}{3},-24\right).
+P_n(1+d)=-1842d^3-\frac{360\zeta(2)}{L^2}d-\frac{396\zeta(2)^2}{L^4}
++O\!\left(d^4+\frac{d^2}{L^2}+\frac{|d|}{L^3}+L^{-5}\right),
 $$
-Direct substitution into the limiting curve gives
+and therefore
 $$
-\mathcal F(A_0(1+d),B_0(1+d),C_0(1+d))=-1842d^3+O(d^4).
+P_n'(1+d)=-5526d^2-\frac{360\zeta(2)}{L^2}
++O\!\left(d^3+\frac{|d|}{L^2}+L^{-3}\right).
 $$
-At the base point,
-$$
-\mathcal F_A=\mathcal F_B=\mathcal F_C=0,
-\qquad \mathcal F_{AA}=-792.
-$$
-Along the limiting curve,
-$$
-\frac{d}{dc}\mathcal F_A
-=81(12A_0A_0'+C_0')-2412A_0',
-$$
-so at $c=1$
-$$
-\frac{d}{dc}\mathcal F_A=-360.
-$$
-Thus the first $\zeta(2)L^{-2}$ perturbation is invisible at $d=0$, but its interaction with the displacement is not.
 
-Step 4: Locate and prove uniqueness of the nearby root
-Taylor expansion in both $d$ and the Gamma perturbation gives, uniformly for $|d|\le L^{-3/2}$,
+Step 3: Use tangency to cancel the apparent leading perturbation
+Substituting the two expansions from Step 2 into $Q_n(d)=P_n-dP_n'$ makes the mixed $\zeta(2)d/L^2$ term cancel exactly. Thus
 $$
-\mathcal F_n(1+d)
-=-1842d^3-\frac{360\zeta(2)}{L^2}d
--\frac{396\zeta(2)^2}{L^4}
+Q_n(d)=3684d^3-\frac{396\zeta(2)^2}{L^4}
 +O\!\left(d^4+\frac{d^2}{L^2}+\frac{|d|}{L^3}+L^{-5}\right).
 $$
-Indeed, the constant $L^{-4}$ term is
-$$
-\frac12\mathcal F_{AA}\frac{\zeta(2)^2}{L^4}
-=-\frac{396\zeta(2)^2}{L^4}.
-$$
-Differentiating the displayed expansion shows
-$$
-\mathcal F_n'(1+d)=-\frac{360\zeta(2)}{L^2}+O(L^{-3})<0
-$$
-throughout $|d|\le L^{-3/2}$. At the left endpoint the leading mixed term is positive and at the right endpoint it is negative, so there is exactly one root in this window.
+This cancellation is precisely why solving only the first equation at a fixed parameter gives the wrong scale.
 
-For that root $d_n$, the same expansion first gives $d_n=O(L^{-2})$; otherwise the mixed term dominates all terms that could cancel it inside the stated window.
+Step 4: Locate the unique tangency point
+For $d\le0$ with $|d|<L^{-1}$, the cubic and constant displayed in Step 3 are both negative and dominate the error, so $Q_n(d)<0$ for all sufficiently large $n$. At $d=L^{-1}$,
+$$
+Q_n(L^{-1})=3684L^{-3}+o(L^{-3})>0,
+$$
+so a positive zero exists.
 
-Step 5: Extract the root displacement
-Using $d_n=O(L^{-2})$ in Step 4 leaves
+Moreover,
 $$
-0=-\frac{360\zeta(2)}{L^2}d_n
--\frac{396\zeta(2)^2}{L^4}+o(L^{-4}).
+Q_n'(d)=-dP_n''(1+d).
 $$
-Hence
+From Step 2,
 $$
-L^2d_n\longrightarrow-\frac{396}{360}\zeta(2)
-=-\frac{11}{10}\cdot\frac{\pi^2}{6}
-=-\frac{11\pi^2}{60}.
+P_n''(1+d)=-11052d+O(d^2+L^{-2}).
 $$
-Since $d_n=a_n\log n-1$,
+Hence, after an initial interval $0\le d\le C L^{-2}$ on which $Q_n(d)$ remains negative because its constant term is of order $-L^{-4}$, one has $P_n''(1+d)<0$ and therefore $Q_n'(d)>0$. Thus the zero in $|d|<L^{-1}$ is unique. Once $d_n$ is fixed, the second tangency equation determines uniquely
 $$
-(\log n)^2(a_n\log n-1)\longrightarrow-\frac{11\pi^2}{60}.
+\lambda_n=-P_n'(1+d_n)=O(L^{-2}),
+$$
+which lies in the stated parameter window.
+
+Step 5: Extract the new fractional scale
+The equation in Step 3 first forces
+$$
+d_n=O(L^{-4/3});
+$$
+if $|d_n|$ were asymptotically larger, the cubic term would dominate, while if it were smaller the nonzero $L^{-4}$ term would dominate. Put
+$$
+s_n=L^{4/3}d_n.
+$$
+Multiplying the tangency equation by $L^4$ now gives
+$$
+0=3684s_n^3-396\zeta(2)^2+o(1).
+$$
+Therefore
+$$
+s_n^3\longrightarrow \frac{396}{3684}\zeta(2)^2
+=\frac{33}{307}\left(\frac{\pi^2}{6}\right)^2
+=\frac{11\pi^4}{3684}.
+$$
+The unique nearby root is positive, so
+$$
+(\log n)^{4/3}(a_n\log n-1)
+\longrightarrow \left(\frac{11\pi^4}{3684}\right)^{1/3}.
 $$
 
-Final Answer: $\boxed{-\frac{11\pi^2}{60}}$
+Final Answer: $\boxed{\left(\frac{11\pi^4}{3684}\right)^{1/3}}$
 
 ---
 
 ## Answer
 
-$-\frac{11\pi^2}{60}$
+$\left(\frac{11\pi^4}{3684}\right)^{1/3}$
 
 ---
 
@@ -146,13 +153,13 @@ $-\frac{11\pi^2}{60}$
 ## Solution Concepts
 
 - Hankel determinant invariants
-- fourth log-derivative invariant
-- stationary triple degeneracy
-- mixed asymptotic perturbation
-- Gamma-function expansion
+- log-derivative normalization
+- coupled tangency condition
+- asymptotic cancellation
+- fractional root scaling
 
 ---
 
 ## Black-Box Audit — no issues found
 
-The new difficulty is structural: the limiting equation has a stationary triple root and the first Gamma correction vanishes at the base point. The actual displacement is selected by the mixed derivative of that perturbation, so a one-variable leading expansion alone gives the wrong scale.
+The hardening is structural rather than computational. The auxiliary parameter is load-bearing because the zero and tangency equations must be combined before taking asymptotics. Eliminating it cancels the apparent mixed Gamma perturbation and changes the natural displacement scale from an integer power of $\log n$ to $(\log n)^{-4/3}$.
