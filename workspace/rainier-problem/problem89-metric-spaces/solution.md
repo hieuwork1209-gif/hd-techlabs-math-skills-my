@@ -1,181 +1,204 @@
 ## Steps
 
-Step 1: Recover the adjacency spectrum from the incidence geometry
+Step 1: Split the triangulations by dihedral symmetry
 
-Let
-$$
-P=\binom{[6]}2
-$$
-be the set of $15$ two-subsets, and let $S$ be the set of partitions of $[6]$ into three unordered pairs. There are also $15$ such partitions. Let $N$ be the $15\times15$ incidence matrix between $P$ and $S$.
+Label the vertices of a convex hexagon cyclically. The flip graph has the $14$ triangulations as vertices, with graph distance given by the minimum number of diagonal flips.
 
-Each pair lies in exactly $3$ partitions. Two distinct pairs lie in a common partition exactly when they are disjoint, and then that partition is unique. Hence
-$$
-NN^T=3I+A,
-$$
-where $A$ is the adjacency matrix of the graph on $P$ joining disjoint pairs.
+Under the dihedral group $D_6$, the triangulations form three orbits:
+- $A$: the $6$ fans, in which all three diagonals are incident with one vertex;
+- $C$: the $2$ triangulations containing the alternating central triangle;
+- $B$: the remaining $6$ triangulations.
 
-The spectrum of $A$ is obtained directly. The constant vector has eigenvalue $6$. For $i\in[6]$, let $f_i(T)=\mathbf1_{i\in T}$. Then
-$$
-Af_i=3(1-f_i),
-$$
-so the $5$-dimensional span of the differences $f_i-f_j$ has eigenvalue $-3$.
+Let $U$ be the space of functions constant on each of $A,B,C$, and let $W=U^\perp$. Thus $\dim U=3$, $\dim W=11$, and every vector in $W$ has coordinate sum $0$.
 
-Let $W$ be the orthogonal complement of the span of the constant function and the $f_i$. If $h\in W$ and $T=\{i,j\}$, then
+The distance counts from one representative of each orbit are
 $$
-\sum_R h(R)=0,
-\qquad
-\sum_{R\ni i}h(R)=\sum_{R\ni j}h(R)=0.
-$$
-Therefore
-$$
-(Ah)(T)
-=\sum_{R\cap T=\varnothing}h(R)
-=h(T).
-$$
-Thus $A$ has eigenvalue $1$ on the $9$-dimensional space $W$. Hence
-$$
-\operatorname{Spec}(A)=6^{[1]},\ (-3)^{[5]},\ 1^{[9]}.
-$$
-Therefore the singular values of $N$ are
-$$
-3^{[1]},\ 0^{[5]},\ 2^{[9]}.
-$$
-If $M$ is the adjacency matrix of the bipartite incidence graph, then
-$$
-M=\begin{pmatrix}0&N\\N^T&0\end{pmatrix},
-$$
-so
-$$
-\operatorname{Spec}(M)=3^{[1]},\ (-3)^{[1]},\ 2^{[9]},\ (-2)^{[9]},\ 0^{[10]}.
-$$
-
-Step 2: Express the distance matrices as polynomials in $M$
-
-Fix a pair $p\in P$. From the incidence rules, the distance partition has intersection array
-$$
-\{3,2,2,2;1,1,1,3\}.
-$$
-Indeed, a partition containing $p$ has two other pairs; a pair disjoint from $p$ has one common partition with $p$; a partition not containing $p$ contains exactly one pair disjoint from $p$; and a pair meeting $p$ has all three incident partitions one step closer.
-
-Let $A_i$ be the distance-$i$ matrix. The distance-regular recurrence gives
-$$
-A_1=M,
-$$
-$$
-A_2=M^2-3I,
-$$
-$$
-A_3=MA_2-2M,
-$$
-$$
-A_4=\frac{MA_3-2A_2}{3}.
-$$
-Hence on an $M$-eigenvector with eigenvalue $\theta$, the eigenvalues of $(A_1,A_2,A_3,A_4)$ are
-$$
-\begin{array}{c|cccc}
-\theta&A_1&A_2&A_3&A_4\\
+\begin{array}{c|ccc}
+& A&B&C\\
 \hline
-3&3&6&12&8\\
--3&-3&6&-12&8\\
-2&2&1&-2&-2\\
--2&-2&1&2&-2\\
-0&0&-3&0&2
+A&3\times2,\ 2\times3&1\times2,\ 2\times2,\ 3\times2&1\times1,\ 3\times1\\
+B&1\times2,\ 2\times2,\ 3\times2&1\times1,\ 2\times1,\ 3\times2,\ 4\times1&2\times2\\
+C&1\times3,\ 3\times3&2\times6&4\times1
 \end{array}
 $$
+where, for example, $3\times2$ means two vertices at distance $3$. These counts also show that the diameter is $4$.
 
-Step 3: Diagonalize the powered distance matrix
+Step 2: Control every non-invariant symmetry mode for $0<p<1$
 
 Put
 $$
-x=2^p,\qquad y=3^p,\qquad z=4^p.
+x=2^p,\qquad y=3^p,\qquad z=4^p,
 $$
-Since the graph has diameter $4$,
+and define the consecutive increments
 $$
-D_p=A_1+xA_2+yA_3+zA_4.
+u=x-1,\qquad v=y-x,\qquad w=z-y.
 $$
-On the four nonconstant spectral modes, the eigenvalues are
+For $0<p<1$, strict concavity of $t^p$ gives
 $$
-\lambda_{-3}=-3+6x-12y+8z,
-$$
-$$
-\lambda_2=2+x-2y-2z,
-$$
-$$
-\lambda_{-2}=-2+x+2y-2z,
-$$
-$$
-\lambda_0=-3x+2z.
-$$
-Thus $p$-negative type is equivalent to all four quantities being nonpositive.
-
-Step 4: Identify the first mode to reach zero
-
-Let
-$$
-q=\log_2 3
-$$
-and write $x=2^p$. Then
-$$
-\lambda_{-3}=g(x):=8x^2-12x^q+6x-3.
-$$
-Since $3^3<2^5$, we have $q<5/3$. For $x\ge1$,
-$$
-g''(x)=16-12q(q-1)x^{q-2}>0,
-$$
-and
-$$
-g'(1)=22-12q>0.
-$$
-Hence $g$ is strictly increasing on $[1,\infty)$. Also
-$$
-g(1)=-1,
-$$
-while
-$$
-g(\sqrt2)=13+6\sqrt2-12\sqrt3>0,
-$$
-because $\sqrt2>7/5$ and $\sqrt3<7/4$. Therefore there is a unique
-$$
-\alpha\in\left(0,\frac12\right)
-$$
-satisfying
-$$
-8\cdot4^\alpha-12\cdot3^\alpha+6\cdot2^\alpha-3=0.
+1>u>v>w>0.
 $$
 
-For $0\le p\le\alpha$, we have $1\le x<\sqrt2$. Since $y\ge x$,
+For distinct vertices define three fixed kernels
 $$
-\lambda_2\le2-x-2x^2<0.
+H_1=\mathbf1_{\{d\ge2\}},
 $$
-At $p=0$, $\lambda_{-2}=-1$. For $p>0$, since $q<2$, we have $y<x^2$, and hence
 $$
-\lambda_{-2}<-2+x<0.
+H_2=\min(d-1,2),
 $$
-Finally,
 $$
-\lambda_0=x(2x-3)<0
+H_3=d-1,
 $$
-because $x<\sqrt2<3/2$. Thus the first loss of negative type occurs exactly in the $-3$ adjacency mode, and
+with zero diagonal. Since the distance values are $1,2,3,4$,
+$$
+D_p=(J-I)+(u-v)H_1+(v-w)H_2+wH_3.
+$$
+
+To bound these kernels on $W$, diagonalize the $60^\circ$ rotation. Each rotation mode has dimension at most $3$, and the resulting spectra are
+$$
+\operatorname{Spec}(H_1|_W)=
+\left\{-3^{[2]},-(1+\sqrt3),(-\sqrt2)^{[2]},(-1)^{[2]},0,\sqrt3-1,(\sqrt2)^{[2]}\right\},
+$$
+$$
+\operatorname{Spec}(H_2|_W)=
+\left\{\left(\frac{-7-\sqrt{33}}2\right)^{[2]},-6,\left(\frac{-7+\sqrt{33}}2\right)^{[2]},0^{[2]},1^{[4]}\right\},
+$$
+$$
+\operatorname{Spec}(H_3|_W)=
+\left\{(-7)^{[2]},-(3+2\sqrt3),0^{[5]},2\sqrt3-3,1^{[2]}\right\}.
+$$
+Hence
+$$
+\lambda_{\max}(H_1|_W)=\sqrt2,
+\qquad
+\lambda_{\max}(H_2|_W)=\lambda_{\max}(H_3|_W)=1.
+$$
+Because $J$ vanishes on $W$, the Rayleigh quotient gives
+$$
+\lambda_{\max}(D_p|_W)
+\le-1+\sqrt2(u-v)+(v-w)+w
+=-1+L(p),
+$$
+where
+$$
+L(p)=\sqrt2(u-v)+v.
+$$
+Now
+$$
+L'(p)
+=(2\sqrt2-1)(\log2)2^p-(\sqrt2-1)(\log3)3^p.
+$$
+Since
+$$
+\log_2 3<\frac85,
+\qquad
+\left(\frac32\right)^p\le\frac32
+$$
+for $0\le p\le1$,
+$$
+\frac{L'(p)}{(\log2)2^p}
+>2\sqrt2-1-\frac{12}{5}(\sqrt2-1)
+=\frac{7-2\sqrt2}{5}>0.
+$$
+Thus $L$ is strictly increasing and $L(1)=1$. Therefore
+$$
+D_p|_W<0
+$$
+for every $0<p<1$.
+
+Step 3: Reduce the invariant zero-sum space to a $2\times2$ form
+
+Let the coefficient at every triangulation in $A,B,C$ be respectively $a,b,c$. The zero-sum condition is
+$$
+6a+6b+2c=0,
+$$
+so
+$$
+c=-3a-3b.
+$$
+Using the distance counts from Step 1, the powered-distance quadratic form on this two-dimensional zero-sum space is
+$$
+Q_p=(a,b)R_p(a,b)^T,
+$$
+where
+$$
+R_p=
+\begin{pmatrix}
+18x-24y+18z-36&-24x-6y+18z-6\\
+-24x-6y+18z-6&-66x+12y+24z+6
+\end{pmatrix}.
+$$
+Its determinant is
+$$
+\det R_p=-36F(p),
+$$
+with
+$$
+F(p)=49x^2-42xy-3xz-61x+9y^2+4yz+18y-3z^2+15z+7.
+$$
+Also, in terms of the increments from Step 2, the upper-left entry is
+$$
+-24+12u-6v+18w.
+$$
+Since $0\le w\le v\le u<1$ for $0<p<1$,
+$$
+-24+12u-6v+18w
+\le-24+24u<0.
+$$
+Thus, for $0<p<1$, the sign change of this $2\times2$ form is controlled exactly by $F(p)$.
+
+Step 4: Locate the first loss of negative type
+
+We have
+$$
+F(0)=-7,
+\qquad
+F(1)=0.
+$$
+Moreover, differentiating $F(2^p,3^p,4^p)$ at $p=1$ gives
+$$
+F'(1)=6\log\frac9{32}<0.
+$$
+Hence $F(p)>0$ for some $p<1$ sufficiently close to $1$.
+
+Define
+$$
+\alpha=\inf\{p\in(0,1):F(p)>0\}.
+$$
+Then
+$$
+0<\alpha<1,
+\qquad
+F(\alpha)=0,
+$$
+and numerically
+$$
+\alpha\approx0.7921831403.
+$$
+For every $p<\alpha$, $F(p)\le0$, so Step 3 shows that the invariant zero-sum block is negative semidefinite; Step 2 shows that all modes in $W$ are strictly negative. Hence the metric has $p$-negative type for every $p<\alpha$, and also at $p=\alpha$.
+
+For values $p>\alpha$ arbitrarily close to $\alpha$ we have $F(p)>0$, so $\det R_p<0$ and the quadratic form has a positive direction. Thus negative type fails immediately above the boundary. The set of negative-type exponents is downward closed: if $d^r$ is conditionally negative definite and $0<s<r$, then $d^s=(d^r)^{s/r}$ is conditionally negative definite by the standard Bernstein-function closure of conditionally negative definite kernels. Consequently
 $$
 \wp=\alpha.
 $$
 
 Step 5: Compute the equality-space dimension
 
-The adjacency eigenvalue $-3$ has multiplicity $1$. Its eigenvector is the bipartite sign vector, constant $+1$ on $P$ and $-1$ on $S$, so it lies in the zero-sum subspace because $|P|=|S|=15$.
-
-At $p=\alpha$, every other nonconstant powered-distance eigenvalue is strictly negative. Hence the equality space is exactly this one-dimensional mode, and
+At $p=\alpha$, Step 2 gives strict negativity on the $11$-dimensional space $W$. In the invariant zero-sum space, the upper-left entry of $R_\alpha$ is strictly negative while
+$$
+\det R_\alpha=0.
+$$
+Therefore $R_\alpha$ has a one-dimensional kernel. Hence
 $$
 \dim E=1.
 $$
 
-Final Answer: $\boxed{(\alpha,1),\quad8\cdot4^\alpha-12\cdot3^\alpha+6\cdot2^\alpha-3=0,\quad0<\alpha<\frac12}$
+Final Answer: $\boxed{(\alpha,1)}$
 
 ---
 
 ## Answer
 
-$(\alpha,1),\quad8\cdot4^\alpha-12\cdot3^\alpha+6\cdot2^\alpha-3=0,\quad0<\alpha<\frac12$
+$(\alpha,1)$
 
 ---
 
@@ -189,8 +212,8 @@ $(\alpha,1),\quad8\cdot4^\alpha-12\cdot3^\alpha+6\cdot2^\alpha-3=0,\quad0<\alpha
 
 ## Solution Concepts
 
-- finite incidence graph metrics
-- incidence matrix singular values
-- Kneser graph eigenspaces
-- distance-regular recurrence
+- flip graph of polygon triangulations
+- dihedral symmetry decomposition
+- concavity of powered distances
 - negative type of finite metric spaces
+- symmetry-reduced quadratic forms
