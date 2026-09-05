@@ -1,173 +1,187 @@
 ## Steps
 
-Step 1: Identify the graph distance with symmetric rank
+Step 1: Determine the word metric shells
 
 Let
 $$
-V=\operatorname{Sym}_3(\mathbb F_3).
+H=\mathbb F_3^3
 $$
-Two vertices are adjacent exactly when their difference has rank $1$. Rank subadditivity shows that every path from $A$ to $B$ has length at least $\operatorname{rank}(A-B)$.
-
-Conversely, over a field of odd characteristic, simultaneous row and column elimination diagonalizes every symmetric matrix by congruence. Thus a rank-$r$ symmetric matrix is congruent to
+with multiplication
 $$
-\operatorname{diag}(a_1,\ldots,a_r,0,\ldots,0),
-\qquad a_i\ne0,
+(x,y,z)(x',y',z')=(x+x',y+y',z+z'+xy').
 $$
-and is therefore a sum of $r$ symmetric rank-one matrices. Hence
+Put
 $$
-d(A,B)=\operatorname{rank}(A-B).
+a=(1,0,0),\qquad b=(0,1,0),\qquad c=(0,0,1).
 $$
-The possible distances are $0,1,2,3$.
-
-Step 2: Fourier diagonalize the distance kernels
-
-Let $\omega=e^{2\pi i/3}$. For $B\in V$, define
+The graph is the Cayley graph for the inverse-closed generating set
 $$
-\chi_B(X)=\omega^{\operatorname{tr}(BX)}.
-$$
-Because $2\ne0$ in $\mathbb F_3$, the trace pairing is nondegenerate on $V$, so these $3^6=729$ characters form an orthogonal basis. Every translation-invariant distance matrix is therefore diagonal in this basis.
-
-For $r=1,2,3$, put
-$$
-K_r(B)=\sum_{\operatorname{rank}X=r}\chi_B(X).
-$$
-If
-$$
-x=2^p,\qquad y=3^p,
-$$
-then the $D_p$-eigenvalue on $\chi_B$, for $B\ne0$, is
-$$
-\lambda_B(p)=K_1(B)+xK_2(B)+yK_3(B).
+\{a^{\pm1},b^{\pm1},c^{\pm1}\}.
 $$
 
-Step 3: Compute the three shell transforms from quadratic-form geometry
+The six generators are exactly the elements at distance $1$. If $x,y\ne0$, then
+$$
+b^ya^x=(x,y,0),
+\qquad
+a^xb^y=(x,y,xy).
+$$
+Since the three possible values of $z$ are $0,xy,-xy$, the remaining case is
+$$
+(x,y,-xy)=a^xb^yc^{xy},
+$$
+which has distance $3$: a product of two generators with both $x$- and $y$-coordinates nonzero must use one $a$-step and one $b$-step, so its $z$-coordinate is only $0$ or $xy$.
 
-Write
+If $x=0$ or $y=0$, every non-generator is a product of two axis generators. Hence the distance shells about the identity have sizes
 $$
-q_B(v)=v^TBv.
+1,\qquad6,\qquad16,\qquad4,
 $$
-There are $13$ projective lines in $\mathbb F_3^3$. Every rank-one symmetric matrix is uniquely
+and the distance-$3$ shell is
 $$
-a vv^T,
-\qquad a\in\mathbb F_3^\times,
+\{(x,y,-xy):x,y\in\mathbb F_3^\times\}.
 $$
-with $[v]$ a projective line. If $z(B)$ is the number of projective zeros of $q_B$, then
+Put
 $$
-K_1(B)
-=\sum_{[v]}\sum_{a\ne0}\omega^{a q_B(v)}
-=3z(B)-13.
-$$
-
-Next let
-$$
-S(B)=1+K_1(B)+K_2(B)
-=\sum_{\operatorname{rank}X\le2}\chi_B(X).
-$$
-For a symmetric $X$, Möbius inversion on the lattice of subspaces of $\ker X$ gives
-$$
-\mathbf1_{\operatorname{rank}X\le2}
-=\sum_{\substack{U\le\ker X\\ \dim U=1}}1
--3\sum_{\substack{U\le\ker X\\ \dim U=2}}1
-+27\mathbf1_{X=0}.
-$$
-For fixed $U$, the character sum over symmetric matrices with $U\subseteq\ker X$ vanishes unless the orthogonal complement $U^\perp$ is totally isotropic for the bilinear form $B$; when it does not vanish, its value is $27$ for $\dim U=1$ and $3$ for $\dim U=2$. Therefore
-$$
-S(B)=27t(B)-9z(B)+27,
-$$
-where $t(B)$ is the number of totally isotropic $2$-planes for $B$.
-
-The four nonzero congruence types give
-$$
-\begin{array}{c|c|c|c|c|c}
-\text{type of }B&\text{multiplicity}&z(B)&t(B)&K_1(B)&S(B)\\
-\hline
-\operatorname{rank}1&26&4&1&-1&18\\
-\operatorname{rank}2\text{ anisotropic}&78&1&0&-10&18\\
-\operatorname{rank}2\text{ split}&156&7&2&8&18\\
-\operatorname{rank}3&468&4&0&-1&-9
-\end{array}
-$$
-Indeed, the rank-two quotient is either anisotropic or split; for a fixed radical line there are respectively $6$ and $12$ nondegenerate symmetric $2\times2$ forms of these two types. Since there are $13$ radical lines, the multiplicities are $78$ and $156$. Also there are $26$ rank-one forms, and the remaining
-$$
-729-1-26-78-156=468
-$$
-are nonsingular.
-
-For $B\ne0$, the total character sum is $0$, so
-$$
-1+K_1(B)+K_2(B)+K_3(B)=0.
-$$
-Hence
-$$
-\begin{array}{c|ccc}
-\text{type of }B&K_1&K_2&K_3\\
-\hline
-\operatorname{rank}1&-1&18&-18\\
-\operatorname{rank}2\text{ anisotropic}&-10&27&-18\\
-\operatorname{rank}2\text{ split}&8&9&-18\\
-\operatorname{rank}3&-1&-9&9
-\end{array}
+X=2^p,\qquad Y=3^p.
 $$
 
-Step 4: Find the first Fourier mode to reach zero
+Step 2: Diagonalize the one-dimensional Fourier modes
 
-The four nonconstant eigenvalue functions are
+Let $\omega=e^{2\pi i/3}$. The nine one-dimensional characters are
 $$
-\lambda_1=-1+18x-18y,
+\chi_{r,s}(x,y,z)=\omega^{rx+sy},
+\qquad r,s\in\mathbb F_3.
 $$
+For a nontrivial character, let $C_j$ be its sum over the distance-$j$ shell. Since
 $$
-\lambda_{2a}=-10+27x-18y,
+\sum_{u\in\mathbb F_3^\times}\omega^{ru}
+=\begin{cases}2,&r=0,\\-1,&r\ne0,
+\end{cases}
 $$
+the shell description from Step 1 gives
 $$
-\lambda_{2s}=8+9x-18y,
+(C_1,C_3)=
+\begin{cases}
+(3,-2),&rs=0,\ (r,s)\ne(0,0),\\
+(0,1),&rs\ne0.
+\end{cases}
 $$
+Also
 $$
-\lambda_3=-1-9x+9y.
+1+C_1+C_2+C_3=0,
 $$
-At $p=0$ they all equal $-1$.
+because every nontrivial character sums to $0$ on the group. Therefore the powered-distance eigenvalues on the nontrivial one-dimensional characters are
+$$
+\mu_0=3-2X-2Y
+$$
+when exactly one of $r,s$ is zero, and
+$$
+\mu_1=-2X+Y
+$$
+when $rs\ne0$.
 
-The first function is strictly decreasing. For the anisotropic rank-two mode,
-$$
-\lambda_{2a}'(p)
-=27(\log2)2^p-18(\log3)3^p<0,
-$$
-because $3\log2<2\log3$ and $(3/2)^p\ge1$. The split rank-two mode is also strictly decreasing. Thus these three modes remain negative for every $p>0$.
+Step 3: Compute the nonabelian Fourier blocks
 
-The rank-three mode is
+Besides the nine linear characters, $H$ has two irreducible representations of degree $3$. For $k=1,2$, on functions $u:\mathbb F_3\to\mathbb C$ define
 $$
-\lambda_3(p)=9(3^p-2^p)-1,
+(\pi_k(x,y,z)u)(t)=\omega^{k(z+yt)}u(t+x).
 $$
-and
+A direct substitution into the group law verifies that these are representations. Their degrees satisfy
 $$
-\lambda_3'(p)=9\bigl((\log3)3^p-(\log2)2^p\bigr)>0.
+9\cdot1^2+2\cdot3^2=27=|H|,
 $$
-Since $\lambda_3(0)=-1$ and $\lambda_3(1)=8$, there is a unique
+so together with the linear characters they give all irreducibles.
+
+For the distance kernel
 $$
-\alpha\in(0,1)
+f_p(g)=d(e,g)^p,
 $$
-such that
+convolution on the regular representation has Fourier block
 $$
-9(3^\alpha-2^\alpha)=1.
+\widehat f_p(\pi)=\sum_{g\in H}f_p(g)\pi(g),
 $$
-Therefore
+and a degree-$d$ block is repeated $d$ times. Using the four shells from Step 1, both degree-$3$ representations give the same real symmetric block
+$$
+M_p=
+\begin{pmatrix}
+1-2X&1-Y&1-Y\\
+1-Y&X-2&1-3X+2Y\\
+1-Y&1-3X+2Y&X-2
+\end{pmatrix}.
+$$
+The vector $(0,1,-1)$ is an eigenvector, and the remaining symmetric two-dimensional subspace gives the other two eigenvalues. Thus the three eigenvalues are
+$$
+\nu_0=4X-2Y-3,
+$$
+$$
+\nu_+=-2X+(1+\sqrt3)Y-\sqrt3,
+$$
+$$
+\nu_-=-2X+(1-\sqrt3)Y+\sqrt3.
+$$
+
+Step 4: Find the first mode to reach zero
+
+The constant character is the only Fourier mode not contained in the zero-sum subspace. Hence $p$-negative type is equivalent to
+$$
+\mu_0,\mu_1,\nu_0,\nu_+,\nu_-\le0.
+$$
+
+Define
+$$
+h(p)=(1+\sqrt3)3^p-2^{p+1}-\sqrt3=\nu_+(p).
+$$
+Since
+$$
+h'(p)=(1+\sqrt3)(\log3)3^p-2(\log2)2^p>0,
+$$
+we have strict monotonicity for $p\ge0$. Moreover
+$$
+h(0)=-1,
+$$
+while
+$$
+h\left(\frac12\right)=3-2\sqrt2>0.
+$$
+Thus there is a unique
+$$
+\alpha\in\left(0,\frac12\right)
+$$
+with
+$$
+(1+\sqrt3)3^\alpha-2^{\alpha+1}-\sqrt3=0.
+$$
+
+For $0\le p\le\alpha$, the other modes stay strictly negative. Indeed, $\mu_0$ is strictly decreasing; also
+$$
+\mu_1=2^p\left(\left(\frac32\right)^p-2\right)<0
+$$
+because $p<1/2$. Next $\nu_-$ is strictly decreasing from $-1$. Finally, since $Y\ge X$ and $X\le\sqrt2$,
+$$
+\nu_0=4X-2Y-3\le2X-3\le2\sqrt2-3<0.
+$$
+Therefore the first boundary is exactly
 $$
 \wp=\alpha.
 $$
 
 Step 5: Compute the equality-space dimension
 
-At $p=\alpha$, only the rank-three Fourier modes have eigenvalue $0$; all rank-one and rank-two modes are still strictly negative. There are $468$ nonsingular symmetric matrices $B$, and their characters are linearly independent. Hence
+At $p=\alpha$, the eigenvalue $\nu_+$ is zero and every other nonconstant Fourier eigenvalue is strictly negative. In each degree-$3$ irreducible block, $\nu_+$ is simple. Each degree-$3$ irreducible occurs with multiplicity $3$ in the regular representation, and there are two such irreducibles. Hence the zero eigenspace has dimension
 $$
-\dim E=468.
+3+3=6.
+$$
+Therefore
+$$
+\dim E=6.
 $$
 
-Final Answer: $\boxed{(\alpha,468),\quad9(3^\alpha-2^\alpha)=1,\quad0<\alpha<1}$
+Final Answer: $\boxed{(\alpha,6),\quad(1+\sqrt3)3^\alpha-2^{\alpha+1}-\sqrt3=0,\quad0<\alpha<\frac12}$
 
 ---
 
 ## Answer
 
-$(\alpha,468),\quad9(3^\alpha-2^\alpha)=1,\quad0<\alpha<1$
+$(\alpha,6),\quad(1+\sqrt3)3^\alpha-2^{\alpha+1}-\sqrt3=0,\quad0<\alpha<\frac12$
 
 ---
 
@@ -181,8 +195,8 @@ $(\alpha,468),\quad9(3^\alpha-2^\alpha)=1,\quad0<\alpha<1$
 
 ## Solution Concepts
 
-- symmetric matrix rank metric
-- finite Fourier characters
-- quadratic forms over finite fields
-- isotropic subspaces and Witt type
+- Heisenberg group word metric
+- nonabelian finite Fourier transform
+- Schrödinger representations
 - negative type of finite metric spaces
+- regular representation multiplicities
