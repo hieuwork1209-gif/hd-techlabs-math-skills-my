@@ -1,117 +1,102 @@
 ## Steps
 
-Step 1: Reduce the graph metric to two distances
+Step 1: Identify the graph metric with inversion Hamming distance
 
-If two $k$-sets $S,T$ are disjoint, then $d(S,T)=1$. If they are not disjoint, then
+For a permutation $\sigma\in S_n$ and $1\le i<j\le n$, let
 $$
-|S\cup T|\le2k-1,
+x_{ij}(\sigma)=\mathbf1\{\sigma^{-1}(i)>\sigma^{-1}(j)\}.
 $$
-so
-$$
-|[n]\setminus(S\cup T)|\ge n-(2k-1)\ge k.
-$$
-Hence there is a $k$-set disjoint from both $S$ and $T$, and therefore $d(S,T)=2$. Thus $KG(n,k)$ has diameter $2$.
+Thus $x_{ij}(\sigma)$ records whether the values $i$ and $j$ occur in reversed order in the one-line notation of $\sigma$.
 
-Let $A$ be its adjacency matrix and $J$ the all-ones matrix. With $x=2^p$, the powered distance matrix is
+If two permutations differ by swapping adjacent entries, exactly one relative order changes. Hence every path from $\sigma$ to $\tau$ has length at least
 $$
-D_p=A+x(J-I-A).
+\sum_{i<j}|x_{ij}(\sigma)-x_{ij}(\tau)|.
 $$
+Conversely, repeatedly swapping adjacent inverted pairs transforms $\sigma$ into $\tau$ and decreases this number by exactly $1$ at each step. Therefore
+$$
+d(\sigma,\tau)=\sum_{i<j}|x_{ij}(\sigma)-x_{ij}(\tau)|.
+$$
+So the permutahedron metric is the Hamming metric on the inversion vectors.
 
-Step 2: Build the natural spectral filtration
+Step 2: Prove $1$-negative type
 
-For a $j$-subset $R\subset[n]$, define the function
+Let $(c_\sigma)_{\sigma\in S_n}$ satisfy $\sum_\sigma c_\sigma=0$. Since each $x_{ij}$ is $0$ or $1$,
 $$
-f_R(S)=\mathbf1_{R\subset S}
+|x_{ij}(\sigma)-x_{ij}(\tau)|
+=x_{ij}(\sigma)+x_{ij}(\tau)-2x_{ij}(\sigma)x_{ij}(\tau).
 $$
-on the vertices $S\in\binom{[n]}k$, and let $U_j$ be the span of the functions $f_R$ with $|R|=j$. Then
+Summing against $c_\sigma c_\tau$, the first two terms vanish because the coefficients sum to $0$. Hence
 $$
-U_0\subset U_1\subset\cdots\subset U_k,
+\sum_{\sigma,\tau}c_\sigma c_\tau d(\sigma,\tau)
+=-2\sum_{i<j}\left(\sum_\sigma c_\sigma x_{ij}(\sigma)\right)^2\le0.
 $$
-and $U_k$ is the full function space because $f_R$ is the delta function at $R$ when $|R|=k$.
+Thus the metric has $1$-negative type.
 
-For $|R|=j$,
+Equality holds exactly when
 $$
-(Af_R)(S)=\binom{n-k-j}{k-j}\mathbf1_{S\cap R=\varnothing}.
+\sum_\sigma c_\sigma x_{ij}(\sigma)=0
 $$
-By inclusion-exclusion,
-$$
-\mathbf1_{S\cap R=\varnothing}
-=\sum_{Q\subseteq R}(-1)^{|Q|}f_Q(S).
-$$
-Therefore, modulo $U_{j-1}$,
-$$
-Af_R\equiv(-1)^j\binom{n-k-j}{k-j}f_R.
-$$
+for every $i<j$.
 
-Step 3: Identify the least adjacency eigenvalue
+Step 3: Show that every exponent $p>1$ fails
 
-Put
+Because $n\ge4$, the adjacent swaps of the first two and the third and fourth entries commute. Consider
 $$
-W_j=U_j\cap U_{j-1}^\perp.
+e=(1,2,3,4,\ldots),
 $$
-Because $A$ is symmetric and preserves every $U_j$, it preserves every $W_j$. The congruence from Step 2 then gives
 $$
-A|_{W_j}=\theta_j I,
+a=(2,1,3,4,\ldots),
 \qquad
-\theta_j=(-1)^j\binom{n-k-j}{k-j}.
+b=(1,2,4,3,\ldots),
 $$
-Since the spaces $W_j$ successively decompose $U_k$, these are all adjacency eigenvalues.
+$$
+ab=(2,1,4,3,\ldots).
+$$
+These four vertices form an isometric square: its four edges have length $1$ and its two diagonals have length $2$.
 
-For $0\le j<k$,
+Assign coefficients $1,-1,-1,1$ to $e,a,b,ab$, respectively. Their sum is $0$, and the powered quadratic form is
 $$
-\frac{\binom{n-k-j-1}{k-j-1}}{\binom{n-k-j}{k-j}}
-=\frac{k-j}{n-k-j}<1,
+2\left(2\cdot2^p-4\right)=4\cdot2^p-8.
 $$
-because $n\ge3k-1$. Hence the magnitudes strictly decrease with $j$. The least adjacency eigenvalue is therefore
+This is positive for every $p>1$. Hence no exponent larger than $1$ has negative type, so
 $$
-\theta_1=-m,
-\qquad
-m:=\binom{n-k-1}{k-1}.
-$$
-
-Step 4: Find the negative-type threshold
-
-On the zero-sum subspace, $J$ vanishes. Thus an $A$-eigenvector with eigenvalue $\theta$ is a $D_p$-eigenvector with eigenvalue
-$$
-\delta_p(\theta)=-x+(1-x)\theta.
-$$
-Since $x>1$, this is decreasing as a function of $\theta$, so its largest value occurs at the least adjacency eigenvalue $-m$. Hence $p$-negative type is equivalent to
-$$
-\delta_p(-m)\le0.
-$$
-But
-$$
-\delta_p(-m)=(m-1)2^p-m.
-$$
-Therefore
-$$
-2^p\le\frac{m}{m-1},
-$$
-and so
-$$
-\wp=\log_2\frac{m}{m-1}
-=\log_2\frac{\binom{n-k-1}{k-1}}{\binom{n-k-1}{k-1}-1}.
+\wp=1.
 $$
 
-Step 5: Compute the equality-space dimension
+Step 4: Compute the equality-space dimension
 
-At $p=\wp$, the $D_p$-eigenvalue on $W_1$ is zero, while every other nonconstant eigenspace has a strictly negative eigenvalue because its adjacency eigenvalue is strictly larger than $\theta_1$. Hence
+At $p=1$, the equality space is the kernel of the linear map
 $$
-E=W_1.
+c\longmapsto
+\left(
+\sum_\sigma c_\sigma,
+\left(\sum_\sigma c_\sigma x_{ij}(\sigma)\right)_{i<j}
+\right).
+$$
+It remains to show that the constant function together with the $\binom n2$ functions $x_{ij}$ are linearly independent on $S_n$.
+
+Suppose
+$$
+a_0+\sum_{i<j}a_{ij}x_{ij}(\sigma)=0
+$$
+for every permutation $\sigma$. Fix $i<j$ and choose a permutation in which the entries $i$ and $j$ are adjacent. Swapping those two adjacent entries changes only $x_{ij}$, so subtracting the two equations gives $a_{ij}=0$. Since this holds for every pair, all $a_{ij}$ vanish, and then $a_0=0$.
+
+Therefore the map has rank
+$$
+1+\binom n2.
+$$
+Since there are $n!$ permutations,
+$$
+\dim E=n!-\binom n2-1.
 $$
 
-The functions $f_{\{i\}}$, $1\le i\le n$, are linearly independent: if $\sum_i a_if_{\{i\}}=0$, comparing two $k$-sets that differ only by replacing $i$ with $j$ gives $a_i=a_j$ for all $i,j$, and then evaluating on any $k$-set gives $a_i=0$. Thus $\dim U_1=n$. Since $U_0$ is the one-dimensional constant subspace,
-$$
-\dim E=\dim W_1=n-1.
-$$
-
-Final Answer: $\boxed{(\log_2\frac{\binom{n-k-1}{k-1}}{\binom{n-k-1}{k-1}-1},n-1)}$
+Final Answer: $\boxed{(1,n!-\binom{n}{2}-1)}$
 
 ---
 
 ## Answer
 
-$(\log_2\frac{\binom{n-k-1}{k-1}}{\binom{n-k-1}{k-1}-1},n-1)$
+$(1,n!-\binom{n}{2}-1)$
 
 ---
 
@@ -125,8 +110,8 @@ $(\log_2\frac{\binom{n-k-1}{k-1}}{\binom{n-k-1}{k-1}-1},n-1)$
 
 ## Solution Concepts
 
-- Kneser graph metric
-- inclusion-exclusion spectral filtration
-- adjacency eigenvalues
+- permutahedron graph metric
+- inversion vectors
+- Hamming embeddings
 - negative type of finite metric spaces
-- powered distance matrices
+- commuting adjacent transpositions
