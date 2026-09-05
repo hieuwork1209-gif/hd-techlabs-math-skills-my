@@ -1,167 +1,168 @@
 ## Steps
 
 Step 1: Reveal the hidden coefficient and skew coordinates
-Let
+Set
 $$
-a=u,
-\qquad b=v+u^2,
-\qquad c=w+uv,
-\qquad d=s+vw.
+p=u,
+\qquad q=v+u^2,
+\qquad r=w+uv.
 $$
-This is an invertible polynomial change of variables, since
+This is an invertible polynomial change of coefficient variables because
 $$
-u=a,
-\qquad v=b-a^2,
-\qquad w=c-a(b-a^2),
-\qquad s=d-vw.
+u=p,
+\qquad v=q-p^2,
+\qquad w=r-p(q-p^2).
 $$
-Hence the commutative coefficient algebra is
+Hence the coefficient algebra is
 $$
-A=k[a,b,c,d].
+A=k[a,b,c,p,q,r].
 $$
 
-Now define two new skew generators
+Now define
 $$
-P=(1+u^2)X-uY,
-\qquad
-Q=Y-uX.
+P=X+aY,
+\qquad Q=Y+bZ,
+\qquad S=Z.
 $$
-Because $u$ commutes with $X,Y$ and $XY=YX$, the elements $P,Q$ commute. The change is invertible:
+Since $X,Y,Z$ commute with $a,b,c$ and commute pairwise, so do $P,Q,S$. The change is invertible:
 $$
-X=P+uQ,
-\qquad
-Y=uP+(1+u^2)Q.
+Z=S,
+\qquad Y=Q-bS,
+\qquad X=P-aQ+abS.
 $$
-Using the defining relations and substituting the new coefficient variables gives
+Substituting the defining relations gives
 $$
-[P,a]=0,
-\qquad [P,b]=a,
-\qquad [P,c]=0,
-\qquad [P,d]=c,
+[P,p]=0,
+\qquad [P,q]=-c,
+\qquad [P,r]=b,
+$$
+$$
+[Q,p]=c,
+\qquad [Q,q]=0,
+\qquad [Q,r]=-a,
 $$
 and
 $$
-[Q,a]=0,
-\qquad [Q,b]=0,
-\qquad [Q,c]=a,
-\qquad [Q,d]=b.
+[S,p]=-b,
+\qquad [S,q]=a,
+\qquad [S,r]=0.
 $$
-Thus $R$ is an iterated differential Ore extension of $A$ by two commuting derivations
+Thus $R$ is an iterated differential Ore extension with commuting derivations
 $$
-\delta_1=a\partial_b+c\partial_d,
-\qquad
-\delta_2=a\partial_c+b\partial_d,
+\delta_P=-c\partial_q+b\partial_r,
 $$
-which commute because they agree on the commutators of the generators. In particular, $R$ has the PBW basis
 $$
-a^i b^j c^k d^\ell P^m Q^n.
+\delta_Q=c\partial_p-a\partial_r,
 $$
+$$
+\delta_S=-b\partial_p+a\partial_q,
+$$
+and has a PBW basis over $A$ in the commuting skew variables $P,Q,S$.
 
-Step 2: Compute the joint kernel of the two derivations
-Set
+Step 2: Compute the joint invariant ring of the coefficient derivations
+Put
 $$
-\Delta=ad-bc.
+L=ap+bq+cr.
 $$
-Then
+Directly,
 $$
-\delta_1(\Delta)=a c-a c=0,
-\qquad
-\delta_2(\Delta)=a b-b a=0,
+\delta_P(L)=\delta_Q(L)=\delta_S(L)=0,
 $$
 so
 $$
-k[a,\Delta]\subseteq \ker\delta_1\cap\ker\delta_2.
+k[a,b,c,L]\subseteq
+\ker\delta_P\cap\ker\delta_Q\cap\ker\delta_S.
 $$
 
-For the reverse inclusion, localize at $a$ and put
+Let
 $$
-r=\frac ba,
-\qquad t=\frac ca.
+K=k(a,b,c).
 $$
-Then
+Over $K$, the three constant vector fields above span the two-dimensional plane orthogonal to $(a,b,c)$. Therefore, after an invertible $K$-linear change of the variables $p,q,r$, they become two independent partial derivatives while $L$ is the remaining coordinate. Hence
 $$
-\delta_1(r)=1,
-\qquad \delta_1(t)=0,
-\qquad
-\delta_2(r)=0,
-\qquad \delta_2(t)=1.
-$$
-Also
-$$
-d=\frac{\Delta+bc}{a}=\frac\Delta a+a r t,
-$$
-so
-$$
-A_a=k[a,a^{-1},r,t,\Delta].
-$$
-Hence on $A_a$ the two derivations are differentiation with respect to $r$ and $t$, and therefore
-$$
-(\ker\delta_1\cap\ker\delta_2)_a=k[a,a^{-1},\Delta].
+K[p,q,r]^{\delta_P,\delta_Q,\delta_S}=K[L].
 $$
 
-It remains to intersect with $A$. Suppose an element of $A$ is written as
+The polynomial $L=ap+bq+cr$ is primitive over the UFD $k[a,b,c]$. By Gauss's lemma,
 $$
-a^{-N}F(a,\Delta),
-\qquad N\geq0,
-$$
-with $F\in k[a,\Delta]$ and $N$ minimal. If $N>0$, polynomiality in $A$ forces
-$$
-F(0,-bc)=0.
-$$
-The substitution $k[T]\to k[b,c]$, $T\mapsto-bc$, is injective, so $F(0,T)=0$ and therefore $a$ divides $F(a,T)$, contradicting minimality. Thus $N=0$, proving
-$$
-\ker\delta_1\cap\ker\delta_2=k[a,\Delta].
-$$
-
-Step 3: Eliminate all positive skew degrees from a central element
-Write a central element in PBW form as
-$$
-z=\sum_{m,n\geq0} f_{m,n}P^mQ^n,
-\qquad f_{m,n}\in A.
-$$
-Since $[Q,c]=a$ and $P$ commutes with $c$,
-$$
-[z,c]
-=\sum_{m,n\geq1} n a f_{m,n}P^mQ^{n-1}.
-$$
-The PBW basis, the domain property of $A$, and characteristic $0$ force every coefficient with $n>0$ to vanish. Hence
-$$
-z=\sum_{m\geq0}f_mP^m.
-$$
-Now $[P,b]=a$, so centrality with $b$ gives
-$$
-[z,b]
-=\sum_{m\geq1}m a f_mP^{m-1}=0,
-$$
-and therefore every term with $m>0$ also vanishes. Thus every central element lies in $A$.
-
-Step 4: Return to the original generators
-An element of $A$ commutes with both $P$ and $Q$ exactly when it lies in
-$$
-\ker\delta_1\cap\ker\delta_2=k[a,\Delta].
+K[L]\cap k[a,b,c,p,q,r]=k[a,b,c,L].
 $$
 Therefore
 $$
-Z(R)=k[a,ad-bc].
+\ker\delta_P\cap\ker\delta_Q\cap\ker\delta_S
+=k[a,b,c,L].
 $$
-Substituting
+
+Step 3: Find the hidden central skew generator and exclude all others
+Define
 $$
-a=u,
-\quad b=v+u^2,
-\quad c=w+uv,
-\quad d=s+vw
+C=aP+bQ+cS.
 $$
-gives
+The derivation syzygy
 $$
-Z(R)=k\left[u,\,u(s+vw)-(v+u^2)(w+uv)\right].
+a\delta_P+b\delta_Q+c\delta_S=0
 $$
-Final Answer: $\boxed{k[u,u(s+vw)-(v+u^2)(w+uv)]}$
+shows that $C$ commutes with every element of $A$. Since $a,b,c$ commute with $P,Q,S$ and $P,Q,S$ commute pairwise, $C$ also commutes with $P,Q,S$. Thus
+$$
+C\in Z(R).
+$$
+
+Now let $z$ be central and write it in PBW form as an element of
+$$
+A[P,Q,S].
+$$
+Commuting with $p,q,r$ imposes, on the polynomial variables $P,Q,S$, the three constant derivations
+$$
+c\partial_Q-b\partial_S,
+\qquad
+-c\partial_P+a\partial_S,
+\qquad
+b\partial_P-a\partial_Q.
+$$
+Over the fraction field of $A$, their common kernel is the polynomial ring generated by
+$$
+C=aP+bQ+cS.
+$$
+Because $C$ is primitive linear over the UFD $A$, Gauss's lemma again gives the exact polynomial intersection
+$$
+z\in A[C].
+$$
+
+Write
+$$
+z=\sum_{j=0}^N f_j C^j,
+\qquad f_j\in A.
+$$
+Since $C$ is central, commuting with $P,Q,S$ forces every $f_j$ to lie in the joint kernel computed in Step 2. Hence
+$$
+f_j\in k[a,b,c,L]
+$$
+for all $j$, and therefore
+$$
+Z(R)=k[a,b,c,L,C].
+$$
+
+Step 4: Return to the original generators
+From the definitions,
+$$
+L=a u+b(v+u^2)+c(w+uv),
+$$
+and
+$$
+C=a(X+aY)+b(Y+bZ)+cZ
+=aX+(a^2+b)Y+(b^2+c)Z.
+$$
+Consequently
+$$
+Z(R)=k\left[a,b,c,\,a u+b(v+u^2)+c(w+uv),\,aX+(a^2+b)Y+(b^2+c)Z\right].
+$$
+Final Answer: $\boxed{k[a,b,c,a u+b(v+u^2)+c(w+uv),aX+(a^2+b)Y+(b^2+c)Z]}$
 
 ---
 
 ## Answer
 
-$k[u,u(s+vw)-(v+u^2)(w+uv)]$
+$k[a,b,c,a u+b(v+u^2)+c(w+uv),aX+(a^2+b)Y+(b^2+c)Z]$
 
 ---
 
@@ -176,7 +177,7 @@ $k[u,u(s+vw)-(v+u^2)(w+uv)]$
 ## Solution Concepts
 
 - differential Ore extensions
-- locally nilpotent derivations
+- syzygies of derivations
 - joint invariant rings
 - hidden polynomial coordinates
 - PBW normal forms
