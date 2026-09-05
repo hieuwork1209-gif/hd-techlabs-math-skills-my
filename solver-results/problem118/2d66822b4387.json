@@ -1,0 +1,22 @@
+{
+  "problem": "problem118",
+  "branch": "adversary/problem118",
+  "problem_path": "workspace/rainier-problem/problem118-ring-theory/problem.md",
+  "source_commit_sha": "0d6c4ef39fdfb6241e1a7d57c601dde3cddbfbbf",
+  "problem_blob_sha": "2d66822b43879425536d5588772fbc4d822d9c11",
+  "statement_sha256": "e0a60a9fe32a184ea50beec8253bd4dbc21bb230f60a86d0e91210dde52c021d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T08:17:55+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(A=k[h,s,t]\\). The defining relations say that\n\\[\nxa=\\alpha(a)x,\\qquad ya=\\alpha^{-1}(a)y\\qquad(a\\in A),\n\\]\nwhere\n\\[\n\\alpha(h)=\\zeta h,\\quad \\alpha(s)=\\zeta^2(s+h^2),\\quad\n\\alpha(t)=\\zeta^3(t+hs+2h^3).\n\\]\nIndeed the displayed formulas for \\(y\\) are exactly those for \\(\\alpha^{-1}\\). Also \\(x\\) and \\(y\\) commute, so\n\\[\nR=A[x;\\alpha][y;\\alpha^{-1}]\n\\]\nwith left \\(A\\)-basis \\(\\{x^a y^b:a,b\\ge 0\\}\\).\n\nFor \\(n\\in\\mathbb Z\\),\n\\[\n\\alpha^n(h)=\\zeta^n h,\\qquad\n\\alpha^n(s)=\\zeta^{2n}(s+n h^2).\n\\]\nHence \\(\\alpha^n=\\mathrm{id}\\) only when \\(n=0\\). Therefore if a homogeneous term \\(f x^a y^b\\) commutes with all of \\(A\\), then \\(\\alpha^{a-b}=\\mathrm{id}\\), so \\(a=b\\). Thus every central element has the form\n\\[\n\\sum_{m\\ge 0} f_m (xy)^m,\n\\]\nand it remains to determine those \\(f_m\\in A\\) fixed by \\(\\alpha\\).\n\nSet\n\\[\nC:=2ht-s^2-3h^2s.\n\\]\nA direct check gives\n\\[\n\\alpha^5=\\exp(5\\delta),\n\\]\nwhere\n\\[\n\\delta(h)=0,\\qquad \\delta(s)=h^2,\\qquad \\delta(t)=hs+\\frac32h^3.\n\\]\nSince \\(\\operatorname{char} k=0\\), being fixed by \\(\\alpha^5\\) implies lying in \\(\\ker\\delta\\). Now\n\\[\n\\delta(C)=2h\\Bigl(hs+\\frac32h^3\\Bigr)-2s h^2-3h^2h^2=0,\n\\]\nand, after localizing at \\(h\\), \\(s/h^2\\) is a slice for \\(\\delta\\), so\n\\[\n\\ker\\delta=k[h,C].\n\\]\nOn \\(k[h,C]\\), the automorphism \\(\\alpha\\) acts diagonally:\n\\[\n\\alpha(h)=\\zeta h,\\qquad \\alpha(C)=\\zeta^4 C.\n\\]\nThus a monomial \\(h^iC^j\\) is fixed exactly when\n\\[\ni+4j\\equiv 0\\pmod 5,\n\\]\nequivalently \\(i\\equiv j\\pmod 5\\). Hence\n\\[\nA^\\alpha=k[h^5,\\ hC,\\ C^5].\n\\]\n\nFinally, \\(xy\\) is central because\n\\[\n(xy)a=x\\alpha^{-1}(a)y=a(xy)\n\\]\nfor all \\(a\\in A\\), and \\(xy\\) commutes with both \\(x\\) and \\(y\\).\n\nTherefore\n\\[\n\\boxed{\nZ(R)=k\\bigl[h^5,\\ h(2ht-s^2-3h^2s),\\ (2ht-s^2-3h^2s)^5,\\ xy\\bigr].\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T08:19:37+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem118/2d66822b4387.json"
+}
