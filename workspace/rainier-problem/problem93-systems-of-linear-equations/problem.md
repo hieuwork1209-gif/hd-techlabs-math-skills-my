@@ -43,13 +43,13 @@ $$
 (T_1+T_2+T_3-3I)f=0,
 $$
 $$
-D^{q-1}A^2f=0,
+D^{(q-1)/2}Af=0,
 \qquad
 Bf=0,
 \qquad
 Cf=0.
 $$
-When $q=1$, interpret $D^{q-1}$ as $I$.
+(The exponent $(q-1)/2$ is an integer because $p$ is odd.)
 
 Determine, in closed form as a function of $p$ and $n$,
 $$
@@ -71,4 +71,4 @@ $$
 
 ## Domain Explanation
 
-This problem asks for the dimension of a simultaneous solution space of homogeneous translation equations over a finite field. Cyclic invariants, mixed Frobenius exponents, and a finite local quotient are structural tools used to reduce that linear system.
+This problem asks for the dimension of a simultaneous solution space of homogeneous translation equations over a finite field. Cyclic invariants, mixed nilpotent scales, and finite local quotients are the structural tools used to reduce that linear system.
