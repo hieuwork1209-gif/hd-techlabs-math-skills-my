@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Parameterize the lifts and derive the coupled total phase.
+Step 1: Parameterize the lifts and expose the cyclic phase coupling.
 Put
 $$
 Q=\ell^r,\qquad h=\ell^{r-1},\qquad g=\ell^{r-2},\qquad m=2q^2,
@@ -15,86 +15,88 @@ $$
 $$
 C=d+2\ell-4,\qquad E=d-4.
 $$
-The three primes $q,q+2Q,q+4Q$ are all congruent to $2^{-1}$ modulo $\ell$. Since $2$ generates $\mathbb F_\ell^\times$, so does $2^{-1}$; hence all three primes are inert in $\mathbb Q(\zeta)$.
+The primes $q,q+2Q,q+4Q$ are all congruent to $2^{-1}$ modulo $\ell$. Since $2$ generates $\mathbb F_\ell^\times$, so does $2^{-1}$, hence all three primes are inert in $\mathbb Q(\zeta)$.
 
+Write indices cyclically and define
+$$
+P(s_1,\ldots,s_r)=(s_2,\ldots,s_r,s_1).
+$$
 A lift of the fixed permutation $\pi$ has the form
 $$
 \sigma(\alpha_i^{(j)})=\zeta^{a_i^{(j)}}\alpha_{\pi(i)}^{(j)},\qquad
 \sigma(\rho_j)=\zeta^{s_j}\rho_j,
 $$
-with every $s_j\ne0$. For $j<r$, the chosen product $\prod_i\alpha_i^{(j)}\in M$ forces
+with every $s_j\ne0$. Applying $\sigma$ to
 $$
-\sum_i a_i^{(j)}=0.
+\prod_i\alpha_i^{(j)}=\rho_{j+1}
 $$
-For the last family, the chosen relation
+gives
 $$
-\prod_i\alpha_i^{(r)}=\prod_{j=1}^r\rho_j
+\sum_i a_i^{(j)}=s_{j+1}. \tag{1}
 $$
-gives, after applying $\sigma$,
-$$
-\sum_i a_i^{(r)}=\sum_{j=1}^r s_j=:t. \tag{1}
-$$
-Thus the total phase is no longer independent of the nonzero vector $s=(s_1,\ldots,s_r)$.
-
 For each transposition block $T$ of $\pi$, define
 $$
 Z_T=\left(\sum_{i\in T}a_i^{(1)},\ldots,\sum_{i\in T}a_i^{(r)}\right)\in G:=\mathbb F_\ell^r,
 $$
-and let $m_z$ be the number of blocks with label $z$. If $e_r$ is the last standard basis vector, then
+and let $m_z$ be the number of blocks with label $z$. Then
 $$
-\sum_zm_z=m,\qquad \sum_zm_zz=t e_r. \tag{2}
+\sum_zm_z=m,\qquad \sum_zm_zz=Ps. \tag{2}
 $$
-The extra condition in the statement is $t e_r\in U\setminus W$, so necessarily $t\ne0$.
 
-Step 2: Convert the three cycle-type regimes into three Fourier magnitudes.
-For an index $(i,h,u)$ of $\Omega_k$, if $i$ lies in block $T$ and $h$ lies in block $R$, two applications of $\sigma$ translate the fiber by
+Step 2: Convert the cycle data to a Fourier magnitude flag and transport the extra incidence.
+Let $D_s=\operatorname{diag}(s_1,\ldots,s_r)$. For an index $(i,h,u)$ of $\Omega_k$, with $i$ in block $T$ and $h$ in block $R$, two applications of $\sigma$ translate the fiber by
 $$
-w+Z_T-Z_R,\qquad w=2(k_1s_1,\ldots,k_rs_r).
+w+Z_T-Z_R,\qquad w=2D_sk.
 $$
-Since every $s_j\ne0$, $k\mapsto w$ is an automorphism of $G$, so it carries a flag of the kind in the statement to another flag of the same kind. We rename the image flag $W\subset U$.
-
+Because each $s_j\ne0$, $2D_s$ is an automorphism of $G$. Let
+$$
+\overline W=2D_sW,\qquad \overline U=2D_sU.
+$$
 Put
 $$
 N_w=\sum_{z\in G}m_zm_{z+w}.
 $$
-For distinct transposition blocks an ordered block-pair contributes two base orbits, while a diagonal block contributes one internal orbit when $w=0$. Hence the number of base orbits whose two-step translation is zero is
+For distinct transposition blocks an ordered block-pair contributes two base orbits, while a diagonal block contributes one internal orbit when $w=0$. Hence the number of base orbits whose two-step translation vanishes is
 $$
 R_w=2N_w-m\delta_{w,0}. \tag{3}
 $$
-Each such base orbit gives exactly $Q$ cycles of length $2$, while a nonzero translation has order $\ell$ and gives cycles of length $2\ell$. Thus the full cycle type is determined by $R_w$. The stated gaps are therefore equivalent to
+Each such base orbit gives $Q$ cycles of length $2$; every nonzero translation has order $\ell$ and gives cycles of length $2\ell$. Thus the prescribed gaps are equivalent to
 $$
-R_w=R_0+8\ell(q+3Q)1_U(w)+8\ell^2(q+Q)1_W(w) \tag{4}
+R_w=R_0+8\ell(q+3Q)1_{\overline U}(w)+8\ell^2(q+Q)1_{\overline W}(w) \tag{4}
 $$
-for some constant $R_0$.
+for a constant $R_0$.
 
 For an additive character $\chi$ of $G$, write
 $$
 M(\chi)=\sum_zm_z\chi(z).
 $$
-With the unnormalized Fourier transform, $\widehat N(\chi)=|M(\chi)|^2$. For nontrivial $\chi$, equations (3) and (4) give
-$$
-2|M(\chi)|^2-m=
-8Q(q+Q)1_{W^\perp}(\chi)+8Q(q+3Q)1_{U^\perp}(\chi).
-$$
-Since $m=2q^2$, this is exactly
+The unnormalized Fourier transform gives $\widehat N(\chi)=|M(\chi)|^2$. For nontrivial $\chi$, (3)--(4) yield
 $$
 |M(\chi)|=
 \begin{cases}
-q+4Q,&\chi\in U^\perp\setminus\{1\},\\
-q+2Q,&\chi\in W^\perp\setminus U^\perp,\\
-q,&\chi\notin W^\perp.
+q+4Q,&\chi\in\overline U^\perp\setminus\{1\},\\
+q+2Q,&\chi\in\overline W^\perp\setminus\overline U^\perp,\\
+q,&\chi\notin\overline W^\perp.
 \end{cases} \tag{5}
 $$
-Here $W^\perp$ has dimension $2$ and $U^\perp$ is a line inside it.
+The two extra vectors in the statement satisfy
+$$
+D_s\mathbf1=s,\qquad D_sc_s=Ps.
+$$
+Scalar multiplication by $2$ does not affect membership in linear subspaces, so
+$$
+s,Ps\in\overline U\setminus\overline W. \tag{6}
+$$
+This is the new load-bearing incidence condition.
 
-Step 3: Recover the affine flag and its center.
-Fix a nontrivial projective character direction $L$. Its $\ell-1$ nontrivial characters are Galois conjugate under $\zeta\mapsto\zeta^a$, and by (5) all have one common absolute value
+Step 3: Recover the affine flag and its phase center.
+Fix a nontrivial projective character direction $L$. Its $\ell-1$ nontrivial characters are Galois conjugate, and by (5) they have one common absolute value
 $$
 p_L\in\{q,q+2Q,q+4Q\}.
 $$
-Because $p_L$ is inert, the principal ideal generated by $M(\chi)$ has the same norm as $(p_L)$, hence $(M(\chi))=(p_L)$. Therefore $M(\chi)/p_L$ is an algebraic integer all of whose conjugates have absolute value $1$, so by Kronecker's lemma it is a root of unity.
+Since $p_L$ is inert, the principal ideal generated by $M(\chi)$ has the same norm as $(p_L)$, hence $(M(\chi))=(p_L)$. Thus $M(\chi)/p_L$ is an algebraic integer all of whose conjugates have absolute value $1$, so it is a root of unity.
 
-Let $\lambda=1-\zeta$. Since every character value is $1$ modulo $\lambda$,
+Let $\lambda=1-\zeta$. Every character value is $1$ modulo $\lambda$, hence
 $$
 M(\chi)\equiv m=2q^2\pmod\lambda.
 $$
@@ -102,111 +104,94 @@ Also $p_L\equiv q\pmod\ell$, so
 $$
 \frac{M(\chi)}{p_L}\equiv2q\equiv1\pmod\lambda.
 $$
-The roots of unity in $\mathbb Q(\zeta)$ are $\pm\zeta^c$, and only $\zeta^c$ is congruent to $1$ modulo $\lambda$. Hence each projective direction $L$ determines a distinguished affine hyperplane $A_L$ such that the nontrivial Fourier coefficients on $L$ are $p_L$ times the corresponding $\ell$th-root phases of $A_L$.
+The roots of unity in $\mathbb Q(\zeta)$ are $\pm\zeta^c$, and only $\zeta^c$ is congruent to $1$ modulo $\lambda$. Therefore every projective direction determines a distinguished affine hyperplane carrying the Fourier phase.
 
 Let
 $$
-D=\frac{Q-1}{\ell-1},
+D=\frac{Q-1}{\ell-1},\qquad d_0=\frac{h-1}{\ell-1}.
 $$
-let $e(z)$ be the number of all $D$ distinguished affine hyperplanes containing $z$, let $\mathcal S=\mathbb P(W^\perp)$ be the $\ell+1$ special directions, let $f(z)$ count the distinguished hyperplanes from $\mathcal S$ containing $z$, and let $I(z)$ be the indicator of the distinguished hyperplane for the line $U^\perp$. Fourier inversion gives
+Let $e(z)$ count all $D$ distinguished affine hyperplanes through $z$, let $f(z)$ count those whose normals lie in $\mathbb P(\overline W^\perp)$, and let $I(z)$ indicate the distinguished hyperplane for the line $\overline U^\perp$. Fourier inversion gives
 $$
-Qm_z=m-qD-2Q(\ell+2)+\ell q\,e(z)+2\ell Q\,f(z)+2\ell Q\,I(z). \tag{6}
+Qm_z=m-qD-2Q(\ell+2)+\ell q\,e(z)+2\ell Q\,f(z)+2\ell Q\,I(z). \tag{7}
 $$
-Reducing (6) modulo $Q$ and using $m=2q^2\equiv q\pmod Q$ yields
-$$
-1-D+\ell e(z)\equiv0\pmod Q. \tag{7}
-$$
-Set
-$$
-d_0=\frac{h-1}{\ell-1}.
-$$
-Then $D=d_0+h$ and $D-1=\ell d_0$, so (7) gives
+Reducing modulo $Q$ gives
 $$
 e(z)\equiv d_0\pmod h.
 $$
-Since $0\le e(z)\le D=d_0+h$, every $e(z)$ is either $d_0$ or $D$. If $x$ points have value $D$, counting incidences with the $D$ affine hyperplanes gives
+Since $0\le e(z)\le D=d_0+h$, every $e(z)$ is either $d_0$ or $D$. Counting incidences shows exactly one point has value $D$; call it $z_0$. Hence all distinguished affine hyperplanes meet at $z_0$, and
 $$
-d_0Q+hx=Dh.
+f(z)=1+\ell 1_{z_0+\overline W}(z),\qquad I(z)=1_{z_0+\overline U}(z).
 $$
-As $Q=\ell h$ and $D=1+\ell d_0$, this forces $x=1$. Hence all $D$ distinguished affine hyperplanes pass through a unique point $z_0$.
+Substitution into (7) gives
+$$
+m_z=d-4+2\ell^2 1_{z_0+\overline W}(z)+2\ell 1_{z_0+\overline U}(z)+q\delta_{z_0}(z). \tag{8}
+$$
+Taking the first moment and using (2) gives
+$$
+qz_0=Ps,\qquad z_0=q^{-1}Ps. \tag{9}
+$$
+Thus the phase center is tied to the cyclic shift of $s$, not to a fixed line. The four multiplicity levels are $A,B,C,E$, so the profile recovers $z_0$ and the transformed flag. Conversely, every $s$ and every transformed flag satisfying (6) gives exactly one profile of the form (8) with the required spectrum and first moment.
 
-The $\ell+1$ special hyperplanes have normals spanning $W^\perp$, so their common intersection is the affine codimension-two space $z_0+W$. Thus
+Step 4: Identify the conjugacy invariants.
+Let $\tau\in\widetilde C_\pi$ have base permutation $c=\pi_\tau\in C_{S_n}(\pi)$. A direct conjugation calculation gives
 $$
-f(z)=1+\ell\,1_{z_0+W}(z),
+s_j'=s_j,\qquad Z_T'=Z_{c^{-1}T}. \tag{10}
 $$
-and the distinguished hyperplane for $U^\perp$ is $z_0+U$, so
-$$
-I(z)=1_{z_0+U}(z).
-$$
-Also $e(z)=d_0+h\delta_{z_0}(z)$. Substituting into (6) gives
-$$
-m_z=d-4+2\ell^2 1_{z_0+W}(z)+2\ell 1_{z_0+U}(z)+q\delta_{z_0}(z). \tag{8}
-$$
-Taking the first moment of (8) and using (2) gives
-$$
-qz_0=t e_r,
-$$
-so
-$$
-z_0=q^{-1}t e_r. \tag{9}
-$$
-The four multiplicity levels are
-$$
-m_{z_0}=A,
-$$
-$$
-m_z=B\quad(z\in z_0+W\setminus\{z_0\}),\qquad
-m_z=C\quad(z\in z_0+U\setminus(z_0+W)),
-$$
-$$
-m_z=E\quad(z\notin z_0+U). \tag{10}
-$$
-They are distinct, so the profile recovers $z_0$ and the flag. Since scalar multiplication by $q^{-1}$ preserves the linear strata, the condition $t e_r\in U\setminus W$ is equivalent to $z_0\in U\setminus W$. Conversely, every nonzero $t$ and every flag with $e_r\in U\setminus W$ gives exactly one qualifying profile by (10).
+Hence $s$ and the multiplicity profile are invariants of a $\widetilde C_\pi$-conjugacy orbit.
 
-Step 4: Classify and count the centralizer-conjugacy orbits.
-Let $\tau\in\widetilde C_\pi$ have base permutation $c=\pi_\tau\in C_{S_n}(\pi)$. The same conjugation calculation as for the block labels gives
+Conversely, suppose two lifts have the same $s$ and the same profile. Since
 $$
-s_j'=s_j,\qquad Z_T'=Z_{c^{-1}T}.
+C_{S_n}(\pi)\cong C_2\wr S_m,
 $$
-Hence $s$, and therefore $t=\sum_j s_j$, together with the multiplicity profile are orbit invariants. Conversely, if two lifts have the same $s$ and the same profile, the wreath product
-$$
-C_{S_n}(\pi)\cong C_2\wr S_m
-$$
-permutes the transposition blocks to match equal labels, and an element over $M$ removes the remaining opposite endpoint phases on each block. Thus the orbits are classified exactly by $s$ and the profile.
+the centralizer permutes the $m$ transposition blocks arbitrarily, so a base permutation can match equal labels. The remaining phase difference on each block is $(\delta,-\delta)$ in each Kummer family. A kernel element over $M$ can remove these differences block by block; the additive constants on the blocks can be chosen so that each total exponent is $0$, as required for an element fixing every $\rho_j$. Therefore two qualifying lifts are conjugate exactly when they have the same $s$ and the same multiplicity profile.
 
-It remains to count the allowed $s$ and flags. Let $N_0$ be the number of tuples in $(\mathbb F_\ell^\times)^r$ with zero sum. Using additive-character orthogonality,
+Step 5: Count the two incidence regimes.
+For $s\in(\mathbb F_\ell^\times)^r$, let
 $$
-N_0=\frac1\ell\left((\ell-1)^r+(\ell-1)(-1)^r\right).
+H_s=\langle s,Ps\rangle.
 $$
-Therefore the number with $t=\sum_j s_j\ne0$ is
+There are two cases.
+
+If $\dim H_s=1$, then $Ps=\mu s$ for some $\mu\in\mathbb F_\ell^\times$. Thus
 $$
-N_s=(\ell-1)^r-N_0
-=\frac{\ell-1}{\ell}\left((\ell-1)^r-(-1)^r\right). \tag{11}
+s_{j+1}=\mu s_j,\qquad \mu^r=1.
+$$
+Writing
+$$
+\delta=\gcd(r,\ell-1),
+$$
+there are $(\ell-1)\delta$ such vectors $s$: choose one of the $\delta$ possible $\mu$ and any $s_1\ne0$. For each, the number of hyperplanes $\overline U$ containing the line $H_s$ is
+$$
+\frac{\ell^{r-1}-1}{\ell-1},
+$$
+and for each such $\overline U$ there are $\ell^{r-2}$ hyperplanes $\overline W\subset\overline U$ not containing that line. Hence
+$$
+F_1=\ell^{r-2}\frac{\ell^{r-1}-1}{\ell-1}. \tag{11}
 $$
 
-Now fix the line $L=\langle e_r\rangle$. The number of hyperplanes $U\subset G$ containing $L$ is
+If $\dim H_s=2$, there are $(\ell-1)^r-(\ell-1)\delta$ choices of $s$. The number of hyperplanes $\overline U$ containing $H_s$ is
 $$
-\frac{\ell^{r-1}-1}{\ell-1}.
+\frac{\ell^{r-2}-1}{\ell-1}.
 $$
-For such a fixed $U$, the number of hyperplanes $W\subset U$ not containing $L$ is
+For a fixed $\overline U$, a hyperplane $\overline W$ avoids both independent vectors $s$ and $Ps$ exactly when its defining projective functional is nonzero on each of them. This gives $(\ell-1)\ell^{r-3}$ choices, hence
 $$
-\frac{\ell^{r-1}-1}{\ell-1}-\frac{\ell^{r-2}-1}{\ell-1}=\ell^{r-2}. \tag{12}
+F_2=\ell^{r-3}(\ell^{r-2}-1). \tag{12}
 $$
-Thus the number of flags with $e_r\in U\setminus W$ is
+
+The total number of orbits is therefore
 $$
-\ell^{r-2}\frac{\ell^{r-1}-1}{\ell-1}. \tag{13}
+(\ell-1)\delta F_1+\big((\ell-1)^r-(\ell-1)\delta\big)F_2
 $$
-Multiplying (11) and (13), the required number of conjugacy orbits is
 $$
-\ell^{r-3}(\ell^{r-1}-1)\left((\ell-1)^r-(-1)^r\right).
+=\ell^{r-3}\left((\ell-1)^r(\ell^{r-2}-1)+\delta(\ell^r-\ell^{r-1}+\ell^{r-2}-1)\right).
 $$
-Final Answer: $\boxed{\ell^{r-3}(\ell^{r-1}-1)((\ell-1)^r-(-1)^r)}$
+Final Answer: $\boxed{\ell^{r-3}((\ell-1)^r(\ell^{r-2}-1)+\gcd(r,\ell-1)(\ell^r-\ell^{r-1}+\ell^{r-2}-1))}$
 
 ---
 
 ## Answer
 
-$\ell^{r-3}(\ell^{r-1}-1)((\ell-1)^r-(-1)^r)$
+$\ell^{r-3}((\ell-1)^r(\ell^{r-2}-1)+\gcd(r,\ell-1)(\ell^r-\ell^{r-1}+\ell^{r-2}-1))$
 
 ---
 
@@ -220,8 +205,8 @@ $\ell^{r-3}(\ell^{r-1}-1)((\ell-1)^r-(-1)^r)$
 
 ## Solution Concepts
 
-- Kummer relations coupling total and nonzero phases
+- cyclic Kummer coupling of total phases
 - three-level autocorrelation on a finite vector space
 - affine-hyperplane phase recovery
 - centralizer conjugation and orbit invariants
-- finite-field incidence and character counting
+- finite-field incidence with a rank split
