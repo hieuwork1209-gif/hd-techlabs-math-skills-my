@@ -2,35 +2,19 @@
 
 ## LaTeX (Normalized)
 
-Let
-$$
-H=\mathbb F_3^3
-$$
-with group law
-$$
-(x,y,z)(x',y',z')=(x+x',y+y',z+z'+xy').
-$$
-Put
-$$
-a=(1,0,0),\qquad b=(0,1,0),\qquad c=(0,0,1),
-$$
-and let $G$ be the Cayley graph of $H$ with generating set
-$$
-\{a^{\pm1},b^{\pm1},c^{\pm1}\}.
-$$
-Let $d$ be the shortest-path metric on $G$.
+Let $m\ge3$. Form a graph $B_m$ from two disjoint copies of $K_m$ by choosing one distinguished vertex in each copy and joining those two distinguished vertices by a single edge. Let $d$ be the shortest-path metric on $B_m$.
 
-For $p>0$, say that $(H,d)$ has $p$-negative type if every real family $(c_g)_{g\in H}$ with $\sum_gc_g=0$ satisfies
+For $p>0$, say that $(B_m,d)$ has $p$-negative type if every real family $(c_x)_{x\in B_m}$ with $\sum_xc_x=0$ satisfies
 $$
-\sum_{g,h\in H}c_gc_h\,d(g,h)^p\le0.
+\sum_{x,y\in B_m}c_xc_y\,d(x,y)^p\le0.
 $$
 Let
 $$
-\wp=\sup\{p>0:(H,d)\text{ has }p\text{-negative type}\}.
+\wp=\sup\{p>0:(B_m,d)\text{ has }p\text{-negative type}\}.
 $$
 At $p=\wp$, define the equality space
 $$
-E=\left\{c\in\mathbb R^H:\sum_gc_g=0,\ \sum_{g,h}c_gc_h\,d(g,h)^{\wp}=0\right\}.
+E=\left\{c\in\mathbb R^{B_m}:\sum_xc_x=0,\ \sum_{x,y}c_xc_y\,d(x,y)^{\wp}=0\right\}.
 $$
 Determine the ordered pair $(\wp,\dim E)$.
 
@@ -49,4 +33,4 @@ Determine the ordered pair $(\wp,\dim E)$.
 
 ## Domain Explanation
 
-The problem asks for the maximal negative-type exponent of a natural finite word metric on the Heisenberg group over $\mathbb F_3$, together with the dimension of its boundary equality space.
+The problem asks for the maximal negative-type exponent of the natural barbell-graph metric and the dimension of its boundary equality space. The graph has two vertex orbits inside each clique, so the decisive step is a symmetry decomposition of the powered-distance quadratic form into competing even and odd modes.
