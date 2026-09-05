@@ -2,11 +2,23 @@
 
 ## LaTeX (Normalized)
 
-Let $X$ be the set of triangulations of a convex hexagon by noncrossing diagonals. Form a graph $G$ on $X$ by joining two triangulations exactly when one is obtained from the other by a single diagonal flip. Let $d$ be the shortest-path metric on $G$.
-
-For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_T)_{T\in X}$ with $\sum_Tc_T=0$ satisfies
+Let
 $$
-\sum_{T,U\in X}c_Tc_U\,d(T,U)^p\le0.
+X=\mathbb F_2^8/\langle\mathbf1\rangle,
+$$
+where $\mathbf1=(1,\ldots,1)$. Thus a point of $X$ is an antipodal pair
+$$
+[x]=\{x,x+\mathbf1\}
+$$
+of vertices of the $8$-dimensional Hamming cube. Define
+$$
+d([x],[y])=\min\{\operatorname{wt}(x-y),\ 8-\operatorname{wt}(x-y)\},
+$$
+where $\operatorname{wt}$ denotes Hamming weight.
+
+For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_u)_{u\in X}$ with $\sum_uc_u=0$ satisfies
+$$
+\sum_{u,v\in X}c_uc_v\,d(u,v)^p\le0.
 $$
 Let
 $$
@@ -14,7 +26,7 @@ $$
 $$
 At $p=\wp$, define the equality space
 $$
-E=\left\{c\in\mathbb R^X:\sum_Tc_T=0,\ \sum_{T,U}c_Tc_U\,d(T,U)^{\wp}=0\right\}.
+E=\left\{c\in\mathbb R^X:\sum_uc_u=0,\ \sum_{u,v}c_uc_v\,d(u,v)^{\wp}=0\right\}.
 $$
 Determine the ordered pair $(\wp,\dim E)$.
 
@@ -33,4 +45,4 @@ Determine the ordered pair $(\wp,\dim E)$.
 
 ## Domain Explanation
 
-The problem asks for the maximal negative-type exponent of the flip-graph metric on the triangulations of a convex hexagon and the dimension of its boundary equality space. The decisive structure is a dihedral-symmetry decomposition together with the concavity of the powered distance increments.
+The problem asks for the maximal negative-type exponent of the antipodal quotient of the $8$-cube with its quotient Hamming metric, together with the dimension of the boundary equality space. The key structure is the Fourier decomposition of the quotient, whose characters are indexed by even-weight binary vectors.
