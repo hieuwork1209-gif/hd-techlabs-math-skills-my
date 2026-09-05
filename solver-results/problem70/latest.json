@@ -1,0 +1,17 @@
+{
+  "problem": "problem70",
+  "branch": "adversary/problem70",
+  "problem_path": "workspace/rainier-problem/problem70-determinants/problem.md",
+  "problem_blob_sha": "594517f8c3460b1e0c15cde5a5c785e3a2fbfac1",
+  "source_commit_sha": "b93b429da796192746b43adb79150b3fd6dceb50",
+  "status": "success",
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "timeout_seconds": 2100,
+  "completed_at": "2026-09-05T06:53:08+00:00",
+  "result_file": "solver-results/problem70/594517f8c346.json"
+}
