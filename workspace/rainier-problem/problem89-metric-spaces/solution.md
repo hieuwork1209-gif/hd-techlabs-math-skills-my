@@ -1,109 +1,106 @@
 ## Steps
 
-Step 1: Count the linear extensions
+Step 1: Determine the graph distances
 
-Write the elements of the product poset $P_m=[2]\times[m]$ as
+Let $C$ be the set of the $20$ three-cycles in $A_5$. The graph is the Cayley graph $\operatorname{Cay}(A_5,C)$, so it is vertex-transitive and
 $$
-u_j=(1,j),\qquad v_j=(2,j)\qquad(1\le j\le m).
+d(\sigma,\tau)=d(e,\sigma^{-1}\tau).
 $$
-A linear extension is determined by a word of length $2m$ containing $m$ letters $U$ and $m$ letters $V$: the $j$-th $U$ means $u_j$, and the $j$-th $V$ means $v_j$.
+Every nonidentity element of $A_5$ is a three-cycle, a double transposition, or a five-cycle. Three-cycles have distance $1$. The identities
+$$
+(12)(34)=(123)(234),
+$$
+$$
+(12345)=(123)(345)
+$$
+show that representatives of the other two cycle types are products of two three-cycles. Conjugating gives the same conclusion for every element of those types. Hence the graph has diameter $2$: distinct vertices are at distance $1$ exactly when their quotient is a three-cycle, and otherwise at distance $2$.
 
-The product order requires that every prefix contain at least as many $U$'s as $V$'s. Hence the vertices are Dyck words of semilength $m$. Among all $\binom{2m}{m}$ balanced words, reflection at the first prefix with more $V$'s than $U$'s gives a bijection from the bad words to words with $m-1$ letters $U$ and $m+1$ letters $V$. Therefore the number of vertices is
+Step 2: Determine the adjacency spectrum
+
+Let $A$ be the adjacency matrix. Since $C$ is a conjugacy class, the adjacency operator is the class sum of the three-cycles and acts by a scalar on each irreducible representation.
+
+First use the natural action of $A_5$ on five points. It is $2$-transitive, so its permutation representation is the direct sum of the constants and an irreducible $4$-dimensional representation $V$. A three-cycle fixes two points, so
 $$
-C_m=\binom{2m}{m}-\binom{2m}{m-1}
-=\frac1{m+1}\binom{2m}{m}.
+\chi_V((123))=2-1=1.
+$$
+Therefore the class sum acts on $V$ by
+$$
+\frac{|C|\chi_V((123))}{\dim V}=\frac{20}{4}=5.
+$$
+In the regular representation this contributes an adjacency eigenspace of dimension $4^2=16$.
+
+Next let $A_5$ act by conjugation on its six Sylow $5$-subgroups. The stabilizer of one such subgroup is its normalizer, of order $10$, and it acts transitively on the other five Sylow subgroups; hence this action is $2$-transitive. Thus the corresponding permutation representation is the constants plus an irreducible $5$-dimensional representation $W$. A three-cycle fixes no Sylow $5$-subgroup, because a Sylow normalizer has order $10$ and contains no element of order $3$. Hence
+$$
+\chi_W((123))=0-1=-1,
+$$
+so the class sum acts on $W$ by
+$$
+\frac{20(-1)}5=-4.
+$$
+This contributes an eigenspace of dimension $5^2=25$ in the regular representation.
+
+The constant vector has eigenvalue $20$. Since the graph is simple and $20$-regular on $60$ vertices,
+$$
+\operatorname{tr}A=0,
+\qquad
+\operatorname{tr}A^2=60\cdot20=1200.
+$$
+The eigenvalues already found contribute
+$$
+20^2+16\cdot5^2+25\cdot(-4)^2=1200.
+$$
+Because $A$ is symmetric, every remaining eigenvalue is therefore $0$. Thus the adjacency spectrum is
+$$
+20^{[1]},\qquad 5^{[16]},\qquad 0^{[18]},\qquad (-4)^{[25]}.
 $$
 
-Step 2: Identify the metric with a Hamming metric
+Step 3: Find the maximal negative-type exponent
 
-The only incomparable pairs in $P_m$ are
+Put $x=2^p$. Since the graph has diameter $2$, the powered distance matrix is
 $$
-\{v_i,u_j\}\qquad(1\le i<j\le m),
+D_p=A+x(J-I-A).
 $$
-so there are
+On the zero-sum subspace, $J$ vanishes. If $Av=\theta v$ with $v\perp\mathbf1$, then
 $$
-N=\binom m2
+D_pv=\bigl(-x+(1-x)\theta\bigr)v.
 $$
-of them. For each such pair define
+For the three nonconstant adjacency eigenvalues this gives
 $$
-x_{ij}(L)=\mathbf1\{v_i\text{ precedes }u_j\text{ in the linear extension }L\}.
+\theta=5:\quad 5-6x<0,
 $$
-
-Swapping two consecutive incomparable elements changes exactly one coordinate $x_{ij}$. Thus every path from $L$ to $L'$ has length at least
 $$
-\sum_{i<j}|x_{ij}(L)-x_{ij}(L')|.
+\theta=0:\quad -x<0,
 $$
-Conversely, regard $L'$ as the target total order and bubble-sort $L$ toward it. Any adjacent pair that is reversed relative to $L'$ must be incomparable, because comparable elements occur in the same order in every linear extension. Swapping such a pair reduces the number of disagreements by exactly $1$. Hence
 $$
-d(L,L')=\sum_{i<j}|x_{ij}(L)-x_{ij}(L')|.
+\theta=-4:\quad 3x-4.
 $$
-
-Step 3: Prove $1$-negative type
-
-Let $(c_L)$ satisfy $\sum_Lc_L=0$. Since each $x_{ij}$ is binary,
+Hence $D_p$ is negative semidefinite on the zero-sum subspace exactly when
 $$
-|x_{ij}(L)-x_{ij}(L')|
-=x_{ij}(L)+x_{ij}(L')-2x_{ij}(L)x_{ij}(L').
+3\cdot2^p-4\le0.
 $$
 Therefore
 $$
-\sum_{L,L'}c_Lc_{L'}d(L,L')
-=-2\sum_{i<j}\left(\sum_Lc_Lx_{ij}(L)\right)^2\le0.
-$$
-Thus the metric has $1$-negative type. Equality holds exactly when
-$$
-\sum_Lc_Lx_{ij}(L)=0
-$$
-for every $i<j$.
-
-Step 4: Show that every exponent $p>1$ fails
-
-Because $m\ge3$, begin with the linear extension
-$$
-L_0=(u_1,u_2,v_1,u_3,v_2,v_3,u_4,v_4,\ldots,u_m,v_m),
-$$
-where the tail is omitted when $m=3$. The pairs $(u_2,v_1)$ and $(u_3,v_2)$ are incomparable and occur in disjoint adjacent positions. Swapping either pair, or both, gives four linear extensions.
-
-By Step 2, these four vertices form an isometric square: its four sides have length $1$ and its two diagonals have length $2$. Assign coefficients $1,-1,-1,1$ around the square. The powered quadratic form is
-$$
-4\cdot2^p-8>0
-$$
-for every $p>1$. Hence no exponent larger than $1$ has negative type, and therefore
-$$
-\wp=1.
+\wp=\log_2\frac43.
 $$
 
-Step 5: Compute the equality-space dimension
+Step 4: Compute the equality-space dimension
 
-At $p=1$, the equality space is the kernel of the linear map
+At $p=\wp$, the powered-distance eigenvalue is zero exactly on the adjacency eigenspace with eigenvalue $-4$. The other two nonconstant powered-distance eigenvalues are strictly negative. Consequently
 $$
-c\longmapsto
-\left(\sum_Lc_L,\left(\sum_Lc_Lx_{ij}(L)\right)_{i<j}\right).
+E=\ker(A+4I),
 $$
-We show that the constant function together with the $N$ functions $x_{ij}$ are linearly independent.
-
-Fix an incomparable pair $v_i,u_j$. Let $I$ be the union of their strict lower sets. Then $I$ is an order ideal containing neither element, and after any linear extension of $I$, both $v_i$ and $u_j$ are minimal among the remaining elements. Hence there is a linear extension in which they occur consecutively; swapping them gives another linear extension and changes only $x_{ij}$.
-
-Therefore, if
+and Step 2 gives
 $$
-a_0+\sum_{i<j}a_{ij}x_{ij}(L)=0
-$$
-for every $L$, subtracting the two equations for such an adjacent pair gives $a_{ij}=0$. This holds for every $i<j$, and then $a_0=0$. Thus the map has rank
-$$
-1+\binom m2.
-$$
-Since there are $C_m$ vertices,
-$$
-\dim E=\frac1{m+1}\binom{2m}{m}-\binom m2-1.
+\dim E=25.
 $$
 
-Final Answer: $\boxed{(1,\frac1{m+1}\binom{2m}{m}-\binom{m}{2}-1)}$
+Final Answer: $\boxed{(\log_2\frac43,25)}$
 
 ---
 
 ## Answer
 
-$(1,\frac1{m+1}\binom{2m}{m}-\binom{m}{2}-1)$
+$(\log_2\frac43,25)$
 
 ---
 
@@ -117,8 +114,7 @@ $(1,\frac1{m+1}\binom{2m}{m}-\binom{m}{2}-1)$
 
 ## Solution Concepts
 
-- linear-extension graphs
-- Dyck paths and Catalan numbers
-- Hamming embeddings
+- normal Cayley graph metrics
+- representation theory of $A_5$
+- adjacency spectra from class sums
 - negative type of finite metric spaces
-- incomparable-pair coordinates
