@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "d70429cc0c6266c8a5157758ef51f00650f9b53a",
+  "problem_blob_sha": "697058c470fe0cb0e58fa75223ff7adbb4120d4c",
+  "statement_sha256": "11dabd752694130b14808d3022dcd4c3dbb194746b8a819dc83b70ac2fd01088",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T09:27:05+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(D_p=(d(x,y)^p)_{x,y\\in T}\\). We need \\(D_p\\) negative semidefinite on the codimension-one subspace \\(\\sum c_x=0\\).\n\nUse the automorphisms of the complete binary tree. The zero-sum space decomposes into invariant blocks:\n\n- four leaf-sibling contrast blocks of size \\(1\\);\n- two depth-\\(1\\) contrast blocks of size \\(2\\);\n- one root-contrast block of size \\(3\\);\n- one radial zero-sum block of size \\(3\\), where coefficients are constant on each level.\n\nWriting\n\\[\nA=2^p,\\quad B=3^p,\\quad C=4^p,\\quad E_5=5^p,\\quad F=6^p,\n\\]\nthe radial block, after writing level coefficients as\n\\[\n(a_0,a_1,a_2,a_3)=(-2x-4y-8z,x,y,z),\n\\]\nis the \\(3\\times3\\) matrix\n\\[\nM_R=\n\\begin{pmatrix}\n-8+2A&-4-8A+4B&-16+8A-16B+8C\\\\\n-4-8A+4B&-28A+8C&8-32A-24B+16E_5\\\\\n-16+8A-16B+8C&8-32A-24B+16E_5&8A-128B+16C+32F\n\\end{pmatrix}.\n\\]\nThe first loss of negative semidefiniteness occurs when \\(-M_R\\) becomes singular. Its determinant is \\(64\\Phi(p)\\), where\n\\[\n\\begin{aligned}\n\\Phi(p)=&-24-4\\cdot2^p+64\\cdot3^p+104\\cdot4^p-64\\cdot5^p-72\\cdot6^p\\\\\n&-13\\cdot8^p+8\\cdot9^p+88\\cdot10^p-160\\cdot12^p+96\\cdot15^p\\\\\n&-100\\cdot16^p+76\\cdot18^p+16\\cdot20^p+172\\cdot24^p-32\\cdot25^p\\\\\n&-80\\cdot27^p-104\\cdot30^p-16\\cdot32^p+28\\cdot36^p+32\\cdot40^p\\\\\n&+32\\cdot45^p-40\\cdot48^p+8\\cdot50^p+8\\cdot54^p-16\\cdot60^p+8\\cdot64^p .\n\\end{aligned}\n\\]\nThis function has its first positive zero at\n\\[\n\\rho=1.374313554912587\\ldots\n\\]\nand all other invariant blocks remain negative definite there. The next possible block failures occur later, so\n\\[\n\\wp=\\rho.\n\\]\n\nAt \\(p=\\wp\\), only the radial block has a kernel, and its kernel is one-dimensional because the other principal minors of \\(-M_R\\) are still positive. Hence\n\\[\n\\dim E=1.\n\\]\n\n\\[\n\\boxed{(\\wp,\\dim E)=\\left(1.374313554912587\\ldots,\\ 1\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T09:31:30+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/697058c470fe.json"
+}
