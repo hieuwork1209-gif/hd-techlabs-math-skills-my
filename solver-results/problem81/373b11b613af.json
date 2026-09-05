@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-field-theory/problem.md",
+  "source_commit_sha": "e384294625f32ce0ea5a349f5e99a0e277d9df94",
+  "problem_blob_sha": "373b11b613af4fe0ae2fb8459ee58272747f4d5f",
+  "statement_sha256": "3b7a765348a82f1cf220b1cb80f1bae67b1f9a474150fbf8eaf32aa1f67297d4",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T02:24:55+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(V=\\mathbb F_\\ell^r\\), so \\(|V|=Q\\), and let\n\n\\[\nm=\\frac n2=2q^2\n\\]\n\nbe the number of transpositions of \\(\\pi\\). For a lift \\(\\sigma\\) of \\(\\pi\\), write\n\n\\[\n\\sigma(\\rho_j)=\\zeta^{b_j}\\rho_j,\\qquad \n\\sigma(\\alpha_i^{(j)})=\\zeta^{a_i^{(j)}}\\alpha_{\\pi(i)}^{(j)} .\n\\]\n\nThe Kummer independence hypothesis gives exactly the single constraint\n\n\\[\n\\sum_{i=1}^n a_i^{(j)}=0\n\\]\n\nfor each \\(j\\). Also \\(\\sigma(\\rho_j)\\ne \\rho_j\\) means \\(b_j\\ne0\\). Thus \\(b=(b_1,\\dots,b_r)\\in(\\mathbb F_\\ell^\\times)^r\\).\n\nFor each transposition block \\(P=\\{i,\\pi(i)\\}\\), define\n\n\\[\nA_P=(a_i^{(1)}+a_{\\pi(i)}^{(1)},\\dots,a_i^{(r)}+a_{\\pi(i)}^{(r)})\\in V .\n\\]\n\nThen \\(\\sum_P A_P=0\\). Conversely, after choosing the \\(A_P\\)’s with sum \\(0\\), there are \\(\\ell^{mr}\\) choices of the \\(a_i^{(j)}\\)’s.\n\nNow consider the action on \\(\\Omega_k\\). Applying \\(\\sigma\\) twice sends the label \\((i,h,u)\\) to itself with translation\n\n\\[\nu\\mapsto u+2kb+A_P-A_R,\n\\]\n\nwhere \\(P,R\\) are the transposition blocks containing \\(i,h\\). Hence a \\(2\\)-cycle occurs exactly when\n\n\\[\n2kb+A_P-A_R=0.\n\\]\n\nLet \\(c_x=\\#\\{P:A_P=x\\}\\). For \\(d\\in V\\), put\n\n\\[\nN(d)=\\#\\{(P,R):P\\ne R,\\ A_P-A_R=d\\}.\n\\]\n\nThe number of \\(2\\)-cycles in \\(\\Omega_k\\) is\n\n\\[\nC(k)=Q\\left(m\\mathbf 1_{k=0}+2N(-2kb)\\right).\n\\]\n\nSince \\(b_j\\ne0\\), the map \\(k\\mapsto -2kb\\) is a bijection of \\(V\\), preserving hyperplanes.\n\nThe required two-level condition is therefore equivalent to the existence of a hyperplane \\(W\\subset V\\) such that\n\n\\[\nm\\mathbf 1_{d=0}+2N(d)\n\\]\n\nis constant for \\(d\\in W\\), constant for \\(d\\notin W\\), and the difference is\n\n\\[\n8\\ell(Q+q).\n\\]\n\nThe unique possible multiplicity pattern is\n\n\\[\nc_x=C_0+q\\mathbf 1_{x=0}+2\\ell\\mathbf 1_{x\\in W},\n\\]\n\nwhere\n\n\\[\nC_0=\\frac{q(2q-1)}{Q}-2.\n\\]\n\nIndeed, its Fourier transform has absolute value \\(q+2Q\\) on the nontrivial characters trivial on \\(W\\), and absolute value \\(q\\) on all other nontrivial characters. Since \\(2\\) generates \\(\\mathbb F_\\ell^\\times\\), the primes \\(q\\) and \\(q+2Q\\) are inert in \\(\\mathbb Q(\\zeta_\\ell)\\); hence these Fourier magnitudes force this pattern. The condition \\(\\sum_P A_P=0\\) forces the exceptional point to be \\(0\\).\n\nFor this pattern,\n\n\\[\nc_0=C_0+q+2\\ell,\\qquad\nc_x=C_0+2\\ell\\quad (0\\ne x\\in W),\\qquad\nc_x=C_0\\quad (x\\notin W).\n\\]\n\nThere are \\((Q-1)/(\\ell-1)\\) hyperplanes \\(W\\subset V\\). For each \\(W\\), the number of labeled choices of the \\(A_P\\)’s is\n\n\\[\n\\frac{m!}\n{(C_0+q+2\\ell)!\\,(C_0+2\\ell)!^{Q/\\ell-1}\\,(C_0)!^{Q-Q/\\ell}}.\n\\]\n\nFinally, there are \\((\\ell-1)^r\\) choices for \\(b\\), and \\(\\ell^{mr}\\) choices of the individual \\(a_i^{(j)}\\)’s above a fixed \\(A\\)-configuration. Since \\(m=2q^2\\), the required number is\n\n\\[\n\\boxed{\n(\\ell-1)^r\\ell^{2q^2r}\\frac{Q-1}{\\ell-1}\\,\n\\frac{(2q^2)!}\n{\\left(C_0+q+2\\ell\\right)!\\left(C_0+2\\ell\\right)!^{Q/\\ell-1}\\left(C_0\\right)!^{Q-Q/\\ell}}\n}\n\\]\n\nwhere\n\n\\[\n\\boxed{C_0=\\frac{q(2q-1)}{Q}-2,\\qquad Q=\\ell^r.}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T02:27:00+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/373b11b613af.json"
+}
