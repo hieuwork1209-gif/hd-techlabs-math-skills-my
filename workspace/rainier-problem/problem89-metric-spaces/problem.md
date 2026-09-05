@@ -2,19 +2,19 @@
 
 ## LaTeX (Normalized)
 
-Let $k\ge2$ and $n\ge3k-1$. Let $KG(n,k)$ be the Kneser graph whose vertices are the $k$-subsets of $[n]=\{1,\ldots,n\}$, with two vertices adjacent exactly when they are disjoint. Let $d$ be its shortest-path metric.
+Let $n\ge4$. Let $\Pi_n$ be the graph whose vertices are the permutations in $S_n$, written in one-line notation, with two permutations adjacent exactly when one is obtained from the other by swapping two adjacent entries. Let $d$ be the shortest-path metric on $\Pi_n$.
 
-For $p>0$, say that the vertex set has $p$-negative type if every real family $(c_S)$ with $\sum_S c_S=0$ satisfies
+For $p>0$, say that $(S_n,d)$ has $p$-negative type if every real family $(c_\sigma)_{\sigma\in S_n}$ with $\sum_\sigma c_\sigma=0$ satisfies
 $$
-\sum_{S,T}c_Sc_T\,d(S,T)^p\le0.
+\sum_{\sigma,\tau\in S_n}c_\sigma c_\tau\,d(\sigma,\tau)^p\le0.
 $$
 Let
 $$
-\wp=\sup\{p>0:KG(n,k)\text{ has }p\text{-negative type}\}.
+\wp=\sup\{p>0:(S_n,d)\text{ has }p\text{-negative type}\}.
 $$
-At $p=\wp$, define
+At $p=\wp$, define the equality space
 $$
-E=\left\{c:\sum_Sc_S=0,\ \sum_{S,T}c_Sc_T\,d(S,T)^{\wp}=0\right\}.
+E=\left\{c\in\mathbb R^{S_n}:\sum_\sigma c_\sigma=0,\ \sum_{\sigma,\tau}c_\sigma c_\tau\,d(\sigma,\tau)^{\wp}=0\right\}.
 $$
 Determine the ordered pair $(\wp,\dim E)$.
 
@@ -33,4 +33,4 @@ Determine the ordered pair $(\wp,\dim E)$.
 
 ## Domain Explanation
 
-The problem asks for the maximal negative-type exponent of a finite graph metric and the dimension of its boundary equality space. The decisive structure is the natural inclusion filtration of functions on the Kneser graph, which reveals the least adjacency eigenspace and hence the powered-distance threshold.
+The problem asks for the maximal negative-type exponent of the permutahedron graph metric and the dimension of its boundary equality space. The decisive structure is a hidden Hamming representation by pairwise inversion indicators.
