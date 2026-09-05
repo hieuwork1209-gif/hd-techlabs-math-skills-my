@@ -109,15 +109,25 @@ with $N\ge0$ minimal. If $N>0$, reducing the numerator modulo $a$ gives
 $$
 F(0,q,r,qP,rP)=0.
 $$
-The kernel of the substitution
+Consider
 $$
-k[q,r,U,V]\longrightarrow k[q,r,P],
+\phi:k[q,r,U,V]\longrightarrow k[q,r,P],
 \qquad
 U\mapsto qP,
 \quad
-V\mapsto rP,
+V\mapsto rP.
 $$
-is the principal ideal $(rU-qV)$. Indeed, viewing a polynomial as a polynomial in $V$ and dividing by $qV-rU$, the remainder is independent of $V$; substituting $U=qP,V=rP$ then forces that remainder to vanish. Hence
+We claim
+$$
+\ker\phi=(rU-qV).
+$$
+The polynomial $rU-qV$ is primitive and linear in $V$ over the UFD $k[q,r,U]$, hence irreducible and therefore prime in $k[q,r,U,V]$. After localizing at $q$, the equation $rU-qV=0$ gives
+$$
+V=\frac rqU,
+$$
+so the localized kernel is exactly $(rU-qV)_q$. Thus if $G\in\ker\phi$, some power $q^mG$ lies in $(rU-qV)$. Since this prime ideal does not contain $q$, it follows that $G\in(rU-qV)$, proving the claim.
+
+Hence
 $$
 F(0,q,r,U,V)=(rU-qV)G_0.
 $$
