@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "a8658f41ad3c0b6f0ffbd251bf18436c0bd7f628",
+  "problem_blob_sha": "9f8cc4e3086f841d6e755ffbefe1a0831997f664",
+  "statement_sha256": "27a4cd41df543627a1e3e2a1ab4c1599b7b7eb9e60bb7cc7ed4663b153d8b615",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T02:27:24+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nQ_s(p)=\\bigl(d_s(i,j)^p-d_s(i,\\ast)^p-d_s(j,\\ast)^p\\bigr)_{0\\le i,j\\le 12}.\n\\]\nThen \\(p\\)-negative type is equivalent to \\(Q_s(p)\\le 0\\).\n\nAt \\(s=0,p=1\\), the null vector in the zero-sum coordinates is\n\\[\nu=(-2,1,0,0,2,-2,-2,0,2,0,0,1,-2),\n\\]\ncorresponding to\n\\[\n(a_0,\\ldots,a_{12},a_\\ast)=(-2,1,0,0,2,-2,-2,0,2,0,0,1,-2,2).\n\\]\nOne checks\n\\[\nQ_0(1)u=0,\\qquad u^Tu=26.\n\\]\nOn the quotient \\(u^\\perp\\), an exact \\(LDL^T\\) certificate has diagonal entries\n\\[\n-8,-\\frac{55}{2},-\\frac{432}{55},-8,-\\frac{296}{27},\n-\\frac{586}{37},-6,-\\frac{5531}{879},\n-\\frac{34280}{5531},-\\frac{11222}{4285},\n-\\frac{14128}{5611},-\\frac{2197}{883},\n\\]\nso \\(Q_0(1)\\) is negative semidefinite with one-dimensional kernel. Also\n\\[\n\\frac14\\left.\\frac{d}{dp}\\right|_{p=1}\n\\sum_{z,w}a_za_wd_0(z,w)^p=\\tau>0.\n\\]\nThus for \\(p>1\\) close to \\(1\\), the null direction becomes positive, while \\(p<1\\) is allowed by the Bernstein-function closure \\(x\\mapsto x^p\\). Hence\n\\[\n\\wp(0)=1.\n\\]\n\nFor \\(s>0\\), writing \\(Q_s(1)=Q_0+sA_1+s^2A_2\\), standard simple-kernel perturbation gives\n\\[\n\\mu_1=\\mu_2=0,\\qquad \\mu_3=-\\frac{126}{2197}\n\\]\nfor the eigenvalue bifurcating from \\(0\\). Since\n\\[\n\\partial_p\\mu(0,1)=\\frac{4\\tau}{u^Tu}=\\frac{2\\tau}{13},\n\\]\nwe get\n\\[\n\\wp(s)=1+\\frac{63}{169\\tau}s^3+O(s^4),\n\\]\nso\n\\[\n\\beta_+=\\tau\\wp'''(0^+)=\\tau\\cdot\\frac{378}{169\\tau}\n=\\frac{378}{169}.\n\\]\n\nFor \\(s<0\\), put \\(x=-s>0\\). The same computation gives\n\\[\n\\mu_1=\\mu_2=0,\\qquad \\mu_3=-\\frac{99}{4394},\n\\]\nso\n\\[\n\\wp(-x)=1+\\frac{99}{676\\tau}x^3+O(x^4).\n\\]\nTherefore\n\\[\n\\wp'''(0^-)=-\\frac{297}{338\\tau},\n\\qquad\n\\beta_-=-\\frac{297}{338}.\n\\]\n\n\\[\n\\boxed{\\left(\\wp(0),\\beta_-,\\beta_+\\right)\n=\\left(1,-\\frac{297}{338},\\frac{378}{169}\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T02:30:41+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/9f8cc4e3086f.json"
+}
