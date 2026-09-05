@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "b69a368bdf2c9d677f8ab3ad7117fde64bfa631d",
+  "problem_blob_sha": "be3195acb701820573d5fe08ef524629a8a2ee29",
+  "statement_sha256": "b2e898b22a862e6170aef91c44718c9a97f62ab0c17ada8f835e197e4fed95fd",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T02:51:15+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let the non-base vertices be ordered as\n\\[\na_1,a_2,a_3,b_1,b_2,b_3,\n\\]\nand put\n\\[\nK_{ij}(p,s)=\\frac{d_s(i,\\ast)^p+d_s(j,\\ast)^p-d_s(i,j)^p}{2}.\n\\]\nFor coefficients with total sum \\(0\\), writing the six non-base coefficients as \\(x\\), one has\n\\[\n\\sum_{z,w}c_zc_wd_s(z,w)^p=-2x^TK(p,s)x.\n\\]\nThus \\(p\\)-negative type is equivalent to \\(K(p,s)\\succeq0\\).\n\nFor small \\(s>0\\), the only distances changed from the two unchorded \\(4\\)-cycles are\n\\[\nd(a_1,a_3)=2-4Ls+s^2,\\quad d(b_1,b_3)=2-4Ls,\\quad\nd(a_2,b_2)=4-(8L-12M)s.\n\\]\n\nAt \\(s=0,p=1\\), the kernel of \\(K\\) is spanned by\n\\[\nu=(1,-1,1,0,0,0),\\qquad v=(0,0,0,1,-1,1).\n\\]\nFor \\(p>1\\),\n\\[\nu^TK(p,0)u=4-2\\cdot 2^p<0,\n\\]\nso \\(\\wp(0)=1\\).\n\nNow write\n\\[\np=1+qs+rs^2+O(s^3).\n\\]\nTaking the Schur complement against the four positive directions at \\((p,s)=(1,0)\\), the active \\(2\\times2\\) block on \\(\\operatorname{span}\\{u,v\\}\\) has expansion\n\\[\nS=s(1-q)H+s^2(G-rH)+O(s^3),\n\\]\nwhere\n\\[\nH=\\begin{pmatrix}\n4L&4L-6M\\\\\n4L-6M&4L\n\\end{pmatrix}\n\\]\nis positive definite, and\n\\[\nG=\\begin{pmatrix}\ng_1&g_3\\\\\ng_3&g_2\n\\end{pmatrix},\n\\]\nwith\n\\[\ng_1=4L+2L^2-1-\\frac92(L-M)^2,\n\\]\n\\[\ng_2=4L+2L^2-\\frac92(L-M)^2,\n\\]\n\\[\ng_3=4L^2-6LM+3M^2+4L-6M.\n\\]\nSince \\(H\\succ0\\), the linear term forces \\(q=1\\). The first loss of positive semidefiniteness at the next order occurs when\n\\[\n\\det(G-rH)=0,\n\\]\ntaking the smaller root. Thus\n\\[\nr=\\frac{4L(g_1+g_2)-2(4L-6M)g_3-\\sqrt{\\left(4L(g_1+g_2)-2(4L-6M)g_3\\right)^2-4\\left((4L)^2-(4L-6M)^2\\right)(g_1g_2-g_3^2)}}{2\\left((4L)^2-(4L-6M)^2\\right)}.\n\\]\nTherefore\n\\[\n\\wp(s)=1+s+rs^2+O(s^3),\n\\]\nso\n\\[\n\\boxed{\\left(1,\\ 1,\\ 2r\\right)}.\n\\]\n\nNumerically,\n\\[\n2r\\approx 1.36026934240001.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T02:56:34+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/be3195acb701.json"
+}
