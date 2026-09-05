@@ -1,126 +1,174 @@
 ## Steps
 
-Step 1: Encode the algebra by one polynomial automorphism
+Step 1: Reveal the hidden wild coordinates
 Let
 $$
-A=k[u,v,w].
+A=k[u,v,w]
 $$
-Put
+and put
 $$
-q=v+u^2,
+\Delta=v^2+uw,
+$$
+$$
+p=u-2v\Delta-w\Delta^2,
 \qquad
-r=w+uq,
+q=v+w\Delta,
 \qquad
-p=u+q^2+r^2.
+r=w.
 $$
-The change of variables is invertible because
+A direct calculation gives
 $$
-u=p-q^2-r^2,
+q^2+pr=\Delta.
+$$
+Hence this is an invertible polynomial change of coordinates: if
+$$
+\delta=q^2+pr,
+$$
+then
+$$
+u=p+2q\delta-r\delta^2,
 \qquad
-v=q-u^2,
+v=q-r\delta,
 \qquad
-w=r-uq.
+w=r.
 $$
-Define an automorphism $\sigma$ of $A$ by requiring
+Thus $A=k[p,q,r]$.
+
+In these coordinates define
 $$
-\sigma(p)=p+1,
+P=2p-q+2r,
 \qquad
-\sigma(q)=2q,
+Q=3q-2r,
 \qquad
-\sigma(r)=3r.
+R=5r.
 $$
-Returning to $u,v,w$, this gives
+Then
 $$
-\sigma(u)=u+1-3q^2-8r^2,
+E=Q^2+PR.
 $$
+Applying the inverse coordinate change to $(P,Q,R)$ gives
 $$
-\sigma(v)=2q-\sigma(u)^2,
+u'=P+2QE-RE^2,
 \qquad
-\sigma(w)=3r-2\sigma(u)q.
+v'=Q-RE,
+\qquad
+w'=R,
 $$
-Thus the displayed presentation is exactly
+which is exactly the automorphism displayed in the problem. Therefore
+$$
+\sigma(p)=2p-q+2r,
+\qquad
+\sigma(q)=3q-2r,
+\qquad
+\sigma(r)=5r.
+$$
+
+Step 2: Diagonalize the hidden action and compute its fixed ring
+Set
+$$
+a=p+q,
+\qquad
+b=q+r,
+\qquad
+c=r.
+$$
+This is an invertible linear change, with
+$$
+r=c,
+\qquad
+q=b-c,
+\qquad
+p=a-b+c.
+$$
+The formulas from Step 1 become
+$$
+\sigma(a)=2a,
+\qquad
+\sigma(b)=3b,
+\qquad
+\sigma(c)=5c.
+$$
+Hence $A=k[a,b,c]$.
+
+If
+$$
+F=\sum_{i,j,\ell\geq0}\lambda_{i,j,\ell}a^ib^jc^\ell
+$$
+is fixed by $\sigma$, then every monomial occurring with nonzero coefficient must satisfy
+$$
+2^i3^j5^\ell=1.
+$$
+Because $k$ has characteristic $0$, the prime field is $\mathbb Q$, so this equality of positive rational integers is possible only for
+$$
+i=j=\ell=0.
+$$
+Therefore
+$$
+A^\sigma=k.
+$$
+Also $\sigma$ has infinite order, since
+$$
+\sigma^n(a)=2^na
+$$
+for every positive integer $n$.
+
+Step 3: Eliminate every nonzero skew degree
+The defining relations are
 $$
 xf=\sigma(f)x,
 \qquad
 yf=\sigma^{-1}(f)y
 \qquad(f\in A),
 $$
-together with $yx=xy$. Hence every element has a unique normal form
+together with $yx=xy$. Thus $R$ has a unique PBW normal form
 $$
-\sum_{m,n\geq0}f_{m,n}(u,v,w)x^my^n.
-$$
-Also
-$$
-C=xy
-$$
-is central because $x$ and $y$ commute and act on $A$ by inverse automorphisms.
-
-Step 2: Prove that the coefficient ring has no nonconstant fixed polynomial
-Work in the coordinates $p,q,r$. Suppose
-$$
-F(p,q,r)=\sum_{j,k\geq0}a_{j,k}(p)q^jr^k
-$$
-is fixed by $\sigma$. Then
-$$
-\sum_{j,k}2^j3^k a_{j,k}(p+1)q^jr^k
-=
-\sum_{j,k}a_{j,k}(p)q^jr^k.
-$$
-Therefore, for every $j,k$,
-$$
-2^j3^k a_{j,k}(p+1)=a_{j,k}(p).
-$$
-If $(j,k)\neq(0,0)$ and $a_{j,k}$ were nonzero, comparison of leading coefficients would give
-$$
-2^j3^k=1,
-$$
-which is impossible in characteristic zero. Hence all such coefficients vanish. For $(j,k)=(0,0)$ we have
-$$
-a_{0,0}(p+1)=a_{0,0}(p),
-$$
-and a polynomial invariant under a nonzero translation is constant. Thus
-$$
-A^\sigma=k.
-$$
-Moreover $\sigma$ has infinite order because $\sigma^n(p)=p+n$.
-
-Step 3: Eliminate every nonzero skew degree
-Give $R$ the grading
-$$
-\deg x=1,
+\sum_{m,n\geq0}f_{m,n}x^my^n,
 \qquad
-\deg y=-1,
-\qquad
-\deg A=0.
+f_{m,n}\in A.
 $$
-Consider a homogeneous term $f x^m y^n$ with $f\in A$. For any $a\in A$,
+For $g\in A$,
 $$
-x^my^n a=\sigma^{m-n}(a)x^my^n.
+x^my^ng=\sigma^{m-n}(g)x^my^n.
 $$
-If the term is central and $f\neq0$, then the domain property of $A$ forces
+If a central element has $f_{m,n}\neq0$, then commuting with every $g\in A$ and using the domain property of $A$ forces
 $$
-\sigma^{m-n}(a)=a
+\sigma^{m-n}(g)=g
 $$
-for every $a\in A$. Since $\sigma$ has infinite order, this implies
+for all $g\in A$. Since $\sigma$ has infinite order, this implies
 $$
 m=n.
 $$
-Thus every central element lies in the degree-zero polynomial ring
+Hence every central element has the form
 $$
-A[C],
-\qquad C=xy.
+\sum_{n=0}^N f_n(xy)^n.
 $$
 
 Step 4: Compute the remaining coefficients
-Because $C$ is central and $\sigma(C)=C$, an element
+Set
 $$
-\sum_{n=0}^N f_n C^n
+C=xy.
 $$
-commutes with $x$ exactly when every coefficient satisfies
+Because $x$ and $y$ commute and act on $A$ by inverse automorphisms,
 $$
-\sigma(f_n)=f_n.
+C\in Z(R).
 $$
-By Step 2, each $f_n$ lies in $k$. The same condition gives commutation with $y$. Therefore
+Now
+$$
+x\left(\sum_{n=0}^N f_nC^n\right)
+=
+\sum_{n=0}^N \sigma(f_n)C^n x,
+$$
+whereas
+$$
+\left(\sum_{n=0}^N f_nC^n\right)x
+=
+\sum_{n=0}^N f_nC^n x.
+$$
+Thus centrality forces
+$$
+\sigma(f_n)=f_n
+$$
+for every $n$. By Step 2, each $f_n\in k$. Therefore
 $$
 Z(R)=k[C]=k[xy].
 $$
@@ -145,9 +193,9 @@ $k[xy]$
 ## Solution Concepts
 
 - skew polynomial rings
-- polynomial automorphisms
+- wild polynomial automorphisms
 - hidden coordinate conjugacy
-- fixed rings of affine actions
+- invariant subrings
 - graded-center arguments
 
 ---
