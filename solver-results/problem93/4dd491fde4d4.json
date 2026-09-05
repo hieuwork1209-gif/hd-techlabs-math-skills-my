@@ -1,0 +1,22 @@
+{
+  "problem": "problem93",
+  "branch": "adversary/problem93",
+  "problem_path": "workspace/rainier-problem/problem93-systems-of-linear-equations/problem.md",
+  "source_commit_sha": "c824780390d63a3d2f139b54ba6647df69255fa5",
+  "problem_blob_sha": "4dd491fde4d4eb86ab40c90e0435fc5abaf27195",
+  "statement_sha256": "fca21b1ed98b4daff7e1c095d7f0d2526f6519f5efd896f16439db165bf5f089",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-05T09:07:47+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(q=n/p\\). The answer is\n\n\\[\n\\boxed{\\dim_{\\mathbb F_p}V_n=\\frac{5q^2-2}{3}\n=\\frac{5(n/p)^2-2}{3}}.\n\\]\n\n**Solution**\n\nWork in the regular module\n\n\\[\nR=\\mathbb F_p[x,y,z]/(x^n,y^n,z^n),\n\\]\n\nwhere \\(T_1=1+x,\\ T_2=1+y,\\ T_3=1+z\\). Since \\(n\\) is a power of \\(p\\),\n\n\\[\n(T_i)^q=(1+x_i)^q=1+x_i^q.\n\\]\n\nPut\n\n\\[\nu=x+y+z,\\qquad v=y,\\qquad w=z.\n\\]\n\nBecause \\(n\\) is a \\(p\\)-power,\n\n\\[\nx^n=(u-v-w)^n=u^n-v^n-w^n,\n\\]\n\nso\n\n\\[\nR\\cong \\mathbb F_p[u,v,w]/(u^n,v^n,w^n).\n\\]\n\nThe equation \\((T_1+T_2+T_3-3I)f=0\\) is just\n\n\\[\nu f=0.\n\\]\n\nThus\n\n\\[\nf=u^{n-1}h(v,w).\n\\]\n\nNow set\n\n\\[\nr=v^q,\\qquad s=w^q.\n\\]\n\nOn \\(u^{n-1}h\\), the \\(u^q\\)-terms vanish, so\n\n\\[\nx^q=-(r+s),\\qquad y^q=r,\\qquad z^q=s.\n\\]\n\nThe three remaining conditions become multiplication by\n\n\\[\nr^2+rs+s^2,\n\\]\n\n\\[\nrs(r+s),\n\\]\n\n\\[\n(-2r-s)(r-s)(r+2s).\n\\]\n\nInside\n\n\\[\nK=\\mathbb F_p[r,s]/(r^p,s^p),\n\\]\n\nthese generate the same quotient as\n\n\\[\nr^2+rs+s^2,\\qquad s^3,\\qquad rs^2.\n\\]\n\nIndeed, modulo \\(r^2+rs+s^2\\),\n\n\\[\nrs(r+s)=-s^3,\n\\]\n\nand the third cubic gives \\(6rs^2\\), nonzero since \\(p\\ge 29\\). Hence the quotient has basis\n\n\\[\n1,\\ r,\\ s,\\ rs,\\ s^2,\n\\]\n\nso its dimension is \\(5\\).\n\nSince\n\n\\[\n\\mathbb F_p[v,w]/(v^n,w^n)\n\\]\n\nis free of rank \\(q^2\\) over \\(K\\), the common kernel before cyclic symmetry has dimension\n\n\\[\n5q^2.\n\\]\n\nIt remains to impose \\(f(y,z,x)=f(x,y,z)\\). In \\((v,w)\\)-coordinates the cyclic action is\n\n\\[\n\\sigma(v,w)=(w,-v-w),\n\\]\n\nand it has order \\(3\\). Therefore\n\n\\[\n\\dim V_n=\\frac{1}{3}\\left(\\dim W+\\operatorname{tr}(\\sigma|W)+\\operatorname{tr}(\\sigma^2|W)\\right).\n\\]\n\nThe quotient basis above has traces\n\n\\[\n1 \\mapsto 1 \\quad\\text{trace }1,\n\\]\n\n\\[\n\\langle r,s\\rangle \\quad\\text{trace }-1,\n\\]\n\n\\[\n\\langle rs,s^2\\rangle \\quad\\text{trace }-1.\n\\]\n\nSo the trace on the \\(5\\)-dimensional quotient is \\(-1\\). The remaining \\(q^2\\)-part contributes trace \\(1\\), hence\n\n\\[\n\\operatorname{tr}(\\sigma|W)=\\operatorname{tr}(\\sigma^2|W)=-1.\n\\]\n\nThus\n\n\\[\n\\dim_{\\mathbb F_p}V_n\n=\n\\frac{5q^2-2}{3}.\n\\]\n\nSubstituting \\(q=n/p\\),\n\n\\[\n\\boxed{\\dim_{\\mathbb F_p}V_n=\\frac{5(n/p)^2-2}{3}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-05T09:10:11+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem93/4dd491fde4d4.json"
+}
