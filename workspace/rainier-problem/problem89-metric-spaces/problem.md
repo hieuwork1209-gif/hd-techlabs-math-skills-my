@@ -2,28 +2,25 @@
 
 ## LaTeX (Normalized)
 
-Let $n\ge3$. Let $B_n$ be the graph whose vertices are the signed permutations
+Let $m\ge3$, and let $P_m=[2]\times[m]$ be the product poset, so
 $$
-w=(w_1,\ldots,w_n),
+(r,i)\le(s,j)
 $$
-where $|w_1|,\ldots,|w_n|$ are distinct and form $\{1,\ldots,n\}$. Two vertices are adjacent exactly when one is obtained from the other by either
+exactly when $r\le s$ and $i\le j$.
 
-- swapping two adjacent entries, or
-- replacing $w_1$ by $-w_1$.
+Let $\mathcal L_m$ be the graph whose vertices are the linear extensions of $P_m$, with two vertices adjacent exactly when one is obtained from the other by swapping two consecutive incomparable elements. Let $d$ be the shortest-path metric on $\mathcal L_m$.
 
-Let $d$ be the shortest-path metric on $B_n$.
-
-For $p>0$, say that $(B_n,d)$ has $p$-negative type if every real family $(c_w)$ with $\sum_wc_w=0$ satisfies
+For $p>0$, say that $(\mathcal L_m,d)$ has $p$-negative type if every real family $(c_L)$ with $\sum_Lc_L=0$ satisfies
 $$
-\sum_{u,v}c_uc_v\,d(u,v)^p\le0.
+\sum_{L,L'}c_Lc_{L'}\,d(L,L')^p\le0.
 $$
 Let
 $$
-\wp=\sup\{p>0:(B_n,d)\text{ has }p\text{-negative type}\}.
+\wp=\sup\{p>0:(\mathcal L_m,d)\text{ has }p\text{-negative type}\}.
 $$
 At $p=\wp$, define the equality space
 $$
-E=\left\{c\in\mathbb R^{B_n}:\sum_wc_w=0,\ \sum_{u,v}c_uc_v\,d(u,v)^{\wp}=0\right\}.
+E=\left\{c\in\mathbb R^{\mathcal L_m}:\sum_Lc_L=0,\ \sum_{L,L'}c_Lc_{L'}\,d(L,L')^{\wp}=0\right\}.
 $$
 Determine the ordered pair $(\wp,\dim E)$.
 
@@ -42,4 +39,4 @@ Determine the ordered pair $(\wp,\dim E)$.
 
 ## Domain Explanation
 
-The problem asks for the maximal negative-type exponent of the standard signed-permutation Cayley graph and the dimension of its boundary equality space. The decisive structure is its realization as the chamber graph of the type $B_n$ reflection arrangement, which gives a hidden Hamming representation by separating hyperplanes.
+The problem asks for the maximal negative-type exponent of a natural linear-extension graph metric and the dimension of its boundary equality space. The key structure is a hidden Hamming representation by the relative orders of incomparable pairs, together with the Catalan enumeration of the extensions of the $2\times m$ grid poset.
