@@ -6,19 +6,21 @@ Let
 $$
 \rho(i,j)=4\min\{|i-j|,13-|i-j|\}
 $$
-be the metric on the $13$-cycle. For $|s|<\frac12$, the spoke lengths are
+be the metric on the $13$-cycle. For $|s|<\frac12$, the spoke lengths at $0,1,2,5,10$ are
 $$
-\left(7+\frac{s^2}{4},\ 7+\frac{s^2}{4},\ 7-s+\frac{5s^2}{12},\ 13+\frac{s^2}{4},\ 15+s+\frac{s^2}{12}\right)
+7+\frac{s^2}{4}-\frac{s^3}{12},\quad
+7+\frac{s^2}{4}-\frac{s^3}{12},\quad
+7-s+\frac{5s^2}{12}-\frac{s^3}{12},\quad
+13+\frac{s^2}{4}-\frac{s^3}{12},\quad
+15+s+\frac{s^2}{12}-\frac{s^3}{12}.
 $$
-at $0,1,2,5,10$, respectively.
-
-For every pair of spoke endpoints, the cycle distance remains strictly smaller than the route through $\ast$, so
+For each cycle vertex, the minimizing spoke at $s=0$ is unique with gap at least $2$ from every competitor; the change in any competitor difference is less than $\frac{13}{12}$ when $|s|<\frac12$. Thus those minimizers are unchanged. Also every route between two cycle vertices through $\ast$ is no shorter than the cycle route: the only equality at $s=0$ is between $0$ and $5$, and its excess for $s\ne0$ is $\frac{s^2}{2}-\frac{s^3}{6}>0$. Hence
 $$
-d_s(i,j)=\rho(i,j)\qquad(0\le i,j\le12).
+d_s(i,j)=\rho(i,j)\qquad(0\leq i,j\leq12).
 $$
-The minimizing spoke for each cycle vertex is unchanged for $|s|<\frac12$. Hence
+Writing $r(s)=(d_s(\ast,i))_{i=0}^{12}$ gives
 $$
-r(s):=(d_s(\ast,i))_{i=0}^{12}=r+s e+s^2 f,
+r(s)=r+s e+s^2f+s^3g,
 $$
 where
 $$
@@ -26,10 +28,10 @@ r=(7,7,7,11,15,13,17,21,23,19,15,15,11)^T,
 $$
 $$
 e=(0,0,-1,-1,-1,0,0,0,1,1,1,0,0)^T,
-$$
-and
-$$
-f=\frac14\mathbf1-\frac16e.
+\qquad
+f=\frac14\mathbf1-\frac16e,
+\qquad
+g=-\frac1{12}\mathbf1.
 $$
 
 Step 2: Identify the unique equality direction at $s=0$, $p=1$
@@ -44,7 +46,7 @@ C_{ij}=2\sum_{k=0}^{12}\delta_{S_k}(i,j).
 $$
 For every $y$ with $\sum_i y_i=0$,
 $$
-y^TCy=-4\sum_{k=0}^{12}\left(\sum_{i\in S_k}y_i\right)^2\le0.
+y^TCy=-4\sum_{k=0}^{12}\left(\sum_{i\in S_k}y_i\right)^2\leq0.
 $$
 Equality forces every six-term block sum to vanish. Subtracting consecutive block equations gives $y_k=y_{k+6}$; since $\gcd(6,13)=1$, all coordinates are equal, hence $y=0$. Thus the cycle has strict $1$-negative type.
 
@@ -64,12 +66,11 @@ C\mu=r-\mathbf1,
 $$
 For a zero-sum family $c=(t,b)$, so that $\mathbf1^Tb=-t$,
 $$
-\sum_{z,w}c_zc_wd_0(z,w)=(b+t\mu)^TC(b+t\mu)\le0.
+\sum_{z,w}c_zc_wd_0(z,w)=(b+t\mu)^TC(b+t\mu)\leq0.
 $$
 Equality holds exactly when $b+t\mu=0$. With $a_\ast=2$,
 $$
-(a_\ast,a_0,\ldots,a_{12})
-=(2,-2,1,0,0,2,-2,-2,0,2,0,0,1,-2).
+(a_\ast,a_0,\ldots,a_{12})=(2,-2,1,0,0,2,-2,-2,0,2,0,0,1,-2).
 $$
 Thus the equality direction is unique.
 
@@ -131,35 +132,39 @@ All other eigenvalues are strictly negative. Let $\lambda(p,s)$ be the simple ei
 
 At $p=1$,
 $$
-R(1,s)=R_0+sS+s^2T,
+R(1,s)=R_0+sS+s^2T+s^3U,
 $$
 where
 $$
 S=-(\mathbf1e^T+e\mathbf1^T),
 \qquad
-T=-(\mathbf1f^T+f\mathbf1^T).
+T=-(\mathbf1f^T+f\mathbf1^T),
+\qquad
+U=-(\mathbf1g^T+g\mathbf1^T).
 $$
 Also
 $$
 \mathbf1^Tk=-2,
 \qquad e^Tk=0,
-\qquad f^Tk=-\frac12.
+\qquad f^Tk=-\frac12,
+\qquad g^Tk=\frac16.
 $$
 Thus $k^TSk=0$.
 
-Step 5: Show the first two splittings vanish and compute the third
+Step 5: Cancel the first three splittings and compute the fourth
 
 Normalize the local eigenvector by $k^Tv(s)=N$ and write
 $$
-v(s)=k+s w+s^2u+O(s^3),
-\qquad
-\lambda(1,s)=\lambda_1s+\lambda_2s^2+\lambda_3s^3+O(s^4).
+v(s)=k+sw+s^2u+s^3q+O(s^4),
+$$
+$$
+\lambda(1,s)=\lambda_1s+\lambda_2s^2+\lambda_3s^3+\lambda_4s^4+O(s^5).
 $$
 At order $s$,
 $$
 R_0w+Sk=\lambda_1k.
 $$
-Multiplying by $k^T$ gives $\lambda_1=0$. Since $Sk=2e$, a convenient solution is
+Multiplying by $k^T$ gives $\lambda_1=0$. Since $Sk=2e$, take
 $$
 w=\left(0,\frac12,0,0,-\frac12,0,0,0,\frac12,0,0,-\frac12,0\right)^T,
 $$
@@ -170,68 +175,46 @@ k^Tw=0,
 \qquad e^Tw=1,
 \qquad R_0w=-2e.
 $$
-
 At order $s^2$,
 $$
 R_0u+Sw+Tk=\lambda_2k.
 $$
-Now
-$$
-Sw=-\mathbf1,
-$$
-and, using $f=\frac14\mathbf1-\frac16e$,
-$$
-Tk=\mathbf1-\frac13e.
-$$
-Hence
-$$
-Sw+Tk=-\frac13e.
-$$
-Taking
-$$
-u=-\frac16w
-$$
-gives $R_0u=\frac13e$, so the left side vanishes identically. Therefore
-$$
-\lambda_2=0.
-$$
+Because $Sw=-\mathbf1$ and $Tk=\mathbf1-\frac13e$, taking $u=-\frac16w$ gives $R_0u=\frac13e$, so the left side is zero and $\lambda_2=0$.
 
 At order $s^3$,
 $$
-R_0z+Su+Tw=\lambda_3k
+R_0q+Su+Tw+Uk=\lambda_3k.
 $$
-for some $z\perp k$. Multiplying by $k^T$ gives
+Here
 $$
-\lambda_3N=k^T(Su+Tw).
+Su=\frac16\mathbf1,
+\qquad Tw=\frac16\mathbf1,
+\qquad Uk=-\frac13\mathbf1.
 $$
-Since $k^TSw=2$,
+Thus the forcing vanishes identically, so take $q=0$ and obtain $\lambda_3=0$.
+
+At order $s^4$,
 $$
-k^TSu=-\frac13.
+R_0v_4+Sq+Tu+Uw=\lambda_4k.
 $$
-Also
+Since $q=0$, $Uw=0$, and
 $$
-f^Tw=-\frac16,
+Tu=-\frac1{36}\mathbf1,
+$$
+multiplication by $k^T$ gives
+$$
+\lambda_4N=-\frac1{36}k^T\mathbf1=\frac1{18}.
+$$
+Hence
+$$
+\lambda_4=\frac1{468},
 \qquad
-Tw=\frac16\mathbf1,
-$$
-so
-$$
-k^TTw=-\frac13.
-$$
-Thus
-$$
-\lambda_3=\frac{-2/3}{26}=-\frac1{39},
-$$
-and therefore
-$$
-\lambda_s(1,0)=0,
+\lambda_s(1,0)=\lambda_{ss}(1,0)=\lambda_{sss}(1,0)=0,
 \qquad
-\lambda_{ss}(1,0)=0,
-\qquad
-\lambda_{sss}(1,0)=6\lambda_3=-\frac2{13}.
+\lambda_{ssss}(1,0)=24\lambda_4=\frac2{39}.
 $$
 
-Step 6: Recover the critical exponent branch
+Step 6: Recover the fourth derivative of the critical exponent
 
 From Step 3,
 $$
@@ -241,42 +224,33 @@ so
 $$
 \lambda_p(1,0)=\frac{4\tau}{26}=\frac{2\tau}{13}>0.
 $$
-By continuity, the other eigenvalues remain negative near $(1,0)$. Since negative type is monotone downward in the exponent, the local zero set
+The other eigenvalues remain negative near $(1,0)$. The negative-type exponents form an initial interval, so the local zero set
 $$
 \lambda(\wp(s),s)=0
 $$
 is the critical exponent branch for small $s$.
 
-Differentiating this identity and using $\lambda_s=\lambda_{ss}=0$ gives
+Differentiating this identity successively and using the three vanishing $s$-derivatives gives
 $$
-\wp'(0)=0,
-\qquad
-\wp''(0)=0.
+\wp'(0)=\wp''(0)=\wp'''(0)=0.
 $$
-Differentiating once more, all mixed terms contain $\wp'(0)$ or $\wp''(0)$ and vanish, so
+Differentiating once more leaves
 $$
-\lambda_p\wp'''(0)+\lambda_{sss}=0.
+\lambda_p\wp''''(0)+\lambda_{ssss}=0.
 $$
-Hence
+Therefore
 $$
-\wp'''(0)=\frac1\tau.
+\wp''''(0)=-\frac{1}{3\tau}.
 $$
-Therefore, for
-$$
-\eta:=\tau\wp'''(0),
-$$
-we obtain
-$$
-\eta=1.
-$$
+For $\xi:=\tau\wp''''(0)$, this yields $\xi=-\frac13$.
 
-Final Answer: $\boxed{(1,\log\frac{2^{20}3^{219}23^{46}}{5^{35}7^7 11^{22}13^{26}17^{34}},1)}$
+Final Answer: $\boxed{(1,\log\frac{2^{20}3^{219}23^{46}}{5^{35}7^7 11^{22}13^{26}17^{34}},-\frac13)}$
 
 ---
 
 ## Answer
 
-$(1,\log\frac{2^{20}3^{219}23^{46}}{5^{35}7^7 11^{22}13^{26}17^{34}},1)$
+$(1,\log\frac{2^{20}3^{219}23^{46}}{5^{35}7^7 11^{22}13^{26}17^{34}},-\frac13)$
 
 ---
 
@@ -294,4 +268,4 @@ $(1,\log\frac{2^{20}3^{219}23^{46}}{5^{35}7^7 11^{22}13^{26}17^{34}},1)$
 - shortest-path metrics
 - cut decomposition on odd cycles
 - majorization and convexity
-- third-order simple-eigenvalue perturbation
+- fourth-order simple-eigenvalue perturbation
