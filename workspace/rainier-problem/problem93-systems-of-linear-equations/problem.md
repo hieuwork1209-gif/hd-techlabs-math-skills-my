@@ -2,13 +2,13 @@
 
 ## LaTeX (Normalized)
 
-Let $p\geq 29$ be a prime, let $n$ be a positive power of $p$, and put
+Let $p\geq29$ be a prime, let $n=p^r$ with $r\geq2$, and put
 $$
-q=\frac{n}{p},
+q=\frac np,
 \qquad
 \Gamma=(\mathbb Z/n\mathbb Z)^3.
 $$
-All coordinates below are read modulo $n$.
+All coordinates are read modulo $n$.
 
 For functions $f:\Gamma\to\mathbb F_p$, let $T_1,T_2,T_3$ be the coordinate shifts
 $$
@@ -24,7 +24,11 @@ A=T_1^qT_2^q+T_2^qT_3^q+T_3^qT_1^q-3I,
 $$
 $$
 B=T_1^qT_2^qT_3^q-
-\bigl(T_1^qT_2^q+T_2^qT_3^q+T_3^qT_1^q\bigr)+2I.
+\bigl(T_1^qT_2^q+T_2^qT_3^q+T_3^qT_1^q\bigr)+2I,
+$$
+and
+$$
+C=(T_1-T_2)(T_2-T_3)(T_3-T_1).
 $$
 
 Let $V_n$ be the vector space over $\mathbb F_p$ of all such functions satisfying
@@ -36,11 +40,11 @@ $$
 (T_1+T_2+T_3-3I)f=0,
 $$
 $$
-(A^2+B^3+B^5)f=0,
-$$
-and
-$$
-\bigl((I+A+B)(A^2+B^3)+B^5\bigr)f=0.
+A^2f=0,
+\qquad
+Bf=0,
+\qquad
+C^{2(q-1)}f=0.
 $$
 
 Determine, in closed form as a function of $p$ and $n$,
@@ -63,6 +67,4 @@ $$
 
 ## Domain Explanation
 
-This problem involves the dimension of a simultaneous solution space for homogeneous translation equations over a finite field, which are part of Linear Algebra and Systems of linear equations.
-The problem also involves finite-field polynomial identities and cyclic shifts, which are part of algebra.
-However, those identities are tools for reducing the linear system rather than the main classification of the problem.
+This problem asks for the dimension of a simultaneous solution space of homogeneous translation equations over a finite field. Cyclic invariants and a characteristic-$p$ rank degeneration are the structural tools used to reduce that linear system.
