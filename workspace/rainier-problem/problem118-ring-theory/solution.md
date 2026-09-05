@@ -37,7 +37,7 @@ Define
 $$
 \Delta=ad-\zeta bc.
 $$
-We verify that $\Delta$ commutes with the generators. The relations with $b$ and $c$ give
+The relations with $b$ and $c$ give
 $$
 ad\,b=b\,ad,
 \qquad ad\,c=c\,ad,
@@ -54,7 +54,15 @@ $$
 =a^2d-\zeta abc
 =a\Delta.
 $$
-The calculation with $d$ is symmetric, so $\Delta$ is central.
+For $d$, use $d\,bc=\zeta^{-2}bc\,d$ to obtain
+$$
+d\Delta
+=dad-\zeta d\,bc
+=ad^2-(\zeta-\zeta^{-1})bc\,d-\zeta^{-1}bc\,d
+=ad^2-\zeta bc\,d
+=\Delta d.
+$$
+Thus $\Delta$ is central.
 
 Using $ad=\Delta+\zeta bc$, every PBW monomial containing both a positive power of $a$ and a positive power of $d$ can be reduced by one such pair. Repeating gives a spanning family
 $$
@@ -77,9 +85,9 @@ da^5=(\Delta+\zeta^{-1}bc)a^4
 =a^4\Delta+\zeta^{-1}\zeta^{-8}a^4bc
 =a^4\Delta+\zeta a^4bc.
 $$
-Thus $a^5$ is central, and similarly $d^5$ is central.
+Thus $a^5$ commutes with $d$; exchanging $a,d$ and replacing $\zeta$ by $\zeta^{-1}$ gives the corresponding identity for $d^5$. Hence both fifth powers are central.
 
-Now expand a central element in the basis of Step 2. Commuting with $b$ multiplies a basis term containing $a^r$ by $\zeta^{-r}$ on one side, and a basis term containing $d^u$ by $\zeta^{-u}$ on the other side. Linear independence therefore forces
+Now expand a central element in the basis of Step 2. Commuting with $b$ multiplies a basis term containing $a^r$ by $\zeta^{-r}$ on one side, while for a term containing $d^u$ the two orders differ by $\zeta^{-u}$. Linear independence therefore forces
 $$
 r\equiv0\pmod5,
 \qquad u\equiv0\pmod5.
@@ -102,16 +110,16 @@ b^i c^{5-i},
 $$
 Conversely, each of these degree-$5$ monomials commutes with $a$ and $d$ because the total $b,c$-degree is $5$, and it plainly commutes with $b,c$. Therefore
 $$
-Z(R_m)=k\left[a^5,d^5,\Delta,b^i c^{5-i}\ (0\leq i\leq5)\right].
+Z(R)=k\left[a^5,d^5,\Delta,b^i c^{5-i}\ (0\leq i\leq5)\right].
 $$
 Substituting $a=x-1$, $b=y$, $c=z$, $d=w-1$, and $\Delta=(x-1)(w-1)-\zeta yz$ gives the required subalgebra in the original generators.
-Final Answer: $\boxed{k[(x-1)^5,(w-1)^5,(x-1)(w-1)-\zeta yz,y^iz^{5-i}\ (0\leq i\leq5)]}$
+Final Answer: $\boxed{k[(x-1)^5,(w-1)^5,(x-1)(w-1)-\zeta yz,y^{i}z^{5-i}\ (0\leq i\leq5)]}$
 
 ---
 
 ## Answer
 
-$k[(x-1)^5,(w-1)^5,(x-1)(w-1)-\zeta yz,y^iz^{5-i}\ (0\leq i\leq5)]$
+$k[(x-1)^5,(w-1)^5,(x-1)(w-1)-\zeta yz,y^{i}z^{5-i}\ (0\leq i\leq5)]$
 
 ---
 
