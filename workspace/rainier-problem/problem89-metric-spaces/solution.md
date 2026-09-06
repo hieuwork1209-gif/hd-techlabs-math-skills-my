@@ -38,11 +38,20 @@ The corresponding Seidel spectrum is
 $$
 3^{[21]},\ (-9)^{[7]}.
 $$
-The switched graph is also $12$-regular, so the all-ones vector accounts for one copy of the Seidel eigenvalue $3$. On its orthogonal complement, $A=(-I-C)/2$. Hence the switched graph has the same adjacency spectrum
+The switched graph is also $12$-regular, so the all-ones vector accounts for one copy of the Seidel eigenvalue $3$. On its orthogonal complement, $A=(-I-C)/2$. Hence the switched graph has adjacency spectrum
 $$
 12^{[1]},\ 4^{[7]},\ (-2)^{[20]}.
 $$
-In particular it is connected. A connected regular graph with exactly three adjacency eigenvalues has diameter $2$: indeed its minimal polynomial expresses $J$ as a quadratic polynomial in $A$, so every nonadjacent pair has a common neighbor.
+
+The spectral decomposition now gives the exact identity
+$$
+(A-4I)(A+2I)=4J.
+$$
+For two distinct nonadjacent vertices, the corresponding off-diagonal entry is
+$$
+(A^2)_{xy}=4>0.
+$$
+Thus every nonadjacent pair has a common neighbor, so the graph has diameter $2$.
 
 Step 3: Determine the maximal negative-type exponent
 
