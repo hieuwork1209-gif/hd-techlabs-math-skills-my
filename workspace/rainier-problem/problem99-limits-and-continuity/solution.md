@@ -291,20 +291,15 @@ c_3
 &\quad+\frac{r_m(32m^2+1811m+1107)+s_m(32m^2+1875m+736)}{128}.
 \end{aligned}
 $$
-Since $q^3=t^{3/2}$ and the prescribed subtraction removes $c_1q+c_2q^2$, the requested limit is
-$$
-\boxed{
-\frac{128m^3+10452m^2+13012m+1533}{768}
-+\frac{r_m(32m^2+1811m+1107)+s_m(32m^2+1875m+736)}{128}
-}.
-$$
+Since $q^3=t^{3/2}$ and the prescribed subtraction removes $c_1q+c_2q^2$, the requested limit is $c_3$.
+
+Final Answer: $\boxed{\frac{128m^3+10452m^2+13012m+1533}{768}+\frac{r_m(32m^2+1811m+1107)+s_m(32m^2+1875m+736)}{128}}$
 
 ---
 
 ## Answer
 
-$\displaystyle \frac{128m^3+10452m^2+13012m+1533}{768}
-+\frac{r_m(32m^2+1811m+1107)+s_m(32m^2+1875m+736)}{128}$
+$\frac{128m^3+10452m^2+13012m+1533}{768}+\frac{r_m(32m^2+1811m+1107)+s_m(32m^2+1875m+736)}{128}$
 
 ---
 
