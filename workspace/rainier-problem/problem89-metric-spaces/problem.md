@@ -2,24 +2,31 @@
 
 ## LaTeX (Normalized)
 
-Let $X$ be the set of complete flags
+Let
 $$
-0<V_1<V_2<V_3<\mathbb F_2^4,
-\qquad \dim V_i=i.
+X=\binom{\mathbb Z/8\mathbb Z}{2},
 $$
-Form a graph $G$ on $X$ by joining two flags exactly when they differ in one of the three subspaces $V_1,V_2,V_3$. Let $d$ be the shortest-path metric on $G$.
+and put
+$$
+S=\{\{i,i+1\}:i\in\mathbb Z/8\mathbb Z\}.
+$$
+Form a graph $G$ on $X$ as follows. For distinct $x,y\in X$:
+- if either both $x,y$ lie in $S$ or both lie in $X\setminus S$, then $x$ and $y$ are adjacent exactly when $x\cap y\ne\varnothing$;
+- if exactly one of $x,y$ lies in $S$, then $x$ and $y$ are adjacent exactly when $x\cap y=\varnothing$.
 
-For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_F)_{F\in X}$ with $\sum_Fc_F=0$ satisfies
+Let $d$ be the shortest-path metric on $G$.
+
+For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_x)_{x\in X}$ with $\sum_xc_x=0$ satisfies
 $$
-\sum_{F,H\in X}c_Fc_H\,d(F,H)^p\le0.
+\sum_{x,y\in X}c_xc_y\,d(x,y)^p\le0.
 $$
 Let
 $$
 \wp=\sup\{p>0:(X,d)\text{ has }p\text{-negative type}\}.
 $$
-At $p=\wp$, define the equality space
+At $p=\wp$, define
 $$
-E=\left\{c\in\mathbb R^X:\sum_Fc_F=0,\ \sum_{F,H}c_Fc_H\,d(F,H)^{\wp}=0\right\}.
+E=\left\{c\in\mathbb R^X:\sum_xc_x=0,\ \sum_{x,y}c_xc_y\,d(x,y)^{\wp}=0\right\}.
 $$
 Determine the ordered pair $(\wp,\dim E)$.
 
@@ -38,4 +45,4 @@ Determine the ordered pair $(\wp,\dim E)$.
 
 ## Domain Explanation
 
-The problem asks for the maximal negative-type exponent of the chamber metric on complete flags in $\mathbb F_2^4$ and the dimension of its boundary equality space. The hidden structure is the type-$A_3$ Bruhat geometry: distance shells lie in the noncommutative Iwahori-Hecke algebra $H_2(S_4)$, so the critical mode is detected only after the Hecke-module decomposition.
+The problem asks for the maximal negative-type exponent of a finite graph metric defined by a cyclicly distinguished family of $2$-subsets, together with the dimension of its boundary equality space.
