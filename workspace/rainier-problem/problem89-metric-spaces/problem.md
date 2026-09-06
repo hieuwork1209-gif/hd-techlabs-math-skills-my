@@ -45,4 +45,4 @@ Determine the ordered pair $(\wp,\dim E)$.
 
 ## Domain Explanation
 
-The problem asks for the maximal negative-type exponent of a finite graph metric defined by a cyclicly distinguished family of $2$-subsets, together with the dimension of its boundary equality space.
+The problem asks for the maximal negative-type exponent of a finite graph metric defined by a cyclically distinguished family of $2$-subsets, together with the dimension of its boundary equality space.
