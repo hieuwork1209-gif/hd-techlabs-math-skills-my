@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-field-theory/problem.md",
+  "source_commit_sha": "ca463f6ee4465067d3ebac044783e0e73a3e9746",
+  "problem_blob_sha": "45a70e83b7d615bd2f7be2a334e1c8db0a6b5cbd",
+  "statement_sha256": "bb203f5b6df403a7d9d5150d3abe0d09bd18d35baccac255842c3760e086fe45",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-06T16:59:53+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(\\ell=2r+1\\). The number of pairs \\((s,f)\\) is\n\n\\[\n\\boxed{\\frac{(r-1)(r^2+r+2)(2r+1)^{r-4}\\bigl((2r+1)^{r-3}-1\\bigr)}{8}}.\n\\]\n\nHere is the derivation.\n\nFor any nonzero \\(y\\), the rational primes \\(q,q+2Q,q+4Q\\) are all congruent to \\(q\\pmod \\ell\\), and \\(q\\equiv 2^{-1}\\pmod \\ell\\). Since \\(2\\) generates \\(\\mathbb F_\\ell^\\times\\), each of these primes is inert in \\(\\mathbb Q(\\zeta)\\). Thus if\n\\[\n|\\widehat f(y)|=p,\n\\]\nthen \\(\\widehat f(y)=p\\zeta^a\\). Reducing modulo \\((1-\\zeta)^2\\) and using\n\\[\n\\sum_x f(x)=2q^2,\\qquad \\sum_x f(x)x=m:=Ps,\n\\]\ngives\n\\[\n\\widehat f(y)=(q+2Q\\,1_{W^\\perp}(y)+2Q\\,1_{U^\\perp}(y))\\zeta^{2m\\cdot y}\n\\]\nfor \\(y\\ne0\\). Hence, for each admissible flag \\(W\\subset U\\), \\(f\\) is uniquely determined. Conversely the inverse transform gives an integer nonnegative \\(f\\), so the count is the count of admissible \\(s\\) times admissible flags.\n\nPut \\(a_j=s_j-1\\). Then\n\\[\n\\sum a_j=0,\\qquad \\prod a_j=2,\\qquad \\prod(1+a_j)=4.\n\\]\nThe span condition implies a cyclic second-order recurrence\n\\[\na_{j+1}+a_{j-1}=c\\,a_j.\n\\]\nThus\n\\[\na_j=A\\omega^j+B\\omega^{-j},\n\\]\nwhere \\(\\omega\\ne1\\) is an \\(r\\)-th root of unity. The quadratic condition gives\n\\[\nAB=\\frac1{2+\\omega+\\omega^{-1}}=\\frac{\\omega}{(1+\\omega)^2}.\n\\]\nAlso\n\\[\n\\prod_j a_j=A^r+B^r=2.\n\\]\nSince \\(A^r,B^r\\in\\{\\pm1\\}\\), this forces \\(A^r=B^r=1\\). Finally\n\\[\n\\prod_j(1+a_j)=4\n\\]\nis equivalent to\n\\[\n(1+\\omega)^r=1.\n\\]\nAmong the \\(r-1\\) nontrivial \\(r\\)-th roots \\(\\omega\\), exactly \\((r-1)/2\\) satisfy this, and the identification\n\\[\n(\\omega,A,B)\\sim(\\omega^{-1},B,A)\n\\]\nhalves the count. Therefore\n\\[\n\\#s=\\frac{r(r-1)}4.\n\\]\n\nFor such an \\(s\\), the vectors required to lie in \\(U\\setminus W\\) span a \\(3\\)-dimensional subspace \\(M\\). The number of codimension-one \\(U\\supset M\\) is\n\\[\n\\frac{\\ell^{r-3}-1}{\\ell-1}.\n\\]\nFor fixed \\(U\\), counting hyperplanes \\(W\\subset U\\) avoiding the \\(3r\\) specified projective points inside \\(M\\) gives\n\\[\n\\ell^{r-4}\\bigl(r(r+1)+2\\bigr).\n\\]\nThus\n\\[\n\\#(s,f)\n=\n\\frac{r(r-1)}4\\cdot\n\\frac{\\ell^{r-3}-1}{\\ell-1}\\cdot\n\\ell^{r-4}\\bigl(r(r+1)+2\\bigr).\n\\]\nSubstituting \\(\\ell=2r+1\\) and simplifying gives\n\n\\[\n\\boxed{\\frac{(r-1)(r^2+r+2)(2r+1)^{r-4}\\bigl((2r+1)^{r-3}-1\\bigr)}{8}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-06T17:03:34+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/45a70e83b7d6.json"
+}
