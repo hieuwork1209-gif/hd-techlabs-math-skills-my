@@ -118,11 +118,15 @@ $$
 E_6=Z_6.
 $$
 
-Step 4: Evaluate the parabola subset counts by additive Fourier analysis.
+Step 4: Evaluate the parabola subset counts and keep the quadratic-character sign.
 
 Fix
 $$
-\psi(x)=\exp\left(\frac{2\pi i}{3}\operatorname{Tr}_{\mathbb F_q/\mathbb F_3}(x)\right).
+\psi(x)=\exp\left(\frac{2\pi i}{3}\operatorname{Tr}_{\mathbb F_q/\mathbb F_3}(x)\right),
+$$
+and let $\eta$ be the quadratic character of $\mathbb F_q$. Put
+$$
+\varepsilon=\eta(-1)=(-1)^r.
 $$
 Orthogonality of additive characters gives
 $$
@@ -159,54 +163,50 @@ $$
 \end{aligned}
 $$
 
-Let $\eta$ be the quadratic character and
+Let
 $$
 G=\sum_x\psi(x^2).
 $$
 Completing the square gives
 $$
 A=G\eta(\beta)\psi(-\alpha^2/\beta),
-\qquad
-B=G\eta(\beta)\psi(\alpha^2/\beta).
 $$
-Because $q=3^{2r}$, every nonzero element of $\mathbb F_3$ is a square in $\mathbb F_q$, and $G^2=q$. Consequently
+while the factor $2=-1$ contributes an extra quadratic character in the second sum:
 $$
-\sum_{\substack{\beta\ne0\\ \alpha\in\mathbb F_q}}A^iB^j
-=
-\begin{cases}
-q(q-1)q^{(i+j)/2},&
-i-j\equiv0\pmod3,\ i+j\ \text{even},\\
-(q-1)q^{(i+j+1)/2},&
-i-j\not\equiv0\pmod3,\ i+j\ \text{odd},\\
-0,&\text{otherwise}.
-\end{cases}
+B=\varepsilon G\eta(\beta)\psi(\alpha^2/\beta).
 $$
-Substitution into the two Newton formulas yields
+Also
+$$
+G^2=\varepsilon q.
+$$
+These two signs are both essential when $r$ is odd. For example, if $n=i+j$ and $j-i\not\equiv0\pmod3$, then summing $A^iB^j$ first over $\alpha$ gives a quadratic Gauss sum, and the remaining $\beta$-sum vanishes unless $n$ is odd. If $j-i\equiv0\pmod3$, the $\alpha$-sum is $q$ and the remaining $\beta$-sum vanishes unless $n$ is even. Applying these two cases to the monomials in the Newton formulas yields
 $$
 \sum_{\substack{\beta\ne0\\ \alpha\in\mathbb F_q}}[z^5]
 =
-\frac{q(q-1)(q^2-5q+24)}{120},
+\frac{q(q-1)(\varepsilon q^2-5q+24)}{120},
 $$
 and
 $$
 \sum_{\substack{\beta\ne0\\ \alpha\in\mathbb F_q}}[z^6]
 =
-\frac{q^2(q-1)(q^2-35q+114)}{720}.
+\frac{q^2(q-1)(\varepsilon q^2-35q+114)}{720}.
 $$
 
 Step 5: Simplify $Z_5$ and $Z_6$.
 
 Combining the three Fourier regimes gives
 $$
+\begin{aligned}
 Z_5
-=
+&=
 \frac{1}{q^2}
 \left(
 \binom{q}{5}+
-\frac{q(q-1)(q^2-5q+24)}{120}
-\right)
-=
-\frac{(q-1)(q^2-8q+21)}{120}.
+\frac{q(q-1)(\varepsilon q^2-5q+24)}{120}
+\right)\\
+&=
+\frac{(q-1)\bigl(q^2+(\varepsilon-9)q+21\bigr)}{120}.
+\end{aligned}
 $$
 For $Z_6$, the nontrivial linear characters contribute
 $$
@@ -221,17 +221,21 @@ Z_6
 \left(
 \binom{q}{6}
 +(q-1)\binom{q/3}{2}
-+\frac{q^2(q-1)(q^2-35q+114)}{720}
++\frac{q^2(q-1)(\varepsilon q^2-35q+114)}{720}
 \right)\\
 &=
-\frac{q(q-1)(q-4)(q-9)}{720}.
+\frac{q(q-1)\bigl(q^2+(\varepsilon-14)q+36\bigr)}{720}.
 \end{aligned}
 $$
 Therefore
 $$
-E_5=\frac{q(q-1)(q^2-8q+21)}{120},
+E_5
+=
+\frac{q(q-1)\bigl(q^2+(\varepsilon-9)q+21\bigr)}{120},
 \qquad
-E_6=\frac{q(q-1)(q-4)(q-9)}{720}.
+E_6
+=
+\frac{q(q-1)\bigl(q^2+(\varepsilon-14)q+36\bigr)}{720}.
 $$
 
 Step 6: Substitute and restore the graph fibers.
@@ -240,23 +244,24 @@ Using Step 2 and the values from Step 5,
 $$
 N
 =
-\frac{q(q-1)(53q^2+25q+18)}{144}.
+\frac{q(q-1)\bigl(53q^2+(26-\varepsilon)q+18\bigr)}{144}.
 $$
 Since every normalized sextic has $q^3$ symmetric graph matrices,
 $$
 M_r
 =
-\frac{q^4(q-1)(53q^2+25q+18)}{144}.
+\frac{q^4(q-1)\bigl(53q^2+(26-\varepsilon)q+18\bigr)}{144},
+\qquad \varepsilon=(-1)^r.
 $$
-For $r=1$, so $q=9$, direct enumeration of the $9^4$ normalized sextics gives $2268$, and multiplying by $9^3$ gives $1653372$, agreeing with the formula.
+For $r=1$, so $q=3$ and $\varepsilon=-1$, direct enumeration of the $3^4$ normalized sextics gives $N=24$, hence $M_1=648$. For $r=2$, so $q=9$ and $\varepsilon=1$, direct enumeration gives $N=2268$, recovering the previous square-field case.
 
-Final Answer: $\boxed{\frac{q^4(q-1)(53q^2+25q+18)}{144}}$
+Final Answer: $\boxed{\frac{q^4(q-1)\left(53q^2+(26-(-1)^r)q+18\right)}{144}}$
 
 ---
 
 ## Answer
 
-$\frac{q^4(q-1)(53q^2+25q+18)}{144}$
+$\frac{q^4(q-1)\left(53q^2+(26-(-1)^r)q+18\right)}{144}$
 
 ---
 
@@ -274,7 +279,7 @@ $\frac{q^4(q-1)(53q^2+25q+18)}{144}$
 - twisted cubic restriction to normalized sextics
 - nonuniform inclusion-exclusion at maximal root sets
 - additive Fourier analysis on a finite parabola
-- Newton identities and quadratic Gauss moments
+- parity-sensitive quadratic Gauss moments
 
 ---
 
