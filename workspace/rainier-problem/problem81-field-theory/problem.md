@@ -20,7 +20,7 @@ $$
 $$
 and there are subspaces $W\subset U\subset G$ of codimensions $2,1$ such that for every $0\le t<r$,
 $$
-P^ts,\ P^t(Ps-s)\in U\setminus W,
+P^ts,\quad P^t(Ps-s),\quad P^t(2\mathbf1-s)\in U\setminus W,
 $$
 and
 $$
@@ -49,4 +49,4 @@ Here $U^\perp=\{y\in G:y\cdot U=0\}$. Give a closed formula.
 
 ## Domain Explanation
 
-Cyclotomic phase rigidity determines the Fourier phases, while reciprocal modes and the two product constraints control the phase vectors. The extra cyclic difference orbit becomes the set of secant directions of the projective conic orbit, coupling the finite-field recurrence to the flag count. Thus Field theory is the appropriate sub-domain.
+Cyclotomic phase rigidity fixes the Fourier phases, while reciprocal modes and the two product constraints control the phase vectors. The three cyclic incidence orbits become the full affine part of a projective conic together with its square secant directions, coupling the finite-field recurrence to the flag count. Thus Field theory is the appropriate sub-domain.
