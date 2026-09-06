@@ -2,7 +2,7 @@
 
 ## LaTeX (Normalized)
 
-Let $r$ be a positive integer and put $q=3^{2r}$. Let $V$ be an $8$-dimensional vector space over $\mathbb{F}_q$ with basis
+Let $r$ be a positive integer and put $q=3^r$. Let $V$ be an $8$-dimensional vector space over $\mathbb{F}_q$ with basis
 $$
 e_1,e_2,e_3,e_4,f_1,f_2,f_3,f_4
 $$
