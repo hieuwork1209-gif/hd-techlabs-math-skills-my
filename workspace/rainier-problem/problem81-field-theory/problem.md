@@ -18,7 +18,11 @@ $$
 $$
 \prod_j(s_j-1)=2,\qquad \prod_js_j=4,
 $$
-and there are subspaces $W\subset U\subset G$ of codimensions $2,1$ with $P^ts\in U\setminus W$ for every $0\le t<r$ and
+and there are subspaces $W\subset U\subset G$ of codimensions $2,1$ such that for every $0\le t<r$,
+$$
+P^ts,\ P^t(Ps-s)\in U\setminus W,
+$$
+and
 $$
 |\widehat f(y)|=
 \begin{cases}
@@ -45,4 +49,4 @@ Here $U^\perp=\{y\in G:y\cdot U=0\}$. Give a closed formula.
 
 ## Domain Explanation
 
-Cyclotomic phase rigidity determines the Fourier phases, while the two symmetric product constraints force a split-versus-nonsplit quadratic regime before the finite-field recurrence and projective-incidence count. Thus Field theory is the appropriate sub-domain.
+Cyclotomic phase rigidity determines the Fourier phases, while reciprocal modes and the two product constraints control the phase vectors. The extra cyclic difference orbit becomes the set of secant directions of the projective conic orbit, coupling the finite-field recurrence to the flag count. Thus Field theory is the appropriate sub-domain.
