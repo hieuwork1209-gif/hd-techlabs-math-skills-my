@@ -105,39 +105,105 @@ Write $U_j=\sum_{i=1}^ku_i^j$, $V_j=\sum_{i=1}^rv_i^j$, $Z_j=\sum_{i=1}^lz_i^j$.
 $$
 -\frac{3}{2\sqrt2}qZ_3+q^2\left(7U_2+V_2+\frac94Z_4\right)+O(q^4).
 $$
-For one left-middle, middle-right, and left-right pair, respectively,
+We now expand each normalized cross-cluster squared Vandermonde factor. For constants $a,b$,
+$$
+2\log(1+aq+bq^2)
+=2aq+(2b-a^2)q^2+\left(-2ab+\frac{2a^3}{3}\right)q^3+O(q^4).
+$$
+For a left-middle pair,
+$$
+\frac{(\frac13+\frac{q}{\sqrt2}z-q^2u)^2}{(1/3)^2}
+=\left(1+\frac{3z}{\sqrt2}q-3uq^2\right)^2.
+$$
+Thus $a=3z/\sqrt2$, $b=-3u$, and
+$$
+2a=3\sqrt2z,\qquad
+2b-a^2=-6u-\frac92z^2,
+$$
+while
+$$
+-2ab+\frac{2a^3}{3}
+=-2\left(\frac{3z}{\sqrt2}\right)(-3u)
++\frac23\left(\frac{3z}{\sqrt2}\right)^3
+=9\sqrt2\left(uz+\frac12z^3\right).
+$$
+Hence its logarithm is
 $$
 3\sqrt2\,qz+q^2\left(-6u-\frac92z^2\right)
-+9\sqrt2\,q^3\left(uz+\frac12z^3\right),
++9\sqrt2\,q^3\left(uz+\frac12z^3\right)+O(q^4).
 $$
+For a middle-right pair,
+$$
+\frac{(\frac23-\frac{q}{\sqrt2}z-\frac{q^2}{4}v)^2}{(2/3)^2}
+=\left(1-\frac{3z}{2\sqrt2}q-\frac{3v}{8}q^2\right)^2.
+$$
+Now $a=-3z/(2\sqrt2)$, $b=-3v/8$, so
+$$
+2a=-\frac{3\sqrt2}{2}z,\qquad
+2b-a^2=-\frac34v-\frac98z^2,
+$$
+and
+$$
+-2ab+\frac{2a^3}{3}
+=-\frac{9\sqrt2}{16}vz-\frac{9\sqrt2}{16}z^3
+=-\frac{9\sqrt2}{16}(vz+z^3).
+$$
+Therefore its logarithm is
 $$
 -\frac{3\sqrt2}{2}qz+q^2\left(-\frac34v-\frac98z^2\right)
--\frac{9\sqrt2}{16}q^3(vz+z^3),
+-\frac{9\sqrt2}{16}q^3(vz+z^3)+O(q^4).
 $$
+Finally, for a left-right pair,
 $$
-q^2\left(-2u-\frac12v\right),
+(1-q^2(u+v/4))^2,
 $$
-up to $O(q^4)$. Summing over the $kl,lr,kr$ pairs gives
+so
 $$
-\begin{aligned}
-LM&:3\sqrt2\,kqZ_1+q^2\left(-6lU_1-\frac92kZ_2\right)
-+9\sqrt2\,q^3\left(U_1Z_1+\frac{k}{2}Z_3\right),\\
-MR&:-\frac{3\sqrt2}{2}rqZ_1+q^2\left(-\frac34lV_1-\frac98rZ_2\right)
--\frac{9\sqrt2}{16}q^3(V_1Z_1+rZ_3),\\
-LR&:q^2\left(-2rU_1-\frac{k}{2}V_1\right).
-\end{aligned}
+2\log(1-q^2(u+v/4))
+=q^2\left(-2u-\frac12v\right)+O(q^4),
 $$
-Adding the phase terms yields $qA+q^2B+q^3C+O(q^4)$ with
+with no $q$ or $q^3$ term.
+
+Summing over all pairs makes the coefficient bookkeeping explicit. For left-middle pairs,
 $$
-A=\frac{3}{2\sqrt2}\left((4k-2r)Z_1-Z_3\right),
+\sum_{i=1}^k\sum_{j=1}^l z_j=kZ_1,\quad
+\sum_{i,j}u_i=lU_1,\quad
+\sum_{i,j}u_iz_j=U_1Z_1,
 $$
+so their total logarithmic contribution is
+$$
+LM=3\sqrt2\,kqZ_1+q^2\left(-6lU_1-\frac92kZ_2\right)
++9\sqrt2\,q^3\left(U_1Z_1+\frac{k}{2}Z_3\right).
+$$
+Similarly,
+$$
+MR=-\frac{3\sqrt2}{2}rqZ_1+q^2\left(-\frac34lV_1-\frac98rZ_2\right)
+-\frac{9\sqrt2}{16}q^3(V_1Z_1+rZ_3),
+$$
+and
+$$
+LR=q^2\left(-2rU_1-\frac{k}{2}V_1\right).
+$$
+Adding these terms to the phase correction and collecting the $q$ coefficient gives
+$$
+A=\left(3\sqrt2k-\frac{3\sqrt2}{2}r\right)Z_1-\frac{3}{2\sqrt2}Z_3
+=\frac{3}{2\sqrt2}\left((4k-2r)Z_1-Z_3\right).
+$$
+Collecting the $q^2$ coefficient gives
 $$
 B=7U_2+V_2-(6l+2r)U_1-\left(\frac{3l}{4}+\frac{k}{2}\right)V_1
 +\frac94Z_4-\left(\frac{9k}{2}+\frac{9r}{8}\right)Z_2,
 $$
+and the $q^3$ coefficient is
 $$
-C=9\sqrt2\left(U_1-\frac{V_1}{16}\right)Z_1+\frac{9\sqrt2}{16}(8k-r)Z_3.
+\begin{aligned}
+C&=9\sqrt2U_1Z_1-\frac{9\sqrt2}{16}V_1Z_1
++\left(\frac{9\sqrt2}{2}k-\frac{9\sqrt2}{16}r\right)Z_3\\
+&=9\sqrt2\left(U_1-\frac{V_1}{16}\right)Z_1
++\frac{9\sqrt2}{16}(8k-r)Z_3.
+\end{aligned}
 $$
+Thus the phase and cross-Vandermonde logarithm is $qA+q^2B+q^3C+O(q^4)$.
 
 For rigor on the expanding domains, take $R_q=q^{-1/16}$. The endpoint phases are exactly
 $$
@@ -155,100 +221,293 @@ Outside the core the phase is bounded below by $c\sum u_i+c\sum v_i+c\sum z_i^2$
 
 Step 4: Compute the local moments and coefficients
 
-Laguerre integration by parts gives
+For the Laguerre ensemble, put $U_0=k$. Integration by parts against $\Delta(u)^2e^{-\sum u_i}$ and the identity
 $$
-\mathbb E[p_jF]=\mathbb E\left[\sum_{a=0}^{j-1}p_ap_{j-1-a}F+
-\sum_i u_i^j\frac{\partial F}{\partial u_i}\right],
+2\sum_{i<h}\frac{u_i^j-u_h^j}{u_i-u_h}
+=\sum_{a=0}^{j-1}U_aU_{j-1-a}-jU_{j-1}
+$$
+give, after the $jU_{j-1}$ terms cancel,
+$$
+\mathbb E[U_jF]=\mathbb E\left[\sum_{a=0}^{j-1}U_aU_{j-1-a}F+
+\sum_i u_i^j\frac{\partial F}{\partial u_i}\right].
+$$
+Taking $F=1$ first with $j=1$ and then with $j=2$ gives
+$$
+\mathbb E[U_1]=\mathbb E[U_0^2]=k^2,
+$$
+$$
+\mathbb E[U_2]=\mathbb E[U_0U_1+U_1U_0]=2k\,\mathbb E[U_1]=2k^3.
+$$
+The identical calculation for the right Laguerre ensemble gives
+$$
+\mathbb E[V_1]=r^2,\qquad \mathbb E[V_2]=2r^3.
+$$
+
+For the Gaussian ensemble put $Z_0=l$. Integration by parts against $\Delta(z)^2e^{-\sum z_i^2}$ similarly gives
+$$
+2\mathbb E[Z_{j+1}F]=\mathbb E\left[\sum_{a=0}^{j-1}Z_aZ_{j-1-a}F+
+\sum_i z_i^j\frac{\partial F}{\partial z_i}\right].
+$$
+We now apply this recurrence to each moment used below. With $j=0$, $F=Z_1$,
+$$
+2\mathbb E[Z_1^2]=\mathbb E\left[\sum_i\frac{\partial Z_1}{\partial z_i}\right]=l,
+\qquad \mathbb E[Z_1^2]=\frac l2.
+$$
+With $j=1$, $F=1$,
+$$
+2\mathbb E[Z_2]=\mathbb E[Z_0^2]=l^2,
+\qquad \mathbb E[Z_2]=\frac{l^2}{2}.
+$$
+With $j=3$, $F=1$,
+$$
+\begin{aligned}
+2\mathbb E[Z_4]
+&=\mathbb E[Z_0Z_2+Z_1^2+Z_2Z_0]\\
+&=2l\frac{l^2}{2}+\frac l2
+=l^3+\frac l2,
+\end{aligned}
+$$
+so
+$$
+\mathbb E[Z_4]=\frac{l(2l^2+1)}4.
+$$
+With $j=2$, $F=Z_1$,
+$$
+\begin{aligned}
+2\mathbb E[Z_3Z_1]
+&=\mathbb E[(Z_0Z_1+Z_1Z_0)Z_1+\sum_i z_i^2]\\
+&=2l\frac l2+\frac{l^2}{2}=\frac{3l^2}{2},
+\end{aligned}
 $$
 hence
 $$
-\mathbb E[U_1]=k^2,\quad\mathbb E[U_2]=2k^3,\quad
-\mathbb E[V_1]=r^2,\quad\mathbb E[V_2]=2r^3.
+\mathbb E[Z_1Z_3]=\frac{3l^2}{4}.
 $$
-For the Gaussian ensemble,
+Finally, with $j=2$, $F=Z_3$ and $\partial Z_3/\partial z_i=3z_i^2$,
 $$
-2\mathbb E[Z_{j+1}F]=\mathbb E\left[\sum_{a=0}^{j-1}Z_aZ_{j-1-a}F+
-\sum_i z_i^j\frac{\partial F}{\partial z_i}\right],
+\begin{aligned}
+2\mathbb E[Z_3^2]
+&=2l\,\mathbb E[Z_1Z_3]+3\mathbb E[Z_4]\\
+&=2l\frac{3l^2}{4}+3\frac{l(2l^2+1)}4
+=\frac{3l(4l^2+1)}4,
+\end{aligned}
 $$
-which gives
+therefore
 $$
-\mathbb E[Z_1^2]=\frac l2,\quad \mathbb E[Z_2]=\frac{l^2}{2},\quad
-\mathbb E[Z_4]=\frac{l(2l^2+1)}4,\quad
-\mathbb E[Z_1Z_3]=\frac{3l^2}{4},\quad
 \mathbb E[Z_3^2]=\frac{3l(4l^2+1)}8.
+$$
+
+Substituting these moments into $B$ gives
+$$
+\begin{aligned}
+\mathbb E[B]
+={}&14k^3+2r^3-(6l+2r)k^2
+-\left(\frac{3l}{4}+\frac{k}{2}\right)r^2\\
+&+\frac94\frac{l(2l^2+1)}4
+-\left(\frac{9k}{2}+\frac{9r}{8}\right)\frac{l^2}{2}\\
+={}&14k^3-6k^2l-2k^2r-\frac94kl^2-\frac12kr^2
++\frac98l^3-\frac9{16}l^2r-\frac34lr^2+\frac9{16}l+2r^3.
+\end{aligned}
+$$
+Also, from
+$$
+A=\frac{3}{2\sqrt2}\left((4k-2r)Z_1-Z_3\right),
+$$
+we get
+$$
+\begin{aligned}
+\frac12\mathbb E[A^2]
+&=\frac9{16}\left((4k-2r)^2\frac l2
+-2(4k-2r)\frac{3l^2}{4}
++\frac{3l(4l^2+1)}8\right)\\
+&=\frac92k^2l-\frac{27}{8}kl^2-\frac92klr
++\frac{27}{32}l^3+\frac{27}{16}l^2r+\frac98lr^2+\frac{27}{128}l.
+\end{aligned}
 $$
 Therefore
 $$
-\mathbb E[B]=14k^3-6k^2l-2k^2r-\frac94kl^2-\frac12kr^2
-+\frac98l^3-\frac9{16}l^2r-\frac34lr^2+\frac9{16}l+2r^3,
+\mathcal Q:=\mathbb E[B]+\frac12\mathbb E[A^2]
 $$
-and
-$$
-\frac12\mathbb E[A^2]
-=\frac92k^2l-\frac{27}{8}kl^2-\frac92klr
-+\frac{27}{32}l^3+\frac{27}{16}l^2r+\frac98lr^2+\frac{27}{128}l.
-$$
-Thus
+is
 $$
 \mathcal Q=14k^3+2r^3-\frac32k^2l-2k^2r-\frac{45}{8}kl^2-\frac92klr-\frac12kr^2
 +\frac{63}{32}l^3+\frac98l^2r+\frac38lr^2+\frac{99}{128}l.
 $$
-The perturbing factor gives
+
+It remains to include the factor $\prod_i(1+q(3x_i-1))$. For one variable in the left, middle, and right clusters, respectively,
 $$
-h=-k+2r,\quad d=-\frac{k}{2}-2r,\quad
-\mathbb E[T]=3k^2-\frac{k}{3}+\frac{8r}{3}-\frac{3r^2}{4},
+\log(1-q+3q^3u)=-q-\frac{q^2}{2}+q^3\left(3u-\frac13\right)+O(q^4),
 $$
-and
 $$
-J:=\frac3{\sqrt2}\mathbb E[AZ_1]=\frac{9l}{4}\left(2k-r-\frac{3l}{4}\right).
+\log\left(1+\frac{3}{\sqrt2}q^2z\right)=\frac{3}{\sqrt2}q^2z+O(q^4),
+$$
+$$
+\log\left(1+2q-\frac34q^3v\right)=2q-2q^2+q^3\left(\frac83-\frac34v\right)+O(q^4).
+$$
+Thus its total logarithm is
+$$
+qh+q^2\left(d+\frac3{\sqrt2}Z_1\right)+q^3T+O(q^4),
+$$
+where
+$$
+h=-k+2r,\qquad d=-\frac{k}{2}-2r,
+$$
+$$
+T=3U_1-\frac{k}{3}+\frac{8r}{3}-\frac34V_1,
+\qquad
+\mathbb E[T]=3k^2-\frac{k}{3}+\frac{8r}{3}-\frac{3r^2}{4}.
+$$
+By the symmetry $z\mapsto-z$, $\mathbb E[A]=\mathbb E[C]=\mathbb E[AB]=\mathbb E[A^3]=0$. The only extra odd-even contraction at order $q^3$ is
+$$
+J:=\frac3{\sqrt2}\mathbb E[AZ_1]
+=\frac3{\sqrt2}\frac{3}{2\sqrt2}\left((4k-2r)\frac l2-\frac{3l^2}{4}\right)
+=\frac{9l}{4}\left(2k-r-\frac{3l}{4}\right).
+$$
+Expanding the exponential now gives the local coefficients
+$$
+\alpha=\mathcal Q+d+\frac{h^2}{2},
+$$
+$$
+\beta=\mathbb E[T]+h\mathcal Q+hd+\frac{h^3}{6}+J.
+$$
+Indeed, the $q^2$ expectation is $\mathbb E[B+A^2/2]+d+h^2/2$, while at $q^3$ the surviving terms are $\mathbb E[T]+h\mathbb E[B+A^2/2]+hd+h^3/6+J$.
+
+To make the four allocation substitutions explicit, multiply the general formula for $\mathcal Q$ by $128$:
+$$
+\begin{aligned}
+128\mathcal Q={}&1792k^3+256r^3-192k^2l-256k^2r-720kl^2-576klr-64kr^2\\
+&+252l^3+144l^2r+48lr^2+99l.
+\end{aligned}
+$$
+For $(k,l,r)=(m,2m+1,m+1)$ this becomes
+$$
+\begin{aligned}
+128\mathcal Q_1={}&1792m^3+256(m+1)^3-192m^2(2m+1)-256m^2(m+1)\\
+&-720m(2m+1)^2-576m(2m+1)(m+1)-64m(m+1)^2\\
+&+252(2m+1)^3+144(2m+1)^2(m+1)+48(2m+1)(m+1)^2+99(2m+1)\\
+={}&0m^3+0m^2+2030m+799.
+\end{aligned}
 $$
 Hence
 $$
-\alpha=\mathcal Q+d+\frac{h^2}{2},\qquad
-\beta=\mathbb E[T]+h\mathcal Q+hd+\frac{h^3}{6}+J.
+\mathcal Q_1=\frac{2030m+799}{128}.
 $$
-For $(k,l,r)=(m,2m+1,m+1)$,
+The remaining quantities are obtained by direct substitution:
 $$
-(\mathcal Q,h,d,\mathbb E[T],J)=\left(\frac{2030m+799}{128},m+2,-\frac{5m+4}{2},
-\frac{27m^2+10m+23}{12},-\frac9{16}(2m+1)(2m+7)\right).
+h_1=-m+2(m+1)=m+2,\qquad
+d_1=-\frac m2-2(m+1)=-\frac{5m+4}{2},
 $$
-Thus
 $$
-\alpha=\frac{2030m+799}{128}-\frac{5m+4}{2}+\frac{(m+2)^2}{2}
+\mathbb E[T]_1=3m^2-\frac m3+\frac{8(m+1)}3-\frac{3(m+1)^2}{4}
+=\frac{27m^2+10m+23}{12},
+$$
+$$
+J_1=\frac{9(2m+1)}4\left(2m-(m+1)-\frac{3(2m+1)}4\right)
+=-\frac9{16}(2m+1)(2m+7).
+$$
+Therefore
+$$
+\alpha_1=\frac{2030m+799}{128}-\frac{5m+4}{2}+\frac{(m+2)^2}{2}
 =\frac{64m^2+1966m+799}{128},
 $$
+and
 $$
-\beta=\frac{27m^2+10m+23}{12}+\frac{(m+2)(2030m+799)}{128}
--\frac{(m+2)(5m+4)}{2}+\frac{(m+2)^3}{6}
--\frac9{16}(2m+1)(2m+7)
-=\frac{64m^3+5514m^2+9521m+2994}{384}.
+\begin{aligned}
+\beta_1={}&\frac{27m^2+10m+23}{12}+\frac{(m+2)(2030m+799)}{128}
+-\frac{(m+2)(5m+4)}{2}\\
+&+\frac{(m+2)^3}{6}-\frac9{16}(2m+1)(2m+7)\\
+={}&\frac{64m^3+5514m^2+9521m+2994}{384}.
+\end{aligned}
 $$
-For $(m+1,2m+1,m)$,
+
+For $(k,l,r)=(m+1,2m+1,m)$,
 $$
-(\mathcal Q,h,d,\mathbb E[T],J)=\left(\frac{2030m+1231}{128},m-1,-\frac{5m+1}{2},
-\frac{27m^2+100m+32}{12},-\frac9{16}(2m-5)(2m+1)\right),
+\begin{aligned}
+128\mathcal Q_2={}&1792(m+1)^3+256m^3-192(m+1)^2(2m+1)-256m(m+1)^2\\
+&-720(m+1)(2m+1)^2-576m(m+1)(2m+1)-64m^2(m+1)\\
+&+252(2m+1)^3+144m(2m+1)^2+48m^2(2m+1)+99(2m+1)\\
+={}&0m^3+0m^2+2030m+1231,
+\end{aligned}
 $$
 so
 $$
-\alpha=\frac{2030m+1231}{128}-\frac{5m+1}{2}+\frac{(m-1)^2}{2}
+\mathcal Q_2=\frac{2030m+1231}{128}.
+$$
+Also
+$$
+h_2=-(m+1)+2m=m-1,\qquad
+d_2=-\frac{m+1}{2}-2m=-\frac{5m+1}{2},
+$$
+$$
+\mathbb E[T]_2=3(m+1)^2-\frac{m+1}{3}+\frac{8m}{3}-\frac{3m^2}{4}
+=\frac{27m^2+100m+32}{12},
+$$
+$$
+J_2=\frac{9(2m+1)}4\left(2(m+1)-m-\frac{3(2m+1)}4\right)
+=-\frac9{16}(2m-5)(2m+1).
+$$
+Thus
+$$
+\alpha_2=\frac{2030m+1231}{128}-\frac{5m+1}{2}+\frac{(m-1)^2}{2}
 =\frac{64m^2+1582m+1231}{128},
 $$
+and
 $$
-\beta=\frac{27m^2+100m+32}{12}+\frac{(m-1)(2030m+1231)}{128}
--\frac{(m-1)(5m+1)}{2}+\frac{(m-1)^3}{6}
--\frac9{16}(2m-5)(2m+1)
-=\frac{64m^3+4938m^2+3491m-1461}{384}.
+\begin{aligned}
+\beta_2={}&\frac{27m^2+100m+32}{12}+\frac{(m-1)(2030m+1231)}{128}
+-\frac{(m-1)(5m+1)}{2}\\
+&+\frac{(m-1)^3}{6}-\frac9{16}(2m-5)(2m+1)\\
+={}&\frac{64m^3+4938m^2+3491m-1461}{384}.
+\end{aligned}
 $$
-For $(m,2m+2,m)$,
+
+For the first neighboring allocation $(k,l,r)=(m,2m+2,m)$,
 $$
-\alpha=\frac{27(73m+41)}{64}-\frac{5m}{2}+\frac{m^2}{2}
-=\frac{32m^2+1811m+1107}{64},
+\begin{aligned}
+128\mathcal Q_3={}&1792m^3+256m^3-192m^2(2m+2)-256m^3-720m(2m+2)^2\\
+&-576m^2(2m+2)-64m^3+252(2m+2)^3+144m(2m+2)^2\\
+&+48m^2(2m+2)+99(2m+2)\\
+={}&0m^3+0m^2+3942m+2214,
+\end{aligned}
 $$
-and for $(m+1,2m,m+1)$,
+so
 $$
-\alpha=\frac{27(73m+32)}{64}-\frac{5m+5}{2}+\frac{(m+1)^2}{2}
+\mathcal Q_3=\frac{27(73m+41)}{64}.
+$$
+Here
+$$
+h_3=-m+2m=m,\qquad d_3=-\frac m2-2m=-\frac{5m}{2},
+$$
+and hence
+$$
+\alpha_3=\frac{27(73m+41)}{64}-\frac{5m}{2}+\frac{m^2}{2}
+=\frac{32m^2+1811m+1107}{64}.
+$$
+
+For the second neighboring allocation $(k,l,r)=(m+1,2m,m+1)$,
+$$
+\begin{aligned}
+128\mathcal Q_4={}&1792(m+1)^3+256(m+1)^3-192(2m)(m+1)^2-256(m+1)^3\\
+&-720(2m)^2(m+1)-576(2m)(m+1)^2-64(m+1)^3+252(2m)^3\\
+&+144(2m)^2(m+1)+48(2m)(m+1)^2+99(2m)\\
+={}&0m^3+0m^2+3942m+1728,
+\end{aligned}
+$$
+so
+$$
+\mathcal Q_4=\frac{27(73m+32)}{64}.
+$$
+Also
+$$
+h_4=-(m+1)+2(m+1)=m+1,\qquad
+d_4=-\frac{m+1}{2}-2(m+1)=-\frac{5(m+1)}2,
+$$
+which gives
+$$
+\alpha_4=\frac{27(73m+32)}{64}-\frac{5m+5}{2}+\frac{(m+1)^2}{2}
 =\frac{32m^2+1875m+736}{64}.
 $$
+The two neighboring allocations already carry one extra factor $q$ from their exponent gap, so their local $\beta q^3$ terms would only enter globally at order $q^4$; through global order $q^3$, only their coefficients through $\alpha$ are required.
 
 Step 5: Combine the four cluster expansions
 
