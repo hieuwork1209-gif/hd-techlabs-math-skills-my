@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-field-theory/problem.md",
+  "source_commit_sha": "12cacc732dcf49a68930be8d0ade68b1be3b9488",
+  "problem_blob_sha": "8fe3e82f8866bf02615f11d09b572cba77a97197",
+  "statement_sha256": "5f65b83fc3cfa4fdce67eeff5412a0dfb98469158c6ea2b043abc8a20f08f33d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-06T16:51:28+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(N\\) be the required number. Then\n\n\\[\n\\boxed{\nN=\n\\frac{r(r-1)^2}{8}\\,\n\\frac{\\ell^{\\,r-3}-1}{\\ell-1}\\,\n\\ell^{\\,r-4}\\bigl(r(r+1)+2\\bigr)\n}\n\\]\n\nwith \\(\\ell=2r+1\\).\n\nHere is the derivation.\n\nSince \\(2\\) generates \\(\\mathbb F_\\ell^\\times\\), each of the primes\n\\[\nq,\\quad q+2Q,\\quad q+4Q\n\\]\nis inert in \\(\\mathbb Q(\\zeta)\\), because all are congruent to \\(q\\pmod \\ell\\), and \\(2q\\equiv1\\pmod \\ell\\) makes \\(q\\) a primitive residue class mod \\(\\ell\\). Thus if an algebraic integer in \\(\\mathbb Z[\\zeta]\\) has absolute value one of these primes, it must be that prime times a root of unity. Also\n\\[\n\\widehat f(y)\\equiv \\sum_x f(x)=2q^2\\equiv q\\pmod{1-\\zeta},\n\\]\nso the sign is positive. Hence each nonzero Fourier coefficient has the form\n\\[\n\\widehat f(y)=p_y\\zeta^{a_y}.\n\\]\n\nFourier inversion then shows that the \\(q\\)-part of the spectrum is integral only if all phases come from one point \\(v\\in G\\), i.e.\n\\[\na_y=v\\cdot y.\n\\]\nIndeed, if the chosen affine hyperplanes for all projective dual lines contain \\(m(x)\\) through \\(x\\), integrality forces\n\\[\n\\ell^{r-1}\\mid m(x)-\\frac{\\ell^{r-1}-1}{\\ell-1},\n\\]\nso \\(m(x)\\) takes only the two possible values corresponding to all hyperplanes being concurrent at one point \\(v\\).\n\nThe extra \\(2Q\\) and \\(4Q\\) spectral increments then give a unique function \\(f\\) for every admissible triple \\((s,U,W)\\). Its first moment is\n\\[\n\\sum_x f(x)x=qv.\n\\]\nSince \\(q\\equiv 2^{-1}\\pmod \\ell\\), the condition \\(\\sum_x f(x)x=Ps\\) forces\n\\[\nv=2Ps.\n\\]\nSo \\(f\\) is uniquely determined once \\(s,U,W\\) are chosen.\n\nIt remains to count \\(s,U,W\\).\n\nThe span condition gives constants \\(a,b\\) with\n\\[\n1=a s_j+b(s_{j+1}+s_{j-1}).\n\\]\nThe nonconstant cyclic solutions are exactly\n\\[\ns_j=1+A\\omega^j+B\\omega^{-j},\n\\]\nwhere \\(\\omega\\) is a nontrivial \\(r\\)th root of unity in \\(\\mathbb F_\\ell\\). The product constraints become\n\\[\nA^r+B^r=2,\\qquad \\rho^r+\\sigma^r=-2,\n\\]\nwhere \\(\\rho,\\sigma\\) are the roots of \\(X^2+X+AB\\). Since \\(x^r=\\pm1\\) in \\(\\mathbb F_\\ell^\\times\\), this forces \\(A^r=B^r=1\\), and \\(AB=C\\) where \\(X^2+X+C\\) has two nonsquare roots. A quadratic-character count gives exactly \\((r-1)/4\\) possible \\(C\\). For each \\(C\\), there are \\(r\\) choices of \\((A,B)\\), and \\(r-1\\) choices of \\(\\omega\\), with the duplication\n\\[\n(A,B,\\omega)\\sim(B,A,\\omega^{-1}).\n\\]\nThus\n\\[\n\\#s=\\frac{r(r-1)^2}{8}.\n\\]\n\nFor such an \\(s\\), the vectors\n\\[\nP^ts,\\quad P^t(Ps-s),\\quad P^t(2\\mathbf1-s)\n\\]\nspan the fixed 3-dimensional space\n\\[\nM=\\langle \\mathbf1,\\omega^j,\\omega^{-j}\\rangle.\n\\]\nThus \\(U\\) must be a hyperplane containing \\(M\\), giving\n\\[\n\\#U=\\frac{\\ell^{r-3}-1}{\\ell-1}.\n\\]\n\nFor fixed \\(U\\), \\(W\\) is a hyperplane of \\(U\\) avoiding the listed \\(3r\\) projective points in \\(M\\). Counting linear forms on \\(M\\) that do not vanish on those points gives\n\\[\nr(r+1)+2\n\\]\nallowable projective restrictions, and each restriction has \\(\\ell^{r-4}\\) extensions to \\(U\\). Hence\n\\[\n\\#W=\\ell^{r-4}\\bigl(r(r+1)+2\\bigr).\n\\]\n\nMultiplying the independent choices gives\n\n\\[\n\\boxed{\n\\frac{r(r-1)^2}{8}\\,\n\\frac{\\ell^{\\,r-3}-1}{\\ell-1}\\,\n\\ell^{\\,r-4}\\bigl(r(r+1)+2\\bigr)\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-06T16:55:21+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/8fe3e82f8866.json"
+}
