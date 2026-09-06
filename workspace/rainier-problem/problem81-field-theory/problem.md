@@ -13,7 +13,10 @@ $$
 \sum_x f(x)=2q^2,\qquad \sum_x f(x)x=Ps,
 $$
 $$
-\mathbf1\in\operatorname{span}\{s,Ps+P^{-1}s\},\qquad \sum_js_j=r,\qquad \prod_j(s_j-1)=2,
+\mathbf1\in\operatorname{span}\{s,Ps+P^{-1}s\},\qquad \sum_js_j=r,
+$$
+$$
+\prod_j(s_j-1)=2,\qquad \prod_js_j=4,
 $$
 and there are subspaces $W\subset U\subset G$ of codimensions $2,1$ with $P^ts\in U\setminus W$ for every $0\le t<r$ and
 $$
@@ -42,4 +45,4 @@ Here $U^\perp=\{y\in G:y\cdot U=0\}$. Give a closed formula.
 
 ## Domain Explanation
 
-The decisive rigidity comes from Fourier coefficients in the cyclotomic field $\mathbb Q(\zeta)$: inert rational primes force their phases, after which finite-field recurrence and projective incidence determine the count. Thus Field theory is the appropriate sub-domain.
+Cyclotomic phase rigidity determines the Fourier phases, while the two symmetric product constraints force a split-versus-nonsplit quadratic regime before the finite-field recurrence and projective-incidence count. Thus Field theory is the appropriate sub-domain.
