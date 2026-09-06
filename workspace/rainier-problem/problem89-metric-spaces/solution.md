@@ -1,154 +1,150 @@
 ## Steps
 
-Step 1: Encode gallery distance by the type-$A_3$ building
+Step 1: Encode the flag metric by the type-$A_3$ Hecke algebra
 
-Let $X$ be the set of complete flags
+Write a flag as $F=(P<L<H)$, with $P,L,H$ of dimensions $1,2,3$. The number of flags is
 $$
-F=(P<L<H)
+15\cdot 7\cdot 3=315.
 $$
-in $\mathbb F_2^4$, where $P,L,H$ have dimensions $1,2,3$. There are
+Fix a base flag. Bruhat decomposition assigns to every second flag a unique relative position $w\in S_4$, and a gallery changes the relative position by one simple reflection. So the graph distance is the Coxeter length $\ell(w)$. For the three simple reflections let $T_i$ be the operator summing over the two adjacent flags of type $i$. A panel contains three flags, so
 $$
-15\cdot7\cdot3=315
+T_i^2=T_i+2I.
 $$
-flags.
+The remaining relations are
+$$
+T_1T_3=T_3T_1,
+$$
+$$
+T_1T_2T_1=T_2T_1T_2,
+\qquad
+T_2T_3T_2=T_3T_2T_3.
+$$
+These relations generate $H_2(S_4)$. If $T_w$ denotes the product along a reduced word for $w$, then the distance kernel is
+$$
+D_p=\sum_{w\ne e}\ell(w)^pT_w.
+$$
 
-Fix a base flag. Two flags have a unique relative Weyl position $w\in S_4$, and the graph distance is the Coxeter length $\ell(w)$. If $T_i$ is the operator summing over the two neighbors obtained by changing only the $i$-th member of a flag, then
-$$
-T_i^2=T_i+2I,
-$$
-with the usual braid relations. Hence the distance kernel
-$$
-D_p=(d(F,F')^p)_{F,F'\in X}
-$$
-is the self-adjoint Hecke element
-$$
-D_p=\sum_{w\ne e}\ell(w)^pT_w
-$$
-in $H_2(S_4)$.
+Step 2: Construct the critical eigenspace from point-plane incidence
 
-Step 2: Exhibit the critical $14$-dimensional eigenspace directly
-
-Let $\mathcal P$ be the $15$ points and $\mathcal H$ the $15$ planes of $\mathrm{PG}(3,2)$. For a mean-zero function $u:\mathcal P\to\mathbb R$, define a function on flags by
+Let $\mathcal P$ and $\mathcal H$ be the $15$ points and $15$ planes of $\operatorname{PG}(3,2)$. For a mean-zero function $u:\mathcal P\to\mathbb{R}$, set
 $$
-c_u(P,L,H)=u(P)-\frac12\sum_{Q\subset H}u(Q).
+c_u(P,L,H)=u(P)-\frac{1}{2}\sum_{Q\subset H}u(Q).
 $$
-Let $N$ be the point-plane incidence matrix. Since every point lies in $7$ planes and two distinct points lie in exactly $3$ common planes,
+Let $N$ be the point-plane incidence matrix. Every point lies in $7$ planes and two distinct points lie together in exactly $3$ planes, so
 $$
 NN^T=4I+3J.
 $$
-Thus on mean-zero functions, $NN^T=4I$. A short norm computation gives
+It follows that $\|N^Tu\|^2=4\|u\|^2$ whenever $\sum_Qu(Q)=0$. For each incident pair $P\subset H$ there are exactly three lines $L$ with $P<L<H$, so
 $$
-\|c_u\|^2=30\|u\|^2,
+\begin{aligned}
+\|c_u\|^2
+&=3\sum_{P\subset H}\left(u(P)-\frac{1}{2}(N^Tu)(H)\right)^2\\
+&=3\left(7\|u\|^2-\|N^Tu\|^2+\frac{7}{4}\|N^Tu\|^2\right)\\
+&=30\|u\|^2.
+\end{aligned}
 $$
-so
+It follows that
 $$
-W:=\{c_u:\sum_Qu(Q)=0\}
+W=\left\{c_u:\sum_Qu(Q)=0\right\}
 $$
-has dimension $14$.
+has dimension $14$, and every vector in $W$ has coordinate sum $0$.
 
-Now fix $F=(P,L,H)$. In the sum $(D_pc_u)(F)$, points are grouped only by whether they are $P$, lie in $H\setminus\{P\}$, or lie outside $H$. Counting flags in the six gallery shells and subtracting the common outside-$H$ coefficient gives respectively
+It remains to determine the scalar by which $D_p$ acts on $W$. Fix $F=(P,L,H)$ and compare the coefficient of $u(Q)$ in $(D_pc_u)(F)$ with the coefficient for a point $Q$ outside $H$. For a relative position $w$, the corresponding Bruhat cell contains $2^{\ell(w)}$ flags. Sorting the $24$ positions by length and by the two conditions $P'=Q$ and $Q\subset H'$ gives the shell-coefficient difference
 $$
-\frac{L(p)}2,
-\qquad
--\frac{L(p)}2,
-\qquad
-0,
+(3,2,-6,-16,0,16)
+$$
+when $Q=P$, its negative when $Q\subset H$ and $Q\ne P$, and $0$ when $Q\not\subset H$. This gives
+$$
+D_pc_u=L(p)c_u,
 $$
 where
 $$
-L(p)=3+2\cdot2^p-6\cdot3^p-16\cdot4^p+16\cdot6^p.
+L(p)=3+2\cdot 2^p-6\cdot 3^p-16\cdot 4^p+16\cdot 6^p.
 $$
-Because $\sum_Qu(Q)=0$, the common coefficient disappears. Therefore
-$$
-D_pc_u=L(p)c_u.
-$$
-So $W$ is a fixed $14$-dimensional eigenspace for every $p$.
 
-Step 3: Show that this is the first spectral mode that can reach zero
+Step 3: Certify that every other Hecke mode is strictly negative near the boundary
 
-The only remaining point is to exclude another nonconstant Hecke mode before $W$ becomes singular.
+Only the spectrum on the orthogonal complement of constants and $W$ remains. For a simple reflection $s_i$, the Hecke multiplication rule is
+$$
+T_wT_i=
+\begin{cases}
+T_{ws_i},&\ell(ws_i)=\ell(w)+1,\\
+2T_{ws_i}+T_w,&\ell(ws_i)=\ell(w)-1.
+\end{cases}
+$$
+Use this rule on three parabolic induced modules. Inducing the trivial character from $H_2(S_3)$ gives the trivial module plus $S^{(31)}$; inducing the sign character from the same parabolic gives the sign module plus $S^{(211)}$; and inducing the trivial character from $H_2(S_2\times S_2)$ gives the trivial module, $S^{(31)}$, and $S^{(22)}$. Their minimal-coset bases have sizes $4$, $4$, and $6$. The calculation uses only these fourteen basis vectors and the displayed two-term rule.
 
-Use the seminormal realization of $H_2(S_4)$. Its simple modules are indexed by the five partitions of $4$, with dimensions
-$$
-1,3,2,3,1.
-$$
-The chamber representation contains them with multiplicities
-$$
-1,14,20,56,64.
-$$
-The subspace $W$ is the distinguished eigenline inside the $3$-dimensional $(31)$ Hecke module, tensored with its $14$-dimensional geometric multiplicity.
+Put $x_r=r^p$. Factoring the characteristic polynomials after removing the constant factor and the eigenline $W$ from Step 2 gives the following basis-independent certificate on $\frac{1}{4}\leq p\leq\frac{1}{3}$. The residual quadratic factor from $S^{(31)}$ has trace less than $-12$ and determinant greater than $11$. In $S^{(211)}$, one linear factor is less than $-\frac{1}{2}$, while the residual quadratic factor has trace less than $-2$ and determinant greater than $1$. The $S^{(22)}$ factor has trace less than $-1$ and determinant greater than $\frac{1}{2}$, and the sign-module scalar is less than $-\frac{1}{2}$. These inequalities are obtained from the same multiplication rule because every characteristic coefficient is an exponential polynomial in $x_2,\ldots,x_6$ with a fixed derivative sign on this interval, so its extremum is at an endpoint.
 
-For the Hecke element $D_p$, the seminormal generator rule has only the two panel eigenvalues $2$ and $-1$. Substituting that rule into the single element $\sum_{w\ne e}\ell(w)^pT_w$ gives the following spectral gap on the complement of constants and $W$:
+The Hecke action is self-adjoint, so the quadratic factors have real roots. Negative trace and positive determinant place both roots below $0$. It follows that every nonconstant eigenvalue outside $W$ is strictly negative throughout the interval, so
 $$
-D_p\big|_{\mathbf1^\perp\cap W^\perp}<0
+D_p\big|_{\mathbf{1}^{\perp}\cap W^{\perp}}<0
 \qquad
-\left(\frac14\le p\le\frac13\right).
+\left(\frac{1}{4}\leq p\leq\frac{1}{3}\right).
 $$
-Equivalently, throughout this interval every nonconstant Hecke eigenvalue other than $L(p)$ stays strictly negative. This is one simultaneous seminormal calculation; no separate matrix blocks are needed.
 
-Step 4: Locate the boundary exponent
+Step 4: Locate the unique boundary exponent
 
-We have
+The critical scalar satisfies
 $$
-L(0)=-1.
-$$
-Moreover,
-$$
-L'(0)=2\log\frac{243}{128}>0,
+L(0)=-1
 $$
 and
 $$
+L'(0)=2\log\frac{243}{128}>0.
+$$
+Also,
+$$
 L''(p)
-=2(\log2)^2 2^p-6(\log3)^2 3^p-16(\log4)^2 4^p+16(\log6)^2 6^p>0
+=2(\log 2)^2 2^p-6(\log 3)^2 3^p-16(\log 4)^2 4^p+16(\log 6)^2 6^p.
 $$
-for $p\ge0$. Indeed, $6^p\ge4^p\ge3^p$ and
+For $p\geq0$, use $6^p\geq4^p\geq3^p$ to obtain
 $$
-16\big((\log6)^2-(\log4)^2\big)>6(\log3)^2.
+L''(p)
+\geq 2(\log 2)^2 2^p
++\left(16\big((\log 6)^2-(\log 4)^2\big)-6(\log 3)^2\right)4^p>0.
 $$
-Hence $L$ is strictly increasing on $[0,\infty)$.
+So $L$ is strictly increasing. For the left endpoint, the elementary bounds
+$$
+2^{1/4}<1.19,\quad 3^{1/4}>1.316,\quad 4^{1/4}>1.4142,\quad 6^{1/4}<1.5651
+$$
+follow by raising the four decimal bounds to the fourth power. They give
+$$
+L\left(\frac{1}{4}\right)<3+2(1.19)-6(1.316)-16(1.4142)+16(1.5651)<-\frac{1}{10}.
+$$
+For the right endpoint, cubing
+$$
+2^{1/3}>1.259,\quad 3^{1/3}<1.443,\quad 4^{1/3}<1.588,\quad 6^{1/3}>1.817
+$$
+gives
+$$
+L\left(\frac{1}{3}\right)>3+2(1.259)-6(1.443)-16(1.588)+16(1.817)>\frac{1}{2}.
+$$
+Therefore there is a unique $\alpha\in(\frac{1}{4},\frac{1}{3})$ with $L(\alpha)=0$.
 
-Also
-$$
-L\left(\frac14\right)<-\frac1{10},
-\qquad
-L\left(\frac13\right)>\frac12.
-$$
-Therefore there is a unique
-$$
-\alpha\in\left(\frac14,\frac13\right)
-$$
-such that
-$$
-3+2\cdot2^\alpha-6\cdot3^\alpha-16\cdot4^\alpha+16\cdot6^\alpha=0.
-$$
-Numerically,
-$$
-\alpha\approx0.2655412194.
-$$
-
-By Step 3, $D_\alpha$ is strictly negative on $\mathbf1^\perp\cap W^\perp$ and vanishes on $W$. Hence $d^\alpha$ is conditionally negative definite. For $0<p<\alpha$, write $d^p=(d^\alpha)^{p/\alpha}$; the standard integral representation of $t^s$ for $0<s<1$ shows that positive fractional powers preserve conditional negative definiteness. For $p>\alpha$, Step 2 gives $L(p)>0$ on $W$, so negative type fails. Thus
+Step 3 shows that $D_\alpha$ is strictly negative on $\mathbf{1}^{\perp}\cap W^{\perp}$, while Step 2 shows that it vanishes on $W$. Therefore $d^\alpha$ is conditionally negative definite. For $0<p<\alpha$, write $d^p=(d^\alpha)^{p/\alpha}$; the integral representation of $t^s$ for $0<s<1$ preserves conditional negative definiteness. For $p>\alpha$, Step 2 gives $L(p)>0$ on $W$, so negative type fails. Therefore
 $$
 \wp=\alpha.
 $$
 
-Step 5: Compute the equality-space dimension
+Step 5: Determine the equality-space dimension
 
-At $p=\alpha$, the whole space $W$ is contained in the equality space. Step 3 shows that every vector in the orthogonal complement of constants and $W$ has strictly negative quadratic form. Therefore
+At $p=\wp$, Step 2 gives $W\subseteq E$, while Step 3 gives strict negativity on the orthogonal complement of constants and $W$, so
 $$
-E=W,
+E=W
 $$
-and hence
+and
 $$
 \dim E=14.
 $$
 
-Final Answer: $\boxed{(\alpha,14),\quad3+2\cdot2^\alpha-6\cdot3^\alpha-16\cdot4^\alpha+16\cdot6^\alpha=0}$
+Final Answer: $\boxed{(\min\{p>0:3+2\cdot2^p-6\cdot3^p-16\cdot4^p+16\cdot6^p=0\},14)}$
 
 ---
 
 ## Answer
 
-$(\alpha,14),\quad3+2\cdot2^\alpha-6\cdot3^\alpha-16\cdot4^\alpha+16\cdot6^\alpha=0$
+$(\min\{p>0:3+2\cdot2^p-6\cdot3^p-16\cdot4^p+16\cdot6^p=0\},14)$
 
 ---
 
@@ -162,7 +158,7 @@ $(\alpha,14),\quad3+2\cdot2^\alpha-6\cdot3^\alpha-16\cdot4^\alpha+16\cdot6^\alph
 
 ## Solution Concepts
 
-- complete flag graph metrics
-- point-plane incidence eigenspace
-- Iwahori-Hecke algebra of type $A_3$
 - negative type of finite metric spaces
+- complete flag graph metrics
+- point-plane incidence operators
+- Iwahori-Hecke algebra
