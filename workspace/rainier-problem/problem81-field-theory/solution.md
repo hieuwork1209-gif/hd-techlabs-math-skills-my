@@ -46,71 +46,72 @@ Let $A,B$ be the roots of
 $$
 T^2+T+c=0. \tag{3}
 $$
-Multiplying $1+u x+v x^{-1}$ over the $r$ roots $x^r=1$ gives
+Multiplying $1+ux+vx^{-1}$ over the $r$ roots $x^r=1$ gives
 $$
 \prod_js_j=2-(A^r+B^r). \tag{4}
 $$
-Indeed, after multiplying by $x$, the two roots are $A/u,B/u$, and $u^r=v^r=c^r=1$.
+If (3) splits over $\mathbb F_\ell$, then $A^r=\chi(A)$ and $B^r=\chi(B)$, where $\chi$ is the quadratic character. Since $AB=c\in H$, the two characters are equal, so (4) equals $4$ exactly when both roots are nonresidues. If (3) is nonsplit and $t=A^r$, then $B^r=t^{-1}$; equality in (4) with $4$ would force $t=-1$, hence $A^{2r}=1$, contradicting $A\notin\mathbb F_\ell$. Thus $\prod_js_j=4$ is equivalent to (3) having two distinct nonresidue roots.
 
-If (3) splits over $\mathbb F_\ell$, then $A^r=\chi(A)$ and $B^r=\chi(B)$, where $\chi$ is the quadratic character. Since $AB=c\in H$, the two characters are equal. Thus (4) equals $4$ exactly when both roots are nonresidues; it equals $0$ when both are residues. If (3) is nonsplit and $t=A^r$, then $B^r=t^{-1}$; equality in (4) with $4$ would force $t=-1$, hence $A^{\ell-1}=A^{2r}=1$, contradicting $A\notin\mathbb F_\ell$. Therefore the new condition $\prod_js_j=4$ is equivalent to (3) having two distinct nonresidue roots.
-
-It remains to count such $c$. Since $4H=H$, the number of $c\in H$ for which $1-4c$ is a nonzero square is
+Count ordered nonresidue pairs $(A,B)$ with $A+B=-1$. Since $\chi(-1)=-1$,
 $$
-\#\{d\in H:1-d\in H\}=\frac{\ell-3}{4}=\frac{r-1}{2}. \tag{5}
+\frac14\sum_{A\ne0,-1}(1-\chi(A))(1-\chi(-1-A))
+=\frac14\sum_{A\ne0,-1}(1-\chi(A))(1+\chi(1+A))
+=\frac{r-1}{2}.
 $$
-This follows by expanding
+Indeed the three character sums besides the constant term are $1,-1,-1$. The possible double root $A=B=-1/2$ is a residue because $\chi(-1/2)=\chi(-1)\chi(2)=1$, so the number of unordered pairs, hence the number of admissible $c$, is $(r-1)/4$. For each $c$ there are $r$ factorizations $c=uv$ in $H^2$. Therefore
 $$
-\frac14\sum_{d\ne0,1}(1+\chi(d))(1+\chi(1-d));
-$$
-the three character sums are $-1,-1,1$ because $\chi(-1)=-1$. Among these split values, those with residue roots are obtained from $A\in H$ with $-1-A\in H$. The corresponding ordered-root count is $(r+1)/2$; removing the double root $A=-1/2$ and dividing by $2$ leaves $(r-1)/4$ distinct nonzero-discriminant values of $c$. Hence the number with two nonresidue roots is also
-$$
-\frac{r-1}{4}. \tag{6}
-$$
-For each such $c$, there are $r$ factorizations $c=uv$ in $H^2$. Therefore
-$$
-N_s=\frac{r-1}{2}\,r\,\frac{r-1}{4}=\frac{r(r-1)^2}{8}. \tag{7}
+N_s=\frac{r-1}{2}\,r\,\frac{r-1}{4}=\frac{r(r-1)^2}{8}. \tag{5}
 $$
 
-Step 3: Count the admissible flags for one phase vector.
-For (2), set
+Step 3: Count flags using the conic orbit and its secant directions.
+For (2), let
 $$
 H_s=\operatorname{span}\{\mathbf1,(\omega^{j-1})_j,(\omega^{-(j-1)})_j\}.
 $$
-It has dimension $3$, and the $r$ projective points $[P^ts]$ have coordinates
+It has dimension $3$, and all $P^ts$ lie in it. Hence an admissible hyperplane $U$ must contain $H_s$, giving
 $$
-[1:u\omega^t:v\omega^{-t}],
+\frac{\ell^{r-3}-1}{\ell-1} \tag{6}
 $$
-so they lie on the nonsingular conic $YZ=uvX^2$. They are distinct and no three are collinear.
+choices for $U$.
 
-A hyperplane $U$ containing $H_s$ can be chosen in
+Scale the last two projective coordinates on $\mathbb P(H_s)$ by $u$ and $v$. The phase orbit becomes
 $$
-\frac{\ell^{r-3}-1}{\ell-1}
+A_t=[1:\omega^t:\omega^{-t}]\qquad(0\le t<r),
 $$
-ways. Fix such a $U$. A hyperplane $W\subset U$ avoids every $P^ts$ exactly when the projective kernel line of its restriction to $H_s$ avoids the $r$ conic points. Among the $\ell^2+\ell+1$ lines of $\mathbb P(H_s)$, the number meeting at least one selected point is
+lying on the nonsingular conic $YZ=X^2$. The difference orbit is
 $$
-r(\ell+1)-\binom r2,
+D_t=[0:\omega^t(\omega-1):\omega^{-t}(\omega^{-1}-1)].
 $$
-because no line contains three selected points. Hence the number of allowable kernel lines is
+Since $(\omega^{-1}-1)/(\omega-1)=-\omega^{-1}$ and $2t+1$ runs through every residue modulo $r$,
 $$
-L_0=\ell^2+\ell+1-r(\ell+1)+\binom r2=\frac{5r^2+7r+6}{2}.
+\{D_t\}=\{[0:1:-1/c]:c\in H\}. \tag{7}
 $$
-Each kernel line has $\ell^{r-4}$ extensions to a hyperplane of $U$, so
+For two distinct conic points $A_a=[1:a:a^{-1}]$ and $A_b=[1:b:b^{-1}]$, their secant meets the line $X=0$ at
 $$
-F=\ell^{r-4}\frac{\ell^{r-3}-1}{\ell-1}\frac{5r^2+7r+6}{2}. \tag{8}
+[0:1:-1/(ab)]. \tag{8}
+$$
+Because $a,b\in H$, (7) and (8) show that every secant direction determined by two selected conic points belongs to the difference orbit.
+
+Fix $U$. Since $W$ is a hyperplane of $U$ and cannot contain any $A_t$, the intersection $\mathbb P(W\cap H_s)$ is a projective line. The new incidence condition says that this line must avoid both the $r$ points $A_t$ and the $r$ points $D_t$.
+
+A projective line avoiding the $D_t$ has one of the $\ell+1-r=r+2$ remaining directions at infinity. For any such direction, no two of the $A_t$ lie on the same affine line, because their secant direction would lie in the set (7). Among the $\ell$ affine lines of that direction, exactly $r$ contain one selected $A_t$, so $\ell-r=r+1$ avoid all of them. Therefore the number of allowable projective kernel lines is
+$$
+(r+1)(r+2). \tag{9}
+$$
+Each such line extends to a hyperplane $W\subset U$ in exactly $\ell^{r-4}$ ways. Thus for each admissible $s$ the number of flags is
+$$
+F=\ell^{r-4}(r+1)(r+2)\frac{\ell^{r-3}-1}{\ell-1}. \tag{10}
 $$
 
 Step 4: Multiply the independent choices.
-By Step 1, every admissible phase vector and admissible flag produces exactly one pair $(s,f)$, and $f$ recovers the flag. Combining (7) and (8) gives
-$$
-\frac{r(r-1)^2(5r^2+7r+6)}{16}\ell^{r-4}\frac{\ell^{r-3}-1}{\ell-1}.
-$$
-Final Answer: $\boxed{\frac{r(r-1)^2(5r^2+7r+6)}{16}\ell^{r-4}\frac{\ell^{r-3}-1}{\ell-1}}$
+By Step 1, every admissible phase vector and admissible flag gives exactly one pair $(s,f)$, and $f$ recovers the flag. Combining (5) and (10) gives the required count.
+Final Answer: $\boxed{\frac{r(r-1)^2(r+1)(r+2)}8\ell^{r-4}\frac{\ell^{r-3}-1}{\ell-1}}$
 
 ---
 
 ## Answer
 
-$\frac{r(r-1)^2(5r^2+7r+6)}{16}\ell^{r-4}\frac{\ell^{r-3}-1}{\ell-1}$
+$\frac{r(r-1)^2(r+1)(r+2)}8\ell^{r-4}\frac{\ell^{r-3}-1}{\ell-1}$
 
 ---
 
@@ -128,4 +129,4 @@ $\frac{r(r-1)^2(5r^2+7r+6)}{16}\ell^{r-4}\frac{\ell^{r-3}-1}{\ell-1}$
 - reciprocal cyclic modes over a finite field
 - resultant split-versus-nonsplit classification
 - quadratic-character counting
-- projective conic incidence
+- conic secants and projective directions
