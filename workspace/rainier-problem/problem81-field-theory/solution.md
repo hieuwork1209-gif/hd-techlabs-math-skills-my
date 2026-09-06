@@ -35,36 +35,64 @@ f(x)=d-4+q\,1_{\{2Ps\}}(x)+2\ell^2 1_{2Ps+W}(x)+2\ell 1_{2Ps+U}(x),
 $$
 This is nonnegative and has the required Fourier magnitudes. Its four values are distinct, so for fixed $s$ it recovers $W$ and $U$. Hence counting pairs $(s,f)$ is exactly counting admissible triples $(s,U,W)$.
 
-Step 2: Count the admissible phase vectors.
+Step 2: Couple the reciprocal frequency to the product constraint.
 The span condition implies
 $$
 Ps+P^{-1}s=a\mathbf1+bs.
 $$
-The constant case is excluded by the two product conditions. With $y=s-\mathbf1$ and $\sum_jy_j=0$, diagonalizing the cyclic shift gives
+The constant case is excluded by the product conditions. With $y=s-\mathbf1$ and $\sum_jy_j=0$, diagonalizing the cyclic shift gives
 $$
 s_j=1+u\omega^{j-1}+v\omega^{-(j-1)}, \tag{3}
 $$
-where $\omega$ is a nontrivial $r$th root of unity. Reciprocal frequencies give the same eigenspace, so there are $(r-1)/2$ frequency pairs.
+where $\omega$ is a nontrivial $r$th root of unity. Reciprocal frequencies give the same eigenspace.
 
 Since $r$ is odd,
 $$
 \prod_{j=0}^{r-1}(u\omega^j+v\omega^{-j})=u^r+v^r.
 $$
-As $\ell=2r+1$, the condition $\prod_j(s_j-1)=2$ forces $u^r=v^r=1$. Thus $u,v$ lie in the subgroup $H\subset\mathbb F_\ell^\times$ of order $r$. Put $c=uv$.
+As $\ell=2r+1$, the condition $\prod_j(s_j-1)=2$ forces $u^r=v^r=1$. Thus $u,v$ lie in the subgroup $H\subset\mathbb F_\ell^\times$ of order $r$. Put $c=uv$ and $t=\omega+\omega^{-1}$.
 
-Let $A,B$ be the roots of $T^2+T+c$. Multiplying $1+ux+vx^{-1}$ over $x^r=1$ gives
+Now
 $$
-\prod_js_j=2-(A^r+B^r). \tag{4}
+y_j+y_{j+1}=u(1+\omega)\omega^{j-1}+v(1+\omega^{-1})\omega^{-(j-1)}.
 $$
-If the quadratic splits, then $A^r=\chi(A)$ and $B^r=\chi(B)$, and $AB=c\in H$ makes the two characters equal. Hence (4) equals $4$ exactly when both roots are nonresidues. In the nonsplit case, writing $t=A^r$ gives $B^r=t^{-1}$; equality with $4$ would force $t=-1$ and hence $A^{2r}=1$, impossible for $A\notin\mathbb F_\ell$. Therefore admissible $c$ are exactly those for which $T^2+T+c$ has two distinct nonresidue roots.
+The pure Fourier modes sum to zero, so
+$$
+\sum_j(y_j+y_{j+1})^2
+=2rc(1+\omega)(1+\omega^{-1})
+=-c(t+2), \tag{4}
+$$
+because $2r=-1$ in $\mathbb F_\ell$. The cyclic energy condition therefore gives
+$$
+c=\frac1{t+2}=\frac{\omega}{(1+\omega)^2}. \tag{5}
+$$
+Here $1+\omega\ne0$ because $H$ has odd order.
 
-The number of ordered nonresidue pairs $(A,B)$ with $A+B=-1$ is
+Let $A,B$ be the roots of $T^2+T+c$. As before,
 $$
-\frac14\sum_{A\ne0,-1}(1-\chi(A))(1-\chi(-1-A))=\frac{r-1}{2}.
+\prod_js_j=2-(A^r+B^r). \tag{6}
 $$
-The possible double root $A=B=-1/2$ is a residue, so dividing by $2$ gives $(r-1)/4$ admissible values of $c$. Each has $r$ factorizations $c=uv$ in $H^2$. Hence
+For the value of $c$ in (5), the roots are explicitly
 $$
-N_s=\frac{r-1}{2}\cdot r\cdot\frac{r-1}{4}=\frac{r(r-1)^2}{8}. \tag{5}
+A=-\frac1{1+\omega},\qquad B=-\frac{\omega}{1+\omega}. \tag{7}
+$$
+Since $\omega\in H$, both roots have quadratic character
+$$
+\chi(A)=\chi(B)=-\chi(1+\omega),
+$$
+using $\chi(-1)=-1$. Equation (6) equals $4$ exactly when both roots are nonresidues, hence exactly when
+$$
+\chi(1+\omega)=1. \tag{8}
+$$
+
+The number of $\omega\in H$ satisfying (8) is
+$$
+\frac14\sum_{x\ne0,-1}(1+\chi(x))(1+\chi(1+x))
+=\frac{\ell-3}{4}=\frac{r-1}{2}. \tag{9}
+$$
+Indeed the three nonconstant character sums are $1,-1,-1$. The value $\omega=1$ is not counted because $\chi(2)=-1$, and (8) is invariant under $\omega\mapsto\omega^{-1}$. Thus there are $(r-1)/4$ admissible reciprocal frequency pairs. For each pair, (5) fixes $c\in H$, and there are exactly $r$ factorizations $c=uv$ in $H^2$. Therefore
+$$
+N_s=\frac{r(r-1)}4. \tag{10}
 $$
 
 Step 3: Count flags from the full affine conic and its secant directions.
@@ -74,7 +102,7 @@ H_s=\operatorname{span}\{\mathbf1,(\omega^{j-1})_j,(\omega^{-(j-1)})_j\}.
 $$
 It has dimension $3$, and every required cyclic orbit lies in it. Thus an admissible hyperplane $U$ must contain $H_s$, giving
 $$
-\frac{\ell^{r-3}-1}{\ell-1} \tag{6}
+\frac{\ell^{r-3}-1}{\ell-1} \tag{11}
 $$
 choices.
 
@@ -88,44 +116,42 @@ D_t=[0:\omega^t(\omega-1):\omega^{-t}(\omega^{-1}-1)].
 $$
 The $A_t$ are the points coming from $P^ts$, the $B_t$ from $P^t(2\mathbf1-s)$, and the $D_t$ from $P^t(Ps-s)$. Since $H$ is the subgroup of squares and $-1$ is a nonsquare, the sets $\{A_t\}$ and $\{B_t\}$ together are exactly
 $$
-\{[1:a:a^{-1}]:a\in\mathbb F_\ell^\times\}, \tag{7}
+\{[1:a:a^{-1}]:a\in\mathbb F_\ell^\times\}, \tag{12}
 $$
 the full affine part of the conic $YZ=X^2$.
 
 Moreover
 $$
-\{D_t\}=\{[0:1:-1/c]:c\in H\}. \tag{8}
+\{D_t\}=\{[0:1:-1/c]:c\in H\}. \tag{13}
 $$
-Indeed $(\omega^{-1}-1)/(\omega-1)=-\omega^{-1}$ and $2t+1$ runs through all residues modulo $r$. For two affine conic points with parameters $a,b$, their secant meets the line at infinity at
+For two affine conic points with parameters $a,b$, their secant meets the line at infinity at
 $$
-[0:1:-1/(ab)]. \tag{9}
+[0:1:-1/(ab)]. \tag{14}
 $$
-Thus the forbidden points $D_t$ are exactly the square secant directions.
+Thus the forbidden $D_t$ are exactly the secant directions for which $ab$ is a square.
 
-Fix $U$. The projective line $\mathbb P(W\cap H_s)$ must avoid all points in (7) and (8). A permitted direction at infinity is either one of the $r$ nonsquare directions or one of the two conic points at infinity.
-
-For a nonsquare direction $c$, equation (9) shows that there are exactly $r=(\ell-1)/2$ secant lines of that direction through two affine conic points and no tangent lines of that direction. Hence among the $\ell$ affine lines of that direction, exactly
+Fix $U$. The projective line $\mathbb P(W\cap H_s)$ must avoid all points in (12) and (13). A permitted direction at infinity is either one of the $r$ complementary nonzero directions or one of the two conic points at infinity. For a complementary nonzero direction, (14) pairs the $\ell-1$ affine conic points into exactly $r$ secants, with no tangent of that direction. Hence among the $\ell$ affine lines of that direction exactly
 $$
 \ell-r=r+1
 $$
-avoid the affine conic. For either of the two conic directions at infinity, exactly one affine line avoids the affine conic. Therefore the number of allowable projective kernel lines is
+avoid the affine conic. For either conic direction at infinity, exactly one affine line avoids it. Therefore the number of allowable projective kernel lines is
 $$
-r(r+1)+2=r^2+r+2. \tag{10}
+r(r+1)+2=r^2+r+2. \tag{15}
 $$
 Each extends to a hyperplane $W\subset U$ in exactly $\ell^{r-4}$ ways. Thus the number of admissible flags for one $s$ is
 $$
-F=\ell^{r-4}(r^2+r+2)\frac{\ell^{r-3}-1}{\ell-1}. \tag{11}
+F=\ell^{r-4}(r^2+r+2)\frac{\ell^{r-3}-1}{\ell-1}. \tag{16}
 $$
 
-Step 4: Multiply the independent choices.
-By Step 1, every admissible phase vector and admissible flag produces exactly one pair $(s,f)$, and $f$ recovers the flag. Combining (5) and (11) gives the required count.
-Final Answer: $\boxed{\frac{r(r-1)^2(r^2+r+2)}8\ell^{r-4}\frac{\ell^{r-3}-1}{\ell-1}}$
+Step 4: Multiply the coupled phase count by the flag count.
+By Step 1, every admissible phase vector and admissible flag produces exactly one pair $(s,f)$, and $f$ recovers the flag. Combining (10) and (16) gives the required count.
+Final Answer: $\boxed{\frac{r(r-1)(r^2+r+2)}4\ell^{r-4}\frac{\ell^{r-3}-1}{\ell-1}}$
 
 ---
 
 ## Answer
 
-$\frac{r(r-1)^2(r^2+r+2)}8\ell^{r-4}\frac{\ell^{r-3}-1}{\ell-1}$
+$\frac{r(r-1)(r^2+r+2)}4\ell^{r-4}\frac{\ell^{r-3}-1}{\ell-1}$
 
 ---
 
@@ -141,6 +167,6 @@ $\frac{r(r-1)^2(r^2+r+2)}8\ell^{r-4}\frac{\ell^{r-3}-1}{\ell-1}$
 
 - cyclotomic phase rigidity from inert primes
 - reciprocal cyclic modes over a finite field
-- resultant split-versus-nonsplit classification
+- cyclic quadratic-energy coupling
 - quadratic-character counting
 - affine conic secants and projective directions
