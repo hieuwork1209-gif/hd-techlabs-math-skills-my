@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-field-theory/problem.md",
+  "source_commit_sha": "25f8c6888c4dbe71f7d5561c943ac3fc69058e44",
+  "problem_blob_sha": "b5bbf6c8f0059445b7239864260031539d0ae0f2",
+  "statement_sha256": "5237576ea78c3e380930ba209caa3fd2501490fe0b6d3c1056ee65058539388f",
+  "requested_model": "gpt-5.4",
+  "requested_reasoning_effort": "high",
+  "runs": 1,
+  "started_at": "2026-09-06T16:15:49+00:00",
+  "exit_code": 1,
+  "stderr": "",
+  "final_answer": "",
+  "status": "error",
+  "completed_at": "2026-09-06T16:16:04+00:00",
+  "timeout_seconds": 1200,
+  "local_verdict": "SOLVER_ERROR",
+  "recommended_action": "INSPECT_RUNNER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/b5bbf6c8f005.json"
+}
