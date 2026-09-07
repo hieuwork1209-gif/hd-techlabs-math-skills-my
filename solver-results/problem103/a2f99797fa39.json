@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "9eec9a9207ef365958fb16edd7f4380b7fb3b354",
+  "problem_blob_sha": "a2f99797fa390f51a36a1fcb8e4f7a2280df05f0",
+  "statement_sha256": "e5d12ccf4b111a6396edab8acb328a671f012a6f83a371fd53bf5b707c9b1d64",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-07T09:47:49+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nA_n=\\int_{[0,1]^4}e^{-n(P^2+Q^2)}\\,d\\mathbf x,\\qquad B_n=I_n(0).\n\\]\nThen\n\\[\nI_n(\\lambda)=A_n\\sinh\\lambda+B_n,\n\\]\nso the unique root satisfies\n\\[\n\\sinh\\lambda_n=-\\frac{B_n}{A_n}.\n\\]\n\nFirst,\n\\[\n\\int_{[0,1]^2} e^{-n(xy)^2}\\,dx\\,dy\n=\\int_0^1 e^{-np^2}(-\\log p)\\,dp.\n\\]\nWith \\(p=z/\\sqrt n\\),\n\\[\n\\int_0^1 e^{-np^2}(-\\log p)\\,dp\n=\\frac1{\\sqrt n}\\int_0^{\\sqrt n}e^{-z^2}\\left(\\frac12\\log n-\\log z\\right)\\,dz\n\\sim \\frac{\\sqrt\\pi}{4\\sqrt n}\\log n.\n\\]\nHence\n\\[\nA_n\\sim \\frac{\\pi}{16n}(\\log n)^2.\n\\]\n\nNow compute \\(B_n\\). For each \\((j,k)\\), set\n\\[\nP=\\delta 2^{-j}u,\\qquad Q=\\delta 2^{-k}v.\n\\]\nThe product-density identity gives\n\\[\nd\\mathbf x=(-\\log P)(-\\log Q)\\,dP\\,dQ.\n\\]\nThe \\(j,k\\)-sum collapses because\n\\[\n\\sum_{j,k=0}^1(-1)^{j+k}\n\\bigl(-\\log(\\delta2^{-j}u)\\bigr)\n\\bigl(-\\log(\\delta2^{-k}v)\\bigr)\n=(\\log2)^2.\n\\]\nThus\n\\[\nB_n=\\delta^2(\\log2)^2\\sum_{t=0}^2(-1)^t\\binom2t J_t+o(\\cdots),\n\\]\nwhere\n\\[\nJ_t=\\int_{u,v\\ge0}G_t(u,v)\\,du\\,dv.\n\\]\n\nUse\n\\[\nr=uv,\\qquad s=(u-v)^2.\n\\]\nThe map \\((u,v)\\mapsto(r,s)\\) is two-to-one away from \\(u=v\\), and\n\\[\n\\left|\\frac{\\partial(r,s)}{\\partial(u,v)}\\right|\n=2|u^2-v^2|.\n\\]\nTherefore\n\\[\nJ_t=-2N e^{-4N}\n\\int_{r,s\\ge0}\n(r+s+1)\\left(r+s-1-\\frac{\\delta^2}{4}\\right)(r-s+\\delta^3)\ne^{-N((r-a_t)^2+(s-b_t)^2)}\\,dr\\,ds.\n\\]\n\nThe full-plane Gaussian integral vanishes, since after writing\n\\[\nr=a_t+x,\\qquad s=b_t+y,\n\\]\nwe have \\(r-s+\\delta^3=x-y\\), while the remaining factor depends only on \\(x+y\\). Thus only the two boundary tails \\(r<0\\) and \\(s<0\\) contribute.\n\nPut \\(N=\\delta^{-2}\\). A one-sided Gaussian tail expansion gives\n\\[\n\\sum_{t=0}^2(-1)^t\\binom2t J_t\n\\sim 12\\sqrt\\pi\\,N^{-3}e^{-5N}.\n\\]\nHence\n\\[\nB_n\\sim\n\\delta^2(\\log2)^2\\cdot 12\\sqrt\\pi\\,N^{-3}e^{-5N}\n=12\\sqrt\\pi(\\log2)^2N^{-4}e^{-5N}.\n\\]\nSince \\(N=\\sqrt n\\),\n\\[\nB_n\\sim 12\\sqrt\\pi(\\log2)^2n^{-2}e^{-5\\sqrt n}.\n\\]\n\nTherefore\n\\[\n\\lambda_n\\sim-\\frac{B_n}{A_n}\n\\sim\n-\\frac{12\\sqrt\\pi(\\log2)^2n^{-2}e^{-5\\sqrt n}}\n{\\frac{\\pi}{16n}(\\log n)^2}\n=\n-\\frac{192(\\log2)^2}{\\sqrt\\pi}\\,\n\\frac{e^{-5\\sqrt n}}{n(\\log n)^2}.\n\\]\n\nThus\n\\[\n\\boxed{\\alpha=1,\\qquad \\beta=2,\\qquad c=5,\\qquad L=-\\frac{192(\\log2)^2}{\\sqrt\\pi}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-07T09:50:40+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/a2f99797fa39.json"
+}
