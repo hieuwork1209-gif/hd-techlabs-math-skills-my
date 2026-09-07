@@ -90,7 +90,7 @@ $$
 \log\rho_n(c/L)
 =\text{const}-3c-\log Z(c)
 +\frac{\pi_1(c)}{2n}\left(\frac cL+\frac{c^2}{L^2}\right)
-+o\!\left(\frac1{nL}\right),
++O\!\left(\frac1{n^2L}\right),
 $$
 uniformly after two $c$-derivatives. At $c=1$,
 $$
@@ -98,15 +98,25 @@ $$
 $$
 Hence its contributions to the first two log derivatives are
 $$
-\delta H_\rho(1)=\frac1{3nL}+\frac1{2nL^2}+o\!\left(\frac1{nL^2}\right),
+\delta H_\rho(1)=\frac1{3nL}+\frac1{2nL^2}+O\!\left(\frac1{n^2L}\right),
 $$
 $$
 \delta K_\rho(1)=\frac7{18nL}+\frac{19}{18nL^2}
-+o\!\left(\frac1{nL^2}\right).
++O\!\left(\frac1{n^2L}\right).
 $$
 
-For the signed stencil, with $\mu_k=\sum_jb_js_j^k$ and
-$s_j=\sum_{k=1}^{m_j}(N+k)^{-1}$, the coefficient choice gives
+For the signed stencil, put $\mu_k=\sum_jb_js_j^k$ with
+$s_j=\sum_{k=1}^{m_j}(N+k)^{-1}$. Since
+$$
+s_j=jt-\frac{j^2}{2}t^2+\frac{j^3}{3}t^3+O(t^4),
+$$
+direct substitution of the three $b_j$ gives
+$$
+\mu_1=\frac{12}{19}t+O(t^3),\qquad
+\mu_2=\frac8{19}t^3+O(t^4),\qquad
+\mu_3=-\frac{18}{19}t^3+O(t^4).
+$$
+Hence
 $$
 \frac{\mu_2}{\mu_1}=\frac{2}{3n}+O(n^{-3/2}),\qquad
 \frac{\mu_3}{\mu_1}=-\frac{3}{2n}+O(n^{-3/2}).
@@ -156,7 +166,7 @@ $$
 (nL)d_n^3\longrightarrow
 -\frac7{18}\frac{75}{88}=-\frac{175}{528}.
 $$
-The real cubic branch is unique near $1$, so
+Also $F_0'(1+d)=\frac{88}{25}d^2+O(d^3)>0$ for sufficiently small nonzero $d$; the same local monotonicity holds at the finite-$n$ root. Thus the real cubic branch is unique near $1$, and
 $$
 (nL)^{1/3}(a_nL-1)
 \longrightarrow-\sqrt[3]{\frac{175}{528}}.
