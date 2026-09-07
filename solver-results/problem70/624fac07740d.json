@@ -1,0 +1,22 @@
+{
+  "problem": "problem70",
+  "branch": "adversary/problem70",
+  "problem_path": "workspace/rainier-problem/problem70-determinants/problem.md",
+  "source_commit_sha": "1f32e3f23b5914529ad1a39118ca297639b6ca04",
+  "problem_blob_sha": "624fac07740d4c925fdfac3d8ad4b44456aab641",
+  "statement_sha256": "5ed9dd16613ed14b85ac2f21e07f68790feaf8048aceb061306a1cde82a38eea",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-07T09:19:51+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\n\\delta=aL-1,\\qquad \\alpha=aL=1+\\delta,\\qquad s=\\frac1{nL}.\n\\]\n\nFirst,\n\\[\nS_1(N,a)=\\sum_{k=0}^N\\frac{(-1)^k\\binom Nk}{k+a}\n=B(a,N+1)=\\frac{\\Gamma(a)\\Gamma(N+1)}{\\Gamma(N+a+1)}.\n\\]\nDifferentiating in \\(a\\),\n\\[\nS_2(N,a)=S_1(N,a)A_N,\\qquad\n2S_3(N,a)=S_1(N,a)(A_N^2+C_N),\n\\]\nwhere\n\\[\nA_N=\\psi(N+a+1)-\\psi(a),\\qquad C_N=\\psi'(a)-\\psi'(N+a+1).\n\\]\n\nFor \\(N=n^q\\),\n\\[\nS_1(n^q,a)=\\Gamma(a)n^{-qa}\\left(1-\\frac{a(a+1)}{2n^q}+o(s)\\right),\n\\]\nand only \\(q=1\\) contributes at order \\(s\\). Also\n\\[\n\\frac{A_{n}}L=\\frac{-\\psi(a)}L+1+\\frac{s}{2}+o(s),\n\\]\nwhile the corresponding corrections for \\(q=2,3\\) are \\(o(s)\\).\n\nFor the \\(T\\)-block, after factoring out the common \\(\\Gamma(a)e^{-1}\\), the leading weights are proportional to\n\\[\ne^{-q\\delta},\\qquad q=1,2,3.\n\\]\nThus\n\\[\n\\mathbb E_T(q)=2-\\frac23\\delta+\\frac19\\delta^3+O(\\delta^5),\n\\]\nand\n\\[\n\\operatorname{Var}_T(q)=\\frac23-\\frac13\\delta^2+O(\\delta^4).\n\\]\nIncluding the \\(q=1\\) finite-\\(n\\) correction gives\n\\[\n\\frac{T_2}{LT_1}\n=\\frac{-\\psi(a)}L+2-\\frac23\\delta+\\frac19\\delta^3+\\frac{s}{3}+o(s)+O(\\delta^5),\n\\]\nand\n\\[\n\\frac1{L^2}\\left(\\frac{2T_3}{T_1}-\\frac{T_2^2}{T_1^2}\\right)\n=\\psi'(a)L^{-2}+\\frac23-\\frac13\\delta^2-\\frac{7}{18}s+o(s)+O(\\delta^4).\n\\]\n\nNow handle \\(W\\). Put \\(N_0=n^3\\) and\n\\[\n\\Delta_j=\\log\\frac{n^3+m_j}{n^3}=jt-\\frac{j^2}{2}t^2+O(t^3).\n\\]\nFor\n\\[\ng(z)=1-\\sum_{j=1}^3b_je^{-z(\\Delta_j/t)},\\qquad z=at=\\frac{\\alpha t}{L},\n\\]\nthe chosen \\(b_j\\) give\n\\[\ng(z)=\\frac{12}{19}z\\left(1-\\frac{t}{3}z+O(z^2+t^2z)\\right).\n\\]\nTherefore\n\\[\nz\\frac{g'(z)}{g(z)}=1-\\frac{t}{3}z+o\\!\\left(\\frac1{nL}\\right).\n\\]\nHence\n\\[\n\\frac{W_2}{LW_1}\n=\\frac{-\\psi(a)}L+3-\\frac1\\alpha+\\frac{s}{3}+o(s),\n\\]\nand\n\\[\n\\frac1{L^2}\\left(\\frac{2W_3}{W_1}-\\frac{W_2^2}{W_1^2}\\right)\n=\\psi'(a)L^{-2}-\\frac1{\\alpha^2}+o(s).\n\\]\n\nSubtracting, the \\(-\\psi(a)/L\\), \\(\\psi'(a)L^{-2}\\), and the \\(s/3\\) terms in \\(H_n\\) cancel. Thus\n\\[\nH_n(a)\n=-\\frac53\\delta+\\delta^2-\\frac89\\delta^3+o(s)+O(\\delta^4),\n\\]\nand\n\\[\nK_n(a)\n=-\\frac1{(1+\\delta)^2}\n-\\left(\\frac23-\\frac13\\delta^2-\\frac{7}{18}s\\right)\n+o(s)+O(\\delta^4).\n\\]\nExpanding,\n\\[\nK_n(a)\n=-\\frac53+2\\delta-\\frac83\\delta^2+4\\delta^3+\\frac{7}{18}s+o(s)+O(\\delta^4).\n\\]\n\nNow insert these into\n\\[\nK_n+\\frac{66}{125}H_n^2+\\frac65H_n+\\frac53=0.\n\\]\nThe constant, linear, and quadratic terms cancel, and the cubic coefficient is\n\\[\n4-\\frac{16}{15}-\\frac{44}{25}=\\frac{88}{75}.\n\\]\nTherefore, for \\(a=a_n\\),\n\\[\n\\frac{88}{75}\\delta_n^3+\\frac{7}{18}\\frac1{nL}\n=o\\!\\left(\\frac1{nL}\\right),\n\\]\nso\n\\[\n(nL)\\delta_n^3\\to -\\frac{7}{18}\\cdot\\frac{75}{88}\n=-\\frac{175}{528}.\n\\]\nSince \\(\\delta_n=a_nL-1\\),\n\\[\n\\boxed{-\\sqrt[3]{\\frac{175}{528}}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-07T09:25:04+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem70/624fac07740d.json"
+}
