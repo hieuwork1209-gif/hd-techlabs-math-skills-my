@@ -4,41 +4,39 @@
 
 All logarithms are natural. Put
 $$
-P=x_1x_2,\qquad Q=x_3x_4,
+P=x_1x_2,\qquad Q=x_3x_4.
 $$
-and define
+For $n\ge1$, let
 $$
-\mathcal D=\int_{-\infty}^{\infty}\frac{e^{-(z^2-1)^2}}{(1+z^2)^4}\,dz.
+N=\sqrt{n},\qquad \delta=n^{-1/4},\qquad
+U_j=\delta^{-1}2^jP,\quad V_k=\delta^{-1}2^kQ.
 $$
-For $n\ge1$, $j,k\in\{0,1\}$ and $t\in\{0,1,2\}$, set
+For $u,v\ge0$, write
 $$
-U_j=n^{1/4}2^jP,\quad V_k=n^{1/4}2^kQ,\quad \delta=n^{-1/4}.
+r=uv,\qquad s=(u-v)^2,
 $$
-For $u,v\ge0$, write $r=uv$, $s=(u-v)^2$, $R_t=r-1-t\delta^2$, and define
+and for $t\in\{0,1,2\}$ set
 $$
-\begin{aligned}
-\Phi_t^\pm(u,v)=4&+\left(1+\frac{s}{\delta}\right)^2R_t^2
-+2\left(1+\frac{s}{\delta}\right)(s-\delta\mp\delta)R_t\\
-&+(s-\delta\mp\delta)^2+(s-\delta)^2,
-\end{aligned}
+a_t=1+t\delta^3,\qquad b_t=1+(t+1)\delta^3,
 $$
 $$
-A_t(u,v)=\left(1+\frac{s}{\delta}\right)^2R_t^2
-+2\left(1+\frac{s}{\delta}\right)(s-\delta)R_t
-+(s-\delta)^2-\frac52\delta^2.
+\Psi_t(r,s)=4+(r-a_t)^2+(s-b_t)^2,
+$$
+$$
+G_t(u,v)=-2N|u^2-v^2|(r+s+1)
+\left(r+s-1-\frac{\delta^2}{4}\right)
+(r-s+\delta^3)e^{-N\Psi_t(r,s)}.
 $$
 Define
 $$
 \begin{aligned}
 I_n(\lambda)=\int_{[0,1]^4}\Bigg[&\sinh(\lambda)e^{-n(P^2+Q^2)}\\
-&+\sum_{j,k=0}^1\sum_{t=0}^2(-1)^{j+k+t}\binom2t2^{j+k}A_t(U_j,V_k)\\
-&\qquad\times\left(e^{-\sqrt n\,\Phi_t^+(U_j,V_k)}-e^{-\sqrt n\,\Phi_t^-(U_j,V_k)}\right)\Bigg]d\mathbf x.
+&+\sum_{j,k=0}^1\sum_{t=0}^2(-1)^{j+k+t}\binom{2}{t}2^{j+k}G_t(U_j,V_k)\Bigg]d\mathbf{x}.
 \end{aligned}
 $$
-For each $n$, let $\lambda_n$ be the unique real root of $I_n(\lambda)=0$.
-Determine the unique $\alpha,\beta,c>0$ and $L\ne0$ such that
+For each $n$, let $\lambda_n$ be the unique real root of $I_n(\lambda)=0$. Determine the unique $\alpha,\beta,c>0$ and $L\ne0$ such that
 $$
-\lim_{n\to\infty}n^\alpha(\log n)^\beta e^{c\sqrt n}\lambda_n=L.
+\lim_{n\to\infty}n^\alpha(\log n)^\beta e^{c\sqrt{n}}\lambda_n=L.
 $$
 
 ---
@@ -56,4 +54,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for a sharp asymptotic of an implicitly defined root of a four-dimensional integral. After the product-density reduction, a second finite difference couples three equal-action saddle families; their common leading behavior is annihilated and the first surviving contribution comes from saddle-translation curvature together with signed Gaussian moment cancellation. This is an application of asymptotic integration, so Calculus -> Applications of integration is the best fit.
+The product-density reduction hides a directional-derivative identity whose two boundary contributions have the same exponential action. Their leading Gaussian terms cancel again under a second finite difference, so the first nonzero contribution is a coupled boundary correction. This is an application of asymptotic integration, so Calculus -> Applications of integration is the best fit.
