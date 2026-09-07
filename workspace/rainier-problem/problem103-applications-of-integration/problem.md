@@ -17,25 +17,24 @@ $$
 For $u,v\ge0$, write $r=uv$ and $s=(u-v)^2$, and define
 $$
 \begin{aligned}
-\Psi_n(u,v)=4&+\left(1+\frac{2s}{\delta_n}+\frac{s^2}{\delta_n^2}\right)(r-1)^2
-+2\left(\frac{s^2}{\delta_n}-\delta_n\right)(r-1)\\
-&+2s^2-4\delta_ns+2\delta_n^2,
+\Phi_n^\pm(u,v)=4&+\left(1+\frac{s}{\delta_n}\right)^2(r-1)^2\\
+&+2\left(1+\frac{s}{\delta_n}\right)(s-\delta_n\mp\delta_n)(r-1)\\
+&+(s-\delta_n\mp\delta_n)^2+(s-\delta_n)^2,
 \end{aligned}
 $$
 $$
 \begin{aligned}
-A_n(u,v)=&\left(1+\frac{3s}{\delta_n}+\frac{3s^2}{\delta_n^2}+\frac{s^3}{\delta_n^3}\right)(r-1)^3\\
-&+\left(-3\delta_n-3s+\frac{3s^2}{\delta_n}+\frac{3s^3}{\delta_n^2}\right)(r-1)^2\\
-&+\left(\frac32\delta_n^2-\frac92\delta_ns-3s^2+\frac{3s^3}{\delta_n}\right)(r-1)\\
-&+\frac12\delta_n^3+\frac32\delta_n^2s-3\delta_ns^2+s^3.
+A_n(u,v)=&\left(1+\frac{2s}{\delta_n}+\frac{s^2}{\delta_n^2}\right)(r-1)^2
++\left(-2\delta_n+\frac{2s^2}{\delta_n}\right)(r-1)\\
+&+s^2-2\delta_ns-\frac32\delta_n^2.
 \end{aligned}
 $$
 Define
 $$
 \begin{aligned}
 I_n(\lambda)=\int_{[0,1]^4}\Bigg[&\sinh(\lambda)e^{-n(P^2+Q^2)}\\
-&+\sum_{j,k=0}^1(-1)^{2-j-k}2^{j+k}
-A_n(U_j,V_k)e^{-\sqrt n\,\Psi_n(U_j,V_k)}\Bigg]d\mathbf x.
+&+\sum_{j,k=0}^1(-1)^{2-j-k}2^{j+k}A_n(U_j,V_k)
+\left(e^{-\sqrt n\,\Phi_n^+(U_j,V_k)}-e^{-\sqrt n\,\Phi_n^-(U_j,V_k)}\right)\Bigg]d\mathbf x.
 \end{aligned}
 $$
 For each $n$, let $\lambda_n$ be the unique real number satisfying $I_n(\lambda_n)=0$.
@@ -60,4 +59,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for a sharp asymptotic of an implicitly defined root of a four-dimensional integral. A finite-difference reduction exposes a critically coalescing saddle only after recovering a nonlinear $n$-dependent coordinate; the first three Jacobian orders then vanish by Gaussian orthogonality. This is an application of asymptotic integration, so Calculus -> Applications of integration is the best fit.
+The problem asks for a sharp asymptotic of an implicitly defined root of a four-dimensional integral. A finite-difference reduction leaves two equal-action coalescing saddle channels whose leading contributions cancel; recovering the nonlinear saddle coordinate and the surviving signed Gaussian moment is essential. This is an application of asymptotic integration, so Calculus -> Applications of integration is the best fit.
