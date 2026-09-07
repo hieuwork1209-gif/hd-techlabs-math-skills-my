@@ -2,8 +2,8 @@
   "problem": "problem103",
   "branch": "adversary/problem103",
   "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
-  "problem_blob_sha": "5372b3dd762917a70187111da3ee99d74bf0eabf",
-  "source_commit_sha": "b30a187458756b0ba1c4fb6bd619da477cc6b8ed",
+  "problem_blob_sha": "390659552a3f71644444883fa152b7aa5270d7c8",
+  "source_commit_sha": "b0913cb625f055d7254f10426164bc42fe4a3b2f",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-07T02:50:11+00:00",
-  "result_file": "solver-results/problem103/5372b3dd7629.json"
+  "completed_at": "2026-09-07T02:54:06+00:00",
+  "result_file": "solver-results/problem103/390659552a3f.json"
 }

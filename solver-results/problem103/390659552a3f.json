@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "b0913cb625f055d7254f10426164bc42fe4a3b2f",
+  "problem_blob_sha": "390659552a3f71644444883fa152b7aa5270d7c8",
+  "statement_sha256": "f7ec316d21164dea94f97e707d0820413ea04270dac180e0f0a2831a98a02643",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-07T02:52:25+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(s=\\sqrt n\\). Since \\(P=x_1x_2\\) has density \\(-\\log P\\) on \\((0,1)\\), the integral becomes a two-variable integral in \\(P,Q\\).\n\nThe coefficient of \\(\\sinh\\lambda\\) is\n\\[\nA_n=\\left(\\int_0^1 e^{-np^2}(-\\log p)\\,dp\\right)^2.\n\\]\nWith \\(y=sp\\),\n\\[\n\\int_0^1 e^{-np^2}(-\\log p)\\,dp\n=\\frac1s\\int_0^s e^{-y^2}(\\log s-\\log y)\\,dy\n\\sim \\frac{\\sqrt\\pi}{2s}\\log s,\n\\]\nso\n\\[\nA_n\\sim \\frac{\\pi}{16}\\frac{(\\log n)^2}{n}.\n\\]\n\nFor the remaining part, use\n\\[\nU=s^{1/2}2^jP,\\qquad V=s^{1/2}2^kQ.\n\\]\nAfter extending the \\(U,V\\) ranges to \\([0,\\infty)^2\\), with exponentially smaller error, the alternating dyadic sum gives\n\\[\n\\sum_{j=0}^1(-1)^j\\left(\\log s+j\\log2-\\log U\\right)=-\\log2,\n\\]\nso the logarithmic factors collapse to \\((\\log2)^2\\).\n\nThus the non-\\(\\lambda\\) part \\(B_n=I_n(0)\\) is\n\\[\nB_n=(\\log2)^2s^{-1}\\left(J_1-\\sqrt\\pi s^{1/2}J_2+\\frac\\pi8sJ_3\\right)+o(s^{-3}e^{-5s}),\n\\]\nwhere\n\\[\nJ_1=\\iint e^{-s(4+(U^2+V^2-1)^2)}\\,dU\\,dV,\n\\]\n\\[\nJ_2=\\iint e^{-s(4+U^2+V^2)}\\,dU\\,dV,\\qquad\nJ_3=\\iint e^{-s(5+U+V)}\\,dU\\,dV.\n\\]\nIn polar coordinates on the first quadrant,\n\\[\nJ_1=e^{-4s}\\frac\\pi4\\int_{-1}^{\\infty}e^{-st^2}\\,dt,\n\\]\nwhile\n\\[\nJ_2=e^{-4s}\\frac{\\pi}{4s},\\qquad J_3=e^{-5s}\\frac1{s^2}.\n\\]\nThe leading \\(e^{-4s}\\) terms cancel:\n\\[\nJ_1-\\sqrt\\pi s^{1/2}J_2\n=-e^{-4s}\\frac\\pi4\\int_1^\\infty e^{-st^2}\\,dt.\n\\]\nUsing\n\\[\n\\int_1^\\infty e^{-st^2}\\,dt\n=\\frac{e^{-s}}{2s}\\left(1-\\frac1{2s}+O(s^{-2})\\right),\n\\]\nwe get\n\\[\nJ_1-\\sqrt\\pi s^{1/2}J_2+\\frac\\pi8sJ_3\n\\sim \\frac{\\pi}{16}s^{-2}e^{-5s}.\n\\]\nTherefore\n\\[\nB_n\\sim \\frac{\\pi}{16}(\\log2)^2s^{-3}e^{-5s}.\n\\]\n\nSince\n\\[\nI_n(\\lambda)=A_n\\sinh\\lambda+B_n,\n\\]\nwe have\n\\[\n\\lambda_n=\\operatorname{arsinh}\\!\\left(-\\frac{B_n}{A_n}\\right)\n\\sim -\\frac{B_n}{A_n}\n\\sim -(\\log2)^2\\frac{e^{-5\\sqrt n}}{\\sqrt n(\\log n)^2}.\n\\]\n\nHence\n\\[\n\\boxed{\\alpha=\\frac12,\\qquad \\beta=2,\\qquad c=5,\\qquad L=-(\\log2)^2}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-07T02:54:06+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/390659552a3f.json"
+}
