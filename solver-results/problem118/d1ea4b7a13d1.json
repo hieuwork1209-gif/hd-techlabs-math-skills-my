@@ -1,0 +1,22 @@
+{
+  "problem": "problem118",
+  "branch": "adversary/problem118",
+  "problem_path": "workspace/rainier-problem/problem118-ring-theory/problem.md",
+  "source_commit_sha": "203b1e7a409e919fd5bb602371eed1ebf19066f9",
+  "problem_blob_sha": "d1ea4b7a13d1da80928d962d7f4bde12187b419b",
+  "statement_sha256": "573def91ec123e5146a9f376990a469acc6eedb415a0a813fbdaa4700af16f68",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-07T07:25:15+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nI=a_0a_4-4a_1a_3+3a_2^2\n\\]\nand\n\\[\nJ=a_0a_2a_4-a_0a_3^2-a_1^2a_4+2a_1a_2a_3-a_2^3.\n\\]\nThen\n\\[\n\\boxed{Z(R)=k[I,J]}.\n\\]\n\n**Solution**\n\nThe defining relations say exactly that \\(R=U(\\mathfrak g)\\), where\n\\[\n\\mathfrak g=\\mathfrak{sl}_2\\ltimes V\n\\]\nand \\(V=\\langle a_0,\\dots,a_4\\rangle\\) is abelian, with \\(V\\) the irreducible \\(\\mathfrak{sl}_2\\)-module of highest weight \\(4\\). The action is\n\\[\n[H,a_i]=(4-2i)a_i,\\qquad [E,a_i]=i a_{i-1},\\qquad [F,a_i]=(4-i)a_{i+1}.\n\\]\n\nFirst check that \\(I,J\\) are central. Since the \\(a_i\\) commute pairwise, it is enough to check commutation with \\(E,F,H\\). For \\(I\\),\n\\[\n[E,I]=0,\\qquad [F,I]=0,\\qquad [H,I]=0,\n\\]\nbecause\n\\[\n[E,a_0a_4-4a_1a_3+3a_2^2]\n=4a_0a_3-4(a_0a_3+3a_1a_2)+12a_1a_2=0,\n\\]\nand similarly\n\\[\n[F,I]=4a_1a_4-4(3a_2a_3+a_1a_4)+12a_2a_3=0.\n\\]\nThe \\(H\\)-weights also cancel termwise. A direct application of the same derivations gives\n\\[\n[E,J]=[F,J]=[H,J]=0.\n\\]\nThus \\(k[I,J]\\subseteq Z(R)\\).\n\nIt remains to prove that there are no other central elements. Give \\(R=U(\\mathfrak g)\\) its PBW filtration. If \\(z\\in Z(R)\\), then its leading symbol \\(\\operatorname{gr} z\\in S(\\mathfrak g)\\) is invariant under the adjoint action of \\(\\mathfrak g\\).\n\nWe claim\n\\[\nS(\\mathfrak g)^{\\mathfrak g}=S(V)^{\\mathfrak{sl}_2}.\n\\]\nIndeed, write \\(\\mathfrak g^*=\\mathfrak{sl}_2^*\\oplus V^*\\). For a generic \\(\\lambda\\in V^*\\), the stabilizer of \\(\\lambda\\) in \\(\\mathfrak{sl}_2\\) is zero. For example, over an algebraic closure, the binary quartic \\(x^4+y^4\\) has no nonzero infinitesimal \\(\\mathfrak{sl}_2\\)-stabilizer. Hence the \\(V\\)-coadjoint action translates the whole \\(\\mathfrak{sl}_2^*\\)-fiber over such a \\(\\lambda\\). Therefore any \\(\\mathfrak g\\)-invariant polynomial on \\(\\mathfrak g^*\\) is independent of the \\(\\mathfrak{sl}_2^*\\)-coordinates. What remains is precisely an \\(\\mathfrak{sl}_2\\)-invariant polynomial in \\(a_0,\\dots,a_4\\).\n\nSo every central element has leading term in \\(S(V)^{\\mathfrak{sl}_2}\\). The invariant ring of the irreducible binary quartic module is\n\\[\nS(V)^{\\mathfrak{sl}_2}=k[I,J].\n\\]\nFor completeness, one can verify this from the character\n\\[\n\\operatorname{ch} S(V)=\n\\prod_{m=-2}^{2}(1-tx^{2m})^{-1}.\n\\]\nThe multiplicity of the trivial representation in degree \\(d\\) is the coefficient of \\(x^0\\) minus the coefficient of \\(x^2\\), giving Hilbert series\n\\[\n\\sum_{d\\ge0}\\dim S^d(V)^{\\mathfrak{sl}_2}t^d\n=\\frac1{(1-t^2)(1-t^3)}.\n\\]\nSince \\(I\\) and \\(J\\) are algebraically independent of degrees \\(2\\) and \\(3\\), they generate all invariants.\n\nNow take \\(z\\in Z(R)\\). Its leading symbol is some polynomial \\(P(I,J)\\). Since \\(P(I,J)\\) itself is central in \\(R\\), subtracting it from \\(z\\) lowers the PBW degree. Induction on PBW degree gives \\(z\\in k[I,J]\\).\n\nTherefore\n\\[\n\\boxed{\nZ(R)=k\\!\\left[\na_0a_4-4a_1a_3+3a_2^2,\\,\na_0a_2a_4-a_0a_3^2-a_1^2a_4+2a_1a_2a_3-a_2^3\n\\right].\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-07T07:27:51+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem118/d1ea4b7a13d1.json"
+}
