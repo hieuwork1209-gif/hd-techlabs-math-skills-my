@@ -34,13 +34,16 @@ Step 3: Collapse the third finite difference
 
 Put
 $$
-N=n^{1/3},\qquad a=(2n)^{1/3}=2^{1/3}N,
+N=n^{1/3},\qquad a=(2n)^{1/3}=2^{1/3}N.
 $$
-and write
+For $y\ge0$ define
 $$
-w(y)=y^3+2y.
+\begin{aligned}
+F_N(y)=&\,[2y-N(1+4y^2+3y^4)]e^{-N(4+y+y^3)}\\
+&+\frac{2N^{1/4}}{\Gamma(1/4)}e^{-N[4+(y-1)^4+(y-1)^8]}.
+\end{aligned}
 $$
-For the term indexed by $j$, apply (2) and set $y=a2^jt$. The factor $2^j$ cancels the Jacobian apart from the common factor $(2^{1/3}N)^{-1}$, while
+For the term indexed by $j$, apply (2) and set $y=a2^jt$. The factor $2^j$ cancels the Jacobian apart from the common factor $a^{-1}$, while
 $$
 -\log t=\log a+j\log2-\log y.
 $$
@@ -48,71 +51,79 @@ Therefore
 $$
 \sum_{j=0}^3(-1)^{3-j}\binom3j(\log a+j\log2-\log y)^3=6(\log2)^3. \tag{4}
 $$
-The different upper limits may be replaced by $\infty$ with an error super-exponentially smaller than $e^{-4N}$, because all three phases grow at least quadratically there. Hence
+The different upper limits may be replaced by infinity with an error super-exponentially smaller than $e^{-4N}$, since both phases grow at least cubically there. Hence
 $$
-J_n=\frac{(\log2)^3}{2^{1/3}N}H_N+o(N^{-3}e^{-4N}), \tag{5}
+J_n=\frac{(\log2)^3}{2^{1/3}N}H_N+o(N^{-2}e^{-4N}), \tag{5}
 $$
 where
 $$
+H_N=\int_0^\infty F_N(y)\,dy. \tag{6}
+$$
+
+Step 4: Expose the certificate and the degenerate saddle
+
+The first amplitude is not arbitrary. Since
+$$
+\frac{d}{dy}\left[(1+y^2)e^{-N(4+y+y^3)}\right]
+=[2y-N(1+4y^2+3y^4)]e^{-N(4+y+y^3)}, \tag{7}
+$$
+its integral on $(0,\infty)$ is exactly
+$$
+-e^{-4N}. \tag{8}
+$$
+
+For the second channel, put $z=y-1$ and then $z=N^{-1/4}x$. The omitted range $z<-1$ is exponentially smaller, so
+$$
 \begin{aligned}
-H_N=\int_0^\infty\Bigg[&e^{-N[3+(y-1)^2]}
--2y\,e^{-N[3+(y^2-4)^2]}\\
-&+\frac{3y^2+2}{2}\,e^{-N[4+w(y)+w(y)^2]}\Bigg]dy. \tag{6}
-\end{aligned}
+&\frac{2N^{1/4}}{\Gamma(1/4)}
+\int_0^\infty e^{-N[4+(y-1)^4+(y-1)^8]}dy\\
+&\qquad=e^{-4N}\frac{2}{\Gamma(1/4)}
+\int_{-\infty}^{\infty}e^{-x^4-N^{-1}x^8}dx+O(e^{-(4+\eta)N}).
+\end{aligned} \tag{9}
 $$
-
-Step 4: Expose the telescoping substitutions and the endpoint cancellation
-
-For the first integral in (6), set $z=y-1$. For the second, set $z=y^2-4$, so $dz=2y\,dy$. Their difference is exactly
+Using $e^{-N^{-1}x^8}=1-N^{-1}x^8+O(N^{-2}x^{16})$ and
 $$
--e^{-3N}\int_1^4e^{-Nz^2}\,dz. \tag{7}
+\int_{-\infty}^{\infty}e^{-x^4}dx=\frac{\Gamma(1/4)}2,
+\qquad
+\int_{-\infty}^{\infty}x^8e^{-x^4}dx=\frac{\Gamma(9/4)}2
+=\frac{5\Gamma(1/4)}{32}, \tag{10}
 $$
-For the third integral, set $w=y^3+2y$. Since $dw=(3y^2+2)dy$, it becomes
+we obtain
 $$
-\frac12e^{-4N}\int_0^\infty e^{-N(w+w^2)}\,dw. \tag{8}
+\frac{2N^{1/4}}{\Gamma(1/4)}
+\int_0^\infty e^{-N[4+(y-1)^4+(y-1)^8]}dy
+=e^{-4N}\left(1-\frac{5}{16N}+O(N^{-2})\right). \tag{11}
 $$
-Thus the entire interior saddle series of the first two channels cancels before the third channel is even compared.
-
-Now expand both surviving endpoint tails. With $z=1+x/N$,
+The normalized degenerate saddle therefore cancels the exact boundary contribution (8), leaving
 $$
-\int_1^4e^{-Nz^2}\,dz
-=e^{-N}\left(\frac1{2N}-\frac1{4N^2}+O(N^{-3})\right). \tag{9}
+H_N\sim-\frac{5}{16N}e^{-4N}. \tag{12}
 $$
-With $w=x/N$,
+Thus
 $$
-\int_0^\infty e^{-N(w+w^2)}\,dw
-=\frac1N-\frac2{N^2}+O(N^{-3}). \tag{10}
-$$
-Substituting (9) and (10) into (7)-(8), the two $N^{-1}e^{-4N}$ terms cancel exactly, and
-$$
-H_N\sim-\frac{3}{4}N^{-2}e^{-4N}. \tag{11}
-$$
-Therefore
-$$
-J_n\sim-\frac{3(\log2)^3}{4\,2^{1/3}}N^{-3}e^{-4N}
-=-\frac{3(\log2)^3}{4\,2^{1/3}}n^{-1}e^{-4n^{1/3}}. \tag{12}
+J_n\sim-\frac{5(\log2)^3}{16\,2^{1/3}}N^{-2}e^{-4N}
+=-\frac{5(\log2)^3}{16\,2^{1/3}}n^{-2/3}e^{-4n^{1/3}}. \tag{13}
 $$
 
 Step 5: Recover the root
 
-By (3) and (12), $J_n/A_n\to0$, so (1) and $\operatorname{arsinh}u\sim u$ give
+By (3) and (13), $J_n/A_n\to0$, so (1) and $\operatorname{arsinh}u\sim u$ give
 $$
 \lambda_n\sim-\frac{J_n}{A_n}
-\sim\frac{72\,2^{-1/3}(\log2)^3}{\sqrt\pi}
-\frac{e^{-4n^{1/3}}}{n^{1/2}(\log n)^3}.
+\sim\frac{30\,2^{-1/3}(\log2)^3}{\sqrt\pi}
+\frac{e^{-4n^{1/3}}}{n^{1/6}(\log n)^3}.
 $$
 Hence
 $$
-\alpha=\frac12,\qquad \beta=3,\qquad c=4,\qquad
-L=\frac{72\,2^{-1/3}(\log2)^3}{\sqrt\pi}.
+\alpha=\frac16,\qquad \beta=3,\qquad c=4,\qquad
+L=\frac{30\,2^{-1/3}(\log2)^3}{\sqrt\pi}.
 $$
-Final Answer: $\boxed{\left(\frac12,3,4,\frac{72\,2^{-1/3}(\log2)^3}{\sqrt\pi}\right)}$
+Final Answer: $\boxed{\left(\frac16,3,4,\frac{30\,2^{-1/3}(\log2)^3}{\sqrt\pi}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac12,3,4,\frac{72\,2^{-1/3}(\log2)^3}{\sqrt\pi}\right)$
+$\left(\frac16,3,4,\frac{30\,2^{-1/3}(\log2)^3}{\sqrt\pi}\right)$
 
 ---
 
@@ -128,6 +139,6 @@ $\left(\frac12,3,4,\frac{72\,2^{-1/3}(\log2)^3}{\sqrt\pi}\right)$
 
 - product-integral reduction
 - third finite-difference cancellation
-- nonlinear telescoping substitutions
-- competing endpoint tails
-- leading endpoint cancellation
+- integration-by-parts certificate
+- quartic degenerate saddle
+- cross-mechanism leading cancellation
