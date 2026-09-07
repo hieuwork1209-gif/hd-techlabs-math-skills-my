@@ -38,86 +38,72 @@ N=n^{1/3},\qquad a=(2n)^{1/3}=2^{1/3}N,
 $$
 and
 $$
-\Phi_1(y)=3+(y-1)^2+(y-1)^4,
-\qquad
-\Phi_2(y)=3+4(y-2)^2+(y-2)^4.
+\Phi_1(y)=3+(y-1)^2,\qquad
+\Phi_2(y)=3+(y^2-4)^2.
 $$
-For the term indexed by $j$, apply (2) and substitute $u=2^jt$. The factor $2^j$ cancels the Jacobian, and
+For the term indexed by $j$, apply (2), substitute $u=2^jt$, and write $y=au$. The factor $2^j$ cancels the first Jacobian, while
 $$
 -\log t=-\log u+j\log2.
 $$
-On the common interval $0<u<1$,
+Hence on the common interval,
 $$
 \sum_{j=0}^3(-1)^{3-j}\binom3j(-\log u+j\log2)^3=6(\log2)^3. \tag{4}
 $$
-The pieces with $u\ge1$ are super-exponentially smaller than $e^{-3N}$, because $au\asymp N$ there and each phase contains a positive quartic term. Therefore
+The pieces outside the common interval are super-exponentially smaller than $e^{-4N}$, because there $y\asymp N$ and both phases grow at least quadratically. Therefore
 $$
-J_n=(\log2)^3K_n+o\!\left(N^{-5/2}e^{-3N}\right), \tag{5}
-$$
-where
-$$
-K_n=\int_0^\infty\left[e^{-N\Phi_1(au)}-2e^{-N\Phi_2(au)}\right]du. \tag{6}
-$$
-With $y=au$,
-$$
-K_n=\frac1{2^{1/3}N}\left(I_1(N)-2I_2(N)\right), \tag{7}
+J_n=\frac{(\log2)^3}{2^{1/3}N}H_N+o(N^{-2}e^{-4N}), \tag{5}
 $$
 where
 $$
-I_r(N)=\int_0^\infty e^{-N\Phi_r(y)}\,dy.
+H_N=\int_0^\infty\left[e^{-N\Phi_1(y)}-2y\,e^{-N\Phi_2(y)}\right]dy. \tag{6}
 $$
 
-Step 4: Compare the two equal-action saddles
+Step 4: Use the hidden exact cancellation
 
-The phase $\Phi_1$ has its unique minimum at $y=1$, while $\Phi_2$ has its unique minimum at $y=2$, and both minima equal $3$. Thus both channels have the same exponential action $e^{-3N}$.
-
-For $I_1$, set $y=1+z/\sqrt N$. Since the omitted range $z<-\sqrt N$ has phase at least $5$, it is exponentially negligible. Expanding $e^{-z^4/N}$ gives
+In the first integral in (6), set $z=y-1$. In the second, set $z=y^2-4$, so $dz=2y\,dy$. Then
 $$
-I_1(N)=e^{-3N}N^{-1/2}\left[\sqrt\pi-\frac{3\sqrt\pi}{4N}+O(N^{-2})\right]. \tag{8}
+\begin{aligned}
+H_N
+&=\int_{-1}^\infty e^{-N(3+z^2)}dz
+-\int_{-4}^\infty e^{-N(3+z^2)}dz\\
+&=-e^{-3N}\int_{-4}^{-1}e^{-Nz^2}dz
+=-e^{-3N}\int_1^4e^{-Nz^2}dz. \tag{7}
+\end{aligned}
 $$
-For $I_2$, set $y=2+z/\sqrt N$. Similarly,
+Thus the complete interior Laplace expansions cancel; the surviving term is an endpoint tail. Since
 $$
-I_2(N)=e^{-3N}N^{-1/2}\left[\frac{\sqrt\pi}{2}-\frac{3\sqrt\pi}{128N}+O(N^{-2})\right]. \tag{9}
+\int_1^4e^{-Nz^2}dz\sim\frac{e^{-N}}{2N}, \tag{8}
 $$
-Indeed,
+we get
 $$
-\int_{\mathbb R}z^4e^{-az^2}\,dz=\frac{3\sqrt\pi}{4a^{5/2}}.
+H_N\sim-\frac1{2N}e^{-4N}. \tag{9}
 $$
-The factor $2$ in (7) is tuned so that the two Gaussian leading terms cancel exactly. Hence
+Combining (5) and (9),
 $$
-I_1(N)-2I_2(N)
-\sim-\frac{45\sqrt\pi}{64}N^{-3/2}e^{-3N}. \tag{10}
-$$
-Combining (7) and (10),
-$$
-K_n\sim-\frac{45\sqrt\pi}{64\,2^{1/3}}N^{-5/2}e^{-3N}. \tag{11}
-$$
-Therefore
-$$
-J_n\sim-\frac{45\sqrt\pi}{64\,2^{1/3}}(\log2)^3
-n^{-5/6}e^{-3n^{1/3}}. \tag{12}
+J_n\sim-\frac{(\log2)^3}{2^{4/3}}N^{-2}e^{-4N}
+=-\frac{(\log2)^3}{2^{4/3}}n^{-2/3}e^{-4n^{1/3}}. \tag{10}
 $$
 
 Step 5: Recover the root
 
-By (3) and (12), $J_n/A_n\to0$, so (1) and $\operatorname{arsinh}u\sim u$ give
+By (3) and (10), $J_n/A_n\to0$, so (1) and $\operatorname{arsinh}u\sim u$ yield
 $$
 \lambda_n\sim-\frac{J_n}{A_n}
-\sim\frac{135(\log2)^3}{2^{4/3}}
-\frac{e^{-3n^{1/3}}}{n^{1/3}(\log n)^3}.
+\sim\frac{24\cdot2^{2/3}(\log2)^3}{\sqrt\pi}
+\frac{e^{-4n^{1/3}}}{n^{1/6}(\log n)^3}.
 $$
-Thus the unique constants are
+Therefore
 $$
-\alpha=\frac13,\qquad \beta=3,\qquad c=3,
-\qquad L=\frac{135(\log2)^3}{2^{4/3}}.
+\alpha=\frac16,\qquad \beta=3,\qquad c=4,\qquad
+L=\frac{24\cdot2^{2/3}(\log2)^3}{\sqrt\pi}.
 $$
-Final Answer: $\boxed{\left(\frac13,3,3,\frac{135(\log2)^3}{2^{4/3}}\right)}$
+Final Answer: $\boxed{\left(\frac16,3,4,\frac{24\cdot2^{2/3}(\log2)^3}{\sqrt\pi}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac13,3,3,\frac{135(\log2)^3}{2^{4/3}}\right)$
+$\left(\frac16,3,4,\frac{24\cdot2^{2/3}(\log2)^3}{\sqrt\pi}\right)$
 
 ---
 
@@ -133,6 +119,6 @@ $\left(\frac13,3,3,\frac{135(\log2)^3}{2^{4/3}}\right)$
 
 - product-integral reduction
 - third finite-difference cancellation
-- competing equal-action saddles
-- leading Laplace coefficient cancellation
-- implicit root asymptotics
+- hidden change-of-variable identity
+- beyond-all-orders saddle cancellation
+- endpoint Laplace tail
