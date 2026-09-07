@@ -1,230 +1,179 @@
 ## Steps
 
-Step 1: Separate the implicit root
+Step 1: Separate the implicit root and evaluate the denominator
 
 Let
 $$
-B_n=\int_{[0,1]^4}e^{-n(P^2+Q^2)}\,d\mathbf{x},
+B_n=\int_{[0,1]^4}e^{-n(P^2+Q^2)}\,d\mathbf{x},\qquad S_n=I_n(0).
 $$
-and let $S_n=I_n(0)$. Then
+Then
 $$
 I_n(\lambda)=B_n\sinh\lambda+S_n.
 $$
-Because $B_n>0$, $I_n$ is strictly increasing in $\lambda$, so the root is unique and satisfies
+Because $B_n>0$, the function $I_n$ is strictly increasing, so the real root is unique and
 $$
 \sinh\lambda_n=-\frac{S_n}{B_n}.
 $$
-
-Step 2: Evaluate the denominator
-
-For every integrable $F$,
+Using
 $$
-\int_{[0,1]^4}F(P,Q)\,d\mathbf{x}
-=\int_0^1\int_0^1(-\log p)(-\log q)F(p,q)\,dp\,dq.
+\int_{[0,1]^2}F(x_1x_2)\,dx_1dx_2=\int_0^1F(p)(-\log p)\,dp,
 $$
-Therefore
+we get
 $$
 B_n=\left(\int_0^1(-\log p)e^{-np^2}\,dp\right)^2.
 $$
 With $y=\sqrt{n}\,p$,
 $$
 \int_0^1(-\log p)e^{-np^2}\,dp
-=n^{-1/2}\int_0^{\sqrt{n}}e^{-y^2}\left(\frac{1}{2}\log n-\log y\right)dy
 \sim\frac{\sqrt{\pi}}{4}n^{-1/2}\log n,
 $$
 so
 $$
-B_n\sim\frac{\pi}{16}n^{-1}(\log n)^2.
+B_n\sim\frac{\pi}{16}\delta^4(\log n)^2.
 $$
 
-Step 3: Collapse both finite differences
+Step 2: Collapse the dyadic finite difference
 
-Put
+Put $h=\log 2$. In the $(j,k,t)$ term use
 $$
-N=\sqrt{n},\qquad h=\log 2,\qquad \delta=N^{-1/2}=n^{-1/4}.
+p=\delta2^{-j}u,\qquad q=\delta2^{-k}v.
 $$
-In the $(j,k,t)$ term set
+The factor $2^{j+k}$ cancels the Jacobian factor $2^{-j-k}$, while
 $$
-u=n^{1/4}2^jp,\qquad v=n^{1/4}2^kq.
-$$
-The factor $2^{j+k}$ cancels the corresponding Jacobian factor, leaving the common prefactor $N^{-1}$. Also
-$$
--\log p=\frac{1}{4}\log n+jh-\log u,
+-\log p=-\log\delta+jh-\log u,
 \qquad
--\log q=\frac{1}{4}\log n+kh-\log v,
-$$
-and hence
-$$
-\sum_{j,k=0}^1(-1)^{j+k}
-\left(X+jh\right)\left(Y+kh\right)=h^2.
-$$
-For fixed $t$, define
-$$
-K_t=\left(1+\frac{s}{\delta}\right)R_t+(s-\delta).
-$$
-Completing the square in the displayed definition of $\Phi_t^{\pm}$ gives
-$$
-\Phi_t^{\pm}=4+(K_t\mp\delta)^2+(s-\delta)^2.
-$$
-Let $H_t$ be the positive-quadrant integral of
-$$
-A_t(u,v)\left(e^{-N\Phi_t^{+}(u,v)}-e^{-N\Phi_t^{-}(u,v)}\right).
-$$
-The finite upper limits after scaling are at least $\delta^{-1}$. If, for example, $u\geq\delta^{-1}$, then either $v\leq u/2$, which gives $s=(u-v)^2\geq1/(4\delta^2)$, or $v>u/2$, which gives $r=uv\geq1/(2\delta^2)$. The same dichotomy holds when $v\geq\delta^{-1}$. The square-completed phase therefore exceeds $4$ by a quantity growing as a positive power of $\delta^{-1}$ on every omitted region, so those tails are exponentially smaller than $e^{-4N}$ times any fixed power of $\delta$. Thus
-$$
-S_n=\frac{h^2}{N}(H_0-2H_1+H_2)+o\left(\delta^{25/2}e^{-4N}\right).
-$$
-
-Step 4: Put the three saddle families in one local normal form
-
-Using the square-completed variable $K_t$ from Step 3, the amplitude also satisfies
-$$
-A_t=K_t^2-\frac{5}{2}\delta^2.
-$$
-Set
-$$
-x=uv-1,\qquad y=u-v.
-$$
-Since
-$$
-\left|\frac{\partial(x,y)}{\partial(u,v)}\right|
-=u+v=\sqrt{y^2+4(1+x)},
-$$
-scale
-$$
-x=\delta X,\qquad y=\delta^{1/2}Y,
-\qquad T=Y^2-1,
-$$
-and define
-$$
-a=1+Y^2,\qquad W=aX+T-ta\delta.
-$$
-Then
-$$
-K_t=\delta W,
-\qquad
-N\left(\Phi_t^{\pm}-4\right)=(W\mp1)^2+T^2,
-\qquad
-A_t=\delta^2\left(W^2-\frac{5}{2}\right).
-$$
-Because $X=(W-T)/a+t\delta$, put
-$$
-Z=\frac{W-T}{a}+\frac{Y^2}{4}.
-$$
-The exact transformed domain is
-$$
-D_{t,\delta}=
-\left\{(W,Y):\frac{W-T}{a}+t\delta>-\delta^{-1}\right\},
-$$
-and the Jacobian gives
-$$
-H_t=\frac{1}{2}e^{-4N}\delta^{7/2}
-\int_{D_{t,\delta}}
-\frac{Q(W)e^{-T^2}}{a}
-\left(1+\delta Z+t\delta^2\right)^{-1/2}
-\,dW\,dY,
-$$
-where
-$$
-Q(W)=\left(W^2-\frac{5}{2}\right)
-\left(e^{-(W-1)^2}-e^{-(W+1)^2}\right).
-$$
-To justify the expansion, restrict first to
-$$
-\Omega_{\delta}=\left\{|W|\leq\delta^{-1/8},\ |Y|\leq\delta^{-1/8}\right\}.
-$$
-For small $\delta$, $\Omega_{\delta}\subset D_{t,\delta}$ for all $t$, and on $\Omega_{\delta}$ one has
-$$
-|\delta Z|\leq C\delta^{3/4}.
-$$
-Outside $\Omega_{\delta}$, either the Gaussian factor in $W$ is $O(e^{-c\delta^{-1/4}})$ or $e^{-T^2}=O(e^{-c\delta^{-1/2}})$. The only possible Jacobian singularity is the integrable square-root singularity inherited from $1/\sqrt{y^2+4(1+x)}$, so it cannot offset this Gaussian decay. Hence the complement contributes
-$$
-o\left(\delta^m e^{-4N}\right)
-$$
-for every fixed $m$. The binomial expansion may therefore be used uniformly on $\Omega_{\delta}$, and its polynomial remainders are integrable against the Gaussian factors.
-
-Step 5: Evaluate the first surviving moment and recover the root
-
-For
-$$
-Q(W)=\left(W^2-\frac{5}{2}\right)
-\left(e^{-(W-1)^2}-e^{-(W+1)^2}\right),
-$$
-parity gives
-$$
-\int_{\mathbb{R}}Q(W)\,dW=0,
-\qquad
-\int_{\mathbb{R}}W^2Q(W)\,dW=0.
-$$
-Using
-$$
-\int_{\mathbb{R}}e^{-z^2}\,dz=\sqrt{\pi},\qquad
-\int_{\mathbb{R}}z^2e^{-z^2}\,dz=\frac{\sqrt{\pi}}{2},\qquad
-\int_{\mathbb{R}}z^4e^{-z^2}\,dz=\frac{3\sqrt{\pi}}{4},
-$$
-a shift $W=z+a$ gives
-$$
-\int_{\mathbb{R}}\left(W^3-\frac{5}{2}W\right)e^{-(W-a)^2}\,dW
-=\sqrt{\pi}(a^3-a),
-$$
-and
-$$
-\int_{\mathbb{R}}\left(W^5-\frac{5}{2}W^3\right)e^{-(W-a)^2}\,dW
-=\sqrt{\pi}\left(a^5+\frac{5}{2}a^3\right).
-$$
-Evaluating at $a=1$ and $a=-1$ yields
-$$
-\int_{\mathbb{R}}WQ(W)\,dW=0,
-\qquad
-\int_{\mathbb{R}}W^3Q(W)\,dW=7\sqrt{\pi}.
-$$
-For
-$$
-f_t=\left(1+\delta Z+t\delta^2\right)^{-1/2},
-$$
-the uniform binomial expansion from Step 4 gives
-$$
-\begin{aligned}
-f_0-2f_1+f_2={}&\frac{3}{4}\delta^4-\frac{15}{8}\delta^5Z
-+\delta^6\left(\frac{105}{32}Z^2-\frac{15}{8}\right)\\
-&+\delta^7\left(-\frac{315}{64}Z^3+\frac{105}{16}Z\right)
-+O\left(\delta^8(1+|Z|^4)\right).
-\end{aligned}
-$$
-Since $Z=W/a+b(Y)$ and $\int_{\mathbb{R}}W^kQ(W)\,dW=0$ for $k=0,1,2$, every term through order $\delta^6$ vanishes after the $W$ integration, and the linear $Z$ term at order $\delta^7$ vanishes as well. In $Z^3$, only $W^3/a^3$ survives the $W$ integration. Therefore
-$$
-\begin{aligned}
-H_0-2H_1+H_2
-&\sim\frac{1}{2}e^{-4N}\delta^{7/2}
-\left(-\frac{315}{64}\delta^7\right)
-(7\sqrt{\pi})
-\int_{-\infty}^{\infty}\frac{e^{-(Y^2-1)^2}}{(1+Y^2)^4}\,dY\\
-&=-\frac{2205\sqrt{\pi}}{128}\mathcal D\,\delta^{21/2}e^{-4N}.
-\end{aligned}
-$$
-Step 3 then gives
-$$
-S_n\sim-\frac{2205\sqrt{\pi}}{128}\mathcal D(\log 2)^2
-\delta^{25/2}e^{-4N}.
-$$
-Using $\delta=n^{-1/4}$, $N=\sqrt{n}$, and the denominator from Step 2, the quotient $S_n/B_n$ tends to $0$. Step 1 then gives $\lambda_n\to0$, so $\sinh\lambda_n\sim\lambda_n$ and
-$$
-\lambda_n\sim
-\frac{2205\mathcal D(\log 2)^2}{8\sqrt{\pi}}
-\frac{e^{-4\sqrt{n}}}{n^{17/8}(\log n)^2}.
+-\log q=-\log\delta+kh-\log v.
 $$
 Hence
 $$
-\alpha=\frac{17}{8},\qquad \beta=2,\qquad c=4,
-\qquad L=\frac{2205\mathcal D(\log 2)^2}{8\sqrt{\pi}}.
+\sum_{j,k=0}^1(-1)^{j+k}
+(-\log\delta+jh-\log u)(-\log\delta+kh-\log v)=h^2.
 $$
-Final Answer: $\boxed{\left(\frac{17}{8},2,4,\frac{2205\mathcal D(\log 2)^2}{8\sqrt{\pi}}\right)}$
+The relevant mass has bounded $u,v$, whereas every scaled upper limit is at least $\delta^{-1}$. On the omitted region either $r=uv$ or $s=(u-v)^2$ grows as a positive power of $\delta^{-1}$, so the Gaussian phase makes that region exponentially smaller than $e^{-5N}$ times any fixed power of $\delta$. Therefore
+$$
+S_n=\delta^2h^2\sum_{t=0}^2(-1)^t\binom{2}{t}J_t
++o\left(\delta^8e^{-5N}\right),
+$$
+where
+$$
+J_t=\int_{(0,\infty)^2}G_t(u,v)\,du\,dv.
+$$
+
+Step 3: Convert the bulk integral into two competing boundaries
+
+Set
+$$
+r=uv,\qquad y=u-v,\qquad s=y^2.
+$$
+Since
+$$
+\left|\frac{\partial(r,y)}{\partial(u,v)}\right|=u+v,
+\qquad |u^2-v^2|=|y|(u+v),
+$$
+and
+$$
+\int_{-\infty}^{\infty}|y|F(y^2)\,dy=\int_0^\infty F(s)\,ds,
+$$
+the factor $|u^2-v^2|$ converts $J_t$ exactly to an integral over the quadrant in $(r,s)$.
+
+Define
+$$
+F_t(r,s)=(r+s+1)\left(r+s-1-\frac{\delta^2}{4}\right)e^{-N\Psi_t(r,s)}.
+$$
+Its prefactor depends only on $r+s$, while
+$$
+\left(\frac{\partial}{\partial r}-\frac{\partial}{\partial s}\right)\Psi_t
+=2(r-s-a_t+b_t)=2(r-s+\delta^3).
+$$
+Thus the displayed amplitude in the problem is exactly
+$$
+\left(\frac{\partial}{\partial r}-\frac{\partial}{\partial s}\right)F_t(r,s).
+$$
+Integrating over $r,s\ge0$ and using Gaussian decay at infinity gives
+$$
+J_t=\int_0^\infty F_t(r,0)\,dr-\int_0^\infty F_t(0,s)\,ds.
+$$
+Therefore, if
+$$
+\mathcal I(c)=\int_0^\infty(x+1)\left(x-1-\frac{\delta^2}{4}\right)e^{-N(x-c)^2}\,dx,
+$$
+then
+$$
+J_t=e^{-4N}\left(e^{-Nb_t^2}\mathcal I(a_t)-e^{-Na_t^2}\mathcal I(b_t)\right).
+$$
+
+Step 4: Evaluate the coupled boundary correction
+
+Since $a_t,b_t=1+O(\delta^3)$, replacing the lower limit $0$ in $\mathcal I(c)$ by $-\infty$ has an exponentially smaller error. The full Gaussian integral is exact:
+$$
+\mathcal I(c)=\sqrt{\pi}\,\delta
+\left(c^2-1+\frac{\delta^2}{4}-\frac{\delta^2c}{4}\right)
++O(e^{-c_0N})
+$$
+for some $c_0>0$ uniformly for $t=0,1,2$.
+
+For $c=1+q\delta^3$, define
+$$
+W(q)=2q\delta^3-\frac{q}{4}\delta^5+q^2\delta^6,
+\qquad
+E(q)=e^{-2q\delta-q^2\delta^4}.
+$$
+Then
+$$
+J_t=\sqrt{\pi}\,\delta e^{-5N}
+\left(W(t)E(t+1)-W(t+1)E(t)\right)
++o\left(\delta^m e^{-5N}\right)
+$$
+for every fixed $m$. Using
+$$
+E(q)=1-2q\delta+2q^2\delta^2+O(\delta^3),
+$$
+we obtain
+$$
+W(t)E(t+1)-W(t+1)E(t)
+=-2\delta^3+\left(4t(t+1)+\frac14\right)\delta^5+O(\delta^6).
+$$
+The $t$-independent term disappears under the second finite difference, while
+$$
+\left[4t(t+1)+\frac14\right]_{t=0}
+-2\left[4t(t+1)+\frac14\right]_{t=1}
++\left[4t(t+1)+\frac14\right]_{t=2}=8.
+$$
+Hence
+$$
+\sum_{t=0}^2(-1)^t\binom{2}{t}J_t
+\sim8\sqrt{\pi}\,\delta^6e^{-5N}.
+$$
+
+Step 5: Recover the asymptotic root
+
+Step 2 and Step 4 give
+$$
+S_n\sim8\sqrt{\pi}(\log 2)^2\delta^8e^{-5N}.
+$$
+Together with Step 1,
+$$
+\frac{S_n}{B_n}
+\sim\frac{128(\log 2)^2}{\sqrt{\pi}}
+\frac{\delta^4e^{-5N}}{(\log n)^2}\to0.
+$$
+Thus $\lambda_n\to0$ and $\sinh\lambda_n\sim\lambda_n$, so
+$$
+\lambda_n\sim-\frac{128(\log 2)^2}{\sqrt{\pi}}
+\frac{n^{-1}e^{-5\sqrt{n}}}{(\log n)^2}.
+$$
+Therefore
+$$
+\alpha=1,\qquad \beta=2,\qquad c=5,
+\qquad L=-\frac{128(\log 2)^2}{\sqrt{\pi}}.
+$$
+Final Answer: $\boxed{\left(1,2,5,-\frac{128(\log 2)^2}{\sqrt{\pi}}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{17}{8},2,4,\frac{2205\mathcal D(\log 2)^2}{8\sqrt{\pi}}\right)$
+$\left(1,2,5,-\frac{128(\log 2)^2}{\sqrt{\pi}}\right)$
 
 ---
 
@@ -238,8 +187,8 @@ $\left(\frac{17}{8},2,4,\frac{2205\mathcal D(\log 2)^2}{8\sqrt{\pi}}\right)$
 
 ## Solution Concepts
 
-- paired product-coordinate reduction
-- second finite difference of saddle families
-- nonlinear saddle normal form
-- signed Gaussian moment cancellation
-- localized saddle expansion
+- product-density finite difference
+- directional-derivative certificate
+- competing boundary contributions
+- Gaussian moment centering
+- second finite difference
