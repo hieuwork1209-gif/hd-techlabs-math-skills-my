@@ -1,0 +1,22 @@
+{
+  "problem": "problem108",
+  "branch": "adversary/problem108",
+  "problem_path": "workspace/rainier-problem/problem108-symplectic-and-contact-geometry/problem.md",
+  "source_commit_sha": "c0d2d202c7c756a1935c6a2ed6a42bba66be9acb",
+  "problem_blob_sha": "14c4584faf36bbd0c224cc9bc4d6712b47d1eec4",
+  "statement_sha256": "4a614a078a8d6f3a79298a500dcdb4e097f18961934307b00c529cfedee61713",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-07T01:43:47+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(q=3^r\\). Since \\(L\\cap F=0\\), write \\(L=\\{x+Sx:x\\in E\\}\\). The Lagrangian condition gives \\(S=S^T\\), and \\(\\iota(L)=L\\) gives \\(S\\) commuting with the reversal matrix. Hence\n\\[\nS=\\begin{pmatrix}\na&b&c&d\\\\\nb&e&h&c\\\\\nc&h&e&b\\\\\nd&c&b&a\n\\end{pmatrix}.\n\\]\nThe three stated linear conditions imply\n\\[\na=1,\\qquad e+2c=0,\\qquad d+h=b.\n\\]\nSince the field has characteristic \\(3\\), \\(e=c\\), so\n\\[\nS=\\begin{pmatrix}\n1&b&c&d\\\\\nb&c&b-d&c\\\\\nc&b-d&c&b\\\\\nd&c&b&1\n\\end{pmatrix},\n\\]\nwith \\(b,c,d\\in\\mathbb F_q\\). Thus only the condition involving \\(\\rho_t\\) remains.\n\nPut\n\\[\nu_t=(1,t,t^2,t^3)^T.\n\\]\nFor \\(x+Sx\\in L\\), its image under \\(\\rho_t\\) has zero \\(E\\)-component exactly when \\(x\\) is a scalar multiple of \\(u_t\\) and\n\\[\nu_t^T S u_t=0.\n\\]\nTherefore \\(\\rho_t(L)\\cap F=0\\) for every \\(t\\in\\mathbb F_q\\) iff\n\\[\nu_t^T S u_t\\neq 0\n\\]\nfor every \\(t\\in\\mathbb F_q\\). A direct computation gives\n\\[\nu_t^T S u_t=t^6-b(t^5+t^3+t)+1.\n\\]\nThe variables \\(c,d\\) do not appear, so they contribute a factor \\(q^2\\).\n\nFor \\(t=0,\\pm1\\), the above polynomial is never zero. For \\(t\\neq0,\\pm1\\), the bad values of \\(b\\) are\n\\[\nb=\\frac{t^6+1}{t^5+t^3+t}.\n\\]\nUsing \\(y=t+t^{-1}\\), this becomes\n\\[\nb=\\frac{y^3}{y^2-1}.\n\\]\nHere \\(y\\) ranges over those elements with \\(y^2-1\\) a nonzero square.\n\nThe map\n\\[\ng(y)=\\frac{y^3}{y^2-1}\n\\]\nhas fibers given by the order-\\(3\\) transformation\n\\[\nT(y)=\\frac{y}{y+1},\n\\]\nbecause\n\\[\ng(y)=g(z)\n\\]\nimplies \\(z=y\\), \\(z=T(y)\\), or \\(z=T^2(y)\\).\n\nLet \\(\\chi\\) be the quadratic character of \\(\\mathbb F_q\\). The domain is\n\\[\nY=\\{y:\\chi(y^2-1)=1\\}.\n\\]\nSince\n\\[\n\\sum_{y\\in\\mathbb F_q}\\chi(y^2-1)=-1,\n\\]\nwe have\n\\[\n|Y|=\\frac{q-3}{2}.\n\\]\n\nIf \\(r\\) is odd, then \\(-1\\) is nonsquare. Each relevant \\(T\\)-orbit meeting \\(Y\\) contains exactly two points of \\(Y\\), so the number of bad \\(b\\)'s is\n\\[\n\\frac{|Y|}{2}=\\frac{q-3}{4}.\n\\]\nThus the number of good \\(b\\)'s is\n\\[\nq-\\frac{q-3}{4}=\\frac{3(q+1)}4.\n\\]\n\nIf \\(r\\) is even, then \\(-1\\) is square. The fixed point \\(y=0\\) contributes one bad value, and every other relevant \\(T\\)-orbit contributes one bad value. Hence the number of bad \\(b\\)'s is\n\\[\n1+\\frac{q-3}{3}=\\frac q3.\n\\]\nThus the number of good \\(b\\)'s is\n\\[\nq-\\frac q3=\\frac{2q}{3}.\n\\]\n\nMultiplying by the free choices of \\(c,d\\), we get\n\\[\n\\boxed{\nM_r=\n\\begin{cases}\n\\dfrac{3q^2(q+1)}4,& r\\ \\text{odd},\\\\[6pt]\n\\dfrac{2q^3}{3},& r\\ \\text{even},\n\\end{cases}\n\\qquad q=3^r.\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-07T01:46:12+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem108/14c4584faf36.json"
+}
