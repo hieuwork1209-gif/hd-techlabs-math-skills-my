@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "7a5c50da2bbd86ec8eb5ae0e079f2577496c5cea",
+  "problem_blob_sha": "7fb41f48c363d3de28b9c7f9ad193a2d840a1ffe",
+  "statement_sha256": "18f5f81c53cdc2b50951faecbf587a4eb1b19632dfc86408b4237e4503337f40",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-07T07:41:20+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "\\[\n\\alpha=\\frac{13}{8},\\qquad \\beta=2,\\qquad c=4,\\qquad\nL=-\\frac{245(\\log 2)^2}{4\\sqrt\\pi}\\,\\mathcal D.\n\\]\n\nLet\n\\[\nB_n=\\int_{[0,1]^4}e^{-n(P^2+Q^2)}\\,d\\mathbf x .\n\\]\nSince the product \\(P=x_1x_2\\) has density \\(-\\log P\\) on \\((0,1)\\),\n\\[\nB_n=\\left(\\int_0^1 e^{-np^2}(-\\log p)\\,dp\\right)^2.\n\\]\nWith \\(y=\\sqrt n\\,p\\),\n\\[\n\\int_0^1 e^{-np^2}(-\\log p)\\,dp\n=n^{-1/2}\\int_0^{\\sqrt n}e^{-y^2}\\left(\\frac12\\log n-\\log y\\right)dy\n\\sim \\frac{\\sqrt\\pi}{4}n^{-1/2}\\log n.\n\\]\nHence\n\\[\nB_n\\sim \\frac{\\pi}{16}n^{-1}(\\log n)^2.\n\\]\n\nWrite \\(\\delta=n^{-1/4}\\). For the second part of \\(I_n\\), change variables\n\\[\nP=\\delta 2^{-j}u,\\qquad Q=\\delta 2^{-k}v.\n\\]\nThe factors \\(2^{j+k}\\) cancel the Jacobian \\(2^{-j-k}\\), and near the only contributing saddle the \\(j,k\\)-sum gives\n\\[\n\\sum_{j,k=0}^1(-1)^{3-j-k-t}\n\\bigl(-\\log(\\delta2^{-j}u)\\bigr)\n\\bigl(-\\log(\\delta2^{-k}v)\\bigr)\n=(-1)^{t+1}(\\log2)^2.\n\\]\n\nNow put\n\\[\nz=\\frac{u-v}{\\sqrt\\delta},\\qquad a=1+z^2,\\qquad\nuv=1+t\\delta^2+\\frac{\\delta Y}{a}.\n\\]\nThen\n\\[\ns=\\delta z^2,\\qquad R_t=\\frac{\\delta Y}{a}.\n\\]\nThe phase becomes exactly\n\\[\n\\Phi_t^+=4+\\delta^2\\{(Y+z^2-2)^2+(z^2-1)^2\\},\n\\]\n\\[\n\\Phi_t^-=4+\\delta^2\\{(Y+z^2)^2+(z^2-1)^2\\},\n\\]\nand\n\\[\nA_t=\\delta^2\\left((Y+z^2-1)^2-\\frac52\\right).\n\\]\nThe Jacobian is\n\\[\ndu\\,dv=\\frac{\\delta^{3/2}}{a\\sqrt{4uv+\\delta z^2}}\\,dY\\,dz.\n\\]\n\nLet \\(X=Y+z^2-1\\). The \\(Y\\)-dependent exponential difference is\n\\[\ne^{-(X-1)^2}-e^{-(X+1)^2}.\n\\]\nThe first nonzero term in the alternating \\(t\\)-difference of the Jacobian is the cubic term:\n\\[\nJ_1-J_0\n\\sim\n\\frac{35}{4096}\\delta^{13/2}\n\\frac{(z^2+4Y/a)^3}{a}.\n\\]\nThe lower moments vanish:\n\\[\n\\int (X^2-\\tfrac52)\\bigl(e^{-(X-1)^2}-e^{-(X+1)^2}\\bigr)dX=0,\n\\]\n\\[\n\\int Y(X^2-\\tfrac52)\\bigl(e^{-(X-1)^2}-e^{-(X+1)^2}\\bigr)dX=0,\n\\]\nand similarly for \\(Y^2\\). The first surviving moment is\n\\[\n\\int Y^3(X^2-\\tfrac52)\\bigl(e^{-(X-1)^2}-e^{-(X+1)^2}\\bigr)dY\n=7\\sqrt\\pi.\n\\]\nTherefore the second part of \\(I_n\\), call it \\(S_n\\), satisfies\n\\[\nS_n\\sim\n(\\log2)^2 e^{-4\\sqrt n}\\delta^{21/2}\n\\frac{35}{4096}\\cdot 64\\cdot 7\\sqrt\\pi\n\\int_{-\\infty}^{\\infty}\n\\frac{e^{-(z^2-1)^2}}{(1+z^2)^4}\\,dz.\n\\]\nThus\n\\[\nS_n\\sim\n\\frac{245\\sqrt\\pi}{64}(\\log2)^2\\mathcal D\\,\nn^{-21/8}e^{-4\\sqrt n}.\n\\]\n\nThe equation is\n\\[\nB_n\\sinh\\lambda_n+S_n=0.\n\\]\nSince \\(S_n/B_n\\to0\\),\n\\[\n\\lambda_n\\sim-\\frac{S_n}{B_n}\n\\sim\n-\\frac{245(\\log2)^2}{4\\sqrt\\pi}\\mathcal D\\,\nn^{-13/8}(\\log n)^{-2}e^{-4\\sqrt n}.\n\\]\nHence\n\\[\n\\boxed{\\alpha=\\frac{13}{8},\\quad \\beta=2,\\quad c=4,\\quad\nL=-\\frac{245(\\log2)^2}{4\\sqrt\\pi}\\mathcal D }.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-07T07:45:16+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/7fb41f48c363.json"
+}
