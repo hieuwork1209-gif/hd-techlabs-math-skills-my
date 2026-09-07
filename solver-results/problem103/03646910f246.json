@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "1e41fff249c13cbba75fce9be5505b78a0624112",
+  "problem_blob_sha": "03646910f246bd8ef5e5e68cbb02feaf2545af39",
+  "statement_sha256": "ee68b022ee86faccec462e12dcd90e81bf783690ccc095c8e74069bdda925c60",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-07T07:47:39+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nI_n(\\lambda)=J_n\\sinh\\lambda+B_n,\n\\]\nwhere\n\\[\nJ_n=\\int_{[0,1]^4}e^{-n(P^2+Q^2)}\\,d\\mathbf x>0\n\\]\nand \\(B_n\\) is the remaining \\(\\lambda\\)-independent term. Then\n\\[\n\\lambda_n=\\operatorname{arsinh}\\!\\left(-\\frac{B_n}{J_n}\\right).\n\\]\n\nFirst,\n\\[\nJ_n=\\left(\\int_0^1\\int_0^1 e^{-n(xy)^2}\\,dx\\,dy\\right)^2.\n\\]\nUsing \\(p=xy\\), whose density on \\([0,1]\\) is \\(-\\log p\\),\n\\[\n\\int_0^1 e^{-np^2}(-\\log p)\\,dp\n=n^{-1/2}\\int_0^{\\sqrt n}e^{-y^2}\\left(\\frac12\\log n-\\log y\\right)dy,\n\\]\nso\n\\[\nJ_n\\sim \\left(\\frac{\\sqrt\\pi}{4}n^{-1/2}\\log n\\right)^2\n=\\frac{\\pi}{16}n^{-1}(\\log n)^2.\n\\]\n\nPut \\(\\varepsilon=n^{-1/4}\\), so \\(\\sqrt n=\\varepsilon^{-2}\\). After changing variables\n\\[\nu=n^{1/4}2^jP,\\qquad v=n^{1/4}2^kQ,\n\\]\nthe factor \\(2^{j+k}\\) cancels the Jacobian factors, and\n\\[\n-\\log P=\\frac14\\log n+j\\log2-\\log u.\n\\]\nThe alternating sum over \\(j,k\\) gives the exact cancellation\n\\[\n\\sum_{j,k=0}^1(-1)^{j+k}\n\\left(\\frac14\\log n+j\\log2-\\log u\\right)\n\\left(\\frac14\\log n+k\\log2-\\log v\\right)\n=(\\log2)^2.\n\\]\n\nNow write \\(r=uv\\), \\(s=(u-v)^2\\). For the \\(+\\) phase,\n\\[\n\\Phi_t^+=4+\\left(\\left(1+\\frac{s}{\\varepsilon}\\right)R_t+s-2\\varepsilon\\right)^2+(s-\\varepsilon)^2,\n\\]\nand for the \\(-\\) phase,\n\\[\n\\Phi_t^-=4+\\left(\\left(1+\\frac{s}{\\varepsilon}\\right)R_t+s\\right)^2+(s-\\varepsilon)^2.\n\\]\nThus both have minimum \\(4\\), attained at \\(s=\\varepsilon\\) and respectively\n\\[\nr=1+t\\varepsilon^2+\\frac{\\varepsilon}{2},\n\\qquad\nr=1+t\\varepsilon^2-\\frac{\\varepsilon}{2}.\n\\]\nAt each saddle,\n\\[\nA_t=-\\frac32\\varepsilon^2.\n\\]\n\nThe change \\((u,v)\\mapsto(r,s)\\) contributes density\n\\[\n\\frac{1}{\\sqrt{s}\\sqrt{s+4r}},\n\\]\nand the local Gaussian determinant from the two square terms contributes \\(\\pi\\varepsilon^2/2\\). Therefore the leading saddle contribution is\n\\[\n-\\frac{3\\pi(\\log2)^2}{4}\\varepsilon^{7/2}\n(\\varepsilon+4r)^{-1/2}e^{-4/\\varepsilon^2}.\n\\]\nThe \\(t\\)-sum is the second finite difference with step \\(\\varepsilon^2\\), and the \\(+\\) minus \\(-\\) difference shifts \\(r\\) by \\(\\pm\\varepsilon/2\\). Hence, with\n\\[\nf(r)=(\\varepsilon+4r)^{-1/2},\n\\]\nthe leading coefficient is\n\\[\n-\\frac{3\\pi(\\log2)^2}{4}\\varepsilon^{7/2}\n\\varepsilon^4\\bigl(f''(1+\\varepsilon/2)-f''(1-\\varepsilon/2)\\bigr)e^{-4/\\varepsilon^2}.\n\\]\nSince\n\\[\nf'''(1)\\to -\\frac{15}{16},\n\\]\nwe get\n\\[\nB_n\\sim \\frac{45\\pi(\\log2)^2}{64}\\varepsilon^{21/2}e^{-4/\\varepsilon^2}.\n\\]\nBecause \\(\\varepsilon=n^{-1/4}\\),\n\\[\nB_n\\sim \\frac{45\\pi(\\log2)^2}{64}n^{-21/8}e^{-4\\sqrt n}.\n\\]\n\nThus\n\\[\n\\lambda_n\\sim-\\frac{B_n}{J_n}\n\\sim\n-\\frac{45(\\log2)^2}{4}n^{-13/8}(\\log n)^{-2}e^{-4\\sqrt n}.\n\\]\n\nTherefore\n\\[\n\\boxed{\\alpha=\\frac{13}{8},\\qquad \\beta=2,\\qquad c=4,\\qquad L=-\\frac{45}{4}(\\log2)^2.}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-07T07:50:26+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/03646910f246.json"
+}
