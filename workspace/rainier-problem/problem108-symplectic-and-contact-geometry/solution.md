@@ -1,34 +1,20 @@
 ## Steps
 
-Step 1: Convert the Lagrangian conditions into normalized root-free sextics.
+Step 1: Reduce transversality to a scalar obstruction.
 
-Every Lagrangian $L$ with $L\cap F=0$ is the graph
-$$
-L=\{x+S_Lx:x\in E\}
-$$
-of a unique linear map $S_L:E\to F$. In the ordered bases from the problem,
+Because $L\cap F=0$, every such $L$ is the graph of a unique map $S_L:E\to F$. In the ordered bases from the problem,
 $$
 \omega(x+S_Lx,y+S_Ly)=x^T(S_L-S_L^T)y,
 $$
 so $L$ is Lagrangian exactly when $S_L$ is symmetric.
 
-Fix $t\in\mathbb{F}_q$ and write $v=v_t$. For $x\in E$, put $y=x+S_Lx$. Decompose $y=y_\perp+av+bf_1$ with $y_\perp\in\langle v,f_1\rangle^\perp$. Since $\omega(v,f_1)=1$,
-$$
-a=\omega(y,f_1)=x_1,
-\qquad
-b=-\omega(y,v)=v^TS_Lx.
-$$
-Using $\rho_t(v)=f_1$, $\rho_t(f_1)=-v$, the $E$-component of $\rho_t(y)$ is
+Fix $t$ and write $v=v_t$. The projection of $\rho_t(L)$ onto $E$ sends $x\in E$ to
 $$
 x-v\left(x_1+v^TS_Lx\right).
 $$
-With $\ell(x)=x_1$, the projection of $\rho_t(L)$ onto $E$ has matrix
+A nonzero kernel vector must be a scalar multiple of $v$. Substituting $x=\lambda v$ and using $v_1=1$ shows that such a vector exists exactly when
 $$
-I_4-v\left(\ell+v^TS_L\right).
-$$
-The rank-one determinant identity $\det(I-uv^T)=1-v^Tu$ and $\ell(v)=1$ give
-$$
-\det\left(I_4-v\left(\ell+v^TS_L\right)\right)=-v^TS_Lv.
+v_t^TS_Lv_t=0.
 $$
 Therefore
 $$
@@ -37,302 +23,203 @@ $$
 v_t^TS_Lv_t\ne0.
 $$
 
-Put
-$$
-p_L(T)=v_T^TS_Lv_T.
-$$
-Writing $S_L=(s_{ij})$ gives
-$$
-\begin{aligned}
-p_L(T)
-&=s_{11}+2s_{12}T+(s_{22}+2s_{13})T^2+2(s_{14}+s_{23})T^3\\
-&\quad +(s_{33}+2s_{24})T^4+2s_{34}T^5+s_{44}T^6.
-\end{aligned}
-$$
-The three normalizations make
-$$
-p_L(T)=T^6+c_3T^3+c_2T^2+c_1T+c_0.
-$$
-The seven displayed coefficients depend on disjoint entries or disjoint pairs of entries of the symmetric matrix, and $2$ is invertible in characteristic $3$. The restriction map from symmetric $4\times4$ matrices to sextics is therefore surjective. Its domain has dimension $10$ and its image has dimension $7$, so its kernel has dimension $3$. Every normalized polynomial has exactly $q^3$ preimages. So
-$$
-M_r=q^3N,
-$$
-where $N$ is the number of monic sextics with zero $T^5$- and $T^4$-coefficients and no root in $\mathbb{F}_q$.
-
-Step 2: Isolate the two nonuniform terms in inclusion-exclusion.
-
-For a $k$-subset $A\subset\mathbb{F}_q$, write
-$$
-g_A(T)=\prod_{a\in A}(T-a)
-=T^k-s_1(A)T^{k-1}+e_2(A)T^{k-2}+\cdots.
-$$
-If $k\leq4$, a monic sextic divisible by $g_A$ has the form $g_Ah$, where
-$$
-h(T)=T^{6-k}+b_1T^{5-k}+b_2T^{4-k}+\cdots.
-$$
-Vanishing of the $T^5$- and $T^4$-coefficients gives
-$$
-b_1=s_1(A),
-\qquad
-b_2=s_1(A)^2-e_2(A).
-$$
-The remaining $4-k$ coefficients of $h$ are free, so there are $q^{4-k}$ choices.
-
-For $k=5$, the quotient is $T+c$. The same two coefficient equations become
-$$
-c=s_1(A),
-\qquad
-e_2(A)=s_1(A)^2.
-$$
-Let $E_5$ count the $5$-subsets satisfying the second equation. For $k=6$, the polynomial is $g_A$ itself, so the conditions are
-$$
-s_1(A)=e_2(A)=0.
-$$
-Let $E_6$ count these $6$-subsets. Inclusion-exclusion gives
-$$
-N
-=q^4-q^4+\binom{q}{2}q^2-\binom{q}{3}q+\binom{q}{4}-E_5+E_6.
-$$
-
-Step 3: Convert the exceptional subsets into zero sums on a parabola.
-
-For a subset $A$, put
-$$
-p_2(A)=\sum_{a\in A}a^2.
-$$
-Since the characteristic is $3$,
-$$
-s_1(A)^2=p_2(A)+2e_2(A)=p_2(A)-e_2(A),
-$$
-so
-$$
-e_2(A)=p_2(A)-s_1(A)^2.
-$$
-The condition defining $E_5$ is therefore
-$$
-p_2(A)+s_1(A)^2=0.
-$$
-Translate $A$ by $c\in\mathbb{F}_q$. For a $5$-subset,
-$$
-s_1(A+c)=s_1(A)+5c=s_1(A)-c,
-$$
-and
-$$
-p_2(A+c)=p_2(A)+2cs_1(A)+5c^2=p_2(A)-cs_1(A)-c^2.
-$$
-So
-$$
-p_2(A+c)+s_1(A+c)^2=p_2(A)+s_1(A)^2.
-$$
-There is a unique translate with sum zero, namely $c=s_1(A)$. A nonzero translation cannot fix a $5$-subset because it would change its sum. Therefore, if
-$$
-Z_k
-=\#\left\{
-A\subset\mathbb{F}_q:
-|A|=k,\ 
-\sum_{a\in A}a=0,\ 
-\sum_{a\in A}a^2=0
-\right\},
-$$
-then
-$$
-E_5=qZ_5.
-$$
-For $k=6$, the equations $s_1=e_2=0$ give $p_2=0$, so
-$$
-E_6=Z_6.
-$$
-
-Step 4: Evaluate the parabola subset counts and keep the quadratic-character sign.
-
-Fix
-$$
-\psi(x)=\exp\left(\frac{2\pi i}{3}\operatorname{Tr}_{\mathbb{F}_q/\mathbb{F}_3}(x)\right),
-$$
-and let $\eta$ be the quadratic character of $\mathbb{F}_q$. Put
-$$
-\varepsilon=\eta(-1)=(-1)^r.
-$$
-Orthogonality of additive characters gives
-$$
-Z_k
-=\frac{1}{q^2}
-\sum_{\alpha,\beta\in\mathbb{F}_q}
-[z^k]
-\prod_{x\in\mathbb{F}_q}
-\left(1+z\psi(\alpha x+\beta x^2)\right).
-$$
-The pair $(\alpha,\beta)=(0,0)$ contributes $\binom{q}{k}$. If $\beta=0$ and $\alpha\ne0$, each cube root of unity occurs $q/3$ times, so
-$$
-\prod_{x\in\mathbb{F}_q}\left(1+z\psi(\alpha x)\right)=(1+z^3)^{q/3}.
-$$
-
-Now suppose $\beta\ne0$. Let
-$$
-A=\sum_x\psi(\alpha x+\beta x^2),
-\qquad
-B=\sum_x\psi(2\alpha x+2\beta x^2).
-$$
-For the factors in the product, the power sums satisfy
-$$
-p_{3j}=q,
-\qquad
-p_{3j+1}=A,
-\qquad
-p_{3j+2}=B.
-$$
-If $e_m$ denotes the coefficient of $z^m$, Newton's identity
-$$
-me_m=\sum_{h=1}^m(-1)^{h-1}e_{m-h}p_h,
-\qquad e_0=1,
-$$
-gives
-$$
-\begin{aligned}
-120e_5
-&=A^5-10A^3B+20A^2q-30A^2+15AB^2-20Bq+24B,\\
-720e_6
-&=A^6-15A^4B+40A^3q-90A^3+45A^2B^2\\
-&\quad -120ABq+234AB-15B^3+40q^2-120q.
-\end{aligned}
-$$
+Step 2: Use the involution and the coefficient-square coupling.
 
 Let
 $$
-G=\sum_x\psi(x^2).
+D=\operatorname{diag}(1,-1,1,-1).
 $$
-Completing the square gives
+The condition $\jmath(L)=L$ is equivalent to $DS_L=S_LD$. Together with symmetry, $s_{11}=s_{44}=1$, and $s_{24}=0$, this forces
 $$
-A=G\eta(\beta)\psi(-\alpha^2/\beta),
-\qquad
-B=\varepsilon G\eta(\beta)\psi(\alpha^2/\beta),
+S_L=
+\begin{pmatrix}
+1&0&c&0\\
+0&e&0&0\\
+c&0&h&0\\
+0&0&0&1
+\end{pmatrix}.
 $$
-and
+Put
 $$
-G^2=\varepsilon q.
+A=h,\qquad B=e+2c.
 $$
-For
+Then
 $$
-S_{ij}=\sum_{\substack{\beta\ne0\\ \alpha\in\mathbb{F}_q}}A^iB^j,
+v_t^TS_Lv_t=t^6+A t^4+B t^2+1.
 $$
-put $n=i+j$ and let $d$ be the image of $j-i$ in $\mathbb{F}_3$. Then
+The coupling in the problem is
 $$
-A^iB^j
-=\varepsilon^jG^n\eta(\beta)^n\psi(d\alpha^2/\beta).
+c^2=A+B.
 $$
-If $d=0$, the $\alpha$-sum is $q$, and the $\beta$-sum is nonzero exactly when $n$ is even. If $d\ne0$, the quadratic Gauss sum gives
+For fixed $(A,B)$, the number of choices of $c$ is
 $$
-\sum_{\alpha\in\mathbb{F}_q}\psi(d\alpha^2/\beta)
-=\eta(d)\eta(\beta)G,
+1+\eta(A+B),
 $$
-so the $\beta$-sum is nonzero exactly when $n$ is odd. Therefore
+where $\eta$ is the quadratic character of $\mathbb F_q$ with $\eta(0)=0$. Once $c$ is chosen, $e=B-2c=B+c$ and $h=A$ are fixed.
+
+With $y=t^2$, transversality is therefore equivalent to
 $$
-S_{ij}
-=\begin{cases}
-\varepsilon^jG^nq(q-1),&d=0,\ n\text{ even},\\
-\varepsilon^j\eta(d)G^{n+1}(q-1),&d\ne0,\ n\text{ odd},\\
-0,&\text{otherwise}.
-\end{cases}
+p_{A,B}(y)=y^3+A y^2+B y+1
 $$
-Using $G^2=\varepsilon q$, the moments needed for $e_5$ are
+having no root in
 $$
-S_{50}=\varepsilon q^3(q-1),
-\qquad
-S_{31}=S_{20}=0,
-\qquad
-S_{12}=q^2(q-1),
-\qquad
-S_{01}=q(q-1).
+Q=(\mathbb F_q^*)^2.
 $$
-So
+Hence
 $$
-\begin{aligned}
-\sum_{\substack{\beta\ne0\\ \alpha\in\mathbb{F}_q}}e_5
-&=\frac{S_{50}-10S_{31}+(20q-30)S_{20}+15S_{12}+(-20q+24)S_{01}}{120}\\
-&=\frac{q(q-1)(\varepsilon q^2-5q+24)}{120}.
-\end{aligned}
+M_r=G_r+\Sigma_r,
 $$
-For $e_6$ the needed moments are
+where $G_r$ is the number of root-free pairs $(A,B)$ and
 $$
-S_{60}=\varepsilon q^4(q-1),
-\qquad
-S_{41}=S_{30}=S_{03}=0,
-\qquad
-S_{22}=q^3(q-1),
-\qquad
-S_{11}=q^2(q-1).
-$$
-There are $q(q-1)$ pairs $(\alpha,\beta)$ with $\beta\ne0$, so
-$$
-\begin{aligned}
-\sum_{\substack{\beta\ne0\\ \alpha\in\mathbb{F}_q}}e_6
-&=\frac{1}{720}\Bigl(S_{60}-15S_{41}+(40q-90)S_{30}+45S_{22}\\
-&\qquad+(-120q+234)S_{11}-15S_{03}+(40q^2-120q)q(q-1)\Bigr)\\
-&=\frac{q^2(q-1)(\varepsilon q^2-35q+114)}{720}.
-\end{aligned}
+\Sigma_r=\sum_{\substack{(A,B)\in\mathbb F_q^2\\p_{A,B}(Q)\not\ni0}}\eta(A+B).
 $$
 
-Step 5: Simplify $Z_5$ and $Z_6$.
+Step 3: Count the unweighted root-free pairs.
 
-Combining the three Fourier regimes gives
+Let $n=|Q|=(q-1)/2$. For fixed $y\in Q$, the bad pairs lie on
 $$
-\begin{aligned}
-Z_5
-&=\frac{1}{q^2}
-\left(
-\binom{q}{5}+
-\frac{q(q-1)(\varepsilon q^2-5q+24)}{120}
-\right)\\
-&=\frac{(q-1)\bigl(q^2+(\varepsilon-9)q+21\bigr)}{120}.
-\end{aligned}
+\ell_y:\quad B=-Ay-y^2-y^{-1}.
 $$
-For $Z_6$, the nontrivial linear characters contribute
+Distinct $y$ give distinct slopes, so any two lines meet once. Three distinct lines are concurrent exactly when the corresponding cubic has those three $y$-values as roots, which by Vieta is equivalent to
 $$
-(q-1)\binom{q/3}{2},
+y_1y_2y_3=-1.
+$$
+No four lines are concurrent. Inclusion-exclusion gives
+$$
+G_r=q^2-nq+\binom n2-T_r,
+$$
+where $T_r$ counts $3$-subsets of $Q$ with product $-1$.
+
+If $r$ is odd, then $-1\notin Q$, so $T_r=0$ and
+$$
+G_r=\frac{5q^2+3}{8}.
+$$
+If $r$ is even, then $-1\in Q$. The group $Q$ is cyclic of order $n$, with $3\nmid n$. There are $n^2$ ordered triples with product $-1$, and $3n-2$ have a repeated coordinate. Thus
+$$
+T_r=\frac{n^2-3n+2}{6}=\frac{(q-3)(q-5)}{24},
 $$
 so
 $$
-\begin{aligned}
-Z_6
-&=\frac{1}{q^2}
-\left(
-\binom{q}{6}
-+(q-1)\binom{q/3}{2}
-+\frac{q^2(q-1)(\varepsilon q^2-35q+114)}{720}
-\right)\\
-&=\frac{q(q-1)\bigl(q^2+(\varepsilon-14)q+36\bigr)}{720}.
-\end{aligned}
-$$
-Therefore
-$$
-E_5
-=\frac{q(q-1)\bigl(q^2+(\varepsilon-9)q+21\bigr)}{120},
-\qquad
-E_6
-=\frac{q(q-1)\bigl(q^2+(\varepsilon-14)q+36\bigr)}{720}.
+G_r=\frac{7q^2+4q-3}{12}.
 $$
 
-Step 6: Substitute and restore the graph fibers.
+Step 4: Evaluate the weighted incidence correction.
 
-Using Step 2 and the values from Step 5,
+Put $\epsilon=\eta(-1)=(-1)^r$. The total character sum over the whole $(A,B)$-plane is zero. On $\ell_y$,
 $$
-N
-=\frac{q(q-1)\bigl(53q^2+(26-\varepsilon)q+18\bigr)}{144}.
+A+B=A(1-y)-y^2-y^{-1}.
 $$
-Since every normalized sextic has $q^3$ symmetric graph matrices,
+For $y\ne1$ this runs through all of $\mathbb F_q$ as $A$ varies, so its character sum is zero. For $y=1$ one has $A+B=1$, so the single-line contribution is $q$.
+
+For distinct $y,z\in Q$, let $(A,B)$ be the intersection of $\ell_y$ and $\ell_z$. The third root is
 $$
-M_r
-=\frac{q^4(q-1)\bigl(53q^2+(26-\varepsilon)q+18\bigr)}{144},
-\qquad \varepsilon=(-1)^r.
+w=-\frac1{yz},
+$$
+and direct substitution gives
+$$
+(A+B)yz=(yz-y+1)(yz-z+1). \tag{1}
+$$
+Let $P_r$ be the sum of $\eta(A+B)$ over unordered pairs $\{y,z\}\subset Q$, and let $R_r$ be the corresponding sum over concurrent triples. Inclusion-exclusion gives
+$$
+\Sigma_r=-q+P_r-R_r. \tag{2}
 $$
 
-Final Answer: $\boxed{\frac{q^4(q-1)\left(53q^2+(26-(-1)^r)q+18\right)}{144}}$
+It remains to evaluate $P_r-R_r$. For the pair sum use the Mobius change
+$$
+x=\frac{y-1}{y+1},\qquad u=\frac{z-1}{z+1}.
+$$
+When the denominators are nonzero,
+$$
+\eta(y)=\eta(1-x^2),\qquad \eta(z)=\eta(1-u^2),
+$$
+and (1) becomes
+$$
+\eta(A+B)=\eta\left(1-(x-u)^2\right). \tag{3}
+$$
+The needed two-variable character sum is
+$$
+J_q=\sum_{x,u\in\mathbb F_q}
+\eta\left((1-x^2)(1-u^2)(1-(x-u)^2)\right).
+$$
+Using
+$$
+I(x)=\frac{1+\eta(1-x^2)-\mathbf 1_{x=1}-\mathbf 1_{x=-1}}2
+$$
+to indicate the finite $x$ with $\eta(1-x^2)=1$, expanding $I(x)I(u)$, and applying
+$$
+\sum_{s\in\mathbb F_q}\eta(s^2-a)=
+\begin{cases}
+q-1,&a=0,\\
+-1,&a\ne0,
+\end{cases}
+$$
+one obtains
+$$
+J_q=
+\begin{cases}
+q-2,&\epsilon=-1,\\
+3q+2,&\epsilon=1.
+\end{cases} \tag{4}
+$$
+The same expansion gives the ordered finite-pair sum from (3) as
+$$
+\frac{J_q-\epsilon q+8\epsilon+8}{4}. \tag{5}
+$$
+
+If $r$ is odd, $-1\notin Q$, so the Mobius change covers all of $Q$. Formulae (4)-(5) give ordered pair sum $(q-1)/2$, exactly the diagonal contribution. Hence
+$$
+P_r=0,\qquad R_r=0,
+$$
+and therefore
+$$
+\Sigma_r=-q.
+$$
+
+If $r$ is even, $y=-1$ is the one point sent to infinity. Formulae (4)-(5) give finite ordered pair sum $(q+9)/2$. Its diagonal contribution is $(q-3)/2$, so finite unordered distinct pairs contribute $3$. Every pair $\{-1,z\}$ with $z\ne-1$ contributes $1$, because (1) gives
+$$
+A+B=\frac{(z+1)^2}{z}.
+$$
+Thus
+$$
+P_r=3+\frac{q-3}{2}=\frac{q+3}{2}. \tag{6}
+$$
+For triples, every ordered pair $(y,z)\in Q^2$ determines $w=-1/(yz)\in Q$. The total ordered character sum is $3(q+1)/2$. The repeated triples have $y=z$, or $z=w$, or $w=y$; for $y=z$ equation (1) gives a square, zero only at $y=-1$, so each equality family contributes $(q-3)/2$. Their intersections are the triple $(-1,-1,-1)$, whose character is zero. Hence the ordered distinct-triple sum is
+$$
+\frac{3(q+1)}2-\frac{3(q-3)}2=6,
+$$
+so
+$$
+R_r=1. \tag{7}
+$$
+Combining (2), (6), and (7),
+$$
+\Sigma_r=-\frac{q-1}{2}.
+$$
+
+Step 5: Combine the two parity regimes.
+
+For odd $r$,
+$$
+M_r=\frac{5q^2+3}{8}-q
+=\frac{5q^2-8q+3}{8}.
+$$
+For even $r$,
+$$
+M_r=\frac{7q^2+4q-3}{12}-\frac{q-1}{2}
+=\frac{7q^2-2q+3}{12}.
+$$
+These combine as
+$$
+M_r=\frac{29q^2-28q+15+(-q^2+20q-3)(-1)^r}{48}.
+$$
+
+Final Answer: $\boxed{\frac{29q^2-28q+15+(-q^2+20q-3)(-1)^r}{48}}$
 
 ---
 
 ## Answer
 
-$\frac{q^4(q-1)\left(53q^2+(26-(-1)^r)q+18\right)}{144}$
+$\frac{29q^2-28q+15+(-q^2+20q-3)(-1)^r}{48}$
 
 ---
 
@@ -346,11 +233,11 @@ $\frac{q^4(q-1)\left(53q^2+(26-(-1)^r)q+18\right)}{144}$
 
 ## Solution Concepts
 
-- lagrangian graphs and partial symplectic Fourier transforms
-- twisted cubic restriction to normalized sextics
-- nonuniform inclusion-exclusion at maximal root sets
-- additive Fourier analysis on a finite parabola
-- parity-sensitive quadratic Gauss moments
+- lagrangian graphs under a symplectic involution
+- coefficient-square fiber weights
+- affine root-line arrangements
+- quadratic-character incidence sums
+- Mobius transforms over finite fields
 
 ---
 
