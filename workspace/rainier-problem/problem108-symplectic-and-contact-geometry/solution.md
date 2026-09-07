@@ -23,7 +23,7 @@ $$
 v_t^TS_Lv_t\ne0.
 $$
 
-Step 2: Use the involution and the discriminant-square constraint.
+Step 2: Use the involution and the coefficient-square coupling.
 
 Let
 $$
@@ -47,123 +47,179 @@ Then
 $$
 v_t^TS_Lv_t=t^6+A t^4+B t^2+1.
 $$
-After setting $y=t^2$, the obstruction is
+The coupling in the problem is
 $$
-p_{A,B}(y)=y^3+A y^2+B y+1.
+c^2=A+B.
 $$
-In characteristic $3$, its discriminant is
+For fixed $(A,B)$, the number of choices of $c$ is
 $$
-\Delta(A,B)=A^2B^2-A^3-B^3.
+1+\eta(A+B),
 $$
-The condition $c^2=\Delta_L$ is exactly
-$$
-c^2=\Delta(A,B).
-$$
-For fixed $(A,B)$, the entry $h=A$ is fixed and $e=B-2c=B+c$. Hence the number of graphs above $(A,B)$ is
-$$
-1+\eta(\Delta(A,B)),
-$$
-where $\eta$ is the quadratic character with $\eta(0)=0$.
+where $\eta$ is the quadratic character of $\mathbb F_q$ with $\eta(0)=0$. Once $c$ is chosen, $e=B-2c=B+c$ and $h=A$ are fixed.
 
-Step 3: Interpret the discriminant character by factorization type.
-
-Let $\alpha,\beta,\gamma$ be the roots of a squarefree cubic $p_{A,B}$ in an algebraic closure and put
+With $y=t^2$, transversality is therefore equivalent to
 $$
-R=(\alpha-\beta)(\beta-\gamma)(\gamma-\alpha).
+p_{A,B}(y)=y^3+A y^2+B y+1
 $$
-Then $R^2=\Delta$. Frobenius permutes the three roots. If that permutation is even, then $R^q=R$, so $R\in\mathbb F_q$ and $\Delta$ is a square. If it is odd, then $R^q=-R$, so
-$$
-\Delta^{(q-1)/2}=R^{q-1}=-1,
-$$
-and $\Delta$ is a nonsquare.
-
-The three squarefree factorization types therefore have weights
-$$
-\begin{array}{c|c|c}
-\text{factorization type}&\eta(\Delta)&1+\eta(\Delta)\\
-\hline
-\text{irreducible cubic}&1&2\\
-\text{three linear factors}&1&2\\
-\text{linear times irreducible quadratic}&-1&0.
-\end{array}
-$$
-A singular cubic has $\Delta=0$ and weight $1$.
-
-The transversality condition says that $p_{A,B}$ has no root in the subgroup
+having no root in
 $$
 Q=(\mathbb F_q^*)^2.
 $$
-Thus every linear root of an admissible cubic must be a nonsquare.
+Hence
+$$
+M_r=G_r+\Sigma_r,
+$$
+where $G_r$ is the number of root-free pairs $(A,B)$ and
+$$
+\Sigma_r=\sum_{\substack{(A,B)\in\mathbb F_q^2\\p_{A,B}(Q)\not\ni0}}\eta(A+B).
+$$
 
-Step 4: Count the squarefree types that contribute.
+Step 3: Count the unweighted root-free pairs.
 
-First count irreducible cubics. A root $\alpha\in\mathbb F_{q^3}^*$ of a monic cubic with constant term $1$ satisfies
+Let $n=|Q|=(q-1)/2$. For fixed $y\in Q$, the bad pairs lie on
 $$
-N_{\mathbb F_{q^3}/\mathbb F_q}(\alpha)=-1.
+\ell_y:\quad B=-Ay-y^2-y^{-1}.
 $$
-The norm fiber over $-1$ has size $q^2+q+1$. Its elements lying in $\mathbb F_q$ satisfy $\alpha^3=-1$, and the cube map is bijective in characteristic $3$, so the only one is $\alpha=-1$. Hence there are $q^2+q$ elements of degree $3$, and dividing by the Frobenius orbit size gives
+Distinct $y$ give distinct slopes, so any two lines meet once. Three distinct lines are concurrent exactly when the corresponding cubic has those three $y$-values as roots, which by Vieta is equivalent to
 $$
-I_r=\frac{q(q+1)}{3}
+y_1y_2y_3=-1.
 $$
-irreducible cubics. Each is admissible and contributes weight $2$.
+No four lines are concurrent. Inclusion-exclusion gives
+$$
+G_r=q^2-nq+\binom n2-T_r,
+$$
+where $T_r$ counts $3$-subsets of $Q$ with product $-1$.
 
-Now consider three distinct linear roots. Their product is $-1$. If $r$ is even, then $-1$ is a square, while a product of three nonsquares is a nonsquare, so no admissible split cubic exists.
+If $r$ is odd, then $-1\notin Q$, so $T_r=0$ and
+$$
+G_r=\frac{5q^2+3}{8}.
+$$
+If $r$ is even, then $-1\in Q$. The group $Q$ is cyclic of order $n$, with $3\nmid n$. There are $n^2$ ordered triples with product $-1$, and $3n-2$ have a repeated coordinate. Thus
+$$
+T_r=\frac{n^2-3n+2}{6}=\frac{(q-3)(q-5)}{24},
+$$
+so
+$$
+G_r=\frac{7q^2+4q-3}{12}.
+$$
 
-If $r$ is odd, then $-1$ is a nonsquare and every nonsquare is uniquely $-x$ with $x\in Q$. Writing the three roots as $-x,-y,-z$, their product is $-1$ exactly when
-$$
-xyz=1.
-$$
-Let $n=|Q|=(q-1)/2$. There are $n^2$ ordered triples in $Q^3$ with product $1$. Since $3\nmid n$, the cube map on $Q$ is bijective. The triples with a repeated coordinate number $3n-2$, so the number of unordered triples with distinct coordinates is
-$$
-S_r=\frac{n^2-3n+2}{6}=\frac{(q-3)(q-5)}{24}.
-$$
-Each contributes weight $2$.
+Step 4: Evaluate the weighted incidence correction.
 
-Step 5: Count the singular admissible cubics and combine.
+Put $\epsilon=\eta(-1)=(-1)^r$. The total character sum over the whole $(A,B)$-plane is zero. On $\ell_y$,
+$$
+A+B=A(1-y)-y^2-y^{-1}.
+$$
+For $y\ne1$ this runs through all of $\mathbb F_q$ as $A$ varies, so its character sum is zero. For $y=1$ one has $A+B=1$, so the single-line contribution is $q$.
 
-Suppose $\Delta=0$. A repeated root $a$ is nonzero because the constant term is $1$. Solving
+For distinct $y,z\in Q$, let $(A,B)$ be the intersection of $\ell_y$ and $\ell_z$. The third root is
 $$
-p_{A,B}(a)=p_{A,B}'(a)=0
+w=-\frac1{yz},
 $$
-gives
+and direct substitution gives
 $$
-A=a+a^{-2},\qquad B=a^2+a^{-1}.
+(A+B)yz=(yz-y+1)(yz-z+1). \tag{1}
 $$
-The third root is
+Let $P_r$ be the sum of $\eta(A+B)$ over unordered pairs $\{y,z\}\subset Q$, and let $R_r$ be the corresponding sum over concurrent triples. Inclusion-exclusion gives
 $$
-b=-a^{-2}.
+\Sigma_r=-q+P_r-R_r. \tag{2}
 $$
-The repeated root determines the cubic uniquely. Since
-$$
-\eta(b)=\eta(-1),
-$$
-no singular cubic is admissible when $r$ is even. When $r$ is odd, the third root is always a nonsquare and admissibility is equivalent to $a$ being a nonsquare. Therefore
-$$
-H_r=\frac{q-1}{2}
-$$
-for odd $r$, and $H_r=0$ for even $r$.
 
-For even $r$, only irreducible cubics contribute, so
+It remains to evaluate $P_r-R_r$. For the pair sum use the Mobius change
 $$
-M_r=2I_r=\frac{2q(q+1)}{3}.
+x=\frac{y-1}{y+1},\qquad u=\frac{z-1}{z+1}.
 $$
+When the denominators are nonzero,
+$$
+\eta(y)=\eta(1-x^2),\qquad \eta(z)=\eta(1-u^2),
+$$
+and (1) becomes
+$$
+\eta(A+B)=\eta\left(1-(x-u)^2\right). \tag{3}
+$$
+The needed two-variable character sum is
+$$
+J_q=\sum_{x,u\in\mathbb F_q}
+\eta\left((1-x^2)(1-u^2)(1-(x-u)^2)\right).
+$$
+Using
+$$
+I(x)=\frac{1+\eta(1-x^2)-\mathbf 1_{x=1}-\mathbf 1_{x=-1}}2
+$$
+to indicate the finite $x$ with $\eta(1-x^2)=1$, expanding $I(x)I(u)$, and applying
+$$
+\sum_{s\in\mathbb F_q}\eta(s^2-a)=
+\begin{cases}
+q-1,&a=0,\\
+-1,&a\ne0,
+\end{cases}
+$$
+one obtains
+$$
+J_q=
+\begin{cases}
+q-2,&\epsilon=-1,\\
+3q+2,&\epsilon=1.
+\end{cases} \tag{4}
+$$
+The same expansion gives the ordered finite-pair sum from (3) as
+$$
+\frac{J_q-\epsilon q+8\epsilon+8}{4}. \tag{5}
+$$
+
+If $r$ is odd, $-1\notin Q$, so the Mobius change covers all of $Q$. Formulae (4)-(5) give ordered pair sum $(q-1)/2$, exactly the diagonal contribution. Hence
+$$
+P_r=0,\qquad R_r=0,
+$$
+and therefore
+$$
+\Sigma_r=-q.
+$$
+
+If $r$ is even, $y=-1$ is the one point sent to infinity. Formulae (4)-(5) give finite ordered pair sum $(q+9)/2$. Its diagonal contribution is $(q-3)/2$, so finite unordered distinct pairs contribute $3$. Every pair $\{-1,z\}$ with $z\ne-1$ contributes $1$, because (1) gives
+$$
+A+B=\frac{(z+1)^2}{z}.
+$$
+Thus
+$$
+P_r=3+\frac{q-3}{2}=\frac{q+3}{2}. \tag{6}
+$$
+For triples, every ordered pair $(y,z)\in Q^2$ determines $w=-1/(yz)\in Q$. The total ordered character sum is $3(q+1)/2$. The repeated triples have $y=z$, or $z=w$, or $w=y$; for $y=z$ equation (1) gives a square, zero only at $y=-1$, so each equality family contributes $(q-3)/2$. Their intersections are the triple $(-1,-1,-1)$, whose character is zero. Hence the ordered distinct-triple sum is
+$$
+\frac{3(q+1)}2-\frac{3(q-3)}2=6,
+$$
+so
+$$
+R_r=1. \tag{7}
+$$
+Combining (2), (6), and (7),
+$$
+\Sigma_r=-\frac{q-1}{2}.
+$$
+
+Step 5: Combine the two parity regimes.
+
 For odd $r$,
 $$
-M_r=2I_r+2S_r+H_r
-=\frac{3q^2+2q+3}{4}.
+M_r=\frac{5q^2+3}{8}-q
+=\frac{5q^2-8q+3}{8}.
 $$
-The two parity cases combine as
+For even $r$,
 $$
-M_r=\frac{17q^2+14q+9+(-q^2+2q-9)(-1)^r}{24}.
+M_r=\frac{7q^2+4q-3}{12}-\frac{q-1}{2}
+=\frac{7q^2-2q+3}{12}.
+$$
+These combine as
+$$
+M_r=\frac{29q^2-28q+15+(-q^2+20q-3)(-1)^r}{48}.
 $$
 
-Final Answer: $\boxed{\frac{17q^2+14q+9+(-q^2+2q-9)(-1)^r}{24}}$
+Final Answer: $\boxed{\frac{29q^2-28q+15+(-q^2+20q-3)(-1)^r}{48}}$
 
 ---
 
 ## Answer
 
-$\frac{17q^2+14q+9+(-q^2+2q-9)(-1)^r}{24}$
+$\frac{29q^2-28q+15+(-q^2+20q-3)(-1)^r}{48}$
 
 ---
 
@@ -178,10 +234,10 @@ $\frac{17q^2+14q+9+(-q^2+2q-9)(-1)^r}{24}$
 ## Solution Concepts
 
 - lagrangian graphs under a symplectic involution
-- discriminant-weighted cubic obstruction
-- Frobenius parity and discriminant characters
-- norm fibers in finite field extensions
-- cyclic subgroup product counts
+- coefficient-square fiber weights
+- affine root-line arrangements
+- quadratic-character incidence sums
+- Mobius transforms over finite fields
 
 ---
 
