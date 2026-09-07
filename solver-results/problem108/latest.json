@@ -2,8 +2,8 @@
   "problem": "problem108",
   "branch": "adversary/problem108",
   "problem_path": "workspace/rainier-problem/problem108-symplectic-and-contact-geometry/problem.md",
-  "problem_blob_sha": "055978b0f37413930995829979711a46cb755cf2",
-  "source_commit_sha": "164f86295bd2866df02829370997a867d56e2c43",
+  "problem_blob_sha": "f1d777f9477ad0d332f6f986d5f8f930994e2d3f",
+  "source_commit_sha": "a0a60d8300ed4ac1cb79d3d036a24bb178dfb4ca",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-07T02:39:20+00:00",
-  "result_file": "solver-results/problem108/055978b0f374.json"
+  "completed_at": "2026-09-07T03:00:49+00:00",
+  "result_file": "solver-results/problem108/f1d777f9477a.json"
 }

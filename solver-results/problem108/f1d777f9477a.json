@@ -1,0 +1,22 @@
+{
+  "problem": "problem108",
+  "branch": "adversary/problem108",
+  "problem_path": "workspace/rainier-problem/problem108-symplectic-and-contact-geometry/problem.md",
+  "source_commit_sha": "a0a60d8300ed4ac1cb79d3d036a24bb178dfb4ca",
+  "problem_blob_sha": "f1d777f9477ad0d332f6f986d5f8f930994e2d3f",
+  "statement_sha256": "e973b8bad430f166e0508fb338a2c937ec393b70904dfca1b930f170c9ad1027",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-07T02:55:59+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(q=3^r\\), and let \\(\\chi\\) be the quadratic character of \\(\\mathbb F_q\\), with \\(\\chi(0)=0\\).\n\nSince \\(L\\cap F=0\\), every \\(L\\) is the graph of a linear map \\(S:E\\to F\\). The Lagrangian condition says \\(S\\) is symmetric. The condition \\(\\jmath(L)=L\\) forces \\(S\\) to commute with the sign matrix \\(\\operatorname{diag}(1,-1,1,-1)\\), so, after using the given constraints,\n\\[\nS=\\begin{pmatrix}\n1&0&a&0\\\\\n0&c&0&0\\\\\na&0&b&0\\\\\n0&0&0&1\n\\end{pmatrix},\n\\]\nwhere\n\\[\na=s_{13},\\qquad b=s_{33},\\qquad c=s_{22}.\n\\]\nThe equation \\(s_{13}^2=A_L+B_L\\) becomes\n\\[\na^2=b+c+2a.\n\\]\nSince the field has characteristic \\(3\\), this gives\n\\[\nc=a^2+a-b.\n\\]\n\nNow fix \\(t\\in\\mathbb F_q\\). For \\(x\\in E\\), the \\(E\\)-part of \\(\\rho_t(x+Sx)\\) vanishes for some nonzero \\(x\\) exactly when\n\\[\nv_t^{T}Sv_t=0.\n\\]\nHere\n\\[\nv_t=(1,t,t^2,t^3),\n\\]\nso\n\\[\nv_t^{T}Sv_t\n=t^6+b t^4+(a^2-b)t^2+1.\n\\]\nThus the condition \\(\\rho_t(L)\\cap F=0\\) for every \\(t\\) is equivalent to\n\\[\nt^6+b t^4+(a^2-b)t^2+1\\neq 0\n\\qquad\\forall t\\in\\mathbb F_q.\n\\]\n\nPut \\(z=t^2\\). Then \\(z\\) ranges over the nonzero squares, plus \\(0\\), and the value at \\(z=0\\) is \\(1\\), so only nonzero squares matter. Define\n\\[\nh_{a,b}(z)=z^3+bz^2+(a^2-b)z+1.\n\\]\nWe must count pairs \\((a,b)\\in\\mathbb F_q^2\\) for which \\(h_{a,b}\\) has no nonzero square root.\n\nFor \\(z=1\\),\n\\[\nh_{a,b}(1)=a^2-1,\n\\]\nso \\(z=1\\) is a root exactly when \\(a=\\pm1\\). For \\(z\\neq1\\), the equation \\(h_{a,b}(z)=0\\) determines \\(b\\) uniquely:\n\\[\nb=-\\frac{z^3+a^2z+1}{z^2-z}.\n\\]\n\nBy inclusion-exclusion over the possible square roots of the cubic, the count is\n\\[\nM_r=q^2-N_1+N_2-N_3,\n\\]\nwhere \\(N_k\\) counts unordered \\(k\\)-subsets of nonzero squares that occur as roots, weighted by the number of \\(a\\)'s with the required value of \\(a^2\\).\n\nFirst,\n\\[\nN_1=2q+q\\left(\\frac{q-1}{2}-1\\right)=\\frac{q(q+1)}2.\n\\]\n\nFor two distinct nonzero squares \\(z,w\\), the third root is forced to be\n\\[\n-\\frac1{zw}.\n\\]\nA direct coefficient comparison gives\n\\[\na^2=zw-z-w-\\frac1z-\\frac1w+\\frac1{zw}.\n\\]\nThe resulting quadratic-character sum over unordered pairs of distinct nonzero squares is\n\\[\n\\sum_{\\{z,w\\}}\\chi\\!\\left(zw-z-w-\\frac1z-\\frac1w+\\frac1{zw}\\right)\n=\n\\begin{cases}\n0,&r\\text{ odd},\\\\\nq,&r\\text{ even}.\n\\end{cases}\n\\]\nHence the weighted number of unordered square-root pairs is\n\\[\nU=\n\\frac{(q-1)(q-3)}8+\n\\begin{cases}\n0,&r\\text{ odd},\\\\\nq,&r\\text{ even}.\n\\end{cases}\n\\]\n\nIf \\(r\\) is odd, then \\(-1\\) is nonsquare, so a cubic with two square roots has nonsquare third root. Therefore\n\\[\nM_r=q^2-\\frac{q(q+1)}2+U\n=\\frac{(q-1)(5q-3)}8.\n\\]\n\nIf \\(r\\) is even, then \\(-1\\) is square, so whenever two roots are nonzero squares, the third root is also a nonzero square. Each such cubic is counted three times by unordered pairs but contributes \\(2\\) in inclusion-exclusion, so the correction is \\(\\frac23U\\). Thus\n\\[\nM_r=q^2-\\frac{q(q+1)}2+\\frac23U\n=\\frac{7q^2-2q+3}{12}.\n\\]\n\nTherefore, with \\(q=3^r\\),\n\\[\n\\boxed{\nM_r=\n\\begin{cases}\n\\dfrac{(q-1)(5q-3)}8,& r\\ \\text{odd},\\\\[6pt]\n\\dfrac{7q^2-2q+3}{12},& r\\ \\text{even}.\n\\end{cases}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-07T03:00:49+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem108/f1d777f9477a.json"
+}
