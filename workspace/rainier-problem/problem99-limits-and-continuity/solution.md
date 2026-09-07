@@ -77,17 +77,41 @@ Write
 $$
 U_j=\sum_{i=1}^ku_i^j,\qquad V_j=\sum_{i=1}^rv_i^j,\qquad Z_j=\sum_{i=1}^lz_i^j.
 $$
-The phase contributes
+Relative to the limiting weights $e^{-\sum u_i-\sum z_i^2-\sum v_i}$, the phase contributes
 $$
 -\frac{3}{2\sqrt2}qZ_3
-+q^2\left(7U_2+V_2+\frac94Z_4\right)+O(q^4).
++q^2\left(7U_2+V_2+\frac94Z_4\right)+R_{\rm ph}.
 $$
-For every cross pair we use the single Taylor formula
+Indeed, for one left and one right variable the exact corrections are
+$$
+7q^2u^2-15q^4u^3+9q^6u^4,
+\qquad
+q^2v^2-\frac{21}{64}q^4v^3+\frac9{256}q^6v^4,
+$$
+while the middle correction is exactly
+$$
+-\frac{3}{2\sqrt2}qz^3+\frac94q^2z^4.
+$$
+Thus, on a core $0\le u_i,v_i\le R$ and $|z_i|\le R$ with $R\ge1$,
+$$
+|R_{\rm ph}|\le C_m\left(q^4R^3+q^6R^4\right)\le C_mq^4R^4.
+$$
+
+For every cross pair, if $|y|\le1/2$, Taylor's formula with remainder gives
+$$
+2\log(1+y)=2y-y^2+\frac23y^3+\rho(y),
+\qquad |\rho(y)|\le C|y|^4.
+$$
+With $y=aq+bq^2$, collecting powers through $q^3$ gives
 $$
 2\log(1+aq+bq^2)
-=2aq+(2b-a^2)q^2+\left(-2ab+\frac{2a^3}{3}\right)q^3+O(q^4).
+=2aq+(2b-a^2)q^2+\left(-2ab+\frac{2a^3}{3}\right)q^3+\rho_{a,b}(q),
 $$
-The three normalized cross distances give
+and on the above core, for the $LM$ and $MR$ pairs,
+$$
+|\rho_{a,b}(q)|\le Cq^4R^4
+$$
+for all sufficiently small $q$. The three normalized cross distances therefore give
 $$
 \begin{array}{c|c|c|l}
  & a & b & \text{logarithm through }q^3\\ \hline
@@ -98,9 +122,9 @@ MR&-3z/(2\sqrt2)&-3v/8&
 LR&0&-(u+v/4)&(-2u-\frac12v)q^2
 \end{array}
 $$
-(the last line is $2\log(1-q^2(u+v/4))$). Summing these pairwise coefficients and adding the phase gives
+(the last line is $2\log(1-q^2(u+v/4))$, whose omitted part is $O(q^4R^2)$ on the core). Summing these pairwise coefficients and adding the phase gives
 $$
-qA+q^2B+q^3C+O(q^4),
+qA+q^2B+q^3C+E_q,
 $$
 where
 $$
@@ -113,18 +137,56 @@ B=7U_2+V_2-(6l+2r)U_1
 $$
 $$
 C=9\sqrt2\left(U_1-\frac{V_1}{16}\right)Z_1
-+\frac{9\sqrt2}{16}(8k-r)Z_3.
++\frac{9\sqrt2}{16}(8k-r)Z_3,
+$$
+and, since the numbers of variables and pairs are fixed once $m$ is fixed,
+$$
+|E_q|\le C_mq^4R^4.
 $$
 This summation uses only
 $\sum_{i,j}z_j=kZ_1$, $\sum_{i,j}u_i=lU_1$, and
 $\sum_{i,j}u_iz_j=U_1Z_1$ (and the analogous right-hand identities).
 
-For the remainder, restrict first to $|u_i|,|v_i|,|z_i|\le R_q$ with $R_q=q^{-1/16}$. The omitted Taylor terms give a logarithmic correction $S_q=O(qR_q^3)$, hence
+Now take
 $$
-e^{S_q}-1-S_q-\frac{S_q^2}{2}-\frac{S_q^3}{6}
-=O(q^4R_q^{12})=O(q^{13/4})=o(q^3).
+R=R_q=q^{-1/16},\qquad P_q=qA+q^2B+q^3C.
 $$
-Outside this core, the Laguerre/Gaussian weights give exponentially small tails. Thus termwise integration through $q^3$ is justified.
+On the core,
+$$
+|A|\le C_mR_q^3,\qquad |B|\le C_mR_q^4,\qquad |C|\le C_mR_q^3,
+$$
+so $|P_q|\le C_mqR_q^3=o(1)$. Therefore
+$$
+\begin{aligned}
+e^{P_q+E_q}
+&=1+qA+q^2\left(B+\frac{A^2}{2}\right)\\
+&\quad+q^3\left(C+AB+\frac{A^3}{6}\right)+\mathcal E_q,
+\end{aligned}
+$$
+where the fourth-order Taylor remainder in $e^{P_q}$, all monomials of total $q$-degree at least $4$ coming from $P_q^2/2$ and $P_q^3/6$, and the separate logarithmic error $E_q$ satisfy
+$$
+|\mathcal E_q|
+\le C_m\left(q^4R_q^{12}+q^4R_q^4\right)
+=O(q^{13/4})+O(q^{15/4})
+=o(q^3).
+$$
+The limiting Laguerre/Gaussian Vandermonde density has finite total mass, so integrating this uniform core error still gives $o(q^3)$.
+
+It remains to control the complement of the core. Fix small disjoint neighborhoods of $0,\frac13,1$. In the left and right charts the exact phase satisfies
+$$
+\frac{\phi(q^2u)}{q^2}\ge c u,
+\qquad
+\frac{\phi(1-q^2v/4)}{q^2}\ge c v,
+$$
+and in the middle chart
+$$
+\frac{\phi(1/3+qz/\sqrt2)}{q^2}\ge c z^2
+$$
+for all sufficiently small $q$, as long as the original variable stays in its chosen neighborhood. Hence the transformed local integrands are bounded by a fixed polynomial times
+$$
+e^{-c(\sum u_i+\sum v_i+\sum z_i^2)}.
+$$
+The part with some $u_i$ or $v_i$ larger than $R_q$ is therefore $O(e^{-cR_q})$, and the part with some $|z_i|>R_q$ is $O(e^{-cR_q^2})$, up to polynomial factors; both are $o(q^N)$ for every fixed $N$. Outside the three chosen neighborhoods, $\phi$ is bounded below by a positive constant, giving $O(e^{-c/q^2})$. Thus termwise integration through $q^3$ is justified with a genuine integrated $o(q^3)$ remainder.
 
 Step 4: Evaluate the required moments without repeated bookkeeping
 
@@ -190,7 +252,7 @@ $$
 $$
 for the left, middle, and right wells. Therefore its total logarithm is
 $$
-qh+q^2\left(d+\frac3{\sqrt2}Z_1\right)+q^3T+O(q^4),
+qh+q^2\left(d+\frac3{\sqrt2}Z_1\right)+q^3T+E_q^{(w)},
 $$
 with
 $$
@@ -199,6 +261,12 @@ $$
 $$
 \mathbb E[T]=3k^2-\frac k3+\frac{8r}{3}-\frac{3r^2}{4}.
 $$
+On the same core used in Step 3, direct Taylor bounds for these three one-variable logarithms give
+$$
+|E_q^{(w)}|\le C_mq^4(1+R_q^2)=O(q^{31/8})=o(q^3),
+$$
+and the complement of the core is already negligible by the domination proved in Step 3. Thus this factor also contributes no hidden order-$q^3$ error.
+
 By $z\mapsto-z$ symmetry the odd Gaussian terms vanish except
 $$
 J:=\frac3{\sqrt2}\mathbb E[AZ_1]
