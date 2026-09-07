@@ -4,7 +4,7 @@ Step 1: Separate the implicit root
 
 Let
 $$
-A_n=\int_{[0,1]^4}e^{-nT^2}\,d\mathbf x,
+A_n=\int_{[0,1]^4}e^{-n(P^2+Q^2)}\,d\mathbf x,
 $$
 and let $J_n=I_n(0)$. Then
 $$
@@ -15,118 +15,129 @@ $$
 \sinh\lambda_n=-\frac{J_n}{A_n}. \tag{1}
 $$
 
-Step 2: Reduce the product variable
+Step 2: Reduce to two product coordinates
 
-For every integrable $F$ on $(0,1)$,
+For every integrable $F$ on $(0,1)^2$,
 $$
-\int_{[0,1]^4}F(x_1x_2x_3x_4)\,d\mathbf x
-=\frac16\int_0^1(-\log t)^3F(t)\,dt. \tag{2}
+\int_{[0,1]^4}F(P,Q)\,d\mathbf x
+=\int_0^1\int_0^1(-\log p)(-\log q)F(p,q)\,dp\,dq. \tag{2}
 $$
-Indeed, with $x_i=e^{-u_i}$ and $s=u_1+\cdots+u_4$, the simplex $u_i\ge0$ has three-dimensional volume $s^3/6$, and then $t=e^{-s}$ gives (2).
+Indeed, each product of two independent uniform variables has density $-\log p$ on $(0,1)$, and the two pairs are independent.
 
-Thus
+Therefore
 $$
-A_n=\frac16\int_0^1(-\log t)^3e^{-nt^2}\,dt
-\sim\frac{\sqrt\pi}{96}n^{-1/2}(\log n)^3. \tag{3}
+A_n=\left(\int_0^1(-\log p)e^{-np^2}\,dp\right)^2.
+$$
+With $y=\sqrt n\,p$,
+$$
+\int_0^1(-\log p)e^{-np^2}\,dp
+\sim\frac{\sqrt\pi}{4}n^{-1/2}\log n,
+$$
+so
+$$
+A_n\sim\frac\pi{16}n^{-1}(\log n)^2. \tag{3}
 $$
 
-Step 3: Collapse the third finite difference
+Step 3: Collapse the double finite difference
 
 Put
 $$
-N=n^{1/3},\qquad a=(2n)^{1/3}=2^{1/3}N,
-\qquad \delta=N^{-1/4}.
+N=\sqrt n,\qquad a=n^{1/4},\qquad h=\log2.
 $$
-For $y\ge0$ define
+For $u,v\ge0$ define
 $$
-F_N(y)=N^{1/4}\Big(
- e^{-N[4+(y-\delta)^4]}
-+e^{-N[4+(y+\delta)^4]}
--2e^{-N[4+y^4+y^8]}
-\Big).
+\begin{aligned}
+F_N(u,v)=&\ e^{-N[4+(u^2+v^2-1)^2]}
+-\sqrt\pi\,N^{1/2}e^{-N(4+u^2+v^2)}\\
+&+\frac\pi8N e^{-N(5+u+v)}.
+\end{aligned}
 $$
-For the term indexed by $j$, apply (2) and set $y=a2^jt$. The factor $2^j$ cancels the Jacobian apart from the common factor $a^{-1}$, while
+For the term indexed by $(j,k)$, use (2) and set
 $$
--\log t=\log a+j\log2-\log y.
+u=a2^jp,\qquad v=a2^kq.
 $$
-Therefore
+The factor $2^{j+k}$ cancels the Jacobian apart from $a^{-2}=N^{-1}$, while
 $$
-\sum_{j=0}^3(-1)^{3-j}\binom3j(\log a+j\log2-\log y)^3=6(\log2)^3. \tag{4}
+-\log p=\log a+jh-\log u,
+\qquad
+-\log q=\log a+kh-\log v.
 $$
-The different upper limits may be replaced by infinity with an error super-exponentially smaller than $e^{-4N}$, since all three phases are quartic or stronger there. Hence
+Hence
 $$
-J_n=\frac{(\log2)^3}{2^{1/3}N}H_N+o(N^{-2}e^{-4N}), \tag{5}
+\sum_{j,k=0}^1(-1)^{2-j-k}(X+jh)(Y+kh)=h^2. \tag{4}
+$$
+The different upper limits may be replaced by infinity with an error super-exponentially smaller than $e^{-5N}$. Thus
+$$
+J_n=\frac{h^2}{N}H_N+o(N^{-3}e^{-5N}), \tag{5}
 $$
 where
 $$
-H_N=\int_0^\infty F_N(y)\,dy. \tag{6}
+H_N=\int_0^\infty\int_0^\infty F_N(u,v)\,du\,dv. \tag{6}
 $$
 
-Step 4: Resolve the coalescing boundary-saddle cancellation
+Step 4: Cancel the radial saddle, isolated saddle, and leading corner tail
 
-Set $x=N^{1/4}y$. Because $\delta=N^{-1/4}$,
+For the first channel, polar coordinates in the first quadrant give
 $$
 \begin{aligned}
-H_N=e^{-4N}\Bigg[&\int_0^\infty e^{-(x-1)^4}\,dx
-+\int_0^\infty e^{-(x+1)^4}\,dx\\
-&-2\int_0^\infty e^{-x^4-N^{-1}x^8}\,dx\Bigg]. \tag{7}
+R_N
+&=\frac\pi2e^{-4N}\int_0^\infty r e^{-N(r^2-1)^2}\,dr\\
+&=\frac\pi4e^{-4N}\int_{-1}^\infty e^{-Nz^2}\,dz. \tag{7}
 \end{aligned}
 $$
-Let
+For the second channel,
 $$
-G=\int_0^\infty e^{-x^4}\,dx.
+G_N=\sqrt\pi N^{1/2}e^{-4N}
+\left(\int_0^\infty e^{-Nu^2}du\right)^2
+=\frac{\pi\sqrt\pi}{4}N^{-1/2}e^{-4N}. \tag{8}
 $$
-By shifting the first two integrals and using the evenness of $e^{-x^4}$,
+Since
 $$
-\int_0^\infty e^{-(x-1)^4}dx+
-\int_0^\infty e^{-(x+1)^4}dx=2G. \tag{8}
+\int_{-\infty}^{\infty}e^{-Nz^2}dz=\sqrt\pi N^{-1/2},
 $$
-Thus the full leading boundary-saddle profile cancels. For the remaining integral,
+(7)-(8) imply the exact cancellation
 $$
-\int_0^\infty e^{-x^4-N^{-1}x^8}dx
-=G-\frac1N\int_0^\infty x^8e^{-x^4}dx+O(N^{-2}). \tag{9}
+R_N-G_N=-\frac\pi4e^{-4N}\int_1^\infty e^{-Nz^2}dz. \tag{9}
 $$
-The moment is
+The third channel is exact:
 $$
-\int_0^\infty x^8e^{-x^4}dx
-=\frac14\Gamma\!\left(\frac94\right)
-=\frac{5}{64}\Gamma\!\left(\frac14\right). \tag{10}
+C_N=\frac\pi8N e^{-5N}
+\left(\int_0^\infty e^{-Nu}du\right)^2
+=\frac\pi8N^{-1}e^{-5N}. \tag{10}
 $$
-Combining (7)-(10),
+Integration by parts at the endpoint gives
 $$
-H_N\sim\frac{5\Gamma(1/4)}{32}N^{-1}e^{-4N}. \tag{11}
+\int_1^\infty e^{-Nz^2}dz
+=\frac{e^{-N}}{2N}\left(1-\frac1{2N}+O(N^{-2})\right). \tag{11}
+$$
+Thus the $N^{-1}e^{-5N}$ term in (9) is exactly canceled by (10), and
+$$
+H_N\sim\frac\pi{16}N^{-2}e^{-5N}. \tag{12}
 $$
 Therefore
 $$
-J_n\sim
-\frac{5\Gamma(1/4)(\log2)^3}{32\,2^{1/3}}
-N^{-2}e^{-4N}
-=
-\frac{5\Gamma(1/4)(\log2)^3}{32\,2^{1/3}}
-n^{-2/3}e^{-4n^{1/3}}. \tag{12}
+J_n\sim\frac\pi{16}(\log2)^2N^{-3}e^{-5N}
+=\frac\pi{16}(\log2)^2n^{-3/2}e^{-5\sqrt n}. \tag{13}
 $$
 
 Step 5: Recover the root
 
-By (3) and (12), $J_n/A_n\to0$, so (1) and $\operatorname{arsinh}u\sim u$ give
+By (3) and (13), $J_n/A_n\to0$, so (1) and $\operatorname{arsinh}u\sim u$ give
 $$
 \lambda_n\sim-\frac{J_n}{A_n}
-\sim-
-\frac{15\Gamma(1/4)(\log2)^3}{2^{1/3}\sqrt\pi}
-\frac{e^{-4n^{1/3}}}{n^{1/6}(\log n)^3}.
+\sim-(\log2)^2\frac{e^{-5\sqrt n}}{n^{1/2}(\log n)^2}.
 $$
 Hence
 $$
-\alpha=\frac16,\qquad \beta=3,\qquad c=4,\qquad
-L=-\frac{15\Gamma(1/4)(\log2)^3}{2^{1/3}\sqrt\pi}.
+\alpha=\frac12,\qquad \beta=2,\qquad c=5,\qquad L=-(\log2)^2.
 $$
-Final Answer: $\boxed{\left(\frac16,3,4,-\frac{15\Gamma(1/4)(\log2)^3}{2^{1/3}\sqrt\pi}\right)}$
+Final Answer: $\boxed{\left(\frac12,2,5,-(\log2)^2\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac16,3,4,-\frac{15\Gamma(1/4)(\log2)^3}{2^{1/3}\sqrt\pi}\right)$
+$\left(\frac12,2,5,-(\log2)^2\right)$
 
 ---
 
@@ -140,8 +151,8 @@ $\left(\frac16,3,4,-\frac{15\Gamma(1/4)(\log2)^3}{2^{1/3}\sqrt\pi}\right)$
 
 ## Solution Concepts
 
-- product-integral reduction
-- third finite-difference cancellation
-- coalescing boundary-saddle scaling
-- shifted-profile identity
-- subleading octic correction
+- paired product-coordinate reduction
+- double finite-difference cancellation
+- Morse-Bott radial saddle
+- isolated Gaussian cancellation
+- subleading endpoint tail
