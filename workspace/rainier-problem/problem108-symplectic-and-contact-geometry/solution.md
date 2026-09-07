@@ -1,34 +1,20 @@
 ## Steps
 
-Step 1: Convert the Lagrangian conditions into normalized root-free sextics.
+Step 1: Reduce symplectic transversality to a scalar polynomial.
 
-Every Lagrangian $L$ with $L\cap F=0$ is the graph
-$$
-L=\{x+S_Lx:x\in E\}
-$$
-of a unique linear map $S_L:E\to F$. In the ordered bases from the problem,
+Because $L\cap F=0$, every such $L$ is the graph of a unique map $S_L:E\to F$. In the ordered bases from the problem,
 $$
 \omega(x+S_Lx,y+S_Ly)=x^T(S_L-S_L^T)y,
 $$
 so $L$ is Lagrangian exactly when $S_L$ is symmetric.
 
-Fix $t\in\mathbb{F}_q$ and write $v=v_t$. For $x\in E$, put $y=x+S_Lx$. Decompose $y=y_\perp+av+bf_1$ with $y_\perp\in\langle v,f_1\rangle^\perp$. Since $\omega(v,f_1)=1$,
-$$
-a=\omega(y,f_1)=x_1,
-\qquad
-b=-\omega(y,v)=v^TS_Lx.
-$$
-Using $\rho_t(v)=f_1$, $\rho_t(f_1)=-v$, the $E$-component of $\rho_t(y)$ is
+Fix $t$ and write $v=v_t$. The projection of $\rho_t(L)$ onto $E$ sends $x\in E$ to
 $$
 x-v\left(x_1+v^TS_Lx\right).
 $$
-With $\ell(x)=x_1$, the projection of $\rho_t(L)$ onto $E$ has matrix
+A nonzero vector lies in the kernel exactly when it is a scalar multiple of $v$. Substituting $x=\lambda v$ and using $v_1=1$ shows that such a nonzero kernel vector exists exactly when
 $$
-I_4-v\left(\ell+v^TS_L\right).
-$$
-The rank-one determinant identity $\det(I-uv^T)=1-v^Tu$ and $\ell(v)=1$ give
-$$
-\det\left(I_4-v\left(\ell+v^TS_L\right)\right)=-v^TS_Lv.
+v_t^TS_Lv_t=0.
 $$
 Therefore
 $$
@@ -37,302 +23,160 @@ $$
 v_t^TS_Lv_t\ne0.
 $$
 
-Put
+Step 2: Use the involution to obtain a reciprocal one-parameter sextic.
+
+Let $R$ be the reversal matrix on the ordered bases of $E$ and $F$. Since $\iota$ preserves both $E$ and $F$, the condition $\iota(L)=L$ is equivalent to
 $$
-p_L(T)=v_T^TS_Lv_T.
+RS_L=S_LR.
 $$
-Writing $S_L=(s_{ij})$ gives
+Together with symmetry, this forces
+$$
+S_L=
+\begin{pmatrix}
+a&b&c&d\\
+b&e&f&c\\
+c&f&e&b\\
+d&c&b&a
+\end{pmatrix}.
+$$
+The three scalar constraints become
+$$
+a=1,\qquad e+2c=0,\qquad d+f=b.
+$$
+Since the characteristic is $3$, the middle equation gives $e=c$. Direct expansion now gives
 $$
 \begin{aligned}
-p_L(T)
-&=s_{11}+2s_{12}T+(s_{22}+2s_{13})T^2+2(s_{14}+s_{23})T^3\\
-&\quad +(s_{33}+2s_{24})T^4+2s_{34}T^5+s_{44}T^6.
+v_t^TS_Lv_t
+&=1+t^6+2b(t+t^5)+2(d+f)t^3\\
+&=t^6+B t^5+B t^3+B t+1,
 \end{aligned}
 $$
-The three normalizations make
+where $B=2b$. For each fixed $B$, the parameters $c$ and $d$ are free, while $e=c$ and $f=b-d$, so exactly $q^2$ matrices give the same polynomial. Hence
 $$
-p_L(T)=T^6+c_3T^3+c_2T^2+c_1T+c_0.
+M_r=q^2G_r,
 $$
-The seven displayed coefficients depend on disjoint entries or disjoint pairs of entries of the symmetric matrix, and $2$ is invertible in characteristic $3$. The restriction map from symmetric $4\times4$ matrices to sextics is therefore surjective. Its domain has dimension $10$ and its image has dimension $7$, so its kernel has dimension $3$. Every normalized polynomial has exactly $q^3$ preimages. So
+where $G_r$ is the number of $B\in\mathbb{F}_q$ for which
 $$
-M_r=q^3N,
+P_B(t)=t^6+B t^5+B t^3+B t+1
 $$
-where $N$ is the number of monic sextics with zero $T^5$- and $T^4$-coefficients and no root in $\mathbb{F}_q$.
+has no root in $\mathbb{F}_q$.
 
-Step 2: Isolate the two nonuniform terms in inclusion-exclusion.
+Step 3: Pass from the reciprocal sextic to an inversion trace.
 
-For a $k$-subset $A\subset\mathbb{F}_q$, write
+Since $P_B(0)=1$, only $t\ne0$ matters. Put
 $$
-g_A(T)=\prod_{a\in A}(T-a)
-=T^k-s_1(A)T^{k-1}+e_2(A)T^{k-2}+\cdots.
+u=t+t^{-1}.
 $$
-If $k\leq4$, a monic sextic divisible by $g_A$ has the form $g_Ah$, where
+In characteristic $3$,
 $$
-h(T)=T^{6-k}+b_1T^{5-k}+b_2T^{4-k}+\cdots.
-$$
-Vanishing of the $T^5$- and $T^4$-coefficients gives
-$$
-b_1=s_1(A),
+t^3+t^{-3}=u^3,
 \qquad
-b_2=s_1(A)^2-e_2(A).
+t^2+t^{-2}=u^2+1.
 $$
-The remaining $4-k$ coefficients of $h$ are free, so there are $q^{4-k}$ choices.
-
-For $k=5$, the quotient is $T+c$. The same two coefficient equations become
+Dividing $P_B(t)$ by $t^3$ therefore gives
 $$
-c=s_1(A),
-\qquad
-e_2(A)=s_1(A)^2.
+t^{-3}P_B(t)=u^3+B(u^2-1).
 $$
-Let $E_5$ count the $5$-subsets satisfying the second equation. For $k=6$, the polynomial is $g_A$ itself, so the conditions are
-$$
-s_1(A)=e_2(A)=0.
-$$
-Let $E_6$ count these $6$-subsets. Inclusion-exclusion gives
-$$
-N
-=q^4-q^4+\binom{q}{2}q^2-\binom{q}{3}q+\binom{q}{4}-E_5+E_6.
-$$
-
-Step 3: Convert the exceptional subsets into zero sums on a parabola.
-
-For a subset $A$, put
-$$
-p_2(A)=\sum_{a\in A}a^2.
-$$
-Since the characteristic is $3$,
-$$
-s_1(A)^2=p_2(A)+2e_2(A)=p_2(A)-e_2(A),
-$$
-so
-$$
-e_2(A)=p_2(A)-s_1(A)^2.
-$$
-The condition defining $E_5$ is therefore
-$$
-p_2(A)+s_1(A)^2=0.
-$$
-Translate $A$ by $c\in\mathbb{F}_q$. For a $5$-subset,
-$$
-s_1(A+c)=s_1(A)+5c=s_1(A)-c,
-$$
-and
-$$
-p_2(A+c)=p_2(A)+2cs_1(A)+5c^2=p_2(A)-cs_1(A)-c^2.
-$$
-So
-$$
-p_2(A+c)+s_1(A+c)^2=p_2(A)+s_1(A)^2.
-$$
-There is a unique translate with sum zero, namely $c=s_1(A)$. A nonzero translation cannot fix a $5$-subset because it would change its sum. Therefore, if
-$$
-Z_k
-=\#\left\{
-A\subset\mathbb{F}_q:
-|A|=k,\ 
-\sum_{a\in A}a=0,\ 
-\sum_{a\in A}a^2=0
-\right\},
-$$
-then
-$$
-E_5=qZ_5.
-$$
-For $k=6$, the equations $s_1=e_2=0$ give $p_2=0$, so
-$$
-E_6=Z_6.
-$$
-
-Step 4: Evaluate the parabola subset counts and keep the quadratic-character sign.
-
-Fix
-$$
-\psi(x)=\exp\left(\frac{2\pi i}{3}\operatorname{Tr}_{\mathbb{F}_q/\mathbb{F}_3}(x)\right),
-$$
-and let $\eta$ be the quadratic character of $\mathbb{F}_q$. Put
-$$
-\varepsilon=\eta(-1)=(-1)^r.
-$$
-Orthogonality of additive characters gives
-$$
-Z_k
-=\frac{1}{q^2}
-\sum_{\alpha,\beta\in\mathbb{F}_q}
-[z^k]
-\prod_{x\in\mathbb{F}_q}
-\left(1+z\psi(\alpha x+\beta x^2)\right).
-$$
-The pair $(\alpha,\beta)=(0,0)$ contributes $\binom{q}{k}$. If $\beta=0$ and $\alpha\ne0$, each cube root of unity occurs $q/3$ times, so
-$$
-\prod_{x\in\mathbb{F}_q}\left(1+z\psi(\alpha x)\right)=(1+z^3)^{q/3}.
-$$
-
-Now suppose $\beta\ne0$. Let
-$$
-A=\sum_x\psi(\alpha x+\beta x^2),
-\qquad
-B=\sum_x\psi(2\alpha x+2\beta x^2).
-$$
-For the factors in the product, the power sums satisfy
-$$
-p_{3j}=q,
-\qquad
-p_{3j+1}=A,
-\qquad
-p_{3j+2}=B.
-$$
-If $e_m$ denotes the coefficient of $z^m$, Newton's identity
-$$
-me_m=\sum_{h=1}^m(-1)^{h-1}e_{m-h}p_h,
-\qquad e_0=1,
-$$
-gives
-$$
-\begin{aligned}
-120e_5
-&=A^5-10A^3B+20A^2q-30A^2+15AB^2-20Bq+24B,\\
-720e_6
-&=A^6-15A^4B+40A^3q-90A^3+45A^2B^2\\
-&\quad -120ABq+234AB-15B^3+40q^2-120q.
-\end{aligned}
-$$
-
 Let
 $$
-G=\sum_x\psi(x^2).
+U=\{t+t^{-1}:t\in\mathbb{F}_q^*\}.
 $$
-Completing the square gives
+The equation $t+t^{-1}=u$ is equivalent to $t^2-ut+1=0$, whose discriminant is $u^2-1$. Thus
 $$
-A=G\eta(\beta)\psi(-\alpha^2/\beta),
-\qquad
-B=\varepsilon G\eta(\beta)\psi(\alpha^2/\beta),
+u\in U
+\quad\Longleftrightarrow\quad
+\eta(u^2-1)\in\{0,1\},
 $$
-and
+where $\eta$ is the quadratic character. The involution $t\mapsto t^{-1}$ has fixed points $t=\pm1$, so
 $$
-G^2=\varepsilon q.
+|U|=\frac{q+1}{2}.
 $$
-For
+Also $0\in U$ exactly when $-1$ is a square, equivalently when $r$ is even.
+
+The values $u=\pm1$ never give a root because $u^3+B(u^2-1)=\pm1$. For $u\notin\{0,\pm1\}$, put $x=u^{-1}$. Then
 $$
-S_{ij}=\sum_{\substack{\beta\ne0\\ \alpha\in\mathbb{F}_q}}A^iB^j,
+B=-\frac{u^3}{u^2-1}=\frac{1}{x^3-x},
 $$
-put $n=i+j$ and let $d$ be the image of $j-i$ in $\mathbb{F}_3$. Then
+and $u\in U$ is equivalent to
 $$
-A^iB^j
-=\varepsilon^jG^n\eta(\beta)^n\psi(d\alpha^2/\beta).
-$$
-If $d=0$, the $\alpha$-sum is $q$, and the $\beta$-sum is nonzero exactly when $n$ is even. If $d\ne0$, the quadratic Gauss sum gives
-$$
-\sum_{\alpha\in\mathbb{F}_q}\psi(d\alpha^2/\beta)
-=\eta(d)\eta(\beta)G,
-$$
-so the $\beta$-sum is nonzero exactly when $n$ is odd. Therefore
-$$
-S_{ij}
-=\begin{cases}
-\varepsilon^jG^nq(q-1),&d=0,\ n\text{ even},\\
-\varepsilon^j\eta(d)G^{n+1}(q-1),&d\ne0,\ n\text{ odd},\\
-0,&\text{otherwise}.
-\end{cases}
-$$
-Using $G^2=\varepsilon q$, the moments needed for $e_5$ are
-$$
-S_{50}=\varepsilon q^3(q-1),
-\qquad
-S_{31}=S_{20}=0,
-\qquad
-S_{12}=q^2(q-1),
-\qquad
-S_{01}=q(q-1).
-$$
-So
-$$
-\begin{aligned}
-\sum_{\substack{\beta\ne0\\ \alpha\in\mathbb{F}_q}}e_5
-&=\frac{S_{50}-10S_{31}+(20q-30)S_{20}+15S_{12}+(-20q+24)S_{01}}{120}\\
-&=\frac{q(q-1)(\varepsilon q^2-5q+24)}{120}.
-\end{aligned}
-$$
-For $e_6$ the needed moments are
-$$
-S_{60}=\varepsilon q^4(q-1),
-\qquad
-S_{41}=S_{30}=S_{03}=0,
-\qquad
-S_{22}=q^3(q-1),
-\qquad
-S_{11}=q^2(q-1).
-$$
-There are $q(q-1)$ pairs $(\alpha,\beta)$ with $\beta\ne0$, so
-$$
-\begin{aligned}
-\sum_{\substack{\beta\ne0\\ \alpha\in\mathbb{F}_q}}e_6
-&=\frac{1}{720}\Bigl(S_{60}-15S_{41}+(40q-90)S_{30}+45S_{22}\\
-&\qquad+(-120q+234)S_{11}-15S_{03}+(40q^2-120q)q(q-1)\Bigr)\\
-&=\frac{q^2(q-1)(\varepsilon q^2-35q+114)}{720}.
-\end{aligned}
+\eta(1-x^2)=1.
 $$
 
-Step 5: Simplify $Z_5$ and $Z_6$.
+Step 4: Count the bad parameters using Artin-Schreier fibers.
 
-Combining the three Fourier regimes gives
+Consider the $\mathbb{F}_3$-linear map
 $$
-\begin{aligned}
-Z_5
-&=\frac{1}{q^2}
-\left(
-\binom{q}{5}+
-\frac{q(q-1)(\varepsilon q^2-5q+24)}{120}
-\right)\\
-&=\frac{(q-1)\bigl(q^2+(\varepsilon-9)q+21\bigr)}{120}.
-\end{aligned}
+A(x)=x^3-x.
 $$
-For $Z_6$, the nontrivial linear characters contribute
+Its kernel is $\mathbb{F}_3=\{0,1,-1\}$. Moreover
 $$
-(q-1)\binom{q/3}{2},
+\operatorname{Tr}_{\mathbb{F}_q/\mathbb{F}_3}(A(x))=0,
 $$
-so
+so its image lies in the trace-zero subspace. Both have size $q/3$, hence
 $$
-\begin{aligned}
-Z_6
-&=\frac{1}{q^2}
-\left(
-\binom{q}{6}
-+(q-1)\binom{q/3}{2}
-+\frac{q^2(q-1)(\varepsilon q^2-35q+114)}{720}
-\right)\\
-&=\frac{q(q-1)\bigl(q^2+(\varepsilon-14)q+36\bigr)}{720}.
-\end{aligned}
+\operatorname{im}A=\ker\operatorname{Tr}_{\mathbb{F}_q/\mathbb{F}_3},
+$$
+and every nonzero image value $h$ has exactly the three preimages $x,x+1,x-1$.
+
+For $h\ne0$, none of these three preimages is $0$ or $\pm1$. Put
+$$
+d_0=1-x^2,
+\qquad
+d_+=1-(x+1)^2,
+\qquad
+d_-=1-(x-1)^2.
+$$
+In characteristic $3$,
+$$
+d_0d_+d_-
+=-x^2(1-x^2)^2.
 $$
 Therefore
 $$
-E_5
-=\frac{q(q-1)\bigl(q^2+(\varepsilon-9)q+21\bigr)}{120},
-\qquad
-E_6
-=\frac{q(q-1)\bigl(q^2+(\varepsilon-14)q+36\bigr)}{720}.
+\eta(d_0)\eta(d_+)\eta(d_-)=\eta(-1)=(-1)^r.
+$$
+A preimage contributes a forbidden nonzero parameter $B=1/h$ exactly when its corresponding $d$ is a square.
+
+If $r$ is even, the product of the three signs is $1$, so among the three signs there are either one or three $+1$ values. Thus every nonzero trace-zero $h$ produces a forbidden nonzero $B$. There are $q/3-1$ of them. In addition, $0\in U$, so $B=0$ is also forbidden. Hence the number of forbidden parameters is
+$$
+\frac q3,
+$$
+and the number of good parameters is
+$$
+G_r=\frac{2q}{3}.
 $$
 
-Step 6: Substitute and restore the graph fibers.
+If $r$ is odd, the product of the three signs is $-1$, so a represented nonzero $h$ has exactly two square preimages; otherwise it has none. Here $0\notin U$, so $B=0$ is good. Since $|U|=(q+1)/2$ and $U$ contains $\pm1$ but not $0$, inversion gives exactly
+$$
+\frac{q-3}{2}
+$$
+valid $x$ with $\eta(1-x^2)=1$. They occur two per represented $h$, so the number of forbidden nonzero parameters is
+$$
+\frac{q-3}{4}.
+$$
+Consequently
+$$
+G_r=q-\frac{q-3}{4}=\frac{3(q+1)}{4}.
+$$
 
-Using Step 2 and the values from Step 5,
+Step 5: Combine the two parity regimes in one closed form.
+
+The two values of $G_r$ can be written without cases as
 $$
-N
-=\frac{q(q-1)\bigl(53q^2+(26-\varepsilon)q+18\bigr)}{144}.
+G_r=\frac{17q+9-(q+9)(-1)^r}{24}.
 $$
-Since every normalized sextic has $q^3$ symmetric graph matrices,
+Using $M_r=q^2G_r$ from Step 2 gives
 $$
-M_r
-=\frac{q^4(q-1)\bigl(53q^2+(26-\varepsilon)q+18\bigr)}{144},
-\qquad \varepsilon=(-1)^r.
+M_r=\frac{q^2\left(17q+9-(q+9)(-1)^r\right)}{24}.
 $$
 
-Final Answer: $\boxed{\frac{q^4(q-1)\left(53q^2+(26-(-1)^r)q+18\right)}{144}}$
+Final Answer: $\boxed{\frac{q^2\left(17q+9-(q+9)(-1)^r\right)}{24}}$
 
 ---
 
 ## Answer
 
-$\frac{q^4(q-1)\left(53q^2+(26-(-1)^r)q+18\right)}{144}$
+$\frac{q^2\left(17q+9-(q+9)(-1)^r\right)}{24}$
 
 ---
 
@@ -346,11 +190,11 @@ $\frac{q^4(q-1)\left(53q^2+(26-(-1)^r)q+18\right)}{144}$
 
 ## Solution Concepts
 
-- lagrangian graphs and partial symplectic Fourier transforms
-- twisted cubic restriction to normalized sextics
-- nonuniform inclusion-exclusion at maximal root sets
-- additive Fourier analysis on a finite parabola
-- parity-sensitive quadratic Gauss moments
+- lagrangian graphs under a symplectic involution
+- reciprocal sextic reduction
+- inversion trace substitution
+- Artin-Schreier map over finite fields
+- quadratic-character parity on fibers
 
 ---
 
