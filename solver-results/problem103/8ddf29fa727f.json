@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "ace6923991ef651c2a030834b4c43a206b9c751c",
+  "problem_blob_sha": "8ddf29fa727f9b6fafe782384a7856195c927932",
+  "statement_sha256": "9ba6e67aa6a7764d36e84fb72e10d7f76d743793ffd891dbbdcd76ea3efbdbd9",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-07T02:40:07+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nA_n=\\int_{[0,1]^4}e^{-nT^2}\\,d\\mathbf x,\\qquad B_n=I_n(0).\n\\]\nThen\n\\[\nI_n(\\lambda)=A_n\\sinh\\lambda+B_n,\n\\]\nand since \\(A_n>0\\), the unique solution satisfies\n\\[\n\\sinh\\lambda_n=-\\frac{B_n}{A_n}.\n\\]\n\nFor any integrable \\(f\\) depending only on \\(T=x_1x_2x_3x_4\\),\n\\[\n\\int_{[0,1]^4} f(T)\\,d\\mathbf x\n=\\frac16\\int_0^1 f(t)(-\\log t)^3\\,dt.\n\\]\nThus, with \\(m=n^{1/3}\\),\n\\[\nA_n=\\frac16\\int_0^1 e^{-nt^2}(-\\log t)^3\\,dt.\n\\]\nUsing \\(t=u/\\sqrt n\\),\n\\[\nA_n\\sim \\frac16 n^{-1/2}\\left(\\frac12\\log n\\right)^3\\int_0^\\infty e^{-u^2}\\,du\n=\\frac{\\sqrt\\pi}{96}n^{-1/2}(\\log n)^3.\n\\]\n\nNow write the non-\\(\\lambda\\) part as \\(B_n\\). Put\n\\[\nh_m(y)=e^{-m[3+(y-1)^2]}-2y e^{-m[3+(y^2-4)^2]}\n+\\frac{3y^2+2}{2}e^{-m[4+W+W^2]},\n\\]\nwhere \\(W=y^3+2y\\). Since \\(Y_j=(2n)^{1/3}2^jT=2^{1/3}m2^jT\\),\n\\[\nB_n=\\frac1{6(2n)^{1/3}}\\sum_{j=0}^3(-1)^{3-j}\\binom3j\n\\int_0^{(2n)^{1/3}2^j}h_m(y)\n\\left(\\log((2n)^{1/3}2^j)-\\log y\\right)^3dy.\n\\]\nThe upper limits may be replaced by \\(\\infty\\) with exponentially smaller error. Since\n\\[\n\\sum_{j=0}^3(-1)^{3-j}\\binom3j(u+j\\log2)^3=6(\\log2)^3,\n\\]\nwe get\n\\[\nB_n\\sim \\frac{(\\log2)^3}{(2n)^{1/3}}H_m,\n\\]\nwhere\n\\[\nH_m=\\int_0^\\infty h_m(y)\\,dy.\n\\]\n\nCompute \\(H_m\\) exactly enough. The first two pieces give\n\\[\ne^{-3m}\\left(\\int_{-1}^\\infty e^{-mu^2}\\,du-\\int_{-4}^\\infty e^{-mv^2}\\,dv\\right)\n=-e^{-3m}\\int_1^4 e^{-ms^2}\\,ds.\n\\]\nFor the third piece, using \\(w=y^3+2y\\), \\(dw=(3y^2+2)dy\\),\n\\[\n\\int_0^\\infty \\frac{3y^2+2}{2}e^{-m[4+W+W^2]}\\,dy\n=\\frac{e^{-4m}}2\\int_0^\\infty e^{-m(w+w^2)}\\,dw.\n\\]\nAlso\n\\[\n\\int_1^4 e^{-ms^2}\\,ds\n=e^{-m}\\int_0^{15}e^{-mr}\\frac{dr}{2\\sqrt{1+r}}.\n\\]\nHence\n\\[\nH_m=\\frac{e^{-4m}}2\\left[\n\\int_0^\\infty e^{-m(w+w^2)}\\,dw\n-\\int_0^{15}e^{-mr}(1+r)^{-1/2}\\,dr\n\\right].\n\\]\nBy Watson expansion,\n\\[\n\\int_0^\\infty e^{-m(w+w^2)}dw=\\frac1m-\\frac2{m^2}+O(m^{-3}),\n\\]\nwhile\n\\[\n\\int_0^{15}e^{-mr}(1+r)^{-1/2}dr=\\frac1m-\\frac1{2m^2}+O(m^{-3}).\n\\]\nTherefore\n\\[\nH_m\\sim -\\frac34 e^{-4m}m^{-2}.\n\\]\nSince \\((2n)^{1/3}=2^{1/3}m\\),\n\\[\nB_n\\sim -\\frac{3(\\log2)^3}{4\\cdot 2^{1/3}}e^{-4n^{1/3}}n^{-1}.\n\\]\n\nThus\n\\[\n-\\frac{B_n}{A_n}\n\\sim\n\\frac{3(\\log2)^3}{4\\cdot 2^{1/3}}\n\\cdot \\frac{96}{\\sqrt\\pi}\n\\frac{e^{-4n^{1/3}}n^{-1}}{n^{-1/2}(\\log n)^3}\n=\n\\frac{72(\\log2)^3}{2^{1/3}\\sqrt\\pi}\n\\frac{e^{-4n^{1/3}}}{n^{1/2}(\\log n)^3}.\n\\]\nThis tends to \\(0\\), so \\(\\lambda_n\\sim -B_n/A_n\\). Therefore\n\\[\n\\boxed{\\alpha=\\frac12,\\qquad \\beta=3,\\qquad c=4,\\qquad\nL=\\frac{72(\\log2)^3}{2^{1/3}\\sqrt\\pi}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-07T02:41:37+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/8ddf29fa727f.json"
+}
