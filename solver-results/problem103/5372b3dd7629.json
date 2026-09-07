@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "b30a187458756b0ba1c4fb6bd619da477cc6b8ed",
+  "problem_blob_sha": "5372b3dd762917a70187111da3ee99d74bf0eabf",
+  "statement_sha256": "5de3f08e677c51ed7ebfc47d63224cf80b07c4d48575e674d043cc128faf45d7",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-07T02:48:46+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nA_n=\\int_{[0,1]^4}e^{-nT^2}\\,d\\mathbf x,\\qquad B_n=I_n(0).\n\\]\nThen\n\\[\nI_n(\\lambda)=A_n\\sinh\\lambda+B_n,\n\\]\nso the unique root is\n\\[\n\\lambda_n=\\operatorname{arsinh}\\!\\left(-\\frac{B_n}{A_n}\\right).\n\\]\n\nFor any suitable \\(f\\),\n\\[\n\\int_{[0,1]^4}f(x_1x_2x_3x_4)\\,d\\mathbf x\n=\\frac16\\int_0^1 f(t)(-\\log t)^3\\,dt,\n\\]\nbecause if \\(u_i=-\\log x_i\\), then \\(T=e^{-(u_1+\\cdots+u_4)}\\), and \\(u_1+\\cdots+u_4\\) has density \\(s^3e^{-s}/6\\).\n\nFirst,\n\\[\nA_n=\\frac16\\int_0^1 e^{-nt^2}(-\\log t)^3\\,dt.\n\\]\nWith \\(u=\\sqrt n\\,t\\),\n\\[\nA_n\\sim \\frac{n^{-1/2}}6\\left(\\frac{\\log n}{2}\\right)^3\\int_0^\\infty e^{-u^2}\\,du\n=\\frac{\\sqrt\\pi}{96}n^{-1/2}(\\log n)^3.\n\\]\n\nNow put \\(m=n^{1/3}\\), \\(\\delta=n^{-1/12}=m^{-1/4}\\), and\n\\[\nb_j=(2n)^{1/3}2^j.\n\\]\nFor the \\(j\\)-th term, substitute \\(y=b_jt\\). Since\n\\[\n\\frac{(-1)^{3-j}\\binom3j2^j}{b_j}\n=(-1)^{3-j}\\binom3j(2n)^{-1/3},\n\\]\nwe get, up to exponentially negligible upper-limit errors,\n\\[\nB_n=\\frac{n^{1/12}(2n)^{-1/3}}6\n\\int_0^\\infty Q_n(y)\n\\sum_{j=0}^3(-1)^{3-j}\\binom3j(\\log b_j-\\log y)^3\\,dy,\n\\]\nwhere\n\\[\nQ_n(y)=e^{-m[4+(y-\\delta)^4]}\n+e^{-m[4+(y+\\delta)^4]}\n-2e^{-m[4+y^4+y^8]}.\n\\]\nSince \\(\\log b_j=\\frac13\\log(2n)+j\\log2\\), the third finite difference gives\n\\[\n\\sum_{j=0}^3(-1)^{3-j}\\binom3j(\\log b_j-\\log y)^3\n=6(\\log2)^3.\n\\]\nHence\n\\[\nB_n=n^{1/12}(2n)^{-1/3}(\\log2)^3\\int_0^\\infty Q_n(y)\\,dy.\n\\]\n\nNow set \\(y=\\delta z\\). Because \\(m\\delta^4=1\\) and \\(m\\delta^8=m^{-1}\\),\n\\[\n\\int_0^\\infty Q_n(y)\\,dy\n=e^{-4m}\\delta H(m^{-1}),\n\\]\nwhere\n\\[\nH(\\varepsilon)=\\int_0^\\infty\n\\left(e^{-(z-1)^4}+e^{-(z+1)^4}-2e^{-z^4-\\varepsilon z^8}\\right)\\,dz.\n\\]\nAt \\(\\varepsilon=0\\),\n\\[\nH(0)=0,\n\\]\nbecause\n\\[\n\\int_0^\\infty e^{-(z-1)^4}dz+\\int_0^\\infty e^{-(z+1)^4}dz\n=2\\int_0^\\infty e^{-z^4}dz.\n\\]\nAlso\n\\[\nH'(0)=2\\int_0^\\infty z^8e^{-z^4}\\,dz\n=\\frac12\\Gamma\\!\\left(\\frac94\\right).\n\\]\nTherefore\n\\[\n\\int_0^\\infty Q_n(y)\\,dy\n\\sim \\frac12\\Gamma\\!\\left(\\frac94\\right)e^{-4n^{1/3}}n^{-5/12}.\n\\]\nThus\n\\[\nB_n\\sim 2^{-4/3}\\Gamma\\!\\left(\\frac94\\right)(\\log2)^3\n\\,n^{-2/3}e^{-4n^{1/3}}.\n\\]\n\nSince \\(B_n/A_n\\to0\\),\n\\[\n\\lambda_n\\sim-\\frac{B_n}{A_n}\n\\sim\n-\\frac{96}{\\sqrt\\pi}2^{-4/3}\\Gamma\\!\\left(\\frac94\\right)(\\log2)^3\n\\,n^{-1/6}(\\log n)^{-3}e^{-4n^{1/3}}.\n\\]\nUsing \\(\\Gamma(9/4)=\\frac5{16}\\Gamma(1/4)\\), the constant is\n\\[\nL=-30\\,2^{-4/3}\\frac{\\Gamma(1/4)}{\\sqrt\\pi}(\\log2)^3.\n\\]\n\nTherefore\n\\[\n\\boxed{\\alpha=\\frac16,\\quad \\beta=3,\\quad c=4,\\quad\nL=-30\\,2^{-4/3}\\frac{\\Gamma(1/4)}{\\sqrt\\pi}(\\log2)^3.}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-07T02:50:11+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/5372b3dd7629.json"
+}
