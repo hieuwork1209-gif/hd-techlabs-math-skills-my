@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "3320f49f23a84d4d3e44871f60a31c1e3e953258",
+  "problem_blob_sha": "935fc783d57b593f9bb17f7dd901f384154fb826",
+  "statement_sha256": "cf102f5627b764b17ac309342e06f836f353a338a7f941f6e165486d46163b7e",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-07T02:57:05+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(r=\\sqrt n\\). For a product \\(P=x_1x_2\\) of two independent variables in \\([0,1]\\), the density is \\(-\\log P\\). Hence\n\\[\n\\int_{[0,1]^4}F(P,Q)d\\mathbf x\n=\\int_0^1\\int_0^1 F(p,q)(-\\log p)(-\\log q)\\,dp\\,dq .\n\\]\n\nFirst,\n\\[\nA_n:=\\int_{[0,1]^4}e^{-n(P^2+Q^2)}d\\mathbf x\n=\\left(\\int_0^1 e^{-np^2}(-\\log p)\\,dp\\right)^2.\n\\]\nWith \\(p=t/\\sqrt n\\),\n\\[\n\\int_0^1 e^{-np^2}(-\\log p)\\,dp\n\\sim n^{-1/2}\\frac{\\sqrt\\pi}{4}\\log n,\n\\]\nso\n\\[\nA_n\\sim \\frac{\\pi}{16}n^{-1}(\\log n)^2.\n\\]\n\nNow consider the second part \\(B_n\\). For fixed \\(j,k\\), put\n\\[\nu=n^{1/4}2^jp,\\qquad v=n^{1/4}2^kq.\n\\]\nThe Jacobian cancels the factor \\(2^{j+k}\\), leaving the sign \\((-1)^{j+k}\\). Near the only minimum \\(u=v=1\\),\n\\[\n(-\\log p)(-\\log q)\n=\\left(\\frac14\\log n+j\\log2-\\log u\\right)\n \\left(\\frac14\\log n+k\\log2-\\log v\\right).\n\\]\nThe alternating sum over \\(j,k\\in\\{0,1\\}\\) cancels every term except\n\\[\n\\sum_{j,k=0}^1(-1)^{j+k}(\\cdots)=(\\log2)^2.\n\\]\nThus\n\\[\nB_n\\sim n^{-1/2}e^{-4r}(\\log2)^2 J_r,\n\\]\nwhere\n\\[\nJ_r=\\iint H(X,D)e^{-r(X^2+D^4)}\\frac{dX\\,dD}{\\sqrt{4+4X+D^2}},\n\\]\nwith\n\\[\nX=uv-1,\\qquad D=u-v,\\qquad\nH=X^2-2D^4+\\frac12XD^2.\n\\]\n\nScale\n\\[\nX=r^{-1/2}s,\\qquad D=r^{-1/4}t.\n\\]\nThen\n\\[\nH=r^{-1}\\left(s^2-2t^4+\\frac12st^2\\right),\n\\]\nand\n\\[\n\\frac1{\\sqrt{4+4X+D^2}}\n=\\frac12\\left(1+r^{-1/2}\\left(s+\\frac{t^2}{4}\\right)\\right)^{-1/2}.\n\\]\nThe first two coefficients vanish by Gaussian/Gamma moment cancellation. The first nonzero term is the \\(r^{-1}\\) term:\n\\[\nJ_r\\sim r^{-11/4}\\frac{3}{16}I_2,\n\\]\nwhere\n\\[\nI_2=\\iint \\left(s^2-2t^4+\\frac12st^2\\right)\n\\left(s+\\frac{t^2}{4}\\right)^2 e^{-s^2-t^4}\\,ds\\,dt.\n\\]\nKeeping only even powers of \\(s\\),\n\\[\nI_2=\\frac14\\sqrt\\pi\\,\\Gamma\\!\\left(\\frac14\\right).\n\\]\nTherefore\n\\[\nJ_r\\sim \\frac{3\\sqrt\\pi\\,\\Gamma(1/4)}{64}r^{-11/4}\n=\\frac{3\\sqrt\\pi\\,\\Gamma(1/4)}{64}n^{-11/8}.\n\\]\nSo\n\\[\nB_n\\sim\n\\frac{3\\sqrt\\pi\\,\\Gamma(1/4)}{64}(\\log2)^2\nn^{-15/8}e^{-4\\sqrt n}.\n\\]\n\nSince\n\\[\nI_n(\\lambda)=A_n\\sinh\\lambda+B_n,\n\\]\nand \\(A_n>0\\), the equation has a unique solution. Also \\(B_n/A_n\\to0\\), so\n\\[\n\\lambda_n\\sim-\\frac{B_n}{A_n}.\n\\]\nThus\n\\[\n\\lambda_n\\sim\n-\\frac{16}{\\pi}\\cdot\n\\frac{3\\sqrt\\pi\\,\\Gamma(1/4)}{64}(\\log2)^2\nn^{-7/8}(\\log n)^{-2}e^{-4\\sqrt n}.\n\\]\n\nHence\n\\[\n\\boxed{\n\\alpha=\\frac78,\\qquad\n\\beta=2,\\qquad\nc=4,\\qquad\nL=-\\frac{3\\Gamma(1/4)}{4\\sqrt\\pi}(\\log2)^2\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-07T02:58:53+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/935fc783d57b.json"
+}
