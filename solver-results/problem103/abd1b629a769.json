@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "48c309234274c3518cbe15094fa921e45c8b526f",
+  "problem_blob_sha": "abd1b629a7693d5dab84d171994d982677b85b39",
+  "statement_sha256": "d4ac21602edae4bc70b064a24c5f8c8d64986bf7655008505c15b55b6cee70f6",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-07T07:21:24+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nJ_n=\\int_{[0,1]^4}e^{-n(P^2+Q^2)}\\,d\\mathbf x,\\qquad \nK_n=\\sum_{j,k=0}^1(-1)^{2-j-k}2^{j+k}\\int_{[0,1]^4}A_n(U_j,V_k)e^{-\\sqrt n\\Psi_n(U_j,V_k)}\\,d\\mathbf x .\n\\]\n\nThen \\(I_n(\\lambda)=J_n\\sinh\\lambda+K_n\\), so \\(\\lambda_n\\sim -K_n/J_n\\).\n\nFirst,\n\n\\[\nJ_n=\\left(\\int_0^1 e^{-np^2}(-\\log p)\\,dp\\right)^2.\n\\]\n\nWith \\(y=\\sqrt n\\,p\\),\n\n\\[\n\\int_0^1 e^{-np^2}(-\\log p)\\,dp\n=n^{-1/2}\\left(\\frac{\\sqrt\\pi}{4}\\log n+O(1)\\right),\n\\]\n\nhence\n\n\\[\nJ_n\\sim \\frac{\\pi}{16}n^{-1}(\\log n)^2.\n\\]\n\nFor \\(K_n\\), change variables \\(u=n^{1/4}2^jP,\\ v=n^{1/4}2^kQ\\). The product density is \\(-\\log P\\), so the signed sum over \\(j,k\\) gives the exact cancellation\n\n\\[\n\\sum_{j,k=0}^1(-1)^{j+k}\n\\left(\\frac14\\log n+j\\log2-\\log u\\right)\n\\left(\\frac14\\log n+k\\log2-\\log v\\right)\n=(\\log2)^2.\n\\]\n\nThus only the local integral near the minimum of \\(\\Psi_n\\) matters.\n\nPut \\(\\delta=n^{-1/4}\\), \\(r=uv\\), \\(s=(u-v)^2\\). One has the exact identity\n\n\\[\n\\Psi_n(u,v)\n=\n4+\\left(\\frac{s+\\delta}{\\delta}\\right)^2\n\\left((r-1)+\\frac{\\delta(s-\\delta)}{s+\\delta}\\right)^2\n+(s-\\delta)^2.\n\\]\n\nSo the minimum value is \\(4\\), attained when\n\n\\[\ns=\\delta,\\qquad r=1.\n\\]\n\nSet\n\n\\[\nu-v=\\sqrt\\delta\\,z,\\qquad r=1+\\delta t.\n\\]\n\nThen \\(s=\\delta z^2\\), and\n\n\\[\n\\sqrt n(\\Psi_n-4)\n=(1+z^2)^2\\left(t+\\frac{z^2-1}{z^2+1}\\right)^2+(z^2-1)^2.\n\\]\n\nAlso\n\n\\[\ndu\\,dv=\\frac{\\delta^{3/2}\\,dt\\,dz}{\\sqrt{4+\\delta(z^2+4t)}}.\n\\]\n\nA direct substitution into \\(A_n\\) gives\n\n\\[\nA_n=\\delta^3 B(t,z),\n\\]\n\nwhere, after shifting\n\n\\[\nX=(1+z^2)t+(z^2-1),\n\\]\n\nthe polynomial simplifies to\n\n\\[\nB=X^3-\\frac32X.\n\\]\n\nThe first two correction orders vanish because this Hermite-type polynomial is orthogonal to polynomials of degree \\(<3\\) against \\(e^{-X^2}\\). The first nonzero term comes from the cubic term in the Jacobian expansion, giving\n\n\\[\nK_n\\sim\n-\\frac{15\\sqrt\\pi}{128}(\\log2)^2\\mathcal D\\,\nn^{-19/8}e^{-4\\sqrt n}.\n\\]\n\nTherefore\n\n\\[\n\\lambda_n\\sim -\\frac{K_n}{J_n}\n=\n\\frac{15}{8\\sqrt\\pi}(\\log2)^2\\mathcal D\\,\nn^{-11/8}(\\log n)^{-2}e^{-4\\sqrt n}.\n\\]\n\nHence\n\n\\[\n\\boxed{\n\\alpha=\\frac{11}{8},\\quad\n\\beta=2,\\quad\nc=4,\\quad\nL=\\frac{15(\\log2)^2}{8\\sqrt\\pi}\\mathcal D\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-07T07:24:54+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/abd1b629a769.json"
+}
