@@ -28,139 +28,108 @@ B_n=\left(\int_0^1(-\log p)e^{-np^2}\,dp\right)^2
 \sim\frac\pi{16}n^{-1}(\log n)^2. \tag{3}
 $$
 
-Step 3: Collapse the double finite difference
+Step 3: Collapse the finite difference
 
 Put
 $$
 N=\sqrt n,\qquad h=\log2,\qquad \delta=N^{-1/2}=n^{-1/4}.
 $$
-In the $(j,k)$ term set $u=n^{1/4}2^jp$, $v=n^{1/4}2^kq$. The factor $2^{j+k}$ cancels the Jacobian apart from $N^{-1}$, while
+In the $(j,k,t)$ term set $u=n^{1/4}2^jp$, $v=n^{1/4}2^kq$. The $(j,k)$ alternating sum of the product-density logarithms is exactly $h^2$, while the $t$-sum is the difference of the two saddle families. Thus
 $$
-\sum_{j,k=0}^1(-1)^{2-j-k}(X+jh)(Y+kh)=h^2. \tag{4}
+S_n=\frac{h^2}{N}(H_1-H_0)+o\!\left(\delta^{21/2}e^{-4N}\right), \tag{4}
 $$
-Extending the unequal upper limits to infinity changes only exponentially smaller terms. Therefore
-$$
-S_n=\frac{h^2}{N}H_N+o\!\left(\delta^{17/2}e^{-4N}\right), \tag{5}
-$$
-where
-$$
-H_N=\int_0^\infty\int_0^\infty A_n(u,v)
-\left(e^{-N\Phi_n^+(u,v)}-e^{-N\Phi_n^-(u,v)}\right)du\,dv. \tag{6}
-$$
+where $H_t$ is the $(u,v)$ integral of $A_t(e^{-N\Phi_t^+}-e^{-N\Phi_t^-})$ over the positive quadrant.
 
-Step 4: Recover the two equal-action saddle channels
+Step 4: Put both saddle families in the same normal form
 
 Write
 $$
-r=uv,\qquad s=(u-v)^2,
+K_t=\left(1+\frac{s}{\delta}\right)R_t+(s-\delta).
 $$
-and define
+Then the definitions give exactly
 $$
-K=\left(1+\frac{s}{\delta}\right)(r-1)+(s-\delta). \tag{7}
+\Phi_t^\pm=4+(K_t\mp\delta)^2+(s-\delta)^2,
+\qquad
+A_t=K_t^2-\frac52\delta^2. \tag{5}
 $$
-Direct expansion of the displayed expressions in the problem gives
+Set $x=uv-1$, $y=u-v$. Since
 $$
-\Phi_n^\pm=4+(K\mp\delta)^2+(s-\delta)^2, \tag{8}
+\left|\frac{\partial(x,y)}{\partial(u,v)}\right|=\sqrt{y^2+4(1+x)}, \tag{6}
 $$
-and
-$$
-A_n=K^2-\frac52\delta^2. \tag{9}
-$$
-Thus the two channels have the same minimum action $4$.
-
-Set
-$$
-x=uv-1,\qquad y=u-v.
-$$
-Then
-$$
-\left|\frac{\partial(x,y)}{\partial(u,v)}\right|
-=\sqrt{y^2+4(1+x)}. \tag{10}
-$$
-Scale
+scale
 $$
 x=\delta X,\qquad y=\delta^{1/2}Y,\qquad T=Y^2-1,
 $$
 and put
 $$
-W=(1+Y^2)X+T. \tag{11}
+a=1+Y^2,\qquad W=aX+T-ta\delta. \tag{7}
 $$
-Then $K=\delta W$, $N\delta^2=1$, and
+Then $K_t=\delta W$, $N\delta^2=1$, and
 $$
-N(\Phi_n^\pm-4)=(W\mp1)^2+T^2,
+N(\Phi_t^\pm-4)=(W\mp1)^2+T^2,
 \qquad
-A_n=\delta^2\left(W^2-\frac52\right). \tag{12}
+A_t=\delta^2\left(W^2-\frac52\right). \tag{8}
 $$
-Also $dX=dW/(1+Y^2)$ and
+Moreover
 $$
-\frac1{\sqrt{y^2+4(1+x)}}
-=\frac12(1+\delta Z)^{-1/2},
+X=\frac{W-T}{a}+t\delta,
+$$
+so if
+$$
+Z=\frac{W-T}{a}+\frac{Y^2}{4},
+$$
+then
+$$
+H_t=\frac12e^{-4N}\delta^{7/2}\int_{\mathbb R^2}
+\frac{Q(W)e^{-T^2}}{a}\left(1+\delta Z+t\delta^2\right)^{-1/2}dW\,dY, \tag{9}
 $$
 where
 $$
-Z=\frac{W-T}{1+Y^2}+\frac{Y^2}{4}. \tag{13}
-$$
-Hence, with
-$$
-F(W)=e^{-(W-1)^2}-e^{-(W+1)^2},
-$$
-we obtain
-$$
-H_N=\frac12e^{-4N}\delta^{7/2}
-\int_{\mathbb R^2}\frac{\left(W^2-\frac52\right)F(W)e^{-T^2}}{1+Y^2}
-(1+\delta Z)^{-1/2}\,dW\,dY. \tag{14}
+Q(W)=\left(W^2-\frac52\right)\left(e^{-(W-1)^2}-e^{-(W+1)^2}\right). \tag{10}
 $$
 
-Step 5: Use the inter-channel moment cancellations
+Step 5: Use the coupled cancellation between the two families
 
-The function $F$ is odd. Its odd moments are
+The needed moments are
 $$
-\int WF(W)\,dW=2\sqrt\pi,\qquad
-\int W^3F(W)\,dW=5\sqrt\pi,
+\int Q(W)dW=\int WQ(W)dW=\int W^2Q(W)dW=0,
+\qquad
+\int W^3Q(W)dW=7\sqrt\pi. \tag{11}
 $$
+Also
 $$
-\int W^5F(W)\,dW=\frac{39}{2}\sqrt\pi. \tag{15}
+\begin{aligned}
+&(1+\delta Z+\delta^2)^{-1/2}-(1+\delta Z)^{-1/2}\\
+&=-\frac12\delta^2+\frac34\delta^3Z
++\delta^4\left(\frac38-\frac{15}{16}Z^2\right)
++\delta^5\left(\frac{35}{32}Z^3-\frac{15}{16}Z\right)+O(\delta^6(1+|Z|^4)).
+\end{aligned} \tag{12}
 $$
-Therefore, for $P(W)=W^2-\frac52$,
+By (11), every term through order $\delta^4$ integrates to zero. At order $\delta^5$, the $Z$ term also vanishes, while only the $W^3/a^3$ part of $Z^3$ survives. Therefore, using the definition of $\mathcal D$,
 $$
-\int WP(W)F(W)\,dW=0,\qquad
-\int W^3P(W)F(W)\,dW=7\sqrt\pi. \tag{16}
+H_1-H_0\sim\frac{245\sqrt\pi}{64}\mathcal D\,\delta^{17/2}e^{-4N}. \tag{13}
 $$
-Expand
+Hence
 $$
-(1+\delta Z)^{-1/2}
-=1-\frac12\delta Z+\frac38\delta^2Z^2-\frac5{16}\delta^3Z^3+O(\delta^4). \tag{17}
+S_n\sim\frac{245\sqrt\pi}{64}\mathcal D(\log2)^2\delta^{21/2}e^{-4N}. \tag{14}
 $$
-Since $P$ is even, the order $\delta^0$ vanishes by parity. Writing
+Since $\delta=n^{-1/4}$, equations (1), (3), and (14) give
 $$
-Z=\frac{W}{1+Y^2}+b(Y),
-$$
-the orders $\delta^1$ and $\delta^2$ vanish by (16) and parity. At order $\delta^3$, only the $W^3$ term survives. Thus, by the definition of $\mathcal D$,
-$$
-H_N\sim-\frac{35\sqrt\pi}{32}\mathcal D\,\delta^{13/2}e^{-4N}. \tag{18}
-$$
-Consequently
-$$
-S_n\sim-\frac{35\sqrt\pi}{32}\mathcal D(\log2)^2
-\delta^{17/2}e^{-4N}. \tag{19}
-$$
-Combining (1), (3), and (19), and using $\delta=n^{-1/4}$,
-$$
-\lambda_n\sim\frac{35\mathcal D(\log2)^2}{2\sqrt\pi}
-\frac{e^{-4\sqrt n}}{n^{9/8}(\log n)^2}.
+\lambda_n\sim-\frac{245\mathcal D(\log2)^2}{4\sqrt\pi}
+\frac{e^{-4\sqrt n}}{n^{13/8}(\log n)^2}.
 $$
 Therefore
 $$
-\alpha=\frac98,\qquad \beta=2,\qquad c=4,
-\qquad L=\frac{35\mathcal D(\log2)^2}{2\sqrt\pi}.
+\alpha=\frac{13}{8},\qquad \beta=2,\qquad c=4,
+\qquad L=-\frac{245\mathcal D(\log2)^2}{4\sqrt\pi}.
 $$
-Final Answer: $\boxed{\left(\frac98,2,4,\frac{35\mathcal D(\log2)^2}{2\sqrt\pi}\right)}$
+Final Answer: $\boxed{\left(\frac{13}{8},2,4,-\frac{245\mathcal D(\log2)^2}{4\sqrt\pi}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac98,2,4,\frac{35\mathcal D(\log2)^2}{2\sqrt\pi}\right)$
+$\left(\frac{13}{8},2,4,-\frac{245\mathcal D(\log2)^2}{4\sqrt\pi}\right)$
 
 ---
 
@@ -175,7 +144,7 @@ $\left(\frac98,2,4,\frac{35\mathcal D(\log2)^2}{2\sqrt\pi}\right)$
 ## Solution Concepts
 
 - paired product-coordinate reduction
-- equal-action saddle-channel cancellation
-- nonlinear saddle coordinate recovery
-- signed Gaussian moment matching
-- Jacobian-order cancellation
+- coupled equal-action saddle families
+- subleading saddle translation
+- signed Gaussian moment cancellation
+- delayed Jacobian contribution
