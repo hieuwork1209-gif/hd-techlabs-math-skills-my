@@ -30,9 +30,14 @@ Let $L$ range over Lagrangian subspaces with $L\cap F=0$ and $\jmath(L)=L$. Writ
 $$
 L=\{x+S_Lx:x\in E\},\qquad S_L=(s_{ij}).
 $$
+Define
+$$
+S_{L,+}=\begin{pmatrix}s_{11}&s_{13}\\s_{13}&s_{33}\end{pmatrix},\qquad
+S_{L,-}=\begin{pmatrix}s_{22}&s_{24}\\s_{24}&s_{44}\end{pmatrix}.
+$$
 Let $M_r$ be the number of such $L$ satisfying
 $$
-s_{11}=s_{44}=1
+s_{11}=s_{44}=1,\qquad \det S_{L,+}+\det S_{L,-}=-1,
 $$
 and
 $$
@@ -55,4 +60,4 @@ for every $t\in\mathbb{F}_q$. Determine $M_r$ exactly.
 
 ## Domain Explanation
 
-This problem counts invariant Lagrangian graphs subject to a full family of symplectic transversality conditions. The defining objects are Lagrangian subspaces, a symplectic involution, and symplectic quarter-turns, so Topology and Geometry with Symplectic and contact geometry is the best fit. The finite-field line arrangement appears only after the symplectic reduction.
+This problem counts invariant Lagrangian graphs subject to a coupled determinant constraint and a full family of symplectic transversality conditions. The defining objects are Lagrangian subspaces, eigenspace blocks of a symplectic involution, and symplectic quarter-turns, so Topology and Geometry with Symplectic and contact geometry is the best fit. Finite-field line arrangements and Artin-Schreier fibers appear only after the symplectic reduction.
