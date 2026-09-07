@@ -8,17 +8,20 @@ T=x_1x_2x_3x_4.
 $$
 Define
 $$
-\Phi_1(y)=3+(y-1)^2+(y-1)^4,
-\qquad
-\Phi_2(y)=3+4(y-2)^2+(y-2)^4.
+\Phi_1(y)=3+(y-1)^2,\qquad
+\Phi_2(y)=3+(y^2-4)^2.
 $$
 For each integer $n\ge1$ and real $\lambda$, let
+$$
+Y_j=(2n)^{1/3}2^jT
+$$
+and define
 $$
 \begin{aligned}
 I_n(\lambda)=\int_{[0,1]^4}\Bigg[&\sinh(\lambda)e^{-nT^2}\\
 &+\sum_{j=0}^3(-1)^{3-j}\binom3j2^j\Big\{
- e^{-n^{1/3}\Phi_1((2n)^{1/3}2^jT)}
--2e^{-n^{1/3}\Phi_2((2n)^{1/3}2^jT)}\Big\}\Bigg]d\mathbf x.
+ e^{-n^{1/3}\Phi_1(Y_j)}
+-2Y_j e^{-n^{1/3}\Phi_2(Y_j)}\Big\}\Bigg]d\mathbf x.
 \end{aligned}
 $$
 For each $n$, let $\lambda_n$ be the unique real number satisfying
@@ -45,4 +48,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for a sharp asymptotic of an implicitly defined root of a four-dimensional integral. Product reduction creates a cubic logarithmic density, and a third finite difference removes its three logarithmic orders. The remaining term is a competition between two separated Laplace saddles with the same exponential action; their leading Gaussian coefficients are tuned to cancel, so the answer comes from the next asymptotic coefficient rather than from either saddle alone. This is an application of asymptotic integration, so Calculus -> Applications of integration is the best fit.
+The problem asks for the sharp asymptotic of an implicitly defined root of a four-dimensional integral. Product reduction creates a cubic logarithmic density, and a third finite difference removes all three logarithmic orders. The remaining two Laplace channels are related by a hidden nonlinear change of variable, so their complete interior saddle expansions cancel and the first surviving contribution comes from an exponentially smaller endpoint tail. This is an application of asymptotic integration, so Calculus -> Applications of integration is the best fit.
