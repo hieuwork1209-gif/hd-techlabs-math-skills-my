@@ -32,15 +32,11 @@ L=\{x+S_Lx:x\in E\},\qquad S_L=(s_{ij}).
 $$
 Put
 $$
-A_L=s_{33}+2s_{24},\qquad B_L=s_{22}+2s_{13},
-$$
-and
-$$
-\Delta_L=A_L^2B_L^2-A_L^3-B_L^3.
+A_L=s_{33}+2s_{24},\qquad B_L=s_{22}+2s_{13}.
 $$
 Let $M_r$ be the number of such $L$ satisfying
 $$
-s_{11}=s_{44}=1,\qquad s_{24}=0,\qquad s_{13}^2=\Delta_L,
+s_{11}=s_{44}=1,\qquad s_{24}=0,\qquad s_{13}^2=A_L+B_L,
 $$
 and
 $$
@@ -63,4 +59,4 @@ for every $t\in\mathbb{F}_q$. Determine $M_r$ exactly.
 
 ## Domain Explanation
 
-This problem counts invariant Lagrangian graphs subject to a discriminant-square constraint and a full family of symplectic transversality conditions. The defining objects are Lagrangian subspaces, an eigenspace decomposition of a symplectic involution, and symplectic quarter-turns, so Topology and Geometry with Symplectic and contact geometry is the best fit. Finite-field factorization enters only after the symplectic reduction.
+This problem counts invariant Lagrangian graphs subject to a coefficient-square coupling and a full family of symplectic transversality conditions. The defining objects are Lagrangian subspaces, an eigenspace decomposition of a symplectic involution, and symplectic quarter-turns, so Topology and Geometry with Symplectic and contact geometry is the best fit. The weighted finite-field incidence sum appears only after the symplectic reduction.
