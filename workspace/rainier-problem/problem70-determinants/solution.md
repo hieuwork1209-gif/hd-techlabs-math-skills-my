@@ -1,184 +1,177 @@
 ## Steps
 
-Step 1: Rewrite the two normalized quantities as determinant-ratio derivatives
-Put $c=aL$ and $P_n(a)=W_1/T_1=1-U_1/T_1$. Since
+Step 1: Recover the two hidden scale variables
+Put
 $$
-T_1'=-T_2,\qquad T_1''=2T_3,
-$$
-and the same identities hold for $W_r$, direct differentiation gives
-$$
-H_n(a)=\frac{d}{dc}\log P_n(a),\qquad
-K_n(a)=\frac{d^2}{dc^2}\log P_n(a)=\frac{dH_n}{dc}.
-$$
-Moreover
-$$
-H_n(a)=\frac{T_1U_2-U_1T_2}{L\,T_1W_1},
-$$
-so $H_n$ is precisely the normalized $2\times2$ determinant invariant from the previous stationary-ratio formulation. Define
-$$
-F_n(c)=K_n(c/L)+\frac{66}{125}H_n(c/L)^2+\frac65H_n(c/L)+\frac53.
-$$
-The defining equation is $F_n(c_n)=0$, where $c_n=a_nL$.
-
-Step 2: Identify the limiting determinant invariant
-Let $A_N(a)=S_1(N,a)=B(a,N+1)$ with $N=n^3$, and put
-$$
-r_j(a)=\frac{A_{N+m_j}(a)}{A_N(a)},\qquad
-h_n(a)=1-\sum_{j=1}^3b_jr_j(a),
-$$
-$$
-\rho_n(a)=\frac{e^2A_N(a)}{T_1(n,a)}.
-$$
-Then $P_n=\rho_nh_n$. For $c$ in a fixed neighborhood of $1$, beta-function asymptotics give, uniformly with the needed $c$-derivatives,
-$$
-H_n(c/L)\longrightarrow H_0(c)
-=\frac1c+\sum_{q=1}^3q\pi_q(c)-3,
-$$
-where
-$$
-\pi_q(c)=\frac{e^{q-1-qc}}{\sum_{j=1}^3e^{j-1-jc}}.
-$$
-At $c=1$ the three weights are equal. Writing $d=c-1$ and expanding the elementary three-point log-sum gives
-$$
-H_0(1+d)=-\frac53d+d^2-\frac89d^3+d^4+O(d^5).
-$$
-Hence
-$$
-H_0(1)=0,\quad H_0'(1)=-\frac53,\quad H_0''(1)=2,
-$$
-$$
-H_0'''(1)=-\frac{16}{3},\qquad H_0''''(1)=24.
-$$
-
-Step 3: Verify the designed cubic degeneracy
-Set
-$$
-F_0(c)=H_0'(c)+\frac{66}{125}H_0(c)^2+\frac65H_0(c)+\frac53.
-$$
-The constants were chosen so that
-$$
-F_0(1)=0,
-$$
-$$
-F_0'(1)=H_0''(1)+\frac65H_0'(1)=2-2=0,
+L=\log n,\qquad c=aL,\qquad d=c-b,
 $$
 and
 $$
-F_0''(1)=H_0'''(1)
-+2\frac{66}{125}H_0'(1)^2+\frac65H_0''(1)=0.
+P_n(a,b)=\frac{W_1(n,a,b)}{T_1(n,a,b)}.
 $$
-The next derivative does not vanish:
+For fixed $b$, the identities $T_1'=-T_2$, $T_1''=2T_3$ and their $W$-analogues give
 $$
-F_0'''(1)=H_0''''(1)
-+6\frac{66}{125}H_0'(1)H_0''(1)
-+\frac65H_0'''(1)=\frac{176}{25}.
+H_n(a,b)=\frac{d}{dc}\log P_n(a,b),\qquad
+K_n(a,b)=\frac{d^2}{dc^2}\log P_n(a,b).
 $$
-Therefore
-$$
-F_0(1+d)=\frac{88}{75}d^3+O(d^4).
-$$
-Thus both ordinary linearization and a quadratic branch-splitting shortcut are structurally unavailable.
+Thus the first equation is a stationary determinant-ratio condition, while the second measures its normalized curvature.
 
-Step 4: Compute the finite-size forcing at the cusp
 Let
 $$
-Z(c)=\sum_{q=1}^3e^{q-1-qc},\qquad
-\pi_1(c)=\frac{e^{-c}}{Z(c)}.
-$$
-The $q=1$ beta correction is the only base-column correction of order $1/n$:
-$$
-\log\rho_n(c/L)
-=\text{const}-3c-\log Z(c)
-+\frac{\pi_1(c)}{2n}\left(\frac cL+\frac{c^2}{L^2}\right)
-+O\!\left(\frac1{n^2L}\right),
-$$
-uniformly after two $c$-derivatives. At $c=1$,
-$$
-\pi_1=\frac13,\qquad \pi_1'=\frac13,\qquad \pi_1''=\frac19.
-$$
-Hence its contributions to the first two log derivatives are
-$$
-\delta H_\rho(1)=\frac1{3nL}+\frac1{2nL^2}+O\!\left(\frac1{n^2L}\right),
+A_N(a)=S_1(N,a)=B(a,N+1),\qquad N=n^3,
 $$
 $$
-\delta K_\rho(1)=\frac7{18nL}+\frac{19}{18nL^2}
-+O\!\left(\frac1{n^2L}\right).
+r_j(a)=\frac{A_{N+m_j}(a)}{A_N(a)},\qquad
+h_n(a)=1-\sum_{j=1}^3b_jr_j(a).
+$$
+Since
+$$
+W_1=e^{2b}A_Nh_n,
+$$
+the beta approximation $B(a,n^q+1)=\Gamma(a)n^{-qa}(1+o(1))$ gives, uniformly near $(c,b)=(1,1)$,
+$$
+P_n(a,b)=\frac{e^{-3d}h_n(a)}{Z(d)}(1+o(1)),
+\qquad
+Z(d)=e^{-d}+e^{-2d}+e^{-3d}.
 $$
 
-For the signed stencil, put $\mu_k=\sum_jb_js_j^k$ with
-$s_j=\sum_{k=1}^{m_j}(N+k)^{-1}$. Since
+Step 2: Identify the singular limiting system
+Define
 $$
-s_j=jt-\frac{j^2}{2}t^2+\frac{j^3}{3}t^3+O(t^4),
+Q(d)=\frac{e^{-d}+2e^{-2d}+3e^{-3d}}{Z(d)},
 $$
-direct substitution of the three $b_j$ gives
+and let $V(d)$ be the variance of $\{1,2,3\}$ with weights proportional to $e^{-qd}$. Since $h_n(c/L)=c\,C_n(1+o(1))$ for a factor $C_n$ independent of $c$,
 $$
-\mu_1=\frac{12}{19}t+O(t^3),\qquad
-\mu_2=\frac8{19}t^3+O(t^4),\qquad
-\mu_3=-\frac{18}{19}t^3+O(t^4).
+H_n(c/L,b)\longrightarrow H_0(c,b)=\frac1c+Q(d)-3,
+$$
+$$
+K_n(c/L,b)\longrightarrow K_0(c,b)=-\frac1{c^2}-V(d).
+$$
+The elementary three-point expansions are
+$$
+Q(d)=2-\frac23d+\frac19d^3+O(d^5),
+$$
+$$
+V(d)=\frac23-\frac13d^2+O(d^4).
+$$
+Write
+$$
+u=c-1,\qquad v=b-1,
+$$
+so $d=u-v$. Then
+$$
+H_0=-u-\frac23d+u^2-u^3+\frac19d^3+O((|u|+|d|)^4),
+$$
+$$
+K_0+\frac53=2u-3u^2+4u^3+\frac13d^2+O((|u|+|d|)^4).
+$$
+The first limiting equation has nonzero derivative with respect to $u$ at the origin, so it determines a local stationary curve $u=u(d)$.
+
+Step 3: Eliminate the stationary curve and expose the cubic branch
+Solving $H_0=0$ recursively gives
+$$
+u=-\frac23d+\frac49d^2-\frac5{27}d^3+O(d^4),
+$$
+therefore
+$$
+v=u-d=-\frac53d+\frac49d^2-\frac5{27}d^3+O(d^4).
+$$
+Along this curve,
+$$
+K_0+\frac53=-\frac43d-\frac19d^2+\frac29d^3+O(d^4).
 $$
 Hence
 $$
+K_0+\frac53-\frac45v
+=-\frac7{15}d^2+\frac{10}{27}d^3+O(d^4).
+$$
+Also
+$$
+v^2=\frac{25}{9}d^2-\frac{40}{27}d^3+O(d^4).
+$$
+Consequently the tuned second invariant satisfies
+$$
+K_0+\frac53-\frac45v+\frac{21}{125}v^2
+=\frac{82}{675}d^3+O(d^4).
+$$
+Thus the Jacobian of the two-equation limiting system is singular in the relative-scale direction, and both the linear and quadratic terms disappear only after the first determinant equation has been eliminated.
+
+Step 4: Compute the finite-size forcing without destroying the singularity
+Let
+$$
+\pi_1(d)=\frac{e^{-d}}{Z(d)},\qquad s=\frac1{nL}.
+$$
+Only the $q=1$ beta factor contributes at order $s$:
+$$
+B(c/L,n+1)=\Gamma(c/L)e^{-c}
+\left(1-\frac{c}{2nL}-\frac{c^2}{2nL^2}+O(n^{-2}L^{-1})\right).
+$$
+Therefore the base-column part of $\log P_n$ contributes
+$$
+\frac{s}{2}c\pi_1(d)+\frac{s}{2L}c^2\pi_1(d)
+$$
+up to smaller terms.
+
+For the signed stencil, with
+$$
+\mu_k=\sum_{j=1}^3b_js_j^k,\qquad
+s_j=\sum_{k=1}^{m_j}\frac1{N+k},
+$$
+the same direct moment expansion gives
+$$
 \frac{\mu_2}{\mu_1}=\frac{2}{3n}+O(n^{-3/2}),\qquad
-\frac{\mu_3}{\mu_1}=-\frac{3}{2n}+O(n^{-3/2}).
-$$
-Therefore
-$$
-\log h_n(c/L)=\text{const}+\log c
--\frac{c}{3nL}-\frac{c^2}{4nL^2}
-+O\!\left(\frac1{n^{3/2}L}\right),
+\frac{\mu_3}{\mu_1}=-\frac{3}{2n}+O(n^{-3/2}),
 $$
 so
 $$
-\delta H_h(1)=-\frac1{3nL}-\frac1{2nL^2}
-+O\!\left(\frac1{n^{3/2}L}\right),
+\log h_n(c/L)=\text{const}+\log c-\frac{sc}{3}-\frac{sc^2}{4L}
++O(n^{-3/2}L^{-1}).
 $$
+At $(c,b)=(1,1)$,
 $$
-\delta K_h(1)=-\frac1{2nL^2}
-+O\!\left(\frac1{n^{3/2}L}\right).
+\pi_1(0)=\frac13,\qquad \pi_1'(0)=\frac13,\qquad \pi_1''(0)=\frac19.
 $$
-The order-$1/n$ terms in $H_n(1)$ cancel, but they do not cancel after one more scale derivative. Consequently
+The order-$s$ and order-$s/L$ corrections to the first derivative cancel between the base column and the stencil, while the second derivative retains
 $$
-H_n(1/L)=O\!\left(\frac1{n^{3/2}L}\right),
+K_n(1/L,1)=-\frac53+\frac7{18}s+O\left(\frac{s}{L}+n^{-3/2}L^{-1}\right).
 $$
+More generally, for $|u|+|d|=o(1)$,
 $$
-K_n(1/L)=-\frac53+\frac7{18nL}
-+O\!\left(\frac1{nL^2}+\frac1{n^{3/2}L}\right),
+H_n-H_0=O\bigl(s(|u|+|d|)+s/L+n^{-3/2}L^{-1}\bigr),
 $$
-and hence
+with the constant term through order $s/L$ cancelling at the origin, and
 $$
-F_n(1)=\frac7{18nL}+o\!\left(\frac1{nL}\right).
+K_n-K_0=\frac7{18}s+O\bigl(s(|u|+|d|)+s/L+n^{-3/2}L^{-1}\bigr).
 $$
 
-Step 5: Extract the cubic cusp displacement
-The same uniform beta and shift expansions give $F_n\to F_0$ with the required derivatives near $1$. Since the limiting zero is cubic and
-$F_n(1)=O((nL)^{-1})$, the selected nearby root satisfies
+Step 5: Extract the coupled cubic displacement
+The first equation $H_n=0$ therefore perturbs the stationary curve by $o(s^{1/3})$. On that curve the second equation becomes
 $$
-d_n:=c_n-1=O((nL)^{-1/3}).
+0=\frac{82}{675}d_n^3+\frac7{18}s+o(s),
+\qquad d_n=a_nL-b_n.
 $$
-Expanding at $c=1$ on this scale,
-$$
-0=F_n(1+d_n)
-=\frac{88}{75}d_n^3+\frac7{18nL}
-+o\!\left(\frac1{nL}\right).
-$$
-Thus
+Hence
 $$
 (nL)d_n^3\longrightarrow
--\frac7{18}\frac{75}{88}=-\frac{175}{528}.
+-\frac7{18}\frac{675}{82}=-\frac{525}{164}.
 $$
-Also $F_0'(1+d)=\frac{88}{25}d^2+O(d^3)>0$ for sufficiently small nonzero $d$; the same local monotonicity holds at the finite-$n$ root. Thus the real cubic branch is unique near $1$, and
+The selected branch has $d_n<0$, and the reduced derivative is
 $$
-(nL)^{1/3}(a_nL-1)
-\longrightarrow-\sqrt[3]{\frac{175}{528}}.
+\frac{246}{675}d^2+o(d^2)>0
+$$
+away from the limiting cusp, giving the claimed local uniqueness for large $n$. Therefore
+$$
+(n\log n)^{1/3}(b_n-a_n\log n)
+\longrightarrow \sqrt[3]{\frac{525}{164}}.
 $$
 
-Final Answer: $\boxed{-\sqrt[3]{\frac{175}{528}}}$
+Final Answer: $\boxed{\sqrt[3]{\frac{525}{164}}}$
 
 ---
 
 ## Answer
 
-$-\sqrt[3]{\frac{175}{528}}$
+$\sqrt[3]{\frac{525}{164}}$
 
 ---
 
@@ -192,14 +185,14 @@ $-\sqrt[3]{\frac{175}{528}}$
 
 ## Solution Concepts
 
-- determinant-ratio log derivatives
-- signed mesoscopic stencil
-- cubic limiting degeneracy
-- beta-function finite-size bias
-- cusp root scaling
+- determinant-ratio stationary curve
+- tilted three-scale beta mixture
+- singular coupled implicit system
+- signed-stencil finite-size cancellation
+- cubic relative-scale splitting
 
 ---
 
 ## Black-Box Audit — no issues found
 
-The hardening retains the same signed-stencil construction and attacks the previous stationary-ratio shortcut directly. The tuned invariant has a cubic limiting zero, while the surviving $1/(n\log n)$ forcing is derived from the mismatch between the first and second scale derivatives of the two previously cancelling finite-size corrections.
+The hardening keeps the signed three-cutoff stencil but no longer exposes a single preassembled cusp equation. The first determinant condition determines a hidden stationary curve in the two scale variables; only after eliminating that curve do the linear and quadratic terms in the curvature constraint cancel, leaving a cubic relative-scale branch forced by the finite beta correction.
