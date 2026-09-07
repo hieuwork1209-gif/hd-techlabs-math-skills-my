@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "10839cb1a2aa5f7384304014a04dd765c0f79a45",
+  "problem_blob_sha": "c4c11bc3dd498e709de7249501aed3daeda85f28",
+  "statement_sha256": "62185382e41a9f1c52503ff2222e9a225b1f7a4c7f422cd8b4be24218bd3c902",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-07T09:38:21+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nA_n=\\int_{[0,1]^4}e^{-n(P^2+Q^2)}\\,d\\mathbf x,\\qquad B_n=I_n(0).\n\\]\nThen\n\\[\nI_n(\\lambda)=A_n\\sinh\\lambda+B_n,\n\\]\nso the unique root is\n\\[\n\\lambda_n=\\operatorname{arsinh}\\!\\left(-\\frac{B_n}{A_n}\\right).\n\\]\n\nFirst,\n\\[\nA_n=J_n^2,\\qquad J_n=\\int_0^1 e^{-np^2}(-\\log p)\\,dp,\n\\]\nbecause the product \\(p=x_1x_2\\) has density \\(-\\log p\\) on \\([0,1]\\). With \\(y=\\sqrt n\\,p\\),\n\\[\nJ_n=\\frac1{\\sqrt n}\\int_0^{\\sqrt n}e^{-y^2}\\left(\\frac12\\log n-\\log y\\right)\\,dy\n\\sim \\frac{\\sqrt\\pi}{4}\\frac{\\log n}{\\sqrt n}.\n\\]\nHence\n\\[\nA_n\\sim \\frac{\\pi}{16}\\frac{(\\log n)^2}{n}.\n\\]\n\nNow consider the oscillatory part \\(B_n\\). After the same product-variable change and then\n\\[\nu=\\delta^{-1}2^jP,\\qquad v=\\delta^{-1}2^kQ,\n\\]\nthe \\(j,k\\)-sum gives the exact leading logarithmic cancellation\n\\[\n\\sum_{j,k=0}^1(-1)^{j+k}\n\\bigl(-\\log(\\delta2^{-j}u)\\bigr)\n\\bigl(-\\log(\\delta2^{-k}v)\\bigr)\n=(\\log 2)^2.\n\\]\nThe finite upper limits may be extended to \\([0,\\infty)^2\\), with exponentially smaller error, since the mass is concentrated near \\(u,v\\asymp1\\). Thus\n\\[\nB_n=\\delta^2(\\log2)^2\\sum_{t=0}^2(-1)^t\\binom2t K_t+o(\\delta^6e^{-5\\sqrt n}),\n\\]\nwhere\n\\[\nK_t=\\int_{[0,\\infty)^2}G_t(u,v)\\,du\\,dv.\n\\]\n\nUse\n\\[\nr=uv,\\qquad s=(u-v)^2.\n\\]\nThe two branches \\(u\\ge v\\), \\(v\\ge u\\) have Jacobian\n\\[\n\\left|\\frac{\\partial(r,s)}{\\partial(u,v)}\\right|\n=2|u-v|(u+v),\n\\]\nwhile\n\\[\n|u^2-v^2|=|u-v|(u+v),\n\\]\nso the two branches exactly cancel the Jacobian factor. Therefore\n\\[\nK_t=\\int_0^\\infty\\int_0^\\infty C(s)\n\\left[1-2N(r+1)(r-a_t(s))\\right]\ne^{-N(4+(s-\\delta)^2+(r-a_t(s))^2)}\\,dr\\,ds.\n\\]\nFor fixed \\(s\\),\n\\[\n\\left[1-2N(r+1)(r-a)\\right]e^{-N(r-a)^2}\n=\\frac{d}{dr}\\left((r+1)e^{-N(r-a)^2}\\right),\n\\]\nso\n\\[\nK_t=-e^{-4N}\\int_0^\\infty C(s)e^{-N(s-\\delta)^2}e^{-Na_t(s)^2}\\,ds.\n\\]\n\nNow put\n\\[\ns=\\delta(1+z),\\qquad z\\ge -1.\n\\]\nSince \\(N=\\delta^{-2}\\),\n\\[\nC(s)=z-\\mu,\\qquad a_t(s)=1+\\delta^3(z+t).\n\\]\nThus\n\\[\nNa_t(s)^2=N+2\\delta(z+t)+O(\\delta^4(1+|z|)^2).\n\\]\nHence\n\\[\n\\sum_{t=0}^2(-1)^t\\binom2t e^{-Na_t(s)^2}\n=e^{-N}\\left(4\\delta^2-8\\delta^3(z+1)+O(\\delta^4(1+|z|)^4)\\right).\n\\]\nTherefore\n\\[\n\\sum_{t=0}^2(-1)^t\\binom2tK_t\n=-e^{-5N}\\delta\\int_{-1}^{\\infty}(z-\\mu)e^{-z^2}\n\\left(4\\delta^2-8\\delta^3(z+1)+O(\\delta^4(1+|z|)^4)\\right)\\,dz.\n\\]\nBy the definition of \\(\\mu\\),\n\\[\n\\int_{-1}^{\\infty}(z-\\mu)e^{-z^2}\\,dz=0.\n\\]\nSo the first surviving term is\n\\[\n8\\delta^4e^{-5N}\\int_{-1}^{\\infty}z(z-\\mu)e^{-z^2}\\,dz\n=8\\mathcal M\\delta^4e^{-5N}.\n\\]\nThus\n\\[\nB_n\\sim 8\\mathcal M(\\log2)^2\\delta^6e^{-5N}\n=8\\mathcal M(\\log2)^2n^{-3/2}e^{-5\\sqrt n}.\n\\]\n\nSince \\(B_n/A_n\\to0\\),\n\\[\n\\lambda_n\\sim-\\frac{B_n}{A_n}\n\\sim -\\frac{128\\mathcal M(\\log2)^2}{\\pi}\\,\n\\frac{e^{-5\\sqrt n}}{\\sqrt n(\\log n)^2}.\n\\]\n\nTherefore\n\\[\n\\boxed{\\alpha=\\frac12,\\qquad \\beta=2,\\qquad c=5,\\qquad\nL=-\\frac{128(\\log2)^2}{\\pi}\\mathcal M.}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-07T09:40:34+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/c4c11bc3dd49.json"
+}
