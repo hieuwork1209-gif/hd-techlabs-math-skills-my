@@ -4,15 +4,15 @@ Step 1: Separate the implicit root
 
 Let
 $$
-A_n=\int_{[0,1]^4}e^{-n(P^2+Q^2)}\,d\mathbf x,
+A_n^{(0)}=\int_{[0,1]^4}e^{-n(P^2+Q^2)}\,d\mathbf x,
 $$
 and let $J_n=I_n(0)$. Then
 $$
-I_n(\lambda)=A_n\sinh\lambda+J_n.
+I_n(\lambda)=A_n^{(0)}\sinh\lambda+J_n.
 $$
-Since $A_n>0$, $I_n$ is strictly increasing and tends to $\pm\infty$ as $\lambda\to\pm\infty$. Hence the root is unique and
+Since $A_n^{(0)}>0$, the root is unique and
 $$
-\sinh\lambda_n=-\frac{J_n}{A_n}. \tag{1}
+\sinh\lambda_n=-\frac{J_n}{A_n^{(0)}}. \tag{1}
 $$
 
 Step 2: Reduce to two product coordinates
@@ -22,11 +22,9 @@ $$
 \int_{[0,1]^4}F(P,Q)\,d\mathbf x
 =\int_0^1\int_0^1(-\log p)(-\log q)F(p,q)\,dp\,dq. \tag{2}
 $$
-Indeed, each product of two independent uniform variables has density $-\log p$ on $(0,1)$, and the two pairs are independent.
-
-Therefore
+Hence
 $$
-A_n=\left(\int_0^1(-\log p)e^{-np^2}\,dp\right)^2
+A_n^{(0)}=\left(\int_0^1(-\log p)e^{-np^2}\,dp\right)^2
 \sim\frac\pi{16}n^{-1}(\log n)^2. \tag{3}
 $$
 
@@ -36,15 +34,7 @@ Put
 $$
 N=\sqrt n,\qquad a=n^{1/4},\qquad h=\log2.
 $$
-For $u,v>0$ define
-$$
-x=uv-1,\qquad y=u-v,
-$$
-and
-$$
-A(x,y)=x^2-2y^4+\frac12xy^2.
-$$
-For the term indexed by $(j,k)$, use (2) and set
+For the term indexed by $(j,k)$, set
 $$
 u=a2^jp,\qquad v=a2^kq.
 $$
@@ -54,120 +44,127 @@ $$
 \qquad
 -\log q=\log a+kh-\log v.
 $$
-Hence
+Therefore
 $$
 \sum_{j,k=0}^1(-1)^{2-j-k}(X+jh)(Y+kh)=h^2. \tag{4}
 $$
-The different upper limits may be replaced by infinity with an error exponentially smaller than the main term. Therefore
+The different upper limits may be extended to infinity with exponentially smaller error. Thus
 $$
 J_n=\frac{h^2}{N}H_N+o\!\left(N^{-15/4}e^{-4N}\right), \tag{5}
 $$
 where
 $$
 H_N=\int_0^\infty\int_0^\infty
-A(uv-1,u-v)e^{-N[4+(uv-1)^2+(u-v)^4]}\,du\,dv. \tag{6}
+A_n(u,v)e^{-N\Psi_n(u,v)}\,du\,dv. \tag{6}
 $$
 
-Step 4: Resolve the mixed-order saddle and two cancellations
+Step 4: Recover the hidden normal form and the coalescing saddle
 
-The map
+Since $\delta_n=N^{-1/2}$, direct factorization gives
 $$
-(u,v)\mapsto(x,y)=(uv-1,u-v)
+\Psi_n(u,v)=4+(uv-1)^2+\left((u-v)^2-\delta_n\right)^2, \tag{7}
 $$
-is a bijection from the positive quadrant onto $\{x>-1,\ y\in\mathbb R\}$. Since
+and
 $$
-\left|\frac{\partial(x,y)}{\partial(u,v)}\right|=u+v
-=\sqrt{y^2+4(1+x)},
+A_n(u,v)=(uv-1)^2-2(u-v)^2\left((u-v)^2-\delta_n\right)
++\frac12(uv-1)(u-v)^2. \tag{8}
 $$
-we have
+Set
 $$
-H_N=e^{-4N}\int_{-1}^\infty\int_{\mathbb R}
-\frac{A(x,y)e^{-N(x^2+y^4)}}{\sqrt{y^2+4(1+x)}}\,dy\,dx. \tag{7}
+x=uv-1,\qquad y=u-v.
 $$
-The part with $x$ bounded away from $0$ is exponentially smaller, so set
+This maps the positive quadrant bijectively onto $\{x>-1,\ y\in\mathbb R\}$, with
 $$
-x=N^{-1/2}X,\qquad y=N^{-1/4}Y,
+\left|\frac{\partial(x,y)}{\partial(u,v)}\right|
+=\sqrt{y^2+4(1+x)}. \tag{9}
 $$
-and write
+Now scale
 $$
-Z=X+\frac{Y^2}{4},
-\qquad
-A_0=X^2-2Y^4+\frac12XY^2.
+x=N^{-1/2}X,\qquad y=N^{-1/4}Y.
 $$
 Then
 $$
-\begin{aligned}
-H_N
-=e^{-4N}N^{-7/4}\frac12
-\int_{\mathbb R^2}A_0e^{-X^2-Y^4}
-\left[1-\frac{Z}{2N^{1/2}}+\frac{3Z^2}{8N}+O(N^{-3/2}(1+|Z|^3))\right]dX\,dY.
-\end{aligned} \tag{8}
+N\left[x^2+(y^2-\delta_n)^2\right]
+=X^2+(Y^2-1)^2, \tag{10}
 $$
-The leading coefficient vanishes because
+while
 $$
-\int_{\mathbb R^2}A_0e^{-X^2-Y^4}\,dX\,dY=0. \tag{9}
+A_n(u,v)=N^{-1}A_0(X,Y),
 $$
-The next coefficient also vanishes:
+where
 $$
-\int_{\mathbb R^2}A_0Ze^{-X^2-Y^4}\,dX\,dY=0. \tag{10}
+A_0=X^2-2Y^2(Y^2-1)+\frac12XY^2. \tag{11}
 $$
-Indeed, using parity and
+Also, with
 $$
-\int_{\mathbb R}X^2e^{-X^2}dX=\frac{\sqrt\pi}{2},
-\qquad
-\frac{\int_{\mathbb R}Y^4e^{-Y^4}dY}{\int_{\mathbb R}e^{-Y^4}dY}=\frac14,
+Z=X+\frac{Y^2}{4},
 $$
-proves (9), while
+we have
 $$
-A_0Z\equiv\frac34X^2Y^2-\frac12Y^6
-$$
-modulo terms odd in $X$, and
-$$
-\frac{\int Y^6e^{-Y^4}dY}{\int e^{-Y^4}dY}
-=\frac34\frac{\Gamma(3/4)}{\Gamma(1/4)}
-$$
-proves (10).
-
-For the first surviving term,
-$$
-A_0Z^2\equiv X^4-\frac{27}{16}X^2Y^4-\frac18Y^8
-$$
-modulo terms odd in $X$. Hence
-$$
-\int_{\mathbb R^2}A_0Z^2e^{-X^2-Y^4}\,dX\,dY
-=\frac{\sqrt\pi\,\Gamma(1/4)}4. \tag{11}
-$$
-Substituting (9)-(11) into (8) yields
-$$
-H_N\sim\frac{3\sqrt\pi\,\Gamma(1/4)}{64}
-N^{-11/4}e^{-4N}. \tag{12}
+\frac1{\sqrt{y^2+4(1+x)}}
+=\frac12\left[1-\frac{Z}{2N^{1/2}}+\frac{3Z^2}{8N}+O(N^{-3/2}(1+|Z|^3))\right]. \tag{12}
 $$
 Therefore
 $$
-J_n\sim\frac{3\sqrt\pi\,\Gamma(1/4)}{64}(\log2)^2
-N^{-15/4}e^{-4N}. \tag{13}
+\begin{aligned}
+H_N=e^{-4N}N^{-7/4}\frac12
+\int_{\mathbb R^2}A_0e^{-X^2-(Y^2-1)^2}
+\left[1-\frac{Z}{2N^{1/2}}+\frac{3Z^2}{8N}+O(N^{-3/2})\right]dX\,dY.
+\end{aligned} \tag{13}
 $$
 
-Step 5: Recover the root
+Step 5: Use the crossover moment recurrence
 
-By (3) and (13), $J_n/A_n\to0$, so from (1),
+Let
 $$
-\lambda_n\sim-\frac{J_n}{A_n}
-\sim-\frac{3\Gamma(1/4)(\log2)^2}{4\sqrt\pi}
+M_r=\int_{\mathbb R}Y^{2r}e^{-(Y^2-1)^2}\,dY.
+$$
+Integration by parts applied to $Y^{2r+1}e^{-(Y^2-1)^2}$ gives
+$$
+M_{r+2}-M_{r+1}=\frac{2r+1}{4}M_r. \tag{14}
+$$
+In particular $M_0=\mathcal C$. Using (14), parity in $X$, and the Gaussian moments,
+$$
+\int_{\mathbb R^2}A_0e^{-X^2-(Y^2-1)^2}\,dX\,dY=0, \tag{15}
+$$
+$$
+\int_{\mathbb R^2}A_0Ze^{-X^2-(Y^2-1)^2}\,dX\,dY=0, \tag{16}
+$$
+and
+$$
+\int_{\mathbb R^2}A_0Z^2e^{-X^2-(Y^2-1)^2}\,dX\,dY
+=\frac{\sqrt\pi\,\mathcal C}{2}. \tag{17}
+$$
+For example, (15) uses $M_2-M_1=M_0/4$, (16) uses $M_3-M_2=3M_1/4$, and (17) reduces to
+$$
+\sqrt\pi\left(\frac34M_0+M_1-M_2\right)=\frac{\sqrt\pi M_0}{2}.
+$$
+Thus from (13),
+$$
+H_N\sim\frac{3\sqrt\pi\,\mathcal C}{32}N^{-11/4}e^{-4N}. \tag{18}
+$$
+Hence
+$$
+J_n\sim\frac{3\sqrt\pi\,\mathcal C}{32}(\log2)^2
+N^{-15/4}e^{-4N}. \tag{19}
+$$
+Combining (1), (3), and (19),
+$$
+\lambda_n\sim-\frac{3\mathcal C(\log2)^2}{2\sqrt\pi}
 \frac{e^{-4\sqrt n}}{n^{7/8}(\log n)^2}.
 $$
-Thus
+Therefore
 $$
 \alpha=\frac78,\qquad \beta=2,\qquad c=4,
-\qquad L=-\frac{3\Gamma(1/4)(\log2)^2}{4\sqrt\pi}.
+\qquad L=-\frac{3\mathcal C(\log2)^2}{2\sqrt\pi}.
 $$
-Final Answer: $\boxed{\left(\frac78,2,4,-\frac{3\Gamma(1/4)(\log2)^2}{4\sqrt\pi}\right)}$
+Final Answer: $\boxed{\left(\frac78,2,4,-\frac{3\mathcal C(\log2)^2}{2\sqrt\pi}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac78,2,4,-\frac{3\Gamma(1/4)(\log2)^2}{4\sqrt\pi}\right)$
+$\left(\frac78,2,4,-\frac{3\mathcal C(\log2)^2}{2\sqrt\pi}\right)$
 
 ---
 
@@ -182,7 +179,7 @@ $\left(\frac78,2,4,-\frac{3\Gamma(1/4)(\log2)^2}{4\sqrt\pi}\right)$
 ## Solution Concepts
 
 - paired product-coordinate reduction
-- double finite-difference cancellation
-- mixed quadratic-quartic saddle
-- nonlinear Jacobian expansion
-- two consecutive moment cancellations
+- hidden symmetric phase factorization
+- critically coalescing mixed-order saddle
+- crossover moment recurrence
+- two consecutive Jacobian cancellations
