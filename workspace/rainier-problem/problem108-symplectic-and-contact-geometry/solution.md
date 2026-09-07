@@ -23,166 +23,147 @@ $$
 v_t^TS_Lv_t\ne0.
 $$
 
-Step 2: Use the involution and the discriminant coupling.
+Step 2: Use the involution and the discriminant-square constraint.
 
 Let
 $$
 D=\operatorname{diag}(1,-1,1,-1).
 $$
-The condition $\jmath(L)=L$ is equivalent to $DS_L=S_LD$. Together with symmetry and $s_{11}=s_{44}=1$, this forces
+The condition $\jmath(L)=L$ is equivalent to $DS_L=S_LD$. Together with symmetry, $s_{11}=s_{44}=1$, and $s_{24}=0$, this forces
 $$
 S_L=
 \begin{pmatrix}
 1&0&c&0\\
-0&e&0&g\\
+0&e&0&0\\
 c&0&h&0\\
-0&g&0&1
+0&0&0&1
 \end{pmatrix}.
 $$
 Put
 $$
-A=h+2g,\qquad B=e+2c.
+A=h,\qquad B=e+2c.
 $$
 Then
 $$
 v_t^TS_Lv_t=t^6+A t^4+B t^2+1.
 $$
-The cubic obtained after setting $y=t^2$ is
+After setting $y=t^2$, the obstruction is
 $$
-p_{A,B}(y)=y^3+A y^2+B y+1,
+p_{A,B}(y)=y^3+A y^2+B y+1.
 $$
-and in characteristic $3$ its discriminant is
+In characteristic $3$, its discriminant is
 $$
 \Delta(A,B)=A^2B^2-A^3-B^3.
 $$
+The condition $c^2=\Delta_L$ is exactly
+$$
+c^2=\Delta(A,B).
+$$
+For fixed $(A,B)$, the entry $h=A$ is fixed and $e=B-2c=B+c$. Hence the number of graphs above $(A,B)$ is
+$$
+1+\eta(\Delta(A,B)),
+$$
+where $\eta$ is the quadratic character with $\eta(0)=0$.
 
-The block determinants are
-$$
-\det S_{L,+}=h-c^2,\qquad \det S_{L,-}=e-g^2.
-$$
-Since $A=h-g$ and $B=e-c$, the coupling condition in the problem becomes
-$$
-c^2+g^2-c-g=1+\Delta(A,B).
-$$
-After setting
-$$
-x=c+1,\qquad z=g+1,
-$$
-this is
-$$
-x^2+z^2=\Delta(A,B).
-$$
-Thus a fixed pair $(A,B)$ occurs with multiplicity
-$$
-w(\Delta)=\#\{(x,z)\in\mathbb F_q^2:x^2+z^2=\Delta\}.
-$$
+Step 3: Interpret the discriminant character by factorization type.
 
-If $r$ is odd, then $-1$ is nonsquare and the norm map from $\mathbb F_{q^2}$ gives
+Let $\alpha,\beta,\gamma$ be the roots of a squarefree cubic $p_{A,B}$ in an algebraic closure and put
 $$
-w(0)=1,\qquad w(s)=q+1\quad(s\ne0).
+R=(\alpha-\beta)(\beta-\gamma)(\gamma-\alpha).
 $$
-If $r$ is even, then $-1$ is square and an invertible linear change turns $x^2+z^2=s$ into a product equation, giving
+Then $R^2=\Delta$. Frobenius permutes the three roots. If that permutation is even, then $R^q=R$, so $R\in\mathbb F_q$ and $\Delta$ is a square. If it is odd, then $R^q=-R$, so
 $$
-w(0)=2q-1,\qquad w(s)=q-1\quad(s\ne0).
+\Delta^{(q-1)/2}=R^{q-1}=-1,
 $$
+and $\Delta$ is a nonsquare.
 
-Step 3: Count the unweighted root-free parameter pairs.
+The three squarefree factorization types therefore have weights
+$$
+\begin{array}{c|c|c}
+\text{factorization type}&\eta(\Delta)&1+\eta(\Delta)\\
+\hline
+\text{irreducible cubic}&1&2\\
+\text{three linear factors}&1&2\\
+\text{linear times irreducible quadratic}&-1&0.
+\end{array}
+$$
+A singular cubic has $\Delta=0$ and weight $1$.
 
-Since the constant term is $1$, only $t\ne0$ matters. Put
+The transversality condition says that $p_{A,B}$ has no root in the subgroup
 $$
-Q=\{t^2:t\in\mathbb F_q^*\},\qquad n=|Q|=\frac{q-1}{2}.
+Q=(\mathbb F_q^*)^2.
 $$
-A root is equivalent to
-$$
-y^3+A y^2+B y+1=0
-$$
-for some $y\in Q$. For fixed $y$, the bad parameter pairs lie on the affine line
-$$
-\ell_y:\quad B=-Ay-y^2-y^{-1}.
-$$
-Distinct $y$ give distinct slopes. Three distinct lines are concurrent exactly when the corresponding cubic has those three $y$-values as roots, which by Vieta is equivalent to
-$$
-y_1y_2y_3=-1.
-$$
-No four lines are concurrent. If $G_r$ is the number of root-free pairs $(A,B)$, inclusion-exclusion gives
-$$
-G_r=q^2-nq+\binom{n}{2}-T_r,
-$$
-where $T_r$ counts $3$-subsets of $Q$ with product $-1$.
+Thus every linear root of an admissible cubic must be a nonsquare.
 
-If $r$ is odd, then $-1$ is nonsquare, so $T_r=0$ and
-$$
-G_r=\frac{5q^2+3}{8}.
-$$
-If $r$ is even, then $-1\in Q$. The group $Q$ is cyclic of order $n$, and $3\nmid n$, so the cube map is bijective. There are $n^2$ ordered triples with product $-1$, while $3n-2$ have a repeated coordinate. Hence
-$$
-T_r=\frac{n^2-3n+2}{6}=\frac{(q-3)(q-5)}{24},
-$$
-and
-$$
-G_r=\frac{7q^2+4q-3}{12}.
-$$
+Step 4: Count the squarefree types that contribute.
 
-Step 4: Count root-free pairs on the discriminant locus.
+First count irreducible cubics. A root $\alpha\in\mathbb F_{q^3}^*$ of a monic cubic with constant term $1$ satisfies
+$$
+N_{\mathbb F_{q^3}/\mathbb F_q}(\alpha)=-1.
+$$
+The norm fiber over $-1$ has size $q^2+q+1$. Its elements lying in $\mathbb F_q$ satisfy $\alpha^3=-1$, and the cube map is bijective in characteristic $3$, so the only one is $\alpha=-1$. Hence there are $q^2+q$ elements of degree $3$, and dividing by the Frobenius orbit size gives
+$$
+I_r=\frac{q(q+1)}{3}
+$$
+irreducible cubics. Each is admissible and contributes weight $2$.
 
-Let $H_r$ be the number of root-free pairs $(A,B)$ with $\Delta(A,B)=0$. The usual cubic discriminant formula reduces in characteristic $3$ to
-$$
-\Delta=A^2B^2-A^3-B^3,
-$$
-so $\Delta=0$ exactly when $p_{A,B}$ has a repeated root.
+Now consider three distinct linear roots. Their product is $-1$. If $r$ is even, then $-1$ is a square, while a product of three nonsquares is a nonsquare, so no admissible split cubic exists.
 
-Because the constant term is $1$, a repeated root $a$ is nonzero. If $A\ne0$, the derivative
+If $r$ is odd, then $-1$ is a nonsquare and every nonsquare is uniquely $-x$ with $x\in Q$. Writing the three roots as $-x,-y,-z$, their product is $-1$ exactly when
 $$
-p_{A,B}'(y)=2Ay+B
+xyz=1.
 $$
-has the unique zero $a=B/A\in\mathbb F_q$; the case $A=0$ gives $A=B=0$ and the triple root $a=-1$. Thus every discriminant-zero pair has a repeated root $a\in\mathbb F_q^*$. Solving $p(a)=p'(a)=0$ gives
+Let $n=|Q|=(q-1)/2$. There are $n^2$ ordered triples in $Q^3$ with product $1$. Since $3\nmid n$, the cube map on $Q$ is bijective. The triples with a repeated coordinate number $3n-2$, so the number of unordered triples with distinct coordinates is
+$$
+S_r=\frac{n^2-3n+2}{6}=\frac{(q-3)(q-5)}{24}.
+$$
+Each contributes weight $2$.
+
+Step 5: Count the singular admissible cubics and combine.
+
+Suppose $\Delta=0$. A repeated root $a$ is nonzero because the constant term is $1$. Solving
+$$
+p_{A,B}(a)=p_{A,B}'(a)=0
+$$
+gives
 $$
 A=a+a^{-2},\qquad B=a^2+a^{-1}.
 $$
-The third root is determined by the product of the roots:
+The third root is
 $$
 b=-a^{-2}.
 $$
-The repeated root determines the pair $(A,B)$ uniquely, so the discriminant locus has one point for each $a\in\mathbb F_q^*$.
+The repeated root determines the cubic uniquely. Since
+$$
+\eta(b)=\eta(-1),
+$$
+no singular cubic is admissible when $r$ is even. When $r$ is odd, the third root is always a nonsquare and admissibility is equivalent to $a$ being a nonsquare. Therefore
+$$
+H_r=\frac{q-1}{2}
+$$
+for odd $r$, and $H_r=0$ for even $r$.
 
-Now
+For even $r$, only irreducible cubics contribute, so
 $$
-\eta(b)=\eta(-1)\eta(a^{-2})=(-1)^r.
+M_r=2I_r=\frac{2q(q+1)}{3}.
 $$
-If $r$ is even, then $b$ is always a square, so no discriminant-zero pair is root-free and
+For odd $r$,
 $$
-H_r=0.
-$$
-If $r$ is odd, then $b$ is always nonsquare, so the cubic is root-free on $Q$ exactly when the repeated root $a$ is also nonsquare. Hence
-$$
-H_r=\frac{q-1}{2}.
-$$
-
-Step 5: Weight the root-free pairs and simplify.
-
-For odd $r$, every root-free pair off the discriminant has weight $q+1$, while a discriminant-zero root-free pair has weight $1$. Therefore
-$$
-M_r=(q+1)G_r-qH_r
-=(q+1)\frac{5q^2+3}{8}-q\frac{q-1}{2}
-=\frac{5q^3+q^2+7q+3}{8}.
-$$
-For even $r$, $H_r=0$, so every root-free pair has weight $q-1$ and
-$$
-M_r=(q-1)G_r
-=\frac{7q^3-3q^2-7q+3}{12}.
+M_r=2I_r+2S_r+H_r
+=\frac{3q^2+2q+3}{4}.
 $$
 The two parity cases combine as
 $$
-M_r=\frac{29q^3-3q^2+7q+15+(-q^3-9q^2-35q-3)(-1)^r}{48}.
+M_r=\frac{17q^2+14q+9+(-q^2+2q-9)(-1)^r}{24}.
 $$
 
-Final Answer: $\boxed{\frac{29q^3-3q^2+7q+15+(-q^3-9q^2-35q-3)(-1)^r}{48}}$
+Final Answer: $\boxed{\frac{17q^2+14q+9+(-q^2+2q-9)(-1)^r}{24}}$
 
 ---
 
 ## Answer
 
-$\frac{29q^3-3q^2+7q+15+(-q^3-9q^2-35q-3)(-1)^r}{48}$
+$\frac{17q^2+14q+9+(-q^2+2q-9)(-1)^r}{24}$
 
 ---
 
@@ -197,10 +178,10 @@ $\frac{29q^3-3q^2+7q+15+(-q^3-9q^2-35q-3)(-1)^r}{48}$
 ## Solution Concepts
 
 - lagrangian graphs under a symplectic involution
-- discriminant-coupled block determinants
-- affine line arrangements over quadratic residues
-- singular fibers of binary quadratic forms
-- repeated-root parametrization of a cubic discriminant
+- discriminant-weighted cubic obstruction
+- Frobenius parity and discriminant characters
+- norm fibers in finite field extensions
+- cyclic subgroup product counts
 
 ---
 
