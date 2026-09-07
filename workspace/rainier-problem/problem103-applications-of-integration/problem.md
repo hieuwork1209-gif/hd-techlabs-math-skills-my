@@ -10,7 +10,7 @@ and define
 $$
 \mathcal D=\int_{-\infty}^{\infty}\frac{e^{-(z^2-1)^2}}{(1+z^2)^4}\,dz.
 $$
-For $n\ge1$, $j,k,t\in\{0,1\}$, set
+For $n\ge1$, $j,k\in\{0,1\}$ and $t\in\{0,1,2\}$, set
 $$
 U_j=n^{1/4}2^jP,\quad V_k=n^{1/4}2^kQ,\quad \delta=n^{-1/4}.
 $$
@@ -31,8 +31,8 @@ Define
 $$
 \begin{aligned}
 I_n(\lambda)=\int_{[0,1]^4}\Bigg[&\sinh(\lambda)e^{-n(P^2+Q^2)}\\
-&+\sum_{j,k,t=0}^1(-1)^{3-j-k-t}2^{j+k}A_t(U_j,V_k)
-\left(e^{-\sqrt n\,\Phi_t^+(U_j,V_k)}-e^{-\sqrt n\,\Phi_t^-(U_j,V_k)}\right)\Bigg]d\mathbf x.
+&+\sum_{j,k=0}^1\sum_{t=0}^2(-1)^{j+k+t}\binom2t2^{j+k}A_t(U_j,V_k)\\
+&\qquad\times\left(e^{-\sqrt n\,\Phi_t^+(U_j,V_k)}-e^{-\sqrt n\,\Phi_t^-(U_j,V_k)}\right)\Bigg]d\mathbf x.
 \end{aligned}
 $$
 For each $n$, let $\lambda_n$ be the unique real root of $I_n(\lambda)=0$.
@@ -56,4 +56,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for a sharp asymptotic of an implicitly defined root of a four-dimensional integral. After a finite-difference reduction, two equal-action saddle families agree through their first surviving local term and separate only through a subleading saddle translation, so the asymptotic requires coupled saddle cancellation rather than a single-channel expansion. This is an application of asymptotic integration, so Calculus -> Applications of integration is the best fit.
+The problem asks for a sharp asymptotic of an implicitly defined root of a four-dimensional integral. After the product-density reduction, a second finite difference couples three equal-action saddle families; their common leading behavior is annihilated and the first surviving contribution comes from saddle-translation curvature together with signed Gaussian moment cancellation. This is an application of asymptotic integration, so Calculus -> Applications of integration is the best fit.
