@@ -1,155 +1,174 @@
 ## Steps
 
-Step 1: Convert the determinant to a stationary product
-For
+Step 1: Rewrite the two normalized quantities as determinant-ratio derivatives
+Put $c=aL$ and $P_n(a)=W_1/T_1=1-U_1/T_1$. Since
 $$
-A_N(a)=S_1(N,a)=B(a,N+1),
+T_1'=-T_2,\qquad T_1''=2T_3,
 $$
-we have $S_2(N,a)=-A_N'(a)$. Put $L=\log n$, $N=n^3$, $t=n^{-1/2}$,
+and the same identities hold for $W_r$, direct differentiation gives
 $$
-m_j=\lfloor jn^{5/2}\rfloor\qquad(j=1,2,3),
+H_n(a)=\frac{d}{dc}\log P_n(a),\qquad
+K_n(a)=\frac{d^2}{dc^2}\log P_n(a)=\frac{dH_n}{dc}.
 $$
-and
+Moreover
 $$
-b_1=\frac{27-5t}{19},\qquad b_2=\frac{-9+10t}{19},\qquad b_3=\frac{1-5t}{19}.
+H_n(a)=\frac{T_1U_2-U_1T_2}{L\,T_1W_1},
 $$
-Write
+so $H_n$ is precisely the normalized $2\times2$ determinant invariant from the previous stationary-ratio formulation. Define
 $$
-F(a)=T_1(n,a),\qquad G(a)=U_1(n,a).
+F_n(c)=K_n(c/L)+\frac{66}{125}H_n(c/L)^2+\frac65H_n(c/L)+\frac53.
 $$
-Then $T_2=-F'$ and $U_2=-G'$, so the determinant condition is $(G/F)'=0$. Define
-$$
-\rho_n(a)=\frac{e^2A_N(a)}{F(a)},\qquad
-r_j(a)=\frac{A_{N+m_j}(a)}{A_N(a)},
-$$
-$$
-h_n(a)=1-\sum_{j=1}^3b_jr_j(a).
-$$
-Since $b_1+b_2+b_3=1$ and $G/F=1-\rho_nh_n$, the root equation is exactly
-$$
-\frac{d}{da}\log\rho_n(a)+\frac{d}{da}\log h_n(a)=0.
-$$
+The defining equation is $F_n(c_n)=0$, where $c_n=a_nL$.
 
-Step 2: Identify the unchanged limiting equation
-Put $c=aL$. With
+Step 2: Identify the limiting determinant invariant
+Let $A_N(a)=S_1(N,a)=B(a,N+1)$ with $N=n^3$, and put
 $$
-R_q(a)=\frac{\Gamma(n^q+1)}{\Gamma(n^q+a+1)},\qquad
-w_q(a)=\frac{e^{q-1}R_q(a)}{\sum_{j=1}^3e^{j-1}R_j(a)},
+r_j(a)=\frac{A_{N+m_j}(a)}{A_N(a)},\qquad
+h_n(a)=1-\sum_{j=1}^3b_jr_j(a),
 $$
-we have
 $$
-\frac1L\frac{d}{da}\log\rho_n
-=\frac1L\left(\sum_{q=1}^3w_q\psi(n^q+a+1)-\psi(n^3+a+1)\right).
+\rho_n(a)=\frac{e^2A_N(a)}{T_1(n,a)}.
 $$
-For
+Then $P_n=\rho_nh_n$. For $c$ in a fixed neighborhood of $1$, beta-function asymptotics give, uniformly with the needed $c$-derivatives,
 $$
-s_j=\sum_{k=1}^{m_j}\frac1{N+k},
+H_n(c/L)\longrightarrow H_0(c)
+=\frac1c+\sum_{q=1}^3q\pi_q(c)-3,
 $$
-one has $r_j=e^{-as_j}(1+o(n^{-2}))$. Also
+where
 $$
-\sum_{j=1}^3b_js_j=\frac{12}{19}t+O(t^3)>0,
-$$
-so $h_n=a\Theta(t)(1+o(1))$. Hence the normalized root equation tends to
-$$
-H_0(c)=\frac1c+\sum_{q=1}^3q\pi_q(c)-3,
-\qquad
 \pi_q(c)=\frac{e^{q-1-qc}}{\sum_{j=1}^3e^{j-1-jc}}.
 $$
-At $c=1$ the weights are uniform, so
+At $c=1$ the three weights are equal. Writing $d=c-1$ and expanding the elementary three-point log-sum gives
 $$
-H_0(1)=0,\qquad H_0'(1)=-1-\operatorname{Var}_{\{1,2,3\}}(q)=-\frac53.
-$$
-Thus the nearby limiting root is simple and unique.
-
-Step 3: Record the base-column finite-size bias
-At $c=1$, so $a=1/L$,
-$$
-R_q(a)=n^{-qa}\left(1-\frac{a(a+1)}{2n^q}+O\!\left(\frac{a}{n^{2q}}\right)\right),
-$$
-and
-$$
-\psi(n^q+a+1)=qL+\frac{a+1/2}{n^q}+O(n^{-2q}).
-$$
-Only $q=1$ contributes before order $n^{-3/2}$. Therefore
-$$
-\frac1L\frac{d}{da}\log\rho_n
-=-1+\frac{1}{3nL}+\frac{1}{2nL^2}
-+o\!\left(\frac1{n^{3/2}L}\right).
-$$
-
-Step 4: Expose the signed-stencil moment cancellation
-Set
-$$
-\mu_k=\sum_{j=1}^3b_js_j^k.
-$$
-Since
-$$
-s_j=\log(1+jt)+O(t^6),
-$$
-direct expansion gives
-$$
-\mu_1=\frac{12}{19}t-\frac1{19}t^3-\frac{11}{19}t^4+O(t^5),
-$$
-$$
-\mu_2=\frac8{19}t^3+\frac{27}{19}t^4+O(t^5),
-$$
-$$
-\mu_3=-\frac{18}{19}t^3-\frac6{19}t^4+O(t^5),
-\qquad
-\mu_4=-\frac{36}{19}t^4+O(t^5).
+H_0(1+d)=-\frac53d+d^2-\frac89d^3+d^4+O(d^5).
 $$
 Hence
 $$
-\frac{\mu_2}{\mu_1}=\frac23t^2+\frac94t^3+O(t^4),
+H_0(1)=0,\quad H_0'(1)=-\frac53,\quad H_0''(1)=2,
 $$
 $$
-\frac{\mu_3}{\mu_1}=-\frac32t^2-\frac12t^3+O(t^4),
-\qquad
-\frac{\mu_4}{\mu_1}=-3t^3+O(t^4).
-$$
-The key point is that the $t^2$ term of $\mu_2$ vanishes: the signed coefficients force the second shift moment to start one order later.
-
-From
-$$
-h_n=a\mu_1-\frac{a^2}{2}\mu_2+\frac{a^3}{6}\mu_3-\frac{a^4}{24}\mu_4+\cdots,
-$$
-we obtain
-$$
-\frac{d}{da}\log h_n
-=\frac1a-\frac{\mu_2}{2\mu_1}
-+a\left(\frac{\mu_3}{3\mu_1}-\frac{\mu_2^2}{4\mu_1^2}\right)
--a^2\frac{\mu_4}{8\mu_1}+O(t^4).
-$$
-Substituting $a=L^{-1}$ and the ratios above,
-$$
-\frac1L\frac{d}{da}\log h_n
-=1-\frac{1}{3nL}-\frac{1}{2nL^2}
-+\frac1{n^{3/2}}\left(-\frac{9}{8L}-\frac{1}{6L^2}+\frac{3}{8L^3}\right)
-+O(n^{-2}).
-$$
-The two order-$1/n$ terms cancel Step 3, while the new surviving term comes from the coupled second/third/fourth stencil moments. Thus
-$$
-H_n(1)=-\frac{9}{8n^{3/2}L}+o\!\left(\frac1{n^{3/2}L}\right).
+H_0'''(1)=-\frac{16}{3},\qquad H_0''''(1)=24.
 $$
 
-Step 5: Extract the new mesoscopic root displacement
-Since $H_n\to H_0$ in $C^1$ near $1$ and $H_0'(1)=-5/3$, the unique nearby zero $c_n=a_nL$ satisfies
+Step 3: Verify the designed cubic degeneracy
+Set
 $$
-c_n-1=-\frac{H_n(1)}{H_0'(1)}+o\!\left(\frac1{n^{3/2}L}\right)
-=-\frac{27}{40n^{3/2}L}+o\!\left(\frac1{n^{3/2}L}\right).
+F_0(c)=H_0'(c)+\frac{66}{125}H_0(c)^2+\frac65H_0(c)+\frac53.
+$$
+The constants were chosen so that
+$$
+F_0(1)=0,
+$$
+$$
+F_0'(1)=H_0''(1)+\frac65H_0'(1)=2-2=0,
+$$
+and
+$$
+F_0''(1)=H_0'''(1)
++2\frac{66}{125}H_0'(1)^2+\frac65H_0''(1)=0.
+$$
+The next derivative does not vanish:
+$$
+F_0'''(1)=H_0''''(1)
++6\frac{66}{125}H_0'(1)H_0''(1)
++\frac65H_0'''(1)=\frac{176}{25}.
 $$
 Therefore
 $$
-n^{3/2}(\log n)(a_n\log n-1)\longrightarrow-\frac{27}{40}.
+F_0(1+d)=\frac{88}{75}d^3+O(d^4).
+$$
+Thus both ordinary linearization and a quadratic branch-splitting shortcut are structurally unavailable.
+
+Step 4: Compute the finite-size forcing at the cusp
+Let
+$$
+Z(c)=\sum_{q=1}^3e^{q-1-qc},\qquad
+\pi_1(c)=\frac{e^{-c}}{Z(c)}.
+$$
+The $q=1$ beta correction is the only base-column correction of order $1/n$:
+$$
+\log\rho_n(c/L)
+=\text{const}-3c-\log Z(c)
++\frac{\pi_1(c)}{2n}\left(\frac cL+\frac{c^2}{L^2}\right)
++o\!\left(\frac1{nL}\right),
+$$
+uniformly after two $c$-derivatives. At $c=1$,
+$$
+\pi_1=\frac13,\qquad \pi_1'=\frac13,\qquad \pi_1''=\frac19.
+$$
+Hence its contributions to the first two log derivatives are
+$$
+\delta H_\rho(1)=\frac1{3nL}+\frac1{2nL^2}+o\!\left(\frac1{nL^2}\right),
+$$
+$$
+\delta K_\rho(1)=\frac7{18nL}+\frac{19}{18nL^2}
++o\!\left(\frac1{nL^2}\right).
 $$
 
-Final Answer: $\boxed{-\frac{27}{40}}$
+For the signed stencil, with $\mu_k=\sum_jb_js_j^k$ and
+$s_j=\sum_{k=1}^{m_j}(N+k)^{-1}$, the coefficient choice gives
+$$
+\frac{\mu_2}{\mu_1}=\frac{2}{3n}+O(n^{-3/2}),\qquad
+\frac{\mu_3}{\mu_1}=-\frac{3}{2n}+O(n^{-3/2}).
+$$
+Therefore
+$$
+\log h_n(c/L)=\text{const}+\log c
+-\frac{c}{3nL}-\frac{c^2}{4nL^2}
++O\!\left(\frac1{n^{3/2}L}\right),
+$$
+so
+$$
+\delta H_h(1)=-\frac1{3nL}-\frac1{2nL^2}
++O\!\left(\frac1{n^{3/2}L}\right),
+$$
+$$
+\delta K_h(1)=-\frac1{2nL^2}
++O\!\left(\frac1{n^{3/2}L}\right).
+$$
+The order-$1/n$ terms in $H_n(1)$ cancel, but they do not cancel after one more scale derivative. Consequently
+$$
+H_n(1/L)=O\!\left(\frac1{n^{3/2}L}\right),
+$$
+$$
+K_n(1/L)=-\frac53+\frac7{18nL}
++O\!\left(\frac1{nL^2}+\frac1{n^{3/2}L}\right),
+$$
+and hence
+$$
+F_n(1)=\frac7{18nL}+o\!\left(\frac1{nL}\right).
+$$
+
+Step 5: Extract the cubic cusp displacement
+The same uniform beta and shift expansions give $F_n\to F_0$ with the required derivatives near $1$. Since the limiting zero is cubic and
+$F_n(1)=O((nL)^{-1})$, the selected nearby root satisfies
+$$
+d_n:=c_n-1=O((nL)^{-1/3}).
+$$
+Expanding at $c=1$ on this scale,
+$$
+0=F_n(1+d_n)
+=\frac{88}{75}d_n^3+\frac7{18nL}
++o\!\left(\frac1{nL}\right).
+$$
+Thus
+$$
+(nL)d_n^3\longrightarrow
+-\frac7{18}\frac{75}{88}=-\frac{175}{528}.
+$$
+The real cubic branch is unique near $1$, so
+$$
+(nL)^{1/3}(a_nL-1)
+\longrightarrow-\sqrt[3]{\frac{175}{528}}.
+$$
+
+Final Answer: $\boxed{-\sqrt[3]{\frac{175}{528}}}$
 
 ---
 
 ## Answer
 
-$-\frac{27}{40}$
+$-\sqrt[3]{\frac{175}{528}}$
 
 ---
 
@@ -163,14 +182,14 @@ $-\frac{27}{40}$
 
 ## Solution Concepts
 
-- determinant stationary condition
+- determinant-ratio log derivatives
 - signed mesoscopic stencil
-- shift-moment cancellation
-- Beta and digamma asymptotics
-- mesoscopic root displacement
+- cubic limiting degeneracy
+- beta-function finite-size bias
+- cusp root scaling
 
 ---
 
 ## Black-Box Audit — no issues found
 
-The hardening changes the asymptotic mechanism rather than merely adding another logarithmic Taylor term. A signed three-cutoff stencil cancels the leading second shift moment, so the first uncanceled perturbation occurs at the $n^{-3/2}$ scale and requires tracking the interaction of several shift moments.
+The hardening retains the same signed-stencil construction and attacks the previous stationary-ratio shortcut directly. The tuned invariant has a cubic limiting zero, while the surviving $1/(n\log n)$ forcing is derived from the mismatch between the first and second scale derivatives of the two previously cancelling finite-size corrections.
