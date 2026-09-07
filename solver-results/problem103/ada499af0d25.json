@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "fdad9b52d30a37e3845ed970ba32593fb59b261a",
+  "problem_blob_sha": "ada499af0d2521028db550fde6429e48680c2987",
+  "statement_sha256": "2a027fd21182826f21b1f4c82260828bbf6a877c26e3da3c9cf7cede4638fca9",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-07T01:49:06+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nF_n(T)\n\\]\ndenote the bracketed expression. Since the product \\(T=x_1x_2x_3x_4\\) of four independent uniform variables has density\n\\[\n\\frac{(-\\log t)^3}{6},\\qquad 0<t<1,\n\\]\nwe have\n\\[\n\\int_{[0,1]^4}g(T)\\,d\\mathbf x=\\frac16\\int_0^1g(t)(-\\log t)^3\\,dt.\n\\]\n\nWrite\n\\[\nI_n(\\lambda)=A_n\\sinh\\lambda+S_n,\n\\]\nwhere\n\\[\nA_n=\\frac16\\int_0^1 e^{-nt^2}(-\\log t)^3\\,dt.\n\\]\nWith \\(u=nt^2\\),\n\\[\nA_n\\sim \\frac{\\sqrt\\pi}{96}n^{-1/2}(\\log n)^3.\n\\]\n\nNow consider \\(S_n\\). For the \\(j\\)-th summand set\n\\[\ny=(2n)^{1/3}2^j t.\n\\]\nThen\n\\[\n4^jnt^2+\\frac1{2^jt}\n=2^{-2/3}n^{1/3}\\left(y^2+\\frac2y\\right).\n\\]\nAlso the polynomial factor becomes \\((1-y)^5\\), and the \\(2^j\\) coefficient cancels the \\(2^{-j}\\) from \\(dt\\). Thus, up to exponentially smaller endpoint errors,\n\\[\nS_n=\\frac1{6(2n)^{1/3}}\n\\int_0^\\infty (1-y)^5 e^{-\\mu\\phi(y)}\n\\sum_{j=0}^3(-1)^{3-j}\\binom3j\n\\left(\\log\\frac{(2n)^{1/3}2^j}{y}\\right)^3dy,\n\\]\nwhere\n\\[\n\\mu=2^{-2/3}n^{1/3},\\qquad \\phi(y)=y^2+\\frac2y.\n\\]\nThe finite difference identity\n\\[\n\\sum_{j=0}^3(-1)^{3-j}\\binom3j(A+j\\log2)^3=6(\\log2)^3\n\\]\ngives\n\\[\nS_n\\sim \\frac{(\\log2)^3}{(2n)^{1/3}}J(\\mu),\n\\]\nwhere\n\\[\nJ(\\mu)=\\int_0^\\infty (1-y)^5e^{-\\mu\\phi(y)}\\,dy.\n\\]\n\nThe minimum of \\(\\phi\\) occurs uniquely at \\(y=1\\), with\n\\[\n\\phi(1)=3,\\qquad \\phi(y)=3+3s^2-2s^3+O(s^4),\\quad s=y-1.\n\\]\nPut \\(s=z/\\sqrt\\mu\\). Since \\((1-y)^5=-s^5\\), the odd leading Gaussian moment vanishes, and the first nonzero term comes from the cubic correction:\n\\[\nJ(\\mu)\\sim -2e^{-3\\mu}\\mu^{-7/2}\\int_{-\\infty}^{\\infty}z^8e^{-3z^2}\\,dz.\n\\]\nUsing\n\\[\n\\int_{-\\infty}^{\\infty}z^8e^{-3z^2}\\,dz\n=\\frac{105\\sqrt\\pi}{16\\cdot 3^{9/2}},\n\\]\nwe get\n\\[\nJ(\\mu)\\sim -\\frac{105\\sqrt\\pi}{8\\cdot 3^{9/2}}\\mu^{-7/2}e^{-3\\mu}.\n\\]\nTherefore\n\\[\nS_n\\sim\n-\\frac{105\\sqrt\\pi}{2\\cdot 3^{9/2}}(\\log2)^3\nn^{-3/2}\n\\exp\\!\\left(-3\\cdot2^{-2/3}n^{1/3}\\right).\n\\]\n\nSince \\(I_n(\\lambda_n)=0\\),\n\\[\n\\sinh\\lambda_n=-\\frac{S_n}{A_n}.\n\\]\nThe right side tends to \\(0\\), so \\(\\lambda_n\\sim -S_n/A_n\\). Hence\n\\[\n\\lambda_n\\sim\n\\frac{5040}{3^{9/2}}(\\log2)^3\nn^{-1}(\\log n)^{-3}\n\\exp\\!\\left(-3\\cdot2^{-2/3}n^{1/3}\\right).\n\\]\nSince \\(3^{9/2}=81\\sqrt3\\),\n\\[\n\\frac{5040}{3^{9/2}}=\\frac{560}{9\\sqrt3}.\n\\]\n\nThus the required constants are\n\\[\n\\boxed{\\alpha=1,\\qquad \\beta=3,\\qquad c=\\frac{3}{2^{2/3}},\\qquad L=\\frac{560(\\log2)^3}{9\\sqrt3}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-07T01:50:25+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/ada499af0d25.json"
+}
