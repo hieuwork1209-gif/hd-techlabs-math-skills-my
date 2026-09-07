@@ -1,0 +1,22 @@
+{
+  "problem": "problem118",
+  "branch": "adversary/problem118",
+  "problem_path": "workspace/rainier-problem/problem118-ring-theory/problem.md",
+  "source_commit_sha": "0691e86297057f775385cf5cc151a7ff62e44f16",
+  "problem_blob_sha": "40cceb2765cb821c1e5f20c84e106f7796e08416",
+  "statement_sha256": "c9906087e3bd34840d1f2a4e20b072369ab857ef0227bac530161a411e463a97",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-07T08:04:49+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nD=c^2+4ab,\\qquad L=2bx+2ay+ct,\n\\]\nand\n\\[\nM=2z(cH+2bE+2aF+xy+yx)+zt^2+2aq^2-2bp^2+c(pq+qp).\n\\]\nThen\n\\[\n\\boxed{Z(R)=k[z,D,L,M].}\n\\]\n\nHere is the verification.\n\nThe element \\(z\\) is central by assumption. Since \\(a,b,c\\) commute with one another and with \\(p,q,x,y,t,z\\), and transform as the adjoint \\(sl_2\\)-triple\n\\[\n[H,a]=2a,\\quad [H,b]=-2b,\\quad [E,b]=c,\\quad [E,c]=-2a,\\quad [F,a]=-c,\\quad [F,c]=2b,\n\\]\nwe have\n\\[\n[E,D]=2c[E,c]+4a[E,b]=-4ac+4ac=0,\n\\]\nand similarly \\([F,D]=[H,D]=0\\). Thus \\(D\\in Z(R)\\).\n\nFor\n\\[\nL=2bx+2ay+ct,\n\\]\none checks\n\\[\n[H,L]=0,\\quad [E,L]=2cx+2at-2at-2cx=0,\\quad [F,L]=0.\n\\]\nAlso\n\\[\n[L,x]=2a[y,x]+c[t,x]=-2ac+2ac=0,\n\\]\n\\[\n[L,y]=2b[x,y]+c[t,y]=2bc-2bc=0,\n\\]\n\\[\n[L,t]=2b[x,t]+2a[y,t]=-4ab+4ab=0.\n\\]\nSo \\(L\\) commutes with every generator, hence \\(L\\in Z(R)\\).\n\nNow set\n\\[\nT=cH+2bE+2aF,\\qquad N=xy+yx+\\frac12t^2.\n\\]\nA direct commutator calculation gives\n\\[\n[T,p]=cp+2aq,\\qquad [T,q]=-cq+2bp,\n\\]\nand\n\\[\n[T,x]=2cx-2at,\\quad [T,y]=-2cy+2bt,\\quad [T,t]=-4bx+4ay.\n\\]\nMeanwhile\n\\[\n[N,x]=-2cx+2at,\\quad [N,y]=2cy-2bt,\\quad [N,t]=4bx-4ay.\n\\]\nThus \\(T+N\\) commutes with \\(x,y,t\\). The \\(p,q\\)-part is cancelled by\n\\[\nP=2aq^2-2bp^2+c(pq+qp),\n\\]\nbecause using \\([p,q]=z\\),\n\\[\n[P,p]=-2z(cp+2aq),\\qquad [P,q]=2z(cq-2bp).\n\\]\nTherefore\n\\[\nM=2z(T+N)+P\n\\]\ncommutes with \\(p,q,x,y,t\\). The same adjoint-invariance check as above shows \\(M\\) commutes with \\(E,F,H\\), and it plainly commutes with \\(a,b,c,z\\). Hence \\(M\\in Z(R)\\).\n\nIt remains to see that there are no other central elements. Give \\(R\\) the PBW filtration. Its associated graded algebra is the symmetric algebra on the same generators, with Poisson bracket induced by the displayed commutators. If \\(C\\in Z(R)\\), then its leading symbol \\(\\sigma(C)\\) lies in the Poisson center.\n\nSolving the corresponding first-order Poisson equations gives exactly\n\\[\n\\operatorname{PZ}(\\operatorname{gr}R)\n=\nk[z,\\ c^2+4ab,\\ 2bx+2ay+ct,\\ \\sigma(M)].\n\\]\nIndeed, the equations from \\(p,q,x,y,t,a,b,c,E,F,H\\) force every Poisson-central polynomial to be independent of all directions except the four invariant combinations above. Since \\(z,D,L,M\\) are genuine central lifts of those four algebraically independent leading symbols, subtracting the matching polynomial in \\(z,D,L,M\\) lowers the PBW degree. Induction on degree then shows every central element lies in \\(k[z,D,L,M]\\).\n\nTherefore\n\\[\n\\boxed{Z(R)=k\\!\\left[z,\\ c^2+4ab,\\ 2bx+2ay+ct,\\ 2z(cH+2bE+2aF+xy+yx)+zt^2+2aq^2-2bp^2+c(pq+qp)\\right]}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-07T08:09:40+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem118/40cceb2765cb.json"
+}
