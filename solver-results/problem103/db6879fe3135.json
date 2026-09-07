@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "3f48c00692684ffd0ea26b9d498352ab84c7f8e0",
+  "problem_blob_sha": "db6879fe3135b9f12601288b510dc1ec03ea94ce",
+  "statement_sha256": "7e7768c2a84d04dd3737cc0c8b0af4ee1ee2463722fdd6adfd606da896c646f2",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-07T02:19:14+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nA_n=\\int_{[0,1]^4}e^{-n(P^2+Q^2)}\\,d\\mathbf x,\\qquad I_n(\\lambda)=A_n\\sinh\\lambda+B_n.\n\\]\nSince \\(A_n>0\\), \\(I_n(\\lambda)=0\\) has the unique solution\n\\[\n\\lambda_n=\\operatorname{arsinh}\\!\\left(-\\frac{B_n}{A_n}\\right).\n\\]\n\nFor a product \\(P=x_1x_2\\), its density on \\((0,1)\\) is \\(-\\log p\\). Thus\n\\[\nA_n=\\left(\\int_0^1 e^{-np^2}(-\\log p)\\,dp\\right)^2.\n\\]\nWith \\(u=\\sqrt n\\,p\\),\n\\[\n\\int_0^1 e^{-np^2}(-\\log p)\\,dp\n=\\frac1{\\sqrt n}\\int_0^\\infty e^{-u^2}\\left(\\frac12\\log n-\\log u\\right)\\,du+o(n^{-1/2}\\log n),\n\\]\nso\n\\[\nA_n\\sim \\left(\\frac{\\sqrt\\pi}{4}\\frac{\\log n}{\\sqrt n}\\right)^2\n=\\frac{\\pi}{16}\\frac{(\\log n)^2}{n}.\n\\]\n\nNow analyze \\(B_n\\). Write \\(N=\\sqrt n\\), \\(a=2^j\\), \\(b=2^k\\), and set\n\\[\nu=a n^{1/4}P,\\qquad v=b n^{1/4}Q.\n\\]\nThen\n\\[\n4^j nP^2+4^k nQ^2+\\frac1{2^{j+k}PQ}\n=N\\left(u^2+v^2+\\frac1{uv}\\right),\n\\]\nand\n\\[\nn^{1/4}(2^jP+2^kQ)-2^{3/4}=u+v-2^{3/4}.\n\\]\nThe logarithmic density factors become\n\\[\n-\\log P=\\frac14\\log n+j\\log2-\\log u,\\qquad\n-\\log Q=\\frac14\\log n+k\\log2-\\log v.\n\\]\nSumming over \\(j,k\\in\\{0,1\\}\\),\n\\[\n\\sum_{j,k=0}^1(-1)^{j+k}\n\\left(\\frac14\\log n+j\\log2-\\log u\\right)\n\\left(\\frac14\\log n+k\\log2-\\log v\\right)\n=(\\log2)^2.\n\\]\nHence, up to exponentially smaller endpoint errors,\n\\[\nB_n=\\frac{(\\log2)^2}{N}J_N,\n\\]\nwhere\n\\[\nJ_N=\\int_0^\\infty\\int_0^\\infty\n(u+v-2^{3/4})^3\n\\exp\\!\\left[-N\\left(u^2+v^2+\\frac1{uv}\\right)\\right]du\\,dv.\n\\]\n\nThe phase\n\\[\n\\phi(u,v)=u^2+v^2+\\frac1{uv}\n\\]\nhas its unique minimum at\n\\[\nu=v=t=2^{-1/4},\n\\]\nwith\n\\[\n\\phi(t,t)=2\\sqrt2.\n\\]\nAlso \\(2t=2^{3/4}\\), so the cubic factor vanishes to third order at the saddle.\n\nUse coordinates\n\\[\nu=t+\\frac{x+y}{\\sqrt2},\\qquad v=t+\\frac{x-y}{\\sqrt2}.\n\\]\nThe quadratic part of \\(\\phi\\) is\n\\[\n4x^2+2y^2,\n\\]\nand the cubic part is\n\\[\n-\\sqrt2\\,t^{-5}x(x^2+y^2).\n\\]\nSince\n\\[\n(u+v-2^{3/4})^3=2\\sqrt2\\,x^3,\n\\]\nthe leading Gaussian cubic contribution vanishes by oddness, and the first nonzero term comes from the cubic phase correction. Therefore\n\\[\nJ_N\\sim e^{-2\\sqrt2 N}N^{-3}\\cdot\n4t^{-5}\\int_{\\mathbb R^2}x^4(x^2+y^2)e^{-4x^2-2y^2}\\,dx\\,dy.\n\\]\nThe Gaussian integral is\n\\[\n\\int_{\\mathbb R^2}x^4(x^2+y^2)e^{-4x^2-2y^2}\\,dx\\,dy\n=\\frac{21\\pi}{1024\\sqrt2}.\n\\]\nSince \\(t^{-5}=2^{5/4}\\),\n\\[\nJ_N\\sim \\frac{21\\pi 2^{3/4}}{256}N^{-3}e^{-2\\sqrt2 N}.\n\\]\nThus\n\\[\nB_n\\sim\n(\\log2)^2\\frac{21\\pi 2^{3/4}}{256}N^{-4}e^{-2\\sqrt2 N}\n=\n(\\log2)^2\\frac{21\\pi 2^{3/4}}{256}n^{-2}e^{-2\\sqrt{2n}}.\n\\]\n\nTherefore\n\\[\n\\lambda_n\\sim-\\frac{B_n}{A_n}\n\\sim\n-\\frac{21}{16}2^{3/4}(\\log2)^2\n\\frac{e^{-2\\sqrt{2n}}}{n(\\log n)^2}.\n\\]\n\nSo the required constants are\n\\[\n\\boxed{\\alpha=1,\\qquad \\beta=2,\\qquad c=2\\sqrt2,\\qquad\nL=-\\frac{21}{16}2^{3/4}(\\log2)^2.}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-07T02:20:50+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/db6879fe3135.json"
+}
