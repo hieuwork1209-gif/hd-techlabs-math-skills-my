@@ -1,179 +1,115 @@
 ## Steps
 
-Step 1: Separate the implicit root and evaluate the denominator
+Step 1: Rescale the median condition
+
+For each $n$, the left side of the defining equation is continuous and strictly decreasing in $\lambda$, with limits $\pi/n$ and $0$ as $\lambda\to-\infty$ and $\lambda\to+\infty$. Hence $\lambda_n$ exists and is unique.
+
+Put
+$$
+\varepsilon=n^{-1/2},\qquad X=\sqrt n\,x,\qquad Y=\sqrt n\,y,
+\qquad \eta_n=\sqrt n\,\lambda_n.
+$$
+Then the boundary becomes
+$$
+Y\ge g_\varepsilon(X)+\eta_n,
+\qquad
+g_\varepsilon(X)=\varepsilon^2X^3e^{-\varepsilon X}.
+$$
+After multiplying the defining equation by $n$, subtracting the Gaussian mass above $Y=0$, and writing
+$$
+\Phi(z)=\int_0^z e^{-y^2}\,dy,
+$$
+we obtain the equivalent equation
+$$
+F_\varepsilon(\eta_n)=0,
+\qquad
+F_\varepsilon(\eta)=
+\int_{-\infty}^{\infty}e^{-X^2}\Phi\bigl(g_\varepsilon(X)+\eta\bigr)\,dX.
+$$
+
+Step 2: Show that the root is small
+
+For fixed $\eta$,
+$$
+F_\varepsilon'(\eta)=
+\int_{-\infty}^{\infty}
+ e^{-X^2-(g_\varepsilon(X)+\eta)^2}\,dX>0.
+$$
+Also $F_\varepsilon(\eta)\to\sqrt\pi\,\Phi(\eta)$ for fixed $\eta$, so for all sufficiently small $\varepsilon$ the unique root lies in $(-1,1)$ and $F_\varepsilon'$ is bounded below there by a positive constant.
+
+Since $\Phi(z)=z+O(z^3)$ near $0$ and the Gaussian factor controls all moments of $g_\varepsilon$, we have
+$$
+F_\varepsilon(0)
+=
+\int_{-\infty}^{\infty}e^{-X^2}g_\varepsilon(X)\,dX
++O(\varepsilon^6)
+=O(\varepsilon^3).
+$$
+The mean value theorem therefore gives
+$$
+\eta_n=O(\varepsilon^3).
+$$
+
+Step 3: Evaluate the linear Gaussian moment exactly
 
 Let
 $$
-B_n=\int_{[0,1]^4}e^{-n(P^2+Q^2)}\,d\mathbf{x},\qquad S_n=I_n(0).
+Z(\varepsilon)=
+\int_{-\infty}^{\infty}e^{-X^2-\varepsilon X}\,dX
+=\sqrt\pi\,e^{\varepsilon^2/4}.
 $$
-Then
+Differentiating three times,
 $$
-I_n(\lambda)=B_n\sinh\lambda+S_n.
+\int_{-\infty}^{\infty}X^3e^{-X^2-\varepsilon X}\,dX
+=-Z'''(\varepsilon)
+=-\sqrt\pi\,e^{\varepsilon^2/4}
+\left(\frac{3\varepsilon}{4}+\frac{\varepsilon^3}{8}\right).
 $$
-Because $B_n>0$, the function $I_n$ is strictly increasing, so the real root is unique and
+Thus
 $$
-\sinh\lambda_n=-\frac{S_n}{B_n}.
-$$
-Using
-$$
-\int_{[0,1]^2}F(x_1x_2)\,dx_1dx_2=\int_0^1F(p)(-\log p)\,dp,
-$$
-we get
-$$
-B_n=\left(\int_0^1(-\log p)e^{-np^2}\,dp\right)^2.
-$$
-With $y=\sqrt{n}\,p$,
-$$
-\int_0^1(-\log p)e^{-np^2}\,dp
-\sim\frac{\sqrt{\pi}}{4}n^{-1/2}\log n,
-$$
-so
-$$
-B_n\sim\frac{\pi}{16}\delta^4(\log n)^2.
+\begin{aligned}
+\int_{-\infty}^{\infty}e^{-X^2}g_\varepsilon(X)\,dX
+&=-\sqrt\pi\,e^{\varepsilon^2/4}
+\left(\frac{3}{4}\varepsilon^3+\frac{1}{8}\varepsilon^5\right)\\
+&=-\sqrt\pi\left(
+\frac{3}{4}\varepsilon^3+
+\frac{5}{16}\varepsilon^5+O(\varepsilon^7)
+\right).
+\end{aligned}
 $$
 
-Step 2: Collapse the dyadic finite difference
+Step 4: Recover the second asymptotic coefficient
 
-Put $h=\log 2$. In the $(j,k,t)$ term use
+Because $\eta_n=O(\varepsilon^3)$ and
 $$
-p=\delta2^{-j}u,\qquad q=\delta2^{-k}v.
+\Phi(z)=z+O(z^3),
 $$
-The factor $2^{j+k}$ cancels the Jacobian factor $2^{-j-k}$, while
+the nonlinear remainder contributes only $O(\varepsilon^6)$ after integration. Hence
 $$
--\log p=-\log\delta+jh-\log u,
-\qquad
--\log q=-\log\delta+kh-\log v.
+0=F_\varepsilon(\eta_n)
+=\sqrt\pi\,\eta_n
++\int_{-\infty}^{\infty}e^{-X^2}g_\varepsilon(X)\,dX
++O(\varepsilon^6).
 $$
-Hence
+Using Step 3,
 $$
-\sum_{j,k=0}^1(-1)^{j+k}
-(-\log\delta+jh-\log u)(-\log\delta+kh-\log v)=h^2.
+\eta_n=rac{3}{4}\varepsilon^3+rac{5}{16}\varepsilon^5+O(\varepsilon^6).
 $$
-The relevant mass has bounded $u,v$, whereas every scaled upper limit is at least $\delta^{-1}$. On the omitted region either $r=uv$ or $s=(u-v)^2$ grows as a positive power of $\delta^{-1}$, so the Gaussian phase makes that region exponentially smaller than $e^{-5N}$ times any fixed power of $\delta$. Therefore
+Since $\lambda_n=\varepsilon\eta_n$,
 $$
-S_n=\delta^2h^2\sum_{t=0}^2(-1)^t\binom{2}{t}J_t
-+o\left(\delta^8e^{-5N}\right),
-$$
-where
-$$
-J_t=\int_{(0,\infty)^2}G_t(u,v)\,du\,dv.
-$$
-
-Step 3: Convert the bulk integral into two competing boundaries
-
-Set
-$$
-r=uv,\qquad y=u-v,\qquad s=y^2.
-$$
-Since
-$$
-\left|\frac{\partial(r,y)}{\partial(u,v)}\right|=u+v,
-\qquad |u^2-v^2|=|y|(u+v),
-$$
-and
-$$
-\int_{-\infty}^{\infty}|y|F(y^2)\,dy=\int_0^\infty F(s)\,ds,
-$$
-the factor $|u^2-v^2|$ converts $J_t$ exactly to an integral over the quadrant in $(r,s)$.
-
-Define
-$$
-F_t(r,s)=(r+s+1)\left(r+s-1-\frac{\delta^2}{4}\right)e^{-N\Psi_t(r,s)}.
-$$
-Its prefactor depends only on $r+s$, while
-$$
-\left(\frac{\partial}{\partial r}-\frac{\partial}{\partial s}\right)\Psi_t
-=2(r-s-a_t+b_t)=2(r-s+\delta^3).
-$$
-Thus the displayed amplitude in the problem is exactly
-$$
-\left(\frac{\partial}{\partial r}-\frac{\partial}{\partial s}\right)F_t(r,s).
-$$
-Integrating over $r,s\ge0$ and using Gaussian decay at infinity gives
-$$
-J_t=\int_0^\infty F_t(r,0)\,dr-\int_0^\infty F_t(0,s)\,ds.
-$$
-Therefore, if
-$$
-\mathcal I(c)=\int_0^\infty(x+1)\left(x-1-\frac{\delta^2}{4}\right)e^{-N(x-c)^2}\,dx,
-$$
-then
-$$
-J_t=e^{-4N}\left(e^{-Nb_t^2}\mathcal I(a_t)-e^{-Na_t^2}\mathcal I(b_t)\right).
-$$
-
-Step 4: Evaluate the coupled boundary correction
-
-Since $a_t,b_t=1+O(\delta^3)$, replacing the lower limit $0$ in $\mathcal I(c)$ by $-\infty$ has an exponentially smaller error. The full Gaussian integral is exact:
-$$
-\mathcal I(c)=\sqrt{\pi}\,\delta
-\left(c^2-1+\frac{\delta^2}{4}-\frac{\delta^2c}{4}\right)
-+O(e^{-c_0N})
-$$
-for some $c_0>0$ uniformly for $t=0,1,2$.
-
-For $c=1+q\delta^3$, define
-$$
-W(q)=2q\delta^3-\frac{q}{4}\delta^5+q^2\delta^6,
-\qquad
-E(q)=e^{-2q\delta-q^2\delta^4}.
-$$
-Then
-$$
-J_t=\sqrt{\pi}\,\delta e^{-5N}
-\left(W(t)E(t+1)-W(t+1)E(t)\right)
-+o\left(\delta^m e^{-5N}\right)
-$$
-for every fixed $m$. Using
-$$
-E(q)=1-2q\delta+2q^2\delta^2+O(\delta^3),
-$$
-we obtain
-$$
-W(t)E(t+1)-W(t+1)E(t)
-=-2\delta^3+\left(4t(t+1)+\frac14\right)\delta^5+O(\delta^6).
-$$
-The $t$-independent term disappears under the second finite difference, while
-$$
-\left[4t(t+1)+\frac14\right]_{t=0}
--2\left[4t(t+1)+\frac14\right]_{t=1}
-+\left[4t(t+1)+\frac14\right]_{t=2}=8.
-$$
-Hence
-$$
-\sum_{t=0}^2(-1)^t\binom{2}{t}J_t
-\sim8\sqrt{\pi}\,\delta^6e^{-5N}.
-$$
-
-Step 5: Recover the asymptotic root
-
-Step 2 and Step 4 give
-$$
-S_n\sim8\sqrt{\pi}(\log 2)^2\delta^8e^{-5N}.
-$$
-Together with Step 1,
-$$
-\frac{S_n}{B_n}
-\sim\frac{128(\log 2)^2}{\sqrt{\pi}}
-\frac{\delta^4e^{-5N}}{(\log n)^2}\to0.
-$$
-Thus $\lambda_n\to0$ and $\sinh\lambda_n\sim\lambda_n$, so
-$$
-\lambda_n\sim-\frac{128(\log 2)^2}{\sqrt{\pi}}
-\frac{n^{-1}e^{-5\sqrt{n}}}{(\log n)^2}.
+\lambda_n=rac{3}{4n^2}+rac{5}{16n^3}+o(n^{-3}).
 $$
 Therefore
 $$
-\alpha=1,\qquad \beta=2,\qquad c=5,
-\qquad L=-\frac{128(\log 2)^2}{\sqrt{\pi}}.
+\lim_{n\to\infty}n^3\left(\lambda_n-\frac{3}{4n^2}\right)=\frac{5}{16}.
 $$
-Final Answer: $\boxed{\left(1,2,5,-\frac{128(\log 2)^2}{\sqrt{\pi}}\right)}$
+Final Answer: $\boxed{\frac{5}{16}}$
 
 ---
 
 ## Answer
 
-$\left(1,2,5,-\frac{128(\log 2)^2}{\sqrt{\pi}}\right)$
+$\frac{5}{16}$
 
 ---
 
@@ -181,14 +117,14 @@ $\left(1,2,5,-\frac{128(\log 2)^2}{\sqrt{\pi}}\right)$
 
 **Problem Type:** Exact computation
 
-**Answer Type:** Tuple or ordered list
+**Answer Type:** Real number
 
 ---
 
 ## Solution Concepts
 
-- product-density finite difference
-- directional-derivative certificate
-- competing boundary contributions
-- Gaussian moment centering
-- second finite difference
+- Gaussian rescaling
+- implicit median shift
+- parity cancellation
+- Gaussian generating integral
+- asymptotic expansion
