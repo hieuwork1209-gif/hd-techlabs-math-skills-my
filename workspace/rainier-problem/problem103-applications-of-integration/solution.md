@@ -1,169 +1,130 @@
 ## Steps
 
-Step 1: Separate the root from the asymptotic term
+Step 1: Separate the implicit root
 
-Write
+Let
 $$
-A_n=\int_{[0,1]^4}e^{-nT^2}\,d\mathbf x
+B_n=\int_{[0,1]^4}e^{-n(P^2+Q^2)}\,d\mathbf x,
 $$
-and let $J_n$ denote the sum of the four remaining integrals in the definition of $I_n$. Then
+and let $S_n=I_n(0)$. Then
 $$
-I_n(\lambda)=A_n\sinh\lambda+J_n.
+I_n(\lambda)=B_n\sinh\lambda+S_n,
 $$
-Since $A_n>0$, this is strictly increasing in $\lambda$ and tends to $\pm\infty$ as $\lambda\to\pm\infty$. Hence the root is unique and
+so the unique root satisfies
 $$
-\sinh\lambda_n=-\frac{J_n}{A_n}. \tag{1}
-$$
-Thus it remains to determine the first nonzero asymptotic term of $J_n/A_n$.
-
-Step 2: Reduce four product variables to one variable
-
-For every integrable $F$ on $(0,1)$,
-$$
-\int_{[0,1]^4}F(x_1x_2x_3x_4)\,d\mathbf x
-=\frac16\int_0^1(-\log t)^3F(t)\,dt. \tag{2}
-$$
-Indeed, set $x_i=e^{-u_i}$. Then $d\mathbf x=e^{-(u_1+\cdots+u_4)}d\mathbf u$. For fixed $s=u_1+\cdots+u_4$, the simplex $u_i\geq0$ has three-dimensional volume $s^3/6$. Finally put $t=e^{-s}$.
-
-Applying (2) to $A_n$ gives
-$$
-A_n=\frac16\int_0^1(-\log t)^3e^{-nt^2}\,dt.
-$$
-With $t=s/\sqrt n$,
-$$
-A_n=\frac1{6\sqrt n}\int_0^{\sqrt n}
-\left(\frac12\log n-\log s\right)^3e^{-s^2}\,ds.
-$$
-The terms containing fewer than three powers of $\log n$ are lower order, so
-$$
-A_n\sim\frac{\sqrt\pi}{96}\,n^{-1/2}(\log n)^3. \tag{3}
+\sinh\lambda_n=-\frac{S_n}{B_n}. \tag{1}
 $$
 
-Step 3: Expose the hidden third finite difference
+Step 2: Evaluate the denominator
+
+For every integrable $F$,
+$$
+\int_{[0,1]^4}F(P,Q)\,d\mathbf x
+=\int_0^1\int_0^1(-\log p)(-\log q)F(p,q)\,dp\,dq. \tag{2}
+$$
+Hence
+$$
+B_n=\left(\int_0^1(-\log p)e^{-np^2}\,dp\right)^2
+\sim\frac\pi{16}n^{-1}(\log n)^2. \tag{3}
+$$
+
+Step 3: Collapse both finite differences
 
 Put
 $$
-a_n(u)=\left(1-(2n)^{1/3}u\right)^5,
+N=\sqrt n,\qquad h=\log2,\qquad \delta=N^{-1/2}=n^{-1/4}.
+$$
+In the $(j,k,t)$ term set $u=n^{1/4}2^jp$, $v=n^{1/4}2^kq$. The $(j,k)$ alternating sum of the product-density logarithms is exactly $h^2$. Therefore
+$$
+S_n=\frac{h^2}{N}(H_0-2H_1+H_2)+o\!\left(\delta^{25/2}e^{-4N}\right), \tag{4}
+$$
+where $H_t$ is the $(u,v)$ integral of $A_t(e^{-N\Phi_t^+}-e^{-N\Phi_t^-})$ over the positive quadrant.
+
+Step 4: Put the three saddle families in one normal form
+
+Write
+$$
+K_t=\left(1+\frac{s}{\delta}\right)R_t+(s-\delta).
+$$
+Then exactly
+$$
+\Phi_t^\pm=4+(K_t\mp\delta)^2+(s-\delta)^2,
 \qquad
-E_n(u)=\exp\!\left(-nu^2-\frac1u\right).
+A_t=K_t^2-\frac52\delta^2. \tag{5}
 $$
-For the term indexed by $j$, apply (2) and then substitute $u=2^jt$. The factor $2^j$ in the statement cancels the Jacobian, giving
+Set $x=uv-1$, $y=u-v$. Since
 $$
-\frac{(-1)^{3-j}}6\binom3j
-\int_0^{2^j}\bigl(-\log u+j\log2\bigr)^3a_n(u)E_n(u)\,du. \tag{4}
+\left|\frac{\partial(x,y)}{\partial(u,v)}\right|=\sqrt{y^2+4(1+x)}, \tag{6}
 $$
-On $0<u<1$, all four integrals in (4) are present. Since the third forward difference of a cubic is constant,
+scale
 $$
-\sum_{j=0}^3(-1)^{3-j}\binom3j(X+jh)^3=6h^3, \tag{5}
+x=\delta X,\qquad y=\delta^{1/2}Y,\qquad T=Y^2-1,
 $$
-with $h=\log2$. The portions with $u\geq1$ are $O(n^C e^{-n})$ for some fixed $C$, because $E_n(u)\leq e^{-n}$ there. Therefore
+and put
 $$
-J_n=(\log2)^3K_n+O(n^Ce^{-n}), \tag{6}
+a=1+Y^2,\qquad W=aX+T-ta\delta. \tag{7}
+$$
+Then $K_t=\delta W$, $N\delta^2=1$, and
+$$
+N(\Phi_t^\pm-4)=(W\mp1)^2+T^2,
+\qquad
+A_t=\delta^2\left(W^2-\frac52\right). \tag{8}
+$$
+If
+$$
+Z=\frac{W-T}{a}+\frac{Y^2}{4},
+$$
+then
+$$
+H_t=\frac12e^{-4N}\delta^{7/2}\int_{\mathbb R^2}
+\frac{Q(W)e^{-T^2}}a(1+\delta Z+t\delta^2)^{-1/2}\,dW\,dY, \tag{9}
 $$
 where
 $$
-K_n=\int_0^\infty a_n(u)E_n(u)\,du.
-$$
-The extension of the upper limit to infinity changes the integral only by another $O(n^Ce^{-n})$ term.
-
-Step 4: Evaluate the first surviving moving-saddle term
-
-Set
-$$
-N=n^{1/3},\qquad u=\frac zN,
-\qquad
-\Phi(z)=z^2+\frac1z.
-$$
-Then
-$$
-K_n=\frac1N\int_0^\infty
-\left(1-2^{1/3}z\right)^5e^{-N\Phi(z)}\,dz. \tag{7}
-$$
-The unique minimum of $\Phi$ occurs at
-$$
-r=2^{-1/3},
-$$
-because $\Phi'(z)=2z-z^{-2}$. At this point
-$$
-c:=\Phi(r)=\frac3{2^{2/3}},
-\qquad
-\Phi''(r)=6,
-\qquad
-\Phi'''(r)=-6\,2^{4/3}. \tag{8}
-$$
-The amplitude has a fifth-order zero at exactly the same point:
-$$
-\left(1-2^{1/3}z\right)^5=-2^{5/3}(z-r)^5. \tag{9}
-$$
-Now set $z=r+v/\sqrt N$. Taylor expansion gives
-$$
-N(\Phi(z)-c)
-=3v^2+\frac{\Phi'''(r)}{6\sqrt N}v^3
-+O\!\left(\frac{v^4}{N}\right),
-$$
-so
-$$
-e^{-N(\Phi(z)-c)}
-=e^{-3v^2}\left[1-\frac{\Phi'''(r)}{6\sqrt N}v^3
-+O\!\left(\frac{v^4+v^6}{N}\right)\right]. \tag{10}
-$$
-The leading product from (9) and the first term in (10) is proportional to $v^5e^{-3v^2}$ and integrates to zero. The first nonzero term comes from the cubic correction. Its coefficient is
-$$
-(-2^{5/3})\left(-\frac{\Phi'''(r)}6\right)=-8. \tag{11}
-$$
-Outside a fixed neighborhood of $r$ the phase is at least $c+\eta$, while inside that neighborhood the quadratic term gives a Gaussian majorant. Hence termwise integration is justified. Since
-$$
-\int_{-\infty}^{\infty}v^8e^{-3v^2}\,dv
-=\frac{35\sqrt\pi}{432\sqrt3},
-$$
-(7)-(11) yield
-$$
-K_n\sim
--\frac{35\sqrt\pi}{54\sqrt3}\,
-N^{-9/2}e^{-cN}. \tag{12}
-$$
-Because $N^{-9/2}=n^{-3/2}$,
-$$
-J_n\sim
--\frac{35\sqrt\pi(\log2)^3}{54\sqrt3}\,
-n^{-3/2}
-\exp\!\left(-\frac3{2^{2/3}}n^{1/3}\right). \tag{13}
+Q(W)=\left(W^2-\frac52\right)\left(e^{-(W-1)^2}-e^{-(W+1)^2}\right). \tag{10}
 $$
 
-Step 5: Recover the implicit root
+Step 5: Use the second family difference and moment annihilation
 
-Combining (3) and (13),
+The needed moments are
 $$
--\frac{J_n}{A_n}
-\sim
-\frac{560}{9\sqrt3}(\log2)^3
-\frac{1}{n(\log n)^3}
-\exp\!\left(-\frac3{2^{2/3}}n^{1/3}\right). \tag{14}
-$$
-The right side tends to $0$, so (1) and $\operatorname{arsinh}u\sim u$ imply
-$$
-\lambda_n\sim
-\frac{560}{9\sqrt3}(\log2)^3
-\frac{1}{n(\log n)^3}
-\exp\!\left(-\frac3{2^{2/3}}n^{1/3}\right).
-$$
-Since $560/(9\sqrt3)=560\sqrt3/27$, the unique constants are
-$$
-\alpha=1,
+\int W^kQ(W)\,dW=0\quad(k=0,1,2),
 \qquad
-\beta=3,
-\qquad
-c=\frac3{2^{2/3}},
-\qquad
-L=\frac{560\sqrt3(\log2)^3}{27}.
+\int W^3Q(W)\,dW=7\sqrt\pi. \tag{11}
 $$
-Final Answer: $\boxed{\left(1,3,\frac3{2^{2/3}},\frac{560\sqrt3(\log2)^3}{27}\right)}$
+For $f_t=(1+\delta Z+t\delta^2)^{-1/2}$,
+$$
+\begin{aligned}
+f_0-2f_1+f_2={}&\frac34\delta^4-\frac{15}{8}\delta^5Z
++\delta^6\left(\frac{105}{32}Z^2-\frac{15}{8}\right)\\
+&+\delta^7\left(-\frac{315}{64}Z^3+\frac{105}{16}Z\right)+O(\delta^8(1+|Z|^4)).
+\end{aligned} \tag{12}
+$$
+By (11), all terms through order $\delta^6$ vanish after integration, as does the linear $Z$ term at order $\delta^7$. Only the $W^3/a^3$ part of $Z^3$ survives. Hence, by the definition of $\mathcal D$,
+$$
+H_0-2H_1+H_2\sim-\frac{2205\sqrt\pi}{128}\mathcal D\,\delta^{21/2}e^{-4N}. \tag{13}
+$$
+Thus
+$$
+S_n\sim-\frac{2205\sqrt\pi}{128}\mathcal D(\log2)^2\delta^{25/2}e^{-4N}. \tag{14}
+$$
+Combining (1), (3), and (14),
+$$
+\lambda_n\sim\frac{2205\mathcal D(\log2)^2}{8\sqrt\pi}
+\frac{e^{-4\sqrt n}}{n^{17/8}(\log n)^2}.
+$$
+Therefore
+$$
+\alpha=\frac{17}{8},\qquad \beta=2,\qquad c=4,
+\qquad L=\frac{2205\mathcal D(\log2)^2}{8\sqrt\pi}.
+$$
+Final Answer: $\boxed{\left(\frac{17}{8},2,4,\frac{2205\mathcal D(\log2)^2}{8\sqrt\pi}\right)}$
 
 ---
 
 ## Answer
 
-$\left(1,3,\frac3{2^{2/3}},\frac{560\sqrt3(\log2)^3}{27}\right)$
+$\left(\frac{17}{8},2,4,\frac{2205\mathcal D(\log2)^2}{8\sqrt\pi}\right)$
 
 ---
 
@@ -177,8 +138,8 @@ $\left(1,3,\frac3{2^{2/3}},\frac{560\sqrt3(\log2)^3}{27}\right)$
 
 ## Solution Concepts
 
-- product-integral reduction
-- finite-difference cancellation
-- logarithmic density
-- high-order saddle cancellation
-- implicit root asymptotics
+- paired product-coordinate reduction
+- second finite difference of saddle families
+- common nonlinear saddle normal form
+- signed Gaussian moment annihilation
+- delayed Jacobian curvature term
