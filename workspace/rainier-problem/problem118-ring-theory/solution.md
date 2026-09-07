@@ -1,7 +1,7 @@
 ## Steps
 
-Step 1: Localize and split off the Heisenberg pair
-Let \(\mathfrak g\) be the Lie algebra with the generators and brackets from the problem. Then \(R=U(\mathfrak g)\), and PBW implies that \(R\) is a domain. Since \(z\) is central and regular, form
+Step 1: Localize and remove the Heisenberg action
+Let \(\mathfrak g\) be the Lie algebra defined by the displayed relations, so \(R=U(\mathfrak g)\). PBW implies that \(R\) is a domain. Since \(z\) is central and regular, form
 \[
 S=R[z^{-1}].
 \]
@@ -11,7 +11,7 @@ e=E-\frac{p^2}{2z},\qquad
 f=F+\frac{q^2}{2z},\qquad
 h=H+\frac{pq}{z}-\frac12.
 \]
-Using \([p,q]=z\) and the displayed action on \(p,q\), one checks
+Using \([p,q]=z\) and the action of \(E,F,H\) on \(p,q\), one checks
 \[
 [e,p]=[e,q]=[f,p]=[f,q]=[h,p]=[h,q]=0
 \]
@@ -19,147 +19,185 @@ and
 \[
 [h,e]=2e,\qquad [h,f]=-2f,\qquad [e,f]=h.
 \]
-The elements \(x,y,t\) commute with \(p,q,z\), so replacing \(E,F,H\) by \(e,f,h\) does not change their action on \(x,y,t\). Thus \(e,f,h,x,y,t\) generate over
+The generators \(x,y,t,a,b,c\) commute with \(p,q,z\), so replacing \(E,F,H\) by \(e,f,h\) leaves all their other brackets unchanged. Hence, over
 \[
-K=k[z^{\pm1}]
+K=k[z^{\pm1}],
 \]
-the Takiff algebra \(\mathfrak l=\mathfrak{sl}_2\ltimes(\mathfrak{sl}_2)_{\mathrm{ab}}\), while \(p,q\) form a localized Weyl pair commuting with it.
-
-Every element of \(S\) has a unique expansion
+the generators
 \[
-\sum_{i,j\ge0}p^iq^j u_{ij},\qquad u_{ij}\in U_K(\mathfrak l).
+e,f,h,x,y,t,a,b,c
 \]
-If it commutes with \(p\), then \([p,q^j]=jzq^{j-1}\) forces \(j=0\); commuting with \(q\) then forces \(i=0\). Hence
+form the truncated current algebra
+\[
+\mathfrak l=\mathfrak{sl}_2[\varepsilon]/(\varepsilon^3),
+\]
+with \((x,y,t)=\varepsilon(e,f,h)\) and \((a,b,c)=\varepsilon^2(e,f,h)\). The localized Weyl pair \(p,q\) commutes with \(U_K(\mathfrak l)\). The usual Weyl-basis argument therefore gives
 \[
 Z(S)=Z\!\left(U_K(\mathfrak l)\right).
 \]
 
-Step 2: Compute the Takiff center
-Inside \(U_K(\mathfrak l)\), define
+Step 2: Compute the Poisson center of the third-order current algebra
+Pass to the PBW associated graded Poisson algebra
 \[
-A=t^2+4xy,
+Q=K[e,f,h,x,y,t,a,b,c].
+\]
+Define
+\[
+A=c^2+4ab,
 \]
 \[
-B=th+2xf+2ye.
-\]
-A direct use of
-\[
-[h,x]=2x,\quad [h,y]=-2y,\quad [e,y]=t,\quad [e,t]=-2x,
+B=tc+2xb+2ya,
 \]
 \[
-[f,x]=-t,\quad [f,t]=2y
+C=ch+\frac12t^2+2be+2af+2xy.
 \]
-shows that both \(A\) and \(B\) commute with \(e,f,h,x,y,t\). Thus \(K[A,B]\) lies in the center.
+Direct use of the current-algebra brackets gives zero Poisson bracket of each of \(A,B,C\) with all nine generators.
 
-To prove exhaustion, pass to the PBW associated graded Poisson algebra
+To prove that these exhaust the Poisson center, localize further at \(a\). The Hamiltonian derivations induced by \(a,c\) on the variables \(e,f,h\) are
 \[
-Q=K[e,f,h,x,y,t].
-\]
-Localize further at \(x\). The Hamiltonian derivations of \(x\) and \(t\) on the variables \(e,f,h\) are
-\[
-D_x=t\,\partial_f-2x\,\partial_h,
+D_a=c\,\partial_f-2a\,\partial_h,
 \qquad
-D_t=2x\,\partial_e-2y\,\partial_f.
+D_c=2a\,\partial_e-2b\,\partial_f,
 \]
-With
+and
 \[
-C=2xf+th,
+D_b=-\frac baD_a-\frac{c}{2a}D_c.
 \]
-the kernel of \(D_x\) is
+Their common kernel is
 \[
-K[x^{\pm1},y,t,e,C].
-\]
-Since \(D_t(C)=-4xy\) and \(D_t(e)=2x\), the common kernel of \(D_x,D_t\) is
-\[
-K[x^{\pm1},y,t,B],
-\qquad B=C+2ye.
-\]
-The derivation coming from \(y\) adds no condition because
-\[
-D_y=-\frac{y}{x}D_x-\frac{t}{2x}D_t.
-\]
-Now
-\[
-A=t^2+4xy,
+K[a^{\pm1},b,c,x,y,t,L],
 \qquad
-K[x^{\pm1},y,t,B]=K[x^{\pm1},t,A,B].
+L=ch+2af+2be.
 \]
-On this ring, the Hamiltonian derivation of \(e\) is \(-2x\partial_t\), so its kernel is \(K[x^{\pm1},A,B]\). The derivation of \(h\) is then \(2x\partial_x\), whose kernel is exactly \(K[A,B]\). Since \(A,B\) are also \(f\)-invariant,
+Now replace \(L\) by
 \[
-Z_{\mathrm{Pois}}(Q)=K[A,B].
+C=L+\frac12t^2+2xy.
 \]
-Therefore the leading symbol of every central element of \(U_K(\mathfrak l)\) is a polynomial in the leading symbols of \(A,B\). Subtracting the corresponding polynomial in the central elements \(A,B\) lowers PBW degree, so induction gives
+The derivations induced by \(x,t,y\) fix \(C\), and on \(x,y,t\) they are
 \[
-Z\!\left(U_K(\mathfrak l)\right)=K[A,B].
+c\,\partial_y-2a\,\partial_t,
+\qquad
+2a\,\partial_x-2b\,\partial_y,
+\qquad
+-c\,\partial_x+2b\,\partial_t.
+\]
+The third is again a linear combination of the first two, and their common kernel is
+\[
+K[a^{\pm1},b,c,B,C].
+\]
+Finally the derivation induced by \(e\) on \(a,b,c\) is
+\[
+c\,\partial_b-2a\,\partial_c.
+\]
+Since
+\[
+A=c^2+4ab,
+\qquad
+b=\frac{A-c^2}{4a},
+\]
+its kernel is \(K[a^{\pm1},A]\). The derivation of \(h\) is \(2a\partial_a-2b\partial_b\), so imposing it leaves exactly \(K[A]\). Thus
+\[
+Z_{\mathrm{Pois}}(Q[a^{-1}])=K[A,B,C].
+\]
+No denominator in \(a\) occurs for a polynomial invariant. Indeed, modulo \(a\), the images of \(A,B,C\) are algebraically independent: at
+\[
+(c,b,x,y,t,h,e)=(1,0,0,0,0,0,0)
+\]
+their differentials have independent \(dc,dt,dh\) components. Hence
+\[
+Z_{\mathrm{Pois}}(Q)=K[A,B,C].
+\]
+
+Step 3: Lift the three Poisson generators to the enveloping center
+The PBW symmetrization map is adjoint-equivariant: for a quadratic monomial it sends \(uv\) to \((uv+vu)/2\), and commuting a generator through this symmetrized product gives the symmetrization of the corresponding Poisson derivation. Therefore the symmetrizations of the invariant quadratics \(A,B,C\) are central.
+
+The first two require no correction:
+\[
+A=c^2+4ab,
+\qquad
+B=tc+2xb+2ya.
+\]
+For \(C\), using
+\[
+[e,b]=c,\qquad [f,a]=-c,\qquad [x,y]=c,
+\]
+its symmetrization is
+\[
+\Gamma=ch+\frac12t^2+2eb+2fa+2xy-c.
+\]
+Thus \(A,B,\Gamma\) are central in \(U_K(\mathfrak l)\). Their leading PBW symbols are \(A,B,C\), so Step 2 and PBW-degree induction give
+\[
+Z\!\left(U_K(\mathfrak l)\right)=K[A,B,\Gamma].
 \]
 Consequently
 \[
-Z(S)=k[z^{\pm1},A,B].
+Z(S)=k[z^{\pm1},A,B,\Gamma].
 \]
 
-Step 3: Produce central generators already lying in \(R\)
-Substituting the oscillator shift into \(B\) gives
+Step 4: Clear the oscillator denominator
+Substitute
 \[
-B=t\left(H+\frac{pq}{z}-\frac12\right)
-+2x\left(F+\frac{q^2}{2z}\right)
-+2y\left(E-\frac{p^2}{2z}\right).
+e=E-\frac{p^2}{2z},\qquad
+f=F+\frac{q^2}{2z},\qquad
+h=H+\frac{pq}{z}-\frac12
 \]
-Hence
+into \(\Gamma\). Then
 \[
-D=2zB
-=2ztH-zt+4zxF+4zyE+2tpq+2xq^2-2yp^2
+D=2z\Gamma
 \]
-belongs to \(R\). Since \(A\) and \(D\) are central after localization and \(R\hookrightarrow S\), they are central in \(R\). Thus
+is the element
 \[
-k[z,A,D]\subseteq Z(R),
+D=2zcH+zt^2+4zEb+4zFa+4zxy-3zc+2cpq-2bp^2+2aq^2.
 \]
-and, because \(B=D/(2z)\),
+Hence \(D\in R\), and since it is central in \(S\) while \(R\hookrightarrow S\), it is central in \(R\). Therefore
 \[
-Z(S)=k[z^{\pm1},A,D].
+k[z,A,B,D]\subseteq Z(R),
+\]
+and
+\[
+Z(S)=k[z^{\pm1},A,B,D].
 \]
 
-Step 4: Intersect the localized center back with \(R\)
-Let \(c\in Z(R)\). Write
+Step 5: Intersect the localized center back with \(R\)
+Let \(u\in Z(R)\). Write
 \[
-c=z^{-m}P(z,A,D)
+u=z^{-m}P(z,A,B,D)
 \]
-with \(m\ge0\), \(P\in k[z,A,D]\), and \(P\) not divisible by \(z\) if \(m>0\). If \(m>0\), then
+with \(m\ge0\), \(P\in k[z,A,B,D]\), and \(P\) not divisible by \(z\) if \(m>0\). If \(m>0\), then
 \[
-P(z,A,D)=z^m c\in zR.
+P(z,A,B,D)=z^m u\in zR.
 \]
-Modulo \(z\), the two generators become
+Modulo \(z\), the three nontrivial generators have leading PBW symbols
 \[
-A_0=t^2+4xy,
-\qquad
-D_0=2(tpq+xq^2-yp^2),
+A_0=c^2+4ab,
 \]
-which lie in the polynomial subalgebra \(k[p,q,x,y,t]\subset R/(z)\). They are algebraically independent: at
 \[
-(x,y,t,p,q)=(1,0,0,0,1),
+B_0=tc+2xb+2ya,
 \]
-the differentials satisfy
 \[
-dA_0=4\,dy,
-\qquad
-d(D_0/2)=dx+2\,dq,
+D_0=2(cpq-bp^2+aq^2).
 \]
-so they are linearly independent. Therefore
+They are algebraically independent: at
 \[
-P(0,A_0,D_0)\neq0,
+(a,b,c,x,y,t,p,q)=(1,0,0,0,0,0,0,1)
 \]
-contradicting \(P(z,A,D)\in zR\). Hence \(m=0\), and every central element lies in \(k[z,A,D]\).
+the differentials of \(A_0,B_0,D_0/2\) contain respectively the independent components
+\[
+4\,db,\qquad 2\,dy,\qquad da+2\,dq.
+\]
+Thus \(P(0,A_0,B_0,D_0)\neq0\), contradicting \(P(z,A,B,D)\in zR\). Hence \(m=0\), so every central element belongs to \(k[z,A,B,D]\).
 
-Thus
+Therefore
 \[
-Z(R)=k[z,A,D].
+Z(R)=k[z,A,B,D].
 \]
-Final Answer: $\boxed{k[z,t^2+4xy,2ztH-zt+4zxF+4zyE+2tpq+2xq^2-2yp^2]}$
+Final Answer: $\boxed{k[z,c^2+4ab,tc+2xb+2ya,2zcH+zt^2+4zEb+4zFa+4zxy-3zc+2cpq-2bp^2+2aq^2]}$
 
 ---
 
 ## Answer
 
-$k[z,t^2+4xy,2ztH-zt+4zxF+4zyE+2tpq+2xq^2-2yp^2]$
+$k[z,c^2+4ab,tc+2xb+2ya,2zcH+zt^2+4zEb+4zFa+4zxy-3zc+2cpq-2bp^2+2aq^2]$
 
 ---
 
@@ -175,9 +213,9 @@ $k[z,t^2+4xy,2ztH-zt+4zxF+4zyE+2tpq+2xq^2-2yp^2]$
 
 - PBW localization
 - oscillator shift
-- Takiff algebras
+- truncated current algebras
 - Poisson centers
-- center intersection
+- PBW symmetrization
 
 ---
 
