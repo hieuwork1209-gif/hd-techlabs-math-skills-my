@@ -36,74 +36,83 @@ Put
 $$
 N=n^{1/3},\qquad a=(2n)^{1/3}=2^{1/3}N,
 $$
-and
+and write
 $$
-\Phi_1(y)=3+(y-1)^2,\qquad
-\Phi_2(y)=3+(y^2-4)^2.
+w(y)=y^3+2y.
 $$
-For the term indexed by $j$, apply (2), substitute $u=2^jt$, and write $y=au$. The factor $2^j$ cancels the first Jacobian, while
+For the term indexed by $j$, apply (2) and set $y=a2^jt$. The factor $2^j$ cancels the Jacobian apart from the common factor $(2^{1/3}N)^{-1}$, while
 $$
--\log t=-\log u+j\log2.
+-\log t=\log a+j\log2-\log y.
 $$
-Hence on the common interval,
+Therefore
 $$
-\sum_{j=0}^3(-1)^{3-j}\binom3j(-\log u+j\log2)^3=6(\log2)^3. \tag{4}
+\sum_{j=0}^3(-1)^{3-j}\binom3j(\log a+j\log2-\log y)^3=6(\log2)^3. \tag{4}
 $$
-The pieces outside the common interval are super-exponentially smaller than $e^{-4N}$, because there $y\asymp N$ and both phases grow at least quadratically. Therefore
+The different upper limits may be replaced by $\infty$ with an error super-exponentially smaller than $e^{-4N}$, because all three phases grow at least quadratically there. Hence
 $$
-J_n=\frac{(\log2)^3}{2^{1/3}N}H_N+o(N^{-2}e^{-4N}), \tag{5}
+J_n=\frac{(\log2)^3}{2^{1/3}N}H_N+o(N^{-3}e^{-4N}), \tag{5}
 $$
 where
 $$
-H_N=\int_0^\infty\left[e^{-N\Phi_1(y)}-2y\,e^{-N\Phi_2(y)}\right]dy. \tag{6}
-$$
-
-Step 4: Use the hidden exact cancellation
-
-In the first integral in (6), set $z=y-1$. In the second, set $z=y^2-4$, so $dz=2y\,dy$. Then
-$$
 \begin{aligned}
-H_N
-&=\int_{-1}^\infty e^{-N(3+z^2)}dz
--\int_{-4}^\infty e^{-N(3+z^2)}dz\\
-&=-e^{-3N}\int_{-4}^{-1}e^{-Nz^2}dz
-=-e^{-3N}\int_1^4e^{-Nz^2}dz. \tag{7}
+H_N=\int_0^\infty\Bigg[&e^{-N[3+(y-1)^2]}
+-2y\,e^{-N[3+(y^2-4)^2]}\\
+&+\frac{3y^2+2}{2}\,e^{-N[4+w(y)+w(y)^2]}\Bigg]dy. \tag{6}
 \end{aligned}
 $$
-Thus the complete interior Laplace expansions cancel; the surviving term is an endpoint tail. Since
+
+Step 4: Expose the telescoping substitutions and the endpoint cancellation
+
+For the first integral in (6), set $z=y-1$. For the second, set $z=y^2-4$, so $dz=2y\,dy$. Their difference is exactly
 $$
-\int_1^4e^{-Nz^2}dz\sim\frac{e^{-N}}{2N}, \tag{8}
+-e^{-3N}\int_1^4e^{-Nz^2}\,dz. \tag{7}
 $$
-we get
+For the third integral, set $w=y^3+2y$. Since $dw=(3y^2+2)dy$, it becomes
 $$
-H_N\sim-\frac1{2N}e^{-4N}. \tag{9}
+\frac12e^{-4N}\int_0^\infty e^{-N(w+w^2)}\,dw. \tag{8}
 $$
-Combining (5) and (9),
+Thus the entire interior saddle series of the first two channels cancels before the third channel is even compared.
+
+Now expand both surviving endpoint tails. With $z=1+x/N$,
 $$
-J_n\sim-\frac{(\log2)^3}{2^{4/3}}N^{-2}e^{-4N}
-=-\frac{(\log2)^3}{2^{4/3}}n^{-2/3}e^{-4n^{1/3}}. \tag{10}
+\int_1^4e^{-Nz^2}\,dz
+=e^{-N}\left(\frac1{2N}-\frac1{4N^2}+O(N^{-3})\right). \tag{9}
+$$
+With $w=x/N$,
+$$
+\int_0^\infty e^{-N(w+w^2)}\,dw
+=\frac1N-\frac2{N^2}+O(N^{-3}). \tag{10}
+$$
+Substituting (9) and (10) into (7)-(8), the two $N^{-1}e^{-4N}$ terms cancel exactly, and
+$$
+H_N\sim-\frac{3}{4}N^{-2}e^{-4N}. \tag{11}
+$$
+Therefore
+$$
+J_n\sim-\frac{3(\log2)^3}{4\,2^{1/3}}N^{-3}e^{-4N}
+=-\frac{3(\log2)^3}{4\,2^{1/3}}n^{-1}e^{-4n^{1/3}}. \tag{12}
 $$
 
 Step 5: Recover the root
 
-By (3) and (10), $J_n/A_n\to0$, so (1) and $\operatorname{arsinh}u\sim u$ yield
+By (3) and (12), $J_n/A_n\to0$, so (1) and $\operatorname{arsinh}u\sim u$ give
 $$
 \lambda_n\sim-\frac{J_n}{A_n}
-\sim\frac{24\cdot2^{2/3}(\log2)^3}{\sqrt\pi}
-\frac{e^{-4n^{1/3}}}{n^{1/6}(\log n)^3}.
+\sim\frac{72\,2^{-1/3}(\log2)^3}{\sqrt\pi}
+\frac{e^{-4n^{1/3}}}{n^{1/2}(\log n)^3}.
 $$
-Therefore
+Hence
 $$
-\alpha=\frac16,\qquad \beta=3,\qquad c=4,\qquad
-L=\frac{24\cdot2^{2/3}(\log2)^3}{\sqrt\pi}.
+\alpha=\frac12,\qquad \beta=3,\qquad c=4,\qquad
+L=\frac{72\,2^{-1/3}(\log2)^3}{\sqrt\pi}.
 $$
-Final Answer: $\boxed{\left(\frac16,3,4,\frac{24\cdot2^{2/3}(\log2)^3}{\sqrt\pi}\right)}$
+Final Answer: $\boxed{\left(\frac12,3,4,\frac{72\,2^{-1/3}(\log2)^3}{\sqrt\pi}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac16,3,4,\frac{24\cdot2^{2/3}(\log2)^3}{\sqrt\pi}\right)$
+$\left(\frac12,3,4,\frac{72\,2^{-1/3}(\log2)^3}{\sqrt\pi}\right)$
 
 ---
 
@@ -119,6 +128,6 @@ $\left(\frac16,3,4,\frac{24\cdot2^{2/3}(\log2)^3}{\sqrt\pi}\right)$
 
 - product-integral reduction
 - third finite-difference cancellation
-- hidden change-of-variable identity
-- beyond-all-orders saddle cancellation
-- endpoint Laplace tail
+- nonlinear telescoping substitutions
+- competing endpoint tails
+- leading endpoint cancellation
