@@ -6,27 +6,28 @@ All logarithms are natural. Put
 $$
 P=x_1x_2,\qquad Q=x_3x_4,
 $$
-and define the universal constant
+and define
 $$
-\mathcal C=\int_{-\infty}^{\infty}e^{-(s^2-1)^2}\,ds.
+\mathcal D=\int_{-\infty}^{\infty}\frac{e^{-(z^2-1)^2}}{(1+z^2)^4}\,dz.
 $$
 For each integer $n\ge1$, real $\lambda$, and $j,k\in\{0,1\}$, set
 $$
 U_j=n^{1/4}2^jP,\qquad V_k=n^{1/4}2^kQ,\qquad \delta_n=n^{-1/4}.
 $$
-For $u,v\ge0$ define
+For $u,v\ge0$, write $r=uv$ and $s=(u-v)^2$, and define
 $$
 \begin{aligned}
-\Psi_n(u,v)=&\ 5+\delta_n^2+u^4+v^4-4uv(u^2+v^2)+7u^2v^2\\
-&+(-2+4\delta_n)uv-2\delta_n(u^2+v^2),
+\Psi_n(u,v)=4&+\left(1+\frac{2s}{\delta_n}+\frac{s^2}{\delta_n^2}\right)(r-1)^2
++2\left(\frac{s^2}{\delta_n}-\delta_n\right)(r-1)\\
+&+2s^2-4\delta_ns+2\delta_n^2,
 \end{aligned}
 $$
-and
 $$
 \begin{aligned}
-A_n(u,v)=&\ 1-\frac12(u^2+v^2)-uv-2(u^4+v^4)\\
-&+\frac{17}{2}uv(u^2+v^2)-12u^2v^2
-+2\delta_n(u^2+v^2-2uv).
+A_n(u,v)=&\left(1+\frac{3s}{\delta_n}+\frac{3s^2}{\delta_n^2}+\frac{s^3}{\delta_n^3}\right)(r-1)^3\\
+&+\left(-3\delta_n-3s+\frac{3s^2}{\delta_n}+\frac{3s^3}{\delta_n^2}\right)(r-1)^2\\
+&+\left(\frac32\delta_n^2-\frac92\delta_ns-3s^2+\frac{3s^3}{\delta_n}\right)(r-1)\\
+&+\frac12\delta_n^3+\frac32\delta_n^2s-3\delta_ns^2+s^3.
 \end{aligned}
 $$
 Define
@@ -59,4 +60,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for a sharp asymptotic of an implicitly defined root of a four-dimensional integral. A double finite difference removes the logarithmic product density. The remaining phase hides a critically coalescing quadratic-quartic saddle behind a symmetric polynomial; after recovering the nonlinear saddle coordinates, two consecutive Jacobian-moment coefficients cancel before the crossover profile contributes. This is an application of asymptotic integration, so Calculus -> Applications of integration is the best fit.
+The problem asks for a sharp asymptotic of an implicitly defined root of a four-dimensional integral. A finite-difference reduction exposes a critically coalescing saddle only after recovering a nonlinear $n$-dependent coordinate; the first three Jacobian orders then vanish by Gaussian orthogonality. This is an application of asymptotic integration, so Calculus -> Applications of integration is the best fit.
