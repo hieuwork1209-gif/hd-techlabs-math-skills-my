@@ -28,16 +28,27 @@ and by the same signs on $f_1,f_2,f_3,f_4$.
 
 Let $L$ range over Lagrangian subspaces with $L\cap F=0$ and $\jmath(L)=L$. Write
 $$
-L=\{x+S_Lx:x\in E\},\qquad S_L=(s_{ij}).
+L=\{x+S_Lx:x\in E\},\qquad S_L=(s_{ij}),
 $$
-Define
+and define
 $$
 S_{L,+}=\begin{pmatrix}s_{11}&s_{13}\\s_{13}&s_{33}\end{pmatrix},\qquad
 S_{L,-}=\begin{pmatrix}s_{22}&s_{24}\\s_{24}&s_{44}\end{pmatrix}.
 $$
+Put
+$$
+A_L=s_{33}+2s_{24},\qquad B_L=s_{22}+2s_{13},
+$$
+and
+$$
+\Delta_L=A_L^2B_L^2-A_L^3-B_L^3.
+$$
 Let $M_r$ be the number of such $L$ satisfying
 $$
-s_{11}=s_{44}=1,\qquad \det S_{L,+}+\det S_{L,-}=-1,
+s_{11}=s_{44}=1,
+$$
+$$
+\det S_{L,+}+\det S_{L,-}=A_L+B_L-1-\Delta_L,
 $$
 and
 $$
@@ -60,4 +71,4 @@ for every $t\in\mathbb{F}_q$. Determine $M_r$ exactly.
 
 ## Domain Explanation
 
-This problem counts invariant Lagrangian graphs subject to a coupled determinant constraint and a full family of symplectic transversality conditions. The defining objects are Lagrangian subspaces, eigenspace blocks of a symplectic involution, and symplectic quarter-turns, so Topology and Geometry with Symplectic and contact geometry is the best fit. Finite-field line arrangements and Artin-Schreier fibers appear only after the symplectic reduction.
+This problem counts invariant Lagrangian graphs subject to a discriminant-coupled block constraint and a full family of symplectic transversality conditions. The defining objects are Lagrangian subspaces, eigenspace blocks of a symplectic involution, and symplectic quarter-turns, so Topology and Geometry with Symplectic and contact geometry is the best fit. The cubic discriminant and finite-field incidence counting arise only after the symplectic reduction.
