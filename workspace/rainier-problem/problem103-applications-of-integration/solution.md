@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Separate the implicit root and evaluate its denominator
+Step 1: Separate the implicit root and evaluate the denominator
 
 Let
 $$
@@ -14,53 +14,52 @@ Because $B_n>0$, the function $I_n$ is strictly increasing, so the real root is 
 $$
 \sinh\lambda_n=-\frac{S_n}{B_n}.
 $$
-Using the product-density identity
+Using
 $$
 \int_{[0,1]^2}F(x_1x_2)\,dx_1dx_2=\int_0^1F(p)(-\log p)\,dp,
 $$
-we obtain
+we get
 $$
 B_n=\left(\int_0^1(-\log p)e^{-np^2}\,dp\right)^2.
 $$
-With $y=\sqrt n\,p$,
+With $y=\sqrt{n}\,p$,
 $$
 \int_0^1(-\log p)e^{-np^2}\,dp
-=n^{-1/2}\int_0^{\sqrt n}e^{-y^2}\left(\frac{1}{2}\log n-\log y\right)dy
-\sim\frac{\sqrt\pi}{4}n^{-1/2}\log n,
+\sim\frac{\sqrt{\pi}}{4}n^{-1/2}\log n,
 $$
 so
 $$
-B_n\sim\frac{\pi}{16}n^{-1}(\log n)^2
-=\frac{\pi}{16}\delta^4(\log n)^2.
+B_n\sim\frac{\pi}{16}\delta^4(\log n)^2.
 $$
 
 Step 2: Collapse the dyadic finite difference
 
 Put $h=\log 2$. In the $(j,k,t)$ term use
 $$
-p=\delta 2^{-j}u,\qquad q=\delta 2^{-k}v.
+p=\delta2^{-j}u,\qquad q=\delta2^{-k}v.
 $$
-The factor $2^{j+k}$ cancels the Jacobian factor $2^{-j-k}$, leaving the common factor $\delta^2$. Also
+The factor $2^{j+k}$ cancels the Jacobian factor $2^{-j-k}$, while
 $$
 -\log p=-\log\delta+jh-\log u,
 \qquad
--\log q=-\log\delta+kh-\log v,
+-\log q=-\log\delta+kh-\log v.
 $$
-and therefore
+Hence
 $$
 \sum_{j,k=0}^1(-1)^{j+k}
 (-\log\delta+jh-\log u)(-\log\delta+kh-\log v)=h^2.
 $$
-The scaled upper limits are at least $\delta^{-1}$. If $u\ge\delta^{-1}$ or $v\ge\delta^{-1}$, then either $s=(u-v)^2$ or $r=uv$ grows as a positive power of $\delta^{-1}$, so $\Psi_t$ exceeds its relevant bounded region by a positive power of $\delta^{-1}$. Hence extending each scaled domain to the positive quadrant changes the integral by an amount smaller than $e^{-5N}$ times every fixed power of $\delta$. Thus
+The relevant mass has bounded $u,v$, whereas every scaled upper limit is at least $\delta^{-1}$. On the omitted region either $r=uv$ or $s=(u-v)^2$ grows as a positive power of $\delta^{-1}$, so the Gaussian phase makes that region exponentially smaller than $e^{-5N}$ times any fixed power of $\delta$. Therefore
 $$
-S_n=\delta^2h^2\sum_{t=0}^2(-1)^t\binom{2}{t}J_t+o\left(\delta^6e^{-5N}\right),
+S_n=\delta^2h^2\sum_{t=0}^2(-1)^t\binom{2}{t}J_t
++o\left(\delta^8e^{-5N}\right),
 $$
 where
 $$
 J_t=\int_{(0,\infty)^2}G_t(u,v)\,du\,dv.
 $$
 
-Step 3: Use the hidden total-derivative certificate
+Step 3: Convert the bulk integral into two competing boundaries
 
 Set
 $$
@@ -68,110 +67,113 @@ r=uv,\qquad y=u-v,\qquad s=y^2.
 $$
 Since
 $$
-\left|\frac{\partial(r,y)}{\partial(u,v)}\right|=u+v=\sqrt{y^2+4r},
+\left|\frac{\partial(r,y)}{\partial(u,v)}\right|=u+v,
+\qquad |u^2-v^2|=|y|(u+v),
 $$
-we have
+and
 $$
-du\,dv=\frac{dr\,dy}{u+v}.
+\int_{-\infty}^{\infty}|y|F(y^2)\,dy=\int_0^\infty F(s)\,ds,
 $$
-Moreover
+the factor $|u^2-v^2|$ converts $J_t$ exactly to an integral over the quadrant in $(r,s)$.
+
+Define
 $$
-|u^2-v^2|=|y|(u+v).
+F_t(r,s)=(r+s+1)\left(r+s-1-\frac{\delta^2}{4}\right)e^{-N\Psi_t(r,s)}.
 $$
-The integrand is even in $y$, and
+Its prefactor depends only on $r+s$, while
 $$
-\int_{-\infty}^{\infty}|y|F(y^2)\,dy=\int_0^\infty F(s)\,ds.
+\left(\frac{\partial}{\partial r}-\frac{\partial}{\partial s}\right)\Psi_t
+=2(r-s-a_t+b_t)=2(r-s+\delta^3).
 $$
-Therefore
+Thus the displayed amplitude in the problem is exactly
 $$
-\begin{aligned}
-J_t=\int_0^\infty\int_0^\infty C(s)
-\left[1-2N(r+1)(r-a_t(s))\right]\\
-\times e^{-N\left(4+(s-\delta)^2+(r-a_t(s))^2\right)}\,dr\,ds.
-\end{aligned}
+\left(\frac{\partial}{\partial r}-\frac{\partial}{\partial s}\right)F_t(r,s).
 $$
-For fixed $s$, the bracket is exactly the derivative factor
+Integrating over $r,s\ge0$ and using Gaussian decay at infinity gives
 $$
-\frac{\partial}{\partial r}\left[(r+1)e^{-N\left(4+(s-\delta)^2+(r-a_t(s))^2\right)}\right].
+J_t=\int_0^\infty F_t(r,0)\,dr-\int_0^\infty F_t(0,s)\,ds.
 $$
-The expression in brackets tends to $0$ as $r\to\infty$, while at $r=0$ its prefactor is $1$. Hence the whole bulk saddle cancels exactly and
+Therefore, if
 $$
-J_t=-\int_0^\infty C(s)e^{-N\left(4+(s-\delta)^2+a_t(s)^2\right)}\,ds.
+\mathcal I(c)=\int_0^\infty(x+1)\left(x-1-\frac{\delta^2}{4}\right)e^{-N(x-c)^2}\,dx,
+$$
+then
+$$
+J_t=e^{-4N}\left(e^{-Nb_t^2}\mathcal I(a_t)-e^{-Na_t^2}\mathcal I(b_t)\right).
 $$
 
-Step 4: Evaluate the boundary layer and its centered moment cancellation
+Step 4: Evaluate the coupled boundary correction
 
-Set
+Since $a_t,b_t=1+O(\delta^3)$, replacing the lower limit $0$ in $\mathcal I(c)$ by $-\infty$ has an exponentially smaller error. The full Gaussian integral is exact:
 $$
-s=\delta(1+z),\qquad z\in[-1,\infty).
+\mathcal I(c)=\sqrt{\pi}\,\delta
+\left(c^2-1+\frac{\delta^2}{4}-\frac{\delta^2c}{4}\right)
++O(e^{-c_0N})
+$$
+for some $c_0>0$ uniformly for $t=0,1,2$.
+
+For $c=1+q\delta^3$, define
+$$
+W(q)=2q\delta^3-\frac{q}{4}\delta^5+q^2\delta^6,
+\qquad
+E(q)=e^{-2q\delta-q^2\delta^4}.
 $$
 Then
 $$
-C(s)=z-\mu,\qquad a_t(s)=1+\delta^3(t+z),
+J_t=\sqrt{\pi}\,\delta e^{-5N}
+\left(W(t)E(t+1)-W(t+1)E(t)\right)
++o\left(\delta^m e^{-5N}\right)
 $$
-so the preceding exact identity becomes
+for every fixed $m$. Using
 $$
-J_t=-\delta e^{-5N}\int_{-1}^{\infty}(z-\mu)e^{-z^2}
- e^{-2\delta(t+z)-\delta^4(t+z)^2}\,dz.
+E(q)=1-2q\delta+2q^2\delta^2+O(\delta^3),
 $$
-Define
+we obtain
 $$
-D_\delta(z)=\sum_{t=0}^2(-1)^t\binom{2}{t}
- e^{-2\delta(t+z)-\delta^4(t+z)^2}.
+W(t)E(t+1)-W(t+1)E(t)
+=-2\delta^3+\left(4t(t+1)+\frac14\right)\delta^5+O(\delta^6).
 $$
-A Taylor expansion for the three fixed values of $t$ gives
+The $t$-independent term disappears under the second finite difference, while
 $$
-D_\delta(z)=4\delta^2-8\delta^3(z+1)+O\left(\delta^4(1+z^2)\right).
+\left[4t(t+1)+\frac14\right]_{t=0}
+-2\left[4t(t+1)+\frac14\right]_{t=1}
++\left[4t(t+1)+\frac14\right]_{t=2}=8.
 $$
-This expansion is uniform on $|z|\le\delta^{-1/4}$, while the complementary Gaussian tail is smaller than every power of $\delta$, so it may be integrated termwise. By the definition of $\mu$,
-$$
-\int_{-1}^{\infty}(z-\mu)e^{-z^2}\,dz=0.
-$$
-Also
-$$
-\mathcal M=\int_{-1}^{\infty}z(z-\mu)e^{-z^2}\,dz
-=\int_{-1}^{\infty}(z-\mu)^2e^{-z^2}\,dz>0.
-$$
-Consequently
-$$
-\int_{-1}^{\infty}(z-\mu)e^{-z^2}D_\delta(z)\,dz
-=-8\mathcal M\delta^3+O(\delta^4),
-$$
-and therefore
+Hence
 $$
 \sum_{t=0}^2(-1)^t\binom{2}{t}J_t
-=8\mathcal M\delta^4e^{-5N}\left(1+O(\delta)\right).
+\sim8\sqrt{\pi}\,\delta^6e^{-5N}.
 $$
 
 Step 5: Recover the asymptotic root
 
 Step 2 and Step 4 give
 $$
-S_n\sim8\mathcal M(\log 2)^2\delta^6e^{-5N}.
+S_n\sim8\sqrt{\pi}(\log 2)^2\delta^8e^{-5N}.
 $$
-Combining this with the denominator from Step 1 yields
+Together with Step 1,
 $$
 \frac{S_n}{B_n}
-\sim\frac{128\mathcal M(\log 2)^2}{\pi}
-\frac{\delta^2e^{-5N}}{(\log n)^2}\to0.
+\sim\frac{128(\log 2)^2}{\sqrt{\pi}}
+\frac{\delta^4e^{-5N}}{(\log n)^2}\to0.
 $$
-Thus $\lambda_n\to0$, so $\sinh\lambda_n\sim\lambda_n$, and
+Thus $\lambda_n\to0$ and $\sinh\lambda_n\sim\lambda_n$, so
 $$
-\lambda_n\sim-\frac{128\mathcal M(\log 2)^2}{\pi}
-\frac{n^{-1/2}e^{-5\sqrt n}}{(\log n)^2}.
+\lambda_n\sim-\frac{128(\log 2)^2}{\sqrt{\pi}}
+\frac{n^{-1}e^{-5\sqrt{n}}}{(\log n)^2}.
 $$
-Hence
+Therefore
 $$
-\alpha=\frac{1}{2},\qquad \beta=2,\qquad c=5,
-\qquad L=-\frac{128\mathcal M(\log 2)^2}{\pi}.
+\alpha=1,\qquad \beta=2,\qquad c=5,
+\qquad L=-\frac{128(\log 2)^2}{\sqrt{\pi}}.
 $$
-Final Answer: $\boxed{\left(\frac{1}{2},2,5,-\frac{128\mathcal M(\log 2)^2}{\pi}\right)}$
+Final Answer: $\boxed{\left(1,2,5,-\frac{128(\log 2)^2}{\sqrt{\pi}}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{1}{2},2,5,-\frac{128\mathcal M(\log 2)^2}{\pi}\right)$
+$\left(1,2,5,-\frac{128(\log 2)^2}{\sqrt{\pi}}\right)$
 
 ---
 
@@ -186,7 +188,7 @@ $\left(\frac{1}{2},2,5,-\frac{128\mathcal M(\log 2)^2}{\pi}\right)$
 ## Solution Concepts
 
 - product-density finite difference
-- hidden total-derivative certificate
-- boundary-layer asymptotics
+- directional-derivative certificate
+- competing boundary contributions
+- Gaussian moment centering
 - second finite difference
-- centered truncated-Gaussian moment
