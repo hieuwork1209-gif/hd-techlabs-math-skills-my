@@ -18,18 +18,21 @@ Define $\rho_t\in\operatorname{Sp}(V)$ by
 $$
 \rho_t(v_t)=f_1,\qquad \rho_t(f_1)=-v_t,
 $$
-and let $\rho_t$ be the identity on $\langle v_t,f_1\rangle^\perp$. Also define the symplectic involution $\iota$ by
-$$
-\iota(e_i)=e_{5-i},\qquad \iota(f_i)=f_{5-i}.
-$$
+and let $\rho_t$ be the identity on $\langle v_t,f_1\rangle^\perp$.
 
-Let $L$ range over Lagrangian subspaces with $L\cap F=0$ and $\iota(L)=L$. Write
+Define the symplectic involution $\jmath$ by
+$$
+\jmath(e_1)=e_1,\quad \jmath(e_2)=-e_2,\quad \jmath(e_3)=e_3,\quad \jmath(e_4)=-e_4,
+$$
+and by the same signs on $f_1,f_2,f_3,f_4$.
+
+Let $L$ range over Lagrangian subspaces with $L\cap F=0$ and $\jmath(L)=L$. Write
 $$
 L=\{x+S_Lx:x\in E\},\qquad S_L=(s_{ij}).
 $$
 Let $M_r$ be the number of such $L$ satisfying
 $$
-s_{44}=1,\qquad s_{33}+2s_{24}=0,\qquad s_{14}+s_{23}=s_{34},
+s_{11}=s_{44}=1
 $$
 and
 $$
@@ -52,4 +55,4 @@ for every $t\in\mathbb{F}_q$. Determine $M_r$ exactly.
 
 ## Domain Explanation
 
-This problem studies Lagrangian graphs constrained by a symplectic involution and a family of symplectic quarter-turns. The decisive structure is the interaction between invariant Lagrangian subspaces and symplectic transversality, so Topology and Geometry with Symplectic and contact geometry is the best fit. Reciprocal-polynomial and finite-field Artin-Schreier arguments enter only after the symplectic reduction.
+This problem counts invariant Lagrangian graphs subject to a full family of symplectic transversality conditions. The defining objects are Lagrangian subspaces, a symplectic involution, and symplectic quarter-turns, so Topology and Geometry with Symplectic and contact geometry is the best fit. The finite-field line arrangement appears only after the symplectic reduction.
