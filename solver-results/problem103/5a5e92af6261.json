@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "fc20b074df2a8215410941349c9b4e05d78549bc",
+  "problem_blob_sha": "5a5e92af62610bf4242a336887f52c39d8681270",
+  "statement_sha256": "3641dc7ac07b6595757bf0a1866901b81f7691dab0a0689f3b498dec89c43517",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-07T01:53:27+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nF_n=\\int_{[0,1]^4}e^{-nT^2}\\,d\\mathbf x,\\qquad B_n=I_n(0).\n\\]\nThen\n\\[\nI_n(\\lambda)=F_n\\sinh\\lambda+B_n,\n\\]\nso\n\\[\n\\lambda_n=\\operatorname{arsinh}\\!\\left(-\\frac{B_n}{F_n}\\right).\n\\]\n\nFor a function \\(f(T)\\), since \\(T=x_1x_2x_3x_4\\),\n\\[\n\\int_{[0,1]^4}f(T)\\,d\\mathbf x\n=\\frac16\\int_0^1 f(t)(-\\log t)^3\\,dt.\n\\]\n\nFirst,\n\\[\nF_n=\\frac16\\int_0^1 e^{-nt^2}(-\\log t)^3\\,dt.\n\\]\nWith \\(y=\\sqrt n\\,t\\),\n\\[\nF_n=\\frac{n^{-1/2}}6\\int_0^{\\sqrt n}e^{-y^2}\\left(\\frac12\\log n-\\log y\\right)^3dy,\n\\]\nhence\n\\[\nF_n\\sim \\frac{\\sqrt\\pi}{96}\\,n^{-1/2}(\\log n)^3.\n\\]\n\nNow put \\(N=n^{1/3}\\), \\(a=(2n)^{1/3}=2^{1/3}N\\), and in the \\(j\\)-th term set\n\\[\nu=a2^jT.\n\\]\nThen\n\\[\n4^j nT^2+\\frac1{2^jT}\n=N\\phi(u),\n\\]\nwhere\n\\[\n\\phi(u)=2^{-2/3}u^2+2^{1/3}u^{-1}.\n\\]\nIts minimum is at \\(u=1\\), and\n\\[\n\\phi(1)=3\\cdot 2^{-2/3},\\qquad\n\\phi''(1)=3\\cdot 2^{1/3},\\qquad\n\\phi'''(1)=-6\\cdot 2^{1/3}.\n\\]\n\nThe logarithmic finite difference collapses exactly:\n\\[\n\\sum_{j=0}^3(-1)^{3-j}\\binom3j\n\\left(\\frac13\\log(2n)+j\\log2-\\log u\\right)^3\n=6(\\log2)^3.\n\\]\nThus, up to exponentially smaller errors,\n\\[\nB_n=\\frac{(\\log2)^3}{2^{1/3}N}\n\\int_0^\\infty (1-u)^5 e^{-N\\phi(u)}\n\\left(1-e^{-N(u-1)^4}\\right)\\,du.\n\\]\n\nNear \\(u=1\\), write \\(x=u-1\\). Since\n\\[\n1-e^{-Nx^4}=Nx^4+O(N^2x^8),\n\\]\nand\n\\[\n\\phi(1+x)=\\phi(1)+\\frac{\\phi''(1)}2x^2+\\frac{\\phi'''(1)}6x^3+O(x^4),\n\\]\nthe leading odd term cancels, and the first nonzero contribution is\n\\[\n\\frac{\\phi'''(1)}6N^2x^{12}e^{-N\\phi(1)}\ne^{-N\\phi''(1)x^2/2}.\n\\]\nTherefore\n\\[\nB_n\\sim\n-(\\log2)^3\\,10395\\sqrt{2\\pi}\\,\n(3\\cdot2^{1/3})^{-13/2}\nN^{-11/2}e^{-3\\cdot2^{-2/3}N}.\n\\]\nSince \\(N=n^{1/3}\\),\n\\[\nB_n\\sim\n-D\\,n^{-11/6}e^{-3\\cdot2^{-2/3}n^{1/3}},\n\\]\nwhere\n\\[\nD=(\\log2)^3\\,10395\\sqrt{2\\pi}\\,\n(3\\cdot2^{1/3})^{-13/2}.\n\\]\n\nHence\n\\[\n\\lambda_n\\sim -\\frac{B_n}{F_n}\n=\n\\frac{96D}{\\sqrt\\pi}\\,\nn^{-4/3}(\\log n)^{-3}\ne^{-3\\cdot2^{-2/3}n^{1/3}}.\n\\]\nThus\n\\[\nc=3\\cdot 2^{-2/3},\n\\qquad\n\\alpha=\\frac43,\n\\qquad\n\\beta=3,\n\\]\nand\n\\[\nL=\\frac{96D}{\\sqrt\\pi}\n=\\frac{385\\,2^{10/3}}{3^{5/2}}(\\log2)^3.\n\\]\n\n\\[\n\\boxed{\n\\alpha=\\frac43,\\quad\n\\beta=3,\\quad\nc=\\frac3{2^{2/3}},\\quad\nL=\\frac{385\\,2^{10/3}}{3^{5/2}}(\\log2)^3\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-07T01:55:06+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/5a5e92af6261.json"
+}
