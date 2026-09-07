@@ -8,16 +8,17 @@ T=x_1x_2x_3x_4.
 $$
 For each integer $n\ge1$, real $\lambda$, and $j=0,1,2,3$, set
 $$
-Y_j=(2n)^{1/3}2^jT.
+Y_j=(2n)^{1/3}2^jT,
+\qquad \delta_n=n^{-1/12}.
 $$
 Define
 $$
 \begin{aligned}
 I_n(\lambda)=\int_{[0,1]^4}\Bigg[&\sinh(\lambda)e^{-nT^2}\\
-&+\sum_{j=0}^3(-1)^{3-j}\binom3j2^j\Bigg\{
-\big[2Y_j-n^{1/3}(1+4Y_j^2+3Y_j^4)\big]e^{-n^{1/3}(4+Y_j+Y_j^3)}\\
-&\qquad+\frac{2n^{1/12}}{\Gamma(1/4)}
- e^{-n^{1/3}[4+(Y_j-1)^4+(Y_j-1)^8]}
+&+n^{1/12}\sum_{j=0}^3(-1)^{3-j}\binom3j2^j\Bigg\{
+ e^{-n^{1/3}[4+(Y_j-\delta_n)^4]}\\
+&\qquad+e^{-n^{1/3}[4+(Y_j+\delta_n)^4]}
+-2e^{-n^{1/3}[4+Y_j^4+Y_j^8]}
 \Bigg\}\Bigg]d\mathbf x.
 \end{aligned}
 $$
@@ -43,4 +44,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for the sharp asymptotic of an implicitly defined root of a four-dimensional integral. Product reduction and a third finite difference remove the logarithmic density. One remaining channel hides an exact integration-by-parts certificate, while the other has a quartically degenerate moving saddle normalized to cancel the certificate's leading exponential contribution. The answer is determined by the first correction to that degenerate saddle, so Calculus -> Applications of integration is the best fit.
+The problem asks for the sharp asymptotic of an implicitly defined root of a four-dimensional integral. Product reduction and a third finite difference remove the logarithmic density. Three quartic Laplace profiles then coalesce with the boundary on the same $n^{-1/12}$ scale: two shifted profiles cancel the entire leading boundary-saddle profile of the third, so the answer is determined by an octic correction one order deeper in the uniform scaling. This is an application of asymptotic integration, so Calculus -> Applications of integration is the best fit.
