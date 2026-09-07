@@ -26,16 +26,8 @@ Indeed, each product of two independent uniform variables has density $-\log p$ 
 
 Therefore
 $$
-A_n=\left(\int_0^1(-\log p)e^{-np^2}\,dp\right)^2.
-$$
-With $y=\sqrt n\,p$,
-$$
-\int_0^1(-\log p)e^{-np^2}\,dp
-\sim\frac{\sqrt\pi}{4}n^{-1/2}\log n,
-$$
-so
-$$
-A_n\sim\frac\pi{16}n^{-1}(\log n)^2. \tag{3}
+A_n=\left(\int_0^1(-\log p)e^{-np^2}\,dp\right)^2
+\sim\frac\pi{16}n^{-1}(\log n)^2. \tag{3}
 $$
 
 Step 3: Collapse the double finite difference
@@ -44,13 +36,13 @@ Put
 $$
 N=\sqrt n,\qquad a=n^{1/4},\qquad h=\log2.
 $$
-For $u,v\ge0$ define
+For $u,v>0$ define
 $$
-\begin{aligned}
-F_N(u,v)=&\ e^{-N[4+(u^2+v^2-1)^2]}
--\sqrt\pi\,N^{1/2}e^{-N(4+u^2+v^2)}\\
-&+\frac\pi8N e^{-N(5+u+v)}.
-\end{aligned}
+x=uv-1,\qquad y=u-v,
+$$
+and
+$$
+A(x,y)=x^2-2y^4+\frac12xy^2.
 $$
 For the term indexed by $(j,k)$, use (2) and set
 $$
@@ -66,78 +58,116 @@ Hence
 $$
 \sum_{j,k=0}^1(-1)^{2-j-k}(X+jh)(Y+kh)=h^2. \tag{4}
 $$
-The different upper limits may be replaced by infinity with an error super-exponentially smaller than $e^{-5N}$. Thus
+The different upper limits may be replaced by infinity with an error exponentially smaller than the main term. Therefore
 $$
-J_n=\frac{h^2}{N}H_N+o(N^{-3}e^{-5N}), \tag{5}
+J_n=\frac{h^2}{N}H_N+o\!\left(N^{-15/4}e^{-4N}\right), \tag{5}
 $$
 where
 $$
-H_N=\int_0^\infty\int_0^\infty F_N(u,v)\,du\,dv. \tag{6}
+H_N=\int_0^\infty\int_0^\infty
+A(uv-1,u-v)e^{-N[4+(uv-1)^2+(u-v)^4]}\,du\,dv. \tag{6}
 $$
 
-Step 4: Cancel the radial saddle, isolated saddle, and leading corner tail
+Step 4: Resolve the mixed-order saddle and two cancellations
 
-For the first channel, polar coordinates in the first quadrant give
+The map
+$$
+(u,v)\mapsto(x,y)=(uv-1,u-v)
+$$
+is a bijection from the positive quadrant onto $\{x>-1,\ y\in\mathbb R\}$. Since
+$$
+\left|\frac{\partial(x,y)}{\partial(u,v)}\right|=u+v
+=\sqrt{y^2+4(1+x)},
+$$
+we have
+$$
+H_N=e^{-4N}\int_{-1}^\infty\int_{\mathbb R}
+\frac{A(x,y)e^{-N(x^2+y^4)}}{\sqrt{y^2+4(1+x)}}\,dy\,dx. \tag{7}
+$$
+The part with $x$ bounded away from $0$ is exponentially smaller, so set
+$$
+x=N^{-1/2}X,\qquad y=N^{-1/4}Y,
+$$
+and write
+$$
+Z=X+\frac{Y^2}{4},
+\qquad
+A_0=X^2-2Y^4+\frac12XY^2.
+$$
+Then
 $$
 \begin{aligned}
-R_N
-&=\frac\pi2e^{-4N}\int_0^\infty r e^{-N(r^2-1)^2}\,dr\\
-&=\frac\pi4e^{-4N}\int_{-1}^\infty e^{-Nz^2}\,dz. \tag{7}
-\end{aligned}
+H_N
+=e^{-4N}N^{-7/4}\frac12
+\int_{\mathbb R^2}A_0e^{-X^2-Y^4}
+\left[1-\frac{Z}{2N^{1/2}}+\frac{3Z^2}{8N}+O(N^{-3/2}(1+|Z|^3))\right]dX\,dY.
+\end{aligned} \tag{8}
 $$
-For the second channel,
+The leading coefficient vanishes because
 $$
-G_N=\sqrt\pi N^{1/2}e^{-4N}
-\left(\int_0^\infty e^{-Nu^2}du\right)^2
-=\frac{\pi\sqrt\pi}{4}N^{-1/2}e^{-4N}. \tag{8}
+\int_{\mathbb R^2}A_0e^{-X^2-Y^4}\,dX\,dY=0. \tag{9}
 $$
-Since
+The next coefficient also vanishes:
 $$
-\int_{-\infty}^{\infty}e^{-Nz^2}dz=\sqrt\pi N^{-1/2},
+\int_{\mathbb R^2}A_0Ze^{-X^2-Y^4}\,dX\,dY=0. \tag{10}
 $$
-(7)-(8) imply the exact cancellation
+Indeed, using parity and
 $$
-R_N-G_N=-\frac\pi4e^{-4N}\int_1^\infty e^{-Nz^2}dz. \tag{9}
+\int_{\mathbb R}X^2e^{-X^2}dX=\frac{\sqrt\pi}{2},
+\qquad
+\frac{\int_{\mathbb R}Y^4e^{-Y^4}dY}{\int_{\mathbb R}e^{-Y^4}dY}=\frac14,
 $$
-The third channel is exact:
+proves (9), while
 $$
-C_N=\frac\pi8N e^{-5N}
-\left(\int_0^\infty e^{-Nu}du\right)^2
-=\frac\pi8N^{-1}e^{-5N}. \tag{10}
+A_0Z\equiv\frac34X^2Y^2-\frac12Y^6
 $$
-Integration by parts at the endpoint gives
+modulo terms odd in $X$, and
 $$
-\int_1^\infty e^{-Nz^2}dz
-=\frac{e^{-N}}{2N}\left(1-\frac1{2N}+O(N^{-2})\right). \tag{11}
+\frac{\int Y^6e^{-Y^4}dY}{\int e^{-Y^4}dY}
+=\frac34\frac{\Gamma(3/4)}{\Gamma(1/4)}
 $$
-Thus the $N^{-1}e^{-5N}$ term in (9) is exactly canceled by (10), and
+proves (10).
+
+For the first surviving term,
 $$
-H_N\sim\frac\pi{16}N^{-2}e^{-5N}. \tag{12}
+A_0Z^2\equiv X^4-\frac{27}{16}X^2Y^4-\frac18Y^8
+$$
+modulo terms odd in $X$. Hence
+$$
+\int_{\mathbb R^2}A_0Z^2e^{-X^2-Y^4}\,dX\,dY
+=\frac{\sqrt\pi\,\Gamma(1/4)}4. \tag{11}
+$$
+Substituting (9)-(11) into (8) yields
+$$
+H_N\sim\frac{3\sqrt\pi\,\Gamma(1/4)}{64}
+N^{-11/4}e^{-4N}. \tag{12}
 $$
 Therefore
 $$
-J_n\sim\frac\pi{16}(\log2)^2N^{-3}e^{-5N}
-=\frac\pi{16}(\log2)^2n^{-3/2}e^{-5\sqrt n}. \tag{13}
+J_n\sim\frac{3\sqrt\pi\,\Gamma(1/4)}{64}(\log2)^2
+N^{-15/4}e^{-4N}. \tag{13}
 $$
 
 Step 5: Recover the root
 
-By (3) and (13), $J_n/A_n\to0$, so (1) and $\operatorname{arsinh}u\sim u$ give
+By (3) and (13), $J_n/A_n\to0$, so from (1),
 $$
 \lambda_n\sim-\frac{J_n}{A_n}
-\sim-(\log2)^2\frac{e^{-5\sqrt n}}{n^{1/2}(\log n)^2}.
+\sim-\frac{3\Gamma(1/4)(\log2)^2}{4\sqrt\pi}
+\frac{e^{-4\sqrt n}}{n^{7/8}(\log n)^2}.
 $$
-Hence
+Thus
 $$
-\alpha=\frac12,\qquad \beta=2,\qquad c=5,\qquad L=-(\log2)^2.
+\alpha=\frac78,\qquad \beta=2,\qquad c=4,
+\qquad L=-\frac{3\Gamma(1/4)(\log2)^2}{4\sqrt\pi}.
 $$
-Final Answer: $\boxed{\left(\frac12,2,5,-(\log2)^2\right)}$
+Final Answer: $\boxed{\left(\frac78,2,4,-\frac{3\Gamma(1/4)(\log2)^2}{4\sqrt\pi}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac12,2,5,-(\log2)^2\right)$
+$\left(\frac78,2,4,-\frac{3\Gamma(1/4)(\log2)^2}{4\sqrt\pi}\right)$
 
 ---
 
@@ -153,6 +183,6 @@ $\left(\frac12,2,5,-(\log2)^2\right)$
 
 - paired product-coordinate reduction
 - double finite-difference cancellation
-- Morse-Bott radial saddle
-- isolated Gaussian cancellation
-- subleading endpoint tail
+- mixed quadratic-quartic saddle
+- nonlinear Jacobian expansion
+- two consecutive moment cancellations
