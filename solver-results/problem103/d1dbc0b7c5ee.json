@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "98ac0d0498b7ab7f51a9cf348783cf7a1191bd57",
+  "problem_blob_sha": "d1dbc0b7c5eed2054b0d852857505e49b13981d3",
+  "statement_sha256": "37aa49a554f661d5649cf3ca79f085d00c3c7f0b554b5b57acef6cde2882ba0f",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-07T02:43:51+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nm=n^{1/3},\\qquad h=\\log 2.\n\\]\nFor any function \\(f(T)\\), since \\(T=x_1x_2x_3x_4\\) is the product of four independent uniform variables,\n\\[\n\\int_{[0,1]^4} f(T)\\,d\\mathbf x\n=\\frac16\\int_0^1 f(t)(-\\log t)^3\\,dt.\n\\]\n\nWrite\n\\[\nI_n(\\lambda)=A_n\\sinh\\lambda+B_n,\n\\]\nwhere\n\\[\nA_n=\\int_{[0,1]^4}e^{-nT^2}\\,d\\mathbf x>0.\n\\]\nThus the zero is unique and\n\\[\n\\lambda_n=\\operatorname{arsinh}\\!\\left(-\\frac{B_n}{A_n}\\right).\n\\]\n\nFirst,\n\\[\nA_n=\\frac16\\int_0^1 e^{-nt^2}(-\\log t)^3\\,dt.\n\\]\nWith \\(u=\\sqrt n\\,t\\),\n\\[\nA_n=\\frac1{6\\sqrt n}\\int_0^{\\sqrt n} e^{-u^2}\\left(\\frac12\\log n-\\log u\\right)^3du.\n\\]\nHence\n\\[\nA_n\\sim \\frac1{6\\sqrt n}\\cdot \\frac18(\\log n)^3\\int_0^\\infty e^{-u^2}du\n=\\frac{\\sqrt\\pi}{96}n^{-1/2}(\\log n)^3.\n\\]\n\nNow consider the remaining part \\(B_n\\). For\n\\[\na_j=(2n)^{1/3}2^j=2^{j+1/3}m,\n\\]\nthe substitution \\(y=a_jt\\) gives\n\\[\n\\int_{[0,1]^4}F(Y_j)\\,d\\mathbf x\n=\\frac1{6a_j}\\int_0^{a_j}F(y)(\\log a_j-\\log y)^3\\,dy.\n\\]\nMultiplying by the coefficient \\((-1)^{3-j}\\binom3j2^j\\), the factor \\(2^j\\) cancels with \\(a_j\\). Also\n\\[\n\\sum_{j=0}^3(-1)^{3-j}\\binom3j(C+jh)^3=6h^3.\n\\]\nThe finite upper limits may be replaced by \\(\\infty\\) with exponentially smaller error. Therefore\n\\[\nB_n=\\frac{h^3}{2^{1/3}m}\\,e^{-4m}\\,(K_1(m)+K_2(m))+o(m^{-2}e^{-4m}),\n\\]\nwhere\n\\[\nK_1(m)=\\int_0^\\infty \\bigl[2y-m(1+4y^2+3y^4)\\bigr]e^{-m(y+y^3)}\\,dy\n\\]\nand\n\\[\nK_2(m)=\\frac{2m^{1/4}}{\\Gamma(1/4)}\n\\int_0^\\infty e^{-m((y-1)^4+(y-1)^8)}\\,dy.\n\\]\n\nFor \\(K_1\\),\n\\[\n\\frac{d}{dy}\\left((1+y^2)e^{-m(y+y^3)}\\right)\n=\\bigl[2y-m(1+4y^2+3y^4)\\bigr]e^{-m(y+y^3)}.\n\\]\nThus\n\\[\nK_1(m)=0-1=-1.\n\\]\n\nFor \\(K_2\\), put \\(z=m^{1/4}(y-1)\\). Then\n\\[\nK_2(m)=\\frac2{\\Gamma(1/4)}\n\\int_{-m^{1/4}}^\\infty e^{-z^4-z^8/m}\\,dz.\n\\]\nExtending the lower limit to \\(-\\infty\\) changes the value by an exponentially small amount, and\n\\[\ne^{-z^4-z^8/m}=e^{-z^4}\\left(1-\\frac{z^8}{m}+O(m^{-2})\\right).\n\\]\nHence\n\\[\nK_2(m)=1-\\frac2{\\Gamma(1/4)m}\\int_{-\\infty}^{\\infty}z^8e^{-z^4}\\,dz+O(m^{-2}).\n\\]\nNow\n\\[\n\\int_{-\\infty}^{\\infty}z^8e^{-z^4}\\,dz\n=2\\cdot\\frac14\\Gamma(9/4)\n=\\frac12\\Gamma(9/4)\n=\\frac{5}{32}\\Gamma(1/4).\n\\]\nTherefore\n\\[\nK_2(m)=1-\\frac{5}{16m}+O(m^{-2}),\n\\]\nso\n\\[\nK_1(m)+K_2(m)=-\\frac{5}{16m}+O(m^{-2}).\n\\]\nThus\n\\[\nB_n\\sim -\\frac{5(\\log2)^3}{16\\cdot 2^{1/3}}\\,m^{-2}e^{-4m}\n= -\\frac{5(\\log2)^3}{16\\cdot 2^{1/3}}\\,n^{-2/3}e^{-4n^{1/3}}.\n\\]\n\nSince \\(B_n/A_n\\) is exponentially small,\n\\[\n\\lambda_n\\sim -\\frac{B_n}{A_n}.\n\\]\nTherefore\n\\[\n\\lambda_n\\sim\n\\frac{\\frac{5(\\log2)^3}{16\\cdot 2^{1/3}}n^{-2/3}e^{-4n^{1/3}}}\n{\\frac{\\sqrt\\pi}{96}n^{-1/2}(\\log n)^3}\n=\n\\frac{30(\\log2)^3}{2^{1/3}\\sqrt\\pi}\\,\nn^{-1/6}(\\log n)^{-3}e^{-4n^{1/3}}.\n\\]\n\nSo the required constants are\n\\[\n\\boxed{\\alpha=\\frac16,\\qquad \\beta=3,\\qquad c=4,\\qquad\nL=\\frac{30(\\log2)^3}{2^{1/3}\\sqrt\\pi}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-07T02:45:48+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/d1dbc0b7c5ee.json"
+}
