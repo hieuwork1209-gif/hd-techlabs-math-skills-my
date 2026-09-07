@@ -10,8 +10,10 @@ Define
 $$
 \begin{aligned}
 I_n(\lambda)=\int_{[0,1]^4}\Bigg[&\sinh(\lambda)e^{-nT^2}\\
-&+\sum_{j=0}^3(-1)^{3-j}\binom3j2^j\left(1-(2n)^{1/3}2^jT\right)^5
-\exp\!\left(-4^j nT^2-\frac1{2^jT}\right)\Bigg]d\mathbf x,
+&+\sum_{j=0}^3(-1)^{3-j}\binom3j2^j\left(1-(2n)^{1/3}2^jT\right)^5\\
+&\quad\times\Bigg\{\exp\!\left(-4^j nT^2-\frac1{2^jT}\right)\\
+&\qquad-\exp\!\left(-4^j nT^2-\frac1{2^jT}
+-n^{1/3}\left((2n)^{1/3}2^jT-1\right)^4\right)\Bigg\}\Bigg]d\mathbf x,
 \end{aligned}
 $$
 where each exponential containing $1/T$ is interpreted as $0$ when $T=0$. For each $n$, let $\lambda_n$ be the unique real number satisfying
@@ -38,4 +40,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for the sharp asymptotics of an implicitly defined root of a four-dimensional definite integral. Reducing the product variable creates a cubic logarithmic density; four scaled flat phases have the same moving saddle and are arranged as a third finite difference, cancelling the three dominant logarithmic orders. The surviving saddle contribution is further delayed by a fifth-order zero of the amplitude. These are applications of asymptotic integration, so Calculus -> Applications of integration is the best fit.
+The problem asks for the sharp asymptotics of an implicitly defined root of a four-dimensional definite integral. Product reduction creates a cubic logarithmic density, and a third finite difference removes its three dominant logarithmic orders. Two co-located moving-saddle channels then cancel the former leading saddle term; parity kills the next candidate term, so the first surviving contribution comes from a cubic-phase/quartic-perturbation interaction. This is an application of asymptotic integration, so Calculus -> Applications of integration is the best fit.
