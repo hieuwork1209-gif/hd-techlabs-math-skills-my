@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "9a89c97a97a057e87c3b8f9b95b717f8bdd7db0b",
+  "problem_blob_sha": "d6fb649e903467ebcc90f426d2ca7d04048852da",
+  "statement_sha256": "f77eb0dd32dd26e9ce1e373a603ea77b2bfea6aa1917681af6a6d0c39b04e121",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-07T07:29:09+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nB_n=\\int_{[0,1]^4}e^{-n(P^2+Q^2)}\\,d\\mathbf x,\\qquad J_n=I_n(0).\n\\]\nThen\n\\[\nI_n(\\lambda)=B_n\\sinh\\lambda+J_n,\n\\]\nso the unique solution is\n\\[\n\\lambda_n=\\operatorname{arsinh}\\!\\left(-\\frac{J_n}{B_n}\\right).\n\\]\n\nFirst,\n\\[\n\\int_0^1\\int_0^1 e^{-n(xy)^2}\\,dx\\,dy\n=\\int_0^1 e^{-np^2}(-\\log p)\\,dp.\n\\]\nWith \\(t=\\sqrt n\\,p\\),\n\\[\n\\int_0^1 e^{-np^2}(-\\log p)\\,dp\n=n^{-1/2}\\int_0^{\\sqrt n}e^{-t^2}\\left(\\frac12\\log n-\\log t\\right)dt\n\\sim \\frac{\\sqrt\\pi}{4}n^{-1/2}\\log n.\n\\]\nHence\n\\[\nB_n\\sim \\frac{\\pi}{16}n^{-1}(\\log n)^2.\n\\]\n\nNow set\n\\[\n\\delta=n^{-1/4},\\qquad u=U_j,\\qquad v=V_k.\n\\]\nFor \\(P=n^{-1/4}2^{-j}u\\), \\(Q=n^{-1/4}2^{-k}v\\), the product-density formula gives\n\\[\nd\\mathbf x=(-\\log P)(-\\log Q)\\,dP\\,dQ.\n\\]\nThe prefactor \\(2^{j+k}\\) cancels the Jacobian \\(2^{-j-k}\\), so the signed logarithmic weight is\n\\[\n\\sum_{j,k=0}^1(-1)^{j+k}\n\\left(\\frac14\\log n+j\\log2-\\log u\\right)\n\\left(\\frac14\\log n+k\\log2-\\log v\\right)\n=(\\log2)^2.\n\\]\n\nWrite\n\\[\nd=u-v,\\qquad r=uv,\\qquad d=\\sqrt\\delta\\,z,\\qquad r=1+\\delta y.\n\\]\nThen \\(s=\\delta z^2\\), and\n\\[\ndu\\,dv=\\frac{dr\\,dd}{u+v}\n=\\delta^{3/2}\\frac{dy\\,dz}{\\sqrt{4+\\delta(4y+z^2)}}.\n\\]\nAlso\n\\[\n\\Phi_n^+=4+\\delta^2\\left(((1+z^2)y+z^2-2)^2+(z^2-1)^2\\right),\n\\]\n\\[\n\\Phi_n^-=4+\\delta^2\\left(((1+z^2)y+z^2)^2+(z^2-1)^2\\right),\n\\]\nand\n\\[\nA_n(u,v)=\\delta^2\\left((1+z^2)^2y^2+(-2+2z^4)y+z^4-2z^2-\\frac32\\right).\n\\]\n\nPut\n\\[\na=1+z^2,\\qquad b=z^2-1,\\qquad x=ay+b.\n\\]\nThen\n\\[\nA_n=\\delta^2\\left(x^2-\\frac52\\right),\n\\]\nand the exponential difference becomes\n\\[\ne^{-4\\sqrt n}e^{-b^2}\n\\left(e^{-(x-1)^2}-e^{-(x+1)^2}\\right).\n\\]\nThe first three terms in the expansion of\n\\[\n\\frac1{\\sqrt{4+\\delta(4y+z^2)}}\n=\\frac12-\\frac{\\delta(4y+z^2)}{16}\n+\\frac{3\\delta^2(4y+z^2)^2}{256}\n-\\frac{5\\delta^3(4y+z^2)^3}{2048}+O(\\delta^4)\n\\]\nintegrate to zero by parity and the Gaussian moment identity\n\\[\n\\int_{\\mathbb R}x\\left(x^2-\\frac52\\right)\n\\left(e^{-(x-1)^2}-e^{-(x+1)^2}\\right)dx=0.\n\\]\nThe first nonzero contribution is the cubic term. Since only the \\(x^3\\)-part survives,\n\\[\n\\int_{\\mathbb R}x^3\\left(x^2-\\frac52\\right)\n\\left(e^{-(x-1)^2}-e^{-(x+1)^2}\\right)dx=7\\sqrt\\pi.\n\\]\nTherefore\n\\[\nJ_n\\sim\n-(\\log2)^2 e^{-4\\sqrt n}\\delta^{3/2}\\delta^2\\delta^3\n\\frac{35\\sqrt\\pi}{32}\n\\int_{-\\infty}^{\\infty}\\frac{e^{-(z^2-1)^2}}{(1+z^2)^4}\\,dz.\n\\]\nThat is,\n\\[\nJ_n\\sim\n-\\frac{35\\sqrt\\pi}{32}(\\log2)^2\\mathcal D\\,\nn^{-17/8}e^{-4\\sqrt n}.\n\\]\n\nThus\n\\[\n\\lambda_n\\sim-\\frac{J_n}{B_n}\n\\sim\n\\frac{35\\sqrt\\pi}{32}(\\log2)^2\\mathcal D\\,\n\\frac{16}{\\pi}\nn^{-9/8}(\\log n)^{-2}e^{-4\\sqrt n}.\n\\]\nHence\n\\[\n\\lambda_n\\sim\n\\frac{35(\\log2)^2\\mathcal D}{2\\sqrt\\pi}\nn^{-9/8}(\\log n)^{-2}e^{-4\\sqrt n}.\n\\]\n\nSo the required constants are\n\\[\n\\boxed{\\alpha=\\frac98,\\qquad \\beta=2,\\qquad c=4,\\qquad\nL=\\frac{35(\\log2)^2}{2\\sqrt\\pi}\\mathcal D.}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-07T07:31:51+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/d6fb649e9034.json"
+}
