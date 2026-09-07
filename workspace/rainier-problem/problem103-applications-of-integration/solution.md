@@ -34,14 +34,16 @@ Step 3: Collapse the third finite difference
 
 Put
 $$
-N=n^{1/3},\qquad a=(2n)^{1/3}=2^{1/3}N.
+N=n^{1/3},\qquad a=(2n)^{1/3}=2^{1/3}N,
+\qquad \delta=N^{-1/4}.
 $$
 For $y\ge0$ define
 $$
-\begin{aligned}
-F_N(y)=&\,[2y-N(1+4y^2+3y^4)]e^{-N(4+y+y^3)}\\
-&+\frac{2N^{1/4}}{\Gamma(1/4)}e^{-N[4+(y-1)^4+(y-1)^8]}.
-\end{aligned}
+F_N(y)=N^{1/4}\Big(
+ e^{-N[4+(y-\delta)^4]}
++e^{-N[4+(y+\delta)^4]}
+-2e^{-N[4+y^4+y^8]}
+\Big).
 $$
 For the term indexed by $j$, apply (2) and set $y=a2^jt$. The factor $2^j$ cancels the Jacobian apart from the common factor $a^{-1}$, while
 $$
@@ -51,7 +53,7 @@ Therefore
 $$
 \sum_{j=0}^3(-1)^{3-j}\binom3j(\log a+j\log2-\log y)^3=6(\log2)^3. \tag{4}
 $$
-The different upper limits may be replaced by infinity with an error super-exponentially smaller than $e^{-4N}$, since both phases grow at least cubically there. Hence
+The different upper limits may be replaced by infinity with an error super-exponentially smaller than $e^{-4N}$, since all three phases are quartic or stronger there. Hence
 $$
 J_n=\frac{(\log2)^3}{2^{1/3}N}H_N+o(N^{-2}e^{-4N}), \tag{5}
 $$
@@ -60,70 +62,71 @@ $$
 H_N=\int_0^\infty F_N(y)\,dy. \tag{6}
 $$
 
-Step 4: Expose the certificate and the degenerate saddle
+Step 4: Resolve the coalescing boundary-saddle cancellation
 
-The first amplitude is not arbitrary. Since
-$$
-\frac{d}{dy}\left[(1+y^2)e^{-N(4+y+y^3)}\right]
-=[2y-N(1+4y^2+3y^4)]e^{-N(4+y+y^3)}, \tag{7}
-$$
-its integral on $(0,\infty)$ is exactly
-$$
--e^{-4N}. \tag{8}
-$$
-
-For the second channel, put $z=y-1$ and then $z=N^{-1/4}x$. The omitted range $z<-1$ is exponentially smaller, so
+Set $x=N^{1/4}y$. Because $\delta=N^{-1/4}$,
 $$
 \begin{aligned}
-&\frac{2N^{1/4}}{\Gamma(1/4)}
-\int_0^\infty e^{-N[4+(y-1)^4+(y-1)^8]}dy\\
-&\qquad=e^{-4N}\frac{2}{\Gamma(1/4)}
-\int_{-\infty}^{\infty}e^{-x^4-N^{-1}x^8}dx+O(e^{-(4+\eta)N}).
-\end{aligned} \tag{9}
+H_N=e^{-4N}\Bigg[&\int_0^\infty e^{-(x-1)^4}\,dx
++\int_0^\infty e^{-(x+1)^4}\,dx\\
+&-2\int_0^\infty e^{-x^4-N^{-1}x^8}\,dx\Bigg]. \tag{7}
+\end{aligned}
 $$
-Using $e^{-N^{-1}x^8}=1-N^{-1}x^8+O(N^{-2}x^{16})$ and
+Let
 $$
-\int_{-\infty}^{\infty}e^{-x^4}dx=\frac{\Gamma(1/4)}2,
-\qquad
-\int_{-\infty}^{\infty}x^8e^{-x^4}dx=\frac{\Gamma(9/4)}2
-=\frac{5\Gamma(1/4)}{32}, \tag{10}
+G=\int_0^\infty e^{-x^4}\,dx.
 $$
-we obtain
+By shifting the first two integrals and using the evenness of $e^{-x^4}$,
 $$
-\frac{2N^{1/4}}{\Gamma(1/4)}
-\int_0^\infty e^{-N[4+(y-1)^4+(y-1)^8]}dy
-=e^{-4N}\left(1-\frac{5}{16N}+O(N^{-2})\right). \tag{11}
+\int_0^\infty e^{-(x-1)^4}dx+
+\int_0^\infty e^{-(x+1)^4}dx=2G. \tag{8}
 $$
-The normalized degenerate saddle therefore cancels the exact boundary contribution (8), leaving
+Thus the full leading boundary-saddle profile cancels. For the remaining integral,
 $$
-H_N\sim-\frac{5}{16N}e^{-4N}. \tag{12}
+\int_0^\infty e^{-x^4-N^{-1}x^8}dx
+=G-\frac1N\int_0^\infty x^8e^{-x^4}dx+O(N^{-2}). \tag{9}
 $$
-Thus
+The moment is
 $$
-J_n\sim-\frac{5(\log2)^3}{16\,2^{1/3}}N^{-2}e^{-4N}
-=-\frac{5(\log2)^3}{16\,2^{1/3}}n^{-2/3}e^{-4n^{1/3}}. \tag{13}
+\int_0^\infty x^8e^{-x^4}dx
+=\frac14\Gamma\!\left(\frac94\right)
+=\frac{5}{64}\Gamma\!\left(\frac14\right). \tag{10}
+$$
+Combining (7)-(10),
+$$
+H_N\sim\frac{5\Gamma(1/4)}{32}N^{-1}e^{-4N}. \tag{11}
+$$
+Therefore
+$$
+J_n\sim
+\frac{5\Gamma(1/4)(\log2)^3}{32\,2^{1/3}}
+N^{-2}e^{-4N}
+=
+\frac{5\Gamma(1/4)(\log2)^3}{32\,2^{1/3}}
+n^{-2/3}e^{-4n^{1/3}}. \tag{12}
 $$
 
 Step 5: Recover the root
 
-By (3) and (13), $J_n/A_n\to0$, so (1) and $\operatorname{arsinh}u\sim u$ give
+By (3) and (12), $J_n/A_n\to0$, so (1) and $\operatorname{arsinh}u\sim u$ give
 $$
 \lambda_n\sim-\frac{J_n}{A_n}
-\sim\frac{30\,2^{-1/3}(\log2)^3}{\sqrt\pi}
+\sim-
+\frac{15\Gamma(1/4)(\log2)^3}{2^{1/3}\sqrt\pi}
 \frac{e^{-4n^{1/3}}}{n^{1/6}(\log n)^3}.
 $$
 Hence
 $$
 \alpha=\frac16,\qquad \beta=3,\qquad c=4,\qquad
-L=\frac{30\,2^{-1/3}(\log2)^3}{\sqrt\pi}.
+L=-\frac{15\Gamma(1/4)(\log2)^3}{2^{1/3}\sqrt\pi}.
 $$
-Final Answer: $\boxed{\left(\frac16,3,4,\frac{30\,2^{-1/3}(\log2)^3}{\sqrt\pi}\right)}$
+Final Answer: $\boxed{\left(\frac16,3,4,-\frac{15\Gamma(1/4)(\log2)^3}{2^{1/3}\sqrt\pi}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac16,3,4,\frac{30\,2^{-1/3}(\log2)^3}{\sqrt\pi}\right)$
+$\left(\frac16,3,4,-\frac{15\Gamma(1/4)(\log2)^3}{2^{1/3}\sqrt\pi}\right)$
 
 ---
 
@@ -139,6 +142,6 @@ $\left(\frac16,3,4,\frac{30\,2^{-1/3}(\log2)^3}{\sqrt\pi}\right)$
 
 - product-integral reduction
 - third finite-difference cancellation
-- integration-by-parts certificate
-- quartic degenerate saddle
-- cross-mechanism leading cancellation
+- coalescing boundary-saddle scaling
+- shifted-profile identity
+- subleading octic correction
