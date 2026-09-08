@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "54404e548941a4ce882b24e745d979ab5b7b89e8",
+  "problem_blob_sha": "65d9a4b8495e26f91ede6bc33ce7f6b2f9cc627b",
+  "statement_sha256": "aa9c946b875e389c4d63615469404cc52a66f78908e106e49fdb748cd405f705",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T05:23:17+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(a=x,\\ b=y,\\ c=z,\\ d=1-x-y-z\\). Then \\(T\\) is the standard simplex in four barycentric coordinates, and\n\n\\[\nI_n=\\int_{a,b,c,d\\ge 0,\\ a+b+c+d=1} e^{-nabcd}\\,da\\,db\\,dc.\n\\]\n\nFor \\(\\Re s>-1\\), the Dirichlet integral gives\n\n\\[\n\\int_T (abcd)^s\\,da\\,db\\,dc\n=\\frac{\\Gamma(1+s)^4}{\\Gamma(4+4s)}.\n\\]\n\nUsing Mellin inversion,\n\n\\[\ne^{-nt}=\\frac1{2\\pi i}\\int_{\\Re u=\\alpha}\\Gamma(u)n^{-u}t^{-u}\\,du,\n\\qquad 0<\\alpha<1,\n\\]\n\nso\n\n\\[\nI_n=\\frac1{2\\pi i}\\int_{\\Re u=\\alpha}\n\\Gamma(u)n^{-u}\\frac{\\Gamma(1-u)^4}{\\Gamma(4-4u)}\\,du.\n\\]\n\nFor large \\(n\\), shift the contour right past \\(u=1\\). The only contribution of order \\(n^{-1}(\\log n)^k\\) comes from the pole at \\(u=1\\). Because the contour shift is to the right,\n\n\\[\nI_n=-\\operatorname*{Res}_{u=1}\n\\left[\n\\Gamma(u)n^{-u}\\frac{\\Gamma(1-u)^4}{\\Gamma(4-4u)}\n\\right]+o(n^{-1}).\n\\]\n\nSet \\(v=u-1\\) and \\(L=\\log n\\). Then\n\n\\[\nn^{-u}=n^{-1}e^{-Lv},\n\\]\n\nand\n\n\\[\n\\Gamma(u)\\frac{\\Gamma(1-u)^4}{\\Gamma(4-4u)}\n=\n\\Gamma(1+v)\\frac{\\Gamma(-v)^4}{\\Gamma(-4v)}.\n\\]\n\nUsing \\(\\Gamma(-v)=\\Gamma(1-v)/(-v)\\) and \\(\\Gamma(-4v)=\\Gamma(1-4v)/(-4v)\\),\n\n\\[\n\\Gamma(1+v)\\frac{\\Gamma(-v)^4}{\\Gamma(-4v)}\n=\n-4v^{-3}B(v),\n\\]\n\nwhere\n\n\\[\nB(v)=\\frac{\\Gamma(1+v)\\Gamma(1-v)^4}{\\Gamma(1-4v)}.\n\\]\n\nNow use\n\n\\[\n\\log\\Gamma(1+w)=-\\gamma w+\\frac{\\zeta(2)}2w^2+O(w^3).\n\\]\n\nThus\n\n\\[\n\\begin{aligned}\n\\log B(v)\n&=\\log\\Gamma(1+v)+4\\log\\Gamma(1-v)-\\log\\Gamma(1-4v)\\\\\n&=-\\gamma v-\\frac{11}{2}\\zeta(2)v^2+O(v^3).\n\\end{aligned}\n\\]\n\nTherefore\n\n\\[\nB(v)=1-\\gamma v+\\frac{\\gamma^2-11\\zeta(2)}2v^2+O(v^3).\n\\]\n\nThe coefficient of \\(v^{-1}\\) in\n\n\\[\n-4v^{-3}e^{-Lv}B(v)\n\\]\n\nis\n\n\\[\n-4\\left(\\frac{L^2}{2}+\\gamma L+\\frac{\\gamma^2-11\\zeta(2)}2\\right).\n\\]\n\nBecause the residue enters with a minus sign,\n\n\\[\nnI_n\n=\n2L^2+4\\gamma L+2\\gamma^2-22\\zeta(2)+o(1).\n\\]\n\nSince \\(\\zeta(2)=\\pi^2/6\\),\n\n\\[\n\\lim_{n\\to\\infty}\n\\left(\nnI_n-2(\\log n)^2-4\\gamma\\log n\n\\right)\n=\n2\\gamma^2-\\frac{11\\pi^2}{3}.\n\\]\n\n\\[\n\\boxed{2\\gamma^2-\\frac{11\\pi^2}{3}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T05:24:25+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/65d9a4b8495e.json"
+}
