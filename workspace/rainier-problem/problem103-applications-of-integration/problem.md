@@ -2,17 +2,16 @@
 
 ## LaTeX (Normalized)
 
-For each $n\ge1$, let $\lambda_n>-1$ be the unique real number satisfying
+For $n\ge1$, define
 $$
-\iint_{\substack{(x-1)^2+y^2\le(1+\lambda_n)^2\\
-x^2+(y-1)^2\le(1+\lambda_n)^2}}
- e^{-n(x^2+y^2)}\,dx\,dy
-=\frac{\pi}{4n}.
+M_n=\int_{-1/2}^{1/2}
+\int_{x^2}^{\frac{1-\sqrt{1-4x^2}}{2}}
+ e^{-n(x^2+y^2)}\,dy\,dx.
 $$
 Evaluate
 $$
-\lim_{n\to\infty}n^{3/2}
-\left(\lambda_n-\frac{1}{4n}\right).
+\lim_{n\to\infty}n^{7/2}
+\left(M_n-\frac{3\sqrt\pi}{4n^{5/2}}\right).
 $$
 
 ---
@@ -30,4 +29,4 @@ $$
 
 ## Domain Explanation
 
-At radius $1$, the two disks centered at $(1,0)$ and $(0,1)$ meet at the origin with perpendicular tangent lines, so their intersection locally approaches a quadrant where the Gaussian mass concentrates. The problem asks for the next radius correction required to capture exactly one quarter of the total Gaussian mass. The second term comes from the interaction of the two curved boundary layers near their common corner, making this a natural asymptotic integration problem in Calculus -> Applications of integration.
+The upper graph is the lower arc of the circle $x^2+(y-1/2)^2=1/4$, which is the osculating circle of the parabola $y=x^2$ at the origin. The Gaussian localizes the integral near this fourth-order contact point. The leading term comes from the quartic separation of the curves, while the next term couples the sixth-order geometric correction with the vertical Gaussian decay. This is a natural asymptotic integration problem in Calculus -> Applications of integration.
