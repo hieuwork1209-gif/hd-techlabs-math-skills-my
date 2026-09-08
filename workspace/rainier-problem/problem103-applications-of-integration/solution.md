@@ -1,115 +1,139 @@
 ## Steps
 
-Step 1: Rescale the median condition
+Step 1: Rescale the half-mass condition
 
-For each $n$, the left side of the defining equation is continuous and strictly decreasing in $\lambda$, with limits $\pi/n$ and $0$ as $\lambda\to-\infty$ and $\lambda\to+\infty$. Hence $\lambda_n$ exists and is unique.
+For each $n$, the Gaussian mass of the disk centered at $(1,0)$ with radius $1+\lambda$ is continuous and strictly increasing for $\lambda>-1$, from $0$ to $\pi/n$. Hence there is a unique $\lambda_n>-1$ with mass $\pi/(2n)$.
 
 Put
 $$
-\varepsilon=n^{-1/2},\qquad X=\sqrt n\,x,\qquad Y=\sqrt n\,y,
-\qquad \eta_n=\sqrt n\,\lambda_n.
+\varepsilon=n^{-1/2},\qquad X=\sqrt n\,x,\qquad Y=\sqrt n\,y.
 $$
-Then the boundary becomes
+After multiplying the defining equation by $n$, the disk condition becomes
 $$
-Y\ge g_\varepsilon(X)+\eta_n,
-\qquad
-g_\varepsilon(X)=\varepsilon^2X^3e^{-\varepsilon X}.
+(\varepsilon X-1)^2+\varepsilon^2Y^2\le (1+\lambda_n)^2.
 $$
-After multiplying the defining equation by $n$, subtracting the Gaussian mass above $Y=0$, and writing
+For fixed $Y$ in the Gaussian main range, the relevant left boundary is
 $$
-\Phi(z)=\int_0^z e^{-y^2}\,dy,
+T_n(Y)=\frac{1-\sqrt{(1+\lambda_n)^2-\varepsilon^2Y^2}}{\varepsilon}.
 $$
-we obtain the equivalent equation
-$$
-F_\varepsilon(\eta_n)=0,
-\qquad
-F_\varepsilon(\eta)=
-\int_{-\infty}^{\infty}e^{-X^2}\Phi\bigl(g_\varepsilon(X)+\eta\bigr)\,dX.
-$$
+The right boundary is $2\varepsilon^{-1}+O(1)$, and the omitted region $|Y|>(1+\lambda_n)/\varepsilon$ is also exponentially far out. Thus both give an error smaller than every fixed power of $\varepsilon$.
 
-Step 2: Show that the root is small
+Writing
+$$
+\Phi(z)=\int_0^z e^{-x^2}\,dx,
+$$
+and subtracting the Gaussian mass of the half-plane $X\ge0$, the half-mass condition is
+$$
+\int_{-\infty}^{\infty}e^{-Y^2}\Phi(T_n(Y))\,dY=o(\varepsilon^m)
+$$
+for every fixed $m$.
 
-For fixed $\eta$,
-$$
-F_\varepsilon'(\eta)=
-\int_{-\infty}^{\infty}
- e^{-X^2-(g_\varepsilon(X)+\eta)^2}\,dX>0.
-$$
-Also $F_\varepsilon(\eta)\to\sqrt\pi\,\Phi(\eta)$ for fixed $\eta$, so for all sufficiently small $\varepsilon$ the unique root lies in $(-1,1)$ and $F_\varepsilon'$ is bounded below there by a positive constant.
+Step 2: Determine the scale of the radius correction
 
-Since $\Phi(z)=z+O(z^3)$ near $0$ and the Gaussian factor controls all moments of $g_\varepsilon$, we have
+The previous equation is strictly decreasing in $\lambda_n$. If $\lambda=c\varepsilon^2$ with $c$ bounded, then uniformly on every Gaussian main range,
 $$
-F_\varepsilon(0)
-=
-\int_{-\infty}^{\infty}e^{-X^2}g_\varepsilon(X)\,dX
-+O(\varepsilon^6)
-=O(\varepsilon^3).
+T(Y)=\varepsilon\left(\frac{Y^2}{2}-c\right)+O\left(\varepsilon^3(1+Y^4)\right).
 $$
-The mean value theorem therefore gives
+Since $\Phi(z)=z+O(z^3)$ near $0$, the defining equation gives at first order
 $$
-\eta_n=O(\varepsilon^3).
-$$
-
-Step 3: Evaluate the linear Gaussian moment exactly
-
-Let
-$$
-Z(\varepsilon)=
-\int_{-\infty}^{\infty}e^{-X^2-\varepsilon X}\,dX
-=\sqrt\pi\,e^{\varepsilon^2/4}.
-$$
-Differentiating three times,
-$$
-\int_{-\infty}^{\infty}X^3e^{-X^2-\varepsilon X}\,dX
-=-Z'''(\varepsilon)
-=-\sqrt\pi\,e^{\varepsilon^2/4}
-\left(\frac{3\varepsilon}{4}+\frac{\varepsilon^3}{8}\right).
-$$
-Thus
-$$
-\begin{aligned}
-\int_{-\infty}^{\infty}e^{-X^2}g_\varepsilon(X)\,dX
-&=-\sqrt\pi\,e^{\varepsilon^2/4}
-\left(\frac{3}{4}\varepsilon^3+\frac{1}{8}\varepsilon^5\right)\\
-&=-\sqrt\pi\left(
-\frac{3}{4}\varepsilon^3+
-\frac{5}{16}\varepsilon^5+O(\varepsilon^7)
-\right).
-\end{aligned}
-$$
-
-Step 4: Recover the second asymptotic coefficient
-
-Because $\eta_n=O(\varepsilon^3)$ and
-$$
-\Phi(z)=z+O(z^3),
-$$
-the nonlinear remainder contributes only $O(\varepsilon^6)$ after integration. Hence
-$$
-0=F_\varepsilon(\eta_n)
-=\sqrt\pi\,\eta_n
-+\int_{-\infty}^{\infty}e^{-X^2}g_\varepsilon(X)\,dX
-+O(\varepsilon^6).
-$$
-Using Step 3,
-$$
-\eta_n=rac{3}{4}\varepsilon^3+rac{5}{16}\varepsilon^5+O(\varepsilon^6).
-$$
-Since $\lambda_n=\varepsilon\eta_n$,
-$$
-\lambda_n=rac{3}{4n^2}+rac{5}{16n^3}+o(n^{-3}).
+0=\varepsilon\sqrt\pi\left(\frac14-c\right)+O(\varepsilon^3).
 $$
 Therefore
 $$
-\lim_{n\to\infty}n^3\left(\lambda_n-\frac{3}{4n^2}\right)=\frac{5}{16}.
+\lambda_n=\frac14\varepsilon^2+O(\varepsilon^4).
 $$
-Final Answer: $\boxed{\frac{5}{16}}$
+Write more precisely
+$$
+\lambda_n=c\varepsilon^2+d\varepsilon^4+o(\varepsilon^4).
+$$
+The first-order calculation already gives $c=1/4$.
+
+Step 3: Expand the curved boundary to the first nonlinear order
+
+For bounded $c,d$,
+$$
+(1+\lambda_n)^2-\varepsilon^2Y^2
+=1+\varepsilon^2(2c-Y^2)+\varepsilon^4(c^2+2d)+o(\varepsilon^4).
+$$
+Using the square-root expansion,
+$$
+T_n(Y)=\varepsilon A(Y)+\varepsilon^3B(Y)+o(\varepsilon^3),
+$$
+where
+$$
+A(Y)=\frac{Y^2}{2}-c,
+\qquad
+B(Y)=-d-\frac{cY^2}{2}+\frac{Y^4}{8}.
+$$
+Also
+$$
+\Phi(z)=z-\frac{z^3}{3}+O(z^5).
+$$
+Hence, after dividing the half-mass equation by $\sqrt\pi$ and using the probability density $\pi^{-1/2}e^{-Y^2}$,
+$$
+0=\varepsilon\mathbb E[A]
++\varepsilon^3\left(\mathbb E[B]-\frac13\mathbb E[A^3]\right)
++o(\varepsilon^3).
+$$
+
+Step 4: Evaluate the Gaussian moments
+
+For the density $\pi^{-1/2}e^{-Y^2}$,
+$$
+\mathbb E[Y^2]=\frac12,
+\qquad
+\mathbb E[Y^4]=\frac34,
+\qquad
+\mathbb E[Y^6]=\frac{15}{8}.
+$$
+The coefficient of $\varepsilon$ gives
+$$
+0=\mathbb E[A]=\frac14-c,
+$$
+so $c=1/4$. With this value,
+$$
+\mathbb E[B]
+=-d-\frac18\mathbb E[Y^2]+\frac18\mathbb E[Y^4]
+=-d+\frac1{32}.
+$$
+Moreover
+$$
+A=\frac{Y^2}{2}-\frac14,
+$$
+so
+$$
+\mathbb E[A^3]
+=\frac18\mathbb E[Y^6]-\frac{3}{16}\mathbb E[Y^4]
++\frac{3}{32}\mathbb E[Y^2]-\frac1{64}
+=\frac18.
+$$
+Therefore the coefficient of $\varepsilon^3$ gives
+$$
+-d+\frac1{32}-\frac1{24}=0,
+$$
+so
+$$
+d=-\frac1{96}.
+$$
+
+Step 5: Recover the requested limit
+
+Since $\varepsilon^2=n^{-1}$,
+$$
+\lambda_n=rac{1}{4n}-\frac{1}{96n^2}+o(n^{-2}).
+$$
+Hence
+$$
+\lim_{n\to\infty}n^2\left(\lambda_n-\frac{1}{4n}\right)
+=-\frac1{96}.
+$$
+Final Answer: $\boxed{-\frac{1}{96}}$
 
 ---
 
 ## Answer
 
-$\frac{5}{16}$
+$-\frac{1}{96}$
 
 ---
 
@@ -124,7 +148,7 @@ $\frac{5}{16}$
 ## Solution Concepts
 
 - Gaussian rescaling
-- implicit median shift
-- parity cancellation
-- Gaussian generating integral
-- asymptotic expansion
+- tangent-disk geometry
+- curved-boundary expansion
+- Gaussian tail nonlinearity
+- implicit asymptotic correction
