@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "d0443e951acae9de6ae15dbf94c118c8c7452f6f",
+  "problem_blob_sha": "ab7ae04bc7ec1948f17611e66b29e699d8970a7a",
+  "statement_sha256": "b32f2848b8d5481eff3d005ca313ab711e0a5319ce71bbb4b09988bbf6fa0ddf",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T04:45:39+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(N= n^{1/2}\\) and diagonalize \\(A\\). In eigenvalue coordinates\n\\[\nA=Q\\operatorname{diag}(\\lambda_1,\\lambda_2,\\lambda_3)Q^T,\n\\]\nthe orthogonal factor only contributes a constant \\(K\\), and for\n\\[\nB=(b_{ij})_{1\\le i,j\\le 3}\n\\]\nin the same basis,\n\\[\n\\|AB-BA\\|_F^2\n=\n2\\sum_{i<j}(\\lambda_i-\\lambda_j)^2b_{ij}^2.\n\\]\nThus, writing \\(c_{ij}=b_{ij}\\) for \\(i<j\\),\n\\[\nI_n=K\\int |\\Delta(\\lambda)|\n\\exp\\left[-n\\left(2\\sum_{i<j}(\\lambda_i-\\lambda_j)^2c_{ij}^2+\n\\left(\\sum\\lambda_i^2+\\sum b_{ii}^2+2\\sum c_{ij}^2\\right)^4\\right)\\right]\\,d\\lambda\\,db\\,dc.\n\\]\n\nScale\n\\[\n\\lambda_i=n^{-1/8}x_i,\\qquad b_{ii}=n^{-1/8}y_i,\\qquad c_{ij}=n^{-3/8}z_{ij}.\n\\]\nThen\n\\[\nI_n=K n^{-9/4}J(\\varepsilon),\\qquad \\varepsilon=n^{-1/2},\n\\]\nwhere\n\\[\nJ(\\varepsilon)=\\int |\\Delta(x)|\n\\exp\\left[-2\\sum_{i<j}(x_i-x_j)^2z_{ij}^2\n-\\left(R+2\\varepsilon Z\\right)^4\\right]\\,dx\\,dy\\,dz,\n\\]\nwith\n\\[\nR=\\sum x_i^2+\\sum y_i^2,\\qquad Z=\\sum z_{ij}^2.\n\\]\n\nFor \\(\\varepsilon=0\\), integrating in \\(z\\) gives\n\\[\nJ(0)=\\frac{\\pi^{3/2}}{2\\sqrt2}\\int_{\\mathbb R^6}e^{-R^4}\\,dx\\,dy\n=\\frac{\\pi^{9/2}\\Gamma(3/4)}{16\\sqrt2}.\n\\]\nThe given leading coefficient equals \\(KJ(0)\\).\n\nThe next term comes only from the three pair-collision regions \\(x_i=x_j\\). Consider \\(x_1=x_2\\). Put\n\\[\nu=x_1-x_2,\\qquad m=\\frac{x_1+x_2}{2},\\qquad v=m-x_3.\n\\]\nNear \\(u=0\\),\n\\[\n|\\Delta(x)|=|u|\\,v^2+O(u^2),\n\\]\nand the two nonsingular \\(z\\)-integrals contribute\n\\[\n\\int_{\\mathbb R^2} e^{-2v^2(z_{13}^2+z_{23}^2)}\\,dz_{13}dz_{23}\n=\\frac{\\pi}{2v^2}.\n\\]\nSo the local pair contribution is governed by\n\\[\n\\frac{\\pi}{2}\\int |u|\\left[\n\\int_{\\mathbb R}e^{-2u^2z^2-(R_0+2\\varepsilon z^2)^4}\\,dz\n-\\int_{\\mathbb R}e^{-2u^2z^2-R_0^4}\\,dz\n\\right]du,\n\\]\nwhere\n\\[\nR_0=2m^2+x_3^2+\\sum y_i^2.\n\\]\nIntegrating first in \\(u\\),\n\\[\n\\int_{\\mathbb R}|u|e^{-2u^2z^2}\\,du=\\frac1{2z^2},\n\\]\nand then setting \\(w=\\sqrt\\varepsilon z\\), the coefficient of \\(\\sqrt\\varepsilon\\) is\n\\[\nC(R_0)=\\int_{\\mathbb R}\\frac{e^{-(R_0+2w^2)^4}-e^{-R_0^4}}{2w^2}\\,dw.\n\\]\nIntegration by parts gives\n\\[\nC(R_0)\n=-16\\int_0^\\infty (R_0+2w^2)^3e^{-(R_0+2w^2)^4}\\,dw.\n\\]\n\nNow integrate over the five collision variables. With \\(p=\\sqrt2\\,m\\), the Jacobian contributes \\(1/\\sqrt2\\), so\n\\[\n\\int C(R_0)\\,dm\\,dx_3\\,dy\n=\n\\frac1{\\sqrt2}\\operatorname{vol}(S^4)\\int_0^\\infty \\rho^4 C(\\rho^2)\\,d\\rho.\n\\]\nA direct beta-integral computation gives\n\\[\n\\int_0^\\infty \\rho^4 C(\\rho^2)\\,d\\rho\n=-\\frac{3\\sqrt2\\,\\pi^{3/2}}{32}.\n\\]\nSince \\(\\operatorname{vol}(S^4)=8\\pi^2/3\\), one collision plane contributes\n\\[\n-\\frac{\\pi^{7/2}}4.\n\\]\nThere are three such planes, and each has the prefactor \\(\\pi/2\\), hence\n\\[\nJ(\\varepsilon)\n=\nJ(0)-\\frac{3\\pi^{9/2}}8\\sqrt\\varepsilon+O(\\varepsilon).\n\\]\nTherefore\n\\[\nI_n\n=\nKJ(0)n^{-9/4}\n-\nK\\frac{3\\pi^{9/2}}8 n^{-5/2}\n+O(n^{-11/4}).\n\\]\nUsing\n\\[\nKJ(0)=\\frac{\\pi^{13/2}\\Gamma(3/4)}{48\\sqrt2}\n\\]\nand\n\\[\nJ(0)=\\frac{\\pi^{9/2}\\Gamma(3/4)}{16\\sqrt2},\n\\]\nwe get\n\\[\nK=\\frac{\\pi^2}{3}.\n\\]\nThus the \\(n^{-5/2}\\) coefficient is\n\\[\n-\\frac{\\pi^2}{3}\\cdot \\frac{3\\pi^{9/2}}8\n=\n-\\frac{\\pi^{13/2}}8.\n\\]\n\n\\[\n\\boxed{-\\frac{\\pi^{13/2}}8}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T04:47:43+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/ab7ae04bc7ec.json"
+}
