@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "420eb041d364de7778d52815f4fef1d2e79e580a",
+  "problem_blob_sha": "689f3c17c2daf552137b4f13e4a7d982b7d33ea4",
+  "statement_sha256": "d68167cf465fe87d0011fca05ba67790e67efb91775600d42ff8ceeb0e29093d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T02:55:42+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nX=\\frac U{\\sqrt n},\\qquad Y=\\frac V{\\sqrt n},\n\\]\nwhere \\(U,V\\) are independent with density \\(\\pi^{-1/2}e^{-u^2}\\). The given equation is exactly\n\\[\n\\mathbb P\\left(V\\ge \\frac1n U^3e^{-U/\\sqrt n}+\\sqrt n\\,\\lambda_n\\right)=\\frac12.\n\\]\nWrite\n\\[\nG(s)=\\mathbb P(V\\ge s)=\\int_s^\\infty \\frac{e^{-v^2}}{\\sqrt\\pi}\\,dv.\n\\]\nNear \\(0\\),\n\\[\nG(s)=\\frac12-\\frac{s}{\\sqrt\\pi}+O(s^3),\n\\]\nsince \\(e^{-s^2}=1+O(s^2)\\).\n\nPut\n\\[\n\\sqrt n\\,\\lambda_n=a n^{-3/2}+b n^{-5/2}+o(n^{-5/2}).\n\\]\nThen\n\\[\n\\frac1n U^3e^{-U/\\sqrt n}\n=\nn^{-1}U^3-n^{-3/2}U^4+\\frac12n^{-2}U^5-\\frac16n^{-5/2}U^6+O(n^{-3}|U|^7)\n\\]\non the Gaussian main range, with tails exponentially negligible. Hence the threshold\n\\[\nS_n=\\frac1n U^3e^{-U/\\sqrt n}+\\sqrt n\\,\\lambda_n\n\\]\nhas expectation\n\\[\n\\mathbb E S_n\n=\n(a-\\mathbb E U^4)n^{-3/2}\n+\\left(b-\\frac16\\mathbb E U^6\\right)n^{-5/2}\n+o(n^{-5/2}).\n\\]\nFor density \\(\\pi^{-1/2}e^{-u^2}\\),\n\\[\n\\mathbb E U^4=\\frac34,\\qquad \\mathbb E U^6=\\frac{15}{8}.\n\\]\nAlso \\(\\mathbb E(S_n^3)=O(n^{-3})=o(n^{-5/2})\\), so\n\\[\n\\mathbb E G(S_n)\n=\n\\frac12-\\frac1{\\sqrt\\pi}\\mathbb E S_n+o(n^{-5/2}).\n\\]\nThe defining condition \\(\\mathbb E G(S_n)=1/2\\) therefore forces\n\\[\na=\\frac34,\\qquad b=\\frac16\\cdot\\frac{15}{8}=\\frac{5}{16}.\n\\]\nThus\n\\[\n\\sqrt n\\,\\lambda_n=\\frac{3}{4}n^{-3/2}+\\frac{5}{16}n^{-5/2}+o(n^{-5/2}),\n\\]\nso\n\\[\n\\lambda_n=\\frac{3}{4n^2}+\\frac{5}{16n^3}+o(n^{-3}).\n\\]\n\nTherefore\n\\[\n\\boxed{\\frac{5}{16}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T02:56:46+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/689f3c17c2da.json"
+}
