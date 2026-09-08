@@ -2,23 +2,24 @@
 
 ## LaTeX (Normalized)
 
-Let $\operatorname{Sym}_3(\mathbb R)$ be the space of real symmetric $3\times3$ matrices, with Frobenius norm $\|\cdot\|_F$. For $n\ge1$, define
+Let $\operatorname{Sym}_3^+(\mathbb R)$ be the cone of positive-semidefinite real symmetric $3\times3$ matrices, with Lebesgue measure on the six independent entries. For $A\in\operatorname{Sym}_3^+(\mathbb R)$, put
 $$
-I_n=\int_{\operatorname{Sym}_3(\mathbb R)^2}
-\exp\left(-n\left(\|AB-BA\|_F^2+
-(\|A\|_F^2+\|B\|_F^2)^4\right)\right)\,dA\,dB.
+e_2(A)=\frac12\left((\operatorname{tr}A)^2-\operatorname{tr}(A^2)\right).
+$$
+For $n\ge1$, define
+$$
+I_n=\int_{\operatorname{Sym}_3^+(\mathbb R)}
+\exp\left(-n\left(e_2(A)^2+(\operatorname{tr}A)^8\right)\right)\,dA.
 $$
 Also let
 $$
-\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\,dt
-\qquad(s>0).
+\gamma=\lim_{m\to\infty}\left(\sum_{k=1}^m\frac1k-\log m\right)
 $$
-Evaluate
+be Euler's constant. Evaluate
 $$
-\lim_{n\to\infty}n^{5/2}
+\lim_{n\to\infty}
 \left(
-I_n-
-\frac{\pi^{13/2}\Gamma(3/4)}{48\sqrt2\,n^{9/4}}
+\frac{64n^{3/2}}{\pi^{5/2}}I_n-\log n
 \right).
 $$
 
@@ -37,4 +38,4 @@ $$
 
 ## Domain Explanation
 
-The phase measures noncommutativity of two real symmetric matrices together with a radial confining term. After diagonalizing one matrix, the regular commuting stratum gives the leading term, while the requested correction comes from pairwise eigenvalue-collision strata where an off-diagonal mode of the second matrix becomes nonuniform. This is a natural degenerate asymptotic-integration problem in Calculus -> Applications of integration.
+The invariant $e_2(A)$ is the second elementary symmetric polynomial of the eigenvalues and vanishes on the rank-one boundary of the positive-semidefinite cone. The regular interior scale and the rank-one boundary scale occur at the same critical order, producing a logarithmic resonance whose finite part determines the limit. This is a natural degenerate asymptotic-integration problem in Calculus -> Applications of integration.
