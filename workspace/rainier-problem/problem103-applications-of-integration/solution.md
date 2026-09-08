@@ -21,7 +21,7 @@ $$
 e^{-nP}=\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}
 \Gamma(s)n^{-s}P^{-s}\,ds.
 $$
-Hence
+This gives
 $$
 I_n=\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}
 \Gamma(s)n^{-s}M(s)\,ds,
@@ -64,7 +64,7 @@ $$
 \frac{\Delta}{(x+y)(y+z)(z+x)}
 =\frac{y-x}{x+y}-\frac{z-x}{x+z}+\frac{z-y}{y+z}.
 $$
-For $1\leq i,j\leq3$, put
+For $1\leq i,j\leq 3$, put
 $$
 \nu_i=\int_0^\infty x^{a+i-2}e^{-x}\,dx
 =\Gamma(a+i-1),
@@ -126,7 +126,7 @@ so its contribution is
 $$
 -\frac{6\pi}{n}.
 $$
-Thus
+So
 $$
 I_n=
 \frac{\sqrt{\pi}}{n^{1/2}}
@@ -161,15 +161,15 @@ $\Gamma(1+\varepsilon)=1-\gamma\varepsilon+O(\varepsilon^2)$ gives
 $$
 \Gamma\left(\frac{3}{2}+\varepsilon\right)
 =\frac{\sqrt{\pi}}{2}
-\left(1+(2-\gamma-2\log2)\varepsilon+O(\varepsilon^2)\right).
+\left(1+(2-\gamma-2\log 2)\varepsilon+O(\varepsilon^2)\right).
 $$
-Hence
+This gives
 $$
 F\left(\frac{3}{2}+\varepsilon\right)
 =
 \frac{9\sqrt{\pi}}{\varepsilon^2}
 +
-\frac{9\sqrt{\pi}(1-\gamma-2\log2)}{\varepsilon}
+\frac{9\sqrt{\pi}(1-\gamma-2\log 2)}{\varepsilon}
 +O(1).
 $$
 Also
@@ -180,11 +180,11 @@ n^{-3/2-\varepsilon}
 $$
 Therefore the residue of $F(s)n^{-s}$ at $s=\frac{3}{2}$ is
 $$
-\frac{9\sqrt{\pi}(1-\gamma-2\log2)-9\sqrt{\pi}\log n}{n^{3/2}}.
+\frac{9\sqrt{\pi}(1-\gamma-2\log 2)-9\sqrt{\pi}\log n}{n^{3/2}}.
 $$
 After the contour-shift sign is included, the double pole contributes
 $$
-\frac{9\sqrt{\pi}(\log n+\gamma+2\log2-1)}{n^{3/2}}.
+\frac{9\sqrt{\pi}(\log n+\gamma+2\log 2-1)}{n^{3/2}}.
 $$
 
 Step 5: Recover the requested limit
@@ -194,25 +194,25 @@ $$
 I_n=
 \frac{\sqrt{\pi}}{n^{1/2}}
 -\frac{6\pi}{n}
-+\frac{9\sqrt{\pi}(\log n+\gamma+2\log2-1)}{n^{3/2}}
++\frac{9\sqrt{\pi}(\log n+\gamma+2\log 2-1)}{n^{3/2}}
 +o(n^{-3/2}).
 $$
-Hence
+So
 $$
 \lim_{n\to\infty}
 \left(
 n^{3/2}I_n-\sqrt{\pi}\,n+6\pi\sqrt{n}-9\sqrt{\pi}\log n
 \right)
 =
-9\sqrt{\pi}(\gamma+2\log2-1).
+9\sqrt{\pi}(\gamma+2\log 2-1).
 $$
-Final Answer: $\boxed{9\sqrt{\pi}(\gamma+2\log2-1)}$
+Final Answer: $\boxed{9\sqrt{\pi}(\gamma+2\log 2-1)}$
 
 ---
 
 ## Answer
 
-$9\sqrt{\pi}(\gamma+2\log2-1)$
+$9\sqrt{\pi}(\gamma+2\log 2-1)$
 
 ---
 
