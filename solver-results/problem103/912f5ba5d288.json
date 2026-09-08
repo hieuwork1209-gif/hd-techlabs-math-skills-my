@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "a114b72f4ac2fd81e37282ed6403aed7920c4731",
+  "problem_blob_sha": "912f5ba5d288a959e36f6dc24e86bd90a9261199",
+  "statement_sha256": "cf8020f6347d990e2c84815775357c49a42830e3600ac0943c7001826c069cbf",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T06:13:44+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nu=x^2,\\qquad v=y^3.\n\\]\nSince \\(dx\\) over both signs of \\(x\\) gives \\(u^{-1/2}du\\), and\n\\[\ndy=\\frac13 |v|^{-2/3}dv,\n\\]\nwe get\n\\[\nI_n=\\int_{-\\infty}^{\\infty}e^{-nw^2}H(w)\\,dw,\n\\]\nwhere\n\\[\nH(w)=\\frac13\\int_0^\\infty u^{-1/2}|u-w|^{-2/3}\ne^{-|u-w|^{2/3}}\\,du.\n\\]\n\nAs \\(w\\to0^\\pm\\), scaling \\(u=|w|s\\) gives\n\\[\nH(w)=D_\\pm |w|^{-1/6}+\\frac12\\Gamma\\!\\left(-\\frac14\\right)+o(1).\n\\]\nThe one-sided leading constants are\n\\[\nD_-=\\frac13B\\!\\left(\\frac12,\\frac16\\right),\n\\]\nand\n\\[\nD_+=\\frac13\\left[\nB\\!\\left(\\frac12,\\frac13\\right)+B\\!\\left(\\frac13,\\frac16\\right)\n\\right].\n\\]\nUsing the beta-gamma identities,\n\\[\nD_++D_-=\n\\frac{(3+\\sqrt3)\\Gamma(1/6)\\Gamma(1/3)}{6\\sqrt\\pi}.\n\\]\nTherefore\n\\[\n\\frac12\\Gamma\\!\\left(\\frac5{12}\\right)(D_++D_-)=C_0,\n\\]\nso the given subtraction removes exactly the cusp leading term.\n\nThe remaining constant term contributes\n\\[\n\\int_{-\\infty}^{\\infty}e^{-nw^2}\\left(\\frac12\\Gamma\\!\\left(-\\frac14\\right)\\right)\\,dw\n=\n\\frac{\\sqrt\\pi}{2}\\Gamma\\!\\left(-\\frac14\\right)n^{-1/2}.\n\\]\nSince \\(\\Gamma(3/4)=(-1/4)\\Gamma(-1/4)\\), this equals\n\\[\n-2\\sqrt\\pi\\,\\Gamma\\!\\left(\\frac34\\right)n^{-1/2}.\n\\]\n\nHence\n\\[\n\\boxed{-2\\sqrt\\pi\\,\\Gamma\\!\\left(\\frac34\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T06:15:53+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/912f5ba5d288.json"
+}
