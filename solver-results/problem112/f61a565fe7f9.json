@@ -1,0 +1,22 @@
+{
+  "problem": "problem112",
+  "branch": "adversary/problem112",
+  "problem_path": "workspace/rainier-problem/problem112-fourier-analysis/problem.md",
+  "source_commit_sha": "9b7bc43ab4660ad0795c1fe5fe7ec3f66304734a",
+  "problem_blob_sha": "f61a565fe7f9610ecbd628584f943e91e0718ed9",
+  "statement_sha256": "cad58e83500da39a96c27a155c4e743fe8120d294078d6b612f7170a5dec5c87",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T05:50:14+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "The number of additive subgroups of \\((\\mathbb Z/2^m\\mathbb Z)^3\\) is\n\n\\[\n\\boxed{\\frac{14(3m-1)4^m+9m+23}{9}}.\n\\]\n\nLet \\(p=2\\). A subgroup \\(H\\le (\\mathbb Z/p^m\\mathbb Z)^3\\) has invariant factor type\n\n\\[\nH\\cong \\mathbb Z/p^a\\mathbb Z\\oplus \\mathbb Z/p^b\\mathbb Z\\oplus \\mathbb Z/p^c\\mathbb Z,\n\\qquad m\\ge a\\ge b\\ge c\\ge 0.\n\\]\n\nInstead of summing directly over \\((a,b,c)\\), use the conjugate profile\n\n\\[\nr_i=\\#\\{a,b,c\\ge i\\},\\qquad i=1,\\dots,m,\n\\]\n\nso\n\n\\[\n3\\ge r_1\\ge r_2\\ge \\cdots \\ge r_m\\ge r_{m+1}=0.\n\\]\n\nFor a fixed profile \\((r_i)\\), the number of subgroups with that profile is\n\n\\[\n\\prod_{i=1}^m\n2^{r_{i+1}(3-r_i)}\n\\binom{3-r_{i+1}}{r_i-r_{i+1}}_2,\n\\]\n\nwhere \\(\\binom nk_2\\) is the Gaussian binomial coefficient over \\(\\mathbb F_2\\). This comes from choosing, layer by layer in the \\(2\\)-adic filtration, which new cyclic generators begin at level \\(i\\), while the \\(r_{i+1}\\) existing generators may be lifted in \\(2^{3-r_i}\\) ways each.\n\nThus the total count is the sum over all decreasing profiles. Encode the layer transition \\(r_i=x\\), \\(r_{i+1}=y\\) by the matrix\n\n\\[\nT_{x,y}\n=\n2^{y(3-x)}\n\\binom{3-y}{x-y}_2\n\\qquad (0\\le y\\le x\\le 3).\n\\]\n\nFor \\(p=2\\),\n\n\\[\nT=\n\\begin{pmatrix}\n1&0&0&0\\\\\n7&4&0&0\\\\\n7&6&4&0\\\\\n1&1&1&1\n\\end{pmatrix}.\n\\]\n\nThe desired number is\n\n\\[\nS_m=\\sum_{x=0}^3 (T^m)_{x,0}.\n\\]\n\nLet\n\n\\[\na_m=(T^m)_{0,0},\\quad b_m=(T^m)_{1,0},\\quad c_m=(T^m)_{2,0},\\quad d_m=(T^m)_{3,0}.\n\\]\n\nThen\n\n\\[\na_m=1,\n\\]\n\n\\[\nb_{m+1}=7+4b_m\n\\implies\nb_m=\\frac{7(4^m-1)}{3},\n\\]\n\n\\[\nc_{m+1}=7+6b_m+4c_m\n\\implies\nc_m=\\left(\\frac{7m}{2}-\\frac73\\right)4^m+\\frac73,\n\\]\n\nand\n\n\\[\nd_{m+1}=1+b_m+c_m+d_m.\n\\]\n\nSince\n\n\\[\n1+b_k+c_k=1+\\frac{7k}{2}4^k,\n\\]\n\nwe get\n\n\\[\nd_m\n=\nm+\\frac72\\sum_{k=0}^{m-1}k4^k\n=\nm+\\frac{7}{18}\\left(4+(3m-4)4^m\\right).\n\\]\n\nTherefore\n\n\\[\nS_m=a_m+b_m+c_m+d_m\n=\n\\frac{14(3m-1)4^m+9m+23}{9}.\n\\]\n\nSo the required number is\n\n\\[\n\\boxed{\\frac{14(3m-1)4^m+9m+23}{9}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T05:51:48+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem112/f61a565fe7f9.json"
+}
