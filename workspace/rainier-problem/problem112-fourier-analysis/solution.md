@@ -45,7 +45,7 @@ $$
 S_m(r)\ne0\Longrightarrow r\equiv3\pmod8.
 $$
 
-Conversely, let $r\equiv3\pmod8$. Then $3^{-1}r\equiv1\pmod8$, so it has an odd square root modulo $2^m$. Indeed, an odd root modulo $2^n$ lifts from $n$ to $n+1$ by replacing $u$ with $u+\varepsilon2^{n-1}$; exactly one choice of $\varepsilon\in\{0,1\}$ fixes the next binary digit. Choose odd $u$ with
+Conversely, let $r\equiv3\pmod8$. Then $3^{-1}r\equiv1\pmod8$, so it has an odd square root modulo $2^m$. To see this directly, start with a root modulo $8$. If $u^2\equiv a\pmod{2^n}$ for odd $u$, then the squares of $u$ and $u+2^{n-1}$ differ by $2^n$ modulo $2^{n+1}$; hence exactly one of those two roots modulo $2^n$ has square congruent to $a$ modulo $2^{n+1}$. Iterating gives an odd $u$ with
 $$
 3u^2\equiv r\pmod{2^m}.
 $$
