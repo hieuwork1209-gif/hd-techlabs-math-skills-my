@@ -2,26 +2,32 @@
 
 ## LaTeX (Normalized)
 
-For $n\ge1$, define
+Let
 $$
-I_n=\iint_{\mathbb R^2}
-\exp\left(-n(x^2-y^3)^2-y^2\right)\,dx\,dy.
+T=\{(x,y)\in\mathbb{R}^2:x\geq0,\ y\geq0,\ x+y\leq1\},
+\qquad z=1-x-y,
 $$
-Also let
+and define
 $$
-\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\,dt
-\qquad(s>0),
+\Delta=(x-y)(y-z)(z-x).
 $$
-and put
+For each integer $n\geq1$, put
 $$
-C_0=
-\frac{(3+\sqrt3)\Gamma(5/12)\Gamma(1/6)\Gamma(1/3)}{12\sqrt\pi}.
+I_n=
+\iint_T
+\frac{\Delta^2 e^{-nxyz}}
+{\sqrt{xyz}(x+y)(y+z)(z+x)}\,dx\,dy.
+$$
+Let Euler's constant be
+$$
+\gamma=\lim_{m\to\infty}
+\left(\sum_{k=1}^m\frac{1}{k}-\log m\right).
 $$
 Evaluate
 $$
-\lim_{n\to\infty}n^{1/2}
+\lim_{n\to\infty}
 \left(
-I_n-\frac{C_0}{n^{5/12}}
+n^{3/2}I_n-\sqrt{\pi}\,n+6\pi\sqrt{n}-9\sqrt{\pi}\log n
 \right).
 $$
 
@@ -40,4 +46,6 @@ $$
 
 ## Domain Explanation
 
-The curve $x^2=y^3$ is the semicubical discriminant cusp and, up to a constant factor, is the discriminant-zero locus of the depressed cubic $t^3-3yt+2x$. The leading Laplace term is created by the singular cusp, while the requested correction comes from the two regular discriminant branches. The Gaussian factor in $y$ makes the global integral finite without altering this local geometry, so this is a natural degenerate asymptotic-integration problem in Calculus -> Applications of integration.
+Up to normalization, the factor
+$\Delta^2/[\sqrt{xyz}(x+y)(y+z)(z+x)]$
+is the three-eigenvalue Bures spectral weight on the standard simplex. The determinant $xyz$ vanishes on nested boundary strata, and the Bures denominator couples those strata so that the Mellin transform develops both simple poles and a double pole. Determining the renormalized determinant-Laplace asymptotic is a natural exact integration problem in Calculus -> Applications of integration.
