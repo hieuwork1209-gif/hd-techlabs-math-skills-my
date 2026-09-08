@@ -18,9 +18,9 @@ $$
 $$
 Evaluate
 $$
-\lim_{n\to\infty}n^{23/24}
-\left(
-I_n-\frac{\sqrt\pi\,\Gamma(3/8)}{2n^{7/8}}
+\lim_{n\to\infty}n\left(
+I_n-
+\frac{\pi^{3/2}\Gamma(1/8)}{3\,2^{2/3}\Gamma(2/3)n^{23/24}}
 \right).
 $$
 
@@ -39,4 +39,4 @@ $$
 
 ## Domain Explanation
 
-The factor $\Delta(x)$ is the discriminant factor for three real eigenvalues, and $\Delta=0$ is the repeated-eigenvalue locus. After separating the mean eigenvalue from the two-dimensional traceless part, the angular integral can be evaluated exactly, while the next asymptotic term comes from the transition near the triple-eigenvalue line where the collision sheets meet. This is a natural degenerate asymptotic-integration problem in Calculus -> Applications of integration.
+The factor $\Delta(x)$ is the discriminant factor for three real eigenvalues, and $\Delta=0$ is the repeated-eigenvalue locus. The leading mass comes from the nonuniform transition near the triple-eigenvalue line, while the requested second coefficient is the finite-part contribution from the regular repeated-eigenvalue sheets. This is a natural degenerate asymptotic-integration problem in Calculus -> Applications of integration.
