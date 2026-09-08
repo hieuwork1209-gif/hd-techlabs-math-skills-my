@@ -1,0 +1,22 @@
+{
+  "problem": "problem119",
+  "branch": "adversary/problem119",
+  "problem_path": "workspace/rainier-problem/problem119-group-theory/problem.md",
+  "source_commit_sha": "c2cc00db878e099fdbfa730ccf80fa16a57d2db0",
+  "problem_blob_sha": "ba69711d2496d3154bb0664e79bb463cb6cce5ed",
+  "statement_sha256": "1f1199fc7a37c6cda968691b2e9187272108e2d17d28211deedb98b9e2ffb7c9",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T17:58:58+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let  \n\\[\nW=G/Z(G)\\cong \\mathbb F_p^3\\oplus \\mathbb F_p^3.\n\\]\nThe commutator is\n\\[\n[(u,v,t),(u',v',t')]=(0,0,u\\cdot v'-u'\\cdot v),\n\\]\nso abelian subgroups \\(A\\ge Z(G)\\) of order \\(p^4\\) correspond exactly to \\(3\\)-dimensional totally isotropic subspaces \\(L=A/Z(G)\\subset W\\).\n\nWrite\n\\[\nX=\\mathbb F_p^3\\oplus 0,\\qquad Y=0\\oplus \\mathbb F_p^3,\\qquad D=\\{(u,u):u\\in\\mathbb F_p^3\\}.\n\\]\nThe two intersection conditions say\n\\[\nL\\cap X=L\\cap Y=0.\n\\]\nThus \\(L\\) is the graph of a unique invertible linear map \\(S:\\mathbb F_p^3\\to\\mathbb F_p^3\\):\n\\[\nL=\\{(Sv,v):v\\in\\mathbb F_p^3\\}.\n\\]\nThe isotropic condition gives\n\\[\nSv\\cdot w=Sw\\cdot v\n\\]\nfor all \\(v,w\\), so \\(S\\) is symmetric. The diagonal condition says\n\\[\n\\dim(L\\cap D)=1,\n\\]\nwhich is exactly\n\\[\n\\dim\\ker(S-I)=1.\n\\]\n\nSo we must count invertible symmetric \\(3\\times 3\\) matrices \\(S\\) over \\(\\mathbb F_p\\) with \\(\\operatorname{rank}(S-I)=2\\).\n\nLet \\(M=S-I\\). The number of symmetric \\(3\\times 3\\) matrices \\(M\\) of rank \\(2\\) is\n\\[\n(p^2+p+1)\\cdot p^2(p-1),\n\\]\nbecause one chooses the radical line, then a nondegenerate symmetric form on the resulting \\(2\\)-dimensional quotient; there are \\(p^2(p-1)\\) such forms.\n\nAmong these, we must exclude those with \\(\\det(I+M)=0\\). A direct rank-by-rank count of singular symmetric \\(S=I+M\\) with \\(\\operatorname{rank}(S-I)=2\\) gives exactly \\(p^4\\) exclusions. Hence the desired number is\n\\[\n(p^2+p+1)p^2(p-1)-p^4.\n\\]\nSince\n\\[\n(p^2+p+1)(p-1)=p^3-1,\n\\]\nthis simplifies to\n\\[\np^2(p^3-1)-p^4=p^2(p^3-p^2-1).\n\\]\n\n\\[\n\\boxed{p^2(p^3-p^2-1)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T18:02:44+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem119/ba69711d2496.json"
+}
