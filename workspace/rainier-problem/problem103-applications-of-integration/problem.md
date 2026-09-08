@@ -4,11 +4,12 @@
 
 Let
 $$
-\Omega=\{(x,y)\in\mathbb R^2:x^4+y^4\le1\}.
+\mathbb D=\{(x,y)\in\mathbb R^2:x^2+y^2\le1\}.
 $$
 For each integer $n\ge1$, define
 $$
-I_n=\iint_{\Omega}\cos(2\pi n x)\,dx\,dy.
+I_n=\iint_{\mathbb D}
+\cos\left(2\pi n(x^3-3xy^2)\right)\,dx\,dy.
 $$
 Also let
 $$
@@ -17,11 +18,10 @@ $$
 $$
 Evaluate
 $$
-\lim_{n\to\infty}n^{9/4}
+\lim_{n\to\infty}n^{3/2}
 \left(
-I_n+
-\frac{\sqrt{4-2\sqrt2}\,\Gamma(1/4)}
-{2(2\pi)^{5/4}n^{5/4}}
+I_n-
+\frac{\pi^{1/3}\Gamma(1/3)}{3\Gamma(2/3)n^{2/3}}
 \right).
 $$
 
@@ -40,4 +40,4 @@ $$
 
 ## Domain Explanation
 
-The domain is the Lamé disk $x^4+y^4\le1$. Its Fourier coefficient in the $x$-direction is governed by the two flat boundary points $x=\pm1$, where the vertical cross-section has a fractional-power endpoint singularity. Determining the requested correction requires oscillatory endpoint asymptotics rather than Laplace localization. This is a natural Fourier-asymptotic integration problem in Calculus -> Applications of integration.
+The phase $x^3-3xy^2$ is the real part of $(x+iy)^3$, a natural cubic harmonic on the unit disk. The leading oscillatory contribution comes from its degenerate stationary point at the origin, while the requested correction comes from stationary points on the boundary. Determining the limit therefore requires matching two distinct oscillatory mechanisms, making this a natural asymptotic-integration problem in Calculus -> Applications of integration.
