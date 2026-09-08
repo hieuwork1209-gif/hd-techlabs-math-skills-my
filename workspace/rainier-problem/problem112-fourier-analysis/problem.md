@@ -4,11 +4,11 @@
 
 Let $m\ge1$. Determine the number of matrices
 $$
-A\in M_2(\mathbb Z/2^m\mathbb Z)
+A\in M_3(\mathbb Z/2^m\mathbb Z)
 $$
 satisfying
 $$
-A^3=0.
+A^2=0.
 $$
 
 ---
@@ -26,4 +26,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for an exact count of cube-zero endomorphisms of a rank-two module over the finite local ring $\mathbb Z/2^m\mathbb Z$. Reduction modulo $2$ splits the matrices into the zero class and the three primitive nilpotent classes. The zero class produces a three-step lifting recurrence, while the primitive classes are governed by Cayley--Hamilton together with the two-adic condition $(\operatorname{tr}A)^3=0$. The essential structure is modular and two-adic, so the best classification is Number Theory with sub-domain Modular arithmetic and congruences.
+The problem asks for an exact count of square-zero endomorphisms of a rank-three module over the finite local ring $\mathbb Z/2^m\mathbb Z$. Reduction modulo $2$ splits the matrices into the zero class and a single primitive rank-one nilpotent orbit. The zero class yields a two-step lifting recurrence, while a primitive lift reduces to a genuinely two-adic square-zero scalar condition after normalizing a unit entry. The essential structure is modular and two-adic, so the best classification is Number Theory with sub-domain Modular arithmetic and congruences.
