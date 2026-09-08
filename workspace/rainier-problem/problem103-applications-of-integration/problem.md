@@ -4,17 +4,22 @@
 
 For $n\ge1$, define
 $$
-I_n=\iint_{\mathbb{R}^2}
- e^{-n(x^4+x^2y^2+y^6)}\,dx\,dy.
+I_n=\iint_{\mathbb R^2}
+ e^{-n((x^2-y^3)^2+y^8)}\,dx\,dy,
 $$
-Let
+and put
 $$
-\gamma=\lim_{m\to\infty}\left(\sum_{k=1}^m\frac1k-\log m\right)
+A=\iint_{\mathbb R^2}e^{-(X^2-Y^3)^2}\,dX\,dY.
 $$
-be the Euler-Mascheroni constant. Evaluate
+Also let
 $$
-\lim_{n\to\infty}
-\left(\sqrt n\,I_n-\frac{\sqrt\pi}{6}\log n\right).
+\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\,dt
+\qquad(s>0).
+$$
+Evaluate
+$$
+\lim_{n\to\infty}n^{7/16}
+\left(I_n-\frac{A}{n^{5/12}}\right).
 $$
 
 ---
@@ -32,4 +37,4 @@ $$
 
 ## Domain Explanation
 
-The phase $x^4+x^2y^2+y^6$ has a degenerate minimum at the origin with two competing scaling regimes. Their overlap produces a logarithmic term, and the requested limit is the finite part after that divergence is removed. This is a natural degenerate Laplace-asymptotic problem in Calculus -> Applications of integration.
+The phase has a cusp-shaped valley $x^2=y^3$ regularized by the term $y^8$. The leading contribution comes from the inner cusp scale, while the next contribution is nonuniform and arises from matching that scale to the positive outer valley. This is a natural matched-asymptotic integration problem in Calculus -> Applications of integration.
