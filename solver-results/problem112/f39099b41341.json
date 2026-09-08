@@ -1,0 +1,22 @@
+{
+  "problem": "problem112",
+  "branch": "adversary/problem112",
+  "problem_path": "workspace/rainier-problem/problem112-fourier-analysis/problem.md",
+  "source_commit_sha": "d8c0cf7ddd108a7585420f127d0bace5ba9265c5",
+  "problem_blob_sha": "f39099b41341382f765b32c4f231a910ad713c47",
+  "statement_sha256": "b4885b154a4bd5e5b629bffe1e58f89b95b064277cf2124145f51b332823c717",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T04:47:24+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\ne_m(u)=\\exp(2\\pi i u/2^m).\n\\]\nWe use the standard quadratic Gauss sum\n\\[\nG_m(a)=\\sum_{x\\bmod 2^m} e_m(x^2-ax).\n\\]\nFor \\(m\\ge2\\),\n\\[\nG_m(a)=0\\quad(a\\text{ odd}),\n\\]\nand if \\(a=2b\\),\n\\[\nG_m(2b)=g_m e_m(-b^2),\\qquad g_m=\\sum_x e_m(x^2)=2^{m/2}(1+i).\n\\]\n\nSum first over \\(z\\). It is nonzero only when \\(y+t\\) is even. Write\n\\[\ny=2u-t,\\qquad u\\bmod 2^{m-1}.\n\\]\nThen summing over \\(x\\) is nonzero only when \\(r-t\\) is even. Put\n\\[\nd=\\frac{r-t}{2}\\bmod 2^{m-1}.\n\\]\nThe remaining \\(u\\)-sum is nonzero only when\n\\[\ns+d\\equiv0\\pmod2.\n\\]\nWrite\n\\[\nq=\\frac{s+d}{2}\\bmod 2^{m-1}.\n\\]\nFor every nonzero case,\n\\[\nA_m(r,s,t)=g_m^2g_{m-1}\n\\exp\\left(2\\pi i\\left(\\frac{C-2e^2}{2^m}\\right)\\right),\n\\]\nwhere\n\\[\ne=t+q,\\qquad C=t^2+st-d^2.\n\\]\nSince\n\\[\ng_m^2g_{m-1}\n\\]\nhas argument \\(3\\pi/4\\), the sign is controlled by\n\\[\nH=C-2e^2.\n\\]\nA direct simplification gives\n\\[\nH=-J(t,d,q),\n\\]\nwhere\n\\[\nJ(t,d,q)=t^2+td+d^2+2qt+2q^2.\n\\]\n\nThus \\(A_m\\) is positive real exactly when\n\\[\nH\\equiv 5\\cdot 2^{m-3}\\pmod{2^m},\n\\]\nand negative real exactly when\n\\[\nH\\equiv 2^{m-3}\\pmod{2^m}.\n\\]\nEquivalently,\n\\[\nJ\\equiv 3\\cdot 2^{m-3}\\pmod{2^m}\n\\]\nfor positive values, and\n\\[\nJ\\equiv 7\\cdot 2^{m-3}\\pmod{2^m}\n\\]\nfor negative values.\n\nThe quadratic form \\(J\\) has the key scaling property: if\n\\[\nJ\\equiv c2^{n-3}\\pmod{2^n},\\qquad c\\text{ odd},\n\\]\nthen for \\(n\\ge5\\), all variables are even, and dividing by \\(4\\) gives the same counting problem modulo \\(2^{n-2}\\), with a factor \\(8\\) from the free high bits.\n\nThe base residue counts are:\n\\[\n\\begin{array}{c|cccc}\nn & c=1 & c=3 & c=5 & c=7\\\\ \\hline\n3 & 96 & 96 & 96 & 96\\\\\n4 & 192 & 128 & 192 & 0\n\\end{array}\n\\]\nwith the separate \\(m=4\\) count giving \\(P_4=32,\\ N_4=0\\).\n\nTherefore:\n\n- If \\(m\\) is odd,\n\\[\nP_m=N_m=3\\cdot 2^{(3m-3)/2}.\n\\]\n\n- If \\(m\\) is even,\n\\[\nP_m=2^{(3m-2)/2},\\qquad N_m=0.\n\\]\n\nSo the final answer is\n\\[\n\\boxed{\n(P_m,N_m)=\n\\begin{cases}\n\\left(2^{(3m-2)/2},\\,0\\right), & m\\text{ even},\\\\[4pt]\n\\left(3\\cdot 2^{(3m-3)/2},\\,3\\cdot 2^{(3m-3)/2}\\right), & m\\text{ odd}.\n\\end{cases}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T04:50:16+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem112/f39099b41341.json"
+}
