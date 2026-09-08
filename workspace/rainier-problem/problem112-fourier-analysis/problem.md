@@ -2,11 +2,23 @@
 
 ## LaTeX (Normalized)
 
-Let $m\geq 5$ and $1\leq k\leq m-3$ be integers. For $r,s\in\mathbb{Z}/2^{m}\mathbb{Z}$, define
+Let $m\ge1$ and put
 $$
-A_{m,k}(r,s)=\sum_{x,y\bmod 2^{m}}\exp\left(\frac{2\pi i}{2^{m}}\left(x^{2}+2xy+(1+2^{k})y^{2}-rx-sy\right)\right).
+G=(\mathbb Z/2^m\mathbb Z)^4.
 $$
-Let $P_{m,k}$ be the number of ordered pairs $(r,s)\in(\mathbb{Z}/2^{m}\mathbb{Z})^{2}$ for which $A_{m,k}(r,s)$ is a positive real number, and let $N_{m,k}$ be the number for which it is a negative real number. Determine $(P_{m,k},N_{m,k})$ for every allowed $m,k$.
+Equip $G$ with the standard symplectic pairing
+$$
+\langle x,y\rangle
+=x_1y_3+x_2y_4-x_3y_1-x_4y_2\pmod{2^m}.
+$$
+For an additive subgroup $H\le G$, define
+$$
+H^\perp=\{x\in G:\langle x,h\rangle=0\text{ for every }h\in H\}.
+$$
+Determine the number of additive subgroups $H\le G$ satisfying
+$$
+H=H^\perp.
+$$
 
 ---
 
@@ -17,10 +29,10 @@ Let $P_{m,k}$ be the number of ordered pairs $(r,s)\in(\mathbb{Z}/2^{m}\mathbb{Z
 | **Domain** | Number Theory |
 | **Sub-domain** | Modular arithmetic and congruences |
 | **Problem Type** | Exact computation |
-| **Answer Type** | Tuple or ordered list |
+| **Answer Type** | Integer |
 
 ---
 
 ## Domain Explanation
 
-This problem is fundamentally about quadratic exponential sums modulo powers of $2$, together with $2$-adic divisibility and the solution and counting of quadratic congruences. The main technical work is the evaluation of quadratic Gauss sums over residue classes modulo $2^m$ and the resulting congruence conditions on $(r,s)$. Although the sums can be viewed through a finite Fourier-transform lens, Fourier analysis is only a secondary viewpoint here; the core structure and methods are number-theoretic. Therefore the best classification is Number Theory, with sub-domain Modular arithmetic and congruences.
+The problem asks for an exact count of self-dual subgroups in a finite symplectic module over $\mathbb Z/2^m\mathbb Z$. The symplectic orthogonality condition couples the invariant-factor structure of a subgroup to its actual embedding, so ordinary subgroup-type enumeration is not enough. The count requires two-adic shell reduction, primitive isotropic lines, and self-duality in a rank-two symplectic quotient. The essential structure is modular and two-adic, so the best classification is Number Theory with sub-domain Modular arithmetic and congruences.
