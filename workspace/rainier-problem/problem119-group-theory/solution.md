@@ -123,9 +123,9 @@ Indeed,
 $$
 \sum_X\bigl(1+\chi(d^{-1}(1-X^2))\bigr)
 =p+\chi(d)\sum_X\chi(1-X^2)
-=p-\chi(-d),
+=p-\chi(-d).
 $$
-To evaluate the remaining sum, the equation $Y^2=X^2-1$ is equivalent to $(X-Y)(X+Y)=1$, so it has $p-1$ pairs $(X,Y)$. It also has $p+\sum_X\chi(X^2-1)$ pairs, and therefore $\sum_X\chi(X^2-1)=-1$.
+For the remaining sum, the equation $Y^2=X^2-1$ is equivalent to $(X-Y)(X+Y)=1$, so it has $p-1$ pairs $(X,Y)$. It also has $p+\sum_X\chi(X^2-1)$ pairs, and therefore $\sum_X\chi(X^2-1)=-1$. Since $\chi(1-X^2)=\chi(-1)\chi(X^2-1)$, this gives $\sum_X\chi(1-X^2)=-\chi(-1)$, which yields the last equality in the displayed sum.
 
 The forbidden count for this fixed anisotropic $K$ is therefore
 $$
