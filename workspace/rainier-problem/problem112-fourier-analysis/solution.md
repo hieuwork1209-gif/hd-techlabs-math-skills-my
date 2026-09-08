@@ -1,144 +1,150 @@
 ## Steps
 
-Step 1: Reduce the isomorphism condition to symmetric Smith types
+Step 1: Record two basic symplectic counts
 
 Let
 $$
-G=(\mathbb Z/2^{2q}\mathbb Z)^4.
+R_m=\mathbb Z/2^m\mathbb Z,
 $$
-By Smith normal form, after an automorphism of $G$ every subgroup $H\le G$ has the form
+and let $M_m=R_m^4$ with the standard symplectic form. A primitive cyclic line means a free rank-one direct summand of $M_m$. The number of primitive vectors is
 $$
-H=\langle 2^{a_1}e_1,2^{a_2}e_2,2^{a_3}e_3,2^{a_4}e_4\rangle,
+2^{4m}-2^{4m-4}=15\cdot2^{4m-4},
+$$
+and every primitive cyclic line has $|R_m^\times|=2^{m-1}$ generators. Hence the number of primitive cyclic lines is
+$$
+P_m=15\cdot2^{3m-3}.
+$$
+
+We also need the self-dual subgroups of the rank-two symplectic module $R_m^2$. Every such subgroup is symplectically equivalent to
+$$
+K_c=\langle 2^c e,2^{m-c}f\rangle,
+\qquad 0\le c\le\left\lfloor\frac m2\right\rfloor.
+$$
+Indeed, choose an element of smallest two-adic divisibility $c$ and send its primitive part to $e$; self-duality then forces $2^{m-c}f$ into the subgroup, and these two generators already have the required order $2^m$.
+
+For $2c<m$, the shell quotient
+$$
+2^cR_m^2/2^{m-c}R_m^2\cong R_{m-2c}^2
+$$
+turns $K_c$ into a free cyclic line. Therefore the number of subgroups of type $K_c$ is
+$$
+3\cdot2^{m-2c-1},
+$$
+because the projective line over $R_d$ has
+$$
+\frac{2^{2d}-2^{2d-2}}{2^{d-1}}=3\cdot2^{d-1}
+$$
+points. If $2c=m$, the subgroup is uniquely $2^{m/2}R_m^2$.
+
+Finally, the number of free rank-two Lagrangian direct summands of $M_m$ is
+$$
+15\cdot2^{3m-3}.
+$$
+For $m=1$, there are $15$ Lagrangian planes in $\mathbb F_2^4$: choose a nonzero first vector in $15$ ways and a second vector in its orthogonal complement but outside its span in $6$ ways, then divide by $|\mathrm{GL}_2(\mathbb F_2)|=6$. At each lift from modulus $2^r$ to $2^{r+1}$, after fixing a symplectic complement, a Lagrangian lift is the graph of a symmetric $2\times2$ binary matrix, giving $2^3$ lifts. This proves the displayed formula.
+
+Step 2: Count the primitive self-dual subgroups
+
+Call a self-dual subgroup $H\le M_m$ primitive if $H\not\subseteq2M_m$. Choose a primitive cyclic line $L\subseteq H$. Then
+$$
+L^\perp/L\cong R_m^2
+$$
+is a rank-two symplectic module, and
+$$
+H/L
+$$
+is self-dual in this quotient. Conversely, the inverse image of any self-dual subgroup of $L^\perp/L$ is a self-dual subgroup of $M_m$ containing $L$.
+
+We double-count pairs $(L,H)$. If $H/L$ has type $K_0$, then $H$ is a free Lagrangian. Such an $H\cong R_m^2$ contains
+$$
+3\cdot2^{m-1}
+$$
+primitive cyclic lines, so the contribution is exactly
+$$
+15\cdot2^{3m-3}.
+$$
+
+Now suppose $H/L$ has type $K_c$ with $c>0$. Then the reduction of $H$ modulo $2$ is one-dimensional. Since $|H|=2^{2m}$, exactly half of its elements are primitive, so the number of primitive cyclic lines in $H$ is
+$$
+\frac{2^{2m-1}}{2^{m-1}}=2^m.
+$$
+Thus, when $0<c<m/2$, the number of such $H$ is
+$$
+\frac{P_m\left(3\cdot2^{m-2c-1}\right)}{2^m}
+=45\cdot2^{3m-2c-4}.
+$$
+If $m$ is even and $c=m/2$, the rank-two quotient subgroup is unique, giving
+$$
+\frac{P_m}{2^m}=15\cdot2^{2m-3}.
+$$
+
+Let $F_m$ be the total number of primitive self-dual subgroups. Summing the geometric progression gives, for $m\ge2$,
+$$
+F_m
+=15\cdot2^{3m-3}
++\sum_{1\le c<m/2}45\cdot2^{3m-2c-4}
++\mathbf 1_{2\mid m}\,15\cdot2^{2m-3}
+$$
+$$
+=180\cdot2^{3m-6}-30\cdot2^{2m-4}.
+$$
+Also $F_1=15$.
+
+Step 3: Strip off a nonprimitive two-adic shell
+
+Let $T_m$ be the total number of self-dual subgroups of $M_m$, and put $T_0=1$. If a self-dual subgroup $H$ is not primitive, then
+$$
+H\subseteq2M_m.
+$$
+Orthogonal complements reverse inclusions, so
+$$
+(2M_m)^\perp=2^{m-1}M_m\subseteq H^\perp=H.
+$$
+Hence
+$$
+2^{m-1}M_m\subseteq H\subseteq2M_m.
+$$
+The quotient
+$$
+2M_m/2^{m-1}M_m\cong M_{m-2}
+$$
+becomes a standard symplectic module after dividing the pairing by $4$, and
+$$
+H/2^{m-1}M_m
+$$
+is self-dual there. This gives a bijection between nonprimitive self-dual subgroups of $M_m$ and self-dual subgroups of $M_{m-2}$.
+
+Therefore, for $m\ge2$,
+$$
+T_m=T_{m-2}+180\cdot2^{3m-6}-30\cdot2^{2m-4},
 $$
 with
 $$
-0\le a_1\le a_2\le a_3\le a_4\le2q.
-$$
-Hence the invariant-factor exponents of $H$ are
-$$
-2q-a_1,\ 2q-a_2,\ 2q-a_3,\ 2q-a_4,
-$$
-while those of $G/H$ are
-$$
-a_4,\ a_3,\ a_2,\ a_1.
-$$
-Therefore
-$$
-H\cong G/H
-$$
-if and only if
-$$
-a_1+a_4=2q,\qquad a_2+a_3=2q.
-$$
-Thus there are unique integers
-$$
-0\le a\le b\le q
-$$
-for which the invariant-factor type of $H$ is
-$$
-\mu(a,b)=(2q-a,\,2q-b,\,b,\,a).
+T_0=1,\qquad T_1=15.
 $$
 
-Step 2: Count the subgroups of one such type
+Step 4: Solve the recurrence
 
-For a type $\mu=(\mu_1,\dots,\mu_4)$, put
+We claim
 $$
-r_j=\#\{i:\mu_i\ge j\},\qquad 1\le j\le2q,
+T_m=\frac{20\cdot2^{3m}-14\cdot2^{2m}+1}{7}.
 $$
-and set $r_{2q+1}=0$. We first record a layer-by-layer count. Suppose the $r_{j+1}$ cyclic chains that continue to level $j+1$ have already been fixed. Modulo $2$, choose the $r_j-r_{j+1}$ new chains inside the remaining $4-r_{j+1}$ dimensions; this gives
+The formula gives $T_0=1$ and $T_1=15$. For $m\ge2$, substituting the formula for $T_{m-2}$ into Step 3 gives
 $$
-{4-r_{j+1}\brack r_j-r_{j+1}}_2
+T_m
+=\frac{20\cdot2^{3m-6}-14\cdot2^{2m-4}+1}{7}
++180\cdot2^{3m-6}-30\cdot2^{2m-4}
 $$
-choices. Once that span is chosen, each of the $r_{j+1}$ continuing generators may be shifted independently in a transverse space of dimension $4-r_j$, giving
 $$
-2^{r_{j+1}(4-r_j)}
-$$
-choices. Multiplying over the layers gives
-$$
-M(\mu)=\prod_{j=1}^{2q}
-2^{r_{j+1}(4-r_j)}
-{4-r_{j+1}\brack r_j-r_{j+1}}_2.
+=\frac{20\cdot2^{3m}-14\cdot2^{2m}+1}{7}.
 $$
 
-For
-$$
-\mu(a,b)=(2q-a,2q-b,b,a),
-$$
-the profile is
-$$
-r_j=
-\begin{cases}
-4,&1\le j\le a,\\
-3,&a<j\le b,\\
-2,&b<j\le2q-b,\\
-1,&2q-b<j\le2q-a,\\
-0,&j>2q-a.
-\end{cases}
-$$
-Using
-$$
-{2\brack1}_2=3,\qquad
-{3\brack1}_2=7,\qquad
-{4\brack1}_2=15,\qquad
-{4\brack2}_2=35,
-$$
-we obtain four cases:
-$$
-M(a,b)=315\cdot2^{8q-6a-2b-6}
-\qquad(0\le a<b<q),
-$$
-$$
-M(a,a)=35\cdot2^{8q-8a-4}
-\qquad(0\le a<q),
-$$
-$$
-M(a,q)=105\cdot2^{6q-6a-5}
-\qquad(0\le a<q),
-$$
-and
-$$
-M(q,q)=1.
-$$
-
-Step 3: Sum the symmetric types
-
-Let $N_q$ be the required number. Splitting the sum into the diagonal, the edge $b=q$, and the interior gives
-$$
-N_q=1+D_q+E_q+I_q,
-$$
-where
-$$
-D_q=35\sum_{a=0}^{q-1}2^{8q-8a-4}
-=\frac{112}{51}(2^{8q}-1),
-$$
-$$
-E_q=105\sum_{a=0}^{q-1}2^{6q-6a-5}
-=\frac{10}{3}(2^{6q}-1),
-$$
-and
-$$
-I_q=315\sum_{0\le a<b\le q-1}2^{8q-6a-2b-6}.
-$$
-For the interior sum, first sum over $a$:
-$$
-I_q
-=5\cdot2^{8q}\sum_{b=1}^{q-1}(4^{-b}-256^{-b})
-=\frac{28}{17}2^{8q}-\frac{20}{3}2^{6q}+\frac{256}{51}.
-$$
-Combining the three pieces yields
-$$
-N_q
-=\frac{196}{51}2^{8q}-\frac{10}{3}2^{6q}+\frac{25}{51}
-=\frac{196\cdot2^{8q}-170\cdot2^{6q}+25}{51}.
-$$
-
-Final Answer: $\boxed{\frac{196\cdot2^{8q}-170\cdot2^{6q}+25}{51}}$
+Final Answer: $\boxed{\frac{20\cdot2^{3m}-14\cdot2^{2m}+1}{7}}$
 
 ---
 
 ## Answer
 
-$\frac{196\cdot2^{8q}-170\cdot2^{6q}+25}{51}$
+$\frac{20\cdot2^{3m}-14\cdot2^{2m}+1}{7}$
 
 ---
 
@@ -152,11 +158,11 @@ Answer Type: Integer
 
 ## Solution Concepts
 
-- Smith normal form over a finite chain ring
-- self-quotient subgroup
-- invariant-factor symmetry
-- two-adic layer profile
-- Gaussian binomial coefficient
+- finite symplectic module
+- self-dual subgroup
+- primitive cyclic line
+- two-adic shell reduction
+- double counting
 
 ---
 
