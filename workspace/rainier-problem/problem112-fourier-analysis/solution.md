@@ -1,144 +1,144 @@
 ## Steps
 
-Step 1: Count one lifting step
+Step 1: Reduce the isomorphism condition to symmetric Smith types
 
 Let
 $$
-G_m=(\mathbb Z/2^m\mathbb Z)^3,
+G=(\mathbb Z/2^{2q}\mathbb Z)^4.
 $$
-and for $0\le r\le3$ let $C_m(r)$ be the number of additive subgroups $H\le G_m$ for which
+By Smith normal form, after an automorphism of $G$ every subgroup $H\le G$ has the form
 $$
-\dim_{\mathbb F_2}H[2]=r,
+H=\langle 2^{a_1}e_1,2^{a_2}e_2,2^{a_3}e_3,2^{a_4}e_4\rangle,
 $$
-where $H[2]=\{h\in H:2h=0\}$. Put
+with
 $$
-C_0(0)=1,\qquad C_0(1)=C_0(2)=C_0(3)=0.
+0\le a_1\le a_2\le a_3\le a_4\le2q.
 $$
-
-Fix $H\le G_m$ and put $K=2H$. Via division by $2$, the group $2G_m$ is naturally identified with $G_{m-1}$. Suppose
+Hence the invariant-factor exponents of $H$ are
 $$
-\dim_{\mathbb F_2}K[2]=s,
-\qquad
-\dim_{\mathbb F_2}H[2]=r.
+2q-a_1,\ 2q-a_2,\ 2q-a_3,\ 2q-a_4,
 $$
-Since $K\subseteq H$, we have $K[2]\subseteq H[2]$, so $s\le r$.
-
-Let
+while those of $G/H$ are
 $$
-E=G_m[2]\cong\mathbb F_2^3.
-$$
-For a fixed $K$, first choose
-$$
-L=H[2]\subseteq E.
-$$
-It must be an $r$-dimensional subspace containing the fixed $s$-dimensional space $K[2]$, so there are
-$$
-{3-s\brack r-s}_2
-$$
-choices, where ${n\brack k}_2$ is the Gaussian binomial coefficient.
-
-For a fixed $L$, consider the doubling map
-$$
-2:2^{-1}K/L\longrightarrow K.
-$$
-Its kernel is $E/L$. The subgroup $H/L$ maps isomorphically onto $K$. Such lifts exist: choose invariant-factor generators of $K$ and arbitrary halves in $G_m$; their top-order relations land in $K[2]\subseteq L$. Any two lifts differ by a homomorphism
-$$
-K\longrightarrow E/L.
-$$
-Because $E/L$ has exponent $2$, every such homomorphism factors through $K/2K$, whose dimension is $s$. Hence the number of lifts for the fixed $L$ is
-$$
-|\operatorname{Hom}(K,E/L)|
-=2^{s(3-r)}.
+a_4,\ a_3,\ a_2,\ a_1.
 $$
 Therefore
 $$
-C_m(r)=\sum_{s=0}^r
-2^{s(3-r)}{3-s\brack r-s}_2\,C_{m-1}(s).
+H\cong G/H
+$$
+if and only if
+$$
+a_1+a_4=2q,\qquad a_2+a_3=2q.
+$$
+Thus there are unique integers
+$$
+0\le a\le b\le q
+$$
+for which the invariant-factor type of $H$ is
+$$
+\mu(a,b)=(2q-a,\,2q-b,\,b,\,a).
 $$
 
-Step 2: Solve the four-state recurrence
+Step 2: Count the subgroups of one such type
 
-The needed Gaussian binomial coefficients are
+For a type $\mu=(\mu_1,\dots,\mu_4)$, put
 $$
-{3\brack1}_2={3\brack2}_2=7,
-\qquad
-{2\brack1}_2=3.
+r_j=\#\{i:\mu_i\ge j\},\qquad 1\le j\le2q,
 $$
-Thus
+and set $r_{2q+1}=0$. We first record a layer-by-layer count. Suppose the $r_{j+1}$ cyclic chains that continue to level $j+1$ have already been fixed. Modulo $2$, choose the $r_j-r_{j+1}$ new chains inside the remaining $4-r_{j+1}$ dimensions; this gives
 $$
-\begin{pmatrix}
-C_m(0)\\ C_m(1)\\ C_m(2)\\ C_m(3)
-\end{pmatrix}
-=
-\begin{pmatrix}
-1&0&0&0\\
-7&4&0&0\\
-7&6&4&0\\
-1&1&1&1
-\end{pmatrix}
-\begin{pmatrix}
-C_{m-1}(0)\\ C_{m-1}(1)\\ C_{m-1}(2)\\ C_{m-1}(3)
-\end{pmatrix}.
+{4-r_{j+1}\brack r_j-r_{j+1}}_2
 $$
-In particular,
+choices. Once that span is chosen, each of the $r_{j+1}$ continuing generators may be shifted independently in a transverse space of dimension $4-r_j$, giving
 $$
-C_m(0)=1,
+2^{r_{j+1}(4-r_j)}
 $$
+choices. Multiplying over the layers gives
 $$
-C_m(1)=7+4C_{m-1}(1),
-$$
-so
-$$
-C_m(1)=\frac73(4^m-1).
-$$
-Also
-$$
-C_m(2)=7+6C_{m-1}(1)+4C_{m-1}(2),
-$$
-which gives
-$$
-C_m(2)=\frac76\left((3m-2)4^m+2\right).
-$$
-Finally, if
-$$
-S_m=\sum_{r=0}^3C_m(r)
-$$
-denotes the total number of subgroups of $G_m$, then the last row gives
-$$
-C_m(3)=S_{m-1}.
-$$
-Hence
-$$
-S_m-S_{m-1}
-=1+C_m(1)+C_m(2)
-=1+\frac{7m}{2}4^m.
+M(\mu)=\prod_{j=1}^{2q}
+2^{r_{j+1}(4-r_j)}
+{4-r_{j+1}\brack r_j-r_{j+1}}_2.
 $$
 
-Step 3: Sum the recurrence
+For
+$$
+\mu(a,b)=(2q-a,2q-b,b,a),
+$$
+the profile is
+$$
+r_j=
+\begin{cases}
+4,&1\le j\le a,\\
+3,&a<j\le b,\\
+2,&b<j\le2q-b,\\
+1,&2q-b<j\le2q-a,\\
+0,&j>2q-a.
+\end{cases}
+$$
+Using
+$$
+{2\brack1}_2=3,\qquad
+{3\brack1}_2=7,\qquad
+{4\brack1}_2=15,\qquad
+{4\brack2}_2=35,
+$$
+we obtain four cases:
+$$
+M(a,b)=315\cdot2^{8q-6a-2b-6}
+\qquad(0\le a<b<q),
+$$
+$$
+M(a,a)=35\cdot2^{8q-8a-4}
+\qquad(0\le a<q),
+$$
+$$
+M(a,q)=105\cdot2^{6q-6a-5}
+\qquad(0\le a<q),
+$$
+and
+$$
+M(q,q)=1.
+$$
 
-Since $S_0=1$,
+Step 3: Sum the symmetric types
+
+Let $N_q$ be the required number. Splitting the sum into the diagonal, the edge $b=q$, and the interior gives
 $$
-S_m
-=1+m+\frac72\sum_{j=1}^m j4^j.
+N_q=1+D_q+E_q+I_q,
 $$
-The finite geometric-derivative identity gives
+where
 $$
-\sum_{j=1}^m j4^j
-=\frac{4+(3m-1)4^{m+1}}9.
+D_q=35\sum_{a=0}^{q-1}2^{8q-8a-4}
+=\frac{112}{51}(2^{8q}-1),
 $$
-Therefore
 $$
-S_m
-=\frac{14(3m-1)4^m+9m+23}{9}.
+E_q=105\sum_{a=0}^{q-1}2^{6q-6a-5}
+=\frac{10}{3}(2^{6q}-1),
+$$
+and
+$$
+I_q=315\sum_{0\le a<b\le q-1}2^{8q-6a-2b-6}.
+$$
+For the interior sum, first sum over $a$:
+$$
+I_q
+=5\cdot2^{8q}\sum_{b=1}^{q-1}(4^{-b}-256^{-b})
+=\frac{28}{17}2^{8q}-\frac{20}{3}2^{6q}+\frac{256}{51}.
+$$
+Combining the three pieces yields
+$$
+N_q
+=\frac{196}{51}2^{8q}-\frac{10}{3}2^{6q}+\frac{25}{51}
+=\frac{196\cdot2^{8q}-170\cdot2^{6q}+25}{51}.
 $$
 
-Final Answer: $\boxed{\frac{14(3m-1)4^m+9m+23}{9}}$
+Final Answer: $\boxed{\frac{196\cdot2^{8q}-170\cdot2^{6q}+25}{51}}$
 
 ---
 
 ## Answer
 
-$\frac{14(3m-1)4^m+9m+23}{9}$
+$\frac{196\cdot2^{8q}-170\cdot2^{6q}+25}{51}$
 
 ---
 
@@ -152,11 +152,11 @@ Answer Type: Integer
 
 ## Solution Concepts
 
-- finite abelian two-group
-- two-torsion filtration
-- subgroup lifting
+- Smith normal form over a finite chain ring
+- self-quotient subgroup
+- invariant-factor symmetry
+- two-adic layer profile
 - Gaussian binomial coefficient
-- extension counting
 
 ---
 
