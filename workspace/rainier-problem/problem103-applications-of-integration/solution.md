@@ -1,175 +1,186 @@
 ## Steps
 
-Step 1: Reduce the discriminant integral to two variables
+Step 1: Reduce the matrix integral to singular values
 
-Use the orthonormal coordinates
+For a real $3\times3$ matrix $M$, let $s_1,s_2,s_3\ge0$ be its singular values. Then
 $$
-x_1=\frac m{\sqrt3}+\frac u{\sqrt2}+\frac v{\sqrt6},\qquad
-x_2=\frac m{\sqrt3}-\frac u{\sqrt2}+\frac v{\sqrt6},
+(\det M)^2=(s_1s_2s_3)^2,
+\qquad
+\|M\|_F^2=s_1^2+s_2^2+s_3^2.
 $$
+For the singular-value decomposition $M=U\operatorname{diag}(s_1,s_2,s_3)V^T$, the off-diagonal infinitesimal variations occur in pairs with determinant factors $|s_i^2-s_j^2|$. After the orthogonal variables are integrated out, the Euclidean volume element therefore has the form
 $$
-x_3=\frac m{\sqrt3}-\frac{2v}{\sqrt6}.
+C\prod_{i<j}|s_i^2-s_j^2|\,ds_1ds_2ds_3.
 $$
-Then
+To determine $C$, compare the Gaussian integral
 $$
-x_1^2+x_2^2+x_3^2=m^2+u^2+v^2.
+\int_{\mathbb R^{3\times3}}e^{-\|M\|_F^2}\,dM=\pi^{9/2}.
 $$
-Writing
+On the singular-value side put $\lambda_i=s_i^2$. Then
 $$
-u=r\cos\theta,\qquad v=r\sin\theta,
+G:=\int_{(0,\infty)^3}e^{-\sum s_i^2}
+\prod_{i<j}|s_i^2-s_j^2|\,ds
+=\frac18\int_{(0,\infty)^3}
+\prod_i\lambda_i^{-1/2}e^{-\lambda_i}
+\prod_{i<j}|\lambda_i-\lambda_j|\,d\lambda.
 $$
-one has
+Use the Laguerre-Selberg identity
 $$
-\Delta(x)=-\frac{r^3}{\sqrt2}\cos3\theta.
+\int_{(0,\infty)^m}\prod_i x_i^{a-1}e^{-x_i}
+\prod_{i<j}|x_i-x_j|^{2c}\,dx
+=\prod_{j=1}^m
+\frac{\Gamma(1+jc)\Gamma(a+(j-1)c)}{\Gamma(1+c)}.
 $$
-Therefore
+With $m=3$ and $a=c=1/2$, this gives
 $$
-I_n=\frac1{\sqrt2}\int_{-\infty}^{\infty}\int_0^\infty
-r^4e^{-n(m^2+r^2)^4}A\left(\frac{nr^6}{2}\right)\,dr\,dm,
-$$
-where
-$$
-A(t)=\int_0^{2\pi}|\cos3\theta|e^{-t\cos^2(3\theta)}\,d\theta.
-$$
-By periodicity,
-$$
-A(t)=4\int_0^{\pi/2}\cos\phi\,e^{-t\cos^2\phi}\,d\phi
-=4e^{-t}\int_0^1e^{ty^2}\,dy.
+G=\frac{3\sqrt\pi}{16}.
 $$
 Hence
 $$
-A(t)\le C\min(1,t^{-1}),
-\qquad
-tA(t)\longrightarrow2
+C=\frac{16\pi^4}{3}.
 $$
-as $t\to\infty$.
-
-Step 2: Put the radial part on its natural outer scale
-
-Set
+Therefore
 $$
-m=n^{-1/8}M,\qquad r=n^{-1/8}R,\qquad \lambda=n^{1/4}.
-$$
-Then
-$$
-I_n=\frac{n^{-3/4}}{\sqrt2}J(\lambda),
+I_n=\frac{16\pi^4}{3}\int_{(0,\infty)^3}
+W(s)e^{-n((s_1s_2s_3)^2+(s_1^2+s_2^2+s_3^2)^4)}\,ds,
 $$
 where
 $$
-J(\lambda)=\int_0^\infty R^4F(R)A\left(\frac{\lambda R^6}{2}\right)\,dR
-$$
-and
-$$
-F(R)=\int_{-\infty}^{\infty}e^{-(M^2+R^2)^4}\,dM.
-$$
-At the triple-collision line,
-$$
-F(0)=\int_{-\infty}^{\infty}e^{-M^8}\,dM
-=\frac14\Gamma\left(\frac18\right).
+W(s)=\prod_{i<j}|s_i^2-s_j^2|.
 $$
 
-Step 3: Extract the exact leading transition term
+Step 2: Compute the leading rank-two contribution
 
-Write
+Consider the face $s_3=0$ with $s_1,s_2>0$. There
 $$
-J(\lambda)=F(0)\int_0^\infty R^4A\left(\frac{\lambda R^6}{2}\right)\,dR
-+\int_0^\infty R^4(F(R)-F(0))A\left(\frac{\lambda R^6}{2}\right)\,dR.
+W(s)=s_1^2s_2^2|s_1^2-s_2^2|+o(1)
 $$
-For the first integral put $t=\lambda R^6/2$. Then
+in the normal scale, while
 $$
-\int_0^\infty R^4A\left(\frac{\lambda R^6}{2}\right)\,dR
-=\frac{2^{5/6}}{6}\lambda^{-5/6}
-\int_0^\infty t^{-1/6}A(t)\,dt.
+\int_0^\infty e^{-n(s_1s_2)^2s_3^2}\,ds_3
+=\frac{\sqrt\pi}{2\sqrt n\,s_1s_2}.
 $$
-Using the definition of $A$ and Tonelli's theorem,
+Thus one rank-two face contributes
 $$
-\begin{aligned}
-\int_0^\infty t^{-1/6}A(t)\,dt
-&=\Gamma\left(\frac56\right)
-\int_0^{2\pi}|\cos3\theta|^{-2/3}\,d\theta\\
-&=2\Gamma\left(\frac56\right)
-B\left(\frac16,\frac12\right)\\
-&=\frac{4\pi^{3/2}}{\Gamma(2/3)}.
-\end{aligned}
+\frac{\sqrt\pi}{2\sqrt n}
+\int_0^\infty\int_0^\infty
+|x^2-y^2|xy\,e^{-n(x^2+y^2)^4}\,dx\,dy.
 $$
-Here we used
+After $x=n^{-1/8}X$ and $y=n^{-1/8}Y$, the remaining integral is $n^{-3/4}T_0$, where
 $$
-\Gamma\left(\frac16\right)\Gamma\left(\frac56\right)=2\pi.
+T_0=\int_0^\infty\int_0^\infty
+|X^2-Y^2|XYe^{-(X^2+Y^2)^4}\,dX\,dY.
 $$
-Thus
+In polar coordinates,
 $$
-J(\lambda)=
-\frac{\pi^{3/2}\Gamma(1/8)}{3\,2^{1/6}\Gamma(2/3)}\lambda^{-5/6}
-+\text{remainder}.
+T_0=\left(\int_0^{\pi/2}|\cos2\theta|\cos\theta\sin\theta\,d\theta\right)
+\left(\int_0^\infty r^5e^{-r^8}\,dr\right)
+=\frac14\cdot\frac18\Gamma\left(\frac34\right).
+$$
+Hence one face contributes
+$$
+\frac{\sqrt\pi\Gamma(3/4)}{64}n^{-5/4}.
+$$
+There are three faces, and multiplication by $16\pi^4/3$ gives
+$$
+I_n=\frac{\pi^{9/2}\Gamma(3/4)}4n^{-5/4}+o(n^{-5/4}).
 $$
 
-Step 4: Evaluate the outer finite-part correction
+Step 3: Identify the rank-one correction
 
-Since $F(R)-F(0)=O(R^2)$ as $R\to0$, while $F$ is bounded, the estimate from Step 1 gives an integrable bound for
+The face approximation is nonuniform where two singular values vanish. Near the $s_1$-axis write
 $$
-\lambda R^4(F(R)-F(0))A\left(\frac{\lambda R^6}{2}\right).
+s_1=x,\qquad s_2=y,\qquad s_3=z,
 $$
-Also, for each fixed $R>0$,
+with $y,z$ small. Then
 $$
-\lambda A\left(\frac{\lambda R^6}{2}\right)\longrightarrow\frac4{R^6}.
+W(s)=x^4|y^2-z^2|+o(x^4|y^2-z^2|),
 $$
-Dominated convergence therefore yields
+and the determinant term is $nx^2y^2z^2$.
+
+For fixed $x$, put
 $$
-\lambda\left[J(\lambda)-
-\frac{\pi^{3/2}\Gamma(1/8)}{3\,2^{1/6}\Gamma(2/3)}\lambda^{-5/6}
-\right]
-=4\int_0^\infty\frac{F(R)-F(0)}{R^2}\,dR+o(1).
+\kappa=\sqrt n\,x,\qquad y=\kappa^{-1/2}a,\qquad z=\kappa^{-1/2}b.
 $$
-Integrating by parts,
+After subtracting the two rank-two face models meeting on this axis, the transverse correction equals
 $$
-\int_0^\infty\frac{F(R)-F(0)}{R^2}\,dR
-=\int_0^\infty\frac{F'(R)}R\,dR.
+\frac{x^2}{n}K_0,
 $$
-Now
+where
 $$
-F'(R)=-8R\int_{-\infty}^{\infty}(M^2+R^2)^3e^{-(M^2+R^2)^4}\,dM.
+K_0=\lim_{L\to\infty}\left[
+\int_0^L\int_0^L|a^2-b^2|e^{-a^2b^2}\,da\,db
+-\frac{\sqrt\pi}{2}L^2
+\right].
 $$
-Hence, using polar coordinates in the half-plane $R\ge0$,
+Therefore one rank-one axis contributes
 $$
-\begin{aligned}
-\int_0^\infty\frac{F'(R)}R\,dR
-&=-8\int_0^\infty\int_{-\infty}^{\infty}
-(M^2+R^2)^3e^{-(M^2+R^2)^4}\,dM\,dR\\
-&=-8\pi\int_0^\infty \rho^7e^{-\rho^8}\,d\rho\\
-&=-\pi.
-\end{aligned}
+\frac{K_0}{n}\int_0^\infty x^2e^{-nx^8}\,dx
+=\frac{K_0}{8}\Gamma\left(\frac38\right)n^{-11/8}.
 $$
-Therefore
+The rank-one correction is thus genuinely larger than the regular face correction, which is $O(n^{-3/2})$.
+
+Step 4: Evaluate the universal orthant finite part
+
+Set
 $$
-J(\lambda)=
-\frac{\pi^{3/2}\Gamma(1/8)}{3\,2^{1/6}\Gamma(2/3)}\lambda^{-5/6}
--4\pi\lambda^{-1}+o(\lambda^{-1}).
+Q(L)=\int_0^L\int_0^L|a^2-b^2|e^{-a^2b^2}\,da\,db.
 $$
+By symmetry across $a=b$,
+$$
+Q(L)=2\int_0^L\int_0^a(a^2-b^2)e^{-a^2b^2}\,db\,da.
+$$
+With $t=ab$ in the inner integral and then reversing the order of integration,
+$$
+Q(L)=L^2\int_0^{L^2}e^{-t^2}\,dt
+-2\int_0^{L^2}te^{-t^2}\,dt
++\frac1{L^2}\int_0^{L^2}t^2e^{-t^2}\,dt.
+$$
+As $L\to\infty$,
+$$
+L^2\left(\int_0^{L^2}e^{-t^2}\,dt-\frac{\sqrt\pi}{2}\right)\to0,
+$$
+$$
+2\int_0^{L^2}te^{-t^2}\,dt\to1,
+\qquad
+\frac1{L^2}\int_0^{L^2}t^2e^{-t^2}\,dt\to0.
+$$
+Hence
+$$
+K_0=-1.
+$$
+There are three rank-one axes. Their total contribution before the spectral constant is therefore
+$$
+-\frac38\Gamma\left(\frac38\right)n^{-11/8}.
+$$
+Multiplying by $16\pi^4/3$ gives
+$$
+-2\pi^4\Gamma\left(\frac38\right)n^{-11/8}.
+$$
+At the rank-zero point all singular values have determinant scale $n^{-1/6}$; since $W$ has degree $6$, that contribution is $O(n^{-3/2})$, so it is smaller.
 
 Step 5: Recover the requested limit
 
-Since $\lambda=n^{1/4}$,
+Combining the rank-two and rank-one strata,
 $$
 I_n=
-\frac{\pi^{3/2}\Gamma(1/8)}{3\,2^{2/3}\Gamma(2/3)}n^{-23/24}
--2\sqrt2\,\pi\,n^{-1}
-+o(n^{-1}).
+\frac{\pi^{9/2}\Gamma(3/4)}4n^{-5/4}
+-2\pi^4\Gamma\left(\frac38\right)n^{-11/8}
++o(n^{-11/8}).
 $$
 Therefore
 $$
-\lim_{n\to\infty}n\left(
-I_n-
-\frac{\pi^{3/2}\Gamma(1/8)}{3\,2^{2/3}\Gamma(2/3)n^{23/24}}
-\right)
-=-2\sqrt2\,\pi.
+\lim_{n\to\infty}n^{11/8}
+\left(I_n-\frac{\pi^{9/2}\Gamma(3/4)}{4n^{5/4}}\right)
+=-2\pi^4\Gamma\left(\frac38\right).
 $$
-Final Answer: $\boxed{-2\sqrt2\,\pi}$
+Final Answer: $\boxed{-2\pi^4\Gamma\left(\frac38\right)}$
 
 ---
 
 ## Answer
 
-$-2\sqrt2\,\pi$
+$-2\pi^4\Gamma(3/8)$
 
 ---
 
@@ -183,8 +194,8 @@ $-2\sqrt2\,\pi$
 
 ## Solution Concepts
 
-- eigenvalue discriminant geometry
-- triple-collision transition layer
-- nonuniform asymptotic matching
-- finite-part correction
+- singular-value decomposition
+- determinant rank stratification
+- nonuniform face asymptotics
+- orthant finite-part matching
 - Gamma-function moments
