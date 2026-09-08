@@ -2,11 +2,11 @@
 
 ## LaTeX (Normalized)
 
-Let $q\ge2$ and put $m=3q$. For $r\in\mathbb Z/3^m\mathbb Z$, define
+Let $m\ge4$. For $r,s,t\in\mathbb Z/2^m\mathbb Z$, define
 $$
-A_q(r)=\sum_{x\bmod3^m}\exp\left(\frac{2\pi i}{3^m}(x^3-rx)\right).
+A_m(r,s,t)=\sum_{x,y,z\bmod2^m}\exp\left(\frac{2\pi i}{2^m}\left(x^2+y^2+z^2-xy-yz-rx-sy-tz\right)\right).
 $$
-The sum $A_q(r)$ is real. Let $P_q$ be the number of residues $r\bmod3^m$ for which $A_q(r)>0$, and let $N_q$ be the number for which $A_q(r)<0$. Determine $(P_q,N_q)$.
+Let $P_m$ be the number of ordered triples $(r,s,t)$ for which $A_m(r,s,t)$ is a positive real number, and let $N_m$ be the number for which it is a negative real number. Determine $(P_m,N_m)$.
 
 ---
 
@@ -23,4 +23,4 @@ The sum $A_q(r)$ is real. Let $P_q$ be the number of residues $r\bmod3^m$ for wh
 
 ## Domain Explanation
 
-This problem concerns a cubic exponential sum modulo powers of $3$. The exponent $m=3q$ is intrinsic to the cubic scaling $x\mapsto3x$, while the prime $3$ is ramified in the stationary equation $3x^2=r$. Determining the signs requires a three-adic stationary-phase analysis, evaluation of quadratic Gauss sums near the primitive critical points, and counting the cubic image of the principal-unit group. The core methods are therefore number-theoretic, so the best classification is Number Theory with sub-domain Modular arithmetic and congruences.
+The quadratic form $x^2+y^2+z^2-xy-yz$ is the norm form of the root lattice $A_3$, whose discriminant is $4$. Modulo powers of $2$, this discriminant makes the associated finite Fourier transform genuinely degenerate: its support is constrained by parity, and its phase reduces to representation counts for the ternary form $X^2+Y^2+2Z^2$. The essential work is therefore the evaluation of quadratic Gauss sums together with two-adic congruence and valuation recurrences. The best classification is Number Theory with sub-domain Modular arithmetic and congruences.
