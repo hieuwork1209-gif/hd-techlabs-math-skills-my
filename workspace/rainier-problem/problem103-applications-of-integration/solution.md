@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Separate the mean eigenvalue and evaluate the angular integral
+Step 1: Reduce the discriminant integral to two variables
 
 Use the orthonormal coordinates
 $$
@@ -18,156 +18,158 @@ Writing
 $$
 u=r\cos\theta,\qquad v=r\sin\theta,
 $$
-one also has
+one has
 $$
 \Delta(x)=-\frac{r^3}{\sqrt2}\cos3\theta.
 $$
+Therefore
+$$
+I_n=\frac1{\sqrt2}\int_{-\infty}^{\infty}\int_0^\infty
+r^4e^{-n(m^2+r^2)^4}A\left(\frac{nr^6}{2}\right)\,dr\,dm,
+$$
+where
+$$
+A(t)=\int_0^{2\pi}|\cos3\theta|e^{-t\cos^2(3\theta)}\,d\theta.
+$$
+By periodicity,
+$$
+A(t)=4\int_0^{\pi/2}\cos\phi\,e^{-t\cos^2\phi}\,d\phi
+=4e^{-t}\int_0^1e^{ty^2}\,dy.
+$$
 Hence
 $$
-\begin{aligned}
-I_n={}&\int_{-\infty}^{\infty}\int_0^\infty
-\frac{r^4}{\sqrt2}e^{-n(m^2+r^2)^4}\\
-&\qquad\times
-\left(\int_0^{2\pi}|\cos3\theta|
- e^{-nr^6\cos^2(3\theta)/2}\,d\theta\right)dr\,dm.
-\end{aligned}
+A(t)\le C\min(1,t^{-1}),
+\qquad
+tA(t)\longrightarrow2
 $$
-For $a>0$, periodicity gives
-$$
-\int_0^{2\pi}|\cos3\theta|e^{-a\cos^2(3\theta)}\,d\theta
-=4\int_0^{\pi/2}\cos t\,e^{-a\cos^2t}\,dt
-=\frac{2\sqrt\pi}{\sqrt a}\operatorname{erf}(\sqrt a).
-$$
-Therefore the exact reduction is
-$$
-I_n=\frac{2\sqrt\pi}{\sqrt n}
-\int_{-\infty}^{\infty}\int_0^\infty
-r\,e^{-n(m^2+r^2)^4}
-\operatorname{erf}\left(\sqrt{\frac n2}\,r^3\right)dr\,dm.
-$$
+as $t\to\infty$.
 
-Step 2: Compute the outer repeated-eigenvalue contribution
+Step 2: Put the radial part on its natural outer scale
 
-Replace the error function in Step 1 by its limiting value $1$. The resulting integral is
-$$
-L_n=\frac{2\sqrt\pi}{\sqrt n}
-\int_{-\infty}^{\infty}\int_0^\infty
-r\,e^{-n(m^2+r^2)^4}\,dr\,dm.
-$$
-Using polar coordinates in the half-plane $(m,r)$,
-$$
-\int_{-\infty}^{\infty}\int_0^\infty
-r\,e^{-n(m^2+r^2)^4}\,dr\,dm
-=2\int_0^\infty \rho^2e^{-n\rho^8}\,d\rho
-=\frac14\Gamma\left(\frac38\right)n^{-3/8}.
-$$
-Thus
-$$
-L_n=\frac{\sqrt\pi\,\Gamma(3/8)}{2n^{7/8}}.
-$$
-This is the contribution from the regular part of the repeated-eigenvalue sheets.
-
-Step 3: Isolate the triple-collision transition layer
-
-Let
-$$
-D_n=I_n-L_n.
-$$
-Since $1-\operatorname{erf}=\operatorname{erfc}$,
-$$
-D_n=-\frac{2\sqrt\pi}{\sqrt n}
-\int_{-\infty}^{\infty}\int_0^\infty
-r\,e^{-n(m^2+r^2)^4}
-\operatorname{erfc}\left(\sqrt{\frac n2}\,r^3\right)dr\,dm.
-$$
-The transition of the complementary error function occurs at
-$$
-r\asymp n^{-1/6},
-$$
-while the mean direction remains on the outer scale
-$$
-m\asymp n^{-1/8}.
-$$
 Set
 $$
-m=n^{-1/8}M,\qquad r=n^{-1/6}S.
+m=n^{-1/8}M,\qquad r=n^{-1/8}R,\qquad \lambda=n^{1/4}.
 $$
 Then
 $$
-\begin{aligned}
-n^{23/24}D_n=-2\sqrt\pi
-\int_{-\infty}^{\infty}\int_0^\infty
-&S\,\exp\left(-(M^2+n^{-1/12}S^2)^4\right)\\
-&\times\operatorname{erfc}\left(\frac{S^3}{\sqrt2}\right)dS\,dM.
-\end{aligned}
+I_n=\frac{n^{-3/4}}{\sqrt2}J(\lambda),
 $$
-The integrand is dominated by
+where
 $$
-e^{-M^8}S\operatorname{erfc}\left(\frac{S^3}{\sqrt2}\right),
+J(\lambda)=\int_0^\infty R^4F(R)A\left(\frac{\lambda R^6}{2}\right)\,dR
 $$
-which is integrable. Hence dominated convergence gives
+and
 $$
-\lim_{n\to\infty}n^{23/24}D_n
-=-2\sqrt\pi
-\left(\int_{-\infty}^{\infty}e^{-M^8}\,dM\right)
-\left(\int_0^\infty S\operatorname{erfc}\left(\frac{S^3}{\sqrt2}\right)dS\right).
+F(R)=\int_{-\infty}^{\infty}e^{-(M^2+R^2)^4}\,dM.
 $$
-
-Step 4: Evaluate the two transition integrals
-
-First,
+At the triple-collision line,
 $$
-\int_{-\infty}^{\infty}e^{-M^8}\,dM
+F(0)=\int_{-\infty}^{\infty}e^{-M^8}\,dM
 =\frac14\Gamma\left(\frac18\right).
 $$
-For the second integral, put $t=S^3/\sqrt2$. Then
+
+Step 3: Extract the exact leading transition term
+
+Write
 $$
-\int_0^\infty S\operatorname{erfc}\left(\frac{S^3}{\sqrt2}\right)dS
-=\frac{2^{1/3}}3\int_0^\infty t^{-1/3}\operatorname{erfc}(t)\,dt.
+J(\lambda)=F(0)\int_0^\infty R^4A\left(\frac{\lambda R^6}{2}\right)\,dR
++\int_0^\infty R^4(F(R)-F(0))A\left(\frac{\lambda R^6}{2}\right)\,dR.
 $$
-Using
+For the first integral put $t=\lambda R^6/2$. Then
 $$
-\operatorname{erfc}(t)=\frac2{\sqrt\pi}\int_t^\infty e^{-u^2}\,du
+\int_0^\infty R^4A\left(\frac{\lambda R^6}{2}\right)\,dR
+=\frac{2^{5/6}}{6}\lambda^{-5/6}
+\int_0^\infty t^{-1/6}A(t)\,dt.
 $$
-and reversing the order of integration,
+Using the definition of $A$ and Tonelli's theorem,
 $$
-\int_0^\infty t^{-1/3}\operatorname{erfc}(t)\,dt
-=\frac{3}{2\sqrt\pi}\Gamma\left(\frac56\right).
+\begin{aligned}
+\int_0^\infty t^{-1/6}A(t)\,dt
+&=\Gamma\left(\frac56\right)
+\int_0^{2\pi}|\cos3\theta|^{-2/3}\,d\theta\\
+&=2\Gamma\left(\frac56\right)
+B\left(\frac16,\frac12\right)\\
+&=\frac{4\pi^{3/2}}{\Gamma(2/3)}.
+\end{aligned}
+$$
+Here we used
+$$
+\Gamma\left(\frac16\right)\Gamma\left(\frac56\right)=2\pi.
+$$
+Thus
+$$
+J(\lambda)=
+\frac{\pi^{3/2}\Gamma(1/8)}{3\,2^{1/6}\Gamma(2/3)}\lambda^{-5/6}
++\text{remainder}.
+$$
+
+Step 4: Evaluate the outer finite-part correction
+
+Since $F(R)-F(0)=O(R^2)$ as $R\to0$, while $F$ is bounded, the estimate from Step 1 gives an integrable bound for
+$$
+\lambda R^4(F(R)-F(0))A\left(\frac{\lambda R^6}{2}\right).
+$$
+Also, for each fixed $R>0$,
+$$
+\lambda A\left(\frac{\lambda R^6}{2}\right)\longrightarrow\frac4{R^6}.
+$$
+Dominated convergence therefore yields
+$$
+\lambda\left[J(\lambda)-
+\frac{\pi^{3/2}\Gamma(1/8)}{3\,2^{1/6}\Gamma(2/3)}\lambda^{-5/6}
+\right]
+=4\int_0^\infty\frac{F(R)-F(0)}{R^2}\,dR+o(1).
+$$
+Integrating by parts,
+$$
+\int_0^\infty\frac{F(R)-F(0)}{R^2}\,dR
+=\int_0^\infty\frac{F'(R)}R\,dR.
+$$
+Now
+$$
+F'(R)=-8R\int_{-\infty}^{\infty}(M^2+R^2)^3e^{-(M^2+R^2)^4}\,dM.
+$$
+Hence, using polar coordinates in the half-plane $R\ge0$,
+$$
+\begin{aligned}
+\int_0^\infty\frac{F'(R)}R\,dR
+&=-8\int_0^\infty\int_{-\infty}^{\infty}
+(M^2+R^2)^3e^{-(M^2+R^2)^4}\,dM\,dR\\
+&=-8\pi\int_0^\infty \rho^7e^{-\rho^8}\,d\rho\\
+&=-\pi.
+\end{aligned}
 $$
 Therefore
 $$
-\int_0^\infty S\operatorname{erfc}\left(\frac{S^3}{\sqrt2}\right)dS
-=\frac{2^{1/3}}{2\sqrt\pi}\Gamma\left(\frac56\right).
-$$
-Substituting into Step 3 yields
-$$
-\lim_{n\to\infty}n^{23/24}D_n
-=-\frac{\Gamma(1/8)\Gamma(5/6)}{2^{5/3}}.
+J(\lambda)=
+\frac{\pi^{3/2}\Gamma(1/8)}{3\,2^{1/6}\Gamma(2/3)}\lambda^{-5/6}
+-4\pi\lambda^{-1}+o(\lambda^{-1}).
 $$
 
 Step 5: Recover the requested limit
 
-Combining Steps 2--4,
+Since $\lambda=n^{1/4}$,
 $$
-I_n=\frac{\sqrt\pi\,\Gamma(3/8)}{2n^{7/8}}
--\frac{\Gamma(1/8)\Gamma(5/6)}{2^{5/3}n^{23/24}}
-+o(n^{-23/24}).
+I_n=
+\frac{\pi^{3/2}\Gamma(1/8)}{3\,2^{2/3}\Gamma(2/3)}n^{-23/24}
+-2\sqrt2\,\pi\,n^{-1}
++o(n^{-1}).
 $$
 Therefore
 $$
-\lim_{n\to\infty}n^{23/24}
-\left(
-I_n-\frac{\sqrt\pi\,\Gamma(3/8)}{2n^{7/8}}
+\lim_{n\to\infty}n\left(
+I_n-
+\frac{\pi^{3/2}\Gamma(1/8)}{3\,2^{2/3}\Gamma(2/3)n^{23/24}}
 \right)
-=-\frac{\Gamma(1/8)\Gamma(5/6)}{2^{5/3}}.
+=-2\sqrt2\,\pi.
 $$
-Final Answer: $\boxed{-\frac{\Gamma(1/8)\Gamma(5/6)}{2^{5/3}}}$
+Final Answer: $\boxed{-2\sqrt2\,\pi}$
 
 ---
 
 ## Answer
 
-$-\frac{\Gamma(1/8)\Gamma(5/6)}{2^{5/3}}$
+$-2\sqrt2\,\pi$
 
 ---
 
@@ -182,7 +184,7 @@ $-\frac{\Gamma(1/8)\Gamma(5/6)}{2^{5/3}}$
 ## Solution Concepts
 
 - eigenvalue discriminant geometry
-- exact angular reduction
-- repeated-eigenvalue sheets
 - triple-collision transition layer
+- nonuniform asymptotic matching
+- finite-part correction
 - Gamma-function moments
