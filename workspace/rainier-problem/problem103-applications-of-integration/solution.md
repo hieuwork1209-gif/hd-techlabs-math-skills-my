@@ -1,167 +1,251 @@
 ## Steps
 
-Step 1: Diagonalize one symmetric matrix
+Step 1: Reduce the positive-semidefinite matrix integral to eigenvalues
 
-For a conjugation-invariant integrand on $\operatorname{Sym}_3(\mathbb R)$,
+For a real symmetric matrix $A$, write its eigenvalues as $\lambda_1,\lambda_2,\lambda_3$. For a conjugation-invariant integrand,
 $$
-\int F(A)\,dA=C\int_{\mathbb R^3}|\Delta(\lambda)|
-F(\operatorname{diag}\lambda)\,d\lambda,
-\qquad
+\int_{\operatorname{Sym}_3(\mathbb R)}F(A)\,dA
+=C\int_{\mathbb R^3}|\Delta(\lambda)|F(\operatorname{diag}\lambda)\,d\lambda,
+$$
+where
+$$
 \Delta(\lambda)=\prod_{i<j}(\lambda_i-\lambda_j).
 $$
-The infinitesimal off-diagonal directions give the Vandermonde factor. To find $C$, use $F(A)=e^{-\operatorname{tr}(A^2)}$. Directly in the six matrix entries,
+The infinitesimal off-diagonal directions give the Vandermonde factor. To determine $C$, take $F(A)=e^{-\operatorname{tr}(A^2)}$. Directly in the six independent matrix entries,
 $$
 \int e^{-\operatorname{tr}(A^2)}\,dA
 =\pi^{3/2}\left(\frac\pi2\right)^{3/2}
 =\frac{\pi^3}{2^{3/2}}.
 $$
-The corresponding eigenvalue integral is
+On the eigenvalue side, use the orthonormal coordinates
+$$
+\lambda_1=\frac m{\sqrt3}+\frac u{\sqrt2}+\frac v{\sqrt6},\quad
+\lambda_2=\frac m{\sqrt3}-\frac u{\sqrt2}+\frac v{\sqrt6},\quad
+\lambda_3=\frac m{\sqrt3}-\frac{2v}{\sqrt6}.
+$$
+With $u=r\cos\theta$, $v=r\sin\theta$,
+$$
+|\Delta|=\frac{r^3}{\sqrt2}|\cos3\theta|.
+$$
+Hence
 $$
 \int_{\mathbb R^3}e^{-\sum\lambda_i^2}|\Delta(\lambda)|\,d\lambda
 =\frac{3\pi}{2^{3/2}},
 $$
-obtained by separating the mean eigenvalue and using polar coordinates in the traceless plane. Hence
+so
 $$
 C=\frac{\pi^2}{3}.
 $$
+Restricting to $A\succeq0$ means $\lambda_i\ge0$, with the same constant.
 
-Write $A=\operatorname{diag}(\lambda_1,\lambda_2,\lambda_3)$ and
+For
 $$
-B=\begin{pmatrix}d_1&p&q\\p&d_2&r\\q&r&d_3\end{pmatrix}.
+e_2(A)=\frac12\left((\operatorname{tr}A)^2-\operatorname{tr}(A^2)\right),
 $$
-Then
+one has
 $$
-\|AB-BA\|_F^2
-=2\sum_{i<j}(\lambda_i-\lambda_j)^2b_{ij}^2,
-$$
-while
-$$
-\|A\|_F^2+\|B\|_F^2
-=\sum_i\lambda_i^2+\sum_i d_i^2+2(p^2+q^2+r^2).
-$$
-
-Step 2: Compute the regular commuting contribution
-
-Away from eigenvalue collisions, $p,q,r$ are Gaussian normal variables. Thus
-$$
-\int_{\mathbb R}e^{-2n(\lambda_i-\lambda_j)^2u^2}\,du
-=\frac{\sqrt\pi}{\sqrt{2n}\,|\lambda_i-\lambda_j|}.
-$$
-The three factors cancel $|\Delta(\lambda)|$. The remaining six variables are
-$$
-(\lambda_1,\lambda_2,\lambda_3,d_1,d_2,d_3)\in\mathbb R^6,
-$$
-so
-$$
-\int_{\mathbb R^6}e^{-n|z|^8}\,dz
-=\frac{\pi^3}{8}\Gamma\left(\frac34\right)n^{-3/4}.
+e_2(A)=\lambda_1\lambda_2+\lambda_1\lambda_3+\lambda_2\lambda_3.
 $$
 Therefore
 $$
-I_n=
-\frac{\pi^2}{3}\frac{\pi^{3/2}}{2^{3/2}n^{3/2}}
-\frac{\pi^3}{8}\Gamma\left(\frac34\right)n^{-3/4}
-+o(n^{-9/4}),
-$$
-that is,
-$$
-I_n=
-\frac{\pi^{13/2}\Gamma(3/4)}{48\sqrt2}\,n^{-9/4}
-+o(n^{-9/4}).
+I_n=\frac{\pi^2}{3}\int_{[0,\infty)^3}|\Delta(\lambda)|
+ e^{-n(e_2(\lambda)^2+(\lambda_1+\lambda_2+\lambda_3)^8)}\,d\lambda.
 $$
 
-Step 3: Isolate one eigenvalue-collision stratum
-
-Consider $\lambda_1=\lambda_2$. Integrating the still-regular variables $q$ and $r$ gives
-$$
-\frac{\pi}{2n|\lambda_1-\lambda_3||\lambda_2-\lambda_3|},
-$$
-so the Vandermonde leaves $|\lambda_1-\lambda_2|$.
+Step 2: Pass to the trace simplex and compute the exact angular density
 
 Put
 $$
-a=\frac{\lambda_1+\lambda_2}{\sqrt2},\qquad
- g=\frac{\lambda_1-\lambda_2}{\sqrt2},
+r=\lambda_1+\lambda_2+\lambda_3,
+\qquad
+x_i=\frac{\lambda_i}{r}.
 $$
-and let
+Then $x_i\ge0$, $x_1+x_2+x_3=1$, and if
 $$
-z=(a,\lambda_3,d_1,d_2,d_3)\in\mathbb R^5.
+q=x_1x_2+x_1x_3+x_2x_3,
 $$
-The collision scale is
+then
 $$
-z,p\asymp n^{-1/8},\qquad g\asymp n^{-3/8}.
-$$
-After subtracting the regular Gaussian model for $p$, the scaled collision correction for fixed $z$ is the finite part
-$$
-K(z)=\frac{\sqrt2}{4}\int_{\mathbb R}
-\frac{e^{-(|z|^2+2p^2)^4}-e^{-|z|^8}}{p^2}\,dp.
-$$
-Indeed, for $p\ne0$ the scaled $g$-integral is
-$$
-\int_{\mathbb R}\sqrt2|g|e^{-4g^2p^2}\,dg
-=\frac{\sqrt2}{4p^2},
-$$
-and the regular model subtracts precisely the $p=0$ singular part. Splitting at $|p|=\eta$ and then letting $n\to\infty$ followed by $\eta\to0$ gives the displayed finite part.
-
-Step 4: Evaluate the collision finite part
-
-Integrating by parts in $p$ gives
-$$
-K(z)=-8\sqrt2\int_0^\infty
-(|z|^2+2p^2)^3e^{-(|z|^2+2p^2)^4}\,dp.
-$$
-With $q=\sqrt2p$,
-$$
-K(z)=-8\int_0^\infty
-(|z|^2+q^2)^3e^{-(|z|^2+q^2)^4}\,dq.
-$$
-Hence
-$$
-\begin{aligned}
-\int_{\mathbb R^5}K(z)\,dz
-&=-4\int_{\mathbb R^6}|y|^6e^{-|y|^8}\,dy\\
-&=-4\pi^3\int_0^\infty r^{11}e^{-r^8}\,dr\\
-&=-\frac{\pi^{7/2}}4.
-\end{aligned}
-$$
-Thus one collision plane contributes
-$$
-\frac{\pi^2}{3}\frac\pi2
-\left(-\frac{\pi^{7/2}}4\right)n^{-5/2}
-=-\frac{\pi^{13/2}}{24}n^{-5/2}.
-$$
-There are three pairwise eigenvalue-collision planes, so their total contribution is
-$$
--\frac{\pi^{13/2}}8n^{-5/2}.
-$$
-
-Step 5: Exclude smaller strata and recover the limit
-
-On the regular commuting stratum, the first correction from the off-diagonal variables inside the radial term is of relative order $n^{-1/2}$, hence $O(n^{-11/4})$. At a triple eigenvalue collision, the two gap coordinates have scale $n^{-3/8}$, the Vandermonde has degree $3$ in those gaps, and the remaining seven variables have scale $n^{-1/8}$; this again gives $O(n^{-11/4})$. Therefore neither affects the $n^{-5/2}$ term.
-
-Consequently
-$$
-I_n=
-\frac{\pi^{13/2}\Gamma(3/4)}{48\sqrt2}\,n^{-9/4}
--\frac{\pi^{13/2}}8\,n^{-5/2}
-+o(n^{-5/2}).
+e_2(\lambda)=r^2q,
+\qquad
+|\Delta(\lambda)|\,d\lambda=r^5|\Delta(x)|\,dr\,dx_1dx_2.
 $$
 Thus
 $$
-\lim_{n\to\infty}n^{5/2}
-\left(
-I_n-
-\frac{\pi^{13/2}\Gamma(3/4)}{48\sqrt2\,n^{9/4}}
-\right)
-=-\frac{\pi^{13/2}}8.
+I_n=\frac{\pi^2}{3}\int_{\Sigma}|\Delta(x)|
+\int_0^\infty r^5e^{-n(r^4q^2+r^8)}\,dr\,dx,
 $$
-Final Answer: $\boxed{-\frac{\pi^{13/2}}8}$
+where $\Sigma$ is the standard two-simplex. With $u=r^4$,
+$$
+I_n=\frac{\pi^2}{12}\int_{\Sigma}|\Delta(x)|K_n(q)\,dx,
+$$
+where
+$$
+K_n(q)=\int_0^\infty u^{1/2}e^{-n(u^2+q^2u)}\,du.
+$$
+
+Now also put
+$$
+p=x_1x_2x_3.
+$$
+Since $x_3=1-x_1-x_2$,
+$$
+\left|\frac{\partial(q,p)}{\partial(x_1,x_2)}\right|=|\Delta(x)|.
+$$
+For distinct roots, the map from the simplex to $(q,p)$ is six-to-one. The cubic with roots $x_1,x_2,x_3$ is
+$$
+t^3-t^2+qt-p,
+$$
+and its discriminant is
+$$
+D(q,p)=q^2-4q^3+(18q-4)p-27p^2.
+$$
+Solving $D(q,p)=0$ for $p$ gives
+$$
+p_\pm(q)=\frac{9q-2\pm2(1-3q)^{3/2}}{27}.
+$$
+Taking also $p\ge0$ into account yields
+$$
+\int_{\Sigma}|\Delta(x)|f(q)\,dx
+=\int_0^{1/3}h(q)f(q)\,dq,
+$$
+with
+$$
+h(q)=
+\begin{cases}
+\displaystyle \frac29\left(9q-2+2(1-3q)^{3/2}\right),&0\le q\le\frac14,\\[1.2ex]
+\displaystyle \frac89(1-3q)^{3/2},&\frac14\le q\le\frac13.
+\end{cases}
+$$
+In particular,
+$$
+h(q)=\frac32q^2+O(q^3)
+\qquad(q\downarrow0).
+$$
+
+Step 3: Extract the critical logarithmic term
+
+Let
+$$
+\varepsilon=n^{-1/4},
+\qquad
+k(t)=\int_0^\infty v^{1/2}e^{-v^2-t^2v}\,dv.
+$$
+Since
+$$
+K_n(q)=n^{-3/4}k(q/\varepsilon),
+$$
+we obtain
+$$
+\frac{12n^{3/2}}{\pi^2}I_n
+=\varepsilon^{-2}
+\int_0^{1/(3\varepsilon)}h(\varepsilon t)k(t)\,dt.
+$$
+Set
+$$
+c=\frac32,
+\qquad
+a=\Gamma\left(\frac32\right)=\frac{\sqrt\pi}{2}.
+$$
+As $t\to\infty$,
+$$
+k(t)=a t^{-3}+O(t^{-7}).
+$$
+Therefore the $cq^2$ behavior of $h(q)$ produces a logarithmic resonance.
+
+The inner finite part is
+$$
+U=\lim_{T\to\infty}
+\left(\int_0^T t^2k(t)\,dt-a\log T\right).
+$$
+For $-3<\Re s<0$,
+$$
+\int_0^\infty t^{s+2}k(t)\,dt
+=\frac14\Gamma\left(\frac{s+3}{2}\right)
+\Gamma\left(-\frac s4\right).
+$$
+Expanding at $s=0$ and using
+$$
+\psi\left(\frac32\right)=-\gamma-2\log2+2
+$$
+gives
+$$
+U=a\left(\frac\gamma4+\log2-1\right).
+$$
+
+Step 4: Compute the outer finite part and match the two regions
+
+Define
+$$
+V=\lim_{\delta\downarrow0}
+\left(
+\int_\delta^{1/3}\frac{h(q)}{q^3}\,dq
++c\log\delta
+\right).
+$$
+Using the two explicit formulas for $h$ and the substitution
+$$
+y=\sqrt{1-3q},
+$$
+one finds
+$$
+\lim_{\delta\downarrow0}
+\left(
+\int_\delta^{1/4}\frac{h(q)}{q^3}\,dq
++c\log\delta
+\right)
+=-\frac{23}{36}+3\log\frac23,
+$$
+while
+$$
+\int_{1/4}^{1/3}\frac{h(q)}{q^3}\,dq
+=-\frac{28}{9}+3\log3.
+$$
+Hence
+$$
+V=3\log2-\frac{15}{4}.
+$$
+
+Split the $q$-integral at a small fixed $\delta$. In the inner region set $q=\varepsilon t$; in the outer region use $k(q/\varepsilon)=a\varepsilon^3q^{-3}+o(\varepsilon^3)$. The $\log\delta$ terms cancel, and the matched expansion is
+$$
+\frac{12n^{3/2}}{\pi^2}I_n
+=\frac{ca}{4}\log n+cU+aV+o(1).
+$$
+Since
+$$
+cU+aV
+=\frac{3a}{8}\left(\gamma+12\log2-14\right),
+$$
+we get
+$$
+I_n=
+\frac{\pi^{5/2}}{64}n^{-3/2}
+\left(\log n+\gamma+12\log2-14\right)
++o(n^{-3/2}).
+$$
+
+Step 5: Recover the requested limit
+
+Multiplying the expansion in Step 4 by $64n^{3/2}/\pi^{5/2}$ gives
+$$
+\frac{64n^{3/2}}{\pi^{5/2}}I_n
+=\log n+\gamma+12\log2-14+o(1).
+$$
+Therefore
+$$
+\lim_{n\to\infty}
+\left(
+\frac{64n^{3/2}}{\pi^{5/2}}I_n-\log n
+\right)
+=\gamma+12\log2-14.
+$$
+Final Answer: $\boxed{\gamma+12\log2-14}$
 
 ---
 
 ## Answer
 
-$-\frac{\pi^{13/2}}8$
+$\gamma+12\log2-14$
 
 ---
 
@@ -175,8 +259,8 @@ $-\frac{\pi^{13/2}}8$
 
 ## Solution Concepts
 
-- simultaneous orthogonal invariance
-- commuting symmetric matrices
-- eigenvalue-collision strata
-- finite-part matching
-- degenerate Laplace asymptotics
+- positive-semidefinite eigenvalue geometry
+- Weyl eigenvalue reduction
+- rank-one boundary resonance
+- matched logarithmic asymptotics
+- symmetric-polynomial coordinates
