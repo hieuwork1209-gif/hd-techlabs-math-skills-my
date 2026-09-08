@@ -166,6 +166,4 @@ $\frac{20\cdot2^{3m}-14\cdot2^{2m}+1}{7}$
 
 ---
 
-## Black-Box Audit
-
-No issues found.
+## Black-Box Audit — no issues found
