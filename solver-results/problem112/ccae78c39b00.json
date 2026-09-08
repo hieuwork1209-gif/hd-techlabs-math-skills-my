@@ -1,0 +1,22 @@
+{
+  "problem": "problem112",
+  "branch": "adversary/problem112",
+  "problem_path": "workspace/rainier-problem/problem112-fourier-analysis/problem.md",
+  "source_commit_sha": "364a9140da6d323f7d48c2dd7f99ba55ae28d80f",
+  "problem_blob_sha": "ccae78c39b00f7b7d22d3c4eab2d2cd3edd4f0c3",
+  "statement_sha256": "bc8e098abe0f7c3513293507b4c4aa04c15e802206ad6df217792df1a7f60a7b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T03:54:49+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\ne_n(u)=\\exp(2\\pi i u/2^n),\\qquad m=2M+1.\n\\]\nThe sum separates as\n\\[\nA_{M,K}(r,s,t)=G(r,s)\\,H(t),\n\\]\nwhere\n\\[\nG(r,s)=\\sum_{x,y\\bmod 2^m} e_m(x^2-xy+y^2-rx-sy)\n\\]\nand\n\\[\nH(t)=\\sum_{z\\bmod 2^m} e_m(3\\cdot 2^{2K}z^2-tz).\n\\]\n\nFor the binary part, the matrix of the derivative of \\(x^2-xy+y^2\\) is\n\\[\nB=\\begin{pmatrix}2&-1\\\\-1&2\\end{pmatrix},\n\\qquad \\det B=3,\n\\]\nso \\(B\\) is invertible modulo \\(2^m\\). Completing the square gives\n\\[\nG(r,s)=S_m\\,\ne_m\\!\\left(-3^{-1}(r^2+rs+s^2)\\right),\n\\]\nwhere\n\\[\nS_m=\\sum_{x,y\\bmod 2^m} e_m(x^2-xy+y^2).\n\\]\nA parity recursion gives \\(S_n=4S_{n-2}\\), and \\(S_1=-2\\). Since \\(m=2M+1\\),\n\\[\nS_m=-2^m.\n\\]\nThus\n\\[\nG(r,s)=-2^m e_m\\!\\left(-3^{-1}(r^2+rs+s^2)\\right).\n\\]\n\nFor the \\(z\\)-part, write \\(d=2K\\) and \\(n=m-d=2(M-K)+1\\). Splitting \\(z\\) modulo \\(2^n\\) shows\n\\[\nH(t)=0\n\\]\nunless \\(2^{2K}\\mid t\\). Writing \\(t=2^{2K}\\tau\\), the remaining one-dimensional Gauss sum is zero unless \\(\\tau\\) is even. Hence \\(A_{M,K}(r,s,t)\\neq0\\) only when\n\\[\nt=2^{2K+1}\\beta,\\qquad \\beta\\bmod 2^{2(M-K)}.\n\\]\nFor such \\(t\\),\n\\[\nH(t)=2^{2K}2^{M-K+1}\n\\exp\\!\\left(2\\pi i\\left(\\frac38-\\frac{3^{-1}\\beta^2}{2^{2(M-K)+1}}\\right)\\right).\n\\]\n\nTherefore \\(A_{M,K}(r,s,t)\\) is real precisely when\n\\[\n3^{-1}\\left(r^2+rs+s^2+2^{2K}\\beta^2\\right)\n\\equiv 7\\cdot 2^{m-3}\\quad\\text{or}\\quad 3\\cdot 2^{m-3}\n\\pmod{2^m}.\n\\]\nThe first case gives positive values and the second gives negative values. Multiplying by \\(3\\), this becomes\n\\[\nr^2+rs+s^2+2^{2K}\\beta^2\n\\equiv 5\\cdot 2^{m-3}\n\\]\nfor positive values, and\n\\[\nr^2+rs+s^2+2^{2K}\\beta^2\n\\equiv 2^{m-3}\n\\]\nfor negative values.\n\nPut \\(h=M-K\\). Then \\(\\beta\\bmod 2^{2h}\\). The binary form\n\\[\nU(r,s)=r^2+rs+s^2\n\\]\nis anisotropic modulo \\(2\\): if \\((r,s)\\not\\equiv(0,0)\\pmod2\\), then \\(U(r,s)\\) is odd. Hence the number of solutions to\n\\[\nU(r,s)\\equiv a\\pmod{2^m}\n\\]\nis\n\\[\n3\\cdot 2^{m-1}\n\\]\nwhenever \\(a\\) has even valuation \\(<m\\), and is\n\\[\n2^{m-1}\n\\]\nwhen \\(a\\equiv0\\pmod{2^m}\\).\n\nFor the positive congruence, every \\(\\beta\\) gives a nonzero right-hand side of even valuation, so\n\\[\nP_{M,K}=2^{2h}\\cdot 3\\cdot 2^{m-1}\n=3\\cdot 2^{4M-2K}.\n\\]\n\nFor the negative congruence, the exceptional case occurs when\n\\[\nv_2(\\beta)=h-1,\n\\]\nwhich happens for \\(2^h\\) values of \\(\\beta\\bmod 2^{2h}\\). Those give right-hand side \\(0\\), contributing \\(2^{m-1}\\) each; all other \\(\\beta\\) contribute \\(3\\cdot 2^{m-1}\\). Therefore\n\\[\nN_{M,K}\n=2^h\\cdot 2^{m-1}+(2^{2h}-2^h)\\cdot 3\\cdot 2^{m-1}\n=2^{2M}\\left(3\\cdot 2^{2M-2K}-2^{M-K+1}\\right).\n\\]\n\n\\[\n\\boxed{(P_{M,K},N_{M,K})=\n\\left(3\\cdot 2^{4M-2K},\\;2^{2M}\\left(3\\cdot 2^{2M-2K}-2^{M-K+1}\\right)\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T03:57:23+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem112/ccae78c39b00.json"
+}
