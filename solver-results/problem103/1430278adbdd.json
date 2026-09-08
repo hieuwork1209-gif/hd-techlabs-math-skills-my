@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "467bdc514115ea88b3c398177d4b4bd00788c7c5",
+  "problem_blob_sha": "1430278adbdde8c9f421364c4e6e732b304c751c",
+  "statement_sha256": "db2c08d23622eea205f8e60f03ebe0ed5989c179681f7cbc1330154633ee26fd",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T03:14:39+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nu=1-x.\n\\]\nNear the only point where the Gaussian center touches the astroid, namely \\((1,0)\\), the domain has cross-section\n\\[\n|y|\\le g(u):=\\left(1-(1-u)^{2/3}\\right)^{3/2},\\qquad u\\ge 0.\n\\]\nAll parts of the domain with \\(u\\ge \\delta>0\\) are exponentially small, so only small \\(u\\) matters.\n\nExpand\n\\[\n1-(1-u)^{2/3}\n=\\frac23u+\\frac19u^2+O(u^3)\n=\\frac23u\\left(1+\\frac16u+O(u^2)\\right).\n\\]\nHence\n\\[\ng(u)=\\left(\\frac23\\right)^{3/2}u^{3/2}\\left(1+\\frac14u+O(u^2)\\right).\n\\]\nPut\n\\[\nu=n^{-1/2}s,\\qquad y=n^{-3/4}t.\n\\]\nThen \\(dx\\,dy=du\\,dy=n^{-5/4}ds\\,dt\\), and\n\\[\ne^{-n(u^2+y^2)}\n=e^{-s^2}e^{-n^{-1/2}t^2}\n=e^{-s^2}\\left(1-n^{-1/2}t^2+O(n^{-1})\\right).\n\\]\nAlso\n\\[\nn^{3/4}g(n^{-1/2}s)\n=a s^{3/2}\\left(1+\\frac14n^{-1/2}s+O(n^{-1})\\right),\n\\qquad a=\\left(\\frac23\\right)^{3/2}.\n\\]\nTherefore\n\\[\nM_n=n^{-5/4}\\int_0^\\infty e^{-s^2}\n\\int_{-a s^{3/2}(1+\\frac14n^{-1/2}s+O(n^{-1}))}^{a s^{3/2}(1+\\frac14n^{-1/2}s+O(n^{-1}))}\n\\left(1-n^{-1/2}t^2+O(n^{-1})\\right)\\,dt\\,ds.\n\\]\nThus\n\\[\nM_n\n=n^{-5/4}A+n^{-7/4}B+o(n^{-7/4}),\n\\]\nwhere\n\\[\nA=2a\\int_0^\\infty s^{3/2}e^{-s^2}\\,ds\n=a\\Gamma(5/4)\n=\\frac{\\sqrt6\\,\\Gamma(1/4)}{18},\n\\]\nmatching the subtracted term.\n\nFor the next coefficient,\n\\[\nB=\\int_0^\\infty e^{-s^2}\n\\left(\\frac a2 s^{5/2}-\\frac23a^3s^{9/2}\\right)\\,ds.\n\\]\nUsing\n\\[\n\\int_0^\\infty s^p e^{-s^2}\\,ds=\\frac12\\Gamma\\left(\\frac{p+1}{2}\\right),\n\\]\nwe get\n\\[\nB=\\frac a4\\Gamma(7/4)-\\frac13a^3\\Gamma(11/4).\n\\]\nNow\n\\[\n\\Gamma(7/4)=\\frac34\\Gamma(3/4),\n\\qquad\n\\Gamma(11/4)=\\frac{21}{16}\\Gamma(3/4),\n\\]\nso\n\\[\nB=\\left(\\frac{3a}{16}-\\frac{7a^3}{16}\\right)\\Gamma(3/4).\n\\]\nSince \\(a^2=(2/3)^3=8/27\\),\n\\[\nB=\\frac{a}{16}\\left(3-\\frac{56}{27}\\right)\\Gamma(3/4)\n=\\frac{25a}{432}\\Gamma(3/4).\n\\]\nFinally \\(a=(2/3)^{3/2}=2\\sqrt6/9\\), hence\n\\[\nB=\\frac{25\\sqrt6}{1944}\\Gamma(3/4).\n\\]\n\n\\[\n\\boxed{\\frac{25\\sqrt6}{1944}\\Gamma(3/4)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T03:15:44+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/1430278adbdd.json"
+}
