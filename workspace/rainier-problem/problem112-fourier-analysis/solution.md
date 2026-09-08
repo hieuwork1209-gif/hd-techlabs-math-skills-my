@@ -1,200 +1,152 @@
 ## Steps
 
-Step 1: Evaluate the Eisenstein binary Gauss transform
+Step 1: Establish the cubic scaling recurrence
 
-Put
+For an auxiliary exponent $m\ge3$, write
 $$
-m=2M+1,\qquad k=2K,\qquad n=m-k=2(M-K)+1,
+e_m(u)=\exp(2\pi i u/2^m),\qquad
+S_m(r)=\sum_{x\bmod2^m}e_m(x^3-rx).
 $$
-and write $e_j(u)=\exp(2\pi i u/2^j)$. For odd $a$ define
+The sum is real, because complex conjugation followed by $x\mapsto-x$ leaves it unchanged.
+
+Pair $x$ with $x+2^{m-1}$. Since
 $$
-g_j(a)=\sum_{x\bmod 2^j}e_j(ax^2).
+(x+2^{m-1})^3-r(x+2^{m-1})-(x^3-rx)
+\equiv2^{m-1}(3x^2-r)\pmod{2^m},
 $$
-Splitting into even and odd residues gives $g_{j+2}(a)=2g_j(a)$, while
+the paired summands differ by $(-1)^{x-r}$. Thus only $x$ having the same parity as $r$ survive.
+
+If $r=4s$, only even $x=2y$ contribute, and
+$$
+S_m(4s)=2\sum_{y\bmod2^{m-2}}e_m\!\left(8(y^3-sy)\right).
+$$
+The summand now has period $2^{m-3}$ in $y$, so
+$$
+S_m(4s)=4S_{m-3}(s).
+$$
+If $r=2s$ with $s$ odd, the same reduction gives
+$$
+S_m(2s)=2\sum_{y\bmod2^{m-2}}e_{m-2}(2y^3-sy).
+$$
+Pairing $y$ with $y+2^{m-3}$ changes the phase by $(-1)^s=-1$, hence
+$$
+S_m(r)=0\qquad(r\equiv2\pmod4).
+$$
+
+Step 2: Count and sign the odd nonzero frequencies
+
+Assume $m\ge6$ and $r$ is odd. Step 1 shows that only odd $x$ contribute. Translating those $x$ by $2^{m-3}$ multiplies every surviving summand by
+$$
+\exp\left(\frac{2\pi i}{8}(3x^2-r)\right)
+=\exp\left(\frac{2\pi i}{8}(3-r)\right),
+$$
+because $x^2\equiv1\pmod8$. Therefore
+$$
+S_m(r)\ne0\Longrightarrow r\equiv3\pmod8.
+$$
+
+Conversely, let $r\equiv3\pmod8$. Then $3^{-1}r\equiv1\pmod8$, so it has an odd square root modulo $2^m$. Indeed, an odd root modulo $2^n$ lifts from $n$ to $n+1$ by replacing $u$ with $u+\varepsilon2^{n-1}$; exactly one choice of $\varepsilon\in\{0,1\}$ fixes the next binary digit. Choose odd $u$ with
+$$
+3u^2\equiv r\pmod{2^m}.
+$$
+The odd residues split into the two classes $x\equiv u$ and $x\equiv-u\pmod4$. For $x=u+4y$,
+$$
+x^3-3u^2x=-2u^3+16y^2(3u+4y),
+$$
+so this class contributes
+$$
+4e_m(-2u^3)J_{m-4}(3u),
+$$
+where
+$$
+J_n(a)=\sum_{y\bmod2^n}e_n(ay^2+4y^3).
+$$
+For odd $a$, put more generally
+$$
+J_n^{(c)}(a)=\sum_{y\bmod2^n}e_n(ay^2+2^cy^3),\qquad c\ge2.
+$$
+When $n\ge4$, the odd $y$ terms cancel under $y\mapsto y+2^{n-2}$, while the even terms give
+$$
+J_n^{(c)}(a)=2J_{n-2}^{(c+1)}(a).
+$$
+Iterating until the cubic coefficient is divisible by the remaining modulus gives
+$$
+J_n(a)=g_n(a),\qquad
+g_n(a)=\sum_{y\bmod2^n}e_n(ay^2),
+$$
+for every $n\ge4$; for $n=2$ the equality is immediate. These are exactly the cases $n=m-4$ when $m$ is a multiple of $3$ and $m\ge6$.
+
+Splitting the quadratic sum into even and odd residues gives $g_{n+2}(a)=2g_n(a)$, with
 $$
 g_2(a)=2(1+i^a),\qquad g_3(a)=4e^{2\pi ia/8}.
 $$
-Hence
+Hence $g_n(a)$ is nonzero and its argument is always an odd multiple of $\pi/4$. The class $x\equiv-u\pmod4$ is the complex conjugate contribution, so
 $$
-g_j(a)=
-\begin{cases}
-2^{j/2}(1+i^a),&j\text{ even},\\[1mm]
-2^{(j+1)/2}e^{2\pi ia/8},&j\text{ odd}.
-\end{cases}
+S_m(r)=8\operatorname{Re}\!\left(e_m(-2u^3)g_{m-4}(3u)\right).
 $$
-The same pairing shows that an odd linear coefficient makes the shifted sum vanish, while for even coefficient
+This cannot vanish: if the displayed factor were purely imaginary, writing the Gauss-sum phase as $\ell\pi/4$ with $\ell$ odd would force
 $$
-\sum_{x\bmod2^j}e_j(ax^2-2bx)=e_j(-a^{-1}b^2)g_j(a).
+-u^3+\ell2^{m-4}\equiv2^{m-3}\pmod{2^{m-2}},
+$$
+whose left side is odd and right side even. Therefore
+$$
+S_m(r)\ne0\iff r\equiv3\pmod8
+$$
+for odd $r$.
+
+There are $2^{m-3}$ such odd residues. Replacing $r$ by $r+2^{m-1}$ multiplies every surviving odd-$x$ term by $-1$, so
+$$
+S_m(r+2^{m-1})=-S_m(r).
+$$
+Thus among odd $r$ there are exactly
+$$
+2^{m-4}
+$$
+positive values and the same number of negative values.
+
+Step 3: Derive the recurrence for the sign counts
+
+Now put $m=3q$. Let $P_q$ and $N_q$ denote the positive and negative counts for $S_{3q}(r)$.
+
+For the base exponent $m=3$, even $x$ satisfy $x^3\equiv0\pmod8$ and odd $x$ satisfy $x^3\equiv x\pmod8$. Hence
+$$
+S_3(r)=
+\sum_{y\bmod4}e_4(-ry)
++e_8(1-r)\sum_{y\bmod4}e_4((1-r)y).
+$$
+The first term is $4$ exactly when $r\equiv0\pmod4$, and the second is $4e_8(1-r)$ exactly when $r\equiv1\pmod4$. Therefore $S_3(r)$ is positive for $r=0,1,4$, negative for $r=5$, and zero otherwise. Thus
+$$
+P_1=3,\qquad N_1=1.
 $$
 
-Let
+For $q\ge2$, Step 2 contributes $2^{3q-4}$ positive and $2^{3q-4}$ negative odd frequencies. The class $r\equiv2\pmod4$ contributes only zeros. Finally, if $r=4s$, Step 1 gives $S_{3q}(4s)=4S_{3q-3}(s)$; as $r$ runs through multiples of $4$, each residue $s\bmod2^{3q-3}$ occurs twice. Consequently
 $$
-E(x,y)=x^2-xy+y^2,\qquad B(r,s)=r^2+rs+s^2.
-$$
-The gradient matrix of $E$ is
-$$
-\begin{pmatrix}2&-1\\-1&2\end{pmatrix},
-$$
-whose determinant is $3$. Thus for every $(r,s)$ there is a unique stationary point
-$$
-x_0=3^{-1}(2r+s),\qquad y_0=3^{-1}(r+2s)\pmod{2^m}.
-$$
-Shifting to this point gives
-$$
-\sum_{x,y\bmod2^m}e_m(E(x,y)-rx-sy)
-=S_m\,e_m(-3^{-1}B(r,s)),
-$$
-where $S_m=\sum e_m(E(x,y))$. To evaluate $S_m$, sum first over $x$. Only even $y=2u$ contribute, and then
-$$
-S_m=g_m(1)\sum_{u\bmod2^{m-1}}e_m(3u^2)
-=\frac12g_m(1)g_m(3).
-$$
-Since $m$ is odd, the formulas above give
-$$
-S_m=-2^m.
+P_q=2^{3q-4}+2P_{q-1},\qquad
+N_q=2^{3q-4}+2N_{q-1}.
 $$
 
-Step 2: Determine the support and phase of the $z$-sum
+Step 4: Solve the recurrence
 
-For a frequency $t$, put
+We prove by induction on $q$ that
 $$
-Z(t)=\sum_{z\bmod2^m}e_m(3\cdot2^kz^2-tz).
+P_q=\frac{2^q}{6}\left(2^{2q-1}+7\right),\qquad
+N_q=\frac{2^q}{6}\left(2^{2q-1}+1\right).
 $$
-Translation by $2^{m-k}$ first forces $2^k\mid t$. After writing $t=2^ku$, the reduced odd-coefficient Gauss sum modulo $2^n$ vanishes unless $u$ is even. Hence
+For $q=1$ these give $(3,1)$, as established in Step 3. If the formulas hold for $q-1$, then
 $$
-Z(t)\ne0\iff t=2^{k+1}q,
+2^{3q-4}+2P_{q-1}
+=\frac{2^q}{6}\left(3\cdot2^{2q-3}+2^{2q-3}+7\right)
+=\frac{2^q}{6}\left(2^{2q-1}+7\right),
 $$
-where $q$ runs modulo $2^{n-1}$. For such $t$,
-$$
-Z(t)=2^k g_n(3)e_n(-3^{-1}q^2).
-$$
-Because $n$ is odd,
-$$
-g_n(3)=2^{(n+1)/2}e^{3\pi i/4}.
-$$
-Combining with Step 1, every nonzero Fourier coefficient has the form
-$$
-A_{M,K}(r,s,t)=C\,e^{-\pi i/4}
- e_m\!\left(-3^{-1}\bigl(B(r,s)+2^kq^2\bigr)\right),
-$$
-with $C>0$. Therefore
-$$
-A_{M,K}(r,s,t)>0
-\iff B(r,s)+2^kq^2\equiv5\cdot2^{m-3}\pmod{2^m},
-$$
-and
-$$
-A_{M,K}(r,s,t)<0
-\iff B(r,s)+2^kq^2\equiv2^{m-3}\pmod{2^m}.
-$$
+and the same calculation with $7$ replaced by $1$ gives the formula for $N_q$.
 
-Step 3: Remove the common $2^{2K}$ scale
-
-For $c\in\{1,5\}$, let $R_c$ count the support triples satisfying
-$$
-B(r,s)+2^{2K}q^2\equiv c2^{m-3}\pmod{2^m}.
-$$
-The form $B$ is anisotropic modulo $2$: if $(u,v)$ is not $(0,0)$ modulo $2$, then $B(u,v)$ is odd. Consequently, for a nonzero pair,
-$$
-v_2(B(r,s))=2\min(v_2(r),v_2(s)).
-$$
-Since the other two terms in the congruence are divisible by $2^{2K}$, every solution has $2^K\mid r,s$. Write
-$$
-r=2^KR,\qquad s=2^KS.
-$$
-After division by $2^{2K}$ the modulus becomes $2^n$. The reduced congruence only depends on $R,S$ modulo $2^n$, while each reduced pair has $2^K$ lifts in each of $R,S$. Thus
-$$
-R_c=2^{2K}T_c(n),
-$$
-where $T_c(n)$ counts
-$$
-R,S\bmod2^n,\qquad q\bmod2^{n-1},
-$$
-satisfying
-$$
-B(R,S)+q^2\equiv c2^{n-3}\pmod{2^n}.
-$$
-
-Step 4: Count odd values of the Eisenstein norm
-
-For every odd residue $u\bmod2^j$, let $F_j(u)$ be the number of pairs $(R,S)\bmod2^j$ with
-$$
-B(R,S)\equiv u\pmod{2^j}.
-$$
-Modulo $2$ there are exactly three solutions to $B(R,S)=1$, namely the three nonzero pairs. Suppose a primitive solution is fixed modulo $2^j$. Its four lifts have the form
-$$
-(R+\varepsilon2^j,S+\delta2^j),\qquad \varepsilon,\delta\in\{0,1\}.
-$$
-The next binary digit of $B$ changes by the nonzero linear form
-$$
-\varepsilon S+\delta R\pmod2,
-$$
-so exactly two of the four lifts hit any prescribed lift of the odd target. Therefore
-$$
-F_j(u)=3\cdot2^{j-1}
-$$
-for every odd $u$.
-
-Step 5: Evaluate $T_1(n)$ and $T_5(n)$
-
-Write
-$$
-L=\frac{n-3}{2}.
-$$
-First suppose $n\ge5$. If a solution has valuation below $2L$, then the valuations of $B(R,S)$ and $q^2$ must agree. Hence for some $0\le t<L$,
-$$
-\min(v_2(R),v_2(S))=v_2(q)=t.
-$$
-There are $2^{n-t-2}$ choices of $q$ with exact valuation $t$. After dividing by $2^{2t}$, the required value of the primitive norm is odd modulo $2^{n-2t}$. By Step 4 there are $3\cdot2^{n-2t-1}$ reduced norm pairs, and each has $2^{2t}$ lifts to $(R,S)\bmod2^n$. Thus each fixed $q$ contributes $3\cdot2^{n-1}$ pairs. The total contribution from all $t<L$, common to $c=1$ and $c=5$, is
-$$
-C_0=\sum_{t=0}^{L-1}3\cdot2^{n-1}2^{n-t-2}
-=3\cdot2^{2n-2}-3\cdot2^{(3n-1)/2}.
-$$
-
-It remains to count the solutions with $R,S,q$ all divisible by $2^L$. After dividing by $2^{2L}$, only the residues modulo $8$ matter:
-$$
-B(a,b)+d^2\equiv c\pmod8.
-$$
-For $(a,b)\bmod8$, the residue counts of $B(a,b)$ are
-$$
-0:4,\qquad 1,3,4,5,7:12,
-$$
-and for $d\bmod8$ the square counts are
-$$
-0:2,\qquad1:4,\qquad4:2.
-$$
-Their convolution gives $64$ triples for $c=1$ and $96$ triples for $c=5$. Restoring the unused high bits contributes respectively
-$$
-2^{(3n+1)/2},\qquad 3\cdot2^{(3n-1)/2}.
-$$
-Therefore
-$$
-T_1(n)=3\cdot2^{2n-2}-2^{(3n-1)/2},
-$$
-$$
-T_5(n)=3\cdot2^{2n-2}.
-$$
-For the remaining base case $n=3$, direct reduction modulo $8$ with $q\bmod4$ gives $T_1(3)=32$ and $T_5(3)=48$, which are the same formulas.
-
-Step 6: Recover the positive and negative counts
-
-By Step 2, positive coefficients correspond to $c=5$ and negative coefficients to $c=1$. Since $n=2(M-K)+1$,
-$$
-P_{M,K}=2^{2K}T_5(n)=3\cdot2^{4M-2K},
-$$
-while
-$$
-N_{M,K}=2^{2K}T_1(n)
-=3\cdot2^{4M-2K}-2^{3M-K+1}.
-$$
-
-Final Answer: $\boxed{\left(3\cdot2^{4M-2K},\,3\cdot2^{4M-2K}-2^{3M-K+1}\right)}$
+Final Answer: $\boxed{\frac{2^q}{6}\left(2^{2q-1}+7,\,2^{2q-1}+1\right)}$
 
 ---
 
 ## Answer
 
-$\left(3\cdot2^{4M-2K},\,3\cdot2^{4M-2K}-2^{3M-K+1}\right)$
+$\frac{2^q}{6}\left(2^{2q-1}+7,\,2^{2q-1}+1\right)$
 
 ---
 
@@ -208,11 +160,10 @@ Answer Type: Tuple or ordered list
 
 ## Solution Concepts
 
-- Eisenstein norm
+- cubic exponential sum
+- two-adic stationary phase
 - quadratic Gauss sum
-- two-adic lifting
-- valuation stratification
-- local representation count
+- cubic scaling recurrence
 
 ---
 
