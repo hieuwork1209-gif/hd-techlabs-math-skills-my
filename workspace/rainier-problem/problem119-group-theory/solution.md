@@ -10,21 +10,25 @@ the commutator is
 $$
 [x,y]=(0,0,u\cdot v'-u'\cdot v).
 $$
-Hence $Z$ is the center and
+Hence
 $$
-G/Z\cong U\oplus U
+Z(G)=\{(0,0,t):t\in\mathbb F_p\},
+$$
+and
+$$
+G/Z(G)\cong U\oplus U,\qquad U=\mathbb F_p^2,
 $$
 with alternating form
 $$
 \omega((u,v),(u',v'))=u\cdot v'-u'\cdot v.
 $$
-If $A\ge Z$ has order $p^3$, then $L=A/Z$ is a two-dimensional subspace of $U\oplus U$. The subgroup $A$ is abelian exactly when $\omega$ vanishes on $L$. Since the ambient symplectic space has dimension four, such a two-dimensional isotropic subspace is Lagrangian.
+Subgroups containing $Z(G)$ correspond to subspaces of $G/Z(G)$ by taking images and full inverse images. Thus if $A\ge Z(G)$ has order $p^3$, then $L=A/Z(G)$ is a two-dimensional subspace of $U\oplus U$, and $A$ is abelian exactly when $\omega$ vanishes on $L$. Since the ambient symplectic space has dimension four, such a two-dimensional isotropic subspace is Lagrangian.
 
-The images of $X,Y,D$ in $G/Z$ are respectively
+The images in $G/Z(G)$ of the three subgroups appearing in the intersection conditions are
 $$
 U\oplus0,\qquad 0\oplus U,\qquad \Delta=\{(u,u):u\in U\}.
 $$
-Thus the required subgroups $A$ are in bijection with Lagrangian planes $L$ satisfying
+Therefore the required subgroups $A$ are in bijection with Lagrangian planes $L$ satisfying
 $$
 L\cap(U\oplus0)=L\cap(0\oplus U)=0,
 $$
@@ -71,7 +75,7 @@ The singularity condition is
 $$
 ad-b^2=0.
 $$
-We first count all nonzero solutions. If $a\ne0$, then $d=b^2/a$, giving
+If $a\ne0$, then $d=b^2/a$, giving
 $$
 (p-1)p
 $$
