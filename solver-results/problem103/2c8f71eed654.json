@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "09446aad899d24fafcc09788fe534e361f31ab83",
+  "problem_blob_sha": "2c8f71eed654cb9004b17c3868bb663dabdbd78b",
+  "statement_sha256": "abef215e74aa72f83e7d1bf34b254488ee7044aad87862fa5f68a81786c53a46",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T05:06:25+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Using eigenvalues \\(\\lambda_1,\\lambda_2,\\lambda_3\\ge 0\\), Weyl integration gives\n\\[\nI_n=\\frac{\\pi^2}{3}\\int_{\\lambda_i\\ge 0}\ne^{-n(e_2(\\lambda)^2+(\\lambda_1+\\lambda_2+\\lambda_3)^8)}\n\\prod_{i<j}|\\lambda_i-\\lambda_j|\\,d\\lambda .\n\\]\nThe constant \\(\\pi^2/3\\) follows by comparing both sides on the Gaussian\n\\(e^{-\\operatorname{tr}(A^2)/2}\\).\n\nPut \\(s=\\lambda_1+\\lambda_2+\\lambda_3\\), \\(p_i=\\lambda_i/s\\). On the simplex \\(p_i\\ge0,\\sum p_i=1\\), write\n\\[\nq=p_1p_2+p_1p_3+p_2p_3.\n\\]\nSince \\(e_2=s^2q\\), \\(\\prod|\\lambda_i-\\lambda_j|=s^3\\prod|p_i-p_j|\\), and \\(d\\lambda=s^2\\,ds\\,dp\\),\n\\[\nI_n=\\frac{\\pi^2}{12}n^{-3/2}\\int_{\\Delta}\n\\prod_{i<j}|p_i-p_j|\n\\int_0^\\infty t^{1/2}e^{-q^2t-t^2/n}\\,dt\\,dp .\n\\]\n\nNow pass from \\(p\\) to \\(q,r=p_1p_2p_3\\). The Jacobian is \\(\\prod|p_i-p_j|\\). For fixed \\(q\\), the allowed \\(r\\)-length is\n\\[\nL(q)=\n\\begin{cases}\n\\dfrac{9q-2+2(1-3q)^{3/2}}{27},&0\\le q\\le \\frac14,\\\\[1ex]\n\\dfrac{4(1-3q)^{3/2}}{27},&\\frac14\\le q\\le \\frac13.\n\\end{cases}\n\\]\nThe full simplex contributes a factor \\(6\\), so define \\(h(q)=6L(q)\\). Near \\(q=0\\),\n\\[\nh(q)=\\frac32q^2+O(q^3),\n\\]\nwhich is the source of the logarithm.\n\nLet\n\\[\nF_n(q)=\\int_0^\\infty t^{1/2}e^{-q^2t-t^2/n}\\,dt.\n\\]\nThen\n\\[\n\\int_0^{1/3}h(q)F_n(q)\\,dq\n=\\frac{3\\sqrt\\pi}{16}\\log n\n+\\sqrt\\pi\\left(\\frac{3\\gamma}{16}+\\frac94\\log2-\\frac{21}{8}\\right)+o(1).\n\\]\nThe finite part comes from subtracting \\(\\frac32q^2\\); explicitly,\n\\[\n\\int_0^{1/3}\\frac{h(q)-\\frac32q^2}{q^3}\\,dq\n=3\\log2+\\frac32\\log3-\\frac{15}{4},\n\\]\nand the \\(\\log3\\) terms cancel with the endpoint contribution from \\(q=1/3\\).\n\nTherefore\n\\[\nI_n=\n\\frac{\\pi^{5/2}}{64}n^{-3/2}\\log n\n+\\frac{\\pi^{5/2}}{64}n^{-3/2}\n\\left(\\gamma+12\\log2-14\\right)+o(n^{-3/2}).\n\\]\nHence\n\\[\n\\boxed{\\gamma+12\\log 2-14}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T05:09:10+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/2c8f71eed654.json"
+}
