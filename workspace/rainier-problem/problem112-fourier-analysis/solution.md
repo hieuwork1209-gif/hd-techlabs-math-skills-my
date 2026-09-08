@@ -1,152 +1,208 @@
 ## Steps
 
-Step 1: Establish the cubic scaling recurrence
+Step 1: Isolate the two possible support branches
 
-For an auxiliary exponent $m\ge3$, write
+For $m\ge3$, write
 $$
-e_m(u)=\exp(2\pi i u/2^m),\qquad
-S_m(r)=\sum_{x\bmod2^m}e_m(x^3-rx).
+e_m(u)=\exp(2\pi i u/3^m),\qquad
+S_m(r)=\sum_{x\bmod3^m}e_m(x^3-rx).
 $$
-The sum is real, because complex conjugation followed by $x\mapsto-x$ leaves it unchanged.
+The sum is real, since complex conjugation followed by $x\mapsto-x$ leaves it unchanged.
 
-Pair $x$ with $x+2^{m-1}$. Since
+Translate $x$ by $3^{m-1}$. Modulo $3^m$ the cubic terms created by the translation are divisible by $3^m$, so the three terms in each orbit differ by the factors
 $$
-(x+2^{m-1})^3-r(x+2^{m-1})-(x^3-rx)
-\equiv2^{m-1}(3x^2-r)\pmod{2^m},
+1,\ e^{ -2\pi i r/3},\ e^{-4\pi i r/3}.
 $$
-the paired summands differ by $(-1)^{x-r}$. Thus only $x$ having the same parity as $r$ survive.
+Hence $S_m(r)=0$ unless $3\mid r$. Write $r=3s$.
 
-If $r=4s$, only even $x=2y$ contribute, and
+Now translate by $3^{m-2}$. For $h=3^{m-2}$,
 $$
-S_m(4s)=2\sum_{y\bmod2^{m-2}}e_m\!\left(8(y^3-sy)\right).
+(x+jh)^3-r(x+jh)-(x^3-rx)
+\equiv j3^{m-1}(x^2-s)\pmod{3^m}.
 $$
-The summand now has period $2^{m-3}$ in $y$, so
+Thus the three translates cancel unless
 $$
-S_m(4s)=4S_{m-3}(s).
+x^2\equiv s\pmod3.
 $$
-If $r=2s$ with $s$ odd, the same reduction gives
+If $s\equiv2\pmod3$, there are no surviving terms. If $s\equiv0\pmod3$, write $r=9R$; only $3\mid x$ survives, and with $x=3y$,
 $$
-S_m(2s)=2\sum_{y\bmod2^{m-2}}e_{m-2}(2y^3-sy).
+S_m(9R)=\sum_{y\bmod3^{m-1}}e_m\!\left(27(y^3-Ry)\right)=9S_{m-3}(R).
 $$
-Pairing $y$ with $y+2^{m-3}$ changes the phase by $(-1)^s=-1$, hence
+The remaining primitive branch is therefore
 $$
-S_m(r)=0\qquad(r\equiv2\pmod4).
-$$
-
-Step 2: Count and sign the odd nonzero frequencies
-
-Assume $m\ge6$ and $r$ is odd. Step 1 shows that only odd $x$ contribute. Translating those $x$ by $2^{m-3}$ multiplies every surviving summand by
-$$
-\exp\left(\frac{2\pi i}{8}(3x^2-r)\right)
-=\exp\left(\frac{2\pi i}{8}(3-r)\right),
-$$
-because $x^2\equiv1\pmod8$. Therefore
-$$
-S_m(r)\ne0\Longrightarrow r\equiv3\pmod8.
+r\equiv3\pmod9.
 $$
 
-Conversely, let $r\equiv3\pmod8$. Then $3^{-1}r\equiv1\pmod8$, so it has an odd square root modulo $2^m$. To see this directly, start with a root modulo $8$. If $u^2\equiv a\pmod{2^n}$ for odd $u$, then the squares of $u$ and $u+2^{n-1}$ differ by $2^n$ modulo $2^{n+1}$; hence exactly one of those two roots modulo $2^n$ has square congruent to $a$ modulo $2^{n+1}$. Iterating gives an odd $u$ with
+Step 2: Evaluate the primitive branch up to its sign
+
+Assume $r=3s$ with $s\equiv1\pmod3$. There is a unique
 $$
-3u^2\equiv r\pmod{2^m}.
+u\equiv1\pmod3\qquad (\bmod\ 3^{m-1})
 $$
-The odd residues split into the two classes $x\equiv u$ and $x\equiv-u\pmod4$. For $x=u+4y$,
+with $u^2\equiv s\pmod{3^{m-1}}$: starting from $u\equiv1\pmod3$, if a root is known modulo $3^j$, exactly one of its three lifts modulo $3^{j+1}$ works because $2u$ is a unit modulo $3$.
+
+The two surviving residue classes are $x\equiv\pm u\pmod3$. Since $3u^2\equiv r\pmod{3^m}$,
 $$
-x^3-3u^2x=-2u^3+16y^2(3u+4y),
+(u+3y)^3-3u^2(u+3y)=-2u^3+27(uy^2+y^3).
 $$
-so this class contributes
+Hence, with
 $$
-4e_m(-2u^3)J_{m-4}(3u),
+J_n(u)=\sum_{y\bmod3^n}e_n(y^3+uy^2),
+$$
+the class $x\equiv u\pmod3$ contributes
+$$
+9e_m(-2u^3)J_{m-3}(u),
+$$
+and the class $x\equiv-u\pmod3$ is its complex conjugate. Therefore
+$$
+S_m(3u^2)=18\operatorname{Re}\!\left(e_m(-2u^3)J_{m-3}(u)\right).
+$$
+
+For $n\ge2$, translating $y$ by $3^{n-1}$ in $J_n(u)$ cancels all terms with $3\nmid y$. Writing $y=3z$ gives
+$$
+J_n(u)=3K_{n-2}^{(1)}(u),
 $$
 where
 $$
-J_n(a)=\sum_{y\bmod2^n}e_n(ay^2+4y^3).
+K_L^{(c)}(u)=\sum_{z\bmod3^L}e_L(uz^2+3^cz^3),\qquad c\ge1.
 $$
-For odd $a$, put more generally
+The same translation argument gives, for $L\ge2$,
 $$
-J_n^{(c)}(a)=\sum_{y\bmod2^n}e_n(ay^2+2^cy^3),\qquad c\ge2.
+K_L^{(c)}(u)=3K_{L-2}^{(c+1)}(u).
 $$
-When $n\ge4$, the odd $y$ terms cancel under $y\mapsto y+2^{n-2}$, while the even terms give
+The ordinary quadratic Gauss sum
 $$
-J_n^{(c)}(a)=2J_{n-2}^{(c+1)}(a).
+g_L(u)=\sum_{z\bmod3^L}e_L(uz^2)
 $$
-Iterating until the cubic coefficient is divisible by the remaining modulus gives
+satisfies the identical recurrence $g_L(u)=3g_{L-2}(u)$, and the two sums agree for $L=0,1$ because the cubic term is then divisible by the modulus. Thus
 $$
-J_n(a)=g_n(a),\qquad
-g_n(a)=\sum_{y\bmod2^n}e_n(ay^2),
+J_n(u)=3g_{n-2}(u).
 $$
-for every $n\ge4$; for $n=2$ the equality is immediate. These are exactly the cases $n=m-4$ when $m$ is a multiple of $3$ and $m\ge6$.
-
-Splitting the quadratic sum into even and odd residues gives $g_{n+2}(a)=2g_n(a)$, with
+Since $u\equiv1\pmod3$,
 $$
-g_2(a)=2(1+i^a),\qquad g_3(a)=4e^{2\pi ia/8}.
+g_L(u)=
+\begin{cases}
+3^{L/2},&L\text{ even},\\[1mm]
+i\,3^{L/2},&L\text{ odd}.
+\end{cases}
 $$
-Hence $g_n(a)$ is nonzero and its argument is always an odd multiple of $\pi/4$. The class $x\equiv-u\pmod4$ is the complex conjugate contribution, so
+Indeed, $g_L=3g_{L-2}$, with $g_0=1$ and
 $$
-S_m(r)=8\operatorname{Re}\!\left(e_m(-2u^3)g_{m-4}(3u)\right).
-$$
-This cannot vanish: if the displayed factor were purely imaginary, writing the Gauss-sum phase as $\ell\pi/4$ with $\ell$ odd would force
-$$
--u^3+\ell2^{m-4}\equiv2^{m-3}\pmod{2^{m-2}},
-$$
-whose left side is odd and right side even. Therefore
-$$
-S_m(r)\ne0\iff r\equiv3\pmod8
-$$
-for odd $r$.
-
-There are $2^{m-3}$ such odd residues. Replacing $r$ by $r+2^{m-1}$ multiplies every surviving odd-$x$ term by $-1$, so
-$$
-S_m(r+2^{m-1})=-S_m(r).
-$$
-Thus among odd $r$ there are exactly
-$$
-2^{m-4}
-$$
-positive values and the same number of negative values.
-
-Step 3: Derive the recurrence for the sign counts
-
-Now put $m=3q$. Let $P_q$ and $N_q$ denote the positive and negative counts for $S_{3q}(r)$.
-
-For the base exponent $m=3$, even $x$ satisfy $x^3\equiv0\pmod8$ and odd $x$ satisfy $x^3\equiv x\pmod8$. Hence
-$$
-S_3(r)=
-\sum_{y\bmod4}e_4(-ry)
-+e_8(1-r)\sum_{y\bmod4}e_4((1-r)y).
-$$
-The first term is $4$ exactly when $r\equiv0\pmod4$, and the second is $4e_8(1-r)$ exactly when $r\equiv1\pmod4$. Therefore $S_3(r)$ is positive for $r=0,1,4$, negative for $r=5$, and zero otherwise. Thus
-$$
-P_1=3,\qquad N_1=1.
+g_1(u)=1+2e^{2\pi i/3}=i\sqrt3.
 $$
 
-For $q\ge2$, Step 2 contributes $2^{3q-4}$ positive and $2^{3q-4}$ negative odd frequencies. The class $r\equiv2\pmod4$ contributes only zeros. Finally, if $r=4s$, Step 1 gives $S_{3q}(4s)=4S_{3q-3}(s)$; as $r$ runs through multiples of $4$, each residue $s\bmod2^{3q-3}$ occurs twice. Consequently
+Now put $m=3q$. For $q=1$, $J_0(u)=1$. For $q\ge2$, the relevant quadratic exponent is
 $$
-P_q=2^{3q-4}+2P_{q-1},\qquad
-N_q=2^{3q-4}+2N_{q-1}.
+L=m-5=3q-5,
+$$
+which is even when $q$ is odd and odd when $q$ is even. Consequently, up to a positive factor,
+$$
+S_{3q}(3u^2)
+\sim
+\begin{cases}
+\cos\!\left(\dfrac{4\pi u^3}{3^{3q}}\right),&q\text{ odd},\\[3mm]
+\sin\!\left(\dfrac{4\pi u^3}{3^{3q}}\right),&q\text{ even}.
+\end{cases}
 $$
 
-Step 4: Solve the recurrence
+Step 3: Count the signs on the primitive branch
 
-We prove by induction on $q$ that
+As $u$ runs through the residues $u\equiv1\pmod3$ modulo $3^{m-1}$, the cubes $u^3$ run bijectively through the residues
 $$
-P_q=\frac{2^q}{6}\left(2^{2q-1}+7\right),\qquad
-N_q=\frac{2^q}{6}\left(2^{2q-1}+1\right).
+v\equiv1\pmod9\qquad (\bmod\ 3^m).
 $$
-For $q=1$ these give $(3,1)$, as established in Step 3. If the formulas hold for $q-1$, then
+To see this, write $u=1+3a$. Then
 $$
-2^{3q-4}+2P_{q-1}
-=\frac{2^q}{6}\left(3\cdot2^{2q-3}+2^{2q-3}+7\right)
-=\frac{2^q}{6}\left(2^{2q-1}+7\right),
+u^3=1+9\bigl(a+3a^2+3a^3\bigr).
 $$
-and the same calculation with $7$ replaced by $1$ gives the formula for $N_q$.
+The map
+$$
+a\longmapsto a+3a^2+3a^3\pmod{3^{m-2}}
+$$
+is bijective: modulo $3$ it is the identity, and if a solution is fixed modulo $3^j$, replacing $a$ by $a+\varepsilon3^j$ changes the image by $\varepsilon3^j$ modulo $3^{j+1}$, so exactly one lift hits each next digit.
 
-Final Answer: $\boxed{\frac{2^q}{6}\left(2^{2q-1}+7,\,2^{2q-1}+1\right)}$
+Put
+$$
+B=3^{m-2}=3^{3q-2}.
+$$
+Thus $v=1+9j$ with $0\le j<B$, and
+$$
+\frac{4\pi v}{3^m}=\frac{2\pi}{B}\left(2j+\frac29\right).
+$$
+Because multiplication by $2$ permutes the residues modulo the odd number $B$, it is enough to count the signs of
+$$
+\cos\!\left(\frac{2\pi}{B}\left(k+\frac29\right)\right)
+$$
+when $q$ is odd, and of the analogous sine when $q$ is even.
+
+If $q$ is odd, then $B\equiv3\pmod4$; write $B=4h+3$. The cosine is positive for $h+1$ values near $0$ and $h$ values near $2\pi$, hence for
+$$
+2h+1=\frac{B-1}{2}
+$$
+values, and negative for $(B+1)/2$ values.
+
+If $q$ is even, then $B\equiv1\pmod4$; write $B=4h+1$. The small positive shift $2/9$ puts exactly
+$$
+2h+1=\frac{B+1}{2}
+$$
+points in the positive half of the sine wave and $(B-1)/2$ in the negative half.
+
+Therefore the primitive branch $r\equiv3\pmod9$ contributes
+$$
+p_q=\frac{3^{3q-2}+(-1)^q}{2},\qquad
+n_q=\frac{3^{3q-2}-(-1)^q}{2}
+$$
+positive and negative values respectively.
+
+Step 4: Solve the scaling recurrence
+
+Let $P_q,N_q$ be the required counts for modulus $3^{3q}$. For convenience put $P_0=1,N_0=0$, corresponding to the single sum modulo $1$.
+
+If $r=9R$, Step 1 gives
+$$
+S_{3q}(9R)=9S_{3q-3}(R).
+$$
+As $R$ runs modulo $3^{3q-2}$, each residue modulo $3^{3q-3}$ occurs three times. Hence
+$$
+P_q=p_q+3P_{q-1},\qquad N_q=n_q+3N_{q-1}.
+$$
+Set
+$$
+T_q=P_q+N_q,\qquad D_q=P_q-N_q.
+$$
+Then
+$$
+T_q=3^{3q-2}+3T_{q-1},\qquad T_0=1,
+$$
+and
+$$
+D_q=(-1)^q+3D_{q-1},\qquad D_0=1.
+$$
+The first recurrence sums to
+$$
+T_q=\frac{3^{3q}+7\cdot3^q}{8},
+$$
+while the second gives
+$$
+D_q=\frac{3^{q+1}+(-1)^q}{4}.
+$$
+Therefore
+$$
+P_q=\frac{T_q+D_q}{2}
+=\frac{3^{3q}+13\cdot3^q+2(-1)^q}{16},
+$$
+$$
+N_q=\frac{T_q-D_q}{2}
+=\frac{3^{3q}+3^q-2(-1)^q}{16}.
+$$
+
+Final Answer: $\boxed{\frac1{16}\left(3^{3q}+13\cdot3^q+2(-1)^q,\,3^{3q}+3^q-2(-1)^q\right)}$
 
 ---
 
 ## Answer
 
-$\frac{2^q}{6}\left(2^{2q-1}+7,\,2^{2q-1}+1\right)$
+$\frac1{16}\left(3^{3q}+13\cdot3^q+2(-1)^q,\,3^{3q}+3^q-2(-1)^q\right)$
 
 ---
 
@@ -161,7 +217,7 @@ Answer Type: Tuple or ordered list
 ## Solution Concepts
 
 - cubic exponential sum
-- two-adic stationary phase
+- three-adic stationary phase
 - quadratic Gauss sum
 - cubic scaling recurrence
 
