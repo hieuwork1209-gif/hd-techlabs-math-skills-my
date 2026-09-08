@@ -1,135 +1,139 @@
 ## Steps
 
-Step 1: Localize near the osculation point
+Step 1: Localize at the astroid cusp
 
-Let
-$$
-h(x)=\frac{1-\sqrt{1-4x^2}}{2}.
-$$
-The graph $y=h(x)$ is the lower arc of the circle
-$$
-x^2+\left(y-\frac12\right)^2=\frac14,
-$$
-and it has the same tangent and curvature at the origin as the parabola $y=x^2$.
+The phase $(x-1)^2+y^2$ has its unique minimum on the astroid at the cusp $(1,0)$. Away from any fixed neighborhood of that point it is bounded below by a positive constant, so those regions contribute exponentially little.
 
+Write
+$$
+u=1-x,
+$$
+so near the cusp $u\ge0$ and the astroid boundary is
+$$
+|y|\le h(u),\qquad
+h(u)=\left(1-(1-u)^{2/3}\right)^{3/2}.
+$$
 Put
 $$
-\varepsilon=n^{-1/2}.
-$$
-Since the factor $e^{-nx^2}$ localizes the $x$-integral to $|x|=O(\varepsilon)$, set
-$$
-x=\varepsilon X,\qquad y=\varepsilon^2 Z.
+\varepsilon=n^{-1/2},\qquad
+u=\varepsilon U,\qquad
+y=\varepsilon^{3/2}V.
 $$
 Then
 $$
-M_n=\varepsilon^3\int_{-1/(2\varepsilon)}^{1/(2\varepsilon)}e^{-X^2}
-\int_{X^2}^{h(\varepsilon X)/\varepsilon^2}
-e^{-\varepsilon^2Z^2}\,dZ\,dX.
+n\left((x-1)^2+y^2\right)=U^2+\varepsilon V^2,
 $$
-For any fixed power of $\varepsilon$, the contribution from $|X|>\varepsilon^{-1/4}$ is smaller because of the Gaussian factor $e^{-X^2}$. Hence all expansions below may be made uniformly on $|X|\le\varepsilon^{-1/4}$ and then extended to the whole real line with an $o(\varepsilon^7)$ error.
+and $du\,dy=\varepsilon^{5/2}dU\,dV$. Hence, up to an exponentially small error,
+$$
+M_n=\varepsilon^{5/2}\int_0^\infty e^{-U^2}
+\int_{-H_\varepsilon(U)}^{H_\varepsilon(U)}
+ e^{-\varepsilon V^2}\,dV\,dU,
+$$
+where
+$$
+H_\varepsilon(U)=\frac{h(\varepsilon U)}{\varepsilon^{3/2}}.
+$$
 
-Step 2: Use the quartic contact of the two curves
+Step 2: Expand the cusp geometry
 
 The binomial expansion gives
 $$
-h(x)=x^2+x^4+2x^6+O(x^8).
+1-(1-u)^{2/3}
+=\frac23u+\frac19u^2+O(u^3).
+$$
+Raising this to the power $3/2$ yields
+$$
+h(u)=\frac{2\sqrt6}{9}u^{3/2}
++\frac{\sqrt6}{18}u^{5/2}
++O(u^{7/2}).
 $$
 Therefore
 $$
-\frac{h(\varepsilon X)}{\varepsilon^2}
-=X^2+\varepsilon^2X^4+2\varepsilon^4X^6
-+O\left(\varepsilon^6X^8\right).
+H_\varepsilon(U)
+=aU^{3/2}+b\varepsilon U^{5/2}
++O\left(\varepsilon^2U^{7/2}\right),
 $$
-Write the width of the scaled vertical interval as
+with
 $$
-\Delta_\varepsilon(X)
-=\varepsilon^2X^4+2\varepsilon^4X^6
-+O\left(\varepsilon^6X^8\right).
+a=\frac{2\sqrt6}{9},\qquad b=\frac{\sqrt6}{18}.
 $$
-The quartic term is the first nonzero separation because the circle is the osculating circle of the parabola at the origin.
+On $U\le\varepsilon^{-1/8}$ this expansion is uniform, while the complementary $e^{-U^2}$ tail is smaller than every power of $\varepsilon$.
 
-Step 3: Expand the vertical Gaussian across the thin strip
+Step 3: Expand the vertical Gaussian on the anisotropic scale
 
-On the interval
+For bounded $H$,
 $$
-X^2\le Z\le X^2+\Delta_\varepsilon(X),
+\int_{-H}^{H}e^{-\varepsilon V^2}\,dV
+=2H-\frac{2}{3}\varepsilon H^3
++O\left(\varepsilon^2H^5\right).
 $$
-we have
-$$
-e^{-\varepsilon^2Z^2}
-=1-\varepsilon^2X^4
-+O\left(\varepsilon^4(1+|X|^{12})\right),
-$$
-uniformly on the Gaussian main range. Since the interval width is $O(\varepsilon^2(1+|X|^4))$, integrating across it gives
+Substituting the expansion of $H_\varepsilon(U)$ gives
 $$
 \begin{aligned}
-\int_{X^2}^{X^2+\Delta_\varepsilon(X)}e^{-\varepsilon^2Z^2}\,dZ
-={}&\varepsilon^2X^4\\
-&+\varepsilon^4\left(2X^6-X^8\right)
-+O\left(\varepsilon^6(1+|X|^{16})\right).
+\int_{-H_\varepsilon(U)}^{H_\varepsilon(U)}e^{-\varepsilon V^2}\,dV
+={}&2aU^{3/2}\\
+&+2\varepsilon\left(
+ bU^{5/2}-\frac{a^3}{3}U^{9/2}
+\right)
++O\left(\varepsilon^2(1+U^{15/2})\right).
 \end{aligned}
 $$
-Substituting this into Step 1 yields
-$$
-\begin{aligned}
-M_n={}&\varepsilon^5\int_{-\infty}^{\infty}X^4e^{-X^2}\,dX\\
-&+\varepsilon^7\int_{-\infty}^{\infty}
-\left(2X^6-X^8\right)e^{-X^2}\,dX
-+o(\varepsilon^7).
-\end{aligned}
-$$
+The remainder is integrable against $e^{-U^2}$, so termwise integration is valid.
 
-Step 4: Evaluate the Gaussian moments
+Step 4: Evaluate the two surviving coefficients
 
-The even Gaussian moments are
+For $p>-1$,
 $$
-\int_{-\infty}^{\infty}X^4e^{-X^2}\,dX
-=\frac{3\sqrt\pi}{4},
+\int_0^\infty U^p e^{-U^2}\,dU
+=\frac12\Gamma\left(\frac{p+1}{2}\right).
 $$
+Thus
 $$
-\int_{-\infty}^{\infty}X^6e^{-X^2}\,dX
-=\frac{15\sqrt\pi}{8},
+M_n=\varepsilon^{5/2}C_0+\varepsilon^{7/2}C_1+o\left(\varepsilon^{7/2}\right),
+$$
+where
+$$
+C_0=a\Gamma\left(\frac54\right)
+=\frac{\sqrt6\,\Gamma(1/4)}{18}.
+$$
+Also
+$$
+C_1=b\Gamma\left(\frac74\right)
+-\frac{a^3}{3}\Gamma\left(\frac{11}{4}\right).
+$$
+Using
+$$
+\Gamma\left(\frac74\right)=\frac34\Gamma\left(\frac34\right),
 \qquad
-\int_{-\infty}^{\infty}X^8e^{-X^2}\,dX
-=\frac{105\sqrt\pi}{16}.
+\Gamma\left(\frac{11}{4}\right)=\frac{21}{16}\Gamma\left(\frac34\right),
 $$
-Hence
+and the values of $a$ and $b$, we obtain
 $$
-\int_{-\infty}^{\infty}
-\left(2X^6-X^8\right)e^{-X^2}\,dX
-=\left(\frac{30}{8}-\frac{105}{16}\right)\sqrt\pi
-=-\frac{45\sqrt\pi}{16}.
-$$
-Therefore
-$$
-M_n
-=\frac{3\sqrt\pi}{4}\varepsilon^5
--\frac{45\sqrt\pi}{16}\varepsilon^7
-+o(\varepsilon^7).
+C_1=\frac{25\sqrt6\,\Gamma(3/4)}{1944}.
 $$
 
 Step 5: Recover the requested limit
 
 Since $\varepsilon=n^{-1/2}$,
 $$
-M_n
-=\frac{3\sqrt\pi}{4n^{5/2}}
--\frac{45\sqrt\pi}{16n^{7/2}}
-+o\left(n^{-7/2}\right).
+M_n=
+\frac{\sqrt6\,\Gamma(1/4)}{18n^{5/4}}
++\frac{25\sqrt6\,\Gamma(3/4)}{1944n^{7/4}}
++o\left(n^{-7/4}\right).
 $$
-Thus
+Therefore
 $$
-\lim_{n\to\infty}n^{7/2}
-\left(M_n-\frac{3\sqrt\pi}{4n^{5/2}}\right)
-=-\frac{45\sqrt\pi}{16}.
+\lim_{n\to\infty}n^{7/4}
+\left(M_n-\frac{\sqrt6\,\Gamma(1/4)}{18n^{5/4}}\right)
+=\frac{25\sqrt6\,\Gamma(3/4)}{1944}.
 $$
-Final Answer: $\boxed{-\frac{45\sqrt\pi}{16}}$
+Final Answer: $\boxed{\frac{25\sqrt6\,\Gamma(3/4)}{1944}}$
 
 ---
 
 ## Answer
 
-$-\frac{45\sqrt\pi}{16}$
+$\frac{25\sqrt6\,\Gamma(3/4)}{1944}$
 
 ---
 
@@ -143,8 +147,8 @@ $-\frac{45\sqrt\pi}{16}$
 
 ## Solution Concepts
 
-- Gaussian localization
-- osculating-circle geometry
-- quartic contact asymptotics
-- thin-strip rescaling
-- Gaussian moment expansion
+- Gaussian localization at a cusp
+- anisotropic scaling
+- astroid boundary expansion
+- vertical Gaussian correction
+- Gamma-function moments
