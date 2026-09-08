@@ -6,153 +6,140 @@ Let
 $$
 R_m=\mathbb Z/2^m\mathbb Z,
 $$
-and let $N_m$ be the number of matrices $A\in M_2(R_m)$ satisfying $A^3=0$. We also put $N_0=1$.
+and let $N_m$ be the number of matrices $A\in M_3(R_m)$ satisfying $A^2=0$. Put $N_0=1$.
 
-Reducing modulo $2$, any such matrix is nilpotent over $\mathbb F_2$. In dimension $2$, a nilpotent matrix has square zero. There are exactly four square-zero matrices over $\mathbb F_2$: the zero matrix and three nonzero rank-one nilpotents.
-
-If $A\equiv0\pmod2$, write $A=2B$ with $B$ taken modulo $2^{m-1}$. For $m\ge3$,
+Over $\mathbb F_2$, a square-zero $3\times3$ matrix has rank at most $1$. Besides the zero matrix, every such matrix has rank $1$ and can be written uniquely as
 $$
-A^3=0\pmod{2^m}
+uv^T,
+$$
+with nonzero $u,v\in\mathbb F_2^3$ satisfying $v^Tu=0$. There are $7$ choices for $u$, and for each $u$ there are $3$ nonzero vectors in the orthogonal hyperplane. Hence there are exactly
+$$
+21
+$$
+nonzero square-zero matrices modulo $2$, and they form one conjugacy class.
+
+If $A\equiv0\pmod2$, write $A=2B$ with $B$ modulo $2^{m-1}$. For $m\ge2$,
+$$
+A^2\equiv0\pmod{2^m}
 \iff
-B^3=0\pmod{2^{m-3}}.
+B^2\equiv0\pmod{2^{m-2}}.
 $$
-Each matrix modulo $2^{m-3}$ has $2^2$ lifts in each of its four entries to a matrix modulo $2^{m-1}$, hence $2^8$ lifts in total. Therefore the even branch contributes
+Each solution modulo $2^{m-2}$ has one free binary lift in each of the nine entries of $B$, so the zero residue class contributes
 $$
-2^8N_{m-3}.
-$$
-
-Step 2: Count one primitive nilpotent class
-
-The three nonzero nilpotent matrices modulo $2$ are conjugate under $\mathrm{GL}_2(\mathbb F_2)$, and the conjugating matrices may be lifted to $\mathrm{GL}_2(R_m)$. Hence the three residue classes have equal numbers of lifts satisfying $A^3=0$.
-
-It is enough to count the lifts of
-$$
-J=\begin{pmatrix}0&1\\0&0\end{pmatrix}.
-$$
-Write
-$$
-A=\begin{pmatrix}a&b\\c&d\end{pmatrix}\equiv J\pmod2,
-$$
-so $a,c,d$ are even and $b$ is odd. Put
-$$
-t=\operatorname{tr}A,
-\qquad
-\Delta=\det A.
-$$
-Cayley--Hamilton gives
-$$
-A^2-tA+\Delta I=0,
-$$
-so
-$$
-A^3=(t^2-\Delta)A-t\Delta I.
-$$
-If $A^3=0$, the upper-right entry gives
-$$
-(t^2-\Delta)b=0.
-$$
-Since $b$ is a unit, this forces
-$$
-\Delta=t^2.
-$$
-The remaining scalar term then gives
-$$
-t^3=0.
-$$
-Conversely, these two congruences make the displayed formula for $A^3$ vanish. Thus
-$$
-A^3=0
-\iff
-\Delta=t^2,\qquad t^3=0.
+2^9N_{m-2}.
 $$
 
-Let
-$$
-h=\left\lceil\frac m3\right\rceil.
-$$
-The congruence $t^3=0\pmod{2^m}$ is equivalent to $2^h\mid t$, so there are $2^{m-h}$ choices for $t$.
+Step 2: Count the lifts of one primitive class
 
-For a fixed such $t$, choose $a$ even and $b$ odd. There are $2^{m-1}$ choices for each. Then $d=t-a$ is even, and the determinant condition
+It is enough to count lifts of
 $$
-a(t-a)-bc=t^2
+J=\begin{pmatrix}0&1&0\\0&0&0\\0&0&0\end{pmatrix}.
 $$
-determines $c$ uniquely because $b$ is invertible:
+Write a lift as
 $$
-c=b^{-1}\bigl(a(t-a)-t^2\bigr).
+A=\begin{pmatrix}a&u&c\\ d&e&f\\ g&h&i\end{pmatrix},
 $$
-The numerator is divisible by $4$, so this $c$ is automatically even. Hence one primitive residue class contributes
+where $u$ is odd and all other displayed entries are even modulo $2$. For a fixed odd $u$, conjugation by $\operatorname{diag}(u,1,1)$ is a bijection to the lifts with $(1,2)$-entry equal to $1$. Thus it remains to count normalized matrices
 $$
-2^{m-h}2^{m-1}2^{m-1}=2^{3m-h-2}
+A=\begin{pmatrix}a&1&c\\ d&e&f\\ g&h&i\end{pmatrix}
 $$
-matrices, and all three primitive classes contribute
-$$
-3\cdot2^{3m-h-2}.
-$$
+with $a,c,d,e,f,g,h,i$ even.
 
-Step 3: Obtain the three-step recurrence
-
-For $m\ge3$, combining Steps 1 and 2 yields
+From the $(1,2)$, $(1,3)$, $(3,2)$ and $(2,2)$ entries of $A^2=0$ we obtain successively
 $$
-N_m=2^8N_{m-3}+3\cdot2^{3m-\lceil m/3\rceil-2}.
+e=-a-ch,
 $$
-Also,
 $$
-N_1=4.
+f=-c(a+i),
 $$
-For $m=2$, the even lifts contribute $16$ matrices, while Step 2 gives $3\cdot2^3=24$ primitive lifts, so
 $$
-N_2=40.
+g=h(a+ch-i),
 $$
-For $m=3$, the recurrence with $N_0=1$ gives
 $$
-N_3=2^8+3\cdot2^6=448.
+d=-e^2-fh.
 $$
-
-The exponent in the primitive term simplifies uniformly:
+After these substitutions, direct multiplication gives
 $$
-3m-\left\lceil\frac m3\right\rceil-2
-=
-\left\lfloor\frac{8m}{3}\right\rfloor-2.
+A^2=(i-ch)^2
+\begin{pmatrix}
+0&0&0\\
+ch&0&-c\\
+-h&0&1
+\end{pmatrix}.
+$$
+Therefore
+$$
+A^2=0\iff(i-ch)^2\equiv0\pmod{2^m}.
 $$
 
-Step 4: Solve the recurrence
+Choose the even residues $a,c,h$ freely, giving $2^{3m-3}$ choices. Put
+$$
+z=i-ch.
+$$
+The condition $z^2\equiv0\pmod{2^m}$ is equivalent to
+$$
+2^{\lceil m/2\rceil}\mid z,
+$$
+so there are $2^{\lfloor m/2\rfloor}$ choices for $z$, and then $i$ is fixed. The remaining entries are determined by the displayed formulas and are automatically even. Finally there are $2^{m-1}$ choices for the original odd unit $u$.
 
-We claim
+Hence one nonzero residue class modulo $2$ has
 $$
-N_m=\left(m+3+\mathbf 1_{3\mid m}\right)
-2^{\lfloor8m/3\rfloor-2},
+2^{4m-4+\lfloor m/2\rfloor}
 $$
-where $\mathbf 1_{3\mid m}$ equals $1$ when $3\mid m$ and $0$ otherwise.
-
-The formula gives $4,40,448$ for $m=1,2,3$. Suppose $m\ge4$ and it holds for $m-3$. Since $m$ and $m-3$ have the same residue modulo $3$,
+lifts, and all $21$ primitive classes contribute
 $$
-\left\lfloor\frac{8(m-3)}3\right\rfloor-2
-=
-\left\lfloor\frac{8m}3\right\rfloor-10.
-$$
-Thus
-$$
-2^8N_{m-3}
-=\left(m+\mathbf 1_{3\mid m}\right)
-2^{\lfloor8m/3\rfloor-2}.
-$$
-The primitive contribution from Step 3 is
-$$
-3\cdot2^{\lfloor8m/3\rfloor-2}.
-$$
-Adding the two terms gives exactly
-$$
-N_m=\left(m+3+\mathbf 1_{3\mid m}\right)
-2^{\lfloor8m/3\rfloor-2}.
+21\cdot2^{4m-4+\lfloor m/2\rfloor}
+=21\cdot2^{\lfloor9m/2\rfloor-4}.
 $$
 
-Final Answer: $\boxed{\left(m+3+\mathbf 1_{3\mid m}\right)2^{\lfloor8m/3\rfloor-2}}$
+Step 3: Obtain and solve the recurrence
+
+For $m\ge2$, Steps 1 and 2 give
+$$
+N_m=2^9N_{m-2}+21\cdot2^{\lfloor9m/2\rfloor-4}.
+$$
+Also $N_0=1$, while over $\mathbb F_2$ we have
+$$
+N_1=22.
+$$
+
+For $m=2k$, write
+$$
+N_{2k}=2^{9k-4}E_k.
+$$
+The recurrence becomes
+$$
+E_k=E_{k-1}+21,
+$$
+with $E_0=16$. Thus
+$$
+N_{2k}=(21k+16)2^{9k-4}.
+$$
+
+For $m=2k+1$, write
+$$
+N_{2k+1}=2^{9k}O_k.
+$$
+Again
+$$
+O_k=O_{k-1}+21,
+$$
+with $O_0=22$. Hence
+$$
+N_{2k+1}=(21k+22)2^{9k}.
+$$
+These two cases combine into
+$$
+N_m=(42m+55+9(-1)^m)2^{\lfloor9m/2\rfloor-6}.
+$$
+
+Final Answer: $\boxed{(42m+55+9(-1)^m)2^{\lfloor9m/2\rfloor-6}}$
 
 ---
 
 ## Answer
 
-$\left(m+3+\mathbf 1_{3\mid m}\right)2^{\lfloor8m/3\rfloor-2}$
+$(42m+55+9(-1)^m)2^{\lfloor9m/2\rfloor-6}$
 
 ---
 
@@ -166,11 +153,11 @@ Answer Type: Integer
 
 ## Solution Concepts
 
-- nilpotent matrix over a local ring
-- Cayley--Hamilton identity
-- two-adic lifting
+- square-zero endomorphism
 - reduction modulo two
-- three-step recurrence
+- primitive nilpotent orbit
+- two-adic lifting
+- parity recurrence
 
 ---
 
