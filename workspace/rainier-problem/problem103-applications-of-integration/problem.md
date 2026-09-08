@@ -2,24 +2,33 @@
 
 ## LaTeX (Normalized)
 
-All logarithms are natural. Let
+Let
 $$
-T=\{(x,y,z)\in\mathbb R^3:x,y,z\ge0,\ x+y+z\le1\}.
+T=\{(x,y)\in\mathbb R^2:x\ge0,\ y\ge0,\ x+y\le1\},
+$$
+and for $(x,y)\in T$ put
+$$
+z=1-x-y,
+\qquad
+P=xyz,
+\qquad
+D=(x-y)(y-z)(z-x).
 $$
 For $n\ge1$, define
 $$
-I_n=\iiint_T
-\exp\left(-nxyz(1-x-y-z)\right)\,dx\,dy\,dz.
+I_n=\iint_T e^{-n(P^2+D^2)}\,dx\,dy.
 $$
 Also let
 $$
-\gamma=\lim_{m\to\infty}\left(\sum_{k=1}^m\frac1k-\log m\right)
+\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\,dt
+\qquad(s>0).
 $$
-be Euler's constant. Evaluate
+Evaluate
 $$
 \lim_{n\to\infty}
-\left(
-nI_n-2(\log n)^2-4\gamma\log n
+n\left(
+I_n-
+\frac{3\sqrt\pi\,\Gamma(1/4)}{4n^{3/4}}
 \right).
 $$
 
@@ -38,4 +47,4 @@ $$
 
 ## Domain Explanation
 
-The factor $xyz(1-x-y-z)$ is the product of the four barycentric coordinates of the standard tetrahedron. It vanishes on all four faces, and the intersections of those faces create a repeated Mellin singularity that produces the quadratic logarithmic asymptotics. This is a natural asymptotic-integration problem in Calculus -> Applications of integration.
+The functions $P$ and $D$ are the basic product and Vandermonde invariants of the three barycentric coordinates $x,y,z$. Their common zero set consists of the three vertices and the three edge midpoints of the simplex. The vertices have an anisotropic degenerate scale, while the edge midpoints contribute at the next Gaussian scale, so the requested coefficient requires matching two distinct local geometries. This is a natural degenerate asymptotic-integration problem in Calculus -> Applications of integration.
