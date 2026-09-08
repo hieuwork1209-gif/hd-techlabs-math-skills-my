@@ -58,8 +58,8 @@ $$
 
 | Field | Value |
 |---|---|
-| **Domain** | Linear Algebra |
-| **Sub-domain** | Systems of linear equations |
+| **Domain** | Abstract Algebra |
+| **Sub-domain** | Commutative algebra |
 | **Problem Type** | Symbolic derivation |
 | **Answer Type** | Polynomial or rational function |
 
@@ -67,4 +67,4 @@ $$
 
 ## Domain Explanation
 
-This problem asks for the dimension of a simultaneous solution space of homogeneous translation equations over a finite field. Cyclic invariants and a characteristic-$p$ rank degeneration are the structural tools used to reduce that linear system.
+This problem is fundamentally about finite-dimensional commutative algebras obtained from truncated polynomial quotient rings. The core argument uses cyclic invariant subrings, quotient ideals, graded decompositions, and ranks of multiplication maps to compute the dimension, so Commutative algebra is the natural classification.
