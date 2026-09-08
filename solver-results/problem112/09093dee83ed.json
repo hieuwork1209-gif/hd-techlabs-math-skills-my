@@ -1,0 +1,22 @@
+{
+  "problem": "problem112",
+  "branch": "adversary/problem112",
+  "problem_path": "workspace/rainier-problem/problem112-fourier-analysis/problem.md",
+  "source_commit_sha": "57fad357950d363e588d7744f7d0043d9475d8ca",
+  "problem_blob_sha": "09093dee83ed2f416d0984ca9421d5a94f8c9ddb",
+  "statement_sha256": "26bad5713ade847828bdba46011943345d8520fffff030fd8767988e3959752e",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T03:46:12+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "\\[\n\\boxed{(P_{m,k},N_{m,k})=\\left((m+2)2^{m-1},\\;m2^{m-1}\\right)}\n\\]\n\nLet\n\\[\ne_m(z)=\\exp\\left(\\frac{2\\pi i z}{2^m}\\right).\n\\]\nFor\n\\[\nG_m(a)=\\sum_{u\\bmod 2^m} e_m(au^2),\n\\]\nwith \\(a\\) odd, we use the standard 2-adic Gauss evaluation, derived by separating even and odd terms:\n\\[\nG_m(a)=\n\\begin{cases}\n2^{m/2}(1+i^a),&m\\text{ even},\\\\\n2^{(m+1)/2}e^{2\\pi i a/8},&m\\text{ odd}.\n\\end{cases}\n\\]\nAlso,\n\\[\n\\sum_{x\\bmod 2^m}e_m(x^2+bx)=0\n\\]\nif \\(b\\) is odd, while if \\(b=2c\\), completing the square gives\n\\[\n\\sum_{x\\bmod 2^m}e_m(x^2+2cx)=e_m(-c^2)G_m(1).\n\\]\n\nApply this to the \\(x\\)-sum with \\(b=y-r\\). Only \\(y\\equiv r\\pmod 2\\) contributes. Write \\(y=r+2t\\), \\(t\\bmod 2^{m-1}\\). Then\n\\[\nA_{m,k}(r,s)\n=G_m(1)e_m(2^kr^2-sr)\n\\sum_{t\\bmod 2^{m-1}}\ne_m\\left((2^{k+2}-1)t^2+2(2^kr-s)t\\right).\n\\]\nLet\n\\[\na=2^{k+2}-1,\\qquad C=2^kr-s.\n\\]\nSince \\(a\\) is odd, the last sum is half of the complete sum modulo \\(2^m\\):\n\\[\n\\sum_{t\\bmod 2^{m-1}} e_m(at^2+2Ct)\n=\\frac12 e_m(-a^{-1}C^2)G_m(a).\n\\]\nThus\n\\[\nA_{m,k}(r,s)\n=\\frac12G_m(1)G_m(a)\\,\ne_m\\left(2^kr^2-sr-a^{-1}(2^kr-s)^2\\right).\n\\]\n\nNow \\(a=2^{k+2}-1\\equiv -1\\pmod 8\\). Therefore \\(G_m(1)G_m(a)\\) is a positive real number for both parities of \\(m\\): for even \\(m\\), the phases are \\(\\zeta_8\\) and \\(\\zeta_8^{-1}\\); for odd \\(m\\), likewise. Hence the sign/realness of \\(A_{m,k}(r,s)\\) is determined only by the final root of unity.\n\nPut \\(C=2^kr-s\\). Since \\((r,s)\\mapsto(r,C)\\) is a bijection modulo \\(2^m\\), and\n\\[\n2^kr^2-sr-a^{-1}C^2\n=Cr-a^{-1}C^2\n=C(r-a^{-1}C),\n\\]\nthe exponent runs exactly over products \\(Ct\\) with \\(C,t\\bmod 2^m\\).\n\nSo \\(A_{m,k}(r,s)\\) is positive real iff\n\\[\nCt\\equiv 0\\pmod {2^m},\n\\]\nand negative real iff\n\\[\nCt\\equiv 2^{m-1}\\pmod {2^m}.\n\\]\n\nCount residues modulo \\(2^m\\) by 2-adic valuation. There are \\(2^{m-j-1}\\) residues with valuation \\(j<m\\), and one residue, \\(0\\), with valuation \\(m\\).\n\nFor positivity, fix \\(v_2(C)=j<m\\). Then \\(t\\) must be divisible by \\(2^{m-j}\\), giving \\(2^j\\) choices, hence\n\\[\n2^{m-j-1}\\cdot 2^j=2^{m-1}\n\\]\npairs for each \\(j=0,\\dots,m-1\\). If \\(C=0\\), there are \\(2^m\\) choices for \\(t\\). Therefore\n\\[\nP_{m,k}=m2^{m-1}+2^m=(m+2)2^{m-1}.\n\\]\n\nFor negativity, we need\n\\[\nv_2(C)+v_2(t)=m-1.\n\\]\nFor each \\(j=0,\\dots,m-1\\), this gives\n\\[\n2^{m-j-1}\\cdot 2^j=2^{m-1}\n\\]\npairs, so\n\\[\nN_{m,k}=m2^{m-1}.\n\\]\n\nThus, for every allowed \\(m,k\\),\n\\[\n\\boxed{(P_{m,k},N_{m,k})=\\left((m+2)2^{m-1},\\;m2^{m-1}\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T03:47:44+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem112/09093dee83ed.json"
+}
