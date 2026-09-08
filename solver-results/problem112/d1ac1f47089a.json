@@ -1,0 +1,22 @@
+{
+  "problem": "problem112",
+  "branch": "adversary/problem112",
+  "problem_path": "workspace/rainier-problem/problem112-fourier-analysis/problem.md",
+  "source_commit_sha": "5e60d22656c67fe3d9306375ed56fe862cb46c33",
+  "problem_blob_sha": "d1ac1f47089a7f5c5f313e4bbc3807e2701a5605",
+  "statement_sha256": "94ad8b653a39778a41a5c003e04c524f28f96e5bd109d77e94ee44e345225bb8",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T05:05:06+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(R=\\mathbb Z/2^m\\mathbb Z\\). Write\n\\[\nA=\\begin{pmatrix}a&b\\\\ c&d\\end{pmatrix},\\qquad s=a+d.\n\\]\nThen \\(A^2=0\\) is equivalent to\n\\[\nsb=0,\\qquad sc=0,\\qquad a^2+bc=0,\\qquad d^2+bc=0.\n\\]\nSince \\(d=s-a\\), the last two quadratic equations are equivalent to\n\\[\na^2+bc=0,\\qquad s(s-2a)=0.\n\\]\n\nFirst count the trace-zero case \\(s=0\\). Then \\(d=-a\\), and we need\n\\[\nbc=-a^2.\n\\]\nLet \\(N_n\\) be the number of triples \\((a,b,c)\\in(\\mathbb Z/2^n\\mathbb Z)^3\\) with \\(bc=-a^2\\), and set \\(N_0=1\\). For \\(n\\ge1\\), if \\(x\\in\\mathbb Z/2^n\\mathbb Z\\) has valuation \\(k<n\\), the number of pairs \\((b,c)\\) with \\(bc=x\\) is \\((k+1)2^{n-1}\\). If \\(x=0\\), it is \\((n+2)2^{n-1}\\). Summing over \\(v_2(a)\\) gives\n\\[\nN_{2q}=3\\cdot 2^{4q-1}-2^{3q-1},\n\\]\nand\n\\[\nN_{2q+1}=6\\cdot 2^{4q}-2^{3q+1}.\n\\]\n\nNow take \\(s\\neq0\\), with \\(v_2(s)=v\\), and put \\(r=m-v\\). Then \\(sb=sc=0\\) forces\n\\[\nb,c\\in 2^rR.\n\\]\nThe equation \\(s(s-2a)=0\\) is equivalent to\n\\[\n2a\\equiv s\\pmod {2^r}.\n\\]\nThere are no solutions unless \\(v\\ge r\\), i.e. \\(r\\le \\lfloor m/2\\rfloor\\). For such \\(r\\), write\n\\[\na=2^{r-1}y,\\qquad b=2^rB,\\qquad c=2^rC.\n\\]\nThen\n\\[\na^2+bc\\equiv0\\pmod{2^m}\n\\]\nreduces exactly to\n\\[\ny^2+4BC\\equiv0\\pmod {2^{m-2r+2}}.\n\\]\nWriting \\(y=2Y\\), this becomes\n\\[\nY^2+BC\\equiv0\\pmod {2^{m-2r}},\n\\]\nso for each fixed \\(s\\) of valuation \\(m-r\\), the number of matrices is\n\\[\n2^{3r}N_{m-2r}.\n\\]\nThere are \\(2^{r-1}\\) choices of such \\(s\\). Therefore the total number is\n\\[\nN_m+\\sum_{r=1}^{\\lfloor m/2\\rfloor}2^{4r-1}N_{m-2r}.\n\\]\n\nSubstituting the formulas for \\(N_n\\) and simplifying gives\n\\[\n\\boxed{\n\\begin{cases}\n(3m+8)2^{2m-3}, & m\\ \\text{even},\\\\[2mm]\n(3m+5)2^{2m-3}, & m\\ \\text{odd}.\n\\end{cases}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T05:07:46+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem112/d1ac1f47089a.json"
+}
