@@ -1,145 +1,140 @@
 ## Steps
 
-Step 1: Split according to the reduction modulo $2$
+Step 1: Classify the reductions modulo $2$
 
 Let
 $$
 R_m=\mathbb Z/2^m\mathbb Z,
 $$
-and let $N_m$ be the number of matrices $A\in M_3(R_m)$ satisfying $A^2=0$. Put $N_0=1$.
+and let $T_m$ be the number of ordered pairs $(A,B)\in M_2(R_m)^2$ satisfying
+$$
+A^2=B^2=AB=BA=0.
+$$
+For the recurrence below, put $T_0=1$.
 
-Over $\mathbb F_2$, a square-zero $3\times3$ matrix has rank at most $1$. Besides the zero matrix, every such matrix has rank $1$ and can be written uniquely as
-$$
-uv^T,
-$$
-with nonzero $u,v\in\mathbb F_2^3$ satisfying $v^Tu=0$. There are $7$ choices for $u$, and for each $u$ there are $3$ nonzero vectors in the orthogonal hyperplane. Hence there are exactly
-$$
-21
-$$
-nonzero square-zero matrices modulo $2$, and they form one conjugacy class.
+Over $\mathbb F_2$, every nonzero square-zero $2\times2$ matrix has rank $1$, with image equal to kernel. There are exactly three such matrices. Indeed, each is determined by its one-dimensional image/kernel line, and $\mathbb F_2^2$ has three lines.
 
-If $A\equiv0\pmod2$, write $A=2B$ with $B$ modulo $2^{m-1}$. For $m\ge2$,
+Suppose $(\bar A,\bar B)$ satisfies
 $$
-A^2\equiv0\pmod{2^m}
-\iff
-B^2\equiv0\pmod{2^{m-2}}.
+\bar A^2=\bar B^2=\bar A\bar B=\bar B\bar A=0.
 $$
-Each solution modulo $2^{m-2}$ has one free binary lift in each of the nine entries of $B$, so the zero residue class contributes
+If both matrices are nonzero, then
 $$
-2^9N_{m-2}.
+\operatorname{im}\bar B\subseteq\ker\bar A=\operatorname{im}\bar A
 $$
+and similarly with $A,B$ interchanged, so they have the same image/kernel line. Over $\mathbb F_2$ there is only one nonzero square-zero map with a prescribed image/kernel line, hence $\bar A=\bar B$.
 
-Step 2: Count the lifts of one primitive class
+Thus there is one zero reduction $(0,0)$ and, for each of the three nonzero square-zero matrices $J$, exactly the three reductions
+$$
+(J,0),\qquad(0,J),\qquad(J,J).
+$$
+Hence there are nine primitive reduction classes. They have equal lift counts: conjugation permutes the three choices of $J$, while an invertible linear change of generators
+$$
+(A,B)\longmapsto(\alpha A+\beta B,\gamma A+\delta B),
+\qquad
+\begin{pmatrix}\alpha&\beta\\\gamma&\delta\end{pmatrix}\in\mathrm{GL}_2(R_m),
+$$
+preserves all four product-zero equations and acts transitively on the three nonzero coefficient vectors modulo $2$.
+
+Step 2: Count one primitive lift class
 
 It is enough to count lifts of
 $$
-J=\begin{pmatrix}0&1&0\\0&0&0\\0&0&0\end{pmatrix}.
+\left(\begin{pmatrix}0&1\\0&0\end{pmatrix},0\right).
 $$
-Write a lift as
+First count the possible lifts of the first matrix. Write
 $$
-A=\begin{pmatrix}a&u&c\\ d&e&f\\ g&h&i\end{pmatrix},
+A=\begin{pmatrix}a&b\\c&d\end{pmatrix},
 $$
-where $u$ is odd and all other displayed entries are even modulo $2$. For a fixed odd $u$, conjugation by $\operatorname{diag}(u,1,1)$ is a bijection to the lifts with $(1,2)$-entry equal to $1$. Thus it remains to count normalized matrices
+where $a,c,d$ are even and $b$ is odd. From the $(1,2)$ entry of $A^2=0$,
 $$
-A=\begin{pmatrix}a&1&c\\ d&e&f\\ g&h&i\end{pmatrix}
+b(a+d)=0.
 $$
-with $a,c,d,e,f,g,h,i$ even.
+Since $b$ is a unit, $d=-a$. The $(1,1)$ entry then gives
+$$
+c=-a^2b^{-1}.
+$$
+Conversely these formulas make $A^2=0$. Hence $a$ may be any even residue and $b$ any odd residue, giving
+$$
+2^{m-1}\cdot2^{m-1}=2^{2m-2}
+$$
+choices for $A$.
 
-From the $(1,2)$, $(1,3)$, $(3,2)$ and $(2,2)$ entries of $A^2=0$ we obtain successively
+Every such primitive square-zero $A$ is similar over $R_m$ to
 $$
-e=-a-ch,
+J=\begin{pmatrix}0&1\\0&0\end{pmatrix}.
 $$
-$$
-f=-c(a+i),
-$$
-$$
-g=h(a+ch-i),
-$$
-$$
-d=-e^2-fh.
-$$
-After these substitutions, direct multiplication gives
-$$
-A^2=(i-ch)^2
-\begin{pmatrix}
-0&0&0\\
-ch&0&-c\\
--h&0&1
-\end{pmatrix}.
-$$
-Therefore
-$$
-A^2=0\iff(i-ch)^2\equiv0\pmod{2^m}.
-$$
+Indeed, if $v=e_2$ and $u=Av$, then $u$ is primitive, $Au=A^2v=0$, and $(u,v)$ is a basis because its determinant is the unit $b$.
 
-Choose the even residues $a,c,h$ freely, giving $2^{3m-3}$ choices. Put
+Now put
 $$
-z=i-ch.
+B=\begin{pmatrix}p&q\\r&s\end{pmatrix}
 $$
-The condition $z^2\equiv0\pmod{2^m}$ is equivalent to
+in a basis where $A=J$. The equations $JB=BJ=0$ give
 $$
-2^{\lceil m/2\rceil}\mid z,
+r=s=p=0,
 $$
-so there are $2^{\lfloor m/2\rfloor}$ choices for $z$, and then $i$ is fixed. The remaining entries are determined by the displayed formulas and are automatically even. Finally there are $2^{m-1}$ choices for the original odd unit $u$.
-
-Hence one nonzero residue class modulo $2$ has
+so
 $$
-2^{4m-4+\lfloor m/2\rfloor}
+B=qJ.
 $$
-lifts, and all $21$ primitive classes contribute
+Then $B^2=0$ automatically. To lift the reduction $B\equiv0\pmod2$, the scalar $q$ must be even, giving $2^{m-1}$ choices. Therefore one primitive reduction class has
 $$
-21\cdot2^{4m-4+\lfloor m/2\rfloor}
-=21\cdot2^{\lfloor9m/2\rfloor-4}.
+2^{2m-2}2^{m-1}=2^{3m-3}
+$$
+lifts, and all nine primitive classes contribute
+$$
+9\cdot2^{3m-3}.
 $$
 
-Step 3: Obtain and solve the recurrence
+Step 3: Obtain the two-step recurrence
 
-For $m\ge2$, Steps 1 and 2 give
+For the zero reduction class, write
 $$
-N_m=2^9N_{m-2}+21\cdot2^{\lfloor9m/2\rfloor-4}.
+A=2A_1,\qquad B=2B_1,
 $$
-Also $N_0=1$, while over $\mathbb F_2$ we have
+with $A_1,B_1$ taken modulo $2^{m-1}$. For $m\ge2$, the four equations are equivalent to
 $$
-N_1=22.
+A_1^2=B_1^2=A_1B_1=B_1A_1=0\pmod{2^{m-2}}.
+$$
+Each solution modulo $2^{m-2}$ has one free binary lift in each of the eight matrix entries, so the zero branch contributes
+$$
+2^8T_{m-2}.
+$$
+Consequently
+$$
+T_m=2^8T_{m-2}+9\cdot2^{3m-3}\qquad(m\ge2),
+$$
+with
+$$
+T_0=1,\qquad T_1=10.
+$$
+(The value $T_1=10$ is exactly the ten reductions counted in Step 1.)
+
+Step 4: Solve the recurrence
+
+For $m=2k$,
+$$
+T_{2k}=2^{8k}+9\sum_{j=1}^k2^{8(k-j)}2^{6j-3}
+=2^{6k-3}\left(11\cdot2^{2k}-3\right).
+$$
+For $m=2k+1$,
+$$
+T_{2k+1}=10\cdot2^{8k}+9\sum_{j=1}^k2^{8(k-j)}2^{6j}
+=2^{6k}\left(13\cdot2^{2k}-3\right).
+$$
+These two expressions combine as
+$$
+T_m=2^{3m-5}\left((35+9(-1)^m)2^m-12\right).
 $$
 
-For $m=2k$, write
-$$
-N_{2k}=2^{9k-4}E_k.
-$$
-The recurrence becomes
-$$
-E_k=E_{k-1}+21,
-$$
-with $E_0=16$. Thus
-$$
-N_{2k}=(21k+16)2^{9k-4}.
-$$
-
-For $m=2k+1$, write
-$$
-N_{2k+1}=2^{9k}O_k.
-$$
-Again
-$$
-O_k=O_{k-1}+21,
-$$
-with $O_0=22$. Hence
-$$
-N_{2k+1}=(21k+22)2^{9k}.
-$$
-These two cases combine into
-$$
-N_m=(42m+55+9(-1)^m)2^{\lfloor9m/2\rfloor-6}.
-$$
-
-Final Answer: $\boxed{(42m+55+9(-1)^m)2^{\lfloor9m/2\rfloor-6}}$
+Final Answer: $\boxed{2^{3m-5}\left((35+9(-1)^m)2^m-12\right)}$
 
 ---
 
 ## Answer
 
-$(42m+55+9(-1)^m)2^{\lfloor9m/2\rfloor-6}$
+$2^{3m-5}\left((35+9(-1)^m)2^m-12\right)$
 
 ---
 
@@ -153,11 +148,11 @@ Answer Type: Integer
 
 ## Solution Concepts
 
+- radical-square-zero algebra
 - square-zero endomorphism
+- common image and kernel
 - reduction modulo two
-- primitive nilpotent orbit
-- two-adic lifting
-- parity recurrence
+- two-adic lifting recurrence
 
 ---
 
