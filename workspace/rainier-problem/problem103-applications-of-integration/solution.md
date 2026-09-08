@@ -1,138 +1,135 @@
 ## Steps
 
-Step 1: Reduce the degenerate Gaussian integral to product-ratio coordinates
+Step 1: Extract the inner cusp scale
 
-Set
+Let
 $$
-u=x^2,\qquad v=y^2.
+I_n=\iint_{\mathbb R^2}e^{-n((x^2-y^3)^2+y^8)}\,dx\,dy.
 $$
-Using both signs of $x$ and $y$,
+Put
 $$
-I_n=\int_0^\infty\int_0^\infty
-u^{-1/2}v^{-1/2}e^{-n(u^2+uv+v^3)}\,du\,dv.
+x=n^{-1/4}X,\qquad y=n^{-1/6}Y,\qquad \delta=n^{-1/3}.
 $$
-Now write
+Then
 $$
-u=\sqrt t\,e^s,\qquad v=\sqrt t\,e^{-s}.
+n(x^2-y^3)^2=(X^2-Y^3)^2,
+\qquad ny^8=\delta Y^8,
 $$
-Then $uv=t$, the Jacobian has absolute value $1$, and
+and
 $$
-u^2=t e^{2s},\qquad v^3=t^{3/2}e^{-3s}.
-$$
-Therefore
-$$
-I_n=\int_0^\infty\int_{-\infty}^{\infty}
-t^{-1/2}e^{-n(t+t e^{2s}+t^{3/2}e^{-3s})}\,ds\,dt.
-$$
-The logarithm in the final asymptotic comes from the fact that no single scaling of $s$ makes both $e^{2s}$ and $t^{1/2}e^{-3s}$ simultaneously order one.
-
-Step 2: Isolate the scale-free transition integral
-
-Put $t=z/n$ and then shift
-$$
-r=s+\frac12\log z.
-$$
-With $\varepsilon=n^{-1/2}$ this gives
-$$
-I_n=n^{-1/2}\int_0^\infty z^{-1/2}e^{-z}
-K(\varepsilon z^3)\,dz,
+I_n=n^{-5/12}J(\delta),
 $$
 where
 $$
-K(\rho)=\int_{-\infty}^{\infty}
- e^{-e^{2r}-\rho e^{-3r}}\,dr.
+J(\delta)=\iint_{\mathbb R^2}
+ e^{-(X^2-Y^3)^2-\delta Y^8}\,dX\,dY.
 $$
-Thus the problem reduces to the small-$\rho$ finite part of $K(\rho)$.
+The constant in the statement is
+$$
+A=J(0).
+$$
+It is finite: for large positive $Y$ the $X$-integral is $O(Y^{-3/2})$, while for large negative $Y$ it is exponentially small.
 
-Step 3: Compute the logarithmic divergence and its finite part
+Step 2: Reduce the correction to a one-dimensional tail problem
 
-Set $q=e^{2r}$. Then
+Define
 $$
-K(\rho)=\frac12\int_0^\infty
-\frac{e^{-q-\rho q^{-3/2}}}{q}\,dq.
+F(Y)=\int_{-\infty}^{\infty}e^{-(X^2-Y^3)^2}\,dX.
 $$
-Split at $q=1$:
+Then
 $$
-\begin{aligned}
-K(\rho)={}&\frac12\int_0^1\frac{e^{-\rho q^{-3/2}}}{q}\,dq\\
-&+\frac12\int_0^1\frac{(e^{-q}-1)e^{-\rho q^{-3/2}}}{q}\,dq
-+\frac12\int_1^\infty\frac{e^{-q}e^{-\rho q^{-3/2}}}{q}\,dq.
-\end{aligned}
+J(\delta)-A
+=\int_{-\infty}^{\infty}F(Y)(e^{-\delta Y^8}-1)\,dY.
 $$
-In the first integral use $w=\rho q^{-3/2}$. This gives
+The difficulty is that one cannot Taylor expand $e^{-\delta Y^8}$ under this integral: the formal coefficient would involve
 $$
-\frac12\int_0^1\frac{e^{-\rho q^{-3/2}}}{q}\,dq
-=\frac13\int_\rho^\infty\frac{e^{-w}}{w}\,dw
-=-\frac13\log\rho-\frac\gamma3+o(1).
+\int_0^\infty Y^8F(Y)\,dY,
 $$
-For the other two terms, dominated convergence gives
-$$
-\frac12\left[
-\int_0^1\frac{e^{-q}-1}{q}\,dq
-+\int_1^\infty\frac{e^{-q}}{q}\,dq
-\right]
-=-\frac\gamma2.
-$$
-The bracketed identity is the standard integral representation of the Euler-Mascheroni constant and follows directly from
-$$
-\gamma=\lim_{m\to\infty}\left(\sum_{k=1}^m\frac1k-\log m\right)
-$$
-by writing $1/k=\int_0^\infty e^{-kt}\,dt$ and passing to the limit. Hence
-$$
-K(\rho)=-\frac13\log\rho-\frac{5\gamma}{6}+o(1).
-$$
+which diverges. Thus the next term is controlled by a second, outer scale rather than by an ordinary perturbation of the inner integral.
 
-Step 4: Integrate the finite part against the remaining Gaussian weight
+Step 3: Find the large-$Y$ valley asymptotic
 
-From Step 2,
+For $Y>0$, put $b=Y^3$ and then $a=X^2$. Since
 $$
-\sqrt n\,I_n=\int_0^\infty z^{-1/2}e^{-z}K(\varepsilon z^3)\,dz.
+\int_{-\infty}^{\infty}G(X^2)\,dX
+=\int_0^\infty a^{-1/2}G(a)\,da,
 $$
-Split the $z$-integral at $z=\varepsilon^{-1/12}$. On the first part, $0<\varepsilon z^3\le\varepsilon^{3/4}$, so the remainder in Step 3 is uniform there by the definition of the limit as $\rho\to0$. The complementary $e^{-z}$ tail is smaller than every power of $\varepsilon$. Therefore termwise integration gives
+we get
 $$
-\begin{aligned}
-\sqrt n\,I_n
-={}&\frac{\sqrt\pi}{6}\log n
--\int_0^\infty z^{-1/2}e^{-z}\log z\,dz\\
-&-\frac{5\gamma}{6}\sqrt\pi+o(1).
-\end{aligned}
+F(Y)=\int_0^\infty a^{-1/2}e^{-(a-b)^2}\,da
+=\int_{-b}^{\infty}(b+u)^{-1/2}e^{-u^2}\,du.
 $$
-Now
+As $b\to\infty$, expand the algebraic factor on the Gaussian main range. The odd correction integrates to zero, and the omitted lower Gaussian tail is exponentially small. Hence
 $$
-\int_0^\infty z^{-1/2}e^{-z}\log z\,dz
-=\Gamma'(1/2).
+F(Y)=\sqrt\pi\,Y^{-3/2}+O(Y^{-15/2})
+\qquad(Y\to+\infty).
 $$
-Differentiating the duplication formula
+For $Y\to-\infty$, one has $X^2-Y^3=X^2+|Y|^3$, so $F(Y)$ decays exponentially.
+
+Step 4: Match the outer scale
+
+Using Step 3, subtract the leading positive-tail model. The remainder contributes
 $$
-\Gamma(w)\Gamma\left(w+\frac12\right)
-=2^{1-2w}\sqrt\pi\,\Gamma(2w)
+o(\delta^{1/16}),
 $$
-at $w=1/2$, and using $\Gamma'(1)=-\gamma$, gives
+because on $Y\ge1$ it is $O(Y^{-15/2})$, while on bounded $Y$ the factor $e^{-\delta Y^8}-1$ is $O(\delta)$. Therefore
 $$
-\Gamma'(1/2)=\sqrt\pi\,(-\gamma-2\log2).
+J(\delta)-A
+=\sqrt\pi\int_0^\infty
+Y^{-3/2}(e^{-\delta Y^8}-1)\,dY
++o(\delta^{1/16}).
 $$
-Hence
+Set $T=\delta^{1/8}Y$. Then
 $$
-\sqrt n\,I_n
-=\frac{\sqrt\pi}{6}\log n
-+\sqrt\pi\left(2\log2+\frac\gamma6\right)+o(1).
+J(\delta)-A
+=\sqrt\pi\,\delta^{1/16}
+\int_0^\infty T^{-3/2}(e^{-T^8}-1)\,dT
++o(\delta^{1/16}).
+$$
+With $u=T^8$,
+$$
+\int_0^\infty T^{-3/2}(e^{-T^8}-1)\,dT
+=\frac18\int_0^\infty(e^{-u}-1)u^{-17/16}\,du.
+$$
+Integration by parts gives
+$$
+\int_0^\infty(e^{-u}-1)u^{-17/16}\,du
+=\Gamma\left(-\frac1{16}\right)
+=-16\Gamma\left(\frac{15}{16}\right).
+$$
+Thus
+$$
+J(\delta)-A
+=-2\sqrt\pi\,\Gamma\left(\frac{15}{16}\right)
+\delta^{1/16}+o(\delta^{1/16}).
 $$
 
 Step 5: Recover the requested limit
 
-Subtracting the logarithmic term from Step 4 yields
+Since $\delta=n^{-1/3}$,
 $$
-\lim_{n\to\infty}
-\left(\sqrt n\,I_n-\frac{\sqrt\pi}{6}\log n\right)
-=\sqrt\pi\left(2\log2+\frac\gamma6\right).
+\delta^{1/16}=n^{-1/48}.
 $$
-Final Answer: $\boxed{\sqrt\pi\left(2\log2+\frac\gamma6\right)}$
+Combining this with the prefactor $n^{-5/12}$ from Step 1,
+$$
+I_n
+=A n^{-5/12}
+-2\sqrt\pi\,\Gamma\left(\frac{15}{16}\right)n^{-7/16}
++o(n^{-7/16}).
+$$
+Therefore
+$$
+\lim_{n\to\infty}n^{7/16}
+\left(I_n-\frac{A}{n^{5/12}}\right)
+=-2\sqrt\pi\,\Gamma\left(\frac{15}{16}\right).
+$$
+Final Answer: $\boxed{-2\sqrt\pi\,\Gamma\left(\frac{15}{16}\right)}$
 
 ---
 
 ## Answer
 
-$\sqrt\pi\left(2\log2+\frac\gamma6\right)$
+$-2\sqrt\pi\,\Gamma\left(\frac{15}{16}\right)$
 
 ---
 
@@ -146,8 +143,8 @@ $\sqrt\pi\left(2\log2+\frac\gamma6\right)$
 
 ## Solution Concepts
 
-- degenerate Laplace integral
-- product-ratio coordinates
-- competing asymptotic scales
-- logarithmic finite part
-- Gamma-function differentiation
+- degenerate cusp valley
+- matched asymptotic scales
+- nonuniform perturbation
+- Gaussian valley tail
+- Gamma-function finite correction
