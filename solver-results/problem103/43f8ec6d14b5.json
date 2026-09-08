@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "183272812ef044b036eb9cda9ca6866a9b74f0c7",
+  "problem_blob_sha": "43f8ec6d14b575b32d4eaccd908b477851e83424",
+  "statement_sha256": "7851b39bb88c7c69db14b0789080b69e2f04ba796ce15db91b00a78cffa702c2",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T05:40:49+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(\\lambda=2\\pi n\\). For fixed \\(x\\in[-1,1]\\), the vertical cross-section of \\(\\Omega\\) has length\n\\[\n2(1-x^4)^{1/4},\n\\]\nso\n\\[\nI_n=\\int_{-1}^{1}2(1-x^4)^{1/4}\\cos(\\lambda x)\\,dx.\n\\]\n\nOnly the endpoints \\(x=\\pm1\\) contribute to the algebraic asymptotics. Near \\(x=1\\), putting \\(t=1-x\\),\n\\[\n2(1-x^4)^{1/4}\n=2(4t-6t^2+4t^3-t^4)^{1/4}\n=2\\sqrt2\\,t^{1/4}\\left(1-\\frac38t+O(t^2)\\right).\n\\]\nThe same expansion holds near \\(x=-1\\). Thus the endpoint coefficients are\n\\[\nA=2\\sqrt2,\\qquad B=-\\frac{3\\sqrt2}{4}.\n\\]\n\nUsing\n\\[\n\\int_0^\\infty t^\\alpha \\cos(\\lambda-\\lambda t)\\,dt\n=\\Gamma(\\alpha+1)\\lambda^{-\\alpha-1}\n\\cos\\!\\left(\\lambda-\\frac{\\pi(\\alpha+1)}2\\right),\n\\]\nand \\(\\lambda=2\\pi n\\), so \\(\\cos\\lambda=1,\\sin\\lambda=0\\), the two endpoints together give\n\\[\nI_n=\n2A\\Gamma\\!\\left(\\frac54\\right)\\lambda^{-5/4}\\cos\\frac{5\\pi}{8}\n+\n2B\\Gamma\\!\\left(\\frac94\\right)\\lambda^{-9/4}\\cos\\frac{9\\pi}{8}\n+O(\\lambda^{-13/4}).\n\\]\nNow\n\\[\n2A\\Gamma\\!\\left(\\frac54\\right)\\cos\\frac{5\\pi}{8}\n=\n-\\frac{\\sqrt{4-2\\sqrt2}\\,\\Gamma(1/4)}{2},\n\\]\nwhich matches and cancels the given correction term.\n\nFor the next coefficient,\n\\[\n2B\\Gamma\\!\\left(\\frac94\\right)\\cos\\frac{9\\pi}{8}\n=\n2\\left(-\\frac{3\\sqrt2}{4}\\right)\n\\left(\\frac{5}{16}\\Gamma\\!\\left(\\frac14\\right)\\right)\n\\left(-\\frac{\\sqrt{2+\\sqrt2}}2\\right)\n=\n\\frac{15\\sqrt{4+2\\sqrt2}}{64}\\Gamma\\!\\left(\\frac14\\right).\n\\]\nTherefore\n\\[\nI_n+\n\\frac{\\sqrt{4-2\\sqrt2}\\,\\Gamma(1/4)}\n{2(2\\pi)^{5/4}n^{5/4}}\n=\n\\frac{15\\sqrt{4+2\\sqrt2}\\,\\Gamma(1/4)}\n{64(2\\pi)^{9/4}n^{9/4}}\n+o(n^{-9/4}).\n\\]\n\nHence the required limit is\n\\[\n\\boxed{\\frac{15\\sqrt{4+2\\sqrt2}\\,\\Gamma(1/4)}{64(2\\pi)^{9/4}}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T05:41:51+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/43f8ec6d14b5.json"
+}
