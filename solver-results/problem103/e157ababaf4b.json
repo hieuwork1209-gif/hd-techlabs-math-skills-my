@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "7e53e80409e08d0c6d032efe570175e10a46d2ec",
+  "problem_blob_sha": "e157ababaf4b7a7e6d3a3bfd2a0cce54e606cd67",
+  "statement_sha256": "0a5a984631404d0208badaa91beddeac8fd4b9ba343a96f2a45c2a8165b2923e",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T03:05:46+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nI_n(\\lambda)=\\iint_{\\substack{(x-1)^2+y^2\\le(1+\\lambda)^2\\\\\nx^2+(y-1)^2\\le(1+\\lambda)^2}}e^{-n(x^2+y^2)}\\,dx\\,dy .\n\\]\nThe mass is concentrated near \\((0,0)\\), so set\n\\[\nx=\\frac{u}{\\sqrt n},\\qquad y=\\frac{v}{\\sqrt n},\\qquad \\varepsilon=n^{-1/2}.\n\\]\nThen\n\\[\nI_n(\\lambda)=\\frac1n J_n(\\lambda),\n\\]\nwhere \\(J_n(\\lambda)\\) is the Gaussian integral in the scaled \\((u,v)\\)-region.\n\nThe first disk condition gives\n\\[\n\\left(\\frac u{\\sqrt n}-1\\right)^2+\\frac{v^2}{n}\\le (1+\\lambda)^2,\n\\]\nequivalently near the origin,\n\\[\nu\\ge \\sqrt n\\left(1-\\sqrt{(1+\\lambda)^2-\\frac{v^2}{n}}\\right).\n\\]\nFor\n\\[\n\\lambda=\\frac{\\alpha}{n}+\\frac{\\beta}{n^{3/2}},\n\\]\nTaylor expansion gives, uniformly on bounded \\(v\\),\n\\[\nu\\ge \\varepsilon\\left(\\frac{v^2}{2}-\\alpha\\right)-\\beta\\varepsilon^2+O(\\varepsilon^3).\n\\]\nSimilarly,\n\\[\nv\\ge \\varepsilon\\left(\\frac{u^2}{2}-\\alpha\\right)-\\beta\\varepsilon^2+O(\\varepsilon^3).\n\\]\n\nThus the scaled region is a small perturbation of the first quadrant. Let\n\\[\nh(t)=\\frac{t^2}{2}-\\alpha.\n\\]\nExpanding the Gaussian integral by boundary layers along the two axes gives\n\\[\nJ_n(\\lambda)\n=\n\\frac{\\pi}{4}\n-2\\varepsilon\\int_0^\\infty h(t)e^{-t^2}\\,dt\n+\\varepsilon^2\\left(2\\beta\\int_0^\\infty e^{-t^2}\\,dt+h(0)^2\\right)\n+O(\\varepsilon^3).\n\\]\nNow\n\\[\n\\int_0^\\infty e^{-t^2}\\,dt=\\frac{\\sqrt\\pi}{2},\n\\qquad\n\\int_0^\\infty \\frac{t^2}{2}e^{-t^2}\\,dt=\\frac{\\sqrt\\pi}{8}.\n\\]\nTherefore\n\\[\n-2\\int_0^\\infty h(t)e^{-t^2}\\,dt\n=\n-2\\left(\\frac{\\sqrt\\pi}{8}-\\alpha\\frac{\\sqrt\\pi}{2}\\right)\n=\n\\sqrt\\pi\\left(\\alpha-\\frac14\\right).\n\\]\nSince \\(J_n(\\lambda_n)=\\pi/4\\), the coefficient of \\(\\varepsilon\\) must vanish, so\n\\[\n\\alpha=\\frac14.\n\\]\n\nNow put\n\\[\n\\lambda_n=\\frac{1}{4n}+\\frac{\\beta}{n^{3/2}}+o(n^{-3/2}).\n\\]\nFor \\(\\alpha=1/4\\),\n\\[\nh(0)=-\\frac14,\n\\qquad h(0)^2=\\frac1{16}.\n\\]\nThe \\(\\varepsilon^2\\)-coefficient must vanish:\n\\[\n2\\beta\\cdot \\frac{\\sqrt\\pi}{2}+\\frac1{16}=0.\n\\]\nHence\n\\[\n\\beta\\sqrt\\pi=-\\frac1{16},\n\\qquad\n\\beta=-\\frac{1}{16\\sqrt\\pi}.\n\\]\n\nTherefore\n\\[\n\\boxed{-\\frac{1}{16\\sqrt\\pi}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T03:07:18+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/e157ababaf4b.json"
+}
