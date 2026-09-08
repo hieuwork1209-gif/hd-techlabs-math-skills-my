@@ -53,7 +53,7 @@ Then $U^2=V^2=T^2=dI_2$, the three matrices pairwise anticommute, and $U,V$ gene
 $$
 UVT=-cd^2I_2
 $$
-has square $-d^3$, so it generates $K$ over $\mathbb F_p$. Therefore the induced map $C\to M_2(K)$ is onto. Since both sides have dimension at most and at least $8$ over $\mathbb F_p$, respectively,
+has square $-d^3$, so it generates $K$ over $\mathbb F_p$. Therefore the induced map $C\to M_2(K)$ is onto. The target has dimension $8$ over $\mathbb F_p$, while $\dim C\le8$, so surjectivity forces $\dim C=8$ and
 $$
 C\cong M_2(K).
 $$
@@ -79,7 +79,7 @@ $$
 C\cong M_2(\mathbb F_p)\oplus M_2(\mathbb F_p).
 $$
 
-Let $L=\mathbb F_p(\sqrt d)$. The norm map $L^\times\to\mathbb F_p^\times$ is surjective, so choose $a,c\in\mathbb F_p$ with
+Let $L=\mathbb F_p(\sqrt d)$. The norm map $N_{L/\mathbb F_p}(x)=x^{p+1}$ is onto $\mathbb F_p^\times$: indeed $L^\times$ is cyclic of order $p^2-1$, so the image has order $(p^2-1)/(p+1)=p-1$. Hence choose $a,c\in\mathbb F_p$ with
 $$
 a^2-dc^2=d.
 $$
@@ -116,7 +116,7 @@ map under $(\phi_+,\phi_-)$ to $(I_2,0)$ and $(0,I_2)$. Hence the combined map
 $$
 C\to M_2(\mathbb F_p)\oplus M_2(\mathbb F_p)
 $$
-is onto. The target has dimension $8$, while $\dim C\le8$, so it is an isomorphism.
+is onto. The target has dimension $8$, while $\dim C\le8$, so the map is an isomorphism.
 
 Step 5: Count the three module types when $p\equiv3\pmod4$
 
