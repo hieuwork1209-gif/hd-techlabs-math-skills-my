@@ -33,7 +33,19 @@ $$
 A=\begin{pmatrix}a&b\\ c&-a\end{pmatrix},\qquad
 B=\begin{pmatrix}r&s\\ t&-r\end{pmatrix},
 $$
-direct multiplication gives
+we have
+$$
+AB=\begin{pmatrix}
+ar+bt&as-br\\
+cr-at&cs+ar
+\end{pmatrix},
+\qquad
+BA=\begin{pmatrix}
+ar+cs&br-as\\
+at-cr&bt+ar
+\end{pmatrix}.
+$$
+Therefore
 $$
 AB+BA=(2ar+bt+cs)I.
 $$
@@ -86,17 +98,25 @@ so
 $$
 \det Q=-\frac14.
 $$
-In an orthogonal basis beginning with $A$, determinant square classes therefore give
+Changing basis multiplies the determinant of a quadratic-form matrix by a square. Hence an orthogonal basis beginning with $A$ gives
 $$
 \det(q|_{L^{\perp}})\equiv\frac{-1}{q(A)}\pmod{(\mathbb F_p^{\times})^2}.
 $$
-A nondegenerate binary quadratic form is isotropic exactly when the negative of its determinant is a square. Here
+After diagonalizing a nondegenerate binary form as $\alpha x^2+\gamma y^2$, it has a nonzero isotropic vector exactly when $-\alpha\gamma$ is a square. Here
 $$
 -\det(q|_{L^{\perp}})\equiv\frac{1}{q(A)},
 $$
-which is a nonsquare. Thus $q|_{L^{\perp}}$ is anisotropic.
+which is a nonsquare, so $q|_{L^{\perp}}$ is anisotropic.
 
-Any anisotropic binary quadratic form over $\mathbb F_p$ is a nonzero scalar multiple of a norm form $x^2-dy^2$ with $d$ nonsquare. The norm map from $\mathbb F_{p^2}^{\times}$ to $\mathbb F_p^{\times}$ has kernel of size $p+1$, so every nonzero value is represented by exactly $p+1$ nonzero vectors. Therefore exactly half of the $p^2-1$ nonzero vectors in $L^{\perp}$ have nonsquare $q$-value. Dividing by $p-1$ vectors per projective line gives
+Diagonalize $q|_{L^{\perp}}$ as
+$$
+\alpha(x^2-dy^2),
+$$
+where anisotropy forces $d$ to be a nonsquare. In $K=\mathbb F_p(\sqrt d)$,
+$$
+x^2-dy^2=N_{K/\mathbb F_p}(x+y\sqrt d).
+$$
+The group $K^{\times}$ is cyclic of order $(p-1)(p+1)$, and the norm is $z\mapsto z^{p+1}$. Its kernel therefore has $p+1$ elements, so the norm is onto $\mathbb F_p^{\times}$ and every nonzero value has exactly $p+1$ preimages. Multiplication by the fixed scalar $\alpha$ either preserves or swaps the two square classes, so exactly half of the $p^2-1$ nonzero vectors in $L^{\perp}$ have nonsquare $q$-value. Dividing by $p-1$ vectors per projective line gives
 $$
 N_2=\frac{p+1}{2}
 $$
@@ -108,11 +128,11 @@ Choose orthogonal field lines $L_1,L_2$. Their span is nondegenerate, so
 $$
 L_3=(L_1\oplus L_2)^{\perp}
 $$
-is the unique line orthogonal to both. Choose nonzero vectors $A_i\in L_i$. In the orthogonal basis $(A_1,A_2,A_3)$, the determinant of the quadratic form is, up to a square factor,
+is the unique line orthogonal to both. Choose nonzero vectors $A_i\in L_i$. In the orthogonal basis $(A_1,A_2,A_3)$, changing from the original basis changes the determinant by a square, so
 $$
-q(A_1)q(A_2)q(A_3).
+q(A_1)q(A_2)q(A_3)\equiv\det Q\equiv-1\pmod{(\mathbb F_p^{\times})^2}.
 $$
-Since $\det Q=-1/4$, its square class is $-1$. The first two values are nonsquares, so their product is a square. Hence
+The first two values are nonsquares, so their product is a square. Hence
 $$
 q(A_3)\equiv-1\pmod{(\mathbb F_p^{\times})^2}.
 $$
