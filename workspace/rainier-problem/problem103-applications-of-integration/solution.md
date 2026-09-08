@@ -1,140 +1,202 @@
 ## Steps
 
-Step 1: Reduce the matrix-invariant phase
+Step 1: Reduce the invariant matrix integral to eigenvalues
 
 Write
 $$
-M=\begin{pmatrix}x&z\\ z&y\end{pmatrix}.
+M=\begin{pmatrix}
+a&d&e\\
+d&b&f\\
+e&f&c
+\end{pmatrix}.
+$$
+For a real symmetric matrix, write $M=Q\operatorname{diag}(\lambda_1,\lambda_2,\lambda_3)Q^T$. Infinitesimally, if $Q^TdQ=\Omega$ is skew-symmetric, then the off-diagonal part of $Q^TdMQ$ is
+$$
+(\lambda_j-\lambda_i)\Omega_{ij}.
+$$
+Hence, after integrating the orthogonal variables, the Euclidean volume element has the form
+$$
+C\,|\Delta(\lambda)|\,d\lambda_1d\lambda_2d\lambda_3,
+\qquad
+\Delta(\lambda)=\prod_{i<j}(\lambda_i-\lambda_j),
+$$
+for a constant $C$.
+
+We determine $C$ from the Gaussian integral. Directly in the six matrix entries,
+$$
+\int e^{-\operatorname{tr}(M^2)}\,dM
+=\pi^{3/2}\left(\frac\pi2\right)^{3/2}
+=\frac{\pi^3}{2^{3/2}}.
+$$
+On the eigenvalue side use the orthonormal coordinates
+$$
+\lambda_1=\frac m{\sqrt3}+\frac u{\sqrt2}+\frac v{\sqrt6},\quad
+\lambda_2=\frac m{\sqrt3}-\frac u{\sqrt2}+\frac v{\sqrt6},\quad
+\lambda_3=\frac m{\sqrt3}-\frac{2v}{\sqrt6}.
 $$
 Then
 $$
-\det M=xy-z^2,
-\qquad
-\|M\|_F^2=x^2+y^2+2z^2.
-$$
-Put
-$$
-m=\frac{x+y}{2},\qquad
-u=\frac{x-y}{2},
-$$
-and use polar coordinates
-$$
-\nu=d\cos\theta,\qquad z=d\sin\theta,\qquad d\ge0.
-$$
-Since $dx\,dy\,dz=2d\,dm\,dd\,d\theta$, integration in $\theta$ gives
-$$
-I_n=4\pi\int_{-\infty}^{\infty}\int_0^\infty
- d\,e^{-n\left((m^2-d^2)^2+8(m^2+d^2)^3\right)}\,dd\,dm.
-$$
-
-Step 2: Obtain an exact two-variable boundary representation
-
-Set
-$$
-a=m^2,\qquad b=d^2.
-$$
-Using both signs of $m$ and $d\,dd=db/2$,
-$$
-I_n=2\pi\int_0^\infty\int_0^\infty
-a^{-1/2}e^{-n\left((a-b)^2+8(a+b)^3\right)}\,da\,db.
-$$
-Now let
-$$
-s=a+b,\qquad q=a-b.
-$$
-Then $s\ge0$, $|q|\le s$, $da\,db=\frac12ds\,dq$, and
-$$
-a^{-1/2}=\sqrt2\,(s+q)^{-1/2}.
-$$
-Therefore the exact formula is
-$$
-I_n=\pi\sqrt2\int_0^\infty e^{-8ns^3}
-\int_{-s}^{s}(s+q)^{-1/2}e^{-nq^2}\,dq\,ds.
-$$
-The determinant-zero cone is $q=0$; its apex is $s=0$.
-
-Step 3: Compute the leading contribution along the cone
-
-Away from the apex, the $q$-Gaussian has scale $n^{-1/2}$ while the radial variable has scale $s\asymp n^{-1/3}$. Thus the interval $[-s,s]$ may first be replaced by the whole line and $(s+q)^{-1/2}$ by $s^{-1/2}$. This gives
-$$
-I_n\sim\pi\sqrt2\,\sqrt{\frac\pi n}
-\int_0^\infty s^{-1/2}e^{-8ns^3}\,ds.
-$$
-With $u=8ns^3$,
-$$
-\int_0^\infty s^{-1/2}e^{-8ns^3}\,ds
-=\frac{\Gamma(1/6)}{3\sqrt2\,n^{1/6}}.
-$$
-Hence
-$$
-I_n\sim\frac{\pi^{3/2}\Gamma(1/6)}{3n^{2/3}}.
-$$
-
-Step 4: Resolve the nonuniform apex correction
-
-Subtract the leading cone model before taking the next limit:
-$$
-\begin{aligned}
-R_n={}&I_n-rac{\pi^{3/2}\Gamma(1/6)}{3n^{2/3}}\\
-=\pi\sqrt2\int_0^\infty e^{-8ns^3}\Bigg[
-&\int_{-s}^{s}(s+q)^{-1/2}e^{-nq^2}\,dq
--\int_{-\infty}^{\infty}s^{-1/2}e^{-nq^2}\,dq\Bigg]ds.
-\end{aligned}
-$$
-The difference is concentrated at the apex scale
-$$
-s=n^{-1/2}S,\qquad q=n^{-1/2}Q.
-$$
-At this scale $e^{-8ns^3}\to1$, and dominated splitting between bounded $S$ and the integrable large-$S$ tail gives
-$$
-n^{3/4}R_n\to\pi\sqrt2\,K,
-$$
-where
-$$
-K=\int_0^\infty\left[
-\int_{-S}^{S}(S+Q)^{-1/2}e^{-Q^2}\,dQ
--\sqrt\pi\,S^{-1/2}
-\right]dS.
-$$
-To evaluate $K$, write $\sqrt\pi=\int_{-\infty}^{\infty}e^{-Q^2}\,dQ$ and integrate first in $S$. For fixed $Q$,
-$$
-\begin{aligned}
-&\int_{|Q|}^{\infty}(S+Q)^{-1/2}\,dS
--\int_0^\infty S^{-1/2}\,dS\\
-&\qquad=-2\sqrt{|Q|+Q}.
-\end{aligned}
-$$
-Thus only $Q>0$ contributes, and
-$$
-K=-2\sqrt2\int_0^\infty Q^{1/2}e^{-Q^2}\,dQ
-=-\sqrt2\,\Gamma\left(\frac34\right).
-$$
-Consequently
-$$
-n^{3/4}R_n\to-2\pi\Gamma\left(\frac34\right).
-$$
-
-Step 5: Recover the requested limit
-
-We have proved
-$$
-I_n=rac{\pi^{3/2}\Gamma(1/6)}{3n^{2/3}}
--\frac{2\pi\Gamma(3/4)}{n^{3/4}}
-+o(n^{-3/4}).
+|\Delta|=\frac{r^3}{\sqrt2}|\cos 3\theta|,
+\qquad u=r\cos\theta,\quad v=r\sin\theta.
 $$
 Therefore
 $$
-\lim_{n\to\infty}n^{3/4}
-\left(I_n-\frac{\pi^{3/2}\Gamma(1/6)}{3n^{2/3}}\right)
-=-2\pi\Gamma\left(\frac34\right).
+\int_{\mathbb R^3}e^{-\sum\lambda_i^2}|\Delta|\,d\lambda
+=\sqrt\pi\,\frac1{\sqrt2}
+\left(\int_0^\infty r^4e^{-r^2}\,dr\right)
+\left(\int_0^{2\pi}|\cos3\theta|\,d\theta\right)
+=\frac{3\pi}{2^{3/2}}.
 $$
-Final Answer: $\boxed{-2\pi\Gamma\left(\frac34\right)}$
+Thus
+$$
+C=\frac{\pi^2}{3}.
+$$
+Consequently
+$$
+I_n=\frac{\pi^2}{3}\int_{\mathbb R^3}
+|\Delta(\lambda)|
+ e^{-n\left((\lambda_1\lambda_2\lambda_3)^2+(\lambda_1^2+\lambda_2^2+\lambda_3^2)^4\right)}d\lambda.
+$$
+
+Step 2: Compute the leading rank-two contribution
+
+The determinant-zero set is the union of the three coordinate planes $\lambda_i=0$. Away from their intersections, take for example $\lambda_3$ as the normal variable. Then
+$$
+|\Delta(\lambda)|
+=|\lambda_1-\lambda_2|\,|\lambda_1\lambda_2|+o(1)
+$$
+in the normal scale, while
+$$
+\int_{-\infty}^{\infty}
+ e^{-n(\lambda_1\lambda_2)^2\lambda_3^2}\,d\lambda_3
+=\frac{\sqrt\pi}{\sqrt n\,|\lambda_1\lambda_2|}.
+$$
+Hence one rank-two plane contributes
+$$
+\frac{\sqrt\pi}{\sqrt n}
+\int_{\mathbb R^2}|x-y|e^{-n(x^2+y^2)^4}\,dx\,dy.
+$$
+With $x=n^{-1/8}X$, $y=n^{-1/8}Y$ this equals
+$$
+\sqrt\pi\,n^{-7/8}
+\int_{\mathbb R^2}|X-Y|e^{-(X^2+Y^2)^4}\,dX\,dY.
+$$
+Using polar coordinates,
+$$
+\int_{\mathbb R^2}|X-Y|e^{-(X^2+Y^2)^4}\,dX\,dY
+=4\sqrt2\int_0^\infty r^2e^{-r^8}\,dr
+=\frac{\sqrt2}{2}\Gamma\left(\frac38\right).
+$$
+There are three rank-two planes, so after multiplying by $\pi^2/3$,
+$$
+I_n=\frac{\pi^{5/2}}{\sqrt2}\Gamma\left(\frac38\right)n^{-7/8}
++o(n^{-7/8}).
+$$
+
+Step 3: Identify the next stratum
+
+The rank-two approximation is nonuniform where two eigenvalues vanish. Near the $\lambda_1$-axis use the rank-one scaling
+$$
+\lambda_1=n^{-1/8}X,\qquad
+\lambda_2=n^{-3/16}Y,\qquad
+\lambda_3=n^{-3/16}Z.
+$$
+Then
+$$
+n(\lambda_1\lambda_2\lambda_3)^2\to X^2Y^2Z^2,
+\qquad
+n(\lambda_1^2+\lambda_2^2+\lambda_3^2)^4\to X^8,
+$$
+and
+$$
+|\Delta(\lambda)|\,d\lambda
+=n^{-15/16}|X|^2|Y-Z|\,dX\,dY\,dZ+o(n^{-15/16}).
+$$
+Thus the rank-one intersections occur at order $n^{-15/16}$.
+
+The two rank-two plane models meeting on this axis must be subtracted. For fixed $X$, their combined local contribution is the finite part
+$$
+K(X)=\lim_{R\to\infty}\left[
+\int_{-R}^R\int_{-R}^R
+|X|^2|Y-Z|e^{-X^2Y^2Z^2}\,dY\,dZ
+-4R\sqrt\pi\,|X|
+\right].
+$$
+With
+$$
+a=\sqrt{|X|}\,Y,\qquad b=\sqrt{|X|}\,Z,
+$$
+we get
+$$
+K(X)=|X|^{1/2}K_0,
+$$
+where
+$$
+K_0=\lim_{L\to\infty}\left[
+\int_{-L}^L\int_{-L}^L|a-b|e^{-a^2b^2}\,da\,db
+-4L\sqrt\pi
+\right].
+$$
+
+Step 4: Evaluate the universal rank-one finite part
+
+By splitting the square into same-sign and opposite-sign quadrants,
+$$
+\int_{-L}^L\int_{-L}^L|a-b|e^{-a^2b^2}\,da\,db
+=8\int_0^L a\int_0^a e^{-a^2b^2}\,db\,da.
+$$
+With $t=ab$ and then reversing the order,
+$$
+\begin{aligned}
+8\int_0^L a\int_0^a e^{-a^2b^2}\,db\,da
+={}&8L\int_0^{L^2}e^{-t^2}\,dt\\
+&-8\int_0^{L^2}t^{1/2}e^{-t^2}\,dt.
+\end{aligned}
+$$
+Therefore
+$$
+K_0=-8\int_0^\infty t^{1/2}e^{-t^2}\,dt
+=-4\Gamma\left(\frac34\right).
+$$
+Also
+$$
+\int_{-\infty}^{\infty}|X|^{1/2}e^{-X^8}\,dX
+=\frac14\Gamma\left(\frac3{16}\right).
+$$
+Hence one rank-one axis contributes
+$$
+-\Gamma\left(\frac3{16}\right)\Gamma\left(\frac34\right)n^{-15/16}.
+$$
+There are three such axes. Multiplying by the spectral factor $\pi^2/3$ gives
+$$
+-\pi^2\Gamma\left(\frac3{16}\right)\Gamma\left(\frac34\right)n^{-15/16}.
+$$
+Regular corrections along the rank-two planes are $O(n^{-9/8})$, while the rank-zero apex is $O(n^{-1})$, so both are smaller than $n^{-15/16}$.
+
+Step 5: Recover the requested limit
+
+Thus
+$$
+I_n=
+\frac{\pi^{5/2}\Gamma(3/8)}{\sqrt2\,n^{7/8}}
+-\frac{\pi^2\Gamma(3/16)\Gamma(3/4)}{n^{15/16}}
++o(n^{-15/16}).
+$$
+Therefore
+$$
+\lim_{n\to\infty}n^{15/16}
+\left(I_n-
+\frac{\pi^{5/2}\Gamma(3/8)}{\sqrt2\,n^{7/8}}
+\right)
+=-\pi^2\Gamma\left(\frac3{16}\right)\Gamma\left(\frac34\right).
+$$
+Final Answer: $\boxed{-\pi^2\Gamma\left(\frac3{16}\right)\Gamma\left(\frac34\right)}$
 
 ---
 
 ## Answer
 
-$-2\pi\Gamma\left(\frac34\right)$
+$-\pi^2\Gamma\left(\frac3{16}\right)\Gamma\left(\frac34\right)$
 
 ---
 
@@ -148,8 +210,8 @@ $-2\pi\Gamma\left(\frac34\right)$
 
 ## Solution Concepts
 
-- symmetric-matrix invariants
-- determinant-zero cone
-- degenerate Laplace asymptotics
-- apex matching correction
+- symmetric-matrix eigenvalue reduction
+- determinant rank stratification
+- nonuniform rank-two asymptotics
+- rank-one finite-part matching
 - Gamma-function moments
