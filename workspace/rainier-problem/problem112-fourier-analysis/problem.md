@@ -2,13 +2,13 @@
 
 ## LaTeX (Normalized)
 
-Let $m\ge2$. Determine the number of matrices
+Let $m\ge1$. Determine the number of matrices
 $$
 A\in M_2(\mathbb Z/2^m\mathbb Z)
 $$
 satisfying
 $$
-A^2=0.
+A^3=0.
 $$
 
 ---
@@ -26,4 +26,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for an exact count of square-zero matrices over the finite local ring $\mathbb Z/2^m\mathbb Z$. Unlike over a field, the trace of a square-zero matrix need not vanish because powers of $2$ are zero divisors. The count therefore requires a two-adic stratification by the valuation of the trace, together with exact counts for product congruences of the form $bc\equiv-a^2\pmod{2^n}$. The central structure is modular and two-adic, so the best classification is Number Theory with sub-domain Modular arithmetic and congruences.
+The problem asks for an exact count of cube-zero endomorphisms of a rank-two module over the finite local ring $\mathbb Z/2^m\mathbb Z$. Reduction modulo $2$ splits the matrices into the zero class and the three primitive nilpotent classes. The zero class produces a three-step lifting recurrence, while the primitive classes are governed by Cayley--Hamilton together with the two-adic condition $(\operatorname{tr}A)^3=0$. The essential structure is modular and two-adic, so the best classification is Number Theory with sub-domain Modular arithmetic and congruences.
