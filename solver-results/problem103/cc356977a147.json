@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "cb463b645a33ab21773e97689a6f3ba2e6f14707",
+  "problem_blob_sha": "cc356977a147a705ac7521e8c7dd30a14b4e7c77",
+  "statement_sha256": "344df33f899ad005c94905c542980f80c2defd90c3a26379e51db1e7d490ffa4",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T03:00:22+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nI_n(\\lambda)=\\iint_{(x-1)^2+y^2\\le (1+\\lambda)^2} e^{-n(x^2+y^2)}\\,dx\\,dy .\n\\]\nThe total Gaussian integral over the plane is \\(\\pi/n\\), so the condition asks that this shifted disk capture exactly half the mass.\n\nSet\n\\[\nx=\\frac X{\\sqrt n},\\qquad y=\\frac Y{\\sqrt n},\\qquad \\lambda=\\frac tn .\n\\]\nThen\n\\[\nI_n(\\lambda)=\\frac1n\\iint_{\\Omega_{n,t}} e^{-(X^2+Y^2)}\\,dX\\,dY.\n\\]\nNear the origin, the relevant boundary of the disk is the left boundary\n\\[\nx=1-\\sqrt{(1+\\lambda)^2-y^2}.\n\\]\nThus in scaled variables,\n\\[\nX_-(Y)=\\sqrt n\\left(1-\\sqrt{(1+t/n)^2-\\frac{Y^2}{n}}\\right).\n\\]\nUsing \\(\\varepsilon=n^{-1/2}\\), expand:\n\\[\nX_-(Y)\n=\\varepsilon\\left(\\frac{Y^2}{2}-t\\right)\n+\\varepsilon^3\\left(\\frac12\\left(\\frac{Y^2}{2}-t\\right)^2-\\frac{t^2}{2}\\right)\n+O(\\varepsilon^5(1+|Y|^6)).\n\\]\nThe right boundary of the disk is at \\(X\\sim 2\\sqrt n\\), so its omitted Gaussian contribution is exponentially small.\n\nTherefore\n\\[\nn I_n(t/n)\n=\n\\int_{-\\infty}^{\\infty} e^{-Y^2}\n\\int_{X_-(Y)}^\\infty e^{-X^2}\\,dX\\,dY+O(e^{-cn}).\n\\]\nFor small \\(s\\),\n\\[\n\\int_s^\\infty e^{-X^2}\\,dX\n=\\frac{\\sqrt\\pi}{2}-s+\\frac{s^3}{3}+O(s^5).\n\\]\nLet\n\\[\nu(Y)=\\frac{Y^2}{2}-t,\\qquad\nv(Y)=\\frac12u(Y)^2-\\frac{t^2}{2}.\n\\]\nThen\n\\[\nnI_n(t/n)-\\frac\\pi2\n=\n-\\varepsilon\\int e^{-Y^2}u(Y)\\,dY\n+\\varepsilon^3\\left(-\\int e^{-Y^2}v(Y)\\,dY+\\frac13\\int e^{-Y^2}u(Y)^3\\,dY\\right)\n+O(\\varepsilon^5).\n\\]\n\nUsing\n\\[\n\\int e^{-Y^2}\\,dY=\\sqrt\\pi,\\qquad\n\\int Y^2e^{-Y^2}\\,dY=\\frac{\\sqrt\\pi}{2},\n\\]\nthe first-order term is\n\\[\n-\\varepsilon\\sqrt\\pi\\left(\\frac14-t\\right)\n=\\varepsilon\\sqrt\\pi\\left(t-\\frac14\\right).\n\\]\nHence \\(t\\to 1/4\\), i.e. \\(\\lambda_n\\sim 1/(4n)\\).\n\nNow put\n\\[\nt=\\frac14+\\frac bn+o(n^{-1}).\n\\]\nWe need the next coefficient at \\(t=1/4\\). With the normalized Gaussian moments\n\\[\n\\mathbb E[Y^2]=\\frac12,\\qquad\n\\mathbb E[Y^4]=\\frac34,\\qquad\n\\mathbb E[Y^6]=\\frac{15}{8},\n\\]\nat \\(t=1/4\\) we have\n\\[\n\\mathbb E[u^2]=\\frac18,\\qquad\n\\mathbb E[u^3]=\\frac18,\n\\]\nand\n\\[\n\\mathbb E[v]\n=\\frac12\\mathbb E[u^2]-\\frac12t^2\n=\\frac1{16}-\\frac1{32}\n=\\frac1{32}.\n\\]\nThus the \\(\\varepsilon^3\\)-coefficient equals\n\\[\n-\\frac1{32}+\\frac13\\cdot\\frac18\n=-\\frac1{32}+\\frac1{24}\n=\\frac1{96}.\n\\]\nThe equation \\(I_n(\\lambda_n)=\\pi/(2n)\\) gives\n\\[\n0=\\varepsilon\\sqrt\\pi\\left(t-\\frac14\\right)\n+\\varepsilon^3\\sqrt\\pi\\cdot\\frac1{96}\n+O(\\varepsilon^5),\n\\]\nso\n\\[\nt-\\frac14=-\\frac1{96n}+O(n^{-2}).\n\\]\nSince \\(t=n\\lambda_n\\),\n\\[\nn^2\\left(\\lambda_n-\\frac1{4n}\\right)\n=n\\left(t-\\frac14\\right)\\to -\\frac1{96}.\n\\]\n\n\\[\n\\boxed{-\\frac1{96}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T03:02:35+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/cc356977a147.json"
+}
