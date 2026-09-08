@@ -1,0 +1,22 @@
+{
+  "problem": "problem112",
+  "branch": "adversary/problem112",
+  "problem_path": "workspace/rainier-problem/problem112-fourier-analysis/problem.md",
+  "source_commit_sha": "4eb6ed456b5b2286a88a21ef5f9ef5a48ad3d0e5",
+  "problem_blob_sha": "1d21451f57f72bba26c88bfe67cfb59be94ff311",
+  "statement_sha256": "d9128818b51265b76f62ba3a019f52fc728277411833b1a2c9b3ca564b54012d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T04:28:41+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(n=3q\\) and \\(e_N(t)=\\exp(2\\pi i t/N)\\). Write\n\\[\nA_q(r)=\\sum_{x\\bmod 3^n} e_{3^n}(x^3-rx).\n\\]\n\nWe use three elementary facts.\n\nFirst, replacing \\(x\\) by \\(x+3^{n-1}t\\), \\(t\\bmod 3\\), changes the phase by \\(-rt/3\\). Hence\n\\[\nA_q(r)=0\\qquad (3\\nmid r).\n\\]\n\nSecond, if \\(r=9R\\), then all unit classes \\(x\\not\\equiv0\\pmod3\\) cancel by the same one-step summation in the next digit, while the class \\(x=3y\\) gives\n\\[\nA_q(9R)\n=\\sum_{y\\bmod 3^{n-1}} e_{3^n}(27y^3-27Ry)\n=9A_{q-1}(R).\n\\]\nSince \\(R\\) is taken modulo \\(3^{3q-3}\\), each residue for \\(A_{q-1}\\) has exactly \\(3\\) lifts to a residue \\(r\\bmod 3^{3q}\\). Thus the contribution from \\(9\\mid r\\) is\n\\[\n3P_{q-1},\\qquad 3N_{q-1}.\n\\]\n\nThird, consider \\(r=3s\\) with \\(3\\nmid s\\). If \\(s\\equiv2\\pmod3\\), there is no solution to \\(x^2\\equiv s\\pmod3\\), so stationary-phase summation gives \\(A_q(3s)=0\\). If \\(s\\equiv1\\pmod3\\), choose the unique \\(a\\bmod 3^{n-1}\\) with\n\\[\na^2\\equiv s\\pmod{3^{n-1}},\\qquad a\\equiv1\\pmod3.\n\\]\nThe two critical classes are \\(a\\) and \\(-a\\), and the local quadratic factors are equal positive real multiples of conjugate phases, giving\n\\[\n\\operatorname{sgn} A_q(3s)\n=\n\\operatorname{sgn}\\cos\\!\\left(\\frac{4\\pi a^3}{3^n}\\right).\n\\]\n\nNow the cube map sends\n\\[\na\\bmod 3^{n-1},\\quad a\\equiv1\\pmod3\n\\]\nbijectively onto\n\\[\ny\\bmod 3^n,\\quad y\\equiv1\\pmod9.\n\\]\nTherefore we only need to count residues \\(y\\equiv1\\pmod9\\) for which\n\\[\n\\cos\\!\\left(\\frac{4\\pi y}{3^n}\\right)>0.\n\\]\nThis holds for\n\\[\n0<y<\\frac{3^n}{8},\\qquad\n\\frac{3\\cdot 3^n}{8}<y<\\frac{5\\cdot 3^n}{8},\\qquad\n\\frac{7\\cdot 3^n}{8}<y<3^n.\n\\]\nThere are \\(3^{n-2}=3^{3q-2}\\) residues \\(y\\equiv1\\pmod9\\). A direct floor count, using\n\\[\n3^n\\equiv\n\\begin{cases}\n9\\pmod{72},&q\\text{ even},\\\\\n27\\pmod{72},&q\\text{ odd},\n\\end{cases}\n\\]\ngives\n\\[\nU_q^+=\\frac{3^{3q-2}+(-1)^q}{2},\\qquad\nU_q^-=\\frac{3^{3q-2}-(-1)^q}{2}\n\\]\nfor the positive and negative values among \\(r=3s\\), \\(3\\nmid s\\).\n\nFor \\(q=1\\), direct evaluation gives\n\\[\n(P_1,N_1)=(4,2).\n\\]\nThus for \\(q\\ge2\\),\n\\[\nP_q=3P_{q-1}+U_q^+,\\qquad\nN_q=3N_{q-1}+U_q^-.\n\\]\nAdding and subtracting,\n\\[\nP_q+N_q=3(P_{q-1}+N_{q-1})+3^{3q-2},\n\\]\n\\[\nP_q-N_q=3(P_{q-1}-N_{q-1})+(-1)^q.\n\\]\nSolving these recurrences from \\((P_1,N_1)=(4,2)\\),\n\\[\nP_q+N_q=\\frac{3^{3q}+21\\cdot 3^{q-1}}{8},\n\\]\n\\[\nP_q-N_q=\\frac{3^{q+1}+(-1)^q}{4}.\n\\]\nHence\n\\[\nP_q=\\frac{3^{3q}+39\\cdot 3^{q-1}+2(-1)^q}{16},\n\\]\n\\[\nN_q=\\frac{3^{3q}+3^q-2(-1)^q}{16}.\n\\]\n\n\\[\n\\boxed{\\left(P_q,N_q\\right)=\\left(\\frac{3^{3q}+39\\cdot 3^{q-1}+2(-1)^q}{16},\\frac{3^{3q}+3^q-2(-1)^q}{16}\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T04:33:54+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem112/1d21451f57f7.json"
+}
