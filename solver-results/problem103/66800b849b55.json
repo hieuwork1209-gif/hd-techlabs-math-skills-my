@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "119e9869b79459a6b686715c86ed3808a2ceb5ac",
+  "problem_blob_sha": "66800b849b5510416aa77c895ef65a31e388026e",
+  "statement_sha256": "d649f177c4156535f0f64c82f5f5806cfaed6d70ce5f2cf8222607add1693ef8",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T18:06:40+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nA(s)=\\iint_T \\Delta^2 (xyz)^{-s}\\,dx\\,dy.\n\\]\nFor \\(0<c<1\\), Mellin inversion gives\n\\[\nI_n=\\frac1{2\\pi i}\\int_{c-i\\infty}^{c+i\\infty}\\Gamma(s)n^{-s}A(s)\\,ds.\n\\]\n\nUse\n\\[\n\\Delta^2=(x-y)^2(y-z)^2(z-x)^2\n=q^2-4q^3-4r+18qr-27r^2,\n\\]\nwhere\n\\[\nq=xy+yz+zx,\\qquad r=xyz.\n\\]\nWriting\n\\[\nD_{ijk}(s)=\\iint_T x^{i-s}y^{j-s}z^{k-s}\\,dx\\,dy\n=\\frac{\\Gamma(i+1-s)\\Gamma(j+1-s)\\Gamma(k+1-s)}\n{\\Gamma(i+j+k+3-3s)},\n\\]\nexpansion of the symmetric polynomial gives\n\\[\nA(s)=3D_{220}-2D_{111}-12D_{330}-72D_{321}+54D_{221}-51D_{222}.\n\\]\n\nThe pole at \\(s=1\\) is\n\\[\nA(s)=-\\frac1{10(s-1)}+O(1),\n\\]\nso its Mellin residue contributes\n\\[\n\\frac1{10n}.\n\\]\n\nNow put \\(u=s-2\\). Around \\(s=2\\), using\n\\[\n\\Gamma(-u)=-\\frac1u-\\gamma+O(u),\\qquad\n\\Gamma(-1-u)=\\frac1u+\\gamma-1+O(u),\n\\]\none obtains\n\\[\nA(2+u)=-\\frac6{u^2}-\\frac{21}{u}+O(1).\n\\]\nAlso\n\\[\n\\Gamma(2+u)=1+(1-\\gamma)u+O(u^2),\n\\]\nhence\n\\[\n\\Gamma(2+u)A(2+u)\n=-\\frac6{u^2}+\\frac{6\\gamma-27}{u}+O(1).\n\\]\nSince\n\\[\nn^{-2-u}=n^{-2}(1-u\\log n+O(u^2)),\n\\]\nthe pole at \\(s=2\\) contributes\n\\[\n-\\operatorname*{Res}_{s=2}\\left(\\Gamma(s)n^{-s}A(s)\\right)\n=\n\\frac{-6\\log n+27-6\\gamma}{n^2}.\n\\]\n\nTherefore\n\\[\nI_n=\\frac1{10n}+\\frac{-6\\log n+27-6\\gamma}{n^2}+o(n^{-2}).\n\\]\nThus\n\\[\nn^2I_n-\\frac n{10}+6\\log n\\to 27-6\\gamma.\n\\]\n\n\\[\n\\boxed{27-6\\gamma}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T18:09:03+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/66800b849b55.json"
+}
