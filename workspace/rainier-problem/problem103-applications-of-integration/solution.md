@@ -1,178 +1,152 @@
 ## Steps
 
-Step 1: Set up a Mellin transform for the squared discriminant
+Step 1: Set up the Mellin representation
 
-Put
+Let
 $$
-F(x,y)=x^2-y^3,
+T=\{(x,y):x\geq0,\ y\geq0,\ x+y\leq1\},
+\qquad z=1-x-y,
 $$
-so
+and write
 $$
-I_n=\iint_{\mathbb R^2}e^{-y^2}e^{-nF(x,y)^2}\,dx\,dy.
+P=xyz,
+\qquad
+\Delta=(x-y)(y-z)(z-x).
 $$
-For $1/4<c<5/12$, Mellin inversion gives
+For $0<c<1$, Mellin inversion gives
 $$
-e^{-nF^2}=\frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}
-\Gamma(s)n^{-s}|F|^{-2s}\,ds.
+e^{-nP}=\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}
+\Gamma(s)n^{-s}P^{-s}\,ds.
 $$
-Hence
+Therefore
 $$
-I_n=\frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}
+I_n=\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}
 \Gamma(s)n^{-s}M(s)\,ds,
 $$
 where
 $$
-M(s)=\iint_{\mathbb R^2}e^{-y^2}|x^2-y^3|^{-2s}\,dx\,dy.
+M(s)=\iint_T \Delta^2 P^{-s}\,dx\,dy.
 $$
-The strip $1/4<\Re s<5/12$ is exactly where the $x$-integral converges at infinity and the cusp at $(0,0)$ is still locally integrable.
+The restriction $\Re s<1$ is forced by a generic boundary edge where exactly one of $x,y,z$ tends to $0$ while $\Delta$ stays nonzero.
 
 Step 2: Evaluate the Mellin transform exactly
 
-For $y>0$, set $x=y^{3/2}u$. Then
+For $a,b,c>0$, the Dirichlet integral is
 $$
-\int_{\mathbb R}|x^2-y^3|^{-2s}\,dx
-=y^{3/2-6s}A_+(s),
+\iint_T x^{a-1}y^{b-1}z^{c-1}\,dx\,dy
+=\frac{\Gamma(a)\Gamma(b)\Gamma(c)}{\Gamma(a+b+c)}.
 $$
-where
+Indeed, setting $y=(1-x)t$ separates the integral into two beta integrals.
+
+Now write $x_1=x$, $x_2=y$, $x_3=z$. Since
 $$
-A_+(s)=\int_{\mathbb R}|u^2-1|^{-2s}\,du.
+\Delta=\det\left[x_i^{j-1}\right]_{i,j=1}^3,
 $$
-Splitting at $|u|=1$ gives
+expanding the two determinants in $\Delta^2$ and applying the Dirichlet formula term by term gives
 $$
-A_+(s)=
-\sqrt\pi\,\frac{\Gamma(1-2s)}{\Gamma(3/2-2s)}
-+\frac{\Gamma(2s-1/2)\Gamma(1-2s)}{\sqrt\pi}.
+M(s)=\frac{6}{\Gamma(9-3s)}
+\det
+\begin{pmatrix}
+\Gamma(1-s)&\Gamma(2-s)&\Gamma(3-s)\\
+\Gamma(2-s)&\Gamma(3-s)&\Gamma(4-s)\\
+\Gamma(3-s)&\Gamma(4-s)&\Gamma(5-s)
+\end{pmatrix}.
 $$
-For $y<0$, writing $y=-v$ and $x=v^{3/2}u$ gives
+Using $\Gamma(t+1)=t\Gamma(t)$, the determinant simplifies to
 $$
-\int_{\mathbb R}|x^2-y^3|^{-2s}\,dx
-=v^{3/2-6s}A_-(s),
+2\Gamma(1-s)\Gamma(2-s)\Gamma(3-s).
 $$
-with
+Hence
 $$
-A_-(s)=\int_{\mathbb R}(1+u^2)^{-2s}\,du
-=\sqrt\pi\,\frac{\Gamma(2s-1/2)}{\Gamma(2s)}.
-$$
-Since
-$$
-\int_0^\infty e^{-y^2}y^{3/2-6s}\,dy
-=\frac12\Gamma\left(\frac54-3s\right),
-$$
-we obtain
-$$
-M(s)=\frac12\Gamma\left(\frac54-3s\right)
-\left(A_+(s)+A_-(s)\right).
+M(s)=
+\frac{12\Gamma(1-s)\Gamma(2-s)\Gamma(3-s)}{\Gamma(9-3s)}.
 $$
 
-Step 3: Extract the cusp contribution
+Step 3: Extract the boundary-edge term
 
-The first pole to the right of the initial contour is at
+Put
 $$
-s=\frac5{12},
+F(s)=\Gamma(s)M(s).
 $$
-coming from $\Gamma(5/4-3s)$. Since
+The first pole to the right of the initial contour is at $s=1$. Since
 $$
-\Gamma\left(\frac54-3s\right)
-\sim-\frac1{3(s-5/12)},
+\Gamma(1-s)\sim-\frac{1}{s-1},
 $$
-the contribution of this pole is
+the residue of $F(s)$ at $s=1$ is $-\frac{1}{10}$.
+When the Mellin contour is shifted to the right, the crossed residues enter with a minus sign. Thus the pole at $s=1$ contributes
 $$
-\frac{\Gamma(5/12)}6
-\left(A_+\left(\frac5{12}\right)+A_-\left(\frac5{12}\right)\right)n^{-5/12}.
+\frac{1}{10n}.
 $$
-At $s=5/12$,
+This is the contribution from the three regular boundary edges where $P=xyz$ vanishes to first order.
+
+Step 4: Extract the corner double pole
+
+The next pole is at $s=2$, where both $\Gamma(1-s)$ and $\Gamma(2-s)$ are singular. Write
 $$
-A_-\left(\frac5{12}\right)
-=\sqrt\pi\frac{\Gamma(1/3)}{\Gamma(5/6)},
+s=2+\varepsilon.
 $$
+The recurrence formula for Gamma gives
 $$
-A_+\left(\frac5{12}\right)
-=\sqrt\pi\frac{\Gamma(1/6)}{\Gamma(2/3)}
-+\frac{\Gamma(1/3)\Gamma(1/6)}{\sqrt\pi}.
+F(2+\varepsilon)
+=-\frac{12\Gamma(1+\varepsilon)\Gamma(1-\varepsilon)^3}
+{\varepsilon^2\Gamma(3-3\varepsilon)}.
 $$
 Using
 $$
-\Gamma(1/6)\Gamma(5/6)=2\pi,
-\qquad
-\Gamma(1/3)\Gamma(2/3)=\frac{2\pi}{\sqrt3},
+\Gamma(1+\varepsilon)=1-\gamma\varepsilon+O(\varepsilon^2),
 $$
-we get
 $$
-A_+\left(\frac5{12}\right)+A_-\left(\frac5{12}\right)
-=\frac{3+\sqrt3}{2\sqrt\pi}\Gamma(1/6)\Gamma(1/3).
+\Gamma(1-\varepsilon)=1+\gamma\varepsilon+O(\varepsilon^2),
 $$
-Thus the leading term is
+and
 $$
-C_0n^{-5/12},
-\qquad
-C_0=
-\frac{(3+\sqrt3)\Gamma(5/12)\Gamma(1/6)\Gamma(1/3)}{12\sqrt\pi}.
+\Gamma(3-3\varepsilon)
+=2\left(1-\left(\frac{9}{2}-3\gamma\right)\varepsilon+O(\varepsilon^2)\right),
 $$
-This is the contribution of the singular cusp where the two real branches meet.
-
-Step 4: Extract the regular-branch correction
-
-The next pole is at $s=1/2$. It comes only from $A_+(s)$, because $u^2-1=0$ corresponds to the two regular branches $x=\pm y^{3/2}$ for $y>0$.
-
-Write
+we obtain
 $$
-A_+(s)=\Gamma(1-2s)
-\left(
-\frac{\sqrt\pi}{\Gamma(3/2-2s)}
-+\frac{\Gamma(2s-1/2)}{\sqrt\pi}
-\right).
+F(2+\varepsilon)
+=-\frac{6}{\varepsilon^2}
++\frac{-27+6\gamma}{\varepsilon}
++O(1).
 $$
-The bracket tends to $2$ at $s=1/2$, while
+Also
 $$
-\Gamma(1-2s)\sim-\frac1{2(s-1/2)}.
+n^{-2-\varepsilon}
+=n^{-2}\left(1-\varepsilon\log n+O(\varepsilon^2)\right).
 $$
-Hence
+Therefore the residue at $s=2$ of $F(s)n^{-s}$ is
 $$
-\operatorname*{Res}_{s=1/2}A_+(s)=-1.
+\frac{6\log n-27+6\gamma}{n^2}.
 $$
-Therefore
+After the contour-shift sign is included, the $s=2$ contribution is
 $$
-\operatorname*{Res}_{s=1/2}M(s)
-=-\frac12\Gamma\left(-\frac14\right)
-=2\Gamma\left(\frac34\right).
+\frac{-6\log n+27-6\gamma}{n^2}.
 $$
-Multiplying by $\Gamma(1/2)=\sqrt\pi$, the residue of the full Mellin integrand is
-$$
-2\sqrt\pi\,\Gamma\left(\frac34\right)n^{-1/2}.
-$$
-Shifting the contour to the right contributes minus the crossed residues, so the regular-branch term is
-$$
--2\sqrt\pi\,\Gamma\left(\frac34\right)n^{-1/2}.
-$$
-The next pole is at $s=3/4$, so the remaining contour is $o(n^{-1/2})$.
+The pole is double because two boundary coordinates vanish simultaneously at a vertex of the simplex.
 
 Step 5: Recover the requested limit
 
-Combining Steps 3 and 4,
+There are no further poles in $2<\Re s<3$, so shifting to any vertical line in that strip gives a remainder $o(n^{-2})$. Combining Steps 3 and 4,
 $$
 I_n=
-C_0n^{-5/12}
--2\sqrt\pi\,\Gamma\left(\frac34\right)n^{-1/2}
-+o(n^{-1/2}),
-$$
-where
-$$
-C_0=
-\frac{(3+\sqrt3)\Gamma(5/12)\Gamma(1/6)\Gamma(1/3)}{12\sqrt\pi}.
+\frac{1}{10n}
++\frac{-6\log n+27-6\gamma}{n^2}
++o(n^{-2}).
 $$
 Hence
 $$
-\lim_{n\to\infty}n^{1/2}
-\left(I_n-\frac{C_0}{n^{5/12}}\right)
-=-2\sqrt\pi\,\Gamma\left(\frac34\right).
+\lim_{n\to\infty}
+\left(n^2I_n-\frac{n}{10}+6\log n\right)
+=27-6\gamma.
 $$
-Final Answer: $\boxed{-2\sqrt\pi\,\Gamma\left(\frac34\right)}$
+Final Answer: $\boxed{27-6\gamma}$
 
 ---
 
 ## Answer
 
-$-2\sqrt\pi\,\Gamma(3/4)$
+$27-6\gamma$
 
 ---
 
@@ -180,14 +154,14 @@ $-2\sqrt\pi\,\Gamma(3/4)$
 
 **Problem Type:** Exact computation
 
-**Answer Type:** Real number
+**Answer Type:** Exact scalar
 
 ---
 
 ## Solution Concepts
 
-- discriminant cusp geometry
 - Mellin inversion
-- weighted cusp scaling
-- regular-branch correction
-- Gamma-function residues
+- Dirichlet integral
+- Vandermonde determinant expansion
+- double-pole asymptotics
+- boundary-stratum interaction
