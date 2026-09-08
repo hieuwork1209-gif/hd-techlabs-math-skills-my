@@ -1,0 +1,22 @@
+{
+  "problem": "problem112",
+  "branch": "adversary/problem112",
+  "problem_path": "workspace/rainier-problem/problem112-fourier-analysis/problem.md",
+  "source_commit_sha": "85e658f1d4e577ee6a09cf0fe7dbb19ebb84a51b",
+  "problem_blob_sha": "3c4c8a9d3a2f061fa34be81b3b2bcd1f3555e19a",
+  "statement_sha256": "0cb0b9412f864a8290995d2b3eee42acc2e59affdb0b1e1ca56bafec39d0b424",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T06:14:50+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(N_m\\) be the required number. The answer is\n\n\\[\n\\boxed{\nN_m=\n\\begin{cases}\n\\dfrac{160\\cdot 2^{3m}-42\\cdot 2^{2m}-55}{63},& m\\ \\text{even},\\\\[6pt]\n\\dfrac{160\\cdot 2^{3m}-84\\cdot 2^{2m}+1}{63},& m\\ \\text{odd}.\n\\end{cases}}\n\\]\n\n**Solution.**\n\nWrite \\(R=\\mathbb Z/2^m\\mathbb Z\\), and use the symplectic basis\n\\[\ne_1,e_2,f_1,f_2\n\\]\nwhere \\(\\langle e_i,f_j\\rangle=\\delta_{ij}\\) and all other pairings among basis vectors vanish.\n\nIf \\(H=H^\\perp\\), then\n\\[\n|H|\\,|H^\\perp|=|G|=2^{4m},\n\\]\nso \\(|H|=2^{2m}\\), and \\(H\\) is maximal isotropic.\n\nA standard symplectic Smith normal form applies over the principal ideal ring \\(R\\): every maximal isotropic subgroup is carried by an element of \\(\\operatorname{Sp}_4(R)\\) to exactly one subgroup of the form\n\n\\[\nH_{a,b}\n=\n\\langle\n2^a e_1,\\,\n2^b e_2,\\,\n2^{m-a} f_1,\\,\n2^{m-b} f_2\n\\rangle,\n\\]\nwith\n\\[\n0\\le a\\le b\\le \\left\\lfloor \\frac m2\\right\\rfloor .\n\\]\n\nIndeed, the displayed subgroup is isotropic because each \\(e_i\\)-\\(f_i\\) pairing is multiplied by \\(2^m\\), and it has order\n\\[\n2^{m-a}2^{m-b}2^a2^b=2^{2m},\n\\]\nso it is self-orthogonal of the correct size, hence self-dual. Conversely, symplectic row-column reduction gives this form, and the ordered pair \\((a,b)\\) is determined by the elementary divisor data of \\(H\\).\n\nIt remains to count the orbit of each \\(H_{a,b}\\). Put\n\\[\nu=\\frac m2-a,\\qquad v=\\frac m2-b,\n\\]\nso \\(u\\ge v\\ge0\\). The stabilizer calculation in \\(\\operatorname{Sp}_4(R)\\) gives the following orbit sizes.\n\nIf \\(m\\) is even, so \\(u,v\\in\\mathbb Z\\), then\n\\[\n|{\\mathcal O}_{u,v}|=\n\\begin{cases}\n1,&(u,v)=(0,0),\\\\\n15\\cdot 2^{4u-3},&u>0,\\ v=0,\\\\\n15\\cdot 2^{4u+2v-3},&u\\ge v>0.\n\\end{cases}\n\\]\n\nIf \\(m\\) is odd, then \\(u,v\\in \\mathbb Z+\\tfrac12\\), and always \\(v>0\\), with\n\\[\n|{\\mathcal O}_{u,v}|=15\\cdot 2^{4u+2v-3}.\n\\]\n\nFor even \\(m=2c\\), summing over \\(c\\ge u\\ge v\\ge0\\) gives\n\\[\n\\begin{aligned}\nN_{2c}\n&=1+\\frac{15}{8}\\sum_{u=1}^c 2^{4u}\\left(1+\\sum_{v=1}^u2^{2v}\\right)\\\\\n&=1+\\frac{15}{8}\\sum_{u=1}^c 16^u\\cdot \\frac{4^{u+1}-1}{3}\\\\\n&=\\frac{160\\cdot 2^{6c}-42\\cdot 2^{4c}-55}{63}.\n\\end{aligned}\n\\]\nSince \\(m=2c\\), this is\n\\[\nN_m=\\frac{160\\cdot 2^{3m}-42\\cdot 2^{2m}-55}{63}.\n\\]\n\nFor odd \\(m=2c+1\\), write\n\\[\nu=i+\\frac12,\\qquad v=j+\\frac12,\n\\]\nwhere \\(0\\le j\\le i\\le c\\). Then\n\\[\n\\begin{aligned}\nN_{2c+1}\n&=\\sum_{i=0}^c\\sum_{j=0}^i 15\\cdot 2^{4i+2j}\\\\\n=15\\sum_{i=0}^c16^i\\sum_{j=0}^i4^j\\\\\n&=5\\sum_{i=0}^c16^i(4^{i+1}-1)\\\\\n&=\\frac{20\\cdot 64^{c+1}-21\\cdot 16^{c+1}+1}{63}.\n\\end{aligned}\n\\]\nSince \\(m=2c+1\\), this becomes\n\\[\nN_m=\\frac{160\\cdot 2^{3m}-84\\cdot 2^{2m}+1}{63}.\n\\]\n\nAs checks: for \\(m=1\\), this gives \\(15\\), the number of Lagrangian planes in \\(\\mathbb F_2^4\\); for \\(m=2\\), it gives \\(151\\). Thus the required number is\n\n\\[\n\\boxed{\n\\begin{cases}\n\\dfrac{160\\cdot 2^{3m}-42\\cdot 2^{2m}-55}{63},& m\\ \\mathrm{even},\\\\[6pt]\n\\dfrac{160\\cdot 2^{3m}-84\\cdot 2^{2m}+1}{63},& m\\ \\mathrm{odd}.\n\\end{cases}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T06:19:46+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem112/3c4c8a9d3a2f.json"
+}
