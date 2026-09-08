@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "c518f44c9e0afe6655f7ca95627f3d655eae4542",
+  "problem_blob_sha": "7ac0af932f3fd07a663ed40f3c9f317d4c6b1a7e",
+  "statement_sha256": "3f3f10cdc6d75f8666e0fa91c6aeffd777805b85a31334f45f1595f2aa9643d6",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T03:41:04+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let the eigenvalues of the real symmetric matrix \\(M\\) be \\(x,y,z\\). Since\n\\[\n\\operatorname{tr}(M^2)=x^2+y^2+z^2,\\qquad \\det M=xyz,\n\\]\nWeyl’s integration formula gives\n\\[\nI_n=K\\int_{\\mathbb R^3}\ne^{-n((xyz)^2+(x^2+y^2+z^2)^4)}\n|(x-y)(x-z)(y-z)|\\,dx\\,dy\\,dz,\n\\]\nwith \\(K=\\pi^2/3\\).\n\nPut \\(x=n^{-1/8}X\\), \\(y=n^{-1/8}Y\\), \\(z=n^{-1/8}Z\\), and \\(\\mu=n^{1/4}\\). Then\n\\[\nI_n=K n^{-3/4}J(\\mu),\n\\]\nwhere\n\\[\nJ(\\mu)=\\int_{\\mathbb R^3}e^{-(X^2+Y^2+Z^2)^4-\\mu X^2Y^2Z^2}\n|(X-Y)(X-Z)(Y-Z)|\\,dX\\,dY\\,dZ.\n\\]\n\nAs \\(\\mu\\to\\infty\\), the main contribution comes from one eigenvalue near \\(0\\). For example, near \\(Z=0\\), set \\(Z=\\mu^{-1/2}W\\). Summing over the three coordinate planes gives\n\\[\nJ(\\mu)=\\mu^{-1/2}\\frac{3\\sqrt{2\\pi}}2\\Gamma(3/8)+O(\\mu^{-3/4}).\n\\]\nThus the leading term is exactly\n\\[\nK n^{-3/4}\\mu^{-1/2}\\frac{3\\sqrt{2\\pi}}2\\Gamma(3/8)\n=\\frac{\\pi^{5/2}\\Gamma(3/8)}{\\sqrt2\\,n^{7/8}}.\n\\]\n\nThe next contribution comes from the pairwise intersections of those planes, i.e. from rank-one matrices. Near, say, \\(Y=Z=0\\), set\n\\[\nX=t,\\qquad Y=\\mu^{-1/4}p,\\qquad Z=\\mu^{-1/4}q.\n\\]\nAfter subtracting the already-counted one-plane terms, the finite transverse constant is\n\\[\nB=\\lim_{R\\to\\infty}\\left(\n\\int_{[-R,R]^2}|p-q|e^{-p^2q^2}\\,dp\\,dq-4R\\sqrt\\pi\n\\right).\n\\]\nSplitting into same-sign and opposite-sign quadrants gives\n\\[\nB=-4\\Gamma(3/4).\n\\]\nTherefore the rank-one contribution to \\(J(\\mu)\\), summed over the three choices of the large eigenvalue, is\n\\[\n3\\mu^{-3/4}\\left(\\int_{\\mathbb R}e^{-t^8}|t|^{1/2}\\,dt\\right)B\n=\n3\\mu^{-3/4}\\left(\\frac14\\Gamma(3/16)\\right)(-4\\Gamma(3/4)).\n\\]\nSo\n\\[\nJ(\\mu)=\\mu^{-1/2}\\frac{3\\sqrt{2\\pi}}2\\Gamma(3/8)\n-3\\Gamma(3/4)\\Gamma(3/16)\\mu^{-3/4}\n+o(\\mu^{-3/4}).\n\\]\nSince \\(n^{-3/4}\\mu^{-3/4}=n^{-15/16}\\), the desired limit is\n\\[\nK\\bigl(-3\\Gamma(3/4)\\Gamma(3/16)\\bigr)\n=\n-\\pi^2\\Gamma(3/4)\\Gamma(3/16).\n\\]\n\n\\[\n\\boxed{-\\pi^2\\Gamma(3/4)\\Gamma(3/16)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T03:44:33+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/7ac0af932f3f.json"
+}
