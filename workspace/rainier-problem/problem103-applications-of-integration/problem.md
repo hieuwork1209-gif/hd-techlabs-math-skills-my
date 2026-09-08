@@ -4,12 +4,14 @@
 
 Let
 $$
-\mathbb D=\{(x,y)\in\mathbb R^2:x^2+y^2\le1\}.
+\mathcal E=\left\{(x,y,z)\in[-1,1]^3:
+1+2xyz-x^2-y^2-z^2\ge0\right\}.
 $$
-For each integer $n\ge1$, define
+This is the set of off-diagonal entries of real $3\times3$ correlation matrices. For $n\ge1$, define
 $$
-I_n=\iint_{\mathbb D}
-\cos\left(2\pi n(x^3-3xy^2)\right)\,dx\,dy.
+I_n=\iiint_{\mathcal E}
+\exp\left(-n\left(1+2xyz-x^2-y^2-z^2\right)^2\right)
+\,dx\,dy\,dz.
 $$
 Also let
 $$
@@ -18,10 +20,9 @@ $$
 $$
 Evaluate
 $$
-\lim_{n\to\infty}n^{3/2}
+\lim_{n\to\infty}n^{3/4}
 \left(
-I_n-
-\frac{\pi^{1/3}\Gamma(1/3)}{3\Gamma(2/3)n^{2/3}}
+I_n-\frac{\pi^{5/2}}{2\sqrt n}
 \right).
 $$
 
@@ -40,4 +41,4 @@ $$
 
 ## Domain Explanation
 
-The phase $x^3-3xy^2$ is the real part of $(x+iy)^3$, a natural cubic harmonic on the unit disk. The leading oscillatory contribution comes from its degenerate stationary point at the origin, while the requested correction comes from stationary points on the boundary. Determining the limit therefore requires matching two distinct oscillatory mechanisms, making this a natural asymptotic-integration problem in Calculus -> Applications of integration.
+The polynomial $1+2xyz-x^2-y^2-z^2$ is the determinant of the $3\times3$ correlation matrix with off-diagonal entries $x,y,z$. Its zero set is the boundary of the correlation elliptope. The leading Laplace term comes from the regular rank-two boundary, while the requested correction comes from the nonuniform rank-one degeneration. This is a natural degenerate asymptotic-integration problem in Calculus -> Applications of integration.
