@@ -1,139 +1,158 @@
 ## Steps
 
-Step 1: Rescale the half-mass condition
+Step 1: Rescale the quarter-mass condition
 
-For each $n$, the Gaussian mass of the disk centered at $(1,0)$ with radius $1+\lambda$ is continuous and strictly increasing for $\lambda>-1$, from $0$ to $\pi/n$. Hence there is a unique $\lambda_n>-1$ with mass $\pi/(2n)$.
+Let $D_\lambda$ be the intersection of the two disks
+$$
+(x-1)^2+y^2\le(1+\lambda)^2,
+\qquad
+x^2+(y-1)^2\le(1+\lambda)^2.
+$$
+As $\lambda>-1$ increases, $D_\lambda$ increases strictly once it is nonempty, so its positive Gaussian mass is continuous and strictly increasing from $0$ to $\pi/n$. Hence the required $\lambda_n$ is unique.
 
 Put
 $$
 \varepsilon=n^{-1/2},\qquad X=\sqrt n\,x,\qquad Y=\sqrt n\,y.
 $$
-After multiplying the defining equation by $n$, the disk condition becomes
+After multiplying the defining equation by $n$, the target mass is $\pi/4$. In the Gaussian main range, the two relevant disk boundaries are
 $$
-(\varepsilon X-1)^2+\varepsilon^2Y^2\le (1+\lambda_n)^2.
-$$
-For fixed $Y$ in the Gaussian main range, the relevant left boundary is
-$$
-T_n(Y)=\frac{1-\sqrt{(1+\lambda_n)^2-\varepsilon^2Y^2}}{\varepsilon}.
-$$
-The right boundary is $2\varepsilon^{-1}+O(1)$, and the omitted region $|Y|>(1+\lambda_n)/\varepsilon$ is also exponentially far out. Thus both give an error smaller than every fixed power of $\varepsilon$.
-
-Writing
-$$
-\Phi(z)=\int_0^z e^{-x^2}\,dx,
-$$
-and subtracting the Gaussian mass of the half-plane $X\ge0$, the half-mass condition is
-$$
-\int_{-\infty}^{\infty}e^{-Y^2}\Phi(T_n(Y))\,dY=o(\varepsilon^m)
-$$
-for every fixed $m$.
-
-Step 2: Determine the scale of the radius correction
-
-The previous equation is strictly decreasing in $\lambda_n$. If $\lambda=c\varepsilon^2$ with $c$ bounded, then uniformly on every Gaussian main range,
-$$
-T(Y)=\varepsilon\left(\frac{Y^2}{2}-c\right)+O\left(\varepsilon^3(1+Y^4)\right).
-$$
-Since $\Phi(z)=z+O(z^3)$ near $0$, the defining equation gives at first order
-$$
-0=\varepsilon\sqrt\pi\left(\frac14-c\right)+O(\varepsilon^3).
-$$
-Therefore
-$$
-\lambda_n=\frac14\varepsilon^2+O(\varepsilon^4).
-$$
-Write more precisely
-$$
-\lambda_n=c\varepsilon^2+d\varepsilon^4+o(\varepsilon^4).
-$$
-The first-order calculation already gives $c=1/4$.
-
-Step 3: Expand the curved boundary to the first nonlinear order
-
-For bounded $c,d$,
-$$
-(1+\lambda_n)^2-\varepsilon^2Y^2
-=1+\varepsilon^2(2c-Y^2)+\varepsilon^4(c^2+2d)+o(\varepsilon^4).
-$$
-Using the square-root expansion,
-$$
-T_n(Y)=\varepsilon A(Y)+\varepsilon^3B(Y)+o(\varepsilon^3),
+X\ge T_{\varepsilon,\lambda}(Y),
+\qquad
+Y\ge T_{\varepsilon,\lambda}(X),
 $$
 where
 $$
-A(Y)=\frac{Y^2}{2}-c,
-\qquad
-B(Y)=-d-\frac{cY^2}{2}+\frac{Y^4}{8}.
+T_{\varepsilon,\lambda}(z)
+=\frac{1-\sqrt{(1+\lambda)^2-\varepsilon^2z^2}}{\varepsilon}.
 $$
-Also
+The opposite disk boundaries are at distance $2\varepsilon^{-1}+O(1)$, and the regions where the square roots cease to be real are also Gaussian tails. Their contributions are exponentially small.
+
+Step 2: Find the leading radius correction
+
+Write temporarily
 $$
-\Phi(z)=z-\frac{z^3}{3}+O(z^5).
+\lambda=c\varepsilon^2
 $$
-Hence, after dividing the half-mass equation by $\sqrt\pi$ and using the probability density $\pi^{-1/2}e^{-Y^2}$,
+with bounded $c$. Uniformly on every Gaussian main range,
 $$
-0=\varepsilon\mathbb E[A]
-+\varepsilon^3\left(\mathbb E[B]-\frac13\mathbb E[A^3]\right)
-+o(\varepsilon^3).
+T_{\varepsilon,\lambda}(z)
+=\varepsilon\left(\frac{z^2}{2}-c\right)
++O\left(\varepsilon^3(1+z^4)\right).
+$$
+At $\varepsilon=0$ the limiting region is the first quadrant, whose Gaussian mass is $\pi/4$.
+
+Consider first the change caused by the $X$-boundary while keeping $Y\ge0$. Using the signed integral convention when $T<0$,
+$$
+-\int_0^\infty e^{-Y^2}
+\int_0^{T_{\varepsilon,\lambda}(Y)}e^{-X^2}\,dX\,dY
+=-\varepsilon A(c)+O(\varepsilon^3),
+$$
+where
+$$
+A(c)=\int_0^\infty
+\left(\frac{Y^2}{2}-c\right)e^{-Y^2}\,dY
+=\sqrt\pi\left(\frac18-\frac c2\right).
+$$
+The $Y$-boundary gives the same contribution.
+
+The two strip corrections overlap only in an $O(\varepsilon)\times O(\varepsilon)$ corner near the origin. There
+$$
+T_{\varepsilon,\lambda}(0)=-c\varepsilon+O(\varepsilon^3),
+$$
+so the independent-strip calculation misses the corner square of Gaussian mass
+$$
+c^2\varepsilon^2+O(\varepsilon^3).
+$$
+Therefore the scaled mass satisfies
+$$
+M_\varepsilon(c)
+=\frac\pi4
++\sqrt\pi\left(c-\frac14\right)\varepsilon
++c^2\varepsilon^2
++O(\varepsilon^3).
+$$
+Taking, for example, $c=0$ and $c=1$ shows by monotonicity that the exact root has bounded $c_n=\lambda_n/\varepsilon^2$, and the displayed expansion then gives
+$$
+c_n=\frac14+O(\varepsilon).
+$$
+Thus
+$$
+\lambda_n=\frac14\varepsilon^2+O(\varepsilon^3).
 $$
 
-Step 4: Evaluate the Gaussian moments
+Step 3: Resolve the coupled corner term
 
-For the density $\pi^{-1/2}e^{-Y^2}$,
+Write
 $$
-\mathbb E[Y^2]=\frac12,
-\qquad
-\mathbb E[Y^4]=\frac34,
-\qquad
-\mathbb E[Y^6]=\frac{15}{8}.
+\lambda_n=\frac14\varepsilon^2+d_n\varepsilon^3.
 $$
-The coefficient of $\varepsilon$ gives
+Step 2 shows that $d_n=O(1)$. For bounded $d$,
 $$
-0=\mathbb E[A]=\frac14-c,
+T_{\varepsilon,\lambda}(z)
+=\varepsilon\left(\frac{z^2}{2}-\frac14\right)
+-d\varepsilon^2
++O\left(\varepsilon^3(1+z^4)\right).
 $$
-so $c=1/4$. With this value,
+Since
 $$
-\mathbb E[B]
-=-d-\frac18\mathbb E[Y^2]+\frac18\mathbb E[Y^4]
-=-d+\frac1{32}.
+\int_0^\infty
+\left(\frac{Y^2}{2}-\frac14\right)e^{-Y^2}\,dY=0,
 $$
-Moreover
+the signed $X$-strip now contributes
 $$
-A=\frac{Y^2}{2}-\frac14,
+\frac{d\sqrt\pi}{2}\varepsilon^2+O(\varepsilon^3),
+$$
+and the $Y$-strip contributes the same amount.
+
+The corner correction is determined only by the leading boundary displacement. Since both boundaries satisfy
+$$
+T_{\varepsilon,\lambda}(0)=-\frac14\varepsilon+O(\varepsilon^2),
+$$
+the overlap square has side $\varepsilon/4+O(\varepsilon^2)$. Because $e^{-X^2-Y^2}=1+O(\varepsilon^2)$ there, its mass is
+$$
+\frac1{16}\varepsilon^2+O(\varepsilon^3).
+$$
+Hence, uniformly for bounded $d$,
+$$
+M_\varepsilon(d)
+=\frac\pi4
++\left(d\sqrt\pi+\frac1{16}\right)\varepsilon^2
++O(\varepsilon^3).
+$$
+
+Step 4: Determine the second coefficient
+
+The defining condition is $M_\varepsilon(d_n)=\pi/4$. Therefore
+$$
+d_n\sqrt\pi+\frac1{16}=O(\varepsilon),
 $$
 so
 $$
-\mathbb E[A^3]
-=\frac18\mathbb E[Y^6]-\frac{3}{16}\mathbb E[Y^4]
-+\frac{3}{32}\mathbb E[Y^2]-\frac1{64}
-=\frac18.
+d_n\longrightarrow-\frac1{16\sqrt\pi}.
 $$
-Therefore the coefficient of $\varepsilon^3$ gives
+Consequently
 $$
--d+\frac1{32}-\frac1{24}=0,
-$$
-so
-$$
-d=-\frac1{96}.
+\lambda_n
+=\frac{1}{4n}
+-\frac{1}{16\sqrt\pi\,n^{3/2}}
++o\left(n^{-3/2}\right).
 $$
 
 Step 5: Recover the requested limit
 
-Since $\varepsilon^2=n^{-1}$,
+Multiplying the preceding expansion by $n^{3/2}$ gives
 $$
-\lambda_n=rac{1}{4n}-\frac{1}{96n^2}+o(n^{-2}).
+\lim_{n\to\infty}n^{3/2}
+\left(\lambda_n-\frac{1}{4n}\right)
+=-\frac1{16\sqrt\pi}.
 $$
-Hence
-$$
-\lim_{n\to\infty}n^2\left(\lambda_n-\frac{1}{4n}\right)
-=-\frac1{96}.
-$$
-Final Answer: $\boxed{-\frac{1}{96}}$
+Final Answer: $\boxed{-\frac{1}{16\sqrt\pi}}$
 
 ---
 
 ## Answer
 
-$-\frac{1}{96}$
+$-\frac{1}{16\sqrt\pi}$
 
 ---
 
@@ -148,7 +167,7 @@ $-\frac{1}{96}$
 ## Solution Concepts
 
 - Gaussian rescaling
-- tangent-disk geometry
-- curved-boundary expansion
-- Gaussian tail nonlinearity
-- implicit asymptotic correction
+- intersecting tangent disks
+- coupled boundary layers
+- corner overlap correction
+- implicit asymptotic shift
