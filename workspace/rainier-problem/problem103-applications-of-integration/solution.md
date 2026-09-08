@@ -47,25 +47,25 @@ D=-2d\left((1-3t)^2-d^2\right).
 $$
 Let
 $$
-\varepsilon=n^{-1/4},
+h=n^{-1/4},
 \qquad
-t=\varepsilon T,
+t=hT,
 \qquad
-d=\varepsilon^2U.
+d=h^2U.
 $$
 Then
 $$
-n\Phi=T^4+4U^2-arepsilon\left(4T^5+48TU^2\right)+O(\varepsilon^2)
+n\Phi=T^4+4U^2-h\left(4T^5+48TU^2\right)+O(h^2)
 $$
 on bounded scaled sets, while the scaled domain is
 $$
 T\ge0,
 \qquad
-|U|\le \frac{T}{\varepsilon}.
+|U|\le \frac{T}{h}.
 $$
 Hence the leading contribution of this vertex is
 $$
-2\varepsilon^3
+2h^3
 \int_0^\infty e^{-T^4}\,dT
 \int_{-\infty}^\infty e^{-4U^2}\,dU
 =
@@ -101,7 +101,7 @@ $$
 2\left(\frac\pi4+\frac{3\pi}{4}\right)=2\pi.
 $$
 
-Second, the exact condition $|U|\le T/\varepsilon$ cannot be replaced by the whole line at this order. Its correction is concentrated where $T=O(\varepsilon)$. Setting $T=\varepsilon S$ gives
+Second, the exact condition $|U|\le T/h$ cannot be replaced by the whole line at this order. Its correction is concentrated where $T=O(h)$. Setting $T=hS$ gives
 $$
 2\int_0^\infty
 \left[
@@ -142,9 +142,7 @@ D=-2u\left(\frac{(1-3s)^2}{4}-u^2\right).
 $$
 With
 $$
-s=n^{-1/2}S,
-\qquad
-u=n^{-1/2}U,
+s=n^{-1/2}S,\qquad u=n^{-1/2}U,
 $$
 one has
 $$
