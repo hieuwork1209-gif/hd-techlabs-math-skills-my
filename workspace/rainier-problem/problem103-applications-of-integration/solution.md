@@ -1,146 +1,161 @@
 ## Steps
 
-Step 1: Reduce the Fourier coefficient to one dimension
+Step 1: Reduce the disk integral to a Bessel integral
 
 Let
 $$
-\Omega=\{(x,y)\in\mathbb R^2:x^4+y^4\le1\},
-\qquad
-k=2\pi n.
+\mathbb D=\{(x,y)\in\mathbb R^2:x^2+y^2\le1\},
+\qquad k=2\pi n.
 $$
-For fixed $x\in[-1,1]$, the vertical section of $\Omega$ has length
+In polar coordinates,
 $$
-2(1-x^4)^{1/4}.
+x^3-3xy^2=r^3\cos3\theta.
 $$
 Hence
 $$
-I_n=2\int_{-1}^1(1-x^4)^{1/4}\cos(kx)\,dx.
+I_n=\int_0^1\int_0^{2\pi}
+\cos\bigl(kr^3\cos3\theta\bigr)\,r\,d\theta\,dr.
 $$
-Set
+Using
 $$
-g(x)=2(1-x^4)^{1/4},
-\qquad
-J(k)=\int_{-1}^1g(x)e^{ikx}\,dx.
+J_0(t)=\frac1{2\pi}\int_0^{2\pi}e^{it\cos\theta}\,d\theta,
 $$
-Since $g$ is even, $J(k)$ is real and $J(k)=I_n$.
-
-Step 2: Expand the flat boundary profile
-
-Near the right endpoint write
+periodicity gives
 $$
-x=1-t,
-\qquad t\downarrow0.
+\int_0^{2\pi}\cos\bigl(kr^3\cos3\theta\bigr)\,d\theta
+=2\pi J_0(kr^3).
 $$
-Then
+Therefore
 $$
-1-(1-t)^4=4t-6t^2+4t^3-t^4,
-$$
-so
-$$
-\begin{aligned}
-g(1-t)
-&=2(4t-6t^2+4t^3-t^4)^{1/4}\\
-&=2\sqrt2\,t^{1/4}
-\left(1-\frac38t+O(t^2)\right).
-\end{aligned}
-$$
-Thus
-$$
-g(1-t)=2\sqrt2\,t^{1/4}
--\frac{3\sqrt2}{4}t^{5/4}
-+O(t^{9/4}).
-$$
-By evenness, the same expansion holds at the left endpoint after replacing $x$ by $-x$.
-
-Step 3: Compute the two endpoint oscillatory terms
-
-For $\alpha>-1$,
-$$
-\int_0^\infty t^\alpha e^{-(\varepsilon+ik)t}\,dt
-=\Gamma(\alpha+1)(\varepsilon+ik)^{-\alpha-1}.
-$$
-Letting $\varepsilon\downarrow0$ gives
-$$
-\int_0^\infty t^\alpha e^{-ikt}\,dt
-=e^{-i\pi(\alpha+1)/2}\Gamma(\alpha+1)k^{-\alpha-1}
-$$
-in the usual oscillatory sense. After inserting a smooth cutoff equal to $1$ near an endpoint, the cutoff error is $O(k^{-N})$ for every fixed $N$ by repeated integration by parts. Therefore Step 2 gives the right-endpoint contribution
-$$
-e^{ik}\left[
-2\sqrt2\,\Gamma\left(\frac54\right)e^{-5\pi i/8}k^{-5/4}
--\frac{3\sqrt2}{4}\Gamma\left(\frac94\right)e^{-9\pi i/8}k^{-9/4}
-\right]
-+O(k^{-13/4}).
-$$
-The left-endpoint contribution is its complex conjugate. The part of the integral supported away from the two endpoints is $O(k^{-N})$ for every fixed $N$.
-
-Since $k=2\pi n$, one has $e^{ik}=1$. Hence
-$$
-\begin{aligned}
-I_n={}&4\sqrt2\,\Gamma\left(\frac54\right)
-\cos\left(\frac{5\pi}{8}\right)k^{-5/4}\\
-&-\frac{3\sqrt2}{2}\Gamma\left(\frac94\right)
-\cos\left(\frac{9\pi}{8}\right)k^{-9/4}
-+O(k^{-13/4}).
-\end{aligned}
+I_n=2\pi\int_0^1 rJ_0(kr^3)\,dr
+=\frac{2\pi}{3}k^{-2/3}
+\int_0^k t^{-1/3}J_0(t)\,dt.
 $$
 
-Step 4: Simplify the exact coefficients
+Step 2: Evaluate the infinite Bessel moment
 
-Use
+Put
 $$
-\cos\left(\frac{5\pi}{8}\right)
-=-\frac12\sqrt{2-\sqrt2},
-\qquad
-\cos\left(\frac{9\pi}{8}\right)
-=-\frac12\sqrt{2+\sqrt2},
+C=\int_0^\infty t^{-1/3}J_0(t)\,dt.
+$$
+From the integral representation
+$$
+J_0(t)=\frac1\pi\int_0^\pi\cos(t\cos\theta)\,d\theta
 $$
 and
 $$
-\Gamma\left(\frac54\right)=\frac14\Gamma\left(\frac14\right),
-\qquad
-\Gamma\left(\frac94\right)=\frac5{16}\Gamma\left(\frac14\right).
+\int_0^\infty t^{-1/3}\cos(at)\,dt
+=\frac{\Gamma(2/3)}2|a|^{-2/3}
+\qquad(a\ne0),
+$$
+we obtain
+$$
+C=\frac{\Gamma(2/3)}{2\pi}
+\int_0^\pi|\cos\theta|^{-2/3}\,d\theta.
+$$
+Now
+$$
+\int_0^\pi|\cos\theta|^{-2/3}\,d\theta
+=B\left(\frac12,\frac16\right)
+=\frac{\sqrt\pi\,\Gamma(1/6)}{\Gamma(2/3)}.
+$$
+Thus
+$$
+C=\frac{\Gamma(1/6)}{2\sqrt\pi}.
+$$
+The duplication formula at $1/6$ gives
+$$
+\Gamma(1/6)\Gamma(2/3)
+=2^{2/3}\sqrt\pi\,\Gamma(1/3),
+$$
+so
+$$
+C=2^{-1/3}\frac{\Gamma(1/3)}{\Gamma(2/3)}.
+$$
+Consequently the leading term is
+$$
+\frac{2\pi}{3}k^{-2/3}C
+=
+\frac{\pi^{1/3}\Gamma(1/3)}{3\Gamma(2/3)}n^{-2/3}.
+$$
+
+Step 3: Find the first boundary correction
+
+Write
+$$
+T(k)=\int_k^\infty t^{-1/3}J_0(t)\,dt.
+$$
+The large-$t$ expansion
+$$
+J_0(t)=\sqrt{\frac{2}{\pi t}}
+\left(\cos\left(t-\frac\pi4\right)+O(t^{-1})\right)
+$$
+gives
+$$
+T(k)=\sqrt{\frac2\pi}
+\int_k^\infty t^{-5/6}
+\cos\left(t-\frac\pi4\right)\,dt
++O(k^{-11/6}).
+$$
+Integrating by parts in the oscillatory sense,
+$$
+\int_k^\infty t^{-5/6}\cos\left(t-\frac\pi4\right)\,dt
+=-k^{-5/6}\sin\left(k-\frac\pi4\right)
++O(k^{-11/6}).
+$$
+Since $k=2\pi n$,
+$$
+\sin\left(k-\frac\pi4\right)=-\frac1{\sqrt2},
+$$
+so
+$$
+T(k)=\frac1{\sqrt\pi}k^{-5/6}+O(k^{-11/6}).
+$$
+
+Step 4: Combine the interior and boundary mechanisms
+
+From Step 1,
+$$
+I_n=\frac{2\pi}{3}k^{-2/3}(C-T(k)).
+$$
+Using Steps 2 and 3,
+$$
+I_n=
+\frac{\pi^{1/3}\Gamma(1/3)}{3\Gamma(2/3)}n^{-2/3}
+-\frac{2\pi}{3\sqrt\pi}k^{-3/2}
++O(k^{-5/2}).
+$$
+Because $k=2\pi n$,
+$$
+\frac{2\pi}{3\sqrt\pi}k^{-3/2}
+=\frac1{3\sqrt2\,\pi}n^{-3/2}.
 $$
 Therefore
 $$
 I_n=
--\frac{\sqrt{4-2\sqrt2}\,\Gamma(1/4)}{2k^{5/4}}
-+\frac{15\sqrt{4+2\sqrt2}\,\Gamma(1/4)}{64k^{9/4}}
-+O(k^{-13/4}).
-$$
-Substituting $k=2\pi n$ gives
-$$
-\begin{aligned}
-I_n={}&
--\frac{\sqrt{4-2\sqrt2}\,\Gamma(1/4)}
-{2(2\pi)^{5/4}n^{5/4}}\\
-&+\frac{15\sqrt{4+2\sqrt2}\,\Gamma(1/4)}
-{64(2\pi)^{9/4}n^{9/4}}
-+O(n^{-13/4}).
-\end{aligned}
+\frac{\pi^{1/3}\Gamma(1/3)}{3\Gamma(2/3)}n^{-2/3}
+-\frac1{3\sqrt2\,\pi}n^{-3/2}
++O(n^{-5/2}).
 $$
 
 Step 5: Recover the requested limit
 
-It follows immediately that
+It follows that
 $$
-\lim_{n\to\infty}n^{9/4}
+\lim_{n\to\infty}n^{3/2}
 \left(
-I_n+
-\frac{\sqrt{4-2\sqrt2}\,\Gamma(1/4)}
-{2(2\pi)^{5/4}n^{5/4}}
+I_n-
+\frac{\pi^{1/3}\Gamma(1/3)}{3\Gamma(2/3)n^{2/3}}
 \right)
-=
-\frac{15\sqrt{4+2\sqrt2}\,\Gamma(1/4)}
-{64(2\pi)^{9/4}}.
+=-\frac1{3\sqrt2\,\pi}.
 $$
-Final Answer: $\boxed{\frac{15\sqrt{4+2\sqrt2}\,\Gamma(1/4)}{64(2\pi)^{9/4}}}$
+Final Answer: $\boxed{-\frac1{3\sqrt2\,\pi}}$
 
 ---
 
 ## Answer
 
-$\frac{15\sqrt{4+2\sqrt2}\,\Gamma(1/4)}{64(2\pi)^{9/4}}$
+$-\frac1{3\sqrt2\,\pi}$
 
 ---
 
@@ -154,8 +169,8 @@ $\frac{15\sqrt{4+2\sqrt2}\,\Gamma(1/4)}{64(2\pi)^{9/4}}$
 
 ## Solution Concepts
 
-- Fourier transform of a convex body
-- flat boundary stationary phase
-- fractional endpoint asymptotics
-- Gamma-function oscillatory moments
-- Lamé disk geometry
+- cubic harmonic phase
+- Bessel angular reduction
+- degenerate stationary phase
+- boundary stationary contribution
+- oscillatory tail asymptotics
