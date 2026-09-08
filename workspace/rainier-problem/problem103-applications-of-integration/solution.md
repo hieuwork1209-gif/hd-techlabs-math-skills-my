@@ -1,158 +1,135 @@
 ## Steps
 
-Step 1: Rescale the quarter-mass condition
+Step 1: Localize near the osculation point
 
-Let $D_\lambda$ be the intersection of the two disks
+Let
 $$
-(x-1)^2+y^2\le(1+\lambda)^2,
-\qquad
-x^2+(y-1)^2\le(1+\lambda)^2.
+h(x)=\frac{1-\sqrt{1-4x^2}}{2}.
 $$
-As $\lambda>-1$ increases, $D_\lambda$ increases strictly once it is nonempty, so its positive Gaussian mass is continuous and strictly increasing from $0$ to $\pi/n$. Hence the required $\lambda_n$ is unique.
+The graph $y=h(x)$ is the lower arc of the circle
+$$
+x^2+\left(y-\frac12\right)^2=\frac14,
+$$
+and it has the same tangent and curvature at the origin as the parabola $y=x^2$.
 
 Put
 $$
-\varepsilon=n^{-1/2},\qquad X=\sqrt n\,x,\qquad Y=\sqrt n\,y.
+\varepsilon=n^{-1/2}.
 $$
-After multiplying the defining equation by $n$, the target mass is $\pi/4$. In the Gaussian main range, the two relevant disk boundaries are
+Since the factor $e^{-nx^2}$ localizes the $x$-integral to $|x|=O(\varepsilon)$, set
 $$
-X\ge T_{\varepsilon,\lambda}(Y),
+x=\varepsilon X,\qquad y=\varepsilon^2 Z.
+$$
+Then
+$$
+M_n=\varepsilon^3\int_{-1/(2\varepsilon)}^{1/(2\varepsilon)}e^{-X^2}
+\int_{X^2}^{h(\varepsilon X)/\varepsilon^2}
+e^{-\varepsilon^2Z^2}\,dZ\,dX.
+$$
+For any fixed power of $\varepsilon$, the contribution from $|X|>\varepsilon^{-1/4}$ is smaller because of the Gaussian factor $e^{-X^2}$. Hence all expansions below may be made uniformly on $|X|\le\varepsilon^{-1/4}$ and then extended to the whole real line with an $o(\varepsilon^7)$ error.
+
+Step 2: Use the quartic contact of the two curves
+
+The binomial expansion gives
+$$
+h(x)=x^2+x^4+2x^6+O(x^8).
+$$
+Therefore
+$$
+\frac{h(\varepsilon X)}{\varepsilon^2}
+=X^2+\varepsilon^2X^4+2\varepsilon^4X^6
++O\left(\varepsilon^6X^8\right).
+$$
+Write the width of the scaled vertical interval as
+$$
+\Delta_\varepsilon(X)
+=\varepsilon^2X^4+2\varepsilon^4X^6
++O\left(\varepsilon^6X^8\right).
+$$
+The quartic term is the first nonzero separation because the circle is the osculating circle of the parabola at the origin.
+
+Step 3: Expand the vertical Gaussian across the thin strip
+
+On the interval
+$$
+X^2\le Z\le X^2+\Delta_\varepsilon(X),
+$$
+we have
+$$
+e^{-\varepsilon^2Z^2}
+=1-\varepsilon^2X^4
++O\left(\varepsilon^4(1+|X|^{12})\right),
+$$
+uniformly on the Gaussian main range. Since the interval width is $O(\varepsilon^2(1+|X|^4))$, integrating across it gives
+$$
+\begin{aligned}
+\int_{X^2}^{X^2+\Delta_\varepsilon(X)}e^{-\varepsilon^2Z^2}\,dZ
+={}&\varepsilon^2X^4\\
+&+\varepsilon^4\left(2X^6-X^8\right)
++O\left(\varepsilon^6(1+|X|^{16})\right).
+\end{aligned}
+$$
+Substituting this into Step 1 yields
+$$
+\begin{aligned}
+M_n={}&\varepsilon^5\int_{-\infty}^{\infty}X^4e^{-X^2}\,dX\\
+&+\varepsilon^7\int_{-\infty}^{\infty}
+\left(2X^6-X^8\right)e^{-X^2}\,dX
++o(\varepsilon^7).
+\end{aligned}
+$$
+
+Step 4: Evaluate the Gaussian moments
+
+The even Gaussian moments are
+$$
+\int_{-\infty}^{\infty}X^4e^{-X^2}\,dX
+=\frac{3\sqrt\pi}{4},
+$$
+$$
+\int_{-\infty}^{\infty}X^6e^{-X^2}\,dX
+=\frac{15\sqrt\pi}{8},
 \qquad
-Y\ge T_{\varepsilon,\lambda}(X),
+\int_{-\infty}^{\infty}X^8e^{-X^2}\,dX
+=\frac{105\sqrt\pi}{16}.
 $$
-where
+Hence
 $$
-T_{\varepsilon,\lambda}(z)
-=\frac{1-\sqrt{(1+\lambda)^2-\varepsilon^2z^2}}{\varepsilon}.
+\int_{-\infty}^{\infty}
+\left(2X^6-X^8\right)e^{-X^2}\,dX
+=\left(\frac{30}{8}-\frac{105}{16}\right)\sqrt\pi
+=-\frac{45\sqrt\pi}{16}.
 $$
-The opposite disk boundaries are at distance $2\varepsilon^{-1}+O(1)$, and the regions where the square roots cease to be real are also Gaussian tails. Their contributions are exponentially small.
-
-Step 2: Find the leading radius correction
-
-Write temporarily
+Therefore
 $$
-\lambda=c\varepsilon^2
-$$
-with bounded $c$. Uniformly on every Gaussian main range,
-$$
-T_{\varepsilon,\lambda}(z)
-=\varepsilon\left(\frac{z^2}{2}-c\right)
-+O\left(\varepsilon^3(1+z^4)\right).
-$$
-At $\varepsilon=0$ the limiting region is the first quadrant, whose Gaussian mass is $\pi/4$.
-
-Consider first the change caused by the $X$-boundary while keeping $Y\ge0$. Using the signed integral convention when $T<0$,
-$$
--\int_0^\infty e^{-Y^2}
-\int_0^{T_{\varepsilon,\lambda}(Y)}e^{-X^2}\,dX\,dY
-=-\varepsilon A(c)+O(\varepsilon^3),
-$$
-where
-$$
-A(c)=\int_0^\infty
-\left(\frac{Y^2}{2}-c\right)e^{-Y^2}\,dY
-=\sqrt\pi\left(\frac18-\frac c2\right).
-$$
-The $Y$-boundary gives the same contribution.
-
-The two strip corrections overlap only in an $O(\varepsilon)\times O(\varepsilon)$ corner near the origin. There
-$$
-T_{\varepsilon,\lambda}(0)=-c\varepsilon+O(\varepsilon^3),
-$$
-so the independent-strip calculation misses the corner square of Gaussian mass
-$$
-c^2\varepsilon^2+O(\varepsilon^3).
-$$
-Therefore the scaled mass satisfies
-$$
-M_\varepsilon(c)
-=\frac\pi4
-+\sqrt\pi\left(c-\frac14\right)\varepsilon
-+c^2\varepsilon^2
-+O(\varepsilon^3).
-$$
-Taking, for example, $c=0$ and $c=1$ shows by monotonicity that the exact root has bounded $c_n=\lambda_n/\varepsilon^2$, and the displayed expansion then gives
-$$
-c_n=\frac14+O(\varepsilon).
-$$
-Thus
-$$
-\lambda_n=\frac14\varepsilon^2+O(\varepsilon^3).
-$$
-
-Step 3: Resolve the coupled corner term
-
-Write
-$$
-\lambda_n=\frac14\varepsilon^2+d_n\varepsilon^3.
-$$
-Step 2 shows that $d_n=O(1)$. For bounded $d$,
-$$
-T_{\varepsilon,\lambda}(z)
-=\varepsilon\left(\frac{z^2}{2}-\frac14\right)
--d\varepsilon^2
-+O\left(\varepsilon^3(1+z^4)\right).
-$$
-Since
-$$
-\int_0^\infty
-\left(\frac{Y^2}{2}-\frac14\right)e^{-Y^2}\,dY=0,
-$$
-the signed $X$-strip now contributes
-$$
-\frac{d\sqrt\pi}{2}\varepsilon^2+O(\varepsilon^3),
-$$
-and the $Y$-strip contributes the same amount.
-
-The corner correction is determined only by the leading boundary displacement. Since both boundaries satisfy
-$$
-T_{\varepsilon,\lambda}(0)=-\frac14\varepsilon+O(\varepsilon^2),
-$$
-the overlap square has side $\varepsilon/4+O(\varepsilon^2)$. Because $e^{-X^2-Y^2}=1+O(\varepsilon^2)$ there, its mass is
-$$
-\frac1{16}\varepsilon^2+O(\varepsilon^3).
-$$
-Hence, uniformly for bounded $d$,
-$$
-M_\varepsilon(d)
-=\frac\pi4
-+\left(d\sqrt\pi+\frac1{16}\right)\varepsilon^2
-+O(\varepsilon^3).
-$$
-
-Step 4: Determine the second coefficient
-
-The defining condition is $M_\varepsilon(d_n)=\pi/4$. Therefore
-$$
-d_n\sqrt\pi+\frac1{16}=O(\varepsilon),
-$$
-so
-$$
-d_n\longrightarrow-\frac1{16\sqrt\pi}.
-$$
-Consequently
-$$
-\lambda_n
-=\frac{1}{4n}
--\frac{1}{16\sqrt\pi\,n^{3/2}}
-+o\left(n^{-3/2}\right).
+M_n
+=\frac{3\sqrt\pi}{4}\varepsilon^5
+-\frac{45\sqrt\pi}{16}\varepsilon^7
++o(\varepsilon^7).
 $$
 
 Step 5: Recover the requested limit
 
-Multiplying the preceding expansion by $n^{3/2}$ gives
+Since $\varepsilon=n^{-1/2}$,
 $$
-\lim_{n\to\infty}n^{3/2}
-\left(\lambda_n-\frac{1}{4n}\right)
-=-\frac1{16\sqrt\pi}.
+M_n
+=\frac{3\sqrt\pi}{4n^{5/2}}
+-\frac{45\sqrt\pi}{16n^{7/2}}
++o\left(n^{-7/2}\right).
 $$
-Final Answer: $\boxed{-\frac{1}{16\sqrt\pi}}$
+Thus
+$$
+\lim_{n\to\infty}n^{7/2}
+\left(M_n-\frac{3\sqrt\pi}{4n^{5/2}}\right)
+=-\frac{45\sqrt\pi}{16}.
+$$
+Final Answer: $\boxed{-\frac{45\sqrt\pi}{16}}$
 
 ---
 
 ## Answer
 
-$-\frac{1}{16\sqrt\pi}$
+$-\frac{45\sqrt\pi}{16}$
 
 ---
 
@@ -166,8 +143,8 @@ $-\frac{1}{16\sqrt\pi}$
 
 ## Solution Concepts
 
-- Gaussian rescaling
-- intersecting tangent disks
-- coupled boundary layers
-- corner overlap correction
-- implicit asymptotic shift
+- Gaussian localization
+- osculating-circle geometry
+- quartic contact asymptotics
+- thin-strip rescaling
+- Gaussian moment expansion
