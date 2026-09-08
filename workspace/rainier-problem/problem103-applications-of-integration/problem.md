@@ -34,7 +34,7 @@ $$
 | **Domain** | Calculus |
 | **Sub-domain** | Applications of integration |
 | **Problem Type** | Exact computation |
-| **Answer Type** | Real number |
+| **Answer Type** | Exact scalar |
 
 ---
 
