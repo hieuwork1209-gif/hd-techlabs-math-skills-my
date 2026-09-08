@@ -126,14 +126,11 @@ The bracket tends to $2$ at $s=\frac{1}{2}$, while
 $$
 \Gamma(1-2s)\sim-\frac{1}{2\left(s-\frac{1}{2}\right)}.
 $$
-This gives
+So the residue of $A_+(s)$ at $s=\frac{1}{2}$ is $-1$.
+
+The residue of $M(s)$ at $s=\frac{1}{2}$ is
 $$
-\operatorname*{Res}_{s=\frac{1}{2}}A_+(s)=-1.
-$$
-Then
-$$
-\operatorname*{Res}_{s=\frac{1}{2}}M(s)
-=-\frac{1}{2}\Gamma\left(-\frac{1}{4}\right)
+-\frac{1}{2}\Gamma\left(-\frac{1}{4}\right)
 =2\Gamma\left(\frac{3}{4}\right).
 $$
 Multiplying by $\Gamma\left(\frac{1}{2}\right)=\sqrt{\pi}$, the residue of the full Mellin integrand is
