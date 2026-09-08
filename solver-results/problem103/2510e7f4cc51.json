@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "67f7e01c4eb28c96e09f08f4163a77c22609ad07",
+  "problem_blob_sha": "2510e7f4cc51ed06cf2a4331d32fbc1b1d334047",
+  "statement_sha256": "cf6aa680976f4b884b1c750658f67a0925a32565d6fd5305f6b141ca8dfd35e3",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T03:10:30+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nu(x)=\\frac{1-\\sqrt{1-4x^2}}2.\n\\]\nSince \\(u\\) is even in \\(x\\), the main contribution as \\(n\\to\\infty\\) comes from \\(x=0\\). Put \\(s=x^2\\). Near \\(0\\),\n\\[\nu(x)=s+s^2+2s^3+O(s^4),\n\\]\nso the vertical width is\n\\[\nu(x)-x^2=s^2+2s^3+O(s^4).\n\\]\n\nAlso, since \\(y\\sim x^2\\) in the integration region,\n\\[\ne^{-ny^2}=1-ny^2+O(n^2y^4).\n\\]\nThus\n\\[\n\\int_{x^2}^{u(x)} e^{-ny^2}\\,dy\n=(u-x^2)-\\frac n3(u^3-x^6)+O(n^2x^{12}).\n\\]\nUsing \\(u=x^2+O(x^4)\\),\n\\[\nu^3-x^6=3x^8+O(x^{10}),\n\\]\nso\n\\[\n\\int_{x^2}^{u(x)} e^{-ny^2}\\,dy\n=x^4+2x^6-nx^8+O(x^8+nx^{10}+n^2x^{12}).\n\\]\n\nTherefore\n\\[\nM_n=\\int_{-1/2}^{1/2}e^{-nx^2}(x^4+2x^6-nx^8)\\,dx+O(n^{-9/2}).\n\\]\nThe Gaussian moment formula gives\n\\[\n\\int_{-\\infty}^{\\infty}x^4e^{-nx^2}\\,dx=\\frac{3\\sqrt\\pi}{4n^{5/2}},\n\\]\n\\[\n\\int_{-\\infty}^{\\infty}x^6e^{-nx^2}\\,dx=\\frac{15\\sqrt\\pi}{8n^{7/2}},\n\\qquad\n\\int_{-\\infty}^{\\infty}x^8e^{-nx^2}\\,dx=\\frac{105\\sqrt\\pi}{16n^{9/2}}.\n\\]\nThe tails outside \\([-1/2,1/2]\\) are exponentially small at this order, hence\n\\[\nM_n=\\frac{3\\sqrt\\pi}{4n^{5/2}}\n+\\left(2\\cdot\\frac{15\\sqrt\\pi}{8}-\\frac{105\\sqrt\\pi}{16}\\right)n^{-7/2}\n+O(n^{-9/2}).\n\\]\nThe coefficient is\n\\[\n\\frac{30\\sqrt\\pi}{8}-\\frac{105\\sqrt\\pi}{16}\n=-\\frac{45\\sqrt\\pi}{16}.\n\\]\n\n\\[\n\\boxed{-\\frac{45\\sqrt\\pi}{16}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T03:11:27+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/2510e7f4cc51.json"
+}
