@@ -5,7 +5,7 @@ The Hessian is
 $$
 A=\operatorname{diag}(1,3,7).
 $$
-With $x_{-1}=x_0$ and momentum $\beta=1/3$, each eigencoordinate with eigenvalue $\lambda\in\{1,3,7\}$ is multiplied by scalar residuals
+With $x_{-1}=x_0$ and momentum $\beta=1/3$, each eigencoordinate with eigenvalue $\lambda\in\{1,3,7\}$ is multiplied by residuals
 $$
 q_0(\lambda)=1,
 \qquad q_1(\lambda)=1-\alpha_0\lambda,
@@ -16,33 +16,32 @@ $$
 $$
 q_3(\lambda)=\left(\frac43-\alpha_2\lambda\right)q_2(\lambda)-\frac13q_1(\lambda).
 $$
-Therefore
+This gives
 $$
 R(\alpha_0,\alpha_1,\alpha_2)
 =\max_{\lambda\in\{1,3,7\}}
 \max\left\{\frac14|q_1(\lambda)|,\frac12|q_2(\lambda)|,|q_3(\lambda)|\right\}.
 $$
 
-Step 2: Define the candidate algebraic optimizer
+Step 2: Define the candidate algebraic minimizer
 Let $t$ be the unique real root of
 $$
 P(z)=1463z^3-1438z^2+471z-48.
 $$
-The discriminant of $P$ is $-671179008<0$, so there is exactly one real root. Moreover
+The discriminant of $P$ is $-671179008<0$, so $P$ has exactly one real root. Also,
 $$
 P\!\left(\frac{19}{100}\right)<0,
 \qquad
 P\!\left(\frac15\right)>0,
 $$
-so
+which places that root in
 $$
 \frac{19}{100}<t<\frac15.
 $$
-Define
+Set
 $$
 r_*:=\frac{1-t}{4},
-\qquad
-a_*:=t,
+\qquad a_*:=t,
 $$
 $$
 b_*:=\frac{5t-3}{6(t-1)}=\frac{3-5t}{6(1-t)},
@@ -50,7 +49,7 @@ $$
 $$
 c_*:=\frac{2(29t^2-19t+2)}{3(105t^2-67t+8)}.
 $$
-The above interval for $t$ gives $0<a_*,b_*,c_*<1/2$. Numerically,
+The interval for $t$ gives $0<a_*,b_*,c_*<1/2$. Numerically,
 $$
 t\approx0.1948313835,
 \quad b_*\approx0.4193413738,
@@ -58,82 +57,106 @@ t\approx0.1948313835,
 \quad r_*\approx0.2012921541.
 $$
 
-Step 3: The first two prefixes force a narrow feasible strip
+Step 3: Restrict the first two step sizes to a narrow feasible strip
 Write
 $$
 a=\alpha_0,\qquad b=\alpha_1,\qquad c=\alpha_2,
 $$
-and suppose $R\le r_*$. From the one-step constraint at $\lambda=1$,
+and suppose $R\leq r_*$. The one-step constraint at $\lambda=1$ gives
 $$
-\frac14(1-a)\le r_*,
+\frac14(1-a)\leq r_*,
 $$
-so $a\ge t$. Since $t>1/7$, the one-step constraint at $\lambda=7$ gives
+so $a\geq t$. Since $t>1/7$, the one-step constraint at $\lambda=7$ gives
 $$
-7a-1\le1-t,
-\qquad\text{hence}\qquad
- a\le\frac{2-t}{7}. \tag{1}
+7a-1\leq1-t,
+\qquad
+ a\leq\frac{2-t}{7}.
 $$
-On this range $q_2(1)>0$, hence $q_2(1)\le2r_*$ yields
+Because $b\leq1/2$ and $a\leq(2-t)/7<2/7$,
 $$
-b\ge L(a):=\frac43-\frac{5-3t}{6(1-a)}. \tag{2}
+q_2(1)=\left(\frac43-b\right)(1-a)-\frac13
+>\frac56\cdot\frac57-\frac13=\frac{11}{42}>0.
 $$
-Also $q_2(7)$ is increasing in $b$. At $b=L(a)$,
+The bound $q_2(1)\leq2r_*$ therefore gives
+$$
+b\geq L(a):=\frac43-\frac{5-3t}{6(1-a)}.
+$$
+The quantity $q_2(7)$ is increasing in $b$. At $b=L(a)$,
 $$
 q_2(7)=\frac{-112a^2+49at+47a-7t-5}{2(1-a)}>0.
 $$
-Indeed the numerator is concave in $a$, and at the two endpoints of (1) it equals
+The numerator is concave in $a$, and at $a=t$ and $a=(2-t)/7$ it equals
 $$
 -63t^2+40t-5>0,
 \qquad
 -\frac{65t^2-66t+5}{7}>0.
 $$
-Thus the constraint $q_2(7)\le2r_*$ gives
+The constraint $q_2(7)\leq2r_*$ then gives
 $$
-b\le U(a):=\frac17\left(\frac43+\frac{5-3t}{6(7a-1)}\right). \tag{3}
+b\leq U(a):=\frac17\left(\frac43+\frac{5-3t}{6(7a-1)}\right).
 $$
-Feasibility requires $L(a)\le U(a)$. Since
+Feasibility requires $L(a)\leq U(a)$. Since
 $$
 L(a)-U(a)
 =\frac{56a^2-24at-24a+3t+3}{7(a-1)(7a-1)},
 $$
-and the denominator is negative, we must have
+and $a<1$ while $7a-1>0$, the denominator is negative. Therefore
 $$
-N(a,t):=56a^2-24at-24a+3t+3\ge0. \tag{4}
+N(a,t):=56a^2-24at-24a+3t+3\geq0.
 $$
-Now $N$ is convex in $a$, while
+For fixed $t$, the function $N$ is convex in $a$. At the endpoints of the interval $[11/50,(2-t)/7]$,
 $$
 N\!\left(\frac{11}{50},t\right)
-=-\frac{1425t-269}{625}<0
+=-\frac{1425t-269}{625}<0,
 $$
-and, using the upper endpoint from (1),
 $$
 N\!\left(\frac{2-t}{7},t\right)
 =\frac{32t^2-35t+5}{7}<0.
 $$
-Hence (4) rules out $a\ge11/50$. Therefore
+Convexity makes $N<0$ throughout that interval, which is incompatible with $N(a,t)\geq0$. So
 $$
-t\le a<\frac{11}{50}. \tag{5}
+t\leq a<\frac{11}{50}.
 $$
-Since $L$ decreases in $a$ and increases in $t$, (2), (5), and $t>19/100$ imply
+Since
+$$
+\frac{\partial L}{\partial a}=-\frac{5-3t}{6(1-a)^2}<0,
+\qquad
+\frac{\partial L}{\partial t}=\frac{1}{2(1-a)}>0,
+$$
+the bounds $b\geq L(a)$, $a<11/50$, and $t>19/100$ imply
 $$
 b>L\!\left(\frac{11}{50};\frac{19}{100}\right)
-=\frac{181}{468}>\frac{19}{50}. \tag{6}
+=\frac{181}{468}>\frac{19}{50}.
 $$
-Thus every schedule with $R\le r_*$ lies in the rectangle
+Every schedule with $R\leq r_*$ therefore lies in
 $$
 \frac{19}{100}<a<\frac{11}{50},
 \qquad
-\frac{19}{50}<b\le\frac12. \tag{7}
+\frac{19}{50}<b\leq\frac12.
 $$
 
-Step 4: Eliminate the third step by a momentum certificate
-For $\lambda=3,7$, set
+Step 4: Eliminate the third step size with a momentum certificate
+On the rectangle from Step 3, define
 $$
-S:=-3q_2(3)>0,
+S:=-3q_2(3),
 \qquad
-T:=7q_2(7)>0,
+T:=7q_2(7).
 $$
-which follows directly from (7). Also put
+For $\lambda=3$, $q_2(3)$ decreases with $b$ because $1-3a>0$. At $b=19/50$, the factor $4/3-3b$ is positive, so the same expression also decreases with $a$. Therefore
+$$
+q_2(3)
+\leq\left(\frac43-3\cdot\frac{19}{50}\right)
+\left(1-3\cdot\frac{19}{100}\right)-\frac13
+=-\frac{1251}{5000}<0.
+$$
+For $\lambda=7$, both factors $4/3-7b$ and $1-7a$ are negative, and $q_2(7)$ increases with each of $a$ and $b$. Therefore
+$$
+q_2(7)
+\geq\left(\frac43-7\cdot\frac{19}{50}\right)
+\left(1-7\cdot\frac{19}{100}\right)-\frac13
+=\frac{1567}{15000}>0.
+$$
+So $S,T>0$. Put
 $$
 V_3:=\frac43q_2(3)-\frac13q_1(3),
 \qquad
@@ -145,25 +168,29 @@ q_3(3)=V_3+Sc,
 \qquad
 q_3(7)=V_7-Tc.
 $$
-The linear combination
+The combination
 $$
 Tq_3(3)+Sq_3(7)=TV_3+SV_7
 $$
-is independent of $c$. Hence for every $c$,
+does not depend on $c$. Since $S,T>0$,
 $$
 \max\{|q_3(3)|,|q_3(7)|\}
-\ge h(a,b):=-\frac{TV_3+SV_7}{T+S}. \tag{8}
+\geq h(a,b):=-\frac{TV_3+SV_7}{T+S}.
 $$
-A simplification gives
+Expanding gives
 $$
 h(a,b)=-\frac{5292a^2b^2-2730a^2b+364a^2-2520ab^2+1068ab-120a+252b^2-90b+9}
 {3(237ab-40a-30b+3)}.
 $$
-On the rectangle (7), the denominator factor
+Write
 $$
-D_0:=237ab-40a-30b+3
+D_0:=237ab-40a-30b+3.
 $$
-is positive. Differentiating,
+On the Step 3 rectangle, both partial derivatives of $D_0$ are positive, and
+$$
+D_0\!\left(\frac{19}{100},\frac{19}{50}\right)=\frac{5557}{5000}>0.
+$$
+So $D_0>0$. Differentiation gives
 $$
 \frac{\partial h}{\partial b}
 =-\frac{7E(a,b)}{D_0^2},
@@ -174,25 +201,35 @@ E=36(3a-1)(7a-1)(79a-10)b^2
 -24(3a-1)(7a-1)(40a-3)b
 +a(1092a^2-550a+51).
 $$
-Furthermore
+Also,
 $$
 \frac{\partial E}{\partial b}
 =24(3a-1)(7a-1)D_0<0.
 $$
-Thus $E(a,b)\le E(a,19/50)$. Here
+So $E(a,b)\leq E(a,19/50)$. Let
 $$
-E\!\left(a,\frac{19}{50}\right)
-=\frac{1284591a^3-953650a^2+214446a-15390}{625}<0
+F(a):=1284591a^3-953650a^2+214446a-15390.
 $$
-throughout $19/100\le a\le11/50$: its derivative is a convex quadratic that is negative at both endpoints, and the cubic itself is already negative at $a=19/100$. Consequently
+Then
 $$
-\frac{\partial h}{\partial b}>0. \tag{9}
+E\!\left(a,\frac{19}{50}\right)=\frac{F(a)}{625}.
 $$
-By (2) and (9), $h(a,b)\ge h(a,L(a))$. Using $P(t)=0$, direct reduction yields
+The derivative
+$$
+F'(a)=3853773a^2-1907300a+214446
+$$
+is convex and is negative at both $a=19/100$ and $a=11/50$. So $F'$ is negative on the whole interval. Since $F(19/100)<0$, we get $F(a)<0$, so $E(a,b)<0$ and
+$$
+\frac{\partial h}{\partial b}>0.
+$$
+Step 3 gives $b\geq L(a)$, so
+$$
+h(a,b)\geq h(a,L(a)).
+$$
+Expanding the rational expression and replacing each $t^3$ by the relation from $P(t)=0$ gives
 $$
 h(a,L(a))-r_*
-=\frac{(a-t)Q(a,t)}
-{12(a-1)D_1(a,t)}, \tag{10}
+=\frac{(a-t)Q(a,t)}{12(a-1)D_1(a,t)},
 $$
 where
 $$
@@ -205,49 +242,58 @@ Q={}&16352a^3+624a^2t-15328a^2+4389at^2-3830at+5353a\\
 &-1463t^2+1240t-681.
 \end{aligned}
 $$
-On $19/100\le a\le11/50$ and $19/100\le t\le1/5$,
+On $19/100\leq a\leq11/50$ and $19/100\leq t\leq1/5$,
 $$
-\partial_aD_1=-368a+79t+77>0,
+\frac{\partial D_1}{\partial a}=-368a+79t+77>0,
 \qquad
-\partial_tD_1=79a-10>0,
+\frac{\partial D_1}{\partial t}=79a-10>0,
 $$
 so
 $$
-D_1\ge D_1\!\left(\frac{19}{100},\frac{19}{100}\right)=\frac{1879}{2000}>0.
+D_1\geq D_1\!\left(\frac{19}{100},\frac{19}{100}\right)=\frac{1879}{2000}>0.
 $$
-Also $Q_a$ and $Q_t$ decrease as either variable increases on this rectangle, and
+For $Q$,
+$$
+Q_{aa}=98112a+1248t-30656<0,
+$$
+$$
+Q_{at}=1248a+8778t-3830<0,
+\qquad
+Q_{tt}=8778a-2926<0
+$$
+throughout the same rectangle. So $Q_a$ and $Q_t$ decrease as either variable increases. At the upper corner,
 $$
 Q_a\!\left(\frac{11}{50},\frac15\right)=\frac{279664}{625}>0,
 \qquad
 Q_t\!\left(\frac{11}{50},\frac15\right)=\frac{142896}{625}>0.
 $$
-Thus $Q$ increases in both variables, while
+So $Q$ increases in both variables. Its maximum is therefore at the upper corner, where
 $$
 Q\!\left(\frac{11}{50},\frac15\right)
 =-\frac{85556}{15625}<0.
 $$
-Hence $Q<0$ throughout the rectangle. Since $a\ge t$, $a-1<0$, and $D_1>0$, equation (10) gives
+So $Q<0$ on the rectangle. Since $a\geq t$, $a-1<0$, and $D_1>0$, the factorization for $h(a,L(a))-r_*$ gives
 $$
-h(a,L(a))\ge r_*,
+h(a,L(a))\geq r_*,
 $$
-with equality only when $a=t$. Combining this with (8) proves $R\ge r_*$. Moreover, equality forces successively
+with equality only at $a=t$. The lower bound for $\max\{|q_3(3)|,|q_3(7)|\}$ then proves $R\geq r_*$. Equality forces
 $$
 a=t,
 \qquad
 b=L(t)=\frac{5t-3}{6(t-1)}.
 $$
 
-Step 5: Attain the bound and prove uniqueness of the third step
+Step 5: Attain the bound and identify the unique third step size
 At $a=t$ and $b=b_*$, solving
 $$
 q_3(3)=q_3(7)
 $$
-gives exactly
+gives
 $$
 c=c_*=
 \frac{2(29t^2-19t+2)}{3(105t^2-67t+8)}.
 $$
-Moreover
+Also,
 $$
 q_3(3)+r_*=q_3(7)+r_*
 =\frac{(3t-1)P(t)}{12(t-1)(105t^2-67t+8)}=0,
@@ -256,42 +302,54 @@ so
 $$
 q_3(3)=q_3(7)=-r_*.
 $$
-For the other active prefixes,
+For the other prefixes,
 $$
-q_1(1)=1-t=4r_*;
+q_1(1)=1-t=4r_*,
 \qquad
 q_2(1)=\frac{1-t}{2}=2r_*.
 $$
-The remaining modes are strict. Indeed
+The remaining modes are strict:
 $$
 |q_1(3)|<1-t,
 \qquad |q_1(7)|<1-t,
 $$
-while
 $$
 q_2(3)=\frac{7t^2-4t+1}{2(t-1)},
 \qquad
 q_2(7)=\frac{63t^2-40t+5}{2(t-1)},
 $$
-and $19/100<t<1/5$ gives $|q_2(3)|,|q_2(7)|<2r_*$. Finally
+For $q_2(3)<0$, the inequality $|q_2(3)|<2r_*=(1-t)/2$ reduces to
 $$
-q_3(1)=\frac{2(1-t)(38t^2-24t+3)}{3(105t^2-67t+8)},
+2t(3t-1)<0,
 $$
-and both quadratic factors in the ratio are negative on this interval; the inequality $q_3(1)<r_*$ reduces to
+which holds because $0<t<1/5$. For $q_2(7)>0$, the inequality $|q_2(7)|<2r_*$ reduces to
+$$
+64t^2-42t+6>0.
+$$
+This quadratic is decreasing for $t<1/5$ and equals $4/25$ at $t=1/5$, so it is positive on the required interval. For the last mode,
+$$
+q_3(1)=\frac{2(1-t)(38t^2-24t+3)}{3(105t^2-67t+8)}.
+$$
+Both quadratic factors in this ratio are negative on $19/100<t<1/5$. The inequality $q_3(1)<r_*$ is equivalent to
 $$
 8(38t^2-24t+3)>3(105t^2-67t+8),
 $$
-which is just $t(9-11t)>0$.
-Therefore $R(a_*,b_*,c_*)=r_*$. Equality in the certificate (8) with both third-step residuals bounded by $r_*$ forces $q_3(3)=q_3(7)=-r_*$, so the displayed $c_*$ is also unique.
+which reduces to $t(9-11t)>0$. So $R(a_*,b_*,c_*)=r_*$. Equality in the Step 4 certificate with both third-step residuals bounded by $r_*$ forces $q_3(3)=q_3(7)=-r_*$, so $c_*$ is unique.
 
-Thus, with $t$ the unique real root of $1463t^3-1438t^2+471t-48=0$,
-Final Answer: $\boxed{\left(\frac{1-t}{4},\left(t,\frac{5t-3}{6(t-1)},\frac{2(29t^2-19t+2)}{3(105t^2-67t+8)}\right)\right)}$
+For the final answer, the third component can be shortened without changing its value. Since $P(t)=0$,
+$$
+\frac{2(29t^2-19t+2)}{3(105t^2-67t+8)}
+-\frac{41t-13}{147t-42}
+=\frac{P(t)}{-21(7t-2)(105t^2-67t+8)}=0.
+$$
+Step 2 shows that the cubic condition in the final expression selects one real value of $t$.
+Final Answer: $\boxed{(\frac{-t+1}{4},(t,\frac{5t-3}{6t-6},\frac{41t-13}{147t-42}))|_{1463t^3-1438t^2+471t-48=0,0<t<1}}$
 
 ---
 
 ## Answer
 
-Approximately $(0.2012921541,(0.1948313835,0.4193413738,0.3751492009))$
+$(\frac{-t+1}{4},(t,\frac{5t-3}{6t-6},\frac{41t-13}{147t-42}))|_{1463t^3-1438t^2+471t-48=0,0<t<1}$
 
 ---
 
@@ -309,7 +367,7 @@ Approximately $(0.2012921541,(0.1948313835,0.4193413738,0.3751492009))$
 - spectral residual recurrence
 - transient minimax optimization
 - affine elimination certificate
-- algebraic optimality certificate
+- algebraic minimax certificate
 
 ---
 
