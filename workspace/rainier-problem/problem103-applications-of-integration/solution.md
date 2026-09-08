@@ -1,202 +1,200 @@
 ## Steps
 
-Step 1: Reduce the invariant matrix integral to eigenvalues
+Step 1: Compute the leading rank-three contribution
 
 Write
 $$
-M=\begin{pmatrix}
-a&d&e\\
-d&b&f\\
-e&f&c
-\end{pmatrix}.
+\Delta_3(x_1,x_2,x_3)=\prod_{1\le i<j\le3}(x_i-x_j).
 $$
-For a real symmetric matrix, write $M=Q\operatorname{diag}(\lambda_1,\lambda_2,\lambda_3)Q^T$. Infinitesimally, if $Q^TdQ=\Omega$ is skew-symmetric, then the off-diagonal part of $Q^TdMQ$ is
+Near the hyperplane $x_4=0$, with $x_1x_2x_3\ne0$,
 $$
-(\lambda_j-\lambda_i)\Omega_{ij}.
-$$
-Hence, after integrating the orthogonal variables, the Euclidean volume element has the form
-$$
-C\,|\Delta(\lambda)|\,d\lambda_1d\lambda_2d\lambda_3,
-\qquad
-\Delta(\lambda)=\prod_{i<j}(\lambda_i-\lambda_j),
-$$
-for a constant $C$.
-
-We determine $C$ from the Gaussian integral. Directly in the six matrix entries,
-$$
-\int e^{-\operatorname{tr}(M^2)}\,dM
-=\pi^{3/2}\left(\frac\pi2\right)^{3/2}
-=\frac{\pi^3}{2^{3/2}}.
-$$
-On the eigenvalue side use the orthonormal coordinates
-$$
-\lambda_1=\frac m{\sqrt3}+\frac u{\sqrt2}+\frac v{\sqrt6},\quad
-\lambda_2=\frac m{\sqrt3}-\frac u{\sqrt2}+\frac v{\sqrt6},\quad
-\lambda_3=\frac m{\sqrt3}-\frac{2v}{\sqrt6}.
-$$
-Then
-$$
-|\Delta|=\frac{r^3}{\sqrt2}|\cos 3\theta|,
-\qquad u=r\cos\theta,\quad v=r\sin\theta.
-$$
-Therefore
-$$
-\int_{\mathbb R^3}e^{-\sum\lambda_i^2}|\Delta|\,d\lambda
-=\sqrt\pi\,\frac1{\sqrt2}
-\left(\int_0^\infty r^4e^{-r^2}\,dr\right)
-\left(\int_0^{2\pi}|\cos3\theta|\,d\theta\right)
-=\frac{3\pi}{2^{3/2}}.
-$$
-Thus
-$$
-C=\frac{\pi^2}{3}.
-$$
-Consequently
-$$
-I_n=\frac{\pi^2}{3}\int_{\mathbb R^3}
-|\Delta(\lambda)|
- e^{-n\left((\lambda_1\lambda_2\lambda_3)^2+(\lambda_1^2+\lambda_2^2+\lambda_3^2)^4\right)}d\lambda.
-$$
-
-Step 2: Compute the leading rank-two contribution
-
-The determinant-zero set is the union of the three coordinate planes $\lambda_i=0$. Away from their intersections, take for example $\lambda_3$ as the normal variable. Then
-$$
-|\Delta(\lambda)|
-=|\lambda_1-\lambda_2|\,|\lambda_1\lambda_2|+o(1)
+|\Delta(x)|=|\Delta_3(x_1,x_2,x_3)|\,|x_1x_2x_3|+o(1)
 $$
 in the normal scale, while
 $$
 \int_{-\infty}^{\infty}
- e^{-n(\lambda_1\lambda_2)^2\lambda_3^2}\,d\lambda_3
-=\frac{\sqrt\pi}{\sqrt n\,|\lambda_1\lambda_2|}.
+ e^{-n(x_1x_2x_3)^2x_4^2}\,dx_4
+=\frac{\sqrt\pi}{\sqrt n\,|x_1x_2x_3|}.
 $$
-Hence one rank-two plane contributes
+Thus one rank-three hyperplane contributes
 $$
 \frac{\sqrt\pi}{\sqrt n}
-\int_{\mathbb R^2}|x-y|e^{-n(x^2+y^2)^4}\,dx\,dy.
+\int_{\mathbb R^3}|\Delta_3(x)|
+ e^{-n(x_1^2+x_2^2+x_3^2)^5}\,dx.
 $$
-With $x=n^{-1/8}X$, $y=n^{-1/8}Y$ this equals
+After the scaling $x=n^{-1/10}X$, this becomes
 $$
-\sqrt\pi\,n^{-7/8}
-\int_{\mathbb R^2}|X-Y|e^{-(X^2+Y^2)^4}\,dX\,dY.
-$$
-Using polar coordinates,
-$$
-\int_{\mathbb R^2}|X-Y|e^{-(X^2+Y^2)^4}\,dX\,dY
-=4\sqrt2\int_0^\infty r^2e^{-r^8}\,dr
-=\frac{\sqrt2}{2}\Gamma\left(\frac38\right).
-$$
-There are three rank-two planes, so after multiplying by $\pi^2/3$,
-$$
-I_n=\frac{\pi^{5/2}}{\sqrt2}\Gamma\left(\frac38\right)n^{-7/8}
-+o(n^{-7/8}).
+\sqrt\pi\,n^{-11/10}
+\int_{\mathbb R^3}|\Delta_3(X)|e^{-(X_1^2+X_2^2+X_3^2)^5}\,dX.
 $$
 
-Step 3: Identify the next stratum
+To evaluate the radial integral, first note that the orthonormal coordinates
+$$
+X_1=\frac m{\sqrt3}+\frac u{\sqrt2}+\frac v{\sqrt6},\quad
+X_2=\frac m{\sqrt3}-\frac u{\sqrt2}+\frac v{\sqrt6},\quad
+X_3=\frac m{\sqrt3}-\frac{2v}{\sqrt6}
+$$
+give, for $u=r\cos\theta$, $v=r\sin\theta$,
+$$
+|\Delta_3|=\frac{r^3}{\sqrt2}|\cos3\theta|.
+$$
+Hence
+$$
+\int_{\mathbb R^3}e^{-|X|^2}|\Delta_3(X)|\,dX
+=\frac{3\pi}{2^{3/2}}.
+$$
+Since $|\Delta_3|$ is homogeneous of degree $3$, its spherical angular factor is therefore $3\pi/2^{3/2}$. Consequently
+$$
+\int_{\mathbb R^3}|\Delta_3(X)|e^{-|X|^{10}}\,dX
+=\frac{3\pi}{2^{3/2}}
+\int_0^\infty r^5e^{-r^{10}}\,dr
+=\frac{3\pi\Gamma(3/5)}{10\,2^{3/2}}.
+$$
+There are four rank-three hyperplanes, so
+$$
+I_n=
+\frac{3\pi^{3/2}\Gamma(3/5)}{5\sqrt2}\,n^{-11/10}
++o(n^{-11/10}).
+$$
 
-The rank-two approximation is nonuniform where two eigenvalues vanish. Near the $\lambda_1$-axis use the rank-one scaling
-$$
-\lambda_1=n^{-1/8}X,\qquad
-\lambda_2=n^{-3/16}Y,\qquad
-\lambda_3=n^{-3/16}Z.
-$$
-Then
-$$
-n(\lambda_1\lambda_2\lambda_3)^2\to X^2Y^2Z^2,
-\qquad
-n(\lambda_1^2+\lambda_2^2+\lambda_3^2)^4\to X^8,
-$$
-and
-$$
-|\Delta(\lambda)|\,d\lambda
-=n^{-15/16}|X|^2|Y-Z|\,dX\,dY\,dZ+o(n^{-15/16}).
-$$
-Thus the rank-one intersections occur at order $n^{-15/16}$.
+Step 2: Extract the rank-two finite part
 
-The two rank-two plane models meeting on this axis must be subtracted. For fixed $X$, their combined local contribution is the finite part
+The rank-three approximation is nonuniform where two coordinates vanish. Consider the intersection $x_3=x_4=0$ and keep the two surviving coordinates $x,y$. In the local scale,
 $$
-K(X)=\lim_{R\to\infty}\left[
-\int_{-R}^R\int_{-R}^R
-|X|^2|Y-Z|e^{-X^2Y^2Z^2}\,dY\,dZ
--4R\sqrt\pi\,|X|
-\right].
+|\Delta(x,y,u,v)|
+=|x-y|\,|x|^2|y|^2|u-v|+o(1),
 $$
-With
+and the determinant term is
 $$
-a=\sqrt{|X|}\,Y,\qquad b=\sqrt{|X|}\,Z,
+nx^2y^2u^2v^2.
 $$
-we get
-$$
-K(X)=|X|^{1/2}K_0,
-$$
-where
+The two rank-three models meeting on this intersection must be subtracted. Their universal transverse finite part is
 $$
 K_0=\lim_{L\to\infty}\left[
 \int_{-L}^L\int_{-L}^L|a-b|e^{-a^2b^2}\,da\,db
 -4L\sqrt\pi
 \right].
 $$
-
-Step 4: Evaluate the universal rank-one finite part
-
-By splitting the square into same-sign and opposite-sign quadrants,
+Splitting into same-sign and opposite-sign quadrants gives
 $$
 \int_{-L}^L\int_{-L}^L|a-b|e^{-a^2b^2}\,da\,db
 =8\int_0^L a\int_0^a e^{-a^2b^2}\,db\,da.
 $$
 With $t=ab$ and then reversing the order,
 $$
-\begin{aligned}
 8\int_0^L a\int_0^a e^{-a^2b^2}\,db\,da
-={}&8L\int_0^{L^2}e^{-t^2}\,dt\\
-&-8\int_0^{L^2}t^{1/2}e^{-t^2}\,dt.
+=8L\int_0^{L^2}e^{-t^2}\,dt
+-8\int_0^{L^2}t^{1/2}e^{-t^2}\,dt.
+$$
+Therefore
+$$
+K_0=-4\Gamma\left(\frac34\right).
+$$
+
+For fixed $x,y$, put $\kappa=\sqrt n\,|xy|$ and scale
+$$
+u=\kappa^{-1/2}a,
+\qquad
+v=\kappa^{-1/2}b.
+$$
+After subtracting the two rank-three models, the local correction is
+$$
+K_0\,n^{-3/4}|x-y|\,|xy|^{1/2}.
+$$
+Thus one rank-two intersection contributes
+$$
+K_0n^{-3/4}
+\int_{\mathbb R^2}|x-y|\,|xy|^{1/2}
+ e^{-n(x^2+y^2)^5}\,dx\,dy.
+$$
+Scaling $x=n^{-1/10}X$, $y=n^{-1/10}Y$ shows that this is of order $n^{-23/20}$.
+
+Step 3: Evaluate the tangential rank-two integral
+
+Put
+$$
+B=\int_{\mathbb R^2}|X-Y|\,|XY|^{1/2}
+ e^{-(X^2+Y^2)^5}\,dX\,dY.
+$$
+In polar coordinates, the radial and angular factors separate:
+$$
+B=\left(\int_0^\infty r^3e^{-r^{10}}\,dr\right)H,
+$$
+where
+$$
+H=\int_0^{2\pi}|\cos\theta-\sin\theta|
+|\cos\theta\sin\theta|^{1/2}\,d\theta.
+$$
+The radial factor is
+$$
+\int_0^\infty r^3e^{-r^{10}}\,dr
+=\frac1{10}\Gamma\left(\frac25\right).
+$$
+For the angular factor, put $\phi=\theta-\pi/4$. Then
+$$
+H=4\int_0^1|2u^2-1|^{1/2}\,du.
+$$
+Splitting at $u=1/\sqrt2$ gives
+$$
+H=2+\frac\pi{\sqrt2}-\sqrt2\log(1+\sqrt2).
+$$
+Hence
+$$
+B=\frac1{10}
+\left(2+\frac\pi{\sqrt2}-\sqrt2\log(1+\sqrt2)\right)
+\Gamma\left(\frac25\right).
+$$
+
+Step 4: Sum the rank-two strata and exclude smaller terms
+
+There are six pairwise intersections of the four coordinate hyperplanes. Therefore the total rank-two correction is
+$$
+6K_0B\,n^{-23/20}.
+$$
+Using Step 2 and Step 3,
+$$
+6K_0B
+=-\frac{12}{5}
+\left(2+\frac\pi{\sqrt2}-\sqrt2\log(1+\sqrt2)\right)
+\Gamma\left(\frac25\right)
+\Gamma\left(\frac34\right).
+$$
+
+It remains to check that no other contribution occurs at this order. Along a regular rank-three hyperplane the normal scale is $n^{-1/5}$ while the tangential scale is $n^{-1/10}$; odd normal corrections vanish, so the first regular correction is of relative order $n^{-1/5}$, hence $O(n^{-13/10})$. Near a rank-one stratum the natural scaling is one coordinate of size $n^{-1/10}$ and three coordinates of size $n^{-2/15}$, giving total order $n^{-6/5}$. At the rank-zero point the homogeneous determinant scale gives order $n^{-5/4}$. All of these are smaller than $n^{-23/20}$.
+
+Step 5: Recover the requested limit
+
+Combining the preceding steps,
+$$
+\begin{aligned}
+I_n={}&
+\frac{3\pi^{3/2}\Gamma(3/5)}{5\sqrt2}\,n^{-11/10}\\
+&-\frac{12}{5}
+\left(2+\frac\pi{\sqrt2}-\sqrt2\log(1+\sqrt2)\right)
+\Gamma\left(\frac25\right)
+\Gamma\left(\frac34\right)n^{-23/20}
++o(n^{-23/20}).
 \end{aligned}
 $$
 Therefore
 $$
-K_0=-8\int_0^\infty t^{1/2}e^{-t^2}\,dt
-=-4\Gamma\left(\frac34\right).
-$$
-Also
-$$
-\int_{-\infty}^{\infty}|X|^{1/2}e^{-X^8}\,dX
-=\frac14\Gamma\left(\frac3{16}\right).
-$$
-Hence one rank-one axis contributes
-$$
--\Gamma\left(\frac3{16}\right)\Gamma\left(\frac34\right)n^{-15/16}.
-$$
-There are three such axes. Multiplying by the spectral factor $\pi^2/3$ gives
-$$
--\pi^2\Gamma\left(\frac3{16}\right)\Gamma\left(\frac34\right)n^{-15/16}.
-$$
-Regular corrections along the rank-two planes are $O(n^{-9/8})$, while the rank-zero apex is $O(n^{-1})$, so both are smaller than $n^{-15/16}$.
-
-Step 5: Recover the requested limit
-
-Thus
-$$
-I_n=
-\frac{\pi^{5/2}\Gamma(3/8)}{\sqrt2\,n^{7/8}}
--\frac{\pi^2\Gamma(3/16)\Gamma(3/4)}{n^{15/16}}
-+o(n^{-15/16}).
-$$
-Therefore
-$$
-\lim_{n\to\infty}n^{15/16}
-\left(I_n-
-\frac{\pi^{5/2}\Gamma(3/8)}{\sqrt2\,n^{7/8}}
+\lim_{n\to\infty}n^{23/20}
+\left(
+I_n-
+\frac{3\pi^{3/2}\Gamma(3/5)}{5\sqrt2\,n^{11/10}}
 \right)
-=-\pi^2\Gamma\left(\frac3{16}\right)\Gamma\left(\frac34\right).
+=-\frac{12}{5}
+\left(2+\frac\pi{\sqrt2}-\sqrt2\log(1+\sqrt2)\right)
+\Gamma\left(\frac25\right)
+\Gamma\left(\frac34\right).
 $$
-Final Answer: $\boxed{-\pi^2\Gamma\left(\frac3{16}\right)\Gamma\left(\frac34\right)}$
+Final Answer: $\boxed{-\frac{12}{5}\left(2+\frac\pi{\sqrt2}-\sqrt2\log(1+\sqrt2)\right)\Gamma\left(\frac25\right)\Gamma\left(\frac34\right)}$
 
 ---
 
 ## Answer
 
-$-\pi^2\Gamma\left(\frac3{16}\right)\Gamma\left(\frac34\right)$
+$-\frac{12}{5}\left(2+\frac\pi{\sqrt2}-\sqrt2\log(1+\sqrt2)\right)\Gamma(2/5)\Gamma(3/4)$
 
 ---
 
@@ -210,8 +208,8 @@ $-\pi^2\Gamma\left(\frac3{16}\right)\Gamma\left(\frac34\right)$
 
 ## Solution Concepts
 
-- symmetric-matrix eigenvalue reduction
+- Vandermonde eigenvalue density
 - determinant rank stratification
-- nonuniform rank-two asymptotics
-- rank-one finite-part matching
+- nonuniform rank-three asymptotics
+- rank-two finite-part matching
 - Gamma-function moments
