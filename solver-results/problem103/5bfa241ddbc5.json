@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "7f83a3efc3bc90bf22d87edfbbe20c9064bbb9bc",
+  "problem_blob_sha": "5bfa241ddbc538a3eb6a2771ce966017ee0ba011",
+  "statement_sha256": "cd5dc98484e16fe9043eb0a73fb7fcb33ef5a3f9ad0d2a6f89d745baf701c6ba",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T04:33:39+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nJ_\\lambda=\\int_{\\mathbb R^{3\\times 3}} e^{-\\|X\\|_F^8-\\lambda(\\det X)^2}\\,dX .\n\\]\nWith \\(M=n^{-1/8}X\\),\n\\[\nI_n=n^{-9/8}J_{n^{1/4}}.\n\\]\nSo we need the first two terms of \\(J_\\lambda\\) as \\(\\lambda\\to\\infty\\).\n\nWrite the rows of \\(X\\) as \\(x,y,z\\in\\mathbb R^3\\). Put\n\\[\n\\rho=|x|^2+|y|^2,\\qquad a=|x\\times y|.\n\\]\nFor the pair \\((x,y)\\), the Gram matrix \\(G\\) has \\(\\operatorname{tr}G=\\rho\\) and \\(\\det G=a^2\\). The invariant volume element is\n\\[\ndx\\,dy=4\\pi^3 a\\,da\\,d\\rho,\\qquad 0<a<\\rho/2.\n\\]\nFor fixed \\(x,y\\), decompose \\(z=s\\,u+w\\), where \\(u\\) is the unit vector in the direction of \\(x\\times y\\) and \\(w\\perp u\\). Then\n\\[\n\\det X=a s,\\qquad |z|^2=s^2+|w|^2.\n\\]\nThus, after writing \\(r=|w|^2\\),\n\\[\nJ_\\lambda\n=4\\pi^4\\int_0^\\infty\\int_0^{\\rho/2}\\int_{-\\infty}^{\\infty}\\int_0^\\infty\na\\,e^{-(\\rho+s^2+r)^4}e^{-\\lambda a^2s^2}\\,dr\\,ds\\,da\\,d\\rho .\n\\]\nIntegrating first in \\(a\\), and defining\n\\[\nE(t)=\\int_t^\\infty e^{-u^4}\\,du,\n\\]\ngives\n\\[\nJ_\\lambda\n=\\frac{2\\pi^4}{\\lambda}\n\\int_0^\\infty\\int_{-\\infty}^{\\infty}\nE(\\rho+s^2)\\frac{1-e^{-\\lambda\\rho^2s^2/4}}{s^2}\\,ds\\,d\\rho .\n\\]\n\nNow split\n\\[\nE(\\rho+s^2)=E(\\rho)+\\bigl(E(\\rho+s^2)-E(\\rho)\\bigr).\n\\]\nFor the main part,\n\\[\n\\int_{-\\infty}^{\\infty}\\frac{1-e^{-\\lambda\\rho^2s^2/4}}{s^2}\\,ds\n=\\sqrt{\\pi\\lambda}\\,\\rho,\n\\]\nso\n\\[\n\\frac{2\\pi^4}{\\lambda}\\sqrt{\\pi\\lambda}\\int_0^\\infty \\rho E(\\rho)\\,d\\rho.\n\\]\nBut\n\\[\n\\int_0^\\infty \\rho E(\\rho)\\,d\\rho\n=\\int_0^\\infty e^{-u^4}\\frac{u^2}{2}\\,du\n=\\frac18\\Gamma(3/4).\n\\]\nHence the leading term is\n\\[\n\\frac{\\pi^{9/2}\\Gamma(3/4)}{4}\\lambda^{-1/2}.\n\\]\n\nFor the next term, dominated convergence gives\n\\[\n\\int_0^\\infty\\int_{-\\infty}^{\\infty}\n\\bigl(E(\\rho+s^2)-E(\\rho)\\bigr)\n\\frac{1-e^{-\\lambda\\rho^2s^2/4}}{s^2}\\,ds\\,d\\rho\n\\to\n\\int_0^\\infty\\int_{-\\infty}^{\\infty}\n\\frac{E(\\rho+s^2)-E(\\rho)}{s^2}\\,ds\\,d\\rho .\n\\]\nThe limiting integral equals\n\\[\n-2\\int_0^\\infty \\frac{1}{s^2}\\int_0^{s^2}E(u)\\,du\\,ds\n=-2\\int_0^\\infty a^{-1/2}E(a)\\,da.\n\\]\nFinally,\n\\[\n\\int_0^\\infty a^{-1/2}E(a)\\,da\n=\\int_0^\\infty e^{-u^4}\\int_0^u a^{-1/2}\\,da\\,du\n=2\\int_0^\\infty u^{1/2}e^{-u^4}\\,du\n=\\frac12\\Gamma(3/8).\n\\]\nTherefore\n\\[\nJ_\\lambda\n=\\frac{\\pi^{9/2}\\Gamma(3/4)}{4}\\lambda^{-1/2}\n-2\\pi^4\\Gamma(3/8)\\lambda^{-1}\n+o(\\lambda^{-1}).\n\\]\nSince \\(\\lambda=n^{1/4}\\),\n\\[\nI_n\n=\\frac{\\pi^{9/2}\\Gamma(3/4)}{4n^{5/4}}\n-\\frac{2\\pi^4\\Gamma(3/8)}{n^{11/8}}\n+o(n^{-11/8}).\n\\]\nThus\n\\[\n\\boxed{-2\\pi^4\\Gamma(3/8)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T04:35:41+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/5bfa241ddbc5.json"
+}
