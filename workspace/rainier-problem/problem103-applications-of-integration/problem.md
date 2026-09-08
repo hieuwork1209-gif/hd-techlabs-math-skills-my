@@ -2,14 +2,11 @@
 
 ## LaTeX (Normalized)
 
-For a real $3\times3$ matrix $M=(m_{ij})$, write
+Let $\operatorname{Sym}_3(\mathbb R)$ be the space of real symmetric $3\times3$ matrices, with Frobenius norm $\|\cdot\|_F$. For $n\ge1$, define
 $$
-\|M\|_F^2=\sum_{i,j=1}^3m_{ij}^2.
-$$
-For $n\ge1$, define
-$$
-I_n=\int_{\mathbb R^{3\times3}}
-\exp\left(-n\left((\det M)^2+\|M\|_F^8\right)\right)\,dM.
+I_n=\int_{\operatorname{Sym}_3(\mathbb R)^2}
+\exp\left(-n\left(\|AB-BA\|_F^2+
+(\|A\|_F^2+\|B\|_F^2)^4\right)\right)\,dA\,dB.
 $$
 Also let
 $$
@@ -18,10 +15,10 @@ $$
 $$
 Evaluate
 $$
-\lim_{n\to\infty}n^{11/8}
+\lim_{n\to\infty}n^{5/2}
 \left(
 I_n-
-\frac{\pi^{9/2}\Gamma(3/4)}{4n^{5/4}}
+\frac{\pi^{13/2}\Gamma(3/4)}{48\sqrt2\,n^{9/4}}
 \right).
 $$
 
@@ -40,4 +37,4 @@ $$
 
 ## Domain Explanation
 
-The phase uses two intrinsic quantities of a real $3\times3$ matrix: its determinant and Frobenius norm. The determinant-zero variety is stratified by matrix rank. The leading Laplace contribution comes from rank-two matrices, while the requested correction is the nonuniform contribution from the rank-one stratum. This is a natural degenerate asymptotic-integration problem in Calculus -> Applications of integration.
+The phase measures noncommutativity of two real symmetric matrices together with a radial confining term. After diagonalizing one matrix, the regular commuting stratum gives the leading term, while the requested correction comes from pairwise eigenvalue-collision strata where an off-diagonal mode of the second matrix becomes nonuniform. This is a natural degenerate asymptotic-integration problem in Calculus -> Applications of integration.
