@@ -11,142 +11,208 @@ and write
 $$
 P=xyz,
 \qquad
-\Delta=(x-y)(y-z)(z-x).
+\Delta=(x-y)(y-z)(z-x),
 $$
-For $0<c<1$, Mellin inversion gives
+$$
+W(x,y)=\frac{\Delta^2}{\sqrt{xyz}(x+y)(y+z)(z+x)}.
+$$
+For $0<c<\frac{1}{2}$, Mellin inversion gives
 $$
 e^{-nP}=\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}
 \Gamma(s)n^{-s}P^{-s}\,ds.
 $$
-Therefore
+Hence
 $$
 I_n=\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}
 \Gamma(s)n^{-s}M(s)\,ds,
 $$
 where
 $$
-M(s)=\iint_T \Delta^2 P^{-s}\,dx\,dy.
+M(s)=\iint_T
+\frac{\Delta^2(xyz)^{-s-1/2}}{(x+y)(y+z)(z+x)}\,dx\,dy.
 $$
-The restriction $\Re s<1$ is forced by a generic boundary edge where exactly one of $x,y,z$ tends to $0$ while $\Delta$ stays nonzero.
+The condition $\Re s<\frac{1}{2}$ is forced by a generic boundary edge, where one coordinate tends to $0$ and the Bures weight has an inverse-square-root singularity.
 
-Step 2: Evaluate the Mellin transform exactly
+Step 2: Evaluate the Bures Mellin transform
 
-For $a,b,c>0$, the Dirichlet integral is
+For $a>0$, define the fixed-trace moment
 $$
-\iint_T x^{a-1}y^{b-1}z^{c-1}\,dx\,dy
-=\frac{\Gamma(a)\Gamma(b)\Gamma(c)}{\Gamma(a+b+c)}.
+K(a)=\iint_T
+\frac{\Delta^2(xyz)^{a-1}}{(x+y)(y+z)(z+x)}\,dx\,dy.
 $$
-Indeed, setting $y=(1-x)t$ separates the integral into two beta integrals.
+Also define the trace-unfixed integral
+$$
+J(a)=\iiint_{(0,\infty)^3}
+\frac{\Delta^2(xyz)^{a-1}e^{-(x+y+z)}}{(x+y)(y+z)(z+x)}\,dx\,dy\,dz.
+$$
+Writing $(x,y,z)=r(\lambda_1,\lambda_2,\lambda_3)$ with $\lambda_1+\lambda_2+\lambda_3=1$ gives
+$$
+J(a)=\Gamma(3a+3)K(a).
+$$
 
-Now write $x_1=x$, $x_2=y$, $x_3=z$. Since
+Now use
 $$
-\Delta=\det\left[x_i^{j-1}\right]_{i,j=1}^3,
-$$
-expanding the two determinants in $\Delta^2$ and applying the Dirichlet formula term by term gives
-$$
-M(s)=\frac{6}{\Gamma(9-3s)}
-\det
+\Delta=\det
 \begin{pmatrix}
-\Gamma(1-s)&\Gamma(2-s)&\Gamma(3-s)\\
-\Gamma(2-s)&\Gamma(3-s)&\Gamma(4-s)\\
-\Gamma(3-s)&\Gamma(4-s)&\Gamma(5-s)
-\end{pmatrix}.
+1&x&x^2\\
+1&y&y^2\\
+1&z&z^2
+\end{pmatrix}
 $$
-Using $\Gamma(t+1)=t\Gamma(t)$, the determinant simplifies to
+and the three-variable Schur identity
 $$
-2\Gamma(1-s)\Gamma(2-s)\Gamma(3-s).
+\frac{\Delta}{(x+y)(y+z)(z+x)}
+=\frac{y-x}{x+y}-\frac{z-x}{x+z}+\frac{z-y}{y+z}.
 $$
-Hence
+For $1\leq i,j\leq3$, put
+$$
+\nu_i=\int_0^\infty x^{a+i-2}e^{-x}\,dx
+=\Gamma(a+i-1),
+$$
+and
+$$
+\mu_{ij}=\int_0^\infty\int_0^\infty
+x^{a+i-2}y^{a+j-2}e^{-x-y}\frac{y-x}{x+y}\,dx\,dy.
+$$
+With $r=x+y$ and $t=x/r$, the last integral becomes a beta integral, giving
+$$
+\mu_{ij}
+=\frac{j-i}{2a+i+j-2}
+\Gamma(a+i-1)\Gamma(a+j-1).
+$$
+Expanding the determinant against the three Schur terms and grouping the symmetric contributions gives
+$$
+J(a)=6\left(\mu_{12}\nu_3-\mu_{13}\nu_2+\mu_{23}\nu_1\right).
+$$
+Substitution of the formulas for $\mu_{ij}$ and $\nu_i$ simplifies this to
+$$
+J(a)=
+\frac{6\Gamma(a)\Gamma(a+1)^2}{(2a+1)(2a+3)}.
+$$
+Therefore
+$$
+K(a)=
+\frac{6\Gamma(a)\Gamma(a+1)^2}
+{(2a+1)(2a+3)\Gamma(3a+3)}.
+$$
+Taking $a=\frac{1}{2}-s$ yields
 $$
 M(s)=
-\frac{12\Gamma(1-s)\Gamma(2-s)\Gamma(3-s)}{\Gamma(9-3s)}.
+\frac{3\Gamma\left(\frac{1}{2}-s\right)
+\Gamma\left(\frac{3}{2}-s\right)^2}
+{2(1-s)(2-s)\Gamma\left(\frac{9}{2}-3s\right)}.
 $$
 
-Step 3: Extract the boundary-edge term
+Step 3: Extract the first two boundary terms
 
 Put
 $$
 F(s)=\Gamma(s)M(s).
 $$
-The first pole to the right of the initial contour is at $s=1$. Since
+The first pole is at $s=\frac{1}{2}$. Direct substitution into the regular factors gives residue
 $$
-\Gamma(1-s)\sim-\frac{1}{s-1},
+-\sqrt{\pi}.
 $$
-the residue of $F(s)$ at $s=1$ is $-\frac{1}{10}$.
-When the Mellin contour is shifted to the right, the crossed residues enter with a minus sign. Thus the pole at $s=1$ contributes
+Because shifting the Mellin contour to the right contributes minus the crossed residues, this pole contributes
 $$
-\frac{1}{10n}.
+\frac{\sqrt{\pi}}{n^{1/2}}.
 $$
-This is the contribution from the three regular boundary edges where $P=xyz$ vanishes to first order.
 
-Step 4: Extract the corner double pole
+The next pole is at $s=1$, coming from the factor $(1-s)^{-1}$. Its residue is
+$$
+6\pi,
+$$
+so its contribution is
+$$
+-\frac{6\pi}{n}.
+$$
+Thus
+$$
+I_n=
+\frac{\sqrt{\pi}}{n^{1/2}}
+-\frac{6\pi}{n}
++O\left(n^{-3/2}\log n\right).
+$$
 
-The next pole is at $s=2$, where both $\Gamma(1-s)$ and $\Gamma(2-s)$ are singular. Write
+Step 4: Resolve the double pole at $s=\frac{3}{2}$
+
+Write
 $$
-s=2+\varepsilon.
+s=\frac{3}{2}+\varepsilon.
 $$
-The recurrence formula for Gamma gives
+Using the Gamma recurrence relations, the exact singular factor can be rewritten as
 $$
-F(2+\varepsilon)
-=-\frac{12\Gamma(1+\varepsilon)\Gamma(1-\varepsilon)^3}
-{\varepsilon^2\Gamma(3-3\varepsilon)}.
+F\left(\frac{3}{2}+\varepsilon\right)
+=
+\frac{18\Gamma\left(\frac{3}{2}+\varepsilon\right)
+\Gamma(1-\varepsilon)^3}
+{\varepsilon^2(1+\varepsilon)(1-4\varepsilon^2)
+\Gamma(1-3\varepsilon)}.
 $$
-Using
-$$
-\Gamma(1+\varepsilon)=1-\gamma\varepsilon+O(\varepsilon^2),
-$$
+We use
 $$
 \Gamma(1-\varepsilon)=1+\gamma\varepsilon+O(\varepsilon^2),
 $$
-and
 $$
-\Gamma(3-3\varepsilon)
-=2\left(1-\left(\frac{9}{2}-3\gamma\right)\varepsilon+O(\varepsilon^2)\right),
+\Gamma(1-3\varepsilon)=1+3\gamma\varepsilon+O(\varepsilon^2).
 $$
-we obtain
+The duplication formula together with
+$\Gamma(1+\varepsilon)=1-\gamma\varepsilon+O(\varepsilon^2)$ gives
 $$
-F(2+\varepsilon)
-=-\frac{6}{\varepsilon^2}
-+\frac{-27+6\gamma}{\varepsilon}
+\Gamma\left(\frac{3}{2}+\varepsilon\right)
+=\frac{\sqrt{\pi}}{2}
+\left(1+(2-\gamma-2\log2)\varepsilon+O(\varepsilon^2)\right).
+$$
+Hence
+$$
+F\left(\frac{3}{2}+\varepsilon\right)
+=
+\frac{9\sqrt{\pi}}{\varepsilon^2}
++
+\frac{9\sqrt{\pi}(1-\gamma-2\log2)}{\varepsilon}
 +O(1).
 $$
 Also
 $$
-n^{-2-\varepsilon}
-=n^{-2}\left(1-\varepsilon\log n+O(\varepsilon^2)\right).
+n^{-3/2-\varepsilon}
+=n^{-3/2}
+\left(1-\varepsilon\log n+O(\varepsilon^2)\right).
 $$
-Therefore the residue at $s=2$ of $F(s)n^{-s}$ is
+Therefore the residue of $F(s)n^{-s}$ at $s=\frac{3}{2}$ is
 $$
-\frac{6\log n-27+6\gamma}{n^2}.
+\frac{9\sqrt{\pi}(1-\gamma-2\log2)-9\sqrt{\pi}\log n}{n^{3/2}}.
 $$
-After the contour-shift sign is included, the $s=2$ contribution is
+After the contour-shift sign is included, the double pole contributes
 $$
-\frac{-6\log n+27-6\gamma}{n^2}.
+\frac{9\sqrt{\pi}(\log n+\gamma+2\log2-1)}{n^{3/2}}.
 $$
-The pole is double because two boundary coordinates vanish simultaneously at a vertex of the simplex.
 
 Step 5: Recover the requested limit
 
-There are no further poles in $2<\Re s<3$, so shifting to any vertical line in that strip gives a remainder $o(n^{-2})$. Combining Steps 3 and 4,
+There are no further poles in $\frac{3}{2}<\Re s<2$, so shifting the contour into that strip gives a remainder $o(n^{-3/2})$. Combining Steps 3 and 4,
 $$
 I_n=
-\frac{1}{10n}
-+\frac{-6\log n+27-6\gamma}{n^2}
-+o(n^{-2}).
+\frac{\sqrt{\pi}}{n^{1/2}}
+-\frac{6\pi}{n}
++\frac{9\sqrt{\pi}(\log n+\gamma+2\log2-1)}{n^{3/2}}
++o(n^{-3/2}).
 $$
 Hence
 $$
 \lim_{n\to\infty}
-\left(n^2I_n-\frac{n}{10}+6\log n\right)
-=27-6\gamma.
+\left(
+n^{3/2}I_n-\sqrt{\pi}\,n+6\pi\sqrt{n}-9\sqrt{\pi}\log n
+\right)
+=
+9\sqrt{\pi}(\gamma+2\log2-1).
 $$
-Final Answer: $\boxed{27-6\gamma}$
+Final Answer: $\boxed{9\sqrt{\pi}(\gamma+2\log2-1)}$
 
 ---
 
 ## Answer
 
-$27-6\gamma$
+$9\sqrt{\pi}(\gamma+2\log2-1)$
 
 ---
 
@@ -161,7 +227,7 @@ $27-6\gamma$
 ## Solution Concepts
 
 - Mellin inversion
-- Dirichlet integral
-- Vandermonde determinant expansion
+- Bures eigenvalue weight
+- Schur-Pfaffian reduction
+- fixed-trace scaling
 - double-pole asymptotics
-- boundary-stratum interaction
