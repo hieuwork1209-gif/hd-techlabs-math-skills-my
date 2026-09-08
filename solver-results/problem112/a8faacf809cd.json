@@ -1,0 +1,22 @@
+{
+  "problem": "problem112",
+  "branch": "adversary/problem112",
+  "problem_path": "workspace/rainier-problem/problem112-fourier-analysis/problem.md",
+  "source_commit_sha": "d81272ea92bff0b2b7c963f81ca0a205a743b33d",
+  "problem_blob_sha": "a8faacf809cdb0d158bd2eeddd84053f5f4683d8",
+  "statement_sha256": "d4f31e958804fac6a51bae45935a07acb6ec881a0eda0afb4d75a3a7378533cf",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T06:04:05+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(N=2q\\), so \\(G=R^4\\) with \\(R=\\mathbb Z/2^N\\mathbb Z\\). Every additive subgroup is automatically an \\(R\\)-submodule.\n\nFor a subgroup \\(H\\), choose Smith normal form. If\n\\[\nG/H\\cong \\bigoplus_{i=1}^4 \\mathbb Z/2^{\\alpha_i}\\mathbb Z,\n\\qquad 0\\le \\alpha_1\\le\\cdots\\le \\alpha_4\\le N,\n\\]\nthen after a change of basis\n\\[\nH=\\bigoplus_{i=1}^4 2^{\\alpha_i}R e_i,\n\\]\nso\n\\[\nH\\cong \\bigoplus_{i=1}^4 \\mathbb Z/2^{N-\\alpha_i}\\mathbb Z,\n\\]\nwith zero exponents omitted. Thus \\(H\\cong G/H\\) exactly when the multiset\n\\[\n\\{\\alpha_1,\\alpha_2,\\alpha_3,\\alpha_4\\}\n\\]\nis invariant under \\(\\alpha\\mapsto N-\\alpha\\).\n\nThe possible multisets are therefore:\n\n\\[\n\\{q,q,q,q\\},\n\\]\n\\[\n\\{a,q,q,N-a\\}\\qquad 0\\le a<q,\n\\]\n\\[\n\\{a,a,N-a,N-a\\}\\qquad 0\\le a<q,\n\\]\n\\[\n\\{a,b,N-b,N-a\\}\\qquad 0\\le a<b<q.\n\\]\n\nNow count subgroups with fixed quotient type \\(\\alpha\\). For distinct values \\(\\beta_1<\\cdots<\\beta_k\\) with multiplicities \\(m_1,\\dots,m_k\\), the number is\n\\[\n\\frac{|\\mathrm{GL}_4(\\mathbb F_2)|}\n{2^{\\sum_{s<t}m_sm_t}\\prod_s |\\mathrm{GL}_{m_s}(\\mathbb F_2)|}\n\\cdot\n2^{\\sum_{s>t}m_sm_t(\\beta_s-\\beta_t-1)}.\n\\]\nThis comes from the orbit-stabilizer count for the canonical subgroup\n\\[\n\\bigoplus_i 2^{\\alpha_i}Re_i,\n\\]\nwhere the stabilizer consists of matrices whose \\((i,j)\\)-entry is divisible by\n\\[\n2^{\\max(0,\\alpha_i-\\alpha_j)}.\n\\]\n\nSince\n\\[\n|\\mathrm{GL}_4(\\mathbb F_2)|=20160,\\qquad |\\mathrm{GL}_2(\\mathbb F_2)|=6,\n\\]\nthe four cases contribute:\n\n\\[\n1,\n\\]\n\\[\n\\sum_{a=0}^{q-1}105\\cdot 2^{6(q-a)-5},\n\\]\n\\[\n\\sum_{a=0}^{q-1}35\\cdot 2^{8q-8a-4},\n\\]\n\\[\n\\sum_{0\\le a<b<q}315\\cdot 2^{8q-6a-2b-6}.\n\\]\n\nEvaluating the geometric sums gives\n\\[\n1+\\frac{10}{3}(64^q-1)+\\frac{112}{51}(256^q-1)\n+\\frac{28}{17}(256^q-256)-\\frac{20}{3}(64^q-64).\n\\]\nSimplifying,\n\\[\n\\boxed{\\frac{196\\cdot 256^q-170\\cdot 64^q+25}{51}}.\n\\]\n\nThus the number of additive subgroups \\(H\\le G\\) with \\(H\\cong G/H\\) is\n\n\\[\n\\boxed{\\frac{196\\cdot 256^q-170\\cdot 64^q+25}{51}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T06:06:22+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem112/a8faacf809cd.json"
+}
