@@ -1,0 +1,22 @@
+{
+  "problem": "problem119",
+  "branch": "adversary/problem119",
+  "problem_path": "workspace/rainier-problem/problem119-group-theory/problem.md",
+  "source_commit_sha": "715c5ab475f7d040606cf0a51510414e08905e73",
+  "problem_blob_sha": "ea160e6f14f0c290e250a678bc92bc6ea6e27c73",
+  "statement_sha256": "dc21f8e1a5fe5f43c3ab6c8e930e9bc6dd38dea05c372068cc4f5e9b726b3e59",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T17:52:33+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nZ=Z(G)=\\{(0,0,t):t\\in\\mathbb F_p\\}.\n\\]\nFor any subgroup \\(X\\ge Z\\) of order \\(p^3\\), its image \\(W=X/Z\\) is a \\(2\\)-dimensional subspace of\n\\[\n\\mathbb F_p^2\\oplus \\mathbb F_p^2.\n\\]\nThe commutator is\n\\[\n[(u,v,t),(u',v',t')]=(0,0,u\\cdot v'-u'\\cdot v),\n\\]\nso \\(X\\) is abelian exactly when \\(W\\) is totally isotropic for\n\\[\n\\omega((u,v),(u',v'))=u\\cdot v'-u'\\cdot v.\n\\]\n\nThe two coordinate-intersection conditions say \\(W\\) meets neither coordinate plane nontrivially. Hence\n\\[\nW=\\{(u,Mu):u\\in\\mathbb F_p^2\\}\n\\]\nfor an invertible \\(2\\times2\\) matrix \\(M\\). The isotropic condition gives\n\\[\nu^T Mu'=u'^T Mu \\quad\\forall u,u',\n\\]\nso \\(M\\) is symmetric. The diagonal condition says\n\\[\n\\dim\\ker(M-I)=1.\n\\]\nThus admissible subgroups correspond exactly to matrices\n\\[\nM=I+H,\n\\]\nwhere \\(H\\) is a nonzero rank-one symmetric \\(2\\times2\\) matrix and\n\\[\n\\operatorname{tr}H\\ne -1.\n\\]\n\nNow classify such \\(H\\) by its kernel line \\(L\\subset \\mathbb F_p^2\\). For each projective line \\(L\\), the rank-one symmetric matrices with kernel \\(L\\) form one nonzero scalar family. If \\(L\\) is isotropic for \\(x^2+y^2\\), then every nonzero scalar is allowed, giving \\(p-1\\) choices. Otherwise exactly one scalar has trace \\(-1\\), giving \\(p-2\\) choices.\n\nThe number of isotropic lines is\n\\[\nr=\\begin{cases}\n2,&p\\equiv1\\pmod4,\\\\\n0,&p\\equiv3\\pmod4.\n\\end{cases}\n\\]\nFor two admissible matrices \\(M=I+H\\), \\(N=I+K\\),\n\\[\nA\\cap B=Z\n\\]\nis equivalent to \\(H-K\\) being invertible. Since \\(H,K\\) are rank-one symmetric matrices, this happens exactly when their kernel lines are distinct.\n\nTherefore the required number is\n\\[\n\\left(\\sum_L n_L\\right)^2-\\sum_L n_L^2,\n\\]\nwhere \\(n_L=p-1\\) for isotropic \\(L\\), and \\(n_L=p-2\\) otherwise.\n\nHence\n\\[\n\\boxed{\n\\begin{cases}\np(p+1)(p-2)^2,&p\\equiv3\\pmod4,\\\\[2mm]\np^4-3p^3+4p^2-4p+2,&p\\equiv1\\pmod4.\n\\end{cases}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T17:53:43+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem119/ea160e6f14f0.json"
+}
