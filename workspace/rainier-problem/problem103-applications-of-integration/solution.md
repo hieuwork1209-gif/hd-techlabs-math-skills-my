@@ -1,161 +1,145 @@
 ## Steps
 
-Step 1: Reduce the disk integral to a Bessel integral
-
-Let
-$$
-\mathbb D=\{(x,y)\in\mathbb R^2:x^2+y^2\le1\},
-\qquad k=2\pi n.
-$$
-In polar coordinates,
-$$
-x^3-3xy^2=r^3\cos3\theta.
-$$
-Hence
-$$
-I_n=\int_0^1\int_0^{2\pi}
-\cos\bigl(kr^3\cos3\theta\bigr)\,r\,d\theta\,dr.
-$$
-Using
-$$
-J_0(t)=\frac1{2\pi}\int_0^{2\pi}e^{it\cos\theta}\,d\theta,
-$$
-periodicity gives
-$$
-\int_0^{2\pi}\cos\bigl(kr^3\cos3\theta\bigr)\,d\theta
-=2\pi J_0(kr^3).
-$$
-Therefore
-$$
-I_n=2\pi\int_0^1 rJ_0(kr^3)\,dr
-=\frac{2\pi}{3}k^{-2/3}
-\int_0^k t^{-1/3}J_0(t)\,dt.
-$$
-
-Step 2: Evaluate the infinite Bessel moment
+Step 1: Parametrize the correlation elliptope by a partial correlation
 
 Put
 $$
-C=\int_0^\infty t^{-1/3}J_0(t)\,dt.
+D(x,y,z)=1+2xyz-x^2-y^2-z^2.
 $$
-From the integral representation
+The identity
 $$
-J_0(t)=\frac1\pi\int_0^\pi\cos(t\cos\theta)\,d\theta
+D=(1-x^2)(1-y^2)-(z-xy)^2
 $$
-and
+shows that, for fixed $x,y\in[-1,1]$, the condition $D\ge0$ is equivalent to
 $$
-\int_0^\infty t^{-1/3}\cos(at)\,dt
-=\frac{\Gamma(2/3)}2|a|^{-2/3}
-\qquad(a\ne0),
+z=xy+\sqrt{(1-x^2)(1-y^2)}\,t,
+\qquad -1\le t\le1.
 $$
-we obtain
-$$
-C=\frac{\Gamma(2/3)}{2\pi}
-\int_0^\pi|\cos\theta|^{-2/3}\,d\theta.
-$$
-Now
-$$
-\int_0^\pi|\cos\theta|^{-2/3}\,d\theta
-=B\left(\frac12,\frac16\right)
-=\frac{\sqrt\pi\,\Gamma(1/6)}{\Gamma(2/3)}.
-$$
-Thus
-$$
-C=\frac{\Gamma(1/6)}{2\sqrt\pi}.
-$$
-The duplication formula at $1/6$ gives
-$$
-\Gamma(1/6)\Gamma(2/3)
-=2^{2/3}\sqrt\pi\,\Gamma(1/3),
-$$
-so
-$$
-C=2^{-1/3}\frac{\Gamma(1/3)}{\Gamma(2/3)}.
-$$
-Consequently the leading term is
-$$
-\frac{2\pi}{3}k^{-2/3}C
-=
-\frac{\pi^{1/3}\Gamma(1/3)}{3\Gamma(2/3)}n^{-2/3}.
-$$
-
-Step 3: Find the first boundary correction
-
 Write
 $$
-T(k)=\int_k^\infty t^{-1/3}J_0(t)\,dt.
+A=1-x^2,
+\qquad
+B=1-y^2,
+\qquad
+C=1-t^2.
 $$
-The large-$t$ expansion
+Then
 $$
-J_0(t)=\sqrt{\frac{2}{\pi t}}
-\left(\cos\left(t-\frac\pi4\right)+O(t^{-1})\right)
-$$
-gives
-$$
-T(k)=\sqrt{\frac2\pi}
-\int_k^\infty t^{-5/6}
-\cos\left(t-\frac\pi4\right)\,dt
-+O(k^{-11/6}).
-$$
-Integrating by parts in the oscillatory sense,
-$$
-\int_k^\infty t^{-5/6}\cos\left(t-\frac\pi4\right)\,dt
-=-k^{-5/6}\sin\left(k-\frac\pi4\right)
-+O(k^{-11/6}).
-$$
-Since $k=2\pi n$,
-$$
-\sin\left(k-\frac\pi4\right)=-\frac1{\sqrt2},
-$$
-so
-$$
-T(k)=\frac1{\sqrt\pi}k^{-5/6}+O(k^{-11/6}).
-$$
-
-Step 4: Combine the interior and boundary mechanisms
-
-From Step 1,
-$$
-I_n=\frac{2\pi}{3}k^{-2/3}(C-T(k)).
-$$
-Using Steps 2 and 3,
-$$
-I_n=
-\frac{\pi^{1/3}\Gamma(1/3)}{3\Gamma(2/3)}n^{-2/3}
--\frac{2\pi}{3\sqrt\pi}k^{-3/2}
-+O(k^{-5/2}).
-$$
-Because $k=2\pi n$,
-$$
-\frac{2\pi}{3\sqrt\pi}k^{-3/2}
-=\frac1{3\sqrt2\,\pi}n^{-3/2}.
+D=ABC,
+\qquad
+dz=\sqrt{AB}\,dt.
 $$
 Therefore
 $$
-I_n=
-\frac{\pi^{1/3}\Gamma(1/3)}{3\Gamma(2/3)}n^{-2/3}
--\frac1{3\sqrt2\,\pi}n^{-3/2}
-+O(n^{-5/2}).
+I_n=\int_{[-1,1]^3}(AB)^{1/2}
+ e^{-nA^2B^2C^2}\,dx\,dy\,dt.
 $$
+
+Step 2: Compute the Mellin transform of the determinant factor
+
+For $0<c<1/2$, Mellin inversion gives
+$$
+e^{-nq^2}
+=\frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}
+\Gamma(s)n^{-s}q^{-2s}\,ds.
+$$
+Hence
+$$
+I_n=\frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}
+\Gamma(s)n^{-s}M(s)\,ds,
+$$
+where
+$$
+M(s)=
+\left(\int_{-1}^1(1-x^2)^{1/2-2s}\,dx\right)^2
+\left(\int_{-1}^1(1-t^2)^{-2s}\,dt\right).
+$$
+Using the beta integral,
+$$
+\int_{-1}^1(1-x^2)^{1/2-2s}\,dx
+=\sqrt\pi\,
+\frac{\Gamma(3/2-2s)}{\Gamma(2-2s)},
+$$
+while
+$$
+\int_{-1}^1(1-t^2)^{-2s}\,dt
+=\sqrt\pi\,
+\frac{\Gamma(1-2s)}{\Gamma(3/2-2s)}.
+$$
+Thus
+$$
+M(s)=\pi^{3/2}
+\frac{\Gamma(3/2-2s)\Gamma(1-2s)}
+{\Gamma(2-2s)^2}.
+$$
+
+Step 3: Extract the regular-boundary pole
+
+The first pole to the right of the original contour is at $s=1/2$, coming from $\Gamma(1-2s)$. Since
+$$
+\Gamma(1-2s)\sim-\frac1{2(s-1/2)},
+$$
+one has
+$$
+\operatorname*{Res}_{s=1/2}
+\left(\Gamma(s)M(s)n^{-s}\right)
+=-\frac{\pi^{5/2}}2n^{-1/2}.
+$$
+When the Mellin contour is shifted to the right, the original integral equals the shifted integral minus the crossed residues. Therefore this pole contributes
+$$
+\frac{\pi^{5/2}}{2}n^{-1/2}.
+$$
+This is also the regular rank-two boundary term: for fixed $x,y$ away from $\pm1$, the two endpoints $t=\pm1$ give a normal Gaussian layer of width $n^{-1/2}$.
+
+Step 4: Extract the rank-one degeneration
+
+The next pole is at $s=3/4$, now coming from $\Gamma(3/2-2s)$. At this point
+$$
+\Gamma(1-2s)=\Gamma(-1/2)=-2\sqrt\pi,
+$$
+$$
+\Gamma(2-2s)=\Gamma(1/2)=\sqrt\pi,
+$$
+and
+$$
+\Gamma(3/2-2s)\sim-\frac1{2(s-3/4)}.
+$$
+Hence
+$$
+\operatorname*{Res}_{s=3/4}
+\left(\Gamma(s)M(s)n^{-s}\right)
+=\pi\Gamma\left(\frac34\right)n^{-3/4}.
+$$
+Its contribution to $I_n$ therefore has the opposite sign:
+$$
+-\pi\Gamma\left(\frac34\right)n^{-3/4}.
+$$
+The apparent singularity at $s=1$ is cancelled by the double zero of $1/\Gamma(2-2s)^2$, and the next actual pole is at $s=5/4$. Thus the remaining contour contributes $o(n^{-3/4})$.
 
 Step 5: Recover the requested limit
 
-It follows that
+Combining Steps 3 and 4,
 $$
-\lim_{n\to\infty}n^{3/2}
+I_n=
+\frac{\pi^{5/2}}{2}n^{-1/2}
+-\pi\Gamma\left(\frac34\right)n^{-3/4}
++o(n^{-3/4}).
+$$
+Therefore
+$$
+\lim_{n\to\infty}n^{3/4}
 \left(
-I_n-
-\frac{\pi^{1/3}\Gamma(1/3)}{3\Gamma(2/3)n^{2/3}}
+I_n-\frac{\pi^{5/2}}{2\sqrt n}
 \right)
-=-\frac1{3\sqrt2\,\pi}.
+=-\pi\Gamma\left(\frac34\right).
 $$
-Final Answer: $\boxed{-\frac1{3\sqrt2\,\pi}}$
+Final Answer: $\boxed{-\pi\Gamma\left(\frac34\right)}$
 
 ---
 
 ## Answer
 
-$-\frac1{3\sqrt2\,\pi}$
+$-\pi\Gamma(3/4)$
 
 ---
 
@@ -169,8 +153,8 @@ $-\frac1{3\sqrt2\,\pi}$
 
 ## Solution Concepts
 
-- cubic harmonic phase
-- Bessel angular reduction
-- degenerate stationary phase
-- boundary stationary contribution
-- oscillatory tail asymptotics
+- correlation elliptope geometry
+- partial-correlation coordinates
+- determinant boundary stratification
+- Mellin inversion
+- Gamma-function residues
