@@ -13,16 +13,22 @@ $$
 $$
 For each integer $n\geq1$, put
 $$
-I_n=\iint_T \Delta^2 e^{-nxyz}\,dx\,dy.
+I_n=
+\iint_T
+\frac{\Delta^2 e^{-nxyz}}
+{\sqrt{xyz}(x+y)(y+z)(z+x)}\,dx\,dy.
 $$
 Let Euler's constant be
 $$
-\gamma=\lim_{m\to\infty}\left(\sum_{k=1}^m\frac{1}{k}-\log m\right).
+\gamma=\lim_{m\to\infty}
+\left(\sum_{k=1}^m\frac{1}{k}-\log m\right).
 $$
 Evaluate
 $$
 \lim_{n\to\infty}
-\left(n^2I_n-\frac{n}{10}+6\log n\right).
+\left(
+n^{3/2}I_n-\sqrt{\pi}\,n+6\pi\sqrt{n}-9\sqrt{\pi}\log n
+\right).
 $$
 
 ---
@@ -40,4 +46,6 @@ $$
 
 ## Domain Explanation
 
-The integral is taken over the standard simplex and uses the squared Vandermonde factor, the natural eigenvalue-repulsion weight for three coordinates summing to one. The product $xyz$ vanishes on boundary strata of different codimensions, so the asymptotic expansion receives a simple-pole contribution from edges and a double-pole contribution from vertices. Determining the renormalized limit is an exact asymptotic-integration problem in Calculus -> Applications of integration.
+Up to normalization, the factor
+$\Delta^2/[\sqrt{xyz}(x+y)(y+z)(z+x)]$
+is the three-eigenvalue Bures spectral weight on the standard simplex. The determinant $xyz$ vanishes on nested boundary strata, and the Bures denominator couples those strata so that the Mellin transform develops both simple poles and a double pole. Determining the renormalized determinant-Laplace asymptotic is a natural exact integration problem in Calculus -> Applications of integration.
