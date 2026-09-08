@@ -1,146 +1,191 @@
 ## Steps
 
-Step 1: Write the tetrahedral integral in Mellin form
+Step 1: Locate the zero set and identify the relevant scales
 
 Let
 $$
-T=\{(x,y,z)\in\mathbb R^3:x,y,z\ge0,\ x+y+z\le1\},
-$$
-and put
-$$
-w=1-x-y-z,
+z=1-x-y,
 \qquad
-P=xyzw.
+P=xyz,
+\qquad
+D=(x-y)(y-z)(z-x),
+$$
+so the phase is
+$$
+\Phi=P^2+D^2.
+$$
+Since $\Phi\ge0$, its zeros satisfy $P=D=0$. On the barycentric triangle this gives exactly six points: the three vertices
+$$
+(1,0,0),\ (0,1,0),\ (0,0,1)
+$$
+and the three edge midpoints
+$$
+\left(\frac12,\frac12,0\right),\quad
+\left(\frac12,0,\frac12\right),\quad
+\left(0,\frac12,\frac12\right).
+$$
+Away from fixed small neighborhoods of these points, $\Phi$ is bounded below by a positive constant, so the contribution is exponentially small.
+
+At a vertex the tangential scale is $n^{-1/4}$ and the transverse scale is $n^{-1/2}$, producing the leading order $n^{-3/4}$. At an edge midpoint both local directions have scale $n^{-1/2}$, so those points first contribute at order $n^{-1}$.
+
+Step 2: Compute the leading contribution from one vertex
+
+Consider the vertex $(x,y,z)=(1,0,0)$. Put
+$$
+y=t+d,
+\qquad
+z=t-d,
+\qquad
+x=1-2t.
+$$
+Then $dy\,dz=2\,dt\,dd$ and the local domain is $t\ge0$, $|d|\le t$. Moreover
+$$
+P=(1-2t)(t^2-d^2),
+$$
+$$
+D=-2d\left((1-3t)^2-d^2\right).
+$$
+Let
+$$
+\varepsilon=n^{-1/4},
+\qquad
+t=\varepsilon T,
+\qquad
+d=\varepsilon^2U.
 $$
 Then
 $$
-I_n=\iiint_T e^{-nP}\,dx\,dy\,dz.
+n\Phi=T^4+4U^2-arepsilon\left(4T^5+48TU^2\right)+O(\varepsilon^2)
 $$
-For any $c$ with $0<c<1$, the inverse Mellin formula
+on bounded scaled sets, while the scaled domain is
 $$
-e^{-u}=\frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}\Gamma(s)u^{-s}\,ds
+T\ge0,
+\qquad
+|U|\le \frac{T}{\varepsilon}.
 $$
-gives
+Hence the leading contribution of this vertex is
 $$
-I_n=\frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}
-\Gamma(s)n^{-s}M(s)\,ds,
+2\varepsilon^3
+\int_0^\infty e^{-T^4}\,dT
+\int_{-\infty}^\infty e^{-4U^2}\,dU
+=
+\frac{\sqrt\pi\,\Gamma(1/4)}4\,n^{-3/4}.
 $$
-where
+The three vertices therefore give
 $$
-M(s)=\iiint_T P^{-s}\,dx\,dy\,dz.
+\frac{3\sqrt\pi\,\Gamma(1/4)}4\,n^{-3/4}.
 $$
 
-Step 2: Evaluate the simplex Mellin moment exactly
+Step 3: Compute the order $n^{-1}$ correction from the vertices
 
-The standard Dirichlet integral gives, for $\Re s<1$,
-$$
-\iiint_T
-x^{-s}y^{-s}z^{-s}w^{-s}\,dx\,dy\,dz
-=\frac{\Gamma(1-s)^4}{\Gamma(4-4s)}.
-$$
-Hence
-$$
-M(s)=\frac{\Gamma(1-s)^4}{\Gamma(4-4s)}
-$$
-and therefore
-$$
-I_n=\frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}
-\Gamma(s)
-\frac{\Gamma(1-s)^4}{\Gamma(4-4s)}
- n^{-s}\,ds.
-$$
-The first singularity to the right of the original contour is at $s=1$. The four factors $\Gamma(1-s)$ give a fourth-order pole there, while $1/\Gamma(4-4s)$ has a simple zero, so the net pole has order three.
+There are two contributions at the next order.
 
-Step 3: Expand the cubic Mellin pole
-
-Write
+First, expanding the exponential using Step 2 gives the bulk correction at one vertex
 $$
-s=1+u.
+2\int_0^\infty\int_{-\infty}^\infty
+\left(4T^5+48TU^2\right)e^{-T^4-4U^2}\,dU\,dT.
 $$
 Using
 $$
-\Gamma(-u)=\frac{\Gamma(1-u)}{-u},
+\int_0^\infty T^5e^{-T^4}\,dT=\frac{\sqrt\pi}{8},
 \qquad
-\Gamma(-4u)=\frac{\Gamma(1-4u)}{-4u},
-$$
-we obtain
-$$
-\Gamma(1+u)\frac{\Gamma(-u)^4}{\Gamma(-4u)}
-=-\frac4{u^3}
-\frac{\Gamma(1+u)\Gamma(1-u)^4}{\Gamma(1-4u)}.
-$$
-Also
-$$
-\log\Gamma(1+u)=-\gamma u+\frac{\pi^2}{12}u^2+O(u^3),
+\int_0^\infty Te^{-T^4}\,dT=\frac{\sqrt\pi}{4},
 $$
 $$
-\log\Gamma(1-u)=\gamma u+\frac{\pi^2}{12}u^2+O(u^3).
+\int_{-\infty}^\infty e^{-4U^2}\,dU=\frac{\sqrt\pi}{2},
+\qquad
+\int_{-\infty}^\infty U^2e^{-4U^2}\,dU=\frac{\sqrt\pi}{16},
 $$
-Therefore
+this equals
 $$
-\log\left(
-\frac{\Gamma(1+u)\Gamma(1-u)^4}{\Gamma(1-4u)}
-\right)
-=-\gamma u-\frac{11\pi^2}{12}u^2+O(u^3),
-$$
-so
-$$
-\Gamma(1+u)\frac{\Gamma(-u)^4}{\Gamma(-4u)}
-=-\frac4{u^3}
-+\frac{4\gamma}{u^2}
-+\frac{-2\gamma^2+11\pi^2/3}{u}
-+O(1).
+2\left(\frac\pi4+\frac{3\pi}{4}\right)=2\pi.
 $$
 
-Step 4: Extract the contribution of the pole at $s=1$
+Second, the exact condition $|U|\le T/\varepsilon$ cannot be replaced by the whole line at this order. Its correction is concentrated where $T=O(\varepsilon)$. Setting $T=\varepsilon S$ gives
+$$
+2\int_0^\infty
+\left[
+\int_{|U|\le S}e^{-4U^2}\,dU
+-
+\int_{-\infty}^\infty e^{-4U^2}\,dU
+\right]dS.
+$$
+Reversing the order of integration,
+$$
+-2\int_{-\infty}^\infty |U|e^{-4U^2}\,dU=-\frac12.
+$$
+Thus one vertex contributes
+$$
+\left(2\pi-\frac12\right)n^{-1}
+$$
+at the next order, and all three vertices contribute
+$$
+\left(6\pi-\frac32\right)n^{-1}.
+$$
 
-Let
+Step 4: Compute the edge-midpoint contribution
+
+Consider $(x,y,z)=(1/2,1/2,0)$. Put
 $$
-L=\log n.
+z=s,
+\qquad
+x=\frac{1-s}{2}+u,
+\qquad
+y=\frac{1-s}{2}-u.
 $$
-Since
+The Jacobian is $1$, and
 $$
-n^{-s}=n^{-1}e^{-uL}
-=n^{-1}\left(1-uL+\frac{u^2L^2}{2}+O(u^3)\right),
+P=s\left(\frac{(1-s)^2}{4}-u^2\right),
 $$
-the residue at $s=1$ equals
 $$
-\frac1n\left(
--2L^2-4\gamma L-2\gamma^2+\frac{11\pi^2}{3}
-\right).
+D=-2u\left(\frac{(1-3s)^2}{4}-u^2\right).
 $$
-For large $n$ the Mellin contour is shifted to the right. With the usual clockwise rectangle, the original integral equals the shifted-contour integral minus the crossed residues. Taking the new line $1+\eta$ with $0<\eta<1$, there are no further poles in the strip, and the shifted integral is $O(n^{-1-\eta})$. Hence
+With
+$$
+s=n^{-1/2}S,
+\qquad
+u=n^{-1/2}U,
+$$
+one has
+$$
+n\Phi\longrightarrow \frac{S^2}{16}+\frac{U^2}{4}.
+$$
+Therefore one midpoint contributes
+$$
+n^{-1}
+\int_0^\infty e^{-S^2/16}\,dS
+\int_{-\infty}^\infty e^{-U^2/4}\,dU
+=4\pi\,n^{-1}.
+$$
+There are three edge midpoints, so their total contribution is
+$$
+12\pi\,n^{-1}.
+$$
+
+Step 5: Combine the local contributions
+
+Adding Steps 2--4 gives
 $$
 I_n=
-\frac1n\left(
-2L^2+4\gamma L+2\gamma^2-\frac{11\pi^2}{3}
-\right)
+\frac{3\sqrt\pi\,\Gamma(1/4)}4\,n^{-3/4}
++\left(18\pi-\frac32\right)n^{-1}
 +o(n^{-1}).
 $$
-
-Step 5: Recover the requested limit
-
-Multiplying the expansion from Step 4 by $n$ gives
-$$
-nI_n
-=2(\log n)^2+4\gamma\log n
-+2\gamma^2-\frac{11\pi^2}{3}+o(1).
-$$
-Therefore
+Hence
 $$
 \lim_{n\to\infty}
-\left(
-nI_n-2(\log n)^2-4\gamma\log n
+n\left(
+I_n-\frac{3\sqrt\pi\,\Gamma(1/4)}{4n^{3/4}}
 \right)
-=2\gamma^2-\frac{11\pi^2}{3}.
+=18\pi-\frac32.
 $$
-Final Answer: $\boxed{2\gamma^2-\frac{11\pi^2}{3}}$
+Final Answer: $\boxed{18\pi-\frac32}$
 
 ---
 
 ## Answer
 
-$2\gamma^2-\frac{11\pi^2}{3}$
+$18\pi-\frac32$
 
 ---
 
@@ -154,8 +199,8 @@ $2\gamma^2-\frac{11\pi^2}{3}$
 
 ## Solution Concepts
 
-- simplex barycentric coordinates
-- Dirichlet integral
-- Mellin inversion
-- repeated Mellin poles
-- logarithmic asymptotics
+- barycentric symmetric invariants
+- anisotropic vertex scaling
+- boundary-layer matching
+- edge-midpoint Gaussian scaling
+- degenerate Laplace asymptotics
