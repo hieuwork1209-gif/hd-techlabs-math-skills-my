@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "e337a859f6f88eb667851c5c7b7e0ea6457c0a4d",
+  "problem_blob_sha": "ca8e3babb7b28e0401a675f7b9e1b3e6fb4b2a5e",
+  "statement_sha256": "3815954521cb96c2b345f7e255e39f60bab9225e197317fa984b305b932f7abb",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T03:20:29+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nI_n=\\iint_{\\mathbb R^2}e^{-n(x^4+x^2y^2+y^6)}\\,dx\\,dy.\n\\]\nThe integrand is even in both variables. Put\n\\[\na=x^2,\\qquad b=y^2.\n\\]\nSince \\(dx\\,dy=(4\\sqrt{ab})^{-1}\\,da\\,db\\) on the first quadrant and there are four quadrants,\n\\[\nI_n=\\int_0^\\infty\\int_0^\\infty\na^{-1/2}b^{-1/2}e^{-n(a^2+ab+b^3)}\\,da\\,db.\n\\]\nNow scale \\(a=n^{-1/2}s\\) and \\(z=n^{1/2}b\\). Then\n\\[\nI_n=n^{-1/2}\\int_0^\\infty z^{-1/2}e^{-z^3/n^{1/2}}F(z)\\,dz,\n\\]\nwhere\n\\[\nF(z)=\\int_0^\\infty s^{-1/2}e^{-s^2-zs}\\,ds.\n\\]\nThus\n\\[\n\\sqrt n\\,I_n=A_N:=\\int_0^\\infty e^{-z^3/N}g(z)\\,dz,\n\\qquad N=n^{1/2},\n\\]\nwith\n\\[\ng(z)=z^{-1/2}F(z).\n\\]\n\nFor large \\(z\\), substitute \\(t=zs\\):\n\\[\nF(z)=z^{-1/2}\\int_0^\\infty t^{-1/2}e^{-t}e^{-t^2/z^2}\\,dt\n=z^{-1/2}\\left(\\sqrt\\pi+O(z^{-2})\\right).\n\\]\nHence\n\\[\ng(z)=\\frac{\\sqrt\\pi}{z}+O(z^{-3}).\n\\]\nSo the logarithmic divergence has coefficient \\(\\sqrt\\pi\\), cut off at scale \\(z^3\\sim N\\), giving coefficient\n\\[\n\\sqrt\\pi\\cdot \\frac13\\log N=\\frac{\\sqrt\\pi}{6}\\log n.\n\\]\n\nIt remains to compute the constant term. Define\n\\[\nK=\\int_0^1 g(z)\\,dz+\\int_1^\\infty\\left(g(z)-\\frac{\\sqrt\\pi}{z}\\right)\\,dz.\n\\]\nWe compute \\(K\\) from the Mellin transform. For \\(1/2<p<1\\),\n\\[\n\\int_0^\\infty z^{p-1}g(z)\\,dz\n=\\int_0^\\infty\\int_0^\\infty\nz^{p-3/2}s^{-1/2}e^{-s^2-zs}\\,ds\\,dz.\n\\]\nIntegrating first in \\(z\\),\n\\[\n\\int_0^\\infty z^{p-3/2}e^{-zs}\\,dz\n=\\Gamma\\!\\left(p-\\frac12\\right)s^{-p+1/2}.\n\\]\nTherefore\n\\[\n\\int_0^\\infty z^{p-1}g(z)\\,dz\n=\\Gamma\\!\\left(p-\\frac12\\right)\\int_0^\\infty s^{-p}e^{-s^2}\\,ds\n=\\frac12\\Gamma\\!\\left(p-\\frac12\\right)\\Gamma\\!\\left(\\frac{1-p}{2}\\right).\n\\]\nAs \\(p\\to1^-\\),\n\\[\n\\Gamma\\!\\left(\\frac{1-p}{2}\\right)=\\frac{2}{1-p}-\\gamma+O(1-p),\n\\]\nand\n\\[\n\\Gamma\\!\\left(p-\\frac12\\right)\n=\\sqrt\\pi\\left(1-(1-p)\\psi(1/2)+O((1-p)^2)\\right),\n\\]\nwith \\(\\psi(1/2)=-\\gamma-2\\log2\\). Hence\n\\[\n\\frac12\\Gamma\\!\\left(p-\\frac12\\right)\\Gamma\\!\\left(\\frac{1-p}{2}\\right)\n=\\frac{\\sqrt\\pi}{1-p}\n+\\sqrt\\pi\\left(\\frac{\\gamma}{2}+2\\log2\\right)+o(1).\n\\]\nSince the pole \\(\\sqrt\\pi/(1-p)\\) corresponds exactly to the tail \\(\\sqrt\\pi/z\\), we get\n\\[\nK=\\sqrt\\pi\\left(\\frac{\\gamma}{2}+2\\log2\\right).\n\\]\n\nNow split\n\\[\nA_N=\\int_0^\\infty e^{-z^3/N}\n\\left(g(z)-\\frac{\\sqrt\\pi}{z}\\mathbf 1_{z\\ge1}\\right)\\,dz\n+\\sqrt\\pi\\int_1^\\infty \\frac{e^{-z^3/N}}{z}\\,dz.\n\\]\nThe first integral tends to \\(K\\). For the second, put \\(u=z^3/N\\):\n\\[\n\\int_1^\\infty \\frac{e^{-z^3/N}}{z}\\,dz\n=\\frac13\\int_{1/N}^\\infty \\frac{e^{-u}}u\\,du\n=\\frac13\\log N-\\frac{\\gamma}{3}+o(1).\n\\]\nTherefore\n\\[\nA_N-\\frac{\\sqrt\\pi}{3}\\log N\n\\to\nK-\\frac{\\sqrt\\pi\\gamma}{3}.\n\\]\nSince \\(N=n^{1/2}\\), \\(\\frac{\\sqrt\\pi}{3}\\log N=\\frac{\\sqrt\\pi}{6}\\log n\\). Thus\n\\[\n\\lim_{n\\to\\infty}\n\\left(\\sqrt n\\,I_n-\\frac{\\sqrt\\pi}{6}\\log n\\right)\n=\n\\sqrt\\pi\\left(\\frac{\\gamma}{2}+2\\log2-\\frac{\\gamma}{3}\\right).\n\\]\n\n\\[\n\\boxed{\\sqrt\\pi\\left(2\\log2+\\frac{\\gamma}{6}\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T03:22:39+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/ca8e3babb7b2.json"
+}
