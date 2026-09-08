@@ -29,7 +29,7 @@ $$
 | **Domain** | Number Theory |
 | **Sub-domain** | Modular arithmetic and congruences |
 | **Problem Type** | Exact computation |
-| **Answer Type** | Integer |
+| **Answer Type** | Exact symbolic expression |
 
 ---
 
