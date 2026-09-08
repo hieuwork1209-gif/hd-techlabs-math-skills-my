@@ -1,200 +1,173 @@
 ## Steps
 
-Step 1: Compute the leading rank-three contribution
+Step 1: Separate the mean eigenvalue and evaluate the angular integral
 
-Write
+Use the orthonormal coordinates
 $$
-\Delta_3(x_1,x_2,x_3)=\prod_{1\le i<j\le3}(x_i-x_j).
+x_1=\frac m{\sqrt3}+\frac u{\sqrt2}+\frac v{\sqrt6},\qquad
+x_2=\frac m{\sqrt3}-\frac u{\sqrt2}+\frac v{\sqrt6},
 $$
-Near the hyperplane $x_4=0$, with $x_1x_2x_3\ne0$,
 $$
-|\Delta(x)|=|\Delta_3(x_1,x_2,x_3)|\,|x_1x_2x_3|+o(1)
+x_3=\frac m{\sqrt3}-\frac{2v}{\sqrt6}.
 $$
-in the normal scale, while
+Then
 $$
-\int_{-\infty}^{\infty}
- e^{-n(x_1x_2x_3)^2x_4^2}\,dx_4
-=\frac{\sqrt\pi}{\sqrt n\,|x_1x_2x_3|}.
+x_1^2+x_2^2+x_3^2=m^2+u^2+v^2.
 $$
-Thus one rank-three hyperplane contributes
+Writing
 $$
-\frac{\sqrt\pi}{\sqrt n}
-\int_{\mathbb R^3}|\Delta_3(x)|
- e^{-n(x_1^2+x_2^2+x_3^2)^5}\,dx.
+u=r\cos\theta,\qquad v=r\sin\theta,
 $$
-After the scaling $x=n^{-1/10}X$, this becomes
+one also has
 $$
-\sqrt\pi\,n^{-11/10}
-\int_{\mathbb R^3}|\Delta_3(X)|e^{-(X_1^2+X_2^2+X_3^2)^5}\,dX.
-$$
-
-To evaluate the radial integral, first note that the orthonormal coordinates
-$$
-X_1=\frac m{\sqrt3}+\frac u{\sqrt2}+\frac v{\sqrt6},\quad
-X_2=\frac m{\sqrt3}-\frac u{\sqrt2}+\frac v{\sqrt6},\quad
-X_3=\frac m{\sqrt3}-\frac{2v}{\sqrt6}
-$$
-give, for $u=r\cos\theta$, $v=r\sin\theta$,
-$$
-|\Delta_3|=\frac{r^3}{\sqrt2}|\cos3\theta|.
+\Delta(x)=-\frac{r^3}{\sqrt2}\cos3\theta.
 $$
 Hence
 $$
-\int_{\mathbb R^3}e^{-|X|^2}|\Delta_3(X)|\,dX
-=\frac{3\pi}{2^{3/2}}.
+\begin{aligned}
+I_n={}&\int_{-\infty}^{\infty}\int_0^\infty
+\frac{r^4}{\sqrt2}e^{-n(m^2+r^2)^4}\\
+&\qquad\times
+\left(\int_0^{2\pi}|\cos3\theta|
+ e^{-nr^6\cos^2(3\theta)/2}\,d\theta\right)dr\,dm.
+\end{aligned}
 $$
-Since $|\Delta_3|$ is homogeneous of degree $3$, its spherical angular factor is therefore $3\pi/2^{3/2}$. Consequently
+For $a>0$, periodicity gives
 $$
-\int_{\mathbb R^3}|\Delta_3(X)|e^{-|X|^{10}}\,dX
-=\frac{3\pi}{2^{3/2}}
-\int_0^\infty r^5e^{-r^{10}}\,dr
-=\frac{3\pi\Gamma(3/5)}{10\,2^{3/2}}.
+\int_0^{2\pi}|\cos3\theta|e^{-a\cos^2(3\theta)}\,d\theta
+=4\int_0^{\pi/2}\cos t\,e^{-a\cos^2t}\,dt
+=\frac{2\sqrt\pi}{\sqrt a}\operatorname{erf}(\sqrt a).
 $$
-There are four rank-three hyperplanes, so
+Therefore the exact reduction is
 $$
-I_n=
-\frac{3\pi^{3/2}\Gamma(3/5)}{5\sqrt2}\,n^{-11/10}
-+o(n^{-11/10}).
+I_n=\frac{2\sqrt\pi}{\sqrt n}
+\int_{-\infty}^{\infty}\int_0^\infty
+r\,e^{-n(m^2+r^2)^4}
+\operatorname{erf}\left(\sqrt{\frac n2}\,r^3\right)dr\,dm.
 $$
 
-Step 2: Extract the rank-two finite part
+Step 2: Compute the outer repeated-eigenvalue contribution
 
-The rank-three approximation is nonuniform where two coordinates vanish. Consider the intersection $x_3=x_4=0$ and keep the two surviving coordinates $x,y$. In the local scale,
+Replace the error function in Step 1 by its limiting value $1$. The resulting integral is
 $$
-|\Delta(x,y,u,v)|
-=|x-y|\,|x|^2|y|^2|u-v|+o(1),
+L_n=\frac{2\sqrt\pi}{\sqrt n}
+\int_{-\infty}^{\infty}\int_0^\infty
+r\,e^{-n(m^2+r^2)^4}\,dr\,dm.
 $$
-and the determinant term is
+Using polar coordinates in the half-plane $(m,r)$,
 $$
-nx^2y^2u^2v^2.
+\int_{-\infty}^{\infty}\int_0^\infty
+r\,e^{-n(m^2+r^2)^4}\,dr\,dm
+=2\int_0^\infty \rho^2e^{-n\rho^8}\,d\rho
+=\frac14\Gamma\left(\frac38\right)n^{-3/8}.
 $$
-The two rank-three models meeting on this intersection must be subtracted. Their universal transverse finite part is
+Thus
 $$
-K_0=\lim_{L\to\infty}\left[
-\int_{-L}^L\int_{-L}^L|a-b|e^{-a^2b^2}\,da\,db
--4L\sqrt\pi
-\right].
+L_n=\frac{\sqrt\pi\,\Gamma(3/8)}{2n^{7/8}}.
 $$
-Splitting into same-sign and opposite-sign quadrants gives
+This is the contribution from the regular part of the repeated-eigenvalue sheets.
+
+Step 3: Isolate the triple-collision transition layer
+
+Let
 $$
-\int_{-L}^L\int_{-L}^L|a-b|e^{-a^2b^2}\,da\,db
-=8\int_0^L a\int_0^a e^{-a^2b^2}\,db\,da.
+D_n=I_n-L_n.
 $$
-With $t=ab$ and then reversing the order,
+Since $1-\operatorname{erf}=\operatorname{erfc}$,
 $$
-8\int_0^L a\int_0^a e^{-a^2b^2}\,db\,da
-=8L\int_0^{L^2}e^{-t^2}\,dt
--8\int_0^{L^2}t^{1/2}e^{-t^2}\,dt.
+D_n=-\frac{2\sqrt\pi}{\sqrt n}
+\int_{-\infty}^{\infty}\int_0^\infty
+r\,e^{-n(m^2+r^2)^4}
+\operatorname{erfc}\left(\sqrt{\frac n2}\,r^3\right)dr\,dm.
+$$
+The transition of the complementary error function occurs at
+$$
+r\asymp n^{-1/6},
+$$
+while the mean direction remains on the outer scale
+$$
+m\asymp n^{-1/8}.
+$$
+Set
+$$
+m=n^{-1/8}M,\qquad r=n^{-1/6}S.
+$$
+Then
+$$
+\begin{aligned}
+n^{23/24}D_n=-2\sqrt\pi
+\int_{-\infty}^{\infty}\int_0^\infty
+&S\,\exp\left(-(M^2+n^{-1/12}S^2)^4\right)\\
+&\times\operatorname{erfc}\left(\frac{S^3}{\sqrt2}\right)dS\,dM.
+\end{aligned}
+$$
+The integrand is dominated by
+$$
+e^{-M^8}S\operatorname{erfc}\left(\frac{S^3}{\sqrt2}\right),
+$$
+which is integrable. Hence dominated convergence gives
+$$
+\lim_{n\to\infty}n^{23/24}D_n
+=-2\sqrt\pi
+\left(\int_{-\infty}^{\infty}e^{-M^8}\,dM\right)
+\left(\int_0^\infty S\operatorname{erfc}\left(\frac{S^3}{\sqrt2}\right)dS\right).
+$$
+
+Step 4: Evaluate the two transition integrals
+
+First,
+$$
+\int_{-\infty}^{\infty}e^{-M^8}\,dM
+=\frac14\Gamma\left(\frac18\right).
+$$
+For the second integral, put $t=S^3/\sqrt2$. Then
+$$
+\int_0^\infty S\operatorname{erfc}\left(\frac{S^3}{\sqrt2}\right)dS
+=\frac{2^{1/3}}3\int_0^\infty t^{-1/3}\operatorname{erfc}(t)\,dt.
+$$
+Using
+$$
+\operatorname{erfc}(t)=\frac2{\sqrt\pi}\int_t^\infty e^{-u^2}\,du
+$$
+and reversing the order of integration,
+$$
+\int_0^\infty t^{-1/3}\operatorname{erfc}(t)\,dt
+=\frac{3}{2\sqrt\pi}\Gamma\left(\frac56\right).
 $$
 Therefore
 $$
-K_0=-4\Gamma\left(\frac34\right).
+\int_0^\infty S\operatorname{erfc}\left(\frac{S^3}{\sqrt2}\right)dS
+=\frac{2^{1/3}}{2\sqrt\pi}\Gamma\left(\frac56\right).
 $$
-
-For fixed $x,y$, put $\kappa=\sqrt n\,|xy|$ and scale
+Substituting into Step 3 yields
 $$
-u=\kappa^{-1/2}a,
-\qquad
-v=\kappa^{-1/2}b.
+\lim_{n\to\infty}n^{23/24}D_n
+=-\frac{\Gamma(1/8)\Gamma(5/6)}{2^{5/3}}.
 $$
-After subtracting the two rank-three models, the local correction is
-$$
-K_0\,n^{-3/4}|x-y|\,|xy|^{1/2}.
-$$
-Thus one rank-two intersection contributes
-$$
-K_0n^{-3/4}
-\int_{\mathbb R^2}|x-y|\,|xy|^{1/2}
- e^{-n(x^2+y^2)^5}\,dx\,dy.
-$$
-Scaling $x=n^{-1/10}X$, $y=n^{-1/10}Y$ shows that this is of order $n^{-23/20}$.
-
-Step 3: Evaluate the tangential rank-two integral
-
-Put
-$$
-B=\int_{\mathbb R^2}|X-Y|\,|XY|^{1/2}
- e^{-(X^2+Y^2)^5}\,dX\,dY.
-$$
-In polar coordinates, the radial and angular factors separate:
-$$
-B=\left(\int_0^\infty r^3e^{-r^{10}}\,dr\right)H,
-$$
-where
-$$
-H=\int_0^{2\pi}|\cos\theta-\sin\theta|
-|\cos\theta\sin\theta|^{1/2}\,d\theta.
-$$
-The radial factor is
-$$
-\int_0^\infty r^3e^{-r^{10}}\,dr
-=\frac1{10}\Gamma\left(\frac25\right).
-$$
-For the angular factor, put $\phi=\theta-\pi/4$. Then
-$$
-H=4\int_0^1|2u^2-1|^{1/2}\,du.
-$$
-Splitting at $u=1/\sqrt2$ gives
-$$
-H=2+\frac\pi{\sqrt2}-\sqrt2\log(1+\sqrt2).
-$$
-Hence
-$$
-B=\frac1{10}
-\left(2+\frac\pi{\sqrt2}-\sqrt2\log(1+\sqrt2)\right)
-\Gamma\left(\frac25\right).
-$$
-
-Step 4: Sum the rank-two strata and exclude smaller terms
-
-There are six pairwise intersections of the four coordinate hyperplanes. Therefore the total rank-two correction is
-$$
-6K_0B\,n^{-23/20}.
-$$
-Using Step 2 and Step 3,
-$$
-6K_0B
-=-\frac{12}{5}
-\left(2+\frac\pi{\sqrt2}-\sqrt2\log(1+\sqrt2)\right)
-\Gamma\left(\frac25\right)
-\Gamma\left(\frac34\right).
-$$
-
-It remains to check that no other contribution occurs at this order. Along a regular rank-three hyperplane the normal scale is $n^{-1/5}$ while the tangential scale is $n^{-1/10}$; odd normal corrections vanish, so the first regular correction is of relative order $n^{-1/5}$, hence $O(n^{-13/10})$. Near a rank-one stratum the natural scaling is one coordinate of size $n^{-1/10}$ and three coordinates of size $n^{-2/15}$, giving total order $n^{-6/5}$. At the rank-zero point the homogeneous determinant scale gives order $n^{-5/4}$. All of these are smaller than $n^{-23/20}$.
 
 Step 5: Recover the requested limit
 
-Combining the preceding steps,
+Combining Steps 2--4,
 $$
-\begin{aligned}
-I_n={}&
-\frac{3\pi^{3/2}\Gamma(3/5)}{5\sqrt2}\,n^{-11/10}\\
-&-\frac{12}{5}
-\left(2+\frac\pi{\sqrt2}-\sqrt2\log(1+\sqrt2)\right)
-\Gamma\left(\frac25\right)
-\Gamma\left(\frac34\right)n^{-23/20}
-+o(n^{-23/20}).
-\end{aligned}
+I_n=\frac{\sqrt\pi\,\Gamma(3/8)}{2n^{7/8}}
+-\frac{\Gamma(1/8)\Gamma(5/6)}{2^{5/3}n^{23/24}}
++o(n^{-23/24}).
 $$
 Therefore
 $$
-\lim_{n\to\infty}n^{23/20}
+\lim_{n\to\infty}n^{23/24}
 \left(
-I_n-
-\frac{3\pi^{3/2}\Gamma(3/5)}{5\sqrt2\,n^{11/10}}
+I_n-\frac{\sqrt\pi\,\Gamma(3/8)}{2n^{7/8}}
 \right)
-=-\frac{12}{5}
-\left(2+\frac\pi{\sqrt2}-\sqrt2\log(1+\sqrt2)\right)
-\Gamma\left(\frac25\right)
-\Gamma\left(\frac34\right).
+=-\frac{\Gamma(1/8)\Gamma(5/6)}{2^{5/3}}.
 $$
-Final Answer: $\boxed{-\frac{12}{5}\left(2+\frac\pi{\sqrt2}-\sqrt2\log(1+\sqrt2)\right)\Gamma\left(\frac25\right)\Gamma\left(\frac34\right)}$
+Final Answer: $\boxed{-\frac{\Gamma(1/8)\Gamma(5/6)}{2^{5/3}}}$
 
 ---
 
 ## Answer
 
-$-\frac{12}{5}\left(2+\frac\pi{\sqrt2}-\sqrt2\log(1+\sqrt2)\right)\Gamma(2/5)\Gamma(3/4)$
+$-\frac{\Gamma(1/8)\Gamma(5/6)}{2^{5/3}}$
 
 ---
 
@@ -208,8 +181,8 @@ $-\frac{12}{5}\left(2+\frac\pi{\sqrt2}-\sqrt2\log(1+\sqrt2)\right)\Gamma(2/5)\Ga
 
 ## Solution Concepts
 
-- Vandermonde eigenvalue density
-- determinant rank stratification
-- nonuniform rank-three asymptotics
-- rank-two finite-part matching
+- eigenvalue discriminant geometry
+- exact angular reduction
+- repeated-eigenvalue sheets
+- triple-collision transition layer
 - Gamma-function moments
