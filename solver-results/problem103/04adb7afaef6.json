@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "5ae10c38f85080e07caad2f88b29c21cd96b2a2f",
+  "problem_blob_sha": "04adb7afaef6c7b0a8d27a02f18872c3d8ab5c6a",
+  "statement_sha256": "96b79358306f951fa226c96802cee4bbbcef605494289b886b4ca3fa473ed58d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T04:15:40+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\ne_0=\\frac{(1,1,1)}{\\sqrt3}\n\\]\nand write \\(x\\) in orthonormal coordinates as\n\\[\nx_i=\\frac u{\\sqrt3}+q_i,\\qquad q_1+q_2+q_3=0,\n\\]\nwith\n\\[\nq_1=\\sqrt{\\frac23}\\rho\\cos\\theta,\\quad\nq_2=\\sqrt{\\frac23}\\rho\\cos(\\theta-2\\pi/3),\\quad\nq_3=\\sqrt{\\frac23}\\rho\\cos(\\theta+2\\pi/3).\n\\]\nThen\n\\[\nx_1^2+x_2^2+x_3^2=u^2+\\rho^2,\\qquad\ndx=\\rho\\,du\\,d\\rho\\,d\\theta,\n\\]\nand a direct check gives\n\\[\n\\Delta(x)=\\frac{\\rho^3}{\\sqrt2}\\sin 3\\theta.\n\\]\nHence\n\\[\nI_n=\\frac1{\\sqrt2}\\int_{\\mathbb R}\\int_0^\\infty \\rho^4 e^{-n(u^2+\\rho^2)^4}\nA(n\\rho^6/2)\\,d\\rho\\,du,\n\\]\nwhere\n\\[\nA(a)=\\int_0^{2\\pi}|\\sin 3\\theta|e^{-a\\sin^2 3\\theta}\\,d\\theta\n=\\int_0^{2\\pi}|\\sin\\phi|e^{-a\\sin^2\\phi}\\,d\\phi .\n\\]\nWe need only the size of \\(I_n\\). Since\n\\[\nA(a)\\le C\\min(1,a^{-1}),\n\\]\nwe split at \\(\\rho=n^{-1/6}\\).\n\nFor \\(0\\le \\rho\\le n^{-1/6}\\),\n\\[\n\\int_{\\mathbb R}e^{-n(u^2+\\rho^2)^4}\\,du\n\\le \\int_{\\mathbb R}e^{-nu^8}\\,du\n=O(n^{-1/8}),\n\\]\nso this part is\n\\[\nO\\left(n^{-1/8}\\int_0^{n^{-1/6}}\\rho^4\\,d\\rho\\right)\n=O(n^{-23/24}).\n\\]\n\nFor \\(\\rho\\ge n^{-1/6}\\),\n\\[\nA(n\\rho^6/2)\\le \\frac C{n\\rho^6},\n\\]\nso this part is at most\n\\[\nC n^{-1}\\int_{n^{-1/6}}^\\infty \\rho^{-2}\n\\int_{\\mathbb R}e^{-n(u^2+\\rho^2)^4}\\,du\\,d\\rho.\n\\]\nWith \\(u=n^{-1/8}s,\\ \\rho=n^{-1/8}t\\), this becomes\n\\[\nC n^{-1}\\int_{n^{-1/24}}^\\infty t^{-2}\n\\int_{\\mathbb R}e^{-(s^2+t^2)^4}\\,ds\\,dt\n=O(n^{-1}n^{1/24})\n=O(n^{-23/24}).\n\\]\nThus\n\\[\nI_n=O(n^{-23/24}).\n\\]\nTherefore\n\\[\nn^{23/24}I_n=O(1),\n\\]\nwhile\n\\[\nn^{23/24}\\frac{\\sqrt\\pi\\,\\Gamma(3/8)}{2n^{7/8}}\n=\\frac{\\sqrt\\pi\\,\\Gamma(3/8)}2\\,n^{1/12}\\to+\\infty.\n\\]\nHence the whole expression tends to \\(-\\infty\\).\n\n\\[\n\\boxed{-\\infty}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T04:17:56+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/04adb7afaef6.json"
+}
