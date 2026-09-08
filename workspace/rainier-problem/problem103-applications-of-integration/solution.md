@@ -1,139 +1,138 @@
 ## Steps
 
-Step 1: Localize at the astroid cusp
+Step 1: Reduce the degenerate Gaussian integral to product-ratio coordinates
 
-The phase $(x-1)^2+y^2$ has its unique minimum on the astroid at the cusp $(1,0)$. Away from any fixed neighborhood of that point it is bounded below by a positive constant, so those regions contribute exponentially little.
-
-Write
+Set
 $$
-u=1-x,
+u=x^2,\qquad v=y^2.
 $$
-so near the cusp $u\ge0$ and the astroid boundary is
+Using both signs of $x$ and $y$,
 $$
-|y|\le h(u),\qquad
-h(u)=\left(1-(1-u)^{2/3}\right)^{3/2}.
+I_n=\int_0^\infty\int_0^\infty
+u^{-1/2}v^{-1/2}e^{-n(u^2+uv+v^3)}\,du\,dv.
 $$
-Put
+Now write
 $$
-\varepsilon=n^{-1/2},\qquad
-u=\varepsilon U,\qquad
-y=\varepsilon^{3/2}V.
+u=\sqrt t\,e^s,\qquad v=\sqrt t\,e^{-s}.
 $$
-Then
+Then $uv=t$, the Jacobian has absolute value $1$, and
 $$
-n\left((x-1)^2+y^2\right)=U^2+\varepsilon V^2,
-$$
-and $du\,dy=\varepsilon^{5/2}dU\,dV$. Hence, up to an exponentially small error,
-$$
-M_n=\varepsilon^{5/2}\int_0^\infty e^{-U^2}
-\int_{-H_\varepsilon(U)}^{H_\varepsilon(U)}
- e^{-\varepsilon V^2}\,dV\,dU,
-$$
-where
-$$
-H_\varepsilon(U)=\frac{h(\varepsilon U)}{\varepsilon^{3/2}}.
-$$
-
-Step 2: Expand the cusp geometry
-
-The binomial expansion gives
-$$
-1-(1-u)^{2/3}
-=\frac23u+\frac19u^2+O(u^3).
-$$
-Raising this to the power $3/2$ yields
-$$
-h(u)=\frac{2\sqrt6}{9}u^{3/2}
-+\frac{\sqrt6}{18}u^{5/2}
-+O(u^{7/2}).
+u^2=t e^{2s},\qquad v^3=t^{3/2}e^{-3s}.
 $$
 Therefore
 $$
-H_\varepsilon(U)
-=aU^{3/2}+b\varepsilon U^{5/2}
-+O\left(\varepsilon^2U^{7/2}\right),
+I_n=\int_0^\infty\int_{-\infty}^{\infty}
+t^{-1/2}e^{-n(t+t e^{2s}+t^{3/2}e^{-3s})}\,ds\,dt.
 $$
-with
-$$
-a=\frac{2\sqrt6}{9},\qquad b=\frac{\sqrt6}{18}.
-$$
-On $U\le\varepsilon^{-1/8}$ this expansion is uniform, while the complementary $e^{-U^2}$ tail is smaller than every power of $\varepsilon$.
+The logarithm in the final asymptotic comes from the fact that no single scaling of $s$ makes both $e^{2s}$ and $t^{1/2}e^{-3s}$ simultaneously order one.
 
-Step 3: Expand the vertical Gaussian on the anisotropic scale
+Step 2: Isolate the scale-free transition integral
 
-For bounded $H$,
+Put $t=z/n$ and then shift
 $$
-\int_{-H}^{H}e^{-\varepsilon V^2}\,dV
-=2H-\frac{2}{3}\varepsilon H^3
-+O\left(\varepsilon^2H^5\right).
+r=s+\frac12\log z.
 $$
-Substituting the expansion of $H_\varepsilon(U)$ gives
+With $\varepsilon=n^{-1/2}$ this gives
 $$
-\begin{aligned}
-\int_{-H_\varepsilon(U)}^{H_\varepsilon(U)}e^{-\varepsilon V^2}\,dV
-={}&2aU^{3/2}\\
-&+2\varepsilon\left(
- bU^{5/2}-\frac{a^3}{3}U^{9/2}
-\right)
-+O\left(\varepsilon^2(1+U^{15/2})\right).
-\end{aligned}
-$$
-The remainder is integrable against $e^{-U^2}$, so termwise integration is valid.
-
-Step 4: Evaluate the two surviving coefficients
-
-For $p>-1$,
-$$
-\int_0^\infty U^p e^{-U^2}\,dU
-=\frac12\Gamma\left(\frac{p+1}{2}\right).
-$$
-Thus
-$$
-M_n=\varepsilon^{5/2}C_0+\varepsilon^{7/2}C_1+o\left(\varepsilon^{7/2}\right),
+I_n=n^{-1/2}\int_0^\infty z^{-1/2}e^{-z}
+K(\varepsilon z^3)\,dz,
 $$
 where
 $$
-C_0=a\Gamma\left(\frac54\right)
-=\frac{\sqrt6\,\Gamma(1/4)}{18}.
+K(\rho)=\int_{-\infty}^{\infty}
+ e^{-e^{2r}-\rho e^{-3r}}\,dr.
 $$
-Also
+Thus the problem reduces to the small-$\rho$ finite part of $K(\rho)$.
+
+Step 3: Compute the logarithmic divergence and its finite part
+
+Set $q=e^{2r}$. Then
 $$
-C_1=b\Gamma\left(\frac74\right)
--\frac{a^3}{3}\Gamma\left(\frac{11}{4}\right).
+K(\rho)=\frac12\int_0^\infty
+\frac{e^{-q-\rho q^{-3/2}}}{q}\,dq.
 $$
-Using
+Split at $q=1$:
 $$
-\Gamma\left(\frac74\right)=\frac34\Gamma\left(\frac34\right),
-\qquad
-\Gamma\left(\frac{11}{4}\right)=\frac{21}{16}\Gamma\left(\frac34\right),
+\begin{aligned}
+K(\rho)={}&\frac12\int_0^1\frac{e^{-\rho q^{-3/2}}}{q}\,dq\\
+&+\frac12\int_0^1\frac{(e^{-q}-1)e^{-\rho q^{-3/2}}}{q}\,dq
++\frac12\int_1^\infty\frac{e^{-q}e^{-\rho q^{-3/2}}}{q}\,dq.
+\end{aligned}
 $$
-and the values of $a$ and $b$, we obtain
+In the first integral use $w=\rho q^{-3/2}$. This gives
 $$
-C_1=\frac{25\sqrt6\,\Gamma(3/4)}{1944}.
+\frac12\int_0^1\frac{e^{-\rho q^{-3/2}}}{q}\,dq
+=\frac13\int_\rho^\infty\frac{e^{-w}}{w}\,dw
+=-\frac13\log\rho-\frac\gamma3+o(1).
+$$
+For the other two terms, dominated convergence gives
+$$
+\frac12\left[
+\int_0^1\frac{e^{-q}-1}{q}\,dq
++\int_1^\infty\frac{e^{-q}}{q}\,dq
+\right]
+=-\frac\gamma2.
+$$
+The bracketed identity is the standard integral representation of the Euler-Mascheroni constant and follows directly from
+$$
+\gamma=\lim_{m\to\infty}\left(\sum_{k=1}^m\frac1k-\log m\right)
+$$
+by writing $1/k=\int_0^\infty e^{-kt}\,dt$ and passing to the limit. Hence
+$$
+K(\rho)=-\frac13\log\rho-\frac{5\gamma}{6}+o(1).
+$$
+
+Step 4: Integrate the finite part against the remaining Gaussian weight
+
+From Step 2,
+$$
+\sqrt n\,I_n=\int_0^\infty z^{-1/2}e^{-z}K(\varepsilon z^3)\,dz.
+$$
+Split the $z$-integral at $z=\varepsilon^{-1/12}$. On the first part, $0<\varepsilon z^3\le\varepsilon^{3/4}$, so the remainder in Step 3 is uniform there by the definition of the limit as $\rho\to0$. The complementary $e^{-z}$ tail is smaller than every power of $\varepsilon$. Therefore termwise integration gives
+$$
+\begin{aligned}
+\sqrt n\,I_n
+={}&\frac{\sqrt\pi}{6}\log n
+-\int_0^\infty z^{-1/2}e^{-z}\log z\,dz\\
+&-\frac{5\gamma}{6}\sqrt\pi+o(1).
+\end{aligned}
+$$
+Now
+$$
+\int_0^\infty z^{-1/2}e^{-z}\log z\,dz
+=\Gamma'(1/2).
+$$
+Differentiating the duplication formula
+$$
+\Gamma(w)\Gamma\left(w+\frac12\right)
+=2^{1-2w}\sqrt\pi\,\Gamma(2w)
+$$
+at $w=1/2$, and using $\Gamma'(1)=-\gamma$, gives
+$$
+\Gamma'(1/2)=\sqrt\pi\,(-\gamma-2\log2).
+$$
+Hence
+$$
+\sqrt n\,I_n
+=\frac{\sqrt\pi}{6}\log n
++\sqrt\pi\left(2\log2+\frac\gamma6\right)+o(1).
 $$
 
 Step 5: Recover the requested limit
 
-Since $\varepsilon=n^{-1/2}$,
+Subtracting the logarithmic term from Step 4 yields
 $$
-M_n=
-\frac{\sqrt6\,\Gamma(1/4)}{18n^{5/4}}
-+\frac{25\sqrt6\,\Gamma(3/4)}{1944n^{7/4}}
-+o\left(n^{-7/4}\right).
+\lim_{n\to\infty}
+\left(\sqrt n\,I_n-\frac{\sqrt\pi}{6}\log n\right)
+=\sqrt\pi\left(2\log2+\frac\gamma6\right).
 $$
-Therefore
-$$
-\lim_{n\to\infty}n^{7/4}
-\left(M_n-\frac{\sqrt6\,\Gamma(1/4)}{18n^{5/4}}\right)
-=\frac{25\sqrt6\,\Gamma(3/4)}{1944}.
-$$
-Final Answer: $\boxed{\frac{25\sqrt6\,\Gamma(3/4)}{1944}}$
+Final Answer: $\boxed{\sqrt\pi\left(2\log2+\frac\gamma6\right)}$
 
 ---
 
 ## Answer
 
-$\frac{25\sqrt6\,\Gamma(3/4)}{1944}$
+$\sqrt\pi\left(2\log2+\frac\gamma6\right)$
 
 ---
 
@@ -147,8 +146,8 @@ $\frac{25\sqrt6\,\Gamma(3/4)}{1944}$
 
 ## Solution Concepts
 
-- Gaussian localization at a cusp
-- anisotropic scaling
-- astroid boundary expansion
-- vertical Gaussian correction
-- Gamma-function moments
+- degenerate Laplace integral
+- product-ratio coordinates
+- competing asymptotic scales
+- logarithmic finite part
+- Gamma-function differentiation
