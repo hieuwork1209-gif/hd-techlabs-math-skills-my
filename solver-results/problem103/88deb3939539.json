@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "70a99611d25728d2ec8513c7e873f07cbfd041e9",
+  "problem_blob_sha": "88deb39395390e8989f07a706526e6d54f6632e1",
+  "statement_sha256": "890205369f4fd501080572a52368bc5baae540546b91f7f46fc18d29ac586d62",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T03:49:18+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nx=r u,\\qquad r\\ge 0,\\quad u\\in S^3.\n\\]\nSince \\(\\Delta\\) is homogeneous of degree \\(6\\) and \\(dx=r^3\\,dr\\,d\\sigma(u)\\),\n\\[\nI_n=\\int_{S^3}|\\Delta(u)|\\int_0^\\infty r^9\n\\exp\\{-n(r^8P(u)^2+r^{10})\\}\\,dr\\,d\\sigma(u),\n\\]\nwhere\n\\[\nP(u)=u_1u_2u_3u_4.\n\\]\nPut \\(r=n^{-1/10}\\rho\\) and \\(\\lambda=n^{1/5}\\). Then\n\\[\nI_n=n^{-1}\\int_0^\\infty \\rho^9 e^{-\\rho^{10}}\nB(\\lambda\\rho^8)\\,d\\rho,\n\\]\nwith\n\\[\nB(t)=\\int_{S^3}|\\Delta(u)|e^{-tP(u)^2}\\,d\\sigma(u).\n\\]\n\nThe large-\\(t\\) behavior of \\(B(t)\\) is governed by the coordinate hypersurfaces \\(u_i=0\\). The leading term from one such hypersurface is\n\\[\n\\sqrt\\pi\\,t^{-1/2}\\int_{S^2}|\\Delta_3(v)|\\,d\\sigma(v),\n\\]\nbecause \\(P(u)\\sim u_i\\prod_{j\\ne i}v_j\\) and the factor \\(\\prod_{j\\ne i}|v_j|\\) cancels. Since\n\\[\n\\int_{S^2}|\\Delta_3(v)|\\,d\\sigma(v)=\\frac{3\\pi}{2\\sqrt2},\n\\]\nthe four hypersurfaces give\n\\[\nB(t)=\\frac{6\\pi^{3/2}}{\\sqrt2}\\,t^{-1/2}+\\cdots .\n\\]\nThus\n\\[\nn^{-1}\\cdot \\frac{6\\pi^{3/2}}{\\sqrt2}\\lambda^{-1/2}\n\\int_0^\\infty \\rho^5 e^{-\\rho^{10}}\\,d\\rho\n=\n\\frac{3\\pi^{3/2}\\Gamma(3/5)}{5\\sqrt2}\\,n^{-11/10},\n\\]\nmatching the subtracted term.\n\nThe next term comes from pairwise intersections \\(u_i=u_j=0\\). Near such an intersection, with the remaining two coordinates \\((v,w)\\in S^1\\),\n\\[\n|\\Delta(u)|\\sim |v-w|\\,|vw|^2\\,|a-b|,\n\\qquad\nP(u)\\sim abvw,\n\\]\nwhere \\(a,b\\) are the two normal coordinates.\n\nThe universal two-normal correction is\n\\[\n\\int_{[-R,R]^2}|a-b|e^{-a^2b^2}\\,da\\,db-4\\sqrt\\pi R\n\\longrightarrow -4\\Gamma(3/4).\n\\]\nTherefore one pairwise intersection contributes\n\\[\n-4\\Gamma(3/4)\\,t^{-3/4}\n\\int_{S^1}|vw|^{1/2}|v-w|\\,d\\sigma(v,w).\n\\]\nThere are \\(\\binom42=6\\) pairwise intersections. Also\n\\[\n\\int_{S^1}|vw|^{1/2}|v-w|\\,d\\sigma\n=\n\\frac{\\pi}{\\sqrt2}+2-\\sqrt2\\log(1+\\sqrt2).\n\\]\nHence\n\\[\nB(t)=\\frac{6\\pi^{3/2}}{\\sqrt2}t^{-1/2}\n-24\\Gamma(3/4)\n\\left(\\frac{\\pi}{\\sqrt2}+2-\\sqrt2\\log(1+\\sqrt2)\\right)t^{-3/4}\n+o(t^{-3/4}).\n\\]\n\nUsing this in the radial integral,\n\\[\n\\int_0^\\infty \\rho^9(\\rho^8)^{-3/4}e^{-\\rho^{10}}\\,d\\rho\n=\n\\int_0^\\infty \\rho^3e^{-\\rho^{10}}\\,d\\rho\n=\n\\frac1{10}\\Gamma(2/5).\n\\]\nSince \\(\\lambda^{-3/4}=n^{-3/20}\\), the required limit is\n\\[\n-\\frac{24}{10}\\Gamma(3/4)\\Gamma(2/5)\n\\left(\\frac{\\pi}{\\sqrt2}+2-\\sqrt2\\log(1+\\sqrt2)\\right).\n\\]\n\n\\[\n\\boxed{\n-\\frac{12}{5}\\Gamma\\!\\left(\\frac34\\right)\\Gamma\\!\\left(\\frac25\\right)\n\\left(\\frac{\\pi}{\\sqrt2}+2-\\sqrt2\\log(1+\\sqrt2)\\right)\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T03:53:31+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/88deb3939539.json"
+}
