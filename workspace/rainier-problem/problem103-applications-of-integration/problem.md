@@ -4,19 +4,11 @@
 
 Let
 $$
-T=\{(x,y)\in\mathbb R^2:x\ge0,\ y\ge0,\ x+y\le1\},
+\Omega=\{(x,y)\in\mathbb R^2:x^4+y^4\le1\}.
 $$
-and for $(x,y)\in T$ put
+For each integer $n\ge1$, define
 $$
-z=1-x-y,
-\qquad
-P=xyz,
-\qquad
-D=(x-y)(y-z)(z-x).
-$$
-For $n\ge1$, define
-$$
-I_n=\iint_T e^{-n(P^2+D^2)}\,dx\,dy.
+I_n=\iint_{\Omega}\cos(2\pi n x)\,dx\,dy.
 $$
 Also let
 $$
@@ -25,10 +17,11 @@ $$
 $$
 Evaluate
 $$
-\lim_{n\to\infty}
-n\left(
-I_n-
-\frac{3\sqrt\pi\,\Gamma(1/4)}{4n^{3/4}}
+\lim_{n\to\infty}n^{9/4}
+\left(
+I_n+
+\frac{\sqrt{4-2\sqrt2}\,\Gamma(1/4)}
+{2(2\pi)^{5/4}n^{5/4}}
 \right).
 $$
 
@@ -47,4 +40,4 @@ $$
 
 ## Domain Explanation
 
-The functions $P$ and $D$ are the basic product and Vandermonde invariants of the three barycentric coordinates $x,y,z$. Their common zero set consists of the three vertices and the three edge midpoints of the simplex. The vertices have an anisotropic degenerate scale, while the edge midpoints contribute at the next Gaussian scale, so the requested coefficient requires matching two distinct local geometries. This is a natural degenerate asymptotic-integration problem in Calculus -> Applications of integration.
+The domain is the Lamé disk $x^4+y^4\le1$. Its Fourier coefficient in the $x$-direction is governed by the two flat boundary points $x=\pm1$, where the vertical cross-section has a fractional-power endpoint singularity. Determining the requested correction requires oscillatory endpoint asymptotics rather than Laplace localization. This is a natural Fourier-asymptotic integration problem in Calculus -> Applications of integration.
