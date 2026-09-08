@@ -2,14 +2,14 @@
 
 ## LaTeX (Normalized)
 
-Let $\operatorname{Sym}_3^+(\mathbb R)$ be the cone of positive-semidefinite real symmetric $3\times3$ matrices, with Lebesgue measure on the six independent entries. For $A\in\operatorname{Sym}_3^+(\mathbb R)$, put
+All logarithms are natural. Let
 $$
-e_2(A)=\frac12\left((\operatorname{tr}A)^2-\operatorname{tr}(A^2)\right).
+T=\{(x,y,z)\in\mathbb R^3:x,y,z\ge0,\ x+y+z\le1\}.
 $$
 For $n\ge1$, define
 $$
-I_n=\int_{\operatorname{Sym}_3^+(\mathbb R)}
-\exp\left(-n\left(e_2(A)^2+(\operatorname{tr}A)^8\right)\right)\,dA.
+I_n=\iiint_T
+\exp\left(-nxyz(1-x-y-z)\right)\,dx\,dy\,dz.
 $$
 Also let
 $$
@@ -19,7 +19,7 @@ be Euler's constant. Evaluate
 $$
 \lim_{n\to\infty}
 \left(
-\frac{64n^{3/2}}{\pi^{5/2}}I_n-\log n
+nI_n-2(\log n)^2-4\gamma\log n
 \right).
 $$
 
@@ -38,4 +38,4 @@ $$
 
 ## Domain Explanation
 
-The invariant $e_2(A)$ is the second elementary symmetric polynomial of the eigenvalues and vanishes on the rank-one boundary of the positive-semidefinite cone. The regular interior scale and the rank-one boundary scale occur at the same critical order, producing a logarithmic resonance whose finite part determines the limit. This is a natural degenerate asymptotic-integration problem in Calculus -> Applications of integration.
+The factor $xyz(1-x-y-z)$ is the product of the four barycentric coordinates of the standard tetrahedron. It vanishes on all four faces, and the intersections of those faces create a repeated Mellin singularity that produces the quadratic logarithmic asymptotics. This is a natural asymptotic-integration problem in Calculus -> Applications of integration.
