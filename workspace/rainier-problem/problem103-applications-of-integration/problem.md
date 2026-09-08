@@ -4,17 +4,17 @@
 
 For $n\ge1$, define
 $$
-M_n=\iint_{|x|^{2/3}+|y|^{2/3}\le1}
- e^{-n((x-1)^2+y^2)}\,dx\,dy.
+I_n=\iint_{\mathbb{R}^2}
+ e^{-n(x^4+x^2y^2+y^6)}\,dx\,dy.
 $$
-Here
+Let
 $$
-\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\,dt.
+\gamma=\lim_{m\to\infty}\left(\sum_{k=1}^m\frac1k-\log m\right)
 $$
-Evaluate
+be the Euler-Mascheroni constant. Evaluate
 $$
-\lim_{n\to\infty}n^{7/4}
-\left(M_n-\frac{\sqrt6\,\Gamma(1/4)}{18n^{5/4}}\right).
+\lim_{n\to\infty}
+\left(\sqrt n\,I_n-\frac{\sqrt\pi}{6}\log n\right).
 $$
 
 ---
@@ -32,4 +32,4 @@ $$
 
 ## Domain Explanation
 
-The Gaussian is centered at the cusp $(1,0)$ of the astroid $|x|^{2/3}+|y|^{2/3}=1$. Near that cusp, horizontal and vertical scales are different: $1-x$ is of order $n^{-1/2}$ while $y$ is of order $n^{-3/4}$. The requested correction comes from the interaction between the next term in the cusp geometry and the vertical Gaussian decay, making this a natural anisotropic asymptotic-integration problem.
+The phase $x^4+x^2y^2+y^6$ has a degenerate minimum at the origin with two competing scaling regimes. Their overlap produces a logarithmic term, and the requested limit is the finite part after that divergence is removed. This is a natural degenerate Laplace-asymptotic problem in Calculus -> Applications of integration.
