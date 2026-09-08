@@ -1,138 +1,200 @@
 ## Steps
 
-Step 1: Evaluate odd quadratic Gauss sums modulo powers of $2$
+Step 1: Evaluate the Eisenstein binary Gauss transform
 
-Write $e_m(t)=\exp(2\pi i t/2^m)$ and, for odd $a$, set
+Put
 $$
-g_m(a)=\sum_{z\bmod 2^m}e_m(az^2).
+m=2M+1,\qquad k=2K,\qquad n=m-k=2(M-K)+1,
 $$
-For $m\ge2$, splitting into even and odd residues gives the recurrence
+and write $e_j(u)=\exp(2\pi i u/2^j)$. For odd $a$ define
 $$
-g_{m+2}(a)=2g_m(a).
+g_j(a)=\sum_{x\bmod 2^j}e_j(ax^2).
 $$
-Indeed, the even residues contribute $2g_m(a)$, while for odd residues $z=2u+1$ the remaining sum is a constant multiple of
-$$
-\sum_{u\bmod 2^{m+1}} e_m(a(u^2+u)),
-$$
-which vanishes by pairing $u$ with $u+2^{m-1}$. The base values are
+Splitting into even and odd residues gives $g_{j+2}(a)=2g_j(a)$, while
 $$
 g_2(a)=2(1+i^a),\qquad g_3(a)=4e^{2\pi ia/8}.
 $$
 Hence
 $$
-g_m(a)=
+g_j(a)=
 \begin{cases}
-2^{m/2}(1+i^a),&m\text{ even},\\[2mm]
-2^{(m+1)/2}e^{2\pi ia/8},&m\text{ odd}.
+2^{j/2}(1+i^a),&j\text{ even},\\[1mm]
+2^{(j+1)/2}e^{2\pi ia/8},&j\text{ odd}.
 \end{cases}
 $$
-More generally, for odd $a$,
+The same pairing shows that an odd linear coefficient makes the shifted sum vanish, while for even coefficient
 $$
-\sum_{z\bmod 2^m}e_m(az^2+bz)=0
-$$
-when $b$ is odd, by the shift $z\mapsto z+2^{m-1}$. If $b=2c$, completing the square using the inverse $a^{-1}$ modulo $2^m$ gives
-$$
-\sum_{z\bmod 2^m}e_m(az^2+2cz)=e_m(-a^{-1}c^2)g_m(a).
+\sum_{x\bmod2^j}e_j(ax^2-2bx)=e_j(-a^{-1}b^2)g_j(a).
 $$
 
-Step 2: Collapse the two-variable Fourier coefficient
+Let
+$$
+E(x,y)=x^2-xy+y^2,\qquad B(r,s)=r^2+rs+s^2.
+$$
+The gradient matrix of $E$ is
+$$
+\begin{pmatrix}2&-1\\-1&2\end{pmatrix},
+$$
+whose determinant is $3$. Thus for every $(r,s)$ there is a unique stationary point
+$$
+x_0=3^{-1}(2r+s),\qquad y_0=3^{-1}(r+2s)\pmod{2^m}.
+$$
+Shifting to this point gives
+$$
+\sum_{x,y\bmod2^m}e_m(E(x,y)-rx-sy)
+=S_m\,e_m(-3^{-1}B(r,s)),
+$$
+where $S_m=\sum e_m(E(x,y))$. To evaluate $S_m$, sum first over $x$. Only even $y=2u$ contribute, and then
+$$
+S_m=g_m(1)\sum_{u\bmod2^{m-1}}e_m(3u^2)
+=\frac12g_m(1)g_m(3).
+$$
+Since $m$ is odd, the formulas above give
+$$
+S_m=-2^m.
+$$
 
-For fixed $y$, the sum over $x$ is
+Step 2: Determine the support and phase of the $z$-sum
+
+For a frequency $t$, put
 $$
-\sum_{x\bmod2^m}e_m(x^2+(y-r)x).
+Z(t)=\sum_{z\bmod2^m}e_m(3\cdot2^kz^2-tz).
 $$
-By Step 1 it vanishes unless $y\equiv r\pmod2$. Write $y=r+2z$, where $z$ runs modulo $2^{m-1}$. Then
+Translation by $2^{m-k}$ first forces $2^k\mid t$. After writing $t=2^ku$, the reduced odd-coefficient Gauss sum modulo $2^n$ vanishes unless $u$ is even. Hence
 $$
-A_{m,k}(r,s)=g_m(1)\sum_{z\bmod2^{m-1}}e_m\!\left(az^2+2dz+c\right),
+Z(t)\ne0\iff t=2^{k+1}q,
 $$
-where
+where $q$ runs modulo $2^{n-1}$. For such $t$,
 $$
-a=2^{k+2}-1,\qquad d=2^{k+1}r-s,\qquad c=2^kr^2-sr.
+Z(t)=2^k g_n(3)e_n(-3^{-1}q^2).
 $$
-Since $a$ is odd and the linear coefficient is even, the summand has period $2^{m-1}$, so the last sum is half of the corresponding complete sum modulo $2^m$. Therefore
+Because $n$ is odd,
 $$
-A_{m,k}(r,s)=\frac12 g_m(1)g_m(a)e_m(c-a^{-1}d^2).
+g_n(3)=2^{(n+1)/2}e^{3\pi i/4}.
 $$
-Because $k\ge1$, one has $a\equiv7\pmod8$. The formulas in Step 1 give, for both parities of $m$,
+Combining with Step 1, every nonzero Fourier coefficient has the form
 $$
-g_m(1)g_m(a)=2^{m+1}.
+A_{M,K}(r,s,t)=C\,e^{-\pi i/4}
+ e_m\!\left(-3^{-1}\bigl(B(r,s)+2^kq^2\bigr)\right),
 $$
-Also
+with $C>0$. Therefore
 $$
-a c-d^2=-(2^kr^2-rs+s^2).
-$$
-Thus, with
-$$
-H_{m,k}(r,s)=2^kr^2-rs+s^2,
-$$
-we obtain the exact formula
-$$
-A_{m,k}(r,s)=2^m e_m\!\left(-a^{-1}H_{m,k}(r,s)\right).
-$$
-In particular every Fourier coefficient is nonzero and has absolute value $2^m$. Since $a$ is odd,
-$$
-A_{m,k}(r,s)>0\iff H_{m,k}(r,s)\equiv0\pmod{2^m},
+A_{M,K}(r,s,t)>0
+\iff B(r,s)+2^kq^2\equiv5\cdot2^{m-3}\pmod{2^m},
 $$
 and
 $$
-A_{m,k}(r,s)<0\iff H_{m,k}(r,s)\equiv2^{m-1}\pmod{2^m}.
+A_{M,K}(r,s,t)<0
+\iff B(r,s)+2^kq^2\equiv2^{m-3}\pmod{2^m}.
 $$
 
-Step 3: Factor the residual quadratic form over $\mathbb Z/2^m\mathbb Z$
+Step 3: Remove the common $2^{2K}$ scale
 
-Consider
+For $c\in\{1,5\}$, let $R_c$ count the support triples satisfying
 $$
-f(t)=t^2-t+2^k.
+B(r,s)+2^{2K}q^2\equiv c2^{m-3}\pmod{2^m}.
 $$
-Modulo $2$, its two roots are $0$ and $1$. Each root lifts uniquely through every higher power of $2$: if $f(t_n)\equiv0\pmod{2^n}$, then
+The form $B$ is anisotropic modulo $2$: if $(u,v)$ is not $(0,0)$ modulo $2$, then $B(u,v)$ is odd. Consequently, for a nonzero pair,
 $$
-f(t_n+\varepsilon2^n)\equiv f(t_n)+\varepsilon2^n(2t_n-1)\pmod{2^{n+1}},
+v_2(B(r,s))=2\min(v_2(r),v_2(s)).
 $$
-with $2t_n-1$ odd, so exactly one choice $\varepsilon\in\{0,1\}$ kills the next binary digit. Let $\alpha$ be the lift congruent to $0$ modulo $2$, and $\beta$ the lift congruent to $1$ modulo $2$.
+Since the other two terms in the congruence are divisible by $2^{2K}$, every solution has $2^K\mid r,s$. Write
+$$
+r=2^KR,\qquad s=2^KS.
+$$
+After division by $2^{2K}$ the modulus becomes $2^n$. The reduced congruence only depends on $R,S$ modulo $2^n$, while each reduced pair has $2^K$ lifts in each of $R,S$. Thus
+$$
+R_c=2^{2K}T_c(n),
+$$
+where $T_c(n)$ counts
+$$
+R,S\bmod2^n,\qquad q\bmod2^{n-1},
+$$
+satisfying
+$$
+B(R,S)+q^2\equiv c2^{n-3}\pmod{2^n}.
+$$
 
-Since $f(1-t)=f(t)$, uniqueness gives $\beta=1-\alpha$. Hence
+Step 4: Count odd values of the Eisenstein norm
+
+For every odd residue $u\bmod2^j$, let $F_j(u)$ be the number of pairs $(R,S)\bmod2^j$ with
 $$
-\alpha+\beta=1,\qquad \alpha\beta=2^k\pmod{2^m}.
+B(R,S)\equiv u\pmod{2^j}.
+$$
+Modulo $2$ there are exactly three solutions to $B(R,S)=1$, namely the three nonzero pairs. Suppose a primitive solution is fixed modulo $2^j$. Its four lifts have the form
+$$
+(R+\varepsilon2^j,S+\delta2^j),\qquad \varepsilon,\delta\in\{0,1\}.
+$$
+The next binary digit of $B$ changes by the nonzero linear form
+$$
+\varepsilon S+\delta R\pmod2,
+$$
+so exactly two of the four lifts hit any prescribed lift of the odd target. Therefore
+$$
+F_j(u)=3\cdot2^{j-1}
+$$
+for every odd $u$.
+
+Step 5: Evaluate $T_1(n)$ and $T_5(n)$
+
+Write
+$$
+L=\frac{n-3}{2}.
+$$
+First suppose $n\ge5$. If a solution has valuation below $2L$, then the valuations of $B(R,S)$ and $q^2$ must agree. Hence for some $0\le t<L$,
+$$
+\min(v_2(R),v_2(S))=v_2(q)=t.
+$$
+There are $2^{n-t-2}$ choices of $q$ with exact valuation $t$. After dividing by $2^{2t}$, the required value of the primitive norm is odd modulo $2^{n-2t}$. By Step 4 there are $3\cdot2^{n-2t-1}$ reduced norm pairs, and each has $2^{2t}$ lifts to $(R,S)\bmod2^n$. Thus each fixed $q$ contributes $3\cdot2^{n-1}$ pairs. The total contribution from all $t<L$, common to $c=1$ and $c=5$, is
+$$
+C_0=\sum_{t=0}^{L-1}3\cdot2^{n-1}2^{n-t-2}
+=3\cdot2^{2n-2}-3\cdot2^{(3n-1)/2}.
+$$
+
+It remains to count the solutions with $R,S,q$ all divisible by $2^L$. After dividing by $2^{2L}$, only the residues modulo $8$ matter:
+$$
+B(a,b)+d^2\equiv c\pmod8.
+$$
+For $(a,b)\bmod8$, the residue counts of $B(a,b)$ are
+$$
+0:4,\qquad 1,3,4,5,7:12,
+$$
+and for $d\bmod8$ the square counts are
+$$
+0:2,\qquad1:4,\qquad4:2.
+$$
+Their convolution gives $64$ triples for $c=1$ and $96$ triples for $c=5$. Restoring the unused high bits contributes respectively
+$$
+2^{(3n+1)/2},\qquad 3\cdot2^{(3n-1)/2}.
 $$
 Therefore
 $$
-H_{m,k}(r,s)=(s-\alpha r)(s-\beta r)\pmod{2^m}.
+T_1(n)=3\cdot2^{2n-2}-2^{(3n-1)/2},
 $$
-The linear map
 $$
-(r,s)\longmapsto(u,v)=(s-\alpha r,\ s-\beta r)
+T_5(n)=3\cdot2^{2n-2}.
 $$
-has determinant $\beta-\alpha=1-2\alpha$, which is odd. It is therefore a bijection on $(\mathbb Z/2^m\mathbb Z)^2$. Thus $P_{m,k}$ and $N_{m,k}$ are exactly the numbers of pairs $(u,v)$ satisfying
-$$
-uv\equiv0\pmod{2^m},\qquad uv\equiv2^{m-1}\pmod{2^m},
-$$
-respectively.
+For the remaining base case $n=3$, direct reduction modulo $8$ with $q\bmod4$ gives $T_1(3)=32$ and $T_5(3)=48$, which are the same formulas.
 
-Step 4: Count the two product congruences
+Step 6: Recover the positive and negative counts
 
-For $0\le j\le m-1$, there are $2^{m-j-1}$ residues $u$ of exact $2$-adic valuation $j$.
-
-For $uv\equiv0\pmod{2^m}$, such a $u$ forces $v$ to be divisible by $2^{m-j}$, giving $2^j$ choices. Each $j$ therefore contributes $2^{m-1}$ pairs. These $m$ contributions give $m2^{m-1}$ pairs, and the additional case $u=0$ gives $2^m$ choices of $v$. Hence
+By Step 2, positive coefficients correspond to $c=5$ and negative coefficients to $c=1$. Since $n=2(M-K)+1$,
 $$
-P_{m,k}=m2^{m-1}+2^m=(m+2)2^{m-1}.
+P_{M,K}=2^{2K}T_5(n)=3\cdot2^{4M-2K},
+$$
+while
+$$
+N_{M,K}=2^{2K}T_1(n)
+=3\cdot2^{4M-2K}-2^{3M-K+1}.
 $$
 
-For $uv\equiv2^{m-1}\pmod{2^m}$, both factors are nonzero and their valuations must sum to $m-1$. If $v_2(u)=j$, then $v_2(v)=m-1-j$. The numbers of choices are
-$$
-2^{m-j-1}\quad\text{and}\quad 2^j,
-$$
-so again each $j$ contributes $2^{m-1}$ pairs. Summing over $j=0,\dots,m-1$ gives
-$$
-N_{m,k}=m2^{m-1}.
-$$
-
-Final Answer: $\boxed{\left((m+2)2^{m-1},\,m2^{m-1}\right)}$
+Final Answer: $\boxed{\left(3\cdot2^{4M-2K},\,3\cdot2^{4M-2K}-2^{3M-K+1}\right)}$
 
 ---
 
 ## Answer
 
-$\left((m+2)2^{m-1},\,m2^{m-1}\right)$
+$\left(3\cdot2^{4M-2K},\,3\cdot2^{4M-2K}-2^{3M-K+1}\right)$
 
 ---
 
@@ -146,10 +208,11 @@ Answer Type: Tuple or ordered list
 
 ## Solution Concepts
 
-- odd quadratic Gauss sums
+- Eisenstein norm
+- quadratic Gauss sum
 - two-adic lifting
-- quadratic-form factorization
-- valuation counting
+- valuation stratification
+- local representation count
 
 ---
 
