@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "05d27e09b939ed10f0d6363b413066c3a3f07a22",
+  "problem_blob_sha": "01d93cc4ada5bf7035ddbf920bbbebfd5c9c55d3",
+  "statement_sha256": "056c8038cddccba8f4051da8481d77f701aa79657da9d736d9527a6657e43158",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T05:52:38+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(\\lambda=2\\pi n\\). In polar coordinates,\n\\[\nx^3-3xy^2=r^3\\cos 3\\theta,\\qquad dx\\,dy=r\\,dr\\,d\\theta.\n\\]\nUsing\n\\[\n\\int_0^{2\\pi}\\cos(a\\cos 3\\theta)\\,d\\theta=2\\pi J_0(a),\n\\]\nwe get\n\\[\nI_n=2\\pi\\int_0^1 rJ_0(\\lambda r^3)\\,dr\n=\\frac{2\\pi}{3}\\int_0^1 t^{-1/3}J_0(\\lambda t)\\,dt.\n\\]\n\nNow\n\\[\n\\int_0^\\infty u^{-1/3}J_0(u)\\,du\n=2^{-1/3}\\frac{\\Gamma(1/3)}{\\Gamma(2/3)}.\n\\]\nHence\n\\[\n\\int_0^1 t^{-1/3}J_0(\\lambda t)\\,dt\n=\\lambda^{-2/3}2^{-1/3}\\frac{\\Gamma(1/3)}{\\Gamma(2/3)}\n-\\int_1^\\infty t^{-1/3}J_0(\\lambda t)\\,dt.\n\\]\nThe first term contributes\n\\[\n\\frac{2\\pi}{3}(2\\pi n)^{-2/3}2^{-1/3}\n\\frac{\\Gamma(1/3)}{\\Gamma(2/3)}\n=\n\\frac{\\pi^{1/3}\\Gamma(1/3)}{3\\Gamma(2/3)n^{2/3}},\n\\]\nwhich is exactly the subtracted term.\n\nIt remains to find the first endpoint correction. For large \\(z\\),\n\\[\nJ_0(z)=\\sqrt{\\frac{2}{\\pi z}}\\cos\\left(z-\\frac{\\pi}{4}\\right)+O(z^{-3/2}),\n\\]\nwith the error contributing only \\(O(\\lambda^{-5/2})\\) after one integration by parts on \\([1,\\infty)\\). Thus\n\\[\n\\int_1^\\infty t^{-1/3}J_0(\\lambda t)\\,dt\n=\n\\sqrt{\\frac{2}{\\pi\\lambda}}\n\\int_1^\\infty t^{-5/6}\\cos\\left(\\lambda t-\\frac{\\pi}{4}\\right)\\,dt\n+O(\\lambda^{-5/2}).\n\\]\nIntegrating by parts,\n\\[\n\\int_1^\\infty t^{-5/6}\\cos\\left(\\lambda t-\\frac{\\pi}{4}\\right)\\,dt\n=\n-\\frac{\\sin(\\lambda-\\pi/4)}{\\lambda}+O(\\lambda^{-2}).\n\\]\nTherefore\n\\[\nI_n=\n\\frac{\\pi^{1/3}\\Gamma(1/3)}{3\\Gamma(2/3)n^{2/3}}\n+\\frac{2\\pi}{3}\\sqrt{\\frac{2}{\\pi}}(2\\pi n)^{-3/2}\n\\sin\\left(2\\pi n-\\frac{\\pi}{4}\\right)\n+o(n^{-3/2}).\n\\]\nSince \\(n\\) is an integer,\n\\[\n\\sin\\left(2\\pi n-\\frac{\\pi}{4}\\right)=-\\frac1{\\sqrt2}.\n\\]\nHence\n\\[\n\\lim_{n\\to\\infty}n^{3/2}\n\\left(\nI_n-\n\\frac{\\pi^{1/3}\\Gamma(1/3)}{3\\Gamma(2/3)n^{2/3}}\n\\right)\n=\n-\\frac{1}{3\\sqrt2\\,\\pi}.\n\\]\n\n\\[\n\\boxed{-\\frac{1}{3\\sqrt2\\,\\pi}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T05:54:06+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/01d93cc4ada5.json"
+}
