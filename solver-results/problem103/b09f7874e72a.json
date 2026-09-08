@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "d1ed9d77247a3c17ef8fafe95d0bc37f5adc1af0",
+  "problem_blob_sha": "b09f7874e72a656ea9babb00c6ae4e2a72536556",
+  "statement_sha256": "dcc12e95ed176a7e39d453c36becfdbebad54b4da61b27783bc72323bf67296e",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T03:28:10+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nJ(\\varepsilon)=\\iint_{\\mathbb R^2}e^{-(X^2-Y^3)^2-\\varepsilon Y^8}\\,dX\\,dY .\n\\]\nWith the scaling\n\\[\nx=n^{-1/4}X,\\qquad y=n^{-1/6}Y,\n\\]\nwe get\n\\[\nI_n=n^{-5/12}J(n^{-1/3}),\n\\]\nbecause\n\\[\nn(x^2-y^3)^2=(X^2-Y^3)^2,\\qquad ny^8=n^{-1/3}Y^8.\n\\]\nThus the required limit is\n\\[\n\\lim_{n\\to\\infty} n^{1/48}\\bigl(J(n^{-1/3})-J(0)\\bigr)\n=\\lim_{\\varepsilon\\downarrow0}\\varepsilon^{-1/16}\\bigl(J(\\varepsilon)-A\\bigr).\n\\]\n\nFor fixed \\(Y\\), define\n\\[\nh(Y)=\\int_{\\mathbb R}e^{-(X^2-Y^3)^2}\\,dX.\n\\]\nThen\n\\[\nJ(\\varepsilon)-A=\\int_{\\mathbb R}h(Y)\\bigl(e^{-\\varepsilon Y^8}-1\\bigr)\\,dY.\n\\]\n\nThe main contribution comes from \\(Y\\to+\\infty\\). For \\(Y>0\\),\n\\[\nh(Y)=2\\int_0^\\infty e^{-(X^2-Y^3)^2}\\,dX.\n\\]\nPut \\(u=X^2-Y^3\\). Then\n\\[\nh(Y)=\\int_{-Y^3}^{\\infty} e^{-u^2}(u+Y^3)^{-1/2}\\,du.\n\\]\nHence, as \\(Y\\to+\\infty\\),\n\\[\nh(Y)\\sim Y^{-3/2}\\int_{-\\infty}^{\\infty}e^{-u^2}\\,du\n=\\sqrt{\\pi}\\,Y^{-3/2}.\n\\]\nFor \\(Y<0\\), \\(h(Y)\\) decays faster than any power, so it does not affect the first correction term.\n\nTherefore\n\\[\nJ(\\varepsilon)-A\n\\sim \\sqrt{\\pi}\\int_0^\\infty Y^{-3/2}\\bigl(e^{-\\varepsilon Y^8}-1\\bigr)\\,dY.\n\\]\nNow set \\(t=\\varepsilon^{1/8}Y\\). Then\n\\[\n\\int_0^\\infty Y^{-3/2}\\bigl(e^{-\\varepsilon Y^8}-1\\bigr)\\,dY\n=\\varepsilon^{1/16}\\int_0^\\infty t^{-3/2}(e^{-t^8}-1)\\,dt.\n\\]\nSo the limit equals\n\\[\n\\sqrt{\\pi}\\int_0^\\infty t^{-3/2}(e^{-t^8}-1)\\,dt.\n\\]\nEvaluate the integral with \\(u=t^8\\):\n\\[\n\\int_0^\\infty t^{-3/2}(e^{-t^8}-1)\\,dt\n=\\frac18\\int_0^\\infty (e^{-u}-1)u^{-17/16}\\,du.\n\\]\nFor \\(0<\\alpha<1\\),\n\\[\n\\int_0^\\infty (e^{-u}-1)u^{-1-\\alpha}\\,du=\\Gamma(-\\alpha).\n\\]\nTaking \\(\\alpha=1/16\\),\n\\[\n\\frac18\\Gamma\\!\\left(-\\frac1{16}\\right)\n=\\frac18\\left(-16\\Gamma\\!\\left(\\frac{15}{16}\\right)\\right)\n=-2\\Gamma\\!\\left(\\frac{15}{16}\\right).\n\\]\nThus the required limit is\n\\[\n\\boxed{-2\\sqrt{\\pi}\\,\\Gamma\\!\\left(\\frac{15}{16}\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T03:29:12+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/b09f7874e72a.json"
+}
