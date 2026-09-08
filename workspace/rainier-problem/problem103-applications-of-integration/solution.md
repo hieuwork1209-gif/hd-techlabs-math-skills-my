@@ -1,251 +1,146 @@
 ## Steps
 
-Step 1: Reduce the positive-semidefinite matrix integral to eigenvalues
-
-For a real symmetric matrix $A$, write its eigenvalues as $\lambda_1,\lambda_2,\lambda_3$. For a conjugation-invariant integrand,
-$$
-\int_{\operatorname{Sym}_3(\mathbb R)}F(A)\,dA
-=C\int_{\mathbb R^3}|\Delta(\lambda)|F(\operatorname{diag}\lambda)\,d\lambda,
-$$
-where
-$$
-\Delta(\lambda)=\prod_{i<j}(\lambda_i-\lambda_j).
-$$
-The infinitesimal off-diagonal directions give the Vandermonde factor. To determine $C$, take $F(A)=e^{-\operatorname{tr}(A^2)}$. Directly in the six independent matrix entries,
-$$
-\int e^{-\operatorname{tr}(A^2)}\,dA
-=\pi^{3/2}\left(\frac\pi2\right)^{3/2}
-=\frac{\pi^3}{2^{3/2}}.
-$$
-On the eigenvalue side, use the orthonormal coordinates
-$$
-\lambda_1=\frac m{\sqrt3}+\frac u{\sqrt2}+\frac v{\sqrt6},\quad
-\lambda_2=\frac m{\sqrt3}-\frac u{\sqrt2}+\frac v{\sqrt6},\quad
-\lambda_3=\frac m{\sqrt3}-\frac{2v}{\sqrt6}.
-$$
-With $u=r\cos\theta$, $v=r\sin\theta$,
-$$
-|\Delta|=\frac{r^3}{\sqrt2}|\cos3\theta|.
-$$
-Hence
-$$
-\int_{\mathbb R^3}e^{-\sum\lambda_i^2}|\Delta(\lambda)|\,d\lambda
-=\frac{3\pi}{2^{3/2}},
-$$
-so
-$$
-C=\frac{\pi^2}{3}.
-$$
-Restricting to $A\succeq0$ means $\lambda_i\ge0$, with the same constant.
-
-For
-$$
-e_2(A)=\frac12\left((\operatorname{tr}A)^2-\operatorname{tr}(A^2)\right),
-$$
-one has
-$$
-e_2(A)=\lambda_1\lambda_2+\lambda_1\lambda_3+\lambda_2\lambda_3.
-$$
-Therefore
-$$
-I_n=\frac{\pi^2}{3}\int_{[0,\infty)^3}|\Delta(\lambda)|
- e^{-n(e_2(\lambda)^2+(\lambda_1+\lambda_2+\lambda_3)^8)}\,d\lambda.
-$$
-
-Step 2: Pass to the trace simplex and compute the exact angular density
-
-Put
-$$
-r=\lambda_1+\lambda_2+\lambda_3,
-\qquad
-x_i=\frac{\lambda_i}{r}.
-$$
-Then $x_i\ge0$, $x_1+x_2+x_3=1$, and if
-$$
-q=x_1x_2+x_1x_3+x_2x_3,
-$$
-then
-$$
-e_2(\lambda)=r^2q,
-\qquad
-|\Delta(\lambda)|\,d\lambda=r^5|\Delta(x)|\,dr\,dx_1dx_2.
-$$
-Thus
-$$
-I_n=\frac{\pi^2}{3}\int_{\Sigma}|\Delta(x)|
-\int_0^\infty r^5e^{-n(r^4q^2+r^8)}\,dr\,dx,
-$$
-where $\Sigma$ is the standard two-simplex. With $u=r^4$,
-$$
-I_n=\frac{\pi^2}{12}\int_{\Sigma}|\Delta(x)|K_n(q)\,dx,
-$$
-where
-$$
-K_n(q)=\int_0^\infty u^{1/2}e^{-n(u^2+q^2u)}\,du.
-$$
-
-Now also put
-$$
-p=x_1x_2x_3.
-$$
-Since $x_3=1-x_1-x_2$,
-$$
-\left|\frac{\partial(q,p)}{\partial(x_1,x_2)}\right|=|\Delta(x)|.
-$$
-For distinct roots, the map from the simplex to $(q,p)$ is six-to-one. The cubic with roots $x_1,x_2,x_3$ is
-$$
-t^3-t^2+qt-p,
-$$
-and its discriminant is
-$$
-D(q,p)=q^2-4q^3+(18q-4)p-27p^2.
-$$
-Solving $D(q,p)=0$ for $p$ gives
-$$
-p_\pm(q)=\frac{9q-2\pm2(1-3q)^{3/2}}{27}.
-$$
-Taking also $p\ge0$ into account yields
-$$
-\int_{\Sigma}|\Delta(x)|f(q)\,dx
-=\int_0^{1/3}h(q)f(q)\,dq,
-$$
-with
-$$
-h(q)=
-\begin{cases}
-\displaystyle \frac29\left(9q-2+2(1-3q)^{3/2}\right),&0\le q\le\frac14,\\[1.2ex]
-\displaystyle \frac89(1-3q)^{3/2},&\frac14\le q\le\frac13.
-\end{cases}
-$$
-In particular,
-$$
-h(q)=\frac32q^2+O(q^3)
-\qquad(q\downarrow0).
-$$
-
-Step 3: Extract the critical logarithmic term
+Step 1: Write the tetrahedral integral in Mellin form
 
 Let
 $$
-\varepsilon=n^{-1/4},
+T=\{(x,y,z)\in\mathbb R^3:x,y,z\ge0,\ x+y+z\le1\},
+$$
+and put
+$$
+w=1-x-y-z,
 \qquad
-k(t)=\int_0^\infty v^{1/2}e^{-v^2-t^2v}\,dv.
+P=xyzw.
 $$
-Since
+Then
 $$
-K_n(q)=n^{-3/4}k(q/\varepsilon),
+I_n=\iiint_T e^{-nP}\,dx\,dy\,dz.
 $$
-we obtain
+For any $c$ with $0<c<1$, the inverse Mellin formula
 $$
-\frac{12n^{3/2}}{\pi^2}I_n
-=\varepsilon^{-2}
-\int_0^{1/(3\varepsilon)}h(\varepsilon t)k(t)\,dt.
-$$
-Set
-$$
-c=\frac32,
-\qquad
-a=\Gamma\left(\frac32\right)=\frac{\sqrt\pi}{2}.
-$$
-As $t\to\infty$,
-$$
-k(t)=a t^{-3}+O(t^{-7}).
-$$
-Therefore the $cq^2$ behavior of $h(q)$ produces a logarithmic resonance.
-
-The inner finite part is
-$$
-U=\lim_{T\to\infty}
-\left(\int_0^T t^2k(t)\,dt-a\log T\right).
-$$
-For $-3<\Re s<0$,
-$$
-\int_0^\infty t^{s+2}k(t)\,dt
-=\frac14\Gamma\left(\frac{s+3}{2}\right)
-\Gamma\left(-\frac s4\right).
-$$
-Expanding at $s=0$ and using
-$$
-\psi\left(\frac32\right)=-\gamma-2\log2+2
+e^{-u}=\frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}\Gamma(s)u^{-s}\,ds
 $$
 gives
 $$
-U=a\left(\frac\gamma4+\log2-1\right).
+I_n=\frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}
+\Gamma(s)n^{-s}M(s)\,ds,
+$$
+where
+$$
+M(s)=\iiint_T P^{-s}\,dx\,dy\,dz.
 $$
 
-Step 4: Compute the outer finite part and match the two regions
+Step 2: Evaluate the simplex Mellin moment exactly
 
-Define
+The standard Dirichlet integral gives, for $\Re s<1$,
 $$
-V=\lim_{\delta\downarrow0}
-\left(
-\int_\delta^{1/3}\frac{h(q)}{q^3}\,dq
-+c\log\delta
-\right).
-$$
-Using the two explicit formulas for $h$ and the substitution
-$$
-y=\sqrt{1-3q},
-$$
-one finds
-$$
-\lim_{\delta\downarrow0}
-\left(
-\int_\delta^{1/4}\frac{h(q)}{q^3}\,dq
-+c\log\delta
-\right)
-=-\frac{23}{36}+3\log\frac23,
-$$
-while
-$$
-\int_{1/4}^{1/3}\frac{h(q)}{q^3}\,dq
-=-\frac{28}{9}+3\log3.
+\iiint_T
+x^{-s}y^{-s}z^{-s}w^{-s}\,dx\,dy\,dz
+=\frac{\Gamma(1-s)^4}{\Gamma(4-4s)}.
 $$
 Hence
 $$
-V=3\log2-\frac{15}{4}.
+M(s)=\frac{\Gamma(1-s)^4}{\Gamma(4-4s)}
+$$
+and therefore
+$$
+I_n=\frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}
+\Gamma(s)
+\frac{\Gamma(1-s)^4}{\Gamma(4-4s)}
+ n^{-s}\,ds.
+$$
+The first singularity to the right of the original contour is at $s=1$. The four factors $\Gamma(1-s)$ give a fourth-order pole there, while $1/\Gamma(4-4s)$ has a simple zero, so the net pole has order three.
+
+Step 3: Expand the cubic Mellin pole
+
+Write
+$$
+s=1+u.
+$$
+Using
+$$
+\Gamma(-u)=\frac{\Gamma(1-u)}{-u},
+\qquad
+\Gamma(-4u)=\frac{\Gamma(1-4u)}{-4u},
+$$
+we obtain
+$$
+\Gamma(1+u)\frac{\Gamma(-u)^4}{\Gamma(-4u)}
+=-\frac4{u^3}
+\frac{\Gamma(1+u)\Gamma(1-u)^4}{\Gamma(1-4u)}.
+$$
+Also
+$$
+\log\Gamma(1+u)=-\gamma u+\frac{\pi^2}{12}u^2+O(u^3),
+$$
+$$
+\log\Gamma(1-u)=\gamma u+\frac{\pi^2}{12}u^2+O(u^3).
+$$
+Therefore
+$$
+\log\left(
+\frac{\Gamma(1+u)\Gamma(1-u)^4}{\Gamma(1-4u)}
+\right)
+=-\gamma u-\frac{11\pi^2}{12}u^2+O(u^3),
+$$
+so
+$$
+\Gamma(1+u)\frac{\Gamma(-u)^4}{\Gamma(-4u)}
+=-\frac4{u^3}
++\frac{4\gamma}{u^2}
++\frac{-2\gamma^2+11\pi^2/3}{u}
++O(1).
 $$
 
-Split the $q$-integral at a small fixed $\delta$. In the inner region set $q=\varepsilon t$; in the outer region use $k(q/\varepsilon)=a\varepsilon^3q^{-3}+o(\varepsilon^3)$. The $\log\delta$ terms cancel, and the matched expansion is
+Step 4: Extract the contribution of the pole at $s=1$
+
+Let
 $$
-\frac{12n^{3/2}}{\pi^2}I_n
-=\frac{ca}{4}\log n+cU+aV+o(1).
+L=\log n.
 $$
 Since
 $$
-cU+aV
-=\frac{3a}{8}\left(\gamma+12\log2-14\right),
+n^{-s}=n^{-1}e^{-uL}
+=n^{-1}\left(1-uL+\frac{u^2L^2}{2}+O(u^3)\right),
 $$
-we get
+the residue at $s=1$ equals
+$$
+\frac1n\left(
+-2L^2-4\gamma L-2\gamma^2+\frac{11\pi^2}{3}
+\right).
+$$
+For large $n$ the Mellin contour is shifted to the right. With the usual clockwise rectangle, the original integral equals the shifted-contour integral minus the crossed residues. Taking the new line $1+\eta$ with $0<\eta<1$, there are no further poles in the strip, and the shifted integral is $O(n^{-1-\eta})$. Hence
 $$
 I_n=
-\frac{\pi^{5/2}}{64}n^{-3/2}
-\left(\log n+\gamma+12\log2-14\right)
-+o(n^{-3/2}).
+\frac1n\left(
+2L^2+4\gamma L+2\gamma^2-\frac{11\pi^2}{3}
+\right)
++o(n^{-1}).
 $$
 
 Step 5: Recover the requested limit
 
-Multiplying the expansion in Step 4 by $64n^{3/2}/\pi^{5/2}$ gives
+Multiplying the expansion from Step 4 by $n$ gives
 $$
-\frac{64n^{3/2}}{\pi^{5/2}}I_n
-=\log n+\gamma+12\log2-14+o(1).
+nI_n
+=2(\log n)^2+4\gamma\log n
++2\gamma^2-\frac{11\pi^2}{3}+o(1).
 $$
 Therefore
 $$
 \lim_{n\to\infty}
 \left(
-\frac{64n^{3/2}}{\pi^{5/2}}I_n-\log n
+nI_n-2(\log n)^2-4\gamma\log n
 \right)
-=\gamma+12\log2-14.
+=2\gamma^2-\frac{11\pi^2}{3}.
 $$
-Final Answer: $\boxed{\gamma+12\log2-14}$
+Final Answer: $\boxed{2\gamma^2-\frac{11\pi^2}{3}}$
 
 ---
 
 ## Answer
 
-$\gamma+12\log2-14$
+$2\gamma^2-\frac{11\pi^2}{3}$
 
 ---
 
@@ -259,8 +154,8 @@ $\gamma+12\log2-14$
 
 ## Solution Concepts
 
-- positive-semidefinite eigenvalue geometry
-- Weyl eigenvalue reduction
-- rank-one boundary resonance
-- matched logarithmic asymptotics
-- symmetric-polynomial coordinates
+- simplex barycentric coordinates
+- Dirichlet integral
+- Mellin inversion
+- repeated Mellin poles
+- logarithmic asymptotics
