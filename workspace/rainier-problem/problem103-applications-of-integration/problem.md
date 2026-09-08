@@ -2,14 +2,14 @@
 
 ## LaTeX (Normalized)
 
-For $x=(x_1,x_2,x_3)\in\mathbb R^3$, put
+For a real $3\times3$ matrix $M=(m_{ij})$, write
 $$
-\Delta(x)=(x_1-x_2)(x_1-x_3)(x_2-x_3).
+\|M\|_F^2=\sum_{i,j=1}^3m_{ij}^2.
 $$
 For $n\ge1$, define
 $$
-I_n=\int_{\mathbb R^3}|\Delta(x)|
-\exp\left(-n\left(\Delta(x)^2+(x_1^2+x_2^2+x_3^2)^4\right)\right)\,dx.
+I_n=\int_{\mathbb R^{3\times3}}
+\exp\left(-n\left((\det M)^2+\|M\|_F^8\right)\right)\,dM.
 $$
 Also let
 $$
@@ -18,9 +18,10 @@ $$
 $$
 Evaluate
 $$
-\lim_{n\to\infty}n\left(
+\lim_{n\to\infty}n^{11/8}
+\left(
 I_n-
-\frac{\pi^{3/2}\Gamma(1/8)}{3\,2^{2/3}\Gamma(2/3)n^{23/24}}
+\frac{\pi^{9/2}\Gamma(3/4)}{4n^{5/4}}
 \right).
 $$
 
@@ -39,4 +40,4 @@ $$
 
 ## Domain Explanation
 
-The factor $\Delta(x)$ is the discriminant factor for three real eigenvalues, and $\Delta=0$ is the repeated-eigenvalue locus. The leading mass comes from the nonuniform transition near the triple-eigenvalue line, while the requested second coefficient is the finite-part contribution from the regular repeated-eigenvalue sheets. This is a natural degenerate asymptotic-integration problem in Calculus -> Applications of integration.
+The phase uses two intrinsic quantities of a real $3\times3$ matrix: its determinant and Frobenius norm. The determinant-zero variety is stratified by matrix rank. The leading Laplace contribution comes from rank-two matrices, while the requested correction is the nonuniform contribution from the rank-one stratum. This is a natural degenerate asymptotic-integration problem in Calculus -> Applications of integration.
