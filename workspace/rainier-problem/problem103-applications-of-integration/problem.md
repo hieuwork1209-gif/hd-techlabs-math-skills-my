@@ -4,12 +4,9 @@
 
 For $n\ge1$, define
 $$
-I_n=\iint_{\mathbb R^2}
- e^{-n((x^2-y^3)^2+y^8)}\,dx\,dy,
-$$
-and put
-$$
-A=\iint_{\mathbb R^2}e^{-(X^2-Y^3)^2}\,dX\,dY.
+I_n=\iiint_{\mathbb R^3}
+\exp\left(-n\left((xy-z^2)^2+(x^2+y^2+2z^2)^3\right)\right)
+\,dx\,dy\,dz.
 $$
 Also let
 $$
@@ -18,8 +15,8 @@ $$
 $$
 Evaluate
 $$
-\lim_{n\to\infty}n^{7/16}
-\left(I_n-\frac{A}{n^{5/12}}\right).
+\lim_{n\to\infty}n^{3/4}
+\left(I_n-\frac{\pi^{3/2}\Gamma(1/6)}{3n^{2/3}}\right).
 $$
 
 ---
@@ -37,4 +34,4 @@ $$
 
 ## Domain Explanation
 
-The phase has a cusp-shaped valley $x^2=y^3$ regularized by the term $y^8$. The leading contribution comes from the inner cusp scale, while the next contribution is nonuniform and arises from matching that scale to the positive outer valley. This is a natural matched-asymptotic integration problem in Calculus -> Applications of integration.
+The phase is built from two natural invariants of the real symmetric matrix $\begin{pmatrix}x&z\\z&y\end{pmatrix}$: the squared determinant and the cube of its Frobenius norm squared. Its degenerate minimum lies on the determinant-zero cone. The leading term comes from that cone away from its apex, while the next term is a nonuniform apex correction, making this a natural degenerate Laplace-asymptotic integration problem.
