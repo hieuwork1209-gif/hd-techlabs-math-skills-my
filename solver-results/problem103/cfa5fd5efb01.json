@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "8f46d572afe621b6a05c4a4b73d3c085011fe9c2",
+  "problem_blob_sha": "cfa5fd5efb0157430e53d99f6a7f7cd8d55087b4",
+  "statement_sha256": "f60691547745dd7f09939c655d025bc1ece86524430626a113a40299afbf9e61",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T03:33:57+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "The limit is\n\n\\[\n\\boxed{-2\\pi\\Gamma\\!\\left(\\frac34\\right)}.\n\\]\n\nLet\n\n\\[\nu=\\frac{x+y}{\\sqrt2},\\qquad v=\\frac{x-y}{\\sqrt2},\\qquad w=\\sqrt2 z.\n\\]\n\nThen\n\n\\[\nx^2+y^2+2z^2=u^2+v^2+w^2,\n\\]\n\nand\n\n\\[\nxy-z^2=\\frac{u^2-v^2-w^2}{2}.\n\\]\n\nUsing polar coordinates in the \\((v,w)\\)-plane with \\(\\rho^2=v^2+w^2\\), and then setting\n\n\\[\na=u^2,\\qquad b=\\rho^2,\n\\]\n\none gets\n\n\\[\nI_n=\\frac{\\pi}{\\sqrt2}\n\\int_0^\\infty\\int_0^\\infty\na^{-1/2}\n\\exp\\left(-n\\left(\\frac{(a-b)^2}{4}+(a+b)^3\\right)\\right)\\,da\\,db.\n\\]\n\nNow set\n\n\\[\ns=a+b,\\qquad t=a-b.\n\\]\n\nSince \\(a=(s+t)/2\\), the region becomes \\(s\\ge0,\\ -s\\le t\\le s\\), and\n\n\\[\nI_n=\\frac{\\pi}{2}\n\\int_0^\\infty e^{-ns^3}\n\\int_{-s}^{s}(s+t)^{-1/2}e^{-nt^2/4}\\,dt\\,ds.\n\\]\n\nFor large \\(n\\), the main term comes from replacing the inner integral by the full Gaussian:\n\n\\[\n\\int_{-s}^{s}(s+t)^{-1/2}e^{-nt^2/4}\\,dt\n\\sim s^{-1/2}\\int_{-\\infty}^{\\infty}e^{-nt^2/4}\\,dt\n=2\\sqrt\\pi\\,n^{-1/2}s^{-1/2}.\n\\]\n\nThus\n\n\\[\nI_n\\sim\n\\frac{\\pi}{2}\\cdot 2\\sqrt\\pi\\,n^{-1/2}\n\\int_0^\\infty s^{-1/2}e^{-ns^3}\\,ds.\n\\]\n\nWith \\(r=ns^3\\),\n\n\\[\n\\int_0^\\infty s^{-1/2}e^{-ns^3}\\,ds\n=\\frac13 n^{-1/6}\\Gamma\\!\\left(\\frac16\\right),\n\\]\n\nso the leading term is exactly\n\n\\[\n\\frac{\\pi^{3/2}\\Gamma(1/6)}{3n^{2/3}}.\n\\]\n\nNow define the difference after subtracting this leading term:\n\n\\[\nD_n=I_n-\\frac{\\pi^{3/2}\\Gamma(1/6)}{3n^{2/3}}.\n\\]\n\nThen\n\n\\[\nD_n=\n\\frac{\\pi}{2}\\int_0^\\infty e^{-ns^3}\n\\left[\n\\int_{-s}^{s}(s+t)^{-1/2}e^{-nt^2/4}\\,dt\n-2\\sqrt\\pi\\,n^{-1/2}s^{-1/2}\n\\right]ds.\n\\]\n\nThe next contribution comes from the boundary scale \\(s,t\\sim n^{-1/2}\\). Put\n\n\\[\ns=\\frac{\\sigma}{\\sqrt n},\\qquad t=\\frac{\\tau}{\\sqrt n}.\n\\]\n\nThen\n\n\\[\nn^{3/4}D_n\n=\n\\frac{\\pi}{2}\n\\int_0^\\infty e^{-\\sigma^3/\\sqrt n}\n\\left[\nK(\\sigma)-2\\sqrt\\pi\\,\\sigma^{-1/2}\n\\right]d\\sigma,\n\\]\n\nwhere\n\n\\[\nK(\\sigma)=\\int_{-\\sigma}^{\\sigma}(\\sigma+\\tau)^{-1/2}e^{-\\tau^2/4}\\,d\\tau.\n\\]\n\nLetting \\(n\\to\\infty\\),\n\n\\[\n\\lim_{n\\to\\infty}n^{3/4}D_n\n=\n\\frac{\\pi}{2}\n\\int_0^\\infty\n\\left[\nK(\\sigma)-2\\sqrt\\pi\\,\\sigma^{-1/2}\n\\right]d\\sigma.\n\\]\n\nIt remains to compute\n\n\\[\nM=\\int_0^\\infty\n\\left[\nK(\\sigma)-2\\sqrt\\pi\\,\\sigma^{-1/2}\n\\right]d\\sigma.\n\\]\n\nSince\n\n\\[\n2\\sqrt\\pi=\\int_{-\\infty}^{\\infty}e^{-\\tau^2/4}\\,d\\tau,\n\\]\n\nswitching the order of integration gives, with a cutoff and then passing to the limit,\n\n\\[\nM=\\int_0^\\infty e^{-\\tau^2/4}\\left(-2\\sqrt{2\\tau}\\right)d\\tau.\n\\]\n\nTherefore\n\n\\[\nM=-2\\sqrt2\\int_0^\\infty \\tau^{1/2}e^{-\\tau^2/4}\\,d\\tau.\n\\]\n\nUsing\n\n\\[\n\\int_0^\\infty \\tau^{1/2}e^{-\\tau^2/4}\\,d\\tau\n=\\sqrt2\\,\\Gamma\\!\\left(\\frac34\\right),\n\\]\n\nwe get\n\n\\[\nM=-4\\Gamma\\!\\left(\\frac34\\right).\n\\]\n\nHence\n\n\\[\n\\lim_{n\\to\\infty}n^{3/4}D_n\n=\n\\frac{\\pi}{2}\\cdot \\left(-4\\Gamma\\!\\left(\\frac34\\right)\\right)\n=\n-2\\pi\\Gamma\\!\\left(\\frac34\\right).\n\\]\n\nSo the requested value is\n\n\\[\n\\boxed{-2\\pi\\Gamma\\!\\left(\\frac34\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T03:35:33+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/cfa5fd5efb01.json"
+}
