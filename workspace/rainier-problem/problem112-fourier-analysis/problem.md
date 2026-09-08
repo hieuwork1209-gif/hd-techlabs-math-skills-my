@@ -2,11 +2,11 @@
 
 ## LaTeX (Normalized)
 
-Let $M\ge 2$ and $1\le K\le M-1$, and put $m=2M+1$. For $r,s,t\in\mathbb Z/2^m\mathbb Z$, define
+Let $q\ge2$ and put $m=3q$. For $r\in\mathbb Z/2^m\mathbb Z$, define
 $$
-A_{M,K}(r,s,t)=\sum_{x,y,z\bmod 2^m}\exp\left(\frac{2\pi i}{2^m}\left(x^2-xy+y^2+3\cdot2^{2K}z^2-rx-sy-tz\right)\right).
+A_q(r)=\sum_{x\bmod2^m}\exp\left(\frac{2\pi i}{2^m}(x^3-rx)\right).
 $$
-Let $P_{M,K}$ be the number of ordered triples $(r,s,t)$ for which $A_{M,K}(r,s,t)$ is a positive real number, and let $N_{M,K}$ be the number for which it is a negative real number. Determine $(P_{M,K},N_{M,K})$.
+The sum $A_q(r)$ is real. Let $P_q$ be the number of residues $r\bmod2^m$ for which $A_q(r)>0$, and let $N_q$ be the number for which $A_q(r)<0$. Determine $(P_q,N_q)$.
 
 ---
 
@@ -23,4 +23,4 @@ Let $P_{M,K}$ be the number of ordered triples $(r,s,t)$ for which $A_{M,K}(r,s,
 
 ## Domain Explanation
 
-The problem studies Fourier coefficients of a natural ternary quadratic lattice modulo an odd power of $2$. The binary part $x^2-xy+y^2$ is the Eisenstein norm of discriminant $-3$, while the $3\cdot2^{2K}z^2$ direction introduces a genuine $2$-adic scale. Evaluating the coefficients leads to odd quadratic Gauss sums, lifting for the Eisenstein norm, and a nontrivial local representation count stratified by $2$-adic valuation. The core methods are therefore number-theoretic, so the best classification is Number Theory with sub-domain Modular arithmetic and congruences.
+This problem concerns a cubic exponential sum modulo powers of $2$. The exponent $m=3q$ is intrinsic to the cubic scaling $x\mapsto2x$, which lowers the modulus by three powers of $2$. Determining the signs requires a two-adic stationary-phase analysis of the odd critical frequencies, evaluation of quadratic Gauss sums arising near the critical points, and a scaling recurrence for the remaining frequencies. The core methods are therefore number-theoretic, so the best classification is Number Theory with sub-domain Modular arithmetic and congruences.
