@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "81445ad9c4aa9e39587c80b4ad3c992dbe87cdc0",
+  "problem_blob_sha": "4ccb8d653bc79c55072ef603353002607c5e11a3",
+  "statement_sha256": "6b106c994ea602c3f9b9e68f5021f94d3d83c137706368bebf2dd4967be76858",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T04:26:03+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nu=\\frac{x_1+x_2+x_3}{\\sqrt3}\n\\]\nand use orthonormal coordinates \\((a,b)\\) on the plane \\(x_1+x_2+x_3=0\\). Then\n\\[\nx_1^2+x_2^2+x_3^2=u^2+\\rho^2,\\qquad\n\\Delta(x)=-\\frac1{\\sqrt2}\\rho^3\\cos 3\\theta .\n\\]\nHence\n\\[\nI_n=\\frac1{\\sqrt2}\\int_{\\mathbb R}\\int_0^\\infty \\rho^4 e^{-n(u^2+\\rho^2)^4}\nA\\!\\left(\\frac{n\\rho^6}{2}\\right)\\,d\\rho\\,du,\n\\]\nwhere\n\\[\nA(y)=\\int_0^{2\\pi}|\\cos 3\\theta|e^{-y\\cos^2 3\\theta}\\,d\\theta\n=\\int_0^{2\\pi}|\\cos\\phi|e^{-y\\cos^2\\phi}\\,d\\phi .\n\\]\n\nScale \\(u=n^{-1/8}t,\\ \\rho=n^{-1/8}r\\), and put \\(N=n^{1/4}\\). Then\n\\[\nI_n=\\frac{n^{-3/4}}{\\sqrt2}J(N),\n\\]\nwith\n\\[\nJ(N)=\\int_0^\\infty r^4F(r)A\\!\\left(\\frac{Nr^6}{2}\\right)\\,dr,\\qquad\nF(r)=\\int_{-\\infty}^{\\infty}e^{-(t^2+r^2)^4}\\,dt.\n\\]\n\nPut \\(s=r^6\\). Then\n\\[\nJ(N)=\\frac16\\int_0^\\infty s^{-1/6}F(s^{1/6})A\\!\\left(\\frac{Ns}{2}\\right)\\,ds.\n\\]\nThe Mellin transform of \\(A\\) is, for \\(0<\\Re z<1\\),\n\\[\nM_A(z)=\\int_0^\\infty y^{z-1}A(y)\\,dy\n=\\Gamma(z)\\int_0^{2\\pi}|\\cos\\phi|^{1-2z}\\,d\\phi\n=\\frac{2\\sqrt\\pi\\,\\Gamma(z)\\Gamma(1-z)}{\\Gamma(3/2-z)}.\n\\]\nAlso\n\\[\nL(z)=\\int_0^\\infty s^{-z-1/6}F(s^{1/6})\\,ds\n=6\\int_0^\\infty r^{4-6z}F(r)\\,dr.\n\\]\nUsing polar coordinates in the \\((r,t)\\)-half-plane,\n\\[\nL(z)=\\frac{3\\sqrt\\pi}{4}\\,\n\\frac{\\Gamma\\!\\left(\\frac{5-6z}{2}\\right)}\n{\\Gamma(3-3z)}\n\\Gamma\\!\\left(\\frac{3-6z}{4}\\right),\n\\]\nby analytic continuation.\n\nThe poles contributing up to order \\(N^{-1}\\) are \\(z=5/6\\) and \\(z=1\\). At \\(z=5/6\\),\n\\[\n\\operatorname{Res}_{z=5/6}L(z)=-\\frac{\\Gamma(1/8)}4,\n\\]\nso\n\\[\nJ(N)=\n\\frac{2^{5/6}}{24}\\cdot\n\\frac{4\\pi^{3/2}\\Gamma(1/8)}{\\Gamma(2/3)}N^{-5/6}\n+\\cdots .\n\\]\nThis gives exactly the subtracted leading term\n\\[\n\\frac{\\pi^{3/2}\\Gamma(1/8)}\n{3\\,2^{2/3}\\Gamma(2/3)}n^{-23/24}.\n\\]\n\nFor the next term, \\(M_A(z)\\) has residue \\(-2\\) at \\(z=1\\), while\n\\[\nL(1)\n=6\\cdot\\frac{\\sqrt\\pi}{8}\\Gamma(-1/2)\n\\lim_{\\varepsilon\\to0}\\frac{\\Gamma(\\varepsilon/8)}{\\Gamma(\\varepsilon/2)}\n=-6\\pi.\n\\]\nThus the \\(N^{-1}\\) coefficient in \\(J(N)\\) is\n\\[\n-\\frac16\\left((-2)\\cdot 2\\cdot L(1)\\right)=-4\\pi.\n\\]\nTherefore\n\\[\nI_n=\n\\frac{\\pi^{3/2}\\Gamma(1/8)}\n{3\\,2^{2/3}\\Gamma(2/3)}n^{-23/24}\n-\\frac{4\\pi}{\\sqrt2}n^{-1}+o(n^{-1}),\n\\]\nand hence\n\\[\n\\boxed{-2\\sqrt2\\,\\pi}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T04:28:15+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/4ccb8d653bc7.json"
+}
