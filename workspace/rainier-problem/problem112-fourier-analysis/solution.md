@@ -1,208 +1,172 @@
 ## Steps
 
-Step 1: Isolate the two possible support branches
+Step 1: Record the one-variable quadratic sums
 
-For $m\ge3$, write
+Write
 $$
-e_m(u)=\exp(2\pi i u/3^m),\qquad
-S_m(r)=\sum_{x\bmod3^m}e_m(x^3-rx).
+e_j(u)=\exp(2\pi i u/2^j),\qquad
+G_j(b)=\sum_{x\bmod2^j}e_j(x^2+bx),
 $$
-The sum is real, since complex conjugation followed by $x\mapsto-x$ leaves it unchanged.
+and put $g_j=G_j(0)$. Pairing $x$ with $x+2^{j-1}$ shows that $G_j(b)=0$ when $b$ is odd. If $b=2c$, completing the square gives
+$$
+G_j(2c)=e_j(-c^2)g_j.
+$$
+For $j\ge2$, splitting the ordinary Gauss sum into even and odd residues gives $g_{j+2}=2g_j$, with
+$$
+g_2=2(1+i),\qquad g_3=4e^{\pi i/4}.
+$$
+Hence
+$$
+g_j=
+\begin{cases}
+2^{j/2}(1+i),&j\text{ even},\\[1mm]
+2^{(j+1)/2}e^{\pi i/4},&j\text{ odd}.
+\end{cases}
+$$
+In particular, for every $m\ge4$,
+$$
+g_m^2g_{m-1}=C_m e^{3\pi i/4}
+$$
+with $C_m>0$.
 
-Translate $x$ by $3^{m-1}$. Modulo $3^m$ the cubic terms created by the translation are divisible by $3^m$, so the three terms in each orbit differ by the factors
-$$
-1,\ e^{ -2\pi i r/3},\ e^{-4\pi i r/3}.
-$$
-Hence $S_m(r)=0$ unless $3\mid r$. Write $r=3s$.
+Step 2: Collapse the $A_3$ Fourier coefficient
 
-Now translate by $3^{m-2}$. For $h=3^{m-2}$,
+Let
 $$
-(x+jh)^3-r(x+jh)-(x^3-rx)
-\equiv j3^{m-1}(x^2-s)\pmod{3^m}.
+Q(x,y,z)=x^2+y^2+z^2-xy-yz.
 $$
-Thus the three translates cancel unless
+For fixed $y$, the sums over $x$ and $z$ are
 $$
-x^2\equiv s\pmod3.
+G_m(-(y+r)),\qquad G_m(-(y+t)).
 $$
-If $s\equiv2\pmod3$, there are no surviving terms. If $s\equiv0\pmod3$, write $r=9R$; only $3\mid x$ survives, and with $x=3y$,
+Thus a nonzero coefficient requires $r\equiv t\pmod2$, and then only the $y$ having this common parity contribute. Write
 $$
-S_m(9R)=\sum_{y\bmod3^{m-1}}e_m\!\left(27(y^3-Ry)\right)=9S_{m-3}(R).
+r=p+2a,\qquad t=p+2b,\qquad y=p+2u,
 $$
-The remaining primitive branch is therefore
+where $p\in\{0,1\}$ and $a,b,u$ are taken modulo $2^{m-1}$. Step 1 gives
 $$
-r\equiv3\pmod9.
-$$
-
-Step 2: Evaluate the primitive branch up to its sign
-
-Assume $r=3s$ with $s\equiv1\pmod3$. There is a unique
-$$
-u\equiv1\pmod3\qquad (\bmod\ 3^{m-1})
-$$
-with $u^2\equiv s\pmod{3^{m-1}}$: starting from $u\equiv1\pmod3$, if a root is known modulo $3^j$, exactly one of its three lifts modulo $3^{j+1}$ works because $2u$ is a unit modulo $3$.
-
-The two surviving residue classes are $x\equiv\pm u\pmod3$. Since $3u^2\equiv r\pmod{3^m}$,
-$$
-(u+3y)^3-3u^2(u+3y)=-2u^3+27(uy^2+y^3).
-$$
-Hence, with
-$$
-J_n(u)=\sum_{y\bmod3^n}e_n(y^3+uy^2),
-$$
-the class $x\equiv u\pmod3$ contributes
-$$
-9e_m(-2u^3)J_{m-3}(u),
-$$
-and the class $x\equiv-u\pmod3$ is its complex conjugate. Therefore
-$$
-S_m(3u^2)=18\operatorname{Re}\!\left(e_m(-2u^3)J_{m-3}(u)\right).
-$$
-
-For $n\ge2$, translating $y$ by $3^{n-1}$ in $J_n(u)$ cancels all terms with $3\nmid y$. Writing $y=3z$ gives
-$$
-J_n(u)=3K_{n-2}^{(1)}(u),
+A_m(r,s,t)=g_m^2\sum_{u\bmod2^{m-1}}
+ e_m\!\left(2u^2-2(s+a+b)u+C\right),
 $$
 where
 $$
-K_L^{(c)}(u)=\sum_{z\bmod3^L}e_L(uz^2+3^cz^3),\qquad c\ge1.
+C=-p-sp-2p(a+b)-a^2-b^2.
 $$
-The same translation argument gives, for $L\ge2$,
+The remaining sum is zero unless $s+a+b$ is even. Put
 $$
-K_L^{(c)}(u)=3K_{L-2}^{(c+1)}(u).
-$$
-The ordinary quadratic Gauss sum
-$$
-g_L(u)=\sum_{z\bmod3^L}e_L(uz^2)
-$$
-satisfies the identical recurrence $g_L(u)=3g_{L-2}(u)$, and the two sums agree for $L=0,1$ because the cubic term is then divisible by the modulus. Thus
-$$
-J_n(u)=3g_{n-2}(u).
-$$
-Since $u\equiv1\pmod3$,
-$$
-g_L(u)=
-\begin{cases}
-3^{L/2},&L\text{ even},\\[1mm]
-i\,3^{L/2},&L\text{ odd}.
-\end{cases}
-$$
-Indeed, $g_L=3g_{L-2}$, with $g_0=1$ and
-$$
-g_1(u)=1+2e^{2\pi i/3}=i\sqrt3.
-$$
-
-Now put $m=3q$. For $q=1$, $J_0(u)=1$. For $q\ge2$, the relevant quadratic exponent is
-$$
-L=m-5=3q-5,
-$$
-which is even when $q$ is odd and odd when $q$ is even. Consequently, up to a positive factor,
-$$
-S_{3q}(3u^2)
-\sim
-\begin{cases}
-\cos\!\left(\dfrac{4\pi u^3}{3^{3q}}\right),&q\text{ odd},\\[3mm]
-\sin\!\left(\dfrac{4\pi u^3}{3^{3q}}\right),&q\text{ even}.
-\end{cases}
-$$
-
-Step 3: Count the signs on the primitive branch
-
-As $u$ runs through the residues $u\equiv1\pmod3$ modulo $3^{m-1}$, the cubes $u^3$ run bijectively through the residues
-$$
-v\equiv1\pmod9\qquad (\bmod\ 3^m).
-$$
-To see this, write $u=1+3a$. Then
-$$
-u^3=1+9\bigl(a+3a^2+3a^3\bigr).
-$$
-The map
-$$
-a\longmapsto a+3a^2+3a^3\pmod{3^{m-2}}
-$$
-is bijective: modulo $3$ it is the identity, and if a solution is fixed modulo $3^j$, replacing $a$ by $a+\varepsilon3^j$ changes the image by $\varepsilon3^j$ modulo $3^{j+1}$, so exactly one lift hits each next digit.
-
-Put
-$$
-B=3^{m-2}=3^{3q-2}.
-$$
-Thus $v=1+9j$ with $0\le j<B$, and
-$$
-\frac{4\pi v}{3^m}=\frac{2\pi}{B}\left(2j+\frac29\right).
-$$
-Because multiplication by $2$ permutes the residues modulo the odd number $B$, it is enough to count the signs of
-$$
-\cos\!\left(\frac{2\pi}{B}\left(k+\frac29\right)\right)
-$$
-when $q$ is odd, and of the analogous sine when $q$ is even.
-
-If $q$ is odd, then $B\equiv3\pmod4$; write $B=4h+3$. The cosine is positive for $h+1$ values near $0$ and $h$ values near $2\pi$, hence for
-$$
-2h+1=\frac{B-1}{2}
-$$
-values, and negative for $(B+1)/2$ values.
-
-If $q$ is even, then $B\equiv1\pmod4$; write $B=4h+1$. The small positive shift $2/9$ puts exactly
-$$
-2h+1=\frac{B+1}{2}
-$$
-points in the positive half of the sine wave and $(B-1)/2$ in the negative half.
-
-Therefore the primitive branch $r\equiv3\pmod9$ contributes
-$$
-p_q=\frac{3^{3q-2}+(-1)^q}{2},\qquad
-n_q=\frac{3^{3q-2}-(-1)^q}{2}
-$$
-positive and negative values respectively.
-
-Step 4: Solve the scaling recurrence
-
-Let $P_q,N_q$ be the required counts for modulus $3^{3q}$. For convenience put $P_0=1,N_0=0$, corresponding to the single sum modulo $1$.
-
-If $r=9R$, Step 1 gives
-$$
-S_{3q}(9R)=9S_{3q-3}(R).
-$$
-As $R$ runs modulo $3^{3q-2}$, each residue modulo $3^{3q-3}$ occurs three times. Hence
-$$
-P_q=p_q+3P_{q-1},\qquad N_q=n_q+3N_{q-1}.
-$$
-Set
-$$
-T_q=P_q+N_q,\qquad D_q=P_q-N_q.
+s+a+b=2d.
 $$
 Then
 $$
-T_q=3^{3q-2}+3T_{q-1},\qquad T_0=1,
+A_m(r,s,t)=g_m^2g_{m-1}e_m(\Phi),
+$$
+with
+$$
+\Phi=-a^2-b^2-2d^2-p(1+a+b+2d).
+$$
+If
+$$
+w=p+2d,
+$$
+then the identity
+$$
+4\Phi=-(r^2+t^2+2w^2)
+$$
+will control the phase.
+
+Step 3: Reduce positive and negative values to a ternary congruence
+
+By Step 1, every nonzero coefficient has global Gauss phase $3\pi/4$. Therefore
+$$
+A_m(r,s,t)>0\iff \Phi\equiv5\cdot2^{m-3}\pmod{2^m},
 $$
 and
 $$
-D_q=(-1)^q+3D_{q-1},\qquad D_0=1.
+A_m(r,s,t)<0\iff \Phi\equiv2^{m-3}\pmod{2^m}.
 $$
-The first recurrence sums to
+If $p=1$, then $r,t,w$ are odd, so
 $$
-T_q=\frac{3^{3q}+7\cdot3^q}{8},
+\frac{r^2+t^2+2w^2}{4}\equiv1\pmod2.
 $$
-while the second gives
+Hence $\Phi$ is odd. Since $m\ge4$, neither real-sign target above is odd, so no real nonzero coefficient comes from $p=1$.
+
+For $p=0$, write
 $$
-D_q=\frac{3^{q+1}+(-1)^q}{4}.
+r=2R,\qquad t=2T,\qquad w=2W.
 $$
-Therefore
+Then
 $$
-P_q=\frac{T_q+D_q}{2}
-=\frac{3^{3q}+13\cdot3^q+2(-1)^q}{16},
+\Phi=-(R^2+T^2+2W^2),
 $$
+and the support with $p=0$ is parametrized by $R,T,W\bmod2^{m-1}$. Thus positive values correspond to
 $$
-N_q=\frac{T_q-D_q}{2}
-=\frac{3^{3q}+3^q-2(-1)^q}{16}.
+R^2+T^2+2W^2\equiv3\cdot2^{m-3}\pmod{2^m},
+$$
+and negative values to
+$$
+R^2+T^2+2W^2\equiv7\cdot2^{m-3}\pmod{2^m}.
+$$
+For $c\in\{3,7\}$, let $C_m(c)$ be the number of triples $(X,Y,Z)\bmod2^m$ satisfying
+$$
+X^2+Y^2+2Z^2\equiv c2^{m-3}\pmod{2^m}.
+$$
+Lifting each of $R,T,W$ from modulus $2^{m-1}$ to $2^m$ does not change the quadratic form modulo $2^m$, and gives $2^3$ lifts. Hence
+$$
+P_m=\frac{C_m(3)}8,\qquad N_m=\frac{C_m(7)}8.
 $$
 
-Final Answer: $\boxed{\frac1{16}\left(3^{3q}+13\cdot3^q+2(-1)^q,\,3^{3q}+3^q-2(-1)^q\right)}$
+Step 4: Count the ternary representations
+
+For $m\ge6$, the right-hand side is divisible by $8$. If
+$$
+X^2+Y^2+2Z^2\equiv0\pmod8,
+$$
+then $X,Y,Z$ must all be even. Indeed, if $X,Y$ are odd then $X^2+Y^2\equiv2\pmod8$, and adding $2Z^2$ gives $2$ or $4$ modulo $8$; if $X,Y$ are even and $Z$ is odd, the value is $2$ or $6$ modulo $8$. Thus write $X=2X_1$, $Y=2Y_1$, $Z=2Z_1$. Dividing by $4$ lowers the modulus by two powers, and each reduced variable has one unused high bit. Therefore
+$$
+C_m(c)=8C_{m-2}(c)\qquad(m\ge6).
+$$
+
+It remains to compute two small bases. Modulo $16$, the square residues $0,1,4,9$ each occur four times, while $2Z^2$ has multiplicities
+$$
+0:4,\qquad 2:8,\qquad 8:4.
+$$
+The resulting convolution gives
+$$
+C_4(3)=256,\qquad C_4(7)=0.
+$$
+Modulo $32$, the square-residue multiplicities are
+$$
+0:4,\ 1:4,\ 4:8,\ 9:4,\ 16:4,\ 17:4,\ 25:4,
+$$
+and $2Z^2$ takes each of $0,2,8,18$ eight times. The same convolution gives
+$$
+C_5(3)=C_5(7)=1536.
+$$
+Iterating the recurrence therefore yields
+$$
+C_m(3)=
+\begin{cases}
+2^{3m/2+2},&m\text{ even},\\
+3\cdot2^{3(m-1)/2+3},&m\text{ odd},
+\end{cases}
+$$
+and
+$$
+C_m(7)=
+\begin{cases}
+0,&m\text{ even},\\
+3\cdot2^{3(m-1)/2+3},&m\text{ odd}.
+\end{cases}
+$$
+Dividing by $8$ gives the required sign counts.
+
+Final Answer: $\boxed{2^{3\lfloor m/2\rfloor-1}\left(1+\frac52(1-(-1)^m),\,3(1-(-1)^m)\right)}$
 
 ---
 
 ## Answer
 
-$\frac1{16}\left(3^{3q}+13\cdot3^q+2(-1)^q,\,3^{3q}+3^q-2(-1)^q\right)$
+$2^{3\lfloor m/2\rfloor-1}\left(1+\frac52(1-(-1)^m),\,3(1-(-1)^m)\right)$
 
 ---
 
@@ -216,10 +180,11 @@ Answer Type: Tuple or ordered list
 
 ## Solution Concepts
 
-- cubic exponential sum
-- three-adic stationary phase
+- root lattice $A_3$
 - quadratic Gauss sum
-- cubic scaling recurrence
+- degenerate two-adic Fourier transform
+- ternary quadratic congruence
+- valuation recurrence
 
 ---
 
