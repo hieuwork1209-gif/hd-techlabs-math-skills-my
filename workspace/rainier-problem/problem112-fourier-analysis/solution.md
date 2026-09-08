@@ -1,104 +1,138 @@
 ## Steps
 
-Step 1: Evaluate the one-variable sums
+Step 1: Evaluate odd quadratic Gauss sums modulo powers of $2$
 
-Write $e_j(t)=\exp(2\pi i t/2^{j})$. For $j\geq 3$, define
+Write $e_m(t)=\exp(2\pi i t/2^m)$ and, for odd $a$, set
 $$
-G_j(b)=\sum_{z\bmod 2^{j}}e_j(z^{2}+bz).
+g_m(a)=\sum_{z\bmod 2^m}e_m(az^2).
 $$
-If $b$ is odd, pairing $z$ with $z+2^{j-1}$ changes the sign of the summand, so $G_j(b)=0$. If $b=2c$, completing the square gives
+For $m\ge2$, splitting into even and odd residues gives the recurrence
 $$
-G_j(2c)=e_j(-c^{2})g_j,\qquad g_j=\sum_{z\bmod 2^{j}}e_j(z^{2}).
+g_{m+2}(a)=2g_m(a).
 $$
-The square-residue multiplicities modulo $8$ and $16$ give $g_3=2\sqrt{2}(1+i)$ and $g_4=4(1+i)$. For $j\geq 5$, the even residues contribute $2g_{j-2}$. On the odd residues, writing $z=2u+1$ leaves, apart from the fixed factor $e_j(1)$, two copies of
+Indeed, the even residues contribute $2g_m(a)$, while for odd residues $z=2u+1$ the remaining sum is a constant multiple of
 $$
-\sum_{u\bmod 2^{j-2}}e_{j-2}(u^{2}+u)=0,
+\sum_{u\bmod 2^{m+1}} e_m(a(u^2+u)),
 $$
-where the equality follows from the same odd-linear-coefficient pairing. This gives $g_j=2g_{j-2}$, so the two base values yield
+which vanishes by pairing $u$ with $u+2^{m-1}$. The base values are
 $$
-G_j(b)=
+g_2(a)=2(1+i^a),\qquad g_3(a)=4e^{2\pi ia/8}.
+$$
+Hence
+$$
+g_m(a)=
 \begin{cases}
-0,&2\nmid b,\\
-2^{\frac{j}{2}}(1+i)e_j(-(\frac{b}{2})^{2}),&2\mid b.
+2^{m/2}(1+i^a),&m\text{ even},\\[2mm]
+2^{(m+1)/2}e^{2\pi ia/8},&m\text{ odd}.
 \end{cases}
 $$
-
-Step 2: Reduce the Fourier coefficients to a quadratic congruence
-
-The substitution $u=x+y$ is a bijection modulo $2^{m}$ and gives
+More generally, for odd $a$,
 $$
-A_{m,k}(r,s)=
-\left(\sum_{u\bmod 2^{m}}e_m(u^{2}-ru)\right)
-\left(\sum_{y\bmod 2^{m}}e_m(2^{k}y^{2}+(r-s)y)\right).
+\sum_{z\bmod 2^m}e_m(az^2+bz)=0
 $$
-The first factor is nonzero exactly when $r=2p$. In the second factor, translating by $2^{m-k}$ first forces $2^{k}\mid r-s$. After factoring out $2^{k}$, Step 1 forces one further factor of $2$, so it is nonzero exactly when $r-s=2^{k+1}q$. The parameters run through
+when $b$ is odd, by the shift $z\mapsto z+2^{m-1}$. If $b=2c$, completing the square using the inverse $a^{-1}$ modulo $2^m$ gives
 $$
-p\bmod 2^{m-1},\qquad q\bmod 2^{m-k-1},
-$$
-and give every nonzero-support pair $(r,s)$ exactly once. Step 1 now yields
-$$
-A_{m,k}(r,s)=2^{m+\frac{k}{2}+1}i\,e_m(-(p^{2}+2^{k}q^{2})).
-$$
-The positive and negative real values correspond respectively to
-$$
-p^{2}+2^{k}q^{2}\equiv 2^{m-2},\quad 3\cdot2^{m-2}\pmod{2^{m}}.
+\sum_{z\bmod 2^m}e_m(az^2+2cz)=e_m(-a^{-1}c^2)g_m(a).
 $$
 
-Step 3: Establish the divide-by-four count
+Step 2: Collapse the two-variable Fourier coefficient
 
-For $\lambda\in\{1,3\}$, let $R_{m,k}(\lambda)$ count the pairs in the ranges from Step 2 satisfying
+For fixed $y$, the sum over $x$ is
 $$
-p^{2}+2^{k}q^{2}\equiv\lambda2^{m-2}\pmod{2^{m}}.
+\sum_{x\bmod2^m}e_m(x^2+(y-r)x).
 $$
-If $k\geq2$, reduction modulo $4$ forces $p=2p_1$. Dividing by $4$ produces the same congruence with $(m,k)$ replaced by $(m-2,k-2)$. The variable $q$ already has the required reduced range, while $p_1$ has one unused high bit. The count therefore satisfies
+By Step 1 it vanishes unless $y\equiv r\pmod2$. Write $y=r+2z$, where $z$ runs modulo $2^{m-1}$. Then
 $$
-R_{m,k}(\lambda)=2R_{m-2,k-2}(\lambda).
+A_{m,k}(r,s)=g_m(1)\sum_{z\bmod2^{m-1}}e_m\!\left(az^2+2dz+c\right),
 $$
-For the odd base $k=1$, when $m\geq6$, reduction modulo $4$ forces both $p$ and $q$ even. Division by $4$ leaves two unused high bits, so
+where
 $$
-R_{m,1}(\lambda)=4R_{m-2,1}(\lambda).
+a=2^{k+2}-1,\qquad d=2^{k+1}r-s,\qquad c=2^kr^2-sr.
 $$
-The complete base lists, written as $(p,q)$, are
+Since $a$ is odd and the linear coefficient is even, the summand has period $2^{m-1}$, so the last sum is half of the corresponding complete sum modulo $2^m$. Therefore
 $$
-\begin{array}{c|c|c}
-m&\lambda=1&\lambda=3\\ \hline
-4&(2,0),(6,0)&(2,2),(6,2)\\
-5&(0,2),(0,6),(8,2),(8,6)&(4,2),(4,6),(12,2),(12,6).
-\end{array}
+A_{m,k}(r,s)=\frac12 g_m(1)g_m(a)e_m(c-a^{-1}d^2).
 $$
-The base lists and recurrence give
+Because $k\ge1$, one has $a\equiv7\pmod8$. The formulas in Step 1 give, for both parities of $m$,
 $$
-R_{m,1}(1)=R_{m,1}(3)=2^{m-3}.
+g_m(1)g_m(a)=2^{m+1}.
 $$
-For the even base $k=2$, put $p=2u$ and divide by $4$. With $L=m-2$, the remaining congruence is
+Also
 $$
-u^{2}+q^{2}\equiv\lambda2^{L-2}\pmod{2^{L}},\qquad u\bmod2^{L},\quad q\bmod2^{L-1}.
+a c-d^2=-(2^kr^2-rs+s^2).
 $$
-Whenever a sum of two squares has a finite two-adic valuation, its odd part is $1$ modulo $4$. If the square valuations differ, the lower term gives $1$ modulo $4$; if they agree, two odd squares sum to $2$ modulo $8$, and division by $2$ again gives $1$ modulo $4$. The case $\lambda=3$ has no solutions.
-
-For $\lambda=1$, the counts at $L=3,4$ are $8,16$: at $L=3$ both variables are odd, and at $L=4$ exactly one is twice an odd number while the other is divisible by $4$. For $L\geq5$, both variables must be even, and division by $4$ gives four lifts of every solution at $L-2$. The count is $2^{L}$, and
+Thus, with
 $$
-R_{m,2}(1)=2^{m-2},\qquad R_{m,2}(3)=0.
+H_{m,k}(r,s)=2^kr^2-rs+s^2,
 $$
-
-Step 4: Iterate the recurrence
-
-If $k=2h+1$, Step 3 reduces $h$ times to the odd base and gives
+we obtain the exact formula
 $$
-R_{m,k}(1)=R_{m,k}(3)=2^{h}2^{m-2h-3}=2^{m-\frac{k+5}{2}}.
+A_{m,k}(r,s)=2^m e_m\!\left(-a^{-1}H_{m,k}(r,s)\right).
 $$
-If $k=2h$, it reduces $h-1$ times to the even base and gives
+In particular every Fourier coefficient is nonzero and has absolute value $2^m$. Since $a$ is odd,
 $$
-R_{m,k}(1)=2^{h-1}2^{m-2h}=2^{m-\frac{k}{2}-1},\qquad R_{m,k}(3)=0.
+A_{m,k}(r,s)>0\iff H_{m,k}(r,s)\equiv0\pmod{2^m},
+$$
+and
+$$
+A_{m,k}(r,s)<0\iff H_{m,k}(r,s)\equiv2^{m-1}\pmod{2^m}.
 $$
 
-Final Answer: $\boxed{2^{m-\frac{k}{2}-1-\frac{3}{4}(1-(-1)^{k})}\left(1,\frac{1-(-1)^{k}}{2}\right)}$
+Step 3: Factor the residual quadratic form over $\mathbb Z/2^m\mathbb Z$
+
+Consider
+$$
+f(t)=t^2-t+2^k.
+$$
+Modulo $2$, its two roots are $0$ and $1$. Each root lifts uniquely through every higher power of $2$: if $f(t_n)\equiv0\pmod{2^n}$, then
+$$
+f(t_n+\varepsilon2^n)\equiv f(t_n)+\varepsilon2^n(2t_n-1)\pmod{2^{n+1}},
+$$
+with $2t_n-1$ odd, so exactly one choice $\varepsilon\in\{0,1\}$ kills the next binary digit. Let $\alpha$ be the lift congruent to $0$ modulo $2$, and $\beta$ the lift congruent to $1$ modulo $2$.
+
+Since $f(1-t)=f(t)$, uniqueness gives $\beta=1-\alpha$. Hence
+$$
+\alpha+\beta=1,\qquad \alpha\beta=2^k\pmod{2^m}.
+$$
+Therefore
+$$
+H_{m,k}(r,s)=(s-\alpha r)(s-\beta r)\pmod{2^m}.
+$$
+The linear map
+$$
+(r,s)\longmapsto(u,v)=(s-\alpha r,\ s-\beta r)
+$$
+has determinant $\beta-\alpha=1-2\alpha$, which is odd. It is therefore a bijection on $(\mathbb Z/2^m\mathbb Z)^2$. Thus $P_{m,k}$ and $N_{m,k}$ are exactly the numbers of pairs $(u,v)$ satisfying
+$$
+uv\equiv0\pmod{2^m},\qquad uv\equiv2^{m-1}\pmod{2^m},
+$$
+respectively.
+
+Step 4: Count the two product congruences
+
+For $0\le j\le m-1$, there are $2^{m-j-1}$ residues $u$ of exact $2$-adic valuation $j$.
+
+For $uv\equiv0\pmod{2^m}$, such a $u$ forces $v$ to be divisible by $2^{m-j}$, giving $2^j$ choices. Each $j$ therefore contributes $2^{m-1}$ pairs. These $m$ contributions give $m2^{m-1}$ pairs, and the additional case $u=0$ gives $2^m$ choices of $v$. Hence
+$$
+P_{m,k}=m2^{m-1}+2^m=(m+2)2^{m-1}.
+$$
+
+For $uv\equiv2^{m-1}\pmod{2^m}$, both factors are nonzero and their valuations must sum to $m-1$. If $v_2(u)=j$, then $v_2(v)=m-1-j$. The numbers of choices are
+$$
+2^{m-j-1}\quad\text{and}\quad 2^j,
+$$
+so again each $j$ contributes $2^{m-1}$ pairs. Summing over $j=0,\dots,m-1$ gives
+$$
+N_{m,k}=m2^{m-1}.
+$$
+
+Final Answer: $\boxed{\left((m+2)2^{m-1},\,m2^{m-1}\right)}$
 
 ---
 
 ## Answer
 
-$2^{m-\frac{k}{2}-1-\frac{3}{4}(1-(-1)^{k})}\left(1,\frac{1-(-1)^{k}}{2}\right)$
+$\left((m+2)2^{m-1},\,m2^{m-1}\right)$
 
 ---
 
@@ -112,10 +146,10 @@ Answer Type: Tuple or ordered list
 
 ## Solution Concepts
 
-- finite Fourier transform
-- quadratic Gauss sum
-- two-adic congruence
-- divide-by-four recurrence
+- odd quadratic Gauss sums
+- two-adic lifting
+- quadratic-form factorization
+- valuation counting
 
 ---
 
