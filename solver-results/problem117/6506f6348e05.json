@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "5a24b96d7e445e365f0f6720725cc8b4b05e46ea",
+  "problem_blob_sha": "6506f6348e05e0225cd30cff1ed5b7a27037913f",
+  "statement_sha256": "4a376e1bc36e55c0516a8621ecc495d54b1fc5ac8d4c366813b0290e5cfdd495",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T04:15:55+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let the Hessian eigenvalues be\n\\[\n\\lambda\\in\\{1,3,7\\}.\n\\]\nSince \\(f\\) is diagonal, each coordinate evolves independently. For one eigenvalue \\(\\lambda\\), write the scalar multiplier after \\(j\\) steps as \\(m_j(\\lambda)\\), so \\(y_j=m_j(\\lambda)y_0\\). From \\(x_{-1}=x_0\\),\n\\[\nm_1(\\lambda)=1-\\alpha_0\\lambda,\n\\]\n\\[\nm_2(\\lambda)=(1-\\alpha_1\\lambda)m_1(\\lambda)-\\frac{\\alpha_0\\lambda}{3},\n\\]\n\\[\nm_3(\\lambda)=\\left(\\frac43-\\alpha_2\\lambda\\right)m_2(\\lambda)-\\frac13m_1(\\lambda).\n\\]\nTherefore\n\\[\nR(\\alpha_0,\\alpha_1,\\alpha_2)\n=\n\\max_{\\lambda\\in\\{1,3,7\\}}\n\\max\\left\\{\n\\frac{|m_1(\\lambda)|}{4},\n\\frac{|m_2(\\lambda)|}{2},\n|m_3(\\lambda)|\n\\right\\}.\n\\]\n\nSet\n\\[\nu=1-\\alpha_0.\n\\]\nAt the minimizer the active constraints are\n\\[\nm_1(1)=u,\\qquad m_2(1)=\\frac u2,\\qquad m_3(3)=m_3(7)=-\\frac u4.\n\\]\nThus \\(R_*=u/4\\). The condition \\(m_2(1)=u/2\\) gives\n\\[\n\\alpha_1=\\frac{5u-2}{6u}.\n\\]\nThen\n\\[\nm_2(3)=\\frac{-7u^2+10u-4}{2u},\\qquad\nm_2(7)=\\frac{-63u^2+86u-28}{2u}.\n\\]\nEliminating \\(\\alpha_2\\) from the two equations\n\\[\nm_3(3)=m_3(7)=-\\frac u4\n\\]\ngives\n\\[\n4389u^4-11779u^3+11854u^2-5312u+896=0.\n\\]\nThe relevant root is the unique one in \\((0.805,0.806)\\):\n\\[\nu=0.8051686165284502568263343567754737\\ldots\n\\]\nand then\n\\[\n\\alpha_2\n=\n\\frac{65u^2-88u+32}{18(7u^2-10u+4)}.\n\\]\n\nHence\n\\[\nR_*=\\frac u4\n=\n0.2012921541321125642065835891938684\\ldots\n\\]\nand\n\\[\n\\alpha_*=\n\\left(\n1-u,\\,\n\\frac{5u-2}{6u},\\,\n\\frac{65u^2-88u+32}{18(7u^2-10u+4)}\n\\right).\n\\]\n\nNumerically,\n\\[\n\\alpha_*=\n(0.1948313834715497,\\ 0.4193413737727049,\\ 0.3751492008510983).\n\\]\n\n\\[\n\\boxed{\n\\left(\n\\frac u4,\\,\n\\left(\n1-u,\\,\n\\frac{5u-2}{6u},\\,\n\\frac{65u^2-88u+32}{18(7u^2-10u+4)}\n\\right)\n\\right)\n}\n\\]\nwhere \\(u\\) is the unique root in \\((0.805,0.806)\\) of\n\\[\n4389u^4-11779u^3+11854u^2-5312u+896=0.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T04:20:03+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/6506f6348e05.json"
+}
