@@ -1,104 +1,150 @@
 ## Steps
 
-Step 1: Evaluate the one-variable sums
+Step 1: Record two basic symplectic counts
 
-Write $e_j(t)=\exp(2\pi i t/2^{j})$. For $j\geq 3$, define
+Let
 $$
-G_j(b)=\sum_{z\bmod 2^{j}}e_j(z^{2}+bz).
+R_m=\mathbb Z/2^m\mathbb Z,
 $$
-If $b$ is odd, pairing $z$ with $z+2^{j-1}$ changes the sign of the summand, so $G_j(b)=0$. If $b=2c$, completing the square gives
+and let $M_m=R_m^4$ with the standard symplectic form. A primitive cyclic line means a free rank-one direct summand of $M_m$. The number of primitive vectors is
 $$
-G_j(2c)=e_j(-c^{2})g_j,\qquad g_j=\sum_{z\bmod 2^{j}}e_j(z^{2}).
+2^{4m}-2^{4m-4}=15\cdot2^{4m-4},
 $$
-The square-residue multiplicities modulo $8$ and $16$ give $g_3=2\sqrt{2}(1+i)$ and $g_4=4(1+i)$. For $j\geq 5$, the even residues contribute $2g_{j-2}$. On the odd residues, writing $z=2u+1$ leaves, apart from the fixed factor $e_j(1)$, two copies of
+and every primitive cyclic line has $|R_m^\times|=2^{m-1}$ generators. Hence the number of primitive cyclic lines is
 $$
-\sum_{u\bmod 2^{j-2}}e_{j-2}(u^{2}+u)=0,
-$$
-where the equality follows from the same odd-linear-coefficient pairing. This gives $g_j=2g_{j-2}$, so the two base values yield
-$$
-G_j(b)=
-\begin{cases}
-0,&2\nmid b,\\
-2^{\frac{j}{2}}(1+i)e_j(-(\frac{b}{2})^{2}),&2\mid b.
-\end{cases}
+P_m=15\cdot2^{3m-3}.
 $$
 
-Step 2: Reduce the Fourier coefficients to a quadratic congruence
+We also need the self-dual subgroups of the rank-two symplectic module $R_m^2$. Every such subgroup is symplectically equivalent to
+$$
+K_c=\langle 2^c e,2^{m-c}f\rangle,
+\qquad 0\le c\le\left\lfloor\frac m2\right\rfloor.
+$$
+Indeed, choose an element of smallest two-adic divisibility $c$ and send its primitive part to $e$; self-duality then forces $2^{m-c}f$ into the subgroup, and these two generators already have the required order $2^m$.
 
-The substitution $u=x+y$ is a bijection modulo $2^{m}$ and gives
+For $2c<m$, the shell quotient
 $$
-A_{m,k}(r,s)=
-\left(\sum_{u\bmod 2^{m}}e_m(u^{2}-ru)\right)
-\left(\sum_{y\bmod 2^{m}}e_m(2^{k}y^{2}+(r-s)y)\right).
+2^cR_m^2/2^{m-c}R_m^2\cong R_{m-2c}^2
 $$
-The first factor is nonzero exactly when $r=2p$. In the second factor, translating by $2^{m-k}$ first forces $2^{k}\mid r-s$. After factoring out $2^{k}$, Step 1 forces one further factor of $2$, so it is nonzero exactly when $r-s=2^{k+1}q$. The parameters run through
+turns $K_c$ into a free cyclic line. Therefore the number of subgroups of type $K_c$ is
 $$
-p\bmod 2^{m-1},\qquad q\bmod 2^{m-k-1},
+3\cdot2^{m-2c-1},
 $$
-and give every nonzero-support pair $(r,s)$ exactly once. Step 1 now yields
+because the projective line over $R_d$ has
 $$
-A_{m,k}(r,s)=2^{m+\frac{k}{2}+1}i\,e_m(-(p^{2}+2^{k}q^{2})).
+\frac{2^{2d}-2^{2d-2}}{2^{d-1}}=3\cdot2^{d-1}
 $$
-The positive and negative real values correspond respectively to
-$$
-p^{2}+2^{k}q^{2}\equiv 2^{m-2},\quad 3\cdot2^{m-2}\pmod{2^{m}}.
-$$
+points. If $2c=m$, the subgroup is uniquely $2^{m/2}R_m^2$.
 
-Step 3: Establish the divide-by-four count
+Finally, the number of free rank-two Lagrangian direct summands of $M_m$ is
+$$
+15\cdot2^{3m-3}.
+$$
+For $m=1$, there are $15$ Lagrangian planes in $\mathbb F_2^4$: choose a nonzero first vector in $15$ ways and a second vector in its orthogonal complement but outside its span in $6$ ways, then divide by $|\mathrm{GL}_2(\mathbb F_2)|=6$. At each lift from modulus $2^r$ to $2^{r+1}$, after fixing a symplectic complement, a Lagrangian lift is the graph of a symmetric $2\times2$ binary matrix, giving $2^3$ lifts. This proves the displayed formula.
 
-For $\lambda\in\{1,3\}$, let $R_{m,k}(\lambda)$ count the pairs in the ranges from Step 2 satisfying
-$$
-p^{2}+2^{k}q^{2}\equiv\lambda2^{m-2}\pmod{2^{m}}.
-$$
-If $k\geq2$, reduction modulo $4$ forces $p=2p_1$. Dividing by $4$ produces the same congruence with $(m,k)$ replaced by $(m-2,k-2)$. The variable $q$ already has the required reduced range, while $p_1$ has one unused high bit. The count therefore satisfies
-$$
-R_{m,k}(\lambda)=2R_{m-2,k-2}(\lambda).
-$$
-For the odd base $k=1$, when $m\geq6$, reduction modulo $4$ forces both $p$ and $q$ even. Division by $4$ leaves two unused high bits, so
-$$
-R_{m,1}(\lambda)=4R_{m-2,1}(\lambda).
-$$
-The complete base lists, written as $(p,q)$, are
-$$
-\begin{array}{c|c|c}
-m&\lambda=1&\lambda=3\\ \hline
-4&(2,0),(6,0)&(2,2),(6,2)\\
-5&(0,2),(0,6),(8,2),(8,6)&(4,2),(4,6),(12,2),(12,6).
-\end{array}
-$$
-The base lists and recurrence give
-$$
-R_{m,1}(1)=R_{m,1}(3)=2^{m-3}.
-$$
-For the even base $k=2$, put $p=2u$ and divide by $4$. With $L=m-2$, the remaining congruence is
-$$
-u^{2}+q^{2}\equiv\lambda2^{L-2}\pmod{2^{L}},\qquad u\bmod2^{L},\quad q\bmod2^{L-1}.
-$$
-Whenever a sum of two squares has a finite two-adic valuation, its odd part is $1$ modulo $4$. If the square valuations differ, the lower term gives $1$ modulo $4$; if they agree, two odd squares sum to $2$ modulo $8$, and division by $2$ again gives $1$ modulo $4$. The case $\lambda=3$ has no solutions.
+Step 2: Count the primitive self-dual subgroups
 
-For $\lambda=1$, the counts at $L=3,4$ are $8,16$: at $L=3$ both variables are odd, and at $L=4$ exactly one is twice an odd number while the other is divisible by $4$. For $L\geq5$, both variables must be even, and division by $4$ gives four lifts of every solution at $L-2$. The count is $2^{L}$, and
+Call a self-dual subgroup $H\le M_m$ primitive if $H\not\subseteq2M_m$. Choose a primitive cyclic line $L\subseteq H$. Then
 $$
-R_{m,2}(1)=2^{m-2},\qquad R_{m,2}(3)=0.
+L^\perp/L\cong R_m^2
+$$
+is a rank-two symplectic module, and
+$$
+H/L
+$$
+is self-dual in this quotient. Conversely, the inverse image of any self-dual subgroup of $L^\perp/L$ is a self-dual subgroup of $M_m$ containing $L$.
+
+We double-count pairs $(L,H)$. If $H/L$ has type $K_0$, then $H$ is a free Lagrangian. Such an $H\cong R_m^2$ contains
+$$
+3\cdot2^{m-1}
+$$
+primitive cyclic lines, so the contribution is exactly
+$$
+15\cdot2^{3m-3}.
 $$
 
-Step 4: Iterate the recurrence
+Now suppose $H/L$ has type $K_c$ with $c>0$. Then the reduction of $H$ modulo $2$ is one-dimensional. Since $|H|=2^{2m}$, exactly half of its elements are primitive, so the number of primitive cyclic lines in $H$ is
+$$
+\frac{2^{2m-1}}{2^{m-1}}=2^m.
+$$
+Thus, when $0<c<m/2$, the number of such $H$ is
+$$
+\frac{P_m\left(3\cdot2^{m-2c-1}\right)}{2^m}
+=45\cdot2^{3m-2c-4}.
+$$
+If $m$ is even and $c=m/2$, the rank-two quotient subgroup is unique, giving
+$$
+\frac{P_m}{2^m}=15\cdot2^{2m-3}.
+$$
 
-If $k=2h+1$, Step 3 reduces $h$ times to the odd base and gives
+Let $F_m$ be the total number of primitive self-dual subgroups. Summing the geometric progression gives, for $m\ge2$,
 $$
-R_{m,k}(1)=R_{m,k}(3)=2^{h}2^{m-2h-3}=2^{m-\frac{k+5}{2}}.
+F_m
+=15\cdot2^{3m-3}
++\sum_{1\le c<m/2}45\cdot2^{3m-2c-4}
++\mathbf 1_{2\mid m}\,15\cdot2^{2m-3}
 $$
-If $k=2h$, it reduces $h-1$ times to the even base and gives
 $$
-R_{m,k}(1)=2^{h-1}2^{m-2h}=2^{m-\frac{k}{2}-1},\qquad R_{m,k}(3)=0.
+=180\cdot2^{3m-6}-30\cdot2^{2m-4}.
+$$
+Also $F_1=15$.
+
+Step 3: Strip off a nonprimitive two-adic shell
+
+Let $T_m$ be the total number of self-dual subgroups of $M_m$, and put $T_0=1$. If a self-dual subgroup $H$ is not primitive, then
+$$
+H\subseteq2M_m.
+$$
+Orthogonal complements reverse inclusions, so
+$$
+(2M_m)^\perp=2^{m-1}M_m\subseteq H^\perp=H.
+$$
+Hence
+$$
+2^{m-1}M_m\subseteq H\subseteq2M_m.
+$$
+The quotient
+$$
+2M_m/2^{m-1}M_m\cong M_{m-2}
+$$
+becomes a standard symplectic module after dividing the pairing by $4$, and
+$$
+H/2^{m-1}M_m
+$$
+is self-dual there. This gives a bijection between nonprimitive self-dual subgroups of $M_m$ and self-dual subgroups of $M_{m-2}$.
+
+Therefore, for $m\ge2$,
+$$
+T_m=T_{m-2}+180\cdot2^{3m-6}-30\cdot2^{2m-4},
+$$
+with
+$$
+T_0=1,\qquad T_1=15.
 $$
 
-Final Answer: $\boxed{2^{m-\frac{k}{2}-1-\frac{3}{4}(1-(-1)^{k})}\left(1,\frac{1-(-1)^{k}}{2}\right)}$
+Step 4: Solve the recurrence
+
+We claim
+$$
+T_m=\frac{20\cdot2^{3m}-14\cdot2^{2m}+1}{7}.
+$$
+The formula gives $T_0=1$ and $T_1=15$. For $m\ge2$, substituting the formula for $T_{m-2}$ into Step 3 gives
+$$
+T_m
+=\frac{20\cdot2^{3m-6}-14\cdot2^{2m-4}+1}{7}
++180\cdot2^{3m-6}-30\cdot2^{2m-4}
+$$
+$$
+=\frac{20\cdot2^{3m}-14\cdot2^{2m}+1}{7}.
+$$
+
+Final Answer: $\boxed{\frac{20\cdot2^{3m}-14\cdot2^{2m}+1}{7}}$
 
 ---
 
 ## Answer
 
-$2^{m-\frac{k}{2}-1-\frac{3}{4}(1-(-1)^{k})}\left(1,\frac{1-(-1)^{k}}{2}\right)$
+$\frac{20\cdot2^{3m}-14\cdot2^{2m}+1}{7}$
 
 ---
 
@@ -106,16 +152,17 @@ $2^{m-\frac{k}{2}-1-\frac{3}{4}(1-(-1)^{k})}\left(1,\frac{1-(-1)^{k}}{2}\right)$
 
 Problem Type: Exact computation
 
-Answer Type: Tuple or ordered list
+Answer Type: Integer
 
 ---
 
 ## Solution Concepts
 
-- finite Fourier transform
-- quadratic Gauss sum
-- two-adic congruence
-- divide-by-four recurrence
+- finite symplectic module
+- self-dual subgroup
+- primitive cyclic line
+- two-adic shell reduction
+- double counting
 
 ---
 
