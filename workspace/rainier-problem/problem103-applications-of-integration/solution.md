@@ -8,59 +8,59 @@ F(x,y)=x^2-y^3,
 $$
 so
 $$
-I_n=\iint_{\mathbb R^2}e^{-y^2}e^{-nF(x,y)^2}\,dx\,dy.
+I_n=\iint_{\mathbb{R}^2}e^{-y^2}e^{-nF(x,y)^2}\,dx\,dy.
 $$
-For $1/4<c<5/12$, Mellin inversion gives
+For $\frac{1}{4}<c<\frac{5}{12}$, Mellin inversion gives
 $$
-e^{-nF^2}=\frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}
+e^{-nF^2}=\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}
 \Gamma(s)n^{-s}|F|^{-2s}\,ds.
 $$
-Hence
+So
 $$
-I_n=\frac1{2\pi i}\int_{c-i\infty}^{c+i\infty}
+I_n=\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}
 \Gamma(s)n^{-s}M(s)\,ds,
 $$
 where
 $$
-M(s)=\iint_{\mathbb R^2}e^{-y^2}|x^2-y^3|^{-2s}\,dx\,dy.
+M(s)=\iint_{\mathbb{R}^2}e^{-y^2}|x^2-y^3|^{-2s}\,dx\,dy.
 $$
-The strip $1/4<\Re s<5/12$ is exactly where the $x$-integral converges at infinity and the cusp at $(0,0)$ is still locally integrable.
+The strip $\frac{1}{4}<\Re s<\frac{5}{12}$ is exactly where the $x$-integral converges at infinity and the cusp at $(0,0)$ remains locally integrable.
 
 Step 2: Evaluate the Mellin transform exactly
 
-For $y>0$, set $x=y^{3/2}u$. Then
+For $y>0$, set $x=y^{\frac{3}{2}}u$. Then
 $$
-\int_{\mathbb R}|x^2-y^3|^{-2s}\,dx
-=y^{3/2-6s}A_+(s),
+\int_{\mathbb{R}}|x^2-y^3|^{-2s}\,dx
+=y^{\frac{3}{2}-6s}A_+(s),
 $$
 where
 $$
-A_+(s)=\int_{\mathbb R}|u^2-1|^{-2s}\,du.
+A_+(s)=\int_{\mathbb{R}}|u^2-1|^{-2s}\,du.
 $$
 Splitting at $|u|=1$ gives
 $$
 A_+(s)=
-\sqrt\pi\,\frac{\Gamma(1-2s)}{\Gamma(3/2-2s)}
-+\frac{\Gamma(2s-1/2)\Gamma(1-2s)}{\sqrt\pi}.
+\sqrt{\pi}\,\frac{\Gamma(1-2s)}{\Gamma\left(\frac{3}{2}-2s\right)}
++\frac{\Gamma\left(2s-\frac{1}{2}\right)\Gamma(1-2s)}{\sqrt{\pi}}.
 $$
-For $y<0$, writing $y=-v$ and $x=v^{3/2}u$ gives
+For $y<0$, write $y=-v$ and set $x=v^{\frac{3}{2}}u$. This gives
 $$
-\int_{\mathbb R}|x^2-y^3|^{-2s}\,dx
-=v^{3/2-6s}A_-(s),
+\int_{\mathbb{R}}|x^2-y^3|^{-2s}\,dx
+=v^{\frac{3}{2}-6s}A_-(s),
 $$
 with
 $$
-A_-(s)=\int_{\mathbb R}(1+u^2)^{-2s}\,du
-=\sqrt\pi\,\frac{\Gamma(2s-1/2)}{\Gamma(2s)}.
+A_-(s)=\int_{\mathbb{R}}(1+u^2)^{-2s}\,du
+=\sqrt{\pi}\,\frac{\Gamma\left(2s-\frac{1}{2}\right)}{\Gamma(2s)}.
 $$
 Since
 $$
-\int_0^\infty e^{-y^2}y^{3/2-6s}\,dy
-=\frac12\Gamma\left(\frac54-3s\right),
+\int_0^\infty e^{-y^2}y^{\frac{3}{2}-6s}\,dy
+=\frac{1}{2}\Gamma\left(\frac{5}{4}-3s\right),
 $$
-we obtain
+we get
 $$
-M(s)=\frac12\Gamma\left(\frac54-3s\right)
+M(s)=\frac{1}{2}\Gamma\left(\frac{5}{4}-3s\right)
 \left(A_+(s)+A_-(s)\right).
 $$
 
@@ -68,111 +68,111 @@ Step 3: Extract the cusp contribution
 
 The first pole to the right of the initial contour is at
 $$
-s=\frac5{12},
+s=\frac{5}{12},
 $$
-coming from $\Gamma(5/4-3s)$. Since
+coming from $\Gamma\left(\frac{5}{4}-3s\right)$. Since
 $$
-\Gamma\left(\frac54-3s\right)
-\sim-\frac1{3(s-5/12)},
+\Gamma\left(\frac{5}{4}-3s\right)
+\sim-\frac{1}{3\left(s-\frac{5}{12}\right)},
 $$
 the contribution of this pole is
 $$
-\frac{\Gamma(5/12)}6
-\left(A_+\left(\frac5{12}\right)+A_-\left(\frac5{12}\right)\right)n^{-5/12}.
+\frac{\Gamma\left(\frac{5}{12}\right)}{6}
+\left(A_+\left(\frac{5}{12}\right)+A_-\left(\frac{5}{12}\right)\right)n^{-\frac{5}{12}}.
 $$
-At $s=5/12$,
+At $s=\frac{5}{12}$,
 $$
-A_-\left(\frac5{12}\right)
-=\sqrt\pi\frac{\Gamma(1/3)}{\Gamma(5/6)},
+A_-\left(\frac{5}{12}\right)
+=\sqrt{\pi}\frac{\Gamma\left(\frac{1}{3}\right)}{\Gamma\left(\frac{5}{6}\right)},
 $$
 $$
-A_+\left(\frac5{12}\right)
-=\sqrt\pi\frac{\Gamma(1/6)}{\Gamma(2/3)}
-+\frac{\Gamma(1/3)\Gamma(1/6)}{\sqrt\pi}.
+A_+\left(\frac{5}{12}\right)
+=\sqrt{\pi}\frac{\Gamma\left(\frac{1}{6}\right)}{\Gamma\left(\frac{2}{3}\right)}
++\frac{\Gamma\left(\frac{1}{3}\right)\Gamma\left(\frac{1}{6}\right)}{\sqrt{\pi}}.
 $$
 Using
 $$
-\Gamma(1/6)\Gamma(5/6)=2\pi,
+\Gamma\left(\frac{1}{6}\right)\Gamma\left(\frac{5}{6}\right)=2\pi,
 \qquad
-\Gamma(1/3)\Gamma(2/3)=\frac{2\pi}{\sqrt3},
+\Gamma\left(\frac{1}{3}\right)\Gamma\left(\frac{2}{3}\right)=\frac{2\pi}{\sqrt{3}},
 $$
 we get
 $$
-A_+\left(\frac5{12}\right)+A_-\left(\frac5{12}\right)
-=\frac{3+\sqrt3}{2\sqrt\pi}\Gamma(1/6)\Gamma(1/3).
+A_+\left(\frac{5}{12}\right)+A_-\left(\frac{5}{12}\right)
+=\frac{3+\sqrt{3}}{2\sqrt{\pi}}\Gamma\left(\frac{1}{6}\right)\Gamma\left(\frac{1}{3}\right).
 $$
-Thus the leading term is
+So the leading term is
 $$
-C_0n^{-5/12},
+C_0n^{-\frac{5}{12}},
 \qquad
 C_0=
-\frac{(3+\sqrt3)\Gamma(5/12)\Gamma(1/6)\Gamma(1/3)}{12\sqrt\pi}.
+\frac{(3+\sqrt{3})\Gamma\left(\frac{5}{12}\right)\Gamma\left(\frac{1}{6}\right)\Gamma\left(\frac{1}{3}\right)}{12\sqrt{\pi}}.
 $$
-This is the contribution of the singular cusp where the two real branches meet.
+This term comes from the singular cusp where the two real branches meet.
 
 Step 4: Extract the regular-branch correction
 
-The next pole is at $s=1/2$. It comes only from $A_+(s)$, because $u^2-1=0$ corresponds to the two regular branches $x=\pm y^{3/2}$ for $y>0$.
+The next pole is at $s=\frac{1}{2}$. It comes only from $A_+(s)$, because $u^2-1=0$ corresponds to the two regular branches $x=\pm y^{\frac{3}{2}}$ for $y>0$.
 
 Write
 $$
 A_+(s)=\Gamma(1-2s)
 \left(
-\frac{\sqrt\pi}{\Gamma(3/2-2s)}
-+\frac{\Gamma(2s-1/2)}{\sqrt\pi}
+\frac{\sqrt{\pi}}{\Gamma\left(\frac{3}{2}-2s\right)}
++\frac{\Gamma\left(2s-\frac{1}{2}\right)}{\sqrt{\pi}}
 \right).
 $$
-The bracket tends to $2$ at $s=1/2$, while
+The bracket tends to $2$ at $s=\frac{1}{2}$, while
 $$
-\Gamma(1-2s)\sim-\frac1{2(s-1/2)}.
+\Gamma(1-2s)\sim-\frac{1}{2\left(s-\frac{1}{2}\right)}.
 $$
-Hence
+This gives
 $$
-\operatorname*{Res}_{s=1/2}A_+(s)=-1.
+\operatorname*{Res}_{s=\frac{1}{2}}A_+(s)=-1.
 $$
-Therefore
+Then
 $$
-\operatorname*{Res}_{s=1/2}M(s)
-=-\frac12\Gamma\left(-\frac14\right)
-=2\Gamma\left(\frac34\right).
+\operatorname*{Res}_{s=\frac{1}{2}}M(s)
+=-\frac{1}{2}\Gamma\left(-\frac{1}{4}\right)
+=2\Gamma\left(\frac{3}{4}\right).
 $$
-Multiplying by $\Gamma(1/2)=\sqrt\pi$, the residue of the full Mellin integrand is
+Multiplying by $\Gamma\left(\frac{1}{2}\right)=\sqrt{\pi}$, the residue of the full Mellin integrand is
 $$
-2\sqrt\pi\,\Gamma\left(\frac34\right)n^{-1/2}.
+2\sqrt{\pi}\,\Gamma\left(\frac{3}{4}\right)n^{-\frac{1}{2}}.
 $$
 Shifting the contour to the right contributes minus the crossed residues, so the regular-branch term is
 $$
--2\sqrt\pi\,\Gamma\left(\frac34\right)n^{-1/2}.
+-2\sqrt{\pi}\,\Gamma\left(\frac{3}{4}\right)n^{-\frac{1}{2}}.
 $$
-The next pole is at $s=3/4$, so the remaining contour is $o(n^{-1/2})$.
+The next pole is at $s=\frac{3}{4}$, so the remaining contour is $o\left(n^{-\frac{1}{2}}\right)$.
 
 Step 5: Recover the requested limit
 
 Combining Steps 3 and 4,
 $$
 I_n=
-C_0n^{-5/12}
--2\sqrt\pi\,\Gamma\left(\frac34\right)n^{-1/2}
-+o(n^{-1/2}),
+C_0n^{-\frac{5}{12}}
+-2\sqrt{\pi}\,\Gamma\left(\frac{3}{4}\right)n^{-\frac{1}{2}}
++o\left(n^{-\frac{1}{2}}\right),
 $$
 where
 $$
 C_0=
-\frac{(3+\sqrt3)\Gamma(5/12)\Gamma(1/6)\Gamma(1/3)}{12\sqrt\pi}.
+\frac{(3+\sqrt{3})\Gamma\left(\frac{5}{12}\right)\Gamma\left(\frac{1}{6}\right)\Gamma\left(\frac{1}{3}\right)}{12\sqrt{\pi}}.
 $$
-Hence
+It follows that
 $$
-\lim_{n\to\infty}n^{1/2}
-\left(I_n-\frac{C_0}{n^{5/12}}\right)
-=-2\sqrt\pi\,\Gamma\left(\frac34\right).
+\lim_{n\to\infty}n^{\frac{1}{2}}
+\left(I_n-\frac{C_0}{n^{\frac{5}{12}}}\right)
+=-2\sqrt{\pi}\,\Gamma\left(\frac{3}{4}\right).
 $$
-Final Answer: $\boxed{-2\sqrt\pi\,\Gamma\left(\frac34\right)}$
+Final Answer: $\boxed{-2\sqrt{\pi}\,\Gamma\left(\frac{3}{4}\right)}$
 
 ---
 
 ## Answer
 
-$-2\sqrt\pi\,\Gamma(3/4)$
+$-2\sqrt{\pi}\,\Gamma\left(\frac{3}{4}\right)$
 
 ---
 
@@ -180,7 +180,7 @@ $-2\sqrt\pi\,\Gamma(3/4)$
 
 **Problem Type:** Exact computation
 
-**Answer Type:** Real number
+**Answer Type:** Exact scalar
 
 ---
 
