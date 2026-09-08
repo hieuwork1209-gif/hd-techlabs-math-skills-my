@@ -2,27 +2,27 @@
 
 ## LaTeX (Normalized)
 
-For $n\ge1$, define
+Let
 $$
-I_n=\iint_{\mathbb R^2}
-\exp\left(-n(x^2-y^3)^2-y^2\right)\,dx\,dy.
+T=\{(x,y)\in\mathbb{R}^2:x\geq0,\ y\geq0,\ x+y\leq1\},
+\qquad z=1-x-y,
 $$
-Also let
+and define
 $$
-\Gamma(s)=\int_0^\infty t^{s-1}e^{-t}\,dt
-\qquad(s>0),
+\Delta=(x-y)(y-z)(z-x).
 $$
-and put
+For each integer $n\geq1$, put
 $$
-C_0=
-\frac{(3+\sqrt3)\Gamma(5/12)\Gamma(1/6)\Gamma(1/3)}{12\sqrt\pi}.
+I_n=\iint_T \Delta^2 e^{-nxyz}\,dx\,dy.
+$$
+Let Euler's constant be
+$$
+\gamma=\lim_{m\to\infty}\left(\sum_{k=1}^m\frac{1}{k}-\log m\right).
 $$
 Evaluate
 $$
-\lim_{n\to\infty}n^{1/2}
-\left(
-I_n-\frac{C_0}{n^{5/12}}
-\right).
+\lim_{n\to\infty}
+\left(n^2I_n-\frac{n}{10}+6\log n\right).
 $$
 
 ---
@@ -34,10 +34,10 @@ $$
 | **Domain** | Calculus |
 | **Sub-domain** | Applications of integration |
 | **Problem Type** | Exact computation |
-| **Answer Type** | Real number |
+| **Answer Type** | Exact scalar |
 
 ---
 
 ## Domain Explanation
 
-The curve $x^2=y^3$ is the semicubical discriminant cusp and, up to a constant factor, is the discriminant-zero locus of the depressed cubic $t^3-3yt+2x$. The leading Laplace term is created by the singular cusp, while the requested correction comes from the two regular discriminant branches. The Gaussian factor in $y$ makes the global integral finite without altering this local geometry, so this is a natural degenerate asymptotic-integration problem in Calculus -> Applications of integration.
+The integral is taken over the standard simplex and uses the squared Vandermonde factor, the natural eigenvalue-repulsion weight for three coordinates summing to one. The product $xyz$ vanishes on boundary strata of different codimensions, so the asymptotic expansion receives a simple-pole contribution from edges and a double-pole contribution from vertices. Determining the renormalized limit is an exact asymptotic-integration problem in Calculus -> Applications of integration.
