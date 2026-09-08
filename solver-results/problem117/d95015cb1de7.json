@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "229a141e0e63b7c9528a3828b31bcf0ed8464b3d",
+  "problem_blob_sha": "d95015cb1de75c79e459ad29e20dcb0043d9bff4",
+  "statement_sha256": "42a2c5861124f0f5c269ab03cab878f4fb47661ba066bd4fc1ffd176126b76a6",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T03:44:33+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let the four eigenvalues of the Hessian be\n\\[\n\\lambda\\in\\{1,3,5,7\\}.\n\\]\nAfter \\(t\\) steps, the \\(\\lambda\\)-coordinate is multiplied by\n\\[\nm_1(\\lambda)=1-\\alpha_0\\lambda,\\quad\nm_2(\\lambda)=(1-\\alpha_0\\lambda)(1-\\alpha_1\\lambda),\n\\]\n\\[\nm_3(\\lambda)=(1-\\alpha_0\\lambda)(1-\\alpha_1\\lambda)(1-\\alpha_2\\lambda).\n\\]\nSince all update maps are diagonal in the same basis,\n\\[\nR=\\max_{\\lambda\\in\\{1,3,5,7\\}}\n\\max\\left\\{\n\\frac5{14}|m_1(\\lambda)|,\\frac57|m_2(\\lambda)|,|m_3(\\lambda)|\n\\right\\}.\n\\]\n\nWe claim the minimum is \\(3/10\\), attained at\n\\[\n(\\alpha_0,\\alpha_1,\\alpha_2)=\\left(\\frac4{25},\\frac12,\\frac27\\right).\n\\]\n\nFor this triple,\n\\[\n1-\\frac4{25}\\lambda=\\left\\{\\frac{21}{25},\\frac{13}{25},\\frac15,-\\frac3{25}\\right\\},\n\\]\nso the first-step weighted maximum is\n\\[\n\\frac5{14}\\cdot \\frac{21}{25}=\\frac3{10}.\n\\]\nAfter the second step,\n\\[\nm_2(\\lambda)=\\left\\{\\frac{21}{50},-\\frac{13}{50},-\\frac3{10},\\frac3{10}\\right\\},\n\\]\nso\n\\[\n\\frac57\\max |m_2(\\lambda)|\n=\\frac57\\cdot \\frac{21}{50}\n=\\frac3{10}.\n\\]\nAfter the third step, using \\(\\alpha_2=2/7\\),\n\\[\nm_3(\\lambda)\n=\\left\\{\n\\frac{21}{50}\\cdot\\frac57,\n-\\frac{13}{50}\\cdot\\frac17,\n-\\frac3{10}\\cdot\\left(-\\frac37\\right),\n\\frac3{10}\\cdot(-1)\n\\right\\},\n\\]\nwhose maximum absolute value is again \\(3/10\\). Hence \\(R\\le 3/10\\).\n\nNow prove no smaller value is possible. Suppose \\(R\\le 3/10\\), and write\n\\[\nu=\\alpha_0,\\qquad v=\\alpha_1,\\qquad w=\\alpha_2.\n\\]\nFrom the \\(\\lambda=1\\) first-step constraint,\n\\[\n\\frac5{14}|1-u|\\le \\frac3{10}.\n\\]\nSince \\(0<u\\le 1/2\\), this gives\n\\[\nu\\ge \\frac4{25}.\n\\]\n\nIf \\(u=\\frac4{25}\\), then the \\(\\lambda=1\\) second-step constraint gives\n\\[\n\\frac57\\cdot \\frac{21}{25}(1-v)\\le \\frac3{10},\n\\]\nso \\(v\\ge 1/2\\). Since \\(v\\le 1/2\\), we get \\(v=1/2\\). Then the \\(\\lambda=1\\) final-step constraint gives\n\\[\n\\frac{21}{50}(1-w)\\le \\frac3{10},\n\\]\nso \\(w\\ge 2/7\\). The \\(\\lambda=7\\) final-step constraint gives\n\\[\n\\frac3{10}|1-7w|\\le \\frac3{10},\n\\]\nso \\(0\\le w\\le 2/7\\). Thus \\(w=2/7\\).\n\nIt remains to rule out \\(u>4/25\\). The \\(\\lambda=1\\) second-step constraint gives\n\\[\n(1-u)(1-v)\\le \\frac{21}{50},\n\\]\nso\n\\[\nv\\ge 1-\\frac{21}{50(1-u)}.\n\\]\nAlso \\(v\\le 1/2\\). Put\n\\[\nP=(1-u)(1-v),\\qquad Q=(7u-1)(7v-1).\n\\]\nFor \\(u>4/25\\), the above lower bound on \\(v\\) implies \\(v>1/7\\), so \\(Q>0\\).\n\nThe final-step constraints at \\(\\lambda=1\\) and \\(\\lambda=7\\) require\n\\[\nP(1-w)\\le \\frac3{10},\\qquad Q|1-7w|\\le \\frac3{10}.\n\\]\nThese intervals for \\(w\\) can intersect only if\n\\[\n\\frac7P+\\frac1Q\\ge 20. \\tag{1}\n\\]\nBut on the interval\n\\[\n1-\\frac{21}{50(1-u)}\\le v\\le \\frac12,\n\\]\nthe function\n\\[\nh(v)=\\frac7{(1-u)(1-v)}+\\frac1{(7u-1)(7v-1)}\n\\]\nis convex, so its maximum occurs at an endpoint. At the left endpoint, \\(P=21/50\\), and\n\\[\nQ-\\frac3{10}\n=\n\\frac{21(u-\\frac4{25})(\\frac12-u)}{25(1-u)}>0,\n\\]\nso \\(h(v)<20\\). At \\(v=1/2\\),\n\\[\nh\\left(\\frac12\\right)-20\n=\n\\frac{4(175u^2-78u+8)}{(1-u)(35u-5)}<0\n\\]\nfor\n\\[\n\\frac4{25}<u\\le \\frac{46}{175}<\\frac27.\n\\]\nThe upper bound \\(u\\le 46/175\\) comes from the \\(\\lambda=7\\) first-step constraint. Hence \\(h(v)<20\\), contradicting (1). Therefore \\(u>4/25\\) is impossible.\n\nThus the optimizer is unique and equals\n\\[\n\\alpha_*=\\left(\\frac4{25},\\frac12,\\frac27\\right),\n\\]\nwith minimum value\n\\[\nR_*=\\frac3{10}.\n\\]\n\n\\[\n\\boxed{\\left(\\frac3{10},\\left(\\frac4{25},\\frac12,\\frac27\\right)\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T03:48:40+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/d95015cb1de7.json"
+}
