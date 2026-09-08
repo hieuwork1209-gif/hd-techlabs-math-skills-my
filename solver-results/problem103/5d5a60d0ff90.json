@@ -1,0 +1,22 @@
+{
+  "problem": "problem103",
+  "branch": "adversary/problem103",
+  "problem_path": "workspace/rainier-problem/problem103-applications-of-integration/problem.md",
+  "source_commit_sha": "6a637ecd6c2dc250a39ebdf6b1ee6abd4d1eee56",
+  "problem_blob_sha": "5d5a60d0ff9012b504f655e80942539d091896e9",
+  "statement_sha256": "258ffea2b57369cf9adf502a12fb226c4c92c6abad3caa1bbf1aea97fcaa3ebc",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-08T05:29:53+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nF(x,y)=P^2+D^2.\n\\]\nThe zeros of \\(F\\) occur exactly where \\(P=0\\) and \\(D=0\\). In the triangle these are the three vertices and the three side midpoints.\n\nNear a vertex, say \\((0,0)\\) with \\(z=1-x-y\\), put\n\\[\ns=\\frac{x+y}{2},\\qquad r=\\frac{x-y}{2}.\n\\]\nThen \\(x=s+r,\\ y=s-r,\\ z=1-2s\\), and \\(dx\\,dy=2\\,ds\\,dr\\). Also\n\\[\nP=(s^2-r^2)(1-2s),\n\\]\n\\[\nD=2r\\bigl(r^2-(3s-1)^2\\bigr).\n\\]\nUse the vertex scaling\n\\[\ns=n^{-1/4}a,\\qquad r=n^{-1/2}b,\\qquad \\varepsilon=n^{-1/4}.\n\\]\nThe domain condition \\(s\\ge |r|\\) becomes \\(a\\ge \\varepsilon |b|\\), and\n\\[\nn(P^2+D^2)\n=a^4+4b^2+\\varepsilon(-4a^5-48ab^2)+O(\\varepsilon^2).\n\\]\nThus one vertex contributes\n\\[\n2n^{-3/4}\\int_{a\\ge \\varepsilon |b|}\ne^{-a^4-4b^2}\n\\left(1+\\varepsilon(4a^5+48ab^2)+O(\\varepsilon^2)\\right)\\,da\\,db.\n\\]\nThe leading term from one vertex is\n\\[\n2\\left(\\int_0^\\infty e^{-a^4}\\,da\\right)\n\\left(\\int_{-\\infty}^{\\infty}e^{-4b^2}\\,db\\right)n^{-3/4}\n=\n\\frac{\\sqrt\\pi\\,\\Gamma(1/4)}{4}n^{-3/4}.\n\\]\nThe \\(n^{-1}\\) coefficient from one vertex is\n\\[\n2\\left[\n\\int_0^\\infty\\int_{-\\infty}^{\\infty}\ne^{-a^4-4b^2}(4a^5+48ab^2)\\,db\\,da\n-\n\\int_{-\\infty}^{\\infty}|b|e^{-4b^2}\\,db\n\\right].\n\\]\nNow\n\\[\n\\int_0^\\infty a^5e^{-a^4}\\,da=\\frac{\\sqrt\\pi}{8},\\qquad\n\\int_0^\\infty ae^{-a^4}\\,da=\\frac{\\sqrt\\pi}{4},\n\\]\n\\[\n\\int_{-\\infty}^{\\infty}e^{-4b^2}\\,db=\\frac{\\sqrt\\pi}{2},\\qquad\n\\int_{-\\infty}^{\\infty}b^2e^{-4b^2}\\,db=\\frac{\\sqrt\\pi}{16},\n\\]\nand\n\\[\n\\int_{-\\infty}^{\\infty}|b|e^{-4b^2}\\,db=\\frac14.\n\\]\nSo the \\(n^{-1}\\) coefficient from one vertex is\n\\[\n2\\left(\\pi-\\frac14\\right)=2\\pi-\\frac12.\n\\]\nThere are three vertices, giving\n\\[\n3\\left(2\\pi-\\frac12\\right)=6\\pi-\\frac32.\n\\]\n\nNow consider a side midpoint, say \\((x,y,z)=(1/2,1/2,0)\\). Put\n\\[\nu=x-y,\\qquad v=z.\n\\]\nThen \\(dx\\,dy=\\frac12\\,du\\,dv\\), with \\(v\\ge0\\), and near the midpoint\n\\[\nP=\\frac{v}{4}+O(u^2v+v^2),\\qquad\nD=-\\frac{u}{4}+O(u^2+uv+v^2).\n\\]\nHence\n\\[\nP^2+D^2=\\frac{u^2+v^2}{16}+O((u^2+v^2)^{3/2}).\n\\]\nThe leading contribution of one side midpoint is therefore\n\\[\n\\frac12\\int_{v\\ge0}e^{-n(u^2+v^2)/16}\\,du\\,dv\n=\n\\frac12\\cdot \\frac12\\cdot \\frac{16\\pi}{n}\n=\n\\frac{4\\pi}{n}.\n\\]\nThere are three side midpoints, contributing\n\\[\n\\frac{12\\pi}{n}.\n\\]\n\nCombining the three vertex and three midpoint contributions,\n\\[\nI_n=\n\\frac{3\\sqrt\\pi\\,\\Gamma(1/4)}{4n^{3/4}}\n+\n\\frac{18\\pi-\\frac32}{n}\n+o(n^{-1}).\n\\]\nTherefore\n\\[\n\\boxed{18\\pi-\\frac32}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-08T05:31:25+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem103/5d5a60d0ff90.json"
+}
