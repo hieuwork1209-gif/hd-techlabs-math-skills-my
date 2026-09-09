@@ -1,134 +1,158 @@
 ## Steps
 
-Step 1: Embed the exterior-square operator in a tensor-product operator
+Step 1: Reduce the two smaller exterior powers to free modules over a local ring
 
 Let
 $$
-V=F^{p+1},\qquad N=J_{p+1}(0),\qquad F=\mathbb F_p,
+F=\mathbb F_p,\qquad V=F^{p+1},\qquad N=J_{p+1}(0),
 $$
-and define
+and choose a Jordan basis $e_0,\ldots,e_p$ with
 $$
-T=N\otimes I+I\otimes N
+Ne_0=0,\qquad Ne_i=e_{i-1}\quad(1\le i\le p).
 $$
-on $V\otimes V$. Under the identification
+Put
 $$
-V\otimes V\cong A:=F[x,y]/(x^{p+1},y^{p+1}),
+U=\langle e_0,\ldots,e_{p-1}\rangle,
 $$
-where $N$ acts by multiplication by the corresponding variable, $T$ is multiplication by
+so $N|_U=J_p(0)$. Let
 $$
-z=x+y.
+R=F[t]/(t^p),
 $$
-The swap involution
-$$
-\tau(u\otimes v)=v\otimes u
-$$
-commutes with $T$. Since $p$ is odd,
-$$
-V\otimes V=\operatorname{Sym}^2V\oplus\Lambda^2V
-$$
-is the decomposition into the $+1$ and $-1$ eigenspaces of $\tau$. The operator in the problem is exactly $T$ restricted to $\Lambda^2V$.
+where $t$ acts on tensor and exterior powers by the induced derivation. Thus $U$ is the regular $R$-module.
 
-Step 2: Determine the Jordan form of $T$ on the full tensor square
+Give $R$ the Hopf structure
+$$
+\Delta(t)=t\otimes1+1\otimes t,\qquad S(t)=-t.
+$$
+For any $R$-module $M$, the diagonal $R$-module $R\otimes_F M$ is free: the map
+$$
+\phi(a\otimes m)=\sum a_{(1)}\otimes S(a_{(2)})m
+$$
+identifies the diagonal action with left multiplication on the first factor, with inverse
+$$
+\phi^{-1}(a\otimes m)=\sum a_{(1)}\otimes a_{(2)}m.
+$$
+Hence every tensor power $U^{\otimes k}$ is free over $R$.
 
-Write $y=z-x$. Then
+Since $p\ge5$, both $2$ and $6$ are invertible in $F$. The antisymmetrizers therefore split $\Lambda^2U$ and $\Lambda^3U$ as direct summands of $U^{\otimes2}$ and $U^{\otimes3}$. They are projective over the local ring $R$, hence free. Their ranks are determined by dimensions:
 $$
-A\cong F[z,x]/\bigl(x^{p+1},(z-x)^{p+1}\bigr).
+B:=\Lambda^2U\cong R^b,\qquad b=\frac{p-1}{2},
 $$
-Because the characteristic is $p$,
 $$
-(z-x)^{p+1}=z^{p+1}-z^px-zx^p+x^{p+1}.
-$$
-Modulo $x^{p+1}$, put
-$$
-q=z^{p+1}-z^px-zx^p.
-$$
-Using the $F[z]$-generators $e_j=x^j$ for $0\le j\le p$, the relations $qe_j=0$ give a presentation matrix with diagonal entries $z^{p+1}$, superdiagonal entries $-z^p$, and one corner entry $-z$.
-
-Let $\nu_k$ be the $z$-adic valuation of the gcd of the nonzero $k\times k$ minors. The unique valuation-$1$ entry gives
-$$
-\nu_1=1.
-$$
-For $2\le k\le p-1$, the corner together with $k-1$ superdiagonal entries gives the minimum
-$$
-\nu_k=1+(k-1)p.
-$$
-For $k=p$, every term has valuation at least $p^2$, and the minor using the first $p$ rows and last $p$ columns has two lowest terms whose coefficients add to a nonzero multiple of $2$, so
-$$
-\nu_p=p^2.
-$$
-Finally the full determinant is the product of the diagonal entries, hence
-$$
-\nu_{p+1}=(p+1)^2.
-$$
-Therefore the Smith exponents are
-$$
-1,\underbrace{p,\ldots,p}_{p-2\text{ times}},2p-1,2p+1.
-$$
-Thus the Jordan form of $T$ on $V\otimes V$ is
-$$
-J_{2p+1}(0)\oplus J_{2p-1}(0)\oplus J_p(0)^{\oplus(p-2)}\oplus J_1(0).
+A:=\Lambda^3U\cong R^a,\qquad a=\frac{(p-1)(p-2)}6.
 $$
 
-Step 3: Locate the three exceptional blocks under the swap involution
+Step 2: Express $\Lambda^3V$ as an extension and compute its connecting map
 
-The vector $1\in A$ is symmetric. Moreover
+Let
 $$
-z^{2p}=(x+y)^{2p}=2x^py^p\ne0,
+W=\Lambda^3V,
 $$
-while $z^{2p+1}=0$. Hence the unique block of size $2p+1$ lies in $\operatorname{Sym}^2V$.
+and let $t$ act as the operator in the problem. There is a natural exact sequence of $F[t]$-modules
+$$
+0\longrightarrow A\longrightarrow W\overset{\pi}{\longrightarrow}B\longrightarrow0,
+$$
+where
+$$
+\pi(e_p\wedge u\wedge v)=u\wedge v,
+$$
+and $\pi$ vanishes on $\Lambda^3U$.
 
-The vector $x-y$ is antisymmetric. By Lucas' theorem,
+Because $t^p=0$ on both $A$ and $B$, define
 $$
-\binom{2p-2}{p-1}\equiv0,\qquad \binom{2p-2}{p}\equiv1\pmod p,
+\delta:B\to A,\qquad \delta(b)=t^p\widetilde b,
 $$
-so $z^{2p-2}(x-y)\ne0$. Also
-$$
-\binom{2p-1}{p-1}\equiv\binom{2p-1}{p}\equiv1\pmod p,
-$$
-so $z^{2p-1}(x-y)=0$. Hence the unique block of size $2p-1$ lies in $\Lambda^2V$.
+for any lift $\widetilde b\in W$. This is well-defined and $R$-linear.
 
-Now set
+For $u,v\in U$, take the lift $e_p\wedge u\wedge v$. The three factor operators commute, so in characteristic $p$,
 $$
-\omega=\sum_{i=0}^{p}(-1)^i x^iy^{p-i}.
+t^p=N^p\otimes I\otimes I+I\otimes N^p\otimes I+I\otimes I\otimes N^p.
 $$
-Since $p$ is odd, $\tau(\omega)=-\omega$, and the internal terms cancel in $(x+y)\omega$, while the two boundary terms vanish modulo $x^{p+1}$ and $y^{p+1}$. Thus
-$$
-z\omega=0.
-$$
-To see that this is the genuine $J_1(0)$ summand rather than the bottom of a longer chain, note that $\omega$ has degree $p$. If $\omega=z h$ in $A$, then $h$ may be taken homogeneous of degree $p-1$, where no truncation occurs, so $x+y$ would divide $\omega$ in $F[x,y]$. But
-$$
-\omega(-y,y)=\sum_{i=0}^{p}y^p=(p+1)y^p=y^p\ne0.
-$$
-Hence $\omega\notin zA$. Therefore the unique $J_1(0)$ block lies in $\Lambda^2V$.
-
-Step 4: Split the remaining $p$-blocks and read off the answer
-
-Because
-$$
-V\otimes V=\operatorname{Sym}^2V\oplus\Lambda^2V
-$$
-is a $T$-invariant direct sum, the Jordan block multisets of the two restrictions partition the full multiset from Step 2. Step 3 assigns the unique blocks of sizes $2p+1$, $2p-1$, and $1$, so every block still unassigned has size exactly $p$.
-
 Since
 $$
-\dim\Lambda^2V=\frac{p(p+1)}2,
+N^pe_p=e_0,\qquad N^pU=0,
 $$
-after removing the $J_{2p-1}(0)$ and $J_1(0)$ blocks the remaining dimension is
+we get the simple formula
 $$
-\frac{p(p+1)}2-(2p-1)-1=\frac{p(p-3)}2.
-$$
-Thus $\Lambda^2V$ contains exactly $(p-3)/2$ blocks of size $p$. Therefore the induced operator on $\Lambda^2V$ has Jordan form
-$$
-J_{2p-1}(0)\oplus J_p(0)^{\oplus (p-3)/2}\oplus J_1(0).
+\delta(u\wedge v)=e_0\wedge u\wedge v.
 $$
 
-Final Answer: $\boxed{J_{2p-1}(0)\oplus J_p(0)^{\oplus (p-3)/2}\oplus J_1(0)}$
+Step 3: Determine the Smith type of the connecting map
+
+The kernel of $\delta$ is exactly
+$$
+\ker\delta=e_0\wedge U.
+$$
+It is cyclic over $R$, generated by $e_0\wedge e_{p-1}$, and
+$$
+t^j(e_0\wedge e_{p-1})=e_0\wedge e_{p-1-j}\qquad(0\le j\le p-2).
+$$
+Thus
+$$
+\ker\delta\cong R/(t^{p-1}).
+$$
+
+Since $A$ and $B$ are free over the principal ideal ring $R$, put $\delta$ into Smith form. If its diagonal entries are
+$$
+t^{s_1},\ldots,t^{s_b},\qquad 0\le s_i\le p,
+$$
+then
+$$
+\ker\delta\cong\bigoplus_{s_i>0}R/(t^{s_i}).
+$$
+The kernel above is one cyclic module of length $p-1$. Therefore the Smith form of $\delta$ has
+$$
+b-1
+$$
+unit entries and one entry $t^{p-1}$.
+
+Step 4: Reconstruct the Jordan blocks of $W$
+
+Choose Smith bases $a_1,\ldots,a_a$ of $A$ and $b_1,\ldots,b_b$ of $B$, with lifts $f_1,\ldots,f_b$ in $W$. For the $b-1$ unit entries,
+$$
+t^pf_i=a_i,
+$$
+so $f_i$ generates one block of size $2p$. Hence these contribute
+$$
+J_{2p}^{\oplus(b-1)}.
+$$
+
+For the remaining Smith entry $t^{p-1}$, the two generators $a_b,f_b$ have relations
+$$
+t^pa_b=0,\qquad t^pf_b=t^{p-1}a_b.
+$$
+The relation matrix
+$$
+\begin{pmatrix}
+t^p&-t^{p-1}\\
+0&t^p
+\end{pmatrix}
+$$
+has Smith factors $t^{p-1}$ and $t^{p+1}$. Thus this part contributes
+$$
+J_{p-1}\oplus J_{p+1}.
+$$
+
+The remaining $a-b$ basis vectors of $A$ each give a block $J_p$. Since
+$$
+b-1=\frac{p-3}{2},\qquad a-b=\frac{(p-1)(p-5)}6,
+$$
+the Jordan form is
+$$
+J_{2p}^{\oplus (p-3)/2}\oplus J_p^{\oplus (p-1)(p-5)/6}\oplus J_{p+1}\oplus J_{p-1}.
+$$
+The dimensions check:
+$$
+2p\frac{p-3}{2}+p\frac{(p-1)(p-5)}6+(p+1)+(p-1)=\binom{p+1}{3}.
+$$
+
+Final Answer: $\boxed{J_{2p}^{\oplus (p-3)/2}\oplus J_p^{\oplus (p-1)(p-5)/6}\oplus J_{p+1}\oplus J_{p-1}}$
 
 ---
 
 ## Answer
 
-$J_{2p-1}(0)\oplus J_p(0)^{\oplus (p-3)/2}\oplus J_1(0)$
+$J_{2p}^{\oplus (p-3)/2}\oplus J_p^{\oplus (p-1)(p-5)/6}\oplus J_{p+1}\oplus J_{p-1}$
 
 ---
 
@@ -142,11 +166,11 @@ $J_{2p-1}(0)\oplus J_p(0)^{\oplus (p-3)/2}\oplus J_1(0)$
 
 ## Solution Concepts
 
-- exterior-square representation
-- tensor-product Jordan form
-- truncated polynomial modules
+- exterior-cube representation
+- truncated polynomial Hopf module
+- module extension
 - Smith normal form
-- commuting involution decomposition
+- Jordan blocks from invariant factors
 
 ---
 
