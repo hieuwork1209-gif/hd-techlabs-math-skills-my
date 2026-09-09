@@ -2,8 +2,8 @@
   "problem": "problem117",
   "branch": "adversary/problem117",
   "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
-  "problem_blob_sha": "2457bceb5e18a1cab2e3a886593e20aec3ff88b1",
-  "source_commit_sha": "58d9d5401b909d09f96f8de6dffc5eed167494d6",
+  "problem_blob_sha": "644b793572442043bc541e5b3417ac2fe258b4b1",
+  "source_commit_sha": "67459e44c2c105a4fccc53a35f30c7af31342567",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-09T07:20:17+00:00",
-  "result_file": "solver-results/problem117/2457bceb5e18.json"
+  "completed_at": "2026-09-09T09:07:35+00:00",
+  "result_file": "solver-results/problem117/644b79357244.json"
 }

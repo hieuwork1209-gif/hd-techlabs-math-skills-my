@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "67459e44c2c105a4fccc53a35f30c7af31342567",
+  "problem_blob_sha": "644b793572442043bc541e5b3417ac2fe258b4b1",
+  "statement_sha256": "dfaea840ba22d91ea027c555a4ff48e4501ada93a4863952a65431c54a95e0e9",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-09T09:03:31+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nu=1-\\frac52\\alpha,\\qquad v=\\frac32\\alpha .\n\\]\nEach sweep factor is \\(uI+vN_k\\), where \\(N_k\\) is a reflection and the three reflection axes are separated by \\(60^\\circ\\). Multiplying the three factors gives\n\\[\nx_3=A(\\alpha)x_0,\\qquad\nA=sI+tJ+v^3N_1,\n\\]\nwith\n\\[\ns=u^3-\\frac32uv^2,\\qquad t=\\frac{\\sqrt3}{2}uv^2.\n\\]\nFrom \\(A^TA\\), the largest singular value is\n\\[\nR(\\alpha)=\\sqrt{s^2+t^2}+v^3\n=|u|\\sqrt{u^4-3u^2v^2+3v^4}+v^3.\n\\]\n\nFor \\(0<\\alpha<2/5\\), put\n\\[\nr=\\frac vu,\\qquad \\alpha=\\frac{2r}{3+5r}.\n\\]\nThen\n\\[\nR(\\alpha)=\\frac{\\sqrt{1-3r^2+3r^4}+r^3}{(1+5r/3)^3}.\n\\]\nThe stationary equation reduces to\n\\[\n5r^4-6r^3-10r^2+3r+5\n=\n3r^2\\sqrt{1-3r^2+3r^4}.\n\\]\nSquaring, while retaining the positive-side condition above, gives the unique relevant root\n\\[\nr=0.7387542245\\ldots\n\\]\nand hence\n\\[\n\\alpha_*=\\frac{2r}{3+5r}=0.2207288570\\ldots\n\\]\nAt this value,\n\\[\nR_*=0.0818685766\\ldots\n\\]\nThe region \\(\\alpha\\ge 2/5\\) gives \\(R(\\alpha)\\ge R(2/5)=0.216\\), so it cannot improve this minimum.\n\n\\[\n\\boxed{(R_*,\\alpha_*)=(0.0818685766,\\ 0.2207288570)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-09T09:07:35+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/644b79357244.json"
+}
