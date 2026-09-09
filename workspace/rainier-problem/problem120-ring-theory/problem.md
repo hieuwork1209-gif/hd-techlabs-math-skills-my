@@ -8,9 +8,9 @@ R=M_8(\mathbb F_p).
 $$
 Determine the number of ordered sextuples $(E_1,\dots,E_6)$ of subrings of $R$, each containing the identity matrix and each a field of order $p^2$, such that:
 
-1. for every $i$ and every $A\in E_i$ with $\operatorname{tr}(A)=0$, one has
+1. each $E_i$ is stable under transpose, that is,
 $$
-A^T=-A;
+E_i^T=E_i;
 $$
 2. for every distinct $i,j$ and every $A\in E_i$, $B\in E_j$ with
 $$
@@ -36,4 +36,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for six quadratic subfields of a matrix algebra whose trace-zero directions pairwise anticommute and are skew-adjoint for the transpose involution. After normalization, the generators form a six-generator Clifford algebra together with its canonical involution; the count is controlled by the resulting split orthogonal similitude orbit. Ring theory is primary, with bilinear-form and classical-group structure supplying the new constraint.
+The problem asks for six pairwise-anticommuting quadratic subfields of a matrix algebra that are invariant under the transpose involution. After normalization, transpose may act on each trace-zero line by either sign, so the hidden task is to classify the resulting Clifford involutions by orthogonal versus symplectic type and by discriminant before applying orbit-stabilizer. Ring theory is primary, with involutions and classical groups providing the structural constraint.
