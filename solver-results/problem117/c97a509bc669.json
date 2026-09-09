@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "87db1531d9b3f56a17b26e587e0eac72b363f644",
+  "problem_blob_sha": "c97a509bc66908c3ccb557db2b642618b2f3fbf7",
+  "statement_sha256": "d06f90b8b1e3f8dc1ca4c9bcfa39c44b78fda69852698ab649d1e225da27817e",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-09T04:58:09+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nq(t)=\\prod_{k=0}^2(1-\\alpha_k t).\n\\]\nSince \\(A=\\operatorname{diag}(1,\\dots,7)\\), after three gradient steps the \\(i\\)-th coordinate is multiplied by \\(q(i)\\). For \\(x_0\\) uniform on the unit sphere in \\(\\mathbb R^7\\),\n\\[\n\\mathbb E[x_{0,i}^2]=\\frac17,\n\\]\nso\n\\[\nR(\\alpha_0,\\alpha_1,\\alpha_2)=\\frac17\\sum_{i=1}^7 q(i)^2.\n\\]\n\nThus we must minimize \\(\\sum_{i=1}^7 q(i)^2\\) over cubics \\(q\\) with \\(q(0)=1\\) and positive roots. First minimize over all cubics\n\\[\nq(t)=1+c_1t+c_2t^2+c_3t^3.\n\\]\nAt the least-squares minimizer, \\(q\\) is orthogonal to \\(t,t^2,t^3\\) on the points \\(1,\\dots,7\\):\n\\[\n\\sum_{i=1}^7 i^m q(i)=0,\\qquad m=1,2,3.\n\\]\nUsing\n\\[\n\\sum i=28,\\quad \\sum i^2=140,\\quad \\sum i^3=784,\n\\]\n\\[\n\\sum i^4=4676,\\quad \\sum i^5=29008,\\quad \\sum i^6=184820,\n\\]\nthis gives\n\\[\nc_1=-\\frac{341}{354},\\qquad c_2=\\frac{15}{59},\\qquad c_3=-\\frac7{354}.\n\\]\nHence\n\\[\nq(t)=\\frac{354-341t+90t^2-7t^3}{354}.\n\\]\n\nEvaluating at \\(1,\\dots,7\\),\n\\[\nq(1),\\dots,q(7)\n=\n\\frac1{59}(16,-4,-8,-3,4,6,-4).\n\\]\nTherefore\n\\[\n\\sum_{i=1}^7 q(i)^2\n=\n\\frac{16^2+4^2+8^2+3^2+4^2+6^2+4^2}{59^2}\n=\n\\frac{413}{3481}\n=\n\\frac7{59}.\n\\]\nSo\n\\[\nR_*=\\frac17\\cdot \\frac7{59}=\\frac1{59}.\n\\]\n\nIt remains to check the positivity constraint. Since\n\\[\nq(1)>0,\\quad q(2)<0,\\quad q(4)<0,\\quad q(5)>0,\\quad q(6)>0,\\quad q(7)<0,\n\\]\nthe cubic has roots in \\((1,2)\\), \\((4,5)\\), and \\((6,7)\\). Thus all three roots are positive, so they correspond to positive step sizes \\(\\alpha_k=1/r_k\\).\n\n\\[\n\\boxed{\\frac1{59}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-09T04:59:22+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/c97a509bc669.json"
+}
