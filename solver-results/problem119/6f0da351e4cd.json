@@ -1,0 +1,22 @@
+{
+  "problem": "problem119",
+  "branch": "adversary/problem119",
+  "problem_path": "workspace/rainier-problem/problem119-group-theory/problem.md",
+  "source_commit_sha": "92852fa566c2ee62824af44d1fc701cf8dfd4a82",
+  "problem_blob_sha": "6f0da351e4cdcbe35f3330d0de1b3aed0855cac2",
+  "statement_sha256": "1c3a5d0f0a9fcebd2b90ba878849fb0475b37752d4c7d050d8acdc18379f2ccc",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-09T18:12:42+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(\\chi\\) be the quartic character modulo \\(p\\) determined by \\(\\chi(g)=i\\), and extend nontrivial characters by \\(\\chi(0)=0\\). Put\n\\[\n\\varepsilon=\\chi(-1)=(-1)^{(p-1)/4}.\n\\]\n\nFor \\(c\\neq 0\\), the number of affine solutions to\n\\[\nx^4+y^4=c\n\\]\nis\n\\[\np+\\sum_{j,k=1}^3 \\chi^{j+k}(c)J(\\chi^j,\\chi^k),\n\\]\nwhere\n\\[\nJ(\\alpha,\\beta)=\\sum_{t\\in\\mathbb F_p}\\alpha(t)\\beta(1-t).\n\\]\nHere \\(c=g\\), so \\(\\chi(g)=i\\).\n\nThe quartic Jacobi sum evaluation with this normalization is\n\\[\nJ(\\chi,\\chi)=-a+bi,\n\\]\nbecause under the embedding \\(i\\mapsto r\\) its reduction is\n\\[\n\\sum_{t\\in\\mathbb F_p} t^{(p-1)/4}(1-t)^{(p-1)/4}=0,\n\\]\nso it is divisible by the Gaussian prime \\(a-bi\\), and the primary congruence \\(a\\equiv1\\pmod4\\) fixes the unit as \\(-1\\). Also\n\\[\nJ(\\chi,\\chi^3)=-\\chi(-1)=-\\varepsilon,\\qquad J(\\chi^2,\\chi^2)=-1,\n\\]\nand, using Gauss sums,\n\\[\nJ(\\chi,\\chi^2)=\\varepsilon J(\\chi,\\chi)=\\varepsilon(-a+bi).\n\\]\n\nSumming the nine nontrivial character contributions gives\n\\[\n-2\\Re J(\\chi,\\chi)+4\\Im J(\\chi,\\chi^2)-2\\varepsilon-1.\n\\]\nThe points at infinity satisfy \\(X^4+Y^4=0\\). There are \\(4\\) of them if \\(\\varepsilon=1\\), and \\(0\\) if \\(\\varepsilon=-1\\). In either case this changes the constant term to \\(+1\\). Therefore\n\\[\n\\#C_g(\\mathbb F_p)\n=p+1-2\\Re(-a+bi)+4\\Im\\bigl(\\varepsilon(-a+bi)\\bigr).\n\\]\nHence\n\\[\n\\boxed{\\#C_g(\\mathbb F_p)=p+1+2a+4(-1)^{(p-1)/4}b }.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-09T18:14:53+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem119/6f0da351e4cd.json"
+}
