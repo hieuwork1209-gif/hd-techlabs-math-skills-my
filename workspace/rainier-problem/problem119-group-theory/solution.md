@@ -1,131 +1,110 @@
 ## Steps
 
-Step 1: Handle the case $p\equiv3\pmod4$
+Step 1: Set up the quartic character and the basic Jacobi sum
 
 Let
 $$
-C:\ X^4+Y^4=Z^4
+p\equiv1\pmod4,
 $$
-be the projective Fermat quartic. If $p\equiv3\pmod4$, then
+let $g$ be a primitive root modulo $p$, and put
 $$
-\gcd(4,p-1)=2.
+r=g^{(p-1)/4}\in\mathbb F_p.
 $$
-Hence the map $x\mapsto x^4$ on $\mathbb F_p$ has exactly the same fibers as the map $x\mapsto x^2$: zero has one preimage and every nonzero square has two. Therefore the number of projective solutions of
+Choose the quartic character
 $$
-X^4+Y^4=Z^4
+\chi:\mathbb F_p^\times\to\{1,i,-1,-i\}
 $$
-equals the number of projective solutions of
+by requiring
 $$
-X^2+Y^2=Z^2.
+\chi(g)=i,
 $$
-The latter is a nonsingular conic with the rational point $(1:0:1)$, hence it is isomorphic to $\mathbb P^1$ over $\mathbb F_p$ and has
-$$
-p+1
-$$
-points.
-
-Step 2: Express the count for $p\equiv1\pmod4$ by Jacobi sums
-
-Assume now $p\equiv1\pmod4$. Choose a quartic character
-$$
-\chi:\mathbb F_p^\times\to\{1,i,-1,-i\},
-$$
-extended by $\chi(0)=0$, and put
+and extend it by $\chi(0)=0$. Put
 $$
 \eta=\chi^2,
 $$
-so $\eta$ is the quadratic character. For multiplicative characters $A,B$, write
+so $\eta$ is the quadratic character, and set
 $$
-J(A,B)=\sum_{t\in\mathbb F_p}A(t)B(1-t).
+s=\chi(-1)=(-1)^{(p-1)/4}.
 $$
-
-Let $r(u)$ be the number of fourth roots of $u$. Then
+For multiplicative characters $A,B$, write
 $$
-r(0)=1,
+J(A,B)=\sum_{x\in\mathbb F_p}A(x)B(1-x),
 $$
-and for $u\ne0$,
+and abbreviate
 $$
-r(u)=1+\chi(u)+\eta(u)+\overline\chi(u).
-$$
-Expanding
-$$
-\sum_{u\in\mathbb F_p}r(u)r(1-u)
-$$
-therefore gives the affine point count
-$$
-p+\sum_{r,s=1}^3J(\chi^r,\chi^s).
-$$
-The three terms with $r+s\equiv0\pmod4$ are
-$$
-J(\chi,\overline\chi),\qquad J(\eta,\eta),\qquad J(\overline\chi,\chi),
-$$
-and the identity
-$$
-J(A,A^{-1})=-A(-1)
-$$
-gives their sum as
-$$
--2\chi(-1)-1.
-$$
-The number of points at infinity is the number of fourth roots of $-1$, namely
-$$
-2(1+\chi(-1)).
-$$
-These two contributions add to $1$. Hence
-$$
-\#C(\mathbb F_p)
-=p+1+J(\chi,\chi)+J(\overline\chi,\overline\chi)
-+2J(\chi,\eta)+2J(\overline\chi,\eta).
+J=J(\chi,\chi).
 $$
 
-A change of variables $x=t/(t-1)$ in a Jacobi sum gives
+A change of variables $x=t/(t-1)$ gives
 $$
 J(A,B)=A(-1)J(A,\overline{AB}).
 $$
-Taking $A=B=\chi$ yields
+Taking $A=B=\chi$ therefore yields
 $$
-J(\chi,\eta)=\chi(-1)J(\chi,\chi).
+J(\chi,\eta)=sJ,
 $$
-By conjugation,
+and by conjugation
 $$
-J(\overline\chi,\eta)=\chi(-1)\overline{J(\chi,\chi)}.
+J(\overline\chi,\eta)=s\overline J.
 $$
-Thus, if
+Also
 $$
-J=J(\chi,\chi),\qquad s=\chi(-1),
-$$
-then
-$$
-\#C(\mathbb F_p)=p+1+(1+2s)(J+\overline J).
-$$
-Here
-$$
-s=1\quad\text{for }p\equiv1\pmod8,
-$$
-and
-$$
-s=-1\quad\text{for }p\equiv5\pmod8.
+J(A,A^{-1})=-A(-1).
 $$
 
-Step 3: Evaluate the real part of the quartic Jacobi sum
+Step 2: Count the quartic twist in terms of $J$
 
-Since $\chi$ takes values in $\mathbb Z[i]$, write
+Let
 $$
-J=A+iB,\qquad A,B\in\mathbb Z.
+C_g:\ X^4+Y^4=gZ^4.
+$$
+For $u\in\mathbb F_p$, the number of fourth roots of $u$ is
+$$
+1+\chi(u)+\eta(u)+\overline\chi(u).
+$$
+Hence the affine point count is
+$$
+p+\sum_{m,n=1}^3\chi^{m+n}(g)J(\chi^m,\chi^n).
+$$
+Since $\chi(g)=i$, the nine Jacobi-sum terms simplify, using Step 1, to
+$$
+p-(J+\overline J)+2is(\overline J-J)-2s-1.
+$$
+
+The points at infinity satisfy
+$$
+X^4+Y^4=0.
+$$
+Their number is $4$ when $-1$ is a fourth power and $0$ otherwise, namely
+$$
+2(1+s).
+$$
+Therefore
+$$
+\#C_g(\mathbb F_p)
+=p+1-(J+\overline J)+2is(\overline J-J).
+$$
+
+Step 3: Determine both coordinates of the quartic Jacobi sum
+
+Because $\chi$ takes values in $\mathbb Z[i]$, write
+$$
+J=A+iB,
+\qquad A,B\in\mathbb Z.
 $$
 For a nontrivial multiplicative character $\theta$, let
 $$
 G(\theta)=\sum_{x\in\mathbb F_p}\theta(x)e^{2\pi ix/p}.
 $$
-Expanding $G(A_1)G(A_2)$ and grouping by the sum of the two variables gives
+Expanding products and grouping by the sum of the variables gives
 $$
 G(A_1)G(A_2)=J(A_1,A_2)G(A_1A_2)
 $$
-when $A_1,A_2,A_1A_2$ are nontrivial. Also direct character orthogonality gives
+when $A_1,A_2,A_1A_2$ are nontrivial, while character orthogonality gives
 $$
 |G(\theta)|^2=p.
 $$
-Taking $A_1=A_2=\chi$ therefore yields
+Applying these identities to $A_1=A_2=\chi$ gives
 $$
 J\overline J=p,
 $$
@@ -134,7 +113,7 @@ $$
 A^2+B^2=p.
 $$
 
-It remains to determine the sign of the odd coordinate $A$. Put
+We next determine the sign of $A$. Put
 $$
 \lambda=1+i.
 $$
@@ -146,70 +125,94 @@ The fixed point is $x=1/2$, and every fourth root of unity $\zeta$ satisfies
 $$
 2\zeta\equiv2\pmod{\lambda^3}.
 $$
-Hence
+Therefore
 $$
-J\equiv \chi(1/4)+(p-3)\pmod{\lambda^3}.
+J\equiv\chi(1/4)+(p-3)\pmod{\lambda^3}.
 $$
 Now
 $$
-\chi(1/4)=\chi(4)=\eta(2)=s,
+\chi(1/4)=\eta(2)=s,
 $$
-so, using $p\equiv1\pmod8$ when $s=1$ and $p\equiv5\pmod8$ when $s=-1$,
+so
 $$
 J\equiv-s\pmod{\lambda^3}.
 $$
-Thus $A$ is odd and $B$ is even. From $A^2+B^2=p$, one has
+Since $A^2+B^2=p$, $A$ is odd and $B$ is even; moreover $B\equiv0\pmod4$ for $p\equiv1\pmod8$ and $B\equiv2\pmod4$ for $p\equiv5\pmod8$. The divisibility
 $$
-B\equiv0\pmod4\quad\text{if }p\equiv1\pmod8,
+\lambda^3\mid J+s
 $$
-and
+is equivalent to
 $$
-B\equiv2\pmod4\quad\text{if }p\equiv5\pmod8.
+A+s\equiv B\pmod4,
 $$
-The divisibility $\lambda^3\mid J+s$ is equivalent to
-$$
-A+s\equiv B\pmod4.
-$$
-In both residue classes this gives
+which in both residue classes gives
 $$
 A\equiv-1\pmod4.
 $$
-Therefore, if
+Thus, for the integer $a$ in the problem,
 $$
-p=a^2+b^2,\qquad a\equiv1\pmod4,
-$$
-then necessarily
-$$
-A=-a,\qquad J+\overline J=-2a.
+A=-a.
 $$
 
-Step 4: Combine the cases
+It remains to fix the sign of $B$. Reduce $\mathbb Z[i]$ modulo $p$ by the embedding
+$$
+i\longmapsto r.
+$$
+Because $\chi(g)=i$, the value $\chi(x)$ maps to
+$$
+x^{(p-1)/4}.
+$$
+With $m=(p-1)/4$ we therefore have
+$$
+J\longmapsto\sum_{x\in\mathbb F_p}x^m(1-x)^m.
+$$
+Expanding $(1-x)^m$, every exponent lies between $m$ and $2m<(p-1)$, so each power sum over $\mathbb F_p$ is $0$. Hence the image of $J$ is $0$, and
+$$
+-a+Br\equiv0\pmod p.
+$$
+Thus
+$$
+Br\equiv a\pmod p.
+$$
+By the sign normalization in the problem, this means
+$$
+B=b.
+$$
+Consequently
+$$
+J=-a+ib.
+$$
 
-For $p\equiv1\pmod8$, we have $s=1$, so
+Step 4: Substitute the Gaussian coordinates
+
+From Step 2 and
 $$
-\#C(\mathbb F_p)=p+1+3(-2a)=p+1-6a.
+J=-a+ib,
 $$
-For $p\equiv5\pmod8$, we have $s=-1$, so
+we have
 $$
-\#C(\mathbb F_p)=p+1-(-2a)=p+1+2a.
+-(J+\overline J)=2a
 $$
-Together with Step 1,
+and
 $$
-\#C(\mathbb F_p)=
-\begin{cases}
-p+1,&p\equiv3\pmod4,\\
-p+1-6a,&p\equiv1\pmod8,\\
-p+1+2a,&p\equiv5\pmod8.
-\end{cases}
+2is(\overline J-J)=4sb.
+$$
+Since
+$$
+s=(-1)^{(p-1)/4},
+$$
+it follows that
+$$
+\#C_g(\mathbb F_p)=p+1+2a+4(-1)^{(p-1)/4}b.
 $$
 
-Final Answer: $\boxed{p+1\text{ if }p\equiv3\pmod4;\ p+1-6a\text{ if }p\equiv1\pmod8;\ p+1+2a\text{ if }p\equiv5\pmod8}$
+Final Answer: $\boxed{p+1+2a+4(-1)^{(p-1)/4}b}$
 
 ---
 
 ## Answer
 
-$p+1$ if $p\equiv3\pmod4$; $p+1-6a$ if $p\equiv1\pmod8$; $p+1+2a$ if $p\equiv5\pmod8$
+$p+1+2a+4(-1)^{(p-1)/4}b$
 
 ---
 
@@ -223,11 +226,11 @@ $p+1$ if $p\equiv3\pmod4$; $p+1-6a$ if $p\equiv1\pmod8$; $p+1+2a$ if $p\equiv5\p
 
 ## Solution Concepts
 
-- quartic multiplicative characters
-- Jacobi sums
+- quartic twists of Fermat curves
+- quartic Jacobi sums
 - Gauss sums
-- Gaussian integer norm
-- Fermat quartic over finite fields
+- Gaussian prime normalization
+- finite-field character sums
 
 ---
 
