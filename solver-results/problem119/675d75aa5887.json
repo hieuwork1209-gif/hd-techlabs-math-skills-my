@@ -1,0 +1,22 @@
+{
+  "problem": "problem119",
+  "branch": "adversary/problem119",
+  "problem_path": "workspace/rainier-problem/problem119-group-theory/problem.md",
+  "source_commit_sha": "5c3dbb7a62ec59d8310839ac8b8943eec2366a16",
+  "problem_blob_sha": "675d75aa58874981a58b98edc15af02cefb95301",
+  "statement_sha256": "cc36f9353d950813e07744ffe01a3d21f01d9619c187a00c4aa2f87ff14494ed",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-09T17:34:53+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(a=p+2\\), \\(b=2p+1\\). Identify \\(M_{a,b}(F)\\) with\n\\[\nR=F[x,y]/(x^a,y^b),\n\\]\nso that \\(\\Phi\\) is, up to harmless transpose/sign conventions for nilpotent Jordan blocks, multiplication by\n\\[\nz=x-y.\n\\]\nThus the Jordan block sizes of \\(\\Phi\\) are the invariant factors of \\(R\\) as an \\(F[z]\\)-module.\n\nWrite \\(y=x-z\\). Then\n\\[\nR\\simeq F[z,x]/\\bigl(x^{p+2},(x-z)^{2p+1}\\bigr).\n\\]\nOver characteristic \\(p\\),\n\\[\n(x-z)^{2p+1}=(x-z)(x^p-z^p)^2.\n\\]\nModulo \\(x^{p+2}\\), this becomes\n\\[\nh=-2z^p x^{p+1}+2z^{p+1}x^p+z^{2p}x-z^{2p+1}.\n\\]\nUsing the \\(F[z]\\)-basis \\(1,x,\\dots,x^{p+1}\\), the relations are \\(h,xh,\\dots,x^{p+1}h\\). Elementary Smith reduction of this relation matrix gives invariant factors\n\\[\nz^p,\\quad z^{p+2},\\quad\n\\underbrace{z^{2p},\\dots,z^{2p}}_{p-3\\text{ times}},\\quad\nz^{3p-2},\\quad z^{3p},\\quad z^{3p+2}.\n\\]\nFor completeness, the reduction uses pivots \\(z^p\\), then \\(z^{p+2}\\), then \\(p-3\\) pivots \\(z^{2p}\\). The remaining \\(3\\times3\\) block is, up to units,\n\\[\nz^{3p-2}\n\\begin{pmatrix}\nz^2&0&1\\\\\nz^3&z^2&0\\\\\n0&z^3&z^2\n\\end{pmatrix},\n\\]\nwhose Smith factors are \\(z^{3p-2},z^{3p},z^{3p+2}\\).\n\nSince multiplication by \\(z\\) on \\(F[z]/(z^m)\\) is one nilpotent Jordan block of size \\(m\\), the Jordan canonical form is\n\\[\n\\boxed{\nJ_p\\oplus J_{p+2}\\oplus (p-3)J_{2p}\\oplus J_{3p-2}\\oplus J_{3p}\\oplus J_{3p+2}\n}.\n\\]\nThe dimensions check:\n\\[\np+(p+2)+(p-3)2p+(3p-2)+3p+(3p+2)=(p+2)(2p+1).\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-09T17:39:21+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem119/675d75aa5887.json"
+}
