@@ -2,16 +2,19 @@
 
 ## LaTeX (Normalized)
 
-Let $p\ge5$ be a prime, let $F=\mathbb F_p$, and for $r\ge1$ write
+Let $p$ be an odd prime, let $F=\mathbb F_p$, let
 $$
-J_r=J_r(0)
+V=F^{p+1},
 $$
-for the nilpotent Jordan block of size $r$. Define the $F$-linear Sylvester operator
+and let $N=J_{p+1}(0)$ be the nilpotent Jordan block of size $p+1$. Define the induced $F$-linear operator
 $$
-\Phi:M_{p+2,\,2p+1}(F)\to M_{p+2,\,2p+1}(F),\qquad
-\Phi(X)=J_{p+2}X-XJ_{2p+1}.
+\Psi:\Lambda^2V\to\Lambda^2V,
 $$
-Determine the Jordan canonical form of $\Phi$ over $F$; equivalently, determine the sizes and multiplicities of all nilpotent Jordan blocks of $\Phi$.
+by
+$$
+\Psi(u\wedge v)=Nu\wedge v+u\wedge Nv.
+$$
+Determine the Jordan canonical form of $\Psi$ over $F$; equivalently, determine the sizes and multiplicities of all nilpotent Jordan blocks of $\Psi$.
 
 ---
 
@@ -28,4 +31,4 @@ Determine the Jordan canonical form of $\Phi$ over $F$; equivalently, determine 
 
 ## Domain Explanation
 
-The problem asks for the complete Jordan canonical form of a Sylvester operator built from two nilpotent Jordan blocks whose sizes interact nontrivially with the characteristic. The essential task is to convert the operator into a truncated-polynomial module and determine its invariant factors, so Linear Algebra -> Matrix decompositions and canonical forms is the appropriate classification.
+The problem asks for the complete Jordan canonical form of the natural operator induced by a nilpotent Jordan block on the exterior square representation. The characteristic interacts with the tensor-product Jordan structure and the symmetric/exterior decomposition, so Linear Algebra -> Matrix decompositions and canonical forms is the appropriate classification.
