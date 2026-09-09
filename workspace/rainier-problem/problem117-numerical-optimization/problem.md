@@ -2,28 +2,47 @@
 
 ## LaTeX (Normalized)
 
-Let
+For $k=0,1,2$, let
 $$
-f(x)=\frac12\left(x_1^2+3x_2^2+7x_3^2\right),
-\qquad x\in\mathbb R^3.
+R_k=
+\begin{bmatrix}
+\cos(k\pi/3)&-\sin(k\pi/3)\\
+\sin(k\pi/3)&\cos(k\pi/3)
+\end{bmatrix},
+\qquad
+P_k=R_k
+\begin{bmatrix}1&0\\0&4\end{bmatrix}
+R_k^T.
 $$
-Choose step sizes $0<\alpha_0,\alpha_1,\alpha_2\le\frac12$. Starting from any $x_0\in\mathbb R^3$, set $x_{-1}=x_0$ and apply the heavy-ball iteration
+Consider
 $$
-x_{k+1}=x_k-\alpha_{k\bmod3}\nabla f(x_k)+\frac13(x_k-x_{k-1}),
-\qquad k\ge0.
+f(x)=\frac12\|x\|_2^2.
 $$
-For the first cycle define
+Choose step sizes
+$$
+0<\alpha_k\le\frac12,
+\qquad k=0,1,2,
+$$
+and perform one cyclic preconditioned-gradient sweep
+$$
+x_{k+1}=x_k-\alpha_kP_k\nabla f(x_k),
+\qquad k=0,1,2.
+$$
+Define
 $$
 R(\alpha_0,\alpha_1,\alpha_2)
-=\sup_{x_0\ne0}
-\frac{\max\left\{\frac14\|x_1\|_2,\frac12\|x_2\|_2,\|x_3\|_2\right\}}
-{\|x_0\|_2},
+=\sup_{x_0\ne0}\frac{\|x_3\|_2}{\|x_0\|_2},
 $$
 and let
 $$
-R_*=\min_{0<\alpha_0,\alpha_1,\alpha_2\le1/2}R(\alpha_0,\alpha_1,\alpha_2).
+R_*=
+\min_{0<\alpha_0,\alpha_1,\alpha_2\le1/2}
+R(\alpha_0,\alpha_1,\alpha_2).
 $$
-Determine the ordered pair $(R_*,\alpha_*)$, where $\alpha_*=(\alpha_0,\alpha_1,\alpha_2)$ is an optimizing ordered triple.
+Determine
+$$
+\bigl(R_*,(\alpha_0^*,\alpha_1^*,\alpha_2^*)\bigr).
+$$
 
 ---
 
@@ -40,4 +59,4 @@ Determine the ordered pair $(R_*,\alpha_*)$, where $\alpha_*=(\alpha_0,\alpha_1,
 
 ## Domain Explanation
 
-The task tunes a periodic heavy-ball schedule on a strongly convex quadratic under a transient-sensitive minimax criterion. Momentum couples successive spectral residuals through a second-order recurrence, so the optimizer cannot be obtained from independent gradient-descent prefix products. The proof requires a spectral recurrence, coupled feasibility constraints, and an affine elimination certificate for the third step, placing the problem squarely in numerical optimization.
+This problem asks for optimal tuning of a cyclic preconditioned-gradient method with three symmetric positive-definite preconditioners whose eigendirections rotate between stages. Because the update matrices do not commute, the cycle cannot be reduced to a scalar residual polynomial. The sharp solution instead depends on rank loss and geometric alignment of successive eigenspaces, which are natural finite-step phenomena in numerical optimization.
