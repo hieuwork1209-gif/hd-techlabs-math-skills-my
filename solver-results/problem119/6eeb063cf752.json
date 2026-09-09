@@ -1,0 +1,22 @@
+{
+  "problem": "problem119",
+  "branch": "adversary/problem119",
+  "problem_path": "workspace/rainier-problem/problem119-group-theory/problem.md",
+  "source_commit_sha": "a091960beaca3bf04bbad088fd5db5fc3967d6dd",
+  "problem_blob_sha": "6eeb063cf752dac57e9aa932e99f6986e1ef0609",
+  "statement_sha256": "708ed446ec03774eb5b93c3ffbc7eb1b0924f0fdd0969c39fe8be690f0b73a51",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-09T18:17:18+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(\\chi:\\mathbb F_p^\\times\\to\\{1,i,-1,-i\\}\\) be the quartic character with \\(\\chi(g)=i\\), extended by \\(\\chi(0)=0\\). Put\n\\[\n\\varepsilon=\\chi(4)=\\left(\\frac2p\\right)=(-1)^{b/2},\n\\]\nwhere \\(b\\) is even since \\(p=a^2+b^2\\) and \\(a\\) is odd.\n\nFor the diagonal quartic\n\\[\nX^4+Y^4=gZ^4,\n\\]\nthe primitive character pairs are\n\\[\n(u,v)\\in\\{1,2,3\\}^2,\\qquad u+v\\not\\equiv0\\pmod4.\n\\]\nThe corresponding Frobenius eigenvalues are\n\\[\n-\\chi^{u+v}(g)J(\\chi^u,\\chi^v),\n\\]\nwhere\n\\[\nJ(\\alpha,\\beta)=\\sum_{x\\in\\mathbb F_p}\\alpha(x)\\beta(1-x).\n\\]\n\nThe quartic Jacobi sum determined by the condition \\(br\\equiv a\\pmod p\\) is\n\\[\nJ(\\chi,\\chi)=-a+bi.\n\\]\nAlso\n\\[\nJ(\\chi,\\chi^2)=\\chi(4)J(\\chi,\\chi)=\\varepsilon(-a+bi),\n\\]\nusing the substitution \\(x=4t(1-t)\\), since the number of \\(t\\) with \\(4t(1-t)=x\\) is \\(1+\\chi^2(1-x)\\). Taking conjugates gives the remaining sums.\n\nThus the six values \\(\\chi^{u+v}(g)J(\\chi^u,\\chi^v)\\) are\n\\[\na\\pm bi,\\qquad \\varepsilon(b\\pm ai),\\qquad \\varepsilon(b\\pm ai),\n\\]\nso the Frobenius eigenvalues are their negatives. Therefore\n\\[\nL_{C_g}(T)\n=(1+2aT+pT^2)(1+2\\varepsilon bT+pT^2)^2.\n\\]\n\nHence\n\\[\n\\boxed{L_{C_g}(T)=\\bigl(1+2aT+pT^2\\bigr)\\bigl(1+2(-1)^{b/2}bT+pT^2\\bigr)^2.}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-09T18:19:55+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem119/6eeb063cf752.json"
+}
