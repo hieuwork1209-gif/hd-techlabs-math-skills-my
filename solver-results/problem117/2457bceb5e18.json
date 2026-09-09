@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "58d9d5401b909d09f96f8de6dffc5eed167494d6",
+  "problem_blob_sha": "2457bceb5e18a1cab2e3a886593e20aec3ff88b1",
+  "statement_sha256": "5c823202ecf39dd045a77aef0acb2a5e16e155f1b0712c9186579f80d9163b47",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-09T07:18:47+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "For \\(f(x)=\\frac12\\|x\\|^2\\), we have \\(\\nabla f(x)=x\\), so each step is multiplication by\n\\[\nA_k=I-\\alpha_k P_k.\n\\]\nThe eigenvalues of \\(A_k\\) are\n\\[\n1-\\alpha_k,\\qquad 1-4\\alpha_k.\n\\]\nSince \\(0<\\alpha_k\\le \\frac12\\), the first eigenvalue is always positive. Thus \\(A_k\\) is singular exactly when\n\\[\n\\alpha_k=\\frac14.\n\\]\n\nThe product is\n\\[\nx_3=A_2A_1A_0x_0,\n\\]\nso\n\\[\nR(\\alpha_0,\\alpha_1,\\alpha_2)=\\|A_2A_1A_0\\|_2.\n\\]\nSince a norm is nonnegative, the best possible value is at least \\(0\\). It remains to see whether the product can be made exactly zero.\n\nLet \\(u_k\\) be the unit vector at angle \\(k\\pi/3\\). When \\(\\alpha_k=\\frac14\\),\n\\[\nA_k=\\frac34\\,u_ku_k^T,\n\\]\nthe rank-one projection onto the line spanned by \\(u_k\\), scaled by \\(3/4\\).\n\nTake\n\\[\n\\alpha_0=\\alpha_2=\\frac14.\n\\]\nThen\n\\[\nA_2A_1A_0=0\n\\]\nis equivalent to\n\\[\nu_2^T A_1 u_0=0.\n\\]\nNow \\(A_1\\) has eigenvalue \\(1-\\alpha_1\\) along \\(u_1\\) and eigenvalue \\(1-4\\alpha_1\\) along the perpendicular direction \\(v_1\\). Since\n\\[\nu_0=\\frac12u_1-\\frac{\\sqrt3}{2}v_1,\n\\qquad\nu_2=\\frac12u_1+\\frac{\\sqrt3}{2}v_1,\n\\]\nwe get\n\\[\nu_2^TA_1u_0\n=\n\\frac14(1-\\alpha_1)-\\frac34(1-4\\alpha_1)\n=\n\\frac{-2+11\\alpha_1}{4}.\n\\]\nThus \\(u_2^TA_1u_0=0\\) exactly when\n\\[\n\\alpha_1=\\frac{2}{11}.\n\\]\nThis is admissible because \\(0<2/11<1/2\\). Therefore\n\\[\nA_2A_1A_0=0,\n\\]\nso \\(R=0\\).\n\nSince \\(R\\ge0\\) always, this is optimal. Hence\n\\[\n\\boxed{\\left(R_*,(\\alpha_0^*,\\alpha_1^*,\\alpha_2^*)\\right)\n=\n\\left(0,\\left(\\frac14,\\frac{2}{11},\\frac14\\right)\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-09T07:20:17+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/2457bceb5e18.json"
+}
