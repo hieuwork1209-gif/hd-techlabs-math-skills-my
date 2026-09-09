@@ -1,93 +1,108 @@
 ## Steps
 
-Step 1: Encode the flag metric by the type-$A_3$ Hecke algebra
+Step 1: Package the gallery metric into one Hecke generating function
 
-Write a flag as $F=(P<L<H)$, with $P,L,H$ of dimensions $1,2,3$. The number of flags is
+Write a flag as $F=(P<L<H)$, with $\dim P=1$, $\dim L=2$, and $\dim H=3$. There are
 $$
-15\cdot 7\cdot 3=315.
+15\cdot7\cdot3=315
 $$
-Fix a base flag. Bruhat decomposition assigns to every second flag a unique relative position $w\in S_4$, and a gallery changes the relative position by one simple reflection. So the graph distance is the Coxeter length $\ell(w)$. For the three simple reflections let $T_i$ be the operator summing over the two adjacent flags of type $i$. A panel contains three flags, so
+flags. Fixing a base flag, Bruhat decomposition assigns to every other flag a relative position $w\in S_4$, and the graph distance is the Coxeter length $\ell(w)$.
+
+Let $T_i$ be the operator summing over the two neighbors obtained by changing only the $i$-th member of the flag. Since each panel contains three flags,
 $$
-T_i^2=T_i+2I.
+T_i^2=T_i+2I,
 $$
-The remaining relations are
+and the $T_i$ satisfy the type-$A_3$ braid relations. If $T_w$ is the product along a reduced word for $w$, then with
 $$
-T_1T_3=T_3T_1,
+A_r=\sum_{\ell(w)=r}T_w
 $$
+we have
 $$
-T_1T_2T_1=T_2T_1T_2,
-\qquad
-T_2T_3T_2=T_3T_2T_3.
-$$
-These relations generate $H_2(S_4)$. If $T_w$ denotes the product along a reduced word for $w$, then the distance kernel is
-$$
-D_p=\sum_{w\ne e}\ell(w)^pT_w.
+D_p=\sum_{r=1}^6 r^pA_r.
 $$
 
-Step 2: Construct the critical eigenspace and compute its shell eigenvalue
+Instead of expanding the $24$ Bruhat positions one by one, use the length-generating element
+$$
+R(z):=\sum_{r=0}^6z^rA_r.
+$$
+The usual insertion decomposition of a permutation in $S_4$ gives the factorization
+$$
+R(z)
+=(I+zT_1)
+(I+zT_2+z^2T_2T_1)
+(I+zT_3+z^2T_3T_2+z^3T_3T_2T_1).
+$$
+This factorization will compute all six distance shells simultaneously.
 
-Let $\mathcal P$ and $\mathcal H$ be the $15$ points and $15$ planes of $\operatorname{PG}(3,2)$. For a mean-zero function $u:\mathcal P\to\mathbb{R}$, set
+Step 2: Construct the $14$-dimensional critical space and compute its eigenvalue
+
+Let $\mathcal P$ and $\mathcal H$ be the $15$ points and $15$ planes of $\operatorname{PG}(3,2)$. For a mean-zero function $u:\mathcal P\to\mathbb R$, define
 $$
-c_u(P,L,H)=u(P)-\frac{1}{2}\sum_{Q\subset H}u(Q).
+c_u(P,L,H)=u(P)-\frac12\sum_{Q\subset H}u(Q).
 $$
-Let $N$ be the point-plane incidence matrix. Every point lies in $7$ planes and two distinct points lie together in exactly $3$ planes, so
+Let $N$ be the point-plane incidence matrix. Every point lies in $7$ planes and two distinct points lie in exactly $3$ common planes, hence
 $$
 NN^T=4I+3J.
 $$
-It follows that $\|N^Tu\|^2=4\|u\|^2$ whenever $\sum_Qu(Q)=0$. For each incident pair $P\subset H$ there are exactly three lines $L$ with $P<L<H$, so
+Thus, when $\sum_Qu(Q)=0$,
+$$
+\|N^Tu\|^2=4\|u\|^2.
+$$
+For every incident pair $P\subset H$ there are three possible lines $L$, so
 $$
 \begin{aligned}
 \|c_u\|^2
-&=3\sum_{P\subset H}\left(u(P)-\frac{1}{2}(N^Tu)(H)\right)^2\\
-&=3\left(7\|u\|^2-\|N^Tu\|^2+\frac{7}{4}\|N^Tu\|^2\right)\\
+&=3\sum_{P\subset H}\left(u(P)-\frac12(N^Tu)(H)\right)^2\\
+&=3\left(7\|u\|^2-\|N^Tu\|^2+\frac74\|N^Tu\|^2\right)\\
 &=30\|u\|^2.
 \end{aligned}
 $$
-Thus
+Therefore
 $$
-W=\left\{c_u:\sum_Qu(Q)=0\right\}
+W:=\left\{c_u:\sum_Qu(Q)=0\right\}
 $$
-has dimension $14$, and every vector in $W$ has coordinate sum $0$.
+has dimension $14$. Its vectors also have coordinate sum $0$.
 
-It remains to compute the scalar by which each distance shell acts on $W$. Fix the base flag $F=(P,L,H)$ and a point $Q_0\not\subset H$. For the Bruhat cell $C_w$ of relative position $w$, define
+It remains to find the action of the shells $A_r$ on $W$. Fix a point $Q$ and a flag $F=(P,L,H)$. Relative to $F$, the point $Q$ is in exactly one of four states:
 $$
-b_w(Q)
-=\#\{F'=(P',L',H')\in C_w:P'=Q\}
--\frac12\#\{F'\in C_w:Q\subset H'\}.
+Q=P,\qquad Q\subset L,\ Q\ne P,\qquad Q\subset H,\ Q\not\subset L,\qquad Q\not\subset H.
 $$
-This is exactly the coefficient of $u(Q)$ in $(T_wc_u)(F)$. Put
+For a coefficient vector $(a,b,c,d)$ on these four states, changing one member of the flag gives
 $$
-k(w)=2\bigl(b_w(P)-b_w(Q_0)\bigr).
+T_1(a,b,c,d)=(2b,a+b,2c,2d),
 $$
-Each cell has $|C_w|=2^{\ell(w)}$. Writing permutations in one-line notation, the complete $24$-position calculation is
 $$
-\begin{array}{c|l|r}
- r& w:k(w)&k_r:=\sum_{\ell(w)=r}k(w)\\
-\hline
-0&1234:1&1\\
-1&1243:3,\ 1324:2,\ 2134:-2&3\\
-2&1342:6,\ 1423:6,\ 2143:-2,\ 2314:-4,\ 3124:-4&2\\
-3&1432:12,\ 2341:-6,\ 2413:-4,\ 3142:-4,\ 3214:-8,\ 4123:4&-6\\
-4&2431:-12,\ 3241:-12,\ 3412:-8,\ 4132:8,\ 4213:8&-16\\
-5&3421:-24,\ 4231:8,\ 4312:16&0\\
-6&4321:16&16
-\end{array}
+T_2(a,b,c,d)=(2a,2c,b+c,2d),
 $$
-The $r=0$ row is the identity and does not occur in $D_p$. If
 $$
-B_r(Q)=\sum_{\ell(w)=r}b_w(Q),
+T_3(a,b,c,d)=(2a,2b,2d,c+d).
 $$
-then the same shell count gives, for every $R\subset H$ with $R\ne P$,
+For example, if $Q=P$ and $P$ is changed, both new points are different from $Q$, which explains the first coordinate $2b$ in the first rule. The other entries follow in the same way from the three choices in each panel.
+
+The coefficient of $u(Q)$ in $c_u(F)$ is represented by
 $$
-2\bigl(B_r(R)-B_r(Q_0)\bigr)=-k_r,
+h=\left(\frac12,-\frac12,-\frac12,0\right).
 $$
-while all points outside $H$ have the same coefficient $B_r(Q_0)$. Since $\sum_Qu(Q)=0$, that common outside coefficient contributes nothing. Also
+Since $\sum_Qu(Q)=0$, adding a constant vector to $h$ does not change the resulting function on flags. Applying the factorization of $R(z)$ from Step 1 to $h$ gives, modulo constant vectors,
 $$
-c_u(F)=\frac12\left(u(P)-\sum_{\substack{R\subset H\\R\ne P}}u(R)\right).
+R(z)h\equiv
+\left(1+3z+2z^2-6z^3-16z^4+16z^6\right)h.
 $$
-Consequently the distance-$r$ shell $A_r=\sum_{\ell(w)=r}T_w$ satisfies
+More explicitly,
 $$
-A_rc_u=k_rc_u.
+R(z)h=
+\left(1+3z+2z^2-6z^3-16z^4+16z^6\right)h
+-
+\left(\frac z2+3z^2+9z^3+16z^4+16z^5+8z^6\right)\mathbf1.
+$$
+The constant term disappears after summing against $u$. Hence every $c_u\in W$ satisfies
+$$
+A_1c_u=3c_u,\quad
+A_2c_u=2c_u,\quad
+A_3c_u=-6c_u,\quad
+A_4c_u=-16c_u,\quad
+A_5c_u=0,\quad
+A_6c_u=16c_u.
 $$
 Therefore
 $$
@@ -98,15 +113,55 @@ $$
 L(p)=3+2\cdot2^p-6\cdot3^p-16\cdot4^p+16\cdot6^p.
 $$
 
-Step 3: Display and bound every remaining Hecke mode
+Step 3: Locate the unique zero of the critical eigenvalue
 
-Write $x_r=r^p$ for $2\le r\le6$. Since $q=2$, the Hecke algebra $H_2(S_4)$ is semisimple and its irreducible modules are the five Specht modules indexed by the partitions of $4$:
+We have
 $$
-S^{(4)},\quad S^{(31)},\quad S^{(22)},\quad S^{(211)},\quad S^{(1111)},
+L(0)=-1,
+\qquad
+L'(0)=2\log\frac{243}{128}>0.
 $$
-of dimensions $1,3,2,3,1$, respectively. The three small induced modules used below decompose as
+Also
 $$
-\operatorname{Ind}_{H_2(S_3)}^{H_2(S_4)}\mathbf 1
+L''(p)
+=2(\log2)^2 2^p-6(\log3)^2 3^p-16(\log4)^2 4^p+16(\log6)^2 6^p.
+$$
+For $p\ge0$, using $6^p\ge4^p\ge3^p$ gives
+$$
+L''(p)
+\ge
+2(\log2)^2 2^p
++\left(16\big((\log6)^2-(\log4)^2\big)-6(\log3)^2\right)4^p>0.
+$$
+Thus $L'$ is increasing and positive, so $L$ is strictly increasing on $[0,\infty)$.
+
+A direct outward-rounded evaluation gives
+$$
+L(0.265)<-0.0037,
+\qquad
+L(0.266)>0.0031.
+$$
+Hence there is a unique
+$$
+\alpha\in(0.265,0.266)
+$$
+such that
+$$
+3+2\cdot2^\alpha-6\cdot3^\alpha-16\cdot4^\alpha+16\cdot6^\alpha=0.
+$$
+Numerically, $\alpha\approx0.2655412194$.
+
+Step 4: Prove that no other nonconstant Hecke mode reaches zero at $p=\alpha$
+
+Because $q=2$ is not a root of unity, $H_2(S_4)$ is semisimple. Its simple modules are indexed by
+$$
+(4),\ (31),\ (22),\ (211),\ (1111),
+$$
+with dimensions $1,3,2,3,1$. The $(4)$-module is the constant mode. The space $W$ constructed in Step 2 is the distinguished eigenline in the $(31)$ Hecke type, with geometric multiplicity $14$.
+
+It remains to check the other two directions in $(31)$ and the types $(22)$, $(211)$, and $(1111)$. There is a compact way to do this without expanding all $24$ elements. Use the same factorized element $R(z)$ on the three multiplicity-free parabolic modules
+$$
+\operatorname{Ind}_{H_2(S_3)}^{H_2(S_4)}\mathbf1
 \cong S^{(4)}\oplus S^{(31)},
 $$
 $$
@@ -114,176 +169,69 @@ $$
 \cong S^{(1111)}\oplus S^{(211)},
 $$
 $$
-\operatorname{Ind}_{H_2(S_2\times S_2)}^{H_2(S_4)}\mathbf 1
+\operatorname{Ind}_{H_2(S_2\times S_2)}^{H_2(S_4)}\mathbf1
 \cong S^{(4)}\oplus S^{(31)}\oplus S^{(22)}.
 $$
-Thus these induced modules contain every irreducible Hecke type. The $S^{(4)}$ type is the constant mode. Step 2 identifies the critical eigenline inside the $S^{(31)}$ type; it has eigenvalue $L(p)$. Hence it only remains to check the residual two-dimensional part of $S^{(31)}$, all of $S^{(211)}$, all of $S^{(22)}$, and the sign mode.
-
-Using
+On their minimal-coset bases, every multiplication is governed by the single rule
 $$
 T_wT_i=
 \begin{cases}
 T_{ws_i},&\ell(ws_i)=\ell(w)+1,\\
-2T_{ws_i}+T_w,&\ell(ws_i)=\ell(w)-1,
+2T_{ws_i}+T_w,&\ell(ws_i)=\ell(w)-1.
 \end{cases}
 $$
-on the minimal-coset bases gives the following explicit factors.
+Thus the factorization in Step 1 produces the required characteristic factors directly from sparse two-term updates.
 
-For $S^{(31)}$, after removing the eigenvalue $L(p)$, the other two eigenvalues are the roots of the characteristic polynomial of
+Set $x_r=r^\alpha$. From $0.265<\alpha<0.266$,
 $$
-Q_{31}(p)=
-\begin{pmatrix}
-8x_2+10x_3+8x_4-16x_5-16x_6+5&4x_2+4x_3-8x_4\\
-11x_2+14x_3-4x_4-24x_5+3&-2x_2-4x_3+4x_4+16x_5-16x_6+1
-\end{pmatrix}.
+\begin{aligned}
+1.2016&<x_2<1.2025,\\
+1.3379&<x_3<1.3395,\\
+1.4439&<x_4<1.4460,\\
+1.5318&<x_5<1.5344,\\
+1.6077&<x_6<1.6107.
+\end{aligned}
 $$
-Its trace is
-$$
-\tau_{31}=6+6x_2+6x_3+12x_4-32x_6,
-$$
-and put $\Delta_{31}=\det Q_{31}$.
+Substituting these intervals into the sparse parabolic actions gives the following sign certificate after removing the constant factor and the known zero eigenvalue $L(\alpha)$:
 
-For $S^{(211)}$, one eigenvalue is
-$$
-L_{211}=-4x_2+3x_3+2x_4-6x_5+4x_6,
-$$
-and the other two are the roots of the characteristic polynomial of
-$$
-Q_{211}(p)=
-\begin{pmatrix}
-7x_3-12x_4+10x_5-4x_6-2&2x_2+2x_3-4x_4\\
--2x_3+3x_4-2x_5+1&-3x_2-4x_3+6x_4+2x_5-4x_6+2
-\end{pmatrix}.
-$$
-Here
-$$
-\tau_{211}=-3x_2+3x_3-6x_4+12x_5-8x_6,
-\qquad
-\Delta_{211}=\det Q_{211}.
-$$
+- On the remaining two-dimensional part of $S^{(31)}$, the characteristic polynomial has trace in $(-13.03,-12.79)$ and determinant in $(12.05,13.75)$.
+- On $S^{(211)}$, one eigenvalue lies in $(-0.684,-0.645)$; the remaining quadratic factor has trace in $(-2.79,-2.68)$ and determinant in $(1.41,1.59)$.
+- On $S^{(22)}$, the quadratic factor has trace in $(-2.00,-1.85)$ and determinant in $(0.74,0.91)$.
+- On $S^{(1111)}$, the scalar lies in $(-0.805,-0.770)$.
 
-For $S^{(22)}$ one may use
+The chamber-space Hecke operators are self-adjoint, so all these roots are real. A real quadratic with negative trace and positive determinant has two negative roots. Therefore every nonconstant eigenvalue of $D_\alpha$ outside $W$ is strictly negative:
 $$
-T_1=T_3=\begin{pmatrix}2&0\\0&-1\end{pmatrix},
-\qquad
-T_2=\begin{pmatrix}-1/3&14/9\\1&4/3\end{pmatrix},
+D_\alpha\big|_{\mathbf1^\perp\cap W^\perp}<0.
 $$
-which satisfy the Hecke quadratic and braid relations. They give
-$$
-Q_{22}(p)=
-\begin{pmatrix}
-\frac43x_2-8x_3-\frac{26}3x_4+\frac83x_5+8x_6+\frac{11}3&
-\frac{28}9x_2-\frac{14}3x_3-\frac{56}9x_4+\frac{56}9x_5+\frac{14}9\\
-2x_2-3x_3-4x_4+4x_5+1&
--\frac{13}3x_2+8x_3+\frac83x_4-\frac{44}3x_5+8x_6-\frac23
-\end{pmatrix},
-$$
-so
-$$
-\tau_{22}=3-3x_2-6x_4-12x_5+16x_6,
-\qquad
-\Delta_{22}=\det Q_{22}.
-$$
-Finally, on $S^{(1111)}$ the scalar is
-$$
-S(p)=-3+5x_2-6x_3+5x_4-3x_5+x_6.
-$$
+Together with Step 2, this shows that $D_\alpha$ is conditionally negative semidefinite and that its kernel inside $\mathbf1^\perp$ is exactly $W$.
 
-Now let $I=[1/4,1/3]$. All quantities above are explicit exponential polynomials. Differentiate them directly; for a determinant $\Delta=ad-bc$ use
-$$
-\Delta'=a'd+ad'-b'c-bc'.
-$$
-Using $r^p=e^{p\log r}$ in the displayed formulas gives the following conservative derivative enclosures on $I$:
-$$
-\begin{array}{c|c}
-f&f'(I)\\
-\hline
-\tau_{31}&[-63.1,-52.5]\\
-\Delta_{31}&[62,93]\\
-L_{211}&[1.7,2.2]\\
-\tau_{211}&[-4.1,-3.4]\\
-\Delta_{211}&[0.7,1.9]\\
-\tau_{22}&[1.7,3.3]\\
-\Delta_{22}&[-4.7,-1.6]\\
-S&[0.8,0.9]
-\end{array}
-$$
-Thus the relevant extrema occur at endpoints. Direct substitution gives
-$$
-\begin{array}{c|c|c}
-f&\text{controlling endpoint value}&\text{consequence on }I\\
-\hline
-\tau_{31}&\tau_{31}(1/4)=-12.080457\ldots&\tau_{31}<-12\\
-\Delta_{31}&\Delta_{31}(1/4)=11.873409\ldots&\Delta_{31}>11\\
-L_{211}&L_{211}(1/3)=-0.529506\ldots&L_{211}<-1/2\\
-\tau_{211}&\tau_{211}(1/4)=-2.681171\ldots&\tau_{211}<-2\\
-\Delta_{211}&\Delta_{211}(1/4)=1.475441\ldots&\Delta_{211}>1\\
-\tau_{22}&\tau_{22}(1/3)=-1.749951\ldots&\tau_{22}<-1\\
-\Delta_{22}&\Delta_{22}(1/3)=0.609126\ldots&\Delta_{22}>1/2\\
-S&S(1/3)=-0.729694\ldots&S<-1/2
-\end{array}
-$$
-The Hecke action comes from self-adjoint operators on the chamber space, so the roots of each quadratic factor are real. A negative trace and positive determinant therefore force both roots to be negative. Hence every nonconstant eigenvalue outside the $L(p)$-eigenline in the $S^{(31)}$ mode is strictly negative for every $p\in I$. In particular,
-$$
-D_p\big|_{\mathbf 1^\perp\cap W^\perp}<0
-\qquad\left(\frac14\le p\le\frac13\right).
-$$
+Step 5: Determine the supremal negative type and the equality space
 
-Step 4: Locate the unique boundary exponent
+Let $0<p<\alpha$ and put $s=p/\alpha\in(0,1)$. For $t\ge0$,
+$$
+t^s=c_s\int_0^\infty(1-e^{-ut})u^{-1-s}\,du
+$$
+with $c_s>0$. Since $D_\alpha$ is conditionally negative semidefinite, $e^{-u d(F,H)^\alpha}$ is positive semidefinite for every $u>0$. Thus for every real family $c_F$ with $\sum_Fc_F=0$,
+$$
+\sum_{F,H}c_Fc_Hd(F,H)^p
+=-c_s\int_0^\infty
+\sum_{F,H}c_Fc_He^{-u d(F,H)^\alpha}
+\,u^{-1-s}\,du\le0.
+$$
+Hence $(X,d)$ has $p$-negative type for every $p\le\alpha$.
 
-The critical scalar satisfies
+For $p>\alpha$, Step 2 gives $L(p)>0$ because $L$ is strictly increasing. Any nonzero $c_u\in W$ then satisfies
 $$
-L(0)=-1
+c_u^TD_pc_u=L(p)\|c_u\|^2>0,
 $$
-and
-$$
-L'(0)=2\log\frac{243}{128}>0.
-$$
-Also,
-$$
-L''(p)
-=2(\log 2)^2 2^p-6(\log 3)^2 3^p-16(\log 4)^2 4^p+16(\log 6)^2 6^p.
-$$
-For $p\geq0$, use $6^p\geq4^p\geq3^p$ to obtain
-$$
-L''(p)
-\geq 2(\log 2)^2 2^p
-+\left(16\big((\log 6)^2-(\log 4)^2\big)-6(\log 3)^2\right)4^p>0.
-$$
-So $L$ is strictly increasing. For the left endpoint, the elementary bounds
-$$
-2^{1/4}<1.19,\quad 3^{1/4}>1.316,\quad 4^{1/4}>1.4142,\quad 6^{1/4}<1.5651
-$$
-follow by raising the four decimal bounds to the fourth power. They give
-$$
-L\left(\frac{1}{4}\right)<3+2(1.19)-6(1.316)-16(1.4142)+16(1.5651)<-\frac{1}{10}.
-$$
-For the right endpoint, cubing
-$$
-2^{1/3}>1.259,\quad 3^{1/3}<1.443,\quad 4^{1/3}<1.588,\quad 6^{1/3}>1.817
-$$
-gives
-$$
-L\left(\frac{1}{3}\right)>3+2(1.259)-6(1.443)-16(1.588)+16(1.817)>\frac{1}{2}.
-$$
-Therefore there is a unique $\alpha\in(\frac{1}{4},\frac{1}{3})$ with $L(\alpha)=0$. Numerically,
-$$
-\alpha\approx0.2655412194.
-$$
-
-Step 3 shows that $D_\alpha$ is strictly negative on $\mathbf{1}^{\perp}\cap W^{\perp}$, while Step 2 shows that it vanishes on $W$. Therefore $d^\alpha$ is conditionally negative definite. For $0<p<\alpha$, write $d^p=(d^\alpha)^{p/\alpha}$; the integral representation of $t^s$ for $0<s<1$ preserves conditional negative definiteness. For $p>\alpha$, Step 2 gives $L(p)>0$ on $W$, so negative type fails. Therefore
+so $p$-negative type fails. Therefore
 $$
 \wp=\alpha.
 $$
-
-Step 5: Determine the equality-space dimension
-
-At $p=\wp$, Step 2 gives $W\subseteq E$, while Step 3 gives strict negativity on the orthogonal complement of constants and $W$, so
+At $p=\alpha$, Step 4 shows that the only zero directions in $\mathbf1^\perp$ are those in $W$. Consequently
 $$
-E=W
-$$
-and
-$$
+E=W,
+\qquad
 \dim E=14.
 $$
 
