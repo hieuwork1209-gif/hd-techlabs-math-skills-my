@@ -1,225 +1,159 @@
 ## Steps
 
-Step 1: Parametrize admissible subgroups and keep the pair condition coupled
+Step 1: Convert the commutator operator to multiplication on a truncated polynomial ring
 
-Let
+Let $F=\mathbb F_p$ and let $J=J_{p+1}(0)$. Under the tensor identification
 $$
-U=\mathbb F_p^3,\qquad Z=Z(G)=\{(0,0,t):t\in\mathbb F_p\}.
+M_{p+1}(F)\cong F^{p+1}\otimes (F^{p+1})^*,
 $$
-The commutator is
+the operator
 $$
-[(u,v,t),(u',v',t')]=(0,0,u\cdot v'-u'\cdot v).
+\Phi(X)=JX-XJ
 $$
-Hence every admissible subgroup is uniquely
+is represented by
 $$
-A_T=\{(u,Tu,t):u\in U,\ t\in\mathbb F_p\},
+J\otimes I-I\otimes J^T.
 $$
-where
+Since $J^T$ is similar to $J$, $\Phi$ is similar to multiplication by $x-y$ on
 $$
-T=T^T,\qquad \det T\ne0,\qquad \dim\ker(T-I)=1.
+A=F[x,y]/(x^{p+1},y^{p+1}).
 $$
-Write
+Put $z=x-y$, so $x=z+y$. Then
 $$
-L(T)=\ker(T-I).
+A\cong F[z,y]/\bigl(y^{p+1},(z+y)^{p+1}\bigr).
 $$
-Then $L(T)=\ell(A_T)$, so the extra condition on an ordered pair is
+Because the characteristic is $p$,
 $$
-L(T)\perp L(S).
+(z+y)^{p+1}=z^{p+1}+z^py+zy^p+y^{p+1}.
 $$
-Let $X$ be the set of admissible matrices. Since $Q\cdot A_T=A_{QTQ^{-1}}$ and $-I$ acts trivially, we may average over
+Thus, after imposing $y^{p+1}=0$, the second relation becomes
 $$
-H=SO_3(\mathbb F_p),\qquad |H|=p(p^2-1).
+q=z^{p+1}+z^py+zy^p=0.
 $$
-For a line $L\le U$, define
-$$
-c_Q(L)=\#\{T\in X:QT=TQ,\ L(T)=L\}.
-$$
-The number of allowed ordered pairs fixed by $Q$ is therefore
-$$
-P(Q)=\sum_{L\perp M}c_Q(L)c_Q(M),
-$$
-not the square of a one-variable fixed-point count. Burnside gives
-$$
-N=\frac1{p(p^2-1)}\sum_{Q\in H}P(Q).
-$$
+The Jordan blocks of multiplication by $z$ are exactly the cyclic summands in the decomposition of $A$ as an $F[z]$-module.
 
-Step 2: Count diagonal directions and evaluate $P(I)$
+Step 2: Write an $F[z]$-presentation
 
-There are three $H$-orbits of lines in the split three-dimensional quadratic space $U$:
+Use the $F[z]$-generators
 $$
-n_0=p+1,
+e_j=y^j,\qquad 0\le j\le p.
 $$
-for isotropic lines,
+The relations $qy^j=0$ are
 $$
-n_+=\frac{p(p+1)}2,
+z^{p+1}e_0+z^pe_1+ze_p=0,
 $$
-for nonisotropic lines with split orthogonal complement, and
 $$
-n_-=\frac{p(p-1)}2,
+z^{p+1}e_j+z^pe_{j+1}=0\qquad(1\le j\le p-1),
 $$
-for nonisotropic lines with anisotropic orthogonal complement. Indeed, each isotropic line is perpendicular to $p$ nonisotropic lines, while a split plane contains two isotropic lines and an anisotropic plane none, so $2n_+=p(p+1)$.
+and
+$$
+z^{p+1}e_p=0.
+$$
+Hence a presentation matrix is
+$$
+B=
+\begin{pmatrix}
+z^{p+1}&z^p&0&\cdots&0&z\\
+0&z^{p+1}&z^p&\cdots&0&0\\
+\vdots&&\ddots&\ddots&&\vdots\\
+0&\cdots&0&z^{p+1}&z^p&0\\
+0&\cdots&\cdots&0&z^{p+1}&z^p\\
+0&\cdots&\cdots&\cdots&0&z^{p+1}
+\end{pmatrix}.
+$$
+Let $\nu_k$ be the $z$-adic valuation of the gcd of the nonzero $k\times k$ minors of $B$, with $\nu_0=0$.
 
-Set
-$$
-r=p(p-1)^2.
-$$
-For a fixed isotropic line, a Witt-basis calculation gives
-$$
-T=\begin{pmatrix}1&a&dr\\0&1&0\\0&r&j\end{pmatrix},
-$$
-with $j\ne0$ and exact fixed line precisely when $a(j-1)-dr^2\ne0$. For each nonzero $j$ there are $p(p-1)$ allowed pairs $(a,r)$, hence
-$$
-r_0=r.
-$$
+Step 3: Determine the determinantal divisors
 
-If $L$ is nonisotropic, then $U=L\perp L^\perp$ and $T=1_L\oplus B$. On a split plane a self-adjoint map is
+There is a unique entry of valuation $1$, namely the corner entry $z$; every other nonzero entry has valuation at least $p$. Therefore
 $$
-B=\begin{pmatrix}a&b\\c&a\end{pmatrix}.
+\nu_1=1.
 $$
-Each of $\det B=0$ and $\det(B-I)=0$ has $p^2$ solutions, and both hold for exactly $p-1$ maps. Thus
+For $2\le k\le p-1$, any nonzero term of a $k$-minor has valuation at least
 $$
-r_+=p^3-2p^2+p-1=r-1.
+1+(k-1)p,
 $$
-On an anisotropic plane write $B(z)=az+b\bar z$ on $\mathbb F_{p^2}$, so
+and this bound is attained by using the corner entry $z$ together with $k-1$ superdiagonal entries $z^p$. Hence
 $$
-\det B=a^2-N(b),\qquad \det(B-I)=(a-1)^2-N(b).
-$$
-The two singularity equations again have $p^2$ solutions each, while their intersection has $p+1$ solutions because a nonzero norm fiber has $p+1$ elements. Hence
-$$
-r_-=p^3-2p^2+p+1=r+1.
+\nu_k=1+(k-1)p\qquad(1\le k\le p-1).
 $$
 
-For a fixed first line, the numbers of perpendicular second lines of the three types are
+For a $p\times p$ minor, a term avoiding the corner $z$ has valuation at least $p^2$. If a term uses that corner, then the remaining $p-1$ rows and columns are forced onto the diagonal, contributing $(p-1)(p+1)$; its valuation is again
 $$
-\begin{array}{c|ccc}
- &0&+&-\\ \hline
-0&1&p&0\\
-+&2&\frac{p-1}{2}&\frac{p-1}{2}\\
--&0&\frac{p+1}{2}&\frac{p+1}{2}
-\end{array}.
+1+(p-1)(p+1)=p^2.
 $$
-The first row is the tangent-line geometry of the isotropic conic. For a $+$ line, its split perpendicular plane contains two isotropic lines; in a hyperbolic basis the remaining lines are $\langle e+af\rangle$ with $a\in\mathbb F_p^\times$, and the ambient discriminant criterion divides them equally between $+$ and $-$. The last row then follows from symmetry of orthogonality and the identities $n_i t_{ij}=n_jt_{ji}$.
-
-Therefore
+The minor formed by the first $p$ rows and the last $p$ columns uses only the $p$ superdiagonal entries $z^p$, so the bound is attained. Thus
 $$
-\begin{aligned}
-P(I)={}&n_0r_0(r_0+pr_+)\\
-&+n_+r_+\left(2r_0+\frac{p-1}{2}(r_++r_-)\right)\\
-&+n_-r_-\left(\frac{p+1}{2}(r_++r_-)\right).
-\end{aligned}
-$$
-Substituting $r_0=r$, $r_+=r-1$, and $r_-=r+1$ gives
-$$
-P(I)=p^2(p-1)^2(p+1)(p^2+1)(p^2-p-1).
+\nu_p=p^2.
 $$
 
-Step 3: Compute $P(Q)$ for the nonidentity conjugacy types
-
-A regular semisimple $Q\in H$ has a unique nonisotropic axis $L$ and a two-dimensional rotation block. Every admissible matrix commuting with $Q$ has the form
+For the full determinant, column $0$ forces the first diagonal entry, and then successively every remaining diagonal entry is forced. Therefore
 $$
-T=1_L\oplus sI,\qquad s\in\mathbb F_p^\times\setminus\{1\}.
-$$
-Thus every such $T$ has diagonal direction $L$. Since $L$ is nonisotropic, $L\not\perp L$, so
-$$
-P(Q)=0
-$$
-for every regular semisimple $Q$.
-
-If $Q$ is nonidentity unipotent and $N=Q-I$, then every commuting endomorphism is $aI+bN+cN^2$, while self-adjointness forces $b=0$. For $T=aI+cN^2$, the dimension of $\ker(T-I)$ is $0$, $2$, or $3$, never $1$. Hence $X^Q=\varnothing$ and again
-$$
-P(Q)=0.
+\nu_{p+1}=(p+1)^2.
 $$
 
-Now let $Q=1_L\oplus(-I_P)$ be an involution.
+Step 4: Read off the Smith exponents and Jordan blocks
 
-If $P$ is split, then $L$ is a $+$ line. The matrices with diagonal direction $L$ contribute
+If the Smith form of $B$ has diagonal entries
 $$
-c_Q(L)=r_+.
+z^{a_1},\ldots,z^{a_{p+1}},\qquad a_1\le\cdots\le a_{p+1},
 $$
-Inside $P$ there are two isotropic lines and $p-1$ nonisotropic lines. For a prescribed isotropic line $M\le P$, an invertible self-adjoint plane map with exact $1$-eigenspace $M$ has $p-1$ choices; for a prescribed nonisotropic line it has $p-2$ choices. Since the scalar on $L$ must lie in $\mathbb F_p^\times\setminus\{1\}$, this gives
+then
 $$
-c_{\rm iso}=(p-1)(p-2),\qquad c_{\rm an}=(p-2)^2.
+a_k=\nu_k-\nu_{k-1}.
 $$
-The total weight of lines in $P$ is
+The valuations above give
 $$
-S_+=2c_{\rm iso}+(p-1)c_{\rm an}=p(p-1)(p-2).
+a_1=1,
 $$
-The axis is perpendicular to every line of $P$; within $P$, each isotropic line is perpendicular only to itself, while each nonisotropic line has one nonisotropic perpendicular mate. Hence
 $$
-P_+=2r_+S_+ +2c_{\rm iso}^2+(p-1)c_{\rm an}^2.
+a_2=\cdots=a_{p-1}=p,
 $$
-Equivalently,
 $$
-P_+=(p-2)(p-1)(2p^4-3p^3-2p^2+4p-4).
+a_p=2p-1,
 $$
-There are
+and
 $$
-n_+=\frac{p(p+1)}2
+a_{p+1}=2p+1.
 $$
-such involutions.
-
-If $P$ is anisotropic, then $L$ is a $-$ line and
+Consequently
 $$
-c_Q(L)=r_-.
+A\cong F[z]/(z)\oplus\bigl(F[z]/(z^p)\bigr)^{\oplus(p-2)}\oplus F[z]/(z^{2p-1})\oplus F[z]/(z^{2p+1}).
 $$
-Every one of the $p+1$ lines in $P$ is nonisotropic. For each such line the plane block has $p-2$ choices, and the scalar on $L$ has another $p-2$ choices, so
+Multiplication by $z$ on $F[z]/(z^m)$ is one nilpotent Jordan block $J_m(0)$. Hence the Jordan canonical form of $\Phi$ is
 $$
-c_P=(p-2)^2.
+J_{2p+1}(0)\oplus J_{2p-1}(0)\oplus J_p(0)^{\oplus(p-2)}\oplus J_1(0).
 $$
-Every line of $P$ has a unique distinct perpendicular mate. Therefore
+The dimensions check:
 $$
-P_-=2r_-(p+1)(p-2)^2+(p+1)(p-2)^4,
-$$
-or
-$$
-P_-=(p-2)^2(p+1)(2p^3-3p^2-2p+6).
-$$
-There are
-$$
-n_-=\frac{p(p-1)}2
-$$
-such involutions.
-
-Step 4: Evaluate Burnside's sum
-
-Only the identity and the two involution types contribute. Thus
-$$
-N=\frac{P(I)+n_+P_++n_-P_-}{p(p^2-1)}.
-$$
-Substituting the formulas from Steps 2 and 3, the numerator factors as
-$$
-p(p^2-1)\left(p^6-8p^4+10p^3+5p^2-21p+16\right).
-$$
-Therefore
-$$
-N=p^6-8p^4+10p^3+5p^2-21p+16.
+(2p+1)+(2p-1)+p(p-2)+1=(p+1)^2.
 $$
 
-Final Answer: $\boxed{p^6-8p^4+10p^3+5p^2-21p+16}$
+Final Answer: $\boxed{J_{2p+1}(0)\oplus J_{2p-1}(0)\oplus J_p(0)^{\oplus(p-2)}\oplus J_1(0)}$
 
 ---
 
 ## Answer
 
-$p^6-8p^4+10p^3+5p^2-21p+16$
+$J_{2p+1}(0)\oplus J_{2p-1}(0)\oplus J_p(0)^{\oplus(p-2)}\oplus J_1(0)$
 
 ---
 
 ## Classification
 
-**Problem Type:** Exact computation
+**Problem Type:** Canonicalization or normalization
 
-**Answer Type:** Exact symbolic expression
+**Answer Type:** Canonical form
 
 ---
 
 ## Solution Concepts
 
-- extraspecial finite group
-- orthogonal group actions
-- Burnside lemma
-- finite quadratic geometry
-- coupled fixed-point counts
+- commutator operator as a Kronecker sum
+- truncated polynomial modules
+- characteristic-$p$ binomial collapse
+- Smith normal form
+- Jordan blocks from cyclic $F[z]$-modules
 
 ---
 
