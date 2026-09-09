@@ -1,108 +1,120 @@
 ## Steps
 
-Step 1: Convert the commutator operator to multiplication on a truncated polynomial ring
+Step 1: Convert the Sylvester operator to multiplication by one variable
 
-Let $F=\mathbb F_p$ and let $J=J_{p+1}(0)$. Under the tensor identification
+Let
 $$
-M_{p+1}(F)\cong F^{p+1}\otimes (F^{p+1})^*,
+m=p+2,\qquad n=2p+1,\qquad F=\mathbb F_p.
+$$
+Under the tensor identification
+$$
+M_{m,n}(F)\cong F^m\otimes (F^n)^*,
 $$
 the operator
 $$
-\Phi(X)=JX-XJ
+\Phi(X)=J_mX-XJ_n
 $$
 is represented by
 $$
-J\otimes I-I\otimes J^T.
+J_m\otimes I-I\otimes J_n^T.
 $$
-Since $J^T$ is similar to $J$, $\Phi$ is similar to multiplication by $x-y$ on
+Since $J_n^T$ is similar to $J_n$, this is similar to multiplication by
 $$
-A=F[x,y]/(x^{p+1},y^{p+1}).
+z=x-y
 $$
-Put $z=x-y$, so $x=z+y$. Then
+on
 $$
-A\cong F[z,y]/\bigl(y^{p+1},(z+y)^{p+1}\bigr).
+A=F[x,y]/(x^{p+2},y^{2p+1}).
+$$
+Write $y=x-z$. Then
+$$
+A\cong F[z,x]/\bigl(x^{p+2},(x-z)^{2p+1}\bigr).
 $$
 Because the characteristic is $p$,
 $$
-(z+y)^{p+1}=z^{p+1}+z^py+zy^p+y^{p+1}.
+(x-z)^{2p+1}=(x-z)(x^p-z^p)^2.
 $$
-Thus, after imposing $y^{p+1}=0$, the second relation becomes
+Modulo $x^{p+2}$ this becomes
 $$
-q=z^{p+1}+z^py+zy^p=0.
+-z^{2p+1}+xz^{2p}+2x^pz^{p+1}-2x^{p+1}z^p.
 $$
-The Jordan blocks of multiplication by $z$ are exactly the cyclic summands in the decomposition of $A$ as an $F[z]$-module.
+Multiplying the relation by $-1$, put
+$$
+q=z^{2p+1}-xz^{2p}-2x^pz^{p+1}+2x^{p+1}z^p.
+$$
+The Jordan blocks of $\Phi$ are therefore the cyclic summands of $A$ as an $F[z]$-module.
 
-Step 2: Write an $F[z]$-presentation
+Step 2: Build the sparse $F[z]$-presentation
 
-Use the $F[z]$-generators
+Use generators
 $$
-e_j=y^j,\qquad 0\le j\le p.
+e_i=x^i,\qquad 0\le i\le p+1.
 $$
-The relations $qy^j=0$ are
+The relations $qe_i=0$ are
 $$
-z^{p+1}e_0+z^pe_1+ze_p=0,
+z^{2p+1}e_0-z^{2p}e_1-2z^{p+1}e_p+2z^pe_{p+1}=0,
 $$
 $$
-z^{p+1}e_j+z^pe_{j+1}=0\qquad(1\le j\le p-1),
+z^{2p+1}e_1-z^{2p}e_2-2z^{p+1}e_{p+1}=0,
+$$
+$$
+z^{2p+1}e_i-z^{2p}e_{i+1}=0\qquad(2\le i\le p),
 $$
 and
 $$
-z^{p+1}e_p=0.
+z^{2p+1}e_{p+1}=0.
 $$
-Hence a presentation matrix is
+Thus a presentation matrix $B$ has diagonal entries $z^{2p+1}$, superdiagonal entries $-z^{2p}$, and only three further nonzero entries:
 $$
-B=
-\begin{pmatrix}
-z^{p+1}&z^p&0&\cdots&0&z\\
-0&z^{p+1}&z^p&\cdots&0&0\\
-\vdots&&\ddots&\ddots&&\vdots\\
-0&\cdots&0&z^{p+1}&z^p&0\\
-0&\cdots&\cdots&0&z^{p+1}&z^p\\
-0&\cdots&\cdots&\cdots&0&z^{p+1}
-\end{pmatrix}.
+B_{0,p}=-2z^{p+1},\qquad B_{0,p+1}=2z^p,\qquad B_{1,p+1}=-2z^{p+1}.
 $$
-Let $\nu_k$ be the $z$-adic valuation of the gcd of the nonzero $k\times k$ minors of $B$, with $\nu_0=0$.
+Let $\nu_k$ be the $z$-adic valuation of the gcd of the nonzero $k\times k$ minors, with $\nu_0=0$.
 
 Step 3: Determine the determinantal divisors
 
-There is a unique entry of valuation $1$, namely the corner entry $z$; every other nonzero entry has valuation at least $p$. Therefore
+There is a unique entry of valuation $p$, namely $B_{0,p+1}$, so
 $$
-\nu_1=1.
+\nu_1=p.
 $$
-For $2\le k\le p-1$, any nonzero term of a $k$-minor has valuation at least
+The two entries $B_{0,p}$ and $B_{1,p+1}$ have valuation $p+1$. Every other nonzero entry has valuation at least $2p$. Hence
 $$
-1+(k-1)p,
+\nu_2=2p+2.
 $$
-and this bound is attained by using the corner entry $z$ together with $k-1$ superdiagonal entries $z^p$. Hence
+For $3\le k\le p-1$, a nonzero term can use either the valuation-$p$ entry, or the two valuation-$(p+1)$ entries, or neither. The least possibility is obtained from the latter pair together with $k-2$ superdiagonal entries, giving
 $$
-\nu_k=1+(k-1)p\qquad(1\le k\le p-1).
+\nu_k=2p+2+2p(k-2).
+$$
+The required disjoint superdiagonal entries exist because $k\le p-1$.
+
+For $k=p$, using $B_{0,p+1}$ together with $p-1$ consecutive superdiagonal entries gives valuation
+$$
+p+2p(p-1)=2p^2-p.
+$$
+If instead both valuation-$(p+1)$ entries are used, the remaining $p-2$ entries are forced onto the diagonal, giving the same valuation. All other matchings are larger. Therefore
+$$
+\nu_p=2p^2-p.
 $$
 
-For a $p\times p$ minor, a term avoiding the corner $z$ has valuation at least $p^2$. If a term uses that corner, then any perfect matching is forced onto the diagonal in the remaining rows and columns, so its valuation is at least
+For $k=p+1$, the minor on rows $0,\ldots,p$ and columns $1,\ldots,p+1$ has lowest possible valuation
 $$
-1+(p-1)(p+1)=p^2.
+2p(p+1)=2p^2+2p.
 $$
-To attain the bound, take the first $p$ rows and the last $p$ columns. Its determinant has exactly two nonzero terms: the product of the $p$ superdiagonal entries and the product of the corner entry with the remaining $p-1$ diagonal entries. Since $p$ is odd, the two corresponding permutations have the same sign, and therefore
+At that valuation there are four terms; after including permutation signs and the coefficients $-1,-2,2$, their total coefficient is $3$. Since $p\ge5$, this is nonzero in $F$. No $(p+1)$-minor can have smaller valuation, so
 $$
-\det B_{\{0,\ldots,p-1\},\{1,\ldots,p\}}
-=z^{p^2}+z^{p^2}=2z^{p^2}\ne0.
+\nu_{p+1}=2p^2+2p.
 $$
-Thus
-$$
-\nu_p=p^2.
-$$
-This is the point where the assumption that $p$ is odd is essential.
+This is the only point where the restriction $p\ge5$ is needed.
 
-For the full determinant, column $0$ forces the first diagonal entry, and then successively every remaining diagonal entry is forced. Therefore
+Finally, $B$ is upper triangular with diagonal $z^{2p+1}$, hence
 $$
-\nu_{p+1}=(p+1)^2.
+\nu_{p+2}=(p+2)(2p+1)=2p^2+5p+2.
 $$
 
 Step 4: Read off the Smith exponents and Jordan blocks
 
-If the Smith form of $B$ has diagonal entries
+If the Smith form has diagonal entries
 $$
-z^{a_1},\ldots,z^{a_{p+1}},\qquad a_1\le\cdots\le a_{p+1},
+z^{a_1},\ldots,z^{a_{p+2}},\qquad a_1\le\cdots\le a_{p+2},
 $$
 then
 $$
@@ -110,38 +122,37 @@ a_k=\nu_k-\nu_{k-1}.
 $$
 The valuations above give
 $$
-a_1=1,
+a_1=p,\qquad a_2=p+2,
 $$
 $$
-a_2=\cdots=a_{p-1}=p,
+a_3=\cdots=a_{p-1}=2p,
 $$
 $$
-a_p=2p-1,
+a_p=3p-2,\qquad a_{p+1}=3p,\qquad a_{p+2}=3p+2.
 $$
-and
+Thus
 $$
-a_{p+1}=2p+1.
+A\cong F[z]/(z^p)\oplus F[z]/(z^{p+2})\oplus\bigl(F[z]/(z^{2p})\bigr)^{\oplus(p-3)}
 $$
-Consequently
 $$
-A\cong F[z]/(z)\oplus\bigl(F[z]/(z^p)\bigr)^{\oplus(p-2)}\oplus F[z]/(z^{2p-1})\oplus F[z]/(z^{2p+1}).
+\oplus F[z]/(z^{3p-2})\oplus F[z]/(z^{3p})\oplus F[z]/(z^{3p+2}).
 $$
-Multiplication by $z$ on $F[z]/(z^m)$ is one nilpotent Jordan block $J_m(0)$. Hence the Jordan canonical form of $\Phi$ is
+Multiplication by $z$ on $F[z]/(z^r)$ is one nilpotent Jordan block of size $r$. Therefore the Jordan form is
 $$
-J_{2p+1}(0)\oplus J_{2p-1}(0)\oplus J_p(0)^{\oplus(p-2)}\oplus J_1(0).
+J_{3p+2}\oplus J_{3p}\oplus J_{3p-2}\oplus J_{2p}^{\oplus(p-3)}\oplus J_{p+2}\oplus J_p.
 $$
 The dimensions check:
 $$
-(2p+1)+(2p-1)+p(p-2)+1=(p+1)^2.
+(3p+2)+3p+(3p-2)+2p(p-3)+(p+2)+p=(p+2)(2p+1).
 $$
 
-Final Answer: $\boxed{J_{2p+1}(0)\oplus J_{2p-1}(0)\oplus J_p(0)^{\oplus(p-2)}\oplus J_1(0)}$
+Final Answer: $\boxed{J_{3p+2}\oplus J_{3p}\oplus J_{3p-2}\oplus J_{2p}^{\oplus(p-3)}\oplus J_{p+2}\oplus J_p}$
 
 ---
 
 ## Answer
 
-$J_{2p+1}(0)\oplus J_{2p-1}(0)\oplus J_p(0)^{\oplus(p-2)}\oplus J_1(0)$
+$J_{3p+2}\oplus J_{3p}\oplus J_{3p-2}\oplus J_{2p}^{p-3}\oplus J_{p+2}\oplus J_p$
 
 ---
 
@@ -155,11 +166,11 @@ $J_{2p+1}(0)\oplus J_{2p-1}(0)\oplus J_p(0)^{\oplus(p-2)}\oplus J_1(0)$
 
 ## Solution Concepts
 
-- commutator operator as a Kronecker sum
+- Sylvester operator as a Kronecker sum
 - truncated polynomial modules
-- characteristic-$p$ binomial collapse
+- Frobenius binomial collapse
 - Smith normal form
-- Jordan blocks from cyclic $F[z]$-modules
+- determinantal divisors
 
 ---
 
