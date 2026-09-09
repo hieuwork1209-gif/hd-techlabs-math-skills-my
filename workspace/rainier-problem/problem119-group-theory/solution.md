@@ -95,19 +95,19 @@ Since $p$ is odd, $\tau(\omega)=-\omega$, and the internal terms cancel in $(x+y
 $$
 z\omega=0.
 $$
-This vector has degree $p$, whereas the kernel vector at the bottom of the $J_{2p-1}$ chain has degree $2p-1$, so they are independent. Therefore the unique $J_1(0)$ block also lies in $\Lambda^2V$.
+To see that this is the genuine $J_1(0)$ summand rather than the bottom of a longer chain, note that $\omega$ has degree $p$. If $\omega=z h$ in $A$, then $h$ may be taken homogeneous of degree $p-1$, where no truncation occurs, so $x+y$ would divide $\omega$ in $F[x,y]$. But
+$$
+\omega(-y,y)=\sum_{i=0}^{p}y^p=(p+1)y^p=y^p\ne0.
+$$
+Hence $\omega\notin zA$. Therefore the unique $J_1(0)$ block lies in $\Lambda^2V$.
 
 Step 4: Split the remaining $p$-blocks and read off the answer
 
-After removing the three exceptional blocks, the remaining $T$-module is
+Because
 $$
-\bigl(F[z]/(z^p)\bigr)^{p-2}.
+V\otimes V=\operatorname{Sym}^2V\oplus\Lambda^2V
 $$
-The projectors
-$$
-\frac{1\pm\tau}{2}
-$$
-are $F[z]$-linear idempotents. Hence their images on this free module over the local ring $F[z]/(z^p)$ are projective, therefore free. Consequently the remaining Jordan blocks in each of $\operatorname{Sym}^2V$ and $\Lambda^2V$ all still have size exactly $p$.
+is a $T$-invariant direct sum, the Jordan block multisets of the two restrictions partition the full multiset from Step 2. Step 3 assigns the unique blocks of sizes $2p+1$, $2p-1$, and $1$, so every block still unassigned has size exactly $p$.
 
 Since
 $$
