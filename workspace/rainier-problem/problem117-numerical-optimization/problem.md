@@ -2,39 +2,28 @@
 
 ## LaTeX (Normalized)
 
-Let $A$ be a real symmetric positive-definite matrix whose spectrum is contained in
+Let
 $$
-[1,4]\cup[6,9].
+A=\operatorname{diag}(1,2,3,4,5,6,7),
+\qquad
+f(x)=\frac12x^TAx.
 $$
-For
-$$
-f(x)=\frac12x^TAx,
-$$
-choose step sizes
-$$
-0<\alpha_0\le\alpha_1\le\alpha_2.
-$$
-Starting from any $x_0\ne0$, perform three gradient steps
+Choose step sizes $\alpha_0,\alpha_1,\alpha_2>0$. Starting from a random point $x_0$ chosen uniformly from the unit sphere in $\mathbb R^7$, perform three gradient steps
 $$
 x_{k+1}=x_k-\alpha_k\nabla f(x_k),
 \qquad k=0,1,2.
 $$
-Define the worst-case three-step contraction factor
+Define the average squared contraction factor
 $$
 R(\alpha_0,\alpha_1,\alpha_2)
-=\sup_{A:\,\sigma(A)\subset[1,4]\cup[6,9]}
-\sup_{x_0\ne0}
-\frac{\|x_3\|_2}{\|x_0\|_2},
+=\mathbb E\,\|x_3\|_2^2,
 $$
-and let
+where the expectation is over $x_0$, and let
 $$
-R_*=\min_{0<\alpha_0\le\alpha_1\le\alpha_2}
+R_*=\min_{\alpha_0,\alpha_1,\alpha_2>0}
 R(\alpha_0,\alpha_1,\alpha_2).
 $$
-Determine the ordered pair
-$$
-\bigl(R_*,(\alpha_0^*,\alpha_1^*,\alpha_2^*)\bigr).
-$$
+Determine $R_*$ exactly.
 
 ---
 
@@ -45,10 +34,10 @@ $$
 | **Domain** | Optimization and Numerical Mathematics |
 | **Sub-domain** | Numerical optimization |
 | **Problem Type** | Optimization |
-| **Answer Type** | Tuple or ordered list |
+| **Answer Type** | Number |
 
 ---
 
 ## Domain Explanation
 
-The task tunes a three-step nonstationary gradient method for a quadratic whose Hessian spectrum lies in two separated clusters. The iteration generates a degree-three residual polynomial, and the optimal schedule is obtained from a minimax polynomial on the disconnected spectral set. The spectral gap is load-bearing: it changes the extremal polynomial and therefore the best finite-step contraction factor.
+The problem asks for optimal nonstationary gradient-step tuning on a quadratic with a simple evenly spaced spectrum under an isotropic average-case criterion. Three steps generate a cubic residual polynomial, while the spherical average converts the optimization into a discrete least-squares problem over the seven eigenvalues. A sharp solution uses a discrete evaluation certificate rather than endpoint minimax interpolation, placing the problem in numerical optimization.
