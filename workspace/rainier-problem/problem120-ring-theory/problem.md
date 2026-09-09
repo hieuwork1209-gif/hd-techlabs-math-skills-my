@@ -18,7 +18,14 @@ of subrings of $R$, each containing the identity matrix and each a field of orde
 $$
 \operatorname{tr}(A)=\operatorname{tr}(B)=0,
 $$
-one has $AB=-BA$ exactly when one of $v,w$ is a point, the other is a line, and the point lies on that line; for every other distinct pair one has $AB=BA$.
+one has
+$$
+AB=-BA
+$$
+whenever one of $v,w$ is a point, the other is a line, and the point lies on that line; for every other distinct pair one has
+$$
+AB=BA.
+$$
 
 ---
 
