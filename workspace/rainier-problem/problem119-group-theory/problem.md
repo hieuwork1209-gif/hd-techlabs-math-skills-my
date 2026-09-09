@@ -2,17 +2,25 @@
 
 ## LaTeX (Normalized)
 
-Let $p\ge5$ be a prime, let $F=\mathbb F_p$, let
+Let $p\ge5$ be a prime, let $F=\mathbb F_p$, and let
 $$
-V=F^{p+1},
+N=J_p(0)\in M_p(F).
 $$
-and let $N=J_{p+1}(0)$ be the nilpotent Jordan block of size $p+1$. Define the induced $F$-linear operator
+Because $\operatorname{tr}(I)=p=0$ in $F$, the scalar line $FI$ lies in $\mathfrak{sl}_p(F)$. Put
 $$
-\Psi:\Lambda^3V\to\Lambda^3V
+\mathfrak g=\mathfrak{psl}_p(F)=\mathfrak{sl}_p(F)/FI.
+$$
+The derivation
+$$
+D=\operatorname{ad}N,\qquad D(X)=[N,X],
+$$
+descends to a nilpotent endomorphism of $\mathfrak g$. Define the induced operator
+$$
+\Psi:\Lambda^2\mathfrak g\to\Lambda^2\mathfrak g
 $$
 by
 $$
-\Psi(u\wedge v\wedge w)=Nu\wedge v\wedge w+u\wedge Nv\wedge w+u\wedge v\wedge Nw.
+\Psi(u\wedge v)=Du\wedge v+u\wedge Dv.
 $$
 Determine the Jordan canonical form of $\Psi$ over $F$; equivalently, determine the sizes and multiplicities of all nilpotent Jordan blocks of $\Psi$.
 
@@ -22,8 +30,8 @@ Determine the Jordan canonical form of $\Psi$ over $F$; equivalently, determine 
 
 | Field | Value |
 |---|---|
-| **Domain** | Linear Algebra |
-| **Sub-domain** | Matrix decompositions and canonical forms |
+| **Domain** | Abstract Algebra |
+| **Sub-domain** | Lie algebras |
 | **Problem Type** | Canonicalization or normalization |
 | **Answer Type** | Canonical form |
 
@@ -31,4 +39,4 @@ Determine the Jordan canonical form of $\Psi$ over $F$; equivalently, determine 
 
 ## Domain Explanation
 
-The problem asks for the complete Jordan canonical form of the natural operator induced by a nilpotent Jordan block on the exterior-cube representation. The characteristic interacts with a natural extension between exterior powers of the regular truncated-polynomial module, so Linear Algebra -> Matrix decompositions and canonical forms is the appropriate classification.
+The problem studies the adjoint action of a regular nilpotent element on the modular simple Lie algebra $\mathfrak{psl}_p$ and then on its exterior-square representation. The characteristic-$p$ scalar center of $\mathfrak{sl}_p$ changes the Jordan module before the exterior-square decomposition, so Abstract Algebra -> Lie algebras is the appropriate classification.
