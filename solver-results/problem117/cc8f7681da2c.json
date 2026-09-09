@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "c5723dd036e7710a53b94691e0e5fd6a417ae64d",
+  "problem_blob_sha": "cc8f7681da2c31f163587f202d791b76f3454654",
+  "statement_sha256": "c1f25bfe60a4fe4fd513e0698b35cbb6874f8aa8bc24f1b4064d5b7567c75948",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-09T07:05:36+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\np(t)=\\prod_{k=0}^2(1-\\alpha_k t).\n\\]\nSince \\(A=\\operatorname{diag}(1,2,4)\\), after three steps the three coordinate multipliers are \\(p(1),p(2),p(4)\\). For \\(x_0\\) uniform on the unit sphere in \\(\\mathbb R^3\\),\n\\[\n\\mathbb E(x_{0,i}^2)=\\frac13,\n\\]\nso\n\\[\nR(\\alpha_0,\\alpha_1,\\alpha_2)\n=\\frac13\\left(p(1)^2+p(2)^2+p(4)^2\\right).\n\\]\n\nSet\n\\[\nz_k=1-4\\alpha_k.\n\\]\nBecause \\(0<\\alpha_k\\le \\frac12\\), we have \\(-1\\le z_k<1\\), and\n\\[\n1-\\alpha_k=\\frac{3+z_k}{4},\\qquad\n1-2\\alpha_k=\\frac{1+z_k}{2},\\qquad\n1-4\\alpha_k=z_k.\n\\]\nThus, writing \\(F=3R\\),\n\\[\nF=\\frac{\\prod(3+z_k)^2}{4096}\n+\\frac{\\prod(1+z_k)^2}{64}\n+\\prod z_k^2.\n\\]\nDrop the nonnegative middle term and put \\(x_k=|z_k|\\). Since \\(3+z_k\\ge 3-x_k\\),\n\\[\nF\\ge \\frac{\\prod(3-x_k)^2}{4096}+\\prod x_k^2.\n\\]\nLet \\(u=x_0x_1x_2\\). For \\(x,y\\in[0,1]\\),\n\\[\n(3-x)(3-y)-2(3-xy)=3(1-x)(1-y)\\ge0.\n\\]\nApplying this twice gives\n\\[\n\\prod_{k=0}^2(3-x_k)\\ge 4(3-u).\n\\]\nTherefore\n\\[\nF\\ge \\frac{16(3-u)^2}{4096}+u^2\n=\\frac{(3-u)^2}{256}+u^2.\n\\]\nThis convex quadratic is minimized when\n\\[\n-\\frac{3-u}{128}+2u=0\n\\quad\\Longrightarrow\\quad\nu=\\frac3{257}.\n\\]\nAt that value,\n\\[\nF_{\\min}=\\frac{(768/257)^2}{256}+\\left(\\frac3{257}\\right)^2\n=\\frac{2304+9}{257^2}\n=\\frac9{257}.\n\\]\n\nEquality is attained, for example, by\n\\[\nz_0=z_1=-1,\\qquad z_2=-\\frac3{257},\n\\]\ni.e.\n\\[\n\\alpha_0=\\alpha_1=\\frac12,\\qquad\n\\alpha_2=\\frac{65}{257}.\n\\]\nThen \\(p(2)=0\\), and the bound above is sharp. Hence\n\\[\nR_*=\\frac13F_{\\min}=\\boxed{\\frac3{257}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-09T07:08:09+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/cc8f7681da2c.json"
+}
