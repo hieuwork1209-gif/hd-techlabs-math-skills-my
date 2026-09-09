@@ -1,0 +1,22 @@
+{
+  "problem": "problem119",
+  "branch": "adversary/problem119",
+  "problem_path": "workspace/rainier-problem/problem119-group-theory/problem.md",
+  "source_commit_sha": "9df07661f84475f018d5f95eda280ed3831626c4",
+  "problem_blob_sha": "8a8404aa207486393833e2fc9feb6f7e91c21246",
+  "statement_sha256": "2e829fca2553026d06ade3efc565df0c24e35b0da302657085a187cbe0435074",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-09T18:41:45+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nm=\\binom n2,\\qquad \\lambda=2n-2.\n\\]\nThe Laplacian of \\(T_n\\) has degree \\(2(n-2)\\). If \\(B\\) is the \\(n\\times m\\) unsigned incidence matrix of \\(K_n\\), so the column for \\(\\{i,j\\}\\) is \\(e_i+e_j\\), then\n\\[\nA(T_n)=B^TB-2I,\n\\]\nhence\n\\[\nL=2(n-2)I-A(T_n)=2(n-1)I-B^TB=\\lambda I-B^TB.\n\\]\n\nOver \\(\\mathbb Q\\), the eigenvalues of \\(L\\) are\n\\[\n0\\quad(1\\text{ time}),\\qquad n\\quad(n-1\\text{ times}),\\qquad \\lambda\\quad\\left(m-n\\text{ times}\\right).\n\\]\nThus\n\\[\n|K(T_n)|=\\frac{n^{\\,n-1}\\lambda^{\\,m-n}}{m}\n=n^{n-2}(2n-2)^{m-n}.\n\\]\n\nIt remains to determine the Smith factors.\n\nLet \\(C=\\mathbb Z^{E(K_n)}\\), and define\n\\[\ns:C\\to \\mathbb Z^n,\\qquad s(\\{i,j\\})=e_i+e_j.\n\\]\nThen \\(B=s\\), \\(B^T=s^T\\), and\n\\[\nL=\\lambda I-s^Ts.\n\\]\n\nFor primes \\(p\\mid n\\), \\(\\lambda\\) is a unit \\(p\\)-adically. The only \\(p\\)-torsion comes from the induced map on \\(s(C)\\). Since \\(n\\) is odd,\n\\[\ns(C)=\\{x\\in\\mathbb Z^n:\\sum_i x_i\\equiv 0\\pmod 2\\}.\n\\]\nOn this lattice,\n\\[\nsLs^{-1}(y)=ny-\\left(\\sum_i y_i\\right)\\mathbf 1.\n\\]\nIts image inside \\(\\{\\sum_i y_i=0\\}\\) consists exactly of the vectors whose coordinates are all congruent modulo \\(n\\). Therefore the quotient has Smith form\n\\[\n(\\mathbb Z/n\\mathbb Z)^{n-2}.\n\\]\n\nFor primes \\(p\\mid \\lambda\\), we have \\(p\\nmid n\\). The \\(n\\)-eigenspace contributes no \\(p\\)-torsion, and the \\(\\lambda\\)-eigenspace has rank\n\\[\nm-n=\\binom n2-n=\\frac{n(n-3)}2.\n\\]\nHence the \\(p\\)-primary part is\n\\[\n(\\mathbb Z/\\lambda\\mathbb Z)^{m-n}\n\\]\nat all primes dividing \\(\\lambda\\).\n\nBecause \\(n\\) is odd,\n\\[\n\\gcd(n,\\lambda)=\\gcd(n,2n-2)=1.\n\\]\nSo the \\(n\\)-part and the \\(\\lambda\\)-part combine into invariant factors by pairing the \\(n-2\\) copies of \\(\\mathbb Z/n\\mathbb Z\\) with \\(n-2\\) copies of \\(\\mathbb Z/\\lambda\\mathbb Z\\). Since\n\\[\nm-n-(n-2)=\\frac{n(n-3)}2-(n-2)=\\frac{(n-1)(n-4)}2,\n\\]\nthe invariant-factor decomposition is\n\\[\n\\boxed{\nK(T_n)\\cong\n\\left(\\mathbb Z/(2n-2)\\mathbb Z\\right)^{\\frac{(n-1)(n-4)}2}\n\\oplus\n\\left(\\mathbb Z/\\bigl(n(2n-2)\\bigr)\\mathbb Z\\right)^{n-2}\n}.\n\\]\n\nThe order of this group is\n\\[\n(2n-2)^{\\frac{(n-1)(n-4)}2}\n\\bigl(n(2n-2)\\bigr)^{n-2}\n=\nn^{n-2}(2n-2)^{\\frac{n(n-3)}2},\n\\]\nmatching the Matrix-Tree eigenvalue check.",
+  "status": "success",
+  "completed_at": "2026-09-09T18:43:45+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem119/8a8404aa2074.json"
+}
