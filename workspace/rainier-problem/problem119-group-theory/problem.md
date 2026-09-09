@@ -18,7 +18,7 @@ act on $G$ by
 $$
 Q\cdot(u,v,t)=(Qu,Qv,t).
 $$
-Determine the number of $\mathcal O$-orbits of abelian subgroups $A\le G$ of order $p^4$ such that
+Call a subgroup $A\le G$ admissible if it is abelian of order $p^4$ and satisfies
 $$
 Z(G)\le A,
 $$
@@ -29,6 +29,10 @@ $$
 and
 $$
 \left|A\cap\{(u,u,t):u\in\mathbb F_p^3,\ t\in\mathbb F_p\}\right|=p^2.
+$$
+Determine the number of $\mathcal O$-orbits of ordered pairs $(A,B)$ of admissible subgroups under the diagonal action
+$$
+Q\cdot(A,B)=(Q\cdot A,Q\cdot B).
 $$
 
 ---
@@ -46,4 +50,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for symmetry classes of maximal abelian subgroups in a finite nonabelian prime-power group under a natural orthogonal automorphism group. Passing to the quotient by the center turns the subgroups into Lagrangian graphs, while orbit counting requires classifying the resulting self-adjoint operators up to orthogonal conjugacy rather than merely counting matrices. The primary objects are subgroups, automorphisms, and their orbits, so Abstract Algebra -> Group theory is the appropriate classification.
+The problem asks for symmetry classes of ordered configurations of maximal abelian subgroups in a finite nonabelian prime-power group under a natural orthogonal automorphism group. Passing to the quotient by the center turns each subgroup into a Lagrangian graph, while the diagonal orbit count depends on relative position and requires fixed-point counts across the orthogonal group rather than classification of a single operator. The primary objects are subgroups, automorphisms, and their configuration orbits, so Abstract Algebra -> Group theory is the appropriate classification.
