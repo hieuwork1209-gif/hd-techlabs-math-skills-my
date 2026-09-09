@@ -78,14 +78,20 @@ $$
 \nu_k=1+(k-1)p\qquad(1\le k\le p-1).
 $$
 
-For a $p\times p$ minor, a term avoiding the corner $z$ has valuation at least $p^2$. If a term uses that corner, then the remaining $p-1$ rows and columns are forced onto the diagonal, contributing $(p-1)(p+1)$; its valuation is again
+For a $p\times p$ minor, a term avoiding the corner $z$ has valuation at least $p^2$. If a term uses that corner, then any perfect matching is forced onto the diagonal in the remaining rows and columns, so its valuation is at least
 $$
 1+(p-1)(p+1)=p^2.
 $$
-The minor formed by the first $p$ rows and the last $p$ columns uses only the $p$ superdiagonal entries $z^p$, so the bound is attained. Thus
+To attain the bound, take the first $p$ rows and the last $p$ columns. Its determinant has exactly two nonzero terms: the product of the $p$ superdiagonal entries and the product of the corner entry with the remaining $p-1$ diagonal entries. Since $p$ is odd, the two corresponding permutations have the same sign, and therefore
+$$
+\det B_{\{0,\ldots,p-1\},\{1,\ldots,p\}}
+=z^{p^2}+z^{p^2}=2z^{p^2}\ne0.
+$$
+Thus
 $$
 \nu_p=p^2.
 $$
+This is the point where the assumption that $p$ is odd is essential.
 
 For the full determinant, column $0$ forces the first diagonal entry, and then successively every remaining diagonal entry is forced. Therefore
 $$
