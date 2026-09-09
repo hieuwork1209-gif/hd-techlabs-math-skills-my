@@ -1,95 +1,117 @@
 ## Steps
 
-Step 1: Reduce the two heavy-ball steps to a residual polynomial
-For a scalar eigendirection with curvature $\lambda$, put $t=\alpha\lambda$. Since $x_{-1}=x_0$,
+Step 1: Reduce three gradient steps to a cubic residual
+For a symmetric positive-definite matrix $A$, the iteration
 $$
-x_1=(1-t)x_0.
+x_{k+1}=(I-\alpha_kA)x_k,
+\qquad k=0,1,2,
 $$
-The second step gives
+gives
 $$
-x_2=(1+\beta-t)x_1-\beta x_0,
+x_3=p(A)x_0,
+\qquad
+p(\lambda)=\prod_{k=0}^2(1-\alpha_k\lambda).
 $$
-so
+Thus $p$ has degree at most $3$ and satisfies $p(0)=1$. By the spectral theorem,
 $$
-\frac{x_2}{x_0}=q_{\alpha,\beta}(\lambda)
-=1-\alpha(2+\beta)\lambda+\alpha^2\lambda^2.
+R(\alpha_0,\alpha_1,\alpha_2)
+=\max_{\lambda\in[1,4]\cup[6,9]}|p(\lambda)|.
 $$
-Therefore
-$$
-R(\alpha,\beta)=
-\max_{\lambda\in[1,4]\cup[6,9]}|q_{\alpha,\beta}(\lambda)|.
-$$
+Therefore any lower bound for all degree-$3$ polynomials with value $1$ at $0$ also applies to every admissible step-size triple.
 
-Step 2: Prove a sharp minimax lower bound from three spectral points
-Let $p$ be any polynomial of degree at most $2$ with $p(0)=1$, and set
+Step 2: Prove the sharp minimax lower bound
+Let $p$ be any polynomial of degree at most $3$ with $p(0)=1$, and put
 $$
 M=\max_{\lambda\in[1,4]\cup[6,9]}|p(\lambda)|.
 $$
-The points $1,6,9$ belong to the spectral set. Lagrange interpolation at these three points, evaluated at $0$, gives
+Lagrange interpolation at the four spectral points $1,3,7,9$, evaluated at $0$, gives
 $$
-p(0)=\frac{27}{20}p(1)-\frac35p(6)+\frac14p(9).
+p(0)=\frac{63}{32}p(1)-\frac{21}{16}p(3)
++\frac9{16}p(7)-\frac7{32}p(9).
 $$
 Hence
 $$
 1\le
-\left(\frac{27}{20}+\frac35+\frac14\right)M
-=\frac{11}{5}M,
+\left(\frac{63}{32}+\frac{21}{16}+\frac9{16}+\frac7{32}\right)M
+=\frac{65}{16}M,
 $$
-so every such quadratic satisfies
+so
 $$
-M\ge\frac5{11}.
+M\ge\frac{16}{65}.
 $$
-Since every two-step heavy-ball residual from Step 1 has degree at most $2$ and value $1$ at $\lambda=0$, this proves
+Consequently
 $$
-R(\alpha,\beta)\ge\frac5{11}.
+R_*\ge\frac{16}{65}.
 $$
 
-Step 3: Construct the extremal residual and recover the parameters
+Step 3: Construct the extremal cubic and recover the ordered step sizes
 Consider
 $$
 p_*(\lambda)
-=\frac{2(\lambda-5)^2-17}{33}
-=1-\frac{20}{33}\lambda+\frac{2}{33}\lambda^2.
+=-\frac{(\lambda-5)^3-12(\lambda-5)}{65}.
 $$
-At the four endpoints of the two spectral bands,
+At the four interpolation points,
 $$
-p_*(1)=p_*(9)=\frac5{11},
+p_*(1)=\frac{16}{65},\qquad
+p_*(3)=-\frac{16}{65},\qquad
+p_*(7)=\frac{16}{65},\qquad
+p_*(9)=-\frac{16}{65}.
+$$
+Also
+$$
+p_*'(\lambda)
+=-\frac{3\bigl((\lambda-5)^2-4\bigr)}{65},
+$$
+so the only critical points in the two spectral bands are $3$ and $7$. Since
+$$
+p_*(4)=-\frac{11}{65},
 \qquad
-p_*(4)=p_*(6)=-\frac5{11}.
+p_*(6)=\frac{11}{65},
 $$
-Moreover,
+we obtain
 $$
-p_*'(\lambda)=\frac{4(\lambda-5)}{33}.
+\max_{\lambda\in[1,4]\cup[6,9]}|p_*(\lambda)|
+=\frac{16}{65}.
 $$
-Thus $p_*$ decreases on $[1,4]$ and increases on $[6,9]$. Its deeper minimum occurs at $\lambda=5$, which lies in the spectral gap and is not part of the maximization set. Consequently
-$$
-\max_{\lambda\in[1,4]\cup[6,9]}|p_*(\lambda)|=\frac5{11}.
-$$
-Matching $p_*$ with the heavy-ball residual from Step 1 gives
-$$
-\alpha^2=\frac2{33},
-\qquad
-\alpha(2+\beta)=\frac{20}{33}.
-$$
-Because $\alpha>0$,
-$$
-\alpha_*=\frac{\sqrt{66}}{33},
-\qquad
-\beta_*=\frac{10\sqrt{66}}{33}-2.
-$$
-The momentum is feasible since $10\sqrt{66}>66$. Equality in the interpolation bound from Step 2 forces the signs
-$$
-p(1)=\frac5{11},\qquad p(6)=-\frac5{11},\qquad p(9)=\frac5{11},
-$$
-so the extremal quadratic is unique; hence the heavy-ball parameters above are unique as well.
+Thus the lower bound is attained.
 
-Final Answer: $\boxed{\left(\frac5{11},\left(\frac{\sqrt{66}}{33},\frac{10\sqrt{66}}{33}-2\right)\right)}$
+Equality in the interpolation estimate of Step 2 forces the signs
+$$
+p(1)=\frac{16}{65},\quad
+p(3)=-\frac{16}{65},\quad
+p(7)=\frac{16}{65},\quad
+p(9)=-\frac{16}{65}.
+$$
+These four values determine a unique cubic, so $p_*$ is the unique minimax residual polynomial.
+
+Its roots are
+$$
+5-2\sqrt3,\qquad 5,\qquad 5+2\sqrt3.
+$$
+Since
+$$
+p_*(\lambda)=\prod_{k=0}^2(1-\alpha_k\lambda),
+$$
+the step sizes are the reciprocals of these roots. Imposing
+$$
+0<\alpha_0\le\alpha_1\le\alpha_2
+$$
+gives
+$$
+\alpha_0=\frac{1}{5+2\sqrt3}=\frac{5-2\sqrt3}{13},
+\qquad
+\alpha_1=\frac15,
+\qquad
+\alpha_2=\frac{1}{5-2\sqrt3}=\frac{5+2\sqrt3}{13}.
+$$
+
+Final Answer: $\boxed{\left(\frac{16}{65},\left(\frac{5-2\sqrt3}{13},\frac15,\frac{5+2\sqrt3}{13}\right)\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac5{11},\left(\frac{\sqrt{66}}{33},\frac{10\sqrt{66}}{33}-2\right)\right)$
+$\left(\frac{16}{65},\left(\frac{5-2\sqrt3}{13},\frac15,\frac{5+2\sqrt3}{13}\right)\right)$
 
 ---
 
@@ -103,6 +125,6 @@ $\left(\frac5{11},\left(\frac{\sqrt{66}}{33},\frac{10\sqrt{66}}{33}-2\right)\rig
 
 ## Solution Concepts
 
-- heavy-ball residual polynomial
+- polynomial acceleration for gradient descent
 - minimax interpolation certificate
 - clustered spectrum with a spectral gap
