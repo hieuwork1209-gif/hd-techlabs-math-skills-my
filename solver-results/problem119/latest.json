@@ -2,8 +2,8 @@
   "problem": "problem119",
   "branch": "adversary/problem119",
   "problem_path": "workspace/rainier-problem/problem119-group-theory/problem.md",
-  "problem_blob_sha": "ba69711d2496d3154bb0664e79bb463cb6cce5ed",
-  "source_commit_sha": "c2cc00db878e099fdbfa730ccf80fa16a57d2db0",
+  "problem_blob_sha": "20eddf3a1ac039f4a7e5a7c84bc428b47392b9a0",
+  "source_commit_sha": "1d30d1c9b8418ec99b37d4deb6a85944b2b60344",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-08T18:02:44+00:00",
-  "result_file": "solver-results/problem119/ba69711d2496.json"
+  "completed_at": "2026-09-09T07:43:48+00:00",
+  "result_file": "solver-results/problem119/20eddf3a1ac0.json"
 }
