@@ -1,0 +1,22 @@
+{
+  "problem": "problem120",
+  "branch": "adversary/problem120",
+  "problem_path": "workspace/rainier-problem/problem120-ring-theory/problem.md",
+  "source_commit_sha": "ba633b3bc2dc26ab7634381e7822757787eb0a4a",
+  "problem_blob_sha": "dc0e9e561b48a046bb614e3e381856ebc054cb54",
+  "statement_sha256": "e0eae8b61e21caf0534ea60f24300b2230cc53355248fe706f1d65bc605a57bc",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-09T02:26:11+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(q=p\\), and fix once and for all a nonsquare \\(\\delta\\in \\mathbb F_p^\\times\\).\n\nFor a field \\(E\\subset M_8(\\mathbb F_p)\\) of order \\(p^2\\), the underlying \\(8\\)-dimensional \\(\\mathbb F_p\\)-space is a \\(4\\)-dimensional vector space over \\(E\\). Hence for \\(x\\in E\\), its matrix trace is\n\\[\n4\\operatorname{Tr}_{E/\\mathbb F_p}(x).\n\\]\nSince \\(p\\) is odd, the trace-zero elements of \\(E\\) form a \\(1\\)-dimensional \\(\\mathbb F_p\\)-line. If \\(0\\ne A\\) lies on that line, then \\(A^2\\in \\mathbb F_p^\\times I\\), and \\(A^2\\) is a nonsquare scalar multiple of \\(I\\). Thus each admissible field \\(E\\) corresponds to a line\n\\[\n\\mathbb F_p A,\\qquad A^T=-A,\\qquad A^2=\\lambda I\n\\]\nwith \\(\\lambda\\) nonsquare.\n\nAfter scaling \\(A\\), every such line has exactly two representatives satisfying\n\\[\nA^T=-A,\\qquad A^2=\\delta I.\n\\]\nTherefore an ordered sextuple of fields is counted by ordered sextuples\n\\[\n(A_1,\\dots,A_6)\n\\]\nwith\n\\[\nA_i^T=-A_i,\\qquad A_i^2=\\delta I,\\qquad A_iA_j=-A_jA_i\\quad(i\\ne j),\n\\]\ndivided by \\(2^6\\).\n\nNow the matrices \\(A_1,\\dots,A_6\\) give a representation of the Clifford algebra on generators \\(e_i\\) satisfying\n\\[\ne_i^2=\\delta,\\qquad e_ie_j=-e_je_i.\n\\]\nThis Clifford algebra has dimension \\(2^6=64\\), is central simple over \\(\\mathbb F_p\\), and over a finite field it is split, so it is isomorphic to \\(M_8(\\mathbb F_p)\\). Its involution \\(e_i\\mapsto -e_i\\) corresponds to transpose. Hence admissible normalized sextuples are exactly the images of a fixed Clifford generating sextuple under automorphisms of \\((M_8(\\mathbb F_p),T)\\).\n\nThe automorphism group of \\(M_8(\\mathbb F_p)\\) preserving transpose is the projective orthogonal similitude group\n\\[\n\\operatorname{PGO}_8^+(\\mathbb F_p).\n\\]\nFor the split \\(8\\)-dimensional quadratic form,\n\\[\n|\\operatorname{PGO}_8^+(\\mathbb F_p)|=|O_8^+(\\mathbb F_p)|.\n\\]\nThe order of the split orthogonal group is\n\\[\n|O_8^+(\\mathbb F_p)|\n=\n2p^{12}(p^4-1)(p^2-1)(p^4-1)(p^6-1).\n\\]\nThus the number of normalized sextuples is\n\\[\n2p^{12}(p^2-1)(p^4-1)^2(p^6-1).\n\\]\nDividing by \\(2^6\\), since each field has exactly two normalized trace-zero generators, gives\n\\[\n\\frac{2p^{12}(p^2-1)(p^4-1)^2(p^6-1)}{64}\n=\n\\frac{p^{12}(p^2-1)(p^4-1)^2(p^6-1)}{32}.\n\\]\n\n\\[\n\\boxed{\\frac{p^{12}(p^2-1)(p^4-1)^2(p^6-1)}{32}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-09T02:29:11+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem120/dc0e9e561b48.json"
+}
