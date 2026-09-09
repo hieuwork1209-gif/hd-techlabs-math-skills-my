@@ -1,0 +1,22 @@
+{
+  "problem": "problem119",
+  "branch": "adversary/problem119",
+  "problem_path": "workspace/rainier-problem/problem119-group-theory/problem.md",
+  "source_commit_sha": "598cc5cf2037c98e91bb740a7dc1c6bd3c970ce0",
+  "problem_blob_sha": "943c601ee6c64b884ed3b7f75ffc30432c6a8679",
+  "statement_sha256": "e10806c11aaed94842a3d6680fe0b36757310b52007f12883c6ed7fa66571a80",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-09T17:57:46+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(J_m\\) denote one nilpotent Jordan block of size \\(m\\). The answer is\n\n\\[\n\\boxed{\\Psi\\sim J_p^{\\,p(p^2-5)/2}\\oplus J_1^{\\,3}}.\n\\]\n\nThat is, \\(\\Psi\\) has \\(\\frac{p(p^2-5)}2\\) Jordan blocks of size \\(p\\), and \\(3\\) Jordan blocks of size \\(1\\).\n\n**Solution.**\nView \\(M_p(F)=\\operatorname{End}(F^p)\\). For the regular nilpotent \\(N\\), the operator\n\\[\nD=\\operatorname{ad}N\n\\]\non \\(M_p(F)\\) is the tensor action on \\(F^p\\otimes (F^p)^*\\). Identifying \\(F^p\\cong F[x]/(x^p)\\), this is multiplication by \\(x+y\\) on\n\\[\nF[x,y]/(x^p,y^p).\n\\]\nSince \\((x+y)^p=x^p+y^p=0\\), after the change of variables \\(z=x+y\\), this is\n\\[\nF[z,y]/(z^p,y^p)\\cong J_p^{\\,p}.\n\\]\n\nThe trace map \\(M_p(F)\\to F\\) is a nonzero \\(F[D]\\)-module map to the trivial module, so\n\\[\n\\mathfrak{sl}_p(F)\\cong J_p^{\\,p-1}\\oplus J_{p-1}.\n\\]\nAlso \\(I\\in D^{p-1}\\mathfrak{sl}_p(F)\\): using the standard truncated-polynomial model, \\(N\\) is similar to \\(d/dt\\), and multiplication by \\(t^{p-1}\\) has trace \\(0\\), with \\((\\operatorname{ad}N)^{p-1}(t^{p-1})=(p-1)!I\\neq0\\). Hence quotienting by \\(FI\\) shortens one \\(J_p\\)-block to \\(J_{p-1}\\). Therefore\n\\[\n\\mathfrak g\\cong J_p^{\\,p-2}\\oplus J_{p-1}^{\\,2}.\n\\]\n\nNow compute exterior squares. In characteristic \\(p\\), for these blocks:\n\n\\[\nJ_p\\otimes J_p\\cong J_p^{\\,p},\\qquad\nJ_p\\otimes J_{p-1}\\cong J_p^{\\,p-1},\n\\]\n\\[\nJ_{p-1}\\otimes J_{p-1}\\cong J_p^{\\,p-2}\\oplus J_1.\n\\]\n\nAlso, because \\(p\\) is odd and exterior square is a direct summand of the tensor square,\n\n\\[\n\\Lambda^2J_p\\cong J_p^{(p-1)/2},\n\\]\nand\n\\[\n\\Lambda^2J_{p-1}\\cong J_p^{(p-3)/2}\\oplus J_1.\n\\]\n\nWrite\n\\[\n\\mathfrak g=A^{p-2}\\oplus B^2,\\qquad A=J_p,\\quad B=J_{p-1}.\n\\]\nThen\n\\[\n\\Lambda^2\\mathfrak g\n=\n\\bigoplus_{p-2}\\Lambda^2A\n\\oplus\n\\bigoplus_{\\binom{p-2}{2}}(A\\otimes A)\n\\oplus\n\\bigoplus_{2(p-2)}(A\\otimes B)\n\\oplus\n\\bigoplus_2\\Lambda^2B\n\\oplus\n(B\\otimes B).\n\\]\n\nThus the number of \\(J_p\\)-blocks is\n\n\\[\n(p-2)\\frac{p-1}{2}\n+\\binom{p-2}{2}p\n+2(p-2)(p-1)\n+2\\frac{p-3}{2}\n+(p-2).\n\\]\n\nThis simplifies to\n\n\\[\n\\frac{p(p^2-5)}2.\n\\]\n\nThe \\(J_1\\)-blocks come from the two copies of \\(\\Lambda^2B\\) and the one copy of \\(B\\otimes B\\), so there are \\(3\\) of them.\n\nTherefore\n\n\\[\n\\boxed{\\Psi\\sim J_p^{\\,p(p^2-5)/2}\\oplus J_1^{\\,3}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-09T18:00:17+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem119/943c601ee6c6.json"
+}
