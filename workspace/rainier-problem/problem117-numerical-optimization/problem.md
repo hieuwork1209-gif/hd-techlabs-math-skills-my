@@ -8,29 +8,33 @@ $$
 $$
 For
 $$
-f(x)=\frac12 x^TAx,
+f(x)=\frac12x^TAx,
 $$
-choose constant heavy-ball parameters $\alpha>0$ and $\beta\ge0$. Starting from any $x_0\ne0$, set $x_{-1}=x_0$ and perform two iterations
+choose step sizes
 $$
-x_{k+1}=x_k-\alpha\nabla f(x_k)+\beta(x_k-x_{k-1}),
-\qquad k=0,1.
+0<\alpha_0\le\alpha_1\le\alpha_2.
 $$
-Define the worst-case two-step contraction factor
+Starting from any $x_0\ne0$, perform three gradient steps
 $$
-R(\alpha,\beta)
+x_{k+1}=x_k-\alpha_k\nabla f(x_k),
+\qquad k=0,1,2.
+$$
+Define the worst-case three-step contraction factor
+$$
+R(\alpha_0,\alpha_1,\alpha_2)
 =\sup_{A:\,\sigma(A)\subset[1,4]\cup[6,9]}
 \sup_{x_0\ne0}
-\frac{\|x_2\|_2}{\|x_0\|_2},
+\frac{\|x_3\|_2}{\|x_0\|_2},
 $$
 and let
 $$
-R_*=\min_{\alpha>0,\,\beta\ge0}R(\alpha,\beta).
+R_*=\min_{0<\alpha_0\le\alpha_1\le\alpha_2}
+R(\alpha_0,\alpha_1,\alpha_2).
 $$
 Determine the ordered pair
 $$
-\bigl(R_*,(\alpha_*,\beta_*)\bigr),
+\bigl(R_*,(\alpha_0^*,\alpha_1^*,\alpha_2^*)\bigr).
 $$
-where $(\alpha_*,\beta_*)$ is the optimizing parameter pair.
 
 ---
 
@@ -47,4 +51,4 @@ where $(\alpha_*,\beta_*)$ is the optimizing parameter pair.
 
 ## Domain Explanation
 
-This problem asks for robust heavy-ball tuning when the Hessian spectrum has two separated clusters. Two iterations produce a quadratic residual polynomial, but the spectral gap changes the minimax geometry because the residual may attain a deeper extremum inside the missing interval without affecting the worst-case contraction. The proof therefore combines spectral reduction with a sharp interpolation certificate adapted to the disconnected spectral set.
+The task tunes a three-step nonstationary gradient method for a quadratic whose Hessian spectrum lies in two separated clusters. The iteration generates a degree-three residual polynomial, and the optimal schedule is obtained from a minimax polynomial on the disconnected spectral set. The spectral gap is load-bearing: it changes the extremal polynomial and therefore the best finite-step contraction factor.
