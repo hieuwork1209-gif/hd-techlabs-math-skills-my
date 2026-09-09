@@ -10,7 +10,15 @@ with multiplication
 $$
 (u,v,t)(u',v',t')=(u+u',v+v',t+t'+u\cdot v'),
 $$
-where $u\cdot v'$ is the standard dot product on $\mathbb F_p^3$. Determine the number of abelian subgroups $A\le G$ of order $p^4$ such that
+where $u\cdot v'$ is the standard dot product on $\mathbb F_p^3$. Let
+$$
+\mathcal O=\{Q\in GL_3(\mathbb F_p):Q^TQ=I\}
+$$
+act on $G$ by
+$$
+Q\cdot(u,v,t)=(Qu,Qv,t).
+$$
+Determine the number of $\mathcal O$-orbits of abelian subgroups $A\le G$ of order $p^4$ such that
 $$
 Z(G)\le A,
 $$
@@ -38,4 +46,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for a precise count of maximal abelian subgroups in a finite nonabelian prime-power group subject to natural intersection constraints. Passing to the quotient by the center identifies these subgroups with Lagrangian graphs, and the three-dimensional case forces a nontrivial classification of rank-two symmetric forms according to the quadratic type of their radical line. The primary objects being classified are still subgroups and their intersections, so Abstract Algebra -> Group theory is the appropriate classification.
+The problem asks for symmetry classes of maximal abelian subgroups in a finite nonabelian prime-power group under a natural orthogonal automorphism group. Passing to the quotient by the center turns the subgroups into Lagrangian graphs, while orbit counting requires classifying the resulting self-adjoint operators up to orthogonal conjugacy rather than merely counting matrices. The primary objects are subgroups, automorphisms, and their orbits, so Abstract Algebra -> Group theory is the appropriate classification.
