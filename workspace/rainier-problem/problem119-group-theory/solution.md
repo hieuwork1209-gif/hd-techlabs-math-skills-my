@@ -8,192 +8,190 @@ p\equiv1\pmod4,
 $$
 let $g$ be a primitive root modulo $p$, and put
 $$
-r=g^{(p-1)/4}.
+r=g^{(p-1)/4},\qquad s=(-1)^{(p-1)/4}.
 $$
 Choose the quartic character
 $$
 \chi:\mathbb F_p^\times\to\{1,i,-1,-i\}
 $$
-by $\chi(g)=i$, and set
+by $\chi(g)=i$, and put $\eta=\chi^2$. Write
 $$
-\eta=\chi^2,\qquad s=\chi(-1)=(-1)^{(p-1)/4}.
+J=J(\chi,\chi)=A+iB.
 $$
-Write
-$$
-J=J(\chi,\chi)=\sum_{x\in\mathbb F_p}\chi(x)\chi(1-x)=A+iB.
-$$
-For a nontrivial character $\theta$, let
-$$
-G(\theta)=\sum_{x\in\mathbb F_p}\theta(x)e^{2\pi ix/p}.
-$$
-The identities
+For a nontrivial character $\theta$, let $G(\theta)$ be its Gauss sum. The identities
 $$
 G(\alpha)G(\beta)=J(\alpha,\beta)G(\alpha\beta),
 \qquad |G(\theta)|^2=p
 $$
-for nontrivial $\alpha,\beta,\alpha\beta$ give
+show that
 $$
-J\overline J=p.
+J\overline J=p,
 $$
-Hence
-$$
-A^2+B^2=p.
-$$
+so $A^2+B^2=p$.
 
-Put $\lambda=1+i$. Pair $x$ with $1-x$ in the sum defining $J$. The unique fixed point is $x=1/2$, and for every fourth root of unity $\zeta$,
-$$
-2\zeta\equiv2\pmod{\lambda^3}.
-$$
-Therefore
+Put $\lambda=1+i$. Pairing $x$ with $1-x$ in the Jacobi sum gives
 $$
 J\equiv\chi(1/4)+(p-3)\pmod{\lambda^3}.
 $$
-Now
+Since
 $$
 \chi(1/4)=\chi(4)=\eta(2)=s,
 $$
-so
+we get
 $$
 J\equiv-s\pmod{\lambda^3}.
 $$
-Since $A^2+B^2=p$, $A$ is odd and $B$ is even; the congruence above gives
-$$
-A\equiv-1\pmod4.
-$$
-Thus, with
+Hence $A\equiv-1\pmod4$. With the normalization
 $$
 p=a^2+b^2,\qquad a\equiv1\pmod4,
 $$
-we have
-$$
-A=-a.
-$$
+this forces $A=-a$.
 
-To determine the sign of $B$, reduce $\mathbb Z[i]$ modulo $p$ through the embedding
+To fix the sign of $B$, reduce $\mathbb Z[i]$ modulo $p$ through $i\mapsto r$. Since $\chi(g)=i$, the value $\chi(x)$ maps to $x^{(p-1)/4}$. Thus $J$ maps to
 $$
-i\longmapsto r.
+\sum_{x\in\mathbb F_p}x^m(1-x)^m,
+\qquad m=\frac{p-1}{4}.
 $$
-Because $\chi(g)=i$, the value $\chi(x)$ maps to $x^{(p-1)/4}$. With $m=(p-1)/4$,
-$$
-J\longmapsto\sum_{x\in\mathbb F_p}x^m(1-x)^m.
-$$
-After expanding $(1-x)^m$, every exponent lies strictly between $0$ and $p-1$, so every power sum vanishes. Hence the image of $J$ is $0$, and
+After expanding $(1-x)^m$, every occurring exponent is strictly between $0$ and $p-1$, so all power sums vanish. Therefore
 $$
 -a+Br\equiv0\pmod p.
 $$
-The normalization $br\equiv a\pmod p$ therefore forces
-$$
-B=b.
-$$
-Consequently
+The condition $br\equiv a\pmod p$ gives $B=b$. Hence
 $$
 J=-a+ib.
 $$
-Also the change of variables $x=t/(t-1)$ in Jacobi sums gives
+
+We shall also use the pairwise Jacobi sums
 $$
-J(\chi,\eta)=sJ,
+J(\chi,\eta)=J(\eta,\chi)=sJ,
 $$
-and by conjugation
 $$
-J(\eta,\overline\chi)=s\overline J.
+J(\eta,\overline\chi)=J(\overline\chi,\eta)=s\overline J,
+$$
+$$
+J(\chi,\overline\chi)=J(\overline\chi,\chi)=-s,
+\qquad J(\eta,\eta)=-1.
 $$
 
-Step 2: Obtain the six Frobenius factors by lifting Jacobi sums
+Step 2: Describe the primitive Frobenius roots of the quartic surface
 
-For a diagonal Fermat curve
+Let
 $$
-X^4+Y^4=cZ^4
+S_c:\ X_0^4+X_1^4+X_2^4=cX_3^4.
 $$
-over $\mathbb F_p$, character expansion over $\mathbb F_{p^k}$ uses the norm-lifted quartic character
+For $k\ge1$, extend $\chi$ to $\mathbb F_{p^k}$ by the norm. Character expansion of the point count, together with Davenport--Hasse lifting, shows that the primitive middle-cohomology Frobenius roots are indexed by
 $$
-\chi_k=\chi\circ N_{\mathbb F_{p^k}/\mathbb F_p}.
+\mathcal A=\{(u_0,u_1,u_2,u_3)\in\{1,2,3\}^4:
+ u_0+u_1+u_2+u_3\equiv0\pmod4\}
 $$
-For $m+n\not\equiv0\pmod4$, the Davenport--Hasse lifting identity is
+and are
 $$
-J_{p^k}(\chi_k^m,\chi_k^n)
-=(-1)^{k-1}J(\chi^m,\chi^n)^k.
-$$
-Moreover, for $c\in\mathbb F_p$,
-$$
-\chi_k(c)=\chi(c)^k.
-$$
-Thus the character expansion of the point count becomes
-$$
-\#C_c(\mathbb F_{p^k})
-=p^k+1+(-1)^{k-1}
-\sum_{\substack{1\le m,n\le3\\m+n\not\equiv0\ (4)}}
-\left(\chi^{m+n}(c)J(\chi^m,\chi^n)\right)^k.
-$$
-Hence the six reciprocal Frobenius roots are
-$$
-\alpha_{m,n}=-\chi^{m+n}(c)J(\chi^m,\chi^n),
-$$
-and therefore
-$$
-L_c(T)=
-\prod_{\substack{1\le m,n\le3\\m+n\not\equiv0\ (4)}}
-\left(1+\chi^{m+n}(c)J(\chi^m,\chi^n)T\right).
-$$
-
-Step 3: Specialize the six factors to $c=g$
-
-Because $\chi(g)=i$, the six admissible ordered pairs
-$$
-(1,1),(1,2),(2,1),(2,3),(3,2),(3,3)
-$$
-give
-$$
--J,\quad -isJ,\quad -isJ,\quad is\overline J,\quad is\overline J,\quad -\overline J.
-$$
-Therefore
-$$
-L_{C_g}(T)
-=(1-JT)(1-\overline JT)
-(1-isJT)^2(1+is\overline JT)^2.
-$$
-
-Step 4: Pair conjugate factors
-
-Since
-$$
-J=-a+ib,\qquad J\overline J=p,
-$$
-the first pair is
-$$
-(1-JT)(1-\overline JT)
-=1-(J+\overline J)T+pT^2
-=1+2aT+pT^2.
-$$
-For the second pair,
-$$
-(1-isJT)(1+is\overline JT)
-=1+is(\overline J-J)T+pT^2.
-$$
-But
-$$
-\overline J-J=-2ib,
-$$
-so
-$$
-is(\overline J-J)=2sb.
-$$
-Hence
-$$
-L_{C_g}(T)
-=(1+2aT+pT^2)(1+2sbT+pT^2)^2,
+\alpha_{\mathbf u}
+=\chi^{-u_3}(c)J(\chi^{u_0},\chi^{u_1},\chi^{u_2}),
 $$
 where
 $$
-s=(-1)^{(p-1)/4}.
+J(A,B,C)=\sum_{x+y+z=1}A(x)B(y)C(z).
+$$
+The hyperplane class contributes one additional Frobenius root $p$. Therefore
+$$
+P_{2,S_c}(T)
+=(1-pT)\prod_{\mathbf u\in\mathcal A}(1-\alpha_{\mathbf u}T).
 $$
 
-Final Answer: $\boxed{(1+2aT+pT^2)(1+2(-1)^{(p-1)/4}bT+pT^2)^2}$
+For three characters whose product is nontrivial,
+$$
+J(A,B,C)=J(A,B)J(AB,C)
+$$
+whenever $AB$ is nontrivial. The only exceptional triple needed below is
+$$
+J(\eta,\eta,\eta)=p,
+$$
+because Gauss sums give
+$$
+J(\eta,\eta,\eta)=\frac{G(\eta)^3}{G(\eta)}=G(\eta)^2=p
+$$
+for $p\equiv1\pmod4$.
+
+Step 3: Classify the twenty-one primitive roots for $c=g$
+
+The set $\mathcal A$ has $21$ elements, belonging to exactly five pattern types:
+$$
+(1,1,1,1),\quad(3,3,3,3),\quad(2,2,2,2),
+$$
+plus the permutations of
+$$
+(1,1,3,3),\qquad(1,2,2,3).
+$$
+Using $\chi(g)=i$ and the Jacobi sums from Step 1 gives the following multiset of primitive Frobenius roots:
+$$
+-isJ^2\quad(1\text{ time}),
+$$
+$$
+is\overline J^{\,2}\quad(1\text{ time}),
+$$
+$$
+-p\quad(1\text{ time}),
+$$
+$$
+-isp\quad(3\text{ times}),\qquad isp\quad(3\text{ times}),
+$$
+$$
+-ip\quad(3\text{ times}),\qquad ip\quad(3\text{ times}),
+$$
+$$
+-sp\quad(6\text{ times}).
+$$
+Indeed, the two constant patterns $(1,1,1,1)$ and $(3,3,3,3)$ give the two $J^2$-terms; $(2,2,2,2)$ gives $-p$; the six permutations of $(1,1,3,3)$ split according to whether the distinguished fourth coordinate is $1$ or $3$; and the twelve permutations of $(1,2,2,3)$ split according to whether that coordinate is $1$, $3$, or $2$.
+
+Step 4: Multiply the factors
+
+The twelve roots $\pm ip$ and $\pm isp$ contribute
+$$
+(1+p^2T^2)^6.
+$$
+The six roots $-sp$ contribute
+$$
+(1+spT)^6,
+$$
+and the root $-p$ contributes $1+pT$.
+
+For the two exceptional roots, since
+$$
+J=-a+ib,
+$$
+we have
+$$
+is(\overline J^{\,2}-J^2)=-4sab,
+\qquad J^2\overline J^{\,2}=p^2.
+$$
+Hence their quadratic factor is
+$$
+1+4sabT+p^2T^2.
+$$
+Including the hyperplane factor $1-pT$ gives
+$$
+P_{2,S_g}(T)
+=(1-pT)(1+pT)(1+spT)^6(1+p^2T^2)^6(1+4sabT+p^2T^2).
+$$
+Thus
+$$
+P_{2,S_g}(T)
+=(1-p^2T^2)(1+spT)^6(1+p^2T^2)^6(1+4sabT+p^2T^2).
+$$
+The degree is
+$$
+2+6+12+2=22,
+$$
+as required for a smooth quartic K3 surface.
+
+Final Answer: $\boxed{(1-p^2T^2)(1+spT)^6(1+p^2T^2)^6(1+4sabT+p^2T^2)}$
 
 ---
 
 ## Answer
 
-$(1+2aT+pT^2)(1+2(-1)^{(p-1)/4}bT+pT^2)^2$
+$(1-p^2T^2)(1+spT)^6(1+p^2T^2)^6(1+4sabT+p^2T^2)$
 
 ---
 
@@ -207,7 +205,7 @@ $(1+2aT+pT^2)(1+2(-1)^{(p-1)/4}bT+pT^2)^2$
 
 ## Solution Concepts
 
-- zeta function of a Fermat curve
+- quartic K3 surface
 - quartic Jacobi sums
 - Davenport--Hasse lifting
 - Frobenius eigenvalues
