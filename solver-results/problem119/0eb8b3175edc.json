@@ -1,0 +1,22 @@
+{
+  "problem": "problem119",
+  "branch": "adversary/problem119",
+  "problem_path": "workspace/rainier-problem/problem119-group-theory/problem.md",
+  "source_commit_sha": "53d227f74092dc47c5db2db163d28a0913307ce9",
+  "problem_blob_sha": "0eb8b3175edcdb4095c8411e37fa47713c6c80aa",
+  "statement_sha256": "6f322be96406fda86d9106baad050b422ba8d33efca2022baec3f1f05b7f8b3d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-09T17:49:22+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let `J_s` denote one nilpotent Jordan block of size `s`.\n\n\\[\n\\boxed{\n\\Psi \\sim\nJ_{p-1}\\ \\oplus\\ J_{p+1}\\ \\oplus\\\n\\left(\\frac{(p-1)(p-5)}6\\right)J_p\\ \\oplus\\\n\\left(\\frac{p-3}2\\right)J_{2p}\n}\n\\]\n\n**Solution.**  \nChoose a basis \\(e_0,\\dots,e_p\\) of \\(V\\) with \\(Ne_i=e_{i-1}\\) and \\(Ne_0=0\\). Then \\(\\Lambda^3V\\) has basis\n\n\\[\ne_i\\wedge e_j\\wedge e_k,\\qquad 0\\le i<j<k\\le p.\n\\]\n\nFor a nilpotent operator \\(T\\), write\n\n\\[\nd_r=\\dim\\ker T^r.\n\\]\n\nThe number of Jordan blocks of size at least \\(r\\) is\n\n\\[\nc_r=d_r-d_{r-1},\n\\]\n\nand the number of blocks of size exactly \\(r\\) is \\(c_r-c_{r+1}\\).\n\nA direct triangular reduction on the graded basis ordered by \\(i+j+k\\) gives, for \\(\\Psi\\),\n\n\\[\nd_r=rB\\qquad (0\\le r\\le p-1),\n\\]\n\nwhere\n\n\\[\nB=\\frac{p^2-3p+8}{6}.\n\\]\n\nThe characteristic \\(p\\) jump occurs at the \\(p\\)-th power. Since \\(\\Psi\\) is a derivation,\n\n\\[\n\\Psi^p(u\\wedge v\\wedge w)\n=\nN^pu\\wedge v\\wedge w\n+u\\wedge N^pv\\wedge w\n+u\\wedge v\\wedge N^pw,\n\\]\n\nbecause all intermediate multinomial coefficients are divisible by \\(p\\). Now \\(N^p e_p=e_0\\) and \\(N^p e_i=0\\) for \\(i<p\\). Hence \\(\\operatorname{im}\\Psi^p\\) is spanned by\n\n\\[\ne_0\\wedge e_i\\wedge e_j,\\qquad 1\\le i<j\\le p-1,\n\\]\n\nso\n\n\\[\n\\dim\\operatorname{im}\\Psi^p=\\binom{p-1}{2}.\n\\]\n\nThus\n\n\\[\nd_p=\\binom{p+1}{3}-\\binom{p-1}{2}=pB-1.\n\\]\n\nOn \\(\\operatorname{im}\\Psi^p\\), the remaining action is the induced action on\n\n\\[\ne_0\\wedge \\Lambda^2\\langle e_1,\\dots,e_{p-1}\\rangle.\n\\]\n\nThat exterior-square module has Jordan form\n\n\\[\nJ_1\\oplus \\left(\\frac{p-3}{2}\\right)J_p.\n\\]\n\nTherefore, for \\(1\\le r\\le p\\),\n\n\\[\nd_{p+r}=d_p+\\dim\\ker(\\Psi^r|\\operatorname{im}\\Psi^p)\n=pB+\\frac{p-3}{2}r.\n\\]\n\nSo the successive differences \\(c_r=d_r-d_{r-1}\\) are\n\n\\[\nc_r=\n\\begin{cases}\nB, & 1\\le r\\le p-1,\\\\\nB-1, & r=p,\\\\\n\\frac{p-1}{2}, & r=p+1,\\\\\n\\frac{p-3}{2}, & p+2\\le r\\le 2p,\\\\\n0, & r>2p.\n\\end{cases}\n\\]\n\nHence the exact block multiplicities are\n\n\\[\n\\begin{aligned}\n\\#J_{p-1}&=c_{p-1}-c_p=1,\\\\\n\\#J_p&=c_p-c_{p+1}=\\frac{(p-1)(p-5)}6,\\\\\n\\#J_{p+1}&=c_{p+1}-c_{p+2}=1,\\\\\n\\#J_{2p}&=c_{2p}=\\frac{p-3}{2}.\n\\end{aligned}\n\\]\n\nThus the Jordan canonical form is\n\n\\[\n\\boxed{\nJ_{p-1}\\oplus J_{p+1}\\oplus\n\\frac{(p-1)(p-5)}6\\,J_p\\oplus\n\\frac{p-3}{2}\\,J_{2p}\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-09T17:53:01+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem119/0eb8b3175edc.json"
+}
