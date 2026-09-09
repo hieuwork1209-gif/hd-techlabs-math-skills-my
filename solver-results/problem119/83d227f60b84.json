@@ -1,0 +1,22 @@
+{
+  "problem": "problem119",
+  "branch": "adversary/problem119",
+  "problem_path": "workspace/rainier-problem/problem119-group-theory/problem.md",
+  "source_commit_sha": "0f870c9b89bdac8a85a2918ed240978c7d9e793c",
+  "problem_blob_sha": "83d227f60b84695930ca83b9aeb5c0625f92a6b3",
+  "statement_sha256": "7e56074d7beaa8ea5139b2f102db3740c355e1dab27bf400d33ea97f0f03a6b8",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-09T17:26:02+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(n=p+1\\). Up to similarity,\n\\[\n\\Phi=J\\otimes I-I\\otimes J^T\n\\]\nhas the same Jordan form as\n\\[\nT=J\\otimes I+I\\otimes J,\n\\]\nsince \\(J^T\\sim J\\) and \\(-J\\sim J\\). Identify the underlying vector space with\n\\[\nA=F[x,y]/(x^n,y^n),\n\\]\nwhere \\(T\\) is multiplication by \\(z=x+y\\).\n\nPut \\(w=y\\), so \\(x=z-w\\). Since \\(n=p+1\\) and \\(\\operatorname{char}F=p\\),\n\\[\n(z-w)^{p+1}=z^{p+1}-z^p w-z w^p+w^{p+1}.\n\\]\nBecause \\(w^{p+1}=0\\), the \\(F[z]\\)-module \\(A\\) has generators\n\\[\ne_i=w^i,\\qquad 0\\le i\\le p,\n\\]\nand relations\n\\[\nz^{p+1}e_i-z^p e_{i+1}=0\\quad(0\\le i\\le p-1),\n\\]\ntogether with the extra term \\( -z e_p\\) in the relation for \\(i=0\\), and\n\\[\nz^{p+1}e_p=0.\n\\]\nEquivalently, after harmless sign changes, the relation matrix has nonzero entries\n\\[\nz^{p+1}\\text{ on the diagonal},\\qquad z^p\\text{ on the subdiagonal},\\qquad z\\text{ in the corner }(p,0).\n\\]\n\nIts Smith invariant exponents are determined by the minimum \\(z\\)-adic valuations of minors. For \\(1\\le k\\le p-1\\), a \\(k\\times k\\) minor using the corner \\(z\\) and \\(k-1\\) subdiagonal \\(z^p\\)'s has valuation\n\\[\n1+(k-1)p.\n\\]\nFor \\(k=p\\), the least valuation is\n\\[\np^2,\n\\]\nwith two lowest terms contributing coefficient \\(2\\ne0\\) since \\(p\\) is odd. For \\(k=p+1\\), the full determinant has valuation\n\\[\n(p+1)^2.\n\\]\nThus, if the Smith exponents are \\(a_1\\le\\cdots\\le a_{p+1}\\), then\n\\[\na_1=1,\\qquad a_2=\\cdots=a_{p-1}=p,\\qquad a_p=2p-1,\\qquad a_{p+1}=2p+1.\n\\]\n\nSince multiplication by \\(z\\) on \\(F[z]/(z^a)\\) is one nilpotent Jordan block of size \\(a\\), the Jordan form of \\(\\Phi\\) is\n\n\\[\n\\boxed{\nJ_{2p+1}(0)\\oplus J_{2p-1}(0)\\oplus (p-2)J_p(0)\\oplus J_1(0)\n}.\n\\]\n\nThe block sizes sum to\n\\[\n(2p+1)+(2p-1)+(p-2)p+1=(p+1)^2,\n\\]\nas required.",
+  "status": "success",
+  "completed_at": "2026-09-09T17:27:48+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem119/83d227f60b84.json"
+}

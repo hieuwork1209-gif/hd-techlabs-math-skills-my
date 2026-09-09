@@ -2,16 +2,16 @@
   "problem": "problem119",
   "branch": "adversary/problem119",
   "problem_path": "workspace/rainier-problem/problem119-group-theory/problem.md",
-  "problem_blob_sha": "4f8217b502c0d8e5da4a1773df920a59262bf118",
-  "source_commit_sha": "febed9546c130f6408c09b854807221fe4f58a7f",
+  "problem_blob_sha": "83d227f60b84695930ca83b9aeb5c0625f92a6b3",
+  "source_commit_sha": "0f870c9b89bdac8a85a2918ed240978c7d9e793c",
   "status": "success",
-  "local_verdict": "LOCAL_STUMPED",
-  "recommended_action": "PROMOTE_TO_MAIN_FOR_RAINIER",
-  "promotion_ready": true,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
   "requested_model": "gpt-5.5",
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-09T08:07:28+00:00",
-  "result_file": "solver-results/problem119/4f8217b502c0.json"
+  "completed_at": "2026-09-09T17:27:48+00:00",
+  "result_file": "solver-results/problem119/83d227f60b84.json"
 }
