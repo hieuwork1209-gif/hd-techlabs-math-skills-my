@@ -10,16 +10,19 @@ so $r^2=-1$. Let
 $$
 C_g:\ X^4+Y^4=gZ^4
 $$
-be the corresponding quartic twist of the Fermat quartic over $\mathbb F_p$.
+be the quartic twist of the Fermat quartic over $\mathbb F_p$.
 
 Choose integers $a,b$ uniquely by
 $$
 p=a^2+b^2,\qquad a\equiv1\pmod4,\qquad br\equiv a\pmod p.
 $$
-Determine the exact value of
+Write the zeta function of $C_g$ as
 $$
-\#C_g(\mathbb F_p).
+Z(C_g/\mathbb F_p,T)
+=\exp\left(\sum_{n\ge1}\#C_g(\mathbb F_{p^n})\frac{T^n}{n}\right)
+=\frac{L_{C_g}(T)}{(1-T)(1-pT)}.
 $$
+Determine the numerator polynomial $L_{C_g}(T)\in\mathbb Z[T]$ exactly.
 
 ---
 
@@ -36,4 +39,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for an exact point count on a natural quartic twist of the Fermat quartic over $\mathbb F_p$. Its evaluation requires quartic multiplicative characters, Jacobi sums, and the normalization of a Gaussian prime above $p$ relative to the chosen primitive root. The main content is finite-field congruence counting, so Number Theory -> Modular arithmetic and congruences is the appropriate classification.
+The problem asks for the exact Frobenius zeta numerator of a natural quartic twist of the Fermat quartic over a finite field. Its evaluation uses quartic characters, Jacobi sums, Davenport--Hasse lifting across finite-field extensions, and the Gaussian prime above $p$ normalized by the chosen primitive root. The central arithmetic content is finite-field character-sum computation, so Number Theory -> Modular arithmetic and congruences is the appropriate classification.
