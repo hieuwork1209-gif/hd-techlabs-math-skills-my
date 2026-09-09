@@ -1,0 +1,22 @@
+{
+  "problem": "problem119",
+  "branch": "adversary/problem119",
+  "problem_path": "workspace/rainier-problem/problem119-group-theory/problem.md",
+  "source_commit_sha": "d731b1e73901477f5685792ca7ff9340149dbda1",
+  "problem_blob_sha": "f9d1b77142b0681ccb9ebb3dddaf260b13effaea",
+  "statement_sha256": "0424e3022d429186a723941140542907d33a16e221f9a73bea29b7ad0214163e",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-09T18:05:03+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(\\chi\\) be a quartic character of \\(\\mathbb F_p^\\times\\) when \\(p\\equiv1\\pmod4\\), and let\n\\[\ne=\\chi(-1)=(-1)^{(p-1)/4}.\n\\]\nThus \\(e=1\\) if \\(p\\equiv1\\pmod8\\), and \\(e=-1\\) if \\(p\\equiv5\\pmod8\\).\n\nThe exact point count is\n\\[\n\\boxed{\n\\#C(\\mathbb F_p)=\n\\begin{cases}\np+1, & p\\equiv3\\pmod4,\\\\[2mm]\np+1-6a, & p\\equiv1\\pmod8,\\\\[2mm]\np+1+2a, & p\\equiv5\\pmod8,\n\\end{cases}}\n\\]\nwhere, in the last two cases, \\(p=a^2+b^2\\) and \\(a\\equiv1\\pmod4\\).\n\nSketch of derivation: for \\(p\\equiv3\\pmod4\\), fourth powers equal squares among nonzero elements, so the affine count reduces to\n\\[\n\\sum_{u+v=1}(1+\\phi(u))(1+\\phi(v))\n=p+J(\\phi,\\phi)=p+1,\n\\]\nand there are no points at infinity since \\(-1\\) is nonsquare.\n\nFor \\(p\\equiv1\\pmod4\\), expanding the number of fourth roots using \\(1+\\chi+\\chi^2+\\chi^3\\) gives\n\\[\n\\#C(\\mathbb F_p)=p+S+I,\n\\]\nwhere \\(I=4\\) if \\(p\\equiv1\\pmod8\\) and \\(I=0\\) if \\(p\\equiv5\\pmod8\\). The nontrivial Jacobi-sum part is\n\\[\nS=(1+2e)\\bigl(J(\\chi,\\chi)+\\overline{J(\\chi,\\chi)}\\bigr)-2e-1.\n\\]\nThe classical quartic Jacobi sum evaluation gives\n\\[\nJ(\\chi,\\chi)+\\overline{J(\\chi,\\chi)}=-2a,\n\\]\nwith \\(a\\equiv1\\pmod4\\) from \\(p=a^2+b^2\\). Hence\n\\[\n\\#C(\\mathbb F_p)=p+1-2a(1+2e),\n\\]\nwhich is exactly the two stated cases.",
+  "status": "success",
+  "completed_at": "2026-09-09T18:07:09+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem119/f9d1b77142b0.json"
+}
