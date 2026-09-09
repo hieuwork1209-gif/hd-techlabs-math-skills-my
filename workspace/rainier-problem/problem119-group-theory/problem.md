@@ -2,27 +2,23 @@
 
 ## LaTeX (Normalized)
 
-Let $p\ge5$ be a prime, let $F=\mathbb F_p$, and let
+Let $p$ be an odd prime and let
 $$
-N=J_p(0)\in M_p(F).
+C:\ X^4+Y^4=Z^4
 $$
-Because $\operatorname{tr}(I)=p=0$ in $F$, the scalar line $FI$ lies in $\mathfrak{sl}_p(F)$. Put
+be the smooth projective Fermat quartic over $\mathbb F_p$.
+
+When $p\equiv1\pmod4$, choose integers $a,b$ such that
 $$
-\mathfrak g=\mathfrak{psl}_p(F)=\mathfrak{sl}_p(F)/FI.
+p=a^2+b^2,\qquad a\equiv1\pmod4.
 $$
-The derivation
+(The condition on $a$ fixes its sign.)
+
+Determine the exact value of
 $$
-D=\operatorname{ad}N,\qquad D(X)=[N,X],
+\#C(\mathbb F_p)
 $$
-descends to a nilpotent endomorphism of $\mathfrak g$. Define the induced operator
-$$
-\Psi:\Lambda^2\mathfrak g\to\Lambda^2\mathfrak g
-$$
-by
-$$
-\Psi(u\wedge v)=Du\wedge v+u\wedge Dv.
-$$
-Determine the Jordan canonical form of $\Psi$ over $F$; equivalently, determine the sizes and multiplicities of all nilpotent Jordan blocks of $\Psi$.
+in terms of $p$ and, when $p\equiv1\pmod4$, the integer $a$ above.
 
 ---
 
@@ -30,13 +26,13 @@ Determine the Jordan canonical form of $\Psi$ over $F$; equivalently, determine 
 
 | Field | Value |
 |---|---|
-| **Domain** | Abstract Algebra |
-| **Sub-domain** | Lie algebras |
-| **Problem Type** | Canonicalization or normalization |
-| **Answer Type** | Canonical form |
+| **Domain** | Number Theory |
+| **Sub-domain** | Modular arithmetic and congruences |
+| **Problem Type** | Exact computation |
+| **Answer Type** | Exact symbolic expression |
 
 ---
 
 ## Domain Explanation
 
-The problem studies the adjoint action of a regular nilpotent element on the modular simple Lie algebra $\mathfrak{psl}_p$ and then on its exterior-square representation. The characteristic-$p$ scalar center of $\mathfrak{sl}_p$ changes the Jordan module before the exterior-square decomposition, so Abstract Algebra -> Lie algebras is the appropriate classification.
+The problem asks for an exact count of projective solutions to a quartic congruence over $\mathbb F_p$. Its evaluation uses quartic multiplicative characters, Jacobi and Gauss sums, and the representation of primes $p\equiv1\pmod4$ as a sum of two squares. The central arithmetic content is therefore finite-field congruence counting, making Number Theory -> Modular arithmetic and congruences the appropriate classification.
