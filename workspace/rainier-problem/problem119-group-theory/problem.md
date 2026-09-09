@@ -2,31 +2,13 @@
 
 ## LaTeX (Normalized)
 
-Let $p\equiv1\pmod4$ be a prime and let $g$ be a primitive root modulo $p$. Put
-$$
-r=g^{(p-1)/4}\in\mathbb F_p,
-$$
-so $r^2=-1$, and set
-$$
-s=(-1)^{(p-1)/4}.
-$$
-Choose integers $a,b$ uniquely by
-$$
-p=a^2+b^2,\qquad a\equiv1\pmod4,\qquad br\equiv a\pmod p.
-$$
-Let
-$$
-S_g:\ X_0^4+X_1^4+X_2^4=gX_3^4
-$$
-be the smooth quartic surface over $\mathbb F_p$. Write its zeta function as
-$$
-Z(S_g/\mathbb F_p,T)
-=\exp\left(\sum_{n\ge1}\#S_g(\mathbb F_{p^n})\frac{T^n}{n}\right)
-=\frac{1}{(1-T)P_{2,S_g}(T)(1-p^2T)},
-$$
-where $P_{2,S_g}(T)\in\mathbb Z[T]$ has degree $22$.
+Let $n\ge5$ be odd. Let $T_n$ be the triangular graph whose vertices are the $2$-element subsets of $\{1,\ldots,n\}$, with two vertices adjacent exactly when the corresponding $2$-subsets intersect in one element.
 
-Determine $P_{2,S_g}(T)$ exactly.
+Let $L$ be the Laplacian matrix of $T_n$, and let $L'$ be any reduced Laplacian obtained by deleting one row and the corresponding column. The critical group of $T_n$ is
+$$
+K(T_n)=\mathbb Z^{\binom n2-1}/\operatorname{im}(L').
+$$
+Determine the invariant-factor decomposition of the finite abelian group $K(T_n)$.
 
 ---
 
@@ -34,13 +16,13 @@ Determine $P_{2,S_g}(T)$ exactly.
 
 | Field | Value |
 |---|---|
-| **Domain** | Number Theory |
-| **Sub-domain** | Modular arithmetic and congruences |
-| **Problem Type** | Exact computation |
-| **Answer Type** | Exact symbolic expression |
+| **Domain** | Combinatorics |
+| **Sub-domain** | Graph theory |
+| **Problem Type** | Canonicalization or normalization |
+| **Answer Type** | Canonical form |
 
 ---
 
 ## Domain Explanation
 
-The problem asks for the exact middle Frobenius polynomial of a natural diagonal quartic K3 surface over a finite field. Its evaluation uses quartic characters, higher Jacobi sums, Davenport--Hasse lifting, and the Gaussian prime above $p$ normalized by the chosen primitive root. The central arithmetic content is finite-field character-sum computation, so Number Theory -> Modular arithmetic and congruences is the appropriate classification.
+The problem asks for the critical (sandpile) group of the triangular graph, equivalently the Smith normal form of a reduced graph Laplacian. The proof uses the incidence matrix of $K_n$, the matrix-tree theorem, and local information on Smith invariants. The primary objects are graphs and their Laplacian invariants, so Combinatorics -> Graph theory is the appropriate classification.
