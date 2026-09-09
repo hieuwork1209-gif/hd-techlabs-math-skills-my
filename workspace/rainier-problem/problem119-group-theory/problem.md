@@ -6,23 +6,27 @@ Let $p\equiv1\pmod4$ be a prime and let $g$ be a primitive root modulo $p$. Put
 $$
 r=g^{(p-1)/4}\in\mathbb F_p,
 $$
-so $r^2=-1$. Let
+so $r^2=-1$, and set
 $$
-C_g:\ X^4+Y^4=gZ^4
+s=(-1)^{(p-1)/4}.
 $$
-be the quartic twist of the Fermat quartic over $\mathbb F_p$.
-
 Choose integers $a,b$ uniquely by
 $$
 p=a^2+b^2,\qquad a\equiv1\pmod4,\qquad br\equiv a\pmod p.
 $$
-Write the zeta function of $C_g$ as
+Let
 $$
-Z(C_g/\mathbb F_p,T)
-=\exp\left(\sum_{n\ge1}\#C_g(\mathbb F_{p^n})\frac{T^n}{n}\right)
-=\frac{L_{C_g}(T)}{(1-T)(1-pT)}.
+S_g:\ X_0^4+X_1^4+X_2^4=gX_3^4
 $$
-Determine the numerator polynomial $L_{C_g}(T)\in\mathbb Z[T]$ exactly.
+be the smooth quartic surface over $\mathbb F_p$. Write its zeta function as
+$$
+Z(S_g/\mathbb F_p,T)
+=\exp\left(\sum_{n\ge1}\#S_g(\mathbb F_{p^n})\frac{T^n}{n}\right)
+=\frac{1}{(1-T)P_{2,S_g}(T)(1-p^2T)},
+$$
+where $P_{2,S_g}(T)\in\mathbb Z[T]$ has degree $22$.
+
+Determine $P_{2,S_g}(T)$ exactly.
 
 ---
 
@@ -39,4 +43,4 @@ Determine the numerator polynomial $L_{C_g}(T)\in\mathbb Z[T]$ exactly.
 
 ## Domain Explanation
 
-The problem asks for the exact Frobenius zeta numerator of a natural quartic twist of the Fermat quartic over a finite field. Its evaluation uses quartic characters, Jacobi sums, Davenport--Hasse lifting across finite-field extensions, and the Gaussian prime above $p$ normalized by the chosen primitive root. The central arithmetic content is finite-field character-sum computation, so Number Theory -> Modular arithmetic and congruences is the appropriate classification.
+The problem asks for the exact middle Frobenius polynomial of a natural diagonal quartic K3 surface over a finite field. Its evaluation uses quartic characters, higher Jacobi sums, Davenport--Hasse lifting, and the Gaussian prime above $p$ normalized by the chosen primitive root. The central arithmetic content is finite-field character-sum computation, so Number Theory -> Modular arithmetic and congruences is the appropriate classification.
