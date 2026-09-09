@@ -1,0 +1,22 @@
+{
+  "problem": "problem119",
+  "branch": "adversary/problem119",
+  "problem_path": "workspace/rainier-problem/problem119-group-theory/problem.md",
+  "source_commit_sha": "b53d6c8e3b70e3a4457966a58bc0d7a4e0b5a5b2",
+  "problem_blob_sha": "caeab6fb5278b69139328474d2c64fc33f171f8f",
+  "statement_sha256": "e95148fccf54145b5dedc8f7aac7c0627825c55ee69faa257f3f2742a00cecfa",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-09T17:41:48+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(e_0,\\dots,e_p\\) be a Jordan basis with\n\\[\nNe_0=0,\\qquad Ne_i=e_{i-1}\\quad(1\\le i\\le p).\n\\]\nWrite \\(J_m\\) for a nilpotent Jordan block of size \\(m\\).\n\nThe answer is\n\\[\n\\boxed{\\Psi\\sim J_{2p-1}\\oplus J_p^{\\oplus (p-3)/2}\\oplus J_1.}\n\\]\n\nHere is the proof.\n\nLet\n\\[\nU=\\langle e_0,\\dots,e_{p-1}\\rangle.\n\\]\nThen \\(U\\cong J_p\\), and \\(\\Lambda^2U\\subset \\Lambda^2V\\) is \\(\\Psi\\)-stable. Also\n\\[\n(\\Lambda^2V)/(\\Lambda^2U)\\cong U\n\\]\nvia the classes of \\(e_i\\wedge e_p\\).\n\nFirst consider \\(\\Lambda^2U\\). Since \\(N^p=0\\) on \\(U\\), we have \\(\\Psi^p=0\\) on \\(\\Lambda^2U\\). The homogeneous pieces\n\\[\nW_d=\\operatorname{span}\\{e_i\\wedge e_j:i+j=d,\\ 0\\le i<j\\le p-1\\}\n\\]\nare mapped by \\(\\Psi\\) to \\(W_{d-1}\\), and the matrix on each nonzero piece is bidiagonal with nonzero entries \\(\\pm1\\), so each map has maximal rank. Hence\n\\[\n\\dim\\ker(\\Psi|\\Lambda^2U)=\\frac{p-1}{2}.\n\\]\nThus \\(\\Lambda^2U\\), a module killed by \\(\\Psi^p\\), has \\((p-1)/2\\) Jordan blocks and total dimension \\(p(p-1)/2\\). Therefore\n\\[\n\\Lambda^2U\\cong J_p^{\\oplus (p-1)/2}.\n\\]\n\nNow take\n\\[\nw=e_p\\wedge e_{p-1}.\n\\]\nFor \\(k\\ge0\\),\n\\[\n\\Psi^k w=\\sum_{a=0}^k \\binom{k}{a}\\, e_{p-a}\\wedge e_{p-1-(k-a)},\n\\]\nwith terms having negative indices omitted and signs adjusted when needed. At \\(k=2p-2\\), all terms vanish except the one giving \\(e_0\\wedge e_1\\), with coefficient\n\\[\n\\binom{2p-2}{p}-\\binom{2p-2}{p-1}\\equiv 1-0\\equiv1\\pmod p\n\\]\nby Lucas’ theorem. Hence\n\\[\n\\Psi^{2p-2}w\\ne0,\\qquad \\Psi^{2p-1}w=0.\n\\]\nSo \\(w\\) generates a block \\(J_{2p-1}\\).\n\nMoreover\n\\[\n\\Psi^p w=e_0\\wedge e_{p-1}\\in \\Lambda^2U,\n\\]\nand this element generates a submodule of \\(\\Lambda^2U\\) of length \\(p-1\\). Since\n\\[\n\\Lambda^2U\\cong J_p^{\\oplus (p-1)/2},\n\\]\nquotienting by this length-\\((p-1)\\) submodule removes one \\(J_p\\) except for a remaining \\(J_1\\). Therefore the complement to the long block contributes\n\\[\nJ_p^{\\oplus (p-3)/2}\\oplus J_1.\n\\]\n\nCombining with the long block gives\n\\[\n\\boxed{J_{2p-1}(0)\\oplus J_p(0)^{\\oplus (p-3)/2}\\oplus J_1(0)}.\n\\]\n\nThe dimensions check:\n\\[\n(2p-1)+\\frac{p-3}{2}p+1\n=\\frac{p(p+1)}2\n=\\dim\\Lambda^2V.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-09T17:45:22+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem119/caeab6fb5278.json"
+}
