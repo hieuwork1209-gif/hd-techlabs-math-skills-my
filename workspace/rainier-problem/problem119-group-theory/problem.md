@@ -2,23 +2,24 @@
 
 ## LaTeX (Normalized)
 
-Let $p$ be an odd prime and let
+Let $p\equiv1\pmod4$ be a prime and let $g$ be a primitive root modulo $p$. Put
 $$
-C:\ X^4+Y^4=Z^4
+r=g^{(p-1)/4}\in\mathbb F_p,
 $$
-be the smooth projective Fermat quartic over $\mathbb F_p$.
+so $r^2=-1$. Let
+$$
+C_g:\ X^4+Y^4=gZ^4
+$$
+be the corresponding quartic twist of the Fermat quartic over $\mathbb F_p$.
 
-When $p\equiv1\pmod4$, choose integers $a,b$ such that
+Choose integers $a,b$ uniquely by
 $$
-p=a^2+b^2,\qquad a\equiv1\pmod4.
+p=a^2+b^2,\qquad a\equiv1\pmod4,\qquad br\equiv a\pmod p.
 $$
-(The condition on $a$ fixes its sign.)
-
 Determine the exact value of
 $$
-\#C(\mathbb F_p)
+\#C_g(\mathbb F_p).
 $$
-in terms of $p$ and, when $p\equiv1\pmod4$, the integer $a$ above.
 
 ---
 
@@ -35,4 +36,4 @@ in terms of $p$ and, when $p\equiv1\pmod4$, the integer $a$ above.
 
 ## Domain Explanation
 
-The problem asks for an exact count of projective solutions to a quartic congruence over $\mathbb F_p$. Its evaluation uses quartic multiplicative characters, Jacobi and Gauss sums, and the representation of primes $p\equiv1\pmod4$ as a sum of two squares. The central arithmetic content is therefore finite-field congruence counting, making Number Theory -> Modular arithmetic and congruences the appropriate classification.
+The problem asks for an exact point count on a natural quartic twist of the Fermat quartic over $\mathbb F_p$. Its evaluation requires quartic multiplicative characters, Jacobi sums, and the normalization of a Gaussian prime above $p$ relative to the chosen primitive root. The main content is finite-field congruence counting, so Number Theory -> Modular arithmetic and congruences is the appropriate classification.
