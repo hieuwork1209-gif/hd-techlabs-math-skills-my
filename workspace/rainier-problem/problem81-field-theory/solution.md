@@ -96,11 +96,27 @@ N_s=\frac{r(r-1)}4. \tag{10}
 $$
 
 Step 3: Count flags from the full affine conic and its secant directions.
-For a phase vector (3), let
+For a phase vector (3), put
 $$
-H_s=\operatorname{span}\{\mathbf1,(\omega^{j-1})_j,(\omega^{-(j-1)})_j\}.
+e_0=\mathbf1,\qquad e_+=(\omega^{j-1})_j,\qquad e_-=(\omega^{-(j-1)})_j,
 $$
-It has dimension $3$, and every required cyclic orbit lies in it. Thus an admissible hyperplane $U$ must contain $H_s$, giving
+and let
+$$
+H_s=\operatorname{span}\{e_0,e_+,e_-\}.
+$$
+The three eigenvalues $1,\omega,\omega^{-1}$ of $P$ are distinct, so $\dim H_s=3$. Also $Pe_0=e_0$, $Pe_+=\omega e_+$, $Pe_-=\omega^{-1}e_-$, and (3) gives
+$$
+s=e_0+ue_++ve_-,
+$$
+with $u,v\ne0$. We now verify that the required orbit vectors actually span $H_s$. If
+$$
+\alpha_0s+\alpha_1Ps+\alpha_2P^2s=0,
+$$
+set $p(z)=\alpha_0+\alpha_1z+\alpha_2z^2$. Comparing the $e_0,e_+,e_-$ coefficients yields
+$$
+p(1)=p(\omega)=p(\omega^{-1})=0.
+$$
+These are three distinct field elements, while $\deg p\le2$, so $p=0$. Hence $s,Ps,P^2s$ are linearly independent and therefore span $H_s$. Since they are among the required vectors $P^ts$, every admissible $U$ contains $H_s$. Conversely, $H_s$ is $P$-invariant and contains $s$, $2\mathbf1-s$, and $Ps-s$, so all three required cyclic orbits lie in $H_s$. Thus the condition on $U$ is exactly $H_s\subset U$, giving
 $$
 \frac{\ell^{r-3}-1}{\ell-1} \tag{11}
 $$
