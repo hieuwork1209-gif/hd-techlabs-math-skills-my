@@ -1,0 +1,22 @@
+{
+  "problem": "problem120",
+  "branch": "adversary/problem120",
+  "problem_path": "workspace/rainier-problem/problem120-ring-theory/problem.md",
+  "source_commit_sha": "6b21688b0b840dcb91068e5893668901eb44da5b",
+  "problem_blob_sha": "988bc17d3c0fea6f478bb63e5f888133e7bcbbb1",
+  "statement_sha256": "5f53aa37959b9cafc797c1f9b1bbc2b6ec4ac2d624c4a3f90c5a01e39fd4da1b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-09T02:16:54+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "For any proposed family, take two distinct vertices that are not an incident point-line pair; for example, take two distinct points of \\(\\mathcal P\\).\n\nEach \\(E_v\\) is a field, so it contains \\(0\\), and \\(\\operatorname{tr}(0)=0\\). Choose\n\\[\nA=0\\in E_v,\\qquad B=0\\in E_w.\n\\]\nThen\n\\[\nAB=0=-0=-BA.\n\\]\nSo \\(AB=-BA\\) holds for this non-incident pair.\n\nBut the condition says \\(AB=-BA\\) holds exactly when one vertex is a point, the other is a line, and the point lies on the line. Our chosen pair does not satisfy that. This is a contradiction.\n\nTherefore no such ordered family exists.\n\n\\[\n\\boxed{0}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-09T02:17:27+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem120/988bc17d3c0f.json"
+}
