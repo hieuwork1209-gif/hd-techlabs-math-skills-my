@@ -18,7 +18,7 @@ X_E^2=dI_{1024}.
 $$
 Conversely, every $X$ with $X^2=dI_{1024}$ generates a quadratic field and has trace zero.
 
-Thus the desired field families are obtained from normalized generators indexed by the $30$ vertices of the incidence graph of $W(3,2)$, each squaring to $dI_{1024}$, with generators anticommuting across an incidence edge and commuting otherwise, by dividing by $2^{30}$.
+The statement imposes anticommutation on incidence edges and commutation on nonedges; these are relation requirements, not an assertion that special elements such as $0$ cannot satisfy both identities. Thus the desired field families are obtained from normalized generators indexed by the $30$ vertices of the incidence graph of $W(3,2)$, each squaring to $dI_{1024}$, with generators anticommuting across an incidence edge and commuting otherwise, by dividing by $2^{30}$.
 
 Step 2: Compute the binary incidence kernel of $W(3,2)$
 
