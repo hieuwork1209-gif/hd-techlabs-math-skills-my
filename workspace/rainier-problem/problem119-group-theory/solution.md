@@ -1,158 +1,181 @@
 ## Steps
 
-Step 1: Reduce the two smaller exterior powers to free modules over a local ring
+Step 1: Determine the Jordan module of the adjoint action on $\mathfrak{psl}_p$
 
 Let
 $$
-F=\mathbb F_p,\qquad V=F^{p+1},\qquad N=J_{p+1}(0),
+F=\mathbb F_p,\qquad N=J_p(0),\qquad D=\operatorname{ad}N.
 $$
-and choose a Jordan basis $e_0,\ldots,e_p$ with
+On $M_p(F)$ identify the matrix unit basis with
 $$
-Ne_0=0,\qquad Ne_i=e_{i-1}\quad(1\le i\le p).
+A=F[x,y]/(x^p,y^p)
 $$
-Put
+so that $D$ is multiplication by
 $$
-U=\langle e_0,\ldots,e_{p-1}\rangle,
+z=x-y.
 $$
-so $N|_U=J_p(0)$. Let
+Writing $x=z+y$ and using characteristic $p$ gives
 $$
-R=F[t]/(t^p),
+A\cong F[z,y]/(z^p,y^p).
 $$
-where $t$ acts on tensor and exterior powers by the induced derivation. Thus $U$ is the regular $R$-module.
+Hence, with
+$$
+R=F[z]/(z^p),
+$$
+we have
+$$
+M_p(F)\cong R^p
+$$
+as an $R$-module.
 
-Give $R$ the Hopf structure
+The trace map is $R$-linear if $F$ is regarded as $R/(z)$, because
 $$
-\Delta(t)=t\otimes1+1\otimes t,\qquad S(t)=-t.
+\operatorname{tr}[N,X]=0.
 $$
-For any $R$-module $M$, the diagonal $R$-module $R\otimes_F M$ is free: the map
+It is nonzero, hence surjective. Therefore after an $R$-basis change,
 $$
-\phi(a\otimes m)=\sum a_{(1)}\otimes S(a_{(2)})m
+\mathfrak{sl}_p(F)=\ker(\operatorname{tr})\cong R^{p-1}\oplus zR.
 $$
-identifies the diagonal action with left multiplication on the first factor, with inverse
+Since $zR\cong R/(z^{p-1})$, the adjoint action on $\mathfrak{sl}_p$ has Jordan form
 $$
-\phi^{-1}(a\otimes m)=\sum a_{(1)}\otimes a_{(2)}m.
-$$
-Hence every tensor power $U^{\otimes k}$ is free over $R$.
-
-Since $p\ge5$, both $2$ and $6$ are invertible in $F$. The antisymmetrizers therefore split $\Lambda^2U$ and $\Lambda^3U$ as direct summands of $U^{\otimes2}$ and $U^{\otimes3}$. They are projective over the local ring $R$, hence free. Their ranks are determined by dimensions:
-$$
-B:=\Lambda^2U\cong R^b,\qquad b=\frac{p-1}{2},
-$$
-$$
-A:=\Lambda^3U\cong R^a,\qquad a=\frac{(p-1)(p-2)}6.
+J_p^{\oplus(p-1)}\oplus J_{p-1}.
 $$
 
-Step 2: Express $\Lambda^3V$ as an extension and compute its connecting map
-
-Let
+Because $p=0$ in $F$, the scalar matrix $I$ belongs to $\mathfrak{sl}_p$. Moreover
 $$
-W=\Lambda^3V,
+D^{p-1}(E_{p1})
+=\sum_{k=0}^{p-1}(-1)^k\binom{p-1}{k}N^{p-1-k}E_{p1}N^k
+=\sum_{k=0}^{p-1}E_{k+1,k+1}=I,
 $$
-and let $t$ act as the operator in the problem. There is a natural exact sequence of $F[t]$-modules
+using $\binom{p-1}{k}\equiv(-1)^k\pmod p$. Thus $FI$ is the socle of one length-$p$ Jordan block. Passing to
 $$
-0\longrightarrow A\longrightarrow W\overset{\pi}{\longrightarrow}B\longrightarrow0,
+\mathfrak g=\mathfrak{psl}_p(F)=\mathfrak{sl}_p(F)/FI
+$$
+shortens that block by one. Hence
+$$
+\mathfrak g\cong R^{p-2}\oplus S\oplus S,
 $$
 where
 $$
-\pi(e_p\wedge u\wedge v)=u\wedge v,
+S=R/(z^{p-1}).
 $$
-and $\pi$ vanishes on $\Lambda^3U$.
+Equivalently, $D$ on $\mathfrak g$ has Jordan form
+$$
+J_p^{\oplus(p-2)}\oplus J_{p-1}^{\oplus2}.
+$$
 
-Because $t^p=0$ on both $A$ and $B$, define
-$$
-\delta:B\to A,\qquad \delta(b)=t^p\widetilde b,
-$$
-for any lift $\widetilde b\in W$. This is well-defined and $R$-linear.
+Step 2: Record the two tensor facts for $S=R/(z^{p-1})$
 
-For $u,v\in U$, take the lift $e_p\wedge u\wedge v$. The three factor operators commute, so in characteristic $p$,
+Give $R$ the Hopf structure
 $$
-t^p=N^p\otimes I\otimes I+I\otimes N^p\otimes I+I\otimes I\otimes N^p.
+\Delta(z)=z\otimes1+1\otimes z.
 $$
+For every $R$-module $M$, the diagonal module $R\otimes_F M$ is free over $R$. In particular, any tensor product with a free $R$-module is free.
+
+Realize $S\cong zR$. Tensoring the exact sequence
+$$
+0\longrightarrow S\longrightarrow R\longrightarrow F\longrightarrow0
+$$
+over $F$ with $S$ gives an exact sequence of diagonal $R$-modules
+$$
+0\longrightarrow S\otimes S\longrightarrow R\otimes S\longrightarrow S\longrightarrow0.
+$$
+Since $R\otimes S$ is free of rank $p-1$, a Smith-form basis for the surjection onto $S=R/(z^{p-1})$ gives
+$$
+S\otimes S\cong R^{p-2}\oplus F.
+$$
+
+Because $p$ is odd,
+$$
+S\otimes S=\operatorname{Sym}^2S\oplus\Lambda^2S.
+$$
+The vector
+$$
+\omega=\sum_{i=0}^{p-2}(-1)^i x^iy^{p-2-i}
+$$
+in $F[x,y]/(x^{p-1},y^{p-1})$ is antisymmetric and satisfies
+$$
+(x+y)\omega=0.
+$$
+Also
+$$
+\omega(-y,y)=(p-1)y^{p-2}=-y^{p-2}\ne0,
+$$
+so $\omega\notin(x+y)(S\otimes S)$. Thus the unique direct $F$-summand of $S\otimes S$ lies in $\Lambda^2S$. By dimension,
+$$
+\Lambda^2S\cong R^{(p-3)/2}\oplus F.
+$$
+
+Step 3: Decompose the exterior square of $\mathfrak g$
+
+Put
+$$
+P=R^{p-2}.
+$$
+Then
+$$
+\Lambda^2\mathfrak g
+\cong \Lambda^2P
+\oplus P\otimes(S\oplus S)
+\oplus \Lambda^2S
+\oplus(S\otimes S)
+\oplus\Lambda^2S.
+$$
+
+Since $2$ is invertible, $\Lambda^2P$ is a direct summand of $P\otimes P$, hence free over the local ring $R$. Its rank is
+$$
+\frac1p\binom{p(p-2)}2
+=\frac{(p-2)(p(p-2)-1)}2.
+$$
+Also
+$$
+P\otimes(S\oplus S)
+$$
+is free of rank
+$$
+2(p-2)(p-1).
+$$
+Using Step 2, the remaining three terms contribute
+$$
+R^{2p-5}\oplus F^{\oplus3}.
+$$
+Therefore the total number of free $R$-summands is
+$$
+\frac{(p-2)(p(p-2)-1)}2+2(p-2)(p-1)+(2p-5)
+=\frac{p(p^2-5)}2.
+$$
+Thus the induced operator on $\Lambda^2\mathfrak g$ has
+$$
+\frac{p(p^2-5)}2
+$$
+Jordan blocks of size $p$ and three blocks of size $1$.
+
+Step 4: Check the dimension
+
 Since
 $$
-N^pe_p=e_0,\qquad N^pU=0,
+\dim\mathfrak g=p^2-2,
 $$
-we get the simple formula
+we have
 $$
-\delta(u\wedge v)=e_0\wedge u\wedge v.
+\dim\Lambda^2\mathfrak g
+=\binom{p^2-2}{2}
+=\frac{p^4-5p^2+6}{2}.
 $$
+The proposed blocks have total size
+$$
+p\cdot\frac{p(p^2-5)}2+3
+=\frac{p^4-5p^2+6}{2},
+$$
+so the dimensions agree.
 
-Step 3: Determine the Smith type of the connecting map
-
-The kernel of $\delta$ is exactly
-$$
-\ker\delta=e_0\wedge U.
-$$
-It is cyclic over $R$, generated by $e_0\wedge e_{p-1}$, and
-$$
-t^j(e_0\wedge e_{p-1})=e_0\wedge e_{p-1-j}\qquad(0\le j\le p-2).
-$$
-Thus
-$$
-\ker\delta\cong R/(t^{p-1}).
-$$
-
-Since $A$ and $B$ are free over the principal ideal ring $R$, put $\delta$ into Smith form. If its diagonal entries are
-$$
-t^{s_1},\ldots,t^{s_b},\qquad 0\le s_i\le p,
-$$
-then
-$$
-\ker\delta\cong\bigoplus_{s_i>0}R/(t^{s_i}).
-$$
-The kernel above is one cyclic module of length $p-1$. Therefore the Smith form of $\delta$ has
-$$
-b-1
-$$
-unit entries and one entry $t^{p-1}$.
-
-Step 4: Reconstruct the Jordan blocks of $W$
-
-Choose Smith bases $a_1,\ldots,a_a$ of $A$ and $b_1,\ldots,b_b$ of $B$, with lifts $f_1,\ldots,f_b$ in $W$. For the $b-1$ unit entries,
-$$
-t^pf_i=a_i,
-$$
-so $f_i$ generates one block of size $2p$. Hence these contribute
-$$
-J_{2p}^{\oplus(b-1)}.
-$$
-
-For the remaining Smith entry $t^{p-1}$, the two generators $a_b,f_b$ have relations
-$$
-t^pa_b=0,\qquad t^pf_b=t^{p-1}a_b.
-$$
-The relation matrix
-$$
-\begin{pmatrix}
-t^p&-t^{p-1}\\
-0&t^p
-\end{pmatrix}
-$$
-has Smith factors $t^{p-1}$ and $t^{p+1}$. Thus this part contributes
-$$
-J_{p-1}\oplus J_{p+1}.
-$$
-
-The remaining $a-b$ basis vectors of $A$ each give a block $J_p$. Since
-$$
-b-1=\frac{p-3}{2},\qquad a-b=\frac{(p-1)(p-5)}6,
-$$
-the Jordan form is
-$$
-J_{2p}^{\oplus (p-3)/2}\oplus J_p^{\oplus (p-1)(p-5)/6}\oplus J_{p+1}\oplus J_{p-1}.
-$$
-The dimensions check:
-$$
-2p\frac{p-3}{2}+p\frac{(p-1)(p-5)}6+(p+1)+(p-1)=\binom{p+1}{3}.
-$$
-
-Final Answer: $\boxed{J_{2p}^{\oplus (p-3)/2}\oplus J_p^{\oplus (p-1)(p-5)/6}\oplus J_{p+1}\oplus J_{p-1}}$
+Final Answer: $\boxed{J_p(0)^{\oplus p(p^2-5)/2}\oplus J_1(0)^{\oplus3}}$
 
 ---
 
 ## Answer
 
-$J_{2p}^{\oplus (p-3)/2}\oplus J_p^{\oplus (p-1)(p-5)/6}\oplus J_{p+1}\oplus J_{p-1}$
+$J_p(0)^{\oplus p(p^2-5)/2}\oplus J_1(0)^{\oplus3}$
 
 ---
 
@@ -166,11 +189,11 @@ $J_{2p}^{\oplus (p-3)/2}\oplus J_p^{\oplus (p-1)(p-5)/6}\oplus J_{p+1}\oplus J_{
 
 ## Solution Concepts
 
-- exterior-cube representation
-- truncated polynomial Hopf module
-- module extension
-- Smith normal form
-- Jordan blocks from invariant factors
+- modular adjoint representation
+- projective special linear Lie algebra
+- truncated polynomial modules
+- exterior-square decomposition
+- Jordan blocks from Hopf modules
 
 ---
 
