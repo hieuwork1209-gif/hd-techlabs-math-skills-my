@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Reduce the problem to a Burnside count on symmetric matrices
+Step 1: Parametrize admissible subgroups and keep the pair condition coupled
 
 Let
 $$
@@ -14,151 +14,194 @@ Hence every admissible subgroup is uniquely
 $$
 A_T=\{(u,Tu,t):u\in U,\ t\in\mathbb F_p\},
 $$
-where $T$ is symmetric and invertible. The diagonal intersection has order $p^{1+\dim\ker(T-I)}$, so admissibility is equivalent to
+where
 $$
 T=T^T,\qquad \det T\ne0,\qquad \dim\ker(T-I)=1.
 $$
-Let $X$ be this set of matrices. Since
+Write
 $$
-Q\cdot A_T=A_{QTQ^{-1}},
+L(T)=\ker(T-I).
 $$
-ordered subgroup pairs correspond to $X\times X$ with diagonal conjugation. Conjugation by $-Q$ equals conjugation by $Q$, so the orbit set is unchanged if $\mathcal O$ is replaced by $SO_3(\mathbb F_p)$. Put
+Then $L(T)=\ell(A_T)$, so the extra condition on an ordered pair is
 $$
-F(Q)=\#\{T\in X:QT=TQ\}.
+L(T)\perp L(S).
 $$
-Burnside's lemma gives
+Let $X$ be the set of admissible matrices. Since $Q\cdot A_T=A_{QTQ^{-1}}$ and $-I$ acts trivially, we may average over
 $$
-\#(X\times X)/\mathcal O
-=\frac1{|SO_3(\mathbb F_p)|}\sum_{Q\in SO_3(\mathbb F_p)}F(Q)^2.
+H=SO_3(\mathbb F_p),\qquad |H|=p(p^2-1).
 $$
-
-Step 2: Count the element types in $SO_3(\mathbb F_p)$
-
-For $q(x)=x\cdot x$, choose a Witt basis with Gram matrix
+For a line $L\le U$, define
 $$
-J=\begin{pmatrix}0&1&0\\1&0&0\\0&0&d\end{pmatrix},\qquad d\ne0.
+c_Q(L)=\#\{T\in X:QT=TQ,\ L(T)=L\}.
 $$
-Such a basis exists because the two sets of squares $\{a^2\}$ and $\{-1-b^2\}$, each of size $(p+1)/2$, intersect. An isotropic line with first coordinate nonzero has a unique representative $e+yf+zh$ with $2y+dz^2=0$, giving $p$ lines, and $\langle f\rangle$ gives one more. Thus there are $p+1$ isotropic lines and $p^2$ nonisotropic lines.
-
-Let $n_+$ count nonisotropic lines $L$ for which $L^{\perp}$ is split and $n_-$ those for which it is anisotropic. Counting incidences $(\ell,L)$ with $\ell$ isotropic and $L\perp\ell$ gives
+The number of allowed ordered pairs fixed by $Q$ is therefore
 $$
-2n_+=p(p+1),
+P(Q)=\sum_{L\perp M}c_Q(L)c_Q(M),
 $$
-because each isotropic $\ell$ is perpendicular to $p$ nonisotropic lines, while a split plane contains two isotropic lines and an anisotropic plane none. Hence
+not the square of a one-variable fixed-point count. Burnside gives
 $$
-n_+=\frac{p(p+1)}2,\qquad n_-=\frac{p(p-1)}2.
+N=\frac1{p(p^2-1)}\sum_{Q\in H}P(Q).
 $$
 
-A nonidentity semisimple $Q\in SO_3$ has a unique nonisotropic axis $L$ and is $1_L\oplus R$. On a split plane, $SO_2$ has order $p-1$; on an anisotropic plane, identified with $\mathbb F_{p^2}$ with its norm form, the norm-one rotations have order $p+1$. Each axis has one involution $R=-I$. Therefore there are $n_+$ split-axis involutions, $n_-$ anisotropic-axis involutions, and
-$$
-n_+(p-3)+n_-(p-1)=p(p^2-2p-1)
-$$
-other semisimple elements.
+Step 2: Count diagonal directions and evaluate $P(I)$
 
-For an isotropic axis $\langle e\rangle$, the nonidentity unipotents are
+There are three $H$-orbits of lines in the split three-dimensional quadratic space $U$:
 $$
-Q_c=\begin{pmatrix}1&-dc^2/2&-dc\\0&1&0\\0&c&1\end{pmatrix},\qquad c\ne0.
+n_0=p+1,
 $$
-Thus each isotropic line supports $p-1$ of them, giving $p^2-1$ unipotents. Consequently
+for isotropic lines,
 $$
-|SO_3(\mathbb F_p)|
-=1+n_+(p-2)+n_-p+(p^2-1)
-=p(p^2-1).
+n_+=\frac{p(p+1)}2,
 $$
-
-Step 3: Compute the fixed-point numbers $F(Q)$
+for nonisotropic lines with split orthogonal complement, and
+$$
+n_-=\frac{p(p-1)}2,
+$$
+for nonisotropic lines with anisotropic orthogonal complement. Indeed, each isotropic line is perpendicular to $p$ nonisotropic lines, while a split plane contains two isotropic lines and an anisotropic plane none, so $2n_+=p(p+1)$.
 
 Set
 $$
-M=p(p-1)^2.
+r=p(p-1)^2.
 $$
-On a split plane, a self-adjoint map has form
+For a fixed isotropic line, a Witt-basis calculation gives
+$$
+T=\begin{pmatrix}1&a&dr\\0&1&0\\0&r&j\end{pmatrix},
+$$
+with $j\ne0$ and exact fixed line precisely when $a(j-1)-dr^2\ne0$. For each nonzero $j$ there are $p(p-1)$ allowed pairs $(a,r)$, hence
+$$
+r_0=r.
+$$
+
+If $L$ is nonisotropic, then $U=L\perp L^\perp$ and $T=1_L\oplus B$. On a split plane a self-adjoint map is
 $$
 B=\begin{pmatrix}a&b\\c&a\end{pmatrix}.
 $$
-Each equation $\det B=0$ and $\det(B-I)=0$ has $p^2$ solutions, and both hold exactly when $a=1/2$ and $bc=1/4$, giving $p-1$ solutions. Hence
+Each of $\det B=0$ and $\det(B-I)=0$ has $p^2$ solutions, and both hold for exactly $p-1$ maps. Thus
 $$
-S_+=\#\{B:\det B\det(B-I)\ne0\}=M-1.
+r_+=p^3-2p^2+p-1=r-1.
 $$
-If $C=B-I$ has rank one, then $C=\begin{pmatrix}x&b\\c&x\end{pmatrix}$ with $x^2=bc$, while $I+C$ is invertible exactly when $1+2x\ne0$. The case $x=0$ gives $2(p-1)$ nonzero pairs $(b,c)$, and the $p-2$ allowed nonzero values of $x$ each give $p-1$ pairs. Thus
-$$
-R_+=p(p-1).
-$$
-
-On an anisotropic plane, every self-adjoint map is uniquely
-$$
-B(z)=az+b\overline z,\qquad a\in\mathbb F_p,\ b\in\mathbb F_{p^2},
-$$
-with
+On an anisotropic plane write $B(z)=az+b\bar z$ on $\mathbb F_{p^2}$, so
 $$
 \det B=a^2-N(b),\qquad \det(B-I)=(a-1)^2-N(b).
 $$
-A nonzero norm fiber has $p+1$ elements, so the same inclusion-exclusion gives
+The two singularity equations again have $p^2$ solutions each, while their intersection has $p+1$ solutions because a nonzero norm fiber has $p+1$ elements. Hence
 $$
-S_-=M+1.
-$$
-For $C=B-I$, rank one requires $x^2=N(b)$. The case $x=0$ gives only $C=0$, while each nonzero $x\ne-1/2$ gives $p+1$ choices of $b$. Hence
-$$
-R_-=(p-2)(p+1).
+r_-=p^3-2p^2+p+1=r+1.
 $$
 
-For a fixed isotropic $1$-eigenline, write
+For a fixed first line, the numbers of perpendicular second lines of the three types are
 $$
-T=\begin{pmatrix}1&a&dr\\0&1&0\\0&r&j\end{pmatrix}.
+\begin{array}{c|ccc}
+ &0&+&-\\ \hline
+0&1&p&0\\
++&2&\frac{p-1}{2}&\frac{p-1}{2}\\
+-&0&\frac{p+1}{2}&\frac{p+1}{2}
+\end{array}.
 $$
-Here $j\ne0$ and the fixed space is exactly the chosen line iff $a(j-1)-dr^2\ne0$. For each of the $p-1$ nonzero $j$, there are $p(p-1)$ allowed pairs $(a,r)$, so an isotropic line contributes $M$ matrices. Therefore
+The first row is the tangent-line geometry of the isotropic conic. For a $+$ line, its split perpendicular plane contains two isotropic lines; in a hyperbolic basis the remaining lines are $\langle e+af\rangle$ with $a\in\mathbb F_p^\times$, and the ambient discriminant criterion divides them equally between $+$ and $-$. The last row then follows from symmetry of orthogonality and the identities $n_i t_{ij}=n_jt_{ji}$.
+
+Therefore
 $$
-F(I)=|X|=(p+1)M+n_+S_++n_-S_-=p^5-p^4-p^2.
+\begin{aligned}
+P(I)={}&n_0r_0(r_0+pr_+)\\
+&+n_+r_+\left(2r_0+\frac{p-1}{2}(r_++r_-)\right)\\
+&+n_-r_-\left(\frac{p+1}{2}(r_++r_-)\right).
+\end{aligned}
+$$
+Substituting $r_0=r$, $r_+=r-1$, and $r_-=r+1$ gives
+$$
+P(I)=p^2(p-1)^2(p+1)(p^2+1)(p^2-p-1).
 $$
 
-If $Q$ is semisimple and not an involution, write $Q=1_L\oplus R$ with $R\ne\pm I$. The centralizer of $R$ on its plane is $\mathbb F_p[R]$. Since $R^*=R^{-1}$, a commuting self-adjoint map $aI+bR$ has $b=0$. Thus an admissible commuting $T$ is $1_L\oplus sI$ with $s\in\mathbb F_p^\times\setminus\{1\}$, so
+Step 3: Compute $P(Q)$ for the nonidentity conjugacy types
+
+A regular semisimple $Q\in H$ has a unique nonisotropic axis $L$ and a two-dimensional rotation block. Every admissible matrix commuting with $Q$ has the form
 $$
-F(Q)=p-2.
+T=1_L\oplus sI,\qquad s\in\mathbb F_p^\times\setminus\{1\}.
+$$
+Thus every such $T$ has diagonal direction $L$. Since $L$ is nonisotropic, $L\not\perp L$, so
+$$
+P(Q)=0
+$$
+for every regular semisimple $Q$.
+
+If $Q$ is nonidentity unipotent and $N=Q-I$, then every commuting endomorphism is $aI+bN+cN^2$, while self-adjointness forces $b=0$. For $T=aI+cN^2$, the dimension of $\ker(T-I)$ is $0$, $2$, or $3$, never $1$. Hence $X^Q=\varnothing$ and again
+$$
+P(Q)=0.
 $$
 
-For an involution $Q=1_L\oplus(-I)$, a commuting $T$ is $t\oplus B$. If $t=1$, the plane block contributes $S_+$ or $S_-$; if $t\ne1$, there are $p-2$ choices of $t$ and the plane block contributes $R_+$ or $R_-$. Hence
-$$
-F_+=S_++(p-2)R_+=2p^3-5p^2+3p-1,
-$$
-$$
-F_-=S_-+(p-2)R_-=2p^3-5p^2+p+5.
-$$
+Now let $Q=1_L\oplus(-I_P)$ be an involution.
 
-If $Q$ is nonidentity unipotent and $N=Q-I$, then $N$ is one Jordan block of size three, so every commuting endomorphism is $aI+bN+cN^2$. Since
+If $P$ is split, then $L$ is a $+$ line. The matrices with diagonal direction $L$ contribute
 $$
-N^*=-N+N^2,
+c_Q(L)=r_+.
 $$
-self-adjointness forces $b=0$. For $T=aI+cN^2$, the kernel of $T-I$ has dimension $0$, $2$, or $3$, never $1$. Thus
+Inside $P$ there are two isotropic lines and $p-1$ nonisotropic lines. For a prescribed isotropic line $M\le P$, an invertible self-adjoint plane map with exact $1$-eigenspace $M$ has $p-1$ choices; for a prescribed nonisotropic line it has $p-2$ choices. Since the scalar on $L$ must lie in $\mathbb F_p^\times\setminus\{1\}$, this gives
 $$
-F(Q)=0.
+c_{\rm iso}=(p-1)(p-2),\qquad c_{\rm an}=(p-2)^2.
 $$
+The total weight of lines in $P$ is
+$$
+S_+=2c_{\rm iso}+(p-1)c_{\rm an}=p(p-1)(p-2).
+$$
+The axis is perpendicular to every line of $P$; within $P$, each isotropic line is perpendicular only to itself, while each nonisotropic line has one nonisotropic perpendicular mate. Hence
+$$
+P_+=2r_+S_+ +2c_{\rm iso}^2+(p-1)c_{\rm an}^2.
+$$
+Equivalently,
+$$
+P_+=(p-2)(p-1)(2p^4-3p^3-2p^2+4p-4).
+$$
+There are
+$$
+n_+=\frac{p(p+1)}2
+$$
+such involutions.
+
+If $P$ is anisotropic, then $L$ is a $-$ line and
+$$
+c_Q(L)=r_-.
+$$
+Every one of the $p+1$ lines in $P$ is nonisotropic. For each such line the plane block has $p-2$ choices, and the scalar on $L$ has another $p-2$ choices, so
+$$
+c_P=(p-2)^2.
+$$
+Every line of $P$ has a unique distinct perpendicular mate. Therefore
+$$
+P_-=2r_-(p+1)(p-2)^2+(p+1)(p-2)^4,
+$$
+or
+$$
+P_-=(p-2)^2(p+1)(2p^3-3p^2-2p+6).
+$$
+There are
+$$
+n_-=\frac{p(p-1)}2
+$$
+such involutions.
 
 Step 4: Evaluate Burnside's sum
 
-Using the element counts from Step 2 and the fixed-point counts from Step 3 gives
+Only the identity and the two involution types contribute. Thus
 $$
-\frac{F(I)^2+n_+F_+^2+n_-F_-^2+p(p^2-2p-1)(p-2)^2}{p(p^2-1)}.
+N=\frac{P(I)+n_+P_++n_-P_-}{p(p^2-1)}.
 $$
-The numerator expands to
+Substituting the formulas from Steps 2 and 3, the numerator factors as
 $$
-p^{10}-2p^9+5p^8-22p^7+35p^6-7p^5-42p^4+47p^3+p^2-16p
+p(p^2-1)\left(p^6-8p^4+10p^3+5p^2-21p+16\right).
 $$
-and factors as
+Therefore
 $$
-p(p-1)(p+1)\left(p^7-2p^6+6p^5-24p^4+41p^3-31p^2-p+16\right).
-$$
-After division by $p(p^2-1)$, the required number is
-$$
-p^7-2p^6+6p^5-24p^4+41p^3-31p^2-p+16.
+N=p^6-8p^4+10p^3+5p^2-21p+16.
 $$
 
-Final Answer: $\boxed{p^7-2p^6+6p^5-24p^4+41p^3-31p^2-p+16}$
+Final Answer: $\boxed{p^6-8p^4+10p^3+5p^2-21p+16}$
 
 ---
 
 ## Answer
 
-$p^7-2p^6+6p^5-24p^4+41p^3-31p^2-p+16$
+$p^6-8p^4+10p^3+5p^2-21p+16$
 
 ---
 
@@ -175,9 +218,9 @@ $p^7-2p^6+6p^5-24p^4+41p^3-31p^2-p+16$
 - extraspecial finite group
 - orthogonal group actions
 - Burnside lemma
-- self-adjoint operators
 - finite quadratic geometry
+- coupled fixed-point counts
 
 ---
 
-## Black-Box Audit — no issues found
+## Black-Box Audit - no issues found
