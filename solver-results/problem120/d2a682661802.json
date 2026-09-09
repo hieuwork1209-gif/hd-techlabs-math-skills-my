@@ -1,0 +1,22 @@
+{
+  "problem": "problem120",
+  "branch": "adversary/problem120",
+  "problem_path": "workspace/rainier-problem/problem120-ring-theory/problem.md",
+  "source_commit_sha": "621431a626ead41984208cc3ef1aa81acd4de3c7",
+  "problem_blob_sha": "d2a68266180245f5fb50d10dbb2da0f884cbe1e9",
+  "statement_sha256": "cb9c0f2be3d6537ff4d770e2c1625499d308635c8c2850579dc9a28bcc5c4328",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-09T02:35:35+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(K=\\mathbb F_{p^2}\\). Any subfield \\(E\\subset M_8(\\mathbb F_p)\\) of order \\(p^2\\) containing \\(I\\) makes \\(\\mathbb F_p^8\\) a \\(4\\)-dimensional \\(K\\)-vector space. Hence, for \\(A\\in E\\),\n\\[\n\\operatorname{tr}_{M_8}(A)=4\\,\\operatorname{Tr}_{K/\\mathbb F_p}(A).\n\\]\nSince \\(p\\) is odd, the trace-zero elements of \\(E\\) form a one-dimensional \\(\\mathbb F_p\\)-line.\n\nFix a nonsquare \\(\\eta\\in\\mathbb F_p^\\times\\). Thus each field \\(E_i\\) has exactly two normalized trace-zero generators \\(\\pm J_i\\) with\n\\[\nE_i=\\mathbb F_p[J_i],\\qquad J_i^2=\\eta I.\n\\]\nTranspose-stability means \\(J_i^T=s_iJ_i\\) for some \\(s_i\\in\\{\\pm1\\}\\). The anticommutation condition is exactly\n\\[\nJ_iJ_j=-J_jJ_i\\qquad (i\\ne j).\n\\]\n\nFor a normalized ordered sextuple \\((J_1,\\dots,J_6)\\), the \\(64\\) monomials\n\\[\nJ_{i_1}\\cdots J_{i_k}\\qquad (1\\le i_1<\\cdots<i_k\\le6)\n\\]\nform the full Clifford basis of \\(M_8(\\mathbb F_p)\\). The transpose sign of such a monomial is\n\\[\n(-1)^{k(k-1)/2}\\prod_{\\ell=1}^k s_{i_\\ell}.\n\\]\nSince ordinary transpose on \\(M_8\\) has \\(36\\) symmetric and \\(28\\) skew-symmetric matrices, we need exactly \\(36\\) positive signs among these \\(64\\) monomials. If \\(r\\) is the number of \\(+1\\) signs among the \\(s_i\\), this occurs precisely for\n\\[\nr=0,\\ 3,\\ 4.\n\\]\nSo the number of admissible sign patterns is\n\\[\n\\binom60+\\binom63+\\binom64=1+20+15=36.\n\\]\n\nFor each admissible sign pattern, the orthogonal group \\(O_8^+(\\mathbb F_p)\\) acts transitively on the corresponding normalized sextuples by conjugation, and the stabilizer is only \\(\\{\\pm I\\}\\). Hence the number of normalized ordered sextuples for one sign pattern is\n\\[\n\\frac{|O_8^+(\\mathbb F_p)|}{2}.\n\\]\nUsing\n\\[\n|O_8^+(\\mathbb F_p)|\n=\n2p^{12}(p^4-1)(p^2-1)(p^4-1)(p^6-1),\n\\]\nthe total number of normalized ordered sextuples is\n\\[\n36\\cdot \\frac{|O_8^+(\\mathbb F_p)|}{2}.\n\\]\nEach field \\(E_i\\) corresponds to the two normalized choices \\(\\pm J_i\\), so we divide by \\(2^6\\). Therefore the required number is\n\\[\n\\frac{36}{2^7}|O_8^+(\\mathbb F_p)|\n=\n\\boxed{\\frac{9}{16}p^{12}(p^2-1)(p^4-1)^2(p^6-1)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-09T02:38:32+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem120/d2a682661802.json"
+}
