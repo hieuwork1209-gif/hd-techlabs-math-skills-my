@@ -1,215 +1,175 @@
 ## Steps
 
-Step 1: Normalize the quartic Jacobi sum
+Step 1: Relate the triangular-graph Laplacian to the complete-graph Laplacian
 
-Let
+Let $n\ge5$ be odd, let
 $$
-p\equiv1\pmod4,
+m=\binom n2,\qquad d=n-1,\qquad \beta=m-n+1=\frac{(n-1)(n-2)}2,
 $$
-let $g$ be a primitive root modulo $p$, and put
+and let $T_n=L(K_n)$ be the triangular graph. Let $B$ be the unsigned $n\times m$ vertex-edge incidence matrix of $K_n$. Since two edges of $K_n$ meet in one vertex exactly when the corresponding vertices of $T_n$ are adjacent,
 $$
-r=g^{(p-1)/4},\qquad s=(-1)^{(p-1)/4}.
+B^TB=2I+A(T_n).
 $$
-Choose the quartic character
+Hence the Laplacian of $T_n$ is
 $$
-\chi:\mathbb F_p^\times\to\{1,i,-1,-i\}
+L=2(n-2)I-A(T_n)=2dI-B^TB.
 $$
-by $\chi(g)=i$, and put $\eta=\chi^2$. Write
+Also
 $$
-J=J(\chi,\chi)=A+iB.
+BB^T=(n-2)I+J.
 $$
-For a nontrivial character $\theta$, let $G(\theta)$ be its Gauss sum. The identities
+If
 $$
-G(\alpha)G(\beta)=J(\alpha,\beta)G(\alpha\beta),
-\qquad |G(\theta)|^2=p
+L_0=nI-J
 $$
-show that
+is the Laplacian of $K_n$, then
 $$
-J\overline J=p,
+BL=L_0B.
 $$
-so $A^2+B^2=p$.
+Thus $B$ induces a homomorphism from the torsion subgroup of $\operatorname{coker}L$, namely $K(T_n)$, to $K(K_n)$.
 
-Put $\lambda=1+i$. Pairing $x$ with $1-x$ in the Jacobi sum gives
+A direct Smith reduction of $L_0=nI-J$ gives
 $$
-J\equiv\chi(1/4)+(p-3)\pmod{\lambda^3}.
+K(K_n)\cong (\mathbb Z_n)^{n-2}.
 $$
-Since
+The induced map is surjective: for distinct $i,j,k$,
 $$
-\chi(1/4)=\chi(4)=\eta(2)=s,
+B(e_{ik}-e_{jk})=e_i-e_j,
 $$
-we get
-$$
-J\equiv-s\pmod{\lambda^3}.
-$$
-Hence $A\equiv-1\pmod4$. With the normalization
-$$
-p=a^2+b^2,\qquad a\equiv1\pmod4,
-$$
-this forces $A=-a$.
+and such differences generate the torsion of $\operatorname{coker}L_0$.
 
-To fix the sign of $B$, reduce $\mathbb Z[i]$ modulo $p$ through $i\mapsto r$. Since $\chi(g)=i$, the value $\chi(x)$ maps to $x^{(p-1)/4}$. Thus $J$ maps to
+Let $H$ be the kernel. If $[x]\in H$, then $Bx=L_0y$ for some integral $y$. Using $L B^T=B^TL_0$,
 $$
-\sum_{x\in\mathbb F_p}x^m(1-x)^m,
-\qquad m=\frac{p-1}{4}.
+2d[x]=[B^TBx]=[B^TL_0y]=[LB^Ty]=0.
 $$
-After expanding $(1-x)^m$, every occurring exponent is strictly between $0$ and $p-1$, so all power sums vanish. Therefore
-$$
--a+Br\equiv0\pmod p.
-$$
-The condition $br\equiv a\pmod p$ gives $B=b$. Hence
-$$
-J=-a+ib.
-$$
+Therefore every element of $H$ is killed by $2d$.
 
-We shall also use the pairwise Jacobi sums
+Step 2: Compute the order of the kernel
+
+The matrix $BB^T=(n-2)I+J$ has eigenvalue $2d$ on the all-ones vector and eigenvalue $n-2$ with multiplicity $n-1$. Hence $B^TB$ has eigenvalues
 $$
-J(\chi,\eta)=J(\eta,\chi)=sJ,
+2d\ (1),\qquad n-2\ (n-1),\qquad 0\ (m-n).
 $$
+Therefore $L=2dI-B^TB$ has eigenvalues
 $$
-J(\eta,\overline\chi)=J(\overline\chi,\eta)=s\overline J,
+0\ (1),\qquad n\ (n-1),\qquad 2d\ (m-n).
 $$
+By the matrix-tree theorem,
 $$
-J(\chi,\overline\chi)=J(\overline\chi,\chi)=-s,
-\qquad J(\eta,\eta)=-1.
+|K(T_n)|=\frac{n^{n-1}(2d)^{m-n}}m.
+$$
+Since $m=nd/2$ and $m-n-1=\beta-2$,
+$$
+|K(T_n)|=4n^{n-2}(2d)^{\beta-2}.
+$$
+Because the map onto $K(K_n)$ is surjective,
+$$
+|H|=4(2d)^{\beta-2}.
 $$
 
-Step 2: Describe the primitive Frobenius roots of the quartic surface
+Step 3: Determine the primary structure of $H$
 
-Let
+We use the following elementary local Smith observation. Suppose an integral matrix $M$ has one-dimensional rational kernel, and an integer eigenvalue $\lambda\ne0$ has rational eigenspace of dimension $q$. If $\ell^a\mid\lambda$, then at least $q-1$ invariant factors of the torsion of $\operatorname{coker}M$ are divisible by $\ell^a$.
+
+Indeed, over $\mathbb Z_\ell$, let $E$ be the saturated rank-$q$ lattice in that eigenspace. Since $ME=\lambda E\subseteq \ell^a\mathbb Z_\ell^N$, the reduction of $E$ modulo $\ell$ lies in
 $$
-S_c:\ X_0^4+X_1^4+X_2^4=cX_3^4.
+M^{-1}(\ell^a\mathbb Z_\ell^N)/\ell\mathbb Z_\ell^N.
 $$
-For $k\ge1$, extend $\chi$ to $\mathbb F_{p^k}$ by the norm. Character expansion of the point count, together with Davenport--Hasse lifting, shows that the primitive middle-cohomology Frobenius roots are indexed by
+In Smith coordinates this space has dimension one plus the number of nonzero Smith entries divisible by $\ell^a$. Since $E/\ell E$ has dimension $q$, the claim follows.
+
+Apply this to $L$ and its eigenvalue $2d$, whose eigenspace has dimension
 $$
-\mathcal A=\{(u_0,u_1,u_2,u_3)\in\{1,2,3\}^4:
- u_0+u_1+u_2+u_3\equiv0\pmod4\}
+m-n=\beta-1.
 $$
-and are
+Thus, if $\ell^a\Vert 2d$, at least $\beta-2$ invariant factors are divisible by $\ell^a$. Since $n$ is odd and $\gcd(n,2d)=1$, all such primary torsion lies in $H$.
+
+For an odd prime $\ell\mid d$, the $\ell$-part of $|H|$ is exactly
 $$
-\alpha_{\mathbf u}
-=\chi^{-u_3}(c)J(\chi^{u_0},\chi^{u_1},\chi^{u_2}),
+\ell^{a(\beta-2)}.
 $$
-where
+The lower bound above therefore forces
 $$
-J(A,B,C)=\sum_{x+y+z=1}A(x)B(y)C(z).
-$$
-The hyperplane class contributes one additional Frobenius root $p$. Therefore
-$$
-P_{2,S_c}(T)
-=(1-pT)\prod_{\mathbf u\in\mathcal A}(1-\alpha_{\mathbf u}T).
+H_\ell\cong (\mathbb Z_{\ell^a})^{\beta-2}.
 $$
 
-For three characters whose product is nontrivial,
+It remains to determine the extra $2$-primary factor. Over $\mathbb F_2$ we have
 $$
-J(A,B,C)=J(A,B)J(AB,C)
+L\equiv B^TB.
 $$
-whenever $AB$ is nontrivial. The only exceptional triple needed below is
+The incidence matrix $B$ has rank $n-1$. Moreover,
 $$
-J(\eta,\eta,\eta)=p,
+\ker B^T=\langle\mathbf1\rangle,
 $$
-because Gauss sums give
+while every vector in $\operatorname{im}B$ has even coordinate sum; because $n$ is odd, $\mathbf1\notin\operatorname{im}B$. Hence
 $$
-J(\eta,\eta,\eta)=\frac{G(\eta)^3}{G(\eta)}=G(\eta)^2=p
+\ker(B^TB)=\ker B
 $$
-for $p\equiv1\pmod4$.
+and
+$$
+\dim_{\mathbb F_2}\ker L=m-(n-1)=\beta.
+$$
+Since $\operatorname{coker}L\cong\mathbb Z\oplus K(T_n)$,
+$$
+\dim_{\mathbb F_2}K(T_n)/2K(T_n)=\beta-1.
+$$
+The quotient $K(K_n)$ has odd order, so the same dimension holds for $H/2H$.
 
-Step 3: Classify the twenty-one primitive roots for $c=g$
+If $2^a\Vert2d$, the $\beta-2$ full-size factors already contribute $2^{a(\beta-2)}$, while the remaining $2$-part of $|H|$ is $4$. Since $H/2H$ has exactly $\beta-1$ generators, this remainder is one cyclic factor $\mathbb Z_4$, not two copies of $\mathbb Z_2$. Combining all primes by the Chinese remainder theorem gives
+$$
+H\cong (\mathbb Z_{2d})^{\beta-2}\oplus\mathbb Z_4.
+$$
 
-The set $\mathcal A$ has $21$ elements, belonging to exactly five pattern types:
-$$
-(1,1,1,1),\quad(3,3,3,3),\quad(2,2,2,2),
-$$
-plus the permutations of
-$$
-(1,1,3,3),\qquad(1,2,2,3).
-$$
-Using $\chi(g)=i$ and the Jacobi sums from Step 1 gives the following multiset of primitive Frobenius roots:
-$$
--isJ^2\quad(1\text{ time}),
-$$
-$$
-is\overline J^{\,2}\quad(1\text{ time}),
-$$
-$$
--p\quad(1\text{ time}),
-$$
-$$
--isp\quad(3\text{ times}),\qquad isp\quad(3\text{ times}),
-$$
-$$
--ip\quad(3\text{ times}),\qquad ip\quad(3\text{ times}),
-$$
-$$
--sp\quad(6\text{ times}).
-$$
-Indeed, the two constant patterns $(1,1,1,1)$ and $(3,3,3,3)$ give the two $J^2$-terms; $(2,2,2,2)$ gives $-p$; the six permutations of $(1,1,3,3)$ split according to whether the distinguished fourth coordinate is $1$ or $3$; and the twelve permutations of $(1,2,2,3)$ split according to whether that coordinate is $1$, $3$, or $2$.
+Step 4: Split the coprime parts and put the answer in invariant-factor form
 
-Step 4: Multiply the factors
+The exact sequence
+$$
+0\longrightarrow H\longrightarrow K(T_n)\longrightarrow (\mathbb Z_n)^{n-2}\longrightarrow0
+$$
+splits prime-by-prime because $\gcd(n,2d)=1$. Hence
+$$
+K(T_n)\cong (\mathbb Z_{2d})^{\beta-2}\oplus\mathbb Z_4\oplus(\mathbb Z_n)^{n-2}.
+$$
+Pair $n-2$ of the $\mathbb Z_{2d}$ factors with the $\mathbb Z_n$ factors. Since $\gcd(n,2d)=1$,
+$$
+\mathbb Z_{2d}\oplus\mathbb Z_n\cong\mathbb Z_{2dn}.
+$$
+There remain
+$$
+(\beta-2)-(n-2)=\beta-n=\frac{n^2-5n+2}{2}
+$$
+factors of order $2d=2(n-1)$. Therefore
+$$
+K(T_n)\cong
+\mathbb Z_4\oplus
+\mathbb Z_{2(n-1)}^{\oplus (n^2-5n+2)/2}\oplus
+\mathbb Z_{2n(n-1)}^{\oplus(n-2)}.
+$$
 
-The twelve roots $\pm ip$ and $\pm isp$ contribute
-$$
-(1+p^2T^2)^6.
-$$
-The six roots $-sp$ contribute
-$$
-(1+spT)^6,
-$$
-and the root $-p$ contributes $1+pT$.
-
-For the two exceptional roots, since
-$$
-J=-a+ib,
-$$
-we have
-$$
-is(\overline J^{\,2}-J^2)=-4sab,
-\qquad J^2\overline J^{\,2}=p^2.
-$$
-Hence their quadratic factor is
-$$
-1+4sabT+p^2T^2.
-$$
-Including the hyperplane factor $1-pT$ gives
-$$
-P_{2,S_g}(T)
-=(1-pT)(1+pT)(1+spT)^6(1+p^2T^2)^6(1+4sabT+p^2T^2).
-$$
-Thus
-$$
-P_{2,S_g}(T)
-=(1-p^2T^2)(1+spT)^6(1+p^2T^2)^6(1+4sabT+p^2T^2).
-$$
-The degree is
-$$
-2+6+12+2=22,
-$$
-as required for a smooth quartic K3 surface.
-
-Final Answer: $\boxed{(1-p^2T^2)(1+spT)^6(1+p^2T^2)^6(1+4sabT+p^2T^2)}$
+Final Answer: $\boxed{\mathbb Z_4\oplus \mathbb Z_{2(n-1)}^{(n^2-5n+2)/2}\oplus \mathbb Z_{2n(n-1)}^{n-2}}$
 
 ---
 
 ## Answer
 
-$(1-p^2T^2)(1+spT)^6(1+p^2T^2)^6(1+4sabT+p^2T^2)$
+$\mathbb Z_4\oplus \mathbb Z_{2(n-1)}^{(n^2-5n+2)/2}\oplus \mathbb Z_{2n(n-1)}^{n-2}$
 
 ---
 
 ## Classification
 
-**Problem Type:** Exact computation
+**Problem Type:** Canonicalization or normalization
 
-**Answer Type:** Exact symbolic expression
+**Answer Type:** Canonical form
 
 ---
 
 ## Solution Concepts
 
-- quartic K3 surface
-- quartic Jacobi sums
-- Davenport--Hasse lifting
-- Frobenius eigenvalues
-- Gaussian prime normalization
+- critical groups and Smith normal form
+- unsigned incidence matrices
+- matrix-tree theorem
+- local Smith invariants
+- Sylow decomposition
 
 ---
 
