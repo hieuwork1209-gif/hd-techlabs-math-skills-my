@@ -2,38 +2,13 @@
 
 ## LaTeX (Normalized)
 
-Let $p$ be an odd prime and let
+Let $n\ge5$ be odd. Let $T_n$ be the triangular graph whose vertices are the $2$-element subsets of $\{1,\ldots,n\}$, with two vertices adjacent exactly when the corresponding $2$-subsets intersect in one element.
+
+Let $L$ be the Laplacian matrix of $T_n$, and let $L'$ be any reduced Laplacian obtained by deleting one row and the corresponding column. The critical group of $T_n$ is
 $$
-G=\mathbb F_p^3\times\mathbb F_p^3\times\mathbb F_p
+K(T_n)=\mathbb Z^{\binom n2-1}/\operatorname{im}(L').
 $$
-with multiplication
-$$
-(u,v,t)(u',v',t')=(u+u',v+v',t+t'+u\cdot v'),
-$$
-where $u\cdot v'$ is the standard dot product on $\mathbb F_p^3$. Let
-$$
-\mathcal O=\{Q\in GL_3(\mathbb F_p):Q^TQ=I\}
-$$
-act on $G$ by
-$$
-Q\cdot(u,v,t)=(Qu,Qv,t).
-$$
-Call a subgroup $A\le G$ admissible if it is abelian of order $p^4$ and satisfies
-$$
-Z(G)\le A,
-$$
-$$
-A\cap\bigl(\mathbb F_p^3\times\{0\}\times\mathbb F_p\bigr)=Z(G),\qquad
-A\cap\bigl(\{0\}\times\mathbb F_p^3\times\mathbb F_p\bigr)=Z(G),
-$$
-and
-$$
-\left|A\cap\{(u,u,t):u\in\mathbb F_p^3,\ t\in\mathbb F_p\}\right|=p^2.
-$$
-Determine the number of $\mathcal O$-orbits of ordered pairs $(A,B)$ of admissible subgroups under the diagonal action
-$$
-Q\cdot(A,B)=(Q\cdot A,Q\cdot B).
-$$
+Determine the invariant-factor decomposition of the finite abelian group $K(T_n)$.
 
 ---
 
@@ -41,13 +16,13 @@ $$
 
 | Field | Value |
 |---|---|
-| **Domain** | Abstract Algebra |
-| **Sub-domain** | Group theory |
-| **Problem Type** | Exact computation |
-| **Answer Type** | Exact symbolic expression |
+| **Domain** | Combinatorics |
+| **Sub-domain** | Graph theory |
+| **Problem Type** | Canonicalization or normalization |
+| **Answer Type** | Canonical form |
 
 ---
 
 ## Domain Explanation
 
-The problem asks for symmetry classes of ordered configurations of maximal abelian subgroups in a finite nonabelian prime-power group under a natural orthogonal automorphism group. Passing to the quotient by the center turns each subgroup into a Lagrangian graph, while the diagonal orbit count depends on relative position and requires fixed-point counts across the orthogonal group rather than classification of a single operator. The primary objects are subgroups, automorphisms, and their configuration orbits, so Abstract Algebra -> Group theory is the appropriate classification.
+The problem asks for the critical (sandpile) group of the triangular graph, equivalently the Smith normal form of a reduced graph Laplacian. The proof uses the incidence matrix of $K_n$, the matrix-tree theorem, and local information on Smith invariants. The primary objects are graphs and their Laplacian invariants, so Combinatorics -> Graph theory is the appropriate classification.
