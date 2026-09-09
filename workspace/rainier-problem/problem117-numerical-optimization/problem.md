@@ -2,35 +2,41 @@
 
 ## LaTeX (Normalized)
 
-Let $A$ be a real symmetric positive-definite matrix whose spectrum is contained in
+For $k=0,1,2$, let
 $$
-[1,9],
+R_k=
+\begin{bmatrix}
+\cos(k\pi/3)&-\sin(k\pi/3)\\
+\sin(k\pi/3)&\cos(k\pi/3)
+\end{bmatrix},
+\qquad
+P_k=R_k
+\begin{bmatrix}1&0\\0&4\end{bmatrix}
+R_k^T.
 $$
-and let
+Consider
 $$
-f(x)=\frac12x^TAx.
+f(x)=\frac12\|x\|_2^2.
 $$
-Choose ordered step sizes
+Choose step sizes
 $$
-0<\alpha_0\le\alpha_1\le\alpha_2\le\frac29.
+0<\alpha_k\le\frac12,
+\qquad k=0,1,2,
 $$
-Starting from any $x_0\ne0$, perform three gradient steps
+and perform one cyclic preconditioned-gradient sweep
 $$
-x_{k+1}=x_k-\alpha_k\nabla f(x_k),
+x_{k+1}=x_k-\alpha_kP_k\nabla f(x_k),
 \qquad k=0,1,2.
 $$
-The bound $\alpha_k\le2/9$ makes every individual gradient step nonexpansive for every eigenvalue in $[1,9]$.
-
-Define the worst-case three-step contraction factor
+Define
 $$
 R(\alpha_0,\alpha_1,\alpha_2)
-=\sup_{A:\,\sigma(A)\subset[1,9]}
-\sup_{x_0\ne0}
-\frac{\|x_3\|_2}{\|x_0\|_2},
+=\sup_{x_0\ne0}\frac{\|x_3\|_2}{\|x_0\|_2},
 $$
 and let
 $$
-R_*=\min_{0<\alpha_0\le\alpha_1\le\alpha_2\le2/9}
+R_*=
+\min_{0<\alpha_0,\alpha_1,\alpha_2\le1/2}
 R(\alpha_0,\alpha_1,\alpha_2).
 $$
 Determine
@@ -53,4 +59,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for optimal nonstationary gradient-step tuning on a quadratic when every individual step must remain spectrally nonexpansive. The three-step method produces a cubic residual polynomial, but the root locations are constrained by the stability bound. Determining the sharp worst-case contraction therefore becomes a constrained polynomial-design problem arising directly from numerical optimization.
+This problem asks for optimal tuning of a cyclic preconditioned-gradient method with three symmetric positive-definite preconditioners whose eigendirections rotate between stages. Because the update matrices do not commute, the cycle cannot be reduced to a scalar residual polynomial. The sharp solution instead depends on rank loss and geometric alignment of successive eigenspaces, which are natural finite-step phenomena in numerical optimization.
