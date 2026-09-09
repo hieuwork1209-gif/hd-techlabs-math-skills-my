@@ -1,121 +1,131 @@
 ## Steps
 
-Step 1: Reduce the three steps to a residual polynomial
+Step 1: Write one cycle as a product of noncommuting update matrices
 Let
 $$
-p(\lambda)=\prod_{k=0}^2(1-\alpha_k\lambda).
+u_k=\begin{bmatrix}\cos(k\pi/3)\\ \sin(k\pi/3)\end{bmatrix},
+\qquad
+v_k=\begin{bmatrix}-\sin(k\pi/3)\\ \cos(k\pi/3)\end{bmatrix},
 $$
-For a symmetric positive-definite matrix $A$ with spectrum in $[1,9]$,
+and
 $$
-x_3=p(A)x_0,
+P_k=u_ku_k^T+4v_kv_k^T,
+\qquad k=0,1,2.
 $$
-so the worst-case Euclidean contraction is
+For
 $$
-R(\alpha_0,\alpha_1,\alpha_2)
-=\max_{1\le\lambda\le9}|p(\lambda)|.
+f(x)=\frac12\|x\|_2^2,
 $$
-The per-step nonexpansiveness restriction is
+we have $\nabla f(x)=x$, so the preconditioned gradient step is
 $$
-0<\alpha_k\le\frac29.
+x_{k+1}=M_kx_k,
+\qquad
+M_k=I-\alpha_kP_k.
+$$
+Hence after one three-stage cycle,
+$$
+x_3=M_2M_1M_0x_0,
+$$
+and therefore
+$$
+R(\alpha_0,\alpha_1,\alpha_2)=\|M_2M_1M_0\|_2.
 $$
 
-Step 2: Obtain a sharp lower bound from the stability constraint
-Set
+Step 2: Construct a cycle that annihilates every starting vector
+When $\alpha_k=1/4$,
 $$
-z_k=1-9\alpha_k,
+M_k
+=I-\frac14P_k
+=\frac34u_ku_k^T,
 $$
-so $-1\le z_k<1$. Then
+which is a rank-one scaled orthogonal projector onto the slow eigendirection $u_k$.
+Take
 $$
-p(1)=\prod_{k=0}^2\frac{8+z_k}{9},
-\qquad
-p(9)=\prod_{k=0}^2z_k.
+\alpha_0=\alpha_2=\frac14.
 $$
-Put $x_k=|z_k|\in[0,1]$ and
+Then
 $$
-u=x_0x_1x_2.
+M_2M_1M_0
+=\frac9{16}
+ u_2\bigl(u_2^TM_1u_0\bigr)u_0^T.
 $$
-Since $8+z_k\ge8-x_k$,
+Now
 $$
-p(1)\ge\frac{\prod_{k=0}^2(8-x_k)}{9^3}.
+u_2^Tu_0=-\frac12,
 $$
-For $x,y\in[0,1]$,
+and, since
 $$
-(8-x)(8-y)-7(8-xy)=8(1-x)(1-y)\ge0.
+P_1=
+\begin{bmatrix}
+13/4&-3\sqrt3/4\\
+-3\sqrt3/4&7/4
+\end{bmatrix},
 $$
-Applying this inequality twice gives
+we have
 $$
-\prod_{k=0}^2(8-x_k)\ge49(8-u).
+u_2^TP_1u_0=-\frac{11}{4}.
 $$
-Therefore every admissible schedule satisfies
+Thus
 $$
-R\ge\max\left\{\frac{49(8-u)}{729},u\right\}.
+u_2^TM_1u_0
+=-\frac12+\frac{11}{4}\alpha_1.
 $$
-The first quantity decreases in $u$ and the second increases, so their maximum is minimized when they are equal:
+Choosing
 $$
-\frac{49(8-u)}{729}=u.
+\alpha_1=\frac2{11}
 $$
-Hence
+makes this scalar zero. Hence
 $$
-u=\frac{196}{389},
+M_2M_1M_0=0,
 $$
-and consequently
+so every initial vector is sent exactly to zero after three stages. Therefore
 $$
-R\ge\frac{196}{389}.
+R_*=0.
 $$
 
-Step 3: Construct an admissible schedule attaining the bound
-Take the ordered step sizes
+Step 3: Prove the optimizing triple is unique
+If $R=0$, then
 $$
-\alpha_0=\frac{65}{389},
-\qquad
-\alpha_1=\alpha_2=\frac29.
+M_2M_1M_0=0.
 $$
-They satisfy
+For $0<\alpha_k\le1/2$,
 $$
-0<\alpha_0\le\alpha_1\le\alpha_2\le\frac29.
+\det M_k=(1-\alpha_k)(1-4\alpha_k),
 $$
-The residual is
-$$
-p_*(\lambda)
-=\left(1-\frac{65}{389}\lambda\right)
-\left(1-\frac{2}{9}\lambda\right)^2.
-$$
-At the endpoints,
-$$
-p_*(1)=\frac{196}{389},
-\qquad
-p_*(9)=-\frac{196}{389}.
-$$
-On $[1,9/2]$, both factors are nonnegative and
-$$
-p_*'(\lambda)
-=-\left(1-\frac{2\lambda}{9}\right)
-\frac{2141-390\lambda}{3501}\le0,
-$$
-so $p_*$ decreases from $196/389$ to $0$.
-On $[9/2,6]$,
-$$
-\left|1-\frac{2\lambda}{9}\right|\le\frac13,
-\qquad
-\left|1-\frac{65\lambda}{389}\right|<\frac14,
-$$
-so
-$$
-|p_*(\lambda)|<\frac1{36}<\frac{196}{389}.
-$$
-Finally, on $[6,9]$ both factors give $p_*(\lambda)\le0$, and the derivative formula above shows $p_*'(\lambda)<0$, so $p_*$ decreases to $-196/389$. Thus
-$$
-\max_{1\le\lambda\le9}|p_*(\lambda)|=\frac{196}{389}.
-$$
-Therefore the lower bound is attained.
+so $M_k$ is singular only when $\alpha_k=1/4$. A product of three $2\times2$ matrices can be the zero matrix here only if at least two factors are singular, because a product with at most one singular factor has rank at least $1$.
 
-Final Answer: $\boxed{\left(\frac{196}{389},\left(\frac{65}{389},\frac29,\frac29\right)\right)}$
+If $\alpha_0=\alpha_1=1/4$, then $M_1M_0$ is a nonzero rank-one matrix because
+$$
+u_1^Tu_0=\cos\frac\pi3=\frac12.
+$$
+Left multiplication by an invertible $M_2$ keeps it nonzero, while if $\alpha_2=1/4$ then
+$$
+M_2M_1M_0
+=\left(\frac34\right)^3
+u_2(u_2^Tu_1)(u_1^Tu_0)u_0^T\ne0.
+$$
+Thus the pair $(\alpha_0,\alpha_1)=(1/4,1/4)$ is impossible. By the same argument, $(\alpha_1,\alpha_2)=(1/4,1/4)$ is impossible.
+
+Therefore any zero-contraction cycle must have
+$$
+\alpha_0=\alpha_2=\frac14.
+$$
+Then Step 2 shows that $M_2M_1M_0=0$ holds exactly when
+$$
+-\frac12+\frac{11}{4}\alpha_1=0,
+$$
+so uniquely
+$$
+\alpha_1=\frac2{11}.
+$$
+
+Final Answer: $\boxed{\left(0,\left(\frac14,\frac2{11},\frac14\right)\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{196}{389},\left(\frac{65}{389},\frac29,\frac29\right)\right)$
+$\left(0,\left(\frac14,\frac2{11},\frac14\right)\right)$
 
 ---
 
@@ -129,6 +139,6 @@ $\left(\frac{196}{389},\left(\frac{65}{389},\frac29,\frac29\right)\right)$
 
 ## Solution Concepts
 
-- nonstationary gradient descent
-- per-step spectral stability
-- constrained residual polynomial
+- cyclic preconditioned gradient descent
+- noncommuting rank-one updates
+- finite termination by subspace alignment
