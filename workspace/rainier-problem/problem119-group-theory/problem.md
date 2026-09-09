@@ -16,7 +16,7 @@ Determine the invariant-factor decomposition of the finite abelian group $K(T_n)
 
 | Field | Value |
 |---|---|
-| **Domain** | Combinatorics |
+| **Domain** | Discrete Mathematics and Combinatorics |
 | **Sub-domain** | Graph theory |
 | **Problem Type** | Canonicalization or normalization |
 | **Answer Type** | Canonical form |
@@ -25,4 +25,4 @@ Determine the invariant-factor decomposition of the finite abelian group $K(T_n)
 
 ## Domain Explanation
 
-The problem asks for the critical (sandpile) group of the triangular graph, equivalently the Smith normal form of a reduced graph Laplacian. The proof uses the incidence matrix of $K_n$, the matrix-tree theorem, and local information on Smith invariants. The primary objects are graphs and their Laplacian invariants, so Combinatorics -> Graph theory is the appropriate classification.
+The problem asks for the critical (sandpile) group of a triangular graph, so the requested object is a graph invariant and belongs to Discrete Mathematics and Combinatorics -> Graph theory. Although the solution uses Laplacian matrices and Smith normal form, those linear-algebra tools are used to compute a graph-theoretic invariant, so Graph theory is a better fit than Linear Algebra.
