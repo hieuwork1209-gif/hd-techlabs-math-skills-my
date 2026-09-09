@@ -1,183 +1,176 @@
 ## Steps
 
-Step 1: Reduce the problem to a Burnside count on symmetric matrices
+Step 1: Relate the triangular-graph Laplacian to the complete-graph Laplacian
 
-Let
+Let $n\ge5$ be odd, let
 $$
-U=\mathbb F_p^3,\qquad Z=Z(G)=\{(0,0,t):t\in\mathbb F_p\}.
+m=\binom n2,\qquad d=n-1,\qquad \beta=m-n+1=\frac{(n-1)(n-2)}2,
 $$
-The commutator is
+and let $T_n=L(K_n)$ be the triangular graph. Let $B$ be the unsigned $n\times m$ vertex-edge incidence matrix of $K_n$. Since two edges of $K_n$ meet in one vertex exactly when the corresponding vertices of $T_n$ are adjacent,
 $$
-[(u,v,t),(u',v',t')]=(0,0,u\cdot v'-u'\cdot v).
+B^TB=2I+A(T_n).
 $$
-Hence every admissible subgroup is uniquely
+Hence the Laplacian of $T_n$ is
 $$
-A_T=\{(u,Tu,t):u\in U,\ t\in\mathbb F_p\},
+L=2(n-2)I-A(T_n)=2dI-B^TB.
 $$
-where $T$ is symmetric and invertible. The diagonal intersection has order $p^{1+\dim\ker(T-I)}$, so admissibility is equivalent to
+Also
 $$
-T=T^T,\qquad \det T\ne0,\qquad \dim\ker(T-I)=1.
+BB^T=(n-2)I+J.
 $$
-Let $X$ be this set of matrices. Since
+If
 $$
-Q\cdot A_T=A_{QTQ^{-1}},
+L_0=nI-J
 $$
-ordered subgroup pairs correspond to $X\times X$ with diagonal conjugation. Conjugation by $-Q$ equals conjugation by $Q$, so the orbit set is unchanged if $\mathcal O$ is replaced by $SO_3(\mathbb F_p)$. Put
+is the Laplacian of $K_n$, then
 $$
-F(Q)=\#\{T\in X:QT=TQ\}.
+BL=L_0B.
 $$
-Burnside's lemma gives
-$$
-\#(X\times X)/\mathcal O
-=\frac1{|SO_3(\mathbb F_p)|}\sum_{Q\in SO_3(\mathbb F_p)}F(Q)^2.
-$$
+Thus $B$ induces a homomorphism from the torsion subgroup of $\operatorname{coker}L$, namely $K(T_n)$, to $K(K_n)$.
 
-Step 2: Count the element types in $SO_3(\mathbb F_p)$
+A direct Smith reduction of $L_0=nI-J$ gives
+$$
+K(K_n)\cong (\mathbb Z_n)^{n-2}.
+$$
+The induced map is surjective: for distinct $i,j,k$,
+$$
+B(e_{ik}-e_{jk})=e_i-e_j,
+$$
+and such differences generate the torsion of $\operatorname{coker}L_0$.
 
-For $q(x)=x\cdot x$, choose a Witt basis with Gram matrix
+Let $H$ be the kernel. If $[x]\in H$, then $Bx=L_0y$ for some integral $y$. Using $L B^T=B^TL_0$,
 $$
-J=\begin{pmatrix}0&1&0\\1&0&0\\0&0&d\end{pmatrix},\qquad d\ne0.
+2d[x]=[B^TBx]=[B^TL_0y]=[LB^Ty]=0.
 $$
-Such a basis exists because the two sets of squares $\{a^2\}$ and $\{-1-b^2\}$, each of size $(p+1)/2$, intersect. An isotropic line with first coordinate nonzero has a unique representative $e+yf+zh$ with $2y+dz^2=0$, giving $p$ lines, and $\langle f\rangle$ gives one more. Thus there are $p+1$ isotropic lines and $p^2$ nonisotropic lines.
+Therefore every element of $H$ is killed by $2d$.
 
-Let $n_+$ count nonisotropic lines $L$ for which $L^{\perp}$ is split and $n_-$ those for which it is anisotropic. Counting incidences $(\ell,L)$ with $\ell$ isotropic and $L\perp\ell$ gives
-$$
-2n_+=p(p+1),
-$$
-because each isotropic $\ell$ is perpendicular to $p$ nonisotropic lines, while a split plane contains two isotropic lines and an anisotropic plane none. Hence
-$$
-n_+=\frac{p(p+1)}2,\qquad n_-=\frac{p(p-1)}2.
-$$
+Step 2: Compute the order of the kernel
 
-A nonidentity semisimple $Q\in SO_3$ has a unique nonisotropic axis $L$ and is $1_L\oplus R$. On a split plane, $SO_2$ has order $p-1$; on an anisotropic plane, identified with $\mathbb F_{p^2}$ with its norm form, the norm-one rotations have order $p+1$. Each axis has one involution $R=-I$. Therefore there are $n_+$ split-axis involutions, $n_-$ anisotropic-axis involutions, and
+The matrix $BB^T=(n-2)I+J$ has eigenvalue $2d$ on the all-ones vector and eigenvalue $n-2$ with multiplicity $n-1$. Hence $B^TB$ has eigenvalues
 $$
-n_+(p-3)+n_-(p-1)=p(p^2-2p-1)
+2d\ (1),\qquad n-2\ (n-1),\qquad 0\ (m-n).
 $$
-other semisimple elements.
-
-For an isotropic axis $\langle e\rangle$, the nonidentity unipotents are
+Therefore $L=2dI-B^TB$ has eigenvalues
 $$
-Q_c=\begin{pmatrix}1&-dc^2/2&-dc\\0&1&0\\0&c&1\end{pmatrix},\qquad c\ne0.
+0\ (1),\qquad n\ (n-1),\qquad 2d\ (m-n).
 $$
-Thus each isotropic line supports $p-1$ of them, giving $p^2-1$ unipotents. Consequently
+By the matrix-tree theorem,
 $$
-|SO_3(\mathbb F_p)|
-=1+n_+(p-2)+n_-p+(p^2-1)
-=p(p^2-1).
+|K(T_n)|=\frac{n^{n-1}(2d)^{m-n}}m.
 $$
-
-Step 3: Compute the fixed-point numbers $F(Q)$
-
-Set
+Since $m=nd/2$ and $m-n-1=\beta-2$,
 $$
-M=p(p-1)^2.
+|K(T_n)|=4n^{n-2}(2d)^{\beta-2}.
 $$
-On a split plane, a self-adjoint map has form
+Because the map onto $K(K_n)$ is surjective,
 $$
-B=\begin{pmatrix}a&b\\c&a\end{pmatrix}.
-$$
-Each equation $\det B=0$ and $\det(B-I)=0$ has $p^2$ solutions, and both hold exactly when $a=1/2$ and $bc=1/4$, giving $p-1$ solutions. Hence
-$$
-S_+=\#\{B:\det B\det(B-I)\ne0\}=M-1.
-$$
-If $C=B-I$ has rank one, then $C=\begin{pmatrix}x&b\\c&x\end{pmatrix}$ with $x^2=bc$, while $I+C$ is invertible exactly when $1+2x\ne0$. The case $x=0$ gives $2(p-1)$ nonzero pairs $(b,c)$, and the $p-2$ allowed nonzero values of $x$ each give $p-1$ pairs. Thus
-$$
-R_+=p(p-1).
+|H|=4(2d)^{\beta-2}.
 $$
 
-On an anisotropic plane, every self-adjoint map is uniquely
+Step 3: Determine the primary structure of $H$
+
+We use the following elementary local Smith observation. Suppose an integral matrix $M$ has one-dimensional rational kernel, and an integer eigenvalue $\lambda\ne0$ has rational eigenspace of dimension $q$. If $\ell^a\mid\lambda$, then at least $q-1$ invariant factors of the torsion of $\operatorname{coker}M$ are divisible by $\ell^a$.
+
+Indeed, over $\mathbb Z_\ell$, let $E$ be the saturated rank-$q$ lattice in that eigenspace. Since $ME=\lambda E\subseteq \ell^a\mathbb Z_\ell^N$, the reduction of $E$ modulo $\ell$ lies in
 $$
-B(z)=az+b\overline z,\qquad a\in\mathbb F_p,\ b\in\mathbb F_{p^2},
+M^{-1}(\ell^a\mathbb Z_\ell^N)/\ell\mathbb Z_\ell^N.
 $$
-with
+In Smith coordinates this space has dimension one plus the number of nonzero Smith entries divisible by $\ell^a$. Since $E/\ell E$ has dimension $q$, the claim follows.
+
+Apply this to $L$ and its eigenvalue $2d$, whose eigenspace has dimension
 $$
-\det B=a^2-N(b),\qquad \det(B-I)=(a-1)^2-N(b).
+m-n=\beta-1.
 $$
-A nonzero norm fiber has $p+1$ elements, so the same inclusion-exclusion gives
+Thus, if $\ell^a\Vert 2d$, at least $\beta-2$ invariant factors are divisible by $\ell^a$. Since $n$ is odd and $\gcd(n,2d)=1$, all such primary torsion lies in $H$.
+
+For an odd prime $\ell\mid d$, the $\ell$-part of $|H|$ is exactly
 $$
-S_-=M+1.
+\ell^{a(\beta-2)}.
 $$
-For $C=B-I$, rank one requires $x^2=N(b)$. The case $x=0$ gives only $C=0$, while each nonzero $x\ne-1/2$ gives $p+1$ choices of $b$. Hence
+The lower bound above therefore forces
 $$
-R_-=(p-2)(p+1).
+H_\ell\cong (\mathbb Z_{\ell^a})^{\beta-2}.
 $$
 
-For a fixed isotropic $1$-eigenline, write
+It remains to determine the extra $2$-primary factor. Over $\mathbb F_2$ we have
 $$
-T=\begin{pmatrix}1&a&dr\\0&1&0\\0&r&j\end{pmatrix}.
+L\equiv B^TB.
 $$
-Here $j\ne0$ and the fixed space is exactly the chosen line iff $a(j-1)-dr^2\ne0$. For each of the $p-1$ nonzero $j$, there are $p(p-1)$ allowed pairs $(a,r)$, so an isotropic line contributes $M$ matrices. Therefore
+The incidence matrix $B$ has rank $n-1$. Moreover,
 $$
-F(I)=|X|=(p+1)M+n_+S_++n_-S_-=p^5-p^4-p^2.
+\ker B^T=\langle\mathbf1\rangle,
+$$
+while every vector in $\operatorname{im}B$ has even coordinate sum; because $n$ is odd, $\mathbf1\notin\operatorname{im}B$. Hence
+$$
+\ker(B^TB)=\ker B
+$$
+and
+$$
+\dim_{\mathbb F_2}\ker L=m-(n-1)=\beta.
+$$
+Since $\operatorname{coker}L\cong\mathbb Z\oplus K(T_n)$,
+$$
+\dim_{\mathbb F_2}K(T_n)/2K(T_n)=\beta-1.
+$$
+The quotient $K(K_n)$ has odd order, so the same dimension holds for $H/2H$.
+
+If $2^a\Vert2d$, the $\beta-2$ full-size factors already contribute $2^{a(\beta-2)}$, while the remaining $2$-part of $|H|$ is $4$. Since $H/2H$ has exactly $\beta-1$ generators, this remainder is one cyclic factor $\mathbb Z_4$, not two copies of $\mathbb Z_2$. Combining all primes by the Chinese remainder theorem gives
+$$
+H\cong (\mathbb Z_{2d})^{\beta-2}\oplus\mathbb Z_4.
 $$
 
-If $Q$ is semisimple and not an involution, write $Q=1_L\oplus R$ with $R\ne\pm I$. The centralizer of $R$ on its plane is $\mathbb F_p[R]$. Since $R^*=R^{-1}$, a commuting self-adjoint map $aI+bR$ has $b=0$. Thus an admissible commuting $T$ is $1_L\oplus sI$ with $s\in\mathbb F_p^\times\setminus\{1\}$, so
+Step 4: Split the coprime parts and put the answer in invariant-factor form
+
+The exact sequence
 $$
-F(Q)=p-2.
+0\longrightarrow H\longrightarrow K(T_n)\longrightarrow (\mathbb Z_n)^{n-2}\longrightarrow0
+$$
+splits prime-by-prime because $\gcd(n,2d)=1$. Hence
+$$
+K(T_n)\cong (\mathbb Z_{2d})^{\beta-2}\oplus\mathbb Z_4\oplus(\mathbb Z_n)^{n-2}.
+$$
+Pair $n-2$ of the $\mathbb Z_{2d}$ factors with the $\mathbb Z_n$ factors. Since $\gcd(n,2d)=1$,
+$$
+\mathbb Z_{2d}\oplus\mathbb Z_n\cong\mathbb Z_{2dn}.
+$$
+There remain
+$$
+(\beta-2)-(n-2)=\beta-n=\frac{n^2-5n+2}{2}
+$$
+factors of order $2d=2(n-1)$. Therefore
+$$
+K(T_n)\cong
+\mathbb Z_4\oplus
+\mathbb Z_{2(n-1)}^{\oplus (n^2-5n+2)/2}\oplus
+\mathbb Z_{2n(n-1)}^{\oplus(n-2)}.
 $$
 
-For an involution $Q=1_L\oplus(-I)$, a commuting $T$ is $t\oplus B$. If $t=1$, the plane block contributes $S_+$ or $S_-$; if $t\ne1$, there are $p-2$ choices of $t$ and the plane block contributes $R_+$ or $R_-$. Hence
-$$
-F_+=S_++(p-2)R_+=2p^3-5p^2+3p-1,
-$$
-$$
-F_-=S_-+(p-2)R_-=2p^3-5p^2+p+5.
-$$
-
-If $Q$ is nonidentity unipotent and $N=Q-I$, then $N$ is one Jordan block of size three, so every commuting endomorphism is $aI+bN+cN^2$. Since
-$$
-N^*=-N+N^2,
-$$
-self-adjointness forces $b=0$. For $T=aI+cN^2$, the kernel of $T-I$ has dimension $0$, $2$, or $3$, never $1$. Thus
-$$
-F(Q)=0.
-$$
-
-Step 4: Evaluate Burnside's sum
-
-Using the element counts from Step 2 and the fixed-point counts from Step 3 gives
-$$
-\frac{F(I)^2+n_+F_+^2+n_-F_-^2+p(p^2-2p-1)(p-2)^2}{p(p^2-1)}.
-$$
-The numerator expands to
-$$
-p^{10}-2p^9+5p^8-22p^7+35p^6-7p^5-42p^4+47p^3+p^2-16p
-$$
-and factors as
-$$
-p(p-1)(p+1)\left(p^7-2p^6+6p^5-24p^4+41p^3-31p^2-p+16\right).
-$$
-After division by $p(p^2-1)$, the required number is
-$$
-p^7-2p^6+6p^5-24p^4+41p^3-31p^2-p+16.
-$$
-
-Final Answer: $\boxed{p^7-2p^6+6p^5-24p^4+41p^3-31p^2-p+16}$
+Final Answer: $\boxed{\mathbb Z_4\oplus \mathbb Z_{2(n-1)}^{(n^2-5n+2)/2}\oplus \mathbb Z_{2n(n-1)}^{n-2}}$
 
 ---
 
 ## Answer
 
-$p^7-2p^6+6p^5-24p^4+41p^3-31p^2-p+16$
+$\mathbb Z_4\oplus \mathbb Z_{2(n-1)}^{(n^2-5n+2)/2}\oplus \mathbb Z_{2n(n-1)}^{n-2}$
 
 ---
 
 ## Classification
 
-**Problem Type:** Exact computation
+**Problem Type:** Canonicalization or normalization
 
-**Answer Type:** Exact symbolic expression
+**Answer Type:** Canonical form
 
 ---
 
 ## Solution Concepts
 
-- extraspecial finite group
-- orthogonal group actions
-- Burnside lemma
-- self-adjoint operators
-- finite quadratic geometry
+- critical groups and Smith normal form
+- unsigned incidence matrices
+- matrix-tree theorem
+- local Smith invariants
+- Sylow decomposition
 
 ---
 
-## Black-Box Audit — no issues found
+## Black-Box Audit - no issues found
