@@ -280,13 +280,13 @@ d=14-(4-\gcd(a,4))^2,
 r=a-14+(4-\gcd(a,4))^2.
 $$
 Substituting this value of $r$ and the definition of $D(t)$ gives the required expression using only the parameters from the problem.
-Final Answer: $\boxed{a+\frac{(1+t)(1-t)^{a-14+(4-\gcd(a,4))^2}+(a-14+(4-\gcd(a,4))^2)t-1}{(1-t)^a+(1-t)^b+(1-t)^c-2-2t^2}}$
+Final Answer: $\boxed{a+((1+t)(1-t)^{a-14+(4-\gcd(a,4))^2}+(a-14+(4-\gcd(a,4))^2)t-1)/((1-t)^a+(1-t)^b+(1-t)^c-2-2t^2)}$
 
 ---
 
 ## Answer
 
-$a+\frac{(1+t)(1-t)^{a-14+(4-\gcd(a,4))^2}+(a-14+(4-\gcd(a,4))^2)t-1}{(1-t)^a+(1-t)^b+(1-t)^c-2-2t^2}$
+$a+((1+t)(1-t)^{a-14+(4-\gcd(a,4))^2}+(a-14+(4-\gcd(a,4))^2)t-1)/((1-t)^a+(1-t)^b+(1-t)^c-2-2t^2)$
 
 ---
 
