@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Pass to a three-dimensional Lagrangian graph
+Step 1: Reduce the subgroup-orbit problem to orthogonal conjugacy
 
 Let
 $$
@@ -14,266 +14,205 @@ the commutator is
 $$
 [x,y]=(0,0,u\cdot v'-u'\cdot v).
 $$
-If $u\ne0$, choose $v'$ with $u\cdot v'\ne0$; if $v\ne0$, choose $u'$ with $u'\cdot v\ne0$. So only elements with $u=v=0$ commute with every element, and the displayed $Z$ is the full center. The commutator calculation gives
+As in the subgroup count, every admissible subgroup has the form
 $$
-G/Z\cong U\oplus U
+A_T=\{(u,Tu,t):u\in U,\ t\in\mathbb F_p\},
 $$
-with symplectic form
-$$
-\omega((u,v),(u',v'))=u\cdot v'-u'\cdot v.
-$$
-If $A\ge Z$ is abelian of order $p^4$, then $L=A/Z$ is a three-dimensional Lagrangian subspace. The two coordinate-intersection conditions make $L$ transverse to both coordinate copies of $U$. The condition $L\cap(0\oplus U)=0$ makes projection onto the first copy of $U$ an isomorphism, so
-$$
-L=\{(u,Tu):u\in U\}
-$$
-for a unique linear map $T:U\to U$. The condition $L\cap(U\oplus0)=0$ gives $\ker T=0$, so $T$ is invertible. For $u,u'\in U$,
-$$
-\omega((u,Tu),(u',Tu'))=u\cdot Tu'-u'\cdot Tu,
-$$
-so isotropy of $L$ is equivalent to $T$ being symmetric. Also,
-$$
-L\cap\Delta=\{(u,u):(T-I)u=0\},
-$$
-where $\Delta=\{(u,u):u\in U\}$. The corresponding diagonal subgroup of $G$ contains $Z$ and maps onto $\Delta$, so its intersection with $A$ has order $p$ times the size of $L\cap\Delta$. Therefore the required order $p^2$ is equivalent to
+where $T$ is a symmetric invertible $3\times3$ matrix and
 $$
 \dim\ker(T-I)=1.
 $$
-Therefore, with
-$$
-S=T-I,
-$$
-we must count symmetric $3\times3$ matrices $S$ of rank $2$ such that $I+S$ is invertible.
-
-Step 2: Count all symmetric rank-two matrices
-
-A symmetric matrix $S$ of rank $2$ has a unique radical line
-$$
-K=\ker S\subset U.
-$$
-Conversely, for a fixed line $K$, such matrices are exactly the pullbacks to $U$ of nondegenerate symmetric bilinear forms on the two-dimensional quotient $U/K$.
-
-There are
-$$
-p^2+p+1
-$$
-lines in $U$. To count singular symmetric $2\times2$ matrices, write
-$$
-C=\begin{pmatrix}a&b\\b&c\end{pmatrix}.
-$$
-For a nonzero singular $C$, the equation $ac=b^2$ gives $p(p-1)$ choices when $a\ne0$: choose $a$ and $b$, then $c=b^2/a$ is forced. When $a=0$, we must have $b=0$ and $c\ne0$, giving $p-1$ more choices. So there are
-$$
-p^2-1
-$$
-nonzero rank-one symmetric matrices. Including the zero matrix, there are $p^2$ singular symmetric matrices out of the $p^3$ symmetric matrices in total. The number of invertible symmetric $2\times2$ matrices is therefore
-$$
-p^3-p^2=p^2(p-1).
-$$
-The total number of symmetric rank-two $3\times3$ matrices is
-$$
-(p^2+p+1)p^2(p-1)=p^2(p^3-1).
-$$
-
-Step 3: Count the forbidden matrices for a fixed anisotropic radical line
+Indeed, the two coordinate-intersection conditions make $A_T/Z$ the graph of an invertible map $T$, abelianness is equivalent to self-adjointness for the dot product, and the diagonal intersection has order $p^{1+\dim\ker(T-I)}$.
 
 Let
 $$
-q(x)=x\cdot x=x_1^2+x_2^2+x_3^2,
+\mathcal O=\{Q\in GL_3(\mathbb F_p):Q^TQ=I\}.
 $$
-and let $K=\langle k\rangle$ be anisotropic, so $q(k)\ne0$. Then
+For $Q\in\mathcal O$, the automorphism
 $$
-U=K\perp K^{\perp}.
+\varphi_Q(u,v,t)=(Qu,Qv,t)
 $$
-Since $S$ is self-adjoint for the dot product and has kernel $K$, $K^{\perp}$ is $S$-invariant: for $x\in K^{\perp}$ and $k\in K$, one has $Sx\cdot k=x\cdot Sk=0$. Because $K$ is anisotropic, $U=K\perp K^{\perp}$ and $K\cap K^{\perp}=0$, so the restriction $A=S|_{K^{\perp}}$ is invertible and self-adjoint on the two-dimensional nondegenerate space $K^{\perp}$.
+sends $A_T$ to
+$$
+A_{QTQ^{-1}}.
+$$
+Thus the required number of subgroup orbits is the number of orthogonal-conjugacy classes of symmetric invertible $T$ with one-dimensional $1$-eigenspace.
 
-Choose an orthogonal basis of $K^{\perp}$ with Gram matrix
-$$
-J=\begin{pmatrix}r&0\\0&s\end{pmatrix},\qquad d=rs\ne0.
-$$
-Writing the self-adjointness condition as $JA=A^TJ$ gives
-$$
-A=\begin{pmatrix}a&sz\\rz&e\end{pmatrix}.
-$$
-Put $B=I+A$. The singular self-adjoint matrices $B$ are exactly
-$$
-B=\begin{pmatrix}x&sz\\rz&y\end{pmatrix},\qquad xy-dz^2=0.
-$$
-There are $p^2$ of them: if $x\ne0$, then $y$ is forced, while if $x=0$, then $z=0$ and $y$ is arbitrary.
+Step 2: Split according to the algebraic multiplicity of the eigenvalue $1$
 
-We need $B$ singular but $A=B-I$ invertible. The matrices for which both are singular satisfy
+Let $m$ be the algebraic multiplicity of $1$ in the characteristic polynomial of $T$. Since $\dim\ker(T-I)=1$, we have
 $$
-xy=dz^2,
+m\in\{1,2,3\}.
+$$
+For a self-adjoint operator, primary components belonging to coprime factors are orthogonal: Bezout's identity together with $P(T)^*=P(T)$ for every polynomial $P$ gives orthogonality of the corresponding generalized kernels.
+
+If $m=1$, the $1$-eigenspace is a nondegenerate line $L$, and
+$$
+U=L\perp W,
+$$
+where $W$ is a nondegenerate two-dimensional space. On $W$, the restriction $B=T|_W$ is self-adjoint and satisfies
+$$
+\det B\ne0,\qquad \det(B-I)\ne0.
+$$
+There are two isometry types for $W$, split and anisotropic. By Witt's extension theorem, the orthogonal group of $U$ is transitive on nondegenerate lines with a fixed complement type, so the $m=1$ contribution is the sum of the numbers of orthogonal-conjugacy classes of such $B$ on the two types of planes.
+
+Step 3: Count the two-dimensional conjugacy classes by Burnside's lemma
+
+Put
+$$
+M=p(p-1)^2.
+$$
+First take the split plane with Gram matrix
+$$
+J_+=\begin{pmatrix}0&1\\1&0\end{pmatrix}.
+$$
+A self-adjoint map has the form
+$$
+B=\begin{pmatrix}a&b\\c&a\end{pmatrix}.
+$$
+The equations $\det B=0$ and $\det(B-I)=0$ each have $p^2$ solutions. If both hold, then
+$$
+a^2=bc=(a-1)^2,
+$$
+so $a=\frac12$ and $bc=\frac14$, giving $p-1$ common solutions. Hence the number of admissible maps is
+$$
+S_+=p^3-2p^2+p-1=M-1.
+$$
+
+The group $O^+(2,p)$ has $2(p-1)$ elements: rotations
+$$
+D_r=\begin{pmatrix}r&0\\0&r^{-1}\end{pmatrix}
+$$
+and reflections
+$$
+R_r=\begin{pmatrix}0&r\\r^{-1}&0\end{pmatrix},\qquad r\in\mathbb F_p^\times.
+$$
+The two rotations with $r=\pm1$ fix all $S_+$ admissible maps. Every other rotation fixes only scalar maps $aI$, with $a\notin\{0,1\}$, so it fixes $p-2$ maps. A reflection fixes exactly the matrices with $b=r^2c$. Writing $x=rc$, the two determinant conditions become
+$$
+a^2-x^2\ne0,\qquad (a-1)^2-x^2\ne0.
+$$
+With $u=a+x$ and $v=a-x$, this is $u,v\notin\{0,1\}$, giving $(p-2)^2$ fixed maps. Burnside's lemma gives
+$$
+c_+=\frac{2S_++(p-3)(p-2)+(p-1)(p-2)^2}{2(p-1)}
+=\frac{p(3p-5)}2.
+$$
+
+For the anisotropic plane, identify the space with $E=\mathbb F_{p^2}$ and use the norm form. Every $\mathbb F_p$-linear map is uniquely $z\mapsto az+b\overline z$ with $a,b\in E$; taking adjoints for the norm form shows that self-adjointness is equivalent to $a\in\mathbb F_p$. Thus every self-adjoint map is
+$$
+B(z)=az+b\overline z,
+$$
+with $a\in\mathbb F_p$ and $b\in E$, and a direct determinant computation gives
+$$
+\det B=a^2-N(b),\qquad \det(B-I)=(a-1)^2-N(b).
+$$
+Each singularity equation has $p^2$ solutions. Their intersection has $a=\frac12$ and $N(b)=\frac14$, giving $p+1$ solutions. Thus
+$$
+S_-=p^3-2p^2+p+1=M+1.
+$$
+
+The group $O^-(2,p)$ has $2(p+1)$ elements. Its rotations are $z\mapsto uz$ and its reflections are $z\mapsto u\overline z$, where $N(u)=1$. The rotations $u=\pm1$ fix all $S_-$ maps, while the other $p-1$ rotations fix only the $p-2$ eligible scalar maps. A reflection fixes precisely those $b$ with $b=u^2\overline b$, equivalently $b=ux$ for $x\in\mathbb F_p$. Then $N(b)=x^2$, so the same change of variables as in the split case gives $(p-2)^2$ fixed maps. Hence
+$$
+c_-=\frac{2S_-+(p-1)(p-2)+(p+1)(p-2)^2}{2(p+1)}
+=\frac{3p^2-9p+8}{2}.
+$$
+Therefore the contribution from $m=1$ is
+$$
+c_++c_-=3p^2-7p+4.
+$$
+
+Step 4: Count the classes with algebraic multiplicity $m=2$
+
+Now the generalized $1$-primary space $P$ has dimension $2$, and the remaining primary space is a line. Orthogonal primary decomposition gives
+$$
+U=P\perp L,
+$$
+with
+$$
+T|_P=I+N,
+$$
+where $N\ne0$, $N^2=0$, and $N$ is self-adjoint. Since $N$ has rank $1$,
+$$
+\operatorname{im}N=\ker N.
+$$
+Self-adjointness gives $\operatorname{im}N=(\ker N)^\perp$ inside $P$, so this common line is isotropic. Hence $P$ is the split plane.
+
+The action on $L$ is multiplication by some
+$$
+\lambda\in\mathbb F_p\setminus\{0,1\},
+$$
+because $T$ is invertible and $L$ is not part of the $1$-primary space. By Witt's extension theorem there is one orbit of embeddings of the split plane $P$ with its orthogonal complement of the required type. In a hyperbolic basis of $P$, every such nonzero nilpotent self-adjoint map is orthogonally conjugate to
+$$
+N_a=\begin{pmatrix}0&a\\0&0\end{pmatrix},\qquad a\ne0,
+$$
+up to exchanging the two isotropic lines. A rotation $\operatorname{diag}(r,r^{-1})$ sends $a$ to $r^2a$, so there are exactly two conjugacy classes, according to whether $a$ is a square or a nonsquare. Thus each of the $p-2$ choices of $\lambda$ gives two classes, for a total of
+$$
+2(p-2).
+$$
+
+Step 5: Count the class with algebraic multiplicity $m=3$
+
+Here
+$$
+T=I+N,
+$$
+where $N$ is a regular nilpotent self-adjoint operator: $N^3=0$, $N^2\ne0$, and $\dim\ker N=1$. Choose $v$ with $N^2v\ne0$ and use the cyclic basis
+$$
+(N^2v,Nv,v).
+$$
+In this basis,
+$$
+N=\begin{pmatrix}0&1&0\\0&0&1\\0&0&0\end{pmatrix}.
+$$
+If $G$ is the Gram matrix of the dot product, the equation $N^TG=GN$ forces
+$$
+G=\begin{pmatrix}0&0&d\\0&d&e\\d&e&f\end{pmatrix},\qquad d\ne0.
+$$
+A basis change commuting with $N$ has the form
+$$
+C=xI+yN+zN^2,\qquad x\ne0.
+$$
+Under $G\mapsto C^TGC$, the parameters become
+$$
+d'=dx^2,
+$$
+$$
+e'=x(2dy+ex),
 $$
 and
 $$
-(x-1)(y-1)=dz^2.
+f'=2dxz+dy^2+2exy+fx^2.
 $$
-Subtracting gives $x+y=1$, so after
+Choose $y$ to make $e'=0$ and then $z$ to make $f'=0$. The square class of $d$ is the only remaining invariant. Since
 $$
-X=2x-1,\qquad Z=2z,
+\det G=-d^3
 $$
-we obtain
-$$
-X^2+dZ^2=1.
-$$
-Let $\chi$ be the quadratic character, with $\chi(0)=0$. The number of solutions of this equation is
-$$
-p-\chi(-d).
-$$
-Indeed,
-$$
-\sum_X\bigl(1+\chi(d^{-1}(1-X^2))\bigr)
-=p+\chi(d)\sum_X\chi(1-X^2)
-=p-\chi(-d).
-$$
-For the remaining sum, the equation $Y^2=X^2-1$ is equivalent to $(X-Y)(X+Y)=1$, so it has $p-1$ pairs $(X,Y)$. It also has $p+\sum_X\chi(X^2-1)$ pairs, and therefore $\sum_X\chi(X^2-1)=-1$. Since $\chi(1-X^2)=\chi(-1)\chi(X^2-1)$, this gives $\sum_X\chi(1-X^2)=-\chi(-1)$, which yields the last equality in the displayed sum.
+and the ambient dot product has square determinant, $-d$ must be a square. Therefore $x$ can normalize $d$ to $-1$. All regular nilpotent self-adjoint $N$ are consequently orthogonally conjugate, so the case $m=3$ contributes exactly one class.
 
-The forbidden count for this fixed anisotropic $K$ is therefore
+Step 6: Add the three primary cases
+
+The three contributions are
 $$
-p^2-p+\chi(-d).
+3p^2-7p+4,
 $$
-In the basis formed by $k$ and the chosen basis of $K^{\perp}$, the Gram determinant is $q(k)d$. A change of basis multiplies a Gram determinant by a square, while the standard dot product has determinant $1$. Therefore
 $$
-\chi(q(k)d)=1,
+2(p-2),
 $$
-so
+and
 $$
-\chi(d)=\chi(q(k)).
+1.
 $$
-Writing
+Their sum is
 $$
-\varepsilon=\chi(-1),
-$$
-the forbidden count is
-$$
-p^2-p+\varepsilon\chi(q(k)).
+3p^2-7p+4+2p-4+1=3p^2-5p+1.
 $$
 
-Step 4: Count the forbidden matrices for a fixed isotropic radical line
-
-Now let $K=\langle e\rangle$ be isotropic. Choose a Witt basis $e,f,h$ such that the Gram matrix of the dot product is
-$$
-J=\begin{pmatrix}0&1&0\\1&0&0\\0&0&d\end{pmatrix},\qquad d\ne0.
-$$
-For a self-adjoint operator $S$ with $Se=0$, the condition $JS=S^TJ$ gives
-$$
-S=\begin{pmatrix}
-0&a&dr\\
-0&0&0\\
-0&r&g
-\end{pmatrix}.
-$$
-The second row is zero, so the rank is at most $2$. The minor on rows $1,3$ and columns $2,3$ has determinant $ag-dr^2$, so the rank is $2$ exactly when
-$$
-ag-dr^2\ne0.
-$$
-Also,
-$$
-\det(I+S)=1+g.
-$$
-So $I+S$ is singular exactly when $g=-1$, after which the rank condition becomes
-$$
-a\ne-dr^2.
-$$
-There are $p$ choices for $r$ and $p-1$ choices for $a$, so a fixed isotropic radical line contributes
-$$
-p(p-1)=p^2-p
-$$
-forbidden matrices.
-
-Step 5: Count radical lines of each quadratic type
-
-First, the number of isotropic lines for $q$ is $p+1$. For any nonzero $a\in\mathbb F_p$, consider
-$$
-y^2=x^2-a.
-$$
-The factorization $(x-y)(x+y)=a$ gives exactly $p-1$ pairs $(x,y)$, since each nonzero value of $x-y$ determines $x+y$. On the other hand, the number of pairs is
-$$
-p+\sum_x\chi(x^2-a),
-$$
-so
-$$
-\sum_x\chi(x^2-a)=-1.
-$$
-Applying this with $a=-1$ gives
-$$
-\sum_t\chi(t^2+1)=-1.
-$$
-Therefore
-$$
-\sum_{x,y\in\mathbb F_p}\chi(x^2+y^2)=0:
-$$
-for $y=0$ the contribution is $p-1$, while each $y\ne0$ contributes $-1$ after scaling by $y$. The number of vectors satisfying
-$$
-x^2+y^2+z^2=0
-$$
-is then
-$$
-p^2+\chi(-1)\sum_{x,y}\chi(x^2+y^2)=p^2.
-$$
-Removing the zero vector and dividing by $p-1$ gives $p+1$ isotropic lines.
-
-There remain $p^2$ anisotropic lines. Let $N_+$ and $N_-$ be the numbers whose nonzero norm is respectively a square or a nonsquare. Since scalar multiplication changes the norm by a square, each anisotropic line has a well-defined sign $\chi(q(k))$.
-
-Let
-$$
-M=\#\{(x,y):x^2+y^2=0\}.
-$$
-When $y=0$, only $x=0$ works. For each $y\ne0$, the ratio $x/y$ must satisfy $(x/y)^2=-1$, which has $1+\varepsilon$ solutions. This gives
-$$
-M=1+(p-1)(1+\varepsilon)=p+(p-1)\varepsilon.
-$$
-For fixed $(x,y)$ with $x^2+y^2\ne0$, the displayed character-sum identity applied with $a=-(x^2+y^2)$ gives
-$$
-\sum_z\chi(x^2+y^2+z^2)=-1.
-$$
-If $x^2+y^2=0$, the same sum is $p-1$. Therefore
-$$
-\sum_{x,y,z}\chi(q(x,y,z))
-=M(p-1)-(p^2-M)=p(p-1)\varepsilon.
-$$
-Dividing by the $p-1$ nonzero vectors on each anisotropic line gives
-$$
-N_+-N_-=p\varepsilon.
-$$
-Together with $N_++N_-=p^2$, this yields
-$$
-N_+=\frac{p(p+\varepsilon)}2,\qquad
-N_-=\frac{p(p-\varepsilon)}2.
-$$
-
-Step 6: Subtract the forbidden matrices
-
-The total forbidden count is
-$$
-(p+1)(p^2-p)
-+\frac{p(p+\varepsilon)}2(p^2-p+\varepsilon)
-+\frac{p(p-\varepsilon)}2(p^2-p-\varepsilon).
-$$
-The anisotropic contribution simplifies to
-$$
-p^4-p^3+p,
-$$
-while the isotropic contribution is
-$$
-p^3-p.
-$$
-So exactly
-$$
-p^4
-$$
-rank-two symmetric matrices make $I+S$ singular. Subtracting them from the total in Step 2 gives
-$$
-p^2(p^3-1)-p^4
-=p^2(p^3-p^2-1).
-$$
-
-Final Answer: $\boxed{p^2(p^3-p^2-1)}$
+Final Answer: $\boxed{3p^2-5p+1}$
 
 ---
 
 ## Answer
 
-$p^2(p^3-p^2-1)$
+$3p^2-5p+1$
 
 ---
 
@@ -288,10 +227,10 @@ $p^2(p^3-p^2-1)$
 ## Solution Concepts
 
 - extraspecial finite group
-- symplectic quotient
-- Lagrangian graph
-- symmetric bilinear forms
-- finite quadratic geometry
+- orthogonal conjugacy
+- self-adjoint operators
+- primary decomposition
+- Burnside lemma
 
 ---
 
