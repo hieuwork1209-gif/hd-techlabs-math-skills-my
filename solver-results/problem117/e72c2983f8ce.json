@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "db4391303693b9caa97158522f0a7e5ff39e6b85",
+  "problem_blob_sha": "e72c2983f8ce604220a1d1c80fa0950aab1f48af",
+  "statement_sha256": "2508486a7859b82bc31d73bedf42723e85c9b1d40f0401faaa8af4d665502730",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-09T07:10:41+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "For an eigenvalue \\(\\lambda\\), the three steps multiply that component by\n\\[\np(\\lambda)=\\prod_{k=0}^2(1-\\alpha_k\\lambda).\n\\]\nSince \\(A\\) is real symmetric, the worst case over \\(A\\) and \\(x_0\\) is exactly\n\\[\nR(\\alpha_0,\\alpha_1,\\alpha_2)=\\max_{\\lambda\\in[1,9]} |p(\\lambda)|.\n\\]\n\nWe claim the optimum is attained at\n\\[\n(\\alpha_0,\\alpha_1,\\alpha_2)=\\left(\\frac{65}{389},\\frac29,\\frac29\\right).\n\\]\nFor this choice,\n\\[\np(\\lambda)=\\left(1-\\frac{65}{389}\\lambda\\right)\\left(1-\\frac{2}{9}\\lambda\\right)^2.\n\\]\nAt the endpoints,\n\\[\np(1)=\\frac{324}{389}\\cdot\\frac{49}{81}=\\frac{196}{389},\n\\]\nand\n\\[\np(9)=\\left(1-\\frac{585}{389}\\right)(-1)^2=-\\frac{196}{389}.\n\\]\nThe derivative is\n\\[\np'(\\lambda)=-\\left(1-\\frac{2\\lambda}{9}\\right)\n\\left(\\frac{65}{389}+\\frac49-\\frac{260}{3501}\\lambda\\right),\n\\]\nso the only interior critical points are \\(\\lambda=9/2\\) and\n\\[\n\\lambda=\\frac{2141}{390}.\n\\]\nAt \\(\\lambda=9/2\\), \\(p=0\\), and at \\(\\lambda=2141/390\\) the value is positive and smaller than \\(p(1)\\). Thus\n\\[\n\\max_{\\lambda\\in[1,9]}|p(\\lambda)|=\\frac{196}{389}.\n\\]\n\nIt remains to prove no smaller value is possible. If \\(\\alpha_0\\le 1/9\\), then since \\(\\alpha_1,\\alpha_2\\le2/9\\),\n\\[\nR\\ge p(1)=\\prod_{k=0}^2(1-\\alpha_k)\n\\ge \\frac89\\left(\\frac79\\right)^2\n=\\frac{392}{729}\n>\\frac{196}{389}.\n\\]\nSo any optimizer with smaller or equal value must have all \\(\\alpha_k>1/9\\). Put\n\\[\ny_k=9\\alpha_k-1\\in(0,1].\n\\]\nThen\n\\[\n|p(9)|=\\prod_{k=0}^2 y_k=:Y,\n\\]\nwhile\n\\[\np(1)=\\prod_{k=0}^2\\left(1-\\alpha_k\\right)\n=\\frac1{729}\\prod_{k=0}^2(8-y_k).\n\\]\nFor \\(x,y\\in(0,1]\\),\n\\[\n(8-x)(8-y)\\ge 7(8-xy),\n\\]\nbecause the difference is\n\\[\n(8-x)(8-y)-7(8-xy)=8(1-x)(1-y)\\ge0.\n\\]\nApplying this twice gives\n\\[\n\\prod_{k=0}^2(8-y_k)\\ge 49(8-Y).\n\\]\nTherefore\n\\[\nR\\ge \\max\\left(Y,\\frac{49(8-Y)}{729}\\right).\n\\]\nThe first term increases in \\(Y\\), the second decreases in \\(Y\\), so the best possible lower bound occurs when they are equal:\n\\[\nY=\\frac{49(8-Y)}{729}.\n\\]\nHence\n\\[\n778Y=392,\n\\qquad\nY=\\frac{196}{389}.\n\\]\nThus every admissible triple satisfies\n\\[\nR(\\alpha_0,\\alpha_1,\\alpha_2)\\ge \\frac{196}{389}.\n\\]\nEquality in the inequality forces two of the \\(y_k\\)'s to equal \\(1\\), and the remaining one to equal \\(196/389\\). Since the \\(\\alpha_k\\) are ordered, this gives uniquely\n\\[\n\\alpha_1=\\alpha_2=\\frac29,\n\\qquad\n9\\alpha_0-1=\\frac{196}{389},\n\\]\nso\n\\[\n\\alpha_0=\\frac{65}{389}.\n\\]\n\n\\[\n\\boxed{\\left(R_*,(\\alpha_0^*,\\alpha_1^*,\\alpha_2^*)\\right)\n=\\left(\\frac{196}{389},\\left(\\frac{65}{389},\\frac29,\\frac29\\right)\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-09T07:15:26+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/e72c2983f8ce.json"
+}
