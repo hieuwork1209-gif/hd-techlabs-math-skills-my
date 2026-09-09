@@ -2,19 +2,25 @@
 
 ## LaTeX (Normalized)
 
-For each $\lambda\in[1,9]$, let
+Let $A$ be a real symmetric positive-definite matrix whose spectrum is contained in
 $$
-f_\lambda(x)=\frac{\lambda}{2}x^2.
+[1,4]\cup[6,9].
 $$
-Choose constant heavy-ball parameters $\alpha>0$ and $\beta\ge0$. Starting from $x_{-1}=x_0\ne0$, perform two iterations
+For
 $$
-x_{k+1}=x_k-\alpha f_\lambda'(x_k)+\beta(x_k-x_{k-1}),
+f(x)=\frac12 x^TAx,
+$$
+choose constant heavy-ball parameters $\alpha>0$ and $\beta\ge0$. Starting from any $x_0\ne0$, set $x_{-1}=x_0$ and perform two iterations
+$$
+x_{k+1}=x_k-\alpha\nabla f(x_k)+\beta(x_k-x_{k-1}),
 \qquad k=0,1.
 $$
 Define the worst-case two-step contraction factor
 $$
 R(\alpha,\beta)
-=\max_{\lambda\in[1,9]}\left|\frac{x_2}{x_0}\right|,
+=\sup_{A:\,\sigma(A)\subset[1,4]\cup[6,9]}
+\sup_{x_0\ne0}
+\frac{\|x_2\|_2}{\|x_0\|_2},
 $$
 and let
 $$
@@ -41,4 +47,4 @@ where $(\alpha_*,\beta_*)$ is the optimizing parameter pair.
 
 ## Domain Explanation
 
-This problem asks for robust tuning of the heavy-ball method over a natural interval of quadratic curvatures. Two iterations produce a degree-two residual polynomial, and the optimal parameters are characterized by a sharp minimax argument on the spectral interval, making the problem a numerical optimization problem with an exact convergence-factor calculation.
+This problem asks for robust heavy-ball tuning when the Hessian spectrum has two separated clusters. Two iterations produce a quadratic residual polynomial, but the spectral gap changes the minimax geometry because the residual may attain a deeper extremum inside the missing interval without affecting the worst-case contraction. The proof therefore combines spectral reduction with a sharp interpolation certificate adapted to the disconnected spectral set.
