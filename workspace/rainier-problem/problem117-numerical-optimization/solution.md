@@ -1,101 +1,95 @@
 ## Steps
 
-Step 1: Reduce two heavy-ball steps to a quadratic residual
-For a fixed curvature $\lambda\in[1,9]$, the scalar objective is
+Step 1: Reduce the two heavy-ball steps to a residual polynomial
+For a scalar eigendirection with curvature $\lambda$, put $t=\alpha\lambda$. Since $x_{-1}=x_0$,
 $$
-f_\lambda(x)=\frac{\lambda}{2}x^2.
+x_1=(1-t)x_0.
 $$
-With $x_{-1}=x_0$ and constant parameters $\alpha>0$, $\beta\ge0$, the first step is
+The second step gives
 $$
-x_1=(1-\alpha\lambda)x_0.
-$$
-The second step is
-$$
-x_2=(1+\beta-\alpha\lambda)x_1-\beta x_0,
+x_2=(1+\beta-t)x_1-\beta x_0,
 $$
 so
 $$
 \frac{x_2}{x_0}=q_{\alpha,\beta}(\lambda)
 =1-\alpha(2+\beta)\lambda+\alpha^2\lambda^2.
 $$
+Therefore
+$$
+R(\alpha,\beta)=
+\max_{\lambda\in[1,4]\cup[6,9]}|q_{\alpha,\beta}(\lambda)|.
+$$
+
+Step 2: Prove a sharp minimax lower bound from three spectral points
+Let $p$ be any polynomial of degree at most $2$ with $p(0)=1$, and set
+$$
+M=\max_{\lambda\in[1,4]\cup[6,9]}|p(\lambda)|.
+$$
+The points $1,6,9$ belong to the spectral set. Lagrange interpolation at these three points, evaluated at $0$, gives
+$$
+p(0)=\frac{27}{20}p(1)-\frac35p(6)+\frac14p(9).
+$$
 Hence
 $$
-R(\alpha,\beta)=\max_{1\le\lambda\le9}|q_{\alpha,\beta}(\lambda)|.
+1\le
+\left(\frac{27}{20}+\frac35+\frac14\right)M
+=\frac{11}{5}M,
+$$
+so every such quadratic satisfies
+$$
+M\ge\frac5{11}.
+$$
+Since every two-step heavy-ball residual from Step 1 has degree at most $2$ and value $1$ at $\lambda=0$, this proves
+$$
+R(\alpha,\beta)\ge\frac5{11}.
 $$
 
-Step 2: Prove the sharp minimax lower bound
-Consider any polynomial $p$ of degree at most $2$ with $p(0)=1$, and put
-$$
-r(y)=p(5-4y).
-$$
-Then $r(5/4)=1$ and
-$$
-\max_{1\le\lambda\le9}|p(\lambda)|
-=\max_{-1\le y\le1}|r(y)|.
-$$
-Define
-$$
-r_*(y)=\frac8{17}(2y^2-1).
-$$
-Since
-$$
-r_*\left(\frac54\right)=1,
-$$
-and
-$$
-r_*(-1)=\frac8{17},\qquad
-r_*(0)=-\frac8{17},\qquad
-r_*(1)=\frac8{17},
-$$
-we have $\|r_*\|_{L^\infty[-1,1]}=8/17$.
-
-Suppose some admissible $r$ satisfied $\|r\|_\infty<8/17$. For $h=r-r_*$,
-$$
-h(-1)<0,\qquad h(0)>0,\qquad h(1)<0,
-$$
-while $h(5/4)=0$. Thus $h$ has one zero in $(-1,0)$, another in $(0,1)$, and a third at $5/4$, impossible for a nonzero polynomial of degree at most $2$. Therefore every $p$ with $p(0)=1$ satisfies
-$$
-\max_{1\le\lambda\le9}|p(\lambda)|\ge\frac8{17}.
-$$
-
-The minimizer is unique. Indeed, if $\|r\|_\infty\le8/17$ and $h=r-r_*$ is nonzero, then either $h(0)>0$, which again forces three distinct zeros, or $h(0)=0$. In the latter case the roots at $0$ and $5/4$ force
-$$
-h(y)=c\,y\left(y-\frac54\right).
-$$
-The inequalities $h(-1)\le0$ and $h(1)\le0$ imply respectively $c\le0$ and $c\ge0$, so $c=0$, a contradiction. Hence $r=r_*$.
-
-Step 3: Recover the heavy-ball parameters
-Returning to $\lambda$,
+Step 3: Construct the extremal residual and recover the parameters
+Consider
 $$
 p_*(\lambda)
-=r_*\left(\frac{5-\lambda}{4}\right)
-=\frac{\lambda^2-10\lambda+17}{17}.
+=\frac{2(\lambda-5)^2-17}{33}
+=1-\frac{20}{33}\lambda+\frac{2}{33}\lambda^2.
 $$
-To realize this as the heavy-ball residual from Step 1, compare coefficients:
+At the four endpoints of the two spectral bands,
 $$
-\alpha^2=\frac1{17},
+p_*(1)=p_*(9)=\frac5{11},
 \qquad
-\alpha(2+\beta)=\frac{10}{17}.
+p_*(4)=p_*(6)=-\frac5{11}.
+$$
+Moreover,
+$$
+p_*'(\lambda)=\frac{4(\lambda-5)}{33}.
+$$
+Thus $p_*$ decreases on $[1,4]$ and increases on $[6,9]$. Its deeper minimum occurs at $\lambda=5$, which lies in the spectral gap and is not part of the maximization set. Consequently
+$$
+\max_{\lambda\in[1,4]\cup[6,9]}|p_*(\lambda)|=\frac5{11}.
+$$
+Matching $p_*$ with the heavy-ball residual from Step 1 gives
+$$
+\alpha^2=\frac2{33},
+\qquad
+\alpha(2+\beta)=\frac{20}{33}.
 $$
 Because $\alpha>0$,
 $$
-\alpha_*=\frac1{\sqrt{17}},
+\alpha_*=\frac{\sqrt{66}}{33},
 \qquad
-\beta_*=\frac{10}{\sqrt{17}}-2.
+\beta_*=\frac{10\sqrt{66}}{33}-2.
 $$
-The momentum is feasible because $10>2\sqrt{17}$. At $\lambda=1,5,9$ the residuals are respectively
+The momentum is feasible since $10\sqrt{66}>66$. Equality in the interpolation bound from Step 2 forces the signs
 $$
-\frac8{17},\qquad-\frac8{17},\qquad\frac8{17},
+p(1)=\frac5{11},\qquad p(6)=-\frac5{11},\qquad p(9)=\frac5{11},
 $$
-so the bound is attained. Uniqueness of the minimax polynomial gives uniqueness of $\alpha_*$ and $\beta_*$.
+so the extremal quadratic is unique; hence the heavy-ball parameters above are unique as well.
 
-Final Answer: $\boxed{\left(\frac8{17},\left(\frac1{\sqrt{17}},\frac{10}{\sqrt{17}}-2\right)\right)}$
+Final Answer: $\boxed{\left(\frac5{11},\left(\frac{\sqrt{66}}{33},\frac{10\sqrt{66}}{33}-2\right)\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac8{17},\left(\frac1{\sqrt{17}},\frac{10}{\sqrt{17}}-2\right)\right)$
+$\left(\frac5{11},\left(\frac{\sqrt{66}}{33},\frac{10\sqrt{66}}{33}-2\right)\right)$
 
 ---
 
@@ -110,5 +104,5 @@ $\left(\frac8{17},\left(\frac1{\sqrt{17}},\frac{10}{\sqrt{17}}-2\right)\right)$
 ## Solution Concepts
 
 - heavy-ball residual polynomial
-- minimax quadratic approximation
-- equioscillation sign-change argument
+- minimax interpolation certificate
+- clustered spectrum with a spectral gap
