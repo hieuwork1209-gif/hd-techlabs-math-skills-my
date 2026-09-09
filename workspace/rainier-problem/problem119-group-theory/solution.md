@@ -1,199 +1,233 @@
 ## Steps
 
-Step 1: Determine the Jordan module of the adjoint action on $\mathfrak{psl}_p$
+Step 1: Handle the case $p\equiv3\pmod4$
 
 Let
 $$
-F=\mathbb F_p,\qquad N=J_p(0),\qquad D=\operatorname{ad}N.
+C:\ X^4+Y^4=Z^4
 $$
-On $M_p(F)$ identify the matrix unit basis with
+be the projective Fermat quartic. If $p\equiv3\pmod4$, then
 $$
-A=F[x,y]/(x^p,y^p)
+\gcd(4,p-1)=2.
 $$
-so that $D$ is multiplication by
+Hence the map $x\mapsto x^4$ on $\mathbb F_p$ has exactly the same fibers as the map $x\mapsto x^2$: zero has one preimage and every nonzero square has two. Therefore the number of projective solutions of
 $$
-z=x-y.
+X^4+Y^4=Z^4
 $$
-Writing $x=z+y$ and using characteristic $p$ gives
+equals the number of projective solutions of
 $$
-A\cong F[z,y]/(z^p,y^p).
+X^2+Y^2=Z^2.
 $$
-Hence, with
+The latter is a nonsingular conic with the rational point $(1:0:1)$, hence it is isomorphic to $\mathbb P^1$ over $\mathbb F_p$ and has
 $$
-R=F[z]/(z^p),
+p+1
 $$
-we have
-$$
-M_p(F)\cong R^p
-$$
-as an $R$-module.
+points.
 
-The trace map is $R$-linear if $F$ is regarded as $R/(z)$, because
+Step 2: Express the count for $p\equiv1\pmod4$ by Jacobi sums
+
+Assume now $p\equiv1\pmod4$. Choose a quartic character
 $$
-\operatorname{tr}[N,X]=0.
+\chi:\mathbb F_p^\times\to\{1,i,-1,-i\},
 $$
-It is nonzero, hence surjective. Therefore after an $R$-basis change,
+extended by $\chi(0)=0$, and put
 $$
-\mathfrak{sl}_p(F)=\ker(\operatorname{tr})\cong R^{p-1}\oplus zR.
+\eta=\chi^2,
 $$
-Since $zR\cong R/(z^{p-1})$, the adjoint action on $\mathfrak{sl}_p$ has Jordan form
+so $\eta$ is the quadratic character. For multiplicative characters $A,B$, write
 $$
-J_p^{\oplus(p-1)}\oplus J_{p-1}.
+J(A,B)=\sum_{t\in\mathbb F_p}A(t)B(1-t).
 $$
 
-Because $p=0$ in $F$, the scalar matrix $I$ belongs to $\mathfrak{sl}_p$. Moreover
+Let $r(u)$ be the number of fourth roots of $u$. Then
 $$
-D^{p-1}(E_{p1})
-=\sum_{k=0}^{p-1}(-1)^k\binom{p-1}{k}N^{p-1-k}E_{p1}N^k
-=\sum_{k=0}^{p-1}E_{k+1,k+1}=I,
+r(0)=1,
 $$
-using $\binom{p-1}{k}\equiv(-1)^k\pmod p$. Thus $FI$ is the socle of one length-$p$ Jordan block. Passing to
+and for $u\ne0$,
 $$
-\mathfrak g=\mathfrak{psl}_p(F)=\mathfrak{sl}_p(F)/FI
+r(u)=1+\chi(u)+\eta(u)+\overline\chi(u).
 $$
-shortens that block by one. Hence
+Expanding
 $$
-\mathfrak g\cong R^{p-2}\oplus S\oplus S,
+\sum_{u\in\mathbb F_p}r(u)r(1-u)
 $$
-where
+therefore gives the affine point count
 $$
-S=R/(z^{p-1}).
+p+\sum_{r,s=1}^3J(\chi^r,\chi^s).
 $$
-Equivalently, $D$ on $\mathfrak g$ has Jordan form
+The three terms with $r+s\equiv0\pmod4$ are
 $$
-J_p^{\oplus(p-2)}\oplus J_{p-1}^{\oplus2}.
+J(\chi,\overline\chi),\qquad J(\eta,\eta),\qquad J(\overline\chi,\chi),
 $$
-
-Step 2: Record the two tensor facts for $S=R/(z^{p-1})$
-
-Give $R$ the Hopf structure
+and the identity
 $$
-\Delta(z)=z\otimes1+1\otimes z.
+J(A,A^{-1})=-A(-1)
 $$
-For every $R$-module $M$, the diagonal module $R\otimes_F M$ is free over $R$. In particular, any tensor product with a free $R$-module is free.
-
-Realize $S\cong zR$. Tensoring the exact sequence
+gives their sum as
 $$
-0\longrightarrow S\longrightarrow R\longrightarrow F\longrightarrow0
+-2\chi(-1)-1.
 $$
-over $F$ with $S$ gives an exact sequence of diagonal $R$-modules
+The number of points at infinity is the number of fourth roots of $-1$, namely
 $$
-0\longrightarrow S\otimes S\longrightarrow R\otimes S\longrightarrow S\longrightarrow0.
+2(1+\chi(-1)).
 $$
-Since $R\otimes S$ is free of rank $p-1$, a Smith-form basis for the surjection onto $S=R/(z^{p-1})$ gives
+These two contributions add to $1$. Hence
 $$
-S\otimes S\cong R^{p-2}\oplus F.
+\#C(\mathbb F_p)
+=p+1+J(\chi,\chi)+J(\overline\chi,\overline\chi)
++2J(\chi,\eta)+2J(\overline\chi,\eta).
 $$
 
-Because $p$ is odd,
+A change of variables $x=t/(t-1)$ in a Jacobi sum gives
 $$
-S\otimes S=\operatorname{Sym}^2S\oplus\Lambda^2S.
+J(A,B)=A(-1)J(A,\overline{AB}).
 $$
-The vector
+Taking $A=B=\chi$ yields
 $$
-\omega=\sum_{i=0}^{p-2}(-1)^i x^iy^{p-2-i}
+J(\chi,\eta)=\chi(-1)J(\chi,\chi).
 $$
-in $F[x,y]/(x^{p-1},y^{p-1})$ is antisymmetric and satisfies
+By conjugation,
 $$
-(x+y)\omega=0.
+J(\overline\chi,\eta)=\chi(-1)\overline{J(\chi,\chi)}.
 $$
-Also
+Thus, if
 $$
-\omega(-y,y)=(p-1)y^{p-2}=-y^{p-2}\ne0,
+J=J(\chi,\chi),\qquad s=\chi(-1),
 $$
-so $\omega\notin(x+y)(S\otimes S)$. Thus the unique direct $F$-summand of $S\otimes S$ lies in $\Lambda^2S$. By dimension,
+then
 $$
-\Lambda^2S\cong R^{(p-3)/2}\oplus F.
+\#C(\mathbb F_p)=p+1+(1+2s)(J+\overline J).
 $$
-
-Step 3: Decompose the exterior square of $\mathfrak g$
-
-Put
+Here
 $$
-P=R^{p-2}.
+s=1\quad\text{for }p\equiv1\pmod8,
 $$
-Then
+and
 $$
-\Lambda^2\mathfrak g
-\cong \Lambda^2P
-\oplus P\otimes(S\oplus S)
-\oplus \Lambda^2S
-\oplus(S\otimes S)
-\oplus\Lambda^2S.
+s=-1\quad\text{for }p\equiv5\pmod8.
 $$
 
-Since $2$ is invertible, $\Lambda^2P$ is a direct summand of $P\otimes P$, hence free over the local ring $R$. Its rank is
-$$
-\frac1p\binom{p(p-2)}2
-=\frac{(p-2)(p(p-2)-1)}2.
-$$
-Also
-$$
-P\otimes(S\oplus S)
-$$
-is free of rank
-$$
-2(p-2)(p-1).
-$$
-Using Step 2, the remaining three terms contribute
-$$
-R^{2p-5}\oplus F^{\oplus3}.
-$$
-Therefore the total number of free $R$-summands is
-$$
-\frac{(p-2)(p(p-2)-1)}2+2(p-2)(p-1)+(2p-5)
-=\frac{p(p^2-5)}2.
-$$
-Thus the induced operator on $\Lambda^2\mathfrak g$ has
-$$
-\frac{p(p^2-5)}2
-$$
-Jordan blocks of size $p$ and three blocks of size $1$.
+Step 3: Evaluate the real part of the quartic Jacobi sum
 
-Step 4: Check the dimension
+Since $\chi$ takes values in $\mathbb Z[i]$, write
+$$
+J=A+iB,\qquad A,B\in\mathbb Z.
+$$
+For a nontrivial multiplicative character $\theta$, let
+$$
+G(\theta)=\sum_{x\in\mathbb F_p}\theta(x)e^{2\pi ix/p}.
+$$
+Expanding $G(A_1)G(A_2)$ and grouping by the sum of the two variables gives
+$$
+G(A_1)G(A_2)=J(A_1,A_2)G(A_1A_2)
+$$
+when $A_1,A_2,A_1A_2$ are nontrivial. Also direct character orthogonality gives
+$$
+|G(\theta)|^2=p.
+$$
+Taking $A_1=A_2=\chi$ therefore yields
+$$
+J\overline J=p,
+$$
+so
+$$
+A^2+B^2=p.
+$$
 
-Since
+It remains to determine the sign of the odd coordinate $A$. Put
 $$
-\dim\mathfrak g=p^2-2,
+\lambda=1+i.
 $$
-we have
+Pair $x$ with $1-x$ in
 $$
-\dim\Lambda^2\mathfrak g
-=\binom{p^2-2}{2}
-=\frac{p^4-5p^2+6}{2}.
+J=\sum_x\chi(x(1-x)).
 $$
-The proposed blocks have total size
+The fixed point is $x=1/2$, and every fourth root of unity $\zeta$ satisfies
 $$
-p\cdot\frac{p(p^2-5)}2+3
-=\frac{p^4-5p^2+6}{2},
+2\zeta\equiv2\pmod{\lambda^3}.
 $$
-so the dimensions agree.
+Hence
+$$
+J\equiv \chi(1/4)+(p-3)\pmod{\lambda^3}.
+$$
+Now
+$$
+\chi(1/4)=\chi(4)=\eta(2)=s,
+$$
+so, using $p\equiv1\pmod8$ when $s=1$ and $p\equiv5\pmod8$ when $s=-1$,
+$$
+J\equiv-s\pmod{\lambda^3}.
+$$
+Thus $A$ is odd and $B$ is even. From $A^2+B^2=p$, one has
+$$
+B\equiv0\pmod4\quad\text{if }p\equiv1\pmod8,
+$$
+and
+$$
+B\equiv2\pmod4\quad\text{if }p\equiv5\pmod8.
+$$
+The divisibility $\lambda^3\mid J+s$ is equivalent to
+$$
+A+s\equiv B\pmod4.
+$$
+In both residue classes this gives
+$$
+A\equiv-1\pmod4.
+$$
+Therefore, if
+$$
+p=a^2+b^2,\qquad a\equiv1\pmod4,
+$$
+then necessarily
+$$
+A=-a,\qquad J+\overline J=-2a.
+$$
 
-Final Answer: $\boxed{J_p(0)^{\oplus p(p^2-5)/2}\oplus J_1(0)^{\oplus3}}$
+Step 4: Combine the cases
+
+For $p\equiv1\pmod8$, we have $s=1$, so
+$$
+\#C(\mathbb F_p)=p+1+3(-2a)=p+1-6a.
+$$
+For $p\equiv5\pmod8$, we have $s=-1$, so
+$$
+\#C(\mathbb F_p)=p+1-(-2a)=p+1+2a.
+$$
+Together with Step 1,
+$$
+\#C(\mathbb F_p)=
+\begin{cases}
+p+1,&p\equiv3\pmod4,\\
+p+1-6a,&p\equiv1\pmod8,\\
+p+1+2a,&p\equiv5\pmod8.
+\end{cases}
+$$
+
+Final Answer: $\boxed{p+1\text{ if }p\equiv3\pmod4;\ p+1-6a\text{ if }p\equiv1\pmod8;\ p+1+2a\text{ if }p\equiv5\pmod8}$
 
 ---
 
 ## Answer
 
-$J_p(0)^{\oplus p(p^2-5)/2}\oplus J_1(0)^{\oplus3}$
+$p+1$ if $p\equiv3\pmod4$; $p+1-6a$ if $p\equiv1\pmod8$; $p+1+2a$ if $p\equiv5\pmod8$
 
 ---
 
 ## Classification
 
-**Problem Type:** Canonicalization or normalization
+**Problem Type:** Exact computation
 
-**Answer Type:** Canonical form
+**Answer Type:** Exact symbolic expression
 
 ---
 
 ## Solution Concepts
 
-- modular adjoint representation
-- projective special linear Lie algebra
-- truncated polynomial modules
-- exterior-square decomposition
-- Jordan blocks from Hopf modules
+- quartic multiplicative characters
+- Jacobi sums
+- Gauss sums
+- Gaussian integer norm
+- Fermat quartic over finite fields
 
 ---
 
