@@ -18,31 +18,26 @@ Consider
 $$
 f(x)=\frac12\|x\|_2^2.
 $$
-Choose step sizes
+Choose a single constant step size
 $$
-0<\alpha_k\le\frac12,
-\qquad k=0,1,2,
+0<\alpha\le\frac12,
 $$
-and perform one cyclic preconditioned-gradient sweep
+and use it at every stage of one cyclic preconditioned-gradient sweep:
 $$
-x_{k+1}=x_k-\alpha_kP_k\nabla f(x_k),
+x_{k+1}=x_k-\alpha P_k\nabla f(x_k),
 \qquad k=0,1,2.
 $$
 Define
 $$
-R(\alpha_0,\alpha_1,\alpha_2)
-=\sup_{x_0\ne0}\frac{\|x_3\|_2}{\|x_0\|_2},
-$$
-and let
-$$
-R_*=
-\min_{0<\alpha_0,\alpha_1,\alpha_2\le1/2}
-R(\alpha_0,\alpha_1,\alpha_2).
+R(\alpha)=\sup_{x_0\ne0}\frac{\|x_3\|_2}{\|x_0\|_2},
+\qquad
+R_*=\min_{0<\alpha\le1/2}R(\alpha).
 $$
 Determine
 $$
-\bigl(R_*,(\alpha_0^*,\alpha_1^*,\alpha_2^*)\bigr).
+\bigl(R_*,\alpha_*\bigr),
 $$
+where $\alpha_*$ is the minimizing constant step size. Give both entries to ten decimal places.
 
 ---
 
@@ -59,4 +54,4 @@ $$
 
 ## Domain Explanation
 
-This problem asks for optimal tuning of a cyclic preconditioned-gradient method with three symmetric positive-definite preconditioners whose eigendirections rotate between stages. Because the update matrices do not commute, the cycle cannot be reduced to a scalar residual polynomial. The sharp solution instead depends on rank loss and geometric alignment of successive eigenspaces, which are natural finite-step phenomena in numerical optimization.
+This problem asks for the optimal constant step size in a cyclic preconditioned-gradient method with noncommuting symmetric positive-definite preconditioners. The constant-step constraint is standard in iterative optimization and prevents stage-by-stage tuning from forcing finite termination; the sharp contraction is instead determined by a genuine spectral-norm minimization of the three-stage update matrix.
