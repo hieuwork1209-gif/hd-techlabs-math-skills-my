@@ -2,28 +2,29 @@
 
 ## LaTeX (Normalized)
 
-Let
+For each $\lambda\in[1,9]$, let
 $$
-f(x)=\frac12\left(x_1^2+3x_2^2+7x_3^2\right),
-\qquad x\in\mathbb R^3.
+f_\lambda(x)=\frac{\lambda}{2}x^2.
 $$
-Choose step sizes $0<\alpha_0,\alpha_1,\alpha_2\le\frac12$. Starting from any $x_0\in\mathbb R^3$, set $x_{-1}=x_0$ and apply the heavy-ball iteration
+Choose constant heavy-ball parameters $\alpha>0$ and $\beta\ge0$. Starting from $x_{-1}=x_0\ne0$, perform two iterations
 $$
-x_{k+1}=x_k-\alpha_{k\bmod3}\nabla f(x_k)+\frac13(x_k-x_{k-1}),
-\qquad k\ge0.
+x_{k+1}=x_k-\alpha f_\lambda'(x_k)+\beta(x_k-x_{k-1}),
+\qquad k=0,1.
 $$
-For the first cycle define
+Define the worst-case two-step contraction factor
 $$
-R(\alpha_0,\alpha_1,\alpha_2)
-=\sup_{x_0\ne0}
-\frac{\max\left\{\frac14\|x_1\|_2,\frac12\|x_2\|_2,\|x_3\|_2\right\}}
-{\|x_0\|_2},
+R(\alpha,\beta)
+=\max_{\lambda\in[1,9]}\left|\frac{x_2}{x_0}\right|,
 $$
 and let
 $$
-R_*=\min_{0<\alpha_0,\alpha_1,\alpha_2\le1/2}R(\alpha_0,\alpha_1,\alpha_2).
+R_*=\min_{\alpha>0,\,\beta\ge0}R(\alpha,\beta).
 $$
-Determine the ordered pair $(R_*,\alpha_*)$, where $\alpha_*=(\alpha_0,\alpha_1,\alpha_2)$ is an optimizing ordered triple.
+Determine the ordered pair
+$$
+\bigl(R_*,(\alpha_*,\beta_*)\bigr),
+$$
+where $(\alpha_*,\beta_*)$ is the optimizing parameter pair.
 
 ---
 
@@ -40,4 +41,4 @@ Determine the ordered pair $(R_*,\alpha_*)$, where $\alpha_*=(\alpha_0,\alpha_1,
 
 ## Domain Explanation
 
-The task tunes a periodic heavy-ball schedule on a strongly convex quadratic under a transient-sensitive minimax criterion. Momentum couples successive spectral residuals through a second-order recurrence, so the optimizer cannot be obtained from independent gradient-descent prefix products. The proof requires a spectral recurrence, coupled feasibility constraints, and an affine elimination certificate for the third step, placing the problem squarely in numerical optimization.
+This problem asks for robust tuning of the heavy-ball method over a natural interval of quadratic curvatures. Two iterations produce a degree-two residual polynomial, and the optimal parameters are characterized by a sharp minimax argument on the spectral interval, making the problem a numerical optimization problem with an exact convergence-factor calculation.
