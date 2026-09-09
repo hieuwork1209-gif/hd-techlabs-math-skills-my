@@ -2,13 +2,14 @@
 
 ## LaTeX (Normalized)
 
-Let $p$ be an odd prime, let $F=\mathbb F_p$, and let
+Let $p\ge5$ be a prime, let $F=\mathbb F_p$, and for $r\ge1$ write
 $$
-J=J_{p+1}(0)\in M_{p+1}(F)
+J_r=J_r(0)
 $$
-be the nilpotent Jordan block of size $p+1$. Define the $F$-linear operator
+for the nilpotent Jordan block of size $r$. Define the $F$-linear Sylvester operator
 $$
-\Phi:M_{p+1}(F)\to M_{p+1}(F),\qquad \Phi(X)=JX-XJ.
+\Phi:M_{p+2,\,2p+1}(F)\to M_{p+2,\,2p+1}(F),\qquad
+\Phi(X)=J_{p+2}X-XJ_{2p+1}.
 $$
 Determine the Jordan canonical form of $\Phi$ over $F$; equivalently, determine the sizes and multiplicities of all nilpotent Jordan blocks of $\Phi$.
 
@@ -27,4 +28,4 @@ Determine the Jordan canonical form of $\Phi$ over $F$; equivalently, determine 
 
 ## Domain Explanation
 
-The target is the complete Jordan canonical form of a naturally defined linear operator on a matrix space. The essential structure is the modular Jordan decomposition of the commutator map in characteristic $p$, obtained by converting the operator to a cyclic-module problem and determining its invariant factors. This makes Linear Algebra -> Matrix decompositions and canonical forms more appropriate than Linear transformations, because the requested output is specifically the canonical block decomposition rather than a general property of the operator.
+The problem asks for the complete Jordan canonical form of a Sylvester operator built from two nilpotent Jordan blocks whose sizes interact nontrivially with the characteristic. The essential task is to convert the operator into a truncated-polynomial module and determine its invariant factors, so Linear Algebra -> Matrix decompositions and canonical forms is the appropriate classification.
