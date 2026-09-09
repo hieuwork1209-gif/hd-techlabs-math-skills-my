@@ -4,11 +4,16 @@
 
 Let
 $$
-A=\operatorname{diag}(1,2,3,4,5,6,7),
+A=\operatorname{diag}(1,2,4),
 \qquad
 f(x)=\frac12x^TAx.
 $$
-Choose step sizes $\alpha_0,\alpha_1,\alpha_2>0$. Starting from a random point $x_0$ chosen uniformly from the unit sphere in $\mathbb R^7$, perform three gradient steps
+Choose step sizes satisfying the standard stability restriction
+$$
+0<\alpha_k\le\frac{2}{\lambda_{\max}(A)}=\frac12,
+\qquad k=0,1,2.
+$$
+Starting from a random point $x_0$ chosen uniformly from the unit sphere in $\mathbb R^3$, perform three gradient steps
 $$
 x_{k+1}=x_k-\alpha_k\nabla f(x_k),
 \qquad k=0,1,2.
@@ -20,7 +25,7 @@ R(\alpha_0,\alpha_1,\alpha_2)
 $$
 where the expectation is over $x_0$, and let
 $$
-R_*=\min_{\alpha_0,\alpha_1,\alpha_2>0}
+R_*=\min_{0<\alpha_0,\alpha_1,\alpha_2\le1/2}
 R(\alpha_0,\alpha_1,\alpha_2).
 $$
 Determine $R_*$ exactly.
@@ -40,4 +45,4 @@ Determine $R_*$ exactly.
 
 ## Domain Explanation
 
-The problem asks for optimal nonstationary gradient-step tuning on a quadratic with a simple evenly spaced spectrum under an isotropic average-case criterion. Three steps generate a cubic residual polynomial, while the spherical average converts the optimization into a discrete least-squares problem over the seven eigenvalues. A sharp solution uses a discrete evaluation certificate rather than endpoint minimax interpolation, placing the problem in numerical optimization.
+This problem asks for optimal nonstationary gradient-step tuning on a quadratic under the usual per-step stability bound. The isotropic average converts the objective into three residual values, while the stability restriction imposes a nonnegative-coefficient structure after a spectral shift. Exploiting that structure yields a sharp finite-step contraction bound, so the problem belongs to numerical optimization.
