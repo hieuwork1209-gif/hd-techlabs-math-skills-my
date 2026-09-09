@@ -32,13 +32,13 @@ R(z)
 (I+zT_2+z^2T_2T_1)
 (I+zT_3+z^2T_3T_2+z^3T_3T_2T_1).
 $$
-This factorization will compute all six distance shells simultaneously.
+This factorization computes all six distance shells simultaneously.
 
 Step 2: Construct the $14$-dimensional critical space and compute its eigenvalue
 
-Let $\mathcal P$ and $\mathcal H$ be the $15$ points and $15$ planes of $\operatorname{PG}(3,2)$. For a mean-zero function $u:\mathcal P\to\mathbb R$, define
+Let $\mathcal P$ and $\mathcal H$ be the $15$ points and $15$ planes of $\operatorname{PG}(3,2)$. For a mean-zero function $u:\mathcal P\to\mathbb{R}$, define
 $$
-c_u(P,L,H)=u(P)-\frac12\sum_{Q\subset H}u(Q).
+c_u(P,L,H)=u(P)-\frac{1}{2}\sum_{Q\subset H}u(Q).
 $$
 Let $N$ be the point-plane incidence matrix. Every point lies in $7$ planes and two distinct points lie in exactly $3$ common planes, hence
 $$
@@ -52,8 +52,8 @@ For every incident pair $P\subset H$ there are three possible lines $L$, so
 $$
 \begin{aligned}
 \|c_u\|^2
-&=3\sum_{P\subset H}\left(u(P)-\frac12(N^Tu)(H)\right)^2\\
-&=3\left(7\|u\|^2-\|N^Tu\|^2+\frac74\|N^Tu\|^2\right)\\
+&=3\sum_{P\subset H}\left(u(P)-\frac{1}{2}(N^Tu)(H)\right)^2\\
+&=3\left(7\|u\|^2-\|N^Tu\|^2+\frac{7}{4}\|N^Tu\|^2\right)\\
 &=30\|u\|^2.
 \end{aligned}
 $$
@@ -81,7 +81,7 @@ For example, if $Q=P$ and $P$ is changed, both new points are different from $Q$
 
 The coefficient of $u(Q)$ in $c_u(F)$ is represented by
 $$
-h=\left(\frac12,-\frac12,-\frac12,0\right).
+h=\left(\frac{1}{2},-\frac{1}{2},-\frac{1}{2},0\right).
 $$
 Since $\sum_Qu(Q)=0$, adding a constant vector to $h$ does not change the resulting function on flags. Applying the factorization of $R(z)$ from Step 1 to $h$ gives, modulo constant vectors,
 $$
@@ -93,7 +93,7 @@ $$
 R(z)h=
 \left(1+3z+2z^2-6z^3-16z^4+16z^6\right)h
 -
-\left(\frac z2+3z^2+9z^3+16z^4+16z^5+8z^6\right)\mathbf1.
+\left(\frac{z}{2}+3z^2+9z^3+16z^4+16z^5+8z^6\right)\mathbf{1}.
 $$
 The constant term disappears after summing against $u$. Hence every $c_u\in W$ satisfies
 $$
@@ -124,14 +124,14 @@ $$
 Also
 $$
 L''(p)
-=2(\log2)^2 2^p-6(\log3)^2 3^p-16(\log4)^2 4^p+16(\log6)^2 6^p.
+=2(\log 2)^2 2^p-6(\log 3)^2 3^p-16(\log 4)^2 4^p+16(\log 6)^2 6^p.
 $$
-For $p\ge0$, using $6^p\ge4^p\ge3^p$ gives
+For $p\geq0$, using $6^p\geq4^p\geq3^p$ gives
 $$
 L''(p)
-\ge
-2(\log2)^2 2^p
-+\left(16\big((\log6)^2-(\log4)^2\big)-6(\log3)^2\right)4^p>0.
+\geq
+2(\log 2)^2 2^p
++\left(16\big((\log 6)^2-(\log 4)^2\big)-6(\log 3)^2\right)4^p>0.
 $$
 Thus $L'$ is increasing and positive, so $L$ is strictly increasing on $[0,\infty)$.
 
@@ -147,7 +147,7 @@ $$
 $$
 such that
 $$
-3+2\cdot2^\alpha-6\cdot3^\alpha-16\cdot4^\alpha+16\cdot6^\alpha=0.
+3+2\cdot2^{\alpha}-6\cdot3^{\alpha}-16\cdot4^{\alpha}+16\cdot6^{\alpha}=0.
 $$
 Numerically, $\alpha\approx0.2655412194$.
 
@@ -161,7 +161,7 @@ with dimensions $1,3,2,3,1$. The $(4)$-module is the constant mode. The space $W
 
 It remains to check the other two directions in $(31)$ and the types $(22)$, $(211)$, and $(1111)$. There is a compact way to do this without expanding all $24$ elements. Use the same factorized element $R(z)$ on the three multiplicity-free parabolic modules
 $$
-\operatorname{Ind}_{H_2(S_3)}^{H_2(S_4)}\mathbf1
+\operatorname{Ind}_{H_2(S_3)}^{H_2(S_4)}\mathbf{1}
 \cong S^{(4)}\oplus S^{(31)},
 $$
 $$
@@ -169,7 +169,7 @@ $$
 \cong S^{(1111)}\oplus S^{(211)},
 $$
 $$
-\operatorname{Ind}_{H_2(S_2\times S_2)}^{H_2(S_4)}\mathbf1
+\operatorname{Ind}_{H_2(S_2\times S_2)}^{H_2(S_4)}\mathbf{1}
 \cong S^{(4)}\oplus S^{(31)}\oplus S^{(22)}.
 $$
 On their minimal-coset bases, every multiplication is governed by the single rule
@@ -182,7 +182,7 @@ T_{ws_i},&\ell(ws_i)=\ell(w)+1,\\
 $$
 Thus the factorization in Step 1 produces the required characteristic factors directly from sparse two-term updates.
 
-Set $x_r=r^\alpha$. From $0.265<\alpha<0.266$,
+Set $x_r=r^{\alpha}$. From $0.265<\alpha<0.266$,
 $$
 \begin{aligned}
 1.2016&<x_2<1.2025,\\
@@ -199,26 +199,26 @@ Substituting these intervals into the sparse parabolic actions gives the followi
 - On $S^{(22)}$, the quadratic factor has trace in $(-2.00,-1.85)$ and determinant in $(0.74,0.91)$.
 - On $S^{(1111)}$, the scalar lies in $(-0.805,-0.770)$.
 
-The chamber-space Hecke operators are self-adjoint, so all these roots are real. A real quadratic with negative trace and positive determinant has two negative roots. Therefore every nonconstant eigenvalue of $D_\alpha$ outside $W$ is strictly negative:
+The chamber-space Hecke operators are self-adjoint, so all these roots are real. A real quadratic with negative trace and positive determinant has two negative roots. Therefore every nonconstant eigenvalue of $D_{\alpha}$ outside $W$ is strictly negative:
 $$
-D_\alpha\big|_{\mathbf1^\perp\cap W^\perp}<0.
+D_{\alpha}\big|_{\mathbf{1}^{\perp}\cap W^{\perp}}<0.
 $$
-Together with Step 2, this shows that $D_\alpha$ is conditionally negative semidefinite and that its kernel inside $\mathbf1^\perp$ is exactly $W$.
+Together with Step 2, this shows that $D_{\alpha}$ is conditionally negative semidefinite and that its kernel inside $\mathbf{1}^{\perp}$ is exactly $W$.
 
 Step 5: Determine the supremal negative type and the equality space
 
-Let $0<p<\alpha$ and put $s=p/\alpha\in(0,1)$. For $t\ge0$,
+Let $0<p<\alpha$ and put $s=p/\alpha\in(0,1)$. For $t\geq0$,
 $$
 t^s=c_s\int_0^\infty(1-e^{-ut})u^{-1-s}\,du
 $$
-with $c_s>0$. Since $D_\alpha$ is conditionally negative semidefinite, $e^{-u d(F,H)^\alpha}$ is positive semidefinite for every $u>0$. Thus for every real family $c_F$ with $\sum_Fc_F=0$,
+with $c_s>0$. Since $D_{\alpha}$ is conditionally negative semidefinite, $e^{-u d(F,H)^{\alpha}}$ is positive semidefinite for every $u>0$. Thus for every real family $c_F$ with $\sum_Fc_F=0$,
 $$
 \sum_{F,H}c_Fc_Hd(F,H)^p
 =-c_s\int_0^\infty
-\sum_{F,H}c_Fc_He^{-u d(F,H)^\alpha}
-\,u^{-1-s}\,du\le0.
+\sum_{F,H}c_Fc_He^{-u d(F,H)^{\alpha}}
+\,u^{-1-s}\,du\leq0.
 $$
-Hence $(X,d)$ has $p$-negative type for every $p\le\alpha$.
+Hence $(X,d)$ has $p$-negative type for every $p\leq\alpha$.
 
 For $p>\alpha$, Step 2 gives $L(p)>0$ because $L$ is strictly increasing. Any nonzero $c_u\in W$ then satisfies
 $$
@@ -228,7 +228,7 @@ so $p$-negative type fails. Therefore
 $$
 \wp=\alpha.
 $$
-At $p=\alpha$, Step 4 shows that the only zero directions in $\mathbf1^\perp$ are those in $W$. Consequently
+At $p=\alpha$, Step 4 shows that the only zero directions in $\mathbf{1}^{\perp}$ are those in $W$. Consequently
 $$
 E=W,
 \qquad
