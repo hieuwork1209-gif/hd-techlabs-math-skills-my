@@ -147,7 +147,7 @@ $(1+2aT+pT^2)(1+2(-1)^{(p-1)/4}bT+pT^2)^2$
 
 ## Classification
 
-**Problem Type:** Canonicalization or normalization
+**Problem Type:** Exact computation
 
 **Answer Type:** Exact symbolic expression
 
