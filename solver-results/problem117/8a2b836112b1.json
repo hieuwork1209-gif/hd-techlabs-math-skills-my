@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "e6c8843906dec28b470034163044b4875349b6d6",
+  "problem_blob_sha": "8a2b836112b110406e5a41676fc47e721577d280",
+  "statement_sha256": "f99ddb206b1b636bf956aed5b89bf0562ffbdf285b304da92256f3c36345b407",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-09T03:00:39+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(t=\\alpha\\lambda\\). Since \\(x_{-1}=x_0\\), the first momentum term is zero, so\n\n\\[\nx_1=(1-\\alpha\\lambda)x_0=(1-t)x_0.\n\\]\n\nThen\n\n\\[\nx_2=(1-t)x_1+\\beta(x_1-x_0)\n=\\left((1-t)^2-\\beta t\\right)x_0.\n\\]\n\nThus\n\n\\[\n\\frac{x_2}{x_0}=p(t),\\qquad\np(t)=t^2-(2+\\beta)t+1,\n\\]\n\nand \\(t\\in[\\alpha,9\\alpha]\\). Put \\(c=2+\\beta\\ge2\\), so we minimize\n\n\\[\n\\max_{t\\in[\\alpha,9\\alpha]} |t^2-ct+1|.\n\\]\n\nFor any \\(\\alpha>0\\), evaluate \\(p\\) at the three points\n\n\\[\n\\alpha,\\quad 5\\alpha,\\quad 9\\alpha.\n\\]\n\nBy Lagrange interpolation at \\(t=0\\),\n\n\\[\np(0)=\\frac{45p(\\alpha)-18p(5\\alpha)+5p(9\\alpha)}{32}.\n\\]\n\nSince \\(p(0)=1\\), if \\(M=\\max_{t\\in[\\alpha,9\\alpha]}|p(t)|\\), then\n\n\\[\n1\\le \\frac{45M+18M+5M}{32}\n=\\frac{68M}{32},\n\\]\n\nso\n\n\\[\nM\\ge \\frac{8}{17}.\n\\]\n\nTherefore \\(R(\\alpha,\\beta)\\ge 8/17\\) for every admissible \\((\\alpha,\\beta)\\).\n\nNow choose equality signs:\n\n\\[\np(\\alpha)=\\frac8{17},\\qquad\np(5\\alpha)=-\\frac8{17},\\qquad\np(9\\alpha)=\\frac8{17}.\n\\]\n\nThe second difference gives\n\n\\[\np(\\alpha)-2p(5\\alpha)+p(9\\alpha)=32\\alpha^2,\n\\]\n\nso\n\n\\[\n\\frac{32}{17}=32\\alpha^2\n\\quad\\Rightarrow\\quad\n\\alpha=\\frac1{\\sqrt{17}}.\n\\]\n\nAlso \\(p(\\alpha)=p(9\\alpha)\\) gives\n\n\\[\nc=10\\alpha=\\frac{10}{\\sqrt{17}}.\n\\]\n\nThus\n\n\\[\n\\beta=c-2=\\frac{10}{\\sqrt{17}}-2\\ge0.\n\\]\n\nFor these parameters,\n\n\\[\np(t)=t^2-\\frac{10}{\\sqrt{17}}t+1.\n\\]\n\nOn \\(\\left[\\frac1{\\sqrt{17}},\\frac9{\\sqrt{17}}\\right]\\), its endpoint values are \\(8/17\\), and its vertex is at \\(t=5/\\sqrt{17}\\), where the value is \\(-8/17\\). Hence the maximum absolute value is exactly \\(8/17\\).\n\n\\[\n\\boxed{\\left(\\frac8{17},\\left(\\frac1{\\sqrt{17}},\\frac{10}{\\sqrt{17}}-2\\right)\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-09T03:02:09+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/8a2b836112b1.json"
+}
