@@ -1,0 +1,22 @@
+{
+  "problem": "problem119",
+  "branch": "adversary/problem119",
+  "problem_path": "workspace/rainier-problem/problem119-group-theory/problem.md",
+  "source_commit_sha": "febed9546c130f6408c09b854807221fe4f58a7f",
+  "problem_blob_sha": "4f8217b502c0d8e5da4a1773df920a59262bf118",
+  "statement_sha256": "2fd5aaf761e70d7142e9bf451303b7684e70b9bf5903bfbdcea3a7cae48ab433",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-09T08:00:05+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(q=p\\). The answer is\n\n\\[\n\\boxed{p^7+5p^5-10p^4+5p^3-p^2-p+1}.\n\\]\n\n**Solution.** Modulo the center \\(Z(G)=\\{(0,0,t)\\}\\), the commutator is\n\n\\[\n[(u,v),(u',v')]=u\\cdot v'-u'\\cdot v .\n\\]\n\nThus an admissible subgroup \\(A\\) corresponds to a \\(3\\)-dimensional totally isotropic subspace \\(W\\subset \\mathbb F_p^3\\oplus \\mathbb F_p^3\\). The two transversality conditions say \\(W\\) is the graph of a linear map \\(M:\\mathbb F_p^3\\to\\mathbb F_p^3\\):\n\n\\[\nW=\\{(u,Mu):u\\in\\mathbb F_p^3\\}.\n\\]\n\nThe isotropic condition gives\n\n\\[\nu\\cdot M u'=u'\\cdot M u,\n\\]\n\nso \\(M\\) is symmetric. The diagonal-intersection condition says\n\n\\[\n\\dim\\ker(M-I)=1.\n\\]\n\nTherefore admissible subgroups are exactly symmetric \\(3\\times 3\\) matrices \\(M\\) for which \\(M-I\\) has rank \\(2\\). The orthogonal group acts by\n\n\\[\nM\\mapsto QMQ^T.\n\\]\n\nSo we must count \\(\\mathcal O\\)-orbits on ordered pairs \\((M,N)\\) of symmetric matrices with \\(M-I,N-I\\) both rank \\(2\\).\n\nBy Burnside, the desired number is\n\n\\[\n\\frac1{|\\mathcal O|}\\sum_{Q\\in\\mathcal O} f(Q)^2,\n\\]\n\nwhere \\(f(Q)\\) is the number of rank-\\(2\\) symmetric matrices \\(S\\) satisfying \\(QSQ^T=S\\). Since \\(|\\mathcal O|=2q(q^2-1)\\), it remains to compute \\(f(Q)\\) by conjugacy type.\n\nFor \\(Q=\\pm I\\), every symmetric rank-\\(2\\) matrix is fixed. Its radical is one of \\(q^2+q+1\\) lines, and on the quotient there are \\(q^2(q-1)\\) nondegenerate symmetric \\(2\\times 2\\) matrices. Thus\n\n\\[\nA=f(\\pm I)=q^2(q-1)(q^2+q+1).\n\\]\n\nFor a reflection or negative reflection, the space splits as \\(1\\oplus 2\\), so a fixed symmetric matrix is block diagonal. Rank \\(2\\) occurs either as \\(0\\oplus\\text{rank }2\\), or as nonzero scalar \\(\\oplus\\text{rank }1\\). Hence\n\n\\[\nB=(q^2(q-1))+(q-1)(q^2-1)=(q-1)(2q^2-1).\n\\]\n\nThere are \\(2q^2\\) such elements, since reflections correspond to anisotropic lines and there are \\(q^2\\) of those.\n\nFor nontrivial unipotent elements, the self-adjoint commutant contains no rank-\\(2\\) element. In a Jordan basis, a commuting operator has form \\(xI+yN+zN^2\\), and self-adjointness forces \\(y=0\\). Then the rank is \\(3,1,\\) or \\(0\\), never \\(2\\). There are \\(2(q^2-1)\\) unipotent or negative-unipotent elements.\n\nAll remaining elements are semisimple rotations. On the \\(2\\)-dimensional orthogonal complement of the fixed line, self-adjointness forces the commuting part to be scalar, so rank \\(2\\) occurs exactly when the line part is \\(0\\) and the plane scalar is nonzero. Thus\n\n\\[\nf(Q)=q-1\n\\]\n\nfor the remaining\n\n\\[\n2q(q^2-1)-2-2q^2-2(q^2-1)=2q(q^2-2q-1)\n\\]\n\nelements.\n\nBurnside gives\n\n\\[\n\\frac{\n2A^2+2q^2B^2+2q(q^2-2q-1)(q-1)^2\n}{\n2q(q^2-1)\n}.\n\\]\n\nSubstituting \\(A=q^2(q-1)(q^2+q+1)\\) and \\(B=(q-1)(2q^2-1)\\), this simplifies to\n\n\\[\nq^7+5q^5-10q^4+5q^3-q^2-q+1.\n\\]\n\nRestoring \\(q=p\\), the number of orbits is\n\n\\[\n\\boxed{p^7+5p^5-10p^4+5p^3-p^2-p+1}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-09T08:07:28+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem119/4f8217b502c0.json"
+}
