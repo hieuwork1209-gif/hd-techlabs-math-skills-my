@@ -1,119 +1,107 @@
 ## Steps
 
-Step 1: Reduce global stability to positivity of the restoring polynomial
-Write
+Step 1: Reduce global stability to positive definiteness of a homogeneous quartic
+Define
 $$
-p(x)=x^4+a x^2+b x+1
+V(x,y)=x^4+a x^3y+b x^2y^2+a xy^3+y^4.
 $$
-and
+The system is exactly the negative gradient flow
 $$
-U(x)=\int_0^x s p(s)\,ds
-=\frac{x^6}{6}+\frac{a x^4}{4}+\frac{b x^3}{3}+\frac{x^2}{2}.
+(\dot x,\dot y)=-\nabla V(x,y),
 $$
-For the system
+because
 $$
-\dot x=y,
+V_x=4x^3+3a x^2y+2bxy^2+a y^3,
 \qquad
-\dot y=-(1+x^2)y-xp(x),
+V_y=a x^3+2b x^2y+3axy^2+4y^3.
 $$
-define the mechanical energy
+Hence
 $$
-E(x,y)=\frac{y^2}{2}+U(x).
-$$
-Along every solution,
-$$
-\dot E
-=y\dot y+U'(x)\dot x
-=-(1+x^2)y^2\leq0.
+\dot V=-V_x^2-V_y^2\leq0.
 $$
 
-Assume first that $p(x)>0$ for every real $x$. Then $xp(x)$ has the sign of $x$, so $U(x)>0$ for $x\neq0$, and $U(x)\to+\infty$ as $|x|\to\infty$. Hence $E$ is positive definite and proper. Every trajectory remains in a compact sublevel set of $E$, so every forward solution is global and bounded. The set where $\dot E=0$ is $y=0$. A trajectory can remain in that set only if also
+If $V(x,y)>0$ for every $(x,y)\neq(0,0)$, then homogeneity and continuity imply $V(x,y)\geq c(x^2+y^2)^2$ for some $c>0$, so $V$ is proper and positive definite. Every forward trajectory therefore remains in a compact sublevel set and exists for all $t\geq0$. Moreover, Euler's identity for the homogeneous quartic gives
 $$
-\dot y=-xp(x)=0,
+xV_x+yV_y=4V.
 $$
-which, because $p>0$, forces $x=0$. Thus the only invariant subset of $\{\dot E=0\}$ is the origin, and the energy decay implies every trajectory converges to $(0,0)$. Positive definiteness of $E$ gives Lyapunov stability.
+Thus $\nabla V=0$ at a nonzero point would force $V=0$, impossible. The origin is the unique equilibrium, and LaSalle's invariance principle yields convergence of every trajectory to the origin. Positive definiteness of $V$ gives Lyapunov stability.
 
-Conversely, if $p$ is not strictly positive on $\mathbb R$, then since $p(0)=1$ there is a nonzero real $r$ with $p(r)=0$: this is immediate if $p$ vanishes, while if $p$ is negative somewhere continuity gives a zero between that point and $0$. Then $(r,0)$ is a nonzero equilibrium. Therefore global asymptotic stability is equivalent to
+Conversely, if $V$ is not positive definite, either $V(z)<0$ for some nonzero $z$, or $V\geq0$ everywhere and $V(z)=0$ for some nonzero $z$. In the first case, by homogeneity there are initial points arbitrarily close to the origin with negative $V$; since $V$ is nonincreasing along trajectories, such trajectories cannot converge to the origin where $V=0$. In the second case, $z$ is a global minimum of the differentiable function $V$, hence $\nabla V(z)=0$, giving a nonzero equilibrium. Therefore the origin is globally asymptotically stable exactly when $V$ is positive definite.
+
+Step 2: Reduce the binary quartic to a quadratic on a disconnected domain
+If $y=0$ and $x\neq0$, then $V=x^4>0$. For $y\neq0$, put
 $$
-p(x)>0\qquad\text{for all }x\in\mathbb R.
+t=\frac{x}{y}.
+$$
+Then
+$$
+\frac{V(x,y)}{y^4}=f(t):=t^4+a t^3+b t^2+a t+1.
+$$
+At $t=0$ this equals $1$. For $t\neq0$, divide by $t^2>0$ and set
+$$
+z=t+\frac1t.
+$$
+Using $t^2+t^{-2}=z^2-2$ gives
+$$
+\frac{f(t)}{t^2}=q(z):=z^2+a z+b-2.
+$$
+For real nonzero $t$, the possible values of $z$ are exactly
+$$
+(-\infty,-2]\cup[2,\infty).
+$$
+Hence $V$ is positive definite exactly when
+$$
+q(z)>0
+\qquad\text{for every }|z|\geq2.
 $$
 
-Step 2: Convert quartic positivity into a one-variable minimum
-For $t>0$, define
+Step 3: Minimize the quadratic on the two rays
+The vertex of
 $$
-h_a(t)=t^3+a t+\frac1t.
+q(z)=z^2+a z+b-2
 $$
-For $x=t>0$,
+is $z_0=-a/2$.
+
+If $|a|\leq4$, then $z_0\in[-2,2]$. Therefore on the allowed set $|z|\geq2$, the minima occur at the endpoints $z=2$ and $z=-2$. We need
 $$
-\frac{p(t)}{t}=h_a(t)+b,
-$$
-whereas for $x=-t<0$,
-$$
-\frac{p(-t)}{t}=h_a(t)-b.
-$$
-Thus $p(x)>0$ for every nonzero real $x$ exactly when
-$$
--h_a(t)<b<h_a(t)\qquad\text{for every }t>0.
-$$
-Equivalently,
-$$
-|b|<m(a),
+q(2)=b+2a+2>0,
 \qquad
-m(a):=\inf_{t>0}h_a(t),
+q(-2)=b-2a+2>0,
 $$
-provided $m(a)>0$.
+which is equivalent to
+$$
+b>2|a|-2.
+$$
 
-Step 3: Compute the minimum explicitly
-The derivative is
+If $a\geq4$, then $z_0\leq-2$, so the minimum on the left ray is
 $$
-h_a'(t)=3t^2+a-\frac1{t^2}.
+q(z_0)=b-2-\frac{a^2}{4}.
 $$
-Setting $s=t^2>0$, the critical-point equation becomes
+The right-ray minimum is $q(2)$, which is automatically positive once $q(z_0)>0$. Thus the condition is
 $$
-3s^2+a s-1=0.
+b>2+\frac{a^2}{4}.
 $$
-It has exactly one positive root,
-$$
-s=\frac{\sqrt{a^2+12}-a}{6}.
-$$
-Since $h_a(t)\to+\infty$ as $t\to0^+$ and as $t\to\infty$, this critical point gives the global minimum. From
-$$
-a=\frac1s-3s
-$$
-we obtain
-$$
-m(a)=h_a(\sqrt s)
-=\frac{2(1-s^2)}{\sqrt s}.
-$$
-The function $a(s)=s^{-1}-3s$ is strictly decreasing for $s>0$, and $a(1)=-2$. Hence
-$$
-m(a)>0
-\quad\Longleftrightarrow\quad
-s<1
-\quad\Longleftrightarrow\quad
-a>-2.
-$$
-At $a=-2$ the minimum is $0$, while for $a<-2$ it is negative, so no value of $b$ can make $p$ strictly positive.
+For $a\leq-4$ the argument is symmetric, with the vertex on the right ray, and the same condition results. At $|a|=4$ the two formulas agree, both giving $b>6$.
 
-Step 4: State the exact parameter region
-Combining the previous steps, put
+Step 4: State the exact stability region
+Combining the cases, the equilibrium is globally asymptotically stable exactly for
 $$
-s=\frac{\sqrt{a^2+12}-a}{6}.
+\left\{
+\begin{array}{ll}
+|a|\leq4 &\text{and } b>2|a|-2,\\
+\text{or}\\
+|a|\geq4 &\text{and } b>2+\dfrac{a^2}{4}.
+\end{array}
+\right.
 $$
-Then the origin is globally asymptotically stable exactly when
-$$
-a>-2,
-\qquad
-|b|<\frac{2(1-s^2)}{\sqrt s}.
-$$
-Equality is excluded: when $|b|=m(a)$, the quartic $p$ has a nonzero double real root, which produces a nonzero equilibrium $(r,0)$.
-Final Answer: $\boxed{\{(a,b):a>-2,\ |b|<2(1-s^2)/\sqrt{s},\ s=(\sqrt{a^2+12}-a)/6\}}$
+The boundary is excluded because there $q$ vanishes at an allowed value of $z$, so $V$ has a nonzero zero and global asymptotic stability fails.
+Final Answer: $\boxed{\{(a,b): |a|\leq4,\ b>2|a|-2\}\cup\{(a,b): |a|\geq4,\ b>2+a^2/4\}}$
 
 ---
 
 ## Answer
 
-$\{(a,b):a>-2,\ |b|<2(1-s^2)/\sqrt{s},\ s=(\sqrt{a^2+12}-a)/6\}$
+$\{(a,b): |a|\leq4,\ b>2|a|-2\}\cup\{(a,b): |a|\geq4,\ b>2+a^2/4\}$
 
 ---
 
@@ -128,10 +116,10 @@ $\{(a,b):a>-2,\ |b|<2(1-s^2)/\sqrt{s},\ s=(\sqrt{a^2+12}-a)/6\}$
 ## Solution Concepts
 
 - global asymptotic stability
-- energy Lyapunov functions
-- nonlinear damped oscillators
-- positivity of quartic polynomials
-- parameter-dependent minimization
+- homogeneous gradient flows
+- positive definite binary quartics
+- reciprocal polynomial reduction
+- Lyapunov functions
 
 ---
 
