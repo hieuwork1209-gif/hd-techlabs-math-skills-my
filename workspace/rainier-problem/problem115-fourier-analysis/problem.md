@@ -2,30 +2,27 @@
 
 ## LaTeX (Normalized)
 
-Let $m=57$ and $V=\mathbb F_2^m\times\mathbb F_2^m$. All vector operations and dot products are over $\mathbb F_2$. For $z=(x,y)$ and $w=(u,v)$ define
+Let $K=\mathbb F_{16}$, let $k=\mathbb F_4\subset K$, and let $m=106$. Regard $V=K^m$ as a vector space over $\mathbb F_2$. For $z,w\in V$ define
 $$
-\omega(z,w)=x\cdot v+y\cdot u.
+B(z,w)=\sum_{i=1}^m \operatorname{Tr}_{k/\mathbb F_2}(z_i^4w_i+z_iw_i^4).
 $$
-Let $\sigma\in S_m$ have one cycle of each length
+Let $\alpha\in K^\times$ have order $5$, and let $\sigma\in S_m$ have one cycle of each length
 $$
-1,2,3,4,5,6,9,12,15.
+1,2,3,4,5,6,7,8,10,15,20,25.
 $$
-Define $S:V\to V$ by $S(x,y)=(x',y')$, where
+Define $S:V\to V$ by
 $$
-x'_i=y_{\sigma(i)},
-\qquad
-y'_i=x_{\sigma(i)}+y_{\sigma(i)}.
+(Sz)_i=\alpha z_{\sigma(i)}.
 $$
-For $g:V\to\mathbb C$, define
+For $g:V\to\mathbb C$, define the normalized Walsh--Fourier transform
 $$
-(\mathcal Fg)(u,v)=2^{-m}\sum_{x,y\in\mathbb F_2^m}
-g(x,y)(-1)^{x\cdot v+y\cdot u},
+(\mathcal Fg)(w)=2^{-2m}\sum_{z\in V}g(z)(-1)^{B(z,w)},
 \qquad
 (Tg)(z)=(\mathcal Fg)(Sz).
 $$
 How many functions $f:V\to\{-1,1\}$ satisfy $f(0)=1$,
 $$
-f(z)f(z+r)f(z+s)f(z+r+s)=(-1)^{\omega(r,s)}
+f(z)f(z+r)f(z+s)f(z+r+s)=(-1)^{B(r,s)}
 $$
 for all $z,r,s\in V$, and also $Tf=f$?
 
@@ -44,4 +41,4 @@ for all $z,r,s\in V$, and also $Tf=f$?
 
 ## Domain Explanation
 
-The defining global constraint is invariance under a normalized Walsh--Fourier transform twisted by a linear coordinate map. The four-point identity reduces the admissible signs to quadratic phases, but the count is decided by their Fourier eigenvalue and by how the twist acts on Fourier-compatible phase parameters. Thus Fourier analysis is the primary subject; the finite-field quadratic-form algebra is the structural input used to analyze the transform.
+The problem asks for fixed quadratic phases under a normalized Walsh--Fourier transform twisted by a finite-field symmetry. Its difficulty comes from combining Fourier eigenvalues with the norm--trace quadratic form on $\mathbb F_{16}$ and the fixed-space structure of a twisted permutation operator, so Fourier analysis remains the primary subject.
