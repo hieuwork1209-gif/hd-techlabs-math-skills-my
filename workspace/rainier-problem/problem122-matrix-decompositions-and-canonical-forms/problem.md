@@ -2,21 +2,12 @@
 
 ## LaTeX (Normalized)
 
-Let
-$$
-\operatorname{Sym}_6(3)=\{A\in M_6(\mathbb F_3):A^T=A\}.
-$$
-A $2$-dimensional subspace $W\le \operatorname{Sym}_6(3)$ is called regular indecomposable if, for some ordered basis $(A,B)$ of $W$, the matrix $A$ is invertible and
-$$
-T=A^{-1}B
-$$
-has irreducible minimal polynomial of degree $6$ over $\mathbb F_3$.
+Let $J_m(1)$ denote the $m\times m$ Jordan block with eigenvalue $1$ over $\mathbb F_2$.
 
-The group $GL_6(3)$ acts on such pencils by simultaneous congruence,
+Determine the Jordan canonical form over $\mathbb F_2$ of
 $$
-g\cdot W=\{g^TAg:A\in W\}.
+J_{11}(1)\otimes J_{11}(1).
 $$
-Determine the exact number of $GL_6(3)$-orbits of regular indecomposable $2$-dimensional subspaces of $\operatorname{Sym}_6(3)$.
 
 ---
 
@@ -26,11 +17,11 @@ Determine the exact number of $GL_6(3)$-orbits of regular indecomposable $2$-dim
 |---|---|
 | **Domain** | Linear Algebra |
 | **Sub-domain** | Matrix decompositions and canonical forms |
-| **Problem Type** | Exact computation |
-| **Answer Type** | Exact scalar |
+| **Problem Type** | Canonicalization or normalization |
+| **Answer Type** | Canonical form |
 
 ---
 
 ## Domain Explanation
 
-The problem asks for the congruence classification of regular indecomposable symmetric matrix pencils. After normalizing one form, the pencil is governed by an irreducible self-adjoint operator over $\mathbb F_{3^6}$, but symmetric trace forms retain a square-class invariant that twists under basis changes of the pencil. The essential task is therefore a canonical-form problem involving both rational canonical data and the discriminant class of the associated symmetric form.
+The task is to determine the exact Jordan-block decomposition of a tensor product of two unipotent Jordan blocks in characteristic $2$. The ordinary characteristic-zero tensor-product pattern fails, and the correct decomposition is controlled by the modular representation theory of cyclic $2$-groups, so the problem is fundamentally about canonical forms.
