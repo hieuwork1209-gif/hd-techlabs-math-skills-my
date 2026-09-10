@@ -1,0 +1,22 @@
+{
+  "problem": "problem105",
+  "branch": "adversary/problem105",
+  "problem_path": "workspace/rainier-problem/problem105-polynomial-and-rational-functions/problem.md",
+  "source_commit_sha": "ae23d16d9b1c3b2f7b9fb1f17519f3ee9684f2c3",
+  "problem_blob_sha": "6b8685594dbb7655ee23906c1422db8bf6d5d8c3",
+  "statement_sha256": "6c3a3f78ad7ee8e0e91bc72330f2a8758d6e9515076c2f53a0fa33bbbe1d333b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T13:27:11+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nP(x)=\\prod_{m\\ge3,\\ m\\text{ odd}}R_m(x)^{a_m}.\n\\]\nThe identity \\(P(x)P(-x)=P(x^2-2)\\), together with \\(P(0)=\\pm1\\), forces this form: roots must be finite backward-invariant under \\(x\\mapsto x^2-2\\), hence are \\(2\\cos(2\\pi k/m)\\) with \\(m\\) odd.\n\nFor \\(R_m\\), the cubic map satisfies\n\\[\ny^3-3y=2\\cos(3\\theta)\\quad\\text{when }y=2\\cos\\theta.\n\\]\nThus the resultant equation gives the exponent relations\n\\[\na_3=3,\\qquad a_9=1,\\qquad a_{27}=a_{81}=\\cdots=0,\n\\]\nand every \\(a_m=0\\) for \\(v_3(m)=1\\), \\(m>3\\). All remaining possible factors have \\(3\\nmid m\\).\n\nNow\n\\[\nR_m(2)=(-1)^{\\varphi(m)/2}\\Phi_m(1),\n\\]\nwhere \\(\\Phi_m(1)=p\\) if \\(m\\) is a power of the prime \\(p\\), and \\(1\\) otherwise. Since\n\\[\nR_3(2)^3R_9(2)=(-3)^3(-3)=81,\n\\]\nthe remaining factors must contribute\n\\[\n\\frac{-2835}{81}=-35.\n\\]\nAlso\n\\[\n\\frac{R_m'(2)}{R_m(2)}=\\frac{J_2(m)}{24},\n\\]\nso after \\(R_3^3R_9\\), whose logarithmic derivative contribution is \\(4\\), the remaining factors must have degree \\(37\\) and logarithmic derivative \\(195\\).\n\nThe only prime-power contributions compatible with \\(-35\\) are one \\(5\\)-power and one \\(7\\)-power. Checking the degree and derivative constraints leaves the unique choice\n\\[\nR_7,\\quad R_{25},\\quad R_{65}.\n\\]\nIndeed\n\\[\n\\deg(R_7R_{25}R_{65})=3+10+24=37\n\\]\nand\n\\[\n\\frac{J_2(7)+J_2(25)+J_2(65)}{24}\n=2+25+168=195.\n\\]\n\nTherefore\n\\[\n\\boxed{P(x)=R_3(x)^3R_7(x)R_9(x)R_{25}(x)R_{65}(x)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T13:29:39+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem105/6b8685594dbb.json"
+}
