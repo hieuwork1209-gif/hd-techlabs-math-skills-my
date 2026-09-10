@@ -2,41 +2,18 @@
 
 ## LaTeX (Normalized)
 
-For every odd integer $m\geq 3$, let $C_m(x)$ be the monic minimal polynomial over $\mathbb{Q}$ of
+Let $\mathbb F_2$ be the field with two elements. Determine the exact number of matrices
 $$
-2\cos\frac{2\pi}{m},
+A\in GL_8(\mathbb F_2)
 $$
-and put
+that satisfy both of the following conditions:
 $$
-R_m(x)=(-1)^{\deg C_m}C_m(x).
+\operatorname{ord}(A)=6,
 $$
-Let $D_{15}(x)\in\mathbb{Z}[x]$ be the unique polynomial satisfying
+where $\operatorname{ord}(A)$ denotes the multiplicative order of $A$, and
 $$
-D_{15}(2\cos\theta)=2\cos(15\theta)
+\dim_{\mathbb F_2}\ker(A^3-I_8)=4.
 $$
-for every real $\theta$.
-
-Determine the polynomial $P(x)\in\mathbb{Z}[x]$ satisfying
-$$
-P(0)\in\{-1,1\},
-$$
-$$
-P(x)P(-x)=P(x^2-2),
-$$
-$$
-C_{225}(x)\operatorname{Res}_y\bigl(P(y),D_{15}(y)-x\bigr)
-=(-1)^{\deg P}(x-2)^{60}P(x),
-$$
-$$
-\deg P=182,
-\qquad
-P(2)=77,
-$$
-and
-$$
-7\mid \operatorname{Res}_x\bigl(P(x),C_{13}(x)\bigr).
-$$
-Here $\operatorname{Res}$ denotes the resultant in the indicated variable. Give the final answer in canonical $R_m$-factorized form, with the subscripts in increasing order.
 
 ---
 
@@ -44,13 +21,13 @@ Here $\operatorname{Res}$ denotes the resultant in the indicated variable. Give 
 
 | Field | Value |
 |---|---|
-| **Domain** | Algebra, Functions, and Trigonometry |
-| **Sub-domain** | Polynomial and rational functions |
-| **Problem Type** | Construction under constraints |
-| **Answer Type** | Polynomial or rational function |
+| **Domain** | Linear Algebra |
+| **Sub-domain** | Matrix decompositions and canonical forms |
+| **Problem Type** | Exhaustive enumeration |
+| **Answer Type** | Integer |
 
 ---
 
 ## Domain Explanation
 
-The problem couples the quadratic trace functional identity with the natural $15$-fold angle map and a cyclotomic norm divisibility condition. The resultant against $C_{13}$ detects when a trace factor acquires a $7$-power in its cyclotomic order, so the free part cannot be recovered by degree and the value at $2$ alone.
+The problem counts finite-field matrices by their rational canonical structure. In characteristic $2$, the polynomial $x^6-1$ has repeated irreducible factors, so the order and fixed-space condition constrain the possible primary blocks, while the exact count requires centralizer sizes for the resulting conjugacy classes.
