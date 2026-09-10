@@ -154,7 +154,7 @@ Final Answer: $\boxed{12}$
 
 Problem Type: Exhaustive enumeration
 
-Answer Type: Integer
+Answer Type: Exact scalar
 
 ---
 
