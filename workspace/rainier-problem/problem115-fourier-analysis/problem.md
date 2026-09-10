@@ -7,7 +7,7 @@ $$
 \pi(y)=My+c,
 \qquad M\in\operatorname{GL}(8,2),\ c\in E,
 $$
-and every function $g:E\to\mathbb F_2$ with $g(0)=0$, define
+and every Boolean polynomial $g:E\to\mathbb F_2$ of algebraic degree at most $2$ with $g(0)=0$, define
 $$
 f_{\pi,g}(x,y)=(-1)^{x\cdot\pi(y)+g(y)},
 \qquad (x,y)\in E\times E.
@@ -36,4 +36,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for the exact number of self-dual functions in the affine Maiorana--McFarland class under the normalized Walsh--Fourier transform. Fourier self-duality turns into an affine-involution condition, and the count then depends on the orbit structure of those involutions, so Fourier analysis is the organizing subject.
+The problem asks for the exact number of self-dual quadratic functions in the affine Maiorana--McFarland class under the normalized Walsh--Fourier transform. Fourier self-duality becomes an affine-involution condition, while the quadratic restriction on $g$ forces an invariant-polynomial calculation for those involutions, so Fourier analysis is the organizing subject.
