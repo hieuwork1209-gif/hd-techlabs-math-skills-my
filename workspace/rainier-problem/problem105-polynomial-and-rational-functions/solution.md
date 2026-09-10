@@ -1,160 +1,131 @@
 ## Steps
 
-Step 1: Reduce to commuting nilpotent square roots.
+Step 1: Convert Eulerian orientations to binary matrices.
 
-Let
+Let the two parts of $K_{6,6}$ be
 $$
-J=\begin{pmatrix}0&1\\0&0\end{pmatrix},\qquad
-N=\operatorname{diag}(J,J,0,0)\in M_6(\mathbb F_2),
+L=\{u_1,\ldots,u_6\},\qquad R=\{v_1,\ldots,v_6\}.
 $$
-and put $B=I_6+N$.
-If $A^2=B$, then every eigenvalue of $A$ is $1$, so
+For an orientation, define a $6\times6$ binary matrix $M=(m_{ij})$ by
 $$
-A=I_6+M
+m_{ij}=1\iff u_i\to v_j.
 $$
-with $M$ nilpotent, and in characteristic $2$ the equation $A^2=B$ becomes
-$$
-M^2=N. \tag{1}
-$$
-Likewise $C=I_6+S$ with $S^2=N$, and $AC=CA$ is equivalent to $MS=SM$. Thus it suffices to count ordered commuting pairs $(M,S)$ with common square $N$.
+Every vertex has degree $6$. The orientation is Eulerian exactly when each vertex has outdegree $3$. Thus every row of $M$ has sum $3$. At $v_j$, an outgoing edge corresponds to a zero in column $j$, so outdegree $3$ is equivalent to column sum $3$ as well.
 
-The nilpotent $N$ has Jordan type
+Hence the required number is the number of $6\times6$ zero-one matrices with every row and every column sum equal to $3$. Equivalently, with $e_3$ denoting the elementary symmetric polynomial of degree $3$,
 $$
-\mu=(2,2,1,1).
-$$
-Since
-$$
-J_k(0)^2\sim J_{\lceil k/2\rceil}(0)\oplus J_{\lfloor k/2\rfloor}(0),
-$$
-the possible Jordan types of a square root $M$ are exactly
-$$
-(4,2),\qquad (4,1,1),\qquad (3,3). \tag{2}
-$$
-Indeed, a $4$-block produces the two $2$-blocks of $N$, leaving either a $2$-block or two $1$-blocks, while in the absence of a $4$-block the two $2$-blocks must come from two $3$-blocks.
-
-Step 2: Count first roots of each Jordan type.
-
-For a nilpotent matrix of Jordan type $\lambda$, let $\lambda'$ be the conjugate partition and let $m_j$ be the multiplicity of the part $j$. Its invertible centralizer over $\mathbb F_q$ has size
-$$
-q^{\sum_i(\lambda_i')^2}
-\prod_{j\ge1}\prod_{r=1}^{m_j}(1-q^{-r}). \tag{3}
-$$
-This follows because the full endomorphism algebra has dimension $\sum_i(\lambda_i')^2$, while invertibility is detected on the tops of the equal-size Jordan-block families, producing the displayed $GL_{m_j}(q)$ factors.
-
-For $N$ of type $(2,2,1,1)$, we have $\mu'=(4,2)$ and $m_2=m_1=2$, so
-$$
-|C_{GL_6(2)}(N)|
-=2^{20}\left((1-2^{-1})(1-2^{-2})\right)^2
-=147456. \tag{4}
-$$
-For the three root types in (2), formula (3) gives
-$$
-|C(4,2)|=256,\qquad |C(4,1,1)|=768,\qquad |C(3,3)|=1536. \tag{5}
+T=[x_1^3\cdots x_6^3]e_3(x_1,\ldots,x_6)^6. \tag{1}
 $$
 
-The group $C_{GL_6(2)}(N)$ acts transitively on the square roots of $N$ of each fixed Jordan type: if $M$ and $M'$ have the same type, any conjugating matrix $g$ satisfies
+Step 2: Fix the first two rows.
+
+The first row can be chosen in
 $$
-gNg^{-1}=gM^2g^{-1}=(M')^2=N,
+\binom63=20
 $$
-so $g$ already centralizes $N$. Hence the numbers of first roots of the three types are
+ways. Fix it, and let $r$ be the size of its intersection with the support of the second row. The number of choices for the second row is
 $$
-\frac{147456}{256}=576,\qquad
-\frac{147456}{768}=192,\qquad
-\frac{147456}{1536}=96. \tag{6}
+\binom3r\binom3{3-r},
+$$
+which for $r=0,1,2,3$ gives
+$$
+1,9,9,1. \tag{2}
 $$
 
-Step 3: Convert the second-root condition to square-zero elements in a centralizer algebra.
+After the first two rows are chosen, the column sums still required from the remaining four rows, sorted into nonincreasing order, are respectively
+$$
+(2,2,2,2,2,2),
+$$
+$$
+(3,2,2,2,2,1),
+$$
+$$
+(3,3,2,2,1,1),
+$$
+$$
+(3,3,3,1,1,1). \tag{3}
+$$
+For a six-tuple $d$ of total sum $12$, write
+$$
+Q(d)=[x_1^{d_1}\cdots x_6^{d_6}]e_3(x_1,\ldots,x_6)^4. \tag{4}
+$$
+We now evaluate the four values of $Q$ appearing in (3).
 
-Fix a square root $M$ of $N$. If $S$ commutes with $M$ and $S^2=M^2$, put
-$$
-H=S+M.
-$$
-Because the characteristic is $2$ and $SM=MS$,
-$$
-H^2=S^2+M^2=0.
-$$
-Conversely, every square-zero $H$ commuting with $M$ gives a valid second root $S=M+H$. Therefore, for a fixed $M$, the number of possible $S$ equals the number of square-zero elements in the algebra $C_{M_6(2)}(M)$.
+Step 3: Pair the remaining four rows.
 
-Step 4: Count square-zero elements for each root type.
+Consider an ordered pair $(U,V)$ of $3$-subsets of $\{1,\ldots,6\}$. Its incidence-sum vector $m=\mathbf1_U+\mathbf1_V$ has, for some $j\in\{0,1,2,3\}$, exactly $j$ coordinates equal to $2$, exactly $j$ equal to $0$, and the remaining $6-2j$ equal to $1$.
 
-First suppose $M$ has type $(4,2)$. Write
+For a fixed such vector $m$, the number of ordered pairs $(U,V)$ producing it is
 $$
-R_4=\mathbb F_2[t]/(t^4),\qquad R_2=\mathbb F_2[t]/(t^2),
+c_j=\binom{6-2j}{3-j},
 $$
-so the underlying $\mathbb F_2[t]$-module is $R_4\oplus R_2$. Every commuting endomorphism has the form
+so
 $$
-H=\begin{pmatrix}a&t^2\beta\\ \gamma&d\end{pmatrix},
-\qquad a\in R_4,\quad \beta,\gamma,d\in R_2.
-$$
-Write
-$$
-\beta=b_0+b_1t,\qquad \gamma=c_0+c_1t,\qquad d=\delta t.
-$$
-The equation $H^2=0$ forces
-$$
-b_0c_1+b_1c_0=0, \tag{7}
-$$
-while the two high coefficients of $a$ are free. For each pair $(\beta,\gamma)$ satisfying (7), there is one choice of $\delta$, except when $b_0=c_0=0$, where both choices of $\delta$ work. Equation (7) has $10$ solutions in $(b_0,b_1,c_0,c_1)$, and $4$ of them have $b_0=c_0=0$. Thus there are
-$$
-4(10+4)=56 \tag{8}
-$$
-square-zero elements in this centralizer algebra.
-
-Now suppose $M$ has type $(4,1,1)$. Then the module is $R_4\oplus\mathbb F_2^2$, and every commuting endomorphism can be written
-$$
-H=\begin{pmatrix}a&t^3u\\ v&D\end{pmatrix},
-$$
-with $a\in R_4$, $u$ a row vector in $\mathbb F_2^2$, $v$ a column vector in $\mathbb F_2^2$, and $D\in M_2(\mathbb F_2)$. The condition $H^2=0$ is equivalent to
-$$
-a\in t^2R_4,\qquad D^2=0,\qquad uD=0,\qquad Dv=0,\qquad uv=0. \tag{9}
-$$
-There are four choices for $a$. If $D=0$, there are $10$ pairs $(u,v)$ with $uv=0$. The other three square-zero matrices $D$ are the nonzero rank-one nilpotents; for each of them, $v$ lies in the one-dimensional kernel and $u$ annihilates the one-dimensional image, giving $4$ pairs $(u,v)$. Hence this case contributes
-$$
-4(10+3\cdot4)=88. \tag{10}
+(c_0,c_1,c_2,c_3)=(20,6,2,1). \tag{5}
 $$
 
-Finally suppose $M$ has type $(3,3)$. Put $R_3=\mathbb F_2[t]/(t^3)$. Then the centralizer algebra is $M_2(R_3)$. Write
+Pair the four remaining rows into two ordered pairs. If $N_{jk}(d)$ denotes the number of incidence vectors $m$ of type $j$ for which $d-m$ is of type $k$, then
 $$
-H=\begin{pmatrix}a&b\\c&a+s\end{pmatrix}.
+Q(d)=\sum_{j,k}N_{jk}(d)c_jc_k. \tag{6}
 $$
-A direct multiplication gives
+The nonzero $N_{jk}$ are obtained simply by choosing the positions of the $j$ twos and $j$ zeros of $m$, subject to $0\le m_i\le d_i$, and requiring $d-m$ to have the corresponding $k$ twos and $k$ zeros. The complete finite allocation is
 $$
-H^2=0
-\iff
-s^2=0,\quad bs=cs=0,\quad bc=a^2. \tag{11}
-$$
-Here $s\in\{0,t^2\}$. If $s=t^2$, then $b,c\in(t)$, giving $4^2$ pairs, and each product $bc$ has exactly two square roots $a$; this gives $32$ solutions.
-
-If $s=0$, the product $bc$ must be a square in $R_3$. Writing
-$$
-b=b_0+b_1t+b_2t^2,\qquad c=c_0+c_1t+c_2t^2,
-$$
-this is equivalent to
-$$
-b_0c_1+b_1c_0=0.
-$$
-There are $10$ choices for $(b_0,b_1,c_0,c_1)$ and $4$ free choices for $(b_2,c_2)$, hence $40$ pairs $(b,c)$, and again two choices for $a$. Therefore this case contributes $80$, for a total of
-$$
-32+80=112. \tag{12}
+\begin{array}{c|l}
+d&\text{nonzero }N_{jk}(d)\\ \hline
+(2^6)&N_{00}=1,\ N_{11}=30,\ N_{22}=90,\ N_{33}=20\\
+(3,2^4,1)&N_{01}=N_{10}=1,\ N_{11}=8,\ N_{12}=N_{21}=12,\ N_{22}=24,\ N_{23}=N_{32}=6\\
+(3^2,2^2,1^2)&N_{02}=N_{20}=1,\ N_{11}=4,\ N_{12}=N_{21}=8,\ N_{13}=N_{31}=2,\ N_{22}=10\\
+(3^3,1^3)&N_{03}=N_{30}=1,\ N_{12}=N_{21}=9.
+\end{array} \tag{7}
 $$
 
-Step 5: Sum the three orbit contributions.
+Step 4: Evaluate the four residual counts.
 
-Using (6), (8), (10), and (12), the number of ordered commuting pairs $(M,S)$ is
+Substituting (5) and (7) into (6) gives
 $$
-576\cdot56+192\cdot88+96\cdot112
-=32256+16896+10752
-=59904.
+Q(2,2,2,2,2,2)
+=20^2+30\cdot6^2+90\cdot2^2+20\cdot1^2
+=1860, \tag{8}
 $$
-Since $M$ and $S$ are nilpotent, $I_6+M$ and $I_6+S$ are automatically invertible. Thus all counted pairs correspond to matrices in $GL_6(\mathbb F_2)^2$.
+$$
+Q(3,2,2,2,2,1)
+=2(20)(6)+8\cdot6^2+24(6)(2)+24\cdot2^2+12(2)(1)
+=936, \tag{9}
+$$
+$$
+Q(3,3,2,2,1,1)
+=2(20)(2)+4\cdot6^2+16(6)(2)+4(6)(1)+10\cdot2^2
+=480, \tag{10}
+$$
+and
+$$
+Q(3,3,3,1,1,1)
+=2(20)(1)+18(6)(2)
+=256. \tag{11}
+$$
 
-Final Answer: $\boxed{59904}$
+Step 5: Sum over the intersection size of the first two rows.
+
+Using (2), (3), and (8)-(11),
+$$
+T=20\left(1860+9\cdot936+9\cdot480+256\right).
+$$
+The quantity in parentheses is
+$$
+1860+8424+4320+256=14860,
+$$
+so
+$$
+T=20\cdot14860=297200.
+$$
+
+Final Answer: $\boxed{297200}$
 
 ---
 
 ## Answer
 
-59904
+297200
 
 ---
 
@@ -168,11 +139,10 @@ Answer Type: Integer
 
 ## Solution Concepts
 
-- nilpotent Jordan block squaring
-- centralizer orbits over finite fields
-- nilpotent centralizer-size formula
-- commuting square roots as square-zero perturbations
-- endomorphism algebras of Jordan modules
+- Eulerian orientations of regular bipartite graphs
+- regular binary matrices
+- coefficient extraction with elementary symmetric polynomials
+- incidence-vector convolution
 
 ---
 
