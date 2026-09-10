@@ -2,14 +2,15 @@
 
 ## LaTeX (Normalized)
 
-Let $n\geq5$ be odd and let $m=\binom{n}{2}$. Let $B_n\in M_{n\times m}(\mathbb{Z})$ be the matrix whose columns are indexed by the unordered pairs $\{i,j\}\subset\{1,\ldots,n\}$, with the column indexed by $\{i,j\}$ equal to $e_i+e_j$, where $e_1,\ldots,e_n$ is the standard basis of $\mathbb{Z}^n$.
-
-Define
+Let $n\geq5$ be odd and let $m=\binom{n}{2}$. Let $B_n\in M_{n\times m}(\mathbb Z)$ have columns indexed by the unordered pairs $\{i,j\}\subset\{1,\ldots,n\}$, with the column indexed by $\{i,j\}$ equal to $e_i+e_j$. Let $J_n$ be the $n\times n$ all-ones matrix, and define
 $$
-M_n=2(n-1)I_m-B_n^TB_n.
+L_n=
+\begin{pmatrix}
+(2n-1)I_n-J_n&-B_n\\
+-B_n^T&2nI_m-B_n^TB_n
+\end{pmatrix}.
 $$
-
-Determine the Smith normal form of $M_n$ over $\mathbb{Z}$, with the diagonal invariant factors written in divisibility order.
+Determine the Smith normal form of $L_n$ over $\mathbb Z$, with the diagonal invariant factors written in divisibility order.
 
 ---
 
@@ -26,4 +27,4 @@ Determine the Smith normal form of $M_n$ over $\mathbb{Z}$, with the diagonal in
 
 ## Domain Explanation
 
-The requested object is the Smith normal form of an explicit integer matrix, so the problem is fundamentally about canonical matrix decompositions. The pair-indexed columns give the matrix a combinatorial symmetry, but no graph is an input or an output; the task is to determine integer invariant factors, making Linear Algebra -> Matrix decompositions and canonical forms a better fit than a combinatorics classification.
+The problem asks for the Smith normal form of an explicit structured integer block matrix. Its difficulty comes from determining canonical invariant factors from the interaction between the two incidence blocks, including their prime-primary behavior. This makes Linear Algebra -> Matrix decompositions and canonical forms the fundamental classification, rather than graph theory or another combinatorial category.
