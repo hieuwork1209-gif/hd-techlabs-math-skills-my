@@ -12,17 +12,17 @@ and put
 $$
 B=I_8+N.
 $$
-Determine the exact number of ordered pairs
+Determine the exact number of ordered triples
 $$
-(A,C)\in GL_8(\mathbb F_2)\times GL_8(\mathbb F_2)
+(A,C,D)\in GL_8(\mathbb F_2)^3
 $$
 satisfying
 $$
-A^2=B,\qquad C^2=B,
+A^2=C^2=D^2=B
 $$
 and
 $$
-AC=CA.
+AC=CA,\qquad AD=DA,\qquad CD=DC.
 $$
 
 ---
@@ -40,4 +40,4 @@ $$
 
 ## Domain Explanation
 
-The problem counts commuting square roots of a fixed nonsemisimple matrix over a finite field. A single square root is controlled by nilpotent Jordan structure, but the commuting condition forces the second root to be counted inside the endomorphism ring of the first, naturally producing matrices over the finite local ring $\mathbb F_2[t]/(t^4)$.
+The problem counts pairwise commuting square roots of a fixed nonsemisimple matrix over a finite field. After fixing one root, the other two become square-zero matrices over the finite local ring $\mathbb F_2[t]/(t^4)$, and their mutual commutativity creates a simultaneous-module constraint beyond the Jordan structure of a single operator.
