@@ -2,16 +2,15 @@
 
 ## LaTeX (Normalized)
 
-For a permutation $\pi\in S_5$, let
+Place $12$ labeled points on a circle, and let $\mathcal M$ be the set of noncrossing perfect matchings of these points. Thus $|\mathcal M|=C_6=132$.
+
+For $P,Q\in\mathcal M$, superimpose the two matchings as a two-colored multigraph, using one copy of each edge from $P$ and one copy of each edge from $Q$. Let $\ell(P,Q)$ be the number of connected components of this multigraph.
+
+Index the rows and columns of a $132\times132$ matrix $A$ by $\mathcal M$, and define
 $$
-\operatorname{inv}(\pi)=\#\{(i,j):1\le i<j\le5,\ \pi(i)>\pi(j)\}
+A_{P,Q}=3^{\ell(P,Q)}.
 $$
-be its inversion number. Index the rows and columns of a $120\times120$ matrix $A$ by the elements of $S_5$, and define
-$$
-A_{\sigma,\tau}=\delta_{\sigma,\tau}+2^{\operatorname{inv}(\sigma^{-1}\tau)}
-\qquad(\sigma,\tau\in S_5),
-$$
-where $\delta_{\sigma,\tau}$ is the Kronecker delta. Determine $\det A$.
+Determine $\det A$.
 
 ---
 
@@ -28,4 +27,4 @@ where $\delta_{\sigma,\tau}$ is the Kronecker delta. Determine $\det A$.
 
 ## Domain Explanation
 
-The matrix is the identity-regularized exponential kernel for Kendall-tau distance on permutations. The unregularized kernel has a closed Varchenko determinant, but the identity shift forces one to determine the noncentral irreducible block spectra rather than only their determinants. The target remains the exact determinant of a concrete finite matrix, so Linear Algebra -> Determinants is the primary classification.
+The matrix is the Gram matrix of planar link patterns with loop weight $3$, equivalently a Temperley-Lieb Gram matrix. Its determinant is controlled by an orthogonal Dyck-path basis and the associated Chebyshev/Jones-Wenzl norm recurrence, while the target is the exact determinant of a concrete finite matrix. Hence Linear Algebra -> Determinants is the primary classification.
