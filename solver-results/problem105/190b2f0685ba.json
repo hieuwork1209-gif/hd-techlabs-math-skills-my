@@ -1,0 +1,22 @@
+{
+  "problem": "problem105",
+  "branch": "adversary/problem105",
+  "problem_path": "workspace/rainier-problem/problem105-polynomial-and-rational-functions/problem.md",
+  "source_commit_sha": "b8164508ec255794e0e32d86491a19b62cc3f665",
+  "problem_blob_sha": "190b2f0685ba3659b41f62a23753d309168ed564",
+  "statement_sha256": "f52e2a86bfbdb7bb766eb9cd7fa206c4ba183a271296850733942b7958c4ff3a",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T14:21:49+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let the bipartition be \\(L\\sqcup R\\), with \\(|L|=|R|=6\\). Encode an orientation by a \\(6\\times 6\\) matrix \\(M\\), where\n\\[\nM_{ij}=1\n\\]\nmeans the edge from \\(L_i\\) to \\(R_j\\) is oriented \\(L_i\\to R_j\\). A vertex in \\(L\\) is Eulerian iff its row sum is \\(3\\). A vertex in \\(R\\) is Eulerian iff its column sum is \\(3\\). So we must count \\(6\\times 6\\) zero-one matrices with all row and column sums equal to \\(3\\).\n\nGroup the six rows into three ordered pairs. For one pair of rows, the column-sum vector has entries \\(0,1,2\\), total \\(6\\). Its possible sorted types are:\n\n\\[\n\\begin{array}{c|c|c}\n\\text{type} & \\text{number of such vectors} & \\text{row-pair multiplicity}\\\\\n\\hline\n(1,1,1,1,1,1) & 1 & 20\\\\\n(0,1,1,1,1,2) & 30 & 6\\\\\n(0,0,1,1,2,2) & 90 & 2\\\\\n(0,0,0,2,2,2) & 20 & 1\n\\end{array}\n\\]\n\nFor example, type \\((0,1,1,1,1,2)\\) means the two rows share one column, avoid one column, and split the remaining four columns as two-and-two, giving \\(\\binom42=6\\) ordered row pairs.\n\nFix the third row-pair vector \\(c\\). The first two row-pair vectors must sum to \\(3-c\\). A direct finite count gives:\n\n\\[\n\\begin{array}{c|c}\n\\text{type of }c & \\text{weighted number for first two row-pairs}\\\\\n\\hline\n(1,1,1,1,1,1) & 1860\\\\\n(0,1,1,1,1,2) & 936\\\\\n(0,0,1,1,2,2) & 480\\\\\n(0,0,0,2,2,2) & 256\n\\end{array}\n\\]\n\nThus the total number is\n\n\\[\n20\\cdot 1860\n+180\\cdot 936\n+180\\cdot 480\n+20\\cdot 256.\n\\]\n\nCompute:\n\n\\[\n37200+168480+86400+5120=297200.\n\\]\n\nTherefore the exact number of Eulerian orientations of \\(K_{6,6}\\) is\n\n\\[\n\\boxed{297200}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T14:23:35+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem105/190b2f0685ba.json"
+}
