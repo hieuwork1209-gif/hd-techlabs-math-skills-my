@@ -1,0 +1,22 @@
+{
+  "problem": "problem105",
+  "branch": "adversary/problem105",
+  "problem_path": "workspace/rainier-problem/problem105-polynomial-and-rational-functions/problem.md",
+  "source_commit_sha": "cf6913692182cafa0d3e98b8cf0b5e327291d036",
+  "problem_blob_sha": "7aa35e7ca3e79de3d6f1407d6f0131692370f259",
+  "statement_sha256": "e8e550c63906775dbc1729b582955f067336e427f73aaf85f4a1d205eceadc46",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T13:35:12+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nP(x)=\\prod_{m\\ \\mathrm{odd}}R_m(x)^{e_m}.\n\\]\n\nThe identity \\(R_m(x)R_m(-x)=R_m(x^2-2)\\) holds for odd \\(m\\), since \\(x=2\\cos\\theta\\) sends \\(x^2-2\\) to \\(2\\cos2\\theta\\).\n\nFor \\(D_{15}\\), a root \\(2\\cos(2\\pi a/n)\\) of \\(R_n\\) maps to\n\n\\[\n2\\cos\\frac{2\\pi(15a)}n,\n\\]\n\nso its primitive denominator becomes \\(n/\\gcd(n,15)\\). Hence\n\n\\[\n\\operatorname{Res}_y(R_n(y),D_{15}(y)-x)\n=\n\\begin{cases}\n(x-2)^{\\varphi(n)/2},& n\\mid 15,\\\\\nR_{n/\\gcd(n,15)}(x)^{\\varphi(n)/\\varphi(n/\\gcd(n,15))},& n\\nmid 15.\n\\end{cases}\n\\]\n\nThe factor \\(C_{225}=R_{225}\\), since \\(\\deg C_{225}=\\varphi(225)/2=60\\). The exponent equations forced by the resultant identity give\n\n\\[\ne_{225}=1,\\qquad e_{15}=15,\n\\]\n\nand no other factor involving primes \\(3\\) or \\(5\\). The remaining factors must have indices coprime to \\(15\\), where the resultant condition is neutral. Their total degree must be\n\n\\[\n158-60-15\\cdot 4=38.\n\\]\n\nAlso \\(R_m(2)=(-1)^{\\varphi(m)/2}\\Phi_m(1)\\). Thus \\(P(2)=77=7\\cdot 11\\) forces one \\(R_7\\) and one \\(R_{11}\\), contributing degrees \\(3+5=8\\). The remaining degree \\(30\\) with value \\(1\\) is uniquely supplied by \\(R_{77}\\).\n\nTherefore\n\n\\[\n\\boxed{P(x)=R_7(x)R_{11}(x)R_{15}(x)^{15}R_{77}(x)R_{225}(x)}.\n\\]\n\nThe subscripts are in increasing order.",
+  "status": "success",
+  "completed_at": "2026-09-10T13:37:31+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem105/7aa35e7ca3e7.json"
+}
