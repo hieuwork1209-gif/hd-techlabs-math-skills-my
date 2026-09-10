@@ -1,0 +1,22 @@
+{
+  "problem": "problem115",
+  "branch": "adversary/problem115",
+  "problem_path": "workspace/rainier-problem/problem115-fourier-analysis/problem.md",
+  "source_commit_sha": "13ce079cd899bd5480e350df09c2a1a7587673a7",
+  "problem_blob_sha": "716797e93ec996e3e172058a24b5e1832dc5bc53",
+  "statement_sha256": "e06ac1cee85311a28237ebe88c5dbcaba8fe33d47ad784e5b6df9477aa4d3459",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T14:27:13+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(f=(-1)^q\\), where \\(q:V\\to \\mathbb F_2\\). The four-term condition says exactly that \\(q\\) is a quadratic refinement of \\(B\\):\n\\[\nq(z+r+s)+q(z+r)+q(z+s)+q(z)=B(r,s).\n\\]\n\nA convenient refinement is\n\\[\nq_0(z)=\\sum_{i=1}^m \\operatorname{Tr}_{k/\\mathbb F_2}(z_i^5),\n\\]\nsince in characteristic \\(2\\),\n\\[\n(z+w)^5+z^5+w^5=z^4w+zw^4.\n\\]\nAlso \\(q_0(Sz)=q_0(z)\\), because \\(\\alpha^5=1\\) and \\(S\\) only permutes coordinates after multiplying by \\(\\alpha\\).\n\nThe form \\(B\\) is nondegenerate, so all refinements are\n\\[\nq_v(z)=q_0(z)+B(z,v),\\qquad v\\in V.\n\\]\nFor such a quadratic sign function,\n\\[\n\\mathcal F((-1)^{q_v})(w)=\\varepsilon(q_v)(-1)^{q_v(w)}.\n\\]\nFor one coordinate, \\(Q(x)=\\operatorname{Tr}_{k/\\mathbb F_2}(x^5)\\) has \\(6\\) zeros and \\(10\\) ones on \\(\\mathbb F_{16}\\), so its normalized Gauss sign is \\(-1\\). Since \\(m=106\\), \\(\\varepsilon(q_0)=(-1)^{106}=1\\), and\n\\[\n\\varepsilon(q_v)=(-1)^{q_0(v)}.\n\\]\n\nThe condition \\(Tf=f\\) gives, at \\(0\\), \\(\\varepsilon(q_v)=1\\), hence \\(q_0(v)=0\\). It also requires \\(q_v(Sz)=q_v(z)\\), which is equivalent to \\(Sv=v\\).\n\nNow count \\(v\\in \\operatorname{Fix}(S)\\) with \\(q_0(v)=0\\). On a cycle of length \\(L\\), fixed vectors exist iff \\(\\alpha^L=1\\), i.e. \\(5\\mid L\\). The relevant cycle lengths are\n\\[\n5,10,15,20,25.\n\\]\nEach contributes one free element of \\(K\\). For even \\(L=10,20\\), the contribution to \\(q_0\\) is \\(0\\). For odd \\(L=5,15,25\\), the contribution is \\(Q(t)=\\operatorname{Tr}(t^5)\\).\n\nThus we need the number of triples in \\(K^3\\) with \\(Q(t_1)+Q(t_2)+Q(t_3)=0\\), times \\(16^2\\) for the two even cycles. Since \\(Q\\) has \\(6\\) zeros and \\(10\\) ones,\n\\[\n\\#\\{Q_1+Q_2+Q_3=0\\}\n=\\frac{16^3+(-4)^3}{2}\n=\\frac{4096-64}{2}\n=2016.\n\\]\nTherefore the total number is\n\\[\n2016\\cdot 16^2=2016\\cdot 256=516096.\n\\]\n\n\\[\n\\boxed{516096}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T14:28:35+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem115/716797e93ec9.json"
+}

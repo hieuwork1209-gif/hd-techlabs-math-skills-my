@@ -1,0 +1,17 @@
+{
+  "problem": "problem115",
+  "branch": "adversary/problem115",
+  "problem_path": "workspace/rainier-problem/problem115-fourier-analysis/problem.md",
+  "problem_blob_sha": "716797e93ec996e3e172058a24b5e1832dc5bc53",
+  "source_commit_sha": "13ce079cd899bd5480e350df09c2a1a7587673a7",
+  "status": "success",
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "timeout_seconds": 2100,
+  "completed_at": "2026-09-10T14:28:35+00:00",
+  "result_file": "solver-results/problem115/716797e93ec9.json"
+}
