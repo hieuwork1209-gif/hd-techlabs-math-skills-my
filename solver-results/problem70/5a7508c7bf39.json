@@ -1,0 +1,22 @@
+{
+  "problem": "problem70",
+  "branch": "adversary/problem70",
+  "problem_path": "workspace/rainier-problem/problem70-determinants/problem.md",
+  "source_commit_sha": "80e81f73568f2e68cb85960d0e1f0146bb1ae3f2",
+  "problem_blob_sha": "5a7508c7bf3919269e57c93b420bd9dfc3f8a70d",
+  "statement_sha256": "bcd59c15ebc952ef332b791e9890ce3197b78792e8e91856532c8623bd48cdb1",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T09:15:52+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(V\\) be the vector space with basis \\(e_S\\), \\(S\\subseteq[10]\\). Define\n\\[\nUe_S=\\sum_{i\\notin S}e_{S\\cup\\{i\\}},\\qquad De_S=\\sum_{i\\in S}e_{S\\setminus\\{i\\}}.\n\\]\nThen the off-diagonal part of \\(A\\) is \\(-(U+D)\\), while on level \\(|S|=k\\), the diagonal contribution is\n\\[\n11+k(10-k).\n\\]\n\nUse the standard Boolean-lattice decomposition into chains. For each \\(j=0,\\dots,5\\), let \\(H_j=\\ker(D:V_j\\to V_{j-1})\\). Then\n\\[\n\\dim H_j=\\binom{10}{j}-\\binom{10}{j-1},\n\\]\nand for \\(h\\in H_j\\), the span of\n\\[\nh,\\ Uh,\\ U^2h,\\dots,U^{10-2j}h\n\\]\nis \\(A\\)-invariant. The identity\n\\[\nDU^m h=m(10-2j-m+1)U^{m-1}h\n\\]\nfollows from \\([D,U]\\) acting on level \\(k\\) as multiplication by \\(10-2k\\).\n\nSo on the \\(j\\)-chain, with \\(m=0,\\dots,N\\), \\(N=10-2j\\), the tridiagonal determinant \\(\\Delta_j\\) satisfies\n\\[\np_{-1}=1,\\qquad p_0=11+j(10-j),\n\\]\n\\[\np_m=\\bigl(11+(j+m)(10-j-m)\\bigr)p_{m-1}\n-m(N-m+1)p_{m-2}.\n\\]\nComputing these six recurrences gives\n\\[\n\\begin{array}{c|c|c}\nj&\\dim H_j&\\Delta_j\\\\ \\hline\n0&1&1151460143640576\\\\\n1&9&11577094230016\\\\\n2&35&31270855680\\\\\n3&75&44407872\\\\\n4&90&43960\\\\\n5&42&36\n\\end{array}\n\\]\nHence\n\\[\n\\det A=\\prod_{j=0}^5 \\Delta_j^{\\binom{10}{j}-\\binom{10}{j-1}}.\n\\]\n\nFactoring the result,\n\\[\n\\boxed{\n2^{1274}3^{419}5^{125}7^{118}11\\cdot23\\cdot31^{110}\\cdot157^{90}\\cdot523\\cdot829^{75}\\cdot1249\\cdot1601^9\\cdot5147^9\\cdot7297^{35}\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T09:17:55+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem70/5a7508c7bf39.json"
+}
