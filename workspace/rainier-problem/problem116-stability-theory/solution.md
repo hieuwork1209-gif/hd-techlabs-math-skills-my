@@ -1,17 +1,12 @@
 ## Steps
 
-Step 1: Pass to polar coordinates and rescale time
+Step 1: Reduce the homogeneous flow to angular and radial equations
 Set
 $$
-P=a(x^2+y^2)^2+x^4-6x^2y^2+y^4,
-\qquad
-Q=b(x^2+y^2)^2+x^4-y^4.
+P=a(x^2+y^2)^3+(x^2+y^2)(x^4-6x^2y^2+y^4),
 $$
-The system is
 $$
-\dot x=-Px-Qy,
-\qquad
-\dot y=-Py+Qx.
+Q=b(x^2+y^2)^3+x^6-15x^4y^2+15x^2y^4-y^6.
 $$
 For a nonzero trajectory write $x=r\cos\theta$, $y=r\sin\theta$. Since
 $$
@@ -21,111 +16,134 @@ x\dot y-y\dot x=Qr^2,
 $$
 and
 $$
-P=r^4(a+\cos4\theta),
+P=r^6(a+\cos4\theta),
 \qquad
-Q=r^4(b+\cos2\theta),
+Q=r^6(b+\cos6\theta),
 $$
 we obtain
 $$
-\dot r=-r^5A(\theta),
+\dot r=-r^7A(\theta),
 \qquad
-\dot\theta=r^4B(\theta),
+\dot\theta=r^6B(\theta),
 $$
 where
 $$
 A(\theta)=a+\cos4\theta,
 \qquad
-B(\theta)=b+\cos2\theta.
+B(\theta)=b+\cos6\theta.
 $$
-Introduce the increasing time variable $\tau$ by $d\tau/dt=r^4$. Then
+Introduce the increasing time variable $\tau$ by $d\tau/dt=r^6$. Then
 $$
 \frac{d\theta}{d\tau}=B(\theta),
 \qquad
 \frac{d}{d\tau}\log r=-A(\theta).
 $$
-Thus the angular equation is autonomous, while the logarithmic radial change is obtained by integrating $-A$ along the angular motion.
+Thus global stability is determined by the angular flow and the accumulated radial drift along it.
 
 Step 2: Analyze the regime $|b|\leq1$
-Now $B$ has zeros, namely the angles satisfying
+Now $B$ has zeros, so every angle satisfying
 $$
-\cos2\theta=-b.
+\cos6\theta=-b
 $$
-Each such angle is an invariant ray. On every one of these rays,
+defines an invariant ray. Global asymptotic stability requires
 $$
-A(\theta)=a+\cos4\theta
-=a+2\cos^2 2\theta-1
-=a+2b^2-1.
+A(\theta)=a+\cos4\theta>0
 $$
-Hence a necessary condition for global asymptotic stability is
-$$
-a+2b^2-1>0.
-$$
-Indeed, equality makes every nonzero point of each such ray an equilibrium, while a negative value makes $r$ increase along that ray.
+at every such ray. If equality holds at one of them, every nonzero point of that ray is an equilibrium; if the value is negative, the radius grows along that ray.
 
-Assume now that
+Let
 $$
-a+2b^2-1>0.
+c=\cos4\theta.
 $$
-All zeros of $B$ then lie in a neighborhood on which $A$ is uniformly positive. On each component between consecutive zeros of $B$, the scalar equation $d\theta/d\tau=B(\theta)$ is monotone and approaches an endpoint zero; an orbit starting at a zero remains there. Therefore any part of the angular motion on which $A<0$ is traversed only for a uniformly bounded amount of $\tau$-time, whereas eventually $A$ is bounded below by a positive constant. Consequently there is a constant $C=C(a,b)$ such that
+At a zero of $B$,
 $$
-r(\tau)\leq C r(0)
+\cos12\theta=2\cos^2 6\theta-1=2b^2-1.
 $$
-for all $\tau\geq0$, and moreover $r(\tau)\to0$ as $\tau\to\infty$.
+But also
+$$
+\cos12\theta=4c^3-3c.
+$$
+Hence the possible values of $c$ are precisely the three roots of
+$$
+4c^3-3c=2b^2-1.
+$$
+Put
+$$
+\gamma=\arccos(2b^2-1),
+\qquad 0\leq\gamma\leq\pi.
+$$
+The three roots are
+$$
+\cos\frac\gamma3,
+\qquad
+\cos\left(\frac\gamma3+\frac{2\pi}{3}\right),
+\qquad
+\cos\left(\frac\gamma3+\frac{4\pi}{3}\right).
+$$
+Since $0\leq\gamma/3\leq\pi/3$, the smallest is
+$$
+\cos\left(\frac\gamma3+\frac{2\pi}{3}\right).
+$$
+Therefore $A>0$ at every invariant ray exactly when
+$$
+a> -\cos\left(\frac\gamma3+\frac{2\pi}{3}\right)
+ =\cos\left(\frac\pi3-\frac\gamma3\right).
+$$
+Equivalently,
+$$
+a>\cos\left(\frac{\pi-\arccos(2b^2-1)}{3}\right).
+$$
 
-Since $dt/d\tau=r^{-4}$, the relation $r(\tau)\to0$ forces $t(\tau)\to\infty$. Thus every forward solution is global and converges to the origin. The bound $r(\tau)\leq Cr(0)$ gives Lyapunov stability. Hence for $|b|\leq1$ the exact condition is
+This condition is also sufficient. The scalar angular equation is monotone on every component between consecutive zeros of $B$ and every angular orbit either starts at a zero or approaches one as $\tau\to\infty$. Because $A$ is strictly positive at all finitely many zeros, it is uniformly positive in neighborhoods of them. Any portion of an orbit where $A<0$ is therefore traversed in a bounded amount of $\tau$-time. Hence there is a constant $C=C(a,b)$ such that
 $$
-a>1-2b^2.
+r(\tau)\leq Cr(0)
 $$
+for all $\tau\geq0$, while eventually $A(\theta(\tau))$ is bounded below by a positive constant, so $r(\tau)\to0$. Since $dt/d\tau=r^{-6}$, this also forces $t\to\infty$. Thus the origin is globally asymptotically stable in this regime exactly under the displayed inequality.
 
 Step 3: Analyze the rotating regime $|b|>1$
-Here $B$ never vanishes and has the constant sign of $b$, so every nonzero trajectory rotates forever in the $\tau$-time. During one full revolution the change in $\log r$ is
+Here $B$ never vanishes and has the constant sign of $b$, so every nonzero trajectory rotates forever in $\tau$. The logarithmic radial change over one full revolution is
 $$
 -K,
 \qquad
-K:=\int_0^{2\pi}\frac{A(\theta)}{|B(\theta)|}\,d\theta.
+K=\int_0^{2\pi}\frac{a+\cos4\theta}{|b+\cos6\theta|}\,d\theta.
 $$
-If $K>0$, each revolution multiplies $r$ by $e^{-K}<1$. Because $A/B$ is continuous, the radial variation within a single revolution is uniformly bounded, so $r(\tau)\leq Cr(0)$ and $r(\tau)\to0$. This again gives global existence, convergence, and Lyapunov stability.
-
-If $K=0$, the radius returns to its starting value after every full turn, producing a nonzero periodic orbit. If $K<0$, the radius is multiplied by a factor larger than $1$ each turn, so arbitrarily small initial data eventually leave any fixed neighborhood of the origin. Therefore global asymptotic stability is equivalent to $K>0$.
-
-Let $\sigma=\operatorname{sgn}(b)$ and $s=\sqrt{b^2-1}$. With $\phi=2\theta$,
+The denominator is invariant under $\theta\mapsto\theta+\pi/3$. Therefore, writing
 $$
-K=\sigma\int_0^{2\pi}\frac{a+\cos2\phi}{b+\cos\phi}\,d\phi.
+J=\int_0^{2\pi}\frac{\cos4\theta}{|b+\cos6\theta|}\,d\theta,
 $$
-Use
+we may average $J$ over the three shifts $0,\pi/3,2\pi/3$ to obtain
 $$
-\frac{\cos2\phi}{b+\cos\phi}
-=2\cos\phi-2b+\frac{2b^2-1}{b+\cos\phi}.
+3J=\int_0^{2\pi}
+\frac{\cos4\theta+\cos(4\theta+4\pi/3)+\cos(4\theta+8\pi/3)}{|b+\cos6\theta|}\,d\theta=0.
 $$
-Also, the tangent-half-angle substitution $u=\tan(\phi/2)$ gives, for $|b|>1$,
+Thus
 $$
-\int_0^{2\pi}\frac{d\phi}{b+\cos\phi}
-=\frac{2\pi\sigma}{\sqrt{b^2-1}}
-=\frac{2\pi\sigma}{s}.
+K=a\int_0^{2\pi}\frac{d\theta}{|b+\cos6\theta|}.
 $$
-Hence
+The integral is strictly positive, so $K>0$ exactly when
 $$
-K
-=\frac{2\pi}{s}\left(a+2b^2-1-2|b|s\right).
+a>0.
 $$
-Thus $K>0$ exactly when
-$$
-a>1-2b^2+2|b|\sqrt{b^2-1}.
-$$
+If $a>0$, every revolution contracts the radius by the same factor $e^{-K}<1$, and the radial variation during one turn is uniformly bounded; this gives Lyapunov stability, global existence, and convergence to the origin. If $a=0$, the radius returns to its initial value after every revolution, producing nonzero periodic orbits. If $a<0$, the radius expands from turn to turn, so the origin is not Lyapunov stable.
 
 Step 4: Combine the two regimes
-For $|b|\leq1$ the threshold is $1-2b^2$, while for $|b|>1$ it is $1-2b^2+2|b|\sqrt{b^2-1}$. These combine as
+For $|b|\leq1$ the exact threshold is
 $$
-a>1-2b^2+2|b|\sqrt{\max\{b^2-1,0\}}.
+a>\cos\left(\frac{\pi-\arccos(2b^2-1)}{3}\right),
 $$
-The inequality is strict in every case: equality yields either nonzero equilibria on invariant rays or nonzero periodic orbits.
-Final Answer: $\boxed{\{(a,b):a>1-2b^2+2|b|\sqrt{\max\{b^2-1,0\}}\}}$
+whereas for $|b|>1$ it is simply $a>0$. Therefore the required region is
+$$
+\{(a,b):|b|>1,\ a>0\}
+\cup
+\left\{(a,b):|b|\leq1,\ a>\cos\left(\frac{\pi-\arccos(2b^2-1)}{3}\right)\right\}.
+$$
+Final Answer: $\boxed{\{(a,b):|b|>1,\ a>0\}\cup\{(a,b):|b|\le1,\ a>\cos((\pi-\arccos(2b^2-1))/3)\}}$
 
 ---
 
 ## Answer
 
-$\{(a,b):a>1-2b^2+2|b|\sqrt{\max\{b^2-1,0\}}\}$
+$\{(a,b):|b|>1,\ a>0\}\cup\{(a,b):|b|\le1,\ a>\cos((\pi-\arccos(2b^2-1))/3)\}$
 
 ---
 
@@ -140,10 +158,10 @@ $\{(a,b):a>1-2b^2+2|b|\sqrt{\max\{b^2-1,0\}}\}$
 ## Solution Concepts
 
 - global asymptotic stability
-- polar coordinates
 - homogeneous polynomial systems
+- polar coordinates and time rescaling
 - invariant rays and periodic orbits
-- time rescaling
+- Chebyshev polynomial identities
 
 ---
 
