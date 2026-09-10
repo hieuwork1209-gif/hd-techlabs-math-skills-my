@@ -1,134 +1,94 @@
 ## Steps
 
-Step 1: Encode Eulerian orientations and the automorphism action.
+Step 1: Translate orthogonality into a rainbow-factor condition.
 
-Let the two parts of $K_{6,6}$ be
-$$
-L=\{u_1,\ldots,u_6\},\qquad R=\{v_1,\ldots,v_6\}.
-$$
-Encode an orientation by a binary matrix $M=(m_{ij})$ with
-$$
-m_{ij}=1\iff u_i\to v_j.
-$$
-Since every vertex has degree $6$, the orientation is Eulerian exactly when every row and every column of $M$ has sum $3$.
+A one-factorization of $K_8$ is a partition of its $28$ edges into seven perfect matchings. Regard its seven factors as seven edge-colors. If $\mathcal F$ and $\mathcal G$ are one-factorizations, then they are orthogonal exactly when every factor of $\mathcal G$ contains at most one edge of each $\mathcal F$-color. Thus, for fixed $\mathcal F$, the orthogonal partners $\mathcal G$ are precisely the partitions of $E(K_8)$ into seven perfect matchings that are rainbow with respect to $\mathcal F$.
 
-Let
-$$
-H=S_6\times S_6
-$$
-be the subgroup of $\operatorname{Aut}(K_{6,6})$ preserving the two parts. It acts by independent row and column permutations. The full automorphism group is
-$$
-G=\operatorname{Aut}(K_{6,6})\cong (S_6\times S_6)\rtimes C_2.
-$$
-If $\sigma$ exchanges the two parts, then on matrices
-$$
-\sigma(M)=J_6-M^T, \tag{1}
-$$
-where $J_6$ is the all-ones matrix. Thus we first classify the row-column permutation orbits under $H$, then apply the involution (1).
+Step 2: Classify the one-factorizations of $K_8$.
 
-Step 2: Classify the $H$-orbits.
+For a one-factorization $\mathcal F$, let $k(\mathcal F)$ be the number of unordered pairs of its factors whose union is $C_4\sqcup C_4$; every other pair has union $C_8$.
 
-Identify a row of $M$ with its support, a $3$-subset of
+Fix one factor as $(12,34,56,78)$. Under its stabilizer in $S_8$, normalize a second factor, then a third, and continue through the unused edges. At each stage the next factor is a perfect matching in the remaining graph, so the branching is finite. The six resulting types are distinguished by $k$; representatives are
 $$
-\Omega=\{1,2,3,4,5,6\}.
+\begin{array}{c|c|l}
+\text{type}&k&\text{seven factors}\\ \hline
+A&21&(12,34,56,78);(13,24,57,68);(14,23,58,67);(15,26,37,48);(16,25,38,47);(17,28,35,46);(18,27,36,45)\\
+B&9 &(12,34,56,78);(13,24,57,68);(14,23,58,67);(15,27,38,46);(16,28,37,45);(17,25,36,48);(18,26,35,47)\\
+C&13&(12,34,56,78);(13,24,57,68);(14,23,58,67);(15,26,37,48);(16,25,38,47);(17,28,36,45);(18,27,35,46)\\
+D&0 &(12,34,56,78);(13,25,47,68);(14,26,38,57);(15,27,36,48);(16,28,37,45);(17,23,46,58);(18,24,35,67)\\
+E&3 &(12,34,56,78);(13,24,57,68);(14,25,38,67);(15,27,36,48);(16,28,37,45);(17,23,46,58);(18,26,35,47)\\
+F&7 &(12,34,56,78);(13,24,57,68);(14,23,58,67);(15,26,38,47);(16,27,35,48);(17,28,36,45);(18,25,37,46).
+\end{array} \tag{1}
 $$
-Thus $M$ determines a multiset of six $3$-subsets $E_1,\ldots,E_6$ in which every point of $\Omega$ occurs exactly three times. Row permutations forget the ordering of the six sets, while column permutations relabel $\Omega$.
 
-First suppose a support is repeated. No support can occur more than three times. If a support $E$ occurs three times, then its three points already have full degree, so the remaining three supports must all be $E^c$. This gives one type.
+The stabilizers and labeled orbit sizes are
+$$
+\begin{array}{c|rrrrrr}
+\text{type}&A&B&C&D&E&F\\ \hline
+|\operatorname{Stab}_{S_8}|&1344&96&64&42&24&16\\
+|S_8\cdot\mathcal F|&30&420&630&960&1680&2520.
+\end{array} \tag{2}
+$$
+Indeed each stabilizer is read directly from its representative in (1), and orbit-stabilizer gives the second row. The six orbit sizes sum to $6240$, the number produced by the same normalized completion, so the classification is exhaustive.
 
-If two distinct supports are each repeated, they must be disjoint, since otherwise a common point would occur at least four times. Hence they are complements. The remaining two supports must also be complementary; excluding the preceding triple-multiplicity case leaves one type up to relabeling.
+Step 3: Determine the orthogonality graph between the six types.
 
-Finally suppose exactly one support $E$ is repeated twice. Across the remaining four supports, the total number of incidences with $E$ is $3$. Since only $E^c$ is disjoint from $E$ and no second support is repeated, the intersection sizes with $E$ must be
+For fixed $\mathcal F$, call a perfect matching rainbow if it meets each factor of $\mathcal F$ in at most one edge. The numbers of rainbow perfect matchings for types $A,B,C,D,E,F$ are respectively
 $$
-1,1,1,0.
+56,\ 32,\ 40,\ 14,\ 20,\ 28. \tag{3}
 $$
-Thus $E^c$ occurs once, the other three supports meet $E$ in one point each, and the degree conditions force a unique type up to relabeling.
+These may be checked directly from (1); equivalently the number is $14+2k(\mathcal F)$.
 
-Now suppose all six supports are distinct. Two disjoint $3$-subsets of $\Omega$ are complementary. Let $n_0$ be the number of complementary pairs among the six supports, and define a graph $\Gamma$ on the six supports by joining two supports when their intersection has size $2$.
-
-For a fixed support $E_i$, the other five supports meet the three points of $E_i$ a total of $6$ times. If $d_i$ is $1$ when $E_i^c$ is present and $0$ otherwise, and $t_i$ is the number of supports meeting $E_i$ in two points, then
+To count orthogonal partners, partition the $28$ edges into rainbow perfect matchings. This can be done without overcounting by the recurrence
 $$
-t_i-d_i=1. \tag{2}
+R_{\mathcal F}(E)=\sum_{P}R_{\mathcal F}(E\setminus P),\qquad R_{\mathcal F}(\varnothing)=1, \tag{4}
 $$
-Hence every vertex of $\Gamma$ has degree $1$ or $2$, with degree $2$ exactly when its complementary support is present.
-
-The value $n_0=2$ is impossible: two complementary pairs already cover every point twice, so the last two supports must themselves be complementary, giving $n_0=3$. Therefore
+where $e$ is the least edge of $E$ and the sum is over rainbow perfect matchings $P\subseteq E$ containing $e$. Evaluating (4) on the six representatives gives the exact neighbor counts
 $$
-n_0\in\{0,1,3\}.
-$$
-If $n_0=0$, equation (2) gives $\Gamma=3K_2$. If $n_0=1$, the two degree-$2$ vertices are the complementary pair and are not adjacent, so $\Gamma=2P_3$. If $n_0=3$, every vertex has degree $2$, so $\Gamma$ is either $C_6$ or $2C_3$. In each case the support family is forced up to relabeling once one support is taken to be $123$.
-
-Writing $123$ for $\{1,2,3\}$ and using exponents for multiplicity, representatives of the seven $H$-orbits are therefore
-$$
-\begin{array}{c|l}
-i&\text{row-support multiset }\mathcal F_i\\ \hline
-1&123^3,456^3\\
-2&123^2,124,356,456^2\\
-3&123^2,145,246,356,456\\
-4&123,124,134,256,356,456\\
-5&123,124,135,246,356,456\\
-6&123,124,135,346,256,456\\
-7&123,124,345,346,156,256
-\end{array} \tag{3}
-$$
-For the four all-distinct families, the corresponding $\Gamma$-types are respectively $2C_3,C_6,2P_3,3K_2$ for $i=4,5,6,7$.
-
-Step 3: Compute the seven part-preserving orbit sizes.
-
-For $\mathcal F_i$, let $a_i$ be the number of permutations of $\Omega$ preserving the displayed multiset, and let $\rho_i$ be the product of the factorials of the support multiplicities. Once a column permutation preserves the support multiset, there are exactly $\rho_i$ compatible row permutations. Hence
-$$
-|\operatorname{Stab}_H(M_i)|=a_i\rho_i. \tag{4}
-$$
-From the explicit families in (3), their point-automorphism orders and row-multiplicity factors are
-$$
-\begin{array}{c|r|r|r|r}
-i&a_i&\rho_i&|\operatorname{Stab}_H(M_i)|&|H\cdot M_i|\\ \hline
-1&72&36&2592&200\\
-2&8&4&32&16200\\
-3&6&2&12&43200\\
-4&12&1&12&43200\\
-5&12&1&12&43200\\
-6&4&1&4&129600\\
-7&24&1&24&21600
+\begin{array}{c|rrrrrr}
+ &A&B&C&D&E&F\\ \hline
+A&8&56&0&64&112&0\\
+B&4&12&0&0&8&0\\
+C&0&0&0&0&0&0\\
+D&2&0&0&0&0&0\\
+E&2&2&0&0&0&0\\
+F&0&0&0&0&0&0.
 \end{array} \tag{5}
 $$
-because $|H|=(6!)^2=518400$. As a check, the seven orbit sizes sum to
-$$
-200+16200+3\cdot43200+129600+21600=297200, \tag{6}
-$$
-the total number of Eulerian orientations.
+For example, the two entries $56$ and $4$ are consistent because $30\cdot56=420\cdot4$, as required by counting the same $A$-$B$ edges in the orthogonality graph.
 
-Step 4: Add the automorphisms exchanging the two parts.
+Step 4: Find all triangles in the orthogonality graph.
 
-Apply the involution $M\mapsto J_6-M^T$ from (1) to the seven representatives. Directly from the support families in (3), one obtains
+Intersecting the partner lists generated by the same recurrence (4) shows that the number of orthogonality triangles through a fixed factorization is
 $$
-1\mapsto1,\qquad
-2\mapsto2,\qquad
-3\leftrightarrow4,\qquad
-5\mapsto5,\qquad
-6\mapsto6,\qquad
-7\mapsto7. \tag{7}
+\begin{array}{c|rrrrrr}
+\text{type}&A&B&C&D&E&F\\ \hline
+\text{triangles through one vertex}&64&0&0&1&0&0.
+\end{array} \tag{6}
 $$
-Thus five $H$-orbits remain single $G$-orbits, while the two $43200$-element orbits numbered $3$ and $4$ merge into one $86400$-element orbit.
+Thus every triangle has type $(A,A,D)$. In particular, every type-$D$ factorization has exactly two orthogonal partners, both of type $A$, and those two partners are orthogonal to each other. Hence each of the $960$ labeled type-$D$ factorizations lies in a unique triangle, so there are exactly
+$$
+960 \tag{7}
+$$
+unordered triples of pairwise orthogonal one-factorizations.
 
-Therefore the $G$-orbit sizes, in increasing order, are
-$$
-200,\quad16200,\quad21600,\quad43200,\quad86400,\quad129600.
-$$
+Step 5: Prove maximality.
 
-Final Answer: $\boxed{(200,16200,21600,43200,86400,129600)}$
+Equation (7) gives a pairwise orthogonal family of size $3$. By (6), every triangle contains a type-$D$ factorization, and by (5) a type-$D$ factorization has only two orthogonal neighbors. Therefore no triangle can be extended to a fourth one-factorization. The largest possible family size is therefore $3$, and the number of such maximum families is $960$.
+
+Final Answer: $\boxed{(3,960)}$
 
 ---
 
 ## Answer
 
-(200,16200,21600,43200,86400,129600)
+(3,960)
 
 ---
 
 ## Classification
 
-Problem Type: Exhaustive enumeration
+Problem Type: Optimization
 
 Answer Type: Tuple or ordered list
 
@@ -136,11 +96,11 @@ Answer Type: Tuple or ordered list
 
 ## Solution Concepts
 
-- Eulerian orientations and regular binary matrices
-- automorphism actions on complete bipartite graphs
-- regular 3-uniform multihypergraphs
-- orbit-stabilizer
-- complement-transpose symmetry
+- one-factorizations of complete graphs
+- orthogonal one-factorizations
+- orbit-stabilizer classification
+- rainbow perfect matchings
+- exact-cover recurrence
 
 ---
 
