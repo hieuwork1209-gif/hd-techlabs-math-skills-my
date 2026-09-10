@@ -28,11 +28,15 @@ C_{225}(x)\operatorname{Res}_y\bigl(P(y),D_{15}(y)-x\bigr)
 =(-1)^{\deg P}(x-2)^{60}P(x),
 $$
 $$
-\deg P=158,
+\deg P=182,
 \qquad
-P(2)=77.
+P(2)=77,
 $$
-Here $\operatorname{Res}_y$ denotes the resultant with respect to $y$. Give the final answer in canonical $R_m$-factorized form, with the subscripts in increasing order.
+and
+$$
+7\mid \operatorname{Res}_x\bigl(P(x),C_{13}(x)\bigr).
+$$
+Here $\operatorname{Res}$ denotes the resultant in the indicated variable. Give the final answer in canonical $R_m$-factorized form, with the subscripts in increasing order.
 
 ---
 
@@ -49,4 +53,4 @@ Here $\operatorname{Res}_y$ denotes the resultant with respect to $y$. Give the 
 
 ## Domain Explanation
 
-The problem asks for a uniquely determined integer polynomial under a quadratic functional identity and a resultant identity induced by the natural $15$-fold angle map. The main structural difficulty is transporting cyclotomic trace factors under the composite map $m\mapsto m/\gcd(m,15)$, where the $3$- and $5$-primary behavior is coupled rather than separated into independent prime chains.
+The problem couples the quadratic trace functional identity with the natural $15$-fold angle map and a cyclotomic norm divisibility condition. The resultant against $C_{13}$ detects when a trace factor acquires a $7$-power in its cyclotomic order, so the free part cannot be recovered by degree and the value at $2$ alone.
