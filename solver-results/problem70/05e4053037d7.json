@@ -1,0 +1,22 @@
+{
+  "problem": "problem70",
+  "branch": "adversary/problem70",
+  "problem_path": "workspace/rainier-problem/problem70-determinants/problem.md",
+  "source_commit_sha": "8c37f376a9f1dfd1c13c1b85631d01283bb6627a",
+  "problem_blob_sha": "05e4053037d77a5770cecf276ab7ba2f60a763da",
+  "statement_sha256": "45b453b9e62435bf492441ef12c50dfa7be3034d496c2f453eb702a9e732de9b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T12:51:56+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(R=\\mathbb Z/4096\\mathbb Z\\). The number of \\(GL_2(R)\\)-conjugacy orbits in\n\\[\n\\mathcal I=\\{A\\in M_2(R):A^2=I\\}\n\\]\nis\n\n\\[\n\\boxed{17}.\n\\]\n\nProof sketch, self-contained:\n\nIf \\(\\bar A\\in M_2(\\mathbb F_2)\\) is not scalar, then \\(\\bar A\\) is the unique non-scalar involution type over \\(\\mathbb F_2\\), hence \\(A\\) is cyclic: for some \\(v\\), \\(v,Av\\) is an \\(R\\)-basis. In that basis \\(A\\) is the companion matrix of its characteristic polynomial. Since \\(A^2=I\\) and \\(I,A\\) are \\(R\\)-linearly independent, the characteristic polynomial must be \\(x^2-1\\). Thus this gives exactly one orbit.\n\nNow suppose \\(\\bar A=I\\). Write uniquely\n\\[\nA=I+2B,\\qquad B\\in M_2(\\mathbb Z/2048\\mathbb Z).\n\\]\nThen\n\\[\nA^2=I\n\\iff 4(B^2+B)=0\n\\iff B^2+B\\equiv 0\\pmod{1024}.\n\\]\nLet \\(C=B\\bmod 1024\\). Then \\(C(C+I)=0\\). Since \\(x\\) and \\(x+1\\) are coprime, the module splits into the kernels of \\(C\\) and \\(C+I\\). Over the local ring \\(\\mathbb Z/1024\\mathbb Z\\), these free summands have ranks \\(0,1,2\\). Hence \\(C\\) is conjugate to exactly one of\n\\[\n0,\\qquad -I,\\qquad \\begin{pmatrix}-1&0\\\\0&0\\end{pmatrix}.\n\\]\n\nFor \\(C=0\\), write \\(B=1024X\\), with \\(X\\in M_2(\\mathbb F_2)\\). Conjugacy is exactly conjugacy of \\(X\\) over \\(\\mathbb F_2\\). There are \\(6\\) conjugacy classes in \\(M_2(\\mathbb F_2)\\): scalar \\(0\\), scalar \\(I\\), nilpotent Jordan, unipotent Jordan, diagonal \\(\\operatorname{diag}(0,1)\\), and the irreducible companion class.\n\nSimilarly, for \\(C=-I\\), write \\(B=-I+1024X\\), again giving \\(6\\) classes.\n\nFor \\(C=\\operatorname{diag}(-1,0)\\), write\n\\[\nB=\\begin{pmatrix}-1&0\\\\0&0\\end{pmatrix}+1024X.\n\\]\nThe stabilizer of \\(\\operatorname{diag}(-1,0)\\) modulo \\(1024\\) preserves the two eigenspaces, while conjugation by matrices congruent to the identity modulo \\(1024\\) can change the two off-diagonal entries of \\(X\\) arbitrarily. The two diagonal entries of \\(X\\in M_2(\\mathbb F_2)\\) remain invariant. Hence this case contributes \\(2^2=4\\) orbits.\n\nTherefore the total number is\n\\[\n1+6+6+4=17.\n\\]\n\n\\[\n\\boxed{17}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T12:55:58+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem70/05e4053037d7.json"
+}
