@@ -4,9 +4,10 @@
 
 Let $a,b\in\mathbb{R}$ and define
 $$
-P=a(x^2+y^2)^2+x^4-6x^2y^2+y^4,
-\qquad
-Q=b(x^2+y^2)^2+x^4-y^4.
+P=a(x^2+y^2)^3+(x^2+y^2)(x^4-6x^2y^2+y^4),
+$$
+$$
+Q=b(x^2+y^2)^3+x^6-15x^4y^2+15x^2y^4-y^6.
 $$
 Consider the planar polynomial system
 $$
@@ -31,4 +32,4 @@ Determine all pairs $(a,b)$ for which the equilibrium $(0,0)$ is globally asympt
 
 ## Domain Explanation
 
-This problem studies global asymptotic stability in a homogeneous polynomial planar flow. In polar coordinates the radial and angular dynamics separate after a natural time rescaling, and the parameter region is determined by invariant angular rays in one regime and the net radial drift over a full rotation in the other.
+This problem concerns global asymptotic stability in a homogeneous polynomial planar flow. Polar coordinates and a natural time rescaling separate the angular motion from logarithmic radial drift. The parameter region changes across the angular bifurcation $|b|=1$: invariant rays lead to a Chebyshev cubic constraint, while the rotating regime is governed by net radial drift over one revolution.
