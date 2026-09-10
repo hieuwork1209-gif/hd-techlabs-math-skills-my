@@ -2,12 +2,14 @@
 
 ## LaTeX (Normalized)
 
-Let $L$ be the splitting field over $\mathbb Q$ of $x^{16}-2$. Among the intermediate fields $E$ with
+Let $S_6$ be the symmetric group on $\{1,2,3,4,5,6\}$. For $\pi\in S_6$, let $c(\pi)$ denote the number of cycles of $\pi$, counting fixed points as $1$-cycles.
+
+Index the rows and columns of a $720\times720$ matrix $A$ by the elements of $S_6$, and define
 $$
-\mathbb Q\subseteq E\subseteq L,
-\qquad [E:\mathbb Q]=8,
+A_{\sigma,\tau}=7^{c(\sigma^{-1}\tau)}
+\qquad(\sigma,\tau\in S_6).
 $$
-how many distinct $\mathbb Q$-isomorphism classes occur?
+Determine $\det A$.
 
 ---
 
@@ -15,8 +17,8 @@ how many distinct $\mathbb Q$-isomorphism classes occur?
 
 | Field | Value |
 |---|---|
-| **Domain** | Abstract Algebra |
-| **Sub-domain** | Field theory |
+| **Domain** | Linear Algebra |
+| **Sub-domain** | Determinants |
 | **Problem Type** | Exact computation |
 | **Answer Type** | Exact scalar |
 
@@ -24,4 +26,4 @@ how many distinct $\mathbb Q$-isomorphism classes occur?
 
 ## Domain Explanation
 
-The problem concerns degree-$8$ subfields of a splitting field and asks for their $\mathbb Q$-isomorphism classes. By Galois theory this requires determining the splitting-field automorphism group, classifying the relevant subgroups, and then passing from individual subgroups to conjugacy classes via subgroup normalizers, so Abstract Algebra -> Field theory is the fundamental classification.
+The problem asks for the exact determinant of a highly structured matrix indexed by permutations. Its symmetry allows the determinant to be analyzed through the associated convolution operator on the regular representation of $S_6$, but the target object is still the determinant of a concrete finite matrix, so Linear Algebra -> Determinants is the primary classification.
