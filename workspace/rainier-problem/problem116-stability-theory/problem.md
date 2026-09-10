@@ -4,10 +4,10 @@
 
 Let $a,b\in\mathbb{R}$. Consider the planar polynomial system
 $$
-\dot x=-x^3+3x^2y^2-3xy^4+y^6-2y^4+2y^3+(a-2b)y^2-2xy-ax-y,
+\dot x=y,
 $$
 $$
-\dot y=-x-y^3+y^2-by.
+\dot y=-x^5-a x^3-b x^2-x-(1+x^2)y.
 $$
 Determine all pairs $(a,b)$ for which the equilibrium $(0,0)$ is globally asymptotically stable; that is, it is Lyapunov stable and every solution with initial data in $\mathbb{R}^2$ exists for all $t\geq0$ and converges to $(0,0)$ as $t\to\infty$.
 
@@ -26,4 +26,4 @@ Determine all pairs $(a,b)$ for which the equilibrium $(0,0)$ is globally asympt
 
 ## Domain Explanation
 
-This problem asks for the exact global-stability region of a planar polynomial system. A nonlinear polynomial coordinate exposes a coupled gradient flow, and the answer depends on a positive-semidefinite quadratic form together with quartic coercivity, including a nonhyperbolic boundary case.
+This is a polynomial damped-oscillator system. Global asymptotic stability is controlled by a mechanical-energy Lyapunov function, but determining the exact parameter region requires characterizing when the quartic restoring factor $x^4+a x^2+b x+1$ is strictly positive on the whole real line.
