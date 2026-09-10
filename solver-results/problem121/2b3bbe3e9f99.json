@@ -1,0 +1,22 @@
+{
+  "problem": "problem121",
+  "branch": "adversary/problem121",
+  "problem_path": "workspace/rainier-problem/problem121-matrix-decompositions-and-canonical-forms/problem.md",
+  "source_commit_sha": "a8da4cc5b6570030d220ee28c186c826d9567e00",
+  "problem_blob_sha": "2b3bbe3e9f997ba9ce4b30020369da5b52028a20",
+  "statement_sha256": "f1f15aed11fcd1e1bcd0bb3300192da0e3bd0e5962a9f05630070829d488d9a3",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T12:29:24+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(m=\\binom n2\\). The Smith normal form is\n\\[\n\\boxed{\n\\operatorname{diag}\\Bigl(\n\\underbrace{1,\\ldots,1}_{n},\n\\,4,\\,\n\\underbrace{2n,\\ldots,2n}_{m-n-1},\n\\underbrace{2n(n+1),\\ldots,2n(n+1)}_{n-1},\n\\,0\n\\Bigr)\n}\n\\]\nfor every even \\(n\\ge 6\\).\n\nHere is the derivation. Interpret \\(L_n\\) as a presentation matrix with generators \\(x_i\\) for vertices and \\(y_{ij}\\) for unordered pairs. Make the unimodular change of generators\n\\[\nz_{ij}=y_{ij}-x_i-x_j.\n\\]\nWriting \\(s=\\sum_i x_i\\) and \\(Z_i=\\sum_{j\\ne i}z_{ij}\\), the relations become\n\\[\n(n+1)x_i-2s-Z_i=0,\n\\qquad\n2n z_{ij}+2s=0.\n\\]\nThus the transformed presentation matrix is\n\\[\nM=\n\\begin{pmatrix}\n(n+1)I_n-2J_n&-B_n\\\\\n2\\mathbf 1_{m\\times n}&2nI_m\n\\end{pmatrix}.\n\\]\n\nIt is enough to compute the Smith form prime-locally.\n\nIf \\(p\\mid 2n\\), then \\(n+1\\) and \\(n-1\\) are units in \\(\\mathbb Z_{(p)}\\), and\n\\[\n(n+1)I_n-2J_n\n\\]\nis invertible over \\(\\mathbb Z_{(p)}\\). Taking the Schur complement gives a \\(p\\)-local equivalent matrix\n\\[\n2nI_m-\\frac4{n-1}J_m.\n\\]\nMultiplying by the unit \\(n-1\\), this is equivalent to\n\\[\n4(mI_m-J_m),\n\\qquad m=\\frac{n(n-1)}2.\n\\]\nSince \\(mI_m-J_m\\) has Smith form\n\\[\n\\operatorname{diag}(1,\\underbrace{m,\\ldots,m}_{m-2},0),\n\\]\nthe \\(p\\)-part is\n\\[\n4,\\quad \\underbrace{2n,\\ldots,2n}_{m-2}\n\\]\nbecause \\(4m=2n(n-1)\\) and \\(n-1\\) is a \\(p\\)-local unit.\n\nIf \\(p\\mid n+1\\), then \\(2n\\) is a unit. Taking the other Schur complement gives\n\\[\n(n+1)I_n-\\frac{n+1}{n}J_n\n=\\frac{n+1}{n}(nI_n-J_n).\n\\]\nSince \\(n\\) is a \\(p\\)-local unit and\n\\[\nnI_n-J_n\n\\]\nhas Smith form\n\\[\n\\operatorname{diag}(1,\\underbrace{n,\\ldots,n}_{n-2},0),\n\\]\nthe \\(p\\)-part contributes \\(n-1\\) copies of \\(n+1\\).\n\nThe factors \\(2n\\) and \\(n+1\\) are coprime. Combining the local data in divisibility order gives one extra factor \\(4\\), then \\(m-n-1\\) factors \\(2n\\), and pairs the remaining \\(n-1\\) factors \\(2n\\) with the \\(n-1\\) factors \\(n+1\\). The matrix has rank \\(n+m-1\\), so there is one final zero and \\(n\\) unit invariant factors. Thus the Smith normal form is exactly\n\\[\n\\operatorname{diag}\\Bigl(\n1^{\\,n},\\,\n4,\\,\n(2n)^{\\,m-n-1},\\,\n(2n(n+1))^{\\,n-1},\\,\n0\n\\Bigr).\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T12:32:33+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem121/2b3bbe3e9f99.json"
+}
