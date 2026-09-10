@@ -1,137 +1,119 @@
 ## Steps
 
-Step 1: Rewrite the matrix as a regular-representation operator
+Step 1: Interpret the matrix as a Temperley-Lieb Gram matrix
 
-For $n\ge1$, define
+Place $12$ labeled points on a circle, and let $\mathcal M_6$ be the set of noncrossing perfect matchings of these points. Its size is the Catalan number
 $$
-a_n=\sum_{\pi\in S_n}2^{\operatorname{inv}(\pi)}\pi\in\mathbb C[S_n].
+|\mathcal M_6|=C_6=132.
 $$
-Let $R(a_n)$ denote right multiplication by $a_n$ on the regular representation. Its matrix in the basis $\{e_\sigma:\sigma\in S_n\}$ has entries
-$$
-2^{\operatorname{inv}(\sigma^{-1}\tau)}.
-$$
-Thus for the problem on $S_5$,
-$$
-A=I+R(a_5).
-$$
+For $P,Q\in\mathcal M_6$, draw the edges of $P$ in one color and those of $Q$ in another. Every vertex has one edge of each color, so the resulting two-colored multigraph is a disjoint union of alternating cycles. Let $\ell(P,Q)$ be its number of connected components.
 
-The regular representation decomposes as
+For an indeterminate $\delta$, define the Gram matrix
 $$
-\mathbb C[S_5]\cong\bigoplus_{\lambda\vdash5}(S^\lambda)^{\oplus f^\lambda},
+G_6(\delta)_{P,Q}=\delta^{\ell(P,Q)}.
 $$
-where $f^\lambda=\dim S^\lambda$. Therefore
-$$
-\det A=\prod_{\lambda\vdash5}\det(I_{f^\lambda}+\rho_\lambda(a_5))^{f^\lambda}.
-$$
-Unlike the unshifted Kendall matrix, knowing only $\det\rho_\lambda(a_5)$ is not enough; the full irreducible block spectrum is needed.
+The required matrix is $G_6(3)$. This is the standard link-pattern Gram form: gluing $P$ to $Q$ produces $\ell(P,Q)$ closed loops, each carrying weight $\delta$.
 
-Step 2: Factor the Mallows element by successive insertions
+Step 2: Orthogonalize by Dyck paths
 
-For $1\le k\le m$, put
+Noncrossing matchings on $2n$ points are in bijection with Dyck paths of semilength $n$: opening an arc gives an up-step and closing it gives a down-step. Define
 $$
-T_{k,m}=s_{m-1}s_{m-2}\cdots s_k,
-\qquad s_i=(i,i+1),
+\Delta_0=1,\qquad \Delta_1=\delta,\qquad
+\Delta_h=\delta\Delta_{h-1}-\Delta_{h-2}\quad(h\ge2).
 $$
-with $T_{m,m}=e$, and define
-$$
-b_m=\sum_{k=1}^{m}2^{m-k}T_{k,m}.
-$$
-Placing the value $m$ in position $k$ creates exactly $m-k$ new inversions, so every permutation of $S_m$ is obtained uniquely from one in $S_{m-1}$. Hence
-$$
-a_m=a_{m-1}b_m,
-$$
-and therefore, inside $\mathbb C[S_5]$,
-$$
-a_5=b_2b_3b_4b_5.
-$$
-Thus each irreducible block can be computed from four small insertion operators rather than from all $120$ permutations separately.
+Equivalently, $\Delta_h=U_h(\delta/2)$, where $U_h$ is the Chebyshev polynomial of the second kind.
 
-Step 3: Compute the seven irreducible block polynomials
+Perform Gram-Schmidt in the Dyck-path order obtained by resolving caps from left to right. The change of basis is triangular with diagonal entries $1$. At a down-step from height $h$ to $h-1$, the local orthogonalization multiplies the squared norm by
+$$
+\delta-\frac{\Delta_{h-2}}{\Delta_{h-1}}
+=\frac{\Delta_h}{\Delta_{h-1}}.
+$$
+Thus the orthogonal vector attached to a Dyck path $D$ has squared norm
+$$
+\prod_{d\in\operatorname{Down}(D)}
+\frac{\Delta_{h(d)}}{\Delta_{h(d)-1}},
+$$
+where $h(d)$ is the height before the down-step. Since the basis change has determinant $1$, the Gram determinant is the product of these norms over all Dyck paths.
 
-Use Young's seminormal basis $\{v_T\}$ of $S^\lambda$. If
-$$
-r_i(T)=c_T(i+1)-c_T(i),
-$$
-where $c_T(j)$ is the content of the box containing $j$, then
-$$
-\rho_\lambda(s_i)v_T
-=\frac1{r_i(T)}v_T
-+\sqrt{1-\frac1{r_i(T)^2}}\,v_{s_iT}
-$$
-when $s_iT$ is standard; in the same-row or same-column cases the second term is absent. Hence every $\rho_\lambda(T_{k,m})$, every $\rho_\lambda(b_m)$, and finally
-$$
-M_\lambda=\rho_\lambda(a_5)
-=\rho_\lambda(b_2)\rho_\lambda(b_3)\rho_\lambda(b_4)\rho_\lambda(b_5)
-$$
-are determined exactly.
+Step 3: Count how often each height occurs
 
-Writing $p_\lambda(t)=\det(tI-M_\lambda)$, exact multiplication gives
+Let $D_{n,h}$ be the total number of down-steps from height $h$ among all Dyck paths of semilength $n$.
 
-| $\lambda$ | $f^\lambda$ | $p_\lambda(t)$ |
-|---|---:|---|
-| $(5)$ | $1$ | $t-9765$ |
-| $(4,1)$ | $4$ | $(t^2-3024t+1250235)(t^2+6804t+6251175)$ |
-| $(3,2)$ | $5$ | $(t^2+1782t+464373)(t^3-3951t^2+2631447t-321810489)$ |
-| $(3,1,1)$ | $6$ | $(t^2-1350t+321489)(t^4+3288t^3+3185406t^2+1126130040t+112104821745)$ |
-| $(2,2,1)$ | $5$ | $(t^2+702t+85293)(t^3-1719t^2+706887t-71390241)$ |
-| $(2,1,1,1)$ | $4$ | $(t^2-756t+98415)(t^2+504t+54675)$ |
-| $(1^5)$ | $1$ | $t-165$ |
-
-Step 4: Evaluate the shifted block determinants
-
-Since
+A Dyck path with one marked down-step at height $h$ decomposes into $2h+1$ ordinary Dyck subpaths together with $h$ forced up/down pairs. Hence its generating function is
 $$
-\det(I+M_\lambda)=(-1)^{f^\lambda}p_\lambda(-1),
+z^h C(z)^{2h+1},
 $$
-the seven factors are
-
-| $\lambda$ | $f^\lambda$ | $\det(I+M_\lambda)$ |
-|---|---:|---:|
-| $(5)$ | $1$ | $9766$ |
-| $(4,1)$ | $4$ | $7825821652720$ |
-| $(3,2)$ | $5$ | $150086072221696$ |
-| $(3,1,1)$ | $6$ | $35829388145340160$ |
-| $(2,2,1)$ | $5$ | $6098985750016$ |
-| $(2,1,1,1)$ | $4$ | $5372345584$ |
-| $(1^5)$ | $1$ | $166$ |
-
-The hook-length dimensions satisfy
+where $C(z)=1+zC(z)^2$ is the Catalan generating function. By Lagrange inversion,
 $$
-1^2+4^2+5^2+6^2+5^2+4^2+1^2=120,
+[z^m]C(z)^r=\frac{r}{2m+r}\binom{2m+r}{m}.
 $$
-so all regular-representation blocks are accounted for.
-
-Step 5: Multiply with regular multiplicities
-
+Taking $m=n-h$ and $r=2h+1$ gives
+$$
+D_{n,h}
+=\binom{2n}{n-h}-\binom{2n}{n-h-1}.
+$$
+Therefore the exponent of $\Delta_h$ in the determinant is
+$$
+e_{n,h}=D_{n,h}-D_{n,h+1},
+$$
+so
+$$
+e_{n,h}
+=\binom{2n}{n-h}-2\binom{2n}{n-h-1}
++\binom{2n}{n-h-2}.
+$$
 Thus
 $$
-\det A
-=9766\,(7825821652720)^4(150086072221696)^5(35829388145340160)^6
-(6098985750016)^5(5372345584)^4\,166.
+\det G_n(\delta)=\prod_{h=1}^n \Delta_h^{e_{n,h}}.
 $$
-Grouping factors with the same regular multiplicity,
+
+Step 4: Specialize the exponents to $n=6$
+
+For $n=6$,
 $$
-9766\cdot166=1621156,
+(e_{6,1},e_{6,2},e_{6,3},e_{6,4},e_{6,5},e_{6,6})
+=(22,121,100,43,10,1).
 $$
+Hence
 $$
-7825821652720\cdot5372345584=42043018397161873588480,
+\det G_6(\delta)
+=\Delta_1^{22}\Delta_2^{121}\Delta_3^{100}
+\Delta_4^{43}\Delta_5^{10}\Delta_6.
 $$
+
+Step 5: Evaluate at loop weight $\delta=3$
+
+The recurrence gives
 $$
-150086072221696\cdot6098985750016=915372815755996121987547136.
+\Delta_1=3,\quad
+\Delta_2=8,\quad
+\Delta_3=21,\quad
+\Delta_4=55,\quad
+\Delta_5=144,\quad
+\Delta_6=377.
 $$
 Therefore
 $$
 \det A
-=1621156(42043018397161873588480)^4(915372815755996121987547136)^5(35829388145340160)^6.
+=3^{22}8^{121}21^{100}55^{43}144^{10}377.
+$$
+Using
+$$
+8=2^3,\quad21=3\cdot7,\quad55=5\cdot11,
+\quad144=2^4 3^2,\quad377=13\cdot29,
+$$
+we obtain
+$$
+\det A=2^{403}3^{142}5^{43}7^{100}11^{43}13\cdot29.
 $$
 
-Final Answer: $\boxed{1621156(42043018397161873588480)^4(915372815755996121987547136)^5(35829388145340160)^6}$
+Final Answer: $\boxed{2^{403}3^{142}5^{43}7^{100}11^{43}13\cdot29}$
 
 ---
 
 ## Answer
 
-$1621156(42043018397161873588480)^4(915372815755996121987547136)^5(35829388145340160)^6$
+$2^{403}3^{142}5^{43}7^{100}11^{43}13\cdot29$
 
 ---
 
@@ -145,14 +127,14 @@ $1621156(42043018397161873588480)^4(915372815755996121987547136)^5(3582938814534
 
 ## Solution Concepts
 
-- regularized Kendall-tau kernel
-- regular representation block decomposition
-- Mallows insertion factorization
-- Young seminormal representations
-- irreducible block characteristic polynomials
+- Temperley-Lieb link-pattern Gram matrix
+- noncrossing matchings and Dyck paths
+- Chebyshev/Jones-Wenzl norm recurrence
+- Catalan marked-step enumeration
+- Gram determinant from an orthogonal path basis
 
 ---
 
 ## Black-Box Audit - no issues found
 
-The matrix is the identity-regularized exponential Kendall-tau kernel, a canonical modification of the standard Mallows/Kendall kernel. The identity shift is load-bearing: the known Varchenko determinant of the unshifted kernel no longer determines the answer, and one must recover the actual noncentral irreducible block spectra. The difficulty comes from combining the natural insertion factorization with symmetric-group representation blocks, not from tuned constants, cancellation devices, or enlarged bookkeeping.
+The matrix is the canonical Gram matrix of planar pairings with loop weight $3$. The same matrix arises from pair-contraction tensors in a $3$-dimensional space, so the loop parameter is intrinsic rather than tuned. Difficulty comes from planar orthogonalization and Catalan path enumeration, not from enlarging a case table, inserting cancellation gadgets, or reusing the symmetric-group regular-representation shortcuts of earlier candidates.
