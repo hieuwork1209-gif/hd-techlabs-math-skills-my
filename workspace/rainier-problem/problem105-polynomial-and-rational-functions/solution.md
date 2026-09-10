@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Convert partial spreads to compatible alternating forms.
+Step 1: Convert the partial-spread condition to alternating matrices.
 
 Write
 $$
@@ -39,181 +39,161 @@ p(A)=\operatorname{Pf}(A)\in\mathbb F_2.
 $$
 Since $\det A=p(A)^2=p(A)$ in $\mathbb F_2$, $A$ is invertible exactly when $p(A)=1$.
 
-Thus a $5$-element partial spread containing $X$ and $Y$ corresponds exactly to an unordered triple $\{A,B,C\}\subset\mathcal A$ such that
+Thus a $6$-element partial spread containing $X$ and $Y$ corresponds exactly to an unordered set
 $$
-p(A)=p(B)=p(C)=p(A+B)=p(A+C)=p(B+C)=1. \tag{2}
+\{A,B,C,D\}\subset\mathcal A
 $$
+such that every one of
+$$
+A,B,C,D,A+B,A+C,A+D,B+C,B+D,C+D
+$$
+has Pfaffian $1$. \tag{2}
 
-Step 2: Count the first two forms by a Pfaffian correlation.
+Step 2: Record the one-, two-, and three-form compatibility counts.
 
 The number of nondegenerate alternating forms is
 $$
 N_1=\frac{|GL_6(2)|}{|Sp_6(2)|}=13888. \tag{3}
 $$
-Define
+Put
 $$
 \varepsilon(T)=(-1)^{p(T)}.
 $$
-Because $|\mathcal A|=2^{15}=32768$, equation (3) gives
+Since $|\mathcal A|=2^{15}=32768$,
 $$
-S:=\sum_{T\in\mathcal A}\varepsilon(T)
-=32768-2\cdot13888
-=4992. \tag{4}
+S:=\sum_T\varepsilon(T)=32768-2\cdot13888=4992. \tag{4}
 $$
 
-Fix a nondegenerate form $A$. By congruence we may take
+Fix a nondegenerate $A$. By congruence take
 $$
 A=J:=E_{12}+E_{34}+E_{56},
 $$
-where $E_{ij}$ has ones in positions $(i,j)$ and $(j,i)$. Writing an arbitrary alternating matrix as $(x_{ij})$, direct expansion of the Pfaffian gives
+where $E_{ij}$ has ones in positions $(i,j)$ and $(j,i)$. Direct expansion of the cubic Pfaffian gives the two-point correlation
 $$
-\begin{aligned}
-p(T)+p(T+J)
-={}&1+x_{12}+x_{34}+x_{56}
-+x_{12}x_{34}+x_{12}x_{56}+x_{34}x_{56}\\
-&+x_{13}x_{24}+x_{14}x_{23}+x_{15}x_{26}
-+x_{16}x_{25}+x_{35}x_{46}+x_{36}x_{45}.
-\end{aligned} \tag{5}
+R:=\sum_T\varepsilon(T)\varepsilon(T+J)=256. \tag{5}
 $$
-The six disjoint product pairs in the second line each contribute
+Hence the number of $B$ for which $B$ and $A+B$ are both nondegenerate is
 $$
-\sum_{u,v\in\mathbb F_2}(-1)^{uv}=2,
-$$
-while the remaining sum over $(x_{12},x_{34},x_{56})$ equals $4$. Hence
-$$
-R(A):=\sum_T\varepsilon(T)\varepsilon(T+A)=2^6\cdot4=256. \tag{6}
-$$
-Therefore the number of $B$ for which both $B$ and $A+B$ are nondegenerate is
-$$
-N_2
-=\frac14\sum_T(1-\varepsilon(T))(1-\varepsilon(T+A))
-=\frac{32768-2\cdot4992+256}{4}
-=5760. \tag{7}
+N_2=\frac14\left(32768-2S+R\right)=5760. \tag{6}
 $$
 
-Step 3: Identify the second Pfaffian polarization for a compatible pair.
-
-Fix $A,B$ satisfying
+Now suppose $A,B,A+B$ are all nondegenerate. The second Pfaffian difference
 $$
-p(A)=p(B)=p(A+B)=1.
+\lambda_{A,B}(T)=p(T)+p(T+A)+p(T+B)+p(T+A+B)+1
 $$
-The second difference of the cubic Pfaffian is affine linear, so
+is linear in $T$. Under the coordinate pairing on alternating matrices, its representing alternating form is nondegenerate. To see this it is enough to put $A=J$. The compatible $B$ split into the two symplectic-pencil types
 $$
-\lambda_{A,B}(T)
-:=p(T)+p(T+A)+p(T+B)+p(T+A+B)+1 \tag{8}
-$$
-is a linear functional on $\mathcal A$.
-
-We need one structural fact: for every such compatible pair, the alternating matrix representing $\lambda_{A,B}$ under the coordinate pairing
-$$
-\langle D,T\rangle=\sum_{i<j}d_{ij}t_{ij}
-$$
-is nondegenerate.
-
-To verify this, first use congruence to put $A=J$. The Pfaffian polynomial of the pencil
-$$
-f(t)=p(B+tJ)
-$$
-is a monic cubic with $f(0)=f(1)=1$, hence
-$$
-f(t)=t^3+t+1
+p(B+tJ)=t^3+t+1
 \quad\text{or}\quad
-f(t)=t^3+t^2+1. \tag{9}
+p(B+tJ)=t^3+t^2+1,
 $$
-Both are irreducible over $\mathbb F_2$. Put $T=J^{-1}B$. Since $B$ is alternating, $T$ is self-adjoint for the symplectic form $J$, and
-$$
-\det(B+tJ)=f(t)^2.
-$$
-The self-adjoint primary decomposition pairs equal cyclic blocks, so in this degree-$3$ irreducible case the space is $2$-dimensional over $\mathbb F_8=\mathbb F_2[t]/(f)$. The form $J$ is then the trace of a nondegenerate alternating $\mathbb F_8$-form on $\mathbb F_8^2$, which is unique up to change of $\mathbb F_8$-basis. Thus (9) gives exactly two congruence types of compatible ordered pairs.
-
-Representatives are
+and representatives are
 $$
 B_1=E_{13}+E_{16}+E_{24}+E_{35},
 \qquad
-B_2=E_{12}+E_{16}+E_{24}+E_{35}. \tag{10}
+B_2=E_{12}+E_{16}+E_{24}+E_{35}.
 $$
-A direct Pfaffian expansion gives
-$$
-p(B_1+tJ)=t^3+t+1,
-\qquad
-p(B_2+tJ)=t^3+t^2+1,
-$$
-and the two linear forms in (8) are represented respectively by
-$$
-D_1=E_{13}+E_{24}+E_{25}+E_{46},
-$$
-$$
-D_2=E_{13}+E_{25}+E_{34}+E_{46}+E_{56}. \tag{11}
-$$
-Both have Pfaffian $1$, so both are nondegenerate. This proves the claim for every compatible pair.
+For these two representatives the forms representing $\lambda_{J,B_i}$ have Pfaffian $1$.
 
-Step 4: Evaluate the three-form compatibility count by a Walsh sum.
-
-For a linear functional represented by a nondegenerate alternating matrix $D$, define
+The Walsh transform of the Pfaffian at any nondegenerate alternating form is
 $$
-W(D)=\sum_{T\in\mathcal A}(-1)^{p(T)+\langle D,T\rangle}.
+W=128.
 $$
-All nondegenerate $D$ are equivalent under the dual congruence action, so it suffices to take $D=J$.
-
-Expand the Pfaffian along the first row and sum first over the five variables $x_{12},\ldots,x_{16}$. The sum vanishes unless the vector of the five $4\times4$ Pfaffian minors of the submatrix on vertices $2,\ldots,6$ is $(1,0,0,0,0)$. This means that vertex $2$ is its unique radical vector, so the four edges from $2$ to $3,4,5,6$ vanish and the alternating $4\times4$ block on $3,4,5,6$ is nondegenerate. Consequently
+Therefore, after shifting by $A+B$,
 $$
-W(J)=32\sum_{Z\in\operatorname{Alt}_4(2)\atop p(Z)=1}(-1)^{z_{34}+z_{56}}. \tag{12}
+Q:=\sum_T\varepsilon(T)\varepsilon(T+A)\varepsilon(T+B)=-128. \tag{7}
 $$
-Write
+It follows that for every compatible ordered pair $(A,B)$ the number of $C$ for which
 $$
-a=z_{34},\qquad f=z_{56},\qquad
-u=z_{35}z_{46},\qquad v=z_{36}z_{45}.
+C,\ A+C,\ B+C
 $$
-Then $p(Z)=af+u+v$. If $af=0$, the condition $p(Z)=1$ leaves $6$ choices of the other four entries, and the three possibilities for $(a,f)$ have signs $+,-,-$, contributing $-6$. If $af=1$, there are $10$ choices and the sign is $+$, contributing $10$. Thus the inner sum in (12) is $4$, and
+are all nondegenerate is
 $$
-W(D)=W(J)=128 \tag{13}
-$$
-for every nondegenerate $D$.
-
-Now put
-$$
-Q(A,B)=\sum_T\varepsilon(T)\varepsilon(T+A)\varepsilon(T+B).
-$$
-Since $p(A)=p(B)=p(A+B)=1$, equation (8) gives
-$$
-\varepsilon(T)\varepsilon(T+A)\varepsilon(T+B)\varepsilon(T+A+B)
-=-(-1)^{\lambda_{A,B}(T)}. \tag{14}
-$$
-Also $\lambda_{A,B}(A+B)=0$. Shifting $T$ by $A+B$ in (14), and using Step 3 and (13), yields
-$$
-Q(A,B)=-128. \tag{15}
+N_3
+=\frac18\left(32768-3S+3R-Q\right)
+=2336. \tag{8}
 $$
 
-Hence, for every compatible ordered pair $(A,B)$, the number of $C$ satisfying the four remaining nondegeneracy conditions in (2) is
+Step 3: The fourth-form extension is no longer uniform.
+
+Fix a compatible triple $A,B,C$, and define the fourfold correlation
+$$
+H(A,B,C)
+=\sum_{T\in\mathcal A}
+\varepsilon(T)\varepsilon(T+A)\varepsilon(T+B)\varepsilon(T+C). \tag{9}
+$$
+Then the number $E(A,B,C)$ of matrices $D$ compatible with all three is
 $$
 \begin{aligned}
-N_3
-&=\frac18\sum_T
-(1-\varepsilon(T))(1-\varepsilon(T+A))(1-\varepsilon(T+B))\\
-&=\frac18\left(32768-3\cdot4992+3\cdot256-(-128)\right)\\
-&=2336. \tag{16}
+E(A,B,C)
+&=\frac1{16}\sum_T
+(1-\varepsilon(T))(1-\varepsilon(T+A))
+(1-\varepsilon(T+B))(1-\varepsilon(T+C))\\
+&=\frac1{16}\left(32768-4S+6R-4Q+H(A,B,C)\right)\\
+&=928+\frac{H(A,B,C)}{16}. \tag{10}
 \end{aligned}
 $$
 
-Step 5: Count unordered triples.
+It remains to determine the possible values of $H$. Put $A=J$. The $5760$ compatible choices of $B$ form two $Sp_6(2)$-orbits, each of size $2880$, represented by $B_1,B_2$ above. For either representative and any of the $2336$ compatible choices of $C$, the exponent
+$$
+g_C(T)=p(T)+p(T+J)+p(T+B)+p(T+C) \tag{11}
+$$
+is a quadratic polynomial in the $15$ coordinates of $T$.
 
-By (3), (7), and (16), the number of ordered triples $(A,B,C)$ satisfying (2) is
+For a quadratic polynomial over $\mathbb F_2$, its character sum is zero unless its linear part vanishes on the radical of its polar form; in the nonzero case its absolute value is determined by the rank of that polar form. Expanding (11) and row-reducing its $15\times15$ polar matrix gives the following complete classification, identical for $B_1$ and $B_2$:
 $$
-13888\cdot5760\cdot2336.
+\begin{array}{c|r|r}
+\text{polar rank of }g_C&H(A,B,C)&\#C\\ \hline
+0&0&1\\
+6&0&63\\
+10&-1024&84\\
+10&0&1260\\
+14&0&928.
+\end{array} \tag{12}
 $$
-All three matrices are distinct because every pairwise sum is nondegenerate. Therefore each unordered triple is counted $3!=6$ times. The number of $5$-element partial spreads containing $X$ and $Y$ is
+The five counts sum to $2336$, as required by (8). Thus exactly $84$ choices of $C$ have
 $$
-\frac{13888\cdot5760\cdot2336}{6}
-=31144673280.
+E(A,B,C)=864,
+$$
+while the remaining
+$$
+2336-84=2252
+$$
+have
+$$
+E(A,B,C)=928. \tag{13}
+$$
+This is the first genuinely nonuniform compatibility level.
+
+Step 4: Count compatible four-sets containing a fixed first form.
+
+Fix a compatible ordered pair $(A,B)$. An unordered pair $\{C,D\}$ extending it is counted twice if we first choose $C$ and then $D$. By (13), the number is therefore
+$$
+\frac{84\cdot864+2252\cdot928}{2}
+=1081216. \tag{14}
 $$
 
-Final Answer: $\boxed{31144673280}$
+Now fix $A$. There are $5760$ choices of $B$. Each unordered compatible triple $\{B,C,D\}$ is counted three times according to which member is designated as $B$. Hence the number of unordered compatible triples extending a fixed $A$ is
+$$
+\frac{5760\cdot1081216}{3}
+=2075934720. \tag{15}
+$$
+
+Step 5: Remove the distinguished first form.
+
+There are $13888$ possibilities for $A$. Every unordered compatible four-set $\{A,B,C,D\}$ is counted once for each of its four members when one member is distinguished as $A$. Therefore the number of $6$-element partial spreads containing $X$ and $Y$ is
+$$
+\frac{13888\cdot2075934720}{4}
+=7207645347840.
+$$
+
+Final Answer: $\boxed{7207645347840}$
 
 ---
 
 ## Answer
 
-31144673280
+7207645347840
 
 ---
 
@@ -228,9 +208,9 @@ Answer Type: Integer
 ## Solution Concepts
 
 - partial spreads in hyperbolic finite geometry
-- alternating-matrix graph model
-- Pfaffian cubic and its polarizations
-- Walsh correlation of the Pfaffian
+- alternating-matrix compatibility graph
+- Pfaffian cubic correlations
+- quadratic Gauss sums over $\mathbb F_2$
 - symplectic pencil classification
 
 ---
