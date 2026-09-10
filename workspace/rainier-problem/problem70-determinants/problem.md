@@ -2,15 +2,16 @@
 
 ## LaTeX (Normalized)
 
-Place $12$ labeled points on a circle, and let $\mathcal M$ be the set of noncrossing perfect matchings of these points. Thus $|\mathcal M|=C_6=132$.
-
-For $P,Q\in\mathcal M$, superimpose the two matchings as a two-colored multigraph, using one copy of each edge from $P$ and one copy of each edge from $Q$. Let $\ell(P,Q)$ be the number of connected components of this multigraph.
-
-Index the rows and columns of a $132\times132$ matrix $A$ by $\mathcal M$, and define
+Index the rows and columns of a $1024\times1024$ matrix $A$ by the subsets of $[10]=\{1,\dots,10\}$. For subsets $S,T\subseteq[10]$, define
 $$
-A_{P,Q}=3^{\ell(P,Q)}.
+A_{S,T}=
+\begin{cases}
+11+|S|(10-|S|),&S=T,\\
+-1,&|S\triangle T|=1,\\
+0,&\text{otherwise},
+\end{cases}
 $$
-Determine $\det A$.
+where $S\triangle T$ denotes symmetric difference. Determine $\det A$.
 
 ---
 
@@ -27,4 +28,4 @@ Determine $\det A$.
 
 ## Domain Explanation
 
-The matrix is the Gram matrix of planar link patterns with loop weight $3$, equivalently a Temperley-Lieb Gram matrix. Its determinant is controlled by an orthogonal Dyck-path basis and the associated Chebyshev/Jones-Wenzl norm recurrence, while the target is the exact determinant of a concrete finite matrix. Hence Linear Algebra -> Determinants is the primary classification.
+The matrix is $I+L+V$ on the $10$-dimensional hypercube, where $L$ is the graph Laplacian and $V(S)=|S|(10-|S|)$ is the radial potential equal to the edge-boundary size of the subset $S$. Its exact determinant is obtained by decomposing the Boolean lattice into symmetric chains and evaluating the resulting tridiagonal blocks, so Linear Algebra -> Determinants is the primary classification.
