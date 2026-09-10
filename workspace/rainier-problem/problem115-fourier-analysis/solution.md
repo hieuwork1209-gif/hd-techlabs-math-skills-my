@@ -10,126 +10,120 @@ Its polar form is $\omega$. Since $f(0)=1$, write uniquely $f(z)=(-1)^{q(z)}$ wi
 $$
 q(r+s)=q(r)+q(s)+\omega(r,s).
 $$
-Hence $q+q_0$ is linear. Therefore every admissible function is uniquely
+Thus $q+q_0$ is linear, so every admissible function is uniquely
 $$
 f_{a,b}(x,y)=(-1)^{x\cdot y+a\cdot x+b\cdot y},
 \qquad a,b\in E.
 $$
-Conversely every $f_{a,b}$ satisfies the required four-point identity.
+Conversely every $f_{a,b}$ satisfies the four-point identity.
 
 Step 2: Compute the Walsh--Fourier transform
 
 For $(u,v)\in V$,
 $$
 (\mathcal Ff_{a,b})(u,v)
-=2^{-64}\sum_{x,y\in E}
+=2^{-31}\sum_{x,y\in E}
 (-1)^{x\cdot y+a\cdot x+b\cdot y+x\cdot v+y\cdot u}.
 $$
-For fixed $y$, the sum over $x$ vanishes unless $y=a+v$, when it equals $2^{64}$. Thus
+For fixed $y$, the sum over $x$ vanishes unless $y=a+v$, when it equals $2^{31}$. Hence
 $$
 (\mathcal Ff_{a,b})(u,v)
-=(-1)^{(a+v)\cdot(b+u)}
 =(-1)^{a\cdot b}f_{a,b}(u,v).
 $$
 
-Step 3: Translate $Tf_{a,b}=f_{a,b}$ into kernel conditions
+Step 3: Reduce $Tf_{a,b}=f_{a,b}$ to a condition on $\ker A$
 
-The matrices of $A=H_1$ and $C=H_3$ in the standard basis of $E$ are symmetric with zero diagonal. Hence
+The set $H$ is closed under negation because $-1=6^3\pmod{31}$. Therefore $A$ is symmetric, and its diagonal is zero because $0\notin H$. Hence
 $$
-x\cdot Ax=0,\qquad y\cdot Cy=0
+x\cdot Ax=0
 $$
-for all $x,y\in E$. Consequently the two shears
-$$
-U_C(x,y)=(x+Cy,y),\qquad L_A(x,y)=(x,y+Ax)
-$$
-preserve $q_0$, and $S=L_AU_C$ also preserves $q_0$.
+for every $x\in E$.
 
-Using
+Also $2=4^3\pmod{31}$, so $2H=H$. Writing $\tau_hx(t)=x(t+h)$, we have in characteristic $2$
 $$
-S(x,y)=\bigl(x+Cy,\;Ax+(I+AC)y\bigr),
+A^2=\left(\sum_{h\in H}\tau_h\right)^2
+=\sum_{h\in H}\tau_{2h}=A.
 $$
-the linear part of $q_{a,b}(S(x,y))$ is
+Thus
 $$
-(a+Ab)\cdot x+\bigl(Ca+b+CAb\bigr)\cdot y.
-$$
-Thus $q_{a,b}\circ S=q_{a,b}$ exactly when
-$$
-Ab=0,\qquad Ca=0.
-$$
-Indeed, $Ab=0$ makes $CAb=0$. Also $Tf_{a,b}=f_{a,b}$ at $0$ forces $a\cdot b=0$ by Step 2. Therefore we must count
-$$
-(a,b)\in\ker C\times\ker A
-$$
-with $a\cdot b=0$.
-
-Step 4: Compute the two kernel dimensions and their mutual annihilator
-
-Identify $E$ with the group algebra $R=\mathbb F_2[G]$. If $g_i$ is translation by the $i$th standard basis vector and $u_i=g_i+1$, then
-$$
-R\cong\mathbb F_2[u_1,\ldots,u_6]/(u_1^2,\ldots,u_6^2).
-$$
-Let $e_j$ denote the $j$th elementary symmetric polynomial in the $u_i$.
-
-Convolution by the Hamming sphere of radius $1$ is multiplication by
-$$
-\sum_{i=1}^6g_i=\sum_{i=1}^6(1+u_i)=e_1.
-$$
-After a linear change of the square-zero generators taking $e_1$ to one generator, multiplication by $e_1$ has image and kernel of dimension $32$. Hence
-$$
-\dim\ker A=32.
-$$
-
-For radius $3$,
-$$
-\sum_{|S|=3}\prod_{i\in S}(1+u_i)=e_3,
-$$
-because the coefficients in degrees $0,1,2$ are respectively $\binom63,\binom52,\binom41$, all even. Multiplication by $e_3$ raises degree by $3$. Its ranks on degrees $0,1,2,3$ are respectively
-$$
-1,5,5,1.
-$$
-For degree $1$, the coefficient on a $4$-set is the sum of the four corresponding input coefficients, whose kernel is the constant vector. For degree $2$, a basis pair maps to the incidence vector of the four missing-singleton outputs not in that pair; these span the even-weight hyperplane of $\mathbb F_2^6$. The degree-$0$ and degree-$3$ maps plainly have rank $1$. Thus
-$$
-\operatorname{rank}C=12,
+S=L_AU_A,
 \qquad
-\dim\ker C=64-12=52.
+U_A(x,y)=(x+Ay,y),\quad L_A(x,y)=(x,y+Ax).
+$$
+Both shears preserve $q_0$, so $q_0(Sz)=q_0(z)$.
+
+The linear part of $q_{a,b}(S(x,y))$ is
+$$
+(a+Ab)\cdot x+(Aa+b+Ab)\cdot y.
+$$
+Therefore $q_{a,b}\circ S=q_{a,b}$ exactly when
+$$
+Aa=0,\qquad Ab=0.
+$$
+By Step 2, evaluating $Tf_{a,b}=f_{a,b}$ at $0$ also forces $a\cdot b=0$. Hence we must count orthogonal pairs
+$$
+(a,b)\in U\times U,
+\qquad U=\ker A.
 $$
 
-Moreover
-$$
-e_1e_3=0,
-$$
-since every square-free monomial of degree $4$ occurs four times. Hence
-$$
-\operatorname{im}C\subseteq\ker A.
-$$
-Because $C$ is self-adjoint,
-$$
-(\ker C)^\perp=\operatorname{im}C.
-$$
-Therefore
-$$
-\ker A\cap(\ker C)^\perp=\operatorname{im}C
-$$
-has dimension $12$.
+Step 4: Determine $\dim\ker A$
 
-Step 5: Count the orthogonal pairs
-
-There are $2^{12}$ vectors $b\in\ker A$ that annihilate all of $\ker C$; for each of them, all $2^{52}$ choices of $a\in\ker C$ work. For each of the remaining $2^{32}-2^{12}$ choices of $b$, the functional $a\mapsto a\cdot b$ is nonzero on the $52$-dimensional space $\ker C$, so exactly $2^{51}$ choices of $a$ satisfy $a\cdot b=0$.
-
-Hence the number of functions is
+Extend scalars from $\mathbb F_2$ to an algebraic closure, which does not change the rank of $A$. Let $\zeta$ be a primitive $31$st root of unity. The vectors
 $$
-2^{12}2^{52}+(2^{32}-2^{12})2^{51}
-=2^{83}+2^{63}
-=9671415780289070252425216.
+e_j(t)=\zeta^{jt},\qquad j\in\mathbb F_{31},
+$$
+form an eigenbasis for the translation operators, and hence for $A$, with eigenvalues
+$$
+\lambda_j=\sum_{h\in H}\zeta^{jh}.
+$$
+For $j=0$, $\lambda_0=|H|=10=0$ in characteristic $2$.
+
+For $j\ne0$, $\lambda_j$ depends only on the multiplicative coset $jH$. There are three such cosets. Moreover $2H=H$, so
+$$
+\lambda_j^2=\sum_{h\in H}\zeta^{2jh}=\lambda_j,
+$$
+and each of the three coset-values is therefore either $0$ or $1$. Their sum is
+$$
+\sum_{r\in\mathbb F_{31}^{\times}}\zeta^r=1,
+$$
+so an odd number of the three values is $1$. Consequently
+$$
+\operatorname{rank}A\in\{10,30\}.
 $$
 
-Final Answer: $\boxed{9671415780289070252425216}$
+The constant vector $\mathbf1$ lies in $\ker A$, since every row of $A$ has weight $10$. Suppose the rank were $30$. Then $\ker A=\langle\mathbf1\rangle$. Since $A$ is self-adjoint and idempotent,
+$$
+\operatorname{im}A=(\ker A)^\perp
+$$
+would be the even-weight hyperplane, and $A$ would be the projection onto that hyperplane along $\langle\mathbf1\rangle$. Applied to a basis vector $\delta_t$, that projection is $\delta_t+\mathbf1$, which has weight $30$. But $A\delta_t$ is the indicator of a translate of $H$, which has weight $10$, a contradiction. Therefore
+$$
+\operatorname{rank}A=10,
+\qquad
+\dim U=31-10=21.
+$$
+
+Step 5: Count the orthogonal pairs in $U$
+
+Because $A$ is self-adjoint,
+$$
+U^\perp=\operatorname{im}A.
+$$
+Since $A^2=A$, we have $\ker A\cap\operatorname{im}A=0$. Thus the dot product restricted to $U$ is nondegenerate.
+
+For $b=0$, all $2^{21}$ choices of $a\in U$ work. For each nonzero $b\in U$, the functional $a\mapsto a\cdot b$ is nonzero, so exactly $2^{20}$ choices of $a$ are orthogonal to $b$. Hence the number of functions is
+$$
+2^{21}+(2^{21}-1)2^{20}
+=2^{41}+2^{20}
+=2199024304128.
+$$
+
+Final Answer: $\boxed{2199024304128}$
 
 ---
 
 ## Answer
 
-$9671415780289070252425216$
+$2199024304128$
 
 ---
 
@@ -145,9 +139,9 @@ $9671415780289070252425216$
 
 - Walsh--Fourier transform on binary vector spaces
 - quadratic refinements of symplectic forms
-- Hamming-scheme convolution operators
-- square-zero group algebras over $\mathbb F_2$
-- orthogonal-pair counting in binary kernels
+- generalized Paley graph adjacency operators
+- cubic-residue Fourier eigenvalues
+- nondegenerate bilinear pair counting
 
 ---
 
