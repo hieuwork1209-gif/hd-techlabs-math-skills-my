@@ -2,11 +2,20 @@
 
 ## LaTeX (Normalized)
 
-An orientation of a finite graph is called Eulerian if every vertex has equal indegree and outdegree.
+A one-factorization of $K_8$ is a partition of its edge set into seven perfect matchings.
 
-Let $\operatorname{Aut}(K_{6,6})$ act on orientations of $K_{6,6}$ by transporting edge directions along graph automorphisms.
+Two one-factorizations $\mathcal F$ and $\mathcal G$ are called orthogonal if
+$$
+|P\cap Q|\le 1
+$$
+for every perfect matching $P\in\mathcal F$ and every perfect matching $Q\in\mathcal G$.
 
-Among all Eulerian orientations of $K_{6,6}$, determine the multiset of orbit sizes under this action, listed in increasing order.
+On the fixed labeled vertex set $\{1,2,\ldots,8\}$, let $m$ be the largest possible size of a family of pairwise orthogonal one-factorizations of $K_8$, and let $N$ be the number of unordered families of size $m$.
+
+Determine the ordered pair
+$$
+(m,N).
+$$
 
 ---
 
@@ -16,11 +25,11 @@ Among all Eulerian orientations of $K_{6,6}$, determine the multiset of orbit si
 |---|---|
 | **Domain** | Discrete Mathematics and Combinatorics |
 | **Sub-domain** | Graph theory |
-| **Problem Type** | Exhaustive enumeration |
+| **Problem Type** | Optimization |
 | **Answer Type** | Tuple or ordered list |
 
 ---
 
 ## Domain Explanation
 
-The problem counts balanced orientations of a complete bipartite graph modulo its natural automorphism group. Encoding an Eulerian orientation by a regular binary matrix turns part-preserving automorphisms into row and column permutations, while automorphisms exchanging the two parts induce a complement-transpose symmetry; the final count requires classifying the resulting incidence structures and applying orbit-stabilizer.
+The problem concerns decompositions of a complete graph into perfect matchings and compatibility between two such decompositions. Orthogonality converts each second factorization into an exact cover by rainbow perfect matchings relative to the first, while maximal pairwise-orthogonal families are cliques in the resulting compatibility graph.
