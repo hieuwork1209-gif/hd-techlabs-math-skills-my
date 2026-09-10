@@ -6,23 +6,23 @@ Let
 $$
 J=\begin{pmatrix}0&1\\0&0\end{pmatrix},
 \qquad
-N=\operatorname{diag}(J,J,J,J)\in M_8(\mathbb F_2),
+N=\operatorname{diag}(J,J,0,0)\in M_6(\mathbb F_2),
 $$
 and put
 $$
-B=I_8+N.
+B=I_6+N.
 $$
-Determine the exact number of ordered triples
+Determine the exact number of ordered pairs
 $$
-(A,C,D)\in GL_8(\mathbb F_2)^3
+(A,C)\in GL_6(\mathbb F_2)^2
 $$
 satisfying
 $$
-A^2=C^2=D^2=B
+A^2=C^2=B
 $$
 and
 $$
-AC=CA,\qquad AD=DA,\qquad CD=DC.
+AC=CA.
 $$
 
 ---
@@ -40,4 +40,4 @@ $$
 
 ## Domain Explanation
 
-The problem counts pairwise commuting square roots of a fixed nonsemisimple matrix over a finite field. After fixing one root, the other two become square-zero matrices over the finite local ring $\mathbb F_2[t]/(t^4)$, and their mutual commutativity creates a simultaneous-module constraint beyond the Jordan structure of a single operator.
+The problem counts commuting square roots of a fixed nonsemisimple matrix over a finite field. The mixed Jordan type $(2,2,1,1)$ has square roots of three different Jordan types, so the count requires separate centralizer orbits and the square-zero elements in three different endomorphism algebras.
