@@ -2,25 +2,29 @@
 
 ## LaTeX (Normalized)
 
-Let $G=\mathbb F_2^6$, write $|s|$ for Hamming weight, and let $E=\mathbb F_2^G$. For $x,y\in E$ put
+Let $P=\mathbb F_{31}$ and let
 $$
-x\cdot y=\sum_{t\in G}x(t)y(t).
+H=\{t^3:t\in P^\times\}.
 $$
-For $r\in\{1,3\}$ define $H_r:E\to E$ by
+Let $E=\mathbb F_2^P$, with
 $$
-(H_rx)(t)=\sum_{\substack{s\in G\\ |s|=r}}x(t+s).
+x\cdot y=\sum_{t\in P}x(t)y(t).
 $$
-Set $A=H_1$, $C=H_3$, and $V=E\times E$. For $z=(x,y)$ and $w=(u,v)$ define
+Define $A:E\to E$ by
+$$
+(Ax)(t)=\sum_{h\in H}x(t+h).
+$$
+Set $V=E\times E$. For $z=(x,y)$ and $w=(u,v)$ define
 $$
 \omega(z,w)=x\cdot v+y\cdot u.
 $$
 Define $S:V\to V$ by
 $$
-S(x,y)=\bigl(x+Cy,\;Ax+(I+AC)y\bigr).
+S(x,y)=\bigl(x+Ay,\;Ax+(I+A)y\bigr).
 $$
-For $g:V\to\mathbb C$, define
+For $g:V\to\mathbb C$, define the normalized Walsh--Fourier transform
 $$
-(\mathcal Fg)(u,v)=2^{-64}\sum_{x,y\in E}g(x,y)(-1)^{x\cdot v+y\cdot u},
+(\mathcal Fg)(u,v)=2^{-31}\sum_{x,y\in E}g(x,y)(-1)^{x\cdot v+y\cdot u},
 \qquad
 (Tg)(z)=(\mathcal Fg)(Sz).
 $$
@@ -45,4 +49,4 @@ for all $z,r,s\in V$, and also $Tf=f$?
 
 ## Domain Explanation
 
-The problem asks for quadratic sign phases fixed by a normalized Walsh--Fourier transform after a symplectic twist. The Fourier reduction leaves a structured binary linear-algebra problem governed by the distance-$1$ and distance-$3$ operators of the $6$-cube, so Fourier analysis remains the primary subject.
+The problem asks for quadratic sign phases fixed by a normalized Walsh--Fourier transform after a symplectic twist. The fixed-point calculation is controlled by the binary spectrum of the cubic-residue Cayley graph on $\mathbb F_{31}$, so Fourier analysis is the central organizing method.
