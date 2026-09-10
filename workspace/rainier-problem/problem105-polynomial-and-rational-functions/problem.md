@@ -18,7 +18,7 @@ X=\mathbb F_2^6\oplus0,
 \qquad
 Y=0\oplus\mathbb F_2^6.
 $$
-Determine the exact number of $5$-element partial spreads that contain both $X$ and $Y$.
+Determine the exact number of $6$-element partial spreads that contain both $X$ and $Y$.
 
 ---
 
@@ -35,4 +35,4 @@ Determine the exact number of $5$-element partial spreads that contain both $X$ 
 
 ## Domain Explanation
 
-The problem counts partial spreads of generators in the hyperbolic orthogonal space $Q^+(11,2)$. Generators complementary to the two fixed coordinate generators are graphs of nondegenerate alternating forms, and a $5$-element partial spread requires three such forms whose pairwise differences are all nondegenerate. The resulting count depends on higher compatibility in the alternating-forms graph, captured by the Pfaffian cubic and its correlations.
+The problem counts partial spreads of generators in the hyperbolic orthogonal space $Q^+(11,2)$. Generators complementary to the two fixed coordinate generators are graphs of nondegenerate alternating forms. A $6$-element partial spread requires four such forms whose pairwise differences are all nondegenerate, and at this level the extension count depends on a genuinely nonuniform fourfold correlation of the Pfaffian cubic.
