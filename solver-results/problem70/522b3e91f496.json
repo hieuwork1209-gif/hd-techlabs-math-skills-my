@@ -1,0 +1,22 @@
+{
+  "problem": "problem70",
+  "branch": "adversary/problem70",
+  "problem_path": "workspace/rainier-problem/problem70-determinants/problem.md",
+  "source_commit_sha": "92135b0cbcd43924f1f3b25313f922d9678ef62a",
+  "problem_blob_sha": "522b3e91f49660dd4c15ee75a5523b46ed23f82c",
+  "statement_sha256": "a528d4ccd80348f96aaebd848cd27603cd3bf85f2c9ac3c257e78a115f2a5eb8",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T07:59:45+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nf(g)=7^{c(g)}\\qquad(g\\in S_6).\n\\]\nThe matrix is the group convolution matrix\n\\[\nA_{\\sigma,\\tau}=f(\\sigma^{-1}\\tau),\n\\]\nso its determinant is the determinant of right-convolution by the central group-algebra element\n\\[\nC=\\sum_{g\\in S_6}7^{c(g)}g.\n\\]\n\nFor \\(S_n\\), the Jucys-Murphy identity gives\n\\[\n\\sum_{g\\in S_n}x^{c(g)}g\n=\\prod_{k=1}^n\\left(x+\\sum_{i<k}(ik)\\right).\n\\]\nIndeed, when adding \\(n\\), either \\(n\\) is a fixed point, contributing the factor \\(x\\), or \\(n\\) is inserted after one of \\(1,\\dots,n-1\\) in an existing cycle, contributing one transposition \\((i\\,n)\\).\n\nOn the irreducible representation indexed by a partition \\(\\lambda\\vdash n\\), this central element acts by the scalar\n\\[\n\\theta_\\lambda(x)=\\prod_{(i,j)\\in\\lambda}(x+j-i),\n\\]\nthe product over all boxes of the Young diagram. The regular representation contains the irreducible \\(\\lambda\\) with multiplicity \\(f^\\lambda\\), where \\(f^\\lambda\\) is its dimension. Hence\n\\[\n\\det A=\\prod_{\\lambda\\vdash 6}\\theta_\\lambda(7)^{(f^\\lambda)^2}.\n\\]\n\nNow list the partitions of \\(6\\), their dimensions, and \\(\\theta_\\lambda(7)\\):\n\n\\[\n\\begin{array}{c|c|c}\n\\lambda & f^\\lambda & \\theta_\\lambda(7)\\\\ \\hline\n(6)&1&7\\cdot8\\cdot9\\cdot10\\cdot11\\cdot12\\\\\n(5,1)&5&6\\cdot7\\cdot8\\cdot9\\cdot10\\cdot11\\\\\n(4,2)&9&6\\cdot7^2\\cdot8\\cdot9\\cdot10\\\\\n(4,1,1)&10&5\\cdot6\\cdot7\\cdot8\\cdot9\\cdot10\\\\\n(3,3)&5&6\\cdot7^2\\cdot8^2\\cdot9\\\\\n(3,2,1)&16&5\\cdot6\\cdot7^2\\cdot8\\cdot9\\\\\n(3,1,1,1)&10&4\\cdot5\\cdot6\\cdot7\\cdot8\\cdot9\\\\\n(2,2,2)&5&5\\cdot6^2\\cdot7^2\\cdot8\\\\\n(2,2,1,1)&9&4\\cdot5\\cdot6\\cdot7^2\\cdot8\\\\\n(2,1,1,1,1)&5&3\\cdot4\\cdot5\\cdot6\\cdot7\\cdot8\\\\\n(1,1,1,1,1,1)&1&2\\cdot3\\cdot4\\cdot5\\cdot6\\cdot7\n\\end{array}\n\\]\n\nThe dimension check is\n\\[\n1^2+5^2+9^2+10^2+5^2+16^2+10^2+5^2+9^2+5^2+1^2=720,\n\\]\nso all regular-representation eigenspaces are accounted for.\n\nCollecting prime powers gives\n\\[\n\\det A\n=\n2^{3600}3^{1947}5^{795}7^{1188}11^{26}.\n\\]\n\n\\[\n\\boxed{2^{3600}3^{1947}5^{795}7^{1188}11^{26}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T08:00:58+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem70/522b3e91f496.json"
+}
