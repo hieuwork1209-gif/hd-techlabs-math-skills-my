@@ -2,39 +2,24 @@
 
 ## LaTeX (Normalized)
 
-Let $P=\mathbb F_{8191}$ and
+Let $E=\mathbb F_2^8$ with the standard dot product. For every affine permutation
 $$
-H=\{\pm2^i:0\le i<13\}\subset P^\times.
+\pi(y)=My+c,
+\qquad M\in\operatorname{GL}(8,2),\ c\in E,
 $$
-Let $E=\mathbb F_2^P$, with
+and every function $g:E\to\mathbb F_2$ with $g(0)=0$, define
 $$
-x\cdot y=\sum_{t\in P}x(t)y(t).
+f_{\pi,g}(x,y)=(-1)^{x\cdot\pi(y)+g(y)},
+\qquad (x,y)\in E\times E.
 $$
-Define $A,C:E\to E$ by
+For $h:E\times E\to\mathbb C$, define the normalized Walsh--Fourier transform
 $$
-(Ax)(t)=\sum_{h\in H}x(t+h),
-\qquad
-(Cx)(t)=\sum_{h\in H}x(t+3h).
+(\mathcal Fh)(u,v)=2^{-8}\sum_{x,y\in E}h(x,y)(-1)^{x\cdot v+y\cdot u}.
 $$
-Set $V=E\times E$. For $z=(x,y)$ and $w=(u,v)$ define
+How many distinct functions $f_{\pi,g}$ satisfy
 $$
-\omega(z,w)=x\cdot v+y\cdot u.
+\mathcal Ff_{\pi,g}=f_{\pi,g}?
 $$
-Define $S:V\to V$ by
-$$
-S(x,y)=\bigl(x+Cy,\;Ax+(I+AC)y\bigr).
-$$
-For $g:V\to\mathbb C$, define the normalized Walsh--Fourier transform
-$$
-(\mathcal Fg)(u,v)=2^{-8191}\sum_{x,y\in E}g(x,y)(-1)^{x\cdot v+y\cdot u},
-\qquad
-(Tg)(z)=(\mathcal Fg)(Sz).
-$$
-How many functions $f:V\to\{-1,1\}$ satisfy $f(0)=1$,
-$$
-f(z)f(z+r)f(z+s)f(z+r+s)=(-1)^{\omega(r,s)}
-$$
-for all $z,r,s\in V$, and also $Tf=f$?
 
 ---
 
@@ -51,4 +36,4 @@ for all $z,r,s\in V$, and also $Tf=f$?
 
 ## Domain Explanation
 
-The problem asks for quadratic sign phases fixed by a normalized Walsh--Fourier transform after a symplectic twist. The fixed-point count is controlled by the joint binary Fourier spectrum of two cyclotomic Cayley convolution operators on $\mathbb F_{8191}$, so Fourier analysis is the central organizing method.
+The problem asks for the exact number of self-dual functions in the affine Maiorana--McFarland class under the normalized Walsh--Fourier transform. Fourier self-duality turns into an affine-involution condition, and the count then depends on the orbit structure of those involutions, so Fourier analysis is the organizing subject.
