@@ -1,0 +1,22 @@
+{
+  "problem": "problem115",
+  "branch": "adversary/problem115",
+  "problem_path": "workspace/rainier-problem/problem115-fourier-analysis/problem.md",
+  "source_commit_sha": "aba51b34df4c7fb2da0282fa4f2df53f0a2f397f",
+  "problem_blob_sha": "edfe6770b6b8ec8a89c1de5a3bb2250f596f431c",
+  "statement_sha256": "7c10accaff4a7b5d00402e204906855e94773cb4ca4ddb02152cf5c1accffbd6",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T17:46:36+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nf(x,y)=(-1)^{x\\cdot(My+c)+g(y)}.\n\\]\n\nCompute the transform:\n\n\\[\n(\\mathcal F f)(u,v)\n=2^{-8}\\sum_{x,y}(-1)^{x\\cdot(My+c)+g(y)+x\\cdot v+y\\cdot u}.\n\\]\n\nThe sum over \\(x\\) vanishes unless \\(My+c+v=0\\), so\n\n\\[\n(\\mathcal F f)(u,v)\n=(-1)^{g(M^{-1}(v+c))+M^{-1}(v+c)\\cdot u}.\n\\]\n\nThus \\(\\mathcal Ff=f\\) iff, for all \\(u,v\\),\n\n\\[\nM^{-1}(v+c)=Mv+c\n\\]\n\nand\n\n\\[\ng(M^{-1}(v+c))=g(v).\n\\]\n\nHence\n\n\\[\nM^2=I,\\qquad Mc=c,\n\\]\n\nand \\(g\\) is invariant under\n\n\\[\nT(v)=Mv+c.\n\\]\n\nWrite \\(M=I+N\\). Over \\(\\mathbb F_2\\), \\(M^2=I\\) means \\(N^2=0\\). Let \\(r=\\operatorname{rank}N\\), so \\(0\\le r\\le 4\\). The number of such \\(N\\) of rank \\(r\\) is\n\n\\[\nA_r={8\\brack r}_2{8-r\\brack r}_2|\\operatorname{GL}(r,2)|.\n\\]\n\nFor fixed \\(N\\), \\(c\\in\\ker N\\). There are two cases.\n\nIf \\(c\\in\\operatorname{im}N\\), then the affine involution has a fixed point and is conjugate to the linear map \\(v\\mapsto Mv\\). The dimension of invariant quadratic Boolean polynomials with the imposed value condition is\n\n\\[\nd_0(r)=r^2+r+s+rs+\\binom{s}{2},\n\\qquad s=8-2r.\n\\]\n\nIf \\(c\\notin\\operatorname{im}N\\), possible only when \\(s>0\\), a normal form gives\n\n\\[\nd_1(r)=\\frac{r(r+1)}2+r+k+\\binom{k}{2},\n\\qquad k=7-r.\n\\]\n\nSo the total count is\n\n\\[\n\\sum_{r=0}^4\nA_r\\left(2^r2^{d_0(r)}\n+\\bigl(2^{8-r}-2^r\\bigr)2^{d_1(r)}\\right),\n\\]\n\nwith the second term omitted for \\(r=4\\).\n\nThe required values are:\n\n\\[\n\\begin{array}{c|c|c|c}\nr&A_r&d_0(r)&d_1(r)\\\\\n\\hline\n0&1&36&28\\\\\n1&32385&29&23\\\\\n2&42165270&24&20\\\\\n3&2529916200&21&19\\\\\n4&4047865920&20&-\n\\end{array}\n\\]\n\nThis gives\n\n\\[\n\\boxed{147742197217755136}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T17:48:29+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem115/edfe6770b6b8.json"
+}

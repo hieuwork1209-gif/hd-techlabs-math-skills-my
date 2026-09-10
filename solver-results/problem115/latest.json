@@ -2,8 +2,8 @@
   "problem": "problem115",
   "branch": "adversary/problem115",
   "problem_path": "workspace/rainier-problem/problem115-fourier-analysis/problem.md",
-  "problem_blob_sha": "cf968ec6bf964846a754911935e071bf59438195",
-  "source_commit_sha": "f0e2c54ac6d02b1aacb665eb245f96496135dbcb",
+  "problem_blob_sha": "edfe6770b6b8ec8a89c1de5a3bb2250f596f431c",
+  "source_commit_sha": "aba51b34df4c7fb2da0282fa4f2df53f0a2f397f",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-10T17:42:43+00:00",
-  "result_file": "solver-results/problem115/cf968ec6bf96.json"
+  "completed_at": "2026-09-10T17:48:29+00:00",
+  "result_file": "solver-results/problem115/edfe6770b6b8.json"
 }
