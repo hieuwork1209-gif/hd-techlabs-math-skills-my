@@ -4,21 +4,19 @@
 
 Let
 $$
-\operatorname{Alt}_6(2)=\{A\in M_6(\mathbb F_2):A^T=A,\ \operatorname{diag}(A)=0\}.
+\operatorname{Alt}_{24}(2)=\{A\in M_{24}(\mathbb F_2):A^T=A,\ \operatorname{diag}(A)=0\}.
 $$
-Call a $3$-dimensional subspace $W\le \operatorname{Alt}_6(2)$ nonsingular if every nonzero matrix in $W$ is invertible.
+A $2$-dimensional subspace $W\le \operatorname{Alt}_{24}(2)$ is called regular indecomposable if, for some ordered basis $(A,B)$ of $W$, the matrix $A$ is invertible and
+$$
+T=A^{-1}B
+$$
+has irreducible minimal polynomial of degree $12$ over $\mathbb F_2$.
 
-A $3$-dimensional subspace $U\le \mathbb F_2^6$ is a common Lagrangian for $W$ if
-$$
-u^TAv=0
-$$
-for all $u,v\in U$ and all $A\in W$.
-
-The group $GL_6(2)$ acts on such subspaces by simultaneous congruence,
+The group $GL_{24}(2)$ acts on such pencils by simultaneous congruence,
 $$
 g\cdot W=\{g^TAg:A\in W\}.
 $$
-Determine the exact number of $GL_6(2)$-orbits of nonsingular $3$-dimensional subspaces $W\le \operatorname{Alt}_6(2)$ that admit at least one common Lagrangian.
+Determine the exact number of $GL_{24}(2)$-orbits of regular indecomposable $2$-dimensional subspaces of $\operatorname{Alt}_{24}(2)$.
 
 ---
 
@@ -35,4 +33,4 @@ Determine the exact number of $GL_6(2)$-orbits of nonsingular $3$-dimensional su
 
 ## Domain Explanation
 
-The problem asks for a simultaneous-congruence classification of structured spaces of alternating matrices. The common-Lagrangian condition allows the matrices to be reduced to field-valued cross blocks and then to two canonical linearized-polynomial normal forms, so the central task is a matrix canonical-form classification rather than determinant evaluation or finite enumeration.
+The problem is a canonical-form classification of indecomposable pencils of alternating matrices. After one form is normalized, the pencil is controlled by an irreducible degree-$12$ self-adjoint operator, while changing the basis of the pencil induces the natural $PGL_2(2)$ action on its irreducible polynomial. The orbit count is therefore a matrix-pencil canonical-form problem rather than an entrywise matrix computation.
