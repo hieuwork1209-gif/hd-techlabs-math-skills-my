@@ -2,39 +2,27 @@
 
 ## LaTeX (Normalized)
 
-Let $P=\mathbb F_{8191}$ and
+Let $E=\mathbb F_2^8$ with the standard dot product. For every $M\in\operatorname{GL}(8,2)$ and every Boolean polynomial $g:E\to\mathbb F_2$ of algebraic degree at most $2$ with $g(0)=0$ and
 $$
-H=\{\pm2^i:0\le i<13\}\subset P^\times.
+\left|\sum_{y\in E}(-1)^{g(y)+a\cdot y}\right|=16
+\qquad\text{for every }a\in E,
 $$
-Let $E=\mathbb F_2^P$, with
 $$
-x\cdot y=\sum_{t\in P}x(t)y(t).
+\sum_{y\in E}(-1)^{g(y)}=16,
 $$
-Define $A,C:E\to E$ by
+define
 $$
-(Ax)(t)=\sum_{h\in H}x(t+h),
-\qquad
-(Cx)(t)=\sum_{h\in H}x(t+3h).
+f_{M,g}(x,y)=(-1)^{x\cdot My+g(y)},
+\qquad (x,y)\in E\times E.
 $$
-Set $V=E\times E$. For $z=(x,y)$ and $w=(u,v)$ define
+For $h:E\times E\to\mathbb C$, define the normalized Walsh--Fourier transform
 $$
-\omega(z,w)=x\cdot v+y\cdot u.
+(\mathcal Fh)(u,v)=2^{-8}\sum_{x,y\in E}h(x,y)(-1)^{x\cdot v+y\cdot u}.
 $$
-Define $S:V\to V$ by
+How many distinct functions $f_{M,g}$ satisfy
 $$
-S(x,y)=\bigl(x+Cy,\;Ax+(I+AC)y\bigr).
+\mathcal Ff_{M,g}=f_{M,g}?
 $$
-For $g:V\to\mathbb C$, define the normalized Walsh--Fourier transform
-$$
-(\mathcal Fg)(u,v)=2^{-8191}\sum_{x,y\in E}g(x,y)(-1)^{x\cdot v+y\cdot u},
-\qquad
-(Tg)(z)=(\mathcal Fg)(Sz).
-$$
-How many functions $f:V\to\{-1,1\}$ satisfy $f(0)=1$,
-$$
-f(z)f(z+r)f(z+s)f(z+r+s)=(-1)^{\omega(r,s)}
-$$
-for all $z,r,s\in V$, and also $Tf=f$?
 
 ---
 
@@ -51,4 +39,4 @@ for all $z,r,s\in V$, and also $Tf=f$?
 
 ## Domain Explanation
 
-The problem asks for quadratic sign phases fixed by a normalized Walsh--Fourier transform after a symplectic twist. The fixed-point count is controlled by the joint binary Fourier spectrum of two cyclotomic Cayley convolution operators on $\mathbb F_{8191}$, so Fourier analysis is the central organizing method.
+The problem asks for the exact number of self-dual functions in the positive-Walsh quadratic Maiorana--McFarland class. Walsh self-duality forces a linear involution, while the positive bent sign selects one Arf type of nondegenerate quadratic forms, so the count is governed by the interaction of Fourier duality with orthogonal geometry over $\mathbb F_2$.
