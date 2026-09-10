@@ -1,20 +1,91 @@
 ## Steps
 
-Step 1: Reduce the subset-intersection matrix to four integral block types
+Step 1: Derive the integral block decomposition explicitly
 
-Write $V=\mathbb Z^X$. A standard $s$-subset is a set $\beta=\{b_1<\cdots<b_s\}$ with $b_i\geq2i$. For such $\beta$ with $s\leq3$, put
+Write $V=\mathbb Z^X$, let $A$ be the adjacency matrix of the Johnson graph on $X$, and note that
+$$
+L_n=3(n-3)I-A.
+$$
+For an $s$-subset $\beta=\{b_1<\cdots<b_s\}$ with $s\leq3$, call $\beta$ standard if $b_i\geq2i$ for every $i$, and put
 $$
 v_\beta=\sum_{S\in X,\ \beta\subseteq S}e_S.
 $$
-The vectors $v_\beta$ over all standard subsets of size at most $3$ form an integral basis of $V$. One convenient proof is the usual parenthesis matching on characteristic words: each $3$-subset lies in a unique symmetric chain whose lower member is standard, and replacing the level-$3$ basis vector of each chain by the successive containment sums is unitriangular when the chains are ordered by their lower members. Hence the change-of-basis matrix has determinant $\pm1$.
+We first compute $L_nv_\beta$ directly. Fix $T\in X$ and put $j=|T\cap\beta|$. The coefficient of $e_T$ in $Av_\beta$ is the number of $3$-sets $S$ such that $\beta\subseteq S$ and $|S\cap T|=2$.
 
-Group these chains by the size $s$ of their lower member. A direct count of neighbors of a $3$-subset shows that, on a chain starting in rank $s$, the matrix of $L_n$ has diagonal entries
+If $j=s$, then $\beta\subseteq T$. To obtain such an $S$, delete one of the $3-s$ elements of $T\setminus\beta$ and insert one of the $n-3$ elements outside $T$. Thus there are
 $$
-0,\ n,\ 2(n-1),\ 3(n-2)
+(3-s)(n-3)
 $$
-from ranks $0,1,2,3$, and superdiagonal entries $3,4,3$ with the initial entries omitted according to $s$. Row sign changes do not affect Smith form, so $L_n$ is integrally equivalent to
+choices.
+
+If $j=s-1$, then exactly one element of $\beta$ is missing from $T$. That missing element must be inserted, and the deleted element may be any of the
 $$
-M_0\oplus M_1^{\oplus(n-2)}\oplus M_2^{\oplus q}\oplus M_3^{\oplus r},
+3-(s-1)=4-s
+$$
+elements of $T\setminus\beta$. Hence there are $4-s$ choices. If $j\leq s-2$, one swap cannot make a set contain all of $\beta$, so there are no choices.
+
+Now
+$$
+\sum_{\substack{\alpha\subset\beta\\|\alpha|=s-1}}v_\alpha(T)
+=
+\begin{cases}
+s,&j=s,\\
+1,&j=s-1,\\
+0,&j\leq s-2.
+\end{cases}
+$$
+Therefore
+$$
+Av_\beta=(4-s)\sum_{\substack{\alpha\subset\beta\\|\alpha|=s-1}}v_\alpha+
+\bigl((3-s)(n-3)-s(4-s)\bigr)v_\beta,
+$$
+and hence
+$$
+L_nv_\beta=s(n+1-s)v_\beta-(4-s)\sum_{\substack{\alpha\subset\beta\\|\alpha|=s-1}}v_\alpha.\tag{1}
+$$
+Thus the diagonal coefficients for $s=0,1,2,3$ are exactly
+$$
+0,\qquad n,\qquad2(n-1),\qquad3(n-2),
+$$
+while the three adjacent-level coefficients before diagonalizing the inclusion maps are $3,2,1$.
+
+We next make the integral basis reduction explicit. Let $\mu_s$ be the number of standard $s$-subsets, with $\mu_{-1}=0$. A subset is standard exactly when, in every initial segment $\{1,\ldots,t\}$, it contains at most as many chosen positions as unchosen positions. Reflecting the characteristic word up to the first initial segment where this inequality fails gives a bijection from nonstandard $s$-subsets to $(s-1)$-subsets. Hence
+$$
+\mu_s=\binom ns-\binom n{s-1}.\tag{2}
+$$
+In particular,
+$$
+\sum_{s=0}^3\mu_s=\binom n3.
+$$
+The usual parenthesis matching gives an integral containment basis: scan a characteristic word from left to right and pair each chosen position with the nearest unpaired earlier unchosen position. The paired chosen positions form a standard lower member, and changing the unpaired positions from unchosen to chosen gives a symmetric chain. Ordering by these lower members makes the containment-change matrices unitriangular, so all basis changes have determinant $\pm1$.
+
+For $0\leq i<j\leq3$, let $W_{i,j}$ be the $0$-$1$ matrix whose rows and columns are indexed by standard $i$- and $j$-subsets, with entry $1$ when the row subset is contained in the column subset. In the same chain bases these inclusion matrices are simultaneously diagonal: on a chain whose second-stage lower rank is $t$, the coefficient is
+$$
+\binom{j-t}{i-t},
+$$
+because the $t$ fixed elements are already present and one chooses the remaining $i-t$ elements from the $j-t$ free positions. The number of such chains is $\mu_t-\mu_{t-1}$. Therefore the three adjacent inclusion maps have diagonal forms
+$$
+W_{0,1}\sim[1],
+$$
+$$
+W_{1,2}\sim\operatorname{diag}\bigl(2,1^{\,\mu_1-\mu_0}\bigr),
+$$
+$$
+W_{2,3}\sim\operatorname{diag}\bigl(3,2^{\,\mu_1-\mu_0},1^{\,\mu_2-\mu_1}\bigr),
+$$
+with zero columns appended where necessary. Because the same chain bases are used at every level, these three diagonalizations are compatible with one another in (1).
+
+Now group coordinates by $t$. For $t=0$, the adjacent coefficients in (1) are
+$$
+3\cdot1=3,\qquad2\cdot2=4,\qquad1\cdot3=3,
+$$
+which gives the $4\times4$ block $M_0$. For $t=1$ they are
+$$
+2\cdot1=2,\qquad1\cdot2=2,
+$$
+which gives $M_1$. For $t=2$ the only adjacent coefficient is $1\cdot1=1$, giving $M_2$, and for $t=3$ there is only the scalar diagonal block $M_3$. Changing signs of rows removes the minus signs in (1), so $L_n$ is integrally equivalent to
+$$
+M_0\oplus M_1^{\oplus(\mu_1-\mu_0)}\oplus M_2^{\oplus(\mu_2-\mu_1)}\oplus M_3^{\oplus(\mu_3-\mu_2)},
 $$
 where
 $$
@@ -36,11 +107,20 @@ $$
 $$
 M_3=[3(n-2)].
 $$
-The multiplicities are the successive differences
+Finally, using (2),
 $$
-\binom ns-2\binom n{s-1}+\binom n{s-2},
+\mu_0-\mu_{-1}=1,
 $$
-which give $1,n-2,q,r$ for $s=0,1,2,3$.
+$$
+\mu_1-\mu_0=(n-1)-1=n-2,
+$$
+$$
+\mu_2-\mu_1=\binom n2-2n+1=q,
+$$
+$$
+\mu_3-\mu_2=\binom n3-2\binom n2+n=r.
+$$
+This proves both the four block types and their multiplicities.
 
 Step 2: Compute the Smith form of each small block
 
