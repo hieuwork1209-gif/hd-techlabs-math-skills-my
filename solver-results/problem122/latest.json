@@ -2,8 +2,8 @@
   "problem": "problem122",
   "branch": "adversary/problem122",
   "problem_path": "workspace/rainier-problem/problem122-matrix-decompositions-and-canonical-forms/problem.md",
-  "problem_blob_sha": "fb036dfb9d1c958e7b99c7a5ea3724058e7c269c",
-  "source_commit_sha": "5389588c705a55b34b5ba7dbb76e0d8b453d22ca",
+  "problem_blob_sha": "fdf24024e03161c9a6cae13e6ccaaf0ce06fe487",
+  "source_commit_sha": "3f30f98b150bad1d86ca89b8ee80d18f0ee81911",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-10T18:28:50+00:00",
-  "result_file": "solver-results/problem122/fb036dfb9d1c.json"
+  "completed_at": "2026-09-10T18:38:56+00:00",
+  "result_file": "solver-results/problem122/fdf24024e031.json"
 }

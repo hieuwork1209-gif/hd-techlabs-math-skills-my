@@ -1,0 +1,22 @@
+{
+  "problem": "problem122",
+  "branch": "adversary/problem122",
+  "problem_path": "workspace/rainier-problem/problem122-matrix-decompositions-and-canonical-forms/problem.md",
+  "source_commit_sha": "3f30f98b150bad1d86ca89b8ee80d18f0ee81911",
+  "problem_blob_sha": "fdf24024e03161c9a6cae13e6ccaaf0ce06fe487",
+  "statement_sha256": "00ca504a09f7023975f88fdeeda88f8af630ecd3081b6de9c6c7c5a4fe6a125a",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T18:36:31+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "We need count orbits of the possible irreducible degree-12 “eigenvalue data” under change of basis in the pencil.\n\nLet \\(V=\\mathbb F_2^{24}\\). If \\(A\\) is invertible alternating and \\(T=A^{-1}B\\), then \\(T\\) is self-adjoint for the symplectic form \\(A\\). If the minimal polynomial \\(p\\) of \\(T\\) is irreducible of degree \\(12\\), then\n\\[\nV\\simeq K^2,\\qquad K=\\mathbb F_2[t]/(p),\n\\]\nwith \\(T\\) acting as multiplication by \\(\\alpha=t\\bmod p\\).\n\nFor fixed \\(\\alpha\\), all compatible nondegenerate alternating forms are congruent: they are\n\\[\n(x,y)\\mapsto \\operatorname{Tr}_{K/\\mathbb F_2}(c(x_1y_2+x_2y_1)),\\qquad c\\in K^\\times,\n\\]\nand \\(GL_2(K)\\) changes \\(c\\) arbitrarily through its determinant. Thus each irreducible polynomial \\(p\\) gives one ordered-pair class.\n\nBut the subspace \\(W=\\langle A,B\\rangle\\), not an ordered basis, is being classified. Changing the basis of \\(W\\) acts on\n\\[\n\\alpha\n\\]\nby the six fractional linear maps in \\(PGL_2(\\mathbb F_2)\\cong S_3\\):\n\\[\nx,\\ x+1,\\ 1/x,\\ 1/(x+1),\\ x/(x+1),\\ (x+1)/x.\n\\]\nSo the desired number is the number of \\(PGL_2(\\mathbb F_2)\\)-orbits on monic irreducible polynomials of degree \\(12\\).\n\nThere are\n\\[\n\\frac1{12}(2^{12}-2^6-2^4+2^2)=335\n\\]\nirreducible degree-12 polynomials over \\(\\mathbb F_2\\).\n\nBurnside count:\n\n- Identity fixes \\(335\\).\n- Each of the three order-2 maps fixes \\(5\\). For example \\(x\\mapsto x+1\\) fixes a Frobenius orbit when \\(\\alpha^{64}=\\alpha+1\\). This equation has \\(64\\) roots in \\(\\mathbb F_{2^{12}}\\), of which \\(4\\) lie in \\(\\mathbb F_{16}\\), leaving \\(60\\) degree-12 roots, hence \\(60/12=5\\) polynomials.\n- Each of the two order-3 maps fixes \\(2\\). For \\(\\rho(x)=1/(x+1)\\), fixed orbits satisfy either \\(\\alpha^{16}=\\rho(\\alpha)\\) or \\(\\alpha^{256}=\\rho(\\alpha)\\). The first equation is\n\\[\n\\alpha^{17}+\\alpha^{16}+1=0,\n\\]\nwhich has \\(17\\) roots in \\(\\mathbb F_{2^{12}}\\); exactly \\(5\\) are in proper subfields, leaving \\(12\\) degree-12 roots, hence one orbit. The second case similarly gives one more orbit.\n\nTherefore the number of orbits is\n\\[\n\\frac{335+3\\cdot 5+2\\cdot 2}{6}\n=\\frac{354}{6}\n=59.\n\\]\n\n\\[\n\\boxed{59}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T18:38:56+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem122/fdf24024e031.json"
+}
