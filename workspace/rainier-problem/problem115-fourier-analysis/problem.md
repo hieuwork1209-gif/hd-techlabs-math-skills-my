@@ -7,7 +7,12 @@ $$
 \pi(y)=My+c,
 \qquad M\in\operatorname{GL}(8,2),\ c\in E,
 $$
-and every Boolean polynomial $g:E\to\mathbb F_2$ of algebraic degree at most $2$ with $g(0)=0$, define
+and every Boolean polynomial $g:E\to\mathbb F_2$ of algebraic degree at most $2$ with $g(0)=0$ and
+$$
+\left|\sum_{y\in E}(-1)^{g(y)+a\cdot y}\right|=16
+\qquad\text{for every }a\in E,
+$$
+define
 $$
 f_{\pi,g}(x,y)=(-1)^{x\cdot\pi(y)+g(y)},
 \qquad (x,y)\in E\times E.
@@ -36,4 +41,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for the exact number of self-dual quadratic functions in the affine Maiorana--McFarland class under the normalized Walsh--Fourier transform. Fourier self-duality becomes an affine-involution condition, while the quadratic restriction on $g$ forces an invariant-polynomial calculation for those involutions, so Fourier analysis is the organizing subject.
+The problem asks for the exact number of self-dual functions in a quadratic bent Maiorana--McFarland family under the normalized Walsh--Fourier transform. Fourier self-duality forces an affine involution, while the bent condition is equivalent to nondegeneracy of the quadratic polar form, so the count is governed by the interaction of Walsh duality with invariant symplectic geometry.
