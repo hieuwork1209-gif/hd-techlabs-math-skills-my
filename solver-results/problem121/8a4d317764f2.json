@@ -1,0 +1,22 @@
+{
+  "problem": "problem121",
+  "branch": "adversary/problem121",
+  "problem_path": "workspace/rainier-problem/problem121-matrix-decompositions-and-canonical-forms/problem.md",
+  "source_commit_sha": "1132abe3ebc256462bd86a65ba481f015b973794",
+  "problem_blob_sha": "8a4d317764f2bc018875dd82359c23887a5be538",
+  "statement_sha256": "d5a0c80d8f530a6531c44024ca0fde16193aec68a518fc5534dafebdeaced357",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T06:50:25+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\n\\lambda=2(n-1),\\qquad m=\\binom n2 .\n\\]\nThe Smith normal form of \\(M_n\\) is\n\\[\n\\boxed{\n\\operatorname{diag}\\Big(\n\\underbrace{1,\\ldots,1}_{n-1},\n4,\n\\underbrace{2(n-1),\\ldots,2(n-1)}_{\\frac{n^2-5n+2}{2}},\n\\underbrace{2n(n-1),\\ldots,2n(n-1)}_{n-2},\n0\n\\Big).\n}\n\\]\n\n**Solution.**  \nThe matrix \\(B_n^TB_n\\) has diagonal entries \\(2\\), entry \\(1\\) when two edges of \\(K_n\\) meet, and entry \\(0\\) otherwise. Hence\n\\[\nM_n=2(n-2)I-A_{L(K_n)},\n\\]\nthe Laplacian of the line graph \\(L(K_n)\\). Thus \\(M_n\\) has one zero invariant factor.\n\nFirst compute the rational spectrum. Since\n\\[\nB_nB_n^T=(n-2)I_n+J_n,\n\\]\nits eigenvalues are \\(2(n-1)\\) on \\(\\mathbf 1\\), and \\(n-2\\) with multiplicity \\(n-1\\). Therefore \\(B_n^TB_n\\) has nonzero eigenvalues\n\\[\n2(n-1),\\quad \\underbrace{n-2,\\ldots,n-2}_{n-1},\n\\]\nand zero with multiplicity \\(m-n\\). Hence \\(M_n\\) has eigenvalues\n\\[\n0,\\quad \\underbrace{n,\\ldots,n}_{n-1},\\quad\n\\underbrace{2(n-1),\\ldots,2(n-1)}_{m-n}.\n\\]\nSo\n\\[\n\\prod_{i=1}^{m-1} d_i\n=\\frac{1}{m}n^{\\,n-1}\\bigl(2(n-1)\\bigr)^{m-n}\n=4n^{n-2}\\bigl(2(n-1)\\bigr)^{m-n-1}.\n\\]\n\nIt remains to determine the invariant factors. Work prime by prime.\n\nFor primes \\(p\\mid n\\), since \\(p\\nmid 2(n-1)\\), the \\(p\\)-primary part comes from the restriction to the image of \\(B_n^T\\). There \\(M_n\\) is equivalent to\n\\[\nnI_n-J_n,\n\\]\nthe Laplacian of \\(K_n\\), whose Smith form is\n\\[\n\\operatorname{diag}(1,\\underbrace{n,\\ldots,n}_{n-2},0).\n\\]\nThus primes dividing \\(n\\) contribute exactly \\(n-2\\) factors of \\(n\\).\n\nFor odd primes \\(p\\mid n-1\\), reduction modulo \\(p\\) gives rank \\(n\\) for \\(B_n\\), so \\(M_n\\) has \\(m-n\\) dimensional kernel modulo \\(p\\). One of these dimensions is the genuine rational kernel, leaving \\(m-n-1\\) nonzero invariant factors divisible by \\(p\\). Their total \\(p\\)-adic valuation is exactly that of\n\\[\n\\bigl(2(n-1)\\bigr)^{m-n-1},\n\\]\nso these factors contribute \\(2(n-1)\\) in exactly \\(m-n-1\\) places.\n\nFor \\(p=2\\), because \\(n\\) is odd, \\(2(n-1)\\) is divisible by \\(4\\). The mod \\(2\\) rank of \\(B_n\\) is \\(n-1\\), so \\(M_n\\) has \\(m-n+1\\) dimensional kernel mod \\(2\\). Again one dimension is the rational kernel, so there are \\(m-n\\) even nonzero invariant factors. The total \\(2\\)-adic valuation is\n\\[\nv_2\\!\\left(4n^{n-2}\\bigl(2(n-1)\\bigr)^{m-n-1}\\right),\n\\]\nso the \\(2\\)-primary contribution is one factor \\(4\\), together with \\(m-n-1\\) factors \\(2(n-1)\\).\n\nCombining the coprime \\(n\\)-parts with the largest \\(2(n-1)\\)-parts gives the divisibility-ordered invariant factors:\n\\[\n\\underbrace{1,\\ldots,1}_{n-1},\\quad\n4,\\quad\n\\underbrace{2(n-1),\\ldots,2(n-1)}_{m-2n+1},\\quad\n\\underbrace{2n(n-1),\\ldots,2n(n-1)}_{n-2},\\quad\n0.\n\\]\nSince\n\\[\nm-2n+1=\\frac{n^2-5n+2}{2},\n\\]\nthis is exactly the claimed Smith normal form.",
+  "status": "success",
+  "completed_at": "2026-09-10T06:55:52+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem121/8a4d317764f2.json"
+}
