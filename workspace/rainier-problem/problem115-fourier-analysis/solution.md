@@ -1,8 +1,8 @@
 ## Steps
 
-Step 1: Characterize self-duality
+Step 1: Characterize Walsh self-duality
 
-Let $g:E\to\mathbb F_2$ have algebraic degree at most $2$ and $g(0)=0$, and let
+For an affine permutation $\pi$ and an admissible quadratic Boolean function $g$, put
 $$
 f_{\pi,g}(x,y)=(-1)^{x\cdot\pi(y)+g(y)}.
 $$
@@ -12,7 +12,7 @@ $$
 =2^{-8}\sum_{y\in E}(-1)^{g(y)+y\cdot u}
 \sum_{x\in E}(-1)^{x\cdot(\pi(y)+v)}.
 $$
-The inner sum is $2^8$ exactly when $\pi(y)=v$, and is $0$ otherwise. Hence
+The inner sum is $2^8$ exactly when $\pi(y)=v$, and otherwise it is $0$. Hence
 $$
 (\mathcal Ff_{\pi,g})(u,v)
 =(-1)^{u\cdot\pi^{-1}(v)+g(\pi^{-1}(v))}.
@@ -21,17 +21,14 @@ Comparing with
 $$
 f_{\pi,g}(u,v)=(-1)^{u\cdot\pi(v)+g(v)}
 $$
-for all $u,v$ shows that
+for every $u,v$ shows that
 $$
 \mathcal Ff_{\pi,g}=f_{\pi,g}
-$$
-if and only if
-$$
+\iff
 \pi^2=\operatorname{id}_E,
-\qquad
-g\circ\pi=g.
+\qquad g\circ\pi=g.
 $$
-The parametrization $(\pi,g)\mapsto f_{\pi,g}$ is injective, because the $x$-character recovers $\pi(y)$ and $f_{\pi,g}(0,y)$ recovers $g(y)$.
+The parametrization is injective: for fixed $y$, the character in $x$ recovers $\pi(y)$, while $f_{\pi,g}(0,y)=(-1)^{g(y)}$ recovers $g(y)$.
 
 Step 2: Parametrize the affine involutions
 
@@ -40,7 +37,7 @@ $$
 \pi(v)=Mv+c,
 \qquad M\in\operatorname{GL}(8,2),\ c\in E,
 $$
-and put $N=M+I$. In characteristic $2$,
+and put $N=M+I$. Since the characteristic is $2$,
 $$
 \pi^2=\operatorname{id}
 \iff
@@ -58,11 +55,11 @@ $$
 \qquad \dim K=8-r,
 \qquad U\subseteq K.
 $$
-The number $A_r$ of square-zero endomorphisms of rank $r$ is
+For fixed $r$, choose $U$, then $K\supseteq U$, then the induced isomorphism $E/K\to U$. Thus the number $A_r$ of square-zero endomorphisms of rank $r$ is
 $$
 A_r=\binom{8}{r}_2\binom{8-r}{r}_2|\operatorname{GL}(r,2)|.
 $$
-Thus
+Therefore
 $$
 A_0=1,
 \quad A_1=32385,
@@ -73,107 +70,162 @@ A_3=2529916200,
 \quad A_4=4047865920.
 $$
 
-Step 3: Count invariant quadratic functions when $c\in U$
+Step 3: Use the bent condition to eliminate fixed-point-free translations
 
-Let
+For a quadratic $g$ with $g(0)=0$, define its polar form
 $$
-D=8+\binom82=36.
+B_g(x,y)=g(x+y)+g(x)+g(y).
 $$
-Fix a square-zero $N$ of rank $r$. Choose coordinates
+This is alternating bilinear. If
 $$
-E=U\oplus W\oplus Z,
-\qquad
-\dim U=\dim W=r,
-\qquad
-\dim Z=s:=8-2r,
+W_g(a)=\sum_{x\in E}(-1)^{g(x)+a\cdot x},
 $$
-so that
+then, after writing the second summation variable as $x+h$,
 $$
-N(u,w,z)=(w,0,0).
+W_g(a)^2
+=\sum_{h\in E}(-1)^{g(h)+a\cdot h}
+\sum_{x\in E}(-1)^{B_g(x,h)}.
 $$
-If $c\in U$, then $c=Nt$ for some $t$, and translation by $t$ conjugates $v\mapsto(I+N)v+c$ to $v\mapsto(I+N)v$. The map
+The inner sum is $2^8$ exactly for $h$ in the radical of $B_g$ and is $0$ otherwise. Hence $|W_g(a)|=16$ for every $a$ exactly when $B_g$ is nondegenerate. Thus the stated Walsh condition is equivalent to $g$ being a nonsingular quadratic form.
+
+Assume now that $g\circ\pi=g$. Polarizing this identity shows that $M$ preserves $B_g$. Also $g(c)=g(\pi(0))=g(0)=0$. If $x\in K=\ker N$, then $Mx=x$, so
+$$
+0=g(x+c)+g(x)=B_g(x,c).
+$$
+Therefore
+$$
+c\in K^{\perp_{B_g}}.
+$$
+For $y=Nv\in U$ and $x\in K$, the $B_g$-invariance of $M$ gives
+$$
+B_g(v+Nv,x)=B_g(Mv,Mx)=B_g(v,x),
+$$
+so $B_g(Nv,x)=0$. Hence $U\subseteq K^{\perp_{B_g}}$. Since $B_g$ is nondegenerate, both spaces have dimension $r$, and therefore
+$$
+K^{\perp_{B_g}}=U.
+$$
+Thus every admissible affine involution must actually satisfy
+$$
+c\in U=\operatorname{im}N.
+$$
+There are $2^r$ such translations. If $c=Nt$, translation by $t$ conjugates $v\mapsto(I+N)v+c$ to $v\mapsto(I+N)v$, and
 $$
 g(v)\longmapsto g(v+t)+g(t)
 $$
-preserves algebraic degree at most $2$, preserves the condition $g(0)=0$, and gives a bijection between the corresponding invariant functions. Hence it suffices to take $c=0$.
+preserves degree, bentness, the condition $g(0)=0$, and invariance. Hence each $c\in U$ contributes the same number as $c=0$.
 
-Write a quadratic Boolean polynomial in algebraic normal form in the variables $(u,w,z)$. Invariance under
-$$
-(u,w,z)\longmapsto(u+w,w,z)
-$$
-has the following consequences:
+Step 4: Count the invariant nondegenerate polar forms
 
-- all coefficients of $u_i u_j$ vanish;
-- all coefficients of $u_i z_k$ vanish;
-- if $R=(R_{ij})$ is the coefficient matrix of the terms $u_iw_j$, then $R$ is symmetric;
-- the coefficient of $u_i$ is forced to be $R_{ii}$;
-- the part involving only $(w,z)$ is arbitrary of degree at most $2$ with zero constant term.
-
-Therefore the dimension of the invariant $g$-space is
+Fix a rank-$r$ map $N$. Choose coordinates
 $$
-d_r=rac{r(r+1)}2+rac{(8-r)(9-r)}2
-=36-r(8-r).
+E=U\oplus W\oplus Z,
+\qquad \dim U=\dim W=r,
+\qquad \dim Z=s:=8-2r,
 $$
-Thus each of the $2^r$ translations $c\in U$ contributes $2^{d_r}$ choices of $g$.
-
-Step 4: Count invariant quadratic functions when $c\in K\setminus U$
-
-Assume $s=8-2r>0$ and $c\in K\setminus U$. First remove the $U$-component of $c$ by a translation as in Step 3. Then a linear change of coordinates commuting with $N$ may send the nonzero class of $c$ in $K/U$ to the first basis vector $z_1$ of $Z$. Hence we may take
+so that
 $$
-\pi(u,w,z_1,z')=(u+w,w,z_1+1,z').
-$$
-Repeating the algebraic-normal-form comparison from Step 3 gives the same conditions there, together with exactly $s$ further independent constraints:
-$$
-[z_1]g=0,
+N(u,w,z)=(w,0,0),
 \qquad
-[z_1z_j]g=0\quad(2\le j\le s).
+M(u,w,z)=(u+w,w,z).
 $$
-Indeed, these are respectively the constant and the $z_j$ coefficients created by the substitution $z_1\mapsto z_1+1$; the coefficients of $w_i z_1$ merely change the already-forced linear coefficients of the $u_i$ and create no additional constraint.
+Write the matrix of an alternating form $B$ in these coordinates. The identity
+$$
+B(Mx,My)=B(x,y)
+$$
+is equivalent to
+$$
+B=
+\begin{pmatrix}
+0&R&0\\
+R&S&T\\
+0&T^T&D
+\end{pmatrix},
+$$
+where $R$ is symmetric $r\times r$, $S$ is alternating $r\times r$, $T$ is arbitrary $r\times s$, and $D$ is alternating $s\times s$.
 
-Hence the invariant $g$-space now has dimension
+Such a matrix is nondegenerate exactly when both $R$ and $D$ are nondegenerate. Indeed, singular $R$ gives a radical vector in $U$, while for invertible $R$ block elimination gives
 $$
-d_r-s
-=36-r(8-r)-(8-2r).
+\det B=\det(R)^2\det(D).
 $$
-There are
+Let $\sigma_r$ be the number of invertible symmetric $r\times r$ binary matrices, and let $\alpha_s$ be the number of nondegenerate alternating $s\times s$ binary matrices. Then the number $Q_r$ of possible nondegenerate invariant polar forms is
 $$
-|K\setminus U|=2^{8-r}-2^r
+Q_r=\sigma_r\,2^{\binom r2+rs}\alpha_s.
 $$
-such translations. Thus for a fixed rank-$r$ map $N$, the total number of allowed pairs $(c,g)$ is
+For alternating forms, all nondegenerate forms are one congruence orbit, so
 $$
-W_r
-=2^r2^{d_r}
-+\left(2^{8-r}-2^r\right)2^{d_r-(8-2r)}.
+\alpha_{2m}=\frac{|\operatorname{GL}(2m,2)|}{|\operatorname{Sp}(2m,2)|},
 $$
-For $r=0,1,2,3,4$ this gives
+where
 $$
-W_0=137170518016,
-\quad W_1=2130706432,
-\quad W_2=130023424,
+|\operatorname{GL}(k,2)|=\prod_{j=0}^{k-1}(2^k-2^j),
+\qquad
+|\operatorname{Sp}(2m,2)|=2^{m^2}\prod_{i=1}^m(2^{2i}-1).
+$$
+Thus
+$$
+\alpha_0=1,\quad \alpha_2=1,\quad \alpha_4=28,
+\quad \alpha_6=13888,\quad \alpha_8=112881664.
+$$
+For symmetric forms, a nonsingular form in odd dimension $2m+1$ is necessarily nonalternating and has one congruence class; its stabilizer is $\operatorname{Sp}(2m,2)$. In even dimension $2m$, there is the alternating class plus one nonalternating class. For a nonalternating form, the canonical vector $w$ defined by $B(x,x)=B(x,w)$ is fixed by every isometry, and the induced action on $w^\perp/\langle w\rangle$ is symplectic; the kernel has size $2^{2m-1}$. Hence
+$$
+\sigma_{2m+1}=\frac{|\operatorname{GL}(2m+1,2)|}{|\operatorname{Sp}(2m,2)|},
 $$
 $$
-W_3=29360128,
-\quad W_4=16777216.
+\sigma_{2m}=\alpha_{2m}
++\frac{|\operatorname{GL}(2m,2)|}{2^{2m-1}|\operatorname{Sp}(2m-2,2)|}
+\qquad(m\ge1).
+$$
+Together with $\sigma_0=1$, this gives
+$$
+\sigma_0=1,\quad \sigma_1=1,\quad \sigma_2=4,
+\quad \sigma_3=28,\quad \sigma_4=448.
+$$
+Consequently
+$$
+\begin{array}{c|ccccc}
+r&0&1&2&3&4\\ \hline
+Q_r&112881664&888832&57344&14336&28672
+\end{array}
 $$
 
-Step 5: Sum over the ranks
+For a fixed invariant polar form, the quadratic polynomial itself is determined up to a linear form. In the above coordinates, invariance under $(u,w,z)\mapsto(u+w,w,z)$ forces the $r$ linear coefficients on $U$ and leaves the $r+s=8-r$ coefficients on $W\oplus Z$ free. Hence each polar form lifts to exactly
+$$
+2^{8-r}
+$$
+invariant quadratic functions $g$ with $g(0)=0$.
 
-The required number of distinct self-dual functions is
+Step 5: Sum over all ranks
+
+For each square-zero $N$ of rank $r$, there are $2^r$ admissible translations $c\in U$, and for each such $c$ there are
 $$
-\sum_{r=0}^4 A_rW_r.
+Q_r2^{8-r}
 $$
-Substituting the values from Steps 2 and 4 gives
+admissible bent quadratic functions. Thus the contribution of rank $r$ is
 $$
-147742197217755136.
+A_r\,2^r\,Q_r\,2^{8-r}=256A_rQ_r.
+$$
+Therefore the required number is
+$$
+256\sum_{r=0}^4 A_rQ_r.
+$$
+Using the values above,
+$$
+\sum_{r=0}^4 A_rQ_r
+=154776113250304,
+$$
+so
+$$
+256\cdot154776113250304
+=39622684992077824.
 $$
 
-Final Answer: $\boxed{147742197217755136}$
+Final Answer: $\boxed{39622684992077824}$
 
 ---
 
 ## Answer
 
-$147742197217755136$
+$39622684992077824$
 
 ---
 
@@ -188,10 +240,10 @@ $147742197217755136$
 ## Solution Concepts
 
 - Walsh--Fourier self-duality
-- quadratic Maiorana--McFarland functions
+- quadratic bent Boolean functions
 - affine involutions over $\mathbb F_2$
-- square-zero endomorphisms
-- invariant quadratic Boolean polynomials
+- symplectic polar forms
+- invariant bilinear-form counting
 
 ---
 
