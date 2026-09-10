@@ -1,0 +1,22 @@
+{
+  "problem": "problem115",
+  "branch": "adversary/problem115",
+  "problem_path": "workspace/rainier-problem/problem115-fourier-analysis/problem.md",
+  "source_commit_sha": "f0e2c54ac6d02b1aacb665eb245f96496135dbcb",
+  "problem_blob_sha": "cf968ec6bf964846a754911935e071bf59438195",
+  "statement_sha256": "4974db44cc1b8ffa549cc54ed56e4b20bfd9b75338024df7ba8d6fc95728bce2",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T17:40:53+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let all exponents below be in \\(\\mathbb F_2\\). For fixed \\(u,v\\),\n\n\\[\n(\\mathcal F f_{\\pi,g})(u,v)\n=2^{-8}\\sum_{y\\in E}(-1)^{g(y)+y\\cdot u}\\sum_{x\\in E}(-1)^{x\\cdot(\\pi(y)+v)}.\n\\]\n\nThe inner sum is \\(2^8\\) if \\(\\pi(y)=v\\), and \\(0\\) otherwise. Hence, writing \\(z=\\pi^{-1}(v)\\),\n\n\\[\n(\\mathcal F f_{\\pi,g})(u,v)=(-1)^{g(z)+z\\cdot u}.\n\\]\n\nWe need this to equal\n\n\\[\nf_{\\pi,g}(u,v)=(-1)^{u\\cdot \\pi(v)+g(v)}\n\\]\n\nfor all \\(u,v\\). Since the dot product is nondegenerate, this is equivalent to\n\n\\[\n\\pi^{-1}(v)=\\pi(v)\\quad\\text{for all }v,\n\\]\n\nand then also\n\n\\[\ng(\\pi^{-1}(v))=g(v).\n\\]\n\nThus \\(\\pi\\) must be an affine involution, and \\(g\\) must be constant on the orbits of \\(\\pi\\), with the orbit containing \\(0\\) forced to have value \\(0\\).\n\nWrite \\(\\pi(y)=My+c\\), and put \\(N=M+I\\). Since the field has characteristic \\(2\\), the condition \\(\\pi^2=1\\) becomes\n\n\\[\nN^2=0,\\qquad c\\in \\ker N.\n\\]\n\nLet \\(r=\\operatorname{rank}N\\). Then \\(0\\le r\\le 4\\). The number of square-zero maps \\(N\\) of rank \\(r\\) is\n\n\\[\nA_r=\\binom{8}{r}_2\\binom{8-r}{r}_2|\\operatorname{GL}(r,2)|,\n\\]\n\nbecause we choose \\(\\operatorname{im}N=U\\), then \\(\\ker N=K\\supset U\\), then an isomorphism \\(E/K\\to U\\). These values are\n\n\\[\nA_0=1,\\quad A_1=32385,\\quad A_2=42165270,\\quad A_3=2529916200,\\quad A_4=4047865920.\n\\]\n\nFor fixed \\(N\\), if \\(c\\in \\operatorname{im}N\\), then \\(\\pi\\) has \\(2^{8-r}\\) fixed points, so it has\n\n\\[\n128+2^{7-r}\n\\]\n\norbits. There are \\(2^r\\) such \\(c\\). If \\(c\\in\\ker N\\setminus \\operatorname{im}N\\), then \\(\\pi\\) has no fixed points, so it has \\(128\\) orbits. There are \\(2^{8-r}-2^r\\) such \\(c\\).\n\nTherefore the number of allowed \\(g\\)'s is \\(2^{\\#\\text{orbits}-1}\\), and the total count is\n\n\\[\n\\sum_{r=0}^4 A_r\\left(2^r2^{127+2^{7-r}}+(2^{8-r}-2^r)2^{127}\\right).\n\\]\n\nSubstituting the \\(A_r\\)'s and simplifying gives\n\n\\[\n\\boxed{2^{127}\\cdot 340282366920939658259713998470149879141}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T17:42:43+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem115/cf968ec6bf96.json"
+}
