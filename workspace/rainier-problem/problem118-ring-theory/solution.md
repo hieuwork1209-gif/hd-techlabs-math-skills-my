@@ -57,7 +57,17 @@ $$
 $$
 with $\mathfrak l=\mathfrak{sl}_2[\varepsilon]/(\varepsilon^3)$ over $K$.
 
-Now every element of $S$ has a unique expansion
+For the needed uniqueness, choose the PBW order $p,q,E,F,H,x,y,t,a,b,c$ after localization, with $z$ absorbed into $K$, and filter by the number of factors among $E,F,H,x,y,t,a,b,c$, assigning $p,q$ degree $0$. The inverse substitutions
+$$
+E=e+\frac{p^2}{2z},\qquad F=f-\frac{q^2}{2z},\qquad H=h-\frac{pq}{z}+\frac{1}{2}
+$$
+are triangular for this filtration: replacing $E,F,H$ by $e,f,h$ changes an ordered PBW monomial only by terms of strictly smaller filtered degree, while its leading term has coefficient $1$. Hence the transition from the ordinary PBW monomials to
+$$
+p^iq^je^rf^sh^m x^\alpha y^\beta t^\gamma a^\mu b^\nu c^\rho
+$$
+is unitriangular and therefore invertible. These shifted monomials are thus a $K$-basis of $S$.
+
+Consequently every element of $S$ has a unique expansion
 $$
 s=\sum_{i,j\geq 0}p^iq^ju_{ij},\qquad u_{ij}\in U_K(\mathfrak l).
 $$
