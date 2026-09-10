@@ -1,0 +1,22 @@
+{
+  "problem": "problem115",
+  "branch": "adversary/problem115",
+  "problem_path": "workspace/rainier-problem/problem115-fourier-analysis/problem.md",
+  "source_commit_sha": "62e9cabc434f57ca300513c104ab1b86830c769d",
+  "problem_blob_sha": "ec5490ec5d19bbfd26f22591b7633c01693f29b8",
+  "statement_sha256": "9b2413079dddf76b6dca63777d8b0944eaf5ab16f3cf82328abbf5c22dbbe4a3",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T17:55:25+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(V=\\mathbb F_2^8\\). I will write all exponents in \\(\\mathbb F_2\\).\n\nFor\n\\[\nf_{\\pi,g}(x,y)=(-1)^{x\\cdot(My+c)+g(y)},\n\\]\nwe compute\n\\[\n(\\mathcal F f)(u,v)\n=2^{-8}\\sum_{x,y}(-1)^{x\\cdot(My+c)+g(y)+x\\cdot v+y\\cdot u}.\n\\]\nThe inner sum over \\(x\\) is \\(2^8\\) exactly when\n\\[\nMy+c+v=0,\n\\]\nand is \\(0\\) otherwise. Thus, with \\(y=M^{-1}(v+c)\\),\n\\[\n(\\mathcal F f)(u,v)=(-1)^{g(M^{-1}(v+c))+u\\cdot M^{-1}(v+c)}.\n\\]\nSo \\(\\mathcal F f=f\\) iff, for every \\(u,v\\),\n\\[\nM^{-1}(v+c)=Mv+c\n\\]\nand\n\\[\ng(Mv+c)=g(v).\n\\]\nThe first condition is equivalent to\n\\[\nM^2=I,\\qquad Mc=c.\n\\]\nThus \\(\\pi\\) must be an affine involution, and \\(g\\) must be invariant under it.\n\nNow count such pairs \\((\\pi,g)\\).\n\nA quadratic Boolean polynomial \\(g\\) with \\(g(0)=0\\) has polar form\n\\[\nB_g(a,b)=g(a+b)+g(a)+g(b).\n\\]\nThe Walsh condition \\(\\left|\\sum_y(-1)^{g(y)+a\\cdot y}\\right|=16\\) for every \\(a\\) is exactly the condition that \\(B_g\\) is nondegenerate alternating. For each nondegenerate alternating form \\(B\\), there are \\(2^8\\) quadratic refinements \\(g\\). Hence the number of admissible \\(g\\)'s is\n\\[\n2^8\\cdot \\frac{|\\mathrm{GL}(8,2)|}{|\\mathrm{Sp}(8,2)|}.\n\\]\n\nFor each such \\(g\\), the affine automorphism group preserving \\(g\\) is isomorphic to \\(\\mathrm{Sp}(8,2)\\). Therefore we need the number of involutions in \\(\\mathrm{Sp}(8,2)\\).\n\nWrite an involution as \\(S=I+N\\), where \\(N^2=0\\). If \\(r=\\operatorname{rank}N\\), then \\(0\\le r\\le 4\\). The image \\(U=\\operatorname{im}N\\) is a totally isotropic \\(r\\)-subspace, and for each such \\(U\\), the possible \\(N\\)'s correspond to nonsingular symmetric \\(r\\times r\\) matrices over \\(\\mathbb F_2\\).\n\nThe number of totally isotropic \\(r\\)-subspaces of an 8-dimensional symplectic space is\n\\[\nI_r=\\prod_{j=0}^{r-1}\\frac{2^{8-2j}-1}{2^{r-j}-1},\n\\]\ngiving\n\\[\nI_0=1,\\quad I_1=255,\\quad I_2=5355,\\quad I_3=11475,\\quad I_4=2295.\n\\]\nThe numbers of nonsingular symmetric \\(r\\times r\\) matrices over \\(\\mathbb F_2\\) for \\(r=0,1,2,3,4\\) are\n\\[\n1,\\ 1,\\ 4,\\ 28,\\ 448.\n\\]\nHence the number of involutions in \\(\\mathrm{Sp}(8,2)\\) is\n\\[\n1+255+5355\\cdot4+11475\\cdot28+2295\\cdot448\n=1,371,136.\n\\]\n\nAlso\n\\[\n|\\mathrm{GL}(8,2)|=\\prod_{j=0}^{7}(2^8-2^j),\n\\]\nand\n\\[\n|\\mathrm{Sp}(8,2)|=2^{16}(2^2-1)(2^4-1)(2^6-1)(2^8-1).\n\\]\nThus\n\\[\n2^8\\cdot \\frac{|\\mathrm{GL}(8,2)|}{|\\mathrm{Sp}(8,2)|}\n=28,897,705,984.\n\\]\nTherefore the desired number is\n\\[\n28,897,705,984\\cdot 1,371,136\n=39,622,684,992,077,824.\n\\]\n\n\\[\n\\boxed{39622684992077824}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T18:03:21+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem115/ec5490ec5d19.json"
+}
