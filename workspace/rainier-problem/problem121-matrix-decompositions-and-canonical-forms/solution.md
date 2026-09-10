@@ -1,193 +1,292 @@
 ## Steps
 
-Step 1: Build a torsion quotient map from the incidence matrix
+Step 1: Compute the rational spectrum of the block matrix
 
-Write $B=B_n$, $M=M_n$, and set
+Let
 $$
-m=\binom{n}{2},\qquad d=n-1,\qquad \beta=m-n+1=\frac{(n-1)(n-2)}{2}.
+m=\binom{n}{2},\qquad N=n+m,
 $$
-Each diagonal entry of $BB^T$ is $n-1$, and each off-diagonal entry is $1$, so
+and write $B=B_n$. For the pair-incidence matrix,
 $$
 BB^T=(n-2)I_n+J_n.
 $$
+Define
+$$
+L=\begin{pmatrix}
+(2n-1)I_n-J_n&-B\\
+-B^T&2nI_m-B^TB
+\end{pmatrix}.
+$$
+Every row of $L$ sums to $0$.
+
 Let
 $$
-L_0=nI_n-J_n.
+U=\{x\in\mathbb Q^n:\mathbf 1^Tx=0\}.
 $$
-Then
+For $x\in U$, put $w=B^Tx$. Since $J_nx=0$ and $BB^Tx=(n-2)x$, the subspace spanned by pairs $(x,0)$ and $(0,w)$ is $L$-invariant, and on the coefficient pair it acts by
 $$
-BM=2dB-BB^TB=L_0B,
+R=\begin{pmatrix}
+2n-1&-(n-2)\\
+-1&n+2
+\end{pmatrix}.
 $$
-and, after transposing,
+Its trace is $3n+1$ and its determinant is $2n(n+1)$, so its eigenvalues are
 $$
-MB^T=B^TL_0.
+n+1,\qquad 2n.
+$$
+Thus each occurs with multiplicity $n-1$ on these standard subspaces.
+
+If $y\in\ker B$, then
+$$
+L(0,y)=(0,2ny),
+$$
+so $2n$ occurs with another multiplicity $m-n$. Finally, on the span of $(\mathbf 1_n,0)$ and $(0,\mathbf 1_m)$, the coefficient matrix is
+$$
+\begin{pmatrix}
+n-1&-(n-1)\\
+-2&2
+\end{pmatrix},
+$$
+whose eigenvalues are $0$ and $n+1$. Hence the spectrum of $L$ is
+$$
+0\ (1),\qquad n+1\ (n),\qquad 2n\ (m-1).
+$$
+In particular, the rational kernel is exactly the line spanned by the primitive all-ones vector $\mathbf 1_N$.
+
+Step 2: Determine the torsion order and a global exponent bound
+
+Let
+$$
+K=\operatorname{Tor}(\operatorname{coker}L).
+$$
+Because $L$ is symmetric of rank $N-1$ with primitive left and right kernel vector $\mathbf 1_N$, one has
+$$
+\operatorname{adj}(L)=c\,\mathbf 1_N\mathbf 1_N^T
+$$
+for some integer $c$. The nonzero eigenvalue of the adjugate equals the product of the nonzero eigenvalues of $L$, whereas $c\mathbf 1_N\mathbf 1_N^T$ has nonzero eigenvalue $cN$. Therefore
+$$
+|K|=|c|=\frac{(n+1)^n(2n)^{m-1}}{N}.
+$$
+Since
+$$
+N=n+m=\frac{n(n+1)}2,
+$$
+this simplifies to
+$$
+|K|=2^m n^{m-2}(n+1)^{n-1}.
 $$
 
-We first determine the torsion of $\operatorname{coker}L_0$. Starting from $L_0=nI_n-J_n$, replace row $i$ by row $i$ minus row $1$ for $2\leq i\leq n$, replace column $1$ by the sum of all columns, replace column $j$ by column $j$ minus column $2$ for $3\leq j\leq n$, replace row $2$ by row $2+n\,\text{row }1$, and then replace row $2$ by the sum of rows $2,\ldots,n$. These unimodular operations reduce $L_0$, up to row and column permutations and a sign change, to
+The three rational eigenvalues also give an integral matrix identity. The matrix
 $$
-\operatorname{diag}(1,\underbrace{n,\ldots,n}_{n-2},0).
+(L-(n+1)I_N)(L-2nI_N)
 $$
-Therefore
+vanishes on both nonzero eigenspaces and acts by $2n(n+1)$ on $\mathbf 1_N$. Since the projection onto the all-ones line is $J_N/N$ and $2n(n+1)/N=4$,
 $$
-\operatorname{Tor}(\operatorname{coker}L_0)\cong(\mathbb{Z}_n)^{n-2}.
+L^2-(3n+1)L+2n(n+1)I_N=4J_N.
 $$
-
-The classes of the vectors $e_i-e_j$ generate this torsion subgroup. Indeed,
+Every torsion class has a representative $v$ with $\mathbf 1_N^Tv=0$, because the coordinate-sum map descends from $\operatorname{coker}L$ to $\mathbb Z$ and kills torsion. For such $v$, $J_Nv=0$, so
 $$
-L_0(e_i-e_j)=n(e_i-e_j),
+2n(n+1)v=L\bigl((3n+1)I_N-L\bigr)v.
 $$
-so their classes are torsion. After quotienting $\operatorname{coker}L_0$ by these classes, all coordinate vectors become equal and the remaining quotient is infinite cyclic, so it is torsion-free.
-
-For distinct $i,j,k$, if $f_{ab}$ denotes the standard basis vector in $\mathbb{Z}^m$ indexed by $\{a,b\}$, then
+Thus every element of $K$ is killed by
 $$
-B(f_{ik}-f_{jk})=e_i-e_j.
-$$
-Therefore $B$ induces a surjection
-$$
-K:=\operatorname{Tor}(\operatorname{coker}M)\longrightarrow(\mathbb{Z}_n)^{n-2}.
-$$
-Let $H$ be its kernel. If $[x]\in H$, then $Bx=L_0y$ for some $y\in\mathbb{Z}^n$. Using $MB^T=B^TL_0$,
-$$
-2d[x]=[B^TBx]=[B^TL_0y]=[MB^Ty]=0.
-$$
-So every element of $H$ is killed by $2d$.
-
-Step 2: Compute the order of the torsion subgroup
-
-The eigenvalues of
-$$
-BB^T=(n-2)I_n+J_n
-$$
-are $2d$ on the all-ones vector and $n-2$ with multiplicity $n-1$. Since $B$ has rank $n$, the eigenvalues of $B^TB$ are
-$$
-2d\ (1),\qquad n-2\ (n-1),\qquad 0\ (m-n).
-$$
-Therefore the eigenvalues of $M=2dI_m-B^TB$ are
-$$
-0\ (1),\qquad n\ (n-1),\qquad 2d\ (m-n).
-$$
-In particular, $\ker M$ is the line spanned by the all-ones vector in $\mathbb{Q}^m$.
-
-If the nonzero Smith factors of $M$ are $s_1,\ldots,s_{m-1}$, then $s_1\cdots s_{m-1}$ is the greatest common divisor of the maximal minors. Since $M$ has rank $m-1$ and both its left and right kernels are spanned by the primitive vector $\mathbf{1}$,
-$$
-\operatorname{adj}(M)=c\,\mathbf{1}\mathbf{1}^T
-$$
-for some integer $c$, so every nonzero maximal minor has absolute value $|c|$. In an orthonormal eigenbasis, the nonzero eigenvalue of $\operatorname{adj}(M)$ is the product of the nonzero eigenvalues of $M$, while $c\,\mathbf{1}\mathbf{1}^T$ has nonzero eigenvalue $cm$. Therefore
-$$
-|K|=|c|=\frac{n^{n-1}(2d)^{m-n}}{m}.
-$$
-Since $m=nd/2$ and $m-n-1=\beta-2$,
-$$
-|K|=4n^{n-2}(2d)^{\beta-2}.
-$$
-The quotient in Step 1 has order $n^{n-2}$, so
-$$
-|H|=4(2d)^{\beta-2}.
+2n(n+1).
 $$
 
-Step 3: Determine the primary invariant factors of the kernel
+Step 3: Determine all odd-primary components
 
-We use a local Smith observation. Suppose an integer matrix $A$ has one-dimensional rational kernel, and an integer eigenvalue $\lambda\neq0$ has rational eigenspace of dimension $q$. If $\ell^a\mid\lambda$, then at least $q-1$ nonzero Smith factors of $A$ are divisible by $\ell^a$.
+Fix an odd prime $p$. Over $\mathbb F_p$, the map $B^T$ is injective: if $B^Tx=0$, then $x_i+x_j=0$ for every pair $\{i,j\}$; using three distinct indices gives $2x_i=0$, hence $x=0$.
 
-To see this, work over $\mathbb{Z}_\ell$ and let $E$ be the saturated rank-$q$ lattice in the $\lambda$-eigenspace. Since
+First suppose $p\mid n$. Modulo $p$ the block equations $L(x,y)=0$ become
 $$
-AE=\lambda E\subseteq\ell^a\mathbb{Z}_\ell^N,
+(-I-J)x-By=0,
 $$
-the image of $E/\ell E$ lies in
 $$
-A^{-1}(\ell^a\mathbb{Z}_\ell^N)/\ell\mathbb{Z}_\ell^N.
+-B^T(x+By)=0.
 $$
-In Smith coordinates this latter space has dimension one plus the number of nonzero Smith factors divisible by $\ell^a$. Since $E/\ell E$ has dimension $q$, the claim follows.
+Injectivity of $B^T$ gives
+$$
+x=-By.
+$$
+Substituting into the first equation gives $Jx=0$, so $\mathbf 1^Tx=0$. Since
+$$
+\mathbf 1^TBy=2\mathbf 1^Ty
+$$
+and $p$ is odd, this is equivalent to $\mathbf 1^Ty=0$. Therefore the kernel is parametrized by the codimension-one subspace of $\mathbb F_p^m$ with coordinate sum $0$, and
+$$
+\dim_{\mathbb F_p}\ker L=m-1.
+$$
+The one-dimensional rational kernel accounts for one of these dimensions, so the $p$-rank of $K$ is $m-2$.
 
-For $M$, the eigenvalue $2d$ has eigenspace dimension
+If $p^a\Vert n$, Step 2 shows that the $p$-primary exponent divides $p^a$, while the order formula gives total $p$-valuation $a(m-2)$. Hence
 $$
-m-n=\beta-1.
+K_p\cong(\mathbb Z_{p^a})^{m-2}.
 $$
-If $\ell^a\Vert2d$, at least $\beta-2$ nonzero Smith factors are divisible by $\ell^a$. Since $n$ is odd,
+Combining all odd primes dividing $n$ gives an $n$-primary contribution
 $$
-\gcd(n,2d)=1,
-$$
-so every primary component for a prime dividing $2d$ lies in $H$.
-
-For an odd prime $\ell\mid d$, the $\ell$-part of $|H|$ is exactly
-$$
-\ell^{a(\beta-2)}.
-$$
-The lower bound on the number of Smith factors forces
-$$
-H_\ell\cong(\mathbb{Z}_{\ell^a})^{\beta-2}.
+(\mathbb Z_n)^{m-2}.
 $$
 
-It remains to determine the extra $2$-primary factor. Modulo $2$,
+Now suppose $p\mid n+1$. Then $n\equiv-1\pmod p$, so $2n\not\equiv0$. Put $z=By$ and $t=\mathbf 1^Tx$. The first block equation gives
 $$
-M\equiv B^TB.
+z=-3x-t\mathbf 1.
 $$
-The equation $B^Ty=0$ says $y_i+y_j=0$ for every pair $\{i,j\}$, so
+The second equation is
 $$
-\ker B^T=\langle\mathbf{1}\rangle
+2ny=B^T(x+z),
 $$
-and $\operatorname{rank}_{\mathbb{F}_2}B=n-1$. The image of $B$ is the even-coordinate-sum subspace of $\mathbb{F}_2^n$. Since $n$ is odd, $\mathbf{1}$ is not in this image. Therefore
+so for a chosen $x$ it determines $y$ uniquely. It remains only to check that its image under $B$ is the displayed $z$. Since
 $$
-\ker(B^TB)=\ker B
+BB^T=(n-2)I+J\equiv-3I+J,
 $$
 and
 $$
-\dim_{\mathbb{F}_2}\ker M=m-(n-1)=\beta.
+x+z=-2x-t\mathbf 1,
 $$
-Because $\operatorname{coker}M\cong\mathbb{Z}\oplus K$,
+one has
 $$
-\dim_{\mathbb{F}_2}K/2K=\beta-1.
+\mathbf 1^T(x+z)=-t
 $$
-The quotient $(\mathbb{Z}_n)^{n-2}$ has odd order, so the same dimension holds for $H/2H$.
+and hence
+$$
+BB^T(x+z)=6x+2t\mathbf 1=-2z.
+$$
+Because $2n\equiv-2$, applying $B$ to the formula for $y$ indeed gives $By=z$. Thus every $x\in\mathbb F_p^n$ produces exactly one kernel vector, so
+$$
+\dim_{\mathbb F_p}\ker L=n.
+$$
+Therefore the $p$-rank of $K$ is $n-1$. If $p^a\Vert n+1$, the exponent bound and the order formula force
+$$
+K_p\cong(\mathbb Z_{p^a})^{n-1}.
+$$
 
-If $2^a\Vert2d$, the $\beta-2$ forced factors account for $2^{a(\beta-2)}$ in $|H|$. The remaining $2$-primary order is $4$. Since $H/2H$ needs exactly one additional generator, this remaining factor is $\mathbb{Z}_4$, not $\mathbb{Z}_2\oplus\mathbb{Z}_2$. Combining all prime components gives
+Step 4: Determine the 2-primary component
+
+Because $n$ is odd, modulo $2$ one has
 $$
-H\cong(\mathbb{Z}_{2d})^{\beta-2}\oplus\mathbb{Z}_4.
+L\equiv
+\begin{pmatrix}
+I+J&B\\
+B^T&B^TB
+\end{pmatrix}.
+$$
+The equation $B^Tx=0$ says all coordinates of $x$ are equal, so
+$$
+\ker B^T=\langle\mathbf 1\rangle.
+$$
+Also, the image of $B$ is the even-coordinate-sum subspace of $\mathbb F_2^n$: every column has even coordinate sum, and $\operatorname{rank}B=n-1$.
+
+For a kernel vector $(x,y)$ put $z=By$. The second block equation gives
+$$
+B^T(x+z)=0,
+$$
+so
+$$
+x+z=t\mathbf 1
+$$
+for some $t\in\mathbb F_2$. Since $z$ has even coordinate sum and $n$ is odd,
+$$
+\mathbf 1^Tx=t.
+$$
+The first block equation is then
+$$
+x+Jx+z=(x+z)+(\mathbf 1^Tx)\mathbf 1=0.
+$$
+Thus $y\in\mathbb F_2^m$ and $t\in\mathbb F_2$ are arbitrary, with $x$ determined by them. Hence
+$$
+\dim_{\mathbb F_2}\ker L=m+1,
+$$
+so
+$$
+\dim_{\mathbb F_2}K/2K=m.
+$$
+Therefore exactly $m$ nonzero Smith factors are even.
+
+Write
+$$
+b=v_2(n+1).
+$$
+The exponent bound from Step 2 shows that no 2-primary invariant factor exceeds $2^{b+1}$. We now force $n-1$ factors to attain this largest power.
+
+Let
+$$
+U_2=\{u\in\mathbb Z_2^n:\mathbf 1^Tu=0\}.
+$$
+For $u\in U_2$, define
+$$
+z_u=\bigl((n+2)u,\,B^Tu\bigr)\in\mathbb Z_2^{N}.
+$$
+Using $J_nu=0$ and $BB^Tu=(n-2)u$, a direct block multiplication gives
+$$
+Lz_u=\bigl(2n(n+1)u,0\bigr).
+$$
+Hence every $z_u$ lies in
+$$
+L^{-1}\bigl(2^{b+1}\mathbb Z_2^N\bigr).
+$$
+Modulo $2$, the map $u\mapsto z_u$ is injective because $n+2$ is odd. Its image has dimension $n-1$. The all-ones kernel vector is independent of this image modulo $2$, since its vertex part has odd coordinate sum whereas every $u\in U_2$ has even coordinate sum.
+
+In Smith coordinates, if $r$ nonzero Smith factors are divisible by $2^{b+1}$, then the image modulo $2$ of
+$$
+L^{-1}\bigl(2^{b+1}\mathbb Z_2^N\bigr)
+$$
+has dimension $1+r$, the extra $1$ coming from the zero Smith factor. The preceding $n$ independent classes therefore give
+$$
+r\geq n-1.
 $$
 
-Step 4: Assemble the Smith normal form
+From the order formula,
+$$
+v_2(|K|)=m+b(n-1).
+$$
+There are exactly $m$ even nonzero factors, each contributes at least one power of $2$, and at least $n-1$ of them contribute at least $b+1$ powers. This already accounts for
+$$
+m+b(n-1)
+$$
+powers of $2$, exactly the total available. Therefore equality holds throughout:
+$$
+K_{(2)}\cong(\mathbb Z_2)^{m-n+1}\oplus(\mathbb Z_{2^{b+1}})^{n-1}.
+$$
 
-Prime-by-prime decomposition of the exact sequence from Step 1 gives
+Step 5: Assemble the invariant factors
+
+The odd primes dividing $n$ contribute
 $$
-K\cong(\mathbb{Z}_{2d})^{\beta-2}\oplus\mathbb{Z}_4\oplus(\mathbb{Z}_n)^{n-2},
+(\mathbb Z_n)^{m-2}.
 $$
-because $\gcd(n,2d)=1$. Pair $n-2$ copies of $\mathbb{Z}_{2d}$ with the $\mathbb{Z}_n$ factors:
+The odd part of $n+1$ occurs in exactly $n-1$ factors, and Step 4 supplies $n-1$ 2-primary factors of size $2^{b+1}$. Pairing those components gives $n-1$ factors
 $$
-\mathbb{Z}_{2d}\oplus\mathbb{Z}_n\cong\mathbb{Z}_{2dn}.
+2n(n+1).
 $$
-The number of unpaired $\mathbb{Z}_{2d}$ factors is
+The remaining $n$-parts pair with $m-n-1$ of the order-$2$ components, giving $m-n-1$ factors
 $$
-(\beta-2)-(n-2)=\beta-n=\frac{n^2-5n+2}{2}.
+2n.
 $$
-Since $n$ is odd, $4\mid2(n-1)$, so these factors are already in divisibility order. Therefore
+Two order-$2$ components remain unpaired. Thus
 $$
 K\cong
-\mathbb{Z}_4\oplus
-\mathbb{Z}_{2(n-1)}^{(n^2-5n+2)/2}\oplus
-\mathbb{Z}_{2n(n-1)}^{n-2}.
+\mathbb Z_2^2\oplus
+\mathbb Z_{2n}^{m-n-1}\oplus
+\mathbb Z_{2n(n+1)}^{n-1}.
 $$
+These are already in divisibility order.
 
-The matrix $M$ has rank $m-1$. The number of nontrivial finite invariant factors above is
+There are $m$ nontrivial finite invariant factors and one zero factor. Since $L$ has size $N=n+m$, the remaining
 $$
-1+\frac{n^2-5n+2}{2}+(n-2)=\beta-1.
+(N-1)-m=n-1
 $$
-So the number of unit Smith factors is
+nonzero Smith factors are units. Therefore
 $$
-(m-1)-(\beta-1)=n-1.
+\operatorname{SNF}(L)=
+I_{n-1}\oplus2I_2\oplus2nI_{m-n-1}\oplus2n(n+1)I_{n-1}\oplus[0].
 $$
-The remaining Smith factor is $0$. Therefore the Smith normal form is
-$$
-I_{n-1}\oplus[4]\oplus
-2(n-1)I_{(n^2-5n+2)/2}\oplus
-2n(n-1)I_{n-2}\oplus[0].
-$$
-Final Answer: $\boxed{I_{n-1}\oplus[4]\oplus2(n-1)I_{(n^2-5n+2)/2}\oplus2n(n-1)I_{n-2}\oplus[0]}$
+Final Answer: $\boxed{I_{n-1}\oplus2I_2\oplus2nI_{m-n-1}\oplus2n(n+1)I_{n-1}\oplus[0]}$
 
 ---
 
 ## Answer
 
-$I_{n-1}\oplus[4]\oplus2(n-1)I_{(n^2-5n+2)/2}\oplus2n(n-1)I_{n-2}\oplus[0]$
+$I_{n-1}\oplus2I_2\oplus2nI_{m-n-1}\oplus2n(n+1)I_{n-1}\oplus[0]$
 
 ---
 
@@ -202,10 +301,10 @@ $I_{n-1}\oplus[4]\oplus2(n-1)I_{(n^2-5n+2)/2}\oplus2n(n-1)I_{n-2}\oplus[0]$
 ## Solution Concepts
 
 - Smith normal form
-- incidence matrices
-- local Smith invariants
+- block incidence matrices
 - primary decomposition
-- adjugate and eigenvalues
+- modular nullity
+- spectral decomposition
 
 ---
 
