@@ -1,236 +1,182 @@
 ## Steps
 
-Step 1: Classify the sign functions satisfying the four-point identity
+Step 1: Characterize self-duality inside the affine Maiorana--McFarland family
 
-Put
+For an affine permutation $\pi(y)=My+c$ and $g:E\to\mathbb F_2$ with $g(0)=0$, put
 $$
-q_0(x,y)=x\cdot y.
+f_{\pi,g}(x,y)=(-1)^{x\cdot\pi(y)+g(y)}.
 $$
-Its polar form is $\omega$. Since $f(0)=1$, write uniquely $f(z)=(-1)^{q(z)}$ with $q(0)=0$. Setting $z=0$ in the four-point identity gives
+For $(u,v)\in E\times E$,
 $$
-q(r+s)=q(r)+q(s)+\omega(r,s).
+(\mathcal Ff_{\pi,g})(u,v)
+=2^{-8}\sum_{y\in E}(-1)^{g(y)+y\cdot u}
+\sum_{x\in E}(-1)^{x\cdot(\pi(y)+v)}.
 $$
-Hence $q+q_0$ is linear. Therefore every admissible function is uniquely
+The inner sum is $2^8$ exactly when $\pi(y)=v$, and is $0$ otherwise. Since $\pi$ is a permutation,
 $$
-f_{a,b}(x,y)=(-1)^{x\cdot y+a\cdot x+b\cdot y},
-\qquad a,b\in E.
+(\mathcal Ff_{\pi,g})(u,v)
+=(-1)^{u\cdot\pi^{-1}(v)+g(\pi^{-1}(v))}.
 $$
-Conversely every $f_{a,b}$ satisfies the four-point identity.
+Comparing this with
+$$
+f_{\pi,g}(u,v)=(-1)^{u\cdot\pi(v)+g(v)}
+$$
+for every $u,v$ shows that
+$$
+\mathcal Ff_{\pi,g}=f_{\pi,g}
+$$
+if and only if
+$$
+\pi^2=\operatorname{id}_E
+\qquad\text{and}\qquad
+g\circ\pi=g.
+$$
+Indeed, equality for every $u$ first forces $\pi^{-1}(v)=\pi(v)$, and then the constant terms force $g(\pi(v))=g(v)$.
 
-Step 2: Compute the Walsh--Fourier transform
+The parametrization is injective: for fixed $y$, the character in the $x$-variable recovers $\pi(y)$, while $f_{\pi,g}(0,y)=(-1)^{g(y)}$ recovers $g(y)$. Thus it remains to count affine involutions $\pi$, weighting each by the number of $\pi$-invariant functions $g$ with $g(0)=0$.
 
-For $(u,v)\in V$,
-$$
-(\mathcal Ff_{a,b})(u,v)
-=2^{-8191}\sum_{x,y\in E}
-(-1)^{x\cdot y+a\cdot x+b\cdot y+x\cdot v+y\cdot u}.
-$$
-For fixed $y$, the sum over $x$ vanishes unless $y=a+v$, when it equals $2^{8191}$. Thus
-$$
-(\mathcal Ff_{a,b})(u,v)
-=(-1)^{a\cdot b}f_{a,b}(u,v).
-$$
+Step 2: Parametrize affine involutions by square-zero linear maps
 
-Step 3: Reduce $Tf_{a,b}=f_{a,b}$ to a pairing between two kernels
+Write
+$$
+\pi(v)=Mv+c,
+\qquad M\in\operatorname{GL}(8,2),\ c\in E,
+$$
+and put
+$$
+N=M+I.
+$$
+Because the characteristic is $2$,
+$$
+M^2=I\iff N^2=0.
+$$
+Also
+$$
+\pi^2(v)=M^2v+(M+I)c,
+$$
+so $\pi^2=\operatorname{id}$ exactly when
+$$
+N^2=0,
+\qquad Nc=0.
+$$
+Conversely, if $N^2=0$, then $M=I+N$ is automatically invertible with inverse $I+N$.
 
-Since $2^{13}=8192\equiv1\pmod{8191}$ and $13$ is prime, $2$ has order $13$ in $P^\times$. Thus $H=\langle2,-1\rangle$ has $26$ elements. Both $H$ and $3H$ are stable under negation and multiplication by $2$.
-
-Consequently $A$ and $C$ are symmetric with zero diagonal. If $\tau_hx(t)=x(t+h)$, then in characteristic $2$,
-$$
-A^2=\left(\sum_{h\in H}\tau_h\right)^2
-=\sum_{h\in H}\tau_{2h}=A,
-$$
-and similarly $C^2=C$. They commute because both are convolution operators.
-
-The shears
-$$
-U_C(x,y)=(x+Cy,y),\qquad L_A(x,y)=(x,y+Ax)
-$$
-preserve $q_0$, so $S=L_AU_C$ preserves $q_0$. The linear part of $q_{a,b}(S(x,y))$ is
-$$
-(a+Ab)\cdot x+(Ca+b+CAb)\cdot y.
-$$
-Hence $q_{a,b}\circ S=q_{a,b}$ exactly when
-$$
-Ab=0,\qquad Ca=0.
-$$
-By Step 2, evaluating $Tf_{a,b}=f_{a,b}$ at $0$ also forces $a\cdot b=0$. Thus we must count orthogonal pairs
-$$
-(a,b)\in\ker C\times\ker A.
-$$
-
-Step 4: Express the joint spectrum by two exponential sums
-
-Because $8191=2^{13}-1$, a primitive $8191$st root $\zeta$ lies in $\mathbb F_{8192}$. For $j\in\mathbb F_{8191}$, put $\xi=\zeta^j$. Then $j\mapsto\xi$ is a bijection from $\mathbb F_{8191}$ to $\mathbb F_{8192}^\times$. The additive-character vector
-$$
-e_j(t)=\zeta^{jt}
-$$
-is a simultaneous eigenvector for $A$ and $C$. Its eigenvalues are
-$$
-\lambda_j=\sum_{h\in H}\zeta^{jh}
-=\operatorname{Tr}_{\mathbb F_{8192}/\mathbb F_2}(\xi+\xi^{-1}),
-$$
-$$
-\mu_j=\sum_{h\in H}\zeta^{3jh}
-=\operatorname{Tr}_{\mathbb F_{8192}/\mathbb F_2}(\xi^3+\xi^{-3}).
-$$
 Let
 $$
-K_n=\sum_{x\in\mathbb F_{2^n}^\times}(-1)^{\operatorname{Tr}(x+x^{-1})}.
+r=\operatorname{rank}N.
 $$
-The curve
+Since $\operatorname{im}N\subseteq\ker N$, we have $0\le r\le4$. Put
 $$
-\mathcal E:\quad Y^2+XY=X^3+1
+U=\operatorname{im}N,
+\qquad K=\ker N.
 $$
-has
+Then
 $$
-\#\mathcal E(\mathbb F_{2^n})=2^n+1+K_n.
-$$
-Indeed, for $x\ne0$, writing $Y=xz$ gives $z^2+z=x+x^{-2}$, and $\operatorname{Tr}(x^{-2})=\operatorname{Tr}(x^{-1})$; the points over $x=0$ and infinity contribute one each. Over $\mathbb F_2$ the curve has $4$ points, so its Frobenius trace is $-1$. Therefore, if $t_0=2,t_1=-1$ and
-$$
-t_n=-t_{n-1}-2t_{n-2},
-$$
-then $K_n=-t_n$. Successively,
-$$
-t_2,t_3,\ldots,t_{13}
-=-3,5,1,-11,9,13,-31,5,57,-67,-47,181,
-$$
-so
-$$
-K_{13}=-181.
-$$
-Thus
-$$
-\sum_j(-1)^{\lambda_j}
-=\sum_j(-1)^{\mu_j}=-181,
-$$
-because $x\mapsto x^3$ is a permutation of $\mathbb F_{8192}^\times$.
-
-For the joint correlation, in characteristic $2$,
-$$
-x^3+x^{-3}=(x+x^{-1})^3+(x+x^{-1}),
-$$
-so
-$$
-\lambda_j+\mu_j
-=\operatorname{Tr}\bigl((\xi+\xi^{-1})^3\bigr).
-$$
-For $s\ne0$, the equation $x+x^{-1}=s$ has $1+(-1)^{\operatorname{Tr}(s^{-1})}$ solutions, while $s=0$ has the single solution $x=1$. Hence, writing $\psi(u)=(-1)^{\operatorname{Tr}(u)}$,
-$$
-\sum_j(-1)^{\lambda_j+\mu_j}
-=1+\sum_{s\ne0}\bigl(1+\psi(s^{-1})\bigr)\psi(s^3).
-$$
-Since cubing permutes $\mathbb F_{8192}$,
-$$
-\sum_{s\in\mathbb F_{8192}}\psi(s^3)=0,
-$$
-and therefore
-$$
-\sum_j(-1)^{\lambda_j+\mu_j}
-=\sum_{s\ne0}\psi(s^3+s^{-1})=:J_{13}.
+\dim U=r,
+\qquad \dim K=8-r,
+\qquad U\subseteq K.
 $$
 
-Step 5: Evaluate the genus-two correlation
+Step 3: Count square-zero maps of each rank
 
-For general $n$, put
+For fixed rank $r$, choose $U=\operatorname{im}N$, then choose $K=\ker N$ containing $U$, and finally choose the induced isomorphism
 $$
-J_n=\sum_{x\in\mathbb F_{2^n}^\times}
-(-1)^{\operatorname{Tr}(x^3+x^{-1})}.
+E/K\longrightarrow U.
 $$
-Consider the Artin--Schreier curve
+Hence the number $A_r$ of square-zero endomorphisms of rank $r$ is
 $$
-\mathcal C:\quad Y^2+Y=X^3+X^{-1}.
+A_r=inom{8}{r}_2\binom{8-r}{r}_2\,|\operatorname{GL}(r,2)|,
 $$
-The right side has poles of odd orders $3$ and $1$. For an Artin--Schreier curve $Y^2+Y=f(X)$ with odd pole orders $d_i$, Riemann--Hurwitz gives
+where
 $$
-g=\frac{\sum_i(d_i+1)-2}{2},
+\binom{n}{r}_2
+=\prod_{j=0}^{r-1}\frac{2^{n-j}-1}{2^{r-j}-1}.
 $$
-so $\mathcal C$ has genus $2$. Each pole has one point above it, and therefore
+Evaluating gives
 $$
-\#\mathcal C(\mathbb F_{2^n})=2^n+1+J_n.
+A_0=1,
+\quad A_1=32385,
+\quad A_2=42165270,
+$$
+$$
+A_3=2529916200,
+\quad A_4=4047865920.
 $$
 
-Directly, $\#\mathcal C(\mathbb F_2)=4$. Over $\mathbb F_4=\{0,1,\rho,\rho^2\}$ with $\rho^2+\rho+1=0$, only $x=1$ contributes two affine points, while $x=\rho,\rho^2$ contribute none; together with the two pole-points this gives $\#\mathcal C(\mathbb F_4)=4$.
+Step 4: Count invariant Boolean functions for each affine involution
 
-Let $T_n$ be the sum of the $n$th powers of the four Frobenius eigenvalues of $\mathcal C$. Then
+The translation vector must satisfy $c\in K$. The fixed-point equation for $\pi$ is
 $$
-T_1=2+1-4=-1,
+Nv=c.
+$$
+If $c\in U$, this equation has exactly $|K|=2^{8-r}$ solutions; there are $2^r$ such translation vectors. If $c\in K\setminus U$, there are no fixed points; there are
+$$
+2^{8-r}-2^r
+$$
+such translations.
+
+An involution of the $256$-element set $E$ having $F$ fixed points has
+$$
+\frac{256+F}{2}
+$$
+orbits. Therefore:
+
+- if $c\in U$, then $\pi$ has $128+2^{7-r}$ orbits;
+- if $c\in K\setminus U$, then $\pi$ has $128$ orbits.
+
+A function $g:E\to\mathbb F_2$ satisfying $g\circ\pi=g$ is constant on every orbit of $\pi$. The condition $g(0)=0$ fixes the value on the unique orbit containing $0$, so an involution with $o$ orbits contributes exactly $2^{o-1}$ possible functions $g$.
+
+Thus for each fixed square-zero $N$ of rank $r$, the total contribution from all allowed translations is
+$$
+W_r
+=2^r2^{127+2^{7-r}}
++\left(2^{8-r}-2^r\right)2^{127}.
+$$
+Equivalently,
+$$
+W_r
+=2^{127}\left(2^{r+2^{7-r}}+2^{8-r}-2^r\right).
+$$
+
+Step 5: Sum over the possible ranks
+
+The required number is therefore
+$$
+\sum_{r=0}^4 A_rW_r
+=2^{127}\sum_{r=0}^4
+A_r\left(2^{r+2^{7-r}}+2^{8-r}-2^r\right).
+$$
+For $r=0,1,2,3,4$, the factors in parentheses are respectively
+$$
+340282366920938463463374607431768211711,
+$$
+$$
+36893488147419103358,
 \qquad
-T_2=4+1-4=1.
+17179869244,
+\qquad
+524312,
+\qquad
+4096.
 $$
-For a genus-$2$ curve over $\mathbb F_2$, the reciprocal Frobenius polynomial has the form
+Substituting the values of $A_r$ from Step 3 gives
 $$
-L(T)=1-T_1T+e_2T^2-2T_1T^3+4T^4,
+\sum_{r=0}^4
+A_r\left(2^{r+2^{7-r}}+2^{8-r}-2^r\right)
+=340282366920939658259713998470149879141.
 $$
-where $e_2=(T_1^2-T_2)/2$. Here $e_2=0$, so
+Hence the number of self-dual functions is
 $$
-L(T)=1+T+2T^3+4T^4.
-$$
-Newton's identities give $T_0=4$, $T_3=-7$, and for $n\ge4$,
-$$
-T_n=-T_{n-1}-2T_{n-3}-4T_{n-4}.
-$$
-Iterating,
-$$
-T_3,T_4,\ldots,T_{13}
-=-7,-7,9,1,41,-31,-7,-79,-23,161,25.
-$$
-Hence
-$$
-J_{13}=-T_{13}=-25.
+2^{127}\cdot340282366920939658259713998470149879141.
 $$
 
-Step 6: Recover the four simultaneous eigenspace dimensions
-
-Let $N_{\varepsilon\delta}$ be the number of $j$ for which $(\lambda_j,\mu_j)=(\varepsilon,\delta)$. Since there are $8191$ values of $j$,
-$$
-N_{00}=\frac{8191-181-181-25}{4}=1951,
-$$
-$$
-N_{01}=N_{10}=\frac{8191-181+181+25}{4}=2054,
-$$
-$$
-N_{11}=\frac{8191+181+181-25}{4}=2132.
-$$
-Therefore
-$$
-\dim\ker A=\dim\ker C=N_{00}+N_{01}=4005.
-$$
-Because $C$ is self-adjoint,
-$$
-(\ker C)^\perp=\operatorname{im}C.
-$$
-Since $A$ and $C$ are commuting idempotents,
-$$
-\ker A\cap\operatorname{im}C
-$$
-is exactly the simultaneous eigenspace $(\lambda,\mu)=(0,1)$, of dimension $2054$. Thus the dot-product pairing
-$$
-\ker C\times\ker A\to\mathbb F_2
-$$
-has rank
-$$
-4005-2054=1951.
-$$
-
-Step 7: Count the orthogonal pairs
-
-For a bilinear pairing of rank $r$ between spaces of dimensions $m$ and $n$, the number of zero pairs is
-$$
-2^{m+n-1}+2^{m+n-r-1}.
-$$
-Here $m=n=4005$ and $r=1951$, so the number of admissible functions is
-$$
-2^{8009}+2^{6058}.
-$$
-
-Final Answer: $\boxed{2^{8009}+2^{6058}}$
+Final Answer: $\boxed{2^{127}\cdot340282366920939658259713998470149879141}$
 
 ---
 
 ## Answer
 
-$2^{8009}+2^{6058}$
+$2^{127}\cdot340282366920939658259713998470149879141$
 
 ---
 
@@ -244,11 +190,11 @@ $2^{8009}+2^{6058}$
 
 ## Solution Concepts
 
-- Walsh--Fourier transform on binary vector spaces
-- quadratic refinements of symplectic forms
-- cyclotomic Cayley convolution operators
-- binary Kloosterman sums
-- genus-two Artin--Schreier curves
+- Walsh--Fourier self-duality
+- Maiorana--McFarland bent functions
+- affine involutions over $\mathbb F_2$
+- square-zero linear endomorphisms
+- Gaussian binomial coefficients
 
 ---
 
