@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "1ed1249d269d8e5c1043ae4163b394edd78b8e65",
+  "problem_blob_sha": "0a471449723190e2005e6d140085515536e1f94e",
+  "statement_sha256": "9790ca5feb51552a3f076d3cbc4f666b47c881d4aedc00171f44be4a33b13d67",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T18:39:05+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\ng(x)=x^5+a x^3+b x^2+x=x\\bigl(x^4+a x^2+b x+1\\bigr).\n\\]\nThe system is\n\\[\n\\ddot x+(1+x^2)\\dot x+g(x)=0.\n\\]\n\nDefine\n\\[\nF(x)=\\int_0^x g(s)\\,ds\n=\\frac{x^6}{6}+\\frac{a x^4}{4}+\\frac{b x^3}{3}+\\frac{x^2}{2},\n\\]\nand\n\\[\nV(x,y)=\\frac{y^2}{2}+F(x).\n\\]\nThen\n\\[\n\\dot V=y\\dot y+g(x)\\dot x\n=y\\bigl(-g(x)-(1+x^2)y\\bigr)+g(x)y\n=-(1+x^2)y^2\\le 0.\n\\]\n\nSo the origin is globally asymptotically stable exactly when it is the only equilibrium. Equilibria satisfy \\(y=0\\) and\n\\[\nx\\bigl(x^4+a x^2+b x+1\\bigr)=0.\n\\]\nThus we need\n\\[\nq(x)=x^4+a x^2+b x+1>0\n\\quad\\text{for all }x\\in\\mathbb R.\n\\]\n\nFor \\(r>0\\),\n\\[\nq(r)>0 \\iff b>-\\left(r^3+ar+\\frac1r\\right),\n\\]\nand\n\\[\nq(-r)>0 \\iff b<r^3+ar+\\frac1r.\n\\]\nHence the condition is\n\\[\n|b|<\\inf_{r>0}\\left(r^3+ar+\\frac1r\\right).\n\\]\nLet\n\\[\nh(r)=r^3+ar+\\frac1r.\n\\]\nIts minimum occurs when\n\\[\nh'(r)=3r^2+a-\\frac1{r^2}=0.\n\\]\nWriting \\(s=r^2\\), this is\n\\[\n3s^2+as-1=0,\n\\]\nso\n\\[\ns=\\frac{\\sqrt{a^2+12}-a}{6}.\n\\]\nAt this point,\n\\[\n\\frac1r=3r^3+ar,\n\\]\nso\n\\[\n\\min h(r)=4r^3+2ar=2\\sqrt{s}(2s+a).\n\\]\nThis minimum is positive exactly when \\(a>-2\\). Therefore the desired condition is\n\\[\na>-2,\\qquad |b|<2\\sqrt{\\frac{\\sqrt{a^2+12}-a}{6}}\n\\left(a+\\frac{\\sqrt{a^2+12}-a}{3}\\right).\n\\]\nEquivalently,\n\\[\n|b|<\\frac{2}{3}\\bigl(\\sqrt{a^2+12}+2a\\bigr)\n\\sqrt{\\frac{\\sqrt{a^2+12}-a}{6}}.\n\\]\n\nUnder this condition, \\(q(x)>0\\), so \\(g(x)\\) has the sign of \\(x\\). Hence \\(F\\) is positive definite and proper, \\(V\\) has compact sublevel sets, all forward solutions exist globally, and LaSalle’s invariance principle gives convergence to the only invariant set in \\(\\{\\dot V=0\\}\\), namely \\((0,0)\\).\n\nIf the condition fails, then \\(q\\) has a real zero or touches zero, giving another equilibrium \\((x,0)\\ne(0,0)\\), so global attraction to the origin is impossible.\n\n\\[\n\\boxed{\n\\left\\{(a,b)\\in\\mathbb R^2:\\ a>-2,\\ \n|b|<\\frac{2}{3}\\bigl(\\sqrt{a^2+12}+2a\\bigr)\n\\sqrt{\\frac{\\sqrt{a^2+12}-a}{6}}\n\\right\\}\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T18:40:01+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/0a4714497231.json"
+}
