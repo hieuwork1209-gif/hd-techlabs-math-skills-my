@@ -1,0 +1,22 @@
+{
+  "problem": "problem122",
+  "branch": "adversary/problem122",
+  "problem_path": "workspace/rainier-problem/problem122-matrix-decompositions-and-canonical-forms/problem.md",
+  "source_commit_sha": "5389588c705a55b34b5ba7dbb76e0d8b453d22ca",
+  "problem_blob_sha": "fb036dfb9d1c958e7b99c7a5ea3724058e7c269c",
+  "statement_sha256": "43d8de8fc3732f06673c50580cec7bd761bd5b3ff782e7ef2ed9c51c698ceadc",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T18:26:20+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(V=\\mathbb F_2^6\\). The exact number is\n\n\\[\n\\boxed{2}.\n\\]\n\nA concise classification is as follows.\n\nFix a common Lagrangian \\(U\\), choose a complement \\(X\\), and write matrices in blocks \\(V=U\\oplus X\\). Since every form in \\(W\\) vanishes on \\(U\\times U\\), each matrix has form\n\n\\[\nA=\\begin{pmatrix}\n0&M\\\\\nM^T&C\n\\end{pmatrix},\n\\qquad C\\in \\operatorname{Alt}_3(2).\n\\]\n\nSuch a matrix is invertible iff \\(M\\) is invertible. Hence the projection \\(A\\mapsto M\\) identifies \\(W\\) with a \\(3\\)-dimensional subspace \\(S\\le M_3(\\mathbb F_2)\\) whose nonzero elements are all invertible.\n\nUp to left-right equivalence, there is only one such \\(S\\): it is the regular representation of \\(\\mathbb F_8\\). Indeed, after multiplying on the left we may assume \\(I\\in S\\). Then every nonzero \\(T\\in S\\setminus\\{I\\}\\) has neither \\(0\\) nor \\(1\\) as an eigenvalue, so its minimal polynomial is irreducible cubic and \\(T\\) has order \\(7\\). The resulting \\(8\\)-element linear spread set is therefore the field spread, i.e.\n\n\\[\nS=\\{L_a:a\\in\\mathbb F_8\\},\n\\]\n\nwhere \\(L_a(x)=ax\\).\n\nUsing the trace pairing on \\(\\mathbb F_8\\), every such \\(W\\) can then be written as\n\n\\[\n\\omega_a((u,x),(v,y))\n=\n\\operatorname{Tr}_{\\mathbb F_8/\\mathbb F_2}\\bigl(a(uy+vx)\\bigr)\n+\n\\operatorname{Tr}_{\\mathbb F_8/\\mathbb F_2}\n\\bigl(\\lambda(a)(xy^2+x^2y)\\bigr),\n\\]\n\nfor an \\(\\mathbb F_2\\)-linear map \\(\\lambda:\\mathbb F_8\\to \\mathbb F_8\\).\n\nChanging the complement \\(X\\) by a shear replaces \\(\\lambda\\) by\n\n\\[\n\\lambda(a)+qa+sa^2.\n\\]\n\nSince every \\(\\mathbb F_2\\)-linear map \\(\\mathbb F_8\\to\\mathbb F_8\\) has the form\n\n\\[\n\\lambda(a)=\\alpha a+\\beta a^2+\\gamma a^4,\n\\]\n\nonly the coefficient of \\(a^4\\) remains as an invariant. Thus every \\(W\\) is equivalent to exactly one of the forms\n\n\\[\n\\lambda(a)=0\n\\qquad\\text{or}\\qquad\n\\lambda(a)=a^4,\n\\]\n\nbecause the nonzero coefficient can be scaled to \\(1\\).\n\nThese two cases are not equivalent. If \\(\\lambda=0\\), then \\(W\\) has many common Lagrangians: every \\(\\mathbb F_8\\)-line in \\(\\mathbb F_8^2\\) is common Lagrangian, giving \\(9\\) of them.\n\nIf \\(\\lambda(a)=a^4\\), then the original \\(U\\) is the unique common Lagrangian. Indeed, any other common Lagrangian must be the graph of an \\(\\mathbb F_2\\)-linear map \\(h:\\mathbb F_8\\to\\mathbb F_8\\). The isotropy condition gives, for all \\(x,y\\),\n\n\\[\nh(x)y+h(y)x=x^2y^4+x^4y^2.\n\\]\n\nPutting \\(y=1\\) forces\n\n\\[\nh(x)=x^4+x^2+cx.\n\\]\n\nSubstituting this back gives\n\n\\[\nx^4y+xy^4+x^2y+xy^2=x^2y^4+x^4y^2,\n\\]\n\nwhich is false for all \\(x,y\\in\\mathbb F_8\\). Hence no such second Lagrangian exists.\n\nTherefore the two normal forms lie in distinct \\(GL_6(2)\\)-orbits, and they exhaust all possibilities.\n\n\\[\n\\boxed{2}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T18:28:50+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem122/fb036dfb9d1c.json"
+}
