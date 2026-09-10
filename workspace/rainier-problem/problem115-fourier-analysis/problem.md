@@ -2,9 +2,9 @@
 
 ## LaTeX (Normalized)
 
-Let $P=\mathbb F_{127}$ and let
+Let $P=\mathbb F_{8191}$ and
 $$
-H=\{t^9:t\in P^\times\}.
+H=\{\pm2^i:0\le i<13\}\subset P^\times.
 $$
 Let $E=\mathbb F_2^P$, with
 $$
@@ -26,7 +26,7 @@ S(x,y)=\bigl(x+Cy,\;Ax+(I+AC)y\bigr).
 $$
 For $g:V\to\mathbb C$, define the normalized Walsh--Fourier transform
 $$
-(\mathcal Fg)(u,v)=2^{-127}\sum_{x,y\in E}g(x,y)(-1)^{x\cdot v+y\cdot u},
+(\mathcal Fg)(u,v)=2^{-8191}\sum_{x,y\in E}g(x,y)(-1)^{x\cdot v+y\cdot u},
 \qquad
 (Tg)(z)=(\mathcal Fg)(Sz).
 $$
@@ -51,4 +51,4 @@ for all $z,r,s\in V$, and also $Tf=f$?
 
 ## Domain Explanation
 
-The problem asks for quadratic sign phases fixed by a normalized Walsh--Fourier transform after a symplectic twist. The fixed-point count is controlled by the joint binary Fourier spectrum of two cyclotomic Cayley relations on $\mathbb F_{127}$, so Fourier analysis is the central organizing method.
+The problem asks for quadratic sign phases fixed by a normalized Walsh--Fourier transform after a symplectic twist. The fixed-point count is controlled by the joint binary Fourier spectrum of two cyclotomic Cayley convolution operators on $\mathbb F_{8191}$, so Fourier analysis is the central organizing method.
