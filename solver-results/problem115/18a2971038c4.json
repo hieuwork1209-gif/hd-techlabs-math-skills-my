@@ -1,0 +1,22 @@
+{
+  "problem": "problem115",
+  "branch": "adversary/problem115",
+  "problem_path": "workspace/rainier-problem/problem115-fourier-analysis/problem.md",
+  "source_commit_sha": "ca8ef870bbc5816d866cad9ca41d65d63c3f34e1",
+  "problem_blob_sha": "18a2971038c47b2397f85214b7af3ab1dcf04717",
+  "statement_sha256": "8c1f7bf311c5b469c1e39ce75036c3559f6ab8179cd70d3a13618d5519753a93",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T15:01:59+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(f=(-1)^Q\\), where \\(Q:V\\to\\mathbb F_2\\). Since \\(f(0)=1\\), \\(Q(0)=0\\). The four-point identity says\n\n\\[\nQ(z)+Q(z+r)+Q(z+s)+Q(z+r+s)=\\omega(r,s),\n\\]\n\nso \\(Q\\) is a quadratic refinement of \\(\\omega\\). Every such \\(Q\\) is\n\n\\[\nQ_{\\alpha,\\beta}(x,y)=x\\cdot y+\\alpha\\cdot y+\\beta\\cdot x\n\\]\n\nfor unique \\(\\alpha,\\beta\\in E\\).\n\nFor this quadratic phase,\n\n\\[\n\\mathcal F((-1)^{Q_{\\alpha,\\beta}})(w)\n=\n(-1)^{\\alpha\\cdot\\beta}(-1)^{Q_{\\alpha,\\beta}(w)}.\n\\]\n\nThus \\(Tf=f\\) requires\n\n\\[\n\\alpha\\cdot\\beta=0\n\\]\n\nand \\(Q_{\\alpha,\\beta}(Sz)=Q_{\\alpha,\\beta}(z)\\) for all \\(z\\).\n\nNow \\(Q_0(x,y)=x\\cdot y\\) is fixed by \\(S\\). Indeed \\(A,C\\) are self-adjoint convolution operators, commute, and \\(x\\cdot Ax=0,\\ x\\cdot Cx=0\\) because \\(H=-H\\). Hence the invariance condition becomes\n\n\\[\n\\omega((\\alpha,\\beta),Sz)=\\omega((\\alpha,\\beta),z),\n\\]\n\nwhich gives exactly\n\n\\[\nA\\alpha=0,\\qquad C\\beta=0.\n\\]\n\nSo we must count pairs\n\n\\[\n\\alpha\\in\\ker A,\\qquad \\beta\\in\\ker C,\\qquad \\alpha\\cdot\\beta=0.\n\\]\n\nIdentify \\(E\\cong \\mathbb F_2[X]/(X^{127}-1)\\). Since\n\n\\[\nH=\\{\\pm 2^i:0\\le i\\le 6\\},\n\\]\n\n\\(A\\) is multiplication by\n\n\\[\na(X)=\\sum_{h\\in H}X^h.\n\\]\n\nUsing the \\(2\\)-cyclotomic cosets mod \\(127\\), one finds that \\(a(\\zeta^k)=0\\) for \\(k=0\\) and for the eight cosets represented by\n\n\\[\n9,11,19,21,27,29,43,55.\n\\]\n\nEach nonzero coset has size \\(7\\), so\n\n\\[\n\\dim\\ker A=1+8\\cdot 7=57.\n\\]\n\nSince \\(C\\) is the same convolution with exponents multiplied by \\(3\\),\n\n\\[\n\\dim\\ker C=57.\n\\]\n\nThe dot pairing between \\(\\ker A\\) and \\(\\ker C\\) has rank \\(15\\): in Fourier coordinates it pairs modes \\(k\\) and \\(-k\\), and the relevant intersection consists of \\(0\\) plus two size-\\(7\\) cosets.\n\nFor a bilinear pairing of rank \\(r\\) on spaces of dimensions \\(m,n\\), the number of pairs with pairing \\(0\\) is\n\n\\[\n2^{m+n-1}+2^{m+n-r-1}.\n\\]\n\nHere \\(m=n=57\\) and \\(r=15\\), giving\n\n\\[\n2^{113}+2^{98}.\n\\]\n\nFinal answer:\n\n\\[\n\\boxed{2^{113}+2^{98}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T15:05:07+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem115/18a2971038c4.json"
+}
