@@ -1,0 +1,22 @@
+{
+  "problem": "problem121",
+  "branch": "adversary/problem121",
+  "problem_path": "workspace/rainier-problem/problem121-matrix-decompositions-and-canonical-forms/problem.md",
+  "source_commit_sha": "b1963d4e4fc07a17aa78bf12bdb43f1a1dd8c0b4",
+  "problem_blob_sha": "590b8b8e31bcf4798cdd319313a8de164f36c1ad",
+  "statement_sha256": "44ab3d148a04f4eedda911e0580390983ff05de987154a421d5d6b4b03551b22",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T12:59:13+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(v=\\binom n3\\). The Smith normal form of \\(L_n\\) is\n\n\\[\n\\operatorname{diag}\\Big(\n\\underbrace{1,\\ldots,1}_{q+1},\n\\underbrace{2,\\ldots,2}_{2n-4},\n6,6,\n\\underbrace{c,\\ldots,c}_{r},\n\\underbrace{b,\\ldots,b}_{q},\n\\underbrace{a,\\ldots,a}_{n-2},\n0\n\\Big),\n\\]\n\nwhere\n\n\\[\nm=\\binom n2,\\qquad q=m-2n+1,\\qquad r=\\binom n3-2m+n,\n\\]\nand\n\\[\nc=3(n-2),\\qquad b=2(n-1)c,\\qquad a=\\frac n4\\,b.\n\\]\n\nThese are in divisibility order because \\(n\\equiv0\\pmod {12}\\), so \\(6\\mid c\\), \\(c\\mid b\\), and \\(b\\mid a\\).\n\nThus explicitly the invariant factors are\n\n\\[\n\\boxed{\n1^{\\,q+1},\\;\n2^{\\,2n-4},\\;\n6^{\\,2},\\;\nc^{\\,r},\\;\nb^{\\,q},\\;\na^{\\,n-2},\\;\n0\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T13:03:35+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem121/590b8b8e31bc.json"
+}
