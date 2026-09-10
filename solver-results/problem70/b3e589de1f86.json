@@ -1,0 +1,22 @@
+{
+  "problem": "problem70",
+  "branch": "adversary/problem70",
+  "problem_path": "workspace/rainier-problem/problem70-determinants/problem.md",
+  "source_commit_sha": "f745d9496cf6a44455fdf56c840975dba6963c05",
+  "problem_blob_sha": "b3e589de1f86e0a0005f4c6b54e116e2c9d33077",
+  "statement_sha256": "47cf42f56eb3aab7c7d4f35969f9b006226503d88a0fc6341fbdb0811c131ba5",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T08:04:10+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nf(g)=7^{c(g)}\\qquad(g\\in A_6).\n\\]\nThe matrix is the matrix of right convolution by the central element\n\\[\nz=\\sum_{g\\in A_6} f(g)g\n\\]\non the regular representation of \\(A_6\\). Hence if \\(z\\) acts on an irreducible \\(A_6\\)-module \\(V\\) of dimension \\(d\\) by the scalar \\(\\lambda_V\\), then\n\\[\n\\det A=\\prod_V \\lambda_V^{d^2}.\n\\]\n\nNow view \\(z\\) inside \\(\\mathbb C[S_6]\\). Since\n\\[\n\\operatorname{sgn}(g)=(-1)^{6-c(g)},\n\\]\nwe have\n\\[\nz=\\frac12\\sum_{g\\in S_6}\\bigl(7^{c(g)}+\\operatorname{sgn}(g)7^{c(g)}\\bigr)g\n=\\frac12\\left(\\Omega(7)+\\Omega(-7)\\right),\n\\]\nwhere\n\\[\n\\Omega(x)=\\sum_{g\\in S_6}x^{c(g)}g.\n\\]\n\nBy the Jucys-Murphy identity,\n\\[\n\\Omega(x)=\\prod_{k=1}^6\\left(x+\\sum_{i<k}(ik)\\right),\n\\]\nso on the Specht module \\(S^\\lambda\\),\n\\[\n\\Omega(x)\\text{ acts by }P_\\lambda(x)=\\prod_{(i,j)\\in\\lambda}(x+j-i).\n\\]\nThus \\(z\\) acts by\n\\[\n\\lambda_\\lambda=\\frac12\\bigl(P_\\lambda(7)+P_\\lambda(-7)\\bigr).\n\\]\n\nThe relevant \\(S_6\\)-partitions giving the \\(A_6\\)-irreducibles are\n\\[\n(6),\\ (5,1),\\ (4,2),\\ (4,1,1),\\ (3,3),\\ (3,2,1),\n\\]\nwith \\(A_6\\)-dimensions\n\\[\n1,\\ 5,\\ 9,\\ 10,\\ 5,\\ 8,8.\n\\]\nFor \\((3,2,1)\\), the \\(16\\)-dimensional \\(S_6\\)-module splits into two \\(8\\)-dimensional \\(A_6\\)-modules, and both receive the same scalar because \\(z\\) is constant on the split \\(A_6\\)-classes.\n\nComputing the content products gives:\n\\[\n\\begin{array}{c|c|c}\n\\lambda & \\dim_{A_6} & \\lambda_\\lambda\\\\ \\hline\n(6) & 1 & 335160\\\\\n(5,1) & 5 & 176400\\\\\n(4,2) & 9 & 129360\\\\\n(4,1,1) & 10 & 105840\\\\\n(3,3) & 5 & 119952\\\\\n(3,2,1) & 8,8 & 105840\n\\end{array}\n\\]\nTherefore\n\\[\n\\det A\n=\n335160\\cdot 176400^{25}\\cdot 129360^{81}\\cdot 105840^{100+64+64}\\cdot 119952^{25}.\n\\]\nSo\n\\[\n\\det A\n=\n335160\\cdot 176400^{25}\\cdot 129360^{81}\\cdot 105840^{228}\\cdot 119952^{25}.\n\\]\n\nFactoring,\n\\[\n335160=2^3 3^2 5\\,7^2\\,19,\n\\]\n\\[\n176400=2^4 3^2 5^2 7^2,\\quad\n129360=2^4 3\\,5\\,7^2\\,11,\n\\]\n\\[\n105840=2^4 3^3 5\\,7^2,\\quad\n119952=2^4 3^2 7^2\\,17.\n\\]\nCombining exponents,\n\\[\n\\boxed{2^{1439}3^{867}5^{360}7^{720}11^{81}17^{25}19}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T08:06:36+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem70/b3e589de1f86.json"
+}
