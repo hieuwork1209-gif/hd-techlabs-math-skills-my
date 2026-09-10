@@ -1,0 +1,22 @@
+{
+  "problem": "problem115",
+  "branch": "adversary/problem115",
+  "problem_path": "workspace/rainier-problem/problem115-fourier-analysis/problem.md",
+  "source_commit_sha": "46f16733db323af9cf0088492a1b996941457a39",
+  "problem_blob_sha": "ca9f0395d89d79a674eac335c572e15196471f78",
+  "statement_sha256": "e8dcb5128f1187de76a8c846862bd73180eca796c17355d3801d089ba0980d08",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T14:54:11+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nf(z)=(-1)^{q(z)},\\qquad z\\in V.\n\\]\nSince \\(f(0)=1\\), we have \\(q(0)=0\\). The four-point identity says exactly that \\(q\\) is a quadratic refinement of \\(\\omega\\):\n\\[\nq(z+r+s)+q(z+r)+q(z+s)+q(z)=\\omega(r,s).\n\\]\nThus every such \\(q\\) is\n\\[\nq=q_0+\\ell,\\qquad q_0(x,y)=x\\cdot y,\n\\]\nwhere \\(\\ell\\) is linear on \\(V\\).\n\nThe operator \\(A\\) is convolution by \\(H\\). Since \\(H=-H\\), \\(A\\) is self-adjoint. Also \\(H=C\\cup 63C\\), where\n\\[\nC=\\{1,2,4,8,16,32,64\\}.\n\\]\nFor a primitive \\(127\\)-th root \\(\\alpha\\in\\mathbb F_{128}\\), the eigenvalues of \\(A\\) are\n\\[\n\\eta_j=\\sum_{h\\in H}\\alpha^{jh}\n=\\operatorname{Tr}(\\alpha^j)+\\operatorname{Tr}(\\alpha^{63j})\\in\\mathbb F_2.\n\\]\nChecking the nine \\(H\\)-cosets gives\n\\[\n\\eta_j=0\\quad\\text{for }j=9,11,19,21,\n\\]\nand \\(\\eta_j=1\\) for the other five cosets. Also \\(\\eta_0=|H|=14=0\\). Hence\n\\[\n\\dim\\ker A=1+4\\cdot 14=57.\n\\]\nBecause the eigenvalues are only \\(0,1\\), we have \\(A^2=A\\).\n\nNow\n\\[\nS(x,y)=(x+Ay,\\;Ax+(I+A)y).\n\\]\nUsing \\(A^2=A\\), one checks\n\\[\nq_0(S(x,y))=q_0(x,y),\n\\]\nand \\(S\\) is symplectic. Therefore the \\(S\\)-invariant quadratic refinements are precisely\n\\[\nq=q_0+\\omega(a,\\cdot)\n\\]\nwith \\(Sa=a\\). The fixed space satisfies\n\\[\nSa=a\n\\iff Ay=0,\\quad A(x+y)=0.\n\\]\nSo, writing \\(K=\\ker A\\),\n\\[\n\\operatorname{Fix}(S)=\\{(p+y,y):p,y\\in K\\},\n\\]\nand therefore\n\\[\n|\\operatorname{Fix}(S)|=2^{114}.\n\\]\n\nFor a quadratic refinement \\(q\\), its normalized Walsh transform has the form\n\\[\n\\mathcal F((-1)^q)(w)=\\sigma(q)(-1)^{q(w)},\n\\]\nwhere \\(\\sigma(q)=\\pm1\\). The condition \\(Tf=f\\) forces both \\(q(Sz)=q(z)\\) and \\(\\sigma(q)=1\\).\n\nFor \\(q=q_0+\\omega(a,\\cdot)\\),\n\\[\n\\sigma(q)=(-1)^{q_0(a)}.\n\\]\nThus we must count fixed \\(a=(p+y,y)\\) with\n\\[\nq_0(a)=(p+y)\\cdot y=p\\cdot y+y\\cdot y=0.\n\\]\nThe dot product restricted to \\(K\\) is nondegenerate, since \\(A\\) is self-adjoint idempotent. For \\(y=0\\), all \\(2^{57}\\) choices of \\(p\\) work. For each nonzero \\(y\\in K\\), exactly half of the \\(p\\in K\\) work. Hence the count is\n\\[\n2^{57}+(2^{57}-1)2^{56}\n=2^{113}+2^{56}.\n\\]\n\n\\[\n\\boxed{2^{113}+2^{56}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T14:56:32+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem115/ca9f0395d89d.json"
+}
