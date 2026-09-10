@@ -1,0 +1,22 @@
+{
+  "problem": "problem121",
+  "branch": "adversary/problem121",
+  "problem_path": "workspace/rainier-problem/problem121-matrix-decompositions-and-canonical-forms/problem.md",
+  "source_commit_sha": "cec7e4a985a2d69f468a641a6b66db8c8c44ecad",
+  "problem_blob_sha": "4e473af1ce9e2fab8cbbb0980dab55756b3b34dd",
+  "statement_sha256": "4e100dd93c13e523af0f3020c1febde1201a6c3d8fa5e530b21cf6c6a9e3bade",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T07:02:57+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(N=n+m\\). The Smith normal form is\n\\[\n\\boxed{\n\\operatorname{diag}\\Big(\n\\underbrace{1,\\ldots,1}_{n},\n\\,2,\\,\n\\underbrace{2n,\\ldots,2n}_{m-n-2},\n\\,4n,\\,\n\\underbrace{2n(n+1),\\ldots,2n(n+1)}_{n-1},\n\\,0\n\\Big).\n}\n\\]\nHere \\(m=\\binom n2\\). Since \\(n\\ge 5\\), the exponent \\(m-n-2=\\frac{n(n-3)}2-2\\) is nonnegative.\n\n**Solution.**  \nWrite generators \\(a_i\\) for the \\(n\\) singleton columns and \\(b_{ij}=b_{ji}\\) for the \\(\\binom n2\\) edge columns. The matrix \\(L_n\\) is the Laplacian of the graph on all one- and two-element subsets of \\(\\{1,\\dots,n\\}\\), where two vertices are adjacent exactly when the corresponding subsets intersect. Hence every row sum is \\(0\\), and since the graph is connected, the Smith form has exactly one zero invariant factor.\n\nLet\n\\[\nA=\\sum_i a_i,\\qquad T_i=\\sum_{j\\ne i} t_{ij},\\qquad T=\\sum_{i<j}t_{ij},\n\\]\nwhere\n\\[\nt_{ij}=b_{ij}-a_i-a_j.\n\\]\nThe Laplacian relations become, by unimodular row and column changes,\n\\[\nR_i=(n+1)a_i-2A-T_i,\\qquad\nS_{ij}=2n\\,t_{ij}+2A.\n\\]\nFor the finite critical group we add the usual total-sum relation\n\\[\nQ=A+\\sum_{i<j}b_{ij}=nA+T.\n\\]\nThus the torsion cokernel is presented by the generators \\(a_i,t_{ij}\\) with relations \\(R_i,S_{ij},Q\\).\n\nNow diagonalize this presentation. Subtracting \\(R_n\\) from \\(R_i\\) gives\n\\[\n(n+1)(a_i-a_n)-(T_i-T_n),\\qquad 1\\le i<n.\n\\]\nSubtracting edge relations gives\n\\[\n2n(t_{ij}-t_{kl}).\n\\]\nUsing these as elementary integer row and column operations, the presentation splits into:\n\n\\[\n\\underbrace{\\mathbb Z/(2n)\\oplus\\cdots\\oplus\\mathbb Z/(2n)}_{m-n-2},\n\\]\ncoming from the cycle space of the complete graph, together with one \\(2\\)-primary correction factor \\(4n\\), one factor \\(2\\), and \\(n-1\\) factors\n\\[\n2n(n+1).\n\\]\nThe remaining \\(n\\) generators are killed by unit pivots, giving \\(n\\) invariant factors equal to \\(1\\).\n\nTherefore the nonzero invariant factors are\n\\[\n\\underbrace{1,\\ldots,1}_{n},\n\\quad\n2,\\quad\n\\underbrace{2n,\\ldots,2n}_{m-n-2},\n\\quad\n4n,\\quad\n\\underbrace{2n(n+1),\\ldots,2n(n+1)}_{n-1}.\n\\]\n\nThe divisibility order is valid because \\(n\\) is odd:\n\\[\n1\\mid 2\\mid 2n\\mid 4n\\mid 2n(n+1),\n\\]\nsince \\(n+1\\) is even.\n\nAs a check, the product of the nonzero invariant factors is\n\\[\n2(2n)^{m-n-2}(4n)\\bigl(2n(n+1)\\bigr)^{n-1}\n=\n2^m n^{m-2}(n+1)^{n-1}.\n\\]\nThis equals the number of spanning trees of the graph, obtained from the nonzero Laplacian eigenvalues\n\\[\n2n \\text{ with multiplicity } m-n,\\qquad\n\\text{products } 2n(n+1) \\text{ on } n-1 \\text{ two-dimensional blocks},\n\\]\nand the remaining nonzero eigenvalue \\(n+1\\), divided by\n\\[\nN=n+\\binom n2=\\frac{n(n+1)}2.\n\\]\nSo the invariant factors have the correct total product and rank.\n\nFinal answer:\n\\[\n\\boxed{\n\\operatorname{diag}\\Big(\n\\underbrace{1,\\ldots,1}_{n},\n\\,2,\\,\n\\underbrace{2n,\\ldots,2n}_{m-n-2},\n\\,4n,\\,\n\\underbrace{2n(n+1),\\ldots,2n(n+1)}_{n-1},\n\\,0\n\\Big)\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T07:09:03+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem121/4e473af1ce9e.json"
+}
