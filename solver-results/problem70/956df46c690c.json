@@ -1,0 +1,22 @@
+{
+  "problem": "problem70",
+  "branch": "adversary/problem70",
+  "problem_path": "workspace/rainier-problem/problem70-determinants/problem.md",
+  "source_commit_sha": "2f1d9f44ed758cfe6a53f9baf1176d1e8074d6cf",
+  "problem_blob_sha": "956df46c690c27430b8f93e2ceb5b978361b3155",
+  "statement_sha256": "ed0c2cc40683735d9747eacae6432134df56271876273b75f7c8ed9755edf94c",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T08:49:00+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nf(w)=2^{\\operatorname{inv}(w)},\\qquad w\\in S_6.\n\\]\n\nThen \\(A_{\\sigma,\\tau}=f(\\sigma^{-1}\\tau)\\) is the Varchenko matrix of the braid arrangement \\(x_i=x_j\\), with every hyperplane assigned weight \\(2\\). For the braid arrangement of type \\(A_{n-1}\\), the determinant is\n\n\\[\n\\det\\bigl(q^{\\operatorname{inv}(\\sigma^{-1}\\tau)}\\bigr)_{\\sigma,\\tau\\in S_n}\n=\n\\prod_{k=2}^{n}\n\\left(1-q^{k(k-1)}\\right)^{\n\\frac{n!(n-k+1)}{k(k-1)}\n}.\n\\]\n\nHere the factor \\(1-q^{k(k-1)}\\) comes from a block of \\(k\\) coordinates becoming equal: there are \\(\\binom nk\\) such blocks, each contributing exponent \\((k-2)!(n-k+1)!\\), and\n\n\\[\n\\binom nk (k-2)!(n-k+1)!\n=\n\\frac{n!(n-k+1)}{k(k-1)}.\n\\]\n\nFor \\(n=6\\), the exponents are\n\n\\[\n\\begin{aligned}\nk=2 &: \\frac{720\\cdot 5}{2}=1800,\\\\\nk=3 &: \\frac{720\\cdot 4}{6}=480,\\\\\nk=4 &: \\frac{720\\cdot 3}{12}=180,\\\\\nk=5 &: \\frac{720\\cdot 2}{20}=72,\\\\\nk=6 &: \\frac{720\\cdot 1}{30}=24.\n\\end{aligned}\n\\]\n\nSubstituting \\(q=2\\),\n\n\\[\n\\det A\n=\n(1-2^2)^{1800}\n(1-2^6)^{480}\n(1-2^{12})^{180}\n(1-2^{20})^{72}\n(1-2^{30})^{24}.\n\\]\n\nThe total exponent \\(1800+480+180+72+24=2556\\) is even, so the determinant is positive. Therefore\n\n\\[\n\\boxed{\n3^{1800}\\,63^{480}\\,4095^{180}\\,1048575^{72}\\,1073741823^{24}\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T08:50:56+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem70/956df46c690c.json"
+}
