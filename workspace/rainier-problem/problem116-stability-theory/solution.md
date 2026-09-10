@@ -1,96 +1,119 @@
 ## Steps
 
-Step 1: Expose the hidden polynomial coordinate
-Set
+Step 1: Reduce global stability to positivity of the restoring polynomial
+Write
 $$
-u=x-y^2.
+p(x)=x^4+a x^2+b x+1
 $$
-The second equation becomes
+and
 $$
-\dot y=-y^3-by-u.
+U(x)=\int_0^x s p(s)\,ds
+=\frac{x^6}{6}+\frac{a x^4}{4}+\frac{b x^3}{3}+\frac{x^2}{2}.
 $$
-Using $\dot u=\dot x-2y\dot y$ and substituting the given $\dot x$ gives
+For the system
 $$
-\dot u=-u^3-au-y.
-$$
-Thus the polynomial change of variables $(x,y)\mapsto(u,y)=(x-y^2,y)$, with inverse $x=u+y^2$, transforms the system into
-$$
-\dot u=-u^3-au-y,
+\dot x=y,
 \qquad
-\dot y=-y^3-by-u.
+\dot y=-(1+x^2)y-xp(x),
+$$
+define the mechanical energy
+$$
+E(x,y)=\frac{y^2}{2}+U(x).
+$$
+Along every solution,
+$$
+\dot E
+=y\dot y+U'(x)\dot x
+=-(1+x^2)y^2\leq0.
 $$
 
-Step 2: Identify the gradient structure
-Define
+Assume first that $p(x)>0$ for every real $x$. Then $xp(x)$ has the sign of $x$, so $U(x)>0$ for $x\neq0$, and $U(x)\to+\infty$ as $|x|\to\infty$. Hence $E$ is positive definite and proper. Every trajectory remains in a compact sublevel set of $E$, so every forward solution is global and bounded. The set where $\dot E=0$ is $y=0$. A trajectory can remain in that set only if also
 $$
-\Phi(u,y)=\frac14(u^4+y^4)+\frac12\left(au^2+2uy+by^2\right).
+\dot y=-xp(x)=0,
 $$
-Then
+which, because $p>0$, forces $x=0$. Thus the only invariant subset of $\{\dot E=0\}$ is the origin, and the energy decay implies every trajectory converges to $(0,0)$. Positive definiteness of $E$ gives Lyapunov stability.
+
+Conversely, if $p$ is not strictly positive on $\mathbb R$, then since $p(0)=1$ there is a nonzero real $r$ with $p(r)=0$: this is immediate if $p$ vanishes, while if $p$ is negative somewhere continuity gives a zero between that point and $0$. Then $(r,0)$ is a nonzero equilibrium. Therefore global asymptotic stability is equivalent to
 $$
-\frac{\partial\Phi}{\partial u}=u^3+au+y,
+p(x)>0\qquad\text{for all }x\in\mathbb R.
+$$
+
+Step 2: Convert quartic positivity into a one-variable minimum
+For $t>0$, define
+$$
+h_a(t)=t^3+a t+\frac1t.
+$$
+For $x=t>0$,
+$$
+\frac{p(t)}{t}=h_a(t)+b,
+$$
+whereas for $x=-t<0$,
+$$
+\frac{p(-t)}{t}=h_a(t)-b.
+$$
+Thus $p(x)>0$ for every nonzero real $x$ exactly when
+$$
+-h_a(t)<b<h_a(t)\qquad\text{for every }t>0.
+$$
+Equivalently,
+$$
+|b|<m(a),
 \qquad
-\frac{\partial\Phi}{\partial y}=y^3+u+by,
+m(a):=\inf_{t>0}h_a(t),
 $$
-so the transformed system is the gradient flow
-$$
-(\dot u,\dot y)=-\nabla\Phi(u,y).
-$$
-Let
-$$
-M=\begin{pmatrix}a&1\\1&b\end{pmatrix}.
-$$
-The quadratic part of $\Phi$ is $\frac12(u,y)M(u,y)^T$.
+provided $m(a)>0$.
 
-Step 3: Prove sufficiency when the quadratic form is positive semidefinite
-Assume $M\succeq0$. Then
+Step 3: Compute the minimum explicitly
+The derivative is
 $$
-\Phi(u,y)\geq \frac14(u^4+y^4),
+h_a'(t)=3t^2+a-\frac1{t^2}.
 $$
-so $\Phi$ is positive definite and proper. Along every solution,
+Setting $s=t^2>0$, the critical-point equation becomes
 $$
-\dot\Phi=-\left(u^3+au+y\right)^2-\left(y^3+u+by\right)^2\leq0.
+3s^2+a s-1=0.
 $$
-If $(u,y)$ is an equilibrium, multiplying the two equilibrium equations by $u$ and $y$ respectively and adding gives
+It has exactly one positive root,
 $$
-0=u^4+y^4+au^2+2uy+by^2
-  =u^4+y^4+(u,y)M(u,y)^T.
+s=\frac{\sqrt{a^2+12}-a}{6}.
 $$
-Every term on the right is nonnegative, hence $u=y=0$. Thus the origin is the unique equilibrium.
-
-Because $\Phi$ is proper and nonincreasing, every forward trajectory stays in a compact sublevel set, so every solution exists for all $t\geq0$. Any omega-limit point must satisfy $\dot\Phi=0$, hence must be an equilibrium; since the origin is the unique equilibrium, every trajectory converges to $(0,0)$. Positive definiteness of $\Phi$ also gives Lyapunov stability. Therefore the origin is globally asymptotically stable whenever $M\succeq0$. Notice that singular positive-semidefinite matrices are allowed because the quartic terms remain strictly positive away from the origin.
-
-Step 4: Prove necessity and translate the matrix condition
-Suppose $M$ is not positive semidefinite. Then there is a nonzero vector $v=(v_1,v_2)$ with
+Since $h_a(t)\to+\infty$ as $t\to0^+$ and as $t\to\infty$, this critical point gives the global minimum. From
 $$
-v^TMv<0.
+a=\frac1s-3s
 $$
-For sufficiently small $s>0$,
+we obtain
 $$
-\Phi(sv)=\frac{s^4}{4}(v_1^4+v_2^4)+\frac{s^2}{2}v^TMv<0.
+m(a)=h_a(\sqrt s)
+=\frac{2(1-s^2)}{\sqrt s}.
 $$
-Such initial points can be chosen arbitrarily close to the origin. Since $\Phi$ is nonincreasing along trajectories, a solution starting from one of them can never converge to the origin, where $\Phi=0$. Hence global asymptotic stability is impossible when $M\not\succeq0$.
-
-For a symmetric $2\times2$ matrix,
+The function $a(s)=s^{-1}-3s$ is strictly decreasing for $s>0$, and $a(1)=-2$. Hence
 $$
-M\succeq0
+m(a)>0
 \quad\Longleftrightarrow\quad
-a\geq0,\quad b\geq0,\quad ab-1\geq0.
+s<1
+\quad\Longleftrightarrow\quad
+a>-2.
 $$
-The inequality $ab\geq1$ then forces $a>0$ and $b>0$. Therefore the required parameter region is
+At $a=-2$ the minimum is $0$, while for $a<-2$ it is negative, so no value of $b$ can make $p$ strictly positive.
+
+Step 4: State the exact parameter region
+Combining the previous steps, put
 $$
-a>0,
+s=\frac{\sqrt{a^2+12}-a}{6}.
+$$
+Then the origin is globally asymptotically stable exactly when
+$$
+a>-2,
 \qquad
-b>0,
-\qquad
-ab\geq1.
+|b|<\frac{2(1-s^2)}{\sqrt s}.
 $$
-Final Answer: $\boxed{\{(a,b)\in\mathbb{R}^2:a>0,\ b>0,\ ab\geq1\}}$
+Equality is excluded: when $|b|=m(a)$, the quartic $p$ has a nonzero double real root, which produces a nonzero equilibrium $(r,0)$.
+Final Answer: $\boxed{\{(a,b):a>-2,\ |b|<2(1-s^2)/\sqrt{s},\ s=(\sqrt{a^2+12}-a)/6\}}$
 
 ---
 
 ## Answer
 
-$\{(a,b)\in\mathbb{R}^2:a>0,\ b>0,\ ab\geq1\}$
+$\{(a,b):a>-2,\ |b|<2(1-s^2)/\sqrt{s},\ s=(\sqrt{a^2+12}-a)/6\}$
 
 ---
 
@@ -105,10 +128,10 @@ $\{(a,b)\in\mathbb{R}^2:a>0,\ b>0,\ ab\geq1\}$
 ## Solution Concepts
 
 - global asymptotic stability
-- polynomial change of variables
-- gradient flows
-- positive semidefinite quadratic forms
-- Lyapunov functions
+- energy Lyapunov functions
+- nonlinear damped oscillators
+- positivity of quartic polynomials
+- parameter-dependent minimization
 
 ---
 
