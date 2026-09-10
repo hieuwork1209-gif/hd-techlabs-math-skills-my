@@ -2,15 +2,23 @@
 
 ## LaTeX (Normalized)
 
-Let $n\geq5$ be odd and let $m=\binom{n}{2}$. Let $B_n\in M_{n\times m}(\mathbb Z)$ have columns indexed by the unordered pairs $\{i,j\}\subset\{1,\ldots,n\}$, with the column indexed by $\{i,j\}$ equal to $e_i+e_j$. Let $J_n$ be the $n\times n$ all-ones matrix, and define
+Let $n\geq12$ satisfy $n\equiv0\pmod{12}$, and let $X$ be the set of all $3$-subsets of $\{1,\ldots,n\}$. Define the integer matrix $L_n=(\ell_{S,T})_{S,T\in X}$ by
 $$
-L_n=
-\begin{pmatrix}
-(2n-1)I_n-J_n&-B_n\\
--B_n^T&2nI_m-B_n^TB_n
-\end{pmatrix}.
+\ell_{S,T}=\begin{cases}
+3(n-3),&S=T,\\
+-1,&|S\cap T|=2,\\
+0,&\text{otherwise}.
+\end{cases}
 $$
-Determine the Smith normal form of $L_n$ over $\mathbb Z$, with the diagonal invariant factors written in divisibility order.
+Put
+$$
+m=\binom n2,\qquad q=m-2n+1,\qquad r=\binom n3-2m+n,
+$$
+and
+$$
+c=3(n-2),\qquad b=2(n-1)c,\qquad a=\frac n4b.
+$$
+Determine the Smith normal form of $L_n$ over $\mathbb Z$, with the invariant factors written in divisibility order.
 
 ---
 
@@ -27,4 +35,4 @@ Determine the Smith normal form of $L_n$ over $\mathbb Z$, with the diagonal inv
 
 ## Domain Explanation
 
-The problem asks for the Smith normal form of an explicit structured integer block matrix. Its difficulty comes from determining canonical invariant factors from the interaction between the two incidence blocks, including their prime-primary behavior. This makes Linear Algebra -> Matrix decompositions and canonical forms the fundamental classification, rather than graph theory or another combinatorial category.
+The problem asks for the Smith normal form of a canonical integer matrix indexed by 3-subsets. Rational eigenvalues alone do not determine the answer: the integral reduction produces four different small Smith blocks, and their 2- and 3-primary parts must be recombined in divisibility order. The central task is therefore an integral matrix canonical-form computation.
