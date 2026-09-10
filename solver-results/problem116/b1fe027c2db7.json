@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "984211352a021ace7c6a4160b3ea33eba076d33a",
+  "problem_blob_sha": "b1fe027c2db7f9a2be1b90c4dfe547e9f189caa4",
+  "statement_sha256": "a7caf5bb28cc2058638a96015bca1f3ab43e33596cf9faeccd18b27424a53dc1",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T18:42:22+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nV(x,y)=x^4+a x^3y+b x^2y^2+a xy^3+y^4 .\n\\]\n\nThen\n\n\\[\n\\dot x=-\\frac{\\partial V}{\\partial x},\\qquad\n\\dot y=-\\frac{\\partial V}{\\partial y},\n\\]\n\nso the system is the negative gradient flow of \\(V\\). Along solutions,\n\n\\[\n\\frac{d}{dt}V(x(t),y(t))\n= -\\left|\\nabla V(x(t),y(t))\\right|^2\\le 0.\n\\]\n\nThus the origin is globally asymptotically stable exactly when the homogeneous quartic \\(V\\) is positive definite.\n\nIndeed, if \\(V>0\\) away from \\((0,0)\\), then its sublevel sets are compact, solutions remain bounded and exist globally, and \\(\\nabla V=0\\) only at the origin because Euler’s identity gives\n\n\\[\nxV_x+yV_y=4V.\n\\]\n\nSo LaSalle’s principle gives convergence to \\((0,0)\\). Conversely, if \\(V\\) is negative or zero in some nonzero direction, then a small initial condition in that direction cannot converge to the origin, since \\(V\\) is nonincreasing but would have to tend to \\(V(0,0)=0\\).\n\nIt remains to characterize positivity of \\(V\\). For \\(y\\neq 0\\), put \\(t=x/y\\). Then\n\n\\[\nV=y^4p(t),\n\\]\n\nwhere\n\n\\[\np(t)=t^4+a t^3+b t^2+a t+1.\n\\]\n\nFor \\(t\\neq 0\\),\n\n\\[\n\\frac{p(t)}{t^2}\n=t^2+\\frac1{t^2}+a\\left(t+\\frac1t\\right)+b.\n\\]\n\nLet\n\n\\[\ns=t+\\frac1t.\n\\]\n\nFor real \\(t\\neq 0\\), we have \\(s\\in(-\\infty,-2]\\cup[2,\\infty)\\), and\n\n\\[\n\\frac{p(t)}{t^2}=q(s):=s^2+as+b-2.\n\\]\n\nSo we need\n\n\\[\nq(s)>0\\qquad\\text{for all } |s|\\ge 2.\n\\]\n\nThe upward-opening parabola \\(q(s)\\) has vertex at \\(s=-a/2\\).\n\nIf \\(|a|\\le 4\\), the vertex lies in \\([-2,2]\\), outside the relevant intervals except possibly at the endpoints. Hence the minimum on \\(|s|\\ge2\\) occurs at \\(s=2\\) or \\(s=-2\\). Therefore\n\n\\[\nq(2)=b+2a+2>0,\\qquad q(-2)=b-2a+2>0,\n\\]\n\nwhich is equivalent to\n\n\\[\nb>2|a|-2.\n\\]\n\nIf \\(a\\ge4\\), the vertex lies in \\((-\\infty,-2]\\), so we need\n\n\\[\nq(-a/2)=b-2-\\frac{a^2}{4}>0,\n\\]\n\ni.e.\n\n\\[\nb>\\frac{a^2}{4}+2.\n\\]\n\nIf \\(a\\le -4\\), similarly the vertex lies in \\([2,\\infty)\\), again giving\n\n\\[\nb>\\frac{a^2}{4}+2.\n\\]\n\nTherefore the required set is\n\n\\[\n\\boxed{\n\\left\\{(a,b)\\in\\mathbb R^2:\n\\begin{cases}\nb>2|a|-2, & |a|\\le 4,\\\\[2mm]\nb>\\dfrac{a^2}{4}+2, & |a|\\ge 4\n\\end{cases}\n\\right\\}.\n}\n\\]\n\nThe inequalities are strict; equality gives a nonzero direction where \\(V=0\\), so the origin is not globally asymptotically stable.",
+  "status": "success",
+  "completed_at": "2026-09-10T18:43:18+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/b1fe027c2db7.json"
+}
