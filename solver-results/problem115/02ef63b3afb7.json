@@ -1,0 +1,22 @@
+{
+  "problem": "problem115",
+  "branch": "adversary/problem115",
+  "problem_path": "workspace/rainier-problem/problem115-fourier-analysis/problem.md",
+  "source_commit_sha": "736961ae7cdf3c3cfcb75bf92e4bd239bb12af34",
+  "problem_blob_sha": "02ef63b3afb7ba0a282d103539011d4544b07bb1",
+  "statement_sha256": "5be5dd705afaae6b9516fda75603c0bb1cd690c9116a007310a8981181d21ba9",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T14:36:05+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(f(z)=(-1)^{q(z)}\\), with \\(q:V\\to \\mathbb F_2\\). Since \\(f(0)=1\\), \\(q(0)=0\\). Taking \\(z=0\\) in the given identity gives\n\n\\[\nq(r+s)+q(r)+q(s)=\\omega(r,s),\n\\]\n\nso \\(q\\) is a quadratic refinement of \\(\\omega\\). Conversely every such \\(q\\) satisfies the four-point identity.\n\nUse the standard quadratic refinement\n\n\\[\nq_0(x,y)=x\\cdot y.\n\\]\n\nEvery other refinement is\n\n\\[\nq_{p,q}(x,y)=x\\cdot y+x\\cdot q+y\\cdot p\n\\]\n\nfor a unique \\((p,q)\\in E\\times E\\).\n\nFor any quadratic refinement \\(q\\),\n\n\\[\n(\\mathcal F(-1)^q)(a)=2^{-64}\\sum_z (-1)^{q(z)+\\omega(z,a)}\n=(-1)^{\\operatorname{Arf}(q)}(-1)^{q(a)}.\n\\]\n\nThus \\(Tf=f\\) forces\n\n\\[\nq(Sz)=q(z)\n\\quad\\text{and}\\quad\n\\operatorname{Arf}(q)=0.\n\\]\n\nNow identify \\(E\\) with\n\n\\[\nR=\\mathbb F_2[u_1,\\dots,u_6]/(u_i^2),\n\\]\n\nwhere shifting in coordinate \\(i\\) is multiplication by \\(1+u_i\\). Then\n\n\\[\nA=H_1=\\sum_i u_i=:a,\n\\]\n\nand\n\n\\[\nC=H_3=\\sum_{i<j<k}u_i u_j u_k=:c.\n\\]\n\nAlso \\(ac=0\\), since each degree \\(4\\) monomial occurs \\(4\\) times. Hence\n\n\\[\nS(x,y)=(x+Cy,Ax+y).\n\\]\n\nThe base form \\(q_0(x,y)=x\\cdot y\\) is \\(S\\)-invariant because\n\n\\[\nq_0(S(x,y))+q_0(x,y)=x\\cdot Ax+y\\cdot Cy=0.\n\\]\n\nTherefore \\(q_{p,q}\\) is \\(S\\)-invariant exactly when\n\n\\[\nAp=0,\\qquad Cq=0.\n\\]\n\nAlso\n\n\\[\n\\operatorname{Arf}(q_{p,q})=p\\cdot q.\n\\]\n\nSo we need count pairs\n\n\\[\np\\in \\ker A,\\qquad q\\in \\ker C,\\qquad p\\cdot q=0.\n\\]\n\nNow\n\n\\[\n\\dim \\ker A=32\n\\]\n\nbecause multiplication by a nonzero linear form in \\(R\\) has rank \\(32\\).\n\nFor \\(C\\), multiplication by \\(c\\) raises degree by \\(3\\). Its ranks in degrees \\(0,1,2,3\\) are respectively\n\n\\[\n1,\\ 5,\\ 5,\\ 1,\n\\]\n\nso\n\n\\[\n\\operatorname{rank} C=12,\\qquad \\dim \\ker C=64-12=52.\n\\]\n\nThe pairing between \\(\\ker A\\) and \\(\\ker C\\) has rank\n\n\\[\n\\dim \\ker A-\\dim(\\ker A\\cap(\\ker C)^\\perp).\n\\]\n\nSince \\(C\\) is self-adjoint,\n\n\\[\n(\\ker C)^\\perp=\\operatorname{im} C,\n\\]\n\nand \\(AC=0\\), so \\(\\operatorname{im} C\\subseteq \\ker A\\). Thus the pairing rank is\n\n\\[\n32-12=20.\n\\]\n\nFor a bilinear form of rank \\(\\rho\\) on spaces of dimensions \\(m,n\\), the number of zero pairs is\n\n\\[\n2^{m+n-1}+2^{m+n-\\rho-1}.\n\\]\n\nHere \\(m=32\\), \\(n=52\\), \\(\\rho=20\\), so the number of valid functions is\n\n\\[\n2^{83}+2^{63}.\n\\]\n\n\\[\n\\boxed{2^{83}+2^{63}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T14:37:49+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem115/02ef63b3afb7.json"
+}
