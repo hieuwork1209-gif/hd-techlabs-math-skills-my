@@ -1,0 +1,22 @@
+{
+  "problem": "problem105",
+  "branch": "adversary/problem105",
+  "problem_path": "workspace/rainier-problem/problem105-polynomial-and-rational-functions/problem.md",
+  "source_commit_sha": "0fbd06ecb725496252492fd5a10a3a9a3410e69b",
+  "problem_blob_sha": "6b7833b2e1afb656c482db8b75711e0d9a25b1ae",
+  "statement_sha256": "444629994524cb981244154d66157ccd6ec161cb45d9db0dee0858e87c97eb2e",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T14:29:55+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let the two parts of \\(K_{6,6}\\) be \\(A=\\{a_1,\\dots,a_6\\}\\) and \\(B=\\{b_1,\\dots,b_6\\}\\). Encode an orientation by a \\(6\\times 6\\) binary matrix \\(M\\), where\n\\[\nM_{ij}=1 \\iff a_i\\to b_j.\n\\]\nEulerian means every vertex has indegree \\(3\\) and outdegree \\(3\\), so \\(M\\) has every row sum and every column sum equal to \\(3\\).\n\nThe automorphism group is\n\\[\n\\operatorname{Aut}(K_{6,6})\\cong (S_6\\times S_6)\\rtimes C_2,\n\\]\nwhere \\(S_6\\times S_6\\) permutes rows and columns, and the part-swap sends\n\\[\nM\\mapsto J-M^T.\n\\]\n\nThus we classify \\(6\\times 6\\) \\(0\\)-\\(1\\) matrices with all row and column sums \\(3\\), under row/column permutations and complement-transpose.\n\nA finite classification under row/column permutations gives the following seven representatives, written as the six row-supports:\n\n\\[\n\\begin{array}{c|c|c|c}\n\\text{class} & \\text{row supports} & |\\operatorname{Stab}_{S_6\\times S_6}| & \\text{orbit size} \\\\\n\\hline\nA & 123,123,123,456,456,456 & 2592 & 200\\\\\nB & 123,123,124,356,456,456 & 32 & 16200\\\\\nC & 123,123,145,246,356,456 & 12 & 43200\\\\\nD & 123,124,125,346,356,456 & 12 & 43200\\\\\nE & 123,124,135,246,356,456 & 12 & 43200\\\\\nF & 123,124,135,256,346,456 & 4 & 129600\\\\\nG & 123,124,156,256,345,346 & 24 & 21600\n\\end{array}\n\\]\n\nThese seven exhaust all row/column classes: their row/column orbit sizes sum to\n\\[\n200+16200+43200+43200+43200+129600+21600=297200,\n\\]\nwhich is the coefficient\n\\[\n[x_1^3\\cdots x_6^3](e_3(x_1,\\dots,x_6))^6,\n\\]\nthe total number of ordered row-labeled matrices with row and column sums \\(3\\).\n\nNow apply the extra part-swap \\(M\\mapsto J-M^T\\). It fixes the row/column classes\n\\[\nA,B,E,F,G\n\\]\nand swaps the two classes\n\\[\nC\\leftrightarrow D.\n\\]\nSo the extended orbits have sizes\n\\[\n200,\\quad 16200,\\quad 43200,\\quad 129600,\\quad 21600,\\quad 43200+43200=86400.\n\\]\n\nListed in increasing order, the multiset of orbit sizes is\n\n\\[\n\\boxed{\\{200,\\,16200,\\,21600,\\,43200,\\,86400,\\,129600\\}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T14:34:02+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem105/6b7833b2e1af.json"
+}
