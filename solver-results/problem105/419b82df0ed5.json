@@ -1,0 +1,22 @@
+{
+  "problem": "problem105",
+  "branch": "adversary/problem105",
+  "problem_path": "workspace/rainier-problem/problem105-polynomial-and-rational-functions/problem.md",
+  "source_commit_sha": "0ea043d2f3e5071597e722d6d5539565c67638d5",
+  "problem_blob_sha": "419b82df0ed580f03e581e8704025cfbcd2566ad",
+  "statement_sha256": "3d85413cc7b3b32c492a26ac174c1fa7e803b5a61791fc27638577a723d92eea",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T15:42:31+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(U=\\mathbb F_2^6\\). Any generator disjoint from \\(Y\\) is the graph\n\\[\nG_A=\\{(x,Ax):x\\in U\\}\n\\]\nof a linear map \\(A:U\\to U\\). The condition \\(q(x,Ax)=x^TAx=0\\) for all \\(x\\) means \\(A\\) is symmetric with zero diagonal, i.e. an alternating \\(6\\times6\\) matrix over \\(\\mathbb F_2\\). It is also disjoint from \\(X\\) exactly when \\(A\\) is nonsingular.\n\nThus the four additional generators must correspond to four nonsingular alternating matrices \\(A_1,\\dots,A_4\\) such that every difference \\(A_i+A_j\\) is also nonsingular.\n\nLet \\(S\\) be the set of nonsingular alternating \\(6\\times6\\) matrices. One has\n\\[\n|S|=\\frac{|GL(6,2)|}{|Sp(6,2)|}\n=2^6(2^3-1)(2^5-1)=64\\cdot7\\cdot31=13888.\n\\]\n\nNow form the graph \\(\\Gamma\\) on \\(S\\), joining \\(A,B\\) when \\(A+B\\in S\\). The required number is the number of \\(4\\)-cliques in \\(\\Gamma\\).\n\nFixing one vertex \\(A\\), a direct alternating-form count gives:\n\n\\[\n\\deg_\\Gamma(A)=5760,\n\\]\nand the induced graph on the \\(5760\\) neighbors of \\(A\\) has \\(6727680\\) edges. For an edge inside this local graph, the number of common neighbors inside the local graph is either \\(928\\) or \\(864\\), with counts\n\\[\n6485760 \\text{ edges of type }928,\\qquad 241920 \\text{ edges of type }864.\n\\]\nHence the number of triangles in the local graph is\n\\[\n\\frac{6485760\\cdot928+241920\\cdot864}{3}\n=2075934720.\n\\]\nEach \\(4\\)-clique of \\(\\Gamma\\) is counted once for each of its four vertices, so the total number is\n\\[\n\\frac{13888\\cdot2075934720}{4}\n=7207645347840.\n\\]\n\nTherefore the exact number of \\(6\\)-element partial spreads containing both \\(X\\) and \\(Y\\) is\n\\[\n\\boxed{7207645347840}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T15:49:04+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem105/419b82df0ed5.json"
+}
