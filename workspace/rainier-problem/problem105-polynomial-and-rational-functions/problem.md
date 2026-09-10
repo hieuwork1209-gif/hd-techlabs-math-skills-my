@@ -22,9 +22,11 @@ C_9(x)\operatorname{Res}_y\bigl(P(y),y^3-3y-x\bigr)
 =(-1)^{\deg P}(x-2)^3P(x),
 $$
 $$
-\deg P=23,
+\deg P=43,
 \qquad
-P(2)=-2835.
+P(2)=-2835,
+\qquad
+P'(2)=199P(2).
 $$
 Here $\operatorname{Res}_y$ denotes the resultant with respect to $y$. Give the final answer in canonical $R_m$-factorized form, with the subscripts in increasing order.
 
@@ -43,4 +45,4 @@ Here $\operatorname{Res}_y$ denotes the resultant with respect to $y$. Give the 
 
 ## Domain Explanation
 
-The problem asks for a uniquely determined integer polynomial under coupled functional, resultant, degree, and evaluation constraints. Its fundamental object is a polynomial and the central task is to construct that polynomial from structural polynomial identities. Cyclotomic traces and resultants are essential tools in the solution, but they serve the polynomial construction rather than changing the primary domain.
+The problem asks for a uniquely determined integer polynomial under coupled functional, resultant, degree, value, and tangency constraints. The key new interaction is that the local behavior at $x=2$ encodes a Jordan-totient invariant of the cyclotomic trace factors, so the polynomial cannot be recovered from degree and cyclotomic values alone.
