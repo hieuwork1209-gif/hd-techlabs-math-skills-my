@@ -1,0 +1,22 @@
+{
+  "problem": "problem105",
+  "branch": "adversary/problem105",
+  "problem_path": "workspace/rainier-problem/problem105-polynomial-and-rational-functions/problem.md",
+  "source_commit_sha": "a291f38d718a490a4e4c4a380c55c4995591ef8b",
+  "problem_blob_sha": "4df11d635e1a57b125055466a12a27d7c0bfddfe",
+  "statement_sha256": "a251d683996b5ccf2a96a5de00c91eefcbccf31285bc18c7511413d1ee606e74",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T14:42:48+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let the vertices be fixed as \\(\\{1,\\dots,8\\}\\). I used a direct finite enumeration from the definitions.\n\nEncode each edge of \\(K_8\\) as a bit. There are\n\n\\[\n7\\cdot5\\cdot3\\cdot1=105\n\\]\n\nperfect matchings. A one-factorization is then an exact partition of the 28 edge-bits into 7 such 4-edge masks. Recursively choosing the least uncovered edge and then one available perfect matching containing it gives every labeled one-factorization exactly once. This gives\n\n\\[\n6240\n\\]\n\nlabeled one-factorizations.\n\nNow form the graph \\(\\Gamma\\) whose vertices are these 6240 one-factorizations, with an edge between two vertices exactly when the corresponding one-factorizations are orthogonal. A family of pairwise orthogonal one-factorizations is precisely a clique in \\(\\Gamma\\).\n\nThe full finite audit of \\(\\Gamma\\) gives the following degree distribution:\n\n\\[\n\\begin{array}{c|ccccc}\n\\deg &0&2&4&24&240\\\\\n\\#\\text{ vertices}&3150&960&1680&420&30\n\\end{array}\n\\]\n\nand the common-neighbor distribution over adjacent pairs is\n\n\\[\n\\begin{array}{c|ccc}\n\\#\\text{ common neighbors}&0&1&8\\\\\n\\#\\text{ adjacent pairs}&10920&1920&120\n\\end{array}\n\\]\n\nThus the number of triangles is\n\n\\[\n\\frac{1920\\cdot1+120\\cdot8}{3}=960.\n\\]\n\nEvery triangle has degree pattern\n\n\\[\n(2,240,240).\n\\]\n\nSo each triangle contains a vertex of degree \\(2\\), and its two neighbors are exactly the other two vertices of the triangle. Hence no triangle can be extended to a \\(4\\)-clique. Therefore the largest possible family size is\n\n\\[\nm=3.\n\\]\n\nThere are exactly \\(960\\) triangles in \\(\\Gamma\\), and triangles are exactly unordered families of three pairwise orthogonal one-factorizations, so\n\n\\[\nN=960.\n\\]\n\nAn explicit attaining triple is given by the following three one-factorizations:\n\n\\[\n\\begin{aligned}\n\\mathcal F_1=&\\{12345678,\\ 13245768,\\ 14235867,\\ 15263748,\\\\\n&\\qquad 16253847,\\ 17283546,\\ 18273645\\},\\\\\n\\mathcal F_2=&\\{12364857,\\ 13264758,\\ 14283756,\\ 15273846,\\\\\n&\\qquad 16234578,\\ 17253468,\\ 18243567\\},\\\\\n\\mathcal F_3=&\\{12384567,\\ 13274856,\\ 14263578,\\ 15234768,\\\\\n&\\qquad 16283457,\\ 17243658,\\ 18253746\\},\n\\end{aligned}\n\\]\n\nwhere, for example, \\(12345678\\) means \\(\\{12,34,56,78\\}\\). Direct comparison shows every matching from one factorization meets every matching from another in at most one edge.\n\nTherefore the requested ordered pair is\n\n\\[\n\\boxed{(3,960)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T14:45:33+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem105/4df11d635e1a.json"
+}
