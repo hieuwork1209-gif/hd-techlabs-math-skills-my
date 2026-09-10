@@ -1,77 +1,149 @@
 ## Steps
 
-Step 1: Expose the hidden triangular coordinate
+Step 1: Reduce the homogeneous flow to angular and radial equations
 Set
 $$
-u=x-y^2.
+P=a(x^2+y^2)^3+(x^2+y^2)(x^4-6x^2y^2+y^4),
 $$
-Using the two differential equations,
 $$
-\dot u=\dot x-2y\dot y.
+Q=b(x^2+y^2)^3+x^6-15x^4y^2+15x^2y^4-y^6.
 $$
-Substituting and collecting terms gives
+For a nonzero trajectory write $x=r\cos\theta$, $y=r\sin\theta$. Since
 $$
-\dot u=-u\left((u-1)^2+5-a-2b\right),
-$$
-while the second equation factors as
-$$
-\dot y=-y\left((y-2)^2+2a-b\right).
-$$
-The polynomial change of variables $(x,y)\mapsto(u,y)=(x-y^2,y)$ is a global bijection with inverse $x=u+y^2$, and in these coordinates the system is completely decoupled.
-
-Step 2: Determine when the scalar y-equation converges globally to zero
-Write
-$$
-c=2a-b.
-$$
-Then
-$$
-\dot y=-y\left((y-2)^2+c\right).
-$$
-If $c\leq0$, the factor in parentheses has a real zero: for $c=0$, $y=2$ is an additional equilibrium, while for $c<0$ its roots are $y=2\pm\sqrt{-c}$ and at least one of them is nonzero. So global convergence to zero is impossible.
-
-If $c>0$, then $((y-2)^2+c)>0$ for every real $y$, so $y\dot y<0$ whenever $y\neq0$. Therefore $|y(t)|$ decreases, so every forward solution is bounded and exists for all $t\geq0$. Its limit exists. Any nonzero limit would keep $|\dot y|$ bounded away from zero, so the only possible limit is $0$. The origin is also Lyapunov stable for this scalar equation because $|y(t)|$ never increases. So the y-equation is globally asymptotically stable exactly when
-$$
-b<2a.
-$$
-
-Step 3: Determine when the scalar u-equation converges globally to zero
-Write
-$$
-d=5-a-2b.
-$$
-Then
-$$
-\dot u=-u\left((u-1)^2+d\right).
-$$
-If $d\leq0$, the factor in parentheses has a real zero: for $d=0$, $u=1$ is an additional equilibrium, while for $d<0$ its roots are $u=1\pm\sqrt{-d}$ and at least one of them is nonzero. So global convergence to zero is impossible.
-
-If $d>0$, then $((u-1)^2+d)>0$ for every real $u$, so $u\dot u<0$ whenever $u\neq0$. So $|u(t)|$ decreases, every forward solution is bounded and global, and the same limiting argument forces $u(t)\to0$. Lyapunov stability follows from monotonicity of $|u(t)|$. Therefore the u-equation is globally asymptotically stable exactly when
-$$
-a+2b<5.
-$$
-
-Step 4: Transfer the scalar criterion back to the original variables
-The transformed system is globally asymptotically stable precisely when both scalar criteria hold:
-$$
-b<2a,
+x\dot x+y\dot y=-Pr^2,
 \qquad
-a+2b<5.
+x\dot y-y\dot x=Qr^2,
 $$
-Under these inequalities, $u(t)\to0$ and $y(t)\to0$, so
+and
 $$
-x(t)=u(t)+y(t)^2\to0.
+P=r^6(a+\cos4\theta),
+\qquad
+Q=r^6(b+\cos6\theta),
 $$
-Because the change of variables and its inverse are polynomial and fix the origin, Lyapunov stability in $(u,y)$ coordinates is equivalent to Lyapunov stability in $(x,y)$ coordinates near the origin.
+we obtain
+$$
+\dot r=-r^7A(\theta),
+\qquad
+\dot\theta=r^6B(\theta),
+$$
+where
+$$
+A(\theta)=a+\cos4\theta,
+\qquad
+B(\theta)=b+\cos6\theta.
+$$
+Introduce the increasing time variable $\tau$ by $d\tau/dt=r^6$. Then
+$$
+\frac{d\theta}{d\tau}=B(\theta),
+\qquad
+\frac{d}{d\tau}\log r=-A(\theta).
+$$
+Thus global stability is determined by the angular flow and the accumulated radial drift along it.
 
-Conversely, if either inequality fails, the corresponding scalar equation has a nonzero equilibrium. If $b\geq2a$, choosing such a nonzero equilibrium for $y$ and $u=0$ gives a nonzero equilibrium of the original system. If $a+2b\geq5$, choosing such a nonzero equilibrium for $u$ and $y=0$ does the same. This proves the stated region is also necessary.
-Final Answer: $\boxed{\{(a,b)\in\mathbb{R}^2:b<2a,\ a+2b<5\}}$
+Step 2: Analyze the regime $|b|\leq1$
+Now $B$ has zeros, so every angle satisfying
+$$
+\cos6\theta=-b
+$$
+defines an invariant ray. Global asymptotic stability requires
+$$
+A(\theta)=a+\cos4\theta>0
+$$
+at every such ray. If equality holds at one of them, every nonzero point of that ray is an equilibrium; if the value is negative, the radius grows along that ray.
+
+Let
+$$
+c=\cos4\theta.
+$$
+At a zero of $B$,
+$$
+\cos12\theta=2\cos^2 6\theta-1=2b^2-1.
+$$
+But also
+$$
+\cos12\theta=4c^3-3c.
+$$
+Hence the possible values of $c$ are precisely the three roots of
+$$
+4c^3-3c=2b^2-1.
+$$
+Put
+$$
+\gamma=\arccos(2b^2-1),
+\qquad 0\leq\gamma\leq\pi.
+$$
+The three roots are
+$$
+\cos\frac\gamma3,
+\qquad
+\cos\left(\frac\gamma3+\frac{2\pi}{3}\right),
+\qquad
+\cos\left(\frac\gamma3+\frac{4\pi}{3}\right).
+$$
+Since $0\leq\gamma/3\leq\pi/3$, the smallest is
+$$
+\cos\left(\frac\gamma3+\frac{2\pi}{3}\right).
+$$
+Therefore $A>0$ at every invariant ray exactly when
+$$
+a> -\cos\left(\frac\gamma3+\frac{2\pi}{3}\right)
+ =\cos\left(\frac\pi3-\frac\gamma3\right).
+$$
+Equivalently,
+$$
+a>\cos\left(\frac{\pi-\arccos(2b^2-1)}{3}\right).
+$$
+
+This condition is also sufficient. The scalar angular equation is monotone on every component between consecutive zeros of $B$ and every angular orbit either starts at a zero or approaches one as $\tau\to\infty$. Because $A$ is strictly positive at all finitely many zeros, it is uniformly positive in neighborhoods of them. Any portion of an orbit where $A<0$ is therefore traversed in a bounded amount of $\tau$-time. Hence there is a constant $C=C(a,b)$ such that
+$$
+r(\tau)\leq Cr(0)
+$$
+for all $\tau\geq0$, while eventually $A(\theta(\tau))$ is bounded below by a positive constant, so $r(\tau)\to0$. Since $dt/d\tau=r^{-6}$, this also forces $t\to\infty$. Thus the origin is globally asymptotically stable in this regime exactly under the displayed inequality.
+
+Step 3: Analyze the rotating regime $|b|>1$
+Here $B$ never vanishes and has the constant sign of $b$, so every nonzero trajectory rotates forever in $\tau$. The logarithmic radial change over one full revolution is
+$$
+-K,
+\qquad
+K=\int_0^{2\pi}\frac{a+\cos4\theta}{|b+\cos6\theta|}\,d\theta.
+$$
+The denominator is invariant under $\theta\mapsto\theta+\pi/3$. Therefore, writing
+$$
+J=\int_0^{2\pi}\frac{\cos4\theta}{|b+\cos6\theta|}\,d\theta,
+$$
+we may average $J$ over the three shifts $0,\pi/3,2\pi/3$ to obtain
+$$
+3J=\int_0^{2\pi}
+\frac{\cos4\theta+\cos(4\theta+4\pi/3)+\cos(4\theta+8\pi/3)}{|b+\cos6\theta|}\,d\theta=0.
+$$
+Thus
+$$
+K=a\int_0^{2\pi}\frac{d\theta}{|b+\cos6\theta|}.
+$$
+The integral is strictly positive, so $K>0$ exactly when
+$$
+a>0.
+$$
+If $a>0$, every revolution contracts the radius by the same factor $e^{-K}<1$, and the radial variation during one turn is uniformly bounded; this gives Lyapunov stability, global existence, and convergence to the origin. If $a=0$, the radius returns to its initial value after every revolution, producing nonzero periodic orbits. If $a<0$, the radius expands from turn to turn, so the origin is not Lyapunov stable.
+
+Step 4: Combine the two regimes
+For $|b|\leq1$ the exact threshold is
+$$
+a>\cos\left(\frac{\pi-\arccos(2b^2-1)}{3}\right),
+$$
+whereas for $|b|>1$ it is simply $a>0$. Therefore the required region is
+$$
+\{(a,b):|b|>1,\ a>0\}
+\cup
+\left\{(a,b):|b|\leq1,\ a>\cos\left(\frac{\pi-\arccos(2b^2-1)}{3}\right)\right\}.
+$$
+Final Answer: $\boxed{\{(a,b):|b|>1,\ a>0\}\cup\{(a,b):|b|\le1,\ a>\cos((\pi-\arccos(2b^2-1))/3)\}}$
 
 ---
 
 ## Answer
 
-$\{(a,b)\in\mathbb{R}^2:b<2a,\ a+2b<5\}$
+$\{(a,b):|b|>1,\ a>0\}\cup\{(a,b):|b|\le1,\ a>\cos((\pi-\arccos(2b^2-1))/3)\}$
 
 ---
 
@@ -86,10 +158,10 @@ $\{(a,b)\in\mathbb{R}^2:b<2a,\ a+2b<5\}$
 ## Solution Concepts
 
 - global asymptotic stability
-- nonlinear change of variables
-- scalar autonomous differential equations
-- invariant equilibria
-- Lyapunov stability
+- homogeneous polynomial systems
+- polar coordinates and time rescaling
+- invariant rays and periodic orbits
+- Chebyshev polynomial identities
 
 ---
 
