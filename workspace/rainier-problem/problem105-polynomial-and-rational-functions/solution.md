@@ -6,7 +6,7 @@ Let $n=\deg P$ and let $a$ be the leading coefficient. Comparing leading terms i
 $$
 P(x)P(-x)=P(x^2-2)
 $$
-gives $a=(-1)^n$. The usual root-multiplicity argument for the map $x\mapsto x^2-2$ shows that every root of $P$ is of the form $\zeta+\zeta^{-1}$ with $\zeta$ of odd order. Rational Galois invariance therefore gives
+gives $a=(-1)^n$. The root-multiplicity argument for the doubling map $x\mapsto x^2-2$ shows that every root of $P$ is of the form $\zeta+\zeta^{-1}$ with $\zeta$ of odd order. Rational Galois invariance therefore gives
 $$
 P(x)=\prod_{\substack{m\ge3\\m\text{ odd}}}R_m(x)^{e_m},
 \qquad e_m\in\mathbb Z_{\ge0},
@@ -19,14 +19,10 @@ d_m=\deg C_m=\frac{\varphi(m)}2,
 \qquad
 M(x)=(-1)^nP(x)=\prod_m C_m(x)^{e_m}.
 $$
-Thus $M$ is monic and has exactly the same roots as $P$, with multiplicity.
+Thus $M$ is monic and has the same roots as $P$, with multiplicity.
 
-Step 2: Compute how the $15$-fold trace map transports each cyclotomic trace orbit.
+Step 2: Compute transport under the $15$-fold angle map.
 
-Let $D_{15}$ be characterized by
-$$
-D_{15}(2\cos\theta)=2\cos(15\theta).
-$$
 If $\alpha=\zeta+\zeta^{-1}$ with $\zeta$ primitive of odd order $m$, then
 $$
 D_{15}(\alpha)=\zeta^{15}+\zeta^{-15}.
@@ -46,16 +42,14 @@ $$
 C_r(x)^{d_m/d_r},&r>1.
 \end{cases}
 $$
-The resultant is monic because both the degree of $D_{15}$ and the sign of the leading coefficient of $R_m$ are accounted for in the resultant formula.
-
-Consequently the given resultant identity is exactly a multiplicity-balance law for the map
+Thus the given resultant identity is a multiplicity-balance law for
 $$
 m\longmapsto \frac{m}{(m,15)}.
 $$
 
-Step 3: Solve the non-coprime part of the multiplicity balance.
+Step 3: Solve the entire part whose indices are divisible by $3$ or $5$.
 
-For every odd $r>1$, comparison of the irreducible factor $C_r$ gives
+For every odd $r>1$, comparison of the factor $C_r$ gives
 $$
 e_r
 =
@@ -63,37 +57,36 @@ e_r
 +
 \sum_{m/(m,15)=r}\frac{d_m}{d_r}e_m. \tag{1}
 $$
-If $(r,15)=1$, the term $m=r$ occurs in the sum with coefficient $1$, so it cancels with the left side of (1). All other terms are nonnegative, hence every $e_m$ with $m/(m,15)=r$ and $m\ne r$ vanishes. Thus factors whose orbit eventually reaches a coprime order contribute only at that terminal coprime order.
+If $(r,15)=1$, the term $m=r$ occurs with coefficient $1$ and cancels the left side. All other terms are nonnegative, so every nontrivial preimage of such an $r$ has exponent zero.
 
-Now consider indices divisible by $3$ or $5$. For such an index $m$, the map $m\mapsto m/(m,15)$ strictly decreases $m$. Because the support of the $e_m$ is finite, any nonzero chain of such indices must have a largest element. Equation (1) shows that the only possible largest element is the unique source index $225$. Hence every non-coprime factor lies on the forward orbit
+For indices divisible by $3$ or $5$, the map $m\mapsto m/(m,15)$ strictly decreases $m$. Since the support is finite, a nonzero chain can have no maximal element except the source $225$ supplied by the extra factor $C_{225}$. Hence every non-coprime factor lies on
 $$
 225\longmapsto15\longmapsto1.
 $$
-At $r=225$, there is no larger nonzero preimage, so (1) gives
+At $r=225$, equation (1) gives
 $$
 e_{225}=1.
 $$
 Since
 $$
-\frac{d_{225}}{d_{15}}
-=rac{60}{4}=15,
+\frac{d_{225}}{d_{15}}=\frac{60}{4}=15,
 $$
 the equation at $r=15$ gives
 $$
 e_{15}=15.
 $$
-Finally $D_{15}$ sends every root of $C_{15}$ to $2$, so these fifteen copies contribute
+Finally $D_{15}$ sends every root of $C_{15}$ to $2$, so these copies contribute
 $$
-15d_{15}=15\cdot4=60
+15d_{15}=60
 $$
-copies of the root $2$, exactly matching the factor $(x-2)^{60}$ on the right. Therefore
+roots at $2$, exactly matching $(x-2)^{60}$. Therefore
 $$
 P=R_{15}^{15}R_{225}F,
 \qquad
 F=\prod_{\substack{m>1\\(m,30)=1}}R_m^{e_m}.
 $$
 
-Step 4: Use the degree and the value at $2$ to determine the free part.
+Step 4: Use the degree and $P(2)$ to determine the prime-power content of $F$.
 
 The forced part has degree
 $$
@@ -101,7 +94,7 @@ $$
 $$
 so
 $$
-\deg F=158-120=38.
+\deg F=182-120=62.
 $$
 For odd $m>1$,
 $$
@@ -115,50 +108,99 @@ p,&m=p^k\text{ is a prime power},\\
 1,&m\text{ is not a prime power}.
 \end{cases}
 $$
-Both $R_{15}(2)$ and $R_{225}(2)$ equal $1$, and $\deg F=38$ is even. Hence $P(2)=77$ gives
+Both forced factors have value $1$ at $2$, and $\deg F=62$ is even. Hence $P(2)=77$ gives
 $$
 \prod_{(m,30)=1}\Phi_m(1)^{e_m}=77=7\cdot11. \tag{2}
 $$
-Thus $F$ contains exactly one $7$-power factor, exactly one $11$-power factor, no other prime-power factor, and every remaining factor has at least two distinct prime divisors.
+Thus $F$ contains exactly one $7$-power factor, exactly one $11$-power factor, no prime-power factor for any other prime, and every remaining factor has an index divisible by at least two distinct primes.
 
-The $11$-power factor must be $R_{11}$, since $\deg R_{121}=55>38$. The $7$-power factor is either $R_7$ of degree $3$ or $R_{49}$ of degree $21$. Any non-prime-power free index is divisible by at least two distinct primes at least $7$ and $11$, so
-$$
-\deg R_m=\frac{\varphi(m)}2\ge\frac{(7-1)(11-1)}2=30,
-$$
-with equality only for $m=77$.
+Step 5: Use the cyclotomic norm divisibility to force the factor $R_{91}$.
 
-If $R_{49}$ were used with $R_{11}$, only $38-21-5=12$ degrees would remain, impossible. Hence the prime-power factors are $R_7$ and $R_{11}$, leaving exactly
+We first record the needed reduction criterion. For odd $m>1$,
 $$
-38-3-5=30
+\Phi_m(z)=z^{d_m}C_m(z+z^{-1}). \tag{3}
 $$
-degrees. Equality in the preceding bound forces the remaining factor to be $R_{77}$. Therefore
+Therefore, for $m\ne13$,
 $$
-F=R_7R_{11}R_{77}.
+7\mid\operatorname{Res}(C_m,C_{13})
+$$
+if and only if $C_m$ and $C_{13}$ have a common root over $\overline{\mathbb F}_7$. By (3), this is equivalent to $\Phi_m$ and $\Phi_{13}$ having a common root over $\overline{\mathbb F}_7$.
+
+Write
+$$
+m=7^ks,
+\qquad 7\nmid s.
+$$
+For $k\ge1$, the identity
+$$
+\Phi_{7^ks}(z)=\frac{\Phi_s(z^{7^k})}{\Phi_s(z^{7^{k-1}})}
+$$
+reduces in characteristic $7$ to
+$$
+\Phi_{7^ks}(z)=\Phi_s(z)^{7^{k-1}(7-1)}.
+$$
+Thus the roots of $\Phi_m$ modulo $7$ are exactly the primitive $s$th roots. The roots of $\Phi_{13}$ have exact order $13$, so for $m\ne13$ we obtain
+$$
+7\mid\operatorname{Res}(C_m,C_{13})
+\quad\Longleftrightarrow\quad
+m=13\cdot7^k\text{ for some }k\ge1. \tag{4}
+$$
+Step 4 already excludes $R_{13}$ because it would make $P(2)$ divisible by $13$.
+
+The resultant is multiplicative in the first argument. The forced factors $R_{15}$ and $R_{225}$ have resultant prime to $7$ against $C_{13}$, so the condition
+$$
+7\mid\operatorname{Res}_x(P(x),C_{13}(x))
+$$
+and (4) force some factor $R_{13\cdot7^k}$ to occur in $F$. Since
+$$
+\deg R_{13\cdot7}=\frac{\varphi(91)}2=36,
+$$
+while
+$$
+\deg R_{13\cdot7^2}=\frac{\varphi(637)}2=252>62,
+$$
+we must have
+$$
+R_{91}\mid F.
+$$
+After removing $R_{91}$, only
+$$
+62-36=26
+$$
+degrees remain. The unique $11$-power factor must therefore be $R_{11}$, of degree $5$, because $\deg R_{121}=55>26$. The $7$-power factor is either $R_7$ of degree $3$ or $R_{49}$ of degree $21$; higher powers are too large.
+
+If $R_7$ occurred, then after $R_{11}$ only $18$ degrees would remain. But any additional non-prime-power free index has at least two distinct prime divisors, both at least $7$ and $11$, so its degree is at least
+$$
+\frac{(7-1)(11-1)}2=30,
+$$
+a contradiction. Hence the $7$-power factor is $R_{49}$, and
+$$
+F=R_{11}R_{49}R_{91}.
 $$
 
-Step 5: Verify the candidate.
+Step 6: Verify the candidate.
 
 We obtain
 $$
-P=R_7R_{11}R_{15}^{15}R_{77}R_{225}.
+P=R_{11}R_{15}^{15}R_{49}R_{91}R_{225}.
 $$
 Its degree is
 $$
-3+5+15\cdot4+30+60=158,
+5+15\cdot4+21+36+60=182,
 $$
 and
 $$
-P(2)=(-7)(-11)\cdot1^{15}\cdot1\cdot1=77.
+P(2)=(-11)\cdot1^{15}\cdot(-7)\cdot1\cdot1=77.
 $$
-The factors with indices $7,11,77$ are coprime to $15$, so $D_{15}$ merely permutes their roots. The factor $R_{225}$ maps to $C_{15}^{15}$, while $R_{15}^{15}$ maps to $(x-2)^{60}$. Thus the resultant identity holds exactly, and Step 1 gives the functional identity and the constant-term condition.
+The factors $R_{11},R_{49},R_{91}$ have indices coprime to $15$, so $D_{15}$ permutes their roots. The factor $R_{225}$ maps to $C_{15}^{15}$ and $R_{15}^{15}$ maps to $(x-2)^{60}$, proving the dynamical resultant identity. Finally, $R_{91}$ satisfies the divisibility condition in (4), so $7$ divides $\operatorname{Res}(P,C_{13})$.
 
-Final Answer: $\boxed{R_7R_{11}R_{15}^{15}R_{77}R_{225}}$
+Final Answer: $\boxed{R_{11}R_{15}^{15}R_{49}R_{91}R_{225}}$
 
 ---
 
 ## Answer
 
-$R_7R_{11}R_{15}^{15}R_{77}R_{225}$
+$R_{11}R_{15}^{15}R_{49}R_{91}R_{225}$
 
 ---
 
@@ -175,7 +217,7 @@ Answer Type: Polynomial or rational function
 - cyclotomic trace polynomials
 - composite-angle trace dynamics
 - root-multiplicity transport
-- polynomial resultants
+- cyclotomic resultants modulo a prime
 - Euler totient degree bounds
 
 ---
