@@ -1,154 +1,135 @@
 ## Steps
 
-Step 1: Classify all sign functions satisfying the four-point identity
+Step 1: Classify the sign functions satisfying the four-point identity
 
-Let $K=\mathbb F_{16}$ and let $k=\mathbb F_4\subset K$. Put
+Put
 $$
-q_*(t)=\operatorname{Tr}_{k/\mathbb F_2}(t^5),\qquad t\in K,
+q_0(x,y)=x\cdot y.
 $$
-and
+Its polar form is $\omega$. Since $f(0)=1$, write uniquely $f(z)=(-1)^{q(z)}$ with $q(0)=0$. Setting $z=0$ in the four-point identity gives
 $$
-Q_*(z)=\sum_{i=1}^m q_*(z_i),\qquad z\in K^m.
+q(r+s)=q(r)+q(s)+\omega(r,s).
 $$
-Because $t^5\in k$, this is well-defined. Its polar form is
+Hence $q+q_0$ is linear. Therefore every admissible function is uniquely
 $$
-b(t,s)=q_*(t+s)+q_*(t)+q_*(s)
-=\operatorname{Tr}_{k/\mathbb F_2}(t^4s+ts^4),
+f_{a,b}(x,y)=(-1)^{x\cdot y+a\cdot x+b\cdot y},
+\qquad a,b\in E.
 $$
-so the polar form of $Q_*$ is the given form $B$.
+Conversely every $f_{a,b}$ satisfies the required four-point identity.
 
-The local form $b$ is nondegenerate. For example, if $K=\mathbb F_2(\theta)$ with $\theta^4+\theta+1=0$, then in the basis $1,\theta,\theta^2,\theta^3$ its matrix is
-$$
-\begin{pmatrix}
-0&0&0&1\\
-0&0&1&1\\
-0&1&0&1\\
-1&1&1&0
-\end{pmatrix},
-$$
-which has determinant $1$. Hence $B$ is nondegenerate on $K^m$.
+Step 2: Compute the Walsh--Fourier transform
 
-Write $f(z)=(-1)^{Q(z)}$. Setting $z=0$ in the four-point identity gives
+For $(u,v)\in V$,
 $$
-Q(r+s)=Q(r)+Q(s)+B(r,s).
+(\mathcal Ff_{a,b})(u,v)
+=2^{-64}\sum_{x,y\in E}
+(-1)^{x\cdot y+a\cdot x+b\cdot y+x\cdot v+y\cdot u}.
 $$
-Thus $Q+Q_*$ is linear. By nondegeneracy of $B$, every linear functional is uniquely $B(\,\cdot\,,a)$ for some $a\in K^m$. Therefore every admissible function is uniquely
+For fixed $y$, the sum over $x$ vanishes unless $y=a+v$, when it equals $2^{64}$. Thus
 $$
-f_a(z)=(-1)^{Q_*(z)+B(z,a)}.
+(\mathcal Ff_{a,b})(u,v)
+=(-1)^{(a+v)\cdot(b+u)}
+=(-1)^{a\cdot b}f_{a,b}(u,v).
 $$
 
-Step 2: Compute the Fourier eigenvalue of $f_a$
+Step 3: Translate $Tf_{a,b}=f_{a,b}$ into kernel conditions
 
-For $w\in K^m$,
+The matrices of $A=H_1$ and $C=H_3$ in the standard basis of $E$ are symmetric with zero diagonal. Hence
 $$
-(\mathcal F f_a)(w)
-=2^{-2m}\sum_z(-1)^{Q_*(z)+B(z,a+w)}.
+x\cdot Ax=0,\qquad y\cdot Cy=0
 $$
+for all $x,y\in E$. Consequently the two shears
+$$
+U_C(x,y)=(x+Cy,y),\qquad L_A(x,y)=(x,y+Ax)
+$$
+preserve $q_0$, and $S=L_AU_C$ also preserves $q_0$.
+
 Using
 $$
-Q_*(z+c)=Q_*(z)+Q_*(c)+B(z,c),
+S(x,y)=\bigl(x+Cy,\;Ax+(I+AC)y\bigr),
 $$
-and translating $z$ by $c=a+w$, we get
+the linear part of $q_{a,b}(S(x,y))$ is
 $$
-(\mathcal F f_a)(w)
-=(-1)^{Q_*(a+w)}G_*,
+(a+Ab)\cdot x+\bigl(Ca+b+CAb\bigr)\cdot y.
 $$
-where
+Thus $q_{a,b}\circ S=q_{a,b}$ exactly when
 $$
-G_*=2^{-2m}\sum_{z\in K^m}(-1)^{Q_*(z)}.
+Ab=0,\qquad Ca=0.
+$$
+Indeed, $Ab=0$ makes $CAb=0$. Also $Tf_{a,b}=f_{a,b}$ at $0$ forces $a\cdot b=0$ by Step 2. Therefore we must count
+$$
+(a,b)\in\ker C\times\ker A
+$$
+with $a\cdot b=0$.
+
+Step 4: Compute the two kernel dimensions and their mutual annihilator
+
+Identify $E$ with the group algebra $R=\mathbb F_2[G]$. If $g_i$ is translation by the $i$th standard basis vector and $u_i=g_i+1$, then
+$$
+R\cong\mathbb F_2[u_1,\ldots,u_6]/(u_1^2,\ldots,u_6^2).
+$$
+Let $e_j$ denote the $j$th elementary symmetric polynomial in the $u_i$.
+
+Convolution by the Hamming sphere of radius $1$ is multiplication by
+$$
+\sum_{i=1}^6g_i=\sum_{i=1}^6(1+u_i)=e_1.
+$$
+After a linear change of the square-zero generators taking $e_1$ to one generator, multiplication by $e_1$ has image and kernel of dimension $32$. Hence
+$$
+\dim\ker A=32.
 $$
 
-For one coordinate, $q_*(t)=0$ exactly when either $t=0$ or $t^5=1$. Indeed, the norm map $t\mapsto t^5:K^\times\to k^\times$ has fibers of size $5$, while the only nonzero element of $k$ with trace $0$ is $1$. Thus there are $6$ zeros and $10$ ones, so
+For radius $3$,
 $$
-\sum_{t\in K}(-1)^{q_*(t)}=6-10=-4.
+\sum_{|S|=3}\prod_{i\in S}(1+u_i)=e_3,
 $$
-Since $m=106$ is even,
+because the coefficients in degrees $0,1,2$ are respectively $\binom63,\binom52,\binom41$, all even. Multiplication by $e_3$ raises degree by $3$. Its ranks on degrees $0,1,2,3$ are respectively
 $$
-G_*=2^{-2m}(-4)^m=1.
+1,5,5,1.
 $$
-Consequently
+For degree $1$, the coefficient on a $4$-set is the sum of the four corresponding input coefficients, whose kernel is the constant vector. For degree $2$, a basis pair maps to the incidence vector of the four missing-singleton outputs not in that pair; these span the even-weight hyperplane of $\mathbb F_2^6$. The degree-$0$ and degree-$3$ maps plainly have rank $1$. Thus
 $$
-\mathcal F f_a(w)=(-1)^{Q_*(a+w)}
-=(-1)^{Q_*(a)}f_a(w).
+\operatorname{rank}C=12,
+\qquad
+\dim\ker C=64-12=52.
 $$
 
-Step 3: Translate $Tf_a=f_a$ into a fixed-vector problem
-
-Let $P$ be the permutation operator induced by $\sigma$, so
+Moreover
 $$
-(Sz)_i=\alpha z_{\sigma(i)}.
+e_1e_3=0,
 $$
-Because $\alpha$ has order $5$, $\alpha^5=1$, and therefore
+since every square-free monomial of degree $4$ occurs four times. Hence
 $$
-q_*(\alpha t)=q_*(t).
+\operatorname{im}C\subseteq\ker A.
 $$
-Hence $Q_*(Sz)=Q_*(z)$. Also $S$ preserves $B$, so
+Because $C$ is self-adjoint,
 $$
-B(Sz,a)=B(z,S^{-1}a).
+(\ker C)^\perp=\operatorname{im}C.
 $$
 Therefore
 $$
-(Tf_a)(z)
-=(-1)^{Q_*(a)}f_a(Sz)
-=(-1)^{Q_*(a)}f_{S^{-1}a}(z).
+\ker A\cap(\ker C)^\perp=\operatorname{im}C
 $$
-Distinct parameters give distinct functions and every $f_a(0)=1$. Thus
+has dimension $12$.
+
+Step 5: Count the orthogonal pairs
+
+There are $2^{12}$ vectors $b\in\ker A$ that annihilate all of $\ker C$; for each of them, all $2^{52}$ choices of $a\in\ker C$ work. For each of the remaining $2^{32}-2^{12}$ choices of $b$, the functional $a\mapsto a\cdot b$ is nonzero on the $52$-dimensional space $\ker C$, so exactly $2^{51}$ choices of $a$ satisfy $a\cdot b=0$.
+
+Hence the number of functions is
 $$
-Tf_a=f_a
-$$
-if and only if
-$$
-Sa=a
-\qquad\text{and}\qquad
-Q_*(a)=0.
+2^{12}2^{52}+(2^{32}-2^{12})2^{51}
+=2^{83}+2^{63}
+=9671415780289070252425216.
 $$
 
-Step 4: Determine $\operatorname{Fix}(S)$ cycle by cycle
-
-Consider one cycle of $\sigma$ of length $L$. The equation $Sa=a$ gives successive coordinates differing by multiplication by $\alpha$ (up to reversing the direction around the cycle). Going once around the cycle yields
-$$
-t=\alpha^L t.
-$$
-Since $\alpha$ has order $5$, a nonzero solution exists exactly when $5\mid L$.
-
-Hence cycles with $5\nmid L$ contribute no freedom, while every cycle with $5\mid L$ contributes one free scalar $t\in K$, hence $16$ choices. For the cycle lengths
-$$
-1,2,3,4,5,6,7,8,10,15,20,25,
-$$
-the free cycles are exactly
-$$
-5,10,15,20,25.
-$$
-Thus $\operatorname{Fix}(S)\cong K^5$ and has $16^5$ elements before imposing $Q_*(a)=0$.
-
-On a free cycle of length $L$, all coordinates are $\alpha$-multiples of the same scalar $t$, and $q_*(\alpha^j t)=q_*(t)$. The contribution of that cycle to $Q_*(a)$ is therefore
-$$
-Lq_*(t)\pmod2.
-$$
-The even cycles $10$ and $20$ contribute $0$ for every $t$, giving a free factor $16^2$.
-
-The odd cycles $5,15,25$ each contribute $q_*(t)$. For one scalar $t\in K$, there are $6$ choices with $q_*(t)=0$ and $10$ choices with $q_*(t)=1$. We need even total parity across these three odd cycles. Hence the number of choices is
-$$
-6^3+\binom32 6\cdot10^2
-=216+1800
-=2016.
-$$
-
-Step 5: Count the fixed functions
-
-Multiplying by the unrestricted choices on the two even free cycles gives
-$$
-2016\cdot16^2=516096.
-$$
-Every such parameter $a$ satisfies both $Sa=a$ and $Q_*(a)=0$, so Step 3 gives $Tf_a=f_a$, and Step 1 shows that all admissible functions arise uniquely this way.
-
-Final Answer: $\boxed{516096}$
+Final Answer: $\boxed{9671415780289070252425216}$
 
 ---
 
 ## Answer
 
-$516096$
+$9671415780289070252425216$
 
 ---
 
@@ -162,11 +143,11 @@ $516096$
 
 ## Solution Concepts
 
-- Walsh--Fourier transform on finite fields
-- quadratic refinements and polar forms
-- norm and trace over finite fields
-- fixed spaces of twisted permutation operators
-- parity counting
+- Walsh--Fourier transform on binary vector spaces
+- quadratic refinements of symplectic forms
+- Hamming-scheme convolution operators
+- square-zero group algebras over $\mathbb F_2$
+- orthogonal-pair counting in binary kernels
 
 ---
 
