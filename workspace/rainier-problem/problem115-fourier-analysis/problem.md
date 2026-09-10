@@ -2,27 +2,31 @@
 
 ## LaTeX (Normalized)
 
-Let $K=\mathbb F_{16}$, let $k=\mathbb F_4\subset K$, and let $m=106$. Regard $V=K^m$ as a vector space over $\mathbb F_2$. For $z,w\in V$ define
+Let $G=\mathbb F_2^6$, write $|s|$ for Hamming weight, and let $E=\mathbb F_2^G$. For $x,y\in E$ put
 $$
-B(z,w)=\sum_{i=1}^m \operatorname{Tr}_{k/\mathbb F_2}(z_i^4w_i+z_iw_i^4).
+x\cdot y=\sum_{t\in G}x(t)y(t).
 $$
-Let $\alpha\in K^\times$ have order $5$, and let $\sigma\in S_m$ have one cycle of each length
+For $r\in\{1,3\}$ define $H_r:E\to E$ by
 $$
-1,2,3,4,5,6,7,8,10,15,20,25.
+(H_rx)(t)=\sum_{\substack{s\in G\\ |s|=r}}x(t+s).
+$$
+Set $A=H_1$, $C=H_3$, and $V=E\times E$. For $z=(x,y)$ and $w=(u,v)$ define
+$$
+\omega(z,w)=x\cdot v+y\cdot u.
 $$
 Define $S:V\to V$ by
 $$
-(Sz)_i=\alpha z_{\sigma(i)}.
+S(x,y)=\bigl(x+Cy,\;Ax+(I+AC)y\bigr).
 $$
-For $g:V\to\mathbb C$, define the normalized Walsh--Fourier transform
+For $g:V\to\mathbb C$, define
 $$
-(\mathcal Fg)(w)=2^{-2m}\sum_{z\in V}g(z)(-1)^{B(z,w)},
+(\mathcal Fg)(u,v)=2^{-64}\sum_{x,y\in E}g(x,y)(-1)^{x\cdot v+y\cdot u},
 \qquad
 (Tg)(z)=(\mathcal Fg)(Sz).
 $$
 How many functions $f:V\to\{-1,1\}$ satisfy $f(0)=1$,
 $$
-f(z)f(z+r)f(z+s)f(z+r+s)=(-1)^{B(r,s)}
+f(z)f(z+r)f(z+s)f(z+r+s)=(-1)^{\omega(r,s)}
 $$
 for all $z,r,s\in V$, and also $Tf=f$?
 
@@ -41,4 +45,4 @@ for all $z,r,s\in V$, and also $Tf=f$?
 
 ## Domain Explanation
 
-The problem asks for fixed quadratic phases under a normalized Walsh--Fourier transform twisted by a finite-field symmetry. Its difficulty comes from combining Fourier eigenvalues with the norm--trace quadratic form on $\mathbb F_{16}$ and the fixed-space structure of a twisted permutation operator, so Fourier analysis remains the primary subject.
+The problem asks for quadratic sign phases fixed by a normalized Walsh--Fourier transform after a symplectic twist. The Fourier reduction leaves a structured binary linear-algebra problem governed by the distance-$1$ and distance-$3$ operators of the $6$-cube, so Fourier analysis remains the primary subject.
