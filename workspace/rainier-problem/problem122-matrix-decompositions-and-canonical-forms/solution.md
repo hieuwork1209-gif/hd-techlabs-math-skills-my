@@ -1,113 +1,122 @@
 ## Steps
 
-Step 1: Reduce the problem to a field-valued cross block.
+Step 1: Reduce a pencil to an irreducible polynomial.
 
-Let $V=\mathbb F_2^6$, and suppose that a nonsingular $3$-space $W\le \operatorname{Alt}_6(2)$ has a common Lagrangian $U\le V$. Choose $0\ne A_0\in W$. Since $A_0$ is symplectic and $U$ is Lagrangian, choose an $A_0$-Lagrangian complement $U'$ and identify $V=U\oplus U'$.
+Take a regular indecomposable pencil $W=\langle A,B\rangle$ and put
+$$
+T=A^{-1}B.
+$$
+Because $A$ and $B$ are alternating,
+$$
+T^TA=AT,
+$$
+so $T$ is self-adjoint for the symplectic form defined by $A$.
 
-Every $A\in W$ then has block form
+Let $p$ be the irreducible minimal polynomial of $T$. By hypothesis $\deg p=12$. Hence
 $$
-A=\begin{pmatrix}0&M_A\\ M_A^T&N_A\end{pmatrix}, \tag{1}
+K:=\mathbb F_2[T]\cong\mathbb F_{2^{12}},
 $$
-with $N_A$ alternating. If $A\ne0$, then $M_A$ is invertible: otherwise a nonzero vector in the left kernel of $M_A$ would lie in the radical of $A$.
+and the $24$-dimensional space $V=\mathbb F_2^{24}$ is $2$-dimensional over $K$.
 
-Thus
+The self-adjointness identity implies
 $$
-\mathcal D=\{M_A:A\in W\}\le M_3(\mathbb F_2)
+A(ax,y)=A(x,ay)\qquad(a\in K).
 $$
-is a $3$-dimensional subspace whose nonzero elements are all invertible. After independent changes of bases in $U$ and $U'$, the standard order-$8$ semifield lemma puts $\mathcal D$ into the regular representation of $K=\mathbb F_8$: writing $m_t$ for multiplication by $t\in K$,
+Using the nondegenerate trace pairing on $K$, define the unique $K$-bilinear form $h$ by
 $$
-\mathcal D=\{m_t:t\in K\}. \tag{2}
+A(ax,y)=\operatorname{Tr}_{K/\mathbb F_2}(a h(x,y)).
 $$
-Indeed, evaluation at any nonzero vector identifies such a division subspace with a semifield of order $8$, and every semifield of order $8$ is the field $\mathbb F_8$.
+Since $A$ is alternating and squaring is a bijection of $K$, $h(x,x)=0$ for every $x$; nondegeneracy of $A$ makes $h$ nondegenerate. Thus $h$ is a nondegenerate alternating form on the $2$-dimensional $K$-space $V$.
 
-Using trace-dual bases, the cross block in (1) is therefore
-$$
-\operatorname{Tr}_{K/\mathbb F_2}\bigl(t(xv+yu)\bigr). \tag{3}
-$$
-On the $3$-dimensional $\mathbb F_2$-space $K$, every alternating bilinear form is uniquely
-$$
-\psi_c(y,v)=\operatorname{Tr}_{K/\mathbb F_2}\bigl(c(yv^2+y^2v)\bigr),\qquad c\in K. \tag{4}
-$$
-Hence every such $W$ can be written
-$$
-B_t((x,y),(u,v))=
-\operatorname{Tr}\bigl(t(xv+yu)+\ell(t)(yv^2+y^2v)\bigr), \tag{5}
-$$
-where $t\in K$ and $\ell:K\to K$ is $\mathbb F_2$-linear.
+All such $K$-alternating forms are equivalent. Therefore, for a fixed irreducible polynomial $p$ of degree $12$, there is exactly one congruence class of ordered pencils $(A,B)$.
 
-Step 2: Classify the possible twists without enumeration.
+Step 2: Account for changing the basis of the pencil.
 
-Every $\mathbb F_2$-linear map $K\to K$ has a unique linearized form
+Replace $(A,B)$ by another ordered basis
 $$
-\ell(t)=a t+b t^2+c t^4. \tag{6}
-$$
-Change the chosen complement $U'$ by the shear
-$$
-(x,y)\longmapsto (x+S(y),y),
+(A',B')=(aA+bB,cA+dB),
 \qquad
-S(y)=r y+s y^2+u y^4. \tag{7}
+\begin{pmatrix}a&b\\c&d\end{pmatrix}\in GL_2(2).
 $$
-The cross term in (5) changes by
+Then
 $$
-\operatorname{Tr}\bigl(t(S(y)v+yS(v))\bigr)
-=
-\psi_{\,s t+u^2t^2}(y,v). \tag{8}
+T'=(aI+bT)^{-1}(cI+dT).
 $$
-Thus the shear kills the $at$ and $bt^2$ terms in (6). Every pair $(W,U)$ is therefore congruent to one with
+Thus, if $\alpha$ is a root of $p$, the new minimal polynomial has root
 $$
-\ell(t)=c t^4. \tag{9}
+\gamma(\alpha)=\frac{c+d\alpha}{a+b\alpha}.
 $$
-Now use
-$$
-(x,y)\longmapsto (\rho x,\rho^{-1}y),\qquad \rho\in K^*.
-$$
-It preserves the cross term (3) and sends $c$ to $\rho^{-3}c$. Since $K^*$ has order $7$ and $\rho\mapsto\rho^3$ is a bijection, all nonzero $c$ are equivalent.
+Consequently the required $GL_{24}(2)$-orbits are exactly the $PGL_2(2)$-orbits on monic irreducible degree-$12$ polynomials over $\mathbb F_2$.
 
-Consequently there are at most two congruence classes, represented by
+Since $PGL_2(2)\cong S_3$, it has one identity element, three involutions, and two elements of order $3$.
+
+Step 3: Count the fixed irreducible polynomials.
+
+The total number of monic irreducible degree-$12$ polynomials is
 $$
-W_0:\quad
-B_t^0((x,y),(u,v))=\operatorname{Tr}\bigl(t(xv+yu)\bigr), \tag{10}
+N_{12}=\frac1{12}\left(2^{12}-2^6-2^4+2^2\right)=335. \tag{1}
+$$
+
+For an involution, take $\sigma(x)=x+1$. If a degree-$12$ irreducible polynomial is fixed by $\sigma$ and $\alpha$ is one of its roots, then the action of $\sigma$ on the Frobenius orbit of $\alpha$ must be the unique element of order $2$, namely
+$$
+\alpha^{2^6}=\alpha+1. \tag{2}
+$$
+Equation (2) has $64$ distinct solutions: applying $2^6$ again gives $\alpha^{2^{12}}=\alpha$, and it is the affine trace equation from $\mathbb F_{2^{12}}$ to $\mathbb F_{2^6}$.
+
+Among proper subfields, there are no solutions in degrees $1,2,3,$ or $6$. In $\mathbb F_{16}$, (2) becomes
+$$
+x^4+x=1,
+$$
+which has exactly $4$ solutions. Hence exactly $60$ solutions have degree $12$, so each involution fixes
+$$
+\frac{60}{12}=5. \tag{3}
+$$
+
+For an element of order $3$, take
+$$
+\tau(x)=\frac1{x+1}.
+$$
+On a Frobenius orbit of length $12$, a fixed polynomial allows exactly the two order-$3$ actions $F^4$ and $F^8$.
+
+For the first orientation,
+$$
+\alpha^{16}=\frac1{\alpha+1},
+$$
+so
+$$
+\alpha^{17}+\alpha^{16}+1=0. \tag{4}
+$$
+Its roots all lie in $\mathbb F_{2^{12}}$, because repeated application of (4) gives $\alpha^{2^{12}}=\alpha$. There are $17$ distinct roots. Exactly two have degree $2$, being the roots of $x^2+x+1$, and exactly three have degree $3$, being the roots of $x^3+x^2+1$.
+
+There are no degree-$4$ roots, since on $\mathbb F_{16}$ equation (4) would force $\tau(\alpha)=\alpha$, whose fixed points already lie in $\mathbb F_4$. There are no degree-$6$ roots either: raising $\alpha^{16}=1/(\alpha+1)$ to the $16$th power gives $\alpha^{256}=(\alpha+1)/\alpha$; for $\alpha\in\mathbb F_{64}$ this becomes $\alpha^4=(\alpha+1)/\alpha$, hence
+$$
+\alpha^5+\alpha+1=0,
 $$
 and
 $$
-W_1:\quad
-B_t^1((x,y),(u,v))=
-\operatorname{Tr}\bigl(t(xv+yu)+t^4(yv^2+y^2v)\bigr). \tag{11}
+x^5+x+1=(x^2+x+1)(x^3+x^2+1).
 $$
-For $t\ne0$, either form is nondegenerate: if $(x,y)$ is in its radical, first set $v=0$ and vary $u$ to get $y=0$, then set $u=0$ and vary $v$ to get $x=0$.
-
-Step 3: Show that the two classes do not merge after forgetting the chosen Lagrangian.
-
-For $W_0$, besides $U=K\oplus0$, every subspace
+Therefore the remaining $12$ roots have degree $12$ and form one irreducible polynomial. The second orientation $F^8$ gives one more, by conjugating $\tau$ to $\tau^{-1}$ with an involution. Hence each order-$3$ element fixes exactly
 $$
-L_a=\{(ay,y):y\in K\},\qquad a\in K, \tag{12}
-$$
-is a common Lagrangian, so $W_0$ has at least nine.
-
-There are no others. Any common Lagrangian distinct from $U$ meets $U$ trivially: if $(x,0)\ne0$ lies in the intersection, then isotropy with $(u,v)$ for every $B_t$ gives $\operatorname{Tr}(txv)=0$ for every $t$, hence $v=0$. Thus a second common Lagrangian must be the graph of an $\mathbb F_2$-linear map $S(y)=ry+sy^2+uy^4$. For $W_0$, equation (8) must vanish for every $t$, so $s=u=0$. Therefore the eight graphs in (12), together with $U$, are exactly the nine common Lagrangians.
-
-For $W_1$, the same graph calculation would require
-$$
-t^4+s t+u^2t^2=0
-$$
-for every $t\in K$. The linearized polynomials $t,t^2,t^4$ are linearly independent, so this is impossible. Hence $U$ is the unique common Lagrangian of $W_1$.
-
-Therefore $W_0$ and $W_1$ cannot be congruent: the numbers of common Lagrangians are respectively $9$ and $1$.
-
-Step 4: Conclude the orbit count.
-
-Step 2 shows that every nonsingular $3$-space admitting a common Lagrangian is congruent to either $W_0$ or $W_1$, and Step 3 shows that these two classes are distinct. Hence the required number of $GL_6(2)$-orbits is
-$$
-2.
+2. \tag{5}
 $$
 
-Final Answer: $\boxed{2}$
+Step 4: Apply Burnside's lemma.
+
+Burnside's lemma gives
+$$
+\frac{335+3\cdot5+2\cdot2}{6}
+=\frac{354}{6}
+=59.
+$$
+
+Final Answer: $\boxed{59}$
 
 ---
 
 ## Answer
 
-2
+59
 
 ---
 
@@ -121,14 +130,14 @@ Answer Type: Exact scalar
 
 ## Solution Concepts
 
-- alternating bilinear forms over finite fields
-- common Lagrangian subspaces
-- order-8 division subspaces and $\mathbb F_8$
-- linearized polynomials over $\mathbb F_8$
-- simultaneous congruence normal forms
+- canonical forms of alternating matrix pencils
+- self-adjoint operators over finite fields
+- irreducible minimal polynomials
+- Mobius action of $PGL_2(2)$
+- Burnside's lemma
 
 ---
 
 ## Black-Box Audit
 
-No computational orbit enumeration is used. The classification reduces algebraically to the two shear-equivalence classes of the coefficient of $t^4$ in a linearized polynomial.
+No exhaustive matrix or orbit enumeration is used. The classification is reduced to irreducible degree-$12$ polynomials and the six-element $PGL_2(2)$ action, whose fixed-point counts are derived algebraically.
