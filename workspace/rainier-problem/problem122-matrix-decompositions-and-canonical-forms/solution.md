@@ -1,195 +1,145 @@
 ## Steps
 
-Step 1: Classify an ordered symmetric pencil by an irreducible polynomial and a square class.
+Step 1: Interpret the Jordan block as an indecomposable cyclic-group module.
 
-Let
+Let $k=\mathbb F_2$. For a power of two $Q$, write
 $$
-W=\langle A,B\rangle\le \operatorname{Sym}_6(3)
-$$
-with $A$ invertible, and put
-$$
-T=A^{-1}B.
-$$
-Since $A$ and $B$ are symmetric,
-$$
-T^TA=AT,
-$$
-so $T$ is self-adjoint for the nondegenerate symmetric form defined by $A$.
-
-Assume the minimal polynomial $p$ of $T$ is irreducible of degree $6$. Then
-$$
-K:=\mathbb F_3[T]\cong\mathbb F_{3^6},
-$$
-and $V=\mathbb F_3^6$ is one-dimensional over $K$.
-
-The self-adjointness identity implies
-$$
-A(ax,y)=A(x,ay)\qquad(a\in K).
-$$
-Using the nondegenerate trace pairing on $K$, every such form is therefore
-$$
-A_c(x,y)=\operatorname{Tr}_{K/\mathbb F_3}(cxy)
-$$
-for a unique $c\in K^*$. The centralizer of $T$ is $K^*$, and the change of variable $x\mapsto zx$ sends
-$$
-c\longmapsto cz^2.
-$$
-Thus, for each monic irreducible sextic $p$, there are exactly two congruence classes of ordered pairs $(A,B)$, distinguished by
-$$
-\varepsilon=\chi_K(c)\in\{+1,-1\},
-$$
-where $\chi_K$ is the quadratic character of $K^*$.
-
-Step 2: Determine how a change of pencil basis acts on the square class.
-
-Replace $(A,B)$ by
-$$
-(A',B')=(aA+bB,cA+dB),
+C_Q=\langle g\rangle,
 \qquad
-\begin{pmatrix}a&b\\c&d\end{pmatrix}\in GL_2(3).
+kC_Q\cong k[u]/(u^Q),
+\qquad u=g-1.
 $$
-Then
+For $1\le r\le Q$, let
 $$
-A'=A(aI+bT),
-\qquad
-T'=(aI+bT)^{-1}(cI+dT).
+V_r=k[u]/(u^r).
 $$
-If $\alpha$ is the image of $T$ in $K$, the root parameter changes by
-$$
-\alpha\longmapsto\frac{c+d\alpha}{a+b\alpha},
-$$
-and the trace-form coefficient changes by
-$$
-c_0\longmapsto c_0(a+b\alpha).
-$$
-Hence the square-class label transforms as
-$$
-\varepsilon\longmapsto
-\varepsilon\,\chi_K(a+b\alpha). \tag{1}
-$$
-Because $[K:\mathbb F_3]=6$ is even, every element of $\mathbb F_3^*$ is a square in $K$. Therefore (1) is unchanged if the $2\times2$ basis-change matrix is multiplied by a scalar, so the action factors through $PGL_2(3)$.
+On $V_r$, the element $g=1+u$ acts as the single Jordan block $J_r(1)$.
 
-Consequently the required congruence classes are the $PGL_2(3)$-orbits on pairs
+Since $J_{11}(1)^{16}=I$, the matrix $J_{11}(1)\otimes J_{11}(1)$ is exactly the action of $g$ on the diagonal tensor product
 $$
-(p,\varepsilon),
+V_{11}\otimes_k V_{11}
 $$
-where $p$ is a monic irreducible sextic and $\varepsilon\in\{\pm1\}$, with the twisted action (1).
+for $C_{16}$. Thus its Jordan blocks are the indecomposable summands $V_r$ of this tensor product.
 
-Step 3: Compute the fixed decorated sextics for each element type of $PGL_2(3)$.
+Step 2: Prove the reflection identity for tensor squares.
 
-The number of monic irreducible sextics over $\mathbb F_3$ is
+Let $q$ be a power of $2$ and $0\le a\le q$. Work first with $C_{2q}$. The natural quotient
 $$
-N_6=\frac16\left(3^6-3^3-3^2+3\right)=116. \tag{2}
+V_{2q}\twoheadrightarrow V_r
 $$
-Thus the identity fixes
+has kernel $V_{2q-r}$, so the first syzygy satisfies
 $$
-2N_6=232
+\Omega(V_r)\cong V_{2q-r}. \tag{1}
 $$
-decorated sextics.
-
-The group $PGL_2(3)\cong S_4$ has: six split involutions, three nonsplit involutions, eight elements of order $3$, and six elements of order $4$.
-
-For a split involution take
+In particular,
 $$
-s(x)=-x.
-$$
-A fixed degree-$6$ Frobenius orbit must have $s=F^3$, so a root satisfies
-$$
-\alpha^{27}=-\alpha,
-\qquad
-\alpha^{26}=-1. \tag{3}
-$$
-Equation (3) has $26$ roots in $\mathbb F_{3^6}^*$. Exactly two lie in a proper subfield, namely the two roots of $x^2+1$ in $\mathbb F_9$. Hence $24$ roots have degree $6$, giving
-$$
-24/6=4
-$$
-fixed irreducible sextics. For the representative $s(x)=-x$, the denominator in (1) is $1$, so the square-class label is preserved. Each split involution therefore fixes
-$$
-4\cdot2=8 \tag{4}
-$$
-decorated sextics.
-
-For a nonsplit involution take
-$$
-n(x)=-1/x.
-$$
-Again it must act as $F^3$, so
-$$
-\alpha^{27}=-1/\alpha,
-\qquad
-\alpha^{28}=-1. \tag{5}
-$$
-There are $28$ roots of (5); exactly four lie in the proper subfield $\mathbb F_9$, where $x^4=-1$. Thus again $24$ roots have degree $6$, so $n$ fixes four irreducible sextics.
-
-However the denominator in (1) is now $\alpha$. For every root of (5),
-$$
-\chi_K(\alpha)=\alpha^{(3^6-1)/2}
-=\alpha^{364}
-=(\alpha^{28})^{13}
-=-1. \tag{6}
-$$
-Thus every fixed sextic has its two square-class labels interchanged. A nonsplit involution therefore fixes
-$$
-0 \tag{7}
-$$
-decorated sextics.
-
-For an element of order $3$, take
-$$
-u(x)=x+1.
-$$
-It can act on a six-element Frobenius orbit only as $F^2$ or $F^4$. For the first orientation,
-$$
-\alpha^9=\alpha+1. \tag{8}
-$$
-The map $z\mapsto z^9-z$ on $\mathbb F_{3^6}$ has kernel $\mathbb F_9$, so (8) has $9$ solutions. Exactly three lie in $\mathbb F_{27}$, leaving six degree-$6$ roots, hence one sextic. The $F^4$ orientation gives one more. Therefore each order-$3$ element fixes two irreducible sextics. Its denominator is $1$, so both square classes are preserved, giving
-$$
-2\cdot2=4 \tag{9}
-$$
-fixed decorated sextics.
-
-An order-$4$ element fixes no irreducible sextic of degree $6$, because the cyclic Frobenius group on six roots has no element of order $4$. Hence its decorated fixed count is
-$$
-0. \tag{10}
+\Omega(V_{q-a})\cong V_{q+a}. \tag{2}
 $$
 
-Step 4: Apply Burnside's lemma.
-
-Burnside's lemma for the twisted action gives
+Tensoring a projective resolution over the group algebra by any $kC_{2q}$-module remains an exact projective resolution, because $kC_{2q}$ is a Hopf algebra. Hence, in the stable module category,
 $$
-\frac{232+6\cdot8+3\cdot0+8\cdot4+6\cdot0}{24}
-=\frac{312}{24}
-=13.
+\Omega(M)\otimes N\simeq \Omega(M\otimes N).
+$$
+Applying this twice and using (1), which gives $\Omega^2(V_r)\cong V_r$, yields
+$$
+V_{q+a}\otimes V_{q+a}
+\simeq_{\mathrm{st}}
+V_{q-a}\otimes V_{q-a}. \tag{3}
+$$
+The group algebra $kC_{2q}$ is local, so its only indecomposable projective is $V_{2q}$. Therefore the two sides of (3) have the same nonprojective summands and can differ only by copies of $V_{2q}$. Their dimensions differ by
+$$
+(q+a)^2-(q-a)^2=4qa=2a\,(2q).
+$$
+Consequently
+$$
+V_{q+a}\otimes V_{q+a}
+\cong
+V_{2q}^{\oplus 2a}
+\oplus
+\bigl(V_{q-a}\otimes V_{q-a}\bigr). \tag{4}
+$$
+This is the reflection identity we need.
+
+Step 3: Apply the reflection identity recursively.
+
+Since $11=8+3$, equation (4) with $q=8$ and $a=3$ gives
+$$
+V_{11}\otimes V_{11}
+\cong
+V_{16}^{\oplus6}
+\oplus
+(V_5\otimes V_5). \tag{5}
+$$
+Now view $V_5$ as a module for $C_8$. Since $5=4+1$,
+$$
+V_5\otimes V_5
+\cong
+V_8^{\oplus2}
+\oplus
+(V_3\otimes V_3). \tag{6}
+$$
+Finally, view $V_3$ as a module for $C_4$. Since $3=2+1$,
+$$
+V_3\otimes V_3
+\cong
+V_4^{\oplus2}
+\oplus
+(V_1\otimes V_1)
+=
+V_4^{\oplus2}\oplus V_1. \tag{7}
+$$
+Combining (5)--(7),
+$$
+V_{11}\otimes V_{11}
+\cong
+V_{16}^{\oplus6}
+\oplus V_8^{\oplus2}
+\oplus V_4^{\oplus2}
+\oplus V_1. \tag{8}
+$$
+As a dimension check,
+$$
+6\cdot16+2\cdot8+2\cdot4+1=121=11^2.
 $$
 
-Final Answer: $\boxed{13}$
+Step 4: Translate the module decomposition back to Jordan blocks.
+
+On $V_r$, the generator $g$ acts as $J_r(1)$. Therefore (8) gives the Jordan canonical form
+$$
+J_{16}(1)^{\oplus6}
+\oplus J_8(1)^{\oplus2}
+\oplus J_4(1)^{\oplus2}
+\oplus J_1(1).
+$$
+
+Final Answer: $\boxed{J_{16}(1)^{\oplus6}\oplus J_8(1)^{\oplus2}\oplus J_4(1)^{\oplus2}\oplus J_1(1)}$
 
 ---
 
 ## Answer
 
-13
+$J_{16}(1)^{\oplus6}\oplus J_8(1)^{\oplus2}\oplus J_4(1)^{\oplus2}\oplus J_1(1)$
 
 ---
 
 ## Classification
 
-Problem Type: Exact computation
+Problem Type: Canonicalization or normalization
 
-Answer Type: Exact scalar
+Answer Type: Canonical form
 
 ---
 
 ## Solution Concepts
 
-- canonical forms of symmetric matrix pencils
-- self-adjoint operators over finite fields
-- trace forms and square classes
-- twisted Mobius action of $PGL_2(3)$
-- Burnside's lemma
+- Jordan blocks in positive characteristic
+- indecomposable modules for cyclic $2$-groups
+- syzygy periodicity
+- stable tensor products
+- modular Jordan decomposition
 
 ---
 
 ## Black-Box Audit
 
-No matrix-orbit enumeration or computer search is used. The extra difficulty is the intrinsic square-class invariant of a one-dimensional symmetric form over $\mathbb F_{3^6}$ and its norm twist under change of pencil basis.
+No matrix enumeration or computer search is used. The decomposition follows from the reflection identity (4), proved from syzygy periodicity for cyclic $2$-group modules, followed by three exact recursive reductions.
