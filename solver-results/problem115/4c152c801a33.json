@@ -1,0 +1,22 @@
+{
+  "problem": "problem115",
+  "branch": "adversary/problem115",
+  "problem_path": "workspace/rainier-problem/problem115-fourier-analysis/problem.md",
+  "source_commit_sha": "a9360693f8a386319d72fa2ff5ebcbea45c494fc",
+  "problem_blob_sha": "4c152c801a3372f84a759fed447b96b49e1a652c",
+  "statement_sha256": "842e6d8ad7dfc96a6eefa681315e0ea22287d71a8aa24cae65bd284895243356",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T14:43:29+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nf(z)=(-1)^{q(z)},\\qquad z\\in V.\n\\]\nSince \\(f(0)=1\\), we have \\(q(0)=0\\). The four-term condition becomes\n\\[\nq(z)+q(z+r)+q(z+s)+q(z+r+s)=\\omega(r,s).\n\\]\nPutting \\(z=0\\),\n\\[\nq(r+s)+q(r)+q(s)=\\omega(r,s),\n\\]\nso \\(q\\) is a quadratic refinement of \\(\\omega\\).\n\nUse the basic refinement\n\\[\nq_0(x,y)=x\\cdot y.\n\\]\nIts polar form is exactly \\(\\omega\\), so every possible \\(q\\) is uniquely\n\\[\nq=q_0+\\omega(\\,\\cdot\\,,c)\n\\]\nfor some \\(c\\in V\\).\n\nNow analyze the operator \\(A\\). The cubic residues in \\(\\mathbb F_{31}^{\\times}\\) are\n\\[\nH=\\{1,2,4,8,15,16,23,27,29,30\\}.\n\\]\nSince \\(-1,2\\in H\\), the convolution operator \\(A\\) is self-adjoint and satisfies\n\\[\nA^2=A.\n\\]\nTherefore \\(S\\) is symplectic and\n\\[\nq_0(S(x,y))=q_0(x,y).\n\\]\nThus \\(q\\) is \\(S\\)-invariant iff \\(c\\in \\operatorname{Fix}(S)\\).\n\nFrom\n\\[\nS(x,y)=(x+Ay,\\; Ax+(I+A)y),\n\\]\nwe get\n\\[\nS(x,y)=(x,y)\\iff Ax=Ay=0.\n\\]\nHence\n\\[\n\\operatorname{Fix}(S)=K\\times K,\\qquad K=\\ker A.\n\\]\n\nIt remains to find \\(\\dim K\\). Identify \\(E\\) with\n\\[\n\\mathbb F_2[X]/(X^{31}-1).\n\\]\nThen \\(A\\) is multiplication by\n\\[\na(X)=\\sum_{h\\in H}X^h.\n\\]\nOver \\(\\mathbb F_2\\),\n\\[\n\\gcd(a(X),X^{31}-1)\n\\]\nhas degree \\(21\\). Therefore\n\\[\n\\dim K=21.\n\\]\nAlso, since \\(A\\) is self-adjoint, \\(K^\\perp=\\operatorname{im}A\\), and the same gcd computation gives\n\\[\nK\\cap K^\\perp=\\{0\\}.\n\\]\nSo the dot product is nondegenerate on \\(K\\).\n\nFor \\(c=(u,v)\\in K\\times K\\),\n\\[\nq_0(c)=u\\cdot v.\n\\]\nThe Walsh transform of \\((-1)^q\\) is\n\\[\n\\mathcal F((-1)^q)=(-1)^{q_0(c)}(-1)^q.\n\\]\nSince \\(q\\) is already \\(S\\)-invariant, the condition \\(Tf=f\\) is exactly\n\\[\nq_0(c)=0,\n\\]\ni.e.\n\\[\nu\\cdot v=0.\n\\]\n\nBecause the dot product on \\(K\\) is nondegenerate and \\(\\dim K=21\\), the number of pairs \\((u,v)\\in K^2\\) with \\(u\\cdot v=0\\) is\n\\[\n2^{21}+(2^{21}-1)2^{20}\n=2^{41}+2^{20}\n=2199024304128.\n\\]\n\n\\[\n\\boxed{2199024304128}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T14:48:52+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem115/4c152c801a33.json"
+}
