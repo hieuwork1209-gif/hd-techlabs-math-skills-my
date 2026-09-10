@@ -1,107 +1,131 @@
 ## Steps
 
-Step 1: Reduce global stability to positive definiteness of a homogeneous quartic
-Define
+Step 1: Pass to polar coordinates and rescale time
+Set
 $$
-V(x,y)=x^4+a x^3y+b x^2y^2+a xy^3+y^4.
-$$
-The system is exactly the negative gradient flow
-$$
-(\dot x,\dot y)=-\nabla V(x,y),
-$$
-because
-$$
-V_x=4x^3+3a x^2y+2bxy^2+a y^3,
+P=a(x^2+y^2)^2+x^4-6x^2y^2+y^4,
 \qquad
-V_y=a x^3+2b x^2y+3axy^2+4y^3.
+Q=b(x^2+y^2)^2+x^4-y^4.
+$$
+The system is
+$$
+\dot x=-Px-Qy,
+\qquad
+\dot y=-Py+Qx.
+$$
+For a nonzero trajectory write $x=r\cos\theta$, $y=r\sin\theta$. Since
+$$
+x\dot x+y\dot y=-Pr^2,
+\qquad
+x\dot y-y\dot x=Qr^2,
+$$
+and
+$$
+P=r^4(a+\cos4\theta),
+\qquad
+Q=r^4(b+\cos2\theta),
+$$
+we obtain
+$$
+\dot r=-r^5A(\theta),
+\qquad
+\dot\theta=r^4B(\theta),
+$$
+where
+$$
+A(\theta)=a+\cos4\theta,
+\qquad
+B(\theta)=b+\cos2\theta.
+$$
+Introduce the increasing time variable $\tau$ by $d\tau/dt=r^4$. Then
+$$
+\frac{d\theta}{d\tau}=B(\theta),
+\qquad
+\frac{d}{d\tau}\log r=-A(\theta).
+$$
+Thus the angular equation is autonomous, while the logarithmic radial change is obtained by integrating $-A$ along the angular motion.
+
+Step 2: Analyze the regime $|b|\leq1$
+Now $B$ has zeros, namely the angles satisfying
+$$
+\cos2\theta=-b.
+$$
+Each such angle is an invariant ray. On every one of these rays,
+$$
+A(\theta)=a+\cos4\theta
+=a+2\cos^2 2\theta-1
+=a+2b^2-1.
+$$
+Hence a necessary condition for global asymptotic stability is
+$$
+a+2b^2-1>0.
+$$
+Indeed, equality makes every nonzero point of each such ray an equilibrium, while a negative value makes $r$ increase along that ray.
+
+Assume now that
+$$
+a+2b^2-1>0.
+$$
+All zeros of $B$ then lie in a neighborhood on which $A$ is uniformly positive. On each component between consecutive zeros of $B$, the scalar equation $d\theta/d\tau=B(\theta)$ is monotone and approaches an endpoint zero; an orbit starting at a zero remains there. Therefore any part of the angular motion on which $A<0$ is traversed only for a uniformly bounded amount of $\tau$-time, whereas eventually $A$ is bounded below by a positive constant. Consequently there is a constant $C=C(a,b)$ such that
+$$
+r(\tau)\leq C r(0)
+$$
+for all $\tau\geq0$, and moreover $r(\tau)\to0$ as $\tau\to\infty$.
+
+Since $dt/d\tau=r^{-4}$, the relation $r(\tau)\to0$ forces $t(\tau)\to\infty$. Thus every forward solution is global and converges to the origin. The bound $r(\tau)\leq Cr(0)$ gives Lyapunov stability. Hence for $|b|\leq1$ the exact condition is
+$$
+a>1-2b^2.
+$$
+
+Step 3: Analyze the rotating regime $|b|>1$
+Here $B$ never vanishes and has the constant sign of $b$, so every nonzero trajectory rotates forever in the $\tau$-time. During one full revolution the change in $\log r$ is
+$$
+-K,
+\qquad
+K:=\int_0^{2\pi}\frac{A(\theta)}{|B(\theta)|}\,d\theta.
+$$
+If $K>0$, each revolution multiplies $r$ by $e^{-K}<1$. Because $A/B$ is continuous, the radial variation within a single revolution is uniformly bounded, so $r(\tau)\leq Cr(0)$ and $r(\tau)\to0$. This again gives global existence, convergence, and Lyapunov stability.
+
+If $K=0$, the radius returns to its starting value after every full turn, producing a nonzero periodic orbit. If $K<0$, the radius is multiplied by a factor larger than $1$ each turn, so arbitrarily small initial data eventually leave any fixed neighborhood of the origin. Therefore global asymptotic stability is equivalent to $K>0$.
+
+Let $\sigma=\operatorname{sgn}(b)$ and $s=\sqrt{b^2-1}$. With $\phi=2\theta$,
+$$
+K=\sigma\int_0^{2\pi}\frac{a+\cos2\phi}{b+\cos\phi}\,d\phi.
+$$
+Use
+$$
+\frac{\cos2\phi}{b+\cos\phi}
+=2\cos\phi-2b+\frac{2b^2-1}{b+\cos\phi}.
+$$
+Also, the tangent-half-angle substitution $u=\tan(\phi/2)$ gives, for $|b|>1$,
+$$
+\int_0^{2\pi}\frac{d\phi}{b+\cos\phi}
+=\frac{2\pi\sigma}{\sqrt{b^2-1}}
+=\frac{2\pi\sigma}{s}.
 $$
 Hence
 $$
-\dot V=-V_x^2-V_y^2\leq0.
+K
+=\frac{2\pi}{s}\left(a+2b^2-1-2|b|s\right).
+$$
+Thus $K>0$ exactly when
+$$
+a>1-2b^2+2|b|\sqrt{b^2-1}.
 $$
 
-If $V(x,y)>0$ for every $(x,y)\neq(0,0)$, then homogeneity and continuity imply $V(x,y)\geq c(x^2+y^2)^2$ for some $c>0$, so $V$ is proper and positive definite. Every forward trajectory therefore remains in a compact sublevel set and exists for all $t\geq0$. Moreover, Euler's identity for the homogeneous quartic gives
+Step 4: Combine the two regimes
+For $|b|\leq1$ the threshold is $1-2b^2$, while for $|b|>1$ it is $1-2b^2+2|b|\sqrt{b^2-1}$. These combine as
 $$
-xV_x+yV_y=4V.
+a>1-2b^2+2|b|\sqrt{\max\{b^2-1,0\}}.
 $$
-Thus $\nabla V=0$ at a nonzero point would force $V=0$, impossible. The origin is the unique equilibrium, and LaSalle's invariance principle yields convergence of every trajectory to the origin. Positive definiteness of $V$ gives Lyapunov stability.
-
-Conversely, if $V$ is not positive definite, either $V(z)<0$ for some nonzero $z$, or $V\geq0$ everywhere and $V(z)=0$ for some nonzero $z$. In the first case, by homogeneity there are initial points arbitrarily close to the origin with negative $V$; since $V$ is nonincreasing along trajectories, such trajectories cannot converge to the origin where $V=0$. In the second case, $z$ is a global minimum of the differentiable function $V$, hence $\nabla V(z)=0$, giving a nonzero equilibrium. Therefore the origin is globally asymptotically stable exactly when $V$ is positive definite.
-
-Step 2: Reduce the binary quartic to a quadratic on a disconnected domain
-If $y=0$ and $x\neq0$, then $V=x^4>0$. For $y\neq0$, put
-$$
-t=\frac{x}{y}.
-$$
-Then
-$$
-\frac{V(x,y)}{y^4}=f(t):=t^4+a t^3+b t^2+a t+1.
-$$
-At $t=0$ this equals $1$. For $t\neq0$, divide by $t^2>0$ and set
-$$
-z=t+\frac1t.
-$$
-Using $t^2+t^{-2}=z^2-2$ gives
-$$
-\frac{f(t)}{t^2}=q(z):=z^2+a z+b-2.
-$$
-For real nonzero $t$, the possible values of $z$ are exactly
-$$
-(-\infty,-2]\cup[2,\infty).
-$$
-Hence $V$ is positive definite exactly when
-$$
-q(z)>0
-\qquad\text{for every }|z|\geq2.
-$$
-
-Step 3: Minimize the quadratic on the two rays
-The vertex of
-$$
-q(z)=z^2+a z+b-2
-$$
-is $z_0=-a/2$.
-
-If $|a|\leq4$, then $z_0\in[-2,2]$. Therefore on the allowed set $|z|\geq2$, the minima occur at the endpoints $z=2$ and $z=-2$. We need
-$$
-q(2)=b+2a+2>0,
-\qquad
-q(-2)=b-2a+2>0,
-$$
-which is equivalent to
-$$
-b>2|a|-2.
-$$
-
-If $a\geq4$, then $z_0\leq-2$, so the minimum on the left ray is
-$$
-q(z_0)=b-2-\frac{a^2}{4}.
-$$
-The right-ray minimum is $q(2)$, which is automatically positive once $q(z_0)>0$. Thus the condition is
-$$
-b>2+\frac{a^2}{4}.
-$$
-For $a\leq-4$ the argument is symmetric, with the vertex on the right ray, and the same condition results. At $|a|=4$ the two formulas agree, both giving $b>6$.
-
-Step 4: State the exact stability region
-Combining the cases, the equilibrium is globally asymptotically stable exactly for
-$$
-\left\{
-\begin{array}{ll}
-|a|\leq4 &\text{and } b>2|a|-2,\\
-\text{or}\\
-|a|\geq4 &\text{and } b>2+\dfrac{a^2}{4}.
-\end{array}
-\right.
-$$
-The boundary is excluded because there $q$ vanishes at an allowed value of $z$, so $V$ has a nonzero zero and global asymptotic stability fails.
-Final Answer: $\boxed{\{(a,b): |a|\leq4,\ b>2|a|-2\}\cup\{(a,b): |a|\geq4,\ b>2+a^2/4\}}$
+The inequality is strict in every case: equality yields either nonzero equilibria on invariant rays or nonzero periodic orbits.
+Final Answer: $\boxed{\{(a,b):a>1-2b^2+2|b|\sqrt{\max\{b^2-1,0\}}\}}$
 
 ---
 
 ## Answer
 
-$\{(a,b): |a|\leq4,\ b>2|a|-2\}\cup\{(a,b): |a|\geq4,\ b>2+a^2/4\}$
+$\{(a,b):a>1-2b^2+2|b|\sqrt{\max\{b^2-1,0\}}\}$
 
 ---
 
@@ -116,10 +140,10 @@ $\{(a,b): |a|\leq4,\ b>2|a|-2\}\cup\{(a,b): |a|\geq4,\ b>2+a^2/4\}$
 ## Solution Concepts
 
 - global asymptotic stability
-- homogeneous gradient flows
-- positive definite binary quartics
-- reciprocal polynomial reduction
-- Lyapunov functions
+- polar coordinates
+- homogeneous polynomial systems
+- invariant rays and periodic orbits
+- time rescaling
 
 ---
 
