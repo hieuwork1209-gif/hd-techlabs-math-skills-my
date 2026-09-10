@@ -1,0 +1,22 @@
+{
+  "problem": "problem105",
+  "branch": "adversary/problem105",
+  "problem_path": "workspace/rainier-problem/problem105-polynomial-and-rational-functions/problem.md",
+  "source_commit_sha": "444665e5b63eeeb24199cf29fbaf2890cf43ecca",
+  "problem_blob_sha": "0c95bb6608c33c304d67b74aa27c3c2448fe5b5e",
+  "statement_sha256": "61a8e78a7df44c4eb7932c6fd02fc1a22c82674e9de1bb0139b4fa1828ec10e5",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T13:43:51+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nP(x)=\\prod_{\\substack{m\\ge 3\\\\ m\\text{ odd}}}R_m(x)^{e_m}.\n\\]\nFor odd \\(m\\), the identity\n\\[\nR_m(x)R_m(-x)=R_m(x^2-2)\n\\]\nfollows by writing \\(x=2\\cos\\theta\\): the map \\(x\\mapsto x^2-2\\) is angle-doubling. Hence any such product satisfies\n\\[\nP(x)P(-x)=P(x^2-2).\n\\]\nThe sign must be \\(+1\\), since otherwise the two sides differ by a sign.\n\nNow use the resultant condition. If \\(y=2\\cos(2\\pi a/m)\\), then\n\\[\nD_{15}(y)=2\\cos\\frac{2\\pi(15a)}m,\n\\]\nso primitive denominator \\(m\\) is sent to primitive denominator\n\\[\n\\frac{m}{(m,15)}.\n\\]\nThus the resultant condition forces the exponent relation\n\\[\n\\delta_{N,225}+\\sum_{\\substack{m/(m,15)=N}}\ne_m\\frac{\\varphi(m)}{\\varphi(N)}=e_N\n\\]\nfor every odd \\(N\\ge 3\\), together with\n\\[\n\\sum_{m\\mid 15}e_m\\frac{\\varphi(m)}2=60.\n\\]\n\nSince\n\\[\nR_m(2)=\n\\begin{cases}\n(-1)^{\\varphi(m)/2}p,&m=p^a,\\\\\n1,&m\\text{ is not a prime power},\n\\end{cases}\n\\]\nthe condition \\(P(2)=77=7\\cdot 11\\) implies that exactly one \\(7\\)-power factor and exactly one \\(11\\)-power factor occur, and no other prime-power factor occurs.\n\nFrom the \\((x-2)^{60}\\) term we get\n\\[\ne_{15}\\frac{\\varphi(15)}2=60,\n\\]\nso\n\\[\ne_{15}=15.\n\\]\nThen the exponent relation at \\(N=15\\) gives\n\\[\ne_{15}=15e_{225},\n\\]\nhence\n\\[\ne_{225}=1.\n\\]\n\nThese contribute degree\n\\[\n15\\cdot \\frac{\\varphi(15)}2+\\frac{\\varphi(225)}2=15\\cdot4+60=120.\n\\]\nSo \\(62\\) degrees remain.\n\nThe divisibility\n\\[\n7\\mid \\operatorname{Res}(P,C_{13})\n\\]\nrequires a factor whose roots reduce modulo \\(7\\) to roots of \\(C_{13}\\). The smallest possible non-prime-power odd denominator coprime to \\(15\\) with this property is\n\\[\n13\\cdot 7=91,\n\\]\nand\n\\[\n\\deg R_{91}=\\frac{\\varphi(91)}2=\\frac{72}{2}=36.\n\\]\nThus \\(36\\) of the remaining \\(62\\) degrees are forced.\n\nThe remaining \\(26\\) degrees must come from one \\(7\\)-power and one \\(11\\)-power. The only possibility is\n\\[\n\\deg R_{49}+\\deg R_{11}=21+5=26.\n\\]\nTherefore\n\\[\nP(x)=R_{11}(x)R_{15}(x)^{15}R_{49}(x)R_{91}(x)R_{225}(x).\n\\]\n\nCheck:\n\\[\n\\deg P=5+15\\cdot4+21+36+60=182,\n\\]\nand\n\\[\nP(2)=R_{11}(2)R_{49}(2)=(-11)(-7)=77.\n\\]\nAlso \\(R_{91}\\) guarantees the required resultant divisibility modulo \\(7\\).\n\n\\[\n\\boxed{R_{11}(x)R_{15}(x)^{15}R_{49}(x)R_{91}(x)R_{225}(x)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T13:45:55+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem105/0c95bb6608c3.json"
+}
