@@ -10,7 +10,7 @@ Its polar form is $\omega$. Since $f(0)=1$, write uniquely $f(z)=(-1)^{q(z)}$ wi
 $$
 q(r+s)=q(r)+q(s)+\omega(r,s).
 $$
-Thus $q+q_0$ is linear, so every admissible function is uniquely
+Hence $q+q_0$ is linear. Therefore every admissible function is uniquely
 $$
 f_{a,b}(x,y)=(-1)^{x\cdot y+a\cdot x+b\cdot y},
 \qquad a,b\in E.
@@ -22,84 +22,114 @@ Step 2: Compute the Walsh--Fourier transform
 For $(u,v)\in V$,
 $$
 (\mathcal Ff_{a,b})(u,v)
-=2^{-31}\sum_{x,y\in E}
+=2^{-127}\sum_{x,y\in E}
 (-1)^{x\cdot y+a\cdot x+b\cdot y+x\cdot v+y\cdot u}.
 $$
-For fixed $y$, the sum over $x$ vanishes unless $y=a+v$, when it equals $2^{31}$. Hence
+For fixed $y$, the sum over $x$ vanishes unless $y=a+v$, when it equals $2^{127}$. Thus
 $$
 (\mathcal Ff_{a,b})(u,v)
 =(-1)^{a\cdot b}f_{a,b}(u,v).
 $$
 
-Step 3: Reduce $Tf_{a,b}=f_{a,b}$ to a condition on $\ker A$
+Step 3: Reduce $Tf_{a,b}=f_{a,b}$ to orthogonal pairs in $\ker A$
 
-The set $H$ is closed under negation because $-1=6^3\pmod{31}$. Therefore $A$ is symmetric, and its diagonal is zero because $0\notin H$. Hence
+The multiplicative group $P^\times$ has order $126$, so its subgroup of ninth powers has order $14$. The element $2$ has order $7$ modulo $127$, while $-1$ has order $2$, hence
 $$
-x\cdot Ax=0
+H=\{\pm2^i:0\le i<7\}.
 $$
-for every $x\in E$.
+In particular $-H=H$ and $2H=H$.
 
-Also $2=4^3\pmod{31}$, so $2H=H$. Writing $\tau_hx(t)=x(t+h)$, we have in characteristic $2$
+Therefore the matrix of $A$ is symmetric with zero diagonal, so $x\cdot Ax=0$ for all $x$. Also, writing $\tau_hx(t)=x(t+h)$,
 $$
 A^2=\left(\sum_{h\in H}\tau_h\right)^2
 =\sum_{h\in H}\tau_{2h}=A.
 $$
-Thus
+Thus the shears
 $$
-S=L_AU_A,
-\qquad
-U_A(x,y)=(x+Ay,y),\quad L_A(x,y)=(x,y+Ax).
+U_A(x,y)=(x+Ay,y),\qquad L_A(x,y)=(x,y+Ax)
 $$
-Both shears preserve $q_0$, so $q_0(Sz)=q_0(z)$.
+preserve $q_0$, and $S=L_AU_A$ preserves $q_0$.
 
 The linear part of $q_{a,b}(S(x,y))$ is
 $$
 (a+Ab)\cdot x+(Aa+b+Ab)\cdot y.
 $$
-Therefore $q_{a,b}\circ S=q_{a,b}$ exactly when
+Hence $q_{a,b}\circ S=q_{a,b}$ exactly when
 $$
 Aa=0,\qquad Ab=0.
 $$
-By Step 2, evaluating $Tf_{a,b}=f_{a,b}$ at $0$ also forces $a\cdot b=0$. Hence we must count orthogonal pairs
+By Step 2, evaluating $Tf_{a,b}=f_{a,b}$ at $0$ also forces $a\cdot b=0$. Therefore we must count orthogonal pairs
 $$
 (a,b)\in U\times U,
 \qquad U=\ker A.
 $$
 
-Step 4: Determine $\dim\ker A$
+Step 4: Compute $\dim U$ through a binary Kloosterman sum
 
-Extend scalars from $\mathbb F_2$ to an algebraic closure, which does not change the rank of $A$. Let $\zeta$ be a primitive $31$st root of unity. The vectors
+Extend scalars to an algebraic closure of $\mathbb F_2$. Since $127=2^7-1$, a primitive $127$th root $\zeta$ lies in $\mathbb F_{128}$. The characters
 $$
-e_j(t)=\zeta^{jt},\qquad j\in\mathbb F_{31},
+e_j(t)=\zeta^{jt},\qquad j\in\mathbb F_{127},
 $$
-form an eigenbasis for the translation operators, and hence for $A$, with eigenvalues
+form an eigenbasis for $A$. For $j=0$ the eigenvalue is $|H|=14=0$. For $j\ne0$, putting $\xi=\zeta^j$ and using $H=\{\pm2^i:0\le i<7\}$ gives
 $$
-\lambda_j=\sum_{h\in H}\zeta^{jh}.
+\lambda_j
+=\sum_{i=0}^6(\xi^{2^i}+\xi^{-2^i})
+=\operatorname{Tr}_{\mathbb F_{128}/\mathbb F_2}(\xi+\xi^{-1}).
 $$
-For $j=0$, $\lambda_0=|H|=10=0$ in characteristic $2$.
+Thus $\operatorname{rank}A$ is the number $Z_1$ of $\xi\in\mathbb F_{128}^\times$ for which this trace is $1$.
 
-For $j\ne0$, $\lambda_j$ depends only on the multiplicative coset $jH$. There are three such cosets. Moreover $2H=H$, so
+Let
 $$
-\lambda_j^2=\sum_{h\in H}\zeta^{2jh}=\lambda_j,
+K_n=\sum_{x\in\mathbb F_{2^n}^\times}
+(-1)^{\operatorname{Tr}(x+x^{-1})}.
 $$
-and each of the three coset-values is therefore either $0$ or $1$. Their sum is
+For the elliptic curve
 $$
-\sum_{r\in\mathbb F_{31}^{\times}}\zeta^r=1,
+\mathcal E:\quad Y^2+XY=X^3+1,
 $$
-so an odd number of the three values is $1$. Consequently
+we claim
 $$
-\operatorname{rank}A\in\{10,30\}.
+\#\mathcal E(\mathbb F_{2^n})=2^n+1+K_n.
 $$
+Indeed, for $x=0$ there is one finite point. For $x\ne0$, writing $Y=xz$ gives
+$$
+z^2+z=x+x^{-2}.
+$$
+This has $1+(-1)^{\operatorname{Tr}(x+x^{-2})}$ solutions, and
+$$
+\operatorname{Tr}(x^{-2})=\operatorname{Tr}(x^{-1}).
+$$
+Adding the point at infinity proves the claim.
 
-The constant vector $\mathbf1$ lies in $\ker A$, since every row of $A$ has weight $10$. Suppose the rank were $30$. Then $\ker A=\langle\mathbf1\rangle$. Since $A$ is self-adjoint and idempotent,
+Over $\mathbb F_2$, the curve has $4$ points, so its Frobenius trace is
 $$
-\operatorname{im}A=(\ker A)^\perp
+a=2+1-4=-1.
 $$
-would be the even-weight hyperplane, and $A$ would be the projection onto that hyperplane along $\langle\mathbf1\rangle$. Applied to a basis vector $\delta_t$, that projection is $\delta_t+\mathbf1$, which has weight $30$. But $A\delta_t$ is the indicator of a translate of $H$, which has weight $10$, a contradiction. Therefore
+For an elliptic curve over $\mathbb F_2$, if $t_n=\alpha^n+\beta^n$ with
 $$
-\operatorname{rank}A=10,
+\alpha+\beta=a=-1,\qquad \alpha\beta=2,
+$$
+then
+$$
+\#\mathcal E(\mathbb F_{2^n})=2^n+1-t_n,
 \qquad
-\dim U=31-10=21.
+t_n=-t_{n-1}-2t_{n-2},
+$$
+with $t_0=2$ and $t_1=-1$. Hence $K_n=-t_n$, and successively
+$$
+K_1=1,\ K_2=3,\ K_3=-5,\ K_4=-1,\ K_5=11,\ K_6=-9,\ K_7=-13.
+$$
+Therefore, if $Z_0$ is the number of trace-zero elements,
+$$
+Z_0+Z_1=127,
+\qquad
+Z_0-Z_1=K_7=-13,
+$$
+so
+$$
+\operatorname{rank}A=Z_1=70,
+\qquad
+\dim U=127-70=57.
 $$
 
 Step 5: Count the orthogonal pairs in $U$
@@ -108,22 +138,22 @@ Because $A$ is self-adjoint,
 $$
 U^\perp=\operatorname{im}A.
 $$
-Since $A^2=A$, we have $\ker A\cap\operatorname{im}A=0$. Thus the dot product restricted to $U$ is nondegenerate.
+Since $A^2=A$, we have $\ker A\cap\operatorname{im}A=0$. Thus the dot product restricted to the $57$-dimensional space $U$ is nondegenerate.
 
-For $b=0$, all $2^{21}$ choices of $a\in U$ work. For each nonzero $b\in U$, the functional $a\mapsto a\cdot b$ is nonzero, so exactly $2^{20}$ choices of $a$ are orthogonal to $b$. Hence the number of functions is
+For $b=0$, all $2^{57}$ choices of $a$ work. For each nonzero $b\in U$, exactly half of the elements of $U$ are orthogonal to $b$, giving $2^{56}$ choices. Hence the number of functions is
 $$
-2^{21}+(2^{21}-1)2^{20}
-=2^{41}+2^{20}
-=2199024304128.
+2^{57}+(2^{57}-1)2^{56}
+=2^{113}+2^{56}
+=10384593717069655329118586696368128.
 $$
 
-Final Answer: $\boxed{2199024304128}$
+Final Answer: $\boxed{10384593717069655329118586696368128}$
 
 ---
 
 ## Answer
 
-$2199024304128$
+$10384593717069655329118586696368128$
 
 ---
 
@@ -140,8 +170,8 @@ $2199024304128$
 - Walsh--Fourier transform on binary vector spaces
 - quadratic refinements of symplectic forms
 - generalized Paley graph adjacency operators
-- cubic-residue Fourier eigenvalues
-- nondegenerate bilinear pair counting
+- binary Kloosterman sums
+- elliptic-curve Frobenius recurrences
 
 ---
 
