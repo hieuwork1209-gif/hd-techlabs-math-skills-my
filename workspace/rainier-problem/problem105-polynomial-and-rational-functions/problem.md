@@ -2,27 +2,11 @@
 
 ## LaTeX (Normalized)
 
-Let
+An orientation of a finite graph is called Eulerian if every vertex has equal indegree and outdegree.
+
+Determine the exact number of Eulerian orientations of the complete bipartite graph
 $$
-J=\begin{pmatrix}0&1\\0&0\end{pmatrix},
-\qquad
-N=\operatorname{diag}(J,J,0,0)\in M_6(\mathbb F_2),
-$$
-and put
-$$
-B=I_6+N.
-$$
-Determine the exact number of ordered pairs
-$$
-(A,C)\in GL_6(\mathbb F_2)^2
-$$
-satisfying
-$$
-A^2=C^2=B
-$$
-and
-$$
-AC=CA.
+K_{6,6}.
 $$
 
 ---
@@ -31,8 +15,8 @@ $$
 
 | Field | Value |
 |---|---|
-| **Domain** | Linear Algebra |
-| **Sub-domain** | Matrix decompositions and canonical forms |
+| **Domain** | Discrete Mathematics and Combinatorics |
+| **Sub-domain** | Graph theory |
 | **Problem Type** | Exhaustive enumeration |
 | **Answer Type** | Integer |
 
@@ -40,4 +24,4 @@ $$
 
 ## Domain Explanation
 
-The problem counts commuting square roots of a fixed nonsemisimple matrix over a finite field. The mixed Jordan type $(2,2,1,1)$ has square roots of three different Jordan types, so the count requires separate centralizer orbits and the square-zero elements in three different endomorphism algebras.
+The problem asks for an exact count of balanced orientations of a complete bipartite graph. Encoding each edge direction by a binary matrix converts the Eulerian condition into simultaneous row- and column-sum constraints, and the enumeration is then resolved by combinatorial coefficient extraction.
