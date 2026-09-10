@@ -1,104 +1,119 @@
 ## Steps
 
-Step 1: Interpret the matrix as convolution on the group algebra
+Step 1: Interpret the matrix as convolution on $A_6$
 
-For a permutation $\pi\in S_6$, let $c(\pi)$ be its number of cycles, including fixed points, and define the central group-algebra element
+For $x\in\mathbb C$, define
 $$
-Z(x)=\sum_{\pi\in S_6}x^{c(\pi)}\pi\in \mathbb C[S_6].
+E(x)=\sum_{g\in A_6}x^{c(g)}g\in\mathbb C[A_6].
 $$
-In the basis $\{e_\sigma:\sigma\in S_6\}$ of the regular representation, right multiplication by $Z(7)$ has matrix entries
+In the basis $\{e_\sigma:\sigma\in A_6\}$ of the regular representation, right multiplication by $E(7)$ has matrix entries
 $$
 7^{c(\sigma^{-1}\tau)}.
 $$
-Indeed,
-$$
-e_\tau Z(7)=\sum_{\pi\in S_6}7^{c(\pi)}e_{\tau\pi},
-$$
-and the coefficient of $e_\sigma$ is obtained from $\pi=\tau^{-1}\sigma$; since $c(\pi)=c(\pi^{-1})$, this equals $7^{c(\sigma^{-1}\tau)}$. Hence the required determinant is the determinant of multiplication by $Z(7)$ on $\mathbb C[S_6]$.
+Thus the required determinant is the determinant of multiplication by $E(7)$ on $\mathbb C[A_6]$.
 
-Step 2: Factor the cycle-counting central element
+Step 2: Express the even-permutation kernel through the $S_6$ cycle-counting element
 
-For $k=1,\dots,6$, define the Jucys-Murphy elements
+Let
 $$
-J_1=0,\qquad J_k=\sum_{1\le i<k}(ik)\quad(k\ge2).
+Z(x)=\sum_{g\in S_6}x^{c(g)}g.
 $$
-We use the identity
+For $g\in S_6$,
+$$
+\operatorname{sgn}(g)=(-1)^{6-c(g)}=(-1)^{c(g)},
+$$
+so the indicator of $A_6$ is $(1+(-1)^{c(g)})/2$. Hence
+$$
+E(x)=\frac{Z(x)+Z(-x)}2.
+$$
+
+For the Jucys-Murphy elements
+$$
+J_1=0,\qquad J_k=\sum_{1\le i<k}(ik),
+$$
+we have
 $$
 Z(x)=\prod_{k=1}^{6}(x+J_k).
 $$
-Here is a direct induction proof. Suppose
-$$
-\prod_{k=1}^{m-1}(x+J_k)=\sum_{\rho\in S_{m-1}}x^{c(\rho)}\rho.
-$$
-Multiplying by $x+J_m$, the $x$ term fixes $m$, so the number of cycles increases by one. A term $\rho(im)$ inserts $m$ into the cycle of $\rho$ containing $i$, so the number of cycles is unchanged. Every permutation of $S_m$ arises uniquely in exactly one of these two ways according as it fixes $m$ or not. Thus the coefficient of every $\pi\in S_m$ is $x^{c(\pi)}$, proving the factorization.
+Indeed, when the symbol $k$ is added, choosing the factor $x$ makes $k$ a fixed point and adds one cycle, while choosing $(ik)$ inserts $k$ into the cycle containing $i$ without changing the number of cycles. This gives every permutation uniquely.
 
-Step 3: Determine the eigenvalue on each irreducible representation
+Step 3: Compute the scalar on each $S_6$ irreducible
 
-Let $S^\lambda$ be the irreducible representation indexed by a partition $\lambda\vdash6$, and let $f^\lambda=\dim S^\lambda$. In Young's seminormal basis $v_T$, indexed by standard Young tableaux $T$ of shape $\lambda$, the Jucys-Murphy element $J_k$ acts diagonally:
+Let $S^\lambda$ be the irreducible representation corresponding to $\lambda\vdash6$, with dimension $f^\lambda$. In Young's seminormal basis,
 $$
 J_kv_T=(\operatorname{col}_T(k)-\operatorname{row}_T(k))v_T.
 $$
-Therefore the product from Step 2 acts by the scalar
+Therefore
 $$
-\theta_\lambda(x)=\prod_{(i,j)\in\lambda}(x+j-i),
+Z(x)\big|_{S^\lambda}=\theta_\lambda(x)I,
+\qquad
+\theta_\lambda(x)=\prod_{(i,j)\in\lambda}(x+j-i).
 $$
-because the entries $1,\dots,6$ occupy all boxes of $\lambda$ exactly once. This scalar is independent of $T$, as expected since $Z(x)$ is central.
+Consequently
+$$
+E(x)\big|_{S^\lambda}=\alpha_\lambda(x)I,
+\qquad
+\alpha_\lambda(x)=\frac{\theta_\lambda(x)+\theta_\lambda(-x)}2.
+$$
 
-The regular representation decomposes as
+If $\lambda'$ denotes the conjugate partition, its contents are the negatives of those of $\lambda$. Since $|\lambda|=6$ is even,
 $$
-\mathbb C[S_6]\cong\bigoplus_{\lambda\vdash6}(S^\lambda)^{\oplus f^\lambda}.
+\theta_{\lambda'}(x)=\theta_\lambda(-x),
 $$
-Hence the eigenvalue $\theta_\lambda(7)$ occurs with multiplicity $(f^\lambda)^2$.
+and therefore
+$$
+\alpha_{\lambda'}(x)=\alpha_\lambda(x).
+$$
 
-Step 4: Evaluate the eleven partition contributions
+Step 4: Pass from $S_6$ irreducibles to $A_6$ irreducibles
 
-The hook-length formula gives the dimensions $f^\lambda$. Evaluating the content product at $x=7$ gives
+For restriction from $S_6$ to $A_6$, the precise dichotomy is:
 
-| $\lambda$ | $f^\lambda$ | $\theta_\lambda(7)$ |
-|---|---:|---:|
-| $(6)$ | $1$ | $2^6 3^3 5\cdot7\cdot11$ |
-| $(5,1)$ | $5$ | $2^5 3^3 5\cdot7\cdot11$ |
-| $(4,2)$ | $9$ | $2^5 3^3 5\cdot7^2$ |
-| $(4,1,1)$ | $10$ | $2^5 3^3 5^2\cdot7$ |
-| $(3,3)$ | $5$ | $2^7 3^3 7^2$ |
-| $(3,2,1)$ | $16$ | $2^4 3^3 5\cdot7^2$ |
-| $(3,1,1,1)$ | $10$ | $2^6 3^3 5\cdot7$ |
-| $(2,2,2)$ | $5$ | $2^5 3^2 5\cdot7^2$ |
-| $(2,2,1,1)$ | $9$ | $2^6 3\cdot5\cdot7^2$ |
-| $(2,1,1,1,1)$ | $5$ | $2^6 3^2 5\cdot7$ |
-| $(1,1,1,1,1,1)$ | $1$ | $2^4 3^2 5\cdot7$ |
+- if $\lambda\ne\lambda'$, then $S^\lambda\downarrow_{A_6}$ is irreducible and is isomorphic to $S^{\lambda'}\downarrow_{A_6}$;
+- if $\lambda=\lambda'$, then $S^\lambda\downarrow_{A_6}$ splits into two inequivalent irreducibles, each of dimension $f^\lambda/2$.
 
-For example, for $\lambda=(4,2)$ the box contents are $0,1,2,3,-1,0$, so
-$$
-\theta_{(4,2)}(7)=7\cdot8\cdot9\cdot10\cdot6\cdot7=2^5 3^3 5\cdot7^2.
-$$
-The multiplicities $(f^\lambda)^2$ sum to $720$, as they must.
+Among partitions of $6$, the only self-conjugate one is $(3,2,1)$, with $f^{(3,2,1)}=16$. Thus the irreducible dimensions of $A_6$ arise from five conjugate pairs of partitions and two $8$-dimensional constituents from $(3,2,1)$.
 
-Step 5: Multiply the eigenvalues with their multiplicities
+Using the hook-length formula and evaluating $\alpha_\lambda(7)$ gives
 
-Thus
-$$
-\det A=\prod_{\lambda\vdash6}\theta_\lambda(7)^{(f^\lambda)^2}.
-$$
-Collecting prime exponents from the table gives
-$$
-v_2(\det A)=3600,\qquad
-v_3(\det A)=1947,\qquad
-v_5(\det A)=795,
-$$
-$$
-v_7(\det A)=1188,\qquad
-v_{11}(\det A)=26.
-$$
-All content factors $7+j-i$ are positive for partitions of $6$, so the determinant is positive.
+| representative $\lambda$ | $A_6$ irrep dimension | $\alpha_\lambda(7)$ | exponent in $\det A$ |
+|---|---:|---:|---:|
+| $(6)$ | $1$ | $335160=2^3 3^2 5\cdot7^2\cdot19$ | $1$ |
+| $(5,1)$ | $5$ | $176400=2^4 3^2 5^2 7^2$ | $25$ |
+| $(4,2)$ | $9$ | $129360=2^4 3\cdot5\cdot7^2\cdot11$ | $81$ |
+| $(4,1,1)$ | $10$ | $105840=2^4 3^3 5\cdot7^2$ | $100$ |
+| $(3,3)$ | $5$ | $119952=2^4 3^2 7^2\cdot17$ | $25$ |
+| $(3,2,1)$ | $8,8$ | $105840=2^4 3^3 5\cdot7^2$ | $64+64=128$ |
 
-Final Answer: $\boxed{2^{3600}3^{1947}5^{795}7^{1188}11^{26}}$
+The exponents sum to
+$$
+1+25+81+100+25+128=360=|A_6|,
+$$
+so every eigenspace of the regular representation is accounted for.
+
+Step 5: Multiply the eigenvalues
+
+Combining the two occurrences of the eigenvalue $105840$, its total exponent is $100+128=228$. Therefore
+$$
+\det A
+=335160\cdot176400^{25}\cdot129360^{81}\cdot105840^{228}\cdot119952^{25}.
+$$
+Collecting prime exponents yields
+$$
+v_2=1439,\qquad v_3=867,\qquad v_5=360,\qquad v_7=720,
+$$
+$$
+v_{11}=81,\qquad v_{17}=25,\qquad v_{19}=1.
+$$
+All five eigenvalues are positive, hence so is the determinant.
+
+Final Answer: $\boxed{2^{1439}3^{867}5^{360}7^{720}11^{81}17^{25}19}$
 
 ---
 
 ## Answer
 
-$2^{3600}3^{1947}5^{795}7^{1188}11^{26}$
+$2^{1439}3^{867}5^{360}7^{720}11^{81}17^{25}19$
 
 ---
 
@@ -112,13 +127,14 @@ $2^{3600}3^{1947}5^{795}7^{1188}11^{26}$
 
 ## Solution Concepts
 
-- structured determinants on a group algebra
+- convolution determinants on the alternating group
 - Jucys-Murphy factorization
-- symmetric-group irreducible representations
+- parity projection from $S_6$ to $A_6$
+- restriction of symmetric-group representations
 - hook-length formula and regular representation
 
 ---
 
 ## Black-Box Audit - no issues found
 
-The matrix is a natural Gram/convolution matrix on $S_6$: it is also the Hilbert-Schmidt Gram matrix of the permutation operators on $(\mathbb C^7)^{\otimes6}$. The value $7=6+1$ is intrinsic rather than tuned, and it keeps every content factor nonzero and positive. The difficulty comes from recognizing the Jucys-Murphy factorization and then accounting for irreducible multiplicities; no artificial cancellation or auxiliary parameter stack is used.
+The matrix is a natural convolution matrix on the canonical index-two subgroup $A_6$. Restricting from $S_6$ to $A_6$ is structural rather than a tuned perturbation: it forces the parity projection $E(x)=(Z(x)+Z(-x))/2$ and the genuine representation-theoretic distinction between conjugate and self-conjugate partitions. The choice $7=6+1$ remains intrinsic and keeps all relevant content products nonzero. No artificial cancellation stack, auxiliary index family, or reverse-engineered constant is introduced.
