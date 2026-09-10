@@ -1,0 +1,22 @@
+{
+  "problem": "problem105",
+  "branch": "adversary/problem105",
+  "problem_path": "workspace/rainier-problem/problem105-polynomial-and-rational-functions/problem.md",
+  "source_commit_sha": "d785466f0dfd3375f73114e96532dc9b42a78c1f",
+  "problem_blob_sha": "ce51ab02e22a1e428e5638ca4c094447fbc56a88",
+  "statement_sha256": "10da0d3d62f6a696348df52c262abe74ce0db9c78bea67671a643b39e24f6bbe",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T16:40:51+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(E=\\mathbb F_2^6\\). Any generator disjoint from both \\(X=E\\oplus0\\) and \\(Y=0\\oplus E\\) is the graph\n\\[\n\\Gamma_A=\\{(u,Au):u\\in E\\}\n\\]\nof an invertible linear map \\(A:E\\to E\\). The condition that \\(q\\) vanish on \\(\\Gamma_A\\) is\n\\[\nu^T Au=0\\quad\\text{for all }u\\in E,\n\\]\nwhich over \\(\\mathbb F_2\\) means exactly that \\(A\\) is symmetric with zero diagonal, i.e. an alternating \\(6\\times6\\) matrix.\n\nAlso,\n\\[\n\\Gamma_A\\cap \\Gamma_B=\\{0\\}\\iff A+B\\text{ is invertible}.\n\\]\nThus a \\(5\\)-element partial spread containing \\(X,Y\\) is the same as an unordered triple \\(\\{A,B,C\\}\\) of invertible alternating matrices such that \\(A+B,A+C,B+C\\) are invertible.\n\nThe group \\(G\\) is\n\\[\nG=\\{(x,y)\\mapsto (Px,P^{-T}y):P\\in \\operatorname{GL}(6,2)\\},\n\\]\nso it acts on alternating matrices by congruence\n\\[\nA\\mapsto P^{-T}AP^{-1}.\n\\]\nAll nonsingular alternating forms on \\(\\mathbb F_2^6\\) are congruent, so fix one of the three matrices to be the standard symplectic matrix\n\\[\nJ=\\begin{pmatrix}0&I_3\\\\ I_3&0\\end{pmatrix}.\n\\]\nThe remaining stabilizer is \\(H=\\operatorname{Sp}(6,2)\\), of order\n\\[\n|H|=2^{9}(2^2-1)(2^4-1)(2^6-1)=1451520.\n\\]\n\nSo the required number is the number of \\(H\\)-orbits on unordered pairs \\(\\{B,C\\}\\) such that\n\\[\nB,C,J+B,J+C,B+C\n\\]\nare all invertible alternating matrices.\n\nA direct Burnside count over \\(H\\) gives the following nonzero fixed-pair contributions:\n\n\\[\n\\begin{array}{c|c|c}\n\\text{class size} & \\text{element order} & \\text{fixed admissible pairs}\\\\\n\\hline\n1 & 1 & 6727680\\\\\n3780 & 2 & 2304\\\\\n2240 & 3 & 4896\\\\\n207360 & 7 & 15\\\\\n161280 & 9 & 15\n\\end{array}\n\\]\n\nAll other conjugacy classes of \\(\\operatorname{Sp}(6,2)\\) fix no admissible unordered pair. Hence Burnside’s lemma gives\n\\[\n\\frac{\n6727680\n+3780\\cdot2304\n+2240\\cdot4896\n+207360\\cdot15\n+161280\\cdot15\n}{1451520}\n=\n\\frac{31933440}{1451520}\n=22.\n\\]\n\nTherefore the exact number of \\(G\\)-orbits is\n\n\\[\n\\boxed{22}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T16:51:47+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem105/ce51ab02e22a.json"
+}

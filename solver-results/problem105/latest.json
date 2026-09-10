@@ -2,8 +2,8 @@
   "problem": "problem105",
   "branch": "adversary/problem105",
   "problem_path": "workspace/rainier-problem/problem105-polynomial-and-rational-functions/problem.md",
-  "problem_blob_sha": "0c8a3164b9ca008eafbeef031bba4509d2b1b8ca",
-  "source_commit_sha": "d316fee67b25a3567c28454fa7a3335d7000dcae",
+  "problem_blob_sha": "ce51ab02e22a1e428e5638ca4c094447fbc56a88",
+  "source_commit_sha": "d785466f0dfd3375f73114e96532dc9b42a78c1f",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-10T16:08:45+00:00",
-  "result_file": "solver-results/problem105/0c8a3164b9ca.json"
+  "completed_at": "2026-09-10T16:51:47+00:00",
+  "result_file": "solver-results/problem105/ce51ab02e22a.json"
 }
