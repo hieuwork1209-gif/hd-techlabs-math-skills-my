@@ -2,31 +2,25 @@
 
 ## LaTeX (Normalized)
 
-For every odd integer $m\geq 3$, let $C_m(x)$ be the monic minimal polynomial over $\mathbb{Q}$ of
+Let
 $$
-2\cos\frac{2\pi}{m},
+V=\mathbb F_2^6\oplus\mathbb F_2^6
 $$
-and put
+and define the quadratic form
 $$
-R_m(x)=(-1)^{\deg C_m}C_m(x).
+q(x,y)=x^Ty.
 $$
-Determine the polynomial $P(x)\in\mathbb{Z}[x]$ satisfying
+Call a $6$-dimensional subspace of $V$ a generator if $q$ vanishes identically on it. A partial spread is a set of generators in which every two distinct members intersect only in $\{0\}$.
+
+Let
 $$
-P(0)\in\{-1,1\},
-$$
-$$
-P(x)P(-x)=P(x^2-2),
-$$
-$$
-C_9(x)\operatorname{Res}_y\bigl(P(y),y^3-3y-x\bigr)
-=(-1)^{\deg P}(x-2)^3P(x),
-$$
-$$
-\deg P=23,
+X=\mathbb F_2^6\oplus0,
 \qquad
-P(2)=-2835.
+Y=0\oplus\mathbb F_2^6,
 $$
-Here $\operatorname{Res}_y$ denotes the resultant with respect to $y$. Give the final answer in canonical $R_m$-factorized form, with the subscripts in increasing order.
+and let $G$ be the subgroup of linear isometries of $(V,q)$ that fixes $X$ and $Y$ individually.
+
+Determine the exact number of $G$-orbits on the $5$-element partial spreads that contain both $X$ and $Y$.
 
 ---
 
@@ -34,13 +28,13 @@ Here $\operatorname{Res}_y$ denotes the resultant with respect to $y$. Give the 
 
 | Field | Value |
 |---|---|
-| **Domain** | Algebra, Functions, and Trigonometry |
-| **Sub-domain** | Polynomial and rational functions |
-| **Problem Type** | Construction under constraints |
-| **Answer Type** | Polynomial or rational function |
+| **Domain** | Discrete Mathematics and Combinatorics |
+| **Sub-domain** | Design theory and finite geometry |
+| **Problem Type** | Exhaustive enumeration |
+| **Answer Type** | Integer |
 
 ---
 
 ## Domain Explanation
 
-The problem asks for a uniquely determined integer polynomial under coupled functional, resultant, degree, and evaluation constraints. Its fundamental object is a polynomial and the central task is to construct that polynomial from structural polynomial identities. Cyclotomic traces and resultants are essential tools in the solution, but they serve the polynomial construction rather than changing the primary domain.
+The problem asks for an isometry classification of partial spreads in the hyperbolic orthogonal space $Q^+(11,2)$. Generators complementary to the two fixed coordinate generators correspond to nondegenerate alternating forms, while the stabilizer of $X$ and $Y$ acts by congruence. The count therefore requires a genuine orbit classification of compatible triples rather than only a labeled clique count.
