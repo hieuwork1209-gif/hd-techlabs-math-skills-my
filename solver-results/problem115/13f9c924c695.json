@@ -1,0 +1,22 @@
+{
+  "problem": "problem115",
+  "branch": "adversary/problem115",
+  "problem_path": "workspace/rainier-problem/problem115-fourier-analysis/problem.md",
+  "source_commit_sha": "5134f6a2680e9dbb02e4811b06238feddf439281",
+  "problem_blob_sha": "13f9c924c6951e5cb588ec62d5514fc1fef3c6cb",
+  "statement_sha256": "daff352dc0615d5c2b57b4c69313bdfc66523b82bc5e00fbcf2638098f888b5a",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T18:10:18+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nW_g(a)=\\sum_{y\\in E}(-1)^{g(y)+a\\cdot y}.\n\\]\n\nFirst compute the transform:\n\n\\[\n(\\mathcal F f_{M,g})(u,v)\n=2^{-8}\\sum_{x,y}(-1)^{x\\cdot My+g(y)+x\\cdot v+y\\cdot u}.\n\\]\n\nThe inner sum over \\(x\\) is zero unless \\(My=v\\), in which case it is \\(2^8\\). Hence\n\n\\[\n(\\mathcal F f_{M,g})(u,v)\n=(-1)^{g(M^{-1}v)+(M^{-1}v)\\cdot u}.\n\\]\n\nSo \\(\\mathcal F f_{M,g}=f_{M,g}\\) iff, for all \\(u,v\\),\n\n\\[\n(M^{-1}v)\\cdot u = (Mv)\\cdot u\n\\]\n\nand\n\n\\[\ng(M^{-1}v)=g(v).\n\\]\n\nThus\n\n\\[\nM^{-1}=M,\\qquad g(Mv)=g(v).\n\\]\n\nSo we must count pairs \\((M,g)\\) where \\(M\\) is an involution preserving \\(g\\).\n\nThe Walsh condition says \\(g\\) is a nonsingular quadratic form on \\(\\mathbb F_2^8\\) of plus type, since \\(W_g(0)=16\\). All such \\(g\\) are equivalent under \\(\\operatorname{GL}(8,2)\\). Therefore the number of admissible pairs is\n\n\\[\n\\#\\{\\text{plus-type }g\\}\\cdot \\#\\{\\text{involutions in }O^+(8,2)\\}.\n\\]\n\nNow\n\n\\[\n|O^+(8,2)|\n=2\\cdot 2^{12}(2^4-1)(2^2-1)(2^4-1)(2^6-1)\n=348364800,\n\\]\n\nand\n\n\\[\n|\\operatorname{GL}(8,2)|\n=\\prod_{i=0}^7(2^8-2^i)\n=5348063769211699200.\n\\]\n\nHence\n\n\\[\n\\#\\{\\text{plus-type }g\\}\n=\\frac{|\\operatorname{GL}(8,2)|}{|O^+(8,2)|}\n=15351906304.\n\\]\n\nIt remains to count involutions in \\(O^+(8,2)\\). Write \\(M=I+N\\), so \\(N^2=0\\). If \\(r=\\operatorname{rank}N\\), then \\(0\\le r\\le 4\\). Counting by the totally isotropic image \\(R=\\operatorname{im}N\\), one obtains:\n\n\\[\n\\begin{array}{c|c}\nr & \\#\\{M\\in O^+(8,2): M^2=I,\\ \\operatorname{rank}(M-I)=r\\}\\\\\n\\hline\n0 & 1\\\\\n1 & 120\\\\\n2 & 9135\\\\\n3 & 330750\\\\\n4 & 4477680\n\\end{array}\n\\]\n\nThus\n\n\\[\n\\#\\{\\text{involutions in }O^+(8,2)\\}\n=1+120+9135+330750+4477680\n=4817686.\n\\]\n\nTherefore the number of distinct functions is\n\n\\[\n15351906304\\cdot 4817686\n=73960664074092544.\n\\]\n\n\\[\n\\boxed{73960664074092544}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T18:15:31+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem115/13f9c924c695.json"
+}
