@@ -25,135 +25,135 @@ $$
 =2^{-127}\sum_{x,y\in E}
 (-1)^{x\cdot y+a\cdot x+b\cdot y+x\cdot v+y\cdot u}.
 $$
-For fixed $y$, the sum over $x$ vanishes unless $y=a+v$, when it equals $2^{127}$. Thus
+For fixed $y$, the sum over $x$ vanishes unless $y=a+v$, when it equals $2^{127}$. Hence
 $$
 (\mathcal Ff_{a,b})(u,v)
 =(-1)^{a\cdot b}f_{a,b}(u,v).
 $$
 
-Step 3: Reduce $Tf_{a,b}=f_{a,b}$ to orthogonal pairs in $\ker A$
+Step 3: Reduce $Tf_{a,b}=f_{a,b}$ to a pairing between two kernels
 
 The multiplicative group $P^\times$ has order $126$, so its subgroup of ninth powers has order $14$. The element $2$ has order $7$ modulo $127$, while $-1$ has order $2$, hence
 $$
 H=\{\pm2^i:0\le i<7\}.
 $$
-In particular $-H=H$ and $2H=H$.
+Thus both $H$ and $3H$ are stable under negation and under multiplication by $2$.
 
-Therefore the matrix of $A$ is symmetric with zero diagonal, so $x\cdot Ax=0$ for all $x$. Also, writing $\tau_hx(t)=x(t+h)$,
+Consequently $A$ and $C$ are symmetric with zero diagonal. Writing $\tau_hx(t)=x(t+h)$, characteristic $2$ gives
 $$
 A^2=\left(\sum_{h\in H}\tau_h\right)^2
-=\sum_{h\in H}\tau_{2h}=A.
+=\sum_{h\in H}\tau_{2h}=A,
 $$
-Thus the shears
-$$
-U_A(x,y)=(x+Ay,y),\qquad L_A(x,y)=(x,y+Ax)
-$$
-preserve $q_0$, and $S=L_AU_A$ preserves $q_0$.
+and similarly $C^2=C$. They commute because both are convolution operators.
 
-The linear part of $q_{a,b}(S(x,y))$ is
+The shears
 $$
-(a+Ab)\cdot x+(Aa+b+Ab)\cdot y.
+U_C(x,y)=(x+Cy,y),\qquad L_A(x,y)=(x,y+Ax)
 $$
-Hence $q_{a,b}\circ S=q_{a,b}$ exactly when
+preserve $q_0$, and
 $$
-Aa=0,\qquad Ab=0.
+S=L_AU_C.
 $$
-By Step 2, evaluating $Tf_{a,b}=f_{a,b}$ at $0$ also forces $a\cdot b=0$. Therefore we must count orthogonal pairs
+Hence $q_0(Sz)=q_0(z)$. The linear part of $q_{a,b}(S(x,y))$ is
 $$
-(a,b)\in U\times U,
-\qquad U=\ker A.
+(a+Ab)\cdot x+(Ca+b+CAb)\cdot y.
 $$
-
-Step 4: Compute $\dim U$ through a binary Kloosterman sum
-
-Extend scalars to an algebraic closure of $\mathbb F_2$. Since $127=2^7-1$, a primitive $127$th root $\zeta$ lies in $\mathbb F_{128}$. The characters
+Therefore $q_{a,b}\circ S=q_{a,b}$ exactly when
 $$
-e_j(t)=\zeta^{jt},\qquad j\in\mathbb F_{127},
+Ab=0,\qquad Ca=0.
 $$
-form an eigenbasis for $A$. For $j=0$ the eigenvalue is $|H|=14=0$. For $j\ne0$, putting $\xi=\zeta^j$ and using $H=\{\pm2^i:0\le i<7\}$ gives
+Indeed, $Ab=0$ also gives $CAb=0$. By Step 2, evaluating $Tf_{a,b}=f_{a,b}$ at $0$ additionally forces
 $$
-\lambda_j
-=\sum_{i=0}^6(\xi^{2^i}+\xi^{-2^i})
-=\operatorname{Tr}_{\mathbb F_{128}/\mathbb F_2}(\xi+\xi^{-1}).
+a\cdot b=0.
 $$
-Thus $\operatorname{rank}A$ is the number $Z_1$ of $\xi\in\mathbb F_{128}^\times$ for which this trace is $1$.
-
-Let
+Thus we must count orthogonal pairs
 $$
-K_n=\sum_{x\in\mathbb F_{2^n}^\times}
-(-1)^{\operatorname{Tr}(x+x^{-1})}.
-$$
-For the elliptic curve
-$$
-\mathcal E:\quad Y^2+XY=X^3+1,
-$$
-we claim
-$$
-\#\mathcal E(\mathbb F_{2^n})=2^n+1+K_n.
-$$
-Indeed, for $x=0$ there is one finite point. For $x\ne0$, writing $Y=xz$ gives
-$$
-z^2+z=x+x^{-2}.
-$$
-This has $1+(-1)^{\operatorname{Tr}(x+x^{-2})}$ solutions, and
-$$
-\operatorname{Tr}(x^{-2})=\operatorname{Tr}(x^{-1}).
-$$
-Adding the point at infinity proves the claim.
-
-Over $\mathbb F_2$, the curve has $4$ points, so its Frobenius trace is
-$$
-a=2+1-4=-1.
-$$
-For an elliptic curve over $\mathbb F_2$, if $t_n=\alpha^n+\beta^n$ with
-$$
-\alpha+\beta=a=-1,\qquad \alpha\beta=2,
-$$
-then
-$$
-\#\mathcal E(\mathbb F_{2^n})=2^n+1-t_n,
-\qquad
-t_n=-t_{n-1}-2t_{n-2},
-$$
-with $t_0=2$ and $t_1=-1$. Hence $K_n=-t_n$, and successively
-$$
-K_1=1,\ K_2=3,\ K_3=-5,\ K_4=-1,\ K_5=11,\ K_6=-9,\ K_7=-13.
-$$
-Therefore, if $Z_0$ is the number of trace-zero elements,
-$$
-Z_0+Z_1=127,
-\qquad
-Z_0-Z_1=K_7=-13,
-$$
-so
-$$
-\operatorname{rank}A=Z_1=70,
-\qquad
-\dim U=127-70=57.
+(a,b)\in\ker C\times\ker A.
 $$
 
-Step 5: Count the orthogonal pairs in $U$
+Step 4: Compute the joint spectrum of $A$ and $C$
 
-Because $A$ is self-adjoint,
+Extend scalars to $\mathbb F_{128}$; this does not change any binary kernel dimension. Choose a primitive $127$th root $\zeta\in\mathbb F_{128}$. For $j\in\mathbb F_{127}$, the additive-character vector
 $$
-U^\perp=\operatorname{im}A.
+e_j(t)=\zeta^{jt}
 $$
-Since $A^2=A$, we have $\ker A\cap\operatorname{im}A=0$. Thus the dot product restricted to the $57$-dimensional space $U$ is nondegenerate.
+is a simultaneous eigenvector for $A$ and $C$. For $j\ne0$ their eigenvalues are
+$$
+\lambda_j=\sum_{h\in H}\zeta^{jh}
+=\operatorname{Tr}_{\mathbb F_{128}/\mathbb F_2}(\zeta^j+\zeta^{-j}),
+$$
+$$
+\mu_j=\sum_{h\in H}\zeta^{3jh}=\lambda_{3j}.
+$$
+For $j=0$, both eigenvalues are $14=0$ in $\mathbb F_2$.
 
-For $b=0$, all $2^{57}$ choices of $a$ work. For each nonzero $b\in U$, exactly half of the elements of $U$ are orthogonal to $b$, giving $2^{56}$ choices. Hence the number of functions is
+Both eigenvalues are constant on multiplicative $H$-cosets. There are nine nonzero cosets. To determine their joint pattern exactly, take $\zeta$ to be a root of $X^7+X+1$. This polynomial has no linear root, and its remainders modulo the three irreducible polynomials of degrees $2$ and $3$ over $\mathbb F_2$ are respectively $1,X,X$, so it is irreducible. Since $|\mathbb F_{128}^\times|=127$ is prime, such a root has order $127$.
+
+Using $\zeta^7=\zeta+1$ and
 $$
-2^{57}+(2^{57}-1)2^{56}
-=2^{113}+2^{56}
-=10384593717069655329118586696368128.
+\operatorname{Tr}(w)=w+w^2+w^4+w^8+w^{16}+w^{32}+w^{64},
+$$
+a direct reduction gives the following table. The representatives are written in cyclic order under multiplication by $3$ modulo $H$.
+
+$$
+\begin{array}{c|ccccccccc}
+r&1&3&9&19&13&11&5&7&21\\ \hline
+\lambda_r&1&1&0&0&1&0&1&1&0\\
+\mu_r=\lambda_{3r}&1&0&0&1&0&1&1&0&1
+\end{array}
 $$
 
-Final Answer: $\boxed{10384593717069655329118586696368128}$
+Each nonzero coset has $14$ elements. Hence the simultaneous eigenspaces
+$$
+E_{\varepsilon\delta}=\{x\in E:Ax=\varepsilon x,\ Cx=\delta x\}
+$$
+have dimensions
+$$
+\dim E_{00}=1+14=15,
+$$
+$$
+\dim E_{01}=42,\qquad
+\dim E_{10}=42,\qquad
+\dim E_{11}=28.
+$$
+In particular
+$$
+\dim\ker A=\dim\ker C=57.
+$$
+
+Step 5: Count the orthogonal pairs
+
+Because $C$ is self-adjoint,
+$$
+(\ker C)^\perp=\operatorname{im}C.
+$$
+Since $A$ and $C$ are commuting idempotents,
+$$
+\ker A\cap\operatorname{im}C=E_{01},
+$$
+which has dimension $42$. Thus the dot-product pairing
+$$
+\ker C\times\ker A\to\mathbb F_2
+$$
+has rank
+$$
+57-42=15.
+$$
+
+There are $2^{42}$ vectors $b\in\ker A$ that annihilate all of $\ker C$; for each of them all $2^{57}$ choices of $a\in\ker C$ work. For each of the remaining $2^{57}-2^{42}$ choices of $b$, exactly half of $\ker C$ is orthogonal to $b$. Therefore the number of functions is
+$$
+2^{42}2^{57}+(2^{57}-2^{42})2^{56}
+=2^{113}+2^{98}
+=10384910629719712314411366834241536.
+$$
+
+Final Answer: $\boxed{10384910629719712314411366834241536}$
 
 ---
 
 ## Answer
 
-$10384593717069655329118586696368128$
+$10384910629719712314411366834241536$
 
 ---
 
@@ -169,9 +169,9 @@ $10384593717069655329118586696368128$
 
 - Walsh--Fourier transform on binary vector spaces
 - quadratic refinements of symplectic forms
-- generalized Paley graph adjacency operators
-- binary Kloosterman sums
-- elliptic-curve Frobenius recurrences
+- cyclotomic Cayley graph operators
+- simultaneous Fourier spectra
+- degenerate bilinear pair counting
 
 ---
 
