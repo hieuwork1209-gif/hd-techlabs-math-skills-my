@@ -2,24 +2,31 @@
 
 ## LaTeX (Normalized)
 
-Let $m=57$ and $V=\mathbb F_2^m\times\mathbb F_2^m$. All vector operations and dot products are over $\mathbb F_2$. For $z=(x,y)$ and $w=(u,v)$ define
+Let $P=\mathbb F_{8191}$ and
+$$
+H=\{\pm2^i:0\le i<13\}\subset P^\times.
+$$
+Let $E=\mathbb F_2^P$, with
+$$
+x\cdot y=\sum_{t\in P}x(t)y(t).
+$$
+Define $A,C:E\to E$ by
+$$
+(Ax)(t)=\sum_{h\in H}x(t+h),
+\qquad
+(Cx)(t)=\sum_{h\in H}x(t+3h).
+$$
+Set $V=E\times E$. For $z=(x,y)$ and $w=(u,v)$ define
 $$
 \omega(z,w)=x\cdot v+y\cdot u.
 $$
-Let $\sigma\in S_m$ have one cycle of each length
+Define $S:V\to V$ by
 $$
-1,2,3,4,5,6,9,12,15.
+S(x,y)=\bigl(x+Cy,\;Ax+(I+AC)y\bigr).
 $$
-Define $S:V\to V$ by $S(x,y)=(x',y')$, where
+For $g:V\to\mathbb C$, define the normalized Walsh--Fourier transform
 $$
-x'_i=y_{\sigma(i)},
-\qquad
-y'_i=x_{\sigma(i)}+y_{\sigma(i)}.
-$$
-For $g:V\to\mathbb C$, define
-$$
-(\mathcal Fg)(u,v)=2^{-m}\sum_{x,y\in\mathbb F_2^m}
-g(x,y)(-1)^{x\cdot v+y\cdot u},
+(\mathcal Fg)(u,v)=2^{-8191}\sum_{x,y\in E}g(x,y)(-1)^{x\cdot v+y\cdot u},
 \qquad
 (Tg)(z)=(\mathcal Fg)(Sz).
 $$
@@ -44,4 +51,4 @@ for all $z,r,s\in V$, and also $Tf=f$?
 
 ## Domain Explanation
 
-The defining global constraint is invariance under a normalized Walsh--Fourier transform twisted by a linear coordinate map. The four-point identity reduces the admissible signs to quadratic phases, but the count is decided by their Fourier eigenvalue and by how the twist acts on Fourier-compatible phase parameters. Thus Fourier analysis is the primary subject; the finite-field quadratic-form algebra is the structural input used to analyze the transform.
+The problem asks for quadratic sign phases fixed by a normalized Walsh--Fourier transform after a symplectic twist. The fixed-point count is controlled by the joint binary Fourier spectrum of two cyclotomic Cayley convolution operators on $\mathbb F_{8191}$, so Fourier analysis is the central organizing method.
