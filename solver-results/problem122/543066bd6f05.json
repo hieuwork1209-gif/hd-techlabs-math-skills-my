@@ -1,0 +1,22 @@
+{
+  "problem": "problem122",
+  "branch": "adversary/problem122",
+  "problem_path": "workspace/rainier-problem/problem122-matrix-decompositions-and-canonical-forms/problem.md",
+  "source_commit_sha": "13fe7308ea3696d64309b5967874b1b4383a7c60",
+  "problem_blob_sha": "543066bd6f059d4abf40fa59233d3898f02f65f6",
+  "statement_sha256": "ea1b1e3997f29e4de2de6ba2c82940ae96d63a923b518819ad283f9012eb3c6b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T18:44:20+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "We count orbits of the pencil, not ordered bases of it.\n\nFix an ordered basis \\((A,B)\\) with \\(A\\) invertible and set \\(T=A^{-1}B\\). Since \\(A^T=-A\\) and \\(B^T=-B\\),\n\\[\nT^T A=AT,\n\\]\nso \\(T\\) is self-adjoint for the symplectic form \\(A\\). If the minimal polynomial \\(f\\) of \\(T\\) is irreducible of degree \\(8\\), then \\(V=\\mathbb F_3^{16}\\) is a \\(2\\)-dimensional vector space over\n\\[\nE=\\mathbb F_3[x]/(f).\n\\]\nThe self-adjoint condition makes \\(A\\) come from a nondegenerate alternating \\(E\\)-bilinear form on \\(E^2\\), and all such forms are equivalent under \\(GL_2(E)\\). Hence, for ordered pairs \\((A,B)\\), there is exactly one congruence orbit for each monic irreducible polynomial \\(f\\) of degree \\(8\\).\n\nPassing from ordered bases \\((A,B)\\) to the subspace \\(W=\\langle A,B\\rangle\\) identifies polynomials under fractional linear changes\n\\[\nt\\mapsto \\frac{ct+d}{at+b},\\qquad \n\\begin{pmatrix}a&c\\\\ b&d\\end{pmatrix}\\in GL_2(\\mathbb F_3).\n\\]\nThus the required number is the number of \\(PGL_2(\\mathbb F_3)\\)-orbits on irreducible degree-\\(8\\) polynomials over \\(\\mathbb F_3\\).\n\nNow \\(PGL_2(\\mathbb F_3)\\cong S_4\\), with conjugacy classes:\n\\[\n1,\\quad 9\\text{ elements of order }2,\\quad 8\\text{ elements of order }3,\\quad 6\\text{ elements of order }4.\n\\]\n\nThere are\n\\[\n\\frac{3^8-3^4}{8}=\\frac{6561-81}{8}=810\n\\]\nirreducible degree-\\(8\\) polynomials.\n\nFor Burnside:\n\n- Identity fixes \\(810\\).\n- An order \\(2\\) element fixes \\(10\\). Indeed the only relevant Frobenius shift is \\(x\\mapsto x^{3^4}\\), giving \\(80\\) degree-\\(8\\) elements, hence \\(80/8=10\\) Frobenius orbits.\n- An order \\(3\\) element fixes \\(0\\), since the necessary shift is trivial and such elements have only degree \\(1\\) fixed points.\n- An order \\(4\\) element fixes \\(2\\). The relevant shifts are \\(3^2\\) and \\(3^6\\); each gives \\(8\\) degree-\\(8\\) elements, hence \\(16/8=2\\) Frobenius orbits.\n\nTherefore the number of orbits is\n\\[\n\\frac{1}{24}\\left(810+9\\cdot 10+8\\cdot 0+6\\cdot 2\\right)\n=\n\\frac{912}{24}\n=\n38.\n\\]\n\n\\[\n\\boxed{38}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T18:46:44+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem122/543066bd6f05.json"
+}
