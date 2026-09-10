@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "8ada125ec333447ed6d23d0c1e4cdd74379f876c",
+  "problem_blob_sha": "00f623d7d99ea0480f4e45d67568306cd9d2fe75",
+  "statement_sha256": "f43a44ec4cbe23868bc0d4d0e8674aa05be8160b9d7116f640edcb427fe27da9",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T18:30:01+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nu=x-y^2.\n\\]\nThen\n\\[\nu'=\\dot x-2y\\dot y.\n\\]\nA direct simplification gives the decoupled system\n\\[\n\\dot y=-y\\bigl((y-2)^2+2a-b\\bigr),\n\\]\n\\[\n\\dot u=-u\\bigl((u-1)^2+5-a-2b\\bigr).\n\\]\nThe change of variables \\((x,y)\\mapsto(u,y)=(x-y^2,y)\\) is a global homeomorphism, so \\((x,y)\\to(0,0)\\) iff \\((u,y)\\to(0,0)\\).\n\nFor a scalar equation\n\\[\n\\dot z=-z\\bigl((z-r)^2+s\\bigr),\n\\]\nthe origin is globally asymptotically stable on \\(\\mathbb R\\) exactly when \\(s>0\\). Indeed, if \\(s>0\\), then the bracket is always positive, so \\(z(t)\\) always moves monotonically toward \\(0\\), remains bounded, exists for all \\(t\\ge 0\\), and satisfies\n\\[\n|z(t)|\\le |z(0)|e^{-st}.\n\\]\nIf \\(s\\le 0\\), the bracket has a real zero, giving a nonzero equilibrium, so global convergence to \\(0\\) is impossible.\n\nApplying this to the two scalar equations requires\n\\[\n2a-b>0\n\\]\nand\n\\[\n5-a-2b>0.\n\\]\n\nTherefore the equilibrium \\((0,0)\\) is globally asymptotically stable exactly for\n\\[\n\\boxed{\\{(a,b)\\in\\mathbb R^2:\\ b<2a\\ \\text{and}\\ a+2b<5\\}.}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T18:30:45+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/00f623d7d99e.json"
+}
