@@ -1,234 +1,142 @@
 ## Steps
 
-Step 1: Compute the rational spectrum
+Step 1: Reduce the subset-intersection matrix to four integral block types
 
-Let
+Write $V=\mathbb Z^X$. A standard $s$-subset is a set $\beta=\{b_1<\cdots<b_s\}$ with $b_i\geq2i$. For such $\beta$ with $s\leq3$, put
 $$
-m=\binom n2,\qquad N=n+m,
+v_\beta=\sum_{S\in X,\ \beta\subseteq S}e_S.
 $$
-and write $B=B_n$. The pair-incidence matrix satisfies
-$$
-BB^T=(n-2)I_n+J_n.
-$$
-Set
-$$
-L=\begin{pmatrix}
-(2n-1)I_n-J_n&-B\\
--B^T&2nI_m-B^TB
-\end{pmatrix}.
-$$
-Every row of $L$ sums to $0$.
+The vectors $v_\beta$ over all standard subsets of size at most $3$ form an integral basis of $V$. One convenient proof is the usual parenthesis matching on characteristic words: each $3$-subset lies in a unique symmetric chain whose lower member is standard, and replacing the level-$3$ basis vector of each chain by the successive containment sums is unitriangular when the chains are ordered by their lower members. Hence the change-of-basis matrix has determinant $\pm1$.
 
-Let
+Group these chains by the size $s$ of their lower member. A direct count of neighbors of a $3$-subset shows that, on a chain starting in rank $s$, the matrix of $L_n$ has diagonal entries
 $$
-U=\{x\in\mathbb Q^n:\mathbf1^Tx=0\}.
+0,\ n,\ 2(n-1),\ 3(n-2)
 $$
-For $x\in U$, put $w=B^Tx$. Since $J_nx=0$ and $BB^Tx=(n-2)x$, the span of $(x,0)$ and $(0,w)$ is $L$-invariant, with coefficient matrix
+from ranks $0,1,2,3$, and superdiagonal entries $3,4,3$ with the initial entries omitted according to $s$. Row sign changes do not affect Smith form, so $L_n$ is integrally equivalent to
 $$
-R=\begin{pmatrix}
-2n-1&-(n-2)\\
--1&n+2
-\end{pmatrix}.
+M_0\oplus M_1^{\oplus(n-2)}\oplus M_2^{\oplus q}\oplus M_3^{\oplus r},
 $$
-Its eigenvalues are $n+1$ and $2n$. Thus each occurs with multiplicity $n-1$ on these standard subspaces. If $y\in\ker B$, then
+where
 $$
-L(0,y)=(0,2ny),
-$$
-so $2n$ occurs another $m-n$ times. Finally, on the span of $(\mathbf1_n,0)$ and $(0,\mathbf1_m)$, the coefficient matrix is
-$$
-\begin{pmatrix}
-n-1&-(n-1)\\
--2&2
+M_0=\begin{pmatrix}
+0&3&0&0\\
+0&n&4&0\\
+0&0&2(n-1)&3\\
+0&0&0&3(n-2)
 \end{pmatrix},
 $$
-whose eigenvalues are $0$ and $n+1$. Hence
 $$
-\operatorname{Spec}(L)=\{0^1,(n+1)^n,(2n)^{m-1}\}.
+M_1=\begin{pmatrix}
+n&2&0\\
+0&2(n-1)&2\\
+0&0&3(n-2)
+\end{pmatrix},\qquad
+M_2=\begin{pmatrix}2(n-1)&1\\0&3(n-2)\end{pmatrix},
 $$
-The rational kernel is the primitive all-ones line.
+$$
+M_3=[3(n-2)].
+$$
+The multiplicities are the successive differences
+$$
+\binom ns-2\binom n{s-1}+\binom n{s-2},
+$$
+which give $1,n-2,q,r$ for $s=0,1,2,3$.
 
-Step 2: Determine the torsion order and exponent
+Step 2: Compute the Smith form of each small block
 
-Let
+Because $n\equiv0\pmod{12}$, the determinantal divisors of $M_0$ are
 $$
-K=\operatorname{Tor}(\operatorname{coker}L).
+D_1=1,\qquad D_2=3,\qquad D_3=36.
 $$
-Since $L$ is symmetric of rank $N-1$ with primitive kernel vector $\mathbf1_N$, the product of its nonzero Smith factors is the common cofactor. Using the spectrum,
+Indeed $D_1=1$ from the entries $3$ and $4$; the $2\times2$ minors have gcd
 $$
-|K|=\frac{(n+1)^n(2n)^{m-1}}{N}.
+\gcd(3,2n(n-1))=3,
 $$
-Because
+and the nonzero $3\times3$ minors have gcd
 $$
-N=\frac{n(n+1)}2,
+\gcd\bigl(36,18(n-1)(n-2),6n(n-1)(n-2)\bigr)=36.
 $$
-we get
+Thus
 $$
-|K|=2^m n^{m-2}(n+1)^{n-1}.
-$$
-
-The spectrum also yields the integral identity
-$$
-L^2-(3n+1)L+2n(n+1)I_N=4J_N.
-$$
-Indeed the left side vanishes on both nonzero eigenspaces and equals $2n(n+1)$ on the all-ones line, while $2n(n+1)/N=4$.
-
-The coordinate-sum map descends to $\operatorname{coker}L$ and kills torsion. Thus every torsion class has a representative $v$ with $\mathbf1_N^Tv=0$, and then $J_Nv=0$. Consequently
-$$
-2n(n+1)v=L\bigl((3n+1)I_N-L\bigr)v.
-$$
-Therefore the exponent of $K$ divides $2n(n+1)$.
-
-Step 3: Determine the odd-primary components
-
-Fix an odd prime $p$. Over $\mathbb F_p$, the map $B^T$ is injective: if $B^Tx=0$, then $x_i+x_j=0$ for every pair, and three distinct indices give $2x_i=0$, hence $x=0$.
-
-Suppose first that $p\mid n$. Modulo $p$, the equations $L(x,y)=0$ are
-$$
-(-I-J)x-By=0,
-$$
-$$
--B^T(x+By)=0.
-$$
-Injectivity of $B^T$ gives $x=-By$. Substitution into the first equation gives $Jx=0$, equivalently $\mathbf1^Ty=0$ because $\mathbf1^TBy=2\mathbf1^Ty$. Hence
-$$
-\dim_{\mathbb F_p}\ker L=m-1.
-$$
-After removing the one-dimensional free kernel, the $p$-rank of $K$ is $m-2$. If $p^a\Vert n$, the exponent bound and the order formula force
-$$
-K_p\cong(\mathbb Z_{p^a})^{m-2}.
+\operatorname{SNF}(M_0)=\operatorname{diag}(1,3,12,0).
 $$
 
-Now suppose $p\mid n+1$. Then $n\equiv-1\pmod p$ and $2n$ is invertible. Put $z=By$ and $t=\mathbf1^Tx$. The first block equation gives
+For $M_1$, every entry is even and the displayed superdiagonal entries force $D_1=2$ and $D_2=4$. Its determinant is
 $$
-z=-3x-t\mathbf1.
+6n(n-1)(n-2),
 $$
-The second gives
+so
 $$
-2ny=B^T(x+z),
+\operatorname{SNF}(M_1)=\operatorname{diag}(2,2,a),
+\qquad a=\frac32n(n-1)(n-2)=\frac n4b.
 $$
-so $x$ determines $y$ uniquely. Since
+Since $M_2$ contains a unit entry,
 $$
-BB^T\equiv-3I+J,
+\operatorname{SNF}(M_2)=\operatorname{diag}(1,b),
+\qquad b=6(n-1)(n-2),
 $$
-one checks directly that applying $B$ to the displayed formula for $y$ recovers $z$. Thus every $x\in\mathbb F_p^n$ gives one kernel vector, so
+and
 $$
-\dim_{\mathbb F_p}\ker L=n.
-$$
-Therefore the $p$-rank of $K$ is $n-1$. If $p^a\Vert n+1$, again the exponent bound and order give
-$$
-K_p\cong(\mathbb Z_{p^a})^{n-1}.
+\operatorname{SNF}(M_3)=[c],\qquad c=3(n-2).
 $$
 
-Step 4: Determine the 2-primary component when $n$ is even
+Step 3: Record the resulting cyclic decomposition
 
-Write
+Ignoring unit factors and retaining the single free factor, Step 2 gives
 $$
-a=v_2(n)\ge1.
+\operatorname{coker}L_n\cong\mathbb Z\oplus
+\mathbb Z_3\oplus\mathbb Z_{12}\oplus
+\mathbb Z_2^{\,2n-4}\oplus
+\mathbb Z_c^{\,r}\oplus
+\mathbb Z_b^{\,q}\oplus
+\mathbb Z_a^{\,n-2}.
 $$
-First reduce modulo $2$. Since $n$ is even,
-$$
-L\equiv
-\begin{pmatrix}
-I+J&B\\
-B^T&B^TB
-\end{pmatrix}\pmod2.
-$$
-For a kernel vector $(x,y)$ put $z=x+By$. The equations become
-$$
-z+Jx=0,\qquad B^Tz=0.
-$$
-Over $\mathbb F_2$, $\ker B^T=\langle\mathbf1\rangle$, so $z=t\mathbf1$. Taking coordinate sums in $z=x+By$ gives $\mathbf1^Tx=0$ because $n$ is even and every column of $B$ has sum $2$. The first equation then forces $t=0$. Hence
-$$
-x=By,
-$$
-and $y\in\mathbb F_2^m$ is arbitrary. Thus
-$$
-\dim_{\mathbb F_2}\ker L=m.
-$$
-After removing the free kernel, exactly $m-1$ nonzero Smith factors are even.
+This is a diagonal decomposition, but it is not yet in invariant-factor order because the $2$-primary and odd-primary factors have not been aligned.
 
-It remains to locate their exact 2-adic valuations. Work over
-$$
-R=\mathbb Z/2^{a+1}\mathbb Z.
-$$
-Because $2n\equiv0$ in $R$, multiplying $L$ by the unit $-1$ shows that $Lv\equiv0\pmod{2^{a+1}}$ is equivalent to
-$$
-\begin{pmatrix}
-I+J&B\\
-B^T&B^TB
-\end{pmatrix}
-\binom{x}{y}=0.
-$$
-Again put $z=x+By$. Then
-$$
-z+Jx=0,\qquad B^Tz=0.
-$$
-The condition $B^Tz=0$ says $z_i+z_j=0$ for every pair. Using three indices gives
-$$
-z=c\mathbf1,\qquad 2c=0.
-$$
-Hence $c$ is either $0$ or $2^a$ in $R$. The first equation gives
-$$
-\mathbf1^Tx=-c.
-$$
-Writing $s=\mathbf1^Ty$ and using $x=c\mathbf1-By$, this is equivalent to
-$$
-2s=c(n+1)\pmod{2^{a+1}}.
-$$
-Therefore the reductions modulo $2$ of such vectors are exactly
-$$
-( B\bar y,\bar y),
-$$
-where $\bar y$ is arbitrary if $a=1$, while $\mathbf1^T\bar y=0$ if $a\ge2$. Their dimensions are respectively
-$$
-m\quad(a=1),\qquad m-1\quad(a\ge2).
-$$
+Step 4: Recombine the primary parts in divisibility order
 
-Now use Smith coordinates over $\mathbb Z_2$. If $r$ nonzero Smith factors are divisible by $2^{a+1}$, then the reduction modulo $2$ of
+Since $n\equiv0\pmod{12}$,
 $$
-\{v:Lv\in2^{a+1}\mathbb Z_2^N\}
+v_2(c)=1,\qquad v_2(b)=2,\qquad v_2(a)=v_2(n)\geq2.
 $$
-has dimension $1+r$, the extra $1$ coming from the zero Smith factor. Hence
+The positive $2$-primary factors therefore consist of
 $$
-r=m-1\quad(a=1),\qquad r=m-2\quad(a\ge2).
+2^{\,2n-4+r},\qquad 4^{\,q+1},\qquad
+(2^{v_2(a)})^{\,n-2},
 $$
-The exponent bound says no 2-primary factor exceeds $2^{a+1}$. Also
-$$
-v_2(|K|)=m+a(m-2).
-$$
-Combining this valuation with the fact that exactly $m-1$ nonzero factors are even forces, in every case,
-$$
-K_{(2)}\cong\mathbb Z_4\oplus(\mathbb Z_{2^{a+1}})^{m-2}.
-$$
-For $a=1$ this simply means $(\mathbb Z_4)^{m-1}$.
+where, when $v_2(a)=2$, the last family simply merges with the $4$'s.
 
-Step 5: Assemble the invariant factors
+For odd primes the factors are already nested: there are two initial $3$-parts, then $r$ copies of the odd part of $c$, then $q$ copies of the odd part of $b$, and finally $n-2$ copies of the odd part of $a$. The $2$-rank exceeds the odd-primary rank by
+$$
+(2n-4+r+q+1+n-2)-(2+r+q+n-2)=2n-5.
+$$
+Hence the first $2n-5$ nontrivial invariant factors are $2$. Aligning the remaining primary factors from smallest to largest gives
+$$
+6,\ 6,\ c^{\,r-1},\ 2c,\ b^{\,q},\ a^{\,n-2}.
+$$
+This is already a divisibility chain because
+$$
+2\mid6\mid c\mid2c\mid b\mid a;
+$$
+here $6\mid c$ since $n-2$ is even, $2c\mid b$ with quotient $n-1$, and $b\mid a$ with quotient $n/4$.
 
-The odd part of $n$ occurs in exactly $m-2$ factors, and Step 4 supplies $m-2$ matching 2-primary factors of size $2^{a+1}$. Together they give $m-2$ factors divisible by
-$$
-2n.
-$$
-Among these, the odd primes dividing $n+1$ occur in exactly $n-1$ factors, producing
-$$
-2n(n+1)
-$$
-in the last $n-1$ positions. Thus the remaining $m-n-1$ of these factors are $2n$. The sole unpaired 2-primary factor is $4$.
+Step 5: Insert the unit and zero factors
 
-Since $n$ is even,
+The matrix size is $\binom n3$, and it has one zero Smith factor. The number of nontrivial finite invariant factors from Step 4 is
 $$
-4\mid2n\mid2n(n+1),
+(2n-5)+2+(r-1)+1+q+(n-2)=\binom n3-q-3.
 $$
-so these are already in divisibility order. There are $m-1$ nontrivial finite factors and one zero factor. As $L$ has size $N=n+m$, the remaining $n$ nonzero Smith factors are units. Therefore
+Therefore the number of unit invariant factors is $q+2$. The complete Smith normal form is
 $$
-\operatorname{SNF}(L)=I_n\oplus[4]\oplus2nI_{m-n-1}\oplus2n(n+1)I_{n-1}\oplus[0].
+I_{q+2}\oplus2I_{2n-5}\oplus6I_2\oplus cI_{r-1}\oplus[2c]\oplus bI_q\oplus aI_{n-2}\oplus[0].
 $$
-Final Answer: $\boxed{I_n\oplus[4]\oplus2nI_{m-n-1}\oplus2n(n+1)I_{n-1}\oplus[0]}$
+Final Answer: $\boxed{I_{q+2}\oplus2I_{2n-5}\oplus6I_2\oplus cI_{r-1}\oplus[2c]\oplus bI_q\oplus aI_{n-2}\oplus[0]}$
 
 ---
 
 ## Answer
 
-$I_n\oplus[4]\oplus2nI_{m-n-1}\oplus2n(n+1)I_{n-1}\oplus[0]$
+$I_{q+2}\oplus2I_{2n-5}\oplus6I_2\oplus cI_{r-1}\oplus[2c]\oplus bI_q\oplus aI_{n-2}\oplus[0]$
 
 ---
 
@@ -243,13 +151,11 @@ $I_n\oplus[4]\oplus2nI_{m-n-1}\oplus2n(n+1)I_{n-1}\oplus[0]$
 ## Solution Concepts
 
 - Smith normal form
-- block incidence matrices
-- 2-adic lifting
-- modular nullity
-- spectral decomposition
+- subset-incidence bases
+- determinantal divisors
+- primary decomposition
+- Johnson-scheme matrices
 
 ---
 
 ## Black-Box Audit — no issues found
-
-The hardening changes only the natural parity regime of the same canonical incidence matrix. For even $n$, the odd-degree shortcut available in the previous case disappears and the 2-primary structure changes from two order-$2$ corrections to one order-$4$ correction. The added difficulty is therefore a genuine 2-adic obstruction intrinsic to the matrix, not extra notation, tuned constants, or artificial casework.
