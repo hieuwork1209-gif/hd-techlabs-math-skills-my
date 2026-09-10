@@ -1,65 +1,73 @@
 ## Steps
 
-Step 1: Characterize Walsh self-duality
+Step 1: Reduce Walsh self-duality to invariant quadratic forms
 
-For an affine permutation $\pi$ and an admissible quadratic Boolean function $g$, put
+For $M\in\operatorname{GL}(8,2)$ and an admissible quadratic Boolean function $g$, put
 $$
-f_{\pi,g}(x,y)=(-1)^{x\cdot\pi(y)+g(y)}.
+f_{M,g}(x,y)=(-1)^{x\cdot My+g(y)}.
 $$
 For $(u,v)\in E\times E$,
 $$
-(\mathcal Ff_{\pi,g})(u,v)
+(\mathcal Ff_{M,g})(u,v)
 =2^{-8}\sum_{y\in E}(-1)^{g(y)+y\cdot u}
-\sum_{x\in E}(-1)^{x\cdot(\pi(y)+v)}.
+\sum_{x\in E}(-1)^{x\cdot(My+v)}.
 $$
-The inner sum is $2^8$ exactly when $\pi(y)=v$, and otherwise it is $0$. Hence
+The inner sum is $2^8$ exactly when $My=v$, and is $0$ otherwise. Hence
 $$
-(\mathcal Ff_{\pi,g})(u,v)
-=(-1)^{u\cdot\pi^{-1}(v)+g(\pi^{-1}(v))}.
+(\mathcal Ff_{M,g})(u,v)
+=(-1)^{u\cdot M^{-1}v+g(M^{-1}v)}.
 $$
-Comparing with
+Comparing this with
 $$
-f_{\pi,g}(u,v)=(-1)^{u\cdot\pi(v)+g(v)}
+f_{M,g}(u,v)=(-1)^{u\cdot Mv+g(v)}
 $$
-for every $u,v$ shows that
+for every $u,v$ gives
 $$
-\mathcal Ff_{\pi,g}=f_{\pi,g}
+\mathcal Ff_{M,g}=f_{M,g}
 \iff
-\pi^2=\operatorname{id}_E,
-\qquad g\circ\pi=g.
+M^2=I,
+\qquad g\circ M=g.
 $$
-The parametrization is injective: for fixed $y$, the character in $x$ recovers $\pi(y)$, while $f_{\pi,g}(0,y)=(-1)^{g(y)}$ recovers $g(y)$.
+The parametrization $(M,g)\mapsto f_{M,g}$ is injective, since the $x$-character recovers $My$ and $f_{M,g}(0,y)$ recovers $g(y)$.
 
-Step 2: Parametrize the affine involutions
+For a quadratic $g$ with $g(0)=0$, let
+$$
+B_g(x,y)=g(x+y)+g(x)+g(y).
+$$
+The usual squared-Walsh calculation shows that
+$$
+\left|\sum_y(-1)^{g(y)+a\cdot y}\right|=16
+\quad\text{for every }a
+$$
+if and only if $B_g$ is nondegenerate. Moreover
+$$
+\varepsilon(g):=2^{-4}\sum_y(-1)^{g(y)}\in\{1,-1\},
+$$
+so the additional condition $\sum_y(-1)^{g(y)}=16$ is exactly $\varepsilon(g)=1$.
+
+Step 2: Count the linear involutions by rank
 
 Write
 $$
-\pi(v)=Mv+c,
-\qquad M\in\operatorname{GL}(8,2),\ c\in E,
+M=I+N.
 $$
-and put $N=M+I$. Since the characteristic is $2$,
+In characteristic $2$,
 $$
-\pi^2=\operatorname{id}
-\iff
-N^2=0,
-\qquad Nc=0.
+M^2=I\iff N^2=0.
 $$
-If $r=\operatorname{rank}N$, then $0\le r\le4$. Put
+Let $r=\operatorname{rank}N$. Then $0\le r\le4$, with
 $$
-U=\operatorname{im}N,
-\qquad K=\ker N.
-$$
-Then
-$$
+U=\operatorname{im}N\subseteq K=\ker N,
+\qquad
 \dim U=r,
-\qquad \dim K=8-r,
-\qquad U\subseteq K.
+\qquad
+\dim K=8-r.
 $$
-For fixed $r$, choose $U$, then $K\supseteq U$, then the induced isomorphism $E/K\to U$. Thus the number $A_r$ of square-zero endomorphisms of rank $r$ is
+For fixed $r$, choose $U$, then $K\supseteq U$, then the induced isomorphism $E/K\to U$. Thus the number $A_r$ of such $N$ is
 $$
 A_r=\binom{8}{r}_2\binom{8-r}{r}_2|\operatorname{GL}(r,2)|.
 $$
-Therefore
+Hence
 $$
 A_0=1,
 \quad A_1=32385,
@@ -70,69 +78,21 @@ A_3=2529916200,
 \quad A_4=4047865920.
 $$
 
-Step 3: Use the bent condition to eliminate fixed-point-free translations
-
-For a quadratic $g$ with $g(0)=0$, define its polar form
-$$
-B_g(x,y)=g(x+y)+g(x)+g(y).
-$$
-This is alternating bilinear. If
-$$
-W_g(a)=\sum_{x\in E}(-1)^{g(x)+a\cdot x},
-$$
-then, after writing the second summation variable as $x+h$,
-$$
-W_g(a)^2
-=\sum_{h\in E}(-1)^{g(h)+a\cdot h}
-\sum_{x\in E}(-1)^{B_g(x,h)}.
-$$
-The inner sum is $2^8$ exactly for $h$ in the radical of $B_g$ and is $0$ otherwise. Hence $|W_g(a)|=16$ for every $a$ exactly when $B_g$ is nondegenerate. Thus the stated Walsh condition is equivalent to $g$ being a nonsingular quadratic form.
-
-Assume now that $g\circ\pi=g$. Polarizing this identity shows that $M$ preserves $B_g$. Also $g(c)=g(\pi(0))=g(0)=0$. If $x\in K=\ker N$, then $Mx=x$, so
-$$
-0=g(x+c)+g(x)=B_g(x,c).
-$$
-Therefore
-$$
-c\in K^{\perp_{B_g}}.
-$$
-For $y=Nv\in U$ and $x\in K$, the $B_g$-invariance of $M$ gives
-$$
-B_g(v+Nv,x)=B_g(Mv,Mx)=B_g(v,x),
-$$
-so $B_g(Nv,x)=0$. Hence $U\subseteq K^{\perp_{B_g}}$. Since $B_g$ is nondegenerate, both spaces have dimension $r$, and therefore
-$$
-K^{\perp_{B_g}}=U.
-$$
-Thus every admissible affine involution must actually satisfy
-$$
-c\in U=\operatorname{im}N.
-$$
-There are $2^r$ such translations. If $c=Nt$, translation by $t$ conjugates $v\mapsto(I+N)v+c$ to $v\mapsto(I+N)v$, and
-$$
-g(v)\longmapsto g(v+t)+g(t)
-$$
-preserves degree, bentness, the condition $g(0)=0$, and invariance. Hence each $c\in U$ contributes the same number as $c=0$.
-
-Step 4: Count the invariant nondegenerate polar forms
+Step 3: Count the invariant nondegenerate polar forms
 
 Fix a rank-$r$ map $N$. Choose coordinates
 $$
 E=U\oplus W\oplus Z,
-\qquad \dim U=\dim W=r,
-\qquad \dim Z=s:=8-2r,
+\qquad
+\dim U=\dim W=r,
+\qquad
+\dim Z=s:=8-2r,
 $$
 so that
 $$
-N(u,w,z)=(w,0,0),
-\qquad
-M(u,w,z)=(u+w,w,z).
+N(u,w,z)=(w,0,0).
 $$
-Write the matrix of an alternating form $B$ in these coordinates. The identity
-$$
-B(Mx,My)=B(x,y)
-$$
-is equivalent to
+An alternating form $B$ is invariant under $M=I+N$ exactly when its matrix has the shape
 $$
 B=
 \begin{pmatrix}
@@ -141,91 +101,112 @@ R&S&T\\
 0&T^T&D
 \end{pmatrix},
 $$
-where $R$ is symmetric $r\times r$, $S$ is alternating $r\times r$, $T$ is arbitrary $r\times s$, and $D$ is alternating $s\times s$.
+where $R$ is symmetric $r\times r$, $S$ is alternating, $T$ is arbitrary, and $D$ is alternating $s\times s$. Such a form is nondegenerate exactly when $R$ and $D$ are both nonsingular.
 
-Such a matrix is nondegenerate exactly when both $R$ and $D$ are nondegenerate. Indeed, singular $R$ gives a radical vector in $U$, while for invertible $R$ block elimination gives
+Let $\sigma_r$ be the number of nonsingular symmetric $r\times r$ binary matrices and $\alpha_s$ the number of nondegenerate alternating $s\times s$ matrices. Then
 $$
-\det B=\det(R)^2\det(D).
+Q_r=\sigma_r\,2^{\binom r2+rs}\alpha_s
 $$
-Let $\sigma_r$ be the number of invertible symmetric $r\times r$ binary matrices, and let $\alpha_s$ be the number of nondegenerate alternating $s\times s$ binary matrices. Then the number $Q_r$ of possible nondegenerate invariant polar forms is
-$$
-Q_r=\sigma_r\,2^{\binom r2+rs}\alpha_s.
-$$
-For alternating forms, all nondegenerate forms are one congruence orbit, so
-$$
-\alpha_{2m}=\frac{|\operatorname{GL}(2m,2)|}{|\operatorname{Sp}(2m,2)|},
-$$
-where
-$$
-|\operatorname{GL}(k,2)|=\prod_{j=0}^{k-1}(2^k-2^j),
-\qquad
-|\operatorname{Sp}(2m,2)|=2^{m^2}\prod_{i=1}^m(2^{2i}-1).
-$$
-Thus
+is the number of invariant nondegenerate polar forms. Using
 $$
 \alpha_0=1,\quad \alpha_2=1,\quad \alpha_4=28,
-\quad \alpha_6=13888,\quad \alpha_8=112881664.
+\quad \alpha_6=13888,\quad \alpha_8=112881664
 $$
-For symmetric forms, a nonsingular form in odd dimension $2m+1$ is necessarily nonalternating and has one congruence class; its stabilizer is $\operatorname{Sp}(2m,2)$. In even dimension $2m$, there is the alternating class plus one nonalternating class. For a nonalternating form, the canonical vector $w$ defined by $B(x,x)=B(x,w)$ is fixed by every isometry, and the induced action on $w^\perp/\langle w\rangle$ is symplectic; the kernel has size $2^{2m-1}$. Hence
-$$
-\sigma_{2m+1}=\frac{|\operatorname{GL}(2m+1,2)|}{|\operatorname{Sp}(2m,2)|},
-$$
-$$
-\sigma_{2m}=\alpha_{2m}
-+\frac{|\operatorname{GL}(2m,2)|}{2^{2m-1}|\operatorname{Sp}(2m-2,2)|}
-\qquad(m\ge1).
-$$
-Together with $\sigma_0=1$, this gives
+and
 $$
 \sigma_0=1,\quad \sigma_1=1,\quad \sigma_2=4,
-\quad \sigma_3=28,\quad \sigma_4=448.
+\quad \sigma_3=28,\quad \sigma_4=448,
 $$
-Consequently
+we obtain
 $$
 \begin{array}{c|ccccc}
 r&0&1&2&3&4\\ \hline
-Q_r&112881664&888832&57344&14336&28672
+Q_r&112881664&888832&57344&14336&28672.
 \end{array}
 $$
 
-For a fixed invariant polar form, the quadratic polynomial itself is determined up to a linear form. In the above coordinates, invariance under $(u,w,z)\mapsto(u+w,w,z)$ forces the $r$ linear coefficients on $U$ and leaves the $r+s=8-r$ coefficients on $W\oplus Z$ free. Hence each polar form lifts to exactly
+The later Arf-sign split depends on whether $R$ is alternating. Let $Q_r^{\mathrm{alt}}$ denote the number of the above forms for which $R$ is alternating as well as nonsingular. This is zero for odd $r$, while for even $r$
 $$
-2^{8-r}
+Q_r^{\mathrm{alt}}
+=\alpha_r\,2^{\binom r2+rs}\alpha_s.
 $$
-invariant quadratic functions $g$ with $g(0)=0$.
-
-Step 5: Sum over all ranks
-
-For each square-zero $N$ of rank $r$, there are $2^r$ admissible translations $c\in U$, and for each such $c$ there are
+Therefore
 $$
-Q_r2^{8-r}
-$$
-admissible bent quadratic functions. Thus the contribution of rank $r$ is
-$$
-A_r\,2^r\,Q_r\,2^{8-r}=256A_rQ_r.
-$$
-Therefore the required number is
-$$
-256\sum_{r=0}^4 A_rQ_r.
-$$
-Using the values above,
-$$
-\sum_{r=0}^4 A_rQ_r
-=154776113250304,
-$$
-so
-$$
-256\cdot154776113250304
-=39622684992077824.
+\begin{array}{c|ccccc}
+r&0&1&2&3&4\\ \hline
+Q_r^{\mathrm{alt}}&112881664&0&14336&0&1792.
+\end{array}
 $$
 
-Final Answer: $\boxed{39622684992077824}$
+Step 4: Split the invariant quadratic refinements by Walsh sign
+
+Fix one invariant nondegenerate polar form $B$. Since $B$ is nondegenerate, all quadratic refinements are
+$$
+g_a(x)=g(x)+B(a,x),
+\qquad a\in E.
+$$
+If $g$ is $M$-invariant, then $g_a$ is $M$-invariant exactly when $a\in K=\ker N$. Hence there are $2^{8-r}$ invariant refinements of $B$.
+
+Their Walsh signs satisfy
+$$
+\varepsilon(g_a)=\varepsilon(g)(-1)^{g(a)},
+$$
+because
+$$
+g(x)+B(a,x)=g(x+a)+g(a).
+$$
+Thus the difference between the numbers of positive- and negative-sign invariant refinements is
+$$
+\varepsilon(g)\sum_{a\in K}(-1)^{g(a)}.
+$$
+
+The radical of $B|_K$ is $U=\operatorname{im}N$. In the coordinates of Step 3, invariance gives, for $u=Nv$,
+$$
+g(u)=B(v,u),
+$$
+and this restriction vanishes identically on $U$ exactly when the diagonal of $R$ is zero, that is, exactly when $R$ is alternating.
+
+If $R$ is not alternating, then $g|_U$ is a nonzero linear form, so
+$$
+\sum_{a\in K}(-1)^{g(a)}=0.
+$$
+Hence exactly half of the $2^{8-r}$ invariant refinements have positive Walsh sign.
+
+If $R$ is alternating, then $g$ vanishes on $U$ and descends to a nondegenerate quadratic form on $K/U$. Splitting off $r$ hyperbolic pairs shows
+$$
+\sum_{a\in K}(-1)^{g(a)}=16\varepsilon(g).
+$$
+Therefore the positive-minus-negative difference is $16$. Consequently the number $P_r$ of invariant refinements satisfying the required positive Walsh sign, summed over all invariant nondegenerate $B$, is
+$$
+P_r
+=2^{7-r}Q_r+8Q_r^{\mathrm{alt}}.
+$$
+This gives
+$$
+\begin{array}{c|ccccc}
+r&0&1&2&3&4\\ \hline
+P_r&15351906304&56885248&1949696&229376&243712.
+\end{array}
+$$
+
+Step 5: Sum over the involution ranks
+
+For each rank $r$, there are $A_r$ possible linear involutions and $P_r$ admissible positive-sign invariant quadratic functions. Hence the required number is
+$$
+\sum_{r=0}^4 A_rP_r.
+$$
+Substituting the values from Steps 2 and 4 yields
+$$
+1650882596306944.
+$$
+
+Final Answer: $\boxed{1650882596306944}$
 
 ---
 
 ## Answer
 
-$39622684992077824$
+$1650882596306944$
 
 ---
 
@@ -241,9 +222,9 @@ $39622684992077824$
 
 - Walsh--Fourier self-duality
 - quadratic bent Boolean functions
-- affine involutions over $\mathbb F_2$
-- symplectic polar forms
-- invariant bilinear-form counting
+- Arf invariant and Walsh sign
+- linear involutions over $\mathbb F_2$
+- invariant orthogonal geometry
 
 ---
 
