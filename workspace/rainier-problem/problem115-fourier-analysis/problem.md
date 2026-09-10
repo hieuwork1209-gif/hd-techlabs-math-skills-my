@@ -2,9 +2,9 @@
 
 ## LaTeX (Normalized)
 
-Let $P=\mathbb F_{31}$ and let
+Let $P=\mathbb F_{127}$ and let
 $$
-H=\{t^3:t\in P^\times\}.
+H=\{t^9:t\in P^\times\}.
 $$
 Let $E=\mathbb F_2^P$, with
 $$
@@ -24,7 +24,7 @@ S(x,y)=\bigl(x+Ay,\;Ax+(I+A)y\bigr).
 $$
 For $g:V\to\mathbb C$, define the normalized Walsh--Fourier transform
 $$
-(\mathcal Fg)(u,v)=2^{-31}\sum_{x,y\in E}g(x,y)(-1)^{x\cdot v+y\cdot u},
+(\mathcal Fg)(u,v)=2^{-127}\sum_{x,y\in E}g(x,y)(-1)^{x\cdot v+y\cdot u},
 \qquad
 (Tg)(z)=(\mathcal Fg)(Sz).
 $$
@@ -49,4 +49,4 @@ for all $z,r,s\in V$, and also $Tf=f$?
 
 ## Domain Explanation
 
-The problem asks for quadratic sign phases fixed by a normalized Walsh--Fourier transform after a symplectic twist. The fixed-point calculation is controlled by the binary spectrum of the cubic-residue Cayley graph on $\mathbb F_{31}$, so Fourier analysis is the central organizing method.
+The problem asks for quadratic sign phases fixed by a normalized Walsh--Fourier transform after a symplectic twist. The fixed-point dimension is governed by the binary spectrum of a generalized Paley Cayley graph on $\mathbb F_{127}$, which reduces naturally to a finite-field Kloosterman sum, so Fourier analysis is the central organizing method.
