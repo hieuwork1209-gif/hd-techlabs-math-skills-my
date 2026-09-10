@@ -1,0 +1,22 @@
+{
+  "problem": "problem122",
+  "branch": "adversary/problem122",
+  "problem_path": "workspace/rainier-problem/problem122-matrix-decompositions-and-canonical-forms/problem.md",
+  "source_commit_sha": "15bed65e47d0db2a74b00cb0c162d51d847f4b60",
+  "problem_blob_sha": "f5a147b79458134f7f5d10353b902046deaf4f76",
+  "statement_sha256": "3da7301a2940662cc8cc3e96f416333b3f1d29b516435f7be9792d6781949075",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T17:06:22+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(V=\\mathbb F_2^6\\). I will write an alternating matrix as an alternating bilinear form on \\(V\\).\n\nThe answer is\n\n\\[\n\\boxed{1}.\n\\]\n\nSo all nonsingular \\(3\\)-dimensional subspaces are congruent under \\(GL_6(2)\\).\n\nHere is a concrete representative. Identify \\(V\\) with \\(K^2\\), where \\(K=\\mathbb F_8\\), and let \\(\\operatorname{Tr}:K\\to\\mathbb F_2\\) be the field trace. For each \\(\\lambda\\in K\\), define\n\n\\[\nB_\\lambda((x,y),(u,v))\n=\n\\operatorname{Tr}\\bigl(\\lambda(xv+yu)\\bigr).\n\\]\n\nThen\n\n\\[\nW_0=\\{B_\\lambda:\\lambda\\in K\\}\n\\]\n\nis a \\(3\\)-dimensional \\(\\mathbb F_2\\)-space of alternating forms. If \\(\\lambda\\ne0\\) and \\((x,y)\\ne(0,0)\\), the map\n\n\\[\n(u,v)\\mapsto xv+yu\n\\]\n\nis a nonzero \\(K\\)-linear functional \\(K^2\\to K\\), hence has image \\(K\\). Since the trace pairing \\((a,b)\\mapsto\\operatorname{Tr}(ab)\\) is nondegenerate on \\(K\\), there is some \\((u,v)\\) with \\(B_\\lambda((x,y),(u,v))\\ne0\\). Thus every \\(B_\\lambda\\ne0\\) is nondegenerate.\n\nIt remains to justify uniqueness. Fix any nonsingular \\(3\\)-space \\(W\\). Choose \\(0\\ne B\\in W\\). After a congruence, \\(B\\) is the standard symplectic form. Every other form \\(C\\in W\\) can be written uniquely as\n\n\\[\nC(x,y)=B(T_Cx,y),\n\\]\n\nwhere \\(T_C\\) is \\(B\\)-self-adjoint. The condition that every nonzero element of \\(W\\) is nonsingular says that the corresponding \\(3\\)-space\n\n\\[\nL=\\{T_C:C\\in W\\}\\le \\operatorname{End}_{\\mathbb F_2}(V)\n\\]\n\ncontains \\(I\\), consists of \\(B\\)-self-adjoint operators, and every nonzero element of \\(L\\) is invertible.\n\nFor dimension \\(6=2\\cdot3\\) over \\(\\mathbb F_2\\), such a self-adjoint linear division space is forced to be a copy of \\(\\mathbb F_8\\) acting scalarwise on a \\(2\\)-dimensional \\(\\mathbb F_8\\)-space. Indeed, if \\(T\\in L\\setminus\\mathbb F_2 I\\), then \\(T\\) and \\(T+I\\) are invertible, so \\(T\\) has no eigenvalue in \\(\\mathbb F_2\\). Its invariant factors therefore have irreducible degree \\(3\\), and the self-adjointness forces the two degree-\\(3\\) primary blocks to be dual copies. Thus \\(V\\cong K^2\\), \\(K=\\mathbb F_8\\), and \\(L\\) is exactly the scalar \\(K\\)-multiplication space. Under this identification the original forms are precisely\n\n\\[\n(x,y),(u,v)\\mapsto \\operatorname{Tr}(\\lambda(xv+yu)),\n\\qquad \\lambda\\in K.\n\\]\n\nHence every nonsingular \\(W\\) is congruent to \\(W_0\\). Therefore there is exactly one \\(GL_6(2)\\)-orbit.",
+  "status": "success",
+  "completed_at": "2026-09-10T17:18:01+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem122/f5a147b79458.json"
+}

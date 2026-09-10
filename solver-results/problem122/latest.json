@@ -1,0 +1,17 @@
+{
+  "problem": "problem122",
+  "branch": "adversary/problem122",
+  "problem_path": "workspace/rainier-problem/problem122-matrix-decompositions-and-canonical-forms/problem.md",
+  "problem_blob_sha": "f5a147b79458134f7f5d10353b902046deaf4f76",
+  "source_commit_sha": "15bed65e47d0db2a74b00cb0c162d51d847f4b60",
+  "status": "success",
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "timeout_seconds": 2100,
+  "completed_at": "2026-09-10T17:18:01+00:00",
+  "result_file": "solver-results/problem122/f5a147b79458.json"
+}
