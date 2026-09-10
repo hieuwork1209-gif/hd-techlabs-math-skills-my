@@ -1,0 +1,22 @@
+{
+  "problem": "problem70",
+  "branch": "adversary/problem70",
+  "problem_path": "workspace/rainier-problem/problem70-determinants/problem.md",
+  "source_commit_sha": "6d15fc563dbb5726894e11b38c59698ae67fad3c",
+  "problem_blob_sha": "c8b664362bae7f257c17145fb8f421d28c552b13",
+  "statement_sha256": "452ace5f49352efcb58a24c9fff8cfbdcaa11cb30350ddb03d7035f50847492f",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T08:56:27+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nx=\\sum_{\\omega\\in S_5}2^{\\operatorname{inv}(\\omega)}\\omega\\in \\mathbb C[S_5].\n\\]\nThen the matrix \\(A\\) is the matrix of the right-regular operator\n\\[\nR(1+x):e_\\sigma\\mapsto e_\\sigma+\\sum_{\\omega}2^{\\operatorname{inv}(\\omega)}e_{\\sigma\\omega}.\n\\]\nFor each irreducible representation \\(\\rho_\\lambda\\) of \\(S_5\\), indexed by partitions \\(\\lambda\\vdash 5\\), the regular representation contains \\(\\dim\\rho_\\lambda\\) copies of \\(\\rho_\\lambda\\). Hence\n\\[\n\\det A=\\prod_{\\lambda\\vdash 5}\\det\\!\\left(I_{\\dim\\lambda}+\\sum_{\\omega\\in S_5}2^{\\operatorname{inv}(\\omega)}\\rho_\\lambda(\\omega)\\right)^{\\dim\\lambda}.\n\\]\n\nUsing the standard Specht-module models for the seven partitions of \\(5\\), the needed small determinants are:\n\n\\[\n\\begin{array}{c|c|c}\n\\lambda & \\dim \\lambda &\n\\det\\!\\left(I+\\sum_{\\omega}2^{\\operatorname{inv}(\\omega)}\\rho_\\lambda(\\omega)\\right)\\\\\n\\hline\n(5)&1&9766\\\\\n(4,1)&4&7825821652720\\\\\n(3,2)&5&150086072221696\\\\\n(3,1,1)&6&35829388145340160\\\\\n(2,2,1)&5&6098985750016\\\\\n(2,1,1,1)&4&5372345584\\\\\n(1,1,1,1,1)&1&166\n\\end{array}\n\\]\n\nFor example, the two one-dimensional checks are\n\\[\n1+\\sum_{\\omega}2^{\\operatorname{inv}(\\omega)}\n=1+\\prod_{k=1}^5(1+2+\\cdots+2^{k-1})\n=1+9765=9766,\n\\]\nand\n\\[\n1+\\sum_{\\omega}(-2)^{\\operatorname{inv}(\\omega)}\n=1+\\prod_{k=1}^5(1-2+\\cdots+(-2)^{k-1})\n=1+165=166.\n\\]\n\nTherefore\n\\[\n\\boxed{\n\\det A\n=\n9766\\cdot\n7825821652720^4\\cdot\n150086072221696^5\\cdot\n35829388145340160^6\\cdot\n6098985750016^5\\cdot\n5372345584^4\\cdot\n166\n}.\n\\]\n\nEquivalently,\n\\[\n\\boxed{\n\\det A=\n6886947374357845900732945819171700726586495072008063996311129306388829173898916713390039581805064772745243041223736052324442026085287211263590761400791621005356692994919487849020602494957863713804844772615693426155181920877326345003407600534118725206489284641998065061842115324554809670914171470578641097914518345204367360000000000\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T08:58:41+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem70/c8b664362bae.json"
+}
