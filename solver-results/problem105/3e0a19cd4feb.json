@@ -1,0 +1,22 @@
+{
+  "problem": "problem105",
+  "branch": "adversary/problem105",
+  "problem_path": "workspace/rainier-problem/problem105-polynomial-and-rational-functions/problem.md",
+  "source_commit_sha": "c52f03c7bf5c33278b5aad198b8331c79957a8ee",
+  "problem_blob_sha": "3e0a19cd4febecacb93622fa9dedf124c13caf35",
+  "statement_sha256": "4365c9520528556fddbc53d3ccae1827f5aca2f1c72cff08f7cabb7b92ec6c87",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T14:51:18+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(\\langle (x,y),(x',y')\\rangle=x^Ty'+x'^Ty\\) be the polar form of \\(q\\). A generator disjoint from \\(Y\\) is necessarily a graph\n\\[\nG_A=\\{(u,Au):u\\in \\mathbb F_2^6\\}\n\\]\nfor a linear map \\(A:\\mathbb F_2^6\\to\\mathbb F_2^6\\). It is also disjoint from \\(X\\) exactly when \\(A\\) is invertible.\n\nOn \\(G_A\\),\n\\[\nq(u,Au)=u^TAu.\n\\]\nOver \\(\\mathbb F_2\\), this vanishes for all \\(u\\) exactly when \\(A\\) is symmetric with zero diagonal, i.e. an alternating \\(6\\times6\\) matrix. Thus the eligible \\(Z\\)'s are precisely the invertible alternating matrices \\(A\\).\n\nFor two such graphs \\(G_A,G_B\\),\n\\[\nG_A\\cap G_B=\\{0\\}\n\\]\nexactly when \\(A+B\\) is invertible. So we must count unordered pairs of invertible alternating \\(6\\times6\\) matrices whose sum is invertible.\n\nThe number of invertible alternating forms on a \\(6\\)-dimensional \\(\\mathbb F_2\\)-space is\n\\[\n\\frac{|\\mathrm{GL}_6(2)|}{|\\mathrm{Sp}_6(2)|}\n=2^{3\\cdot2}(2^1-1)(2^3-1)(2^5-1)\n=64\\cdot 7\\cdot 31\n=13888.\n\\]\n\nFix one invertible alternating form \\(J\\). It remains to count invertible alternating forms \\(B\\) such that \\(J+B\\) is also invertible.\n\nUse Möbius inversion on the lattice of subspaces. For a \\(d\\)-dimensional subspace \\(U\\),\n\\[\n\\mu(U)=(-1)^d2^{\\binom d2}.\n\\]\nFor subspaces \\(U,T\\), the conditions\n\\[\nU\\subseteq \\operatorname{rad}(B),\\qquad T\\subseteq \\operatorname{rad}(J+B)\n\\]\nare compatible exactly when\n\\[\nU\\cap T=0,\\qquad J(U,T)=0.\n\\]\nIf \\(\\dim U=u\\), \\(\\dim T=t\\), then the number of alternating forms satisfying both radical containments is\n\\[\n2^{\\binom{6-u-t}{2}}.\n\\]\n\nCounting the compatible ordered pairs \\((U,T)\\) gives the table\n\\[\n\\begin{array}{c|rrrrrrr}\nu\\backslash t&0&1&2&3&4&5&6\\\\ \\hline\n0&1&63&651&1395&651&63&1\\\\\n1&63&1890&8820&7560&1008&0&\\\\\n2&651&8820&16800&5040&336&&\\\\\n3&1395&7560&5040&0&&&\\\\\n4&651&1008&336&&&&\\\\\n5&63&0&&&&&\\\\\n6&1&&&&&&\n\\end{array}\n\\]\nThis table follows by classifying \\(U\\) by \\(s=\\dim(U\\cap U^\\perp)\\); for fixed \\(U\\), the number of possible \\(T\\)'s is\n\\[\n2^{st}\\binom{6-u-s}{t}_2.\n\\]\n\nTherefore the number of \\(B\\) with both \\(B\\) and \\(J+B\\) invertible is\n\\[\n\\sum_{u,t} F(u,t)(-1)^{u+t}2^{\\binom u2+\\binom t2+\\binom{6-u-t}{2}}\n=5760.\n\\]\n\nThus each eligible \\(Z\\) has \\(5760\\) possible \\(W\\)'s. Since unordered pairs are counted twice,\n\\[\n\\frac{13888\\cdot 5760}{2}=39997440.\n\\]\n\n\\[\n\\boxed{39997440}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T14:55:11+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem105/3e0a19cd4feb.json"
+}
