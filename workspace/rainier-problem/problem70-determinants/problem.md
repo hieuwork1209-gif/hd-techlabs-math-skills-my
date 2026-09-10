@@ -2,16 +2,15 @@
 
 ## LaTeX (Normalized)
 
-Let \(\mathcal X\) be the set of all \(5\)-element subsets of \([10]=\{1,\dots,10\}\), and fix \(B=\{1,2,3,4,5\}\). Index the rows and columns of a \(252\times252\) matrix \(A\) by \(\mathcal X\). For \(S,T\in\mathcal X\), define
-\[
-A_{S,T}=
-\begin{cases}
-26+d(S,B),&S=T,\\
--1,&|S\triangle T|=2,\\
-0,&\text{otherwise},
-\end{cases}
-\]
-where \(d(S,B)=5-|S\cap B|\), the graph distance from \(S\) to \(B\) in the Johnson graph \(J(10,5)\). Determine \(\det A\).
+Let
+$$
+R=\mathbb Z/4096\mathbb Z,
+$$
+and let $G=GL_2(R)$ act on $M_2(R)$ by conjugation. Define
+$$
+\mathcal I=\{A\in M_2(R):A^2=I\}.
+$$
+Determine the number of $G$-orbits in $\mathcal I$.
 
 ---
 
@@ -19,8 +18,8 @@ where \(d(S,B)=5-|S\cap B|\), the graph distance from \(S\) to \(B\) in the John
 
 | Field | Value |
 |---|---|
-| **Domain** | Linear Algebra |
-| **Sub-domain** | Determinants |
+| **Domain** | Number Theory |
+| **Sub-domain** | Modular arithmetic and congruences |
 | **Problem Type** | Exact computation |
 | **Answer Type** | Exact scalar |
 
@@ -28,4 +27,4 @@ where \(d(S,B)=5-|S\cap B|\), the graph distance from \(S\) to \(B\) in the John
 
 ## Domain Explanation
 
-The matrix is the discrete Schrödinger operator \(I+L+\operatorname{dist}_B\) on the Johnson graph \(J(10,5)\), where \(L\) is the graph Laplacian and the potential is distance from a fixed vertex. Its exact determinant is obtained from the stabilizer decomposition under \(S_5\times S_5\) and the resulting tridiagonal blocks, so Linear Algebra -> Determinants is the primary classification.
+The problem classifies solutions of the matrix congruence $A^2\equiv I\pmod{2^{12}}$ up to change of basis. The essential difficulty is the ramified lifting behavior at the prime $2$: reduction modulo $2$, idempotents over local rings, and conjugacy lifting through powers of $2$. Hence Number Theory -> Modular arithmetic and congruences is the primary classification.
