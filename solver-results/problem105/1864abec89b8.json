@@ -1,0 +1,22 @@
+{
+  "problem": "problem105",
+  "branch": "adversary/problem105",
+  "problem_path": "workspace/rainier-problem/problem105-polynomial-and-rational-functions/problem.md",
+  "source_commit_sha": "8cf71f3f5dce1c5f13d4e814f4413f8ab490fd61",
+  "problem_blob_sha": "1864abec89b890b8f5ac924bec6ddd23d70b438c",
+  "statement_sha256": "a3a30e6b491753ca3738b71fd427b629c0658ca588c0dfb0abfa4629338626cb",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T15:06:44+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Using only the stated vector space and form.\n\nLet a generator \\(Z\\) be disjoint from both \\(X\\) and \\(Y\\). Since \\(Z\\cap Y=0\\), it is the graph of a linear map \\(A:\\mathbb F_2^6\\to\\mathbb F_2^6\\):\n\\[\nZ_A=\\{(u,Au):u\\in\\mathbb F_2^6\\}.\n\\]\nThe condition \\(Z_A\\cap X=0\\) says \\(A\\) is invertible. Also\n\\[\nq(u,Au)=u^TAu\n\\]\nvanishes for all \\(u\\) iff \\(A\\) is symmetric with zero diagonal, i.e. an alternating \\(6\\times 6\\) matrix over \\(\\mathbb F_2\\). Two such graphs \\(Z_A,Z_B\\) meet trivially iff\n\\[\n(A+B)u=0\n\\]\nhas only the zero solution, i.e. iff \\(A+B\\) is invertible.\n\nSo the problem is to count unordered triples \\(\\{A,B,C\\}\\) of invertible alternating \\(6\\times 6\\) matrices such that\n\\[\nA+B,\\quad A+C,\\quad B+C\n\\]\nare also invertible.\n\nThe number of invertible alternating \\(6\\times 6\\) matrices is\n\\[\n\\frac{|\\mathrm{GL}_6(2)|}{|\\mathrm{Sp}_6(2)|}\n=\n2^{6}(2^1-1)(2^3-1)(2^5-1)\n=\n64\\cdot 1\\cdot 7\\cdot 31\n=\n13888.\n\\]\n\nFix one such matrix \\(A=J\\), the standard symplectic matrix with nonzero entries in pairs \\((1,2),(3,4),(5,6)\\). A direct rank classification of alternating matrices relative to \\(J\\) gives:\n\n\\[\n\\#\\{B:\\ B,\\ J+B \\text{ invertible alternating}\\}=5760.\n\\]\n\nMoreover, for every such \\(B\\),\n\\[\n\\#\\{C:\\ C,\\ J+C,\\ B+C \\text{ invertible alternating}\\}=2336.\n\\]\n\nFor completeness, the classification has two \\( \\mathrm{Sp}_6(2)\\)-orbits of possible \\(B\\), each of size \\(2880\\). Representatives are\n\\[\nB_1=\n\\begin{pmatrix}\n0&0&0&1&0&1\\\\\n0&0&1&0&1&0\\\\\n0&1&0&1&0&0\\\\\n1&0&1&0&0&0\\\\\n0&1&0&0&0&0\\\\\n1&0&0&0&0&0\n\\end{pmatrix},\n\\quad\nB_2=B_1+E_{12}+E_{21}.\n\\]\nFor either representative, among the \\(5760\\) matrices \\(C\\) with \\(C\\) and \\(J+C\\) invertible, the ranks of \\(B_i+C\\) are distributed as\n\\[\n\\begin{array}{c|cccc}\n\\operatorname{rank}(B_i+C)&0&2&4&6\\\\ \\hline\n\\#C&1&147&3276&2336\n\\end{array}\n\\]\nso exactly \\(2336\\) choices also satisfy \\(B_i+C\\) invertible.\n\nThus, fixing \\(A\\), the number of unordered adjacent pairs \\(\\{B,C\\}\\) is\n\\[\n\\frac{5760\\cdot 2336}{2}.\n\\]\nNow each unordered triple \\(\\{A,B,C\\}\\) is counted once for each of its three choices of distinguished element, so the total number is\n\\[\n\\frac{13888}{3}\\cdot \\frac{5760\\cdot 2336}{2}\n=\n31144673280.\n\\]\n\n\\[\n\\boxed{31144673280}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T15:11:12+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem105/1864abec89b8.json"
+}
