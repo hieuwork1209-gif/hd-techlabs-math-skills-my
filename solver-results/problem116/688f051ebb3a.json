@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "d3ef6d58457b7a03e4cef462299fac0fb741776d",
+  "problem_blob_sha": "688f051ebb3ac124b6c7ffca1f316fd17c53f7ba",
+  "statement_sha256": "1c7450609ee433c4e505037c77d81c17f0c8fdced9bcda33ff53dde99ac27c5e",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T18:33:53+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Set\n\\[\nu=x-y^2.\n\\]\nThis is a global change of variables, since \\(x=u+y^2\\). Then\n\\[\n\\dot y=-u-y^3-by,\n\\]\nand a direct calculation gives\n\\[\n\\dot u=\\dot x-2y\\dot y=-u^3-au-y.\n\\]\nSo the system becomes\n\\[\n\\dot u=-u^3-au-y,\\qquad \\dot y=-y^3-by-u.\n\\]\n\nThis is the negative gradient flow of\n\\[\nV(u,y)=\\frac{u^4+y^4}{4}+\\frac12(au^2+2uy+by^2),\n\\]\nbecause\n\\[\n\\nabla V=(u^3+au+y,\\; y^3+by+u).\n\\]\nHence\n\\[\n\\dot V=-|\\nabla V|^2\\le 0.\n\\]\n\nFor the origin to be Lyapunov stable, the linearization\n\\[\n\\begin{pmatrix}\n-a&-1\\\\\n-1&-b\n\\end{pmatrix}\n=-\\begin{pmatrix}\na&1\\\\\n1&b\n\\end{pmatrix}\n\\]\ncannot have a positive eigenvalue. Thus\n\\[\n\\begin{pmatrix}a&1\\\\1&b\\end{pmatrix}\n\\]\nmust be positive semidefinite, which is equivalent here to\n\\[\na>0,\\qquad b>0,\\qquad ab\\ge 1.\n\\]\n\nConversely, assume \\(a>0,\\ b>0,\\ ab\\ge1\\). Then\n\\[\na u^2+2uy+b y^2\\ge0,\n\\]\nso\n\\[\nV(u,y)\\ge \\frac{u^4+y^4}{4},\n\\]\nmeaning \\(V\\) is positive definite and radially unbounded. Thus solutions are bounded and exist for all \\(t\\ge0\\).\n\nIt remains to check that the origin is the only equilibrium. Equilibria satisfy\n\\[\nu^3+au+y=0,\\qquad y^3+by+u=0.\n\\]\nFrom the first equation,\n\\[\ny=-u(u^2+a).\n\\]\nIf \\(u\\neq0\\), writing \\(s=u^2>0\\), substitution into the second equation gives\n\\[\nb(s+a)+s(s+a)^3-1=0.\n\\]\nBut since \\(a,b>0\\) and \\(ab\\ge1\\),\n\\[\nb(s+a)+s(s+a)^3>ab\\ge1,\n\\]\na contradiction. Hence \\(u=0\\), and then \\(y=0\\). So the origin is the unique equilibrium.\n\nBy LaSalle’s invariance principle, every bounded forward solution converges to the largest invariant subset of \\(\\{\\dot V=0\\}\\), which is just \\((0,0)\\). Therefore the origin is globally asymptotically stable exactly in this case.\n\n\\[\n\\boxed{\\{(a,b)\\in\\mathbb R^2:\\ a>0,\\ b>0,\\ ab\\ge1\\}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T18:35:13+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/688f051ebb3a.json"
+}
