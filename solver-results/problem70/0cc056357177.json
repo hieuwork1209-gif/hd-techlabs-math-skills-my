@@ -1,0 +1,22 @@
+{
+  "problem": "problem70",
+  "branch": "adversary/problem70",
+  "problem_path": "workspace/rainier-problem/problem70-determinants/problem.md",
+  "source_commit_sha": "b00315b82d626605bdf5e0862d9de275a3b4c924",
+  "problem_blob_sha": "0cc056357177794d8231ddbad4920913414ea207",
+  "statement_sha256": "55f0a8599fc8d010e4664edd5f2ec0b30cb8aa3461a24a055106b509ed16ea1b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T08:31:06+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(f(g)=(\\operatorname{fix}(g)-1)^6\\). Then \\(A_{\\sigma,\\tau}=f(\\sigma^{-1}\\tau)\\), so \\(A\\) is the matrix of convolution by the central function \\(f\\) on the regular representation of \\(S_6\\).\n\nThe permutation character of \\(S_6\\) on \\(\\{1,\\dots,6\\}\\) is \\(\\operatorname{fix}(g)\\). Hence\n\\[\n\\operatorname{fix}(g)-1=\\chi_{(5,1)}(g),\n\\]\nthe character of the standard representation \\(V=S^{(5,1)}\\). Therefore\n\\[\nf(g)=\\chi_{V^{\\otimes 6}}(g).\n\\]\n\nFor an irreducible \\(S^\\lambda\\) of dimension \\(d_\\lambda\\), the central convolution operator acts by the scalar\n\\[\n\\alpha_\\lambda=\\frac{1}{d_\\lambda}\\sum_{g\\in S_6} f(g)\\chi_\\lambda(g)\n=\\frac{720}{d_\\lambda}\\,m_\\lambda,\n\\]\nwhere \\(m_\\lambda\\) is the multiplicity of \\(S^\\lambda\\) in \\(V^{\\otimes 6}\\). In the regular representation, \\(S^\\lambda\\) occurs \\(d_\\lambda\\) times, so\n\\[\n\\det A=\\prod_{\\lambda\\vdash 6}\\alpha_\\lambda^{d_\\lambda^2}.\n\\]\n\nTo compute \\(m_\\lambda\\), use\n\\[\nS^\\lambda\\otimes V\n=\n\\operatorname{Ind}_{S_5}^{S_6}\\operatorname{Res}_{S_5}^{S_6}S^\\lambda-S^\\lambda.\n\\]\nThus one removes a corner box from \\(\\lambda\\), adds a corner box back, and subtracts the original \\(\\lambda\\). Iterating from \\(S^{(6)}\\), the multiplicities in \\(V^{\\otimes 6}\\) are:\n\n\\[\n\\begin{array}{c|rrrrrrrrrrr}\n\\lambda &(6)&(5,1)&(4,2)&(4,1,1)&(3,3)&(3,2,1)&(3,1,1,1)&(2,2,2)&(2,2,1,1)&(2,1,1,1,1)&(1^6)\\\\\n\\hline\nm_\\lambda&41&161&241&251&120&340&190&90&150&70&10\n\\end{array}\n\\]\n\nThe corresponding dimensions and eigenvalues are:\n\n\\[\n\\begin{array}{c|r|r|r}\n\\lambda&d_\\lambda&m_\\lambda&\\alpha_\\lambda=720m_\\lambda/d_\\lambda\\\\\n\\hline\n(6)&1&41&29520\\\\\n(5,1)&5&161&23184\\\\\n(4,2)&9&241&19280\\\\\n(4,1,1)&10&251&18072\\\\\n(3,3)&5&120&17280\\\\\n(3,2,1)&16&340&15300\\\\\n(3,1,1,1)&10&190&13680\\\\\n(2,2,2)&5&90&12960\\\\\n(2,2,1,1)&9&150&12000\\\\\n(2,1,1,1,1)&5&70&10080\\\\\n(1^6)&1&10&7200\n\\end{array}\n\\]\n\nHence\n\\[\n\\det A\n=\n\\prod_{\\lambda\\vdash 6}\\alpha_\\lambda^{d_\\lambda^2}.\n\\]\nFactoring the product gives\n\\[\n\\boxed{\n2^{2475}3^{1272}5^{1014}7^{50}17^{256}19^{100}23^{25}41\\,241^{81}251^{100}\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T08:33:31+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem70/0cc056357177.json"
+}
