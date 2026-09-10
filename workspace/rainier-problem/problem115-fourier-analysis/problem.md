@@ -10,9 +10,11 @@ Let $E=\mathbb F_2^P$, with
 $$
 x\cdot y=\sum_{t\in P}x(t)y(t).
 $$
-Define $A:E\to E$ by
+Define $A,C:E\to E$ by
 $$
-(Ax)(t)=\sum_{h\in H}x(t+h).
+(Ax)(t)=\sum_{h\in H}x(t+h),
+\qquad
+(Cx)(t)=\sum_{h\in H}x(t+3h).
 $$
 Set $V=E\times E$. For $z=(x,y)$ and $w=(u,v)$ define
 $$
@@ -20,7 +22,7 @@ $$
 $$
 Define $S:V\to V$ by
 $$
-S(x,y)=\bigl(x+Ay,\;Ax+(I+A)y\bigr).
+S(x,y)=\bigl(x+Cy,\;Ax+(I+AC)y\bigr).
 $$
 For $g:V\to\mathbb C$, define the normalized Walsh--Fourier transform
 $$
@@ -49,4 +51,4 @@ for all $z,r,s\in V$, and also $Tf=f$?
 
 ## Domain Explanation
 
-The problem asks for quadratic sign phases fixed by a normalized Walsh--Fourier transform after a symplectic twist. The fixed-point dimension is governed by the binary spectrum of a generalized Paley Cayley graph on $\mathbb F_{127}$, which reduces naturally to a finite-field Kloosterman sum, so Fourier analysis is the central organizing method.
+The problem asks for quadratic sign phases fixed by a normalized Walsh--Fourier transform after a symplectic twist. The fixed-point count is controlled by the joint binary Fourier spectrum of two cyclotomic Cayley relations on $\mathbb F_{127}$, so Fourier analysis is the central organizing method.
