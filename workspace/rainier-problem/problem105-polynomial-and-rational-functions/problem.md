@@ -16,9 +16,11 @@ Let
 $$
 X=\mathbb F_2^6\oplus0,
 \qquad
-Y=0\oplus\mathbb F_2^6.
+Y=0\oplus\mathbb F_2^6,
 $$
-Determine the exact number of $6$-element partial spreads that contain both $X$ and $Y$.
+and let $G$ be the subgroup of linear isometries of $(V,q)$ that fixes $X$ and $Y$ individually.
+
+Determine the exact number of $G$-orbits on the $5$-element partial spreads that contain both $X$ and $Y$.
 
 ---
 
@@ -35,4 +37,4 @@ Determine the exact number of $6$-element partial spreads that contain both $X$ 
 
 ## Domain Explanation
 
-The problem counts partial spreads of generators in the hyperbolic orthogonal space $Q^+(11,2)$. Generators complementary to the two fixed coordinate generators are graphs of nondegenerate alternating forms. A $6$-element partial spread requires four such forms whose pairwise differences are all nondegenerate, and at this level the extension count depends on a genuinely nonuniform fourfold correlation of the Pfaffian cubic.
+The problem asks for an isometry classification of partial spreads in the hyperbolic orthogonal space $Q^+(11,2)$. Generators complementary to the two fixed coordinate generators correspond to nondegenerate alternating forms, while the stabilizer of $X$ and $Y$ acts by congruence. The count therefore requires a genuine orbit classification of compatible triples rather than only a labeled clique count.
