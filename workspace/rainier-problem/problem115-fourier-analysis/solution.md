@@ -1,8 +1,8 @@
 ## Steps
 
-Step 1: Characterize self-duality inside the affine Maiorana--McFarland family
+Step 1: Characterize self-duality
 
-For an affine permutation $\pi(y)=My+c$ and $g:E\to\mathbb F_2$ with $g(0)=0$, put
+Let $g:E\to\mathbb F_2$ have algebraic degree at most $2$ and $g(0)=0$, and let
 $$
 f_{\pi,g}(x,y)=(-1)^{x\cdot\pi(y)+g(y)}.
 $$
@@ -12,60 +12,42 @@ $$
 =2^{-8}\sum_{y\in E}(-1)^{g(y)+y\cdot u}
 \sum_{x\in E}(-1)^{x\cdot(\pi(y)+v)}.
 $$
-The inner sum is $2^8$ exactly when $\pi(y)=v$, and is $0$ otherwise. Since $\pi$ is a permutation,
+The inner sum is $2^8$ exactly when $\pi(y)=v$, and is $0$ otherwise. Hence
 $$
 (\mathcal Ff_{\pi,g})(u,v)
 =(-1)^{u\cdot\pi^{-1}(v)+g(\pi^{-1}(v))}.
 $$
-Comparing this with
+Comparing with
 $$
 f_{\pi,g}(u,v)=(-1)^{u\cdot\pi(v)+g(v)}
 $$
-for every $u,v$ shows that
+for all $u,v$ shows that
 $$
 \mathcal Ff_{\pi,g}=f_{\pi,g}
 $$
 if and only if
 $$
-\pi^2=\operatorname{id}_E
-\qquad\text{and}\qquad
+\pi^2=\operatorname{id}_E,
+\qquad
 g\circ\pi=g.
 $$
-Indeed, equality for every $u$ first forces $\pi^{-1}(v)=\pi(v)$, and then the constant terms force $g(\pi(v))=g(v)$.
+The parametrization $(\pi,g)\mapsto f_{\pi,g}$ is injective, because the $x$-character recovers $\pi(y)$ and $f_{\pi,g}(0,y)$ recovers $g(y)$.
 
-The parametrization is injective: for fixed $y$, the character in the $x$-variable recovers $\pi(y)$, while $f_{\pi,g}(0,y)=(-1)^{g(y)}$ recovers $g(y)$. Thus it remains to count affine involutions $\pi$, weighting each by the number of $\pi$-invariant functions $g$ with $g(0)=0$.
-
-Step 2: Parametrize affine involutions by square-zero linear maps
+Step 2: Parametrize the affine involutions
 
 Write
 $$
 \pi(v)=Mv+c,
 \qquad M\in\operatorname{GL}(8,2),\ c\in E,
 $$
-and put
+and put $N=M+I$. In characteristic $2$,
 $$
-N=M+I.
-$$
-Because the characteristic is $2$,
-$$
-M^2=I\iff N^2=0.
-$$
-Also
-$$
-\pi^2(v)=M^2v+(M+I)c,
-$$
-so $\pi^2=\operatorname{id}$ exactly when
-$$
+\pi^2=\operatorname{id}
+\iff
 N^2=0,
 \qquad Nc=0.
 $$
-Conversely, if $N^2=0$, then $M=I+N$ is automatically invertible with inverse $I+N$.
-
-Let
-$$
-r=\operatorname{rank}N.
-$$
-Since $\operatorname{im}N\subseteq\ker N$, we have $0\le r\le4$. Put
+If $r=\operatorname{rank}N$, then $0\le r\le4$. Put
 $$
 U=\operatorname{im}N,
 \qquad K=\ker N.
@@ -76,23 +58,11 @@ $$
 \qquad \dim K=8-r,
 \qquad U\subseteq K.
 $$
-
-Step 3: Count square-zero maps of each rank
-
-For fixed rank $r$, choose $U=\operatorname{im}N$, then choose $K=\ker N$ containing $U$, and finally choose the induced isomorphism
+The number $A_r$ of square-zero endomorphisms of rank $r$ is
 $$
-E/K\longrightarrow U.
+A_r=\binom{8}{r}_2\binom{8-r}{r}_2|\operatorname{GL}(r,2)|.
 $$
-Hence the number $A_r$ of square-zero endomorphisms of rank $r$ is
-$$
-A_r=inom{8}{r}_2\binom{8-r}{r}_2\,|\operatorname{GL}(r,2)|,
-$$
-where
-$$
-\binom{n}{r}_2
-=\prod_{j=0}^{r-1}\frac{2^{n-j}-1}{2^{r-j}-1}.
-$$
-Evaluating gives
+Thus
 $$
 A_0=1,
 \quad A_1=32385,
@@ -103,80 +73,107 @@ A_3=2529916200,
 \quad A_4=4047865920.
 $$
 
-Step 4: Count invariant Boolean functions for each affine involution
+Step 3: Count invariant quadratic functions when $c\in U$
 
-The translation vector must satisfy $c\in K$. The fixed-point equation for $\pi$ is
+Let
 $$
-Nv=c.
+D=8+\binom82=36.
 $$
-If $c\in U$, this equation has exactly $|K|=2^{8-r}$ solutions; there are $2^r$ such translation vectors. If $c\in K\setminus U$, there are no fixed points; there are
+Fix a square-zero $N$ of rank $r$. Choose coordinates
 $$
-2^{8-r}-2^r
+E=U\oplus W\oplus Z,
+\qquad
+\dim U=\dim W=r,
+\qquad
+\dim Z=s:=8-2r,
 $$
-such translations.
+so that
+$$
+N(u,w,z)=(w,0,0).
+$$
+If $c\in U$, then $c=Nt$ for some $t$, and translation by $t$ conjugates $v\mapsto(I+N)v+c$ to $v\mapsto(I+N)v$. The map
+$$
+g(v)\longmapsto g(v+t)+g(t)
+$$
+preserves algebraic degree at most $2$, preserves the condition $g(0)=0$, and gives a bijection between the corresponding invariant functions. Hence it suffices to take $c=0$.
 
-An involution of the $256$-element set $E$ having $F$ fixed points has
+Write a quadratic Boolean polynomial in algebraic normal form in the variables $(u,w,z)$. Invariance under
 $$
-\frac{256+F}{2}
+(u,w,z)\longmapsto(u+w,w,z)
 $$
-orbits. Therefore:
+has the following consequences:
 
-- if $c\in U$, then $\pi$ has $128+2^{7-r}$ orbits;
-- if $c\in K\setminus U$, then $\pi$ has $128$ orbits.
+- all coefficients of $u_i u_j$ vanish;
+- all coefficients of $u_i z_k$ vanish;
+- if $R=(R_{ij})$ is the coefficient matrix of the terms $u_iw_j$, then $R$ is symmetric;
+- the coefficient of $u_i$ is forced to be $R_{ii}$;
+- the part involving only $(w,z)$ is arbitrary of degree at most $2$ with zero constant term.
 
-A function $g:E\to\mathbb F_2$ satisfying $g\circ\pi=g$ is constant on every orbit of $\pi$. The condition $g(0)=0$ fixes the value on the unique orbit containing $0$, so an involution with $o$ orbits contributes exactly $2^{o-1}$ possible functions $g$.
+Therefore the dimension of the invariant $g$-space is
+$$
+d_r=rac{r(r+1)}2+rac{(8-r)(9-r)}2
+=36-r(8-r).
+$$
+Thus each of the $2^r$ translations $c\in U$ contributes $2^{d_r}$ choices of $g$.
 
-Thus for each fixed square-zero $N$ of rank $r$, the total contribution from all allowed translations is
+Step 4: Count invariant quadratic functions when $c\in K\setminus U$
+
+Assume $s=8-2r>0$ and $c\in K\setminus U$. First remove the $U$-component of $c$ by a translation as in Step 3. Then a linear change of coordinates commuting with $N$ may send the nonzero class of $c$ in $K/U$ to the first basis vector $z_1$ of $Z$. Hence we may take
+$$
+\pi(u,w,z_1,z')=(u+w,w,z_1+1,z').
+$$
+Repeating the algebraic-normal-form comparison from Step 3 gives the same conditions there, together with exactly $s$ further independent constraints:
+$$
+[z_1]g=0,
+\qquad
+[z_1z_j]g=0\quad(2\le j\le s).
+$$
+Indeed, these are respectively the constant and the $z_j$ coefficients created by the substitution $z_1\mapsto z_1+1$; the coefficients of $w_i z_1$ merely change the already-forced linear coefficients of the $u_i$ and create no additional constraint.
+
+Hence the invariant $g$-space now has dimension
+$$
+d_r-s
+=36-r(8-r)-(8-2r).
+$$
+There are
+$$
+|K\setminus U|=2^{8-r}-2^r
+$$
+such translations. Thus for a fixed rank-$r$ map $N$, the total number of allowed pairs $(c,g)$ is
 $$
 W_r
-=2^r2^{127+2^{7-r}}
-+\left(2^{8-r}-2^r\right)2^{127}.
+=2^r2^{d_r}
++\left(2^{8-r}-2^r\right)2^{d_r-(8-2r)}.
 $$
-Equivalently,
+For $r=0,1,2,3,4$ this gives
 $$
-W_r
-=2^{127}\left(2^{r+2^{7-r}}+2^{8-r}-2^r\right).
-$$
-
-Step 5: Sum over the possible ranks
-
-The required number is therefore
-$$
-\sum_{r=0}^4 A_rW_r
-=2^{127}\sum_{r=0}^4
-A_r\left(2^{r+2^{7-r}}+2^{8-r}-2^r\right).
-$$
-For $r=0,1,2,3,4$, the factors in parentheses are respectively
-$$
-340282366920938463463374607431768211711,
+W_0=137170518016,
+\quad W_1=2130706432,
+\quad W_2=130023424,
 $$
 $$
-36893488147419103358,
-\qquad
-17179869244,
-\qquad
-524312,
-\qquad
-4096.
-$$
-Substituting the values of $A_r$ from Step 3 gives
-$$
-\sum_{r=0}^4
-A_r\left(2^{r+2^{7-r}}+2^{8-r}-2^r\right)
-=340282366920939658259713998470149879141.
-$$
-Hence the number of self-dual functions is
-$$
-2^{127}\cdot340282366920939658259713998470149879141.
+W_3=29360128,
+\quad W_4=16777216.
 $$
 
-Final Answer: $\boxed{2^{127}\cdot340282366920939658259713998470149879141}$
+Step 5: Sum over the ranks
+
+The required number of distinct self-dual functions is
+$$
+\sum_{r=0}^4 A_rW_r.
+$$
+Substituting the values from Steps 2 and 4 gives
+$$
+147742197217755136.
+$$
+
+Final Answer: $\boxed{147742197217755136}$
 
 ---
 
 ## Answer
 
-$2^{127}\cdot340282366920939658259713998470149879141$
+$147742197217755136$
 
 ---
 
@@ -191,10 +188,10 @@ $2^{127}\cdot340282366920939658259713998470149879141$
 ## Solution Concepts
 
 - Walsh--Fourier self-duality
-- Maiorana--McFarland bent functions
+- quadratic Maiorana--McFarland functions
 - affine involutions over $\mathbb F_2$
-- square-zero linear endomorphisms
-- Gaussian binomial coefficients
+- square-zero endomorphisms
+- invariant quadratic Boolean polynomials
 
 ---
 
