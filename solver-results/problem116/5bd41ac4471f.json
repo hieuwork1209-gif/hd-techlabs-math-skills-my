@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "ba1e6b5b3531d031f0d2584263b3dc99f36732d6",
+  "problem_blob_sha": "5bd41ac4471fb9678b7a87fa3e68873213b7e3b0",
+  "statement_sha256": "ff131569b10f7e5987c627336442f2d05ba2c4108fc5b02d55888b7265c9c2e9",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T19:00:06+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(z=x+iy=re^{i\\theta}\\). Since\n\n\\[\nx^4-6x^2y^2+y^4=r^4\\cos 4\\theta,\\qquad\nx^6-15x^4y^2+15x^2y^4-y^6=r^6\\cos 6\\theta,\n\\]\n\nwe get\n\n\\[\nP=r^6(a+\\cos 4\\theta),\\qquad Q=r^6(b+\\cos 6\\theta).\n\\]\n\nThe system is\n\n\\[\n\\dot z=(-P+iQ)z,\n\\]\n\nso in polar coordinates\n\n\\[\n\\dot r=-r^7(a+\\cos 4\\theta),\\qquad\n\\dot\\theta=r^6(b+\\cos 6\\theta).\n\\]\n\nIntroduce \\(d\\tau/dt=r^6\\) for \\(r>0\\). Then\n\n\\[\n\\frac{dr}{d\\tau}=-r(a+\\cos4\\theta),\\qquad\n\\frac{d\\theta}{d\\tau}=b+\\cos6\\theta.\n\\]\n\nIf \\(|b|\\le 1\\), the angular equation has equilibria satisfying \\(\\cos6\\theta=-b\\). Along such rays, stability requires\n\n\\[\na+\\cos4\\theta>0\n\\]\n\nfor every solution of \\(\\cos6\\theta=-b\\). Otherwise some ray is non-decaying or repelling.\n\nIf \\(|b|>1\\), \\(\\theta\\) rotates around the circle. Then the radial decay rate is governed by the angular average\n\n\\[\n\\overline A\n=\n\\frac{\\int_0^{2\\pi}\\frac{a+\\cos4\\theta}{b+\\cos6\\theta}\\,d\\theta}\n{\\int_0^{2\\pi}\\frac{1}{b+\\cos6\\theta}\\,d\\theta}.\n\\]\n\nNow\n\n\\[\n\\int_0^{2\\pi}\\frac{\\cos4\\theta}{b+\\cos6\\theta}\\,d\\theta=0\n\\]\n\nbecause the Fourier modes are incompatible, so \\(\\overline A=a\\). Thus for \\(|b|>1\\), global asymptotic stability is equivalent to\n\n\\[\na>0.\n\\]\n\nFor \\(|b|\\le1\\), the worst possible value of \\(\\cos4\\theta\\) subject to \\(\\cos6\\theta=-b\\) must be found. Let \\(u=2\\theta\\). Then\n\n\\[\n\\cos6\\theta=\\cos3u=4\\cos^3u-3\\cos u=-b.\n\\]\n\nAlso\n\n\\[\n\\cos4\\theta=\\cos2u=2\\cos^2u-1.\n\\]\n\nLet \\(c=\\cos u\\). The constraint is\n\n\\[\n4c^3-3c=-b.\n\\]\n\nWe need\n\n\\[\na+2c^2-1>0\n\\]\n\nfor every real root \\(c\\in[-1,1]\\) of that cubic. Equivalently,\n\n\\[\na>1-2c^2\n\\]\n\nfor all such roots. Therefore the exact answer is:\n\n\\[\n\\boxed{\n\\begin{cases}\n|b|>1,\\quad a>0,\\\\[2mm]\n|b|\\le1,\\quad a>1-2c^2\\text{ for every }c\\in[-1,1]\\text{ with }4c^3-3c=-b.\n\\end{cases}\n}\n\\]\n\nThese and only these pairs \\((a,b)\\) make \\((0,0)\\) globally asymptotically stable.",
+  "status": "success",
+  "completed_at": "2026-09-10T19:00:35+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/5bd41ac4471f.json"
+}
