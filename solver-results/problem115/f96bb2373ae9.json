@@ -1,0 +1,22 @@
+{
+  "problem": "problem115",
+  "branch": "adversary/problem115",
+  "problem_path": "workspace/rainier-problem/problem115-fourier-analysis/problem.md",
+  "source_commit_sha": "37d9ec4737753e4b1eaffdc1c48e1c631b2863bb",
+  "problem_blob_sha": "f96bb2373ae9ce1b67655e0cec12dd17815451d4",
+  "statement_sha256": "57a4784b4273ef3b06e806de7cefa4c9e4a9c534decd8dfd7cc7b5030a3fb615",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T15:30:38+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let `n=8191`. Write every admissible function as\n\n\\[\nf(x,y)=(-1)^{q(x,y)}.\n\\]\n\nThe four-point identity says exactly that the polar form of \\(q\\) is\n\n\\[\nq(z)+q(z+r)+q(z+s)+q(z+r+s)=\\omega(r,s).\n\\]\n\nSince \\(f(0)=1\\), \\(q(0)=0\\). A convenient base quadratic is\n\n\\[\nq_0(x,y)=x\\cdot y,\n\\]\n\nwhose polar form is \\(\\omega\\). Hence all solutions of the four-point identity are\n\n\\[\nq_{a,b}(x,y)=x\\cdot y+x\\cdot b+y\\cdot a,\n\\qquad a,b\\in E.\n\\]\n\nFor these,\n\n\\[\n\\mathcal F((-1)^{q_{a,b}})(u,v)\n=(-1)^{a\\cdot b}(-1)^{q_{a,b}(u,v)}.\n\\]\n\nSo \\(Tf=f\\) is equivalent to\n\n\\[\nq_{a,b}(S(x,y))+a\\cdot b=q_{a,b}(x,y)\n\\]\n\nfor all \\(x,y\\).\n\nUsing the symmetry and commutativity of the convolution operators \\(A,C\\), and the fact that the diagonal term from \\(C+CAC\\) is zero, this reduces to\n\n\\[\nAa=0,\\qquad Cb=0,\\qquad a\\cdot b=0.\n\\]\n\nNow identify \\(E\\) with \\(\\mathbb F_2[X]/(X^{8191}-1)\\). The kernel of \\(A\\) is determined by the zeros of\n\n\\[\n\\sum_{h\\in H} X^h.\n\\]\n\nSince \\(8191=2^{13}-1\\) is prime, the nontrivial \\(8191\\)-st roots lie in \\(\\mathbb F_{2^{13}}\\). For a root \\(\\alpha\\),\n\n\\[\n\\sum_{h\\in H}\\alpha^h\n=\n\\operatorname{Tr}(\\alpha)+\\operatorname{Tr}(\\alpha^{-1}).\n\\]\n\nA direct trace count in \\(\\mathbb F_{2^{13}}\\) gives\n\n\\[\n\\dim\\ker A=\\dim\\ker C=4005.\n\\]\n\nAlso,\n\n\\[\n\\dim(\\ker A\\cap \\operatorname{im} C)=2054.\n\\]\n\nTherefore the number of pairs \\((a,b)\\) with \\(Aa=0\\), \\(Cb=0\\), and \\(a\\cdot b=0\\) is\n\n\\[\n2^{4005}\\cdot 2^{2054}\n+\n(2^{4005}-2^{2054})\\cdot 2^{4004}.\n\\]\n\nThis simplifies to\n\n\\[\n2^{4004}(2^{4005}+2^{2054})\n=\n2^{6058}(2^{1951}+1).\n\\]\n\n\\[\n\\boxed{2^{6058}\\bigl(2^{1951}+1\\bigr)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T15:33:32+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem115/f96bb2373ae9.json"
+}
