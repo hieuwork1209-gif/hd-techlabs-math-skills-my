@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "ef315e98ad2510f0b4c47963d8662d5e2800a0ac",
+  "problem_blob_sha": "1a2f6a7b24cb419f59cd81cd0fb8dd965d1ad20b",
+  "statement_sha256": "467e7deed72a21a106f883cd88a14b4d84de7d606b39b9e6d99b7b409a07098b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-10T18:48:42+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nx=r\\cos\\theta,\\qquad y=r\\sin\\theta .\n\\]\nFor \\(r>0\\),\n\\[\n\\dot r=-Pr,\\qquad \\dot\\theta=Q.\n\\]\nSince\n\\[\nx^4-6x^2y^2+y^4=r^4\\cos4\\theta,\\qquad x^4-y^4=r^4\\cos2\\theta,\n\\]\nwe get\n\\[\nP=r^4(a+\\cos4\\theta),\\qquad Q=r^4(b+\\cos2\\theta).\n\\]\nUse the time change \\(d\\tau/dt=r^4\\). Then\n\\[\n\\frac{d\\theta}{d\\tau}=b+\\cos2\\theta,\\qquad\n\\frac{d\\log r}{d\\tau}=-(a+\\cos4\\theta).\n\\]\n\nIf \\(|b|\\le 1\\), the angular equation has equilibria where\n\\[\n\\cos2\\theta=-b.\n\\]\nAt such angles,\n\\[\n\\cos4\\theta=2b^2-1,\n\\]\nso along those invariant rays the radial decay rate is\n\\[\na+2b^2-1.\n\\]\nThus convergence for every nonzero initial point requires and is guaranteed by\n\\[\na+2b^2-1>0,\n\\]\ni.e.\n\\[\na>1-2b^2.\n\\]\n\nIf \\(|b|>1\\), then \\(b+\\cos2\\theta\\) never vanishes, so every trajectory winds around the origin. The radial behavior is governed by the weighted angular average\n\\[\n\\int_0^{2\\pi}\\frac{a+\\cos4\\theta}{|b+\\cos2\\theta|}\\,d\\theta.\n\\]\nGlobal attraction holds exactly when this is positive. Writing \\(s=|b|>1\\), this integral equals\n\\[\n-4\\pi s+\\frac{2\\pi(a+2b^2-1)}{\\sqrt{b^2-1}}.\n\\]\nHence the condition is\n\\[\na+2b^2-1>2|b|\\sqrt{b^2-1},\n\\]\nor\n\\[\na>1-2b^2+2|b|\\sqrt{b^2-1}.\n\\]\n\nTherefore the origin is globally asymptotically stable exactly for\n\\[\n\\boxed{\n\\{(a,b): |b|\\le 1,\\ a>1-2b^2\\}\n\\cup\n\\{(a,b): |b|>1,\\ a>1-2b^2+2|b|\\sqrt{b^2-1}\\}\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-10T18:50:08+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/1a2f6a7b24cb.json"
+}
