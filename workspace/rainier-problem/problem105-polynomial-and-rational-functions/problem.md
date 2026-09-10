@@ -31,7 +31,7 @@ Determine the exact number of $G$-orbits on the $5$-element partial spreads that
 | **Domain** | Discrete Mathematics and Combinatorics |
 | **Sub-domain** | Design theory and finite geometry |
 | **Problem Type** | Exhaustive enumeration |
-| **Answer Type** | Integer |
+| **Answer Type** | Exact scalar |
 
 ---
 
