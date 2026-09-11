@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-convex-optimization/problem.md",
+  "source_commit_sha": "bc44c2a70a6d14e261c42c92d39e9d2889a1fae3",
+  "problem_blob_sha": "72cfb8ab7be6514f6347e0f62305123f3e9a0330",
+  "statement_sha256": "d1a53224ce5324e5dcca3f96b56477a45dfdfcd8e882f02f11871e1ad844030e",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T11:57:38+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nu_i=\\frac{n+1}{2}-i\\qquad(1\\le i\\le n).\n\\]\nThen \\(\\sum_i u_i=0\\) and \\(u_i-u_{i+1}=1\\). Hence for any admissible \\(w\\),\n\\[\n\\lambda_2(L_w)\\le\n\\frac{\\sum_{i=1}^{n-1}w_i(u_i-u_{i+1})^2}{\\sum_{i=1}^n u_i^2}\n=\n\\frac{1}{\\sum_{i=1}^n \\left(i-\\frac{n+1}{2}\\right)^2}.\n\\]\nThe denominator is\n\\[\n\\sum_{i=1}^n \\left(i-\\frac{n+1}{2}\\right)^2=\\frac{n(n^2-1)}{12},\n\\]\nso\n\\[\n\\lambda_2(L_w)\\le \\frac{12}{n(n^2-1)}.\n\\]\n\nNow set\n\\[\nw_i=\\frac{6i(n-i)}{n(n^2-1)}\\qquad(1\\le i\\le n-1).\n\\]\nThese weights are positive and\n\\[\n\\sum_{i=1}^{n-1}w_i\n=\\frac{6}{n(n^2-1)}\\sum_{i=1}^{n-1}i(n-i)\n=\\frac{6}{n(n^2-1)}\\cdot \\frac{n(n^2-1)}6=1.\n\\]\nLet\n\\[\nM=\\frac{12}{n(n^2-1)}.\n\\]\nThen\n\\[\nw_i=\\frac M2\\,i(n-i).\n\\]\nFor \\(u_i=(n+1)/2-i\\), one checks\n\\[\n(L_wu)_1=w_1=Mu_1,\n\\]\n\\[\n(L_wu)_i=w_i-w_{i-1}\n=\\frac M2\\bigl(i(n-i)-(i-1)(n-i+1)\\bigr)\n=M\\left(\\frac{n+1}{2}-i\\right)=Mu_i,\n\\]\nand similarly\n\\[\n(L_wu)_n=w_{n-1}(-1)=Mu_n.\n\\]\nSo \\(u\\) is an eigenvector with eigenvalue \\(M\\).\n\nIt remains to show no smaller positive eigenvalue occurs for these weights. For any \\(x\\) with \\(\\sum_i x_i=0\\), write \\(d_i=x_i-x_{i+1}\\). Since\n\\[\n\\sum_{i=1}^n x_i^2=\\frac1n\\sum_{1\\le a<b\\le n}(x_a-x_b)^2\n=\\frac1n\\sum_{a<b}\\left(\\sum_{k=a}^{b-1}d_k\\right)^2,\n\\]\nCauchy's inequality gives\n\\[\n(x_a-x_b)^2\\le (b-a)\\sum_{k=a}^{b-1}d_k^2.\n\\]\nThus\n\\[\n\\sum_i x_i^2\n\\le \\frac1n\\sum_{k=1}^{n-1}d_k^2\n\\sum_{a\\le k<b}(b-a).\n\\]\nFor fixed \\(k\\),\n\\[\n\\sum_{a=1}^k\\sum_{b=k+1}^n(b-a)=\\frac{n\\,k(n-k)}2.\n\\]\nTherefore\n\\[\n\\sum_i x_i^2\\le \\frac12\\sum_{k=1}^{n-1}k(n-k)(x_k-x_{k+1})^2.\n\\]\nMultiplying by \\(M\\) and using \\(w_k=\\frac M2 k(n-k)\\),\n\\[\n\\sum_{k=1}^{n-1}w_k(x_k-x_{k+1})^2\\ge M\\sum_i x_i^2.\n\\]\nHence \\(\\lambda_2(L_w)\\ge M\\). Since \\(M\\) is also an eigenvalue, \\(\\lambda_2(L_w)=M\\).\n\nFinally, suppose equality is attained by some weights \\(w\\). The test vector \\(u\\) above always has Rayleigh quotient \\(M\\). If \\(\\lambda_2(L_w)=M\\), then \\(u\\) must itself be a minimizing eigenvector, so \\(L_wu=Mu\\). Since \\(u_i-u_{i+1}=1\\), this forces\n\\[\nw_1=\\frac{M(n-1)}2,\\qquad\nw_i-w_{i-1}=M\\left(\\frac{n+1}{2}-i\\right),\n\\]\nand hence uniquely\n\\[\nw_i=\\frac M2\\,i(n-i)=\\frac{6i(n-i)}{n(n^2-1)}.\n\\]\n\nTherefore\n\\[\n\\boxed{M_n=\\frac{12}{n(n^2-1)}}\n\\]\nand the unique maximizing weight vector is\n\\[\n\\boxed{w_i=\\frac{6i(n-i)}{n(n^2-1)}\\quad(1\\le i\\le n-1).}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T11:59:04+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/72cfb8ab7be6.json"
+}
