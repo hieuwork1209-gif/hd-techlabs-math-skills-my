@@ -1,0 +1,22 @@
+{
+  "problem": "problem102",
+  "branch": "adversary/problem102",
+  "problem_path": "workspace/rainier-problem/problem102-single-variable-calculus/problem.md",
+  "source_commit_sha": "121808a17f8cfb19c5e5ac3dbe47dc036a5638df",
+  "problem_blob_sha": "9b624c66b0983de7197eee47324e9c678009ea29",
+  "statement_sha256": "dad74b7785fc6f9f3d7ba4404ed5718ef33de10a830398914e6c1ba1cf469ab0",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T07:41:25+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(x_v\\in\\{0,1\\}\\) indicate whether \\(v\\in A\\). The edge parity is the quadratic form over \\(\\mathbb F_2\\)\n\\[\nq(x)=\\sum_{\\{u,v\\}\\in E(\\Gamma)}x_u x_v .\n\\]\nThe required number is\n\\[\n\\frac{2^{25}+S}{2},\\qquad\nS=\\sum_{x\\in\\mathbb F_2^{25}}(-1)^{q(x)}.\n\\]\n\nThe polar form is\n\\[\nB(x,y)=q(x+y)+q(x)+q(y),\n\\]\nwhose matrix is the adjacency matrix of the toroidal grid over \\(\\mathbb F_2\\). If we write a function on the vertices as \\(f(i,j)\\), then \\(f\\) lies in the radical exactly when\n\\[\nf(i+1,j)+f(i-1,j)+f(i,j+1)+f(i,j-1)=0.\n\\]\nAll functions of the form\n\\[\nf(i,j)=a_{i+j}+b_{i-j}\n\\]\nsatisfy this, and these give dimension \\(5+5-1=9\\). Conversely, using fifth-root Fourier modes, the zero eigenvalue condition is\n\\[\n\\alpha+\\alpha^{-1}=\\beta+\\beta^{-1},\n\\]\nwhich gives \\(1+4+4=9\\) modes, so the radical has dimension \\(9\\). Thus \\(\\operatorname{rank}B=25-9=16\\).\n\nFor \\(f(i,j)=a_{i+j}+b_{i-j}\\), the horizontal and vertical edge contributions cancel in pairs modulo \\(2\\), so \\(q(f)=0\\) on the whole radical. Therefore\n\\[\nS=2^9 S_0,\n\\]\nwhere \\(S_0\\) is the quadratic Gauss sum on a nondegenerate \\(16\\)-dimensional quotient.\n\nIt remains to determine its sign. The nonzero quotient splits into four \\(4\\)-dimensional blocks. Two are the row-constant and column-constant zero-sum blocks; on either block the form is\n\\[\nh(x)=\\sum_{i\\in\\mathbb Z/5}x_i x_{i+1},\\qquad \\sum_i x_i=0.\n\\]\nAmong the \\(16\\) even-weight vectors of length \\(5\\), the signed sum is\n\\[\n1+(5-5)-5=-4.\n\\]\nSo each of these two blocks contributes sign \\(-\\).\n\nThe remaining mixed part splits into two analogous \\(4\\)-dimensional Frobenius blocks. On such a block, with coordinate \\(c\\in\\mathbb F_{16}\\), the form is\n\\[\nq(c)=c^5+c^{10}.\n\\]\nFor \\(c\\ne0\\), \\(c^5\\in\\mathbb F_4^\\times\\). Five nonzero \\(c\\)’s have \\(c^5=1\\), giving \\(q=0\\), and ten have \\(c^5\\ne1\\), giving \\(q=1\\). Including \\(c=0\\), the signed sum is again\n\\[\n6-10=-4.\n\\]\nThus the four \\(4\\)-dimensional blocks contribute\n\\[\n(-4)^4=2^8,\n\\]\nso\n\\[\nS=2^9\\cdot 2^8=2^{17}.\n\\]\n\nHence the number of subsets with an even number of induced edges is\n\\[\n\\frac{2^{25}+2^{17}}2\n=2^{24}+2^{16}\n=16842752.\n\\]\n\n\\[\n\\boxed{16842752}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T07:44:13+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem102/9b624c66b098.json"
+}
