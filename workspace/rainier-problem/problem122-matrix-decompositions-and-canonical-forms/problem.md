@@ -2,19 +2,12 @@
 
 ## LaTeX (Normalized)
 
-Let
-$$
-\operatorname{Alt}_6(2)=\{A\in M_6(\mathbb F_2):A^T=A,\ \operatorname{diag}(A)=0\}
-$$
-be the $15$-dimensional space of alternating $6\times6$ matrices over $\mathbb F_2$.
+Let $J_m(1)$ denote the $m\times m$ Jordan block with eigenvalue $1$ over $\mathbb F_2$.
 
-Call a $3$-dimensional subspace $W\le \operatorname{Alt}_6(2)$ nonsingular if every nonzero matrix in $W$ is invertible.
-
-The group $GL_6(2)$ acts on such subspaces by simultaneous congruence,
+Determine the Jordan canonical form over $\mathbb F_2$ of
 $$
-g\cdot W=\{g^TAg:A\in W\}.
+J_{11}(1)\otimes J_{11}(1).
 $$
-Determine the exact number of $GL_6(2)$-orbits of nonsingular $3$-dimensional subspaces of $\operatorname{Alt}_6(2)$.
 
 ---
 
@@ -24,11 +17,11 @@ Determine the exact number of $GL_6(2)$-orbits of nonsingular $3$-dimensional su
 |---|---|
 | **Domain** | Linear Algebra |
 | **Sub-domain** | Matrix decompositions and canonical forms |
-| **Problem Type** | Exact computation |
-| **Answer Type** | Exact scalar |
+| **Problem Type** | Canonicalization or normalization |
+| **Answer Type** | Canonical form |
 
 ---
 
 ## Domain Explanation
 
-The central task is to classify $3$-dimensional spaces of alternating matrices up to simultaneous congruence. Nonsingularity is only the structural constraint defining the family; the requested output is the number of canonical congruence classes. This makes Matrix decompositions and canonical forms a better fit than Determinants or Matrices and matrix operations, which would describe local computations rather than the orbit-classification problem itself.
+The task is to determine the exact Jordan-block decomposition of a tensor product of two unipotent Jordan blocks in characteristic $2$. The ordinary characteristic-zero tensor-product pattern fails, and the correct decomposition is controlled by the modular representation theory of cyclic $2$-groups, so the problem is fundamentally about canonical forms.
