@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "fd4085828a28626775ed1dc42f6722b11fbced98",
+  "problem_blob_sha": "aa56fd597585113f66708967c256b2a9155acb1c",
+  "statement_sha256": "16032fdb3ecf8835686f97042aef734b30c566450a0c7f040cf5854d31756ee1",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T08:38:28+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Using characteristics, write the incoming boundary trace\n\n\\[\nw(t):=u(t,0).\n\\]\n\nThen\n\n\\[\nu(t,1)=w(t-1),\\qquad v(t,0)=-b\\,w(t-1),\n\\]\n\nand hence\n\n\\[\nv(t,3)=v(t-3,0)=-b\\,w(t-4).\n\\]\n\nThe first boundary condition becomes the scalar delay difference equation\n\n\\[\nw(t)=a\\,w(t-1)-b\\,w(t-4).\n\\]\n\nFor each fixed fractional time \\(s\\in[0,1)\\), the sequence \\(W_n=w(n+s)\\) satisfies\n\n\\[\nW_n=aW_{n-1}-bW_{n-4}.\n\\]\n\nThus exponential stability is equivalent to Schur stability of the characteristic polynomial\n\n\\[\np(z)=z^4-a z^3+b,\n\\]\n\nmeaning all its roots lie strictly inside \\(|z|<1\\).\n\nNow apply the Schur reduction. For a monic real polynomial \\(p\\) with constant term \\(c\\), all roots lie in the unit disk iff \\(|c|<1\\) and\n\n\\[\n\\frac{p(z)-c\\,p^*(z)}{z}\n\\]\n\nhas all roots in the unit disk, where \\(p^*(z)=z^n p(1/z)\\).\n\nHere\n\n\\[\np(z)=z^4-a z^3+b,\\qquad p^*(z)=1-a z+b z^4.\n\\]\n\nFirst reduction gives, up to a positive factor,\n\n\\[\nq_3(z)=z^3-Az^2+B,\n\\]\n\nwhere\n\n\\[\nA=\\frac{a}{1+b},\\qquad B=\\frac{ab}{1-b^2}.\n\\]\n\nWe need \\(0<b<1\\), \\(B<1\\), and \\(q_3\\) Schur stable. Reducing once more gives, up to a positive factor,\n\n\\[\nq_2(z)=z^2-\\frac{A}{1-B^2}z+\\frac{AB}{1-B^2}.\n\\]\n\nFor a quadratic \\(z^2+Cz+D\\), Schur stability is equivalent to\n\n\\[\n|D|<1,\\qquad 1+C+D>0,\\qquad 1-C+D>0.\n\\]\n\nHere this becomes\n\n\\[\n\\frac{AB}{1-B^2}<1,\n\\qquad\nA<1+B,\n\\]\n\nwith the third inequality automatic.\n\nSubstituting \\(A,B\\), the nontrivial conditions reduce to\n\n\\[\n0<b<1,\n\\]\n\n\\[\na<\\frac{1-b^2}{\\sqrt b},\n\\]\n\nand\n\n\\[\na(1-2b)<1-b^2.\n\\]\n\nThe last inequality is automatic for \\(b\\ge \\tfrac12\\). Comparing the two active bounds for \\(0<b<\\tfrac12\\), they are equal at \\(b=\\tfrac14\\). Therefore the stability region is\n\n\\[\n\\boxed{\n\\begin{cases}\n0<b<\\frac14,\\quad 0<a<\\dfrac{1-b^2}{1-2b},\\\\[6pt]\n\\frac14\\le b<1,\\quad 0<a<\\dfrac{1-b^2}{\\sqrt b}.\n\\end{cases}\n}\n\\]\n\nAt equality a root lies on the unit circle, so the inequalities must be strict. Thus exactly the pairs above give exponential stability.",
+  "status": "success",
+  "completed_at": "2026-09-11T08:39:53+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/aa56fd597585.json"
+}
