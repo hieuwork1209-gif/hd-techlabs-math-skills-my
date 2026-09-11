@@ -1,0 +1,22 @@
+{
+  "problem": "problem122",
+  "branch": "adversary/problem122",
+  "problem_path": "workspace/rainier-problem/problem122-matrix-decompositions-and-canonical-forms/problem.md",
+  "source_commit_sha": "d9c01e8e2497d5110d5948c0029dccde65a8ea5e",
+  "problem_blob_sha": "9dd7da76f706e36992fd97fc37061bee36655503",
+  "statement_sha256": "2cb04d70294dd634946d475805da2c71e193ad0b882b2a0b029ad832ccb6556c",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T02:37:55+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nJ_{11}(1)=I+N,\\qquad N^{11}=0.\n\\]\nThen\n\\[\nJ_{11}(1)\\otimes J_{11}(1)=I+U,\n\\]\nwhere \\(U\\) acts on\n\\[\nA=\\mathbb F_2[x,y]/(x^{11},y^{11})\n\\]\nas multiplication by\n\\[\nu=x+y+xy.\n\\]\nSo the Jordan block sizes for eigenvalue \\(1\\) are the Jordan block sizes of the nilpotent operator “multiply by \\(u\\)”.\n\nSet \\(u=x+y+xy\\). Since \\(1+x\\) is a unit,\n\\[\ny=\\frac{u+x}{1+x},\n\\]\nso \\(y^{11}=0\\) is equivalent to \\((x+u)^{11}=0\\). Hence\n\\[\nA\\simeq \\mathbb F_2[u,x]/\\bigl(x^{11},(x+u)^{11}\\bigr),\n\\]\nwith \\(u\\) acting by multiplication.\n\nOver \\(\\mathbb F_2\\),\n\\[\n(x+u)^{11}=x^{11}+ux^{10}+u^2x^9+u^3x^8+u^8x^3+u^9x^2+u^{10}x+u^{11},\n\\]\nbecause the nonzero binomial coefficients mod \\(2\\) occur at \\(0,1,2,3,8,9,10,11\\).\n\nA Gröbner reduction gives the leading constraints\n\\[\nx^{11},\\quad ux^{10},\\quad u^4x^8,\\quad u^8x^6,\\quad u^{16}.\n\\]\nThus a basis is represented by monomials with caps\n\\[\n\\begin{array}{c|c}\nx\\text{-powers} & u\\text{-length}\\\\ \\hline\nx^0,\\dots,x^5 & 16\\\\\nx^6,x^7 & 8\\\\\nx^8,x^9 & 4\\\\\nx^{10} & 1\n\\end{array}\n\\]\nso the nilpotent Jordan block sizes are\n\\[\n16,16,16,16,16,16,8,8,4,4,1.\n\\]\nThese sum to\n\\[\n6\\cdot16+2\\cdot8+2\\cdot4+1=121,\n\\]\nas required.\n\nTherefore\n\\[\n\\boxed{\nJ_{11}(1)\\otimes J_{11}(1)\n\\sim\nJ_{16}(1)^{\\oplus 6}\\oplus J_8(1)^{\\oplus 2}\\oplus J_4(1)^{\\oplus 2}\\oplus J_1(1)\n}\n\\]\nover \\(\\mathbb F_2\\).",
+  "status": "success",
+  "completed_at": "2026-09-11T02:41:00+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem122/9dd7da76f706.json"
+}
