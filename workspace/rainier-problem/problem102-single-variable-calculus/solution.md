@@ -1,150 +1,155 @@
 ## Steps
 
-Step 1: Pass to logarithmic time and determine the wave speed
+Step 1: Evaluate the quadratic Gauss sums
 
-Let
+For $k\ge2$, write
 $$
-U(t)=g(e^t),\qquad t\in\mathbb R.
-$$
-Then
-$$
-U_{tt}+cU_t+U(1-U)=0,
-$$
-with
-$$
-U(-\infty)=1,\qquad U(+\infty)=0,\qquad U_t<0,
-$$
-and
-$$
-U(0)=\frac14.
-$$
-The endpoint rates become
-$$
-\alpha=-\lim_{t\to-\infty}\frac{U_t}{1-U},
+e_k(t)=\exp\!\left(\frac{2\pi i t}{2^k}\right),
 \qquad
-\beta=-\lim_{t\to+\infty}\frac{U_t}{U},
+G_k=\sum_{x\bmod 2^k}e_k(x^2).
 $$
-where $\alpha,\beta>0$ and $\beta=2\alpha$.
+For $k\ge4$, the odd terms cancel under the translation
+$$
+x\mapsto x+2^{k-2}.
+$$
+Indeed, for odd $x$,
+$$
+(x+2^{k-2})^2-x^2\equiv2^{k-1}\pmod{2^k},
+$$
+so the exponential changes sign. For even $x=2u$,
+$$
+e_k(x^2)=e_{k-2}(u^2),
+$$
+and each residue $u\bmod 2^{k-2}$ occurs twice. Hence
+$$
+G_k=2G_{k-2}.
+$$
+Directly,
+$$
+G_2=2(1+i),
+\qquad
+G_3=2\sqrt2(1+i).
+$$
+Therefore, for every $k\ge2$,
+$$
+G_k=2^{k/2}(1+i).
+$$
 
-Set $V=1-U$ near $-\infty$. Then
+Step 2: Remove a highly divisible quartic perturbation
+
+For $a\ge3$, define
 $$
-V_{tt}+cV_t-V+V^2=0.
+J_k(a)=\sum_{x\bmod 2^k}e_k\!\left(x^2+2^a x^4\right).
 $$
-Since $V_t/V\to\alpha$,
+We claim that
 $$
-\frac{V_{tt}}V\to1-c\alpha.
+J_k(a)=G_k
 $$
-Also
+for every $k\ge2$.
+
+For $k=2,3$, the quartic term is divisible by $2^k$, so the claim is immediate. Let $k\ge4$. On odd residues, translate by $2^{k-2}$. The quadratic term changes by $2^{k-1}$ modulo $2^k$, while
 $$
-\left(\frac{V_t}{V}\right)'
-=\frac{V_{tt}}V-\left(\frac{V_t}{V}\right)^2.
+2^a\bigl((x+2^{k-2})^4-x^4\bigr)
 $$
-The left-hand ratio converges, so the right-hand side cannot tend to a nonzero constant. Hence
+is divisible by $2^k$ because $a\ge3$. Thus the odd contribution vanishes. For even $x=2u$,
 $$
-\alpha^2+c\alpha-1=0.
-$$
-Similarly, from the equation for $U$ at $+\infty$,
-$$
-\beta^2-c\beta+1=0.
-$$
-Using $\beta=2\alpha$ gives
-$$
-\frac1\alpha-\alpha=2\alpha+\frac1{2\alpha},
+x^2+2^a x^4
+=4\left(u^2+2^{a+2}u^4\right),
 $$
 so
 $$
-\alpha=\frac1{\sqrt6},
-\qquad
-\beta=\frac2{\sqrt6},
-\qquad
-c=\frac5{\sqrt6}.
+J_k(a)=2J_{k-2}(a+2).
+$$
+Induction on $k$, together with the recurrence for $G_k$, gives
+$$
+J_k(a)=2G_{k-2}=G_k.
 $$
 
-Step 2: Expose the first-order factorization
+Step 3: Evaluate the intermediate quartic sum
 
-Put
+For $n\ge4$, set
 $$
-a=\frac1{\sqrt6},
-\qquad
-z(t)=\sqrt{U(t)}.
+H_n=\sum_{y\bmod 2^n}e_n\!\left(y^2+2y^4\right).
 $$
-Then $0<z<1$, $z_t<0$, and the wave equation becomes
+Again the odd terms cancel under
 $$
-2z_t^2+2zz_{tt}+10azz_t+z^2(1-z^2)=0.
+y\mapsto y+2^{n-2}.
 $$
-Define
+For odd $y$, the quadratic part changes by $2^{n-1}$ modulo $2^n$, while
 $$
-r(t)=\frac{z_t}{z}+a(1-z).
+2\bigl((y+2^{n-2})^4-y^4\bigr)
 $$
-Using $a^2=1/6$, direct substitution simplifies the second-order equation to
+is divisible by $2^n$. Hence only even $y=2z$ contribute. Then
 $$
-r_t=-r\bigl(2r+a(1+5z)\bigr).
+y^2+2y^4=4\left(z^2+8z^4\right),
 $$
-The rate $\alpha=a$ at $-\infty$ gives
+and each residue $z\bmod 2^{n-2}$ occurs twice. Therefore
 $$
--\frac{z_t}{1-z}\to a,
-$$
-so $r(t)\to0$ as $t\to-\infty$. The rate $\beta=2a$ likewise gives $r(t)\to0$ as $t\to+\infty$.
-
-We claim that $r\equiv0$. If not, uniqueness for the scalar equation prevents $r$ from crossing zero. For all sufficiently negative $t$, we have $|r|<a/2$ and $a(1+5z)>5a$, hence
-$$
-\frac{d}{dt}\log|r|
-=-\bigl(2r+a(1+5z)\bigr)
-<-4a.
-$$
-Integrating backward would force $|r(t)|$ to grow exponentially as $t\to-\infty$, contradicting $r(t)\to0$. Therefore
-$$
-r\equiv0.
+H_n=2J_{n-2}(3)=2G_{n-2}=G_n.
 $$
 Thus
 $$
-z_t=-az(1-z).
-$$
-Separation gives
-$$
-z(t)=\frac1{1+Ke^{at}}
-$$
-for some $K>0$.
-
-Step 3: Fix the translation and return to $x$
-
-Since $U(0)=1/4$, we have $z(0)=1/2$, so $K=1$. Hence
-$$
-U(t)=\frac1{(1+e^{t/\sqrt6})^2}.
-$$
-Because $s=e^t$,
-$$
-g(s)=\frac1{\left(1+s^{1/\sqrt6}\right)^2}.
-$$
-This profile is strictly decreasing from $1$ to $0$, satisfies $g(1)=1/4$, and its endpoint logarithmic rates are $1/\sqrt6$ and $2/\sqrt6$. Direct differentiation verifies the differential equation with $c=5/\sqrt6$.
-
-Finally $s=\log x$, so
-$$
-f(x)=\frac1{\left(1+(\log x)^{1/\sqrt6}\right)^2}.
+H_n=2^{n/2}(1+i).
 $$
 
-Final Answer: $\boxed{f(x)=\frac1{\left(1+(\log x)^{1/\sqrt6}\right)^2}}$
+Step 4: Reduce the required sum to $H_{m-3}$
+
+Let
+$$
+F(x)=x^4+2x^2.
+$$
+For odd $x$, put $h=2^{m-4}$. Expanding,
+$$
+F(x+h)-F(x)
+=4xh(x^2+1)+2h^2(3x^2+1)+4xh^3+h^4.
+$$
+Since $x$ is odd,
+$$
+v_2(x^2+1)=1,
+\qquad
+v_2(3x^2+1)\ge2.
+$$
+For $m\ge7$, the first term is congruent to $2^{m-1}$ modulo $2^m$, while all remaining terms are divisible by $2^m$. Hence
+$$
+F(x+h)-F(x)\equiv2^{m-1}\pmod{2^m}.
+$$
+The translation $x\mapsto x+h$ permutes the odd residue classes, and it changes every corresponding exponential term to its negative. Thus the entire odd contribution is zero.
+
+For even $x=2y$,
+$$
+F(2y)=8\left(y^2+2y^4\right).
+$$
+As $y$ runs modulo $2^{m-1}$, each residue modulo $2^{m-3}$ occurs four times. Consequently
+$$
+S_m=4H_{m-3}.
+$$
+Using Step 3,
+$$
+S_m
+=4\cdot2^{(m-3)/2}(1+i)
+=2^{(m+1)/2}(1+i).
+$$
+
+Final Answer: $\boxed{S_m=2^{(m+1)/2}(1+i)}$
 
 ---
 
 ## Answer
 
-$f(x)=\frac1{\left(1+(\log x)^{1/\sqrt6}\right)^2}$
+$S_m=2^{(m+1)/2}(1+i)$
 
 ---
 
 ## Classification
 
-**Problem Type:** Solve for unknowns
+**Problem Type:** Exact computation
 
-**Answer Type:** Function or mapping
+**Answer Type:** Exact symbolic expression
 
 ---
 
 ## Solution Concepts
 
-- scale-invariant Fisher-KPP wave
-- logarithmic traveling-wave coordinate
-- endpoint characteristic rates
-- nonlinear first-order factorization
-- translation normalization
+- parity cancellation in two-adic exponential sums
+- stability of quadratic Gauss sums under quartic perturbations
+- quadratic Gauss sums modulo powers of two
