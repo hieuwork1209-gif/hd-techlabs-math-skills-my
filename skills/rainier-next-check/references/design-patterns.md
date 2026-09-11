@@ -8,8 +8,8 @@ Use these as mechanism families, not templates to copy literally.
 
 The visible formulation is awkward until the solver discovers a more natural representation: quotient, dual object, generating object, spectral coordinates, invariant factor, martingale, normal form, or certificate.
 
-Good difficulty: discovering why the representation is necessary.
-Bad difficulty: hiding an obvious substitution behind notation.
+Good difficulty: discovering why the representation is necessary from an intrinsic obstruction, then still having substantial work to do after the representation is found.
+Bad difficulty: expanding a standard object into awkward notation/relations so the solver must reverse-engineer it, or hiding an obvious substitution behind notation. A hidden representation is not acceptable when recognition is essentially the whole problem.
 
 ### Local-global compatibility
 
@@ -37,6 +37,18 @@ Finding a candidate is not enough. The solver must build a sharp certificate: du
 
 One invariant narrows possibilities but does not determine the answer. A second invariant interacts with it in a nontrivial way. Avoid merely listing many independent congruences/conditions.
 
+## Forward-discoverability standard
+
+Before accepting any blueprint or hardening move, apply `quality-redesign-preflight.md`.
+
+A decisive object in the solution is safe only when its first appearance can be motivated forward from the visible problem. Prefer objects that are canonical, forced by equations, extremal/universal, or standard natural representations. Reject objects first discovered by fitting coefficients until unwanted terms cancel.
+
+Difficulty should be concentrated in **reasoning depth after the gateway**, not in disguising the gateway itself. If a cleaner formulation exposes the same structure and makes the rest routine, the original blueprint is reviewer-unsafe.
+
+### No concealment hardening
+
+Never harden a solved problem by merely obscuring its successful entry point. Do not add custom generators/relations, coordinate changes, extra layers, or tuned coefficients solely to make the same standard structure less recognizable. Add a new intrinsic dependency or regenerate.
+
 ## Good source families by broad area
 
 These are prompts for invention, not prescriptions.
@@ -55,6 +67,9 @@ Retire the blueprint instead of hardening further when you see:
 - “increase `n`, degree, dimension, or matrix size” as the main difficulty move;
 - three or more nested helper definitions whose only purpose is to hide the same calculation;
 - specially chosen constants justified only because they cancel earlier terms;
+- a custom generators-and-relations presentation whose main purpose is to encode a standard algebra/representation and force the solver to decode it;
+- correction terms that are presented as inspired guesses rather than derived from an explicit condition;
+- invariants introduced in exactly the combinations needed for cancellation, with verification but no forward derivation;
 - a target coefficient pushed farther out by finite-difference/alternating sums;
 - a giant determinant whose conceptual reduction is obvious once recognized;
 - a named theorem directly matching the statement;
