@@ -1,101 +1,113 @@
 ## Steps
 
-Step 1: Compute the almost-sure exponent
+Step 1: Identify when the deterministic system is unstable
 Let
 $$
-A_1=\begin{pmatrix}-1&3\\0&-1\end{pmatrix},\qquad
-A_2=\begin{pmatrix}-1&0\\3&-1\end{pmatrix},
+S=\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad
+J=\begin{pmatrix}0&-1\\1&0\end{pmatrix},\qquad
+A=-I+aS+J.
 $$
-and let the chain jump $1\to2$ at rate $a>0$ and $2\to1$ at rate $b>0$. Put
-$$s=a+b,\qquad q=ab.$$
-Writing $z(t)=e^{-t}x(t)$ removes the common $-I$. For $r=x_2/x_1>0$, the shear system gives
+Then
 $$
-\dot r=-3r^2\quad(\sigma=1),\qquad \dot r=3\quad(\sigma=2).
+A=\begin{pmatrix}-1&a-1\\a+1&-1\end{pmatrix}.
 $$
-If $f_1,f_2$ are stationary projective densities, their forward equations imply zero stationary flux and hence $f_2=r^2f_1$. Thus
+Its characteristic equation is
 $$
-f_1=Cr^{-2}e^{-(br+a/r)/3},\qquad f_2=Ce^{-(br+a/r)/3}.
+(\lambda+1)^2=a^2-1.
 $$
-With $\xi=2\sqrt q/3$ and
+If $0<a\le1$, both eigenvalues have real part $-1$. If $a>1$, the larger eigenvalue is
 $$
-K_\nu(\xi)=\frac12\int_0^\infty u^{\nu-1}e^{-\frac\xi2(u+u^{-1})}\,du,
+-1+\sqrt{a^2-1}.
 $$
-normalization gives
+Hence the deterministic system $\dot z=Az$ is exponentially stable exactly when $a<\sqrt2$. Therefore it is not exponentially stable exactly when
 $$
-C=\frac{\sqrt q}{2sK_1(\xi)}.
-$$
-Also, in either mode,
-$$
-\frac d{dt}\log\|x\|_2=3\frac{r}{1+r^2},
-$$
-so ergodicity yields
-$$
-\lambda_{\rm sh}
-=\frac{3\sqrt q}{s}\frac{K_0(\xi)}{K_1(\xi)}.
-$$
-Therefore the original system is almost surely exponentially stable exactly when
-$$
-3\sqrt q\,K_0\left(\frac{2\sqrt q}{3}\right)
-<sK_1\left(\frac{2\sqrt q}{3}\right).
-$$
-The fundamental matrices of the shear system are nonnegative, so the exponent obtained from a positive vector controls the operator norm and hence every deterministic initial state.
-
-Step 2: Compute the mean-square threshold
-For the shear system define conditional second moments $u_i,v_i,w_i$ corresponding to $x_1^2,x_1x_2,x_2^2$. They satisfy
-$$
-\frac d{dt}
-\begin{pmatrix}u_1\\v_1\\w_1\\u_2\\v_2\\w_2\end{pmatrix}
-=
-\begin{pmatrix}
--a&6&0&b&0&0\\
-0&-a&3&0&b&0\\
-0&0&-a&0&0&b\\
-a&0&0&-b&0&0\\
-0&a&0&3&-b&0\\
-0&0&a&0&6&-b
-\end{pmatrix}
-\begin{pmatrix}u_1\\v_1\\w_1\\u_2\\v_2\\w_2\end{pmatrix}.
-$$
-This matrix is irreducible Metzler, so its spectral abscissa is a real Perron eigenvalue $\lambda_*>0$. Set
-$$d=\lambda_*(\lambda_*+s).$$
-The Perron eigenvalue equations give
-$$
-du_2=6av_1,\qquad dw_1=6bv_2,
-$$
-$$
-(\lambda_*+a)v_1=b\left(1+\frac{18}{d}\right)v_2,
-\qquad
-(\lambda_*+b)v_2=a\left(1+\frac{18}{d}\right)v_1.
-$$
-Multiplying the last two equations and using $(\lambda_*+a)(\lambda_*+b)=d+q$ gives
-$$
-d^3=36q(d+9).
-$$
-The left side minus the right side has exactly one positive zero. Since $d=\lambda(\lambda+s)$ increases for $\lambda\ge0$, and $z=e^{-t}x$, mean-square exponential stability is equivalent to $\lambda_*<2$. Substituting $\lambda=2$ gives
-$$
-\lambda_*<2
-\iff 2(s+2)^3>9q(2s+13).
-$$
-Hence mean-square exponential stability fails exactly when
-$$
-9q(2s+13)\ge2(s+2)^3.
+a\ge\sqrt2.
 $$
 
-Step 3: Combine the two criteria
-We require almost-sure exponential stability but failure of mean-square exponential stability. Therefore, with $s=a+b$ and $q=ab$, the exact region is
+Step 2: Reduce the stochastic growth rate to an angular diffusion
+Consider
 $$
-a,b>0,\qquad 9q(2s+13)\ge2(s+2)^3,
+dZ_t=AZ_t\,dt+bJZ_t\circ dW_t,
+\qquad b>0.
+$$
+For a nonzero solution write
+$$
+Z_t=r_t(\cos\theta_t,\sin\theta_t)^T.
+$$
+Because Stratonovich calculus obeys the ordinary chain rule, $J$ is purely rotational, and $S$ is symmetric,
+$$
+d\log r_t=(-1+a\sin2\theta_t)\,dt,
 $$
 $$
-3\sqrt qK_0(2\sqrt q/3)<sK_1(2\sqrt q/3).
+d\theta_t=(1+a\cos2\theta_t)\,dt+b\,dW_t.
 $$
-Final Answer: $\boxed{\{(a,b):a,b>0,9q(2s+13)\ge2(s+2)^3,3\sqrt qK_0(2\sqrt q/3)<sK_1(2\sqrt q/3)\}}$
+Set
+$$
+X_t=2\theta_t\pmod{2\pi}.
+$$
+Then
+$$
+dX_t=2(1+a\cos X_t)\,dt+2b\,dW_t.
+$$
+This is a nondegenerate diffusion on the circle, so it has a unique invariant probability law and is ergodic from every initial angle.
+
+Step 3: Compute the stationary first Fourier moment
+Let
+$$
+m_n=\mathbb E_{\rm stat}(e^{inX}),\qquad n\ge0,
+$$
+so $m_0=1$. The generator is
+$$
+\mathcal L f=2(1+a\cos x)f'(x)+2b^2f''(x).
+$$
+Applying stationarity to $e^{inx}$ gives, for $n\ge1$,
+$$
+a(m_{n+1}+m_{n-1})+2(1+ib^2n)m_n=0.
+$$
+Put
+$$
+\kappa=\frac{a}{b^2},\qquad \delta=\frac1{b^2}.
+$$
+Using the modified-Bessel recurrence
+$$
+I_{\nu-1}(\kappa)-I_{\nu+1}(\kappa)
+=\frac{2\nu}{\kappa}I_\nu(\kappa),
+$$
+one checks that the bounded solution of the moment recurrence with $m_0=1$ is
+$$
+m_n=i^n\frac{I_{n-i\delta}(\kappa)}{I_{-i\delta}(\kappa)}.
+$$
+Indeed this sequence satisfies the recurrence, and the second independent recurrence solution grows with $n$, whereas stationary Fourier moments satisfy $|m_n|\le1$.
+
+Thus
+$$
+m_1=i\frac{I_{1-i/b^2}(a/b^2)}{I_{-i/b^2}(a/b^2)},
+$$
+and hence
+$$
+\mathbb E_{\rm stat}(\sin X)
+=\operatorname{Im}m_1
+=\operatorname{Re}\frac{I_{1-i/b^2}(a/b^2)}{I_{-i/b^2}(a/b^2)}.
+$$
+
+Step 4: Compute the top Lyapunov exponent and combine the conditions
+By the ergodic theorem applied to the angular diffusion,
+$$
+\lim_{t\to\infty}\frac1t\log\frac{\|Z_t\|}{\|Z_0\|}
+=-1+a\operatorname{Re}\frac{I_{1-i/b^2}(a/b^2)}{I_{-i/b^2}(a/b^2)}
+$$
+almost surely for every deterministic $Z_0\ne0$. Therefore the stochastic origin is almost surely exponentially stable exactly when
+$$
+a\operatorname{Re}\frac{I_{1-i/b^2}(a/b^2)}{I_{-i/b^2}(a/b^2)}<1.
+$$
+Combining this with the deterministic instability condition $a\ge\sqrt2$ gives the required region.
+Final Answer: $\boxed{\{(a,b):a\ge\sqrt2,b>0,a\Re[I_{1-i/b^2}(a/b^2)/I_{-i/b^2}(a/b^2)]<1\}}$
 
 ---
 
 ## Answer
 
-$\{(a,b):a,b>0,9q(2s+13)\ge2(s+2)^3,3\sqrt qK_0(2\sqrt q/3)<sK_1(2\sqrt q/3)\}$
+$\{(a,b):a\ge\sqrt2,b>0,a\Re[I_{1-i/b^2}(a/b^2)/I_{-i/b^2}(a/b^2)]<1\}$
 
 ---
 
@@ -109,11 +121,11 @@ $\{(a,b):a,b>0,9q(2s+13)\ge2(s+2)^3,3\sqrt qK_0(2\sqrt q/3)<sK_1(2\sqrt q/3)\}$
 
 ## Solution Concepts
 
-- Markov jump linear systems
-- projective piecewise-deterministic processes
-- almost-sure Lyapunov exponents
-- mean-square stability
-- modified Bessel functions
+- Stratonovich linear stochastic systems
+- noise-induced stabilization
+- angular diffusions
+- Fourier moment recurrences
+- modified Bessel functions of complex order
 
 ---
 
