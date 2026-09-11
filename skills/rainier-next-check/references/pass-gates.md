@@ -26,7 +26,9 @@ Reject when difficulty mainly comes from:
 - nested helper symbols hiding a custom integrand or matrix;
 - many special cases/indices that only increase bookkeeping;
 - large determinants/matrices or high-degree expressions used only as computational burden;
-- long mechanical expansions after the key idea is already obvious.
+- long mechanical expansions after the key idea is already obvious;
+- a verbose custom presentation of a standard object whose main purpose is to conceal the standard structure;
+- families of relations or coefficients that are natural only because the intended solution later makes them cancel.
 
 Diagnostic questions:
 
@@ -35,10 +37,36 @@ Diagnostic questions:
 3. Does each parameter have a conceptual role?
 4. Is the difficulty a new idea or just more work?
 5. Could a simpler formulation preserve the same conceptual obstacle?
+6. If the decisive hidden structure were stated directly, would meaningful difficulty remain?
 
 Several unfavorable answers -> redesign.
 
-## Gate C — Difficulty architecture
+## Gate C — Forward provenance / anti-reverse-engineering
+
+Pass only if every decisive non-obvious object introduced in the solution has a forward discovery path from the visible problem. Apply `quality-redesign-preflight.md`.
+
+For each correction, substitution, invariant, auxiliary matrix/function, coefficient choice, or normal form, the solution must make clear:
+
+- what visible obstruction/equation/symmetry triggers the search for it;
+- how it is derived rather than guessed;
+- why the choice is canonical, forced, extremal, universal, or otherwise intrinsic;
+- what later reasoning node genuinely depends on it.
+
+Automatic rejection signals:
+
+- `GUESSED_TO_CANCEL`;
+- `FIT_TO_TARGET`;
+- `COEFFICIENT_TUNED`;
+- `BACKSOLVED_FROM_FINAL_ANSWER`;
+- a custom generators-and-relations encoding used mainly to hide a standard algebra or representation;
+- defining several special invariant combinations first and only afterwards checking that all brackets/terms cancel;
+- a hardening move whose main effect is to make the same successful representation harder to recognize.
+
+Use the compression test: rewrite the problem using the decisive structure found in the solution. If the statement becomes dramatically shorter and the remaining mathematics becomes routine, reject the encoded version.
+
+A hidden representation may pass only when it is forced by an intrinsic obstruction and at least two load-bearing reasoning nodes remain after discovery.
+
+## Gate D — Difficulty architecture
 
 A strong candidate should force all of:
 
@@ -50,7 +78,7 @@ A strong candidate should force all of:
 
 Reject recognize-theorem-apply-simplify problems even if the final algebra is lengthy.
 
-## Gate D — Ground-truth correctness
+## Gate E — Ground-truth correctness
 
 Pass only if the solution independently establishes:
 
@@ -63,7 +91,7 @@ Pass only if the solution independently establishes:
 
 For asymptotics/limits, check uniformity or continuity hypotheses whenever they are load-bearing.
 
-## Gate E — Reviewer completeness
+## Gate F — Reviewer completeness
 
 Use a hostile standard: if a reviewer can reasonably write “asserted without derivation,” strengthen the proof before promotion.
 
@@ -97,7 +125,7 @@ This phrase is acceptable only for low-risk arithmetic. If the calculation deter
 
 State why inversion, determinant, log, sum/integral interchange, differentiation, expectation, or limiting operations are valid in the required neighborhood/range.
 
-## Gate F — Solver evidence integrity
+## Gate G — Solver evidence integrity
 
 Pass local difficulty only if the exact statement blob was measured once with the intended solver settings and the result is one of:
 
@@ -113,7 +141,7 @@ Do not count:
 - repeated attempts on the same blob;
 - a custom easier solver configuration unless the user explicitly chose it and the deviation is reported.
 
-## Gate G — Portal format
+## Gate H — Portal format
 
 Before promotion ensure at least:
 
@@ -128,7 +156,7 @@ Before promotion ensure at least:
 
 Use current repository/portal limits when they differ from historical values.
 
-## Gate H — Originality and corpus distance
+## Gate I — Originality and corpus distance
 
 The problem may reuse a mathematical theme, but not the distinctive statement skeleton, constants, notation, or solution sequence of an existing corpus item.
 
