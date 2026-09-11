@@ -1,217 +1,179 @@
 ## Steps
 
-Step 1: Prove the covering has degree $mn$
+Step 1: Compute the genus of the generic fiber
 
-Let
+Put
+$$
+d=\gcd(m,n),
+\qquad
+\ell=\operatorname{lcm}(m,n)=\frac{mn}{d},
+\qquad
+h=\gcd(\ell,2).
+$$
+Fix $\lambda\in\mathbb C^\times\setminus\{1\}$ and let
 $$
 F=\mathbb C(x),
-$$
-and let
-$$
-K=F(y,z),
 \qquad
+K_\lambda=F(y,z),
+$$
+with
+$$
 y^m=x(x-1),
 \qquad
-z^n=x(x-\lambda),
+z^n=x(x-\lambda).
 $$
-where $m,n\ge2$ and $\lambda\in\mathbb C\setminus\{0,1\}$. Let $C$ be the smooth projective curve with function field $K$.
-
-First consider $F(y)/F$. At the $x=0$ valuation $v_0$,
+At $x=0$, the first radicand has valuation $1$, so $[F(y):F]=m$. At $x=\lambda$, the $y$-cover is unramified because $x(x-1)$ is a nonzero unit there, whereas $x(x-\lambda)$ has valuation $1$. Hence adjoining $z$ over $F(y)$ has degree $n$. Therefore
 $$
-v_0(x(x-1))=1.
-$$
-If $P$ is a place above $v_0$ with ramification index $e_P$, then
-$$
-m\,v_P(y)=v_P(x(x-1))=e_P.
-$$
-Hence $m\mid e_P$. Since always
-$$
-e_P\le [F(y):F]\le m,
-$$
-we get
-$$
-[F(y):F]=m.
+[K_\lambda:F]=mn.
 \tag{1}
 $$
-
-At $x=\lambda$, the equation for $y$ has a nonzero unit on the right-hand side. Because the residue field is $\mathbb C$ and the characteristic is $0$, the $y$-cover is unramified there. Thus at every place $Q$ of $F(y)$ over $x=\lambda$,
+The independent root-of-unity actions on $y$ and $z$ give a Galois group
 $$
-v_Q(x(x-\lambda))=1.
-$$
-For a place $R$ of $K$ above such a $Q$, the equation $z^n=x(x-\lambda)$ gives
-$$
-n\,v_R(z)=e(R/Q).
-$$
-Therefore $n\mid e(R/Q)$, and hence
-$$
-[K:F(y)]=n.
+G\cong \mathbb Z/m\mathbb Z\times\mathbb Z/n\mathbb Z.
 \tag{2}
 $$
-Combining (1)-(2),
+
+The branch points are $0,1,\lambda,\infty$. At $0$ the simultaneous valuation vector is $(1,1)$, so
 $$
-[K:F]=mn.
+e_0=\ell.
 \tag{3}
 $$
-Moreover the automorphisms
+At $1$ and $\lambda$ only one cover ramifies, giving
 $$
-y\mapsto \zeta_m^a y,
+e_1=m,
 \qquad
-z\mapsto \zeta_n^b z
-$$
-for $a\in\mathbb Z/m\mathbb Z$ and $b\in\mathbb Z/n\mathbb Z$ give $mn$ distinct $F$-automorphisms. Hence the map
-$$
-x:C\longrightarrow\mathbb P^1
-$$
-is Galois with group
-$$
-\mathbb Z/m\mathbb Z\times\mathbb Z/n\mathbb Z.
+e_\lambda=n.
 \tag{4}
 $$
-
-Step 2: Compute the finite inertia groups
-
-For a Kummer equation $u^r=h(x)$ in characteristic $0$, a small loop around a point where $h$ has valuation $s$ acts by
-$$
-u\mapsto \zeta_r^s u.
-$$
-Thus for the two simultaneous equations, the local inertia generator is determined by the pair of valuations of the two right-hand sides.
-
-At $x=0$, both valuations equal $1$, so the inertia generator is
-$$
-(1,1)\in \mathbb Z/m\mathbb Z\times\mathbb Z/n\mathbb Z.
-$$
-Its order is
-$$
-e_0=\operatorname{lcm}(m,n)=\frac{mn}{d},
-\qquad d:=\gcd(m,n).
-\tag{5}
-$$
-At $x=1$, only the first cover ramifies, so
-$$
-e_1=m.
-\tag{6}
-$$
-At $x=\lambda$, only the second cover ramifies, so
-$$
-e_\lambda=n.
-\tag{7}
-$$
-No other finite point ramifies, because away from $0,1,\lambda$ both right-hand sides are units and hence have local $m$-th and $n$-th roots after passing to the completed local field.
-
-Step 3: Compute the inertia at infinity and expose the parity transition
-
-Put $t=1/x$. Then near $t=0$,
-$$
-x(x-1)=t^{-2}(1-t),
-$$
-$$
-x(x-\lambda)=t^{-2}(1-\lambda t).
-$$
-Therefore the inertia generator at infinity is
-$$
-(-2,-2),
-$$
-whose order is
+At infinity both radicands have valuation $-2$, so
 $$
 e_\infty
 =\operatorname{lcm}\left(\frac{m}{\gcd(m,2)},\frac{n}{\gcd(n,2)}\right).
+\tag{5}
+$$
+The odd prime powers in this least common multiple are the same as those of $\ell$, while its $2$-adic exponent is lower by one exactly when $\ell$ is even. Thus
+$$
+e_\infty=\frac{\ell}{h}.
+\tag{6}
+$$
+
+For a Galois cover of degree $D$, a branch point of inertia order $e$ contributes
+$$
+D-\frac De
+$$
+to the ramification sum. With $D=mn$, equations (3)-(6) give
+$$
+\frac D{e_0}=d,
+\qquad
+\frac D{e_1}=n,
+\qquad
+\frac D{e_\lambda}=m,
+\qquad
+\frac D{e_\infty}=dh.
+$$
+Riemann-Hurwitz yields
+$$
+2g(C_\lambda)-2
+=-2mn+4mn-(d+n+m+dh),
+$$
+so
+$$
+g(C_\lambda)
+=1+mn-\frac{m+n+d(1+h)}2.
+\tag{7}
+$$
+
+Step 2: Normalize the collision fiber at $\lambda=1$
+
+Now let $\lambda=1$. Then both equations have the same radicand
+$$
+f=x(x-1):
+\qquad
+y^m=f,
+\qquad
+z^n=f.
+$$
+The generic degree argument no longer applies because the two cyclic extensions intersect.
+
+Set
+$$
+a=\frac{\ell}{m}=\frac nd,
+\qquad
+b=\frac{\ell}{n}=\frac md.
+$$
+Since $\gcd(a,b)=1$, choose integers $r,s$ with
+$$
+ar+bs=1.
 \tag{8}
 $$
-If $mn$ is odd, then both $m,n$ are odd, so
+Define in $K_1=F(y,z)$
 $$
-e_\infty=\operatorname{lcm}(m,n)=\frac{mn}{d}.
+u=y^r z^s.
+$$
+Then
+$$
+u^\ell
+=(y^m)^{r\ell/m}(z^n)^{s\ell/n}
+=f^{ar+bs}=f.
 \tag{9}
 $$
-If $mn$ is even, write
+Conversely,
 $$
-m=2^a m_0,
+\left(\frac{y}{u^a}\right)^m=1,
 \qquad
-n=2^b n_0,
+\left(\frac{z}{u^b}\right)^n=1.
 $$
-with $m_0,n_0$ odd and $\max(a,b)\ge1$. Passing from $m,n$ to $m/\gcd(m,2),n/\gcd(n,2)$ lowers the maximum $2$-adic exponent in their least common multiple by exactly one and leaves every odd prime exponent unchanged. Hence
+Because the constant field is $\mathbb C$, both ratios are constants that are roots of unity. Hence
 $$
-e_\infty
-=\frac{\operatorname{lcm}(m,n)}2
-=\frac{mn}{2d}.
+K_1=F(u),
+\qquad
+u^\ell=x(x-1).
 \tag{10}
 $$
-Equivalently, the number of points of $C$ above infinity is
+Thus the collision fiber is not a degree-$mn$ fiber product after normalization: it is the single Kummer cover of degree $\ell$.
+
+Step 3: Compute the genus of the collision fiber
+
+For the Kummer cover (10), the radicand has valuations
 $$
-\frac{mn}{e_\infty}
-=
-\begin{cases}
-d,&mn\text{ odd},\\
-2d,&mn\text{ even}.
-\end{cases}
+1,\quad 1,\quad -2
+$$
+at $0,1,\infty$. Therefore the inertia orders are
+$$
+\ell,\qquad \ell,\qquad \frac{\ell}{h}.
 \tag{11}
 $$
-
-Step 4: Apply Riemann-Hurwitz with the exact inertia data
-
-For a Galois cover of degree $D$ over $\mathbb P^1$, a branch point with inertia order $e$ contributes
+Applying Riemann-Hurwitz to the degree-$\ell$ map $C_1\to\mathbb P^1$ gives
 $$
-\frac{D}{e}(e-1)=D-\frac De
+2g(C_1)-2
+=-2\ell+(\ell-1)+(\ell-1)+(\ell-h)
+=\ell-2-h.
 $$
-to the ramification sum. Here $D=mn$.
-
-From (5)-(7), the three finite contributions are
+Hence
 $$
-mn-d,
-\qquad
-mn-n,
-\qquad
-mn-m.
+g(C_1)=\frac{\ell-h}{2}.
 \tag{12}
 $$
-At infinity, by (11), the contribution is
-$$
-\begin{cases}
-mn-d,&mn\text{ odd},\\
-mn-2d,&mn\text{ even}.
-\end{cases}
-\tag{13}
-$$
-Riemann-Hurwitz therefore gives
-$$
-2g(C)-2
-=-2mn+\sum_P\left(mn-\frac{mn}{e_P}\right).
-\tag{14}
-$$
-If $mn$ is odd, (12)-(14) yield
-$$
-2g(C)-2
-=2mn-m-n-2d,
-$$
-so
-$$
-g(C)=1+mn-\frac{m+n+2d}{2}.
-\tag{15}
-$$
-If $mn$ is even, they yield
-$$
-2g(C)-2
-=2mn-m-n-3d,
-$$
-so
-$$
-g(C)=1+mn-\frac{m+n+3d}{2}.
-\tag{16}
-$$
 
-Step 5: Combine the two regimes
+Step 4: Compute the genus drop
 
-Let $\mathbf 1_{2\mid mn}$ be $1$ when $mn$ is even and $0$ otherwise. Since $d=\gcd(m,n)$, equations (15)-(16) combine as
+Define
 $$
-g(C)
+\Delta_{m,n}=g(C_\lambda)-g(C_1)
+\qquad(\lambda\ne1).
+$$
+Subtracting (12) from (7) gives
+$$
+\Delta_{m,n}
 =1+mn-
-\frac{m+n+\bigl(2+\mathbf 1_{2\mid mn}\bigr)\gcd(m,n)}{2}.
+\frac{m+n+d(1+h)+\ell-h}{2}.
 $$
-The parameter $\lambda$ affects the locations of the distinct finite branch points but not their inertia orders, so the genus is independent of $\lambda$ as long as $\lambda\ne0,1$.
+This is independent of the chosen generic parameter $\lambda\in\mathbb C^\times\setminus\{1\}$, because all such fibers have the same branch and inertia pattern.
 
 ## Solution Concepts
 
-- Kummer covers and exact extension degree from local valuations.
-- Simultaneous inertia in a fiber product, including the parity change at infinity.
-- Riemann-Hurwitz with Galois ramification contributions.
+- Kummer composita and simultaneous inertia in the generic fiber.
+- Degree collapse under collision of branch data via a Bezout reconstruction of the common radical.
+- Riemann-Hurwitz comparison of generic and normalized collision fibers.
 
-Final Answer: $\displaystyle 1+mn-\frac{m+n+(2+\mathbf1_{2\mid mn})\gcd(m,n)}2$.
+Final Answer: $\displaystyle 1+mn-\frac{m+n+d(1+h)+\ell-h}{2}$.
