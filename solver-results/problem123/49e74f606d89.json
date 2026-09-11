@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-random-variables-and-distributions/problem.md",
+  "source_commit_sha": "d0ec9877aa59038ac3bc578eadc8938a61dbdf27",
+  "problem_blob_sha": "49e74f606d8911252fed6ae4e278f4f96106385c",
+  "statement_sha256": "0ff004e92e75b23ab656c6f09a7fb6d81f9e77d2827b88a28664cbd21973b934",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T11:21:19+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nf(x)=\\frac1{1+tx},\\qquad S=2a+1.\n\\]\nThe two extremal distributions are:\n\n\\[\n\\nu_{\\min}=\\frac12\\delta_{\\frac12-\\frac1{2\\sqrt S}}\n+\\frac12\\delta_{\\frac12+\\frac1{2\\sqrt S}},\n\\]\nand\n\\[\n\\nu_{\\max}=\\frac1{2S}\\delta_0+\\frac{S-1}{S}\\delta_{1/2}\n+\\frac1{2S}\\delta_1.\n\\]\n\nBoth have the required first three moments. For example, for \\(\\nu_{\\min}\\), writing\n\\[\nX=\\frac12\\pm \\frac1{2\\sqrt S}\n\\]\nwith equal probabilities gives\n\\[\nEX=\\frac12,\\qquad\nEX^2=\\frac14+\\frac1{4S}=\\frac{a+1}{2(2a+1)},\n\\]\nand\n\\[\nEX^3=\\frac18+\\frac{3}{8S}=\\frac{a+2}{4(2a+1)}.\n\\]\nThe verification for \\(\\nu_{\\max}\\) is immediate from its three atoms.\n\nNow we prove sharpness. Since\n\\[\nf^{(4)}(x)=\\frac{24t^4}{(1+tx)^5}>0,\n\\]\nHermite interpolation gives useful one-sided cubic bounds.\n\nFor the two interior nodes\n\\[\nu=\\frac12-\\frac1{2\\sqrt S},\\qquad v=\\frac12+\\frac1{2\\sqrt S},\n\\]\nlet \\(P\\) be the cubic Hermite interpolant satisfying\n\\[\nP(u)=f(u),\\quad P'(u)=f'(u),\\quad P(v)=f(v),\\quad P'(v)=f'(v).\n\\]\nThe Hermite remainder is\n\\[\nf(x)-P(x)=\\frac{f^{(4)}(\\xi)}{4!}(x-u)^2(x-v)^2\\ge 0,\n\\]\nso \\(P\\le f\\) on \\([0,1]\\). Since every admissible \\(X\\) has the same first three moments,\n\\[\nEf(X)\\ge EP(X)=\\int P\\,d\\nu_{\\min}=\\int f\\,d\\nu_{\\min}.\n\\]\nThus \\(\\nu_{\\min}\\) attains the infimum.\n\nSimilarly, let \\(Q\\) be the cubic Hermite interpolant satisfying\n\\[\nQ(0)=f(0),\\quad Q(1/2)=f(1/2),\\quad Q'(1/2)=f'(1/2),\\quad Q(1)=f(1).\n\\]\nThen\n\\[\nf(x)-Q(x)=\\frac{f^{(4)}(\\xi)}{4!}x\\left(x-\\frac12\\right)^2(x-1)\\le 0\n\\]\non \\([0,1]\\), so \\(Q\\ge f\\). Hence\n\\[\nEf(X)\\le EQ(X)=\\int Q\\,d\\nu_{\\max}=\\int f\\,d\\nu_{\\max},\n\\]\nand \\(\\nu_{\\max}\\) attains the supremum.\n\nCompute the two values:\n\\[\n\\inf E\\frac1{1+tX}\n=\n\\frac{1+t/2}{(1+t/2)^2-\\frac{t^2}{4S}},\n\\]\nand\n\\[\n\\sup E\\frac1{1+tX}\n=\n\\frac{t^2+4St+4S}{2S(1+t)(2+t)}.\n\\]\nSubtracting gives\n\\[\n\\Delta_a(t)\n=\n\\frac{(S-1)t^4}{2S(1+t)(2+t)\\big((S-1)t^2+4St+4S\\big)}.\n\\]\nSince \\(S=2a+1\\), this is\n\n\\[\n\\boxed{\n\\Delta_a(t)=\n\\frac{a t^4}{(2a+1)(1+t)(2+t)\\left(2a t^2+4(2a+1)t+4(2a+1)\\right)}\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T11:23:11+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/49e74f606d89.json"
+}

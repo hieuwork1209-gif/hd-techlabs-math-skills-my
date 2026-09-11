@@ -1,9 +1,9 @@
 {
   "problem": "problem123",
   "branch": "adversary/problem123",
-  "problem_path": "workspace/rainier-problem/problem123-joint-distributions-and-dependence/problem.md",
-  "problem_blob_sha": "8838ee73f40f737e5a257efcab7cbc1ed30c70b7",
-  "source_commit_sha": "8f3ae9aa6a2348804940643095f7153c5fe07d28",
+  "problem_path": "workspace/rainier-problem/problem123-random-variables-and-distributions/problem.md",
+  "problem_blob_sha": "49e74f606d8911252fed6ae4e278f4f96106385c",
+  "source_commit_sha": "d0ec9877aa59038ac3bc578eadc8938a61dbdf27",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-11T11:11:35+00:00",
-  "result_file": "solver-results/problem123/8838ee73f40f.json"
+  "completed_at": "2026-09-11T11:23:11+00:00",
+  "result_file": "solver-results/problem123/49e74f606d89.json"
 }
