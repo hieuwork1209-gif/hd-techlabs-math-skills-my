@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "b6bbea0139d1634504ed6c1857e5efde24247509",
+  "problem_blob_sha": "c40a6afe3975742c4f2a2732dbc6c62415e7d1a9",
+  "statement_sha256": "ffb5f06477df9183951315b3c04d7e082aef7af16dddc9c2d14601059e242abc",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T06:55:25+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "The zero solution is globally asymptotically stable exactly for\n\\[\n\\boxed{\\{(a,b):0<a\\le 1,\\ b>0\\}\\ \\cup\\ \\left\\{(a,b):a>1,\\ 0<b<\\frac{\\arccos(-1/a)}{\\sqrt{a^2-1}}\\right\\}.}\n\\]\n\nHere is the derivation.\n\nThe characteristic equation of\n\\[\n\\dot x(t)=-x(t)-a x(t-b)\n\\]\nis\n\\[\n\\lambda+1+a e^{-\\lambda b}=0.\n\\]\nFor a scalar linear retarded delay equation, the zero solution is globally asymptotically stable in the history sup norm iff every root of this characteristic equation has negative real part.\n\nSo we determine exactly when roots cross the imaginary axis.\n\nLet \\(\\lambda=i\\omega\\), with \\(\\omega\\in\\mathbb R\\). Then\n\\[\ni\\omega+1+a(\\cos \\omega b-i\\sin \\omega b)=0,\n\\]\nso\n\\[\n1+a\\cos(\\omega b)=0,\\qquad \\omega-a\\sin(\\omega b)=0.\n\\]\nThus\n\\[\n\\cos(\\omega b)=-\\frac1a.\n\\]\nThis has no solution if \\(0<a<1\\). For \\(a=1\\), it would require \\(\\cos(\\omega b)=-1\\), hence \\(\\sin(\\omega b)=0\\), forcing \\(\\omega=0\\), but \\(\\lambda=0\\) is not a root since \\(1+a=2\\). Hence no imaginary-axis roots occur for \\(0<a\\le1\\). Since at \\(b=0\\) the characteristic equation is \\(\\lambda+1+a=0\\), stable, the equation remains stable for all \\(b>0\\) when \\(a\\le1\\).\n\nNow assume \\(a>1\\). Then imaginary roots occur when\n\\[\n\\omega^2=a^2\\sin^2(\\omega b)=a^2-1,\n\\]\nso\n\\[\n\\omega=\\sqrt{a^2-1}.\n\\]\nThe first positive crossing occurs at\n\\[\n\\omega b=\\arccos(-1/a),\n\\]\nbecause this angle lies in \\((\\pi/2,\\pi)\\) and has positive sine. Therefore the first stability boundary is\n\\[\nb=\\frac{\\arccos(-1/a)}{\\sqrt{a^2-1}}.\n\\]\nFor \\(b\\) below this value all characteristic roots remain in the open left half-plane. At equality there are purely imaginary roots, so asymptotic stability fails. For larger \\(b\\), a conjugate pair has crossed into the right half-plane, so stability fails.\n\nThus the exact stability region is\n\\[\n\\boxed{\n0<a\\le1,\\ b>0\n\\quad\\text{or}\\quad\na>1,\\ 0<b<\\frac{\\arccos(-1/a)}{\\sqrt{a^2-1}}.\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T06:56:01+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/c40a6afe3975.json"
+}
