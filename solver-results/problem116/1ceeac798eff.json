@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "809b95121f2503f1fd7ea0c867a894f44358387e",
+  "problem_blob_sha": "1ceeac798eff2aa42acb57d0c7489514842695d5",
+  "statement_sha256": "21c86d41445fcf67cd9043dc9789f60f7791bd15219b385bd32fbf9c5c252c61",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T07:07:44+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "The origin is uniformly globally exponentially stable under arbitrary switching exactly when\n\n\\[\n\\boxed{ab<4.}\n\\]\n\nLet\n\n\\[\nN_1=\\begin{pmatrix}0&a\\\\0&0\\end{pmatrix},\\qquad\nN_2=\\begin{pmatrix}0&0\\\\b&0\\end{pmatrix},\n\\]\n\nso \\(A_i=-I+N_i\\). Put \\(x(t)=e^t z(t)\\). Then\n\n\\[\n\\dot x(t)=N_{\\sigma(t)}x(t).\n\\]\n\nNow rescale coordinates. Let \\(p=\\sqrt{ab}\\) and take \\(D=\\operatorname{diag}(\\sqrt b,\\sqrt a)\\). For \\(y=Dx\\),\n\n\\[\n\\dot y(t)=pB_{\\sigma(t)}y(t),\n\\]\n\nwhere\n\n\\[\nB_1=\\begin{pmatrix}0&1\\\\0&0\\end{pmatrix},\n\\qquad\nB_2=\\begin{pmatrix}0&0\\\\1&0\\end{pmatrix}.\n\\]\n\nFor either mode,\n\n\\[\n\\frac{d}{dt}\\|y\\|^2\n=2p\\,y_1y_2\n\\le p(y_1^2+y_2^2)\n=p\\|y\\|^2.\n\\]\n\nHence\n\n\\[\n\\|y(t)\\|\\le e^{pt/2}\\|y(0)\\|.\n\\]\n\nReturning to \\(z\\),\n\n\\[\n\\|z(t)\\|\n\\le \\|D^{-1}\\|\\|D\\|\\,e^{-(1-p/2)t}\\|z(0)\\|.\n\\]\n\nThus if \\(p<2\\), i.e. \\(ab<4\\), the system is uniformly globally exponentially stable.\n\nIt remains to show this condition is sharp. Consider periodic switching with equal small dwell time \\(\\varepsilon\\). For the \\(y\\)-system, one period gives\n\n\\[\ne^{p\\varepsilon B_1}e^{p\\varepsilon B_2}\n=\n\\begin{pmatrix}\n1+p^2\\varepsilon^2&p\\varepsilon\\\\\np\\varepsilon&1\n\\end{pmatrix}.\n\\]\n\nIts spectral radius satisfies\n\n\\[\n\\frac{1}{2\\varepsilon}\\log\\rho\\!\\left(e^{p\\varepsilon B_1}e^{p\\varepsilon B_2}\\right)\n\\to \\frac p2\n\\qquad(\\varepsilon\\to0).\n\\]\n\nFor the original \\(z\\)-system, the exponential factor \\(-I\\) subtracts \\(1\\), so the achievable growth rate tends to\n\n\\[\n\\frac p2-1.\n\\]\n\nIf \\(p>2\\), this gives exponential growth for some switching signal, so stability fails. If \\(p=2\\), the decay rates can be made arbitrarily close to \\(0\\), so no uniform exponential rate \\(\\gamma>0\\) can hold.\n\nTherefore the required set is\n\n\\[\n\\boxed{\\{(a,b):a>0,\\ b>0,\\ ab<4\\}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T07:08:36+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/1ceeac798eff.json"
+}
