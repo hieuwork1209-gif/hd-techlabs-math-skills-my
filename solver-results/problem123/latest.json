@@ -1,9 +1,9 @@
 {
   "problem": "problem123",
   "branch": "adversary/problem123",
-  "problem_path": "workspace/rainier-problem/problem123-commutative-algebra/problem.md",
-  "problem_blob_sha": "4870bdf661ec4e0507dc8b464ff04fef2fdfcf91",
-  "source_commit_sha": "ddb15259a6dae5b503dd4069401e8851efd7f72b",
+  "problem_path": "workspace/rainier-problem/problem123-galois-theory/problem.md",
+  "problem_blob_sha": "45793123e76381c7f0ed9a977c2001e0ddd78e62",
+  "source_commit_sha": "59310a720e9d262cdb45c7c63541edccd40b10f1",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-11T08:51:02+00:00",
-  "result_file": "solver-results/problem123/4870bdf661ec.json"
+  "completed_at": "2026-09-11T09:01:02+00:00",
+  "result_file": "solver-results/problem123/45793123e763.json"
 }

@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-galois-theory/problem.md",
+  "source_commit_sha": "59310a720e9d262cdb45c7c63541edccd40b10f1",
+  "problem_blob_sha": "45793123e76381c7f0ed9a977c2001e0ddd78e62",
+  "statement_sha256": "2b79b5532dd8c616746cf884a1122f802d25b6f39147b258c582cf8f231bc720",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T08:59:30+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(m=2^n\\). The answer is\n\\[\n\\operatorname{Gal}(K_n/\\mathbb Q)\\cong C_{2^n}\\rtimes (\\mathbb Z/2^n\\mathbb Z)^\\times,\n\\]\nwhere \\((\\mathbb Z/2^n\\mathbb Z)^\\times\\) acts on \\(C_{2^n}\\) by multiplication. Equivalently,\n\\[\n\\operatorname{Gal}(K_n/\\mathbb Q)\n\\cong \\operatorname{AGL}_1(\\mathbb Z/2^n\\mathbb Z),\n\\]\nthe group of affine maps\n\\[\nt\\mapsto at+b,\\qquad a\\in(\\mathbb Z/2^n\\mathbb Z)^\\times,\\ b\\in\\mathbb Z/2^n\\mathbb Z.\n\\]\n\nFor \\(n=1\\), this is just \\(C_2\\).\n\nLet\n\\[\na=\\frac{\\ell^2+1}{\\ell}=\\ell+\\ell^{-1}.\n\\]\nThe key identity is that if \\(x=z+z^{-1}\\), then\n\\[\nf(x)=x^2-2=z^2+z^{-2},\n\\]\nand hence\n\\[\nf^{\\circ n}(x)=z^{2^n}+z^{-2^n}.\n\\]\nThus \\(f^{\\circ n}(x)=a\\) is equivalent to\n\\[\nz^{m}+z^{-m}=\\ell+\\ell^{-1}.\n\\]\nSo\n\\[\nz^m=\\ell \\quad\\text{or}\\quad z^m=\\ell^{-1}.\n\\]\nLet \\(\\alpha=\\ell^{1/m}\\) and \\(\\zeta=\\zeta_m\\). Then the roots are\n\\[\nx_i=\\alpha\\zeta^i+\\alpha^{-1}\\zeta^{-i},\n\\qquad i\\in\\mathbb Z/m\\mathbb Z.\n\\]\nTherefore all roots lie in\n\\[\nF=\\mathbb Q(\\alpha,\\zeta_m).\n\\]\n\nConversely, the splitting field \\(K_n\\) contains all \\(x_i\\). The field \\(F/\\mathbb Q\\) is Galois, and every automorphism of \\(F\\) has the form\n\\[\n\\sigma_{a,b}(\\zeta)=\\zeta^a,\\qquad\n\\sigma_{a,b}(\\alpha)=\\zeta^b\\alpha,\n\\]\nwith \\(a\\in(\\mathbb Z/m\\mathbb Z)^\\times\\), \\(b\\in\\mathbb Z/m\\mathbb Z\\). Such an automorphism sends\n\\[\nx_i\\mapsto x_{b+ai}.\n\\]\nIf it fixes every root \\(x_i\\), then \\(x_{b+ai}=x_i\\) for all \\(i\\). But \\(x_j=x_i\\) forces \\(j=i\\), since otherwise\n\\[\n\\alpha\\zeta^j+\\alpha^{-1}\\zeta^{-j}\n=\n\\alpha\\zeta^i+\\alpha^{-1}\\zeta^{-i}\n\\]\nwould imply either \\(\\zeta^j=\\zeta^i\\), or \\(\\alpha^2\\) is a root of unity, impossible because \\(\\alpha^2>1\\). Hence \\(b=0\\) and \\(a=1\\). So no nontrivial automorphism of \\(F\\) fixes \\(K_n\\), and because \\(F/\\mathbb Q\\) and \\(K_n/\\mathbb Q\\) are Galois, we get\n\\[\nK_n=F.\n\\]\n\nIt remains only to identify the Galois group. Since \\(\\ell\\) is an odd prime, \\(\\ell\\) is not a square in \\(\\mathbb Q(\\zeta_m)\\): that cyclotomic field is ramified only at \\(2\\), while \\(\\mathbb Q(\\sqrt{\\ell})\\) is ramified at \\(\\ell\\). Hence \\(X^m-\\ell\\) is irreducible over \\(\\mathbb Q(\\zeta_m)\\), so the choices\n\\[\n\\alpha\\mapsto \\zeta^b\\alpha,\\qquad \\zeta\\mapsto \\zeta^a\n\\]\nare independent. Therefore\n\\[\n\\operatorname{Gal}(K_n/\\mathbb Q)\n=\n\\{\\sigma_{a,b}:a\\in(\\mathbb Z/m\\mathbb Z)^\\times,\\ b\\in\\mathbb Z/m\\mathbb Z\\},\n\\]\nwith composition\n\\[\n(a,b)(a',b')=(aa',\\,b+ab').\n\\]\n\nThus, with \\(m=2^n\\),\n\\[\n\\boxed{\\operatorname{Gal}(K_n/\\mathbb Q)\\cong\n\\mathbb Z/2^n\\mathbb Z\\rtimes(\\mathbb Z/2^n\\mathbb Z)^\\times.}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T09:01:02+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/45793123e763.json"
+}
