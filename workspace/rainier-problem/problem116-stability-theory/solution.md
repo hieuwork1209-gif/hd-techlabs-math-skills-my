@@ -1,116 +1,122 @@
 ## Steps
 
-Step 1: Bound possible unstable characteristic roots
-Consider
+Step 1: Rewrite the equation as a periodic Schrödinger problem
+Let
 $$
-\ddot x(t)+x(t)+\frac12\dot x(t-\tau)=0,
-\qquad \tau>0,
+k=\frac1{\sqrt2},\qquad K=K(k),\qquad T=2K,
 $$
-with characteristic equation
+and write
 $$
-F(\lambda,\tau):=\lambda^2+1+\frac\lambda2e^{-\lambda\tau}=0.
+s=\operatorname{sn}(t,k),\quad c=\operatorname{cn}(t,k),\quad d=\operatorname{dn}(t,k).
 $$
-If $\operatorname{Re}\lambda\ge0$ and $F(\lambda,\tau)=0$, then
+The Lamé equation
 $$
-|\lambda^2+1|=\frac{|\lambda|}{2}e^{-\tau\operatorname{Re}\lambda}\le\frac{|\lambda|}{2}.
+y''+\bigl(h-3s^2\bigr)y=0
+$$
+is the eigenvalue equation
+$$
+Hy=hy,\qquad H=-\frac{d^2}{dt^2}+3s^2,
+$$
+for a $T$-periodic potential.
+
+Use
+$$
+s'=cd,\qquad c'=-sd,\qquad d'=-\frac12sc,
+$$
+$$
+c^2=1-s^2,\qquad d^2=1-\frac12s^2.
+$$
+Direct differentiation gives
+$$
+H(cd)=\frac32cd,
+$$
+$$
+H(sd)=3sd,
+$$
+$$
+H(sc)=\frac92sc.
+$$
+For an ansatz $y=1-Cs^2$, one has
+$$
+(s^2)''=2-6s^2+3s^4.
+$$
+Substitution into $Hy=hy$ yields
+$$
+h=2C,
+\qquad
+2C^2-6C+3=0.
 $$
 Hence
 $$
-|\lambda|^2-1\le\frac{|\lambda|}{2},
-$$
-so every root in the closed right half-plane satisfies
-$$
-|\lambda|\le\frac{1+\sqrt{17}}4.
-$$
-Thus the right-half-plane root count can change only through imaginary-axis crossings. At $\tau=0$,
-$$
-F(\lambda,0)=\lambda^2+\frac12\lambda+1,
-$$
-whose roots have negative real part. Since the above bound is uniform and $F(\cdot,\tau)\to F(\cdot,0)$ uniformly on the bounded right-half-plane region, there are no unstable roots for all sufficiently small positive $\tau$.
-
-Step 2: Find the two crossing families
-Let $\lambda=i\omega$ with $\omega>0$ and put $\theta=\omega\tau$. Then
-$$
-1-\omega^2+\frac{i\omega}{2}e^{-i\theta}=0.
-$$
-Separating real and imaginary parts gives
-$$
-1-\omega^2+\frac\omega2\sin\theta=0,
+C=\frac{3\pm\sqrt3}{2},
 \qquad
-\cos\theta=0.
+h=3\pm\sqrt3.
 $$
-If $\sin\theta=1$, then
+Thus five explicit band-edge values are
 $$
-\omega_+=\frac{1+\sqrt{17}}4,
+3-\sqrt3,\quad \frac32,\quad 3,\quad \frac92,\quad 3+\sqrt3.
+$$
+
+Step 2: Identify which edges are periodic and antiperiodic
+Because
+$$
+s(t+T)=-s(t),\qquad c(t+T)=-c(t),\qquad d(t+T)=d(t),
+$$
+the two functions $1-Cs^2$ and the function $sc$ are $T$-periodic, while $cd$ and $sd$ are $T$-antiperiodic.
+
+The five values are ordered as
+$$
+3-\sqrt3<\frac32<3<\frac92<3+\sqrt3.
+$$
+Their corresponding eigenfunctions have the successive zero counts required by Sturm oscillation, so they are the first five periodic/antiperiodic band edges in this order.
+
+Step 3: Show that no further band edge lies below $5$
+We first bound the period. Since for $0\le x\le1/2$,
+$$
+(1-x)^{-1/2}\le1+x,
+$$
+we get
+$$
+K=\int_0^{\pi/2}\frac{d\phi}{\sqrt{1-\frac12\sin^2\phi}}
+\le\int_0^{\pi/2}\left(1+\frac12\sin^2\phi\right)d\phi
+=\frac{5\pi}{8}<2.
+$$
+Hence $T=2K<4$.
+
+For the free operator $-d^2/dt^2$ on $[0,T]$, the periodic eigenvalues begin
+$$
+0,\ \left(\frac{2\pi}{T}\right)^2,\ \left(\frac{2\pi}{T}\right)^2,\ \left(\frac{4\pi}{T}\right)^2,\dots,
+$$
+while the antiperiodic eigenvalues begin
+$$
+\left(\frac{\pi}{T}\right)^2,\ \left(\frac{\pi}{T}\right)^2,\ \left(\frac{3\pi}{T}\right)^2,\dots.
+$$
+Since the potential $3s^2$ is nonnegative, the min-max principle can only increase these eigenvalues. Therefore the next periodic edge after the three periodic edges already found is larger than
+$$
+\left(\frac{4\pi}{T}\right)^2>\pi^2>5,
+$$
+and the next antiperiodic edge after the two antiperiodic edges already found is larger than
+$$
+\left(\frac{3\pi}{T}\right)^2>\frac{9\pi^2}{16}>5.
+$$
+So the five explicit values exhaust all band edges in $0<h<5$.
+
+Step 4: Read off the Floquet-stable bands
+For a real periodic Schrödinger equation, both Floquet multipliers have modulus $1$ exactly on the spectral bands, and the bands alternate between consecutive periodic and antiperiodic edges. Since the spectrum starts at the lowest periodic edge, within $0<h<5$ the stable bands are
+$$
+[3-\sqrt3,\tfrac32],
 \qquad
-\theta=\frac\pi2+2\pi k,
-$$
-so the crossing delays are
-$$
-D_k=\frac{(4k+1)\pi(\sqrt{17}-1)}8,
-\qquad k=0,1,2,\dots.
-$$
-If $\sin\theta=-1$, then
-$$
-\omega_- =\frac{\sqrt{17}-1}4,
+[3,\tfrac92],
 \qquad
-\theta=\frac{3\pi}{2}+2\pi k,
+[3+\sqrt3,5).
 $$
-so
-$$
-S_k=\frac{(4k+3)\pi(\sqrt{17}+1)}8,
-\qquad k=0,1,2,\dots.
-$$
-These are all imaginary-axis crossings; $F(0,\tau)=1$, so zero is never a characteristic root.
-
-Step 3: Determine crossing directions and count roots
-Implicit differentiation gives
-$$
-\frac{d\lambda}{d\tau}=-\frac{F_\tau}{F_\lambda}.
-$$
-At an imaginary crossing,
-$$
-\operatorname{Re}\left(\frac{d\lambda}{d\tau}\right)^{-1}
-=\frac{4\omega\sin\theta-1}{\omega^2}.
-$$
-The real part of a nonzero complex number and that of its reciprocal have the same sign. Therefore each $D_k$ crossing has positive direction because
-$$
-4\omega_+-1=\sqrt{17}>0,
-$$
-while each $S_k$ crossing has negative direction because
-$$
--4\omega_- -1=-\sqrt{17}<0.
-$$
-Thus every $D_k$ sends one conjugate pair from left to right, and every $S_k$ sends one pair from right to left.
-
-Now
-$$
-D_0<S_0<D_1
-$$
-because $\sqrt{17}>4$. Hence the root count is $0$ on $(0,D_0)$, then $2$ on $(D_0,S_0)$, then returns to $0$ on $(S_0,D_1)$.
-
-For every $k\ge1$,
-$$
-D_{k+1}<S_k,
-$$
-because this inequality is equivalent to $\sqrt{17}<4k+4$. Hence after $D_1$ each later stabilizing crossing is preceded by at least one additional destabilizing crossing, so the right-half-plane root count never returns to zero.
-
-Step 4: State the exact stability set
-Exponential stability also fails at every crossing delay itself because a conjugate pair lies on the imaginary axis. Therefore the characteristic roots all have negative real part exactly for
-$$
-0<\tau<\frac{\pi(\sqrt{17}-1)}8
-$$
-or
-$$
-\frac{3\pi(\sqrt{17}+1)}8<\tau<\frac{5\pi(\sqrt{17}-1)}8.
-$$
-Final Answer: $\boxed{(0,\frac{\pi(\sqrt{17}-1)}8)\cup(\frac{3\pi(\sqrt{17}+1)}8,\frac{5\pi(\sqrt{17}-1)}8)}$
+Final Answer: $\boxed{[3-\sqrt3,\frac32]\cup[3,\frac92]\cup[3+\sqrt3,5)}$
 
 ---
 
 ## Answer
 
-$(0,\frac{\pi(\sqrt{17}-1)}8)\cup(\frac{3\pi(\sqrt{17}+1)}8,\frac{5\pi(\sqrt{17}-1)}8)$
+$[3-\sqrt3,\frac32]\cup[3,\frac92]\cup[3+\sqrt3,5)$
 
 ---
 
@@ -124,11 +130,11 @@ $(0,\frac{\pi(\sqrt{17}-1)}8)\cup(\frac{3\pi(\sqrt{17}+1)}8,\frac{5\pi(\sqrt{17}
 
 ## Solution Concepts
 
-- delayed damping oscillators
-- characteristic root counting
-- multiple Hopf crossing frequencies
-- crossing direction
-- delay-induced stability switches
+- Floquet theory
+- Lamé equations
+- Jacobi elliptic functions
+- periodic and antiperiodic spectra
+- Sturm-Liouville oscillation
 
 ---
 
