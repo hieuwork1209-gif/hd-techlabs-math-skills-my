@@ -1,0 +1,22 @@
+{
+  "problem": "problem102",
+  "branch": "adversary/problem102",
+  "problem_path": "workspace/rainier-problem/problem102-single-variable-calculus/problem.md",
+  "source_commit_sha": "6786aac2b335d3fee1d2809616a49f1230502c49",
+  "problem_blob_sha": "e7d6def9789f79986cdf7ad8b00d5863f181cd39",
+  "statement_sha256": "4c13c77ae145deed62a228dae386213909b83133c07c4ab5ac4a03292123e2b7",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T06:51:50+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\ny(t)=g(e^t),\\qquad t\\in\\mathbb R.\n\\]\nSince \\(s=e^t\\), we have\n\\[\nsg'(s)=y'(t),\\qquad s^2g''(s)=y''(t)-y'(t).\n\\]\nThus the differential equation becomes\n\\[\ny''+cy'+y(1-y)=0,\n\\]\nwith\n\\[\ny(-\\infty)=1,\\qquad y(+\\infty)=0,\\qquad y(0)=\\frac14,\\qquad y'<0.\n\\]\n\nThe limit at \\(t\\to-\\infty\\) gives the decay rate near \\(y=1\\). Writing \\(z=1-y\\), the linearized equation is\n\\[\nz''+cz'-z=0,\n\\]\nso\n\\[\n\\alpha^2+c\\alpha-1=0.\n\\]\nAt \\(t\\to+\\infty\\), the linearized equation near \\(y=0\\) is\n\\[\ny''+cy'+y=0,\n\\]\nand since \\(\\beta=-y'/y\\),\n\\[\n\\beta^2-c\\beta+1=0.\n\\]\nGiven \\(\\beta=2\\alpha\\), substitute \\(c=\\frac1\\alpha-\\alpha\\) into the second equation:\n\\[\n4\\alpha^2-2\\alpha\\left(\\frac1\\alpha-\\alpha\\right)+1=0,\n\\]\nso\n\\[\n6\\alpha^2-1=0,\\qquad \\alpha=\\frac1{\\sqrt6}.\n\\]\n\nNow use \\(y\\) itself as the variable. Since \\(y'<0\\), define\n\\[\nq(y)=-y'(t)>0.\n\\]\nThen\n\\[\ny''=q\\frac{dq}{dy},\n\\]\nso\n\\[\nq\\frac{dq}{dy}-cq+y(1-y)=0.\n\\]\nWith \\(\\alpha=1/\\sqrt6\\), \\(c=5\\alpha\\). The function\n\\[\nQ(y)=2\\alpha y(1-\\sqrt y)\n\\]\nsatisfies\n\\[\nQ\\frac{dQ}{dy}-cQ+y(1-y)=0,\n\\]\nand it has the required endpoint limits:\n\\[\n\\frac{Q}{1-y}\\to\\alpha\\quad(y\\to1^-),\\qquad \\frac{Q}{y}\\to2\\alpha=\\beta\\quad(y\\to0^+).\n\\]\nBy uniqueness for this first-order equation with these endpoint asymptotics, \\(q=Q\\). Hence\n\\[\n-y'=2\\alpha y(1-\\sqrt y).\n\\]\nLet\n\\[\nu=y^{-1/2}-1.\n\\]\nThen\n\\[\nu'=\\alpha u,\n\\]\nso\n\\[\nu=Ke^{\\alpha t}.\n\\]\nBecause \\(y(0)=1/4\\), we get \\(u(0)=2-1=1\\), hence \\(K=1\\). Therefore\n\\[\ny(t)=\\frac1{(1+e^{\\alpha t})^2}.\n\\]\nReturning to \\(g\\), since \\(t=\\log s\\),\n\\[\ng(s)=\\frac1{(1+s^\\alpha)^2}.\n\\]\nFinally \\(g(s)=f(e^s)\\), so for \\(x>1\\), \\(s=\\log x\\), and\n\n\\[\n\\boxed{f(x)=\\frac{1}{\\left(1+(\\log x)^{1/\\sqrt6}\\right)^2}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T06:53:00+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem102/e7d6def9789f.json"
+}
