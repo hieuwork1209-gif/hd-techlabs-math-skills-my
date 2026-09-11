@@ -1,0 +1,22 @@
+{
+  "problem": "problem102",
+  "branch": "adversary/problem102",
+  "problem_path": "workspace/rainier-problem/problem102-single-variable-calculus/problem.md",
+  "source_commit_sha": "01b1e49ca8610cafcf65620cf32f9f72917153a6",
+  "problem_blob_sha": "5f717946d6fe821d376625ce68cde3e5499e3c5f",
+  "statement_sha256": "de1e49ae9d8a7aa2875d706373547ab634d9a981afd89b499c24fc2109171769",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T04:08:39+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nh(s)=-g'(s).\n\\]\nSince\n\\[\n\\bigl(s^5|g'|g'\\bigr)'=-s^5g^5<0\n\\]\nand \\(s^5|g'|g'\\to0\\) as \\(s\\to0^+\\), we get \\(s^5|g'|g'<0\\), hence \\(g'<0\\) and \\(h>0\\) for \\(s>0\\). Thus\n\\[\n(s^5h^2)'=s^5g^5.\n\\]\n\nDefine\n\\[\nP(s)=\\frac{s^6g^6}{6}-s^5gh^2+\\frac23s^6h^3.\n\\]\nDifferentiating and using \\((s^5h^2)'=s^5g^5\\) gives \\(P'(s)=0\\). Also \\(P(s)\\to0\\) as \\(s\\to0^+\\), so \\(P\\equiv0\\).\n\nNow set\n\\[\nu(s)=sg(s),\\qquad r(s)=\\frac{sh(s)}{g(s)}.\n\\]\nThen \\(u>0\\), \\(0<r<3/2\\), and \\(P=0\\) becomes\n\\[\nu^3=2r^2(3-2r).\n\\]\nWriting \\(t=\\log s\\), one has\n\\[\n\\frac{d\\log u}{dt}=1-r.\n\\]\nAlso, from \\((s^5h^2)'=s^5g^5\\), the variable \\(r\\) satisfies\n\\[\n\\frac{dr}{dt}=\\frac12r(3-2r).\n\\]\nSolving,\n\\[\nr(s)=\\frac{\\frac32 C s^{3/2}}{1+C s^{3/2}}.\n\\]\nNear \\(0\\),\n\\[\nh(s)^2=s^{-5}\\int_0^s t^5g(t)^5\\,dt\\sim \\frac{s}{6},\n\\]\nso \\(r(s)\\sim s^{3/2}/\\sqrt6\\). Therefore\n\\[\n\\frac32 C=\\frac1{\\sqrt6},\n\\qquad\nC=\\sqrt{\\frac{2}{27}}.\n\\]\nFinally,\n\\[\n\\frac{d\\log g}{dt}=-r\n\\]\ngives\n\\[\ng(s)=\\frac{1}{1+\\sqrt{\\frac{2}{27}}s^{3/2}},\n\\]\nusing \\(g(0)=1\\). Since \\(g(s)=f(e^s)\\), with \\(s=\\log x\\),\n\n\\[\n\\boxed{f(x)=\\frac{1}{1+\\sqrt{\\frac{2}{27}}(\\log x)^{3/2}}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T04:11:17+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem102/5f717946d6fe.json"
+}
