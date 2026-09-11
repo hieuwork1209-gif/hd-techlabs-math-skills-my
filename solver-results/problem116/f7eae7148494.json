@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "bace2d63efd04161aad004a050805052a09f6d91",
+  "problem_blob_sha": "f7eae714849449663021140e00770ca22a0a1862",
+  "statement_sha256": "0bb2eb242592f9f753805c42670d9e4ca0e4f1b12ee4d87f9164c5392f222145",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T07:44:14+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(Z_t=r_t(\\cos\\theta_t,\\sin\\theta_t)\\), with \\(r_t=\\|Z_t\\|>0\\). Since the SDE is Stratonovich, ordinary calculus applies.\n\nFor \\(u=(\\cos\\theta,\\sin\\theta)\\),\n\n\\[\nu^\\top A u\n=\nu^\\top(-I+aS+J)u\n=\n-1+a\\sin 2\\theta,\n\\]\n\nbecause \\(J\\) is skew-symmetric. Also the noise \\(bJZ_t\\circ dW_t\\) only rotates \\(Z_t\\), so it does not directly change \\(r_t\\). Thus\n\n\\[\nd\\log r_t=(-1+a\\sin 2\\theta_t)\\,dt.\n\\]\n\nThe angular equation is\n\n\\[\nd\\theta_t=(1+a\\cos 2\\theta_t)\\,dt+b\\,dW_t.\n\\]\n\nSet \\(x_t=2\\theta_t\\pmod {2\\pi}\\). Then\n\n\\[\ndx_t=2(1+a\\cos x_t)\\,dt+2b\\,dW_t.\n\\]\n\nThis diffusion on the circle has a unique invariant density. Writing \\(B=b^2\\), its unnormalized density is\n\n\\[\np(x)=\\int_0^{2\\pi}\n\\exp\\!\\left(-\\frac{s+a(\\sin(x+s)-\\sin x)}{B}\\right)\\,ds.\n\\]\n\nTherefore the top Lyapunov exponent is\n\n\\[\n\\lambda(a,b)\n=\n-1+aM(a,b),\n\\]\n\nwhere\n\n\\[\nM(a,b)\n=\n\\frac{\n\\displaystyle \\int_0^{2\\pi} e^{-s/b^2}\\sin\\frac{s}{2}\\,\nI_1\\!\\left(\\frac{2a}{b^2}\\sin\\frac{s}{2}\\right)\\,ds\n}{\n\\displaystyle \\int_0^{2\\pi} e^{-s/b^2}\nI_0\\!\\left(\\frac{2a}{b^2}\\sin\\frac{s}{2}\\right)\\,ds\n},\n\\]\n\nand \\(I_0,I_1\\) are the modified Bessel functions. This formula comes from integrating over \\(x\\) using\n\n\\[\n\\int_0^{2\\pi}e^{-k\\cos x}\\,dx=2\\pi I_0(k),\n\\qquad\n\\int_0^{2\\pi}\\cos x\\,e^{-k\\cos x}\\,dx=-2\\pi I_1(k).\n\\]\n\nThe deterministic system has eigenvalues\n\n\\[\n-1\\pm \\sqrt{a^2-1}\n\\]\n\nwhen \\(a\\ge 1\\), and complex eigenvalues with real part \\(-1\\) when \\(a<1\\). Hence it is not exponentially stable exactly when\n\n\\[\na\\ge \\sqrt2.\n\\]\n\nThe stochastic origin is almost surely exponentially stable exactly when \\(\\lambda(a,b)<0\\), i.e. \\(aM(a,b)<1\\).\n\nThus the requested set is\n\n\\[\n\\boxed{\n\\left\\{(a,b):\\ a\\ge \\sqrt2,\\ b>0,\\ \na\\,\n\\frac{\n\\displaystyle \\int_0^{2\\pi} e^{-s/b^2}\\sin\\frac{s}{2}\\,\nI_1\\!\\left(\\frac{2a}{b^2}\\sin\\frac{s}{2}\\right)\\,ds\n}{\n\\displaystyle \\int_0^{2\\pi} e^{-s/b^2}\nI_0\\!\\left(\\frac{2a}{b^2}\\sin\\frac{s}{2}\\right)\\,ds\n}\n<1\n\\right\\}.\n}\n\\]\n\nFor every such pair, one may take\n\n\\[\n\\gamma=1-aM(a,b)>0.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T07:46:01+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/f7eae7148494.json"
+}
