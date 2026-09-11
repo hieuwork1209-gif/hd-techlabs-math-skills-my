@@ -1,9 +1,9 @@
 {
   "problem": "problem123",
   "branch": "adversary/problem123",
-  "problem_path": "workspace/rainier-problem/problem123-convex-optimization/problem.md",
-  "problem_blob_sha": "72cfb8ab7be6514f6347e0f62305123f3e9a0330",
-  "source_commit_sha": "bc44c2a70a6d14e261c42c92d39e9d2889a1fae3",
+  "problem_path": "workspace/rainier-problem/problem123-elementary-number-theory/problem.md",
+  "problem_blob_sha": "09d7ddd800b614981c6ac4315ac585fd19341ae0",
+  "source_commit_sha": "08fb8ffb5ab589152af974b5923b7b237ab66d4d",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-11T11:59:04+00:00",
-  "result_file": "solver-results/problem123/72cfb8ab7be6.json"
+  "completed_at": "2026-09-11T13:19:18+00:00",
+  "result_file": "solver-results/problem123/09d7ddd800b6.json"
 }

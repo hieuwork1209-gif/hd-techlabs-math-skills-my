@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-elementary-number-theory/problem.md",
+  "source_commit_sha": "08fb8ffb5ab589152af974b5923b7b237ab66d4d",
+  "problem_blob_sha": "09d7ddd800b614981c6ac4315ac585fd19341ae0",
+  "statement_sha256": "0328c3e1edc2c6f01a5237c959597172b7321e30c328ba24fe85a6821bb00289",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T13:17:30+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(n=2p\\). Since \\(p\\) is odd, none of the even indices \\(2,4,\\dots,2p-2\\) equals \\(p\\). For \\(1\\le t\\le 2p-1\\), \\(t\\ne p\\), Legendre’s formula gives\n\\[\nv_p\\binom{2p}{t}=1.\n\\]\nSo every \\(\\binom{2p}{2j}\\) is divisible by exactly one factor of \\(p\\). Also\n\\[\n\\binom{2p}{2}=p(2p-1),\n\\]\nso\n\\[\nH_p=pD,\\qquad D\\mid 2p-1.\n\\]\n\nNow let \\(q\\) be a prime divisor of \\(2p-1\\). Since \\(q\\ne p\\), whether \\(q\\mid D\\) is exactly whether\n\\[\nq\\mid \\binom{2p}{2j}\n\\]\nfor every \\(1\\le j\\le p-1\\).\n\nWrite \\(2p-1=m\\), so \\(2p=m+1\\). We use Lucas’ theorem modulo \\(q\\): \\(\\binom{m+1}{t}\\not\\equiv0\\pmod q\\) iff every base-\\(q\\) digit of \\(t\\) is at most the corresponding digit of \\(m+1\\).\n\nBecause \\(q\\mid m\\), the base-\\(q\\) expansion of \\(m+1\\) ends in digit \\(1\\). If \\(m\\) is not a power of \\(q\\), then \\(m+1\\ne 1+q^a\\). Hence some even interior number \\(t=1+q^r\\), with \\(2\\le t\\le m-1\\), has base-\\(q\\) digits bounded by those of \\(m+1\\). Lucas then gives\n\\[\n\\binom{m+1}{t}\\not\\equiv0\\pmod q,\n\\]\nso \\(q\\nmid D\\).\n\nIf instead \\(m=q^a\\), then \\(m+1=q^a+1\\). Its only nonzero base-\\(q\\) digits are the units digit and the \\(q^a\\)-digit. The only \\(t\\) with digitwise-bounded digits are\n\\[\n0,\\ 1,\\ q^a,\\ q^a+1.\n\\]\nNone is an even interior index. Thus every even interior binomial coefficient is divisible by \\(q\\), so \\(q\\mid D\\).\n\nFinally, no higher power \\(q^2\\) can divide all the reduced coefficients. If \\(a=1\\),\n\\[\n\\frac1p\\binom{2p}{2}=q.\n\\]\nIf \\(a\\ge2\\), take \\(t=q^{a-1}+1\\), which is even; Kummer’s theorem shows exactly one carry in adding \\(t\\) and \\(q^a+1-t\\), so\n\\[\nv_q\\binom{q^a+1}{q^{a-1}+1}=1.\n\\]\nThus only one factor of \\(q\\) is common.\n\nTherefore\n\\[\n\\boxed{\nH_p=\n\\begin{cases}\npq, & \\text{if }2p-1=q^a\\text{ for some prime }q\\text{ and integer }a\\ge1,\\\\\np, & \\text{otherwise.}\n\\end{cases}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T13:19:18+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/09d7ddd800b6.json"
+}
