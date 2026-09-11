@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-elementary-number-theory/problem.md",
+  "source_commit_sha": "67f9fa7d90e95d056a12837360f6ce47cd1885d5",
+  "problem_blob_sha": "4f68bc3891d858d8ed8f91d9d61190a03d68ca54",
+  "statement_sha256": "60bda04e8e7c98ffa088471097b7638571aa3cf9c584fa7954e72d0a2561e460",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T13:34:18+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(n=2m\\). We need the gcd of \\(\\binom n k\\) over even \\(k\\), \\(2\\le k\\le n-2\\).\n\nFor an odd prime \\(p\\), write\n\n\\[\nn=\\sum_i n_i p^i\n\\]\n\nin base \\(p\\). By Lucas’ theorem,\n\n\\[\n\\binom n k\\not\\equiv 0\\pmod p\n\\]\n\nexactly when every base-\\(p\\) digit \\(k_i\\) of \\(k\\) satisfies \\(0\\le k_i\\le n_i\\). Since \\(p\\) is odd, \\(k\\) is even exactly when \\(\\sum_i k_i\\) is even.\n\nThus \\(p\\mid H_m\\) exactly when there is no proper nonzero choice of digits \\(0\\le k_i\\le n_i\\) with even digit sum.\n\nNow characterize when that happens. Since \\(n=2m\\) is even, the digit sum of \\(n\\) is even.\n\nIf some digit \\(n_i\\ge2\\), then choosing \\(k_i=2\\) and all other \\(k\\)-digits zero gives an even subchoice. To avoid a proper nonzero even subchoice, this must be the whole number, so\n\n\\[\nn=2p^a.\n\\]\n\nIf every nonzero digit is \\(1\\), then even subchoices correspond to even-size subsets of the nonzero digit positions. The only way the empty subset and the full subset are the only even subsets is that there are exactly two nonzero digits. Hence\n\n\\[\nn=p^a+p^b\n\\]\n\nwith \\(a\\ne b\\).\n\nCombining both cases, for odd \\(p\\),\n\n\\[\np\\mid H_m\n\\quad\\Longleftrightarrow\\quad\n2m=p^a+p^b\n\\]\n\nfor some integers \\(a,b\\ge0\\), allowing \\(a=b\\).\n\nIt remains to check exponents. If \\(2m=p^a+p^b\\), then \\(p\\mid H_m\\). Also one can choose\n\n\\[\nk=(p-1)p^{\\max(a,b)-1},\n\\]\n\nassuming \\(a,b\\) are ordered so \\(\\max(a,b)\\ge1\\). By Kummer’s theorem, adding \\(k\\) and \\(2m-k\\) in base \\(p\\) produces exactly one carry, so\n\n\\[\nv_p\\binom{2m}{k}=1.\n\\]\n\nTherefore every prime divisor of \\(H_m\\) occurs only to the first power. Also \\(2\\nmid H_m\\), since\n\n\\[\n\\binom{2m}{2}=m(2m-1)\n\\]\n\nis odd.\n\nHence the exact answer is\n\n\\[\n\\boxed{\nH_m=\\prod_{\\substack{p\\ \\text{odd prime}\\\\ 2m=p^a+p^b\\ \\text{for some }a,b\\ge0}} p\n}\n\\]\n\nwhere \\(a=b\\) is allowed.",
+  "status": "success",
+  "completed_at": "2026-09-11T13:36:36+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/4f68bc3891d8.json"
+}
