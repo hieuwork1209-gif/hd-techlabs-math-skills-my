@@ -1,104 +1,127 @@
 ## Steps
 
-Step 1: Reduce stability to the characteristic roots
-Consider
+Step 1: Reduce delay-independent stability to imaginary-axis crossings
+Fix a delay $\tau>0$ and consider
 $$
-\dot x(t)=-x(t)-a\,x(t-b),
-\qquad a>0,\ b>0,
+\dot x(t)=-x(t)-a\,x(t-\tau)-b\,x(t-2\tau),
+\qquad a,b>0.
 $$
-with a continuous initial history on $[-b,0]$. An exponential mode $x(t)=e^{\lambda t}$ gives the characteristic equation
+An exponential mode $x(t)=e^{\lambda t}$ gives the characteristic equation
 $$
-\Delta(\lambda;b):=\lambda+1+a e^{-b\lambda}=0.
+\Delta_\tau(\lambda):=\lambda+1+a e^{-\tau\lambda}+b e^{-2\tau\lambda}=0.
 $$
-For this scalar retarded linear equation, the zero solution is exponentially asymptotically stable exactly when every zero of $\Delta$ has negative real part. Indeed, a characteristic root with nonnegative real part produces a nondecaying real solution from the real or imaginary part of $e^{\lambda t}$. Conversely, if all characteristic roots lie in a half-plane $\operatorname{Re}\lambda\le-\eta<0$, the Laplace transform of the fundamental solution has denominator $\Delta$ and shifting the inversion contour to $\operatorname{Re}\lambda=-\eta/2$ gives exponential decay for every continuous history. Because the equation is linear, exponential stability is global and implies Lyapunov stability in the history sup norm.
+For a retarded linear equation, the zero solution is exponentially asymptotically stable exactly when every characteristic root has negative real part. Because the equation is linear, this is equivalent to global asymptotic stability in the history sup norm.
 
-For later continuation in $b$, note that every characteristic root with $\operatorname{Re}\lambda\ge0$ satisfies
+Any characteristic root with $\operatorname{Re}\lambda\ge0$ satisfies
 $$
-|\lambda+1|=a e^{-b\operatorname{Re}\lambda}\le a.
+|\lambda+1|
+=|a e^{-\tau\lambda}+b e^{-2\tau\lambda}|
+\le a+b.
 $$
-Thus all roots in the closed right half-plane lie in the fixed compact disk $|\lambda+1|\le a$; they cannot enter from infinity as $b$ varies.
+Thus all roots in the closed right half-plane lie in a fixed compact disk, uniformly in $\tau$. For sufficiently small positive $\tau$, $\Delta_\tau$ converges uniformly on this disk to
+$$
+\lambda+1+a+b,
+$$
+which has no zero in the closed right half-plane. Hence the equation is stable for all sufficiently small $\tau>0$. As $\tau$ varies, the number of roots in the open right half-plane can therefore change only through a root on the imaginary axis.
 
-Step 2: Find every imaginary-axis crossing
-A zero root is impossible because
+Step 2: Eliminate the delay from the imaginary-axis equations
+A zero root never occurs because
 $$
-\Delta(0;b)=1+a>0.
+\Delta_\tau(0)=1+a+b>0.
 $$
-Let $\lambda=i\omega$ with $\omega>0$. Separating real and imaginary parts gives
+Let $\lambda=i\omega$ with $\omega>0$, and set
 $$
-1+a\cos(b\omega)=0,
+\theta=\tau\omega,
 \qquad
-\omega-a\sin(b\omega)=0.
-$$
-If $0<a\le1$, the first equation would require $\cos(b\omega)=-1/a\le-1$. For $a<1$ this is impossible; for $a=1$ it forces $\cos(b\omega)=-1$ and hence $\sin(b\omega)=0$, contradicting $\omega>0$. Therefore there are no imaginary-axis roots for any $b>0$ when $0<a\le1$.
-
-Now assume $a>1$. Put
-$$
-\theta=\arccos\left(-\frac1a\right)\in\left(\frac\pi2,\pi\right),
+c=\cos\theta,
 \qquad
-\omega_0=\sqrt{a^2-1}.
+s=\sin\theta.
 $$
-The two equations above imply
+Separating real and imaginary parts gives
 $$
-\sin(b\omega)>0,
+1+a c+b\cos2\theta=0,
+$$
+$$
+\omega=a s+b\sin2\theta.
+$$
+Using $\cos2\theta=2c^2-1$ and $\sin2\theta=2sc$, define
+$$
+h(c):=2bc^2+ac+1-b.
+$$
+Every nonzero imaginary-axis root therefore gives
+$$
+h(c)=0
+\qquad\text{for some }c\in(-1,1),
+$$
+because $s=0$ would force $\omega=0$.
+
+Conversely, suppose $h(c)=0$ for some $c\in(-1,1)$. Put
+$$
+k=a+2bc.
+$$
+If $k\ne0$, choose $\theta\in(0,2\pi)$ with $\cos\theta=c$ and with $\sin\theta$ having the same sign as $k$. Then
+$$
+\omega=\sin\theta\,k>0,
 \qquad
-\omega^2=a^2-1=\omega_0^2.
+\tau=\frac{\theta}{\omega}>0,
 $$
-Hence all positive-frequency crossings are
+and the two imaginary-axis equations are satisfied. If $k=0$, then substituting $c=-a/(2b)$ into $h(c)=0$ gives $b=1$. But then $h(0)=0$, and at $c=0$ we have $a+2bc=a>0$, reducing to the previous case. Thus an interior zero of $h$ always produces a nonzero imaginary characteristic root for some positive delay.
+
+Since $h(1)=1+a+b>0$, the equation is stable for every $\tau>0$ exactly when
 $$
-\omega=\omega_0,
-\qquad
-b=b_k:=\frac{\theta+2\pi k}{\omega_0},
-\qquad k=0,1,2,\ldots
+h(c)>0
+\qquad\text{for all }-1<c<1.
 $$
-The first possible crossing therefore occurs at
+Indeed, under this condition there is no imaginary-axis crossing for any $\tau$, while right-half-plane roots cannot enter from infinity; hence the small-delay stability persists for every positive delay.
+
+Step 3: Minimize the quadratic on the open interval
+Because $b>0$, the quadratic
 $$
-b_0=\frac{\arccos(-1/a)}{\sqrt{a^2-1}}.
+h(c)=2bc^2+ac+1-b
+$$
+is strictly convex, with vertex
+$$
+c_*=-\frac{a}{4b}.
 $$
 
-Step 3: Determine the crossing direction and the stable side
-At $b=0$ the delay equation reduces to
+If $a\ge4b$, then $c_*\le-1$, so $h$ is increasing on $(-1,1)$. Its infimum there is the endpoint value
 $$
-\dot x=-(1+a)x,
+h(-1)=1-a+b.
 $$
-so the zero solution is exponentially stable. Since right-half-plane roots stay in a fixed compact set, the argument principle shows that their number can change with $b$ only when a root crosses the imaginary axis.
+The endpoint itself is not part of the interval, so $h(c)>0$ for every $-1<c<1$ exactly when
+$$
+1-a+b\ge0,
+$$
+i.e.
+$$
+a\le1+b.
+$$
+Equality is allowed: when $h(-1)=0$, the only zero at the left endpoint would correspond to $\sin\theta=0$ and hence cannot give a nonzero imaginary characteristic root.
 
-Differentiate $\Delta(\lambda(b);b)=0$ with respect to $b$:
+If $0<a<4b$, then $c_*\in(-1,0)$ and the minimum is attained inside the interval. We need
 $$
-\frac{d\lambda}{db}
-=\frac{a\lambda e^{-b\lambda}}{1-ab e^{-b\lambda}}.
+h(c_*)
+=1-b-\frac{a^2}{8b}>0,
 $$
-At an imaginary crossing $\lambda=i\omega_0$, the characteristic equation gives
+which is equivalent to
 $$
-a e^{-ib\omega_0}=-(1+i\omega_0).
+a^2<8b(1-b).
 $$
-Therefore
-$$
-\frac{d\lambda}{db}
-=\frac{\omega_0^2-i\omega_0}{1+b+i b\omega_0},
-$$
-and hence
-$$
-\operatorname{Re}\frac{d\lambda}{db}
-=\frac{\omega_0^2}{(1+b)^2+b^2\omega_0^2}>0.
-$$
-Every conjugate pair therefore crosses from the left half-plane to the right half-plane as $b$ increases.
 
-Consequently, if $0<a\le1$, no crossing ever occurs and the equation is stable for every $b>0$. If $a>1$, it is stable precisely before the first crossing, namely for $0<b<b_0$. At $b=b_0$ there is a purely imaginary conjugate pair, and for $b>b_0$ at least one conjugate pair lies in the open right half-plane, so asymptotic stability fails.
-
-Step 4: State the exact parameter region
-Combining the two cases, the zero solution is globally asymptotically stable exactly for
+Step 4: State the robust stability region
+Combining the two cases, the zero solution is globally asymptotically stable for every delay $\tau>0$ exactly for
 $$
-\{(a,b):0<a\le1,\ b>0\}
+\{(a,b):a,b>0,\ a\ge4b,\ a\le1+b\}
 \cup
-\left\{(a,b):a>1,\ 0<b<\frac{\arccos(-1/a)}{\sqrt{a^2-1}}\right\}.
+\{(a,b):a,b>0,\ a<4b,\ a^2<8b(1-b)\}.
 $$
-Final Answer: $\boxed{\{(a,b):0<a\le1,b>0\}\cup\{(a,b):a>1,0<b<\arccos(-1/a)/\sqrt{a^2-1}\}}$
+Final Answer: $\boxed{\{(a,b):a,b>0,a\ge4b,a\le1+b\}\cup\{(a,b):a,b>0,a<4b,a^2<8b(1-b)\}}$
 
 ---
 
 ## Answer
 
-$\{(a,b):0<a\le1,b>0\}\cup\{(a,b):a>1,0<b<\arccos(-1/a)/\sqrt{a^2-1}\}$
+$\{(a,b):a,b>0,a\ge4b,a\le1+b\}\cup\{(a,b):a,b>0,a<4b,a^2<8b(1-b)\}$
 
 ---
 
@@ -113,10 +136,10 @@ $\{(a,b):0<a\le1,b>0\}\cup\{(a,b):a>1,0<b<\arccos(-1/a)/\sqrt{a^2-1}\}$
 ## Solution Concepts
 
 - delay differential equations
+- delay-independent stability
 - characteristic roots
-- spectral stability
 - imaginary-axis crossings
-- transversality
+- constrained quadratic positivity
 
 ---
 
