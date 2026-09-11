@@ -1,171 +1,159 @@
 ## Steps
 
-Step 1: Reduce the Lagrangian count to symmetric matrices
+Step 1: Convert the character sum into an elliptic-curve point count
 
-Write
+Let
 $$
-V=E\oplus F,
+q=2^{11},\qquad \mathbb F=\mathbb F_q,
+$$
+and let
+$$
+\psi(a)=(-1)^{\operatorname{Tr}(a)}.
+$$
+Consider the curve
+$$
+E:\quad y^2+xy=x^3+1.
+$$
+It is nonsingular: for
+$$
+F(x,y)=y^2+xy+x^3+1,
+$$
+we have
+$$
+F_y=x,
 \qquad
-E=\mathbb F_2^6\oplus\{0\},
-\qquad
-F=\{0\}\oplus\mathbb F_2^6.
+F_x=y+x^2.
 $$
-The symplectic form is
-$$
-\langle (x,y),(x',y')\rangle=x\cdot y'+x'\cdot y.
-$$
-If $L=L^\perp$, then $L$ is isotropic and
-$$
-\dim L=6.
-$$
-Because $L\cap F=\{0\}$, projection onto $E$ is an isomorphism. Hence there is a unique linear map
-$$
-A:\mathbb F_2^6\to\mathbb F_2^6
-$$
-such that
-$$
-L=\{(x,Ax):x\in\mathbb F_2^6\}.
-$$
-For $x,x'\in\mathbb F_2^6$,
-$$
-\langle(x,Ax),(x',Ax')\rangle
-=x^TAx'+x'^TAx
-=x^T(A+A^T)x'.
-$$
-Thus $L$ is isotropic exactly when
-$$
-A=A^T.
-$$
-Moreover
-$$
-L\cap E=\{(x,0):Ax=0\},
-$$
-so $L\cap E=\{0\}$ exactly when $A$ is invertible. Therefore the required number is the number of invertible symmetric $6\times6$ matrices over $\mathbb F_2$.
+A singular affine point would have $x=0$ and $y=0$, but then $F(0,0)=1$.
 
-Step 2: Split the symmetric forms into two congruence classes
+For $x\ne0$, put $z=y/x$. Dividing the equation by $x^2$ gives
+$$
+z^2+z=x+x^{-2}.
+$$
+Over a field of characteristic $2$, the equation
+$$
+z^2+z=a
+$$
+has two solutions when $\operatorname{Tr}(a)=0$ and no solutions when $\operatorname{Tr}(a)=1$. Indeed, the map $z\mapsto z^2+z$ has kernel $\mathbb F_2$, hence image of size $q/2$, and every element of its image has trace $0$; the trace-zero subspace also has size $q/2$.
 
-Let $W=\mathbb F_2^6$. An invertible symmetric matrix is the Gram matrix of a nondegenerate symmetric bilinear form $B$ on $W$. The group $GL(W)$ acts on such forms by change of basis.
-
-There are two classes.
-
-First, $B$ may be alternating, meaning
-$$
-B(v,v)=0
-$$
-for every $v$. Symplectic Gram-Schmidt gives a symplectic basis, so all nondegenerate alternating forms form one orbit.
-
-Otherwise $B$ is nonalternating. Choose $v$ with $B(v,v)=1$ and split off the nonsingular line $\langle v\rangle$. Repeating this orthogonal splitting, and using the elementary equivalence
-$$
-[1]\perp
-\begin{pmatrix}0&1\\1&0\end{pmatrix}
-\cong I_3
-$$
-over $\mathbb F_2$, shows that every nondegenerate nonalternating form in even dimension is congruent to $I_6$. Thus the nonalternating forms also form one orbit.
-
-Hence the desired number is
-$$
-\frac{|GL_6(2)|}{|Sp_6(2)|}
-+
-\frac{|GL_6(2)|}{|O(I_6)|}.
-$$
-
-Step 3: Count the alternating orbit
-
-The order of $GL_6(2)$ is
-$$
-|GL_6(2)|
-=2^{15}(2^1-1)(2^2-1)\cdots(2^6-1).
-$$
-To count $Sp_{2m}(2)$, choose the first vector of a symplectic basis in
-$$
-2^{2m}-1
-$$
-ways, then its partner in
-$$
-2^{2m-1}
-$$
-ways, and recurse on their orthogonal complement. Therefore
-$$
-|Sp_{2m}(2)|
-=2^{m^2}\prod_{j=1}^m(2^{2j}-1).
-$$
-For $m=3$,
-$$
-|Sp_6(2)|=2^9(2^2-1)(2^4-1)(2^6-1).
-$$
-Consequently the number of nondegenerate alternating symmetric forms is
-$$
-\frac{|GL_6(2)|}{|Sp_6(2)|}
-=2^6(2^3-1)(2^5-1)
-=13888.
-$$
-
-Step 4: Count the nonalternating orbit
-
-For the standard nonalternating form $B$ with matrix $I_6$, define its characteristic vector $c$ by
-$$
-B(c,v)=B(v,v)
-$$
-for every $v\in W$. Here
-$$
-c=(1,1,1,1,1,1),
-$$
-so $c\ne0$ and $B(c,c)=0$. Every isometry fixes $c$.
-
-Choose $d$ with $B(c,d)=1$ and let
-$$
-U=\langle c,d\rangle^\perp.
-$$
-Then $U$ has dimension $4$, and $B|_U$ is nondegenerate alternating. Thus an isometry of $B$ induces an element of $Sp(U)\cong Sp_4(2)$.
-
-Conversely, after fixing $c$, every isometry is determined uniquely by
-$$
-S\in Sp(U),\qquad a\in U,\qquad \varepsilon\in\mathbb F_2,
-$$
-through
-$$
-T(c)=c,
-$$
-$$
-T(d)=d+a+\varepsilon c,
-$$
-and
-$$
-T(u)=S(u)+B(S(u),a)c\qquad(u\in U).
-$$
-A direct check shows that these formulas preserve $B$. Hence
-$$
-|O(I_6)|=2^{4+1}|Sp_4(2)|.
-$$
 Since
 $$
-|Sp_4(2)|=2^4(2^2-1)(2^4-1),
+\operatorname{Tr}(x^{-2})
+=\operatorname{Tr}\bigl((x^{-1})^2\bigr)
+=\operatorname{Tr}(x^{-1}),
 $$
-we get
+the number of $y$ above a fixed $x\ne0$ is
 $$
-|O(I_6)|=2^9(2^2-1)(2^4-1).
+1+\psi(x+x^{-1}).
 $$
-Therefore the number of nonalternating nondegenerate symmetric forms is
+For $x=0$, the equation is $y^2=1$, which has the unique solution $y=1$. Including the point at infinity,
 $$
-\frac{|GL_6(2)|}{|O(I_6)|}
-=2^6(2^3-1)(2^5-1)(2^6-1)
-=874944.
+\#E(\mathbb F_q)
+=2+\sum_{x\in\mathbb F_q^\times}\bigl(1+\psi(x+x^{-1})\bigr)
+=q+1+K,
+$$
+where
+$$
+K=\sum_{x\in\mathbb F_q^\times}\psi(x+x^{-1}).
+$$
+Therefore
+$$
+K=\#E(\mathbb F_q)-q-1.
 $$
 
-Step 5: Add the two orbits
+Step 2: Determine the Frobenius recurrence from $E(\mathbb F_2)$
 
-The alternating and nonalternating cases are disjoint and exhaustive, so the number of required subspaces is
+Directly over $\mathbb F_2$, the affine points are
 $$
-13888+874944=888832.
+(0,1),\qquad (1,0),\qquad (1,1),
+$$
+together with the point at infinity. Thus
+$$
+\#E(\mathbb F_2)=4,
+$$
+so the Frobenius trace is
+$$
+a_1=2+1-4=-1.
 $$
 
-Final Answer: $\boxed{888832}$
+We use the elliptic-curve Frobenius point-count formula in its exact form: if $\alpha,\beta$ are the roots of
+$$
+T^2-a_1T+2=0,
+$$
+then for every $m\ge1$,
+$$
+\#E(\mathbb F_{2^m})
+=2^m+1-(\alpha^m+\beta^m).
+$$
+Here $a_1=-1$, so
+$$
+\alpha+\beta=-1,
+\qquad
+\alpha\beta=2.
+$$
+Put
+$$
+a_m=\alpha^m+\beta^m,
+\qquad
+a_0=2.
+$$
+Then
+$$
+a_m=-a_{m-1}-2a_{m-2}
+$$
+for $m\ge2$.
+
+Step 3: Iterate to the eleventh extension
+
+Starting from
+$$
+a_0=2,
+\qquad
+a_1=-1,
+$$
+the recurrence gives
+$$
+a_2=-3,
+\quad
+a_3=5,
+\quad
+a_4=1,
+\quad
+a_5=-11,
+$$
+$$
+a_6=9,
+\quad
+a_7=13,
+\quad
+a_8=-31,
+\quad
+a_9=5,
+$$
+$$
+a_{10}=57,
+\qquad
+a_{11}=-67.
+$$
+Hence
+$$
+\#E(\mathbb F_{2^{11}})
+=2^{11}+1-a_{11}
+=2048+1+67
+=2116.
+$$
+By Step 1,
+$$
+K=2116-2048-1=67.
+$$
+
+Final Answer: $\boxed{K=67}$
 
 ---
 
 ## Answer
 
-$888832$
+$K=67$
 
 ---
 
@@ -179,8 +167,7 @@ $888832$
 
 ## Solution Concepts
 
-- Lagrangian graphs over $\mathbb F_2$
-- invertible symmetric matrices
-- congruence classes of symmetric bilinear forms
-- symplectic and orthogonal stabilizers
-- orbit-stabilizer counting
+- binary Kloosterman character sum
+- Artin-Schreier trace criterion
+- elliptic-curve point count
+- Frobenius recurrence
