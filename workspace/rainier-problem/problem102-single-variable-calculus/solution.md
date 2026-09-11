@@ -1,123 +1,121 @@
 ## Steps
 
-Step 1: Integrate the radial flux
+Step 1: Compactify the half-line
 
 Let
 $$
-g(s)=f(e^s),\qquad s\ge0.
+g(s)=f(e^s),\qquad s>0.
 $$
-The equation is
+The differential equation is
 $$
--\bigl(s^5|g'(s)|g'(s)\bigr)'=s^5g(s)^5.
+\bigl(sg'(s)\bigr)'+\frac{\lambda}{(1+s)^2}g(s)=0.
 $$
-Because $g\in C^1[0,\infty)$, we have
-$$
-\lim_{s\to0^+}s^5|g'(s)|g'(s)=0.
-$$
-Hence integration from $0$ to $s$ gives
-$$
-s^5|g'(s)|g'(s)
-=-\int_0^s t^5g(t)^5\,dt.
-$$
-Since $g>0$, the right-hand side is strictly negative for $s>0$. Therefore
-$$
-g'(s)<0
-$$
-and
-$$
--g'(s)
-=s^{-5/2}\left(\int_0^s t^5g(t)^5\,dt\right)^{1/2}.
-$$
-Integrating once more,
-$$
-g(s)=1-\int_0^s \tau^{-5/2}
-\left(\int_0^\tau t^5g(t)^5\,dt\right)^{1/2}d\tau.
-$$
-Thus the singular differential equation is equivalent near the origin to a nonlinear Volterra equation.
-
-Step 2: Prove uniqueness at the singular endpoint
-
-Suppose $u$ and $v$ are two positive solutions with $u(0)=v(0)=1$. Choose $R>0$ so small that
-$$
-\frac12\le u(s),v(s)\le\frac32
-$$
-for $0\le s\le R$. Put
-$$
-M=\sup_{0\le s\le R}|u(s)-v(s)|.
-$$
-For
-$$
-U(\tau)=\int_0^\tau t^5u(t)^5\,dt,
-\qquad
-V(\tau)=\int_0^\tau t^5v(t)^5\,dt,
-$$
-we have
-$$
-U(\tau),V(\tau)\ge \frac{\tau^6}{192},
-$$
-and, by the mean value theorem applied to the fifth power,
-$$
-|U(\tau)-V(\tau)|
-\le \frac{135}{32}\tau^6M.
-$$
-Consequently there is an absolute constant $C$ such that
-$$
-|\sqrt{U(\tau)}-\sqrt{V(\tau)}|
-\le C\tau^3M.
-$$
-Subtracting the two Volterra equations yields
-$$
-|u(s)-v(s)|
-\le C M\int_0^s\tau^{1/2}\,d\tau
-\le C R^{3/2}M.
-$$
-Taking $R$ smaller if necessary gives $CR^{3/2}<1$, hence $M=0$. Therefore the solution is unique on a neighborhood of $0$.
-
-At every positive point the flux is strictly negative, so the equation can be written as a nonsingular first-order system in $g$ and the flux. Standard local uniqueness then extends equality from that neighborhood to every $s>0$ on which the positive solution exists. Thus there is at most one positive global solution satisfying the normalization.
-
-Step 3: Find and verify the positive global solution
-
 Set
 $$
-a=\frac{\sqrt6}{9},
+z=\frac{s-1}{s+1},\qquad y(z)=g\!\left(\frac{1+z}{1-z}\right).
+$$
+Then $s\in(0,\infty)$ corresponds monotonically to $z\in(-1,1)$. A direct differentiation gives
+$$
+(1-z^2)y''(z)-2zy'(z)+\lambda y(z)=0,
+$$
+or
+$$
+\bigl((1-z^2)y'(z)\bigr)'+\lambda y(z)=0.
+$$
+The endpoint assumptions say that $y$ extends continuously to $[-1,1]$, with
+$$
+y(-1)=1.
+$$
+
+Step 2: Quantize the parameter by endpoint regularity
+
+Put
+$$
+F(z)=(1-z^2)y'(z).
+$$
+Since $F'=-\lambda y$ and $y$ is bounded, $F$ has finite limits at both endpoints. If $F(-1)\ne0$, then $y'(z)$ has a nonzero multiple of $(z+1)^{-1}$ as its leading behavior, forcing a logarithmic divergence of $y$. Thus $F(-1)=0$. The same argument at $z=1$ gives
+$$
+\lim_{z\to\pm1}(1-z^2)y'(z)=0.
+$$
+
+For each integer $n\ge0$, let $P_n$ be the Legendre polynomial
+$$
+P_n(z)=\frac1{2^n n!}\frac{d^n}{dz^n}(z^2-1)^n.
+$$
+It satisfies
+$$
+\bigl((1-z^2)P_n'(z)\bigr)'+n(n+1)P_n(z)=0.
+$$
+Multiply the equation for $y$ by $P_n$, the equation for $P_n$ by $y$, subtract, and integrate over $(-1,1)$. The boundary term vanishes because $y$ is bounded, $(1-z^2)y'\to0$, and $P_n,P_n'$ are finite. Therefore
+$$
+\bigl(\lambda-n(n+1)\bigr)
+\int_{-1}^1 y(z)P_n(z)\,dz=0.
+$$
+
+Suppose that $\lambda\ne n(n+1)$ for every $n\ge0$. Then $y$ is orthogonal to every $P_n$, hence to every polynomial because $P_0,\ldots,P_m$ span the polynomials of degree at most $m$. By the Weierstrass approximation theorem, there are polynomials $q_m$ converging uniformly to the continuous function $y$ on $[-1,1]$. Thus
+$$
+0=\lim_{m\to\infty}\int_{-1}^1 y(z)q_m(z)\,dz
+=\int_{-1}^1 y(z)^2\,dz,
+$$
+which would give $y\equiv0$, contradicting $y(-1)=1$. Hence
+$$
+\lambda=n(n+1)
+$$
+for some integer $n\ge0$.
+
+For this $n$, the same Lagrange identity applied to $y$ and $P_n$ shows that
+$$
+(1-z^2)\bigl(y'P_n-yP_n'\bigr)
+$$
+is constant. Its limit at $z=-1$ is zero, so the constant is zero. Therefore $y$ is a constant multiple of $P_n$ on $(-1,1)$.
+
+Step 3: Use the zero count to determine the degree
+
+The Rodrigues formula gives, by $n$ integrations by parts,
+$$
+\int_{-1}^1 P_n(z)q(z)\,dz=0
+$$
+for every polynomial $q$ of degree less than $n$. Every interior zero of $P_n$ is simple, because a solution of a second-order linear ODE whose value and derivative vanish at one interior point is identically zero.
+
+If $P_n$ had fewer than $n$ zeros in $(-1,1)$, let $q$ be the product of its distinct zero factors. Then $\deg q<n$ and $P_nq$ has one fixed sign and is not identically zero, contradicting the orthogonality above. Hence $P_n$ has exactly $n$ zeros in $(-1,1)$.
+
+The map $s\mapsto z=(s-1)/(s+1)$ preserves the number of zeros. Since $g$ has exactly two zeros on $(0,\infty)$,
+$$
+n=2,
 \qquad
-G(s)=\frac1{1+a s^{3/2}}.
+\lambda=6.
 $$
-Then
+
+Step 4: Normalize and return to $x$
+
+Now
 $$
-G'(s)=-\frac{3a}{2}s^{1/2}G(s)^2<0.
+P_2(z)=\frac12(3z^2-1),
+$$
+and $P_2(-1)=1$. Since $y(-1)=1$,
+$$
+y(z)=P_2(z).
 $$
 Therefore
 $$
-s^5|G'|G'=-\frac{9a^2}{4}s^6G^4.
+g(s)
+=P_2\!\left(\frac{s-1}{s+1}\right)
+=\frac{s^2-4s+1}{(1+s)^2}.
 $$
-Differentiating and using
-$$
-a^2=\frac2{27}
-$$
-gives
-$$
--\bigl(s^5|G'|G'\bigr)'=s^5G^5.
-$$
-Also $G(0)=1$ and $G(s)>0$ for all $s\ge0$. By the uniqueness proved in Step 2,
-$$
-g(s)=G(s)=\frac1{1+\frac{\sqrt6}{9}s^{3/2}}.
-$$
-
-Step 4: Return to $x$
+Its two positive zeros are $2-\sqrt3$ and $2+\sqrt3$, and $g(s)\to1$ as $s\to\infty$, so the endpoint and zero-count conditions hold.
 
 Since $s=\log x$,
 $$
-f(x)=\frac1{1+\frac{\sqrt6}{9}(\log x)^{3/2}}.
+f(x)=\frac{(\log x)^2-4\log x+1}{(1+\log x)^2}.
 $$
 
-Final Answer: $\boxed{f(x)=\frac1{1+\frac{\sqrt6}{9}(\log x)^{3/2}}}$
+Final Answer: $\boxed{f(x)=\frac{(\log x)^2-4\log x+1}{(1+\log x)^2}}$
 
 ---
 
 ## Answer
 
-$f(x)=\frac1{1+\frac{\sqrt6}{9}(\log x)^{3/2}}$
+$f(x)=\frac{(\log x)^2-4\log x+1}{(1+\log x)^2}$
 
 ---
 
@@ -131,8 +129,8 @@ $f(x)=\frac1{1+\frac{\sqrt6}{9}(\log x)^{3/2}}$
 
 ## Solution Concepts
 
-- radial critical 3-Laplacian
-- singular flux integration
-- nonlinear Volterra equation
-- endpoint uniqueness by contraction
-- logarithmic change of variables
+- compactification of the half-line
+- singular Sturm-Liouville equation
+- Legendre spectral quantization
+- polynomial density and orthogonality
+- zero count of orthogonal polynomials
