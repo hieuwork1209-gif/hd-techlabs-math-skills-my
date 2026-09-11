@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-algebraic-geometry/problem.md",
+  "source_commit_sha": "6f445238645e1cec2757abd50a0f8b9f3266e424",
+  "problem_blob_sha": "f72e7fc7b4cd4d3b5dc5f9ece2022a887bf33eee",
+  "statement_sha256": "d02139488709a9b64661b1d7a8ff818e1cc202e0bddbbeb1aa221c794e8396ed",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T11:01:01+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(q=m/d\\). The extension \\(\\mathbb C((t))/\\mathbb C((t^m))\\) has Galois group \\(\\mu_m\\), acting by\n\\[\nt\\mapsto \\zeta t,\\qquad \\zeta^m=1.\n\\]\nThus the conjugates of\n\\[\ny=t^n+t^p\n\\]\nare\n\\[\ny_\\zeta=\\zeta^n t^n+\\zeta^p t^p,\\qquad \\zeta\\in\\mu_m.\n\\]\n\nThe stabilizer of \\(y\\) is trivial: if \\(y_\\zeta=y\\), then comparing the distinct \\(t^n\\) and \\(t^p\\) coefficients gives \\(\\zeta^n=\\zeta^p=1\\). Hence \\(\\zeta^{\\gcd(m,n,p)}=1\\). But \\(\\gcd(m,n)=d\\) and \\(\\gcd(d,p)=1\\), so \\(\\gcd(m,n,p)=1\\). Therefore the minimal polynomial has degree \\(m\\), and\n\\[\n\\operatorname{Disc}_Y P=\\prod_{\\{\\zeta,\\eta\\}\\subset \\mu_m,\\ \\zeta\\ne\\eta}\n(y_\\zeta-y_\\eta)^2.\n\\]\n\nNow\n\\[\ny_\\zeta-y_\\eta=(\\zeta^n-\\eta^n)t^n+(\\zeta^p-\\eta^p)t^p.\n\\]\nIf \\(\\zeta^n\\ne\\eta^n\\), the leading term has order \\(n\\). If \\(\\zeta^n=\\eta^n\\), then the leading term has order \\(p\\).\n\nThe map \\(\\mu_m\\to\\mu_q\\), \\(\\zeta\\mapsto \\zeta^n\\), has fibers of size \\(d\\). Therefore the number of pairs with equal \\(n\\)-power is\n\\[\nq\\binom d2=\\frac{m(d-1)}2,\n\\]\nand the number with unequal \\(n\\)-power is\n\\[\n\\binom m2-\\frac{m(d-1)}2=\\frac{m(m-d)}2.\n\\]\nSo the lowest \\(t\\)-order in the discriminant is\n\\[\n2\\left(n\\frac{m(m-d)}2+p\\frac{m(d-1)}2\\right)\n=m\\bigl(n(m-d)+p(d-1)\\bigr).\n\\]\nSince \\(X=t^m\\), the lowest \\(X\\)-degree is\n\\[\nn(m-d)+p(d-1).\n\\]\n\nIt remains to compute the coefficient. For pairs in distinct fibers, the leading coefficients contribute\n\\[\n\\left(\\prod_{\\alpha<\\beta,\\ \\alpha,\\beta\\in\\mu_q}(\\alpha-\\beta)^2\\right)^{d^2}\n=\n\\left((-1)^{(q-1)(q-2)/2}q^q\\right)^{d^2}.\n\\]\nFor pairs inside one fiber, since \\(\\gcd(p,d)=1\\), the \\(p\\)-th power permutes the kernel \\(\\mu_d\\). Across all \\(q\\) fibers this contributes\n\\[\n(-1)^{p(d-1)(q-1)}\n\\left((-1)^{(d-1)(d-2)/2}d^d\\right)^q.\n\\]\nMultiplying these gives the leading coefficient\n\\[\n(-1)^S d^m q^{md},\n\\]\nwhere\n\\[\nS=\nd^2\\frac{(q-1)(q-2)}2\n+q\\frac{(d-1)(d-2)}2\n+p(d-1)(q-1).\n\\]\n\nTherefore, with \\(q=m/d\\), the lowest-degree nonzero term is\n\\[\n\\boxed{\n(-1)^S d^m q^{md}X^{\\,n(m-d)+p(d-1)}\n}\n\\]\nwith\n\\[\nS=\nd^2\\frac{(q-1)(q-2)}2\n+q\\frac{(d-1)(d-2)}2\n+p(d-1)(q-1).\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T11:02:20+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/f72e7fc7b4cd.json"
+}
