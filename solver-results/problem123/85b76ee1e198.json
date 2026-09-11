@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-commutative-algebra/problem.md",
+  "source_commit_sha": "cf247800979bc275392e80979e49b67e92468a75",
+  "problem_blob_sha": "85b76ee1e19842404eab227003e16c7712bd868f",
+  "statement_sha256": "614b25003e0fb32462114ed7c3c966fb38ce6a8b4eb276641ef051c37a6a0df5",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T08:40:08+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "The conductor is\n\n\\[\n\\boxed{\\ \\{f\\in A:fB\\subseteq A\\}=A_+^{\\,\\left\\lceil\\frac{n-1}{r}\\right\\rceil-2}\\ }.\n\\]\n\nLet\n\n\\[\nE=\\{0,\\dots,r\\}\\cup\\{n-r,\\dots,n\\}.\n\\]\n\nA degree \\(d\\) monomial of \\(A\\) has the form \\(s^{nd-J}t^J\\), where \\(J\\) lies in the \\(d\\)-fold sumset \\(S_d=dE\\). If exactly \\(i\\) of the \\(d\\) chosen summands come from the upper block, then the possible \\(J\\)'s form the interval\n\n\\[\nI_{d,i}=[\\,i(n-r),\\; in+(d-i)r\\,].\n\\]\n\nHence\n\n\\[\nS_d=\\bigcup_{i=0}^d I_{d,i}.\n\\]\n\nThe gap between consecutive intervals \\(I_{d,i}\\) and \\(I_{d,i+1}\\) has size controlled by\n\n\\[\n(i+1)(n-r)-\\bigl(in+(d-i)r\\bigr)=n-(d+1)r.\n\\]\n\nThus \\(S_d\\) is the full interval \\([0,dn]\\) exactly when\n\n\\[\nn-(d+1)r\\le 1.\n\\]\n\nNow a degree \\(d\\) monomial \\(s^{nd-J}t^J\\in A_d\\) is in the conductor iff multiplying by every degree-one monomial of \\(B\\) remains in \\(A\\), i.e.\n\n\\[\nJ+q\\in S_{d+1}\\qquad\\text{for every }0\\le q\\le n.\n\\]\n\nThis holds for every \\(J\\in S_d\\) exactly when \\(S_{d+1}\\) has no gaps, namely\n\n\\[\nn-(d+2)r\\le 1\n\\iff\nd\\ge \\left\\lceil\\frac{n-1}{r}\\right\\rceil-2.\n\\]\n\nIf \\(d\\) is smaller, then \\(S_{d+1}\\) has a genuine gap, and every interval \\([J,J+n]\\) meets such a gap, so no nonzero degree \\(d\\) element lies in the conductor.\n\nTherefore the conductor consists precisely of all homogeneous pieces of \\(A\\) in degrees\n\n\\[\nd\\ge \\left\\lceil\\frac{n-1}{r}\\right\\rceil-2.\n\\]\n\nSince \\(A\\) is standard graded, that is exactly\n\n\\[\n\\boxed{A_+^{\\,\\left\\lceil\\frac{n-1}{r}\\right\\rceil-2}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T08:41:14+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/85b76ee1e198.json"
+}
