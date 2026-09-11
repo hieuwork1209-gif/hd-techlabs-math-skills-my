@@ -1,147 +1,123 @@
 ## Steps
 
-Step 1: Convert the radial equation to a singular harmonic oscillator
+Step 1: Integrate the radial flux
 
 Let
 $$
 g(s)=f(e^s),\qquad s\ge0.
 $$
-For some real number $\lambda$,
+The equation is
 $$
-g''+\frac5s g'+(\lambda-s^2)g=0
+-\bigl(s^5|g'(s)|g'(s)\bigr)'=s^5g(s)^5.
 $$
-on $(0,\infty)$. Since $g$ extends to $C^2$ at $0$, the equation forces $g'(0)=0$.
-
-Set
+Because $g\in C^1[0,\infty)$, we have
 $$
-u(s)=s^{5/2}g(s).
+\lim_{s\to0^+}s^5|g'(s)|g'(s)=0.
 $$
-A direct calculation gives
+Hence integration from $0$ to $s$ gives
 $$
--u''+\left(s^2+\frac{15}{4s^2}\right)u=\lambda u.
+s^5|g'(s)|g'(s)
+=-\int_0^s t^5g(t)^5\,dt.
 $$
-Moreover $u\in L^2(0,\infty)$, and near $0$ we have $u(s)\sim s^{5/2}$.
-
-For $a>1/2$, define
+Since $g>0$, the right-hand side is strictly negative for $s>0$. Therefore
 $$
-H_a=-\frac{d^2}{ds^2}+s^2+\frac{a(a-1)}{s^2},
+g'(s)<0
 $$
 and
 $$
-A_a=\frac d{ds}+s-\frac as.
+-g'(s)
+=s^{-5/2}\left(\int_0^s t^5g(t)^5\,dt\right)^{1/2}.
 $$
-On functions with the present endpoint behavior, integration by parts gives
+Integrating once more,
 $$
-H_a=A_a^*A_a+2a+1,
+g(s)=1-\int_0^s \tau^{-5/2}
+\left(\int_0^\tau t^5g(t)^5\,dt\right)^{1/2}d\tau.
 $$
-where
-$$
-A_a^*=-\frac d{ds}+s-\frac as.
-$$
-Thus every nonzero square-integrable eigenfunction of $H_a$ has eigenvalue at least $2a+1$.
+Thus the singular differential equation is equivalent near the origin to a nonlinear Volterra equation.
 
-Here $a=5/2$, so $H_{5/2}u=\lambda u$.
+Step 2: Prove uniqueness at the singular endpoint
 
-Step 2: Quantize the eigenvalue by the factorization ladder
-
-A second direct multiplication gives
+Suppose $u$ and $v$ are two positive solutions with $u(0)=v(0)=1$. Choose $R>0$ so small that
 $$
-A_aA_a^*=H_{a+1}-(2a-1),
+\frac12\le u(s),v(s)\le\frac32
 $$
-and therefore
+for $0\le s\le R$. Put
 $$
-A_aH_a=(H_{a+1}+2)A_a.
+M=\sup_{0\le s\le R}|u(s)-v(s)|.
 $$
-Define
+For
 $$
-u_0=u,
+U(\tau)=\int_0^\tau t^5u(t)^5\,dt,
 \qquad
-u_{k+1}=A_{5/2+k}u_k.
+V(\tau)=\int_0^\tau t^5v(t)^5\,dt,
 $$
-Whenever $u_k\ne0$, it is a square-integrable eigenfunction of $H_{5/2+k}$ with eigenvalue $\lambda-2k$. The factorization estimate therefore gives
+we have
 $$
-\lambda-2k\ge 2\left(\frac52+k\right)+1=6+2k,
+U(\tau),V(\tau)\ge \frac{\tau^6}{192},
 $$
-so
+and, by the mean value theorem applied to the fifth power,
 $$
-\lambda\ge6+4k.
+|U(\tau)-V(\tau)|
+\le \frac{135}{32}\tau^6M.
 $$
-This cannot hold for arbitrarily large $k$. Hence the ladder terminates: for some integer $n\ge0$,
+Consequently there is an absolute constant $C$ such that
 $$
-u_n\ne0,
+|\sqrt{U(\tau)}-\sqrt{V(\tau)}|
+\le C\tau^3M.
+$$
+Subtracting the two Volterra equations yields
+$$
+|u(s)-v(s)|
+\le C M\int_0^s\tau^{1/2}\,d\tau
+\le C R^{3/2}M.
+$$
+Taking $R$ smaller if necessary gives $CR^{3/2}<1$, hence $M=0$. Therefore the solution is unique on a neighborhood of $0$.
+
+At every positive point the flux is strictly negative, so the equation can be written as a nonsingular first-order system in $g$ and the flux. Standard local uniqueness then extends equality from that neighborhood to every $s>0$ on which the positive solution exists. Thus there is at most one positive global solution satisfying the normalization.
+
+Step 3: Find and verify the positive global solution
+
+Set
+$$
+a=\frac{\sqrt6}{9},
 \qquad
-A_{5/2+n}u_n=0.
+G(s)=\frac1{1+a s^{3/2}}.
 $$
-The last equation makes $u_n$ a ground-state eigenfunction of $H_{5/2+n}$, so
+Then
 $$
-\lambda-2n=2\left(\frac52+n\right)+1=6+2n.
-$$
-Consequently
-$$
-\lambda=6+4n.
-$$
-Thus square integrability alone quantizes the unknown parameter.
-
-Step 3: Identify the regular eigenfunction and use its zero count
-
-Put
-$$
-z=s^2,
-\qquad
-g(s)=e^{-z/2}y(z).
-$$
-Substitution gives
-$$
-z y''+(3-z)y'+ny=0.
-$$
-The solution regular at $z=0$ is a constant multiple of the generalized Laguerre polynomial
-$$
-L_n^{(2)}(z)
-=\frac{z^{-2}e^z}{n!}\frac{d^n}{dz^n}\left(e^{-z}z^{n+2}\right).
-$$
-Indeed the Rodrigues expression satisfies the equation, while the second local Frobenius branch is singular at $0$ and is excluded by the $C^2$ extension of $g$.
-
-The same Rodrigues formula, followed by $n$ integrations by parts, shows that $L_n^{(2)}$ is orthogonal to every polynomial of degree less than $n$ with respect to the positive weight $z^2e^{-z}$ on $(0,\infty)$. A degree-$n$ orthogonal polynomial for a positive weight has exactly $n$ simple zeros in the interval: otherwise the product of its distinct sign-change factors would have degree less than $n$ and would have a product of one sign with the polynomial, contradicting orthogonality.
-
-Hence $L_n^{(2)}$ has exactly $n$ positive zeros. Since $z=s^2$ preserves positive zeros and $g$ has exactly two zeros on $(0,\infty)$,
-$$
-n=2.
+G'(s)=-\frac{3a}{2}s^{1/2}G(s)^2<0.
 $$
 Therefore
 $$
-\lambda=14.
+s^5|G'|G'=-\frac{9a^2}{4}s^6G^4.
+$$
+Differentiating and using
+$$
+a^2=\frac2{27}
+$$
+gives
+$$
+-\bigl(s^5|G'|G'\bigr)'=s^5G^5.
+$$
+Also $G(0)=1$ and $G(s)>0$ for all $s\ge0$. By the uniqueness proved in Step 2,
+$$
+g(s)=G(s)=\frac1{1+\frac{\sqrt6}{9}s^{3/2}}.
 $$
 
-Step 4: Normalize and return to $x$
+Step 4: Return to $x$
 
-For $n=2$,
+Since $s=\log x$,
 $$
-L_2^{(2)}(z)=\frac12\left(z^2-8z+12\right).
-$$
-Since $g(0)=1$ and $L_2^{(2)}(0)=6$,
-$$
-g(s)
-=e^{-s^2/2}\frac{L_2^{(2)}(s^2)}6
-=e^{-s^2/2}\left(1-\frac{2s^2}{3}+\frac{s^4}{12}\right).
-$$
-The polynomial factor equals
-$$
-\frac{(s^2-2)(s^2-6)}{12},
-$$
-so the two positive zeros are exactly $\sqrt2$ and $\sqrt6$. The Gaussian factor gives the required weighted square integrability.
-
-Finally $s=\log x$, hence
-$$
-f(x)=e^{-\frac{(\log x)^2}{2}}\left(1-\frac{2(\log x)^2}{3}+\frac{(\log x)^4}{12}\right).
+f(x)=\frac1{1+\frac{\sqrt6}{9}(\log x)^{3/2}}.
 $$
 
-Final Answer: $\boxed{f(x)=e^{-\frac{(\log x)^2}{2}}\left(1-\frac{2(\log x)^2}{3}+\frac{(\log x)^4}{12}\right)}$
+Final Answer: $\boxed{f(x)=\frac1{1+\frac{\sqrt6}{9}(\log x)^{3/2}}}$
 
 ---
 
 ## Answer
 
-$f(x)=e^{-\frac{(\log x)^2}{2}}\left(1-\frac{2(\log x)^2}{3}+\frac{(\log x)^4}{12}\right)$
+$f(x)=\frac1{1+\frac{\sqrt6}{9}(\log x)^{3/2}}$
 
 ---
 
@@ -155,8 +131,8 @@ $f(x)=e^{-\frac{(\log x)^2}{2}}\left(1-\frac{2(\log x)^2}{3}+\frac{(\log x)^4}{1
 
 ## Solution Concepts
 
-- radial harmonic oscillator
-- factorization ladder and spectral quantization
-- Laguerre Sturm-Liouville equation
-- zero count of orthogonal polynomials
+- radial critical 3-Laplacian
+- singular flux integration
+- nonlinear Volterra equation
+- endpoint uniqueness by contraction
 - logarithmic change of variables
