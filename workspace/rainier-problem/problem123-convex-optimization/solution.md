@@ -110,12 +110,14 @@ L_{w^*}=\frac{6}{n(n^2-1)}L_0.
 \tag{14}
 $$
 
+The coefficients in (13) are quadratic in the vertex coordinate, while each first difference in the Laplacian lowers polynomial degree by one. This visibly suggests the polynomial-degree filtration as the canonical structure to test, rather than introducing an auxiliary basis by guesswork.
+
 For $0\le k\le n-1$, let $\mathcal P_k$ be the vectors obtained by evaluating real polynomials of degree at most $k$ at the points $1,\dots,n$. These spaces form a strictly increasing flag
 $$
 \mathcal P_0\subset\mathcal P_1\subset\cdots\subset\mathcal P_{n-1}=\mathbb R^n.
 \tag{15}
 $$
-The choice (13) is now forced to reveal its structure. For a polynomial $p$,
+For a polynomial $p$,
 $$
 (L_0p)(i)
 =(i-1)(n-i+1)\bigl(p(i)-p(i-1)\bigr)
