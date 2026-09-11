@@ -2,15 +2,23 @@
 
 ## LaTeX (Normalized)
 
-Let $m\ge7$ be an integer and put
+Let
 $$
-\zeta_m=\exp\!\left(\frac{2\pi i}{2^m}\right).
+G=(\mathbb Z/4\mathbb Z)^4
 $$
-Evaluate exactly
+with the standard symplectic pairing
 $$
-S_m=\sum_{x=0}^{2^m-1}\zeta_m^{\,x^4+2x^2}.
+\langle x,y\rangle
+=x_1y_3+x_2y_4-x_3y_1-x_4y_2\pmod4.
 $$
-For grading, write the final answer as $S_m=\cdots$ and leave the power $2^{(m+1)/2}$ unexpanded.
+For an additive subgroup $H\le G$, define
+$$
+H^\perp=\{x\in G:\langle x,h\rangle=0\text{ for every }h\in H\}.
+$$
+Determine the number of additive subgroups $H\le G$ satisfying
+$$
+H=H^\perp.
+$$
 
 ---
 
@@ -27,4 +35,4 @@ For grading, write the final answer as $S_m=\cdots$ and leave the power $2^{(m+1
 
 ## Domain Explanation
 
-The problem asks for an exact quartic exponential sum modulo a power of two. Its evaluation depends on parity decomposition, two-adic translation cancellation, reduction of a quartic perturbation to a quadratic Gauss sum, and the recurrence for Gauss sums modulo $2^k$. The essential structure is modular and two-adic, so the best classification is Number Theory with sub-domain Modular arithmetic and congruences.
+The problem asks for an exact count of self-dual isotropic subgroups in a finite symplectic module over $\mathbb Z/4\mathbb Z$. Reduction modulo $2$ splits the subgroups into genuinely different strata, and the nontrivial strata require counting both isotropic subspaces over $\mathbb F_2$ and their lifts back to modulus $4$. The essential structure is modular and two-adic, so the best classification is Number Theory with sub-domain Modular arithmetic and congruences.
