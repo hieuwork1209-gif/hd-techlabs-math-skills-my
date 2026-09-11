@@ -2,12 +2,12 @@
 
 ## LaTeX (Normalized)
 
-For an integer $n\ge2$, define
+Let $p$ be an odd prime, and define
 $$
-G_n=
-\gcd\left\{\binom nk:1\le k<n,\ k\text{ odd}\right\}.
+H_p=
+\gcd\left\{\binom{2p}{2j}:1\le j\le p-1\right\}.
 $$
-Determine $G_n$ exactly for every $n$.
+Determine $H_p$ exactly.
 
 ---
 
@@ -24,4 +24,4 @@ Determine $G_n$ exactly for every $n$.
 
 ## Domain Explanation
 
-The problem asks for an exact divisibility invariant of binomial coefficients. Its essential structure is prime-by-prime divisibility, with the parity restriction on the indices interacting with the prime-power factorization of $n$; base-$p$ congruence arguments provide the decisive classification. Thus Elementary number theory is the best fit.
+The problem asks for the exact common divisibility of the even-index binomial coefficients in row $2p$. The decisive arithmetic is prime-by-prime: the prime $p$ behaves differently from primes dividing $2p-1$, and Lucas congruences plus parity of base-$q$ digits determine exactly which factors survive. Thus Elementary number theory is the best fit.
