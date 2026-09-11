@@ -279,14 +279,14 @@ $$
 O\left((1+T)^B e^{-\pi T/2}\right)\to0
 \qquad(T\to\infty).
 $$
-With the left vertical side oriented upward and the right side downward, the rectangle is clockwise, so the residue theorem gives
+Let $S_n$ denote the sum of the residues of $F(s)n^{-s}$ at the crossed poles $s=\frac12,1,\frac32$. With the left vertical side oriented upward and the right side downward, the rectangle is clockwise, so the residue theorem gives
 $$
 \int_{c-i\infty}^{c+i\infty}F(s)n^{-s}\,ds
 =
 \int_{\sigma-i\infty}^{\sigma+i\infty}F(s)n^{-s}\,ds
--2\pi i\sum \operatorname*{Res} F(s)n^{-s},
+-2\pi i S_n.
 $$
-where the crossed poles are $s=\frac12,1,\frac32$. This proves both the sign used above and the claimed remainder estimate.
+This proves both the sign used above and the claimed remainder estimate.
 
 Combining Steps 3 and 4 with $R_n=o(n^{-3/2})$,
 $$
