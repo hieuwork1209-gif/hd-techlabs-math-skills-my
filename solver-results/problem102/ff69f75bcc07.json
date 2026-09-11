@@ -1,0 +1,22 @@
+{
+  "problem": "problem102",
+  "branch": "adversary/problem102",
+  "problem_path": "workspace/rainier-problem/problem102-single-variable-calculus/problem.md",
+  "source_commit_sha": "c74336c7b3a2d09853add7db7c8850a3a2f650ed",
+  "problem_blob_sha": "ff69f75bcc07f8009f627751dcfda14ce440f7cd",
+  "statement_sha256": "557ec88cca105a730d566d2b4d750415b2eb41c0474186180d0930ba9f78912d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T03:27:48+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nu=\\log x,\\qquad g(u)=f(e^u)\\quad (u>0).\n\\]\nThen\n\\[\nA=\\frac1u\\int_0^u g(s)\\,ds,\\quad\nB=\\frac2{u^2}\\int_0^u (u-s)g(s)\\,ds,\\quad\nC=\\frac3{u^3}\\int_0^u (u-s)^2g(s)\\,ds.\n\\]\nWrite\n\\[\ny(u)=2-C(e^u).\n\\]\nThe standard differentiation identities for these averaged moments are\n\\[\nuC'=3(B-C),\\qquad uB'=2(A-B),\n\\]\nwhere derivatives are with respect to \\(u\\).\n\nFrom \\(C=2-y\\),\n\\[\nB=C+\\frac{uC'}3=2-y-\\frac{uy'}3.\n\\]\nHence\n\\[\n2-3B+2C=y+uy'.\n\\]\nThe first squared condition gives\n\\[\n(y+uy')^2=y^4.\n\\]\nSince \\(y(1)=2-C(e)=\\pm\\frac12\\), \\(y\\neq 0\\) near \\(u=1\\), so on its nonzero component\n\\[\ny+uy'=\\varepsilon y^2,\\qquad \\varepsilon\\in\\{\\pm1\\}.\n\\]\nWith \\(z=1/y\\), this becomes\n\\[\nuz'=z-\\varepsilon,\n\\]\nso\n\\[\nz(u)=\\varepsilon+Ku,\\qquad y(u)=\\frac1{\\varepsilon+Ku}.\n\\]\nThe component cannot end at a zero of \\(y\\), and a pole would make \\(C\\) nonfinite, so this holds for every \\(u>0\\).\n\nNow \\(y(1)=\\pm\\frac12\\). The four formal possibilities reduce to\n\\[\ny(u)=\\frac1{1+u}\\quad\\text{or}\\quad y(u)=-\\frac1{1+u},\n\\]\nbecause the other two have a pole at \\(u=\\frac13\\).\n\nThus\n\\[\nC(e^u)=2-\\frac{\\delta}{1+u},\\qquad \\delta\\in\\{1,-1\\}.\n\\]\nRecover \\(g\\) from \\(C\\). Since\n\\[\n\\frac{u^3C(e^u)}3=\\int_0^u (u-s)^2g(s)\\,ds,\n\\]\ndifferentiating three times gives\n\\[\ng(u)=\\frac16\\frac{d^3}{du^3}\\bigl(u^3C(e^u)\\bigr).\n\\]\nTherefore\n\\[\ng(u)=2-\\frac{\\delta}{(1+u)^4}.\n\\]\nBut \\(g\\) is concave, and\n\\[\ng''(u)=-\\frac{20\\delta}{(1+u)^6}.\n\\]\nConcavity forces \\(\\delta=1\\). Hence\n\\[\ng(u)=2-\\frac1{(1+u)^4}.\n\\]\nSubstituting \\(u=\\log x\\), the answer is\n\\[\n\\boxed{f(x)=2-\\frac{1}{(1+\\log x)^4}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T03:29:04+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem102/ff69f75bcc07.json"
+}
