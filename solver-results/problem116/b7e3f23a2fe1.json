@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "4351bf62fe08c2c1190fc7e9b2d73b939b729196",
+  "problem_blob_sha": "b7e3f23a2fe1b13643f4cac641ac44935321a2ca",
+  "statement_sha256": "f85a5d46921c7aefed239adf4c16f72cea194a911592463ce20bda79fa1b5810",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T07:02:12+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\n\\Delta_\\tau(\\lambda)=\\lambda+1+a e^{-\\lambda\\tau}+b e^{-2\\lambda\\tau}\n\\]\nbe the characteristic function. For this linear retarded delay equation, the zero solution is globally asymptotically stable exactly when all zeros of \\(\\Delta_\\tau\\) have negative real part.\n\nFor small \\(\\tau>0\\) this is true: if \\(\\Re\\lambda\\ge0\\) and \\(\\Delta_\\tau(\\lambda)=0\\), then\n\\[\n|\\lambda+1|\\le a+b,\n\\]\nso such roots are bounded; letting \\(\\tau\\to0\\) would force a limiting root of\n\\[\n\\lambda+1+a+b=0,\n\\]\nwhich has negative real part. Thus instability for some \\(\\tau\\) can occur only by a crossing through a nonzero imaginary root.\n\nPut \\(\\lambda=i\\omega\\), \\(\\omega>0\\), and \\(\\theta=\\omega\\tau\\). Then\n\\[\ni\\omega+1+a e^{-i\\theta}+b e^{-2i\\theta}=0.\n\\]\nSeparating real and imaginary parts gives\n\\[\n1+a\\cos\\theta+b\\cos 2\\theta=0,\n\\]\n\\[\n\\omega=a\\sin\\theta+b\\sin 2\\theta.\n\\]\nWriting \\(c=\\cos\\theta\\), the real equation becomes\n\\[\nP(c):=2bc^2+ac+1-b=0.\n\\]\nIf \\(P(c)=0\\) for some \\(c\\in(-1,1)\\), then one can choose \\(\\theta\\) with \\(\\cos\\theta=c\\) so that\n\\[\na\\sin\\theta+b\\sin2\\theta\n=\\sin\\theta(a+2bc)>0,\n\\]\nexcept in the exceptional case \\(a+2bc=0\\). But that exception forces \\(b=1\\), and then\n\\[\nP(c)=2c^2+ac=c(2c+a),\n\\]\nso \\(c=0\\in(-1,1)\\) is another root giving a positive imaginary crossing. Hence stability for every \\(\\tau>0\\) is equivalent to\n\\[\nP(c)>0\\qquad\\text{for every }c\\in(-1,1).\n\\]\n\nNow analyze\n\\[\nP(c)=2bc^2+ac+1-b,\\qquad b>0.\n\\]\nIts vertex is at\n\\[\nc_*=-\\frac a{4b}.\n\\]\n\nIf \\(0<b\\le\\frac13\\), then the condition is exactly\n\\[\na\\le 1+b.\n\\]\nIndeed, if \\(a>1+b\\), then \\(P(-1)=1-a+b<0\\), while \\(P(1)=1+a+b>0\\), so \\(P\\) has a root in \\((-1,1)\\). Conversely, if \\(a\\le1+b\\), then either \\(a\\ge4b\\), in which case the minimum on \\([-1,1]\\) is at \\(-1\\) and \\(P(-1)\\ge0\\), or \\(a<4b\\), in which case\n\\[\nP(c_*)=1-b-\\frac{a^2}{8b}>0\n\\]\nbecause \\(a^2<16b^2\\le8b(1-b)\\). Thus no interior root exists.\n\nIf \\(b>\\frac13\\), then \\(a\\ge4b\\) already implies \\(a>1+b\\), producing an interior root. Therefore we need \\(a<4b\\), so the vertex lies in \\((-1,1)\\), and the condition is\n\\[\nP(c_*)=1-b-\\frac{a^2}{8b}>0.\n\\]\nEquivalently,\n\\[\nb<1,\\qquad a^2<8b(1-b).\n\\]\n\nTherefore the required set of parameters is\n\\[\n\\boxed{\n\\left\\{(a,b):0<b\\le\\frac13,\\ 0<a\\le1+b\\right\\}\n\\ \\cup\\\n\\left\\{(a,b):\\frac13<b<1,\\ 0<a<\\sqrt{8b(1-b)}\\right\\}.\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T07:03:52+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/b7e3f23a2fe1.json"
+}
