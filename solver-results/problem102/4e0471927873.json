@@ -1,0 +1,22 @@
+{
+  "problem": "problem102",
+  "branch": "adversary/problem102",
+  "problem_path": "workspace/rainier-problem/problem102-single-variable-calculus/problem.md",
+  "source_commit_sha": "5e61c38c9efe70423a5ed111c28a855682affb21",
+  "problem_blob_sha": "4e0471927873c0753481298b0a8552ce1e7e5d00",
+  "statement_sha256": "51fe3b3036ecbd7050587785df69a68f6988de595e08dbd5e0d015a4f2606b2e",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T04:15:54+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nr=\\frac{s}{1+s},\\qquad h(r)=g(s).\n\\]\nThen \\(r\\in(0,1)\\), and the differential equation becomes\n\\[\n\\bigl(r(1-r)h'(r)\\bigr)'+\\lambda h(r)=0.\n\\]\nThe condition \\(s\\to0^+\\) is \\(r\\to0^+\\), so \\(h(0)=1\\), and \\(s\\to\\infty\\) is \\(r\\to1^-\\), so \\(h\\) must remain finite at \\(r=1\\).\n\nSolving by a power series \\(h(r)=\\sum_{m\\ge0}a_mr^m\\), \\(a_0=1\\), gives\n\\[\n(m+1)^2a_{m+1}+\\bigl(\\lambda-m(m+1)\\bigr)a_m=0.\n\\]\nIf the series does not terminate, then \\(a_m\\sim C/m\\) with \\(C\\ne0\\), so \\(h(r)\\) has logarithmic divergence as \\(r\\to1^-\\). Hence finiteness at \\(r=1\\) forces termination, so\n\\[\n\\lambda=n(n+1)\n\\]\nfor some integer \\(n\\ge0\\), and \\(h\\) is the shifted Legendre polynomial\n\\[\nh(r)=P_n(1-2r).\n\\]\nThis polynomial has exactly \\(n\\) zeros in \\((0,1)\\), so the assumption of exactly two zeros gives \\(n=2\\). Therefore\n\\[\ng(s)=P_2\\!\\left(\\frac{1-s}{1+s}\\right)\n=\\frac{3\\left(\\frac{1-s}{1+s}\\right)^2-1}{2}\n=\\frac{s^2-4s+1}{(1+s)^2}.\n\\]\nSince \\(s=\\log x\\),\n\n\\[\n\\boxed{f(x)=\\frac{(\\log x)^2-4\\log x+1}{(1+\\log x)^2}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T04:17:00+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem102/4e0471927873.json"
+}
