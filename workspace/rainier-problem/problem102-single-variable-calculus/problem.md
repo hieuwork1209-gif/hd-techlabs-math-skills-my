@@ -6,7 +6,7 @@ Let $C_{10}$ be the cycle graph on $\mathbb Z/10\mathbb Z$, and let
 $$
 \Gamma=C_{10}\square C_{10}.
 $$
-Equivalently, $\Gamma$ has vertex set $(\mathbb Z/10\mathbb Z)^2$, with two vertices adjacent when they differ by $\pm1$ in exactly one coordinate. Determine the number of perfect matchings of $\Gamma$. For grading, give the final answer in prime-factorized form.
+Equivalently, $\Gamma$ has vertex set $(\mathbb Z/10\mathbb Z)^2$, with two vertices adjacent when they differ by $\pm1$ in exactly one coordinate. Determine the number of perfect matchings of $\Gamma$.
 
 ---
 
