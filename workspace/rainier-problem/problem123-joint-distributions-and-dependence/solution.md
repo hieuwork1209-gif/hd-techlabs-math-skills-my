@@ -1,219 +1,297 @@
 ## Steps
 
-Step 1: Replace the non-identifiable latent variable by the parameter seen by the observations
+Step 1: Separate the shared mass from the residual composition
 
-Fix $a>0$ and let
+Let
 $$
-\Theta\sim\operatorname{Beta}(a,a).
+(P_1,P_2,P_3,P_4)\sim\operatorname{Dirichlet}(a,1,1,1),
+\qquad a>0.
+$$
+Thus on the simplex $p_j>0$, $p_1+p_2+p_3+p_4=1$, the density with respect to $dp_1\,dp_2\,dp_3$ is
+$$
+\frac{\Gamma(a+3)}{\Gamma(a)}p_1^{a-1}.
 $$
 Set
 $$
-P=4\Theta(1-\Theta).
-$$
-The observations depend on $\Theta$ only through $P$. For $0<p<1$, the two inverse branches are
-$$
-\theta_\pm(p)=\frac{1\pm\sqrt{1-p}}2,
+S=P_1,
 \qquad
-\left|\frac{d\theta_\pm}{dp}\right|=\frac1{4\sqrt{1-p}}.
+U=\frac{P_2}{1-P_1},
+\qquad
+V=\frac{P_3}{1-P_1}.
 $$
-At either inverse point,
+Then
 $$
-\theta_\pm(1-\theta_\pm)=\frac p4.
+P_2=(1-S)U,
+\quad
+P_3=(1-S)V,
+\quad
+P_4=(1-S)(1-U-V),
 $$
-Therefore the density of $P$ is proportional to
+where $0<S<1$, $U>0$, $V>0$, and $U+V<1$. The Jacobian of $(S,U,V)\mapsto(P_1,P_2,P_3)$ is $(1-S)^2$. Hence the joint density of $(S,U,V)$ is
 $$
-p^{a-1}(1-p)^{-1/2},\qquad 0<p<1.
+\frac{\Gamma(a+3)}{\Gamma(a)}S^{a-1}(1-S)^2
+=
+\frac{S^{a-1}(1-S)^2}{B(a,3)}\,2.
 $$
-Since this density is normalized, it is exactly the $\operatorname{Beta}(a,1/2)$ density. Equivalently, the normalizing identity is
+Therefore
 $$
-B\!\left(a,\frac12\right)=2^{2a-1}B(a,a),
+S\sim\operatorname{Beta}(a,3),
 $$
-which follows directly by the substitution $p=4\theta(1-\theta)$ on $0<\theta<1/2$.
+and $S$ is independent of $(U,V)$, while $(U,V)$ is uniform with density $2$ on
+$$
+\{(u,v):u>0,\ v>0,\ u+v<1\}.
+$$
 
-Both inverse values of $\Theta$ give the same Bernoulli success probability $p$. Hence, conditional on $P=p$, the two sequences remain independent and every coordinate is Bernoulli$(p)$. Thus the statistically identifiable latent variable is
+Step 2: Split the mutual information into a shared layer and a residual layer
+
+For the $X$-sample define
 $$
-P\sim\operatorname{Beta}\!\left(a,\frac12\right).
+A_i=\mathbf 1_{\{X_i=1\}},
+$$
+and for the $Y$-sample define
+$$
+B_i=\mathbf 1_{\{Y_i=1\}}.
+$$
+Given $S$, both $(A_i)$ and $(B_i)$ are iid Bernoulli$(S)$ sequences, and the two sequences are conditionally independent.
+
+Whenever $A_i=0$, the residual label records whether $X_i=2$ or $X_i=3$. Conditional on $(S,U,V)$, these residual labels are iid Bernoulli$(U)$. Similarly, conditional on $(S,U,V)$, the residual labels of the $Y$-sample are iid Bernoulli$(V)$.
+
+Let
+$$
+M_X=\sum_{i=1}^n(1-A_i),
+\qquad
+M_Y=\sum_{i=1}^n(1-B_i),
+$$
+and let $R_X^{(M_X)}$ and $R_Y^{(M_Y)}$ denote the two residual binary strings. Because $S$ is independent of $(U,V)$, conditional on $(A^{(n)},B^{(n)})$ the residual pair depends on the indicator strings only through the lengths $(M_X,M_Y)$. Hence the likelihood ratio factors into an indicator part and a residual part, giving the exact identity
+$$
+I(X^{(n)};Y^{(n)})
+=
+I(A^{(n)};B^{(n)})
++E\,R_{M_X,M_Y},
+$$
+where
+$$
+R_{m,\ell}
+=I(R_X^{(m)};R_Y^{(\ell)})
+$$
+for Bernoulli samples generated from the latent pair $(U,V)$.
+
+Step 3: Evaluate the residual dependence limit
+
+For fixed $m,\ell$, the Markov structure
+$$
+R_X^{(m)}\longrightarrow U\longrightarrow V\longrightarrow R_Y^{(\ell)}
+$$
+gives by data processing
+$$
+0\le R_{m,\ell}\le I(U;V).
+$$
+As $m,\ell\to\infty$, the strong law gives
+$$
+\frac1m\sum_{j=1}^m R_{X,j}\to U,
+\qquad
+\frac1\ell\sum_{j=1}^\ell R_{Y,j}\to V
+$$
+almost surely. Thus $U$ is measurable from the infinite $X$-residual sequence and $V$ from the infinite $Y$-residual sequence. Mutual information of increasing finite prefixes converges to the mutual information of the full infinite sequences; data processing in both directions then gives
+$$
+\lim_{m,\ell\to\infty}R_{m,\ell}=I(U;V).
+$$
+Also, conditional on $S<1$,
+$$
+\frac{M_X}{n}\to1-S,
+\qquad
+\frac{M_Y}{n}\to1-S
+$$
+almost surely, so $M_X,M_Y\to\infty$ almost surely. Since $R_{m,\ell}\le I(U;V)$, bounded convergence yields
+$$
+E\,R_{M_X,M_Y}\to I(U;V).
 $$
 
-Step 2: Reduce the two-block mutual information to one parameter-sample quantity
-
-For $m\ge1$, let $Z^{(m)}=(Z_1,\ldots,Z_m)$ be conditionally iid Bernoulli$(P)$ given $P$, and put
+Now $(U,V)$ has density $2$ on a triangle of area $1/2$, so
 $$
-J_m=I(P;Z^{(m)}).
+h(U,V)=-\log2.
 $$
-Because $X^{(n)}=(X_1,\ldots,X_n)$ and $Y^{(n)}=(Y_1,\ldots,Y_n)$ are conditionally independent given $P$,
+The marginal density is
 $$
-I(X^{(n)};Y^{(n)}\mid P)=0.
+f_U(u)=2(1-u),\qquad 0<u<1,
 $$
-Expanding the three mutual informations by discrete entropies gives
+and therefore
 $$
 \begin{aligned}
-&I(P;X^{(n)})+I(P;Y^{(n)})-I(P;X^{(n)},Y^{(n)})\\
-&=H(X^{(n)})+H(Y^{(n)})-H(X^{(n)},Y^{(n)})
-=I(X^{(n)};Y^{(n)}),
+h(U)
+&=-\int_0^1 2(1-u)\log\bigl(2(1-u)\bigr)\,du\\
+&=\frac12-\log2.
 \end{aligned}
 $$
-because conditional independence gives
+The same holds for $V$, hence
 $$
-H(X^{(n)},Y^{(n)}\mid P)
-=H(X^{(n)}\mid P)+H(Y^{(n)}\mid P).
+I(U;V)=h(U)+h(V)-h(U,V)=1-\log2.
 $$
-The concatenated pair $(X^{(n)},Y^{(n)})$ is, conditional on $P$, a Bernoulli sample of size $2n$. Therefore
+Consequently
 $$
-I(X^{(n)};Y^{(n)})=2J_n-J_{2n}.
+E\,R_{M_X,M_Y}=1-\log2+o(1).
 $$
 
-Step 3: Derive the Beta-Bernoulli information asymptotic with boundary control
+Step 4: Derive the shared Beta-Bernoulli asymptotic
 
-We first prove a lemma for fixed $r,s>0$. Let $Q\sim\operatorname{Beta}(r,s)$ and, conditional on $Q$, let $Z_1,\ldots,Z_m$ be iid Bernoulli$(Q)$. Write
+We need the mutual information between two Bernoulli samples sharing
 $$
-S_m=\sum_{i=1}^m Z_i,
+S\sim\operatorname{Beta}(r,s),
+\qquad r,s>0.
+$$
+For one sample $Z^{(m)}=(Z_1,\ldots,Z_m)$, let
+$$
+J_m(r,s)=I(S;Z^{(m)}),
 \qquad
-J_m(r,s)=I(Q;Z_1,\ldots,Z_m).
+K_m=\sum_{i=1}^m Z_i.
 $$
-Given $S_m=k$, every binary string with $k$ ones has the same likelihood $Q^k(1-Q)^{m-k}$, so the string carries no information about $Q$ beyond $S_m$. Hence
+The sufficient statistic $K_m$ gives
 $$
-J_m(r,s)=I(Q;S_m).
+S\mid K_m=k\sim\operatorname{Beta}(r+k,s+m-k).
 $$
-Bayes' formula gives
-$$
-Q\mid S_m=k\sim\operatorname{Beta}(r+k,s+m-k).
-$$
-Let $h_{u,v}$ denote the differential entropy of $\operatorname{Beta}(u,v)$. Since
+For $Q\sim\operatorname{Beta}(u,v)$,
 $$
 E\log Q=\psi(u)-\psi(u+v),
 \qquad
 E\log(1-Q)=\psi(v)-\psi(u+v),
 $$
-obtained by differentiating the beta integral, the entropy is
+so its differential entropy is
 $$
 h_{u,v}
 =\log B(u,v)-(u-1)\psi(u)-(v-1)\psi(v)+(u+v-2)\psi(u+v).
 $$
-Consequently
+Thus
 $$
-J_m(r,s)=h_{r,s}-E\,h_{r+S_m,s+m-S_m}.
+J_m(r,s)=h_{r,s}-E\,h_{r+K_m,s+m-K_m}.
 $$
 
-For large $u,v$, substituting
+Using
 $$
 \log\Gamma(t)=\left(t-\frac12\right)\log t-t+\frac12\log(2\pi)+O(t^{-1}),
 $$
 $$
-\psi(t)=\log t-\frac1{2t}+O(t^{-2})
+\psi(t)=\log t-\frac1{2t}+O(t^{-2}),
 $$
-into the displayed entropy formula gives
+we obtain, when both $u,v\to\infty$,
 $$
 h_{u,v}
-=\frac12\log\!\left(\frac{2\pi e\,uv}{(u+v)^3}\right)
+=
+\frac12\log\!\left(\frac{2\pi e\,uv}{(u+v)^3}\right)
 +O(u^{-1}+v^{-1}).
 $$
-We now justify averaging this expansion even near the beta endpoints. Put
+To average this uniformly, take
 $$
-\delta_m=m^{-1/8},\qquad \varepsilon_m=m^{-1/4},
-$$
-and consider
-$$
-E_m=\left\{\delta_m\le Q\le1-\delta_m,
-\ \left|\frac{S_m}{m}-Q\right|\le\varepsilon_m\right\}.
-$$
-The beta density gives
-$$
-P(Q<\delta_m)=O(\delta_m^r),
+\delta_m=m^{-1/8},
 \qquad
-P(Q>1-\delta_m)=O(\delta_m^s),
+\varepsilon_m=m^{-1/4}.
 $$
-and conditional Chebyshev, using
+On the event
 $$
-\operatorname{Var}(S_m/m\mid Q)=\frac{Q(1-Q)}m\le\frac1{4m},
+\delta_m\le S\le1-\delta_m,
+\qquad
+\left|\frac{K_m}{m}-S\right|\le\varepsilon_m,
 $$
-gives
+both posterior shape parameters are $\gg m\delta_m$, and the displayed entropy expansion gives uniformly
 $$
-P\!\left(\left|\frac{S_m}{m}-Q\right|>\varepsilon_m\right)
-=O(m^{-1/2}).
+h_{r+K_m,s+m-K_m}
+=
+\frac12\log\frac{2\pi e}{m}
++\frac12\log(S(1-S))+o(1).
 $$
-On $E_m$, both posterior shape parameters are at least a constant multiple of $m\delta_m$, and
+The beta endpoint probabilities are
 $$
-\frac{r+S_m}{m+r+s}=Q+O(\varepsilon_m+m^{-1}).
+P(S<\delta_m)=O(\delta_m^r),
+\qquad
+P(S>1-\delta_m)=O(\delta_m^s),
 $$
-Since $\varepsilon_m/\delta_m=m^{-1/8}\to0$, the entropy expansion is uniform there and yields
+while conditional Chebyshev gives
 $$
-h_{r+S_m,s+m-S_m}
-=\frac12\log\frac{2\pi e}{m}
-+\frac12\log(Q(1-Q))+o(1).
+P\!\left(\left|\frac{K_m}{m}-S\right|>\varepsilon_m\right)=O(m^{-1/2}).
 $$
-For fixed $r,s$, the exact beta-entropy formula also gives the uniform bound
+The exact beta-entropy formula gives the uniform bound
 $$
-|h_{r+k,s+m-k}|\le C_{r,s}(1+\log(m+1)),\qquad 0\le k\le m.
+|h_{r+k,s+m-k}|\le C_{r,s}(1+\log(m+1)),
 $$
-Indeed, if both shape parameters grow, this follows from the preceding asymptotic; if one stays in a fixed compact interval, the other is $m+O(1)$ and the same gamma/digamma expansions give $-\log m+O(1)$. Thus the contribution of $E_m^c$ is $o(1)$. The beta log moments are integrable, and their boundary tails are
+and the beta log moments are integrable, so the complement contributes $o(1)$. Therefore
 $$
-O(\!\delta_m^r|\log\delta_m|)+O(\!\delta_m^s|\log\delta_m|)=o(1),
+E\,h_{r+K_m,s+m-K_m}
+=
+\frac12\log\frac{2\pi e}{m}
++\frac12E\log(S(1-S))+o(1).
 $$
-so averaging gives
+It follows that
 $$
-E\,h_{r+S_m,s+m-S_m}
-=\frac12\log\frac{2\pi e}{m}
-+\frac12E\log(Q(1-Q))+o(1).
-$$
-Therefore
-$$
-J_m(r,s)=\frac12\log m+C(r,s)+o(1),
+J_m(r,s)
+=
+\frac12\log m+C(r,s)+o(1),
 $$
 where
 $$
-C(r,s)=h_{r,s}-\frac12\log(2\pi e)-\frac12E\log(Q(1-Q)).
-$$
-Using the displayed beta entropy and log moments,
-$$
 C(r,s)
-=\log B(r,s)-\left(r-\frac12\right)\psi(r)
+=
+\log B(r,s)
+-\left(r-\frac12\right)\psi(r)
 -\left(s-\frac12\right)\psi(s)
-+(r+s-1)\psi(r+s)-\frac12\log(2\pi e).
-$$
-
-Step 4: Specialize the asymptotic to the induced latent law
-
-From Step 1, $P\sim\operatorname{Beta}(a,1/2)$. Setting $r=a$ and $s=1/2$ in Step 3 cancels the $\psi(1/2)$ term and gives
-$$
-J_m
-=\frac12\log m+C_a+o(1),
-$$
-with
-$$
-C_a
-=\log B\!\left(a,\frac12\right)
-+\left(a-\frac12\right)
-\left[\psi\!\left(a+\frac12\right)-\psi(a)\right]
++(r+s-1)\psi(r+s)
 -\frac12\log(2\pi e).
 $$
-This holds for every fixed $a>0$; the endpoint estimates in Step 3 require only positivity of the beta shape parameters.
 
-Step 5: Combine the sample sizes $n$ and $2n$
-
-Step 2 and Step 4 give
+For two conditionally independent size-$n$ Bernoulli samples $A^{(n)},B^{(n)}$ sharing $S$,
 $$
-\begin{aligned}
-I(X^{(n)};Y^{(n)})
-&=2J_n-J_{2n}\\
-&=2\left(\frac12\log n+C_a\right)
--\left(\frac12\log(2n)+C_a\right)+o(1)\\
-&=\frac12\log n+C_a-\frac12\log2+o(1).
-\end{aligned}
+I(A^{(n)};B^{(n)})
+=2J_n(r,s)-J_{2n}(r,s).
 $$
 Hence
 $$
-\lim_{n\to\infty}\left[I(X^{(n)};Y^{(n)})-\frac12\log n\right]
-=\log B\!\left(a,\frac12\right)
-+\left(a-\frac12\right)
-\left[\psi\!\left(a+\frac12\right)-\psi(a)\right]
+I(A^{(n)};B^{(n)})
+=
+\frac12\log n+D(r,s)+o(1),
+$$
+with
+$$
+D(r,s)=C(r,s)-\frac12\log2.
+$$
+For $(r,s)=(a,3)$,
+$$
+D(a,3)
+=
+\log B(a,3)
+-\left(a-\frac12\right)\psi(a)
+-\frac52\psi(3)
++(a+2)\psi(a+3)
 -\frac12\log(4\pi e).
+$$
+
+Step 5: Combine the shared and residual layers
+
+By Steps 2--4,
+$$
+\begin{aligned}
+I(X^{(n)};Y^{(n)})
+&=\frac12\log n+D(a,3)+1-\log2+o(1).
+\end{aligned}
+$$
+Since
+$$
+-\frac12\log(4\pi e)-\log2
+=-\frac12\log(16\pi e),
+$$
+we obtain
+$$
+\lim_{n\to\infty}\left[I(X^{(n)};Y^{(n)})-\frac12\log n\right]
+=
+\log B(a,3)
+-\left(a-\frac12\right)\psi(a)
+-\frac52\psi(3)
++(a+2)\psi(a+3)
++1
+-\frac12\log(16\pi e).
 $$
 
 ## Solution Concepts
 
-- Identifiable latent quotient and the induced beta distribution under a two-to-one transformation.
-- Conditional-independence decomposition of mutual information across two exchangeable sample blocks.
-- Beta-Bernoulli posterior entropy asymptotics with explicit endpoint control.
+- Reparameterization of a Dirichlet composition into an independent shared mass and residual simplex coordinates.
+- Exact decomposition of block mutual information into a divergent shared layer and a finite residual dependence layer.
+- Beta-Bernoulli posterior entropy asymptotics with endpoint control.
 
-Final Answer: $\displaystyle \log B(a,\frac12)+(a-\frac12)(\psi(a+\frac12)-\psi(a))-\frac12\log(4\pi e)$.
+Final Answer: $\displaystyle \log B(a,3)-(a-\frac12)\psi(a)-\frac52\psi(3)+(a+2)\psi(a+3)+1-\frac12\log(16\pi e)$.
