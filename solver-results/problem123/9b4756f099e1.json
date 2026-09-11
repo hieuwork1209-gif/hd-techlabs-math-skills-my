@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-calculus-of-variations/problem.md",
+  "source_commit_sha": "d6f483b9ecccac6138db913d2906857381640f12",
+  "problem_blob_sha": "9b4756f099e1785ad1c189f1d9a2ba0e8f6e1147",
+  "statement_sha256": "b71b3748ebbc7ef38298b9bfcf5a70a6c71bb419bead2bdf82dc515679bdd479",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T11:34:22+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(\\alpha\\) be the unique number in \\((3\\pi/2,2\\pi)\\) satisfying\n\\[\n\\coth \\alpha+\\cot \\alpha=\\frac2\\alpha .\n\\]\nI claim\n\\[\n\\Lambda=\\alpha^4.\n\\]\n\nThe infimum is attained: after normalizing \\(\\int_{-1}^1 f^2=1\\), the boundary conditions and \\(\\int (f'')^2\\) bound give compactness in \\(L^2\\), and \\(\\mathcal V\\) is closed.\n\nLet \\(f\\) be a minimizer and put \\(\\Lambda=k^4\\), \\(k>0\\). Since the zero-mean constraint is linear, the Euler-Lagrange equation has a constant Lagrange multiplier:\n\\[\nf''''=k^4 f+\\eta .\n\\]\nThe minimizer is even, so on \\([0,1]\\),\n\\[\nf'(0)=f'''(0)=0,\\qquad f(1)=f'(1)=0,\\qquad \\int_0^1 f(x)\\,dx=0.\n\\]\nSolving the ODE gives\n\\[\nf(x)=A\\cosh(kx)+B\\cos(kx)+a .\n\\]\nThe conditions \\(f'(1)=0\\), \\(f(1)=0\\), and \\(\\int_0^1 f=0\\) give\n\\[\nA\\sinh k=B\\sin k,\n\\]\n\\[\nA\\cosh k+B\\cos k+a=0,\n\\]\n\\[\n\\frac{A\\sinh k+B\\sin k}{k}+a=0.\n\\]\nFor a nonzero solution, eliminating \\(A,B,a\\) yields\n\\[\n\\cosh k+\\sinh k\\cot k-\\frac{2\\sinh k}{k}=0,\n\\]\nequivalently\n\\[\n\\coth k+\\cot k=\\frac2k. \\tag{1}\n\\]\n\nConversely, if \\(k\\) satisfies (1), then\n\\[\nf(x)=\\cosh(kx)+\\frac{\\sinh k}{\\sin k}\\cos(kx)-\\frac{2\\sinh k}{k}\n\\]\non \\([0,1]\\), extended evenly to \\([-1,1]\\), belongs to \\(\\mathcal V\\), and satisfies\n\\[\nf''''=k^4 f+\\text{constant}.\n\\]\nMultiplying by \\(f\\), using \\(\\int f=0\\), and integrating by parts with the clamped boundary conditions gives\n\\[\n\\int_{-1}^1 (f'')^2\\,dx=k^4\\int_{-1}^1 f^2\\,dx.\n\\]\nThus every admissible critical value is \\(k^4\\) for a positive root of (1), and every positive root gives that value.\n\nIt remains to identify the smallest positive root. Define\n\\[\nq(k)=\\coth k+\\cot k-\\frac2k.\n\\]\nUsing the product formulas for \\(\\sin k\\) and \\(\\sinh k\\), logarithmic differentiation gives, for \\(0<k<\\pi\\),\n\\[\nq(k)\n=-4k^3\\sum_{n=1}^{\\infty}\\frac{1}{n^4\\pi^4-k^4}<0.\n\\]\nSo there is no root in \\((0,\\pi)\\). On \\((\\pi,2\\pi)\\),\n\\[\nq'(k)=-\\operatorname{csch}^2 k-\\csc^2 k+\\frac{2}{k^2}<0,\n\\]\nbecause \\(\\csc^2 k\\ge1\\) and \\(2/k^2<1\\). Also\n\\[\nq(k)\\to+\\infty\\quad(k\\to\\pi^+),\\qquad q(k)\\to-\\infty\\quad(k\\to2\\pi^-),\n\\]\nso there is exactly one root in \\((\\pi,2\\pi)\\). Since\n\\[\nq(3\\pi/2)=\\coth(3\\pi/2)-\\frac{4}{3\\pi}>0,\n\\]\nthat root lies in \\((3\\pi/2,2\\pi)\\).\n\nTherefore\n\\[\n\\boxed{\\Lambda=\\alpha^4,\\quad \\coth \\alpha+\\cot \\alpha=\\frac2\\alpha,\\ \\alpha\\in(3\\pi/2,2\\pi).}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T11:36:04+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/9b4756f099e1.json"
+}
