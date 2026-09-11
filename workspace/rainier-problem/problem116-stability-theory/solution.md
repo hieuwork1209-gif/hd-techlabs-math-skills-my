@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Symmetrize the two subsystem gains
+Step 1: Symmetrize the gains and remove the common scalar decay
 Let
 $$
 A_1=\begin{pmatrix}-1&a\\0&-1\end{pmatrix},
@@ -16,150 +16,155 @@ p=\sqrt{ab},
 \qquad
 D=\operatorname{diag}(\sqrt b,\sqrt a).
 $$
-With $y=Dz$, the two matrices become
+With $y=Dz$,
 $$
-B_1=DA_1D^{-1}=\begin{pmatrix}-1&p\\0&-1\end{pmatrix},
+\dot y=B_{\sigma(t)}y,
 \qquad
-B_2=DA_2D^{-1}=\begin{pmatrix}-1&0\\p&-1\end{pmatrix}.
-$$
-Since $D$ is fixed and invertible, mean-square exponential stability is unchanged. Thus the problem depends on $(a,b)$ only through $p^2=ab$.
-
-Step 2: Write the closed system for conditional second moments
-For $i=1,2$, define
-$$
-u_i(t)=\mathbb E\bigl[y_1(t)^2\mathbf 1_{\{\sigma(t)=i\}}\bigr],
-\quad
-v_i(t)=\mathbb E\bigl[y_1(t)y_2(t)\mathbf 1_{\{\sigma(t)=i\}}\bigr],
-\quad
-w_i(t)=\mathbb E\bigl[y_2(t)^2\mathbf 1_{\{\sigma(t)=i\}}\bigr].
-$$
-The deterministic dynamics in each mode give
-$$
-\begin{array}{lll}
-\dot u=-2u+2pv,&\dot v=-2v+pw,&\dot w=-2w \qquad (\text{mode }1),\\
-\dot u=-2u,&\dot v=-2v+pu,&\dot w=-2w+2pv \qquad (\text{mode }2).
-\end{array}
-$$
-The Markov chain contributes loss at rate $1$ from the current mode and gain at rate $1$ from the other mode. Hence
-$$
-\frac d{dt}
-\begin{pmatrix}u_1\\v_1\\w_1\\u_2\\v_2\\w_2\end{pmatrix}
-=L(p)
-\begin{pmatrix}u_1\\v_1\\w_1\\u_2\\v_2\\w_2\end{pmatrix},
-$$
-where
-$$
-L(p)=
-\begin{pmatrix}
--3&2p&0&1&0&0\\
-0&-3&p&0&1&0\\
-0&0&-3&0&0&1\\
-1&0&0&-3&0&0\\
-0&1&0&p&-3&0\\
-0&0&1&0&2p&-3
-\end{pmatrix}.
-$$
-Moreover
-$$
-\mathbb E\|y(t)\|^2=u_1+w_1+u_2+w_2.
-$$
-Therefore the Markov jump system is mean-square exponentially stable exactly when the lifted matrix $L(p)$ is Hurwitz. This follows directly from the closed linear evolution above: if $L(p)$ is Hurwitz all conditional second moments decay exponentially, while if its spectral bound is nonnegative the invariant cone of conditional positive-semidefinite second moments contains initial data whose second moment does not decay exponentially.
-
-Step 3: Split the lift by its reflection symmetry
-The lift is invariant under simultaneously interchanging the two modes and swapping the two state coordinates. Thus it decomposes into two three-dimensional invariant subspaces.
-
-On the symmetric subspace
-$$
-u_1=w_2=x,
+B_1=\begin{pmatrix}-1&p\\0&-1\end{pmatrix},
 \qquad
-w_1=u_2=y,
+B_2=\begin{pmatrix}-1&0\\p&-1\end{pmatrix}.
+$$
+Thus the almost-sure exponential growth rate depends on $(a,b)$ only through $p=\sqrt{ab}$.
+
+Now write
+$$
+y(t)=e^{-t}x(t).
+$$
+Then
+$$
+\dot x=pE_{\sigma(t)}x,
 \qquad
-v_1=v_2=v,
+E_1=\begin{pmatrix}0&1\\0&0\end{pmatrix},
+\qquad
+E_2=\begin{pmatrix}0&0\\1&0\end{pmatrix}.
 $$
-we obtain
+If $\lambda_x$ denotes the top almost-sure exponential growth rate of this shear system, then the top exponent of the original system is
 $$
-\frac d{dt}\begin{pmatrix}x\\y\\v\end{pmatrix}
-=
-\begin{pmatrix}
--3&1&2p\\
-1&-3&0\\
-0&p&-2
-\end{pmatrix}
-\begin{pmatrix}x\\y\\v\end{pmatrix},
-$$
-whose characteristic polynomial is
-$$
-\chi_+(\lambda)
-=\lambda^3+8\lambda^2+20\lambda+16-2p^2.
+\Lambda(p)=-1+\lambda_x.
 $$
 
-On the antisymmetric subspace
+Step 2: Find the stationary law of the projective process
+Start with a vector in the positive quadrant and set
 $$
-u_1=-w_2=x,
-\qquad
-w_1=-u_2=y,
-\qquad
-v_1=-v_2=v,
+r=\frac{x_2}{x_1}>0.
 $$
-we obtain
+In mode $1$,
 $$
-\frac d{dt}\begin{pmatrix}x\\y\\v\end{pmatrix}
-=
-\begin{pmatrix}
--3&-1&2p\\
--1&-3&0\\
-0&p&-4
-\end{pmatrix}
-\begin{pmatrix}x\\y\\v\end{pmatrix},
+\dot r=-pr^2,
 $$
-with characteristic polynomial
+while in mode $2$,
 $$
-\chi_-(\lambda)
-=\lambda^3+10\lambda^2+32\lambda+32+2p^2.
+\dot r=p.
+$$
+Hence $(r,\sigma)$ is a piecewise-deterministic Markov process on $(0,\infty)\times\{1,2\}$.
+
+Let $f_1,f_2$ be stationary densities for $r$ conditional on the two modes. The stationary transport equations are
+$$
+0=\frac d{dr}(pr^2f_1)-f_1+f_2,
+$$
+$$
+0=-\frac d{dr}(pf_2)+f_1-f_2.
+$$
+Adding them shows that the stationary probability flux is constant. Integrability at $0$ and $\infty$ forces this constant to be zero, so
+$$
+f_2=r^2f_1.
+$$
+Substituting into the first equation and writing $g=r^2f_1$ gives
+$$
+p g'+\left(1-\frac1{r^2}\right)g=0.
+$$
+Therefore
+$$
+g(r)=C\exp\left[-\frac1p\left(r+\frac1r\right)\right],
+$$
+and hence
+$$
+f_1(r)=Cr^{-2}\exp\left[-\frac1p\left(r+\frac1r\right)\right],
+$$
+$$
+f_2(r)=C\exp\left[-\frac1p\left(r+\frac1r\right)\right].
+$$
+These densities are integrable at both endpoints, so after normalization they give the unique invariant probability law of the irreducible projective process.
+
+For $q>0$, use the integral representation
+$$
+K_\nu(q)=\frac12\int_0^\infty r^{\nu-1}
+\exp\left[-\frac q2\left(r+\frac1r\right)\right]dr
+$$
+for the modified Bessel function of the second kind. Since $K_{-1}=K_1$,
+$$
+1=C\int_0^\infty(1+r^{-2})e^{-(r+1/r)/p}\,dr
+=4C K_1(2/p).
+$$
+Thus
+$$
+C=\frac1{4K_1(2/p)}.
+$$
+
+Step 3: Compute the top Lyapunov exponent
+For either switching mode,
+$$
+\frac d{dt}\log\|x\|_2
+=\frac{x^T\dot x}{\|x\|_2^2}
+=p\frac{x_1x_2}{x_1^2+x_2^2}
+=p\frac{r}{1+r^2}.
+$$
+The projective process is ergodic, so its time average equals the stationary average almost surely. Therefore
+$$
+\lambda_x
+=p\int_0^\infty\frac{r}{1+r^2}(f_1(r)+f_2(r))\,dr.
+$$
+Using
+$$
+\frac{r}{1+r^2}(r^{-2}+1)=\frac1r,
+$$
+we get
+$$
+\lambda_x
+=pC\int_0^\infty r^{-1}e^{-(r+1/r)/p}\,dr
+=2pC K_0(2/p).
 $$
 Hence
 $$
-\det(\lambda I-L(p))=\chi_+(\lambda)\chi_-(\lambda).
+\lambda_x
+=\frac p2\frac{K_0(2/p)}{K_1(2/p)},
+$$
+and so
+$$
+\Lambda(p)
+=-1+\frac p2\frac{K_0(2/p)}{K_1(2/p)}.
 $$
 
-Step 4: Apply the cubic Hurwitz criterion
-For a real cubic
+Step 4: Relate the top exponent to every initial state
+Every fundamental matrix of the $x$-system has nonnegative entries. For any such matrix $M$,
 $$
-\lambda^3+c_1\lambda^2+c_2\lambda+c_3,
+\|M\|_1\le \|M(1,1)^T\|_1.
 $$
-all roots have negative real part exactly when
-$$
-c_1>0,\qquad c_2>0,\qquad c_3>0,\qquad c_1c_2>c_3.
-$$
-For $\chi_+$ this gives
-$$
-16-2p^2>0,
-$$
-because once this holds, $8\cdot20>16-2p^2$ is automatic. Thus
-$$
-\chi_+\text{ is Hurwitz}\iff p^2<8.
-$$
+Thus the exponential growth rate obtained from a positive initial vector also controls the operator norm and hence every deterministic initial state. Conversely, a positive initial vector realizes the top exponent. The initial Markov mode affects only a transient because the two-state chain is irreducible.
 
-For $\chi_-$ all coefficients are positive, and its only nontrivial Hurwitz inequality is
+Therefore the original system is almost surely exponentially stable exactly when
 $$
-10\cdot32>32+2p^2,
+\Lambda(p)<0.
 $$
-i.e. $p^2<144$. Hence whenever $p^2<8$, the antisymmetric block is automatically Hurwitz as well.
-
-At $p^2=8$, $\chi_+(0)=0$, so the lift has a zero eigenvalue and exponential decay fails. If $p^2>8$, then $\chi_+(0)<0$ while $\chi_+(\lambda)\to+\infty$ as $\lambda\to+\infty$, so $\chi_+$ has a positive real root and mean-square stability fails.
+At equality the top exponent is zero, so no strictly negative almost-sure exponential rate exists; if $\Lambda(p)>0$, a positive initial state has positive almost-sure growth exponent.
 
 Step 5: State the exact parameter region
-Since $p^2=ab$, the origin is uniformly globally mean-square exponentially stable exactly when
+Since $p=\sqrt{ab}$, the condition $\Lambda(p)<0$ is
 $$
-a>0,\qquad b>0,\qquad ab<8.
+\sqrt{ab}\,K_0\left(\frac{2}{\sqrt{ab}}\right)
+<2K_1\left(\frac{2}{\sqrt{ab}}\right).
 $$
-Final Answer: $\boxed{\{(a,b):a>0,\ b>0,\ ab<8\}}$
+Thus the exact region is
+$$
+\left\{(a,b):a,b>0,\ \sqrt{ab}K_0(2/\sqrt{ab})<2K_1(2/\sqrt{ab})\right\}.
+$$
+Final Answer: $\boxed{\{(a,b):a,b>0,\sqrt{ab}K_0(2/\sqrt{ab})<2K_1(2/\sqrt{ab})\}}$
 
 ---
 
 ## Answer
 
-$\{(a,b):a>0,\ b>0,\ ab<8\}$
+$\{(a,b):a,b>0,\sqrt{ab}K_0(2/\sqrt{ab})<2K_1(2/\sqrt{ab})\}$
 
 ---
 
@@ -174,10 +179,10 @@ $\{(a,b):a>0,\ b>0,\ ab<8\}$
 ## Solution Concepts
 
 - Markov jump linear systems
-- mean-square exponential stability
-- conditional second moments
-- invariant symmetry decomposition
-- Routh-Hurwitz criterion
+- almost-sure exponential stability
+- projective piecewise-deterministic Markov processes
+- stationary densities
+- modified Bessel functions
 
 ---
 
