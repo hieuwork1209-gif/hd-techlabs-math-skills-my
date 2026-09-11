@@ -1,0 +1,22 @@
+{
+  "problem": "problem102",
+  "branch": "adversary/problem102",
+  "problem_path": "workspace/rainier-problem/problem102-single-variable-calculus/problem.md",
+  "source_commit_sha": "d50035edf63c1e95838a979cb281eebb0c935bc9",
+  "problem_blob_sha": "15772f43ab4f03a8f31b76f79b065184fc034c02",
+  "statement_sha256": "735e6cf6520c1779a09fdeb191bebcb40ca8462f5f4eb4179087ef1af1299f0b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T06:43:19+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nt=s-\\frac1s .\n\\]\n\nThis maps \\(s\\in(0,\\infty)\\) bijectively to \\(t\\in\\mathbb R\\), and reciprocal symmetry \\(s\\mapsto 1/s\\) becomes \\(t\\mapsto -t\\). Write\n\n\\[\nH(t)=g(s(t)),\n\\]\n\nwhere \\(s(t)\\) is the inverse of \\(t=s-1/s\\). Then \\(H\\) is even, \\(H(0)=0\\), strictly increases for \\(t>0\\), and \\(H(t)\\to\\infty\\).\n\nFor a fixed \\(E>0\\), the endpoints correspond to \\(-R(E)\\) and \\(R(E)\\), where\n\n\\[\nH(R(E))=E.\n\\]\n\nAlso\n\n\\[\ns(t)=\\frac{t+\\sqrt{t^2+4}}2,\n\\qquad\ns'(t)=\\frac12\\left(1+\\frac{t}{\\sqrt{t^2+4}}\\right),\n\\]\n\nso\n\n\\[\ns'(t)+s'(-t)=1.\n\\]\n\nThus the given integral becomes\n\n\\[\n\\pi\n=\\int_{-R(E)}^{R(E)}\\frac{s'(t)\\,dt}{\\sqrt{E-H(t)}}\n=\\int_0^{R(E)}\\frac{dt}{\\sqrt{E-H(t)}}.\n\\]\n\nNow let \\(\\rho(E)=R(E)=H^{-1}(E)\\). Substituting \\(u=H(t)\\),\n\n\\[\n\\int_0^E \\frac{\\rho'(u)}{\\sqrt{E-u}}\\,du=\\pi.\n\\]\n\nApply Abel inversion:\n\n\\[\n\\int_0^V \\frac{\\pi}{\\sqrt{V-E}}\\,dE\n=\n\\int_0^V\\int_0^E\n\\frac{\\rho'(u)}{\\sqrt{E-u}\\sqrt{V-E}}\\,du\\,dE.\n\\]\n\nThe inner beta integral equals \\(\\pi\\), so\n\n\\[\n2\\pi\\sqrt V=\\pi\\rho(V),\n\\]\n\nhence\n\n\\[\n\\rho(V)=2\\sqrt V.\n\\]\n\nTherefore \\(R(E)=2\\sqrt E\\), so\n\n\\[\nH(t)=\\frac{t^2}{4}.\n\\]\n\nReturning to \\(s\\),\n\n\\[\ng(s)=\\frac14\\left(s-\\frac1s\\right)^2.\n\\]\n\nSince \\(g(s)=f(e^s)\\), for \\(x>1\\) we have \\(s=\\log x\\). Therefore\n\n\\[\n\\boxed{f(x)=\\frac14\\left(\\log x-\\frac1{\\log x}\\right)^2}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T06:44:09+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem102/15772f43ab4f.json"
+}
