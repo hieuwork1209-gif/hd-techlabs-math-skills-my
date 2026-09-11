@@ -2,18 +2,11 @@
 
 ## LaTeX (Normalized)
 
-Let
+Let $C_{11}$ be the cycle graph on $\mathbb Z/11\mathbb Z$, and let
 $$
-R=\mathbb F_2[t]/(t^3).
+\Gamma=C_{11}\square C_{11}.
 $$
-Determine the number of matrices
-$$
-A\in GL_3(R)
-$$
-satisfying
-$$
-A^2=I.
-$$
+Equivalently, $\Gamma$ has vertex set $(\mathbb Z/11\mathbb Z)^2$, with two vertices adjacent when they differ by $\pm1$ in exactly one coordinate. Determine the number of spanning trees of $\Gamma$. For grading, give the final answer in prime-factorized form.
 
 ---
 
@@ -30,4 +23,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for the number of involutions in a matrix group over the finite local ring $\mathbb F_2[t]/(t^3)$. Reduction modulo $t$ classifies the possible residue matrices by square-zero Jordan type, while lifting through the nilpotent layers produces a genuine second-order obstruction involving centralizers and the image of the map $C\mapsto NC+CN$. The core work is linear algebra over a finite local ring.
+The spanning-tree count is obtained from the Laplacian spectrum by the matrix-tree theorem. Fourier diagonalization on the discrete torus reduces the determinant to Chebyshev products, and the remaining exact product is an algebraic norm in the real cyclotomic field of eleventh roots of unity. The core computation is spectral linear algebra together with an exact determinant in a degree-five algebraic extension.
