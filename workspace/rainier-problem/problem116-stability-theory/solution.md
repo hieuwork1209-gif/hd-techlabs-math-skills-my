@@ -1,137 +1,165 @@
 ## Steps
 
-Step 1: Prove uniform exponential stability when $ab<4$
+Step 1: Symmetrize the two subsystem gains
 Let
 $$
 A_1=\begin{pmatrix}-1&a\\0&-1\end{pmatrix},
 \qquad
 A_2=\begin{pmatrix}-1&0\\b&-1\end{pmatrix},
+\qquad a,b>0,
 $$
-and suppose $ab<4$. We seek a common quadratic Lyapunov function
-$$
-V(z)=z^TPz,
-\qquad
-P=\operatorname{diag}(1,r),
-\qquad r>0.
-$$
-For mode $1$,
-$$
-A_1^TP+PA_1
-=\begin{pmatrix}-2&a\\a&-2r\end{pmatrix},
-$$
-which is negative definite exactly when
-$$
-4r-a^2>0.
-$$
-For mode $2$,
-$$
-A_2^TP+PA_2
-=\begin{pmatrix}-2&br\\br&-2r\end{pmatrix},
-$$
-which is negative definite exactly when
-$$
-4r-b^2r^2>0.
-$$
-Thus it is enough to choose
-$$
-\frac{a^2}{4}<r<\frac{4}{b^2}.
-$$
-Such an $r$ exists exactly when $ab<4$.
+and let the switching mode be the two-state continuous-time Markov chain that jumps from either state to the other at rate $1$.
 
-For this choice there is $\eta>0$ such that
+Put
 $$
-z^T(A_i^TP+PA_i)z\le-\eta\|z\|^2
-\qquad(i=1,2).
-$$
-Therefore along every switching signal,
-$$
-\dot V\le-\eta\|z\|^2\le-\frac{\eta}{\lambda_{\max}(P)}V.
-$$
-Hence there are constants $C,\gamma>0$, depending only on $(a,b)$, for which
-$$
-\|z(t)\|\le Ce^{-\gamma t}\|z(0)\|
-$$
-for every admissible switching signal. Thus $ab<4$ is sufficient.
-
-Step 2: Exclude $ab>4$ by a periodic switching signal
-Let the system use mode $1$ for time $h>0$ and then mode $2$ for time $h$, repeated periodically. Since
-$$
-e^{A_1h}=e^{-h}\begin{pmatrix}1&ah\\0&1\end{pmatrix},
+p=\sqrt{ab},
 \qquad
-e^{A_2h}=e^{-h}\begin{pmatrix}1&0\\bh&1\end{pmatrix},
+D=\operatorname{diag}(\sqrt b,\sqrt a).
 $$
-the one-cycle matrix is
+With $y=Dz$, the two matrices become
 $$
-\Phi_h=e^{-2h}
+B_1=DA_1D^{-1}=\begin{pmatrix}-1&p\\0&-1\end{pmatrix},
+\qquad
+B_2=DA_2D^{-1}=\begin{pmatrix}-1&0\\p&-1\end{pmatrix}.
+$$
+Since $D$ is fixed and invertible, mean-square exponential stability is unchanged. Thus the problem depends on $(a,b)$ only through $p^2=ab$.
+
+Step 2: Write the closed system for conditional second moments
+For $i=1,2$, define
+$$
+u_i(t)=\mathbb E\bigl[y_1(t)^2\mathbf 1_{\{\sigma(t)=i\}}\bigr],
+\quad
+v_i(t)=\mathbb E\bigl[y_1(t)y_2(t)\mathbf 1_{\{\sigma(t)=i\}}\bigr],
+\quad
+w_i(t)=\mathbb E\bigl[y_2(t)^2\mathbf 1_{\{\sigma(t)=i\}}\bigr].
+$$
+The deterministic dynamics in each mode give
+$$
+\begin{array}{lll}
+\dot u=-2u+2pv,&\dot v=-2v+pw,&\dot w=-2w \qquad (\text{mode }1),\\
+\dot u=-2u,&\dot v=-2v+pu,&\dot w=-2w+2pv \qquad (\text{mode }2).
+\end{array}
+$$
+The Markov chain contributes loss at rate $1$ from the current mode and gain at rate $1$ from the other mode. Hence
+$$
+\frac d{dt}
+\begin{pmatrix}u_1\\v_1\\w_1\\u_2\\v_2\\w_2\end{pmatrix}
+=L(p)
+\begin{pmatrix}u_1\\v_1\\w_1\\u_2\\v_2\\w_2\end{pmatrix},
+$$
+where
+$$
+L(p)=
 \begin{pmatrix}
-1&ah\\
-bh&1+ab h^2
+-3&2p&0&1&0&0\\
+0&-3&p&0&1&0\\
+0&0&-3&0&0&1\\
+1&0&0&-3&0&0\\
+0&1&0&p&-3&0\\
+0&0&1&0&2p&-3
 \end{pmatrix}.
 $$
-The matrix inside has determinant $1$ and trace $2+ab h^2$. Writing $c=\sqrt{ab}$, its larger eigenvalue is
+Moreover
 $$
-\mu_+(h)
-=\exp\left(2\operatorname{arsinh}\frac{ch}{2}\right).
+\mathbb E\|y(t)\|^2=u_1+w_1+u_2+w_2.
 $$
-Therefore
-$$
-\rho(\Phi_h)
-=\exp\left(-2h+2\operatorname{arsinh}\frac{ch}{2}\right).
-$$
-If $ab>4$, then $c>2$, and the exponent has derivative $-2+c>0$ at $h=0$. Hence for all sufficiently small $h>0$,
-$$
-\rho(\Phi_h)>1.
-$$
-The corresponding periodic switching signal has an exponentially growing solution, so arbitrary-switching stability is impossible.
+Therefore the Markov jump system is mean-square exponentially stable exactly when the lifted matrix $L(p)$ is Hurwitz. This follows directly from the closed linear evolution above: if $L(p)$ is Hurwitz all conditional second moments decay exponentially, while if its spectral bound is nonnegative the invariant cone of conditional positive-semidefinite second moments contains initial data whose second moment does not decay exponentially.
 
-Step 3: Exclude the boundary $ab=4$
-Now let $ab=4$, so $c=2$. For the same equal-dwell periodic switching,
+Step 3: Split the lift by its reflection symmetry
+The lift is invariant under simultaneously interchanging the two modes and swapping the two state coordinates. Thus it decomposes into two three-dimensional invariant subspaces.
+
+On the symmetric subspace
 $$
-\rho(\Phi_h)
-=\exp\bigl(-2h+2\operatorname{arsinh}h\bigr)<1
+u_1=w_2=x,
+\qquad
+w_1=u_2=y,
+\qquad
+v_1=v_2=v,
 $$
-for every fixed $h>0$. Thus each such periodic signal is individually exponentially stable. However its decay rate per unit time is
+we obtain
 $$
-\gamma_h
-:= -\frac{1}{2h}\log\rho(\Phi_h)
-=1-\frac{\operatorname{arsinh}h}{h}.
+\frac d{dt}\begin{pmatrix}x\\y\\v\end{pmatrix}
+=
+\begin{pmatrix}
+-3&1&2p\\
+1&-3&0\\
+0&p&-2
+\end{pmatrix}
+\begin{pmatrix}x\\y\\v\end{pmatrix},
 $$
-Since
+whose characteristic polynomial is
 $$
-\operatorname{arsinh}h=h-\frac{h^3}{6}+O(h^5),
-$$
-we have
-$$
-\gamma_h\to0
-\qquad(h\to0^+).
+\chi_+(\lambda)
+=\lambda^3+8\lambda^2+20\lambda+16-2p^2.
 $$
 
-Suppose, contrary to uniform exponential stability under arbitrary switching, that there were constants $C,\gamma>0$ valid for every switching signal. Choose $h$ so small that $\gamma_h<\gamma/2$, and start on an eigenvector of $\Phi_h$ corresponding to its larger eigenvalue. At the cycle times $t=2nh$,
+On the antisymmetric subspace
 $$
-\|z(t)\|=e^{-\gamma_h t}\|z(0)\|
+u_1=-w_2=x,
+\qquad
+w_1=-u_2=y,
+\qquad
+v_1=-v_2=v,
 $$
-up to the fixed normalization of that eigenvector, whereas the assumed uniform estimate would give
+we obtain
 $$
-\|z(t)\|\le Ce^{-\gamma t}\|z(0)\|.
+\frac d{dt}\begin{pmatrix}x\\y\\v\end{pmatrix}
+=
+\begin{pmatrix}
+-3&-1&2p\\
+-1&-3&0\\
+0&p&-4
+\end{pmatrix}
+\begin{pmatrix}x\\y\\v\end{pmatrix},
 $$
-Thus
+with characteristic polynomial
 $$
-e^{(\gamma-\gamma_h)t}\le C
+\chi_-(\lambda)
+=\lambda^3+10\lambda^2+32\lambda+32+2p^2.
 $$
-for all $n$, which is impossible as $n\to\infty$. Hence the boundary $ab=4$ is not uniformly exponentially stable under arbitrary switching.
+Hence
+$$
+\det(\lambda I-L(p))=\chi_+(\lambda)\chi_-(\lambda).
+$$
 
-Step 4: State the exact parameter region
-The common quadratic Lyapunov construction proves sufficiency for $ab<4$. The periodic-switching argument excludes $ab>4$, and the vanishing uniform decay rate excludes $ab=4$. Therefore the exact region is
+Step 4: Apply the cubic Hurwitz criterion
+For a real cubic
 $$
-a>0,\qquad b>0,\qquad ab<4.
+\lambda^3+c_1\lambda^2+c_2\lambda+c_3,
 $$
-Final Answer: $\boxed{\{(a,b):a>0,\ b>0,\ ab<4\}}$
+all roots have negative real part exactly when
+$$
+c_1>0,\qquad c_2>0,\qquad c_3>0,\qquad c_1c_2>c_3.
+$$
+For $\chi_+$ this gives
+$$
+16-2p^2>0,
+$$
+because once this holds, $8\cdot20>16-2p^2$ is automatic. Thus
+$$
+\chi_+\text{ is Hurwitz}\iff p^2<8.
+$$
+
+For $\chi_-$ all coefficients are positive, and its only nontrivial Hurwitz inequality is
+$$
+10\cdot32>32+2p^2,
+$$
+i.e. $p^2<144$. Hence whenever $p^2<8$, the antisymmetric block is automatically Hurwitz as well.
+
+At $p^2=8$, $\chi_+(0)=0$, so the lift has a zero eigenvalue and exponential decay fails. If $p^2>8$, then $\chi_+(0)<0$ while $\chi_+(\lambda)\to+\infty$ as $\lambda\to+\infty$, so $\chi_+$ has a positive real root and mean-square stability fails.
+
+Step 5: State the exact parameter region
+Since $p^2=ab$, the origin is uniformly globally mean-square exponentially stable exactly when
+$$
+a>0,\qquad b>0,\qquad ab<8.
+$$
+Final Answer: $\boxed{\{(a,b):a>0,\ b>0,\ ab<8\}}$
 
 ---
 
 ## Answer
 
-$\{(a,b):a>0,\ b>0,\ ab<4\}$
+$\{(a,b):a>0,\ b>0,\ ab<8\}$
 
 ---
 
@@ -145,11 +173,11 @@ $\{(a,b):a>0,\ b>0,\ ab<4\}$
 
 ## Solution Concepts
 
-- switched linear systems
-- common quadratic Lyapunov functions
-- uniform exponential stability
-- periodic switching
-- matrix spectral radius
+- Markov jump linear systems
+- mean-square exponential stability
+- conditional second moments
+- invariant symmetry decomposition
+- Routh-Hurwitz criterion
 
 ---
 
