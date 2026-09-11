@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "b331266d3fa806155fede5b1bd49dfb1885b41ef",
+  "problem_blob_sha": "5227f55b2b58dd81825be12a503423c4c5c941d3",
+  "statement_sha256": "625495b2997c92555a206eade70e68bc26809d4c14445ad4ffbd41c70bb910b1",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T08:24:48+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "\\[\n\\boxed{\\left(\\frac{6\\pi}{5\\sqrt{5-2\\sqrt5}},\\ \\frac{32\\pi}{5\\sqrt{5+2\\sqrt5}}\\right]}\n\\]\n\nLet\n\\[\n\\Delta(\\lambda,\\tau)=\\lambda+1+2e^{-\\lambda\\tau}+2e^{-2\\lambda\\tau}.\n\\]\nFor \\(\\tau\\) small, there are no roots with \\(\\operatorname{Re}\\lambda\\ge 0\\): if \\(\\operatorname{Re}\\lambda\\ge0\\) and \\(\\Delta=0\\), then\n\\[\n|\\lambda+1|\\le 2+2=4,\n\\]\nso \\(|\\lambda|\\le5\\), and on this compact region \\(\\Delta(\\lambda,\\tau)\\to \\lambda+5\\), which has no zero in \\(\\operatorname{Re}\\lambda\\ge0\\).\n\nThus the right-half-plane count changes only when roots cross the imaginary axis. Put \\(\\lambda=i\\omega\\), \\(\\omega>0\\), and write \\(\\theta=\\omega\\tau\\). Separating real and imaginary parts gives\n\\[\n1+2\\cos\\theta+2\\cos2\\theta=0,\n\\]\n\\[\n\\omega=2\\sin\\theta+2\\sin2\\theta.\n\\]\nThe real equation is\n\\[\n4\\cos^2\\theta+2\\cos\\theta-1=0,\n\\]\nso\n\\[\n\\cos\\theta=\\frac{\\sqrt5-1}{4}\\quad\\text{or}\\quad \\cos\\theta=-\\frac{\\sqrt5+1}{4}.\n\\]\n\nFor \\(\\cos\\theta=(\\sqrt5-1)/4=\\cos(2\\pi/5)\\), positivity of \\(\\omega\\) forces\n\\[\n\\theta=\\frac{2\\pi}{5}+2\\pi n,\\qquad n\\ge0,\n\\]\nand\n\\[\n\\omega=\\sqrt{5+2\\sqrt5}.\n\\]\nSo one crossing family is\n\\[\n\\tau=A_n:=\\frac{2\\pi/5+2\\pi n}{\\sqrt{5+2\\sqrt5}}.\n\\]\n\nFor \\(\\cos\\theta=-(\\sqrt5+1)/4=\\cos(4\\pi/5)\\), positivity of \\(\\omega\\) forces\n\\[\n\\theta=\\frac{6\\pi}{5}+2\\pi n,\\qquad n\\ge0,\n\\]\nand\n\\[\n\\omega=\\sqrt{5-2\\sqrt5}.\n\\]\nSo the other family is\n\\[\n\\tau=B_n:=\\frac{6\\pi/5+2\\pi n}{\\sqrt{5-2\\sqrt5}}.\n\\]\n\nNow determine crossing direction. Differentiating \\(\\Delta(\\lambda(\\tau),\\tau)=0\\),\n\\[\n\\lambda'=-\\frac{\\Delta_\\tau}{\\Delta_\\lambda}.\n\\]\nAt \\(\\lambda=i\\omega\\), with \\(\\theta=\\omega\\tau\\), one obtains\n\\[\n\\operatorname{Re}\\lambda'\n=\n\\frac{2\\omega\\sin\\theta(1+4\\cos\\theta)}\n{|1-\\tau(2e^{-i\\theta}+4e^{-2i\\theta})|^2}.\n\\]\nFor both admissible crossing families this numerator is positive, so every crossing is from left to right. Each crossing is simple, and because roots occur in conjugate pairs, the open right-half-plane root count increases by \\(2\\) immediately after each crossing.\n\nThe first crossings are ordered as\n\\[\nA_0<A_1<A_2<B_0<A_3.\n\\]\nIndeed,\n\\[\n\\frac{\\sqrt{5+2\\sqrt5}}{\\sqrt{5-2\\sqrt5}}=2+\\sqrt5,\n\\]\nwhich gives \\(A_2<B_0<A_3\\).\n\nTherefore the count is:\n\n\\[\n0 \\text{ before } A_0,\\quad\n2 \\text{ after } A_0,\\quad\n4 \\text{ after } A_1,\\quad\n6 \\text{ after } A_2,\\quad\n8 \\text{ after } B_0,\\quad\n10 \\text{ after } A_3.\n\\]\n\nAt \\(B_0\\) itself the crossing pair lies on the imaginary axis, so it is not counted in the open right half-plane; hence the count is still \\(6\\). At \\(A_3\\) itself the new crossing pair is also on the imaginary axis, while the previous eight roots remain in the open right half-plane, so \\(A_3\\) is included.\n\nThus the required set is\n\\[\n\\boxed{\\left(\\frac{6\\pi}{5\\sqrt{5-2\\sqrt5}},\\ \\frac{32\\pi}{5\\sqrt{5+2\\sqrt5}}\\right]}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T08:26:12+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/5227f55b2b58.json"
+}
