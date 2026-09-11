@@ -1,0 +1,22 @@
+{
+  "problem": "problem102",
+  "branch": "adversary/problem102",
+  "problem_path": "workspace/rainier-problem/problem102-single-variable-calculus/problem.md",
+  "source_commit_sha": "f419083d7b0ca469239c3f0054c2be8cf3b70167",
+  "problem_blob_sha": "1d8d4a46b9de08ebb0b07909dd05243912ef38ce",
+  "statement_sha256": "1c0cc6bce59ed817ea06284588fa5ed7bf91cf4af274880b554bfe497bb80ced",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T07:56:32+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "By the matrix-tree theorem, the Laplacian eigenvalues of  \n\\(\\Gamma=C_{11}\\square C_{11}\\) are\n\n\\[\n\\lambda_{a,b}=4-2\\cos\\frac{2\\pi a}{11}-2\\cos\\frac{2\\pi b}{11},\n\\qquad a,b\\in \\mathbb Z/11\\mathbb Z.\n\\]\n\nThus\n\n\\[\n\\tau(\\Gamma)=\\frac1{121}\\prod_{(a,b)\\ne(0,0)}\\lambda_{a,b}.\n\\]\n\nLet\n\n\\[\nx_k=2-2\\cos\\frac{2\\pi k}{11}.\n\\]\n\nThen \\(\\lambda_{a,b}=x_a+x_b\\), with \\(x_0=0\\). Also\n\n\\[\n\\prod_{k=1}^{10}x_k=11^2,\n\\]\n\nthe usual product of the nonzero Laplacian eigenvalues of \\(C_{11}\\). Therefore\n\n\\[\n\\tau(\\Gamma)\n=\\frac1{121}\\left(\\prod_{a=1}^{10}x_a\\right)^2\n\\prod_{a,b=1}^{10}(x_a+x_b)\n=11^2\\prod_{a,b=1}^{10}(x_a+x_b).\n\\]\n\nSince \\(x_k=x_{11-k}\\), write \\(r_1,\\dots,r_5\\) for the five distinct values. Then\n\n\\[\n\\prod_{a,b=1}^{10}(x_a+x_b)\n=\n\\left(\\prod_{i,j=1}^5(r_i+r_j)\\right)^4.\n\\]\n\nThe numbers \\(r_i\\) are the roots of\n\n\\[\np(t)=t^5-11t^4+44t^3-77t^2+55t-11.\n\\]\n\nA resultant computation gives\n\n\\[\n\\prod_{i,j=1}^5(r_i+r_j)\n=\\operatorname{Res}\\bigl(p(t),-p(-t)\\bigr)\n=2^5\\cdot 11^5\\cdot 89^2\\cdot 109^2.\n\\]\n\nHence\n\n\\[\n\\tau(\\Gamma)\n=11^2\\left(2^5\\cdot 11^5\\cdot 89^2\\cdot 109^2\\right)^4.\n\\]\n\n\\[\n\\boxed{2^{20}\\cdot 11^{22}\\cdot 89^8\\cdot 109^8}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T07:59:17+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem102/1d8d4a46b9de.json"
+}
