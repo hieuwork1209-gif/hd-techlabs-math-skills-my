@@ -2,20 +2,30 @@
 
 ## LaTeX (Normalized)
 
-Let $a,b\in\mathbb{R}$ and define
+Let $a,b>0$. Consider the transport system
 $$
-P=a(x^2+y^2)^3+(x^2+y^2)(x^4-6x^2y^2+y^4),
+u_t+u_x=0,\qquad 0<x<1,
 $$
 $$
-Q=b(x^2+y^2)^3+x^6-15x^4y^2+15x^2y^4-y^6.
+v_t+v_x=0,\qquad 0<x<3,
 $$
-Consider the planar polynomial system
+with boundary coupling
 $$
-\dot x=-Px-Qy,
+u(t,0)=a u(t,1)+v(t,3),
 \qquad
-\dot y=-Py+Qx.
+v(t,0)=-b u(t,1).
 $$
-Determine all pairs $(a,b)$ for which the equilibrium $(0,0)$ is globally asymptotically stable; that is, it is Lyapunov stable and every solution with initial data in $\mathbb{R}^2$ exists for all $t\geq0$ and converges to $(0,0)$ as $t\to\infty$.
+Determine all pairs $(a,b)$ for which the zero solution is exponentially stable in
+$$
+L^2(0,1)\times L^2(0,3).
+$$
+That is, determine all $(a,b)$ for which there exist constants $M,\gamma>0$ such that every solution satisfies
+$$
+\|u(t,\cdot)\|_{L^2(0,1)}+\|v(t,\cdot)\|_{L^2(0,3)}
+\le M e^{-\gamma t}
+\left(\|u(0,\cdot)\|_{L^2(0,1)}+\|v(0,\cdot)\|_{L^2(0,3)}\right)
+$$
+for all $t\ge0$.
 
 ---
 
@@ -32,4 +42,4 @@ Determine all pairs $(a,b)$ for which the equilibrium $(0,0)$ is globally asympt
 
 ## Domain Explanation
 
-This problem concerns global asymptotic stability in a homogeneous polynomial planar flow. Polar coordinates and a natural time rescaling separate the angular motion from logarithmic radial drift. The parameter region changes across the angular bifurcation $|b|=1$: invariant rays lead to a Chebyshev cubic constraint, while the rotating regime is governed by net radial drift over one revolution.
+This is an exponential-stability problem for a transport network with static boundary feedback and unequal propagation lengths. The feedback parameters determine whether repeated boundary returns decay or amplify as signals circulate through the two transport channels.
