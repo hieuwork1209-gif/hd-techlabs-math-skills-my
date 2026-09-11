@@ -4,20 +4,27 @@
 
 Let
 $$
-G=(\mathbb Z/4\mathbb Z)^4
+V=\mathbb F_2^6\oplus\mathbb F_2^6
 $$
-with the standard symplectic pairing
+with the symplectic pairing
 $$
-\langle x,y\rangle
-=x_1y_3+x_2y_4-x_3y_1-x_4y_2\pmod4.
+\langle (x,y),(x',y')\rangle=x\cdot y'+x'\cdot y.
 $$
-For an additive subgroup $H\le G$, define
+Let
 $$
-H^\perp=\{x\in G:\langle x,h\rangle=0\text{ for every }h\in H\}.
+E=\mathbb F_2^6\oplus\{0\},
+\qquad
+F=\{0\}\oplus\mathbb F_2^6.
 $$
-Determine the number of additive subgroups $H\le G$ satisfying
+For a subspace $L\le V$, define
 $$
-H=H^\perp.
+L^\perp=\{v\in V:\langle v,w\rangle=0\text{ for every }w\in L\}.
+$$
+Determine the number of subspaces $L\le V$ satisfying
+$$
+L=L^\perp,
+\qquad
+L\cap E=L\cap F=\{0\}.
 $$
 
 ---
@@ -26,8 +33,8 @@ $$
 
 | Field | Value |
 |---|---|
-| **Domain** | Number Theory |
-| **Sub-domain** | Modular arithmetic and congruences |
+| **Domain** | Algebra |
+| **Sub-domain** | Linear algebra |
 | **Problem Type** | Exact computation |
 | **Answer Type** | Exact symbolic expression |
 
@@ -35,4 +42,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for an exact count of self-dual isotropic subgroups in a finite symplectic module over $\mathbb Z/4\mathbb Z$. Reduction modulo $2$ splits the subgroups into genuinely different strata, and the nontrivial strata require counting both isotropic subspaces over $\mathbb F_2$ and their lifts back to modulus $4$. The essential structure is modular and two-adic, so the best classification is Number Theory with sub-domain Modular arithmetic and congruences.
+The problem is a finite symplectic linear-algebra count. Transversality to one coordinate Lagrangian represents every candidate as the graph of a linear map, isotropy forces that map to be symmetric, and transversality to the other coordinate Lagrangian forces invertibility. The remaining count splits according to the two congruence classes of nondegenerate symmetric bilinear forms over $\mathbb F_2$ and uses their symplectic and orthogonal stabilizers.
