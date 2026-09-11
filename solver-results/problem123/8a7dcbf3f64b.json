@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-algebraic-geometry/problem.md",
+  "source_commit_sha": "37aafeb0c19b47563a011b06284e17305a493a48",
+  "problem_blob_sha": "8a7dcbf3f64bc3965d1a57990de8c280b5cc3abe",
+  "statement_sha256": "18564ddc5f382357946ef1bd0d52e649a56f88390840565bc968e95c094fd826",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T10:07:28+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nm=da,\\qquad n=db,\\qquad \\gcd(a,b)=1.\n\\]\nSince \\(m<n\\), we have \\(a<b\\) not necessarily, but \\(b>0\\), and \\(d>1\\). Put\n\\[\nx=t^m,\\qquad y=t^n+t^p.\n\\]\n\nThe key cancellation is\n\\[\ny^a-x^b\n=(t^n+t^p)^a-t^{mb}.\n\\]\nBecause \\(an=bd=m b? \\) more precisely\n\\[\nan=a(db)=dab=mb,\n\\]\nthe leading terms cancel, so\n\\[\nv(y^a-x^b)=an+(p-n)=p+(a-1)n.\n\\]\nSet\n\\[\nq=p+(a-1)n.\n\\]\n\nI claim the value semigroup of\n\\[\nA=\\mathbb C[[x,y]]\n\\]\nis\n\\[\nS=\\langle m,n,q\\rangle.\n\\]\n\nIndeed, \\(m,n\\in S\\) come from \\(x,y\\), and \\(q\\) comes from \\(y^a-x^b\\). Conversely, any cancellation among lowest terms of a series in \\(x,y\\) is caused by the unique binomial relation between the initial monomials \\(X\\mapsto t^m,\\ Y\\mapsto t^n\\), namely\n\\[\nY^a-X^b,\n\\]\nsince \\(\\gcd(a,b)=1\\). Replacing each such cancelled factor by \\(y^a-x^b\\) raises the value from \\(an\\) to \\(q\\). Iterating shows every possible value is of the form\n\\[\nim+jn+kq,\n\\]\nso \\(v(A\\setminus\\{0\\})=\\langle m,n,q\\rangle\\).\n\nFor a one-branch subring of \\(\\mathbb C[[t]]\\), the colength\n\\[\n\\dim_{\\mathbb C}\\mathbb C[[t]]/A\n\\]\nequals the number of nonnegative integers missing from its value semigroup.\n\nNow compute the genus of\n\\[\nS=\\langle da,db,q\\rangle.\n\\]\nSince \\(\\gcd(d,q)=1\\), the Apéry set of \\(S\\) modulo \\(m=da\\) is\n\\[\n\\operatorname{Ap}(S;m)=\n\\{\\,jn+kq:0\\le j<a,\\ 0\\le k<d\\,\\}.\n\\]\nThese \\(ad=m\\) elements give distinct residues modulo \\(m\\), and each is minimal in its residue class.\n\nThus\n\\[\n\\sum_{w\\in\\operatorname{Ap}(S;m)}w\n=\nd\\sum_{j=0}^{a-1}jn\n+\na\\sum_{k=0}^{d-1}kq\n=\n\\frac{ad(a-1)n}{2}+\\frac{ad(d-1)q}{2}.\n\\]\nFor a numerical semigroup with multiplicity \\(m\\),\n\\[\n\\#(\\mathbb N\\setminus S)\n=\n\\frac1m\\sum_{w\\in\\operatorname{Ap}(S;m)}w-\\frac{m-1}{2}.\n\\]\nTherefore\n\\[\n\\dim_{\\mathbb C}\\frac{\\mathbb C[[t]]}{A}\n=\n\\frac{(a-1)n+(d-1)q-m+1}{2}.\n\\]\nSubstituting \\(a=m/d\\) and \\(q=p+(a-1)n\\),\n\\[\n\\frac{(a-1)n+(d-1)\\bigl(p+(a-1)n\\bigr)-m+1}{2}\n=\n\\frac{(m-d)n+(d-1)p-m+1}{2}.\n\\]\n\n\\[\n\\boxed{\\displaystyle \\dim_{\\mathbb C}\\frac{\\mathbb C[[t]]}{A}\n=\\frac{(m-d)n+(d-1)p-m+1}{2}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T10:09:14+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/8a7dcbf3f64b.json"
+}
