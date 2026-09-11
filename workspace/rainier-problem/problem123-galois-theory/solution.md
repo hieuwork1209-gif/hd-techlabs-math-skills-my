@@ -163,17 +163,36 @@ $$
 $$
 so $\ell$ is totally ramified in $R/\mathbb Q$.
 
-On the other hand, $C=\mathbb Q(\zeta_{2^n})$ is unramified at every odd prime. Indeed, for $n\ge2$ its defining cyclotomic polynomial is
+We next show explicitly that $\ell$ is unramified in $C$. For $n=1$, $C=\mathbb Q$. For $n\ge2$, put $s=2^{n-1}$. Then
 $$
-\Phi_{2^n}(X)=X^{2^{n-1}}+1,
+\Phi_{2^n}(X)=X^s+1.
 $$
-whose discriminant is a power of $2$; for $n=1$, $C=\mathbb Q$. Thus $\ell$ is unramified in $C$.
+For a monic polynomial $g$ of degree $s$,
+$$
+\operatorname{disc}(g)=(-1)^{s(s-1)/2}\operatorname{Res}(g,g').
+$$
+Applying this to $g(X)=X^s+1$ and $g'(X)=sX^{s-1}$ gives
+$$
+\operatorname{disc}(X^s+1)=\pm s^s,
+$$
+which is a power of $2$. Since $\zeta$ is an algebraic integer and
+$$
+\operatorname{disc}(\mathbb Z[\zeta])
+=[\mathcal O_C:\mathbb Z[\zeta]]^2\operatorname{disc}(C),
+$$
+the field discriminant $\operatorname{disc}(C)$ also has no odd prime divisor. Therefore the odd prime $\ell$ is unramified in $C$.
 
-If
+Let
 $$
-F=R\cap C
+F=R\cap C.
 $$
-were larger than $\mathbb Q$, then total ramification of $\ell$ in $R$ would descend to $F$, so $\ell$ would ramify in $F$. But every subfield of the extension $C/\mathbb Q$, which is unramified at $\ell$, is also unramified at $\ell$. Therefore
+If $F\ne\mathbb Q$, then $\ell$ ramifies in $F$. Indeed, $R$ has a unique prime $\mathfrak p$ above $\ell$. Every prime of $F$ above $\ell$ extends to a prime of $R$ above $\ell$, so $F$ also has a unique prime $\mathfrak q=\mathfrak p\cap\mathcal O_F$ above $\ell$. The residue field $\mathcal O_F/\mathfrak q$ embeds into $\mathcal O_R/\mathfrak p\cong\mathbb F_\ell$, hence its residue degree is $1$. The fundamental identity therefore gives
+$$
+e(\mathfrak q/\ell)=[F:\mathbb Q]>1,
+$$
+so $\ell$ ramifies in $F$.
+
+But $F\subseteq C$, and ramification indices in a tower multiply. Since the ramification index of every prime above $\ell$ in $C/\mathbb Q$ is $1$, every intermediate field of $C/\mathbb Q$ is also unramified at $\ell$. This contradiction proves
 $$
 R\cap C=\mathbb Q.
 \tag{9}
@@ -199,12 +218,16 @@ Let
 $$
 U_n=(\mathbb Z/2^n\mathbb Z)^\times.
 $$
-Because of the trivial intersection (9), each automorphism
+Equation (9) implies that $R$ and $C$ are linearly disjoint over $\mathbb Q$. Hence for each
 $$
-\zeta\mapsto\zeta^a,
-\qquad a\in U_n,
+a\in U_n,
 $$
-extends to $L$ while fixing $\beta$. Denote this extension by $\sigma_a$. Since
+the cyclotomic automorphism $\zeta\mapsto\zeta^a$ extends uniquely to the compositum $L=RC$ while fixing $R$ pointwise; explicitly, on products it is the well-defined map
+$$
+r c\longmapsto r\,\sigma_a(c)
+\qquad(r\in R,\ c\in C).
+$$
+Denote this extension by $\sigma_a$. Since
 $$
 \eta=\zeta^{2^q}
 $$
