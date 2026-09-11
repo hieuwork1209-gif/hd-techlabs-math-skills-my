@@ -1,0 +1,22 @@
+{
+  "problem": "problem102",
+  "branch": "adversary/problem102",
+  "problem_path": "workspace/rainier-problem/problem102-single-variable-calculus/problem.md",
+  "source_commit_sha": "22cc81a9f3a56a0549fcd69bb9d4146a50639021",
+  "problem_blob_sha": "462db659cfcc0342b69d28508c4192a88ba0f3da",
+  "statement_sha256": "89667ab5c91bf24b5d63e7ee099e15c6f9ca665ffc8f09072d2f70520095a897",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T07:12:57+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(X=\\mathbb F_2^6\\). Since the symplectic form on \\(V=X\\oplus X\\) is nondegenerate, \\(L=L^\\perp\\) implies\n\\[\n\\dim L=6.\n\\]\nThe condition \\(L\\cap F=\\{0\\}\\) makes the projection \\(L\\to X\\) onto the first coordinate injective, hence bijective. Thus every such \\(L\\) is uniquely a graph\n\\[\nL=\\{(x,Ax):x\\in X\\}\n\\]\nfor a linear map \\(A:X\\to X\\). The condition \\(L\\cap E=\\{0\\}\\) says \\(\\ker A=0\\), so \\(A\\) is invertible.\n\nNow \\(L\\) is isotropic iff for all \\(x,x'\\in X\\),\n\\[\n0=\\langle (x,Ax),(x',Ax')\\rangle\n=x\\cdot Ax'+x'\\cdot Ax.\n\\]\nWriting \\(A\\) as a matrix, this is\n\\[\nx^T(A+A^T)x'=0\\quad\\text{for all }x,x',\n\\]\nso \\(A=A^T\\). Hence the desired number is the number of invertible symmetric \\(6\\times 6\\) matrices over \\(\\mathbb F_2\\).\n\nCount these by congruence classes of nondegenerate symmetric bilinear forms. Over \\(\\mathbb F_2\\) in even dimension \\(6=2m\\), there are two types.\n\nThe alternating type has stabilizer \\(\\operatorname{Sp}(6,2)\\), whose order is\n\\[\n|\\operatorname{Sp}(6,2)|\n=2^{3^2}(2^2-1)(2^4-1)(2^6-1)\n=2^9\\cdot 3\\cdot 15\\cdot 63.\n\\]\nThus it contributes\n\\[\n\\frac{|\\operatorname{GL}(6,2)|}{|\\operatorname{Sp}(6,2)|}\n=\n\\frac{(64-1)(64-2)(64-4)(64-8)(64-16)(64-32)}\n{2^9\\cdot 3\\cdot 15\\cdot 63}\n=13888.\n\\]\n\nThe nonalternating type has representative\n\\[\n\\begin{pmatrix}0&1\\\\1&1\\end{pmatrix}\\oplus J_4,\n\\]\nwhere \\(J_4\\) is alternating symplectic. Its stabilizer has order\n\\[\n2^5|\\operatorname{Sp}(4,2)|\n=2^5\\cdot 2^4(2^2-1)(2^4-1)\n=23040.\n\\]\nSo this type contributes\n\\[\n\\frac{|\\operatorname{GL}(6,2)|}{23040}\n=\n874944.\n\\]\n\nTherefore the total number is\n\\[\n13888+874944=888832.\n\\]\n\n\\[\n\\boxed{888832}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T07:14:16+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem102/462db659cfcc.json"
+}
