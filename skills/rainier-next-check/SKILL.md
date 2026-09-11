@@ -1,6 +1,6 @@
 ---
 name: rainier-next-check
-description: Run the Rainier local adversarial difficulty loop for an existing problem. Use for `/rainier-next-check problemNN <chat_url>`, requests to create or continue `adversary/problemNN`, and bare `next` follow-ups in an active loop. Keep hardening off `main`, use one cold GPT-5.5 Medium solve per unseen statement blob with a 2100-second timeout, route WSL2 desktop notifications to the locally bound Chrome window, and promote the exact tested pair when the solver is wrong or times out.
+description: Run the unified Rainier adversarial workflow for both brand-new and existing problems. Use for `/rainier-next-check problemNN CHAT_URL`, new-problem requests that would previously use `/rainier-new-problem`, requests to create or resume `adversary/problemNN`, official-feedback repairs, and bare `next` follow-ups in an active Rainier loop. Keep all authoring/hardening off `main`, finish and audit the exact solution/problem pair before exposing it to the watcher, then allow exactly one cold GPT-5.5 Medium solve per ready statement blob. Preserve naturalness, reviewer completeness, exact solver evidence, and promote only a fully matched candidate.
 user-invocable: true
 disable-model-invocation: false
 argument-hint: problemNN plus ChatGPT conversation URL on first use; later `next` continues the active check
@@ -8,43 +8,38 @@ argument-hint: problemNN plus ChatGPT conversation URL on first use; later `next
 
 # Rainier Next Check
 
-Use this skill as the local adversarial preflight layer **after** the normal Rainier authoring/repair flow. Do not replace or alter `/rainier-next`.
+Own the complete Rainier preflight state machine for **both new and existing problems**. Do not maintain a separate creation state machine. Treat `/rainier-new-problem problemNN ...` as a compatibility spelling of this workflow when encountered.
 
-Read `references/workflow.md` before acting.
+Read `references/workflow.md` before acting. Read `references/pass-gates.md` for every candidate audit. For a brand-new candidate or a quality redesign, also read `references/design-patterns.md`.
 
 ## Core contract
 
-- Treat `main` as the portal-submission/frozen branch.
-- Treat `adversary/problemNN` as the only branch for local difficulty hardening.
-- On first use, accept the ChatGPT web conversation URL supplied with the command, e.g. `/rainier-next-check problem89 https://chatgpt.com/c/<conversation-id>`.
-- Immediately upsert that URL into `solver-results/problemNN/chat-binding.json` on `adversary/problemNN`. Never copy it to `main`.
-- On WSL2, after the chat binding exists, make the next user action `python scripts/rainier-bind-window.py problemNN`. The user clicks the Chrome window/account that owns this chat. The binder stores only local HWND/PID/window metadata; it never reads or stores account email/profile credentials.
-- Window bindings live only in `.tmp/codex-adversary/problemNN-window.json` plus the Windows runtime copy under `%LOCALAPPDATA%\Rainier\window-bindings\`. They are never committed.
-- After a valid window binding, use `python scripts/codex-adversary-watch-chat.py problemNN --watch` as the independent local solver harness.
-- The wrapper supplies GPT-5.5 Medium and a 2100-second timeout unless explicitly overridden.
-- One unseen `problem.md` blob gets exactly one GPT-5.5 Medium solve. Do not use `--force` in the normal loop.
-- A watcher `success` means only that text was returned. Compare it mathematically with the matching `solution.md` before deciding.
-- If the solver is correct, diagnose its earliest robust shortcut, structurally harden, verify the new ground truth, then update `solution.md` first and `problem.md` second on the adversary branch.
-- If the solver is wrong/materially incomplete or the watcher records `LOCAL_STUMPED_BY_TIMEOUT`, stop local hardening, pass submission gates, and promote the exact matching `solution.md` then `problem.md` to `main`.
-- Never promote on `SOLVER_ERROR` or an infrastructure failure.
-- Never call a local stump or timeout an official Rainier difficulty pass.
-- After promotion to `MAIN_READY_FOR_RAINIER`, upsert `solver-results/problemNN/terminal.json` on the adversary branch for the exact promoted problem blob. A matching marker makes the watcher exit successfully instead of repeating `already tested`.
-- PowerShell notifications must route through the exact locally bound Chrome HWND. If that binding is missing or stale, do not fall back to another browser/account.
+- Treat `main` as frozen submission state and `adversary/problemNN` as the only authoring/design branch.
+- Detect mode from `main`: exactly one `workspace/rainier-problem/problemNN-*/problem.md` means **existing mode**; none means **new mode**; multiple matches are an error to resolve rather than guessing.
+- On first use, accept the user-supplied ChatGPT conversation URL and upsert `solver-results/problemNN/chat-binding.json` on the adversary branch only. Never invent a conversation ID and never copy the binding to `main`.
+- Reuse an existing `adversary/problemNN` branch exactly; never silently reset it. If absent, create it from current `main`.
+- In new mode, derive ground truth first, write/repair `solution.md` first, write `problem.md` second, normalize, re-read the exact pair, and pass reviewer/quality gates before making the candidate solver-eligible.
+- In existing mode, preserve the current `/rainier-next-check` semantics: inspect the exact adversary pair, official feedback, and prior solver evidence before deciding whether to measure, harden, redesign, repair, or promote.
+- Use `python scripts/codex-adversary-watch-chat.py problemNN --watch` as the independent local solver harness. Default settings are GPT-5.5, Medium reasoning, 2100 seconds.
+- Before reporting any `*_WAIT_CODEX` status, ensure the repository copy of `scripts/codex-adversary-watch-chat.py` implements the bundled candidate-ready gate; if it is older, sync the bundled wrapper first. The running watcher process must be restarted after a runner-script update because Python does not hot-reload it.
+- The watcher must obey the **candidate-ready handshake** in `references/workflow.md`. A new or changed `problem.md` by itself is never permission to solve.
+- One ready unseen `problem.md` blob gets exactly one GPT-5.5 Medium cold solve. Never rerun a blob to fish for failure.
+- A watcher `success` means only that text was returned. Compare it mathematically against the exact candidate `solution.md` before classifying difficulty.
+- Treat correctness, reviewer quality/naturalness, and solver difficulty as independent gates. A local stump never excuses a bad problem or incomplete solution.
+- When GPT-5.5 solves correctly, diagnose the earliest robust shortcut. Harden only through a genuinely load-bearing mathematical dependency. In new mode, allow at most one same-blueprint structural revision before regenerating. Never stack tuned constants, cancellation devices, extra indices, giant computations, or notation merely to stump the solver.
+- Official feedback such as `contrived`, `over-engineered`, `synthetic`, `awkward construction`, or `customized to force cancellation` is a **QUALITY_REDESIGN** signal, not a request for more machinery.
+- If the solver is wrong/materially incomplete or a valid 2100-second timeout is recorded, stop local hardening, run every promotion gate, and promote the exact matching pair to `main` only if all gates are green.
+- Never promote on `SOLVER_ERROR`, stale solver evidence, a mismatched ready marker, or infrastructure failure.
+- PowerShell notifications must open the exact bound ChatGPT conversation. Never use a GitHub result URL as a click fallback.
 
-## No-leak self-contained Answer gate
+## Candidate write discipline
 
-Treat this as a **problem-design gate**, not a cosmetic formatting rule.
-
-- The standalone `## Answer` must be interpretable from the problem statement alone. Every nonstandard symbol used in the Answer must already be defined in the problem statement; standard mathematical notation is allowed.
-- Do **not** make an Answer self-contained by adding aliases to the statement when those aliases encode quantities that the solver is supposed to discover. In particular, never expose solution-derived multiplicities, hidden flags/subspaces, extremizers, regime boundaries, recovered invariants, special coefficients, or other load-bearing intermediate structure merely to shorten the Answer.
-- If the Answer cannot satisfy the portal length/format limits using only the problem's natural input variables and harmless notation, classify that as a **design/hardening failure**. Structurally redesign or harden the adversary candidate until the final result has a concise self-contained expression without leaking the intended route.
-- A statement edit made for this reason creates a new `problem.md` blob and therefore requires a fresh cold solver measurement. Never reuse the previous local or portal difficulty result for the changed statement.
-- Before promotion, compare the standalone Answer with the interior of the final `Final Answer: $\boxed{...}$` line. They must denote the same expression and, when the portal checker requires textual equality, use the same representation.
+Whenever `solution.md` or `problem.md` may change, treat the candidate as **draft**. Ensure the ready marker is absent/stale while editing. Finish all mathematical work, normalization, metadata, and reviewer audit first. Resolve the final problem and solution blob SHAs and upsert `solver-results/problemNN/candidate-ready.json` **last**. Any later change to either file invalidates that marker and requires a new final audit plus a new marker.
 
 ## Follow-up `next`
 
-In a conversation already using this skill, interpret a bare `next` as: read `solver-results/problemNN/latest.json` from `adversary/problemNN`, follow its `result_file` when needed, compare against the exact candidate solution, and continue the state machine without asking the user to restate the problem.
+In a conversation already using this workflow, interpret a bare `next` as: read `solver-results/problemNN/latest.json` on `adversary/problemNN`, follow its `result_file`, verify the result belongs to the exact ready candidate, compare it with the matching solution, and continue the unified state machine without asking the user to restate the problem or chat URL.
 
 ## User boundary
 
-The web chat cannot wake itself when GitHub changes. After a watcher attempt finishes, the only user handoff needed is `next`. The user supplies the web-chat URL on first invocation and performs the one-time local Chrome-window binding. Later turns reuse both bindings until the user explicitly rebinds or the Chrome HWND becomes stale.
+The web chat cannot wake itself when GitHub changes. After a solver attempt completes, the only user handoff is `next`. The watcher may remain running continuously because the candidate-ready handshake prevents draft/intermediate commits from triggering Codex.
