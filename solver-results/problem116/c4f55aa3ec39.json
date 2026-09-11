@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "01e7bf4133856217f7e6b21731143d1455d9bfdf",
+  "problem_blob_sha": "c4f55aa3ec39988982ff808ec722fc1d39dca1b0",
+  "statement_sha256": "3fbfa4266efcc7e5d1ffb470b0888dcb546d4086003a491523bb0672feeecab0",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T07:24:33+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(Z_t\\neq 0\\) and write it in polar form\n\\[\nZ_t=r_t(\\cos\\theta_t,\\sin\\theta_t).\n\\]\nBecause the Stratonovich noise term \\(bJZ_t\\circ dW_t\\) is purely rotational, it does not directly change \\(r_t\\). Comparing radial and angular components gives\n\\[\nd\\log r_t=(-1+a\\sin 2\\theta_t)\\,dt,\n\\qquad\nd\\theta_t=a\\cos 2\\theta_t\\,dt+b\\,dW_t.\n\\]\nPut \\(X_t=2\\theta_t\\pmod {2\\pi}\\). Then\n\\[\ndX_t=2a\\cos X_t\\,dt+2b\\,dW_t.\n\\]\nThis diffusion on the circle has invariant density\n\\[\n\\rho(x)=\\frac{e^{\\kappa\\sin x}}{\\int_0^{2\\pi}e^{\\kappa\\sin y}\\,dy},\n\\qquad \\kappa=\\frac{a}{b^2}.\n\\]\nHence by ergodicity,\n\\[\n\\lim_{t\\to\\infty}\\frac1t\\log\\frac{\\|Z_t\\|}{\\|Z_0\\|}\n=\n-1+a\\int_0^{2\\pi}\\sin x\\,\\rho(x)\\,dx\n\\]\nalmost surely. Therefore the origin is almost surely exponentially stable exactly when\n\\[\na\\frac{\\int_0^{2\\pi}\\sin x\\,e^{(a/b^2)\\sin x}\\,dx}\n{\\int_0^{2\\pi}e^{(a/b^2)\\sin x}\\,dx}<1.\n\\]\n\nNow check mean-square stability. Convert the Stratonovich equation to Itô form:\n\\[\ndZ_t=\\left(A-\\frac{b^2}{2}I\\right)Z_t\\,dt+bJZ_t\\,dW_t.\n\\]\nLet\n\\[\nM_t=\\mathbb E[Z_tZ_t^{T}]\n=\n\\begin{pmatrix}x_t&y_t\\\\y_t&z_t\\end{pmatrix}.\n\\]\nThen\n\\[\nM_t'=BM_t+M_tB^T+b^2JM_tJ^T,\n\\qquad B=A-\\frac{b^2}{2}I.\n\\]\nWriting \\(q=x+z=\\mathbb E\\|Z_t\\|^2\\) and \\(s=2y\\), one gets\n\\[\n\\binom{q}{s}'=\n\\begin{pmatrix}\n-2&2a\\\\\n2a&-2-2b^2\n\\end{pmatrix}\n\\binom{q}{s}.\n\\]\nThis two-dimensional linear system is exponentially stable iff its determinant is positive:\n\\[\n4(1+b^2-a^2)>0.\n\\]\nThus mean-square exponential stability holds exactly when\n\\[\na^2<1+b^2.\n\\]\nSo failure of mean-square exponential stability means\n\\[\na^2\\ge 1+b^2.\n\\]\n\nTherefore the required pairs are exactly\n\\[\n\\boxed{\n\\left\\{(a,b)\\in(0,\\infty)^2:\na^2\\ge 1+b^2\n\\ \\text{and}\\\na\\frac{\\int_0^{2\\pi}\\sin x\\,e^{(a/b^2)\\sin x}\\,dx}\n{\\int_0^{2\\pi}e^{(a/b^2)\\sin x}\\,dx}<1\n\\right\\}.\n}\n\\]\n\nEquivalently, using modified Bessel functions,\n\\[\n\\boxed{\na^2\\ge 1+b^2\n\\quad\\text{and}\\quad\na\\,\\frac{I_1(a/b^2)}{I_0(a/b^2)}<1.\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T07:25:44+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/c4f55aa3ec39.json"
+}
