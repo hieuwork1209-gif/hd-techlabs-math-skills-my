@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-type-theory-and-formal-systems/problem.md",
+  "source_commit_sha": "35733d85967d469e2a7c79ea25043f3399123c1f",
+  "problem_blob_sha": "f3a1e2a4547d4bd987a174922aa6b744e3ba092e",
+  "statement_sha256": "a5824d1e7590c7878465eaa4af00cd1fe5f248f4efe31f109ef2604ce3c21ac8",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T03:57:00+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(m=n-1\\), the number of \\(d\\)-symbols in \\(M_n\\).\n\nThink of a term as a stack of unary symbols. Initially the stack is\n\n\\[\nd_n,d_{n-1},\\ldots,d_2,z.\n\\]\n\nA rule\n\n\\[\nd_q(d_p(t))\\to a(d_p(d_q(t)))\\qquad(p<q)\n\\]\n\nswaps an inverted pair \\(d_q,d_p\\) and creates one \\(a\\) just outside the swapped pair. A rule\n\n\\[\nd_q(a(t))\\to a^2(d_q(t))\n\\]\n\nmoves \\(d_q\\) past an \\(a\\), and also creates one additional \\(a\\).\n\nThe normal form must have all \\(a\\)'s outside and the \\(d\\)'s in increasing order:\n\n\\[\na^N(d_2(d_3(\\cdots d_n(z)\\cdots))).\n\\]\n\nEach pair \\(d_q,d_p\\) with \\(p<q\\) is inverted initially, so every pair must be swapped exactly once. There are\n\n\\[\n\\binom{m}{2}\n\\]\n\nsuch swaps.\n\nNow count the extra steps forced by the \\(a\\)'s. When the pair originally in positions \\(i<j\\) is swapped, the created \\(a\\) lies inside the \\(i-1\\) symbols originally outside it. Eventually that \\(a\\) must move past each of those \\(i-1\\) outer \\(d\\)'s. Each crossing costs one step. Therefore the pair whose larger element starts in position \\(i\\) contributes\n\n\\[\n1+(i-1)=i\n\\]\n\nsteps total: one \\(d\\)-\\(d\\) swap plus \\(i-1\\) later \\(d\\)-\\(a\\) swaps.\n\nFor fixed \\(i\\), there are \\(m-i\\) inner \\(d\\)'s below it, so\n\n\\[\nL_n=\\sum_{i=1}^{m-1} i(m-i).\n\\]\n\nCompute:\n\n\\[\n\\sum_{i=1}^{m-1} i(m-i)\n= m\\sum_{i=1}^{m-1}i-\\sum_{i=1}^{m-1}i^2\n= m\\frac{m(m-1)}2-\\frac{(m-1)m(2m-1)}6\n= \\frac{m(m-1)(m+1)}6.\n\\]\n\nSince \\(m=n-1\\),\n\n\\[\n\\boxed{L_n=\\frac{n(n-1)(n-2)}6}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T03:57:25+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/f3a1e2a4547d.json"
+}
