@@ -95,6 +95,13 @@ Let
 $$
 \mathfrak c=\{f\in A:fB\subseteq A\}.
 $$
+By definition,
+$$
+A_+^mB\subseteq A
+\iff
+A_+^m\subseteq\mathfrak c.
+\tag{4}
+$$
 If $f\in A_d$ is homogeneous with $d\ge D-1$ and $b\in B_e$ is homogeneous, then $fb\in A$ when $e=0$. If $e\ge1$, then $d+e\ge D$, so by Step 2
 $$
 fb\in B_{d+e}=A_{d+e}.
@@ -108,7 +115,7 @@ $$
 for every $m\ge1$. Consequently
 $$
 A_+^{D-1}\subseteq\mathfrak c.
-\tag{4}
+\tag{5}
 $$
 
 Step 4: Show that one smaller power is not contained in the conductor
@@ -120,13 +127,13 @@ $$
 By minimality of $D$,
 $$
 (d+1)r=(D-1)r\le2N-3.
-\tag{5}
+\tag{6}
 $$
 Choose $s_1,s_2,s_3\in\{0,\ldots,N-1\}$ with
 $$
 s_1+s_2+s_3=dr,
 $$
-which is possible because (5) gives $dr<3(N-1)$. Define
+which is possible because (6) gives $dr<3(N-1)$. Define
 $$
 p_1=Nd+s_1,
 \qquad
@@ -143,7 +150,7 @@ Let
 $$
 \lambda_i=N-1-s_i.
 $$
-From (5),
+From (6),
 $$
 dr\le2N-3-r,
 $$
@@ -170,14 +177,14 @@ $$
 By (1), $fb\notin A_{d+1}$ for $f=x^{p_1}y^{p_2}z^{p_3}$. Thus $f\notin\mathfrak c$, although $f\in A_d\subseteq A_+^d$. Therefore
 $$
 A_+^{D-2}\nsubseteq\mathfrak c.
-\tag{6}
+\tag{7}
 $$
 
 Step 5: Determine the least conductor power
 
-From (4) and (6), the least integer $m$ such that
+From (4), (5), and (7), the least integer $m\ge0$ such that
 $$
-A_+^m\subseteq\mathfrak c
+A_+^mB\subseteq A
 $$
 is $D-1$. Using (3),
 $$
