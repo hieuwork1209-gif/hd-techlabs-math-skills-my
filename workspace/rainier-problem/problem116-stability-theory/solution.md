@@ -1,127 +1,137 @@
 ## Steps
 
-Step 1: Reduce delay-independent stability to imaginary-axis crossings
-Fix a delay $\tau>0$ and consider
+Step 1: Prove uniform exponential stability when $ab<4$
+Let
 $$
-\dot x(t)=-x(t)-a\,x(t-\tau)-b\,x(t-2\tau),
-\qquad a,b>0.
-$$
-An exponential mode $x(t)=e^{\lambda t}$ gives the characteristic equation
-$$
-\Delta_\tau(\lambda):=\lambda+1+a e^{-\tau\lambda}+b e^{-2\tau\lambda}=0.
-$$
-For a retarded linear equation, the zero solution is exponentially asymptotically stable exactly when every characteristic root has negative real part. Because the equation is linear, this is equivalent to global asymptotic stability in the history sup norm.
-
-Any characteristic root with $\operatorname{Re}\lambda\ge0$ satisfies
-$$
-|\lambda+1|
-=|a e^{-\tau\lambda}+b e^{-2\tau\lambda}|
-\le a+b.
-$$
-Thus all roots in the closed right half-plane lie in a fixed compact disk, uniformly in $\tau$. For sufficiently small positive $\tau$, $\Delta_\tau$ converges uniformly on this disk to
-$$
-\lambda+1+a+b,
-$$
-which has no zero in the closed right half-plane. Hence the equation is stable for all sufficiently small $\tau>0$. As $\tau$ varies, the number of roots in the open right half-plane can therefore change only through a root on the imaginary axis.
-
-Step 2: Eliminate the delay from the imaginary-axis equations
-A zero root never occurs because
-$$
-\Delta_\tau(0)=1+a+b>0.
-$$
-Let $\lambda=i\omega$ with $\omega>0$, and set
-$$
-\theta=\tau\omega,
+A_1=\begin{pmatrix}-1&a\\0&-1\end{pmatrix},
 \qquad
-c=\cos\theta,
+A_2=\begin{pmatrix}-1&0\\b&-1\end{pmatrix},
+$$
+and suppose $ab<4$. We seek a common quadratic Lyapunov function
+$$
+V(z)=z^TPz,
 \qquad
-s=\sin\theta.
+P=\operatorname{diag}(1,r),
+\qquad r>0.
 $$
-Separating real and imaginary parts gives
+For mode $1$,
 $$
-1+a c+b\cos2\theta=0,
+A_1^TP+PA_1
+=\begin{pmatrix}-2&a\\a&-2r\end{pmatrix},
 $$
+which is negative definite exactly when
 $$
-\omega=a s+b\sin2\theta.
+4r-a^2>0.
 $$
-Using $\cos2\theta=2c^2-1$ and $\sin2\theta=2sc$, define
+For mode $2$,
 $$
-h(c):=2bc^2+ac+1-b.
+A_2^TP+PA_2
+=\begin{pmatrix}-2&br\\br&-2r\end{pmatrix},
 $$
-Every nonzero imaginary-axis root therefore gives
+which is negative definite exactly when
 $$
-h(c)=0
-\qquad\text{for some }c\in(-1,1),
+4r-b^2r^2>0.
 $$
-because $s=0$ would force $\omega=0$.
+Thus it is enough to choose
+$$
+\frac{a^2}{4}<r<\frac{4}{b^2}.
+$$
+Such an $r$ exists exactly when $ab<4$.
 
-Conversely, suppose $h(c)=0$ for some $c\in(-1,1)$. Put
+For this choice there is $\eta>0$ such that
 $$
-k=a+2bc.
+z^T(A_i^TP+PA_i)z\le-\eta\|z\|^2
+\qquad(i=1,2).
 $$
-If $k\ne0$, choose $\theta\in(0,2\pi)$ with $\cos\theta=c$ and with $\sin\theta$ having the same sign as $k$. Then
+Therefore along every switching signal,
 $$
-\omega=\sin\theta\,k>0,
+\dot V\le-\eta\|z\|^2\le-\frac{\eta}{\lambda_{\max}(P)}V.
+$$
+Hence there are constants $C,\gamma>0$, depending only on $(a,b)$, for which
+$$
+\|z(t)\|\le Ce^{-\gamma t}\|z(0)\|
+$$
+for every admissible switching signal. Thus $ab<4$ is sufficient.
+
+Step 2: Exclude $ab>4$ by a periodic switching signal
+Let the system use mode $1$ for time $h>0$ and then mode $2$ for time $h$, repeated periodically. Since
+$$
+e^{A_1h}=e^{-h}\begin{pmatrix}1&ah\\0&1\end{pmatrix},
 \qquad
-\tau=\frac{\theta}{\omega}>0,
+e^{A_2h}=e^{-h}\begin{pmatrix}1&0\\bh&1\end{pmatrix},
 $$
-and the two imaginary-axis equations are satisfied. If $k=0$, then substituting $c=-a/(2b)$ into $h(c)=0$ gives $b=1$. But then $h(0)=0$, and at $c=0$ we have $a+2bc=a>0$, reducing to the previous case. Thus an interior zero of $h$ always produces a nonzero imaginary characteristic root for some positive delay.
+the one-cycle matrix is
+$$
+\Phi_h=e^{-2h}
+\begin{pmatrix}
+1&ah\\
+bh&1+ab h^2
+\end{pmatrix}.
+$$
+The matrix inside has determinant $1$ and trace $2+ab h^2$. Writing $c=\sqrt{ab}$, its larger eigenvalue is
+$$
+\mu_+(h)
+=\exp\left(2\operatorname{arsinh}\frac{ch}{2}\right).
+$$
+Therefore
+$$
+\rho(\Phi_h)
+=\exp\left(-2h+2\operatorname{arsinh}\frac{ch}{2}\right).
+$$
+If $ab>4$, then $c>2$, and the exponent has derivative $-2+c>0$ at $h=0$. Hence for all sufficiently small $h>0$,
+$$
+\rho(\Phi_h)>1.
+$$
+The corresponding periodic switching signal has an exponentially growing solution, so arbitrary-switching stability is impossible.
 
-Since $h(1)=1+a+b>0$, the equation is stable for every $\tau>0$ exactly when
+Step 3: Exclude the boundary $ab=4$
+Now let $ab=4$, so $c=2$. For the same equal-dwell periodic switching,
 $$
-h(c)>0
-\qquad\text{for all }-1<c<1.
+\rho(\Phi_h)
+=\exp\bigl(-2h+2\operatorname{arsinh}h\bigr)<1
 $$
-Indeed, under this condition there is no imaginary-axis crossing for any $\tau$, while right-half-plane roots cannot enter from infinity; hence the small-delay stability persists for every positive delay.
-
-Step 3: Minimize the quadratic on the open interval
-Because $b>0$, the quadratic
+for every fixed $h>0$. Thus each such periodic signal is individually exponentially stable. However its decay rate per unit time is
 $$
-h(c)=2bc^2+ac+1-b
+\gamma_h
+:= -\frac{1}{2h}\log\rho(\Phi_h)
+=1-\frac{\operatorname{arsinh}h}{h}.
 $$
-is strictly convex, with vertex
+Since
 $$
-c_*=-\frac{a}{4b}.
+\operatorname{arsinh}h=h-\frac{h^3}{6}+O(h^5),
 $$
-
-If $a\ge4b$, then $c_*\le-1$, so $h$ is increasing on $(-1,1)$. Its infimum there is the endpoint value
+we have
 $$
-h(-1)=1-a+b.
-$$
-The endpoint itself is not part of the interval, so $h(c)>0$ for every $-1<c<1$ exactly when
-$$
-1-a+b\ge0,
-$$
-i.e.
-$$
-a\le1+b.
-$$
-Equality is allowed: when $h(-1)=0$, the only zero at the left endpoint would correspond to $\sin\theta=0$ and hence cannot give a nonzero imaginary characteristic root.
-
-If $0<a<4b$, then $c_*\in(-1,0)$ and the minimum is attained inside the interval. We need
-$$
-h(c_*)
-=1-b-\frac{a^2}{8b}>0,
-$$
-which is equivalent to
-$$
-a^2<8b(1-b).
+\gamma_h\to0
+\qquad(h\to0^+).
 $$
 
-Step 4: State the robust stability region
-Combining the two cases, the zero solution is globally asymptotically stable for every delay $\tau>0$ exactly for
+Suppose, contrary to uniform exponential stability under arbitrary switching, that there were constants $C,\gamma>0$ valid for every switching signal. Choose $h$ so small that $\gamma_h<\gamma/2$, and start on an eigenvector of $\Phi_h$ corresponding to its larger eigenvalue. At the cycle times $t=2nh$,
 $$
-\{(a,b):a,b>0,\ a\ge4b,\ a\le1+b\}
-\cup
-\{(a,b):a,b>0,\ a<4b,\ a^2<8b(1-b)\}.
+\|z(t)\|=e^{-\gamma_h t}\|z(0)\|
 $$
-Final Answer: $\boxed{\{(a,b):a,b>0,a\ge4b,a\le1+b\}\cup\{(a,b):a,b>0,a<4b,a^2<8b(1-b)\}}$
+up to the fixed normalization of that eigenvector, whereas the assumed uniform estimate would give
+$$
+\|z(t)\|\le Ce^{-\gamma t}\|z(0)\|.
+$$
+Thus
+$$
+e^{(\gamma-\gamma_h)t}\le C
+$$
+for all $n$, which is impossible as $n\to\infty$. Hence the boundary $ab=4$ is not uniformly exponentially stable under arbitrary switching.
+
+Step 4: State the exact parameter region
+The common quadratic Lyapunov construction proves sufficiency for $ab<4$. The periodic-switching argument excludes $ab>4$, and the vanishing uniform decay rate excludes $ab=4$. Therefore the exact region is
+$$
+a>0,\qquad b>0,\qquad ab<4.
+$$
+Final Answer: $\boxed{\{(a,b):a>0,\ b>0,\ ab<4\}}$
 
 ---
 
 ## Answer
 
-$\{(a,b):a,b>0,a\ge4b,a\le1+b\}\cup\{(a,b):a,b>0,a<4b,a^2<8b(1-b)\}$
+$\{(a,b):a>0,\ b>0,\ ab<4\}$
 
 ---
 
@@ -135,11 +145,11 @@ $\{(a,b):a,b>0,a\ge4b,a\le1+b\}\cup\{(a,b):a,b>0,a<4b,a^2<8b(1-b)\}$
 
 ## Solution Concepts
 
-- delay differential equations
-- delay-independent stability
-- characteristic roots
-- imaginary-axis crossings
-- constrained quadratic positivity
+- switched linear systems
+- common quadratic Lyapunov functions
+- uniform exponential stability
+- periodic switching
+- matrix spectral radius
 
 ---
 
