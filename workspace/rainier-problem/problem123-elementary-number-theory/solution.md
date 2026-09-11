@@ -1,167 +1,174 @@
 ## Steps
 
-Step 1: Reduce the gcd to prime divisors of $n$
+Step 1: Reduce the possible prime divisors
 
-For $n\ge2$, define
+Let $p$ be an odd prime and define
 $$
-G_n:=\gcd\left\{\binom nk:1\le k<n,\ k\text{ odd}\right\}.
+H_p:=\gcd\left\{\binom{2p}{2j}:1\le j\le p-1\right\}.
 $$
-Because $k=1$ is allowed,
+Since $j=1$ is allowed,
 $$
-G_n\mid \binom n1=n.
+H_p\mid \binom{2p}{2}=p(2p-1).
 \tag{1}
 $$
-Thus every prime divisor of $G_n$ must already divide $n$.
+Thus every prime divisor of $H_p$ is either $p$ or a prime divisor of $2p-1$.
 
-We will repeatedly use Lucas' theorem in the following precise form. Let $p$ be prime, and write
+We use Lucas' theorem in the following precise form. If $q$ is prime and
 $$
-N=N_0+N_1p+\cdots+N_rp^r,
+N=N_0+N_1q+\cdots+N_rq^r,
 \qquad
-K=K_0+K_1p+\cdots+K_rp^r,
+K=K_0+K_1q+\cdots+K_rq^r,
 $$
-with $0\le N_i,K_i<p$. Then
+with $0\le N_i,K_i<q$, then
 $$
-\binom NK\equiv \prod_{i=0}^r\binom{N_i}{K_i}\pmod p.
+\binom NK\equiv\prod_{i=0}^r\binom{N_i}{K_i}\pmod q.
 \tag{2}
 $$
-In particular, if some digit $K_i>N_i$, then $p\mid\binom NK$; if every $K_i\le N_i$, then the product on the right is nonzero modulo $p$.
+Hence $q\nmid\binom NK$ exactly when every base-$q$ digit of $K$ is at most the corresponding digit of $N$.
 
-Step 2: Handle even $n$
+Step 2: Determine the $p$-part of the gcd
 
-Assume
+In base $p$,
 $$
-n=2^a m,
-\qquad a\ge1,
-\qquad m\text{ odd}.
+2p=(20)_p.
 $$
-For every odd $k$,
+Let $k=2j$ with $1\le j\le p-1$. Then
 $$
-\binom nk=\frac nk\binom{n-1}{k-1}.
+2\le k\le2p-2.
+$$
+The only positive multiple of $p$ strictly between $0$ and $2p$ is $p$, and $p$ is odd. Therefore every allowed even $k$ is not divisible by $p$, so its units digit in base $p$ is nonzero. The units digit of $2p$ is $0$. By Lucas' theorem,
+$$
+p\mid\binom{2p}{k}
+\qquad(2\le k\le2p-2,\ k\text{ even}).
 \tag{3}
 $$
-Since $k$ is odd,
+Thus $p\mid H_p$.
+
+On the other hand,
 $$
-v_2\left(\binom nk\right)
-=a+v_2\left(\binom{n-1}{k-1}\right)\ge a.
+\binom{2p}{2}=p(2p-1)
 $$
-Hence
+and $p\nmid2p-1$. Hence
 $$
-2^a\mid G_n.
+v_p(H_p)=1.
 \tag{4}
 $$
-On the other hand, $k=1$ gives $\binom n1=n$, whose $2$-adic valuation is exactly $a$. Therefore
+So the $p$-part of the gcd is exactly $p$.
+
+Step 3: Decide when a prime divisor of $2p-1$ survives
+
+Let $q$ be a prime divisor of $2p-1$, and write
 $$
-v_2(G_n)=a.
+2p-1=q^a s,
+\qquad a=v_q(2p-1),
+\qquad q\nmid s.
 \tag{5}
 $$
-
-Now let $p$ be any odd prime divisor of $n$, and put
+Because $2p-1$ is odd, $q$ is odd. Then
 $$
-b=v_p(n),
-\qquad n=p^b s,
-\qquad p\nmid s.
-$$
-Choose
-$$
-k=p^b.
-$$
-This $k$ is odd, and $k<n$ because $n$ is even. In base $p$, the lowest $b$ digits of $n$ are zero, while the digit in position $b$ is the nonzero residue of $s$ modulo $p$. The number $k=p^b$ has digit $1$ in position $b$ and zeros elsewhere. Thus every digit of $k$ is at most the corresponding digit of $n$, and by (2),
-$$
-p\nmid \binom n{p^b}.
+2p=q^a s+1.
 \tag{6}
 $$
-So no odd prime divisor of $n$ can divide $G_n$. Combining (1), (5), and (6),
+
+First suppose $s>1$, so $2p-1$ is not a power of $q$. Choose
 $$
-G_n=2^{v_2(n)}
-\qquad(n\text{ even}).
+k=q^a+1.
 \tag{7}
 $$
+The number $k$ is even because $q$ is odd, and by $s>1$,
+$$
+2\le k<q^as+1=2p.
+$$
+Thus $k$ is one of the allowed indices.
 
-Step 3: Handle odd $n$ having at least two distinct prime divisors
-
-Assume $n$ is odd and not a prime power. Let $p$ be any prime divisor of $n$, and again write
+In base $q$, equation (6) shows that the units digit of $2p$ is $1$, the next $a-1$ digits are $0$, and the digit in position $a$ is the nonzero residue of $s$ modulo $q$. The number $k=q^a+1$ has digit $1$ in positions $0$ and $a$ and zeros elsewhere. Therefore every digit of $k$ is at most the corresponding digit of $2p$. Lucas' theorem gives
 $$
-b=v_p(n),
-\qquad n=p^b s,
-\qquad p\nmid s.
-$$
-Because $n$ is not a power of $p$, one has $s>1$. Set
-$$
-k=p^b.
-$$
-Then $k$ is odd and $1\le k<n$. Exactly the same base-$p$ digit comparison as in Step 2 shows, by Lucas' theorem,
-$$
-p\nmid\binom n{p^b}.
+q\nmid\binom{2p}{q^a+1}.
 \tag{8}
 $$
-Thus each prime divisor $p$ of $n$ is absent from the gcd. Since $G_n\mid n$ by (1), it follows that
+Hence such a prime $q$ cannot divide $H_p$.
+
+Consequently, a prime divisor $q$ of $2p-1$ can survive in the gcd only if
 $$
-G_n=1
+2p-1=q^a
 \tag{9}
 $$
-whenever $n$ is odd and has at least two distinct prime divisors.
+for some $a\ge1$.
 
-Step 4: Handle odd prime powers and determine the exact exponent
+Step 4: Prove the prime-power condition is sufficient and find the exact exponent
 
-Now let
+Assume now
 $$
-n=p^a
+2p-1=q^a
 $$
-with $p$ an odd prime and $a\ge1$.
-
-First we show that every interior binomial coefficient is divisible by $p$. In base $p$, the number $n=p^a$ has digits
+for a prime $q$ and $a\ge1$. Then
 $$
-1,0,0,\dots,0.
-$$
-For every integer $k$ with $1\le k<n$, at least one of the lower $a$ base-$p$ digits of $k$ is nonzero. At that position the corresponding digit of $n$ is zero, so Lucas' theorem (2) gives
-$$
-p\mid\binom nk.
+2p=q^a+1.
 \tag{10}
 $$
-In particular $p\mid G_n$.
+In base $q$, the only nonzero digits of $2p$ are two $1$'s, in positions $0$ and $a$.
 
-It remains to show that the gcd contains only one factor of $p$. Take the odd index
+Suppose an allowed even integer $k$ satisfied the digit inequalities required for $q\nmid\binom{2p}{k}$. Then the base-$q$ digits of $k$ could only be chosen from those two $1$'s. Hence the only possibilities would be
 $$
-k=p^{a-1}.
+k\in\{0,1,q^a,q^a+1\}.
 $$
-Using
+The interior possibilities $1$ and $q^a$ are odd, while $0$ and $q^a+1=2p$ are not allowed. Therefore every allowed even $k$ violates at least one Lucas digit inequality, and so
 $$
-\binom{p^a}{p^{a-1}}
-=p\binom{p^a-1}{p^{a-1}-1},
+q\mid\binom{2p}{k}
+\qquad(2\le k\le2p-2,\ k\text{ even}).
 \tag{11}
 $$
-we examine the second factor modulo $p$. The base-$p$ expansion of $p^a-1$ consists of $a$ digits all equal to $p-1$, while $p^{a-1}-1$ has its lowest $a-1$ digits equal to $p-1$ and its next digit equal to $0$. Applying (2),
+Thus $q\mid H_p$.
+
+We now show that only one factor of $q$ occurs in the gcd. Take
 $$
-\binom{p^a-1}{p^{a-1}-1}\equiv1\pmod p.
+k=q^{a-1}+1,
+$$
+which is even and lies strictly between $0$ and $q^a+1$. Using
+$$
+\binom{q^a+1}{q^{a-1}+1}
+=\frac{q^a+1}{q^{a-1}+1}\binom{q^a}{q^{a-1}},
 \tag{12}
+$$
+the prefactor has $q$-adic valuation $0$. Also
+$$
+\binom{q^a}{q^{a-1}}
+=q\binom{q^a-1}{q^{a-1}-1}.
+\tag{13}
+$$
+The base-$q$ digits of $q^a-1$ are all $q-1$, while those of $q^{a-1}-1$ are $q-1$ in the lowest $a-1$ positions and $0$ in position $a-1$. Lucas' theorem gives
+$$
+\binom{q^a-1}{q^{a-1}-1}\equiv1\pmod q.
+\tag{14}
 $$
 Therefore
 $$
-v_p\left(\binom{p^a}{p^{a-1}}\right)=1.
-\tag{13}
+v_q\left(\binom{q^a+1}{q^{a-1}+1}\right)=1.
+\tag{15}
 $$
-Since $G_n\mid n=p^a$, equations (10) and (13) imply
+Hence
 $$
-G_n=p.
-\tag{14}
+v_q(H_p)=1.
+\tag{16}
 $$
 
-Step 5: Combine the cases
+Step 5: Combine the local conditions
 
-Equations (7), (9), and (14) give the complete answer:
+By (1), no other primes can occur. Equation (4) gives one factor $p$. Steps 3-4 show that the factor $2p-1$ contributes a prime precisely when it is itself a prime power $q^a$, and then contributes exactly one factor $q$.
+
+Thus
 $$
-G_n=
+H_p=
 \begin{cases}
-2^{v_2(n)},&2\mid n,\\
-p,&n=p^a\text{ for an odd prime }p,\\
-1,&\text{otherwise}.
+pq,&2p-1=q^a\text{ for some prime }q,\\
+p,&\text{otherwise}.
 \end{cases}
 $$
 
 ## Solution Concepts
 
-- Prime-by-prime reduction of a gcd of binomial coefficients.
-- Lucas' theorem and base-$p$ digit compatibility.
-- Interaction between parity-restricted indices and prime-power structure of $n$.
+- Prime-by-prime analysis of a restricted binomial-coefficient gcd.
+- Lucas' theorem and parity of base-$q$ digit selections.
+- Prime-power characterization forced by the absence of an admissible digitwise subnumber.
 
-Final Answer: $G_n=\begin{cases}2^{v_2(n)},&2\mid n,\\p,&n=p^a\ (p\text{ odd prime}),\\1,&\text{otherwise}.\end{cases}$
+Final Answer: $H_p=\begin{cases}pq,&2p-1=q^a\ (q\text{ prime}),\\p,&\text{otherwise}.\end{cases}$
