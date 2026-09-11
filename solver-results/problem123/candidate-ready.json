@@ -1,0 +1,9 @@
+{
+  "problem": "problem123",
+  "mode": "new",
+  "ready": true,
+  "problem_path": "workspace/rainier-problem/problem123-stochastic-processes/problem.md",
+  "problem_blob_sha": "701fb1d717bd7975481997c0f9d8d28a500a4878",
+  "solution_path": "workspace/rainier-problem/problem123-stochastic-processes/solution.md",
+  "solution_blob_sha": "bc85f22173ee1d96f2299f8c5a7c4ad800487708"
+}
