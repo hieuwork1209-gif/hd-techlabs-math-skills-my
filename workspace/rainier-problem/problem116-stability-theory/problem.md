@@ -2,12 +2,12 @@
 
 ## LaTeX (Normalized)
 
-Let $a,b>0$. Consider the scalar delay differential equation
+Let $a,b>0$. For each delay $\tau>0$, consider the scalar delay differential equation
 $$
-\dot x(t)=-x(t)-a\,x(t-b),\qquad t\ge0,
+\dot x(t)=-x(t)-a\,x(t-\tau)-b\,x(t-2\tau),\qquad t\ge0,
 $$
-with arbitrary continuous initial history $x(t)=\phi(t)$ on $[-b,0]$.
-Determine all pairs $(a,b)$ for which the zero solution is globally asymptotically stable in the history sup norm; that is, it is Lyapunov stable and, for every $\phi\in C([-b,0],\mathbb R)$, the corresponding solution exists for all $t\ge0$ and satisfies $x(t)\to0$ as $t\to\infty$.
+with arbitrary continuous initial history on $[-2\tau,0]$.
+Determine all pairs $(a,b)$ for which, for every $\tau>0$, the zero solution is globally asymptotically stable in the history sup norm; that is, it is Lyapunov stable and every solution exists for all $t\ge0$ and satisfies $x(t)\to0$ as $t\to\infty$.
 
 ---
 
@@ -24,4 +24,4 @@ Determine all pairs $(a,b)$ for which the zero solution is globally asymptotical
 
 ## Domain Explanation
 
-This is a classical stability problem for a linear delay differential equation. The exact parameter region is determined by the location of the roots of a transcendental characteristic equation, the first imaginary-axis crossing as the delay varies, and the direction of that crossing.
+This is a delay-independent stability problem for a scalar linear equation with two commensurate delays. The exact gain region is obtained by excluding imaginary characteristic roots for every delay, reducing the phase condition to positivity of a quadratic trigonometric polynomial on an open interval.
