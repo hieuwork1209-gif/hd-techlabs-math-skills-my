@@ -46,12 +46,13 @@ a_n
 =\prod_{j=0}^{n-1}\frac{j+3/2}{j+1}
 =\frac{\Gamma(n+3/2)}{\Gamma(3/2)\Gamma(n+1)}.
 $$
-Stirling's formula gives
+Dividing the usual Stirling expansions gives, for fixed $c,d$,
 $$
-\frac{\Gamma(n+3/2)}{\Gamma(n+1)}
-=n^{1/2}(1+o(1)),
+\frac{\Gamma(n+c)}{\Gamma(n+d)}
+=n^{c-d}(1+O(n^{-1})).
+\tag{4}
 $$
-so, since $\Gamma(3/2)=\sqrt\pi/2$,
+Applying (4) with $(c,d)=(3/2,1)$ and using $\Gamma(3/2)=\sqrt\pi/2$ yields
 $$
 \frac{a_n}{\sqrt n}\longrightarrow\frac2{\sqrt\pi}.
 $$
@@ -60,7 +61,7 @@ $$
 \frac{R_n}{\sqrt n}\longrightarrow
 W:=\frac2{\sqrt\pi}M_\infty
 \qquad\text{almost surely.}
-\tag{4}
+\tag{5}
 $$
 
 Step 3: Compute every moment of the limit from a rising-factorial identity
@@ -90,31 +91,31 @@ $$
 E R_n^{\overline{k}}
 =k!\prod_{j=0}^{n-1}\left(1+\frac{k}{2j+2}\right)
 =k!\frac{\Gamma(n+1+k/2)}{\Gamma(1+k/2)\Gamma(n+1)}.
-\tag{5}
+\tag{6}
 $$
-Again by Stirling,
+Using (4),
 $$
 \frac{E R_n^{\overline{k}}}{n^{k/2}}
 \longrightarrow
 \frac{k!}{\Gamma(1+k/2)}.
-\tag{6}
+\tag{7}
 $$
-Since
+For $k=1$, $x^{\overline1}=x$. For $k\ge2$,
 $$
 x^{\overline{k}}=x^k+O_k(x^{k-1}+1),
 $$
-equation (5) with $k-1$ shows that replacing the rising factorial by $R_n^k$ does not change the limit in (6). Thus
+and (6) with $k-1$ gives $E R_n^{k-1}=O(n^{(k-1)/2})$. Therefore replacing the rising factorial by $R_n^k$ does not change the limit in (7), and
 $$
 E\left(\frac{R_n}{\sqrt n}\right)^k
 \longrightarrow
 \frac{k!}{\Gamma(1+k/2)}.
-\tag{7}
+\tag{8}
 $$
-Moreover (5) with $k+1$ gives a uniform bound on the $(k+1)$st moments of $R_n/\sqrt n$. Hence the $k$th powers are uniformly integrable. Combining this with the almost-sure convergence (4) yields
+Moreover (6) with $k+1$ gives a uniform bound on the $(k+1)$st moments of $R_n/\sqrt n$. Hence the $k$th powers are uniformly integrable. Combining this with the almost-sure convergence (5) yields
 $$
 E W^k=\frac{k!}{\Gamma(1+k/2)}
 \qquad(k\ge1).
-\tag{8}
+\tag{9}
 $$
 
 Step 4: Identify the limiting law and prove it is nonzero
@@ -135,7 +136,7 @@ $$
 \Gamma\!\left(1+\frac k2\right)
 =2^{-k}\sqrt\pi\,\Gamma(k+1)
 $$
-shows that this equals the right-hand side of (8).
+shows that this equals the right-hand side of (9).
 
 To justify uniqueness from the moments, use the precise Carleman criterion: a probability law with moments $m_j$ is moment-determinate if
 $$
@@ -149,15 +150,15 @@ Stirling's formula gives
 $$
 m_{2j}^{-1/(2j)}\sim\frac{\sqrt e}{2\sqrt j},
 $$
-so the displayed series diverges. Hence (8) determines the law, and
+so the displayed series diverges. Hence (9) determines the law, and
 $$
 W\overset d=|N(0,2)|.
-\tag{9}
+\tag{10}
 $$
 In particular,
 $$
 P(W>0)=1.
-\tag{10}
+\tag{11}
 $$
 
 Step 5: Invert the deterministic-time asymptotic at the hitting times
@@ -166,13 +167,13 @@ For $m\ge2$, let
 $$
 \tau_m=\inf\{n\ge0:R_n=m\}.
 $$
-By (4) and (10), $R_n\to\infty$ almost surely. Since $R_n$ increases only by $0$ or $1$, every level is reached, so
+By (5) and (11), $R_n\to\infty$ almost surely. Since $R_n$ increases only by $0$ or $1$, every level is reached, so
 $$
 P(\tau_m<\infty)=1.
 $$
 Also $\tau_m\ge m-1$, hence $\tau_m\to\infty$ almost surely as $m\to\infty$.
 
-On the almost-sure event where (4) holds, we may evaluate it along the random subsequence $n=\tau_m$. Since $R_{\tau_m}=m$,
+On the almost-sure event where (5) holds, evaluate it along the random subsequence $n=\tau_m$. Since $R_{\tau_m}=m$,
 $$
 \frac{m}{\sqrt{\tau_m}}
 =\frac{R_{\tau_m}}{\sqrt{\tau_m}}
@@ -182,17 +183,17 @@ Therefore
 $$
 \frac{m^2}{\tau_m}\longrightarrow W^2
 \qquad\text{almost surely.}
-\tag{11}
+\tag{12}
 $$
 
 Step 6: Evaluate the requested Laplace transform
 
-Fix $t\ge0$. Because $0\le e^{-t m^2/\tau_m}\le1$, bounded convergence and (11) give
+Fix $t\ge0$. Because $0\le e^{-t m^2/\tau_m}\le1$, bounded convergence and (12) give
 $$
 \lim_{m\to\infty}E\exp\!\left(-t\frac{m^2}{\tau_m}\right)
 =E e^{-tW^2}.
 $$
-Using (9),
+Using (10),
 $$
 \begin{aligned}
 E e^{-tW^2}
