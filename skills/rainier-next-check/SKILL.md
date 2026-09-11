@@ -10,7 +10,7 @@ argument-hint: problemNN plus ChatGPT conversation URL on first use; later `next
 
 Own the complete Rainier preflight state machine for **both new and existing problems**. Do not maintain a separate creation state machine. Treat `/rainier-new-problem problemNN ...` as a compatibility spelling of this workflow when encountered.
 
-Read `references/workflow.md` before acting. Read `references/pass-gates.md` for every candidate audit. For a brand-new candidate or a quality redesign, also read `references/design-patterns.md`.
+Read `references/workflow.md` before acting. Read `references/pass-gates.md` for every candidate audit. Before selecting any new blueprint or proposing any statement-changing hardening, read `references/quality-redesign-preflight.md`; run that preflight again on the final normalized pair before `candidate-ready.json`. For a brand-new candidate or a quality redesign, also read `references/design-patterns.md`.
 
 ## Core contract
 
@@ -26,7 +26,8 @@ Read `references/workflow.md` before acting. Read `references/pass-gates.md` for
 - One ready unseen `problem.md` blob gets exactly one GPT-5.5 Medium cold solve. Never rerun a blob to fish for failure.
 - A watcher `success` means only that text was returned. Compare it mathematically against the exact candidate `solution.md` before classifying difficulty.
 - Treat correctness, reviewer quality/naturalness, and solver difficulty as independent gates. A local stump never excuses a bad problem or incomplete solution.
-- When GPT-5.5 solves correctly, diagnose the earliest robust shortcut. Harden only through a genuinely load-bearing mathematical dependency. In new mode, allow at most one same-blueprint structural revision before regenerating. Never stack tuned constants, cancellation devices, extra indices, giant computations, or notation merely to stump the solver.
+- Apply the anti-reverse-engineering preflight **before authoring** any new blueprint or statement-changing hardening. Every decisive correction, invariant, substitution, or helper object must have forward provenance from visible mathematics; `GUESSED_TO_CANCEL`, `FIT_TO_TARGET`, `COEFFICIENT_TUNED`, and `BACKSOLVED_FROM_FINAL_ANSWER` are automatic rejections before Codex.
+- When GPT-5.5 solves correctly, diagnose the earliest robust shortcut. Harden only through a genuinely load-bearing mathematical dependency that deepens reasoning after the common entry point. Never harden by making a standard structure harder to recognize. In new mode, allow at most one same-blueprint structural revision before regenerating. Never stack tuned constants, cancellation devices, extra indices, giant computations, custom relation layers, or notation merely to stump the solver.
 - Official feedback such as `contrived`, `over-engineered`, `synthetic`, `awkward construction`, or `customized to force cancellation` is a **QUALITY_REDESIGN** signal, not a request for more machinery.
 - If the solver is wrong/materially incomplete or a valid 2100-second timeout is recorded, stop local hardening, run every promotion gate, and promote the exact matching pair to `main` only if all gates are green.
 - Never promote on `SOLVER_ERROR`, stale solver evidence, a mismatched ready marker, or infrastructure failure.
