@@ -218,7 +218,7 @@ $$
 so
 $$
 \begin{aligned}
-\operatorname*{Res}_{s=1/2}F(s)
+\lim_{s\to1/2}\left(s-\frac12\right)F(s)
 &=\frac{3\Gamma\left(\frac12\right)\Gamma(1)^2}
 {2\left(1-\frac12\right)\left(2-\frac12\right)\Gamma(3)}(-1)\\
 &=-\sqrt\pi.
@@ -246,7 +246,7 @@ $$
 we get
 $$
 \begin{aligned}
-\operatorname*{Res}_{s=1}F(s)
+\lim_{s\to1}(s-1)F(s)
 &=\frac{3\Gamma(1)\Gamma\left(-\frac12\right)
 \Gamma\left(\frac12\right)^2}
 {2(2-1)\Gamma\left(\frac32\right)}(-1)\\
