@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-joint-distributions-and-dependence/problem.md",
+  "source_commit_sha": "8f3ae9aa6a2348804940643095f7153c5fe07d28",
+  "problem_blob_sha": "8838ee73f40f737e5a257efcab7cbc1ed30c70b7",
+  "statement_sha256": "6adff9100f64154d87d579203d3a2d2e913056d0c41132087165d0e395636420",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T11:10:37+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nX=U_{(r)},\\qquad Y=U_{(s)}.\n\\]\nI claim\n\\[\n\\rho_{r,s}^{(n)}\n=\\sqrt{\\frac{r(n+1-s)}{s(n+1-r)}}.\n\\]\n\nFor \\(a,b>0\\), let \\(\\pi_k^{a,b}\\) be the monic degree \\(k\\) polynomial orthogonal to all lower-degree polynomials in \\(L^2(\\operatorname{Beta}(a,b))\\). Here\n\\[\nX\\sim \\operatorname{Beta}(r,n+1-r),\\qquad\nY\\sim \\operatorname{Beta}(s,n+1-s).\n\\]\n\nConditioning on \\(Y=y\\), the \\(r\\)-th order statistic among the \\(s-1\\) points below \\(y\\) satisfies\n\\[\nX=yZ,\\qquad Z\\sim \\operatorname{Beta}(r,s-r),\n\\]\nindependently of \\(y\\). Therefore, for each \\(k\\),\n\\[\nE[\\pi_k^{r,n+1-r}(X)\\mid Y=y]\n\\]\nis a degree \\(k\\) polynomial in \\(y\\). It is orthogonal to every polynomial in \\(y\\) of degree \\(<k\\), because conditioning the other way makes such a polynomial in \\(Y\\) become a polynomial in \\(X\\) of degree \\(<k\\). Its leading coefficient is\n\\[\nE[Z^k]=\\frac{(r)_k}{(s)_k}.\n\\]\nThus\n\\[\nE[\\pi_k^{r,n+1-r}(X)\\mid Y]\n=\n\\frac{(r)_k}{(s)_k}\\pi_k^{s,n+1-s}(Y).\n\\]\n\nSimilarly, conditioning on \\(X=x\\),\n\\[\nY=x+(1-x)W,\\qquad W\\sim \\operatorname{Beta}(s-r,n+1-s),\n\\]\nso the leading coefficient in \\(x\\) is\n\\[\nE[(1-W)^k]=\\frac{(n+1-s)_k}{(n+1-r)_k}.\n\\]\nHence\n\\[\nE[\\pi_k^{s,n+1-s}(Y)\\mid X]\n=\n\\frac{(n+1-s)_k}{(n+1-r)_k}\\pi_k^{r,n+1-r}(X).\n\\]\n\nAfter normalizing these orthogonal polynomials, the singular values of the conditional expectation operator are\n\\[\n\\lambda_k\n=\n\\sqrt{\n\\frac{(r)_k(n+1-s)_k}{(s)_k(n+1-r)_k}\n},\n\\qquad k\\ge 0.\n\\]\nThe \\(k=0\\) value corresponds to constants. Since \\(f,g\\) are required to have mean \\(0\\), only \\(k\\ge1\\) matters.\n\nFor \\(k\\ge1\\),\n\\[\n\\lambda_k^2\n=\n\\prod_{j=0}^{k-1}\n\\frac{r+j}{s+j}\\cdot\n\\frac{n+1-s+j}{n+1-r+j}.\n\\]\nEvery factor is \\(<1\\), so\n\\[\n\\lambda_k^2\\le\n\\frac{r}{s}\\cdot \\frac{n+1-s}{n+1-r}\n=\\lambda_1^2.\n\\]\nTherefore the maximal possible covariance is \\(\\lambda_1\\), attained by the normalized linear functions of \\(X\\) and \\(Y\\). Hence\n\\[\n\\boxed{\\rho_{r,s}^{(n)}\n=\n\\sqrt{\\frac{r(n+1-s)}{s(n+1-r)}}}.\n\\]\n\nAs a check, for \\(n=2,r=1,s=2\\), this gives \\(\\rho=1/2\\), which is exactly the ordinary correlation of the minimum and maximum of two independent uniform variables.",
+  "status": "success",
+  "completed_at": "2026-09-11T11:11:35+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/8838ee73f40f.json"
+}
