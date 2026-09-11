@@ -2,8 +2,8 @@
   "problem": "problem123",
   "branch": "adversary/problem123",
   "problem_path": "workspace/rainier-problem/problem123-commutative-algebra/problem.md",
-  "problem_blob_sha": "85b76ee1e19842404eab227003e16c7712bd868f",
-  "source_commit_sha": "cf247800979bc275392e80979e49b67e92468a75",
+  "problem_blob_sha": "030b2655cd293f75ce0a53e78047e01c39328fec",
+  "source_commit_sha": "3cca341b72ab322d52572428a27e08208934ce28",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-11T08:41:14+00:00",
-  "result_file": "solver-results/problem123/85b76ee1e198.json"
+  "completed_at": "2026-09-11T08:48:09+00:00",
+  "result_file": "solver-results/problem123/030b2655cd29.json"
 }

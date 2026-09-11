@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-commutative-algebra/problem.md",
+  "source_commit_sha": "3cca341b72ab322d52572428a27e08208934ce28",
+  "problem_blob_sha": "030b2655cd293f75ce0a53e78047e01c39328fec",
+  "statement_sha256": "9e3b43993d6dc1ac6bcb1304034dbbaa6f81e4bdd45fbd6d8cbacae487c43780",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T08:46:34+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nN=n-r.\n\\]\nSince \\(n\\ge 2r+2\\), we have \\(N>r\\).\n\nA degree \\(d\\) monomial of \\(B\\) has the form \\(x^ay^bz^c\\) with\n\\[\na+b+c=nd.\n\\]\nI claim that such a monomial lies in \\(A_d\\) exactly when\n\\[\n\\left\\lfloor {a\\over N}\\right\\rfloor+\n\\left\\lfloor {b\\over N}\\right\\rfloor+\n\\left\\lfloor {c\\over N}\\right\\rfloor\\ge d. \\tag{1}\n\\]\n\nIndeed, a degree \\(1\\) generator of \\(A\\) is uniquely near one of the three vertices because two coordinates cannot both be \\(\\ge N=n-r\\). A product of \\(d\\) generators therefore corresponds to choosing nonnegative integers \\(p,q,s\\) with \\(p+q+s=d\\), and then allowing at most \\(r\\) units to move away from each of the \\(p\\) \\(x\\)-vertex generators, each of the \\(q\\) \\(y\\)-vertex generators, and each of the \\(s\\) \\(z\\)-vertex generators. Thus \\(x^ay^bz^c\\in A_d\\) iff there are \\(p,q,s\\ge0\\), \\(p+q+s=d\\), such that\n\\[\na\\ge pN,\\qquad b\\ge qN,\\qquad c\\ge sN,\n\\]\nwhich is equivalent to (1).\n\nNow a monomial \\(x^ay^bz^c\\in A_d\\) lies in the conductor iff every larger Veronese monomial \\(x^{a+\\alpha}y^{b+\\beta}z^{c+\\gamma}\\), where \\(\\alpha+\\beta+\\gamma=ne\\), lies in \\(A_{d+e}\\).\n\nSo we need understand when a Veronese monomial fails to lie in \\(A\\). Write\n\\[\nu=\\left\\lfloor {a\\over N}\\right\\rfloor+\n\\left\\lfloor {b\\over N}\\right\\rfloor+\n\\left\\lfloor {c\\over N}\\right\\rfloor .\n\\]\nA degree \\(D\\) monomial is missing from \\(A_D\\) exactly when\n\\[\nu\\le D-1.\n\\]\nWrite the exponents as \\(Nq_i+v_i\\), with \\(0\\le v_i<N\\). Then\n\\[\nnD=Nu+(v_1+v_2+v_3).\n\\]\nPut \\(t=D-u\\ge1\\). Since each \\(v_i\\le N-1\\),\n\\[\nr u+nt=v_1+v_2+v_3\\le 3N-3.\n\\]\nFor fixed \\(u\\), this is easiest to satisfy when \\(t=1\\), so the largest possible missing-floor sum \\(u\\) is\n\\[\nu_{\\max}=\\left\\lfloor {3N-3-n\\over r}\\right\\rfloor\n=\\left\\lfloor {2n-3r-3\\over r}\\right\\rfloor .\n\\]\n\nHence every monomial of \\(A_d\\) with \\(d\\ge u_{\\max}+1\\) is in the conductor, because no bad larger Veronese monomial can dominate it. Conversely, when \\(d=u_{\\max}\\), choose remainders \\(v_1,v_2,v_3<N\\) summing\n\\[\nru_{\\max}+n\\le 3N-3.\n\\]\nThis gives a missing monomial in degree \\(u_{\\max}+1\\) dominating some monomial of \\(A_{u_{\\max}}\\), so \\(A_{u_{\\max}}\\) is not contained in the conductor.\n\nTherefore the least such integer is\n\\[\n\\boxed{\\left\\lfloor {2n-3r-3\\over r}\\right\\rfloor+1}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T08:48:09+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/030b2655cd29.json"
+}
