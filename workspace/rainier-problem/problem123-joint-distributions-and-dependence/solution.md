@@ -81,9 +81,11 @@ $$
 $$
 Indeed, for fixed centered $f$ with $\|f\|_2=1$, the supremum over centered $g$ with $\|g\|_2=1$ of $\langle Tf,g\rangle$ is $\|Tf\|_2$; then one takes the supremum over $f$.
 
-Step 3: Derive the singular basis from orthogonal polynomials
+Step 3: Derive the singular basis from the invariant polynomial flags
 
-For each $k\ge0$, let $p_k$ be the monic degree-$k$ polynomial orthogonal to all lower-degree polynomials in $L^2_X$, and let $q_k$ be the analogous monic polynomial in $L^2_Y$.
+Equations (3) and (4) give the forward reason to look at polynomials: if $h$ is a polynomial of degree at most $k$, then both $Th$ and $T^*h$ are polynomials of degree at most $k$. Thus the nested polynomial spaces of degrees $0,1,2,\dots$ form canonical invariant flags for the two conditional-expectation operators. Since $T^*T$ is self-adjoint, the natural basis adapted simultaneously to this flag and the $L^2$ inner product is obtained by orthogonalizing the monomials.
+
+Accordingly, for each $k\ge0$, let $p_k$ be the monic degree-$k$ polynomial orthogonal to all lower-degree polynomials in $L^2_X$, and let $q_k$ be the analogous monic polynomial in $L^2_Y$.
 
 These families are complete. Indeed, the beta densities in (2) define finite Borel measures on $[0,1]$; continuous functions are dense in the corresponding $L^2$ spaces, and by the Weierstrass approximation theorem polynomials are uniformly dense in $C[0,1]$. Hence the orthogonalized polynomial families span dense subspaces.
 
@@ -165,7 +167,7 @@ $$
 =\sqrt{\frac{r(n+1-s)}{s(n+1-r)}}.
 \tag{17}
 $$
-The supremum is attained: $p_1(X)=X-EX$ and $q_1(Y)=Y-EY$ are nonzero centered eigenfunctions corresponding to $\lambda_1$, and after normalizing them in $L^2$ and choosing the common sign, equality holds in (9).
+The supremum is attained: $p_1(X)=X-EX$ and $q_1(Y)=Y-EY$ are nonzero centered singular functions corresponding to $\lambda_1$, and after normalizing them in $L^2$ and choosing the common sign, equality holds in (9).
 
 Thus no nonlinear choice of $f$ and $g$ can improve on the degree-one pair.
 
