@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-stochastic-processes/problem.md",
+  "source_commit_sha": "f176fa1788c5118b68b62d78c97402181dc349da",
+  "problem_blob_sha": "d823bbed230f5a45a87bd91cfecb6e47aec10259",
+  "statement_sha256": "f60183486fe83abd93542c0453d0d06a47f523636f33eb1b888ade75cac673b6",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T09:48:51+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(T_n=2(n+1)\\) be the total number of balls after \\(n\\) draws. If \\(R_n=r\\), then\n\\[\nP(R_{n+1}=r+1\\mid R_n=r)=\\frac{r}{2(n+1)}.\n\\]\n\nFirst find the limit law of \\(R_n/\\sqrt n\\). For the rising factorial \\(x^{(k)}=x(x+1)\\cdots(x+k-1)\\),\n\\[\nE\\!\\left[R_{n+1}^{(k)}\\mid R_n\\right]\n=R_n^{(k)}+\\frac{R_n}{2(n+1)}\\left((R_n+1)^{(k)}-R_n^{(k)}\\right).\n\\]\nSince\n\\[\n(R+1)^{(k)}-R^{(k)}=k(R+1)^{(k-1)}\n\\]\nand \\(R(R+1)^{(k-1)}=R^{(k)}\\), this gives\n\\[\nE[R_{n+1}^{(k)}]\n=\\left(1+\\frac{k}{2(n+1)}\\right)E[R_n^{(k)}].\n\\]\nBecause \\(R_0=1\\), \\(R_0^{(k)}=k!\\), hence\n\\[\nE[R_n^{(k)}]\n=k!\\prod_{j=1}^n\\left(1+\\frac{k}{2j}\\right)\n=k!\\frac{\\Gamma(n+1+k/2)}{\\Gamma(1+k/2)\\Gamma(n+1)}.\n\\]\nTherefore\n\\[\nE\\left[\\left(\\frac{R_n}{\\sqrt n}\\right)^k\\right]\\to\n\\frac{k!}{\\Gamma(1+k/2)}.\n\\]\nThese are the moments of the half-normal random variable \\(X\\) on \\([0,\\infty)\\) with density\n\\[\nf_X(x)=\\frac1{\\sqrt\\pi}e^{-x^2/4}.\n\\]\nThus\n\\[\n\\frac{R_n}{\\sqrt n}\\Rightarrow X.\n\\]\n\nNow \\(\\tau_m\\le n\\) iff \\(R_n\\ge m\\). Hence for \\(a>0\\),\n\\[\nP\\left(\\frac{m^2}{\\tau_m}>a\\right)\n=P\\left(\\tau_m<\\frac{m^2}{a}\\right)\n\\to P(X>\\sqrt a).\n\\]\nSo\n\\[\n\\frac{m^2}{\\tau_m}\\Rightarrow X^2.\n\\]\n\nNext condition on \\(\\tau_m=k\\). While \\(R=m\\), the chance of a red draw at time \\(k+j\\) is\n\\[\n\\frac{m}{2(k+j+1)}.\n\\]\nLet \\(W_m=\\tau_{m+1}-\\tau_m\\). For fixed \\(y\\ge0\\), uniformly when \\(k\\asymp m^2\\),\n\\[\nP\\left(\\frac{mW_m}{k}>y\\mid \\tau_m=k\\right)\n=\n\\prod_{j<yk/m}\\left(1-\\frac{m}{2(k+j+1)}\\right)\n\\to e^{-y/2}.\n\\]\nThus\n\\[\nm\\left(\\frac{\\tau_{m+1}}{\\tau_m}-1\\right)\n=\\frac{mW_m}{\\tau_m}\n\\Rightarrow Y,\n\\]\nwhere \\(Y\\) is exponential with rate \\(1/2\\). The conditional limit does not depend on \\(k\\), so \\(Y\\) is independent of \\(X^2\\).\n\nTherefore the desired limit factors:\n\\[\nE[e^{-tX^2-uY}]\n=\nE[e^{-tX^2}]E[e^{-uY}].\n\\]\nSince \\(X\\) has density \\(\\pi^{-1/2}e^{-x^2/4}\\),\n\\[\nE[e^{-tX^2}]\n=\\frac1{\\sqrt\\pi}\\int_0^\\infty e^{-(t+1/4)x^2}\\,dx\n=\\frac1{\\sqrt{1+4t}},\n\\]\nand since \\(Y\\sim\\operatorname{Exp}(1/2)\\),\n\\[\nE[e^{-uY}]=\\frac{1}{1+2u}.\n\\]\n\n\\[\n\\boxed{\\frac{1}{(1+2u)\\sqrt{1+4t}}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T09:50:18+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/d823bbed230f.json"
+}

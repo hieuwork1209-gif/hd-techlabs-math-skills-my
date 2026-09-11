@@ -2,8 +2,8 @@
   "problem": "problem123",
   "branch": "adversary/problem123",
   "problem_path": "workspace/rainier-problem/problem123-stochastic-processes/problem.md",
-  "problem_blob_sha": "701fb1d717bd7975481997c0f9d8d28a500a4878",
-  "source_commit_sha": "17c997ba8d81e6724301d38b59e5c1252f783951",
+  "problem_blob_sha": "d823bbed230f5a45a87bd91cfecb6e47aec10259",
+  "source_commit_sha": "f176fa1788c5118b68b62d78c97402181dc349da",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-11T09:42:04+00:00",
-  "result_file": "solver-results/problem123/701fb1d717bd.json"
+  "completed_at": "2026-09-11T09:50:18+00:00",
+  "result_file": "solver-results/problem123/d823bbed230f.json"
 }
