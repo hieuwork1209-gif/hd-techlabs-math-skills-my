@@ -1,0 +1,22 @@
+{
+  "problem": "problem102",
+  "branch": "adversary/problem102",
+  "problem_path": "workspace/rainier-problem/problem102-single-variable-calculus/problem.md",
+  "source_commit_sha": "2cce69162c560fffbd75625e8984d1523470451f",
+  "problem_blob_sha": "e18d174c47b549fcee8b9530bd6a42bb886964fa",
+  "statement_sha256": "8b4006665e6ab83cbc53c1f1bd90d6ae4630813bda1f23e62eef474fd63a7ceb",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T04:04:41+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(x=s^2\\), and write\n\\[\ng(s)=e^{-x/2}u(x).\n\\]\nSince\n\\[\ng''+\\frac5s g'+(\\lambda-s^2)g=0,\n\\]\na direct substitution gives\n\\[\nx u''+(3-x)u'+\\left(\\frac{\\lambda}{4}-\\frac32\\right)u=0. \\tag{1}\n\\]\nThis is the Laguerre-type equation with parameter \\(2\\). Its square-integrable regular solutions occur exactly when\n\\[\n\\frac{\\lambda}{4}-\\frac32=n\\in\\{0,1,2,\\dots\\},\n\\]\nand then \\(u\\) is a polynomial of degree \\(n\\). Such a solution has exactly \\(n\\) positive zeros, so the condition that \\(g\\) has exactly two zeros forces \\(n=2\\). Hence\n\\[\n\\lambda=4\\left(2+\\frac32\\right)=14.\n\\]\n\nFor \\(n=2\\), equation (1) becomes\n\\[\nx u''+(3-x)u'+2u=0.\n\\]\nLet \\(u(x)=1+ax+bx^2\\), using \\(u(0)=g(0)=1\\). Substitution gives\n\\[\n3a+2=0,\\qquad 8b-a=0,\n\\]\nso\n\\[\na=-\\frac23,\\qquad b=-\\frac1{12}.\n\\]\nWait: checking the sign in the \\(x^2\\)-coefficient gives \\(-2b=0\\) only after including the degree cutoff; equivalently the normalized Laguerre polynomial is\n\\[\nu(x)=1-\\frac{2}{3}x+\\frac{1}{12}x^2.\n\\]\nSubstituting this into (1) confirms it solves the equation with \\(\\lambda=14\\).\n\nTherefore\n\\[\ng(s)=e^{-s^2/2}\\left(1-\\frac23s^2+\\frac1{12}s^4\\right).\n\\]\nSince \\(g(s)=f(e^s)\\), for \\(x>1\\) we have \\(s=\\log x\\). Thus\n\n\\[\n\\boxed{f(x)=e^{-(\\log x)^2/2}\\left(1-\\frac23(\\log x)^2+\\frac1{12}(\\log x)^4\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T04:05:32+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem102/e18d174c47b5.json"
+}
