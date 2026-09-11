@@ -8,19 +8,25 @@ r\ge1,
 \qquad
 n\ge2r+2.
 $$
-Inside $k[s,t]$, consider the standard-graded $k$-algebras
+Inside $k[x,y,z]$, let
 $$
-B=k\bigl[s^{n-j}t^j:0\le j\le n\bigr]
+B=k\bigl[x^iy^jz^\ell:i,j,\ell\ge0,\ i+j+\ell=n\bigr]
 $$
-and
+be the $n$th Veronese algebra, and let
 $$
-A=k\bigl[s^{n-j}t^j:0\le j\le r\ \text{or}\ n-r\le j\le n\bigr]\subset B,
+A=k\bigl[x^iy^jz^\ell:i,j,\ell\ge0,\ i+j+\ell=n,\ \max\{i,j,\ell\}\ge n-r\bigr]\subset B.
 $$
-where every displayed degree-$n$ monomial is assigned degree $1$.
-
-Determine exactly, as a power of the irrelevant ideal $A_+$, the conductor ideal
+Give every displayed degree-$n$ monomial degree $1$, so that $A$ and $B$ are standard graded, and write
 $$
-\{f\in A:fB\subseteq A\}.
+A_+=\bigoplus_{d\ge1}A_d.
+$$
+If
+$$
+\mathfrak c=\{f\in A:fB\subseteq A\}
+$$
+is the conductor of $A\subset B$, determine the least integer $m$ such that
+$$
+A_+^m\subseteq\mathfrak c.
 $$
 
 ---
@@ -38,4 +44,4 @@ $$
 
 ## Domain Explanation
 
-The requested object is the conductor ideal of an inclusion of finitely generated graded commutative $k$-algebras, so the primary mathematics is commutative algebra. The additive structure of the monomial exponents is a tool for determining the graded pieces of that conductor, rather than making this fundamentally a combinatorics or number-theory problem.
+The requested quantity is the least power of the irrelevant ideal contained in the conductor of an inclusion of finitely generated graded commutative $k$-algebras, so the primary mathematics is commutative algebra. The lattice geometry of degree-$n$ monomial exponents is the tool used to determine graded membership and the conductor threshold.
