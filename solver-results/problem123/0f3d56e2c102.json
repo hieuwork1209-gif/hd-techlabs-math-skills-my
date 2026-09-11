@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-functional-analysis/problem.md",
+  "source_commit_sha": "94d22b7233e19251c2ff45cffaea1252700d2365",
+  "problem_blob_sha": "0f3d56e2c10297d35d67d61567a395bf736faaf5",
+  "statement_sha256": "c5d67313a0ef53ff3e76298236b98cee9036230a01f107f57a2e1507e836eacf",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T08:10:07+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nu(x)=(Tf)(x)=\\int_0^x f(t)\\,dt.\n\\]\nThen \\(u(0)=0\\), \\(u'=f\\), and the constraint on \\(f\\) becomes\n\\[\n0=\\int_0^1 x f(x)\\,dx=\\int_0^1 x u'(x)\\,dx\n=u(1)-\\int_0^1 u(x)\\,dx.\n\\]\nThus\n\\[\n\\|T\\|_{H\\to L^2}^2\n=\n\\sup \\frac{\\int_0^1 u^2\\,dx}{\\int_0^1 (u')^2\\,dx},\n\\]\nover nonzero \\(u\\in H^1(0,1)\\) satisfying\n\\[\nu(0)=0,\\qquad u(1)=\\int_0^1 u(x)\\,dx.\n\\]\nEquivalently, if \\(\\lambda\\) is the least value of\n\\[\n\\frac{\\int_0^1 (u')^2\\,dx}{\\int_0^1 u^2\\,dx},\n\\]\nunder those constraints, then \\(\\|T\\|^2=1/\\lambda\\).\n\nBy the variational equation, a minimizer satisfies, for some constant \\(c\\),\n\\[\nu''+\\lambda u=c,\\qquad u(0)=0,\\qquad u'(1)=c,\\qquad u(1)=\\int_0^1u.\n\\]\nWrite \\(\\lambda=k^2\\), \\(k>0\\). Then\n\\[\nu(x)=A\\sin(kx)+\\frac{c}{k^2}(1-\\cos(kx)).\n\\]\nThe boundary condition \\(u'(1)=c\\) gives\n\\[\nAk\\cos k+c\\left(\\frac{\\sin k}{k}-1\\right)=0,\n\\]\nand the constraint \\(u(1)=\\int_0^1u\\) gives\n\\[\nA\\left(\\sin k-\\frac{1-\\cos k}{k}\\right)\n+\\frac{c}{k^2}\\left(-\\cos k+\\frac{\\sin k}{k}\\right)=0.\n\\]\nA nonzero solution exists exactly when the determinant vanishes. Simplifying,\n\\[\n(k^2+1)\\sin k+k\\cos k-2k=0.\n\\]\nTherefore the least admissible \\(\\lambda\\) is \\(\\alpha^2\\), where \\(\\alpha\\) is the smallest positive root of\n\\[\n(k^2+1)\\sin k+k\\cos k-2k=0.\n\\]\nEach such root gives an admissible extremizer, and multiplying the differential equation by \\(u\\) confirms\n\\[\n\\int_0^1 (u')^2\\,dx=k^2\\int_0^1u^2\\,dx,\n\\]\nso no extra condition is being introduced.\n\nHence\n\\[\n\\boxed{\\|T\\|_{H\\to L^2(0,1)}=\\frac1\\alpha}\n\\]\nwhere \\(\\alpha\\) is the least positive solution of\n\\[\n(\\alpha^2+1)\\sin\\alpha+\\alpha\\cos\\alpha-2\\alpha=0.\n\\]\n\nNumerically,\n\\[\n\\alpha\\approx 1.8732066665091485,\n\\qquad\n\\|T\\|\\approx 0.533843925434864.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T08:12:04+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/0f3d56e2c102.json"
+}

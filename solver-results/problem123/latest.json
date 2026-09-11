@@ -1,0 +1,17 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-functional-analysis/problem.md",
+  "problem_blob_sha": "0f3d56e2c10297d35d67d61567a395bf736faaf5",
+  "source_commit_sha": "94d22b7233e19251c2ff45cffaea1252700d2365",
+  "status": "success",
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "timeout_seconds": 2100,
+  "completed_at": "2026-09-11T08:12:04+00:00",
+  "result_file": "solver-results/problem123/0f3d56e2c102.json"
+}
