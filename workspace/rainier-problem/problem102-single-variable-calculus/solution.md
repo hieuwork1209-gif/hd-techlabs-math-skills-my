@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Pass to logarithmic coordinates and derive the weighted-mean hierarchy
+Step 1: Pass to logarithmic coordinates and expose the differential hierarchy
 
 Let
 $$
@@ -17,18 +17,11 @@ and
 $$
 c(s)=\frac3{s^3}\int_0^s(s-u)^2g(u)\,du.
 $$
-Concavity makes $g$ continuous on $(0,\infty)$, so these functions are differentiable there. Direct differentiation gives
+Since $g$ is concave, it is continuous on $(0,\infty)$, and direct differentiation gives
 $$
-g=a+sa',
+g=a+sa',\qquad sb'=2(a-b),\qquad sc'=3(b-c).
 $$
-$$
-sb'=2(a-b),
-$$
-and
-$$
-sc'=3(b-c).
-$$
-Now define
+Define
 $$
 X=2-c,
 $$
@@ -39,166 +32,147 @@ and
 $$
 Z=2-3a+3b-c.
 $$
-The differential identities above become
+The differential identities become
 $$
 sX'=Y-X,
 $$
 $$
 sY'=2(Z-Y).
 $$
-The hypotheses become
+The rank-one condition in the problem is exactly
 $$
-Y^2=X^4,
-\qquad
-Z^2=X^6,
+Y^2=XZ.
 $$
-and the normalization gives
+The two normalizations become
 $$
-X(1)^2=\frac14.
-$$
-
-Step 2: Resolve the algebraic signs and use the differential hierarchy
-
-On any interval on which $X\ne0$, continuity gives fixed signs $\varepsilon,\delta\in\{-1,1\}$ such that
-$$
-Y=\varepsilon X^2,
-\qquad
-Z=\delta X^3.
-$$
-From the first differential identity,
-$$
-sX'=\varepsilon X^2-X=X(\varepsilon X-1).
-$$
-Differentiating $Y=\varepsilon X^2$ and using this equation gives
-$$
-sY'=2X^2(X-\varepsilon).
-$$
-But the second differential identity also gives
-$$
-sY'=2(\delta X^3-\varepsilon X^2)=2X^2(\delta X-\varepsilon).
-$$
-Hence $\delta=1$ wherever $X\ne0$.
-
-Let $I$ be the connected component of $\{s>0:X(s)\ne0\}$ containing $s=1$. On $I$, the signs above are fixed and the corresponding explicit ODE formula for $X$ is valid. We will use the following continuation observation. Suppose that a finite endpoint $s_0>0$ of $I$ occurs before any pole of that explicit formula. Then the formula has a finite nonzero limit $L$ as $s\to s_0$ from within $I$. Since $X=2-c$ and $c$ is continuous on $(0,\infty)$, continuity gives $X(s_0)=L\ne0$. Hence $X$ remains nonzero on a neighborhood of $s_0$, contradicting the maximality of $I$. Therefore the formula cannot cease to hold at a finite point before its first pole; starting from $s=1$, it continues throughout $I$ up to the boundary of $(0,\infty)$ or to that pole.
-
-There are now four local possibilities, according to $X(1)=\pm\frac12$ and $\varepsilon=\pm1$.
-
-If $\varepsilon=1$, then
-$$
-sX'=X(X-1),
-$$
-so
-$$
-\frac{X-1}{X}=Ks.
-$$
-Thus
-$$
-X(1)=\frac12\Longrightarrow X(s)=\frac1{1+s},
-$$
-whereas
-$$
-X(1)=-\frac12\Longrightarrow X(s)=\frac1{1-3s}.
-$$
-For the latter branch, the continuation observation forces the formula to persist from $s=1$ down to its first pole at $s=\frac13$. Thus $|X(s)|\to\infty$ as $s\downarrow\frac13$, impossible because $X(s)=2-C(e^s)$ is finite and continuous at $s=\frac13$.
-
-If $\varepsilon=-1$, then
-$$
-sX'=-X(X+1),
-$$
-so
-$$
-\frac{X}{X+1}=\frac Ks.
-$$
-Hence
-$$
-X(1)=\frac12\Longrightarrow X(s)=\frac1{3s-1},
-$$
-which is ruled out in exactly the same way by its pole at $s=\frac13$, while
-$$
-X(1)=-\frac12\Longrightarrow X(s)=-\frac1{1+s}.
-$$
-Therefore only two global branches remain:
-$$
-(X,Y,Z)=\left(\frac1{1+s},\frac1{(1+s)^2},\frac1{(1+s)^3}\right),
-$$
-or
-$$
-(X,Y,Z)=\left(-\frac1{1+s},-\frac1{(1+s)^2},-\frac1{(1+s)^3}\right).
-$$
-
-Step 3: Recover the two candidate functions and use concavity
-
-Put
-$$
-\alpha=2-a.
-$$
-From the definitions of $X,Y,Z$,
-$$
-\alpha=\frac{X+Y+Z}{3}.
-$$
-Also, since $g=a+sa'$, we have
-$$
-2-g=\alpha+s\alpha'.
-$$
-
-For the first global branch,
-$$
-Y=X^2,
-\qquad
-Z=X^3,
-\qquad
-sX'=X^2-X.
-$$
-Thus
-$$
-\alpha=\frac{X+X^2+X^3}{3},
-$$
-and a direct differentiation gives
-$$
-\alpha+s\alpha'=X^4.
-$$
-Hence
-$$
-g(s)=2-\frac1{(1+s)^4}.
-$$
-Its second derivative is
-$$
-g''(s)=-\frac{20}{(1+s)^6}<0.
-$$
-
-For the second global branch,
-$$
-Y=-X^2,
-\qquad
-Z=X^3,
-\qquad
-sX'=-X^2-X.
-$$
-Then
-$$
-\alpha=\frac{X-X^2+X^3}{3},
+X(1)^2=\frac14,
 $$
 and
 $$
-\alpha+s\alpha'=-X^4.
+\lim_{s\to\infty}s^2X(s)^2=1.
+$$
+
+Step 2: Use the rank-one relation to derive the hidden ratio equation
+
+Let $I$ be the connected component of $\{s>0:X(s)\ne0\}$ containing $s=1$. On $I$, put
+$$
+p=\frac{Y}{X}.
+$$
+Then $Y^2=XZ$ gives
+$$
+Z=p^2X.
+$$
+Using $Y=pX$ together with the differential hierarchy,
+$$
+sY'=sp'X+p\,sX'=sp'X+p(p-1)X,
+$$
+while
+$$
+sY'=2(Z-Y)=2p(p-1)X.
+$$
+Hence
+$$
+sp'=p(p-1).
+$$
+If $p$ vanishes at one point of $I$, uniqueness for this scalar ODE gives $p\equiv0$ on $I$. Then $sX'=-X$, so $X=\kappa/s$. The explicit formula has no finite zero or pole, so the same continuation argument used below extends it to all $s>0$. But then
+$$
+X(1)^2=\kappa^2=\frac14,
+$$
+whereas
+$$
+\lim_{s\to\infty}s^2X(s)^2=\kappa^2=1,
+$$
+a contradiction. Thus $p$ never vanishes on $I$.
+
+Set $q=1/p$. Then
+$$
+sq'=q-1,
+$$
+so
+$$
+q=1+\lambda s,
+\qquad
+p=\frac1{1+\lambda s}
+$$
+for some constant $\lambda$. Moreover,
+$$
+\frac{sX'}{X}=p-1=\frac{sp'}p,
+$$
+so $X/p$ is constant. Therefore
+$$
+X(s)=\frac{\kappa}{1+\lambda s}
+$$
+for some nonzero constant $\kappa$.
+
+We now justify that this formula is global. If a finite endpoint of $I$ occurs while $1+\lambda s\ne0$, then $X$ has a finite nonzero limit there, and continuity of $X=2-c$ extends the nonvanishing interval, contradicting maximality. If $1+\lambda s$ vanishes at a positive point, then $X$ blows up there, impossible because $c(s)=C(e^s)$ is finite for every $s>0$. Hence $\lambda\ge0$ and $I=(0,\infty)$.
+
+Step 3: Couple the local and asymptotic normalizations
+
+If $\lambda=0$, then $X\equiv\kappa\ne0$, so $s^2X(s)^2\to\infty$, contradicting the asymptotic condition. Thus $\lambda>0$. From
+$$
+\lim_{s\to\infty}s^2X(s)^2
+=
+\frac{\kappa^2}{\lambda^2}
+=1,
+$$
+we get
+$$
+\kappa^2=\lambda^2.
+$$
+On the other hand,
+$$
+\frac14=X(1)^2=\frac{\kappa^2}{(1+\lambda)^2}
+=\frac{\lambda^2}{(1+\lambda)^2}.
+$$
+Since $\lambda>0$,
+$$
+\frac{\lambda}{1+\lambda}=\frac12,
+$$
+so
+$$
+\lambda=1,
+\qquad
+\kappa=\pm1.
 $$
 Therefore
 $$
-g(s)=2+\frac1{(1+s)^4},
+c(s)=2-\frac{\kappa}{1+s}.
 $$
-whose second derivative is
-$$
-g''(s)=\frac{20}{(1+s)^6}>0.
-$$
-This branch is convex and contradicts the hypothesis. Hence only the first branch is admissible.
 
-Step 4: Return to $x$ and verify the solution
+Step 4: Recover the source function and use concavity to select the sign
 
-Since $g(s)=f(e^s)$,
+From the definition of $c$,
 $$
-f(x)=2-\frac1{(1+\log x)^4}.
+\frac{s^3c(s)}3=\int_0^s(s-u)^2g(u)\,du.
 $$
-For $r=(1+s)^{-1}$, direct integration gives
+Differentiating three times gives
+$$
+g(s)=\frac16\frac{d^3}{ds^3}\bigl(s^3c(s)\bigr).
+$$
+Since
+$$
+\frac{d^3}{ds^3}\left(\frac{s^3}{1+s}\right)=\frac6{(1+s)^4},
+$$
+we obtain
+$$
+g(s)=2-\frac{\kappa}{(1+s)^4}.
+$$
+Hence
+$$
+g''(s)=-\frac{20\kappa}{(1+s)^6}.
+$$
+The hypothesis that $g$ is concave forces $\kappa=1$. Thus
+$$
+g(s)=2-\frac1{(1+s)^4}.
+$$
+
+Step 5: Verify the candidate and return to $x$
+
+Let $r=(1+s)^{-1}$. For
+$$
+g(s)=2-r^4,
+$$
+direct integration gives
 $$
 a(s)=2-\frac{r+r^2+r^3}{3},
 $$
@@ -209,18 +183,20 @@ and
 $$
 c(s)=2-r.
 $$
-Hence
+Consequently
 $$
-2-3b+2c=r^2,
+X=r,\qquad Y=r^2,\qquad Z=r^3,
 $$
+so indeed $Y^2=XZ$. Also $X(1)^2=1/4$ and
 $$
-2-3a+3b-c=r^3,
+\lim_{s\to\infty}s^2X(s)^2
+=
+\lim_{s\to\infty}\frac{s^2}{(1+s)^2}=1.
 $$
-and
+Finally $g(s)\to1$ as $s\to0^+$, so the improper integrals converge at the lower endpoint. Since $s=\log x$,
 $$
-2-c=r.
+f(x)=2-\frac1{(1+\log x)^4}.
 $$
-Thus both algebraic identities hold. Also $c(1)=\frac32$, so $(C(e)-2)^2=\frac14$. The integrands are bounded near the lower endpoint because $g(s)\to1$ as $s\to0^+$, so all three improper integrals converge.
 
 Final Answer: $\boxed{f(x)=2-\frac1{(1+\log x)^4}}$
 
@@ -243,7 +219,7 @@ $f(x)=2-\frac1{(1+\log x)^4}$
 ## Solution Concepts
 
 - logarithmic weighted integral means
-- differential hierarchy of means
-- algebraic sign branches
-- global ODE continuation
+- rank-one invariant of transformed means
+- nonlinear ratio differential equation
+- local and asymptotic normalization
 - concavity branch selection
