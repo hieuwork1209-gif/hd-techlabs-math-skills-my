@@ -131,7 +131,34 @@ These signs also follow directly from symmetry: interchanging $y$ and $z$ change
 $$
 J(a)=6\left(\mu_{12}\nu_3-\mu_{13}\nu_2+\mu_{23}\nu_1\right).
 $$
-Substitution of the formulas for $\mu_{ij}$ and $\nu_i$ simplifies this to
+For these three terms, the formulas above give
+$$
+\mu_{12}\nu_3
+=\frac{\Gamma(a)\Gamma(a+1)\Gamma(a+2)}{2a+1},
+$$
+$$
+\mu_{13}\nu_2
+=\frac{2\Gamma(a)\Gamma(a+2)\Gamma(a+1)}{2a+2}
+=\frac{\Gamma(a)\Gamma(a+1)\Gamma(a+2)}{a+1},
+$$
+and
+$$
+\mu_{23}\nu_1
+=\frac{\Gamma(a+1)\Gamma(a+2)\Gamma(a)}{2a+3}.
+$$
+Thus
+$$
+\begin{aligned}
+\mu_{12}\nu_3-\mu_{13}\nu_2+\mu_{23}\nu_1
+&=\Gamma(a)\Gamma(a+1)\Gamma(a+2)
+\left(\frac{1}{2a+1}-\frac{1}{a+1}+\frac{1}{2a+3}\right)\\
+&=\Gamma(a)\Gamma(a+1)\Gamma(a+2)
+\frac{4(a+1)^2-(2a+1)(2a+3)}{(a+1)(2a+1)(2a+3)}\\
+&=\frac{\Gamma(a)\Gamma(a+1)\Gamma(a+2)}{(a+1)(2a+1)(2a+3)}\\
+&=\frac{\Gamma(a)\Gamma(a+1)^2}{(2a+1)(2a+3)},
+\end{aligned}
+$$
+where the last line uses $\Gamma(a+2)=(a+1)\Gamma(a+1)$. Hence
 $$
 J(a)=
 \frac{6\Gamma(a)\Gamma(a+1)^2}{(2a+1)(2a+3)}.
@@ -154,7 +181,10 @@ Step 3: Extract the first two boundary terms
 
 Put
 $$
-F(s)=\Gamma(s)M(s).
+F(s)=\Gamma(s)M(s)
+=\frac{3\Gamma(s)\Gamma\left(\frac{1}{2}-s\right)
+\Gamma\left(\frac{3}{2}-s\right)^2}
+{2(1-s)(2-s)\Gamma\left(\frac{9}{2}-3s\right)}.
 $$
 We first fix the contour-shift sign convention. Consider a positively oriented rectangle with left side $\Re s=c$ and right side $\Re s=R>c$. When both vertical-line integrals are written upward, the right side contributes the integral on $\Re s=R$, while the left side is traversed downward and therefore contributes minus the integral on $\Re s=c$. After the horizontal sides vanish, the residue theorem gives
 $$
@@ -172,20 +202,58 @@ $$
 $$
 Hence every crossed pole enters the original Mellin integral with minus its residue.
 
-The first pole is at $s=\frac{1}{2}$. Direct substitution into the regular factors gives residue
+At $s=\frac{1}{2}$ the only singular factor is $\Gamma\left(\frac{1}{2}-s\right)$, and
 $$
--\sqrt{\pi}.
+\lim_{s\to1/2}\left(s-\frac12\right)
+\Gamma\left(\frac12-s\right)=-1.
+$$
+The remaining factors satisfy
+$$
+\Gamma\left(\frac12\right)=\sqrt\pi,
+\qquad
+\Gamma(1)=1,
+\qquad
+\Gamma(3)=2,
+$$
+so
+$$
+\begin{aligned}
+\operatorname*{Res}_{s=1/2}F(s)
+&=\frac{3\Gamma\left(\frac12\right)\Gamma(1)^2}
+{2\left(1-\frac12\right)\left(2-\frac12\right)\Gamma(3)}(-1)\\
+&=-\sqrt\pi.
+\end{aligned}
 $$
 Therefore this pole contributes
 $$
 \frac{\sqrt{\pi}}{n^{1/2}}.
 $$
 
-The next pole is at $s=1$, coming from the factor $(1-s)^{-1}$. Its residue is
+At $s=1$ the singular factor is $(1-s)^{-1}$, with
 $$
-6\pi,
+\lim_{s\to1}\frac{s-1}{1-s}=-1.
 $$
-so its contribution is
+Using
+$$
+\Gamma(1)=1,
+\qquad
+\Gamma\left(-\frac12\right)=-2\sqrt\pi,
+\qquad
+\Gamma\left(\frac12\right)=\sqrt\pi,
+\qquad
+\Gamma\left(\frac32\right)=\frac{\sqrt\pi}{2},
+$$
+we get
+$$
+\begin{aligned}
+\operatorname*{Res}_{s=1}F(s)
+&=\frac{3\Gamma(1)\Gamma\left(-\frac12\right)
+\Gamma\left(\frac12\right)^2}
+{2(2-1)\Gamma\left(\frac32\right)}(-1)\\
+&=6\pi.
+\end{aligned}
+$$
+Hence this pole contributes
 $$
 -\frac{6\pi}{n}.
 $$
@@ -201,7 +269,46 @@ Write
 $$
 s=\frac{3}{2}+\varepsilon.
 $$
-Using the Gamma recurrence relations, the exact singular factor can be rewritten as
+Substitution into the formula for $F$ gives
+$$
+F\left(\frac32+\varepsilon\right)
+=\frac{3\Gamma\left(\frac32+\varepsilon\right)
+\Gamma(-1-\varepsilon)\Gamma(-\varepsilon)^2}
+{2\left(-\frac12-\varepsilon\right)
+\left(\frac12-\varepsilon\right)\Gamma(-3\varepsilon)}.
+$$
+Applying $\Gamma(z+1)=z\Gamma(z)$ successively,
+$$
+\Gamma(-\varepsilon)
+=-\frac{\Gamma(1-\varepsilon)}{\varepsilon},
+$$
+$$
+\Gamma(-1-\varepsilon)
+=\frac{\Gamma(-\varepsilon)}{-1-\varepsilon}
+=\frac{\Gamma(1-\varepsilon)}{\varepsilon(1+\varepsilon)},
+$$
+and
+$$
+\Gamma(-3\varepsilon)
+=-\frac{\Gamma(1-3\varepsilon)}{3\varepsilon}.
+$$
+Consequently
+$$
+\Gamma(-1-\varepsilon)\Gamma(-\varepsilon)^2
+=\frac{\Gamma(1-\varepsilon)^3}
+{\varepsilon^3(1+\varepsilon)},
+$$
+while
+$$
+\begin{aligned}
+2\left(-\frac12-\varepsilon\right)
+\left(\frac12-\varepsilon\right)\Gamma(-3\varepsilon)
+&=-\frac{1-4\varepsilon^2}{2}
+\left(-\frac{\Gamma(1-3\varepsilon)}{3\varepsilon}\right)\\
+&=\frac{(1-4\varepsilon^2)\Gamma(1-3\varepsilon)}{6\varepsilon}.
+\end{aligned}
+$$
+Therefore the exact singular factor is
 $$
 F\left(\frac{3}{2}+\varepsilon\right)
 =
