@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "eae591bf8a137548b5f888def4afd286b1ec0e4a",
+  "problem_blob_sha": "73eca943efdcffda8efa8a58e169ed7d8c4d194d",
+  "statement_sha256": "3d77d0b4efae763ff981ed939e8e3e393e0af3ec21f3d56fa8e3fd406d65e822",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T08:15:01+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "\\[\n\\boxed{\\left[3-\\sqrt3,\\frac32\\right]\\cup\\left[3,\\frac92\\right]\\cup\\left[3+\\sqrt3,5\\right)}\n\\]\n\nConsider the operator form\n\\[\n-y''(t)+3\\operatorname{sn}^2(t,k)y(t)=h\\,y(t),\\qquad k^2=\\frac12,\n\\]\nwith period \\(T=2K(k)\\). The Floquet multipliers have modulus \\(1\\) exactly on the spectral stability bands.\n\nWrite \\(s=\\operatorname{sn}(t,k)\\), \\(c=\\operatorname{cn}(t,k)\\), \\(d=\\operatorname{dn}(t,k)\\). For \\(k^2=1/2\\),\n\\[\ns'=cd,\\qquad c'=-sd,\\qquad d'=-\\frac12 sc.\n\\]\n\nThe Lamé band-edge solutions for this \\(n=2\\) equation are found directly.\n\n1. For \\(y=cd\\),\n\\[\ny''=cd\\left(-\\frac32+3s^2\\right),\n\\]\nso\n\\[\ny''+(h-3s^2)y=cd\\left(h-\\frac32\\right),\n\\]\nhence \\(h=\\frac32\\).\n\n2. For \\(y=sd\\),\n\\[\ny''=sd(-3+3s^2),\n\\]\nso \\(h=3\\).\n\n3. For \\(y=sc\\),\n\\[\ny''=sc\\left(-\\frac92+3s^2\\right),\n\\]\nso \\(h=\\frac92\\).\n\n4. For \\(y=s^2+a\\), using\n\\[\n(s^2)''=2-6s^2+3s^4,\n\\]\nwe get\n\\[\ny''+(h-3s^2)y\n=\n(2+ha)+\\bigl(h-6-3a\\bigr)s^2.\n\\]\nThus\n\\[\n2+ha=0,\\qquad h-6-3a=0,\n\\]\nso\n\\[\nh^2-6h+6=0,\n\\]\ngiving\n\\[\nh=3\\pm\\sqrt3.\n\\]\n\nThus the five finite band edges are\n\\[\n3-\\sqrt3,\\quad \\frac32,\\quad 3,\\quad \\frac92,\\quad 3+\\sqrt3.\n\\]\n\nTheir order is\n\\[\n3-\\sqrt3<\\frac32<3<\\frac92<3+\\sqrt3.\n\\]\n\nFor the \\(n=2\\) Lamé equation, the stability bands alternate from the lowest edge, and there are exactly three stable intervals:\n\\[\n\\left[3-\\sqrt3,\\frac32\\right],\\qquad\n\\left[3,\\frac92\\right],\\qquad\n\\left[3+\\sqrt3,\\infty\\right).\n\\]\nIntersecting with the required range \\(0<h<5\\) gives\n\\[\n\\boxed{\\left[3-\\sqrt3,\\frac32\\right]\\cup\\left[3,\\frac92\\right]\\cup\\left[3+\\sqrt3,5\\right)}.\n\\]\n\nThe right endpoint is open because the problem assumes \\(h<5\\).",
+  "status": "success",
+  "completed_at": "2026-09-11T08:17:14+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/73eca943efdc.json"
+}

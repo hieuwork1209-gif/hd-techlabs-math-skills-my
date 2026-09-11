@@ -2,8 +2,8 @@
   "problem": "problem116",
   "branch": "adversary/problem116",
   "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
-  "problem_blob_sha": "d1358b789e971189e58e16486398d9e42175399f",
-  "source_commit_sha": "8470ddd803af2357dc0382bde8dfcd5b3ecc721f",
+  "problem_blob_sha": "73eca943efdcffda8efa8a58e169ed7d8c4d194d",
+  "source_commit_sha": "eae591bf8a137548b5f888def4afd286b1ec0e4a",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-11T08:11:56+00:00",
-  "result_file": "solver-results/problem116/d1358b789e97.json"
+  "completed_at": "2026-09-11T08:17:14+00:00",
+  "result_file": "solver-results/problem116/73eca943efdc.json"
 }
