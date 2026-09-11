@@ -2,9 +2,9 @@
   "problem": "problem118",
   "state": "MAIN_READY_FOR_RAINIER",
   "problem_blob_sha": "87a1178f3406fdf70c998f326b5c469e3287eb59",
-  "solution_blob_sha": "97f3622a69665de6619cd1f25174dc678e249f93",
+  "solution_blob_sha": "a10c1cd882eca494c3d0ef2a9e02a365c56ead59",
   "local_verdict": "LOCAL_STUMPED_MATERIAL_INCOMPLETENESS",
-  "reason": "GPT-5.5 Medium found the correct generators but did not prove the load-bearing exhaustion claim that the Poisson center is exactly k[q_2,q_3,q_4].",
+  "reason": "GPT-5.5 Medium found the correct generators but did not prove the load-bearing exhaustion claim that the Poisson center is exactly k[q_2,q_3,q_4]. The later solution-only formatting repair preserved the byte-identical problem statement and therefore does not require a new cold solve.",
   "main_problem_blob_sha": "87a1178f3406fdf70c998f326b5c469e3287eb59",
-  "main_solution_blob_sha": "97f3622a69665de6619cd1f25174dc678e249f93"
+  "main_solution_blob_sha": "a10c1cd882eca494c3d0ef2a9e02a365c56ead59"
 }
