@@ -6,19 +6,19 @@ Consider the following formal term-rewriting system. Terms are generated from a 
 
 The only reduction rules are, for every term $t$,
 $$
-d_q(a(t))\longrightarrow a^q(d_q(t)),
+d_q(a(t))\longrightarrow a^2(d_q(t)),
 \qquad 2\leq q\leq n,
 $$
 and
 $$
-d_q(d_p(t))\longrightarrow d_p(d_q(t)),
+d_q(d_p(t))\longrightarrow a(d_p(d_q(t))),
 \qquad 2\leq p<q\leq n.
 $$
 A reduction may be applied to any matching subterm, and each rule application counts as one step.
 
 For $n\geq2$, define
 $$
-M_n=d_n(d_{n-1}(\cdots d_2(a(z))\cdots)).
+M_n=d_n(d_{n-1}(\cdots d_2(z)\cdots)).
 $$
 A complete reduction is a reduction sequence from $M_n$ to a term with no applicable rule. Different choices of redex can give different sequence lengths. Let $L_n$ be the minimum number of steps in a complete reduction of $M_n$.
 
@@ -39,4 +39,4 @@ Determine $L_n$ exactly as a closed-form expression in $n$.
 
 ## Domain Explanation
 
-This problem involves normalization and reduction order in a formal term-rewriting system, which are part of Logic, Set Theory, and Foundations and Type theory and formal systems. The problem also involves exact minimization and inversion counting, which are part of optimization and discrete mathematics. However, those calculations arise from the rewrite semantics and are not the primary mathematical structure.
+This problem asks for an exact shortest normalization in a formal term-rewriting system. Each interchange creates one new $a$, while an $a$ created deeper in the unary word is repeatedly duplicated as it moves outward. The reduction order therefore induces a genuinely weighted adjacent-swap optimization on the constructor permutation, rather than a fixed inversion count alone.
