@@ -1,9 +1,9 @@
 {
   "problem": "problem123",
   "mode": "new",
-  "ready": false,
+  "ready": true,
   "problem_path": "workspace/rainier-problem/problem123-algebraic-geometry/problem.md",
-  "problem_blob_sha": "bfcaebb18d58b0a6d87e443639a5a1463545b0b1",
+  "problem_blob_sha": "de66d9047bf7904f317e5b0055ae59ad7ee43b7b",
   "solution_path": "workspace/rainier-problem/problem123-algebraic-geometry/solution.md",
-  "solution_blob_sha": "c3adc5306512f865470b5576f0be6e7c457c2b40"
+  "solution_blob_sha": "1e277cccfb8a04c3ad1a6d2b068d9b768dc913ef"
 }
