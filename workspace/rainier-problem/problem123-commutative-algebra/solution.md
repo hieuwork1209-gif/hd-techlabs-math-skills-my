@@ -1,143 +1,249 @@
 ## Steps
 
-Step 1: Encode the graded pieces by exponent sumsets
-
-Let
-$$
-S=\{0,1,\ldots,r\}\cup\{n-r,n-r+1,\ldots,n\}\subset\mathbb Z.
-$$
-In standard degree $d$, the algebra $A$ is spanned by the monomials
-$$
-s^{dn-j}t^j\qquad (j\in dS),
-$$
-where $dS$ is the $d$-fold sumset of $S$. The degree-$d$ part of $B$ is spanned by
-$$
-s^{dn-j}t^j\qquad (0\le j\le dn).
-$$
-
-Fix $h\in\{0,1,\ldots,d\}$ and consider sums in $dS$ using exactly $h$ summands from the upper block $\{n-r,\ldots,n\}$. Write every lower-block summand as $u$ and every upper-block summand as $n-r+u$, with $0\le u\le r$. Such a sum is therefore
-$$
-h(n-r)+u_1+\cdots+u_d.
-$$
-Every integer from $0$ through $dr$ occurs as $u_1+\cdots+u_d$: if $0\le q\le dr$, write $q=ar+b$ with $0\le b<r$ and use $a$ copies of $r$, one copy of $b$ when $b>0$, and zeros for the remaining terms. Hence
-$$
-dS
-=
-\bigcup_{h=0}^d
-\Bigl([h(n-r),\,h(n-r)+dr]\cap\mathbb Z\Bigr).
-$$
-
-Step 2: Find the exact degree at which $A$ fills the Veronese pieces
+Step 1: Characterize every graded monomial of the sparse Veronese algebra
 
 Put
 $$
-q=\left\lceil\frac{n-1}{r}\right\rceil-1
-=\left\lceil\frac{n-r-1}{r}\right\rceil.
+N=n-r.
 $$
-Because $n\ge2r+2$, we have $q\ge2$.
+Because $n\ge 2r+2$, we have $2N>n$. Hence every degree-$n$ generator of $A$ has a unique coordinate at least $N$.
 
-The intervals in Step 1 have consecutive starting points separated by $n-r$ and each has width $dr$. Thus two consecutive integer intervals meet or are adjacent exactly when
+Write an exponent vector as $p=(p_1,p_2,p_3)\in\mathbb Z_{\ge0}^3$, and let $e_1,e_2,e_3$ be the standard basis vectors. A degree-$1$ generator whose unique large coordinate is the $i$th one can be written uniquely in the form
 $$
-dr\ge n-r-1.
+Ne_i+w,
+\qquad
+w\in\mathbb Z_{\ge0}^3,
+\qquad
+w_1+w_2+w_3=r.
 $$
-By the definition of $q$, this holds exactly for $d\ge q$. Consequently
+Therefore, if $x^{p_1}y^{p_2}z^{p_3}\in A_d$, then for some
 $$
-A_d=B_d\qquad(d\ge q).
+h=(h_1,h_2,h_3)\in\mathbb Z_{\ge0}^3,
+\qquad
+h_1+h_2+h_3=d,
 $$
-For $1\le d<q$, consecutive intervals are separated by the nonempty gaps
+we have
 $$
-G_h^{(d)}
-=
-\{h(n-r)+dr+1,\ldots,(h+1)(n-r)-1\},
-\qquad 0\le h<d.
+p=Nh+w
 $$
-In particular, $A_d\ne B_d$ for $1\le d<q$.
+with $w\in\mathbb Z_{\ge0}^3$ and $w_1+w_2+w_3=dr$.
 
-Step 3: Show that every degree at least $q-1$ lies in the conductor
+Conversely, suppose $p_1+p_2+p_3=dn$ and there is such an $h$ with $Nh_i\le p_i$ for every $i$. Then $w=p-Nh$ is nonnegative and has total
+$$
+(p_1+p_2+p_3)-N(h_1+h_2+h_3)=dn-d(n-r)=dr.
+$$
+Any nonnegative integer vector of total $dr$ is a sum of $d$ nonnegative integer vectors of total $r$: list its $dr$ unit coordinate vectors and group them into $d$ groups of $r$. Assign $h_i$ of those $d$ groups to the dominant coordinate $i$. This expresses $p$ as a sum of $d$ exponent vectors of degree-$1$ generators of $A$.
+
+Thus, for every $p_1+p_2+p_3=dn$,
+$$
+x^{p_1}y^{p_2}z^{p_3}\in A_d
+\iff
+\sum_{i=1}^3\left\lfloor\frac{p_i}{N}\right\rfloor\ge d.
+\tag{1}
+$$
+Indeed, the right side is exactly the condition that integers $h_i\le\lfloor p_i/N\rfloor$ can be chosen with sum $d$.
+
+Step 2: Find the exact degree at which $A_d$ becomes the full Veronese piece
+
+The degree-$d$ piece $B_d$ consists of all monomials with exponent vectors $p\in\mathbb Z_{\ge0}^3$ satisfying
+$$
+p_1+p_2+p_3=dn.
+$$
+Write
+$$
+p_i=Nq_i+s_i,
+\qquad
+0\le s_i\le N-1.
+$$
+If
+$$
+Q=q_1+q_2+q_3\le d-1,
+$$
+then
+$$
+p_1+p_2+p_3
+=NQ+s_1+s_2+s_3
+\le N(d-1)+3(N-1)
+=Nd+2N-3.
+$$
+But
+$$
+dn=d(N+r)=Nd+dr.
+$$
+Hence a vector in $B_d$ can violate (1) only if
+$$
+dr\le 2N-3.
+\tag{2}
+$$
+
+Conversely, assume (2). Then
+$$
+N+dr\le 3(N-1).
+$$
+Choose integers $s_1,s_2,s_3$ with
+$$
+0\le s_i\le N-1,
+\qquad
+s_1+s_2+s_3=N+dr;
+$$
+such a choice exists because the total does not exceed the combined capacity $3(N-1)$. Set
+$$
+q_1=d-1,
+\qquad q_2=q_3=0,
+$$
+and $p_i=Nq_i+s_i$. Then
+$$
+p_1+p_2+p_3=N(d-1)+(N+dr)=dn,
+$$
+while
+$$
+\sum_{i=1}^3\left\lfloor\frac{p_i}{N}\right\rfloor=d-1.
+$$
+So this monomial lies in $B_d\setminus A_d$.
+
+Therefore
+$$
+A_d=B_d
+\iff
+dr\ge 2N-2.
+$$
+Define the first saturation degree
+$$
+D
+=\left\lceil\frac{2N-2}{r}\right\rceil
+=\left\lceil\frac{2(n-1)}r\right\rceil-2.
+\tag{3}
+$$
+Then
+$$
+A_d=B_d\qquad(d\ge D),
+$$
+and $A_{D-1}\ne B_{D-1}$. The assumption $n\ge2r+2$ gives $D\ge3$.
+
+Step 3: Put a full power of the irrelevant ideal inside the conductor
 
 Let
 $$
 \mathfrak c=\{f\in A:fB\subseteq A\}.
 $$
-First, $\mathfrak c$ is homogeneous. Indeed, if $f=\sum_d f_d\in\mathfrak c$ is its homogeneous decomposition and $b\in B_e$ is homogeneous, then $fb\in A$. Since $A$ is graded, every homogeneous component $f_db$ also lies in $A$. This holds for every homogeneous $b$, hence each $f_d\in\mathfrak c$.
-
-Now let $d\ge q-1$ and $f\in A_d$. For homogeneous $b\in B_e$, if $e=0$ then $fb\in A_d$. If $e\ge1$, then $d+e\ge q$, so Step 2 gives
+Take a homogeneous $f\in A_d$ with $d\ge D-1$, and a homogeneous $b\in B_e$. If $e=0$, then $fb\in A_d$. If $e\ge1$, then
+$$
+d+e\ge D,
+$$
+so by Step 2,
 $$
 fb\in B_{d+e}=A_{d+e}.
 $$
-Therefore
-$$
-\bigoplus_{d\ge q-1}A_d\subseteq\mathfrak c.
-$$
+Thus every homogeneous component of $A$ in degree at least $D-1$ lies in $\mathfrak c$.
 
-Step 4: Exclude every nonzero homogeneous element of smaller degree
-
-Fix $0\le d\le q-2$ and let
-$$
-0\ne f=\sum_{j\in J}c_j s^{dn-j}t^j\in A_d.
-$$
-Choose $j\in J$ with $c_j\ne0$. Since $d<q$, the intervals from Step 1 are disjoint, so $j$ lies in a unique interval
-$$
-I_h^{(d)}=[h(n-r),\,h(n-r)+dr]
-$$
-for some $0\le h\le d$.
-
-Define
-$$
-k=h(n-r)+(d+1)r+1-j.
-$$
-Because $j\le h(n-r)+dr$,
-$$
-k\ge r+1>0.
-$$
-Because $j\ge h(n-r)$,
-$$
-k\le(d+1)r+1.
-$$
-Also $d+1<q$, so by the minimality of $q$,
-$$
-(d+1)r<n-r-1,
-$$
-which gives $k<n$. Hence $0\le k\le n$, and therefore
-$$
-b=s^{n-k}t^k\in B_1.
-$$
-
-The selected monomial of $fb$ has $t$-exponent
-$$
-j+k=h(n-r)+(d+1)r+1.
-$$
-This is the first integer in the gap $G_h^{(d+1)}$, so it does not belong to $(d+1)S$. Thus this monomial is not in $A_{d+1}$. The other terms of $fb$ have distinct $t$-exponents, so this term cannot cancel. Therefore
-$$
-fb\notin A,
-$$
-and hence $f\notin\mathfrak c$.
-
-Thus
-$$
-\mathfrak c_d=0\qquad(0\le d\le q-2).
-$$
-
-Step 5: Identify the conductor as a power of the irrelevant ideal
-
-Steps 3 and 4 give
-$$
-\mathfrak c=\bigoplus_{d\ge q-1}A_d.
-$$
-Because $A$ is standard graded and generated by $A_1$, its irrelevant ideal satisfies
+Since $A$ is standard graded and generated by $A_1$,
 $$
 A_+^m=\bigoplus_{d\ge m}A_d
 $$
-for every $m\ge1$. Therefore
+for every $m\ge1$. Consequently
 $$
-\mathfrak c=A_+^{q-1}
-=A_+^{\left\lceil\frac{n-1}{r}\right\rceil-2}.
+A_+^{D-1}\subseteq\mathfrak c.
+\tag{4}
+$$
+
+Step 4: Prove that the exponent in (4) is sharp
+
+Set
+$$
+d=D-2.
+$$
+By the minimality of $D$ in (3),
+$$
+(d+1)r=(D-1)r\le2N-3.
+\tag{5}
+$$
+Choose integers $s_1,s_2,s_3$ with
+$$
+0\le s_i\le N-1,
+\qquad
+s_1+s_2+s_3=dr.
+$$
+This is possible because (5) implies $dr<2N-3<3(N-1)$. Define
+$$
+p_1=Nd+s_1,
+\qquad
+p_2=s_2,
+\qquad
+p_3=s_3.
+$$
+Then $p_1+p_2+p_3=dn$ and
+$$
+\sum_{i=1}^3\left\lfloor\frac{p_i}{N}\right\rfloor=d,
+$$
+so (1) gives
+$$
+x^{p_1}y^{p_2}z^{p_3}\in A_d.
+$$
+
+For each coordinate, let
+$$
+\lambda_i=N-1-s_i.
+$$
+Their total capacity is
+$$
+\lambda_1+\lambda_2+\lambda_3
+=3(N-1)-dr.
+$$
+From (5),
+$$
+dr\le2N-3-r,
+$$
+so
+$$
+\lambda_1+\lambda_2+\lambda_3
+\ge N+r=n.
+$$
+Hence we can choose integers
+$$
+0\le u_i\le\lambda_i,
+\qquad
+u_1+u_2+u_3=n.
+$$
+Then
+$$
+b=x^{u_1}y^{u_2}z^{u_3}\in B_1.
+$$
+Because $u_i\le N-1-s_i$, adding $u_i$ does not cross the next multiple of $N$ in any coordinate. Therefore
+$$
+\sum_{i=1}^3
+\left\lfloor\frac{p_i+u_i}{N}\right\rfloor
+=d<d+1.
+$$
+By (1),
+$$
+x^{p_1+u_1}y^{p_2+u_2}z^{p_3+u_3}\notin A_{d+1}.
+$$
+Thus the monomial $x^{p_1}y^{p_2}z^{p_3}$ is not in the conductor. Since it lies in $A_d\subseteq A_+^d$, we obtain
+$$
+A_+^{D-2}\nsubseteq\mathfrak c.
+\tag{6}
+$$
+
+Step 5: Read off the least conductor power
+
+Equations (4) and (6) show that the least integer $m$ for which
+$$
+A_+^m\subseteq\mathfrak c
+$$
+is
+$$
+m=D-1.
+$$
+Using (3),
+$$
+m
+=\left\lceil\frac{2(n-1)}r\right\rceil-3.
 $$
 
 ## Solution Concepts
 
-- Graded monomial exponent sumsets and their interval decomposition.
-- Exact saturation threshold of a sparse Veronese subalgebra.
-- Homogeneous conductor ideals and a gap-shift obstruction for lower degrees.
+- Graded monomial membership via a capacity criterion for vertex-neighborhood Veronese generators.
+- Exact saturation threshold from an extremal residue bound.
+- Conductor-power sharpness via a coordinate-slack witness that avoids all capacity jumps.
 
-Final Answer: $\displaystyle A_+^{\lceil (n-1)/r\rceil-2}$.
+Final Answer: $\displaystyle \left\lceil\frac{2(n-1)}r\right\rceil-3$.
