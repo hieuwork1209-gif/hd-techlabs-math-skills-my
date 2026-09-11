@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-type-theory-and-formal-systems/problem.md",
+  "source_commit_sha": "3994bccf6e6643333e39ab0fb18697db7d102238",
+  "problem_blob_sha": "7f1faa031f596100f3644c5399f2a1170ca03db6",
+  "statement_sha256": "230d932a794638ce398dec96be0af5db2b59cc7a805774d096ca215e14d6a6a2",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T03:47:10+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "A term can be read as a word in the unary symbols, from outside to inside. In any normal form, all `a`’s must be outside all `d`’s, and the `d` indices must be increasing. Since the starting word contains each of `d_2,\\dots,d_n` once, every complete reduction ends as\n\n\\[\na^K(d_2(d_3(\\cdots d_n(z)\\cdots)))\n\\]\n\nfor some \\(K\\).\n\nEach inverted pair \\(d_q,d_p\\) with \\(p<q\\) must be swapped exactly once, so the number of \\(d\\)-\\(d\\) steps is\n\n\\[\n\\binom{n-1}{2}.\n\\]\n\nThose swaps create a total of\n\n\\[\nG=\\sum_{2\\le p<q\\le n}(q-p)\n=\\sum_{r=1}^{n-2}r(n-1-r)\n=\\frac{n(n-1)(n-2)}6\n\\]\n\ncopies of \\(a\\). Every \\(d_q(a(t))\\to a^2(d_q(t))\\) step increases the number of \\(a\\)’s by exactly \\(1\\), so if the final exponent is \\(K\\), then\n\n\\[\nL_n=\\binom{n-1}{2}+(K-G).\n\\]\n\nIt remains to compute \\(K\\). Define an invariant \\(E\\) by\n\n\\[\nE(z)=0,\\qquad E(a(t))=E(t)+1,\\qquad E(d_q(t))=2E(t)-q.\n\\]\n\nBoth rewrite rules preserve \\(E\\):\n\n\\[\nE(d_q(a(t)))=2(E(t)+1)-q=2E(t)+2-q=E(a^2(d_q(t))),\n\\]\n\nand for \\(p<q\\),\n\n\\[\nE(d_q(d_p(t)))=4E(t)-2p-q,\n\\]\n\nwhile\n\n\\[\nE(a^{q-p}(d_p(d_q(t))))=(4E(t)-2q-p)+(q-p)=4E(t)-2p-q.\n\\]\n\nThus \\(E\\) is invariant.\n\nFor the initial term,\n\n\\[\nE(M_n)=E(d_n(d_{n-1}(\\cdots d_2(z)\\cdots)))\n=-\\sum_{j=2}^n j2^{\\,n-j}.\n\\]\n\nFor the normal \\(d\\)-tail,\n\n\\[\nE(d_2(d_3(\\cdots d_n(z)\\cdots)))\n=-\\sum_{j=2}^n j2^{\\,j-2}.\n\\]\n\nTherefore\n\n\\[\nK\n=\n\\sum_{j=2}^n j2^{\\,j-2}\n-\n\\sum_{j=2}^n j2^{\\,n-j}.\n\\]\n\nNow\n\n\\[\n\\sum_{j=2}^n j2^{j-2}=(n-1)2^{n-1},\n\\]\n\nand\n\n\\[\n\\sum_{j=2}^n j2^{n-j}=3\\cdot 2^{n-1}-n-2.\n\\]\n\nHence\n\n\\[\nK=(n-4)2^{n-1}+n+2.\n\\]\n\nSo\n\n\\[\nL_n\n=\n\\binom{n-1}{2}\n+\n(n-4)2^{n-1}+n+2\n-\n\\frac{n(n-1)(n-2)}6.\n\\]\n\nSimplifying,\n\n\\[\n\\boxed{L_n=(n-4)2^{n-1}+n+2-\\frac{(n-1)(n-2)(n-3)}6}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T03:49:22+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/7f1faa031f59.json"
+}

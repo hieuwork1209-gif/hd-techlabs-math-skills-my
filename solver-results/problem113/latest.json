@@ -1,0 +1,17 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-type-theory-and-formal-systems/problem.md",
+  "problem_blob_sha": "7f1faa031f596100f3644c5399f2a1170ca03db6",
+  "source_commit_sha": "3994bccf6e6643333e39ab0fb18697db7d102238",
+  "status": "success",
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "timeout_seconds": 2100,
+  "completed_at": "2026-09-11T03:49:22+00:00",
+  "result_file": "solver-results/problem113/7f1faa031f59.json"
+}
