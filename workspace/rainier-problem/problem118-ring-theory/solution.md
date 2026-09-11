@@ -206,26 +206,19 @@ Consequently
 $$
 Z(R)=k[Z_0,Z_1,Z_2].
 $$
+For $j=2,3,4$, define directly from the prompt generators
+$$
+S_j=\sum_{\substack{a+b=j\\0\leq a,b\leq 2}}(h_a h_b+2e_a f_b+2f_b e_a).
+$$
+Then $S_4=Z_0$, $S_3=2Z_1$, and $S_2=2Z_2$. Since $\operatorname{char}k=0$, these three elements generate the same polynomial subalgebra.
 
-Final Answer: $\boxed{k[Z_0,Z_1,Z_2]}$, where
-$$
-Z_0=h_2^2+4e_2f_2,
-$$
-$$
-Z_1=h_2h_1+2e_2f_1+2e_1f_2,
-$$
-$$
-Z_2=h_2h_0+\frac12 h_1^2+(e_2f_0+f_0e_2)+(e_1f_1+f_1e_1)+(e_0f_2+f_2e_0).
-$$
+Final Answer: $\boxed{k[\sum_{\substack{a+b=j\\0\leq a,b\leq 2}}(h_a h_b+2e_a f_b+2f_b e_a)\mid j=2,3,4]}$
 
 ---
 
 ## Answer
 
-$k[Z_0,Z_1,Z_2]$, with
-$Z_0=h_2^2+4e_2f_2$,
-$Z_1=h_2h_1+2e_2f_1+2e_1f_2$, and
-$Z_2=h_2h_0+\frac12 h_1^2+(e_2f_0+f_0e_2)+(e_1f_1+f_1e_1)+(e_0f_2+f_2e_0)$.
+$k[\sum_{\substack{a+b=j\\0\leq a,b\leq 2}}(h_a h_b+2e_a f_b+2f_b e_a)\mid j=2,3,4]$
 
 ---
 
