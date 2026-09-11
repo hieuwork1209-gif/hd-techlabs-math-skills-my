@@ -2,12 +2,12 @@
 
 ## LaTeX (Normalized)
 
-Let $p$ be an odd prime, and define
+For an odd integer $m\ge3$, define
 $$
-H_p=
-\gcd\left\{\binom{2p}{2j}:1\le j\le p-1\right\}.
+H_m=
+\gcd\left\{\binom{2m}{2j}:1\le j\le m-1\right\}.
 $$
-Determine $H_p$ exactly.
+Determine $H_m$ exactly for every odd $m$.
 
 ---
 
@@ -24,4 +24,4 @@ Determine $H_p$ exactly.
 
 ## Domain Explanation
 
-The problem asks for the exact common divisibility of the even-index binomial coefficients in row $2p$. The decisive arithmetic is prime-by-prime: the prime $p$ behaves differently from primes dividing $2p-1$, and Lucas congruences plus parity of base-$q$ digits determine exactly which factors survive. Thus Elementary number theory is the best fit.
+The problem asks for an exact divisibility invariant of a parity-restricted family of binomial coefficients. Its core task is a prime-by-prime classification involving base-$q$ digit structure and exact $q$-adic divisibility, so Elementary number theory is the best fit; congruence tools are used as part of that divisibility analysis rather than being the sole object of the problem.
