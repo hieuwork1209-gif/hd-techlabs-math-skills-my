@@ -80,7 +80,54 @@ $$
 =\frac{j-i}{2a+i+j-2}
 \Gamma(a+i-1)\Gamma(a+j-1).
 $$
-Expanding the determinant against the three Schur terms and grouping the symmetric contributions gives
+In particular, $\mu_{ji}=-\mu_{ij}$.
+
+To make the determinant reduction explicit, set
+$$
+q_{12}=\frac{y-x}{x+y},\qquad
+q_{13}=\frac{z-x}{x+z},\qquad
+q_{23}=\frac{z-y}{y+z},
+$$
+and
+$$
+d\omega_a=(xyz)^{a-1}e^{-(x+y+z)}\,dx\,dy\,dz.
+$$
+Then
+$$
+J(a)=\iiint \Delta\,(q_{12}-q_{13}+q_{23})\,d\omega_a.
+$$
+Expanding
+$$
+\Delta=yz^2-y^2z-xz^2+xy^2+x^2z-x^2y
+$$
+against the first Schur term gives
+$$
+\begin{aligned}
+\iiint \Delta q_{12}\,d\omega_a
+&=\mu_{12}\nu_3-\mu_{13}\nu_2-\mu_{21}\nu_3
++\mu_{23}\nu_1+\mu_{31}\nu_2-\mu_{32}\nu_1\\
+&=2\left(\mu_{12}\nu_3-\mu_{13}\nu_2+\mu_{23}\nu_1\right).
+\end{aligned}
+$$
+Likewise, expanding against $q_{13}$ gives
+$$
+\begin{aligned}
+\iiint \Delta q_{13}\,d\omega_a
+&=\mu_{13}\nu_2-\mu_{12}\nu_3-\mu_{23}\nu_1
++\mu_{21}\nu_3+\mu_{32}\nu_1-\mu_{31}\nu_2\\
+&=-2\left(\mu_{12}\nu_3-\mu_{13}\nu_2+\mu_{23}\nu_1\right),
+\end{aligned}
+$$
+and expanding against $q_{23}$ gives
+$$
+\begin{aligned}
+\iiint \Delta q_{23}\,d\omega_a
+&=\mu_{23}\nu_1-\mu_{32}\nu_1-\mu_{13}\nu_2
++\mu_{31}\nu_2+\mu_{12}\nu_3-\mu_{21}\nu_3\\
+&=2\left(\mu_{12}\nu_3-\mu_{13}\nu_2+\mu_{23}\nu_1\right).
+\end{aligned}
+$$
+These signs also follow directly from symmetry: interchanging $y$ and $z$ changes $\Delta$ to $-\Delta$ and $q_{12}$ to $q_{13}$, while the cyclic permutation $(x,y,z)\mapsto(y,z,x)$ preserves $\Delta$ and sends $q_{12}$ to $q_{23}$. Therefore the three terms in $q_{12}-q_{13}+q_{23}$ contribute the same amount, and
 $$
 J(a)=6\left(\mu_{12}\nu_3-\mu_{13}\nu_2+\mu_{23}\nu_1\right).
 $$
@@ -126,13 +173,11 @@ so its contribution is
 $$
 -\frac{6\pi}{n}.
 $$
-Thus
+Thus the two simple poles contribute
 $$
-I_n=
-\frac{\sqrt{\pi}}{n^{1/2}}
--\frac{6\pi}{n}
-+O\left(n^{-3/2}\log n\right).
+\frac{\sqrt{\pi}}{n^{1/2}}-\frac{6\pi}{n},
 $$
+and the next singularity to be crossed is at $s=\frac{3}{2}$.
 
 Step 4: Resolve the double pole at $s=\frac{3}{2}$
 
@@ -187,9 +232,63 @@ $$
 \frac{9\sqrt{\pi}(\log n+\gamma+2\log2-1)}{n^{3/2}}.
 $$
 
-Step 5: Recover the requested limit
+Step 5: Justify the contour shift and recover the requested limit
 
-There are no further poles in $\frac{3}{2}<\Re s<2$, so shifting the contour into that strip gives a remainder $o(n^{-3/2})$. Combining Steps 3 and 4,
+Choose
+$$
+\sigma=\frac{3}{2}+\delta,
+\qquad 0<\delta<\frac{1}{2}.
+$$
+There are no poles of $F$ in $\frac{3}{2}<\Re s\leq\sigma$. For fixed $u$ in the compact strip $c\leq u\leq\sigma$, Stirling's formula on vertical strips gives, uniformly as $|t|\to\infty$,
+$$
+|\Gamma(\alpha+i\beta t)|
+\leq C(1+|t|)^{\alpha-1/2}e^{-\pi|\beta t|/2}
+$$
+when $\alpha$ ranges over a fixed compact interval and $\beta\neq0$ is fixed. Applying this to
+$$
+F(s)=
+\frac{3\Gamma(s)\Gamma\left(\frac{1}{2}-s\right)
+\Gamma\left(\frac{3}{2}-s\right)^2}
+{2(1-s)(2-s)\Gamma\left(\frac{9}{2}-3s\right)}
+$$
+shows that on the new vertical line $s=\sigma+it$,
+$$
+|F(\sigma+it)|
+\leq C_\sigma(1+|t|)^{\sigma-9/2}e^{-\pi|t|/2}.
+$$
+Indeed, the Gamma factors in the numerator contribute the polynomial power
+$$
+\left(\sigma-\frac12\right)-\sigma+2(1-\sigma)
+=\frac32-2\sigma,
+$$
+the reciprocal Gamma factor contributes $-(4-3\sigma)$, and the two linear factors contribute $-2$, for the total power $\sigma-\frac92$; the net exponential factor is $e^{-\pi|t|/2}$. Hence the shifted vertical integral converges absolutely and
+$$
+R_n:=\frac{1}{2\pi i}\int_{\sigma-i\infty}^{\sigma+i\infty}
+F(s)n^{-s}\,ds
+=O(n^{-\sigma})
+=O(n^{-3/2-\delta})
+=o(n^{-3/2}).
+$$
+
+It remains to justify that the horizontal sides disappear. Shift first on the rectangle with vertical sides $\Re s=c$ and $\Re s=\sigma$ and horizontal sides at $\Im s=\pm T$. Uniform Stirling bounds on the whole compact strip give, for some constants $C,B$ independent of $u\in[c,\sigma]$,
+$$
+|F(u\pm iT)|\leq C(1+T)^B e^{-\pi T/2}.
+$$
+Since $n^{-u}\leq n^{-c}\leq1$ for $n\geq1$ and each horizontal side has bounded length $\sigma-c$, both horizontal integrals are
+$$
+O\left((1+T)^B e^{-\pi T/2}\right)\to0
+\qquad(T\to\infty).
+$$
+With the left vertical side oriented upward and the right side downward, the rectangle is clockwise, so the residue theorem gives
+$$
+\int_{c-i\infty}^{c+i\infty}F(s)n^{-s}\,ds
+=
+\int_{\sigma-i\infty}^{\sigma+i\infty}F(s)n^{-s}\,ds
+-2\pi i\sum \operatorname*{Res} F(s)n^{-s},
+$$
+where the crossed poles are $s=\frac12,1,\frac32$. This proves both the sign used above and the claimed remainder estimate.
+
+Combining Steps 3 and 4 with $R_n=o(n^{-3/2})$,
 $$
 I_n=
 \frac{\sqrt{\pi}}{n^{1/2}}
