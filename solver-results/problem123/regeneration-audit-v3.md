@@ -10,7 +10,7 @@
 - **Hidden gateway:** encode degree-d monomials by the d-fold exponent sumset and discover that it is a union of equally spaced integer intervals indexed by the number of summands taken from the upper exponent block.
 - **Serial nodes:** (1) graded exponent-sumset encoding; (2) exact interval decomposition; (3) saturation threshold where A_d=B_d; (4) upper conductor inclusion from saturation; (5) lower-degree exclusion by shifting a nonzero term into the next graded gap; (6) identify the homogeneous tail as a power of A_+.
 - **Closure certificate:** the gap-shift argument excludes every nonzero homogeneous conductor element below the threshold, while homogeneity of the conductor reduces arbitrary elements to homogeneous components.
-- **Final answer shape:** `A_+^{ceil((n-1)/r)-2}`; stripped answer length = 27 characters.
+- **Final answer shape:** `A_+^{ceil((n-1)/r)-2}`; stripped portal answer length including `\displaystyle` = 40 characters, below the 100-character gate.
 
 ## Shortcut analysis
 
