@@ -2,24 +2,18 @@
 
 ## LaTeX (Normalized)
 
-Let $a,b>0$, let $W_t$ be a standard one-dimensional Brownian motion, and define
+Let $a,b>0$. On the interval $0<x<b$, consider the reaction-diffusion system
 $$
-S=\begin{pmatrix}0&1\\1&0\end{pmatrix},
-\qquad
-J=\begin{pmatrix}0&-1\\1&0\end{pmatrix},
-\qquad
-A=-I+aS+J.
+\begin{aligned}
+u_t&=u_{xx}+a u+v,\\
+v_t&=10v_{xx}-3u-2v,
+\end{aligned}
 $$
-Consider the planar linear Stratonovich stochastic differential equation
+with homogeneous Neumann boundary conditions
 $$
-dZ_t=A Z_t\,dt+bJZ_t\circ dW_t,
-\qquad Z_t\in\mathbb R^2.
+u_x(t,0)=u_x(t,b)=v_x(t,0)=v_x(t,b)=0.
 $$
-Determine all pairs $(a,b)$ for which the deterministic system $\dot z=Az$ is not exponentially stable, but the stochastic origin is almost surely exponentially stable; that is, for every deterministic $Z_0\ne0$ there exists a constant $\gamma>0$, depending only on $(a,b)$, such that
-$$
-\limsup_{t\to\infty}\frac1t\log\frac{\|Z_t\|}{\|Z_0\|}\le-\gamma
-$$
-almost surely.
+Determine all pairs $(a,b)$ for which the spatially homogeneous ODE obtained by dropping the diffusion terms is exponentially stable, while the PDE has exactly three unstable nonconstant Neumann spatial frequencies. A frequency $n\ge1$ is called unstable if the corresponding two-dimensional Fourier-mode system has an eigenvalue with positive real part; each integer frequency $n$ is counted once.
 
 ---
 
@@ -36,4 +30,4 @@ almost surely.
 
 ## Domain Explanation
 
-This is a noise-induced stabilization problem for a planar linear Stratonovich system. The deterministic instability threshold follows from the eigenvalues of a constant strain-plus-rotation matrix, while the stochastic top Lyapunov exponent is determined by a non-equilibrium angular diffusion with nonzero stationary probability flux and an exact complex-order modified-Bessel representation.
+This is a linear stability and pattern-selection problem for a two-species reaction-diffusion system on a bounded interval. The parameters control the local reaction dynamics and the spatial domain size, and the question asks for the exact region where diffusion creates a prescribed number of unstable spatial modes.
