@@ -141,20 +141,31 @@ Do not count:
 - repeated attempts on the same blob;
 - a custom easier solver configuration unless the user explicitly chose it and the deviation is reported.
 
-## Gate H — Portal format
+## Gate H — Portal format / repository submission compatibility
 
-Before promotion ensure at least:
+This gate must mirror the deterministic checks used by the repository, not a remembered portal rule. Read `skills/_shared/hard_gates.md` and the current constants in `scripts/adv` before reporting a candidate ready. At the time of writing, `scripts/adv` uses `PROMPT_MAX=2000`, `ANSWER_MAX=102`, `CONCEPT_MAX=100`, and `CONCEPT_LIMIT=5`; current script values outrank these cached numbers.
 
-- problem prompt is nonempty and within the current Rainier prompt limit;
-- standalone answer is nonempty, within the current answer limit, and does not contain `\\boxed` if the portal requires a plain standalone answer;
+Before **candidate-ready** and again before **promotion**, require all of:
+
+- Apply `skills/format-solution/SKILL.md` to the exact candidate `solution.md`; for this workflow explicitly target `workspace/rainier-problem/problemNN-*/solution.md` even though that formatter may describe a frontier-workspace default.
+- Math Problem (Prompt) is nonempty and at most the current raw `PROMPT_MAX`.
+- `## Answer` is nonempty and contains no `\\boxed`.
+- The exact mapped Answer field is at most the current raw `ANSWER_MAX` (currently 102 characters).
+- After stripping every `$` and whitespace character from the Answer, fewer than 100 characters remain.
+- The Answer is exactly one mathematical object and uses only prompt-defined notation, except dummy indices bound locally inside the answer expression. Solution-only aliases are forbidden as a length shortcut.
+- The content inside the final `Final Answer: $\\boxed{...}$` matches the `## Answer` object character-for-character.
+- `## Steps` is under 10,000 characters as written; compression may not create black-box gaps.
+- Solution Concepts number 1-5 and each satisfies the current concept-length limit.
 - solution steps are consecutive `Step 1:`, `Step 2:`, ...;
-- the last required line follows the current exact Final Answer format;
-- Solution Concepts count/length obey current portal rules;
 - Domain, Sub-domain, Problem Type, Answer Type, and Domain Explanation are present;
 - Problem Type and Answer Type agree between problem and solution/package;
 - no stale metadata remains after redesign.
 
-Use current repository/portal limits when they differ from historical values.
+If a mathematically equivalent compact Answer can be written with prompt-defined notation, treat that as a solution-only formatting repair. If fitting the field requires changing `problem.md` or the Answer Type, do not truncate and do not use a solution-only alias: redesign before Codex when possible. A problem edit requires fresh solver evidence.
+
+A solution-only format repair keeps prior difficulty evidence only when `problem.md` remains byte-identical, but the old ready marker becomes stale because the solution SHA changed. Re-audit and refresh `candidate-ready.json` before promotion.
+
+`MAIN_READY_FOR_RAINIER` is forbidden whenever the exact promoted pair would still fail the deterministic field checks mirrored by `./scripts/adv submit problemNN`.
 
 ## Gate I — Originality and corpus distance
 
@@ -168,6 +179,6 @@ Reject a candidate that is essentially an existing problem with renamed variable
 
 Before promotion ask internally:
 
-> If GPT-5.5 had not been stumped, would I still defend this as a clean, self-contained, naturally motivated expert problem with an honest taxonomy label?
+> If GPT-5.5 had not been stumped, would I still defend this as a clean, self-contained, naturally motivated expert problem with an honest taxonomy label and a package that `adv submit` accepts deterministically?
 
-If the answer is no, redesign instead of promoting.
+If the answer is no, redesign or format-repair instead of promoting.
