@@ -1,0 +1,22 @@
+{
+  "problem": "problem102",
+  "branch": "adversary/problem102",
+  "problem_path": "workspace/rainier-problem/problem102-single-variable-calculus/problem.md",
+  "source_commit_sha": "85eb80beb5e14d45ae53d9d8e45a4b2a669738b0",
+  "problem_blob_sha": "cf5a7abef9879fbb1523237a2a728a6d5bc1508d",
+  "statement_sha256": "d9a5fad40074d443b6467b00a67e73a33ac6fe0a710cb99a7bb7e125afc22b3f",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T03:59:20+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(s=\\log x\\). We solve for \\(g\\).\n\nThe proposed closed form is\n\\[\ng(s)=\\left(1+\\frac{s^2}{24}\\right)^{-2}.\n\\]\nCheck:\n\\[\ng'(s)=-\\frac{s}{6}\\left(1+\\frac{s^2}{24}\\right)^{-3},\n\\]\nand\n\\[\ng''(s)=-\\frac16\\left(1+\\frac{s^2}{24}\\right)^{-3}\n+\\frac{s^2}{24}\\left(1+\\frac{s^2}{24}\\right)^{-4}.\n\\]\nThus\n\\[\ng''(s)+\\frac5s g'(s)\n=\n-\\left(1+\\frac{s^2}{24}\\right)^{-4},\n\\]\nso\n\\[\ng''(s)+\\frac5s g'(s)+g(s)^2=0.\n\\]\nAlso \\(g(s)\\to1\\) as \\(s\\to0^+\\).\n\nIt remains to justify uniqueness. Multiplying the ODE by \\(s^5\\) gives\n\\[\n(s^5g'(s))'=-s^5g(s)^2.\n\\]\nSince \\(g(s)\\to1\\), \\(g\\) is bounded near \\(0\\). Hence \\(s^5g'(s)\\) has a finite limit as \\(s\\to0^+\\). If that limit were nonzero, then \\(g'(s)\\sim Cs^{-5}\\), forcing \\(g(s)\\) to blow up like \\(s^{-4}\\), contradicting \\(g(s)\\to1\\). Therefore\n\\[\ns^5g'(s)=-\\int_0^s t^5g(t)^2\\,dt.\n\\]\nIntegrating once more,\n\\[\ng(s)=1-\\frac14\\int_0^s\\left(t-\\frac{t^5}{s^4}\\right)g(t)^2\\,dt.\n\\]\nThis Volterra equation has at most one bounded solution near \\(0\\): for two solutions \\(u,v\\), if \\(|u+v|\\le B\\) on \\([0,r]\\), then\n\\[\n\\sup_{0<s\\le r}|u(s)-v(s)|\n\\le \\frac{Br^2}{12}\\sup_{0<s\\le r}|u(s)-v(s)|.\n\\]\nFor small enough \\(r\\), this forces \\(u=v\\). Ordinary ODE uniqueness then extends equality to all \\(s>0\\).\n\nThus\n\\[\ng(s)=\\left(1+\\frac{s^2}{24}\\right)^{-2}.\n\\]\nSince \\(s=\\log x\\),\n\n\\[\n\\boxed{f(x)=\\frac{1}{\\left(1+\\frac{(\\log x)^2}{24}\\right)^2}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T04:00:05+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem102/cf5a7abef987.json"
+}
