@@ -38,7 +38,7 @@ $$
 \dim_{\mathbb F_p}C\le64.
 $$
 
-We now construct a surjection $C\to M_8(\mathbb F_p)$. First note that for every $q\in\mathbb F_p^\times$ there are anticommuting $A,B\in M_2(\mathbb F_p)$ with
+We first need a $2\times2$ building block. For every $q\in\mathbb F_p^\times$ there are anticommuting $A,B\in M_2(\mathbb F_p)$ with
 $$
 A^2=B^2=qI_2
 $$
@@ -52,7 +52,7 @@ $$
 A=\begin{pmatrix}0&q\\1&0\end{pmatrix},\qquad
 B=\begin{pmatrix}a&-qc\\c&-a\end{pmatrix}.
 $$
-Then $A^2=B^2=qI_2$ and $AB=-BA$. To prove generation directly, suppose
+In either construction, $A^2=B^2=qI_2$ and $AB=-BA$. To prove generation directly, suppose
 $$
 \alpha I_2+\beta A+\gamma B+\delta AB=0.
 $$
@@ -92,13 +92,15 @@ Hence $e_i\mapsto Z_i$ gives a surjective homomorphism $C\to M_8$. Since $M_8$ h
 $$
 C\cong M_8(\mathbb F_p).
 $$
-This proves the generation claim rather than merely exhibiting a representation.
+This is the required direct justification that the six matrices generate the full matrix algebra.
 
-For the involution $\tau_-(e_i)=-e_i$, choose the above $2\times2$ pairs so that $U,V,C_0,D_0$ are skew-adjoint for the standard alternating form $J$, while the anti-automorphism fixing $A,B$ is adjoint to a symmetric form $H$. Then the $Y_i$ are skew-adjoint for the alternating form $H_4=J\otimes H$, $S$ is self-adjoint, and all six $Z_i$ are skew-adjoint for the symmetric form
+We also record one split orthogonal involution. For the standard symplectic involution on $M_2$, every trace-zero matrix is skew-adjoint, so $U,V,C_0,D_0$ may be taken skew-adjoint. On the other $M_2$ factor, reversing words while fixing $A$ and $B$ defines an involution because it preserves the relations $A^2=B^2=-d^{-1}I_2$ and $AB=-BA$. On the basis $I_2,A,B,AB$ it fixes the first three elements and negates $AB$, so its fixed space has dimension $3$; hence it is an orthogonal involution on $M_2$ and is adjoint to a nondegenerate symmetric form $H$.
+
+It follows that the $Y_i$ are skew-adjoint for the alternating form $H_4=J\otimes H$, where $J$ is the standard alternating $2\times2$ Gram matrix. Reversal of the four skew-adjoint factors in $S$ contributes $(-1)^6=1$, so $S$ is self-adjoint. Therefore all six $Z_i$ are skew-adjoint for the symmetric form
 $$
 H_8=H_4\otimes J.
 $$
-Therefore $\tau_-$ is an orthogonal involution with Gram matrix $H_8$, and
+Thus the involution $\tau_-$ defined by $\tau_-(e_i)=-e_i$ is orthogonal, and
 $$
 \det(H_8)=\det(H_4)^2\det(J)^4
 $$
@@ -106,17 +108,17 @@ is a square.
 
 Step 3: Classify exactly which sign involutions are transpose
 
-We use the classification theorem in the following explicit form. Over a field $F$ of characteristic not $2$, every involution of the first kind on the split algebra $M_n(F)$ is
+We use the classification theorem in the precise form needed here. Over a field $F$ of characteristic not $2$, every involution of the first kind on the split algebra $M_n(F)$ is
 $$
 \sigma_H(X)=H^{-1}X^TH
 $$
-with $H^T=H$ (orthogonal type) or $H^T=-H$ (symplectic type). Two orthogonal involutions are conjugate by an $F$-algebra automorphism of $M_n(F)$ exactly when their symmetric Gram forms are similar:
+with $H^T=H$ (orthogonal type) or $H^T=-H$ (symplectic type). Two orthogonal involutions are conjugate by an $F$-algebra automorphism of $M_n(F)$ exactly when their symmetric Gram forms are similar, namely when
 $$
 K=\lambda G^THG
 $$
 for some $G\in\mathrm{GL}_n(F)$ and $\lambda\in F^\times$.
 
-For $F=\mathbb F_p$, $p$ odd, nondegenerate symmetric forms of a fixed dimension are classified by the square class of their determinant. In dimension $2m$, the split hyperbolic $(+)$ class has determinant square class $(-1)^m$. Here $n=8=2\cdot4$, so an $8$-dimensional symmetric form is split $+$ exactly when its determinant is a square. In particular, ordinary transpose, which is adjoint to $I_8$, is the split $+$ orthogonal involution. The hypotheses apply because $p$ is odd, Step 2 identifies $C$ with the split algebra $M_8(\mathbb F_p)$, and the involutions below fix the center $\mathbb F_p$.
+For $F=\mathbb F_p$, $p$ odd, nondegenerate symmetric forms of a fixed dimension are classified by the square class of their determinant. In dimension $2m$, the split hyperbolic $(+)$ class has determinant square class $(-1)^m$. Here $n=8=2\cdot4$, so an $8$-dimensional symmetric form is split $+$ exactly when its determinant is a square. In particular ordinary transpose, adjoint to $I_8$, is the split $+$ orthogonal involution. The hypotheses apply because $p$ is odd, Step 2 identifies $C$ with the split algebra $M_8(\mathbb F_p)$, and every involution considered below fixes the center $\mathbb F_p$.
 
 For a sign pattern $\varepsilon=(\varepsilon_1,\ldots,\varepsilon_6)$ define
 $$
@@ -136,7 +138,7 @@ $$
 \operatorname{Tr}(\tau_\varepsilon)
 =\sum_{k=0}^6(-1)^{k(k-1)/2}c_k(r),
 $$
-and direct evaluation gives
+and evaluation gives
 $$
 \begin{array}{c|ccccccc}
 r&0&1&2&3&4&5&6\\ \hline
@@ -155,11 +157,7 @@ $$
 
 For $r=6$, this is $\tau_-$, whose Gram determinant is square by Step 2, so it is split $+$ and conjugate to transpose.
 
-For $r=2$, let $T$ be the four positive-sign indices; for $r=3$, let $T$ be the three negative-sign indices. Put
-$$
-u=\prod_{i\in T}e_i.
-$$
-The anticommutation relations give in both cases
+For $r=2$, let $T$ be the four positive-sign indices; for $r=3$, let $T$ be the three negative-sign indices. Put $u=\prod_{i\in T}e_i$. The anticommutation relations give in both cases
 $$
 \tau_\varepsilon=\operatorname{Int}(u)\circ\tau_-,\qquad
 \tau_-(u)=u.
@@ -169,7 +167,7 @@ $$
 \det(H_8U^{-1})\equiv\det(H_8)
 \pmod{(\mathbb F_p^\times)^2}.
 $$
-Thus every orthogonal case $r=2,3,6$ is split $+$ and therefore conjugate to transpose. The admissible sign patterns are exactly
+Thus every orthogonal case $r=2,3,6$ is split $+$ and therefore conjugate to transpose. No other sign pattern is admissible because the remaining involutions are symplectic. Hence the number of admissible sign patterns is
 $$
 \binom62+\binom63+\binom66=15+20+1=36.
 $$
@@ -200,7 +198,7 @@ $$
 \mathrm{GO}_8^+(\mathbb F_p)/(\mathbb F_p^\times I_8).
 $$
 
-The multiplier factor must be retained. In a hyperbolic basis with Gram matrix
+The multiplier factor is essential. In a hyperbolic basis with Gram matrix
 $$
 J_8=\begin{pmatrix}0&I_4\\I_4&0\end{pmatrix},
 $$
@@ -220,7 +218,7 @@ After quotienting by the scalar subgroup of order $p-1$,
 $$
 |\mathrm{PGO}_8^+|=|\mathrm O_8^+|.
 $$
-In particular one must not replace $\mathrm{PGO}_8^+$ by $\mathrm O_8^+/\{\pm I\}$; that would miss a factor $2$.
+Thus one must not replace $\mathrm{PGO}_8^+$ by $\mathrm O_8^+/\{\pm I\}$; doing so loses a factor $2$.
 
 Therefore the number of normalized sextuples over all admissible sign patterns is
 $$
