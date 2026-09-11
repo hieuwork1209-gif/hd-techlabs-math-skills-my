@@ -1,170 +1,156 @@
 ## Steps
 
-Step 1: Symmetrize the gains and remove the common scalar decay
+Step 1: Reduce the almost-sure exponent to an angular diffusion
 Let
 $$
-A_1=\begin{pmatrix}-1&a\\0&-1\end{pmatrix},
+A=\begin{pmatrix}-1&a\\a&-1\end{pmatrix},
 \qquad
-A_2=\begin{pmatrix}-1&0\\b&-1\end{pmatrix},
+J=\begin{pmatrix}0&-1\\1&0\end{pmatrix},
 \qquad a,b>0,
 $$
-and let the switching mode be the two-state continuous-time Markov chain that jumps from either state to the other at rate $1$.
-
-Put
+and consider the Stratonovich equation
 $$
-p=\sqrt{ab},
+dZ_t=A Z_t\,dt+bJZ_t\circ dW_t.
+$$
+For a nonzero solution write
+$$
+Z_t=r_t(\cos\theta_t,\sin\theta_t)^T.
+$$
+Because Stratonovich calculus obeys the ordinary chain rule and $J$ is the infinitesimal rotation matrix,
+$$
+d\log r_t=(-1+a\sin2\theta_t)\,dt,
+$$
+while
+$$
+d\theta_t=a\cos2\theta_t\,dt+b\,dW_t.
+$$
+Thus the top almost-sure Lyapunov exponent is obtained by averaging $-1+a\sin2\theta$ against the stationary law of the angular diffusion.
+
+Step 2: Find the stationary angular law and the almost-sure exponent
+The angular diffusion on the circle has generator
+$$
+\mathcal L f=a\cos2\theta\,f'(\theta)+\frac{b^2}{2}f''(\theta).
+$$
+Since $b>0$, it is elliptic and has a unique invariant probability density. The stationary Fokker-Planck equation has zero periodic probability flux, and therefore
+$$
+\rho(\theta)=\frac1{Z_q}e^{q\sin2\theta},
 \qquad
-D=\operatorname{diag}(\sqrt b,\sqrt a).
+q=\frac{a}{b^2}.
 $$
-With $y=Dz$,
+Indeed,
 $$
-\dot y=B_{\sigma(t)}y,
-\qquad
-B_1=\begin{pmatrix}-1&p\\0&-1\end{pmatrix},
-\qquad
-B_2=\begin{pmatrix}-1&0\\p&-1\end{pmatrix}.
+\frac{\rho'}{\rho}=2q\cos2\theta=\frac{2a}{b^2}\cos2\theta,
 $$
-Thus the almost-sure exponential growth rate depends on $(a,b)$ only through $p=\sqrt{ab}$.
-
-Now write
+so
 $$
-y(t)=e^{-t}x(t).
-$$
-Then
-$$
-\dot x=pE_{\sigma(t)}x,
-\qquad
-E_1=\begin{pmatrix}0&1\\0&0\end{pmatrix},
-\qquad
-E_2=\begin{pmatrix}0&0\\1&0\end{pmatrix}.
-$$
-If $\lambda_x$ denotes the top almost-sure exponential growth rate of this shear system, then the top exponent of the original system is
-$$
-\Lambda(p)=-1+\lambda_x.
+a\cos2\theta\,\rho-\frac{b^2}{2}\rho'=0.
 $$
 
-Step 2: Find the stationary law of the projective process
-Start with a vector in the positive quadrant and set
+Using the modified Bessel functions of the first kind,
 $$
-r=\frac{x_2}{x_1}>0.
+\int_0^{2\pi}e^{q\sin2\theta}\,d\theta=2\pi I_0(q),
 $$
-In mode $1$,
+and differentiation with respect to $q$ gives
 $$
-\dot r=-pr^2,
-$$
-while in mode $2$,
-$$
-\dot r=p.
-$$
-Hence $(r,\sigma)$ is a piecewise-deterministic Markov process on $(0,\infty)\times\{1,2\}$.
-
-Let $f_1,f_2$ be stationary densities for $r$ conditional on the two modes. The stationary transport equations are
-$$
-0=\frac d{dr}(pr^2f_1)-f_1+f_2,
-$$
-$$
-0=-\frac d{dr}(pf_2)+f_1-f_2.
-$$
-Adding them shows that the stationary probability flux is constant. Integrability at $0$ and $\infty$ forces this constant to be zero, so
-$$
-f_2=r^2f_1.
-$$
-Substituting into the first equation and writing $g=r^2f_1$ gives
-$$
-p g'+\left(1-\frac1{r^2}\right)g=0.
-$$
-Therefore
-$$
-g(r)=C\exp\left[-\frac1p\left(r+\frac1r\right)\right],
-$$
-and hence
-$$
-f_1(r)=Cr^{-2}\exp\left[-\frac1p\left(r+\frac1r\right)\right],
-$$
-$$
-f_2(r)=C\exp\left[-\frac1p\left(r+\frac1r\right)\right].
-$$
-These densities are integrable at both endpoints, so after normalization they give the unique invariant probability law of the irreducible projective process.
-
-For $q>0$, use the integral representation
-$$
-K_\nu(q)=\frac12\int_0^\infty r^{\nu-1}
-\exp\left[-\frac q2\left(r+\frac1r\right)\right]dr
-$$
-for the modified Bessel function of the second kind. Since $K_{-1}=K_1$,
-$$
-1=C\int_0^\infty(1+r^{-2})e^{-(r+1/r)/p}\,dr
-=4C K_1(2/p).
-$$
-Thus
-$$
-C=\frac1{4K_1(2/p)}.
-$$
-
-Step 3: Compute the top Lyapunov exponent
-For either switching mode,
-$$
-\frac d{dt}\log\|x\|_2
-=\frac{x^T\dot x}{\|x\|_2^2}
-=p\frac{x_1x_2}{x_1^2+x_2^2}
-=p\frac{r}{1+r^2}.
-$$
-The projective process is ergodic, so its time average equals the stationary average almost surely. Therefore
-$$
-\lambda_x
-=p\int_0^\infty\frac{r}{1+r^2}(f_1(r)+f_2(r))\,dr.
-$$
-Using
-$$
-\frac{r}{1+r^2}(r^{-2}+1)=\frac1r,
-$$
-we get
-$$
-\lambda_x
-=pC\int_0^\infty r^{-1}e^{-(r+1/r)/p}\,dr
-=2pC K_0(2/p).
+\int_0^{2\pi}\sin2\theta\,e^{q\sin2\theta}\,d\theta=2\pi I_1(q).
 $$
 Hence
 $$
-\lambda_x
-=\frac p2\frac{K_0(2/p)}{K_1(2/p)},
+\int_0^{2\pi}\sin2\theta\,\rho(\theta)\,d\theta
+=\frac{I_1(q)}{I_0(q)}.
 $$
-and so
+Ergodicity of the angular diffusion now yields the almost-sure top exponent
 $$
-\Lambda(p)
-=-1+\frac p2\frac{K_0(2/p)}{K_1(2/p)}.
+\Lambda_{\rm as}(a,b)
+=-1+a\frac{I_1(a/b^2)}{I_0(a/b^2)}.
+$$
+Therefore the origin is almost surely exponentially stable exactly when
+$$
+aI_1(a/b^2)<I_0(a/b^2).
+$$
+Because the angular diffusion is nondegenerate, the same top exponent applies to every deterministic nonzero initial direction.
+
+Step 3: Convert the Stratonovich equation to Itô form
+Since $J^2=-I$, the Itô form is
+$$
+dZ_t=\left(A-\frac{b^2}{2}I\right)Z_t\,dt+bJZ_t\,dW_t.
+$$
+Let
+$$
+M(t)=\mathbb E[Z_tZ_t^T].
+$$
+Then
+$$
+\dot M=\widetilde A M+M\widetilde A^T+b^2J M J^T,
+\qquad
+\widetilde A=A-\frac{b^2}{2}I.
+$$
+An orthogonal change of coordinates diagonalizes $A$ to
+$$
+\operatorname{diag}(-1+a,-1-a).
+$$
+Under the same orthogonal change, $J$ is replaced by $\pm J$, which leaves $J M J^T$ unchanged.
+
+Step 4: Determine the exact mean-square stability threshold
+In the diagonal coordinates write
+$$
+x=\mathbb E[Y_1^2],
+\qquad
+y=\mathbb E[Y_1Y_2],
+\qquad z=\mathbb E[Y_2^2].
+$$
+The second moments satisfy
+$$
+\frac d{dt}\begin{pmatrix}x\\z\end{pmatrix}
+=
+\begin{pmatrix}
+-2+2a-b^2&b^2\\
+b^2&-2-2a-b^2
+\end{pmatrix}
+\begin{pmatrix}x\\z\end{pmatrix},
+$$
+and
+$$
+\dot y=(-2-2b^2)y.
+$$
+The larger eigenvalue of the $2\times2$ block is
+$$
+\lambda_{\rm ms}
+=-2-b^2+\sqrt{4a^2+b^4}.
+$$
+Thus mean-square exponential stability holds exactly when
+$$
+\sqrt{4a^2+b^4}<2+b^2.
+$$
+Both sides are positive, so squaring gives
+$$
+4a^2+b^4<4+4b^2+b^4,
+$$
+i.e.
+$$
+a^2<1+b^2.
+$$
+At $a^2=1+b^2$ the second-moment system has a zero eigenvalue, so exponential decay already fails. Hence the system is not mean-square exponentially stable exactly when
+$$
+a^2\ge1+b^2.
 $$
 
-Step 4: Relate the top exponent to every initial state
-Every fundamental matrix of the $x$-system has nonnegative entries. For any such matrix $M$,
+Step 5: Combine the two stability notions
+We need almost-sure exponential stability but failure of mean-square exponential stability. Combining Steps 2 and 4 gives
 $$
-\|M\|_1\le \|M(1,1)^T\|_1.
+a,b>0,
+\qquad
+a^2\ge1+b^2,
+\qquad
+aI_1(a/b^2)<I_0(a/b^2).
 $$
-Thus the exponential growth rate obtained from a positive initial vector also controls the operator norm and hence every deterministic initial state. Conversely, a positive initial vector realizes the top exponent. The initial Markov mode affects only a transient because the two-state chain is irreducible.
-
-Therefore the original system is almost surely exponentially stable exactly when
-$$
-\Lambda(p)<0.
-$$
-At equality the top exponent is zero, so no strictly negative almost-sure exponential rate exists; if $\Lambda(p)>0$, a positive initial state has positive almost-sure growth exponent.
-
-Step 5: State the exact parameter region
-Since $p=\sqrt{ab}$, the condition $\Lambda(p)<0$ is
-$$
-\sqrt{ab}\,K_0\left(\frac{2}{\sqrt{ab}}\right)
-<2K_1\left(\frac{2}{\sqrt{ab}}\right).
-$$
-Thus the exact region is
-$$
-\left\{(a,b):a,b>0,\ \sqrt{ab}K_0(2/\sqrt{ab})<2K_1(2/\sqrt{ab})\right\}.
-$$
-Final Answer: $\boxed{\{(a,b):a,b>0,\sqrt{ab}K_0(2/\sqrt{ab})<2K_1(2/\sqrt{ab})\}}$
+Final Answer: $\boxed{\{(a,b):a,b>0,a^2\ge1+b^2,\ aI_1(a/b^2)<I_0(a/b^2)\}}$
 
 ---
 
 ## Answer
 
-$\{(a,b):a,b>0,\sqrt{ab}K_0(2/\sqrt{ab})<2K_1(2/\sqrt{ab})\}$
+$\{(a,b):a,b>0,a^2\ge1+b^2,\ aI_1(a/b^2)<I_0(a/b^2)\}$
 
 ---
 
@@ -178,10 +164,10 @@ $\{(a,b):a,b>0,\sqrt{ab}K_0(2/\sqrt{ab})<2K_1(2/\sqrt{ab})\}$
 
 ## Solution Concepts
 
-- Markov jump linear systems
-- almost-sure exponential stability
-- projective piecewise-deterministic Markov processes
-- stationary densities
+- Stratonovich linear stochastic systems
+- almost-sure Lyapunov exponents
+- invariant angular diffusions
+- mean-square stability
 - modified Bessel functions
 
 ---
