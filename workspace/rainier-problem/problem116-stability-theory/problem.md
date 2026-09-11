@@ -2,22 +2,26 @@
 
 ## LaTeX (Normalized)
 
-Let $a,b>0$ and define
+Let $a,b>0$, let $W_t$ be a standard one-dimensional Brownian motion, and define
 $$
-A_1=\begin{pmatrix}-1&a\\0&-1\end{pmatrix},
+A=\begin{pmatrix}-1&a\\a&-1\end{pmatrix},
 \qquad
-A_2=\begin{pmatrix}-1&0\\b&-1\end{pmatrix}.
+J=\begin{pmatrix}0&-1\\1&0\end{pmatrix}.
 $$
-Let $\sigma(t)$ be the continuous-time Markov chain on $\{1,2\}$ that jumps from either state to the other at rate $1$. Consider
+Consider the linear Stratonovich stochastic differential equation
 $$
-\dot z(t)=A_{\sigma(t)}z(t),
-\qquad z(t)\in\mathbb R^2.
+dZ_t=A Z_t\,dt+bJZ_t\circ dW_t,
+\qquad Z_t\in\mathbb R^2.
 $$
-Determine all pairs $(a,b)$ for which the origin is almost surely exponentially stable; that is, there exists $\gamma>0$, depending only on $(a,b)$, such that for every deterministic initial state $z(0)\ne0$ and every initial mode,
+Determine all pairs $(a,b)$ for which the origin is almost surely exponentially stable but is not mean-square exponentially stable. Here almost-sure exponential stability means that there exists $\gamma>0$ such that for every deterministic $Z_0\ne0$,
 $$
-\limsup_{t\to\infty}\frac1t\log\frac{\|z(t)\|}{\|z(0)\|}\le-\gamma
+\limsup_{t\to\infty}\frac1t\log\frac{\|Z_t\|}{\|Z_0\|}\le-\gamma
 $$
-almost surely.
+almost surely, while mean-square exponential stability means that there exist $C,\gamma>0$ such that
+$$
+\mathbb E\|Z_t\|^2\le Ce^{-\gamma t}\|Z_0\|^2
+$$
+for every deterministic $Z_0$ and every $t\ge0$.
 
 ---
 
@@ -34,4 +38,4 @@ almost surely.
 
 ## Domain Explanation
 
-This is an almost-sure stability problem for a Markov jump linear system. After removing the common scalar decay, the top Lyapunov exponent is determined by the stationary law of a one-dimensional projective piecewise-deterministic Markov process, leading to an exact criterion involving modified Bessel functions.
+This problem compares two distinct stochastic stability notions for a planar linear Stratonovich system. The almost-sure exponent is determined by the invariant law of an angular diffusion, while mean-square stability is governed by a closed second-moment system; the required region is where these two criteria separate.
