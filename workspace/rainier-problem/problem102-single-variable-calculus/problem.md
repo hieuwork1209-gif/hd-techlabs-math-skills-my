@@ -2,19 +2,11 @@
 
 ## LaTeX (Normalized)
 
-Let
+Let $\Gamma$ be the toroidal $5\times5$ grid with vertex set
 $$
-\mathbb F=\mathbb F_{2^{17}},
+(\mathbb Z/5\mathbb Z)^2,
 $$
-and let
-$$
-\operatorname{Tr}(a)=a+a^2+a^{2^2}+\cdots+a^{2^{16}}\in\mathbb F_2
-$$
-be the absolute trace. Evaluate exactly
-$$
-K=\sum_{x\in\mathbb F}(-1)^{\operatorname{Tr}(x^7+x^3)}.
-$$
-For grading, write the final answer as $K=\cdots$.
+where two vertices are adjacent when they differ by $\pm1$ in exactly one coordinate. Determine the number of subsets $A$ of the vertex set for which the induced subgraph $\Gamma[A]$ has an even number of edges.
 
 ---
 
@@ -22,8 +14,8 @@ For grading, write the final answer as $K=\cdots$.
 
 | Field | Value |
 |---|---|
-| **Domain** | Number Theory |
-| **Sub-domain** | Modular arithmetic and congruences |
+| **Domain** | Algebra |
+| **Sub-domain** | Linear algebra |
 | **Problem Type** | Exact computation |
 | **Answer Type** | Exact symbolic expression |
 
@@ -31,4 +23,4 @@ For grading, write the final answer as $K=\cdots$.
 
 ## Domain Explanation
 
-The problem asks for an exact additive-character sum over a binary finite field. Interpreting the trace condition as an Artin-Schreier point count produces a genus-three curve; counts over the first three extensions determine its degree-six Frobenius polynomial, whose recurrence then yields the required seventeenth-extension value. The essential arithmetic is finite-field and characteristic-two in nature, so the closest available classification is Number Theory with sub-domain Modular arithmetic and congruences.
+The parity of the induced-edge count is a quadratic form over $\mathbb F_2$. Its polar form is the adjacency bilinear form of the toroidal grid. The exact count is obtained by determining the radical through Fourier modes on the finite torus and then identifying the induced nondegenerate quadratic form as hyperbolic. The core work is finite-dimensional linear algebra over $\mathbb F_2$.
