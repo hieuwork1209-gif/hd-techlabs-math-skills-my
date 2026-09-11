@@ -1,9 +1,9 @@
 {
   "problem": "problem123",
   "branch": "adversary/problem123",
-  "problem_path": "workspace/rainier-problem/problem123-elementary-number-theory/problem.md",
-  "problem_blob_sha": "4f68bc3891d858d8ed8f91d9d61190a03d68ca54",
-  "source_commit_sha": "67f9fa7d90e95d056a12837360f6ce47cd1885d5",
+  "problem_path": "workspace/rainier-problem/problem123-algebraic-geometry/problem.md",
+  "problem_blob_sha": "bfcaebb18d58b0a6d87e443639a5a1463545b0b1",
+  "source_commit_sha": "b019371974eb3445f2db2ad85a61cf63995c177b",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-11T13:36:36+00:00",
-  "result_file": "solver-results/problem123/4f68bc3891d8.json"
+  "completed_at": "2026-09-11T13:50:33+00:00",
+  "result_file": "solver-results/problem123/bfcaebb18d58.json"
 }
