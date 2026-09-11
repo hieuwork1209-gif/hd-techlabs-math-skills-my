@@ -1,32 +1,32 @@
 ## Steps
 
-Step 1: Reduce the urn to a one-dimensional Markov update
+Step 1: Reduce the urn to the red-count chain
 
-Let $R_n$ and $B_n$ be the red and blue counts after $n$ draws, starting from
+Let $R_n$ and $B_n$ be the red and blue counts after $n$ draws, with
 $$
 R_0=B_0=1.
 $$
-Every draw adds exactly two balls, so the total count is deterministic:
+Every draw adds exactly two balls, so
 $$
-T_n=R_n+B_n=2n+2.
+R_n+B_n=2n+2.
 \tag{1}
 $$
-Conditional on the history $\mathcal F_n$, the red count changes only when a red ball is drawn. Hence
+Conditional on the history $\mathcal F_n$, the red count increases by one exactly when a red ball is drawn. Hence
 $$
 P(R_{n+1}=R_n+1\mid\mathcal F_n)=\frac{R_n}{2n+2},
 $$
 $$
-P(R_{n+1}=R_n\mid\mathcal F_n)=1-\frac{R_n}{2n+2}.
+P(R_{n+1}=R_n\mid\mathcal F_n)=1-\frac{R_n}{2n+2},
 \tag{2}
 $$
-In particular,
+and therefore
 $$
 E(R_{n+1}\mid\mathcal F_n)
 =R_n\left(1+\frac1{2n+2}\right).
 \tag{3}
 $$
 
-Step 2: Construct the normalization that gives almost-sure convergence
+Step 2: Obtain an almost-sure $\sqrt n$ scaling limit
 
 Define
 $$
@@ -34,29 +34,29 @@ a_0=1,
 \qquad
 a_n=\prod_{j=0}^{n-1}\left(1+\frac1{2j+2}\right).
 $$
-Equation (3) shows that
+By (3),
 $$
-M_n=\frac{R_n}{a_n}
+M_n:=\frac{R_n}{a_n}
 $$
-is a nonnegative martingale. Therefore $M_n$ converges almost surely to a finite random variable $M_\infty$.
+is a nonnegative martingale, so $M_n$ converges almost surely to a finite random variable $M_\infty$.
 
-The product can be written exactly as
+The product is
 $$
 a_n
 =\prod_{j=0}^{n-1}\frac{j+3/2}{j+1}
 =\frac{\Gamma(n+3/2)}{\Gamma(3/2)\Gamma(n+1)}.
 $$
-Dividing the usual Stirling expansions gives, for fixed $c,d$,
+For fixed $c,d$, Stirling's formula gives
 $$
 \frac{\Gamma(n+c)}{\Gamma(n+d)}
 =n^{c-d}(1+O(n^{-1})).
 \tag{4}
 $$
-Applying (4) with $(c,d)=(3/2,1)$ and using $\Gamma(3/2)=\sqrt\pi/2$ yields
+Using $\Gamma(3/2)=\sqrt\pi/2$,
 $$
 \frac{a_n}{\sqrt n}\longrightarrow\frac2{\sqrt\pi}.
 $$
-Consequently
+Thus
 $$
 \frac{R_n}{\sqrt n}\longrightarrow
 W:=\frac2{\sqrt\pi}M_\infty
@@ -64,7 +64,7 @@ W:=\frac2{\sqrt\pi}M_\infty
 \tag{5}
 $$
 
-Step 3: Compute every moment of the limit from a rising-factorial identity
+Step 3: Identify the law of the limit
 
 For an integer $k\ge1$, write
 $$
@@ -75,7 +75,7 @@ $$
 (r+1)^{\overline{k}}
 =r^{\overline{k}}\frac{r+k}{r}.
 $$
-Using (2), conditional on $R_n=r$ we obtain
+Using (2), conditional on $R_n=r$,
 $$
 \begin{aligned}
 E(R_{n+1}^{\overline{k}}\mid R_n=r)
@@ -86,128 +86,206 @@ E(R_{n+1}^{\overline{k}}\mid R_n=r)
 \left(1+\frac{k}{2n+2}\right).
 \end{aligned}
 $$
-Iterating from $R_0=1$, for which $1^{\overline{k}}=k!$, gives
+Since $R_0=1$ and $1^{\overline{k}}=k!$, iteration yields
 $$
 E R_n^{\overline{k}}
 =k!\prod_{j=0}^{n-1}\left(1+\frac{k}{2j+2}\right)
 =k!\frac{\Gamma(n+1+k/2)}{\Gamma(1+k/2)\Gamma(n+1)}.
 \tag{6}
 $$
-Using (4),
+By (4),
 $$
 \frac{E R_n^{\overline{k}}}{n^{k/2}}
 \longrightarrow
 \frac{k!}{\Gamma(1+k/2)}.
 \tag{7}
 $$
-For $k=1$, $x^{\overline1}=x$. For $k\ge2$,
+Because
 $$
-x^{\overline{k}}=x^k+O_k(x^{k-1}+1),
+x^{\overline{k}}=x^k+O_k(x^{k-1}+1)
 $$
-and (6) with $k-1$ gives $E R_n^{k-1}=O(n^{(k-1)/2})$. Therefore replacing the rising factorial by $R_n^k$ does not change the limit in (7), and
+and (6) with $k-1$ gives $E R_n^{k-1}=O(n^{(k-1)/2})$, replacing the rising factorial by $R_n^k$ does not change the limit. Also (6) with $k+1$ gives a uniform bound on the $(k+1)$st moments of $R_n/\sqrt n$, so the $k$th powers are uniformly integrable. Combining this with (5),
 $$
-E\left(\frac{R_n}{\sqrt n}\right)^k
-\longrightarrow
-\frac{k!}{\Gamma(1+k/2)}.
+E W^k=\frac{k!}{\Gamma(1+k/2)}.
 \tag{8}
 $$
-Moreover (6) with $k+1$ gives a uniform bound on the $(k+1)$st moments of $R_n/\sqrt n$. Hence the $k$th powers are uniformly integrable. Combining this with the almost-sure convergence (5) yields
-$$
-E W^k=\frac{k!}{\Gamma(1+k/2)}
-\qquad(k\ge1).
-\tag{9}
-$$
-
-Step 4: Identify the limiting law and prove it is nonzero
 
 Let $Z\sim N(0,2)$. The density of $|Z|$ on $(0,\infty)$ is
 $$
-\frac1{\sqrt\pi}e^{-x^2/4}.
+\frac1{\sqrt\pi}e^{-x^2/4},
 $$
-Therefore
+so
 $$
 E|Z|^k
-=\frac1{\sqrt\pi}\int_0^\infty x^k e^{-x^2/4}\,dx
 =\frac{2^k\Gamma((k+1)/2)}{\sqrt\pi}.
 $$
-The gamma duplication identity
+The duplication identity
 $$
 \Gamma\!\left(\frac{k+1}{2}\right)
 \Gamma\!\left(1+\frac k2\right)
 =2^{-k}\sqrt\pi\,\Gamma(k+1)
 $$
-shows that this equals the right-hand side of (9).
+shows that these moments equal (8).
 
-To justify uniqueness from the moments, use the precise Carleman criterion: a probability law with moments $m_j$ is moment-determinate if
+For uniqueness, Carleman's criterion says that a law with moments $m_j$ is moment-determinate if
 $$
 \sum_{j=1}^\infty m_{2j}^{-1/(2j)}=\infty.
 $$
 Here
 $$
-m_{2j}=E W^{2j}=\frac{(2j)!}{j!}.
+m_{2j}=\frac{(2j)!}{j!},
 $$
-Stirling's formula gives
+and Stirling's formula gives
 $$
 m_{2j}^{-1/(2j)}\sim\frac{\sqrt e}{2\sqrt j},
 $$
-so the displayed series diverges. Hence (9) determines the law, and
+so the series diverges. Therefore
 $$
-W\overset d=|N(0,2)|.
-\tag{10}
-$$
-In particular,
-$$
+W\overset d=|N(0,2)|,
+\qquad
 P(W>0)=1.
-\tag{11}
+\tag{9}
 $$
 
-Step 5: Invert the deterministic-time asymptotic at the hitting times
+Step 4: Invert the global scaling at the hitting times
 
 For $m\ge2$, let
 $$
 \tau_m=\inf\{n\ge0:R_n=m\}.
 $$
-By (5) and (11), $R_n\to\infty$ almost surely. Since $R_n$ increases only by $0$ or $1$, every level is reached, so
-$$
-P(\tau_m<\infty)=1.
-$$
-Also $\tau_m\ge m-1$, hence $\tau_m\to\infty$ almost surely as $m\to\infty$.
+By (5) and (9), $R_n\to\infty$ almost surely. Since every increment of $R_n$ is either $0$ or $1$, every positive integer level is hit almost surely, and $R_{\tau_m}=m$.
 
-On the almost-sure event where (5) holds, evaluate it along the random subsequence $n=\tau_m$. Since $R_{\tau_m}=m$,
+Also $\tau_m\to\infty$ almost surely. Evaluating (5) along the random subsequence $n=\tau_m$ gives
 $$
 \frac{m}{\sqrt{\tau_m}}
 =\frac{R_{\tau_m}}{\sqrt{\tau_m}}
-\longrightarrow W.
-$$
-Therefore
-$$
-\frac{m^2}{\tau_m}\longrightarrow W^2
+\longrightarrow W
 \qquad\text{almost surely.}
+$$
+Hence, with
+$$
+X_m:=\frac{m^2}{\tau_m},
+$$
+we have
+$$
+X_m\longrightarrow W^2
+\qquad\text{almost surely.}
+\tag{10}
+$$
+
+Step 5: Analyze the next-level spacing conditionally on the random clock
+
+Set
+$$
+G_m:=\tau_{m+1}-\tau_m,
+\qquad
+V_m:=\frac{mG_m}{\tau_m}
+=m\left(\frac{\tau_{m+1}}{\tau_m}-1\right).
+\tag{11}
+$$
+Fix $m$ and condition on $\tau_m=n$. Until the next red draw occurs, the red count stays equal to $m$. Therefore, for every integer $\ell\ge0$,
+$$
+P(G_m>\ell\mid\tau_m=n)
+=\prod_{j=0}^{\ell-1}
+\left(1-\frac{m}{2(n+j)+2}\right).
 \tag{12}
 $$
 
-Step 6: Evaluate the requested Laplace transform
-
-Fix $t\ge0$. Because $0\le e^{-t m^2/\tau_m}\le1$, bounded convergence and (12) give
+We now show that, on the natural scale determined by $n$, this waiting time has an asymptotically universal law. Fix constants $0<a<b<\infty$ and $C>0$, assume
 $$
-\lim_{m\to\infty}E\exp\!\left(-t\frac{m^2}{\tau_m}\right)
-=E e^{-tW^2}.
+a m^2\le n\le b m^2,
 $$
-Using (10),
+and for $0\le x\le C$ put
+$$
+\ell=\left\lfloor\frac{xn}{m}\right\rfloor.
+$$
+Write
+$$
+p_j=\frac{m}{2(n+j)+2}.
+$$
+Since $j\le\ell=O(n/m)$, uniformly over the stated ranges,
+$$
+p_j=O(m^{-1}),
+\qquad
+\sum_{j=0}^{\ell-1}p_j^2=O(m^{-1}).
+\tag{13}
+$$
+Also
 $$
 \begin{aligned}
-E e^{-tW^2}
-&=\frac1{\sqrt\pi}\int_0^\infty
-\exp\!\left[-\left(t+\frac14\right)x^2\right]dx\\
-&=\frac1{\sqrt{1+4t}}.
+\sum_{j=0}^{\ell-1}p_j
+&=\frac m2\sum_{j=0}^{\ell-1}\frac1{n+j+1}\\
+&=\frac m2\left(\frac{\ell}{n}+O\left(\frac{\ell^2}{n^2}+\frac{\ell}{n^2}\right)\right)\\
+&=\frac x2+O(m^{-1}),
+\end{aligned}
+\tag{14}
+$$
+again uniformly. Because $\log(1-y)=-y+O(y^2)$ uniformly for $0\le y\le1/2$, equations (12)-(14) imply
+$$
+P(V_m>x\mid\tau_m=n)
+=e^{-x/2+O(m^{-1})}
+\tag{15}
+$$
+uniformly for $n/m^2\in[a,b]$ and $x\in[0,C]$.
+
+Thus the conditional law of $V_m$ converges uniformly on such clock windows to an exponential law of rate $1/2$. Equivalently, for every $u\ge0$,
+$$
+\phi_{m,u}(n)
+:=E(e^{-uV_m}\mid\tau_m=n)
+\longrightarrow\frac1{1+2u}
+\tag{16}
+$$
+uniformly for $n/m^2\in[a,b]$. For $u>0$, this follows directly from
+$$
+E(e^{-uV})
+=1-u\int_0^\infty e^{-ux}P(V>x)\,dx,
+$$
+using (15) on $[0,C]$ and then letting $C\to\infty$; for $u=0$, (16) is immediate.
+
+Step 6: Couple the local spacing with the global limit and evaluate the transform
+
+By (10), $X_m=m^2/\tau_m\to W^2$ almost surely, where $0<W<\infty$ almost surely. Hence for every $\varepsilon>0$ there exist $0<a<b<\infty$ such that
+$$
+P\left(a\le\frac{\tau_m}{m^2}\le b\right)\ge1-\varepsilon
+$$
+for all sufficiently large $m$.
+Together with the uniform convergence (16), this gives
+$$
+\phi_{m,u}(\tau_m)
+\longrightarrow\frac1{1+2u}
+$$
+in probability. Since $0\le\phi_{m,u}\le1$, the convergence also holds in $L^1$.
+
+Using conditional expectation and (11),
+$$
+\begin{aligned}
+&E\exp\!\left[-t\frac{m^2}{\tau_m}
+-u m\left(\frac{\tau_{m+1}}{\tau_m}-1\right)\right]\\
+&\qquad=E\left[e^{-tX_m}\phi_{m,u}(\tau_m)\right]\\
+&\qquad=\frac1{1+2u}E(e^{-tX_m})+o(1).
 \end{aligned}
 $$
-Thus the limit exists for every $t\ge0$ and has the claimed exact form.
+By (10) and bounded convergence,
+$$
+E(e^{-tX_m})\longrightarrow E(e^{-tW^2}).
+$$
+Using (9), $W^2\overset d=Z^2$ with $Z\sim N(0,2)$, and therefore
+$$
+E(e^{-tW^2})
+=\frac1{\sqrt{1+4t}}.
+$$
+Consequently
+$$
+\lim_{m\to\infty}
+E\exp\!\left[-t\frac{m^2}{\tau_m}
+-u m\left(\frac{\tau_{m+1}}{\tau_m}-1\right)\right]
+=\frac1{(1+2u)\sqrt{1+4t}}.
+$$
 
 ## Solution Concepts
 
-- Martingale normalization for a triangular balanced urn.
-- Exact rising-factorial moments and moment-determinate identification of the scaling limit.
-- Inversion of an almost-sure scaling law through first hitting times.
+- Martingale normalization and rising-factorial moments for a triangular balanced urn.
+- Inversion of the global red-count scaling at first hitting times.
+- Conditional local-hazard asymptotics yielding an exponential successive-level spacing independent of the global limit.
 
-Final Answer: $\displaystyle \frac1{\sqrt{1+4t}}$.
+Final Answer: $\displaystyle \frac1{(1+2u)\sqrt{1+4t}}$.
