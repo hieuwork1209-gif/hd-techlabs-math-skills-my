@@ -4,15 +4,15 @@
 
 Let
 $$
-\mathbb F=\mathbb F_{2^{11}},
+\mathbb F=\mathbb F_{2^{17}},
 $$
 and let
 $$
-\operatorname{Tr}(a)=a+a^2+a^{2^2}+\cdots+a^{2^{10}}\in\mathbb F_2
+\operatorname{Tr}(a)=a+a^2+a^{2^2}+\cdots+a^{2^{16}}\in\mathbb F_2
 $$
 be the absolute trace. Evaluate exactly
 $$
-K=\sum_{x\in\mathbb F^\times}(-1)^{\operatorname{Tr}(x+x^{-1})}.
+K=\sum_{x\in\mathbb F}(-1)^{\operatorname{Tr}(x^7+x^3)}.
 $$
 For grading, write the final answer as $K=\cdots$.
 
@@ -31,4 +31,4 @@ For grading, write the final answer as $K=\cdots$.
 
 ## Domain Explanation
 
-The problem asks for an exact binary Kloosterman character sum over a finite field. The trace condition converts the sum into the point count of an elliptic curve over $\mathbb F_{2^{11}}$, and the required exact value follows from the Frobenius recurrence determined by the curve over $\mathbb F_2$. The essential arithmetic is finite-field and characteristic-two in nature, so the closest available classification is Number Theory with sub-domain Modular arithmetic and congruences.
+The problem asks for an exact additive-character sum over a binary finite field. Interpreting the trace condition as an Artin-Schreier point count produces a genus-three curve; counts over the first three extensions determine its degree-six Frobenius polynomial, whose recurrence then yields the required seventeenth-extension value. The essential arithmetic is finite-field and characteristic-two in nature, so the closest available classification is Number Theory with sub-domain Modular arithmetic and congruences.
