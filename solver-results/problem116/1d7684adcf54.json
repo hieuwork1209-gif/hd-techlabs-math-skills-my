@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "0a75ca1f83a6df76dfcc86e88a5b60d019e4eba0",
+  "problem_blob_sha": "1d7684adcf5405149647e61f2f4155b4799133db",
+  "statement_sha256": "0bf08a6ca6554ed552a1079e13e5cfb65a8b32736d57c70f2227ba4d7d2ceb01",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T07:13:58+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nA_i=-I+N_i,\\qquad \nN_1=\\begin{pmatrix}0&a\\\\0&0\\end{pmatrix},\\quad\nN_2=\\begin{pmatrix}0&0\\\\ b&0\\end{pmatrix}.\n\\]\nWrite \\(z(t)=e^{-t}x(t)\\). Then \\(x\\) satisfies\n\\[\n\\dot x(t)=N_{\\sigma(t)}x(t),\n\\]\nso\n\\[\n\\mathbb E\\|z(t)\\|^2=e^{-2t}\\mathbb E\\|x(t)\\|^2.\n\\]\nThus the original system is mean-square exponentially stable exactly when the second moment of the \\(x\\)-system grows at rate strictly less than \\(2\\).\n\nFor each mode define conditional second moments\n\\[\nu_i=\\mathbb E[x_1^2\\mathbf 1_{\\sigma=i}],\\qquad\nv_i=\\mathbb E[x_1x_2\\mathbf 1_{\\sigma=i}],\\qquad\nw_i=\\mathbb E[x_2^2\\mathbf 1_{\\sigma=i}].\n\\]\nUsing the jump rates \\(1\\) between the two modes gives\n\\[\n\\begin{aligned}\n\\dot u_1&=2av_1-u_1+u_2,&\n\\dot v_1&=aw_1-v_1+v_2,&\n\\dot w_1&=-w_1+w_2,\\\\\n\\dot u_2&=-u_2+u_1,&\n\\dot v_2&=bu_2-v_2+v_1,&\n\\dot w_2&=2bv_2-w_2+w_1.\n\\end{aligned}\n\\]\nLet \\(\\lambda\\) be the Perron eigenvalue of this Metzler irreducible system. Since the matrix has nonnegative off-diagonal entries and is irreducible, its spectral abscissa is a real eigenvalue with a positive eigenvector.\n\nFor an eigenvector, set \\(c=\\lambda+1\\). The equations become\n\\[\n\\begin{aligned}\ncu_1&=2av_1+u_2,& cv_1&=aw_1+v_2,& cw_1&=w_2,\\\\\ncu_2&=u_1,& cv_2&=bu_2+v_1,& cw_2&=2bv_2+w_1.\n\\end{aligned}\n\\]\nEliminating \\(u_1,u_2,w_1,w_2\\), with \\(p=ab\\), gives\n\\[\n(c^2-1)u_2=2av_1,\\qquad (c^2-1)w_1=2bv_2,\n\\]\nand hence\n\\[\ncv_1=\\left(1+\\frac{2p}{c^2-1}\\right)v_2,\\qquad\ncv_2=\\left(1+\\frac{2p}{c^2-1}\\right)v_1.\n\\]\nFor the positive Perron eigenvector we have \\(v_1,v_2>0\\), so\n\\[\nc=1+\\frac{2p}{c^2-1}.\n\\]\nSince \\(c=\\lambda+1\\),\n\\[\n(\\lambda)^2(\\lambda+2)=2ab.\n\\]\nThe second-moment growth rate for \\(x\\) is therefore the unique positive root \\(\\lambda\\) of\n\\[\n\\lambda^2(\\lambda+2)=2ab.\n\\]\n\nFor the original \\(z\\)-system, the common factor \\(e^{-t}\\) shifts the second-moment exponent by \\(-2\\). Thus mean-square exponential stability holds iff\n\\[\n\\lambda-2<0,\n\\]\ni.e. iff\n\\[\n\\lambda<2.\n\\]\nUsing the defining equation,\n\\[\n\\lambda<2\n\\iff\n\\lambda^2(\\lambda+2)<2^2(2+2)=16\n\\iff\n2ab<16\n\\iff\nab<8.\n\\]\n\nAt \\(ab=8\\), the exponent is exactly \\(0\\), so exponential decay fails. For \\(ab>8\\), the second moment grows exponentially for some initial condition, so stability also fails.\n\n\\[\n\\boxed{\\{(a,b)\\in(0,\\infty)^2:\\ ab<8\\}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T07:15:00+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/1d7684adcf54.json"
+}
