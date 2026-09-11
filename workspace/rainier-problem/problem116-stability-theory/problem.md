@@ -2,12 +2,22 @@
 
 ## LaTeX (Normalized)
 
-Let $a,b>0$. For each delay $\tau>0$, consider the scalar delay differential equation
+Let $a,b>0$ and define
 $$
-\dot x(t)=-x(t)-a\,x(t-\tau)-b\,x(t-2\tau),\qquad t\ge0,
+A_1=\begin{pmatrix}-1&a\\0&-1\end{pmatrix},
+\qquad
+A_2=\begin{pmatrix}-1&0\\b&-1\end{pmatrix}.
 $$
-with arbitrary continuous initial history on $[-2\tau,0]$.
-Determine all pairs $(a,b)$ for which, for every $\tau>0$, the zero solution is globally asymptotically stable in the history sup norm; that is, it is Lyapunov stable and every solution exists for all $t\ge0$ and satisfies $x(t)\to0$ as $t\to\infty$.
+For every piecewise-constant switching signal $\sigma:[0,\infty)\to\{1,2\}$ with finitely many switches on each bounded time interval, consider
+$$
+\dot z(t)=A_{\sigma(t)}z(t),
+\qquad z(t)\in\mathbb R^2.
+$$
+Determine all pairs $(a,b)$ for which the origin is uniformly globally exponentially stable under arbitrary switching; that is, there exist constants $C,\gamma>0$, depending only on $(a,b)$, such that every switching signal and every initial state satisfy
+$$
+\|z(t)\|\le C e^{-\gamma t}\|z(0)\|
+\qquad(t\ge0).
+$$
 
 ---
 
@@ -24,4 +34,4 @@ Determine all pairs $(a,b)$ for which, for every $\tau>0$, the zero solution is 
 
 ## Domain Explanation
 
-This is a delay-independent stability problem for a scalar linear equation with two commensurate delays. The exact gain region is obtained by excluding imaginary characteristic roots for every delay, reducing the phase condition to positivity of a quadratic trigonometric polynomial on an open interval.
+This is a robust stability problem for a switched linear system. Although each subsystem is Hurwitz, arbitrary switching can destabilize the origin. The exact gain region is determined by a common quadratic Lyapunov function together with a sharp periodic-switching obstruction at the boundary of uniform exponential stability.
