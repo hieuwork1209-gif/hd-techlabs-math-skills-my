@@ -12,13 +12,17 @@ d>1,
 \qquad
 \gcd(d,p)=1.
 $$
-Define
+Put
 $$
-A=\mathbb C[[t^m,t^n+t^p]]\subset\mathbb C[[t]].
+x=t^m,
+\qquad
+y=t^n+t^p.
 $$
-Determine exactly
+Let $P(X,Y)\in\mathbb C[[X]][Y]$ be the monic minimal polynomial of $y$ over $\mathbb C((x))$, where $X$ corresponds to $x=t^m$.
+
+Determine exactly the lowest-degree nonzero term of
 $$
-\dim_{\mathbb C}\frac{\mathbb C[[t]]}{A}.
+\operatorname{Disc}_Y P(X,Y)\in\mathbb C[[X]].
 $$
 
 ---
@@ -36,4 +40,4 @@ $$
 
 ## Domain Explanation
 
-The ring $A$ is the completed local ring of a parametrized irreducible plane-curve germ, and the requested finite dimension is its normalization defect (the delta invariant). Thus the primary object is a singular algebraic curve and its normalization, so Algebraic geometry is the best fit; valuation-semigroup and module calculations are tools used to compute that geometric invariant.
+The parametrization defines an irreducible plane-curve germ together with the finite projection $x=t^m$. The requested quantity is the leading term of the discriminant of that projection, determined by how its conjugate branches meet. Thus the primary object is an algebraic plane branch and its ramified finite map, making Algebraic geometry the best fit.
