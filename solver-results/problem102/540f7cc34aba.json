@@ -1,0 +1,22 @@
+{
+  "problem": "problem102",
+  "branch": "adversary/problem102",
+  "problem_path": "workspace/rainier-problem/problem102-single-variable-calculus/problem.md",
+  "source_commit_sha": "94bfa7184650cde996fe8938a53de0ac43aaca9f",
+  "problem_blob_sha": "540f7cc34aba7f60daaf3c288e4360146048139a",
+  "statement_sha256": "acff29ced5d01323ea8ef9765d97a1fd7376916c1315de4b14f1f5a581056163",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T03:32:54+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\ny=\\log x,\\qquad g(y)=f(e^y)\\qquad (y>0).\n\\]\nThen\n\\[\nA=\\frac1y\\int_0^y g(u)\\,du,\\quad\nB=\\frac2{y^2}\\int_0^y (y-u)g(u)\\,du,\\quad\nC=\\frac3{y^3}\\int_0^y (y-u)^2g(u)\\,du.\n\\]\n\nSet\n\\[\nD(y)=2-C(e^y).\n\\]\nDifferentiating the moment formulas gives\n\\[\nB=C+\\frac y3C',\\qquad\nA=C+yC'+\\frac{y^2}{6}C''.\n\\]\nHence\n\\[\n2-3B+2C=D+yD',\n\\]\nand\n\\[\n2-3A+3B-C=D+2yD'+\\frac{y^2}{2}D''.\n\\]\nThe given identity becomes\n\\[\n(D+yD')^2=D\\left(D+2yD'+\\frac{y^2}{2}D''\\right),\n\\]\nso after cancellation,\n\\[\n2(D')^2=DD''.\n\\]\n\nOn any interval where \\(D\\neq0\\), write \\(h=\\log|D|\\). Then\n\\[\nD'=Dh',\\qquad D''=D(h''+(h')^2),\n\\]\nso\n\\[\n2(h')^2=h''+(h')^2,\n\\]\nhence\n\\[\nh''=(h')^2.\n\\]\nThus \\(h'=-1/(y+a)\\), and therefore\n\\[\nD(y)=\\frac{K}{y+a}.\n\\]\nSince \\(D(1)^2=(2-C(e))^2=\\frac14\\) and\n\\[\n\\lim_{y\\to\\infty}y^2D(y)^2=1,\n\\]\nwe get \\(|K|=1\\). Also \\(|D(1)|=1/2\\), so \\(|1+a|=2\\). The option \\(a=-3\\) would create a pole at \\(y=3\\), impossible, so \\(a=1\\). Hence\n\\[\nD(y)=\\frac{K}{y+1},\\qquad K=\\pm1.\n\\]\n\nNow recover \\(g\\). Since\n\\[\n\\int_0^y (y-u)^2g(u)\\,du=\\frac{y^3}{3}C(y),\n\\]\nwe have\n\\[\ng(y)=\\frac12\\frac{d^3}{dy^3}\\left(\\frac{y^3}{3}C(y)\\right).\n\\]\nWith\n\\[\nC(y)=2-\\frac{K}{y+1},\n\\]\nthis gives\n\\[\ng(y)=2-\\frac{K}{(y+1)^4}.\n\\]\nFinally, \\(g\\) is concave, so\n\\[\ng''(y)=-\\frac{20K}{(y+1)^6}\\le 0,\n\\]\nforcing \\(K=1\\). Therefore, since \\(y=\\log x\\),\n\n\\[\n\\boxed{f(x)=2-\\frac{1}{(1+\\log x)^4}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T03:34:00+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem102/540f7cc34aba.json"
+}
