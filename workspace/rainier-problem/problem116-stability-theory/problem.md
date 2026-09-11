@@ -2,26 +2,24 @@
 
 ## LaTeX (Normalized)
 
-Let $a,b>0$, and set
+Let $a,b>0$, let $W_t$ be a standard one-dimensional Brownian motion, and define
 $$
-s=a+b,\qquad q=ab.
-$$
-Define
-$$
-A_1=\begin{pmatrix}-1&3\\0&-1\end{pmatrix},
+S=\begin{pmatrix}0&1\\1&0\end{pmatrix},
 \qquad
-A_2=\begin{pmatrix}-1&0\\3&-1\end{pmatrix}.
+J=\begin{pmatrix}0&-1\\1&0\end{pmatrix},
+\qquad
+A=-I+aS+J.
 $$
-Let $\sigma(t)$ be the continuous-time Markov chain on $\{1,2\}$ that jumps from state $1$ to state $2$ at rate $a$ and from state $2$ to state $1$ at rate $b$. Consider
+Consider the planar linear Stratonovich stochastic differential equation
 $$
-\dot z(t)=A_{\sigma(t)}z(t),
-\qquad z(t)\in\mathbb R^2.
+dZ_t=A Z_t\,dt+bJZ_t\circ dW_t,
+\qquad Z_t\in\mathbb R^2.
 $$
-Determine all pairs $(a,b)$ for which the origin is almost surely exponentially stable but is not mean-square exponentially stable. Almost-sure exponential stability means that for every deterministic $z(0)\ne0$ and either initial mode, the top sample-path exponential rate is strictly negative almost surely. Mean-square exponential stability means that there exist $C,\gamma>0$ such that
+Determine all pairs $(a,b)$ for which the deterministic system $\dot z=Az$ is not exponentially stable, but the stochastic origin is almost surely exponentially stable; that is, for every deterministic $Z_0\ne0$ there exists a constant $\gamma>0$, depending only on $(a,b)$, such that
 $$
-\mathbb E\|z(t)\|^2\le Ce^{-\gamma t}\|z(0)\|^2
+\limsup_{t\to\infty}\frac1t\log\frac{\|Z_t\|}{\|Z_0\|}\le-\gamma
 $$
-for every deterministic initial state, either initial mode, and every $t\ge0$.
+almost surely.
 
 ---
 
@@ -38,4 +36,4 @@ for every deterministic initial state, either initial mode, and every $t\ge0$.
 
 ## Domain Explanation
 
-This problem compares almost-sure and mean-square stability for an asymmetric two-state Markov jump linear system. The sample-path exponent is governed by the stationary projective process, while the mean-square threshold is governed by a Perron eigenvalue of the lifted second-moment dynamics; the two criteria depend differently on the total switching rate $s=a+b$ and the product $q=ab$.
+This is a noise-induced stabilization problem for a planar linear Stratonovich system. The deterministic instability threshold follows from the eigenvalues of a constant strain-plus-rotation matrix, while the stochastic top Lyapunov exponent is determined by a non-equilibrium angular diffusion with nonzero stationary probability flux and an exact complex-order modified-Bessel representation.
