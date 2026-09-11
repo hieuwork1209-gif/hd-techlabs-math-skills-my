@@ -1,0 +1,22 @@
+{
+  "problem": "problem102",
+  "branch": "adversary/problem102",
+  "problem_path": "workspace/rainier-problem/problem102-single-variable-calculus/problem.md",
+  "source_commit_sha": "e5931359c8110efa7068832076d0f10614251d07",
+  "problem_blob_sha": "d3d52b6bb85ce5092c8b43613319bc0ef5a4b103",
+  "statement_sha256": "803f6e202a6fa533ab6143f79b2ed7ed3eec9a0e6fc6b7bbe5cad9290e3f0931",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T08:07:29+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "We need count perfect matchings of the \\(10\\times 10\\) square grid with both directions wrapped around.\n\nUse the standard bipartite Kasteleyn orientation for the toroidal square lattice: split vertices into black/white by parity of \\(x+y\\), give horizontal edges weight \\(1\\), vertical edges weight \\(i\\), and introduce signs \\(s,t\\in\\{\\pm1\\}\\) on edges crossing the two wraparound cuts. For the \\(50\\times 50\\) black-to-white Kasteleyn matrix \\(K_{s,t}\\), the torus dimer count is\n\n\\[\nM=\\frac12\\sum_{s,t\\in\\{\\pm1\\}}\\left|\\det K_{s,t}\\right|.\n\\]\n\nFor a plane wave \\(z^xw^y\\), where \\(z^{10}=s,\\ w^{10}=t\\), the corresponding factor is\n\n\\[\nz+z^{-1}+i(w+w^{-1})\n=2\\cos\\theta+2i\\cos\\phi .\n\\]\n\nBecause the black sublattice has half the vertices,\n\n\\[\n|\\det K_{s,t}|^2\n=\n\\prod_{\\substack{z^{10}=s\\\\ w^{10}=t}}\n\\left(4\\cos^2\\theta+4\\cos^2\\phi\\right).\n\\]\n\nLet\n\n\\[\nT_{10}(x)=512x^{10}-1280x^8+1120x^6-400x^4+50x^2-1.\n\\]\n\nUsing\n\\[\n\\prod_{z^{10}=s}(X-z-z^{-1})=2\\left(T_{10}(X/2)-s\\right),\n\\]\nand then grouping conjugate cosine values gives:\n\n\\[\n|\\det K_{+,+}|=9503683872768,\n\\]\n\\[\n|\\det K_{+,-}|=|\\det K_{-,+}|=6451762561024,\n\\]\n\\[\n|\\det K_{-,-}|=0.\n\\]\n\nThus\n\n\\[\nM=\\frac12\\left(\n9503683872768\n+6451762561024\n+6451762561024\n+0\n\\right).\n\\]\n\nTherefore\n\n\\[\n\\boxed{11203604497408}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T08:12:02+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem102/d3d52b6bb85c.json"
+}
