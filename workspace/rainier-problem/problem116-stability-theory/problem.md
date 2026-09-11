@@ -2,20 +2,12 @@
 
 ## LaTeX (Normalized)
 
-Let $a,b\in\mathbb{R}$ and define
+Let $a,b>0$. Consider the scalar delay differential equation
 $$
-P=a(x^2+y^2)^3+(x^2+y^2)(x^4-6x^2y^2+y^4),
+\dot x(t)=-x(t)-a\,x(t-b),\qquad t\ge0,
 $$
-$$
-Q=b(x^2+y^2)^3+x^6-15x^4y^2+15x^2y^4-y^6.
-$$
-Consider the planar polynomial system
-$$
-\dot x=-Px-Qy,
-\qquad
-\dot y=-Py+Qx.
-$$
-Determine all pairs $(a,b)$ for which the equilibrium $(0,0)$ is globally asymptotically stable; that is, it is Lyapunov stable and every solution with initial data in $\mathbb{R}^2$ exists for all $t\geq0$ and converges to $(0,0)$ as $t\to\infty$.
+with arbitrary continuous initial history $x(t)=\phi(t)$ on $[-b,0]$.
+Determine all pairs $(a,b)$ for which the zero solution is globally asymptotically stable in the history sup norm; that is, it is Lyapunov stable and, for every $\phi\in C([-b,0],\mathbb R)$, the corresponding solution exists for all $t\ge0$ and satisfies $x(t)\to0$ as $t\to\infty$.
 
 ---
 
@@ -32,4 +24,4 @@ Determine all pairs $(a,b)$ for which the equilibrium $(0,0)$ is globally asympt
 
 ## Domain Explanation
 
-This problem concerns global asymptotic stability in a homogeneous polynomial planar flow. Polar coordinates and a natural time rescaling separate the angular motion from logarithmic radial drift. The parameter region changes across the angular bifurcation $|b|=1$: invariant rays lead to a Chebyshev cubic constraint, while the rotating regime is governed by net radial drift over one revolution.
+This is a classical stability problem for a linear delay differential equation. The exact parameter region is determined by the location of the roots of a transcendental characteristic equation, the first imaginary-axis crossing as the delay varies, and the direction of that crossing.
