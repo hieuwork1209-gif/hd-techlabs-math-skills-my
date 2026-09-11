@@ -1,246 +1,231 @@
 ## Steps
 
-Step 1: Derive the oscillator shift and isolate the current algebra
-Let $\mathfrak g$ be the Lie algebra defined by the displayed relations, so $R=U(\mathfrak g)$. PBW implies that $R$ is a domain. Since $z$ is central and regular, set
+Step 1: Derive the three quadratic invariants from the current-algebra action
+Let
 $$
-S=R[z^{-1}],\qquad K=k[z^{\pm 1}].
+\mathfrak g=\mathfrak{sl}_2(k)\otimes_k k[\varepsilon]/(\varepsilon^3),
 $$
-Because $[p,q]=z$ with $z$ invertible, $p,q$ form a Weyl pair over $K$. To separate this Weyl factor, seek corrected elements commuting with $p,q$.
+and write
+$$
+e_i=e\otimes\varepsilon^i,\qquad f_i=f\otimes\varepsilon^i,\qquad h_i=h\otimes\varepsilon^i\qquad (i=0,1,2).
+$$
+Let $R=U(\mathfrak g)$ and let
+$$
+P=\operatorname{gr}R
+ =k[e_0,f_0,h_0,e_1,f_1,h_1,e_2,f_2,h_2]
+$$
+with its PBW Poisson bracket.
 
-For $e=E-\alpha$, the equations $[e,p]=[e,q]=0$ require
+The quadratic polynomial
 $$
-[\alpha,p]=0,\qquad [\alpha,q]=p.
+q(e,f,h)=h^2+4ef
 $$
-Since $[p^2,q]=2zp$, take $\alpha=p^2/(2z)$. Then
+is $\mathfrak{sl}_2$-invariant. Indeed, for the three adjoint derivations one has
 $$
-[e,p]=0,\qquad [e,q]=p-\frac{[p^2,q]}{2z}=0.
+D_e(q)=2h(-2e)+4e(h)=0,
 $$
-For $f=F-\beta$, the equations become $[\beta,p]=q$, $[\beta,q]=0$. Since $[q^2,p]=-2zq$, take $\beta=-q^2/(2z)$, giving
 $$
-[f,p]=q+\frac{[q^2,p]}{2z}=0,\qquad [f,q]=0.
+D_f(q)=2h(2f)+4(-h)f=0,
 $$
-For $H$, put $h_0=H+pq/z$. Using $[pq,p]=-zp$ and $[pq,q]=zq$,
 $$
-[h_0,p]=p- p=0,\qquad [h_0,q]=-q+q=0.
-$$
-The scalar correction is fixed by the bracket of $e$ and $f$. Since
-$$
-[e,f]
-=H+\frac{pq+qp}{2z}
-=H+\frac{pq}{z}-\frac{1}{2},
-$$
-where $qp=pq-z$, define
-$$
-h=[e,f]=H+\frac{pq}{z}-\frac{1}{2}.
-$$
-Thus $e,f,h$ commute with $p,q$. Moreover,
-$$
-\begin{aligned}
-[h,e]
-&=2E-\frac{[H,p^2]}{2z}+\frac{[pq,E]}{z}-\frac{[pq,p^2]}{2z^2}\\
-&=2E-\frac{p^2}{z}-\frac{p^2}{z}+\frac{p^2}{z}=2e,
-\end{aligned}
-$$
-and similarly
-$$
-\begin{aligned}
-[h,f]
-&=-2F+\frac{[H,q^2]}{2z}+\frac{[pq,F]}{z}+\frac{[pq,q^2]}{2z^2}\\
-&=-2F-\frac{q^2}{z}-\frac{q^2}{z}+\frac{q^2}{z}=-2f.
-\end{aligned}
-$$
-Hence $[h,e]=2e$, $[h,f]=-2f$, $[e,f]=h$.
-
-The correction terms involve only $p,q,z$, so they have zero brackets with $x,y,t,a,b,c$. The displayed relations therefore identify
-$$
-(e,f,h),\qquad (x,y,t)=\varepsilon(e,f,h),\qquad (a,b,c)=\varepsilon^2(e,f,h)
-$$
-with $\mathfrak l=\mathfrak{sl}_2[\varepsilon]/(\varepsilon^3)$ over $K$.
-
-For the needed uniqueness, choose the PBW order $p,q,E,F,H,x,y,t,a,b,c$ after localization, with $z$ absorbed into $K$, and filter by the number of factors among $E,F,H,x,y,t,a,b,c$, assigning $p,q$ degree $0$. The inverse substitutions
-$$
-E=e+\frac{p^2}{2z},\qquad F=f-\frac{q^2}{2z},\qquad H=h-\frac{pq}{z}+\frac{1}{2}
-$$
-are triangular for this filtration: replacing $E,F,H$ by $e,f,h$ changes an ordered PBW monomial only by terms of strictly smaller filtered degree, while its leading term has coefficient $1$. Hence the transition from the ordinary PBW monomials to
-$$
-p^iq^je^rf^sh^m x^\alpha y^\beta t^\gamma a^\mu b^\nu c^\rho
-$$
-is unitriangular and therefore invertible. These shifted monomials are thus a $K$-basis of $S$.
-
-Consequently every element of $S$ has a unique expansion
-$$
-s=\sum_{i,j\geq 0}p^iq^ju_{ij},\qquad u_{ij}\in U_K(\mathfrak l).
-$$
-If $s$ commutes with $p$, then $[p,q^j]=jzq^{j-1}$ and PBW independence force $u_{ij}=0$ for every $j>0$. Thus $s=\sum_i p^iu_i$. If $s$ also commutes with $q$, then $[q,p^i]=-izp^{i-1}$ forces $u_i=0$ for every $i>0$. Therefore a central element of $S$ lies in $U_K(\mathfrak l)$, and it is central there. The converse is immediate because $U_K(\mathfrak l)$ commutes with $p,q$. Hence
-$$
-Z(S)=Z\!\left(U_K(\mathfrak l)\right).
+D_h(q)=4(2e)f+4e(-2f)=0.
 $$
 
-Step 2: Compute the Poisson center of the third-order current algebra
-Pass to the PBW associated graded Poisson algebra
+The truncation forces a reversal of the current layers. Put, modulo $s^3$,
 $$
-Q=K[e,f,h,x,y,t,a,b,c].
+E(s)=e_2+s e_1+s^2e_0,\qquad
+F(s)=f_2+s f_1+s^2f_0,\qquad
+H(s)=h_2+s h_1+s^2h_0.
 $$
-Define
+This is not an ad hoc choice: if $r\in\mathfrak{sl}_2$ and $D_{r_i}=\{r_i,-\}$, then the relation
 $$
-A=c^2+4ab,\qquad B=tc+2xb+2ya,
+[r_i,u_j]=[r,u]_{i+j}
 $$
+(with the bracket zero for $i+j\ge 3$) gives
 $$
-C=ch+\frac{1}{2}t^2+2be+2af+2xy.
+D_{r_i}(E(s),F(s),H(s))
+\equiv s^i D_r(E(s),F(s),H(s))\pmod{s^3}.
 $$
-The potentially nonzero Poisson brackets cancel explicitly. For $A$,
+Therefore the coefficients modulo $s^3$ of
 $$
-\{e,A\}=-4ac+4ac=0,\qquad
-\{f,A\}=4bc-4bc=0,\qquad
-\{h,A\}=0.
+q(E(s),F(s),H(s))=H(s)^2+4E(s)F(s)
 $$
-Its brackets with $x,y,t,a,b,c$ vanish because current-layer degrees add to at least $3$. For $B$,
-$$
-\begin{aligned}
-\{e,B\}&=-2xc-2at+2xc+2at=0,\\
-\{f,B\}&=2yc+2bt-2bt-2yc=0,\\
-\{h,B\}&=0,\\
-\{x,B\}&=-2ac+2ac=0,\\
-\{y,B\}&=2bc-2bc=0,\\
-\{t,B\}&=4ab-4ab=0.
-\end{aligned}
-$$
-Its brackets with $a,b,c$ vanish by layer degree. For $C$,
-$$
-\begin{aligned}
-\{e,C\}&=(-2ah-2ce)-2xt+2ce+2ah+2xt=0,\\
-\{f,C\}&=(2bh+2cf)+2yt-2bh-2cf-2yt=0,\\
-\{h,C\}&=0,\\
-\{x,C\}&=-2cx-2at+2at+2cx=0,\\
-\{y,C\}&=2cy+2bt-2bt-2cy=0,\\
-\{t,C\}&=4bx-4ay+4ay-4bx=0,\\
-\{a,C\}&=-2ac+2ac=0,\\
-\{b,C\}&=2bc-2bc=0,\\
-\{c,C\}&=4ab-4ab=0.
-\end{aligned}
-$$
-Thus $A,B,C$ are Poisson central.
+are killed by every $D_{r_i}$.
 
-To prove exhaustion, localize at $a$. Let $D_r=\{r,-\}$. On $e,f,h$,
+Writing those coefficients with harmless factors removed gives
 $$
-D_a=c\partial_f-2a\partial_h,\qquad
-D_c=2a\partial_e-2b\partial_f,
+A=h_2^2+4e_2f_2,
 $$
-and
 $$
-D_b=-\frac{b}{a}D_a-\frac{c}{2a}D_c.
+B=h_2h_1+2e_2f_1+2e_1f_2,
 $$
-Set $L=ch+2af+2be$. Since $a$ is invertible,
 $$
-f=\frac{L-ch-2be}{2a},
+C=h_2h_0+\frac12 h_1^2+2e_2f_0+2e_1f_1+2e_0f_2.
 $$
-so $(e,h,L)$ are coordinates in place of $(e,f,h)$. In these coordinates $D_a(L)=D_c(L)=0$, $D_a=-2a\partial_h$, and $D_c=2a\partial_e$. Hence the common kernel of $D_a,D_b,D_c$ is
-$$
-K[a^{\pm 1},b,c,x,y,t,L].
-$$
-Replace $L$ by $C=L+t^2/2+2xy$. The derivations $D_x,D_t,D_y$ fix $C$, and
-$$
-D_x=c\partial_y-2a\partial_t,\qquad
-D_t=2a\partial_x-2b\partial_y,\qquad
-D_y=-\frac{b}{a}D_x-\frac{c}{2a}D_t.
-$$
-Since $B=tc+2xb+2ya$ and $a$ is invertible,
-$$
-y=\frac{B-tc-2xb}{2a}.
-$$
-Thus $(x,t,B)$ replace $(x,y,t)$, with $D_x=-2a\partial_t$ and $D_t=2a\partial_x$. Their common kernel is
-$$
-K[a^{\pm 1},b,c,B,C].
-$$
-Finally, $D_e(c)=-2a$, $D_e(a)=0$, and $D_e(A)=0$. Since $b=(A-c^2)/(4a)$, the kernel of $D_e$ is $K[a^{\pm 1},A,B,C]$. On this ring $D_h=2a\partial_a$, so imposing $h$-invariance leaves $K[A,B,C]$. These generators are already $f$-invariant, so
-$$
-Z_{\mathrm{Pois}}(Q[a^{-1}])=K[A,B,C].
-$$
-Because $A,B,C\in Q$, any Poisson-central element of $Q$ lies in this same polynomial ring. Therefore
-$$
-Z_{\mathrm{Pois}}(Q)=K[A,B,C].
-$$
+Hence $A,B,C\in Z_{\mathrm{Pois}}(P)$.
 
-Step 3: Lift the Poisson generators to the enveloping center
-For Lie generators $r,u,v$,
-$$
-\left[r,\frac{uv+vu}{2}\right]
-=\frac{[r,u]v+u[r,v]+[r,v]u+v[r,u]}{2},
-$$
-which is the symmetrization of the Poisson derivation of $uv$. Hence the symmetrization of any quadratic Poisson invariant commutes with every generator.
+Step 2: Prove that the Poisson center is exactly $k[A,B,C]$
+Localize at $e_2$ and write $P_*=P[e_2^{-1}]$. We compute the common kernel of the Hamiltonian derivations explicitly.
 
-The elements $A$ and $B$ need no ordering correction. For $C$,
+First consider the top layer. Since brackets of total current degree at least $3$ vanish, $D_{e_2},D_{h_2},D_{f_2}$ act nontrivially only on $e_0,f_0,h_0$, and
 $$
-\operatorname{sym}(C)
-=ch+\frac{1}{2}t^2+(be+eb)+(af+fa)+(xy+yx).
+D_{e_2}=h_2\partial_{f_0}-2e_2\partial_{h_0},
 $$
-Using $[e,b]=c$, $[f,a]=-c$, and $[x,y]=c$ gives
 $$
-\Gamma=ch+\frac{1}{2}t^2+2eb+2fa+2xy-c.
+D_{h_2}=2e_2\partial_{e_0}-2f_2\partial_{f_0},
 $$
-Thus $A,B,\Gamma$ are central in $U_K(\mathfrak l)$ and have leading PBW symbols $A,B,C$.
+$$
+D_{f_2}=-\frac{f_2}{e_2}D_{e_2}-\frac{h_2}{2e_2}D_{h_2}.
+$$
+Set
+$$
+L=h_2h_0+2e_2f_0+2f_2e_0.
+$$
+Both $D_{e_2}$ and $D_{h_2}$ kill $L$. Since
+$$
+f_0=\frac{L-h_2h_0-2f_2e_0}{2e_2},
+$$
+replacing $f_0$ by $L$ is an invertible coordinate change in $P_*$. In the coordinates $(e_0,h_0,L)$,
+$$
+D_{e_2}=-2e_2\partial_{h_0},\qquad
+D_{h_2}=2e_2\partial_{e_0}.
+$$
+Thus the common kernel of the three top-layer derivations is
+$$
+k[e_2^{\pm1},f_2,h_2,e_1,f_1,h_1,L].
+$$
+Because
+$$
+C=L+\frac12 h_1^2+2e_1f_1,
+$$
+we may use $C$ instead of $L$.
 
-Now let $u$ be central of PBW degree $n$. Its leading symbol $\sigma(u)$ is Poisson central, so by Step 2
+Now restrict $D_{e_1},D_{h_1},D_{f_1}$ to
 $$
-\sigma(u)=P(A,B,C)
+k[e_2^{\pm1},f_2,h_2,e_1,f_1,h_1,C].
 $$
-for a homogeneous polynomial $P$. The central element $P(A,B,\Gamma)$ has the same leading symbol, hence
+They fix $C$, and
 $$
-\deg\bigl(u-P(A,B,\Gamma)\bigr)<n.
+D_{e_1}=h_2\partial_{f_1}-2e_2\partial_{h_1},
 $$
-Induction on $n$, starting from degree $0$ where the center is $K$, expresses every central element as a polynomial in $A,B,\Gamma$. Therefore
 $$
-Z\!\left(U_K(\mathfrak l)\right)=K[A,B,\Gamma],
+D_{h_1}=2e_2\partial_{e_1}-2f_2\partial_{f_1},
 $$
-and hence
 $$
-Z(S)=k[z^{\pm 1},A,B,\Gamma].
+D_{f_1}=-\frac{f_2}{e_2}D_{e_1}-\frac{h_2}{2e_2}D_{h_1}.
+$$
+Since
+$$
+f_1=\frac{B-h_2h_1-2f_2e_1}{2e_2},
+$$
+replacing $f_1$ by $B$ is again an invertible coordinate change. In coordinates $(e_1,h_1,B)$,
+$$
+D_{e_1}=-2e_2\partial_{h_1},\qquad
+D_{h_1}=2e_2\partial_{e_1}.
+$$
+Hence the common kernel through current degree $1$ is
+$$
+k[e_2^{\pm1},f_2,h_2,B,C].
 $$
 
-Step 4: Clear the oscillator denominator
-Substitute
+Next apply $D_{e_0}$. On the remaining top-layer variables,
 $$
-e=E-\frac{p^2}{2z},\qquad
-f=F+\frac{q^2}{2z},\qquad
-h=H+\frac{pq}{z}-\frac{1}{2}
+D_{e_0}(e_2)=0,\qquad D_{e_0}(h_2)=-2e_2,\qquad D_{e_0}(f_2)=h_2,
 $$
-into $\Gamma$. Then $D=2z\Gamma$ is
+and $D_{e_0}$ fixes $B,C$. Since
 $$
-D=2zcH+zt^2+4zEb+4zFa+4zxy-3zc+2cpq-2bp^2+2aq^2.
+f_2=\frac{A-h_2^2}{4e_2},
 $$
-Hence $D\in R$ and is central. Therefore
+we can replace $f_2$ by $A$, after which
 $$
-k[z,A,B,D]\subseteq Z(R),\qquad Z(S)=k[z^{\pm 1},A,B,D].
+D_{e_0}=-2e_2\partial_{h_2}.
+$$
+Its kernel is therefore
+$$
+k[e_2^{\pm1},A,B,C].
+$$
+Finally, $D_{h_0}$ fixes $A,B,C$ and satisfies $D_{h_0}(e_2)=2e_2$. Thus, on the Laurent polynomial ring above,
+$$
+D_{h_0}=2e_2\partial_{e_2},
+$$
+whose kernel is $k[A,B,C]$ because $\operatorname{char}k=0$. The remaining derivation $D_{f_0}$ also kills $A,B,C$. Hence
+$$
+Z_{\mathrm{Pois}}(P_*)=k[A,B,C].
+$$
+Every Poisson-central element of $P$ remains Poisson central after localization, while $A,B,C\in P$, so
+$$
+Z_{\mathrm{Pois}}(P)=k[A,B,C].
+$$
+The successive coordinate changes above also show that $A,B,C$ are algebraically independent.
+
+Step 3: Lift the Poisson generators canonically to $Z(R)$
+For a Lie algebra $\mathfrak g$, PBW symmetrization
+$$
+\operatorname{sym}:S(\mathfrak g)\longrightarrow U(\mathfrak g)
+$$
+is $\mathfrak g$-equivariant: for $r\in\mathfrak g$ and $F\in S(\mathfrak g)$,
+$$
+[r,\operatorname{sym}(F)]=\operatorname{sym}(D_rF).
+$$
+Indeed this identity follows on a monomial by expanding the commutator with each factor and averaging over all orders. Since $A,B,C$ are annihilated by every $D_r$, their symmetrizations are central.
+
+For $A$ and $B$ no ordering correction occurs, because all products appearing in them involve current layers whose brackets vanish. Thus set
+$$
+Z_0=h_2^2+4e_2f_2,
+$$
+$$
+Z_1=h_2h_1+2e_2f_1+2e_1f_2.
+$$
+For $C$, symmetrization gives
+$$
+Z_2=h_2h_0+\frac12 h_1^2
+ +(e_2f_0+f_0e_2)
+ +(e_1f_1+f_1e_1)
+ +(e_0f_2+f_2e_0).
+$$
+Therefore
+$$
+k[Z_0,Z_1,Z_2]\subseteq Z(R).
+$$
+Their leading PBW symbols are respectively $A,B,C$.
+
+Step 4: Prove that no further central elements exist
+Let $u\in Z(R)$ have PBW degree $n$. Its leading symbol $\sigma(u)\in P$ is Poisson central, because for every $r\in\mathfrak g$ the equality $[r,u]=0$ implies $\{r,\sigma(u)\}=0$. By Step 2,
+$$
+\sigma(u)=F(A,B,C)
+$$
+for some polynomial $F\in k[X,Y,Z]$. Taking the homogeneous part of $F$ of the PBW degree of $\sigma(u)$, we may assume $F(A,B,C)$ is homogeneous of degree $n$.
+
+The central element $F(Z_0,Z_1,Z_2)$ has the same leading symbol as $u$. Hence
+$$
+\deg_{\mathrm{PBW}}\bigl(u-F(Z_0,Z_1,Z_2)\bigr)<n.
+$$
+Induction on PBW degree, starting from degree $0$ where the center is $k$, shows that every central element belongs to $k[Z_0,Z_1,Z_2]$. Since the leading symbols $A,B,C$ are algebraically independent, so are $Z_0,Z_1,Z_2$.
+
+Consequently
+$$
+Z(R)=k[Z_0,Z_1,Z_2].
 $$
 
-Step 5: Intersect the localized center back with $R$
-Let $u\in Z(R)$. Write
+Final Answer: $\boxed{k[Z_0,Z_1,Z_2]}$, where
 $$
-u=z^{-m}P(z,A,B,D)
+Z_0=h_2^2+4e_2f_2,
 $$
-with $m\geq 0$, $P\in k[z,A,B,D]$, and $P$ not divisible by $z$ if $m>0$. If $m>0$, then $P(z,A,B,D)\in zR$.
-
-Modulo $z$, the leading PBW symbols of the three nontrivial generators are
 $$
-A_0=c^2+4ab,\qquad B_0=tc+2xb+2ya,\qquad D_0=2(cpq-bp^2+aq^2).
+Z_1=h_2h_1+2e_2f_1+2e_1f_2,
 $$
-At $(a,b,c,x,y,t,p,q)=(1,0,0,0,0,0,0,1)$,
 $$
-dA_0=4\,db,\qquad dB_0=2\,dy,\qquad d(D_0/2)=da+2\,dq,
+Z_2=h_2h_0+\frac12 h_1^2+(e_2f_0+f_0e_2)+(e_1f_1+f_1e_1)+(e_0f_2+f_2e_0).
 $$
-so $A_0,B_0,D_0$ are algebraically independent. Therefore $P(0,A_0,B_0,D_0)\neq 0$, contradicting divisibility by $z$. Hence $m=0$ and every central element lies in $k[z,A,B,D]$.
-
-Thus
-$$
-Z(R)=k[z,A,B,D].
-$$
-Final Answer: $\boxed{k[z,c^2+4ab,tc+2xb+2ya,2zcH+zt^2+4zEb+4zFa+4zxy-3zc+2cpq-2bp^2+2aq^2]}$
 
 ---
 
 ## Answer
 
-$k[z,c^2+4ab,tc+2xb+2ya,2zcH+zt^2+4zEb+4zFa+4zxy-3zc+2cpq-2bp^2+2aq^2]$
+$k[Z_0,Z_1,Z_2]$, with
+$Z_0=h_2^2+4e_2f_2$,
+$Z_1=h_2h_1+2e_2f_1+2e_1f_2$, and
+$Z_2=h_2h_0+\frac12 h_1^2+(e_2f_0+f_0e_2)+(e_1f_1+f_1e_1)+(e_0f_2+f_2e_0)$.
 
 ---
 
@@ -254,10 +239,10 @@ $k[z,c^2+4ab,tc+2xb+2ya,2zcH+zt^2+4zEb+4zFa+4zxy-3zc+2cpq-2bp^2+2aq^2]$
 
 ## Solution Concepts
 
-- PBW localization
-- oscillator shift
-- truncated current algebras
-- Poisson centers
+- PBW filtration and Poisson center
+- invariant quadratic form of $\mathfrak{sl}_2$
+- truncated current algebra
+- localization and slice derivations
 - PBW symmetrization
 
 ---
