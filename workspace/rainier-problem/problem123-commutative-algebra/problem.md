@@ -16,17 +16,9 @@ be the $n$th Veronese algebra, and let
 $$
 A=k\bigl[x^iy^jz^\ell:i,j,\ell\ge0,\ i+j+\ell=n,\ \max\{i,j,\ell\}\ge n-r\bigr]\subset B.
 $$
-Give every displayed degree-$n$ monomial degree $1$, so that $A$ and $B$ are standard graded, and write
+Give every displayed degree-$n$ monomial degree $1$, so that $A$ and $B$ are standard graded. Writing $A_+$ for the irrelevant ideal of $A$, determine the least integer $m\ge0$ such that
 $$
-A_+=\bigoplus_{d\ge1}A_d.
-$$
-If
-$$
-\mathfrak c=\{f\in A:fB\subseteq A\}
-$$
-is the conductor of $A\subset B$, determine the least integer $m\ge0$ such that
-$$
-A_+^m\subseteq\mathfrak c.
+A_+^mB\subseteq A.
 $$
 
 ---
