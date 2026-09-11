@@ -156,11 +156,27 @@ Put
 $$
 F(s)=\Gamma(s)M(s).
 $$
+We first fix the contour-shift sign convention. Consider a positively oriented rectangle with left side $\Re s=c$ and right side $\Re s=R>c$. When both vertical-line integrals are written upward, the right side contributes the integral on $\Re s=R$, while the left side is traversed downward and therefore contributes minus the integral on $\Re s=c$. After the horizontal sides vanish, the residue theorem gives
+$$
+\int_{R-i\infty}^{R+i\infty}F(s)n^{-s}\,ds
+-
+\int_{c-i\infty}^{c+i\infty}F(s)n^{-s}\,ds
+=2\pi i S,
+$$
+where $S$ is the sum of the residues at the poles crossed between the two lines. Thus
+$$
+\int_{c-i\infty}^{c+i\infty}F(s)n^{-s}\,ds
+=
+\int_{R-i\infty}^{R+i\infty}F(s)n^{-s}\,ds
+-2\pi i S.
+$$
+Hence every crossed pole enters the original Mellin integral with minus its residue.
+
 The first pole is at $s=\frac{1}{2}$. Direct substitution into the regular factors gives residue
 $$
 -\sqrt{\pi}.
 $$
-Because shifting the Mellin contour to the right contributes minus the crossed residues, this pole contributes
+Therefore this pole contributes
 $$
 \frac{\sqrt{\pi}}{n^{1/2}}.
 $$
@@ -270,7 +286,7 @@ F(s)n^{-s}\,ds
 =o(n^{-3/2}).
 $$
 
-It remains to justify that the horizontal sides disappear. Shift first on the rectangle with vertical sides $\Re s=c$ and $\Re s=\sigma$ and horizontal sides at $\Im s=\pm T$. Uniform Stirling bounds on the whole compact strip give, for some constants $C,B$ independent of $u\in[c,\sigma]$,
+It remains to justify that the horizontal sides disappear. Shift first on the positively oriented rectangle with vertical sides $\Re s=c$ and $\Re s=\sigma$ and horizontal sides at $\Im s=\pm T$. Uniform Stirling bounds on the whole compact strip give, for some constants $C,B$ independent of $u\in[c,\sigma]$,
 $$
 |F(u\pm iT)|\leq C(1+T)^B e^{-\pi T/2}.
 $$
@@ -279,14 +295,21 @@ $$
 O\left((1+T)^B e^{-\pi T/2}\right)\to0
 \qquad(T\to\infty).
 $$
-Let $S_n$ denote the sum of the residues of $F(s)n^{-s}$ at the crossed poles $s=\frac12,1,\frac32$. With the left vertical side oriented upward and the right side downward, the rectangle is clockwise, so the residue theorem gives
+Let $S_n$ denote the sum of the residues of $F(s)n^{-s}$ at the crossed poles $s=\frac12,1,\frac32$. On a positively oriented rectangle the right vertical side is traversed upward and the left vertical side downward. Therefore, after letting $T\to\infty$,
+$$
+\int_{\sigma-i\infty}^{\sigma+i\infty}F(s)n^{-s}\,ds
+-
+\int_{c-i\infty}^{c+i\infty}F(s)n^{-s}\,ds
+=2\pi i S_n,
+$$
+or equivalently
 $$
 \int_{c-i\infty}^{c+i\infty}F(s)n^{-s}\,ds
 =
 \int_{\sigma-i\infty}^{\sigma+i\infty}F(s)n^{-s}\,ds
 -2\pi i S_n.
 $$
-This proves both the sign used above and the claimed remainder estimate.
+This confirms the sign used in Steps 3 and 4 and proves the claimed remainder estimate.
 
 Combining Steps 3 and 4 with $R_n=o(n^{-3/2})$,
 $$
