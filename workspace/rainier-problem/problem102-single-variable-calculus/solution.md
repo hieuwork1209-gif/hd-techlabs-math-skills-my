@@ -1,159 +1,126 @@
 ## Steps
 
-Step 1: Convert the character sum into an elliptic-curve point count
+Step 1: Convert the sum into a genus-three point count
 
-Let
+For every integer $n\ge1$, put
 $$
-q=2^{11},\qquad \mathbb F=\mathbb F_q,
+K_n=\sum_{x\in\mathbb F_{2^n}}(-1)^{\operatorname{Tr}_{\mathbb F_{2^n}/\mathbb F_2}(x^7+x^3)}.
 $$
-and let
+Consider the Artin-Schreier curve over $\mathbb F_2$
 $$
-\psi(a)=(-1)^{\operatorname{Tr}(a)}.
+C:\quad y^2+y=x^7+x^3.
 $$
-Consider the curve
+The right side has odd degree $7$. Hence the smooth projective model has one point at infinity and genus
 $$
-E:\quad y^2+xy=x^3+1.
+g=\frac{7-1}{2}=3.
 $$
-It is nonsingular: for
+Indeed, the degree-two Artin-Schreier map $C\to\mathbb P^1$ is ramified only at infinity, where the pole order is $7$ and the different exponent is $8$; Riemann-Hurwitz gives
 $$
-F(x,y)=y^2+xy+x^3+1,
+2g-2=2(-2)+8=4.
 $$
-we have
+
+For $a\in\mathbb F_{2^n}$, the equation
 $$
-F_y=x,
+y^2+y=a
+$$
+has two solutions when $\operatorname{Tr}(a)=0$ and no solutions when $\operatorname{Tr}(a)=1$. Therefore each $x$ contributes
+$$
+1+(-1)^{\operatorname{Tr}(x^7+x^3)}
+$$
+affine points. Including the unique point at infinity,
+$$
+\#C(\mathbb F_{2^n})=2^n+1+K_n.
+$$
+
+Step 2: Determine the first three Frobenius power sums
+
+For $n=1$, both elements of $\mathbb F_2$ satisfy $x^7+x^3=0$, so
+$$
+K_1=2.
+$$
+
+For $n=2$, let $\mathbb F_4=\{0,1,\omega,\omega^2\}$ with $\omega^2+\omega+1=0$. On $\mathbb F_4^\times$, $x^3=1$ and $x^7=x$. Thus $x=0,1$ contribute $+1$, while for $x=\omega,\omega^2$ the value $x+1$ has absolute trace $1$. Hence
+$$
+K_2=0.
+$$
+
+For $n=3$, every nonzero $x\in\mathbb F_8$ satisfies $x^7=1$, and $x\mapsto x^3$ permutes $\mathbb F_8^\times$. Since $\operatorname{Tr}_{\mathbb F_8/\mathbb F_2}(1)=1$ and the nontrivial additive character has total sum $0$,
+$$
+\sum_{x\ne0}(-1)^{\operatorname{Tr}(1+x^3)}
+=-\sum_{u\ne0}(-1)^{\operatorname{Tr}(u)}=1.
+$$
+The term $x=0$ contributes $1$, so
+$$
+K_3=2.
+$$
+
+Let $\alpha_1,\ldots,\alpha_6$ be the Frobenius eigenvalues of $C$. The genus-three point-count formula is
+$$
+\#C(\mathbb F_{2^n})=2^n+1-p_n,
 \qquad
-F_x=y+x^2.
+p_n=\sum_{j=1}^6\alpha_j^n.
 $$
-A singular affine point would have $x=0$ and $y=0$, but then $F(0,0)=1$.
+Thus
+$$
+p_1=-2,\qquad p_2=0,\qquad p_3=-2.
+$$
 
-For $x\ne0$, put $z=y/x$. Dividing the equation by $x^2$ gives
-$$
-z^2+z=x+x^{-2}.
-$$
-Over a field of characteristic $2$, the equation
-$$
-z^2+z=a
-$$
-has two solutions when $\operatorname{Tr}(a)=0$ and no solutions when $\operatorname{Tr}(a)=1$. Indeed, the map $z\mapsto z^2+z$ has kernel $\mathbb F_2$, hence image of size $q/2$, and every element of its image has trace $0$; the trace-zero subspace also has size $q/2$.
+Step 3: Recover the Weil polynomial
 
-Since
+For a genus-three curve over $\mathbb F_2$, Frobenius duality gives a characteristic polynomial of the form
 $$
-\operatorname{Tr}(x^{-2})
-=\operatorname{Tr}\bigl((x^{-1})^2\bigr)
-=\operatorname{Tr}(x^{-1}),
+P(T)=T^6+c_1T^5+c_2T^4+c_3T^3+2c_2T^2+4c_1T+8.
 $$
-the number of $y$ above a fixed $x\ne0$ is
+Newton's identities give
 $$
-1+\psi(x+x^{-1}).
+p_1+c_1=0,
 $$
-For $x=0$, the equation is $y^2=1$, which has the unique solution $y=1$. Including the point at infinity,
 $$
-\#E(\mathbb F_q)
-=2+\sum_{x\in\mathbb F_q^\times}\bigl(1+\psi(x+x^{-1})\bigr)
-=q+1+K,
+p_2+c_1p_1+2c_2=0,
 $$
-where
+and
 $$
-K=\sum_{x\in\mathbb F_q^\times}\psi(x+x^{-1}).
+p_3+c_1p_2+c_2p_1+3c_3=0.
+$$
+Substituting $p_1=-2$, $p_2=0$, $p_3=-2$ yields
+$$
+c_1=c_2=c_3=2.
 $$
 Therefore
 $$
-K=\#E(\mathbb F_q)-q-1.
+P(T)=T^6+2T^5+2T^4+2T^3+4T^2+8T+8.
 $$
 
-Step 2: Determine the Frobenius recurrence from $E(\mathbb F_2)$
+Step 4: Iterate the Frobenius recurrence to $n=17$
 
-Directly over $\mathbb F_2$, the affine points are
+For $n\ge7$, the roots of $P$ give
 $$
-(0,1),\qquad (1,0),\qquad (1,1),
+p_n+2p_{n-1}+2p_{n-2}+2p_{n-3}+4p_{n-4}+8p_{n-5}+8p_{n-6}=0.
 $$
-together with the point at infinity. Thus
+Newton's identities first give
 $$
-\#E(\mathbb F_2)=4,
+p_4=-8,\qquad p_5=-12,\qquad p_6=12.
 $$
-so the Frobenius trace is
+Iterating the recurrence gives
 $$
-a_1=2+1-4=-1.
+\begin{aligned}
+p_7&=40,&p_8&=-32,&p_9&=88,&p_{10}&=-80,\\
+p_{11}&=-112,&p_{12}&=-80,&p_{13}&=128,&p_{14}&=0,\\
+p_{15}&=288,&p_{16}&=1024,&p_{17}&=-1600.
+\end{aligned}
 $$
-
-We use the elliptic-curve Frobenius point-count formula in its exact form: if $\alpha,\beta$ are the roots of
+Since $K_n=-p_n$ by Step 1,
 $$
-T^2-a_1T+2=0,
-$$
-then for every $m\ge1$,
-$$
-\#E(\mathbb F_{2^m})
-=2^m+1-(\alpha^m+\beta^m).
-$$
-Here $a_1=-1$, so
-$$
-\alpha+\beta=-1,
-\qquad
-\alpha\beta=2.
-$$
-Put
-$$
-a_m=\alpha^m+\beta^m,
-\qquad
-a_0=2.
-$$
-Then
-$$
-a_m=-a_{m-1}-2a_{m-2}
-$$
-for $m\ge2$.
-
-Step 3: Iterate to the eleventh extension
-
-Starting from
-$$
-a_0=2,
-\qquad
-a_1=-1,
-$$
-the recurrence gives
-$$
-a_2=-3,
-\quad
-a_3=5,
-\quad
-a_4=1,
-\quad
-a_5=-11,
-$$
-$$
-a_6=9,
-\quad
-a_7=13,
-\quad
-a_8=-31,
-\quad
-a_9=5,
-$$
-$$
-a_{10}=57,
-\qquad
-a_{11}=-67.
-$$
-Hence
-$$
-\#E(\mathbb F_{2^{11}})
-=2^{11}+1-a_{11}
-=2048+1+67
-=2116.
-$$
-By Step 1,
-$$
-K=2116-2048-1=67.
+K_{17}=1600.
 $$
 
-Final Answer: $\boxed{K=67}$
+Final Answer: $\boxed{K=1600}$
 
 ---
 
 ## Answer
 
-$K=67$
+$K=1600$
 
 ---
 
@@ -167,7 +134,7 @@ $K=67$
 
 ## Solution Concepts
 
-- binary Kloosterman character sum
-- Artin-Schreier trace criterion
-- elliptic-curve point count
-- Frobenius recurrence
+- Artin-Schreier character sums
+- genus-three point counting
+- Frobenius Weil polynomial
+- Newton identities and recurrence
