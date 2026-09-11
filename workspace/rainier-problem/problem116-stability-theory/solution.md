@@ -1,97 +1,116 @@
 ## Steps
 
-Step 1: Write the characteristic equation and localize possible unstable roots
+Step 1: Bound possible unstable characteristic roots
 Consider
 $$
-\dot x(t)+\frac12\dot x(t-\tau)+\frac32x(t-\tau)=0,
-\qquad \tau>0.
+\ddot x(t)+x(t)+\frac12\dot x(t-\tau)=0,
+\qquad \tau>0,
 $$
-Its characteristic equation is
+with characteristic equation
 $$
-F(\lambda,\tau)
-:=\lambda+\left(\frac\lambda2+\frac32\right)e^{-\lambda\tau}=0.
+F(\lambda,\tau):=\lambda^2+1+\frac\lambda2e^{-\lambda\tau}=0.
 $$
-At $\tau=0$ this reduces to
-$$
-\frac32\lambda+\frac32=0,
-$$
-so the only finite characteristic root is $\lambda=-1$.
-
 If $\operatorname{Re}\lambda\ge0$ and $F(\lambda,\tau)=0$, then
 $$
-\lambda\left(1+\frac12e^{-\lambda\tau}\right)
-=-\frac32e^{-\lambda\tau}.
+|\lambda^2+1|=\frac{|\lambda|}{2}e^{-\tau\operatorname{Re}\lambda}\le\frac{|\lambda|}{2}.
 $$
-Because $|e^{-\lambda\tau}|\le1$,
+Hence
 $$
-\left|1+\frac12e^{-\lambda\tau}\right|\ge\frac12,
+|\lambda|^2-1\le\frac{|\lambda|}{2},
 $$
-and hence $|\lambda|\le3$. Thus all roots in the closed right half-plane remain in a fixed compact disk. Consequently their number can change as $\tau$ varies only when a characteristic root crosses the imaginary axis.
+so every root in the closed right half-plane satisfies
+$$
+|\lambda|\le\frac{1+\sqrt{17}}4.
+$$
+Thus the right-half-plane root count can change only through imaginary-axis crossings. At $\tau=0$,
+$$
+F(\lambda,0)=\lambda^2+\frac12\lambda+1,
+$$
+whose roots have negative real part. Since the above bound is uniform and $F(\cdot,\tau)\to F(\cdot,0)$ uniformly on the bounded right-half-plane region, there are no unstable roots for all sufficiently small positive $\tau$.
 
-Step 2: Find every imaginary-axis crossing
-Let $\lambda=i\omega$ with $\omega\in\mathbb R$. Since $F(0,\tau)=3/2$, we have $\omega\ne0$. Taking absolute values in
+Step 2: Find the two crossing families
+Let $\lambda=i\omega$ with $\omega>0$ and put $\theta=\omega\tau$. Then
 $$
-i\omega=-\left(\frac{i\omega}{2}+\frac32\right)e^{-i\omega\tau}
+1-\omega^2+\frac{i\omega}{2}e^{-i\theta}=0.
 $$
-gives
+Separating real and imaginary parts gives
 $$
-\omega^2=\frac{\omega^2+9}{4},
+1-\omega^2+\frac\omega2\sin\theta=0,
+\qquad
+\cos\theta=0.
+$$
+If $\sin\theta=1$, then
+$$
+\omega_+=\frac{1+\sqrt{17}}4,
+\qquad
+\theta=\frac\pi2+2\pi k,
+$$
+so the crossing delays are
+$$
+D_k=\frac{(4k+1)\pi(\sqrt{17}-1)}8,
+\qquad k=0,1,2,\dots.
+$$
+If $\sin\theta=-1$, then
+$$
+\omega_- =\frac{\sqrt{17}-1}4,
+\qquad
+\theta=\frac{3\pi}{2}+2\pi k,
 $$
 so
 $$
-\omega^2=3.
-$$
-For the positive frequency $\omega=\sqrt3$,
-$$
-e^{-i\sqrt3\tau}
-=-\frac{i\sqrt3}{\frac32+\frac{i\sqrt3}{2}}
-=e^{-2\pi i/3}.
-$$
-Therefore all positive crossing delays are
-$$
-\tau_k
-=\frac{\frac{2\pi}{3}+2\pi k}{\sqrt3}
-=\frac{2\pi(3k+1)}{3\sqrt3},
+S_k=\frac{(4k+3)\pi(\sqrt{17}+1)}8,
 \qquad k=0,1,2,\dots.
 $$
-The conjugate root $-i\sqrt3$ crosses at the same delays.
+These are all imaginary-axis crossings; $F(0,\tau)=1$, so zero is never a characteristic root.
 
-Step 3: Determine the crossing direction
-Implicit differentiation of $F(\lambda,\tau)=0$ gives
+Step 3: Determine crossing directions and count roots
+Implicit differentiation gives
 $$
 \frac{d\lambda}{d\tau}=-\frac{F_\tau}{F_\lambda}.
 $$
-At a crossing point $\lambda=i\sqrt3$, using the characteristic equation to simplify the exponential factor yields
+At an imaginary crossing,
 $$
-\operatorname{Re}\frac{d\lambda}{d\tau}
-=\frac{3}{3\tau_k^2+(\tau_k-1)^2}>0.
+\operatorname{Re}\left(\frac{d\lambda}{d\tau}\right)^{-1}
+=\frac{4\omega\sin\theta-1}{\omega^2}.
 $$
-Thus at every $\tau_k$ one simple conjugate pair crosses from the left half-plane into the right half-plane as $\tau$ increases.
+The real part of a nonzero complex number and that of its reciprocal have the same sign. Therefore each $D_k$ crossing has positive direction because
+$$
+4\omega_+-1=\sqrt{17}>0,
+$$
+while each $S_k$ crossing has negative direction because
+$$
+-4\omega_- -1=-\sqrt{17}<0.
+$$
+Thus every $D_k$ sends one conjugate pair from left to right, and every $S_k$ sends one pair from right to left.
 
-Since there are no right-half-plane roots at $\tau=0$, and Step 1 prevents roots from appearing from infinity, the open right-half-plane root count is constant between successive $\tau_k$ and increases by $2$ after each crossing.
+Now
+$$
+D_0<S_0<D_1
+$$
+because $\sqrt{17}>4$. Hence the root count is $0$ on $(0,D_0)$, then $2$ on $(D_0,S_0)$, then returns to $0$ on $(S_0,D_1)$.
 
-Step 4: Count exactly four unstable characteristic roots
-The first three crossing delays are
+For every $k\ge1$,
 $$
-\tau_0=\frac{2\pi}{3\sqrt3},
-\qquad
-\tau_1=\frac{8\pi}{3\sqrt3},
-\qquad
-\tau_2=\frac{14\pi}{3\sqrt3}.
+D_{k+1}<S_k,
 $$
-For $\tau_1<\tau<\tau_2$, exactly the pairs born at $\tau_0$ and $\tau_1$ lie in the open right half-plane, so there are exactly four roots there. At $\tau=\tau_2$, the third pair is still on the imaginary axis and is not counted, so the number of roots with positive real part is still four. At $\tau=\tau_1$, only the first pair has positive real part, so the lower endpoint is excluded.
+because this inequality is equivalent to $\sqrt{17}<4k+4$. Hence after $D_1$ each later stabilizing crossing is preceded by at least one additional destabilizing crossing, so the right-half-plane root count never returns to zero.
 
-Hence the required delay interval is
+Step 4: State the exact stability set
+Exponential stability also fails at every crossing delay itself because a conjugate pair lies on the imaginary axis. Therefore the characteristic roots all have negative real part exactly for
 $$
-\frac{8\pi}{3\sqrt3}<\tau\le\frac{14\pi}{3\sqrt3}.
+0<\tau<\frac{\pi(\sqrt{17}-1)}8
 $$
-Final Answer: $\boxed{\left(\frac{8\pi}{3\sqrt3},\frac{14\pi}{3\sqrt3}\right]}$
+or
+$$
+\frac{3\pi(\sqrt{17}+1)}8<\tau<\frac{5\pi(\sqrt{17}-1)}8.
+$$
+Final Answer: $\boxed{(0,\frac{\pi(\sqrt{17}-1)}8)\cup(\frac{3\pi(\sqrt{17}+1)}8,\frac{5\pi(\sqrt{17}-1)}8)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{8\pi}{3\sqrt3},\frac{14\pi}{3\sqrt3}\right]$
+$(0,\frac{\pi(\sqrt{17}-1)}8)\cup(\frac{3\pi(\sqrt{17}+1)}8,\frac{5\pi(\sqrt{17}-1)}8)$
 
 ---
 
@@ -105,11 +124,11 @@ $\left(\frac{8\pi}{3\sqrt3},\frac{14\pi}{3\sqrt3}\right]$
 
 ## Solution Concepts
 
-- neutral delay differential equations
+- delayed damping oscillators
 - characteristic root counting
-- imaginary-axis crossings
-- implicit root differentiation
-- spectral stability
+- multiple Hopf crossing frequencies
+- crossing direction
+- delay-induced stability switches
 
 ---
 
