@@ -2,18 +2,15 @@
 
 ## LaTeX (Normalized)
 
-Let $a,b>0$. On the interval $0<x<b$, consider the reaction-diffusion system
+For $\tau>0$, consider the neutral delay differential equation
 $$
-\begin{aligned}
-u_t&=u_{xx}+a u+v,\\
-v_t&=10v_{xx}-3u-2v,
-\end{aligned}
+\dot x(t)+\frac12\dot x(t-\tau)+\frac32x(t-\tau)=0.
 $$
-with homogeneous Neumann boundary conditions
+Its characteristic roots are the zeros of
 $$
-u_x(t,0)=u_x(t,b)=v_x(t,0)=v_x(t,b)=0.
+\lambda+\left(\frac\lambda2+\frac32\right)e^{-\lambda\tau}=0.
 $$
-Determine all pairs $(a,b)$ for which the spatially homogeneous ODE obtained by dropping the diffusion terms is exponentially stable, while the PDE has exactly three unstable nonconstant Neumann spatial frequencies. A frequency $n\ge1$ is called unstable if the corresponding two-dimensional Fourier-mode system has an eigenvalue with positive real part; each integer frequency $n$ is counted once.
+Determine all $\tau>0$ for which this characteristic equation has exactly four roots in the open right half-plane $\operatorname{Re}\lambda>0$, counted with algebraic multiplicity.
 
 ---
 
@@ -30,4 +27,4 @@ Determine all pairs $(a,b)$ for which the spatially homogeneous ODE obtained by 
 
 ## Domain Explanation
 
-This is a linear stability and pattern-selection problem for a two-species reaction-diffusion system on a bounded interval. The parameters control the local reaction dynamics and the spatial domain size, and the question asks for the exact region where diffusion creates a prescribed number of unstable spatial modes.
+This is a spectral-stability problem for a neutral delay differential equation. As the delay varies, characteristic roots move through the complex plane, and the problem asks for the exact delay interval on which the unstable spectrum has prescribed multiplicity.
