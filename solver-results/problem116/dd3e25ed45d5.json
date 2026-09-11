@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "0775f4a7be252ea91d22bf62faa66b3ffd7112df",
+  "problem_blob_sha": "dd3e25ed45d58c346606bd4bc581a22b48b762a6",
+  "statement_sha256": "152d98554d81ae9403c1e8c492f98b31fb05507e76ed0d7878a5e3ef33872972",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T07:51:22+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nA_0=\\begin{pmatrix}a&1\\\\-3&-2\\end{pmatrix}\n\\]\nbe the spatially homogeneous ODE matrix. Its trace and determinant are\n\\[\n\\operatorname{tr}A_0=a-2,\\qquad \\det A_0=3-2a.\n\\]\nThus the ODE is exponentially stable iff\n\\[\n0<a<\\frac32.\n\\]\n\nFor Neumann frequency \\(n\\ge 1\\), write\n\\[\nq_n=\\left(\\frac{n\\pi}{b}\\right)^2.\n\\]\nThe mode matrix is\n\\[\nA_n=\\begin{pmatrix}a-q_n&1\\\\-3&-2-10q_n\\end{pmatrix}.\n\\]\nIts trace is\n\\[\na-2-11q_n<0\n\\]\nwhenever \\(0<a<3/2\\). Hence a mode is unstable exactly when its determinant is negative:\n\\[\n\\det A_n\n=(a-q_n)(-2-10q_n)+3\n=10q_n^2+(2-10a)q_n+(3-2a)<0.\n\\]\n\nThe quadratic is negative between its two positive roots. Those roots exist precisely when\n\\[\n25a^2+10a-29>0,\n\\]\nso, together with ODE stability,\n\\[\n\\frac{\\sqrt{30}-1}{5}<a<\\frac32.\n\\]\nDefine\n\\[\n\\alpha=\\frac{5a-1-\\sqrt{25a^2+10a-29}}{10},\\qquad\n\\beta=\\frac{5a-1+\\sqrt{25a^2+10a-29}}{10}.\n\\]\nThen frequency \\(n\\ge1\\) is unstable exactly when\n\\[\n\\alpha<\\left(\\frac{n\\pi}{b}\\right)^2<\\beta,\n\\]\nequivalently\n\\[\n\\frac{b\\sqrt{\\alpha}}{\\pi}<n<\\frac{b\\sqrt{\\beta}}{\\pi}.\n\\]\n\nTherefore the PDE has exactly three unstable nonconstant Neumann frequencies iff the open interval\n\\[\n\\left(\\frac{b\\sqrt{\\alpha}}{\\pi},\\frac{b\\sqrt{\\beta}}{\\pi}\\right)\n\\]\ncontains exactly three positive integers.\n\nEquivalently, the full answer is:\n\n\\[\n\\boxed{\n\\frac{\\sqrt{30}-1}{5}<a<\\frac32\n}\n\\]\nand there exists an integer \\(m\\ge1\\) such that the three unstable frequencies are exactly\n\\[\nm,\\ m+1,\\ m+2,\n\\]\ni.e.\n\\[\n\\boxed{\nm-1\\le \\frac{b\\sqrt{\\alpha}}{\\pi}<m\n\\quad\\text{and}\\quad\nm+2<\\frac{b\\sqrt{\\beta}}{\\pi}\\le m+3.\n}\n\\]\n\nIn terms of \\(b\\), this is\n\\[\n\\boxed{\n\\frac{(m-1)\\pi}{\\sqrt{\\alpha}}\\le b<\\frac{m\\pi}{\\sqrt{\\alpha}},\n\\qquad\n\\frac{(m+2)\\pi}{\\sqrt{\\beta}}< b\\le\\frac{(m+3)\\pi}{\\sqrt{\\beta}},\n}\n\\]\nfor some integer \\(m\\ge1\\), with \\(\\alpha,\\beta\\) as above.",
+  "status": "success",
+  "completed_at": "2026-09-11T07:52:13+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/dd3e25ed45d5.json"
+}
