@@ -4,21 +4,25 @@
 
 All logarithms are natural. Let
 $$
-f:(1,\infty)\to(0,\infty),
+f:(1,\infty)\to\mathbb R,
 $$
 and define
 $$
 g(s)=f(e^s),\qquad s>0.
 $$
-Assume that $g\in C^2(0,\infty)$, that
+Assume that $g$ extends to a $C^2$ function on $[0,\infty)$ with
 $$
-\lim_{s\to0^+}g(s)=1,
+g(0)=1,
 $$
-and that, for every $s>0$,
+and that
 $$
-g''(s)+\frac5s g'(s)+g(s)^2=0.
+\int_0^\infty s^5g(s)^2\,ds<\infty.
 $$
-Determine $f(x)$ for all $x>1$. For grading, write the final answer as $f(x)=\cdots$, use $\log x$, and leave the denominator unexpanded.
+Suppose there exists a real number $\lambda$ such that, for every $s>0$,
+$$
+g''(s)+\frac5s g'(s)+(\lambda-s^2)g(s)=0.
+$$
+Assume moreover that $g$ has exactly two zeros on $(0,\infty)$. Determine $f(x)$ for all $x>1$. For grading, write the final answer as $f(x)=\cdots$, use $\log x$, and do not expand powers of $\log x$.
 
 ---
 
@@ -35,4 +39,4 @@ Determine $f(x)$ for all $x>1$. For grading, write the final answer as $f(x)=\cd
 
 ## Domain Explanation
 
-The logarithmic profile satisfies a singular nonlinear ordinary differential equation. A logarithmic change of the independent variable together with the natural Emden-Fowler scaling converts it to an autonomous equation with a conserved energy; a reciprocal-square-root substitution then linearizes the zero-energy orbit. The problem is therefore governed by one-variable differentiation, asymptotic analysis, and nonlinear ODE methods.
+After passing to the logarithmic profile, the problem becomes the radial six-dimensional harmonic-oscillator eigenvalue equation. Square integrability quantizes the spectral parameter through a Laguerre Sturm-Liouville problem, the prescribed number of zeros selects the spectral level, and the value at the origin fixes the normalization. The solution uses one-variable differential equations, weighted integration, orthogonality, and zero counting.
