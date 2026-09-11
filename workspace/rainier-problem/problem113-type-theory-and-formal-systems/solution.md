@@ -1,101 +1,74 @@
 ## Steps
 
-Step 1: Separate each interchange into a swap and a family of translation seeds
-Read a term as a word in the unary symbols, suppressing the terminal $z$. The rules are
+Step 1: Charge every first-rule step to the swap that created its ancestor
+Suppress the terminal $z$ and read a term as a word in the unary symbols. The rules are
 $$
 d_q a\longrightarrow a^2d_q,
 \qquad
-d_qd_p\longrightarrow a^{q-p}d_pd_q\quad(p<q).
+d_qd_p\longrightarrow a d_pd_q\quad(p<q).
 $$
-Deleting all $a$'s leaves a permutation of the labels $2,3,\ldots,n$. The first rule does not change this permutation, while the second rule swaps one adjacent inversion. Hence every complete reduction uses exactly
-$$
-\binom{n-1}{2}
-$$
-interchange steps.
+Deleting all $a$'s leaves a permutation of $d_2,\ldots,d_n$. The first rule does not change that permutation, while the second rule swaps one adjacent inversion. Hence every complete reduction swaps each inverted pair exactly once.
 
-Consider one of the $q-p$ copies of $a$ created when $d_qd_p$ is interchanged. Suppose that, in the $d$-subword at that moment, the swapped pair occupies positions $k,k+1$, counted from $0$. Thus exactly $k$ constructors $d_r$ lie outside this new copy of $a$. Track only the descendants of this one copy. Passing the innermost remaining $d_r$ across it costs one first-rule step and replaces it by two descendants. Therefore, if $C_k$ is the number of first-rule steps forced by one such seed with $k$ outer $d$'s, then
+There are no $a$'s initially, so every occurrence of $a$ descends from the unique $a$ created by some swap. Suppose a swap is made at cut $k$, meaning that exactly $k$ $d$-symbols lie outside the swapped pair. Let $C_k$ be the number of future first-rule steps forced by the descendants of that one new $a$. Then
 $$
-C_0=0,\qquad C_k=1+2C_{k-1}.
+C_0=0,
+\qquad
+C_k=1+2C_{k-1}.
 $$
-Thus
+Indeed, the innermost of the $k$ outer $d$'s crosses the seed once and creates two descendants, each still lying inside the remaining $k-1$ outer $d$'s. Therefore
 $$
 C_k=2^k-1.
 $$
-The genealogy of different seeds is disjoint, so an interchange $d_qd_p\to a^{q-p}d_pd_q$ made at cut $k$ contributes exactly
+Including the swap that created the seed, a swap performed at cut $k$ accounts for exactly
 $$
-(q-p)(2^k-1)
+1+C_k=2^k
 $$
-future first-rule steps, independent of how those steps are interleaved with the rest of the reduction.
+steps. Distinct seeds have disjoint genealogies, so the total reduction length is the sum of these weights over all $d$-$d$ swaps.
 
-Step 2: Determine the total label difference that can cross each cut
-Let the current $d$-subword be
+Step 2: Reduce the problem to a weighted adjacent-swap sort
+Put $m=n-1$ and relabel the $d$-symbols by $m,m-1,\ldots,1$. A complete reduction induces a sequence of adjacent inversion swaps sorting
 $$
-\pi_0,\pi_1,\ldots,\pi_{n-2},
+m,m-1,\ldots,1
 $$
-and for $0\leq k\leq n-3$ define the prefix sum
-$$
-P_k=\pi_0+\pi_1+\cdots+\pi_k.
-$$
-A swap at any cut other than $k$ leaves $P_k$ unchanged. If a swap at cut $k$ changes adjacent labels $q,p$ with $q>p$, then $P_k$ decreases by exactly $q-p$. Consequently the sum of all quantities $q-p$ over swaps occurring at cut $k$ is forced by the initial and final $d$-orders.
+into increasing order. A swap across cut $k$ (between positions $k$ and $k+1$, counted from $0$) has weight $2^k$ by Step 1.
 
-Initially the order is $n,n-1,\ldots,2$, whereas every normal form has order $2,3,\ldots,n$. Hence
+Let $W_m$ be the minimum possible total weight of such a sorting sequence. Consider the largest label $m$. It starts in the leftmost position and ends in the rightmost position, so it must cross the other $m-1$ labels once each. Its successive swaps necessarily occur across cuts
 $$
-\sum_{\substack{\text{swaps at}\\\text{cut }k}}(q-p)
-=P_k^{\mathrm{initial}}-P_k^{\mathrm{final}}.
+0,1,\ldots,m-2,
 $$
-The two prefix sums are
+and therefore have the fixed total weight
 $$
-P_k^{\mathrm{initial}}=\frac{(k+1)(2n-k)}2,
+1+2+\cdots+2^{m-2}=2^{m-1}-1.
+$$
+
+Now delete the label $m$ from an arbitrary sorting sequence and omit all swaps involving it. The remaining swaps still sort the reverse permutation on $m-1$ labels. If one of those swaps occurred at cut $k$ before deletion, then after deleting $m$ its cut is either $k$ or $k-1$. Hence its weight in the reduced $(m-1)$-label problem is at most its original weight. Consequently
+$$
+W_m\ge (2^{m-1}-1)+W_{m-1}.
+$$
+
+Step 3: Attain the recurrence and solve it
+The lower bound is attainable: first move the largest label $m$ all the way to the right, using the cuts $0,1,\ldots,m-2$, and then use an optimal sequence for the remaining reverse permutation of size $m-1$. Thus
+$$
+W_1=0,
 \qquad
-P_k^{\mathrm{final}}=\frac{(k+1)(k+4)}2,
+W_m=W_{m-1}+2^{m-1}-1.
 $$
-so
+Summing gives
 $$
-\sum_{\substack{\text{swaps at}\\\text{cut }k}}(q-p)
-=(k+1)(n-k-2).
+W_m=\sum_{j=1}^{m-1}(2^j-1)
+=2^m-m-1.
 $$
-This is the load-bearing point: the amount of translation created at a cut is not chosen by the reduction order; it is encoded by the change of that prefix sum.
-
-Step 3: Count all first-rule steps
-By Step 1, every unit of translation created at cut $k$ generates exactly $2^k-1$ first-rule steps. By Step 2, the total translation created there is $(k+1)(n-k-2)$. Therefore every complete reduction uses exactly
+Since $m=n-1$, the minimum complete reduction length is
 $$
-E_n=\sum_{k=0}^{n-3}(2^k-1)(k+1)(n-k-2)
+L_n=W_{n-1}=2^{n-1}-n.
 $$
-applications of the first rule, with the sum interpreted as empty when $n=2$.
-
-For $n=2$, the starting term $d_2(z)$ is already irreducible, so $L_2=0$, agreeing with the final formula below. Now assume $n\geq3$. To evaluate $E_n$, expand
-$$
-(k+1)(n-k-2)=-k^2+(n-3)k+(n-2)
-$$
-and use, for $N=n-3\geq0$,
-$$
-\sum_{k=0}^{N}2^k=2^{N+1}-1,
-$$
-$$
-\sum_{k=0}^{N}k2^k=(N-1)2^{N+1}+2,
-$$
-$$
-\sum_{k=0}^{N}k^22^k=(N^2-2N+3)2^{N+1}-6,
-$$
-together with the standard polynomial sums for $1,k,k^2$. Simplification gives
-$$
-E_n=2^{n-1}(n-4)-\frac{n^3}{6}+\frac{n^2}{2}+\frac{2n}{3}+2.
-$$
-
-Step 4: Add the interchange steps
-Every complete reduction has the same number of steps: the $E_n$ first-rule steps from Step 3 plus the $\binom{n-1}{2}$ interchange steps from Step 1. In particular this common value is the minimum $L_n$. Thus
-$$
-L_n
-=E_n+\binom{n-1}{2}
-=2^{n-1}(n-4)-\frac{n^3}{6}+n^2-\frac{5n}{6}+3.
-$$
-Final Answer: $\boxed{2^{n-1}(n-4)-\frac{n^3-6n^2+5n-18}{6}}$
+Final Answer: $\boxed{2^{n-1}-n}$
 
 ---
 
 ## Answer
 
-$2^{n-1}(n-4)-\frac{n^3-6n^2+5n-18}{6}$
+$2^{n-1}-n$
 
 ---
 
@@ -110,7 +83,6 @@ $2^{n-1}(n-4)-\frac{n^3-6n^2+5n-18}{6}$
 ## Solution Concepts
 
 - term rewriting systems
-- affine rewrite semantics
-- reduction genealogy
-- prefix-sum invariants
-- inversion counting
+- weighted adjacent swaps
+- reduced decompositions
+- recurrence optimization
