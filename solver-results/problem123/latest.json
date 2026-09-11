@@ -1,9 +1,9 @@
 {
   "problem": "problem123",
   "branch": "adversary/problem123",
-  "problem_path": "workspace/rainier-problem/problem123-galois-theory/problem.md",
-  "problem_blob_sha": "a8456890b8dc80e459ce2c7227a332309ed11538",
-  "source_commit_sha": "d7c6a98aba93e44982193cda5467e6fbbd01fba1",
+  "problem_path": "workspace/rainier-problem/problem123-stochastic-processes/problem.md",
+  "problem_blob_sha": "701fb1d717bd7975481997c0f9d8d28a500a4878",
+  "source_commit_sha": "17c997ba8d81e6724301d38b59e5c1252f783951",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-11T09:06:42+00:00",
-  "result_file": "solver-results/problem123/a8456890b8dc.json"
+  "completed_at": "2026-09-11T09:42:04+00:00",
+  "result_file": "solver-results/problem123/701fb1d717bd.json"
 }
