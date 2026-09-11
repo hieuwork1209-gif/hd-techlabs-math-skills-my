@@ -1,121 +1,132 @@
 ## Steps
 
-Step 1: Localize the unstable characteristic roots
-Consider
+Step 1: Write the Duffing periodic orbit in elliptic-function form
+For each $A>0$, let $x_A$ solve
 $$
-\dot x(t)+x(t)+2x(t-\tau)+2x(t-2\tau)=0,
-\qquad \tau>0.
+\ddot x+x+x^3=0,
+\qquad x_A(0)=A,
+\qquad \dot x_A(0)=0.
 $$
-Its characteristic equation is
+Set
 $$
-F(\lambda,\tau)=\lambda+1+2e^{-\lambda\tau}+2e^{-2\lambda\tau}=0.
+m=\frac{A^2}{2(1+A^2)},
+\qquad
+\Omega=\sqrt{1+A^2}.
 $$
-If $\operatorname{Re}\lambda\ge0$, then at a root
+Then $0<m<1/2$, and the Jacobi identity
 $$
-|\lambda+1|\le2|e^{-\lambda\tau}|+2|e^{-2\lambda\tau}|\le4,
+\frac{d^2}{ds^2}\operatorname{cn}(s,m)
+=(2m-1)\operatorname{cn}(s,m)-2m\operatorname{cn}^3(s,m)
 $$
-so all closed-right-half-plane roots lie in a fixed compact disk. At $\tau=0$,
+shows that
 $$
-F(\lambda,0)=\lambda+5,
+x_A(t)=A\operatorname{cn}(\Omega t,m).
 $$
-which has no root with nonnegative real part. Hence for small positive $\tau$ the open right-half-plane root count is zero, and that count can change only at imaginary-axis crossings.
+Its period is $4K(m)/\Omega$.
 
-Step 2: Find all imaginary-axis crossings
-Let $\lambda=i\omega$ with $\omega>0$, and put $\theta=\omega\tau$. Separating real and imaginary parts gives
+Step 2: Reduce the transverse equation to a Lamé equation
+Consider the transverse Hill equation
 $$
-1+2\cos\theta+2\cos2\theta=0,
+\ddot y+\bigl(3x_A(t)^2-1\bigr)y=0.
 $$
+With $s=\Omega t$ and $Y(s)=y(t)$,
 $$
-\omega=2\sin\theta+2\sin2\theta.
+Y''+\left(\frac{3A^2-1}{1+A^2}-\frac{3A^2}{1+A^2}\operatorname{sn}^2(s,m)\right)Y=0.
 $$
-Writing $c=\cos\theta$, the first equation becomes
+Since
 $$
-4c^2+2c-1=0,
+\frac{A^2}{1+A^2}=2m,
 $$
-so
+this becomes the $n=2$ Lamé equation
 $$
-c_+=\frac{\sqrt5-1}{4}=\cos\frac{2\pi}{5},
+Y''+\bigl(h-6m\operatorname{sn}^2(s,m)\bigr)Y=0,
 \qquad
-c_-=-\frac{\sqrt5+1}{4}=\cos\frac{4\pi}{5}.
+h=8m-1.
 $$
-For $c_+$, positivity of $\omega$ selects
+The coefficient has period $2K(m)$, half the Duffing period. Hence the monodromy over one Duffing period is the square of the monodromy over one Lamé period, so its multipliers have modulus $1$ exactly when the Lamé multipliers do.
+
+Step 3: List the relevant Lamé band edges
+For $0<m<1$, the five finite band edges of the $n=2$ Lamé operator
 $$
-\theta=\frac{2\pi}{5}+2\pi k,
+H=-\frac{d^2}{ds^2}+6m\operatorname{sn}^2(s,m)
+$$
+are
+$$
+E_0=2\left(1+m-\sqrt{1-m+m^2}\right),
+$$
+$$
+E_1=1+m,
 \qquad
-\omega_+=\sqrt{5+2\sqrt5}.
-$$
-For $c_-$, positivity of $\omega$ selects the lower-half-circle branch
-$$
-\theta=\frac{6\pi}{5}+2\pi k,
+E_2=1+4m,
 \qquad
-\omega_- =\sqrt{5-2\sqrt5}.
+E_3=4+m,
 $$
-Thus the two crossing families are
 $$
-A_k=\frac{2\pi(5k+1)}{5\omega_+},
-\qquad
-B_k=\frac{2\pi(5k+3)}{5\omega_-},
-\qquad k=0,1,2,\dots.
+E_4=2\left(1+m+\sqrt{1-m+m^2}\right).
+$$
+Indeed, $\operatorname{cn}\operatorname{dn}$, $\operatorname{sn}\operatorname{dn}$, and $\operatorname{sn}\operatorname{cn}$ give $E_1,E_2,E_3$, while an ansatz $1-C\operatorname{sn}^2$ gives $E_0,E_4$. Their order is
+$$
+E_0<E_1<E_2<E_3<E_4.
+$$
+For a real periodic Schrödinger equation, both Floquet multipliers have modulus $1$ exactly on the spectral bands, which here are
+$$
+[E_0,E_1]\cup[E_2,E_3]\cup[E_4,\infty).
+$$
+
+Step 4: Intersect the moving spectral parameter with the bands
+Here $h=8m-1$ and $0<m<1/2$. First,
+$$
+h=E_1
+\iff 8m-1=1+m
+\iff m=\frac27.
 $$
 Also
 $$
-\frac{\omega_+}{\omega_-}=2+\sqrt5,
+h=E_2
+\iff 8m-1=1+4m
+\iff m=\frac12,
 $$
-so the two crossing families never coincide.
+which is not attained for finite $A$. Thus after crossing $E_1$, the point $h$ remains in the first instability gap until the limiting value $m=1/2$.
 
-Step 3: Determine every crossing direction
-Write $z=e^{-i\theta}$. At a crossing,
+For the lower edge,
 $$
-F_\tau=-2\lambda z(1+2z),
-\qquad
-F_\lambda=1-2\tau z-4\tau z^2.
+8m-1=2\left(1+m-\sqrt{1-m+m^2}\right).
 $$
-Since $F_\lambda=1+(\tau/\lambda)F_\tau$,
+Rearranging and squaring gives
 $$
-\left(\frac{d\lambda}{d\tau}\right)^{-1}
-=-\frac{F_\lambda}{F_\tau}
-=-\frac1{F_\tau}-\frac\tau\lambda.
+32m^2-32m+5=0.
 $$
-For $\lambda=i\omega$, the second term is purely imaginary. If $c=\cos\theta$ and $s=\sin\theta$, direct rationalization gives
+The root in $(0,1/2)$ is
 $$
-\operatorname{Re}\left(-\frac1{F_\tau}\right)
-=\frac{s(4c+1)}{2\omega(5+4c)}.
+m_0=\frac12-\frac{\sqrt6}{8}.
 $$
-On the $A_k$ family, $s>0$ and $4c_++1=\sqrt5>0$. On the $B_k$ family, $s<0$ and $4c_-+1=-\sqrt5<0$. Therefore every crossing has positive direction: at each $A_k$ or $B_k$, one simple conjugate pair moves from the left half-plane into the right half-plane as $\tau$ increases.
-
-Step 4: Order the first crossings and count eight roots
-The relevant first crossings are
+Therefore the Lamé parameter lies in the first stability band exactly for
 $$
-A_0=\frac{2\pi}{5\omega_+},\quad
-A_1=\frac{12\pi}{5\omega_+},\quad
-A_2=\frac{22\pi}{5\omega_+},\quad
-B_0=\frac{6\pi}{5\omega_-},\quad
-A_3=\frac{32\pi}{5\omega_+}.
+m_0\le m\le\frac27.
 $$
-Using $\omega_+/\omega_-=2+\sqrt5$,
+Using
 $$
-A_2<B_0<A_3
+A^2=\frac{2m}{1-2m},
 $$
-because
+we obtain
 $$
-11<3(2+\sqrt5)<16.
+A^2\ge \frac{2\sqrt6}{3}-1
 $$
-Hence the first five crossing events are
+at $m=m_0$, and
 $$
-A_0<A_1<A_2<B_0<A_3.
+A^2\le\frac43
 $$
-Starting from zero unstable roots, each event adds two. Thus immediately after $B_0$ there are exactly eight roots in the open right half-plane. At $A_3$ the fifth conjugate pair is still on the imaginary axis, so it is not counted and the open right-half-plane count is still eight there. Therefore
+at $m=2/7$. Hence both Floquet multipliers have modulus $1$ exactly when
 $$
-B_0<\tau\le A_3.
+\sqrt{\frac{2\sqrt6}{3}-1}\le A\le\frac2{\sqrt3}.
 $$
-Substituting the exact frequencies gives the required interval.
-Final Answer: $\boxed{\left(\frac{6\pi}{5\sqrt{5-2\sqrt5}},\frac{32\pi}{5\sqrt{5+2\sqrt5}}\right]}$
+Final Answer: $\boxed{\left[\sqrt{\frac{2\sqrt6}{3}-1},\frac2{\sqrt3}\right]}$
 
 ---
 
 ## Answer
 
-$\left(\frac{6\pi}{5\sqrt{5-2\sqrt5}},\frac{32\pi}{5\sqrt{5+2\sqrt5}}\right]$
+$\left[\sqrt{\frac{2\sqrt6}{3}-1},\frac2{\sqrt3}\right]$
 
 ---
 
@@ -129,11 +140,11 @@ $\left(\frac{6\pi}{5\sqrt{5-2\sqrt5}},\frac{32\pi}{5\sqrt{5+2\sqrt5}}\right]$
 
 ## Solution Concepts
 
-- retarded delay differential equations
-- characteristic root counting
-- commensurate delays
-- imaginary-axis crossings
-- crossing direction
+- Duffing periodic orbits
+- Floquet stability
+- Lamé equations
+- Jacobi elliptic functions
+- spectral band edges
 
 ---
 
