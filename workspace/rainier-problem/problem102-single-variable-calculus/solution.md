@@ -83,20 +83,20 @@ $$
 \frac{15\cdot3}{3}=15.
 $$
 
-Fix a Lagrangian plane $L$. Choose a symplectic basis
+Fix a Lagrangian plane $L$. Choose a basis $\overline E_1,\overline E_2$ of $L$ and lift it to primitive vectors $E_1,E_2\in G$. Their pairing is even. Choose a primitive $F_1$ with $\langle E_1,F_1\rangle=1$; if $\langle E_1,E_2\rangle=2\varepsilon$, replace $E_2$ by $E_2-2\varepsilon F_1$. This does not change its reduction and makes $\langle E_1,E_2\rangle=0$. Since the pairing is perfect and $E_1,E_2$ reduce to independent vectors, choose $F_1,F_2$ dual to them, and then add a multiple of $E_1$ to $F_2$ to kill $\langle F_1,F_2\rangle$. Thus we may arrange a symplectic basis
 $$
 E_1,E_2,F_1,F_2
 $$
-of $G$ whose reductions satisfy
+with
 $$
 L=\operatorname{span}_{\mathbb F_2}(\overline E_1,\overline E_2),
 $$
-and
 $$
 \langle E_i,F_j\rangle=\delta_{ij},
 \qquad
 \langle E_i,E_j\rangle=\langle F_i,F_j\rangle=0.
 $$
+
 For a self-dual $H$ with image $L$,
 $$
 H\cap2G=2L=\langle2E_1,2E_2\rangle.
@@ -106,7 +106,7 @@ $$
 u_i=E_i+2\sum_{j=1}^2 a_{ij}F_j,
 \qquad a_{ij}\in\mathbb F_2.
 $$
-Let $A=(a_{ij})$. The only nontrivial isotropy condition is
+Writing these generators as $u_i$, let $A=(a_{ij})$. The only nontrivial isotropy condition is
 $$
 0=\langle u_1,u_2\rangle
 =2(a_{21}-a_{12})\pmod4,
