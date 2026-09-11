@@ -1,135 +1,136 @@
 ## Steps
 
-Step 1: Encode the two turning points
+Step 1: Pass to logarithmic time and determine the wave speed
 
 Let
 $$
-g(s)=f(e^s),\qquad s>0.
-$$
-For each $E>0$, let $a(E)\in(0,1)$ and $b(E)>1$ be the unique points such that
-$$
-g(a(E))=g(b(E))=E.
-$$
-Because $g'<0$ on $(0,1)$ and $g'>0$ on $(1,\infty)$, the inverse branches $a,b$ are $C^1$ for $E>0$. Split the period integral at $s=1$ and use $u=g(s)$ on each branch. This gives
-$$
-\pi
-=
-\int_0^E\frac{b'(u)-a'(u)}{\sqrt{E-u}}\,du.
-$$
-Define the turning-point width
-$$
-W(E)=b(E)-a(E).
+u(t)=g(e^t),\qquad t\in\mathbb R.
 $$
 Then
 $$
-\pi=\int_0^E\frac{W'(u)}{\sqrt{E-u}}\,du.
+u_{tt}+c u_t+u(1-u)=0,
 $$
-Also $W(E)\to0$ as $E\to0^+$ because both turning points tend to the unique minimum point $s=1$.
+with
+$$
+u(-\infty)=1,\qquad u(+\infty)=0,\qquad u_t<0,
+$$
+and
+$$
+u(0)=\frac14.
+$$
+The endpoint rates become
+$$
+\alpha=-\lim_{t\to-\infty}\frac{u_t}{1-u},
+\qquad
+\beta=-\lim_{t\to+\infty}\frac{u_t}{u},
+$$
+where $\alpha,\beta>0$ and $\beta=2\alpha$.
 
-Step 2: Invert the Abel relation without using an external theorem
-
-Fix $R>0$. Multiply the last identity by $(R-E)^{-1/2}$ and integrate from $E=0$ to $E=R$. Since the integrands are nonnegative after splitting into the two monotone branches, the order of integration may be reversed. We obtain
+Set $v=1-u$ near $-\infty$. Then
 $$
-\int_0^R\frac{\pi}{\sqrt{R-E}}\,dE
-=
-\int_0^R W'(u)
-\left(
-\int_u^R\frac{dE}{\sqrt{E-u}\sqrt{R-E}}
-\right)du.
+v_{tt}+cv_t-v+v^2=0.
 $$
-The inner integral equals $\pi$ by the substitution
+Since $v_t/v\to\alpha$,
 $$
-E=u+(R-u)t.
+\frac{v_{tt}}v\to1-c\alpha.
 $$
-Hence
+Also
 $$
-2\pi\sqrt R
-=
-\pi\int_0^R W'(u)\,du
-=
-\pi W(R),
+\left(\frac{v_t}{v}\right)'
+=\frac{v_{tt}}v-\left(\frac{v_t}{v}\right)^2.
+$$
+The left-hand ratio converges, so the right-hand side cannot tend to a nonzero constant. Hence
+$$
+\alpha^2+c\alpha-1=0.
+$$
+Similarly, from the equation for $u$ at $+\infty$,
+$$
+\beta^2-c\beta+1=0.
+$$
+Using $\beta=2\alpha$ gives
+$$
+\frac1\alpha-\alpha=2\alpha+\frac1{2\alpha},
 $$
 so
 $$
-W(E)=2\sqrt E.
-$$
-Thus the isochronous condition determines the separation of the two turning points.
-
-Step 3: Use inversion symmetry to determine the well
-
-The symmetry
-$$
-g(s)=g(1/s)
-$$
-forces the two points on the same positive level to satisfy
-$$
-a(E)b(E)=1.
-$$
-Together with
-$$
-b(E)-a(E)=2\sqrt E,
-$$
-this gives
-$$
-b(E)-\frac1{b(E)}=2\sqrt E.
-$$
-Since $b(E)>1$,
-$$
-b(E)=\sqrt{1+E}+\sqrt E,
-$$
-and consequently
-$$
-a(E)=\sqrt{1+E}-\sqrt E.
-$$
-Now let $s>1$ and put $E=g(s)$. Since $s=b(E)$,
-$$
-s-\frac1s=2\sqrt{g(s)},
-$$
-so
-$$
-g(s)=\frac14\left(s-\frac1s\right)^2.
-$$
-For $0<s<1$, the same formula follows from $g(s)=g(1/s)$, and it also gives $g(1)=0$.
-
-Step 4: Verify the period and return to $x$
-
-For
-$$
-g(s)=\frac14\left(s-\frac1s\right)^2,
-$$
-set
-$$
-y=\frac12\left(s-\frac1s\right).
-$$
-This is strictly increasing on $(0,\infty)$ and satisfies $g(s)=y^2$. Solving for $s$ gives
-$$
-s=y+\sqrt{1+y^2},
-$$
-so
-$$
-\frac{ds}{dy}=1+\frac{y}{\sqrt{1+y^2}}.
-$$
-At energy $E$, the turning points correspond to $y=\pm\sqrt E$. Therefore
-$$
-\int_{a(E)}^{b(E)}\frac{ds}{\sqrt{E-g(s)}}
-=
-\int_{-\sqrt E}^{\sqrt E}
-\frac{1+\frac{y}{\sqrt{1+y^2}}}{\sqrt{E-y^2}}\,dy.
-$$
-The second term is odd, while the first integrates to $\pi$. Hence the required period condition holds.
-
-Since $s=\log x$,
-$$
-f(x)=\frac14\left(\log x-\frac1{\log x}\right)^2.
+\alpha=\frac1{\sqrt6},
+\qquad
+\beta=\frac2{\sqrt6},
+\qquad
+c=\frac5{\sqrt6}.
 $$
 
-Final Answer: $\boxed{f(x)=\frac14\left(\log x-\frac1{\log x}\right)^2}$
+Step 2: Expose the first-order factorization
+
+Put
+$$
+a=\frac1{\sqrt6},
+\qquad
+z(t)=\sqrt{u(t)}.
+$$
+Then $0<z<1$, $z_t<0$, and the wave equation becomes
+$$
+2z_t^2+2zz_{tt}+10azz_t+z^2(1-z^2)=0.
+$$
+Define
+$$
+r(t)=\frac{z_t}{z}+a(1-z).
+$$
+Using $a^2=1/6$, direct substitution simplifies the second-order equation to
+$$
+r_t=-r\bigl(2r+a(1+5z)\bigr).
+$$
+
+The rate $\alpha=a$ at $-\infty$ gives
+$$
+-\frac{z_t}{1-z}\to a,
+$$
+so $r(t)\to0$ as $t\to-\infty$. The rate $\beta=2a$ likewise gives $r(t)\to0$ as $t\to+\infty$.
+
+We claim that $r\equiv0$. If not, uniqueness for the scalar equation prevents $r$ from crossing zero. For all sufficiently negative $t$, we have $|r|<a/2$ and $a(1+5z)>5a$, hence
+$$
+\frac{d}{dt}\log|r|
+=-\bigl(2r+a(1+5z)\bigr)
+<-4a.
+$$
+Integrating backward would force $|r(t)|$ to grow exponentially as $t\to-\infty$, contradicting $r(t)\to0$. Therefore
+$$
+r\equiv0.
+$$
+Thus
+$$
+z_t=-az(1-z).
+$$
+Separation gives
+$$
+z(t)=\frac1{1+Ke^{at}}
+$$
+for some $K>0$.
+
+Step 3: Fix the translation and return to $x$
+
+Since $u(0)=1/4$, we have $z(0)=1/2$, so $K=1$. Hence
+$$
+u(t)=\frac1{(1+e^{t/\sqrt6})^2}.
+$$
+Because $s=e^t$,
+$$
+g(s)=\frac1{\left(1+s^{1/\sqrt6}\right)^2}.
+$$
+This profile is strictly decreasing from $1$ to $0$, satisfies $g(1)=1/4$, and its endpoint logarithmic rates are $1/\sqrt6$ and $2/\sqrt6$. Direct differentiation verifies the differential equation with $c=5/\sqrt6$.
+
+Finally $s=\log x$, so
+$$
+f(x)=\frac1{\left(1+(\log x)^{1/\sqrt6}\right)^2}.
+$$
+
+Final Answer: $\boxed{f(x)=\frac1{\left(1+(\log x)^{1/\sqrt6}\right)^2}}$
 
 ---
 
 ## Answer
 
-$f(x)=\frac14\left(\log x-\frac1{\log x}\right)^2$
+$f(x)=\frac1{\left(1+(\log x)^{1/\sqrt6}\right)^2}$
 
 ---
 
@@ -143,8 +144,8 @@ $f(x)=\frac14\left(\log x-\frac1{\log x}\right)^2$
 
 ## Solution Concepts
 
-- isochronous turning-point integral
-- Abel inversion by double integration
-- inversion symmetry of the potential well
-- recovery from level-set width
-- logarithmic change of variables
+- scale-invariant Fisher-KPP wave
+- logarithmic traveling-wave coordinate
+- endpoint characteristic rates
+- nonlinear first-order factorization
+- translation normalization
