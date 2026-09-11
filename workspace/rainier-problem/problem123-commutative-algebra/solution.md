@@ -1,14 +1,14 @@
 ## Steps
 
-Step 1: Characterize every graded monomial of the sparse Veronese algebra
+Step 1: Derive a membership criterion for every graded monomial
 
 Put
 $$
 N=n-r.
 $$
-Because $n\ge 2r+2$, we have $2N>n$. Hence every degree-$n$ generator of $A$ has a unique coordinate at least $N$.
+Since $n\ge2r+2$, we have $2N>n$. Thus every degree-$n$ generator of $A$ has a unique exponent at least $N$.
 
-Write an exponent vector as $p=(p_1,p_2,p_3)\in\mathbb Z_{\ge0}^3$, and let $e_1,e_2,e_3$ be the standard basis vectors. A degree-$1$ generator whose unique large coordinate is the $i$th one can be written uniquely in the form
+Let $e_1,e_2,e_3$ be the standard basis of $\mathbb Z^3$. A generator whose large exponent is the $i$th one has exponent vector
 $$
 Ne_i+w,
 \qquad
@@ -16,25 +16,18 @@ w\in\mathbb Z_{\ge0}^3,
 \qquad
 w_1+w_2+w_3=r.
 $$
-Therefore, if $x^{p_1}y^{p_2}z^{p_3}\in A_d$, then for some
+Hence a degree-$d$ exponent vector in $A$ has the form
 $$
-h=(h_1,h_2,h_3)\in\mathbb Z_{\ge0}^3,
+p=Nh+w,
 \qquad
-h_1+h_2+h_3=d,
+h\in\mathbb Z_{\ge0}^3,
+\quad h_1+h_2+h_3=d,
+\quad w\in\mathbb Z_{\ge0}^3,
+\quad w_1+w_2+w_3=dr.
 $$
-we have
-$$
-p=Nh+w
-$$
-with $w\in\mathbb Z_{\ge0}^3$ and $w_1+w_2+w_3=dr$.
+Conversely, if $p_1+p_2+p_3=dn$ and such an $h$ satisfies $Nh_i\le p_i$, then $w=p-Nh$ is nonnegative of total $dr$. Any nonnegative integer vector of total $dr$ is a sum of $d$ nonnegative integer vectors of total $r$: regard it as $dr$ unit coordinate vectors and group them into $d$ groups of $r$. Assign $h_i$ groups to the dominant coordinate $i$. This reconstructs $p$ as a sum of $d$ degree-$1$ generators of $A$.
 
-Conversely, suppose $p_1+p_2+p_3=dn$ and there is such an $h$ with $Nh_i\le p_i$ for every $i$. Then $w=p-Nh$ is nonnegative and has total
-$$
-(p_1+p_2+p_3)-N(h_1+h_2+h_3)=dn-d(n-r)=dr.
-$$
-Any nonnegative integer vector of total $dr$ is a sum of $d$ nonnegative integer vectors of total $r$: list its $dr$ unit coordinate vectors and group them into $d$ groups of $r$. Assign $h_i$ of those $d$ groups to the dominant coordinate $i$. This expresses $p$ as a sum of $d$ exponent vectors of degree-$1$ generators of $A$.
-
-Thus, for every $p_1+p_2+p_3=dn$,
+Therefore, for $p_1+p_2+p_3=dn$,
 $$
 x^{p_1}y^{p_2}z^{p_3}\in A_d
 \iff
@@ -43,13 +36,9 @@ x^{p_1}y^{p_2}z^{p_3}\in A_d
 $$
 Indeed, the right side is exactly the condition that integers $h_i\le\lfloor p_i/N\rfloor$ can be chosen with sum $d$.
 
-Step 2: Find the exact degree at which $A_d$ becomes the full Veronese piece
+Step 2: Find the first degree in which $A$ fills the Veronese algebra
 
-The degree-$d$ piece $B_d$ consists of all monomials with exponent vectors $p\in\mathbb Z_{\ge0}^3$ satisfying
-$$
-p_1+p_2+p_3=dn.
-$$
-Write
+For $p_1+p_2+p_3=dn$, write
 $$
 p_i=Nq_i+s_i,
 \qquad
@@ -57,86 +46,62 @@ p_i=Nq_i+s_i,
 $$
 If
 $$
-Q=q_1+q_2+q_3\le d-1,
+q_1+q_2+q_3\le d-1,
 $$
 then
 $$
-p_1+p_2+p_3
-=NQ+s_1+s_2+s_3
+dn=p_1+p_2+p_3
 \le N(d-1)+3(N-1)
 =Nd+2N-3.
 $$
-But
+Since $dn=Nd+dr$, such a violation of (1) is possible only when
 $$
-dn=d(N+r)=Nd+dr.
-$$
-Hence a vector in $B_d$ can violate (1) only if
-$$
-dr\le 2N-3.
+dr\le2N-3.
 \tag{2}
 $$
 
-Conversely, assume (2). Then
+Conversely, suppose (2) holds. Then
 $$
-N+dr\le 3(N-1).
+N+dr\le3(N-1).
 $$
-Choose integers $s_1,s_2,s_3$ with
+Thus there exist $s_1,s_2,s_3\in\{0,\ldots,N-1\}$ with
 $$
-0\le s_i\le N-1,
-\qquad
-s_1+s_2+s_3=N+dr;
+s_1+s_2+s_3=N+dr.
 $$
-such a choice exists because the total does not exceed the combined capacity $3(N-1)$. Set
+Taking $q_1=d-1$ and $q_2=q_3=0$ gives a vector $p_i=Nq_i+s_i$ with total $dn$ but
 $$
-q_1=d-1,
-\qquad q_2=q_3=0,
+\sum_{i=1}^3\left\lfloor\frac{p_i}{N}\right\rfloor=d-1,
 $$
-and $p_i=Nq_i+s_i$. Then
-$$
-p_1+p_2+p_3=N(d-1)+(N+dr)=dn,
-$$
-while
-$$
-\sum_{i=1}^3\left\lfloor\frac{p_i}{N}\right\rfloor=d-1.
-$$
-So this monomial lies in $B_d\setminus A_d$.
+so $B_d\ne A_d$.
 
-Therefore
+Hence
 $$
 A_d=B_d
 \iff
-dr\ge 2N-2.
+dr\ge2N-2.
 $$
-Define the first saturation degree
+The first saturation degree is therefore
 $$
 D
 =\left\lceil\frac{2N-2}{r}\right\rceil
 =\left\lceil\frac{2(n-1)}r\right\rceil-2.
 \tag{3}
 $$
-Then
-$$
-A_d=B_d\qquad(d\ge D),
-$$
-and $A_{D-1}\ne B_{D-1}$. The assumption $n\ge2r+2$ gives $D\ge3$.
+The hypothesis $n\ge2r+2$ implies $D\ge3$.
 
-Step 3: Put a full power of the irrelevant ideal inside the conductor
+Step 3: Put a power of $A_+$ inside the conductor
 
 Let
 $$
 \mathfrak c=\{f\in A:fB\subseteq A\}.
 $$
-Take a homogeneous $f\in A_d$ with $d\ge D-1$, and a homogeneous $b\in B_e$. If $e=0$, then $fb\in A_d$. If $e\ge1$, then
-$$
-d+e\ge D,
-$$
-so by Step 2,
+If $f\in A_d$ is homogeneous with $d\ge D-1$ and $b\in B_e$ is homogeneous, then $fb\in A$ when $e=0$. If $e\ge1$, then $d+e\ge D$, so by Step 2
 $$
 fb\in B_{d+e}=A_{d+e}.
 $$
-Thus every homogeneous component of $A$ in degree at least $D-1$ lies in $\mathfrak c$.
+Thus every $A_d$ with $d\ge D-1$ lies in $\mathfrak c$.
 
-Since $A$ is standard graded and generated by $A_1$,
+Because $A$ is standard graded and generated by $A_1$,
 $$
 A_+^m=\bigoplus_{d\ge m}A_d
 $$
@@ -146,24 +111,22 @@ A_+^{D-1}\subseteq\mathfrak c.
 \tag{4}
 $$
 
-Step 4: Prove that the exponent in (4) is sharp
+Step 4: Show that one smaller power is not contained in the conductor
 
 Set
 $$
 d=D-2.
 $$
-By the minimality of $D$ in (3),
+By minimality of $D$,
 $$
 (d+1)r=(D-1)r\le2N-3.
 \tag{5}
 $$
-Choose integers $s_1,s_2,s_3$ with
+Choose $s_1,s_2,s_3\in\{0,\ldots,N-1\}$ with
 $$
-0\le s_i\le N-1,
-\qquad
-s_1+s_2+s_3=dr.
+s_1+s_2+s_3=dr,
 $$
-This is possible because (5) implies $dr<2N-3<3(N-1)$. Define
+which is possible because (5) gives $dr<3(N-1)$. Define
 $$
 p_1=Nd+s_1,
 \qquad
@@ -171,23 +134,14 @@ p_2=s_2,
 \qquad
 p_3=s_3.
 $$
-Then $p_1+p_2+p_3=dn$ and
-$$
-\sum_{i=1}^3\left\lfloor\frac{p_i}{N}\right\rfloor=d,
-$$
-so (1) gives
+Then $p_1+p_2+p_3=dn$ and the floor sum in (1) equals $d$, so
 $$
 x^{p_1}y^{p_2}z^{p_3}\in A_d.
 $$
 
-For each coordinate, let
+Let
 $$
 \lambda_i=N-1-s_i.
-$$
-Their total capacity is
-$$
-\lambda_1+\lambda_2+\lambda_3
-=3(N-1)-dr.
 $$
 From (5),
 $$
@@ -196,45 +150,36 @@ $$
 so
 $$
 \lambda_1+\lambda_2+\lambda_3
+=3(N-1)-dr
 \ge N+r=n.
 $$
-Hence we can choose integers
+Therefore integers $u_i$ can be chosen with
 $$
 0\le u_i\le\lambda_i,
 \qquad
 u_1+u_2+u_3=n.
 $$
-Then
+For
 $$
-b=x^{u_1}y^{u_2}z^{u_3}\in B_1.
+b=x^{u_1}y^{u_2}z^{u_3}\in B_1,
 $$
-Because $u_i\le N-1-s_i$, adding $u_i$ does not cross the next multiple of $N$ in any coordinate. Therefore
+the inequalities $u_i\le N-1-s_i$ ensure that no coordinate $p_i+u_i$ crosses the next multiple of $N$. Hence
 $$
-\sum_{i=1}^3
-\left\lfloor\frac{p_i+u_i}{N}\right\rfloor
-=d<d+1.
+\sum_{i=1}^3\left\lfloor\frac{p_i+u_i}{N}\right\rfloor=d<d+1.
 $$
-By (1),
-$$
-x^{p_1+u_1}y^{p_2+u_2}z^{p_3+u_3}\notin A_{d+1}.
-$$
-Thus the monomial $x^{p_1}y^{p_2}z^{p_3}$ is not in the conductor. Since it lies in $A_d\subseteq A_+^d$, we obtain
+By (1), $fb\notin A_{d+1}$ for $f=x^{p_1}y^{p_2}z^{p_3}$. Thus $f\notin\mathfrak c$, although $f\in A_d\subseteq A_+^d$. Therefore
 $$
 A_+^{D-2}\nsubseteq\mathfrak c.
 \tag{6}
 $$
 
-Step 5: Read off the least conductor power
+Step 5: Determine the least conductor power
 
-Equations (4) and (6) show that the least integer $m$ for which
+From (4) and (6), the least integer $m$ such that
 $$
 A_+^m\subseteq\mathfrak c
 $$
-is
-$$
-m=D-1.
-$$
-Using (3),
+is $D-1$. Using (3),
 $$
 m
 =\left\lceil\frac{2(n-1)}r\right\rceil-3.
