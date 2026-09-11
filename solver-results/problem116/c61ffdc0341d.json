@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "d847b669e01975a0b9597b61478fe191cceb5f2f",
+  "problem_blob_sha": "c61ffdc0341d94521d173e01a9c682e04ad1af86",
+  "statement_sha256": "f8318a80e400c12b75905802060752d9a0c124c7658a994239a73b5dc2077a5e",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T08:02:03+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nF(\\lambda,\\tau)=\\lambda+\\left({\\lambda\\over2}+{3\\over2}\\right)e^{-\\lambda\\tau}.\n\\]\nWe count zeros of \\(F(\\cdot,\\tau)\\) in \\(\\Re\\lambda>0\\).\n\nFirst, any root with \\(\\Re\\lambda\\ge 0\\) is uniformly bounded. From\n\\[\ne^{-\\lambda\\tau}=-{2\\lambda\\over \\lambda+3}\n\\]\nwe get\n\\[\n\\left|{2\\lambda\\over \\lambda+3}\\right|=e^{-\\tau\\Re\\lambda}\\le 1.\n\\]\nWriting \\(\\lambda=a+ib\\), this gives\n\\[\n4(a^2+b^2)\\le (a+3)^2+b^2,\n\\]\nor\n\\[\n(a-1)^2+b^2\\le 4.\n\\]\nSo right-half-plane roots cannot enter from infinity.\n\nFor small \\(\\tau>0\\), there are no roots with \\(\\Re\\lambda\\ge0\\): on the compact disk above,\n\\[\nF(\\lambda,\\tau)\\to F(\\lambda,0)=\\lambda+{\\lambda+3\\over2}={3\\over2}(\\lambda+1),\n\\]\nuniformly, and \\(\\lambda=-1\\) is not in \\(\\Re\\lambda\\ge0\\). Thus initially the number of open right-half-plane roots is \\(0\\).\n\nNow find all imaginary-axis crossings. Put \\(\\lambda=i\\omega\\), \\(\\omega\\ne0\\). Then\n\\[\ne^{-i\\omega\\tau}=-{2i\\omega\\over 3+i\\omega}.\n\\]\nTaking moduli,\n\\[\n1={2|\\omega|\\over \\sqrt{9+\\omega^2}},\n\\]\nso\n\\[\n\\omega^2=3.\n\\]\nFor \\(\\omega=\\sqrt3\\),\n\\[\ne^{-i\\sqrt3\\,\\tau}=-{2i\\sqrt3\\over 3+i\\sqrt3}\n=-{1\\over2}-{\\sqrt3\\over2}i\n=e^{-2\\pi i/3}.\n\\]\nHence crossings occur exactly when\n\\[\n\\sqrt3\\,\\tau={2\\pi\\over3}+2\\pi k,\\qquad k=0,1,2,\\dots\n\\]\nso\n\\[\n\\tau_k={2\\pi(3k+1)\\over 3\\sqrt3}.\n\\]\n\nIt remains to check the crossing direction. Implicit differentiation gives\n\\[\n{d\\lambda\\over d\\tau}=-{F_\\tau\\over F_\\lambda}.\n\\]\nAt a crossing, using \\(\\frac{\\lambda+3}{2}e^{-\\lambda\\tau}=-\\lambda\\), we get\n\\[\nF_\\tau=\\lambda^2,\\qquad\nF_\\lambda=1+\\frac12e^{-\\lambda\\tau}+\\tau\\lambda.\n\\]\nAt \\(\\lambda=i\\sqrt3\\),\n\\[\nF_\\lambda={3\\over4}+i\\sqrt3\\left(\\tau-{1\\over4}\\right),\n\\]\nso\n\\[\n\\Re {d\\lambda\\over d\\tau}\n=\\Re {3\\over F_\\lambda}>0.\n\\]\nThus each conjugate pair crosses from left to right as \\(\\tau\\) increases. Each crossing adds exactly two roots to the open right half-plane.\n\nTherefore the number of open right-half-plane roots is \\(0\\) before \\(\\tau_0\\), \\(2\\) after \\(\\tau_0\\), \\(4\\) after \\(\\tau_1\\), and remains \\(4\\) at \\(\\tau_2\\) itself because the new pair is on the imaginary axis and is not counted.\n\nSince\n\\[\n\\tau_1={8\\pi\\over 3\\sqrt3},\\qquad\n\\tau_2={14\\pi\\over 3\\sqrt3},\n\\]\nthe required set is\n\\[\n\\boxed{\\left({8\\pi\\over 3\\sqrt3},\\,{14\\pi\\over 3\\sqrt3}\\right]}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T08:03:37+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/c61ffdc0341d.json"
+}
