@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "14931060a56897326393582f8d47174dfdaeb742",
+  "problem_blob_sha": "4a6c9a9dab46f785abd689cd6cb97fe74526f749",
+  "statement_sha256": "d0883b69cdd5aaae25d3aeaa144489801212f29a59052b160da4016dab4d09f2",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T07:18:51+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let  \n\\[\nc=\\sqrt{ab}.\n\\]\nThe answer depends only on \\(ab\\). Define \\(c_*>0\\) to be the unique positive solution of\n\\[\nc\\,K_0\\!\\left(\\frac2c\\right)=2K_1\\!\\left(\\frac2c\\right),\n\\]\nwhere \\(K_\\nu\\) is the modified Bessel function of the second kind. Then the origin is almost surely exponentially stable exactly for\n\\[\n\\boxed{ab<c_*^2}.\n\\]\n\nEquivalently,\n\\[\n\\boxed{\\frac{\\sqrt{ab}\\,K_0\\!\\left(2/\\sqrt{ab}\\right)}\n{2K_1\\!\\left(2/\\sqrt{ab}\\right)}<1 }.\n\\]\n\nHere is the derivation.\n\nWrite\n\\[\nA_i=-I+B_i.\n\\]\nAfter the diagonal change of variables that balances the two shears, the growth part becomes\n\\[\nB_1=\\begin{pmatrix}0&c\\\\0&0\\end{pmatrix},\n\\qquad\nB_2=\\begin{pmatrix}0&0\\\\c&0\\end{pmatrix},\n\\qquad c=\\sqrt{ab}.\n\\]\nThus the Lyapunov exponent of the original system is the Lyapunov exponent of this shear system minus \\(1\\).\n\nFor the shear system, write \\(y=\\rho(\\cos\\theta,\\sin\\theta)\\), with \\(\\theta\\in(0,\\pi/2)\\). In mode \\(1\\),\n\\[\n\\frac{d}{dt}\\log\\rho=c\\sin\\theta\\cos\\theta,\\qquad\n\\dot\\theta=-c\\sin^2\\theta,\n\\]\nand in mode \\(2\\),\n\\[\n\\frac{d}{dt}\\log\\rho=c\\sin\\theta\\cos\\theta,\\qquad\n\\dot\\theta=c\\cos^2\\theta.\n\\]\nLet \\(p_1,p_2\\) be the stationary densities of \\((\\theta,\\sigma)\\). The stationary transport equations give\n\\[\n-c\\sin^2\\theta\\,p_1+c\\cos^2\\theta\\,p_2=0,\n\\]\nso \\(p_2=\\tan^2\\theta\\,p_1\\). Solving the remaining equation yields\n\\[\np_1=C\\csc^2\\theta\\,\n\\exp\\!\\left(-\\frac{\\cot\\theta+\\tan\\theta}{c}\\right),\n\\]\n\\[\np_2=C\\sec^2\\theta\\,\n\\exp\\!\\left(-\\frac{\\cot\\theta+\\tan\\theta}{c}\\right).\n\\]\nHence the top Lyapunov exponent of the shear system is\n\\[\n\\lambda(c)\n=\nc\\int_0^{\\pi/2}\\sin\\theta\\cos\\theta\\,(p_1+p_2)\\,d\\theta.\n\\]\nWith \\(u=\\tan\\theta\\), normalization gives\n\\[\n\\lambda(c)\n=\n\\frac{c}{2}\n\\frac{\\int_0^\\infty u^{-1}e^{-(u+u^{-1})/c}\\,du}\n{\\int_0^\\infty e^{-(u+u^{-1})/c}\\,du}.\n\\]\nUsing\n\\[\nK_\\nu(x)=\\frac12\\int_0^\\infty u^{\\nu-1}\ne^{-\\frac{x}{2}(u+u^{-1})}\\,du,\n\\]\nthis becomes\n\\[\n\\lambda(c)=\n\\frac{cK_0(2/c)}{2K_1(2/c)}.\n\\]\nTherefore the original system has top exponent\n\\[\n\\lambda(c)-1.\n\\]\nAlmost sure exponential stability is equivalent to \\(\\lambda(c)<1\\), namely\n\\[\n\\frac{\\sqrt{ab}\\,K_0(2/\\sqrt{ab})}{2K_1(2/\\sqrt{ab})}<1.\n\\]\n\nFinally, \\(\\lambda(c)\\) is continuous and strictly increasing from \\(0\\) to \\(+\\infty\\), so the threshold \\(c_*\\) is unique. Thus the full stability region is exactly\n\\[\n\\boxed{\\{(a,b)\\in(0,\\infty)^2:\\ ab<c_*^2\\}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T07:20:43+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/4a6c9a9dab46.json"
+}
