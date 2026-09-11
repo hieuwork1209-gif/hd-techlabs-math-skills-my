@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Pass to logarithmic coordinates and expose the differential hierarchy
+Step 1: Pass to logarithmic coordinates and derive the weighted-mean hierarchy
 
 Let
 $$
@@ -17,7 +17,7 @@ and
 $$
 c(s)=\frac3{s^3}\int_0^s(s-u)^2g(u)\,du.
 $$
-Since $g$ is concave, it is continuous on $(0,\infty)$, and direct differentiation gives
+Because $g$ is continuous, direct differentiation gives
 $$
 g=a+sa',\qquad sb'=2(a-b),\qquad sc'=3(b-c).
 $$
@@ -32,147 +32,131 @@ and
 $$
 Z=2-3a+3b-c.
 $$
-The differential identities become
+Then
 $$
 sX'=Y-X,
 $$
+and
 $$
 sY'=2(Z-Y).
 $$
-The rank-one condition in the problem is exactly
+The algebraic hypothesis is exactly
 $$
-Y^2=XZ.
+Z=XY.
 $$
 The two normalizations become
 $$
-X(1)^2=\frac14,
+X(1)=\frac12,
 $$
 and
 $$
-\lim_{s\to\infty}s^2X(s)^2=1.
+\lim_{s\to\infty}sX(s)=1.
 $$
 
-Step 2: Use the rank-one relation to derive the hidden ratio equation
+Step 2: Isolate the Riccati defect
 
-Let $I$ be the connected component of $\{s>0:X(s)\ne0\}$ containing $s=1$. On $I$, put
+Set
 $$
-p=\frac{Y}{X}.
+V=Y-X^2.
 $$
-Then $Y^2=XZ$ gives
+Using the differential hierarchy and $Z=XY$,
 $$
-Z=p^2X.
-$$
-Using $Y=pX$ together with the differential hierarchy,
-$$
-sY'=sp'X+p\,sX'=sp'X+p(p-1)X,
-$$
-while
-$$
-sY'=2(Z-Y)=2p(p-1)X.
+sV'=sY'-2X\,sX'
+=2(Z-Y)-2X(Y-X)
+=-2(Y-X^2)
+=-2V.
 $$
 Hence
 $$
-sp'=p(p-1).
+V(s)=\frac{K}{s^2}
 $$
-If $p$ vanishes at one point of $I$, uniqueness for this scalar ODE gives $p\equiv0$ on $I$. Then $sX'=-X$, so $X=\kappa/s$. The explicit formula has no finite zero or pole, so the same continuation argument used below extends it to all $s>0$. But then
+for some constant $K$. Since $sX'=Y-X$, we obtain
 $$
-X(1)^2=\kappa^2=\frac14,
+sX'=X^2-X+\frac{K}{s^2}.
 $$
-whereas
-$$
-\lim_{s\to\infty}s^2X(s)^2=\kappa^2=1,
-$$
-a contradiction. Thus $p$ never vanishes on $I$.
+Thus the multiplicative relation does not by itself force $Y=X^2$; the remaining constant $K$ must be determined from the two different normalizations.
 
-Set $q=1/p$. Then
+Step 3: Use the local and asymptotic data to force the defect to vanish
+
+Put
 $$
-sq'=q-1,
-$$
-so
-$$
-q=1+\lambda s,
+r=\frac1s,
 \qquad
-p=\frac1{1+\lambda s}
+w(r)=sX(s)=\frac{X(1/r)}r.
 $$
-for some constant $\lambda$. Moreover,
+A direct change of variables in the Riccati equation gives
 $$
-\frac{sX'}{X}=p-1=\frac{sp'}p,
+w'(r)=-w(r)^2-K.
 $$
-so $X/p$ is constant. Therefore
+The asymptotic normalization gives a continuous extension to $r=0$ with
 $$
-X(s)=\frac{\kappa}{1+\lambda s}
+w(0)=1,
 $$
-for some nonzero constant $\kappa$.
-
-We now justify that this formula is global. If a finite endpoint of $I$ occurs while $1+\lambda s\ne0$, then $X$ has a finite nonzero limit there, and continuity of $X=2-c$ extends the nonvanishing interval, contradicting maximality. If $1+\lambda s$ vanishes at a positive point, then $X$ blows up there, impossible because $c(s)=C(e^s)$ is finite for every $s>0$. Hence $\lambda\ge0$ and $I=(0,\infty)$.
-
-Step 3: Couple the local and asymptotic normalizations
-
-If $\lambda=0$, then $X\equiv\kappa\ne0$, so $s^2X(s)^2\to\infty$, contradicting the asymptotic condition. Thus $\lambda>0$. From
+while $X(1)=1/2$ gives
 $$
-\lim_{s\to\infty}s^2X(s)^2
-=
-\frac{\kappa^2}{\lambda^2}
-=1,
+w(1)=\frac12.
+$$
+Let
+$$
+w_0(r)=\frac1{1+r},
+$$
+so that $w_0'=-w_0^2$, $w_0(0)=1$, and $w_0(1)=1/2$. Define $d=w-w_0$. Then
+$$
+d'+(w+w_0)d=-K,
+\qquad
+d(0)=0.
+$$
+With the positive integrating factor
+$$
+\mu(r)=\exp\!\left(\int_0^r(w(t)+w_0(t))\,dt\right),
 $$
 we get
 $$
-\kappa^2=\lambda^2.
+d(r)=-K\,\mu(r)^{-1}\int_0^r\mu(t)\,dt.
 $$
-On the other hand,
+For every $r>0$, the integral is positive. Hence $d(r)$ has the opposite sign from $K$ unless $K=0$. But
 $$
-\frac14=X(1)^2=\frac{\kappa^2}{(1+\lambda)^2}
-=\frac{\lambda^2}{(1+\lambda)^2}.
+d(1)=w(1)-w_0(1)=0,
 $$
-Since $\lambda>0$,
+so necessarily
 $$
-\frac{\lambda}{1+\lambda}=\frac12,
+K=0.
 $$
-so
+Therefore $w'=-w^2$ and $w(0)=1$, giving
 $$
-\lambda=1,
-\qquad
-\kappa=\pm1.
+w(r)=\frac1{1+r}.
 $$
-Therefore
+Since $X(s)=r w(r)$ with $r=1/s$,
 $$
-c(s)=2-\frac{\kappa}{1+s}.
+X(s)=\frac1{1+s}.
+$$
+Consequently
+$$
+c(s)=2-\frac1{1+s}.
 $$
 
-Step 4: Recover the source function and use concavity to select the sign
+Step 4: Recover the source function
 
 From the definition of $c$,
 $$
 \frac{s^3c(s)}3=\int_0^s(s-u)^2g(u)\,du.
 $$
-Differentiating three times gives
+Differentiating three times yields
 $$
-g(s)=\frac16\frac{d^3}{ds^3}\bigl(s^3c(s)\bigr).
+g(s)=\frac12\frac{d^3}{ds^3}\left(\frac{s^3c(s)}3\right).
 $$
-Since
-$$
-\frac{d^3}{ds^3}\left(\frac{s^3}{1+s}\right)=\frac6{(1+s)^4},
-$$
-we obtain
-$$
-g(s)=2-\frac{\kappa}{(1+s)^4}.
-$$
-Hence
-$$
-g''(s)=-\frac{20\kappa}{(1+s)^6}.
-$$
-The hypothesis that $g$ is concave forces $\kappa=1$. Thus
+Substituting $c(s)=2-(1+s)^{-1}$ gives
 $$
 g(s)=2-\frac1{(1+s)^4}.
 $$
-
-Step 5: Verify the candidate and return to $x$
-
-Let $r=(1+s)^{-1}$. For
+Since $g(s)=f(e^s)$,
 $$
-g(s)=2-r^4,
+f(x)=2-\frac1{(1+\log x)^4}.
 $$
-direct integration gives
+
+Step 5: Verify the conditions
+
+Let $r=(1+s)^{-1}$. Direct integration gives
 $$
 a(s)=2-\frac{r+r^2+r^3}{3},
 $$
@@ -183,20 +167,22 @@ and
 $$
 c(s)=2-r.
 $$
-Consequently
+Therefore
 $$
 X=r,\qquad Y=r^2,\qquad Z=r^3,
 $$
-so indeed $Y^2=XZ$. Also $X(1)^2=1/4$ and
+so $Z=XY$. Also
 $$
-\lim_{s\to\infty}s^2X(s)^2
+c(1)=\frac32,
+$$
+and
+$$
+\lim_{s\to\infty}s(2-c(s))
 =
-\lim_{s\to\infty}\frac{s^2}{(1+s)^2}=1.
+\lim_{s\to\infty}\frac{s}{1+s}
+=1.
 $$
-Finally $g(s)\to1$ as $s\to0^+$, so the improper integrals converge at the lower endpoint. Since $s=\log x$,
-$$
-f(x)=2-\frac1{(1+\log x)^4}.
-$$
+Thus all hypotheses are satisfied.
 
 Final Answer: $\boxed{f(x)=2-\frac1{(1+\log x)^4}}$
 
@@ -219,7 +205,7 @@ $f(x)=2-\frac1{(1+\log x)^4}$
 ## Solution Concepts
 
 - logarithmic weighted integral means
-- rank-one invariant of transformed means
-- nonlinear ratio differential equation
-- local and asymptotic normalization
-- concavity branch selection
+- differential hierarchy of means
+- Riccati defect equation
+- asymptotic boundary comparison
+- Volterra inversion by differentiation
