@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-joint-distributions-and-dependence/problem.md",
+  "source_commit_sha": "2d441589ea6abe2373dad8742f30c20308cf4ccf",
+  "problem_blob_sha": "45b0a35bc4ddf54805032726d26b4a555214a8c2",
+  "statement_sha256": "2c1eeeddd1e12ced01c655b83c4e6323a27141cf0122641c58f690998e28e59c",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T08:31:49+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nU=P_1,\\qquad V=P_2,\\qquad W=P_3,\\qquad T=P_4.\n\\]\nThen\n\\[\nX_i\\sim (U,V,W+T),\\qquad Y_i\\sim (U,W,V+T),\n\\]\nconditionally independently given \\((U,V,W,T)\\).\n\nThe arrangements of symbols inside each sample carry no extra mutual information once the count vectors are known, so\n\\[\nI(X_1^n;Y_1^n)=I(N_X;N_Y),\n\\]\nwhere \\(N_X\\) and \\(N_Y\\) are the multinomial count vectors.\n\nI will use the standard Laplace entropy expansion for a regular Bayesian multinomial experiment: if a \\(d\\)-dimensional parameter \\(\\theta\\) has prior density \\(\\pi\\), Fisher information matrix \\(J(\\theta)\\), and one observes \\(n\\) iid samples, then\n\\[\nI(\\theta;Z^n)\n=\n\\frac d2\\log n\n+h(\\pi)\n+\\frac12\\mathbb E_\\pi\\log\\det J(\\theta)\n-\\frac d2\\log(2\\pi e)\n+o(1).\n\\]\nHere this applies for every \\(a>0\\); the Dirichlet boundary singularities are integrable and contribute only \\(o(1)\\).\n\nSince \\(X^n\\) and \\(Y^n\\) are conditionally independent given \\(P\\),\n\\[\nI(X^n;Y^n)\n=\nI(P;X^n)+I(P;Y^n)-I(P;(X^n,Y^n)).\n\\]\n\nThe \\(X\\)-experiment depends only on\n\\[\n(U,V,1-U-V)\\sim \\operatorname{Dirichlet}(a,1,2),\n\\]\nand similarly for \\(Y\\). Its dimension is \\(2\\), prior entropy is\n\\[\nh_X=\\log\\frac{\\Gamma(a)}{\\Gamma(a+3)}\n+a\\psi(a+3)-(a-1)\\psi(a)-\\psi(2),\n\\]\nand the multinomial Fisher determinant is\n\\[\n\\det J_X=\\frac1{UV(1-U-V)}.\n\\]\nThus\n\\[\n\\mathbb E\\log\\det J_X\n=\n3\\psi(a+3)-\\psi(a)-\\psi(1)-\\psi(2).\n\\]\n\nFor the joint experiment the full parameter is\n\\[\n(U,V,W,T)\\sim \\operatorname{Dirichlet}(a,1,1,1),\n\\]\nwith dimension \\(3\\) and entropy\n\\[\nh_P=\n\\log\\frac{\\Gamma(a)}{\\Gamma(a+3)}\n+(a-1)\\bigl(\\psi(a+3)-\\psi(a)\\bigr).\n\\]\nThe joint Fisher matrix for \\((U,V,W)\\) has determinant\n\\[\n\\det J_{XY}\n=\n\\frac{2(1-U)}\n{U\\,V\\,W\\,(W+T)(V+T)}.\n\\]\nTherefore\n\\[\n\\mathbb E\\log\\det J_{XY}\n=\n\\log 2+\\psi(3)-\\psi(a)-2\\psi(1)-2\\psi(2)+4\\psi(a+3).\n\\]\n\nPutting the three entropy expansions together,\n\\[\nI(X^n;Y^n)\n=\n\\frac12\\log n+C(a)+o(1),\n\\]\nwhere\n\\[\n\\begin{aligned}\nC(a)\n&=\n2h_X-h_P+\\mathbb E\\log\\det J_X\n-\\frac12\\mathbb E\\log\\det J_{XY}\n-\\frac12\\log(2\\pi e)\\\\\n&=\n\\log\\frac{\\Gamma(a)}{\\Gamma(a+3)}\n+(a+2)\\psi(a+3)\n-\\left(a-\\frac12\\right)\\psi(a)\n-2\\psi(2)-\\frac12\\psi(3)\n-\\frac12\\log(4\\pi e).\n\\end{aligned}\n\\]\n\nHence the required limit is\n\n\\[\n\\boxed{\n\\log\\frac{\\Gamma(a)}{\\Gamma(a+3)}\n+(a+2)\\psi(a+3)\n-\\left(a-\\frac12\\right)\\psi(a)\n-2\\psi(2)-\\frac12\\psi(3)\n-\\frac12\\log(4\\pi e)\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T08:33:19+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/45b0a35bc4dd.json"
+}
