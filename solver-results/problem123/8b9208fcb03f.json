@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-joint-distributions-and-dependence/problem.md",
+  "source_commit_sha": "54f8b4117615ef1ff9acae0957824bd754f8c1fa",
+  "problem_blob_sha": "8b9208fcb03f0921c8e005a39e3723191b483036",
+  "statement_sha256": "9ae253dec2f5c11ac9ccf9452e06602115d4663631418fccd6c68747f1fbd6e4",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T08:21:09+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nP=4\\Theta(1-\\Theta).\n\\]\n\nGiven \\(P\\), the two samples are independent iid Bernoulli\\((P)\\), so all information shared by \\((X_1,\\dots,X_n)\\) and \\((Y_1,\\dots,Y_n)\\) is carried by their numbers of ones\n\n\\[\nK=\\sum_{i=1}^n X_i,\\qquad L=\\sum_{i=1}^n Y_i.\n\\]\n\nThus\n\n\\[\nI((X_1,\\ldots,X_n);(Y_1,\\ldots,Y_n))=I(K;L).\n\\]\n\nNow compute the law of \\(P\\). For \\(p=4\\theta(1-\\theta)\\), the two preimages are\n\n\\[\n\\theta=\\frac{1\\pm\\sqrt{1-p}}2,\n\\]\n\nand\n\n\\[\n\\left|\\frac{d\\theta}{dp}\\right|=\\frac1{4\\sqrt{1-p}}.\n\\]\n\nSince the Beta\\((a,a)\\) density is symmetric,\n\n\\[\nf_P(p)\n=2\\cdot \\frac{(p/4)^{a-1}}{B(a,a)}\\cdot \\frac1{4\\sqrt{1-p}}\n=\\frac{p^{a-1}(1-p)^{-1/2}}{B(a,1/2)}.\n\\]\n\nSo\n\n\\[\nP\\sim \\operatorname{Beta}\\left(a,\\frac12\\right).\n\\]\n\nFor a one-dimensional Bernoulli parameter with prior density \\(f\\), the asymptotic mutual information between two independent samples of size \\(n\\) with common parameter is\n\n\\[\nI(K;L)\n=\n\\frac12\\log n\n+h(P)\n+\\frac12\\mathbb E\\log\\frac1{P(1-P)}\n-\\frac12\\log(4\\pi e)\n+o(1).\n\\]\n\nHere the endpoint singularity at \\(P=1\\) is integrable; the region \\(1-P\\lesssim n^{-1}\\) has prior mass \\(O(n^{-1/2})\\), so it contributes \\(o(1)\\).\n\nFor \\(P\\sim\\operatorname{Beta}(\\alpha,\\beta)\\),\n\n\\[\nh(P)=\\log B(\\alpha,\\beta)\n-(\\alpha-1)\\psi(\\alpha)\n-(\\beta-1)\\psi(\\beta)\n+(\\alpha+\\beta-2)\\psi(\\alpha+\\beta),\n\\]\n\nand\n\n\\[\n\\mathbb E\\log P=\\psi(\\alpha)-\\psi(\\alpha+\\beta),\\qquad\n\\mathbb E\\log(1-P)=\\psi(\\beta)-\\psi(\\alpha+\\beta).\n\\]\n\nTaking \\(\\alpha=a,\\ \\beta=\\tfrac12\\),\n\n\\[\nh(P)+\\frac12\\mathbb E\\log\\frac1{P(1-P)}\n=\n\\log B\\left(a,\\frac12\\right)\n+\\left(a-\\frac12\\right)\n\\left[\n\\psi\\left(a+\\frac12\\right)-\\psi(a)\n\\right].\n\\]\n\nTherefore\n\n\\[\n\\boxed{\n\\log B\\left(a,\\frac12\\right)\n+\\left(a-\\frac12\\right)\\left(\\psi\\left(a+\\frac12\\right)-\\psi(a)\\right)\n-\\frac12\\log(4\\pi e)\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T08:22:48+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/8b9208fcb03f.json"
+}
