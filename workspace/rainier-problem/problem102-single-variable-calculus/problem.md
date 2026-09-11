@@ -2,11 +2,14 @@
 
 ## LaTeX (Normalized)
 
-Let $C_{10}$ be the cycle graph on $\mathbb Z/10\mathbb Z$, and let
+Let $C$ be the smooth projective curve over $\mathbb F_5$ obtained from
 $$
-\Gamma=C_{10}\square C_{10}.
+y^2=x^6-x^4+x^3-x^2+1.
 $$
-Equivalently, $\Gamma$ has vertex set $(\mathbb Z/10\mathbb Z)^2$, with two vertices adjacent when they differ by $\pm1$ in exactly one coordinate. Determine the number of perfect matchings of $\Gamma$.
+Determine
+$$
+\#C\bigl(\mathbb F_{5^{17}}\bigr).
+$$
 
 ---
 
@@ -14,8 +17,8 @@ Equivalently, $\Gamma$ has vertex set $(\mathbb Z/10\mathbb Z)^2$, with two vert
 
 | Field | Value |
 |---|---|
-| **Domain** | Algebra |
-| **Sub-domain** | Linear algebra |
+| **Domain** | Topology and Geometry |
+| **Sub-domain** | Algebraic geometry |
 | **Problem Type** | Exact computation |
 | **Answer Type** | Exact symbolic expression |
 
@@ -23,4 +26,4 @@ Equivalently, $\Gamma$ has vertex set $(\mathbb Z/10\mathbb Z)^2$, with two vert
 
 ## Domain Explanation
 
-The perfect-matching count is obtained from four twisted Kasteleyn matrices for the toroidal bipartite grid. Fourier diagonalization reduces their determinants to exact products of trigonometric eigenvalues, and the four topological sectors must then be combined with the toroidal Pfaffian sign rule. The core computation is finite-dimensional linear algebra together with the global winding structure of matchings on a torus.
+The curve has a reciprocal involution besides the hyperelliptic involution. The two resulting genus-one quotients split its Jacobian into elliptic factors, whose Frobenius traces over $\mathbb F_5$ determine the point count over $\mathbb F_{5^{17}}$ through two independent recurrences. The central structure is the geometry of quotient curves and the induced decomposition of the genus-two Jacobian.
