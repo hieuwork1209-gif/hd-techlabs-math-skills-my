@@ -1,139 +1,103 @@
 ## Steps
 
-Step 1: Control the singular endpoint
-
-Set
-$$
-g(s)=f(e^s),\qquad s>0.
-$$
-The differential equation is
-$$
-g''(s)+\frac5s g'(s)+g(s)^2=0,
-$$
-or equivalently
-$$
-\bigl(s^5g'(s)\bigr)'=-s^5g(s)^2.
-$$
-Since $g(s)\to1$ as $s\to0^+$, the right-hand side is integrable near $0$, so $s^5g'(s)$ has a finite limit there. If that limit were nonzero, then $g'(s)$ would have size comparable to $s^{-5}$ near $0$, contradicting the finite limit of $g$. Hence
-$$
-\lim_{s\to0^+}s^5g'(s)=0.
-$$
-Integrating from $0$ to $s$ gives
-$$
-s^5g'(s)=-\int_0^s t^5g(t)^2\,dt.
-$$
-Because $g(t)^2\to1$,
-$$
-g'(s)=-\frac{s}{6}+o(s).
-$$
-
-Step 2: Apply the Emden-Fowler transform
+Step 1: Reduce the radial equation to a Laguerre eigenvalue problem
 
 Let
 $$
-t=\log s,
+g(s)=f(e^s),\qquad s\ge0.
+$$
+The hypotheses give, for some real number $\lambda$,
+$$
+g''+\frac5s g'+(\lambda-s^2)g=0
+$$
+on $(0,\infty)$. Since $g$ extends to $C^2$ at $0$, the differential equation forces $g'(0)=0$.
+
+Put
+$$
+z=s^2,
 \qquad
-u(t)=s^2g(s).
+g(s)=e^{-z/2}y(z).
 $$
-Since $g=u/s^2$, direct differentiation gives
+A direct calculation gives
 $$
-g'(s)=\frac{u_t-2u}{s^3},
+z y''+(3-z)y'+\nu y=0,
+\qquad
+\nu=\frac{\lambda-6}{4}.
 $$
-and
+Also
 $$
-g''(s)=\frac{u_{tt}-5u_t+6u}{s^4}.
+\int_0^\infty s^5g(s)^2\,ds
+=\frac12\int_0^\infty z^2e^{-z}y(z)^2\,dz<\infty.
 $$
-Substitution into the differential equation yields the autonomous equation
+Thus $y$ is the regular square-integrable solution of the Laguerre Sturm-Liouville equation with weight $z^2e^{-z}$.
+
+Step 2: Quantize the parameter
+
+For completeness, write the equation in self-adjoint form:
 $$
-u_{tt}-4u+u^2=0.
+\bigl(z^3e^{-z}y'\bigr)'+\nu z^2e^{-z}y=0.
 $$
-As $t\to-\infty$, we have $s=e^t\to0^+$, and Step 1 gives
+Testing this equation against $y$ with compact cutoffs and then letting the cutoff radius tend to infinity gives
 $$
-u(t)=e^{2t}g(e^t)\to0,
+\int_0^\infty z^3e^{-z}(y')^2\,dz
+=\nu\int_0^\infty z^2e^{-z}y^2\,dz.
 $$
+Hence $\nu\ge0$. Differentiating the Laguerre equation $k$ times shows that $y^{(k)}$ satisfies
 $$
-u_t(t)=2s^2g(s)+s^3g'(s)\to0.
+z\bigl(y^{(k)}\bigr)''+(3+k-z)\bigl(y^{(k)}\bigr)'+(\nu-k)y^{(k)}=0.
+$$
+The same cutoff energy identity applies to each nonzero derivative. If $\nu$ were not a nonnegative integer, choose $k=\lfloor\nu\rfloor+1$. Then $\nu-k<0$, contradicting the nonnegativity of the corresponding energy quotient unless $y^{(k)}\equiv0$. But if $y^{(k)}\equiv0$, then $y$ is a polynomial, and substitution into the differential equation forces its degree to equal $\nu$, again making $\nu$ an integer. Therefore
+$$
+\nu=n
+$$
+for some integer $n\ge0$, and the regular solution is a constant multiple of the generalized Laguerre polynomial $L_n^{(2)}(z)$.
+
+Step 3: Use the zero count
+
+The Rodrigues formula
+$$
+L_n^{(2)}(z)
+=\frac{z^{-2}e^z}{n!}\frac{d^n}{dz^n}\left(e^{-z}z^{n+2}\right)
+$$
+shows by $n$ integrations by parts that $L_n^{(2)}$ is orthogonal, with respect to the positive weight $z^2e^{-z}$ on $(0,\infty)$, to every polynomial of degree less than $n$.
+
+A degree-$n$ orthogonal polynomial for a positive weight on an interval has exactly $n$ simple zeros in that interval: otherwise, multiply its distinct sign-change factors to obtain a polynomial of degree less than $n$ whose product with it has one sign, contradicting orthogonality. Therefore $L_n^{(2)}$ has exactly $n$ positive zeros.
+
+Because $z=s^2$ preserves positive zeros, the hypothesis that $g$ has exactly two zeros on $(0,\infty)$ forces
+$$
+n=2.
+$$
+Hence
+$$
+\lambda=6+4n=14.
 $$
 
-Step 3: Use the conserved energy and linearize it
+Step 4: Normalize and return to $x$
 
-Multiplying
+For $n=2$,
 $$
-u_{tt}-4u+u^2=0
+L_2^{(2)}(z)=\frac12\left(z^2-8z+12\right).
 $$
-by $u_t$ shows that
+Since $g(0)=1$ and $L_2^{(2)}(0)=6$,
 $$
-E=\frac12u_t^2-2u^2+\frac13u^3
+g(s)
+=e^{-s^2/2}\frac{L_2^{(2)}(s^2)}6
+=e^{-s^2/2}\left(1-\frac{2s^2}{3}+\frac{s^4}{12}\right).
 $$
-is constant. The limits from Step 2 give $E=0$, so
+Its polynomial factor has roots $s^2=2$ and $s^2=6$, so it indeed has exactly two positive zeros, and the Gaussian factor makes it square-integrable with weight $s^5$.
+
+Finally $s=\log x$, so
 $$
-u_t^2=4u^2-\frac23u^3.
-$$
-Because $f$ is positive, $u$ is positive. Define
-$$
-v=u^{-1/2}.
-$$
-Using $u_{tt}=4u-u^2$ together with the energy identity,
-$$
-v_{tt}
-=\frac34u^{-5/2}u_t^2-\frac12u^{-3/2}u_{tt}
-=v.
-$$
-Also,
-$$
-v_t^2
-=\frac14u^{-3}u_t^2
-=v^2-\frac16.
-$$
-Thus
-$$
-v(t)=Ae^t+Be^{-t}.
-$$
-Since
-$$
-e^t v(t)=\frac1{\sqrt{g(e^t)}}\to1
-$$
-as $t\to-\infty$, we get $B=1$. Moreover,
-$$
-v^2-v_t^2=\frac16.
-$$
-For $v=Ae^t+e^{-t}$, the left-hand side equals $4A$, hence
-$$
-A=\frac1{24}.
-$$
-Therefore
-$$
-v(t)=e^{-t}+\frac1{24}e^t.
-$$
-Since $s=e^t$,
-$$
-u(t)=\frac1{v(t)^2}
-=\frac{s^2}{\left(1+\frac{s^2}{24}\right)^2}.
-$$
-Recalling that $u=s^2g(s)$,
-$$
-g(s)=\frac1{\left(1+\frac{s^2}{24}\right)^2}.
+f(x)=e^{-\frac{(\log x)^2}{2}}\left(1-\frac{2(\log x)^2}{3}+\frac{(\log x)^4}{12}\right).
 $$
 
-Step 4: Return to $x$ and verify
-
-Since $s=\log x$,
-$$
-f(x)=\frac1{\left(1+\frac{(\log x)^2}{24}\right)^2}.
-$$
-This function is positive, its logarithmic profile tends to $1$ as $s\to0^+$, and direct differentiation gives
-$$
-g''(s)+\frac5s g'(s)+g(s)^2=0.
-$$
-Hence it satisfies all the hypotheses.
-
-Final Answer: $\boxed{f(x)=\frac1{\left(1+\frac{(\log x)^2}{24}\right)^2}}$
+Final Answer: $\boxed{f(x)=e^{-\frac{(\log x)^2}{2}}\left(1-\frac{2(\log x)^2}{3}+\frac{(\log x)^4}{12}\right)}$
 
 ---
 
 ## Answer
 
-$f(x)=\frac1{\left(1+\frac{(\log x)^2}{24}\right)^2}$
+$f(x)=e^{-\frac{(\log x)^2}{2}}\left(1-\frac{2(\log x)^2}{3}+\frac{(\log x)^4}{12}\right)$
 
 ---
 
@@ -147,8 +111,8 @@ $f(x)=\frac1{\left(1+\frac{(\log x)^2}{24}\right)^2}$
 
 ## Solution Concepts
 
-- singular Lane-Emden equation
-- Emden-Fowler logarithmic transform
-- conserved energy
-- reciprocal-square-root linearization
-- endpoint asymptotics
+- radial harmonic oscillator
+- Laguerre Sturm-Liouville equation
+- spectral quantization by energy identities
+- zero count of orthogonal polynomials
+- logarithmic change of variables
