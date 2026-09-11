@@ -21,15 +21,19 @@ u(t,1)=p(t-1),$$
 and
 $$
 v(t,3)=v(t-3,0)=-b u(t-3,1)=-b p(t-4).$$
-Hence the boundary trace satisfies the scalar difference equation
+Hence the boundary trace satisfies
 $$
 p(t)=a p(t-1)-b p(t-4).
 $$
-Its characteristic polynomial is
+For each $s\in[0,1)$, the sequence $p_n(s)=p(s+n)$ obeys the same fourth-order recurrence
+$$
+p_n=a p_{n-1}-b p_{n-4},
+$$
+with characteristic polynomial
 $$
 P(z)=z^4-a z^3+b.
 $$
-Because every interior value is a time translate of a boundary trace, the transport semigroup is exponentially stable exactly when every zero of $P$ lies in the open unit disk.
+Thus all boundary traces decay exponentially, uniformly in the phase $s$, exactly when every zero of $P$ lies in the open unit disk. Since every interior value of $u$ or $v$ is a time translate of a boundary trace along a characteristic, this is equivalent to exponential stability of the transport semigroup in $L^2(0,1)\times L^2(0,3)$.
 
 Step 2: Apply the first Schur reduction
 For a real polynomial
