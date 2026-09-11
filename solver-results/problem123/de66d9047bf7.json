@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-algebraic-geometry/problem.md",
+  "source_commit_sha": "337b6e6b09b4ebae6a288760969a37393992c671",
+  "problem_blob_sha": "de66d9047bf7904f317e5b0055ae59ad7ee43b7b",
+  "statement_sha256": "e49b85593ca6424c9345b6074dcafcd26a98122adb1f5efe8797e06e1b9c2ff8",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T13:57:17+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\n\\pi:C_\\lambda\\to \\mathbb P^1_x\n\\]\nbe the natural map. For \\(\\lambda\\ne 0,1\\), the branch points are \\(0,1,\\lambda,\\infty\\).\n\nFor \\(\\lambda\\ne1\\), the two Kummer classes \\(x(x-1)\\) and \\(x(x-\\lambda)\\) are independent, since their divisors have simple zeros at different points \\(1\\) and \\(\\lambda\\). Hence\n\\[\n[\\mathbb C(C_\\lambda):\\mathbb C(x)]=mn.\n\\]\nThe ramification indices over the four branch points are:\n\\[\ne_0=\\operatorname{lcm}(m,n)=\\ell,\\qquad e_1=m,\\qquad e_\\lambda=n,\n\\]\nand, since both functions have pole order \\(2\\) at infinity,\n\\[\ne_\\infty=\\operatorname{lcm}\\left(\\frac m{\\gcd(m,2)},\\frac n{\\gcd(n,2)}\\right)=\\frac{\\ell}{h}.\n\\]\nRiemann-Hurwitz gives\n\\[\n2g(C_\\lambda)-2\n=mn\\left(-2+\\left(1-\\frac1\\ell\\right)+\\left(1-\\frac1m\\right)+\\left(1-\\frac1n\\right)+\\left(1-\\frac h\\ell\\right)\\right),\n\\]\nso\n\\[\ng(C_\\lambda)=1+\\frac{mn}{2}\\left(2-\\frac1m-\\frac1n-\\frac{1+h}{\\ell}\\right).\n\\]\n\nWhen \\(\\lambda=1\\), the field is\n\\[\n\\mathbb C(x)(y,z)=\\mathbb C(x)(u),\\qquad u^\\ell=x(x-1),\n\\]\nso the cover has degree \\(\\ell\\). Its ramification indices over \\(0,1,\\infty\\) are\n\\[\n\\ell,\\quad \\ell,\\quad \\frac{\\ell}{h}.\n\\]\nThus\n\\[\n2g(C_1)-2\n=\\ell\\left(-2+2\\left(1-\\frac1\\ell\\right)+\\left(1-\\frac h\\ell\\right)\\right)\n=\\ell-2-h,\n\\]\nhence\n\\[\ng(C_1)=\\frac{\\ell-h}{2}.\n\\]\n\nTherefore the genus drop is\n\\[\n\\boxed{\\Delta_{m,n}\n=\\frac{2+2mn-m-n-\\ell-d(1+h)+h}{2}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T13:58:25+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/de66d9047bf7.json"
+}
