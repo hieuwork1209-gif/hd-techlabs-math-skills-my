@@ -24,7 +24,7 @@ $$
 | **Domain** | Analysis |
 | **Sub-domain** | Functional analysis |
 | **Problem Type** | Exact computation |
-| **Answer Type** | Exact symbolic expression |
+| **Answer Type** | Exact scalar |
 
 ---
 
