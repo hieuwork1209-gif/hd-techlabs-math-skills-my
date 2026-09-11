@@ -1,0 +1,22 @@
+{
+  "problem": "problem102",
+  "branch": "adversary/problem102",
+  "problem_path": "workspace/rainier-problem/problem102-single-variable-calculus/problem.md",
+  "source_commit_sha": "be4e0979820df664a339b4fe91e82d6ad3a97662",
+  "problem_blob_sha": "686a31ca056c70f4d1534a7c4b94a772723c6886",
+  "statement_sha256": "523dd41c9484073b561d1c527d7389b158661aac45bd099beb25b4b71ee6bb15",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T08:03:52+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\n\\Gamma=C_{10}\\square C_{10}.\n\\]\n\nUse the usual Pfaffian/Kasteleyn count for an even toroidal square grid. For twists \\(\\epsilon,\\delta\\in\\{0,1\\}\\), define\n\n\\[\nP_{\\epsilon,\\delta}\n=\n\\prod_{r=0}^{4}\\prod_{s=0}^{4}\n4\\left(\n\\sin^2\\frac{(2r+\\epsilon)\\pi}{10}\n+\n\\sin^2\\frac{(2s+\\delta)\\pi}{10}\n\\right).\n\\]\n\nThen the number of perfect matchings is\n\n\\[\nM=\\frac12\\left(-P_{0,0}+P_{1,0}+P_{0,1}+P_{1,1}\\right).\n\\]\n\nHere \\(P_{0,0}=0\\), because the \\(r=s=0\\) factor vanishes, and by symmetry \\(P_{1,0}=P_{0,1}\\).\n\nNow use the exact sine-square values\n\n\\[\n\\sin^2 0=0,\\qquad\n\\sin^2\\frac{\\pi}{5}=\\frac{5-\\sqrt5}{8},\\qquad\n\\sin^2\\frac{2\\pi}{5}=\\frac{5+\\sqrt5}{8},\n\\]\n\nand\n\n\\[\n\\sin^2\\frac{\\pi}{10}=\\frac{3-\\sqrt5}{8},\\qquad\n\\sin^2\\frac{3\\pi}{10}=\\frac{3+\\sqrt5}{8},\\qquad\n\\sin^2\\frac{\\pi}{2}=1.\n\\]\n\nMultiplying the conjugate factors gives\n\n\\[\nP_{1,0}=P_{0,1}=2^{18}\\cdot 11^4\\cdot 41^2\n=6{,}451{,}762{,}561{,}024,\n\\]\n\nand\n\n\\[\nP_{1,1}=2^{11}\\cdot 3^8\\cdot 29^4\n=9{,}503{,}683{,}872{,}768.\n\\]\n\nTherefore\n\n\\[\nM=\\frac12\\left(2P_{1,0}+P_{1,1}\\right)\n=11{,}203{,}604{,}497{,}408.\n\\]\n\nFactoring,\n\n\\[\n11{,}203{,}604{,}497{,}408\n=\n2^{10}\\cdot 1321\\cdot 8282377.\n\\]\n\n\\[\n\\boxed{2^{10}\\cdot 1321\\cdot 8282377}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T08:06:39+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem102/686a31ca056c.json"
+}
