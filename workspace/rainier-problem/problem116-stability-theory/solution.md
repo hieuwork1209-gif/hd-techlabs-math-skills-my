@@ -1,122 +1,121 @@
 ## Steps
 
-Step 1: Rewrite the equation as a periodic Schrödinger problem
-Let
+Step 1: Localize the unstable characteristic roots
+Consider
 $$
-k=\frac1{\sqrt2},\qquad K=K(k),\qquad T=2K,
+\dot x(t)+x(t)+2x(t-\tau)+2x(t-2\tau)=0,
+\qquad \tau>0.
 $$
-and write
+Its characteristic equation is
 $$
-s=\operatorname{sn}(t,k),\quad c=\operatorname{cn}(t,k),\quad d=\operatorname{dn}(t,k).
+F(\lambda,\tau)=\lambda+1+2e^{-\lambda\tau}+2e^{-2\lambda\tau}=0.
 $$
-The Lamé equation
+If $\operatorname{Re}\lambda\ge0$, then at a root
 $$
-y''+\bigl(h-3s^2\bigr)y=0
+|\lambda+1|\le2|e^{-\lambda\tau}|+2|e^{-2\lambda\tau}|\le4,
 $$
-is the eigenvalue equation
+so all closed-right-half-plane roots lie in a fixed compact disk. At $\tau=0$,
 $$
-Hy=hy,\qquad H=-\frac{d^2}{dt^2}+3s^2,
+F(\lambda,0)=\lambda+5,
 $$
-for a $T$-periodic potential.
+which has no root with nonnegative real part. Hence for small positive $\tau$ the open right-half-plane root count is zero, and that count can change only at imaginary-axis crossings.
 
-Use
+Step 2: Find all imaginary-axis crossings
+Let $\lambda=i\omega$ with $\omega>0$, and put $\theta=\omega\tau$. Separating real and imaginary parts gives
 $$
-s'=cd,\qquad c'=-sd,\qquad d'=-\frac12sc,
-$$
-$$
-c^2=1-s^2,\qquad d^2=1-\frac12s^2.
-$$
-Direct differentiation gives
-$$
-H(cd)=\frac32cd,
+1+2\cos\theta+2\cos2\theta=0,
 $$
 $$
-H(sd)=3sd,
+\omega=2\sin\theta+2\sin2\theta.
 $$
+Writing $c=\cos\theta$, the first equation becomes
 $$
-H(sc)=\frac92sc.
+4c^2+2c-1=0,
 $$
-For an ansatz $y=1-Cs^2$, one has
+so
 $$
-(s^2)''=2-6s^2+3s^4.
-$$
-Substitution into $Hy=hy$ yields
-$$
-h=2C,
+c_+=\frac{\sqrt5-1}{4}=\cos\frac{2\pi}{5},
 \qquad
-2C^2-6C+3=0.
+c_-=-\frac{\sqrt5+1}{4}=\cos\frac{4\pi}{5}.
 $$
-Hence
+For $c_+$, positivity of $\omega$ selects
 $$
-C=\frac{3\pm\sqrt3}{2},
+\theta=\frac{2\pi}{5}+2\pi k,
 \qquad
-h=3\pm\sqrt3.
+\omega_+=\sqrt{5+2\sqrt5}.
 $$
-Thus five explicit band-edge values are
+For $c_-$, positivity of $\omega$ selects the lower-half-circle branch
 $$
-3-\sqrt3,\quad \frac32,\quad 3,\quad \frac92,\quad 3+\sqrt3.
-$$
-
-Step 2: Identify which edges are periodic and antiperiodic
-Because
-$$
-s(t+T)=-s(t),\qquad c(t+T)=-c(t),\qquad d(t+T)=d(t),
-$$
-the two functions $1-Cs^2$ and the function $sc$ are $T$-periodic, while $cd$ and $sd$ are $T$-antiperiodic.
-
-The five values are ordered as
-$$
-3-\sqrt3<\frac32<3<\frac92<3+\sqrt3.
-$$
-Their corresponding eigenfunctions have the successive zero counts required by Sturm oscillation, so they are the first five periodic/antiperiodic band edges in this order.
-
-Step 3: Show that no further band edge lies below $5$
-We first bound the period. Since for $0\le x\le1/2$,
-$$
-(1-x)^{-1/2}\le1+x,
-$$
-we get
-$$
-K=\int_0^{\pi/2}\frac{d\phi}{\sqrt{1-\frac12\sin^2\phi}}
-\le\int_0^{\pi/2}\left(1+\frac12\sin^2\phi\right)d\phi
-=\frac{5\pi}{8}<2.
-$$
-Hence $T=2K<4$.
-
-For the free operator $-d^2/dt^2$ on $[0,T]$, the periodic eigenvalues begin
-$$
-0,\ \left(\frac{2\pi}{T}\right)^2,\ \left(\frac{2\pi}{T}\right)^2,\ \left(\frac{4\pi}{T}\right)^2,\dots,
-$$
-while the antiperiodic eigenvalues begin
-$$
-\left(\frac{\pi}{T}\right)^2,\ \left(\frac{\pi}{T}\right)^2,\ \left(\frac{3\pi}{T}\right)^2,\dots.
-$$
-Since the potential $3s^2$ is nonnegative, the min-max principle can only increase these eigenvalues. Therefore the next periodic edge after the three periodic edges already found is larger than
-$$
-\left(\frac{4\pi}{T}\right)^2>\pi^2>5,
-$$
-and the next antiperiodic edge after the two antiperiodic edges already found is larger than
-$$
-\left(\frac{3\pi}{T}\right)^2>\frac{9\pi^2}{16}>5.
-$$
-So the five explicit values exhaust all band edges in $0<h<5$.
-
-Step 4: Read off the Floquet-stable bands
-For a real periodic Schrödinger equation, both Floquet multipliers have modulus $1$ exactly on the spectral bands, and the bands alternate between consecutive periodic and antiperiodic edges. Since the spectrum starts at the lowest periodic edge, within $0<h<5$ the stable bands are
-$$
-[3-\sqrt3,\tfrac32],
+\theta=\frac{6\pi}{5}+2\pi k,
 \qquad
-[3,\tfrac92],
-\qquad
-[3+\sqrt3,5).
+\omega_- =\sqrt{5-2\sqrt5}.
 $$
-Final Answer: $\boxed{[3-\sqrt3,\frac32]\cup[3,\frac92]\cup[3+\sqrt3,5)}$
+Thus the two crossing families are
+$$
+A_k=\frac{2\pi(5k+1)}{5\omega_+},
+\qquad
+B_k=\frac{2\pi(5k+3)}{5\omega_-},
+\qquad k=0,1,2,\dots.
+$$
+Also
+$$
+\frac{\omega_+}{\omega_-}=2+\sqrt5,
+$$
+so the two crossing families never coincide.
+
+Step 3: Determine every crossing direction
+Write $z=e^{-i\theta}$. At a crossing,
+$$
+F_\tau=-2\lambda z(1+2z),
+\qquad
+F_\lambda=1-2\tau z-4\tau z^2.
+$$
+Since $F_\lambda=1+(\tau/\lambda)F_\tau$,
+$$
+\left(\frac{d\lambda}{d\tau}\right)^{-1}
+=-\frac{F_\lambda}{F_\tau}
+=-\frac1{F_\tau}-\frac\tau\lambda.
+$$
+For $\lambda=i\omega$, the second term is purely imaginary. If $c=\cos\theta$ and $s=\sin\theta$, direct rationalization gives
+$$
+\operatorname{Re}\left(-\frac1{F_\tau}\right)
+=\frac{s(4c+1)}{2\omega(5+4c)}.
+$$
+On the $A_k$ family, $s>0$ and $4c_++1=\sqrt5>0$. On the $B_k$ family, $s<0$ and $4c_-+1=-\sqrt5<0$. Therefore every crossing has positive direction: at each $A_k$ or $B_k$, one simple conjugate pair moves from the left half-plane into the right half-plane as $\tau$ increases.
+
+Step 4: Order the first crossings and count eight roots
+The relevant first crossings are
+$$
+A_0=\frac{2\pi}{5\omega_+},\quad
+A_1=\frac{12\pi}{5\omega_+},\quad
+A_2=\frac{22\pi}{5\omega_+},\quad
+B_0=\frac{6\pi}{5\omega_-},\quad
+A_3=\frac{32\pi}{5\omega_+}.
+$$
+Using $\omega_+/\omega_-=2+\sqrt5$,
+$$
+A_2<B_0<A_3
+$$
+because
+$$
+11<3(2+\sqrt5)<16.
+$$
+Hence the first five crossing events are
+$$
+A_0<A_1<A_2<B_0<A_3.
+$$
+Starting from zero unstable roots, each event adds two. Thus immediately after $B_0$ there are exactly eight roots in the open right half-plane. At $A_3$ the fifth conjugate pair is still on the imaginary axis, so it is not counted and the open right-half-plane count is still eight there. Therefore
+$$
+B_0<\tau\le A_3.
+$$
+Substituting the exact frequencies gives the required interval.
+Final Answer: $\boxed{\left(\frac{6\pi}{5\sqrt{5-2\sqrt5}},\frac{32\pi}{5\sqrt{5+2\sqrt5}}\right]}$
 
 ---
 
 ## Answer
 
-$[3-\sqrt3,\frac32]\cup[3,\frac92]\cup[3+\sqrt3,5)$
+$\left(\frac{6\pi}{5\sqrt{5-2\sqrt5}},\frac{32\pi}{5\sqrt{5+2\sqrt5}}\right]$
 
 ---
 
@@ -130,11 +129,11 @@ $[3-\sqrt3,\frac32]\cup[3,\frac92]\cup[3+\sqrt3,5)$
 
 ## Solution Concepts
 
-- Floquet theory
-- Lamé equations
-- Jacobi elliptic functions
-- periodic and antiperiodic spectra
-- Sturm-Liouville oscillation
+- retarded delay differential equations
+- characteristic root counting
+- commensurate delays
+- imaginary-axis crossings
+- crossing direction
 
 ---
 
