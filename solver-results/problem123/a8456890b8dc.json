@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-galois-theory/problem.md",
+  "source_commit_sha": "d7c6a98aba93e44982193cda5467e6fbbd01fba1",
+  "problem_blob_sha": "a8456890b8dc80e459ce2c7227a332309ed11538",
+  "statement_sha256": "b8e37d62101bf9db3902eb35427c9af557bb171702b6f56d94bd295f6966afed",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T09:04:51+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nr=\\max(n-q,0).\n\\]\nThen\n\\[\n\\boxed{\\operatorname{Gal}(K_{n,q}/\\mathbb Q)\\cong C_{2^r}\\rtimes (\\mathbb Z/2^n\\mathbb Z)^\\times,}\n\\]\nwhere \\(C_{2^r}\\) is trivial when \\(r=0\\), and \\(u\\in(\\mathbb Z/2^n\\mathbb Z)^\\times\\) acts on \\(C_{2^r}\\cong\\mathbb Z/2^r\\mathbb Z\\) by multiplication by \\(u\\bmod 2^r\\).\n\nEquivalently:\n\\[\n\\operatorname{Gal}(K_{n,q}/\\mathbb Q)\\cong\n\\begin{cases}\n(\\mathbb Z/2^n\\mathbb Z)^\\times, & q\\ge n,\\\\[2mm]\nC_{2^{n-q}}\\rtimes(\\mathbb Z/2^n\\mathbb Z)^\\times, & q<n.\n\\end{cases}\n\\]\n\nProof. Use the identity\n\\[\nf(z+z^{-1})=z^2+z^{-2},\n\\]\nso by induction\n\\[\nf^{\\circ m}(z+z^{-1})=z^{2^m}+z^{-2^m}.\n\\]\nPut\n\\[\nL=\\ell^{2^q}.\n\\]\nThe equation\n\\[\nf^{\\circ n}(x)=L+L^{-1}\n\\]\nhas roots\n\\[\nx_j=\\rho\\zeta^j+\\rho^{-1}\\zeta^{-j},\\qquad j\\in\\mathbb Z/2^n\\mathbb Z,\n\\]\nwhere \\(\\zeta=\\zeta_{2^n}\\), and \\(\\rho\\) is chosen so that\n\\[\n\\rho^{2^n}=L.\n\\]\nThus, if \\(q<n\\), take \\(\\rho=\\ell^{1/2^{n-q}}\\); if \\(q\\ge n\\), take \\(\\rho=\\ell^{2^{q-n}}\\in\\mathbb Q\\).\n\nWhen \\(q\\ge n\\), all roots lie in \\(\\mathbb Q(\\zeta_{2^n})\\), and the roots \\(x_j\\) generate \\(\\zeta_{2^n}\\), since \\(\\rho\\ne \\rho^{-1}\\). Hence\n\\[\nK_{n,q}=\\mathbb Q(\\zeta_{2^n}),\n\\]\nso\n\\[\n\\operatorname{Gal}(K_{n,q}/\\mathbb Q)\\cong(\\mathbb Z/2^n\\mathbb Z)^\\times.\n\\]\n\nNow suppose \\(q<n\\), and set \\(r=n-q\\). Then \\(\\rho^{2^r}=\\ell\\), and\n\\[\nK_{n,q}\\subseteq M:=\\mathbb Q(\\rho,\\zeta_{2^n}).\n\\]\nThe field \\(M\\) is Galois over \\(\\mathbb Q\\): it is the splitting field of\n\\[\n(X^{2^r}-\\ell)\\Phi_{2^n}(X).\n\\]\nSince \\(\\mathbb Q(\\zeta_{2^n})\\) is ramified only at \\(2\\), while every nontrivial subfield of \\(\\mathbb Q(\\rho)\\) is ramified at the odd prime \\(\\ell\\), the two fields intersect trivially. Hence\n\\[\n[M:\\mathbb Q]=2^r\\varphi(2^n).\n\\]\n\nEvery automorphism of \\(M\\) has the form\n\\[\n\\sigma_{v,u}(\\rho)=\\zeta^{2^qv}\\rho,\\qquad\n\\sigma_{v,u}(\\zeta)=\\zeta^u,\n\\]\nwith\n\\[\nv\\in\\mathbb Z/2^r\\mathbb Z,\\qquad u\\in(\\mathbb Z/2^n\\mathbb Z)^\\times.\n\\]\nIt acts on the roots by\n\\[\n\\sigma_{v,u}(x_j)\n=\\rho\\zeta^{uj+2^qv}+\\rho^{-1}\\zeta^{-uj-2^qv}\n=x_{uj+2^qv}.\n\\]\nThus \\(M\\) preserves the splitting field \\(K_{n,q}\\).\n\nThis action is faithful: if \\(\\sigma_{v,u}\\) fixes every \\(x_j\\), then\n\\[\nx_{uj+2^qv}=x_j\n\\]\nfor all \\(j\\). The roots \\(x_j\\) are distinct, because \\(x_a=x_b\\) would imply either \\(\\zeta^a=\\zeta^b\\), or else \\(\\rho^2\\) is a root of unity, impossible since \\(\\rho>1\\). Therefore\n\\[\nuj+2^qv\\equiv j\\pmod{2^n}\n\\]\nfor every \\(j\\), forcing \\(u\\equiv1\\pmod{2^n}\\) and \\(v\\equiv0\\pmod{2^r}\\). Hence the restriction map\n\\[\n\\operatorname{Gal}(M/\\mathbb Q)\\to\\operatorname{Gal}(K_{n,q}/\\mathbb Q)\n\\]\nis injective. Since \\(K_{n,q}\\subseteq M\\), this forces \\(K_{n,q}=M\\).\n\nThe group law is\n\\[\n(v,u)(v',u')=(v+uv',uu'),\n\\]\nwith \\(v\\) taken modulo \\(2^r\\). Therefore\n\\[\n\\operatorname{Gal}(K_{n,q}/\\mathbb Q)\\cong\nC_{2^r}\\rtimes(\\mathbb Z/2^n\\mathbb Z)^\\times,\n\\]\nas claimed.",
+  "status": "success",
+  "completed_at": "2026-09-11T09:06:42+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/a8456890b8dc.json"
+}
