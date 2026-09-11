@@ -17,7 +17,7 @@ D_{\varepsilon,\delta},
 \qquad
 D_{\varepsilon,\delta}=|\det K_{\varepsilon,\delta}|.
 $$
-Indeed, grouping perfect matchings by their two winding parities makes the four twisted determinants the four Walsh transforms of those four classes; the Kasteleyn signs for this square-grid orientation give the displayed positive combination.
+Here the four seam choices are the four spin structures on the torus. Grouping perfect matchings by their two winding parities gives the four twisted determinants, and the Kasteleyn sign rule for this square-grid orientation yields the displayed positive combination.
 
 Step 2: Diagonalize the four determinants
 
@@ -33,7 +33,7 @@ D_{\varepsilon,\delta}
 =\prod_{r=0}^4\prod_{s=0}^4
 \left(a_r^{(\varepsilon)}+a_s^{(\delta)}\right).
 $$
-To see the symbol directly, a Fourier mode with angles $\theta,\phi$ is multiplied by
+Indeed, a Fourier mode with angles $\theta,\phi$ is multiplied by
 $$
 2\cos\theta+2i\cos\phi,
 $$
@@ -110,7 +110,7 @@ Therefore
 $$
 D_{0,0}
 =8\cdot36^4\cdot29^4
-=2^{11}3^8 29^4.
+=9503683872768.
 $$
 
 Step 4: Evaluate the twisted determinants
@@ -146,8 +146,7 @@ P_1(A)P_1(B)=2^8\cdot11^2.
 $$
 Hence
 $$
-D_{0,1}=D_{1,0}
-=2^{18}11^4 41^2.
+D_{0,1}=D_{1,0}=6451762561024.
 $$
 Finally, the half-twisted set contains $0$, so the product for $D_{1,1}$ has a zero factor and
 $$
@@ -159,27 +158,17 @@ Step 5: Combine the four sectors
 Therefore
 $$
 M(\Gamma)
-=\frac12\left(2^{11}3^8 29^4+2\cdot2^{18}11^4 41^2\right)
-$$
-$$
-=2^{10}\left(3^8 29^4+2^8 11^4 41^2\right).
-$$
-The integer in parentheses is
-$$
-10941020017=1321\cdot8282377,
-$$
-and both factors are prime. Thus
-$$
-M(\Gamma)=2^{10}\cdot1321\cdot8282377.
+=\frac12\left(9503683872768+2\cdot6451762561024\right)
+=11203604497408.
 $$
 
-Final Answer: $\boxed{2^{10}\cdot1321\cdot8282377}$
+Final Answer: $\boxed{11203604497408}$
 
 ---
 
 ## Answer
 
-$2^{10}\cdot1321\cdot8282377$
+$11203604497408$
 
 ---
 
