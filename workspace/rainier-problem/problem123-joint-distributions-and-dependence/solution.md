@@ -62,7 +62,14 @@ $$
 (Tf)(y):=E[f(X)\mid Y=y].
 \tag{7}
 $$
-Conditional expectation is an $L^2$ contraction, so $T:L^2_X\to L^2_Y$ is bounded. Its adjoint is
+Conditional Jensen gives
+$$
+E\bigl[(Tf)(Y)^2\bigr]
+=E\bigl[(E(f(X)\mid Y))^2\bigr]
+\le E\bigl[E(f(X)^2\mid Y)\bigr]
+=E f(X)^2,
+$$
+so $T:L^2_X\to L^2_Y$ is a contraction. Its adjoint is
 $$
 (T^*g)(x)=E[g(Y)\mid X=x],
 \tag{8}
@@ -87,7 +94,7 @@ Equations (3) and (4) give the forward reason to look at polynomials: if $h$ is 
 
 Accordingly, for each $k\ge0$, let $p_k$ be the monic degree-$k$ polynomial orthogonal to all lower-degree polynomials in $L^2_X$, and let $q_k$ be the analogous monic polynomial in $L^2_Y$.
 
-These families are complete. Indeed, the beta densities in (2) define finite Borel measures on $[0,1]$; continuous functions are dense in the corresponding $L^2$ spaces, and by the Weierstrass approximation theorem polynomials are uniformly dense in $C[0,1]$. Hence the orthogonalized polynomial families span dense subspaces.
+These families are complete. Indeed, the beta densities in (2) define finite Borel measures on $[0,1]$; continuous functions are dense in the corresponding $L^2$ spaces, and the Weierstrass approximation theorem states that polynomials are uniformly dense in $C[0,1]$. Hence the orthogonalized polynomial families span dense subspaces.
 
 We first compute $Tp_k$. By (3), conditional on $Y=y$ we have $X=yB$. Since $p_k$ is monic,
 $$
@@ -146,26 +153,41 @@ $$
 =\frac{(r)_k(n+1-s)_k}{(s)_k(n+1-r)_k}.
 \tag{15}
 $$
-Because the $p_k$ form a complete orthogonal basis of $L^2_X$, these are all eigenvalues of the positive operator $T^*T$. For $k=0$, $p_0=1$ and $\lambda_0=1$, corresponding to constants.
+Normalize the complete orthogonal family $p_k$ to an orthonormal basis $e_k$. Then
+$$
+T^*T e_k=\lambda_k e_k.
+$$
+For $k=0$, $e_0$ is constant and $\lambda_0=1$. If $f\in L^2_{X,0}$ has expansion
+$$
+f=\sum_{k\ge1}c_k e_k,
+$$
+then
+$$
+\|Tf\|_2^2
+=\langle T^*Tf,f\rangle
+=\sum_{k\ge1}\lambda_k|c_k|^2.
+\tag{16}
+$$
+Thus the squared operator norm in (9) is $\sup_{k\ge1}\lambda_k$.
 
-The centered subspace is the orthogonal complement of the constants, so only $k\ge1$ matter for (9). Moreover
+Moreover
 $$
 \frac{\lambda_{k+1}}{\lambda_k}
 =\frac{r+k}{s+k}
 \frac{n+1-s+k}{n+1-r+k}<1
 \qquad(k\ge0),
-\tag{16}
+\tag{17}
 $$
-because $r<s$ and $n+1-s<n+1-r$. Hence the largest eigenvalue of $T^*T$ on $L^2_{X,0}$ is $\lambda_1$.
+because $r<s$ and $n+1-s<n+1-r$. Hence the largest eigenvalue on the centered subspace is $\lambda_1$.
 
 Step 5: Evaluate the supremum and prove attainment
 
-By (9) and the spectral calculation,
+By (9), (15), and (17),
 $$
 \rho_{r,s}^{(n)}
 =\sqrt{\lambda_1}
 =\sqrt{\frac{r(n+1-s)}{s(n+1-r)}}.
-\tag{17}
+\tag{18}
 $$
 The supremum is attained: $p_1(X)=X-EX$ and $q_1(Y)=Y-EY$ are nonzero centered singular functions corresponding to $\lambda_1$, and after normalizing them in $L^2$ and choosing the common sign, equality holds in (9).
 
