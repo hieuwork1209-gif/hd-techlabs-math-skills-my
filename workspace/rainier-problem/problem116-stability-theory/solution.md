@@ -1,156 +1,101 @@
 ## Steps
 
-Step 1: Reduce the almost-sure exponent to an angular diffusion
+Step 1: Compute the almost-sure exponent
 Let
 $$
-A=\begin{pmatrix}-1&a\\a&-1\end{pmatrix},
-\qquad
-J=\begin{pmatrix}0&-1\\1&0\end{pmatrix},
-\qquad a,b>0,
+A_1=\begin{pmatrix}-1&3\\0&-1\end{pmatrix},\qquad
+A_2=\begin{pmatrix}-1&0\\3&-1\end{pmatrix},
 $$
-and consider the Stratonovich equation
+and let the chain jump $1\to2$ at rate $a>0$ and $2\to1$ at rate $b>0$. Put
+$$s=a+b,\qquad q=ab.$$
+Writing $z(t)=e^{-t}x(t)$ removes the common $-I$. For $r=x_2/x_1>0$, the shear system gives
 $$
-dZ_t=A Z_t\,dt+bJZ_t\circ dW_t.
+\dot r=-3r^2\quad(\sigma=1),\qquad \dot r=3\quad(\sigma=2).
 $$
-For a nonzero solution write
+If $f_1,f_2$ are stationary projective densities, their forward equations imply zero stationary flux and hence $f_2=r^2f_1$. Thus
 $$
-Z_t=r_t(\cos\theta_t,\sin\theta_t)^T.
+f_1=Cr^{-2}e^{-(br+a/r)/3},\qquad f_2=Ce^{-(br+a/r)/3}.
 $$
-Because Stratonovich calculus obeys the ordinary chain rule and $J$ is the infinitesimal rotation matrix,
+With $\xi=2\sqrt q/3$ and
 $$
-d\log r_t=(-1+a\sin2\theta_t)\,dt,
+K_\nu(\xi)=\frac12\int_0^\infty u^{\nu-1}e^{-\frac\xi2(u+u^{-1})}\,du,
 $$
-while
+normalization gives
 $$
-d\theta_t=a\cos2\theta_t\,dt+b\,dW_t.
+C=\frac{\sqrt q}{2sK_1(\xi)}.
 $$
-Thus the top almost-sure Lyapunov exponent is obtained by averaging $-1+a\sin2\theta$ against the stationary law of the angular diffusion.
+Also, in either mode,
+$$
+\frac d{dt}\log\|x\|_2=3\frac{r}{1+r^2},
+$$
+so ergodicity yields
+$$
+\lambda_{\rm sh}
+=\frac{3\sqrt q}{s}\frac{K_0(\xi)}{K_1(\xi)}.
+$$
+Therefore the original system is almost surely exponentially stable exactly when
+$$
+3\sqrt q\,K_0\left(\frac{2\sqrt q}{3}\right)
+<sK_1\left(\frac{2\sqrt q}{3}\right).
+$$
+The fundamental matrices of the shear system are nonnegative, so the exponent obtained from a positive vector controls the operator norm and hence every deterministic initial state.
 
-Step 2: Find the stationary angular law and the almost-sure exponent
-The angular diffusion on the circle has generator
+Step 2: Compute the mean-square threshold
+For the shear system define conditional second moments $u_i,v_i,w_i$ corresponding to $x_1^2,x_1x_2,x_2^2$. They satisfy
 $$
-\mathcal L f=a\cos2\theta\,f'(\theta)+\frac{b^2}{2}f''(\theta).
-$$
-Since $b>0$, it is elliptic and has a unique invariant probability density. The stationary Fokker-Planck equation has zero periodic probability flux, and therefore
-$$
-\rho(\theta)=\frac1{Z_q}e^{q\sin2\theta},
-\qquad
-q=\frac{a}{b^2}.
-$$
-Indeed,
-$$
-\frac{\rho'}{\rho}=2q\cos2\theta=\frac{2a}{b^2}\cos2\theta,
-$$
-so
-$$
-a\cos2\theta\,\rho-\frac{b^2}{2}\rho'=0.
-$$
-
-Using the modified Bessel functions of the first kind,
-$$
-\int_0^{2\pi}e^{q\sin2\theta}\,d\theta=2\pi I_0(q),
-$$
-and differentiation with respect to $q$ gives
-$$
-\int_0^{2\pi}\sin2\theta\,e^{q\sin2\theta}\,d\theta=2\pi I_1(q).
-$$
-Hence
-$$
-\int_0^{2\pi}\sin2\theta\,\rho(\theta)\,d\theta
-=\frac{I_1(q)}{I_0(q)}.
-$$
-Ergodicity of the angular diffusion now yields the almost-sure top exponent
-$$
-\Lambda_{\rm as}(a,b)
-=-1+a\frac{I_1(a/b^2)}{I_0(a/b^2)}.
-$$
-Therefore the origin is almost surely exponentially stable exactly when
-$$
-aI_1(a/b^2)<I_0(a/b^2).
-$$
-Because the angular diffusion is nondegenerate, the same top exponent applies to every deterministic nonzero initial direction.
-
-Step 3: Convert the Stratonovich equation to Itô form
-Since $J^2=-I$, the Itô form is
-$$
-dZ_t=\left(A-\frac{b^2}{2}I\right)Z_t\,dt+bJZ_t\,dW_t.
-$$
-Let
-$$
-M(t)=\mathbb E[Z_tZ_t^T].
-$$
-Then
-$$
-\dot M=\widetilde A M+M\widetilde A^T+b^2J M J^T,
-\qquad
-\widetilde A=A-\frac{b^2}{2}I.
-$$
-An orthogonal change of coordinates diagonalizes $A$ to
-$$
-\operatorname{diag}(-1+a,-1-a).
-$$
-Under the same orthogonal change, $J$ is replaced by $\pm J$, which leaves $J M J^T$ unchanged.
-
-Step 4: Determine the exact mean-square stability threshold
-In the diagonal coordinates write
-$$
-x=\mathbb E[Y_1^2],
-\qquad
-y=\mathbb E[Y_1Y_2],
-\qquad z=\mathbb E[Y_2^2].
-$$
-The second moments satisfy
-$$
-\frac d{dt}\begin{pmatrix}x\\z\end{pmatrix}
+\frac d{dt}
+\begin{pmatrix}u_1\\v_1\\w_1\\u_2\\v_2\\w_2\end{pmatrix}
 =
 \begin{pmatrix}
--2+2a-b^2&b^2\\
-b^2&-2-2a-b^2
+-a&6&0&b&0&0\\
+0&-a&3&0&b&0\\
+0&0&-a&0&0&b\\
+a&0&0&-b&0&0\\
+0&a&0&3&-b&0\\
+0&0&a&0&6&-b
 \end{pmatrix}
-\begin{pmatrix}x\\z\end{pmatrix},
+\begin{pmatrix}u_1\\v_1\\w_1\\u_2\\v_2\\w_2\end{pmatrix}.
 $$
-and
+This matrix is irreducible Metzler, so its spectral abscissa is a real Perron eigenvalue $\lambda_*>0$. Set
+$$d=\lambda_*(\lambda_*+s).$$
+The Perron eigenvalue equations give
 $$
-\dot y=(-2-2b^2)y.
+du_2=6av_1,\qquad dw_1=6bv_2,
 $$
-The larger eigenvalue of the $2\times2$ block is
 $$
-\lambda_{\rm ms}
-=-2-b^2+\sqrt{4a^2+b^4}.
+(\lambda_*+a)v_1=b\left(1+\frac{18}{d}\right)v_2,
+\qquad
+(\lambda_*+b)v_2=a\left(1+\frac{18}{d}\right)v_1.
 $$
-Thus mean-square exponential stability holds exactly when
+Multiplying the last two equations and using $(\lambda_*+a)(\lambda_*+b)=d+q$ gives
 $$
-\sqrt{4a^2+b^4}<2+b^2.
+d^3=36q(d+9).
 $$
-Both sides are positive, so squaring gives
+The left side minus the right side has exactly one positive zero. Since $d=\lambda(\lambda+s)$ increases for $\lambda\ge0$, and $z=e^{-t}x$, mean-square exponential stability is equivalent to $\lambda_*<2$. Substituting $\lambda=2$ gives
 $$
-4a^2+b^4<4+4b^2+b^4,
+\lambda_*<2
+\iff 2(s+2)^3>9q(2s+13).
 $$
-i.e.
+Hence mean-square exponential stability fails exactly when
 $$
-a^2<1+b^2.
-$$
-At $a^2=1+b^2$ the second-moment system has a zero eigenvalue, so exponential decay already fails. Hence the system is not mean-square exponentially stable exactly when
-$$
-a^2\ge1+b^2.
+9q(2s+13)\ge2(s+2)^3.
 $$
 
-Step 5: Combine the two stability notions
-We need almost-sure exponential stability but failure of mean-square exponential stability. Combining Steps 2 and 4 gives
+Step 3: Combine the two criteria
+We require almost-sure exponential stability but failure of mean-square exponential stability. Therefore, with $s=a+b$ and $q=ab$, the exact region is
 $$
-a,b>0,
-\qquad
-a^2\ge1+b^2,
-\qquad
-aI_1(a/b^2)<I_0(a/b^2).
+a,b>0,\qquad 9q(2s+13)\ge2(s+2)^3,
 $$
-Final Answer: $\boxed{\{(a,b):a,b>0,a^2\ge1+b^2,\ aI_1(a/b^2)<I_0(a/b^2)\}}$
+$$
+3\sqrt qK_0(2\sqrt q/3)<sK_1(2\sqrt q/3).
+$$
+Final Answer: $\boxed{\{(a,b):a,b>0,9q(2s+13)\ge2(s+2)^3,3\sqrt qK_0(2\sqrt q/3)<sK_1(2\sqrt q/3)\}}$
 
 ---
 
 ## Answer
 
-$\{(a,b):a,b>0,a^2\ge1+b^2,\ aI_1(a/b^2)<I_0(a/b^2)\}$
+$\{(a,b):a,b>0,9q(2s+13)\ge2(s+2)^3,3\sqrt qK_0(2\sqrt q/3)<sK_1(2\sqrt q/3)\}$
 
 ---
 
@@ -164,9 +109,9 @@ $\{(a,b):a,b>0,a^2\ge1+b^2,\ aI_1(a/b^2)<I_0(a/b^2)\}$
 
 ## Solution Concepts
 
-- Stratonovich linear stochastic systems
+- Markov jump linear systems
+- projective piecewise-deterministic processes
 - almost-sure Lyapunov exponents
-- invariant angular diffusions
 - mean-square stability
 - modified Bessel functions
 
