@@ -1,7 +1,7 @@
 {
   "problem": "problem123",
   "mode": "new",
-  "ready": true,
+  "ready": false,
   "problem_path": "workspace/rainier-problem/problem123-elementary-number-theory/problem.md",
   "problem_blob_sha": "4f68bc3891d858d8ed8f91d9d61190a03d68ca54",
   "solution_path": "workspace/rainier-problem/problem123-elementary-number-theory/solution.md",
