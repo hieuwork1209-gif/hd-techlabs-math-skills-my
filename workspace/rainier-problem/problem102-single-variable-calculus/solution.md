@@ -4,46 +4,46 @@ Step 1: Pass to logarithmic time and determine the wave speed
 
 Let
 $$
-u(t)=g(e^t),\qquad t\in\mathbb R.
+U(t)=g(e^t),\qquad t\in\mathbb R.
 $$
 Then
 $$
-u_{tt}+c u_t+u(1-u)=0,
+U_{tt}+cU_t+U(1-U)=0,
 $$
 with
 $$
-u(-\infty)=1,\qquad u(+\infty)=0,\qquad u_t<0,
+U(-\infty)=1,\qquad U(+\infty)=0,\qquad U_t<0,
 $$
 and
 $$
-u(0)=\frac14.
+U(0)=\frac14.
 $$
 The endpoint rates become
 $$
-\alpha=-\lim_{t\to-\infty}\frac{u_t}{1-u},
+\alpha=-\lim_{t\to-\infty}\frac{U_t}{1-U},
 \qquad
-\beta=-\lim_{t\to+\infty}\frac{u_t}{u},
+\beta=-\lim_{t\to+\infty}\frac{U_t}{U},
 $$
 where $\alpha,\beta>0$ and $\beta=2\alpha$.
 
-Set $v=1-u$ near $-\infty$. Then
+Set $V=1-U$ near $-\infty$. Then
 $$
-v_{tt}+cv_t-v+v^2=0.
+V_{tt}+cV_t-V+V^2=0.
 $$
-Since $v_t/v\to\alpha$,
+Since $V_t/V\to\alpha$,
 $$
-\frac{v_{tt}}v\to1-c\alpha.
+\frac{V_{tt}}V\to1-c\alpha.
 $$
 Also
 $$
-\left(\frac{v_t}{v}\right)'
-=\frac{v_{tt}}v-\left(\frac{v_t}{v}\right)^2.
+\left(\frac{V_t}{V}\right)'
+=\frac{V_{tt}}V-\left(\frac{V_t}{V}\right)^2.
 $$
 The left-hand ratio converges, so the right-hand side cannot tend to a nonzero constant. Hence
 $$
 \alpha^2+c\alpha-1=0.
 $$
-Similarly, from the equation for $u$ at $+\infty$,
+Similarly, from the equation for $U$ at $+\infty$,
 $$
 \beta^2-c\beta+1=0.
 $$
@@ -66,7 +66,7 @@ Put
 $$
 a=\frac1{\sqrt6},
 \qquad
-z(t)=\sqrt{u(t)}.
+z(t)=\sqrt{U(t)}.
 $$
 Then $0<z<1$, $z_t<0$, and the wave equation becomes
 $$
@@ -80,7 +80,6 @@ Using $a^2=1/6$, direct substitution simplifies the second-order equation to
 $$
 r_t=-r\bigl(2r+a(1+5z)\bigr).
 $$
-
 The rate $\alpha=a$ at $-\infty$ gives
 $$
 -\frac{z_t}{1-z}\to a,
@@ -109,9 +108,9 @@ for some $K>0$.
 
 Step 3: Fix the translation and return to $x$
 
-Since $u(0)=1/4$, we have $z(0)=1/2$, so $K=1$. Hence
+Since $U(0)=1/4$, we have $z(0)=1/2$, so $K=1$. Hence
 $$
-u(t)=\frac1{(1+e^{t/\sqrt6})^2}.
+U(t)=\frac1{(1+e^{t/\sqrt6})^2}.
 $$
 Because $s=e^t$,
 $$
