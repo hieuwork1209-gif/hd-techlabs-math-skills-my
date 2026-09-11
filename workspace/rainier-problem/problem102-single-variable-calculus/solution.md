@@ -1,143 +1,171 @@
 ## Steps
 
-Step 1: Reduce self-duality to three mod-$2$ strata
+Step 1: Reduce the Lagrangian count to symmetric matrices
 
-Let
+Write
 $$
-G=(\mathbb Z/4\mathbb Z)^4
-$$
-with the given symplectic pairing, and let
-$$
-\pi:G\to V=(\mathbb F_2)^4
-$$
-be reduction modulo $2$. The pairing on $G$ is perfect, so for every subgroup $H\le G$,
-$$
-|H|\,|H^\perp|=|G|=4^4=256.
-$$
-Hence $H=H^\perp$ implies
-$$
-|H|=16.
-$$
-
-Put
-$$
-L=\pi(H)\subset V.
-$$
-Since $H$ is isotropic, $L$ is isotropic for the reduced symplectic form on $V$. Therefore
-$$
-r=\dim_{\mathbb F_2}L\in\{0,1,2\}.
-$$
-
-For $a\in V$, write $2a$ for the corresponding element of $2G$. For any $h\in H$,
-$$
-\langle 2a,h\rangle\equiv 2\langle a,\pi(h)\rangle\pmod4.
-$$
-Thus
-$$
-H^\perp\cap2G=2L^\perp.
-$$
-If $H=H^\perp$, then
-$$
-H\cap2G=2L^\perp.
-$$
-We count separately according to $r$.
-
-Step 2: Count the strata $r=0$ and $r=1$
-
-If $r=0$, then $H\subset2G$. Since both groups have $16$ elements,
-$$
-H=2G.
-$$
-So this stratum contributes exactly
-$$
-1.
-$$
-
-Now suppose $r=1$, so $L=\ell$ is a line in $V$. Every line is isotropic, and there are
-$$
-\frac{2^4-1}{2-1}=15
-$$
-lines.
-
-Fix one such line $\ell$. We have
-$$
-H\cap2G=2\ell^\perp,
-$$
-which has $2^3=8$ elements. Choose a primitive element $v\in H$ whose reduction spans $\ell$. Then necessarily
-$$
-H=\langle v\rangle+2\ell^\perp.
-$$
-Changing $v$ to $v+2a$ gives the same subgroup exactly when $a$ changes by an element of $\ell^\perp$. Hence the distinct choices are parametrized by
-$$
-V/\ell^\perp,
-$$
-which has $2$ elements. Therefore the $r=1$ stratum contributes
-$$
-15\cdot2=30.
-$$
-
-Step 3: Count the stratum $r=2$
-
-Now $L$ is a Lagrangian plane in the four-dimensional symplectic space $V$. There are $15$ such planes. Indeed, $V$ has $15$ lines; each line $\ell$ lies in exactly $3$ Lagrangian planes because these correspond to the $3$ lines of the two-dimensional space $\ell^\perp/\ell$; and each Lagrangian plane contains $3$ lines. Double counting line-plane incidences gives
-$$
-\frac{15\cdot3}{3}=15.
-$$
-
-Fix a Lagrangian plane $L$. Choose a basis $\overline E_1,\overline E_2$ of $L$ and lift it to primitive vectors $E_1,E_2\in G$. Their pairing is even. Choose a primitive $F_1$ with $\langle E_1,F_1\rangle=1$; if $\langle E_1,E_2\rangle=2\varepsilon$, replace $E_2$ by $E_2-2\varepsilon F_1$. This does not change its reduction and makes $\langle E_1,E_2\rangle=0$. Since the pairing is perfect and $E_1,E_2$ reduce to independent vectors, choose $F_1,F_2$ dual to them, and then add a multiple of $E_1$ to $F_2$ to kill $\langle F_1,F_2\rangle$. Thus we may arrange a symplectic basis
-$$
-E_1,E_2,F_1,F_2
-$$
-with
-$$
-L=\operatorname{span}_{\mathbb F_2}(\overline E_1,\overline E_2),
-$$
-$$
-\langle E_i,F_j\rangle=\delta_{ij},
+V=E\oplus F,
 \qquad
-\langle E_i,E_j\rangle=\langle F_i,F_j\rangle=0.
+E=\mathbb F_2^6\oplus\{0\},
+\qquad
+F=\{0\}\oplus\mathbb F_2^6.
+$$
+The symplectic form is
+$$
+\langle (x,y),(x',y')\rangle=x\cdot y'+x'\cdot y.
+$$
+If $L=L^\perp$, then $L$ is isotropic and
+$$
+\dim L=6.
+$$
+Because $L\cap F=\{0\}$, projection onto $E$ is an isomorphism. Hence there is a unique linear map
+$$
+A:\mathbb F_2^6\to\mathbb F_2^6
+$$
+such that
+$$
+L=\{(x,Ax):x\in\mathbb F_2^6\}.
+$$
+For $x,x'\in\mathbb F_2^6$,
+$$
+\langle(x,Ax),(x',Ax')\rangle
+=x^TAx'+x'^TAx
+=x^T(A+A^T)x'.
+$$
+Thus $L$ is isotropic exactly when
+$$
+A=A^T.
+$$
+Moreover
+$$
+L\cap E=\{(x,0):Ax=0\},
+$$
+so $L\cap E=\{0\}$ exactly when $A$ is invertible. Therefore the required number is the number of invertible symmetric $6\times6$ matrices over $\mathbb F_2$.
+
+Step 2: Split the symmetric forms into two congruence classes
+
+Let $W=\mathbb F_2^6$. An invertible symmetric matrix is the Gram matrix of a nondegenerate symmetric bilinear form $B$ on $W$. The group $GL(W)$ acts on such forms by change of basis.
+
+There are two classes.
+
+First, $B$ may be alternating, meaning
+$$
+B(v,v)=0
+$$
+for every $v$. Symplectic Gram-Schmidt gives a symplectic basis, so all nondegenerate alternating forms form one orbit.
+
+Otherwise $B$ is nonalternating. Choose $v$ with $B(v,v)=1$ and split off the nonsingular line $\langle v\rangle$. Repeating this orthogonal splitting, and using the elementary equivalence
+$$
+[1]\perp
+\begin{pmatrix}0&1\\1&0\end{pmatrix}
+\cong I_3
+$$
+over $\mathbb F_2$, shows that every nondegenerate nonalternating form in even dimension is congruent to $I_6$. Thus the nonalternating forms also form one orbit.
+
+Hence the desired number is
+$$
+\frac{|GL_6(2)|}{|Sp_6(2)|}
++
+\frac{|GL_6(2)|}{|O(I_6)|}.
 $$
 
-For a self-dual $H$ with image $L$,
+Step 3: Count the alternating orbit
+
+The order of $GL_6(2)$ is
 $$
-H\cap2G=2L=\langle2E_1,2E_2\rangle.
+|GL_6(2)|
+=2^{15}(2^1-1)(2^2-1)\cdots(2^6-1).
 $$
-Therefore, after changing generators by elements of $2L$, every such subgroup has unique generators of the form
+To count $Sp_{2m}(2)$, choose the first vector of a symplectic basis in
 $$
-u_i=E_i+2\sum_{j=1}^2 a_{ij}F_j,
-\qquad a_{ij}\in\mathbb F_2.
+2^{2m}-1
 $$
-Writing these generators as $u_i$, let $A=(a_{ij})$. The only nontrivial isotropy condition is
+ways, then its partner in
 $$
-0=\langle u_1,u_2\rangle
-=2(a_{21}-a_{12})\pmod4,
+2^{2m-1}
 $$
-so
+ways, and recurse on their orthogonal complement. Therefore
 $$
-a_{12}=a_{21}.
+|Sp_{2m}(2)|
+=2^{m^2}\prod_{j=1}^m(2^{2j}-1).
 $$
-Thus $A$ may be any symmetric $2\times2$ matrix over $\mathbb F_2$. There are
+For $m=3$,
 $$
-2^3=8
+|Sp_6(2)|=2^9(2^2-1)(2^4-1)(2^6-1).
 $$
-such matrices. Each resulting subgroup is isotropic of order $16$, hence equals its orthogonal complement. Consequently the $r=2$ stratum contributes
+Consequently the number of nondegenerate alternating symmetric forms is
 $$
-15\cdot8=120.
+\frac{|GL_6(2)|}{|Sp_6(2)|}
+=2^6(2^3-1)(2^5-1)
+=13888.
 $$
 
-Step 4: Add the three strata
+Step 4: Count the nonalternating orbit
 
-The three cases are disjoint and exhaustive, so the required number is
+For the standard nonalternating form $B$ with matrix $I_6$, define its characteristic vector $c$ by
 $$
-1+30+120=151.
+B(c,v)=B(v,v)
+$$
+for every $v\in W$. Here
+$$
+c=(1,1,1,1,1,1),
+$$
+so $c\ne0$ and $B(c,c)=0$. Every isometry fixes $c$.
+
+Choose $d$ with $B(c,d)=1$ and let
+$$
+U=\langle c,d\rangle^\perp.
+$$
+Then $U$ has dimension $4$, and $B|_U$ is nondegenerate alternating. Thus an isometry of $B$ induces an element of $Sp(U)\cong Sp_4(2)$.
+
+Conversely, after fixing $c$, every isometry is determined uniquely by
+$$
+S\in Sp(U),\qquad a\in U,\qquad \varepsilon\in\mathbb F_2,
+$$
+through
+$$
+T(c)=c,
+$$
+$$
+T(d)=d+a+\varepsilon c,
+$$
+and
+$$
+T(u)=S(u)+B(S(u),a)c\qquad(u\in U).
+$$
+A direct check shows that these formulas preserve $B$. Hence
+$$
+|O(I_6)|=2^{4+1}|Sp_4(2)|.
+$$
+Since
+$$
+|Sp_4(2)|=2^4(2^2-1)(2^4-1),
+$$
+we get
+$$
+|O(I_6)|=2^9(2^2-1)(2^4-1).
+$$
+Therefore the number of nonalternating nondegenerate symmetric forms is
+$$
+\frac{|GL_6(2)|}{|O(I_6)|}
+=2^6(2^3-1)(2^5-1)(2^6-1)
+=874944.
 $$
 
-Final Answer: $\boxed{151}$
+Step 5: Add the two orbits
+
+The alternating and nonalternating cases are disjoint and exhaustive, so the number of required subspaces is
+$$
+13888+874944=888832.
+$$
+
+Final Answer: $\boxed{888832}$
 
 ---
 
 ## Answer
 
-$151$
+$888832$
 
 ---
 
@@ -151,8 +179,8 @@ $151$
 
 ## Solution Concepts
 
-- symplectic orthogonality modulo $4$
-- reduction modulo $2$
-- Lagrangian planes over $\mathbb F_2$
-- lifting isotropic subgroups
-- symmetric matrix parametrization
+- Lagrangian graphs over $\mathbb F_2$
+- invertible symmetric matrices
+- congruence classes of symmetric bilinear forms
+- symplectic and orthogonal stabilizers
+- orbit-stabilizer counting
