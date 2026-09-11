@@ -8,15 +8,16 @@ A_1=\begin{pmatrix}-1&a\\0&-1\end{pmatrix},
 \qquad
 A_2=\begin{pmatrix}-1&0\\b&-1\end{pmatrix}.
 $$
-Let $\sigma(t)$ be the continuous-time Markov chain on $\{1,2\}$ that jumps from either state to the other at rate $1$. Consider the Markov jump linear system
+Let $\sigma(t)$ be the continuous-time Markov chain on $\{1,2\}$ that jumps from either state to the other at rate $1$. Consider
 $$
 \dot z(t)=A_{\sigma(t)}z(t),
 \qquad z(t)\in\mathbb R^2.
 $$
-Determine all pairs $(a,b)$ for which the origin is uniformly globally mean-square exponentially stable; that is, there exist constants $C,\gamma>0$, depending only on $(a,b)$, such that for every deterministic initial state, every initial mode, and every $t\ge0$,
+Determine all pairs $(a,b)$ for which the origin is almost surely exponentially stable; that is, there exists $\gamma>0$, depending only on $(a,b)$, such that for every deterministic initial state $z(0)\ne0$ and every initial mode,
 $$
-\mathbb E\|z(t)\|^2\le C e^{-\gamma t}\|z(0)\|^2.
+\limsup_{t\to\infty}\frac1t\log\frac{\|z(t)\|}{\|z(0)\|}\le-\gamma
 $$
+almost surely.
 
 ---
 
@@ -33,4 +34,4 @@ $$
 
 ## Domain Explanation
 
-This is a mean-square stability problem for a Markov jump linear system. The second moments form a finite-dimensional lifted linear system whose reflection symmetry splits the spectral calculation into two cubic factors; the exact stability threshold is then determined by the Routh-Hurwitz criterion.
+This is an almost-sure stability problem for a Markov jump linear system. After removing the common scalar decay, the top Lyapunov exponent is determined by the stationary law of a one-dimensional projective piecewise-deterministic Markov process, leading to an exact criterion involving modified Bessel functions.
