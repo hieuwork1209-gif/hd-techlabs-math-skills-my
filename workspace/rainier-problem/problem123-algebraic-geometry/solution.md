@@ -1,261 +1,177 @@
 ## Steps
 
-Step 1: Set up the plane branch and its finite normalization
+Step 1: Identify the conjugate branches of the finite projection
 
 Put
 $$
 x=t^m,
 \qquad
 y=t^n+t^p,
-$$
-so that
-$$
-A=\mathbb C[[x,y]]\subset \mathbb C[[t]].
-$$
-Let
-$$
+\qquad
 d=\gcd(m,n),
 \qquad
-a=\frac md,
-\qquad
-b=\frac nd.
+a=\frac md.
 $$
-Then $\gcd(a,b)=1$. Since $\gcd(d,p)=1$ and $d$ divides both $m$ and $n$,
+Because $d$ divides both $m$ and $n$ and $\gcd(d,p)=1$,
 $$
 \gcd(m,n,p)=1.
 \tag{1}
 $$
 
-The extension $\mathbb C((t))/\mathbb C((t^m))$ is cyclic of degree $m$, with automorphisms
+The extension $\mathbb C((t))/\mathbb C((x))$ is cyclic of degree $m$. Its automorphisms are
 $$
-t\longmapsto \zeta t,
-\qquad \zeta^m=1.
+t\longmapsto \alpha t,
+\qquad \alpha^m=1.
 $$
-If one of these automorphisms fixes $y=t^n+t^p$, then equality of the coefficients of the two distinct powers $t^n,t^p$ gives
+If such an automorphism fixes $y$, then equality of the coefficients of the distinct powers $t^n$ and $t^p$ gives
 $$
-\zeta^n=\zeta^p=1.
+\alpha^n=\alpha^p=1.
 $$
-Together with $\zeta^m=1$ and (1), this implies $\zeta=1$. Hence the orbit of $y$ has size $m$, so its minimal polynomial $P(Y)$ over $\mathbb C((x))$ has degree $m$.
-
-The element $t$ is integral over $\mathbb C[[x]]$ because it satisfies $T^m-x=0$, so every element of the finite ring $\mathbb C[[t]]$ is integral over $\mathbb C[[x]]$; in particular $y$ is integral. Since $\mathbb C[[x]]$ is integrally closed, the coefficients of the monic minimal polynomial $P(Y)$ lie in $\mathbb C[[x]]$. Moreover every conjugate of $y$ has positive $t$-order, so every nonleading coefficient of $P$ lies in $x\mathbb C[[x]]$.
-
-We use the following exact Weierstrass-division form: if
+Together with $\alpha^m=1$ and (1), this forces $\alpha=1$. Hence the orbit of $y$ has size $m$, so its monic minimal polynomial over $\mathbb C((x))$ has degree $m$ and its roots are
 $$
-P(Y)=Y^m+c_{m-1}(x)Y^{m-1}+\cdots+c_0(x),
-\qquad c_i(x)\in x\mathbb C[[x]],
-$$
-then every $F(x,Y)\in\mathbb C[[x,Y]]$ has a unique decomposition
-$$
-F(x,Y)=Q(x,Y)P(Y)+R(x,Y),
-\qquad \deg_Y R<m.
-$$
-Applying this to the kernel relation $P(y)=0$ shows that every element of $A$ has a unique representation
-$$
-\sum_{k=0}^{m-1} h_k(x)y^k,
-\qquad h_k(x)\in\mathbb C[[x]],
-$$
-because uniqueness also follows from $[\mathbb C((x))(y):\mathbb C((x))]=m$. Thus $A$ is a free $\mathbb C[[x]]$-module of rank $m$ with basis
-$$
-1,y,\dots,y^{m-1}.
+y_\alpha=\alpha^n t^n+\alpha^p t^p,
+\qquad \alpha\in\mu_m,
 \tag{2}
 $$
-The ring $\mathbb C[[t]]$ is also free of rank $m$ over $\mathbb C[[x]]$, with basis $1,t,\dots,t^{m-1}$. Hence $\mathbb C[[t]]/A$ is a finitely generated torsion module over the DVR $\mathbb C[[x]]$, and therefore has finite complex dimension.
+where $\mu_m$ is the group of $m$th roots of unity.
 
-Step 2: Derive the first forced approximate root
+The element $t$ is integral over $\mathbb C[[x]]$ because it satisfies $T^m-x=0$, so $y$ is integral over $\mathbb C[[x]]$. Since $\mathbb C[[x]]$ is integrally closed, the monic minimal polynomial has coefficients in $\mathbb C[[x]]$. Thus, after replacing $x$ by a formal variable $X$, it defines the polynomial $P(X,Y)\in\mathbb C[[X]][Y]$ from the problem.
 
-The visible leading orders are
+Step 2: Express the discriminant through derivatives at the conjugate roots
+
+For a monic degree-$m$ polynomial with distinct roots $r_1,\dots,r_m$,
 $$
-\operatorname{ord}_t(x)=m,
-\qquad
-\operatorname{ord}_t(y)=n.
+P'(r_i)=\prod_{j\ne i}(r_i-r_j).
 $$
-The least positive equality between multiples of these two orders is
+Multiplying over $i$, every unordered pair $\{i,j\}$ contributes
 $$
-a n=b m,
+(r_i-r_j)(r_j-r_i)=-(r_i-r_j)^2.
 $$
-because $a=m/d$ and $b=n/d$. Thus the canonical first cancellation is forced to be
+Therefore
 $$
-g:=y^a-x^b.
-$$
-Using $y=t^n(1+t^{p-n})$,
-$$
-\begin{aligned}
-g
-&=t^{an}\left((1+t^{p-n})^a-1\right)\\
-&=a\,t^{an+p-n}+O\!\left(t^{an+2(p-n)}\right).
-\end{aligned}
-$$
-Hence
-$$
-\beta:=\operatorname{ord}_t(g)
-=(a-1)n+p.
+\operatorname{Disc}(P)
+=(-1)^{m(m-1)/2}\prod_{i=1}^m P'(r_i).
 \tag{3}
 $$
-
-Step 3: Replace the power basis by a valuation-adapted basis
-
-For
+Applying (3) to the roots (2), it remains to determine the first nonzero term of each
 $$
-0\le i<a,
-\qquad
-0\le j<d,
-$$
-set
-$$
-u_{ij}:=y^i g^j.
-$$
-There are exactly $ad=m$ such elements. We show that they form a $\mathbb C[[x]]$-basis of $A$.
-
-Every exponent $0\le k<m=ad$ has a unique form
-$$
-k=qa+i,
-\qquad
-0\le q<d,
-\quad
-0\le i<a.
-$$
-Since $y^a=x^b+g$,
-$$
-\begin{aligned}
-y^{qa+i}
-&=y^i(x^b+g)^q\\
-&=\sum_{j=0}^q {q\choose j}x^{b(q-j)}y^i g^j.
-\end{aligned}
+P_Y'(x,y_\alpha)=\prod_{\substack{\beta\in\mu_m\\\beta\ne\alpha}}(y_\alpha-y_\beta).
 \tag{4}
 $$
-For each fixed $i$, this is a triangular change of basis from
-$$
-y^i,y^{a+i},\dots,y^{(d-1)a+i}
-$$
-to
-$$
-u_{i0},\nu_{i1},\dots,\nu_{i,d-1}
-$$
-with diagonal entries $1$. Thus it is invertible over $\mathbb C[[x]]$. Combining all $i$ with (2), the $u_{ij}$ form a basis of $A$.
 
-By (3),
+Step 3: Derive the two root-of-unity strata and their exact leading products
+
+Fix $\alpha\in\mu_m$ and write $\beta=\alpha\xi$, where $\xi\in\mu_m\setminus\{1\}$. Then
 $$
-\operatorname{ord}_t(u_{ij})=in+j\beta.
+\begin{aligned}
+y_\alpha-y_{\alpha\xi}
+&=\alpha^n t^n(1-\xi^n)
+ +\alpha^p t^p(1-\xi^p).
+\end{aligned}
 \tag{5}
 $$
-These $m$ orders are pairwise distinct modulo $m$. Indeed, suppose
-$$
-(i-i')n+(j-j')\beta\equiv0\pmod m.
-$$
-Reducing modulo $d$ and using $\beta\equiv p\pmod d$ gives
-$$
-(j-j')p\equiv0\pmod d.
-$$
-Because $\gcd(d,p)=1$ and $|j-j'|<d$, we get $j=j'$. Then
-$$
-m\mid(i-i')n
-$$
-becomes
-$$
-a\mid(i-i')b.
-$$
-Since $\gcd(a,b)=1$ and $|i-i'|<a$, we get $i=i'$. Hence the residues in (5) form a complete residue system modulo $m$.
+There are two forced cases.
 
-Step 4: Determine the exact value set of the local ring
-
-Every element of $A$ has a unique expansion
+If $\xi^n\ne1$, the first term in (5) is nonzero, so the $t$-order is $n$ and the leading coefficient is
 $$
-F=\sum_{i=0}^{a-1}\sum_{j=0}^{d-1} h_{ij}(x)u_{ij},
-\qquad
-h_{ij}(x)\in\mathbb C[[x]].
+\alpha^n(1-\xi^n).
+$$
+
+If $\xi^n=1$, then $\xi$ lies in the kernel of the map $\mu_m\to\mu_m$, $\xi\mapsto\xi^n$. That kernel has size $d$ and is exactly $\mu_d$. For $\xi\ne1$ in this kernel, $\xi^p\ne1$ because $\gcd(d,p)=1$. Hence the $t$-order in this case is $p$ and the leading coefficient is
+$$
+\alpha^p(1-\xi^p).
+$$
+
+Thus, if
+$$
+D:=(m-d)n+(d-1)p,
 \tag{6}
 $$
-If $h_{ij}\ne0$, then
+then (4) has $t$-order $D$. Its leading coefficient is
 $$
-\operatorname{ord}_t\bigl(h_{ij}(x)u_{ij}\bigr)
-=m\,\operatorname{ord}_x(h_{ij})+in+j\beta.
+\alpha^D A B,
 \tag{7}
 $$
-Because the numbers $in+j\beta$ are pairwise distinct modulo $m$, the lowest-order terms coming from two different basis slots in (6) can never cancel. Therefore the set
+where
 $$
-S:=\{\operatorname{ord}_t(F):0\ne F\in A\}
+A=\prod_{\substack{\xi\in\mu_m\\\xi^n\ne1}}(1-\xi^n),
+\qquad
+B=\prod_{\substack{\xi\in\mu_d\\\xi\ne1}}(1-\xi^p).
 $$
-is exactly
+
+We now evaluate these products exactly. The map
 $$
-S=
-\bigcup_{\substack{0\le i<a\\0\le j<d}}
-\left(in+j\beta+m\mathbb Z_{\ge0}\right).
+\mu_m\longrightarrow\mu_a,
+\qquad \xi\longmapsto\xi^n,
+$$
+has kernel $\mu_d$ and is onto because $\gcd(n/d,m/d)=1$. Hence every nontrivial element of $\mu_a$ occurs exactly $d$ times among the values $\xi^n$ with $\xi^n\ne1$. Therefore
+$$
+A=\left(\prod_{\substack{\eta\in\mu_a\\\eta\ne1}}(1-\eta)\right)^d.
+$$
+Since
+$$
+\frac{z^a-1}{z-1}=\prod_{\substack{\eta\in\mu_a\\\eta\ne1}}(z-\eta),
+$$
+evaluating at $z=1$ gives
+$$
+\prod_{\substack{\eta\in\mu_a\\\eta\ne1}}(1-\eta)=a.
+$$
+Thus
+$$
+A=a^d.
 \tag{8}
 $$
-Thus the $m$ integers
-$$
-w_{ij}:=in+j\beta
-$$
-are precisely the least elements of $S$ in their respective residue classes modulo $m$.
 
-Step 5: Convert the normalization defect into a gap count
-
-For $q\ge0$, define a descending filtration of the finite-dimensional quotient by
+Similarly, exponentiation by $p$ permutes $\mu_d$ because $\gcd(d,p)=1$. Hence
 $$
-F_q:=\frac{A+t^q\mathbb C[[t]]}{A}.
-$$
-Then
-$$
-F_q/F_{q+1}
-\cong
-\frac{A+t^q\mathbb C[[t]]}{A+t^{q+1}\mathbb C[[t]]}.
-$$
-The ambient quotient $t^q\mathbb C[[t]]/t^{q+1}\mathbb C[[t]]$ is one-dimensional, generated by the class of $t^q$. That class dies in $F_q/F_{q+1}$ exactly when some element of $A$ has leading term $c t^q$ with $c\ne0$, equivalently exactly when $q\in S$. Hence
-$$
-\dim_{\mathbb C}(F_q/F_{q+1})
-=\begin{cases}
-0,&q\in S,\\
-1,&q\notin S.
-\end{cases}
-$$
-Because $\mathbb C[[t]]/A$ is finite-dimensional, summing the filtration dimensions gives
-$$
-\dim_{\mathbb C}\frac{\mathbb C[[t]]}{A}
-=\#\bigl(\mathbb Z_{\ge0}\setminus S\bigr).
+B=\prod_{\substack{\xi\in\mu_d\\\xi\ne1}}(1-\xi)=d.
 \tag{9}
 $$
-
-For each residue class $r\in\{0,1,\dots,m-1\}$, let $w_r$ be its unique representative among the $w_{ij}$. By (8), the values in that residue class are exactly
+Combining (7)-(9),
 $$
-w_r,w_r+m,w_r+2m,\dots.
-$$
-Therefore the missing nonnegative integers in that residue class are
-$$
-r,r+m,\dots,w_r-m,
-$$
-and their number is
-$$
-\frac{w_r-r}{m}.
-$$
-Summing over all residues gives
-$$
-\dim_{\mathbb C}\frac{\mathbb C[[t]]}{A}
-=\frac1m\sum_{i=0}^{a-1}\sum_{j=0}^{d-1}(in+j\beta)
--\frac{m-1}{2}.
+P_Y'(x,y_\alpha)
+=a^d d\,\alpha^D t^D+O(t^{D+1}).
 \tag{10}
 $$
 
-Now
+Step 4: Multiply the conjugates and track the discriminant sign
+
+Multiplying (10) over all $\alpha\in\mu_m$ gives
 $$
-\sum_{i=0}^{a-1}\sum_{j=0}^{d-1}(in+j\beta)
-=d n\frac{a(a-1)}2
-+a\beta\frac{d(d-1)}2.
+\prod_{\alpha\in\mu_m}P_Y'(x,y_\alpha)
+=(a^d d)^m\left(\prod_{\alpha\in\mu_m}\alpha\right)^D
+ t^{mD}+O(t^{mD+1}).
+\tag{11}
 $$
-Since $m=ad$, equation (10) becomes
+The product of all roots of $z^m-1$ is
 $$
-\begin{aligned}
-\dim_{\mathbb C}\frac{\mathbb C[[t]]}{A}
-&=\frac{n(a-1)+\beta(d-1)-m+1}{2}\\
-&=\frac{d(a-1)n+(d-1)p-m+1}{2}\\
-&=\frac{(m-d)n+(d-1)p-m+1}{2},
-\end{aligned}
+\prod_{\alpha\in\mu_m}\alpha=(-1)^{m+1},
+\tag{12}
 $$
-where we used $\beta=(a-1)n+p$ and $da=m$.
+because the constant term of $z^m-1$ is $-1$.
+
+Substituting (11)-(12) into the discriminant identity (3) yields the nonzero leading term
+$$
+(-1)^{m(m-1)/2+(m+1)D}(a^d d)^m t^{mD}.
+$$
+The discriminant belongs to $\mathbb C[[x]]=\mathbb C[[t^m]]$. Since $x=t^m$, the preceding term is exactly
+$$
+(-1)^{m(m-1)/2+(m+1)D}(a^d d)^m x^D.
+$$
+All later terms of the discriminant have $t$-orders divisible by $m$, so after the leading order $mD$ the next possible order is at least $m(D+1)$. Therefore
+$$
+\operatorname{Disc}_Y P(X,Y)
+=
+(-1)^{m(m-1)/2+(m+1)D}
+\left(\left(\frac md\right)^d d\right)^m X^D
++O(X^{D+1}),
+$$
+where $D$ is given by (6).
 
 ## Solution Concepts
 
-- Canonical approximate root forced by the first common leading valuation of a parametrized plane branch.
-- Valuation-adapted free basis over $\mathbb C[[t^m]]$ and an exact Apéry-type residue decomposition.
-- Normalization length as the number of missing valuation orders.
+- Galois conjugates of a parametrized plane branch under the finite projection $x=t^m$.
+- Root-of-unity stratification by the stabilizers of the first and second Puiseux terms.
+- Exact discriminant product and leading-unit computation.
 
-Final Answer: $\displaystyle \frac{(m-d)n+(d-1)p-m+1}{2}$.
+Final Answer: $\displaystyle (-1)^{m(m-1)/2+(m+1)D}\left((m/d)^d d\right)^m X^D,\quad D=(m-d)n+(d-1)p$.
