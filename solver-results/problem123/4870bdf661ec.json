@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-commutative-algebra/problem.md",
+  "source_commit_sha": "ddb15259a6dae5b503dd4069401e8851efd7f72b",
+  "problem_blob_sha": "4870bdf661ec4e0507dc8b464ff04fef2fdfcf91",
+  "statement_sha256": "fb19e1d209551906a66605e1835c90ddcaff9ff3ed101dae83f114ca81628659",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T08:49:01+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nq=n-r.\n\\]\nI claim the least integer is\n\\[\n\\boxed{\\left\\lfloor \\frac{2n-3r-3}{r}\\right\\rfloor+1 }.\n\\]\n\nA monomial of \\(B\\) of standard degree \\(d\\) has the form \\(x^ay^bz^c\\) with\n\\[\na+b+c=nd.\n\\]\nWe first characterize when such a monomial lies in \\(A\\).\n\nA degree-\\(1\\) generator of \\(A\\) is concentrated near one vertex of the degree-\\(n\\) simplex. For example, an \\(x\\)-type generator has exponent vector\n\\[\n(n-u-v,u,v),\\qquad u,v\\ge 0,\\quad u+v\\le r.\n\\]\nThus if a degree-\\(d\\) monomial is written as a product of \\(d\\) such generators, and if \\(s_x,s_y,s_z\\) are the numbers of chosen \\(x,y,z\\)-type generators, then\n\\[\ns_x+s_y+s_z=d\n\\]\nand necessarily\n\\[\na\\ge q s_x,\\qquad b\\ge q s_y,\\qquad c\\ge q s_z.\n\\]\nConversely, if nonnegative integers \\(s_x,s_y,s_z\\) with sum \\(d\\) satisfy these three inequalities, then the excesses can be distributed among the other coordinates because each generator has exactly \\(r=n-q\\) units of “off-vertex room.” Hence\n\\[\nx^ay^bz^c\\in A\n\\]\nif and only if\n\\[\n\\left\\lfloor \\frac aq\\right\\rfloor+\n\\left\\lfloor \\frac bq\\right\\rfloor+\n\\left\\lfloor \\frac cq\\right\\rfloor\n\\ge d.\n\\tag{1}\n\\]\n\nNow take a monomial \\(M=x^ay^bz^c\\in A_d\\), and write\n\\[\nF(M)=\\left\\lfloor \\frac aq\\right\\rfloor+\n\\left\\lfloor \\frac bq\\right\\rfloor+\n\\left\\lfloor \\frac cq\\right\\rfloor=d+\\delta,\n\\qquad \\delta\\ge0.\n\\]\nLet the residues of \\(a,b,c\\) modulo \\(q\\) be \\(\\rho_x,\\rho_y,\\rho_z\\). Before any floor value increases, we can add at most\n\\[\nH=(q-1-\\rho_x)+(q-1-\\rho_y)+(q-1-\\rho_z)\n\\]\ntotal exponent. Since\n\\[\na+b+c=nd\n\\]\nand\n\\[\n\\rho_x+\\rho_y+\\rho_z=nd-q(d+\\delta),\n\\]\nwe get\n\\[\nH=3(q-1)-\\bigl(nd-q(d+\\delta)\\bigr)\n=q\\delta-rd+3q-3.\n\\tag{2}\n\\]\n\nMultiplying by a monomial of \\(B_e\\) means adding total exponent \\(ne\\). The smallest possible increase in \\(F\\) after adding total exponent \\(ne\\) is\n\\[\n\\max\\left(0,\\left\\lceil\\frac{ne-H}{q}\\right\\rceil\\right).\n\\]\nTherefore every product \\(M\\cdot B_e\\) lies in \\(A_{d+e}\\) exactly when\n\\[\n\\delta+\\max\\left(0,\\left\\lceil\\frac{ne-H}{q}\\right\\rceil\\right)\\ge e\n\\]\nfor all \\(e\\ge0\\).\n\nThe worst case occurs when one can add a whole degree-\\(1\\) monomial of \\(B\\) without increasing \\(F\\) enough. The condition for failure is\n\\[\nH\\ge n(\\delta+1).\n\\]\nUsing (2), this becomes\n\\[\nq\\delta-rd+3q-3\\ge n\\delta+n.\n\\]\nSince \\(q=n-r\\), this simplifies to\n\\[\nr(d+\\delta)\\le 2n-3r-3.\n\\tag{3}\n\\]\nBut \\(d+\\delta=F(M)\\ge d\\). Hence if\n\\[\nd>\\frac{2n-3r-3}{r},\n\\]\nthen no monomial of \\(A_d\\) can fail the containment after multiplication by \\(B\\).\n\nThus\n\\[\nA_+^mB\\subseteq A\n\\]\nholds for\n\\[\nm=\\left\\lfloor \\frac{2n-3r-3}{r}\\right\\rfloor+1.\n\\]\n\nIt remains to see this is sharp. Put\n\\[\ns=\\left\\lfloor \\frac{2n-3r-3}{r}\\right\\rfloor.\n\\]\nChoose a degree-\\(s\\) monomial in \\(A\\) with exponent vector\n\\[\n(qs,\\alpha,\\beta),\n\\qquad \\alpha+\\beta=rs,\\qquad 0\\le \\alpha,\\beta<q.\n\\]\nThis is possible because\n\\[\nrs\\le 2n-3r-3=2q-r-3<2q.\n\\]\nIt is a product of \\(s\\) \\(x\\)-type generators, and\n\\[\nF=\\left\\lfloor\\frac{qs}{q}\\right\\rfloor+\n\\left\\lfloor\\frac{\\alpha}{q}\\right\\rfloor+\n\\left\\lfloor\\frac{\\beta}{q}\\right\\rfloor=s.\n\\]\nBy (3), there is a degree-\\(1\\) monomial of \\(B\\) whose product with it still has \\(F=s\\), hence is not in \\(A_{s+1}\\). Therefore \\(A_+^sB\\nsubseteq A\\).\n\nSo the least integer is\n\\[\n\\boxed{\\left\\lfloor \\frac{2n-3r-3}{r}\\right\\rfloor+1 }.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T08:51:02+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/4870bdf661ec.json"
+}
