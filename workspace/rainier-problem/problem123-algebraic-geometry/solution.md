@@ -122,9 +122,17 @@ $$
 e_\infty=\operatorname{lcm}(m,n)=\frac{mn}{d}.
 \tag{9}
 $$
-If $mn$ is even, removing the common factor $2$ from the relevant even moduli lowers the least common multiple by exactly a factor $2$, giving
+If $mn$ is even, write
 $$
-e_\infty=\frac{mn}{2d}.
+m=2^a m_0,
+\qquad
+n=2^b n_0,
+$$
+with $m_0,n_0$ odd and $\max(a,b)\ge1$. Passing from $m,n$ to $m/\gcd(m,2),n/\gcd(n,2)$ lowers the maximum $2$-adic exponent in their least common multiple by exactly one and leaves every odd prime exponent unchanged. Hence
+$$
+e_\infty
+=\frac{\operatorname{lcm}(m,n)}2
+=\frac{mn}{2d}.
 \tag{10}
 $$
 Equivalently, the number of points of $C$ above infinity is
