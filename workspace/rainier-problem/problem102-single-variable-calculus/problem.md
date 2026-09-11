@@ -10,15 +10,23 @@ and define
 $$
 g(s)=f(e^s),\qquad s>0.
 $$
-Assume that $g\in C^2(0,\infty)$,
+Assume that $g\in C^3(0,\infty)$, that $g'(s)>0$ for every $s>0$, and that
 $$
-\lim_{s\to0^+}g(s)=1,
+\lim_{s\to0^+}g(s)=0,
+\qquad
+\lim_{s\to\infty}g(s)=1.
 $$
-and that $\lim_{s\to\infty}g(s)$ exists and is finite. Suppose there exists a real number $\lambda$ such that, for every $s>0$,
+Suppose that, for every $s>0$,
 $$
-\bigl(sg'(s)\bigr)'+\frac{\lambda}{(1+s)^2}g(s)=0.
+\frac{g'''(s)}{g'(s)}
+-\frac32\left(\frac{g''(s)}{g'(s)}\right)^2
+=-\frac2{(1+s^2)^2},
 $$
-Assume moreover that $g$ has exactly two zeros on $(0,\infty)$. Determine $f(x)$ for all $x>1$. For grading, write the final answer as $f(x)=\cdots$, use $\log x$, and leave the denominator unexpanded.
+and that
+$$
+g(s)+g(1/s)=1.
+$$
+Determine $f(x)$ for all $x>1$. For grading, write the final answer as $f(x)=\cdots$, use $\log x$, and do not rewrite the inverse tangent in another form.
 
 ---
 
@@ -35,4 +43,4 @@ Assume moreover that $g$ has exactly two zeros on $(0,\infty)$. Determine $f(x)$
 
 ## Domain Explanation
 
-The logarithmic profile satisfies a singular Sturm-Liouville equation on the half-line. A fractional-linear compactification converts it to the Legendre equation on a finite interval. Boundedness at both singular endpoints quantizes the spectral parameter, while the prescribed number of zeros selects the degree and the value at the left endpoint fixes the normalization. The solution uses one-variable differential equations, weighted energy identities, orthogonality, and zero counting.
+The logarithmic profile is constrained by a third-order projective differential invariant together with a global inversion symmetry. Passing to the angular coordinate $u=\arctan s$ removes the forcing from the invariant and leaves the fractional-linear zero-Schwarzian family; the endpoint data and the self-duality under $s\mapsto1/s$ then eliminate the remaining Möbius freedom. The problem uses one-variable differentiation, nonlinear differential equations, endpoint analysis, and symmetry.
