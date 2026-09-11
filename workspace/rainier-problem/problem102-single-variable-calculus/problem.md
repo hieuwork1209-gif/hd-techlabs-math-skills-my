@@ -4,38 +4,35 @@
 
 All logarithms are natural. Let
 $$
-f:(1,\infty)\to[0,\infty),
+f:(1,\infty)\to(0,1),
 $$
 and define
 $$
 g(s)=f(e^s),\qquad s>0.
 $$
-Assume that $g\in C^1(0,\infty)$,
+Assume that $g\in C^2(0,\infty)$, that $g'(s)<0$ for every $s>0$, and that
 $$
-g(1)=0,
-$$
-$$
-g'(s)<0\quad(0<s<1),
+\lim_{s\to0^+}g(s)=1,
 \qquad
-g'(s)>0\quad(s>1),
+\lim_{s\to\infty}g(s)=0,
+\qquad
+g(1)=\frac14.
 $$
-and
+Suppose there exists a constant $c>0$ such that, for every $s>0$,
 $$
-\lim_{s\to0^+}g(s)=\lim_{s\to\infty}g(s)=\infty.
+s^2g''(s)+(1+c)s g'(s)+g(s)(1-g(s))=0.
 $$
-Suppose also that
+Assume moreover that the finite positive limits
 $$
-g(s)=g(1/s)
+\alpha=-\lim_{s\to0^+}\frac{s g'(s)}{1-g(s)},
+\qquad
+\beta=-\lim_{s\to\infty}\frac{s g'(s)}{g(s)}
 $$
-for every $s>0$. For each $E>0$, let $a(E)\in(0,1)$ and $b(E)>1$ be the unique points satisfying
+exist and satisfy
 $$
-g(a(E))=g(b(E))=E.
+\beta=2\alpha.
 $$
-Assume that, for every $E>0$,
-$$
-\int_{a(E)}^{b(E)}\frac{ds}{\sqrt{E-g(s)}}=\pi.
-$$
-Determine $f(x)$ for all $x>1$. For grading, write the final answer as $f(x)=\cdots$, use $\log x$, and keep the reciprocal of $\log x$ inside the squared parentheses.
+Determine $f(x)$ for all $x>1$. For grading, write the final answer as $f(x)=\cdots$, use $\log x$, and leave the exponent $1/\sqrt6$ unchanged.
 
 ---
 
@@ -52,4 +49,4 @@ Determine $f(x)$ for all $x>1$. For grading, write the final answer as $f(x)=\cd
 
 ## Domain Explanation
 
-The logarithmic profile is an inversion-symmetric one-dimensional potential well with an energy-independent turning-point travel integral. Splitting the integral across the two monotone branches produces an Abel relation for the separation of the turning points. A second integration recovers that separation, while inversion symmetry determines the two branches individually. The problem uses one-variable integration, inverse functions, improper endpoint behavior, and symmetry.
+After logarithmic time $t=\log s$, the profile becomes a monotone Fisher-KPP traveling wave with an unknown speed. The two endpoint logarithmic rates satisfy the characteristic equations at the two equilibria, and their prescribed ratio selects the speed. At that speed the nonlinear wave equation admits a load-bearing first-order factorization; the value at $s=1$ fixes the remaining translation. The problem uses one-variable differential equations, asymptotic rates, phase-plane structure, and nonlinear factorization.
