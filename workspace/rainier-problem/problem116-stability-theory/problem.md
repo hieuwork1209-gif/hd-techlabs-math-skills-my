@@ -2,15 +2,19 @@
 
 ## LaTeX (Normalized)
 
-For $\tau>0$, consider the delayed-damping oscillator
+Let
 $$
-\ddot x(t)+x(t)+\frac12\dot x(t-\tau)=0.
+k=\frac1{\sqrt2},
+\qquad
+K(k)=\int_0^{\pi/2}\frac{d\phi}{\sqrt{1-k^2\sin^2\phi}},
 $$
-Its characteristic roots are the zeros of
+and let $\operatorname{sn}(t,k)$ be the Jacobi elliptic sine. For $0<h<5$, consider the Lamé equation
 $$
-\lambda^2+1+\frac\lambda2e^{-\lambda\tau}=0.
+y''(t)+\left(h-3\operatorname{sn}^2(t,k)\right)y(t)=0.
 $$
-Determine all $\tau>0$ for which every characteristic root has negative real part.
+The coefficient has period $T=2K(k)$. Let $M_h$ be the monodromy matrix over one period $T$.
+
+Determine all $h\in(0,5)$ for which both Floquet multipliers of $M_h$ have modulus $1$.
 
 ---
 
@@ -27,4 +31,4 @@ Determine all $\tau>0$ for which every characteristic root has negative real par
 
 ## Domain Explanation
 
-This is a spectral-stability problem for a delayed oscillator with damping applied after a time lag. The delay changes the location of the infinitely many characteristic roots, and the problem asks for the exact set of delays for which the full spectrum remains in the open left half-plane.
+This is a Floquet spectral-stability problem for a classical periodic second-order differential equation. The parameter $h$ determines whether solutions lie in a stability band or an instability gap of the periodic coefficient.
