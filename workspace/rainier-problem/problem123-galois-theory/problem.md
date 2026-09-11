@@ -2,15 +2,17 @@
 
 ## LaTeX (Normalized)
 
-Let $\ell$ be an odd prime and let $n\ge1$. Define
+Let $\ell$ be an odd prime, let $n\ge1$, and let $q\ge0$. Define
 $$
 f(x)=x^2-2,
 $$
-and let $f^{\circ n}$ denote its $n$-fold iterate. If $K_n$ is the splitting field over $\mathbb Q$ of
+and let $f^{\circ m}$ denote the $m$-fold iterate, with $f^{\circ0}(x)=x$.
+
+If $K_{n,q}$ is the splitting field over $\mathbb Q$ of
 $$
-f^{\circ n}(x)-\frac{\ell^2+1}{\ell},
+f^{\circ n}(x)-f^{\circ q}(\ell+\ell^{-1}),
 $$
-determine $\operatorname{Gal}(K_n/\mathbb Q)$ up to isomorphism.
+determine $\operatorname{Gal}(K_{n,q}/\mathbb Q)$ up to isomorphism.
 
 ---
 
@@ -27,4 +29,4 @@ determine $\operatorname{Gal}(K_n/\mathbb Q)$ up to isomorphism.
 
 ## Domain Explanation
 
-The requested object is the Galois group of the splitting field of an explicit iterated polynomial, so the primary mathematics is Galois theory. Dynamical semiconjugacy and ramification are the tools used to identify the splitting field and its automorphism group.
+The requested object is the Galois group of the splitting field of an explicit iterated polynomial over $\mathbb Q$, so the primary mathematics is Galois theory. The interaction between the forward orbit depth and the radical-cyclotomic structure determines the splitting field and its automorphism group.
