@@ -24,7 +24,7 @@ If
 $$
 \mathfrak c=\{f\in A:fB\subseteq A\}
 $$
-is the conductor of $A\subset B$, determine the least integer $m$ such that
+is the conductor of $A\subset B$, determine the least integer $m\ge0$ such that
 $$
 A_+^m\subseteq\mathfrak c.
 $$
