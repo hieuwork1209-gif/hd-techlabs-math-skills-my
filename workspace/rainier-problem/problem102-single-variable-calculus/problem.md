@@ -4,25 +4,25 @@
 
 All logarithms are natural. Let
 $$
-f:(1,\infty)\to\mathbb R,
+f:(1,\infty)\to(0,\infty),
 $$
 and define
 $$
 g(s)=f(e^s),\qquad s>0.
 $$
-Assume that $g$ extends to a $C^2$ function on $[0,\infty)$ with
+Assume that $g$ extends to a $C^1$ function on $[0,\infty)$ with
 $$
 g(0)=1,
 $$
-and that
+and that the function
 $$
-\int_0^\infty s^5g(s)^2\,ds<\infty.
+s\mapsto s^5|g'(s)|g'(s)
 $$
-Suppose there exists a real number $\lambda$ such that, for every $s>0$,
+is continuously differentiable on $(0,\infty)$. Suppose that, for every $s>0$,
 $$
-g''(s)+\frac5s g'(s)+(\lambda-s^2)g(s)=0.
+-\bigl(s^5|g'(s)|g'(s)\bigr)'=s^5g(s)^5.
 $$
-Assume moreover that $g$ has exactly two zeros on $(0,\infty)$. Determine $f(x)$ for all $x>1$. For grading, write the final answer as $f(x)=\cdots$, use $\log x$, and do not expand powers of $\log x$.
+Determine $f(x)$ for all $x>1$. For grading, write the final answer as $f(x)=\cdots$, use $\log x$, and do not rationalize or rearrange the coefficient of $(\log x)^{3/2}$.
 
 ---
 
@@ -39,4 +39,4 @@ Assume moreover that $g$ has exactly two zeros on $(0,\infty)$. Determine $f(x)$
 
 ## Domain Explanation
 
-After passing to the logarithmic profile, the problem becomes the radial six-dimensional harmonic-oscillator eigenvalue equation. Square integrability quantizes the spectral parameter through a Laguerre Sturm-Liouville problem, the prescribed number of zeros selects the spectral level, and the value at the origin fixes the normalization. The solution uses one-variable differential equations, weighted integration, orthogonality, and zero counting.
+The logarithmic profile satisfies the radial critical $3$-Laplacian equation in six dimensions. Integrating the nonlinear radial flux converts the singular differential equation into a nonlinear Volterra equation; uniqueness at the singular endpoint is then obtained by a local contraction argument, after which the explicit positive profile is verified directly. The problem uses one-variable differentiation, integration, nonlinear differential equations, and endpoint analysis.
