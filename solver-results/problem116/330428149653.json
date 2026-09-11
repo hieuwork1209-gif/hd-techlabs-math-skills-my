@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "d4135e9b2bb5f303996984b43d5a31f7d7d123ca",
+  "problem_blob_sha": "330428149653ea1a71b02cf6439f784156ff30cc",
+  "statement_sha256": "5c5945cf6c817c1c1e5c418dd9f5a0828900f777b7ea5210e5c72a23d8c89f7f",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T08:32:15+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nm=k^2=\\frac{A^2}{2(1+A^2)},\\qquad 0<m<\\frac12.\n\\]\n\nThe Duffing solution is\n\n\\[\nx_A(t)=A\\,\\operatorname{cn}\\bigl(\\sqrt{1+A^2}\\,t;k\\bigr),\n\\]\n\nbecause \\(\\operatorname{cn}''=(2k^2-1)\\operatorname{cn}-2k^2\\operatorname{cn}^3\\). Its period is\n\n\\[\nT_A=\\frac{4K(k)}{\\sqrt{1+A^2}}.\n\\]\n\nPut \\(u=\\sqrt{1+A^2}\\,t\\). The transverse equation becomes\n\n\\[\ny''+\\left(8m-1-6m\\operatorname{sn}^2 u\\right)y=0,\n\\]\n\nwhere prime now means \\(d/du\\). Equivalently,\n\n\\[\n-y''+6m\\operatorname{sn}^2u\\,y=h\\,y,\n\\qquad h=8m-1.\n\\]\n\nThe coefficient has period \\(2K\\), while the requested monodromy is over \\(4K\\). Squaring the monodromy does not change whether the multipliers have modulus \\(1\\), so it suffices to test stability over the period \\(2K\\).\n\nFor the Lamé operator\n\n\\[\nL=-\\frac{d^2}{du^2}+6m\\operatorname{sn}^2u\n\\]\n\nwith period \\(2K\\), the relevant band edges are obtained directly from explicit eigenfunctions:\n\n\\[\n\\begin{aligned}\n1+4m &: \\operatorname{sn}u\\,\\operatorname{dn}u,\\\\\n1+m &: \\operatorname{cn}u\\,\\operatorname{dn}u,\\\\\n4+m &: \\operatorname{sn}u\\,\\operatorname{cn}u.\n\\end{aligned}\n\\]\n\nThe remaining two periodic edge eigenfunctions have form \\(a+b\\operatorname{sn}^2u\\). Substitution gives\n\n\\[\nh^2-4(1+m)h+12m=0,\n\\]\n\nso\n\n\\[\nh_\\pm=2(1+m)\\pm 2\\sqrt{1-m+m^2}.\n\\]\n\nOrdering these edges for \\(0<m<1/2\\),\n\n\\[\nh_-<1+m<1+4m<4+m<h_+.\n\\]\n\nBy Sturm oscillation for the periodic Hill operator, the stable bands below \\(h_+\\) are exactly\n\n\\[\n[h_-,\\,1+m]\\cup[1+4m,\\,4+m].\n\\]\n\nOur line is \\(h=8m-1\\). Since \\(0<m<1/2\\), it never reaches the second stable band except in the limiting case \\(m=1/2\\), which would mean \\(A=\\infty\\). Thus we only need\n\n\\[\nh_-\\le 8m-1\\le 1+m.\n\\]\n\nThe upper inequality gives\n\n\\[\n8m-1\\le 1+m\n\\iff 7m\\le 2\n\\iff m\\le \\frac27.\n\\]\n\nFor the lower edge,\n\n\\[\n8m-1=h_-=2(1+m)-2\\sqrt{1-m+m^2}.\n\\]\n\nThus\n\n\\[\n2\\sqrt{1-m+m^2}=3-6m,\n\\]\n\nand squaring gives\n\n\\[\n32m^2-32m+5=0.\n\\]\n\nThe root in \\((0,1/2)\\) is\n\n\\[\nm_0=\\frac{4-\\sqrt6}{8}.\n\\]\n\nTherefore stability occurs exactly for\n\n\\[\n\\frac{4-\\sqrt6}{8}\\le m\\le \\frac27.\n\\]\n\nFinally,\n\n\\[\nm=\\frac{A^2}{2(1+A^2)}\n\\quad\\Longleftrightarrow\\quad\nA^2=\\frac{2m}{1-2m}.\n\\]\n\nAt \\(m=m_0\\),\n\n\\[\nA^2=\\frac{2\\sqrt6-3}{3},\n\\]\n\nand at \\(m=2/7\\),\n\n\\[\nA^2=\\frac43.\n\\]\n\nSo the amplitudes are\n\n\\[\n\\boxed{\\sqrt{\\frac{2\\sqrt6-3}{3}}\\le A\\le \\frac{2}{\\sqrt3}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T08:33:54+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/330428149653.json"
+}
