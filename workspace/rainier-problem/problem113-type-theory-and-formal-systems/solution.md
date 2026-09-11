@@ -61,13 +61,13 @@ By Step 1, every unit of translation created at cut $k$ generates exactly $2^k-1
 $$
 E_n=\sum_{k=0}^{n-3}(2^k-1)(k+1)(n-k-2)
 $$
-applications of the first rule.
+applications of the first rule, with the sum interpreted as empty when $n=2$.
 
-To evaluate the sum, expand
+For $n=2$, the starting term $d_2(z)$ is already irreducible, so $L_2=0$, agreeing with the final formula below. Now assume $n\geq3$. To evaluate $E_n$, expand
 $$
 (k+1)(n-k-2)=-k^2+(n-3)k+(n-2)
 $$
-and use, for $N=n-3$,
+and use, for $N=n-3\geq0$,
 $$
 \sum_{k=0}^{N}2^k=2^{N+1}-1,
 $$
