@@ -1,112 +1,97 @@
 ## Steps
 
-Step 1: Determine stability of the spatially homogeneous ODE
-Dropping the diffusion terms gives
+Step 1: Write the characteristic equation and localize possible unstable roots
+Consider
 $$
-\frac d{dt}\begin{pmatrix}u\\v\end{pmatrix}
-=J_a\begin{pmatrix}u\\v\end{pmatrix},
-\qquad
-J_a=\begin{pmatrix}a&1\\-3&-2\end{pmatrix}.
+\dot x(t)+\frac12\dot x(t-\tau)+\frac32x(t-\tau)=0,
+\qquad \tau>0.
 $$
-Its trace and determinant are
+Its characteristic equation is
 $$
-\operatorname{tr}J_a=a-2,
-\qquad
-\det J_a=3-2a.
+F(\lambda,\tau)
+:=\lambda+\left(\frac\lambda2+\frac32\right)e^{-\lambda\tau}=0.
 $$
-Since $a>0$, the homogeneous ODE is exponentially stable exactly when
+At $\tau=0$ this reduces to
 $$
-0<a<\frac32.
+\frac32\lambda+\frac32=0,
 $$
+so the only finite characteristic root is $\lambda=-1$.
 
-Step 2: Reduce the PDE to its Neumann spatial modes
-On the interval $(0,b)$ with Neumann boundary conditions, the Laplacian eigenfunctions are
+If $\operatorname{Re}\lambda\ge0$ and $F(\lambda,\tau)=0$, then
 $$
-\cos\frac{n\pi x}{b},
-\qquad n=0,1,2,\dots,
+\lambda\left(1+\frac12e^{-\lambda\tau}\right)
+=-\frac32e^{-\lambda\tau}.
 $$
-with eigenvalues $-q_n$, where
+Because $|e^{-\lambda\tau}|\le1$,
 $$
-q_n=\left(\frac{n\pi}{b}\right)^2.
+\left|1+\frac12e^{-\lambda\tau}\right|\ge\frac12,
 $$
-For the $n$th mode the amplitude satisfies
+and hence $|\lambda|\le3$. Thus all roots in the closed right half-plane remain in a fixed compact disk. Consequently their number can change as $\tau$ varies only when a characteristic root crosses the imaginary axis.
+
+Step 2: Find every imaginary-axis crossing
+Let $\lambda=i\omega$ with $\omega\in\mathbb R$. Since $F(0,\tau)=3/2$, we have $\omega\ne0$. Taking absolute values in
 $$
-\frac d{dt}\begin{pmatrix}U_n\\V_n\end{pmatrix}
-=M_n\begin{pmatrix}U_n\\V_n\end{pmatrix},
+i\omega=-\left(\frac{i\omega}{2}+\frac32\right)e^{-i\omega\tau}
+$$
+gives
+$$
+\omega^2=\frac{\omega^2+9}{4},
+$$
+so
+$$
+\omega^2=3.
+$$
+For the positive frequency $\omega=\sqrt3$,
+$$
+e^{-i\sqrt3\tau}
+=-\frac{i\sqrt3}{\frac32+\frac{i\sqrt3}{2}}
+=e^{-2\pi i/3}.
+$$
+Therefore all positive crossing delays are
+$$
+\tau_k
+=\frac{\frac{2\pi}{3}+2\pi k}{\sqrt3}
+=\frac{2\pi(3k+1)}{3\sqrt3},
+\qquad k=0,1,2,\dots.
+$$
+The conjugate root $-i\sqrt3$ crosses at the same delays.
+
+Step 3: Determine the crossing direction
+Implicit differentiation of $F(\lambda,\tau)=0$ gives
+$$
+\frac{d\lambda}{d\tau}=-\frac{F_\tau}{F_\lambda}.
+$$
+At a crossing point $\lambda=i\sqrt3$, using the characteristic equation to simplify the exponential factor yields
+$$
+\operatorname{Re}\frac{d\lambda}{d\tau}
+=\frac{3}{3\tau_k^2+(\tau_k-1)^2}>0.
+$$
+Thus at every $\tau_k$ one simple conjugate pair crosses from the left half-plane into the right half-plane as $\tau$ increases.
+
+Since there are no right-half-plane roots at $\tau=0$, and Step 1 prevents roots from appearing from infinity, the open right-half-plane root count is constant between successive $\tau_k$ and increases by $2$ after each crossing.
+
+Step 4: Count exactly four unstable characteristic roots
+The first three crossing delays are
+$$
+\tau_0=\frac{2\pi}{3\sqrt3},
 \qquad
-M_n=
-\begin{pmatrix}
-a-q_n&1\\
--3&-2-10q_n
-\end{pmatrix}.
+\tau_1=\frac{8\pi}{3\sqrt3},
+\qquad
+\tau_2=\frac{14\pi}{3\sqrt3}.
 $$
-If $0<a<3/2$, then
-$$
-\operatorname{tr}M_n=a-2-11q_n<0
-$$
-for every $n\ge0$. Therefore a nonconstant mode $n\ge1$ is unstable exactly when
-$$
-\det M_n<0.
-$$
-A direct calculation gives
-$$
-\det M_n
-=10q_n^2+(2-10a)q_n+3-2a.
-$$
-Hence the unstable nonconstant frequencies are precisely those $n\ge1$ for which
-$$
-10\left(\frac{n\pi}{b}\right)^4
-+(2-10a)\left(\frac{n\pi}{b}\right)^2
-+3-2a<0.
-$$
+For $\tau_1<\tau<\tau_2$, exactly the pairs born at $\tau_0$ and $\tau_1$ lie in the open right half-plane, so there are exactly four roots there. At $\tau=\tau_2$, the third pair is still on the imaginary axis and is not counted, so the number of roots with positive real part is still four. At $\tau=\tau_1$, only the first pair has positive real part, so the lower endpoint is excluded.
 
-Step 3: Describe the unstable band and count its integer frequencies
-Let
+Hence the required delay interval is
 $$
-F_a(q)=10q^2+(2-10a)q+3-2a.
+\frac{8\pi}{3\sqrt3}<\tau\le\frac{14\pi}{3\sqrt3}.
 $$
-Its discriminant is
-$$
-\Delta(a)=4(25a^2+10a-29).
-$$
-Thus no nonconstant mode can be unstable unless
-$$
-a>a_0:=\frac{\sqrt{30}-1}{5}.
-$$
-For $a_0<a<3/2$, the two positive roots are
-$$
-q_\pm(a)=\frac{5a-1\pm\sqrt{25a^2+10a-29}}{10},
-$$
-and
-$$
-F_a(q)<0\iff q_-(a)<q<q_+(a).
-$$
-Therefore the number of unstable nonconstant Neumann frequencies is
-$$
-N(a,b)
-=\#\left\{n\ge1:q_-(a)<\left(\frac{n\pi}{b}\right)^2<q_+(a)\right\}.
-$$
-Equivalently,
-$$
-N(a,b)
-=\left\lceil\frac{b\sqrt{q_+(a)}}{\pi}\right\rceil
--\left\lfloor\frac{b\sqrt{q_-(a)}}{\pi}\right\rfloor-1.
-$$
-Thus exactly three unstable nonconstant spatial frequencies occur precisely when $0<a<3/2$ and the explicit modal inequality holds for exactly three positive integers $n$.
-
-Step 4: State the exact parameter region
-Multiplying the modal inequality by $b^4>0$ gives the compact condition
-$$
-10n^4\pi^4+(2-10a)n^2\pi^2b^2+(3-2a)b^4<0.
-$$
-Hence the required set consists exactly of those $(a,b)$ with $0<a<3/2$ for which this inequality is satisfied by exactly three integers $n\ge1$.
-Final Answer: $\boxed{\{(a,b):0<a<3/2,\#\{n\ge1:10n^4\pi^4+(2-10a)n^2\pi^2b^2+(3-2a)b^4<0\}=3\}}$
+Final Answer: $\boxed{\left(\frac{8\pi}{3\sqrt3},\frac{14\pi}{3\sqrt3}\right]}$
 
 ---
 
 ## Answer
 
-$\{(a,b):0<a<3/2,\#\{n\ge1:10n^4\pi^4+(2-10a)n^2\pi^2b^2+(3-2a)b^4<0\}=3\}$
+$\left(\frac{8\pi}{3\sqrt3},\frac{14\pi}{3\sqrt3}\right]$
 
 ---
 
@@ -120,11 +105,11 @@ $\{(a,b):0<a<3/2,\#\{n\ge1:10n^4\pi^4+(2-10a)n^2\pi^2b^2+(3-2a)b^4<0\}=3\}$
 
 ## Solution Concepts
 
-- reaction-diffusion systems
-- Turing instability
-- Neumann Laplacian spectrum
-- dispersion relations
-- unstable mode counting
+- neutral delay differential equations
+- characteristic root counting
+- imaginary-axis crossings
+- implicit root differentiation
+- spectral stability
 
 ---
 
