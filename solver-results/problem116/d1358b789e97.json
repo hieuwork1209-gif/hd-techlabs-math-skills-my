@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "8470ddd803af2357dc0382bde8dfcd5b3ecc721f",
+  "problem_blob_sha": "d1358b789e971189e58e16486398d9e42175399f",
+  "statement_sha256": "d017ee2c830feecc4996eac1018d48606680c65ebfbc1f132625403ce1d3d9c8",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T08:10:26+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\n\\Delta(\\lambda,\\tau)=\\lambda^2+1+\\frac{\\lambda}{2}e^{-\\lambda\\tau}.\n\\]\nAt \\(\\tau=0\\),\n\\[\n\\lambda^2+\\frac12\\lambda+1=0,\n\\]\nwhose roots have real part \\(-1/4\\), so the system is initially stable.\n\nA stability change can occur only when a root crosses the imaginary axis. Put \\(\\lambda=i\\omega\\), \\(\\omega>0\\). Then\n\\[\n-\\omega^2+1+\\frac{i\\omega}{2}(\\cos \\omega\\tau-i\\sin\\omega\\tau)=0,\n\\]\nso\n\\[\n1-\\omega^2+\\frac{\\omega}{2}\\sin(\\omega\\tau)=0,\\qquad\n\\cos(\\omega\\tau)=0.\n\\]\nThus \\(\\sin(\\omega\\tau)=\\pm1\\).\n\nIf \\(\\sin(\\omega\\tau)=1\\), then\n\\[\n\\omega^2-\\frac{\\omega}{2}-1=0\n\\]\nso\n\\[\n\\omega=a=\\frac{1+\\sqrt{17}}4.\n\\]\nThe corresponding crossing times are\n\\[\n\\tau=A_n=\\frac{(4n+1)\\pi}{2a},\\qquad n=0,1,2,\\dots\n\\]\n\nIf \\(\\sin(\\omega\\tau)=-1\\), then\n\\[\n\\omega^2+\\frac{\\omega}{2}-1=0\n\\]\nso\n\\[\n\\omega=b=\\frac{\\sqrt{17}-1}{4}.\n\\]\nThe corresponding crossing times are\n\\[\n\\tau=B_n=\\frac{(4n+3)\\pi}{2b},\\qquad n=0,1,2,\\dots\n\\]\n\nNow determine crossing direction. Implicit differentiation gives\n\\[\n\\lambda'(\\tau)=-\\frac{\\Delta_\\tau}{\\Delta_\\lambda}.\n\\]\nAt an imaginary crossing \\(\\lambda=i\\omega\\), with \\(s=\\sin(\\omega\\tau)=\\pm1\\), one obtains\n\\[\n\\operatorname{sgn}\\Re \\lambda'(\\tau)=\\operatorname{sgn}(4s\\omega-1).\n\\]\nHence the \\(A_n\\)-crossings, where \\(s=1\\), move roots from left to right, while the \\(B_n\\)-crossings, where \\(s=-1\\), move roots from right to left.\n\nSince the system is stable at \\(\\tau=0\\), stability is lost at \\(A_0\\). It is regained at \\(B_0\\), then lost again at \\(A_1\\). After that, the rightward crossings occur frequently enough that the leftward crossings never bring the number of unstable roots back to zero.\n\nThus the stable intervals are\n\\[\n0<\\tau<A_0\n\\]\nand\n\\[\nB_0<\\tau<A_1.\n\\]\nUsing\n\\[\na=\\frac{1+\\sqrt{17}}4,\\qquad b=\\frac{\\sqrt{17}-1}{4},\n\\]\nthese become\n\\[\nA_0=\\frac{\\pi(\\sqrt{17}-1)}8,\n\\]\n\\[\nB_0=\\frac{3\\pi(\\sqrt{17}+1)}8,\n\\]\n\\[\nA_1=\\frac{5\\pi(\\sqrt{17}-1)}8.\n\\]\n\nTherefore the complete answer is\n\\[\n\\boxed{\n\\tau\\in\\left(0,\\frac{\\pi(\\sqrt{17}-1)}8\\right)\n\\;\\cup\\;\n\\left(\\frac{3\\pi(\\sqrt{17}+1)}8,\\frac{5\\pi(\\sqrt{17}-1)}8\\right).\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T08:11:56+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/d1358b789e97.json"
+}
