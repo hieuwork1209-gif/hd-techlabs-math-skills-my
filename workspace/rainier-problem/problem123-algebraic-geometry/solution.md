@@ -1,0 +1,228 @@
+## Steps
+
+Step 1: Set up the plane branch and its finite normalization
+
+Put
+$$
+x=t^m,
+\qquad
+y=t^n+t^p,
+$$
+so that
+$$
+A=\mathbb C[[x,y]]\subset \mathbb C[[t]].
+$$
+Let
+$$
+d=\gcd(m,n),
+\qquad
+a=\frac md,
+\qquad
+b=\frac nd.
+$$
+Then $\gcd(a,b)=1$. Since $\gcd(d,p)=1$ and $d$ divides both $m$ and $n$,
+$$
+\gcd(m,n,p)=1.
+\tag{1}
+$$
+
+The extension $\mathbb C((t))/\mathbb C((t^m))$ is cyclic of degree $m$, with automorphisms
+$$
+t\longmapsto \zeta t,
+\qquad \zeta^m=1.
+$$
+If one of these automorphisms fixes $y=t^n+t^p$, then the two distinct powers of $t$ force
+$$
+\zeta^n=\zeta^p=1.
+$$
+Together with $\zeta^m=1$ and (1), this implies $\zeta=1$. Hence the orbit of $y$ has size $m$, so the minimal polynomial of $y$ over $\mathbb C((x))$ has degree $m$. Because $y$ is integral over the DVR $\mathbb C[[x]]$, that minimal polynomial is monic with coefficients in $\mathbb C[[x]]$. Therefore
+$$
+A=\mathbb C[[x]][y]
+$$
+is a free $\mathbb C[[x]]$-module of rank $m$ with basis
+$$
+1,y,\dots,y^{m-1}.
+\tag{2}
+$$
+In particular $A$ and $\mathbb C[[t]]$ have the same fraction field and the latter is finite over $A$, so the quotient $\mathbb C[[t]]/A$ has finite complex dimension.
+
+Step 2: Derive the first forced approximate root
+
+The visible leading orders are
+$$
+\operatorname{ord}_t(x)=m,
+\qquad
+\operatorname{ord}_t(y)=n.
+$$
+The least positive equality between multiples of these two orders is
+$$
+a n=b m,
+$$
+because $a=m/d$ and $b=n/d$. Thus the canonical first cancellation is forced to be
+$$
+g:=y^a-x^b.
+$$
+Using $y=t^n(1+t^{p-n})$,
+$$
+\begin{aligned}
+g
+&=t^{an}\left((1+t^{p-n})^a-1\right)\\
+&=a\,t^{an+p-n}+O\!\left(t^{an+2(p-n)}\right).
+\end{aligned}
+$$
+Hence
+$$
+\beta:=\operatorname{ord}_t(g)
+=(a-1)n+p.
+\tag{3}
+$$
+
+Step 3: Replace the power basis by a valuation-adapted basis
+
+For
+$$
+0\le i<a,
+\qquad
+0\le j<d,
+$$
+set
+$$
+u_{ij}:=y^i g^j.
+$$
+There are exactly $ad=m$ such elements. We show that they form a $\mathbb C[[x]]$-basis of $A$.
+
+Every exponent $0\le k<m=ad$ has a unique form
+$$
+k=qa+i,
+\qquad
+0\le q<d,
+\quad
+0\le i<a.
+$$
+Since $y^a=x^b+g$,
+$$
+\begin{aligned}
+y^{qa+i}
+&=y^i(x^b+g)^q\\
+&=\sum_{j=0}^q {q\choose j}x^{b(q-j)}y^i g^j.
+\end{aligned}
+\tag{4}
+$$
+For each fixed $i$, this is a triangular change of basis from
+$$
+y^i,y^{a+i},\dots,y^{(d-1)a+i}
+$$
+to
+$$
+u_{i0},\nu_{i1},\dots,\nu_{i,d-1}
+$$
+with diagonal entries $1$. Thus it is invertible over $\mathbb C[[x]]$. Combining all $i$ with (2), the $u_{ij}$ form a basis of $A$.
+
+By (3),
+$$
+\operatorname{ord}_t(u_{ij})=in+j\beta.
+\tag{5}
+$$
+These $m$ orders are pairwise distinct modulo $m$. Indeed, suppose
+$$
+(i-i')n+(j-j')\beta\equiv0\pmod m.
+$$
+Reducing modulo $d$ and using $\beta\equiv p\pmod d$ gives
+$$
+(j-j')p\equiv0\pmod d.
+$$
+Because $\gcd(d,p)=1$ and $|j-j'|<d$, we get $j=j'$. Then
+$$
+m\mid(i-i')n
+$$
+becomes
+$$
+a\mid(i-i')b.
+$$
+Since $\gcd(a,b)=1$ and $|i-i'|<a$, we get $i=i'$. Hence the residues in (5) form a complete residue system modulo $m$.
+
+Step 4: Determine the exact value set of the local ring
+
+Every element of $A$ has a unique expansion
+$$
+F=\sum_{i=0}^{a-1}\sum_{j=0}^{d-1} h_{ij}(x)u_{ij},
+\qquad
+h_{ij}(x)\in\mathbb C[[x]].
+\tag{6}
+$$
+If $h_{ij}\ne0$, then
+$$
+\operatorname{ord}_t\bigl(h_{ij}(x)u_{ij}\bigr)
+=m\,\operatorname{ord}_x(h_{ij})+in+j\beta.
+\tag{7}
+$$
+Because the numbers $in+j\beta$ are pairwise distinct modulo $m$, the lowest-order terms coming from two different basis slots in (6) can never cancel. Therefore the set
+$$
+S:=\{\operatorname{ord}_t(F):0\ne F\in A\}
+$$
+is exactly
+$$
+S=
+\bigcup_{\substack{0\le i<a\\0\le j<d}}
+\left(in+j\beta+m\mathbb Z_{\ge0}\right).
+\tag{8}
+$$
+Thus the $m$ integers
+$$
+w_{ij}:=in+j\beta
+$$
+are precisely the least elements of $S$ in their respective residue classes modulo $m$.
+
+Step 5: Convert the normalization defect into a gap count
+
+Filter $\mathbb C[[t]]/A$ by powers of $t$. The degree-$q$ associated-graded piece is one-dimensional exactly when no element of $A$ has order $q$, and zero-dimensional exactly when $q\in S$. Because the inclusion is finite, only finitely many such pieces are nonzero. Hence
+$$
+\dim_{\mathbb C}\frac{\mathbb C[[t]]}{A}
+=\#\bigl(\mathbb Z_{\ge0}\setminus S\bigr).
+\tag{9}
+$$
+
+For each residue class $r\in\{0,1,\dots,m-1\}$, let $w_r$ be its unique representative among the $w_{ij}$. By (8), the values in that residue class are exactly
+$$
+w_r,w_r+m,w_r+2m,\dots.
+$$
+Therefore the missing nonnegative integers in that residue class are
+$$
+r,r+m,\dots,w_r-m,
+$$
+and their number is
+$$
+\frac{w_r-r}{m}.
+$$
+Summing over all residues gives
+$$
+\dim_{\mathbb C}\frac{\mathbb C[[t]]}{A}
+=\frac1m\sum_{i=0}^{a-1}\sum_{j=0}^{d-1}(in+j\beta)
+-\frac{m-1}{2}.
+\tag{10}
+$$
+
+Now
+$$
+\sum_{i=0}^{a-1}\sum_{j=0}^{d-1}(in+j\beta)
+=d n\frac{a(a-1)}2
++a\beta\frac{d(d-1)}2.
+$$
+Since $m=ad$, equation (10) becomes
+$$
+\begin{aligned}
+\dim_{\mathbb C}\frac{\mathbb C[[t]]}{A}
+&=\frac{n(a-1)+\beta(d-1)-m+1}{2}\\
+&=\frac{d(a-1)n+(d-1)p-m+1}{2}\\
+&=\frac{(m-d)n+(d-1)p-m+1}{2},
+\end{aligned}
+$$
+where we used $\beta=(a-1)n+p$ and $da=m$.
+
+## Solution Concepts
+
+- Canonical approximate root forced by the first common leading valuation of a parametrized plane branch.
+- Valuation-adapted free basis over $\mathbb C[[t^m]]$ and an exact Apéry-type residue decomposition.
+- Normalization length as the number of missing valuation orders.
+
+Final Answer: $\displaystyle \frac{(m-d)n+(d-1)p-m+1}{2}$.
