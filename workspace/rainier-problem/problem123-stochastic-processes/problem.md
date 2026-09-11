@@ -11,10 +11,11 @@ Let $R_n$ be the number of red balls after $n$ draws. For each integer $m\ge2$, 
 $$
 \tau_m=\inf\{n\ge0:R_n=m\}.
 $$
-For $t\ge0$, determine exactly
+For $t,u\ge0$, determine exactly
 $$
 \lim_{m\to\infty}
-E\exp\!\left(-t\frac{m^2}{\tau_m}\right).
+E\exp\!\left[-t\frac{m^2}{\tau_m}
+-u m\left(\frac{\tau_{m+1}}{\tau_m}-1\right)\right].
 $$
 
 ---
@@ -32,4 +33,4 @@ $$
 
 ## Domain Explanation
 
-The requested quantity is a scaling limit of first hitting times for a reinforced urn Markov process, so the primary mathematics is stochastic processes. Martingale normalization and moment calculations are tools used to identify the process limit and invert it at the stopping times.
+The requested quantity is a joint scaling limit of successive first hitting times for a reinforced urn process, so the primary mathematics is stochastic processes. The solution must combine the global scaling law of the red-count chain with the conditional local waiting-time law after a random hitting time.
