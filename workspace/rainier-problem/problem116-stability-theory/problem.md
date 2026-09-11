@@ -2,19 +2,15 @@
 
 ## LaTeX (Normalized)
 
-Let
+For $\tau>0$, consider the retarded delay differential equation
 $$
-k=\frac1{\sqrt2},
-\qquad
-K(k)=\int_0^{\pi/2}\frac{d\phi}{\sqrt{1-k^2\sin^2\phi}},
+\dot x(t)+x(t)+2x(t-\tau)+2x(t-2\tau)=0.
 $$
-and let $\operatorname{sn}(t,k)$ be the Jacobi elliptic sine. For $0<h<5$, consider the Lamé equation
+Its characteristic roots are the zeros of
 $$
-y''(t)+\left(h-3\operatorname{sn}^2(t,k)\right)y(t)=0.
+\lambda+1+2e^{-\lambda\tau}+2e^{-2\lambda\tau}=0.
 $$
-The coefficient has period $T=2K(k)$. Let $M_h$ be the monodromy matrix over one period $T$.
-
-Determine all $h\in(0,5)$ for which both Floquet multipliers of $M_h$ have modulus $1$.
+Determine all $\tau>0$ for which this characteristic equation has exactly eight roots in the open right half-plane $\operatorname{Re}\lambda>0$, counted with algebraic multiplicity.
 
 ---
 
@@ -31,4 +27,4 @@ Determine all $h\in(0,5)$ for which both Floquet multipliers of $M_h$ have modul
 
 ## Domain Explanation
 
-This is a Floquet spectral-stability problem for a classical periodic second-order differential equation. The parameter $h$ determines whether solutions lie in a stability band or an instability gap of the periodic coefficient.
+This is a spectral root-counting problem for a scalar delay equation with two commensurate feedback delays. As the common delay varies, distinct families of characteristic roots cross the imaginary axis, and the problem asks for the exact delay interval on which the unstable spectrum has prescribed multiplicity.
