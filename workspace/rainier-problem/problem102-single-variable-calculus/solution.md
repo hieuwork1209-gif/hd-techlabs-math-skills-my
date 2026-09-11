@@ -1,196 +1,139 @@
 ## Steps
 
-Step 1: Pass to logarithmic coordinates and derive the weighted-mean hierarchy
-
-Let
-$$
-g(s)=f(e^s),\qquad a(s)=A(e^s),\qquad b(s)=B(e^s),\qquad c(s)=C(e^s).
-$$
-Then
-$$
-a(s)=\frac1s\int_0^s g(u)\,du,
-$$
-$$
-b(s)=\frac2{s^2}\int_0^s(s-u)g(u)\,du,
-$$
-and
-$$
-c(s)=\frac3{s^3}\int_0^s(s-u)^2g(u)\,du.
-$$
-Because $g$ is continuous, direct differentiation gives
-$$
-g=a+sa',\qquad sb'=2(a-b),\qquad sc'=3(b-c).
-$$
-Define
-$$
-X=2-c,
-$$
-$$
-Y=2-3b+2c,
-$$
-and
-$$
-Z=2-3a+3b-c.
-$$
-Then
-$$
-sX'=Y-X,
-$$
-and
-$$
-sY'=2(Z-Y).
-$$
-The algebraic hypothesis is exactly
-$$
-Z=XY.
-$$
-The two normalizations become
-$$
-X(1)=\frac12,
-$$
-and
-$$
-\lim_{s\to\infty}sX(s)=1.
-$$
-
-Step 2: Isolate the Riccati defect
+Step 1: Control the singular endpoint
 
 Set
 $$
-V=Y-X^2.
+g(s)=f(e^s),\qquad s>0.
 $$
-Using the differential hierarchy and $Z=XY$,
+The differential equation is
 $$
-sV'=sY'-2X\,sX'
-=2(Z-Y)-2X(Y-X)
-=-2(Y-X^2)
-=-2V.
+g''(s)+\frac5s g'(s)+g(s)^2=0,
 $$
-Hence
+or equivalently
 $$
-V(s)=\frac{K}{s^2}
+\bigl(s^5g'(s)\bigr)'=-s^5g(s)^2.
 $$
-for some constant $K$. Since $sX'=Y-X$, we obtain
+Since $g(s)\to1$ as $s\to0^+$, the right-hand side is integrable near $0$, so $s^5g'(s)$ has a finite limit there. If that limit were nonzero, then $g'(s)$ would have size comparable to $s^{-5}$ near $0$, contradicting the finite limit of $g$. Hence
 $$
-sX'=X^2-X+\frac{K}{s^2}.
+\lim_{s\to0^+}s^5g'(s)=0.
 $$
-Thus the multiplicative relation does not by itself force $Y=X^2$; the remaining constant $K$ must be determined from the two different normalizations.
+Integrating from $0$ to $s$ gives
+$$
+s^5g'(s)=-\int_0^s t^5g(t)^2\,dt.
+$$
+Because $g(t)^2\to1$,
+$$
+g'(s)=-\frac{s}{6}+o(s).
+$$
 
-Step 3: Use the local and asymptotic data to force the defect to vanish
+Step 2: Apply the Emden-Fowler transform
 
-Put
-$$
-r=\frac1s,
-\qquad
-w(r)=sX(s)=\frac{X(1/r)}r.
-$$
-A direct change of variables in the Riccati equation gives
-$$
-w'(r)=-w(r)^2-K.
-$$
-The asymptotic normalization gives a continuous extension to $r=0$ with
-$$
-w(0)=1,
-$$
-while $X(1)=1/2$ gives
-$$
-w(1)=\frac12.
-$$
 Let
 $$
-w_0(r)=\frac1{1+r},
-$$
-so that $w_0'=-w_0^2$, $w_0(0)=1$, and $w_0(1)=1/2$. Define $d=w-w_0$. Then
-$$
-d'+(w+w_0)d=-K,
+t=\log s,
 \qquad
-d(0)=0.
+u(t)=s^2g(s).
 $$
-With the positive integrating factor
+Since $g=u/s^2$, direct differentiation gives
 $$
-\mu(r)=\exp\!\left(\int_0^r(w(t)+w_0(t))\,dt\right),
-$$
-we get
-$$
-d(r)=-K\,\mu(r)^{-1}\int_0^r\mu(t)\,dt.
-$$
-For every $r>0$, the integral is positive. Hence $d(r)$ has the opposite sign from $K$ unless $K=0$. But
-$$
-d(1)=w(1)-w_0(1)=0,
-$$
-so necessarily
-$$
-K=0.
-$$
-Therefore $w'=-w^2$ and $w(0)=1$, giving
-$$
-w(r)=\frac1{1+r}.
-$$
-Since $X(s)=r w(r)$ with $r=1/s$,
-$$
-X(s)=\frac1{1+s}.
-$$
-Consequently
-$$
-c(s)=2-\frac1{1+s}.
-$$
-
-Step 4: Recover the source function
-
-From the definition of $c$,
-$$
-\frac{s^3c(s)}3=\int_0^s(s-u)^2g(u)\,du.
-$$
-Differentiating three times yields
-$$
-g(s)=\frac12\frac{d^3}{ds^3}\left(\frac{s^3c(s)}3\right).
-$$
-Substituting $c(s)=2-(1+s)^{-1}$ gives
-$$
-g(s)=2-\frac1{(1+s)^4}.
-$$
-Since $g(s)=f(e^s)$,
-$$
-f(x)=2-\frac1{(1+\log x)^4}.
-$$
-
-Step 5: Verify the conditions
-
-Let $r=(1+s)^{-1}$. Direct integration gives
-$$
-a(s)=2-\frac{r+r^2+r^3}{3},
-$$
-$$
-b(s)=2-\frac{2r+r^2}{3},
+g'(s)=\frac{u_t-2u}{s^3},
 $$
 and
 $$
-c(s)=2-r.
+g''(s)=\frac{u_{tt}-5u_t+6u}{s^4}.
+$$
+Substitution into the differential equation yields the autonomous equation
+$$
+u_{tt}-4u+u^2=0.
+$$
+As $t\to-\infty$, we have $s=e^t\to0^+$, and Step 1 gives
+$$
+u(t)=e^{2t}g(e^t)\to0,
+$$
+$$
+u_t(t)=2s^2g(s)+s^3g'(s)\to0.
+$$
+
+Step 3: Use the conserved energy and linearize it
+
+Multiplying
+$$
+u_{tt}-4u+u^2=0
+$$
+by $u_t$ shows that
+$$
+E=\frac12u_t^2-2u^2+\frac13u^3
+$$
+is constant. The limits from Step 2 give $E=0$, so
+$$
+u_t^2=4u^2-\frac23u^3.
+$$
+Because $f$ is positive, $u$ is positive. Define
+$$
+v=u^{-1/2}.
+$$
+Using $u_{tt}=4u-u^2$ together with the energy identity,
+$$
+v_{tt}
+=\frac34u^{-5/2}u_t^2-\frac12u^{-3/2}u_{tt}
+=v.
+$$
+Also,
+$$
+v_t^2
+=\frac14u^{-3}u_t^2
+=v^2-\frac16.
+$$
+Thus
+$$
+v(t)=Ae^t+Be^{-t}.
+$$
+Since
+$$
+e^t v(t)=\frac1{\sqrt{g(e^t)}}\to1
+$$
+as $t\to-\infty$, we get $B=1$. Moreover,
+$$
+v^2-v_t^2=\frac16.
+$$
+For $v=Ae^t+e^{-t}$, the left-hand side equals $4A$, hence
+$$
+A=\frac1{24}.
 $$
 Therefore
 $$
-X=r,\qquad Y=r^2,\qquad Z=r^3,
+v(t)=e^{-t}+\frac1{24}e^t.
 $$
-so $Z=XY$. Also
+Since $s=e^t$,
 $$
-c(1)=\frac32,
+u(t)=\frac1{v(t)^2}
+=\frac{s^2}{\left(1+\frac{s^2}{24}\right)^2}.
 $$
-and
+Recalling that $u=s^2g(s)$,
 $$
-\lim_{s\to\infty}s(2-c(s))
-=
-\lim_{s\to\infty}\frac{s}{1+s}
-=1.
+g(s)=\frac1{\left(1+\frac{s^2}{24}\right)^2}.
 $$
-Thus all hypotheses are satisfied.
 
-Final Answer: $\boxed{f(x)=2-\frac1{(1+\log x)^4}}$
+Step 4: Return to $x$ and verify
+
+Since $s=\log x$,
+$$
+f(x)=\frac1{\left(1+\frac{(\log x)^2}{24}\right)^2}.
+$$
+This function is positive, its logarithmic profile tends to $1$ as $s\to0^+$, and direct differentiation gives
+$$
+g''(s)+\frac5s g'(s)+g(s)^2=0.
+$$
+Hence it satisfies all the hypotheses.
+
+Final Answer: $\boxed{f(x)=\frac1{\left(1+\frac{(\log x)^2}{24}\right)^2}}$
 
 ---
 
 ## Answer
 
-$f(x)=2-\frac1{(1+\log x)^4}$
+$f(x)=\frac1{\left(1+\frac{(\log x)^2}{24}\right)^2}$
 
 ---
 
@@ -204,8 +147,8 @@ $f(x)=2-\frac1{(1+\log x)^4}$
 
 ## Solution Concepts
 
-- logarithmic weighted integral means
-- differential hierarchy of means
-- Riccati defect equation
-- asymptotic boundary comparison
-- Volterra inversion by differentiation
+- singular Lane-Emden equation
+- Emden-Fowler logarithmic transform
+- conserved energy
+- reciprocal-square-root linearization
+- endpoint asymptotics
