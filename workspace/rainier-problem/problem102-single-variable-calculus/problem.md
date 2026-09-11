@@ -17,12 +17,14 @@ Assume that
 $$
 \bigl(C(e)-2\bigr)^2=\frac14,
 $$
-and that, for every $x>1$,
 $$
-\bigl(2-3B(x)+2C(x)\bigr)^2=\bigl(2-C(x)\bigr)^4,
+\lim_{x\to\infty}(\log x)^2\bigl(2-C(x)\bigr)^2=1,
 $$
+and, for every $x>1$,
 $$
-\bigl(2-3A(x)+3B(x)-C(x)\bigr)^2=\bigl(2-C(x)\bigr)^6.
+\bigl(2-3B(x)+2C(x)\bigr)^2
+=
+\bigl(2-C(x)\bigr)\bigl(2-3A(x)+3B(x)-C(x)\bigr).
 $$
 Determine $f(x)$ for all $x>1$. For grading, write the final answer as $f(x)=\cdots$ in unexpanded fraction notation: use $\frac{1}{(\cdots)^4}$ rather than a negative fourth power, write the logarithm as $\log x$, and do not expand or rearrange the denominator.
 
@@ -41,4 +43,4 @@ Determine $f(x)$ for all $x>1$. For grading, write the final answer as $f(x)=\cd
 
 ## Domain Explanation
 
-After the logarithmic change of variables, the three weighted means form a differential hierarchy in one real variable. The nonlinear constraints determine algebraic sign branches of that hierarchy; a continuation argument rules out the singular branches, and concavity eliminates the remaining convex branch. The solution combines differentiation, integration, first-order differential relations, continuity, and concavity in one variable, so Single-variable calculus is the best-fit sub-domain.
+After the logarithmic change of variables, the three weighted means form a differential hierarchy. The global algebraic condition becomes a rank-one relation among three consecutive transformed quantities, which yields a nonlinear differential equation for their hidden ratio. The value at $e$ and the asymptotic condition determine the scale, while concavity selects the admissible sign. The problem is therefore governed by one-variable differentiation, integration, asymptotics, continuity, and concavity.
