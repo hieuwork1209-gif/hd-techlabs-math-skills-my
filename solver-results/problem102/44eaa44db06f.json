@@ -1,0 +1,22 @@
+{
+  "problem": "problem102",
+  "branch": "adversary/problem102",
+  "problem_path": "workspace/rainier-problem/problem102-single-variable-calculus/problem.md",
+  "source_commit_sha": "ed3f33a9555111571d298297352f712292bde018",
+  "problem_blob_sha": "44eaa44db06fbba057146f1676f640ac1b139210",
+  "statement_sha256": "6cd9fecc1e83921f6d58cb4902bc9a442834fe016804be93a67151664550735d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T07:07:16+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(V=G/2G\\cong \\mathbb F_2^4\\), with the induced symplectic form. Identify \\(2G\\) with \\(V\\) by \\(v\\mapsto 2v\\).\n\nFor any subgroup \\(H\\le G\\), the pairing is nondegenerate, so\n\\[\n|H|\\,|H^\\perp|=|G|=4^4=256.\n\\]\nThus \\(H=H^\\perp\\) implies \\(|H|=16\\), and \\(H\\) is totally isotropic.\n\nLet\n\\[\nA=\\overline H\\subset V,\\qquad B=\\{v\\in V:2v\\in H\\}.\n\\]\nThen \\(|H|=2^{\\dim A+\\dim B}\\), so\n\\[\n\\dim A+\\dim B=4.\n\\]\nAlso \\(A\\subseteq B\\), because if \\(h\\in H\\), then \\(2h\\in H\\). Isotropy gives \\(B\\subseteq A^\\perp\\), since\n\\[\n\\langle h,2b\\rangle=2\\langle \\bar h,b\\rangle=0\\pmod4.\n\\]\nBecause \\(\\dim B=4-\\dim A=\\dim A^\\perp\\), we get\n\\[\nB=A^\\perp.\n\\]\nHence \\(\\dim A\\le 2\\), and \\(A\\) must be an isotropic subspace of \\(V\\).\n\nNow count by \\(r=\\dim A\\).\n\nIn \\(\\mathbb F_2^4\\), the number of isotropic subspaces is:\n\n\\[\nr=0:\\ 1,\\qquad r=1:\\ 15,\\qquad r=2:\\ 15.\n\\]\n\nFor each fixed \\(A\\):\n\n- If \\(r=0\\), then \\(H=2G\\). This gives \\(1\\) subgroup.\n\n- If \\(r=1\\), take \\(A=\\langle e_1\\rangle\\). Then \\(A^\\perp\\) has dimension \\(3\\), so \\(H\\) contains \\(2A^\\perp\\), and one lift of \\(e_1\\). The lifts are \\(e_1+2w\\), modulo adding elements of \\(2A^\\perp\\), giving\n\\[\n|V/A^\\perp|=2\n\\]\npossibilities per line. Contribution:\n\\[\n15\\cdot 2=30.\n\\]\n\n- If \\(r=2\\), take \\(A=\\langle e_1,e_2\\rangle\\), a Lagrangian plane. Then \\(A^\\perp=A\\). A lift has generators\n\\[\nh_i=e_i+2T(e_i),\\qquad i=1,2,\n\\]\nwhere \\(T:A\\to V/A\\cong \\langle e_3,e_4\\rangle\\). Isotropy requires\n\\[\n\\langle h_1,h_2\\rangle=0,\n\\]\nwhich says exactly that the \\(2\\times2\\) matrix of \\(T\\) is symmetric over \\(\\mathbb F_2\\). There are \\(2^3=8\\) symmetric \\(2\\times2\\) matrices. Contribution:\n\\[\n15\\cdot 8=120.\n\\]\n\nTherefore the total number is\n\\[\n1+30+120=151.\n\\]\n\n\\[\n\\boxed{151}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T07:08:19+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem102/44eaa44db06f.json"
+}
