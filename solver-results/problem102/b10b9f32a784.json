@@ -1,0 +1,22 @@
+{
+  "problem": "problem102",
+  "branch": "adversary/problem102",
+  "problem_path": "workspace/rainier-problem/problem102-single-variable-calculus/problem.md",
+  "source_commit_sha": "cde2c52d846c3a6356f8850920306916558c567c",
+  "problem_blob_sha": "b10b9f32a784adac276e2a5e4ae4284a2b0c59e2",
+  "statement_sha256": "327e979604889c1bce618e97fa83f36fdef99e0c067a3ea6c5deec02ce7ea2b4",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-11T03:52:57+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nu=\\log x,\\qquad g(u)=f(e^u).\n\\]\nThen \\(u>0\\), and the three quantities become\n\\[\nA=\\frac1u\\int_0^u g(s)\\,ds,\\quad\nB=\\frac2{u^2}\\int_0^u (u-s)g(s)\\,ds,\\quad\nC=\\frac3{u^3}\\int_0^u (u-s)^2g(s)\\,ds.\n\\]\nWriting \\(D=u\\frac{d}{du}\\), differentiating gives\n\\[\nDB=2(A-B),\\qquad DC=3(B-C),\\qquad DA=g-A.\n\\]\nHence\n\\[\nB=C+\\frac{DC}{3},\\qquad\nA=C+\\frac56DC+\\frac16D^2C.\n\\]\n\nSet\n\\[\ny=2-C.\n\\]\nThe given identity becomes\n\\[\ny+\\frac32Dy+\\frac12D^2y=y(y+Dy).\n\\]\nEquivalently, if\n\\[\nz=y+Dy=(uy)',\n\\]\nthen\n\\[\nDz=2(y-1)z.\n\\]\nNow \\(C(e)=3/2\\) means \\(y(1)=1/2\\), and the limit condition is\n\\[\n\\lim_{u\\to\\infty}uy(u)=1.\n\\]\nSince \\(uy\\) rises from \\(1/2\\) to \\(1\\), we must have \\(z>0\\). Put\n\\[\np=\\frac zy.\n\\]\nThen\n\\[\nDy=y(p-1),\\qquad Dp=p(2y-1-p).\n\\]\nSo for \\(q=p-y\\),\n\\[\nDq=-(1+p)q.\n\\]\nThus the sign of \\(q\\) is fixed. The comparison solution with \\(q=0\\) satisfies\n\\[\nDy=y(y-1),\\qquad y(1)=\\frac12,\n\\]\nso\n\\[\ny(u)=\\frac1{1+u}.\n\\]\nIf \\(q>0\\), then \\(y/(1+u)^{-1}\\) increases from \\(1\\), forcing \\(\\lim uy>1\\). If \\(q<0\\), it decreases from \\(1\\), forcing \\(\\lim uy<1\\). Since the limit is exactly \\(1\\), we must have \\(q=0\\), hence\n\\[\nC(u)=2-\\frac1{1+u}.\n\\]\n\nNow recover \\(g\\). Since\n\\[\nA=C+\\frac56DC+\\frac16D^2C\n\\]\nand \\(g=A+DA\\), substituting \\(C=2-y\\), \\(y=(1+u)^{-1}\\), gives\n\\[\ng(u)=2-y^4=2-\\frac1{(1+u)^4}.\n\\]\nFinally \\(u=\\log x\\), so\n\n\\[\n\\boxed{f(x)=2-\\frac{1}{(1+\\log x)^4}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-11T03:54:43+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem102/b10b9f32a784.json"
+}
