@@ -1,165 +1,168 @@
 ## Steps
 
-Step 1: Compute the genus of the generic fiber
+Step 1: Compute the genus of the symmetric fiber product
 Let
 $$
-d=\gcd(m,n),
+h=\gcd(r,2),
 \qquad
-\ell=\operatorname{lcm}(m,n)=\frac{mn}{d},
-\qquad
-h=\gcd(\ell,2).
-$$
-Fix $\lambda\in\mathbb C^\times\setminus\{1\}$ and set
-$$
-F=\mathbb C(x),
-\qquad
-K_\lambda=F(y,z),
-$$
-where
-$$
-y^m=x(x-1),
-\qquad
-z^n=x(x-\lambda).
-$$
-At $x=0$, the first radicand has valuation $1$. If $P$ is a place of $F(y)$ above this valuation, then
-$$
-m\,v_P(y)=e(P/v_0),
-$$
-so $m\mid e(P/v_0)$. Since $e(P/v_0)\leq [F(y):F]\leq m$, one gets $[F(y):F]=m$.
-
-At $x=\lambda$, the element $x(x-1)$ is a nonzero unit. Over the completed local field, whose residue field is $\mathbb C$, this unit has an $m$-th root, so the $y$-cover is unramified there. Thus for every place $Q$ of $F(y)$ above $x=\lambda$,
-$$
-v_Q(x(x-\lambda))=1.
-$$
-If $R$ lies above $Q$ in $K_\lambda$, then
-$$
-n\,v_R(z)=e(R/Q).
-$$
-Hence $n\mid e(R/Q)$, while $e(R/Q)\leq[K_\lambda:F(y)]\leq n$. Therefore
-$$
-[K_\lambda:F(y)]=n,
-\qquad
-[K_\lambda:F]=mn.
-$$
-The independent root-of-unity actions on $y$ and $z$ give $mn$ distinct $F$-automorphisms, so the cover $C_\lambda\to\mathbb P^1_x$ is Galois with group
-$$
-\mathbb Z/m\mathbb Z\times\mathbb Z/n\mathbb Z.
-$$
-
-For a Kummer equation $u^r=g(x)$ in characteristic $0$, a local loop at a point where $g$ has valuation $s$ acts on the radical by multiplication by $\zeta_r^s$. Hence the inertia order in the simultaneous cover is the order of the corresponding valuation pair. The branch points are $0,1,\lambda,\infty$, with inertia orders
-$$
-e_0=\ell,
-\qquad
-e_1=m,
-\qquad
-e_\lambda=n.
-$$
-At infinity both radicands have valuation $-2$, so
-$$
-e_\infty
-=\operatorname{lcm}\left(\frac{m}{\gcd(m,2)},\frac{n}{\gcd(n,2)}\right)
-=\frac{\ell}{h}.
-$$
-Indeed, dividing each modulus by its factor $\gcd(\cdot,2)$ lowers the maximum $2$-adic exponent in the least common multiple by one exactly when $\ell$ is even and leaves all odd prime exponents unchanged.
-
-For a Galois cover of degree $D$, a branch point of inertia order $e$ has $D/e$ points above it, so its total ramification contribution is
-$$
-\frac{D}{e}(e-1)=D-\frac{D}{e}.
-$$
-With $D=mn$,
-$$
-\frac{D}{e_0}=d,
-\qquad
-\frac{D}{e_1}=n,
-\qquad
-\frac{D}{e_\lambda}=m,
-\qquad
-\frac{D}{e_\infty}=dh.
-$$
-Riemann-Hurwitz gives
-$$
-2g(C_\lambda)-2
-=-2mn+4mn-(d+n+m+dh),
-$$
-so
-$$
-g(C_\lambda)=1+mn-\frac{m+n+d(1+h)}{2}.
-$$
-
-Step 2: Normalize the collision fiber at $\lambda=1$
-When $\lambda=1$, both equations have the same radicand
-$$
-f=x(x-1),
-\qquad
-y^m=f,
-\qquad
-z^n=f.
+\epsilon=\begin{cases}1,&4\mid r,\\0,&4\nmid r.\end{cases}
 $$
 Set
 $$
-a=\frac{\ell}{m}=\frac{n}{d},
+F=\mathbb C(x),
 \qquad
-b=\frac{\ell}{n}=\frac{m}{d}.
+K=F(y,z),
 $$
-Since $\gcd(a,b)=1$, choose integers $r,s$ with $ar+bs=1$ and define
+with
 $$
-u=y^r z^s.
-$$
-Then
-$$
-u^\ell
-=(y^m)^{r\ell/m}(z^n)^{s\ell/n}
-=f^{ar+bs}=f.
-$$
-Conversely,
-$$
-\left(\frac{y}{u^a}\right)^m=1,
+y^r=x(x-1),
 \qquad
-\left(\frac{z}{u^b}\right)^n=1.
+z^r=x(x+1).
 $$
-Any element of this function field whose positive power is $1$ is algebraic over the constant field, which is $\mathbb C$. Thus both ratios are constant roots of unity, and therefore
+The first Kummer extension is totally ramified at $x=1$, whereas the second is unramified there. Hence the two degree-$r$ cyclic extensions have trivial intersection over $F$, so
 $$
-K_1=\mathbb C(x)(u),
-\qquad
-u^\ell=x(x-1).
+[K:F]=r^2.
 $$
-The radicand has valuation $1$ at $x=0$. The same valuation argument gives $[K_1:\mathbb C(x)]=\ell$. Hence after normalization the collision fiber is a single degree-$\ell$ Kummer cover rather than a degree-$mn$ fiber product.
+Thus $C\to\mathbb P^1_x$ is Galois with group $(\mathbb Z/r\mathbb Z)^2$.
 
-Step 3: Compute the genus of the collision fiber
-For the degree-$\ell$ Kummer cover from Step 2, the radicand has valuations $1,1,-2$ at $0,1,\infty$. Thus the inertia orders are
+The branch points are $0,1,-1,\infty$. Their valuation pairs for the two radicands are
 $$
-\ell,
-\qquad
-\ell,
-\qquad
-\frac{\ell}{h}.
+(1,1),\qquad (1,0),\qquad (0,1),\qquad (-2,-2),
 $$
-Riemann-Hurwitz gives
+so the inertia orders are
 $$
-2g(C_1)-2
-=-2\ell+(\ell-1)+(\ell-1)+(\ell-h)
-=\ell-2-h,
+r,\qquad r,\qquad r,\qquad \frac r h.
+$$
+For a Galois cover of degree $D$, a branch point of inertia order $e$ contributes $D-D/e$ to the ramification term. Therefore Riemann-Hurwitz gives
+$$
+2g(C)-2
+=-2r^2+3(r^2-r)+(r^2-rh)
+=2r^2-3r-rh,
 $$
 and hence
 $$
-g(C_1)=\frac{\ell-h}{2}.
+g(C)=1+r^2-\frac{r(3+h)}2.
 $$
 
-Step 4: Compute the genus drop
-From Step 1 and Step 3,
+Step 2: Locate the fixed points of the involution above $x=0$
+The map
 $$
-\Delta_{m,n}=g(C_\lambda)-g(C_1)
-=1+mn-\frac{m+n+d(1+h)+\ell-h}{2}.
+\tau(x,y,z)=(-x,z,y)
 $$
-The result is independent of the chosen $\lambda\in\mathbb C^\times\setminus\{1\}$ because all such generic fibers have the same branch and inertia pattern.
+is an involution of $C$. A fixed point of $\tau$ must lie over a fixed point of $x\mapsto -x$, hence only above $x=0$ or $x=\infty$.
 
-Final Answer: $\boxed{1+mn-\frac{m+n+d(1+h)+\ell-h}{2}}$
+Near $x=0$, use the regular quotient
+$$
+q=\frac yz,
+\qquad
+q^r=\frac{x-1}{x+1}.
+$$
+There are exactly $r$ points of $C$ above $0$, and they are distinguished by the values
+$$
+q(0)=\alpha,
+\qquad
+\alpha^r=-1.
+$$
+Since $\tau(q)=q^{-1}$, such a point is fixed exactly when
+$$
+\alpha=\alpha^{-1},
+\qquad
+\alpha^r=-1.
+$$
+Thus $\alpha^2=1$. If $r$ is odd, the unique solution is $\alpha=-1$; if $r$ is even, there is no solution. Therefore the number of fixed points above $0$ is
+$$
+N_0=\begin{cases}1,&r\text{ odd},\\0,&r\text{ even}.
+\end{cases}
+$$
+
+Step 3: Count the fixed points above infinity
+First suppose $r$ is odd. There are $r$ points above infinity. The same quotient $q=y/z$ satisfies
+$$
+q^r=\frac{x-1}{x+1}\longrightarrow 1
+$$
+as $x\to\infty$, so these points are distinguished by $r$-th roots of unity. Again $\tau(q)=q^{-1}$. For odd $r$, the only $r$-th root of unity equal to its inverse is $1$. Hence
+$$
+N_\infty=1
+$$
+when $r$ is odd.
+
+Now suppose $r=2s$ is even and put $t=1/x$. Define
+$$
+A=t y^s,
+\qquad
+B=t z^s.
+$$
+Then
+$$
+A^2=1-t,
+\qquad
+B^2=1+t.
+$$
+At a point above infinity, $A$ and $B$ therefore take independent limiting values in $\{\pm1\}$. Together with
+$$
+q=\frac yz,
+\qquad
+q^s=\frac AB,
+$$
+these data distinguish all $4s=2r$ points above infinity.
+
+Under $\tau$ one has
+$$
+t\mapsto -t,
+\qquad
+(A,B,q)\mapsto(-B,-A,q^{-1}).
+$$
+A fixed point must therefore satisfy
+$$
+A=-B,
+\qquad
+q=q^{-1}.
+$$
+Thus $q=\pm1$, while $A/B=-1$ forces
+$$
+q^s=-1.
+$$
+If $s$ is odd, equivalently $r\equiv2\pmod4$, only $q=-1$ works, and each of the two sign choices $(A,B)=(1,-1),(-1,1)$ gives one fixed point. Hence $N_\infty=2$. If $s$ is even, equivalently $4\mid r$, neither $q=1$ nor $q=-1$ satisfies $q^s=-1$, so $N_\infty=0$. Therefore
+$$
+N_\infty=
+\begin{cases}
+1,&r\text{ odd},\\
+2,&r\equiv2\pmod4,\\
+0,&4\mid r.
+\end{cases}
+$$
+Combining with Step 2, the total number of fixed points of $\tau$ is
+$$
+R=N_0+N_\infty=2(1-\epsilon).
+$$
+
+Step 4: Apply Riemann-Hurwitz to the quotient map
+Let
+$$
+Q=C/\langle\tau\rangle.
+$$
+The quotient map $C\to Q$ has degree $2$, and its ramification points are exactly the $R$ fixed points of $\tau$. Hence
+$$
+2g(C)-2=2\bigl(2g(Q)-2\bigr)+R.
+$$
+Substituting the genus from Step 1 and $R=2(1-\epsilon)$ gives
+$$
+4g(Q)
+=2g(C)+2-R
+=2r^2-r(3+h)+2+2\epsilon.
+$$
+Therefore
+$$
+g(Q)=\frac{2r^2-r(3+h)+2+2\epsilon}{4}.
+$$
+
+Final Answer: $\boxed{\frac{2r^2-r(3+h)+2+2\epsilon}{4}}$
 
 ---
 
 ## Answer
 
-$1+mn-\frac{m+n+d(1+h)+\ell-h}{2}$
+$\frac{2r^2-r(3+h)+2+2\epsilon}{4}$
 
 ---
 
@@ -173,7 +176,7 @@ $1+mn-\frac{m+n+d(1+h)+\ell-h}{2}$
 
 ## Solution Concepts
 
-- Kummer extensions and local valuations
-- ramification inertia in fiber products
-- normalization under branch point collision
-- Riemann-Hurwitz genus formula
+- Kummer covers and inertia groups
+- normalization and local branches
+- fixed points of an involution
+- Riemann-Hurwitz for quotient curves
