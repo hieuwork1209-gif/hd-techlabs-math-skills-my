@@ -80,7 +80,7 @@ By symmetry about the real axis, half of the pocket lies between the arc $t_0\le
 $$
 \frac{y'(t)}2=2u^2+cu-1<0,
 $$
-because its derivative with respect to $u$ is $4u+c\leq-c<0$ and its value at $u=-1$ is $1-c<0$. Therefore
+because its derivative with respect to $u$ is $4u+c\leq-c<0$ and its value at $u=-1$ is $1-c<0$. Horizontal slicing therefore gives
 $$
 \frac{\operatorname{Area}(\operatorname{conv}(S_c))-\operatorname{Area}(S_c)}{2}
 =-\int_{t_0}^{\pi}(x(t)-x_0)y'(t)\,dt.
@@ -153,4 +153,4 @@ $\frac{c(c^2+14)\sqrt{4-c^2}}{4}-2(2c^2+1)\arccos\left(\frac c2\right)$
 - supporting lines
 - turning angle criterion
 - Jordan curves
-- Green's theorem
+- planar area integration
