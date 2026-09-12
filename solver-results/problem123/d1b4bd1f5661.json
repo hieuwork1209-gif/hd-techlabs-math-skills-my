@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-linear-transformations/problem.md",
+  "source_commit_sha": "b150625f59ddaf8efde7bd1968d0de59ee86cd6a",
+  "problem_blob_sha": "d1b4bd1f566184b86191502ec1db2b03d055eaa7",
+  "statement_sha256": "8b21b4d711aa57c407c17f58e137145a2a5887842fcab2fa1a0ee28e7f036669",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-12T02:13:02+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(N\\) be a single Jordan block on \\(V\\). Up to conjugacy, we may regard \\(V\\) as the irreducible \\(\\mathfrak{sl}_2\\)-module of highest weight \\(8\\), with \\(N\\) equal to the lowering operator. Then on\n\\[\nW=\\Lambda^4 V,\n\\]\nthe Jordan blocks of \\(D\\) are exactly the irreducible \\(\\mathfrak{sl}_2\\)-summands of \\(\\Lambda^4 V\\), with a summand of highest weight \\(r\\) contributing one Jordan block of size \\(r+1\\).\n\nThe weights of \\(V\\), divided by \\(2\\), are\n\\[\n4,3,2,1,0,-1,-2,-3,-4.\n\\]\nSo the weight multiplicity \\(c_s\\) in \\(\\Lambda^4 V\\) is the number of \\(4\\)-element subsets of \\(\\{-4,\\dots,4\\}\\) with sum \\(s\\). Shifting to subsets of \\(\\{0,\\dots,8\\}\\), this is the coefficient count for partitions in a \\(4\\times 5\\) rectangle. For \\(s\\ge 0\\), the values are\n\\[\n(c_0,c_1,\\dots,c_{10})\n=(12,11,11,9,8,6,5,3,2,1,1).\n\\]\nFor \\(\\mathfrak{sl}_2\\), the multiplicity of the irreducible of highest scaled weight \\(s\\), i.e. actual highest weight \\(2s\\), is\n\\[\nm_s=c_s-c_{s+1}.\n\\]\nThus\n\\[\n(m_0,\\dots,m_{10})\n=(1,0,2,1,2,1,2,1,1,0,1).\n\\]\nHence the Jordan block sizes of \\(D\\) are\n\\[\n21,17,15,13,13,11,9,9,7,5,5,1.\n\\]\nTheir total is\n\\[\n21+17+15+13+13+11+9+9+7+5+5+1=126=\\dim \\Lambda^4 V,\n\\]\nas required.\n\nFor a nilpotent operator with Jordan block sizes \\(\\lambda_i\\), the commutant dimension is\n\\[\n\\sum_{i,j}\\min(\\lambda_i,\\lambda_j).\n\\]\nEquivalently, if \\(\\lambda'_k\\) counts the number of blocks of size at least \\(k\\), then\n\\[\n\\dim Z(D)=\\sum_{k\\ge 1}(\\lambda'_k)^2.\n\\]\nHere the counts are\n\\[\n12,\\underbrace{11,\\dots,11}_{4},\n\\underbrace{9,9}_{2},\n\\underbrace{8,8}_{2},\n\\underbrace{6,6}_{2},\n\\underbrace{5,5}_{2},\n\\underbrace{3,3}_{2},\n\\underbrace{2,2}_{2},\n\\underbrace{1,1,1,1}_{4}.\n\\]\nTherefore\n\\[\n\\dim Z(D)\n=12^2+4\\cdot 11^2+2\\cdot 9^2+2\\cdot 8^2+2\\cdot 6^2+2\\cdot 5^2+2\\cdot 3^2+2\\cdot 2^2+4\\cdot 1^2\n=1070.\n\\]\n\n\\[\n\\boxed{1070}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-12T02:14:43+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/d1b4bd1f5661.json"
+}
