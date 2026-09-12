@@ -29,7 +29,7 @@ $$
 \qquad
 [N,F]=H.
 $$
-Extend $N,H,F$ to $W=\Lambda^4V$ as derivations. The extension of $N$ is exactly $D$, and the same commutator identities hold on $W$. Thus $W$ is a finite-dimensional $\mathfrak{sl}_2(\mathbb C)$-module with raising operator $D$.
+Extend $N,H,F$ to $W=\Lambda^4 V$ as derivations. The extension of $N$ is exactly $D$, and the same commutator identities hold on $W$. Thus $W$ is a finite-dimensional $\mathfrak{sl}_2(\mathbb C)$-module with raising operator $D$.
 
 Use the finite-dimensional $\mathfrak{sl}_2$ decomposition theorem in the following form: every finite-dimensional complex $\mathfrak{sl}_2$-module is a direct sum of irreducibles $L_m$, where $L_m$ has weights
 $$
@@ -138,7 +138,7 @@ $$
 $$
 
 Step 5: Impose the skew-adjoint condition from the induced symmetric form
-Let $B$ be the symmetric bilinear form on $W$ induced from the form on $V$. Since $N$ is skew-adjoint, $\exp(tN)$ preserves the form on $V$. Therefore $\Lambda^4\exp(tN)$ preserves $B$, and differentiating at $t=0$ shows that
+Let $B$ be the symmetric bilinear form on $W$ induced from the form on $V$. Since $N$ is skew-adjoint, $\exp(tN)$ preserves the form on $V$. Therefore $\Lambda^4 \exp(tN)$ preserves $B$, and differentiating at $t=0$ shows that
 $$
 D^{\dagger}=-D.
 $$
