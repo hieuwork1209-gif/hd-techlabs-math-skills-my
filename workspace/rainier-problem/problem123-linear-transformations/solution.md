@@ -93,7 +93,7 @@ $$
 $$
 Their sum is
 $$
-21+17+15+13+13+11+9+9+7+5+5+1=126=\binom94=\dim W,
+21+17+15+13+13+11+9+9+7+5+5+1=126=\binom{9}{4}=\dim W,
 $$
 so the list accounts for the whole exterior power.
 
