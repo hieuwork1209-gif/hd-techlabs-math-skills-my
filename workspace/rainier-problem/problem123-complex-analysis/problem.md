@@ -8,7 +8,7 @@ f(0)=0,\qquad f\left(\frac12\right)=\frac13,\qquad f\left(-\frac12\right)=-\frac
 $$
 determine exactly
 $$
-\sup |f''(0)|.
+\sup |f^{(3)}(0)|.
 $$
 
 ---
@@ -26,4 +26,4 @@ $$
 
 ## Domain Explanation
 
-The problem is an extremal interpolation question for holomorphic self-maps of the unit disk. Its essential tools are Schwarz-Pick theory, disk automorphisms, and finite Blaschke products, so Complex analysis is the direct classification rather than a real-analysis or general optimization category.
+This is a sharp interpolation problem for holomorphic self-maps of the unit disk, governed by Schwarz-Pick theory and Schur-class factorization.
