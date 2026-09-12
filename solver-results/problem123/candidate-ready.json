@@ -1,0 +1,9 @@
+{
+  "problem": "problem123",
+  "mode": "new",
+  "ready": true,
+  "problem_path": "workspace/rainier-problem/problem123-linear-transformations/problem.md",
+  "problem_blob_sha": "eaf436fc2a100e4b38c8fc6efc8a36df8f228748",
+  "solution_path": "workspace/rainier-problem/problem123-linear-transformations/solution.md",
+  "solution_blob_sha": "a6fb9229f4c4445a06549da55d77840c3faab41b"
+}
