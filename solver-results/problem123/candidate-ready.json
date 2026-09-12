@@ -1,0 +1,9 @@
+{
+  "problem": "problem123",
+  "mode": "existing",
+  "ready": true,
+  "problem_path": "workspace/rainier-problem/problem123-convex-geometry/problem.md",
+  "problem_blob_sha": "5b948b25d9635edc41b86bbe9ed66dd04b07a9dd",
+  "solution_path": "workspace/rainier-problem/problem123-convex-geometry/solution.md",
+  "solution_blob_sha": "f15d78e9e42c1f79dad2b6ef6ae9b15058e71678"
+}
