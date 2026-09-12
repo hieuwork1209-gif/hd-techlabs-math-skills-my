@@ -1,0 +1,20 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-functional-analysis/problem.md",
+  "problem_blob_sha": "0b29b0a1949338301a1ac090c2879c8034a9bdab",
+  "solution_blob_sha": "fbc863a662387b870d6110aef987e79a0e4d73f0",
+  "solve_id": "problem123-web-0b29b0a19493",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "configuration_evidence": "user_confirmed_web_ui",
+  "runs": 1,
+  "status": "success",
+  "mathematical_verdict": "correct",
+  "final_answer": "RAINIER_WEB_SOLVE_ID: problem123-web-0b29b0a19493\n\nLet (Tf)(x)=\\int_0^x(x-t)f(t)\\,dt, with f in H_0 and integral f=0. The solver sets u=Tf, so u''=f, u(0)=u'(0)=0, and the mean-zero constraint gives u'(1)=0. It then minimizes the Rayleigh quotient integral |u''|^2 / integral |u|^2 over this admissible class. The Euler-Lagrange equation is u^{(4)}=lambda u with u(0)=u'(0)=0 and natural endpoint conditions u'(1)=u'''(1)=0. Writing lambda=a^4 gives the characteristic equation sin(a)cosh(a)+cos(a)sinh(a)=0, equivalently tan(a)=-tanh(a). The smallest positive root is a_1 approximately 2.36502037243135, hence the exact norm is 1/a_1^2, approximately 0.1787846496.",
+  "common_entry": "Set u=Tf so that u''=f and translate the domain constraint into endpoint conditions on u.",
+  "common_reduction": "Convert the operator norm into the minimum Rayleigh quotient ||u''||_2^2/||u||_2^2 on the induced boundary-condition space.",
+  "first_decisive_recognition": "The mean-zero constraint is exactly u'(1)=0 because u'(x)=\\int_0^x f(t)dt.",
+  "recovery_path": "Euler-Lagrange -> fourth-order eigenvalue problem -> determinant condition -> tan(a)=-tanh(a).",
+  "earliest_robust_shortcut": "Bypassing the adjoint/projection formulation entirely and going directly to u=Tf plus the Rayleigh quotient makes the whole problem a standard beam-type eigenvalue calculation."
+}
