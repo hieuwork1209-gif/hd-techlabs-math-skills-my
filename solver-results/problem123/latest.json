@@ -2,8 +2,8 @@
   "problem": "problem123",
   "branch": "adversary/problem123",
   "problem_path": "workspace/rainier-problem/problem123-algebraic-geometry/problem.md",
-  "problem_blob_sha": "1cdb21b8757b5222796590f77ff15a952b5f8f22",
-  "source_commit_sha": "d69fb486af31f93827d2e636cc2d8259a567e8a9",
+  "problem_blob_sha": "ed9bea5d3f8f8f0ca5d68828dd8e868b3aeaa4d3",
+  "source_commit_sha": "d1dfac76fbad5085cb1f7d5c90324ba16ff9158a",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-12T01:46:59+00:00",
-  "result_file": "solver-results/problem123/1cdb21b8757b.json"
+  "completed_at": "2026-09-12T01:55:35+00:00",
+  "result_file": "solver-results/problem123/ed9bea5d3f8f.json"
 }

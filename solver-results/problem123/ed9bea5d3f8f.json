@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-algebraic-geometry/problem.md",
+  "source_commit_sha": "d1dfac76fbad5085cb1f7d5c90324ba16ff9158a",
+  "problem_blob_sha": "ed9bea5d3f8f8f0ca5d68828dd8e868b3aeaa4d3",
+  "statement_sha256": "3bf4e142538feeca22a8d7811fb91a957ad3e21897a1476e93ff818800353873",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-12T01:52:53+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "We need determine \\(g(C/H)\\). The answer is\n\n\\[\n\\boxed{\\displaystyle g(C/H)=\\frac{2r-h-c-hd+e}{4}}.\n\\]\n\nHere is the proof.\n\nLet \\(\\alpha(y,z)=(\\zeta y,z)\\), \\(\\beta(y,z)=(y,\\zeta z)\\). The map \\(C\\to \\mathbb P^1_x\\) is an abelian Kummer cover of degree \\(r^2\\), because no nontrivial product\n\\[\n\\bigl(x(x-1)\\bigr)^u\\bigl(x(x+1)\\bigr)^v\n\\]\nis an \\(r\\)-th power unless \\(u\\equiv v\\equiv0\\pmod r\\).\n\nIts branch points are \\(x=0,1,-1,\\infty\\). The inertia orders are\n\n\\[\n\\begin{array}{c|c|c}\nx & \\text{inertia generator} & \\#\\text{points above }x\\\\\n\\hline\n1 & \\alpha & r\\\\\n-1 & \\beta & r\\\\\n0 & \\alpha\\beta & r\\\\\n\\infty & \\alpha^2\\beta^2 & rh\n\\end{array}\n\\]\n\nwhere \\(h=\\gcd(r,2)\\). Hence Riemann-Hurwitz for \\(C\\to\\mathbb P^1\\) gives\n\n\\[\n2g(C)-2\n=\n-2r^2+3r(r-1)+rh\\left(\\frac rh-1\\right)\n=\n2r^2-r(3+h).\n\\]\n\nNow use Riemann-Hurwitz for \\(C\\to C/H\\). We need the total number of fixed points of nonidentity elements of \\(H\\).\n\nThe rotations are \\(\\rho^k=\\alpha^k\\beta^{ak}\\), \\(1\\le k<r\\). Such an element fixes points over \\(0\\) exactly when\n\n\\[\n(a-1)k\\equiv0\\pmod r,\n\\]\n\ngiving \\(r(c-1)\\) fixed points in total. It fixes points over \\(\\infty\\) exactly when additionally \\(h\\mid k\\), giving \\(rh(d-1)\\) fixed points in total. Thus the rotation contribution is\n\n\\[\nr(c-1)+rh(d-1).\n\\]\n\nFor reflections, write \\(\\sigma_k=\\tau\\rho^k\\). Since \\(\\sigma_k(x)=-x\\), fixed points can only lie above \\(0\\) or \\(\\infty\\).\n\nNear \\(x=0\\), put \\(\\lambda=z/y\\). Then \\(\\lambda^r=-1\\), and\n\n\\[\n\\sigma_k(\\lambda)=\\frac{\\zeta^{(1-a)k}}{\\lambda}.\n\\]\n\nSo fixed points over \\(0\\) satisfy \\(\\lambda^2=\\zeta^{(1-a)k}\\). This has one solution for odd \\(r\\), and none for even \\(r\\). Thus the total contribution over \\(0\\) is \\(r(2-h)\\).\n\nNear \\(\\infty\\), put \\(u=1/x\\). If \\(r\\) is odd, \\(\\lambda=z/y\\) satisfies \\(\\lambda^r=1\\), so each reflection fixes one point over \\(\\infty\\), giving \\(r\\) points total.\n\nIf \\(r=2q\\), set\n\n\\[\nY=uy^q,\\qquad Z=uz^q.\n\\]\n\nAt infinity \\(Y^2=Z^2=1\\). A fixed point count gives total contribution \\(r(4-e)\\), where\n\n\\[\ne=\\gcd(r,a+1,4).\n\\]\n\nCombining both parity cases, the total reflection contribution is\n\n\\[\nr(h+2-e).\n\\]\n\nTherefore\n\n\\[\n\\sum_{1\\ne \\gamma\\in H}\\#\\operatorname{Fix}(\\gamma)\n=\nr(c-1)+rh(d-1)+r(h+2-e).\n\\]\n\nSince \\(|H|=2r\\), Riemann-Hurwitz gives\n\n\\[\n2g(C)-2\n=\n2r\\bigl(2g(C/H)-2\\bigr)\n+\nr(c-1)+rh(d-1)+r(h+2-e).\n\\]\n\nSubstituting \\(2g(C)-2=2r^2-r(3+h)\\) and simplifying,\n\n\\[\ng(C/H)\n=\n\\frac{2r-h-c-hd+e}{4}.\n\\]\n\nThus\n\n\\[\n\\boxed{\\displaystyle \\frac{2r-h-c-hd+e}{4}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-12T01:55:35+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/ed9bea5d3f8f.json"
+}
