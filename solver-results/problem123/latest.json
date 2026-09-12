@@ -1,9 +1,9 @@
 {
   "problem": "problem123",
   "branch": "adversary/problem123",
-  "problem_path": "workspace/rainier-problem/problem123-linear-transformations/problem.md",
-  "problem_blob_sha": "eaf436fc2a100e4b38c8fc6efc8a36df8f228748",
-  "source_commit_sha": "759584bd82548ae7d4e0cc744ae14b6bd2baaa1e",
+  "problem_path": "workspace/rainier-problem/problem123-complex-analysis/problem.md",
+  "problem_blob_sha": "7cd1e1ce4b73a173073a6f7c6f6b87a24e13b1c1",
+  "source_commit_sha": "7f57268eb5644bb863b43d06a14a0ade0440a294",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-12T02:22:35+00:00",
-  "result_file": "solver-results/problem123/eaf436fc2a10.json"
+  "completed_at": "2026-09-12T08:58:49+00:00",
+  "result_file": "solver-results/problem123/7cd1e1ce4b73.json"
 }
