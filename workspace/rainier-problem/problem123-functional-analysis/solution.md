@@ -72,9 +72,9 @@ $$
 $$
 The left side equals
 $$
--2\bigl(\sinh\beta\cos\beta+\sin\beta\cosh\beta\bigr),
+-2\bigl(\sinh\beta\cos\beta+\sin\beta\cosh\beta\bigr).
 $$
-so the positive eigenvalues are exactly $\lambda=\beta^{-4}$ for positive roots of
+If $\cos\beta=0$, the expression in parentheses is $\sin\beta\cosh\beta\neq0$, so no root occurs there. Otherwise division by $\cos\beta\cosh\beta$ is valid, and the positive eigenvalues are exactly $\lambda=\beta^{-4}$ for positive roots of
 $$
 \tan\beta=-\tanh\beta.
 $$
