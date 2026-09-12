@@ -55,21 +55,31 @@ $$
 The leading $2\times 2$ block of each matrix is positive definite, with determinant $1/72$. Therefore each $3\times 3$ matrix is positive semidefinite exactly when its scalar Schur complement is nonnegative, equivalently exactly when its determinant is nonnegative.
 
 Step 3: Derive the exact feasible interval for the fifth moment
-Direct expansion gives
+Expanding the first determinant along its first row gives
 $$
+\begin{aligned}
 \det H_x
-=\frac{8s-288r^2+96r-9}{576}.
+&=\frac{1}{2}\left(\frac{s}{4}-r^2\right)
+-\frac{1}{3}\left(\frac{s}{3}-\frac{r}{4}\right)
++\frac{1}{4}\left(\frac{r}{3}-\frac{1}{16}\right)\\
+&=\frac{8s-288r^2+96r-9}{576}.
+\end{aligned}
 $$
 Hence $H_x\succeq0$ is equivalent to
 $$
 s\geq36r^2-12r+\frac{9}{8}.
 $$
-Similarly,
+For the second matrix, expansion along the first row gives
 $$
+\begin{aligned}
 \det H_{1-x}
-=\frac{-864r^2+408r-24s-43}{1728},
+&=\frac{1}{2}\left[\frac{r-s}{12}-\left(\frac{1}{4}-r\right)^2\right]
+-\frac{1}{6}\left[\frac{r-s}{6}-\frac{1}{12}\left(\frac{1}{4}-r\right)\right]\\
+&\quad+\frac{1}{12}\left[\frac{1}{6}\left(\frac{1}{4}-r\right)-\frac{1}{144}\right]\\
+&=\frac{-864r^2+408r-24s-43}{1728}.
+\end{aligned}
 $$
-so $H_{1-x}\succeq0$ is equivalent to
+Therefore $H_{1-x}\succeq0$ is equivalent to
 $$
 s\leq-36r^2+17r-\frac{43}{24}.
 $$
