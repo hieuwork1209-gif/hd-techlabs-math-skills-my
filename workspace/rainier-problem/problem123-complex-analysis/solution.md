@@ -5,7 +5,7 @@ Let
 $$
 a=\frac{1}{2},\qquad c=\frac{2}{3}.
 $$
-Since $f(0)=0$, Schwarz's lemma gives a holomorphic function $g:\mathbb D\to\overline{\mathbb D}$ such that
+Since $f(0)=0$, Schwarz's lemma gives a holomorphic function $g:\mathbb D\to\mathbb D$ such that
 $$
 f(z)=zg(z).
 $$
@@ -32,14 +32,19 @@ is a Schur-class function satisfying
 $$
 h(a)=h(-a)=0.
 $$
-The Blaschke product with these two zeros is
+For $u\in\mathbb D$, write
 $$
-B(z)=\frac{z-a}{1-az}\frac{z+a}{1+az}
+\psi_u(z)=\frac{z-u}{1-\overline{u}z}.
+$$
+If a Schur-class function $H$ vanishes at $u$, then Schwarz's lemma applied to $H\circ\psi_u^{-1}$ shows that $H/\psi_u$ is again Schur-class. Applying this first at $a$ and then at $-a$ gives
+$$
+h(z)=B(z)q(z),
+$$
+where $q:\mathbb D\to\mathbb D$ is holomorphic and
+$$
+B(z)=\psi_a(z)\psi_{-a}(z)
+=\frac{z-a}{1-az}\frac{z+a}{1+az}
 =\frac{z^2-a^2}{1-a^2z^2}.
-$$
-Dividing successively by the two Blaschke factors preserves the Schur class, so there is a holomorphic $q:\mathbb D\to\overline{\mathbb D}$ with
-$$
-h(z)=B(z)q(z).
 $$
 At the origin,
 $$
@@ -114,7 +119,7 @@ so equality holds in Schwarz-Pick and in the one-variable estimate from Step 4. 
 $$
 h=Bq,\qquad g=\frac{c+h}{1+ch},\qquad f(z)=zg(z).
 $$
-Since $B$ and $q$ are Schur-class functions, so is $h$, and the disk automorphism inverse to $\phi$ makes $g$ Schur-class. Thus $f:\mathbb D\to\mathbb D$. Moreover $h(\pm a)=0$, so $g(\pm a)=c$ and therefore
+Since $B$ and $q$ map $\mathbb D$ into $\mathbb D$, so does $h=Bq$, and the inverse disk automorphism to $\phi$ sends $h$ to $g$. Hence $g:\mathbb D\to\mathbb D$ and therefore $f:\mathbb D\to\mathbb D$. Moreover $h(\pm a)=0$, so $g(\pm a)=c$ and
 $$
 f\left(\frac12\right)=\frac13,\qquad f\left(-\frac12\right)=-\frac13.
 $$
@@ -140,8 +145,8 @@ $\frac{2}{7}$
 
 ## Solution Concepts
 
-- Schwarz lemma
-- Schwarz-Pick lemma
+- schwarz lemma
+- schwarz-pick lemma
 - disk automorphisms
-- finite Blaschke products
+- finite blaschke products
 - extremal holomorphic interpolation
