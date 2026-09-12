@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-complex-analysis/problem.md",
+  "source_commit_sha": "baf1956e0204e9b27149b04fc632a98d3bfa7572",
+  "problem_blob_sha": "122f7422b721a8822b4dbef9f2f49f6021b235a8",
+  "statement_sha256": "35abae8b67155e1d8bb1d985723a7727a95b09d7dd364af8b0bf9670ac5afba6",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-12T09:07:29+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\n\\rho(u,v)=\\left|\\frac{u-v}{1-\\bar u v}\\right|\n\\]\n\nbe the pseudohyperbolic distance on \\(\\mathbb D\\).\n\nFirst symmetrize. If \\(f\\) is admissible, then\n\n\\[\nh(z)=-f(-z)\n\\]\n\nis also admissible, and \\(h^{(3)}(0)=f^{(3)}(0)\\). Hence\n\n\\[\nF(z)=\\frac{f(z)+h(z)}2\n\\]\n\nis admissible, odd, and has the same third derivative at \\(0\\). So it suffices to consider odd \\(f\\).\n\nFor odd \\(f\\), write\n\n\\[\nf(z)=z\\phi(z^2),\n\\]\n\nwhere \\(\\phi:\\mathbb D\\to\\mathbb D\\). The interpolation condition gives\n\n\\[\n\\phi\\left(\\frac14\\right)=\\frac{2}{3},\n\\]\n\nand if \\(\\phi(w)=c_0+c_1w+\\cdots\\), then\n\n\\[\nf(z)=c_0z+c_1z^3+\\cdots,\n\\qquad f^{(3)}(0)=6c_1=6\\phi'(0).\n\\]\n\nThus we need maximize \\(|\\phi'(0)|\\) among \\(\\phi:\\mathbb D\\to\\mathbb D\\) with \\(\\phi(1/4)=2/3\\).\n\nSet\n\n\\[\na=\\frac14,\\qquad b=\\frac23,\\qquad c=\\phi(0),\n\\]\n\nand define\n\n\\[\nq=\\rho(c,b).\n\\]\n\nBy Schwarz-Pick, \\(q\\le a\\). Now apply Schwarz’s lemma to\n\n\\[\n\\frac{\\phi(z)-c}{1-\\bar c\\phi(z)}.\n\\]\n\nThere is a holomorphic \\(g:\\mathbb D\\to\\overline{\\mathbb D}\\) such that\n\n\\[\n\\frac{\\phi(z)-c}{1-\\bar c\\phi(z)}=zg(z).\n\\]\n\nThen\n\n\\[\n\\phi'(0)=(1-|c|^2)g(0),\n\\]\n\nand since\n\n\\[\n|g(a)|=\\frac{q}{a},\n\\]\n\nSchwarz-Pick gives\n\n\\[\n|g(0)|\\le \\frac{q/a+a}{1+q}\n=\\frac{q+a^2}{a(1+q)}.\n\\]\n\nAlso, by the triangle inequality for \\(\\rho\\),\n\n\\[\nb=\\rho(0,b)\\le \\frac{|c|+q}{1+|c|q},\n\\]\n\nso\n\n\\[\n|c|\\ge \\frac{b-q}{1-bq}.\n\\]\n\nTherefore\n\n\\[\n|\\phi'(0)|\n\\le\n\\left(1-\\left(\\frac{b-q}{1-bq}\\right)^2\\right)\n\\frac{q+a^2}{a(1+q)}.\n\\]\n\nSubstituting \\(a=1/4,\\ b=2/3\\),\n\n\\[\n|\\phi'(0)|\n\\le\n20\\frac{(1-q)(q+1/16)}{(3-2q)^2},\n\\qquad 0\\le q\\le \\frac14.\n\\]\n\nThis expression is increasing on \\([0,1/4]\\), so its maximum is at \\(q=1/4\\). Hence\n\n\\[\n|\\phi'(0)|\\le\n20\\frac{(3/4)(5/16)}{(5/2)^2}\n=\\frac34.\n\\]\n\nEquality is attained by\n\n\\[\n\\phi(z)=\\frac{z+\\frac12}{1+\\frac z2},\n\\]\n\nfor which \\(\\phi(1/4)=2/3\\) and \\(\\phi'(0)=3/4\\). Then\n\n\\[\nf(z)=z\\phi(z^2)\n=\nz\\frac{z^2+\\frac12}{1+\\frac{z^2}{2}}\n\\]\n\nis admissible and satisfies\n\n\\[\nf^{(3)}(0)=6\\cdot \\frac34=\\frac92.\n\\]\n\n\\[\n\\boxed{\\sup |f^{(3)}(0)|=\\frac92}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-12T09:08:59+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/122f7422b721.json"
+}
