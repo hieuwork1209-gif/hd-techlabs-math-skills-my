@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-algebraic-geometry/problem.md",
+  "source_commit_sha": "d69fb486af31f93827d2e636cc2d8259a567e8a9",
+  "problem_blob_sha": "1cdb21b8757b5222796590f77ff15a952b5f8f22",
+  "statement_sha256": "985aa6a4f16065b87e48e5380bda7d96e16d6a493e4b7b2f68a86a36fe3e97fb",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-12T01:45:36+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(K=\\mathbb C(x)\\), and write\n\\[\na=x(x-1),\\qquad b=x(x+1).\n\\]\nThe classes of \\(a,b\\) are independent modulo \\(r\\)-th powers: if \\(a^i b^j\\) were an \\(r\\)-th power with \\(0\\le i,j<r\\), then looking at valuations at \\(x=1\\) and \\(x=-1\\) gives \\(r\\mid i\\) and \\(r\\mid j\\). Hence\n\\[\n[\\mathbb C(C):\\mathbb C(x)]=r^2.\n\\]\n\nThe cover \\(C\\to \\mathbb P^1_x\\) is abelian of degree \\(r^2\\). Its branch data are read from the valuation vectors of \\((a,b)\\):\n\n\\[\n\\begin{array}{c|c|c}\nx & (v_x(a),v_x(b)) & e_x\\\\ \\hline\n-1&(0,1)&r\\\\\n0&(1,1)&r\\\\\n1&(1,0)&r\\\\\n\\infty&(-2,-2)&r/h\n\\end{array}\n\\]\nwhere \\(h=\\gcd(r,2)\\). Therefore Riemann-Hurwitz gives\n\\[\n2g(C)-2\n=-2r^2+3r^2\\left(1-\\frac1r\\right)\n+r^2\\left(1-\\frac{h}{r}\\right),\n\\]\nso\n\\[\ng(C)=1+r^2-\\frac{(3+h)r}{2}.\n\\]\n\nNow count the fixed points of \\(\\tau(x,y,z)=(-x,z,y)\\). A fixed point must lie over a fixed point of \\(x\\mapsto -x\\), so only over \\(x=0\\) or \\(x=\\infty\\).\n\nOver \\(x=0\\), put \\(t=z/y\\). Then\n\\[\nt^r=\\frac{x+1}{x-1},\n\\]\nso above \\(0\\), \\(t^r=-1\\), and \\(\\tau\\) sends \\(t\\mapsto t^{-1}\\). Thus a fixed point requires \\(t=t^{-1}\\), hence \\(t=\\pm1\\). This is compatible with \\(t^r=-1\\) only for \\(t=-1\\) and \\(r\\) odd. So there is one fixed point over \\(0\\) if \\(r\\) is odd, and none if \\(r\\) is even.\n\nOver \\(\\infty\\), again \\(t=z/y\\), so \\(t^r\\to1\\).\n\nIf \\(r\\) is odd, the points over \\(\\infty\\) are indexed by \\(t^r=1\\), and \\(\\tau\\) sends \\(t\\mapsto t^{-1}\\). The only fixed value is \\(t=1\\), giving one fixed point.\n\nIf \\(r\\) is even, write \\(m=r/2\\) and\n\\[\nA=\\frac{y^m}{x},\\qquad B=\\frac{z^m}{x}.\n\\]\nAt \\(\\infty\\), \\(A=\\alpha=\\pm1\\), \\(t=\\lambda\\) with \\(\\lambda^r=1\\), and \\(B=\\alpha\\lambda^m\\). Since \\(x\\mapsto -x\\),\n\\[\n\\tau(A)=-B=-A t^m,\\qquad \\tau(t)=t^{-1}.\n\\]\nA fixed point requires \\(\\lambda=\\lambda^{-1}\\), so \\(\\lambda=\\pm1\\), and also\n\\[\n\\alpha=-\\alpha\\lambda^m,\n\\]\ni.e. \\(\\lambda^m=-1\\). This happens exactly when \\(\\lambda=-1\\) and \\(m\\) is odd, namely \\(r\\equiv2\\pmod4\\). Then \\(\\alpha=\\pm1\\), giving two fixed points. If \\(4\\mid r\\), there are none.\n\nThus the number of fixed points of \\(\\tau\\) is\n\\[\nN=2(1-\\epsilon).\n\\]\n\nFinally, Riemann-Hurwitz for the quotient map \\(C\\to C/\\langle\\tau\\rangle\\) gives\n\\[\n2g(C)-2=2\\bigl(2g(C/\\langle\\tau\\rangle)-2\\bigr)+N.\n\\]\nHence\n\\[\ng(C/\\langle\\tau\\rangle)\n=\\frac{2g(C)+2-N}{4}\n=\\frac{2r^2+2+2\\epsilon-(3+h)r}{4}.\n\\]\n\n\\[\n\\boxed{\\displaystyle \\frac{2r^2+2+2\\epsilon-(3+h)r}{4}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-12T01:46:59+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/1cdb21b8757b.json"
+}
