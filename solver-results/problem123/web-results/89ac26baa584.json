@@ -1,0 +1,15 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-bayesian-statistics/problem.md",
+  "problem_blob_sha": "89ac26baa584cb85cec9123a8712aaec9c11c6d3",
+  "solution_blob_sha": "7bd1786b83f05974ed6a04743e58003b8dac96b8",
+  "solve_id": "problem123:89ac26baa584cb85cec9123a8712aaec9c11c6d3",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "configuration_evidence": "user_confirmed_web_ui",
+  "runs": 1,
+  "status": "success",
+  "mathematical_verdict": "correct",
+  "final_answer": "RAINIER_WEB_SOLVE_ID: problem123:89ac26baa584cb85cec9123a8712aaec9c11c6d3\n\nLet m_k=E_mu[Theta^k]. The calibration assumptions give m_1=1/2, m_2=1/3, m_3=1/4. After four successes, Bayes' rule gives p_mu=m_5/m_4. The solver proves the upper bound m_5 <= (9/10)m_4 with the factorization x^5-(9/10)x^4-(11/40)x+(9/8)x^2-(19/20)x^3 = x(x-1)(2x-1)^2(10x+11)/40 <= 0 on [0,1], and the lower bound m_5 >= (11/14)m_4 with (x^2-x+1/6)^2(x+17/14) >= 0. It exhibits the lower extremal prior (delta_a+delta_b)/2, a=(3-sqrt(3))/6, b=(3+sqrt(3))/6, and the upper extremal prior (1/6)delta_0+(2/3)delta_{1/2}+(1/6)delta_1. It then shows mixtures of admissible priors make p_mu a positive-weighted average of endpoint predictive probabilities, so every intermediate value occurs. Final exact set: [11/14,9/10]."
+}
