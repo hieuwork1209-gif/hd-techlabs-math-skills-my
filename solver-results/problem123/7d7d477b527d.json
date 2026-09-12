@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-complex-analysis/problem.md",
+  "source_commit_sha": "168ea72a39f5266cce0a50ab4616511d5f652270",
+  "problem_blob_sha": "7d7d477b527d2a2f56cae3234fe3b70d68565234",
+  "statement_sha256": "0b9adea3985b06adf085bc21fb40fd33db3271d1a733fb5214a75a891206b85f",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-12T09:35:23+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let  \n\\[\n\\Omega=\\{u\\in\\mathbb C:|u-c|<1\\}.\n\\]\n\nFor distinct \\(z,w\\in\\mathbb D\\),\n\\[\nF_\\lambda(z)=F_\\lambda(w)\n\\]\nis equivalent to\n\\[\n(z-w)\\left(1-\\frac{\\lambda}{(z-c)(w-c)}\\right)=0.\n\\]\nThus\n\\[\n\\lambda=(z-c)(w-c).\n\\]\nSince \\(u=c-z\\) and \\(v=c-w\\) both lie in \\(\\Omega\\), we have\n\\[\nS_c=\\{uv:u,v\\in\\Omega,\\ u\\ne v\\}.\n\\]\n\nThe restriction \\(u\\ne v\\) does not change the image: if \\(u=v\\in\\Omega\\), then for sufficiently small nonzero \\(\\varepsilon\\),\n\\[\nu+\\varepsilon,\\qquad \\frac{u^2}{u+\\varepsilon}\n\\]\nare distinct points of \\(\\Omega\\) whose product is \\(u^2\\). Hence\n\\[\nS_c=\\{uv:u,v\\in\\Omega\\}.\n\\]\n\nSet\n\\[\n\\alpha=\\arcsin\\frac1c.\n\\]\nFor \\(-\\alpha<\\theta<\\alpha\\), the points of \\(\\Omega\\) having argument \\(\\theta\\) have moduli between\n\\[\nq_-(\\theta)=c\\cos\\theta-\\sqrt{1-c^2\\sin^2\\theta}\n\\]\nand\n\\[\nq_+(\\theta)=c\\cos\\theta+\\sqrt{1-c^2\\sin^2\\theta}.\n\\]\nAlso,\n\\[\nq_+(\\theta)q_-(\\theta)=c^2-1.\n\\]\n\nIf \\(\\lambda=uv\\) has argument \\(\\phi\\), write\n\\[\n\\arg u=\\theta,\\qquad \\arg v=\\phi-\\theta.\n\\]\nThe maximal and minimal possible moduli of \\(\\lambda\\) occur when\n\\[\n\\theta=\\frac{\\phi}{2}.\n\\]\nIndeed, \\(\\log q_+(\\theta)\\) is strictly concave, since\n\\[\n\\frac{d^2}{d\\theta^2}\\log q_+(\\theta)\n=\n-\\frac{c\\cos\\theta}{(1-c^2\\sin^2\\theta)^{3/2}}<0.\n\\]\nTherefore the radial bounds of \\(S_c\\) at angle \\(\\phi\\), with \\(|\\phi|<2\\alpha\\), are\n\\[\nR_{\\rm out}(\\phi)=q_+(\\phi/2)^2,\n\\qquad\nR_{\\rm in}(\\phi)=q_-(\\phi/2)^2.\n\\]\n\nHence\n\\[\n\\operatorname{Area}(S_c)\n=\n\\frac12\\int_{-2\\alpha}^{2\\alpha}\n\\left(q_+(\\phi/2)^4-q_-(\\phi/2)^4\\right)\\,d\\phi.\n\\]\nUsing symmetry and setting \\(\\theta=\\phi/2\\),\n\\[\n\\operatorname{Area}(S_c)\n=\n2\\int_0^\\alpha\n\\left(q_+(\\theta)^4-q_-(\\theta)^4\\right)\\,d\\theta.\n\\]\nNow\n\\[\nq_+^4-q_-^4\n=\n8c\\cos\\theta\\sqrt{1-c^2\\sin^2\\theta}\n\\left(2c^2\\cos^2\\theta-(c^2-1)\\right).\n\\]\nLet \\(x=c\\sin\\theta\\). Then\n\\[\n\\operatorname{Area}(S_c)\n=\n16\\int_0^1\n\\sqrt{1-x^2}\\,(c^2+1-2x^2)\\,dx.\n\\]\nFinally,\n\\[\n\\int_0^1\\sqrt{1-x^2}\\,dx=\\frac{\\pi}{4},\n\\qquad\n\\int_0^1x^2\\sqrt{1-x^2}\\,dx=\\frac{\\pi}{16},\n\\]\nso\n\\[\n\\operatorname{Area}(S_c)\n=\n16\\left((c^2+1)\\frac{\\pi}{4}-2\\frac{\\pi}{16}\\right)\n=\n\\boxed{2\\pi(2c^2+1)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-12T09:42:25+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/7d7d477b527d.json"
+}
