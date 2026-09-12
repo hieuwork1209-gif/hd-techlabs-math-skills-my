@@ -22,15 +22,15 @@ Also $r_-r_+=c^2-1$. If $s(\theta)=\log r_+(\theta)$, then
 $$
 s''(\theta)=-\frac{c\cos\theta}{(1-c^2\sin^2\theta)^{3/2}}<0.
 $$
-Thus the upper boundary of $\Log V_c$ is concave, while
+Thus the upper boundary of $\log V_c$ is concave, while
 $$
 \log r_-(\theta)=\log(c^2-1)-s(\theta)
 $$
-is convex. Hence $\Log V_c$ is convex. For $u,v\in V_c$,
+is convex. Hence $\log V_c$ is convex. For $u,v\in V_c$,
 $$
-\frac{\Log u+\Log v}{2}\in\Log V_c,
+\frac{\log u+\log v}{2}\in\log V_c,
 $$
-so $w=\exp((\Log u+\Log v)/2)\in V_c$ and $w^2=uv$. Therefore
+so $w=\exp((\log u+\log v)/2)\in V_c$ and $w^2=uv$. Therefore
 $$
 V_cV_c=V_c^2,
 $$
