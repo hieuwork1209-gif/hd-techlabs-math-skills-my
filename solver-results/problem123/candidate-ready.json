@@ -1,0 +1,9 @@
+{
+  "problem": "problem123",
+  "mode": "existing",
+  "ready": true,
+  "problem_path": "workspace/rainier-problem/problem123-complex-analysis/problem.md",
+  "problem_blob_sha": "7cd1e1ce4b73a173073a6f7c6f6b87a24e13b1c1",
+  "solution_path": "workspace/rainier-problem/problem123-complex-analysis/solution.md",
+  "solution_blob_sha": "8bfdc831d7b72030c4e5faea1aeefe55bdc0314d"
+}
