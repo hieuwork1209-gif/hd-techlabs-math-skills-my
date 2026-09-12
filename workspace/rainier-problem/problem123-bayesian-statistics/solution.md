@@ -1,154 +1,154 @@
 ## Steps
 
-Step 1: Express the posterior predictive probability as a ratio of moments
-Let $\Theta$ have prior law $\mu$ on $[0,1]$, and conditional on $\Theta=\theta$ let the observations be i.i.d. Bernoulli$(\theta)$. Write
+Step 1: Express the posterior predictive probability through the next unknown moment
+Let
 $$
 m_k=\mathbb E_\mu[\Theta^k].
 $$
 The calibration assumptions give
 $$
-m_1=\frac{1}{2},\qquad m_2=\frac{1}{3},\qquad m_3=\frac{1}{4}.
+m_0=1,\qquad m_1=\frac{1}{2},\qquad m_2=\frac{1}{3},\qquad m_3=\frac{1}{4},\qquad m_4=r.
 $$
-After four observed successes, Bayes' rule weights the prior by $\theta^4$. Therefore the posterior predictive success probability is
+After four observed successes, Bayes' rule weights the prior by $\theta^4$, so
 $$
-p_\mu=\frac{m_5}{m_4}.
+p_\mu=\frac{m_5}{m_4}=\frac{m_5}{r}.
 $$
-By Cauchy-Schwarz applied to $\Theta^2$ and $1$,
-$$
-m_4=\mathbb E[\Theta^4]\geq\mathbb E[\Theta^2]^2=m_2^2=\frac{1}{9},
-$$
-so the denominator is always positive.
+Because a feasible prior is assumed to exist and $m_2=1/3$, we have $r=m_4>0$. Thus the problem is to determine the exact feasible interval for $m_5$ once the first five moments through $m_4=r$ are fixed.
 
-Step 2: Derive the two canonical feasible priors and their candidate endpoint values
-The fixed moments imply, for $Y=\Theta-\frac{1}{2}$,
+Step 2: Apply the degree-five Hausdorff moment criterion
+Use the degree-five Hausdorff moment criterion in the following exact form. Real numbers $m_0,\ldots,m_5$ with $m_0=1$ are the moments of a Borel probability measure on $[0,1]$ if and only if both matrices
 $$
-\mathbb E[Y]=0,\qquad \mathbb E[Y^2]=\frac{1}{12},\qquad \mathbb E[Y^3]=0.
+H_x=(m_{i+j+1})_{i,j=0}^{2}
 $$
-A symmetric two-point law matching these central moments is forced to place mass $\frac{1}{2}$ at
+and
 $$
-a=\frac{1}{2}-\frac{1}{2\sqrt{3}},\qquad b=\frac{1}{2}+\frac{1}{2\sqrt{3}}.
+H_{1-x}=(m_{i+j}-m_{i+j+1})_{i,j=0}^{2}
 $$
-Call this prior $\mu_-$. Since $a,b$ are the roots of
+are positive semidefinite. These are the quadratic-form matrices of
 $$
-x^2-x+\frac{1}{6}=0,
+\mathbb E\!\left[\Theta q(\Theta)^2\right]\geq0
 $$
-the power sums $s_k=a^k+b^k$ satisfy
+and
 $$
-s_k=s_{k-1}-\frac{1}{6}s_{k-2},\qquad s_0=2,\quad s_1=1.
+\mathbb E\!\left[(1-\Theta)q(\Theta)^2\right]\geq0
 $$
-Hence
-$$
-s_2=\frac{2}{3},\quad s_3=\frac{1}{2},\quad s_4=\frac{7}{18},\quad s_5=\frac{11}{36}.
-$$
-Thus $\mu_-$ has the required first three moments and
-$$
-m_4=\frac{7}{36},\qquad m_5=\frac{11}{72},\qquad p_{\mu_-}=\frac{11}{14}.
-$$
+for every quadratic polynomial $q$.
 
-A second symmetric law matching the same three central moments is obtained by using the endpoints and midpoint. If the endpoint masses are both $w$, the variance condition gives
+Write $s=m_5$. Substituting the fixed moments gives
 $$
-2w\left(\frac{1}{2}\right)^2=\frac{1}{12},
+H_x=
+\begin{pmatrix}
+\frac{1}{2}&\frac{1}{3}&\frac{1}{4}\\
+\frac{1}{3}&\frac{1}{4}&r\\
+\frac{1}{4}&r&s
+\end{pmatrix}
 $$
-so $w=\frac{1}{6}$. Therefore
+and
 $$
-\mu_+=\frac{1}{6}\delta_0+\frac{2}{3}\delta_{1/2}+\frac{1}{6}\delta_1.
+H_{1-x}=
+\begin{pmatrix}
+\frac{1}{2}&\frac{1}{6}&\frac{1}{12}\\
+\frac{1}{6}&\frac{1}{12}&\frac{1}{4}-r\\
+\frac{1}{12}&\frac{1}{4}-r&r-s
+\end{pmatrix}.
 $$
-It also satisfies the three calibration moments, and
-$$
-m_4=\frac{5}{24},\qquad m_5=\frac{3}{16},\qquad p_{\mu_+}=\frac{9}{10}.
-$$
-These give candidate lower and upper endpoints.
+The leading $2\times2$ block of each matrix is positive definite, with determinant $1/72$. Therefore each $3\times3$ matrix is positive semidefinite exactly when its scalar Schur complement is nonnegative, equivalently exactly when its determinant is nonnegative.
 
-Step 3: Prove the sharp lower bound by a moment certificate
-To prove $p_\mu\geq\frac{11}{14}$, it is enough to prove
+Step 3: Derive the exact feasible interval for the fifth moment
+Direct expansion gives
 $$
-m_5-\frac{11}{14}m_4\geq0.
+\det H_x
+=\frac{8s-288r^2+96r-9}{576}.
 $$
-Only moments through degree $3$ are fixed, so a useful certificate is a cubic polynomial whose expectation is determined by the calibration data. The candidate extremizer $\mu_-$ is supported at the two interior roots of $x^2-x+\frac{1}{6}$. Equality at an interior support point of a nonnegative pointwise gap must have even multiplicity, so require the gap to contain
+Hence $H_x\succeq0$ is equivalent to
 $$
-\left(x^2-x+\frac{1}{6}\right)^2.
+s\geq36r^2-12r+\frac{9}{8}.
 $$
-For
+Similarly,
 $$
-g_-(x)=x^5-\frac{11}{14}x^4,
+\det H_{1-x}
+=\frac{-864r^2+408r-24s-43}{1728},
 $$
-matching the degree-$5$ and degree-$4$ coefficients forces
+so $H_{1-x}\succeq0$ is equivalent to
 $$
-g_-(x)-h_-(x)=\left(x^2-x+\frac{1}{6}\right)^2\left(x+\frac{17}{14}\right),
+s\leq-36r^2+17r-\frac{43}{24}.
 $$
-where the remaining part is the cubic
+Thus the feasible fifth moments are exactly
 $$
-h_-(x)=\frac{23}{21}x^3-\frac{9}{7}x^2+\frac{95}{252}x-\frac{17}{504}.
+36r^2-12r+\frac{9}{8}
+\leq s\leq
+-36r^2+17r-\frac{43}{24}.
 $$
-Equivalently,
+The interval is nonempty exactly when
 $$
-g_-(x)-h_-(x)=\frac{(14x+17)(6x^2-6x+1)^2}{504}\geq0
+-36r^2+17r-\frac{43}{24}
+-\left(36r^2-12r+\frac{9}{8}\right)\geq0.
 $$
-for $0\leq x\leq1$. The expectation of the cubic is fixed and equals
+The left side factors as
 $$
-\mathbb E[h_-(\Theta)]
-=\frac{23}{21}\frac{1}{4}-\frac{9}{7}\frac{1}{3}+\frac{95}{252}\frac{1}{2}-\frac{17}{504}
-=0.
+-\frac{(24r-5)(36r-7)}{12},
 $$
-Therefore
+so feasibility is equivalent to
 $$
-m_5-\frac{11}{14}m_4=\mathbb E[g_-(\Theta)]\geq\mathbb E[h_-(\Theta)]=0.
+\frac{7}{36}\leq r\leq\frac{5}{24}.
 $$
-Thus $p_\mu\geq\frac{11}{14}$. Equality forces the nonnegative gap to vanish almost surely. Since $14x+17>0$ on $[0,1]$, the support must lie in the two roots of $6x^2-6x+1$, and the first moment then forces equal weights. Hence equality occurs exactly at $\mu_-$.
+This is automatically satisfied by the hypothesis that at least one calibrated prior exists.
 
-Step 4: Prove the sharp upper bound by the endpoint-midpoint certificate
-To prove $p_\mu\leq\frac{9}{10}$, it is enough to prove
+Step 4: Identify the sharp boundary measures and show there are no missing values
+At the lower endpoint for $s$, the matrix $H_x$ is singular. A kernel vector is
 $$
-m_5-\frac{9}{10}m_4\leq0.
+\begin{pmatrix}
+24r-\frac{9}{2}\\
+6-36r\\
+1
+\end{pmatrix},
 $$
-The candidate extremizer $\mu_+$ is supported at $0,\frac{1}{2},1$. Endpoint contacts may be simple, while the interior contact at $\frac{1}{2}$ must be double for a nonnegative pointwise majorant. Thus, for
+corresponding to the quadratic
 $$
-g_+(x)=x^5-\frac{9}{10}x^4,
+q_-(x)=x^2+(6-36r)x+24r-\frac{9}{2}.
 $$
-require the gap $h_+(x)-g_+(x)$ to contain $x(1-x)(2x-1)^2$. Matching the two highest coefficients determines the final linear factor and yields
+Equality in the lower determinant bound gives
 $$
-h_+(x)-g_+(x)
-=\frac{x(1-x)(2x-1)^2(10x+11)}{40}\geq0
+\mathbb E\!\left[\Theta q_-(\Theta)^2\right]=0,
 $$
-for $0\leq x\leq1$, where
-$$
-h_+(x)=\frac{19}{20}x^3-\frac{9}{8}x^2+\frac{11}{40}x.
-$$
-The expectation of the cubic is fixed:
-$$
-\mathbb E[h_+(\Theta)]
-=\frac{19}{20}\frac{1}{4}-\frac{9}{8}\frac{1}{3}+\frac{11}{40}\frac{1}{2}
-=0.
-$$
-Hence
-$$
-m_5-\frac{9}{10}m_4=\mathbb E[g_+(\Theta)]\leq\mathbb E[h_+(\Theta)]=0,
-$$
-so $p_\mu\leq\frac{9}{10}$. Equality forces the support to lie in $\left\{0,\frac{1}{2},1\right\}$, and the first two moment equations uniquely give masses $\frac{1}{6},\frac{2}{3},\frac{1}{6}$. Thus equality occurs exactly at $\mu_+$.
+so every lower-extremizing prior is supported on $\{0\}$ together with the roots of $q_-$. The Hausdorff criterion guarantees existence at the boundary, and the moment equations through degree $2$ determine the atomic weights uniquely once the support is fixed.
 
-Step 5: Show that every intermediate value is attainable
-For $0\leq t\leq1$, let
+At the upper endpoint for $s$, the matrix $H_{1-x}$ is singular. A kernel vector is
 $$
-\mu_t=(1-t)\mu_-+t\mu_+.
+\begin{pmatrix}
+\frac{5}{2}-12r\\
+36r-8\\
+1
+\end{pmatrix},
 $$
-Each $\mu_t$ satisfies the same three calibration moments. Its posterior predictive probability is
+corresponding to
 $$
-p_{\mu_t}
-=\frac{(1-t)m_5^-+tm_5^+}{(1-t)m_4^-+tm_4^+},
+q_+(x)=x^2+(36r-8)x+\frac{5}{2}-12r.
 $$
-whose denominator is positive. This is continuous in $t$, with endpoint values
+Equality gives
 $$
-p_{\mu_0}=\frac{11}{14},\qquad p_{\mu_1}=\frac{9}{10}.
+\mathbb E\!\left[(1-\Theta)q_+(\Theta)^2\right]=0,
 $$
-Therefore every value between the two sharp endpoints is attained.
+so every upper-extremizing prior is supported on the roots of $q_+$ together with $\{1\}$. Again the boundary moment sequence is representable by the Hausdorff criterion, and the atomic weights are uniquely fixed by the moment equations.
 
-Final Answer: $\boxed{[\frac{11}{14},\frac{9}{10}]}$
+More generally, the same criterion is an if-and-only-if statement. Hence every $s$ between the two determinant bounds is realized by at least one Borel prior on $[0,1]$. Therefore there are no gaps in the feasible fifth-moment interval.
+
+Step 5: Convert the fifth-moment interval to the posterior predictive interval
+Since $p_\mu=s/r$ and $r>0$, divide the sharp bounds from Step 3 by $r$ to obtain
+$$
+36r-12+\frac{9}{8r}
+\leq p_\mu\leq
+17-36r-\frac{43}{24r}.
+$$
+Every value in this interval is attained by a calibrated prior.
+
+Final Answer: $\boxed{\left[36r-12+\frac{9}{8r},17-36r-\frac{43}{24r}\right]}$
 
 ---
 
 ## Answer
 
-$[\frac{11}{14},\frac{9}{10}]$
+$\left[36r-12+\frac{9}{8r},17-36r-\frac{43}{24r}\right]$
 
 ---
 
@@ -163,7 +163,7 @@ $[\frac{11}{14},\frac{9}{10}]$
 ## Solution Concepts
 
 - posterior predictive distributions
-- truncated moment problems
-- polynomial dual certificates
+- Hausdorff moment problem
+- positive semidefinite moment matrices
+- Schur complements
 - extremal atomic priors
-- sharp moment inequalities
