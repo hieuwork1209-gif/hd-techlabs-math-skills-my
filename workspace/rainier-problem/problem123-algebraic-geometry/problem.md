@@ -2,27 +2,35 @@
 
 ## LaTeX (Normalized)
 
-Let $m,n\ge2$, and put
+Let $r\ge2$, and put
 $$
-d=\gcd(m,n),
+h=\gcd(r,2),
 \qquad
-\ell=\operatorname{lcm}(m,n),
-\qquad
-h=\gcd(\ell,2).
+\epsilon=
+\begin{cases}
+1,&4\mid r,\\
+0,&4\nmid r.
+\end{cases}
 $$
-For each $\lambda\in\mathbb C^\times$, let $C_\lambda$ be the smooth projective curve whose function field is
+Let $C$ be the smooth projective curve whose function field is
 $$
 \mathbb C(x)(y,z),
 $$
 where
 $$
-y^m=x(x-1),
+y^r=x(x-1),
 \qquad
-z^n=x(x-\lambda).
+z^r=x(x+1).
 $$
-For $\lambda\ne1$, determine exactly the genus drop
+The rule
 $$
-\Delta_{m,n}=g(C_\lambda)-g(C_1).
+\tau(x,y,z)=(-x,z,y)
+$$
+defines an involution of $C$.
+
+Determine exactly the genus of the quotient curve
+$$
+C/\langle\tau\rangle.
 $$
 
 ---
@@ -40,4 +48,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks how the genus of a family of algebraic curves changes when two branch points collide. Its essential structure is the normalization of a fiber product of cyclic covers, including the change of extension degree and ramification in the collision fiber, followed by a genus comparison. Thus Algebraic geometry is the primary classification.
+The problem concerns a finite cover of the projective line, its normalization, an algebraic involution induced by a symmetry of the branch locus, and the genus of the resulting quotient curve. The essential work is to combine ramification data for the Kummer fiber product with a local analysis of fixed points on the normalized curve and then apply Riemann-Hurwitz to the quotient. Thus Algebraic geometry is the primary classification.
