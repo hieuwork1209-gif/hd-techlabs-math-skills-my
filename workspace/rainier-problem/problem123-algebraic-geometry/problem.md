@@ -42,10 +42,10 @@ $$
 | **Domain** | Topology and Geometry |
 | **Sub-domain** | Algebraic geometry |
 | **Problem Type** | Symbolic derivation |
-| **Answer Type** | Exact symbolic expression |
+| **Answer Type** | Exact scalar |
 
 ---
 
 ## Domain Explanation
 
-The problem concerns a finite cover of the projective line, its normalization, an algebraic involution induced by a symmetry of the branch locus, and the genus of the resulting quotient curve. The essential work is to combine ramification data for the Kummer fiber product with a local analysis of fixed points on the normalized curve and then apply Riemann-Hurwitz to the quotient. Thus Algebraic geometry is the primary classification.
+The problem asks for the genus of a quotient of a smooth algebraic curve obtained from a fiber product of cyclic covers. Its essential structure is algebraic: normalization, inertia and ramification of the function-field extension, fixed points of an algebraic involution, and the quotient curve. Algebraic geometry is therefore more appropriate than geometric topology, because the decisive data come from valuations and ramification in algebraic function fields rather than from a purely topological classification of surfaces.
