@@ -12,6 +12,17 @@ Own the complete Rainier preflight state machine for **both new and existing pro
 
 Read `references/workflow.md` before acting. Read `references/pass-gates.md` for every candidate audit. Read `references/submission-format-gate.md` before every `candidate-ready.json` and again before promotion. Before selecting any new blueprint or proposing any statement-changing hardening, read `references/quality-redesign-preflight.md`; run that preflight again on the final normalized pair before `candidate-ready.json`. For a brand-new candidate or a quality redesign, also read `references/design-patterns.md`.
 
+## Taxonomy freshness gate
+
+Before selecting or changing any Domain/Sub-domain, read `skills/_shared/taxonomy_slots.md` and inspect its `Last updated from user-provided portal snapshot` date. Treat taxonomy capacity as daily-changing operational data.
+
+- Compare that snapshot date with the user's current local calendar date.
+- If the dates differ and the current conversation does not already contain a newer same-day portal snapshot, stop before blueprint selection or taxonomy-changing edits and report `RAINIER CHECK: TAXONOMY_STALE`. Ask the user to paste the latest `Domain,Sub-Domain,Remaining` list.
+- If the user supplied a newer snapshot in the current conversation, use it as authoritative for the run and refresh `skills/_shared/taxonomy_slots.md` before choosing a new Domain/Sub-domain.
+- Treat every pair absent from the newest snapshot, or present with no remaining capacity, as unavailable. Never relabel an unchanged problem into a nearby open slot merely to fit capacity; redesign the mathematics instead.
+- Whenever a redesign changes Domain or Sub-domain, explicitly tell the user before readiness using `DOMAIN CHANGE: <old> -> <new>`.
+- Immediately before promotion, re-check availability against the newest authoritative snapshot. If it has become stale, stop with `TAXONOMY_STALE` instead of promoting.
+
 ## Core contract
 
 - Treat `main` as frozen submission state and `adversary/problemNN` as the only authoring/design branch.
