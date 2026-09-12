@@ -2,14 +2,15 @@
 
 ## LaTeX (Normalized)
 
-Let $\mathbb D=\{z\in\mathbb C:|z|<1\}$. Among all holomorphic functions $f:\mathbb D\to\mathbb D$ satisfying
+Let $\mathbb D=\{z\in\mathbb C:|z|<1\}$ and fix a real number $c>1$. For each $\lambda\in\mathbb C$, define
 $$
-f(0)=0,\qquad f\left(\frac12\right)=\frac13,\qquad f\left(-\frac12\right)=-\frac13,
+F_{\lambda}(z)=z+\frac{\lambda}{z-c}.
 $$
-determine exactly
+Let
 $$
-\sup |f^{(3)}(0)|.
+S_c=\{\lambda\in\mathbb C:F_{\lambda}\text{ is not injective on }\mathbb D\}.
 $$
+Determine exactly the Euclidean area of $S_c$ in terms of $c$.
 
 ---
 
@@ -19,11 +20,11 @@ $$
 |---|---|
 | **Domain** | Analysis |
 | **Sub-domain** | Complex analysis |
-| **Problem Type** | Optimization |
-| **Answer Type** | Exact scalar |
+| **Problem Type** | Exact computation |
+| **Answer Type** | Exact symbolic expression |
 
 ---
 
 ## Domain Explanation
 
-This is a sharp interpolation problem for holomorphic self-maps of the unit disk, governed by Schwarz-Pick theory and Schur-class factorization.
+The problem asks for the parameter locus where a holomorphic rational family loses univalence on the unit disk and for the area of that holomorphic-image locus. Injectivity, critical behavior, logarithmic mapping, and the holomorphic area formula make complex analysis the primary classification.
