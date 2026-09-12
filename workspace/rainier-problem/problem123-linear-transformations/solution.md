@@ -135,9 +135,9 @@ $$
 Step 5: Impose the skew-adjoint condition from the induced symmetric form
 Let $B$ be the symmetric bilinear form on $W$ induced from the form on $V$. Since $N$ is skew-adjoint, $\exp(tN)$ preserves the form on $V$. Therefore $\Lambda^4\exp(tN)$ preserves $B$, and differentiating at $t=0$ shows that
 $$
-D^\dagger=-D.
+D^{\dagger}=-D.
 $$
-Consequently the adjoint involution $T\mapsto T^\dagger$ preserves $Z(D)$, and the desired centralizer inside $\mathfrak{so}(W,B)$ is the $-1$ eigenspace of this involution.
+Consequently the adjoint involution $T\mapsto T^{\dagger}$ preserves $Z(D)$, and the desired centralizer inside $\mathfrak{so}(W,B)$ is the $-1$ eigenspace of this involution.
 
 Use the orthogonal Jordan normal form for a nilpotent skew-adjoint operator on a complex symmetric bilinear space: when all Jordan block sizes are odd, the space is an orthogonal direct sum of nondegenerate $D$-stable single-block subspaces. Thus write
 $$
@@ -147,14 +147,14 @@ where $D|_{U_i}$ is one block of size $\lambda_i$. Then
 $$
 Z(D)=\bigoplus_{i,j}\operatorname{Hom}_{\mathbb C[t]}(U_j,U_i).
 $$
-Adjoint exchanges the $(i,j)$ and $(j,i)$ summands, so every off-diagonal pair contributes zero to the trace of $T\mapsto T^\dagger$ on $Z(D)$. On a diagonal summand,
+Adjoint exchanges the $(i,j)$ and $(j,i)$ summands, so every off-diagonal pair contributes zero to the trace of $T\mapsto T^{\dagger}$ on $Z(D)$. On a diagonal summand,
 $$
 \operatorname{End}_{\mathbb C[t]}(U_i)
 =\operatorname{span}\{I,D,\ldots,D^{\lambda_i-1}\},
 $$
 and
 $$
-(D^k)^\dagger=(-1)^kD^k.
+(D^k)^{\dagger}=(-1)^kD^k.
 $$
 Because every $\lambda_i$ is odd, the trace on the $i$th diagonal summand is
 $$
