@@ -15,8 +15,8 @@ p_\mu=\frac{m_5}{m_4}=\frac{m_5}{r}.
 $$
 Because a feasible prior is assumed to exist and $m_2=1/3$, we have $r=m_4>0$. Thus the problem is to determine the exact feasible interval for $m_5$ once the first five moments through $m_4=r$ are fixed.
 
-Step 2: Apply the degree-five Hausdorff moment criterion
-Use the degree-five Hausdorff moment criterion in the following exact form. Real numbers $m_0,\ldots,m_5$ with $m_0=1$ are the moments of a Borel probability measure on $[0,1]$ if and only if both matrices
+Step 2: Apply the degree-5 Hausdorff moment criterion
+Use the degree-5 Hausdorff moment criterion in the following exact form. Real numbers $m_0,\ldots,m_5$ with $m_0=1$ are the moments of a Borel probability measure on $[0,1]$ if and only if both matrices
 $$
 H_x=(m_{i+j+1})_{i,j=0}^{2}
 $$
