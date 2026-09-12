@@ -52,7 +52,7 @@ H_{1-x}=
 \frac{1}{12}&\frac{1}{4}-r&r-s
 \end{pmatrix}.
 $$
-The leading $2\times2$ block of each matrix is positive definite, with determinant $1/72$. Therefore each $3\times3$ matrix is positive semidefinite exactly when its scalar Schur complement is nonnegative, equivalently exactly when its determinant is nonnegative.
+The leading $2\times 2$ block of each matrix is positive definite, with determinant $1/72$. Therefore each $3\times 3$ matrix is positive semidefinite exactly when its scalar Schur complement is nonnegative, equivalently exactly when its determinant is nonnegative.
 
 Step 3: Derive the exact feasible interval for the fifth moment
 Direct expansion gives
