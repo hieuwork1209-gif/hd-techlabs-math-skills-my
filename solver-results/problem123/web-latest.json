@@ -1,14 +1,14 @@
 {
   "problem": "problem123",
   "branch": "adversary/problem123",
-  "problem_blob_sha": "89ac26baa584cb85cec9123a8712aaec9c11c6d3",
-  "solution_blob_sha": "7bd1786b83f05974ed6a04743e58003b8dac96b8",
-  "solve_id": "problem123:89ac26baa584cb85cec9123a8712aaec9c11c6d3",
+  "problem_blob_sha": "e178104c82aaccd92ca59e97a3527cff515fd9e1",
+  "solution_blob_sha": "9816e9e72dcfd8a1c757310066f1d7d8b0d0190c",
+  "solve_id": "problem123:e178104c82aaccd92ca59e97a3527cff515fd9e1",
   "status": "success",
   "mathematical_verdict": "correct",
   "requested_model": "gpt-5.5",
   "requested_reasoning_effort": "medium",
   "configuration_evidence": "user_confirmed_web_ui",
   "runs": 1,
-  "result_file": "solver-results/problem123/web-results/89ac26baa584.json"
+  "result_file": "solver-results/problem123/web-results/e178104c82aa.json"
 }
