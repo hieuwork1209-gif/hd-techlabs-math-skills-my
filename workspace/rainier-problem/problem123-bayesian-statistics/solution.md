@@ -13,7 +13,7 @@ After four observed successes, Bayes' rule weights the prior by $\theta^4$, so
 $$
 p_\mu=\frac{m_5}{m_4}=\frac{m_5}{r}.
 $$
-Because a feasible prior is assumed to exist and $m_2=1/3$, we have $r=m_4>0$. Thus the problem is to determine the exact feasible interval for $m_5$ once the first five moments through $m_4=r$ are fixed.
+Because a feasible prior is assumed to exist and $m_2=\frac{1}{3}$, we have $r=m_4>0$. Thus the problem is to determine the exact feasible interval for $m_5$ once the first five moments through $m_4=r$ are fixed.
 
 Step 2: Apply the degree-5 Hausdorff moment criterion
 Use the degree-5 Hausdorff moment criterion in the following exact form. Real numbers $m_0,\ldots,m_5$ with $m_0=1$ are the moments of a Borel probability measure on $[0,1]$ if and only if both matrices
@@ -52,7 +52,7 @@ H_{1-x}=
 \frac{1}{12}&\frac{1}{4}-r&r-s
 \end{pmatrix}.
 $$
-The leading $2\times 2$ block of each matrix is positive definite, with determinant $1/72$. Therefore each $3\times 3$ matrix is positive semidefinite exactly when its scalar Schur complement is nonnegative, equivalently exactly when its determinant is nonnegative.
+The leading $2\times 2$ block of each matrix is positive definite, with determinant $\frac{1}{72}$. Therefore each $3\times 3$ matrix is positive semidefinite exactly when its scalar Schur complement is nonnegative, equivalently exactly when its determinant is nonnegative.
 
 Step 3: Derive the exact feasible interval for the fifth moment
 Expanding the first determinant along its first row gives
