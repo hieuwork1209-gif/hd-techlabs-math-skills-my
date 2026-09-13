@@ -2,17 +2,11 @@
 
 ## LaTeX (Normalized)
 
-Let $1<c<2$ and
+Let $K\subset\mathbb R^4$ be the convex hull of all points
 $$
-D_c=\{z\in\mathbb C:|z-c|<1\},
-\qquad
-S_c=\{z^2:z\in D_c\}.
+(t,t^2,t^3,t^4),\qquad 0\leq t\leq1.
 $$
-Determine exactly
-$$
-\operatorname{Area}(\operatorname{conv}(S_c))-\operatorname{Area}(S_c),
-$$
-where $\operatorname{conv}(S_c)$ denotes the convex hull of $S_c$.
+Determine exactly the $4$-dimensional Euclidean volume of $K$.
 
 ---
 
@@ -23,10 +17,10 @@ where $\operatorname{conv}(S_c)$ denotes the convex hull of $S_c$.
 | **Domain** | Topology and Geometry |
 | **Sub-domain** | Convex geometry |
 | **Problem Type** | Exact computation |
-| **Answer Type** | Exact symbolic expression |
+| **Answer Type** | Exact scalar |
 
 ---
 
 ## Domain Explanation
 
-The requested quantity is the area gained by taking the convex hull of a planar set. The decisive steps identify a supporting chord, characterize the convex-hull boundary through tangent turning, and compute the area of the resulting convexity defect, so convex geometry is the primary classification.
+The requested object is the Euclidean volume of a convex body obtained as the convex hull of a moment curve. The central task is therefore a convex-geometry volume computation.
