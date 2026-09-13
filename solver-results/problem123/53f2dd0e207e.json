@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-convex-geometry/problem.md",
+  "source_commit_sha": "10184240d172feb8a6080b0095c654bc0348ba00",
+  "problem_blob_sha": "53f2dd0e207e67e803465df39883cfb4bd266712",
+  "statement_sha256": "fafeabd747b1c9a2dfbe7476af11e05ca2c741aa31cf2fc3c7f9efb6e8c94a34",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-13T16:02:09+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let a point of \\(K\\) be written as\n\\[\n(m_1,m_2,m_3,m_4)=\\int_0^1 (t,t^2,t^3,t^4)\\,d\\mu(t)\n\\]\nfor a probability measure \\(\\mu\\) on \\([0,1]\\). Thus \\(K\\) is the moment space of order \\(4\\) on \\([0,1]\\).\n\nSet\n\\[\nx=m_1,\\qquad y=m_2,\\qquad z=m_3,\\qquad w=m_4.\n\\]\n\nFor fixed \\(x\\), the possible \\(y\\) satisfy\n\\[\nx^2\\le y\\le x.\n\\]\nWrite\n\\[\ny=x^2+x(1-x)q,\\qquad 0\\le q\\le 1.\n\\]\nFor fixed \\(x,y\\), the possible \\(z\\) satisfy\n\\[\n\\frac{y^2}{x}\\le z\\le y-\\frac{(x-y)^2}{1-x}.\n\\]\nThe width of this interval is\n\\[\ny-\\frac{(x-y)^2}{1-x}-\\frac{y^2}{x}\n=x(1-x)q(1-q).\n\\]\nSo write\n\\[\nz=\\frac{y^2}{x}+x(1-x)q(1-q)r,\\qquad 0\\le r\\le 1.\n\\]\n\nFor fixed \\(x,y,z\\), the fourth moment \\(w\\) has lower and upper bounds coming from the nonnegativity of\n\\[\n\\int (t^2-at-b)^2\\,d\\mu(t)\n\\]\nand\n\\[\n\\int t(1-t)(t-c)^2\\,d\\mu(t).\n\\]\nThese give\n\\[\nw_{\\min}=\\frac{y^3-2xyz+z^2}{y-x^2},\n\\qquad\nw_{\\max}=z-\\frac{(y-z)^2}{x-y}.\n\\]\nSubstituting the above parametrization for \\(y,z\\), their difference simplifies to\n\\[\nw_{\\max}-w_{\\min}\n=x(1-x)q(1-q)r(1-r).\n\\]\nThus write\n\\[\nw=w_{\\min}+x(1-x)q(1-q)r(1-r)s,\\qquad 0\\le s\\le 1.\n\\]\n\nThe map \\((x,q,r,s)\\mapsto(m_1,m_2,m_3,m_4)\\) is triangular, so its Jacobian is\n\\[\n1\\cdot x(1-x)\\cdot x(1-x)q(1-q)\\cdot x(1-x)q(1-q)r(1-r).\n\\]\nHence\n\\[\nJ=x^3(1-x)^3q^2(1-q)^2r(1-r).\n\\]\n\nTherefore\n\\[\n\\operatorname{Vol}_4(K)\n=\\int_0^1\\int_0^1\\int_0^1\\int_0^1\nx^3(1-x)^3q^2(1-q)^2r(1-r)\\,ds\\,dr\\,dq\\,dx.\n\\]\nCompute:\n\\[\n\\int_0^1 x^3(1-x)^3\\,dx=\\frac1{140},\n\\]\n\\[\n\\int_0^1 q^2(1-q)^2\\,dq=\\frac1{30},\n\\]\n\\[\n\\int_0^1 r(1-r)\\,dr=\\frac16,\n\\]\nand \\(\\int_0^1 ds=1\\). Thus\n\\[\n\\operatorname{Vol}_4(K)=\\frac1{140}\\cdot\\frac1{30}\\cdot\\frac16\n=\\frac1{25200}.\n\\]\n\n\\[\n\\boxed{\\frac{1}{25200}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-13T16:03:37+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/53f2dd0e207e.json"
+}
