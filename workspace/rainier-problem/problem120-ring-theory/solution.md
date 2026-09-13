@@ -136,9 +136,44 @@ $$
 we obtain
 $$
 \operatorname{Tr}(\tau_\varepsilon)
-=\sum_{k=0}^6(-1)^{k(k-1)/2}c_k(r),
+=\sum_{k=0}^6(-1)^{k(k-1)/2}c_k(r).
 $$
-and evaluation gives
+The seven weights $(-1)^{k(k-1)/2}$ for $k=0,\ldots,6$ are
+$$
+(1,1,-1,-1,1,1,-1),
+$$
+so if $P_r(t)=(1-t)^r(1+t)^{6-r}=\sum_{k=0}^6c_k(r)t^k$, then
+$$
+\operatorname{Tr}(\tau_\varepsilon)
+=c_0(r)+c_1(r)-c_2(r)-c_3(r)+c_4(r)+c_5(r)-c_6(r).
+$$
+The required expansions are
+$$
+\begin{array}{c|l}
+r&P_r(t)\\ \hline
+0&1+6t+15t^2+20t^3+15t^4+6t^5+t^6\\
+1&1+4t+5t^2-5t^4-4t^5-t^6\\
+2&1+2t-t^2-4t^3-t^4+2t^5+t^6\\
+3&1-3t^2+3t^4-t^6\\
+4&1-2t-t^2+4t^3-t^4-2t^5+t^6\\
+5&1-4t+5t^2-5t^4+4t^5-t^6\\
+6&1-6t+15t^2-20t^3+15t^4-6t^5+t^6.
+\end{array}
+$$
+Substituting the coefficients into the preceding signed sum gives
+$$
+\begin{array}{c|l|c}
+r&c_0+c_1-c_2-c_3+c_4+c_5-c_6&\operatorname{Tr}(\tau_\varepsilon)\\ \hline
+0&1+6-15-20+15+6-1&-8\\
+1&1+4-5-0-5-4+1&-8\\
+2&1+2+1+4-1+2-1&8\\
+3&1+0+3-0+3+0+1&8\\
+4&1-2+1-4-1-2-1&-8\\
+5&1-4-5-0-5+4+1&-8\\
+6&1-6-15+20+15-6-1&8.
+\end{array}
+$$
+Hence
 $$
 \begin{array}{c|ccccccc}
 r&0&1&2&3&4&5&6\\ \hline
