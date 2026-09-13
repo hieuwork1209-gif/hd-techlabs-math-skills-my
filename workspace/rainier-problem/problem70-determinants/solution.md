@@ -68,7 +68,7 @@ For $A=C$, every commuting matrix is $xI+yC$. Hence $B^2=I$ is equivalent to
 $$
 x^2+y^2=1,\qquad 2xy=0.
 $$
-Exactly one of $x,y$ is odd. If $x$ is odd, then $y\in\{0,\varepsilon\}$ and $x$ is one of the four square roots of $1$ in $R$; this gives $8$ choices. Interchanging $x,y$ gives another $8$. Since the centralizer $R[C]^\times$ is commutative, all are fixed under conjugation. The cyclic class therefore contributes
+Exactly one of $x,y$ is odd. If $x$ is odd, then $y\in\{0,\varepsilon\}$ and $x$ is one of the four roots $\pm1,\pm1+\varepsilon$ of $x^2=1$ in $R$; this gives $8$ choices. Interchanging $x,y$ gives another $8$. Since the centralizer $R[C]^\times$ is commutative, all are fixed under conjugation. The cyclic class therefore contributes
 $$
 16
 $$
@@ -86,7 +86,7 @@ where $x,w$ are square roots of $1$ in $R$ and $y,z\in\mathbb F_2$. Conversely e
 $$
 4\cdot4\cdot2\cdot2=64
 $$
-commuting involutions. Conjugation by the split centralizer fixes these four parameters, so each of the four split classes contributes $64$ orbits.
+commuting involutions. A centralizer element has the form $g=\begin{pmatrix}u&\varepsilon r\\ \varepsilon s&v\end{pmatrix}$ with $u,v$ odd. Its diagonal part scales an off-diagonal top bit by $uv^{-1}\equiv1\pmod2$, while the commutator of its top-level off-diagonal part with $\operatorname{diag}(x,w)$ contains the factor $\varepsilon(x-w)=0$ because $x-w$ is even. Hence conjugation fixes $x,w,y,z$, so each of the four split classes contributes $64$ orbits.
 
 Step 3: Analyze the scalar-lift classes by reduction modulo $2$
 
