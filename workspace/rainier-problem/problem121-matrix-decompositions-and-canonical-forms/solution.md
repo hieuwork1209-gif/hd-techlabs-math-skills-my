@@ -1,214 +1,174 @@
 ## Steps
 
-Step 1: Derive the integral block decomposition explicitly
+Step 1: Derive the integral block decomposition by explicit unimodular changes of basis
 
-Write $V=\mathbb Z^X$, let $A$ be the adjacency matrix of the Johnson graph on $X$, and note that
+Let $A$ be the adjacency matrix of the Johnson graph on the $3$-subsets $X$, so
 $$
 L_n=3(n-3)I-A.
 $$
-For an $s$-subset $\beta=\{b_1<\cdots<b_s\}$ with $s\leq3$, call $\beta$ standard if $b_i\geq2i$ for every $i$, and put
+Call $\beta=\{b_1<\cdots<b_s\}$ standard if $b_i\geq2i$, and let $\mathcal S_s$ be the standard $s$-subsets. Reflecting the $0$-$1$ word at the first prefix with more chosen than unchosen positions gives a bijection from nonstandard $s$-subsets to $(s-1)$-subsets, hence
 $$
-v_\beta=\sum_{S\in X,\ \beta\subseteq S}e_S.
+\mu_s:=|\mathcal S_s|=\binom ns-\binom n{s-1},\qquad \mu_{-1}=0.
 $$
-We first compute $L_nv_\beta$ directly. Fix $T\in X$ and put $j=|T\cap\beta|$. The coefficient of $e_T$ in $Av_\beta$ is the number of $3$-sets $S$ such that $\beta\subseteq S$ and $|S\cap T|=2$.
+For $0\leq k\leq3$, let $P_k(n)$ have rows indexed by all $k$-subsets $T$ and columns indexed by all standard $\beta$ with $|\beta|\leq k$, with entry $1$ when $\beta\subseteq T$. It is square because $\sum_{s=0}^k\mu_s=\binom nk$, and it is unimodular. Indeed, for $n\geq2k$, order rows and columns according as they avoid or contain $n$; then
+$$
+P_k(n)=\begin{pmatrix}P_k(n-1)&0\\ *&P_{k-1}(n-1)\end{pmatrix}.
+$$
+At the boundary $n=2k-1$, no standard $k$-subset exists. Complementing a row $T$ to $B=T^c$ gives the matrix $Q(B,\beta)=1_{\beta\cap B=\varnothing}$, and inclusion-exclusion gives
+$$
+Q(B,\beta)=\sum_{\gamma\subseteq\beta}(-1)^{|\gamma|}1_{\gamma\subseteq B}.
+$$
+Thus $Q=P_{k-1}(2k-1)U$, where, after ordering columns by size, $U$ is triangular with diagonal entries $(-1)^{|\beta|}$. Induction on $k$ and $n$ proves $\det P_k(n)=\pm1$.
 
-If $j=s$, then $\beta\subseteq T$. To obtain such an $S$, delete one of the $3-s$ elements of $T\setminus\beta$ and insert one of the $n-3$ elements outside $T$. Thus there are
+Therefore the vectors
 $$
-(3-s)(n-3)
+v_\beta=\sum_{S\in X,\ \beta\subseteq S}e_S\qquad(\beta\text{ standard},\ |\beta|\leq3)
 $$
-choices.
-
-If $j=s-1$, then exactly one element of $\beta$ is missing from $T$. That missing element must be inserted, and the deleted element may be any of the
+form an integral basis of $\mathbb Z^X$. If $|\beta|=s$ and $j=|T\cap\beta|$, the coefficient of $e_T$ in $Av_\beta$ is $(3-s)(n-3)$ when $j=s$, is $4-s$ when $j=s-1$, and is $0$ otherwise. Since
 $$
-3-(s-1)=4-s
-$$
-elements of $T\setminus\beta$. Hence there are $4-s$ choices. If $j\leq s-2$, one swap cannot make a set contain all of $\beta$, so there are no choices.
-
-Now
-$$
-\sum_{\substack{\alpha\subset\beta\\|\alpha|=s-1}}v_\alpha(T)
-=
-\begin{cases}
-s,&j=s,\\
-1,&j=s-1,\\
-0,&j\leq s-2.
+\sum_{\substack{\alpha\subset\beta\\|\alpha|=s-1}}v_\alpha(T)=
+\begin{cases}s,&j=s,\\1,&j=s-1,\\0,&j\leq s-2,
 \end{cases}
 $$
-Therefore
+we obtain
 $$
-Av_\beta=(4-s)\sum_{\substack{\alpha\subset\beta\\|\alpha|=s-1}}v_\alpha+
-\bigl((3-s)(n-3)-s(4-s)\bigr)v_\beta,
+L_nv_\beta=s(n+1-s)v_\beta-(4-s)\sum_{\substack{\alpha\subset\beta\\|\alpha|=s-1}}v_\alpha.
 $$
-and hence
-$$
-L_nv_\beta=s(n+1-s)v_\beta-(4-s)\sum_{\substack{\alpha\subset\beta\\|\alpha|=s-1}}v_\alpha.\tag{1}
-$$
-Thus the diagonal coefficients for $s=0,1,2,3$ are exactly
-$$
-0,\qquad n,\qquad2(n-1),\qquad3(n-2),
-$$
-while the three adjacent-level coefficients before diagonalizing the inclusion maps are $3,2,1$.
+Thus, in the $v_\beta$ basis, the diagonal blocks for ranks $s=0,1,2,3$ are $0,n,2(n-1),3(n-2)$, and the adjacent block from rank $s$ to rank $s-1$ is $-(4-s)W_{s-1,s}$, where $W_{i,j}(\alpha,\beta)=1_{\alpha\subseteq\beta}$ for standard subsets.
 
-We next make the integral basis reduction explicit. Let $\mu_s$ be the number of standard $s$-subsets, with $\mu_{-1}=0$. A subset is standard exactly when, in every initial segment $\{1,\ldots,t\}$, it contains at most as many chosen positions as unchosen positions. Reflecting the characteristic word up to the first initial segment where this inequality fails gives a bijection from nonstandard $s$-subsets to $(s-1)$-subsets. Hence
+We now diagonalize these three inclusion blocks by explicit unimodular matrices. Put
 $$
-\mu_s=\binom ns-\binom n{s-1}.\tag{2}
+\mathcal A_0=\{\varnothing\},\qquad
+\mathcal A_1=\mathcal A_0\cup\{\{i\}:2\leq i\leq n-1\}.
 $$
-In particular,
+Let
 $$
-\sum_{s=0}^3\mu_s=\binom n3.
+\mathcal C_2=\{\{i,n\}:2\leq i\leq n-1\}\cup\{\{n-2,n-1\}\},
 $$
-The usual parenthesis matching gives an integral containment basis: scan a characteristic word from left to right and pair each chosen position with the nearest unpaired earlier unchosen position. The paired chosen positions form a standard lower member, and changing the unpaired positions from unchosen to chosen gives a symmetric chain. Ordering by these lower members makes the containment-change matrices unitriangular, so all basis changes have determinant $\pm1$.
+$$
+\mathcal B_2=\mathcal S_2\setminus\mathcal C_2,\qquad
+\mathcal A_2=\mathcal A_1\cup\mathcal B_2.
+$$
+For $s=0,1,2$, let $E_s$ be the incidence matrix with rows $\mathcal A_s$, columns $\mathcal S_s$, and entry $1_{\alpha\subseteq\beta}$. Clearly $E_0=[1]$. For $E_1$, the singleton rows give an identity matrix on the columns $\{2\},\ldots,\{n-1\}$, and the $\varnothing$ row has all entries $1$, so $\det E_1=\pm1$. For $E_2$, order rows as $\mathcal B_2,\mathcal A_1$ and columns as $\mathcal B_2,\mathcal C_2$. The upper-left block is $I$, the upper-right block is $0$, and the lower-right block is
+$$
+F=\begin{pmatrix}I_{n-2}&u\\ \mathbf1^T&1\end{pmatrix},
+$$
+where $u$ has exactly two $1$'s, corresponding to $n-2,n-1$. Hence $\det F=1-\mathbf1^Tu=-1$, so $E_2$ is unimodular.
 
-For $0\leq i<j\leq3$, let $W_{i,j}$ be the $0$-$1$ matrix whose rows and columns are indexed by standard $i$- and $j$-subsets, with entry $1$ when the row subset is contained in the column subset. In the same chain bases these inclusion matrices are simultaneously diagonal: on a chain whose second-stage lower rank is $t$, the coefficient is
+To construct $E_3$, first put
 $$
-\binom{j-t}{i-t},
+\mathcal P=\{\beta\cup\{n\}:\beta\in\mathcal B_2\}
 $$
-because the $t$ fixed elements are already present and one chooses the remaining $i-t$ elements from the $j-t$ free positions. The number of such chains is $\mu_t-\mu_{t-1}$. Therefore the three adjacent inclusion maps have diagonal forms
+and let $\mathcal T$ consist of
 $$
-W_{0,1}\sim[1],
+\{i,n-2,n-1\}\ (2\leq i\leq n-3),\quad
+\{n-2,n-1,n\},\quad
+\{2,4,n-2\},\quad\{2,4,n-1\}.
+$$
+All these triples are standard because $n\geq12$. Set
+$$
+\mathcal C_3=\mathcal P\cup\mathcal T,\qquad
+\mathcal B_3=\mathcal S_3\setminus\mathcal C_3,\qquad
+\mathcal A_3=\mathcal A_2\cup\mathcal B_3,
+$$
+and let $E_3(\alpha,\beta)=1_{\alpha\subseteq\beta}$. Order rows as $\mathcal B_3,\mathcal B_2,\mathcal A_1$ and columns as $\mathcal B_3,\mathcal P,\mathcal T$. The $\mathcal B_3$ and $\mathcal B_2$ pivot blocks are identities. For each $T\in\mathcal T$, subtract the pivot column $\beta\cup\{n\}$ for every $\beta\in\mathcal B_2$ with $\beta\subset T$; this clears the $\mathcal B_2$ rows. On the remaining $\mathcal A_1$ rows, write $e_0$ for the $\varnothing$ row and $e_i$ for the row $\{i\}$. After changing column signs, the resulting $\mathcal T$ columns are
+$$
+e_0+e_i\ (2\leq i\leq n-3),\qquad
+ e_0+e_{n-2}+e_{n-1},
 $$
 $$
-W_{1,2}\sim\operatorname{diag}\bigl(2,1^{\,\mu_1-\mu_0}\bigr),
+2e_0+e_2+e_4+e_{n-2},\qquad
+2e_0+e_2+e_4+e_{n-1}.
 $$
-$$
-W_{2,3}\sim\operatorname{diag}\bigl(3,2^{\,\mu_1-\mu_0},1^{\,\mu_2-\mu_1}\bigr),
-$$
-with zero columns appended where necessary. Because the same chain bases are used at every level, these three diagonalizations are compatible with one another in (1).
+Subtracting the $i=2,4$ columns from the last two gives $e_{n-2}$ and $e_{n-1}$; subtracting these from $e_0+e_{n-2}+e_{n-1}$ gives $e_0$; then subtracting $e_0$ from every $e_0+e_i$ gives $e_i$. Hence $E_3$ reduces by unimodular column operations to the identity and is unimodular.
 
-Now group coordinates by $t$. For $t=0$, the adjacent coefficients in (1) are
+The sets $\mathcal A_0\subset\mathcal A_1\subset\mathcal A_2\subset\mathcal A_3$ are nested. If $\alpha\in\mathcal A_{s-1}$ has size $t$, then for a standard $s$-set $\beta$ the number of standard $(s-1)$-sets $\gamma$ with $\alpha\subseteq\gamma\subseteq\beta$ is $s-t$ when $\alpha\subseteq\beta$ and $0$ otherwise. Therefore
 $$
-3\cdot1=3,\qquad2\cdot2=4,\qquad1\cdot3=3,
+E_{s-1}W_{s-1,s}E_s^{-1}=D_{s-1,s},
 $$
-which gives the $4\times4$ block $M_0$. For $t=1$ they are
+where the diagonal entry belonging to $\alpha$ is $s-t$. A label first appearing in $\mathcal A_t\setminus\mathcal A_{t-1}$ therefore gives one chain through ranks $t,t+1,\ldots,3$, and on that chain the superdiagonal from rank $s-1$ to rank $s$ has absolute value $(4-s)(s-t)$. Conjugating by alternating signs makes these entries positive. Hence $L_n$ is integrally equivalent to
 $$
-2\cdot1=2,\qquad1\cdot2=2,
+M_0\oplus M_1^{\oplus(n-2)}\oplus M_2^{\oplus q}\oplus M_3^{\oplus r},
 $$
-which gives $M_1$. For $t=2$ the only adjacent coefficient is $1\cdot1=1$, giving $M_2$, and for $t=3$ there is only the scalar diagonal block $M_3$. Changing signs of rows removes the minus signs in (1), so $L_n$ is integrally equivalent to
+with
 $$
-M_0\oplus M_1^{\oplus(\mu_1-\mu_0)}\oplus M_2^{\oplus(\mu_2-\mu_1)}\oplus M_3^{\oplus(\mu_3-\mu_2)},
-$$
-where
-$$
-M_0=\begin{pmatrix}
-0&3&0&0\\
-0&n&4&0\\
-0&0&2(n-1)&3\\
-0&0&0&3(n-2)
-\end{pmatrix},
+M_0=\begin{pmatrix}0&3&0&0\\0&n&4&0\\0&0&2(n-1)&3\\0&0&0&3(n-2)\end{pmatrix},
 $$
 $$
-M_1=\begin{pmatrix}
-n&2&0\\
-0&2(n-1)&2\\
-0&0&3(n-2)
-\end{pmatrix},\qquad
-M_2=\begin{pmatrix}2(n-1)&1\\0&3(n-2)\end{pmatrix},
-$$
-$$
+M_1=\begin{pmatrix}n&2&0\\0&2(n-1)&2\\0&0&3(n-2)\end{pmatrix},\qquad
+M_2=\begin{pmatrix}2(n-1)&1\\0&3(n-2)\end{pmatrix},\qquad
 M_3=[3(n-2)].
 $$
-Finally, using (2),
+Indeed the chain multiplicities are
 $$
-\mu_0-\mu_{-1}=1,
-$$
-$$
-\mu_1-\mu_0=(n-1)-1=n-2,
+|\mathcal A_0|=1,\quad |\mathcal A_1|-|\mathcal A_0|=n-2,
 $$
 $$
-\mu_2-\mu_1=\binom n2-2n+1=q,
+|\mathcal A_2|-|\mathcal A_1|=\mu_2-\mu_1=q,\quad
+|\mathcal A_3|-|\mathcal A_2|=\mu_3-\mu_2=r.
 $$
-$$
-\mu_3-\mu_2=\binom n3-2\binom n2+n=r.
-$$
-This proves both the four block types and their multiplicities.
 
-Step 2: Compute the Smith form of each small block
+Step 2: Compute the Smith form of the four small blocks
 
-Because $n\equiv0\pmod{12}$, the determinantal divisors of $M_0$ are
+For $M_0$, $D_1=1$ because the entries include $3$ and $4$. Modulo $3$, $M_0$ has rank at most $1$ because $n\equiv0\pmod3$, so every $2\times2$ minor is divisible by $3$. The minors using rows $1,2$ and columns $2,3$, and rows $1,3$ and columns $2,4$, are respectively $12$ and $9$; hence their common gcd is exactly $3$, so $D_2=3$.
+
+Because the first column is zero, every nonzero $3\times3$ minor uses columns $2,3,4$. The four row choices give
 $$
-D_1=1,\qquad D_2=3,\qquad D_3=36.
+36,\qquad36(n-2),\qquad18(n-1)(n-2),\qquad6n(n-1)(n-2).
 $$
-Indeed $D_1=1$ from the entries $3$ and $4$; the $2\times2$ minors have gcd
-$$
-\gcd(3,2n(n-1))=3,
-$$
-and the nonzero $3\times3$ minors have gcd
-$$
-\gcd\bigl(36,18(n-1)(n-2),6n(n-1)(n-2)\bigr)=36.
-$$
-Thus
+Since $12\mid n$, each is divisible by $36$, and the first is exactly $36$. Thus $D_3=36$, so
 $$
 \operatorname{SNF}(M_0)=\operatorname{diag}(1,3,12,0).
 $$
 
-For $M_1$, every entry is even and the displayed superdiagonal entries force $D_1=2$ and $D_2=4$. Its determinant is
+For $M_1$, every entry is even, an entry equals $2$, and the minor from rows $1,2$ and columns $2,3$ equals $4$. Hence $D_1=2$, $D_2=4$, and with
 $$
-6n(n-1)(n-2),
+\det M_1=6n(n-1)(n-2)
 $$
-so
+we get
 $$
-\operatorname{SNF}(M_1)=\operatorname{diag}(2,2,a),
-\qquad a=\frac32n(n-1)(n-2)=\frac n4b.
+\operatorname{SNF}(M_1)=\operatorname{diag}(2,2,a).
 $$
-Since $M_2$ contains a unit entry,
+Since $M_2$ contains a unit entry and has determinant $b=6(n-1)(n-2)$,
 $$
-\operatorname{SNF}(M_2)=\operatorname{diag}(1,b),
-\qquad b=6(n-1)(n-2),
-$$
-and
-$$
-\operatorname{SNF}(M_3)=[c],\qquad c=3(n-2).
+\operatorname{SNF}(M_2)=\operatorname{diag}(1,b),\qquad
+\operatorname{SNF}(M_3)=[c].
 $$
 
-Step 3: Record the resulting cyclic decomposition
+Step 3: Record the cyclic decomposition
 
-Ignoring unit factors and retaining the single free factor, Step 2 gives
+The block Smith forms in Step 2 give
 $$
-\operatorname{coker}L_n\cong\mathbb Z\oplus
-\mathbb Z_3\oplus\mathbb Z_{12}\oplus
-\mathbb Z_2^{\,2n-4}\oplus
-\mathbb Z_c^{\,r}\oplus
-\mathbb Z_b^{\,q}\oplus
-\mathbb Z_a^{\,n-2}.
+\operatorname{coker}L_n\cong\mathbb Z\oplus\mathbb Z_3\oplus\mathbb Z_{12}\oplus
+\mathbb Z_2^{\,2n-4}\oplus\mathbb Z_c^{\,r}\oplus\mathbb Z_b^{\,q}\oplus\mathbb Z_a^{\,n-2},
 $$
-This is a diagonal decomposition, but it is not yet in invariant-factor order because the $2$-primary and odd-primary factors have not been aligned.
+up to the unit factors. This is not yet invariant-factor order because the primary parts must be aligned.
 
-Step 4: Recombine the primary parts in divisibility order
+Step 4: Align the primary parts in divisibility order
 
-Since $n\equiv0\pmod{12}$,
+Since $12\mid n$,
 $$
 v_2(c)=1,\qquad v_2(b)=2,\qquad v_2(a)=v_2(n)\geq2.
 $$
-The positive $2$-primary factors therefore consist of
+Thus the positive $2$-primary factors are $r+2n-4$ copies of $2$, $q+1$ copies of $4$, and $n-2$ copies of $2^{v_2(a)}$. The odd-primary factors, in divisibility order, are two initial $3$-parts, then $r$ copies of the odd part of $c$, then $q$ copies of the odd part of $b$, then $n-2$ copies of the odd part of $a$. The $2$-primary rank exceeds the odd-primary rank by
 $$
-2^{\,2n-4+r},\qquad 4^{\,q+1},\qquad
-(2^{v_2(a)})^{\,n-2},
+(r+2n-4)+(q+1)+(n-2)-(2+r+q+n-2)=2n-5.
 $$
-where, when $v_2(a)=2$, the last family simply merges with the $4$'s.
-
-For odd primes the factors are already nested: there are two initial $3$-parts, then $r$ copies of the odd part of $c$, then $q$ copies of the odd part of $b$, and finally $n-2$ copies of the odd part of $a$. The $2$-rank exceeds the odd-primary rank by
-$$
-(2n-4+r+q+1+n-2)-(2+r+q+n-2)=2n-5.
-$$
-Hence the first $2n-5$ nontrivial invariant factors are $2$. Aligning the remaining primary factors from smallest to largest gives
+Hence the first $2n-5$ nontrivial invariant factors are $2$, and aligning the rest gives
 $$
 6,\ 6,\ c^{\,r-1},\ 2c,\ b^{\,q},\ a^{\,n-2}.
 $$
-This is already a divisibility chain because
-$$
-2\mid6\mid c\mid2c\mid b\mid a;
-$$
-here $6\mid c$ since $n-2$ is even, $2c\mid b$ with quotient $n-1$, and $b\mid a$ with quotient $n/4$.
+This is a divisibility chain because $6\mid c\mid2c\mid b\mid a$.
 
 Step 5: Insert the unit and zero factors
 
-The matrix size is $\binom n3$, and it has one zero Smith factor. The number of nontrivial finite invariant factors from Step 4 is
+There is one zero Smith factor. The number of nontrivial finite invariant factors from Step 4 is
 $$
-(2n-5)+2+(r-1)+1+q+(n-2)=\binom n3-q-3.
+(2n-5)+2+(r-1)+1+q+(n-2)=\binom n3-q-3,
 $$
-Therefore the number of unit invariant factors is $q+2$. The complete Smith normal form is
+so among the remaining $\binom n3-1$ nonzero factors there are $q+2$ units. Therefore
 $$
-I_{q+2}\oplus2I_{2n-5}\oplus6I_2\oplus cI_{r-1}\oplus[2c]\oplus bI_q\oplus aI_{n-2}\oplus[0].
+\operatorname{SNF}(L_n)=I_{q+2}\oplus2I_{2n-5}\oplus6I_2\oplus cI_{r-1}\oplus[2c]\oplus bI_q\oplus aI_{n-2}\oplus[0].
 $$
 Final Answer: $\boxed{I_{q+2}\oplus2I_{2n-5}\oplus6I_2\oplus cI_{r-1}\oplus[2c]\oplus bI_q\oplus aI_{n-2}\oplus[0]}$
 
@@ -231,11 +191,7 @@ $I_{q+2}\oplus2I_{2n-5}\oplus6I_2\oplus cI_{r-1}\oplus[2c]\oplus bI_q\oplus aI_{
 ## Solution Concepts
 
 - Smith normal form
-- subset-incidence bases
+- unimodular subset-incidence bases
 - determinantal divisors
 - primary decomposition
-- Johnson-scheme matrices
-
----
-
-## Black-Box Audit — no issues found
+- Johnson graph Laplacian
