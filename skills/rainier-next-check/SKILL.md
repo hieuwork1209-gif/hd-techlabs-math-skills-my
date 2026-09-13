@@ -23,12 +23,25 @@ Before selecting or changing any Domain/Sub-domain, read `skills/_shared/taxonom
 - Whenever a redesign changes Domain or Sub-domain, explicitly tell the user before readiness using `DOMAIN CHANGE: <old> -> <new>`.
 - Immediately before promotion, re-check availability against the newest authoritative snapshot. If it has become stale, stop with `TAXONOMY_STALE` instead of promoting.
 
+## Explicit user override
+
+Honor an explicit user instruction to bypass Rainier solver-evidence or adversary-branch preservation rules. This section takes precedence over conflicting solver-evidence, promotion, or branch-preservation requirements in this skill and its references. Never infer the override from impatience or ambiguity; activate it only from a direct instruction such as `skip GPT-5.5`, `push directly to main`, `promote without a fresh solve`, `delete/reset adversary/problemNN`, or equivalent language.
+
+When an override is active:
+
+- Do not fabricate, rewrite, relabel, or backfill `latest.json`, immutable result files, ready markers, model metadata, or timeout metadata to make stale evidence appear current.
+- Run the mathematical correctness, reviewer-completeness, taxonomy, and deterministic submission-format checks that remain applicable, unless the user explicitly overrides one of those checks too.
+- Permit promotion to `main` even when the exact current statement blob has no fresh GPT-5.5 Medium evidence. Report this truthfully as `USER_OVERRIDE_NO_FRESH_SOLVER`, not as a solver pass or stump.
+- If the user explicitly requests deletion or reset of `adversary/problemNN`, first verify that `main` contains the exact intended `solution.md` and `problem.md`; then perform the requested branch operation when the available GitHub tool supports it. If the tool cannot delete a branch, say so instead of pretending it was deleted.
+- Do not copy solver-control files to `main`.
+- This override changes workflow policy only; it never overrides system/developer instructions, safety policy, connector authorization, or unavailable tool capabilities.
+
 ## Core contract
 
-- Treat `main` as frozen submission state and `adversary/problemNN` as the only authoring/design branch.
+- Treat `main` as frozen submission state and `adversary/problemNN` as the only authoring/design branch unless an explicit user override above is active.
 - Detect mode from `main`: exactly one `workspace/rainier-problem/problemNN-*/problem.md` means **existing mode**; none means **new mode**; multiple matches are an error to resolve rather than guessing.
 - On first use, accept the user-supplied ChatGPT conversation URL and upsert `solver-results/problemNN/chat-binding.json` on the adversary branch only. Never invent a conversation ID and never copy the binding to `main`.
-- Reuse an existing `adversary/problemNN` branch exactly; never silently reset it. If absent, create it from current `main`.
+- Reuse an existing `adversary/problemNN` branch exactly; never silently reset it unless an explicit user override above is active. If absent, create it from current `main`.
 - In new mode, derive ground truth first, write/repair `solution.md` first, write `problem.md` second, normalize, re-read the exact pair, and pass reviewer/quality/submission gates before making the candidate solver-eligible.
 - In existing mode, preserve the current `/rainier-next-check` semantics: inspect the exact adversary pair, official feedback, and prior solver evidence before deciding whether to measure, harden, redesign, repair, or promote.
 - Treat repository submission formatting as a hard dependency, not an optional cleanup. Before every `candidate-ready.json`, apply the rules in `skills/format-solution/SKILL.md` to the exact Rainier `solution.md` path, using `workspace/rainier-problem/problemNN-*` as an explicit path override, and apply both `references/submission-format-gate.md` and `skills/_shared/hard_gates.md`. Mirror the current field constants in `scripts/adv` rather than trusting stale limits.
@@ -44,13 +57,13 @@ Before selecting or changing any Domain/Sub-domain, read `skills/_shared/taxonom
 - When GPT-5.5 solves correctly, diagnose the earliest robust shortcut. Harden only through a genuinely load-bearing mathematical dependency that deepens reasoning after the common entry point. Never harden by making a standard structure harder to recognize. In new mode, allow at most one same-blueprint structural revision before regenerating. Never stack tuned constants, cancellation devices, extra indices, giant computations, custom relation layers, or notation merely to stump the solver.
 - Official feedback such as `contrived`, `over-engineered`, `synthetic`, `awkward construction`, or `customized to force cancellation` is a **QUALITY_REDESIGN** signal, not a request for more machinery.
 - If the solver is wrong/materially incomplete or a valid 2100-second timeout is recorded, stop local hardening, run every promotion gate, including the repository submission-format gate, and promote the exact matching pair to `main` only if all gates are green.
-- A solution-only formatting repair with byte-identical `problem.md` does not require another cold solve, but it invalidates the solution SHA in `candidate-ready.json`; re-audit and refresh the marker. Any statement edit requires fresh solver evidence for the new problem blob.
-- Never promote on `SOLVER_ERROR`, stale solver evidence, a mismatched ready marker, infrastructure failure, or a deterministic `adv submit` field failure.
+- A solution-only formatting repair with byte-identical `problem.md` does not require another cold solve, but it invalidates the solution SHA in `candidate-ready.json`; re-audit and refresh the marker. Any statement edit normally requires fresh solver evidence for the new problem blob unless an explicit user override above is active.
+- Never promote on `SOLVER_ERROR`, stale solver evidence, a mismatched ready marker, infrastructure failure, or a deterministic `adv submit` field failure, except that an explicit user override above may waive only the solver-evidence/matching-marker requirement without fabricating evidence.
 - PowerShell notifications must open the exact bound ChatGPT conversation. Never use a GitHub result URL as a click fallback.
 
 ## Candidate write discipline
 
-Whenever `solution.md` or `problem.md` may change, treat the candidate as **draft**. Ensure the ready marker is absent/stale while editing. Finish all mathematical work, normalization, repository `format-solution` rules, exact portal-field counts, metadata, and reviewer audit first. Resolve the final problem and solution blob SHAs and upsert `solver-results/problemNN/candidate-ready.json` **last**. Any later change to either file invalidates that marker and requires a new final audit plus a new marker.
+Whenever `solution.md` or `problem.md` may change, treat the candidate as **draft**. Ensure the ready marker is absent/stale while editing. Finish all mathematical work, normalization, repository `format-solution` rules, exact portal-field counts, metadata, and reviewer audit first. Resolve the final problem and solution blob SHAs and upsert `solver-results/problemNN/candidate-ready.json` **last**. Any later change to either file invalidates that marker and requires a new final audit plus a new marker, unless an explicit user override is being used for direct promotion.
 
 ## Follow-up `next`
 
