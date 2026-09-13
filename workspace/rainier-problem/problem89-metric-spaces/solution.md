@@ -153,36 +153,50 @@ Numerically, $\alpha\approx0.2655412194$.
 
 Step 4: Prove that no other nonconstant Hecke mode reaches zero at $p=\alpha$
 
-Because $q=2$ is not a root of unity, $H_2(S_4)$ is semisimple. Its simple modules are indexed by
+The chamber representation is the permutation module on $G/B$, where $G=\operatorname{GL}_4(2)$. Since $H_2(S_4)$ is semisimple, double centralizer theory gives
 $$
-(4),\ (31),\ (22),\ (211),\ (1111),
+\mathbb R^X\cong
+V_{(4)}\otimes S^{(4)}
+\oplus V_{(31)}\otimes S^{(31)}
+\oplus V_{(22)}\otimes S^{(22)}
+\oplus V_{(211)}\otimes S^{(211)}
+\oplus V_{(1111)}\otimes S^{(1111)}.
 $$
-with dimensions $1,3,2,3,1$. The $(4)$-module is the constant mode. The space $W$ constructed in Step 2 is the distinguished eigenline in the $(31)$ Hecke type, with geometric multiplicity $14$.
+The Hecke dimensions are
+$$
+\dim S^{(4)},\dim S^{(31)},\dim S^{(22)},\dim S^{(211)},\dim S^{(1111)}
+=1,3,2,3,1.
+$$
+The multiplicities of these Hecke modules in the full chamber space are the dimensions of the corresponding unipotent $G$-modules. The $q$-hook formula at $q=2$ gives
+$$
+\dim V_\lambda
+=2^{\sum_i(i-1)\lambda_i}
+\frac{\prod_{j=1}^4(2^j-1)}{\prod_{u\in\lambda}(2^{h(u)}-1)},
+$$
+so
+$$
+\begin{array}{c|ccccc}
+\lambda&(4)&(31)&(22)&(211)&(1111)\\
+\hline
+\dim S^\lambda&1&3&2&3&1\\
+\dim V_\lambda&1&14&20&56&64
+\end{array}
+$$
+and indeed
+$$
+1\cdot1+14\cdot3+20\cdot2+56\cdot3+64\cdot1=315.
+$$
+Thus, on the $\lambda$-isotypic summand, every Hecke element, and in particular $D_p$, acts as
+$$
+I_{\dim V_\lambda}\otimes M_\lambda(p).
+$$
+Consequently the nullity in the full chamber space is obtained by multiplying the nullity of each small Hecke block by the corresponding number in the second row of the table.
 
-It remains to check the other two directions in $(31)$ and the types $(22)$, $(211)$, and $(1111)$. There is a compact way to do this without expanding all $24$ elements. Use the same factorized element $R(z)$ on the three multiplicity-free parabolic modules
+We now compute those small blocks. Put
 $$
-\operatorname{Ind}_{H_2(S_3)}^{H_2(S_4)}\mathbf{1}
-\cong S^{(4)}\oplus S^{(31)},
+x_r=r^\alpha\qquad(2\le r\le6).
 $$
-$$
-\operatorname{Ind}_{H_2(S_3)}^{H_2(S_4)}\operatorname{sgn}
-\cong S^{(1111)}\oplus S^{(211)},
-$$
-$$
-\operatorname{Ind}_{H_2(S_2\times S_2)}^{H_2(S_4)}\mathbf{1}
-\cong S^{(4)}\oplus S^{(31)}\oplus S^{(22)}.
-$$
-On their minimal-coset bases, every multiplication is governed by the single rule
-$$
-T_wT_i=
-\begin{cases}
-T_{ws_i},&\ell(ws_i)=\ell(w)+1,\\
-2T_{ws_i}+T_w,&\ell(ws_i)=\ell(w)-1.
-\end{cases}
-$$
-Thus the factorization in Step 1 produces the required characteristic factors directly from sparse two-term updates.
-
-Set $x_r=r^{\alpha}$. From $0.265<\alpha<0.266$,
+From $0.265<\alpha<0.266$ we have the outward-rounded intervals
 $$
 \begin{aligned}
 1.2016&<x_2<1.2025,\\
@@ -192,18 +206,120 @@ $$
 1.6077&<x_6<1.6107.
 \end{aligned}
 $$
-Substituting these intervals into the sparse parabolic actions gives the following sign certificate after removing the constant factor and the known zero eigenvalue $L(\alpha)$:
 
-- On the remaining two-dimensional part of $S^{(31)}$, the characteristic polynomial has trace in $(-13.03,-12.79)$ and determinant in $(12.05,13.75)$.
-- On $S^{(211)}$, one eigenvalue lies in $(-0.684,-0.645)$; the remaining quadratic factor has trace in $(-2.79,-2.68)$ and determinant in $(1.41,1.59)$.
-- On $S^{(22)}$, the quadratic factor has trace in $(-2.00,-1.85)$ and determinant in $(0.74,0.91)$.
-- On $S^{(1111)}$, the scalar lies in $(-0.805,-0.770)$.
+For $S^{(31)}$, inducing the trivial module from $H_2(S_3)$ gives $S^{(4)}\oplus S^{(31)}$. Removing the constant summand, one eigenvalue is the already identified
+$$
+L(\alpha)=0,
+$$
+and the other two eigenvalues are the roots of the characteristic polynomial of
+$$
+Q_{31}=
+\begin{pmatrix}
+8x_2+10x_3+8x_4-16x_5-16x_6+5&4x_2+4x_3-8x_4\\
+11x_2+14x_3-4x_4-24x_5+3&-2x_2-4x_3+4x_4+16x_5-16x_6+1
+\end{pmatrix}.
+$$
+Substituting the five intervals above entrywise gives
+$$
+Q_{31,11}\in(-10.7786,-10.6490),\quad
+Q_{31,12}\in(-1.4100,-1.3832),
+$$
+$$
+Q_{31,21}\in(-7.6614,-7.5583),\quad
+Q_{31,22}\in(-2.2498,-2.1436).
+$$
+Hence
+$$
+\operatorname{tr}Q_{31}\in(-13.0284,-12.7926),
+$$
+and, using $\det Q=Q_{11}Q_{22}-Q_{12}Q_{21}$ with interval multiplication,
+$$
+\det Q_{31}\in(12.0246,13.7951).
+$$
+Therefore the two remaining $S^{(31)}$ eigenvalues are both strictly negative.
 
-The chamber-space Hecke operators are self-adjoint, so all these roots are real. A real quadratic with negative trace and positive determinant has two negative roots. Therefore every nonconstant eigenvalue of $D_{\alpha}$ outside $W$ is strictly negative:
+For $S^{(211)}$, inducing the sign module from the same parabolic gives one scalar eigenvalue
 $$
-D_{\alpha}\big|_{\mathbf{1}^{\perp}\cap W^{\perp}}<0.
+L_{211}=-4x_2+3x_3+2x_4-6x_5+4x_6
+\in(-0.6841,-0.6439),
 $$
-Together with Step 2, this shows that $D_{\alpha}$ is conditionally negative semidefinite and that its kernel inside $\mathbf{1}^{\perp}$ is exactly $W$.
+and a quadratic block
+$$
+Q_{211}=
+\begin{pmatrix}
+7x_3-12x_4+10x_5-4x_6-2&2x_2+2x_3-4x_4\\
+-2x_3+3x_4-2x_5+1&-3x_2-4x_3+6x_4+2x_5-4x_6+2
+\end{pmatrix}.
+$$
+The same entrywise interval substitution yields
+$$
+Q_{211,11}\in(-1.1115,-1.0371),\quad
+Q_{211,12}\in(-0.7050,-0.6916),
+$$
+$$
+Q_{211,21}\in(-0.4161,-0.4014),\quad
+Q_{211,22}\in(-1.6813,-1.6424),
+$$
+so
+$$
+\operatorname{tr}Q_{211}\in(-2.7928,-2.6795),
+\qquad
+\det Q_{211}\in(1.4100,1.5912).
+$$
+Thus all three $S^{(211)}$ eigenvalues are strictly negative.
+
+For $S^{(22)}$ one may use the concrete Hecke representation
+$$
+T_1=T_3=
+\begin{pmatrix}2&0\\0&-1\end{pmatrix},
+\qquad
+T_2=
+\begin{pmatrix}-1/3&14/9\\1&4/3\end{pmatrix},
+$$
+which satisfies $T_i^2=T_i+2I$ and the braid relations. Substituting these matrices into the factorized $R(z)$ of Step 1 and then replacing the coefficient of $z^r$ by $x_r$ gives
+$$
+Q_{22}=
+\begin{pmatrix}
+\frac43x_2-8x_3-\frac{26}3x_4+\frac83x_5+8x_6+\frac{11}3&
+\frac{28}9x_2-\frac{14}3x_3-\frac{56}9x_4+\frac{56}9x_5+\frac{14}9\\
+2x_2-3x_3-4x_4+4x_5+1&
+-\frac{13}3x_2+8x_3+\frac83x_4-\frac{44}3x_5+8x_6-\frac23
+\end{pmatrix}.
+$$
+Its entries satisfy
+$$
+Q_{22,11}\in(-1.0328,-0.9696),\quad
+Q_{22,12}\in(-0.4233,-0.3837),
+$$
+$$
+Q_{22,21}\in(-0.2721,-0.2467),\quad
+Q_{22,22}\in(-0.9669,-0.8824),
+$$
+whence
+$$
+\operatorname{tr}Q_{22}\in(-1.9997,-1.8520),
+\qquad
+\det Q_{22}\in(0.7404,0.9039).
+$$
+Thus both $S^{(22)}$ eigenvalues are strictly negative.
+
+Finally, on $S^{(1111)}$ the generators act by $-1$, so the distance operator is the scalar
+$$
+S=-3+5x_2-6x_3+5x_4-3x_5+x_6
+\in(-0.8050,-0.7696),
+$$
+again strictly negative.
+
+Each chamber-space distance operator is real symmetric. Hence the roots of every displayed quadratic factor are real, and a quadratic block with negative trace and positive determinant has two negative eigenvalues. We have therefore shown that the only zero eigenvalue among all nonconstant Hecke blocks at $p=\alpha$ is the single eigenvalue $L(\alpha)=0$ inside $S^{(31)}$.
+
+Because that zero is simple in the $3$-dimensional Hecke module $S^{(31)}$, while $S^{(31)}$ occurs with multiplicity exactly
+$$
+\dim V_{(31)}=14,
+$$
+the full zero eigenspace inside $\mathbf 1^\perp$ has dimension exactly $14$. The space $W$ from Step 2 already supplies $14$ independent zero vectors, so in fact
+$$
+\ker(D_\alpha|_{\mathbf1^\perp})=W.
+$$
 
 Step 5: Determine the supremal negative type and the equality space
 
