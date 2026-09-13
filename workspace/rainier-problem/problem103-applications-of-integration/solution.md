@@ -16,12 +16,50 @@ $$
 $$
 W(x,y)=\frac{\Delta^2}{\sqrt{xyz}(x+y)(y+z)(z+x)}.
 $$
-For $0<c<\frac{1}{2}$, Mellin inversion gives
+For $0<c<\frac{1}{2}$, Mellin inversion on the interior of $T$ gives
 $$
 e^{-nP}=\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}
 \Gamma(s)n^{-s}P^{-s}\,ds.
 $$
-Hence
+The boundary of $T$ has measure zero, so it remains only to justify interchanging this Mellin integral with the integral over $T$.
+
+For this purpose, put
+$$
+M(c)=\iint_T
+\frac{\Delta^2(xyz)^{-c-1/2}}{(x+y)(y+z)(z+x)}\,dx\,dy
+=\iint_T W(x,y)P^{-c}\,dx\,dy.
+$$
+We first note that $M(c)<\infty$ for $0<c<\frac12$. Away from the boundary the integrand is bounded. Near a generic edge, say $x\to0$ while $y$ and $z$ stay bounded away from $0$, it is $O(x^{-c-1/2})$, which is integrable because $c<\frac12$. Near a vertex, say $x,y\to0$ and $z\to1$, write
+$$
+r=x+y,\qquad t=\frac{x}{x+y}.
+$$
+Then $dx\,dy=r\,dr\,dt$, while
+$$
+\frac{\Delta^2(xyz)^{-c-1/2}}{(x+y)(y+z)(z+x)}\,dx\,dy
+=O\left(r^{1-2c}[t(1-t)]^{-c-1/2}\,dr\,dt\right).
+$$
+Both the $r$-integral and the beta-type $t$-integral converge when $0<c<\frac12$. The other edges and vertices are identical by symmetry, proving $M(c)<\infty$.
+
+Moreover, Stirling's formula on the vertical line $\Re s=c$ gives
+$$
+|\Gamma(c+it)|=O\left((1+|t|)^{c-1/2}e^{-\pi|t|/2}\right),
+$$
+so
+$$
+\int_{\mathbb R}|\Gamma(c+it)|\,dt<\infty.
+$$
+Therefore
+$$
+\begin{aligned}
+&\frac{1}{2\pi}\int_{\mathbb R}\iint_T
+\left|\Gamma(c+it)n^{-c-it}P^{-c-it}W(x,y)\right|\,dx\,dy\,dt\\
+&\qquad=
+\frac{n^{-c}}{2\pi}M(c)
+\int_{\mathbb R}|\Gamma(c+it)|\,dt
+<\infty.
+\end{aligned}
+$$
+Thus Fubini's theorem applies, and hence
 $$
 I_n=\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}
 \Gamma(s)n^{-s}M(s)\,ds,
@@ -317,28 +355,79 @@ F\left(\frac{3}{2}+\varepsilon\right)
 {\varepsilon^2(1+\varepsilon)(1-4\varepsilon^2)
 \Gamma(1-3\varepsilon)}.
 $$
-We use
+We use the standard expansion
+$$
+\Gamma(1+u)=1-\gamma u+O(u^2),
+$$
+which gives
 $$
 \Gamma(1-\varepsilon)=1+\gamma\varepsilon+O(\varepsilon^2),
-$$
-$$
+\qquad
 \Gamma(1-3\varepsilon)=1+3\gamma\varepsilon+O(\varepsilon^2).
 $$
-The duplication formula together with
-$\Gamma(1+\varepsilon)=1-\gamma\varepsilon+O(\varepsilon^2)$ gives
+For the remaining Gamma factor, use the duplication formula in the exact form
 $$
-\Gamma\left(\frac{3}{2}+\varepsilon\right)
-=\frac{\sqrt{\pi}}{2}
+\Gamma(z)\Gamma\left(z+\frac12\right)
+=2^{1-2z}\sqrt\pi\,\Gamma(2z).
+$$
+Taking $z=1+\varepsilon$ gives
+$$
+\Gamma(1+\varepsilon)\Gamma\left(\frac32+\varepsilon\right)
+=2^{-1-2\varepsilon}\sqrt\pi\,\Gamma(2+2\varepsilon),
+$$
+so
+$$
+\Gamma\left(\frac32+\varepsilon\right)
+=\frac{2^{-1-2\varepsilon}\sqrt\pi\,\Gamma(2+2\varepsilon)}
+{\Gamma(1+\varepsilon)}.
+$$
+Now
+$$
+2^{-1-2\varepsilon}
+=\frac12\left(1-2(\log2)\varepsilon+O(\varepsilon^2)\right),
+$$
+while
+$$
+\begin{aligned}
+\Gamma(2+2\varepsilon)
+&=(1+2\varepsilon)\Gamma(1+2\varepsilon)\\
+&=(1+2\varepsilon)
+\left(1-2\gamma\varepsilon+O(\varepsilon^2)\right)\\
+&=1+2(1-\gamma)\varepsilon+O(\varepsilon^2),
+\end{aligned}
+$$
+and
+$$
+\frac1{\Gamma(1+\varepsilon)}
+=1+\gamma\varepsilon+O(\varepsilon^2).
+$$
+Multiplying these three expansions yields
+$$
+\Gamma\left(\frac32+\varepsilon\right)
+=\frac{\sqrt\pi}{2}
 \left(1+(2-\gamma-2\log2)\varepsilon+O(\varepsilon^2)\right).
 $$
-Hence
+Also,
 $$
-F\left(\frac{3}{2}+\varepsilon\right)
-=
-\frac{9\sqrt{\pi}}{\varepsilon^2}
-+
-\frac{9\sqrt{\pi}(1-\gamma-2\log2)}{\varepsilon}
+\frac{\Gamma(1-\varepsilon)^3}{\Gamma(1-3\varepsilon)}
+=1+O(\varepsilon^2),
+$$
+$$
+\frac1{1+\varepsilon}=1-\varepsilon+O(\varepsilon^2),
+\qquad
+\frac1{1-4\varepsilon^2}=1+O(\varepsilon^2).
+$$
+Therefore
+$$
+\begin{aligned}
+F\left(\frac32+\varepsilon\right)
+&=\frac{9\sqrt\pi}{\varepsilon^2}
+\left(1+(2-\gamma-2\log2)\varepsilon+O(\varepsilon^2)\right)
+\left(1-\varepsilon+O(\varepsilon^2)\right)\\
+&=\frac{9\sqrt\pi}{\varepsilon^2}
++\frac{9\sqrt\pi(1-\gamma-2\log2)}{\varepsilon}
 +O(1).
+\end{aligned}
 $$
 Also
 $$
