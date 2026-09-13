@@ -2,11 +2,11 @@
 
 ## LaTeX (Normalized)
 
-Let $K\subset\mathbb R^4$ be the convex hull of all points
+Let $K\subset\mathbb R^4$ be the convex hull of the curve
 $$
-(t,t^2,t^3,t^4),\qquad 0\leq t\leq1.
+(\cos t,\sin t,\cos 2t,\sin 2t),\qquad 0\leq t\leq2\pi.
 $$
-Determine exactly the $4$-dimensional Euclidean volume of $K$.
+Among all ellipsoids contained in $K$, determine exactly the maximum possible $4$-dimensional Euclidean volume.
 
 ---
 
@@ -16,11 +16,11 @@ Determine exactly the $4$-dimensional Euclidean volume of $K$.
 |---|---|
 | **Domain** | Topology and Geometry |
 | **Sub-domain** | Convex geometry |
-| **Problem Type** | Exact computation |
+| **Problem Type** | Optimization |
 | **Answer Type** | Exact scalar |
 
 ---
 
 ## Domain Explanation
 
-The requested object is the Euclidean volume of a convex body obtained as the convex hull of a moment curve. The central task is therefore a convex-geometry volume computation.
+The problem asks for the maximum-volume ellipsoid contained in a convex hull of a trigonometric moment curve. The decisive work is to characterize the convex body, exploit its geometric symmetries, derive the sharp ellipsoid-containment condition, and optimize volume, so Convex geometry is the direct classification.
