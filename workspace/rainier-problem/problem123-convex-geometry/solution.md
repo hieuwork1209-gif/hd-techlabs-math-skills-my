@@ -1,141 +1,200 @@
 ## Steps
 
-Step 1: Parametrize the squared disk
+Step 1: Characterize the convex hull as a truncated moment body
 Let
 $$
-D_c=\{z\in\mathbb C:|z-c|<1\},\qquad 1<c<2,
+K=\operatorname{conv}\{(t,t^2,t^3,t^4):0\leq t\leq1\}\subset\mathbb R^4.
 $$
-and let $S_c=\{z^2:z\in D_c\}$. Since $\operatorname{Re}z\geq c-1>0$ on $\overline{D_c}$, the squaring map is injective there: if $z_1^2=z_2^2$, then $z_1=\pm z_2$, and the second possibility cannot occur for two points with positive real part. Thus $\overline{S_c}$ is a Jordan domain with boundary
+Write a point as $(a,b,c,d)$ and set $m_0=1,m_1=a,m_2=b,m_3=c,m_4=d$. Equivalently, points of $K$ are the first four moments of probability measures on $[0,1]$.
+
+We use the degree-$4$ Markov-Lukacs factorization in the following exact form: a real polynomial $P$ of degree at most $4$ is nonnegative on $[0,1]$ if and only if
 $$
-\gamma(t)=(c+e^{it})^2=x(t)+iy(t),\qquad -\pi\leq t\leq\pi,
+P(t)=\sum_j q_j(t)^2+t(1-t)\sum_k r_k(t)^2,
+$$
+where every $q_j$ has degree at most $2$ and every $r_k$ has degree at most $1$.
+
+Define
+$$
+H=\begin{pmatrix}
+1&a&b\\
+a&b&c\\
+b&c&d
+\end{pmatrix},
+\qquad
+G=\begin{pmatrix}
+a-b&b-c\\
+b-c&c-d
+\end{pmatrix}.
+$$
+For $q(t)=q_0+q_1t+q_2t^2$ and $r(t)=r_0+r_1t$,
+$$
+L(q^2)=\begin{pmatrix}q_0&q_1&q_2\end{pmatrix}H
+\begin{pmatrix}q_0\\q_1\\q_2\end{pmatrix},
+$$
+and
+$$
+L\bigl(t(1-t)r^2\bigr)=\begin{pmatrix}r_0&r_1\end{pmatrix}G
+\begin{pmatrix}r_0\\r_1\end{pmatrix},
+$$
+where $L(t^j)=m_j$. Hence every point of $K$ satisfies $H\succeq0$ and $G\succeq0$.
+
+Conversely, suppose $H\succeq0$ and $G\succeq0$. If an affine functional
+$$
+\ell(x_1,x_2,x_3,x_4)=\alpha_0+\alpha_1x_1+\cdots+\alpha_4x_4
+$$
+is nonnegative on the moment curve, then $P(t)=\alpha_0+\alpha_1t+\cdots+\alpha_4t^4$ is nonnegative on $[0,1]$. The displayed factorization and the two positive-semidefinite matrices give $\ell(a,b,c,d)=L(P)\geq0$. If $(a,b,c,d)$ were outside the compact convex set $K$, a separating affine functional could be shifted so that it is nonnegative on $K$ but negative at $(a,b,c,d)$, a contradiction. Therefore
+$$
+K=\{(a,b,c,d):H\succeq0,\ G\succeq0\}.
+$$
+
+Step 2: Obtain sharp nested intervals for the moments
+The boundary has $4$-dimensional measure zero, so the volume may be computed on the interior. There $H$ and $G$ are positive definite in the relevant leading blocks. From
+$$
+b-a^2>0,
+\qquad
+a-b>0,
+$$
+we get
+$$
+0<a<1,
+\qquad
+a^2<b<a.
+$$
+
+The principal minor
+$$
+\det\begin{pmatrix}a&b\\b&c\end{pmatrix}>0
+$$
+gives
+$$
+c>L_3:=\frac{b^2}{a}.
+$$
+For fixed $a,b,c$, the Schur complement of the upper-left $2\times2$ block of $H$ gives the sharp lower bound
+$$
+d>L_4:=\frac{b^3-2abc+c^2}{b-a^2}.
+$$
+The determinant condition for $G$ gives the sharp upper bound
+$$
+d<U_4:=c-\frac{(b-c)^2}{a-b}.
+$$
+A direct subtraction factors as
+$$
+U_4-L_4=
+\frac{(ac-b^2)(a^2-ab-ac+b^2-b+c)}{(a-b)(a^2-b)}.
+$$
+Since $ac-b^2>0$, $a-b>0$, and $a^2-b<0$, the interval for $d$ is nonempty exactly when
+$$
+a^2-ab-ac+b^2-b+c<0.
+$$
+Because
+$$
+a^2-ab-ac+b^2-b+c=(1-a)(c-U_3),
 $$
 where
 $$
-x(t)=c^2+2c\cos t+\cos 2t,
+U_3:=b-\frac{(a-b)^2}{1-a},
+$$
+we obtain the exact nested description
+$$
+0<a<1,
 \qquad
-y(t)=2c\sin t+\sin 2t.
-$$
-Taking closures does not change either area in the requested difference, so the convex-hull analysis may be done for this closed Jordan domain.
-
-Step 2: Determine the boundary of the convex hull
-Write $u=\cos t$. Then
-$$
-x(t)=2u^2+2cu+c^2-1.
-$$
-Because $1<c<2$, the minimum for $-1\leq u\leq1$ occurs at $u=-c/2$. Put
-$$
-\beta=\arccos\left(\frac c2\right),
+a^2<b<a,
 \qquad
-t_0=\pi-\beta,
+L_3<c<U_3,
 \qquad
-x_0=\frac{c^2}{2}-1.
-$$
-Then
-$$
-x(t)-x_0=2\left(\cos t+\frac c2\right)^2\geq0,
-$$
-with equality only for $t=\pm t_0$. Hence $x=x_0$ is a supporting line, meeting the curve at two points whose imaginary parts are
-$$
-y(\pm t_0)=\pm y_0,
-\qquad
-y_0=\frac c2\sqrt{4-c^2}.
+L_4<d<U_4.
 $$
 
-It remains to show that the arc $-t_0\leq t\leq t_0$ together with the vertical chord between these contact points is exactly the convex-hull boundary. Since
-$$
-\gamma'(t)=2ie^{it}(c+e^{it}),
-$$
-a continuous tangent angle on that arc is
-$$
-\psi(t)=\frac\pi2+t+\arg(c+e^{it}),
-$$
-where the argument is continuous because $\operatorname{Re}(c+e^{it})\geq c-1>0$. Differentiating gives
-$$
-\psi'(t)=\frac{c^2+2+3c\cos t}{c^2+1+2c\cos t}.
-$$
-For $|t|\leq t_0$, $\cos t\geq-c/2$, so
-$$
-\psi'(t)\geq\frac{2-c^2/2}{c^2+1+2c\cos t}>0.
-$$
-Also
-$$
-\arg(c+e^{it_0})=\beta,
-\qquad
-\arg(c+e^{-it_0})=-\beta,
-$$
-so
-$$
-\psi(t_0)-\psi(-t_0)=2t_0+2\beta=2\pi.
-$$
-Moreover $\gamma'(\pm t_0)=-2i$, exactly the direction of the downward vertical chord. Therefore the arc plus chord is a simple closed $C^1$ curve whose tangent angle is nondecreasing through one full turn; by the plane-curve convexity criterion, it bounds a convex set $C$.
-
-Every point of the omitted arc $t_0<t<2\pi-t_0$ has $x(t)>x_0$, while the chord lies on $x=x_0$. Since the original boundary is a Jordan curve, replacing that indented arc by the exterior supporting chord enlarges the Jordan domain, so $\overline{S_c}\subset C$. Conversely, the curved part of $\partial C$ lies in $\overline{S_c}$ and the chord is the segment joining two points of $\overline{S_c}$, hence $\partial C\subset\operatorname{conv}(\overline{S_c})$. Because $C$ is convex, this gives
-$$
-C=\operatorname{conv}(\overline{S_c}).
-$$
-Thus the requested area difference is exactly the area of the pocket between the supporting chord and the omitted arc.
-
-Step 3: Convert the pocket area to an explicit integral
-By symmetry about the real axis, half of the pocket lies between the arc $t_0\leq t\leq\pi$ and the line $x=x_0$. On this interval $u=\cos t$ runs from $-c/2$ to $-1$, and
-$$
-\frac{y'(t)}2=2u^2+cu-1<0,
-$$
-because its derivative with respect to $u$ is $4u+c\leq-c<0$ and its value at $u=-1$ is $1-c<0$. Horizontal slicing therefore gives
-$$
-\frac{\operatorname{Area}(\operatorname{conv}(S_c))-\operatorname{Area}(S_c)}{2}
-=-\int_{t_0}^{\pi}(x(t)-x_0)y'(t)\,dt.
-$$
-Using
-$$
-x(t)-x_0=\frac{(c+2\cos t)^2}{2},
-\qquad
-y'(t)=2(c\cos t+\cos 2t),
-$$
-the integrand expands to
-$$
-(x(t)-x_0)y'(t)
-=(2c^2+1)+(c^3+5c)\cos t+(3c^2+2)\cos 2t+3c\cos 3t+\cos 4t.
-$$
-Hence an explicit antiderivative is
-$$
-J(t)=(2c^2+1)t+(c^3+5c)\sin t+\frac{3c^2+2}{2}\sin 2t+c\sin 3t+\frac14\sin 4t.
-$$
-The half-deficit is therefore $J(t_0)-J(\pi)$.
-
-Step 4: Evaluate the endpoint terms
+Step 3: Introduce intrinsic interval coordinates and factor the Jacobian
 Let
 $$
-d=\sqrt{4-c^2}.
-$$
-From $\cos t_0=-c/2$ and $\sin t_0=d/2$,
-$$
-\sin 2t_0=-\frac{cd}{2},
+\Delta_2=a-a^2=a(1-a),
 \qquad
-\sin 3t_0=\frac{d(c^2-1)}{2},
+p=\frac{b-a^2}{\Delta_2}.
+$$
+Thus $0<p<1$ and
+$$
+b=a^2+p\Delta_2.
+$$
+Next define
+$$
+\Delta_3=U_3-L_3,
 \qquad
-\sin 4t_0=-\frac{cd(c^2-2)}{2}.
+q=\frac{c-L_3}{\Delta_3}.
 $$
-Substitution into $J$ gives
+Using the formulas for $L_3$ and $U_3$,
 $$
-J(t_0)=(2c^2+1)t_0+\frac{cd(c^2+14)}{8},
+\Delta_3
+=\frac{(b-a^2)(a-b)}{a(1-a)}
+=a(1-a)p(1-p).
 $$
-while
+Hence $0<q<1$ and $c=L_3+q\Delta_3$.
+
+Finally put
 $$
-J(\pi)=(2c^2+1)\pi.
+\Delta_4=U_4-L_4,
+\qquad
+r=\frac{d-L_4}{\Delta_4}.
 $$
-Since $t_0-\pi=-\arccos(c/2)$, doubling the half-deficit yields
+The factors in Step 2 simplify after $c=L_3+q\Delta_3$:
 $$
-\operatorname{Area}(\operatorname{conv}(S_c))-\operatorname{Area}(S_c)
-=\frac{c(c^2+14)\sqrt{4-c^2}}{4}-2(2c^2+1)\arccos\left(\frac c2\right).
+ac-b^2=a\Delta_3q,
+$$
+$$
+a^2-ab-ac+b^2-b+c=-(1-a)\Delta_3(1-q),
+$$
+and
+$$
+(a-b)(a^2-b)=-a(1-a)\Delta_3.
+$$
+Therefore
+$$
+\Delta_4=\Delta_3q(1-q)
+=a(1-a)p(1-p)q(1-q).
+$$
+Thus $(a,p,q,r)\in(0,1)^4$ parametrizes the interior of $K$.
+
+The map is triangular in the sense that $b$ depends only on $a,p$, $c$ only on $a,p,q$, and $d$ only on $a,p,q,r$. Consequently its Jacobian determinant is
+$$
+\left|\frac{\partial(a,b,c,d)}{\partial(a,p,q,r)}\right|
+=\Delta_2\Delta_3\Delta_4
+=[a(1-a)]^3[p(1-p)]^2q(1-q).
 $$
 
-Final Answer: $\boxed{\frac{c(c^2+14)\sqrt{4-c^2}}{4}-2(2c^2+1)\arccos\left(\frac c2\right)}$
+Step 4: Integrate the factored Jacobian
+Hence
+$$
+\operatorname{Vol}_4(K)
+=\int_0^1\int_0^1\int_0^1\int_0^1
+[a(1-a)]^3[p(1-p)]^2q(1-q)\,dr\,dq\,dp\,da.
+$$
+The four variables separate. Using
+$$
+\int_0^1x^m(1-x)^m\,dx=\frac{(m!)^2}{(2m+1)!},
+$$
+for $m=3,2,1$, we get
+$$
+\int_0^1[a(1-a)]^3\,da=\frac{1}{140},
+$$
+$$
+\int_0^1[p(1-p)]^2\,dp=\frac{1}{30},
+$$
+and
+$$
+\int_0^1q(1-q)\,dq=\frac{1}{6}.
+$$
+The $r$-integral equals $1$, so
+$$
+\operatorname{Vol}_4(K)=\frac1{140}\cdot\frac1{30}\cdot\frac1{6}=\frac1{25200}.
+$$
+
+Final Answer: $\boxed{\frac{1}{25200}}$
 
 ---
 
 ## Answer
 
-$\frac{c(c^2+14)\sqrt{4-c^2}}{4}-2(2c^2+1)\arccos\left(\frac c2\right)$
+$\frac{1}{25200}$
 
 ---
 
@@ -143,14 +202,14 @@ $\frac{c(c^2+14)\sqrt{4-c^2}}{4}-2(2c^2+1)\arccos\left(\frac c2\right)$
 
 **Problem Type:** Exact computation
 
-**Answer Type:** Exact symbolic expression
+**Answer Type:** Exact scalar
 
 ---
 
 ## Solution Concepts
 
-- convex hulls
-- supporting lines
-- turning angle criterion
-- Jordan curves
-- planar area integration
+- convex hulls of moment curves
+- truncated moment matrices
+- positive polynomial certificates
+- Schur complements
+- Jacobian change of variables
