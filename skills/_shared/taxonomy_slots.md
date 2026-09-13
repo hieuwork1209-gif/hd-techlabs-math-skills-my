@@ -2,172 +2,161 @@
 
 This file is the source of truth for currently usable taxonomy slots. Update it whenever the portal capacity changes. Skills must read this file before choosing or changing a Domain/Sub-domain, Problem Type, or Answer Type.
 
-Last updated from user-provided portal snapshot: **2026-09-12**. Reviewer taxonomy classification feedback retained from **2026-08-28** where still applicable; all older capacity/availability statements are superseded by this portal snapshot. The table below is derived directly from the latest user-provided snapshot. Any Domain/Sub-domain pair absent from this list must be treated as unavailable for the current snapshot rather than carried forward from older snapshots.
+Last updated from user-provided portal snapshot: **2026-09-13**. Reviewer taxonomy classification feedback retained from **2026-08-28** where still applicable; all older capacity/availability statements are superseded by this portal snapshot. The current snapshot contains **87 Domain/Sub-domain rows**; **86** have positive remaining capacity and **1** has zero remaining capacity. Any Domain/Sub-domain pair absent from this list must be treated as unavailable.
 
 ## Selection Rules
 
-- Determine the Domain/Sub-domain by what the problem fundamentally asks, rather than by the solution methods or tools used.
-- If a problem involves multiple domains, classify it by the highest-level concepts fundamental to the problem.
-- Use only Domain/Sub-domain pairs present in the current table below with a positive remaining-slot count.
-- Treat a row absent from the current portal snapshot as unavailable.
-- Never force a taxonomy label merely because it has more or fewer remaining slots. Primary mathematical content decides the label.
-- If the mathematically correct Sub-domain is unavailable, do not relabel the same prompt into a nearby open Sub-domain. Materially redesign the prompt so that its fundamental content genuinely fits an open slot.
-- Treat explicit reviewer classification feedback as a taxonomy guardrail for future choices until superseded by newer portal or reviewer evidence.
-- For the Domain Explanation, state why the selected Domain/Sub-domain is the best fit and why it is more appropriate than the next-best alternative.
-- If the user provides a newer portal snapshot in chat, that newer snapshot supersedes this file for the current run.
+- Determine Domain/Sub-domain by what the problem fundamentally asks, not by incidental solution methods.
+- Use only pairs listed below with positive remaining capacity.
+- A listed row with 0 remaining is closed. A pair absent from the snapshot is unavailable.
+- Never relabel a prompt into a nearby open sub-domain merely to fit capacity; materially redesign the task instead.
+- If the user provides a newer portal snapshot in chat, it supersedes this file for the current run and this file should be updated before further taxonomy-dependent authoring.
+- Before promotion, re-check that the selected Domain/Sub-domain is still available in the newest snapshot.
 
 ## Domain/Sub-domain Slots
 
 | Domain | Sub-domain | Remaining slots | Status | Notes |
 |---|---|---:|---|---|
-| Abstract Algebra | Field theory | 1 | open | 2026-09-12 user-provided portal snapshot. |
-| Abstract Algebra | Universal algebra and algebraic structures | 1 | open | 2026-09-12 user-provided portal snapshot. |
-| Analysis | Complex analysis | 1 | open | 2026-09-12 user-provided portal snapshot. |
-| Analysis | Fourier analysis | 1 | open | 2026-09-12 user-provided portal snapshot. |
-| Probability and Statistics | Limit theorems | 1 | open | 2026-09-12 user-provided portal snapshot. |
-| Analysis | Real analysis | 2 | open | 2026-09-12 user-provided portal snapshot. |
-| Euclidean, Coordinate, and Transformational Geometry | Computational geometry | 2 | open | 2026-09-12 user-provided portal snapshot. |
-| Number Theory | Diophantine equations | 2 | open | 2026-09-12 user-provided portal snapshot. |
-| Topology and Geometry | Algebraic geometry | 2 | open | 2026-09-12 user-provided portal snapshot. |
-| Linear Algebra | Eigenvalues and eigenvectors | 3 | open | 2026-09-12 user-provided portal snapshot. |
-| Linear Algebra | Matrices and matrix operations | 3 | open | 2026-09-12 user-provided portal snapshot. |
-| Linear Algebra | Tensor and multilinear algebra | 3 | open | 2026-09-12 user-provided portal snapshot. |
-| Logic, Set Theory, and Foundations | Complexity theory | 3 | open | 2026-09-12 user-provided portal snapshot. |
-| Number Theory | Algebraic number theory | 3 | open | 2026-09-12 user-provided portal snapshot. |
-| Number Theory | Modular arithmetic and congruences | 3 | open | 2026-09-12 user-provided portal snapshot. |
-| Probability and Statistics | Joint distributions and dependence | 3 | open | 2026-09-12 user-provided portal snapshot. |
-| Topology and Geometry | Riemannian geometry | 3 | open | 2026-09-12 user-provided portal snapshot. |
-| Algebra, Functions, and Trigonometry | Equations and inequalities | 4 | open | 2026-09-12 user-provided portal snapshot. |
-| Analysis | Measure theory | 4 | open | 2026-09-12 user-provided portal snapshot. |
-| Calculus | Applications of integration | 4 | open | 2026-09-12 user-provided portal snapshot. |
-| Differential Equations and Dynamical Systems | Bifurcation theory | 4 | open | 2026-09-12 user-provided portal snapshot. |
-| Linear Algebra | Inner product spaces | 4 | open | 2026-09-12 user-provided portal snapshot. |
-| Linear Algebra | Linear transformations | 4 | open | 2026-09-12 user-provided portal snapshot. |
-| Optimization and Numerical Mathematics | Numerical analysis | 4 | open | 2026-09-12 user-provided portal snapshot. |
-| Optimization and Numerical Mathematics | Numerical optimization | 4 | open | 2026-09-12 user-provided portal snapshot. |
-| Probability and Statistics | Experimental design and causal inference | 4 | open | 2026-09-12 user-provided portal snapshot. |
-| Probability and Statistics | Probability foundations | 4 | open | 2026-09-12 user-provided portal snapshot. |
-| Abstract Algebra | Computational algebra | 5 | open | 2026-09-12 user-provided portal snapshot. |
-| Abstract Algebra | Homological Algebra | 5 | open | 2026-09-12 user-provided portal snapshot. |
-| Analysis | Harmonic analysis | 5 | open | 2026-09-12 user-provided portal snapshot. |
-| Linear Algebra | Determinants | 5 | open | 2026-09-12 user-provided portal snapshot. |
-| Logic, Set Theory, and Foundations | Proof theory | 5 | open | 2026-09-12 user-provided portal snapshot. |
-| Probability and Statistics | Stochastic processes | 5 | open | 2026-09-12 user-provided portal snapshot. |
-| Topology and Geometry | Geometric topology | 5 | open | 2026-09-12 user-provided portal snapshot. |
-| Algebra, Functions, and Trigonometry | Sequences and elementary recurrence relations | 6 | open | 2026-09-12 user-provided portal snapshot. |
-| Linear Algebra | Systems of linear equations | 6 | open | 2026-09-12 user-provided portal snapshot. |
-| Linear Algebra | Vectors and vector spaces | 6 | open | 2026-09-12 user-provided portal snapshot. |
-| Number Theory | Computational number theory | 6 | open | 2026-09-12 user-provided portal snapshot. |
-| Topology and Geometry | Differential geometry | 6 | open | 2026-09-12 user-provided portal snapshot. |
-| Topology and Geometry | Differential topology | 6 | open | 2026-09-12 user-provided portal snapshot. |
-| Calculus | Applications of derivatives | 7 | open | 2026-09-12 user-provided portal snapshot. |
-| Calculus | Integration | 7 | open | 2026-09-12 user-provided portal snapshot. |
-| Differential Equations and Dynamical Systems | First-order ordinary differential equations | 7 | open | 2026-09-12 user-provided portal snapshot. |
-| Differential Equations and Dynamical Systems | Higher-order ordinary differential equations | 7 | open | 2026-09-12 user-provided portal snapshot. |
-| Logic, Set Theory, and Foundations | Mathematical logic | 7 | open | 2026-09-12 user-provided portal snapshot. |
-| Number Theory | Analytic number theory | 7 | open | 2026-09-12 user-provided portal snapshot. |
-| Probability and Statistics | Regression and statistical modeling | 7 | open | 2026-09-12 user-provided portal snapshot. |
-| Topology and Geometry | Convex geometry | 7 | open | 2026-09-12 user-provided portal snapshot. |
-| Differential Equations and Dynamical Systems | Systems of differential equations | 8 | open | 2026-09-12 user-provided portal snapshot. |
-| Linear Algebra | Numerical linear algebra | 8 | open | 2026-09-12 user-provided portal snapshot. |
-| Number Theory | Multiplicative functions | 8 | open | 2026-09-12 user-provided portal snapshot. |
-| Number Theory | Quadratic residues and reciprocity | 8 | open | 2026-09-12 user-provided portal snapshot. |
-| Optimization and Numerical Mathematics | Scientific computing | 8 | open | 2026-09-12 user-provided portal snapshot. |
-| Topology and Geometry | Point-set topology | 8 | open | 2026-09-12 user-provided portal snapshot. |
-| Algebra, Functions, and Trigonometry | Trigonometry | 9 | open | 2026-09-12 user-provided portal snapshot. |
-| Calculus | Infinite sequences and series | 9 | open | 2026-09-12 user-provided portal snapshot. |
-| Differential Equations and Dynamical Systems | Boundary value problems | 9 | open | 2026-09-12 user-provided portal snapshot. |
-| Differential Equations and Dynamical Systems | Partial differential equations | 9 | open | 2026-09-12 user-provided portal snapshot. |
-| Probability and Statistics | Statistical computing and simulation | 9 | open | 2026-09-12 user-provided portal snapshot. |
-| Algebra, Functions, and Trigonometry | Systems of equations | 10 | open | 2026-09-12 user-provided portal snapshot. |
-| Differential Equations and Dynamical Systems | Initial value problems | 10 | open | 2026-09-12 user-provided portal snapshot. |
-| Differential Equations and Dynamical Systems | Numerical differential equations | 10 | open | 2026-09-12 user-provided portal snapshot. |
-| Algebra, Functions, and Trigonometry | Functions and graphs | 11 | open | 2026-09-12 user-provided portal snapshot. |
-| Calculus | Differentiation | 11 | open | 2026-09-12 user-provided portal snapshot. |
-| Calculus | Single-variable calculus | 11 | open | 2026-09-12 user-provided portal snapshot. |
-| Differential Equations and Dynamical Systems | Dynamical systems | 11 | open | 2026-09-12 user-provided portal snapshot. |
-| Differential Equations and Dynamical Systems | Stability theory | 11 | open | 2026-09-12 user-provided portal snapshot. |
-| Logic, Set Theory, and Foundations | Type theory and formal systems | 11 | open | 2026-09-12 user-provided portal snapshot. |
-| Probability and Statistics | Expectation and variance | 11 | open | 2026-09-12 user-provided portal snapshot. |
-| Topology and Geometry | Symplectic and contact geometry | 11 | open | 2026-09-12 user-provided portal snapshot. |
-| Algebra, Functions, and Trigonometry | Algebraic expressions and manipulation | 12 | open | 2026-09-12 user-provided portal snapshot. |
-| Algebra, Functions, and Trigonometry | Elementary mathematical modeling | 12 | open | 2026-09-12 user-provided portal snapshot. |
-| Algebra, Functions, and Trigonometry | Exponential and logarithmic functions | 12 | open | 2026-09-12 user-provided portal snapshot. |
-| Calculus | Vector calculus | 12 | open | 2026-09-12 user-provided portal snapshot. |
-| Calculus | Limits and continuity | 13 | open | 2026-09-12 user-provided portal snapshot. |
-| Calculus | Multivariable calculus | 13 | open | 2026-09-12 user-provided portal snapshot. |
-| Euclidean, Coordinate, and Transformational Geometry | Solid geometry | 14 | open | 2026-09-12 user-provided portal snapshot. |
-| Euclidean, Coordinate, and Transformational Geometry | Analytic geometry | 15 | open | 2026-09-12 user-provided portal snapshot. |
-| Euclidean, Coordinate, and Transformational Geometry | Euclidean geometry | 15 | open | 2026-09-12 user-provided portal snapshot. |
-| Algebra, Functions, and Trigonometry | Polynomial and rational functions | 16 | open | 2026-09-12 user-provided portal snapshot. |
-| Euclidean, Coordinate, and Transformational Geometry | Coordinate and analytic geometry | 16 | open | 2026-09-12 user-provided portal snapshot. |
-| Logic, Set Theory, and Foundations | Model theory | 16 | open | 2026-09-12 user-provided portal snapshot. |
-| Optimization and Numerical Mathematics | Convex optimization | 16 | open | 2026-09-12 user-provided portal snapshot. |
-| Optimization and Numerical Mathematics | Nonlinear optimization | 17 | open | 2026-09-12 user-provided portal snapshot. |
-| Logic, Set Theory, and Foundations | Computability theory | 18 | open | 2026-09-12 user-provided portal snapshot. |
-| Logic, Set Theory, and Foundations | Set theory | 18 | open | 2026-09-12 user-provided portal snapshot. |
-| Optimization and Numerical Mathematics | Discrete and integer optimization | 18 | open | 2026-09-12 user-provided portal snapshot. |
-| Probability and Statistics | Random variables and distributions | 18 | open | 2026-09-12 user-provided portal snapshot. |
-| Optimization and Numerical Mathematics | Dynamic programming and optimal control | 19 | open | 2026-09-12 user-provided portal snapshot. |
-| Optimization and Numerical Mathematics | Approximation theory | 20 | open | 2026-09-12 user-provided portal snapshot. |
-| Optimization and Numerical Mathematics | Error analysis and stability | 20 | open | 2026-09-12 user-provided portal snapshot. |
-| Logic, Set Theory, and Foundations | Category theory | 21 | open | 2026-09-12 user-provided portal snapshot. |
-| Optimization and Numerical Mathematics | Linear programming | 22 | open | 2026-09-12 user-provided portal snapshot. |
-| Probability and Statistics | Statistical inference | 22 | open | 2026-09-12 user-provided portal snapshot. |
-| Euclidean, Coordinate, and Transformational Geometry | Transformational geometry | 25 | open | 2026-09-12 user-provided portal snapshot. |
-| Euclidean, Coordinate, and Transformational Geometry | Trigonometric geometry | 28 | open | 2026-09-12 user-provided portal snapshot. |
+| Topology and Geometry | Algebraic geometry | 0 | closed | 2026-09-13 user-provided portal snapshot. |
+| Analysis | Real analysis | 1 | open | 2026-09-13 user-provided portal snapshot. |
+| Euclidean, Coordinate, and Transformational Geometry | Computational geometry | 1 | open | 2026-09-13 user-provided portal snapshot. |
+| Linear Algebra | Linear transformations | 1 | open | 2026-09-13 user-provided portal snapshot. |
+| Logic, Set Theory, and Foundations | Complexity theory | 1 | open | 2026-09-13 user-provided portal snapshot. |
+| Number Theory | Algebraic number theory | 1 | open | 2026-09-13 user-provided portal snapshot. |
+| Number Theory | Diophantine equations | 1 | open | 2026-09-13 user-provided portal snapshot. |
+| Abstract Algebra | Computational algebra | 2 | open | 2026-09-13 user-provided portal snapshot. |
+| Linear Algebra | Tensor and multilinear algebra | 2 | open | 2026-09-13 user-provided portal snapshot. |
+| Abstract Algebra | Homological Algebra | 3 | open | 2026-09-13 user-provided portal snapshot. |
+| Analysis | Measure theory | 3 | open | 2026-09-13 user-provided portal snapshot. |
+| Differential Equations and Dynamical Systems | Bifurcation theory | 3 | open | 2026-09-13 user-provided portal snapshot. |
+| Linear Algebra | Eigenvalues and eigenvectors | 3 | open | 2026-09-13 user-provided portal snapshot. |
+| Linear Algebra | Matrices and matrix operations | 3 | open | 2026-09-13 user-provided portal snapshot. |
+| Probability and Statistics | Probability foundations | 3 | open | 2026-09-13 user-provided portal snapshot. |
+| Topology and Geometry | Differential topology | 3 | open | 2026-09-13 user-provided portal snapshot. |
+| Topology and Geometry | Riemannian geometry | 3 | open | 2026-09-13 user-provided portal snapshot. |
+| Algebra, Functions, and Trigonometry | Equations and inequalities | 4 | open | 2026-09-13 user-provided portal snapshot. |
+| Calculus | Applications of integration | 4 | open | 2026-09-13 user-provided portal snapshot. |
+| Linear Algebra | Determinants | 4 | open | 2026-09-13 user-provided portal snapshot. |
+| Linear Algebra | Inner product spaces | 4 | open | 2026-09-13 user-provided portal snapshot. |
+| Number Theory | Computational number theory | 4 | open | 2026-09-13 user-provided portal snapshot. |
+| Optimization and Numerical Mathematics | Numerical analysis | 4 | open | 2026-09-13 user-provided portal snapshot. |
+| Optimization and Numerical Mathematics | Numerical optimization | 4 | open | 2026-09-13 user-provided portal snapshot. |
+| Probability and Statistics | Experimental design and causal inference | 4 | open | 2026-09-13 user-provided portal snapshot. |
+| Topology and Geometry | Differential geometry | 4 | open | 2026-09-13 user-provided portal snapshot. |
+| Algebra, Functions, and Trigonometry | Sequences and elementary recurrence relations | 5 | open | 2026-09-13 user-provided portal snapshot. |
+| Analysis | Harmonic analysis | 5 | open | 2026-09-13 user-provided portal snapshot. |
+| Logic, Set Theory, and Foundations | Proof theory | 5 | open | 2026-09-13 user-provided portal snapshot. |
+| Number Theory | Analytic number theory | 5 | open | 2026-09-13 user-provided portal snapshot. |
+| Topology and Geometry | Convex geometry | 5 | open | 2026-09-13 user-provided portal snapshot. |
+| Differential Equations and Dynamical Systems | Higher-order ordinary differential equations | 6 | open | 2026-09-13 user-provided portal snapshot. |
+| Linear Algebra | Numerical linear algebra | 6 | open | 2026-09-13 user-provided portal snapshot. |
+| Linear Algebra | Systems of linear equations | 6 | open | 2026-09-13 user-provided portal snapshot. |
+| Linear Algebra | Vectors and vector spaces | 6 | open | 2026-09-13 user-provided portal snapshot. |
+| Calculus | Applications of derivatives | 7 | open | 2026-09-13 user-provided portal snapshot. |
+| Calculus | Integration | 7 | open | 2026-09-13 user-provided portal snapshot. |
+| Differential Equations and Dynamical Systems | First-order ordinary differential equations | 7 | open | 2026-09-13 user-provided portal snapshot. |
+| Logic, Set Theory, and Foundations | Mathematical logic | 7 | open | 2026-09-13 user-provided portal snapshot. |
+| Probability and Statistics | Regression and statistical modeling | 7 | open | 2026-09-13 user-provided portal snapshot. |
+| Differential Equations and Dynamical Systems | Partial differential equations | 8 | open | 2026-09-13 user-provided portal snapshot. |
+| Differential Equations and Dynamical Systems | Systems of differential equations | 8 | open | 2026-09-13 user-provided portal snapshot. |
+| Number Theory | Multiplicative functions | 8 | open | 2026-09-13 user-provided portal snapshot. |
+| Number Theory | Quadratic residues and reciprocity | 8 | open | 2026-09-13 user-provided portal snapshot. |
+| Optimization and Numerical Mathematics | Scientific computing | 8 | open | 2026-09-13 user-provided portal snapshot. |
+| Topology and Geometry | Point-set topology | 8 | open | 2026-09-13 user-provided portal snapshot. |
+| Algebra, Functions, and Trigonometry | Trigonometry | 9 | open | 2026-09-13 user-provided portal snapshot. |
+| Calculus | Infinite sequences and series | 9 | open | 2026-09-13 user-provided portal snapshot. |
+| Differential Equations and Dynamical Systems | Boundary value problems | 9 | open | 2026-09-13 user-provided portal snapshot. |
+| Differential Equations and Dynamical Systems | Numerical differential equations | 9 | open | 2026-09-13 user-provided portal snapshot. |
+| Probability and Statistics | Statistical computing and simulation | 9 | open | 2026-09-13 user-provided portal snapshot. |
+| Algebra, Functions, and Trigonometry | Systems of equations | 10 | open | 2026-09-13 user-provided portal snapshot. |
+| Differential Equations and Dynamical Systems | Dynamical systems | 10 | open | 2026-09-13 user-provided portal snapshot. |
+| Differential Equations and Dynamical Systems | Initial value problems | 10 | open | 2026-09-13 user-provided portal snapshot. |
+| Differential Equations and Dynamical Systems | Stability theory | 10 | open | 2026-09-13 user-provided portal snapshot. |
+| Probability and Statistics | Expectation and variance | 10 | open | 2026-09-13 user-provided portal snapshot. |
+| Topology and Geometry | Symplectic and contact geometry | 10 | open | 2026-09-13 user-provided portal snapshot. |
+| Algebra, Functions, and Trigonometry | Functions and graphs | 11 | open | 2026-09-13 user-provided portal snapshot. |
+| Calculus | Differentiation | 11 | open | 2026-09-13 user-provided portal snapshot. |
+| Calculus | Single-variable calculus | 11 | open | 2026-09-13 user-provided portal snapshot. |
+| Logic, Set Theory, and Foundations | Type theory and formal systems | 11 | open | 2026-09-13 user-provided portal snapshot. |
+| Algebra, Functions, and Trigonometry | Algebraic expressions and manipulation | 12 | open | 2026-09-13 user-provided portal snapshot. |
+| Algebra, Functions, and Trigonometry | Elementary mathematical modeling | 12 | open | 2026-09-13 user-provided portal snapshot. |
+| Algebra, Functions, and Trigonometry | Exponential and logarithmic functions | 12 | open | 2026-09-13 user-provided portal snapshot. |
+| Calculus | Vector calculus | 12 | open | 2026-09-13 user-provided portal snapshot. |
+| Euclidean, Coordinate, and Transformational Geometry | Solid geometry | 12 | open | 2026-09-13 user-provided portal snapshot. |
+| Calculus | Limits and continuity | 13 | open | 2026-09-13 user-provided portal snapshot. |
+| Calculus | Multivariable calculus | 13 | open | 2026-09-13 user-provided portal snapshot. |
+| Logic, Set Theory, and Foundations | Model theory | 14 | open | 2026-09-13 user-provided portal snapshot. |
+| Algebra, Functions, and Trigonometry | Polynomial and rational functions | 15 | open | 2026-09-13 user-provided portal snapshot. |
+| Euclidean, Coordinate, and Transformational Geometry | Analytic geometry | 15 | open | 2026-09-13 user-provided portal snapshot. |
+| Euclidean, Coordinate, and Transformational Geometry | Euclidean geometry | 15 | open | 2026-09-13 user-provided portal snapshot. |
+| Optimization and Numerical Mathematics | Convex optimization | 15 | open | 2026-09-13 user-provided portal snapshot. |
+| Euclidean, Coordinate, and Transformational Geometry | Coordinate and analytic geometry | 16 | open | 2026-09-13 user-provided portal snapshot. |
+| Optimization and Numerical Mathematics | Dynamic programming and optimal control | 16 | open | 2026-09-13 user-provided portal snapshot. |
+| Optimization and Numerical Mathematics | Nonlinear optimization | 16 | open | 2026-09-13 user-provided portal snapshot. |
+| Probability and Statistics | Random variables and distributions | 16 | open | 2026-09-13 user-provided portal snapshot. |
+| Optimization and Numerical Mathematics | Approximation theory | 17 | open | 2026-09-13 user-provided portal snapshot. |
+| Logic, Set Theory, and Foundations | Computability theory | 18 | open | 2026-09-13 user-provided portal snapshot. |
+| Logic, Set Theory, and Foundations | Set theory | 18 | open | 2026-09-13 user-provided portal snapshot. |
+| Optimization and Numerical Mathematics | Discrete and integer optimization | 18 | open | 2026-09-13 user-provided portal snapshot. |
+| Logic, Set Theory, and Foundations | Category theory | 19 | open | 2026-09-13 user-provided portal snapshot. |
+| Optimization and Numerical Mathematics | Error analysis and stability | 20 | open | 2026-09-13 user-provided portal snapshot. |
+| Optimization and Numerical Mathematics | Linear programming | 22 | open | 2026-09-13 user-provided portal snapshot. |
+| Probability and Statistics | Statistical inference | 22 | open | 2026-09-13 user-provided portal snapshot. |
+| Euclidean, Coordinate, and Transformational Geometry | Transformational geometry | 24 | open | 2026-09-13 user-provided portal snapshot. |
+| Euclidean, Coordinate, and Transformational Geometry | Trigonometric geometry | 28 | open | 2026-09-13 user-provided portal snapshot. |
 
 ## Taxonomy Guardrails
 
-- The 2026-09-12 portal snapshot is authoritative. In particular, **Abstract Algebra -> Galois theory**, **Probability and Statistics -> Bayesian statistics**, **Analysis -> Functional analysis**, **Abstract Algebra -> Commutative algebra**, and every other pair absent from the table are currently unavailable.
-- A prompt whose core task is determining splitting-field Galois groups and then applying the Galois correspondence or subgroup structure is fundamentally **Galois theory**. Because Galois theory is absent from the current snapshot, do not relabel such a prompt as **Field theory** merely to fit capacity; redesign the mathematical task.
-- **Abstract Algebra -> Field theory** is open with **1** remaining slot. Use it only for problems whose primary content is genuinely field extensions, field structure, irreducibility, transcendence, inseparability, or related field-theoretic structure without Galois theory being the dominant classification.
-- Reviewer feedback dated 2026-08-26 still governs classification: prompts whose core task is classification or counting of subspaces invariant under specified linear operators, or whose defining structure is eigenspace/spectral decomposition and operator action, belong to **Linear transformations**, not **Vectors and vector spaces**. The current snapshot gives Linear transformations **4** slots and Vectors and vector spaces **6** slots.
-- Reviewer feedback dated 2026-08-28 still governs classification: problems whose central objects are commutative rings/modules and whose target is a Poincare series encoding Betti numbers through `Tor`, minimal resolutions, fiber products, socle quotients, annihilators, and Yoneda/Ext structure belong to **Commutative algebra**, not a generating-functions label. Since Commutative algebra is absent from the current snapshot, such a prompt must be redesigned rather than relabeled.
+- The 2026-09-13 portal snapshot is authoritative for capacity. Any pair absent from the table is unavailable.
+- **Topology and Geometry -> Algebraic geometry** is listed with **0** remaining and is therefore closed.
+- **Topology and Geometry -> Convex geometry** is open with **5** remaining slots.
+- Prompts centered on splitting-field Galois groups, Galois correspondence, or subgroup counting are fundamentally Galois theory; if Galois theory is absent, redesign rather than relabel as Field theory.
+- Reviewer feedback dated 2026-08-26 still governs classification: invariant-subspace/operator-action problems belong to Linear transformations rather than Vectors and vector spaces when that is the primary content.
+- Reviewer feedback dated 2026-08-28 still governs classification: ring/module problems centered on Tor, minimal resolutions, fiber products, socle quotients, annihilators, or Yoneda/Ext structure belong to Commutative algebra; if that sub-domain is absent, redesign rather than relabel.
 
 ## Problem Type Slots
 
-Select **exactly one**. These names and definitions mirror the current portal form.
+Select **exactly one**.
 
 | Problem Type | Definition | Remaining slots | Status | Notes |
 |---|---|---:|---|---|
-| Exact computation | A problem asking for an exact numerical value or exact mathematical object derived from the given information | unknown | open | Use when the requested output is exact. |
-| Symbolic derivation | A problem asking for a closed-form expression, identity, recurrence, transform, or asymptotic form obtained through symbolic reasoning | unknown | open | Use when the requested output is a symbolic derivation. |
-| Numerical approximation | A problem asking for a numerical answer computed to a specified tolerance, precision, or error bound | unknown | open | Use only when the problem specifies the required tolerance, precision, or error bound. |
-| Solve for unknowns | A problem asking for one or more values or objects that satisfy a given equation, system, or mathematical condition | unknown | open | Bonus Pay Category. |
-| Construction under constraints | A problem asking for the unique mathematical object that satisfies a stated set of structural or quantitative constraints | unknown | open | Bonus Pay Category. |
-| Optimization | A problem asking for an optimal value, an optimizer, or both under a given objective and constraint set | unknown | open | Bonus Pay Category. |
-| Exhaustive enumeration | A problem asking for the complete set of all valid solutions, cases, or objects satisfying the given criteria | unknown | open | Bonus Pay Category. |
-| Canonicalization or normalization | A problem asking for an object to be rewritten in a specified standard, reduced, or canonical form | unknown | open | Bonus Pay Category. |
-| Transformation between representations | A problem asking for conversion of an object from one mathematically equivalent representation to another | unknown | open | Bonus Pay Category. |
-| Parameter identification | A problem asking for unknown parameters, coefficients, or latent quantities to be inferred from equations, conditions, or observed structure | unknown | open | Bonus Pay Category. |
-| Other | A task that does not honestly fit any listed problem type | unknown | open | Use only when no listed type honestly fits. |
+| Exact computation | Ask for an exact numerical value or exact mathematical object derived from the data | unknown | open | Use when the requested output is exact. |
+| Symbolic derivation | Ask for a closed-form expression, identity, recurrence, transform, or asymptotic form | unknown | open |  |
+| Numerical approximation | Ask for a numerical answer to a specified tolerance or precision | unknown | open | The prompt must specify the tolerance or precision. |
+| Solve for unknowns | Ask for one or more values or objects satisfying equations or conditions | unknown | open | Bonus Pay Category. |
+| Construction under constraints | Ask for the unique mathematical object satisfying structural or quantitative constraints | unknown | open | Bonus Pay Category. |
+| Optimization | Ask for an optimal value, optimizer, or both | unknown | open | Bonus Pay Category. |
+| Exhaustive enumeration | Ask for the complete set of all valid solutions, cases, or objects | unknown | open | Bonus Pay Category. |
+| Canonicalization or normalization | Ask to rewrite an object in a specified standard, reduced, or canonical form | unknown | open | Bonus Pay Category. |
+| Transformation between representations | Ask to convert an object between mathematically equivalent representations | unknown | open | Bonus Pay Category. |
+| Parameter identification | Ask to infer unknown parameters, coefficients, or latent quantities from structure or conditions | unknown | open | Bonus Pay Category. |
+| Other | A task that does not honestly fit any listed problem type | unknown | open | Use only when necessary. |
 
 ## Answer Type Slots
 
-Select **exactly one**. These names and definitions mirror the current portal form.
+Select **exactly one**.
 
 | Answer Type | Definition | Remaining slots | Status | Notes |
 |---|---|---:|---|---|
-| Exact scalar | A single exact numerical quantity, such as an integer, rational number, algebraic number, or closed-form constant | unknown | open |  |
-| Numerical scalar approximation | A single numerical quantity expected up to a specified tolerance or precision | unknown | open | Any tolerances must be specified in the problem. |
-| Exact symbolic expression | A closed-form symbolic expression representing the correct final answer up to mathematical equivalence | unknown | open |  |
-| Polynomial or rational function | A polynomial, rational function, or closely related algebraic expression returned in symbolic form | unknown | open | Bonus Pay Category. |
-| Equation or inequality | An equation, inequality, system, recurrence, congruence, or constraint written explicitly as the answer | unknown | open | Bonus Pay Category. |
-| Interval or region description | An interval, union of intervals, domain, range, feasible region, solution region, or set described by inequalities or symbolic conditions | unknown | open | Bonus Pay Category. |
-| Vector | A finite-dimensional vector returned as coordinates, components, or an equivalent explicit representation | unknown | open | Bonus Pay Category. |
-| Matrix | A matrix returned explicitly, typically with entries in exact or numerical form as specified | unknown | open | Bonus Pay Category. |
-| Tuple or ordered list | A finite ordered collection of values, objects, labels, or coordinates where order matters | unknown | open | Bonus Pay Category. |
-| Set or multiset of objects | A complete finite collection of valid outputs, where order is irrelevant and multiplicity may or may not matter | unknown | open | Bonus Pay Category. |
-| Sequence or series representation | A sequence, recurrence, finite truncation rule, or series-form representation of the target object | unknown | open | Bonus Pay Category. |
-| Function or mapping | A function, transformation, homomorphism, permutation, operator, rule, or mapping specified explicitly by formula, table, images of elements, or action on a basis | unknown | open | Bonus Pay Category. |
-| Canonical form | A mathematical object expressed in a specified standard or normalized form, such as diagonal form, Jordan form, or reduced row echelon form | unknown | open | Bonus Pay Category. |
-| Other | A final answer object that does not honestly fit the listed types | unknown | open | Use only when no listed type honestly fits. |
+| Exact scalar | A single exact numerical quantity or closed-form constant | unknown | open |  |
+| Numerical scalar approximation | A single numerical quantity to specified tolerance or precision | unknown | open |  |
+| Exact symbolic expression | A closed-form symbolic expression representing the final answer | unknown | open |  |
+| Polynomial or rational function | A polynomial, rational function, factorization, or closely related algebraic expression | unknown | open | Bonus Pay Category. |
+| Equation or inequality | An equation, inequality, system, recurrence, congruence, or explicit constraint | unknown | open | Bonus Pay Category. |
+| Interval or region description | An interval, union of intervals, domain, feasible region, or set described by conditions | unknown | open | Bonus Pay Category. |
+| Vector | A finite-dimensional vector | unknown | open | Bonus Pay Category. |
+| Matrix | A matrix returned explicitly | unknown | open | Bonus Pay Category. |
+| Tuple or ordered list | A finite ordered collection of outputs | unknown | open | Bonus Pay Category. |
+| Set or multiset of objects | A complete finite unordered collection of outputs | unknown | open | Bonus Pay Category. |
+| Sequence or series representation | A sequence, recurrence, finite truncation rule, or series representation | unknown | open | Bonus Pay Category. |
+| Function or mapping | A function, transformation, homomorphism, permutation, operator, or mapping rule | unknown | open | Bonus Pay Category. |
+| Canonical form | An object expressed in a specified standard or normalized form | unknown | open | Bonus Pay Category. |
+| Other | A final answer object that does not honestly fit the listed types | unknown | open | Use only when necessary. |
 
 ## Solution Concepts
 
-List **1 to 5** concepts, techniques, or pieces of knowledge required to solve the problem.
+List **1 to 5** concise concepts, techniques, or pieces of knowledge required to solve the problem.
 
-- Each concept must be concise: under 100 characters.
+- Each concept must be under 100 characters.
 - Each concept must be on a single line.
-- If more than five apply, list the five most important.
+- Keep the five most important if more than five apply.
