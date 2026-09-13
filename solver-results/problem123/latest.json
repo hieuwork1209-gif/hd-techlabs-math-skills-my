@@ -2,8 +2,8 @@
   "problem": "problem123",
   "branch": "adversary/problem123",
   "problem_path": "workspace/rainier-problem/problem123-convex-geometry/problem.md",
-  "problem_blob_sha": "53f2dd0e207e67e803465df39883cfb4bd266712",
-  "source_commit_sha": "10184240d172feb8a6080b0095c654bc0348ba00",
+  "problem_blob_sha": "373fdf1a04ef1afff4783efb3e46b1d61bd47e64",
+  "source_commit_sha": "815fcfbbf2a9f1b89bdcf45a7059f593bc40bbe2",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-13T16:03:37+00:00",
-  "result_file": "solver-results/problem123/53f2dd0e207e.json"
+  "completed_at": "2026-09-13T16:11:03+00:00",
+  "result_file": "solver-results/problem123/373fdf1a04ef.json"
 }

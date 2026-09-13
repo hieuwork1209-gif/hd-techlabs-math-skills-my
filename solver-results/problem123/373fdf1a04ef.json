@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-convex-geometry/problem.md",
+  "source_commit_sha": "815fcfbbf2a9f1b89bdcf45a7059f593bc40bbe2",
+  "problem_blob_sha": "373fdf1a04ef1afff4783efb3e46b1d61bd47e64",
+  "statement_sha256": "63a0ec4626486884f8e79370b94b7b76746b8309e869475c4e45739002e53a3f",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-13T16:09:28+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let us write points of \\(\\mathbb R^4\\) as pairs of complex numbers\n\\[\n(z,w)=(x_1+ix_2,\\;x_3+ix_4).\n\\]\nThe curve is\n\\[\n(e^{it},e^{2it}).\n\\]\n\nI claim the maximum volume is\n\\[\n\\boxed{\\frac{4\\pi^2}{27}}.\n\\]\n\nHere is the proof.\n\nFirst, \\(K\\) is invariant under\n\\[\n(z,w)\\mapsto (e^{i\\theta}z,e^{2i\\theta}w).\n\\]\nThe maximum-volume inscribed ellipsoid is unique, so it must be invariant under this action. Therefore it is centered at the origin and has the form\n\\[\nE_{A,B}=\\left\\{(z,w):\\frac{|z|^2}{A}+\\frac{|w|^2}{B}\\le 1\\right\\}\n\\]\nfor some \\(A,B>0\\). Its \\(4\\)-volume is\n\\[\n\\operatorname{vol}(E_{A,B})=\\frac{\\pi^2}{2}AB.\n\\]\n\nWe need characterize when \\(E_{A,B}\\subset K\\). A point \\((z,w)\\) lies in \\(K\\) exactly when the moment matrix\n\\[\nM(z,w)=\n\\begin{pmatrix}\n1&\\overline z&\\overline w\\\\\nz&1&\\overline z\\\\\nw&z&1\n\\end{pmatrix}\n\\]\nis positive semidefinite. Necessity follows by averaging\n\\[\n|a+b e^{it}+c e^{2it}|^2\n\\]\nover a probability measure on the curve. Sufficiency follows from the degree-\\(2\\) Fejer-Riesz factorization: every nonnegative trigonometric polynomial of degree at most \\(2\\) is a squared modulus \\(|a+b e^{it}+c e^{2it}|^2\\), so positivity of \\(M\\) prevents separation from the convex hull.\n\nThe principal minors give \\(|z|\\le 1\\), \\(|w|\\le 1\\), and the determinant condition is\n\\[\n\\det M\n=\n1-2|z|^2-|w|^2+2\\operatorname{Re}(z^2\\overline w)\\ge 0.\n\\]\nFor fixed \\(|z|^2=u\\), \\(|w|^2=v\\), the worst phase is\n\\[\n\\operatorname{Re}(z^2\\overline w)=-u\\sqrt v,\n\\]\nso every point of \\(E_{A,B}\\) lies in \\(K\\) iff\n\\[\n2u+v+2u\\sqrt v\\le 1\n\\]\nwhenever\n\\[\n\\frac{u}{A}+\\frac{v}{B}\\le 1.\n\\]\n\nSince the left side is increasing in \\(u\\), put \\(u=A(1-v/B)\\). Writing \\(s=\\sqrt v\\), we need\n\\[\n2A\\left(1-\\frac{s^2}{B}\\right)(1+s)+s^2\\le 1\n\\]\nfor all \\(0\\le s\\le \\sqrt B\\). Thus\n\\[\nA\\le \\frac{1-s}{2(1-s^2/B)}\n=\\frac{B(1-s)}{2(B-s^2)}.\n\\]\nFor fixed \\(B\\), the right side is minimized at\n\\[\ns=1-\\sqrt{1-B}.\n\\]\nTherefore\n\\[\nA\\le \\frac{1+\\sqrt{1-B}}4.\n\\]\nSo\n\\[\nAB\\le \\frac{B(1+\\sqrt{1-B})}{4}.\n\\]\nLet \\(q=\\sqrt{1-B}\\). Then \\(B=1-q^2\\), and\n\\[\nAB\\le \\frac{(1-q^2)(1+q)}4.\n\\]\nMaximizing over \\(0\\le q\\le 1\\),\n\\[\n\\frac{d}{dq}\\bigl((1-q^2)(1+q)\\bigr)\n=\n1-2q-3q^2,\n\\]\nso the maximum occurs at \\(q=1/3\\). Hence\n\\[\nB=1-\\frac19=\\frac89,\n\\qquad\nA=\\frac{1+1/3}{4}=\\frac13.\n\\]\nThus\n\\[\nAB=\\frac{8}{27}.\n\\]\nThe maximizing ellipsoid is\n\\[\n\\frac{|z|^2}{1/3}+\\frac{|w|^2}{8/9}\\le 1,\n\\]\nand its volume is\n\\[\n\\frac{\\pi^2}{2}\\cdot \\frac{8}{27}\n=\n\\boxed{\\frac{4\\pi^2}{27}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-13T16:11:03+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/373fdf1a04ef.json"
+}
