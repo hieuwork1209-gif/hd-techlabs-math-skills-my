@@ -2,7 +2,7 @@
 
 ## LaTeX (Normalized)
 
-Let $r\ge5$ and $\ell=2r+1$ be primes, with $2$ generating $\mathbb F_\ell^\times$. Put $Q=\ell^r$, and suppose $q,q+2Q,q+4Q$ are prime with $2q\equiv1\pmod Q$. Let $G=\mathbb F_\ell^r$, let $\zeta$ be a primitive $\ell$th root of unity, and for $f:G\to\mathbb Z_{\ge0}$ define
+Let $r\ge5$ and $\ell=2r+1$ be primes, with $2$ generating $\mathbb F_\ell^\times$. Put $Q=\ell^r$, and suppose $q,q+2Q,q+4Q$ are prime with $2q\equiv1\pmod Q$. Let $G=\mathbb F_\ell^r$, let $\mathbf{1}=(1,\ldots,1)\in G$, let $\zeta$ be a primitive $\ell$th root of unity, and for $f:G\to\mathbb Z_{\ge0}$ define
 $$
 \widehat f(y)=\sum_{x\in G}f(x)\zeta^{x\cdot y}.
 $$
@@ -13,7 +13,7 @@ $$
 \sum_x f(x)=2q^2,\qquad \sum_x f(x)x=Ps,
 $$
 $$
-\mathbf1\in\operatorname{span}\{s,Ps+P^{-1}s\},\qquad \sum_js_j=r,
+\mathbf{1}\in\operatorname{span}\{s,Ps+P^{-1}s\},\qquad \sum_js_j=r,
 $$
 and, with cyclic indices,
 $$
@@ -22,7 +22,7 @@ $$
 $$
 There are also subspaces $W\subset U\subset G$ of codimensions $2,1$ such that for every $0\le t<r$,
 $$
-P^ts,\quad P^t(Ps-s),\quad P^t(2\mathbf1-s)\in U\setminus W,
+P^ts,\quad P^t(Ps-s),\quad P^t(2\mathbf{1}-s)\in U\setminus W,
 $$
 and
 $$
@@ -44,11 +44,11 @@ Here $U^\perp=\{y\in G:y\cdot U=0\}$. Give a closed formula.
 |---|---|
 | **Domain** | Abstract Algebra |
 | **Sub-domain** | Field theory |
-| **Problem Type** | Exact computation |
+| **Problem Type** | Symbolic derivation |
 | **Answer Type** | Exact symbolic expression |
 
 ---
 
 ## Domain Explanation
 
-Cyclotomic phase rigidity fixes the Fourier phases. A cyclic quadratic-energy constraint couples the reciprocal frequency to the two product conditions, while the three incidence orbits form the affine part of a projective conic together with selected secant directions. Thus Field theory is the appropriate sub-domain.
+Field theory is primary because the solution uses cyclotomic extensions, inert primes, finite-field characters, and multiplicative subgroups to determine the admissible phases. Enumerative combinatorics is the closest alternative because the final stage counts flags and secant directions, but those objects and their admissibility are controlled by the field-theoretic structure.
