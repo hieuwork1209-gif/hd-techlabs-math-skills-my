@@ -20,7 +20,7 @@ $$
 The affine determinant of the five curve points is the Vandermonde determinant, so
 $$
 \operatorname{Vol}_4
-=\frac1{24}\prod_{0\leq i<j\leq4}(t_j-t_i).
+=\frac{1}{24}\prod_{0\leq i<j\leq4}(t_j-t_i).
 $$
 The maximum is positive, so all five parameters are distinct.
 
@@ -43,7 +43,7 @@ If this were $0$, then every $u_j-u_i$ would vanish; since $u_0=u_4=0$, all $u_i
 Step 3: Determine the unique critical configuration
 The critical-point equations are
 $$
-\sum_{j\ne k}\frac1{t_k-t_j}=0,
+\sum_{j\ne k}\frac{1}{t_k-t_j}=0,
 \qquad k=1,2,3.
 $$
 Let
@@ -58,7 +58,7 @@ p''(t_k)=2g'(t_k),
 $$
 and
 $$
-\frac{g'(t_k)}{g(t_k)}=\sum_{j\ne k}\frac1{t_k-t_j}.
+\frac{g'(t_k)}{g(t_k)}=\sum_{j\ne k}\frac{1}{t_k-t_j}.
 $$
 Thus the three critical-point equations are exactly $p''(t_k)=0$ for $k=1,2,3$. Since $p''$ is a cubic with leading coefficient $20$ and has the same three roots as the monic cubic $q$,
 $$
@@ -82,23 +82,23 @@ $$
 $$
 Hence
 $$
-A=-\frac32,
+A=-\frac{3}{2},
 \qquad
-B=\frac9{14},
+B=\frac{9}{14},
 \qquad
-C=-\frac1{14},
+C=-\frac{1}{14},
 $$
 so
 $$
-q(x)=\left(x-\frac12\right)
-\left(\left(x-\frac12\right)^2-\frac3{28}\right).
+q(x)=\left(x-\frac{1}{2}\right)
+\left(\left(x-\frac{1}{2}\right)^2-\frac{3}{28}\right).
 $$
 Therefore the unique maximizing parameters are
 $$
 0,
-\quad \frac{1-\sqrt{3/7}}2,
-\quad \frac12,
-\quad \frac{1+\sqrt{3/7}}2,
+\quad \frac{1-\sqrt{3/7}}{2},
+\quad \frac{1}{2},
+\quad \frac{1+\sqrt{3/7}}{2},
 \quad1.
 $$
 
@@ -113,7 +113,7 @@ $$
 =4a^3(1-a^2)^2
 =\frac{192\sqrt{21}}{2401}.
 $$
-There are $\binom52=10$ pairwise differences, and each $t$-difference is half the corresponding $x$-difference. Hence
+There are $\binom{5}{2}=10$ pairwise differences, and each $t$-difference is half the corresponding $x$-difference. Hence
 $$
 \prod_{i<j}(t_j-t_i)
 =2^{-10}\frac{192\sqrt{21}}{2401}
@@ -121,7 +121,7 @@ $$
 $$
 Dividing by $4!=24$ gives the maximum simplex volume
 $$
-\frac1{24}\cdot\frac{3\sqrt{21}}{38416}
+\frac{1}{24}\cdot\frac{3\sqrt{21}}{38416}
 =\frac{\sqrt{21}}{307328}.
 $$
 
