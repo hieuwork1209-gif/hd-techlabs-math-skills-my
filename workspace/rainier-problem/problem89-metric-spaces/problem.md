@@ -2,31 +2,24 @@
 
 ## LaTeX (Normalized)
 
-Let
+Let $X$ be the set of complete flags
 $$
-X=\binom{\mathbb Z/8\mathbb Z}{2},
+0<V_1<V_2<V_3<\mathbb{F}_2^4,
+\qquad \dim V_i=i.
 $$
-and put
-$$
-S=\{\{i,i+1\}:i\in\mathbb Z/8\mathbb Z\}.
-$$
-Form a graph $G$ on $X$ as follows. For distinct $x,y\in X$:
-- if either both $x,y$ lie in $S$ or both lie in $X\setminus S$, then $x$ and $y$ are adjacent exactly when $x\cap y\ne\varnothing$;
-- if exactly one of $x,y$ lies in $S$, then $x$ and $y$ are adjacent exactly when $x\cap y=\varnothing$.
+Form a graph $G$ on $X$ by joining two flags exactly when they differ in one of the three subspaces $V_1,V_2,V_3$. Let $d$ be the shortest-path metric on $G$.
 
-Let $d$ be the shortest-path metric on $G$.
-
-For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_x)_{x\in X}$ with $\sum_xc_x=0$ satisfies
+For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_F)_{F\in X}$ with $\sum_Fc_F=0$ satisfies
 $$
-\sum_{x,y\in X}c_xc_y\,d(x,y)^p\le0.
+\sum_{F,H\in X}c_Fc_H\,d(F,H)^p\leq0.
 $$
 Let
 $$
 \wp=\sup\{p>0:(X,d)\text{ has }p\text{-negative type}\}.
 $$
-At $p=\wp$, define
+At $p=\wp$, define the equality space
 $$
-E=\left\{c\in\mathbb R^X:\sum_xc_x=0,\ \sum_{x,y}c_xc_y\,d(x,y)^{\wp}=0\right\}.
+E=\left\{c\in\mathbb{R}^X:\sum_Fc_F=0,\ \sum_{F,H}c_Fc_H\,d(F,H)^{\wp}=0\right\}.
 $$
 Determine the ordered pair $(\wp,\dim E)$.
 
@@ -45,4 +38,4 @@ Determine the ordered pair $(\wp,\dim E)$.
 
 ## Domain Explanation
 
-The problem asks for the maximal negative-type exponent of a finite graph metric defined by a cyclically distinguished family of $2$-subsets, together with the dimension of its boundary equality space.
+This problem involves the supremal negative type and boundary equality space of a finite graph metric, which are part of Analysis and Metric spaces. The problem also involves complete flags and finite building incidence, which are part of abstract algebra and finite geometry. However, those structures are used to analyze the metric kernel, while the requested quantity is a metric-space invariant.
