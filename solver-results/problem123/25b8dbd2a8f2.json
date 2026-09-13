@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-convex-geometry/problem.md",
+  "source_commit_sha": "04e7f128f90e7a90775b94cd0c076eded4a5ceb9",
+  "problem_blob_sha": "25b8dbd2a8f2a119e946c847ba85ab5da0129782",
+  "statement_sha256": "563d465915481a196a64c46b52b644da1dd0af0b1a6ee1a4533d3265463d2a30",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-13T16:22:41+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "The maximum volume is\n\n\\[\n\\boxed{\\frac{9\\sqrt{21}}{7^3\\,2^{14}}}.\n\\]\n\nA simplex in \\(\\mathbb R^4\\) has volume\n\n\\[\n\\frac1{4!}\\left|\\det\n\\begin{pmatrix}\n1&x_0\\\\\n1&x_1\\\\\n1&x_2\\\\\n1&x_3\\\\\n1&x_4\n\\end{pmatrix}\\right|,\n\\]\n\nwhere \\(x_i\\in\\mathbb R^4\\) are its vertices. Since volume is affine in each vertex separately, the maximum over \\(K^5\\) occurs when all vertices are extreme points of \\(K\\), hence on the moment curve. So write the vertices as\n\n\\[\np(t_i)=(t_i,t_i^2,t_i^3,t_i^4),\\qquad 0\\le t_i\\le 1.\n\\]\n\nThen\n\n\\[\n\\operatorname{Vol}\n=\\frac1{24}\\left|\\det\n\\begin{pmatrix}\n1&t_0&t_0^2&t_0^3&t_0^4\\\\\n1&t_1&t_1^2&t_1^3&t_1^4\\\\\n1&t_2&t_2^2&t_2^3&t_2^4\\\\\n1&t_3&t_3^2&t_3^3&t_3^4\\\\\n1&t_4&t_4^2&t_4^3&t_4^4\n\\end{pmatrix}\\right|\n=\\frac1{24}\\prod_{i<j}|t_j-t_i|.\n\\]\n\nThus we must maximize the Vandermonde product for five points in \\([0,1]\\).\n\nRescale to \\([-1,1]\\) by \\(t=(x+1)/2\\). There are \\(\\binom52=10\\) differences, so\n\n\\[\n\\prod_{i<j}|t_j-t_i|=2^{-10}\\prod_{i<j}|x_j-x_i|.\n\\]\n\nBy symmetry, the maximizing five points on \\([-1,1]\\) are\n\n\\[\n-1,\\ -a,\\ 0,\\ a,\\ 1.\n\\]\n\nTheir Vandermonde product is\n\n\\[\nP(a)=4a^3(1-a^2)^2.\n\\]\n\nMaximize:\n\n\\[\n\\frac{d}{da}\\log P(a)\n=\\frac3a-\\frac{4a}{1-a^2}=0,\n\\]\n\nso\n\n\\[\n3(1-a^2)=4a^2\n\\quad\\Longrightarrow\\quad\na^2=\\frac37.\n\\]\n\nHence\n\n\\[\nP_{\\max}\n=4\\left(\\frac37\\right)^{3/2}\\left(1-\\frac37\\right)^2\n=4\\cdot \\frac{3\\sqrt3}{7\\sqrt7}\\cdot \\frac{16}{49}\n=\\frac{192\\sqrt{21}}{343}.\n\\]\n\nReturning to \\([0,1]\\),\n\n\\[\n\\prod_{i<j}|t_j-t_i|\n=2^{-10}\\cdot \\frac{192\\sqrt{21}}{343}.\n\\]\n\nTherefore the maximum simplex volume is\n\n\\[\n\\frac1{24}\\cdot 2^{-10}\\cdot \\frac{192\\sqrt{21}}{343}\n=\\frac{8\\sqrt{21}}{343\\cdot 1024}\n=\\boxed{\\frac{\\sqrt{21}}{43904}}.\n\\]\n\nSo the exact maximum possible \\(4\\)-dimensional Euclidean volume is\n\n\\[\n\\boxed{\\frac{\\sqrt{21}}{43904}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-13T16:23:12+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/25b8dbd2a8f2.json"
+}
