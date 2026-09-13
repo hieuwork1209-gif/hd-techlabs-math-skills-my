@@ -1,134 +1,137 @@
 ## Steps
 
-Step 1: Characterize the convex body in complex moment coordinates
-Identify $\mathbb R^4$ with $\mathbb C^2$ by
+Step 1: Reduce a maximizing simplex to five points on the moment curve
+Let
 $$
-(z_1,z_2)=(x_1+ix_2,x_3+ix_4).
+\gamma(t)=(t,t^2,t^3,t^4),\qquad 0\leq t\leq1,
 $$
-Then the generating curve is
+and let $K=\operatorname{conv}\gamma([0,1])$. Since $K$ is compact and the $4$-volume of a simplex is continuous in its five vertices, a maximum-volume simplex in $K$ exists.
+
+Fix four vertices of a simplex and vary the fifth vertex $x\in K$. Its signed determinant is an affine function $L(x)$, so its volume is $|L(x)|/4!$. Because every point of $K$ is a convex combination of points $\gamma(t)$,
 $$
-(e^{it},e^{2it}),\qquad 0\leq t\leq2\pi.
+\max_{x\in K}L(x)=\max_{0\leq t\leq1}L(\gamma(t)),
 $$
-Hence points of $K$ are exactly pairs
+and the same identity holds for $-L$. Therefore $\max_{x\in K}|L(x)|$ is attained on the generating curve. Starting from a maximizing simplex and replacing its vertices one at a time without decreasing volume shows that some maximizing simplex has all five vertices on the curve.
+
+Thus write the parameters in increasing order as
 $$
-z_1=\mathbb E\xi,\qquad z_2=\mathbb E\xi^2,
+0\leq t_0<t_1<t_2<t_3<t_4\leq1.
 $$
-where $|\xi|=1$ almost surely. Necessarily,
+The affine determinant of the five curve points is the Vandermonde determinant, so
 $$
-|z_2-z_1^2|=\left|\mathbb E(\xi-z_1)^2\right|
-\leq \mathbb E|\xi-z_1|^2=1-|z_1|^2,
+\operatorname{Vol}_4
+=\frac1{24}\prod_{0\leq i<j\leq4}(t_j-t_i).
+$$
+The maximum is positive, so all five parameters are distinct.
+
+Step 2: Fix the endpoints and set up the logarithmic extremal problem
+If $t_0>0$, replacing $t_0$ by $0$ strictly increases every factor $t_j-t_0$ with $j>0$. Hence a maximizer must have $t_0=0$. Similarly, a maximizer must have $t_4=1$.
+
+For $0<t_1<t_2<t_3<1$, maximize
+$$
+\Phi(t_1,t_2,t_3)=\sum_{0\leq i<j\leq4}\log(t_j-t_i),
+$$
+with $t_0=0$ and $t_4=1$. The function tends to $-\infty$ when two parameters collide, so its maximum occurs in the interior.
+
+For a variation $u=(u_1,u_2,u_3)$, put $u_0=u_4=0$. The second directional derivative is
+$$
+D^2\Phi[u,u]
+=-\sum_{0\leq i<j\leq4}\frac{(u_j-u_i)^2}{(t_j-t_i)^2}.
+$$
+If this were $0$, then every $u_j-u_i$ would vanish; since $u_0=u_4=0$, all $u_i$ would be $0$. Hence $\Phi$ is strictly concave. Therefore any critical point is the unique global maximizer.
+
+Step 3: Determine the unique critical configuration
+The critical-point equations are
+$$
+\sum_{j\ne k}\frac1{t_k-t_j}=0,
+\qquad k=1,2,3.
+$$
+Let
+$$
+p(x)=\prod_{j=0}^4(x-t_j)=x(x-1)q(x),
+$$
+where $q$ is the monic cubic with roots $t_1,t_2,t_3$. At a root $t_k$, write $p(x)=(x-t_k)g(x)$. Then
+$$
+p'(t_k)=g(t_k),
+\qquad
+p''(t_k)=2g'(t_k),
+$$
+and
+$$
+\frac{g'(t_k)}{g(t_k)}=\sum_{j\ne k}\frac1{t_k-t_j}.
+$$
+Thus the three critical-point equations are exactly $p''(t_k)=0$ for $k=1,2,3$. Since $p''$ is a cubic with leading coefficient $20$ and has the same three roots as the monic cubic $q$,
+$$
+p''(x)=20q(x).
+$$
+Using $p=x(x-1)q$ gives
+$$
+x(x-1)q''+(4x-2)q'-18q=0.
+$$
+Write
+$$
+q(x)=x^3+Ax^2+Bx+C.
+$$
+Substitution gives, from the coefficients of $x^2,x,1$ respectively,
+$$
+-8A-12=0,
+\qquad
+-6A-14B=0,
+\qquad
+-2B-18C=0.
+$$
+Hence
+$$
+A=-\frac32,
+\qquad
+B=\frac9{14},
+\qquad
+C=-\frac1{14},
 $$
 so
 $$
-K\subseteq\left\{(z_1,z_2):|z_1|\leq1,\ |z_2-z_1^2|\leq1-|z_1|^2\right\}.
+q(x)=\left(x-\frac12\right)
+\left(\left(x-\frac12\right)^2-\frac3{28}\right).
+$$
+Therefore the unique maximizing parameters are
+$$
+0,
+\quad \frac{1-\sqrt{3/7}}2,
+\quad \frac12,
+\quad \frac{1+\sqrt{3/7}}2,
+\quad1.
 $$
 
-Conversely, suppose the displayed inequalities hold. If $|z_1|=1$, then $z_2=z_1^2$, which is a point of the generating curve. Assume $|z_1|<1$. Rotate by a common phase so that $z_1=\rho\in[0,1)$. Write
+Step 4: Evaluate the Vandermonde product
+Set $a=\sqrt{3/7}$ and change variables by $x=2t-1$. The five maximizing nodes become
 $$
-w=\frac{z_2-\rho^2}{1-\rho^2},\qquad |w|\leq1.
+-1,-a,0,a,1.
 $$
-First take $|w|=1$, say $w=e^{i\theta}$. The line
+Their Vandermonde product is
 $$
-\rho+\mathbb R e^{i\theta/2}
+\prod_{i<j}(x_j-x_i)
+=4a^3(1-a^2)^2
+=\frac{192\sqrt{21}}{2401}.
 $$
-meets the unit circle in two points $\eta_-,\eta_+$. Since $\rho$ lies on their chord, choose probabilities so that $\mathbb E\eta=\rho$. Because each $\eta-\rho$ is a real multiple of $e^{i\theta/2}$,
+There are $\binom52=10$ pairwise differences, and each $t$-difference is half the corresponding $x$-difference. Hence
 $$
-\mathbb E(\eta-\rho)^2=e^{i\theta}\mathbb E|\eta-\rho|^2
-=e^{i\theta}(1-\rho^2).
+\prod_{i<j}(t_j-t_i)
+=2^{-10}\frac{192\sqrt{21}}{2401}
+=\frac{3\sqrt{21}}{38416}.
 $$
-Thus $\mathbb E\eta^2=\rho^2+(1-\rho^2)e^{i\theta}$. Every $w$ with $|w|<1$ is a convex combination of two opposite unit complex numbers, so mixing the corresponding two measures preserves the first moment $\rho$ and gives the required second moment. Rotating back proves
+Dividing by $4!=24$ gives the maximum simplex volume
 $$
-K=\left\{(z_1,z_2):|z_1|\leq1,\ |z_2-z_1^2|\leq1-|z_1|^2\right\}.
-$$
-In particular, $K$ is full-dimensional because the inequalities are strict in a neighborhood of $(0,0)$.
-
-Step 2: Use symmetry to determine the form of the maximizing ellipsoid
-A full-dimensional compact convex body has a unique ellipsoid of maximum volume contained in it. For every real $\alpha$, the orthogonal map
-$$
-T_\alpha(z_1,z_2)=(e^{i\alpha}z_1,e^{2i\alpha}z_2)
-$$
-preserves $K$. By uniqueness, the maximizing ellipsoid is invariant under every $T_\alpha$.
-
-Its center must therefore be fixed by every $T_\alpha$, so the center is $(0,0)$. Write its defining quadratic form in the two real coordinate planes corresponding to $z_1$ and $z_2$. Invariance under $T_\pi$, which acts as $-I$ on the first plane and $I$ on the second, forces all cross terms between the two planes to vanish. Invariance under all rotations on each plane then forces each diagonal block to be a scalar multiple of the identity. Therefore the maximizing ellipsoid has the form
-$$
-E_{a,b}=\left\{(z_1,z_2):\frac{|z_1|^2}{a^2}+\frac{|z_2|^2}{b^2}\leq1\right\}
-$$
-for some $a,b>0$.
-
-Step 3: Derive the sharp inclusion condition
-Fix $r=|z_1|\leq a$. Inside $E_{a,b}$, the largest possible value of $|z_2|$ is
-$$
-b\sqrt{1-\frac{r^2}{a^2}}.
-$$
-For fixed $z_1$, the quantity $|z_2-z_1^2|$ is largest when $z_2$ points in the direction opposite to $z_1^2$. Hence $E_{a,b}\subseteq K$ if and only if
-$$
-r^2+b\sqrt{1-\frac{r^2}{a^2}}\leq1-r^2
-$$
-for every $0\leq r\leq a$. At $r=a$ this gives $a^2\leq1/2$.
-
-Put
-$$
-s=a^2,\qquad x=\frac{r^2}{a^2}.
-$$
-Then $0<s\leq1/2$ and the sharp bound for $b$ is
-$$
-b\leq h_s(x):=\frac{1-2sx}{\sqrt{1-x}},\qquad 0\leq x<1.
-$$
-Differentiation gives
-$$
-h_s'(x)=\frac{1-4s+2sx}{2(1-x)^{3/2}}.
-$$
-If $0<s\leq1/4$, then $h_s$ is increasing and
-$$
-b_{\max}(s)=1.
-$$
-If $1/4<s<1/2$, then the unique minimum occurs at
-$$
-x_*=2-\frac{1}{2s},
-$$
-and substitution yields
-$$
-b_{\max}(s)=2\sqrt{2s(1-2s)}.
+\frac1{24}\cdot\frac{3\sqrt{21}}{38416}
+=\frac{\sqrt{21}}{307328}.
 $$
 
-Step 4: Optimize the ellipsoid volume
-The Euclidean volume of the unit ball in $\mathbb R^4$ is $\pi^2/2$. Therefore
-$$
-\operatorname{Vol}_4(E_{a,b})=\frac{\pi^2}{2}a^2b^2
-=\frac{\pi^2}{2}s\,b^2.
-$$
-For $0<s\leq1/4$,
-$$
-sb_{\max}(s)^2=s\leq\frac14.
-$$
-For $1/4\leq s<1/2$,
-$$
-sb_{\max}(s)^2=8s^2(1-2s).
-$$
-Its derivative is
-$$
-16s(1-3s),
-$$
-so the maximum occurs at $s=1/3$, where
-$$
-sb_{\max}(s)^2=\frac{8}{27}>\frac14.
-$$
-Thus the maximizing ellipsoid has
-$$
-a^2=\frac13,\qquad b^2=\frac89,
-$$
-and its maximum volume is
-$$
-\frac{\pi^2}{2}\cdot\frac{8}{27}=\frac{4\pi^2}{27}.
-$$
-
-Final Answer: $\boxed{\frac{4\pi^2}{27}}$
+Final Answer: $\boxed{\frac{\sqrt{21}}{307328}}$
 
 ---
 
 ## Answer
 
-$\frac{4\pi^2}{27}$
+$\frac{\sqrt{21}}{307328}$
 
 ---
 
@@ -142,8 +145,8 @@ $\frac{4\pi^2}{27}$
 
 ## Solution Concepts
 
-- convex hulls of trigonometric moment curves
-- maximum-volume inscribed ellipsoids
-- symmetry reduction
-- complex moment inequalities
-- one-variable optimization
+- convex hulls of moment curves
+- maximum-volume simplices
+- Vandermonde determinants
+- strict concavity
+- Fekete point optimization
