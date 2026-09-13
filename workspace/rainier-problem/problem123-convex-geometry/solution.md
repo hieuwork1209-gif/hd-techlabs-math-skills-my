@@ -1,206 +1,140 @@
 ## Steps
 
-Step 1: Characterize the convex hull as a truncated moment body
-Let
+Step 1: Characterize the convex body in complex moment coordinates
+Identify $\mathbb R^4$ with $\mathbb C^2$ by
 $$
-K=\operatorname{conv}\{(t,t^2,t^3,t^4):0\leq t\leq1\}\subset\mathbb R^4.
+(z_1,z_2)=(x_1+ix_2,x_3+ix_4).
 $$
-Write a point as $(a,b,c,d)$ and set $m_0=1,m_1=a,m_2=b,m_3=c,m_4=d$. Equivalently, points of $K$ are the first four moments of probability measures on $[0,1]$.
-
-We use the degree-$4$ Markov-Lukacs factorization in the following exact form: a real polynomial $P$ of degree at most $4$ is nonnegative on $[0,1]$ if and only if
+Then the generating curve is
 $$
-P(t)=\sum_j q_j(t)^2+t(1-t)\sum_k r_k(t)^2,
+(e^{it},e^{2it}),\qquad 0\leq t\leq2\pi.
 $$
-where every $q_j$ has degree at most $2$ and every $r_k$ has degree at most $1$.
-
-Define
+Hence points of $K$ are exactly pairs
 $$
-H=\begin{pmatrix}
-1&a&b\\
-a&b&c\\
-b&c&d
-\end{pmatrix},
-\qquad
-G=\begin{pmatrix}
-a-b&b-c\\
-b-c&c-d
-\end{pmatrix}.
+z_1=\mathbb E\xi,\qquad z_2=\mathbb E\xi^2,
 $$
-For $q(t)=q_0+q_1t+q_2t^2$ and $r(t)=r_0+r_1t$,
+where $|\xi|=1$ almost surely. Necessarily,
 $$
-L(q^2)=\begin{pmatrix}q_0&q_1&q_2\end{pmatrix}H
-\begin{pmatrix}q_0\\q_1\\q_2\end{pmatrix},
+|z_2-z_1^2|=\left|\mathbb E(\xi-z_1)^2\right|
+\leq \mathbb E|\xi-z_1|^2=1-|z_1|^2,
 $$
-and
+so
 $$
-L\bigl(t(1-t)r^2\bigr)=\begin{pmatrix}r_0&r_1\end{pmatrix}G
-\begin{pmatrix}r_0\\r_1\end{pmatrix},
-$$
-where $L(t^j)=m_j$. Hence every point of $K$ satisfies $H\succeq0$ and $G\succeq0$.
-
-Conversely, suppose $H\succeq0$ and $G\succeq0$. If an affine functional
-$$
-\ell(x_1,x_2,x_3,x_4)=\alpha_0+\alpha_1x_1+\cdots+\alpha_4x_4
-$$
-is nonnegative on the moment curve, then $P(t)=\alpha_0+\alpha_1t+\cdots+\alpha_4t^4$ is nonnegative on $[0,1]$. The displayed factorization and the two positive-semidefinite matrices give $\ell(a,b,c,d)=L(P)\geq0$. If $(a,b,c,d)$ were outside the compact convex set $K$, a separating affine functional could be shifted so that it is nonnegative on $K$ but negative at $(a,b,c,d)$, a contradiction. Therefore
-$$
-K=\{(a,b,c,d):H\succeq0,\ G\succeq0\}.
+K\subseteq\left\{(z_1,z_2):|z_1|\leq1,\ |z_2-z_1^2|\leq1-|z_1|^2\right\}.
 $$
 
-Step 2: Obtain sharp nested intervals for the moments
-The boundary has $4$-dimensional measure zero, so the volume may be computed on the interior. There $H$ and $G$ are positive definite in the relevant leading blocks. From
+Conversely, suppose the displayed inequalities hold. If $|z_1|=1$, then $z_2=z_1^2$, which is a point of the generating curve. Assume $|z_1|<1$. Rotate by a common phase so that $z_1=\rho\in[0,1)$. Write
 $$
-b-a^2>0,
-\qquad
-a-b>0,
+w=\frac{z_2-\rho^2}{1-\rho^2},\qquad |w|\leq1.
 $$
-we get
+First take $|w|=1$, say $w=e^{i\theta}$. The line
 $$
-0<a<1,
-\qquad
-a^2<b<a.
+\rho+\mathbb R e^{i\theta/2}
+$$
+meets the unit circle in two points $\eta_-,\eta_+$. Since $\rho$ lies on their chord, choose probabilities so that $\mathbb E\eta=\rho$. Because each $\eta-\rho$ is a real multiple of $e^{i\theta/2}$,
+$$
+\mathbb E(\eta-\rho)^2=e^{i\theta}\mathbb E|\eta-\rho|^2
+=e^{i\theta}(1-\rho^2).
+$$
+Thus $\mathbb E\eta^2=\rho^2+(1-\rho^2)e^{i\theta}$. Every $w$ with $|w|<1$ is a convex combination of two opposite unit complex numbers, so mixing the corresponding two measures preserves the first moment $\rho$ and gives the required second moment. Rotating back proves
+$$
+K=\left\{(z_1,z_2):|z_1|\leq1,\ |z_2-z_1^2|\leq1-|z_1|^2\right\}.
+$$
+In particular, $K$ is full-dimensional because the inequalities are strict in a neighborhood of $(0,0)$.
+
+Step 2: Use symmetry to determine the form of the maximizing ellipsoid
+A full-dimensional compact convex body has a unique ellipsoid of maximum volume contained in it. For every real $\alpha$, the orthogonal map
+$$
+T_\alpha(z_1,z_2)=(e^{i\alpha}z_1,e^{2i\alpha}z_2)
+$$
+preserves $K$. By uniqueness, the maximizing ellipsoid is invariant under every $T_\alpha$.
+
+Its center must therefore be fixed by every $T_\alpha$, so the center is $(0,0)$. Write its defining quadratic form in the two real coordinate planes corresponding to $z_1$ and $z_2$. Invariance under $T_\pi$, which acts as $-I$ on the first plane and $I$ on the second, forces all cross terms between the two planes to vanish. Invariance under all rotations on each plane then forces each diagonal block to be a scalar multiple of the identity. Therefore the maximizing ellipsoid has the form
+$$
+E_{a,b}=\left\{(z_1,z_2):\frac{|z_1|^2}{a^2}+\frac{|z_2|^2}{b^2}\leq1\right\}
+$$
+for some $a,b>0$.
+
+Step 3: Derive the sharp inclusion condition
+Fix $r=|z_1|\leq a$. Inside $E_{a,b}$, the largest possible value of $|z_2|$ is
+$$
+b\sqrt{1-\frac{r^2}{a^2}}.
+$$
+For fixed $z_1$, the quantity $|z_2-z_1^2|$ is largest when $z_2$ points in the direction opposite to $z_1^2$. Hence $E_{a,b}\subseteq K$ if and only if
+$$
+r^2+b\sqrt{1-\frac{r^2}{a^2}}\leq1-r^2
+$$
+for every $0\leq r\leq a$. At $r=a$ this gives $a^2\leq1/2$.
+
+Put
+$$
+s=a^2,\qquad x=\frac{r^2}{a^2}.
+$$
+Then $0<s\leq1/2$ and the sharp bound for $b$ is
+$$
+b\leq h_s(x):=\frac{1-2sx}{\sqrt{1-x}},\qquad 0\leq x<1.
+$$
+Differentiation gives
+$$
+h_s'(x)=\frac{1-4s+2sx}{2(1-x)^{3/2}}.
+$$
+If $0<s\leq1/4$, then $h_s$ is increasing and
+$$
+b_{\max}(s)=1.
+$$
+If $1/4<s<1/2$, then the unique minimum occurs at
+$$
+x_*=2-\frac{1}{2s},
+$$
+and substitution yields
+$$
+b_{\max}(s)=2\sqrt{2s(1-2s)}.
 $$
 
-The principal minor
+Step 4: Optimize the ellipsoid volume
+The Euclidean volume of the unit ball in $\mathbb R^4$ is $\pi^2/2$. Therefore
 $$
-\det\begin{pmatrix}a&b\\b&c\end{pmatrix}>0
+\operatorname{Vol}_4(E_{a,b})=\frac{\pi^2}{2}a^2b^2
+=\frac{\pi^2}{2}s\,b^2.
 $$
-gives
+For $0<s\leq1/4$,
 $$
-c>L_3:=\frac{b^2}{a}.
+sb_{\max}(s)^2=s\leq\frac14.
 $$
-For fixed $a,b,c$, the Schur complement of the upper-left $2\times2$ block of $H$ gives the sharp lower bound
+For $1/4\leq s<1/2$,
 $$
-d>L_4:=\frac{b^3-2abc+c^2}{b-a^2}.
+sb_{\max}(s)^2=8s^2(1-2s).
 $$
-The determinant condition for $G$ gives the sharp upper bound
+Its derivative is
 $$
-d<U_4:=c-\frac{(b-c)^2}{a-b}.
+16s(1-3s),
 $$
-A direct subtraction factors as
+so the maximum occurs at $s=1/3$, where
 $$
-U_4-L_4=
-\frac{(ac-b^2)(a^2-ab-ac+b^2-b+c)}{(a-b)(a^2-b)}.
+sb_{\max}(s)^2=\frac{8}{27}>\frac14.
 $$
-Since $ac-b^2>0$, $a-b>0$, and $a^2-b<0$, the interval for $d$ is nonempty exactly when
+Thus the maximizing ellipsoid has
 $$
-a^2-ab-ac+b^2-b+c<0.
+a^2=\frac13,\qquad b^2=\frac89,
 $$
-Because
+and its maximum volume is
 $$
-a^2-ab-ac+b^2-b+c=(1-a)(c-U_3),
-$$
-where
-$$
-U_3:=b-\frac{(a-b)^2}{1-a},
-$$
-we obtain the exact nested description
-$$
-0<a<1,
-\qquad
-a^2<b<a,
-\qquad
-L_3<c<U_3,
-\qquad
-L_4<d<U_4.
+\frac{\pi^2}{2}\cdot\frac{8}{27}=\frac{4\pi^2}{27}.
 $$
 
-Step 3: Introduce intrinsic interval coordinates and factor the Jacobian
-Let
-$$
-\Delta_2=a-a^2=a(1-a),
-\qquad
-p=\frac{b-a^2}{\Delta_2}.
-$$
-Thus $0<p<1$ and
-$$
-b=a^2+p\Delta_2.
-$$
-Next define
-$$
-\Delta_3=U_3-L_3,
-\qquad
-q=\frac{c-L_3}{\Delta_3}.
-$$
-Using the formulas for $L_3$ and $U_3$,
-$$
-\Delta_3
-=\frac{(b-a^2)(a-b)}{a(1-a)}
-=a(1-a)p(1-p).
-$$
-Hence $0<q<1$ and $c=L_3+q\Delta_3$.
-
-Finally put
-$$
-\Delta_4=U_4-L_4,
-\qquad
-r=\frac{d-L_4}{\Delta_4}.
-$$
-The factors in Step 2 simplify after $c=L_3+q\Delta_3$:
-$$
-ac-b^2=a\Delta_3q,
-$$
-$$
-a^2-ab-ac+b^2-b+c=-(1-a)\Delta_3(1-q),
-$$
-and
-$$
-(a-b)(a^2-b)=-a(1-a)\Delta_3.
-$$
-Therefore
-$$
-\Delta_4=\Delta_3q(1-q)
-=a(1-a)p(1-p)q(1-q).
-$$
-Thus $(a,p,q,r)\in(0,1)^4$ parametrizes the interior of $K$.
-
-The map is triangular in the sense that $b$ depends only on $a,p$, $c$ only on $a,p,q$, and $d$ only on $a,p,q,r$. Consequently its Jacobian determinant is
-$$
-\left|\frac{\partial(a,b,c,d)}{\partial(a,p,q,r)}\right|
-=\Delta_2\Delta_3\Delta_4
-=[a(1-a)]^3[p(1-p)]^2q(1-q).
-$$
-
-Step 4: Integrate the factored Jacobian
-Hence
-$$
-\operatorname{Vol}_4(K)
-=\int_0^1\int_0^1\int_0^1\int_0^1
-[a(1-a)]^3[p(1-p)]^2q(1-q)\,dr\,dq\,dp\,da.
-$$
-The four variables separate. Using
-$$
-\int_0^1x^m(1-x)^m\,dx=\frac{(m!)^2}{(2m+1)!},
-$$
-for $m=3,2,1$, we get
-$$
-\int_0^1[a(1-a)]^3\,da=\frac{1}{140},
-$$
-$$
-\int_0^1[p(1-p)]^2\,dp=\frac{1}{30},
-$$
-and
-$$
-\int_0^1q(1-q)\,dq=\frac{1}{6}.
-$$
-The $r$-integral equals $1$, so
-$$
-\operatorname{Vol}_4(K)=\frac1{140}\cdot\frac1{30}\cdot\frac1{6}=\frac1{25200}.
-$$
-
-Final Answer: $\boxed{\frac{1}{25200}}$
+Final Answer: $\boxed{\frac{4\pi^2}{27}}$
 
 ---
 
 ## Answer
 
-$\frac{1}{25200}$
+$\frac{4\pi^2}{27}$
 
 ---
 
 ## Classification
 
-**Problem Type:** Exact computation
+**Problem Type:** Optimization
 
 **Answer Type:** Exact scalar
 
@@ -208,8 +142,8 @@ $\frac{1}{25200}$
 
 ## Solution Concepts
 
-- convex hulls of moment curves
-- truncated moment matrices
-- positive polynomial certificates
-- Schur complements
-- Jacobian change of variables
+- convex hulls of trigonometric moment curves
+- maximum-volume inscribed ellipsoids
+- symmetry reduction
+- complex moment inequalities
+- one-variable optimization
