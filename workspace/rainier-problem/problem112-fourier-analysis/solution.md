@@ -63,10 +63,35 @@ $$
 15\cdot2^{3m-3}.
 $$
 
-Now suppose $H/L$ has type $K_c$ with $c>0$. The reduction of $H$ modulo $2$ is one-dimensional. Since $|H|=2^{2m}$, exactly half of its elements are primitive, so the number of primitive cyclic lines in $H$ is
+Now suppose $H/L$ has type $K_c$ with $c>0$. Since
 $$
-\frac{2^{2m-1}}{2^{m-1}}=2^m.
+H/L\cong K_c\cong R_{m-c}\oplus R_c,
 $$
+we first determine the invariant-factor type of $H$. Write $L=R_mx$ with $x$ primitive in $M_m$. Because $x$ is primitive, some coordinate of $x$ is a unit, so there is an $R_m$-linear map $\lambda:M_m\to R_m$ with $\lambda(x)=1$. Its restriction to $H$ splits the inclusion $L\hookrightarrow H$, hence
+$$
+H\cong L\oplus H/L\cong R_m\oplus R_{m-c}\oplus R_c.
+$$
+
+Let $L'=R_mx'$ be any primitive cyclic line contained in $H$. Again some coordinate of $x'$ is a unit, so there is an $R_m$-linear map $\lambda':M_m\to R_m$ with $\lambda'(x')=1$. Thus $L'$ is a free direct summand of $H$ and
+$$
+H\cong R_m\oplus H/L'.
+$$
+The invariant factors of a finite $R_m$-module are unique. Since those of $H$ have lengths $m,m-c,c$, the quotient by the free summand $L'$ has lengths $m-c,c$. Therefore
+$$
+H/L'\cong R_{m-c}\oplus R_c.
+$$
+Because $H/L'$ is self-dual in $L'^{\perp}/L'\cong R_m^2$, it has the same rank-two type $K_c$. Hence the value of $c$ is independent of which primitive cyclic line of this fixed $H$ is chosen.
+
+For $c>0$, the two generators defining $K_c$ are both divisible by $2$, so $K_c\subseteq 2R_m^2$. It follows that the image of $H$ in $M_m/2M_m$ is the one-dimensional image of $L$, and thus
+$$
+[H:H\cap2M_m]=2.
+$$
+Since $|H|=2^{2m}$, exactly $2^{2m-1}$ elements of $H$ are primitive. Each primitive cyclic line has $2^{m-1}$ primitive generators, so every such $H$ contains exactly
+$$
+\frac{2^{2m-1}}{2^{m-1}}=2^m
+$$
+primitive cyclic lines.
+
 When $0<c<\frac{m}{2}$, the number of such $H$ is
 $$
 \frac{P_m\left(3\cdot2^{m-2c-1}\right)}{2^m}
@@ -160,10 +185,6 @@ $\frac{20\cdot2^{3m}-14\cdot2^{2m}+1}{7}$
 
 - finite symplectic module
 - self-dual subgroup
+- invariant factors
 - primitive cyclic line
-- two-adic shell reduction
 - double counting
-
----
-
-## Black-Box Audit — no issues found
