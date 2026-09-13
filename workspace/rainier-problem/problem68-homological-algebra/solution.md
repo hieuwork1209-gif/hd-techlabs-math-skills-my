@@ -146,7 +146,7 @@ The characteristic-$2$ PBW theorem for adjusted graded Lie algebras says that an
 $$
 U(\mathfrak h)\longrightarrow U(\pi(R))
 $$
-is injective. Ordering the basis with the $\mathfrak h$-basis first also makes every PBW monomial factor uniquely as an $U(\mathfrak h)$-monomial times a complementary monomial. Thus $U(\pi(R))$ is free as a left $U(\mathfrak h)$-module. Under $E\cong U(\pi(R))$ and $P\cong U(\mathfrak h)$, $E$ is therefore a graded free left $P$-module.
+is injective. Ordering the basis with the $\mathfrak h$-basis first also makes every PBW monomial factor uniquely as a $U(\mathfrak h)$-monomial times a complementary monomial. Thus $U(\pi(R))$ is free as a left $U(\mathfrak h)$-module. Under $E\cong U(\pi(R))$ and $P\cong U(\mathfrak h)$, $E$ is therefore a graded free left $P$-module.
 
 After an invertible linear change of the polynomial generators, assume
 $$
