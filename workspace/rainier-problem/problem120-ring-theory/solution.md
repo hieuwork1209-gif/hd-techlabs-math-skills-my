@@ -137,7 +137,15 @@ $$
 
 Step 5: Divide by generator signs and evaluate the orthogonal-group order
 
-For a split $2n$-dimensional quadratic space over $\mathbb F_p$,
+For completeness, count ordered hyperbolic bases in a split $2n$-space with quadratic form $q(x,y)=x\cdot y$. The number of nonzero isotropic vectors is
+$$
+N_n=p^n+(p^n-1)p^{n-1}-1=(p^{n-1}+1)(p^n-1).
+$$
+After choosing the first isotropic vector $e$, there are $p^{2n-2}$ isotropic $f$ with $B(e,f)=1$: in hyperbolic coordinates the equation $B(e,f)=1$ fixes one coordinate and $q(f)=0$ fixes one more. Their span is a hyperbolic plane and its orthogonal complement is split of dimension $2n-2$. Hence, if $H_n$ is the number of ordered hyperbolic bases,
+$$
+H_n=N_np^{2n-2}H_{n-1},\qquad H_0=1.
+$$
+An isometry is uniquely determined by the image of one fixed hyperbolic basis, and every ordered hyperbolic basis occurs, so $|\mathrm O_{2n}^+|=H_n$. Therefore
 $$
 |\mathrm O_{2n}^+(\mathbb F_p)|=2p^{n(n-1)}(p^n-1)\prod_{i=1}^{n-1}(p^{2i}-1).
 $$
