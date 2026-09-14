@@ -1,185 +1,176 @@
 ## Steps
 
-Step 1: Expose the two elliptic quotient curves
-
-Let $C$ be the smooth projective model of
-$$
-y^2=x^6-x^4+x^3-x^2+1
-$$
-over $\mathbb F_5$. The polynomial on the right is squarefree modulo $5$, so $C$ has genus $2$.
-
-Write
+Step 1: Construct the two elliptic quotients and a two-primary isogeny
+Let
 $$
 f(x)=x^6-x^4+x^3-x^2+1.
 $$
-It is reciprocal:
+Since $x^6f(x^{-1})=f(x)$, the curve has the involution
 $$
-x^6f(x^{-1})=f(x).
+\sigma:(x,y)\longmapsto\left(x^{-1},\frac{y}{x^3}\right).
 $$
-Hence the function-field map
+Let $\iota(x,y)=(x,-y)$ and $\tau=\iota\sigma$. Put
 $$
-\sigma:(x,y)\longmapsto\left(x^{-1},\frac{y}{x^3}\right)
+u=x+x^{-1},\qquad v=\frac{y(x+1)}{x^2},\qquad w=\frac{y(x-1)}{x^2}.
 $$
-is an involution of $C$. Let $\iota(x,y)=(x,-y)$ be the hyperelliptic involution and put
+Then $u,v$ are $\sigma$-invariant and $u,w$ are $\tau$-invariant. In $\mathbb F_5$,
 $$
-\tau=\iota\sigma.
+\frac{f(x)}{x^3}=x^3+x^{-3}-(x+x^{-1})+1=u^3+u+1,
 $$
-
-For $\sigma$, set
+while
 $$
-u=x+x^{-1},
+\frac{(x+1)^2}{x}=u+2,\qquad \frac{(x-1)^2}{x}=u-2.
+$$
+Hence the quotient curves are
+$$
+E_+:v^2=(u+2)(u^3+u+1),\qquad
+E_-:w^2=(u-2)(u^3+u+1).
+$$
+Let $\pi_+:C\to E_+$ and $\pi_-:C\to E_-$ be the quotient maps. Their pullbacks define
+$$
+\Phi:E_+\times E_-\longrightarrow J,
 \qquad
-v=\frac{y(x+1)}{x^2}.
+(P,Q)\longmapsto \pi_+^*P+\pi_-^*Q,
 $$
-Both are $\sigma$-invariant. Moreover
+and the norm maps define
 $$
-\frac{f(x)}{x^3}
-=x^3+x^{-3}-(x+x^{-1})+1
-=u^3-4u+1
-=u^3+u+1
+\Psi:J\longrightarrow E_+\times E_-,
+\qquad
+D\longmapsto(\pi_{+*}D,\pi_{-*}D).
 $$
-in $\mathbb F_5$, and
+For a degree-two quotient, $\pi_{\pm *}\pi_\pm^*=[2]$. The cross maps vanish. For example, since $\pi_+\sigma=\pi_+$, while $\tau=\iota\sigma$ fixes the $E_-$ pullback and $\iota$ acts as $[-1]$ on $J$, one has $\sigma\pi_-^*=-\pi_-^*$. Thus
 $$
-\frac{(x+1)^2}{x}=u+2.
+\pi_{+*}\pi_-^*=\pi_{+*}\sigma\pi_-^*=-\pi_{+*}\pi_-^*.
 $$
-Thus the quotient by $\sigma$ is the genus-one curve
+Its image is both connected and contained in the finite group $E_+[2]$, so the cross map is zero; similarly $\pi_{-*}\pi_+^*=0$. Therefore
 $$
-E_+:\quad v^2=(u+2)(u^3+u+1).
+\Psi\Phi=([2],[2]).
 $$
-Indeed, $x$ satisfies $x^2-ux+1=0$, so the fixed field has index $2$.
+Consequently $\Phi$ is an isogeny and $\deg\Phi$ is a power of $2$ dividing $16$.
 
-For $\tau$, the invariant
-$$
-w=\frac{y(x-1)}{x^2}
-$$
-gives the second quotient
-$$
-E_-:\quad w^2=(u-2)(u^3+u+1).
-$$
-
-Step 2: Determine the two elliptic Frobenius traces
-
-Both quartics have leading coefficient $1$, so their smooth projective models have two $\mathbb F_5$-rational points at infinity.
-
-For $E_+$, the right-hand side at $u=0,1,2,3,4$ is respectively
+Step 2: Find the Frobenius traces of the two quotient curves
+Both quartics have leading coefficient $1$, so their smooth projective models have two $\mathbb F_5$-rational points at infinity. For $E_+$, the right-hand side at $u=0,1,2,3,4$ is
 $$
 2,4,4,0,4.
 $$
-Since the nonzero squares in $\mathbb F_5$ are $1$ and $4$, these five fibers contain
+The corresponding affine fiber sizes are $0,2,2,1,2$, so
 $$
-0,2,2,1,2
+\#E_+(\mathbb F_5)=9,
+\qquad t_+=5+1-9=-3.
 $$
-affine points. Hence
-$$
-\#E_+(\mathbb F_5)=7+2=9,
-$$
-so its Frobenius trace is
-$$
-t_+=5+1-9=-3.
-$$
-
-For $E_-$, the five right-hand-side values are
+For $E_-$, the right-hand side values are
 $$
 3,2,0,1,3,
 $$
-so the affine fibers contain
+with affine fiber sizes $0,0,1,2,0$. Hence
 $$
-0,0,1,2,0
+\#E_-(\mathbb F_5)=5,
+\qquad t_-=5+1-5=1.
 $$
-points. Therefore
+Thus the Frobenius eigenvalue pairs on $E_+$ and $E_-$ have sums $-3$ and $1$, respectively, and product $5$ in each case.
+
+Step 3: Compute the two group orders over the seventeenth extension
+For a Frobenius pair $\alpha,\beta$ with $\alpha+\beta=t$ and $\alpha\beta=5$, write
 $$
-\#E_-(\mathbb F_5)=3+2=5,
+S_n(t)=\alpha^n+\beta^n.
+$$
+Besides $S_1=t$ and $S_2=t^2-10$, multiplication of the two power sums gives
+$$
+S_{2m}=S_m^2-2\cdot5^m,
+\qquad
+S_{2m+1}=S_mS_{m+1}-5^m t.
+$$
+For $t=-3$,
+$$
+S_2=-1,\quad S_3=18,\quad S_4=-49,\quad S_5=57,
+$$
+so successive doubling gives
+$$
+S_8=1151,\quad S_9=-918,\quad S_{16}=543551,
 $$
 and
 $$
-t_-=5+1-5=1.
+S_{17}=1151(-918)-5^8(-3)=115257.
+$$
+For $t=1$,
+$$
+S_2=-9,\quad S_3=-14,\quad S_4=31,\quad S_5=101,
+$$
+then
+$$
+S_8=-289,\quad S_9=2506,\quad S_{16}=-697729,
+$$
+and
+$$
+S_{17}=(-289)(2506)-5^8=-1114859.
+$$
+Set $Q=5^{17}=762939453125$. Therefore
+$$
+N_+:=\#E_+(\mathbb F_Q)=Q+1-115257=762939337869,
+$$
+$$
+N_-:=\#E_-(\mathbb F_Q)=Q+1+1114859=762940567985.
 $$
 
-Step 3: Split the genus-two Frobenius polynomial
-
-A basis of regular differentials on $C$ is
+Step 4: Prove that both elliptic rational-point groups are cyclic
+For an elliptic curve over $\mathbb F_Q$, write its finite rational-point group as
 $$
-\omega_0=\frac{dx}{y},
+\mathbb Z/m\mathbb Z\times\mathbb Z/n\mathbb Z,
+\qquad m\mid n.
+$$
+Then $m^2$ divides the group order. Here $5\nmid N_+$ and $25\nmid N_-$, so $5\nmid m$ in either case. The full $m$-torsion is rational, and the Weil pairing therefore gives $m\mid Q-1$.
+
+It remains to show that $N_+$ and $N_-$ are each coprime to $Q-1$. Since
+$$
+N_+-(Q-1)=-115255,
 \qquad
-\omega_1=\frac{x\,dx}{y}.
+N_--(Q-1)=1114861,
 $$
-A direct pullback gives
+the following Bezout identities certify the two gcds:
 $$
-\sigma^*\omega_0=-\omega_1,
+37104(Q-1)-245612819129(115255)=1,
+$$
+$$
+151927(Q-1)-103969106727(1114861)=1.
+$$
+Hence $m=1$ for both curves, so
+$$
+E_+(\mathbb F_Q)\cong\mathbb Z/N_+\mathbb Z,
 \qquad
-\sigma^*\omega_1=-\omega_0.
-$$
-Thus the $+1$ and $-1$ eigenspaces of $\sigma$ on $H^0(C,\Omega^1)$ are both one-dimensional. Since $\tau=\iota\sigma$ and $\iota$ acts by $-1$ on regular differentials, the invariant differential line for $\tau$ is the complementary line.
-
-The two degree-two quotient maps therefore give two independent elliptic factors whose dimensions add to $2$. Hence
-$$
-\operatorname{Jac}(C)\sim E_+\times E_-
-$$
-over $\mathbb F_5$, and the Frobenius eigenvalues of $C$ are exactly the two eigenvalue pairs coming from $E_+$ and $E_-$.
-
-Let
-$$
-a_n=\alpha_+^n+\beta_+^n,
-\qquad
-b_n=\alpha_-^n+\beta_-^n.
-$$
-Then
-$$
-a_0=b_0=2,
-\qquad
-a_1=-3,
-\qquad b_1=1,
-$$
-and, because each eigenvalue pair has product $5$,
-$$
-a_n=-3a_{n-1}-5a_{n-2},
-$$
-$$
-b_n=b_{n-1}-5b_{n-2}.
-$$
-Moreover
-$$
-\#C(\mathbb F_{5^n})=5^n+1-a_n-b_n.
+E_-(\mathbb F_Q)\cong\mathbb Z/N_-\mathbb Z.
 $$
 
-Step 4: Iterate to the seventeenth extension
+Step 5: Transfer the group structure through the isogeny and put it in invariant-factor form
+The two integers $N_+$ and $N_-$ are odd. Since the kernel of $\Phi$ has two-power order, the induced map
+$$
+\Phi:E_+(\mathbb F_Q)\times E_-(\mathbb F_Q)\longrightarrow J(\mathbb F_Q)
+$$
+has trivial kernel. Isogenous abelian varieties over a finite field have the same Frobenius polynomial and therefore the same number of rational points over every finite extension. Thus the source and target above have the same finite cardinality, so $\Phi$ is an isomorphism on $\mathbb F_Q$-points.
 
-Repeated use of the two recurrences gives
+Finally,
 $$
-\begin{array}{c|rrrrr}
-n&13&14&15&16&17\\ \hline
-a_n&9357&100799&-349182&543551&115257\\
-b_n&14561&156231&83426&-697729&-1114859
-\end{array}
+-208985688411N_+ + 208985351456N_-=1,
 $$
-so
+so $\gcd(N_+,N_-)=1$. The direct product of the two cyclic groups is therefore cyclic, of order
 $$
-a_{17}+b_{17}=-999602.
+N_+N_-=762939337869\cdot762940567985
+=582077371771874679523965.
 $$
-Since
-$$
-5^{17}=762939453125,
-$$
-we obtain
-$$
-\#C(\mathbb F_{5^{17}})
-=762939453125+1+999602
-=762940452728.
-$$
+Hence the invariant-factor decomposition has a single factor.
 
-Final Answer: $\boxed{762940452728}$
+Final Answer: $\boxed{\mathbb{Z}/582077371771874679523965\mathbb{Z}}$
 
 ---
 
 ## Answer
 
-$762940452728$
+$\mathbb{Z}/582077371771874679523965\mathbb{Z}$
 
 ---
 
 ## Classification
 
-**Problem Type:** Exact computation
+**Problem Type:** Canonicalization or normalization
 
 **Answer Type:** Exact symbolic expression
 
@@ -187,7 +178,8 @@ $762940452728$
 
 ## Solution Concepts
 
-- reciprocal genus-two curve
-- elliptic quotients from involutions
-- Jacobian splitting
-- elliptic Frobenius recurrences
+- elliptic quotients of genus-two curves
+- Jacobian isogenies
+- Frobenius trace recurrences
+- elliptic curve group structure
+- Weil pairing
