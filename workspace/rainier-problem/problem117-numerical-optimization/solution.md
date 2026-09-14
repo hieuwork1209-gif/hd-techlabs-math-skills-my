@@ -1,165 +1,154 @@
 ## Steps
 
-Step 1: Convert the robust three-stage contraction to a symmetric rational minimax problem
-Put
+Step 1: Rewrite the condition-number optimization as a diagonal Loewner sandwich
+Let
 $$
-x=\frac{\lambda}{3},
+A=\begin{bmatrix}
+4&1&1\\
+1&3&1\\
+1&1&2
+\end{bmatrix},
 \qquad
-c_j=3\alpha_j,
-\qquad j=1,2,3.
+D=\operatorname{diag}(d_1,d_2,d_3),
+\qquad d_i>0.
 $$
-Then $x\in[1/3,3]$ and
+Write
 $$
-\frac{1-\alpha_j\lambda}{1+\alpha_j\lambda}
-=\frac{1-c_jx}{1+c_jx}.
-$$
-Now use the fractional-linear coordinate
-$$
-z=\frac{x-1}{x+1}.
-$$
-It maps $[1/3,3]$ bijectively onto $[-1/2,1/2]$. For
-$$
-a_j=\frac{1-c_j}{1+c_j}\in(-1,1),
-$$
-direct substitution of $x=(1+z)/(1-z)$ gives
-$$
-\frac{1-c_jx}{1+c_jx}=\frac{a_j-z}{1-a_jz}.
-$$
-Conversely every $a_j\in(-1,1)$ comes from the positive parameter
-$$
-\alpha_j=\frac{1-a_j}{3(1+a_j)}.
-$$
-Thus the required infimum equals
-$$
-\inf_{a_1,a_2,a_3\in(-1,1)}
-\max_{|z|\leq1/2}
-\left|B(z)\right|,
+m=\lambda_{\min}(DAD),
 \qquad
-B(z)=\prod_{j=1}^3\frac{a_j-z}{1-a_jz}.
-$$
-
-Step 2: Establish an alternation certificate for degree-three products
-Suppose a feasible product $B_*(z)$ has four points
-$$
-z_0<z_1<z_2<z_3
-$$
-in $(-1,1)$ at which its values are consecutively
-$$
-\rho,-\rho,\rho,-\rho.
-$$
-Then no other feasible degree-three product can have uniform norm strictly smaller than $\rho$ on an interval containing these four points.
-
-To prove this, write
-$$
-P(z)=\prod_{j=1}^3(z-a_j),
+M=\lambda_{\max}(DAD),
 \qquad
-P^{\#}(z)=z^3P(1/z)=\prod_{j=1}^3(1-a_jz),
+t=\frac{M}{m}.
 $$
-so $B(z)=-P(z)/P^{\#}(z)$. For a competitor $C(z)=-Q(z)/Q^{\#}(z)$, the denominator of $C-B_*$ is positive on $(-1,1)$ and its numerator is
+Then
 $$
-H(z)=P(z)Q^{\#}(z)-Q(z)P^{\#}(z).
+mI\preceq DAD\preceq MI.
 $$
-This polynomial has degree at most $6$ and satisfies
+Congruence by $D^{-1}$ gives
 $$
-z^6H(1/z)=-H(z).
+S\preceq A\preceq tS,
+\qquad
+S=mD^{-2},
 $$
-If $\|C\|_{\infty}<\rho$, then $C-B_*$ has alternating signs at $z_0,z_1,z_2,z_3$, so $H$ has one zero in each of the three intervening open intervals. The first and third of these zeros are nonzero and lie in $(-1,1)$, hence their reciprocals are two further zeros outside $[-1,1]$. Also every feasible degree-three product equals $1$ at $z=-1$ and $-1$ at $z=1$, so $H(-1)=H(1)=0$. This gives at least seven distinct zeros of a polynomial of degree at most $6$, a contradiction. Therefore any feasible product with four alternating extrema is globally optimal.
+where $S$ is positive diagonal. Conversely, if a positive diagonal $S$ satisfies $S\preceq A\preceq tS$, then with $D=S^{-1/2}$ every eigenvalue of $DAD$ lies in $[1,t]$. Therefore the optimal condition number is exactly the least $t$ for which such a diagonal sandwich exists.
 
-Step 3: Construct a four-point equioscillating candidate
-The transformed interval is symmetric under $z\mapsto-z$, and the degree is odd. The canonical product respecting that symmetry has zeros $-a,0,a$. Since Step 2 turns four-point equioscillation into a global optimality certificate, it is enough to tune this symmetric family until its two positive peak heights agree.
+Step 2: Derive a global lower bound from sign flips
+Let $J$ be any diagonal sign matrix and put $y=Jx$. Since $S$ is diagonal,
+$$
+y^TSy=x^TSx.
+$$
+Hence every feasible sandwich satisfies
+$$
+y^TAy\leq t\,y^TSy=t\,x^TSx\leq t\,x^TAx.
+$$
+Thus for every nonzero $x$,
+$$
+t\geq\frac{x^TJAJx}{x^TAx}.
+$$
+Take
+$$
+J=\operatorname{diag}(1,1,-1).
+$$
+The largest possible value of this generalized Rayleigh quotient is the largest root of
+$$
+\det(JAJ-\tau A)=0.
+$$
+A direct determinant expansion gives
+$$
+\det(JAJ-\tau A)=-(\tau-1)(17\tau^2-54\tau+17).
+$$
+Therefore every positive diagonal scaling satisfies
+$$
+\kappa_2(DAD)\geq\tau_*:=\frac{27+2\sqrt{110}}{17}.
+$$
 
-Choose $0<a<1/2$ and set $y=a^2$. The corresponding product is
+Step 3: Construct a scaling attaining the lower bound
+Choose
 $$
-B_y(z)=\frac{z(y-z^2)}{1-yz^2}.
+D_*=\operatorname{diag}(2,\sqrt6,\sqrt{11}).
 $$
-For $z>0$,
+Then
 $$
-B_y'(z)=\frac{y+(y^2-3)z^2+yz^4}{(1-yz^2)^2}.
+D_*AD_*=\begin{bmatrix}
+16&2\sqrt6&2\sqrt{11}\\
+2\sqrt6&18&\sqrt{66}\\
+2\sqrt{11}&\sqrt{66}&22
+\end{bmatrix}.
 $$
-Writing $u=z^2$, the critical-point equation is
+Its characteristic polynomial factors as
 $$
-yu^2+(y^2-3)u+y=0.
+(\lambda-12)(\lambda^2-44\lambda+374),
 $$
-Its two positive roots have product $1$. Moreover the left side is positive at $u=0$ and equals $2y(y^2-1)<0$ at $u=y$, so the smaller root $u_*$ lies in $(0,y)$. Hence $r=\sqrt{u_*}$ is the unique critical point in $(0,a)$, where $B_y$ attains its positive inner maximum. The other critical value has $u>1$, so there is no further critical point before $z=1/2$; therefore on $(a,1/2]$ the magnitude increases to the endpoint.
+so its eigenvalues are
+$$
+22-\sqrt{110},\qquad 12,\qquad 22+\sqrt{110}.
+$$
+Since $22-\sqrt{110}<12<22+\sqrt{110}$,
+$$
+\kappa_2(D_*AD_*)
+=\frac{22+\sqrt{110}}{22-\sqrt{110}}
+=\frac{27+2\sqrt{110}}{17}
+=\tau_*.
+$$
+Thus the lower bound is sharp.
 
-The endpoint magnitude is
+Step 4: Prove the minimizing diagonal scaling is unique up to a common factor
+Let
 $$
--B_y\left(\frac12\right)=\frac{1-4y}{2(4-y)}.
+r=\sqrt{110},
+\qquad
+x=\begin{bmatrix}-4\\-6\\r\end{bmatrix},
+\qquad
+y=Jx=\begin{bmatrix}-4\\-6\\-r\end{bmatrix}.
 $$
-Equating this with $B_y(r)$ and squaring gives
+The generalized eigenvalue relation from Step 2 gives
 $$
-4(4-y)^2u_*(y-u_*)^2-(1-4y)^2(1-yu_*)^2=0.
+y^TAy=\tau_*x^TAx.
 $$
-The critical equation gives
+Suppose a diagonal scaling attains $\tau_*$. Normalize it so that $\lambda_{\min}(DAD)=1$, and let $S=D^{-2}$. Then
 $$
-u_*^2=\frac{(3-y^2)u_*-y}{y}.
+S\preceq A\preceq\tau_*S.
 $$
-Using this repeatedly to reduce the equal-height equation to first degree in $u_*$ gives
+For the displayed $x,y$, the inequality chain in Step 2 starts and ends with equal quantities, so equality holds throughout. In particular,
 $$
-\begin{aligned}
-0={}&\left(16y^5+8y^4-127y^3+220y^2+288y-576\right)u_*\\
-&+y\left(16y^3+4y^2-95y+192\right).
-\end{aligned}
+x^T(A-S)x=0.
 $$
-Solving this linear equation for $u_*$ and substituting into the critical equation produces the factorization
+Because $A-S\succeq0$, this forces
 $$
-4y^2(4y^2+17y-12)^2(y^4-6y^2+17y-3)=0.
+(A-S)x=0.
 $$
-On $0<y<1/4$, the quadratic factor has no zero, while
+All coordinates of $x$ are nonzero, so the diagonal entries of $S$ are uniquely determined by
 $$
-h(y)=y^4-6y^2+17y-3
+s_i=\frac{(Ax)_i}{x_i}.
 $$
-satisfies $h(0)<0<h(1/4)$ and
+Now
 $$
-h'(y)=4y^3-12y+17>0.
+Ax=\begin{bmatrix}-22+r\\-22+r\\-10+2r\end{bmatrix},
 $$
-Therefore there is a unique $y_0\in(0,1/4)$ with
+which yields
 $$
-y_0^4-6y_0^2+17y_0-3=0.
+S=(22-r)\operatorname{diag}\left(\frac14,\frac16,\frac1{11}\right).
 $$
-For this $y_0$, the values at $-1/2,-r,r,1/2$ alternate between $\rho$ and $-\rho$, where
+Therefore
 $$
-\rho=\frac{1-4y_0}{2(4-y_0)}.
+D=S^{-1/2}
 $$
-Step 2 now shows that this $\rho$ is exactly $\rho_*$. The chosen zeros correspond to positive original parameters by the inverse formula in Step 1, so the bound is attained by an admissible three-stage cycle.
+is proportional to
+$$
+\operatorname{diag}(2,\sqrt6,\sqrt{11}).
+$$
+Hence the minimizing scaling class is unique.
 
-Step 4: Eliminate the auxiliary zero parameter and obtain the exact algebraic value
-Solving the displayed relation for $y_0$ in terms of $\rho$ gives
-$$
-y_0=\frac{1-8\rho}{4-2\rho}.
-$$
-Substituting this into
-$$
-y_0^4-6y_0^2+17y_0-3=0
-$$
-and clearing denominators yields
-$$
-16\rho^4-8\rho^3+24\rho^2-32\rho+1=0.
-$$
-Also $h(2/13)<0$ and $h$ is increasing on $(0,1/4)$, so $y_0>2/13$. Therefore
-$$
-0<\rho=\frac{1-4y_0}{2(4-y_0)}<\frac{1}{20}.
-$$
-The polynomial
-$$
-p(t)=16t^4-8t^3+24t^2-32t+1
-$$
-has exactly one zero in $(0,1/20)$: indeed $p(0)=1$, $p(1/20)=-5409/10000$, and
-$$
-p'(t)=64t^3-24t^2+48t-32<0
-$$
-throughout that interval.
+Step 5: State the requested optimum and unique scaling ratio
+The least possible spectral condition number is $\tau_*$, and every minimizing diagonal is a positive scalar multiple of $D_*$. Therefore the requested ordered pair is the optimal condition number together with the unique ratio $d_1:d_2:d_3$.
 
-Step 5: Express the optimum in the notation requested by the problem
-The global alternation certificate identifies the robust optimum, and Step 4 identifies it as the unique root of $p(t)$ in $(0,1/20)$. Numerically this root is approximately $0.0320108453$, consistent with the isolating interval but not needed for the exact answer.
-
-Final Answer: $\boxed{\operatorname{Root}(16t^4-8t^3+24t^2-32t+1;(0,1/20))}$
+Final Answer: $\boxed{\left(\frac{27+2\sqrt{110}}{17},2:\sqrt6:\sqrt{11}\right)}$
 
 ---
 
 ## Answer
 
-$\operatorname{Root}(16t^4-8t^3+24t^2-32t+1;(0,1/20))$
+$\left(\frac{27+2\sqrt{110}}{17},2:\sqrt6:\sqrt{11}\right)$
 
 ---
 
@@ -167,14 +156,14 @@ $\operatorname{Root}(16t^4-8t^3+24t^2-32t+1;(0,1/20))$
 
 **Problem Type:** Optimization
 
-**Answer Type:** Exact scalar
+**Answer Type:** Tuple or ordered list
 
 ---
 
 ## Solution Concepts
 
-- reflected proximal iteration
-- rational minimax approximation
-- fractional linear transformation
-- alternation certificate
-- algebraic elimination
+- diagonal preconditioning
+- spectral condition number
+- Loewner order
+- generalized Rayleigh quotient
+- equality certificate
