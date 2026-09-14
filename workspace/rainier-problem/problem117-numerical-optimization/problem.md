@@ -37,7 +37,7 @@ Determine
 $$
 \bigl(R_*,\alpha_*\bigr),
 $$
-where $\alpha_*$ is the minimizing constant step size. Give both entries to ten decimal places.
+where $\alpha_*$ is the minimizing constant step size. Give both entries to three decimal places.
 
 ---
 
