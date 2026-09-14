@@ -153,11 +153,11 @@ For $0<r<\rho$, we have $H(r)<0$ and $r\ne1$, so
 $$
 P(r)^2>9r^4w(r)^2.
 $$
-The polynomial $P$ cannot vanish on this interval, and $P(0)=5$, hence
+Thus $P$ cannot vanish there. Since $P(0)=5$, continuity gives $P(r)>0$, and hence
 $$
 P(r)>3r^2w(r).
 $$
-Therefore $G'(r)<0$ for $0<r<\rho$. At $r=\rho$, continuity and the difference-of-squares identity give
+Therefore $G'(r)<0$ for $0<r<\rho$. Taking $r\to\rho^-$ shows $P(\rho)\ge0$; the difference-of-squares identity at $\rho$ then gives
 $$
 P(\rho)=3\rho^2w(\rho),
 $$
@@ -220,7 +220,11 @@ u_*>\frac{69}{154}>\frac{56}{125},
 \qquad
 \rho^3>\left(\frac{31}{42}\right)^3>\frac{201}{500}.
 $$
-Also $31/42>1/\sqrt2$, and the polynomial
+Also
+$$
+\left(\frac{31}{42}\right)^2=\frac{961}{1764}>\frac12,
+$$
+so $31/42>1/\sqrt2$. The polynomial
 $$
 F(r)=1-3r^2+3r^4
 $$
