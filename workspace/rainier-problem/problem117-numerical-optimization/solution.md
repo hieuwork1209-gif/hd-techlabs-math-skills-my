@@ -66,7 +66,9 @@ $$
 If $\|C\|_{\infty}<\rho$, then $C-B_*$ has alternating signs at $z_0,z_1,z_2,z_3$, so $H$ has one zero in each of the three intervening open intervals. The first and third of these zeros are nonzero and lie in $(-1,1)$, hence their reciprocals are two further zeros outside $[-1,1]$. Also every feasible degree-three product equals $1$ at $z=-1$ and $-1$ at $z=1$, so $H(-1)=H(1)=0$. This gives at least seven distinct zeros of a polynomial of degree at most $6$, a contradiction. Therefore any feasible product with four alternating extrema is globally optimal.
 
 Step 3: Construct a four-point equioscillating candidate
-Choose symmetric zeros $-a,0,a$ with $0<a<1/2$, and set $y=a^2$. The corresponding product is
+The transformed interval is symmetric under $z\mapsto-z$, and the degree is odd. The canonical product respecting that symmetry has zeros $-a,0,a$. Since Step 2 turns four-point equioscillation into a global optimality certificate, it is enough to tune this symmetric family until its two positive peak heights agree.
+
+Choose $0<a<1/2$ and set $y=a^2$. The corresponding product is
 $$
 B_y(z)=\frac{z(y-z^2)}{1-yz^2}.
 $$
