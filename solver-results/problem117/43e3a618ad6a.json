@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "0aa0736b6ff3adf3e46d498e26b75b6db91bc1c2",
+  "problem_blob_sha": "43e3a618ad6abfa6089a8f31249631c6442619ff",
+  "statement_sha256": "9c692a8c2bd6af6b04c73b523fc1ebee6a7e2fdc262b427fb4dd6e0fbd23e82e",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-14T17:37:58+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nB=DAD,\\qquad D=\\operatorname{diag}(d_1,d_2,d_3).\n\\]\n\nSince common scaling of \\(D\\) scales every eigenvalue of \\(B\\) by the same factor, it does not affect \\(\\kappa\\).\n\nAt a minimizing interior scaling, write \\(\\lambda_{\\max}=M\\), \\(\\lambda_{\\min}=m\\), with normalized eigenvectors \\(x,y\\). Varying \\(\\log d_i\\) under the constraint \\(d_1d_2d_3=\\text{constant}\\) gives\n\n\\[\nx_i^2=y_i^2\\qquad(i=1,2,3).\n\\]\n\nThus \\(y_i=\\pm x_i\\). Since \\(x\\perp y\\), exactly one coordinate has square \\(1/2\\). Checking the three possible choices gives the following candidate scaling classes and condition numbers:\n\n\\[\n\\begin{array}{c|c|c}\n\\text{coordinate with }x_i^2=1/2 & d_1:d_2:d_3 & \\kappa\\\\\n\\hline\n1 & \\sqrt5:2:2\\sqrt2 & \\dfrac{10+\\sqrt{15}}4\\\\[6pt]\n2 & \\sqrt3:\\sqrt7:3 & \\dfrac{21+2\\sqrt{21}}9\\\\[6pt]\n3 & 2:\\sqrt6:\\sqrt{11} & \\dfrac{22+\\sqrt{110}}{22-\\sqrt{110}}\n\\end{array}\n\\]\n\nThere is also the possible nonsmooth case where the minimum eigenvalue has multiplicity \\(2\\). Then\n\n\\[\nB=mI+(M-m)uu^T,\n\\]\n\nand the off-diagonal constraints force \\(d_i^2\\propto (1/3,1/2,1)\\), giving\n\n\\[\n\\kappa=\\frac{17}{6},\n\\]\n\nwhich is larger than the third candidate.\n\nFor\n\n\\[\nD=\\operatorname{diag}(2,\\sqrt6,\\sqrt{11}),\n\\]\n\none computes\n\n\\[\nDAD=\n\\begin{bmatrix}\n16&2\\sqrt6&2\\sqrt{11}\\\\\n2\\sqrt6&18&\\sqrt{66}\\\\\n2\\sqrt{11}&\\sqrt{66}&22\n\\end{bmatrix}.\n\\]\n\nIts eigenvectors may be chosen as\n\n\\[\n(\\sqrt2,\\sqrt3,\\sqrt5),\\qquad\n(-\\sqrt2,-\\sqrt3,\\sqrt5),\\qquad\n(\\sqrt3,-\\sqrt2,0),\n\\]\n\nwith eigenvalues\n\n\\[\n22+\\sqrt{110},\\qquad 22-\\sqrt{110},\\qquad 12.\n\\]\n\nSince\n\n\\[\n22-\\sqrt{110}<12<22+\\sqrt{110},\n\\]\n\nthe condition number is\n\n\\[\n\\kappa_*=\\frac{22+\\sqrt{110}}{22-\\sqrt{110}}.\n\\]\n\nTherefore the unique minimizing scaling class is\n\n\\[\nd_1:d_2:d_3=2:\\sqrt6:\\sqrt{11}.\n\\]\n\n\\[\n\\boxed{\\left(\\frac{22+\\sqrt{110}}{22-\\sqrt{110}},\\;2:\\sqrt6:\\sqrt{11}\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-14T17:40:36+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/43e3a618ad6a.json"
+}
