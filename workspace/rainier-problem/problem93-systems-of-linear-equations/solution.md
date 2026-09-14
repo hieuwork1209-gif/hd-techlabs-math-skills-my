@@ -161,25 +161,92 @@ with $A=A_r$ and $B=B_e$, and put
 $$
 R=A+B-q.
 $$
-Since $q\ge p\ge29$, all six values of $R$ are positive.
+The residue counts satisfy
+$$
+\left\lfloor\frac{2q}{3}\right\rfloor\le A\le
+\left\lceil\frac{2q}{3}\right\rceil,
+\qquad
+\frac{q-1}{2}\le B\le\frac{q+1}{2}.
+$$
+Since $q\ge29$, these bounds give $A<q$, $B<q$, and
+$$
+R=A+B-q>0.
+$$
+Moreover $R<A$ because $B<q$, and $R<B$ because $A<q$.
 
-Multiplication by $(X+Y)^{q-1}$ raises total degree by $q-1$. The source degrees that can contribute are exactly
+Multiplication by $(X+Y)^{q-1}$ raises total degree by $q-1$. The largest nonzero total degree in $S_{A,B}$ is $A+B-2=q+R-2$. Hence a source degree $d$ can contribute only when
+$$
+d+q-1\le q+R-2,
+$$
+that is,
 $$
 d=0,1,\dots,R-1.
 $$
-For such a $d$, the degree-$d$ source has basis
+For such a $d$, we have $d<R<A,B$, so no degree-$d$ source monomial is truncated and the source basis is exactly
 $$
-X^aY^{d-a}\qquad(0\le a\le d),
+X^aY^{d-a}\qquad(0\le a\le d).
 $$
-and the degree-$d+q-1$ target has $R-d$ basis monomials. Because $R<A,B$, every source basis vector can connect to every target basis vector without crossing either truncation bound.
 
-If the target $X$-exponent is $c$, the corresponding coefficient is, up to a fixed sign,
+Now put
 $$
-(-1)^{a+c}.
+D=d+q-1.
 $$
-Therefore the matrix on this graded piece is an outer product of a sign column and a sign row, so it has rank exactly $1$. Distinct total degrees do not mix. Hence
+A degree-$D$ monomial $X^cY^{D-c}$ survives in $S_{A,B}$ exactly when
 $$
-\operatorname{rank}\bigl((X+Y)^{q-1}:S_{A,B}\to S_{A,B}\bigr)=A+B-q.
+0\le c\le A-1,
+\qquad
+0\le D-c\le B-1.
+$$
+Equivalently,
+$$
+D-B+1\le c\le A-1.
+$$
+Using $q=A+B-R$, the lower endpoint is
+$$
+D-B+1=d+q-B=d+A-R.
+$$
+Also $R<B$ implies $D\ge A$, so the upper endpoint is indeed $A-1$. Thus the target basis is exactly
+$$
+X^cY^{D-c}
+\qquad
+(d+A-R\le c\le A-1),
+$$
+which contains
+$$
+(A-1)-(d+A-R)+1=R-d
+$$
+monomials.
+
+It remains to check that every source basis monomial actually connects to every one of these target monomials. From
+$$
+(X+Y)^{q-1}
+=\sum_{k=0}^{q-1}(-1)^kX^kY^{q-1-k},
+$$
+the coefficient from the source monomial $X^aY^{d-a}$ to the target monomial $X^cY^{D-c}$ is the coefficient with
+$$
+k=c-a.
+$$
+For $0\le a\le d$ and $d+A-R\le c\le A-1$,
+$$
+c-a\ge(d+A-R)-d=A-R\ge1,
+$$
+while
+$$
+c-a\le A-1<q.
+$$
+Therefore
+$$
+0\le c-a\le q-1,
+$$
+so this term is present in the binomial expansion and is not killed by either $X^A$ or $Y^B$: its resulting exponents are exactly the surviving target exponents $c<A$ and $D-c<B$ displayed above.
+
+Hence every entry of the graded multiplication matrix is nonzero, and the $(c,a)$ entry is
+$$
+(-1)^{c-a}=(-1)^c(-1)^a.
+$$
+Thus the matrix is the outer product of the sign column $((-1)^c)_c$ and the sign row $((-1)^a)_a$, so it has rank exactly $1$. Distinct total degrees do not mix. Consequently
+$$
+\operatorname{rank}\bigl((X+Y)^{q-1}:S_{A,B}\to S_{A,B}\bigr)=R=A+B-q.
 $$
 Summing over the six blocks gives
 $$
@@ -209,12 +276,34 @@ with $0\le i<2q$ and $0\le j<q$. Since $\deg s=2$, $\deg t=3$, and $\deg\Delta=3
 $$
 2(2q-1)+3(q-1)+3=7q-2.
 $$
+Hence the graded invariant quotient satisfies
+$$
+Q_d=0\qquad(d>7q-2).
+$$
 
 Let $\mathcal M$ be the corresponding untruncated quotient before taking cyclic invariants, and let
 $$
 K_0=(a^n,b^n,c^n)\mathcal M.
 $$
-Then $K_0\subseteq\mathfrak m^n\mathcal M$, where $\mathfrak m=(a,b,c)$. Since $n=pq\ge29q>7q-2$, the invariant part of $\mathfrak m^n\mathcal M$ is zero, so $K_0^{\langle\rho\rangle}=0$. Exactness of cyclic invariants applied to
+All defining relations of $\mathcal M$ are homogeneous, and $\rho$ permutes $a,b,c$, so both $\mathcal M$ and the $\langle\rho\rangle$-action are graded. Therefore, if
+$$
+u=\sum_d u_d\in\mathcal M^{\langle\rho\rangle}=Q
+$$
+is the homogeneous decomposition of an invariant class, then each $u_d$ is itself $\rho$-invariant. The displayed degree bound on $Q$ forces $u_d=0$ for every $d>7q-2$.
+
+Now $K_0\subseteq\mathfrak m^n\mathcal M$, where $\mathfrak m=(a,b,c)$. Since $\mathfrak m$ is generated in degree $1$, the graded submodule $\mathfrak m^n\mathcal M$ has no homogeneous component below degree $n$:
+$$
+(\mathfrak m^n\mathcal M)_d=0\qquad(d<n).
+$$
+Because
+$$
+n=pq\ge29q>7q-2,
+$$
+there is no degree that can support a nonzero invariant homogeneous component of $\mathfrak m^n\mathcal M$. Thus
+$$
+(\mathfrak m^n\mathcal M)^{\langle\rho\rangle}=0,
+$$
+and hence $K_0^{\langle\rho\rangle}=0$. Exactness of cyclic invariants applied to
 $$
 0\to K_0\to\mathcal M\to\mathcal M/K_0\to0
 $$
@@ -252,7 +341,3 @@ $4\left(\frac np\right)^2-2\left(\frac np\right)$
 - Frobenius binomial degeneration
 - residue-class module decomposition
 - graded rank counting
-
-## Black-Box Audit
-
-The cyclic invariant decomposition and discriminant relation, operator reduction, six-block decomposition, characteristic-$p$ rank collapse, rank sum, and truncation argument are all derived explicitly.
