@@ -2,31 +2,33 @@
 
 ## LaTeX (Normalized)
 
-For $\alpha>0$ and $\lambda>0$, define the reflected-proximal spectral factor
+Let
 $$
-\phi_\alpha(\lambda)=\frac{1-\alpha\lambda}{1+\alpha\lambda}.
+A=\begin{bmatrix}
+4&1&1\\
+1&3&1\\
+1&1&2
+\end{bmatrix}.
 $$
-For three positive parameters $\alpha_1,\alpha_2,\alpha_3$, define the worst-case contraction over the spectral interval $[1,9]$ by
+For a positive diagonal matrix
 $$
-\rho(\alpha_1,\alpha_2,\alpha_3)
-=\max_{1\leq\lambda\leq9}
-\left|
-\phi_{\alpha_1}(\lambda)
-\phi_{\alpha_2}(\lambda)
-\phi_{\alpha_3}(\lambda)
-\right|,
+D=\operatorname{diag}(d_1,d_2,d_3),
+\qquad d_1,d_2,d_3>0,
 $$
-and let
+define
 $$
-\rho_*=\inf_{\alpha_1,\alpha_2,\alpha_3>0}
-\rho(\alpha_1,\alpha_2,\alpha_3).
+\kappa(D)=\frac{\lambda_{\max}(DAD)}{\lambda_{\min}(DAD)}.
 $$
+Since multiplying $D$ by a positive scalar does not change $\kappa(D)$, regard two positive diagonal matrices as equivalent when they differ by a common positive scalar.
 
-For a real polynomial $p(t)$ and an interval $I$ containing exactly one real zero of $p$, write
+Determine exactly
 $$
-\operatorname{Root}(p(t);I)
+\kappa_*:=\inf_{D>0\text{ diagonal}}\kappa(D),
 $$
-for that zero. Determine $\rho_*$ exactly in this notation.
+and determine the unique minimizing scaling class. Give the answer as the ordered pair
+$$
+\left(\kappa_*,d_1:d_2:d_3\right).
+$$
 
 ---
 
@@ -37,10 +39,10 @@ for that zero. Determine $\rho_*$ exactly in this notation.
 | **Domain** | Optimization and Numerical Mathematics |
 | **Sub-domain** | Numerical optimization |
 | **Problem Type** | Optimization |
-| **Answer Type** | Exact scalar |
+| **Answer Type** | Tuple or ordered list |
 
 ---
 
 ## Domain Explanation
 
-The quantity $\rho_*$ is the optimal robust contraction of a three-stage reflected-proximal, or Cayley, iteration on a prescribed eigenvalue interval. The task is a parameter-optimization problem for a rational spectral filter and requires a global minimax certificate rather than pointwise tuning.
+This problem asks for the optimal positive diagonal congruence preconditioner of a fixed symmetric positive-definite matrix, measured by the spectral condition number. It requires a global lower-bound certificate, attainment, and uniqueness of the optimal scaling class.
