@@ -65,13 +65,54 @@ $$
 \{n-2,n-1,n\},\quad
 \{2,4,n-2\},\quad\{2,4,n-1\}.
 $$
-All these triples are standard because $n\geq12$. Set
+All these triples are standard because $n\geq12$. Also $|\mathcal T|=n-1=|\mathcal A_1|$, and $\mathcal P\cap\mathcal T=\varnothing$, so with
 $$
 \mathcal C_3=\mathcal P\cup\mathcal T,\qquad
 \mathcal B_3=\mathcal S_3\setminus\mathcal C_3,\qquad
 \mathcal A_3=\mathcal A_2\cup\mathcal B_3,
 $$
-and let $E_3(\alpha,\beta)=1_{\alpha\subseteq\beta}$. Order rows as $\mathcal B_3,\mathcal B_2,\mathcal A_1$ and columns as $\mathcal B_3,\mathcal P,\mathcal T$. The $\mathcal B_3$ and $\mathcal B_2$ pivot blocks are identities. For each $T\in\mathcal T$, subtract the pivot column $\beta\cup\{n\}$ for every $\beta\in\mathcal B_2$ with $\beta\subset T$; this clears the $\mathcal B_2$ rows. On the remaining $\mathcal A_1$ rows, write $e_0$ for the $\varnothing$ row and $e_i$ for the row $\{i\}$. After changing column signs, the resulting $\mathcal T$ columns are
+we have $|\mathcal A_3|=|\mathcal S_3|$. Let $E_3(\alpha,\beta)=1_{\alpha\subseteq\beta}$. Order rows as $\mathcal B_3,\mathcal B_2,\mathcal A_1$ and columns as $\mathcal B_3,\mathcal P,\mathcal T$. The $\mathcal B_3$ and $\mathcal B_2$ pivot blocks are identities. For each $T\in\mathcal T$, subtract the pivot column $\beta\cup\{n\}$ for every $\beta\in\mathcal B_2$ with $\beta\subset T$; this clears the $\mathcal B_2$ rows.
+
+We now compute explicitly what these operations leave on the $\mathcal A_1$ rows. Write $e_0$ for the $\varnothing$ row and $e_j$ for the row $\{j\}$, $2\leq j\leq n-1$. For $T\in\mathcal T$, set
+$$
+\mathcal B(T)=\{\beta\in\mathcal B_2:\beta\subset T\},\qquad
+N(T)=|\mathcal B(T)|,
+$$
+and
+$$
+N_j(T)=|\{\beta\in\mathcal B(T):j\in\beta\}|.
+$$
+Before the subtraction, the $T$-column has coefficient $1$ in the $e_0$ row and coefficient $1_{j\in T}$ in the $e_j$ row. Each pivot column $\beta\cup\{n\}$ has coefficient $1$ in the $e_0$ row and coefficient $1_{j\in\beta}$ in the $e_j$ row. Hence the reduced $T$-column restricted to $\mathcal A_1$ is exactly
+$$
+(1-N(T))e_0+\sum_{j=2}^{n-1}\bigl(1_{j\in T}-N_j(T)\bigr)e_j. \tag{1}
+$$
+There are four cases.
+
+If $T_i=\{i,n-2,n-1\}$ with $2\leq i\leq n-3$, then
+$$
+\mathcal B(T_i)=\{\{i,n-2\},\{i,n-1\}\};
+$$
+the third pair $\{n-2,n-1\}$ lies in $\mathcal C_2$. Thus $N(T_i)=2$, $N_i(T_i)=2$, and $N_{n-2}(T_i)=N_{n-1}(T_i)=1$. Formula (1) gives
+$$
+-e_0-e_i.
+$$
+If $T_*=\{n-2,n-1,n\}$, its only pair not involving $n$ is $\{n-2,n-1\}\in\mathcal C_2$, while every pair involving $n$ also lies in $\mathcal C_2$. Hence $\mathcal B(T_*)=\varnothing$, and (1) gives
+$$
+e_0+e_{n-2}+e_{n-1}.
+$$
+For $T^- =\{2,4,n-2\}$, all three pairs
+$$
+\{2,4\},\quad\{2,n-2\},\quad\{4,n-2\}
+$$
+lie in $\mathcal B_2$. Therefore $N(T^-)=3$ and each of $2,4,n-2$ occurs in exactly two of these pairs, so (1) gives
+$$
+-2e_0-e_2-e_4-e_{n-2}.
+$$
+Similarly, for $T^+=\{2,4,n-1\}$ the three pairs $\{2,4\},\{2,n-1\},\{4,n-1\}$ lie in $\mathcal B_2$, and (1) gives
+$$
+-2e_0-e_2-e_4-e_{n-1}.
+$$
+Multiplying the $T_i,T^-,T^+$ columns by $-1$ is unimodular, so the resulting $\mathcal T$ columns are precisely
 $$
 e_0+e_i\ (2\leq i\leq n-3),\qquad
  e_0+e_{n-2}+e_{n-1},
@@ -80,7 +121,7 @@ $$
 2e_0+e_2+e_4+e_{n-2},\qquad
 2e_0+e_2+e_4+e_{n-1}.
 $$
-Subtracting the $i=2,4$ columns from the last two gives $e_{n-2}$ and $e_{n-1}$; subtracting these from $e_0+e_{n-2}+e_{n-1}$ gives $e_0$; then subtracting $e_0$ from every $e_0+e_i$ gives $e_i$. Hence $E_3$ reduces by unimodular column operations to the identity and is unimodular.
+Subtracting the $i=2,4$ columns from the last two gives $e_{n-2}$ and $e_{n-1}$; subtracting these from $e_0+e_{n-2}+e_{n-1}$ gives $e_0$; then subtracting $e_0$ from every $e_0+e_i$ gives $e_i$. Hence the lower-right block reduces to the identity. Finally, the identity columns just obtained clear the entries below the $\mathcal B_3$ pivot block, so $E_3$ reduces by unimodular column operations to the identity and is unimodular.
 
 The sets $\mathcal A_0\subset\mathcal A_1\subset\mathcal A_2\subset\mathcal A_3$ are nested. If $\alpha\in\mathcal A_{s-1}$ has size $t$, then for a standard $s$-set $\beta$ the number of standard $(s-1)$-sets $\gamma$ with $\alpha\subseteq\gamma\subseteq\beta$ is $s-t$ when $\alpha\subseteq\beta$ and $0$ otherwise. Therefore
 $$
@@ -110,26 +151,40 @@ $$
 
 Step 2: Compute the Smith form of the four small blocks
 
-For $M_0$, $D_1=1$ because the entries include $3$ and $4$. Modulo $3$, $M_0$ has rank at most $1$ because $n\equiv0\pmod3$, so every $2\times2$ minor is divisible by $3$. The minors using rows $1,2$ and columns $2,3$, and rows $1,3$ and columns $2,4$, are respectively $12$ and $9$; hence their common gcd is exactly $3$, so $D_2=3$.
+For an integer matrix $M$ of rank $\rho$, define the determinantal divisors by $D_0(M)=1$ and, for $1\leq j\leq\rho$,
+$$
+D_j(M)=\gcd\{\,|\det M_{I,J}|: |I|=|J|=j\,\},
+$$
+the positive gcd of all $j\times j$ minors. Unimodular row and column operations preserve the ideal generated by the $j\times j$ minors (by the Cauchy--Binet formula), so they preserve $D_j$. If the nonzero Smith factors of $M$ are
+$$
+d_1\mid d_2\mid\cdots\mid d_\rho,
+$$
+then on the Smith diagonal every $j\times j$ minor is divisible by $d_1\cdots d_j$, while the minor using the first $j$ diagonal positions is exactly $d_1\cdots d_j$. Consequently
+$$
+D_j(M)=d_1d_2\cdots d_j,\qquad d_j=\frac{D_j(M)}{D_{j-1}(M)}. \tag{2}
+$$
+We now apply (2) to each block.
+
+For $M_0$, $D_1=1$ because the entries include $3$ and $4$. Modulo $3$, $M_0$ has rank at most $1$ because $n\equiv0\pmod3$, so every $2\times2$ minor is divisible by $3$. The minors using rows $1,2$ and columns $2,3$, and rows $1,3$ and columns $2,4$, are respectively $12$ and $9$; hence the gcd of all $2\times2$ minors divides $\gcd(12,9)=3$ and is also divisible by $3$. Thus $D_2=3$.
 
 Because the first column is zero, every nonzero $3\times3$ minor uses columns $2,3,4$. The four row choices give
 $$
 36,\qquad36(n-2),\qquad18(n-1)(n-2),\qquad6n(n-1)(n-2).
 $$
-Since $12\mid n$, each is divisible by $36$, and the first is exactly $36$. Thus $D_3=36$, so
+Since $12\mid n$, each is divisible by $36$, and the first is exactly $36$. Thus $D_3=36$, and (2) gives
 $$
 \operatorname{SNF}(M_0)=\operatorname{diag}(1,3,12,0).
 $$
 
-For $M_1$, every entry is even, an entry equals $2$, and the minor from rows $1,2$ and columns $2,3$ equals $4$. Hence $D_1=2$, $D_2=4$, and with
+For $M_1$, every entry is even, so every $2\times2$ minor is divisible by $4$; an entry equals $2$, and the minor from rows $1,2$ and columns $2,3$ equals $4$. Hence $D_1=2$ and $D_2=4$. With
 $$
-\det M_1=6n(n-1)(n-2)
+D_3=|\det M_1|=6n(n-1)(n-2),
 $$
-we get
+formula (2) gives
 $$
-\operatorname{SNF}(M_1)=\operatorname{diag}(2,2,a).
+\operatorname{SNF}(M_1)=\operatorname{diag}(2,2,a),
 $$
-Since $M_2$ contains a unit entry and has determinant $b=6(n-1)(n-2)$,
+because $D_3/D_2=\frac32n(n-1)(n-2)=a$. Since $M_2$ contains a unit entry and has determinant $b=6(n-1)(n-2)$,
 $$
 \operatorname{SNF}(M_2)=\operatorname{diag}(1,b),\qquad
 \operatorname{SNF}(M_3)=[c].
