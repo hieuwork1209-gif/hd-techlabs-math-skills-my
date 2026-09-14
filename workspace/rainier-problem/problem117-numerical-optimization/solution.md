@@ -78,19 +78,30 @@ Writing $u=z^2$, the critical-point equation is
 $$
 yu^2+(y^2-3)u+y=0.
 $$
-Its two positive roots have product $1$. Moreover the left side is positive at $u=0$ and equals $2y(y^2-1)<0$ at $u=y$, so the smaller root $u_*$ lies in $(0,y)$. Hence $r=\sqrt{u_*}$ is the unique critical point in $(0,a)$, where $B_y$ attains its positive inner maximum. There is no further critical point before $z=1/2$, so on $(a,1/2]$ the magnitude increases to the endpoint.
+Its two positive roots have product $1$. Moreover the left side is positive at $u=0$ and equals $2y(y^2-1)<0$ at $u=y$, so the smaller root $u_*$ lies in $(0,y)$. Hence $r=\sqrt{u_*}$ is the unique critical point in $(0,a)$, where $B_y$ attains its positive inner maximum. The other critical value has $u>1$, so there is no further critical point before $z=1/2$; therefore on $(a,1/2]$ the magnitude increases to the endpoint.
 
 The endpoint magnitude is
 $$
 -B_y\left(\frac12\right)=\frac{1-4y}{2(4-y)}.
 $$
-Equating this with $B_y(r)$ and squaring gives, together with the critical equation,
+Equating this with $B_y(r)$ and squaring gives
 $$
 4(4-y)^2u_*(y-u_*)^2-(1-4y)^2(1-yu_*)^2=0.
 $$
-Eliminate $u_*$ by using the quadratic critical equation to reduce all powers $u_*^2,u_*^3,u_*^4$. The resulting compatibility factorization is
+The critical equation gives
 $$
-4(1-y^2)^2(4y^2+17y-12)^2(y^4-6y^2+17y-3)=0.
+u_*^2=\frac{(3-y^2)u_*-y}{y}.
+$$
+Using this repeatedly to reduce the equal-height equation to first degree in $u_*$ gives
+$$
+\begin{aligned}
+0={}&\left(16y^5+8y^4-127y^3+220y^2+288y-576\right)u_*\\
+&+y\left(16y^3+4y^2-95y+192\right).
+\end{aligned}
+$$
+Solving this linear equation for $u_*$ and substituting into the critical equation produces the factorization
+$$
+4y^2(4y^2+17y-12)^2(y^4-6y^2+17y-3)=0.
 $$
 On $0<y<1/4$, the quadratic factor has no zero, while
 $$
