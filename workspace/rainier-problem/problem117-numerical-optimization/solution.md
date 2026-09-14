@@ -1,18 +1,20 @@
 ## Steps
 
 Step 1: Rewrite the condition-number optimization as a diagonal Loewner sandwich
-Let
+The leading principal minors of
 $$
 A=\begin{bmatrix}
 4&1&1\\
 1&3&1\\
 1&1&2
-\end{bmatrix},
-\qquad
-D=\operatorname{diag}(d_1,d_2,d_3),
-\qquad d_i>0.
+\end{bmatrix}
 $$
-Write
+are $4,11,17$, so $A$ is positive definite. Let
+$$
+D=\operatorname{diag}(d_1,d_2,d_3),
+\qquad d_i>0,
+$$
+and write
 $$
 m=\lambda_{\min}(DAD),
 \qquad
@@ -39,9 +41,9 @@ y^TSy=x^TSx.
 $$
 Hence every feasible sandwich satisfies
 $$
-y^TAy\leq t\,y^TSy=t\,x^TSx\leq t\,x^TAx.
+y^TAy\leq t\,y^TSy=t\,x^TSx\leq t\,x^TAx,
 $$
-Thus for every nonzero $x$,
+so for every nonzero $x$,
 $$
 t\geq\frac{x^TJAJx}{x^TAx}.
 $$
@@ -49,37 +51,52 @@ Take
 $$
 J=\operatorname{diag}(1,1,-1).
 $$
-The largest possible value of this generalized Rayleigh quotient is the largest root of
+The largest possible value of the quotient is the largest generalized eigenvalue $\tau$ satisfying
 $$
 \det(JAJ-\tau A)=0.
 $$
-A direct determinant expansion gives
+Here
+$$
+JAJ-\tau A=
+\begin{bmatrix}
+4(1-\tau)&1-\tau&-(1+\tau)\\
+1-\tau&3(1-\tau)&-(1+\tau)\\
+-(1+\tau)&-(1+\tau)&2(1-\tau)
+\end{bmatrix},
+$$
+and expanding this $3\times3$ determinant gives
 $$
 \det(JAJ-\tau A)=-(\tau-1)(17\tau^2-54\tau+17).
 $$
-Therefore every positive diagonal scaling satisfies
+Thus its largest generalized eigenvalue is
 $$
-\kappa_2(DAD)\geq\tau_*:=\frac{27+2\sqrt{110}}{17}.
+\tau_*:=\frac{27+2\sqrt{110}}{17},
+$$
+and every positive diagonal scaling satisfies
+$$
+\kappa_2(DAD)\geq\tau_*.
 $$
 
 Step 3: Construct a scaling attaining the lower bound
 Choose
 $$
-D_*=\operatorname{diag}(2,\sqrt6,\sqrt{11}).
+D_*=\operatorname{diag}(2,\sqrt{6},\sqrt{11}).
 $$
 Then
 $$
-D_*AD_*=\begin{bmatrix}
-16&2\sqrt6&2\sqrt{11}\\
-2\sqrt6&18&\sqrt{66}\\
+D_*AD_*=
+\begin{bmatrix}
+16&2\sqrt{6}&2\sqrt{11}\\
+2\sqrt{6}&18&\sqrt{66}\\
 2\sqrt{11}&\sqrt{66}&22
 \end{bmatrix}.
 $$
-Its characteristic polynomial factors as
+For this explicit matrix,
 $$
-(\lambda-12)(\lambda^2-44\lambda+374),
+\det(\lambda I-D_*AD_*)
+=(\lambda-12)(\lambda^2-44\lambda+374).
 $$
-so its eigenvalues are
+Hence its eigenvalues are
 $$
 22-\sqrt{110},\qquad 12,\qquad 22+\sqrt{110}.
 $$
@@ -101,7 +118,7 @@ x=\begin{bmatrix}-4\\-6\\r\end{bmatrix},
 \qquad
 y=Jx=\begin{bmatrix}-4\\-6\\-r\end{bmatrix}.
 $$
-The generalized eigenvalue relation from Step 2 gives
+Substitution into the generalized eigenvalue equation from Step 2 gives
 $$
 y^TAy=\tau_*x^TAx.
 $$
@@ -109,15 +126,11 @@ Suppose a diagonal scaling attains $\tau_*$. Normalize it so that $\lambda_{\min
 $$
 S\preceq A\preceq\tau_*S.
 $$
-For the displayed $x,y$, the inequality chain in Step 2 starts and ends with equal quantities, so equality holds throughout. In particular,
+For the displayed $x,y$, the inequality chain from Step 2 starts and ends with equal quantities, so equality holds throughout. In particular,
 $$
 x^T(A-S)x=0.
 $$
-Because $A-S\succeq0$, this forces
-$$
-(A-S)x=0.
-$$
-All coordinates of $x$ are nonzero, so the diagonal entries of $S$ are uniquely determined by
+Because $A-S\succeq0$, this forces $(A-S)x=0$. All coordinates of $x$ are nonzero, so the diagonal entries of $S$ are uniquely determined by
 $$
 s_i=\frac{(Ax)_i}{x_i}.
 $$
@@ -129,26 +142,22 @@ which yields
 $$
 S=(22-r)\operatorname{diag}\left(\frac14,\frac16,\frac1{11}\right).
 $$
-Therefore
+Therefore $D=S^{-1/2}$ is proportional to
 $$
-D=S^{-1/2}
-$$
-is proportional to
-$$
-\operatorname{diag}(2,\sqrt6,\sqrt{11}).
+\operatorname{diag}(2,\sqrt{6},\sqrt{11}).
 $$
 Hence the minimizing scaling class is unique.
 
 Step 5: State the requested optimum and unique scaling ratio
 The least possible spectral condition number is $\tau_*$, and every minimizing diagonal is a positive scalar multiple of $D_*$. Therefore the requested ordered pair is the optimal condition number together with the unique ratio $d_1:d_2:d_3$.
 
-Final Answer: $\boxed{\left(\frac{27+2\sqrt{110}}{17},2:\sqrt6:\sqrt{11}\right)}$
+Final Answer: $\boxed{\left(\frac{27+2\sqrt{110}}{17},2:\sqrt{6}:\sqrt{11}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{27+2\sqrt{110}}{17},2:\sqrt6:\sqrt{11}\right)$
+$\left(\frac{27+2\sqrt{110}}{17},2:\sqrt{6}:\sqrt{11}\right)$
 
 ---
 
