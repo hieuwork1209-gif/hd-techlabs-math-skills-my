@@ -42,9 +42,9 @@ a=\int_0^1g(x)\,dx,\qquad b=\int_0^1g(x)^2\,dx,\qquad M=\max_{[0,1]}g.
 $$
 If $M=0$, then $a=b=0$. Assume $M>0$, and for $0\leq t<M$ define
 $$
-m(t)=|\{x:g(x)>t\}|.
+E_t=\{x\in[0,1]:g(x)>t\},\qquad m(t)=|E_t|.
 $$
-For $0\leq s<t<M$, let $\alpha=\inf\{g>t\}$ and $\beta=\sup\{g>t\}$. Continuity gives $g(\alpha)=g(\beta)=t$. Since $g(0)=g(1)=0$ and $g$ is $1$-Lipschitz, $\alpha\geq t$ and $1-\beta\geq t$. Moreover, every point within distance $t-s$ immediately to the left of $\alpha$ or to the right of $\beta$ has value greater than $s$. These two intervals are disjoint from $\{g>t\}$, so
+For $0\leq s<t<M$, the set $E_t$ is nonempty. Let $\alpha=\inf E_t$ and $\beta=\sup E_t$. Continuity gives $g(\alpha)=g(\beta)=t$. Since $g(0)=g(1)=0$ and $g$ is $1$-Lipschitz, $\alpha\geq t$ and $1-\beta\geq t$. Moreover, every point within distance $t-s$ immediately to the left of $\alpha$ or to the right of $\beta$ has value greater than $s$. These two intervals are disjoint from $E_t$, so
 $$
 m(s)\geq m(t)+2(t-s).
 $$
