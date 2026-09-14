@@ -28,7 +28,7 @@ The insertion decomposition of permutations in $S_4$ gives
 $$
 R(z)=(I+zT_1)(I+zT_2+z^2T_2T_1)(I+zT_3+z^2T_3T_2+z^3T_3T_2T_1).
 $$
-Thus all distance shells are obtained from one three-factor expression.
+All distance shells are therefore obtained from one three-factor expression.
 
 Step 2: Construct the critical eigenspace
 
@@ -36,7 +36,7 @@ Let $\mathcal{P}$ and $\mathcal{H}$ be the $15$ points and $15$ planes of $\oper
 $$
 c_u(P,L,H)=u(P)-\frac{1}{2}\sum_{Q\subset H}u(Q).
 $$
-Let $N$ be the point-plane incidence matrix. Every point is contained in $7$ planes and two distinct points are contained in exactly $3$ common planes, hence
+Let $N$ be the point-plane incidence matrix. Every point is contained in $7$ planes and two distinct points are contained in exactly $3$ common planes, so
 $$
 NN^T=4I+3J.
 $$
@@ -53,7 +53,7 @@ Therefore
 $$
 W=\left\{c_u:\sum_Q u(Q)=0\right\}
 $$
-has dimension $14$ and lies in $\mathbf{1}^\perp$.
+has dimension $14$ and lies in $\mathbf{1}^{\perp}$.
 
 Fix a point $Q$ and a flag $F=(P,L,H)$. Relative to $F$, the point $Q$ is in one of four states: $Q=P$; $Q\subset L$ but $Q\ne P$; $Q\subset H$ but $Q\not\subset L$; or $Q\not\subset H$. On coefficients $(a,b,c,d)$ for these states,
 $$
@@ -71,9 +71,9 @@ h=\left(\frac{1}{2},-\frac{1}{2},-\frac{1}{2},0\right).
 $$
 Applying the factorization from Step 1 gives
 $$
-R(z)h\equiv(1+3z+2z^2-6z^3-16z^4+16z^6)h
+R(z)h\equiv(16z^6-16z^4-6z^3+2z^2+3z+1)h
 $$
-modulo the constant vector. Hence every $c_u\in W$ satisfies
+modulo the constant vector. So every $c_u\in W$ satisfies
 $$
 D_p c_u=L(p)c_u,
 $$
@@ -98,13 +98,13 @@ For $p\geq0$, since $6^p\geq4^p\geq3^p$,
 $$
 L''(p)\geq2(\log 2)^2 2^p+\left(16((\log 6)^2-(\log 4)^2)-6(\log 3)^2\right)4^p>0.
 $$
-Thus $L'$ is increasing and positive, so $L$ is strictly increasing on $[0,\infty)$. Outward-rounded evaluation gives
+$L'$ is increasing and remains positive, so $L$ is strictly increasing on $[0,\infty)$. Outward-rounded evaluation gives
 $$
 L(0.26554)<-8.4\cdot10^{-6},
 \qquad
 L(0.26555)>6.0\cdot10^{-5}.
 $$
-Consequently there is a unique root
+This gives a unique root
 $$
 \alpha\in(0.26554,0.26555),
 \qquad
@@ -118,48 +118,85 @@ Let $G=\operatorname{GL}_4(2)$. The commuting $G$- and $H_2(S_4)$-actions on cha
 $$
 \mathbb{R}^{X}\cong\bigoplus_{\lambda\vdash4}V_{\lambda}\otimes S^{\lambda}.
 $$
-Every $D_p$ lies in the Hecke factor. The map $u\mapsto c_u$ from Step 2 is $G$-equivariant and injective. Since $G$ is $2$-transitive on the $15$ projective points, the mean-zero point module is irreducible of dimension $14$: its permutation character has inner product $2$ with itself, while the trivial constituent occurs once. Thus $W$ is the $V_{(31)}$ multiplicity space attached to one line in the three-dimensional Hecke module $S^{(31)}$.
+Every $D_p$ lies in the Hecke factor. The map $u\mapsto c_u$ from Step 2 is $G$-equivariant and injective. Since $G$ is $2$-transitive on the $15$ projective points, the mean-zero point module is irreducible of dimension $14$: its permutation character has inner product $2$ with itself, while the trivial constituent occurs once. The parabolic branching rule for the point action has Hecke side $S^{(4)}\oplus S^{(31)}$, so $W$ is the $V_{(31)}$ multiplicity space attached to one line in the three-dimensional module $S^{(31)}$.
 
-It remains only to determine the sign on the other Hecke directions. Use the orthonormal Young seminormal basis. If $t$ is a standard tableau and $d=c_t(i)-c_t(i+1)$ is the content difference, then at $q=2$
+Use the Young seminormal basis. If $t$ is a standard tableau and $d=c_t(i)-c_t(i+1)$, then at $q=2$
 $$
 T_i e_t=\frac{1}{1-2^{d}}e_t+b_d e_{s_i t},
 \qquad
 b_d^2=\frac{2(1-2^{d-1})(1-2^{d+1})}{(1-2^{d})^2},
 $$
-where the $e_{s_i t}$ term is omitted when $s_i t$ is not standard. For $d=-1$ and $d=1$ this gives respectively $T_i=2$ and $T_i=-1$. Hence the same three-factor formula for $R(z)$ in Step 1 produces every block $M_{\lambda}(p)$ without introducing separate representations.
+with the $e_{s_i t}$ term omitted when $s_i t$ is not standard. For $d=-1$ and $d=1$ this gives $T_i=2$ and $T_i=-1$. Put $x_r=r^{\alpha}$. Applying this formula to the standard tableaux of shapes $(31),(22),(211),(1111)$ and multiplying the three factors for $R(z)$ from Step 1 gives the complete nonconstant blocks below after replacing the coefficient of $z^r$ by $x_r$.
 
-From the bracket in Step 3,
+For the two noncritical directions in $S^{(31)}$,
+$$
+Q_{31}=\begin{pmatrix}
+8x_2+10x_3+8x_4-16x_5-16x_6+5&4x_2+4x_3-8x_4\\
+11x_2+14x_3-4x_4-24x_5+3&-2x_2-4x_3+4x_4+16x_5-16x_6+1
+\end{pmatrix}.
+$$
+For $S^{(211)}$ there is one scalar direction
+$$
+L_{211}=-4x_2+3x_3+2x_4-6x_5+4x_6
+$$
+and a two-dimensional block
+$$
+Q_{211}=\begin{pmatrix}
+7x_3-12x_4+10x_5-4x_6-2&2x_2+2x_3-4x_4\\
+-2x_3+3x_4-2x_5+1&-3x_2-4x_3+6x_4+2x_5-4x_6+2
+\end{pmatrix}.
+$$
+For $S^{(22)}$,
+$$
+Q_{22}=\begin{pmatrix}
+\frac{4}{3}x_2-8x_3-\frac{26}{3}x_4+\frac{8}{3}x_5+8x_6+\frac{11}{3}&\frac{28}{9}x_2-\frac{14}{3}x_3-\frac{56}{9}x_4+\frac{56}{9}x_5+\frac{14}{9}\\
+2x_2-3x_3-4x_4+4x_5+1&-\frac{13}{3}x_2+8x_3+\frac{8}{3}x_4-\frac{44}{3}x_5+8x_6-\frac{2}{3}
+\end{pmatrix}.
+$$
+On $S^{(1111)}$ the scalar is
+$$
+S=-3+5x_2-6x_3+5x_4-3x_5+x_6.
+$$
+These formulas make the sign check reproducible from the seminormal action and the single product for $R(z)$.
+
+From Step 3,
 $$
 \begin{aligned}
-1.20208&<2^{\alpha}<1.20210,&1.33873&<3^{\alpha}<1.33876,\\
-1.44501&<4^{\alpha}<1.44504,&1.53322&<5^{\alpha}<1.53325,\\
-1.60927&<6^{\alpha}<1.60931.
+1.20208&<x_2<1.20210,&1.33873&<x_3<1.33876,\\
+1.44501&<x_4<1.44504,&1.53322&<x_5<1.53325,\\
+1.60927&<x_6<1.60931.
 \end{aligned}
 $$
-Substitution into this single seminormal recipe gives a short sign certificate. Let $M_{(31)}^{\mathrm{res}}$ denote the restriction to the two directions of $S^{(31)}$ orthogonal to the critical line. The displayed power intervals give
+Using $\operatorname{tr}Q=Q_{11}+Q_{22}$ and $\det Q=Q_{11}Q_{22}-Q_{12}Q_{21}$, interval arithmetic in the displayed entries gives
 $$
--13<\operatorname{tr}M_{(31)}^{\mathrm{res}}<-12.8,
+\begin{array}{c|c|c}
+\text{block}&\operatorname{tr}&\det\\
+\hline
+Q_{31}&(-12.914,-12.910)&(12.886,12.911)\\
+Q_{211}&(-2.737,-2.734)&(1.497,1.501)\\
+Q_{22}&(-1.928,-1.925)&(0.820,0.824)
+\end{array}
+$$
+and
+$$
+-0.665<L_{211}<-0.664,
 \qquad
-\det M_{(31)}^{\mathrm{res}}>12.8.
+-0.788<S<-0.787.
 $$
-Because this restriction is self-adjoint, its two eigenvalues are real; negative trace and positive determinant force both to be negative. For the other two nontrivial blocks use the elementary Gershgorin bound: if $M=(m_{ij})$ is real symmetric, every eigenvalue is at most
-$$
-\max_i\left(m_{ii}+\sum_{j\ne i}|m_{ij}|\right).
-$$
-The same substitution into the seminormal formula gives this upper bound $<-0.60$ on $S^{(22)}$ and $<-0.29$ on $S^{(211)}$. On $S^{(1111)}$ each $T_i=-1$, and direct substitution into the factorized shells gives the scalar value $<-0.78$. Thus every noncritical Hecke direction is strictly negative.
+Although the displayed matrices use convenient bases, each represents a restriction of the real symmetric operator $D_{\alpha}$, so its eigenvalues are real. A real $2\times2$ block with negative trace and positive determinant has two negative eigenvalues. Every noncritical Hecke direction is strictly negative, while the critical line in $S^{(31)}$ has eigenvalue $L(\alpha)=0$.
 
-Therefore the only zero eigenvalue of $D_\alpha$ on $\mathbf{1}^\perp$ is the critical line in $S^{(31)}$. Its multiplicity in the chamber space is $\dim V_{(31)}=14$, and Step 2 already supplies $14$ independent zero vectors. Hence
+The only zero eigenvalue of $D_{\alpha}$ on $\mathbf{1}^{\perp}$ is therefore that critical line. Its multiplicity in the chamber space is $\dim V_{(31)}=14$, and Step 2 already supplies $14$ independent zero vectors. Therefore
 $$
-\ker(D_\alpha|_{\mathbf{1}^\perp})=W.
+\ker(D_{\alpha}|_{\mathbf{1}^{\perp}})=W.
 $$
 
 Step 5: Read off the supremal negative type and equality dimension
 
-Step 4 shows that $D_\alpha$ is negative semidefinite on $\mathbf{1}^\perp$, so $(X,d)$ has $\alpha$-negative type. If $p>\alpha$, then strict monotonicity from Step 3 gives $L(p)>0$; choosing any nonzero $c\in W$ yields
+Step 4 shows that $D_{\alpha}$ is negative semidefinite on $\mathbf{1}^{\perp}$, so $(X,d)$ has $\alpha$-negative type. If $p>\alpha$, then strict monotonicity from Step 3 gives $L(p)>0$; choosing any nonzero $c\in W$ yields
 $$
 c^T D_p c=L(p)\|c\|^2>0,
 $$
-so $p$-negative type fails. Therefore $\wp=\alpha$. Step 4 also gives $E=W$, hence $\dim E=14$.
+so $p$-negative type fails. Therefore $\wp=\alpha$. Step 4 also gives $E=W$, so $\dim E=14$.
 
 Final Answer: $\boxed{(\min\{p>0:3+2\cdot2^p-6\cdot3^p-16\cdot4^p+16\cdot6^p=0\},14)}$
 
