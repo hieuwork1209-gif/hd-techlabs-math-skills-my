@@ -2,7 +2,7 @@
 
 ## LaTeX (Normalized)
 
-For $k=0,1,2$, let
+For each integer $m\geq 4$ and $k=0,1,2$, let
 $$
 R_k=
 \begin{bmatrix}
@@ -10,8 +10,8 @@ R_k=
 \sin(k\pi/3)&\cos(k\pi/3)
 \end{bmatrix},
 \qquad
-P_k=R_k
-\begin{bmatrix}1&0\\0&4\end{bmatrix}
+P_k^{(m)}=R_k
+\begin{bmatrix}1&0\\0&m\end{bmatrix}
 R_k^T.
 $$
 Consider
@@ -20,24 +20,31 @@ f(x)=\frac12\|x\|_2^2.
 $$
 Choose a single constant step size
 $$
-0<\alpha\le\frac12,
+0<\alpha\leq\frac{2}{m},
 $$
 and use it at every stage of one cyclic preconditioned-gradient sweep:
 $$
-x_{k+1}=x_k-\alpha P_k\nabla f(x_k),
+x_{k+1}=x_k-\alpha P_k^{(m)}\nabla f(x_k),
 \qquad k=0,1,2.
 $$
 Define
 $$
-R(\alpha)=\sup_{x_0\ne0}\frac{\|x_3\|_2}{\|x_0\|_2},
+R_m(\alpha)=\sup_{x_0\ne0}\frac{\|x_3\|_2}{\|x_0\|_2},
 \qquad
-R_*=\min_{0<\alpha\le1/2}R(\alpha).
+R_m^*=\min_{0<\alpha\leq 2/m}R_m(\alpha),
 $$
-Determine
+and let $\alpha_m$ be the smallest step size attaining $R_m^*$.
+
+There are constants $A,B,C,D$ such that
 $$
-\bigl(R_*,\alpha_*\bigr),
+\alpha_m=\frac{A}{m}+\frac{B}{m^2}+o\left(m^{-2}\right),
+\qquad
+R_m^*=C+\frac{D}{m}+o\left(m^{-1}\right)
 $$
-where $\alpha_*$ is the minimizing constant step size. Give both entries to three decimal places.
+as $m\to\infty$. Determine the exact ordered quadruple
+$$
+(A,B,C,D).
+$$
 
 ---
 
@@ -54,4 +61,4 @@ where $\alpha_*$ is the minimizing constant step size. Give both entries to thre
 
 ## Domain Explanation
 
-This problem asks for the optimal constant step size in a cyclic preconditioned-gradient method with noncommuting symmetric positive-definite preconditioners. The constant-step constraint is standard in iterative optimization and prevents stage-by-stage tuning from forcing finite termination; the sharp contraction is instead determined by a genuine spectral-norm minimization of the three-stage update matrix.
+This problem studies the optimal constant step size for a cyclic preconditioned-gradient method as the anisotropy, hence the condition number of each preconditioner, tends to infinity. The task requires both spectral-norm optimization of the noncommuting three-stage update and a sharp asymptotic analysis of the minimizing step and optimal contraction.
