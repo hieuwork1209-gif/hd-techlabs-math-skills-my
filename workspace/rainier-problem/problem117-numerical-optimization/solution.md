@@ -118,9 +118,15 @@ x=\begin{bmatrix}-4\\-6\\r\end{bmatrix},
 \qquad
 y=Jx=\begin{bmatrix}-4\\-6\\-r\end{bmatrix}.
 $$
-Substitution into the generalized eigenvalue equation from Step 2 gives
+Direct multiplication gives
 $$
-y^TAy=\tau_*x^TAx.
+x^TAx=440-20r,
+\qquad
+y^TAy=440+20r,
+$$
+so
+$$
+\frac{y^TAy}{x^TAx}=\frac{27+2r}{17}=\tau_*.
 $$
 Suppose a diagonal scaling attains $\tau_*$. Normalize it so that $\lambda_{\min}(DAD)=1$, and let $S=D^{-2}$. Then
 $$
@@ -130,7 +136,7 @@ For the displayed $x,y$, the inequality chain from Step 2 starts and ends with e
 $$
 x^T(A-S)x=0.
 $$
-Because $A-S\succeq0$, this forces $(A-S)x=0$. All coordinates of $x$ are nonzero, so the diagonal entries of $S$ are uniquely determined by
+Because $A-S\succeq0$, writing $x$ in an orthonormal eigenbasis of $A-S$ shows that a zero quadratic form can occur only when $(A-S)x=0$. All coordinates of $x$ are nonzero, so the diagonal entries of $S$ are uniquely determined by
 $$
 s_i=\frac{(Ax)_i}{x_i}.
 $$
