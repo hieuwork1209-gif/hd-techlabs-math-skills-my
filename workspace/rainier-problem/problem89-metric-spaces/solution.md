@@ -6,13 +6,13 @@ Fix $d\geq2$, and write
 $$
 v=2^{d+1}-1,\qquad k=2^d-1,\qquad s=2^{(d-1)/2}.
 $$
-Over $\mathbb{F}_2$, every nonzero vector determines a distinct projective point, so $|\mathcal{P}_d|=v$; duality gives $|\mathcal{H}_d|=v$. A point lies in $k$ hyperplanes because the nonzero linear functionals vanishing on it form a $d$-dimensional vector space. Two distinct points lie in $2^{d-1}-1$ common hyperplanes because the functionals vanishing on both form a $(d-1)$-dimensional vector space.
+Over $\mathbb{F}_2$, every nonzero vector determines a distinct projective point, so $|\mathcal{P}_d|=v$. Hyperplanes are kernels of nonzero linear functionals, and over $\mathbb{F}_2$ distinct nonzero functionals have distinct kernels, so $|\mathcal{H}_d|=v$. A point lies in $k$ hyperplanes because the nonzero linear functionals vanishing on it form a $d$-dimensional vector space. Two distinct points lie in $2^{d-1}-1$ common hyperplanes because the functionals vanishing on both form a $(d-1)$-dimensional vector space.
 
 Let $B$ be the $v\times v$ point-hyperplane incidence matrix. The preceding counts give
 $$
 BB^T=2^{d-1}I+(2^{d-1}-1)J=s^2I+(s^2-1)J.
 $$
-Two distinct points have distance $2$, as do two distinct hyperplanes. If $P$ and $H$ are nonincident, choose $Q\in H$ and a hyperplane $K$ containing $P$ and $Q$; then $P-K-Q-H$ is a path of length $3$, so a point and a hyperplane have distance $1$ when incident and $3$ otherwise. Hence, with $a=2^p$ and $b=3^p$, the powered distance matrix is
+Two distinct points have distance $2$, and two distinct hyperplanes also have distance $2$ because they meet in a projective subspace containing a point. If $P$ and $H$ are nonincident, choose $Q\in H$ and a hyperplane $K$ containing $P$ and $Q$; then $P-K-Q-H$ is a path of length $3$. Bipartiteness excludes distance $2$, so a point and a hyperplane have distance $1$ when incident and $3$ otherwise. Hence, with $a=2^p$ and $b=3^p$, the powered distance matrix is
 $$
 D_p=
 \begin{pmatrix}
@@ -27,7 +27,11 @@ Let $U=\mathbf{1}^{\perp}\subset\mathbb{R}^{v}$. Since $B^T\mathbf{1}=k\mathbf{1
 $$
 Q=s^{-1}B^T:U\to U
 $$
-is orthogonal. For $u\in U$, the vectors $(u,Qu)$ and $(u,-Qu)$ are eigenvectors of $D_p$ with eigenvalues
+is orthogonal. Also $Ju=JQu=0$ and $BQu=su$, so for either sign
+$$
+D_p(u,\pm Qu)=\left((-a\pm(1-b)s)u,\ \pm(-a\pm(1-b)s)Qu\right).
+$$
+Hence $(u,Qu)$ and $(u,-Qu)$ are eigenvectors of $D_p$ with eigenvalues
 $$
 \lambda_{-}(p)=-2^p-(3^p-1)s<0,
 $$
@@ -66,9 +70,9 @@ g_d(p)=s(3^p-1)-2^p=\lambda_{+}(p).
 $$
 We have $g_d(0)=-1$, while
 $$
-g_d'(p)=s3^p\log3-2^p\log2>0
+g_d'(p)=2^p\left(s\left(\frac{3}{2}\right)^p\log3-\log2\right)>0
 $$
-for $p\geq0$, because $s\geq\sqrt{2}$ and $(\frac{3}{2})^p\geq1$. Also $g_d(p)\to\infty$ as $p\to\infty$. Thus $g_d$ has a unique positive zero $\alpha_d$, and
+for $p\geq0$, because $s\geq\sqrt{2}>1$, $(\frac{3}{2})^p\geq1$, and $\log3>\log2$. Also $g_d(p)\to\infty$ as $p\to\infty$. Thus $g_d$ has a unique positive zero $\alpha_d$, and
 $$
 \lambda_{+}(p)\leq0\quad\Longleftrightarrow\quad p\leq\alpha_d.
 $$
@@ -88,11 +92,19 @@ For $d\leq4$ it is enough to consider $d=4$. Write $u=2^p\in(1,2)$ and $r=\log_{
 $$
 h_4(p)=-16u^r+30u-15<-16u^{\frac{11}{7}}+30u-15=:q(u).
 $$
-The concave function $q$ has its unique maximum at
+Since
 $$
-u_0=\left(\frac{105}{88}\right)^{\frac{7}{4}}<\frac{11}{8},
+q'(u)=30-\frac{176}{7}u^{\frac{4}{7}},
 $$
-where the last inequality is equivalent to the rational inequality $(\frac{105}{88})^7<(\frac{11}{8})^4$. Using $u_0^{\frac{4}{7}}=\frac{105}{88}$,
+the concave function $q$ has its unique maximum at
+$$
+u_0=\left(1+\frac{17}{88}\right)^{\frac{7}{4}}<\frac{11}{8}.
+$$
+Indeed, for $f(x)=(1+x)^{\frac{7}{4}}$ we have $f''(x)\leq\frac{21}{16}$ for $x\geq0$, so Taylor's theorem gives
+$$
+u_0\leq1+\frac{7}{4}\frac{17}{88}+\frac{21}{32}\left(\frac{17}{88}\right)^2=\frac{337653}{247808}<\frac{11}{8}.
+$$
+Using $u_0^{\frac{4}{7}}=\frac{105}{88}$,
 $$
 q(u_0)=\frac{120}{11}u_0-15<\frac{120}{11}\frac{11}{8}-15=0.
 $$
@@ -102,7 +114,11 @@ For $d\geq5$, monotonicity in $d$ on $(0,1)$ and
 $$
 h_5\left(\frac{1}{2}\right)=62\sqrt{2}-32\sqrt{3}-31>0
 $$
-show that $h_d$ has a first positive zero $\beta_d<\frac{1}{2}$, since $h_d(0)=-1$. The displayed inequality is exact: after squaring twice it reduces to $13{,}359{,}025>11{,}808{,}768$. As a function of $u=2^p$,
+show that $h_d$ has a first positive zero $\beta_d<\frac{1}{2}$, since $h_d(0)=-1$. Indeed, $\sqrt{2}>\frac{140}{99}$ and $\sqrt{3}<\frac{26}{15}$, because $19600<19602$ and $676>675$, so
+$$
+h_5\left(\frac{1}{2}\right)>62\frac{140}{99}-32\frac{26}{15}-31=\frac{599}{495}>0.
+$$
+As a function of $u=2^p$,
 $$
 h_d=-mu^r+2(m-1)u-(m-1),
 $$
