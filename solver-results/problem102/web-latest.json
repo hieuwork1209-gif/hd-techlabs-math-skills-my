@@ -1,0 +1,12 @@
+{
+  "problem": "problem102",
+  "problem_blob_sha": "69733bc585b79e78dc46711c433af303124a8183",
+  "solution_blob_sha": "80a471a68ef0c5637d52b72e501ed3203f642b00",
+  "solve_id": "problem102:69733bc585b79e78dc46711c433af303124a8183",
+  "result_file": "solver-results/problem102/web-results/69733bc585b7.json",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "configuration_evidence": "user_confirmed_web_ui",
+  "status": "success",
+  "assessment": "wrong"
+}
