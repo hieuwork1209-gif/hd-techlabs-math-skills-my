@@ -2,49 +2,31 @@
 
 ## LaTeX (Normalized)
 
-For each integer $m\geq 4$ and $k=0,1,2$, let
+For $\alpha>0$ and $\lambda>0$, define the reflected-proximal spectral factor
 $$
-R_k=
-\begin{bmatrix}
-\cos(k\pi/3)&-\sin(k\pi/3)\\
-\sin(k\pi/3)&\cos(k\pi/3)
-\end{bmatrix},
-\qquad
-P_k^{(m)}=R_k
-\begin{bmatrix}1&0\\0&m\end{bmatrix}
-R_k^T.
+\phi_\alpha(\lambda)=\frac{1-\alpha\lambda}{1+\alpha\lambda}.
 $$
-Consider
+For three positive parameters $\alpha_1,\alpha_2,\alpha_3$, define the worst-case contraction over the spectral interval $[1,9]$ by
 $$
-f(x)=\frac{1}{2}\|x\|_2^2.
+\rho(\alpha_1,\alpha_2,\alpha_3)
+=\max_{1\leq\lambda\leq9}
+\left|
+\phi_{\alpha_1}(\lambda)
+\phi_{\alpha_2}(\lambda)
+\phi_{\alpha_3}(\lambda)
+\right|,
 $$
-Choose a single constant step size
+and let
 $$
-0<\alpha\leq\frac{2}{m},
+\rho_*=\inf_{\alpha_1,\alpha_2,\alpha_3>0}
+\rho(\alpha_1,\alpha_2,\alpha_3).
 $$
-and use it at every stage of one cyclic preconditioned-gradient sweep:
-$$
-x_{k+1}=x_k-\alpha P_k^{(m)}\nabla f(x_k),
-\qquad k=0,1,2.
-$$
-Define
-$$
-R_m(\alpha)=\sup_{x_0\ne0}\frac{\|x_3\|_2}{\|x_0\|_2},
-\qquad
-R_m^*=\min_{0<\alpha\leq 2/m}R_m(\alpha),
-$$
-and let $\alpha_m$ be the smallest step size attaining $R_m^*$.
 
-There are constants $A,B,C,D$ such that
+For a real polynomial $p(t)$ and an interval $I$ containing exactly one real zero of $p$, write
 $$
-\alpha_m=\frac{A}{m}+\frac{B}{m^2}+o\left(m^{-2}\right),
-\qquad
-R_m^*=C+\frac{D}{m}+o\left(m^{-1}\right)
+\operatorname{Root}(p(t);I)
 $$
-as $m\to\infty$. Determine the exact ordered quadruple
-$$
-(A,B,C,D).
-$$
+for that zero. Determine $\rho_*$ exactly in this notation.
 
 ---
 
@@ -55,10 +37,10 @@ $$
 | **Domain** | Optimization and Numerical Mathematics |
 | **Sub-domain** | Numerical optimization |
 | **Problem Type** | Optimization |
-| **Answer Type** | Tuple or ordered list |
+| **Answer Type** | Exact scalar |
 
 ---
 
 ## Domain Explanation
 
-This problem studies the optimal constant step size for a cyclic preconditioned-gradient method as the anisotropy, hence the condition number of each preconditioner, tends to infinity. The task requires both spectral-norm optimization of the noncommuting three-stage update and a sharp asymptotic analysis of the minimizing step and optimal contraction.
+The quantity $\rho_*$ is the optimal robust contraction of a three-stage reflected-proximal, or Cayley, iteration on a prescribed eigenvalue interval. The task is a parameter-optimization problem for a rational spectral filter and requires a global minimax certificate rather than pointwise tuning.
