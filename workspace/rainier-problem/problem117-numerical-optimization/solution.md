@@ -1,169 +1,214 @@
 ## Steps
 
-Step 1: Rewrite the condition-number optimization as a diagonal Loewner sandwich
-The leading principal minors of
-$$
-A=\begin{bmatrix}
-4&1&1\\
-1&3&1\\
-1&1&2
-\end{bmatrix}
-$$
-are $4,11,17$, so $A$ is positive definite. Let
-$$
-D=\operatorname{diag}(d_1,d_2,d_3),
-\qquad d_i>0,
-$$
-and write
-$$
-m=\lambda_{\min}(DAD),
-\qquad
-M=\lambda_{\max}(DAD),
-\qquad
-t=\frac{M}{m}.
-$$
-Then
-$$
-mI\preceq DAD\preceq MI.
-$$
-Congruence by $D^{-1}$ gives
-$$
-S\preceq A\preceq tS,
-\qquad
-S=mD^{-2},
-$$
-where $S$ is positive diagonal. Conversely, if a positive diagonal $S$ satisfies $S\preceq A\preceq tS$, then with $D=S^{-1/2}$ every eigenvalue of $DAD$ lies in $[1,t]$. Therefore the optimal condition number is exactly the least $t$ for which such a diagonal sandwich exists.
-
-Step 2: Derive a global lower bound from sign flips
-Let $J$ be any diagonal sign matrix and put $y=Jx$. Since $S$ is diagonal,
-$$
-y^TSy=x^TSx.
-$$
-Hence every feasible sandwich satisfies
-$$
-y^TAy\leq t\,y^TSy=t\,x^TSx\leq t\,x^TAx,
-$$
-so for every nonzero $x$,
-$$
-t\geq\frac{x^TJAJx}{x^TAx}.
-$$
-Take
-$$
-J=\operatorname{diag}(1,1,-1).
-$$
-The largest possible value of the quotient is the largest generalized eigenvalue $\tau$ satisfying
-$$
-\det(JAJ-\tau A)=0.
-$$
-Here
-$$
-JAJ-\tau A=
-\begin{bmatrix}
-4(1-\tau)&1-\tau&-(1+\tau)\\
-1-\tau&3(1-\tau)&-(1+\tau)\\
--(1+\tau)&-(1+\tau)&2(1-\tau)
-\end{bmatrix},
-$$
-and expanding this $3\times3$ determinant gives
-$$
-\det(JAJ-\tau A)=-(\tau-1)(17\tau^2-54\tau+17).
-$$
-Thus its largest generalized eigenvalue is
-$$
-\tau_*:=\frac{27+2\sqrt{110}}{17},
-$$
-and every positive diagonal scaling satisfies
-$$
-\kappa_2(DAD)\geq\tau_*.
-$$
-
-Step 3: Construct a scaling attaining the lower bound
-Choose
-$$
-D_*=\operatorname{diag}(2,\sqrt{6},\sqrt{11}).
-$$
-Then
-$$
-D_*AD_*=
-\begin{bmatrix}
-16&2\sqrt{6}&2\sqrt{11}\\
-2\sqrt{6}&18&\sqrt{66}\\
-2\sqrt{11}&\sqrt{66}&22
-\end{bmatrix}.
-$$
-For this explicit matrix,
-$$
-\det(\lambda I-D_*AD_*)
-=(\lambda-12)(\lambda^2-44\lambda+374).
-$$
-Hence its eigenvalues are
-$$
-22-\sqrt{110},\qquad 12,\qquad 22+\sqrt{110}.
-$$
-Since $22-\sqrt{110}<12<22+\sqrt{110}$,
-$$
-\kappa_2(D_*AD_*)
-=\frac{22+\sqrt{110}}{22-\sqrt{110}}
-=\frac{27+2\sqrt{110}}{17}
-=\tau_*.
-$$
-Thus the lower bound is sharp.
-
-Step 4: Prove the minimizing diagonal scaling is unique up to a common factor
+Step 1: Extract three local condition-number obstructions from the common scaling
 Let
 $$
-r=\sqrt{110},
-\qquad
-x=\begin{bmatrix}-4\\-6\\r\end{bmatrix},
-\qquad
-y=Jx=\begin{bmatrix}-4\\-6\\-r\end{bmatrix}.
+D=\operatorname{diag}(d_1,d_2,d_3),
+\qquad d_i>0.
 $$
-Direct multiplication gives
+For any symmetric positive-definite matrix $M$ and any principal submatrix $B$, the Rayleigh-quotient formulas give
 $$
-x^TAx=440-20r,
-\qquad
-y^TAy=440+20r,
+\lambda_{\min}(M)\leq\lambda_{\min}(B)
+\leq\lambda_{\max}(B)\leq\lambda_{\max}(M),
 $$
 so
 $$
-\frac{y^TAy}{x^TAx}=\frac{27+2r}{17}=\tau_*.
+\kappa_2(M)\geq\kappa_2(B).
 $$
-Suppose a diagonal scaling attains $\tau_*$. Normalize it so that $\lambda_{\min}(DAD)=1$, and let $S=D^{-2}$. Then
+
+For the first scenario, the principal block of $DA_1D$ on coordinates $1,2$ is
 $$
-S\preceq A\preceq\tau_*S.
+\begin{bmatrix}
+d_1^2&d_1d_2\\
+d_1d_2&4d_2^2
+\end{bmatrix}
+=2d_1d_2
+\begin{bmatrix}
+u_1&1/2\\
+1/2&u_1^{-1}
+\end{bmatrix},
+\qquad
+u_1=\frac{d_1}{2d_2}.
 $$
-For the displayed $x,y$, the inequality chain from Step 2 starts and ends with equal quantities, so equality holds throughout. In particular,
+For the second scenario, the principal block on coordinates $2,3$ is
 $$
-x^T(A-S)x=0.
+\begin{bmatrix}
+d_2^2&2d_2d_3\\
+2d_2d_3&16d_3^2
+\end{bmatrix}
+=4d_2d_3
+\begin{bmatrix}
+u_2&1/2\\
+1/2&u_2^{-1}
+\end{bmatrix},
+\qquad
+u_2=\frac{d_2}{4d_3}.
 $$
-Because $A-S\succeq0$, writing $x$ in an orthonormal eigenbasis of $A-S$ shows that a zero quadratic form can occur only when $(A-S)x=0$. All coordinates of $x$ are nonzero, so the diagonal entries of $S$ are uniquely determined by
+For the third scenario, order the active coordinates as $3,1$. The corresponding principal block is
 $$
-s_i=\frac{(Ax)_i}{x_i}.
+\begin{bmatrix}
+d_3^2&d_3d_1\\
+d_3d_1&4d_1^2
+\end{bmatrix}
+=2d_3d_1
+\begin{bmatrix}
+u_3&1/2\\
+1/2&u_3^{-1}
+\end{bmatrix},
+\qquad
+u_3=\frac{d_3}{2d_1}.
 $$
+Thus, with
+$$
+C(u)=\begin{bmatrix}u&1/2\\1/2&u^{-1}\end{bmatrix},
+$$
+every common scaling satisfies
+$$
+\max_{1\leq k\leq3}\kappa_2(DA_kD)
+\geq \max_{1\leq i\leq3}\kappa_2(C(u_i)).
+$$
+The three local imbalance parameters obey the compatibility identity
+$$
+u_1u_2u_3=\frac1{16}=\gamma^{-3}.
+$$
+
+Step 2: Convert the local obstructions into a global lower bound
+For $u>0$, put
+$$
+T(u)=u+u^{-1}.
+$$
+The matrix $C(u)$ has trace $T(u)$ and determinant $3/4$, so its eigenvalues are
+$$
+\lambda_{\pm}(u)
+=\frac{T(u)\pm\sqrt{T(u)^2-3}}{2}.
+$$
+Hence
+$$
+\Psi(u):=\kappa_2(C(u))
+=\frac{T(u)+\sqrt{T(u)^2-3}}
+{T(u)-\sqrt{T(u)^2-3}}.
+$$
+Because
+$$
+T(u)=2\cosh(\log u),
+$$
+$T(u)$ is strictly increasing with $|\log u|$. Also
+$$
+\Psi(u)=\frac{\left(T(u)+\sqrt{T(u)^2-3}\right)^2}{3},
+$$
+so $\Psi(u)$ is strictly increasing with $|\log u|$.
+
 Now
 $$
-Ax=\begin{bmatrix}-22+r\\-22+r\\-10+2r\end{bmatrix},
+\log u_1+\log u_2+\log u_3=-\log16=-3\log\gamma.
 $$
-which yields
+Therefore
 $$
-S=(22-r)\operatorname{diag}\left(\frac14,\frac16,\frac1{11}\right).
+\max_i|\log u_i|\geq\log\gamma.
 $$
-Therefore $D=S^{-1/2}$ is proportional to
+At least one local block consequently has condition number at least
 $$
-\operatorname{diag}(2,\sqrt{6},\sqrt{11}).
+\Psi(\gamma^{-1}).
 $$
-Hence the minimizing scaling class is unique.
+Since $H=\gamma+\gamma^{-1}$,
+$$
+\Psi(\gamma^{-1})
+=\frac{H+\sqrt{H^2-3}}{H-\sqrt{H^2-3}}.
+$$
+Thus every positive diagonal $D$ satisfies
+$$
+\max_k\kappa_2(DA_kD)
+\geq
+\frac{H+\sqrt{H^2-3}}{H-\sqrt{H^2-3}}.
+$$
 
-Step 5: State the requested optimum and unique scaling ratio
-The least possible spectral condition number is $\tau_*$, and every minimizing diagonal is a positive scalar multiple of $D_*$. Therefore the requested ordered pair is the optimal condition number together with the unique ratio $d_1:d_2:d_3$.
+Step 3: Construct a common scaling that attains the lower bound
+Let
+$$
+\eta=2^{1/3},
+\qquad
+D_*=\operatorname{diag}(\eta,\eta^2,1).
+$$
+Since $\gamma=\eta^4$, the three imbalance parameters are
+$$
+\frac{\eta}{2\eta^2}
+=\frac{\eta^2}{4}
+=\frac{1}{2\eta}
+=\gamma^{-1}.
+$$
+Thus every active $2\times2$ block has condition number $\Psi(\gamma^{-1})$.
 
-Final Answer: $\boxed{\left(\frac{27+2\sqrt{110}}{17},2:\sqrt{6}:\sqrt{11}\right)}$
+It remains to check that the isolated coordinate in each $3\times3$ matrix does not enlarge the condition number. Let $\lambda_-<\lambda_+$ be the eigenvalues of $C(\gamma^{-1})$. Its characteristic polynomial is
+$$
+q(s)=s^2-Hs+\frac34.
+$$
+Since $H>2$,
+$$
+q\left(\frac12\right)=1-\frac H2<0,
+$$
+so $1/2$ lies strictly between $\lambda_-$ and $\lambda_+$. For the first two scenarios, the active blocks are respectively
+$$
+4C(\gamma^{-1}),
+\qquad
+4\eta^2C(\gamma^{-1}),
+$$
+while their isolated eigenvalues are respectively $2$ and $2\eta^2$, exactly one half of the corresponding block factors.
+
+For the third scenario, the active block is $2\eta C(\gamma^{-1})$, while the isolated eigenvalue is
+$$
+2\eta^4=4\eta,
+$$
+which is twice the block factor. Since $\gamma^3=16>(5/2)^3$, we have $\gamma>5/2$, hence $H>5/2>19/8$. Therefore
+$$
+q(2)=\frac{19}{4}-2H<0,
+$$
+so $2$ also lies strictly between $\lambda_-$ and $\lambda_+$.
+
+Thus in all three scenarios the isolated eigenvalue lies between the two active-block eigenvalues. Hence
+$$
+\max_k\kappa_2(D_*A_kD_*)
+=\Psi(\gamma^{-1}),
+$$
+so the lower bound in Step 2 is attained.
+
+Step 4: Prove uniqueness of the minimizing scaling class
+Suppose $D$ attains the optimal robust condition number. Then every local principal-block condition number is at most the optimum, so Step 2 and the strict monotonicity of $\Psi$ imply
+$$
+|\log u_i|\leq\log\gamma,
+\qquad i=1,2,3.
+$$
+But their sum is exactly $-3\log\gamma$. The only way three numbers, each at least $-\log\gamma$, can have this sum is
+$$
+\log u_1=\log u_2=\log u_3=-\log\gamma.
+$$
+Hence
+$$
+\frac{d_1}{2d_2}
+=\frac{d_2}{4d_3}
+=\frac{d_3}{2d_1}
+=\gamma^{-1}.
+$$
+Setting $d_3=1$ fixes the class uniquely:
+$$
+d_2=\frac4\gamma=2^{2/3},
+\qquad
+d_1=\frac{2d_2}{\gamma}=2^{1/3}.
+$$
+Therefore every minimizer is a positive scalar multiple of
+$$
+\operatorname{diag}(2^{1/3},2^{2/3},1).
+$$
+
+Step 5: State the robust optimum and the unique common scaling
+The global lower bound, attainment, and equality case together determine both requested components.
+
+Final Answer: $\boxed{\left(\frac{H+\sqrt{H^2-3}}{H-\sqrt{H^2-3}},2^{1/3}:2^{2/3}:1\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{27+2\sqrt{110}}{17},2:\sqrt{6}:\sqrt{11}\right)$
+$\left(\frac{H+\sqrt{H^2-3}}{H-\sqrt{H^2-3}},2^{1/3}:2^{2/3}:1\right)$
 
 ---
 
@@ -177,8 +222,8 @@ $\left(\frac{27+2\sqrt{110}}{17},2:\sqrt{6}:\sqrt{11}\right)$
 
 ## Solution Concepts
 
-- diagonal preconditioning
-- spectral condition number
-- Loewner order
-- generalized Rayleigh quotient
+- robust diagonal preconditioning
+- principal-submatrix spectral bounds
+- condition-number minimax
+- logarithmic compatibility
 - equality certificate
