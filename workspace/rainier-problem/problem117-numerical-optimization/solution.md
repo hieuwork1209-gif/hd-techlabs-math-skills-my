@@ -24,11 +24,11 @@ d_1d_2&4d_2^2
 \end{bmatrix}
 =2d_1d_2
 \begin{bmatrix}
-u_1&1/2\\
-1/2&u_1^{-1}
+r_1&1/2\\
+1/2&r_1^{-1}
 \end{bmatrix},
 \qquad
-u_1=\frac{d_1}{2d_2}.
+r_1=\frac{d_1}{2d_2}.
 $$
 For the second scenario, the principal block on coordinates $2,3$ is
 $$
@@ -38,11 +38,11 @@ d_2^2&2d_2d_3\\
 \end{bmatrix}
 =4d_2d_3
 \begin{bmatrix}
-u_2&1/2\\
-1/2&u_2^{-1}
+r_2&1/2\\
+1/2&r_2^{-1}
 \end{bmatrix},
 \qquad
-u_2=\frac{d_2}{4d_3}.
+r_2=\frac{d_2}{4d_3}.
 $$
 For the third scenario, order the active coordinates as $3,1$. The corresponding principal block is
 $$
@@ -52,59 +52,59 @@ d_3d_1&4d_1^2
 \end{bmatrix}
 =2d_3d_1
 \begin{bmatrix}
-u_3&1/2\\
-1/2&u_3^{-1}
+r_3&1/2\\
+1/2&r_3^{-1}
 \end{bmatrix},
 \qquad
-u_3=\frac{d_3}{2d_1}.
+r_3=\frac{d_3}{2d_1}.
 $$
 Thus, with
 $$
-C(u)=\begin{bmatrix}u&1/2\\1/2&u^{-1}\end{bmatrix},
+C(r)=\begin{bmatrix}r&1/2\\1/2&r^{-1}\end{bmatrix},
 $$
 every common scaling satisfies
 $$
 \max_{1\leq k\leq3}\kappa_2(DA_kD)
-\geq \max_{1\leq i\leq3}\kappa_2(C(u_i)).
+\geq \max_{1\leq i\leq3}\kappa_2(C(r_i)).
 $$
 The three local imbalance parameters obey the compatibility identity
 $$
-u_1u_2u_3=\frac1{16}=\gamma^{-3}.
+r_1r_2r_3=\frac1{16}=\gamma^{-3}.
 $$
 
 Step 2: Convert the local obstructions into a global lower bound
-For $u>0$, put
+For $r>0$, put
 $$
-T(u)=u+u^{-1}.
+T(r)=r+r^{-1}.
 $$
-The matrix $C(u)$ has trace $T(u)$ and determinant $3/4$, so its eigenvalues are
+The matrix $C(r)$ has trace $T(r)$ and determinant $3/4$, so its eigenvalues are
 $$
-\lambda_{\pm}(u)
-=\frac{T(u)\pm\sqrt{T(u)^2-3}}{2}.
+\lambda_{\pm}(r)
+=\frac{T(r)\pm\sqrt{T(r)^2-3}}{2}.
 $$
 Hence
 $$
-\Psi(u):=\kappa_2(C(u))
-=\frac{T(u)+\sqrt{T(u)^2-3}}
-{T(u)-\sqrt{T(u)^2-3}}.
+\Psi(r):=\kappa_2(C(r))
+=\frac{T(r)+\sqrt{T(r)^2-3}}
+{T(r)-\sqrt{T(r)^2-3}}.
 $$
 Because
 $$
-T(u)=2\cosh(\log u),
+T(r)=2\cosh(\log r),
 $$
-$T(u)$ is strictly increasing with $|\log u|$. Also
+$T(r)$ is strictly increasing with $|\log r|$. Also
 $$
-\Psi(u)=\frac{\left(T(u)+\sqrt{T(u)^2-3}\right)^2}{3},
+\Psi(r)=\frac{\left(T(r)+\sqrt{T(r)^2-3}\right)^2}{3},
 $$
-so $\Psi(u)$ is strictly increasing with $|\log u|$.
+so $\Psi(r)$ is strictly increasing with $|\log r|$.
 
 Now
 $$
-\log u_1+\log u_2+\log u_3=-\log16=-3\log\gamma.
+\log r_1+\log r_2+\log r_3=-\log16=-3\log\gamma.
 $$
 Therefore
 $$
-\max_i|\log u_i|\geq\log\gamma.
+\max_i|\log r_i|\geq\log\gamma.
 $$
 At least one local block consequently has condition number at least
 $$
@@ -174,12 +174,12 @@ so the lower bound in Step 2 is attained.
 Step 4: Prove uniqueness of the minimizing scaling class
 Suppose $D$ attains the optimal robust condition number. Then every local principal-block condition number is at most the optimum, so Step 2 and the strict monotonicity of $\Psi$ imply
 $$
-|\log u_i|\leq\log\gamma,
+|\log r_i|\leq\log\gamma,
 \qquad i=1,2,3.
 $$
 But their sum is exactly $-3\log\gamma$. The only way three numbers, each at least $-\log\gamma$, can have this sum is
 $$
-\log u_1=\log u_2=\log u_3=-\log\gamma.
+\log r_1=\log r_2=\log r_3=-\log\gamma.
 $$
 Hence
 $$
