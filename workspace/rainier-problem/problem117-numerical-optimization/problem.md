@@ -16,7 +16,7 @@ R_k^T.
 $$
 Consider
 $$
-f(x)=\frac12\|x\|_2^2.
+f(x)=\frac{1}{2}\|x\|_2^2.
 $$
 Choose a single constant step size
 $$
