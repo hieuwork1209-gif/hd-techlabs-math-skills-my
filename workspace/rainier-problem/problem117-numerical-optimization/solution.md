@@ -1,175 +1,152 @@
 ## Steps
 
-Step 1: Reduce the three-stage sweep to one scalar norm formula
-Let
+Step 1: Convert the robust three-stage contraction to a symmetric rational minimax problem
+Put
 $$
-S=\begin{bmatrix}1&0\\0&-1\end{bmatrix},
+x=\frac{\lambda}{3},
 \qquad
-u=1-\frac{m+1}{2}\alpha,
+c_j=3\alpha_j,
+\qquad j=1,2,3.
+$$
+Then $x\in[1/3,3]$ and
+$$
+\frac{1-\alpha_j\lambda}{1+\alpha_j\lambda}
+=\frac{1-c_jx}{1+c_jx}.
+$$
+Now use the fractional-linear coordinate
+$$
+z=\frac{x-1}{x+1}.
+$$
+It maps $[1/3,3]$ bijectively onto $[-1/2,1/2]$. For
+$$
+a_j=\frac{1-c_j}{1+c_j}\in(-1,1),
+$$
+direct substitution of $x=(1+z)/(1-z)$ gives
+$$
+\frac{1-c_jx}{1+c_jx}=\frac{a_j-z}{1-a_jz}.
+$$
+Conversely every $a_j\in(-1,1)$ comes from the positive parameter
+$$
+\alpha_j=\frac{1-a_j}{3(1+a_j)}.
+$$
+Thus the required infimum equals
+$$
+\inf_{a_1,a_2,a_3\in(-1,1)}
+\max_{|z|\leq1/2}
+\left|B(z)\right|,
 \qquad
-v=\frac{m-1}{2}\alpha.
-$$
-Write $u=\nu$. Then
-$$
-\operatorname{diag}(1-\alpha,1-m\alpha)=uI+vS.
-$$
-With $N_k=R_kSR_k^T$,
-$$
-I-\alpha P_k^{(m)}=uI+vN_k.
-$$
-Direct multiplication gives
-$$
-N_0+N_1+N_2=0,
-$$
-$$
-N_2N_1+N_2N_0+N_1N_0=-\frac{3}{2}I+\frac{\sqrt{3}}{2}J,
-\qquad
-N_2N_1N_0=N_1,
-$$
-where
-$$
-J=\begin{bmatrix}0&-1\\1&0\end{bmatrix}.
-$$
-Thus
-$$
-M_m(\alpha)=(uI+vN_2)(uI+vN_1)(uI+vN_0)
-=sI+tJ+v^3N_1,
-$$
-where
-$$
-s=u^3-\frac{3}{2}uv^2,
-\qquad
-t=\frac{\sqrt{3}}{2}uv^2.
-$$
-Because $J^T=-J$, $N_1^T=N_1$, $N_1^2=I$, and $N_1J=-JN_1$, the two singular values are
-$$
-\left|\sqrt{s^2+t^2}\pm v^3\right|.
-$$
-Hence
-$$
-R_m(\alpha)=|u|\sqrt{u^4-3u^2v^2+3v^4}+v^3.
+B(z)=\prod_{j=1}^3\frac{a_j-z}{1-a_jz}.
 $$
 
-Step 2: Reparametrize the minimization and identify its limiting problem
-For $\alpha<2/(m+1)$, define
+Step 2: Establish an alternation certificate for degree-three products
+Suppose a feasible product $B_*(z)$ has four points
 $$
-r=\frac{v}{u}>0,
-\qquad
-q_m=\frac{m+1}{m-1}.
+z_0<z_1<z_2<z_3
 $$
-Solving for $\alpha$ and $u$ gives
+in $(-1,1)$ at which its values are consecutively
 $$
-\alpha=\frac{2r}{(m-1)+(m+1)r},
-\qquad
-u=\frac{1}{1+q_mr},
+\rho,-\rho,\rho,-\rho.
 $$
-so again $u=\nu$ and
-$$
-R_m(\alpha)=F_{q_m}(r),
-\qquad
-F_q(r)=\frac{w(r)+r^3}{(1+qr)^3},
-\qquad
-w(r)=\sqrt{1-3r^2+3r^4}.
-$$
-If $\alpha\geq2/(m+1)$, then
-$$
-R_m(\alpha)\geq v^3\geq\left(\frac{m-1}{m+1}\right)^3\to1.
-$$
-For fixed suitable $r>0$, the displayed formula gives $F_{q_m}(r)\to F_1(r)<1$. Hence every minimizer lies in $\alpha<2/(m+1)$ for all sufficiently large $m$.
+Then no other feasible degree-three product can have uniform norm strictly smaller than $\rho$ on an interval containing these four points.
 
-Moreover $q_m\to1$, while $F_q(r)\to1$ as $r\to0$ and $F_q(r)\to q^{-3}$ as $r\to\infty$. Thus the minimizing $r_m$ stay in a compact subinterval of $(0,\infty)$ when $m$ is large, and every limit point minimizes $F_1$.
-
-Step 3: Solve the limiting optimization exactly
-Differentiation gives
+To prove this, write
 $$
-F_q'(r)=-\frac{3E(r,q)}{w(r)(1+qr)^4},
-$$
-where
-$$
-E(r,q)=q(r^2-1)^2-2r^3+r-r^2w(r).
-$$
-For $q=1$, set
-$$
-A(r)=r^4-2r^3-2r^2+r+1.
-$$
-Then $E(r,1)=A(r)-r^2w(r)$ and
-$$
-A(r)^2-r^4w(r)^2
-=-(r-1)^2(r+1)^4(2r^2-1).
-$$
-For $0<r<1/\sqrt{2}$, the right side is positive. Since $A(0)=1$ and $A$ cannot vanish there, $A(r)>r^2w(r)$, hence $F_1'(r)<0$. For $r>1/\sqrt{2}$ with $r\ne1$, the right side is negative, so $A(r)<r^2w(r)$ and $F_1'(r)>0$; at $r=1$ the latter inequality is immediate. Therefore
-$$
-r_0=\frac{1}{\sqrt{2}}
-$$
-is the unique global minimizer. Since $w(r_0)=1/2$,
-$$
-C=F_1(r_0)=3-2\sqrt{2}.
-$$
-Consequently $r_m\to r_0$.
-
-Step 4: Expand the minimizing step size to first order beyond its leading scale
-The stationary equation is $E(r_m,q_m)=0$. At $(r_0,1)$,
-$$
-E_q(r_0,1)=\frac{1}{4},
+P(z)=\prod_{j=1}^3(z-a_j),
 \qquad
-E_r(r_0,1)=-2-\frac{3\sqrt{2}}{2}\ne0.
+P^{\#}(z)=z^3P(1/z)=\prod_{j=1}^3(1-a_jz),
 $$
-The implicit function theorem therefore gives
+so $B(z)=-P(z)/P^{\#}(z)$. For a competitor $C(z)=-Q(z)/Q^{\#}(z)$, the denominator of $C-B_*$ is positive on $(-1,1)$ and its numerator is
 $$
-\frac{dr}{dq}(1)=-\frac{E_q}{E_r}
-=-1+\frac{3\sqrt{2}}{4}.
+H(z)=P(z)Q^{\#}(z)-Q(z)P^{\#}(z).
 $$
-Since
+This polynomial has degree at most $6$ and satisfies
 $$
-q_m=1+\frac{2}{m}+O\left(m^{-2}\right),
+z^6H(1/z)=-H(z).
 $$
-we have
-$$
-r_m=\frac{1}{\sqrt{2}}+\frac{-2+3\sqrt{2}/2}{m}+O\left(m^{-2}\right).
-$$
-Also
-$$
-m\alpha_m=\frac{2r_m}{1+r_m+(r_m-1)/m}.
-$$
-Substitution gives
-$$
-m\alpha_m
-=2(\sqrt{2}-1)+\frac{44\sqrt{2}-62}{m}+O\left(m^{-2}\right).
-$$
-Thus
-$$
-A=2(\sqrt{2}-1),
-\qquad
-B=44\sqrt{2}-62.
-$$
+If $\|C\|_{\infty}<\rho$, then $C-B_*$ has alternating signs at $z_0,z_1,z_2,z_3$, so $H$ has one zero in each of the three intervening open intervals. The first and third of these zeros are nonzero and lie in $(-1,1)$, hence their reciprocals are two further zeros outside $[-1,1]$. Also every feasible degree-three product equals $1$ at $z=-1$ and $-1$ at $z=1$, so $H(-1)=H(1)=0$. This gives at least seven distinct zeros of a polynomial of degree at most $6$, a contradiction. Therefore any feasible product with four alternating extrema is globally optimal.
 
-Step 5: Expand the optimized contraction
-Because $F_1'(r_0)=0$, the first-order displacement of $r_m$ does not contribute to the first-order change in the optimal value. Therefore
+Step 3: Construct a four-point equioscillating candidate
+Choose symmetric zeros $-a,0,a$ with $0<a<1/2$, and set $y=a^2$. The corresponding product is
 $$
-R_m^*=F_1(r_0)+\frac{2}{m}\frac{\partial F_q}{\partial q}(r_0,1)+O\left(m^{-2}\right).
+B_y(z)=\frac{z(y-z^2)}{1-yz^2}.
 $$
-Now
+For $z>0$,
 $$
-\frac{\partial F_q}{\partial q}(r,q)
-=-\frac{3r\left(w(r)+r^3\right)}{(1+qr)^4},
+B_y'(z)=\frac{y+(y^2-3)z^2+yz^4}{(1-yz^2)^2}.
 $$
-so
+Writing $u=z^2$, the critical-point equation is
 $$
-2\frac{\partial F_q}{\partial q}(r_0,1)=42-30\sqrt{2}.
+yu^2+(y^2-3)u+y=0.
 $$
-Hence
-$$
-D=42-30\sqrt{2}.
-$$
-Together with the value of $C$ in Step 3, this gives the required quadruple.
+Its two positive roots have product $1$. Moreover the left side is positive at $u=0$ and equals $2y(y^2-1)<0$ at $u=y$, so the smaller root $u_*$ lies in $(0,y)$. Hence $r=\sqrt{u_*}$ is the unique critical point in $(0,a)$, where $B_y$ attains its positive inner maximum. There is no further critical point before $z=1/2$, so on $(a,1/2]$ the magnitude increases to the endpoint.
 
-Final Answer: $\boxed{\left(2(\sqrt{2}-1),44\sqrt{2}-62,3-2\sqrt{2},42-30\sqrt{2}\right)}$
+The endpoint magnitude is
+$$
+-B_y\left(\frac12\right)=\frac{1-4y}{2(4-y)}.
+$$
+Equating this with $B_y(r)$ and squaring gives, together with the critical equation,
+$$
+4(4-y)^2u_*(y-u_*)^2-(1-4y)^2(1-yu_*)^2=0.
+$$
+Eliminate $u_*$ by using the quadratic critical equation to reduce all powers $u_*^2,u_*^3,u_*^4$. The resulting compatibility factorization is
+$$
+4(1-y^2)^2(4y^2+17y-12)^2(y^4-6y^2+17y-3)=0.
+$$
+On $0<y<1/4$, the quadratic factor has no zero, while
+$$
+h(y)=y^4-6y^2+17y-3
+$$
+satisfies $h(0)<0<h(1/4)$ and
+$$
+h'(y)=4y^3-12y+17>0.
+$$
+Therefore there is a unique $y_0\in(0,1/4)$ with
+$$
+y_0^4-6y_0^2+17y_0-3=0.
+$$
+For this $y_0$, the values at $-1/2,-r,r,1/2$ alternate between $\rho$ and $-\rho$, where
+$$
+\rho=\frac{1-4y_0}{2(4-y_0)}.
+$$
+Step 2 now shows that this $\rho$ is exactly $\rho_*$. The chosen zeros correspond to positive original parameters by the inverse formula in Step 1, so the bound is attained by an admissible three-stage cycle.
+
+Step 4: Eliminate the auxiliary zero parameter and obtain the exact algebraic value
+Solving the displayed relation for $y_0$ in terms of $\rho$ gives
+$$
+y_0=\frac{1-8\rho}{4-2\rho}.
+$$
+Substituting this into
+$$
+y_0^4-6y_0^2+17y_0-3=0
+$$
+and clearing denominators yields
+$$
+16\rho^4-8\rho^3+24\rho^2-32\rho+1=0.
+$$
+Also $h(2/13)<0$ and $h$ is increasing on $(0,1/4)$, so $y_0>2/13$. Therefore
+$$
+0<\rho=\frac{1-4y_0}{2(4-y_0)}<\frac{1}{20}.
+$$
+The polynomial
+$$
+p(t)=16t^4-8t^3+24t^2-32t+1
+$$
+has exactly one zero in $(0,1/20)$: indeed $p(0)=1$, $p(1/20)=-5409/10000$, and
+$$
+p'(t)=64t^3-24t^2+48t-32<0
+$$
+throughout that interval.
+
+Step 5: Express the optimum in the notation requested by the problem
+The global alternation certificate identifies the robust optimum, and Step 4 identifies it as the unique root of $p(t)$ in $(0,1/20)$. Numerically this root is approximately $0.0320108453$, consistent with the isolating interval but not needed for the exact answer.
+
+Final Answer: $\boxed{\operatorname{Root}(16t^4-8t^3+24t^2-32t+1;(0,1/20))}$
 
 ---
 
 ## Answer
 
-$\left(2(\sqrt{2}-1),44\sqrt{2}-62,3-2\sqrt{2},42-30\sqrt{2}\right)$
+$\operatorname{Root}(16t^4-8t^3+24t^2-32t+1;(0,1/20))$
 
 ---
 
@@ -177,14 +154,14 @@ $\left(2(\sqrt{2}-1),44\sqrt{2}-62,3-2\sqrt{2},42-30\sqrt{2}\right)$
 
 **Problem Type:** Optimization
 
-**Answer Type:** Tuple or ordered list
+**Answer Type:** Exact scalar
 
 ---
 
 ## Solution Concepts
 
-- cyclic preconditioned gradient descent
-- singular-value optimization
-- asymptotic minimization
-- implicit function theorem
-- envelope principle
+- reflected proximal iteration
+- rational minimax approximation
+- fractional linear transformation
+- alternation certificate
+- algebraic elimination
