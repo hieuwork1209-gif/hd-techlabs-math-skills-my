@@ -1,173 +1,172 @@
 ## Steps
 
-Step 1: Package the gallery metric in the Hecke algebra
+Step 1: Express the powered distance matrix through projective incidence
 
-Write a flag as $F=(P<L<H)$, with dimensions $1,2,3$. There are
+Fix $d\geq2$, and write
 $$
-15\cdot 7\cdot 3=315
+v=2^{d+1}-1,\qquad k=2^d-1,\qquad s=2^{(d-1)/2}.
 $$
-flags. Fixing a base flag, Bruhat decomposition assigns to every other flag a relative position $w\in S_4$, and the graph distance is the Coxeter length $\ell(w)$.
+Over $\mathbb{F}_2$, every nonzero vector determines a distinct projective point, so $|\mathcal{P}_d|=v$; duality gives $|\mathcal{H}_d|=v$. A point lies in $k$ hyperplanes because the nonzero linear functionals vanishing on it form a $d$-dimensional vector space. Two distinct points lie in $2^{d-1}-1$ common hyperplanes because the functionals vanishing on both form a $(d-1)$-dimensional vector space.
 
-Let $T_i$ sum over the two neighbors obtained by changing only the $i$-th member of a flag. Each panel contains three flags, so
+Let $B$ be the $v\times v$ point-hyperplane incidence matrix. The preceding counts give
 $$
-T_i^2=T_i+2I,
+BB^T=2^{d-1}I+(2^{d-1}-1)J=s^2I+(s^2-1)J.
 $$
-and the $T_i$ satisfy the type-$A_3$ braid relations. If $T_w$ is the product along a reduced word for $w$ and
+Two distinct points have distance $2$, as do two distinct hyperplanes. If $P$ and $H$ are nonincident, choose $Q\in H$ and a hyperplane $K$ containing $P$ and $Q$; then $P-K-Q-H$ is a path of length $3$, so a point and a hyperplane have distance $1$ when incident and $3$ otherwise. Hence, with $a=2^p$ and $b=3^p$, the powered distance matrix is
 $$
-A_r=\sum_{\ell(w)=r}T_w,
+D_p=
+\begin{pmatrix}
+a(J-I)&bJ+(1-b)B\\
+bJ+(1-b)B^T&a(J-I)
+\end{pmatrix}.
 $$
-then the powered distance matrix is
-$$
-D_p=\sum_{r=1}^6 r^pA_r.
-$$
-Introduce
-$$
-R(z)=\sum_{r=0}^6z^rA_r.
-$$
-The insertion decomposition of permutations in $S_4$ gives
-$$
-R(z)=(I+zT_1)(I+zT_2+z^2T_2T_1)(I+zT_3+z^2T_3T_2+z^3T_3T_2T_1).
-$$
-Thus all distance shells are obtained from one three-factor expression.
 
-Step 2: Construct the critical eigenspace
+Step 2: Reduce conditional negative type to two scalar obstructions
 
-Let $\mathcal{P}$ and $\mathcal{H}$ be the $15$ points and $15$ planes of $\operatorname{PG}(3,2)$. For a mean-zero function $u:\mathcal{P}\to\mathbb{R}$, define
+Let $U=\mathbf{1}^{\perp}\subset\mathbb{R}^{v}$. Since $B^T\mathbf{1}=k\mathbf{1}$, the map $B^T$ preserves $U$. On $U$, Step 1 gives $BB^T=s^2I$, so
 $$
-c_u(P,L,H)=u(P)-\frac{1}{2}\sum_{Q\subset H}u(Q).
+Q=s^{-1}B^T:U\to U
 $$
-Let $N$ be the point-plane incidence matrix. Every point is contained in $7$ planes and two distinct points are contained in exactly $3$ common planes, hence
+is orthogonal. For $u\in U$, the vectors $(u,Qu)$ and $(u,-Qu)$ are eigenvectors of $D_p$ with eigenvalues
 $$
-NN^T=4I+3J.
+\lambda_{-}(p)=-2^p-(3^p-1)s<0,
 $$
-For $\sum_Q u(Q)=0$ this gives $\|N^T u\|^2=4\|u\|^2$. Since every incident pair $P\subset H$ admits three intermediate lines,
 $$
-\begin{aligned}
-\|c_u\|^2
-&=3\sum_{P\subset H}\left(u(P)-\frac{1}{2}(N^T u)(H)\right)^2\\
-&=3\left(7\|u\|^2-\|N^T u\|^2+\frac{7}{4}\|N^T u\|^2\right)\\
-&=30\|u\|^2.
-\end{aligned}
+\lambda_{+}(p)=-2^p+(3^p-1)s,
 $$
-Therefore
-$$
-W=\left\{c_u:\sum_Q u(Q)=0\right\}
-$$
-has dimension $14$ and lies in $\mathbf{1}^\perp$.
+respectively, each with multiplicity $v-1$.
 
-Fix a point $Q$ and a flag $F=(P,L,H)$. Relative to $F$, the point $Q$ is in one of four states: $Q=P$; $Q\subset L$ but $Q\ne P$; $Q\subset H$ but $Q\not\subset L$; or $Q\not\subset H$. On coefficients $(a,b,c,d)$ for these states,
+The only remaining direction in the total-sum-zero subspace is
 $$
-T_1(a,b,c,d)=(2b,a+b,2c,2d),
+z=(\mathbf{1},-\mathbf{1}).
 $$
+Because each point is incident with $k$ hyperplanes and nonincident with $v-k=2^d$ hyperplanes,
 $$
-T_2(a,b,c,d)=(2a,2c,b+c,2d),
-$$
-$$
-T_3(a,b,c,d)=(2a,2b,2d,c+d).
-$$
-The coefficient of $u(Q)$ in $c_u(F)$ is represented, modulo constants, by
-$$
-h=\left(\frac{1}{2},-\frac{1}{2},-\frac{1}{2},0\right).
-$$
-Applying the factorization from Step 1 gives
-$$
-R(z)h\equiv(1+3z+2z^2-6z^3-16z^4+16z^6)h
-$$
-modulo the constant vector. Hence every $c_u\in W$ satisfies
-$$
-D_p c_u=L(p)c_u,
+D_pz=h_d(p)z,
 $$
 where
 $$
-L(p)=3+2\cdot2^p-6\cdot3^p-16\cdot4^p+16\cdot6^p.
+h_d(p)=(2^{d+1}-2)2^p-(2^d-1)-2^d3^p.
 $$
-
-Step 3: Locate the critical exponent
-
-We have
+The decomposition
 $$
-L(0)=-1,
+\mathbf{1}_{X_d}^{\perp}=(U\oplus U)\oplus\mathbb{R}z
+$$
+has dimension $2v-1$, so these are all eigenvalues relevant to negative type. Therefore $(X_d,\rho_d)$ has $p$-negative type exactly when
+$$
+\lambda_{+}(p)\leq0\qquad\text{and}\qquad h_d(p)\leq0.
+$$
+At any exponent where these eigenvalues are nonpositive, the restriction of $D_p$ to $\mathbf{1}_{X_d}^{\perp}$ is symmetric negative semidefinite. Its quadratic form vanishes exactly on its kernel, so $\dim E_d$ is the zero-eigenvalue multiplicity at $p=\wp_d$.
+
+Step 3: Locate the zero of the incidence mode
+
+Put
+$$
+g_d(p)=s(3^p-1)-2^p=\lambda_{+}(p).
+$$
+We have $g_d(0)=-1$, while
+$$
+g_d'(p)=s3^p\log3-2^p\log2>0
+$$
+for $p\geq0$, because $s\geq\sqrt{2}$ and $(\frac{3}{2})^p\geq1$. Also $g_d(p)\to\infty$ as $p\to\infty$. Thus $g_d$ has a unique positive zero $\alpha_d$, and
+$$
+\lambda_{+}(p)\leq0\quad\Longleftrightarrow\quad p\leq\alpha_d.
+$$
+If this mode reaches zero before the imbalance mode, then the equality space has dimension $v-1=2^{d+1}-2$.
+
+Step 4: Prove the phase transition between dimensions four and five
+
+Set $m=2^d$. Rewrite the imbalance eigenvalue as
+$$
+h_d(p)=mA(p)+1-2^{p+1},
 \qquad
-L'(0)=2\log\frac{243}{128}>0,
+A(p)=2^{p+1}-3^p-1.
 $$
-and
+For $0<p<1$, strict concavity of $x^p$ and $2=\frac{1+3}{2}$ give $A(p)>0$. For $p>1$, strict convexity gives $A(p)<0$, while $A(1)=0$. Hence $h_d(p)<0$ for $p\geq1$, and on $0<p<1$ the function $h_d(p)$ increases with $d$.
+
+For $d\leq4$ it is enough to consider $d=4$. Write $u=2^p\in(1,2)$ and $r=\log_{2}3$. Since $3^7>2^{11}$, we have $r>\frac{11}{7}$, so
 $$
-L''(p)=2(\log 2)^2 2^p-6(\log 3)^2 3^p-16(\log 4)^2 4^p+16(\log 6)^2 6^p.
+h_4(p)=-16u^r+30u-15<-16u^{\frac{11}{7}}+30u-15=:q(u).
 $$
-For $p\geq0$, since $6^p\geq4^p\geq3^p$,
+The concave function $q$ has its unique maximum at
 $$
-L''(p)\geq2(\log 2)^2 2^p+\left(16((\log 6)^2-(\log 4)^2)-6(\log 3)^2\right)4^p>0.
+u_0=\left(\frac{105}{88}\right)^{\frac{7}{4}}<\frac{11}{8},
 $$
-Thus $L'$ is increasing and positive, so $L$ is strictly increasing on $[0,\infty)$. Outward-rounded evaluation gives
+where the last inequality is equivalent to the rational inequality $(\frac{105}{88})^7<(\frac{11}{8})^4$. Using $u_0^{\frac{4}{7}}=\frac{105}{88}$,
 $$
-L(0.26554)<-8.4\cdot10^{-6},
+q(u_0)=\frac{120}{11}u_0-15<\frac{120}{11}\frac{11}{8}-15=0.
+$$
+Thus $h_d(p)<0$ for every $p>0$ when $d\leq4$.
+
+For $d\geq5$, monotonicity in $d$ on $(0,1)$ and
+$$
+h_5\left(\frac{1}{2}\right)=62\sqrt{2}-32\sqrt{3}-31>0
+$$
+show that $h_d$ has a first positive zero $\beta_d<\frac{1}{2}$, since $h_d(0)=-1$. The displayed inequality is exact: after squaring twice it reduces to $13{,}359{,}025>11{,}808{,}768$. As a function of $u=2^p$,
+$$
+h_d=-mu^r+2(m-1)u-(m-1),
+$$
+which is strictly concave because $r>1$. Hence it has at most two zeros and is positive between its first and second zeros.
+
+It remains to compare $\beta_d$ with $\alpha_d$. At $p=\alpha_d$, let $u=2^{\alpha_d}$ and keep $s=2^{(d-1)/2}$. Since $s(3^{\alpha_d}-1)=u$ and $2^d=2s^2$, substitution gives
+$$
+h_d(\alpha_d)=(2s+1)\left(2u(s-1)-(2s-1)\right).
+$$
+Set
+$$
+t=1+\frac{1}{2(s-1)},\qquad r=\log_{2}3.
+$$
+The equation for $u$ is $G_s(u)=0$, where
+$$
+G_s(x)=s(x^r-1)-x.
+$$
+Since $G_s'(x)>0$ for $x\geq1$, it is enough to prove $G_s(t)<0$. Write $\delta=\frac{1}{2(s-1)}$. For $d\geq5$, $s\geq4$ and $0<\delta\leq\frac{1}{6}$, while
+$$
+G_s(t)=F(\delta)=\left(1+\frac{1}{2\delta}\right)\left((1+\delta)^r-1\right)-(1+\delta).
+$$
+Differentiation gives
+$$
+F'(\delta)=\frac{\delta r(1+\delta)^{r-1}-((1+\delta)^r-1)}{2\delta^2}+r(1+\delta)^{r-1}-1>0.
+$$
+The first numerator is positive by convexity of $x^r$, and the second term is positive because $r>1$. Hence $F(\delta)\leq F(\frac{1}{6})$. Also $r<\frac{8}{5}$ because $3^5<2^8$. Taylor's theorem, using the bound on the second derivative of $(1+x)^{\frac{8}{5}}$, gives
+$$
+\left(\frac{7}{6}\right)^r<\left(\frac{7}{6}\right)^{\frac{8}{5}}\leq1+\frac{4}{15}+\frac{1}{75}=\frac{32}{25}.
+$$
+Therefore
+$$
+F(\frac{1}{6})<4\left(\frac{32}{25}-1\right)-\frac{7}{6}=-\frac{7}{150}<0.
+$$
+Thus $h_d(\alpha_d)>0$, so $\beta_d<\alpha_d$ for every $d\geq5$.
+
+At $d\leq4$, the first zero is therefore $\alpha_d$ and the kernel has dimension $v-1>1$. At $d\geq5$, the first zero is $\beta_d$ and only the direction $z$ vanishes, so $\dim E_d=1$. Hence
+$$
+d_*=5.
+$$
+
+Step 5: Compute the asymptotic critical exponent
+
+For $d\geq5$, Step 4 gives $\wp_d=\beta_d$. With $m=2^d$, the equation $h_d(\beta_d)=0$ is
+$$
+mA(\beta_d)=2^{\beta_d+1}-1,
 \qquad
-L(0.26555)>6.0\cdot10^{-5}.
+A(p)=2^{p+1}-3^p-1.
 $$
-Consequently there is a unique root
+Since $0<\beta_d<\frac{1}{2}$, the right-hand side is bounded, so $A(\beta_d)\to0$. Step 4 gives $A(p)>0$ on $(0,1)$. If a subsequence of $\beta_d$ stayed above some $\varepsilon>0$, continuity would give a positive lower bound for $A(\beta_d)$ on $[\varepsilon,\frac{1}{2}]$, a contradiction. Hence $\beta_d\to0$. Dividing the displayed equation by $\beta_d$ gives
 $$
-\alpha\in(0.26554,0.26555),
-\qquad
-L(\alpha)=0,
+2^d\beta_d=\frac{2^{\beta_d+1}-1}{A(\beta_d)/\beta_d}
+\longrightarrow\frac{1}{A'(0)}
+=\frac{1}{2\log2-\log3}
+=\frac{1}{\log\left(\frac{4}{3}\right)}.
 $$
-with $\alpha\approx0.2655412194$.
+Combining this with $d_*=5$ gives the requested pair.
 
-Step 4: Exclude every other Hecke mode with one spectral certificate
-
-Let $G=\operatorname{GL}_4(2)$. The commuting $G$- and $H_2(S_4)$-actions on chambers give the double-centralizer decomposition
-$$
-\mathbb{R}^{X}\cong\bigoplus_{\lambda\vdash4}V_{\lambda}\otimes S^{\lambda}.
-$$
-Every $D_p$ lies in the Hecke factor. The map $u\mapsto c_u$ from Step 2 is $G$-equivariant and injective. Since $G$ is $2$-transitive on the $15$ projective points, the mean-zero point module is irreducible of dimension $14$: its permutation character has inner product $2$ with itself, while the trivial constituent occurs once. Thus $W$ is the $V_{(31)}$ multiplicity space attached to one line in the three-dimensional Hecke module $S^{(31)}$.
-
-It remains only to determine the sign on the other Hecke directions. Use the orthonormal Young seminormal basis. If $t$ is a standard tableau and $d=c_t(i)-c_t(i+1)$ is the content difference, then at $q=2$
-$$
-T_i e_t=\frac{1}{1-2^{d}}e_t+b_d e_{s_i t},
-\qquad
-b_d^2=\frac{2(1-2^{d-1})(1-2^{d+1})}{(1-2^{d})^2},
-$$
-where the $e_{s_i t}$ term is omitted when $s_i t$ is not standard. For $d=-1$ and $d=1$ this gives respectively $T_i=2$ and $T_i=-1$. Hence the same three-factor formula for $R(z)$ in Step 1 produces every block $M_{\lambda}(p)$ without introducing separate representations.
-
-From the bracket in Step 3,
-$$
-\begin{aligned}
-1.20208&<2^{\alpha}<1.20210,&1.33873&<3^{\alpha}<1.33876,\\
-1.44501&<4^{\alpha}<1.44504,&1.53322&<5^{\alpha}<1.53325,\\
-1.60927&<6^{\alpha}<1.60931.
-\end{aligned}
-$$
-Substitution into this single seminormal recipe gives a short sign certificate. Let $M_{(31)}^{\mathrm{res}}$ denote the restriction to the two directions of $S^{(31)}$ orthogonal to the critical line. The displayed power intervals give
-$$
--13<\operatorname{tr}M_{(31)}^{\mathrm{res}}<-12.8,
-\qquad
-\det M_{(31)}^{\mathrm{res}}>12.8.
-$$
-Because this restriction is self-adjoint, its two eigenvalues are real; negative trace and positive determinant force both to be negative. For the other two nontrivial blocks use the elementary Gershgorin bound: if $M=(m_{ij})$ is real symmetric, every eigenvalue is at most
-$$
-\max_i\left(m_{ii}+\sum_{j\ne i}|m_{ij}|\right).
-$$
-The same substitution into the seminormal formula gives this upper bound $<-0.60$ on $S^{(22)}$ and $<-0.29$ on $S^{(211)}$. On $S^{(1111)}$ each $T_i=-1$, and direct substitution into the factorized shells gives the scalar value $<-0.78$. Thus every noncritical Hecke direction is strictly negative.
-
-Therefore the only zero eigenvalue of $D_\alpha$ on $\mathbf{1}^\perp$ is the critical line in $S^{(31)}$. Its multiplicity in the chamber space is $\dim V_{(31)}=14$, and Step 2 already supplies $14$ independent zero vectors. Hence
-$$
-\ker(D_\alpha|_{\mathbf{1}^\perp})=W.
-$$
-
-Step 5: Read off the supremal negative type and equality dimension
-
-Step 4 shows that $D_\alpha$ is negative semidefinite on $\mathbf{1}^\perp$, so $(X,d)$ has $\alpha$-negative type. If $p>\alpha$, then strict monotonicity from Step 3 gives $L(p)>0$; choosing any nonzero $c\in W$ yields
-$$
-c^T D_p c=L(p)\|c\|^2>0,
-$$
-so $p$-negative type fails. Therefore $\wp=\alpha$. Step 4 also gives $E=W$, hence $\dim E=14$.
-
-Final Answer: $\boxed{(\min\{p>0:3+2\cdot2^p-6\cdot3^p-16\cdot4^p+16\cdot6^p=0\},14)}$
+Final Answer: $\boxed{(5,\frac{1}{\log(\frac{4}{3})})}$
 
 ---
 
 ## Answer
 
-$(\min\{p>0:3+2\cdot2^p-6\cdot3^p-16\cdot4^p+16\cdot6^p=0\},14)$
+$(5,\frac{1}{\log(\frac{4}{3})})$
 
 ---
 
@@ -181,8 +180,8 @@ $(\min\{p>0:3+2\cdot2^p-6\cdot3^p-16\cdot4^p+16\cdot6^p=0\},14)$
 
 ## Solution Concepts
 
-- finite building chamber metrics
-- Iwahori-Hecke algebra
-- Young seminormal representations
 - conditional negative type
-- double centralizer decomposition
+- incidence graph metrics
+- symmetric design incidence matrices
+- spectral decomposition
+- concavity and phase transitions
