@@ -1,0 +1,12 @@
+{
+  "problem": "problem124",
+  "mode": "new",
+  "ready": true,
+  "problem_path": "workspace/rainier-problem/problem124-real-analysis/problem.md",
+  "problem_blob_sha": "fe2feefbcda54fd6bd5c8ae6053ea64f0c149b60",
+  "solution_path": "workspace/rainier-problem/problem124-real-analysis/solution.md",
+  "solution_blob_sha": "d339d47ac347c5f996762e627c536d44d496cd28",
+  "solve_id": "problem124:fe2feefbcda54fd6bd5c8ae6053ea64f0c149b60",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium"
+}
