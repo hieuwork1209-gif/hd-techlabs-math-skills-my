@@ -66,7 +66,7 @@ a=\int_0^Mm(t)\,dt,
 \qquad
 b=\int_0^M2t\,m(t)\,dt.
 $$
-For nonincreasing $e$, one has
+For nonincreasing $e$,
 $$
 \int_0^M\int_0^M(t-s)(e(t)-e(s))\,ds\,dt\leq0.
 $$
@@ -95,14 +95,14 @@ $$
 b\leq a\sqrt a-\frac13a^{3/2}=\frac23a^{3/2}.
 $$
 
-Step 3: Apply the cap bound to the positive and negative parts
-The functions $f_+$ and $f_-$ from Step 1 each satisfy the hypotheses of Step 2 and each has integral $A$. Therefore
+Step 3: Obtain the sharp global upper bound
+Applying Step 2 to $f_+$ and $f_-$ gives
 $$
 \int_0^1f(x)^2\,dx
 =\int_0^1f_+(x)^2\,dx+\int_0^1f_-(x)^2\,dx
 \leq\frac43A^{3/2}.
 $$
-Using $A\leq1/16$ from Step 1 gives
+Using $A\leq1/16$ from Step 1,
 $$
 \int_0^1f(x)^2\,dx
 \leq\frac43\left(\frac1{16}\right)^{3/2}
@@ -110,27 +110,64 @@ $$
 $$
 Thus $1/48$ is an upper bound for every admissible function.
 
-Step 4: Construct an admissible function attaining the bound
-Define
+Step 4: Classify every possible equality case
+Suppose an admissible $f$ attains $1/48$. Equality in the last inequality of Step 3 forces
+$$
+A=\frac1{16}.
+$$
+Then Step 1 gives $L_+\geq1/2$ and $L_-\geq1/2$, while $L_++L_-\leq1$. Hence
+$$
+L_+=L_-=\frac12.
+$$
+For the positive components,
+$$
+\frac1{16}=A\leq\frac14\sum_i\ell_i^2\leq\frac{L_+^2}{4}=\frac1{16},
+$$
+so equality holds throughout. Since
+$$
+\left(\sum_i\ell_i\right)^2=\sum_i\ell_i^2+2\sum_{i<j}\ell_i\ell_j,
+$$
+equality $\sum_i\ell_i^2=L_+^2$ implies that $\{f>0\}$ has exactly one component. The same argument shows that $\{f<0\}$ has exactly one component. These two disjoint open intervals each have length $1/2$ and together have full measure in $(0,1)$, so they must be
+$$
+(0,1/2)\quad\text{and}\quad(1/2,1)
+$$
+in one of the two possible sign orders.
+
+Assume first that $f>0$ on $(0,1/2)$. On this interval Step 1 gives
+$$
+0\leq f(x)\leq\min(x,1/2-x).
+$$
+The right-hand tent has integral $1/16$, which equals $\int_0^{1/2}f=A$. Thus its nonnegative continuous difference from $f$ has integral zero and is identically zero. Therefore
+$$
+f(x)=\min(x,1/2-x),\qquad 0\leq x\leq1/2.
+$$
+Applying the same equality argument to $f_-$ on $(1/2,1)$ gives
+$$
+f(x)=-\min(x-1/2,1-x),\qquad 1/2\leq x\leq1.
+$$
+Hence every maximizer is either the function
 $$
 f_*(x)=
 \begin{cases}
 x,&0\leq x\leq\frac14,\\
 \frac12-x,&\frac14\leq x\leq\frac34,\\
-x-1,&\frac34\leq x\leq1.
+x-1,&\frac34\leq x\leq1,
 \end{cases}
 $$
-This function is absolutely continuous, satisfies $f_*(0)=f_*(1)=0$, and has $|f_*'|=1$ almost everywhere. It also obeys $f_*(1-x)=-f_*(x)$, so
+or its negative.
+
+Step 5: Verify attainment
+The function $f_*$ is absolutely continuous, satisfies $f_*(0)=f_*(1)=0$, and has $|f_*'|=1$ almost everywhere. It also obeys $f_*(1-x)=-f_*(x)$, so
 $$
 \int_0^1f_*(x)\,dx=0.
 $$
-Hence $f_*\in\mathcal F$. Its four quarter-interval pieces have the same squared profile, and therefore
+Thus $f_*\in\mathcal F$, and so is $-f_*$. Finally,
 $$
 \int_0^1f_*(x)^2\,dx
 =4\int_0^{1/4}x^2\,dx
 =\frac1{48}.
 $$
-Together with the upper bound in Step 3, this proves that the maximum is attained and equals $1/48$.
+Therefore the maximum is $1/48$, and the only maximizers are $f_*$ and $-f_*$.
 
 Final Answer: $\boxed{\frac{1}{48}}$
 
@@ -155,5 +192,5 @@ $\frac{1}{48}$
 - Lipschitz functions
 - positive and negative parts
 - layer-cake representation
-- superlevel set geometry
-- sharp integral inequalities
+- sharp equality cases
+- extremal classification
