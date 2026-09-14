@@ -144,7 +144,11 @@ Differentiation gives
 $$
 F'(\delta)=\frac{\delta r(1+\delta)^{r-1}-((1+\delta)^r-1)}{2\delta^2}+r(1+\delta)^{r-1}-1>0.
 $$
-The first numerator is positive by convexity of $x^r$, and the second term is positive because $r>1$. Hence $F(\delta)\leq F(\frac{1}{6})$. Also $r<\frac{8}{5}$ because $3^5<2^8$. Taylor's theorem, using the bound on the second derivative of $(1+x)^{\frac{8}{5}}$, gives
+The first numerator is positive by convexity of $x^r$, and the second term is positive because $r>1$. Hence $F(\delta)\leq F(\frac{1}{6})$. Also $r<\frac{8}{5}$ because $3^5<2^8$. For $g(x)=(1+x)^{\frac{8}{5}}$,
+$$
+g''(x)=\frac{24}{25}(1+x)^{-\frac{2}{5}}\leq\frac{24}{25}\qquad(x\geq0).
+$$
+Taylor's theorem at $x=0$ therefore gives
 $$
 \left(\frac{7}{6}\right)^r<\left(\frac{7}{6}\right)^{\frac{8}{5}}\leq1+\frac{4}{15}+\frac{1}{75}=\frac{32}{25}.
 $$
