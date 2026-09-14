@@ -4,10 +4,25 @@
 
 Let
 $$
-A=\begin{bmatrix}
-4&1&1\\
-1&3&1\\
-1&1&2
+A_1=
+\begin{bmatrix}
+1&1&0\\
+1&4&0\\
+0&0&2
+\end{bmatrix},
+\qquad
+A_2=
+\begin{bmatrix}
+2&0&0\\
+0&1&2\\
+0&2&16
+\end{bmatrix},
+\qquad
+A_3=
+\begin{bmatrix}
+4&0&1\\
+0&2&0\\
+1&0&1
 \end{bmatrix}.
 $$
 For a positive diagonal matrix
@@ -15,19 +30,27 @@ $$
 D=\operatorname{diag}(d_1,d_2,d_3),
 \qquad d_1,d_2,d_3>0,
 $$
-define
+define the robust spectral condition number
 $$
-\kappa(D)=\frac{\lambda_{\max}(DAD)}{\lambda_{\min}(DAD)}.
+\mathcal K(D)
+=\max_{1\leq k\leq3}
+\frac{\lambda_{\max}(DA_kD)}{\lambda_{\min}(DA_kD)}.
 $$
-Since multiplying $D$ by a positive scalar does not change $\kappa(D)$, regard two positive diagonal matrices as equivalent when they differ by a common positive scalar.
+Since multiplying $D$ by a positive scalar does not change $\mathcal K(D)$, regard two positive diagonal matrices as equivalent when they differ by a common positive scalar.
 
+Set
+$$
+\gamma=\sqrt[3]{16},
+\qquad
+H=\gamma+\gamma^{-1}.
+$$
 Determine exactly
 $$
-\kappa_*:=\inf_{D>0\text{ diagonal}}\kappa(D),
+\mathcal K_*:=\inf_{D>0\text{ diagonal}}\mathcal K(D),
 $$
 and determine the unique minimizing scaling class. Give the answer as the ordered pair
 $$
-\left(\kappa_*,d_1:d_2:d_3\right).
+\left(\mathcal K_*,d_1:d_2:d_3\right).
 $$
 
 ---
@@ -45,4 +68,4 @@ $$
 
 ## Domain Explanation
 
-This problem asks for the optimal positive diagonal congruence preconditioner of a fixed symmetric positive-definite matrix, measured by the spectral condition number. It requires a global lower-bound certificate, attainment, and uniqueness of the optimal scaling class.
+This problem asks for one positive diagonal preconditioner that is simultaneously effective for three symmetric positive-definite scenario matrices. The objective is the worst spectral condition number across the scenarios, so the task is a robust numerical-preconditioning problem requiring a global minimax certificate and uniqueness of the common scaling class.
