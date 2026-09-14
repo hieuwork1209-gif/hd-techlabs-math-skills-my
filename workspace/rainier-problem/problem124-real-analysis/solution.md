@@ -167,7 +167,7 @@ $$
 =4\int_0^{1/4}x^2\,dx
 =\frac1{48}.
 $$
-Therefore the maximum is $1/48$, and the only maximizers are $f_*$ and $-f_*$.
+Therefore the maximum is $1/48$, and the only maximizers are $f_*$ and $-f_*$. 
 
 Final Answer: $\boxed{\frac{1}{48}}$
 
