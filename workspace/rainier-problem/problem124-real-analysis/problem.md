@@ -12,9 +12,9 @@ $$
 $$
 Determine exactly
 $$
-\max_{f\in\mathcal F}\int_0^1 f(x)^2\,dx,
+\max_{f\in\mathcal F}\int_0^1 f(x)^2\,dx.
 $$
-and, as part of the proof, characterize all functions in $\mathcal F$ for which this maximum is attained.
+A complete proof must also classify all equality cases.
 
 ---
 
@@ -31,4 +31,4 @@ and, as part of the proof, characterize all functions in $\mathcal F$ for which 
 
 ## Domain Explanation
 
-The problem asks for a sharp real-variable integral inequality under absolute-continuity, Lipschitz, endpoint, and mean constraints, together with the complete equality classification. The central work is the geometry of level sets and sharp integral estimates for real functions, so Real analysis is the direct classification.
+The problem asks for a sharp real-variable integral inequality under absolute-continuity, Lipschitz, endpoint, and mean constraints, together with a complete analysis of equality. The central work is the geometry of level sets and sharp integral estimates for real functions, so Real analysis is the direct classification.
