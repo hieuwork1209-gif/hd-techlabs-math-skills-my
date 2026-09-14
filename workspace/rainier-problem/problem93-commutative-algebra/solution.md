@@ -276,12 +276,34 @@ with $0\le i<2q$ and $0\le j<q$. Since $\deg s=2$, $\deg t=3$, and $\deg\Delta=3
 $$
 2(2q-1)+3(q-1)+3=7q-2.
 $$
+Hence the graded invariant quotient satisfies
+$$
+Q_d=0\qquad(d>7q-2).
+$$
 
 Let $\mathcal M$ be the corresponding untruncated quotient before taking cyclic invariants, and let
 $$
 K_0=(a^n,b^n,c^n)\mathcal M.
 $$
-Then $K_0\subseteq\mathfrak m^n\mathcal M$, where $\mathfrak m=(a,b,c)$. Since $n=pq\ge29q>7q-2$, the invariant part of $\mathfrak m^n\mathcal M$ is zero, so $K_0^{\langle\rho\rangle}=0$. Exactness of cyclic invariants applied to
+All defining relations of $\mathcal M$ are homogeneous, and $\rho$ permutes $a,b,c$, so both $\mathcal M$ and the $\langle\rho\rangle$-action are graded. Therefore, if
+$$
+u=\sum_d u_d\in\mathcal M^{\langle\rho\rangle}=Q
+$$
+is the homogeneous decomposition of an invariant class, then each $u_d$ is itself $\rho$-invariant. The displayed degree bound on $Q$ forces $u_d=0$ for every $d>7q-2$.
+
+Now $K_0\subseteq\mathfrak m^n\mathcal M$, where $\mathfrak m=(a,b,c)$. Since $\mathfrak m$ is generated in degree $1$, the graded submodule $\mathfrak m^n\mathcal M$ has no homogeneous component below degree $n$:
+$$
+(\mathfrak m^n\mathcal M)_d=0\qquad(d<n).
+$$
+Because
+$$
+n=pq\ge29q>7q-2,
+$$
+there is no degree that can support a nonzero invariant homogeneous component of $\mathfrak m^n\mathcal M$. Thus
+$$
+(\mathfrak m^n\mathcal M)^{\langle\rho\rangle}=0,
+$$
+and hence $K_0^{\langle\rho\rangle}=0$. Exactness of cyclic invariants applied to
 $$
 0\to K_0\to\mathcal M\to\mathcal M/K_0\to0
 $$
@@ -319,7 +341,3 @@ $4\left(\frac np\right)^2-2\left(\frac np\right)$
 - Frobenius binomial degeneration
 - residue-class module decomposition
 - graded rank counting
-
-## Black-Box Audit
-
-The cyclic invariant decomposition and discriminant relation, operator reduction, six-block decomposition, characteristic-$p$ rank collapse, rank sum, and truncation argument are all derived explicitly.
