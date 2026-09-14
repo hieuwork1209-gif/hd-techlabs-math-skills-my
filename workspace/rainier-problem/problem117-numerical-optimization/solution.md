@@ -6,6 +6,8 @@ $$
 D=\operatorname{diag}(d_1,d_2,d_3),
 \qquad d_i>0.
 $$
+The active $2\times2$ blocks of $A_1,A_2,A_3$ have positive leading entries and determinants $3,12,3$, respectively, while each isolated diagonal entry is $2$. Hence all three $A_k$ are positive definite, and so are the congruences $DA_kD$.
+
 For any symmetric positive-definite matrix $M$ and any principal submatrix $B$, the Rayleigh-quotient formulas give
 $$
 \lambda_{\min}(M)\leq\lambda_{\min}(B)
@@ -96,7 +98,7 @@ $T(r)$ is strictly increasing with $|\log r|$. Also
 $$
 \Psi(r)=\frac{\left(T(r)+\sqrt{T(r)^2-3}\right)^2}{3},
 $$
-so $\Psi(r)$ is strictly increasing with $|\log r|$.
+and the right side is strictly increasing with $T(r)\geq2$. Therefore $\Psi(r)$ is strictly increasing with $|\log r|$.
 
 Now
 $$
