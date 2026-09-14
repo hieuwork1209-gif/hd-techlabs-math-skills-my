@@ -1,0 +1,3 @@
+RAINIER_WEB_SOLVE_ID: problem124:b2ae87d858a59ac81a254a53518ba7a958456dba
+
+The solver returned the exact value 1/48 and identified the triangular-wave equality cases, but its proof of the sharp variance lemma was incomplete: it asserted without derivation that an extremizer must saturate the Lipschitz bound with slopes +/-1 and therefore be triangular.
