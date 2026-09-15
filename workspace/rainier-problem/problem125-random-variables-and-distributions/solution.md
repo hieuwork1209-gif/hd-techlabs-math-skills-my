@@ -12,11 +12,11 @@ $$
 Write $q=e+o$, where $e$ and $o$ are the even and odd parts. Then $e(0)=1$, and symmetry of the integral gives
 $$
 \frac12\int_{-1}^1q(t)^2\,dt
-=rac12\int_{-1}^1e(t)^2\,dt+rac12\int_{-1}^1o(t)^2\,dt.
+=\frac12\int_{-1}^1e(t)^2\,dt+\frac12\int_{-1}^1o(t)^2\,dt.
 $$
 Hence the unique minimizer has no odd part and may be written
 $$
-q(t)=1+at^2+bt^4.
+q(t)=bt^4+at^2+1.
 $$
 Its squared norm is
 $$
@@ -34,7 +34,7 @@ a=-\frac{14}{3},\qquad b=\frac{21}{5}.
 $$
 Therefore
 $$
-q_*(t)=1-\frac{14}{3}t^2+\frac{21}{5}t^4
+q_*(t)=\frac{21}{5}t^4-\frac{14}{3}t^2+1
 =\frac{63t^4-70t^2+15}{15},
 $$
 and substitution into $F$ gives
@@ -49,9 +49,9 @@ $$
 Step 2: Determine the support forced by equality
 Let
 $$
-u_-=\frac{35-2\sqrt{70}}{63},
+\nu_-=\frac{35-2\sqrt{70}}{63},
 \qquad
-u_+=\frac{35+2\sqrt{70}}{63},
+\nu_+=\frac{35+2\sqrt{70}}{63},
 \qquad
 \alpha=\sqrt{\nu_-},
 \qquad
@@ -127,7 +127,7 @@ All five masses are positive and sum to $1$.
 Step 4: Verify the remaining moments and finish the equality classification
 The numbers $\nu_-$ and $\nu_+$ are the roots of
 $$
-u^2-\frac{10}{9}\nu+\frac{5}{21}=0.
+\nu^2-\frac{10}{9}\nu+\frac{5}{21}=0.
 $$
 For
 $$
@@ -170,6 +170,6 @@ $\frac{64}{225}$
 
 - truncated moment problem
 - polynomial extremal certificate
-- orthogonal decomposition in L2
+- orthogonal polynomial decomposition
 - equality-case support reconstruction
 - finite quadrature measure
