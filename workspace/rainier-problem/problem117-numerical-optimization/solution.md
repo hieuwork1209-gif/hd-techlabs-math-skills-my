@@ -1,304 +1,199 @@
 ## Steps
 
-Step 1: Write each randomized sweep as a quadratic energy operator and reduce by symmetry
+Step 1: Derive the relaxed Douglas-Rachford error operator
 Let
 $$
-A=\begin{bmatrix}
-2&1&1\\
-1&2&1\\
-1&1&3
-\end{bmatrix},
+Q=\begin{bmatrix}1&0\\0&4\end{bmatrix},
 \qquad
-f(x)=\frac12x^TAx.
-$$
-The leading principal minors of $A$ are $2$, $3$, and $7$, so $A$ is positive definite. An exact coordinate minimization in coordinate $i$ is linear:
-$$
-x\longmapsto T_i x,
-\qquad
-T_i=I-\frac1{A_{ii}}e_i e_i^T A.
-$$
-Thus
-$$
-T_1=\begin{bmatrix}0&-1/2&-1/2\\0&1&0\\0&0&1\end{bmatrix},
-\quad
-T_2=\begin{bmatrix}1&0&0\\-1/2&0&-1/2\\0&0&1\end{bmatrix},
-\quad
-T_3=\begin{bmatrix}1&0&0\\0&1&0\\-1/3&-1/3&0\end{bmatrix}.
-$$
-For a permutation $\pi=(\pi_1,\pi_2,\pi_3)$, one sweep has operator
-$$
-T_\pi=T_{\pi_3}T_{\pi_2}T_{\pi_1},
-$$
-and its final energy is
-$$
-2f(T_\pi x)=x^TM_\pi x,
-\qquad
-M_\pi=T_\pi^TAT_\pi.
-$$
-Hence for a distribution $q$ on the six permutations,
-$$
-\rho(q)=\lambda_{\max}\left(A^{-1/2}\Bigl(\sum_\pi q_\pi M_\pi\Bigr)A^{-1/2}\right).
-$$
-
-The matrix $A$ is invariant under swapping coordinates $1$ and $2$. Swapping those coordinates sends any distribution $q$ to another distribution with the same value of $\rho$, while $\lambda_{\max}$ is convex in the averaged energy matrix. Therefore averaging $q$ with its swapped copy cannot increase $\rho$. We may restrict to swap-symmetric distributions when computing the optimal value.
-
-Let $a,b,c$ be the total masses of the three swap-orbits: coordinate $3$ last, middle, and first, respectively. Thus $a,b,c\geq0$ and $a+b+c=1$. From the displayed $T_i$ matrices,
-$$
-M_{123}=\begin{bmatrix}0&0&0\\0&17/48&5/16\\0&5/16&11/16\end{bmatrix},
-\quad
-M_{132}=\begin{bmatrix}0&0&0\\0&19/36&11/36\\0&11/36&13/36\end{bmatrix},
-$$
-$$
-M_{312}=\begin{bmatrix}19/72&2/9&0\\2/9&5/9&0\\0&0&0\end{bmatrix}.
-$$
-The partners $M_{213},M_{231},M_{321}$ are obtained by swapping the first two rows and columns. Therefore the three orbit averages are
-$$
-L=\frac{M_{123}+M_{213}}2
-=\begin{bmatrix}
-17/96&0&5/32\\
-0&17/96&5/32\\
-5/32&5/32&11/16
-\end{bmatrix},
-$$
-$$
-N=\frac{M_{132}+M_{231}}2
-=\begin{bmatrix}
-19/72&0&11/72\\
-0&19/72&11/72\\
-11/72&11/72&13/36
-\end{bmatrix},
-$$
-$$
-F=\frac{M_{312}+M_{321}}2
-=\begin{bmatrix}
-59/144&2/9&0\\
-2/9&59/144&0\\
-0&0&0
-\end{bmatrix}.
-$$
-So the expected energy matrix is
-$$
-M(a,b)=aL+bN+(1-a-b)F.
-$$
-
-Step 2: Separate the antisymmetric mode from the symmetric two-dimensional mode
-Use the basis
-$$
-u=(1,1,0)^T,
-\qquad
-v=(1,-1,0)^T,
-\qquad
-e_3=(0,0,1)^T.
-$$
-With $P=[u\ v\ e_3]$,
-$$
-P^TAP=
-\begin{bmatrix}
-6&0&2\\
-0&2&0\\
-2&0&3
-\end{bmatrix},
+R=\begin{bmatrix}5/2&-3/2\\-3/2&5/2\end{bmatrix},
 $$
 and
 $$
-P^TM(a,b)P=
-\begin{bmatrix}
-\frac{91}{72}-\frac{131a}{144}-\frac{53b}{72}&0&\frac{5a}{16}+\frac{11b}{36}\\
-0&\frac38-\frac{a}{48}+\frac{11b}{72}&0\\
-\frac{5a}{16}+\frac{11b}{36}&0&\frac{11a}{16}+\frac{13b}{36}
-\end{bmatrix}.
+f(x)=\frac12x^TQx,
+\qquad
+g(x)=\frac12x^TRx.
 $$
-Thus $\rho(a,b)\leq r$ is equivalent to
+Both matrices are positive definite, so the unique minimizer of $f+g$ is $0$. For $\rho>0$, the proximal maps in the statement are linear. Solving their first-order conditions gives
 $$
-rP^TAP-P^TM(a,b)P\succeq0.
+J_Q=\rho(\rho I+Q)^{-1},
+\qquad
+J_R=\rho(\rho I+R)^{-1}.
 $$
-The antisymmetric one-dimensional block gives the necessary condition
+Define the reflected proximal maps
 $$
-r\geq\frac{54-3a+22b}{288}.
+H_Q=2J_Q-I,
+\qquad
+H_R=2J_R-I.
 $$
-Since $a\leq1-b$, every feasible $r$ obeys
+If one relaxed Douglas-Rachford step starts from $z$, then
 $$
-r\geq\frac{51+25b}{288}\geq\frac{17}{96}.
+y=J_Qz,
+\qquad
+w=J_R(2y-z),
+\qquad
+z^+=z+\theta(w-y).
+$$
+Using $2J_Q-I=H_Q$ and $J_R=(I+H_R)/2$,
+$$
+\begin{aligned}
+z^+
+&=\left[I+\theta\left(J_R(2J_Q-I)-J_Q\right)\right]z\\
+&=\left[\left(1-\frac\theta2\right)I+\frac\theta2H_RH_Q\right]z.
+\end{aligned}
+$$
+Thus, with
+$$
+T_{\rho,\theta}=\left(1-\frac\theta2\right)I+\frac\theta2H_RH_Q,
+$$
+the worst-case one-step contraction is
+$$
+C(\rho,\theta)=\|T_{\rho,\theta}\|_2.
 $$
 
-For the symmetric $2\times2$ block on $\operatorname{span}\{u,e_3\}$, nonnegative determinant is necessary. Expanding that determinant gives
+Step 2: Use the rotated common spectrum to compute the Frobenius invariants
+The matrix $R$ is an orthogonal $45^\circ$ rotation of $Q$. Let
 $$
-\det\left(rA_{\mathrm{sym}}-M_{\mathrm{sym}}(a,b)\right)
-=\frac7{10368}\Delta(a,b,r),
+a=\frac{\rho-1}{\rho+1},
+\qquad
+b=\frac{\rho-4}{\rho+4}.
+$$
+Then $H_Q=\operatorname{diag}(a,b)$, while $H_R$ is an orthogonal conjugate of the same diagonal matrix. Writing $M=H_RH_Q$, direct multiplication in the common rotated basis gives
+$$
+\operatorname{tr}(M)=\frac{(a+b)^2}{2},
+\qquad
+\|M\|_F^2=\frac{(a^2+b^2)^2}{2}.
+$$
+Indeed, if
+$$
+U=\frac1{\sqrt2}\begin{bmatrix}1&1\\-1&1\end{bmatrix},
+\qquad
+D=\operatorname{diag}(a,b),
+$$
+then $H_R=UDU^T$ and
+$$
+UDU^T=\frac12
+\begin{bmatrix}
+a+b&b-a\\
+b-a&a+b
+\end{bmatrix},
+$$
+from which the two displayed identities follow for $M=UDU^TD$.
+
+Since
+$$
+T_{\rho,\theta}=\left(1-\frac\theta2\right)I+\frac\theta2M,
+$$
+we obtain
+$$
+\begin{aligned}
+\|T_{\rho,\theta}\|_F^2
+={}&2\left(1-\frac\theta2\right)^2
++\theta\left(1-\frac\theta2\right)\frac{(a+b)^2}{2}
++\frac{\theta^2}{8}(a^2+b^2)^2\\
+={}&2-B(\rho)\theta+A(\rho)\theta^2,
+\end{aligned}
 $$
 where
 $$
-\begin{aligned}
-\Delta(a,b,r)={}&-1071a^2-1519ab-216ar+1287a-532b^2\\
-&+1872br+676b+20736r^2-5616r.
-\end{aligned}
-$$
-Thus every feasible triple satisfies $\Delta(a,b,r)\geq0$.
-
-Step 3: Derive the sharp lower bound and its equality conditions
-From the antisymmetric condition in Step 2,
-$$
-a\geq a_0:=18+\frac{22}{3}b-96r.
-$$
-Assume $r<9/50$. For $a\geq a_0$,
-$$
-\frac{\partial\Delta}{\partial a}
-=-2142a-1519b-216r+1287
-\leq -17227b+205416r-37269
-<-17227b-\frac{7353}{25}<0.
-$$
-Hence $\Delta(a,b,r)\leq\Delta(a_0,b,r)$. Substitution gives
-$$
-\Delta(a_0,b,r)
-=-54p(r)+(1654080r-299972)b-\frac{207802}{3}b^2,
-$$
-where the $b$-independent obstruction is
-$$
-p(t)=182016t^2-66080t+5997.
-$$
-For $r<9/50$,
-$$
-1654080r-299972<-\frac{11188}{5}<0,
-$$
-so every feasible triple with $r<9/50$ must satisfy
-$$
-0\leq\Delta(a,b,r)\leq-54p(r).
-$$
-Thus the first possible threshold above the universal bound $17/96$ is the smaller root of $p$. Its discriminant is
-$$
-66080^2-4\cdot182016\cdot5997=366592=1024\cdot358,
-$$
-so define
-$$
-r_*:=\frac{2065-\sqrt{358}}{11376}.
-$$
-Since
-$$
-p\left(\frac{17}{96}\right)=\frac{37}{12}>0,
-\qquad
-p\left(\frac9{50}\right)=-\frac{51}{625}<0,
-$$
-we have
-$$
-\frac{17}{96}<r_*<\frac9{50}.
-$$
-If a symmetric distribution had contraction $r<r_*$, then Step 2 would give $r\geq17/96$, while the displayed inequality would give $p(r)\leq0$. But $p>0$ on $[17/96,r_*)$, a contradiction. Therefore every swap-symmetric distribution has contraction at least $r_*$. By Step 1, symmetrizing an arbitrary distribution cannot increase its contraction, so every distribution satisfies
-$$
-\rho(q)\geq r_*.
-$$
-
-The same chain determines equality among swap-symmetric distributions. Set $r=r_*$. Then
-$$
-\Delta(a_0,b,r_*)
-=(1654080r_*-299972)b-\frac{207802}{3}b^2\leq0,
-$$
-and the coefficient of $b$ is strictly negative because $r_*<9/50$. Feasibility requires $\Delta\geq0$, so $b=0$. The derivative bound is then strictly negative for $a\geq18-96r_*$, while
-$$
-\Delta(18-96r_*,0,r_*)=-54p(r_*)=0.
-$$
-Hence equality forces
-$$
-b=0,
-\qquad
-a=18-96r_*,
-\qquad c=1-a.
-$$
-Thus there is a unique optimal swap-symmetric distribution.
-
-Step 4: Construct the optimal swap-symmetric distribution and record its slack rank
-Set
-$$
-a=18-96r_*,
-\qquad
-c=1-a.
-$$
-The bounds $17/96<r_*<9/50$ imply $0<a<1$. Assign probability $a/2$ to each of $123,213$, probability $c/2$ to each of $312,321$, and probability $0$ to $132,231$. Call this distribution $q^*$.
-
-For $q^*$ the antisymmetric block is exactly tight because
-$$
-\frac{54-3a}{288}=r_*.
-$$
-For the symmetric block,
-$$
-\Delta(a,0,r_*)=-54p(r_*)=0.
-$$
-Its two diagonal entries are
-$$
-\frac{4(34-183r_*)}9,
-\qquad
-\frac{3(184r_*-33)}8.
-$$
-The first is positive because $r_*<9/50<34/183$. Also
-$$
-p\left(\frac{33}{184}\right)=\frac{189}{529}>0
-$$
-while $p(9/50)<0$, so $r_*>33/184$ and the second diagonal entry is positive. Hence the symmetric $2\times2$ slack matrix is positive semidefinite with determinant zero, while the antisymmetric slack is zero. Therefore
-$$
-S_*:=r_*A-\sum_\pi q^*_\pi M_\pi\succeq0
-$$
-has rank one, and its range lies in the swap-symmetric subspace. Thus $q^*$ attains $\rho_*$.
-
-Step 5: Prove the minimizing distribution is unique
-Let $q$ be any minimizing distribution, and let $J$ be the matrix swapping coordinates $1$ and $2$. Let $q^J$ be the distribution obtained by applying this swap to every permutation. Then $q^J$ is also minimizing. Their average $\bar q=(q+q^J)/2$ is swap-symmetric and minimizing, so Step 3 gives
-$$
-\bar q=q^*.
-$$
-Define
-$$
-S(q)=r_*A-\sum_\pi q_\pi M_\pi,
-\qquad
-S(q^J)=J S(q)J.
-$$
-Both matrices are positive semidefinite, and
-$$
-\frac{S(q)+S(q^J)}2=S_*.
-$$
-For any $z\in\ker S_*$,
-$$
-0=z^TS_*z=\frac12z^TS(q)z+\frac12z^TS(q^J)z.
-$$
-Both terms are nonnegative, so both vanish. Since $z^TSz=\|S^{1/2}z\|^2$ for $S\succeq0$, this implies $S(q)z=S(q^J)z=0$. Hence $\ker S_*$ is contained in the kernels of both matrices. Since $S_*$ has rank one, both $S(q)$ and $S(q^J)$ have range contained in $\operatorname{range}S_*$. This range is fixed pointwise by $J$, so $J S(q)J=S(q)$. Therefore $S(q^J)=S(q)$, and their average being $S_*$ yields
-$$
-S(q)=S_*.
-$$
-Thus $\sum q_\pi M_\pi=\sum q^*_\pi M_\pi$.
-
-Because $\bar q=q^*$, write
-$$
-q_{123}=\frac a2+s,
-\quad q_{213}=\frac a2-s,
-\quad q_{312}=\frac c2+t,
-\quad q_{321}=\frac c2-t,
-$$
-with $q_{132}=q_{231}=0$. Equality of the expected energy matrices gives
-$$
-s(M_{123}-M_{213})+t(M_{312}-M_{321})=0.
-$$
-The $(1,3)$ entry is $-5s/16$, so $s=0$. Then the $(1,1)$ entry is $-7t/24$, so $t=0$. Hence $q=q^*$, proving uniqueness.
-
-Finally,
-$$
-q^*_{123}=q^*_{213}=\frac a2
-=9-48r_*
-=\frac{68+\sqrt{358}}{237},
+B(\rho)=\frac{2\rho(2\rho+5)(5\rho+8)}{(\rho+1)^2(\rho+4)^2}
 $$
 and
 $$
-q^*_{132}=q^*_{231}=0,
-\qquad
-q^*_{312}=q^*_{321}=\frac{101-2\sqrt{358}}{474}.
+A(\rho)=\frac{\rho^2P(\rho)}{(\rho+1)^4(\rho+4)^4},
 $$
+with
+$$
+P(\rho)=59\rho^4+410\rho^3+1209\rho^2+1640\rho+944.
+$$
+Here $A(\rho)>0$ for every $\rho>0$.
 
-Step 6: State the optimum and the reported component of the unique optimizer
-The exact contraction and the requested probability under the unique minimizing distribution are now determined.
+Step 3: Build a sharp global lower bound from the Frobenius norm
+Let the singular values of the $2\times2$ matrix $T_{\rho,\theta}$ be $\sigma_1\geq\sigma_2\geq0$. Then
+$$
+C(\rho,\theta)^2=\sigma_1^2
+\geq\frac{\sigma_1^2+\sigma_2^2}{2}
+=\frac{\|T_{\rho,\theta}\|_F^2}{2}.
+$$
+For fixed $\rho$, the quadratic in $\theta$ from Step 2 is strictly convex. Completing the square therefore gives
+$$
+\|T_{\rho,\theta}\|_F^2
+\geq 2-\frac{B(\rho)^2}{4A(\rho)}.
+$$
+Substituting the displayed $A(\rho)$ and $B(\rho)$ simplifies this minimum to
+$$
+2-\frac{B(\rho)^2}{4A(\rho)}
+=\frac{9(2\rho^4-7\rho^2+32)}{P(\rho)}.
+$$
+Its gap from $1/41$ factors as
+$$
+\frac{9(2\rho^4-7\rho^2+32)}{P(\rho)}-\frac1{41}
+=\frac{(\rho-2)^2(679\rho^2+2306\rho+2716)}{41P(\rho)}.
+$$
+Every factor in the denominator and the final quadratic numerator is positive for $\rho>0$, so
+$$
+\|T_{\rho,\theta}\|_F^2\geq\frac1{41}.
+$$
+Consequently
+$$
+C(\rho,\theta)\geq\frac1{\sqrt{82}}.
+$$
+Moreover, equality in this chain can occur only if $\rho=2$ and $\theta$ is the unique minimizer of the strictly convex quadratic $2-B(2)\theta+A(2)\theta^2$.
 
-Final Answer: $\boxed{\left(\frac{2065-\sqrt{358}}{11376},\frac{68+\sqrt{358}}{237}\right)}$
+Step 4: Determine the unique relaxation parameter and attain the bound
+At $\rho=2$,
+$$
+a=\frac13,
+\qquad
+b=-\frac13.
+$$
+The Step 2 formula becomes
+$$
+\|T_{2,\theta}\|_F^2
+=2-2\theta+\frac{41}{81}\theta^2.
+$$
+Its unique minimizer is
+$$
+\theta_*=\frac{81}{41},
+$$
+which lies in $(0,2)$. At $\rho=2$ the proximal maps are
+$$
+J_Q=\begin{bmatrix}2/3&0\\0&1/3\end{bmatrix},
+\qquad
+J_R=\begin{bmatrix}1/2&1/6\\1/6&1/2\end{bmatrix}.
+$$
+Thus
+$$
+H_RH_Q=
+\begin{bmatrix}
+0&-1/9\\
+1/9&0
+\end{bmatrix},
+$$
+and substituting $\theta=81/41$ gives
+$$
+T_{2,81/41}
+=\frac1{82}
+\begin{bmatrix}
+1&-9\\
+9&1
+\end{bmatrix}.
+$$
+Therefore
+$$
+T_{2,81/41}^TT_{2,81/41}=\frac1{82}I,
+$$
+so both singular values equal $1/\sqrt{82}$. The lower bound from Step 3 is attained.
+
+Step 5: State the unique optimal parameters and contraction
+The equality conditions in Step 3 force $\rho=2$, and strict convexity in $\theta$ then forces $\theta=81/41$. Step 4 shows that this pair attains the global lower bound. Hence the minimizing parameters and minimum worst-case one-step contraction are unique.
+
+Final Answer: $\boxed{\left(2,\frac{81}{41},\frac1{\sqrt{82}}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{2065-\sqrt{358}}{11376},\frac{68+\sqrt{358}}{237}\right)$
+$\left(2,\frac{81}{41},\frac1{\sqrt{82}}\right)$
 
 ---
 
@@ -312,8 +207,8 @@ $\left(\frac{2065-\sqrt{358}}{11376},\frac{68+\sqrt{358}}{237}\right)$
 
 ## Solution Concepts
 
-- randomized Gauss-Seidel sweeps
-- generalized Rayleigh quotient
-- symmetry reduction
-- semidefinite equality cases
-- optimizer uniqueness
+- relaxed Douglas-Rachford splitting
+- proximal maps of quadratic functions
+- singular values and operator norms
+- Frobenius norm lower bound
+- equality-case parameter recovery
