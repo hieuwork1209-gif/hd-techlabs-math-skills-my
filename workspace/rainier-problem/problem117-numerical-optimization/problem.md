@@ -6,22 +6,22 @@ Let
 $$
 Q=\begin{bmatrix}1&0\\0&4\end{bmatrix},
 \qquad
-R=\begin{bmatrix}5/2&-3/2\\-3/2&5/2\end{bmatrix},
+R=\begin{bmatrix}\frac{5}{2}&-\frac{3}{2}\\-\frac{3}{2}&\frac{5}{2}\end{bmatrix},
 $$
 and define
 $$
 f(x)=\frac12x^TQx,
 \qquad
 g(x)=\frac12x^TRx
-\qquad(x\in\mathbb R^2).
+\qquad(x\in\mathbb{R}^2).
 $$
 For $\rho>0$, define the proximal maps
 $$
-P_{f,\rho}(v)=\operatorname*{argmin}_{x\in\mathbb R^2}
+P_{f,\rho}(v)=\operatorname*{argmin}_{x\in\mathbb{R}^2}
 \left(f(x)+\frac\rho2\|x-v\|_2^2\right),
 $$
 $$
-P_{g,\rho}(v)=\operatorname*{argmin}_{x\in\mathbb R^2}
+P_{g,\rho}(v)=\operatorname*{argmin}_{x\in\mathbb{R}^2}
 \left(g(x)+\frac\rho2\|x-v\|_2^2\right).
 $$
 For a relaxation parameter $0<\theta<2$, one relaxed Douglas-Rachford step is
