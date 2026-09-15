@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "a0418ce1db2514b762dc44bcbacc82269af08ff0",
+  "problem_blob_sha": "088004691225f8945712f7ae6508702e4413fc92",
+  "statement_sha256": "89a0652ee4e6e6bf48477bc28a922217712bc755443b0bd97044061aba16cacb",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-15T03:23:21+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "For fixed \\(i\\), the update minimizes \\(f(z)=\\frac12 z^T A z\\) subject to \\(z_i=x_i\\). For a positive definite quadratic,\n\n\\[\n\\min_{z_i=x_i}\\frac12z^TAz\n=\\frac{x_i^2}{2(A^{-1})_{ii}}.\n\\]\n\nHere\n\n\\[\nA^{-1}=\\frac1{17}\n\\begin{bmatrix}\n5&-1&-2\\\\\n-1&7&-3\\\\\n-2&-3&11\n\\end{bmatrix},\n\\]\n\nso\n\n\\[\n(A^{-1})_{11}=\\frac5{17},\\qquad\n(A^{-1})_{22}=\\frac7{17},\\qquad\n(A^{-1})_{33}=\\frac{11}{17}.\n\\]\n\nThus\n\n\\[\n\\mathbb E[f(x^+)\\mid x]\n=\\frac12\\left(\\frac{17p_1}{5}x_1^2+\\frac{17p_2}{7}x_2^2+\\frac{17p_3}{11}x_3^2\\right).\n\\]\n\nSo \\(\\rho(p)\\) is the largest generalized eigenvalue of\n\n\\[\nD=\\operatorname{diag}\\left(\\frac{17p_1}{5},\\frac{17p_2}{7},\\frac{17p_3}{11}\\right)\n\\]\n\nrelative to \\(A\\). Equivalently, \\(\\rho(p)\\le t\\) iff\n\n\\[\nD\\preceq tA.\n\\]\n\nWrite \\(D=t\\operatorname{diag}(y_1,y_2,y_3)\\). Since \\(p_1+p_2+p_3=1\\),\n\n\\[\nt(5y_1+7y_2+11y_3)=17.\n\\]\n\nSo minimizing \\(t\\) means maximizing \\(5y_1+7y_2+11y_3\\) subject to\n\n\\[\nA-\\operatorname{diag}(y)\\succeq0.\n\\]\n\nLet \\(s_1=4-y_1,\\ s_2=3-y_2,\\ s_3=2-y_3\\). Then\n\n\\[\nA-\\operatorname{diag}(y)=\n\\begin{bmatrix}\ns_1&1&1\\\\\n1&s_2&1\\\\\n1&1&s_3\n\\end{bmatrix}.\n\\]\n\nWe need minimize\n\n\\[\n5s_1+7s_2+11s_3.\n\\]\n\nFor any positive semidefinite such matrix, using the positive semidefinite Laplacian\n\n\\[\nZ=\n\\begin{bmatrix}\n5&-\\frac12&-\\frac92\\\\\n-\\frac12&7&-\\frac{13}{2}\\\\\n-\\frac92&-\\frac{13}{2}&11\n\\end{bmatrix}\n\\succeq0,\n\\]\n\nwe get\n\n\\[\n0\\le \\operatorname{tr}(ZM)\n=5s_1+7s_2+11s_3-23.\n\\]\n\nHence\n\n\\[\n5s_1+7s_2+11s_3\\ge 23.\n\\]\n\nEquality occurs at \\(s_1=s_2=s_3=1\\), giving\n\n\\[\ny_1=3,\\qquad y_2=2,\\qquad y_3=1.\n\\]\n\nTherefore\n\n\\[\n5y_1+7y_2+11y_3=15+14+11=40,\n\\]\n\nso\n\n\\[\n\\rho_*=\\frac{17}{40}.\n\\]\n\nFinally,\n\n\\[\np_i=(A^{-1})_{ii}\\rho_* y_i,\n\\]\n\nhence\n\n\\[\np_1:p_2:p_3\n=\n5\\cdot3:7\\cdot2:11\\cdot1\n=\n15:14:11.\n\\]\n\n\\[\n\\boxed{\\left(\\rho_*,p_1:p_2:p_3\\right)=\\left(\\frac{17}{40},\\,15:14:11\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-15T03:24:59+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/088004691225.json"
+}
