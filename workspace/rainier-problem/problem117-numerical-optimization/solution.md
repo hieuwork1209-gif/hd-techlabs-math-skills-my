@@ -1,208 +1,208 @@
 ## Steps
 
-Step 1: Derive the relaxed Douglas-Rachford error operator
+Step 1: Reduce the scale uncertainty to one effective penalty parameter
 Let
 $$
 Q=\begin{bmatrix}1&0\\0&4\end{bmatrix},
 \qquad
-R=\begin{bmatrix}\frac{5}{2}&-\frac{3}{2}\\-\frac{3}{2}&\frac{5}{2}\end{bmatrix},
+R=\begin{bmatrix}\frac{5}{2}&-\frac{3}{2}\\-\frac{3}{2}&\frac{5}{2}\end{bmatrix}.
 $$
-and
+For a scale $\mu\in[1,4]$, the Hessians of $f_\mu$ and $g_\mu$ are $\mu Q$ and $\mu R$. If
 $$
-f(x)=\frac{1}{2}x^TQx,
+t=\frac{\rho}{\mu},
+$$
+then solving the proximal first-order conditions gives
+$$
+J_Q(t)=t(tI+Q)^{-1},
 \qquad
-g(x)=\frac{1}{2}x^TRx.
-$$
-Both matrices are positive definite, so the unique minimizer of $f+g$ is $0$. For $\rho>0$, the proximal maps in the statement are linear. Solving their first-order conditions gives
-$$
-J_Q=\rho(\rho I+Q)^{-1},
-\qquad
-J_R=\rho(\rho I+R)^{-1}.
+J_R(t)=t(tI+R)^{-1}.
 $$
 Define the reflected proximal maps
 $$
-H_Q=2J_Q-I,
+H_Q(t)=2J_Q(t)-I,
 \qquad
-H_R=2J_R-I.
+H_R(t)=2J_R(t)-I.
 $$
-If one relaxed Douglas-Rachford step starts from $z$, then
+With $s=\theta/2$, one relaxed Douglas-Rachford step has error operator
 $$
-y=J_Qz,
-\qquad
-w=J_R(2y-z),
-\qquad
-z^+=z+\theta(w-y).
+T_{t,s}=(1-s)I+sH_R(t)H_Q(t),
+\qquad 0<s\leq1.
 $$
-Using $2J_Q-I=H_Q$ and $J_R=(I+H_R)/2$,
+Therefore
 $$
-\begin{aligned}
-z^+
-&=\left[I+\theta\left(J_R(2J_Q-I)-J_Q\right)\right]z\\
-&=\left[\left(1-\frac{\theta}{2}\right)I+\frac{\theta}{2}H_RH_Q\right]z.
-\end{aligned}
+\mathcal C(\rho,\theta)
+=\sup_{\mu\in[1,4]}\|T_{\rho/\mu,\theta/2}\|_2,
 $$
-Thus, with
-$$
-T_{\rho,\theta}=\left(1-\frac{\theta}{2}\right)I+\frac{\theta}{2}H_RH_Q,
-$$
-the worst-case one-step contraction is
-$$
-C(\rho,\theta)=\|T_{\rho,\theta}\|_2.
-$$
+so for fixed $\rho$ the effective parameter $t$ ranges over $[\rho/4,\rho]$.
 
-Step 2: Use the rotated common spectrum to compute the Frobenius invariants
-The matrix $R$ is an orthogonal $45^{\circ}$ rotation of $Q$. Let
-$$
-a=\frac{\rho-1}{\rho+1},
-\qquad
-b=\frac{\rho-4}{\rho+4}.
-$$
-Then $H_Q=\operatorname{diag}(a,b)$, while $H_R$ is an orthogonal conjugate of the same diagonal matrix. Writing $M=H_RH_Q$, direct multiplication in the common rotated basis gives
-$$
-\operatorname{tr}(M)=\frac{(a+b)^2}{2},
-\qquad
-\|M\|_F^2=\frac{(a^2+b^2)^2}{2}.
-$$
-Indeed, if
+Step 2: Derive the reciprocal symmetry of the one-scale contraction
+Let
 $$
 U=\frac{1}{\sqrt{2}}\begin{bmatrix}1&-1\\1&1\end{bmatrix},
 \qquad
-D=\operatorname{diag}(a,b),
+R=UQU^T,
 $$
-then $R=UQU^T$, $H_R=UDU^T$, and
+and set
 $$
-UDU^T=\frac{1}{2}
-\begin{bmatrix}
-a+b&a-b\\
-a-b&a+b
-\end{bmatrix},
-$$
-from which the two displayed identities follow for $M=UDU^T D$.
-
-The scalar combinations needed below are
-$$
-a+b=\frac{2(\rho-2)(\rho+2)}{(\rho+1)(\rho+4)},
-$$
-$$
-a^2+b^2=\frac{2(\rho^4+\rho^2+16)}{(\rho+1)^2(\rho+4)^2}.
-$$
-Since
-$$
-T_{\rho,\theta}=\left(1-\frac{\theta}{2}\right)I+\frac{\theta}{2}M,
-$$
-we obtain
-$$
-\begin{aligned}
-\|T_{\rho,\theta}\|_F^2
-={}&2\left(1-\frac{\theta}{2}\right)^2
-+\theta\left(1-\frac{\theta}{2}\right)\frac{(a+b)^2}{2}
-+\frac{\theta^2}{8}(a^2+b^2)^2\\
-={}&2-B(\rho)\theta+A(\rho)\theta^2,
-\end{aligned}
-$$
-where
-$$
-B(\rho)=\frac{2\rho(2\rho+5)(5\rho+8)}{(\rho+1)^2(\rho+4)^2}
-$$
-and
-$$
-A(\rho)=\frac{\rho^2P(\rho)}{(\rho+1)^4(\rho+4)^4},
-$$
-with
-$$
-P(\rho)=59\rho^4+410\rho^3+1209\rho^2+1640\rho+944.
-$$
-Here $A(\rho)>0$ for every $\rho>0$.
-
-Step 3: Build a sharp global lower bound from the Frobenius norm
-Let the singular values of the $2\times2$ matrix $T_{\rho,\theta}$ be $\sigma_1\geq\sigma_2\geq0$. Then
-$$
-C(\rho,\theta)^2=\sigma_1^2
-\geq\frac{\sigma_1^2+\sigma_2^2}{2}
-=\frac{\|T_{\rho,\theta}\|_F^2}{2}.
-$$
-For fixed $\rho$, the quadratic in $\theta$ from Step 2 is strictly convex. Completing the square therefore gives
-$$
-\|T_{\rho,\theta}\|_F^2
-\geq 2-\frac{B(\rho)^2}{4A(\rho)}.
-$$
-Using the displayed $A(\rho)$ and $B(\rho)$,
-$$
-\begin{aligned}
-2-\frac{B(\rho)^2}{4A(\rho)}
-&=2-\frac{(2\rho+5)^2(5\rho+8)^2}{P(\rho)}\\
-&=\frac{9(2\rho^4-7\rho^2+32)}{P(\rho)}.
-\end{aligned}
-$$
-Its gap from $\frac{1}{41}$ factors as
-$$
-\frac{9(2\rho^4-7\rho^2+32)}{P(\rho)}-\frac{1}{41}
-=\frac{(\rho-2)^2(679\rho^2+2306\rho+2716)}{41P(\rho)}.
-$$
-Every factor in the denominator and the final quadratic numerator is positive for $\rho>0$, so
-$$
-\|T_{\rho,\theta}\|_F^2\geq\frac{1}{41}.
-$$
-Consequently
-$$
-C(\rho,\theta)\geq\frac{1}{\sqrt{82}}.
-$$
-Moreover, equality in this chain can occur only if $\rho=2$ and $\theta$ is the unique minimizer of the strictly convex quadratic $2-B(2)\theta+A(2)\theta^2$.
-
-Step 4: Determine the unique relaxation parameter and attain the bound
-At $\rho=2$,
-$$
-a=\frac{1}{3},
+a=\frac{t-1}{t+1},
 \qquad
-b=-\frac{1}{3}.
-$$
-The Step 2 formula becomes
-$$
-\|T_{2,\theta}\|_F^2
-=2-2\theta+\frac{41}{81}\theta^2.
-$$
-Its unique minimizer is
-$$
-\theta_*=\frac{81}{41},
-$$
-which lies in $(0,2)$. At $\rho=2$ the proximal maps are
-$$
-J_Q=\begin{bmatrix}\frac{2}{3}&0\\0&\frac{1}{3}\end{bmatrix},
+b=\frac{t-4}{t+4},
 \qquad
-J_R=\begin{bmatrix}\frac{1}{2}&\frac{1}{6}\\\frac{1}{6}&\frac{1}{2}\end{bmatrix}.
-$$
-Thus
-$$
-H_RH_Q=
-\begin{bmatrix}
-0&-\frac{1}{9}\\
-\frac{1}{9}&0
-\end{bmatrix}.
-$$
-Substituting $\theta=\frac{81}{41}$, define
-$$
-T_*=\frac{1}{82}
-\begin{bmatrix}
-1&-9\\
-9&1
-\end{bmatrix}.
+D=\operatorname{diag}(a,b).
 $$
 Then
 $$
-T_*^T T_*=\frac{1}{82}I,
+H_Q(t)=D,
+\qquad
+H_R(t)=UDU^T.
 $$
-so both singular values equal $\frac{1}{\sqrt{82}}$. The lower bound from Step 3 is attained.
+Writing
+$$
+M(t)=H_R(t)H_Q(t)=UDU^TD,
+$$
+direct multiplication gives
+$$
+\operatorname{tr}M(t)=\frac{(a+b)^2}{2},
+\qquad
+\|M(t)\|_F^2=\frac{(a^2+b^2)^2}{2},
+\qquad
+\det M(t)=a^2b^2.
+$$
+For the reciprocal parameter $t^\vee=4/t$,
+$$
+a(t^\vee)=-b(t),
+\qquad
+b(t^\vee)=-a(t),
+$$
+so the three displayed invariants are unchanged. Since
+$$
+T_{t,s}=(1-s)I+sM(t),
+$$
+we have
+$$
+\|T_{t,s}\|_F^2
+=2(1-s)^2+2s(1-s)\operatorname{tr}M(t)+s^2\|M(t)\|_F^2
+$$
+and
+$$
+\det T_{t,s}
+=(1-s)^2+s(1-s)\operatorname{tr}M(t)+s^2\det M(t).
+$$
+The squared singular values of a $2\times2$ matrix have sum $\|T\|_F^2$ and product $(\det T)^2$. Hence they are unchanged by $t\mapsto4/t$, and therefore
+$$
+\|T_{t,s}\|_2=\|T_{4/t,s}\|_2.
+$$
 
-Step 5: State the unique optimal parameters and contraction
-Any global minimizer must make every inequality in Step 3 an equality. The factored gap forces $\rho=2$, and strict convexity in $\theta$ then forces $\theta=\frac{81}{41}$. Step 4 shows that this pair attains the global lower bound, so the minimizing parameters and minimum worst-case one-step contraction are unique.
+Step 3: Prove a sharp lower bound outside the balanced interval
+Assume first that $0<t\leq1$. From the matrix in Step 2,
+$$
+M(t)e_2
+=\frac{b}{2}
+\begin{bmatrix}
+a-b\\
+a+b
+\end{bmatrix}
+=:m.
+$$
+Thus
+$$
+\|m\|_2^2=\frac{b^2(a^2+b^2)}{2},
+\qquad
+m_2=\frac{b(a+b)}{2}.
+$$
+For
+$$
+v(s)=T_{t,s}e_2=(1-s)e_2+sm,
+$$
+the function $\|v(s)\|_2^2$ is convex in $s$. At $s=1$ its derivative divided by $2$ is
+$$
+\|m\|_2^2-m_2
+=-\frac{t(t-4)(13t^3+19t^2-16t-112)}{(t+1)^2(t+4)^4}.
+$$
+For $0<t\leq1$,
+$$
+13t^3+19t^2-16t-112
+\leq13+19-112<0,
+$$
+so the displayed derivative is negative. Because the derivative of a convex quadratic is increasing, $\|v(s)\|_2$ decreases throughout $0<s\leq1$. Hence
+$$
+\|T_{t,s}\|_2\geq\|T_{t,s}e_2\|_2\geq\|M(t)e_2\|_2.
+$$
+On $(0,1]$ the quantities
+$$
+|a|=\frac{1-t}{1+t},
+\qquad
+|b|=\frac{4-t}{4+t}
+$$
+are both decreasing in $t$. Therefore
+$$
+\|M(t)e_2\|_2^2
+=\frac{b^2(a^2+b^2)}{2}
+\geq\frac{81}{1250},
+$$
+with equality only at $t=1$. Thus
+$$
+\|T_{t,s}\|_2\geq\frac{9}{25\sqrt{2}}
+$$
+for $0<t\leq1$, with equality only at $(t,s)=(1,1)$. By the reciprocal symmetry from Step 2, the same bound holds for $t\geq4$, with equality only at $(t,s)=(4,1)$.
 
-Final Answer: $\boxed{\left(2,\frac{81}{41},\frac{1}{\sqrt{82}}\right)}$
+For any $\rho>0$, the uncertainty interval for $t$ is $[\rho/4,\rho]$. If $\rho\leq4$, then $\rho/4\leq1$; if $\rho\geq4$, then $\rho\geq4$. Consequently
+$$
+\mathcal C(\rho,\theta)\geq\frac{9}{25\sqrt{2}}.
+$$
+Equality in this robust lower bound can occur only when
+$$
+\rho=4,
+\qquad
+s=1,
+$$
+that is, only when $\rho=4$ and $\theta=2$.
+
+Step 4: Show that the balanced parameters control every uncertain scale
+Set
+$$
+\rho=4,
+\qquad
+\theta=2.
+$$
+Then $s=1$ and, as $\mu$ ranges over $[1,4]$,
+$$
+t=\frac{4}{\mu}\in[1,4].
+$$
+Now $T_{t,1}=M(t)$, so
+$$
+\|T_{t,1}\|_2\leq\|M(t)\|_F
+=\frac{a^2+b^2}{\sqrt{2}}.
+$$
+A direct simplification gives
+$$
+a^2+b^2
+=\frac{2(t^4+t^2+16)}{(t+1)^2(t+4)^2},
+$$
+and
+$$
+\frac{9}{25}-(a^2+b^2)
+=-\frac{(t-1)(t-4)(41t^2+115t+164)}{25(t+1)^2(t+4)^2}.
+$$
+For $1\leq t\leq4$, the right-hand side is nonnegative. Therefore
+$$
+\|T_{t,1}\|_2\leq\frac{9}{25\sqrt{2}}
+$$
+for every uncertain scale. Combined with Step 3,
+$$
+\mathcal C(4,2)=\frac{9}{25\sqrt{2}}.
+$$
+
+Step 5: State the unique robustly optimal parameters
+Step 3 gives the global lower bound and shows that equality forces $\rho=4$ and $\theta=2$. Step 4 proves that this pair attains the bound for the whole uncertainty interval. Hence the minimizing pair is unique.
+
+Final Answer: $\boxed{\left(4,2,\frac{9}{25\sqrt{2}}\right)}$
 
 ---
 
 ## Answer
 
-$\left(2,\frac{81}{41},\frac{1}{\sqrt{82}}\right)$
+$\left(4,2,\frac{9}{25\sqrt{2}}\right)$
 
 ---
 
@@ -216,8 +216,8 @@ $\left(2,\frac{81}{41},\frac{1}{\sqrt{82}}\right)$
 
 ## Solution Concepts
 
+- robust parameter tuning
 - relaxed Douglas-Rachford splitting
-- proximal maps of quadratic functions
-- singular values and operator norms
-- Frobenius norm lower bound
-- equality-case parameter recovery
+- reciprocal parameter symmetry
+- singular values and matrix norms
+- equality-case uniqueness
