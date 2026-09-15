@@ -5,7 +5,7 @@ Let
 $$
 Q=\begin{bmatrix}1&0\\0&4\end{bmatrix},
 \qquad
-R=\begin{bmatrix}5/2&-3/2\\-3/2&5/2\end{bmatrix},
+R=\begin{bmatrix}\frac{5}{2}&-\frac{3}{2}\\-\frac{3}{2}&\frac{5}{2}\end{bmatrix},
 $$
 and
 $$
@@ -65,7 +65,7 @@ $$
 $$
 Indeed, if
 $$
-U=\frac1{\sqrt2}\begin{bmatrix}1&-1\\1&1\end{bmatrix},
+U=\frac{1}{\sqrt{2}}\begin{bmatrix}1&-1\\1&1\end{bmatrix},
 \qquad
 D=\operatorname{diag}(a,b),
 $$
@@ -79,6 +79,13 @@ a-b&a+b
 $$
 from which the two displayed identities follow for $M=UDU^TD$.
 
+The scalar combinations needed below are
+$$
+a+b=\frac{2(\rho-2)(\rho+2)}{(\rho+1)(\rho+4)},
+$$
+$$
+a^2+b^2=\frac{2(\rho^4+\rho^2+16)}{(\rho+1)^2(\rho+4)^2}.
+$$
 Since
 $$
 T_{\rho,\theta}=\left(1-\frac\theta2\right)I+\frac\theta2M,
@@ -124,18 +131,18 @@ $$
 2-\frac{B(\rho)^2}{4A(\rho)}
 =\frac{9(2\rho^4-7\rho^2+32)}{P(\rho)}.
 $$
-Its gap from $1/41$ factors as
+Its gap from $\frac{1}{41}$ factors as
 $$
-\frac{9(2\rho^4-7\rho^2+32)}{P(\rho)}-\frac1{41}
+\frac{9(2\rho^4-7\rho^2+32)}{P(\rho)}-\frac{1}{41}
 =\frac{(\rho-2)^2(679\rho^2+2306\rho+2716)}{41P(\rho)}.
 $$
 Every factor in the denominator and the final quadratic numerator is positive for $\rho>0$, so
 $$
-\|T_{\rho,\theta}\|_F^2\geq\frac1{41}.
+\|T_{\rho,\theta}\|_F^2\geq\frac{1}{41}.
 $$
 Consequently
 $$
-C(\rho,\theta)\geq\frac1{\sqrt{82}}.
+C(\rho,\theta)\geq\frac{1}{\sqrt{82}}.
 $$
 Moreover, equality in this chain can occur only if $\rho=2$ and $\theta$ is the unique minimizer of the strictly convex quadratic $2-B(2)\theta+A(2)\theta^2$.
 
@@ -157,22 +164,22 @@ $$
 $$
 which lies in $(0,2)$. At $\rho=2$ the proximal maps are
 $$
-J_Q=\begin{bmatrix}2/3&0\\0&1/3\end{bmatrix},
+J_Q=\begin{bmatrix}\frac{2}{3}&0\\0&\frac{1}{3}\end{bmatrix},
 \qquad
-J_R=\begin{bmatrix}1/2&1/6\\1/6&1/2\end{bmatrix}.
+J_R=\begin{bmatrix}\frac{1}{2}&\frac{1}{6}\\\frac{1}{6}&\frac{1}{2}\end{bmatrix}.
 $$
 Thus
 $$
 H_RH_Q=
 \begin{bmatrix}
-0&-1/9\\
-1/9&0
+0&-\frac{1}{9}\\
+\frac{1}{9}&0
 \end{bmatrix},
 $$
 and substituting $\theta=81/41$ gives
 $$
 T_{2,81/41}
-=\frac1{82}
+=\frac{1}{82}
 \begin{bmatrix}
 1&-9\\
 9&1
@@ -180,20 +187,20 @@ T_{2,81/41}
 $$
 Therefore
 $$
-T_{2,81/41}^TT_{2,81/41}=\frac1{82}I,
+T_{2,81/41}^TT_{2,81/41}=\frac{1}{82}I,
 $$
-so both singular values equal $1/\sqrt{82}$. The lower bound from Step 3 is attained.
+so both singular values equal $\frac{1}{\sqrt{82}}$. The lower bound from Step 3 is attained.
 
 Step 5: State the unique optimal parameters and contraction
 The equality conditions in Step 3 force $\rho=2$, and strict convexity in $\theta$ then forces $\theta=81/41$. Step 4 shows that this pair attains the global lower bound. Hence the minimizing parameters and minimum worst-case one-step contraction are unique.
 
-Final Answer: $\boxed{\left(2,\frac{81}{41},\frac1{\sqrt{82}}\right)}$
+Final Answer: $\boxed{\left(2,\frac{81}{41},\frac{1}{\sqrt{82}}\right)}$
 
 ---
 
 ## Answer
 
-$\left(2,\frac{81}{41},\frac1{\sqrt{82}}\right)$
+$\left(2,\frac{81}{41},\frac{1}{\sqrt{82}}\right)$
 
 ---
 
