@@ -135,10 +135,15 @@ $$
 $$
 Thus every feasible triple satisfies $\Delta(a,b,r)\geq0$.
 
-Step 3: Prove the sharp global lower bound
+Step 3: Derive and prove the sharp global lower bound
+The natural candidate threshold occurs when the antisymmetric bound is tight with no mass on the middle orbit, so $b=0$ and $a=18-96r$. Substitution into the symmetric determinant gives
+$$
+\Delta(18-96r,0,r)
+=-54\left(182016r^2-66080r+5997\right).
+$$
 Define
 $$
-p(t)=182016t^2-66080t+5997
+p(t)=182016t^2-66080t+5997,
 $$
 and let
 $$
@@ -229,7 +234,7 @@ $$
 $$
 
 Step 5: State the optimal one-epoch contraction
-The sharp worst-case expected energy contraction over all distributions on the six coordinate orders is the smaller root found in Step 3.
+The sharp worst-case expected energy contraction over all distributions on the six coordinate orders is the smaller root derived in Step 3.
 
 Final Answer: $\boxed{\frac{2065-\sqrt{358}}{11376}}$
 
