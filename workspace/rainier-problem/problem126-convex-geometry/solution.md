@@ -7,9 +7,9 @@ $$
 $$
 Thus translating the ellipsoid to the origin does not decrease its volume, so it suffices to consider
 $$
-E_A=\{A^{1/2}v:v\in B_4\},\qquad A=A^T>0.
+E_A=\{A^{1/2}v:v\in B_4\},\qquad A=A^T,
 $$
-Its squared volume ratio is
+where $A$ is positive definite. Its squared volume ratio is
 $$
 \left(\frac{\operatorname{vol}(E_A)}{\operatorname{vol}(B_4)}\right)^2=\det A.
 $$
@@ -30,9 +30,9 @@ Put
 $$
 u=\frac{1}{\sqrt3}(1,1,1,0)^T,
 $$
-and let $W$ be the two-dimensional subspace of vectors $(w_1,w_2,w_3,0)$ with $w_1+w_2+w_3=0$. An $S_3$-invariant positive definite $A$ acts by a scalar $r>0$ on $W$, while on $\operatorname{span}\{u,e_4\}$ it has matrix
+and let $W$ be the two-dimensional subspace of vectors $(w_1,w_2,w_3,0)$ with $w_1+w_2+w_3=0$. An $S_3$-invariant positive definite $A$ acts by a scalar $r>0$ on $W$, while on $\operatorname{span}\{u,e_4\}$ it has positive definite matrix
 $$
-M=\begin{pmatrix}x&y\\y&z\end{pmatrix}>0.
+M=\begin{pmatrix}x&y\\y&z\end{pmatrix}.
 $$
 Therefore
 $$
@@ -81,7 +81,7 @@ xz-y^2
 &\leq\frac{x(3-4x)}{3}.
 \end{aligned}
 $$
-Because $M>0$, we have $x>0$ and $xz-y^2>0$, so this bound forces $0<x<3/4$. Also $2r+x\leq3$, hence
+Because $M$ is positive definite, we have $x>0$ and $xz-y^2>0$, so this bound forces $0<x<3/4$. Also $2r+x\leq3$, hence
 $$
 r\leq\frac{3-x}{2}.
 $$
@@ -123,7 +123,7 @@ $$
 -\alpha/\sqrt3&1-\alpha
 \end{pmatrix},
 $$
-whose determinant is $\alpha(3-4\alpha)/3>0$. Hence $A_*>0$.
+whose determinant is $\alpha(3-4\alpha)/3>0$. Hence $A_*$ is positive definite.
 
 For the coordinate facets, the first three diagonal entries equal $1$ and the fourth is $1-\alpha<1$. For the two slab normals, direct substitution gives
 $$
