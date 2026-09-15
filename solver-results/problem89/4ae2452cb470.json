@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "ba53faa3e9723c948ac2186a5e240716cadf9b4d",
+  "problem_blob_sha": "4ae2452cb4703a397bd555a405691d4d7d849de2",
+  "statement_sha256": "a3b6bf2cd6b794908af79b6c071bd19786e8753a39b09a47845aa9ef6c3b3a3c",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-15T06:31:56+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(V=\\mathbb F_2^5\\). The points and hyperplanes of \\(\\operatorname{PG}(4,2)\\) may both be indexed by the nonzero vectors/functionals of \\(V\\), so there are \\(31\\) of each.\n\nFor a point \\(P\\) and hyperplane \\(H\\),\n\n\\[\n\\rho(P,H)=\n\\begin{cases}\n1,&P\\subset H,\\\\\n3,&P\\not\\subset H,\n\\end{cases}\n\\]\n\nwhile two distinct points, or two distinct hyperplanes, are distance \\(2\\).\n\nLet\n\n\\[\na=2^p,\\qquad b=3^p,\n\\]\n\nand let \\(N\\) be the \\(31\\times31\\) incidence matrix, \\(N_{P,H}=1\\) if \\(P\\subset H\\). Since \\(\\operatorname{PG}(4,2)\\) is a symmetric design with parameters\n\n\\[\n(v,k,\\lambda)=(31,15,7),\n\\]\n\nwe have\n\n\\[\nNN^T=8I+7J.\n\\]\n\nThus on the \\(30\\)-dimensional zero-sum subspace, every singular value of \\(N\\) is \\(2\\sqrt2\\).\n\nFor \\(c=(u,v)\\), with \\(\\sum u+\\sum v=0\\), the negative-type quadratic form is\n\n\\[\nQ_p(c)=\\sum_{x,y}c_xc_y\\rho(x,y)^p.\n\\]\n\nAfter separating the constant direction from the zero-sum directions, the only restrictive condition is\n\n\\[\n2\\sqrt2(3^p-1)\\le 2^p.\n\\]\n\nTherefore \\(\\wp\\) is the unique positive solution of\n\n\\[\n2\\sqrt2(3^\\wp-1)=2^\\wp.\n\\]\n\nEquivalently,\n\n\\[\n\\boxed{\\wp\\text{ is the unique }p>0\\text{ such that }3^p-1=2^{p-\\frac32}}.\n\\]\n\nNumerically,\n\n\\[\n\\wp\\approx 0.337305.\n\\]\n\nAt equality, the boundary equality space is\n\n\\[\nE=\\{(u,v): v\\perp \\mathbf 1,\\ u=-(2\\sqrt2)^{-1}Nv\\},\n\\]\n\nso \\(E\\) is naturally isomorphic to the \\(30\\)-dimensional zero-sum space on the hyperplanes.\n\nNow identify hyperplanes with nonzero elements of \\(V\\), and extend \\(v\\) to all of \\(V\\) by setting \\(v(0)=0\\). Since \\(v\\perp\\mathbf 1\\), its Fourier transform satisfies \\(\\widehat v(0)=0\\), and for nonzero \\(P\\),\n\n\\[\n(Nv)(P)=\\frac12\\widehat v(P).\n\\]\n\nThus for a two-dimensional subspace \\(L\\le E\\), the two supports in the problem are exactly the support of a two-dimensional function space \\(W\\) and the support of its Fourier transform.\n\nThe finite Fourier uncertainty principle gives\n\n\\[\n|S_{\\mathcal H}(L)|\\,|S_{\\mathcal P}(L)|\\ge 32\\cdot 2=64.\n\\]\n\nEquality occurs precisely when, for some subgroup \\(K\\le V\\), the hyperplane support is the union of two nonzero cosets of \\(K\\), and the point support is one nonzero coset of \\(K^\\perp\\). Since the support sizes must avoid \\(0\\), the possibilities are\n\n\\[\n|K|=2,4,8.\n\\]\n\nCounting:\n\n\\[\n\\begin{aligned}\n|K|=2 &: \\binom51_2\\binom{15}{2}(1)=31\\cdot105=3255,\\\\\n|K|=4 &: \\binom52_2\\binom{7}{2}(3)=155\\cdot21\\cdot3=9765,\\\\\n|K|=8 &: \\binom53_2\\binom{3}{2}(7)=155\\cdot3\\cdot7=3255.\n\\end{aligned}\n\\]\n\nHence\n\n\\[\nN_2^*=3255+9765+3255=16275.\n\\]\n\nTherefore\n\n\\[\n\\boxed{(\\wp,U_2^*,N_2^*)=\\left(\\wp,64,16275\\right)}\n\\]\n\nwhere \\(\\wp\\) is the unique positive root of\n\n\\[\n2\\sqrt2(3^\\wp-1)=2^\\wp.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-15T06:37:50+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/4ae2452cb470.json"
+}
