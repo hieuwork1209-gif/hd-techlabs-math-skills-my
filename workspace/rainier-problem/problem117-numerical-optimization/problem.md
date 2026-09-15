@@ -4,30 +4,46 @@
 
 Let
 $$
-A=\begin{bmatrix}
-2&1&1\\
-1&2&1\\
-1&1&3
-\end{bmatrix},
+Q=\begin{bmatrix}1&0\\0&4\end{bmatrix},
 \qquad
-f(x)=\frac12x^TAx.
+R=\begin{bmatrix}5/2&-3/2\\-3/2&5/2\end{bmatrix},
 $$
-For a permutation $\pi=(\pi_1,\pi_2,\pi_3)$ of $\{1,2,3\}$, perform one exact Gauss-Seidel sweep in that order: starting from $x^{(0)}=x$, for $k=1,2,3$ replace coordinate $\pi_k$ by the value that minimizes $f$ while the other two coordinates are held fixed. Let the resulting vector be $x^\pi$.
-
-Choose the permutation randomly according to an arbitrary probability distribution $q=(q_\pi)_{\pi\in S_3}$, and define
+and define
 $$
-\rho(q)=\sup_{x\ne0}
-\frac{\mathbb E_q[f(x^\pi)]}{f(x)}.
+f(x)=\frac12x^TQx,
+\qquad
+g(x)=\frac12x^TRx
+\qquad(x\in\mathbb R^2).
+$$
+For $\rho>0$, define the proximal maps
+$$
+P_{f,\rho}(v)=\operatorname*{argmin}_{x\in\mathbb R^2}
+\left(f(x)+\frac\rho2\|x-v\|_2^2\right),
+$$
+$$
+P_{g,\rho}(v)=\operatorname*{argmin}_{x\in\mathbb R^2}
+\left(g(x)+\frac\rho2\|x-v\|_2^2\right).
+$$
+For a relaxation parameter $0<\theta<2$, one relaxed Douglas-Rachford step is
+$$
+y=P_{f,\rho}(z),
+\qquad
+w=P_{g,\rho}(2y-z),
+\qquad
+z^+=z+\theta(w-y).
+$$
+Since the unique minimizer of $f+g$ is $0$, define the worst-case one-step Euclidean contraction
+$$
+C(\rho,\theta)=\sup_{z\ne0}\frac{\|z^+\|_2}{\|z\|_2}.
 $$
 Determine exactly
 $$
-\rho_*:=\min_{q_\pi\geq0,\ \sum_{\pi\in S_3}q_\pi=1}\rho(q),
+C_*:=\min_{\rho>0,\ 0<\theta<2}C(\rho,\theta),
 $$
-prove that the minimizing distribution is unique, and determine that distribution. Give the final answer as the ordered pair
+and determine the unique minimizing pair $(\rho_*,\theta_*)$. Give the final answer as
 $$
-\left(\rho_*,q_{123}\right),
+(\rho_*,\theta_*,C_*).
 $$
-where $q_{123}$ is the probability assigned to the sweep order $(1,2,3)$.
 
 ---
 
@@ -44,4 +60,4 @@ where $q_{123}$ is the probability assigned to the sweep order $(1,2,3)$.
 
 ## Domain Explanation
 
-This problem optimizes the randomization law of a complete exact-coordinate Gauss-Seidel epoch for a symmetric positive-definite quadratic, with objective the worst-case expected energy contraction and with the equality case used to reconstruct the unique optimizer, which is part of Optimization and Numerical Mathematics and Numerical optimization. The problem also uses eigenvalues, invariant subspaces, and positive-semidefinite matrix inequalities from Linear Algebra, but those are subordinate tools for certifying the optimization objective rather than the primary requested task.
+This problem tunes the penalty and relaxation parameters of relaxed Douglas-Rachford splitting for a strongly convex quadratic optimization problem by minimizing its worst-case one-step contraction, which is part of Optimization and Numerical Mathematics and Numerical optimization. Linear Algebra, especially singular values and matrix norms, supplies the convergence certificate, but it is subordinate because those tools are used to optimize the parameters of the splitting algorithm rather than being the requested object themselves.
