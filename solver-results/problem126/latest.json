@@ -1,9 +1,9 @@
 {
   "problem": "problem126",
   "branch": "adversary/problem126",
-  "problem_path": "workspace/rainier-problem/problem126-probability-foundations/problem.md",
-  "problem_blob_sha": "9a39a88d42916dc1854a8487ebbbcb987b7b2e3e",
-  "source_commit_sha": "a5eb91603e02f3553c83f57a6234434f85e7b7af",
+  "problem_path": "workspace/rainier-problem/problem126-convex-geometry/problem.md",
+  "problem_blob_sha": "b5ce172bd6083aba4642bed2de344f6d0f15b11d",
+  "source_commit_sha": "f4b4cdffd2ae26e227c8df86476a5cf6d24f68e0",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-15T09:41:15+00:00",
-  "result_file": "solver-results/problem126/9a39a88d4291.json"
+  "completed_at": "2026-09-15T14:51:50+00:00",
+  "result_file": "solver-results/problem126/b5ce172bd608.json"
 }

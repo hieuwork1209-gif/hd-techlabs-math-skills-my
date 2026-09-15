@@ -1,0 +1,22 @@
+{
+  "problem": "problem126",
+  "branch": "adversary/problem126",
+  "problem_path": "workspace/rainier-problem/problem126-convex-geometry/problem.md",
+  "source_commit_sha": "f4b4cdffd2ae26e227c8df86476a5cf6d24f68e0",
+  "problem_blob_sha": "b5ce172bd6083aba4642bed2de344f6d0f15b11d",
+  "statement_sha256": "5c4a03967df366d1fda8f28bbc7dfda9d3829bb6175b53aa0c27922e29704b65",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-15T14:50:25+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "We need maximize the volume of an ellipsoid inside the centrally symmetric polytope \\(K\\).\n\nLet an ellipsoid centered at \\(0\\) be\n\\[\nE=T B_4,\\qquad M=TT^T\\succeq 0.\n\\]\nSince \\(K=-K\\), any ellipsoid \\(c+TB_4\\subset K\\) gives, by reflection and convexity,\n\\[\nTB_4=\\frac12\\bigl((c+TB_4)+(-c+TB_4)\\bigr)\\subset K,\n\\]\nwith the same volume. So it suffices to consider centered ellipsoids.\n\nFor a slab \\(|a^Tx|\\le 1\\), the condition \\(TB_4\\subset\\{|a^Tx|\\le1\\}\\) is\n\\[\na^TMa\\le1.\n\\]\nThus we maximize\n\\[\n\\det M=\\left(\\frac{\\operatorname{vol}(E)}{\\operatorname{vol}(B_4)}\\right)^2\n\\]\nsubject to the six inequalities from\n\\[\ne_1,e_2,e_3,e_4,\\quad s=(1,1,1,1),\\quad t=\\left(\\frac13,\\frac13,\\frac13,-1\\right).\n\\]\n\nThe first three coordinates are symmetric, so averaging over their permutations preserves feasibility and does not decrease \\(\\det M\\). Hence the optimizer has form\n\\[\nM=\n\\begin{pmatrix}\na&b&b&c\\\\\nb&a&b&c\\\\\nb&b&a&c\\\\\nc&c&c&d\n\\end{pmatrix}.\n\\]\nSet\n\\[\np=a-b,\\qquad q=a+2b.\n\\]\nThen\n\\[\n\\det M=p^2(qd-3c^2),\n\\]\nand the constraints become\n\\[\na=\\frac{q+2p}{3}\\le1,\\qquad d\\le1,\n\\]\n\\[\n3q+6c+d\\le1,\\qquad \\frac q3-2c+d\\le1.\n\\]\nFor fixed \\(q\\), the determinant is increasing in \\(p\\), so\n\\[\np=\\frac{3-q}{2}.\n\\]\nNow maximize\n\\[\nqd-3c^2\n\\]\nunder\n\\[\nd\\le 1-3q-6c,\\qquad d\\le 1-\\frac q3+2c.\n\\]\nFor fixed \\(q\\), the best \\(d\\) is the smaller of those two upper bounds. The first decreases in \\(c\\), the second increases in \\(c\\), so the maximum occurs where they meet:\n\\[\n1-3q-6c=1-\\frac q3+2c.\n\\]\nThus\n\\[\nc=-\\frac q3,\\qquad d=1-q.\n\\]\nThen\n\\[\nqd-3c^2=q(1-q)-\\frac{q^2}{3}=q-\\frac43q^2.\n\\]\nSo\n\\[\n\\det M=\\frac{(3-q)^2}{4}\\left(q-\\frac43q^2\\right)\n=\\frac1{12}q(3-q)^2(3-4q),\n\\]\nwith \\(0<q<\\frac34\\).\n\nDifferentiate:\n\\[\n\\frac{d}{dq}\\log\\bigl(q(3-q)^2(3-4q)\\bigr)\n=\\frac1q-\\frac2{3-q}-\\frac4{3-4q}.\n\\]\nSetting this to zero gives\n\\[\n16q^2-33q+9=0.\n\\]\nThe admissible root is\n\\[\nq=\\frac{33-3\\sqrt{57}}{32}.\n\\]\nSubstituting,\n\\[\n\\det M\n=\\frac1{12}q(3-q)^2(3-4q)\n=\\frac{81(133\\sqrt{57}-471)}{131072}.\n\\]\n\nTherefore,\n\\[\n\\boxed{\\frac{81(133\\sqrt{57}-471)}{131072}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-15T14:51:50+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem126/b5ce172bd608.json"
+}
