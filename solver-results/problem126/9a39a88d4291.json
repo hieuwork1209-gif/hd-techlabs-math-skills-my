@@ -1,0 +1,22 @@
+{
+  "problem": "problem126",
+  "branch": "adversary/problem126",
+  "problem_path": "workspace/rainier-problem/problem126-probability-foundations/problem.md",
+  "source_commit_sha": "a5eb91603e02f3553c83f57a6234434f85e7b7af",
+  "problem_blob_sha": "9a39a88d42916dc1854a8487ebbbcb987b7b2e3e",
+  "statement_sha256": "d2f5ed7e1b8bf7b790044d68a1c7edf76906eb04f1b4e27005771bc86760b9b8",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-15T07:48:46+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nY=12-2S.\n\\]\nAfter symmetrizing the law under \\(S\\mapsto 12-S\\), which preserves all constraints and the objective, put\n\\[\nr_d=P(|S-6|=d),\\qquad d=0,1,\\dots,6.\n\\]\nThen \\(|Y|=2d\\). Since the variables are six-wise independent and unbiased, the first six moments of \\(Y\\) match those of a sum of \\(12\\) independent Rademacher variables. Hence\n\\[\n\\sum r_d=1,\\qquad \\sum r_d d^2=3,\\qquad \\sum r_d d^4=\\frac{51}{2},\\qquad \\sum r_d d^6=\\frac{681}{2}.\n\\]\nThe quantity to maximize is\n\\[\nr_6+\\lambda r_5.\n\\]\n\nFor \\(0\\le \\lambda\\le \\frac{175}{648}\\), use\n\\[\nP(u)=\\frac{u(u-4)(u-9)}{31104}.\n\\]\nFor \\(u=d^2\\in\\{0,1,4,9,16,25,36\\}\\), this satisfies\n\\[\nP(36)=1,\\qquad P(25)=\\frac{175}{648},\\qquad P(u)\\ge 0\\text{ otherwise}.\n\\]\nThus \\(P(d^2)\\ge \\mathbf 1_{d=6}+\\lambda \\mathbf 1_{d=5}\\), so\n\\[\nr_6+\\lambda r_5\\le E[P(d^2)]\n=\\frac{1}{31104}\\left(\\frac{681}{2}-13\\cdot\\frac{51}{2}+36\\cdot 3\\right)\n=\\frac{13}{3456}.\n\\]\nEquality is attained by\n\\[\n(r_0,r_2,r_3,r_6)=\\left(\\frac{77}{144},\\frac{33}{128},\\frac{11}{54},\\frac{13}{3456}\\right),\n\\]\nall other \\(r_d=0\\).\n\nFor \\(\\lambda\\ge \\frac{175}{648}\\), use\n\\[\nQ(u)=\\frac{u(u-4)(u-9)}{8400}.\n\\]\nThen \\(Q(25)=1\\), \\(Q(36)=\\frac{648}{175}\\), and \\(Q(u)\\ge0\\) on the same seven points. Since \\(\\lambda\\ge 175/648\\),\n\\[\n\\lambda Q(d^2)\\ge \\mathbf 1_{d=6}+\\lambda \\mathbf 1_{d=5}.\n\\]\nTherefore\n\\[\nr_6+\\lambda r_5\\le \\lambda E[Q(d^2)]\n=\\lambda\\cdot \\frac{39}{2800}.\n\\]\nEquality is attained by\n\\[\n(r_0,r_2,r_3,r_5)=\\left(\\frac{99}{200},\\frac{99}{280},\\frac{11}{80},\\frac{39}{2800}\\right),\n\\]\nall other \\(r_d=0\\).\n\nThese extremal \\(r_d\\) distributions are realized by choosing \\(S=6\\pm d\\) symmetrically and then choosing uniformly among binary strings of Hamming weight \\(S\\). The moment identities above give mutual independence for every subfamily of size at most six.\n\nThus the maximum is\n\\[\n\\boxed{\n\\max\\left\\{\\frac{13}{3456},\\frac{39\\lambda}{2800}\\right\\}\n}\n\\]\nequivalently, \\(\\frac{13}{3456}\\) for \\(0\\le\\lambda\\le\\frac{175}{648}\\), and \\(\\frac{39\\lambda}{2800}\\) for \\(\\lambda\\ge\\frac{175}{648}\\).",
+  "status": "success",
+  "completed_at": "2026-09-15T09:41:15+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem126/9a39a88d4291.json"
+}
