@@ -1,0 +1,22 @@
+{
+  "problem": "problem125",
+  "branch": "adversary/problem125",
+  "problem_path": "workspace/rainier-problem/problem125-random-variables-and-distributions/problem.md",
+  "source_commit_sha": "c4d623c93c4f943833d6e16b8905e854b42a8de6",
+  "problem_blob_sha": "34b781bcee885a0ce602cfb225f7c070eaa11020",
+  "statement_sha256": "c15c622c0f377f3e9bad6021491340e0c39bb95be4eae1702a4c61f90b9e2a33",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-15T04:37:51+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nR(x)=1-\\frac{14}{3}x^2+\\frac{21}{5}x^4.\n\\]\n\nThen \\(R(0)=1\\), and \\(R(x)^2\\ge \\mathbf 1_{\\{0\\}}(x)\\) for every \\(x\\in[-1,1]\\). Hence for any admissible \\(X\\),\n\n\\[\n\\mathbb P(X=0)\\le \\mathbb E[R(X)^2].\n\\]\n\nSince \\(R^2\\) has degree \\(8\\), the moment assumptions imply\n\n\\[\n\\mathbb E[R(X)^2]=\\frac12\\int_{-1}^1 R(t)^2\\,dt.\n\\]\n\nExpanding,\n\n\\[\nR(t)^2\n=\n1-\\frac{28}{3}t^2+\\frac{1358}{45}t^4-\\frac{196}{5}t^6+\\frac{441}{25}t^8.\n\\]\n\nUsing \\(\\frac12\\int_{-1}^1 t^{2j}\\,dt=\\frac1{2j+1}\\),\n\n\\[\n\\frac12\\int_{-1}^1 R(t)^2\\,dt\n=\n1-\\frac{28}{9}+\\frac{1358}{225}-\\frac{196}{35}+\\frac{441}{225}\n=\n\\frac{64}{225}.\n\\]\n\nTherefore\n\n\\[\n\\mathbb P(X=0)\\le \\frac{64}{225}.\n\\]\n\nNow we show equality is attainable and classify it. The zeros of \\(R\\) away from \\(0\\) satisfy, with \\(y=x^2\\),\n\n\\[\n1-\\frac{14}{3}y+\\frac{21}{5}y^2=0,\n\\]\n\nso\n\n\\[\ny=\\frac{35\\pm 2\\sqrt{70}}{63}.\n\\]\n\nDefine\n\n\\[\na=\\frac{35-2\\sqrt{70}}{63},\n\\qquad\nb=\\frac{35+2\\sqrt{70}}{63}.\n\\]\n\nEquality in the bound requires \\(X\\) to be supported only on\n\n\\[\n\\{0,\\pm\\sqrt a,\\pm\\sqrt b\\},\n\\]\n\nbecause \\(R(x)^2-\\mathbf 1_{\\{0\\}}(x)\\) must vanish almost surely.\n\nLet\n\n\\[\n\\mathbb P(X=0)=\\frac{64}{225},\n\\]\n\nand put total masses \\(U\\) on the two points \\(\\pm\\sqrt a\\), and \\(V\\) on the two points \\(\\pm\\sqrt b\\). The even moment conditions force\n\n\\[\nU+V=\\frac{161}{225},\\qquad Ua+Vb=\\frac13.\n\\]\n\nSolving gives\n\n\\[\nU=\\frac{161\\sqrt{70}+455}{450\\sqrt{70}},\n\\qquad\nV=\\frac{161\\sqrt{70}-455}{450\\sqrt{70}}.\n\\]\n\nThe odd moment conditions force symmetry between the positive and negative points, so the unique extremizing distribution is\n\n\\[\n\\boxed{\n\\mathbb P(X=0)=\\frac{64}{225}\n}\n\\]\n\nand\n\n\\[\n\\boxed{\n\\mathbb P(X=\\pm\\sqrt a)\n=\n\\frac{161\\sqrt{70}+455}{900\\sqrt{70}},\n\\qquad\n\\mathbb P(X=\\pm\\sqrt b)\n=\n\\frac{161\\sqrt{70}-455}{900\\sqrt{70}},\n}\n\\]\n\nwhere\n\n\\[\n\\boxed{\na=\\frac{35-2\\sqrt{70}}{63},\n\\qquad\nb=\\frac{35+2\\sqrt{70}}{63}.\n}\n\\]\n\nThis distribution has all odd moments \\(0\\) by symmetry. Its even moments through degree \\(8\\) are \\(1/3,1/5,1/7,1/9\\), so it is admissible. Thus the maximum is exactly\n\n\\[\n\\boxed{\\frac{64}{225}},\n\\]\n\nattained uniquely by the distribution above.",
+  "status": "success",
+  "completed_at": "2026-09-15T04:39:12+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem125/34b781bcee88.json"
+}
