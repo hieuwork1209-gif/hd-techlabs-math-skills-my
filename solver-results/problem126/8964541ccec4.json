@@ -1,0 +1,22 @@
+{
+  "problem": "problem126",
+  "branch": "adversary/problem126",
+  "problem_path": "workspace/rainier-problem/problem126-convex-geometry/problem.md",
+  "source_commit_sha": "dfdbc627714d0dad8007a05f1b4d3d28352bccc4",
+  "problem_blob_sha": "8964541ccec4ea2beae423aa421f7868db58d384",
+  "statement_sha256": "a28576d0f85d7ade36a10a0a4e2e8f83fb1eac395dc51dc9b20b113853377bc9",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-15T14:57:51+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let an ellipsoid centered at the origin be written as\n\n\\[\nE=\\{x:x^T M^{-1}x\\le 1\\},\n\\]\n\nwhere \\(M\\) is positive definite. The support condition for a facet \\(|u\\cdot x|\\le b\\) is\n\n\\[\nu^T M u\\le b^2.\n\\]\n\nBy uniqueness of the maximum-volume centered ellipsoid and by the symmetry permuting \\(x_1,x_2,x_3\\), \\(M\\) is invariant under those permutations. Decompose\n\n\\[\n\\mathbb R^4=W\\oplus \\operatorname{span}(p,q),\n\\]\n\nwhere \\(W=\\{x_4=0,\\ x_1+x_2+x_3=0\\}\\), \\(p=(1,1,1,0)/\\sqrt3\\), and \\(q=e_4\\). Then\n\n\\[\nM=\\lambda I_W\\oplus \n\\begin{pmatrix}a&b\\\\ b&c\\end{pmatrix}.\n\\]\n\nThe coordinate constraints \\(|x_i|\\le 1\\) for \\(i=1,2,3\\) give\n\n\\[\n\\frac23\\lambda+\\frac13a\\le 1.\n\\]\n\nSince the volume is proportional to \\(\\lambda^2(ac-b^2)\\), this is always active:\n\n\\[\n\\lambda=\\frac{3-a}{2}.\n\\]\n\nSo \\(C_{123}\\) is tangent for every \\(h\\in(1,2)\\).\n\nPut \\(t=h^2\\). The remaining constraints are\n\n\\[\nc\\le 1,\n\\]\n\n\\[\n3a+2\\sqrt3\\,b+c\\le t \\qquad (S_+),\n\\]\n\n\\[\n\\frac a3-\\frac{2b}{\\sqrt3}+c\\le t \\qquad (S_-).\n\\]\n\nWe maximize\n\n\\[\n(3-a)^2(ac-b^2)\n\\]\n\nunder these constraints.\n\nSolving the KKT conditions gives three regimes.\n\nFor \\(1<t<\\frac{10}{7}\\), the active constraints are \\(S_+\\) and \\(S_-\\). They force\n\n\\[\nb=-\\frac a{\\sqrt3},\\qquad c=t-a,\n\\]\n\nand optimization gives\n\n\\[\na=\\frac{9t+24-3\\sqrt{9t^2-16t+64}}{32}.\n\\]\n\nHere \\(c<1\\), so \\(C_4\\) is not tangent. Thus\n\n\\[\n\\mathcal T(h)=\\{C_{123},S_+,S_-\\}.\n\\]\n\nFor \\(\\frac{10}{7}\\le t\\le \\frac85\\), all three constraints \\(C_4,S_+,S_-\\) are active. Indeed\n\n\\[\nc=1,\\qquad a=t-1,\\qquad b=-\\frac{t-1}{\\sqrt3}.\n\\]\n\nThus\n\n\\[\n\\mathcal T(h)=\\{C_{123},C_4,S_+,S_-\\}.\n\\]\n\nFor \\(\\frac85<t<4\\), the active constraints are \\(C_4\\) and \\(S_+\\). Then\n\n\\[\nc=1,\\qquad a=\\frac{t+2}{6},\\qquad b=\\frac{t-4}{4\\sqrt3},\n\\]\n\nand \\(S_-\\) is slack. Hence\n\n\\[\n\\mathcal T(h)=\\{C_{123},C_4,S_+\\}.\n\\]\n\nSince \\(t=h^2\\), the only transition points in \\(h\\in(1,2)\\) are\n\n\\[\nh=\\sqrt{\\frac{10}{7}},\\qquad h=\\sqrt{\\frac85}.\n\\]\n\n\\[\n\\boxed{\\left\\{\\sqrt{\\frac{10}{7}},\\sqrt{\\frac85}\\right\\}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-15T15:00:03+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem126/8964541ccec4.json"
+}
