@@ -1,0 +1,17 @@
+{
+  "problem": "problem125",
+  "branch": "adversary/problem125",
+  "problem_path": "workspace/rainier-problem/problem125-probability-foundations/problem.md",
+  "problem_blob_sha": "032a30d49d494b3fa7ff2019a8fb17c5f6400460",
+  "source_commit_sha": "8fa840b2fceabd3f24fc0c01f4de3555dca3e69c",
+  "status": "success",
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "timeout_seconds": 2100,
+  "completed_at": "2026-09-15T04:18:06+00:00",
+  "result_file": "solver-results/problem125/032a30d49d49.json"
+}

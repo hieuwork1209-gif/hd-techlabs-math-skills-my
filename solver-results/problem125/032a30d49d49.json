@@ -1,0 +1,22 @@
+{
+  "problem": "problem125",
+  "branch": "adversary/problem125",
+  "problem_path": "workspace/rainier-problem/problem125-probability-foundations/problem.md",
+  "source_commit_sha": "8fa840b2fceabd3f24fc0c01f4de3555dca3e69c",
+  "problem_blob_sha": "032a30d49d494b3fa7ff2019a8fb17c5f6400460",
+  "statement_sha256": "4d48f4c0f864af91b1468870c677432654993fcaabc0510055fde2dd0ee3c1d7",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-15T04:17:00+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nY_i=2X_i-1\\in\\{-1,1\\}.\n\\]\nThen each \\(Y_i\\) has mean \\(0\\), and the \\(6\\)-wise independence assumption gives\n\\[\n\\mathbb E\\prod_{i\\in S}Y_i=0\\qquad(1\\le |S|\\le 6).\n\\]\n\nFor \\(y_i\\in\\{-1,1\\}\\), the indicator of the event that all \\(Y_i\\)’s are equal is\n\\[\n\\mathbf 1_{\\{Y_1=\\cdots=Y_8\\}}\n=\\mathbf 1_{\\{Y_i=1\\ \\forall i\\}}+\\mathbf 1_{\\{Y_i=-1\\ \\forall i\\}}.\n\\]\nUsing\n\\[\n\\mathbf 1_{\\{Y_i=1\\ \\forall i\\}}=2^{-8}\\prod_{i=1}^8(1+Y_i),\\qquad\n\\mathbf 1_{\\{Y_i=-1\\ \\forall i\\}}=2^{-8}\\prod_{i=1}^8(1-Y_i),\n\\]\nwe get\n\\[\n\\mathbf 1_{\\{Y_1=\\cdots=Y_8\\}}\n=2^{-7}\\sum_{\\substack{S\\subseteq\\{1,\\dots,8\\}\\\\ |S|\\text{ even}}}\\prod_{i\\in S}Y_i.\n\\]\nTaking expectations, all even terms of sizes \\(2,4,6\\) vanish, so\n\\[\n\\mathbb P(Y_1=\\cdots=Y_8)\n=2^{-7}\\left(1+\\mathbb E\\prod_{i=1}^8Y_i\\right).\n\\]\nSince \\(\\prod_{i=1}^8Y_i\\le 1\\),\n\\[\n\\mathbb P(X_1=\\cdots=X_8)\\le 2^{-7}(1+1)=\\frac1{64}.\n\\]\n\nThis bound is attained by taking the uniform distribution on all binary strings of even parity:\n\\[\n\\mathbb P(X=x)=\n\\begin{cases}\n2^{-7},& x_1+\\cdots+x_8\\equiv 0\\pmod 2,\\\\\n0,& x_1+\\cdots+x_8\\equiv 1\\pmod 2.\n\\end{cases}\n\\]\nIndeed, any choice of at most \\(6\\) coordinates has exactly half of its completions even and half odd, so every such subfamily is mutually independent and uniform. The two all-equal strings \\(00000000\\) and \\(11111111\\) both have even parity, so their total probability is\n\\[\n2\\cdot 2^{-7}=\\frac1{64}.\n\\]\n\nIt remains to classify equality. Equality requires\n\\[\n\\mathbb E\\prod_{i=1}^8Y_i=1,\n\\]\nso\n\\[\n\\prod_{i=1}^8Y_i=1\\quad\\text{almost surely}.\n\\]\nThus\n\\[\nY_8=Y_1Y_2\\cdots Y_7.\n\\]\nFor \\(Y_1,\\dots,Y_7\\), every nonempty product moment of size at most \\(6\\) is \\(0\\), and the size \\(7\\) product moment is\n\\[\n\\mathbb E(Y_1\\cdots Y_7)=\\mathbb E Y_8=0.\n\\]\nHence \\(Y_1,\\dots,Y_7\\) are mutually independent fair signs. Therefore \\(Y_8\\) is forced to be their product, giving exactly the uniform even-parity distribution above.\n\n\\[\n\\boxed{\\max \\mathbb P(X_1=\\cdots=X_8)=\\frac1{64}}\n\\]\n\nThe unique maximizing joint distribution is the uniform distribution on the \\(128\\) binary strings with even parity.",
+  "status": "success",
+  "completed_at": "2026-09-15T04:18:06+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem125/032a30d49d49.json"
+}
