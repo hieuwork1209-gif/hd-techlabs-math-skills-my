@@ -39,18 +39,18 @@ D_pz=h(p)z,
 h(p)=30\cdot2^p-16\cdot3^p-15.
 $$
 
-We first show $h(p)<0$ for every $p>0$. Write $u=2^p>1$ and $r=\log_2 3$. Since $3^{12}>2^{19}$, we have $r>\frac{19}{12}$, hence
+We first show $h(p)<0$ for every $p>0$. Write $x=2^p>1$ and $r=\log_2 3$. Since $3^{12}>2^{19}$, we have $r>\frac{19}{12}$, hence
 $$
-h(p)=-16u^r+30u-15<-16u^{19/12}+30u-15=:q(u).
+h(p)=-16x^r+30x-15<-16x^{19/12}+30x-15=:q(x).
 $$
 The concave function $q$ has its unique maximum at
-$$u_0=\left(\frac{45}{38}\right)^{12/7}=\left(1+\frac{7}{38}\right)^{12/7}.$$
-For $f(x)=(1+x)^{12/7}$, $f''(x)\leq\frac{60}{49}$ for $x\geq0$, so Taylor's theorem at $0$ gives
-$$u_0\leq1+\frac{12}{7}\frac{7}{38}+\frac{30}{49}\left(\frac{7}{38}\right)^2
+$$x_0=\left(\frac{45}{38}\right)^{12/7}=\left(1+\frac{7}{38}\right)^{12/7}.$$
+For $f(t)=(1+t)^{12/7}$, $f''(t)\leq\frac{60}{49}$ for $t\geq0$, so Taylor's theorem at $0$ gives
+$$x_0\leq1+\frac{12}{7}\frac{7}{38}+\frac{30}{49}\left(\frac{7}{38}\right)^2
 =\frac{965}{722}<\frac{19}{14}.$$
-At the maximum, $u_0^{7/12}=\frac{45}{38}$, so
+At the maximum, $x_0^{7/12}=\frac{45}{38}$, so
 $$
-q(u_0)=\frac{210}{19}u_0-15<\frac{210}{19}\frac{19}{14}-15=0.
+q(x_0)=\frac{210}{19}x_0-15<\frac{210}{19}\frac{19}{14}-15=0.
 $$
 Thus $h(p)<0$ for all $p>0$.
 
@@ -172,17 +172,17 @@ $$
 
 Step 5: Count the projective equality witnesses attaining the sharp bound
 
-Fix $k=\dim W$. The number of $k$-dimensional subspaces of $V$ is the Gaussian binomial coefficient ${5\brack k}_2$. For a fixed $W$, there are $2^{5-k}-1$ nonzero cosets $x_0+W$, and there are $2^k-1$ nontrivial characters of $W$. Two functionals differing by an element of $W^\perp$ give the same character on $W$ and only change the resulting function by a global sign on the chosen coset, so these choices count projective rays exactly once.
+Fix $k=\dim W$. The number of $k$-dimensional subspaces of $V$ is the Gaussian binomial coefficient $\binom{5}{k}_2$. The equality classification in Step 4 recovers $W$ as the span of the support differences, so different subspaces cannot duplicate a ray. For a fixed $W$, there are $2^{5-k}-1$ nonzero cosets $x_0+W$, and there are $2^k-1$ nontrivial characters of $W$. Two functionals differing by an element of $W^\perp$ give the same character on $W$ and only change the resulting function by a global sign on the chosen coset, so these choices count projective rays exactly once.
 
 Hence
 $$
-N_*=\sum_{k=1}^4{5\brack k}_2(2^{5-k}-1)(2^k-1).
+N_*=\sum_{k=1}^4\binom{5}{k}_2(2^{5-k}-1)(2^k-1).
 $$
 Using
 $$
-{5\brack1}_2={5\brack4}_2=31,
+\binom{5}{1}_2=\binom{5}{4}_2=31,
 \qquad
-{5\brack2}_2={5\brack3}_2=155,
+\binom{5}{2}_2=\binom{5}{3}_2=155,
 $$
 we obtain
 $$
