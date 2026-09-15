@@ -7,7 +7,7 @@ Q=\begin{bmatrix}1&0\\0&4\end{bmatrix},
 \qquad
 R=\begin{bmatrix}\frac{5}{2}&-\frac{3}{2}\\-\frac{3}{2}&\frac{5}{2}\end{bmatrix}.
 $$
-For a scale $\mu\in[1,4]$, the Hessians of $f_\mu$ and $g_\mu$ are $\mu Q$ and $\mu R$. If
+For a scale $\mu\in[1,4]$, the Hessians of $f_{\mu}$ and $g_{\mu}$ are $\mu Q$ and $\mu R$. If
 $$
 t=\frac{\rho}{\mu},
 $$
@@ -54,13 +54,21 @@ Then
 $$
 H_Q(t)=D,
 \qquad
-H_R(t)=UDU^T.
+H_R(t)=UDU^T,
+$$
+and
+$$
+UDU^T=\frac{1}{2}
+\begin{bmatrix}
+a+b&a-b\\
+a-b&a+b
+\end{bmatrix}.
 $$
 Writing
 $$
 M(t)=H_R(t)H_Q(t)=UDU^TD,
 $$
-direct multiplication gives
+this multiplication gives
 $$
 \operatorname{tr}M(t)=\frac{(a+b)^2}{2},
 \qquad
@@ -68,11 +76,11 @@ $$
 \qquad
 \det M(t)=a^2b^2.
 $$
-For the reciprocal parameter $t^\vee=4/t$,
+For the reciprocal parameter $t^{\vee}=4/t$,
 $$
-a(t^\vee)=-b(t),
+a(t^{\vee})=-b(t),
 \qquad
-b(t^\vee)=-a(t),
+b(t^{\vee})=-a(t),
 $$
 so the three displayed invariants are unchanged. Since
 $$
@@ -116,8 +124,11 @@ v(s)=T_{t,s}e_2=(1-s)e_2+sm,
 $$
 the function $\|v(s)\|_2^2$ is convex in $s$. At $s=1$ its derivative divided by $2$ is
 $$
+\begin{aligned}
 \|m\|_2^2-m_2
-=-\frac{t(t-4)(13t^3+19t^2-16t-112)}{(t+1)^2(t+4)^4}.
+&=\frac{b}{2}\left(b(a^2+b^2)-(a+b)\right)\\
+&=-\frac{t(t-4)(13t^3+19t^2-16t-112)}{(t+1)^2(t+4)^4}.
+\end{aligned}
 $$
 For $0<t\leq1$,
 $$
@@ -174,12 +185,13 @@ $$
 \|T_{t,1}\|_2\leq\|M(t)\|_F
 =\frac{a^2+b^2}{\sqrt{2}}.
 $$
-A direct simplification gives
+Substituting the displayed $a$ and $b$ gives
 $$
 a^2+b^2
-=\frac{2(t^4+t^2+16)}{(t+1)^2(t+4)^2},
+=\frac{(t-1)^2(t+4)^2+(t-4)^2(t+1)^2}{(t+1)^2(t+4)^2}
+=\frac{2(t^4+t^2+16)}{(t+1)^2(t+4)^2}.
 $$
-and
+Subtracting from $9/25$ and factoring yields
 $$
 \frac{9}{25}-(a^2+b^2)
 =-\frac{(t-1)(t-4)(41t^2+115t+164)}{25(t+1)^2(t+4)^2}.
