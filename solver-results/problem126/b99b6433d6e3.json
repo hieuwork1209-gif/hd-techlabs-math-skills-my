@@ -1,0 +1,22 @@
+{
+  "problem": "problem126",
+  "branch": "adversary/problem126",
+  "problem_path": "workspace/rainier-problem/problem126-probability-foundations/problem.md",
+  "source_commit_sha": "6459a381d3cb520804d7891cc0b977c9cb696e35",
+  "problem_blob_sha": "b99b6433d6e37218cc3424d8d7fb3b4a0b9fc19b",
+  "statement_sha256": "ba4bcb2d45097b9c030752f4946a11df402efee7f83c8d1216c2ba5414714db2",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-15T07:41:08+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nY_i=(-1)^{X_i}\\in\\{-1,1\\}.\n\\]\nThen \\(X_i\\) are unbiased and \\(6\\)-wise independent iff\n\\[\n\\mathbb E\\prod_{i\\in S}Y_i=0\n\\]\nfor every nonempty \\(S\\subseteq\\{1,\\dots,12\\}\\) with \\(|S|\\le 6\\).\n\nWe want\n\\[\nP(X_1=\\cdots=X_{12})=P(Y=(1,\\dots,1))+P(Y=(-1,\\dots,-1)).\n\\]\n\nBy averaging any feasible distribution over coordinate permutations and global sign flip \\(Y\\mapsto -Y\\), we may assume the distribution only depends on\n\\[\nT=\\#\\{i:Y_i=-1\\},\n\\]\nand is symmetric under \\(T\\leftrightarrow 12-T\\). Let \\(r_d\\) be the total probability of \\(T=d\\) or \\(T=12-d\\), for \\(0\\le d\\le 6\\). The desired probability is \\(r_0\\).\n\nFor a vector with exactly \\(t\\) minus signs,\n\\[\n\\sum_{|S|=j}\\prod_{i\\in S}Y_i=K_j(t),\n\\]\nwhere \\(K_j\\) is the binary Krawtchouk polynomial\n\\[\nK_j(t)=\\sum_a(-1)^a\\binom{t}{a}\\binom{12-t}{j-a}.\n\\]\nSince odd moments vanish automatically by sign symmetry, the constraints are\n\\[\n\\sum_{d=0}^6 r_dK_2(d)=\n\\sum_{d=0}^6 r_dK_4(d)=\n\\sum_{d=0}^6 r_dK_6(d)=0,\n\\qquad\n\\sum_{d=0}^6r_d=1.\n\\]\n\nNow use the dual certificate\n\\[\nF(t)=\\frac{13}{3456}\n+\\frac{43}{20736}K_2(t)\n+\\frac{11}{10368}K_4(t)\n+\\frac{5}{13824}K_6(t).\n\\]\nFor \\(0\\le t\\le 6\\), its values are\n\\[\nF(0)=1,\\quad F(1)=\\frac{175}{648},\\quad F(2)=\\frac7{162},\\quad\nF(3)=0,\\quad F(4)=0,\\quad F(5)=\\frac1{1296},\\quad F(6)=0.\n\\]\nAlso \\(F(12-t)=F(t)\\). Hence \\(F(t)\\ge \\mathbf 1_{\\{t=0,12\\}}\\), so for every feasible distribution,\n\\[\nP(Y=\\pm(1,\\dots,1))\\le \\mathbb E F(T).\n\\]\nBut the \\(K_2,K_4,K_6\\) expectations are zero, so\n\\[\n\\mathbb E F(T)=\\frac{13}{3456}.\n\\]\nThus the desired probability is at most \\(13/3456\\).\n\nIt remains to show this is attainable. Take the symmetric distribution with\n\\[\nr_0=\\frac{13}{3456},\\qquad\nr_3=\\frac{11}{54},\\qquad\nr_4=\\frac{33}{128},\\qquad\nr_6=\\frac{77}{144},\n\\]\nand all other \\(r_d=0\\), distributing uniformly among strings with those weights and their complements. One checks directly that the \\(K_2,K_4,K_6\\) averages vanish, so the variables are \\(6\\)-wise independent.\n\nTherefore\n\\[\n\\boxed{\\frac{13}{3456}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-15T07:42:35+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem126/b99b6433d6e3.json"
+}
