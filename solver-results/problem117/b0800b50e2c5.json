@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "6f96f355abe95dd52c8c8d86ccaf3e594be688fb",
+  "problem_blob_sha": "b0800b50e2c5018fb9a8cd846a1613b11245e25c",
+  "statement_sha256": "b6997c2f7460fc892fd8412b8a780983754fadebc004e3f8a0a683cd0b6b0540",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-15T03:49:16+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(x=(x_1,x_2,x_3)^T\\). Updating coordinate \\(i\\) sets \\((Ax)_i=0\\), so\n\\[\nx_1=-\\frac{x_2+x_3}{2},\\qquad\nx_2=-\\frac{x_1+x_3}{2},\\qquad\nx_3=-\\frac{x_1+x_2}{3}.\n\\]\n\nFor a sweep order \\(\\pi\\), write \\(x^\\pi=T_\\pi x\\). Then\n\\[\n\\frac{\\mathbb E_q f(x^\\pi)}{f(x)}\n=\\frac{x^T\\left(\\sum_\\pi q_\\pi T_\\pi^TAT_\\pi\\right)x}{x^TAx}.\n\\]\nThus \\(\\rho(q)\\) is the largest generalized eigenvalue of \\(\\sum q_\\pi T_\\pi^TAT_\\pi\\) relative to \\(A\\).\n\nBecause \\(A\\) is invariant under swapping coordinates \\(1,2\\), an optimal distribution may be symmetrized under this swap. So put total weights\n\\[\n\\alpha=q_{123}+q_{213},\\qquad\n\\beta=q_{132}+q_{231},\\qquad\n\\gamma=q_{312}+q_{321},\n\\]\nwith equal split inside each pair. Then \\(\\alpha+\\beta+\\gamma=1\\). The averaged matrix \\(B=\\mathbb E(T_\\pi^TAT_\\pi)\\) has form\n\\[\nB=\\begin{bmatrix}\nd&o&r\\\\\no&d&r\\\\\nr&r&z\n\\end{bmatrix}.\n\\]\n\nThe antisymmetric line \\((1,-1,0)\\) gives the eigenvalue\n\\[\n\\lambda_-=d-o\n=\\frac{17}{96}\\alpha+\\frac{19}{72}\\beta+\\frac{3}{16}\\gamma.\n\\]\n\nOn the symmetric plane \\(x=(s,s,t)\\),\n\\[\nx^TAx=6s^2+4st+3t^2,\n\\]\nwhile\n\\[\nx^TBx=\n\\left(\\frac{17}{48}\\alpha+\\frac{19}{36}\\beta+\\frac{91}{72}\\gamma\\right)s^2\n+\\left(\\frac58\\alpha+\\frac{11}{18}\\beta\\right)st\n+\\left(\\frac{11}{16}\\alpha+\\frac{13}{36}\\beta\\right)t^2.\n\\]\n\nThe optimum occurs with \\(\\beta=0\\), and with the antisymmetric eigenvalue equal to the largest symmetric-plane eigenvalue. Put \\(\\gamma=1-\\alpha\\). Then\n\\[\n\\lambda_-=\\frac{18-\\alpha}{96}.\n\\]\nThe equality condition for the symmetric block is\n\\[\n\\det(S-\\lambda_-D)=0,\n\\]\nwhere\n\\[\nS=\n\\begin{bmatrix}\n\\frac{182-131\\alpha}{144}&\\frac{5\\alpha}{16}\\\\[2mm]\n\\frac{5\\alpha}{16}&\\frac{11\\alpha}{16}\n\\end{bmatrix},\n\\qquad\nD=\n\\begin{bmatrix}\n6&2\\\\\n2&3\n\\end{bmatrix}.\n\\]\nSubstitution gives\n\\[\n(10-61\\alpha)(23\\alpha-18)-4(8\\alpha-9)^2=0,\n\\]\nor\n\\[\n1659\\alpha^2-1904\\alpha+504=0.\n\\]\nThe relevant root is\n\\[\n\\alpha=\\frac{952+2\\sqrt{17542}}{1659}.\n\\]\nHence\n\\[\n\\rho_*=\\frac{18-\\alpha}{96}\n=\\frac{14455-\\sqrt{17542}}{79632}.\n\\]\n\nThis value is attained, for example, by\n\\[\nq_{123}=q_{213}=\\frac{476+\\sqrt{17542}}{1659},\\qquad\nq_{312}=q_{321}=\\frac{707-2\\sqrt{17542}}{3318},\n\\]\nand\n\\[\nq_{132}=q_{231}=0.\n\\]\n\nTherefore\n\\[\n\\boxed{\\frac{14455-\\sqrt{17542}}{79632}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-15T03:52:31+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/b0800b50e2c5.json"
+}
