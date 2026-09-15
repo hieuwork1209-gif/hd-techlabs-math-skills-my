@@ -7,8 +7,10 @@ A=\begin{bmatrix}
 4&1&1\\
 1&3&1\\
 1&1&2
-\end{bmatrix},
-\qquad
+\end{bmatrix}.
+$$
+Its leading principal minors are $4$, $11$, and $17$, so $A$ is positive definite. Its inverse is
+$$
 B=A^{-1}=\frac1{17}
 \begin{bmatrix}
 5&-1&-2\\
@@ -48,15 +50,11 @@ A lower bound valid for every $p$ should make the diagonal contribution $\operat
 $$
 B_{11}:B_{22}:B_{33}=5:7:11,
 $$
-seek a positive semidefinite triangle Laplacian whose diagonal is proportional to $5:7:11$. If its edge weights on $(1,2),(1,3),(2,3)$ are $a,b,c$, then its diagonal is
+seek a positive semidefinite triangle Laplacian whose diagonal is proportional to $5:7:11$. If its edge weights on $(1,2),(1,3),(2,3)$ are $a,b,c$, write
 $$
-(a+b,\ a+c,\ b+c).
+a+b=5q,\qquad a+c=7q,\qquad b+c=11q.
 $$
-Solving
-$$
-(a+b):(a+c):(b+c)=5:7:11
-$$
-gives $a:b:c=1:9:13$. Thus take
+Adding the first two equations and subtracting the third gives $2a=q$; similarly $2b=9q$ and $2c=13q$. Thus $a:b:c=1:9:13$, and we take
 $$
 L=\begin{bmatrix}
 10&-1&-9\\
@@ -77,11 +75,16 @@ Now
 $$
 \operatorname{tr}(LC(p))
 =10\frac{17p_1}{5}+14\frac{17p_2}{7}+22\frac{17p_3}{11}
-=34(p_1+p_2+p_3)=34,
+=34(p_1+p_2+p_3)=34.
 $$
-while direct entrywise multiplication gives
+Also, since every off-diagonal entry of $A$ is $1$,
 $$
-\operatorname{tr}(LA)=80.
+\begin{aligned}
+\operatorname{tr}(LA)
+&=10\cdot4+14\cdot3+22\cdot2
++2(-1-9-13)\\
+&=40+42+44-46=80.
+\end{aligned}
 $$
 Consequently every sampling distribution satisfies
 $$
@@ -126,7 +129,7 @@ The lower-bound chain in Step 2 is then an equality, so
 $$
 \operatorname{tr}(LS)=0.
 $$
-Because $L,S\succeq0$, the matrix $L^{1/2}SL^{1/2}$ is positive semidefinite with trace zero, hence it is zero. Therefore $S^{1/2}L^{1/2}=0$ and $LS=0$.
+Because $L,S\succeq0$, the matrix $L^{1/2}SL^{1/2}$ is positive semidefinite with trace zero, hence it is zero. Therefore $S^{1/2}L^{1/2}=0$; taking transposes also gives $L^{1/2}S^{1/2}=0$, and consequently $LS=0$.
 
 The graph defining $L$ is connected, so
 $$
