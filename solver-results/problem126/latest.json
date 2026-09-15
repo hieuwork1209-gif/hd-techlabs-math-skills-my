@@ -2,8 +2,8 @@
   "problem": "problem126",
   "branch": "adversary/problem126",
   "problem_path": "workspace/rainier-problem/problem126-harmonic-analysis/problem.md",
-  "problem_blob_sha": "d2765534bb04f8b6d864249f62d615fdee5d5836",
-  "source_commit_sha": "51896711626a03fddc01a67ccd22f3ed0c466d66",
+  "problem_blob_sha": "c2dd85512e03d3ba7062a4ba2190f09d90a6d901",
+  "source_commit_sha": "cbb012b6e1762e44c8e30a9273b2d202741c3bea",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-15T15:15:55+00:00",
-  "result_file": "solver-results/problem126/d2765534bb04.json"
+  "completed_at": "2026-09-15T15:35:17+00:00",
+  "result_file": "solver-results/problem126/c2dd85512e03.json"
 }

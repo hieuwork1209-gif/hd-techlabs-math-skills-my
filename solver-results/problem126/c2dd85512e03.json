@@ -1,0 +1,22 @@
+{
+  "problem": "problem126",
+  "branch": "adversary/problem126",
+  "problem_path": "workspace/rainier-problem/problem126-harmonic-analysis/problem.md",
+  "source_commit_sha": "cbb012b6e1762e44c8e30a9273b2d202741c3bea",
+  "problem_blob_sha": "c2dd85512e03d3ba7062a4ba2190f09d90a6d901",
+  "statement_sha256": "56c27b94e7fda6eafb30a3cf51b721477ef97e6bcf5a8b1668f42addf29810db",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-15T15:29:18+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(x=\\cos\\theta\\). Then \\(T(\\theta)\\) is a degree-\\(6\\) polynomial in \\(x\\), written in Chebyshev form:\n\\[\nT=1+2aT_1(x)+2a_4T_4(x)+2a_5T_5(x)+2a_6T_6(x),\n\\]\nwith the \\(T_2,T_3\\) coefficients equal to \\(0\\).\n\nAt the extremum the nonnegative polynomial may be taken to be a square\n\\[\nT(\\theta)=h(\\cos\\theta)^2,\n\\]\nwhere\n\\[\nh(x)=d_0+d_1T_1(x)+d_2T_2(x)+d_3T_3(x).\n\\]\nWriting\n\\[\nu=\\frac{d_1}{d_0},\\qquad v=\\frac{d_2}{d_0},\\qquad w=\\frac{d_3}{d_0},\n\\]\nthe vanishing of the \\(T_2,T_3\\) coefficients in \\(h^2\\) gives\n\\[\n2w+uv=0,\\qquad 2v+\\frac{u^2}{2}+uw=0.\n\\]\nThus, putting \\(t=u^2\\),\n\\[\nv=-\\frac{t}{4-t},\\qquad w=\\frac{u^3}{2(4-t)}.\n\\]\nThe coefficient of \\(T_1\\) in \\(h^2\\), after normalizing the constant coefficient to \\(1\\), is maximized for the larger root \\(\\tau\\in(0,4)\\) of\n\\[\n25\\tau^5-500\\tau^4+2400\\tau^3-7040\\tau^2+15360\\tau-8192=0.\n\\]\nFor this value,\n\\[\na_{\\max}\n=\n\\frac{2\\sqrt{\\tau}\\,(-5\\tau^2+40\\tau-64)}\n{5\\tau^3-20\\tau^2+128}.\n\\]\nNumerically,\n\\[\n\\tau\\approx 3.5253409626,\n\\qquad\na_{\\max}\\approx 0.5670051021.\n\\]\n\n\\[\n\\boxed{\\frac{2\\sqrt{\\tau}\\,(-5\\tau^2+40\\tau-64)}{5\\tau^3-20\\tau^2+128}}\n\\]\nwhere \\(\\tau\\) is the larger root in \\((0,4)\\) of\n\\[\n25\\tau^5-500\\tau^4+2400\\tau^3-7040\\tau^2+15360\\tau-8192=0.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-15T15:35:17+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem126/c2dd85512e03.json"
+}
