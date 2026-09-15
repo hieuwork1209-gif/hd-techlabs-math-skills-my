@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Encode the centroid constraint by the canonical cubic with the three vertices as roots
+Step 1: Encode the centroid constraint by the cubic with the three vertices as roots
 Let the unit circle be centered at the origin. Since only the distance of the centroid from the origin is prescribed, rotate the configuration so that the centroid is the real number $r$. Identify the plane with the complex plane and write the three vertices as $z_1,z_2,z_3$, where
 $$
 |z_1|=|z_2|=|z_3|=1,
@@ -21,18 +21,18 @@ $$
 =\frac1{z_1}+\frac1{z_2}+\frac1{z_3}
 =\frac{q}{p}.
 $$
-Because $s$ is real, $q=sp$. Thus the three vertices are precisely the roots of the canonical monic cubic
+Because $s$ is real, $q=sp$. Thus the three vertices are precisely the roots of
 $$
 f(z)=z^3-sz^2+spz-p.
 $$
-No coefficient has been chosen ad hoc: the centroid fixes the first elementary symmetric function, the unit circle converts it into the second, and $p$ is the remaining unimodular parameter.
+These coefficients are forced: the centroid gives the first elementary symmetric function, the unit-circle condition determines the second from the first and the product, and $p$ is the remaining unimodular parameter.
 
-Step 2: Convert the area into the discriminant and obtain the sharp bound
+Step 2: Convert the area into the cubic discriminant and obtain the sharp bound
 Let
 $$
 \Delta=(z_1-z_2)^2(z_2-z_3)^2(z_3-z_1)^2.
 $$
-For a monic cubic $z^3-sz^2+qz-p$, expansion of this product gives the exact discriminant identity
+For a monic cubic $z^3-sz^2+qz-p$, expanding this product gives
 $$
 \Delta=s^2q^2-4q^3-4s^3p-27p^2+18sqp.
 $$
@@ -57,7 +57,7 @@ For a nondegenerate triangle all three factors are negative, hence $\Delta/p^2<0
 $$
 |(z_1-z_2)(z_2-z_3)(z_3-z_1)|=\sqrt{|\Delta|}.
 $$
-The circumradius is $1$, so the identity $K=abc/(4R)$ gives
+For any triangle with side lengths $a,b,c$, area $K$, and circumradius $R$, the identity $K=abc/(4R)$ holds. Here $R=1$, so
 $$
 16K^2=|\Delta|=-\frac{\Delta}{p^2}.
 $$
