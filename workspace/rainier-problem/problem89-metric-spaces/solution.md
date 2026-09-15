@@ -1,18 +1,12 @@
 ## Steps
 
-Step 1: Express the powered distance matrix through projective incidence
+Step 1: Determine the boundary equality space from projective incidence
 
-Fix $d\geq2$, and write
+Let $V=\mathbb{F}_2^5$. Over $\mathbb{F}_2$, the points of $\operatorname{PG}(4,2)$ are the $31$ nonzero vectors of $V$, while hyperplanes are indexed by the $31$ nonzero linear functionals. The functionals vanishing on a fixed point form a $4$-dimensional space, so each point lies in $2^4-1=15$ hyperplanes. Two distinct projective points are linearly independent over $\mathbb{F}_2$, so the functionals vanishing on both form a $3$-dimensional space; hence two distinct points lie in $2^3-1=7$ common hyperplanes. Thus the point-hyperplane incidence matrix $B$ satisfies
 $$
-v=2^{d+1}-1,\qquad k=2^d-1,\qquad s=2^{(d-1)/2}.
+BB^T=8I+7J.
 $$
-Over $\mathbb{F}_2$, every nonzero vector determines a distinct projective point, so $|\mathcal{P}_d|=v$. Hyperplanes are kernels of nonzero linear functionals, and over $\mathbb{F}_2$ distinct nonzero functionals have distinct kernels, so $|\mathcal{H}_d|=v$. A point lies in $k$ hyperplanes because the nonzero linear functionals vanishing on it form a $d$-dimensional vector space. Two distinct points lie in $2^{d-1}-1$ common hyperplanes because the functionals vanishing on both form a $(d-1)$-dimensional vector space.
-
-Let $B$ be the $v\times v$ point-hyperplane incidence matrix. The preceding counts give
-$$
-BB^T=2^{d-1}I+(2^{d-1}-1)J=s^2I+(s^2-1)J.
-$$
-Two distinct points have distance $2$, and two distinct hyperplanes also have distance $2$ because they meet in a projective subspace containing a point. If $P$ and $H$ are nonincident, choose $Q\in H$ and a hyperplane $K$ containing $P$ and $Q$; then $P-K-Q-H$ is a path of length $3$. Bipartiteness excludes distance $2$, so a point and a hyperplane have distance $1$ when incident and $3$ otherwise. Hence, with $a=2^p$ and $b=3^p$, the powered distance matrix is
+Two distinct points lie in a common hyperplane, and two distinct hyperplanes meet in a projective subspace containing a point, so same-class distances are $2$. If $P\not\subset H$, choose $R\in H$ and a hyperplane $K$ containing $P$ and $R$; then $P-K-R-H$ has length $3$, while bipartiteness excludes length $2$. Thus a point-hyperplane distance is $1$ when incident and $3$ otherwise. Therefore, with $a=2^p$ and $b=3^p$,
 $$
 D_p=
 \begin{pmatrix}
@@ -20,173 +14,204 @@ a(J-I)&bJ+(1-b)B\\
 bJ+(1-b)B^T&a(J-I)
 \end{pmatrix}.
 $$
-
-Step 2: Reduce conditional negative type to two scalar obstructions
-
-Let $U=\mathbf{1}^{\perp}\subset\mathbb{R}^{v}$. Since $B^T\mathbf{1}=k\mathbf{1}$, the map $B^T$ preserves $U$. On $U$, Step 1 gives $BB^T=s^2I$, so
+Put $U=\mathbf{1}^{\perp}\subset\mathbb{R}^{31}$ and $s=\sqrt{8}=2^{3/2}$. Since $BB^T=s^2I$ on $U$,
 $$
 Q=s^{-1}B^T:U\to U
 $$
-is orthogonal. Also $Ju=JQu=0$ and $BQu=su$, so for either sign
+is orthogonal. For $u\in U$,
 $$
-D_p(u,\pm Qu)=\left((-a\pm(1-b)s)u,\ \pm(-a\pm(1-b)s)Qu\right).
+D_p(u,\pm Qu)=\left((-a\pm(1-b)s)u,\ \pm(-a\pm(1-b)s)Qu\right),
 $$
-Hence $(u,Qu)$ and $(u,-Qu)$ are eigenvectors of $D_p$ with eigenvalues
+so the eigenvalues on $U\oplus U$ are
 $$
-\lambda_{-}(p)=-2^p-(3^p-1)s<0,
-$$
-$$
-\lambda_{+}(p)=-2^p+(3^p-1)s,
-$$
-respectively, each with multiplicity $v-1$.
-
-The only remaining direction in the total-sum-zero subspace is
-$$
-z=(\mathbf{1},-\mathbf{1}).
-$$
-Because each point is incident with $k$ hyperplanes and nonincident with $v-k=2^d$ hyperplanes,
-$$
-D_pz=h_d(p)z,
-$$
-where
-$$
-h_d(p)=(2^{d+1}-2)2^p-(2^d-1)-2^d3^p.
-$$
-The decomposition
-$$
-\mathbf{1}_{X_d}^{\perp}=(U\oplus U)\oplus\mathbb{R}z
-$$
-has dimension $2v-1$, so these are all eigenvalues relevant to negative type. Therefore $(X_d,\rho_d)$ has $p$-negative type exactly when
-$$
-\lambda_{+}(p)\leq0\qquad\text{and}\qquad h_d(p)\leq0.
-$$
-At any exponent where these eigenvalues are nonpositive, the restriction of $D_p$ to $\mathbf{1}_{X_d}^{\perp}$ is symmetric negative semidefinite. Its quadratic form vanishes exactly on its kernel, so $\dim E_d$ is the zero-eigenvalue multiplicity at $p=\wp_d$.
-
-Step 3: Locate the zero of the incidence mode
-
-Put
-$$
-g_d(p)=s(3^p-1)-2^p=\lambda_{+}(p).
-$$
-We have $g_d(0)=-1$, while
-$$
-g_d'(p)=2^p\left(s\left(\frac{3}{2}\right)^p\log3-\log2\right)>0
-$$
-for $p\geq0$, because $s\geq\sqrt{2}>1$, $(\frac{3}{2})^p\geq1$, and $\log3>\log2$. Also $g_d(p)\to\infty$ as $p\to\infty$. Thus $g_d$ has a unique positive zero $\alpha_d$, and
-$$
-\lambda_{+}(p)\leq0\quad\Longleftrightarrow\quad p\leq\alpha_d.
-$$
-If this mode reaches zero before the imbalance mode, then the equality space has dimension $v-1=2^{d+1}-2$.
-
-Step 4: Prove the phase transition between dimensions four and five
-
-Set $m=2^d$. Rewrite the imbalance eigenvalue as
-$$
-h_d(p)=mA(p)+1-2^{p+1},
+\lambda_-(p)=-2^p-(3^p-1)s<0,
 \qquad
-A(p)=2^{p+1}-3^p-1.
+\lambda_+(p)=-2^p+(3^p-1)s,
 $$
-For $0<p<1$, strict concavity of $x^p$ and $2=\frac{1+3}{2}$ give $A(p)>0$. For $p>1$, strict convexity gives $A(p)<0$, while $A(1)=0$. Hence $h_d(p)<0$ for $p\geq1$, and on $0<p<1$ the function $h_d(p)$ increases with $d$.
+each with multiplicity $30$. The only remaining total-sum-zero direction is $z=(\mathbf{1},-\mathbf{1})$, with eigenvalue
+$$
+h(p)=30\cdot2^p-16\cdot3^p-15.
+$$
+Write $x=2^p$ and $r=\log_2 3$. Since $3^{12}>2^{19}$, we have $r>19/12$, hence
+$$
+h(p)<q(x):=-16x^{19/12}+30x-15.
+$$
+The concave function $q$ has its maximum at $x_0=(45/38)^{12/7}$. For $f(t)=(1+t)^{12/7}$, $f''(t)\leq60/49$, so
+$$
+x_0\leq1+\frac{12}{7}\frac{7}{38}+\frac{30}{49}\left(\frac{7}{38}\right)^2
+=\frac{965}{722}<\frac{19}{14}.
+$$
+Since $x_0^{7/12}=45/38$,
+$$
+q(x_0)=\frac{210}{19}x_0-15<0.
+$$
+Thus $h(p)<0$ for all $p>0$. Moreover
+$$
+g(p)=s(3^p-1)-2^p
+$$
+satisfies
+$$
+g'(p)=2^p\left(s\left(\frac32\right)^p\log3-\log2\right)>0,
+$$
+so it increases from $g(0)=-1$ to $+\infty$. Hence
+$$
+\wp=\min\{p>0:2^{3/2}(3^p-1)=2^p\},
+$$
+and at $p=\wp$ the only zero eigenspace is
+$$
+E=\{(u,-Qu):u\in U\}.
+$$
 
-For $d\leq4$ it is enough to consider $d=4$. Write $u=2^p\in(1,2)$ and $r=\log_{2}3$. Since $3^7>2^{11}$, we have $r>\frac{11}{7}$, so
-$$
-h_4(p)=-16u^r+30u-15<-16u^{\frac{11}{7}}+30u-15=:q(u).
-$$
-Since
-$$
-q'(u)=30-\frac{176}{7}u^{\frac{4}{7}},
-$$
-the concave function $q$ has its unique maximum at
-$$
-u_0=\left(1+\frac{17}{88}\right)^{\frac{7}{4}}<\frac{11}{8}.
-$$
-Indeed, for $f(x)=(1+x)^{\frac{7}{4}}$ we have $f''(x)\leq\frac{21}{16}$ for $x\geq0$, so Taylor's theorem gives
-$$
-u_0\leq1+\frac{7}{4}\frac{17}{88}+\frac{21}{32}\left(\frac{17}{88}\right)^2=\frac{337653}{247808}<\frac{11}{8}.
-$$
-Using $u_0^{\frac{4}{7}}=\frac{105}{88}$,
-$$
-q(u_0)=\frac{120}{11}u_0-15<\frac{120}{11}\frac{11}{8}-15=0.
-$$
-Thus $h_d(p)<0$ for every $p>0$ when $d\leq4$.
+Step 2: Convert two-dimensional equality subspaces into Walsh-support pairs
 
-For $d\geq5$, monotonicity in $d$ on $(0,1)$ and
+Extend $u\in U$ to all of $V$ by $u(0)=0$, and define its Walsh transform by
 $$
-h_5\left(\frac{1}{2}\right)=62\sqrt{2}-32\sqrt{3}-31>0
+\widehat u(\xi)=\sum_{x\in V}u(x)(-1)^{\xi(x)}.
 $$
-show that $h_d$ has a first positive zero $\beta_d<\frac{1}{2}$, since $h_d(0)=-1$. Indeed, $\sqrt{2}>\frac{140}{99}$ and $\sqrt{3}<\frac{26}{15}$, because $19600<19602$ and $676>675$, so
+Because $\sum_xu(x)=0$, for every nonzero $\xi\in V^*$,
 $$
-h_5\left(\frac{1}{2}\right)>62\frac{140}{99}-32\frac{26}{15}-31=\frac{599}{495}>0.
+(B^Tu)_\xi
+=\sum_{\xi(x)=0}u(x)
+=\frac12\widehat u(\xi),
 $$
-As a function of $u=2^p$,
+while $\widehat u(0)=0$. Therefore the linear isomorphism $u\mapsto(u,-Qu)$ identifies $E$ with
 $$
-h_d=-mu^r+2(m-1)u-(m-1),
+\mathcal U=\{u\in\mathbb{R}^{V}:u(0)=0,\ \widehat u(0)=0\}.
 $$
-which is strictly concave because $r>1$. Hence it has at most two zeros and is positive between its first and second zeros.
+If $L\leq E$ is two-dimensional, let $\mathcal L\leq\mathcal U$ be the corresponding two-dimensional function space and set
+$$
+S=\{x\in V:\text{some }u\in\mathcal L\text{ has }u(x)\neq0\},
+$$
+$$
+T=\{\xi\in V^*:\text{some }u\in\mathcal L\text{ has }\widehat u(\xi)\neq0\}.
+$$
+Then $0\notin S,T$ and the quantity in the problem is exactly
+$$
+\mathsf U_2(L)=|S|\,|T|.
+$$
 
-It remains to compare $\beta_d$ with $\alpha_d$. At $p=\alpha_d$, let $u=2^{\alpha_d}$ and keep $s=2^{(d-1)/2}$. Since $s(3^{\alpha_d}-1)=u$ and $2^d=2s^2$, substitution gives
+Step 3: Prove the rank-two uncertainty lower bound
+
+Use the normalized Walsh transform
 $$
-h_d(\alpha_d)=(2s+1)\left(2u(s-1)-(2s-1)\right).
+(\mathcal Fu)(\xi)=\frac1{\sqrt{32}}\widehat u(\xi).
 $$
-Set
+For $x,y\in V$,
 $$
-t=1+\frac{1}{2(s-1)},\qquad r=\log_{2}3.
+\sum_{\xi\in V^*}(-1)^{\xi(x)+\xi(y)}
 $$
-The equation for $u$ is $G_s(u)=0$, where
+equals $32$ when $x=y$ and $0$ otherwise, so $\mathcal F$ is orthogonal. Let $P_S$ and $P_T$ be the coordinate projections onto $S$ and $T$, and define the positive contraction
 $$
-G_s(x)=s(x^r-1)-x.
+A=P_S\mathcal F^{-1}P_T\mathcal F P_S.
 $$
-Since $G_s'(x)>0$ for $x\geq1$, it is enough to prove $G_s(t)<0$. Write $\delta=\frac{1}{2(s-1)}$. For $d\geq5$, $s\geq4$ and $0<\delta\leq\frac{1}{6}$, while
+Every $u\in\mathcal L$ is supported on $S$ and has Fourier support in $T$, so $Au=u$. Thus $A$ has eigenvalue $1$ with multiplicity at least $2$. Since every Walsh-matrix entry has squared modulus $1/32$,
 $$
-G_s(t)=F(\delta)=\left(1+\frac{1}{2\delta}\right)\left((1+\delta)^r-1\right)-(1+\delta).
-$$
-Differentiation gives
-$$
-F'(\delta)=\frac{\delta r(1+\delta)^{r-1}-((1+\delta)^r-1)}{2\delta^2}+r(1+\delta)^{r-1}-1>0.
-$$
-The first numerator is positive by convexity of $x^r$, and the second term is positive because $r>1$. Hence $F(\delta)\leq F(\frac{1}{6})$. Also $r<\frac{8}{5}$ because $3^5<2^8$. For $g(x)=(1+x)^{\frac{8}{5}}$,
-$$
-g''(x)=\frac{24}{25}(1+x)^{-\frac{2}{5}}\leq\frac{24}{25}\qquad(x\geq0).
-$$
-Taylor's theorem at $x=0$ therefore gives
-$$
-\left(\frac{7}{6}\right)^r<\left(\frac{7}{6}\right)^{\frac{8}{5}}\leq1+\frac{4}{15}+\frac{1}{75}=\frac{32}{25}.
+\operatorname{tr}A
+=\operatorname{tr}(P_T\mathcal F P_S\mathcal F^{-1}P_T)
+=\frac{|S||T|}{32}.
 $$
 Therefore
 $$
-F(\frac{1}{6})<4\left(\frac{32}{25}-1\right)-\frac{7}{6}=-\frac{7}{150}<0.
+\frac{|S||T|}{32}\geq2,
 $$
-Thus $h_d(\alpha_d)>0$, so $\beta_d<\alpha_d$ for every $d\geq5$.
-
-At $d\leq4$, the first zero is therefore $\alpha_d$ and the kernel has dimension $v-1>1$. At $d\geq5$, the first zero is $\beta_d$ and only the direction $z$ vanishes, so $\dim E_d=1$. Hence
+so every two-dimensional boundary subspace satisfies
 $$
-d_*=5.
+\mathsf U_2(L)\geq64.
 $$
 
-Step 5: Compute the asymptotic critical exponent
+Step 4: Classify every two-plane attaining equality
 
-For $d\geq5$, Step 4 gives $\wp_d=\beta_d$. With $m=2^d$, the equation $h_d(\beta_d)=0$ is
+Assume $|S||T|=64$. Then $\operatorname{tr}A=2$, while $A$ already has two eigenvalues equal to $1$. Since $A$ is positive semidefinite, all its remaining eigenvalues are $0$, so $\operatorname{rank}A=2$.
+
+Let $M$ be the $T\times S$ submatrix of the normalized Walsh matrix. Since $A=M^*M$, we have $\operatorname{rank}M=2$. Choose $x_0\in S$ and multiply each row indexed by $\xi$ by $(-1)^{\xi(x_0)}$. The normalized $\xi$-row is then
 $$
-mA(\beta_d)=2^{\beta_d+1}-1,
+r_\xi=\left((-1)^{\xi(x-x_0)}\right)_{x\in S},
+$$
+and every such row has first entry $1$. Choose two independent normalized rows $r_1,r_2$. Any other normalized sign row has the form $ar_1+br_2$. Its first entry gives $a+b=1$. Since $r_1,r_2$ are independent, at some coordinate they have opposite signs; at that coordinate the sign condition gives $a-b=1$ or $a-b=-1$. Hence $(a,b)=(1,0)$ or $(0,1)$. Thus there are exactly two normalized row types.
+
+Let
+$$
+W=\operatorname{span}(S-S),\qquad k=\dim W.
+$$
+The normalized row $r_\xi$ depends only on the restriction of $\xi$ to $W$. Hence $T$ uses at most two restriction characters, and each restriction class has exactly $2^{5-k}$ representatives. Also $S\subset x_0+W$. Therefore
+$$
+|S|\leq2^k,
 \qquad
-A(p)=2^{p+1}-3^p-1.
+|T|\leq2^{6-k}.
 $$
-Since $0<\beta_d<\frac{1}{2}$, the right-hand side is bounded, so $A(\beta_d)\to0$. Step 4 gives $A(p)>0$ on $(0,1)$. If a subsequence of $\beta_d$ stayed above some $\varepsilon>0$, continuity would give a positive lower bound for $A(\beta_d)$ on $[\varepsilon,\frac{1}{2}]$, a contradiction. Hence $\beta_d\to0$. Dividing the displayed equation by $\beta_d$ gives
+Their product is already $64$, so both inequalities are equalities. Thus
 $$
-2^d\beta_d=\frac{2^{\beta_d+1}-1}{A(\beta_d)/\beta_d}
-\longrightarrow\frac{1}{A'(0)}
-=\frac{1}{2\log2-\log3}
-=\frac{1}{\log\left(\frac{4}{3}\right)}.
+S=x_0+W,
 $$
-Combining this with $d_*=5$ gives the requested pair.
+while for two distinct characters $\xi_1|_W,\xi_2|_W$,
+$$
+T=(\xi_1+W^\perp)\sqcup(\xi_2+W^\perp).
+$$
+For $i=1,2$, define
+$$
+f_i(x)=(-1)^{\xi_i(x)}\mathbf{1}_{x_0+W}(x).
+$$
+Writing $x=x_0+w$ gives
+$$
+\widehat f_i(\eta)
+=(-1)^{(\eta+\xi_i)(x_0)}\sum_{w\in W}(-1)^{(\eta+\xi_i)(w)},
+$$
+which is nonzero exactly when $\eta+\xi_i\in W^\perp$. Hence
+$$
+\operatorname{supp}\widehat f_i=\xi_i+W^\perp.
+$$
+The span of $f_1,f_2$ lies in the same support intersection as $\mathcal L$. That intersection is contained in the rank-$2$ range of $A$, so it is exactly two-dimensional. Therefore
+$$
+\mathcal L=\operatorname{span}\{f_1,f_2\}.
+$$
+Conversely every space of this form attains $64$.
 
-Final Answer: $\boxed{(5,\frac{1}{\log(\frac{4}{3})})}$
+The conditions $0\notin S$ and $0\notin T$ are exactly
+$$
+x_0\notin W,
+\qquad
+\xi_1|_W\neq0,
+\qquad
+\xi_2|_W\neq0.
+$$
+The two restrictions must also be distinct. Therefore equality occurs precisely for $2\leq k\leq4$, a nonzero affine coset $x_0+W$, and an unordered pair of distinct nontrivial characters of $W$. In particular,
+$$
+U_2^*=64.
+$$
+
+Step 5: Count the minimizing two-dimensional boundary subspaces
+
+For fixed $k$, counting ordered bases and dividing by the number of ordered bases of $\mathbb{F}_2^k$ gives
+$$
+\binom{5}{k}_2=\prod_{i=0}^{k-1}\frac{2^5-2^i}{2^k-2^i}
+$$
+for the number of $k$-dimensional subspaces $W\leq V$. For each such $W$, there are $2^{5-k}-1$ affine cosets not containing $0$, and there are
+$$
+\binom{2^k-1}{2}
+$$
+unordered pairs of distinct nontrivial characters of $W$. The support set recovers the affine coset and $W=\operatorname{span}(S-S)$, while distinct character pairs span distinct two-planes, so there is no overcounting. Hence
+$$
+N_2^*=\sum_{k=2}^4\binom{5}{k}_2(2^{5-k}-1)\binom{2^k-1}{2}.
+$$
+The product formula gives
+$$
+\binom{5}{2}_2=\binom{5}{3}_2=155,
+\qquad
+\binom{5}{4}_2=31,
+$$
+so
+$$
+N_2^*=155\cdot7\cdot3+155\cdot3\cdot21+31\cdot105=16275.
+$$
+Combining this with the value of $\wp$ gives the requested triple.
+
+Final Answer: $\boxed{(\min\{p>0:2^{3/2}(3^p-1)=2^p\},64,16275)}$
 
 ---
 
 ## Answer
 
-$(5,\frac{1}{\log(\frac{4}{3})})$
+$(\min\{p>0:2^{3/2}(3^p-1)=2^p\},64,16275)$
 
 ---
 
@@ -201,7 +226,7 @@ $(5,\frac{1}{\log(\frac{4}{3})})$
 ## Solution Concepts
 
 - conditional negative type
-- incidence graph metrics
-- symmetric design incidence matrices
-- spectral decomposition
-- concavity and phase transitions
+- projective incidence designs
+- Walsh Fourier transform
+- rank uncertainty principle
+- Gaussian binomial counting
