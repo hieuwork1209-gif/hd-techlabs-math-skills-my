@@ -59,7 +59,7 @@ To attain the bound, equality in the positive weighted average from Step 1 requi
 $$
 T(\theta_1)=T(\theta_2)=0.
 $$
-Let $x=\cos\theta$ and let $F(x)=T(\arccos x)$. Since $F\geq0$ on $[-1,1]$ and the two contact points $-m,-c$ are interior, each contact is a double zero. Thus a degree-six extremizer should have the form
+Let $x=\cos\theta$ and let $F(x)=T(\arccos x)$. Since $F\geq0$ on $[-1,1]$ and the two contact points $-m,-c$ are interior, $F'$ must vanish at each contact; otherwise $F$ would change sign there. Hence both contacts have multiplicity at least two. A degree-six candidate carrying exactly these forced double zeros can therefore be constructed as
 $$
 F_*(x)=K(x+m)^2(x+c)^2(x^2+px+q).
 $$
