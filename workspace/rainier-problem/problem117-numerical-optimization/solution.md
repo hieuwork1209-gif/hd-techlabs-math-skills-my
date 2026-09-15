@@ -77,7 +77,7 @@ a+b&a-b\\
 a-b&a+b
 \end{bmatrix},
 $$
-from which the two displayed identities follow for $M=UDU^TD$.
+from which the two displayed identities follow for $M=UDU^T D$.
 
 The scalar combinations needed below are
 $$
@@ -177,20 +177,19 @@ H_RH_Q=
 \begin{bmatrix}
 0&-\frac{1}{9}\\
 \frac{1}{9}&0
-\end{bmatrix},
+\end{bmatrix}.
 $$
-and substituting $\theta=\frac{81}{41}$ gives
+Substituting $\theta=\frac{81}{41}$, define
 $$
-T_{2,81/41}
-=\frac{1}{82}
+T_*=\frac{1}{82}
 \begin{bmatrix}
 1&-9\\
 9&1
 \end{bmatrix}.
 $$
-Therefore
+Then
 $$
-T_{2,81/41}^TT_{2,81/41}=\frac{1}{82}I,
+T_*^T T_*=\frac{1}{82}I,
 $$
 so both singular values equal $\frac{1}{\sqrt{82}}$. The lower bound from Step 3 is attained.
 
