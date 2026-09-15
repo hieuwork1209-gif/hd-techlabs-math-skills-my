@@ -1,0 +1,22 @@
+{
+  "problem": "problem124",
+  "branch": "adversary/problem124",
+  "problem_path": "workspace/rainier-problem/problem124-real-analysis/problem.md",
+  "source_commit_sha": "16c0f9cd1c12dc7adfcbc3bca5e96a86e2425430",
+  "problem_blob_sha": "b94f24130cbfb55b08a8657347caebe39a0c3242",
+  "statement_sha256": "dc2ebf3d1ad05f6989b8f2ae31d354f1ec9a268fd0a6045e5540fe436787dbba",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-15T05:00:49+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\n\\rho=\\sqrt2-1.\n\\]\n\nI claim the maximum is\n\n\\[\n\\boxed{\\frac1{144}}.\n\\]\n\nIt is attained exactly by the functions described at the end.\n\n**Step 1: A one-interval extremal lemma**\n\nFor an interval of length \\(L\\), define\n\n\\[\nM_L(a)=\\max \\int_0^L g(x)^2\\,dx\n\\]\n\nover absolutely continuous \\(g\\) with\n\n\\[\ng(0)=0,\\qquad g(L)=a,\\qquad \\int_0^L g=0,\\qquad |g'|\\le 1.\n\\]\n\nBy scaling \\(g(x)=Lh(x/L)\\),\n\n\\[\nM_L(a)=L^3 N(a/L),\n\\]\n\nwhere \\(N(r)\\) is the corresponding maximum on \\([0,1]\\) with endpoint values \\(0,r\\).\n\nFor \\(r\\ge0\\), feasibility already forces \\(r\\le \\rho\\). Indeed the smallest possible mean among all such functions occurs by descending with slope \\(-1\\) and then ascending with slope \\(+1\\) to \\(r\\); its mean is\n\n\\[\n\\frac{r^2+2r-1}{4},\n\\]\n\nso mean zero is possible iff \\(r\\le \\sqrt2-1\\).\n\nFor \\(0\\le r\\le\\rho\\), the extremizer is bang-bang: slope \\(+1\\), then \\(-1\\), then \\(+1\\). Write its positive peak as \\(H\\) and its negative depth as \\(K\\). Since the total length is \\(1\\),\n\n\\[\n2H+2K+r=1,\n\\]\n\nand the zero-mean condition gives\n\n\\[\nH^2-K^2+\\frac{r^2}{2}=0.\n\\]\n\nThus\n\n\\[\nH=\\frac{1-2r-r^2}{4(1-r)},\\qquad\nK=\\frac{1-2r+3r^2}{4(1-r)}.\n\\]\n\nThe square integral is therefore\n\n\\[\nN(r)=\\frac{2}{3}(H^3+K^3)+\\frac{r^3}{3}\n=\\frac{(1-r)^3}{48}+\\frac{r^3}{3}+\\frac{r^4}{4(1-r)}.\n\\]\n\nThe same value holds for \\(r\\le0\\) by replacing \\(h\\) with \\(-h\\).\n\n**Step 2: Apply the lemma to the two cancellation intervals**\n\nLet\n\n\\[\na=f(1/3).\n\\]\n\nThe two intervals have lengths \\(1/3\\) and \\(2/3\\), so\n\n\\[\n\\int_0^1 f^2\n\\le\n\\frac1{27}N(3|a|)\n+\\frac8{27}N\\!\\left(\\frac{3|a|}{2}\\right).\n\\]\n\nSet \\(t=3|a|\\). Feasibility on the first interval gives \\(0\\le t\\le\\rho\\). Hence\n\n\\[\n\\int_0^1 f^2\n\\le\n\\frac1{27}\\left(N(t)+8N(t/2)\\right).\n\\]\n\nUsing the formula above,\n\n\\[\nN(t)+8N(t/2)-\\frac{9}{48}\n=\n\\frac{3t\\bigl(2t^4-15t^3+6t^2+21t-10\\bigr)}\n{96(1-t)(1-t/2)}.\n\\]\n\nFor \\(0\\le t\\le \\rho=\\sqrt2-1\\), the denominator is positive and\n\n\\[\n2t^4-15t^3+6t^2+21t-10<0.\n\\]\n\nTherefore\n\n\\[\nN(t)+8N(t/2)\\le \\frac{9}{48},\n\\]\n\nwith equality only when \\(t=0\\), i.e. \\(a=0\\). Thus\n\n\\[\n\\int_0^1 f^2\n\\le\n\\frac1{27}\\cdot \\frac{9}{48}\n=\n\\frac1{144}.\n\\]\n\n**Equality cases**\n\nEquality requires \\(f(1/3)=0\\), and each interval must itself be extremal with both endpoints zero and mean zero.\n\nDefine\n\n\\[\n\\phi(t)=\n\\begin{cases}\nt, & 0\\le t\\le \\frac14,\\\\[2mm]\n\\frac12-t, & \\frac14\\le t\\le \\frac34,\\\\[2mm]\nt-1, & \\frac34\\le t\\le 1.\n\\end{cases}\n\\]\n\nThen all equality cases are exactly\n\n\\[\nf(x)=\n\\begin{cases}\n\\displaystyle \\frac{\\varepsilon_1}{3}\\,\n\\phi(3x), & 0\\le x\\le \\frac13,\\\\[3mm]\n\\displaystyle \\frac{2\\varepsilon_2}{3}\\,\n\\phi\\!\\left(\\frac{3x-1}{2}\\right), & \\frac13\\le x\\le 1,\n\\end{cases}\n\\]\n\nwhere independently\n\n\\[\n\\varepsilon_1,\\varepsilon_2\\in\\{ -1,1\\}.\n\\]\n\nSo the exact maximum is\n\n\\[\n\\boxed{\\frac1{144}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-15T05:03:00+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem124/b94f24130cbf.json"
+}
