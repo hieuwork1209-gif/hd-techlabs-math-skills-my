@@ -1,6 +1,7 @@
 ## Steps
 
 Step 1: Establish the sharp cap estimates with a prescribed endpoint value
+
 Let $h\geq0$ be $1$-Lipschitz on $[0,1]$, with $h(0)=0$ and $h(1)=r\geq0$. Put
 $$
 a=\int_0^1h(x)\,dx,\qquad q=\int_0^1h(x)^2\,dx,\qquad S=|\{h>0\}|.
@@ -55,6 +56,7 @@ $$
 For $r=0$ these become the familiar two-sided estimates $S\geq2\sqrt a$ and $q\leq\frac23a^{3/2}$.
 
 Step 2: Solve the normalized one-sided zero-mean problem
+
 Let $g$ be $1$-Lipschitz on $[0,1]$, with
 $$
 g(0)=0,\qquad g(1)=r\geq0,\qquad \int_0^1g(x)\,dx=0.
@@ -123,6 +125,7 @@ $$
 For endpoint $-r<0$, the unique maximizer is $-g_r$. At $r=0$ there are exactly two maximizers, $g_0$ and $-g_0$.
 
 Step 3: Couple the two unequal cancellation intervals
+
 For an admissible $f$, put $m=f(1/3)$ and define
 $$
 g_1(t)=3f\left(\frac{t}{3}\right),
@@ -168,6 +171,7 @@ $$
 $$
 
 Step 4: Verify attainment and classify every equality case
+
 Let $r_0=\sqrt2-1$, $r_1=r_0/2$, and let $g_r$ be the explicit one-sided extremizer from Step 2. Define
 $$
 f_*(x)=
