@@ -24,16 +24,16 @@ E(Y^2)=3,\qquad E(Y^4)=\frac{51}{2},\qquad E(Y^6)=\frac{681}{2}.
 $$
 The event that all twelve bits agree is $\{|Y|=6\}$, while the event that exactly one bit differs from the other eleven is $\{|Y|=5\}$.
 
-Step 2: Build one cubic certificate and identify the regime transition
+Step 2: Derive a cubic dual certificate and identify the regime transition
 Since $Y$ is an integer with $|Y|\leq6$, the variable $z=Y^2$ takes values
 $$
 0,1,4,9,16,25,36.
 $$
-Define
+The fixed moments from Step 1 determine the expectation of every cubic polynomial in $z$. Thus a natural dual bound for the two endpoint masses is a cubic majorant on this seven-point support. To make such a majorant sharp, it should have support contact points where it vanishes. A cubic with positive leading coefficient is negative only between its second and third real roots, so its negative interval must lie in a gap containing no allowed support value. Choosing the contact roots $0,4,9$ places that interval in the empty gap $(4,9)$ and gives the nonnegative support polynomial $z(z-4)(z-9)$. Normalizing its value at $z=36$ to be $1$ forces
 $$
 Q(z)=\frac{z(z-4)(z-9)}{36\cdot32\cdot27}=\frac{z(z-4)(z-9)}{31104}.
 $$
-On the allowed support, $Q(z)\geq0$: its only negative interval is $(4,9)$, which contains no allowed value of $z$. Moreover
+Indeed, $Q(z)\geq0$ at every allowed support value, and
 $$
 Q(36)=1,\qquad Q(25)=\frac{25\cdot21\cdot16}{31104}=\frac{175}{648}.
 $$
@@ -63,8 +63,8 @@ P(|Y|=6)+\lambda P(|Y|=5)
 \max\left\{\frac{13}{3456},\frac{39\lambda}{2800}\right\}.
 $$
 
-Step 3: Construct centered laws attaining each side of the upper bound
-For the first regime, define a symmetric integer-valued random variable $Y_A$ by
+Step 3: Use the certificate contact sets to construct extremal centered laws
+For $0\leq\lambda<\tau$, equality in the first pointwise majorization can occur only at $z\in\{0,4,9,36\}$. Hence a sharp centered law should be supported on $Y\in\{0,\pm2,\pm3,\pm6\}$. Solving the normalization and three even-moment equations on this contact set gives the symmetric law
 $$
 P(Y_A=0)=\frac{77}{144},\qquad
 P(Y_A=\pm2)=\frac{33}{256}\ \text{for each sign},
@@ -73,11 +73,10 @@ $$
 P(Y_A=\pm3)=\frac{11}{108}\ \text{for each sign},\qquad
 P(Y_A=\pm6)=\frac{13}{6912}\ \text{for each sign}.
 $$
-The total mass is
+The total mass and the three required moments are verified by
 $$
-\frac{77}{144}+\frac{33}{128}+\frac{11}{54}+\frac{13}{3456}=1.
+\frac{77}{144}+\frac{33}{128}+\frac{11}{54}+\frac{13}{3456}=1,
 $$
-Its required moments are
 $$
 4\cdot\frac{33}{128}+9\cdot\frac{11}{54}+36\cdot\frac{13}{3456}=3,
 $$
@@ -87,12 +86,12 @@ $$
 $$
 64\cdot\frac{33}{128}+729\cdot\frac{11}{54}+46656\cdot\frac{13}{3456}=\frac{681}{2}.
 $$
-Thus $Y_A$ matches all centered moments through degree six, since its odd moments vanish by symmetry. Also
+Its odd moments vanish by symmetry, and
 $$
 P(|Y_A|=6)+\lambda P(|Y_A|=5)=\frac{13}{3456}.
 $$
 
-For the second regime, define a symmetric integer-valued random variable $Y_B$ by
+For $\lambda>\tau$, equality in the scaled majorization can occur only at $z\in\{0,4,9,25\}$. Solving the same four moment equations on this contact set gives
 $$
 P(Y_B=0)=\frac{99}{200},\qquad
 P(Y_B=\pm2)=\frac{99}{560}\ \text{for each sign},
@@ -101,11 +100,10 @@ $$
 P(Y_B=\pm3)=\frac{11}{160}\ \text{for each sign},\qquad
 P(Y_B=\pm5)=\frac{39}{5600}\ \text{for each sign}.
 $$
-The total mass is
+Again the normalization and moments are explicit:
 $$
 \frac{99}{200}+\frac{99}{280}+\frac{11}{80}+\frac{39}{2800}=1,
 $$
-and its moments are
 $$
 4\cdot\frac{99}{280}+9\cdot\frac{11}{80}+25\cdot\frac{39}{2800}=3,
 $$
@@ -115,10 +113,11 @@ $$
 $$
 64\cdot\frac{99}{280}+729\cdot\frac{11}{80}+15625\cdot\frac{39}{2800}=\frac{681}{2}.
 $$
-Hence $Y_B$ also matches all centered moments through degree six, and
+Thus
 $$
 P(|Y_B|=6)+\lambda P(|Y_B|=5)=\frac{39\lambda}{2800}.
 $$
+At $\lambda=\tau$, both constructions attain the same value.
 
 Step 4: Lift the centered laws to 6-wise independent Bernoulli families
 For either $Y=Y_A$ or $Y=Y_B$, set $S=6+Y$. Conditional on $S=s$, choose uniformly a subset of $\{1,\ldots,12\}$ of size $s$, and let $X_i$ be its membership indicators.
