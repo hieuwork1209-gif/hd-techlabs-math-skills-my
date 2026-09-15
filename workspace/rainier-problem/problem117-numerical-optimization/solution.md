@@ -1,216 +1,172 @@
 ## Steps
 
-Step 1: Extract three local condition-number obstructions from the common scaling
+Step 1: Express the one-step contraction as a generalized Rayleigh quotient
 Let
 $$
-D=\operatorname{diag}(d_1,d_2,d_3),
-\qquad d_i>0.
+A=\begin{bmatrix}
+4&1&1\\
+1&3&1\\
+1&1&2
+\end{bmatrix},
+\qquad
+B=A^{-1}=\frac1{17}
+\begin{bmatrix}
+5&-1&-2\\
+-1&7&-3\\
+-2&-3&11
+\end{bmatrix}.
 $$
-The active $2\times2$ blocks of $A_1,A_2,A_3$ have positive leading entries and determinants $3,12,3$, respectively, while each isolated diagonal entry is $2$. Hence all three $A_k$ are positive definite, and so are the congruences $DA_kD$.
-
-For any symmetric positive-definite matrix $M$ and any principal submatrix $B$, the Rayleigh-quotient formulas give
+If block $i$ is chosen, all coordinates except $i$ are re-minimized while $x_i$ is held fixed. The constrained minimizer $z$ satisfies $(Az)_j=0$ for $j\ne i$, so $Az=\lambda e_i$ and therefore $z=\lambda Be_i$. Since $z_i=x_i$, we have
 $$
-\lambda_{\min}(M)\leq\lambda_{\min}(B)
-\leq\lambda_{\max}(B)\leq\lambda_{\max}(M),
+\lambda=\frac{x_i}{B_{ii}}.
+$$
+Hence
+$$
+2f(z)=z^TAz=\frac{x_i^2}{B_{ii}}.
+$$
+For sampling probabilities $p_1,p_2,p_3$, define
+$$
+C(p)=\operatorname{diag}\left(\frac{p_1}{B_{11}},\frac{p_2}{B_{22}},\frac{p_3}{B_{33}}\right)
+=\operatorname{diag}\left(\frac{17p_1}{5},\frac{17p_2}{7},\frac{17p_3}{11}\right).
+$$
+Then
+$$
+\frac{\mathbb E[f(x^+)\mid x]}{f(x)}
+=\frac{x^TC(p)x}{x^TAx},
 $$
 so
 $$
-\kappa_2(M)\geq\kappa_2(B).
+\rho(p)=\sup_{x\ne0}\frac{x^TC(p)x}{x^TAx}.
+$$
+Therefore $\rho(p)$ is the least $r$ for which
+$$
+C(p)\preceq rA.
 $$
 
-For the first scenario, the principal block of $DA_1D$ on coordinates $1,2$ is
+Step 2: Build a global lower-bound certificate that is independent of the sampling distribution
+A lower bound valid for every $p$ should make the diagonal contribution $\operatorname{tr}(LC(p))$ independent of $p$. Since
 $$
-\begin{bmatrix}
-d_1^2&d_1d_2\\
-d_1d_2&4d_2^2
-\end{bmatrix}
-=2d_1d_2
-\begin{bmatrix}
-r_1&1/2\\
-1/2&r_1^{-1}
-\end{bmatrix},
-\qquad
-r_1=\frac{d_1}{2d_2}.
+B_{11}:B_{22}:B_{33}=5:7:11,
 $$
-For the second scenario, the principal block on coordinates $2,3$ is
+seek a positive semidefinite triangle Laplacian whose diagonal is proportional to $5:7:11$. If its edge weights on $(1,2),(1,3),(2,3)$ are $a,b,c$, then its diagonal is
 $$
-\begin{bmatrix}
-d_2^2&2d_2d_3\\
-2d_2d_3&16d_3^2
-\end{bmatrix}
-=4d_2d_3
-\begin{bmatrix}
-r_2&1/2\\
-1/2&r_2^{-1}
-\end{bmatrix},
-\qquad
-r_2=\frac{d_2}{4d_3}.
+(a+b,\ a+c,\ b+c).
 $$
-For the third scenario, order the active coordinates as $3,1$. The corresponding principal block is
+Solving
 $$
-\begin{bmatrix}
-d_3^2&d_3d_1\\
-d_3d_1&4d_1^2
-\end{bmatrix}
-=2d_3d_1
-\begin{bmatrix}
-r_3&1/2\\
-1/2&r_3^{-1}
-\end{bmatrix},
-\qquad
-r_3=\frac{d_3}{2d_1}.
+(a+b):(a+c):(b+c)=5:7:11
 $$
-Thus, with
+gives $a:b:c=1:9:13$. Thus take
 $$
-C(r)=\begin{bmatrix}r&1/2\\1/2&r^{-1}\end{bmatrix},
+L=\begin{bmatrix}
+10&-1&-9\\
+-1&14&-13\\
+-9&-13&22
+\end{bmatrix}.
 $$
-every common scaling satisfies
+It is positive semidefinite because
 $$
-\max_{1\leq k\leq3}\kappa_2(DA_kD)
-\geq \max_{1\leq i\leq3}\kappa_2(C(r_i)).
+y^TLy=(y_1-y_2)^2+9(y_1-y_3)^2+13(y_2-y_3)^2\geq0.
 $$
-The three local imbalance parameters obey the compatibility identity
+If $C(p)\preceq rA$, then $rA-C(p)\succeq0$, so
 $$
-r_1r_2r_3=\frac1{16}=\gamma^{-3}.
+0\leq\operatorname{tr}\left(L(rA-C(p))\right)
+=r\operatorname{tr}(LA)-\operatorname{tr}(LC(p)).
 $$
-
-Step 2: Convert the local obstructions into a global lower bound
-For $r>0$, put
-$$
-T(r)=r+r^{-1}.
-$$
-The matrix $C(r)$ has trace $T(r)$ and determinant $3/4$, so its eigenvalues are
-$$
-\lambda_{\pm}(r)
-=\frac{T(r)\pm\sqrt{T(r)^2-3}}{2}.
-$$
-Hence
-$$
-\Psi(r):=\kappa_2(C(r))
-=\frac{T(r)+\sqrt{T(r)^2-3}}
-{T(r)-\sqrt{T(r)^2-3}}.
-$$
-Because
-$$
-T(r)=2\cosh(\log r),
-$$
-$T(r)$ is strictly increasing with $|\log r|$. Also
-$$
-\Psi(r)=\frac{\left(T(r)+\sqrt{T(r)^2-3}\right)^2}{3},
-$$
-and the right side is strictly increasing with $T(r)\geq2$. Therefore $\Psi(r)$ is strictly increasing with $|\log r|$.
-
 Now
 $$
-\log r_1+\log r_2+\log r_3=-\log16=-3\log\gamma.
+\operatorname{tr}(LC(p))
+=10\frac{17p_1}{5}+14\frac{17p_2}{7}+22\frac{17p_3}{11}
+=34(p_1+p_2+p_3)=34,
 $$
-Therefore
+while direct entrywise multiplication gives
 $$
-\max_i|\log r_i|\geq\log\gamma.
+\operatorname{tr}(LA)=80.
 $$
-At least one local block consequently has condition number at least
+Consequently every sampling distribution satisfies
 $$
-\Psi(\gamma^{-1}).
-$$
-Since $H=\gamma+\gamma^{-1}$,
-$$
-\Psi(\gamma^{-1})
-=\frac{H+\sqrt{H^2-3}}{H-\sqrt{H^2-3}}.
-$$
-Thus every positive diagonal $D$ satisfies
-$$
-\max_k\kappa_2(DA_kD)
-\geq
-\frac{H+\sqrt{H^2-3}}{H-\sqrt{H^2-3}}.
+\rho(p)\geq\frac{34}{80}=\frac{17}{40}.
 $$
 
-Step 3: Construct a common scaling that attains the lower bound
-Let
+Step 3: Construct a sampling distribution attaining the lower bound
+Choose
 $$
-\eta=2^{1/3},
-\qquad
-D_*=\operatorname{diag}(\eta,\eta^2,1).
+(p_1,p_2,p_3)=\left(\frac{15}{40},\frac{14}{40},\frac{11}{40}\right).
 $$
-Since $\gamma=\eta^4$, the three imbalance parameters are
+Then
 $$
-\frac{\eta}{2\eta^2}
-=\frac{\eta^2}{4}
-=\frac{1}{2\eta}
-=\gamma^{-1}.
+C(p)=\operatorname{diag}\left(\frac{51}{40},\frac{17}{20},\frac{17}{40}\right).
 $$
-Thus every active $2\times2$ block has condition number $\Psi(\gamma^{-1})$.
-
-It remains to check that the isolated coordinate in each $3\times3$ matrix does not enlarge the condition number. Let $\lambda_-<\lambda_+$ be the eigenvalues of $C(\gamma^{-1})$. Its characteristic polynomial is
+With $r=17/40$,
 $$
-q(s)=s^2-Hs+\frac34.
+rA-C(p)
+=\frac{17}{40}
+\begin{bmatrix}
+1&1&1\\
+1&1&1\\
+1&1&1
+\end{bmatrix}
+\succeq0.
 $$
-Since $H>2$,
+Thus $C(p)\preceq rA$, so Step 1 gives
 $$
-q\left(\frac12\right)=1-\frac H2<0,
+\rho(p)\leq\frac{17}{40}.
 $$
-so $1/2$ lies strictly between $\lambda_-$ and $\lambda_+$. For the first two scenarios, the active blocks are respectively
+Together with the lower bound in Step 2,
 $$
-4C(\gamma^{-1}),
-\qquad
-4\eta^2C(\gamma^{-1}),
-$$
-while their isolated eigenvalues are respectively $2$ and $2\eta^2$, exactly one half of the corresponding block factors.
-
-For the third scenario, the active block is $2\eta C(\gamma^{-1})$, while the isolated eigenvalue is
-$$
-2\eta^4=4\eta,
-$$
-which is twice the block factor. Since $\gamma^3=16>(5/2)^3$, we have $\gamma>5/2$, hence $H>5/2>19/8$. Therefore
-$$
-q(2)=\frac{19}{4}-2H<0,
-$$
-so $2$ also lies strictly between $\lambda_-$ and $\lambda_+$.
-
-Thus in all three scenarios the isolated eigenvalue lies between the two active-block eigenvalues. Hence
-$$
-\max_k\kappa_2(D_*A_kD_*)
-=\Psi(\gamma^{-1}),
-$$
-so the lower bound in Step 2 is attained.
-
-Step 4: Prove uniqueness of the minimizing scaling class
-Suppose $D$ attains the optimal robust condition number. Then every local principal-block condition number is at most the optimum, so Step 2 and the strict monotonicity of $\Psi$ imply
-$$
-|\log r_i|\leq\log\gamma,
-\qquad i=1,2,3.
-$$
-But their sum is exactly $-3\log\gamma$. The only way three numbers, each at least $-\log\gamma$, can have this sum is
-$$
-\log r_1=\log r_2=\log r_3=-\log\gamma.
-$$
-Hence
-$$
-\frac{d_1}{2d_2}
-=\frac{d_2}{4d_3}
-=\frac{d_3}{2d_1}
-=\gamma^{-1}.
-$$
-Setting $d_3=1$ fixes the class uniquely:
-$$
-d_2=\frac4\gamma=2^{2/3},
-\qquad
-d_1=\frac{2d_2}{\gamma}=2^{1/3}.
-$$
-Therefore every minimizer is a positive scalar multiple of
-$$
-\operatorname{diag}(2^{1/3},2^{2/3},1).
+\rho_*:=\min_p\rho(p)=\frac{17}{40}.
 $$
 
-Step 5: State the robust optimum and the unique common scaling
-The global lower bound, attainment, and equality case together determine both requested components.
+Step 4: Prove the optimal sampling distribution is unique
+Suppose $p$ attains $\rho_*=17/40$, and set
+$$
+S=\frac{17}{40}A-C(p)\succeq0.
+$$
+The lower-bound chain in Step 2 is then an equality, so
+$$
+\operatorname{tr}(LS)=0.
+$$
+Because $L,S\succeq0$, the matrix $L^{1/2}SL^{1/2}$ is positive semidefinite with trace zero, hence it is zero. Therefore $S^{1/2}L^{1/2}=0$ and $LS=0$.
 
-Final Answer: $\boxed{\left(\frac{H+\sqrt{H^2-3}}{H-\sqrt{H^2-3}},2^{1/3}:2^{2/3}:1\right)}$
+The graph defining $L$ is connected, so
+$$
+\ker L=\operatorname{span}\{(1,1,1)^T\}.
+$$
+Thus every column of $S$ lies in this one-dimensional kernel. Since $S$ is symmetric and positive semidefinite,
+$$
+S=t\mathbf 1\mathbf 1^T
+$$
+for some $t\geq0$. Its off-diagonal entries are fixed by the definition of $S$: because every off-diagonal entry of $A$ equals $1$ and $C(p)$ is diagonal,
+$$
+S_{ij}=\frac{17}{40}
+\qquad(i\ne j).
+$$
+Hence $t=17/40$, so every diagonal entry of $S$ is also $17/40$. Therefore
+$$
+\frac{17}{40}A_{ii}-\frac{p_i}{B_{ii}}=\frac{17}{40}.
+$$
+Using
+$$
+(B_{11},B_{22},B_{33})=\left(\frac5{17},\frac7{17},\frac{11}{17}\right)
+$$
+gives
+$$
+p_1=\frac{15}{40},\qquad
+p_2=\frac{14}{40},\qquad
+p_3=\frac{11}{40}.
+$$
+So the optimizer is unique.
+
+Step 5: State the optimal contraction and sampling ratio
+The optimal expected one-step energy contraction is $17/40$, attained only by the sampling distribution proportional to $15:14:11$.
+
+Final Answer: $\boxed{\left(\frac{17}{40},15:14:11\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{H+\sqrt{H^2-3}}{H-\sqrt{H^2-3}},2^{1/3}:2^{2/3}:1\right)$
+$\left(\frac{17}{40},15:14:11\right)$
 
 ---
 
@@ -224,8 +180,8 @@ $\left(\frac{H+\sqrt{H^2-3}}{H-\sqrt{H^2-3}},2^{1/3}:2^{2/3}:1\right)$
 
 ## Solution Concepts
 
-- robust diagonal preconditioning
-- principal-submatrix spectral bounds
-- condition-number minimax
-- logarithmic compatibility
-- equality certificate
+- randomized block coordinate descent
+- generalized Rayleigh quotient
+- semidefinite order
+- graph Laplacian certificate
+- complementary slackness
