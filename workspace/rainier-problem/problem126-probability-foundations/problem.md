@@ -2,12 +2,15 @@
 
 ## LaTeX (Normalized)
 
-Let $X_1,\ldots,X_{12}$ be $\{0,1\}$-valued random variables such that each $X_i$ is unbiased and every subfamily of at most six variables is mutually independent.
-
-Determine the maximum possible value of
+Let $X_1,\ldots,X_{12}$ be $\{0,1\}$-valued random variables such that each $X_i$ is unbiased and every subfamily of at most six variables is mutually independent. Put
 $$
-P(X_1=X_2=\cdots=X_{12}).
+S=\sum_{i=1}^{12}X_i.
 $$
+For a real parameter $\lambda\geq0$, determine the maximum possible value of
+$$
+P(S\in\{0,12\})+\lambda P(S\in\{1,11\}).
+$$
+Express the answer in closed form as a function of $\lambda$.
 
 ---
 
@@ -18,10 +21,10 @@ $$
 | **Domain** | Probability and Statistics |
 | **Sub-domain** | Probability foundations |
 | **Problem Type** | Optimization |
-| **Answer Type** | Exact scalar |
+| **Answer Type** | Exact symbolic expression |
 
 ---
 
 ## Domain Explanation
 
-This problem asks for a sharp extremal probability under unbiasedness and finite-order independence constraints, so its primary content is Probability and Statistics and Probability foundations. The solution also uses a finite-dimensional moment optimization and a polynomial upper certificate, which relate to Optimization and Numerical Mathematics and Linear programming, but those tools are subordinate to the probabilistic independence question and the construction of an extremal joint law.
+This problem asks for a sharp extremal probability tradeoff under unbiasedness and finite-order independence constraints, so its primary content is Probability and Statistics and Probability foundations. The solution uses centered moments, a polynomial majorization certificate, and explicit extremal joint laws; these optimization tools are subordinate to the probabilistic independence question.
