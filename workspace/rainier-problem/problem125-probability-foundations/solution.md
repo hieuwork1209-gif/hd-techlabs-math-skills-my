@@ -13,12 +13,12 @@ $$
 $$
 For the fourth moment, only multiplicity patterns $4$ and $2+2$ survive, so
 $$
-\mathbb E T^4=8+6\binom82=176.
+\mathbb E T^4=8+6\binom{8}{2}=176.
 $$
 For the sixth moment, the surviving patterns are $6$, $4+2$, and $2+2+2$. Their multiplicities give
 $$
 \mathbb E T^6
-=8+15\cdot8\cdot7+90\binom83
+=8+15\cdot8\cdot7+90\binom{8}{3}
 =5888.
 $$
 Therefore
@@ -30,50 +30,53 @@ $$
 \mathbb E Z=\mathbb E Z^3=\mathbb E Z^5=0.
 $$
 
-Step 2: Build a sharp lattice polynomial certificate for the all-equal event
-Because $Z$ is an integer with $|Z|\leq4$, the square $Z^2$ lies in $\{0,1,4,9,16\}$. Consider the degree-six polynomial
+Step 2: Derive and optimize a nonnegative degree-six majorant for the endpoint event
+The target depends only on $|Z|$, and Step 1 fixes all even moments through degree $6$. A square gives automatic nonnegativity, so using the full even degree budget leads to the one-parameter family
 $$
-g(z)=z^2(z^2-1)(z^2-4).
+Q_a(z)=\frac{z^2(z^2-a)^2}{16(16-a)^2},\qquad a\in\mathbb R,\ a\neq16.
 $$
-On the allowed integer values, $g(z)=0$ for $|z|\in\{0,1,2\}$, $g(\pm3)=360$, and $g(\pm4)=2880$. Hence the pointwise inequality
+For every $a$, $Q_a(z)\geq0$ for all real $z$ and $Q_a(\pm4)=1$. Therefore
 $$
-g(Z)\geq2880\,\mathbf 1_{\{|Z|=4\}}
+\mathbf 1_{\{|Z|=4\}}\leq Q_a(Z).
 $$
-holds. Using the moments from Step 1,
+Its expectation is determined by the moments from Step 1:
 $$
-\mathbb E g(Z)=\mathbb E Z^6-5\mathbb E Z^4+4\mathbb E Z^2
-=92-55+8=45.
+\mathbb E Q_a(Z)
+=\frac{92-22a+2a^2}{16(16-a)^2}
+=\frac1{64}+\frac{7(a-4)^2}{64(a-16)^2}.
+$$
+Thus the unique minimizing parameter in this family is $a=4$, giving the sharp candidate
+$$
+Q_4(z)=\frac{z^2(z^2-4)^2}{2304}.
 $$
 Consequently
 $$
-\mathbb P(X_1=\cdots=X_8)=\mathbb P(|Z|=4)\leq\frac{45}{2880}=\frac1{64}.
+\mathbb P(X_1=\cdots=X_8)=\mathbb P(|Z|=4)
+\leq\mathbb E Q_4(Z)=\frac1{64}.
 $$
 
 Step 3: Determine the Hamming-weight law forced by equality
-Assume equality holds in the bound from Step 2. The pointwise gap is positive only at $|Z|=3$, so equality of expectations forces $\mathbb P(|Z|=3)=0$. For $r\in\{0,1,2,4\}$ write $A_r=\mathbb P(|Z|=r)$. The even moments give
+Assume equality holds in Step 2. Since $Q_4(\pm4)=1$, while $Q_4(z)>0$ for $z\in\{\pm1,\pm3\}$ and $Q_4(z)=0$ for $z\in\{0,\pm2\}$, equality in the pointwise majorant forces
 $$
-A_0+A_1+A_2+A_4=1,
+Z\in\{-4,-2,0,2,4\}\quad\text{almost surely}.
 $$
+Write
 $$
-A_1+4A_2+16A_4=2,
+A_r=\mathbb P(|Z|=r),\qquad r\in\{0,2,4\}.
 $$
+The second and fourth moments from Step 1 give
 $$
-A_1+16A_2+256A_4=11,
-$$
-$$
-A_1+64A_2+4096A_4=92.
-$$
-Subtracting the second moment equation from the fourth, and the fourth from the sixth, gives
-$$
-12A_2+240A_4=9,
+4A_2+16A_4=2,
 $$
 $$
-48A_2+3840A_4=81.
+16A_2+256A_4=11.
 $$
-Subtracting four times the first of these equations from the second yields $2880A_4=45$, so
+Subtracting four times the first equation from the second yields $192A_4=3$, hence
 $$
-A_4=\frac1{64},\qquad A_2=\frac7{16},\qquad A_1=0,\qquad A_0=\frac{35}{64}.
+A_4=\frac1{64},\qquad A_2=\frac7{16},\qquad A_0=\frac{35}{64}.
 $$
+These values also give $64A_2+4096A_4=92$, agreeing with the sixth moment.
+
 To split the masses between opposite signs, let
 $$
 d_r=\mathbb P(Z=r)-\mathbb P(Z=-r),\qquad r\in\{2,4\}.
@@ -82,14 +85,14 @@ The identities $\mathbb E Z=\mathbb E Z^3=0$ give
 $$
 2d_2+4d_4=0,\qquad 8d_2+64d_4=0,
 $$
-so $d_2=d_4=0$. Thus, with $S=\sum_iX_i$,
+so $d_2=d_4=0$. Thus, with $S=\sum_{i=1}^{8}X_i$,
 $$
 \mathbb P(S=0)=\mathbb P(S=8)=\frac1{128},
 $$
 $$
 \mathbb P(S=2)=\mathbb P(S=6)=\frac7{32},\qquad \mathbb P(S=4)=\frac{35}{64},
 $$
-and all odd Hamming weights have probability $0$.
+and every odd Hamming weight has probability $0$.
 
 Step 4: Recover the entire joint distribution from the six-wise cylinder probabilities
 For each subset $A\subseteq[8]$, let
@@ -106,22 +109,22 @@ The Hamming-weight law from Step 3 gives $w_{[8]}=1/128$. If $|T|=6$, the only e
 $$
 w_T=\frac1{64}-\frac1{128}=\frac1{128}.
 $$
-If $|T|=4$, there are $\binom42=6$ six-element supersets of $T$, so
+If $|T|=4$, there are $\binom{4}{2}=6$ six-element supersets of $T$, so
 $$
 w_T=\frac1{16}-6\cdot\frac1{128}-\frac1{128}=\frac1{128}.
 $$
-If $|T|=2$, there are $\binom62=15$ four-element supersets and $\binom64=15$ six-element supersets, so
+If $|T|=2$, there are $\binom{6}{2}=15$ four-element supersets and $\binom{6}{4}=15$ six-element supersets, so
 $$
 w_T=\frac14-15\cdot\frac1{128}-15\cdot\frac1{128}-\frac1{128}=\frac1{128}.
 $$
-Finally Step 3 already gives $w_{\varnothing}=1/128$. Therefore every even-cardinality subset of $[8]$ has probability $1/128$ and every odd-cardinality subset has probability $0$. Thus any maximizer is uniquely the uniform distribution on the even-parity vectors in $\{0,1\}^8$.
+Finally Step 3 gives $w_{\varnothing}=1/128$. Therefore every even-cardinality subset of $[8]$ has probability $1/128$ and every odd-cardinality subset has probability $0$. Thus any maximizer is uniquely the uniform distribution on the even-parity vectors in $\{0,1\}^8$.
 
 Step 5: Verify attainment and finish the optimization
 Take the uniform distribution on the $2^7=128$ vectors in $\{0,1\}^8$ having even parity. Fix any $k\leq7$ coordinates and any assignment of their values. Among the $2^{8-k}$ completions, exactly half, namely $2^{7-k}$, have even parity. Hence that assignment has probability
 $$
 \frac{2^{7-k}}{2^7}=2^{-k}.
 $$
-So this law is actually seven-wise independent, in particular six-wise independent with fair marginals. Both constant vectors $(0,\ldots,0)$ and $(1,\ldots,1)$ have even parity and each has probability $1/128$, so the all-equal event has probability $1/64$. Together with Step 4, this also proves that the maximizer is unique.
+So this law is actually seven-wise independent, in particular six-wise independent with fair marginals. Both constant vectors $(0,\ldots,0)$ and $(1,\ldots,1)$ have even parity and each has probability $1/128$, so the all-equal event has probability $1/64$. Together with Step 4, this proves that the maximizer is unique.
 
 Final Answer: $\boxed{\frac{1}{64}}$
 
@@ -144,7 +147,7 @@ $\frac{1}{64}$
 ## Solution Concepts
 
 - k-wise independence
-- Rademacher moment counting
+- rademacher moment counting
 - polynomial extremal certificate
 - subset incidence inversion
 - parity distribution
