@@ -1,0 +1,22 @@
+{
+  "problem": "problem125",
+  "branch": "adversary/problem125",
+  "problem_path": "workspace/rainier-problem/problem125-probability-foundations/problem.md",
+  "source_commit_sha": "069e55327dec8373a57598c7b4149f830c6d79c3",
+  "problem_blob_sha": "b05c4999ce19f089f5598a55440b686c1c5ac72f",
+  "statement_sha256": "728ff94f4c9aa4096787894942d04b6d678ea652c1d77bba3b2f13a000be38c8",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-15T04:28:44+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nY_i=1-2X_i\\in\\{1,-1\\},\n\\]\nso \\(X_i=0\\) corresponds to \\(Y_i=1\\). For \\(S\\subseteq\\{1,\\dots,8\\}\\), write\n\\[\n\\chi_S(Y)=\\prod_{i\\in S}Y_i.\n\\]\nThe assumption that every subfamily of size at most \\(6\\) is mutually independent and unbiased is equivalent to\n\\[\n\\mathbb E\\chi_S(Y)=0\\qquad(1\\le |S|\\le 6).\n\\]\n\nBy Fourier inversion on \\(\\{\\pm1\\}^8\\), every admissible mass function has the form\n\\[\np(y)=2^{-8}\\left(1+\\sum_{|S|=7}m_S\\chi_S(y)+m_{[8]}\\chi_{[8]}(y)\\right).\n\\]\nWrite \\(a_i=m_{[8]\\setminus\\{i\\}}\\) and \\(b=m_{[8]}\\). Since\n\\[\n\\chi_{[8]\\setminus\\{i\\}}(y)=\\chi_{[8]}(y)y_i,\n\\]\nwe have\n\\[\np(y)=2^{-8}\\left(1+\\chi_{[8]}(y)\\left(b+\\sum_{i=1}^8a_i y_i\\right)\\right).\n\\]\n\nLet\n\\[\nM=b+\\sum_{i=1}^8 a_i.\n\\]\nThen\n\\[\n\\mathbb P(X_1=\\cdots=X_8=0)=p(1,\\dots,1)=2^{-8}(1+M).\n\\]\n\nNow take a vertex \\(y\\) obtained from \\((1,\\dots,1)\\) by flipping the coordinates in \\(T\\). Put \\(A(T)=\\sum_{i\\in T}a_i\\). Then\n\\[\nb+\\sum_i a_i y_i=M-2A(T).\n\\]\nNonnegativity of \\(p(y)\\) gives:\n\n- if \\(|T|\\) is odd,\n\\[\nM-2A(T)\\le 1,\n\\]\nso\n\\[\nA(T)\\ge \\frac{M-1}{2};\n\\]\n\n- if \\(|T|\\) is even,\n\\[\nM-2A(T)\\ge -1,\n\\]\nso\n\\[\nA(T)\\le \\frac{M+1}{2}.\n\\]\n\nUsing the odd sets \\(T=\\{i\\}\\), we get\n\\[\na_i\\ge \\frac{M-1}{2}\\qquad(1\\le i\\le 8).\n\\]\nHence\n\\[\n\\sum_{i=1}^8 a_i\\ge 8\\cdot \\frac{M-1}{2}=4(M-1).\n\\]\nUsing the even set \\(T=\\{1,\\dots,8\\}\\), we also get\n\\[\n\\sum_{i=1}^8 a_i\\le \\frac{M+1}{2}.\n\\]\nTherefore\n\\[\n4(M-1)\\le \\frac{M+1}{2},\n\\]\nso\n\\[\n8M-8\\le M+1,\n\\]\nand hence\n\\[\nM\\le \\frac97.\n\\]\nThus\n\\[\n\\mathbb P(X_1=\\cdots=X_8=0)\\le 2^{-8}\\left(1+\\frac97\\right)\n=\\frac1{256}\\cdot \\frac{16}{7}\n=\\frac1{112}.\n\\]\n\nIt remains to show this is attainable and classify equality. Equality forces\n\\[\na_i=\\frac17\\qquad(1\\le i\\le8),\n\\]\nand\n\\[\n\\sum_i a_i=\\frac87,\n\\]\nso\n\\[\nb=M-\\sum_i a_i=\\frac97-\\frac87=\\frac17.\n\\]\nTherefore the only possible extremal distribution is\n\\[\np(y)=\\frac1{256}\\left(1+\\frac{\\chi_{[8]}(y)}7\\left(1+\\sum_{i=1}^8 y_i\\right)\\right).\n\\]\n\nIn terms of \\(x=(x_1,\\dots,x_8)\\in\\{0,1\\}^8\\), let \\(|x|=x_1+\\cdots+x_8\\). Since \\(y_i=1-2x_i\\),\n\\[\n\\sum_i y_i=8-2|x|,\\qquad \\chi_{[8]}(y)=(-1)^{|x|}.\n\\]\nSo the extremal distribution is\n\\[\n\\boxed{\n\\mathbb P(X=x)=\\frac1{256}\\left(1+\\frac{(-1)^{|x|}(9-2|x|)}7\\right)\n}.\n\\]\nThis is nonnegative for every \\(|x|=0,\\dots,8\\), and by construction all Fourier moments of degrees \\(1,\\dots,6\\) vanish, so every subfamily of size at most \\(6\\) is mutually independent and unbiased.\n\nFinal answer:\n\\[\n\\boxed{\\max \\mathbb P(X_1=\\cdots=X_8=0)=\\frac1{112}}\n\\]\nwith equality attained uniquely by the distribution above.",
+  "status": "success",
+  "completed_at": "2026-09-15T04:30:13+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem125/b05c4999ce19.json"
+}
