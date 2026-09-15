@@ -6,7 +6,7 @@ Put
 $$
 q=\sqrt t,\qquad \phi(x)=x(1-x)(3x-1)^2.
 $$
-By Andreief,
+By the Andréief identity,
 $$
 D_m(t)=\frac1{(4m+2)!}\int_{[0,1]^{4m+2}}\Delta(x)^2
 \prod_i(1+q(3x_i-1))e^{-\phi(x_i)/t}\,dx_i.
@@ -42,7 +42,7 @@ L_n=\prod_{j=0}^{n-1}(j!)^2,
 \qquad
 G_n=\pi^{n/2}2^{-n(n-1)/2}\prod_{j=0}^{n-1}j!.
 $$
-Indeed these follow from the monic Laguerre and Hermite squared norms
+Indeed, these follow from the monic Laguerre and Hermite squared norms
 $$
 h_j^{(L)}=(j!)^2,\qquad h_j^{(G)}=\sqrt\pi\,2^{-j}j!,
 $$
@@ -267,7 +267,7 @@ $$
 $$
 and the complement of the core is already negligible by the domination proved in Step 3. Thus this factor also contributes no hidden order-$q^3$ error.
 
-By $z\mapsto-z$ symmetry the odd Gaussian terms vanish except
+By $z\mapsto-z$ symmetry every term odd in $z$ has zero expectation, and the only surviving cross term between the two exponents is $J$, where
 $$
 J:=\frac3{\sqrt2}\mathbb E[AZ_1]
 =\frac{9l}{4}\left(2k-r-\frac{3l}{4}\right).
@@ -381,7 +381,8 @@ $\frac{128m^3+10452m^2+13012m+1533}{768}+\frac{r_m(32m^2+1811m+1107)+s_m(32m^2+1
 
 ## Solution Concepts
 
-- competing Laplace clusters
-- Hankel determinant / Vandermonde integrals
-- Gaussian and Laguerre moment recurrences
-- perturbative asymptotic expansion
+- Laplace method
+- Hankel determinants
+- Vandermonde integrals
+- Gaussian and Laguerre ensemble moments
+- asymptotic expansion
