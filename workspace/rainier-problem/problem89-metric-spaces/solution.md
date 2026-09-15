@@ -44,14 +44,10 @@ $$
 h(p)=-16u^r+30u-15<-16u^{19/12}+30u-15=:q(u).
 $$
 The concave function $q$ has its unique maximum at
-$$
-u_0=\left(\frac{45}{38}\right)^{12/7}=\left(1+\frac{7}{38}\right)^{12/7}.
-$$
+$$u_0=\left(\frac{45}{38}\right)^{12/7}=\left(1+\frac{7}{38}\right)^{12/7}.$$
 For $f(x)=(1+x)^{12/7}$, $f''(x)\leq\frac{60}{49}$ for $x\geq0$, so Taylor's theorem at $0$ gives
-$$
-u_0\leq1+\frac{12}{7}\frac{7}{38}+\frac{30}{49}\left(\frac{7}{38}\right)^2
-=\frac{965}{722}<\frac{19}{14}.
-$$
+$$u_0\leq1+\frac{12}{7}\frac{7}{38}+\frac{30}{49}\left(\frac{7}{38}\right)^2
+=\frac{965}{722}<\frac{19}{14}.$$
 At the maximum, $u_0^{7/12}=\frac{45}{38}$, so
 $$
 q(u_0)=\frac{210}{19}u_0-15<\frac{210}{19}\frac{19}{14}-15=0.
@@ -113,9 +109,8 @@ S=\operatorname{supp}u,\qquad T=\operatorname{supp}\widehat u,
 \qquad r=|S|,\qquad t=|T|.
 $$
 Fourier inversion and Plancherel on the $32$-element group $V$ give
+$$u(x)=\frac1{32}\sum_{\xi\in V^*}\widehat u(\xi)(-1)^{\xi(x)},$$
 $$
-u(x)=\frac1{32}\sum_{\xi\in V^*}\widehat u(\xi)(-1)^{\xi(x)},
-\qquad
 \sum_{\xi}|\widehat u(\xi)|^2=32\sum_x|u(x)|^2.
 $$
 Therefore
@@ -163,9 +158,7 @@ S=x_0+W,
 T=\xi_0+W^\perp.
 $$
 The same sign relation then gives, for some nonzero real constant $A$,
-$$
-u(x)=A(-1)^{\xi_0(x)}\mathbf{1}_{x_0+W}(x).
-$$
+$$u(x)=A(-1)^{\xi_0(x)}\mathbf{1}_{x_0+W}(x).$$
 Conversely, this formula has Fourier support $\xi_0+W^\perp$. It represents a valid point coefficient vector exactly when $0\notin x_0+W$ and $\widehat u(0)=0$, namely
 $$
 x_0\notin W,
