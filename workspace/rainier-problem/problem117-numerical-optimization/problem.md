@@ -6,43 +6,41 @@ Let
 $$
 Q=\begin{bmatrix}1&0\\0&4\end{bmatrix},
 \qquad
-R=\begin{bmatrix}\frac{5}{2}&-\frac{3}{2}\\-\frac{3}{2}&\frac{5}{2}\end{bmatrix},
+R=\begin{bmatrix}\frac{5}{2}&-\frac{3}{2}\\-\frac{3}{2}&\frac{5}{2}\end{bmatrix}.
 $$
-and define
+The common curvature scale is uncertain and is known only to lie between the two eigenvalues of $Q$. Thus, for $\mu\in[1,4]$, define
 $$
-f(x)=\frac{1}{2}x^TQx,
+f_\mu(x)=\frac{\mu}{2}x^TQx,
 \qquad
-g(x)=\frac{1}{2}x^TRx
+g_\mu(x)=\frac{\mu}{2}x^TRx
 \qquad(x\in\mathbb{R}^2).
 $$
-For $\rho>0$, define the proximal maps
+For $\rho>0$, define
 $$
-P_{f,\rho}(v)=\operatorname*{argmin}_{x\in\mathbb{R}^2}
-\left(f(x)+\frac{\rho}{2}\|x-v\|_2^2\right),
+P_{h,\rho}(v)=\operatorname*{argmin}_{x\in\mathbb{R}^2}
+\left(h(x)+\frac{\rho}{2}\|x-v\|_2^2\right).
 $$
+Using one common parameter pair $(\rho,\theta)$ for every $\mu\in[1,4]$, with $0<\theta\leq2$, perform one relaxed Douglas-Rachford step
 $$
-P_{g,\rho}(v)=\operatorname*{argmin}_{x\in\mathbb{R}^2}
-\left(g(x)+\frac{\rho}{2}\|x-v\|_2^2\right).
-$$
-For a relaxation parameter $0<\theta<2$, one relaxed Douglas-Rachford step is
-$$
-y=P_{f,\rho}(z),
+y=P_{f_\mu,\rho}(z),
 \qquad
-w=P_{g,\rho}(2y-z),
+w=P_{g_\mu,\rho}(2y-z),
 \qquad
 z^+=z+\theta(w-y).
 $$
-Since the unique minimizer of $f+g$ is $0$, define the worst-case one-step Euclidean contraction
+Define the robust worst-case one-step Euclidean contraction
 $$
-C(\rho,\theta)=\sup_{z\ne0}\frac{\|z^+\|_2}{\|z\|_2}.
+\mathcal C(\rho,\theta)
+=\sup_{\mu\in[1,4]}\sup_{z\ne0}
+\frac{\|z^+\|_2}{\|z\|_2}.
 $$
 Determine exactly
 $$
-C_*:=\min_{\rho>0,\ 0<\theta<2}C(\rho,\theta),
+\mathcal C_*:=\min_{\rho>0,\ 0<\theta\leq2}\mathcal C(\rho,\theta),
 $$
 and determine the unique minimizing pair $(\rho_*,\theta_*)$. Give the final answer as
 $$
-(\rho_*,\theta_*,C_*).
+(\rho_*,\theta_*,\mathcal C_*).
 $$
 
 ---
@@ -60,4 +58,4 @@ $$
 
 ## Domain Explanation
 
-This problem tunes the penalty and relaxation parameters of relaxed Douglas-Rachford splitting for a strongly convex quadratic optimization problem by minimizing its worst-case one-step contraction, which is part of Optimization and Numerical Mathematics and Numerical optimization. Linear Algebra, especially singular values and matrix norms, supplies the convergence certificate, but it is subordinate because those tools are used to optimize the parameters of the splitting algorithm rather than being the requested object themselves.
+This problem asks for robust tuning of the penalty and relaxation parameters of Douglas-Rachford splitting when the quadratic objective has an uncertain common curvature scale. The requested object is the parameter pair minimizing the worst-case contraction across the entire uncertainty interval, which is part of Optimization and Numerical Mathematics and Numerical optimization. Linear Algebra, especially singular values and matrix norms, is used only to certify the contraction bounds and is therefore subordinate to the numerical-optimization task.
