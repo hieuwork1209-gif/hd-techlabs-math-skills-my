@@ -2,11 +2,13 @@
 
 Step 1: Express the powered distance matrix through projective incidence
 
-Let $B$ be the $31\times31$ point-hyperplane incidence matrix of $\operatorname{PG}(4,2)$. Every point lies in $15$ hyperplanes, while two distinct points lie in $7$ common hyperplanes, so
+Let $V=\mathbb{F}_2^5$. Over $\mathbb{F}_2$, every nonzero vector represents a distinct projective point and every nonzero functional represents a distinct hyperplane, so $\operatorname{PG}(4,2)$ has $31$ points and $31$ hyperplanes. For a fixed point, the functionals vanishing on it form a $4$-dimensional vector space, so the point lies in $2^4-1=15$ hyperplanes. For two distinct points, the functionals vanishing on both form a $3$-dimensional vector space, so they lie in $2^3-1=7$ common hyperplanes.
+
+Let $B$ be the $31\times31$ point-hyperplane incidence matrix. The diagonal entries of $BB^T$ are $15$ and the off-diagonal entries are $7$, hence
 $$
 BB^T=8I+7J.
 $$
-Two distinct points have graph distance $2$, and the same is true for two distinct hyperplanes. A point-hyperplane pair has distance $1$ when incident and $3$ otherwise. Hence, with $a=2^p$ and $b=3^p$,
+Two distinct points have graph distance $2$ because they lie in a common hyperplane, and two distinct hyperplanes have distance $2$ because their intersection contains a point. If $P$ is not incident with $H$, choose $Q\in H$ and a hyperplane $K$ containing both $P$ and $Q$; then $P-K-Q-H$ has length $3$, while bipartiteness excludes length $2$. Thus a point-hyperplane pair has distance $1$ when incident and $3$ otherwise. Hence, with $a=2^p$ and $b=3^p$,
 $$
 D_p=
 \begin{pmatrix}
@@ -43,7 +45,11 @@ We first show $h(p)<0$ for every $p>0$. Write $x=2^p>1$ and $r=\log_2 3$. Since 
 $$
 h(p)=-16x^r+30x-15<-16x^{19/12}+30x-15=:q(x).
 $$
-The concave function $q$ has its unique maximum at
+Now
+$$
+q'(x)=30-\frac{76}{3}x^{7/12},
+$$
+so the concave function $q$ has its unique maximum at
 $$x_0=\left(\frac{45}{38}\right)^{12/7}=\left(1+\frac{7}{38}\right)^{12/7}.$$
 For $f(t)=(1+t)^{12/7}$, $f''(t)\leq\frac{60}{49}$ for $t\geq0$, so Taylor's theorem at $0$ gives
 $$x_0\leq1+\frac{12}{7}\frac{7}{38}+\frac{30}{49}\left(\frac{7}{38}\right)^2
@@ -60,9 +66,9 @@ g(p)=s(3^p-1)-2^p=\lambda_+(p)
 $$
 satisfies $g(0)=-1$ and
 $$
-g'(p)=2^p\left(s\left(\frac32\right)^p\log3-\log2\right)>0.
+g'(p)=2^p\left(s\left(\frac32\right)^p\log3-\log2\right)>0,
 $$
-Also $g(p)\to\infty$, so it has a unique positive zero $\alpha$. Therefore
+because $s>1$, $(\frac32)^p\geq1$, and $\log3>\log2$. Also $g(p)\to\infty$, so it has a unique positive zero $\alpha$. Therefore
 $$
 \wp=\alpha=\min\{p>0:2^{3/2}(3^p-1)=2^p\}.
 $$
@@ -77,7 +83,7 @@ $$
 
 Step 3: Convert boundary equality witnesses into a finite Fourier uncertainty problem
 
-Let $V=\mathbb{F}_2^5$. Because the field has two elements, the points of $\operatorname{PG}(4,2)$ are exactly the nonzero vectors of $V$, while hyperplanes are indexed by the nonzero linear functionals $\xi\in V^*$. Extend $u$ from the point set to all of $V$ by setting $u(0)=0$. Since $u\in U$,
+Use the vector-space model $V=\mathbb{F}_2^5$ from Step 1. Hyperplanes are indexed by the nonzero linear functionals $\xi\in V^*$. Extend $u$ from the point set to all of $V$ by setting $u(0)=0$. Since $u\in U$,
 $$
 \sum_{x\in V}u(x)=0.
 $$
@@ -129,7 +135,7 @@ $$
 rt\geq32.
 $$
 
-We now determine all equality cases. Suppose $rt=32$. Equality must hold in every preceding inequality. Hence $|u(x)|$ is constant on $S$, $|\widehat u(\xi)|$ is constant on $T$, and for each fixed $x\in S$ all terms
+Suppose $rt=32$. Equality then holds in the support bound, the triangle inequality in Fourier inversion, and the Fourier Cauchy-Schwarz bound. Hence $|u(x)|$ is constant on $S$, $|\widehat u(\xi)|$ is constant on $T$, and for each fixed $x\in S$ all terms
 $$
 \widehat u(\xi)(-1)^{\xi(x)},\qquad \xi\in T,
 $$
