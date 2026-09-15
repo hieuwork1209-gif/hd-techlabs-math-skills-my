@@ -37,12 +37,21 @@ M_\pi=T_\pi^TAT_\pi.
 $$
 Hence for a distribution $q$ on the six permutations,
 $$
-\rho(q)=\lambda_{\max}\!\left(A^{-1/2}\Bigl(\sum_\pi q_\pi M_\pi\Bigr)A^{-1/2}\right).
+\rho(q)=\lambda_{\max}\left(A^{-1/2}\Bigl(\sum_\pi q_\pi M_\pi\Bigr)A^{-1/2}\right).
 $$
 
 The matrix $A$ is invariant under swapping coordinates $1$ and $2$. Swapping those coordinates sends any distribution $q$ to another distribution with the same value of $\rho$, while $\lambda_{\max}$ is convex in the averaged energy matrix. Therefore averaging $q$ with its swapped copy cannot increase $\rho$. We may restrict to swap-symmetric distributions.
 
-Let $a,b,c$ be the total masses of the three swap-orbits: coordinate $3$ last, middle, and first, respectively. Thus $a,b,c\geq0$ and $a+b+c=1$. Multiplying the displayed $T_i$ matrices and averaging the two permutations in each orbit gives
+Let $a,b,c$ be the total masses of the three swap-orbits: coordinate $3$ last, middle, and first, respectively. Thus $a,b,c\geq0$ and $a+b+c=1$. From the displayed $T_i$ matrices,
+$$
+M_{123}=\begin{bmatrix}0&0&0\\0&17/48&5/16\\0&5/16&11/16\end{bmatrix},
+\quad
+M_{132}=\begin{bmatrix}0&0&0\\0&19/36&11/36\\0&11/36&13/36\end{bmatrix},
+$$
+$$
+M_{312}=\begin{bmatrix}19/72&2/9&0\\2/9&5/9&0\\0&0&0\end{bmatrix}.
+$$
+The partners $M_{213},M_{231},M_{321}$ are obtained by swapping the first two rows and columns. Therefore the three orbit averages are
 $$
 L=\frac{M_{123}+M_{213}}2
 =\begin{bmatrix}
@@ -112,9 +121,10 @@ $$
 r\geq\frac{51+25b}{288}\geq\frac{17}{96}.
 $$
 
-For the symmetric $2\times2$ block on $\operatorname{span}\{u,e_3\}$, nonnegative determinant is necessary. After clearing the positive factor $7/10368$, that determinant condition is
+For the symmetric $2\times2$ block on $\operatorname{span}\{u,e_3\}$, nonnegative determinant is necessary. Expanding that determinant gives
 $$
-\Delta(a,b,r)\geq0,
+\det\left(rA_{\mathrm{sym}}-M_{\mathrm{sym}}(a,b)\right)
+=\frac7{10368}\Delta(a,b,r),
 $$
 where
 $$
@@ -123,6 +133,7 @@ $$
 &+1872br+676b+20736r^2-5616r.
 \end{aligned}
 $$
+Thus every feasible triple satisfies $\Delta(a,b,r)\geq0$.
 
 Step 3: Prove the sharp global lower bound
 Define
