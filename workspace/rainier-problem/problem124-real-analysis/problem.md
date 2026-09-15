@@ -6,9 +6,9 @@ Let $\mathcal F$ be the class of all absolutely continuous functions $f:[0,1]\to
 $$
 f(0)=f(1)=0,\qquad |f'(x)|\leq1\ \text{for almost every }x\in[0,1],
 $$
-and
+and the two local cancellation conditions
 $$
-\int_0^1 f(x)\,dx=0.
+\int_0^{1/3}f(x)\,dx=0,\qquad \int_{1/3}^1f(x)\,dx=0.
 $$
 Determine exactly
 $$
@@ -31,4 +31,4 @@ A complete proof must also classify all equality cases.
 
 ## Domain Explanation
 
-The problem asks for a sharp real-variable integral inequality under absolute-continuity, Lipschitz, endpoint, and mean constraints, together with a complete analysis of equality. The central work is the geometry of level sets and sharp integral estimates for real functions, so Real analysis is the direct classification.
+The problem asks for a sharp integral inequality for absolutely continuous Lipschitz functions under two local cancellation constraints, with a complete classification of equality. The main work is the real-variable geometry of positive and negative level sets and sharp endpoint-sensitive integral estimates, so Analysis and Real analysis are the direct classification. Optimization supplies only the extremal framing and is subordinate to the real-analysis argument.
