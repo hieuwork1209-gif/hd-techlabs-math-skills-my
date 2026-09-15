@@ -2,15 +2,13 @@
 
 ## LaTeX (Normalized)
 
-Let $0<r<1$. Let $ABC$ be a nondegenerate triangle whose vertices lie on the unit circle with center $O$, and let $G$ be its centroid. Assume
+Let $ABC$ be a nondegenerate triangle whose vertices lie on the unit circle with center $O$. Let $G$ be its centroid, and write
 $$
-OG=r.
+r=OG,
+\qquad
+K=\operatorname{Area}(ABC).
 $$
-Determine exactly, in closed form as a function of $r$,
-$$
-\max \operatorname{Area}(ABC),
-$$
-where the maximum is over all such triangles. A complete proof must also classify all triangles attaining the maximum.
+Determine exactly the set of all attainable pairs $(r,K)$. A complete proof must also classify all triangles that attain equality in either sharp area inequality describing the boundary of this set.
 
 ---
 
@@ -20,11 +18,11 @@ where the maximum is over all such triangles. A complete proof must also classif
 |---|---|
 | **Domain** | Euclidean, Coordinate, and Transformational Geometry |
 | **Sub-domain** | Euclidean geometry |
-| **Problem Type** | Optimization |
-| **Answer Type** | Exact symbolic expression |
+| **Problem Type** | Exhaustive enumeration |
+| **Answer Type** | Interval or region description |
 
 ---
 
 ## Domain Explanation
 
-The problem is a sharp extremal question about triangles inscribed in a Euclidean circle under a geometric centroid constraint. The main work converts the circle and centroid data into an invariant relation among the three vertices, derives a sharp global area bound, and reconstructs all equality configurations, so the primary classification is Euclidean, Coordinate, and Transformational Geometry and Euclidean geometry. The secondary domain is Algebra, Functions, and Trigonometry, specifically Trigonometry, which is used to encode unit-circle points and simplify the area relation; it is subordinate to the geometric optimization problem.
+The problem asks for the complete feasible region relating the centroid distance and area of a triangle inscribed in a fixed Euclidean circle, together with all equality configurations on its sharp area boundaries. The primary content is therefore Euclidean, Coordinate, and Transformational Geometry and Euclidean geometry. Complex coordinates, a cubic discriminant, and a Cayley transform are subordinate algebraic tools used to prove global feasibility and reconstruct the boundary triangles.
