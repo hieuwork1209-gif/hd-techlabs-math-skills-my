@@ -144,16 +144,40 @@ where
 $$
 H(x)=s\sin\alpha\,x^3+(3-s\cos\alpha)x^2+s\sin\alpha\,x-(1+s\cos\alpha).
 $$
-Substituting these four real coefficients into the cubic discriminant formula from Step 1 yields
+For a real cubic $Ax^3+Bx^2+Cx+D_0$, the discriminant is
+$$
+B^2C^2-4AC^3-4B^3D_0-27A^2D_0^2+18ABCD_0.
+$$
+Here
+$$
+A=C=s\sin\alpha,
+\qquad
+B=3-s\cos\alpha,
+\qquad
+D_0=-(1+s\cos\alpha).
+$$
+Writing $u=\sin\alpha$ and $v=\cos\alpha$, substitution gives
 $$
 \operatorname{disc}(H)
-=-4\left[s^4-8s^3\left(\cos^3\alpha-3\cos\alpha\sin^2\alpha\right)+18s^2-27\right].
+=s^2u^2(3-sv)^2-4s^4u^4
++4(3-sv)^3(1+sv)
+-27s^2u^2(1+sv)^2
+-18s^2u^2(3-sv)(1+sv).
 $$
-Since $\cos^3\alpha-3\cos\alpha\sin^2\alpha=\cos(3\alpha)=\cos\phi$,
+Grouping powers of $s$ and using $u^2+v^2=1$ reduces this to
+$$
+\operatorname{disc}(H)
+=-4\left[s^4-8s^3\left(v^3-3vu^2\right)+18s^2-27\right].
+$$
+Since $v^3-3vu^2=\cos(3\alpha)=\cos\phi$,
 $$
 \operatorname{disc}(H)=-4D=64K^2>0.
 $$
-For a real cubic, the root-product form of the discriminant shows that positive discriminant is equivalent to three distinct real roots. Hence $H$ has three distinct real roots $x_1,x_2,x_3$, producing three distinct unit-modulus roots
+If the three roots of a real cubic are $x_1,x_2,x_3$, its discriminant is
+$$
+A^4(x_1-x_2)^2(x_1-x_3)^2(x_2-x_3)^2.
+$$
+A real cubic has either three real roots or one real root and a nonreal conjugate pair; in the latter case the factor $(x_2-x_3)^2$ is a negative real number while the other two squared factors have positive product, so the discriminant is negative. Thus positive discriminant is equivalent to three distinct real roots. Hence $H$ has three distinct real roots $x_1,x_2,x_3$, producing three distinct unit-modulus roots
 $$
 z_j=e^{i\alpha}\frac{x_j+i}{x_j-i}
 $$
