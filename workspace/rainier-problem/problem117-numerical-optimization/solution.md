@@ -136,22 +136,41 @@ $$
 Thus every feasible triple satisfies $\Delta(a,b,r)\geq0$.
 
 Step 3: Derive the sharp lower bound and its equality conditions
-The natural candidate threshold occurs when the antisymmetric bound is tight with no mass on the middle orbit, so $b=0$ and $a=18-96r$. Substitution into the symmetric determinant gives
+From the antisymmetric condition in Step 2,
 $$
-\Delta(18-96r,0,r)
-=-54\left(182016r^2-66080r+5997\right).
+a\geq a_0:=18+\frac{22}{3}b-96r.
 $$
-Define
+Assume $r<9/50$. For $a\geq a_0$,
+$$
+\frac{\partial\Delta}{\partial a}
+=-2142a-1519b-216r+1287
+\leq -17227b+205416r-37269
+<-17227b-\frac{7353}{25}<0.
+$$
+Hence $\Delta(a,b,r)\leq\Delta(a_0,b,r)$. Substitution gives
+$$
+\Delta(a_0,b,r)
+=-54p(r)+(1654080r-299972)b-\frac{207802}{3}b^2,
+$$
+where the $b$-independent obstruction is
 $$
 p(t)=182016t^2-66080t+5997.
 $$
-Its discriminant is
+For $r<9/50$,
+$$
+1654080r-299972<-\frac{11188}{5}<0,
+$$
+so every feasible triple with $r<9/50$ must satisfy
+$$
+0\leq\Delta(a,b,r)\leq-54p(r).
+$$
+Thus the first possible threshold above the universal bound $17/96$ is the smaller root of $p$. Its discriminant is
 $$
 66080^2-4\cdot182016\cdot5997=366592=1024\cdot358,
 $$
-so its smaller root is
+so define
 $$
-r_*=\frac{2065-\sqrt{358}}{11376}.
+r_*:=\frac{2065-\sqrt{358}}{11376}.
 $$
 Since
 $$
@@ -163,48 +182,19 @@ we have
 $$
 \frac{17}{96}<r_*<\frac9{50}.
 $$
-
-Suppose that some symmetric distribution satisfies $\rho(a,b)<r_*$. Put $r=\rho(a,b)$. From the antisymmetric condition,
-$$
-a\geq a_0:=18+\frac{22}{3}b-96r.
-$$
-For $a\geq a_0$,
-$$
-\frac{\partial\Delta}{\partial a}
-=-2142a-1519b-216r+1287
-\leq -17227b+205416r-37269.
-$$
-Because $r<r_*<9/50$,
-$$
--17227b+205416r-37269
-<-17227b-\frac{7353}{25}<0.
-$$
-Hence $\Delta(a,b,r)\leq\Delta(a_0,b,r)$. Substituting $a_0$ gives
-$$
-\Delta(a_0,b,r)
-=-54p(r)+(1654080r-299972)b-\frac{207802}{3}b^2.
-$$
-Again using $r<9/50$,
-$$
-1654080r-299972<-\frac{11188}{5}<0,
-$$
-so
-$$
-\Delta(a,b,r)\leq-54p(r).
-$$
-But Step 2 gives $r\geq17/96$, and on $[17/96,r_*)$ the quadratic $p$ is positive because $r_*$ is its smaller root. Therefore $\Delta(a,b,r)<0$, contradicting the determinant condition. Thus every swap-symmetric distribution has contraction at least $r_*$. By Step 1, symmetrizing an arbitrary distribution cannot increase its contraction, so every distribution satisfies
+If a symmetric distribution had contraction $r<r_*$, then Step 2 would give $r\geq17/96$, while the displayed inequality would give $p(r)\leq0$. But $p>0$ on $[17/96,r_*)$, a contradiction. Therefore every swap-symmetric distribution has contraction at least $r_*$. By Step 1, symmetrizing an arbitrary distribution cannot increase its contraction, so every distribution satisfies
 $$
 \rho(q)\geq r_*.
 $$
 
-The same inequalities determine the equality case among swap-symmetric distributions. Set $r=r_*$. Then
+The same chain determines equality among swap-symmetric distributions. Set $r=r_*$. Then
 $$
 \Delta(a_0,b,r_*)
 =(1654080r_*-299972)b-\frac{207802}{3}b^2\leq0,
 $$
 and the coefficient of $b$ is strictly negative because $r_*<9/50$. Feasibility requires $\Delta\geq0$, so $b=0$. The derivative bound is then strictly negative for $a\geq18-96r_*$, while
 $$
-\Delta(18-96r_*,0,r_*)=0.
+\Delta(18-96r_*,0,r_*)=-54p(r_*)=0.
 $$
 Hence equality forces
 $$
@@ -267,7 +257,7 @@ For any $z\in\ker S_*$,
 $$
 0=z^TS_*z=\frac12z^TS(q)z+\frac12z^TS(q^J)z.
 $$
-Both terms are nonnegative, so both vanish. For a positive semidefinite matrix, $z^TSz=0$ implies $Sz=0$. Hence $\ker S_*$ is contained in the kernels of both $S(q)$ and $S(q^J)$. Since $S_*$ has rank one, both $S(q)$ and $S(q^J)$ have range contained in $\operatorname{range}S_*$. This range is fixed pointwise by $J$, so $J S(q)J=S(q)$. Therefore $S(q^J)=S(q)$, and their average being $S_*$ yields
+Both terms are nonnegative, so both vanish. Since $z^TSz=\|S^{1/2}z\|^2$ for $S\succeq0$, this implies $S(q)z=S(q^J)z=0$. Hence $\ker S_*$ is contained in the kernels of both matrices. Since $S_*$ has rank one, both $S(q)$ and $S(q^J)$ have range contained in $\operatorname{range}S_*$. This range is fixed pointwise by $J$, so $J S(q)J=S(q)$. Therefore $S(q^J)=S(q)$, and their average being $S_*$ yields
 $$
 S(q)=S_*.
 $$
