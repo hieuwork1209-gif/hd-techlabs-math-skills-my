@@ -48,20 +48,20 @@ and
 $$
 J(a)=\iiint_{(0,\infty)^3}\frac{\Delta^2(xyz)^{a-1}e^{-(x+y+z)}}{(x+y)(y+z)(z+x)}\,dx\,dy\,dz.
 $$
-With $(x,y,z)=r(\lambda_1,\lambda_2,\lambda_3)$, $\lambda_1+\lambda_2+\lambda_3=1$, the radial power is $r^{3a+2}$, hence
+With $(x,y,z)=r(\lambda_1,\lambda_2,\lambda_3)$, $\lambda_1+\lambda_2+\lambda_3=1$, the radial power is $r^{3a+2}$, so
 $$
 J(a)=\left(\int_0^\infty e^{-r}r^{3a+2}\,dr\right)K(a)=\Gamma(3a+3)K(a).
 $$
 
-We now derive the partial-fraction decomposition used below rather than guess it. Write
+To separate the triple integral, derive the partial-fraction decomposition directly. Write
 $$
 R(x,y,z)=\frac{\Delta}{(x+y)(y+z)(z+x)}.
 $$
-In $J(a)$ the other factor $\Delta$ is a polynomial, so to make the triple integral factor after expanding that polynomial we want to express $R$ as a sum of terms coupling only one pair of variables. If, for example, a term has only the denominator $x+y$, then homogeneity forces a linear numerator, and antisymmetry in $x,y$ singles out a multiple of $y-x$. Thus the natural three-parameter ansatz is
+In $J(a)$ the other factor $\Delta$ is a polynomial, so to make the triple integral factor after expanding that polynomial we want to express $R$ as a sum of terms coupling only one pair of variables. If, for example, a term has only the denominator $x+y$, then homogeneity forces a linear numerator, and antisymmetry in $x,y$ singles out a multiple of $y-x$. This gives the three-parameter ansatz
 $$
 R=A\frac{y-x}{x+y}+B\frac{z-x}{x+z}+C\frac{z-y}{y+z}.
 $$
-The left side vanishes whenever two variables coincide. Setting $x=y$ in the ansatz gives $B+C=0$, while setting $y=z$ gives $A+B=0$. Hence $(A,B,C)$ must be proportional to $(1,-1,1)$. The proportionality constant is fixed without any further guess: after clearing denominators,
+The left side vanishes whenever two variables coincide. Setting $x=y$ in the ansatz gives $B+C=0$, while setting $y=z$ gives $A+B=0$. So $(A,B,C)$ must be proportional to $(1,-1,1)$. The proportionality constant is fixed without any further guess: after clearing denominators,
 $$
 \begin{aligned}
 &(y-x)(y+z)(z+x)-(z-x)(x+y)(y+z)+(z-y)(x+y)(x+z)\\
@@ -102,7 +102,7 @@ $$
 \iiint \Delta q_{12}(xyz)^{a-1}e^{-(x+y+z)}\,dx\,dy\,dz
 =2(\mu_{12}\nu_3-\mu_{13}\nu_2+\mu_{23}\nu_1).
 $$
-Interchanging $y,z$ changes $\Delta$ to $-\Delta$ and $q_{12}$ to $q_{13}$, while the cyclic permutation sends $q_{12}$ to $q_{23}$ and preserves $\Delta$. Therefore the three terms in the displayed identity contribute with signs $+,-,+$, and
+Interchanging $y,z$ changes $\Delta$ to $-\Delta$ and $q_{12}$ to $q_{13}$, while the cyclic permutation sends $q_{12}$ to $q_{23}$ and preserves $\Delta$. In the decomposition of $R$, the three terms therefore contribute with signs $+,-,+$, and
 $$
 J(a)=6(\mu_{12}\nu_3-\mu_{13}\nu_2+\mu_{23}\nu_1).
 $$
@@ -115,7 +115,7 @@ $$
 &=\frac{\Gamma(a)\Gamma(a+1)^2}{(2a+1)(2a+3)}.
 \end{aligned}
 $$
-Hence
+So
 $$
 K(a)=\frac{6\Gamma(a)\Gamma(a+1)^2}{(2a+1)(2a+3)\Gamma(3a+3)}.
 $$
@@ -131,7 +131,7 @@ Set
 $$
 F(s)=\Gamma(s)M(s).
 $$
-On a positively oriented rectangle, the right vertical side is traversed upward and the left vertical side downward. Thus a valid rightward contour shift has the form "original line = shifted line minus $2\pi i$ times the crossed residues," so each crossed pole contributes minus its residue. At $s=\frac{1}{2}$,
+On a positively oriented rectangle, the right vertical side is traversed upward and the left vertical side downward. A valid rightward contour shift has the form "original line = shifted line minus $2\pi i$ times the crossed residues," so each crossed pole contributes minus its residue. At $s=\frac{1}{2}$,
 $$
 \operatorname{Res}_{s=\frac{1}{2}}F(s)
 =-\frac{3\Gamma(\frac{1}{2})\Gamma(1)^2}{2(\frac{1}{2})(\frac{3}{2})\Gamma(3)}
@@ -227,7 +227,7 @@ $$
 \left(\sigma-\frac{1}{2}\right)-\sigma+2(1-\sigma)-(4-3\sigma)-2
 =\sigma-\frac{9}{2}.
 $$
-Thus the shifted vertical integral is $O(n^{-\sigma})=o(n^{-\frac{3}{2}})$. The same uniform Stirling bound on the compact strip $c\leq\Re s\leq\sigma$ makes each horizontal side $O((1+T)^B e^{-\pi T/2})$, so the contour shift is valid.
+So the shifted vertical integral is $O(n^{-\sigma})=o(n^{-\frac{3}{2}})$. The same uniform Stirling bound on the compact strip $c\leq\Re s\leq\sigma$ makes each horizontal side $O((1+T)^B e^{-\pi T/2})$, so the contour shift is valid.
 
 Combining Steps 3 and 4,
 $$
