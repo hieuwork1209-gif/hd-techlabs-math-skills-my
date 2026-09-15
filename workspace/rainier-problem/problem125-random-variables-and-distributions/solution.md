@@ -17,7 +17,7 @@ Thus we minimize the weighted norm
 $$
 \langle f,g\rangle=\frac12\int_{-1}^1(1-t^2)f(t)g(t)\,dt
 $$
-over cubic polynomials satisfying $r(a)=1$.
+over cubic polynomials satisfying $r(a)=1$. This inner product is positive definite on polynomials of degree at most $3$, so the squared norm is strictly convex on the affine constraint set; its stationary point is therefore the unique global minimizer.
 
 At the minimizer $r_*$, every variation $h$ of degree at most $3$ with $h(a)=0$ satisfies $\langle r_*,h\rangle=0$. Such $h$ has the form $(t-a)s(t)$ with $\deg s\leq2$. Write
 $$
@@ -116,7 +116,7 @@ and $N(z)=0$ on $Z$, so
 $$
 \frac12\int_{-1}^1p(t)\,dt=\sum_{z\in Z}w_zp(z).
 $$
-Thus any positive weights $w_z$ define a discrete probability law with exactly the required moments through degree $8$.
+Thus, once the defined weights $w_z$ are shown positive, they give a discrete probability law with exactly the required moments through degree $8$.
 
 Step 4: Prove that all quadrature weights are positive and identify the target weight
 For $z=\frac13$, the Lagrange polynomial simplifies to
