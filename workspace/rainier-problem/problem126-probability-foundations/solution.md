@@ -1,102 +1,149 @@
 ## Steps
 
-Step 1: Convert 6-wise independence into fixed moments
-Let $\varepsilon_i=2X_i-1\in\{-1,1\}$ and
+Step 1: Convert 6-wise independence into fixed centered moments
+Let
 $$
-Y=\frac12\sum_{i=1}^{12}\varepsilon_i=S-6,
+\varepsilon_i=2X_i-1\in\{-1,1\},\qquad S=\sum_{i=1}^{12}X_i,\qquad Y=S-6=\frac12\sum_{i=1}^{12}\varepsilon_i.
 $$
-where $S=\sum_{i=1}^{12}X_i$. Since the variables are unbiased and 6-wise independent, every product of at most six distinct $\varepsilon_i$ has the same expectation as for independent Rademacher variables. Hence the moments of $Y$ through degree six are the corresponding moments for one half of a sum of twelve independent Rademacher variables.
+Because the variables are unbiased and every subfamily of at most six variables is independent, every product of at most six distinct $\varepsilon_i$ has the same expectation as for independent Rademacher variables. Thus the moments of $R=2Y=\sum_{i=1}^{12}\varepsilon_i$ through degree six are the independent Rademacher moments.
 
-Writing $R=2Y=\sum_{i=1}^{12}\varepsilon_i$, only index multiplicity patterns in which every multiplicity is even contribute. Therefore
+For the even moments, only index multiplicity patterns with all multiplicities even contribute. Hence
 $$
 E(R^2)=12,
 $$
 $$
 E(R^4)=12+6\binom{12}{2}=408,
 $$
-and, using the patterns $6$, $4+2$, and $2+2+2$,
+and, from the patterns $6$, $4+2$, and $2+2+2$,
 $$
 E(R^6)=12+15\cdot12\cdot11+90\binom{12}{3}=21792.
 $$
-Thus
+Therefore
 $$
 E(Y^2)=3,\qquad E(Y^4)=\frac{51}{2},\qquad E(Y^6)=\frac{681}{2}.
 $$
-The event that all twelve bits are equal is exactly $\{|Y|=6\}$.
+The event that all twelve bits agree is $\{|Y|=6\}$, while the event that exactly one bit differs from the other eleven is $\{|Y|=5\}$.
 
-Step 2: Derive a sharp polynomial certificate on the discrete support
-Because $Y$ is an integer with $|Y|\leq6$, the variable $z=Y^2$ takes values
+Step 2: Build one cubic certificate and identify the regime transition
+Since $Y$ is an integer with $|Y|\leq6$, the variable $z=Y^2$ takes values
 $$
 0,1,4,9,16,25,36.
 $$
-The available information fixes $E(z)$, $E(z^2)$, and $E(z^3)$, so an upper certificate for the endpoint event should be a cubic polynomial in $z$. To be sharp, such a certificate should vanish at interior support values that can carry mass in an extremizer. A cubic with positive leading coefficient can be nonnegative on the discrete support while changing sign only across gaps containing no support point. Taking zeros at $0,4,9$ does exactly this: the only interval on which the sign is negative is $(4,9)$, which contains no allowed value of $z$. Normalizing the value at $z=36$ to be $1$ forces
+Define
 $$
 Q(z)=\frac{z(z-4)(z-9)}{36\cdot32\cdot27}=\frac{z(z-4)(z-9)}{31104}.
 $$
-Indeed, $Q(z)\geq0$ for every allowed $z<36$, and $Q(36)=1$. Hence on the entire support,
+On the allowed support, $Q(z)\geq0$: its only negative interval is $(4,9)$, which contains no allowed value of $z$. Moreover
 $$
-\mathbf{1}_{\{z=36\}}\leq Q(z).
+Q(36)=1,\qquad Q(25)=\frac{25\cdot21\cdot16}{31104}=\frac{175}{648}.
 $$
+Put $\tau=175/648$. If $0\leq\lambda\leq\tau$, then on every allowed $z$,
+$$
+\mathbf{1}_{\{z=36\}}+\lambda\mathbf{1}_{\{z=25\}}\leq Q(z).
+$$
+If $\lambda\geq\tau$, then
+$$
+\mathbf{1}_{\{z=36\}}+\lambda\mathbf{1}_{\{z=25\}}\leq \frac{\lambda}{\tau}Q(z),
+$$
+because the right side equals $\lambda$ at $z=25$, is at least $1$ at $z=36$, and is nonnegative elsewhere.
 
-Step 3: Evaluate the certificate to obtain the universal upper bound
 Using the moments from Step 1,
 $$
-\begin{aligned}
-P(|Y|=6)
-&\leq E\bigl[Q(Y^2)\bigr]\\
-&=\frac{E(Y^6)-13E(Y^4)+36E(Y^2)}{31104}\\
-&=\frac{\frac{681}{2}-13\cdot\frac{51}{2}+108}{31104}\\
-&=\frac{117}{31104}
+E[Q(Y^2)]
+=\frac{E(Y^6)-13E(Y^4)+36E(Y^2)}{31104}
+=\frac{\frac{681}{2}-13\cdot\frac{51}{2}+108}{31104}
 =\frac{13}{3456}.
-\end{aligned}
 $$
-So no admissible family can have probability larger than $13/3456$ that all twelve variables agree.
+Therefore every admissible family satisfies
+$$
+P(|Y|=6)+\lambda P(|Y|=5)
+\leq
+\max\left\{\frac{13}{3456},\frac{\lambda}{\tau}\frac{13}{3456}\right\}
+=
+\max\left\{\frac{13}{3456},\frac{39\lambda}{2800}\right\}.
+$$
 
-Step 4: Construct an admissible family attaining the bound
-Define a symmetric integer-valued random variable $Y$ by
+Step 3: Construct centered laws attaining each side of the upper bound
+For the first regime, define a symmetric integer-valued random variable $Y_A$ by
 $$
-P(Y=0)=\frac{77}{144},\qquad
-P(Y=\pm2)=\frac{33}{256}\ \text{for each sign},
-$$
-$$
-P(Y=\pm3)=\frac{11}{108}\ \text{for each sign},\qquad
-P(Y=\pm6)=\frac{13}{6912}\ \text{for each sign}.
-$$
-These probabilities sum to $1$. Their even moments are
-$$
-E(Y^2)=4\cdot\frac{33}{128}+9\cdot\frac{11}{54}+36\cdot\frac{13}{3456}=3,
+P(Y_A=0)=\frac{77}{144},\qquad
+P(Y_A=\pm2)=\frac{33}{256}\ \text{for each sign},
 $$
 $$
-E(Y^4)=16\cdot\frac{33}{128}+81\cdot\frac{11}{54}+1296\cdot\frac{13}{3456}=\frac{51}{2},
+P(Y_A=\pm3)=\frac{11}{108}\ \text{for each sign},\qquad
+P(Y_A=\pm6)=\frac{13}{6912}\ \text{for each sign}.
+$$
+The total mass is
+$$
+\frac{77}{144}+\frac{33}{128}+\frac{11}{54}+\frac{13}{3456}=1.
+$$
+Its required moments are
+$$
+4\cdot\frac{33}{128}+9\cdot\frac{11}{54}+36\cdot\frac{13}{3456}=3,
 $$
 $$
-E(Y^6)=64\cdot\frac{33}{128}+729\cdot\frac{11}{54}+46656\cdot\frac{13}{3456}=\frac{681}{2}.
+16\cdot\frac{33}{128}+81\cdot\frac{11}{54}+1296\cdot\frac{13}{3456}=\frac{51}{2},
 $$
-All odd moments through degree six vanish by symmetry. Set $S=6+Y$. Conditional on $S=s$, choose uniformly a subset of $\{1,\ldots,12\}$ of size $s$, and let $X_i$ be its membership indicators.
+$$
+64\cdot\frac{33}{128}+729\cdot\frac{11}{54}+46656\cdot\frac{13}{3456}=\frac{681}{2}.
+$$
+Thus $Y_A$ matches all centered moments through degree six, since its odd moments vanish by symmetry. Also
+$$
+P(|Y_A|=6)+\lambda P(|Y_A|=5)=\frac{13}{3456}.
+$$
 
-For $0\leq j\leq6$, every polynomial in $S$ of degree at most $j$ has the same expectation as under $\operatorname{Bin}(12,1/2)$ because $S-6=Y$ has matching moments through degree six. In particular,
+For the second regime, define a symmetric integer-valued random variable $Y_B$ by
 $$
-E\bigl[(S)_j\bigr]=\frac{(12)_j}{2^j}.
+P(Y_B=0)=\frac{99}{200},\qquad
+P(Y_B=\pm2)=\frac{99}{560}\ \text{for each sign},
 $$
-For any distinct indices $i_1,\ldots,i_j$,
+$$
+P(Y_B=\pm3)=\frac{11}{160}\ \text{for each sign},\qquad
+P(Y_B=\pm5)=\frac{39}{5600}\ \text{for each sign}.
+$$
+The total mass is
+$$
+\frac{99}{200}+\frac{99}{280}+\frac{11}{80}+\frac{39}{2800}=1,
+$$
+and its moments are
+$$
+4\cdot\frac{99}{280}+9\cdot\frac{11}{80}+25\cdot\frac{39}{2800}=3,
+$$
+$$
+16\cdot\frac{99}{280}+81\cdot\frac{11}{80}+625\cdot\frac{39}{2800}=\frac{51}{2},
+$$
+$$
+64\cdot\frac{99}{280}+729\cdot\frac{11}{80}+15625\cdot\frac{39}{2800}=\frac{681}{2}.
+$$
+Hence $Y_B$ also matches all centered moments through degree six, and
+$$
+P(|Y_B|=6)+\lambda P(|Y_B|=5)=\frac{39\lambda}{2800}.
+$$
+
+Step 4: Lift the centered laws to 6-wise independent Bernoulli families
+For either $Y=Y_A$ or $Y=Y_B$, set $S=6+Y$. Conditional on $S=s$, choose uniformly a subset of $\{1,\ldots,12\}$ of size $s$, and let $X_i$ be its membership indicators.
+
+The centered moments of $S-6$ through degree six agree with those of $\operatorname{Bin}(12,1/2)-6$, so every polynomial in $S$ of degree at most six has the same expectation as under $\operatorname{Bin}(12,1/2)$. In particular, for $0\leq j\leq6$,
+$$
+E[(S)_j]=\frac{(12)_j}{2^j}.
+$$
+For distinct indices $i_1,\ldots,i_j$,
 $$
 P(X_{i_1}=\cdots=X_{i_j}=1)
 =E\left[\frac{(S)_j}{(12)_j}\right]
 =2^{-j}.
 $$
-Inclusion-exclusion then gives probability $2^{-j}$ for every prescribed $0$-$1$ pattern on any $j\leq6$ coordinates, so the constructed variables are unbiased and 6-wise independent. Finally,
-$$
-P(X_1=\cdots=X_{12})=P(|Y|=6)=2\cdot\frac{13}{6912}=\frac{13}{3456},
-$$
-which attains the upper bound.
+By inclusion-exclusion, every prescribed $0$-$1$ pattern on any $j\leq6$ coordinates has probability $2^{-j}$. Thus the constructed variables are unbiased and 6-wise independent.
 
-Final Answer: $\boxed{\frac{13}{3456}}$
+The $Y_A$ construction attains $13/3456$, and the $Y_B$ construction attains $39\lambda/2800$. Together with Step 2, this proves the maximum for every $\lambda\geq0$.
+
+Final Answer: $\boxed{\max\left\{\frac{13}{3456},\frac{39\lambda}{2800}\right\}}$
 
 ---
 
 ## Answer
 
-$\frac{13}{3456}$
+$\max\left\{\frac{13}{3456},\frac{39\lambda}{2800}\right\}$
 
 ---
 
@@ -104,7 +151,7 @@ $\frac{13}{3456}$
 
 **Problem Type:** Optimization
 
-**Answer Type:** Exact scalar
+**Answer Type:** Exact symbolic expression
 
 ---
 
