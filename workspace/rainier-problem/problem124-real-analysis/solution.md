@@ -24,7 +24,7 @@ $$
 $$
 which gives the stated lower bound for $S$.
 
-For the quadratic bound, let $M=\max h$ and $m(t)=|\{h>t\}|$ for $0\leq t<M$. Set $p=\lim_{t\uparrow M}m(t)$. If $0\leq s<t<r$, the terminal superlevel component loses at least $t-s$ of length when the level rises from $s$ to $t$, so $m(s)\geq m(t)+(t-s)$. If $r\leq s<t<M$, every nonempty superlevel component has two finite boundary points, so $m(s)\geq m(t)+2(t-s)$. Combining these inequalities across $r$ shows that
+For the quadratic bound, let $M=\max h$ and $m(t)=|\{h>t\}|$ for $0\leq t<M$. Set $p=\lim_{t\uparrow M}m(t)$. If $0\leq s<t<r$, the terminal superlevel component loses at least $t-s$ of length when the level rises from $s$ to $t$, so $m(s)\geq m(t)+(t-s)$. If $r\leq s<t<M$, every nonempty superlevel component has two finite boundary points, so $m(s)\geq m(t)+2(t-s)$. Thus
 $$
 m_0(t)=
 \begin{cases}
@@ -32,7 +32,7 @@ p+2M-r-t,&0\leq t<r,\\
 p+2(M-t),&r\leq t<M
 \end{cases}
 $$
-satisfies $e(t):=m(t)-m_0(t)\geq0$, with $e$ nonincreasing. Layer cake gives
+has the property that $e(t):=m(t)-m_0(t)$ is nonincreasing on each side of $r$; splitting an interval at $r$ gives the same conclusion across $r$. Since $e(t)\to0$ as $t\uparrow M$, we have $e(t)\geq0$ for all $t<M$. Layer cake gives
 $$
 a=pM+M^2-\frac{r^2}{2}+\int_0^M e(t)\,dt
 $$
@@ -87,26 +87,31 @@ $$
 \int_0^1g(x)^2\,dx
 \leq \frac23s^3+\frac23\left(s^2+\frac{r^2}{2}\right)^{3/2}-\frac{r^3}{3}.
 $$
-This expression is strictly increasing in $s>0$, so $s=s_r$ gives the sharp bound. The support equality implies
+This expression is strictly increasing in $s>0$, so $s=s_r$ gives the sharp bound. The defining equality for $s_r$ gives
 $$
 \sqrt{s_r^2+\frac{r^2}{2}}=\frac{1+r-2s_r}{2}=\frac{1+2r+3r^2}{4(1+r)}.
 $$
-Substitution gives
+If
+$$
+A_r=1+2r-r^2,\qquad B_r=1+2r+3r^2,
+$$
+then substitution into the preceding energy bound gives
 $$
 E(r):=\max\int_0^1g(x)^2\,dx
+=\frac{A_r^3+B_r^3}{96(1+r)^3}-\frac{r^3}{3}
 =\frac{1+4r+6r^2-12r^3-3r^4}{48(1+r)}.
 $$
-Moreover,
+Differentiating this rational expression and factoring gives
 $$
 E'(r)=\frac{(1-2r-r^2)(3r^2+6r+1)}{16(1+r)^2}\geq0
 $$
 for $0\leq r\leq r_0$.
 
-Equality forces equality in both support estimates from Step 1. Hence the negative set is one full tent of length $2s_r$, the positive set is one terminal cap filling the remaining interval, and there is no zero gap. With
+For $0<r\leq r_0$, equality in the energy bound forces $s=s_r$, hence equality in both support estimates from Step 1. In the support proof, equality in the sum-of-squares bound forces a single component, and equality in the pointwise envelope forces that component to fill its tent or terminal-cap envelope. Thus the negative set is one full tent of length $2s_r$, the positive set is one terminal cap filling the remaining interval, and there is no zero gap. With
 $$
 b_r=s_r+\frac{1+r}{2},
 $$
-the unique maximizer with endpoint $r$ is
+the unique maximizer with endpoint $r>0$ is
 $$
 g_r(x)=
 \begin{cases}
@@ -115,7 +120,7 @@ x-2s_r,&s_r\leq x\leq b_r,\\
 1+r-x,&b_r\leq x\leq1.
 \end{cases}
 $$
-For endpoint $-r$, the unique maximizer is $-g_r$.
+For endpoint $-r<0$, the unique maximizer is $-g_r$. At $r=0$ there are exactly two maximizers, $g_0$ and $-g_0$.
 
 Step 3: Couple the two unequal cancellation intervals
 For an admissible $f$, put $m=f(1/3)$ and define
@@ -135,11 +140,22 @@ $$
 \int_0^1 f(x)^2\,dx
 \leq \frac1{27}E(r)+\frac8{27}E\left(\frac r2\right).
 $$
-Because $E$ is increasing on $[0,r_0]$, this is maximized at $r=r_0$. Direct substitution gives
+Because $E$ is nondecreasing on $[0,r_0]$ and $E(r/2)$ is strictly increasing there, the right-hand side is strictly increasing in $r$ and is maximized at $r=r_0$.
+
+Write $\rho=r_0=\sqrt2-1$, so $\rho^2+2\rho-1=0$. In the numerator of $E(\rho)$ this relation gives
 $$
-E(r_0)=\frac{\sqrt2}{2}-\frac23,
-\qquad
-E\left(\frac{r_0}{2}\right)=\frac{273\sqrt2-373}{384}.
+1+4\rho+6\rho^2-12\rho^3-3\rho^4=16-32\rho,
+$$
+so
+$$
+E(\rho)=\frac{1-2\rho}{3(1+\rho)}=\frac{\sqrt2}{2}-\frac23.
+$$
+Likewise,
+$$
+E\left(\frac\rho2\right)
+=\frac{16+32\rho+24\rho^2-24\rho^3-3\rho^4}{384(\rho+2)}
+=\frac{73-100\rho}{384(\rho+2)}
+=\frac{273\sqrt2-373}{384}.
 $$
 Therefore
 $$
@@ -170,7 +186,7 @@ $$
 \qquad
 \int_{1/3}^1f_*(x)\,dx=0.
 $$
-The calculation in Step 3 is therefore attained by $f_*$, and also by $-f_*$. Conversely, equality in the global bound forces $r=r_0$, because $E(r/2)$ is strictly increasing there, and then equality must hold in both applications of the one-sided lemma. Their endpoint signs must agree at $x=1/3$, so the only possibilities are exactly $f_*$ and $-f_*$. Hence all equality cases are classified.
+The calculation in Step 3 is therefore attained by $f_*$, and also by $-f_*$. Conversely, equality in the global bound forces $r=r_0$ by the strict increase established in Step 3, and then equality must hold in both applications of the one-sided lemma. Their endpoint signs must agree at $x=1/3$, so the only possibilities are exactly $f_*$ and $-f_*$. Hence all equality cases are classified.
 
 Final Answer: $\boxed{\frac{11\sqrt{2}-15}{48}}$
 
