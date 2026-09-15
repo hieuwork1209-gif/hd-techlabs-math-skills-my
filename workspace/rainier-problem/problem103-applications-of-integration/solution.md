@@ -52,11 +52,31 @@ With $(x,y,z)=r(\lambda_1,\lambda_2,\lambda_3)$, $\lambda_1+\lambda_2+\lambda_3=
 $$
 J(a)=\left(\int_0^\infty e^{-r}r^{3a+2}\,dr\right)K(a)=\Gamma(3a+3)K(a).
 $$
-Use the exact identity
+
+We now derive the partial-fraction decomposition used below rather than guess it. Write
+$$
+R(x,y,z)=\frac{\Delta}{(x+y)(y+z)(z+x)}.
+$$
+In $J(a)$ the other factor $\Delta$ is a polynomial, so to make the triple integral factor after expanding that polynomial we want to express $R$ as a sum of terms coupling only one pair of variables. If, for example, a term has only the denominator $x+y$, then homogeneity forces a linear numerator, and antisymmetry in $x,y$ singles out a multiple of $y-x$. Thus the natural three-parameter ansatz is
+$$
+R=A\frac{y-x}{x+y}+B\frac{z-x}{x+z}+C\frac{z-y}{y+z}.
+$$
+The left side vanishes whenever two variables coincide. Setting $x=y$ in the ansatz gives $B+C=0$, while setting $y=z$ gives $A+B=0$. Hence $(A,B,C)$ must be proportional to $(1,-1,1)$. The proportionality constant is fixed without any further guess: after clearing denominators,
+$$
+\begin{aligned}
+&(y-x)(y+z)(z+x)-(z-x)(x+y)(y+z)+(z-y)(x+y)(x+z)\\
+&=(y+z)\bigl((y-x)(z+x)-(z-x)(x+y)\bigr)+(z-y)(x+y)(x+z)\\
+&=(z-y)\bigl((x+y)(x+z)-2x(y+z)\bigr)\\
+&=(z-y)(x-y)(x-z)=\Delta.
+\end{aligned}
+$$
+Therefore the required decomposition is
 $$
 \frac{\Delta}{(x+y)(y+z)(z+x)}
 =\frac{y-x}{x+y}-\frac{z-x}{x+z}+\frac{z-y}{y+z}.
 $$
+This is useful precisely because each summand leaves only a two-variable beta integral and an independent one-variable gamma integral.
+
 Define
 $$
 \nu_i=\Gamma(a+i-1),
