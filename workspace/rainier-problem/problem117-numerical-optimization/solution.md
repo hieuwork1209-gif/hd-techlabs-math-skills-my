@@ -143,13 +143,17 @@ $$
 $$
 Define
 $$
-p(t)=182016t^2-66080t+5997,
+p(t)=182016t^2-66080t+5997.
 $$
-and let
+Its discriminant is
 $$
-r_*=\frac{2065-\sqrt{358}}{11376},
+66080^2-4\cdot182016\cdot5997=366592=1024\cdot358,
 $$
-the smaller root of $p$. Since
+so its smaller root is
+$$
+r_*=\frac{2065-\sqrt{358}}{11376}.
+$$
+Since
 $$
 p\left(\frac{17}{96}\right)=\frac{37}{12}>0,
 \qquad
@@ -188,7 +192,7 @@ so
 $$
 \Delta(a,b,r)\leq-54p(r).
 $$
-But Step 2 gives $r\geq17/96$, and on the interval $[17/96,r_*)$ the quadratic $p$ is positive because $r_*$ is its smaller root. Therefore $\Delta(a,b,r)<0$, contradicting the necessary determinant condition. Thus every distribution satisfies
+But Step 2 gives $r\geq17/96$, and on the interval $[17/96,r_*)$ the quadratic $p$ is positive because $r_*$ is its smaller root. Therefore $\Delta(a,b,r)<0$, contradicting the necessary determinant condition. Thus every swap-symmetric distribution has contraction at least $r_*$. By Step 1, symmetrizing an arbitrary distribution cannot increase its contraction, so every distribution satisfies
 $$
 \rho(q)\geq r_*.
 $$
