@@ -40,15 +40,15 @@ c^*c=1,\qquad c^*Bc=0,\qquad a=c^*Ac.
 $$
 
 Step 2: Use reversal symmetry to derive a sharp candidate
-Both quadratic forms are invariant under reversing the coordinates, so to obtain a structured candidate consider the reversal-odd real vectors
+The Lagrange-stationarity matrices for the quadratic problem in Step 1 have the form $A-uB$. Both $A$ and $B$ commute with coordinate reversal, so the natural invariant sectors of every such stationarity matrix are the reversal-even and reversal-odd subspaces. To generate a candidate, examine the odd sector
 $$
 c=(x,y,z,0,-z,-y,-x)^T.
 $$
-For such a vector,
+There the missing-frequency constraint becomes
 $$
 c^*Bc=2xz-z^2=z(2x-z).
 $$
-If $z=0$, then $2x^2+2y^2=1$ and $c^*Ac=2xy\leq1/2$. The stronger branch is therefore $z=2x$. On that branch,
+If $z=0$, then $2x^2+2y^2=1$ and $c^*Ac=2xy\leq1/2$. The nonzero branch is $z=2x$. On that branch,
 $$
 c^*c=10x^2+2y^2,
 \qquad
@@ -76,11 +76,11 @@ Set
 $$
 m=\frac{3}{\sqrt{20}}=\frac{3}{2\sqrt5}.
 $$
-A sharp quadratic certificate must have the form
+A Lagrange-dual certificate for the upper bound $a\leq m$ has the form
 $$
-M=mI-A+uB
+M=mI-A+uB,
 $$
-with $M\succeq0$, because every feasible $c$ would then satisfy $m-a=c^*Mc$. The equality candidate should lie in the kernel. Using the unnormalized vector
+because $M\succeq0$ would imply $m-a=c^*Mc$ for every feasible $c$. To make such a certificate sharp at the candidate from Step 2, require $Mc_*=0$. Using the unnormalized vector
 $$
 v=(1,\sqrt5,2,0,-2,-\sqrt5,-1)^T,
 $$
