@@ -98,7 +98,7 @@ So it remains only to verify that
 $$
 D:=2\sqrt5M=3I-2\sqrt5A+2B
 $$
-is positive semidefinite. For every $q=(q_0,\ldots,q_6)^T\in\mathbb{C}^7$, direct expansion gives the exact sum-of-squares identity
+is positive semidefinite. For every $q=(q_0,\ldots,q_6)^T\in\mathbb{C}^7$, expanding the right-hand side gives the exact identity
 $$
 \begin{aligned}
 q^*Dq={}&3\left|q_0-\frac{\sqrt5}{3}q_1+\frac13q_2\right|^2
