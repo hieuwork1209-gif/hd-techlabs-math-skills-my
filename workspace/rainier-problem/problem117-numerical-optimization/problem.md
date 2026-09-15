@@ -4,53 +4,36 @@
 
 Let
 $$
-A_1=
-\begin{bmatrix}
-1&1&0\\
-1&4&0\\
-0&0&2
+A=\begin{bmatrix}
+4&1&1\\
+1&3&1\\
+1&1&2
 \end{bmatrix},
 \qquad
-A_2=
-\begin{bmatrix}
-2&0&0\\
-0&1&2\\
-0&2&16
-\end{bmatrix},
-\qquad
-A_3=
-\begin{bmatrix}
-4&0&1\\
-0&2&0\\
-1&0&1
-\end{bmatrix}.
+f(x)=\frac12x^TAx.
 $$
-For a positive diagonal matrix
+A randomized two-coordinate descent step is defined as follows. Choose an index $I\in\{1,2,3\}$ with probabilities
 $$
-D=\operatorname{diag}(d_1,d_2,d_3),
-\qquad d_1,d_2,d_3>0,
+\mathbb P(I=i)=p_i,
+\qquad p_i>0,
+\qquad p_1+p_2+p_3=1.
 $$
-define the robust spectral condition number
+After choosing $I=i$, keep coordinate $i$ fixed and re-minimize exactly over the other two coordinates:
 $$
-\mathcal K(D)
-=\max_{1\leq k\leq3}
-\frac{\lambda_{\max}(DA_kD)}{\lambda_{\min}(DA_kD)}.
+x^+=\operatorname*{argmin}_{z\in\mathbb R^3:\ z_i=x_i} f(z).
 $$
-Since multiplying $D$ by a positive scalar does not change $\mathcal K(D)$, regard two positive diagonal matrices as equivalent when they differ by a common positive scalar.
-
-Set
+Define the worst-case expected one-step energy contraction
 $$
-\gamma=\sqrt[3]{16},
-\qquad
-H=\gamma+\gamma^{-1}.
+\rho(p_1,p_2,p_3)
+=\sup_{x\ne0}\frac{\mathbb E[f(x^+)\mid x]}{f(x)}.
 $$
 Determine exactly
 $$
-\mathcal K_*:=\inf_{D>0\text{ diagonal}}\mathcal K(D),
+\rho_*:=\min_{p_i>0,\ p_1+p_2+p_3=1}\rho(p_1,p_2,p_3),
 $$
-and determine the unique minimizing scaling class. Give the answer as the ordered pair
+and determine the unique minimizing sampling distribution. Give the answer as
 $$
-\left(\mathcal K_*,d_1:d_2:d_3\right).
+\left(\rho_*,p_1:p_2:p_3\right).
 $$
 
 ---
@@ -68,4 +51,4 @@ $$
 
 ## Domain Explanation
 
-This problem asks for one positive diagonal preconditioner that is simultaneously effective for three symmetric positive-definite scenario matrices. The objective is the worst spectral condition number across the scenarios, so the task is a robust numerical-preconditioning problem requiring a global minimax certificate and uniqueness of the common scaling class.
+This problem optimizes the sampling law of an exact randomized block-coordinate method for a symmetric positive-definite quadratic. The objective is the worst-case expected energy contraction, so the task is a numerical-optimization problem requiring a global spectral lower-bound certificate together with an equality-case uniqueness argument.
