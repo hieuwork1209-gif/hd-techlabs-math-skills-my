@@ -5,35 +5,23 @@
 Let
 $$
 A=\begin{bmatrix}
-4&1&1\\
-1&3&1\\
-1&1&2
+2&1&1\\
+1&2&1\\
+1&1&3
 \end{bmatrix},
 \qquad
 f(x)=\frac12x^TAx.
 $$
-A randomized two-coordinate descent step is defined as follows. Choose an index $I\in\{1,2,3\}$ with probabilities
+For a permutation $\pi=(\pi_1,\pi_2,\pi_3)$ of $\{1,2,3\}$, perform one exact Gauss-Seidel sweep in that order: starting from $x^{(0)}=x$, for $k=1,2,3$ replace coordinate $\pi_k$ by the value that minimizes $f$ while the other two coordinates are held fixed. Let the resulting vector be $x^\pi$.
+
+Choose the permutation randomly according to an arbitrary probability distribution $q=(q_\pi)_{\pi\in S_3}$, and define
 $$
-\mathbb P(I=i)=p_i,
-\qquad p_i>0,
-\qquad p_1+p_2+p_3=1.
-$$
-After choosing $I=i$, keep coordinate $i$ fixed and re-minimize exactly over the other two coordinates:
-$$
-x^+=\operatorname*{argmin}_{z\in\mathbb R^3:\ z_i=x_i} f(z).
-$$
-Define the worst-case expected one-step energy contraction
-$$
-\rho(p_1,p_2,p_3)
-=\sup_{x\ne0}\frac{\mathbb E[f(x^+)\mid x]}{f(x)}.
+\rho(q)=\sup_{x\ne0}
+\frac{\mathbb E_q[f(x^\pi)]}{f(x)}.
 $$
 Determine exactly
 $$
-\rho_*:=\min_{p_i>0,\ p_1+p_2+p_3=1}\rho(p_1,p_2,p_3),
-$$
-and determine the unique minimizing sampling distribution. Give the answer as
-$$
-\left(\rho_*,p_1:p_2:p_3\right).
+\rho_*:=\min_{q_\pi\geq0,\ \sum_{\pi\in S_3}q_\pi=1}\rho(q).
 $$
 
 ---
@@ -45,10 +33,10 @@ $$
 | **Domain** | Optimization and Numerical Mathematics |
 | **Sub-domain** | Numerical optimization |
 | **Problem Type** | Optimization |
-| **Answer Type** | Tuple or ordered list |
+| **Answer Type** | Exact scalar |
 
 ---
 
 ## Domain Explanation
 
-This problem optimizes the sampling law of an exact randomized block-coordinate method for a symmetric positive-definite quadratic. The objective is the worst-case expected energy contraction, so the task is a numerical-optimization problem requiring a global spectral lower-bound certificate together with an equality-case uniqueness argument.
+This problem asks for the optimal randomization of a complete exact-coordinate Gauss-Seidel epoch on a symmetric positive-definite quadratic. The objective is the worst-case expected energy contraction over all initial vectors, so the task is a numerical-optimization problem involving sweep operators, spectral minimax optimization, symmetry reduction, and a sharp global semidefinite lower bound.
