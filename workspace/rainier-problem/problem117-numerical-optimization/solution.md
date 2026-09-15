@@ -1,175 +1,232 @@
 ## Steps
 
-Step 1: Express the one-step contraction as a generalized Rayleigh quotient
+Step 1: Write each randomized sweep as a quadratic energy operator and reduce by symmetry
 Let
 $$
 A=\begin{bmatrix}
-4&1&1\\
-1&3&1\\
-1&1&2
+2&1&1\\
+1&2&1\\
+1&1&3
+\end{bmatrix},
+\qquad
+f(x)=\frac12x^TAx.
+$$
+The leading principal minors of $A$ are $2$, $3$, and $7$, so $A$ is positive definite. An exact coordinate minimization in coordinate $i$ is linear:
+$$
+x\longmapsto T_i x,
+\qquad
+T_i=I-\frac1{A_{ii}}e_i e_i^T A.
+$$
+Thus
+$$
+T_1=\begin{bmatrix}0&-1/2&-1/2\\0&1&0\\0&0&1\end{bmatrix},
+\quad
+T_2=\begin{bmatrix}1&0&0\\-1/2&0&-1/2\\0&0&1\end{bmatrix},
+\quad
+T_3=\begin{bmatrix}1&0&0\\0&1&0\\-1/3&-1/3&0\end{bmatrix}.
+$$
+For a permutation $\pi=(\pi_1,\pi_2,\pi_3)$, one sweep has operator
+$$
+T_\pi=T_{\pi_3}T_{\pi_2}T_{\pi_1},
+$$
+and its final energy is
+$$
+2f(T_\pi x)=x^TM_\pi x,
+\qquad
+M_\pi=T_\pi^TAT_\pi.
+$$
+Hence for a distribution $q$ on the six permutations,
+$$
+\rho(q)=\lambda_{\max}\!\left(A^{-1/2}\Bigl(\sum_\pi q_\pi M_\pi\Bigr)A^{-1/2}\right).
+$$
+
+The matrix $A$ is invariant under swapping coordinates $1$ and $2$. Swapping those coordinates sends any distribution $q$ to another distribution with the same value of $\rho$, while $\lambda_{\max}$ is convex in the averaged energy matrix. Therefore averaging $q$ with its swapped copy cannot increase $\rho$. We may restrict to swap-symmetric distributions.
+
+Let $a,b,c$ be the total masses of the three swap-orbits: coordinate $3$ last, middle, and first, respectively. Thus $a,b,c\geq0$ and $a+b+c=1$. Multiplying the displayed $T_i$ matrices and averaging the two permutations in each orbit gives
+$$
+L=\frac{M_{123}+M_{213}}2
+=\begin{bmatrix}
+17/96&0&5/32\\
+0&17/96&5/32\\
+5/32&5/32&11/16
+\end{bmatrix},
+$$
+$$
+N=\frac{M_{132}+M_{231}}2
+=\begin{bmatrix}
+19/72&0&11/72\\
+0&19/72&11/72\\
+11/72&11/72&13/36
+\end{bmatrix},
+$$
+$$
+F=\frac{M_{312}+M_{321}}2
+=\begin{bmatrix}
+59/144&2/9&0\\
+2/9&59/144&0\\
+0&0&0
 \end{bmatrix}.
 $$
-Its leading principal minors are $4$, $11$, and $17$, so $A$ is positive definite. Its inverse is
+So the expected energy matrix is
 $$
-B=A^{-1}=\frac1{17}
+M(a,b)=aL+bN+(1-a-b)F.
+$$
+
+Step 2: Separate the antisymmetric mode from the symmetric two-dimensional mode
+Use the basis
+$$
+u=(1,1,0)^T,
+\qquad
+v=(1,-1,0)^T,
+\qquad
+e_3=(0,0,1)^T.
+$$
+With $P=[u\ v\ e_3]$,
+$$
+P^TAP=
 \begin{bmatrix}
-5&-1&-2\\
--1&7&-3\\
--2&-3&11
+6&0&2\\
+0&2&0\\
+2&0&3
+\end{bmatrix},
+$$
+and
+$$
+P^TM(a,b)P=
+\begin{bmatrix}
+\frac{91}{72}-\frac{131a}{144}-\frac{53b}{72}&0&\frac{5a}{16}+\frac{11b}{36}\\
+0&\frac38-\frac{a}{48}+\frac{11b}{72}&0\\
+\frac{5a}{16}+\frac{11b}{36}&0&\frac{11a}{16}+\frac{13b}{36}
 \end{bmatrix}.
 $$
-If block $i$ is chosen, all coordinates except $i$ are re-minimized while $x_i$ is held fixed. The constrained minimizer $z$ satisfies $(Az)_j=0$ for $j\ne i$, so $Az=\lambda e_i$ and therefore $z=\lambda Be_i$. Since $z_i=x_i$, we have
+Thus $\rho(a,b)\leq r$ is equivalent to
 $$
-\lambda=\frac{x_i}{B_{ii}}.
+rP^TAP-P^TM(a,b)P\succeq0.
 $$
-Hence
+The antisymmetric one-dimensional block gives the necessary condition
 $$
-2f(z)=z^TAz=\frac{x_i^2}{B_{ii}}.
+r\geq\frac{54-3a+22b}{288}.
 $$
-For sampling probabilities $p_1,p_2,p_3$, define
+Since $a\leq1-b$, every feasible $r$ obeys
 $$
-C(p)=\operatorname{diag}\left(\frac{p_1}{B_{11}},\frac{p_2}{B_{22}},\frac{p_3}{B_{33}}\right)
-=\operatorname{diag}\left(\frac{17p_1}{5},\frac{17p_2}{7},\frac{17p_3}{11}\right).
+r\geq\frac{51+25b}{288}\geq\frac{17}{96}.
 $$
-Then
+
+For the symmetric $2\times2$ block on $\operatorname{span}\{u,e_3\}$, nonnegative determinant is necessary. After clearing the positive factor $7/10368$, that determinant condition is
 $$
-\frac{\mathbb E[f(x^+)\mid x]}{f(x)}
-=\frac{x^TC(p)x}{x^TAx},
+\Delta(a,b,r)\geq0,
+$$
+where
+$$
+\begin{aligned}
+\Delta(a,b,r)={}&-1071a^2-1519ab-216ar+1287a-532b^2\\
+&+1872br+676b+20736r^2-5616r.
+\end{aligned}
+$$
+
+Step 3: Prove the sharp global lower bound
+Define
+$$
+p(t)=182016t^2-66080t+5997
+$$
+and let
+$$
+r_*=\frac{2065-\sqrt{358}}{11376},
+$$
+the smaller root of $p$. Since
+$$
+p\left(\frac{17}{96}\right)=\frac{37}{12}>0,
+\qquad
+p\left(\frac9{50}\right)=-\frac{51}{625}<0,
+$$
+we have
+$$
+\frac{17}{96}<r_*<\frac9{50}.
+$$
+
+Suppose that some symmetric distribution satisfies $\rho(a,b)<r_*$. Put $r=\rho(a,b)$. From the antisymmetric condition,
+$$
+a\geq a_0:=18+\frac{22}{3}b-96r.
+$$
+For $a\geq a_0$,
+$$
+\frac{\partial\Delta}{\partial a}
+=-2142a-1519b-216r+1287
+\leq -17227b+205416r-37269.
+$$
+Because $r<r_*<9/50$,
+$$
+-17227b+205416r-37269
+<-17227b-\frac{7353}{25}<0.
+$$
+Hence $\Delta(a,b,r)\leq\Delta(a_0,b,r)$. Substituting $a_0$ gives
+$$
+\Delta(a_0,b,r)
+=-54p(r)+(1654080r-299972)b-\frac{207802}{3}b^2.
+$$
+Again using $r<9/50$,
+$$
+1654080r-299972<-\frac{11188}{5}<0,
 $$
 so
 $$
-\rho(p)=\sup_{x\ne0}\frac{x^TC(p)x}{x^TAx}.
+\Delta(a,b,r)\leq-54p(r).
 $$
-Therefore $\rho(p)$ is the least $r$ for which
+But Step 2 gives $r\geq17/96$, and on the interval $[17/96,r_*)$ the quadratic $p$ is positive because $r_*$ is its smaller root. Therefore $\Delta(a,b,r)<0$, contradicting the necessary determinant condition. Thus every distribution satisfies
 $$
-C(p)\preceq rA.
-$$
-
-Step 2: Build a global lower-bound certificate that is independent of the sampling distribution
-A lower bound valid for every $p$ should make the diagonal contribution $\operatorname{tr}(LC(p))$ independent of $p$. Since
-$$
-B_{11}:B_{22}:B_{33}=5:7:11,
-$$
-seek a positive semidefinite triangle Laplacian whose diagonal is proportional to $5:7:11$. If its edge weights on $(1,2),(1,3),(2,3)$ are $a,b,c$, write
-$$
-a+b=5q,\qquad a+c=7q,\qquad b+c=11q.
-$$
-Adding the first two equations and subtracting the third gives $2a=q$; similarly $2b=9q$ and $2c=13q$. Thus $a:b:c=1:9:13$, and we take
-$$
-L=\begin{bmatrix}
-10&-1&-9\\
--1&14&-13\\
--9&-13&22
-\end{bmatrix}.
-$$
-It is positive semidefinite because
-$$
-y^TLy=(y_1-y_2)^2+9(y_1-y_3)^2+13(y_2-y_3)^2\geq0.
-$$
-If $C(p)\preceq rA$, then $rA-C(p)\succeq0$, so
-$$
-0\leq\operatorname{tr}\left(L(rA-C(p))\right)
-=r\operatorname{tr}(LA)-\operatorname{tr}(LC(p)).
-$$
-Now
-$$
-\operatorname{tr}(LC(p))
-=10\frac{17p_1}{5}+14\frac{17p_2}{7}+22\frac{17p_3}{11}
-=34(p_1+p_2+p_3)=34.
-$$
-Also, since every off-diagonal entry of $A$ is $1$,
-$$
-\begin{aligned}
-\operatorname{tr}(LA)
-&=10\cdot4+14\cdot3+22\cdot2
-+2(-1-9-13)\\
-&=40+42+44-46=80.
-\end{aligned}
-$$
-Consequently every sampling distribution satisfies
-$$
-\rho(p)\geq\frac{34}{80}=\frac{17}{40}.
+\rho(q)\geq r_*.
 $$
 
-Step 3: Construct a sampling distribution attaining the lower bound
-Choose
+Step 4: Construct a distribution attaining the lower bound
+Set
 $$
-(p_1,p_2,p_3)=\left(\frac{15}{40},\frac{14}{40},\frac{11}{40}\right).
+r=r_*,
+\qquad
+b=0,
+\qquad
+a=18-96r,
+\qquad
+c=1-a.
 $$
-Then
+The bounds $17/96<r<9/50$ imply $0<a<1$. Assign probability $a/2$ to each of the permutations $123,213$, probability $c/2$ to each of $312,321$, and probability $0$ to $132,231$.
+
+For this distribution the antisymmetric block is exactly tight because
 $$
-C(p)=\operatorname{diag}\left(\frac{51}{40},\frac{17}{20},\frac{17}{40}\right).
+\frac{54-3a}{288}=r.
 $$
-With $r=17/40$,
+For the symmetric block, substituting $a=18-96r$ and $b=0$ gives
 $$
-rA-C(p)
-=\frac{17}{40}
-\begin{bmatrix}
-1&1&1\\
-1&1&1\\
-1&1&1
-\end{bmatrix}
-\succeq0.
+\Delta(a,0,r)=-54p(r)=0.
 $$
-Thus $C(p)\preceq rA$, so Step 1 gives
+Its two diagonal entries are
 $$
-\rho(p)\leq\frac{17}{40}.
+\frac{4(34-183r)}9,
+\qquad
+\frac{3(184r-33)}8.
 $$
-Together with the lower bound in Step 2,
+The first is positive because $r<9/50<34/183$. Also
 $$
-\rho_*:=\min_p\rho(p)=\frac{17}{40}.
+p\left(\frac{33}{184}\right)=\frac{189}{529}>0
+$$
+while $p(9/50)<0$, so the smaller root satisfies $r_*>33/184$ and the second diagonal entry is positive. Hence the symmetric $2\times2$ slack matrix is positive semidefinite with determinant zero. The antisymmetric slack is zero, so altogether
+$$
+r_*A-M(a,0)\succeq0.
+$$
+Therefore this distribution has $\rho(q)\leq r_*$. Combined with Step 3,
+$$
+\rho_*=r_*.
 $$
 
-Step 4: Prove the optimal sampling distribution is unique
-Suppose $p$ attains $\rho_*=17/40$, and set
-$$
-S=\frac{17}{40}A-C(p)\succeq0.
-$$
-The lower-bound chain in Step 2 is then an equality, so
-$$
-\operatorname{tr}(LS)=0.
-$$
-Because $L,S\succeq0$, the matrix $L^{1/2}SL^{1/2}$ is positive semidefinite with trace zero, hence it is zero. Therefore $S^{1/2}L^{1/2}=0$; taking transposes also gives $L^{1/2}S^{1/2}=0$, and consequently $LS=0$.
+Step 5: State the optimal one-epoch contraction
+The sharp worst-case expected energy contraction over all distributions on the six coordinate orders is the smaller root found in Step 3.
 
-The sum-of-squares identity in Step 2 shows that $Ly=0$ holds exactly when $y_1=y_2=y_3$. Hence
-$$
-\ker L=\operatorname{span}\{(1,1,1)^T\}.
-$$
-Thus every column of $S$ lies in this one-dimensional kernel. Since $S$ is symmetric and positive semidefinite,
-$$
-S=t\mathbf 1\mathbf 1^T
-$$
-for some $t\geq0$. Its off-diagonal entries are fixed by the definition of $S$: because every off-diagonal entry of $A$ equals $1$ and $C(p)$ is diagonal,
-$$
-S_{ij}=\frac{17}{40}
-\qquad(i\ne j).
-$$
-Hence $t=17/40$, so every diagonal entry of $S$ is also $17/40$. Therefore
-$$
-\frac{17}{40}A_{ii}-\frac{p_i}{B_{ii}}=\frac{17}{40}.
-$$
-Using
-$$
-(B_{11},B_{22},B_{33})=\left(\frac5{17},\frac7{17},\frac{11}{17}\right)
-$$
-gives
-$$
-p_1=\frac{15}{40},\qquad
-p_2=\frac{14}{40},\qquad
-p_3=\frac{11}{40}.
-$$
-So the optimizer is unique.
-
-Step 5: State the optimal contraction and sampling ratio
-The optimal expected one-step energy contraction is $17/40$, attained only by the sampling distribution proportional to $15:14:11$.
-
-Final Answer: $\boxed{\left(\frac{17}{40},15:14:11\right)}$
+Final Answer: $\boxed{\frac{2065-\sqrt{358}}{11376}}$
 
 ---
 
 ## Answer
 
-$\left(\frac{17}{40},15:14:11\right)$
+$\frac{2065-\sqrt{358}}{11376}$
 
 ---
 
@@ -177,14 +234,14 @@ $\left(\frac{17}{40},15:14:11\right)$
 
 **Problem Type:** Optimization
 
-**Answer Type:** Tuple or ordered list
+**Answer Type:** Exact scalar
 
 ---
 
 ## Solution Concepts
 
-- randomized block coordinate descent
+- randomized Gauss-Seidel sweeps
 - generalized Rayleigh quotient
-- semidefinite order
-- graph Laplacian certificate
-- complementary slackness
+- symmetry reduction
+- semidefinite matrix inequality
+- sharp minimax lower bound
