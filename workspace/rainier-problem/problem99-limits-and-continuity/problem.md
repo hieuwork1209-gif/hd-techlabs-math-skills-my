@@ -51,6 +51,7 @@ m+\frac12+\frac{r_m+s_m}{2}
 t^{3/2}
 }.
 $$
+Express the answer in closed form in terms of $m$, $r_m$ and $s_m$.
 
 ---
 
@@ -59,7 +60,7 @@ $$
 | Field | Value |
 |---|---|
 | **Domain** | Analysis |
-| **Sub-domain** | Asymptotic analysis |
+| **Sub-domain** | Real analysis |
 | **Problem Type** | Symbolic derivation |
 | **Answer Type** | Exact symbolic expression |
 
@@ -67,5 +68,4 @@ $$
 
 ## Domain Explanation
 
-This problem is fundamentally an asymptotic-analysis problem: the determinant is evaluated by localizing the defining moment integral near three competing minima, rescaling each well on its natural $t$-dependent scale, and matching Gaussian and Laguerre asymptotic contributions through order $t^{3/2}$.
-The determinant and Vandermonde structure organize the local contributions, but the central task is the singular small-$t$ expansion and the control of the associated remainders, so Analysis / Asymptotic analysis is the most appropriate classification.
+This problem involves the small-$t$ asymptotic expansion of a Hankel determinant of Laplace-type integrals, obtained by localizing the integrals near the three zeros of the phase, rescaling each well on its natural scale, and controlling the remainders uniformly, which is part of Analysis and Real analysis. The problem also involves Hankel and Vandermonde determinant structure and moments of the Gaussian and Laguerre ensembles, which are part of Linear Algebra and Probability and Statistics. However, those tools only organize the local contributions, and the central work is the singular small-$t$ expansion and its error control, so they are not the main subject of the problem. I also replaced the concepts list with Laplace method, Hankel determinants, Vandermonde integrals, Gaussian and Laguerre ensemble moments, and asymptotic expansion, since the previous entries bundled two concepts under one slash and described the method rather than naming it.
