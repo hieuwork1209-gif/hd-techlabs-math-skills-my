@@ -2,26 +2,28 @@
 
 ## LaTeX (Normalized)
 
-Let $X$ be the set of complete flags
-$$
-0<V_1<V_2<V_3<\mathbb{F}_2^4,
-\qquad \dim V_i=i.
-$$
-Form a graph $G$ on $X$ by joining two flags exactly when they differ in one of the three subspaces $V_1,V_2,V_3$. Let $d$ be the shortest-path metric on $G$.
+For each integer $d\geq2$, let $\mathcal{P}_d$ and $\mathcal{H}_d$ be the points and hyperplanes of $\operatorname{PG}(d,2)$, and put $X_d=\mathcal{P}_d\sqcup\mathcal{H}_d$. Form the bipartite incidence graph on $X_d$ by joining $P\in\mathcal{P}_d$ to $H\in\mathcal{H}_d$ exactly when $P\subset H$, and let $\rho_d$ be its shortest-path metric.
 
-For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_F)_{F\in X}$ with $\sum_Fc_F=0$ satisfies
+For $p>0$, say that $(X_d,\rho_d)$ has $p$-negative type if every real family $(c_x)_{x\in X_d}$ with $\sum_xc_x=0$ satisfies
 $$
-\sum_{F,H\in X}c_Fc_H\,d(F,H)^p\leq0.
+\sum_{x,y\in X_d}c_xc_y\,\rho_d(x,y)^p\leq0.
 $$
 Let
 $$
-\wp=\sup\{p>0:(X,d)\text{ has }p\text{-negative type}\}.
+\wp_d=\sup\{p>0:(X_d,\rho_d)\text{ has }p\text{-negative type}\},
 $$
-At $p=\wp$, define the equality space
+and at $p=\wp_d$ define
 $$
-E=\left\{c\in\mathbb{R}^X:\sum_Fc_F=0,\ \sum_{F,H}c_Fc_H\,d(F,H)^{\wp}=0\right\}.
+E_d=\left\{c\in\mathbb{R}^{X_d}:\sum_xc_x=0,\ \sum_{x,y}c_xc_y\,\rho_d(x,y)^{\wp_d}=0\right\}.
 $$
-Determine the ordered pair $(\wp,\dim E)$.
+Finally, set
+$$
+d_*=\min\{d\geq2:\dim E_m=1\text{ for every }m\geq d\}.
+$$
+Determine
+$$
+\left(d_*,\ \lim_{d\to\infty}2^d\wp_d\right).
+$$
 
 ---
 
@@ -38,4 +40,4 @@ Determine the ordered pair $(\wp,\dim E)$.
 
 ## Domain Explanation
 
-This problem involves the supremal negative type and boundary equality space of a finite graph metric, which are part of Analysis and Metric spaces. The problem also involves complete flags and finite building incidence, which are part of abstract algebra and finite geometry. However, those structures are used to analyze the metric kernel, while the requested quantity is a metric-space invariant.
+This problem asks for a phase transition and an asymptotic invariant of the supremal negative type of a family of finite graph metrics. Projective incidence supplies the symmetric finite metric spaces and controls their spectral decomposition, while the requested quantities are negative-type and equality-space invariants. Therefore the primary classification is Analysis and Metric spaces.
