@@ -13,7 +13,7 @@ Because $(1-t^2)r(t)^2$ has degree at most $8$, the prescribed moments turn the 
 $$
 \frac{1}{1-a^2}\cdot\frac12\int_{-1}^1(1-t^2)r(t)^2\,dt.
 $$
-Thus we must minimize the weighted norm
+Thus we minimize the weighted norm
 $$
 \langle f,g\rangle=\frac12\int_{-1}^1(1-t^2)f(t)g(t)\,dt
 $$
@@ -41,9 +41,21 @@ Since $C(a)=-\frac{268}{27}$, the constraint $r_*(a)=1$ gives
 $$
 r_*(t)=-\frac{27}{268}C(t).
 $$
-The weighted norm is
+Now $r_*-1$ vanishes at $a$, so the same first-order orthogonality gives
 $$
-\frac12\int_{-1}^1(1-t^2)r_*(t)^2\,dt=\frac{81}{335}.
+\langle r_*,r_*\rangle=\langle r_*,1\rangle.
+$$
+The odd terms of $C$ integrate to zero and
+$$
+\frac12\int_{-1}^1(1-t^2)C(t)\,dt
+=\frac12\int_{-1}^1(-7t^4+12t^2-5)\,dt
+=-\frac{12}{5}.
+$$
+Therefore
+$$
+\langle r_*,r_*\rangle
+=-\frac{27}{268}\left(-\frac{12}{5}\right)
+=\frac{81}{335}.
 $$
 As $1-a^2=\frac89$, every admissible law satisfies
 $$
@@ -76,7 +88,7 @@ $$
 Z=\left\{-1,r_1,r_2,\frac13,r_3,1\right\}.
 $$
 
-Step 3: Construct the unique quadrature measure on the forced support
+Step 3: Construct the quadrature measure on the forced support
 Define the node polynomial
 $$
 N(t)=(t^2-1)\left(t-\frac13\right)C(t).
@@ -104,25 +116,44 @@ and $N(z)=0$ on $Z$, so
 $$
 \frac12\int_{-1}^1p(t)\,dt=\sum_{z\in Z}w_zp(z).
 $$
-Therefore the discrete measure $\sum_{z\in Z}w_z\delta_z$ has exactly the required moments through degree $8$, provided all weights are positive.
+Thus any positive weights $w_z$ define a discrete probability law with exactly the required moments through degree $8$.
 
-Step 4: Compute the weights and verify positivity
-Integrating the six Lagrange basis polynomials gives
+Step 4: Prove that all quadrature weights are positive and identify the target weight
+For $z=\frac13$, the Lagrange polynomial simplifies to
 $$
-w_{-1}=\frac{13}{360},\qquad
-w_{1}=\frac7{240},\qquad
-w_{1/3}=\frac{729}{2680}.
+\ell_{1/3}(t)=\frac{(1-t^2)C(t)}{(1-a^2)C(a)}.
 $$
-For any root $z$ of $C$, reduction by $C(z)=0$ gives
+Using the integral from Step 1,
 $$
-w_z=rac{875z^2-350z-455}{3336z^2-1788z-1740}.
+w_{1/3}
+=\frac{-12/5}{(8/9)(-268/27)}
+=\frac{729}{2680}.
 $$
-These three weights are positive. Indeed, the brackets in Step 2 place $r_1,r_2,r_3$ in intervals on which the numerator and denominator in the displayed fraction have the same sign: both are positive on $(-\frac34,-\frac7{10})$, while both are negative on $(-\frac14,-\frac15)$ and $(\frac34,\frac45)$. Thus all six weights are positive.
+For the endpoints, direct integration of the degree-$5$ Lagrange polynomials gives
+$$
+w_{-1}=\frac{13}{360}>0,
+\qquad
+w_1=\frac7{240}>0.
+$$
 
-Taking $p=1$ in the quadrature identity gives $\sum_{z\in Z}w_z=1$, so these weights define a probability distribution. Its atom at $1/3$ has mass exactly $729/2680$, and Step 3 shows that all moments through degree $8$ agree with the uniform distribution on $[-1,1]$. Hence the upper bound is attained.
+Now let $z$ be any of the three roots of $C$. The polynomial
+$$
+P_z(t)=
+\frac{(1-t^2)(t-a)^2}{(1-z^2)(z-a)^2}
+\left(\frac{C(t)}{(t-z)C'(z)}\right)^2
+$$
+has degree $8$, is nonnegative on $[-1,1]$, equals $1$ at $t=z$, and vanishes at every other node of $Z$. Applying the degree-$8$ quadrature identity from Step 3 gives
+$$
+w_z=\frac12\int_{-1}^1P_z(t)\,dt>0.
+$$
+Thus every $w_z$ is positive. Taking $p=1$ in the quadrature identity gives $\sum_{z\in Z}w_z=1$, so
+$$
+\mu_* = \sum_{z\in Z}w_z\delta_z
+$$
+is a probability distribution. Step 3 shows that its moments through degree $8$ are the required uniform moments, and the displayed value of $w_{1/3}$ shows that it attains the upper bound.
 
 Step 5: Prove uniqueness of the maximizing distribution
-Every equality case is supported on the same six-point set $Z$ by Step 2. The first six moment equations, for powers $0,1,\ldots,5$, form a Vandermonde system for the six masses on the distinct nodes in $Z$, so they have at most one solution. Step 3 constructs one such solution, namely the weights $w_z$. Therefore the maximizing distribution is unique.
+Every equality case is supported on the same six-point set $Z$ by Step 2. The first six moment equations, for powers $0,1,\ldots,5$, form a Vandermonde system for the six masses on the distinct nodes in $Z$, so they have at most one solution. Step 3 constructs one such solution, namely the weights $w_z$. Therefore $\mu_*$ is the unique maximizing distribution.
 
 Consequently the exact maximum is
 $$
