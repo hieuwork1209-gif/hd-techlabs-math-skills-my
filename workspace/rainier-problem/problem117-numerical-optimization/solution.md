@@ -1,152 +1,220 @@
 ## Steps
 
-Step 1: Reduce the sweep norm to a scalar function
+Step 1: Reduce the scale uncertainty to one effective penalty parameter
 Let
 $$
-S=\begin{bmatrix}1&0\\0&-1\end{bmatrix},\qquad
-u=1-\frac52\alpha,\qquad v=\frac32\alpha,
+Q=\begin{bmatrix}1&0\\0&4\end{bmatrix},
+\qquad
+R=\begin{bmatrix}\frac{5}{2}&-\frac{3}{2}\\-\frac{3}{2}&\frac{5}{2}\end{bmatrix}.
 $$
-and set $N_k=R_kSR_k^T$. Then
+For a scale $\mu\in[1,4]$, the Hessians of $f_{\mu}$ and $g_{\mu}$ are $\mu Q$ and $\mu R$. If
 $$
-I-\alpha P_k=uI+vN_k.
+t=\frac{\rho}{\mu},
 $$
-The three displayed reflections satisfy
+then solving the proximal first-order conditions gives
 $$
-N_0+N_1+N_2=0,
+J_Q(t)=t(tI+Q)^{-1},
+\qquad
+J_R(t)=t(tI+R)^{-1}.
 $$
+Define the reflected proximal maps
 $$
-N_2N_1+N_2N_0+N_1N_0=-\frac32I+\frac{\sqrt3}{2}J,
-\qquad N_2N_1N_0=N_1,
+H_Q(t)=2J_Q(t)-I,
+\qquad
+H_R(t)=2J_R(t)-I.
 $$
-where $J=\begin{bmatrix}0&-1\\1&0\end{bmatrix}$. Hence the sweep matrix is
+With $s=\theta/2$, one relaxed Douglas-Rachford step has error operator
 $$
-A=(uI+vN_2)(uI+vN_1)(uI+vN_0)=sI+tJ+v^3N_1,
-$$
-with
-$$
-s=u^3-\frac32uv^2,\qquad t=\frac{\sqrt3}{2}uv^2.
-$$
-Since $J^T=-J$, $N_1^T=N_1$, $N_1^2=I$, and $N_1J=-JN_1$, the squared singular values of $A$ are
-$$
-\left(\sqrt{s^2+t^2}\pm v^3\right)^2.
+T_{t,s}=(1-s)I+sH_R(t)H_Q(t),
+\qquad 0<s\leq1.
 $$
 Therefore
 $$
-R(\alpha)=|u|\sqrt{u^4-3u^2v^2+3v^4}+v^3.
+\mathcal C(\rho,\theta)
+=\sup_{\mu\in[1,4]}\|T_{\rho/\mu,\theta/2}\|_2,
 $$
-For $0<\alpha<2/5$, put $r=v/u$. Then
-$$
-\alpha=\frac{2r}{3+5r},\qquad u=\frac{3}{3+5r},
-$$
-so minimizing $R$ is equivalent to minimizing
-$$
-G(r)=\frac{w(r)+r^3}{(1+5r/3)^3},\qquad
-w(r)=\sqrt{1-3r^2+3r^4},\qquad r>0.
-$$
-The radical is positive because
-$$
-1-3r^2+3r^4=3\left(r^2-\frac12\right)^2+\frac14.
-$$
+so for fixed $\rho$ the effective parameter $t$ ranges over $[\rho/4,\rho]$.
 
-Step 2: Prove the scalar objective has a unique global minimizer
-Define
+Step 2: Derive the reciprocal symmetry of the one-scale contraction
+Let
 $$
-P(r)=5r^4-6r^3-10r^2+3r+5.
-$$
-Differentiation gives
-$$
-G'(r)=-\frac{P(r)-3r^2w(r)}{w(r)(1+5r/3)^4}.
-$$
-A direct expansion gives
-$$
-P(r)^2-9r^4w(r)^2=-(r^2-1)^2H(r),
-$$
-where
-$$
-H(r)=2r^4+60r^3+41r^2-30r-25.
-$$
-Now
-$$
-H'(r)=8r^3+180r^2+82r-30,
+U=\frac{1}{\sqrt{2}}\begin{bmatrix}1&-1\\1&1\end{bmatrix},
 \qquad
-H''(r)=24r^2+360r+82>0
+R=UQU^T,
 $$
-for $r>0$. Thus $H'$ is strictly increasing. Since $H'(0)<0<H'(1)$, it has one zero $c\in(0,1)$, so $H$ decreases on $(0,c)$ and increases on $(c,\infty)$. Also $H(0)=-25$ and $H(1)=48$, hence $H$ has exactly one positive zero $\rho\in(c,1)$.
-
-If $0<r<\rho$, then $H(r)<0$, so
+and set
 $$
-P(r)^2>9r^4w(r)^2.
-$$
-Thus $P$ cannot vanish there; since $P(0)=5$, we have $P(r)>3r^2w(r)$ and hence $G'(r)<0$. At $r=\rho$, continuity gives $P(\rho)\ge0$, while the difference-of-squares identity gives
-$$
-P(\rho)=3\rho^2w(\rho),
-$$
-so $G'(\rho)=0$. If $r>\rho$ and $r\ne1$, then $H(r)>0$, hence
-$$
-P(r)^2<9r^4w(r)^2,
-$$
-so $P(r)-3r^2w(r)<0$ and $G'(r)>0$. At $r=1$, directly $P(1)-3w(1)=-6<0$. Therefore $G$ decreases on $(0,\rho)$ and increases on $(\rho,\infty)$, so $\rho$ is its unique global minimizer.
-
-Step 3: Isolate the minimizer and round both requested values by hand
-Substitution gives
-$$
-H\left(\frac{31}{42}\right)=-\frac{135257}{1555848}<0,
+a=\frac{t-1}{t+1},
 \qquad
-H\left(\frac{17}{23}\right)=\frac{13908}{279841}>0.
+b=\frac{t-4}{t+4},
+\qquad
+D=\operatorname{diag}(a,b).
+$$
+Then
+$$
+H_Q(t)=D,
+\qquad
+H_R(t)=UDU^T,
+$$
+and
+$$
+UDU^T=\frac{1}{2}
+\begin{bmatrix}
+a+b&a-b\\
+a-b&a+b
+\end{bmatrix}.
+$$
+Writing
+$$
+M(t)=H_R(t)H_Q(t)=UDU^TD,
+$$
+this multiplication gives
+$$
+\operatorname{tr}M(t)=\frac{(a+b)^2}{2},
+\qquad
+\|M(t)\|_F^2=\frac{(a^2+b^2)^2}{2},
+\qquad
+\det M(t)=a^2b^2.
+$$
+For the reciprocal parameter $t^{\vee}=4/t$,
+$$
+a(t^{\vee})=-b(t),
+\qquad
+b(t^{\vee})=-a(t),
+$$
+so the three displayed invariants are unchanged. Since
+$$
+T_{t,s}=(1-s)I+sM(t),
+$$
+we have
+$$
+\|T_{t,s}\|_F^2
+=2(1-s)^2+2s(1-s)\operatorname{tr}M(t)+s^2\|M(t)\|_F^2
+$$
+and
+$$
+\det T_{t,s}
+=(1-s)^2+s(1-s)\operatorname{tr}M(t)+s^2\det M(t).
+$$
+The squared singular values of a $2\times2$ matrix have sum $\|T\|_F^2$ and product $(\det T)^2$. Hence they are unchanged by $t\mapsto4/t$, and therefore
+$$
+\|T_{t,s}\|_2=\|T_{4/t,s}\|_2.
+$$
+
+Step 3: Prove a sharp lower bound outside the balanced interval
+Assume first that $0<t\leq1$. From the matrix in Step 2,
+$$
+M(t)e_2
+=\frac{b}{2}
+\begin{bmatrix}
+a-b\\
+a+b
+\end{bmatrix}
+=:m.
 $$
 Thus
 $$
-\frac{31}{42}<\rho<\frac{17}{23}.
-$$
-Because $r\mapsto2r/(3+5r)$ is increasing,
-$$
-\frac{62}{281}<\alpha_*<\frac{17}{77}.
-$$
-Moreover
-$$
-\frac{62}{281}>\frac{441}{2000}=0.2205,
+\|m\|_2^2=\frac{b^2(a^2+b^2)}{2},
 \qquad
-\frac{17}{77}<\frac{443}{2000}=0.2215,
+m_2=\frac{b(a+b)}{2}.
 $$
-so $\alpha_*=0.221$ to three decimal places.
-
-For $R_*$, the trial value $\alpha=2/9$ gives
+For
 $$
-R_*\le R\left(\frac29\right)=\frac{27+4\sqrt{67}}{729}
-<\frac{299}{3645}<0.0825,
+v(s)=T_{t,s}e_2=(1-s)e_2+sm,
 $$
-using $\sqrt{67}<41/5$. For the lower bound, the bracket for $\rho$ gives
+the function $\|v(s)\|_2^2$ is convex in $s$. At $s=1$ its derivative divided by $2$ is
 $$
-u_* =\frac{3}{3+5\rho}>\frac{69}{154}>\frac{56}{125},
+\begin{aligned}
+\|m\|_2^2-m_2
+&=\frac{b}{2}\left(b(a^2+b^2)-(a+b)\right)\\
+&=-\frac{t(t-4)(13t^3+19t^2-16t-112)}{(t+1)^2(t+4)^4}.
+\end{aligned}
+$$
+For $0<t\leq1$,
+$$
+13t^3+19t^2-16t-112
+\leq13+19-112<0,
+$$
+so the displayed derivative is negative. Because the derivative of a convex quadratic is increasing, $\|v(s)\|_2$ decreases throughout $0<s\leq1$. Hence
+$$
+\|T_{t,s}\|_2\geq\|T_{t,s}e_2\|_2\geq\|M(t)e_2\|_2.
+$$
+On $(0,1]$ the quantities
+$$
+|a|=\frac{1-t}{1+t},
 \qquad
-\rho^3>\left(\frac{31}{42}\right)^3>\frac{201}{500}.
+|b|=\frac{4-t}{4+t}
 $$
-Also $31/42>1/\sqrt2$, and $F(r)=1-3r^2+3r^4$ is increasing for $r>1/\sqrt2$. Hence
+are both decreasing in $t$. Therefore
 $$
-w(\rho)^2>F\left(\frac{31}{42}\right)
-=\frac{265549}{1037232}>\left(\frac{101}{200}\right)^2,
+\|M(t)e_2\|_2^2
+=\frac{b^2(a^2+b^2)}{2}
+\geq\frac{81}{1250},
 $$
-so $w(\rho)>101/200$. Therefore
+with equality only at $t=1$. Thus
 $$
-R_*=u_*^3\bigl(w(\rho)+\rho^3\bigr)
->\left(\frac{56}{125}\right)^3\frac{907}{1000}
->0.0815.
+\|T_{t,s}\|_2\geq\frac{9}{25\sqrt{2}}
 $$
-Thus $R_*=0.082$ to three decimal places.
+for $0<t\leq1$, with equality only at $(t,s)=(1,1)$. By the reciprocal symmetry from Step 2, the same bound holds for $t\geq4$, with equality only at $(t,s)=(4,1)$.
 
-Finally, for $2/5\le\alpha\le1/2$, the scalar formula from Step 1 gives
+For any $\rho>0$, the uncertainty interval for $t$ is $[\rho/4,\rho]$. If $\rho\leq4$, then $\rho/4\leq1$; if $\rho\geq4$, then $\rho\geq4$. Consequently
 $$
-R(\alpha)\ge v^3\ge\left(\frac35\right)^3=0.216,
+\mathcal C(\rho,\theta)\geq\frac{9}{25\sqrt{2}}.
 $$
-whereas $R(2/9)<0.0825$. Hence the minimizer above is the unique global minimizer on the full allowed interval.
+Equality in this robust lower bound can occur only when
+$$
+\rho=4,
+\qquad
+s=1,
+$$
+that is, only when $\rho=4$ and $\theta=2$.
 
-Final Answer: $\boxed{\left(0.082,0.221\right)}$
+Step 4: Show that the balanced parameters control every uncertain scale
+Set
+$$
+\rho=4,
+\qquad
+\theta=2.
+$$
+Then $s=1$ and, as $\mu$ ranges over $[1,4]$,
+$$
+t=\frac{4}{\mu}\in[1,4].
+$$
+Now $T_{t,1}=M(t)$, so
+$$
+\|T_{t,1}\|_2\leq\|M(t)\|_F
+=\frac{a^2+b^2}{\sqrt{2}}.
+$$
+Substituting the displayed $a$ and $b$ gives
+$$
+a^2+b^2
+=\frac{(t-1)^2(t+4)^2+(t-4)^2(t+1)^2}{(t+1)^2(t+4)^2}
+=\frac{2(t^4+t^2+16)}{(t+1)^2(t+4)^2}.
+$$
+Subtracting from $9/25$ and factoring yields
+$$
+\frac{9}{25}-(a^2+b^2)
+=-\frac{(t-1)(t-4)(41t^2+115t+164)}{25(t+1)^2(t+4)^2}.
+$$
+For $1\leq t\leq4$, the right-hand side is nonnegative. Therefore
+$$
+\|T_{t,1}\|_2\leq\frac{9}{25\sqrt{2}}
+$$
+for every uncertain scale. Combined with Step 3,
+$$
+\mathcal C(4,2)=\frac{9}{25\sqrt{2}}.
+$$
+
+Step 5: State the unique robustly optimal parameters
+Step 3 gives the global lower bound and shows that equality forces $\rho=4$ and $\theta=2$. Step 4 proves that this pair attains the bound for the whole uncertainty interval. Hence the minimizing pair is unique.
+
+Final Answer: $\boxed{\left(4,2,\frac{9}{25\sqrt{2}}\right)}$
 
 ---
 
 ## Answer
 
-$\left(0.082,0.221\right)$
+$\left(4,2,\frac{9}{25\sqrt{2}}\right)$
 
 ---
 
@@ -160,8 +228,8 @@ $\left(0.082,0.221\right)$
 
 ## Solution Concepts
 
-- cyclic preconditioned gradient descent
-- products of planar reflections
-- singular-value optimization
-- derivative sign analysis
-- rational root isolation
+- robust parameter tuning
+- relaxed Douglas-Rachford splitting
+- reciprocal parameter symmetry
+- singular values and matrix norms
+- equality-case uniqueness
