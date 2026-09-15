@@ -78,7 +78,15 @@ Squaring after moving $2s$ to the right gives
 $$
 s\leq s_r:=\frac{1+2r-r^2}{4(1+r)}.
 $$
-Also, $g_+(x)\geq\max(0,r+x-1)$ by the endpoint Lipschitz bound, so $A\geq r^2/2$, or $s\geq r/\sqrt2$. The inequalities $r/\sqrt2\leq s_r$ are possible exactly for
+Also, $g_+(x)\geq\max(0,r+x-1)$ by the endpoint Lipschitz bound, so $A\geq r^2/2$, or $s\geq r/\sqrt2$. Thus feasibility requires
+$$
+\frac{r}{\sqrt2}\leq\frac{1+2r-r^2}{4(1+r)},
+$$
+which is equivalent to
+$$
+(4+\sqrt2)r^2+(4-2\sqrt2)r-\sqrt2\leq0.
+$$
+Its roots are $\sqrt2-1$ and $-(3+\sqrt2)/7$. Since $r\geq0$, the inequality holds exactly for
 $$
 0\leq r\leq r_0:=\sqrt2-1.
 $$
@@ -113,7 +121,7 @@ For $0<r\leq r_0$, equality in the energy bound forces $s=s_r$, hence equality i
 $$
 b_r=s_r+\frac{1+r}{2},
 $$
-the unique maximizer with endpoint $r>0$ is
+the resulting function is
 $$
 g_r(x)=
 \begin{cases}
@@ -122,7 +130,11 @@ x-2s_r,&s_r\leq x\leq b_r,\\
 1+r-x,&b_r\leq x\leq1.
 \end{cases}
 $$
-For endpoint $-r<0$, the unique maximizer is $-g_r$. At $r=0$ there are exactly two maximizers, $g_0$ and $-g_0$.
+The equality
+$$
+2s_r+\sqrt{4s_r^2+2r^2}-r=1
+$$
+shows that the terminal cap has area $s_r^2$, while the negative tent has area $s_r^2$. Hence $g_r$ has mean zero and attains equality in the two cap estimates, so it attains $E(r)$. The equality conditions above show that it is the unique maximizer with endpoint $r>0$. For endpoint $-r<0$, the unique maximizer is $-g_r$. At $r=0$ there are exactly two maximizers, $g_0$ and $-g_0$.
 
 Step 3: Couple the two unequal cancellation intervals
 
