@@ -1,0 +1,22 @@
+{
+  "problem": "problem126",
+  "branch": "adversary/problem126",
+  "problem_path": "workspace/rainier-problem/problem126-harmonic-analysis/problem.md",
+  "source_commit_sha": "51896711626a03fddc01a67ccd22f3ed0c466d66",
+  "problem_blob_sha": "d2765534bb04f8b6d864249f62d615fdee5d5836",
+  "statement_sha256": "a727e9bca51b6db3f982deb8596bd9c5617e425b13dd93cf0e45e37108211547",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-15T15:11:59+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nT(\\theta)=\\sum_{k=-6}^6 c_k e^{ik\\theta},\n\\]\n\nso\n\n\\[\nc_0=1,\\qquad c_{\\pm1}=a,\\qquad c_{\\pm2}=0.\n\\]\n\nSince \\(T(\\theta)\\ge 0\\), by Fejer-Riesz there are complex numbers \\(b_0,\\dots,b_6\\) such that\n\n\\[\nT(\\theta)=\\left|\\sum_{j=0}^6 b_j e^{ij\\theta}\\right|^2.\n\\]\n\nThus\n\n\\[\n\\sum_{j=0}^6 |b_j|^2=1,\n\\]\n\nand\n\n\\[\na=\\Re\\sum_{j=0}^5 b_{j+1}\\overline{b_j},\\qquad\n0=\\Re\\sum_{j=0}^4 b_{j+2}\\overline{b_j}.\n\\]\n\nNow use the positive semidefinite matrix identity\n\n\\[\n3I-\\sqrt5 A_1+A_2\\succeq 0,\n\\]\n\nwhere \\(A_1\\) has \\(1\\)'s on the first off-diagonals and \\(A_2\\) has \\(1\\)'s on the second off-diagonals. Equivalently, for every vector \\(b=(b_0,\\dots,b_6)\\),\n\n\\[\n3\\sum_{j=0}^6 |b_j|^2\n-2\\sqrt5\\,\\Re\\sum_{j=0}^5 b_{j+1}\\overline{b_j}\n+2\\Re\\sum_{j=0}^4 b_{j+2}\\overline{b_j}\\ge 0.\n\\]\n\nUsing the two constraints above gives\n\n\\[\n3-2\\sqrt5\\,a\\ge 0,\n\\]\n\nso\n\n\\[\na\\le \\frac{3}{2\\sqrt5}.\n\\]\n\nIt remains to show equality is possible. Take\n\n\\[\nP(z)=\\frac{-1-\\sqrt5 z-2z^2+2z^4+\\sqrt5 z^5+z^6}{\\sqrt{20}},\n\\]\n\nand define\n\n\\[\nT(\\theta)=|P(e^{i\\theta})|^2.\n\\]\n\nThen \\(T(\\theta)\\ge0\\). Also,\n\n\\[\n\\sum_{j=0}^6 b_j^2=1,\n\\]\n\n\\[\n\\sum_{j=0}^4 b_{j+2}b_j\n=\\frac{2-4+2}{20}=0,\n\\]\n\nand\n\n\\[\n\\sum_{j=0}^5 b_{j+1}b_j\n=\\frac{6\\sqrt5}{20}\n=\\frac{3}{2\\sqrt5}.\n\\]\n\nSo the bound is attained.\n\n\\[\n\\boxed{\\frac{3}{2\\sqrt5}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-15T15:15:55+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem126/d2765534bb04.json"
+}
