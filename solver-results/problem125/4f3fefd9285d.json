@@ -1,0 +1,22 @@
+{
+  "problem": "problem125",
+  "branch": "adversary/problem125",
+  "problem_path": "workspace/rainier-problem/problem125-euclidean-geometry/problem.md",
+  "source_commit_sha": "383da858c5619ef55dac388d96686dc9e69f1ba0",
+  "problem_blob_sha": "4f3fefd9285df4f807333004c5914e8407876b45",
+  "statement_sha256": "535cac57d19fe8c04df4f4418541aa4f70ac760f07d9f0284ab05e886610606d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-15T05:10:37+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let the vertices be ordered counterclockwise on the unit circle, and let the half-arc gaps be\n\\[\na,b,c>0,\\qquad a+b+c=\\pi.\n\\]\nThen the central gaps are \\(2a,2b,2c\\). The area is\n\\[\n[ABC]=\\frac12(\\sin 2a+\\sin 2b+\\sin 2c)=2\\sin a\\sin b\\sin c.\n\\]\n\nAlso, if the vertices are complex numbers \\(z_1,z_2,z_3\\) on the unit circle, then\n\\[\n|z_1+z_2+z_3|=3OG=3r.\n\\]\nBut\n\\[\n|z_1+z_2+z_3|^2=3+2(\\cos 2a+\\cos 2b+\\cos 2c).\n\\]\nUsing\n\\[\n\\cos 2a+\\cos 2b+\\cos 2c=-1-4\\cos a\\cos b\\cos c,\n\\]\nwe get\n\\[\n\\cos a\\cos b\\cos c=\\frac{1-9r^2}{8}.\n\\]\n\nSo we must maximize \\(\\sin a\\sin b\\sin c\\) subject to\n\\[\na+b+c=\\pi,\\qquad \\cos a\\cos b\\cos c=\\frac{1-9r^2}{8}.\n\\]\n\nAt an interior maximum, Lagrange multipliers applied to\n\\[\n\\log(\\sin a\\sin b\\sin c)\n\\]\nand\n\\[\n\\log|\\cos a\\cos b\\cos c|\n\\]\ngive\n\\[\n\\cot a=\\lambda-\\mu\\tan a,\n\\]\nand similarly for \\(b,c\\). Thus \\(\\tan a,\\tan b,\\tan c\\) are roots of one quadratic, so two of \\(a,b,c\\) are equal. The boundary gives zero area, so the maximum is interior.\n\nLet \\(b=c=t\\), so \\(a=\\pi-2t\\). Then\n\\[\n\\cos a\\cos^2 t=-\\cos 2t\\cos^2t.\n\\]\nPut \\(y=\\cos^2t\\). The constraint becomes\n\\[\ny-2y^2=\\frac{1-9r^2}{8},\n\\]\nso\n\\[\ny=\\frac{1\\pm 3r}{4}.\n\\]\nThe larger area comes from\n\\[\ny=\\frac{1+3r}{4}.\n\\]\nTherefore\n\\[\n[ABC]_{\\max}=4\\sqrt{y}(1-y)^{3/2}.\n\\]\nSubstituting \\(y=(1+3r)/4\\),\n\\[\n\\boxed{\n\\max [ABC]\n=\n\\frac{3\\sqrt3}{4}(1-r)^{3/2}\\sqrt{1+3r}\n}.\n\\]\n\nEquality occurs exactly for the isosceles triangles whose consecutive central arc gaps are\n\\[\n2t,\\ 2t,\\ 2\\pi-4t,\n\\]\nin any cyclic order, where\n\\[\n\\boxed{\\cos t=\\frac{\\sqrt{1+3r}}{2}}.\n\\]\nRotations and reflections of these triangles give all maximizers.",
+  "status": "success",
+  "completed_at": "2026-09-15T05:12:13+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem125/4f3fefd9285d.json"
+}
