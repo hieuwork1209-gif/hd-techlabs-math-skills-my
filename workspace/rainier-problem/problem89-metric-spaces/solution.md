@@ -2,11 +2,11 @@
 
 Step 1: Determine the boundary equality space from projective incidence
 
-Let $V=\mathbb{F}_2^5$. Over $\mathbb{F}_2$, the points of $\operatorname{PG}(4,2)$ are the $31$ nonzero vectors of $V$, while hyperplanes are indexed by the $31$ nonzero linear functionals. A point lies in $15$ hyperplanes and two distinct points lie in $7$ common hyperplanes. Hence the point-hyperplane incidence matrix $B$ satisfies
+Let $V=\mathbb{F}_2^5$. Over $\mathbb{F}_2$, the points of $\operatorname{PG}(4,2)$ are the $31$ nonzero vectors of $V$, while hyperplanes are indexed by the $31$ nonzero linear functionals. The functionals vanishing on a fixed point form a $4$-dimensional space, so each point lies in $2^4-1=15$ hyperplanes. Two distinct projective points are linearly independent over $\mathbb{F}_2$, so the functionals vanishing on both form a $3$-dimensional space; hence two distinct points lie in $2^3-1=7$ common hyperplanes. Thus the point-hyperplane incidence matrix $B$ satisfies
 $$
 BB^T=8I+7J.
 $$
-The graph distances are $2$ between two distinct vertices in the same bipartition class, $1$ for an incident point-hyperplane pair, and $3$ for a nonincident pair. Thus, with $a=2^p$ and $b=3^p$,
+Two distinct points lie in a common hyperplane, and two distinct hyperplanes meet in a projective subspace containing a point, so same-class distances are $2$. If $P\not\subset H$, choose $R\in H$ and a hyperplane $K$ containing $P$ and $R$; then $P-K-R-H$ has length $3$, while bipartiteness excludes length $2$. Thus a point-hyperplane distance is $1$ when incident and $3$ otherwise. Therefore, with $a=2^p$ and $b=3^p$,
 $$
 D_p=
 \begin{pmatrix}
@@ -32,7 +32,7 @@ each with multiplicity $30$. The only remaining total-sum-zero direction is $z=(
 $$
 h(p)=30\cdot2^p-16\cdot3^p-15.
 $$
-Write $x=2^p$ and $r=\log_2 3$. Since $r>19/12$,
+Write $x=2^p$ and $r=\log_2 3$. Since $3^{12}>2^{19}$, we have $r>19/12$, hence
 $$
 h(p)<q(x):=-16x^{19/12}+30x-15.
 $$
@@ -49,7 +49,11 @@ Thus $h(p)<0$ for all $p>0$. Moreover
 $$
 g(p)=s(3^p-1)-2^p
 $$
-is strictly increasing from $-1$ to $+\infty$. Hence
+satisfies
+$$
+g'(p)=2^p\left(s\left(\frac32\right)^p\log3-\log2\right)>0,
+$$
+so it increases from $g(0)=-1$ to $+\infty$. Hence
 $$
 \wp=\min\{p>0:2^{3/2}(3^p-1)=2^p\},
 $$
@@ -90,9 +94,13 @@ Step 3: Prove the rank-two uncertainty lower bound
 
 Use the normalized Walsh transform
 $$
-(\mathcal Fu)(\xi)=\frac1{\sqrt{32}}\widehat u(\xi),
+(\mathcal Fu)(\xi)=\frac1{\sqrt{32}}\widehat u(\xi).
 $$
-which is orthogonal. Let $P_S$ and $P_T$ be the coordinate projections onto $S$ and $T$, and define the positive contraction
+For $x,y\in V$,
+$$
+\sum_{\xi\in V^*}(-1)^{\xi(x)+\xi(y)}
+$$
+equals $32$ when $x=y$ and $0$ otherwise, so $\mathcal F$ is orthogonal. Let $P_S$ and $P_T$ be the coordinate projections onto $S$ and $T$, and define the positive contraction
 $$
 A=P_S\mathcal F^{-1}P_T\mathcal F P_S.
 $$
@@ -115,17 +123,17 @@ Step 4: Classify every two-plane attaining equality
 
 Assume $|S||T|=64$. Then $\operatorname{tr}A=2$, while $A$ already has two eigenvalues equal to $1$. Since $A$ is positive semidefinite, all its remaining eigenvalues are $0$, so $\operatorname{rank}A=2$.
 
-Let $M$ be the $T\times S$ submatrix of the normalized Walsh matrix. Since $A=M^*M$, we have $\operatorname{rank}M=2$. Choose $x_0\in S$ and multiply each row indexed by $\xi$ by $(-1)^{\xi(x_0)}$. After this harmless row scaling, the $\xi$-row is
+Let $M$ be the $T\times S$ submatrix of the normalized Walsh matrix. Since $A=M^*M$, we have $\operatorname{rank}M=2$. Choose $x_0\in S$ and multiply each row indexed by $\xi$ by $(-1)^{\xi(x_0)}$. The normalized $\xi$-row is then
 $$
-\left((-1)^{\xi(x-x_0)}\right)_{x\in S}
+r_\xi=\left((-1)^{\xi(x-x_0)}\right)_{x\in S},
 $$
-and has first entry $1$. A rank-two sign matrix with first column all $1$ has exactly two row types: after choosing one nonconstant row $r$, every row lies in $\operatorname{span}\{\mathbf{1},r\}$; a sign vector in that span with first entry $1$ is either $\mathbf{1}$ or $r$.
+and every such row has first entry $1$. Choose two independent normalized rows $r_1,r_2$. Any other normalized sign row has the form $ar_1+br_2$. Its first entry gives $a+b=1$. Since $r_1,r_2$ are independent, at some coordinate they have opposite signs; at that coordinate the sign condition gives $a-b=1$ or $a-b=-1$. Hence $(a,b)=(1,0)$ or $(0,1)$. Thus there are exactly two normalized row types.
 
 Let
 $$
 W=\operatorname{span}(S-S),\qquad k=\dim W.
 $$
-The normalized row type depends only on the restriction of $\xi$ to $W$. Hence $T$ uses at most two restriction characters, and each restriction class has exactly $2^{5-k}$ representatives. Also $S\subset x_0+W$. Therefore
+The normalized row $r_\xi$ depends only on the restriction of $\xi$ to $W$. Hence $T$ uses at most two restriction characters, and each restriction class has exactly $2^{5-k}$ representatives. Also $S\subset x_0+W$. Therefore
 $$
 |S|\leq2^k,
 \qquad
@@ -143,11 +151,16 @@ For $i=1,2$, define
 $$
 f_i(x)=(-1)^{\xi_i(x)}\mathbf{1}_{x_0+W}(x).
 $$
-A direct sum over $x=x_0+w$ shows
+Writing $x=x_0+w$ gives
+$$
+\widehat f_i(\eta)
+=(-1)^{(\eta+\xi_i)(x_0)}\sum_{w\in W}(-1)^{(\eta+\xi_i)(w)},
+$$
+which is nonzero exactly when $\eta+\xi_i\in W^\perp$. Hence
 $$
 \operatorname{supp}\widehat f_i=\xi_i+W^\perp.
 $$
-Hence $\operatorname{span}\{f_1,f_2\}$ lies in the same support intersection as $\mathcal L$; that intersection has dimension $2$ because $A$ has rank $2$, so
+The span of $f_1,f_2$ lies in the same support intersection as $\mathcal L$. That intersection is contained in the rank-$2$ range of $A$, so it is exactly two-dimensional. Therefore
 $$
 \mathcal L=\operatorname{span}\{f_1,f_2\}.
 $$
@@ -168,7 +181,11 @@ $$
 
 Step 5: Count the minimizing two-dimensional boundary subspaces
 
-For fixed $k$, the number of $k$-dimensional subspaces $W\leq V$ is the Gaussian binomial coefficient $\binom{5}{k}_2$. For each such $W$, there are $2^{5-k}-1$ affine cosets not containing $0$, and there are
+For fixed $k$, counting ordered bases and dividing by the number of ordered bases of $\mathbb{F}_2^k$ gives
+$$
+\binom{5}{k}_2=\prod_{i=0}^{k-1}\frac{2^5-2^i}{2^k-2^i}
+$$
+for the number of $k$-dimensional subspaces $W\leq V$. For each such $W$, there are $2^{5-k}-1$ affine cosets not containing $0$, and there are
 $$
 \binom{2^k-1}{2}
 $$
@@ -176,13 +193,13 @@ unordered pairs of distinct nontrivial characters of $W$. The support set recove
 $$
 N_2^*=\sum_{k=2}^4\binom{5}{k}_2(2^{5-k}-1)\binom{2^k-1}{2}.
 $$
-Using
+The product formula gives
 $$
 \binom{5}{2}_2=\binom{5}{3}_2=155,
 \qquad
 \binom{5}{4}_2=31,
 $$
-we get
+so
 $$
 N_2^*=155\cdot7\cdot3+155\cdot3\cdot21+31\cdot105=16275.
 $$
