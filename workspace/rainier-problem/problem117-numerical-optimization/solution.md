@@ -40,7 +40,7 @@ $$
 \rho(q)=\lambda_{\max}\left(A^{-1/2}\Bigl(\sum_\pi q_\pi M_\pi\Bigr)A^{-1/2}\right).
 $$
 
-The matrix $A$ is invariant under swapping coordinates $1$ and $2$. Swapping those coordinates sends any distribution $q$ to another distribution with the same value of $\rho$, while $\lambda_{\max}$ is convex in the averaged energy matrix. Therefore averaging $q$ with its swapped copy cannot increase $\rho$. We may restrict to swap-symmetric distributions.
+The matrix $A$ is invariant under swapping coordinates $1$ and $2$. Swapping those coordinates sends any distribution $q$ to another distribution with the same value of $\rho$, while $\lambda_{\max}$ is convex in the averaged energy matrix. Therefore averaging $q$ with its swapped copy cannot increase $\rho$. We may restrict to swap-symmetric distributions when computing the optimal value.
 
 Let $a,b,c$ be the total masses of the three swap-orbits: coordinate $3$ last, middle, and first, respectively. Thus $a,b,c\geq0$ and $a+b+c=1$. From the displayed $T_i$ matrices,
 $$
@@ -135,7 +135,7 @@ $$
 $$
 Thus every feasible triple satisfies $\Delta(a,b,r)\geq0$.
 
-Step 3: Derive and prove the sharp global lower bound
+Step 3: Derive the sharp lower bound and its equality conditions
 The natural candidate threshold occurs when the antisymmetric bound is tight with no mass on the middle orbit, so $b=0$ and $a=18-96r$. Substitution into the symmetric determinant gives
 $$
 \Delta(18-96r,0,r)
@@ -192,61 +192,123 @@ so
 $$
 \Delta(a,b,r)\leq-54p(r).
 $$
-But Step 2 gives $r\geq17/96$, and on the interval $[17/96,r_*)$ the quadratic $p$ is positive because $r_*$ is its smaller root. Therefore $\Delta(a,b,r)<0$, contradicting the necessary determinant condition. Thus every swap-symmetric distribution has contraction at least $r_*$. By Step 1, symmetrizing an arbitrary distribution cannot increase its contraction, so every distribution satisfies
+But Step 2 gives $r\geq17/96$, and on $[17/96,r_*)$ the quadratic $p$ is positive because $r_*$ is its smaller root. Therefore $\Delta(a,b,r)<0$, contradicting the determinant condition. Thus every swap-symmetric distribution has contraction at least $r_*$. By Step 1, symmetrizing an arbitrary distribution cannot increase its contraction, so every distribution satisfies
 $$
 \rho(q)\geq r_*.
 $$
 
-Step 4: Construct a distribution attaining the lower bound
-Set
+The same inequalities determine the equality case among swap-symmetric distributions. Set $r=r_*$. Then
 $$
-r=r_*,
-\qquad
+\Delta(a_0,b,r_*)
+=(1654080r_*-299972)b-\frac{207802}{3}b^2\leq0,
+$$
+and the coefficient of $b$ is strictly negative because $r_*<9/50$. Feasibility requires $\Delta\geq0$, so $b=0$. The derivative bound is then strictly negative for $a\geq18-96r_*$, while
+$$
+\Delta(18-96r_*,0,r_*)=0.
+$$
+Hence equality forces
+$$
 b=0,
 \qquad
-a=18-96r,
+a=18-96r_*,
+\qquad c=1-a.
+$$
+Thus there is a unique optimal swap-symmetric distribution.
+
+Step 4: Construct the optimal swap-symmetric distribution and record its slack rank
+Set
+$$
+a=18-96r_*,
 \qquad
 c=1-a.
 $$
-The bounds $17/96<r<9/50$ imply $0<a<1$. Assign probability $a/2$ to each of the permutations $123,213$, probability $c/2$ to each of $312,321$, and probability $0$ to $132,231$.
+The bounds $17/96<r_*<9/50$ imply $0<a<1$. Assign probability $a/2$ to each of $123,213$, probability $c/2$ to each of $312,321$, and probability $0$ to $132,231$. Call this distribution $q^*$.
 
-For this distribution the antisymmetric block is exactly tight because
+For $q^*$ the antisymmetric block is exactly tight because
 $$
-\frac{54-3a}{288}=r.
+\frac{54-3a}{288}=r_*.
 $$
-For the symmetric block, substituting $a=18-96r$ and $b=0$ gives
+For the symmetric block,
 $$
-\Delta(a,0,r)=-54p(r)=0.
+\Delta(a,0,r_*)=-54p(r_*)=0.
 $$
 Its two diagonal entries are
 $$
-\frac{4(34-183r)}9,
+\frac{4(34-183r_*)}9,
 \qquad
-\frac{3(184r-33)}8.
+\frac{3(184r_*-33)}8.
 $$
-The first is positive because $r<9/50<34/183$. Also
+The first is positive because $r_*<9/50<34/183$. Also
 $$
 p\left(\frac{33}{184}\right)=\frac{189}{529}>0
 $$
-while $p(9/50)<0$, so the smaller root satisfies $r_*>33/184$ and the second diagonal entry is positive. Hence the symmetric $2\times2$ slack matrix is positive semidefinite with determinant zero. The antisymmetric slack is zero, so altogether
+while $p(9/50)<0$, so $r_*>33/184$ and the second diagonal entry is positive. Hence the symmetric $2\times2$ slack matrix is positive semidefinite with determinant zero, while the antisymmetric slack is zero. Therefore
 $$
-r_*A-M(a,0)\succeq0.
+S_*:=r_*A-\sum_\pi q^*_\pi M_\pi\succeq0
 $$
-Therefore this distribution has $\rho(q)\leq r_*$. Combined with Step 3,
+has rank one, and its range lies in the swap-symmetric subspace. Thus $q^*$ attains $\rho_*$.
+
+Step 5: Prove the minimizing distribution is unique
+Let $q$ be any minimizing distribution, and let $J$ be the matrix swapping coordinates $1$ and $2$. Let $q^J$ be the distribution obtained by applying this swap to every permutation. Then $q^J$ is also minimizing. Their average $\bar q=(q+q^J)/2$ is swap-symmetric and minimizing, so Step 3 gives
 $$
-\rho_*=r_*.
+\bar q=q^*.
+$$
+Define
+$$
+S(q)=r_*A-\sum_\pi q_\pi M_\pi,
+\qquad
+S(q^J)=J S(q)J.
+$$
+Both matrices are positive semidefinite, and
+$$
+\frac{S(q)+S(q^J)}2=S_*.
+$$
+For any $z\in\ker S_*$,
+$$
+0=z^TS_*z=\frac12z^TS(q)z+\frac12z^TS(q^J)z.
+$$
+Both terms are nonnegative, so both vanish. For a positive semidefinite matrix, $z^TSz=0$ implies $Sz=0$. Hence $\ker S_*$ is contained in the kernels of both $S(q)$ and $S(q^J)$. Since $S_*$ has rank one, both $S(q)$ and $S(q^J)$ have range contained in $\operatorname{range}S_*$. This range is fixed pointwise by $J$, so $J S(q)J=S(q)$. Therefore $S(q^J)=S(q)$, and their average being $S_*$ yields
+$$
+S(q)=S_*.
+$$
+Thus $\sum q_\pi M_\pi=\sum q^*_\pi M_\pi$.
+
+Because $\bar q=q^*$, write
+$$
+q_{123}=\frac a2+s,
+\quad q_{213}=\frac a2-s,
+\quad q_{312}=\frac c2+t,
+\quad q_{321}=\frac c2-t,
+$$
+with $q_{132}=q_{231}=0$. Equality of the expected energy matrices gives
+$$
+s(M_{123}-M_{213})+t(M_{312}-M_{321})=0.
+$$
+The $(1,3)$ entry is $-5s/16$, so $s=0$. Then the $(1,1)$ entry is $-7t/24$, so $t=0$. Hence $q=q^*$, proving uniqueness.
+
+Finally,
+$$
+q^*_{123}=q^*_{213}=\frac a2
+=9-48r_*
+=\frac{68+\sqrt{358}}{237},
+$$
+and
+$$
+q^*_{132}=q^*_{231}=0,
+\qquad
+q^*_{312}=q^*_{321}=\frac{101-2\sqrt{358}}{474}.
 $$
 
-Step 5: State the optimal one-epoch contraction
-The sharp worst-case expected energy contraction over all distributions on the six coordinate orders is the smaller root derived in Step 3.
+Step 6: State the optimum and the reported component of the unique optimizer
+The exact contraction and the requested probability under the unique minimizing distribution are now determined.
 
-Final Answer: $\boxed{\frac{2065-\sqrt{358}}{11376}}$
+Final Answer: $\boxed{\left(\frac{2065-\sqrt{358}}{11376},\frac{68+\sqrt{358}}{237}\right)}$
 
 ---
 
 ## Answer
 
-$\frac{2065-\sqrt{358}}{11376}$
+$\left(\frac{2065-\sqrt{358}}{11376},\frac{68+\sqrt{358}}{237}\right)$
 
 ---
 
@@ -254,7 +316,7 @@ $\frac{2065-\sqrt{358}}{11376}$
 
 **Problem Type:** Optimization
 
-**Answer Type:** Exact scalar
+**Answer Type:** Tuple or ordered list
 
 ---
 
@@ -263,5 +325,5 @@ $\frac{2065-\sqrt{358}}{11376}$
 - randomized Gauss-Seidel sweeps
 - generalized Rayleigh quotient
 - symmetry reduction
-- semidefinite matrix inequality
-- sharp minimax lower bound
+- semidefinite equality cases
+- optimizer uniqueness
