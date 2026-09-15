@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "e7a12f47a45bcbffbd8b450e6ef1b88edc313a43",
+  "problem_blob_sha": "fae1a154f5072f97d8a829f816b90394646c69d2",
+  "statement_sha256": "03e51effa5f67decada9a8c3c530ac9dee0bb4a95f3ed83c476f237aeaf51b37",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-15T06:14:17+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(G=\\mathbb F_2^5\\). The points of \\(\\operatorname{PG}(4,2)\\) are the nonzero vectors \\(x\\in G\\), and hyperplanes are the nonzero linear functionals \\(a\\in G\\), with incidence \\(a(x)=0\\). There are \\(31\\) points and \\(31\\) hyperplanes, each hyperplane has \\(15\\) points, and two distinct points lie in \\(7\\) common hyperplanes.\n\nFor \\(c=(u,v)\\), write\n\\[\nU=\\sum_Pu_P,\\qquad V=\\sum_Hv_H,\\qquad A_{PH}=1_{P\\subset H}.\n\\]\nSince \\(U+V=0\\), the distance quadratic form is\n\\[\nQ_p(c)=\n(2^{p+1}-2\\cdot 3^p)U^2\n-2^p(\\|u\\|^2+\\|v\\|^2)\n+2(1-3^p)u^TAv .\n\\]\nThe incidence matrix satisfies\n\\[\nAA^T=8I+7J.\n\\]\nThus on the zero-sum subspace its singular value is \\(2\\sqrt2\\), while the constant direction gives a strictly negative contribution at the relevant boundary. Therefore \\(p\\)-negative type holds exactly when\n\\[\n(3^p-1)\\,2\\sqrt2\\le 2^p.\n\\]\nThe function \\((3^p-1)/2^p\\) is strictly increasing, so\n\\[\n\\wp\n\\]\nis the unique positive solution of\n\\[\n\\boxed{\\,2\\sqrt2(3^\\wp-1)=2^\\wp\\,}.\n\\]\nNumerically,\n\\[\n\\wp\\approx 0.33584.\n\\]\n\nAt equality, the boundary space is\n\\[\nE=\\{(u,-A^Tu/(2\\sqrt2)):\\sum_Pu_P=0\\}.\n\\]\nFor such \\(u\\), extend \\(u\\) to \\(G\\) by \\(u(0)=0\\). Then \\(A^Tu\\) is, up to a factor \\(1/2\\), the Fourier transform of \\(u\\). Hence the finite uncertainty principle gives\n\\[\n|\\operatorname{supp}u|\\,|\\operatorname{supp}A^Tu|\\ge |G|=32.\n\\]\nEquality occurs exactly for scalar multiples of\n\\[\nu(x)=\\chi_b(x)\\,1_{g+K}(x),\n\\]\nwhere \\(K\\le G\\), \\(1\\le \\dim K\\le4\\), \\(g\\notin K\\), and \\(b\\notin K^\\perp\\). Thus\n\\[\nU_*=32.\n\\]\n\nNow count the projective lines attaining equality. For \\(\\dim K=d\\), there are\n\\[\n{5\\brack d}_2\n\\]\nchoices for \\(K\\), then \\(2^{5-d}-1\\) nonzero affine cosets \\(g+K\\), and \\(2^d-1\\) nontrivial characters on \\(K\\). Therefore\n\\[\nN_*=\\sum_{d=1}^4 {5\\brack d}_2(2^{5-d}-1)(2^d-1).\n\\]\nUsing\n\\[\n{5\\brack1}_2={5\\brack4}_2=31,\\qquad\n{5\\brack2}_2={5\\brack3}_2=155,\n\\]\nwe get\n\\[\nN_*=31\\cdot15+155\\cdot21+155\\cdot21+31\\cdot15=7440.\n\\]\n\n\\[\n\\boxed{(\\wp,U_*,N_*)=\\bigl(\\wp,32,7440\\bigr),\\quad\n2\\sqrt2(3^\\wp-1)=2^\\wp.}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-15T06:16:55+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/fae1a154f507.json"
+}
