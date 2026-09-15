@@ -131,7 +131,7 @@ $$
 $$
 Because $L,S\succeq0$, the matrix $L^{1/2}SL^{1/2}$ is positive semidefinite with trace zero, hence it is zero. Therefore $S^{1/2}L^{1/2}=0$; taking transposes also gives $L^{1/2}S^{1/2}=0$, and consequently $LS=0$.
 
-The graph defining $L$ is connected, so
+The sum-of-squares identity in Step 2 shows that $Ly=0$ holds exactly when $y_1=y_2=y_3$. Hence
 $$
 \ker L=\operatorname{span}\{(1,1,1)^T\}.
 $$
