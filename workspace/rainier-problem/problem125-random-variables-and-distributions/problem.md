@@ -9,7 +9,7 @@ $$
 $$
 Determine exactly
 $$
-\max \mathbb P(X=0),
+\max \mathbb P\left(X=\frac13\right),
 $$
 where the maximum is over all probability distributions satisfying these conditions. A complete proof must also classify all distributions attaining the maximum.
 
@@ -28,4 +28,4 @@ where the maximum is over all probability distributions satisfying these conditi
 
 ## Domain Explanation
 
-The problem is an extremal question about probability distributions determined by finitely many moments. The main work uses the prescribed moments to construct a sharp polynomial bound for an atom, then reconstructs and verifies the unique extremal discrete distribution, so the primary classification is Probability and Statistics and Random variables and distributions. Real-analysis tools enter only through a finite-dimensional polynomial norm minimization and are subordinate to the distributional moment problem.
+The problem is an extremal question about probability distributions determined by finitely many moments and a compact support constraint. The main work uses the moment identities together with positivity on $[-1,1]$ to construct a sharp polynomial certificate for an off-center atom, then reconstructs and proves uniqueness of the extremal discrete distribution through quadrature identities, so the primary classification is Probability and Statistics and Random variables and distributions. Polynomial norm minimization and interpolation are subordinate tools used to analyze the distributional moment problem.
