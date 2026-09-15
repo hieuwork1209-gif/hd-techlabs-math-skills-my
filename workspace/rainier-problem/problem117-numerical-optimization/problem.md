@@ -2,42 +2,46 @@
 
 ## LaTeX (Normalized)
 
-For $k=0,1,2$, let
+Let
 $$
-R_k=
-\begin{bmatrix}
-\cos(k\pi/3)&-\sin(k\pi/3)\\
-\sin(k\pi/3)&\cos(k\pi/3)
-\end{bmatrix},
+Q=\begin{bmatrix}1&0\\0&4\end{bmatrix},
 \qquad
-P_k=R_k
-\begin{bmatrix}1&0\\0&4\end{bmatrix}
-R_k^T.
+R=\begin{bmatrix}\frac{5}{2}&-\frac{3}{2}\\-\frac{3}{2}&\frac{5}{2}\end{bmatrix}.
 $$
-Consider
+The common curvature scale is uncertain and is known only to lie between the two eigenvalues of $Q$. Thus, for $\mu\in[1,4]$, define
 $$
-f(x)=\frac12\|x\|_2^2.
-$$
-Choose a single constant step size
-$$
-0<\alpha\le\frac12,
-$$
-and use it at every stage of one cyclic preconditioned-gradient sweep:
-$$
-x_{k+1}=x_k-\alpha P_k\nabla f(x_k),
-\qquad k=0,1,2.
-$$
-Define
-$$
-R(\alpha)=\sup_{x_0\ne0}\frac{\|x_3\|_2}{\|x_0\|_2},
+f_{\mu}(x)=\frac{\mu}{2}x^TQx,
 \qquad
-R_*=\min_{0<\alpha\le1/2}R(\alpha).
+g_{\mu}(x)=\frac{\mu}{2}x^TRx
+\qquad(x\in\mathbb{R}^2).
 $$
-Determine
+For $\rho>0$, define
 $$
-\bigl(R_*,\alpha_*\bigr),
+P_{h,\rho}(v)=\operatorname*{argmin}_{x\in\mathbb{R}^2}
+\left(h(x)+\frac{\rho}{2}\|x-v\|_2^2\right).
 $$
-where $\alpha_*$ is the minimizing constant step size. Give both entries to three decimal places.
+Using one common parameter pair $(\rho,\theta)$ for every $\mu\in[1,4]$, with $0<\theta\leq2$, perform one relaxed Douglas-Rachford step
+$$
+y=P_{f_{\mu},\rho}(z),
+\qquad
+w=P_{g_{\mu},\rho}(2y-z),
+\qquad
+z^+=z+\theta(w-y).
+$$
+Define the robust worst-case one-step Euclidean contraction
+$$
+\mathcal C(\rho,\theta)
+=\sup_{\mu\in[1,4]}\sup_{z\ne0}
+\frac{\|z^+\|_2}{\|z\|_2}.
+$$
+Determine exactly
+$$
+\mathcal C_*:=\min_{\rho>0,\ 0<\theta\leq2}\mathcal C(\rho,\theta),
+$$
+and determine the unique minimizing pair $(\rho_*,\theta_*)$. Give the final answer as
+$$
+(\rho_*,\theta_*,\mathcal C_*).
+$$
 
 ---
 
@@ -54,4 +58,4 @@ where $\alpha_*$ is the minimizing constant step size. Give both entries to thre
 
 ## Domain Explanation
 
-This problem asks for the optimal constant step size in a cyclic preconditioned-gradient method with noncommuting symmetric positive-definite preconditioners. The constant-step constraint is standard in iterative optimization and prevents stage-by-stage tuning from forcing finite termination; the sharp contraction is instead determined by a genuine spectral-norm minimization of the three-stage update matrix.
+This problem asks for robust tuning of the penalty and relaxation parameters of Douglas-Rachford splitting when the quadratic objective has an uncertain common curvature scale. The requested object is the parameter pair minimizing the worst-case contraction across the entire uncertainty interval, which is part of Optimization and Numerical Mathematics and Numerical optimization. Linear Algebra, especially singular values and matrix norms, is used only to certify the contraction bounds and is therefore subordinate to the numerical-optimization task.
