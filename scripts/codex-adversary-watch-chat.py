@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 """Strict ChatGPT-linked wrapper for codex-adversary-watch.py.
 
-The base watcher remains responsible for solving and publishing solver results.
-This wrapper adds five guarantees:
+The base watcher remains responsible for cold-solving and publishing solver
+results. This wrapper adds six guarantees:
 
 1. Default solver settings are GPT-5.5 / medium / 2100 seconds.
-2. Before every desktop notification, refresh
+2. A candidate is solver-eligible only when candidate-ready.json matches the
+   exact current problem.md AND solution.md Git blobs on the adversary branch.
+3. Before every desktop notification, refresh
    solver-results/<problem>/chat-binding.json from origin/adversary/<problem>.
-3. On WSL2, a clickable PowerShell toast routes through the locally bound
+4. On WSL2, a clickable PowerShell toast routes through the locally bound
    Chrome HWND for this problem; it never guesses another browser/account.
-4. GitHub result URLs are never used as a notification fallback.
-5. A matching solver-results/<problem>/terminal.json with state
-   MAIN_READY_FOR_RAINIER stops the watcher cleanly instead of repeating
-   "already tested" forever.
+5. GitHub result URLs are never used as a notification fallback.
+6. A matching solver-results/<problem>/terminal.json with state
+   MAIN_READY_FOR_RAINIER stops the watcher cleanly.
 """
 from __future__ import annotations
 
@@ -23,7 +24,7 @@ import json
 import re
 import shutil
 import sys
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from urllib.parse import urlparse
 
 HERE = Path(__file__).resolve().parent
@@ -100,6 +101,60 @@ def protocol_url(problem: str, chat_url: str) -> str:
     return f"rainier-chat://{problem}/{payload}"
 
 
+def parse_ready_payload(raw: str) -> dict | None:
+    try:
+        data = json.loads(raw)
+    except json.JSONDecodeError:
+        return None
+    return data if isinstance(data, dict) else None
+
+
+def candidate_gate(base, problem: str, branch: str) -> tuple[bool, str, tuple[str, str] | None]:
+    """Return (eligible, detail, pair_shas) for the remote adversary candidate."""
+    marker_path = f"solver-results/{problem}/candidate-ready.json"
+    try:
+        base.fetch_branch(branch)
+        ref = f"origin/{branch}"
+        problem_path = base.resolve_problem_path(problem, branch)
+    except Exception as exc:
+        return False, f"candidate incomplete: {exc}", None
+
+    solution_path = str(PurePosixPath(problem_path).with_name("solution.md"))
+    problem_blob = base.git("rev-parse", f"{ref}:{problem_path}", check=False).strip()
+    solution_blob = base.git("rev-parse", f"{ref}:{solution_path}", check=False).strip()
+    if not problem_blob:
+        return False, f"candidate incomplete: missing {problem_path}", None
+    if not solution_blob:
+        return False, f"candidate incomplete: missing {solution_path}", None
+
+    raw = base.git("show", f"{ref}:{marker_path}", check=False)
+    marker = parse_ready_payload(raw)
+    if marker is None:
+        return False, f"waiting for {marker_path}", (problem_blob, solution_blob)
+
+    mode = marker.get("mode")
+    checks = (
+        (marker.get("problem") == problem, "problem id mismatch"),
+        (marker.get("ready") is True, "ready flag is not true"),
+        (mode in {"new", "existing"}, "mode must be new or existing"),
+        (marker.get("problem_path") == problem_path, "problem path mismatch"),
+        (marker.get("solution_path") == solution_path, "solution path mismatch"),
+        (marker.get("problem_blob_sha") == problem_blob, "problem blob mismatch"),
+        (marker.get("solution_blob_sha") == solution_blob, "solution blob mismatch"),
+    )
+    failures = [reason for ok, reason in checks if not ok]
+    if failures:
+        return False, "stale candidate-ready marker: " + "; ".join(failures), (
+            problem_blob,
+            solution_blob,
+        )
+
+    return True, f"ready mode={mode} problem={problem_blob[:12]} solution={solution_blob[:12]}", (
+        problem_blob,
+        solution_blob,
+    )
+
+
 def main() -> int:
     route = parse_route_args(sys.argv)
     inject_defaults(sys.argv)
@@ -158,16 +213,27 @@ def main() -> int:
 
     original_chat_url_for = base.chat_url_for
     original_solve_once = base.solve_once
+    last_gate_detail: str | None = None
+    last_delegated_pair: tuple[str, str] | None = None
 
     def chat_url_for(problem: str, cli_url: str | None = None) -> str | None:
-        # Explicit CLI binding is strongest. Otherwise prefer the GitHub relay
-        # over stale local state so a running watcher can follow the web chat.
         explicit = valid_chat_url(cli_url) or explicit_chat
         if explicit:
             return explicit
         return remote_chat_url() or valid_chat_url(original_chat_url_for(problem, None))
 
-    def solve_once(*args, **kwargs):
+    def solve_once(
+        problem: str,
+        branch: str,
+        model: str,
+        effort: str,
+        timeout: int,
+        force: bool,
+        notifications: bool = True,
+        chat_url: str | None = None,
+    ) -> bool:
+        nonlocal last_gate_detail, last_delegated_pair
+
         terminal = matching_terminal_state()
         if terminal:
             blob = str(terminal["problem_blob_sha"])
@@ -176,10 +242,35 @@ def main() -> int:
                 f"{TERMINAL_STATE}; stopping watcher",
                 flush=True,
             )
-            # SystemExit is deliberately used instead of Exception so the base
-            # watch loop's retry handler does not swallow the terminal signal.
             raise SystemExit(0)
-        return original_solve_once(*args, **kwargs)
+
+        eligible, detail, pair = candidate_gate(base, problem, branch)
+        if not eligible:
+            if detail != last_gate_detail:
+                print(f"[codex-adversary] {problem}: {detail}; not solving", flush=True)
+                last_gate_detail = detail
+            return False
+
+        if detail != last_gate_detail:
+            print(f"[codex-adversary] {problem}: candidate-ready gate passed ({detail})", flush=True)
+            last_gate_detail = detail
+
+        if pair is not None and pair == last_delegated_pair:
+            return False
+
+        result = original_solve_once(
+            problem,
+            branch,
+            model,
+            effort,
+            timeout,
+            force,
+            notifications=notifications,
+            chat_url=chat_url,
+        )
+        if pair is not None:
+            last_delegated_pair = pair
+        return result
 
     def strict_notification(
         problem: str,
@@ -188,8 +279,7 @@ def main() -> int:
         chat_url: str | None,
         result_url: str | None,
     ) -> tuple[bool, str]:
-        # Refresh at notification time. The result_url argument is deliberately
-        # ignored: GitHub must never become the click target.
+        del result_url
         target = explicit_chat or remote_chat_url() or valid_chat_url(chat_url)
         if not target:
             return False, (
@@ -224,8 +314,6 @@ def main() -> int:
         if ok:
             return ok, detail
         if shutil.which("powershell.exe"):
-            # Outside WSL we cannot prove a Chrome HWND binding. Do not route a
-            # click into an arbitrary signed-in browser window.
             return False, "PowerShell notification routing requires the WSL2 window binder"
         return False, detail
 
