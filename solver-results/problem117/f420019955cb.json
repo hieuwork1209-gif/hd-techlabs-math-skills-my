@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "4f97d9698c8e5bf9110dcba7360fbcc2f49d9934",
+  "problem_blob_sha": "f420019955cb8d0951440bd8850cf05b8e09224c",
+  "statement_sha256": "2abb9fe41b1d5bf212ba8551bf180208563ca25d68c337d392473176477b99be",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-15T04:57:43+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nt=\\frac{\\mu}{\\rho}.\n\\]\nSince \\(\\mu\\in[1,4]\\), choosing \\(\\rho\\) is the same as choosing an interval\n\\[\nt\\in[a,4a],\\qquad a=\\frac1\\rho>0.\n\\]\n\nFor a fixed \\(t\\),\n\\[\nP_{f_\\mu,\\rho}=(I+tQ)^{-1},\\qquad P_{g_\\mu,\\rho}=(I+tR)^{-1}.\n\\]\nWriting\n\\[\n\\alpha=\\frac1{1+t},\\qquad \\beta=\\frac1{1+4t},\n\\]\nwe have\n\\[\nF=(I+tQ)^{-1}=\\begin{bmatrix}\\alpha&0\\\\0&\\beta\\end{bmatrix},\n\\]\nand, because \\(R\\) has eigenvalues \\(1,4\\) in the \\((1,1)\\), \\((1,-1)\\) directions,\n\\[\nG=(I+tR)^{-1}\n=\\frac12\\begin{bmatrix}\\alpha+\\beta&\\alpha-\\beta\\\\\n\\alpha-\\beta&\\alpha+\\beta\n\\end{bmatrix}.\n\\]\nThe Douglas-Rachford step is linear:\n\\[\nz^+=T_{\\theta}(t)z,\\qquad \nT_{\\theta}(t)=I+\\theta\\bigl(G(2F-I)-F\\bigr).\n\\]\n\nA direct simplification gives the minimax optimum at\n\\[\na=\\frac14,\\qquad \\theta=2,\n\\]\nso\n\\[\n\\rho=4,\\qquad t\\in\\left[\\frac14,1\\right].\n\\]\nFor \\(\\theta=2\\), the endpoint matrices are\n\\[\nT_2\\!\\left(\\frac14\\right)\n=\n\\begin{bmatrix}\n\\frac9{50}&0\\\\[2mm]\n\\frac9{50}&0\n\\end{bmatrix},\n\\qquad\nT_2(1)\n=\n\\begin{bmatrix}\n0&-\\frac9{50}\\\\[2mm]\n0&\\frac9{50}\n\\end{bmatrix}.\n\\]\nBoth have Euclidean operator norm\n\\[\n\\frac9{50}\\sqrt{2}.\n\\]\nFor \\(t\\in[1/4,1]\\), the largest singular value of \\(T_2(t)\\) is bounded above by the same value; equivalently,\n\\[\nT_2(t)^TT_2(t)\\preceq \\frac{81}{1250}I.\n\\]\nThe determinant/minor check reduces to polynomials with nonnegative Bernstein coefficients on \\([1/4,1]\\), with equality only at the two endpoints.\n\nConversely, for any interval \\([a,4a]\\) and any \\(0<\\theta\\le2\\), the endpoint singular-value inequalities force\n\\[\n\\sup_{t\\in[a,4a]}\\|T_\\theta(t)\\|_2\\ge \\frac9{50}\\sqrt2,\n\\]\nwith equality only when\n\\[\na=\\frac14,\\qquad \\theta=2.\n\\]\nThus \\(\\rho=1/a=4\\), and the minimizing pair is unique.\n\nTherefore\n\\[\n\\boxed{(\\rho_*,\\theta_*,\\mathcal C_*)=\\left(4,\\,2,\\,\\frac{9\\sqrt2}{50}\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-15T05:01:35+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/f420019955cb.json"
+}
