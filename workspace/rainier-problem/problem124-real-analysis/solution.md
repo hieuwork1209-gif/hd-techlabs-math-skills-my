@@ -1,181 +1,184 @@
 ## Steps
 
-Step 1: Bound the common positive and negative area
-For $f\in\mathcal F$, absolute continuity and $|f'|\leq1$ almost everywhere give
+Step 1: Establish the sharp cap estimates with a prescribed endpoint value
+Let $h\geq0$ be $1$-Lipschitz on $[0,1]$, with $h(0)=0$ and $h(1)=r\geq0$. Put
 $$
-|f(y)-f(x)|\leq\int_x^y|f'(u)|\,du\leq y-x
+a=\int_0^1h(x)\,dx,\qquad q=\int_0^1h(x)^2\,dx,\qquad S=|\{h>0\}|.
 $$
-for $0\leq x<y\leq1$. Thus $f$ is $1$-Lipschitz. Define
+We first prove
 $$
-f_+=\max(f,0),\qquad f_-=\max(-f,0).
-$$
-Both are nonnegative $1$-Lipschitz functions that vanish at $0$ and $1$. Since $\int_0^1f=0$,
-$$
-A:=\int_0^1f_+(x)\,dx=\int_0^1f_-(x)\,dx.
-$$
-
-Write the components of $\{f_+>0\}$ as intervals $(a_i,b_i)$ of lengths $\ell_i=b_i-a_i$. Continuity gives $f_+(a_i)=f_+(b_i)=0$, so for $x\in(a_i,b_i)$ the Lipschitz bound implies
-$$
-f_+(x)\leq\min(x-a_i,b_i-x).
-$$
-Hence
-$$
-\int_{a_i}^{b_i}f_+(x)\,dx\leq\frac{\ell_i^2}{4}.
-$$
-If $L_+=|\{f>0\}|=\sum_i\ell_i$, then
-$$
-A\leq\frac14\sum_i\ell_i^2\leq\frac{L_+^2}{4},
-$$
-so $L_+\geq2\sqrt A$. The same argument for $f_-$ gives $L_-:=|\{f<0\}|\geq2\sqrt A$. The sets $\{f>0\}$ and $\{f<0\}$ are disjoint, hence
-$$
-4\sqrt A\leq L_++L_-\leq1,
-$$
-and therefore
-$$
-A\leq\frac1{16}.
-$$
-
-Step 2: Prove a sharp second-moment bound for one nonnegative Lipschitz cap
-Let $g\geq0$ be $1$-Lipschitz on $[0,1]$, with $g(0)=g(1)=0$, and set
-$$
-a=\int_0^1g(x)\,dx,\qquad b=\int_0^1g(x)^2\,dx,\qquad M=\max_{[0,1]}g.
-$$
-If $M=0$, then $a=b=0$. Assume $M>0$, and for $0\leq t<M$ define
-$$
-E_t=\{x\in[0,1]:g(x)>t\},\qquad m(t)=|E_t|.
-$$
-For $0\leq s<t<M$, the set $E_t$ is nonempty. Let $\alpha=\inf E_t$ and $\beta=\sup E_t$. Continuity gives $g(\alpha)=g(\beta)=t$. Since $g(0)=g(1)=0$ and $g$ is $1$-Lipschitz, $\alpha\geq t$ and $1-\beta\geq t$. Moreover, every point within distance $t-s$ immediately to the left of $\alpha$ or to the right of $\beta$ has value greater than $s$. These two intervals are disjoint from $E_t$, so
-$$
-m(s)\geq m(t)+2(t-s).
-$$
-Thus $q(t)=m(t)+2t$ is nonincreasing. Put
-$$
-p=\lim_{t\uparrow M}m(t),\qquad e(t)=m(t)-p-2(M-t).
-$$
-Then $e(t)=q(t)-(p+2M)$ is nonnegative and nonincreasing.
-
-Using
-$$
-g(x)=\int_0^M\mathbf 1_{\{g(x)>t\}}\,dt,
-\qquad
-g(x)^2=\int_0^M2t\mathbf 1_{\{g(x)>t\}}\,dt,
-$$
-and integrating first in $x$ gives
-$$
-a=\int_0^Mm(t)\,dt,
-\qquad
-b=\int_0^M2t\,m(t)\,dt.
-$$
-For nonincreasing $e$,
-$$
-\int_0^M\int_0^M(t-s)(e(t)-e(s))\,ds\,dt\leq0.
-$$
-Expanding the double integral yields
-$$
-2M\int_0^Mte(t)\,dt-M^2\int_0^Me(t)\,dt\leq0,
-$$
-so
-$$
-\int_0^Mte(t)\,dt\leq\frac M2\int_0^Me(t)\,dt.
-$$
-Let $E=\int_0^Me(t)\,dt$. Since $m(t)=p+2(M-t)+e(t)$,
-$$
-a=pM+M^2+E
+S\geq\sqrt{4a+2r^2}-r
 $$
 and
 $$
+q\leq\frac23\left(a+\frac{r^2}{2}\right)^{3/2}-\frac{r^3}{3}.
+$$
+For the support bound, let the positivity component ending at $1$ have length $\ell_0$; when $r=0$ it may be absent. Every other component of length $\ell$ has both endpoint values $0$, so the Lipschitz condition gives the tent bound $h(x)\leq\min(x-u,v-x)$ and hence area at most $\ell^2/4$. On the terminal component, after translating its left endpoint to $0$, the pointwise envelope is
+$$
+h(t)\leq\min(t,r+\ell_0-t),
+$$
+whose integral is $(\ell_0^2+2r\ell_0-r^2)/4$. Therefore, if the other component lengths are $\ell_i$,
+$$
+4a\leq \ell_0^2+2r\ell_0-r^2+\sum_i\ell_i^2
+\leq S^2+2rS-r^2,
+$$
+which gives the stated lower bound for $S$.
+
+For the quadratic bound, let $M=\max h$ and $m(t)=|\{h>t\}|$ for $0\leq t<M$. Set $p=\lim_{t\uparrow M}m(t)$. If $0\leq s<t<r$, the terminal superlevel component loses at least $t-s$ of length when the level rises from $s$ to $t$, so $m(s)\geq m(t)+(t-s)$. If $r\leq s<t<M$, every nonempty superlevel component has two finite boundary points, so $m(s)\geq m(t)+2(t-s)$. Combining these inequalities across $r$ shows that
+$$
+m_0(t)=
+\begin{cases}
+p+2M-r-t,&0\leq t<r,\\
+p+2(M-t),&r\leq t<M
+\end{cases}
+$$
+satisfies $e(t):=m(t)-m_0(t)\geq0$, with $e$ nonincreasing. Layer cake gives
+$$
+a=pM+M^2-\frac{r^2}{2}+\int_0^M e(t)\,dt
+$$
+and
+$$
+q=pM^2+\frac{2M^3-r^3}{3}+2\int_0^M t e(t)\,dt.
+$$
+Since $e$ is nonincreasing,
+$$
+\int_0^M\int_0^M(t-s)(e(t)-e(s))\,ds\,dt\leq0,
+$$
+so $2\int_0^Mte(t)\,dt\leq M\int_0^Me(t)\,dt$. Hence
+$$
+q\leq M\left(a+\frac{r^2}{2}\right)-\frac{M^3}{3}-\frac{r^3}{3}.
+$$
+The area identity also gives $M^2\leq a+r^2/2$. The right-hand side is increasing for $0\leq M\leq\sqrt{a+r^2/2}$, which proves
+$$
+q\leq\frac23\left(a+\frac{r^2}{2}\right)^{3/2}-\frac{r^3}{3}.
+$$
+For $r=0$ these become the familiar two-sided estimates $S\geq2\sqrt a$ and $q\leq\frac23a^{3/2}$.
+
+Step 2: Solve the normalized one-sided zero-mean problem
+Let $g$ be $1$-Lipschitz on $[0,1]$, with
+$$
+g(0)=0,\qquad g(1)=r\geq0,\qquad \int_0^1g(x)\,dx=0.
+$$
+Write the common positive and negative area as
+$$
+A=\int_0^1g_+(x)\,dx=\int_0^1g_-(x)\,dx=s^2.
+$$
+Because $g_+(1)=r$ and $g_-(0)=g_-(1)=0$, Step 1 gives
+$$
+|\{g_+>0\}|\geq\sqrt{4s^2+2r^2}-r,
+\qquad |\{g_->0\}|\geq2s.
+$$
+The supports are disjoint, so
+$$
+2s+\sqrt{4s^2+2r^2}-r\leq1.
+$$
+Squaring after moving $2s$ to the right gives
+$$
+s\leq s_r:=\frac{1+2r-r^2}{4(1+r)}.
+$$
+Also, $g_+(x)\geq\max(0,r+x-1)$ by the endpoint Lipschitz bound, so $A\geq r^2/2$, or $s\geq r/\sqrt2$. The inequalities $r/\sqrt2\leq s_r$ are possible exactly for
+$$
+0\leq r\leq r_0:=\sqrt2-1.
+$$
+Thus $r_0$ is the largest possible endpoint magnitude for a one-sided zero-mean function.
+
+Applying the quadratic estimate from Step 1 to $g_+$ with endpoint $r$, and to $g_-$ with endpoint $0$, yields
+$$
+\int_0^1g(x)^2\,dx
+\leq \frac23s^3+\frac23\left(s^2+\frac{r^2}{2}\right)^{3/2}-\frac{r^3}{3}.
+$$
+This expression is strictly increasing in $s>0$, so $s=s_r$ gives the sharp bound. The support equality implies
+$$
+\sqrt{s_r^2+\frac{r^2}{2}}=\frac{1+r-2s_r}{2}=\frac{1+2r+3r^2}{4(1+r)}.
+$$
+Substitution gives
+$$
+E(r):=\max\int_0^1g(x)^2\,dx
+=\frac{1+4r+6r^2-12r^3-3r^4}{48(1+r)}.
+$$
+Moreover,
+$$
+E'(r)=\frac{(1-2r-r^2)(3r^2+6r+1)}{16(1+r)^2}\geq0
+$$
+for $0\leq r\leq r_0$.
+
+Equality forces equality in both support estimates from Step 1. Hence the negative set is one full tent of length $2s_r$, the positive set is one terminal cap filling the remaining interval, and there is no zero gap. With
+$$
+b_r=s_r+\frac{1+r}{2},
+$$
+the unique maximizer with endpoint $r$ is
+$$
+g_r(x)=
+\begin{cases}
+-x,&0\leq x\leq s_r,\\
+x-2s_r,&s_r\leq x\leq b_r,\\
+1+r-x,&b_r\leq x\leq1.
+\end{cases}
+$$
+For endpoint $-r$, the unique maximizer is $-g_r$.
+
+Step 3: Couple the two unequal cancellation intervals
+For an admissible $f$, put $m=f(1/3)$ and define
+$$
+g_1(t)=3f\left(\frac{t}{3}\right),
+\qquad
+g_2(t)=\frac32 f\left(1-\frac{2t}{3}\right),
+\qquad 0\leq t\leq1.
+$$
+Both functions are $1$-Lipschitz, start at $0$, and have integral $0$. Their endpoint magnitudes are
+$$
+|g_1(1)|=3|m|=:r,
+\qquad |g_2(1)|=\frac32|m|=\frac r2.
+$$
+Step 2 gives $0\leq r\leq r_0$ and, after the two changes of variables,
+$$
+\int_0^1 f(x)^2\,dx
+\leq \frac1{27}E(r)+\frac8{27}E\left(\frac r2\right).
+$$
+Because $E$ is increasing on $[0,r_0]$, this is maximized at $r=r_0$. Direct substitution gives
+$$
+E(r_0)=\frac{\sqrt2}{2}-\frac23,
+\qquad
+E\left(\frac{r_0}{2}\right)=\frac{273\sqrt2-373}{384}.
+$$
+Therefore
+$$
 \begin{aligned}
-b&=pM^2+\frac23M^3+2\int_0^Mte(t)\,dt\\
-&\leq pM^2+\frac23M^3+ME\\
-&=Ma-\frac13M^3.
+\int_0^1 f(x)^2\,dx
+&\leq \frac1{27}\left(\frac{\sqrt2}{2}-\frac23\right)
++\frac8{27}\left(\frac{273\sqrt2-373}{384}\right)\\
+&=\frac{11\sqrt2-15}{48}.
 \end{aligned}
 $$
-Also $a\geq M^2$, hence $M\leq\sqrt a$. For fixed $a$, the function $aM-M^3/3$ has derivative $a-M^2\geq0$ on $0\leq M\leq\sqrt a$. Consequently
-$$
-b\leq a\sqrt a-\frac13a^{3/2}=\frac23a^{3/2}.
-$$
 
-Step 3: Obtain the sharp global upper bound
-Applying Step 2 to $f_+$ and $f_-$ gives
-$$
-\int_0^1f(x)^2\,dx
-=\int_0^1f_+(x)^2\,dx+\int_0^1f_-(x)^2\,dx
-\leq\frac43A^{3/2}.
-$$
-Using $A\leq1/16$ from Step 1,
-$$
-\int_0^1f(x)^2\,dx
-\leq\frac43\left(\frac1{16}\right)^{3/2}
-=\frac1{48}.
-$$
-Thus $1/48$ is an upper bound for every admissible function.
-
-Step 4: Classify every possible equality case
-Suppose an admissible $f$ attains $1/48$. Equality in the last inequality of Step 3 forces
-$$
-A=\frac1{16}.
-$$
-Then Step 1 gives $L_+\geq1/2$ and $L_-\geq1/2$, while $L_++L_-\leq1$. Hence
-$$
-L_+=L_-=\frac12.
-$$
-For the positive components,
-$$
-\frac1{16}=A\leq\frac14\sum_i\ell_i^2\leq\frac{L_+^2}{4}=\frac1{16},
-$$
-so equality holds throughout. Since
-$$
-\left(\sum_i\ell_i\right)^2=\sum_i\ell_i^2+2\sum_{i<j}\ell_i\ell_j,
-$$
-equality $\sum_i\ell_i^2=L_+^2$ implies that $\{f>0\}$ has exactly one component. The same argument shows that $\{f<0\}$ has exactly one component. These two disjoint open intervals each have length $1/2$ and together have full measure in $(0,1)$, so they must be
-$$
-(0,1/2)\quad\text{and}\quad(1/2,1)
-$$
-in one of the two possible sign orders.
-
-Assume first that $f>0$ on $(0,1/2)$. On this interval Step 1 gives
-$$
-0\leq f(x)\leq\min(x,1/2-x).
-$$
-The right-hand tent has integral $1/16$, which equals $\int_0^{1/2}f=A$. Thus its nonnegative continuous difference from $f$ has integral zero and is identically zero. Therefore
-$$
-f(x)=\min(x,1/2-x),\qquad 0\leq x\leq1/2.
-$$
-Applying the same equality argument to $f_-$ on $(1/2,1)$ gives
-$$
-f(x)=-\min(x-1/2,1-x),\qquad 1/2\leq x\leq1.
-$$
-Hence every maximizer is either the function
+Step 4: Verify attainment and classify every equality case
+Let $r_0=\sqrt2-1$, $r_1=r_0/2$, and let $g_r$ be the explicit one-sided extremizer from Step 2. Define
 $$
 f_*(x)=
 \begin{cases}
-x,&0\leq x\leq\frac14,\\
-\frac12-x,&\frac14\leq x\leq\frac34,\\
-x-1,&\frac34\leq x\leq1,
+\frac13 g_{r_0}(3x),&0\leq x\leq\frac13,\\
+\frac23 g_{r_1}\left(\frac32(1-x)\right),&\frac13\leq x\leq1.
 \end{cases}
 $$
-or its negative.
+The two formulas agree at $x=1/3$ because
+$$
+\frac13r_0=\frac23r_1.
+$$
+Thus $f_*$ is absolutely continuous, has endpoint values $0$, and satisfies $|f_*'|=1$ almost everywhere. Scaling the zero-mean identities for $g_{r_0}$ and $g_{r_1}$ gives
+$$
+\int_0^{1/3}f_*(x)\,dx=0,
+\qquad
+\int_{1/3}^1f_*(x)\,dx=0.
+$$
+The calculation in Step 3 is therefore attained by $f_*$, and also by $-f_*$. Conversely, equality in the global bound forces $r=r_0$, because $E(r/2)$ is strictly increasing there, and then equality must hold in both applications of the one-sided lemma. Their endpoint signs must agree at $x=1/3$, so the only possibilities are exactly $f_*$ and $-f_*$. Hence all equality cases are classified.
 
-Step 5: Verify attainment
-The function $f_*$ is absolutely continuous, satisfies $f_*(0)=f_*(1)=0$, and has $|f_*'|=1$ almost everywhere. It also obeys $f_*(1-x)=-f_*(x)$, so
-$$
-\int_0^1f_*(x)\,dx=0.
-$$
-Thus $f_*\in\mathcal F$, and so is $-f_*$. Finally,
-$$
-\int_0^1f_*(x)^2\,dx
-=4\int_0^{1/4}x^2\,dx
-=\frac1{48}.
-$$
-Therefore the maximum is $1/48$, and the only maximizers are $f_*$ and $-f_*$. 
-
-Final Answer: $\boxed{\frac{1}{48}}$
+Final Answer: $\boxed{\frac{11\sqrt{2}-15}{48}}$
 
 ---
 
 ## Answer
 
-$\frac{1}{48}$
+$\frac{11\sqrt{2}-15}{48}$
 
 ---
 
@@ -189,8 +192,8 @@ $\frac{1}{48}$
 
 ## Solution Concepts
 
-- Lipschitz functions
-- positive and negative parts
+- Lipschitz extremal inequalities
 - layer-cake representation
-- sharp equality cases
-- extremal classification
+- positive and negative parts
+- scaling arguments
+- equality classification
