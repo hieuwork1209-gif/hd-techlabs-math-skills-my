@@ -52,28 +52,47 @@ For $\varepsilon=(\varepsilon_1,\ldots,\varepsilon_6)$ let $\tau_\varepsilon(e_i
 $$
 \tau_\varepsilon(e_S)=(-1)^{k(k-1)/2}\left(\prod_{i\in S}\varepsilon_i\right)e_S.
 $$
-If $c_k(r)=[t^k](1-t)^r(1+t)^{6-r}$, then
+Put
 $$
-\operatorname{Tr}(\tau_\varepsilon)=c_0+c_1-c_2-c_3+c_4+c_5-c_6.
+P_r(t)=(1-t)^r(1+t)^{6-r}=\sum_{k=0}^6 c_k(r)t^k.
 $$
-Expanding the seven polynomials gives the coefficient vectors and signed sums
+For each $k$, choosing a term $-t$ from exactly the negative-sign indices lying in $S$ and a term $t$ from the positive-sign indices lying in $S$ shows
 $$
-\begin{array}{c|c|c}
-r&(c_0,c_1,c_2,c_3,c_4,c_5,c_6)&\operatorname{Tr}(\tau_\varepsilon)\\ \hline
-0&(1,6,15,20,15,6,1)&-8\\
-1&(1,4,5,0,-5,-4,-1)&-8\\
-2&(1,2,-1,-4,-1,2,1)&8\\
-3&(1,0,-3,0,3,0,-1)&8\\
-4&(1,-2,-1,4,-1,-2,1)&-8\\
-5&(1,-4,5,0,-5,4,-1)&-8\\
-6&(1,-6,15,-20,15,-6,1)&8.
-\end{array}
+c_k(r)=\sum_{|S|=k}\prod_{i\in S}\varepsilon_i.
 $$
-Because $p$ is odd, a linear involution is diagonalizable with eigenvalues $\pm1$, so
+Hence the signed sum of the $64$ eigenvalues of $\tau_\varepsilon$, viewed as an integer, is
 $$
-\dim\operatorname{Fix}(\tau_\varepsilon)=\frac{64+\operatorname{Tr}(\tau_\varepsilon)}2.
+T_r=\sum_{k=0}^6(-1)^{k(k-1)/2}c_k(r).
 $$
-Transpose on $M_8$ fixes the $36$-dimensional space of symmetric matrices, and conjugating an anti-involution by an algebra isomorphism preserves the dimension of its fixed space. Hence transpose compatibility is possible only for
+For integer $k$,
+$$
+(-1)^{k(k-1)/2}=\cos\frac{k\pi}{2}+\sin\frac{k\pi}{2}.
+$$
+Using the auxiliary complex number $i=\sqrt{-1}$ only to evaluate the integer-coefficient generating polynomial therefore gives
+$$
+T_r=\operatorname{Re}P_r(i)+\operatorname{Im}P_r(i).
+$$
+Since
+$$
+1-i=\sqrt2e^{-i\pi/4},\qquad 1+i=\sqrt2e^{i\pi/4},
+$$
+we have
+$$
+P_r(i)=(1-i)^r(1+i)^{6-r}=8e^{i(3-r)\pi/2},
+$$
+and thus
+$$
+T_r=8\left(\cos\frac{(3-r)\pi}{2}+\sin\frac{(3-r)\pi}{2}\right).
+$$
+The squarefree monomials form an eigenbasis, so
+$$
+\dim\operatorname{Fix}(\tau_\varepsilon)=\frac{64+T_r}{2}.
+$$
+Transpose on $M_8$ fixes the $36$-dimensional space of symmetric matrices, and conjugating an anti-involution by an algebra isomorphism preserves the dimension of its fixed space. Hence transpose compatibility requires $T_r=8$. Because $(3-r)\pi/2$ is an integral multiple of $\pi/2$, the displayed formula gives $T_r=8$ exactly when
+$$
+3-r\equiv0\text{ or }1\pmod4,
+$$
+that is, $r\equiv3$ or $2\pmod4$. For $0\le r\le6$, this gives exactly
 $$
 r=2,3,6.
 $$
