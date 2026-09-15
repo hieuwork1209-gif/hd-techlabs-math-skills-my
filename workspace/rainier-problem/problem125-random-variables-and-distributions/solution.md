@@ -1,7 +1,7 @@
 ## Steps
 
 Step 1: Derive the sharp support-sensitive polynomial certificate
-Set $a=\frac13$. For any real polynomial $r$ of degree at most $3$ with $r(a)=1$, the support condition $|X|\leq1$ gives the pointwise inequality
+Set $a=\frac13$. The support interval supplies the canonical nonnegative endpoint factor $1-t^2$, and multiplying it by the square of a cubic uses exactly the available moment budget through degree $8$. Thus for any real polynomial $r$ of degree at most $3$ with $r(a)=1$,
 $$
 \mathbf 1_{\{a\}}(X)\leq \frac{1-X^2}{1-a^2}r(X)^2.
 $$
