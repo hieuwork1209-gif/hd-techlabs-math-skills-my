@@ -65,16 +65,16 @@ $$
 $$
 Indeed, if
 $$
-U=\frac1{\sqrt2}\begin{bmatrix}1&1\\-1&1\end{bmatrix},
+U=\frac1{\sqrt2}\begin{bmatrix}1&-1\\1&1\end{bmatrix},
 \qquad
 D=\operatorname{diag}(a,b),
 $$
-then $H_R=UDU^T$ and
+then $R=UQU^T$, $H_R=UDU^T$, and
 $$
 UDU^T=\frac12
 \begin{bmatrix}
-a+b&b-a\\
-b-a&a+b
+a+b&a-b\\
+a-b&a+b
 \end{bmatrix},
 $$
 from which the two displayed identities follow for $M=UDU^TD$.
