@@ -64,9 +64,9 @@ g'(p)=2^p\left(s\left(\frac32\right)^p\log3-\log2\right)>0.
 $$
 Also $g(p)\to\infty$, so it has a unique positive zero $\alpha$. Therefore
 $$
-\wp=\alpha=\min\{p>0:2^{3/2}(3^p-1)=2^p\},
+\wp=\alpha=\min\{p>0:2^{3/2}(3^p-1)=2^p\}.
 $$
-and at $p=\wp$ the only zero eigenspace is the $\lambda_+$-space. Consequently
+At $p=\wp$, the restriction of $D_p$ to the total-sum-zero subspace is symmetric negative semidefinite, with only the $\lambda_+$-space at eigenvalue zero. Hence its quadratic form vanishes exactly on that kernel, and
 $$
 E=\{(u,-Qu):u\in U\}.
 $$
@@ -172,19 +172,31 @@ $$
 
 Step 5: Count the projective equality witnesses attaining the sharp bound
 
-Fix $k=\dim W$. The number of $k$-dimensional subspaces of $V$ is the Gaussian binomial coefficient $\binom{5}{k}_2$. The equality classification in Step 4 recovers $W$ as the span of the support differences, so different subspaces cannot duplicate a ray. For a fixed $W$, there are $2^{5-k}-1$ nonzero cosets $x_0+W$, and there are $2^k-1$ nontrivial characters of $W$. Two functionals differing by an element of $W^\perp$ give the same character on $W$ and only change the resulting function by a global sign on the chosen coset, so these choices count projective rays exactly once.
-
-Hence
+Fix $k=\dim W$. An ordered independent $k$-tuple in $V$ can be chosen in
+$$
+(2^5-1)(2^5-2)\cdots(2^5-2^{k-1})
+$$
+ways, while each $k$-dimensional subspace has
+$$
+(2^k-1)(2^k-2)\cdots(2^k-2^{k-1})
+$$
+ordered bases. Hence the number of $k$-dimensional subspaces is the Gaussian binomial coefficient
+$$
+\binom{5}{k}_2=
+\frac{(2^5-1)(2^5-2)\cdots(2^5-2^{k-1})}
+{(2^k-1)(2^k-2)\cdots(2^k-2^{k-1})}.
+$$
+The equality classification in Step 4 recovers $W$ as the span of the support differences, so different subspaces cannot duplicate a ray. For a fixed $W$, there are $2^{5-k}-1$ cosets $x_0+W$ not containing zero and $2^k-1$ nontrivial characters of $W$. Distinct nontrivial characters give distinct rays, while functionals differing by an element of $W^\perp$ restrict to the same character and change the function only by a global sign on the chosen coset. Therefore
 $$
 N_*=\sum_{k=1}^4\binom{5}{k}_2(2^{5-k}-1)(2^k-1).
 $$
-Using
+The formula gives
 $$
 \binom{5}{1}_2=\binom{5}{4}_2=31,
 \qquad
-\binom{5}{2}_2=\binom{5}{3}_2=155,
+\binom{5}{2}_2=\binom{5}{3}_2=\frac{31\cdot15}{3}=155.
 $$
-we obtain
+Thus
 $$
 N_*=2(31\cdot15+155\cdot21)=7440.
 $$
