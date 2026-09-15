@@ -9,9 +9,9 @@ R=\begin{bmatrix}\frac{5}{2}&-\frac{3}{2}\\-\frac{3}{2}&\frac{5}{2}\end{bmatrix}
 $$
 and
 $$
-f(x)=\frac12x^TQx,
+f(x)=\frac{1}{2}x^TQx,
 \qquad
-g(x)=\frac12x^TRx.
+g(x)=\frac{1}{2}x^TRx.
 $$
 Both matrices are positive definite, so the unique minimizer of $f+g$ is $0$. For $\rho>0$, the proximal maps in the statement are linear. Solving their first-order conditions gives
 $$
@@ -38,12 +38,12 @@ $$
 \begin{aligned}
 z^+
 &=\left[I+\theta\left(J_R(2J_Q-I)-J_Q\right)\right]z\\
-&=\left[\left(1-\frac\theta2\right)I+\frac\theta2H_RH_Q\right]z.
+&=\left[\left(1-\frac{\theta}{2}\right)I+\frac{\theta}{2}H_RH_Q\right]z.
 \end{aligned}
 $$
 Thus, with
 $$
-T_{\rho,\theta}=\left(1-\frac\theta2\right)I+\frac\theta2H_RH_Q,
+T_{\rho,\theta}=\left(1-\frac{\theta}{2}\right)I+\frac{\theta}{2}H_RH_Q,
 $$
 the worst-case one-step contraction is
 $$
@@ -51,7 +51,7 @@ C(\rho,\theta)=\|T_{\rho,\theta}\|_2.
 $$
 
 Step 2: Use the rotated common spectrum to compute the Frobenius invariants
-The matrix $R$ is an orthogonal $45^\circ$ rotation of $Q$. Let
+The matrix $R$ is an orthogonal $45^{\circ}$ rotation of $Q$. Let
 $$
 a=\frac{\rho-1}{\rho+1},
 \qquad
@@ -71,7 +71,7 @@ D=\operatorname{diag}(a,b),
 $$
 then $R=UQU^T$, $H_R=UDU^T$, and
 $$
-UDU^T=\frac12
+UDU^T=\frac{1}{2}
 \begin{bmatrix}
 a+b&a-b\\
 a-b&a+b
@@ -88,14 +88,14 @@ a^2+b^2=\frac{2(\rho^4+\rho^2+16)}{(\rho+1)^2(\rho+4)^2}.
 $$
 Since
 $$
-T_{\rho,\theta}=\left(1-\frac\theta2\right)I+\frac\theta2M,
+T_{\rho,\theta}=\left(1-\frac{\theta}{2}\right)I+\frac{\theta}{2}M,
 $$
 we obtain
 $$
 \begin{aligned}
 \|T_{\rho,\theta}\|_F^2
-={}&2\left(1-\frac\theta2\right)^2
-+\theta\left(1-\frac\theta2\right)\frac{(a+b)^2}{2}
+={}&2\left(1-\frac{\theta}{2}\right)^2
++\theta\left(1-\frac{\theta}{2}\right)\frac{(a+b)^2}{2}
 +\frac{\theta^2}{8}(a^2+b^2)^2\\
 ={}&2-B(\rho)\theta+A(\rho)\theta^2,
 \end{aligned}
@@ -126,10 +126,13 @@ $$
 \|T_{\rho,\theta}\|_F^2
 \geq 2-\frac{B(\rho)^2}{4A(\rho)}.
 $$
-Substituting the displayed $A(\rho)$ and $B(\rho)$ simplifies this minimum to
+Using the displayed $A(\rho)$ and $B(\rho)$,
 $$
+\begin{aligned}
 2-\frac{B(\rho)^2}{4A(\rho)}
-=\frac{9(2\rho^4-7\rho^2+32)}{P(\rho)}.
+&=2-\frac{(2\rho+5)^2(5\rho+8)^2}{P(\rho)}\\
+&=\frac{9(2\rho^4-7\rho^2+32)}{P(\rho)}.
+\end{aligned}
 $$
 Its gap from $\frac{1}{41}$ factors as
 $$
@@ -149,9 +152,9 @@ Moreover, equality in this chain can occur only if $\rho=2$ and $\theta$ is the 
 Step 4: Determine the unique relaxation parameter and attain the bound
 At $\rho=2$,
 $$
-a=\frac13,
+a=\frac{1}{3},
 \qquad
-b=-\frac13.
+b=-\frac{1}{3}.
 $$
 The Step 2 formula becomes
 $$
@@ -176,7 +179,7 @@ H_RH_Q=
 \frac{1}{9}&0
 \end{bmatrix},
 $$
-and substituting $\theta=81/41$ gives
+and substituting $\theta=\frac{81}{41}$ gives
 $$
 T_{2,81/41}
 =\frac{1}{82}
@@ -192,7 +195,7 @@ $$
 so both singular values equal $\frac{1}{\sqrt{82}}$. The lower bound from Step 3 is attained.
 
 Step 5: State the unique optimal parameters and contraction
-The equality conditions in Step 3 force $\rho=2$, and strict convexity in $\theta$ then forces $\theta=81/41$. Step 4 shows that this pair attains the global lower bound. Hence the minimizing parameters and minimum worst-case one-step contraction are unique.
+Any global minimizer must make every inequality in Step 3 an equality. The factored gap forces $\rho=2$, and strict convexity in $\theta$ then forces $\theta=\frac{81}{41}$. Step 4 shows that this pair attains the global lower bound, so the minimizing parameters and minimum worst-case one-step contraction are unique.
 
 Final Answer: $\boxed{\left(2,\frac{81}{41},\frac{1}{\sqrt{82}}\right)}$
 
