@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "769ef9c50242c1db6441acf8f0383a8acd05f448",
+  "problem_blob_sha": "cdd3f82d27043e27bee5b94f2f076b140f14789b",
+  "statement_sha256": "fbd5e77f325736da429b2648f704dd69f082d5e3690b2c4d971fc177edd95a0f",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-15T04:21:20+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "For a quadratic \\(h(x)=\\frac12x^THx\\),\n\n\\[\nP_{h,\\rho}(v)=(H+\\rho I)^{-1}\\rho v.\n\\]\n\nPut \\(t=\\rho\\). Then\n\n\\[\nA:=P_{f,\\rho}=\\begin{bmatrix}\n\\frac{t}{t+1}&0\\\\\n0&\\frac{t}{t+4}\n\\end{bmatrix}.\n\\]\n\nThe matrix \\(R\\) has eigenvalues \\(1,4\\) in the directions \\((1,1)\\) and \\((1,-1)\\), so\n\n\\[\nB:=P_{g,\\rho}\n=\\frac12\n\\begin{bmatrix}\na+b&a-b\\\\\na-b&a+b\n\\end{bmatrix},\n\\qquad\na=\\frac{t}{t+1},\\quad b=\\frac{t}{t+4}.\n\\]\n\nThe Douglas-Rachford update is linear:\n\n\\[\nz^+=Mz,\\qquad M=I+\\theta N,\n\\]\n\nwhere\n\n\\[\nN=B(2A-I)-A.\n\\]\n\nA direct simplification gives\n\n\\[\nN=\n\\begin{bmatrix}\n-\\frac{t(7t+13)}{2(t+1)^2(t+4)}\n&\n\\frac{3t(t-4)}{2(t+1)(t+4)^2}\n\\\\[4pt]\n\\frac{3t(t-1)}{2(t+1)^2(t+4)}\n&\n-\\frac{t(13t+28)}{2(t+1)(t+4)^2}\n\\end{bmatrix}.\n\\]\n\nSince \\(C(\\rho,\\theta)=\\|M\\|_2\\), we use\n\n\\[\n\\|M\\|_2^2\\ge \\frac12\\|M\\|_F^2.\n\\]\n\nNow\n\n\\[\n\\frac12\\|I+\\theta N\\|_F^2\n=\n1+\\theta\\operatorname{tr}N+\\frac{\\theta^2}{2}\\|N\\|_F^2.\n\\]\n\nFor fixed \\(t\\), this quadratic is minimized at\n\n\\[\n\\theta=-\\frac{\\operatorname{tr}N}{\\|N\\|_F^2},\n\\]\n\nso for every \\(\\theta\\),\n\n\\[\nC(\\rho,\\theta)^2\n\\ge\n1-\\frac{(\\operatorname{tr}N)^2}{2\\|N\\|_F^2}.\n\\]\n\nWriting all entries over the common denominator \\(2(t+1)^2(t+4)^2\\), one obtains the exact identity\n\n\\[\n81\\|N\\|_F^2-41(\\operatorname{tr}N)^2\n=\n\\frac{t^2(t-2)^2(679t^2+2306t+2716)}\n{(t+1)^4(t+4)^4}.\n\\]\n\nSince \\(t>0\\), the right side is nonnegative, with equality only at \\(t=2\\). Hence\n\n\\[\n\\frac{(\\operatorname{tr}N)^2}{\\|N\\|_F^2}\\le \\frac{81}{41},\n\\]\n\nand therefore\n\n\\[\nC(\\rho,\\theta)^2\\ge 1-\\frac12\\cdot\\frac{81}{41}\n=\\frac1{82}.\n\\]\n\nNow check attainability. At \\(t=2\\),\n\n\\[\nA=\\begin{bmatrix}2/3&0\\\\0&1/3\\end{bmatrix},\n\\]\n\nand\n\n\\[\nN=\n\\begin{bmatrix}\n-\\frac12&-\\frac1{18}\\\\[2pt]\n\\frac1{18}&-\\frac12\n\\end{bmatrix}.\n\\]\n\nThus\n\n\\[\nM=\n\\begin{bmatrix}\n1-\\theta/2&-\\theta/18\\\\\n\\theta/18&1-\\theta/2\n\\end{bmatrix},\n\\]\n\nso\n\n\\[\n\\|M\\|_2^2\n=\n\\left(1-\\frac{\\theta}{2}\\right)^2+\\left(\\frac{\\theta}{18}\\right)^2.\n\\]\n\nThis is minimized at\n\n\\[\n\\theta=\\frac{81}{41},\n\\]\n\nwhich lies in \\((0,2)\\), and the minimum value is\n\n\\[\n\\left(\\frac1{82}\\right)^2+\\left(\\frac9{82}\\right)^2\n=\n\\frac1{82}.\n\\]\n\nTherefore\n\n\\[\nC_*=\\frac1{\\sqrt{82}}.\n\\]\n\nThe equality conditions above force \\(t=2\\) and then force \\(\\theta=81/41\\), so the minimizing pair is unique.\n\n\\[\n\\boxed{\\left(2,\\frac{81}{41},\\frac1{\\sqrt{82}}\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-15T04:23:04+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/cdd3f82d2704.json"
+}
