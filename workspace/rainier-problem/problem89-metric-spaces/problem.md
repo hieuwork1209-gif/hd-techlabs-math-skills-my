@@ -2,28 +2,38 @@
 
 ## LaTeX (Normalized)
 
-For each integer $d\geq2$, let $\mathcal{P}_d$ and $\mathcal{H}_d$ be the points and hyperplanes of $\operatorname{PG}(d,2)$, and put $X_d=\mathcal{P}_d\sqcup\mathcal{H}_d$. Form the bipartite incidence graph on $X_d$ by joining $P\in\mathcal{P}_d$ to $H\in\mathcal{H}_d$ exactly when $P\subset H$, and let $\rho_d$ be its shortest-path metric.
+Let $\mathcal P$ and $\mathcal H$ be the points and hyperplanes of $\operatorname{PG}(4,2)$, and put $X=\mathcal P\sqcup\mathcal H$. Form the bipartite incidence graph on $X$ by joining $P\in\mathcal P$ to $H\in\mathcal H$ exactly when $P\subset H$, and let $\rho$ be its shortest-path metric.
 
-For $p>0$, say that $(X_d,\rho_d)$ has $p$-negative type if every real family $(c_x)_{x\in X_d}$ with $\sum_xc_x=0$ satisfies
+For $p>0$, say that $(X,\rho)$ has $p$-negative type if every real family $(c_x)_{x\in X}$ with $\sum_xc_x=0$ satisfies
 $$
-\sum_{x,y\in X_d}c_xc_y\,\rho_d(x,y)^p\leq0.
+\sum_{x,y\in X}c_xc_y\,\rho(x,y)^p\leq0.
 $$
 Let
 $$
-\wp_d=\sup\{p>0:(X_d,\rho_d)\text{ has }p\text{-negative type}\},
+\wp=\sup\{p>0:(X,\rho)\text{ has }p\text{-negative type}\},
 $$
-and at $p=\wp_d$ define
+and define the boundary equality space
 $$
-E_d=\left\{c\in\mathbb{R}^{X_d}:\sum_xc_x=0,\ \sum_{x,y}c_xc_y\,\rho_d(x,y)^{\wp_d}=0\right\}.
+E=\left\{c\in\mathbb R^X:\sum_xc_x=0,\ \sum_{x,y}c_xc_y\,\rho(x,y)^{\wp}=0\right\}.
 $$
-Finally, set
+For a two-dimensional linear subspace $L\leq E$, write each $c\in L$ as $c=(u,v)$ with $u\in\mathbb R^{\mathcal P}$ and $v\in\mathbb R^{\mathcal H}$, and define
 $$
-d_*=\min\{d\geq2:\dim E_m=1\text{ for every }m\geq d\}.
+S_{\mathcal P}(L)=\{P\in\mathcal P:\text{some }(u,v)\in L\text{ has }u_P\neq0\},
 $$
-Determine
 $$
-\left(d_*,\ \lim_{d\to\infty}2^d\wp_d\right).
+S_{\mathcal H}(L)=\{H\in\mathcal H:\text{some }(u,v)\in L\text{ has }v_H\neq0\}.
 $$
+Set
+$$
+\mathsf U_2(L)=|S_{\mathcal P}(L)|\,|S_{\mathcal H}(L)|,
+\qquad
+U_2^*=\min_{\substack{L\leq E\\ \dim L=2}}\mathsf U_2(L),
+$$
+and let
+$$
+N_2^*=\#\{L\leq E:\dim L=2,\ \mathsf U_2(L)=U_2^*\}.
+$$
+Determine the ordered triple $(\wp,U_2^*,N_2^*)$.
 
 ---
 
@@ -40,4 +50,4 @@ $$
 
 ## Domain Explanation
 
-This problem asks for a phase transition and an asymptotic invariant of the supremal negative type of a family of finite graph metrics. Projective incidence supplies the symmetric finite metric spaces and controls their spectral decomposition, while the requested quantities are negative-type and equality-space invariants. Therefore the primary classification is Analysis and Metric spaces.
+This problem asks for the supremal negative type of a finite graph metric and for a sharp coordinate-support invariant of two-dimensional subspaces of its boundary equality space. Projective incidence and finite Fourier analysis are auxiliary structures used to analyze the boundary space, while the requested quantities are invariants of the metric and its negative-type equality geometry. Therefore the primary classification is Analysis and Metric spaces.
