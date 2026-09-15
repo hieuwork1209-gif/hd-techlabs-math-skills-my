@@ -39,10 +39,14 @@ W_g(a)^2
 $$
 The inner sum is $2^8$ for $t\in\operatorname{rad}B_g$ and $0$ otherwise. Therefore $|W_g(a)|=16$ for every $a$ exactly when $B_g$ is nondegenerate. The condition $W_g(0)=16$ selects the plus Arf type.
 
-Let $\alpha_{2m}$ be the number of nondegenerate alternating forms on a fixed $2m$-dimensional binary vector space. The general linear group acts transitively on these forms with symplectic stabilizer, so
+Let $\alpha_{2m}$ be the number of nondegenerate alternating forms on a fixed $2m$-dimensional binary vector space. The general linear group acts transitively on these forms. For one fixed form, an ordered symplectic basis is chosen recursively: after choosing a nonzero first vector in a $2j$-dimensional symplectic space, there are $2^{2j-1}$ choices for its partner, and the remaining vectors form a symplectic basis of a $2j-2$ dimensional complement. Hence
+$$
+|\operatorname{Sp}(2m,2)|
+=\prod_{j=1}^{m}(2^{2j}-1)2^{2j-1}.
+$$
+Dividing $|\operatorname{GL}(2m,2)|$ by this stabilizer gives
 $$
 \alpha_{2m}
-=\frac{|\operatorname{GL}(2m,2)|}{|\operatorname{Sp}(2m,2)|}
 =2^{m(m-1)}\prod_{i=1}^{m}(2^{2i-1}-1).
 $$
 Thus $\alpha_8=112881664$. For a fixed nondegenerate $B$, its quadratic refinements are $q_a(x)=q(x)+B(a,x)$, $a\in E$. Taking one plus refinement $q$, translation gives
@@ -114,15 +118,26 @@ So $T=I+N$ is an orthogonal involution with image $R$. This proves a bijection b
 
 Step 3: Count the residual data with one parity formula
 
-Let $I_r$ be the number of $r$-dimensional $B$-isotropic subspaces and $S_r$ the number of $r$-dimensional totally $q$-singular subspaces. A standard flag count, obtained by extending an isotropic basis one vector at a time, gives
+Let $I_r$ be the number of $r$-dimensional $B$-isotropic subspaces and $S_r$ the number of $r$-dimensional totally $q$-singular subspaces. To count $I_r$, build an ordered basis of an isotropic $r$-space. After $k$ independent isotropic vectors span $U$, the next vector may be any element of $U^{\perp}\setminus U$, so there are $2^{8-k}-2^k$ choices. Dividing by the number $\prod_{k=0}^{r-1}(2^r-2^k)$ of ordered bases of an $r$-space gives
 $$
-I_r=\binom{4}{r}_2\prod_{j=0}^{r-1}(2^{4-j}+1),
-qquad
-S_r=\binom{4}{r}_2\prod_{j=0}^{r-1}(2^{3-j}+1).
+I_r=
+\frac{\prod_{k=0}^{r-1}(2^{8-k}-2^k)}
+{\prod_{k=0}^{r-1}(2^r-2^k)}.
 $$
-For the second formula, after a totally singular $k$-space has been chosen, its orthogonal quotient is again split of dimension $2(4-k)$; in split coordinates $q(a,b)=a\cdot b$, the number of nonzero singular vectors is $(2^{3-k}+1)(2^{4-k}-1)$, which yields the displayed product after dividing by the number of ordered bases. These formulas give the only values needed below:
+
+For $S_r$, suppose $U$ is already totally singular of dimension $k$. Then $U^{\perp}/U$ is again split, now of dimension $2(4-k)$. In a split $2m$-space written as $q(a,b)=a\cdot b$, the number of nonzero singular vectors is
 $$
-I_1=255,\quad S_1=135,\quad I_2=5355,\quad
+(2^{m-1}+1)(2^m-1).
+$$
+Indeed, for $a=0$ there are $2^m$ choices of $b$, while for each nonzero $a$ there are $2^{m-1}$ vectors $b$ with $a\cdot b=0$, and then the zero vector is removed. Thus, at stage $k$, there are
+$$
+2^k(2^{3-k}+1)(2^{4-k}-1)
+$$
+possible next vectors. Dividing the product of these extension counts by the same ordered-basis denominator gives $S_r$. The values needed here are therefore
+$$
+I_1=255,\quad S_1=135,\quad I_2=5355,
+$$
+$$
 I_3=11475,\quad S_3=2025,\quad I_4=2295.
 $$
 
@@ -134,9 +149,9 @@ $$
 b&A
 \end{pmatrix},
 $$
-where $A$ is alternating. When $r$ is odd, $H$ has even dimension and nondegeneracy is equivalent to $A$ being nondegenerate, giving $2^{r-1}\alpha_{r-1}$ choices. When $r$ is even, $H$ has odd dimension; nondegeneracy is equivalent to $A$ having one-dimensional radical and $b$ being nonzero on that radical. There are $(2^{r-1}-1)\alpha_{r-2}$ such $A$ and $2^{r-2}$ such $b$, whose product is $\alpha_r$. Thus, for even $r$ every $B$-isotropic $R$ contributes $\alpha_r$ forms, while for odd $r$ only the $I_r-S_r$ subspaces with $q|_R\neq0$ contribute, each with $2^{r-1}\alpha_{r-1}$ forms.
+where $A$ is alternating. When $r$ is odd, $H$ has even dimension and nondegeneracy is equivalent to $A$ being nondegenerate, giving $2^{r-1}\alpha_{r-1}$ choices. When $r$ is even, $H$ has odd dimension. An alternating form $A$ can then have the required one-dimensional radical in $(2^{r-1}-1)\alpha_{r-2}$ ways: choose its radical line, then a nondegenerate alternating form on the quotient. For each such $A$, exactly $2^{r-2}$ functionals $b$ are nonzero on the radical. Their product equals $\alpha_r$. Thus, for even $r$ every $B$-isotropic $R$ contributes $\alpha_r$ forms, while for odd $r$ only the $I_r-S_r$ subspaces with $q|_R\neq0$ contribute, each with $2^{r-1}\alpha_{r-1}$ forms.
 
-Since $R$ is isotropic, $0\leq r\leq4$. Using $\alpha_0=1$, $\alpha_2=1$, and $\alpha_4=28$, the number $J$ of involutions preserving $q$ is therefore the single sum
+Since $R$ is isotropic, $0\leq r\leq4$. Using $\alpha_0=1$, $\alpha_2=1$, and $\alpha_4=28$, the number $J$ of involutions preserving $q$ is the single sum
 $$
 J
 =1+\sum_{r\in\{2,4\}}I_r\alpha_r
@@ -147,21 +162,21 @@ $$
 =107536.
 $$
 
-Step 4: Combine the two independently checkable factors
+Step 4: Combine the independently checkable factors
 
-There are $15351906304$ admissible plus-type quadratic forms $g$, and every such form has exactly $107536$ preserving involutions. By the injectivity established in Step 1, the number of distinct self-dual functions is therefore
+There are $136\cdot112881664$ admissible plus-type quadratic forms $g$, and every such form has exactly $107536$ preserving involutions. By the injectivity established in Step 1, the number of distinct self-dual functions is
 $$
-15351906304\cdot107536=1650882596306944.
+136\cdot112881664\cdot107536=1650882596306944.
 $$
-Keeping the answer factored exposes the two independently verifiable counts instead of presenting only the expanded integer.
+The factored form keeps the three independently meaningful counts visible: plus refinements per polar form, nondegenerate polar forms, and orthogonal involutions.
 
-Final Answer: $\boxed{15351906304\cdot107536}$
+Final Answer: $\boxed{136\cdot112881664\cdot107536}$
 
 ---
 
 ## Answer
 
-$15351906304\cdot107536$
+$136\cdot112881664\cdot107536$
 
 ---
 
