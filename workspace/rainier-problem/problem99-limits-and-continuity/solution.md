@@ -102,16 +102,12 @@ $$
 2\log(1+y)=2y-y^2+\frac23y^3+\rho(y),
 \qquad |\rho(y)|\le C|y|^4.
 $$
-With $y=aq+bq^2$, collecting powers through $q^3$ gives
+With $y=aq+bq^2$,
 $$
 2\log(1+aq+bq^2)
 =2aq+(2b-a^2)q^2+\left(-2ab+\frac{2a^3}{3}\right)q^3+\rho_{a,b}(q),
 $$
-and on the above core, for the $LM$ and $MR$ pairs,
-$$
-|\rho_{a,b}(q)|\le Cq^4R^4
-$$
-for all sufficiently small $q$. The three normalized cross distances therefore give
+and for the $LM$ and $MR$ pairs on the core, $|\rho_{a,b}(q)|\le Cq^4R^4$. The three normalized cross distances give
 $$
 \begin{array}{c|c|c|l}
  & a & b & \text{logarithm through }q^3\\ \hline
@@ -122,7 +118,7 @@ MR&-3z/(2\sqrt2)&-3v/8&
 LR&0&-(u+v/4)&(-2u-\frac12v)q^2
 \end{array}
 $$
-(the last line is $2\log(1-q^2(u+v/4))$, whose omitted part is $O(q^4R^2)$ on the core). Summing these pairwise coefficients and adding the phase gives
+(the last line is $2\log(1-q^2(u+v/4))$, with remainder $O(q^4R^2)$). Summing pairwise coefficients and the phase gives
 $$
 qA+q^2B+q^3C+E_q,
 $$
@@ -139,15 +135,10 @@ $$
 C=9\sqrt2\left(U_1-\frac{V_1}{16}\right)Z_1
 +\frac{9\sqrt2}{16}(8k-r)Z_3,
 $$
-and, since the numbers of variables and pairs are fixed once $m$ is fixed,
-$$
-|E_q|\le C_mq^4R^4.
-$$
-This summation uses only
-$\sum_{i,j}z_j=kZ_1$, $\sum_{i,j}u_i=lU_1$, and
-$\sum_{i,j}u_iz_j=U_1Z_1$ (and the analogous right-hand identities).
+and $|E_q|\le C_mq^4R^4$. Here we used
+$\sum_{i,j}z_j=kZ_1$, $\sum_{i,j}u_i=lU_1$, $\sum_{i,j}u_iz_j=U_1Z_1$, and the analogous right identities.
 
-Now take
+Take
 $$
 R=R_q=q^{-1/16},\qquad P_q=qA+q^2B+q^3C.
 $$
@@ -163,30 +154,28 @@ e^{P_q+E_q}
 &\quad+q^3\left(C+AB+\frac{A^3}{6}\right)+\mathcal E_q,
 \end{aligned}
 $$
-where the fourth-order Taylor remainder in $e^{P_q}$, all monomials of total $q$-degree at least $4$ coming from $P_q^2/2$ and $P_q^3/6$, and the separate logarithmic error $E_q$ satisfy
+where all omitted fourth-order Taylor terms and $E_q$ satisfy
 $$
 |\mathcal E_q|
 \le C_m\left(q^4R_q^{12}+q^4R_q^4\right)
 =O(q^{13/4})+O(q^{15/4})
 =o(q^3).
 $$
-The limiting Laguerre/Gaussian Vandermonde density has finite total mass, so integrating this uniform core error still gives $o(q^3)$.
+The limiting Vandermonde density has finite mass, so the integrated core error is $o(q^3)$.
 
-It remains to control the complement of the core. Fix small disjoint neighborhoods of $0,\frac13,1$. In the left and right charts the exact phase satisfies
+For the complement, fix disjoint neighborhoods of $0,\frac13,1$. In their local charts,
 $$
 \frac{\phi(q^2u)}{q^2}\ge c u,
 \qquad
 \frac{\phi(1-q^2v/4)}{q^2}\ge c v,
-$$
-and in the middle chart
-$$
+\qquad
 \frac{\phi(1/3+qz/\sqrt2)}{q^2}\ge c z^2
 $$
-for all sufficiently small $q$, as long as the original variable stays in its chosen neighborhood. Hence the transformed local integrands are bounded by a fixed polynomial times
+for small $q$. Thus the local integrands are bounded by a fixed polynomial times
 $$
 e^{-c(\sum u_i+\sum v_i+\sum z_i^2)}.
 $$
-The part with some $u_i$ or $v_i$ larger than $R_q$ is therefore $O(e^{-cR_q})$, and the part with some $|z_i|>R_q$ is $O(e^{-cR_q^2})$, up to polynomial factors; both are $o(q^N)$ for every fixed $N$. Outside the three chosen neighborhoods, $\phi$ is bounded below by a positive constant, giving $O(e^{-c/q^2})$. Thus termwise integration through $q^3$ is justified with a genuine integrated $o(q^3)$ remainder.
+The tails are $O(e^{-cR_q})$ or $O(e^{-cR_q^2})$, hence $o(q^N)$ for every fixed $N$; outside the three neighborhoods they are $O(e^{-c/q^2})$. Thus termwise integration through $q^3$ has an integrated $o(q^3)$ remainder.
 
 Step 4: Evaluate the required moments without repeated bookkeeping
 
@@ -244,13 +233,13 @@ $$
 +\frac{63}{32}l^3+\frac98l^2r+\frac38lr^2+\frac{99}{128}l.
 $$
 
-The remaining factor $\prod_i(1+q(3x_i-1))$ has one-variable logarithms
+The factor $\prod_i(1+q(3x_i-1))$ has one-variable logarithms
 $$
 -q-\frac{q^2}{2}+q^3\left(3u-\frac13\right),\qquad
 \frac{3}{\sqrt2}q^2z,\qquad
 2q-2q^2+q^3\left(\frac83-\frac34v\right),
 $$
-for the left, middle, and right wells. Therefore its total logarithm is
+so its total logarithm is
 $$
 qh+q^2\left(d+\frac3{\sqrt2}Z_1\right)+q^3T+E_q^{(w)},
 $$
@@ -261,11 +250,11 @@ $$
 $$
 \mathbb E[T]=3k^2-\frac k3+\frac{8r}{3}-\frac{3r^2}{4}.
 $$
-On the same core used in Step 3, direct Taylor bounds for these three one-variable logarithms give
+On the Step 3 core, Taylor bounds give
 $$
 |E_q^{(w)}|\le C_mq^4(1+R_q^2)=O(q^{31/8})=o(q^3),
 $$
-and the complement of the core is already negligible by the domination proved in Step 3. Thus this factor also contributes no hidden order-$q^3$ error.
+and the complement is already negligible.
 
 By $z\mapsto-z$ symmetry every term odd in $z$ has zero expectation, and the only surviving cross term between the two exponents is $J$, where
 $$
@@ -282,11 +271,11 @@ $$
 \beta=\mathbb E[T]+h\mathcal Q+hd+\frac{h^3}{6}+J.
 $$
 
-Now use the common parametrization
+Use
 $$
 k=m+a,\qquad r=m+c,\qquad l=2m+2-a-c,\qquad a,c\in\{0,1\}.
 $$
-Instead of four separate polynomial expansions, substituting this once into $\mathcal Q$ and using $a^2=a$, $c^2=c$ gives
+Substitution into $\mathcal Q$, with $a^2=a$ and $c^2=c$, gives
 $$
 128\mathcal Q
 =3942m+2214-(1912m+983)a-(1912m+1415)c
@@ -329,7 +318,7 @@ $$
 $$
 \beta_2=\frac{64m^3+4938m^2+3491m-1461}{384}.
 $$
-The neighbor clusters already carry an extra factor $q$, so their $\beta$ terms would be global order $q^4$ and are not needed.
+The neighbor clusters carry an extra factor $q$, so their $\beta$ terms are global order $q^4$ and are not needed.
 
 Step 5: Combine the four clusters
 
