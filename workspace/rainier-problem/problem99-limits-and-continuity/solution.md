@@ -1,354 +1,249 @@
 ## Steps
 
-Step 1: Isolate the four relevant cluster allocations
+Step 1: Reduce the determinant to four saddle allocations
 
 Put
 $$
 q=\sqrt t,\qquad \phi(x)=x(1-x)(3x-1)^2.
 $$
-By the Andréief identity,
+The Andréief identity in the form
+$$
+\det\left(\int f_i(x)g_j(x)w(x)\,dx\right)_{i,j=0}^{n-1}
+=\frac1{n!}\int \det(f_i(x_j))\det(g_i(x_j))\prod_jw(x_j)\,dx_j
+$$
+with $f_i=g_i=x^i$ gives
 $$
 D_m(t)=\frac1{(4m+2)!}\int_{[0,1]^{4m+2}}\Delta(x)^2
-\prod_i(1+q(3x_i-1))e^{-\phi(x_i)/t}\,dx_i.
+\prod_i(1+q(3x_i-1))e^{-\phi(x_i)/q^2}\,dx_i.
 $$
-The phase vanishes only at $0,\frac13,1$, so all other regions are exponentially small. Use
+The phase vanishes only at $0,\frac13,1$. Near these points use
 $$
 x=q^2u,\qquad x=\frac13+\frac q{\sqrt2}z,\qquad x=1-\frac{q^2}{4}v.
 $$
-If $(k,l,r)$ variables occupy these three wells, the Jacobians and internal Vandermondes contribute
+If $(k,l,r)$ variables lie in the three wells, the Jacobians and internal Vandermondes contribute $t^{E(k,l,r)}$ with
 $$
-t^{E(k,l,r)},\qquad E(k,l,r)=k^2+\frac{l^2}{2}+r^2.
+E(k,l,r)=k^2+\frac{l^2}{2}+r^2,
+\qquad k+l+r=4m+2.
 $$
-Write $k=m+a$, $r=m+c$, $l=2m+2-a-c$, and set $u=2a-1$, $v=2c-1$. Then
+Write $k=m+a$, $r=m+c$, $l=2m+2-a-c$, and set $\eta=2a-1$, $\xi=2c-1$. Then
 $$
 E-\left(4m^2+4m+\frac32\right)
-=\frac{3u^2+2uv+3v^2-4}{8}.
+=\frac{3\eta^2+2\eta\xi+3\xi^2-4}{8}.
 $$
-To affect the expansion through $t^{3/2}$, the gap is at most $3/2$, which forces $u,v\in\{-1,1\}$. Hence only
+A contribution through $t^{3/2}=q^3$ must have gap at most $3/2$, so $\eta,\xi\in\{-1,1\}$. Hence only
 $$
-A_1=(m,2m+1,m+1),\quad A_2=(m+1,2m+1,m)
+(a,c)=(0,1),(1,0),(0,0),(1,1)
 $$
-have gap $0$, while
-$$
-A_3=(m,2m+2,m),\quad A_4=(m+1,2m,m+1)
-$$
-have gap $1/2$, i.e. one extra factor $q$.
+occur. The first two have gap $0$, and the last two have gap $1/2$, hence one extra factor $q$.
 
-Step 2: Compute the leading cluster constants
-
-For the Laguerre and Gaussian Vandermonde integrals,
+The limiting Laguerre and Gaussian Vandermonde integrals are
 $$
 L_n=\prod_{j=0}^{n-1}(j!)^2,
 \qquad
-G_n=\pi^{n/2}2^{-n(n-1)/2}\prod_{j=0}^{n-1}j!.
+G_n=\pi^{n/2}2^{-n(n-1)/2}\prod_{j=0}^{n-1}j!,
 $$
-Indeed, these follow from the monic Laguerre and Hermite squared norms
+from the monic squared norms
 $$
-h_j^{(L)}=(j!)^2,\qquad h_j^{(G)}=\sqrt\pi\,2^{-j}j!,
+h_j^{(L)}=(j!)^2,\qquad h_j^{(G)}=\sqrt\pi\,2^{-j}j!.
 $$
-via $\int\Delta^2\prod w=n!\prod h_j$.
-
-Under the three scalings, the left, middle, and right internal factors are respectively
-$$
-q^{2k^2},\qquad q^{l^2}2^{-l^2/2},\qquad q^{2r^2}4^{-r^2},
-$$
-and the limiting cross distances contribute $3^{-2kl}(4/9)^{rl}$. Thus
+Including the fixed cross-well distances gives
 $$
 K_{k,l,r}
 =2^{-2r^2+2rl-l^2+l/2}3^{-2l(k+r)}
 \pi^{l/2}L_kL_r\prod_{j=0}^{l-1}j!.
 $$
-Directly comparing with $C_m$ gives
+Therefore the four leading weights, after division by $C_m$, are respectively
 $$
-K_{A_1}=K_{A_2}=\frac{C_m}{2},\qquad
-K_{A_3}=\frac{C_mr_m}{2},\qquad
-K_{A_4}=\frac{C_ms_m}{2}.
+\frac12,\qquad \frac12,\qquad \frac{r_m}{2},\qquad \frac{s_m}{2}.
 $$
-For example, using $L_{n+1}/L_n=(n!)^2$,
+For instance
 $$
-\frac{K_{A_3}}{C_m/2}
+\frac{K_{m,2m+2,m}}{C_m/2}
 =9\,2^{-2m-5/2}\sqrt\pi\frac{(2m+1)!}{(m!)^2}=r_m,
 $$
-and the $A_4$ ratio similarly equals $s_m$.
+and similarly
+$$
+\frac{K_{m+1,2m,m+1}}{C_m/2}
+=\frac{9\,2^{2m-3/2}}{\sqrt\pi\,b_m}=s_m.
+$$
 
-Step 3: Expand one local cluster through order $q^3$
+Step 2: Derive one local expansion and use parity to eliminate the cubic geometric bookkeeping
 
-Write
+Fix one of the four allocations and let $\mathbb E$ denote expectation for the product measure
+$$
+\Delta(u)^2e^{-\sum u_i}\,du\;
+\Delta(z)^2e^{-\sum z_i^2}\,dz\;
+\Delta(v)^2e^{-\sum v_i}\,dv,
+$$
+normalized to mass $1$. Write
 $$
 U_j=\sum_{i=1}^ku_i^j,\qquad V_j=\sum_{i=1}^rv_i^j,\qquad Z_j=\sum_{i=1}^lz_i^j.
 $$
-Relative to the limiting weights $e^{-\sum u_i-\sum z_i^2-\sum v_i}$, the phase contributes
+After the leading constants are removed, the phase and the three cross-Vandermonde products have logarithm
 $$
--\frac{3}{2\sqrt2}qZ_3
-+q^2\left(7U_2+V_2+\frac94Z_4\right)+R_{\rm ph}.
+qA+q^2B+q^3C_{\rm odd}+O(q^4R^4)
 $$
-Indeed, for one left and one right variable the exact corrections are
-$$
-7q^2u^2-15q^4u^3+9q^6u^4,
-\qquad
-q^2v^2-\frac{21}{64}q^4v^3+\frac9{256}q^6v^4,
-$$
-while the middle correction is exactly
-$$
--\frac{3}{2\sqrt2}qz^3+\frac94q^2z^4.
-$$
-Thus, on a core $0\le u_i,v_i\le R$ and $|z_i|\le R$ with $R\ge1$,
-$$
-|R_{\rm ph}|\le C_m\left(q^4R^3+q^6R^4\right)\le C_mq^4R^4.
-$$
-
-For every cross pair, if $|y|\le1/2$, Taylor's formula with remainder gives
-$$
-2\log(1+y)=2y-y^2+\frac23y^3+\rho(y),
-\qquad |\rho(y)|\le C|y|^4.
-$$
-With $y=aq+bq^2$,
-$$
-2\log(1+aq+bq^2)
-=2aq+(2b-a^2)q^2+\left(-2ab+\frac{2a^3}{3}\right)q^3+\rho_{a,b}(q),
-$$
-and for the $LM$ and $MR$ pairs on the core, $|\rho_{a,b}(q)|\le Cq^4R^4$. The three normalized cross distances give
-$$
-\begin{array}{c|c|c|l}
- & a & b & \text{logarithm through }q^3\\ \hline
-LM&3z/\sqrt2&-3u&
-3\sqrt2zq+(-6u-\frac92z^2)q^2+9\sqrt2(uz+\frac12z^3)q^3\\[2mm]
-MR&-3z/(2\sqrt2)&-3v/8&
--\frac{3\sqrt2}{2}zq+(-\frac34v-\frac98z^2)q^2-\frac{9\sqrt2}{16}(vz+z^3)q^3\\[2mm]
-LR&0&-(u+v/4)&(-2u-\frac12v)q^2
-\end{array}
-$$
-(the last line is $2\log(1-q^2(u+v/4))$, with remainder $O(q^4R^2)$). Summing pairwise coefficients and the phase gives
-$$
-qA+q^2B+q^3C+E_q,
-$$
-where
+on the core $u_i,v_i,|z_i|\le R$, where $C_{\rm odd}$ is odd under $z\mapsto-z$ and
 $$
 A=\frac{3}{2\sqrt2}\bigl((4k-2r)Z_1-Z_3\bigr),
 $$
 $$
 B=7U_2+V_2-(6l+2r)U_1
 -\left(\frac{3l}{4}+\frac{k}{2}\right)V_1
-+\frac94Z_4-\left(\frac{9k}{2}+\frac{9r}{8}\right)Z_2,
++\frac94Z_4-\left(\frac{9k}{2}+\frac{9r}{8}\right)Z_2.
 $$
+These formulas come from the exact normalized cross distances
 $$
-C=9\sqrt2\left(U_1-\frac{V_1}{16}\right)Z_1
-+\frac{9\sqrt2}{16}(8k-r)Z_3,
-$$
-and $|E_q|\le C_mq^4R^4$. Here we used
-$\sum_{i,j}z_j=kZ_1$, $\sum_{i,j}u_i=lU_1$, $\sum_{i,j}u_iz_j=U_1Z_1$, and the analogous right identities.
-
-Take
-$$
-R=R_q=q^{-1/16},\qquad P_q=qA+q^2B+q^3C.
-$$
-On the core,
-$$
-|A|\le C_mR_q^3,\qquad |B|\le C_mR_q^4,\qquad |C|\le C_mR_q^3,
-$$
-so $|P_q|\le C_mqR_q^3=o(1)$. Therefore
-$$
-\begin{aligned}
-e^{P_q+E_q}
-&=1+qA+q^2\left(B+\frac{A^2}{2}\right)\\
-&\quad+q^3\left(C+AB+\frac{A^3}{6}\right)+\mathcal E_q,
-\end{aligned}
-$$
-where all omitted fourth-order Taylor terms and $E_q$ satisfy
-$$
-|\mathcal E_q|
-\le C_m\left(q^4R_q^{12}+q^4R_q^4\right)
-=O(q^{13/4})+O(q^{15/4})
-=o(q^3).
-$$
-The limiting Vandermonde density has finite mass, so the integrated core error is $o(q^3)$.
-
-For the complement, fix disjoint neighborhoods of $0,\frac13,1$. In their local charts,
-$$
-\frac{\phi(q^2u)}{q^2}\ge c u,
+1+\frac{3q}{\sqrt2}z-3q^2u,
 \qquad
-\frac{\phi(1-q^2v/4)}{q^2}\ge c v,
+1-\frac{3q}{2\sqrt2}z-\frac{3q^2}{8}v,
 \qquad
-\frac{\phi(1/3+qz/\sqrt2)}{q^2}\ge c z^2
+1-q^2\left(u+\frac v4\right),
 $$
-for small $q$. Thus the local integrands are bounded by a fixed polynomial times
+and the single Taylor formula
 $$
-e^{-c(\sum u_i+\sum v_i+\sum z_i^2)}.
+2\log(1+y)=2y-y^2+\frac23y^3+O(y^4).
 $$
-The tails are $O(e^{-cR_q})$ or $O(e^{-cR_q^2})$, hence $o(q^N)$ for every fixed $N$; outside the three neighborhoods they are $O(e^{-c/q^2})$. Thus termwise integration through $q^3$ has an integrated $o(q^3)$ remainder.
-
-Step 4: Evaluate the required moments without repeated bookkeeping
-
-For the Laguerre ensemble, with $U_0=k$, integration by parts gives
+The $q^3$ terms from the first two distances contain only $z$, $uz$, $vz$, or $z^3$, while the third distance and the phase have no $q^3$ term. Thus every term in $C_{\rm odd}$ is odd in $z$. Since the Gaussian Vandermonde measure is invariant under $z\mapsto-z$,
 $$
-\mathbb E[U_jF]
-=\mathbb E\left[\sum_{a=0}^{j-1}U_aU_{j-1-a}F
-+\sum_i u_i^j\partial_iF\right].
+\mathbb E[A]=\mathbb E[C_{\rm odd}]
+=\mathbb E[AB]=\mathbb E[A^3]=0.
 $$
-Taking $F=1$, $j=1,2$ yields
+Consequently the geometric factor contributes only
 $$
-\mathbb E[U_1]=k^2,\qquad \mathbb E[U_2]=2k^3,
-$$
-and similarly
-$$
-\mathbb E[V_1]=r^2,\qquad \mathbb E[V_2]=2r^3.
+1+q^2\mathcal Q+o(q^3),
+\qquad
+\mathcal Q:=\mathbb E\left[B+\frac{A^2}{2}\right].
 $$
 
-For the Gaussian ensemble, with $Z_0=l$,
+The remaining factor $\prod_i(1+q(3x_i-1))$ has logarithm
 $$
-2\mathbb E[Z_{j+1}F]
-=\mathbb E\left[\sum_{a=0}^{j-1}Z_aZ_{j-1-a}F
-+\sum_i z_i^j\partial_iF\right].
+qh+q^2\left(d+\frac3{\sqrt2}Z_1\right)+q^3T+O(q^4(1+R^2)),
 $$
-The moments needed in $B$ and $A^2$ follow in five short applications:
-$$
-2\mathbb E[Z_1^2]=l,\qquad 2\mathbb E[Z_2]=l^2,
-$$
-$$
-2\mathbb E[Z_4]
-=2l\mathbb E[Z_2]+\mathbb E[Z_1^2]
-=l^3+\frac l2,
-$$
-$$
-2\mathbb E[Z_1Z_3]
-=2l\mathbb E[Z_1^2]+\mathbb E[Z_2]
-=\frac{3l^2}{2},
-$$
-$$
-2\mathbb E[Z_3^2]
-=2l\mathbb E[Z_1Z_3]+3\mathbb E[Z_4]
-=\frac{3l(4l^2+1)}4.
-$$
-Hence
-$$
-\mathbb E[Z_4]=\frac{l(2l^2+1)}4,\quad
-\mathbb E[Z_1Z_3]=\frac{3l^2}{4},\quad
-\mathbb E[Z_3^2]=\frac{3l(4l^2+1)}8.
-$$
-Substitution into $\mathbb E[B+A^2/2]$ gives
-$$
-\mathcal Q=
-14k^3+2r^3-\frac32k^2l-2k^2r-\frac{45}{8}kl^2
--\frac92klr-\frac12kr^2
-+\frac{63}{32}l^3+\frac98l^2r+\frac38lr^2+\frac{99}{128}l.
-$$
-
-The factor $\prod_i(1+q(3x_i-1))$ has one-variable logarithms
-$$
--q-\frac{q^2}{2}+q^3\left(3u-\frac13\right),\qquad
-\frac{3}{\sqrt2}q^2z,\qquad
-2q-2q^2+q^3\left(\frac83-\frac34v\right),
-$$
-so its total logarithm is
-$$
-qh+q^2\left(d+\frac3{\sqrt2}Z_1\right)+q^3T+E_q^{(w)},
-$$
-with
+where
 $$
 h=-k+2r,\qquad d=-\frac k2-2r,
 $$
 $$
-\mathbb E[T]=3k^2-\frac k3+\frac{8r}{3}-\frac{3r^2}{4}.
+T=3U_1-\frac k3+\frac{8r}{3}-\frac34V_1.
 $$
-On the Step 3 core, Taylor bounds give
-$$
-|E_q^{(w)}|\le C_mq^4(1+R_q^2)=O(q^{31/8})=o(q^3),
-$$
-and the complement is already negligible.
-
-By $z\mapsto-z$ symmetry every term odd in $z$ has zero expectation, and the only surviving cross term between the two exponents is $J$, where
-$$
-J:=\frac3{\sqrt2}\mathbb E[AZ_1]
-=\frac{9l}{4}\left(2k-r-\frac{3l}{4}\right).
-$$
-Thus a cluster with exponent gap $0$ has local expansion
+Combining the two exponentials and again using parity gives the local expansion
 $$
 1+hq+\alpha q^2+\beta q^3+o(q^3),
 $$
-where
+with
 $$
-\alpha=\mathcal Q+d+\frac{h^2}{2},\qquad
-\beta=\mathbb E[T]+h\mathcal Q+hd+\frac{h^3}{6}+J.
+\alpha=\mathcal Q+d+\frac{h^2}{2},
 $$
+$$
+\beta=\mathbb E[T]+h\mathcal Q+hd+\frac{h^3}{6}+J,
+\qquad
+J:=\frac3{\sqrt2}\mathbb E[AZ_1].
+$$
+Thus no cubic geometric coefficient has to be tracked separately.
 
-Use
+For completeness, take $R=q^{-1/16}$. The fourth-order logarithmic and exponential remainders are bounded by $O(q^4R^{12})=o(q^3)$ on the core. In the three local charts the phase is bounded below by $c(u+v+z^2)$, so the complement has tails $O(e^{-cR})+O(e^{-cR^2})$; outside fixed neighborhoods of the three zeros it is $O(e^{-c/q^2})$. Hence the integrated remainder is indeed $o(q^3)$.
+
+Step 3: Evaluate the local coefficients by two loop equations
+
+For the Laguerre factor, integration by parts in
+$\sum_i\partial_{u_i}(u_i^jF\Delta(u)^2e^{-\sum u_i})$ gives, for $j\geq1$,
 $$
-k=m+a,\qquad r=m+c,\qquad l=2m+2-a-c,\qquad a,c\in\{0,1\}.
+\mathbb E[U_jF]
+=\mathbb E\left[\sum_{b=0}^{j-1}U_bU_{j-1-b}F
++\sum_i u_i^j\partial_iF\right].
 $$
-Substitution into $\mathcal Q$, with $a^2=a$ and $c^2=c$, gives
+For the Gaussian factor, integration by parts in
+$\sum_i\partial_{z_i}(z_i^jF\Delta(z)^2e^{-\sum z_i^2})$ gives, for $j\geq0$,
+$$
+2\mathbb E[Z_{j+1}F]
+=\mathbb E\left[\sum_{b=0}^{j-1}Z_bZ_{j-1-b}F
++\sum_i z_i^j\partial_iF\right],
+$$
+where the sum is empty for $j=0$. The first identity with $F=1$, $j=1,2$, and the second with $(j,F)=(0,Z_1),(1,1),(3,1),(0,Z_3),(2,Z_3)$ give exactly the moments occurring in $A$ and $B$:
+$$
+\mathbb E[U_1]=k^2,\quad \mathbb E[U_2]=2k^3,
+\qquad
+\mathbb E[V_1]=r^2,\quad \mathbb E[V_2]=2r^3,
+$$
+$$
+2\mathbb E[Z_1^2]=l,
+\quad 2\mathbb E[Z_2]=l^2,
+\quad 2\mathbb E[Z_4]=2l\mathbb E[Z_2]+\mathbb E[Z_1^2],
+$$
+$$
+2\mathbb E[Z_1Z_3]=3\mathbb E[Z_2],
+\qquad
+2\mathbb E[Z_3^2]=2l\mathbb E[Z_1Z_3]+3\mathbb E[Z_4].
+$$
+Now impose $k=m+a$, $r=m+c$, $l=2m+2-a-c$ with $a,c\in\{0,1\}$. Substitution into $\mathcal Q$, followed only by $a^2=a$ and $c^2=c$, gives the single bilinear formula
 $$
 128\mathcal Q
 =3942m+2214-(1912m+983)a-(1912m+1415)c
 +(3824m+1912)ac.
 $$
-Therefore, in the order $A_1,A_2,A_3,A_4$,
+The other quantities needed in $\alpha$ and $\beta$ reduce at once to
 $$
-128(\mathcal Q_1,\mathcal Q_2,\mathcal Q_3,\mathcal Q_4)
-=(2030m+799,\ 2030m+1231,\ 3942m+2214,\ 3942m+1728),
-$$
-while
-$$
-(h_1,h_2,h_3,h_4)=(m+2,m-1,m,m+1),
+h=m-a+2c,
+\qquad
+d=-\frac{5m}{2}-\frac a2-2c,
 $$
 $$
-2(d_1,d_2,d_3,d_4)=(-(5m+4),-(5m+1),-5m,-5m-5).
-$$
-For the two dominant clusters,
-$$
-(\mathbb E[T]_1,J_1)
-=\left(\frac{27m^2+10m+23}{12},-\frac9{16}(2m+1)(2m+7)\right),
+12\mathbb E[T]
+=27m^2+28m+(72m+32)a+(23-18m)c,
 $$
 $$
-(\mathbb E[T]_2,J_2)
-=\left(\frac{27m^2+100m+32}{12},-\frac9{16}(2m-5)(2m+1)\right).
+16J=-36m^2-144m-108+(216m+153)a+45c-90ac.
 $$
-Hence
+Let
 $$
-\alpha_1=\frac{64m^2+1966m+799}{128},\qquad
-\alpha_2=\frac{64m^2+1582m+1231}{128},
+\mathcal D[f]=\frac{f(0,1)+f(1,0)}2.
 $$
+The two dominant clusters are exactly the two arguments averaged by $\mathcal D$, while the two neighboring clusters are $(0,0)$ and $(1,1)$. From the displayed formulas for $\alpha$ and $\beta$,
 $$
-\alpha_3=\frac{32m^2+1811m+1107}{64},\qquad
-\alpha_4=\frac{32m^2+1875m+736}{64},
-$$
-and
-$$
-\beta_1=\frac{64m^3+5514m^2+9521m+2994}{384},
+\mathcal D[h]=m+\frac12,
 $$
 $$
-\beta_2=\frac{64m^3+4938m^2+3491m-1461}{384}.
+\mathcal D[\alpha]=\frac{64m^2+1774m+1015}{128},
 $$
-The neighbor clusters carry an extra factor $q$, so their $\beta$ terms are global order $q^4$ and are not needed.
+$$
+\alpha(0,0)=\frac{32m^2+1811m+1107}{64},
+\qquad
+\alpha(1,1)=\frac{32m^2+1875m+736}{64},
+$$
+$$
+\mathcal D[\beta]
+=\frac{128m^3+10452m^2+13012m+1533}{768}.
+$$
+This extracts only the four aggregate coefficients that enter the determinant, rather than carrying separate expansions for all four clusters.
 
-Step 5: Combine the four clusters
+Step 4: Assemble the determinant coefficient
 
-After dividing by $C_mt^{4m^2+4m+3/2}$,
+After division by $C_mt^{4m^2+4m+3/2}$, the two dominant clusters contribute their local series with weights $1/2,1/2$, while the two neighboring clusters carry an extra factor $q$ with weights $r_m/2,s_m/2$. Therefore
 $$
 \frac{D_m(t)}{C_mt^{4m^2+4m+3/2}}
-=1+c_1q+c_2q^2+c_3q^3+o(q^3).
+=1+c_1q+c_2q^2+c_3q^3+o(q^3),
 $$
-Using the weights $\frac12,\frac12,\frac{r_m}{2},\frac{s_m}{2}$,
+where, directly from the aggregate coefficients,
 $$
-c_1=\frac{h_1+h_2}{2}+\frac{r_m+s_m}{2}
+c_1=\mathcal D[h]+\frac{r_m+s_m}{2}
 =m+\frac12+\frac{r_m+s_m}{2},
 $$
 $$
-c_2=\frac{\alpha_1+\alpha_2}{2}
-+\frac{r_mh_3+s_mh_4}{2}
+c_2=\mathcal D[\alpha]+\frac{r_mh(0,0)+s_mh(1,1)}2
 =\frac{64m^2+1774m+1015}{128}
 +\frac{mr_m+(m+1)s_m}{2},
 $$
-and
 $$
 \begin{aligned}
 c_3
-&=\frac{\beta_1+\beta_2}{2}
-+\frac{r_m\alpha_3+s_m\alpha_4}{2}\\
+&=\mathcal D[\beta]
++\frac{r_m\alpha(0,0)+s_m\alpha(1,1)}2\\
 &=\frac{128m^3+10452m^2+13012m+1533}{768}\\
 &\quad+\frac{r_m(32m^2+1811m+1107)+s_m(32m^2+1875m+736)}{128}.
 \end{aligned}
 $$
-Since $q^3=t^{3/2}$ and the prescribed subtraction removes $c_1q+c_2q^2$, the requested limit is $c_3$.
+The subtraction in the problem removes the $c_1q$ and $c_2q^2$ terms, and $q^3=t^{3/2}$, so the limit equals $c_3$.
 
 Final Answer: $\boxed{\frac{128m^3+10452m^2+13012m+1533}{768}+\frac{r_m(32m^2+1811m+1107)+s_m(32m^2+1875m+736)}{128}}$
 
