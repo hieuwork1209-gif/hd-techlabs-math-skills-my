@@ -44,11 +44,11 @@ $$
 and
 $$
 D:=\frac{\Delta}{p^2}
-=s^4+18s^2-27-4s^3\left(p+p^{-1}\right).
+=s^4-4s^3\left(p+p^{-1}\right)+18s^2-27.
 $$
 Write $p=e^{i\phi}$. Then
 $$
-D=s^4+18s^2-27-8s^3\cos\phi.
+D=s^4-8s^3\cos\phi+18s^2-27.
 $$
 For unit-circle points,
 $$
@@ -59,25 +59,25 @@ when $z_j=e^{i\theta_j}$. Thus $D<0$ for a nondegenerate triangle. Moreover, if 
 $$
 abc=|(z_1-z_2)(z_2-z_3)(z_3-z_1)|=\sqrt{|\Delta|}.
 $$
-Since the circumradius is $1$, $K=abc/4$, and therefore
+For a triangle of circumradius $R$, $K=abc/(4R)$. Here $R=1$, so
 $$
-16K^2=-D
+16K^2=|\Delta|=-D
 =8s^3\cos\phi-s^4-18s^2+27.
 $$
 
 Step 2: Derive the two sharp inequalities that every attainable pair must satisfy
 Because $-1\leq\cos\phi\leq1$, the identity from Step 1 gives
 $$
-27-18s^2-8s^3-s^4
+-s^4-8s^3-18s^2+27
 \leq16K^2\leq
-27-18s^2+8s^3-s^4.
+-s^4+8s^3-18s^2+27.
 $$
 The endpoint polynomials factor as
 $$
-27-18s^2-8s^3-s^4=(3+s)^3(1-s),
+-s^4-8s^3-18s^2+27=(3+s)^3(1-s),
 $$
 $$
-27-18s^2+8s^3-s^4=(3-s)^3(1+s).
+-s^4+8s^3-18s^2+27=(3-s)^3(1+s).
 $$
 Substituting $s=3r$ yields
 $$
@@ -103,13 +103,13 @@ An equilateral triangle on the unit circle has centroid at the origin and area $
 
 Now let $0<r<1$, set $s=3r$, and suppose $K>0$ satisfies the two inequalities. Define
 $$
-c=\frac{16K^2+s^4+18s^2-27}{8s^3}.
+c=\frac{s^4+18s^2+16K^2-27}{8s^3}.
 $$
 The lower and upper inequalities are exactly $c\geq-1$ and $c\leq1$. Choose $\phi\in[0,\pi]$ with $\cos\phi=c$ and put $p=e^{i\phi}$. Then
 $$
-D=s^4+18s^2-27-8s^3\cos\phi=-16K^2<0.
+D=s^4-8s^3\cos\phi+18s^2-27=-16K^2<0.
 $$
-We must show that the cubic
+We must show that
 $$
 f(z)=z^3-sz^2+spz-p
 $$
@@ -119,9 +119,9 @@ If $\phi=0$, then $p=1$ and
 $$
 f(z)=(z-1)\left(z^2+(1-s)z+1\right).
 $$
-The upper inequality together with $K>0$ implies $s<3$, so $|1-s|<2$. Hence the quadratic has two distinct conjugate roots of modulus $1$, and all three roots lie on the unit circle.
+Since $0<s<3$, $|1-s|<2$. Hence the quadratic has two distinct conjugate roots of modulus $1$, and all three roots lie on the unit circle.
 
-Assume now $0<\phi\leq\pi$ and set $\alpha=\phi/3$. Write $z=e^{i\alpha}w$. After division by $e^{3i\alpha}$, the equation $f(z)=0$ becomes
+Assume now $0<\phi\leq\pi$ and set $\alpha=\phi/3$. Write $z=e^{i\alpha}w$. After division by $e^{3i\alpha}$, $f(z)=0$ becomes
 $$
 g(w)=w^3-se^{-i\alpha}w^2+se^{i\alpha}w-1=0.
 $$
@@ -129,22 +129,31 @@ Use the Cayley parametrization
 $$
 w=\frac{x+i}{x-i}.
 $$
-For real $x$, this has modulus $1$. A direct expansion gives
+For real $x$, this has modulus $1$. The identities
+$$
+(x+i)^3-(x-i)^3=2i(3x^2-1),
+$$
+$$
+(x+i)^2(x-i)=x^3+x+i(x^2+1)
+$$
+with the conjugate identity for $(x+i)(x-i)^2$ give
 $$
 (x-i)^3g\left(\frac{x+i}{x-i}\right)=2iH(x),
 $$
-where the real cubic is
+where
 $$
 H(x)=s\sin\alpha\,x^3+(3-s\cos\alpha)x^2+s\sin\alpha\,x-(1+s\cos\alpha).
 $$
-Using the displayed cubic discriminant formula from Step 1 and $\cos(3\alpha)=\cos\phi$ gives
+Substituting these four real coefficients into the cubic discriminant formula from Step 1 yields
 $$
 \operatorname{disc}(H)
-=-4\left(s^4+18s^2-27-8s^3\cos\phi\right)
-=-4D
-=64K^2>0.
+=-4\left[s^4-8s^3\left(\cos^3\alpha-3\cos\alpha\sin^2\alpha\right)+18s^2-27\right].
 $$
-A real cubic has positive discriminant exactly when it has three distinct real roots. Hence $H$ has three distinct real roots $x_1,x_2,x_3$, producing three distinct unit-modulus roots
+Since $\cos^3\alpha-3\cos\alpha\sin^2\alpha=\cos(3\alpha)=\cos\phi$,
+$$
+\operatorname{disc}(H)=-4D=64K^2>0.
+$$
+For a real cubic, the root-product form of the discriminant shows that positive discriminant is equivalent to three distinct real roots. Hence $H$ has three distinct real roots $x_1,x_2,x_3$, producing three distinct unit-modulus roots
 $$
 z_j=e^{i\alpha}\frac{x_j+i}{x_j-i}
 $$
@@ -167,7 +176,7 @@ Conversely these three points lie on the unit circle, have centroid distance $r$
 $$
 16K^2=27(1-r)^3(1+3r).
 $$
-For $r=0$, the upper and lower bounds coincide and the maximizing configuration is simply an equilateral triangle. Hence the upper-boundary triangles are unique up to rotation, reflection, and permutation of the vertices.
+For $r=0$, the upper and lower bounds coincide and the boundary configuration is an equilateral triangle. Hence the upper-boundary triangles are unique up to rotation, reflection, and permutation of the vertices.
 
 Step 5: Classify the lower sharp boundary and state the full feasible region
 Equality in the lower inequality is equivalent to $\cos\phi=-1$. Since $K>0$, the lower right-hand side must be positive, so necessarily $0\leq r<1/3$. For $0<r<1/3$, after rotating as in Step 1 we have $p=-1$ and
@@ -187,7 +196,7 @@ Conversely this configuration attains
 $$
 16K^2=27(1+r)^3(1-3r).
 $$
-At $r=0$ it is again equilateral, up to rotation. At $r\geq1/3$, the algebraic lower bound is nonpositive and cannot be attained by a nondegenerate triangle; the condition $K>0$ is the true lower edge of the feasible region there, but it is not attained.
+At $r=0$ it is again equilateral, up to rotation. At $r\geq1/3$, the algebraic lower bound is nonpositive and cannot be attained by a nondegenerate triangle; the condition $K>0$ is the true lower edge there, but it is not attained.
 
 Combining necessity, sufficiency, and the equality classifications gives the exact set of possible pairs $(r,K)$.
 
