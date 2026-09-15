@@ -21,8 +21,13 @@ $$
 $$
 Determine exactly
 $$
-\rho_*:=\min_{q_\pi\geq0,\ \sum_{\pi\in S_3}q_\pi=1}\rho(q).
+\rho_*:=\min_{q_\pi\geq0,\ \sum_{\pi\in S_3}q_\pi=1}\rho(q),
 $$
+prove that the minimizing distribution is unique, and determine that distribution. Give the final answer as the ordered pair
+$$
+\left(\rho_*,q_{123}\right),
+$$
+where $q_{123}$ is the probability assigned to the sweep order $(1,2,3)$.
 
 ---
 
@@ -33,10 +38,10 @@ $$
 | **Domain** | Optimization and Numerical Mathematics |
 | **Sub-domain** | Numerical optimization |
 | **Problem Type** | Optimization |
-| **Answer Type** | Exact scalar |
+| **Answer Type** | Tuple or ordered list |
 
 ---
 
 ## Domain Explanation
 
-This problem asks for the optimal randomization of a complete exact-coordinate Gauss-Seidel epoch on a symmetric positive-definite quadratic. The objective is the worst-case expected energy contraction over all initial vectors, so the task is a numerical-optimization problem involving sweep operators, spectral minimax optimization, symmetry reduction, and a sharp global semidefinite lower bound.
+This problem asks for the optimal randomization of a complete exact-coordinate Gauss-Seidel epoch on a symmetric positive-definite quadratic. The objective is the worst-case expected energy contraction over all initial vectors, and the optimizer itself must be reconstructed uniquely from the equality case. The task is therefore a numerical-optimization problem involving sweep operators, spectral minimax optimization, symmetry reduction, a sharp semidefinite lower bound, and optimizer uniqueness.
