@@ -74,7 +74,7 @@ $$
 Since $s=3r$,
 $$
 K\leq \frac14\sqrt{(3-3r)^3(1+3r)}
-=\frac{3\sqrt3}{4}\sqrt{(1-r)^3(1+3r)}.
+=\frac{3\sqrt{3}}{4}\sqrt{(1-r)^3(1+3r)}.
 $$
 
 Step 3: Construct a triangle attaining the bound
@@ -119,13 +119,13 @@ u,
 $$
 Changing the sign of $v$ only swaps the last two vertices. Hence these, up to rotation and permutation of the vertices, are all maximizers.
 
-Final Answer: $\boxed{\frac{3\sqrt3}{4}\sqrt{(1-r)^3(1+3r)}}$
+Final Answer: $\boxed{\frac{3\sqrt{3}}{4}\sqrt{(1-r)^3(1+3r)}}$
 
 ---
 
 ## Answer
 
-$\frac{3\sqrt3}{4}\sqrt{(1-r)^3(1+3r)}$
+$\frac{3\sqrt{3}}{4}\sqrt{(1-r)^3(1+3r)}$
 
 ---
 
