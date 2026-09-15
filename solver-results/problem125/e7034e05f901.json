@@ -1,0 +1,22 @@
+{
+  "problem": "problem125",
+  "branch": "adversary/problem125",
+  "problem_path": "workspace/rainier-problem/problem125-euclidean-geometry/problem.md",
+  "source_commit_sha": "9ce1d6629c19fa03aef299678ec4ff74f9bbb152",
+  "problem_blob_sha": "e7034e05f9016335f27b25fe1e81f786db51b5c4",
+  "statement_sha256": "d21960a6bb2744f3105a5a92d78a5deea8e2322da455e2c6106cd6b2dfca811e",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-15T05:20:34+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let the vertices be unit complex numbers in counterclockwise order, and let the arcs between consecutive vertices be\n\n\\[\n2u,\\quad 2v,\\quad 2w,\\qquad u,v,w>0,\\qquad u+v+w=\\pi .\n\\]\n\nFor a triangle on the unit circle,\n\n\\[\nK=2\\sin u\\sin v\\sin w.\n\\]\n\nAlso, if \\(s=a+b+c\\), then \\(r=|s|/3\\), and\n\n\\[\n|s|^2=3+2(\\cos 2u+\\cos 2v+\\cos 2w).\n\\]\n\nUsing\n\n\\[\n\\cos 2u+\\cos 2v+\\cos 2w=-1-4\\cos u\\cos v\\cos w,\n\\]\n\nwe get\n\n\\[\n9r^2=1-8\\cos u\\cos v\\cos w.\n\\]\n\nSo if\n\n\\[\np=\\cos u\\cos v\\cos w,\n\\]\n\nthen\n\n\\[\np=\\frac{1-9r^2}{8}.\n\\]\n\nThus \\(0\\le r<1\\), with \\(r=1\\) only in a degenerate limiting case.\n\nThe extremal area for fixed \\(r\\) occurs when two of \\(u,v,w\\) are equal. Indeed, optimizing\n\n\\[\n\\log(\\sin u\\sin v\\sin w)\n\\]\n\nsubject to \\(u+v+w=\\pi\\) and fixed \\(\\cos u\\cos v\\cos w\\), the Lagrange equations give\n\n\\[\n\\cot u+\\lambda \\tan u=\\mu,\n\\]\n\nand similarly for \\(v,w\\). Hence the three numbers \\(\\tan u,\\tan v,\\tan w\\) take at most two distinct values, so two of \\(u,v,w\\) are equal unless the triangle is equilateral.\n\nSet \\(u=w=t\\), \\(v=\\pi-2t\\). Then the corresponding triangle is isosceles. If \\(\\theta=2t\\), then its vertices may be written as\n\n\\[\n1,\\quad e^{i\\theta},\\quad e^{-i\\theta}.\n\\]\n\nFor this family,\n\n\\[\nr=\\frac{|1+2\\cos\\theta|}{3},\n\\qquad\nK=\\sin\\theta(1-\\cos\\theta).\n\\]\n\nThere are two relevant branches.\n\nIf\n\n\\[\n\\cos\\theta=\\frac{3r-1}{2},\n\\]\n\nthen\n\n\\[\nK_{\\max}(r)\n=\\frac34(1-r)\\sqrt{3(1-r)(1+3r)}.\n\\]\n\nThis is defined for every \\(0\\le r<1\\).\n\nIf \\(0\\le r\\le \\frac13\\), there is also the branch\n\n\\[\n\\cos\\theta=\\frac{-1-3r}{2},\n\\]\n\ngiving\n\n\\[\nK_{\\min}(r)\n=\\frac34(1+r)\\sqrt{3(1+r)(1-3r)}.\n\\]\n\nFor \\(r>\\frac13\\), the area can be made arbitrarily small by letting two vertices coalesce, so the sharp lower bound is merely \\(K>0\\).\n\nTherefore the attainable set is exactly\n\n\\[\n\\boxed{\n0\\le r<1\n}\n\\]\n\ntogether with the following area bounds:\n\n\\[\n\\boxed{\nK_{\\min}(r)\\le K\\le K_{\\max}(r)\n\\quad\\text{for }0\\le r<\\frac13,\n}\n\\]\n\nwhere\n\n\\[\nK_{\\min}(r)=\\frac34(1+r)\\sqrt{3(1+r)(1-3r)}\n\\]\n\nand\n\n\\[\nK_{\\max}(r)=\\frac34(1-r)\\sqrt{3(1-r)(1+3r)}.\n\\]\n\nAt \\(r=\\frac13\\),\n\n\\[\n\\boxed{\n0<K\\le 1.\n}\n\\]\n\nFor \\(\\frac13<r<1\\),\n\n\\[\n\\boxed{\n0<K\\le \\frac34(1-r)\\sqrt{3(1-r)(1+3r)}.\n}\n\\]\n\nEquality classification:\n\n- Upper equality holds exactly for isosceles triangles whose symmetry axis is \\(OG\\), with the unique vertex on the ray from \\(O\\) through \\(G\\), and\n\n\\[\n\\cos\\theta=\\frac{3r-1}{2}.\n\\]\n\n- Lower equality for \\(0\\le r<\\frac13\\) holds exactly for isosceles triangles whose symmetry axis is \\(OG\\), with the unique vertex on the ray opposite \\(G\\), and\n\n\\[\n\\cos\\theta=\\frac{-1-3r}{2}.\n\\]\n\n- At \\(r=0\\), both descriptions give the equilateral triangle, and\n\n\\[\nK=\\frac{3\\sqrt3}{4}.\n\\]\n\n- At \\(r=\\frac13\\), the lower value \\(K=0\\) is only a degenerate limit, so it is not attained by a nondegenerate triangle.",
+  "status": "success",
+  "completed_at": "2026-09-15T05:22:42+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem125/e7034e05f901.json"
+}

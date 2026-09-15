@@ -2,8 +2,8 @@
   "problem": "problem125",
   "branch": "adversary/problem125",
   "problem_path": "workspace/rainier-problem/problem125-euclidean-geometry/problem.md",
-  "problem_blob_sha": "4f3fefd9285df4f807333004c5914e8407876b45",
-  "source_commit_sha": "383da858c5619ef55dac388d96686dc9e69f1ba0",
+  "problem_blob_sha": "e7034e05f9016335f27b25fe1e81f786db51b5c4",
+  "source_commit_sha": "9ce1d6629c19fa03aef299678ec4ff74f9bbb152",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-15T05:12:13+00:00",
-  "result_file": "solver-results/problem125/4f3fefd9285d.json"
+  "completed_at": "2026-09-15T05:22:42+00:00",
+  "result_file": "solver-results/problem125/e7034e05f901.json"
 }
