@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "6f592eb2b084ac41a790e7c3f883eb87b13b49bf",
+  "problem_blob_sha": "7e2da41d3e9008512322dc89087b70f4f0175d71",
+  "statement_sha256": "b8d7bcb7bdd90ed1b38d8b18cdf8f2eceba2c8482e0994e15b025a77a8696128",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-15T04:00:56+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(G_\\pi\\) be the linear map sending \\(x\\) to \\(x^\\pi\\), and put\n\\[\nB_\\pi=G_\\pi^T A G_\\pi .\n\\]\nThen\n\\[\n\\rho(q)=\\lambda_{\\max}\\!\\left(A^{-1/2}\\Big(\\sum_\\pi q_\\pi B_\\pi\\Big)A^{-1/2}\\right).\n\\]\n\nThe coordinate minimizers are\n\\[\nx_1=-\\frac{x_2+x_3}{2},\\qquad\nx_2=-\\frac{x_1+x_3}{2},\\qquad\nx_3=-\\frac{x_1+x_2}{3}.\n\\]\nA direct exact calculation gives the six final-energy matrices:\n\\[\nB_{123}=\\begin{bmatrix}0&0&0\\\\0&17/48&5/16\\\\0&5/16&11/16\\end{bmatrix},\n\\quad\nB_{132}=\\begin{bmatrix}0&0&0\\\\0&19/36&11/36\\\\0&11/36&13/36\\end{bmatrix},\n\\]\n\\[\nB_{213}=\\begin{bmatrix}17/48&0&5/16\\\\0&0&0\\\\5/16&0&11/16\\end{bmatrix},\n\\quad\nB_{231}=\\begin{bmatrix}19/36&0&11/36\\\\0&0&0\\\\11/36&0&13/36\\end{bmatrix},\n\\]\n\\[\nB_{312}=\\begin{bmatrix}19/72&2/9&0\\\\2/9&5/9&0\\\\0&0&0\\end{bmatrix},\n\\quad\nB_{321}=\\begin{bmatrix}5/9&2/9&0\\\\2/9&19/72&0\\\\0&0&0\\end{bmatrix}.\n\\]\n\nLet\n\\[\nu=\\frac{476+\\sqrt{17542}}{1659},\\qquad\nw=\\frac12-u,\n\\]\nand choose\n\\[\nq_{123}=q_{213}=u,\\qquad q_{312}=q_{321}=w,\\qquad q_{132}=q_{231}=0.\n\\]\nFor this distribution the space splits into the antisymmetric line \\((1,-1,0)\\) and the symmetric plane \\((r,r,z)\\). On the antisymmetric line the generalized eigenvalue is\n\\[\n\\frac{(1,-1,0)^T M(1,-1,0)}{(1,-1,0)^T A(1,-1,0)}\n=\\frac{3}{16}-\\frac{u}{48}.\n\\]\nOn the symmetric plane the top eigenvalue is the same exactly when\n\\[\n1659u^2-952u+126=0,\n\\]\nwhose feasible root is the \\(u\\) above. Therefore\n\\[\n\\rho_*=\\frac{3}{16}-\\frac{u}{48}\n=\\frac{14455-\\sqrt{17542}}{79632}.\n\\]\n\nFor optimality, take\n\\[\nz=-\\frac{62}{27}-\\frac{2\\sqrt{17542}}{189},\n\\qquad\na=(1,-1,0),\\qquad y=(1,1,z),\n\\]\nand\n\\[\nR=\\frac{30685}{243}+\\frac{2188\\sqrt{17542}}{1701},\\qquad\nX=\\frac{Raa^T+yy^T}{R\\,a^TAa+y^TAy}.\n\\]\nThen \\(X\\succeq0\\), \\(\\operatorname{tr}(AX)=1\\), and exact substitution gives\n\\[\n\\operatorname{tr}(B_{123}X)=\\operatorname{tr}(B_{213}X)\n=\\operatorname{tr}(B_{312}X)=\\operatorname{tr}(B_{321}X)=\\rho_*,\n\\]\nwhile\n\\[\n\\operatorname{tr}(B_{132}X)=\\operatorname{tr}(B_{231}X)\n=\\rho_*+\\delta,\\qquad \\delta>0.\n\\]\nThus for every distribution \\(q\\),\n\\[\n\\rho(q)\\ge \\operatorname{tr}\\!\\left(\\sum_\\pi q_\\pi B_\\pi X\\right)\\ge \\rho_*.\n\\]\nSo the displayed distribution is optimal.\n\nEquality forces \\(q_{132}=q_{231}=0\\). Also \\(M\\preceq \\rho_* A\\) and \\(\\operatorname{tr}((\\rho_*A-M)X)=0\\), so \\((\\rho_*A-M)a=0\\). From the third coordinate this gives \\(q_{123}=q_{213}\\), and from the first two coordinates it gives \\(q_{312}=q_{321}\\). Finally the antisymmetric eigenvalue condition gives \\(q_{123}=u\\). Hence the minimizer is unique.\n\nTherefore\n\\[\n\\boxed{\\left(\\frac{14455-\\sqrt{17542}}{79632},\\frac{476+\\sqrt{17542}}{1659}\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-15T04:05:24+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/7e2da41d3e90.json"
+}
