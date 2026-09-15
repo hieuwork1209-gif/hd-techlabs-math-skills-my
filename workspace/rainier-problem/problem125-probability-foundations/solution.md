@@ -1,138 +1,156 @@
 ## Steps
 
-Step 1: Convert six-wise independence into exact moments of the centered Hamming weight
-Let $Y_i=2X_i-1\in\{-1,1\}$, let $T=\sum_{i=1}^{8}Y_i$, and set
+Step 1: Put every six-wise independent law into its exact high-degree Fourier normal form
+Let
 $$
-Z=\frac{T}{2}=\sum_{i=1}^{8}X_i-4.
+Y_i=2X_i-1\in\{-1,1\}\qquad(1\le i\le8).
 $$
-Thus $Z$ is an integer in $\{-4,-3,\ldots,4\}$, and the event $X_1=\cdots=X_8$ is exactly $|Z|=4$.
+For a fixed sign vector $y=(y_1,\ldots,y_8)\in\{-1,1\}^8$,
+$$
+\mathbf 1_{\{Y=y\}}=2^{-8}\prod_{i=1}^8(1+y_iY_i).
+$$
+Taking expectations and expanding gives
+$$
+\mathbb P(Y=y)=2^{-8}\sum_{S\subseteq[8]}
+\left(\mathbb E\prod_{i\in S}Y_i\right)\prod_{i\in S}y_i.
+$$
+Because the $X_i$ are fair and every subfamily of size at most $6$ is mutually independent,
+$$
+\mathbb E\prod_{i\in S}Y_i=0
+\qquad(1\le |S|\le6).
+$$
+Thus only the degree-$7$ and degree-$8$ moments remain. Define
+$$
+a_i=\mathbb E\prod_{j\ne i}Y_j,
+\qquad
+b=\mathbb E\prod_{j=1}^8Y_j,
+\qquad
+P(y)=\prod_{j=1}^8y_j.
+$$
+Since $\prod_{j\ne i}y_j=P(y)y_i$, every feasible law has the exact form
+$$
+256\,\mathbb P(Y=y)
+=1+P(y)\left(b+\sum_{i=1}^8a_i y_i\right).
+$$
+This is the full remaining freedom after six-wise independence has killed all lower-degree moments.
 
-For every power at most $6$, expand $T^m$. After using $Y_i^2=1$, each monomial becomes either $1$ or a product of at most $m\leq6$ distinct $Y_i$'s. Every nonempty such product has expectation $0$ by six-wise independence and $\mathbb E Y_i=0$. Hence the moments through degree $6$ are the same as for eight independent Rademacher variables. In particular, all odd moments through degree $5$ vanish, and
+Step 2: Build the sharp positivity certificate for the target atom
+Let
 $$
-\mathbb E T^2=8.
+A=\sum_{i=1}^8a_i.
 $$
-For the fourth moment, only multiplicity patterns $4$ and $2+2$ survive, so
+The target vector $X=(0,\ldots,0)$ corresponds to $y=(-1,\ldots,-1)$, so
 $$
-\mathbb E T^4=8+6\binom{8}{2}=176.
+t:=256\,\mathbb P(X_1=\cdots=X_8=0)=1+b-A.
 $$
-For the sixth moment, the surviving patterns are $6$, $4+2$, and $2+2+2$. Their multiplicities give
+Now use positivity at two natural types of configurations. For $y=(1,\ldots,1)$,
 $$
-\mathbb E T^6
-=8+15\cdot8\cdot7+90\binom{8}{3}
-=5888.
+u:=256\,\mathbb P(X_1=\cdots=X_8=1)=1+b+A\ge0.
 $$
-Therefore
+For each $i$, let $e_i$ denote the binary vector with a single $1$ in position $i$. Its sign vector has one $+1$ and seven $-1$'s, hence parity $-1$, and therefore
 $$
-\mathbb E Z^2=2,\qquad \mathbb E Z^4=11,\qquad \mathbb E Z^6=92,
+v_i:=256\,\mathbb P(X=e_i)=1-b+A-2a_i\ge0.
 $$
-and
+Summing over $i$ gives
 $$
-\mathbb E Z=\mathbb E Z^3=\mathbb E Z^5=0.
+\sum_{i=1}^8v_i=8-8b+6A.
 $$
-
-Step 2: Derive and optimize a nonnegative degree-six majorant for the endpoint event
-The target depends only on $|Z|$, and Step 1 fixes all even moments through degree $6$. A square gives automatic nonnegativity, so using the full even degree budget leads to the one-parameter family
+The objective depends only on $A$ and $b$, so a symmetric dual certificate should combine $u$ with the sum of the eight $v_i$. Matching the coefficients of $b$ and $A$ determines the combination uniquely and yields
 $$
-Q_a(z)=\frac{z^2(z^2-a)^2}{16(16-a)^2},\qquad a\in\mathbb R,\ a\neq16.
+\frac{16}{7}-t
+=\frac17\left(u+\sum_{i=1}^8v_i\right).
 $$
-For every $a$, $Q_a(z)\geq0$ for all real $z$ and $Q_a(\pm4)=1$. Therefore
+The right-hand side is nonnegative, so
 $$
-\mathbf 1_{\{|Z|=4\}}\leq Q_a(Z).
+256\,\mathbb P(X_1=\cdots=X_8=0)\le\frac{16}{7},
 $$
-Its expectation is determined by the moments from Step 1:
+and hence
 $$
-\mathbb E Q_a(Z)
-=\frac{92-22a+2a^2}{16(16-a)^2}
-=\frac1{64}+\frac{7(a-4)^2}{64(a-16)^2}.
-$$
-Thus the unique minimizing parameter in this family is $a=4$, giving the sharp candidate
-$$
-Q_4(z)=\frac{z^2(z^2-4)^2}{2304}.
-$$
-Consequently
-$$
-\mathbb P(X_1=\cdots=X_8)=\mathbb P(|Z|=4)
-\leq\mathbb E Q_4(Z)=\frac1{64}.
+\mathbb P(X_1=\cdots=X_8=0)\le\frac1{112}.
 $$
 
-Step 3: Determine the Hamming-weight law forced by equality
-Assume equality holds in Step 2. Since $Q_4(\pm4)=1$, while $Q_4(z)>0$ for $z\in\{\pm1,\pm3\}$ and $Q_4(z)=0$ for $z\in\{0,\pm2\}$, equality in the pointwise majorant forces
+Step 3: Solve the equality conditions and force all high-degree moments
+Equality in Step 2 holds if and only if
 $$
-Z\in\{-4,-2,0,2,4\}\quad\text{almost surely}.
+u=0
+\qquad\text{and}\qquad
+v_i=0\quad(1\le i\le8),
 $$
-Write
-$$
-A_r=\mathbb P(|Z|=r),\qquad r\in\{0,2,4\}.
-$$
-The second and fourth moments from Step 1 give
-$$
-4A_2+16A_4=2,
-$$
-$$
-16A_2+256A_4=11.
-$$
-Subtracting four times the first equation from the second yields $192A_4=3$, hence
-$$
-A_4=\frac1{64},\qquad A_2=\frac7{16},\qquad A_0=\frac{35}{64}.
-$$
-These values also give $64A_2+4096A_4=92$, agreeing with the sixth moment.
+because all these quantities are probabilities multiplied by $256$.
 
-To split the masses between opposite signs, let
+From $v_i=0$,
 $$
-d_r=\mathbb P(Z=r)-\mathbb P(Z=-r),\qquad r\in\{2,4\}.
+2a_i=1-b+A,
 $$
-The identities $\mathbb E Z=\mathbb E Z^3=0$ give
+so all $a_i$ are equal. Write $a_i=a$, so $A=8a$. Then $u=0$ and any one of the equations $v_i=0$ become
 $$
-2d_2+4d_4=0,\qquad 8d_2+64d_4=0,
-$$
-so $d_2=d_4=0$. Thus, with $S=\sum_{i=1}^{8}X_i$,
-$$
-\mathbb P(S=0)=\mathbb P(S=8)=\frac1{128},
+1+b+8a=0,
 $$
 $$
-\mathbb P(S=2)=\mathbb P(S=6)=\frac7{32},\qquad \mathbb P(S=4)=\frac{35}{64},
+1-b+6a=0.
 $$
-and every odd Hamming weight has probability $0$.
+Solving gives
+$$
+a=-\frac17,
+\qquad
+b=\frac17.
+$$
+Therefore every maximizing law must have exactly these eight degree-$7$ moments and this degree-$8$ moment. Since Step 1 expresses every point probability in terms of these nine numbers, the maximizing joint distribution is already forced uniquely.
 
-Step 4: Recover the entire joint distribution from the six-wise cylinder probabilities
-For each subset $A\subseteq[8]$, let
+Step 4: Reconstruct that unique joint law and verify that it is nonnegative
+Let $x\in\{0,1\}^8$ have Hamming weight
 $$
-w_A=\mathbb P\bigl(\{i:X_i=1\}=A\bigr).
+s=x_1+\cdots+x_8.
 $$
-Step 3 shows $w_A=0$ whenever $|A|$ is odd. Six-wise independence implies that for every $T\subseteq[8]$ with $|T|\leq6$,
+For the corresponding sign vector $y$, we have
 $$
-\sum_{A\supseteq T}w_A
-=\mathbb P(X_i=1\text{ for all }i\in T)
-=2^{-|T|}.
+P(y)=(-1)^s,
+\qquad
+\sum_{i=1}^8y_i=2s-8.
 $$
-The Hamming-weight law from Step 3 gives $w_{[8]}=1/128$. If $|T|=6$, the only even supersets of $T$ are $T$ and $[8]$, hence
+Substituting $a=-1/7$ and $b=1/7$ into the normal form gives
 $$
-w_T=\frac1{64}-\frac1{128}=\frac1{128}.
+256\,\mathbb P(X=x)
+=1+(-1)^s\frac{9-2s}{7}.
 $$
-If $|T|=4$, there are $\binom{4}{2}=6$ six-element supersets of $T$, so
+Equivalently,
 $$
-w_T=\frac1{16}-6\cdot\frac1{128}-\frac1{128}=\frac1{128}.
+256\,\mathbb P(X=x)
+=
+\begin{cases}
+\dfrac{2(8-s)}7,& s\text{ even},\\[6pt]
+\dfrac{2(s-1)}7,& s\text{ odd}.
+\end{cases}
 $$
-If $|T|=2$, there are $\binom{6}{2}=15$ four-element supersets and $\binom{6}{4}=15$ six-element supersets, so
-$$
-w_T=\frac14-15\cdot\frac1{128}-15\cdot\frac1{128}-\frac1{128}=\frac1{128}.
-$$
-Finally Step 3 gives $w_{\varnothing}=1/128$. Therefore every even-cardinality subset of $[8]$ has probability $1/128$ and every odd-cardinality subset has probability $0$. Thus any maximizer is uniquely the uniform distribution on the even-parity vectors in $\{0,1\}^8$.
+These values are nonnegative for every $0\le s\le8$; they vanish exactly for $s=1$ and $s=8$. Since the constant Fourier coefficient in Step 1 is $1$, summing these point masses over the cube gives total mass $1$. Thus they define a probability distribution.
 
-Step 5: Verify attainment and finish the optimization
-Take the uniform distribution on the $2^7=128$ vectors in $\{0,1\}^8$ having even parity. Fix any $k\leq7$ coordinates and any assignment of their values. Among the $2^{8-k}$ completions, exactly half, namely $2^{7-k}$, have even parity. Hence that assignment has probability
-$$
-\frac{2^{7-k}}{2^7}=2^{-k}.
-$$
-So this law is actually seven-wise independent, in particular six-wise independent with fair marginals. Both constant vectors $(0,\ldots,0)$ and $(1,\ldots,1)$ have even parity and each has probability $1/128$, so the all-equal event has probability $1/64$. Together with Step 4, this proves that the maximizer is unique.
+Step 5: Verify six-wise independence, attainment, and uniqueness
+For the distribution in Step 4, the only nonconstant sign moments appearing in the point-mass formula have degrees $7$ and $8$. Hence every nonempty product moment of at most six distinct signs is $0$.
 
-Final Answer: $\boxed{\frac{1}{64}}$
+To see explicitly that this is equivalent to six-wise independence, fix $J\subseteq[8]$ with $|J|\le6$ and signs $\varepsilon_j\in\{-1,1\}$ for $j\in J$. Then
+$$
+\mathbb P(Y_j=\varepsilon_j\text{ for all }j\in J)
+=2^{-|J|}\mathbb E\prod_{j\in J}(1+\varepsilon_jY_j).
+$$
+Every nonconstant term in the expansion has expectation $0$, so this probability is $2^{-|J|}$. Therefore every such subfamily is mutually independent and fair.
+
+For the all-zero vector, $s=0$, so Step 4 gives
+$$
+256\,\mathbb P(X_1=\cdots=X_8=0)=\frac{16}{7},
+$$
+that is,
+$$
+\mathbb P(X_1=\cdots=X_8=0)=\frac1{112}.
+$$
+Thus the bound is attained. Step 3 shows that equality forces the nine remaining Fourier moments, and Step 1 then forces every point probability, so the maximizing joint distribution is unique.
+
+Final Answer: $\boxed{\frac{1}{112}}$
 
 ---
 
 ## Answer
 
-$\frac{1}{64}$
+$\frac{1}{112}$
 
 ---
 
@@ -147,7 +165,7 @@ $\frac{1}{64}$
 ## Solution Concepts
 
 - k-wise independence
-- rademacher moment counting
-- polynomial extremal certificate
-- subset incidence inversion
-- parity distribution
+- Fourier expansion on the Boolean cube
+- positivity dual certificate
+- equality-case reconstruction
+- extremal probability distribution
