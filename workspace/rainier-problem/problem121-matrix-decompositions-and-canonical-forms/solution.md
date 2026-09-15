@@ -125,7 +125,7 @@ There is one zero Smith factor. The number of nontrivial finite invariant factor
 $$
 (2n-5)+2+(r-1)+1+q+(n-2)=\binom n3-q-3.
 $$
-Hence among the remaining $\binom n3-1$ nonzero factors there are $q+2$ units, giving
+Hence among the remaining $\binom n3-1$ nonzero factors there are $q+2$ units. Here $I_k$ denotes the $k\times k$ identity matrix, and $[\lambda]$ denotes the $1\times1$ matrix whose sole entry is $\lambda$. Therefore
 $$
 \operatorname{SNF}(L_n)=I_{q+2}\oplus2I_{2n-5}\oplus6I_2\oplus cI_{r-1}\oplus[2c]\oplus bI_q\oplus aI_{n-2}\oplus[0].
 $$
@@ -135,7 +135,10 @@ Final Answer: $\boxed{I_{q+2}\oplus2I_{2n-5}\oplus6I_2\oplus cI_{r-1}\oplus[2c]\
 
 ## Answer
 
-$I_{q+2}\oplus2I_{2n-5}\oplus6I_2\oplus cI_{r-1}\oplus[2c]\oplus bI_q\oplus aI_{n-2}\oplus[0]$
+Here $I_k$ denotes the $k\times k$ identity matrix, and $[\lambda]$ denotes the $1\times1$ matrix whose sole entry is $\lambda$. Thus the Smith normal form is
+$$
+I_{q+2}\oplus2I_{2n-5}\oplus6I_2\oplus cI_{r-1}\oplus[2c]\oplus bI_q\oplus aI_{n-2}\oplus[0].
+$$
 
 ---
 
