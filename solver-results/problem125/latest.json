@@ -2,8 +2,8 @@
   "problem": "problem125",
   "branch": "adversary/problem125",
   "problem_path": "workspace/rainier-problem/problem125-random-variables-and-distributions/problem.md",
-  "problem_blob_sha": "34b781bcee885a0ce602cfb225f7c070eaa11020",
-  "source_commit_sha": "c4d623c93c4f943833d6e16b8905e854b42a8de6",
+  "problem_blob_sha": "cea8cfc544ab11700c07267949dc68a47db47271",
+  "source_commit_sha": "e61a01ed85238bac915a5ea9aaa38b84610842da",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-15T04:39:12+00:00",
-  "result_file": "solver-results/problem125/34b781bcee88.json"
+  "completed_at": "2026-09-15T05:00:46+00:00",
+  "result_file": "solver-results/problem125/cea8cfc544ab.json"
 }

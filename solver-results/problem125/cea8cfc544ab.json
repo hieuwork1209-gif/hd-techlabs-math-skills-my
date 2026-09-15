@@ -1,0 +1,22 @@
+{
+  "problem": "problem125",
+  "branch": "adversary/problem125",
+  "problem_path": "workspace/rainier-problem/problem125-random-variables-and-distributions/problem.md",
+  "source_commit_sha": "e61a01ed85238bac915a5ea9aaa38b84610842da",
+  "problem_blob_sha": "cea8cfc544ab11700c07267949dc68a47db47271",
+  "statement_sha256": "831a63ce483f2741135c1a0277cc4006494242a50f42c62df8f1903e966657e0",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-15T04:55:50+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\na=\\frac13,\\qquad h(x)=5+21x-7x^2-35x^3.\n\\]\nConsider\n\\[\np(x)=\\frac{(1-x^2)h(x)^2}{(1-a^2)h(a)^2}.\n\\]\nThen \\(p(x)\\ge 0\\) on \\([-1,1]\\), \\(p(a)=1\\), and \\(\\deg p=8\\). Since every admissible \\(X\\) has the uniform moments through degree \\(8\\),\n\\[\n\\mathbb P(X=a)\\le \\mathbb E[p(X)]\n=\\frac12\\int_{-1}^1 p(x)\\,dx.\n\\]\nNow\n\\[\nh(a)=\\frac{268}{27},\\qquad\n(1-a^2)h(a)^2=\\frac{574592}{6561},\n\\]\nand a direct expansion gives\n\\[\n\\frac12\\int_{-1}^1 (1-x^2)h(x)^2\\,dx=\\frac{1072}{45}.\n\\]\nTherefore\n\\[\n\\mathbb P\\left(X=\\frac13\\right)\n\\le\n\\frac{1072/45}{574592/6561}\n=\n\\frac{729}{2680}.\n\\]\n\nIt remains to show this is sharp and classify equality cases. Let \\(\\alpha<\\beta<\\gamma\\) be the three real roots of\n\\[\nh(x)=5+21x-7x^2-35x^3.\n\\]\nThey lie respectively in \\((-1,-1/2),(-1/2,0),(1/3,1)\\).\n\nDefine a distribution supported on\n\\[\n\\left\\{-1,\\alpha,\\beta,\\frac13,\\gamma,1\\right\\}\n\\]\nby\n\\[\n\\mathbb P\\left(X=\\frac13\\right)=\\frac{729}{2680},\n\\qquad\n\\mathbb P(X=1)=\\frac7{240},\n\\qquad\n\\mathbb P(X=-1)=\\frac{13}{360},\n\\]\nand, for each root \\(r\\in\\{\\alpha,\\beta,\\gamma\\}\\),\n\\[\n\\mathbb P(X=r)=\n\\frac{-182-140r+350r^2}\n{45(r-\\frac13)(1-r^2)(21-14r-105r^2)}.\n\\]\nThese three weights are positive by the root intervals above.\n\nLet\n\\[\n\\Omega(x)=(x-\\tfrac13)(1-x^2)h(x).\n\\]\nA direct moment check gives\n\\[\n\\frac12\\int_{-1}^1 x^j\\Omega(x)\\,dx=0\\qquad (j=0,1,2).\n\\]\nThus interpolation at the six nodes \\(-1,\\alpha,\\beta,\\frac13,\\gamma,1\\) is exact for every polynomial of degree at most \\(8\\). Hence the distribution above has exactly the uniform moments through degree \\(8\\), and it attains \\(\\mathbb P(X=1/3)=729/2680\\).\n\nFinally, if equality holds in the upper bound, then since \\(p\\ge0\\) and \\(p(1/3)=1\\), equality forces \\(p(X)=0\\) whenever \\(X\\ne1/3\\). Hence every optimizer is supported on the same six nodes. The moment conditions then uniquely determine the weights via the Lagrange basis, so the distribution displayed above is the only maximizing distribution.\n\n\\[\n\\boxed{\\frac{729}{2680}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-15T05:00:46+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem125/cea8cfc544ab.json"
+}
