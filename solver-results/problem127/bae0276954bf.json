@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-quadratic-residues-and-reciprocity/problem.md",
+  "source_commit_sha": "7756550c78dc77d5e58851918a1de39c2be30cb0",
+  "problem_blob_sha": "bae0276954bfb8ef0f759dc6a6f38680904115dc",
+  "statement_sha256": "d735e04db8f9325147643481c0d746a9a6d17b7b1ef5da1b944714ad4450d69f",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T14:00:58+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let  \n\\[\n\\chi(a)=\\left(\\frac ap\\right),\\qquad n=\\frac{p-1}{2}.\n\\]\nWe need\n\\[\nP_p=\\prod_{k=1}^n \\chi(k^2+k+1)\n=\\chi\\!\\left(\\prod_{k=1}^n(k^2+k+1)\\right),\n\\]\nunless one factor is \\(0\\).\n\nIf \\(p\\equiv1\\pmod 3\\), then \\(\\mathbb F_p^\\times\\) contains nontrivial cube roots of unity, so \\(x^2+x+1\\) has two roots modulo \\(p\\). If their least positive representatives are \\(r,s\\), then\n\\[\nr+s\\equiv -1\\pmod p,\n\\]\nand since \\(1\\le r,s\\le p-1\\), actually \\(r+s=p-1\\). Hence at least one of \\(r,s\\) lies in \\(\\{1,\\dots,n\\}\\), so one factor is \\(0\\). Thus\n\\[\nP_p=0\\qquad(p\\equiv1\\pmod3).\n\\]\n\nNow assume \\(p\\equiv2\\pmod3\\). Let \\(\\alpha\\) be a root of \\(x^2+x+1\\) in \\(\\mathbb F_{p^2}\\). Then \\(\\alpha^p=\\alpha^2=-1-\\alpha\\). Define\n\\[\nQ(x)=\\prod_{k=1}^n(x-k).\n\\]\nSince\n\\[\nk^2+k+1=(k-\\alpha)(k-\\alpha^p),\n\\]\nwe have\n\\[\nB:=\\prod_{k=1}^n(k^2+k+1)=Q(\\alpha)Q(\\alpha^p).\n\\]\n\nThe roots of \\(Q(x)Q(-1-x)\\) are \\(1,\\dots,p-2\\), with \\(n\\) repeated, and its leading coefficient is \\((-1)^n\\). Hence\n\\[\nQ(x)Q(-1-x)=(-1)^n(x-n)\\frac{x^{p-1}-1}{x+1}.\n\\]\nEvaluating at \\(x=\\alpha\\), using \\(\\alpha^p=\\alpha^2\\), gives \\(\\alpha^{p-1}=\\alpha\\), so\n\\[\nB=(-1)^n(\\alpha-n)\\frac{\\alpha-1}{\\alpha+1}.\n\\]\nSince \\(n\\equiv -\\frac12\\pmod p\\),\n\\[\n(\\alpha-n)\\frac{\\alpha-1}{\\alpha+1}\n=\\left(\\alpha+\\frac12\\right)\\frac{\\alpha-1}{\\alpha+1}\n=-\\frac32,\n\\]\nusing \\(\\alpha^2+\\alpha+1=0\\). Therefore\n\\[\nB\\equiv (-1)^{n+1}\\frac32\\pmod p.\n\\]\nWhen \\(p\\equiv2\\pmod3\\), the factor \\(\\chi((-1)^{n+1})\\) is always \\(1\\), so\n\\[\nP_p=\\chi(B)=\\chi\\left(\\frac32\\right)=\\chi(6).\n\\]\n\nThus\n\\[\n\\boxed{\nP_p=\n\\begin{cases}\n0,& p\\equiv 1\\pmod 3,\\\\[2mm]\n\\left(\\dfrac{6}{p}\\right),& p\\equiv 2\\pmod 3.\n\\end{cases}}\n\\]\n\nEquivalently, for \\(p>3\\),\n\\[\nP_p=\n\\begin{cases}\n0,& p\\equiv 1,7,13,19\\pmod{24},\\\\\n1,& p\\equiv 5,23\\pmod{24},\\\\\n-1,& p\\equiv 11,17\\pmod{24}.\n\\end{cases}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T14:03:19+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/bae0276954bf.json"
+}
