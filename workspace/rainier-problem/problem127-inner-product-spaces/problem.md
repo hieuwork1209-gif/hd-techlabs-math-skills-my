@@ -2,19 +2,19 @@
 
 ## LaTeX (Normalized)
 
-Let $P$ and $Q$ be orthogonal projections of rank $4$ on $\mathbb{R}^{8}$. Suppose
+Let $v_1,\dots,v_6$ be unit vectors in $\mathbb R^4$ satisfying the unit-norm tight-frame identity
 $$
-\operatorname{tr}(PQ)=2
+\sum_{i=1}^6 v_i v_i^T=\frac32 I_4.
 $$
-and
+For each $4$-element subset $I\subset\{1,\dots,6\}$, let
 $$
-\left\|PQP-\frac12P\right\|_{F}^{2}=\frac25,
+\Delta_I=\left|\det[v_i]_{i\in I}\right|,
 $$
-where $\|A\|_{F}^{2}=\operatorname{tr}(A^{T}A)$ is the Frobenius norm.
+where the selected vectors are used as columns in increasing index order.
 
 Determine the maximum possible value of
 $$
-\det(P+Q).
+\prod_{\substack{I\subset\{1,\dots,6\}\\|I|=4}}\Delta_I.
 $$
 
 ---
@@ -32,4 +32,4 @@ $$
 
 ## Domain Explanation
 
-This problem is primarily Linear Algebra and Inner product spaces: two rank-$4$ orthogonal projections encode two $4$-dimensional subspaces, the spectrum of $PQP$ records the squared cosines of their principal angles, and $\det(P+Q)$ factors through the same spectral data. Constrained optimization is the secondary ingredient and enters only after this projection geometry has been reduced to four scalar principal-angle parameters, so it is subordinate to the inner-product-space structure.
+This problem is primarily Linear Algebra and Inner product spaces: the constraint is the unit-norm tight-frame identity, each $\Delta_I$ is a Gram-volume invariant of a four-vector subframe, and the decisive reduction uses the orthogonal complement of the analysis operator to convert complementary four-dimensional volumes into two-dimensional areas. The final extremal step uses the inner-product geometry of the planar complement, while determinant inequalities are subordinate tools.
