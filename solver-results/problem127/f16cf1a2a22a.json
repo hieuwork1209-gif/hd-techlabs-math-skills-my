@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-probability-foundations/problem.md",
+  "source_commit_sha": "7769aeab87c4fbddc55b05ac118bea6d933a6d12",
+  "problem_blob_sha": "f16cf1a2a22a8ed970d8cb12035392988cf397ff",
+  "statement_sha256": "c56f5b083dd1368402803db473e1664659d319a39e76592d2539da3ca8695d01",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T07:10:40+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nm_k=\\mathbb E[X^k],\\qquad a=m_5,\\qquad b=m_6.\n\\]\nThe fixed data are\n\\[\nm_0=1,\\quad m_1=\\frac12,\\quad m_2=\\frac13,\\quad m_3=\\frac14,\\quad m_4=\\frac15.\n\\]\n\nSince \\(X\\in[0,1]\\), for every cubic polynomial \\(q\\),\n\\[\n\\mathbb E[q(X)^2]\\ge 0.\n\\]\nThus the moment matrix\n\\[\n\\begin{pmatrix}\n1&1/2&1/3&1/4\\\\\n1/2&1/3&1/4&1/5\\\\\n1/3&1/4&1/5&a\\\\\n1/4&1/5&a&b\n\\end{pmatrix}\n\\]\nis positive semidefinite. Taking the Schur complement of its upper-left \\(3\\times3\\) block, whose inverse is\n\\[\n\\begin{pmatrix}\n9&-36&30\\\\\n-36&192&-180\\\\\n30&-180&180\n\\end{pmatrix},\n\\]\ngives\n\\[\nb\\ge 180a^2-57a+\\frac{1857}{400}. \\tag{1}\n\\]\n\nAlso, since \\(X(1-X)\\ge0\\), for every quadratic \\(q\\),\n\\[\n\\mathbb E[X(1-X)q(X)^2]\\ge0.\n\\]\nUsing the Schur complement of the upper-left \\(2\\times2\\) block of the corresponding localizing matrix gives\n\\[\nb\\le -120a^2+43a-\\frac{369}{100}. \\tag{2}\n\\]\nCombining (1) and (2),\n\\[\n300a^2-100a+\\frac{3333}{400}\\le0,\n\\]\nso\n\\[\n\\frac{33}{200}\\le a\\le \\frac{101}{600}.\n\\]\n\nNow\n\\[\n\\operatorname{Corr}(X^2,X^3)\n=\n\\frac{a-\\frac1{12}}\n{\\sqrt{\\left(\\frac15-\\frac19\\right)\\left(b-\\frac1{16}\\right)}}\n=\n\\frac{a-\\frac1{12}}\n{\\sqrt{\\frac4{45}\\left(b-\\frac1{16}\\right)}}.\n\\]\nFor fixed \\(a\\), this is maximized by minimizing \\(b\\), so use equality in (1). Let\n\\[\nD(a)=180a^2-57a+\\frac{229}{50}.\n\\]\nThen we maximize\n\\[\n\\frac{(a-\\frac1{12})^2}{D(a)}\n\\]\non \\(\\left[\\frac{33}{200},\\frac{101}{600}\\right]\\). Its derivative has the sign of\n\\[\n\\frac{441}{100}-27a,\n\\]\nwhich is negative throughout this interval, since \\(\\frac{33}{200}>\\frac{49}{300}\\). Hence the maximum occurs at\n\\[\na=\\frac{33}{200}.\n\\]\nThen (1) gives\n\\[\nb=180\\left(\\frac{33}{200}\\right)^2-57\\left(\\frac{33}{200}\\right)+\\frac{1857}{400}\n=\\frac{69}{500}.\n\\]\nTherefore\n\\[\n\\max \\operatorname{Corr}(X^2,X^3)\n=\n\\frac{\\frac{33}{200}-\\frac1{12}}\n{\\sqrt{\\frac4{45}\\left(\\frac{69}{500}-\\frac1{16}\\right)}}\n=\n\\frac{\\frac{49}{600}}{\\frac{\\sqrt{151}}{150}}\n=\n\\boxed{\\frac{49}{4\\sqrt{151}}}.\n\\]\n\nThis value is attainable: take support\n\\[\n0,\\quad \\frac{6-\\sqrt6}{10},\\quad \\frac{6+\\sqrt6}{10}\n\\]\nwith weights\n\\[\n\\frac19,\\quad \\frac49+\\frac1{6\\sqrt6},\\quad \\frac49-\\frac1{6\\sqrt6}.\n\\]\nThese weights give \\(m_1=\\frac12,m_2=\\frac13\\), and since the two nonzero support points satisfy\n\\[\nx^3=\\frac65x^2-\\frac3{10}x,\n\\]\nthe recurrence verifies \\(m_3=\\frac14,m_4=\\frac15,m_5=\\frac{33}{200},m_6=\\frac{69}{500}\\). Thus the bound is sharp.",
+  "status": "success",
+  "completed_at": "2026-09-16T07:12:51+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/f16cf1a2a22a.json"
+}
