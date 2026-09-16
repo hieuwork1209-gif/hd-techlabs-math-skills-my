@@ -21,13 +21,13 @@ Also
 $$
 D_g(S)=S\cup(X\setminus g(X)).
 $$
-A set fixed by both $C_g$ and $D_g$ must be a union of fibers of $g$ and must contain $X\setminus g(X)$. Therefore every fiber meeting $X\setminus g(X)$ is forced, while every fiber contained in $g(X)$ is optional. If
+A set fixed by both $C_g$ and $D_g$ must be a union of fibers of $g$ and must contain $X\setminus g(X)$. Therefore every fiber meeting $X\setminus g(X)$ is forced, while every fiber contained in $g(X)$ is optional. Define
 $$
-u(g)=\#\{y\in g(X):g^{-1}(y)\subseteq g(X)\},
+u_g=\#\{y\in g(X):g^{-1}(y)\subseteq g(X)\}.
 $$
-then
+Then
 $$
-|\operatorname{Fix}(C_g)\cap\operatorname{Fix}(D_g)|=2^{u(g)}.
+|\operatorname{Fix}(C_g)\cap\operatorname{Fix}(D_g)|=2^{u_g}.
 $$
 We apply this to $g=f^k$.
 
@@ -102,7 +102,7 @@ $$
 Step 4: Optimize the simultaneous fixed-object count inside the equality class
 Fix a first-stage minimizer. For $k=1$, the points of $L_1$ have fibers meeting $L_0$, so those $d$ fibers are forced. The fibers over $L_2$ and over the two points of $C$ lie entirely inside $Y_1$. Thus
 $$
-u(f)=d+2
+u_f=d+2
 $$
 and
 $$
@@ -111,7 +111,7 @@ $$
 
 For $k=2$, every fiber over $L_2$ contains a point of $L_0$, so those fibers are forced. A point $c\in C$ has an $f^2$-preimage in $L_1$ exactly when $c\in f(L_2)$. Therefore
 $$
-u(f^2)=2-|f(L_2)|.
+u_{f^2}=2-|f(L_2)|.
 $$
 Since $L_2\ne\varnothing$, this is at most $1$, with equality exactly when $f$ is constant on $L_2$. Hence
 $$
@@ -125,7 +125,7 @@ f^k(y)=f^{k-1}(x),
 $$
 and once the orbit has entered the $2$-cycle, these two values are the two distinct points of $C$. Thus both $f^k$-fibers over $C$ contain transient points outside $Y_k$, so
 $$
-u(f^k)=0
+u_{f^k}=0
 $$
 and the simultaneous fixed-object count is $1$.
 
