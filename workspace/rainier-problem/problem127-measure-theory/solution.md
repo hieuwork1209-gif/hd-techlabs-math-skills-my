@@ -24,7 +24,7 @@ $$
 $$
 Thus all three pairwise products along an orbit have the same integral.
 
-Step 2: Convert the problem to a quadratic lower bound
+Step 2: Derive the sharp lower bound and its equality condition
 Define
 $$
 S(x)=x+T(x)+T^2(x).
@@ -57,13 +57,17 @@ so
 $$
 I\ge\frac5{24}.
 $$
-Equality can hold only when
+Equality in Cauchy-Schwarz holds exactly when $S$ is constant almost everywhere. Its integral is $3/2$, so
 $$
-S(x)=\frac32
+I=\frac5{24}
+$$
+holds if and only if
+$$
+x+T(x)+T^2(x)=\frac32
 $$
 for almost every $x$.
 
-Step 3: Build a measure-preserving period-three map attaining equality
+Step 3: Build a measure-preserving period-three map satisfying the equality condition
 Let
 $$
 \Omega=\{0,1,2\}^{\mathbb N}
@@ -102,31 +106,22 @@ x+T(x)+T^2(x)
 $$
 Thus the equality condition from Step 2 is attained.
 
-Step 4: Evaluate the minimum
-For the transformation from Step 3,
+Step 4: State the minimum and characterize all minimizers
+Step 2 gives the universal lower bound $5/24$ and proves that an admissible transformation reaches it exactly when
 $$
-\int_0^1S(x)^2\,dx=\frac94.
+x+T(x)+T^2(x)=\frac32
 $$
-Using
-$$
-\int_0^1S(x)^2\,dx=1+6I,
-$$
-we obtain
-$$
-I=\frac5{24}.
-$$
-Together with the lower bound from Step 2, this proves that the minimum is exactly
-$$
-\frac5{24}.
-$$
+almost everywhere. Step 3 constructs an admissible transformation with precisely this property, so the lower bound is a genuine minimum.
 
-Final Answer: $\boxed{\frac5{24}}$
+Therefore the requested ordered pair is the minimum value together with its necessary and sufficient equality condition.
+
+Final Answer: $\boxed{\left(\frac5{24},\ x+T(x)+T^2(x)=\frac32\text{ a.e.}\right)}$
 
 ---
 
 ## Answer
 
-$\frac5{24}$
+$\left(\frac5{24},\ x+T(x)+T^2(x)=\frac32\text{ a.e.}\right)$
 
 ---
 
@@ -134,7 +129,7 @@ $\frac5{24}$
 
 **Problem Type:** Optimization
 
-**Answer Type:** Exact scalar
+**Answer Type:** Tuple or ordered list
 
 ---
 
