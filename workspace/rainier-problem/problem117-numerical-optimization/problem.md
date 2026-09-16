@@ -6,47 +6,63 @@ Let
 $$
 U=\frac{1}{\sqrt{2}}\begin{bmatrix}1&-1\\1&1\end{bmatrix}.
 $$
-Assume the determinant of the Hessian is fixed while its anisotropy is uncertain. For $\mu\in[1,4]$, define
+There are two independent uncertainties: an overall curvature scale $\lambda\in[1/2,2]$ and an anisotropy parameter $\mu\in[1,4]$. Define
 $$
-Q_{\mu}=\begin{bmatrix}\mu&0\\0&\frac{4}{\mu}\end{bmatrix},
+Q_{\lambda,\mu}
+=\lambda\begin{bmatrix}\mu&0\\0&\frac{4}{\mu}\end{bmatrix},
 \qquad
-R_{\mu}=UQ_{\mu}U^T,
+R_{\lambda,\mu}=UQ_{\lambda,\mu}U^T,
 $$
 and
 $$
-f_{\mu}(x)=\frac{1}{2}x^TQ_{\mu}x,
+f_{\lambda,\mu}(x)=\frac{1}{2}x^TQ_{\lambda,\mu}x,
 \qquad
-g_{\mu}(x)=\frac{1}{2}x^TR_{\mu}x
+g_{\lambda,\mu}(x)=\frac{1}{2}x^TR_{\lambda,\mu}x
 \qquad(x\in\mathbb{R}^2).
 $$
-Thus $\det Q_{\mu}=\det R_{\mu}=4$ for every $\mu$, while the two principal curvatures vary reciprocally between $1$ and $4$.
+Thus $\lambda$ changes the common scale while $\mu$ changes the reciprocal principal curvatures.
 
 For $\rho>0$, define
 $$
 P_{h,\rho}(v)=\operatorname*{argmin}_{x\in\mathbb{R}^2}
 \left(h(x)+\frac{\rho}{2}\|x-v\|_2^2\right).
 $$
-Using one common parameter pair $(\rho,\theta)$ for every $\mu\in[1,4]$, with $0<\theta\leq2$, perform one relaxed Douglas-Rachford step
+Using one common parameter pair $(\rho,\theta)$ for every $(\lambda,\mu)\in[1/2,2]\times[1,4]$, with $0<\theta\leq2$, perform one relaxed Douglas-Rachford step
 $$
-y=P_{f_{\mu},\rho}(z),
+y=P_{f_{\lambda,\mu},\rho}(z),
 \qquad
-w=P_{g_{\mu},\rho}(2y-z),
+w=P_{g_{\lambda,\mu},\rho}(2y-z),
 \qquad
 z^+=z+\theta(w-y).
 $$
-Define the robust worst-case one-step Euclidean contraction
+For fixed $(\lambda,\mu)$ define
+$$
+\kappa_{\lambda,\mu}(\rho,\theta)
+=\sup_{z\ne0}\frac{\|z^+\|_2}{\|z\|_2},
+$$
+and define the robust worst-case contraction
 $$
 \mathcal C(\rho,\theta)
-=\sup_{\mu\in[1,4]}\sup_{z\ne0}
-\frac{\|z^+\|_2}{\|z\|_2}.
+=\sup_{(\lambda,\mu)\in[1/2,2]\times[1,4]}
+\kappa_{\lambda,\mu}(\rho,\theta).
+$$
+Also define the worst-case uncertainty set
+$$
+\mathcal W(\rho,\theta)
+=\left\{(\lambda,\mu)\in[1/2,2]\times[1,4]:
+\kappa_{\lambda,\mu}(\rho,\theta)=\mathcal C(\rho,\theta)\right\}.
 $$
 Determine exactly
 $$
 \mathcal C_*:=\min_{\rho>0,\ 0<\theta\leq2}\mathcal C(\rho,\theta),
 $$
-and determine the unique minimizing pair $(\rho_*,\theta_*)$. Give the final answer as
+determine the unique minimizing pair $(\rho_*,\theta_*)$, and determine the complete set
 $$
-(\rho_*,\theta_*,\mathcal C_*).
+\mathcal W_*:=\mathcal W(\rho_*,\theta_*).
+$$
+Give the final answer as
+$$
+(\rho_*,\theta_*,\mathcal C_*,\mathcal W_*).
 $$
 
 ---
@@ -64,4 +80,4 @@ $$
 
 ## Domain Explanation
 
-This problem asks for robust tuning of the penalty and relaxation parameters of Douglas-Rachford splitting for a fixed-determinant family of anisotropic quadratic objectives. The requested object is the parameter pair minimizing the worst-case contraction across the full anisotropy interval, which is part of Optimization and Numerical Mathematics and Numerical optimization. Linear Algebra, especially proximal reflections and matrix norms, is used only to certify the contraction bounds and is therefore subordinate to the numerical-optimization task.
+This problem asks for robust parameter tuning of relaxed Douglas-Rachford splitting under simultaneous scale and anisotropy uncertainty, together with identification of all uncertainty realizations attaining the optimal worst-case contraction. The primary task is therefore a minimax tuning and extremal-set problem in Optimization and Numerical Mathematics and Numerical optimization. Linear Algebra, especially proximal reflections and operator norms, supplies the certificates for the robust bounds and is subordinate to the numerical-optimization objective.
