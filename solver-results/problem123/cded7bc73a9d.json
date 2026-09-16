@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-probability-foundations/problem.md",
+  "source_commit_sha": "e7c1b46d98aa657b9402d98e1f71e8f152ac2d8b",
+  "problem_blob_sha": "cded7bc73a9d6e602322306452285046da7f9423",
+  "statement_sha256": "250e4db6224e4d7572140b633665a76b541ec533ea8ee47c7144f37da9c4170c",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T12:54:36+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "By de Finetti’s theorem, an infinite exchangeable \\(\\{0,1\\}\\)-valued sequence is obtained by first choosing a random \\(\\Theta\\in[0,1]\\), then making the \\(X_i\\) conditionally iid Bernoulli\\((\\Theta)\\). The given conditions say\n\\[\n\\mathbb E\\Theta=\\frac12,\\qquad \\mathbb E\\Theta^2=\\frac13,\\qquad \\mathbb E\\Theta^3=\\frac14.\n\\]\nThus\n\\[\n\\mathbb P(X_1+\\cdots+X_6=2)=\\binom62\\mathbb E[\\Theta^2(1-\\Theta)^4].\n\\]\nSo we maximize\n\\[\ng(x)=15x^2(1-x)^4\n\\]\nover probability measures on \\([0,1]\\) with those first three moments.\n\nLet \\(r=\\sqrt7\\), and set\n\\[\nS=\\frac{14-r}{9},\\qquad P=\\frac{29-4r}{54},\\qquad c=4-2S=\\frac{8+2r}{9}.\n\\]\nThese satisfy\n\\[\nP=\\frac{2S}{3}-\\frac12,\\qquad S^2+2P+2cS=6,\\qquad c+2S=4.\n\\]\nNow define\n\\[\nq(x)=15x(c-x)(x^2-Sx+P)^2.\n\\]\nSince \\(c>1\\), we have \\(q(x)\\ge 0\\) on \\([0,1]\\). Also, by the two displayed identities, the polynomial\n\\[\np(x)=g(x)+q(x)\n\\]\nhas degree at most \\(3\\), because the \\(x^6,x^5,x^4\\) terms cancel. Therefore, for every admissible \\(\\Theta\\),\n\\[\n\\mathbb E g(\\Theta)\\le \\mathbb E p(\\Theta),\n\\]\nand \\(\\mathbb E p(\\Theta)\\) is fixed by the first three moments.\n\nIt remains to show equality is attainable. Let \\(a,b\\) be the two roots of\n\\[\nx^2-Sx+P=0.\n\\]\nThey lie in \\((0,1)\\), with \\(a<2/3<b\\). Put mass at \\(0,a,b\\), choosing the weights at \\(a,b\\) so that\n\\[\n\\mathbb E\\Theta=\\frac12,\\qquad \\mathbb E\\Theta^2=\\frac13.\n\\]\nThe remaining mass at \\(0\\) is\n\\[\nw_0=\\frac{\\frac13-\\frac S2+P}{P}\n=\\frac{13-\\sqrt7}{81}>0.\n\\]\nBecause \\(0,a,b\\) are roots of \\(x(x^2-Sx+P)\\),\n\\[\n\\mathbb E\\Theta^3=S\\mathbb E\\Theta^2-P\\mathbb E\\Theta\n=\\frac S3-\\frac P2\n=\\frac14.\n\\]\nSo this measure is admissible. On its support, \\(q=0\\), hence equality holds in the upper bound.\n\nFor this attaining measure, the recurrence\n\\[\nm_k=S m_{k-1}-P m_{k-2}\\qquad(k\\ge 3)\n\\]\ngives, from \\(m_1=\\frac12,m_2=\\frac13,m_3=\\frac14\\),\n\\[\nm_4=\\frac{17}{81}-\\frac{\\sqrt7}{324},\\quad\nm_5=\\frac{1135}{5832}-\\frac{7\\sqrt7}{729},\\quad\nm_6=\\frac{5141}{26244}-\\frac{127\\sqrt7}{6561}.\n\\]\nTherefore\n\\[\n\\max \\mathbb P(X_1+\\cdots+X_6=2)\n=15(m_2-4m_3+6m_4-4m_5+m_6)\n=\\boxed{\\frac{1315+70\\sqrt7}{8748}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T12:57:30+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/cded7bc73a9d.json"
+}
