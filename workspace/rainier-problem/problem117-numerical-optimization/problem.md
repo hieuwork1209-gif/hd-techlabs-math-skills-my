@@ -2,46 +2,58 @@
 
 ## LaTeX (Normalized)
 
-Let
+For a parameter $\gamma\in[2,6]$, define the disconnected spectral set
 $$
-Q=\begin{bmatrix}1&0\\0&4\end{bmatrix},
+E_\gamma=[1,2]\cup[\gamma,6].
+$$
+Consider two successive Richardson steps for a real symmetric positive-definite linear system,
+$$
+x^{(1)}=(I-\alpha A)x^{(0)},
 \qquad
-R=\begin{bmatrix}\frac{5}{2}&-\frac{3}{2}\\-\frac{3}{2}&\frac{5}{2}\end{bmatrix}.
+x^{(2)}=(I-\beta A)x^{(1)},
 $$
-The common curvature scale is uncertain and is known only to lie between the two eigenvalues of $Q$. Thus, for $\mu\in[1,4]$, define
+with positive step sizes $\alpha,\beta>0$. For matrices whose spectrum is contained in $E_\gamma$, the worst-case two-step Euclidean contraction factor is
 $$
-f_{\mu}(x)=\frac{\mu}{2}x^TQx,
+\mathcal C_\gamma(\alpha,\beta)
+=\max_{\lambda\in E_\gamma}
+\left|(1-\alpha\lambda)(1-\beta\lambda)\right|.
+$$
+Define
+$$
+\mathcal C_\gamma^*
+=\min_{\alpha>0,\ \beta>0}\mathcal C_\gamma(\alpha,\beta).
+$$
+Order the unique minimizing pair so that $\alpha_\gamma^*\leq\beta_\gamma^*$, and set
+$$
+p_\gamma^*(\lambda)
+=(1-\alpha_\gamma^*\lambda)(1-\beta_\gamma^*\lambda).
+$$
+Define its active set by
+$$
+\mathcal A_\gamma
+=\left\{\lambda\in E_\gamma:
+|p_\gamma^*(\lambda)|=\mathcal C_\gamma^*\right\}.
+$$
+
+As the spectral gap opens, the optimal minimax polynomial passes through three distinct active-set regimes. Determine exactly the two transition values
+$$
+2<\gamma_1<\gamma_2<6
+$$
+and determine the active-set pattern on each of the three open regimes
+$$
+2<\gamma<\gamma_1,
 \qquad
-g_{\mu}(x)=\frac{\mu}{2}x^TRx
-\qquad(x\in\mathbb{R}^2).
-$$
-For $\rho>0$, define
-$$
-P_{h,\rho}(v)=\operatorname*{argmin}_{x\in\mathbb{R}^2}
-\left(h(x)+\frac{\rho}{2}\|x-v\|_2^2\right).
-$$
-Using one common parameter pair $(\rho,\theta)$ for every $\mu\in[1,4]$, with $0<\theta\leq2$, perform one relaxed Douglas-Rachford step
-$$
-y=P_{f_{\mu},\rho}(z),
+\gamma_1<\gamma<\gamma_2,
 \qquad
-w=P_{g_{\mu},\rho}(2y-z),
-\qquad
-z^+=z+\theta(w-y).
+\gamma_2<\gamma<6.
 $$
-Define the robust worst-case one-step Euclidean contraction
+Also account for what happens at the two transition values in your reasoning.
+
+Give the final answer as
 $$
-\mathcal C(\rho,\theta)
-=\sup_{\mu\in[1,4]}\sup_{z\ne0}
-\frac{\|z^+\|_2}{\|z\|_2}.
+(\gamma_1,\gamma_2,\mathcal A_-,\mathcal A_0,\mathcal A_+),
 $$
-Determine exactly
-$$
-\mathcal C_*:=\min_{\rho>0,\ 0<\theta\leq2}\mathcal C(\rho,\theta),
-$$
-and determine the unique minimizing pair $(\rho_*,\theta_*)$. Give the final answer as
-$$
-(\rho_*,\theta_*,\mathcal C_*).
-$$
+where $\mathcal A_-,\mathcal A_0,\mathcal A_+$ are the active-set formulas on the three open regimes, in that order.
 
 ---
 
@@ -58,4 +70,4 @@ $$
 
 ## Domain Explanation
 
-This problem asks for robust tuning of the penalty and relaxation parameters of Douglas-Rachford splitting when the quadratic objective has an uncertain common curvature scale. The requested object is the parameter pair minimizing the worst-case contraction across the entire uncertainty interval, which is part of Optimization and Numerical Mathematics and Numerical optimization. Linear Algebra, especially singular values and matrix norms, is used only to certify the contraction bounds and is therefore subordinate to the numerical-optimization task.
+This problem asks for the exact minimax tuning of a two-step nonstationary Richardson iteration under a moving spectral gap, together with the phase transitions in the extremal eigenvalues that control the worst-case contraction. The primary object is therefore algorithmic parameter tuning and sensitivity analysis in Optimization and Numerical Mathematics and Numerical optimization. Approximation-theoretic ideas about quadratic minimax polynomials are used only as proof tools and are subordinate to the numerical-optimization objective.
