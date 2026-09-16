@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-category-theory/problem.md",
+  "source_commit_sha": "46150d6b0ea1d25537d745519d753dbacca547bf",
+  "problem_blob_sha": "6c26357c232f33b6eff993a593aeb0b326a34c74",
+  "statement_sha256": "1e9614bf8c4442bf35e971a2be04026a4a80725f9c869c77c24aae0e8a52f71d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T10:12:26+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(V^{\\otimes 3}\\) have pure tensors written \\(u\\otimes v\\otimes w\\). First we determine all natural endomorphisms of \\(T\\).\n\nFor any permutation \\(\\sigma\\in S_3\\), the map\n\\[\nP_\\sigma(u_1\\otimes u_2\\otimes u_3)=u_{\\sigma(1)}\\otimes u_{\\sigma(2)}\\otimes u_{\\sigma(3)}\n\\]\nis natural, so every element of the group algebra \\(\\mathbb F_2[S_3]\\) gives a natural endomorphism.\n\nConversely, let \\(E:T\\Rightarrow T\\) be natural. Take \\(W=\\mathbb F_2^3\\) with basis \\(e_1,e_2,e_3\\), and write\n\\[\nE_W(e_1\\otimes e_2\\otimes e_3)\n=\n\\sum_{a,b,c\\in\\{1,2,3\\}} \\lambda_{abc}\\, e_a\\otimes e_b\\otimes e_c.\n\\]\nIf \\(\\pi_i:W\\to W\\) kills \\(e_i\\) and fixes the other two basis vectors, then\n\\[\n\\pi_i^{\\otimes 3}(e_1\\otimes e_2\\otimes e_3)=0,\n\\]\nso naturality gives\n\\[\n\\pi_i^{\\otimes 3}E_W(e_1\\otimes e_2\\otimes e_3)=0.\n\\]\nThus every surviving term must contain \\(i\\). This holds for \\(i=1,2,3\\), so any nonzero coefficient must have \\(\\{a,b,c\\}=\\{1,2,3\\}\\). Hence\n\\[\nE_W(e_1\\otimes e_2\\otimes e_3)\n=\n\\sum_{\\sigma\\in S_3} c_\\sigma\\,\ne_{\\sigma(1)}\\otimes e_{\\sigma(2)}\\otimes e_{\\sigma(3)}.\n\\]\nFor arbitrary \\(u,v,w\\in V\\), apply naturality to the linear map \\(W\\to V\\) sending \\(e_1,e_2,e_3\\) to \\(u,v,w\\). Therefore every natural endomorphism is exactly an element of \\(\\mathbb F_2[S_3]\\).\n\nSo we must count idempotents in \\(\\mathbb F_2[S_3]\\).\n\nLet \\(r=(123)\\), \\(s=(12)\\), so \\(srs=r^{-1}\\). In characteristic \\(2\\), define\n\\[\ne_0=1+r+r^2,\\qquad e_1=r+r^2.\n\\]\nThese are central orthogonal idempotents with \\(e_0+e_1=1\\). Therefore\n\\[\n\\mathbb F_2[S_3]\\cong e_0\\mathbb F_2[S_3]\\times e_1\\mathbb F_2[S_3].\n\\]\n\nThe first factor is\n\\[\ne_0\\mathbb F_2[S_3]\\cong \\mathbb F_2[C_2].\n\\]\nIts elements are \\(a+bt\\) with \\(t^2=1\\). Since the characteristic is \\(2\\),\n\\[\n(a+bt)^2=a+b.\n\\]\nFor this to equal \\(a+bt\\), we need \\(b=0\\), so this factor has exactly \\(2\\) idempotents.\n\nFor the second factor, \\(e_1\\mathbb F_2[S_3]\\cong M_2(\\mathbb F_2)\\). Indeed, it is the skew group algebra \\(\\mathbb F_4\\rtimes \\operatorname{Gal}(\\mathbb F_4/\\mathbb F_2)\\), which acts faithfully on \\(\\mathbb F_4\\) as a \\(2\\)-dimensional \\(\\mathbb F_2\\)-vector space, hence is \\(M_2(\\mathbb F_2)\\).\n\nNow count idempotents in \\(M_2(\\mathbb F_2)\\). An idempotent matrix is a projection, so\n\\[\n\\mathbb F_2^2=\\operatorname{im} P\\oplus \\ker P.\n\\]\nThere is \\(1\\) idempotent of rank \\(0\\), \\(1\\) of rank \\(2\\), and for rank \\(1\\), there are \\(3\\) choices for the image line and \\(2\\) choices for a complementary kernel line. Thus\n\\[\n1+3\\cdot 2+1=8\n\\]\nidempotents in \\(M_2(\\mathbb F_2)\\).\n\nHence the total number is\n\\[\n2\\cdot 8=16.\n\\]\n\n\\[\n\\boxed{16}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T10:13:37+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/6c26357c232f.json"
+}
