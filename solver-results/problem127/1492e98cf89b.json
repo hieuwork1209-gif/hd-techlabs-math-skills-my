@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-computational-number-theory/problem.md",
+  "source_commit_sha": "d15f94821bf609e1f01e4b6a01b8a8bebbde6984",
+  "problem_blob_sha": "1492e98cf89b99d9b58ec7a330fa9ebf73d3577b",
+  "statement_sha256": "cf4f17fd0819fcf0d2772e536f0b686d33f9574f3119521bb0e75d4dbf6990aa",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T14:17:06+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(v(a)\\) denote the \\(p\\)-adic valuation of a residue modulo \\(p^n\\), with \\(v(0)=n\\). Write \\(a=v(x)\\), \\(b=v(y)\\).\n\nIf \\(2a\\ge n\\) and \\(3b\\ge n\\), then both sides are \\(0\\pmod {p^n}\\). The number of such pairs is\n\\[\np^{n-\\lceil n/2\\rceil}\\,p^{n-\\lceil n/3\\rceil}\n=\np^{\\lfloor n/2\\rfloor+\\lfloor 2n/3\\rfloor}.\n\\]\n\nOtherwise both sides are nonzero modulo \\(p^n\\), so their valuations must be equal:\n\\[\n2a=3b<n.\n\\]\nThus \\(a=3r,\\ b=2r\\), with \\(6r<n\\). Put \\(m=n-6r\\). Then\n\\[\nx=p^{3r}X,\\qquad y=p^{2r}Y\n\\]\nwith \\(X,Y\\) units, and the equation becomes\n\\[\nX^2\\equiv Y^3\\pmod {p^m}.\n\\]\n\nNow count unit solutions modulo \\(p^m\\). In the unit group \\(G=(\\mathbb Z/p^m\\mathbb Z)^\\times\\), the equation is\n\\[\nU^2=V^3.\n\\]\nThe map\n\\[\nW\\mapsto (W^3,W^2)\n\\]\nis a bijection from \\(G\\) to the solution set: if \\(U^2=V^3\\), then \\(W=V^2U^{-1}\\) gives \\(W^2=V\\) and \\(W^3=U\\). Hence there are\n\\[\n|G|=\\varphi(p^m)=p^{m-1}(p-1)\n\\]\nunit solutions modulo \\(p^m\\).\n\nFor fixed \\(r\\), each unit \\(U\\bmod p^m\\) lifts to \\(p^{3r}\\) possible \\(X\\bmod p^{n-3r}\\), and each \\(V\\bmod p^m\\) lifts to \\(p^{4r}\\) possible \\(Y\\bmod p^{n-2r}\\). Therefore the contribution for this \\(r\\) is\n\\[\np^{3r}p^{4r}\\varphi(p^{n-6r})\n=\np^{7r}p^{n-6r-1}(p-1)\n=\n(p-1)p^{n+r-1}.\n\\]\n\nSumming over\n\\[\n0\\le r\\le \\left\\lfloor \\frac{n-1}{6}\\right\\rfloor\n\\]\ngives\n\\[\n\\sum_{r=0}^{\\lfloor (n-1)/6\\rfloor}(p-1)p^{n+r-1}\n=\np^{n-1}\\left(p^{\\lfloor (n-1)/6\\rfloor+1}-1\\right).\n\\]\n\nThus\n\\[\n\\boxed{\nN_n(p)=p^{\\lfloor n/2\\rfloor+\\lfloor 2n/3\\rfloor}\n+\np^{n-1}\\left(p^{\\lfloor (n-1)/6\\rfloor+1}-1\\right)\n}.\n\\]\n\nThis also checks at \\(n=1\\): the formula gives \\(1+(p-1)=p\\), corresponding to \\((0,0)\\) and the \\(p-1\\) unit parametrizations \\((t^3,t^2)\\).",
+  "status": "success",
+  "completed_at": "2026-09-16T14:17:58+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/1492e98cf89b.json"
+}
