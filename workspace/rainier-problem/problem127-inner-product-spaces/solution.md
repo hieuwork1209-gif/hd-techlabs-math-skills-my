@@ -15,11 +15,13 @@ $$
 $$
 Thus it is enough to maximize $\det G$ over all positive semidefinite matrices with these prescribed entries.
 
-The feasible set is compact: every unspecified entry satisfies $|g_{ij}|\leq1$ because each $2\times2$ principal minor is nonnegative. It is also nonempty with positive determinant. Indeed, taking all unspecified entries equal to $0$ gives
+The feasible set is compact: every unspecified entry satisfies $|g_{ij}|\leq1$ because each $2\times2$ principal minor is nonnegative. It is also nonempty with positive determinant. Indeed, take every unspecified entry equal to $0$. For the resulting matrix $G_0$, every real vector $z=(z_1,\dots,z_5)^{T}$ satisfies
 $$
-G_0=I+\frac12A,
+z^{T}G_0z
+=\sum_{i=1}^{5}z_i^{2}+\sum_{i=1}^{5}z_iz_{i+1}
+=\frac12\sum_{i=1}^{5}(z_i+z_{i+1})^{2}.
 $$
-where $A$ is the adjacency matrix of the $5$-cycle. Its eigenvalues are $1+\cos(2\pi k/5)$ for $k=0,1,2,3,4$, all positive. Hence a determinant maximizer exists and every maximizer has positive determinant, so it is positive definite.
+Equality would force $z_{i+1}=-z_i$ for all $i$; going around the odd cycle then gives $z_1=-z_1$, hence $z=0$. Thus $G_0$ is positive definite. A determinant maximizer therefore exists, and every maximizer has positive determinant, so it is positive definite.
 
 Step 2: Use cyclic symmetry to reduce the completion to one parameter
 Let $P$ be the permutation matrix for the cyclic shift $1\mapsto2\mapsto\cdots\mapsto5\mapsto1$. If $G$ is feasible and positive definite, then each
@@ -56,7 +58,16 @@ x&x&\frac12&1&\frac12\\
 $$
 
 Step 3: Compute the determinant and the positive-definite interval
-The Fourier vectors of a circulant matrix are eigenvectors of $G(x)$. Using
+Let $\zeta=e^{2\pi i/5}$. For $k=0,1,2,3,4$, the vector
+$$
+w_k=(1,\zeta^{k},\zeta^{2k},\zeta^{3k},\zeta^{4k})^{T}
+$$
+is an eigenvector because multiplication by the circulant matrix $G(x)$ gives
+$$
+G(x)w_k=
+\left(1+\frac12(\zeta^{k}+\zeta^{-k})+x(\zeta^{2k}+\zeta^{-2k})\right)w_k.
+$$
+Using
 $$
 \cos\frac{2\pi}{5}=\frac{\sqrt5-1}{4},
 \qquad
@@ -75,7 +86,7 @@ $$
 \lambda_2=\lambda_3=
 \frac{3-\sqrt5}{4}+\frac{\sqrt5-1}{2}x.
 $$
-The last two distinct eigenvalues satisfy
+Multiplying the two distinct repeated eigenvalues gives
 $$
 \lambda_1\lambda_2=\frac{1+2x-4x^{2}}{4}.
 $$
@@ -132,7 +143,7 @@ with $Q$ orthogonal and $\Lambda$ positive diagonal, and set
 $$
 V=\Lambda^{1/2}Q^{T}.
 $$
-Then $V^{T}V=G(x_*)$, so the columns of $V$ are admissible vectors in $\mathbb R^{5}$. Therefore the determinant bound is attained, and
+Then $V^{T}V=G(x_*)$, so the columns of $V$ are admissible vectors in $\mathbb{R}^{5}$. Therefore the determinant bound is attained, and
 $$
 |\det V|=\sqrt{\det G(x_*)}=\frac12.
 $$
@@ -157,7 +168,7 @@ $\frac12$
 
 ## Solution Concepts
 
-- Gram matrices
+- gram matrices
 - concavity of log determinant
 - circulant matrix eigenvalues
 - positive definite matrix completion
