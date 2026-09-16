@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-quadratic-residues-and-reciprocity/problem.md",
+  "source_commit_sha": "c1af07e93036a76d6daee48c221767d3192a1f3f",
+  "problem_blob_sha": "9c659a171bf01ebd056b73e045ef6c57ad531963",
+  "statement_sha256": "7f989b856d67cb2490813151bf287709fe2114d611b1f35227000fd70ccd2583",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T07:47:56+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(q=\\ell\\), and write\n\\[\nv(x)=\\chi(1+x)\\qquad (x\\in H).\n\\]\nFor \\(\\varepsilon\\in\\{1,-1\\}\\), expand\n\\[\n\\sum_{a\\in\\mathbb F_q^\\times} C_{+1}(a)C_{\\varepsilon}(a)\n=\n\\sum_{x,y\\in H} v(x)v(y)\n\\sum_{a\\in\\mathbb F_q^\\times}\\chi(1+ax)\\chi(1+\\varepsilon ay).\n\\]\n\nWe need the inner sum. For nonzero \\(\\alpha,\\beta\\),\n\\[\n\\sum_{a\\in\\mathbb F_q}\\chi((1+\\alpha a)(1+\\beta a))\n=\n\\begin{cases}\nq-1,&\\alpha=\\beta,\\\\\n-\\chi(\\alpha\\beta),&\\alpha\\ne\\beta,\n\\end{cases}\n\\]\nbecause in the distinct-root case this is the quadratic character sum of a nonconstant quadratic with leading coefficient \\(\\alpha\\beta\\). Removing the \\(a=0\\) term subtracts \\(1\\).\n\nFor \\(\\varepsilon=1\\), since \\(x,y\\in H\\), \\(\\chi(xy)=1\\). Thus the inner sum is \\(q-2\\) if \\(x=y\\), and \\(-2\\) if \\(x\\ne y\\). Therefore\n\\[\n\\sum_{a\\ne0}C_{+1}(a)^2\n=\n-2\\left(\\sum_{x\\in H}v(x)\\right)^2\n+q\\sum_{x\\in H}v(x)^2.\n\\]\nNow \\(-1\\notin H\\) because \\(q\\equiv3\\pmod4\\), so \\(1+x\\ne0\\) for all \\(x\\in H\\), hence\n\\[\n\\sum_{x\\in H}v(x)^2=|H|=r=\\frac{q-1}{2}.\n\\]\nAlso\n\\[\n\\sum_{x\\in H}\\chi(1+x)\n=\n\\frac12\\sum_{x\\ne0}(1+\\chi(x))\\chi(1+x).\n\\]\nHere\n\\[\n\\sum_{x\\ne0}\\chi(1+x)=-1,\n\\]\nand\n\\[\n\\sum_{x\\ne0}\\chi(x)\\chi(1+x)\n=\n\\sum_{x\\in\\mathbb F_q}\\chi(x(x+1))=-1,\n\\]\nsince \\(x(x+1)\\) is a quadratic with two distinct roots. Hence\n\\[\n\\sum_{x\\in H}v(x)=-1.\n\\]\nSo\n\\[\n\\sum_{a\\ne0}C_{+1}(a)^2\n=\nq\\frac{q-1}{2}-2.\n\\]\n\nFor \\(\\varepsilon=-1\\), the inner sum is\n\\[\n\\sum_{a\\ne0}\\chi((1+ax)(1-ay)).\n\\]\nThe two roots would coincide only if \\(y=-x\\), impossible because \\(x,y\\in H\\) and \\(-1\\notin H\\). Its leading coefficient is \\(-xy\\), whose character is \\(-1\\). Thus the full sum over \\(a\\in\\mathbb F_q\\) is \\(-\\chi(-xy)=1\\), and after subtracting the \\(a=0\\) term, the inner sum is \\(0\\). Therefore\n\\[\n\\sum_{a\\ne0}C_{+1}(a)C_{-1}(a)=0.\n\\]\n\nThus the ordered pair is\n\\[\n\\boxed{\\left(\\frac{\\ell(\\ell-1)}2-2,\\;0\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T07:48:54+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/9c659a171bf0.json"
+}
