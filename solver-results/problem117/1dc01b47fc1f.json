@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "c774736980d39adb3259eb2e90705227510b0f14",
+  "problem_blob_sha": "1dc01b47fc1fa797059349d120ec956e8600ad85",
+  "statement_sha256": "05880cafd821eb129b35ecdff2dd9781bdc78eaf8da48079e7b740dbc8143684",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T13:02:13+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\np(\\lambda)=\\prod_{j=1}^4(1-\\alpha_j\\lambda).\n\\]\nThe constraints are equivalently\n\\[\np(0)=1,\\qquad p'(0)=-(\\alpha_1+\\cdots+\\alpha_4)=-2.\n\\]\nWrite\n\\[\np(x)=1-2x+ax^2+bx^3+cx^4 .\n\\]\n\nAt the minimizer, the usual alternation condition for this four-dimensional affine family applies: the active extrema must give a signed equioscillation certificate. Since every interior active point is a stationary point, the only possible active points are endpoints of \\(E_\\gamma\\) and stationary points in the two intervals.\n\nA convenient form is\n\\[\np(x)+C=c(x^2-Ax+B)^2,\n\\]\nbecause the negative active points are double minima. From \\(p(0)=1\\) and \\(p'(0)=-2\\),\n\\[\ncAB=1,\\qquad C=\\frac BA-1.\n\\]\n\nThe three feasible patterns are as follows.\n\nFor\n\\[\n3<\\gamma<\\gamma_1,\n\\]\nthere are stationary points\n\\[\nu_\\gamma\\in(1,2),\\qquad v_\\gamma\\in(\\gamma,8-\\gamma),\n\\]\nand\n\\[\n\\mathcal A_\\gamma=\\{u_\\gamma,\\gamma,v_\\gamma,8-\\gamma\\},\n\\]\nwith signs\n\\[\np(u_\\gamma)=p(v_\\gamma)=-C,\\qquad\np(\\gamma)=p(8-\\gamma)=C.\n\\]\n\nAt the first transition, \\(2\\) also becomes active. The transition equations are\n\\[\np(u)=-C,\\quad p'(u)=0,\\quad p(v)=-C,\\quad p'(v)=0,\n\\]\n\\[\np(\\gamma)=p(8-\\gamma)=p(2)=C.\n\\]\nIn the notation above these force\n\\[\nA=\\gamma+2,\\qquad B=-\\gamma^2+12\\gamma-24,\n\\]\nand the remaining condition is\n\\[\n(B-2\\gamma)^2=2B(B-A).\n\\]\nThus\n\\[\n\\gamma^4-26\\gamma^3+216\\gamma^2-672\\gamma+672=0.\n\\]\nThe relevant zero is\n\\[\n\\gamma_1=\\operatorname{root}_{(347/100,\\,87/25)}\n\\bigl(x^4-26x^3+216x^2-672x+672\\bigr).\n\\]\nNumerically,\n\\[\n\\gamma_1\\approx 3.47639550948.\n\\]\nAt \\(\\gamma=\\gamma_1\\),\n\\[\n\\mathcal A_{\\gamma_1}=\\{u_{\\gamma_1},2,\\gamma_1,v_{\\gamma_1},8-\\gamma_1\\}.\n\\]\n\nFor\n\\[\n\\gamma_1<\\gamma<\\gamma_2,\n\\]\nthe active set is\n\\[\n\\mathcal A_\\gamma=\\{u_\\gamma,2,v_\\gamma,8-\\gamma\\},\n\\]\nwith\n\\[\np(u_\\gamma)=p(v_\\gamma)=-C,\\qquad\np(2)=p(8-\\gamma)=C.\n\\]\n\nAt the second transition, \\(1\\) becomes active and the right endpoint \\(8-\\gamma\\) is just about to become inactive. The final fixed pattern satisfies\n\\[\n\\mathcal A_\\gamma=\\{1,u_0,2,v_0\\},\n\\]\nwith signs\n\\[\np(1)=p(2)=C,\\qquad p(u_0)=p(v_0)=-C.\n\\]\nFor this pattern,\n\\[\n2B-3A+5=0,\\qquad (1-A+B)^2=2B(B-A),\n\\]\nso\n\\[\n5B^2-26B-4=0,\\qquad\nB=\\frac{13+3\\sqrt{21}}5,\n\\]\nand\n\\[\nA=\\frac{2B+5}{3}.\n\\]\nThe extra positive endpoint is active when\n\\[\n8-\\gamma=A-1,\n\\]\nhence\n\\[\n\\gamma_2=9-A=\\frac{28-2\\sqrt{21}}5.\n\\]\nEquivalently,\n\\[\n\\gamma_2=\\operatorname{root}_{(15/4,\\,19/5)}(5x^2-56x+140).\n\\]\nNumerically,\n\\[\n\\gamma_2\\approx 3.76696972202.\n\\]\nAt \\(\\gamma=\\gamma_2\\),\n\\[\n\\mathcal A_{\\gamma_2}=\\{1,u_0,2,v_0,8-\\gamma_2\\}.\n\\]\n\nTherefore the two interior active-set transition values are\n\\[\n\\boxed{\n\\left(\n\\operatorname{root}_{(347/100,\\,87/25)}\n(x^4-26x^3+216x^2-672x+672),\n\\ \\frac{28-2\\sqrt{21}}5\n\\right)\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T13:09:54+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/1dc01b47fc1f.json"
+}
