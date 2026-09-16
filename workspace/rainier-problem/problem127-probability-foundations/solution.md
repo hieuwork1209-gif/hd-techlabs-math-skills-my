@@ -131,38 +131,45 @@ $$
 \rho\leq\frac{49}{4\sqrt{151}}.
 $$
 
-Step 5: Construct a distribution attaining the bound
-Let
+Step 5: Derive an equality distribution and verify attainment
+Equality in the fifth-moment bound from Step 2 requires
+$$
+\mathbb E\left[X\left(X^{2}-\frac65X+\frac3{10}\right)^{2}\right]=0.
+$$
+The integrand is nonnegative on $[0,1]$, so an equality distribution must be supported on its zero set. Writing the two nonzero roots as
 $$
 \alpha=\frac{6-\sqrt6}{10},\qquad
 \beta=\frac{6+\sqrt6}{10},
 $$
-and define $X$ by
+the support is forced to lie in $\{0,\alpha,\beta\}$. Let the corresponding probabilities be $w_0,w_\alpha,w_\beta$. The mass, first-moment, and second-moment equations are
 $$
-\mathbb P(X=0)=\frac19,
+w_0+w_\alpha+w_\beta=1,
 $$
 $$
-\mathbb P(X=\alpha)=\frac49+\frac{\sqrt6}{36},
+w_\alpha\alpha+w_\beta\beta=\frac12,
+$$
+$$
+w_\alpha\alpha^{2}+w_\beta\beta^{2}=\frac13.
+$$
+Solving this linear system gives
+$$
+w_0=\frac19,
+$$
+$$
+w_\alpha=\frac49+\frac{\sqrt6}{36},
 \qquad
-\mathbb P(X=\beta)=\frac49-\frac{\sqrt6}{36}.
+w_\beta=\frac49-\frac{\sqrt6}{36}.
 $$
-The three probabilities are positive and sum to $1$. Substitution gives
+These probabilities are positive. Since $\alpha$ and $\beta$ are the roots of
 $$
-\mathbb E[X]=\frac12,
-\qquad
-\mathbb E[X^{2}]=\frac13.
+10x^{2}-12x+3=0,
 $$
-Also $\alpha$ and $\beta$ are the roots of
-$$
-10x^{2}-12x+3=0.
-$$
-After multiplying this relation by $x^{k-2}$, the atom at $0$ contributes zero for every $k\geq3$, so the moments satisfy
+multiplying this relation by $x^{k-2}$ shows that, for every $k\geq3$, the full moments obey
 $$
 \mathbb E[X^{k}]
-=\frac65\mathbb E[X^{k-1}]-\frac3{10}\mathbb E[X^{k-2}]
-\qquad(k\geq3).
+=\frac65\mathbb E[X^{k-1}]-\frac3{10}\mathbb E[X^{k-2}],
 $$
-Starting from the displayed first two moments,
+because the atom at $0$ contributes zero to all three terms. Starting from $\mathbb E[X]=1/2$ and $\mathbb E[X^{2}]=1/3$ gives
 $$
 \mathbb E[X^{3}]=\frac14,
 \qquad
