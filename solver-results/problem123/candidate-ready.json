@@ -1,9 +1,0 @@
-{
-  "problem": "problem123",
-  "mode": "existing",
-  "ready": true,
-  "problem_path": "workspace/rainier-problem/problem123-experimental-design-and-causal-inference/problem.md",
-  "problem_blob_sha": "94d265e193a58a850dd2a8a4a092e4415ca8c0d3",
-  "solution_path": "workspace/rainier-problem/problem123-experimental-design-and-causal-inference/solution.md",
-  "solution_blob_sha": "6d578dd097d739eabefadb81018b4f75b72e5a74"
-}
