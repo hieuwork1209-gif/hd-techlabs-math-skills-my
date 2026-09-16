@@ -6,9 +6,9 @@ Let
 $$
 U=\frac{1}{\sqrt{2}}\begin{bmatrix}1&-1\\1&1\end{bmatrix}.
 $$
-Instead of an uncertain common curvature scale, assume the determinant is fixed while the anisotropy is uncertain. For $\mu\in[1,4]$, define
+Assume the determinant of the Hessian is fixed while its anisotropy is uncertain. For $\mu\in[1,4]$, define
 $$
-Q_{\mu}=\begin{bmatrix}\mu&0\\0&4/\mu\end{bmatrix},
+Q_{\mu}=\begin{bmatrix}\mu&0\\0&\frac{4}{\mu}\end{bmatrix},
 \qquad
 R_{\mu}=UQ_{\mu}U^T,
 $$
