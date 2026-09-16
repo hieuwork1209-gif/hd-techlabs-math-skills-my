@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-bifurcation-theory/problem.md",
+  "source_commit_sha": "4795aada03a20892d1ca9a6ebb389316d72f1ac1",
+  "problem_blob_sha": "98a1ee1bfeed7247e16deb3e516a205dc4d097c5",
+  "statement_sha256": "0c4ce87031f370ff29fe197c1d5e6e411a1097dd84b8c443dd46b1b6b10559a0",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T08:01:03+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "All positive solutions are parametrized by a number \\(k>0\\):\n\n\\[\nu_k(x)=\\log\\!\\left(\\frac{\\cosh^2(k/2)}{\\cosh^2(k(x-\\tfrac12))}\\right),\n\\]\n\nand these solve the boundary value problem exactly when\n\n\\[\n\\lambda=\\lambda(k)=\\frac{2k^2}{\\cosh^2(k/2)}.\n\\]\n\nThe linearized operator has a nontrivial Dirichlet kernel exactly at a turning point of this solution branch, i.e. when\n\n\\[\n\\lambda'(k)=0.\n\\]\n\nNow\n\n\\[\n\\log \\lambda(k)=\\log 2+2\\log k-2\\log\\cosh(k/2),\n\\]\n\nso\n\n\\[\n\\frac{\\lambda'(k)}{\\lambda(k)}\n=\\frac{2}{k}-\\tanh(k/2).\n\\]\n\nThus degeneracy occurs exactly when\n\n\\[\nk\\tanh(k/2)=2.\n\\]\n\nLet \\(a=k/2\\). Then the condition is\n\n\\[\na\\tanh a=1.\n\\]\n\nThis equation has a unique positive solution \\(a>0\\), since \\(a\\tanh a\\) is strictly increasing from \\(0\\) to \\(\\infty\\). Therefore the unique degenerate parameter is\n\n\\[\n\\lambda_*=\\frac{8a^2}{\\cosh^2 a},\n\\qquad a>0,\\quad a\\tanh a=1.\n\\]\n\nUsing \\(\\tanh a=1/a\\), one may also write\n\n\\[\n\\lambda_*=8(a^2-1).\n\\]\n\nSo the exact set is\n\n\\[\n\\boxed{\\left\\{\\,8(a^2-1)\\;:\\; a>0,\\ a\\tanh a=1\\,\\right\\}}.\n\\]\n\nNumerically, \\(a\\approx 1.19968\\), so \\(\\lambda_*\\approx 3.5138\\).",
+  "status": "success",
+  "completed_at": "2026-09-16T08:01:28+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/98a1ee1bfeed.json"
+}
