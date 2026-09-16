@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-category-theory/problem.md",
+  "source_commit_sha": "12b7b52bec155c3aa52890cb2b04330af9dfc38f",
+  "problem_blob_sha": "bdc03cdac308179c55b784f70d61297a6d7df2bd",
+  "statement_sha256": "8eb37d6490ac3c48977d1a7ef0618e541d1e49fa72b0fb8633c5b2ace685fbb4",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T12:47:26+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Using only the stated functors, the natural endomorphism algebra of  \n\\(P(V)=V\\oplus \\operatorname{Sym}^2(V)\\) is\n\\[\n\\left\\{\\begin{pmatrix}a&0\\\\ b&d\\end{pmatrix}:a,b,d\\in\\mathbb F_2\\right\\},\n\\]\nwhere \\(b\\) is the natural square map \\(v\\mapsto v^2\\). Hence a natural endomorphism \\(E:F\\to F\\), with \\(F=P^{\\oplus 5}\\), has the form\n\\[\nE=\\begin{pmatrix}A&0\\\\ B&D\\end{pmatrix},\n\\qquad A,B,D\\in M_5(\\mathbb F_2).\n\\]\nIt is idempotent iff\n\\[\nA^2=A,\\qquad D^2=D,\\qquad DB+BA=B.\n\\]\nAlso\n\\[\nC_E=E\\Pi-\\Pi E=\\begin{pmatrix}0&0\\\\ B&0\\end{pmatrix}.\n\\]\nFor \\(V=\\mathbb F_2^n\\), the square map \\(V\\to \\operatorname{Sym}^2(V)\\) is injective, so\n\\[\n\\operatorname{rank}(C_E)_V=n\\,\\operatorname{rank}(B).\n\\]\n\nLet \\(a=\\operatorname{rank}A\\), \\(d=\\operatorname{rank}D\\). The equation \\(DB+BA=B\\) says\n\\[\nB(\\operatorname{im}A)\\subseteq \\ker D,\\qquad B(\\ker A)\\subseteq \\operatorname{im}D.\n\\]\nThus\n\\[\n\\operatorname{rank}B\\le \\min(a,5-d)+\\min(5-a,d).\n\\]\nThe maximum is \\(5\\), attained exactly when \\(a+d=5\\). The second largest possible rank is \\(4\\).\n\nThe number of rank-\\(a\\) idempotents in \\(M_5(\\mathbb F_2)\\) is\n\\[\nI_a=\\binom 5a_2 2^{a(5-a)},\n\\]\nso\n\\[\n(I_0,I_1,I_2,I_3,I_4,I_5)=(1,496,9920,9920,496,1).\n\\]\nCounting the allowed \\(B\\)’s gives\n\\[\nN_n^{(1)}=208326666240,\n\\]\nand the rank-\\(4\\) count gives\n\\[\nN_n^{(2)}=1170523831680.\n\\]\n\nTherefore, for every \\(n\\ge2\\),\n\\[\n\\boxed{\n\\left(R_n^{(1)},N_n^{(1)},R_n^{(2)},N_n^{(2)}\\right)\n=\n\\left(5n,\\ 208326666240,\\ 4n,\\ 1170523831680\\right).\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T12:49:29+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/bdc03cdac308.json"
+}
