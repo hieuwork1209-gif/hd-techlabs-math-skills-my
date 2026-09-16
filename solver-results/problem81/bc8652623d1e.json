@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-category-theory/problem.md",
+  "source_commit_sha": "27862ba2f7d2f33edba3163bfbfb8d5467880673",
+  "problem_blob_sha": "bc8652623d1e855c248d88737ec983fdebd76b0f",
+  "statement_sha256": "ca68095997e1c2678dbd297e5e5eb3c78ef032ae61891502e106988dbb0f6365",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T15:30:47+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nm=n+2-r-s.\n\\]\nThen the answer is\n\\[\n\\boxed{\nT_{n;r,s}=\n\\begin{cases}\n0,&(r,s)=(1,1),\\\\[4pt]\n\\displaystyle \\binom{2n-r-s}{\\,n+2-r-s\\,}\n-\\binom{2n-r-s}{\\,n-r-s\\,},& r+s\\ge 3.\n\\end{cases}}\n\\]\nAs usual, \\(\\binom ab=0\\) when \\(b<0\\) or \\(b>a\\).\n\n**Proof.** Since every morphism is a weak equivalence, a contractible model structure on \\([n]\\) is exactly a weak factorization system \\((\\mathcal C,\\mathcal F)\\), where \\(\\mathcal C\\) is the class of cofibrations and \\(\\mathcal F\\) is the class of fibrations.\n\nFor arrows \\(a\\to b\\) and \\(x\\to y\\) in the chain, the lifting condition fails precisely when\n\\[\na\\le x<b\\le y.\n\\]\nThus a cofibration and a fibration cannot “cross.”\n\nEvery such weak factorization system is encoded by a bracketing function\n\\[\np:\\{0,\\dots,n\\}\\to \\{0,\\dots,n\\}\n\\]\nsatisfying\n\\[\np(0)=0,\\qquad p(j)\\le j,\n\\]\nand\n\\[\np(j)\\le i<j\\implies p(j)\\le p(i).\n\\]\nThe cofibrations ending at \\(j\\) are exactly the arrows \\(i\\to j\\) with \\(p(j)\\le i\\le j\\). Hence\n\\[\nc(\\mathcal M)=|\\{j:p(j)=0\\}|.\n\\]\nDually, \\(i\\to n\\) is a fibration exactly when\n\\[\ni<\\min_{i<j\\le n}p(j),\n\\]\nwith \\(n\\to n\\) always counted. Thus \\(f(\\mathcal M)=r\\) counts the final strict records of the bracketing function.\n\nThese bracketing functions are Catalan objects. Refining the usual Catalan bijection by the number \\(s\\) of initial zero brackets and the number \\(r\\) of final record brackets gives a ballot path of length\n\\[\n2n-r-s\n\\]\nwith\n\\[\nn+2-r-s=m\n\\]\ndown-steps, constrained not to cross the second lower diagonal. By the reflection principle, the number of such paths is\n\\[\n\\binom{2n-r-s}{m}-\\binom{2n-r-s}{m-2}.\n\\]\nSince \\(m=n+2-r-s\\), this is\n\\[\n\\binom{2n-r-s}{\\,n+2-r-s\\,}\n-\\binom{2n-r-s}{\\,n-r-s\\,}.\n\\]\n\nThe exceptional case \\((r,s)=(1,1)\\) is impossible: if only \\(0\\to0\\) is a cofibration and only \\(n\\to n\\) is a fibration among the endpoint arrows, then the arrow \\(0\\to n\\) has no allowed cofibration-fibration factorization.\n\nTherefore\n\\[\n\\boxed{\nT_{n;r,s}=\n\\begin{cases}\n0,&(r,s)=(1,1),\\\\[4pt]\n\\displaystyle \\binom{2n-r-s}{\\,n+2-r-s\\,}\n-\\binom{2n-r-s}{\\,n-r-s\\,},& r+s\\ge 3.\n\\end{cases}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T15:32:49+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/bc8652623d1e.json"
+}
