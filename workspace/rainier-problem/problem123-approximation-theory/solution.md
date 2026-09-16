@@ -1,154 +1,184 @@
 ## Steps
 
-Step 1: Turn four alternating contacts into a global minimax certificate
-Let
+Step 1: Build a global certificate from three alternating rational contacts
+For $A,B>0$, write
 $$
-\mathcal P=\{x^4+x^3+ax^2+bx+c:a,b,c\in\mathbb R\}.
+R_{A,B}(x)=\frac{Ax^2}{x^2+B},\qquad e_{A,B}(x)=x-R_{A,B}(x).
 $$
-If two polynomials belong to $\mathcal P$, their difference has degree at most $2$. Therefore, suppose one candidate $p_*$ has four ordered points
+Suppose a candidate $R_*$ has points $0<u<v<1$ such that
 $$
--1<u<v<1
+e_*(u)=E,\qquad e_*(v)=-E,\qquad e_*(1)=E,
 $$
-with
+and $\|e_*\|_{\infty,[0,1]}=E>0$. If another $R_{A,B}$ had smaller uniform error, then
 $$
-p_*(-1)=-E,\qquad p_*(u)=E,\qquad p_*(v)=-E,\qquad p_*(1)=E,
+D(x)=R_{A,B}(x)-R_*(x)=e_*(x)-e_{A,B}(x)
 $$
-and $\|p_*\|_{\infty}=E>0$. If some $q\in\mathcal P$ had $\|q\|_{\infty}<E$, then $h=q-p_*$ would have signs $+,-,+,-$ at $-1,u,v,1$. The intermediate value theorem would force at least three distinct zeros of $h$, impossible for a nonzero polynomial of degree at most $2$. Thus constructing such a candidate proves global optimality.
+would have signs $+,-,+$ at $u,v,1$. Hence $D$ would have one zero in $(u,v)$ and another in $(v,1)$. But for $R_*=R_{A_*,B_*}$,
+$$
+D(x)=\frac{x^2\left((A-A_*)x^2+AB_*-A_*B\right)}{(x^2+B)(x^2+B_*)}.
+$$
+For $x>0$ its numerator is affine in $x^2$, so a nonzero $D$ has at most one positive zero. Thus any candidate with the displayed alternating contacts and full error bound is globally optimal.
 
-Step 2: Derive the two interior contacts from the critical-point equations
-For a candidate with the alternating pattern from Step 1, the two interior contacts are critical points. Write the third root of the derivative as $w$. Since
-$$
-p'(x)=4x^3+3x^2+2ax+b=4(x-u)(x-v)(x-w),
-$$
-comparison of the $x^2$ coefficient gives
-$$
-u+v+w=-\frac34.
-$$
-The equalities $p(u)=p(1)$ and $p(v)=p(-1)$ are equivalent to
-$$
-\int_u^1p'(x)\,dx=0,\qquad \int_{-1}^vp'(x)\,dx=0.
-$$
-Substituting $w=-3/4-u-v$ and expanding reduces these two equations to
-$$
-2u^2-4uv+5u-4v^2-3v+4=0,
-$$
-$$
-4u^2+4uv+3u-2v^2+3v=0.
-$$
-Subtracting twice the second equation from the first gives
-$$
-v=-\frac{6u^2+u-4}{3(4u+3)}.
-$$
-Substitution back into the second equation gives
-$$
-\frac{4F(u)}{9(4u+3)^2}=0,
-$$
-where
-$$
-F(u)=54u^4+198u^3+256u^2+130u+19.
-$$
-
-Step 3: Select the feasible branch and build the extremal polynomial
-The endpoint values
-$$
-F\left(-\frac6{25}\right)=-\frac{4841}{390625}<0,
-$$
-$$
-F\left(-\frac{119}{500}\right)=\frac{2026045367}{31250000000}>0
-$$
-show that $F$ has a root in $(-6/25,-119/500)$. On this interval, $F''(u)=4(162u^2+297u+128)>0$ and
-$$
-F'\left(-\frac6{25}\right)=\frac{599194}{15625}>0,
-$$
-so this root is unique; call it $u$. For
-$$
-v(t)=-\frac{6t^2+t-4}{3(4t+3)},
-$$
-one has
-$$
-v'(t)=-\frac{24t^2+36t+19}{3(4t+3)^2}<0
-$$
-on this interval, while
-$$
-v\left(-\frac6{25}\right)=\frac{2434}{3825},\qquad
-v\left(-\frac{119}{500}\right)=\frac{487267}{768000}.
-$$
-Hence, with $v=v(u)$,
-$$
-\frac35<v<\frac23.
-$$
-Therefore
-$$
-w=-\frac34-u-v<-\frac{111}{100}<-1.
-$$
-Define
-$$
-a=2(uv+uw+vw),\qquad b=-4uvw,\qquad c=-1-a,
-$$
-and
-$$
-p_*(x)=x^4+x^3+ax^2+bx+c,\qquad E=1+b.
-$$
-Then $p_*'(x)=4(x-u)(x-v)(x-w)$ and
-$$
-p_*(-1)=-E,\qquad p_*(1)=E.
-$$
-The two integral equations from Step 2 give $p_*(u)=E$ and $p_*(v)=-E$. Since $w<-1$, the derivative is positive on $(-1,u)$, negative on $(u,v)$, and positive on $(v,1)$, hence $\|p_*\|_{\infty}=E$. Moreover,
-$$
-E-(u+1)^2(2u+1)=-\frac{8uF(u)}{9(4u+3)^2}=0.
-$$
-Thus
-$$
-E=(u+1)^2(2u+1)>0,
-$$
-and Step 1 proves that this $E$ is the required minimum.
-
-Step 4: Eliminate the critical point and obtain a polynomial for the minimum
+Step 2: Derive the scale-free equations for the two interior extrema
 Set
 $$
-G(u,T)=2u^3+5u^2+4u+1-T.
+y=\sqrt B,
 $$
-The equations $F(u)=0$ and $G(u,E)=0$ hold simultaneously. A subresultant Euclidean elimination in $u$ gives the successive nonconstant remainders
+and write the two interior stationary points as
 $$
-2\left(54Tu+63T-19u^2-46u-25\right),
+u=yr,\qquad v=ys,
 $$
+with $0<r<s$. Since
 $$
-2\left(2916T^2u+3402T^2-1206Tu-1436T+178u+143\right),
+e_{A,B}'(x)=1-\frac{2ABx}{(x^2+B)^2},
 $$
-and the final constant remainder
+a stationary point $x=yt$ satisfies
 $$
-2\left(78732T^4-32076T^3+7724T^2-1476T-27\right).
+A=y\frac{(1+t^2)^2}{2t}.
 $$
-Therefore
+Therefore stationarity at both $r$ and $s$ gives
 $$
-P(E)=0,
+\frac{(1+r^2)^2}{r}=\frac{(1+s^2)^2}{s}.
 $$
-where
+At a stationary point,
 $$
-P(T)=78732T^4-32076T^3+7724T^2-1476T-27.
+e_{A,B}(yt)=\frac{yt(1-t^2)}2.
 $$
-The coefficients have gcd $1$, so $P$ is primitive.
+Equal magnitudes with opposite signs at the two interior extrema therefore give
+$$
+r(1-r^2)=s(s^2-1).
+$$
+The second equation is equivalent to
+$$
+r^2-rs+s^2=1.
+$$
+The first equation factors, since $r\ne s$, to
+$$
+rs\left(r^2+rs+s^2+2\right)=1.
+$$
+Let $q=rs$. Using $r^2+s^2=1+q$, this becomes
+$$
+q(3+2q)=1.
+$$
+Hence
+$$
+q=\frac{\sqrt{17}-3}{4}.
+$$
+Let $S=\sqrt{1+3q}$ and let $r<s$ be the two roots of
+$$
+t^2-St+q=0.
+$$
+Then $r^2-rs+s^2=1$ and the stationarity equation above both hold. Also $S>1+q$, so $1-S+q<0$ and the two positive roots straddle $1$; thus
+$$
+0<r<1<s.
+$$
+Since $q<2/7$ and $s>1$, one also has $r=q/s<2/7<1/\sqrt3$.
 
-Step 5: Prove that the quartic is irreducible
-Modulo $5$, multiplication by the inverse of the leading coefficient reduces $P$ to
+Step 3: Fix the denominator scale and verify the full alternating error pattern
+Define
 $$
-g(T)=T^4+2T^3+2T^2+2T+4.
+K=\frac{(1+r^2)^2}{2r},\qquad L=\frac{r(1-r^2)}2.
 $$
-Its values at $T=0,1,2,3,4$ are respectively $4,1,3,3,3$, so it has no linear factor over $\mathbb F_5$. If it factored into monic quadratics,
+Choose
 $$
-g=(T^2+aT+b)(T^2+cT+d),
+y=\frac{2r}{1-r^2},\qquad B=y^2,\qquad A=yK.
 $$
-then $bd=4$. Up to interchanging the factors, the possibilities are $(b,d)=(1,4),(2,2),(3,3)$. In the first case, $a+c=2$, $ac=2$, and $4a+c=2$, forcing $a=0$ and contradicting $ac=2$. In the second case, $a+c=2$ and $ac=3$, whose discriminant is $2$, a nonsquare in $\mathbb F_5$. In the third case, $a+c=2$ and $ac=1$, but then $ad+bc=3(a+c)=1\neq2$. Hence $g$, and therefore $P$, is irreducible over $\mathbb Q$.
+The two stationary points are $u=yr$ and $v=ys$. Since
+$$
+v=\frac{2rs}{1-r^2}=\frac{2q}{1-r^2}
+$$
+and $q<2/7$, $r<2/7$, one gets
+$$
+v<\frac{4/7}{1-4/49}=\frac{28}{45}<1.
+$$
+Thus $0<u<v<1$.
 
-Thus $P$ is the primitive irreducible polynomial with positive leading coefficient annihilating the minimum.
+At the two stationary points the errors are $yL$ and $-yL$. It remains to match the endpoint. The condition $e_{A,B}(1)=yL$ is
+$$
+1-\frac{yK}{1+y^2}=yL.
+$$
+After clearing $1+y^2$, this is equivalent to
+$$
+Ly^3-y^2+(K+L)y-1=0.
+$$
+Direct factorization gives
+$$
+Ly^3-y^2+(K+L)y-1
+=-\frac{(ry-1)^2(r^2y+2r-y)}{2r}.
+$$
+Our choice $y=2r/(1-r^2)$ makes the last factor zero, so indeed
+$$
+e_{A,B}(u)=yL,\qquad e_{A,B}(v)=-yL,\qquad e_{A,B}(1)=yL.
+$$
 
-Final Answer: $\boxed{78732T^4-32076T^3+7724T^2-1476T-27}$
+To prove there are no larger errors, define
+$$
+H(t)=\frac{(1+t^2)^2}{2t}.
+$$
+Then
+$$
+e_{A,B}'(yt)=1-\frac{H(r)}{H(t)}.
+$$
+Moreover,
+$$
+H'(t)=\frac{3t^4+2t^2-1}{2t^2},
+$$
+so $H$ decreases on $(0,1/\sqrt3)$ and increases on $(1/\sqrt3,\infty)$. Because $r<1/\sqrt3<s$ and $H(r)=H(s)$, the derivative of the error has signs $+,-,+$ across $u,v$. Since $v<1$, the error rises from $e(0)=0$ to $yL$, falls to $-yL$, and rises to $e(1)=yL$. Hence
+$$
+\|e_{A,B}\|_{\infty,[0,1]}=yL.
+$$
+Step 1 now proves global optimality.
+
+Step 4: Express the optimal error algebraically
+For the constructed minimizer,
+$$
+E=yL=\frac{2r}{1-r^2}\cdot\frac{r(1-r^2)}2=r^2.
+$$
+Since $q=rs$ and $r^2-rs+s^2=1$, substituting $s=q/r$ gives
+$$
+E^2-(1+q)E+q^2=0.
+$$
+Together with
+$$
+2q^2+3q-1=0,
+$$
+this yields
+$$
+q=\frac{2E^2-2E+1}{2E+3}.
+$$
+Substitution back into $2q^2+3q-1=0$ gives
+$$
+4E^4-2E^3+9E^2-16E+1=0.
+$$
+Thus the optimal error is annihilated by
+$$
+P(T)=4T^4-2T^3+9T^2-16T+1.
+$$
+
+Step 5: Prove that the polynomial is primitive and irreducible
+The coefficients of $P$ have gcd $1$, so $P$ is primitive. Modulo $3$,
+$$
+P(T)\equiv T^4+T^3-T+1.
+$$
+Its values at $T=0,1,2$ are $1,2,2$, so it has no linear factor over $\mathbb F_3$. The three monic irreducible quadratics over $\mathbb F_3$ are
+$$
+T^2+1,\qquad T^2+T+2,\qquad T^2-T+2.
+$$
+Dividing $T^4+T^3-T+1$ by these gives respective remainders
+$$
+T-1,\qquad T-1,\qquad T+1,
+$$
+so no quadratic factor exists. Hence the reduction is irreducible over $\mathbb F_3$, and Gauss's lemma implies that $P$ is irreducible over $\mathbb Q$.
+
+Therefore $P$ is the primitive irreducible polynomial with positive leading coefficient satisfied by the minimum error.
+
+Final Answer: $\boxed{4T^4-2T^3+9T^2-16T+1}$
 
 ---
 
 ## Answer
 
-$78732T^4-32076T^3+7724T^2-1476T-27$
+$4T^4-2T^3+9T^2-16T+1$
 
 ---
 
@@ -162,8 +192,8 @@ $78732T^4-32076T^3+7724T^2-1476T-27$
 
 ## Solution Concepts
 
-- minimax polynomial approximation
-- equioscillation certificate
-- critical-point factorization
-- polynomial elimination
+- rational minimax approximation
+- alternation sign-change certificate
+- scale-free stationary equations
+- algebraic elimination
 - finite-field irreducibility
