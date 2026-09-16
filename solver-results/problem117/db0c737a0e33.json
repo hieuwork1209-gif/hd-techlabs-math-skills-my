@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "9f291d6cdb24ac8cec0315302c6acf94bd0d4f45",
+  "problem_blob_sha": "db0c737a0e336408008ecd11ed8371c5c5ebe353",
+  "statement_sha256": "a524d464edd42f3702836e7ad50b675c86d037ca2cb3d60aebc6cfb187c61736",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T14:38:34+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nf(x)=16x^{10}-16x^9+56x^8-1072x^7+1753x^6-5055x^5\n+7268x^4-4028x^3+496x^2+256x-64\n\\]\n\nand\n\n\\[\ng(x)=x^6+16x^5+4x^4-4x^2-4x-16.\n\\]\n\nThen\n\n\\[\n\\gamma_1=\\operatorname{root}_{(3,4)}(f),\\qquad\nu_*=\\operatorname{root}_{(1,2)}(g).\n\\]\n\nNumerically,\n\n\\[\n\\gamma_1\\approx 3.7787240782746485,\\qquad\nu_*\\approx 1.0311623527870122.\n\\]\n\nThe active sets are:\n\n\\[\n3<\\gamma<\\gamma_1:\\quad\n\\mathcal A_\\gamma=\\left\\{\\frac4{\\gamma_1},\\gamma_1,8\\right\\}.\n\\]\n\n\\[\n\\gamma=\\gamma_1:\\quad\n\\mathcal A_\\gamma=\\left\\{\\frac4{\\gamma_1},\\gamma_1,8\\right\\}.\n\\]\n\n\\[\n\\gamma_1<\\gamma<\\gamma_2:\\quad\n\\mathcal A_\\gamma=\\{u_\\gamma,\\gamma,8\\},\n\\]\nwhere \\(u_\\gamma\\in(1,2)\\) is the unique active point in the first interval.\n\nIn the final regime,\n\n\\[\n\\gamma_2<\\gamma\\le 7:\\quad\n\\mathcal A_\\gamma=\\{u_*,2,8\\}.\n\\]\n\nAt the second transition,\n\n\\[\n\\mathcal A_{\\gamma_2}=\\{u_*,2,\\gamma_2,8\\}.\n\\]\n\nHere \\(\\gamma_2\\) is determined from \\(u_*\\) by\n\n\\[\n\\gamma_2=\n\\frac{A B-8+\\sqrt{(AB-8)^2-32(A+2)(B+4)}}{4(A+2)},\n\\]\n\nwith\n\n\\[\nA=\\frac{2(u_*+4)}{u_*^2},\\qquad B=u_*^2+16u_*.\n\\]\n\nThus the requested final answer is\n\n\\[\n\\boxed{\\left(\\operatorname{root}_{(3,4)}(f),\\operatorname{root}_{(1,2)}(g)\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T14:45:04+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/db0c737a0e33.json"
+}
