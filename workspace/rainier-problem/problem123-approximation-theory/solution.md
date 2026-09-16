@@ -62,9 +62,22 @@ F'\left(-\frac6{25}\right)=\frac{599194}{15625}>0,
 $$
 so this root is unique; call it $u$. For
 $$
-v=-\frac{6u^2+u-4}{3(4u+3)},
+v(t)=-\frac{6t^2+t-4}{3(4t+3)},
 $$
-one has $3/5<v<2/3$, while
+one has
+$$
+v'(t)=-\frac{24t^2+36t+19}{3(4t+3)^2}<0
+$$
+on this interval, while
+$$
+v\left(-\frac6{25}\right)=\frac{2434}{3825},\qquad
+v\left(-\frac{119}{500}\right)=\frac{487267}{768000}.
+$$
+Hence, with $v=v(u)$,
+$$
+\frac35<v<\frac23.
+$$
+Therefore
 $$
 w=-\frac34-u-v<-\frac{111}{100}<-1.
 $$
@@ -82,13 +95,13 @@ p_*(-1)=-E,\qquad p_*(1)=E.
 $$
 The two integral equations from Step 2 give $p_*(u)=E$ and $p_*(v)=-E$. Since $w<-1$, the derivative is positive on $(-1,u)$, negative on $(u,v)$, and positive on $(v,1)$, hence $\|p_*\|_{\infty}=E$. Moreover,
 $$
-E-(u+1)^2(2u+1)=-\frac{8uF(u)}{9(4u+3)^2}=0,
+E-(u+1)^2(2u+1)=-\frac{8uF(u)}{9(4u+3)^2}=0.
 $$
-so
+Thus
 $$
-E=(u+1)^2(2u+1)
+E=(u+1)^2(2u+1)>0,
 $$
-and in particular $3/10<E<31/100$. Step 1 now proves that this $E$ is the required minimum.
+and Step 1 proves that this $E$ is the required minimum.
 
 Step 4: Eliminate the critical point and obtain a polynomial for the minimum
 Set
