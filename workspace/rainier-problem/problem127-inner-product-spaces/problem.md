@@ -14,9 +14,20 @@ Suppose also that
 $$
 \|w_i\|=\sqrt2\qquad(i=1,\dots,4).
 $$
+Fix two sign vectors
+$$
+\varepsilon=(\varepsilon_1,\dots,\varepsilon_4),
+\qquad
+\eta=(\eta_1,\dots,\eta_4)\in\{-1,1\}^4
+$$
+satisfying
+$$
+\sum_{i=1}^4\varepsilon_i\eta_i=0.
+$$
 Determine the maximum possible value of
 $$
-\left|\det[v_1\ v_2\ v_3\ v_4]\right|.
+\left\|\sum_{i=1}^4\varepsilon_i v_i\right\|
+\left\|\sum_{i=1}^4\eta_i v_i\right\|.
 $$
 
 ---
@@ -34,4 +45,4 @@ $$
 
 ## Domain Explanation
 
-This problem is primarily Linear Algebra and Inner product spaces: the basis and its Euclidean dual are encoded by a positive definite Gram matrix $G$ and its inverse $G^{-1}$, while the unit-norm conditions prescribe their diagonals. The volume is $\sqrt{\det G}$, so the extremal problem couples the spectrum of a Gram matrix with the compatibility of simultaneous diagonal constraints on $G$ and $G^{-1}$. Scalar optimization is subordinate to this inner-product and dual-basis structure.
+This problem is primarily Linear Algebra and Inner product spaces: the basis and Euclidean dual basis are encoded by a positive definite Gram matrix $G$ and its inverse, while the prescribed norms fix the diagonals of both matrices. The two orthogonal sign vectors select a two-dimensional subspace on which the quadratic form of $G$ must be optimized, so the problem couples dual-basis geometry with a sharp two-dimensional spectral bound. Scalar inequalities enter only after this inner-product-space reduction.
