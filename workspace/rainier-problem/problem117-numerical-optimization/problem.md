@@ -32,9 +32,9 @@ As $\gamma$ increases from $\frac92$ to $\frac{11}{2}$, there are exactly two in
 $$
 \frac92<\gamma_1<\gamma_2<\frac{11}{2}
 $$
-at which the active-set pattern changes. Determine $\gamma_1$ and $\gamma_2$ exactly. Your reasoning must also identify $\mathcal A_\gamma$ on each of the three open regimes and describe the active set at each transition.
+at which the active-set pattern changes. Determine $\gamma_1$ and $\gamma_2$ exactly, and also determine the exact endpoint value $\mathcal C_{9/2}^*$. Your reasoning must identify $\mathcal A_\gamma$ on each of the three open regimes and describe the active set at each transition.
 
-Give the final answer as $(\gamma_1,\gamma_2)$.
+Give the final answer as $(\gamma_1,\gamma_2,\mathcal C_{9/2}^*)$.
 
 ---
 
@@ -51,4 +51,4 @@ Give the final answer as $(\gamma_1,\gamma_2)$.
 
 ## Domain Explanation
 
-This problem asks for exact minimax tuning of a budget-constrained four-step nonstationary Richardson iteration under a moving spectral gap and for the phase transitions in the extremal eigenvalues controlling the worst-case contraction. The primary task is constrained algorithmic parameter optimization in Optimization and Numerical Mathematics and Numerical optimization; coefficient-constrained polynomial approximation is the proof mechanism.
+This problem asks for exact minimax tuning of a budget-constrained four-step nonstationary Richardson iteration under a moving spectral gap, including phase transitions in the extremal eigenvalues controlling the worst-case contraction and an exact contraction value away from the plateau regime. The primary task is constrained algorithmic parameter optimization in Optimization and Numerical Mathematics and Numerical optimization; coefficient-constrained polynomial approximation is the proof mechanism.
