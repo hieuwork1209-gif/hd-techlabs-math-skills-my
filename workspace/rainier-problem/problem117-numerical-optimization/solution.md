@@ -41,11 +41,11 @@ $$
 Because $r(0)=0$, write $r(\lambda)=\lambda\ell(\lambda)$ with $\ell$ linear. On positive arguments, $r$ and $\ell$ have the same sign. A nonzero linear function cannot have the weak sign pattern nonpositive, nonnegative, nonpositive at three increasing points; any equality case would either give two distinct zeros of $\ell$ or force opposite signs on the two sides of its single zero. Hence $\ell\equiv0$ and $q=p$. Thus every three-point alternating candidate below is globally and uniquely minimax among quadratics with constant term $1$.
 
 Step 2: Solve the regime before the spectral gap removes the interior extremum
-First ignore the gap and optimize on the full interval $[1,6]$. For a convex quadratic minimax candidate, the two endpoint values must agree, so
+First ignore the gap and work on the full interval $[1,6]$. The natural three-point alternating quadratic uses the two endpoints and its unique interior stationary point. Imposing equal positive endpoint levels gives
 $$
-p(1)=p(6).
+p(1)=p(6),
 $$
-Since $p(\lambda)=t\lambda^2-s\lambda+1$ with $t>0$, this equality forces the axis to be the midpoint
+which, for $p(\lambda)=t\lambda^2-s\lambda+1$ with $t>0$, places the axis at
 $$
 \lambda_0=\frac{s}{2t}=\frac72.
 $$
@@ -83,10 +83,10 @@ so the candidate is feasible. Because $p_L$ is convex, takes value $25/73$ at $1
 $$
 \gamma\leq\frac72,
 $$
-the three active points $1,7/2,6$ all lie in $E_\gamma$, and Step 1 proves that $p_L$ remains the unique minimax polynomial. The first qualitative change can occur only when the moving endpoint $\gamma$ passes the stationary point $7/2$.
+the three active points $1,7/2,6$ all lie in $E_\gamma$, and Step 1 proves that $p_L$ is the unique minimax polynomial. The first qualitative change can occur only when the moving endpoint $\gamma$ passes the stationary point $7/2$.
 
 Step 3: Solve the gap-active regime and locate its right endpoint
-Now assume $\gamma>7/2$. The vertex $7/2$ lies in the spectral gap, so the first point of the right spectral interval becomes the natural negative active point. Impose
+Now assume $\gamma>7/2$. The vertex $7/2$ lies in the spectral gap, so the first point of the right spectral interval is the canonical replacement for the negative active point. Impose
 $$
 p(1)=C,
 \qquad
@@ -111,7 +111,7 @@ $$
 \left(\frac{14}{D_\gamma}\right)^2-rac8{D_\gamma}
 =\frac{4(2\gamma^2-14\gamma+37)}{D_\gamma^2}>0,
 $$
-so $p_M$ factors with two positive Richardson step sizes.
+so its positive sum and product imply that $p_M$ factors with two positive Richardson step sizes.
 
 On $[\gamma,6]$, the polynomial is increasing because its axis is $7/2<\gamma$, hence its values stay between $-C_M$ and $C_M$. On $[1,2]$ it is decreasing, so the only additional condition needed is
 $$
@@ -133,7 +133,7 @@ $$
 so Step 1 proves global optimality and uniqueness. At $\gamma=5$, the point $\lambda=2$ also reaches the negative level.
 
 Step 4: Solve the final regime after the left endpoint becomes active
-For $\gamma\geq5$, use the three fixed active points $1,2,6$ and impose
+For $\gamma\geq5$, the new three-point alternating pattern uses the fixed points $1,2,6$:
 $$
 p(1)=C,
 \qquad
