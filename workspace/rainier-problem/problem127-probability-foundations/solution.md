@@ -1,132 +1,203 @@
 ## Steps
 
-Step 1: Derive the contact nodes forced by a sharp degree-four moment certificate
-For any polynomial $q$ of degree at most $4$, the hypotheses determine $\mathbb E[q(X)]$. Thus an upper bound for $\mathbb E[X^{7}]$ follows from any quartic $q$ with $q(x)\geq x^{7}$ on $[0,1]$. At equality, an extremizing measure must be supported where $q(x)-x^{7}=0$. Because an interior zero of a nonnegative polynomial has even multiplicity, the degree-seven difference naturally allows two double interior contacts together with one contact at the endpoint $1$.
+Step 1: Express the correlation through the two unknown higher moments
+Set
+$$
+a=\mathbb E[X^{5}],\qquad b=\mathbb E[X^{6}].
+$$
+The prescribed moments give
+$$
+\operatorname{Var}(X^{2})=\frac15-\frac19=\frac4{45},
+$$
+$$
+\operatorname{Cov}(X^{2},X^{3})=a-\frac13\cdot\frac14=a-\frac1{12},
+$$
+and
+$$
+\operatorname{Var}(X^{3})=b-\frac1{16}.
+$$
+Therefore
+$$
+\rho:=\operatorname{Corr}(X^{2},X^{3})
+=\frac{a-\frac1{12}}{\sqrt{\frac4{45}\left(b-\frac1{16}\right)}}.
+$$
+Since $x\mapsto x^{3}$ is injective on $[0,1]$, $\operatorname{Var}(X^{3})=0$ would force $X$ to be constant, contradicting $\operatorname{Var}(X^{2})=4/45$. Thus the denominator is positive.
 
-Write the two interior contacts as the roots of a monic quadratic
+Step 2: Obtain the sharp lower bound on the fifth moment from a weighted square
+For real $u,v$, the support condition $X\in[0,1]$ implies
 $$
-h(x)=x^{2}+Ax+B.
+0\leq\mathbb E\left[X\left(X^{2}+uX+v\right)^{2}\right].
 $$
-If a three-point measure supported at those roots and at $1$ reproduces the moments through degree $4$, then every polynomial $(1-x)h(x)r(x)$ with $\deg r\leq1$ has zero expectation under that measure and hence must also have zero integral against the prescribed moment functional. Therefore $h$ is forced by
+Expanding with the known moments gives
 $$
-\int_{0}^{1}(1-x)h(x)\,dx=0,
+0\leq a+\frac{2u}{5}+\frac{u^{2}+2v}{4}+\frac{2uv}{3}+\frac{v^{2}}{2}.
+$$
+To make this inequality as strong as possible, minimize the known quadratic part in $u,v$. Its partial derivatives are
+$$
+\frac25+\frac{u}{2}+\frac{2v}{3}=0,
 \qquad
-\int_{0}^{1}x(1-x)h(x)\,dx=0.
+\frac12+\frac{2u}{3}+v=0.
 $$
-Expanding gives
+Solving gives
 $$
-\frac{1}{12}+\frac{A}{6}+\frac{B}{2}=0,
-\qquad
-\frac{1}{20}+\frac{A}{12}+\frac{B}{6}=0.
+u=-\frac65,\qquad v=\frac3{10}.
 $$
-Solving yields $A=-\frac45$ and $B=\frac1{10}$, so
+Substitution yields
 $$
-h(x)=x^{2}-\frac45x+\frac1{10},
+0\leq a-\frac{33}{200},
 $$
-with roots
+so
 $$
-u=\frac{4-\sqrt6}{10},\qquad v=\frac{4+\sqrt6}{10}.
+a\geq\frac{33}{200}>\frac1{12}.
 $$
+In particular the numerator of $\rho$ is positive.
 
-Step 2: Construct the global quartic majorant
-To obtain a degree-four majorant with exactly these contacts, set
+Step 3: Obtain the sharp lower bound on the sixth moment for a fixed fifth moment
+For a quadratic polynomial
 $$
-q(x)-x^{7}=(1-x)h(x)^{2}(x^{2}+\alpha x+\beta).
+p(x)=A+Bx+Cx^{2},
 $$
-Since $h$ is monic, the coefficient of $x^{7}$ on the right is $-1$, cancelling the $x^{7}$ term of $q$. Expanding only the next two coefficients gives
+we have
 $$
-[x^{6}]q=\frac{13}{5}-\alpha,
-\qquad
-[x^{5}]q=\frac{13}{5}\alpha-\beta-\frac{61}{25}.
+0\leq\mathbb E\left[(X^{3}-p(X))^{2}\right].
 $$
-Thus the requirement $\deg q\leq4$ forces
+For fixed $a$, the strongest lower bound on $b$ is obtained by choosing the least-squares quadratic approximation to $X^{3}$. The normal equations
 $$
-\alpha=\frac{13}{5},\qquad \beta=\frac{108}{25}.
+\mathbb E[X^{3}-p(X)]=0,
+$$
+$$
+\mathbb E[X(X^{3}-p(X))]=0,
+$$
+$$
+\mathbb E[X^{2}(X^{3}-p(X))]=0
+$$
+become
+$$
+A+\frac{B}{2}+\frac{C}{3}=\frac14,
+$$
+$$
+\frac{A}{2}+\frac{B}{3}+\frac{C}{4}=\frac15,
+$$
+$$
+\frac{A}{3}+\frac{B}{4}+\frac{C}{5}=a.
+$$
+Solving gives
+$$
+A=30a-\frac{99}{20},\qquad
+B=\frac{147}{5}-180a,\qquad
+C=180a-\frac{57}{2}.
+$$
+The normal equations imply $\mathbb E[p(X)^{2}]=\mathbb E[X^{3}p(X)]$, so
+$$
+\mathbb E[(X^{3}-p(X))^{2}]
+=b-\mathbb E[X^{3}p(X)].
+$$
+Using $\mathbb E[X^{3}]=1/4$, $\mathbb E[X^{4}]=1/5$, and $\mathbb E[X^{5}]=a$,
+$$
+\mathbb E[X^{3}p(X)]
+=\frac{A}{4}+\frac{B}{5}+Ca
+=180a^{2}-57a+\frac{1857}{400}.
 $$
 Hence
 $$
-q(x)-x^{7}
-=\frac{(1-x)(10x^{2}-8x+1)^{2}(25x^{2}+65x+108)}{2500}.
-$$
-The quadratic $25x^{2}+65x+108$ has discriminant $65^{2}-4\cdot25\cdot108=-6575<0$ and positive leading coefficient. Therefore it is positive for all real $x$, so $q(x)\geq x^{7}$ on $[0,1]$. Expanding the quartic gives
-$$
-q(x)=\frac{736}{125}x^{4}-\frac{20277}{2500}x^{3}+\frac{486}{125}x^{2}-\frac{1771}{2500}x+\frac{27}{625}.
+b\geq180a^{2}-57a+\frac{1857}{400}.
 $$
 
-Step 3: Evaluate the sharp upper bound from the prescribed moments
-Using $\mathbb E[X]=\frac12$, $\mathbb E[X^{2}]=\frac13$, $\mathbb E[X^{3}]=\frac14$, and $\mathbb E[X^{4}]=\frac15$, the majorant gives
+Step 4: Optimize the coupled moment bounds
+Because $a>1/12$, the bound from Step 3 gives
 $$
-\mathbb E[X^{7}]\leq\mathbb E[q(X)].
+\rho^{2}
+\leq
+\frac{\left(a-\frac1{12}\right)^{2}}
+{\frac4{45}\left(180a^{2}-57a+\frac{1857}{400}-\frac1{16}\right)}
+=:F(a).
 $$
-Substituting the four moments,
+Simplifying,
 $$
-\mathbb E[q(X)]
-=\frac{736}{125}\cdot\frac15
--\frac{20277}{2500}\cdot\frac14
-+\frac{486}{125}\cdot\frac13
--\frac{1771}{2500}\cdot\frac12
-+\frac{27}{625}
-=\frac{1349}{10000}.
+F(a)=\frac{125(12a-1)^{2}}{32(9000a^{2}-2850a+229)}.
 $$
-Thus every admissible random variable satisfies
+Differentiation gives
 $$
-\mathbb E[X^{7}]\leq\frac{1349}{10000}.
+F'(a)
+=-\frac{3375(12a-1)(300a-49)}{16(9000a^{2}-2850a+229)^{2}}.
+$$
+For $a\geq33/200$, both $12a-1$ and $300a-49$ are positive, so $F$ is strictly decreasing on the entire feasible range. Therefore
+$$
+\rho^{2}\leq F\left(\frac{33}{200}\right)=\frac{2401}{2416}
+=\left(\frac{49}{4\sqrt{151}}\right)^{2}.
+$$
+Thus
+$$
+\rho\leq\frac{49}{4\sqrt{151}}.
 $$
 
-Step 4: Construct an admissible distribution attaining the bound
-Let $X$ take the three values
+Step 5: Construct a distribution attaining the bound
+Let
 $$
-u=\frac{4-\sqrt6}{10},\qquad v=\frac{4+\sqrt6}{10},\qquad 1
+\alpha=\frac{6-\sqrt6}{10},\qquad
+\beta=\frac{6+\sqrt6}{10},
 $$
-with probabilities
+and define $X$ by
 $$
-\frac49-\frac{\sqrt6}{36},\qquad
-\frac49+\frac{\sqrt6}{36},\qquad
-\frac19,
-$$
-respectively. These probabilities are positive and sum to $1$. Direct substitution gives the contributions of the two interior masses
-$$
-\left(\frac49-\frac{\sqrt6}{36}\right)u+
-\left(\frac49+\frac{\sqrt6}{36}\right)v=\frac7{18},
+\mathbb P(X=0)=\frac19,
 $$
 $$
-\left(\frac49-\frac{\sqrt6}{36}\right)u^{2}+
-\left(\frac49+\frac{\sqrt6}{36}\right)v^{2}=\frac29.
+\mathbb P(X=\alpha)=\frac49+\frac{\sqrt6}{36},
+\qquad
+\mathbb P(X=\beta)=\frac49-\frac{\sqrt6}{36}.
 $$
-Adding the mass $1/9$ at $1$ yields $\mathbb E[X]=\frac12$ and $\mathbb E[X^{2}]=\frac13$.
+The three probabilities are positive and sum to $1$. Substitution gives
+$$
+\mathbb E[X]=\frac12,
+\qquad
+\mathbb E[X^{2}]=\frac13.
+$$
+Also $\alpha$ and $\beta$ are the roots of
+$$
+10x^{2}-12x+3=0.
+$$
+After multiplying this relation by $x^{k-2}$, the atom at $0$ contributes zero for every $k\geq3$, so the moments satisfy
+$$
+\mathbb E[X^{k}]
+=\frac65\mathbb E[X^{k-1}]-\frac3{10}\mathbb E[X^{k-2}]
+\qquad(k\geq3).
+$$
+Starting from the displayed first two moments,
+$$
+\mathbb E[X^{3}]=\frac14,
+\qquad
+\mathbb E[X^{4}]=\frac15,
+$$
+so the distribution is admissible. The same recurrence gives
+$$
+a=\mathbb E[X^{5}]=\frac{33}{200},
+\qquad
+b=\mathbb E[X^{6}]=\frac{69}{500}.
+$$
+Therefore
+$$
+\operatorname{Cov}(X^{2},X^{3})=\frac{49}{600},
+$$
+$$
+\operatorname{Var}(X^{2})=\frac4{45},
+\qquad
+\operatorname{Var}(X^{3})=\frac{151}{2000},
+$$
+and hence
+$$
+\operatorname{Corr}(X^{2},X^{3})
+=\frac{49/600}{\sqrt{(4/45)(151/2000)}}
+=\frac{49}{4\sqrt{151}}.
+$$
+Thus the upper bound is attained.
 
-For the two interior nodes, $10x^{2}-8x+1=0$, so their contributions satisfy
-$$
-x^{k}=\frac45x^{k-1}-\frac1{10}x^{k-2}.
-$$
-The atom of mass $1/9$ at $1$ contributes the correction
-$$
-\frac19\left(1-\frac45+\frac1{10}\right)=\frac1{30}.
-$$
-Therefore, for $k\geq2$,
-$$
-\mathbb E[X^{k}]=\frac45\mathbb E[X^{k-1}]-\frac1{10}\mathbb E[X^{k-2}]+\frac1{30}.
-$$
-Using the already verified first two moments gives
-$$
-\mathbb E[X^{3}]=\frac45\cdot\frac13-\frac1{10}\cdot\frac12+\frac1{30}=\frac14,
-$$
-$$
-\mathbb E[X^{4}]=\frac45\cdot\frac14-\frac1{10}\cdot\frac13+\frac1{30}=\frac15.
-$$
-Hence this distribution is admissible. Its support is contained in the zero set of $q(x)-x^{7}$, so $q(X)=X^{7}$ almost surely. Therefore
-$$
-\mathbb E[X^{7}]=\mathbb E[q(X)]=\frac{1349}{10000}.
-$$
-The upper bound is attained and is therefore the required maximum.
-
-Final Answer: $\boxed{\frac{1349}{10000}}$
+Final Answer: $\boxed{\frac{49}{4\sqrt{151}}}$
 
 ---
 
 ## Answer
 
-$\frac{1349}{10000}$
+$\frac{49}{4\sqrt{151}}$
 
 ---
 
@@ -140,7 +211,7 @@ $\frac{1349}{10000}$
 
 ## Solution Concepts
 
-- truncated moment problems
-- polynomial majorants
+- truncated moment inequalities
+- least squares projection
+- correlation optimization
 - extremal distributions
-- quadrature exactness
