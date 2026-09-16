@@ -1,200 +1,118 @@
 ## Steps
 
-Step 1: Reduce Fourier self-duality and count the admissible quadratic forms
-
+Step 1: Reduce self-duality and count the admissible quadratic forms
 For
 $$
 f_{M,g}(x,y)=(-1)^{x\cdot My+g(y)},
 $$
-summing first over $x$ gives
+summing over $x$ first gives
 $$
 (\mathcal Ff_{M,g})(u,v)=(-1)^{u\cdot M^{-1}v+g(M^{-1}v)}.
 $$
-Therefore
+Thus
 $$
 \mathcal Ff_{M,g}=f_{M,g}
-\iff M^2=I\quad\text{and}\quad g\circ M=g.
+\iff M^2=I\ \text{and}\ g\circ M=g.
 $$
-The parametrization is injective: $f_{M,g}(0,y)$ determines $g(y)$, and then the character in $x$ determines $My$ for every $y$.
+Also $f_{M,g}(0,y)$ determines $g(y)$ and then the character in $x$ determines $My$, so distinct pairs $(M,g)$ give distinct functions.
 
-Let
+Put
 $$
-B_g(x,y)=g(x+y)+g(x)+g(y),
-\qquad
-W_g(a)=\sum_{y\in E}(-1)^{g(y)+a\cdot y}.
+B_g(x,y)=g(x+y)+g(x)+g(y),\qquad
+W_g(a)=\sum_y(-1)^{g(y)+a\cdot y}.
 $$
 For quadratic $g$,
 $$
-W_g(a)^2
-=\sum_{t\in E}(-1)^{g(t)+a\cdot t}
-\sum_{z\in E}(-1)^{B_g(z,t)}.
+W_g(a)^2=\sum_t(-1)^{g(t)+a\cdot t}\sum_z(-1)^{B_g(z,t)}.
 $$
-The inner sum equals $2^8$ when $t\in\operatorname{rad}B_g$ and $0$ otherwise. Hence the condition $|W_g(a)|=16$ for every $a$ is equivalent to nondegeneracy of $B_g$: nondegeneracy gives $W_g(a)^2=2^8$, while a nonzero radical lets one choose $a$ agreeing with the linear function $g$ on the radical, which makes $W_g(a)^2>2^8$.
+The inner sum is $2^8$ on $\operatorname{rad}B_g$ and $0$ elsewhere. Hence $|W_g(a)|=16$ for every $a$ exactly when $B_g$ is nondegenerate: if the radical were nonzero, choosing $a$ to agree with the linear function $g$ on it would give $W_g(a)^2>2^8$.
 
-Fix a nondegenerate alternating form $B$ on an $8$-space. Its quadratic refinements are $q_a(x)=q(x)+B(a,x)$. Since
+For a fixed nondegenerate alternating form $B$, its quadratic refinements are $q_a(x)=q(x)+B(a,x)$, and
 $$
-q(x)+B(a,x)=q(x+a)+q(a),
+q(x)+B(a,x)=q(x+a)+q(a)
 $$
-we have
+implies $W_{q_a}(0)=(-1)^{q(a)}W_q(0)$. A positive refinement has $136$ zeros because its zero and one counts have sum $256$ and difference $16$. Thus exactly $136=2^3\cdot17$ refinements have positive Walsh sign. The number of nondegenerate alternating forms on an $8$-space is
 $$
-W_{q_a}(0)=(-1)^{q(a)}W_q(0).
+\alpha_8=\frac{|\operatorname{GL}(8,2)|}{|\operatorname{Sp}(8,2)|}
+=2^{12}\cdot7\cdot31\cdot127,
 $$
-For a refinement with positive Walsh sign,
+from the usual symplectic-basis count. Therefore the number of admissible $g$ is
 $$
-\#q^{-1}(0)-\#q^{-1}(1)=16,
-\qquad
-\#q^{-1}(0)+\#q^{-1}(1)=256,
+N_+=136\alpha_8=2^{15}\cdot7\cdot17\cdot31\cdot127.
 $$
-so exactly $136=2^3\cdot17$ refinements have $W_q(0)=16$.
+The positive sign is the split quadratic type, so all admissible $g$ have conjugate isometry groups. Fix one split form $q$ with polar form $B$.
 
-It remains to count nondegenerate alternating forms. Choosing a symplectic basis gives
-$$
-\alpha_{2m}
-=\frac{|\operatorname{GL}(2m,2)|}{|\operatorname{Sp}(2m,2)|}
-=2^{m(m-1)}\prod_{j=1}^m(2^{2j-1}-1).
-$$
-Thus
-$$
-\alpha_8=2^{12}\cdot7\cdot31\cdot127,
-$$
-and the number of admissible $g$ is
-$$
-N_+=136\alpha_8
-=2^{15}\cdot7\cdot17\cdot31\cdot127.
-$$
-All such $g$ are split nondegenerate quadratic forms, so their isometry groups are conjugate. We may henceforth fix one split form $q$ and its polar form $B$.
-
-Step 2: Parametrize the preserving involutions by residual data
-
-Let $T\in O(q)$ satisfy $T^2=I$, and write $T=I+N$. Then $N^2=0$. Put
-$$
-R=\operatorname{im}N.
-$$
-Since $T$ preserves $B$,
+Step 2: Parametrize the preserving involutions
+Let $T\in O(q)$ satisfy $T^2=I$, write $T=I+N$, and put $R=\operatorname{im}N$. Then $N^2=0$. Preservation of $B$ gives
 $$
 B(Nx,y)+B(x,Ny)+B(Nx,Ny)=0.
 $$
-Replacing $y$ by $Ny$ gives $B(Nx,Ny)=0$, so $R$ is $B$-isotropic. The same identity then gives
+Replacing $y$ by $Ny$ gives $B(Nx,Ny)=0$, so $R$ is $B$-isotropic; hence
 $$
-B(Nx,y)=B(x,Ny),
-\qquad
-\ker N=R^\perp.
+B(Nx,y)=B(x,Ny),\qquad \ker N=R^\perp.
 $$
-For $u=Nx\in R$ and $v\in R$, define
+For $u=Nx\in R$ define
 $$
-\omega(u,v)=B(x,v).
+\omega(u,v)=B(x,v)\qquad(v\in R).
 $$
-This is well-defined because $\ker N=R^\perp$, symmetric by the displayed adjointness identity, and nondegenerate. Moreover $q(Tx)=q(x)$ gives
+This is well-defined, symmetric, and nondegenerate, and $q(x+Nx)=q(x)$ gives
 $$
 \omega(Nx,Nx)=B(x,Nx)=q(Nx).
 $$
 Thus the diagonal of $\omega$ is $q|_R$.
 
-Conversely, if $R$ is $B$-isotropic and $\omega$ is a nondegenerate symmetric form on $R$ with $\omega(r,r)=q(r)$, the map $x\mapsto B(x,\cdot)|_R$ identifies $E/R^\perp$ with $R^*$. Since $\omega:R\to R^*$ is an isomorphism, there is a unique $N:E\to R$ satisfying
+Conversely, given a $B$-isotropic $R$ and a nondegenerate symmetric $\omega$ on $R$ with $\omega(r,r)=q(r)$, the perfect pairing identifies $E/R^\perp$ with $R^*$. Hence there is a unique $N:E\to R$ satisfying
 $$
-\omega(Nx,r)=B(x,r)
+\omega(Nx,r)=B(x,r).
 $$
-for every $r\in R$. Then $N|_R=0$, hence $N^2=0$, and taking $r=Nx$ gives $q(x+Nx)=q(x)$. Therefore $T=I+N$ is an isometry with $T^2=I$.
+Since $R$ is isotropic, $N|_R=0$, so $N^2=0$; taking $r=Nx$ gives $q(x+Nx)=q(x)$. Therefore $T=I+N$ is a preserving involution. This proves a bijection between such $T$ and residual pairs $(R,\omega)$.
 
-So preserving involutions are in bijection with pairs $(R,\omega)$ of this form.
-
-Step 3: Count residual types and derive the singular fixed-point weight
-
-Let $I_r$ be the number of $r$-dimensional $B$-isotropic subspaces and $S_r$ the number of totally $q$-singular ones. Building ordered isotropic bases gives
+Step 3: Count residual pairs and singular fixed vectors
+Let $I_r$ count $r$-dimensional $B$-isotropic subspaces. Counting ordered isotropic bases gives
 $$
-I_r=
-\frac{\prod_{k=0}^{r-1}(2^{8-k}-2^k)}
-{\prod_{k=0}^{r-1}(2^r-2^k)},
+I_r=\frac{\prod_{k=0}^{r-1}(2^{8-k}-2^k)}{\prod_{k=0}^{r-1}(2^r-2^k)},
 $$
 so
 $$
 (I_1,I_2,I_3,I_4)=(255,5355,11475,2295).
 $$
-For a totally singular $k$-space $U$, the quotient $U^\perp/U$ is split of dimension $2(4-k)$. A split $2m$-space has
-$$
-(2^{m-1}+1)(2^m-1)
-$$
-nonzero singular vectors. Extending an ordered singular basis and dividing by the number of ordered bases therefore gives
+Let $S_r$ count totally $q$-singular $r$-spaces. If $U$ is a singular $k$-space, then $U^\perp/U$ is split of dimension $2(4-k)$ and has $(2^{3-k}+1)(2^{4-k}-1)$ nonzero singular vectors. Extending an ordered singular basis therefore gives
 $$
 (S_1,S_2,S_3,S_4)=(135,1575,2025,270).
 $$
 
-Because $B|_R=0$, the restriction $q|_R$ is linear. If $q|_R=0$, the admissible $\omega$ are precisely nondegenerate alternating forms, so there are $\alpha_r$ for even $r$ and none for odd $r$. If $q|_R\ne0$, choose a basis in which $q|_R$ is the first coordinate. Writing
+Because $B|_R=0$, $q|_R$ is linear. If $q|_R=0$, admissible $\omega$ are nondegenerate alternating forms, so the counts for $r=0,2,4$ are $1,1,28$. If $q|_R\ne0$, choose a basis with $q|_R=x_1$ and write
 $$
-[\omega]=\begin{pmatrix}1&b^T\\ b&A\end{pmatrix}
+[\omega]=\begin{pmatrix}1&b^T\\ b&A\end{pmatrix},
 $$
-with $A$ alternating shows that for odd $r$ the number is $2^{r-1}\alpha_{r-1}$, while for even $r$ it is $\alpha_r$. With
+where $A$ is alternating. For odd $r$, nondegeneracy is equivalent to nondegeneracy of $A$, giving $2^{r-1}\alpha_{r-1}$ choices; for even $r$, the count is $\alpha_r$. Thus the numbers of involutions of residual type $q|_R=0$ or $q|_R\ne0$, for $r=0,1,2,3,4$, are
 $$
-\alpha_0=1,\qquad \alpha_2=1,\qquad \alpha_4=28,
+(1,0),\ (0,120),\ (1575,3780),\ (0,37800),\ (7560,56700).
 $$
-the numbers of preserving involutions with residual dimension $r$ and residual type $q|_R=0$ or $q|_R\ne0$ are therefore
-$$
-(1,0),\ (0,120),\ (1575,3780),\ (0,37800),\ (7560,56700)
-$$
-for $r=0,1,2,3,4$, respectively.
 
-The marked-vector condition requires more than the total involution count. Since
-$$
-\operatorname{Fix}(T)=\ker N=R^\perp,
-$$
-we need the number of nonzero singular vectors in $R^\perp$.
-
-If $q|_R\ne0$, then on every coset $x+R\subset R^\perp$ the function
-$$
-r\longmapsto q(x+r)=q(x)+q(r)
-$$
-is a nonconstant affine linear function. Exactly half of each coset is singular. Hence the number of singular vectors in $R^\perp$, including $0$, is
-$$
-2^{7-r},
-$$
-and the number of nonzero singular fixed vectors is
+Now $\operatorname{Fix}(T)=\ker N=R^\perp$. If $q|_R\ne0$, $q$ is a nonconstant affine function on every coset of $R$ in $R^\perp$, so exactly half of each coset is singular. Hence the number of nonzero singular fixed vectors is
 $$
 z_{r,1}=2^{7-r}-1.
 $$
-
-If $q|_R=0$, then $q$ descends to a split nondegenerate form on $R^\perp/R$, of dimension $2(4-r)$. Lifting its zeros back through the $2^r$-element fibers gives, including $0$,
-$$
-2^{7-r}+8
-$$
-singular vectors in $R^\perp$. Thus
+If $q|_R=0$, $q$ descends to a split nondegenerate form on $R^\perp/R$. Lifting its zeros through the $2^r$-element fibers gives $2^{7-r}+8$ singular vectors including $0$, hence
 $$
 z_{r,0}=2^{7-r}+7.
 $$
-This formula also gives $15$ when $r=4$, as it should because then $R^\perp=R$ is a $4$-dimensional totally singular space.
+For $r=4$ this gives $15$, consistent with $R^\perp=R$ being totally singular.
 
 Step 4: Double-count the marked singular fixed vector
-
-For the fixed split form $q$, let $H$ be the number of pairs $(T,a)$ such that
-$$
-T\in O(q),\qquad T^2=I,\qquad a\ne0,\qquad q(a)=0,\qquad Ta=a.
-$$
-Using the residual counts from Step 3 and the uniform weights $z_{r,0},z_{r,1}$ gives
+For the fixed split form $q$, let $H$ count pairs $(T,a)$ with $T^2=I$, $T\in O(q)$, and $a\ne0$ satisfying $q(a)=0$ and $Ta=a$. Using the residual counts and the weights from Step 3,
 $$
 \begin{aligned}
-H={}&135+120\cdot63
-+1575\cdot39+3780\cdot31\\
+H={}&135+120\cdot63+1575\cdot39+3780\cdot31\\
 &+37800\cdot15+7560\cdot15+56700\cdot7\\
-={}&1263600
-=2^4\cdot3^5\cdot5^2\cdot13.
+={}&1263600=2^4\cdot3^5\cdot5^2\cdot13.
 \end{aligned}
 $$
-
-Now let $\mathcal T$ be the set of triples $(g,T,a)$ where $g$ is admissible, $T$ preserves $g$ and satisfies $T^2=I$, and $a\ne0$ is both $g$-singular and fixed by $T$. For each admissible $g$, the inner count is $H$, so
+Across all admissible $g$, the number of triples $(g,T,a)$ with $a\ne0$, $g(a)=0$, $Ta=a$, and $T$ preserving $g$ is $N_+H$. Simultaneous change of basis by $\operatorname{GL}(8,2)$ preserves these conditions and is transitive on the $255$ nonzero vectors, so each prescribed nonzero $e$ occurs equally often. Therefore the desired count is
 $$
-|\mathcal T|=N_+H.
-$$
-The group $\operatorname{GL}(8,2)$ acts transitively on the $255$ nonzero vectors of $E$ and preserves all defining conditions under simultaneous transport of $(g,T,a)$. Therefore every fixed nonzero vector occurs equally often as the marked vector. For the prescribed $e$, the desired count is
-$$
-\frac{N_+H}{255}.
-$$
-Since
-$$
-255=3\cdot5\cdot17,
-$$
-we obtain
-$$
-\frac{(2^{15}\cdot7\cdot17\cdot31\cdot127)
-(2^4\cdot3^5\cdot5^2\cdot13)}{3\cdot5\cdot17}
+\frac{N_+H}{255}
+=\frac{(2^{15}\cdot7\cdot17\cdot31\cdot127)(2^4\cdot3^5\cdot5^2\cdot13)}{3\cdot5\cdot17}
 =2^{19}\cdot3^4\cdot5\cdot7\cdot13\cdot31\cdot127.
 $$
 
