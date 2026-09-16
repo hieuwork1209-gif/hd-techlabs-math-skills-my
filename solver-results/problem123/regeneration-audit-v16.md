@@ -39,3 +39,22 @@ The selected blueprint passes the anti-reverse-engineering preflight. The fixed 
 `Probability and Statistics -> Experimental design and causal inference` => `Optimization and Numerical Mathematics -> Approximation theory`.
 
 The 2026-09-16 taxonomy snapshot lists `Approximation theory` as open.
+
+## Exact new candidate
+
+- problem path: `workspace/rainier-problem/problem123-approximation-theory/problem.md`
+- problem blob: `cfbc976d729eaba18fabff7fe45b6249a60c1119`
+- solution path: `workspace/rainier-problem/problem123-approximation-theory/solution.md`
+- solution blob: `c0d80f65ff958a5f6ff21e30926ff6ccdbfdfe19`
+
+Final hostile audit:
+
+- the four-contact lower bound is proved directly by a sign-change argument, not invoked as a black-box alternation theorem;
+- the critical-point equations are derived from the two equal-contact integrals;
+- the feasible root branch and the bound `3/5<v<2/3` are explicitly certified;
+- the algebraic elimination displays its subresultant remainders;
+- irreducibility is proved modulo `5` without an opaque CAS factorization;
+- prompt, answer, concepts, step structure, and solution length are within repository hard gates;
+- the answer uses only the prompt-defined variable `T` and the boxed answer matches exactly.
+
+Pre-ready verdict: `PASS` on Gates A-F and I-K. Difficulty is unmeasured for this new statement blob.
