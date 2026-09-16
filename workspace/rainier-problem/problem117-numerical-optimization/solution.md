@@ -82,7 +82,12 @@ For the bound in Step 2 to be sharp at a positive probability vector, $r$ must m
 $$
 q(x)=\frac{x^TAPA x}{x^TAx},
 $$
-then differentiating $q(r+th)$ at $t=0$ in every direction $h$ gives the necessary stationarity equation
+then for every direction $h$,
+$$
+0=\left.\frac{d}{dt}q(r+th)\right|_{t=0}
+=\frac{2h^T\left(APA r-\frac{2}{S}Ar\right)}{r^TAr}.
+$$
+Hence
 $$
 APA r=\frac{2}{S}Ar.
 $$
