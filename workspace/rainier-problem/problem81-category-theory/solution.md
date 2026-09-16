@@ -136,7 +136,7 @@ Its determinant is
 $$
 \det B=\frac{a_{21}a_{31}a_{32}}4\ne0.
 $$
-Hence $B$ is nondegenerate. Diagonalize it over $k$: there is an orthogonal basis $u,v,w$ of $W$ with
+Hence $B$ is nondegenerate. Diagonalize it over $k$, and rescale one orthogonal basis vector so that the change-of-basis matrix has determinant $1$. Thus there is an orthogonal basis $u,v,w$ of $W$ with
 $$
 u^2=\alpha,
 \qquad
@@ -144,7 +144,11 @@ v^2=\beta,
 \qquad
 w^2=\gamma,
 $$
-where $\alpha\beta\gamma=\det B$ and
+where
+$$
+\alpha\beta\gamma=\det B,
+$$
+and
 $$
 uv=-vu,
 \qquad
