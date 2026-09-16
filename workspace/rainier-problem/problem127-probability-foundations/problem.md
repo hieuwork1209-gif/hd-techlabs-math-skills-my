@@ -6,7 +6,7 @@ Let $m\ge2$, and let
 $$
 X_1,\dots,X_{m^2}\in\{-1,1\}
 $$
-be random variables with an exchangeable joint distribution. Assume that each $X_i$ is fair and that the family is $4$-wise independent, meaning that every subfamily of at most four distinct variables is mutually independent.
+be fair random variables. Assume that the family is $4$-wise independent, meaning that every subfamily of at most four distinct variables is mutually independent.
 
 Determine the largest possible value of
 $$
@@ -28,4 +28,4 @@ $$
 
 ## Domain Explanation
 
-This problem is primarily Probability and Statistics and Probability foundations: it asks for the sharp extremal probability of a joint event under exchangeability, fair marginals, and finite-order independence. The constraints determine the first four moments of the aggregate Rademacher sum, while sharpness requires reconstructing an exchangeable law realizing the extremal moment data.
+This problem is primarily Probability and Statistics and Probability foundations: it asks for the sharp probability of a joint event under fair marginals and finite-order independence. The constraints determine the first four moments of the aggregate Rademacher sum, while sharpness requires constructing a joint law that realizes the extremal moment data.
