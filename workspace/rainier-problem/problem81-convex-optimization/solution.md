@@ -7,27 +7,28 @@ g_{ii}=1,
 \qquad
 g_{12}=g_{23}=g_{34}=g_{45}=g_{56}=g_{61}=\frac12.
 $$
-Every entry of a matrix in $\mathcal F$ has absolute value at most $1$, by the $2\times2$ principal minors, so $\mathcal F$ is compact. The circulant matrix $C(1/4,1/4)$ is positive definite: its four distinct eigenvalues are
+Every entry of a matrix in $\mathcal F$ has absolute value at most $1$, by the $2\times2$ principal minors, so $\mathcal F$ is compact. The matrix with diagonal entries $1$ and every off-diagonal entry $1/2$ equals
 $$
-\frac{11}{4},\qquad \frac14,\qquad 1,\qquad \frac12,
+\frac12 I+\frac12 J,
 $$
-with the last two each having multiplicity $2$. Hence the maximum determinant on $\mathcal F$ is positive, so every maximizer is positive definite.
+where $J$ is the all-ones matrix. Its eigenvalues are $7/2$ once and $1/2$ five times, so it is positive definite and belongs to $\mathcal F$. Hence the maximum determinant on $\mathcal F$ is positive, and every maximizer is positive definite.
 
-Let $P$ be the permutation matrix for the cyclic shift of the six coordinates. If $G$ is a maximizer, then every $P^jG(P^j)^T$ is also feasible and has the same determinant. Their average is feasible. Since $\log\det$ is strictly concave on the positive definite cone, the average would have strictly larger determinant unless all six matrices were equal. Therefore every maximizer is invariant under cyclic shifts. Symmetry then forces it to have the form
+Let $P$ be the permutation matrix for the cyclic shift of the six coordinates. If $G$ is a maximizer, then every $P^jG(P^j)^T$ is also feasible and has the same determinant. Their average is feasible. On the positive definite cone, along a nonzero symmetric direction $H$,
 $$
-C(a,b)=\operatorname{circ}\left(1,\frac12,a,b,a,\frac12\right).
+\frac{d^2}{ds^2}\log\det(G+sH)
+=-\operatorname{tr}\left((G+sH)^{-1}H(G+sH)^{-1}H\right)<0
 $$
-Thus it remains only to determine the two free correlations $a$ and $b$.
+whenever the segment is positive definite. Thus $\log\det$ is strictly concave. The cyclic average would therefore have strictly larger determinant unless all six rotated matrices were equal. Hence every maximizer is invariant under cyclic shifts. Since it is also symmetric, it must be the matrix $C(a,b)$ from the prompt for some real $a,b$.
 
-Step 2: Use the first-order optimality equations to reconstruct the inverse matrix.
-Let $G=C(a,b)$ be a maximizer and put $K=G^{-1}$. For any nonedge pair $i\ne j$, the entry $g_{ij}$ is a free variable in the affine constraint set. Because $G$ is positive definite, sufficiently small symmetric perturbations in that entry stay positive definite. Jacobi's formula gives
+Step 2: Use first-order optimality to reconstruct the inverse matrix.
+Let $G=C(a,b)$ be a maximizer and put $K=G^{-1}$. For any nonedge pair $i\ne j$, the entry $g_{ij}$ is free in the affine constraint set. Because $G$ is positive definite, sufficiently small symmetric perturbations in that entry remain positive definite. If $E_{ij}$ denotes the matrix unit, Jacobi's formula gives
 $$
 \left.\frac{d}{d\varepsilon}\log\det\left(G+\varepsilon(E_{ij}+E_{ji})\right)\right|_{\varepsilon=0}
 =2K_{ij}.
 $$
-At the maximum this derivative is zero. Hence $K_{ij}=0$ for every nonedge. Since $G$ is circulant, so is $K$, and therefore
+At the maximum this derivative is zero. Hence $K_{ij}=0$ for every nonedge. Since the inverse of a circulant matrix is circulant, the first row of $K$ has the form
 $$
-K=\operatorname{circ}(d,e,0,0,0,e).
+(d,e,0,0,0,e).
 $$
 Because $K$ is positive definite, $d>0$. Write $t=-e/d$. Multiplying $GK=I$ and comparing the four cyclic distances gives
 $$
@@ -60,7 +61,15 @@ Eliminating $a$ yields
 $$
 (t-1)(4t^2+t-1)=0.
 $$
-The eigenvalues of $K/d$ are
+Let $\omega=e^{2\pi i/6}$. For the circulant matrix $K/d$, the vector
+$$
+(1,\omega^k,\omega^{2k},\ldots,\omega^{5k})
+$$
+has eigenvalue
+$$
+1-t(\omega^k+\omega^{-k})=1-2t\cos\left(\frac{k\pi}{3}\right).
+$$
+Hence the six eigenvalues are
 $$
 1-2t,\quad 1-t,\quad 1-t,\quad 1+t,\quad 1+t,\quad 1+2t.
 $$
@@ -76,7 +85,7 @@ b=2at=\frac{5-\sqrt{17}}{4}.
 $$
 
 Step 3: Evaluate the determinant and state the unique optimizer.
-From $K=d\operatorname{circ}(1,-t,0,0,0,-t)$, the six eigenvalues of $K/d$ listed in Step 2 give
+The eigenvalues derived in Step 2 give
 $$
 \det K=d^6(1-4t^2)(1-t^2)^2.
 $$
@@ -89,9 +98,9 @@ The relation $4t^2+t-1=0$ gives $1-4t^2=t$. Repeatedly replacing $t^2$ by $(1-t)
 $$
 (1-t)^4=\frac{181-441t}{64},
 \qquad
-t(1+t)^2=\frac{7+13t}{16},
+t(1+t)^2=\frac{7+13t}{16}.
 $$
-and one more use of the same quadratic relation yields
+Using $4t^2+t-1=0$ once more in the quotient gives
 $$
 \det G=85t-33=\frac{85\sqrt{17}-349}{8}.
 $$
