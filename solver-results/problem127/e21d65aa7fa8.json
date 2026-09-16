@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-inner-product-spaces/problem.md",
+  "source_commit_sha": "507564bc4d197e63f3790997c788a3afeffd7903",
+  "problem_blob_sha": "e21d65aa7fa8ebf2c0f0d6f48ea69ac66b4a6327",
+  "statement_sha256": "9cd6f695f41d3c1238a39d19dfb251e5f32daf8f67d0a3cc30f743f11cdda67f",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T12:55:19+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(u,v\\) be an orthonormal basis of \\(L\\), and write\n\n\\[\np_{ij}=u_i v_j-u_j v_i \\qquad (1\\le i<j\\le 4).\n\\]\n\nThen\n\n\\[\nA_{ij}=|p_{ij}|.\n\\]\n\nThe Plucker coordinates of \\(L^\\perp\\) are the Hodge-dual complementary coordinates, so\n\n\\[\nB_{12}=|p_{34}|,\\quad B_{13}=|p_{24}|,\\quad B_{14}=|p_{23}|,\n\\]\n\nand similarly for the complementary pairs. Hence the desired product is\n\n\\[\n\\Bigl((|p_{12}|+|p_{34}|)(|p_{13}|+|p_{24}|)(|p_{14}|+|p_{23}|)\\Bigr)^2.\n\\]\n\nThe \\(p_{ij}\\) satisfy\n\n\\[\n\\sum_{i<j}p_{ij}^2=1\n\\]\n\nand the Plucker relation\n\n\\[\np_{12}p_{34}-p_{13}p_{24}+p_{14}p_{23}=0.\n\\]\n\nDefine\n\n\\[\nr=\\frac1{\\sqrt2}(p_{12}+p_{34},\\,p_{13}-p_{24},\\,p_{14}+p_{23}),\n\\]\n\n\\[\ns=\\frac1{\\sqrt2}(p_{12}-p_{34},\\,p_{13}+p_{24},\\,p_{14}-p_{23}).\n\\]\n\nUsing the Plucker relation,\n\n\\[\n|r|^2=|s|^2=\\frac12.\n\\]\n\nLet \\(R=\\sqrt2 r\\) and \\(S=\\sqrt2 s\\). Then \\(R,S\\in\\mathbb R^3\\) are unit vectors. Also, using\n\n\\[\n|a+b|+|a-b|=2\\max(|a|,|b|),\n\\]\n\nwe get\n\n\\[\n|p_{12}|+|p_{34}|=\\max(|R_1|,|S_1|),\n\\]\n\n\\[\n|p_{13}|+|p_{24}|=\\max(|R_2|,|S_2|),\n\\]\n\n\\[\n|p_{14}|+|p_{23}|=\\max(|R_3|,|S_3|).\n\\]\n\nSo it remains to maximize\n\n\\[\nM_1M_2M_3,\n\\qquad\nM_k=\\max(|R_k|,|S_k|),\n\\]\n\nfor two unit vectors \\(R,S\\in\\mathbb R^3\\).\n\nReorder so \\(M_1\\ge M_2\\ge M_3\\). Since \\(M_k\\le1\\), and among the three coordinate maxima at least two are attained by the same one of \\(R,S\\), we have\n\n\\[\nM_2^2+M_3^2\\le 1.\n\\]\n\nTherefore\n\n\\[\nM_1M_2M_3\\le M_2M_3\n\\le \\frac{M_2^2+M_3^2}{2}\n\\le \\frac12.\n\\]\n\nThus the original product is at most\n\n\\[\n\\left(\\frac12\\right)^2=\\frac14.\n\\]\n\nEquality is attainable, for example with\n\n\\[\n(p_{12},p_{34},p_{13},p_{24},p_{14},p_{23})\n=\n\\left(\\frac12,-\\frac12,\\frac1{2\\sqrt2},-\\frac1{2\\sqrt2},\\frac1{2\\sqrt2},\\frac1{2\\sqrt2}\\right),\n\\]\n\nwhich satisfies the norm and Plucker relations. Then\n\n\\[\n|p_{12}|+|p_{34}|=1,\\qquad\n|p_{13}|+|p_{24}|=\\frac1{\\sqrt2},\\qquad\n|p_{14}|+|p_{23}|=\\frac1{\\sqrt2}.\n\\]\n\nHence the maximum possible value is\n\n\\[\n\\boxed{\\frac14}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T12:56:43+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/e21d65aa7fa8.json"
+}
