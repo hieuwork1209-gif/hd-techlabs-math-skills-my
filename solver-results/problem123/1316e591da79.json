@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-approximation-theory/problem.md",
+  "source_commit_sha": "da7d1b110a1e190b192097091b63085f57372bbb",
+  "problem_blob_sha": "1316e591da799f8a2b7ad519b57ef4d8ccd61fa4",
+  "statement_sha256": "c65ef600cb4c4f6132783eb57f36fb7fa7a3cd9a89d133284ebc4108ea95d822",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T12:35:29+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\ne_{A,B}(x)=x-\\frac{Ax^2}{x^2+B}.\n\\]\nAt an interior critical point \\(c\\),\n\\[\ne'_{A,B}(c)=0\n\\quad\\Longleftrightarrow\\quad\nA=\\frac{(c^2+B)^2}{2Bc},\n\\]\nand then\n\\[\ne_{A,B}(c)=\\frac{c(B-c^2)}{2B}.\n\\]\n\nFor the minimax choice the error alternates as\n\\[\n+E,\\ -E,\\ +E\n\\]\nat two interior points \\(u<v\\) and at \\(1\\). Write \\(B=s^2\\), \\(u=sp\\), \\(v=sq\\), with \\(0<p<1<q\\). Equality of the two critical-point formulas gives\n\\[\np-p^3=q^3-q,\n\\]\nand equality of the critical-point equations for \\(A\\) gives\n\\[\np^3+2p+\\frac1p=q^3+2q+\\frac1q.\n\\]\nFor \\(S=p+q\\), \\(R=pq\\), these reduce to\n\\[\nS^2-3R=1,\\qquad S^2-R+2=\\frac1R,\n\\]\nhence\n\\[\n2R^2+3R-1=0.\n\\]\nEliminating \\(R\\) from the corresponding equation for \\(z=p^2\\) yields\n\\[\n4z^4-2z^3+9z^2-16z+1=0.\n\\]\n\nNow set\n\\[\nm=p-p^3.\n\\]\nSince \\(E=sm/2\\), the endpoint condition \\(e_{A,B}(1)=E\\) gives, after eliminating \\(s\\),\n\\[\n4E^3-4E^2+E(1+2z-3z^2)-z(1-z)^2=0.\n\\]\nEliminating \\(z\\) between this and\n\\[\n4z^4-2z^3+9z^2-16z+1=0\n\\]\ngives\n\\[\n\\operatorname{Res}_z\n=(16E^4-28E^3+27E^2-6E-1)^2\n(4E^4-2E^3+9E^2-16E+1).\n\\]\nThe constructed alternating solution has\n\\[\nE\\approx 0.0648348517,\n\\]\nso it is not a root of the repeated extraneous factor. Therefore\n\\[\n4E^4-2E^3+9E^2-16E+1=0.\n\\]\n\nThe alternating construction is optimal: if another pair \\((A',B')\\) had smaller uniform error, then at the three contact points \\(u<v<1\\) the ratio\n\\[\n\\frac{A'x^2/(x^2+B')}{Ax^2/(x^2+B)}\n=\\frac{A'}A\\frac{x^2+B}{x^2+B'}\n\\]\nwould be respectively \\(>1,<1,>1\\). But as a function of \\(x^2\\), this ratio minus \\(1\\) has a linear numerator, so it cannot change sign twice. Contradiction.\n\nFinally,\n\\[\n4T^4-2T^3+9T^2-16T+1\n\\]\nis irreducible over \\(\\mathbb Z\\), since modulo \\(3\\) it becomes\n\\[\nT^4+T^3+2T+1,\n\\]\nwhich has no linear factor and no quadratic factor over \\(\\mathbb F_3\\).\n\nThus\n\\[\n\\boxed{P(T)=4T^4-2T^3+9T^2-16T+1}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T12:43:03+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/1316e591da79.json"
+}
