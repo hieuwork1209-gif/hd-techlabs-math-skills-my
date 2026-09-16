@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "7710b0d5c9542ff84a670b738e5a81a0cd43439b",
+  "problem_blob_sha": "676b5effb1bf2035aeb5ecfa15009f8835fcc34d",
+  "statement_sha256": "e704c7fe7b7645b2aa55ecc4414049a8bdee25b9fccf0d9f7aae5d60f8c8467f",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T13:28:15+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\np(\\lambda)=\\prod_{j=1}^4(1-\\alpha_j\\lambda)\n=1-2\\lambda+a\\lambda^2+b\\lambda^3+c\\lambda^4.\n\\]\nThe budget condition fixes only the linear coefficient, so the minimization is a Chebyshev problem in the three-dimensional affine family\n\\[\n1-2x+\\operatorname{span}\\{x^2,x^3,x^4\\}.\n\\]\nThus on each stable regime the minimizer is determined by four equioscillation conditions; at a transition a fifth point becomes active.\n\nThe active sets are:\n\n\\[\n3<\\gamma<\\gamma_1:\\qquad\n\\mathcal A_\\gamma=\\{\\xi_\\gamma,\\gamma,\\eta_\\gamma,15/\\gamma\\},\n\\]\nwith\n\\[\n1<\\xi_\\gamma<2,\\qquad \\gamma<\\eta_\\gamma<15/\\gamma,\n\\]\nand signs\n\\[\np(\\xi_\\gamma)=-C,\\quad p(\\gamma)=C,\\quad\np(\\eta_\\gamma)=-C,\\quad p(15/\\gamma)=C.\n\\]\n\n\\[\n\\gamma_1<\\gamma<\\gamma_2:\\qquad\n\\mathcal A_\\gamma=\\{\\xi_\\gamma,2,\\eta_\\gamma,15/\\gamma\\},\n\\]\nwith signs\n\\[\n-C,\\ C,\\ -C,\\ C.\n\\]\n\n\\[\n\\gamma_2<\\gamma<18/5:\\qquad\n\\mathcal A_\\gamma=\\{1,\\xi_\\gamma,2,\\eta_\\gamma\\},\n\\]\nwith signs\n\\[\nC,\\ -C,\\ C,\\ -C.\n\\]\n\nAt the first transition,\n\\[\n\\mathcal A_{\\gamma_1}\n=\\{\\xi_{\\gamma_1},2,\\gamma_1,\\eta_{\\gamma_1},15/\\gamma_1\\},\n\\]\nwhere both \\(2\\) and \\(\\gamma_1\\) are active at the positive level. At the second transition,\n\\[\n\\mathcal A_{\\gamma_2}\n=\\{1,\\xi_{\\gamma_2},2,\\eta_{\\gamma_2},15/\\gamma_2\\}.\n\\]\n\nFor the transition computation, write at a transition\n\\[\np(x)-C_0=K R(x),\n\\]\nwhere \\(R\\) has the active positive-level points as roots, plus one extra root \\(r\\). If\n\\[\nR=x^4-e_1x^3+e_2x^2-e_3x+e_4,\n\\]\nthen \\(p'(0)=-2\\) and \\(p(0)=1\\) give\n\\[\nK=\\frac2{e_3},\\qquad C_0=1-\\frac{2e_4}{e_3}.\n\\]\nThe two negative active extrema occur at stationary points where\n\\[\nR=2e_4-e_3.\n\\]\nEquivalently, \\(R'\\) and \\(R-(2e_4-e_3)\\) have a common quadratic factor. Dividing gives the quadratic remainder\n\\[\nQ=(8e_2-3e_1^2)x^2+(2e_1e_2-12e_3)x+(16e_3-16e_4-e_1e_3),\n\\]\nand requiring \\(Q\\mid R'\\) gives the transition equations.\n\nFor the first transition the positive-level roots are\n\\[\n2,\\quad \\gamma,\\quad \\frac{15}{\\gamma},\n\\]\nand eliminating \\(r\\) gives the relevant factor\n\\[\n4x^6-104x^5-345x^4+1140x^3+4050x^2+13500x-50625.\n\\]\nIts unique zero in \\((339/100,17/5)\\) is\n\\[\n\\gamma_1=\\operatorname{root}_{(339/100,\\,17/5)}\n\\left(4x^6-104x^5-345x^4+1140x^3+4050x^2+13500x-50625\\right).\n\\]\n\nFor the second transition the positive-level roots are\n\\[\n1,\\quad 2,\\quad \\frac{15}{\\gamma},\n\\]\nand the same divisibility condition reduces to\n\\[\n4\\gamma^2-120\\gamma+375=0.\n\\]\nThe root in \\((3,18/5)\\) is\n\\[\n\\gamma_2=15-\\frac52\\sqrt{21}.\n\\]\n\nTherefore\n\\[\n\\boxed{\n\\left(\n\\operatorname{root}_{(339/100,\\,17/5)}\n\\left(4x^6-104x^5-345x^4+1140x^3+4050x^2+13500x-50625\\right),\n\\ 15-\\frac52\\sqrt{21}\n\\right)\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T13:34:10+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/676b5effb1bf.json"
+}
