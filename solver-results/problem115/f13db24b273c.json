@@ -1,0 +1,22 @@
+{
+  "problem": "problem115",
+  "branch": "adversary/problem115",
+  "problem_path": "workspace/rainier-problem/problem115-fourier-analysis/problem.md",
+  "source_commit_sha": "6ae3cf9d716dab3ca0de43faee0c22e869974902",
+  "problem_blob_sha": "f13db24b273cc365f2f0a875744c959ce4d5d48b",
+  "statement_sha256": "4c164b152908227ae437bb107bf6f4e99a263402af8b34caa997b16e92ca66e9",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T07:29:06+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nW_g(a)=\\sum_{y\\in E}(-1)^{g(y)+a\\cdot y}.\n\\]\n\nFirst compute the Fourier transform:\n\\[\n(\\mathcal F f_{M,g})(u,v)\n=2^{-8}\\sum_{x,y}(-1)^{x\\cdot My+g(y)+x\\cdot v+y\\cdot u}.\n\\]\nThe inner sum over \\(x\\) is \\(2^8\\) exactly when \\(My=v\\), and \\(0\\) otherwise. Hence\n\\[\n(\\mathcal F f_{M,g})(u,v)\n=(-1)^{g(M^{-1}v)+(M^{-1}v)\\cdot u}.\n\\]\nThus \\(\\mathcal Ff_{M,g}=f_{M,g}\\) iff, for all \\(u,v\\),\n\\[\nM^{-1}v=Mv,\\qquad g(Mv)=g(v).\n\\]\nSo \\(M^2=I\\), and \\(g\\) is \\(M\\)-invariant.\n\nWrite \\(M=I+N\\). Over \\(\\mathbb F_2\\), \\(M^2=I\\) means \\(N^2=0\\). Let \\(r=\\operatorname{rank}N\\), so \\(0\\le r\\le4\\). Choose coordinates\n\\[\nE=U\\oplus A\\oplus C,\\qquad \\dim U=\\dim A=r,\\quad \\dim C=8-2r,\n\\]\nwith \\(N(u,a,c)=(0,u,0)\\).\n\nThe condition \\(g(u,a+u,c)=g(u,a,c)\\) forces\n\\[\ng(u,a,c)=q_U(u)+q_C(c)+u^TRa+u^TLc+\\ell_U(u)+\\ell_C(c),\n\\]\nwhere \\(R\\) is symmetric with zero diagonal. The polar form of \\(g\\) is nondegenerate exactly when \\(R\\) is invertible and the polar form of \\(q_C\\) is nondegenerate. Since an invertible alternating \\(r\\times r\\) matrix exists only for even \\(r\\), only\n\\[\nr=0,2,4\n\\]\ncontribute.\n\nFor an even dimension \\(2s\\), the number of nondegenerate alternating forms is\n\\[\nA(2s)=\\frac{|\\operatorname{GL}(2s,2)|}{|\\operatorname{Sp}(2s,2)|}\n=2^{s(s-1)}\\prod_{i=1}^s(2^{2i-1}-1).\n\\]\nFor each fixed nondegenerate polar form in dimension \\(m=2s\\), the number of quadratic refinements with Walsh sum \\(+2^s\\) is\n\\[\n2^{m-1}+2^{s-1}.\n\\]\n\nNow count by \\(r\\).\n\n\\[\n\\#\\{N:N^2=0,\\operatorname{rank}N=r\\}\n=\n{8\\brack r}_2{8-r\\brack r}_2|\\operatorname{GL}(r,2)|.\n\\]\n\nThe number of admissible \\(g\\) for fixed \\(M\\) is\n\\[\nA(r)\\cdot 2^{\\binom r2+r}\\cdot 2^{r(8-2r)}\n\\cdot A(8-2r)\\bigl(2^{7-2r}+2^{3-r}\\bigr),\n\\]\nwith the final factor interpreted as \\(1\\) when \\(8-2r=0\\).\n\nThe three contributions are:\n\n\\[\nr=0:\\quad 15351906304\n=2^{15}\\cdot7\\cdot17\\cdot31\\cdot127,\n\\]\n\n\\[\nr=2:\\quad 24179252428800\n=2^{15}\\cdot3^2\\cdot5^2\\cdot7^2\\cdot17\\cdot31\\cdot127,\n\\]\n\n\\[\nr=4:\\quad 116060411658240\n=2^{18}\\cdot3^3\\cdot5\\cdot7^2\\cdot17\\cdot31\\cdot127.\n\\]\n\nAdding them gives\n\\[\n140255015993344\n=2^{19}\\cdot7\\cdot17\\cdot31\\cdot127\\cdot571.\n\\]\n\n\\[\n\\boxed{2^{19}\\cdot 7\\cdot 17\\cdot 31\\cdot 127\\cdot 571}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T07:31:28+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem115/f13db24b273c.json"
+}
