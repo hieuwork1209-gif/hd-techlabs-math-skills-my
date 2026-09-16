@@ -2,8 +2,8 @@
   "problem": "problem127",
   "branch": "adversary/problem127",
   "problem_path": "workspace/rainier-problem/problem127-inner-product-spaces/problem.md",
-  "problem_blob_sha": "3dcc208f6f838e94a87035ab41a0d53281351463",
-  "source_commit_sha": "b7069f49e8fe25282cd0b8bbc26f7dfd55bb67e4",
+  "problem_blob_sha": "c832331c0ff0f23a5b32c815c17480a773d0c7c0",
+  "source_commit_sha": "d52665e79a9c3386c23d1a1432f771403baffa23",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-16T12:32:13+00:00",
-  "result_file": "solver-results/problem127/3dcc208f6f83.json"
+  "completed_at": "2026-09-16T12:43:01+00:00",
+  "result_file": "solver-results/problem127/c832331c0ff0.json"
 }

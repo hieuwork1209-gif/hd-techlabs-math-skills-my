@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-inner-product-spaces/problem.md",
+  "source_commit_sha": "d52665e79a9c3386c23d1a1432f771403baffa23",
+  "problem_blob_sha": "c832331c0ff0f23a5b32c815c17480a773d0c7c0",
+  "statement_sha256": "8f98adf39d18567b6bdd527cc72e695fc28626d04bd2ccbd3b77bcdb24c900c4",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T12:39:13+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nA=(\\langle e_i,f_j\\rangle),\\qquad B=(\\langle f_i,g_j\\rangle),\\qquad C=(\\langle g_i,e_j\\rangle).\n\\]\nThese are orthogonal \\(3\\times 3\\) matrices and\n\\[\nABC=I.\n\\]\nAlso each has constant diagonal. The required quantity is\n\\[\n\\left|\\prod_{i,j}A_{ij}B_{ij}C_{ij}\\right|.\n\\]\n\nFor an orthogonal matrix \\(M\\) with constant diagonal, replacing \\(M\\) by \\(-M\\) if necessary reduces to the case \\(M\\in SO(3)\\), without changing absolute values. Such an \\(M\\) is a rotation. If its rotation angle is \\(\\theta\\), the equal-diagonal condition forces its rotation axis to have coordinate squares\n\\[\nu_1^2=u_2^2=u_3^2=\\frac13.\n\\]\nFor such a rotation, after harmless sign changes/permutations, its entries have diagonal value\n\\[\nd=\\frac{1+2\\cos\\theta}{3},\n\\]\nand the product of the three entries in any row has absolute value\n\\[\nD(\\theta)=d^2(1-d)\n=\\frac{2(1+2\\cos\\theta)^2(1-\\cos\\theta)}{27}.\n\\]\nUsing\n\\[\n1+2\\cos\\theta=\\frac{\\sin(3\\theta/2)}{\\sin(\\theta/2)},\n\\]\nthis becomes\n\\[\nD(\\theta)=\\frac{4}{27}\\sin^2\\frac{3\\theta}{2}.\n\\]\nHence\n\\[\n\\prod_{i,j}|M_{ij}|=D(\\theta)^3.\n\\]\n\nIt remains to respect \\(ABC=I\\). If two nonzero-product constant-diagonal rotations have different body-diagonal axes, their quaternion product has vector part whose coordinates cannot again have equal absolute values unless one rotation has \\(\\theta=0\\) or \\(\\theta=\\pm 2\\pi/3\\), both making \\(D(\\theta)=0\\). Thus at a positive maximum all three rotations share the same axis, so their angles \\(\\theta_1,\\theta_2,\\theta_3\\) satisfy\n\\[\n\\theta_1+\\theta_2+\\theta_3\\equiv 0\\pmod{2\\pi}.\n\\]\nTherefore\n\\[\n\\prod_{\\ell=1}^3D(\\theta_\\ell)\n=\\left(\\frac4{27}\\right)^3\n\\prod_{\\ell=1}^3\\sin^2\\frac{3\\theta_\\ell}{2}.\n\\]\nLet \\(x_\\ell=\\frac{3\\theta_\\ell}{2}\\). Then \\(x_1+x_2+x_3\\equiv0\\pmod{3\\pi}\\), and\n\\[\n|\\sin x_1\\sin x_2\\sin x_3|\\le \\left(\\frac{\\sqrt3}{2}\\right)^3.\n\\]\nSo\n\\[\n\\prod_{\\ell=1}^3D(\\theta_\\ell)\n\\le\n\\left(\\frac4{27}\\right)^3\\left(\\frac{27}{64}\\right)\n=\\frac1{729}.\n\\]\nThus the original product is at most\n\\[\n\\left(\\frac1{729}\\right)^3=\\frac1{3^{18}}.\n\\]\n\nEquality is attained by taking all three rotations about the same body-diagonal axis, for example with angles\n\\[\n\\theta_1=\\theta_2=\\frac{4\\pi}{9},\\qquad \\theta_3=\\frac{10\\pi}{9},\n\\]\nwhose sum is \\(2\\pi\\), so \\(ABC=I\\), and each satisfies\n\\[\n\\sin^2\\frac{3\\theta_\\ell}{2}=\\frac34.\n\\]\n\n\\[\n\\boxed{\\frac1{3^{18}}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T12:43:01+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/c832331c0ff0.json"
+}
