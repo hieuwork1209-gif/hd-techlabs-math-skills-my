@@ -2,18 +2,24 @@
 
 ## LaTeX (Normalized)
 
-Let $r\ge5$ and $\ell=2r+1$ be primes, and suppose that $2$ generates $\mathbb F_\ell^\times$. Let $\chi$ be the quadratic character of $\mathbb F_\ell$, extended by $\chi(0)=0$, and let
+Let $\ell$ be a prime with $\ell\equiv3\pmod 4$, and set
 $$
-H=\{x\in\mathbb F_\ell^\times:\chi(x)=1\}.
+r=\frac{\ell-1}{2}.
 $$
-For $\varepsilon,\delta\in\{\pm1\}$, define
+Let $\chi$ be the quadratic character of $\mathbb F_{\ell}$, extended by $\chi(0)=0$, and let
 $$
-N_{\varepsilon,\delta}
-=\#\{x\in H\setminus\{1\}:\chi(1+x)=\varepsilon,\ \chi(1-x)=\delta\}.
+H=\{x\in\mathbb F_{\ell}^{\times}:\chi(x)=1\}.
 $$
-Determine, in closed form, the ordered quadruple
+For $\sigma\in\{+1,-1\}$ and $a\in\mathbb F_{\ell}^{\times}$, define
 $$
-(N_{+,+},N_{+,-},N_{-,+},N_{-,-}).
+C_{\sigma}(a)=\sum_{x\in H}\chi(1+x)\chi(1+\sigma ax).
+$$
+Determine, in closed form, the ordered pair
+$$
+\left(
+\sum_{a\in\mathbb F_{\ell}^{\times}}C_{+1}(a)^2,
+\sum_{a\in\mathbb F_{\ell}^{\times}}C_{+1}(a)C_{-1}(a)
+\right).
 $$
 
 ---
@@ -31,4 +37,4 @@ $$
 
 ## Domain Explanation
 
-The primary object is the quadratic-residue subgroup of $\mathbb F_\ell^\times$, and the task is to determine the joint Legendre-symbol distribution of $1+x$ and $1-x$ as $x$ ranges over that subgroup. The solution is driven by quadratic-character indicator expansions and exact quadratic character sums, so Number Theory -> Quadratic residues and reciprocity is the direct classification rather than an incidental technique.
+The requested quantities are exact second-order correlation sums built from the quadratic character on the quadratic-residue subgroup of $\mathbb F_{\ell}^{\times}$. Their evaluation depends on the residue indicator, the fact that $-1$ is a quadratic nonresidue when $\ell\equiv3\pmod 4$, and exact quadratic character sums for distinct-root quadratics. Thus Number Theory -> Quadratic residues and reciprocity is the direct classification.
