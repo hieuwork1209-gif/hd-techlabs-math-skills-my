@@ -7,7 +7,7 @@ S(x)=\sum_{i=1}^{12}x_i,
 \qquad
 R(x)=\prod_{i=1}^{12}x_i.
 $$
-Define a density with respect to $U$ by
+Define
 $$
 h(x)=1+\frac{R(x)(74-S(x)^2)}{70}.
 $$
@@ -19,11 +19,17 @@ we have
 $$
 h=1+\frac{31}{35}R-\frac1{35}\sum_{i<j}\prod_{k\ne i,j}x_k.
 $$
-Thus every nonconstant Fourier character in $h$ has degree $10$ or $12$. Hence for every nonempty $A\subseteq\{1,\ldots,12\}$ with $|A|\le9$,
+Thus every nonconstant Fourier character in $h$ has degree $10$ or $12$, and $\mathbb E_Uh=1$. For every nonempty $A\subseteq\{1,\ldots,12\}$ with $|A|\le9$,
 $$
-\mathbb E_U\left[h(X)\prod_{i\in A}X_i\right]=0,
+\mathbb E_U\left[h(X)\prod_{i\in A}X_i\right]=0
 $$
-by orthogonality of distinct characters under $U$. Therefore, if $h\ge0$, the law $d\mu_*=h\,dU$ is $9$-wise independent and in particular admissible.
+by orthogonality of distinct characters under $U$. Consequently, whenever $h\ge0$, the law $d\mu_*=h\,dU$ has all nonconstant moments of orders at most $9$ equal to zero. For any $J$ with $|J|\le9$ and any $\varepsilon\in\{-1,1\}^{J}$,
+$$
+\mathbb P_{\mu_*}(X_j=\varepsilon_j\text{ for }j\in J)
+=2^{-|J|}\mathbb E_{\mu_*}\prod_{j\in J}(1+\varepsilon_jX_j)
+=2^{-|J|}.
+$$
+Hence $\mu_*$ is $9$-wise independent and in particular admissible.
 
 To check nonnegativity, note that when $R=1$, the possible values are $S\in\{0,\pm4,\pm8,\pm12\}$ and
 $$
