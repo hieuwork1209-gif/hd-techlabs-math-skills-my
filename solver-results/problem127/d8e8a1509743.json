@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-inner-product-spaces/problem.md",
+  "source_commit_sha": "90028e0e2ed805c6a600f0d2d8221a08a88d6e62",
+  "problem_blob_sha": "d8e8a150974312beeda5346817a9951fbbbd1a5c",
+  "statement_sha256": "ba655e6d69b3d0d84b455f212f556ee86912aef2d30e97f2e8790e6636a419c4",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T11:04:27+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let the eigenvalues of `PQP` on the range of `P` be\n\n\\[\n\\lambda_1,\\lambda_2,\\lambda_3,\\lambda_4\\in[0,1].\n\\]\n\nThese are the squared cosines of the four principal angles between the two rank-4 subspaces. We have\n\n\\[\n\\sum_{i=1}^4 \\lambda_i=\\operatorname{tr}(PQP)=\\operatorname{tr}(PQ)=2,\n\\]\n\nand\n\n\\[\n\\sum_{i=1}^4\\left(\\lambda_i-\\frac12\\right)^2=\\frac25.\n\\]\n\nSet\n\n\\[\ny_i=1-\\lambda_i.\n\\]\n\nThen \\(y_i\\in[0,1]\\), and\n\n\\[\n\\sum y_i=2,\\qquad \\sum y_i^2=\\frac75.\n\\]\n\nFor each principal-angle block,\n\n\\[\nP=\\begin{pmatrix}1&0\\\\0&0\\end{pmatrix},\n\\qquad\nQ=\\begin{pmatrix}\\lambda_i&\\sqrt{\\lambda_i(1-\\lambda_i)}\\\\\n\\sqrt{\\lambda_i(1-\\lambda_i)}&1-\\lambda_i\\end{pmatrix},\n\\]\n\nso\n\n\\[\n\\det(P+Q)=\\prod_{i=1}^4(1-\\lambda_i)=\\prod_{i=1}^4 y_i.\n\\]\n\nThus we maximize \\(\\prod y_i\\) subject to the two constraints.\n\nAt an interior maximum, Lagrange multipliers give\n\n\\[\n\\frac1{y_i}=\\alpha+\\beta y_i,\n\\]\n\nso the \\(y_i\\)'s take at most two distinct values. With two values \\(a,b\\) appearing twice each, the constraints give\n\n\\[\na+b=1,\\qquad a^2+b^2=\\frac7{10},\n\\]\n\nso\n\n\\[\nab=\\frac{(a+b)^2-(a^2+b^2)}2=\\frac{1-\\frac7{10}}2=\\frac3{20}.\n\\]\n\nHence the product is\n\n\\[\n(ab)^2=\\frac9{400}.\n\\]\n\nBut a larger value occurs on the boundary \\(y_1=1\\). Then the remaining three numbers satisfy\n\n\\[\ny_2+y_3+y_4=1,\\qquad y_2^2+y_3^2+y_4^2=\\frac25.\n\\]\n\nAgain, at the maximum among these three, two values are equal. Write\n\n\\[\ny_2=s,\\qquad y_3=y_4=r.\n\\]\n\nThen\n\n\\[\ns+2r=1,\\qquad s^2+2r^2=\\frac25.\n\\]\n\nSubstituting \\(s=1-2r\\),\n\n\\[\n(1-2r)^2+2r^2=\\frac25\n\\]\n\ngives\n\n\\[\n6r^2-4r+\\frac35=0,\n\\]\n\nso\n\n\\[\nr=\\frac{10\\pm\\sqrt{10}}{30}.\n\\]\n\nThe larger product comes from\n\n\\[\nr=\\frac{10-\\sqrt{10}}{30},\n\\qquad\ns=1-2r=\\frac{5+\\sqrt{10}}{15}.\n\\]\n\nThus\n\n\\[\n\\prod y_i=1\\cdot s r^2\n=\n\\frac{5+\\sqrt{10}}{15}\n\\left(\\frac{10-\\sqrt{10}}{30}\\right)^2\n=\n\\frac{35+\\sqrt{10}}{1350}.\n\\]\n\nThis is attainable by choosing principal-angle eigenvalues\n\n\\[\n\\lambda_i=1-y_i,\n\\]\n\nso the maximum is genuinely achieved by suitable rank-4 projections.\n\n\\[\n\\boxed{\\frac{35+\\sqrt{10}}{1350}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T11:05:31+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/d8e8a1509743.json"
+}
