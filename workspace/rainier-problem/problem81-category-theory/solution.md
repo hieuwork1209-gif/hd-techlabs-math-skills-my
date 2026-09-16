@@ -5,125 +5,106 @@ Write $\mathcal B_n=\mathcal P([n])$, ordered by inclusion, and let $L\dashv R$ 
 $$
 A_i=L(\{i\}).
 $$
-Then for every $S\subseteq[n]$,
+Then
 $$
-L(S)=\bigcup_{i\in S}A_i.
+L(S)=\bigcup_{i\in S}A_i
 $$
-The adjunction condition $L(S)\subseteq T$ if and only if $S\subseteq R(T)$ now forces
+for every $S\subseteq[n]$, while the adjunction condition $L(S)\subseteq T$ if and only if $S\subseteq R(T)$ forces
 $$
 R(T)=\{i\in[n]:A_i\subseteq T\}.
 $$
-Thus the bipartite graph $G_L$ in the prompt is exactly the relation $i_-\sim j_+$ when $j\in A_i$, and every bipartite relation arises from such an adjunction by the displayed formulas.
+Thus the bipartite graph $G_L$ in the prompt is exactly the relation $i_-\sim j_+$ when $j\in A_i$, and the graph determines the adjunction uniquely.
 
 For the closure monad $C=RL$,
 $$
 C(S)=\left\{i\in[n]:A_i\subseteq\bigcup_{s\in S}A_s\right\}.
 $$
-If $N(S)$ denotes the set of right-hand neighbors of the left vertex set $S_-$ in $G_L$, then
-$$
-C(S)=S
-$$
-exactly when every left vertex $i_-\notin S_-$ has a neighbor outside $N(S)$.
+If $N(S)$ denotes the set of right-hand neighbors of the left vertex set $S_-$ in $G_L$, then $C(S)=S$ exactly when every left vertex $i_-\notin S_-$ has a neighbor outside $N(S)$.
 
 Step 2: Identify fixed objects with maximal independent sets
 For a fixed point $S=C(S)$ define
 $$
 I_S=S_-\cup\bigl([n]_+\setminus N(S)\bigr).
 $$
-This is independent because no vertex of $S_-$ is adjacent to a right vertex outside $N(S)$. It is maximal: every right vertex in $N(S)$ is adjacent to some vertex of $S_-$, while every left vertex outside $S_-$ has, by the fixed-point condition from Step 1, a neighbor in $[n]_+\setminus N(S)$.
+This set is independent. It is maximal because every right vertex in $N(S)$ is adjacent to $S_-$, while every left vertex outside $S_-$ has, by the fixed-point condition from Step 1, a neighbor in $[n]_+\setminus N(S)$.
 
-Conversely, let $I$ be a maximal independent set of $G_L$ and put $S_-=I\cap[n]_-$, identified with $S\subseteq[n]$. Independence gives
+Conversely, let $I$ be a maximal independent set and put $S_-=I\cap[n]_-$. Independence gives
 $$
 I\cap[n]_+\subseteq[n]_+\setminus N(S).
 $$
-Every right vertex outside $N(S)$ must actually lie in $I$, since otherwise it could be added to $I$. Hence
+Every right vertex outside $N(S)$ must lie in $I$, or it could be added. Hence
 $$
 I\cap[n]_+=[n]_+\setminus N(S).
 $$
-For each $i_-\notin S_-$, maximality gives a neighbor in this right-hand set, so $A_i\nsubseteq N(S)$. Therefore $C(S)=S$.
-
-The two constructions are inverse. Consequently
+Maximality then gives, for every $i_-\notin S_-$, a neighbor in this right-hand set, so $C(S)=S$. The two constructions are inverse. Therefore
 $$
-|\{S:C(S)=S\}|=\mu(G_L),
+f(L,R)=\mu(G_L),
 $$
-where $\mu(G)$ denotes the number of maximal independent sets of $G$.
+where $\mu(G)$ is the number of maximal independent sets of $G$.
 
-Step 3: Prove a uniform bound for maximal independent sets of forests
-We first show that every forest $F$ on $m$ vertices satisfies
+Step 3: Prove the sharp upper bound for the first component
+First, every forest $F$ on $m$ vertices satisfies
 $$
 \mu(F)\leq2^{\lfloor m/2\rfloor}.
 $$
-Proceed by induction on $m$. If $v$ is isolated, every maximal independent set contains $v$, so
+Induct on $m$. If $v$ is isolated, every maximal independent set contains $v$, so $\mu(F)=\mu(F-v)$. Otherwise choose a leaf $u$ with neighbor $v$. Every maximal independent set contains exactly one of $u,v$, and restriction gives bijections with maximal independent sets of $F-\{u,v\}$ and $F-N[v]$, respectively. Hence
 $$
-\mu(F)=\mu(F-v),
-$$
-and the induction bound applies.
-
-Otherwise choose a leaf $u$ with neighbor $v$. Every maximal independent set contains exactly one of $u,v$. Those containing $u$ correspond bijectively to maximal independent sets of $F-\{u,v\}$, and those containing $v$ correspond bijectively to maximal independent sets of $F-N[v]$. Therefore
-$$
-\mu(F)=\mu(F-\{u,v\})+\mu(F-N[v]).
-$$
-Both forests on the right have at most $m-2$ vertices, so induction gives
-$$
-\mu(F)\leq2\cdot2^{\lfloor(m-2)/2\rfloor}=2^{\lfloor m/2\rfloor}.
+\mu(F)=\mu(F-\{u,v\})+\mu(F-N[v])
+\leq2\cdot2^{\lfloor(m-2)/2\rfloor}.
 $$
 
-Step 4: Determine the maximum and construct an extremal adjunction
-We prove by induction on $n$ that every tree $T$ on $2n$ vertices satisfies
+Now let $T$ be any tree on $2n$ vertices. We prove by induction that
 $$
 \mu(T)\leq2^{n-1}+1.
 $$
-The case $n=1$ is a single edge and has two maximal independent sets.
-
-If $T$ is a star, then $\mu(T)=2$, so suppose it is not a star. Choose a penultimate vertex $v$ on a longest path. Then $v$ has $d\geq1$ leaf neighbors and exactly one nonleaf neighbor $w$. Remove $v$ and its $d$ leaf neighbors, and call the remaining tree $P$. A maximal independent set either contains all $d$ leaf neighbors and not $v$, leaving a maximal independent set of $P$, or contains $v$, forcing $w$ and all those leaves out and leaving a maximal independent set of $P-w$. Thus
+The case $n=1$ is a single edge. If $T$ is not a star, choose a penultimate vertex $v$ on a longest path. Let $v$ have $d\geq1$ leaf neighbors and one nonleaf neighbor $w$, and let $P$ be the tree left after removing $v$ and those $d$ leaves. A maximal independent set either contains all those leaves and not $v$, leaving a maximal independent set of $P$, or contains $v$, leaving a maximal independent set of $P-w$. Thus
 $$
 \mu(T)=\mu(P)+\mu(P-w).
 $$
-If $d=1$, then $P$ has $2n-2$ vertices, so the tree induction and Step 3 give
+If $d=1$, induction on $P$ and the forest bound on $P-w$ give
 $$
 \mu(T)\leq(2^{n-2}+1)+2^{n-2}=2^{n-1}+1.
 $$
-If $d\geq2$, then $P$ has at most $2n-3$ vertices and $P-w$ at most $2n-4$, so Step 3 gives
-$$
-\mu(T)\leq2^{n-2}+2^{n-2}=2^{n-1}<2^{n-1}+1.
-$$
+If $d\geq2$, both terms are at most $2^{n-2}$, so the sum is at most $2^{n-1}$.
 
-The bound is attained by a balanced bipartite tree. Take left vertices
-$$
-c,\ell_1,\ldots,\ell_{n-1}
-$$
-and right vertices
-$$
-x,r_1,\ldots,r_{n-1},
-$$
-with edges $c-x$, $c-r_i$, and $r_i-\ell_i$. If $c$ belongs to a maximal independent set, all $\ell_i$ are then forced in, giving one set. If $c$ does not belong, $x$ is forced in and on each edge $r_i-\ell_i$ exactly one endpoint is chosen independently, giving $2^{n-1}$ sets. Hence this tree has
-$$
-2^{n-1}+1
-$$
-maximal independent sets. By Step 1 it comes from an allowed adjunction. Therefore
+The bound is attained by the tree with one right vertex $r$ adjacent to every left vertex, together with one extra right leaf attached to each left vertex except a distinguished left vertex $x$. Its maximal independent sets are the all-right set and, for every subset $T$ of the other $n-1$ left vertices, the set consisting of $x\cup T$ together with the right leaves not adjacent to $T$. Hence it has $2^{n-1}+1$ maximal independent sets. Therefore
 $$
 M_n=2^{n-1}+1.
 $$
 
-Step 5: Determine the minimum and construct an extremal adjunction
-For $n\geq2$, an allowed tree has bipartition sizes $n,n$, so it cannot be a star. Hence it contains a path on four consecutive vertices $a-b-c-d$. Any independent set in a finite graph extends to a maximal independent set. Extend each of
+Step 4: Optimize the codimension-one fixed points and classify equality
+Let
 $$
-\{b\},\qquad\{c\},\qquad\{a,d\}
+h(L,R)=\left|\{S\subseteq[n]:C(S)=S,\ |S|=n-1\}\right|.
 $$
-to a maximal independent set. The first contains $b$, the second contains $c$, and the third contains neither $b$ nor $c$, so the three extensions are distinct. Thus every allowed tree has at least three maximal independent sets.
+For $i\in[n]$, put $S=[n]\setminus\{i\}$. By Step 1, $S$ is fixed exactly when $i_-$ has a right neighbor outside $N(S)$. Such a right vertex is adjacent to $i_-$ and to no other left vertex, so it is a right leaf. Thus $h(L,R)$ is exactly the number of left vertices adjacent to at least one right leaf.
 
-This is sharp. Take a central edge $u-v$ with $u$ on the left and $v$ on the right, attach $n-1$ right leaves to $u$, and attach $n-1$ left leaves to $v$. A maximal independent set either contains $u$, contains $v$, or contains neither; in the third case all leaves are forced. These are exactly three maximal independent sets. Again Step 1 realizes this tree by an allowed adjunction. Hence
+Since there are only $n$ right vertices, $h(L,R)=n$ would force all right vertices to be leaves, which is impossible for a connected tree with $n\geq2$. Therefore
 $$
-m_n=3.
+h(L,R)\leq n-1.
+$$
+If equality holds, at least $n-1$ distinct right leaves are needed, one for each of those $n-1$ left vertices. Hence there are exactly $n-1$ right leaves and one remaining right vertex $r$. Every left vertex must be adjacent to $r$, because a right leaf cannot connect its left neighbor to the rest of the tree. Consequently the tree is forced to have the following form: $r$ is adjacent to all $n$ left vertices, and the other $n-1$ right vertices are leaves attached bijectively to all but one left vertex.
+
+This forced tree is precisely the construction in Step 3, so it also has $2^{n-1}+1$ fixed points. Hence the lexicographically maximal pair is
+$$
+(M_n,H_n)=\left(2^{n-1}+1,n-1\right).
 $$
 
-Final Answer: $\boxed{\left(2^{n-1}+1,3\right)}$
+Step 5: Count all labeled adjunctions attaining the lexicographic maximum
+Step 1 shows that an allowed bipartite relation determines the adjunction uniquely. For an extremal tree from Step 4, choose the unique nonleaf right vertex $r$ in $n$ ways and the unique left vertex $x$ without a private right leaf in $n$ ways. The remaining $n-1$ right vertices must be matched bijectively to the remaining $n-1$ left vertices, giving $(n-1)!$ choices.
+
+Therefore the number of adjunctions attaining both maxima is
+$$
+N_n=n^2(n-1)!.
+$$
+
+Final Answer: $\boxed{\left(2^{n-1}+1,n-1,n^2(n-1)!\right)}$
 
 ---
 
 ## Answer
 
-$\left(2^{n-1}+1,3\right)$
+$\left(2^{n-1}+1,n-1,n^2(n-1)!\right)$
 
 ---
 
@@ -141,4 +122,4 @@ $\left(2^{n-1}+1,3\right)$
 - closure monads
 - maximal independent sets
 - extremal tree induction
-- bipartite relation graphs
+- equality classification
