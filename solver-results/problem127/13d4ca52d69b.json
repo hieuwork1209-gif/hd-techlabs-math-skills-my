@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-inner-product-spaces/problem.md",
+  "source_commit_sha": "be01f2ebe65295e35a000eb313ca202caf885514",
+  "problem_blob_sha": "13d4ca52d69bf4cb3f9b9a86fd5d5ff56e12e7a0",
+  "statement_sha256": "e58dc175d1f7fe4dc135be50cc5e2baf45942c216d7f71d8cf28f2a33321cf62",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T13:26:50+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nu_{ij}=\\langle e_i,f_j\\rangle .\n\\]\nThe matrix \\(U=(u_{ij})\\) is orthogonal. By changing signs of the \\(f_j\\)'s if needed, we may assume\n\\[\nu_{ii}=a \\quad (i=1,\\dots,5),\n\\]\nwhile every off-diagonal entry is still \\(\\pm b\\).\n\nSet\n\\[\nx=\\frac ab\n\\]\nand write \\(U=bS\\). Then \\(S\\) has diagonal entries \\(x\\), off-diagonal entries \\(\\pm1\\), and its distinct rows are orthogonal.\n\nFor two different rows \\(i,j\\), their dot product has the form\n\\[\nx(s_{ij}+s_{ji})+\\sum_{k\\ne i,j}s_{ik}s_{jk}=0.\n\\]\nHere \\(s_{ij}+s_{ji}\\in\\{-2,0,2\\}\\), while the sum has three terms each equal to \\(\\pm1\\), so it is one of \\(\\{-3,-1,1,3\\}\\). Since that second sum is odd, \\(s_{ij}+s_{ji}\\neq0\\). Hence\n\\[\nx\\in\\left\\{\\frac12,\\frac32\\right\\}.\n\\]\n\nNow rule out \\(x=\\frac12\\). If \\(x=\\frac12\\), then \\(T=2S\\) is an integer matrix with diagonal entries \\(1\\), off-diagonal entries \\(\\pm2\\), and mutually orthogonal rows. Each row has squared norm\n\\[\n1+4\\cdot 2^2=17,\n\\]\nso\n\\[\nTT^T=17I_5.\n\\]\nTaking determinants gives\n\\[\n(\\det T)^2=17^5,\n\\]\nimpossible because \\(\\det T\\) is an integer but \\(17^5\\) is not a perfect square.\n\nTherefore\n\\[\n\\frac ab=\\frac32.\n\\]\nAlso each row of \\(U\\) has norm \\(1\\), so\n\\[\na^2+4b^2=1.\n\\]\nWith \\(a=\\frac32 b\\),\n\\[\n\\frac94 b^2+4b^2=\\frac{25}{4}b^2=1,\n\\]\nso \\(b=\\frac25\\), and therefore\n\\[\na=\\frac35.\n\\]\n\n\\[\n\\boxed{\\frac35}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T13:27:40+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/13d4ca52d69b.json"
+}
