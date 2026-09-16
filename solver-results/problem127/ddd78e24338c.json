@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-differential-topology/problem.md",
+  "source_commit_sha": "6d5dcd9e214ff74aee2de35edbf4029798ffcbb2",
+  "problem_blob_sha": "ddd78e24338cb9992e55252b689d135ccbfa4c1e",
+  "statement_sha256": "d993988470aec4b31c1a5fa78a656f35de7a46a94e8dcb24f811f7f9c28a0d29",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T14:36:32+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nP_t(z)=0\n\\]\nfor some \\(z\\in S^{2m-1}\\). Write \\(r_j=|z_j|\\). From\n\\[\nz_j^2=-t\\overline{z_{j+1}}\n\\]\nwe get\n\\[\nr_j^2=t r_{j+1}.\n\\]\nNo \\(r_j\\) can be \\(0\\), since then all would be \\(0\\). Taking logs gives\n\\[\n\\log r_{j+1}=2\\log r_j-\\log t.\n\\]\nIterating cyclically forces \\(\\log r_j=\\log t\\) for every \\(j\\), hence \\(r_j=t\\). Since \\(z\\in S^{2m-1}\\),\n\\[\nm t^2=1.\n\\]\nThus zeros on the sphere can occur only when\n\\[\nt=\\frac1{\\sqrt m}.\n\\]\nThey do occur then: if \\(z_j=t e^{i\\theta_j}\\), the phase condition is\n\\[\n\\theta_{j+1}\\equiv -2\\theta_j-\\pi \\pmod{2\\pi},\n\\]\nand this cyclic recurrence has solutions. Therefore the assumption \\(P_t\\neq0\\) means exactly\n\\[\nt\\ne \\frac1{\\sqrt m}.\n\\]\n\nSo the degree is constant on the two intervals\n\\[\n0<t<\\frac1{\\sqrt m},\\qquad t>\\frac1{\\sqrt m}.\n\\]\n\nFor \\(0<t<1/\\sqrt m\\), homotope to \\(t=0\\):\n\\[\nP_0(z)=(z_1^2,\\dots,z_m^2).\n\\]\nThe normalized map has degree \\(2^m\\): a regular value with all coordinates nonzero has exactly \\(2^m\\) preimages, and the map is holomorphic in each coordinate, so each local degree is \\(+1\\).\n\nFor \\(t>1/\\sqrt m\\), divide by \\(t\\) and homotope to\n\\[\n(z_1,\\dots,z_m)\\mapsto (\\overline{z_2},\\overline{z_3},\\dots,\\overline{z_1}).\n\\]\nThe cyclic coordinate permutation has real determinant \\(+1\\), while complex conjugation in each of the \\(m\\) coordinates has real determinant \\(-1\\). Hence the degree is\n\\[\n(-1)^m.\n\\]\n\nTherefore\n\\[\n\\boxed{\n\\deg(F_t)=\n\\begin{cases}\n2^m, & 0<t<\\dfrac1{\\sqrt m},\\\\[4pt]\n(-1)^m, & t>\\dfrac1{\\sqrt m}.\n\\end{cases}\n}\n\\]\nAt \\(t=1/\\sqrt m\\), the assumption fails, so \\(F_t\\) is not defined on all of \\(S^{2m-1}\\).",
+  "status": "success",
+  "completed_at": "2026-09-16T14:37:25+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/ddd78e24338c.json"
+}
