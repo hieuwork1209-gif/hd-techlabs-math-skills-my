@@ -28,22 +28,23 @@ Let $L,M$ be two of the planes. The hypothesis
 $$
 \|P_Mx\|=c\|x\|\qquad(x\in L)
 $$
-means that the two singular values of the orthogonal projection $P_M|_L$ are both $c$. Put
+means that the two singular values of $P_M|_L$ are both $c$. Thus there are orthonormal bases $a_1,a_2$ of $L$ and $m_1,m_2$ of $M$ such that
 $$
-s=\sqrt{1-c^2}.
+\langle a_r,m_s\rangle=c\,\delta_{rs}.
 $$
-After choosing suitable oriented orthonormal coordinates, we may write
+Put $s=\sqrt{1-c^2}$. Then
 $$
-L=\operatorname{span}(e_1,e_2)
+n_r=\frac{m_r-ca_r}{s}\in L^\perp
 $$
-and
+are orthonormal. Fix the ambient orientation, take $e_1=a_1$, $e_2=a_2$, $e_3=n_1$, and choose $e_4$ so that $e_1,e_2,e_3,e_4$ is positively oriented. Then $n_2=\varepsilon e_4$ for some $\varepsilon\in\{1,-1\}$, and therefore
 $$
-M=\operatorname{span}(c e_1+s e_3,\ c e_2+\varepsilon s e_4),
-\qquad \varepsilon\in\{1,-1\}.
+L=\operatorname{span}(e_1,e_2),
 $$
-The sign $\varepsilon$ records whether the isometry from $L$ to $L^\perp$ preserves or reverses orientation.
+$$
+M=\operatorname{span}(c e_1+s e_3,\ c e_2+\varepsilon s e_4).
+$$
 
-For $L$, take $\omega_L=e_1\wedge e_2$. A direct expansion of the unit bivector of $M$ gives
+For $L$, take $\omega_L=e_1\wedge e_2$. Writing $e_{ij}=e_i\wedge e_j$, the unit bivector of $M$ is
 $$
 \omega_M
 =c^2e_{12}+\varepsilon cs e_{14}-cs e_{23}+\varepsilon s^2e_{34}.
@@ -122,33 +123,34 @@ c=\frac1{\sqrt3}.
 $$
 
 Step 5: Verify that the value is attainable
-Choose a unit vector $X\in\Lambda^2_+$ and choose four unit vectors $Y_1,\dots,Y_4\in\Lambda^2_-$ forming a regular tetrahedron, so
+Identify $\mathbb R^4$ with $\mathbb C^2$ with its standard Hermitian inner product, and view each complex line as a real two-plane. Let
 $$
-\langle Y_i,Y_j\rangle=-\frac13
+z_1=(1,0),
+$$
+$$
+z_2=\left(\frac1{\sqrt3},\sqrt{\frac23}\right),
+$$
+$$
+z_3=\left(\frac1{\sqrt3},\sqrt{\frac23}\,e^{2\pi i/3}\right),
+\qquad
+z_4=\left(\frac1{\sqrt3},\sqrt{\frac23}\,e^{4\pi i/3}\right).
+$$
+These are unit vectors and a direct calculation gives
+$$
+|\langle z_i,z_j\rangle_{\mathbb C}|=\frac1{\sqrt3}
 \qquad(i\ne j).
 $$
-Define
+Let $L_i=\mathbb C z_i$, regarded as a real two-dimensional subspace. If $x=\alpha z_i\in L_i$, orthogonal projection onto the complex line $L_j$ is
 $$
-\omega_i=\frac{X+Y_i}{\sqrt2}.
+P_{L_j}x=\langle x,z_j\rangle_{\mathbb C}z_j,
 $$
-Then $\|\omega_i\|=1$ and
+so
 $$
-\langle\omega_i,*\omega_i\rangle
-=\frac12(\|X\|^2-\|Y_i\|^2)=0.
+\|P_{L_j}x\|
+=|\langle z_i,z_j\rangle_{\mathbb C}|\,\|x\|
+=\frac1{\sqrt3}\|x\|.
 $$
-For a two-form in four dimensions, this condition is exactly the Plucker relation for decomposability, so each $\omega_i$ is the unit oriented area form of a two-plane $L_i$.
-
-For every $i\ne j$ we have
-$$
-\langle X_{L_i},X_{L_j}\rangle=1,
-\qquad
-\langle Y_{L_i},Y_{L_j}\rangle=-\frac13.
-$$
-By the calculation in Step 2, the two projection singular values between $L_i$ and $L_j$ are equal to a common number $c$ satisfying
-$$
-2c^2-1=-\frac13.
-$$
-Thus these four distinct planes realize $c=1/\sqrt3$.
+Thus four distinct planes satisfying the hypotheses exist for $c=1/\sqrt3$.
 
 Final Answer: $\boxed{\frac1{\sqrt3}}$
 
