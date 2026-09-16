@@ -37,7 +37,7 @@ x_i&\sqrt{x_i(1-x_i)}\\
 \sqrt{x_i(1-x_i)}&1-x_i
 \end{pmatrix}.
 $$
-The endpoint cases $x_i=0,1$ are obtained by the same orthogonal decomposition with the evident limiting blocks. Therefore
+The endpoint cases $x_i=0,1$ are the corresponding limiting principal-angle blocks. Therefore
 $$
 \det(P_i+Q_i)=1-x_i,
 $$
@@ -82,7 +82,7 @@ $$
 \qquad
 \sum z_i^2=\frac75.
 $$
-There are feasible points with positive product, for example the two-value configuration found below, so a maximizer cannot have any $z_i=0$.
+A feasible point with positive product is obtained by taking two coordinates equal to $\frac12+\frac1{\sqrt{10}}$ and two equal to $\frac12-\frac1{\sqrt{10}}$. Therefore a maximizer cannot have any $z_i=0$.
 
 Step 3: Analyze maximizers with no coordinate on the upper boundary
 Assume first that $0<z_i<1$ for every $i$. At an interior maximizer of the product, equivalently of $\sum_i\log z_i$, Lagrange multipliers give constants $\alpha,\beta$ such that
@@ -118,7 +118,7 @@ a+b+c=1,
 \qquad
 a^2+b^2+c^2=\frac25.
 $$
-We must maximize $abc$. An interior Lagrange-multiplier calculation for these three variables again shows that at most two distinct values occur. Since they cannot all be equal, two are equal. Write them as $u,u,v$. Then
+We must maximize $abc$. An interior Lagrange-multiplier calculation for these three variables shows that at most two distinct values occur. Since they cannot all be equal, two are equal. Write them as $u,u,v$. Then
 $$
 2u+v=1,
 \qquad
