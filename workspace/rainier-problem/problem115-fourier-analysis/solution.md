@@ -37,7 +37,7 @@ a contradiction. So the Walsh condition is exactly nondegeneracy of $B_g$.
 
 We now derive the required quadratic-form classification. For a nondegenerate quadratic form $q$ on $\mathbb F_2^{2m}$, choose a symplectic basis $e_i,f_i$. Since $h=\sum_i x_i y_i$ has the same polar form, $q-h$ is linear, so
 $$
-q=\bigperp_{i=1}^m Q_{a_i,b_i},
+q=Q_{a_1,b_1}\perp\cdots\perp Q_{a_m,b_m},
 \qquad
 Q_{a,b}(x,y)=xy+ax+by.
 $$
