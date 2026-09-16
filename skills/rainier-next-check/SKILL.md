@@ -52,6 +52,7 @@ When active:
 - In existing mode, inspect the exact adversary pair, official feedback, prior solver evidence, and any user-provided evaluator reports before deciding whether to measure, repair, harden, redesign, or promote.
 - Use the repository `format-solution` rules and deterministic `adv submit` field gates before readiness and promotion.
 - Use the local watcher with GPT-5.5 / Medium / 2100 seconds unless explicitly overridden.
+- Before instructing the user to start `--watch`, unless the current problem is already bound to the intended local Chrome window and its watcher is already running, remind them to run `python scripts/rainier-bind-window.py problemNN`, then `python scripts/codex-adversary-watch-chat.py problemNN --notify-test`, and only then `python scripts/codex-adversary-watch-chat.py problemNN --watch`.
 - One unseen exact `problem.md` blob gets one intended GPT-5.5 Medium cold solve. Never rerun the same blob to fish for failure.
 - A watcher `success` means only that a response exists. **Never classify difficulty from final-answer equality alone.**
 - Grade every completed response with `references/difficulty-evidence.md` before deciding stump vs solve.
