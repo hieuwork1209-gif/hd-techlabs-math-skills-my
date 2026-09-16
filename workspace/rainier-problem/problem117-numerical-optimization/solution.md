@@ -31,22 +31,30 @@ m(p):=\inf_{x\ne0}\frac{x^TAPA x}{x^TAx}.
 $$
 Hence minimizing $\Gamma_n$ is equivalent to maximizing $m(p)$.
 
-Step 2: Construct a universal sharp upper bound for $m(p)$
-Define
+Step 2: Derive a universal test vector and the sharp upper bound
+To make the numerator
 $$
-r_i=i(n+1-i),\qquad i=1,\ldots,n,
+x^TAPA x=(Ax)^TP(Ax)
 $$
-and set $r_0=r_{n+1}=0$. For $1\leq i\leq n$,
+independent of the unknown probability vector, seek a positive vector $r$ for which $Ar$ is constant. Fix the scale by requiring
 $$
-2i(n+1-i)-(i-1)(n+2-i)-(i+1)(n-i)=2,
+Ar=2\mathbf{1},
 $$
-where the endpoint terms are interpreted using $r_0=r_{n+1}=0$. Hence
+where $\mathbf{1}=(1,\ldots,1)^T$. With the boundary convention $r_0=r_{n+1}=0$, this is the recurrence
 $$
-2r_i-r_{i-1}-r_{i+1}=2
+2r_i-r_{i-1}-r_{i+1}=2.
 $$
-for every $i=1,\ldots,n$. Thus, with $\mathbf{1}=(1,\ldots,1)^T$,
+If $d_i=r_i-r_{i-1}$, then
 $$
-Ar=2\mathbf{1}.
+d_i-d_{i+1}=2.
+$$
+Thus $d_i=d_1-2(i-1)$. Since
+$$
+0=r_{n+1}=\sum_{i=1}^{n+1}d_i,
+$$
+we get $d_1=n$, and summing the differences gives the uniquely determined positive solution
+$$
+r_i=i(n+1-i),\qquad i=1,\ldots,n.
 $$
 Let
 $$
@@ -69,13 +77,27 @@ $$
 \Gamma_n(p)\geq1-\frac1S.
 $$
 
-Step 3: Show that the Poisson-weighted sampling attains the bound
-Take
+Step 3: Derive the only possible sharp sampling and prove attainment
+For the bound in Step 2 to be sharp at a positive probability vector, $r$ must minimize the generalized Rayleigh quotient at value $2/S$. If
+$$
+q(x)=\frac{x^TAPA x}{x^TAx},
+$$
+then differentiating $q(r+th)$ at $t=0$ in every direction $h$ gives the necessary stationarity equation
+$$
+APA r=\frac{2}{S}Ar.
+$$
+Using $Ar=2\mathbf{1}$, this becomes
+$$
+Ap=\frac{2}{S}\mathbf{1}=\frac1S Ar.
+$$
+Since $A$ is invertible, sharpness forces
 $$
 p_i^*=\frac{r_i}{S},
 \qquad
 P_*=\operatorname{diag}(p_1^*,\ldots,p_n^*).
 $$
+It remains to prove that this candidate actually attains the bound.
+
 Because $P_*$ is positive definite, if
 $$
 C=A^{1/2}P_*^{1/2},
@@ -99,7 +121,7 @@ $$
 \frac{r_{i-1}+r_{i+1}}{r_i}
 =2-\frac{2}{r_i},
 $$
-where $r_0=r_{n+1}=0$ and the last equality is exactly the second-difference relation from Step 2. Therefore
+where $r_0=r_{n+1}=0$ and the last equality is the recurrence from Step 2. Therefore
 $$
 u^T\left(A-\operatorname{diag}\left(\frac{2}{r_1},\ldots,\frac{2}{r_n}\right)\right)u
 =
@@ -115,39 +137,15 @@ so $m(p^*)\geq2/S$. Step 2 gives the reverse inequality, hence
 $$
 m(p^*)=\frac2S
 $$
-and therefore
+and
 $$
 \Gamma_n(p^*)=1-\frac1S.
 $$
 
-Step 4: Prove uniqueness of the optimal sampling distribution
-If some $p_i=0$, then $P$ is singular, so $APA$ is singular and $m(p)=0$. Such a distribution cannot be optimal because $m(p^*)=2/S>0$.
+Step 4: Close the uniqueness argument including boundary distributions
+If some $p_i=0$, then $P$ is singular, so $APA$ is singular and $m(p)=0$. Such a distribution cannot be optimal because Step 3 gives $m(p^*)=2/S>0$.
 
-Now suppose $p_i>0$ for all $i$ and $p$ is optimal. Then the bound from Step 2 is sharp, so $r$ attains the minimum in the generalized Rayleigh quotient defining $m(p)$. If
-$$
-q(x)=\frac{x^TAPA x}{x^TAx},
-$$
-then for every direction $h$, differentiating $q(r+th)$ at $t=0$ gives
-$$
-0=\frac{2h^T\left(APA r-m(p)Ar\right)}{r^TAr}.
-$$
-Hence
-$$
-APA r=\frac{2}{S}Ar.
-$$
-Using $Ar=2\mathbf{1}$ gives
-$$
-2Ap=\frac{4}{S}\mathbf{1},
-$$
-so
-$$
-Ap=\frac{2}{S}\mathbf{1}=\frac1S Ar.
-$$
-Since $A$ is invertible,
-$$
-p=\frac{r}{S}.
-$$
-Thus $p^*$ is the unique minimizer of $\Gamma_n$.
+If instead every $p_i>0$ and $p$ is optimal, then the universal bound from Step 2 must be sharp. The sharpness calculation in Step 3 forces $p_i=r_i/S$ for every $i$. Therefore $p^*$ is the unique minimizing probability vector.
 
 Step 5: Evaluate the normalization and state the optimum
 Using
