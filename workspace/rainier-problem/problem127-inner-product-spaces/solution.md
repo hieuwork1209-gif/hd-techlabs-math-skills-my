@@ -119,21 +119,21 @@ s=\frac{1+2\cos\theta}{3}.
 $$
 The six off-diagonal entries occur, up to signs, as three copies of
 $$
-u+v
+a_0+b_0
 $$
 and three copies of
 $$
-u-v,
+a_0-b_0,
 $$
 where
 $$
-u=\frac{1-\cos\theta}{3},
+a_0=\frac{1-\cos\theta}{3},
 \qquad
-v=\frac{\sin\theta}{\sqrt3}.
+b_0=\frac{\sin\theta}{\sqrt3}.
 $$
 Writing $c=\cos\theta$,
 $$
-u^2-v^2
+a_0^2-b_0^2
 =\frac{(1-c)^2}{9}-\frac{1-c^2}{3}
 =-\frac{2(1-c)(1+2c)}9
 =-s(1-s).
@@ -141,7 +141,7 @@ $$
 Hence
 $$
 M(R_\theta)
-=|s|^3|u+v|^3|u-v|^3
+=|s|^3|a_0+b_0|^3|a_0-b_0|^3
 =|s|^6(1-s)^3
 =\bigl(s^2(1-s)\bigr)^3.
 $$
@@ -183,20 +183,20 @@ $$
 
 Let
 $$
-u=x+y,
+\sigma=x+y,
 \qquad
-v=x-y.
+\delta=x-y.
 $$
 Since
 $$
-\sin x\sin y=\frac{\cos v-\cos u}{2},
+\sin x\sin y=\frac{\cos\delta-\cos\sigma}{2},
 $$
-for fixed $u$ we have
+for fixed $\sigma$ we have
 $$
-|\sin x\sin y\sin u|
-\leq\frac12|\sin u|\bigl(1+|\cos u|\bigr).
+|\sin x\sin y\sin\sigma|
+\leq\frac12|\sin\sigma|\bigl(1+|\cos\sigma|\bigr).
 $$
-Set $r=|\cos u|$. The square of the right-hand side is
+Set $r=|\cos\sigma|$. The square of the right-hand side is
 $$
 \frac14(1-r^2)(1+r)^2
 =\frac14(1-r)(1+r)^3.
