@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-inner-product-spaces/problem.md",
+  "source_commit_sha": "ba608d1b07fbfaba0d0e45b897d37ae91a63998f",
+  "problem_blob_sha": "3e71f0128f3bb71c84ee0b78684903be510ab9ab",
+  "statement_sha256": "f6ca02471950b6490a57e1ee0cdb86a36ad0d433ec15bce9959d2a81f7e495eb",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T12:09:32+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(G=(\\langle v_i,v_j\\rangle)_{i,j}\\) be the Gram matrix of the basis. Then \\(G\\) is positive definite, \\(G_{ii}=1\\), and the Gram matrix of the dual basis is \\(G^{-1}\\). Hence\n\\[\n(G^{-1})_{ii}=\\|w_i\\|^2=2.\n\\]\nTherefore\n\\[\n\\operatorname{tr}G=4,\\qquad \\operatorname{tr}G^{-1}=8.\n\\]\n\nSet\n\\[\na=\\frac{\\varepsilon}{2},\\qquad b=\\frac{\\eta}{2}.\n\\]\nSince \\(\\varepsilon_i,\\eta_i\\in\\{-1,1\\}\\) and \\(\\sum_i\\varepsilon_i\\eta_i=0\\), the vectors \\(a,b\\) are orthonormal in \\(\\mathbb R^4\\). Also\n\\[\n\\left\\|\\sum_i\\varepsilon_i v_i\\right\\|^2=\\varepsilon^TG\\varepsilon=4a^TGa,\n\\]\nand similarly for \\(\\eta\\). So the desired product is\n\\[\n4\\sqrt{(a^TGa)(b^TGb)}.\n\\]\n\nLet the eigenvalues of \\(G\\) be\n\\[\n\\lambda_1\\ge \\lambda_2\\ge \\lambda_3\\ge \\lambda_4>0.\n\\]\nBy Ky Fan’s inequality,\n\\[\na^TGa+b^TGb\\le \\lambda_1+\\lambda_2.\n\\]\nLet \\(u=\\lambda_1+\\lambda_2\\). Since \\(\\sum\\lambda_i=4\\), we have \\(\\lambda_3+\\lambda_4=4-u\\). Also\n\\[\n8=\\sum_{i=1}^4\\frac1{\\lambda_i}\n\\ge \\frac{4}{u}+\\frac{4}{4-u},\n\\]\nusing \\(\\frac1x+\\frac1y\\ge \\frac4{x+y}\\) twice. Thus\n\\[\n8\\ge \\frac{16}{u(4-u)},\n\\]\nso\n\\[\nu(4-u)\\ge 2.\n\\]\nThis gives\n\\[\nu\\le 2+\\sqrt2.\n\\]\nTherefore\n\\[\n(a^TGa)(b^TGb)\\le \\left(\\frac{a^TGa+b^TGb}{2}\\right)^2\n\\le \\left(1+\\frac1{\\sqrt2}\\right)^2.\n\\]\nHence the product is at most\n\\[\n4\\left(1+\\frac1{\\sqrt2}\\right)=4+2\\sqrt2.\n\\]\n\nIt remains to show this is attainable. Let\n\\[\nt=1+\\frac1{\\sqrt2},\\qquad s=1-\\frac1{\\sqrt2},\n\\]\nand define\n\\[\nG=t(aa^T+bb^T)+s(I-aa^T-bb^T).\n\\]\nBecause \\(a_i^2=b_i^2=\\frac14\\), each diagonal entry of \\(G\\) is\n\\[\n\\frac t2+\\frac s2=1.\n\\]\nAlso\n\\[\nG^{-1}=\\frac1t(aa^T+bb^T)+\\frac1s(I-aa^T-bb^T),\n\\]\nand each diagonal entry is\n\\[\n\\frac12\\left(\\frac1t+\\frac1s\\right)=2,\n\\]\nsince \\(ts=\\frac12\\) and \\(t+s=2\\). Thus this \\(G\\) is a valid Gram matrix, and \\(a,b\\) are eigenvectors with eigenvalue \\(t\\). Therefore the product equals\n\\[\n4t=4+2\\sqrt2.\n\\]\n\n\\[\n\\boxed{4+2\\sqrt2}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T12:11:17+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/3e71f0128f3b.json"
+}
