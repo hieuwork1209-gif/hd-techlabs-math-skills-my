@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-experimental-design-and-causal-inference/problem.md",
+  "source_commit_sha": "8ca80d67ea1e9a6956765c4fb3c7b2b84cc18500",
+  "problem_blob_sha": "9694f2373be8c85b62682157987236692e3fe585",
+  "statement_sha256": "03b30b53e6c6e0bbf29c2f1201578f277b41d6a19ca7eb5d8bc74d6d79b02ebd",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T12:04:08+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nV=\\begin{pmatrix}\n1&1&1&1&1\\\\\nx_1&x_2&x_3&x_4&x_5\\\\\n\\vdots&\\vdots&\\vdots&\\vdots&\\vdots\\\\\nx_1^4&x_2^4&x_3^4&x_4^4&x_5^4\n\\end{pmatrix}.\n\\]\n\nThen\n\n\\[\nM=\\frac15VV^T,\n\\]\n\nso\n\n\\[\n\\det M=5^{-5}(\\det V)^2\n=5^{-5}\\prod_{1\\le i<j\\le5}(x_j-x_i)^2.\n\\]\n\nThus we maximize the Vandermonde product under\n\n\\[\nx_1+\\cdots+x_5=\\frac53.\n\\]\n\nThere is no interior maximum. Indeed, if\n\n\\[\np(t)=\\prod_{i=1}^5(t-x_i),\n\\]\n\nthen the Lagrange equations for maximizing\n\n\\[\n\\sum_{i<j}\\log(x_j-x_i)\n\\]\n\nwould give\n\n\\[\n\\sum_{j\\ne i}\\frac1{x_i-x_j}=\\lambda\n\\]\n\nfor every \\(i\\). But\n\n\\[\n\\sum_{j\\ne i}\\frac1{x_i-x_j}=\\frac{p''(x_i)}{2p'(x_i)},\n\\]\n\nso \\(p''-2\\lambda p'\\) would have the five distinct roots \\(x_i\\), impossible since its degree is at most \\(4\\). Hence the maximum occurs at an endpoint.\n\nTake first \\(x_1=0\\). Write the remaining four points as \\(y_1<y_2<y_3<y_4\\), with\n\n\\[\ny_1+y_2+y_3+y_4=\\frac53.\n\\]\n\nWe maximize\n\n\\[\n\\prod_{i=1}^4 y_i\\prod_{i<j}(y_j-y_i).\n\\]\n\nLet\n\n\\[\nr(t)=\\prod_{i=1}^4(t-y_i)\n=t^4-\\frac53t^3+at^2-bt+c.\n\\]\n\nThe Lagrange equations become\n\n\\[\n\\frac1{y_i}+\\sum_{j\\ne i}\\frac1{y_i-y_j}=\\lambda.\n\\]\n\nEquivalently,\n\n\\[\nt r''(t)+2r'(t)-2\\lambda t r'(t)\n\\]\n\nvanishes at every root of \\(r\\). Comparing coefficients gives\n\n\\[\n\\lambda=6,\\qquad a=\\frac56,\\qquad b=\\frac5{36},\\qquad c=\\frac5{864}.\n\\]\n\nThus\n\n\\[\nr(t)=t^4-\\frac53t^3+\\frac56t^2-\\frac5{36}t+\\frac5{864}.\n\\]\n\nEquivalently,\n\n\\[\n864r(t)=864t^4-1440t^3+720t^2-120t+5.\n\\]\n\nThis polynomial has four roots in \\((0,1)\\), since its signs alternate across intervals such as\n\n\\[\n0,\\frac1{10},\\frac13,\\frac12,1.\n\\]\n\nSo it gives a feasible critical point. The objective is strictly concave in the ordered chamber, so this critical point is the unique maximum on the face \\(x_1=0\\).\n\nNow\n\n\\[\n\\prod_{i=1}^4 y_i=c=\\frac5{864},\n\\]\n\nand the discriminant of \\(r\\) is\n\n\\[\n\\prod_{i<j}(y_j-y_i)^2=\\frac{125}{6718464}.\n\\]\n\nTherefore the squared full Vandermonde product is\n\n\\[\n\\left(\\prod_{1\\le i<j\\le5}(x_j-x_i)\\right)^2\n=\n\\left(\\frac5{864}\\right)^2\\frac{125}{6718464}\n=\n\\frac{3125}{5015306502144}.\n\\]\n\nThe opposite endpoint face \\(x_5=1\\) has no interior critical point: the same coefficient comparison forces a negative elementary symmetric coefficient. Hence its maximum lies on the edge \\(x_1=0,x_5=1\\), where a direct bound gives a strictly smaller value.\n\nThus\n\n\\[\n\\max \\det M\n=\n5^{-5}\\cdot \\frac{3125}{5015306502144}\n=\n\\boxed{\\frac1{5015306502144}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T12:07:49+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/9694f2373be8.json"
+}
