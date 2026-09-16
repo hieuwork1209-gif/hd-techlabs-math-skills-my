@@ -25,11 +25,7 @@ The $i$th row of $O$ has norm $1$, hence the $i$th row $y_i^T$ of $Y$ satisfies
 $$
 \|y_i\|^2=1-\frac23=\frac13.
 $$
-Also $Y^TY=I_2$. Define
-$$
-u_i=\sqrt3\,y_i\in\mathbb R^2.
-$$
-Then every $u_i$ is a unit vector and
+Also $Y^TY=I_2$. Define $u_i=\sqrt3\,y_i\in\mathbb R^2$. Then every $u_i$ is a unit vector and
 $$
 \sum_{i=1}^6u_i u_i^T=3Y^TY=3I_2.
 $$
@@ -52,11 +48,7 @@ so
 $$
 |\det V_I|=\left(\sqrt{\frac32}\right)^4|\det X_I|=\frac94|\det Y_J|.
 $$
-Write
-$$
-u_i=(\cos\theta_i,\sin\theta_i).
-$$
-Since $y_i=u_i/\sqrt3$, for $J=\{i,j\}$ we obtain
+Write $u_i=(\cos\theta_i,\sin\theta_i)$. Since $y_i=u_i/\sqrt3$, for $J=\{i,j\}$ we obtain
 $$
 |\det Y_J|=\frac13|\det[u_i\ u_j]|=\frac13|\sin(\theta_i-\theta_j)|.
 $$
