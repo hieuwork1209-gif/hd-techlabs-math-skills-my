@@ -1,9 +1,0 @@
-{
-  "problem": "problem123",
-  "mode": "existing",
-  "ready": true,
-  "problem_path": "workspace/rainier-problem/problem123-probability-foundations/problem.md",
-  "problem_blob_sha": "cded7bc73a9d6e602322306452285046da7f9423",
-  "solution_path": "workspace/rainier-problem/problem123-probability-foundations/solution.md",
-  "solution_blob_sha": "0b1c164a1f0d91c674ff1304bad1145257263dbb"
-}
