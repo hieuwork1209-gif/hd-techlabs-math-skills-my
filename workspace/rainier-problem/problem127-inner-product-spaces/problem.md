@@ -2,22 +2,13 @@
 
 ## LaTeX (Normalized)
 
-Let $(e_1,e_2,e_3)$, $(f_1,f_2,f_3)$, and $(g_1,g_2,g_3)$ be orthonormal bases of $\mathbb R^3$. Suppose that corresponding vectors have the same inner product within each pair of bases:
-$$
-\langle e_1,f_1\rangle=\langle e_2,f_2\rangle=\langle e_3,f_3\rangle,
-$$
-$$
-\langle f_1,g_1\rangle=\langle f_2,g_2\rangle=\langle f_3,g_3\rangle,
-$$
-and
-$$
-\langle g_1,e_1\rangle=\langle g_2,e_2\rangle=\langle g_3,e_3\rangle.
-$$
+Let $(e_1,e_2,e_3,e_4)$ be an orthonormal basis of $\mathbb R^4$, and let $L$ be a two-dimensional subspace. Let $P_L$ denote orthogonal projection onto $L$.
+
+For $1\leq i<j\leq4$, let $A_{ij}$ be the area of the parallelogram spanned in $L$ by $P_Le_i$ and $P_Le_j$.
+
 Determine the maximum possible value of
 $$
-\left(\prod_{i=1}^3\prod_{j=1}^3|\langle e_i,f_j\rangle|\right)
-\left(\prod_{i=1}^3\prod_{j=1}^3|\langle f_i,g_j\rangle|\right)
-\left(\prod_{i=1}^3\prod_{j=1}^3|\langle g_i,e_j\rangle|\right).
+\prod_{1\leq i<j\leq4}A_{ij}.
 $$
 
 ---
@@ -35,4 +26,4 @@ $$
 
 ## Domain Explanation
 
-This problem is primarily Linear Algebra and Inner product spaces: three orthonormal bases determine three compatible orthogonal change-of-basis matrices, and the equal matched inner products impose constant diagonals on all three. The central difficulty is the compatibility of these inner-product isometries around the three-basis cycle; the final scalar optimization occurs only after that geometric constraint is resolved.
+This problem is primarily Linear Algebra and Inner product spaces: it asks how a two-dimensional subspace can simultaneously capture the six pairwise projected areas of an orthonormal basis under orthogonal projection. These areas are determined by the inner-product geometry of an orthonormal two-frame spanning the subspace, while the decisive compatibility among them comes from the minors of that frame. The final scalar inequality is subordinate to this projection geometry.
