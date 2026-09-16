@@ -56,11 +56,11 @@ for every $i$. Thus $P_t$ is nonzero on $S^{2m-1}$ exactly when
 $$
 t\ne\frac1{\sqrt m}.
 $$
-Hence the normalized map
+Under the hypothesis of the problem, the normalized map
 $$
 F_t(z)=\frac{P_t(z)}{\|P_t(z)\|}
 $$
-has constant degree on each of the two intervals
+is therefore well-defined, and its degree is constant on each of the two intervals
 $$
 0<t<\frac1{\sqrt m}
 \qquad\text{and}\qquad
@@ -97,7 +97,7 @@ $$
 $$
 preimages in the unit ball. At each such preimage the real Jacobian determinant of the coordinatewise squaring map is
 $$
-\prod_{i=1}^m 4|z_i|^2>0.
+\prod_{i=1}^m4|z_i|^2>0.
 $$
 Hence every local degree is $+1$, and therefore
 $$
@@ -116,13 +116,13 @@ $$
 $$
 Put
 $$
-u=\frac1t.
+q=\frac1t.
 $$
-The zero calculation from Step 1, rewritten in terms of $u$, shows that a boundary zero can occur only when
+The zero calculation from Step 1, rewritten for this scaled family, shows that a boundary zero can occur only when
 $$
-u=\sqrt m.
+q=\sqrt m.
 $$
-Since here $0<u<\sqrt m$, we may homotope $u$ to $0$. Thus $F_t$ is homotopic to the orthogonal map
+Since here $0<q<\sqrt m$, we may homotope $q$ to $0$. Thus $F_t$ is homotopic to the orthogonal map
 $$
 A(z_1,\dots,z_m)
 =\bigl(\overline{z_2},\overline{z_3},\dots,\overline{z_1}\bigr).
@@ -139,7 +139,7 @@ $$
 $$
 
 Step 4: Combine the two homotopy regimes
-The only parameter at which the normalized map is not defined is $t=1/\sqrt m$. On the two components of its complement, Steps 2 and 3 give
+The hypothesis that $P_t$ is nonzero on the sphere is equivalent to $t\ne1/\sqrt m$. On the two possible parameter regimes, Steps 2 and 3 give
 $$
 \deg F_t=
 \begin{cases}
