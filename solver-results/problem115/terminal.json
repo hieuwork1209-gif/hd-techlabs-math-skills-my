@@ -1,8 +1,9 @@
 {
   "problem": "problem115",
   "state": "MAIN_READY_FOR_RAINIER",
-  "problem_blob_sha": "f13db24b273cc365f2f0a875744c959ce4d5d48b",
-  "solution_blob_sha": "a6c6a0f4de8e5d61dc917761d92e0c4cfbedad20",
+  "problem_blob_sha": "bbe9cf3417d0c36eb3eafddecde1ad3d1b8fb24e",
+  "solution_blob_sha": "bac161182b5a202d82f49693324e43389634a4f9",
   "solver_backend": "local_watcher",
-  "solver_evidence": "GPT-5.5 Medium returned a materially wrong solution for the exact problem blob; it incorrectly excluded rank-1 orthogonal involutions."
+  "solver_evidence": "GPT-5.5 Medium returned the correct final scalar for the exact problem blob but materially omitted the derivation of the load-bearing fixed-vector involution counts 9360 and 10208, so the response was incomplete under the Rainier solver-evidence gate.",
+  "main_commit_sha": "4382ab263862ab2652b8ab0f9d0e434d219f1f33"
 }
