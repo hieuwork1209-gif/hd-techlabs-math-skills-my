@@ -2,18 +2,21 @@
 
 ## LaTeX (Normalized)
 
-For real $a,b$, let $C(a,b)$ be the symmetric circulant $6\times6$ matrix whose first row is
-$$
-\left(1,\frac12,a,b,a,\frac12\right).
-$$
-Let $\mathcal F$ be the set of all real symmetric positive semidefinite matrices $G=(g_{ij})_{1\le i,j\le6}$ satisfying
+Let $\varepsilon=(\varepsilon_1,\ldots,\varepsilon_6)\in\{-1,1\}^6$. Let $\mathcal F_\varepsilon$ be the set of real symmetric positive semidefinite matrices $G=(g_{ij})_{1\le i,j\le6}$ satisfying
 $$
 g_{ii}=1\quad(1\le i\le6),
 $$
+and, with cyclic indices,
 $$
-g_{12}=g_{23}=g_{34}=g_{45}=g_{56}=g_{61}=\frac12.
+g_{i,i+1}=\frac{\varepsilon_i}{2}\quad(1\le i\le6).
 $$
-Determine the ordered triple $(D,a,b)$ such that $D$ is the largest possible value of $\det G$ over $G\in\mathcal F$ and $C(a,b)$ is the unique maximizing matrix.
+Define
+$$
+D(\varepsilon)=\max_{G\in\mathcal F_\varepsilon}\det G.
+$$
+For $\sigma\in\{-1,1\}$, let $D_\sigma$ denote the common value of $D(\varepsilon)$ among sign patterns satisfying $\prod_{i=1}^6\varepsilon_i=\sigma$, provided that this common value is well-defined.
+
+Prove that $D_+$ and $D_-$ are well-defined and determine the ordered pair $(D_+,D_-)$ exactly.
 
 ---
 
@@ -30,4 +33,4 @@ Determine the ordered triple $(D,a,b)$ such that $D$ is the largest possible val
 
 ## Domain Explanation
 
-The problem is a maximum-determinant positive-semidefinite matrix completion problem with affine correlation constraints. The key task is to identify the unique optimizer using concavity and first-order optimality, then evaluate its determinant exactly. Thus Optimization and Numerical Mathematics -> Convex optimization is the direct classification.
+The problem asks for maximum determinants of positive-semidefinite matrix completions under signed affine correlation constraints. The sign pattern has a switching invariant around the cycle, and the optimizer must be characterized through strict concavity, first-order optimality, and the resulting sparse precision matrix before the two determinant values can be evaluated. Thus Optimization and Numerical Mathematics -> Convex optimization is the direct classification.
