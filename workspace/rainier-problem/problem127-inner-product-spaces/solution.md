@@ -1,264 +1,167 @@
 ## Steps
 
-Step 1: Convert the constant-angle conditions into skew complex structures
-For an orthogonal transformation $T$ satisfying
+Step 1: Recover the primal Gram matrix from the normalized dual Gram matrix
+Let
 $$
-\langle x,Tx\rangle=c\|x\|^2
+G=(\langle v_i,v_j\rangle)_{1\le i,j\le n}.
 $$
-for every $x$, polarization gives
+Because $(v_1,\dots,v_n)$ is a basis, $G$ is positive definite. The hypotheses give
 $$
-T+T^T=2cI_4.
+G_{ii}=1,
+\qquad
+|G_{ij}|=a\quad(i\ne j).
 $$
-Set
+If $(w_1,\dots,w_n)$ is the Euclidean dual basis, then its Gram matrix is
 $$
-s=\sqrt{1-c^2}
+H=G^{-1}.
 $$
-and, for each $i$,
+Put
 $$
-J_i=\frac{T_i-cI_4}{s}.
+r_i=\|w_i\|,
+\qquad
+R=\operatorname{diag}(r_1,\dots,r_n),
 $$
-Then
+and let $C$ be the Gram matrix of the normalized dual vectors $z_i=w_i/r_i$. Then
 $$
-J_i^T=-J_i.
-$$
-Using $T_i^TT_i=I_4$,
-$$
-(cI_4-sJ_i)(cI_4+sJ_i)=I_4,
-$$
-so
-$$
-J_i^2=-I_4.
-$$
-Thus each $J_i$ is an orthogonal complex structure.
-
-Step 2: Use the conditions on the products $T_iT_j$
-For $i\ne j$,
-$$
-T_iT_j=c^2I_4+cs(J_i+J_j)+s^2J_iJ_j.
-$$
-The hypothesis
-$$
-\langle x,T_iT_jx\rangle=c\|x\|^2
-$$
-for every $x$ is equivalent to
-$$
-T_iT_j+(T_iT_j)^T=2cI_4.
-$$
-Because $J_i^T=-J_i$, this yields
-$$
-2c^2I_4+s^2(J_iJ_j+J_jJ_i)=2cI_4.
+C=R^{-1}HR^{-1}=R^{-1}G^{-1}R^{-1}.
 $$
 Hence
 $$
-J_iJ_j+J_jJ_i=2\gamma I_4,
+C^{-1}=RGR.
+$$
+Since $G_{ii}=1$,
+$$
+(C^{-1})_{ii}=r_i^2,
+$$
+and therefore
+$$
+\frac{(C^{-1})_{ij}}
+{\sqrt{(C^{-1})_{ii}(C^{-1})_{jj}}}
+=G_{ij}.
+$$
+Thus the absolute off-diagonal entries of the normalized inverse of $C$ are all equal to $a$.
+
+Step 2: Use positive definiteness to determine the sign pattern of the dual correlations
+By hypothesis,
+$$
+C_{ii}=1,
 \qquad
-\gamma=\frac{c}{1+c}.
+C_{ij}=\frac{\varepsilon_{ij}}2
+\quad(i\ne j),
 $$
+where each $\varepsilon_{ij}\in\{-1,1\}$ and $\varepsilon_{ij}=\varepsilon_{ji}$.
 
-On the real vector space of skew-symmetric $4\times4$ matrices, use the inner product
+For any three distinct indices $i,j,k$, the corresponding principal $3\times3$ minor is
 $$
-\langle A,B\rangle_*=-\frac14\operatorname{tr}(AB).
-$$
-Since $J_i^2=-I_4$,
-$$
-\|J_i\|_*^2=1.
-$$
-Taking traces in the anticommutator relation gives
-$$
-\langle J_i,J_j\rangle_*=-\gamma
-\qquad(i\ne j).
-$$
-Thus the four $J_i$ have Gram matrix
-$$
-G=(1+\gamma)I_4-\gamma\mathbf 1\mathbf 1^T.
-$$
-
-Step 3: Show that the four $J_i$ span at most three dimensions
-Fix $J_1$. For $i=2,3,4$, define
-$$
-K_i=\frac{J_i+\gamma J_1}{\sqrt{1-\gamma^2}}.
-$$
-Using
-$$
-J_1J_i+J_iJ_1=2\gamma I_4
-$$
-and $J_1^2=-I_4$, we obtain
-$$
-J_1K_i+K_iJ_1=0.
-$$
-Therefore every $K_i$ lies in the linear space
-$$
-\mathcal A=\{K:K^T=-K,\ J_1K+KJ_1=0\}.
-$$
-
-Choose an orthonormal basis in which
-$$
-J_1=
+\det
 \begin{pmatrix}
-0&-I_2\\
-I_2&0
-\end{pmatrix}.
+1&\varepsilon_{ij}/2&\varepsilon_{ik}/2\\
+\varepsilon_{ij}/2&1&\varepsilon_{jk}/2\\
+\varepsilon_{ik}/2&\varepsilon_{jk}/2&1
+\end{pmatrix}
+=
+\frac{1+\varepsilon_{ij}\varepsilon_{ik}\varepsilon_{jk}}4.
 $$
-Write a general skew-symmetric matrix as
+Because $C$ is positive definite, every principal minor is positive. Hence
 $$
-K=
-\begin{pmatrix}
-A&B\\
--B^T&D
-\end{pmatrix},
+\varepsilon_{ij}\varepsilon_{ik}\varepsilon_{jk}=1
 $$
-where $A,D$ are skew-symmetric $2\times2$ matrices. The equation $J_1K+KJ_1=0$ is equivalent to
+for every triple.
+
+Fix
 $$
-B+B^T=0,
+\sigma_1=1,
 \qquad
-D=-A.
+\sigma_i=\varepsilon_{1i}\quad(i>1).
 $$
-A skew-symmetric $2\times2$ matrix has one free parameter, so $A$ contributes one parameter and $B$ contributes one parameter. Hence
+Applying the triangle relation to $1,i,j$ gives
 $$
-\dim\mathcal A=2.
+\varepsilon_{ij}=\sigma_i\sigma_j.
 $$
-Consequently
+Therefore, if
 $$
-\dim\operatorname{span}\{J_1,J_2,J_3,J_4\}\le3.
+D=\operatorname{diag}(\sigma_1,\dots,\sigma_n),
 $$
-Therefore the Gram matrix $G$ has rank at most $3$.
+then
+$$
+DCD=\frac12(I_n+J_n),
+$$
+where $J_n$ is the all-ones matrix.
 
-Step 4: Extract the unique value of $c$
-The eigenvalues of
-$$
-G=(1+\gamma)I_4-\gamma\mathbf 1\mathbf 1^T
-$$
-are
-$$
-1+\gamma
-$$
-with multiplicity $3$, and
-$$
-1-3\gamma
-$$
-with multiplicity $1$. Since $0<c<1$, we have $\gamma>0$, so $1+\gamma>0$. Rank at most $3$ therefore forces
-$$
-1-3\gamma=0.
-$$
-Thus
-$$
-\gamma=\frac13.
-$$
+Step 3: Invert the switched correlation matrix
 Since
 $$
-\gamma=\frac{c}{1+c},
+(I_n+J_n)^{-1}=I_n-\frac1{n+1}J_n,
 $$
-we get
+we have
 $$
-\frac{c}{1+c}=\frac13,
+(DCD)^{-1}
+=2\left(I_n-\frac1{n+1}J_n\right).
 $$
-so
+Its diagonal entries are
 $$
-c=\frac12.
+\frac{2n}{n+1},
+$$
+and every off-diagonal entry is
+$$
+-\frac2{n+1}.
+$$
+Thus the absolute value of every off-diagonal entry after normalizing the inverse to have diagonal $1$ is
+$$
+\frac{2/(n+1)}{2n/(n+1)}=\frac1n.
+$$
+Conjugation by $D$ changes only signs, so the same absolute value holds for the normalized inverse of $C$. By Step 1,
+$$
+a=\frac1n.
 $$
 
-Step 5: Construct four transformations attaining the value
-Let $I,J,K$ be the following skew-symmetric orthogonal matrices:
+Step 4: Verify that the value is attainable
+Consider
 $$
-I=
-\begin{pmatrix}
-0&-1&0&0\\
-1&0&0&0\\
-0&0&0&-1\\
-0&0&1&0
-\end{pmatrix},
-\quad
-J=
-\begin{pmatrix}
-0&0&-1&0\\
-0&0&0&1\\
-1&0&0&0\\
-0&-1&0&0
-\end{pmatrix},
+G_0=\left(1+\frac1n\right)I_n-\frac1nJ_n.
 $$
+Its diagonal entries are $1$ and its off-diagonal entries are $-1/n$. On the line spanned by the all-ones vector its eigenvalue is
 $$
-K=
-\begin{pmatrix}
-0&0&0&-1\\
-0&0&-1&0\\
-0&1&0&0\\
-1&0&0&0
-\end{pmatrix}.
+\frac1n,
 $$
-They satisfy
+and on its orthogonal complement its eigenvalue is
 $$
-I^2=J^2=K^2=-I_4
+1+\frac1n.
 $$
-and pairwise anticommute.
+Hence $G_0$ is positive definite, so it is the Gram matrix of a basis of unit vectors.
 
-Take the four unit vectors
+Moreover,
 $$
-q_1=\frac1{\sqrt3}(1,1,1),
-\quad
-q_2=\frac1{\sqrt3}(1,-1,-1),
+G_0^{-1}=\frac{n}{n+1}(I_n+J_n).
 $$
+The diagonal entries of $G_0^{-1}$ are $2n/(n+1)$ and the off-diagonal entries are $n/(n+1)$. Therefore the normalized dual vectors have pairwise inner products of absolute value
 $$
-q_3=\frac1{\sqrt3}(-1,1,-1),
-\quad
-q_4=\frac1{\sqrt3}(-1,-1,1).
+\frac{n/(n+1)}{2n/(n+1)}=\frac12.
 $$
-They satisfy
-$$
-q_i\cdot q_j=-\frac13
-\qquad(i\ne j).
-$$
-Define
-$$
-J_i=(q_i)_1I+(q_i)_2J+(q_i)_3K.
-$$
-Then
-$$
-J_i^2=-I_4
-$$
-and, for $i\ne j$,
-$$
-J_iJ_j+J_jJ_i
-=-2(q_i\cdot q_j)I_4
-=\frac23I_4.
-$$
-Finally set
-$$
-T_i=\frac12I_4+\frac{\sqrt3}{2}J_i.
-$$
-Each $T_i$ is orthogonal and satisfies
-$$
-T_i+T_i^T=I_4.
-$$
-Also, for $i\ne j$,
-$$
-\frac12\bigl(T_iT_j+(T_iT_j)^T\bigr)
-=\frac14I_4+\frac38\left(\frac23I_4\right)
-=\frac12I_4.
-$$
-Hence all the stated conditions hold with $c=1/2$.
+Thus the hypotheses are realizable with $a=1/n$.
 
-Final Answer: $\boxed{\frac12}$
+Final Answer: $\boxed{\frac1n}$
 
 ---
 
 ## Answer
 
-$\frac12$
+$\frac1n$
 
 ---
 
 ## Classification
 
-**Problem Type:** Exact determination
+**Problem Type:** Parameter identification
 
-**Answer Type:** Exact scalar
+**Answer Type:** Exact symbolic expression
 
 ---
 
 ## Solution Concepts
 
-- orthogonal transformations
-- polarization identity
-- orthogonal complex structures
-- anticommuting skew-symmetric maps
-- gram matrix rank
+- dual bases and gram matrices
+- correlation matrices
+- principal minors and sign switching
+- rank-one matrix inversion
+- positive definite gram matrices
