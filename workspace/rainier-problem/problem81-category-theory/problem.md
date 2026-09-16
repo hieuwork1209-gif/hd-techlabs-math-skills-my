@@ -63,9 +63,13 @@ Let the resulting extremal values be
 $$
 (A_{p,a},B_{p,a},C_{p,a},D_{p,a}).
 $$
-Let $\mathcal E$ be the set of functors attaining all four extrema, and define
+Let $\mathcal E$ be the set of functors attaining all four extrema. Let $K_{p,a}$ be the number of pairs
 $$
-K_{p,a}=\sum_{F\in\mathcal E}|\operatorname{Aut}(F)|,
+(F,\eta),
+\qquad
+F\in\mathcal E,
+\quad
+\eta\in\operatorname{Aut}(F),
 $$
 where $\operatorname{Aut}(F)$ is the group of natural automorphisms of $F$.
 
@@ -89,4 +93,4 @@ $$
 
 ## Domain Explanation
 
-The problem performs a mixed extremal analysis of canonical norm comparisons between left and right Kan extensions of a functor on a finite group category, together with right-Kan-extension invariant dimensions before and after subgroup restriction. The final count weights extremal functors by their natural automorphism groups, so both the categorical Kan-extension data and the functor-groupoid stabilizers are essential. Thus Logic, Set Theory, and Foundations -> Category theory is primary, with modular linear algebra serving as the subordinate method.
+The problem performs a mixed extremal analysis of canonical norm comparisons between left and right Kan extensions of a functor on a finite group category, together with right-Kan-extension invariant dimensions before and after subgroup restriction. The final count marks each extremal functor by a natural automorphism, so both the categorical Kan-extension data and the stabilizers in the functor groupoid are essential. Thus Logic, Set Theory, and Foundations -> Category theory is primary, with modular linear algebra serving as the subordinate method.
