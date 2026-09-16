@@ -6,7 +6,7 @@ Let
 $$
 U=\frac{1}{\sqrt{2}}\begin{bmatrix}1&-1\\1&1\end{bmatrix}.
 $$
-There are two independent uncertainties: an overall curvature scale $\lambda\in[1/2,2]$ and an anisotropy parameter $\mu\in[1,4]$. Define
+There are two independent uncertainties: an overall curvature scale $\lambda\in[\frac{1}{2},2]$ and an anisotropy parameter $\mu\in[1,4]$. Define
 $$
 Q_{\lambda,\mu}
 =\lambda\begin{bmatrix}\mu&0\\0&\frac{4}{\mu}\end{bmatrix},
@@ -27,7 +27,7 @@ $$
 P_{h,\rho}(v)=\operatorname*{argmin}_{x\in\mathbb{R}^2}
 \left(h(x)+\frac{\rho}{2}\|x-v\|_2^2\right).
 $$
-Using one common parameter pair $(\rho,\theta)$ for every $(\lambda,\mu)\in[1/2,2]\times[1,4]$, with $0<\theta\leq2$, perform one relaxed Douglas-Rachford step
+Using one common parameter pair $(\rho,\theta)$ for every $(\lambda,\mu)\in[\frac{1}{2},2]\times[1,4]$, with $0<\theta\leq2$, perform one relaxed Douglas-Rachford step
 $$
 y=P_{f_{\lambda,\mu},\rho}(z),
 \qquad
@@ -43,13 +43,13 @@ $$
 and define the robust worst-case contraction
 $$
 \mathcal C(\rho,\theta)
-=\sup_{(\lambda,\mu)\in[1/2,2]\times[1,4]}
+=\sup_{(\lambda,\mu)\in[\frac{1}{2},2]\times[1,4]}
 \kappa_{\lambda,\mu}(\rho,\theta).
 $$
 Also define the worst-case uncertainty set
 $$
 \mathcal W(\rho,\theta)
-=\left\{(\lambda,\mu)\in[1/2,2]\times[1,4]:
+=\left\{(\lambda,\mu)\in[\frac{1}{2},2]\times[1,4]:
 \kappa_{\lambda,\mu}(\rho,\theta)=\mathcal C(\rho,\theta)\right\}.
 $$
 Determine exactly
