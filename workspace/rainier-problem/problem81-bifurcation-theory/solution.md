@@ -29,11 +29,11 @@ U''=-2t^2\operatorname{sech}^2\left(t\left(x-\frac12\right)\right),
 \qquad
 \lambda e^U=2t^2\operatorname{sech}^2\left(t\left(x-\frac12\right)\right).
 $$
-Thus $U$ satisfies the same autonomous initial-value problem as $u$ at $x=1/2$, so uniqueness gives $u=U$. The boundary condition $u(0)=0$ yields
+Thus $U$ satisfies the same initial data and the same equation as $u$ at $x=1/2$. The equivalent first-order system $u'=p$, $p'=-\lambda e^u$ has a $C^1$ right-hand side, so its initial-value problem is unique; hence $u=U$. The boundary condition $u(0)=0$ yields
 $$
 M=2\log\cosh\left(\frac t2\right),
 $$
-and hence every positive solution is uniquely represented by
+and therefore every positive solution is uniquely represented by
 $$
 u_t(x)=2\log\frac{\cosh(t/2)}{\cosh\left(t\left(x-\frac12\right)\right)},
 \qquad
@@ -61,7 +61,7 @@ V_1(y)=\tanh y,
 \qquad
 V_2(y)=y\tanh y-1.
 $$
-Indeed, direct differentiation gives $V_j''+2\operatorname{sech}^2(y)V_j=0$, and at $y=0$ their initial data are $(V_1,V_1')=(0,1)$ and $(V_2,V_2')=(-1,0)$, so they are linearly independent and span the solution space.
+Direct differentiation gives $V_j''+2\operatorname{sech}^2(y)V_j=0$, while at $y=0$ their initial data are $(V_1,V_1')=(0,1)$ and $(V_2,V_2')=(-1,0)$. Hence they are linearly independent and, by uniqueness for this second-order linear equation, span its solution space.
 
 Write $a=t/2$ and $T=\tanh a>0$. A general solution is
 $$
@@ -91,7 +91,7 @@ Then
 $$
 \phi'(t)=\tanh\left(\frac t2\right)+\frac t2\operatorname{sech}^2\left(\frac t2\right)>0.
 $$
-Also $\phi(t)\to0$ as $t\downarrow0$ and $\phi(t)\to\infty$ as $t\to\infty$. Hence $\phi(t)=2$ has exactly one positive solution. Combining this with the parametrization of all positive solutions and the kernel criterion, the requested set of parameters is the singleton
+Also $\phi(t)\to0$ as $t\downarrow0$ and $\phi(t)\to\infty$ as $t\to\infty$. Hence $\phi(t)=2$ has exactly one positive solution. Combining the parametrization of all positive solutions with the kernel criterion, the requested set of parameters is the singleton
 $$
 \left\{\frac{2t^2}{\cosh^2(t/2)}:t>0,\ t\tanh(t/2)=2\right\}.
 $$
@@ -118,5 +118,5 @@ $\left\{\frac{2t^2}{\cosh^2(t/2)}:t>0,\ t\tanh(t/2)=2\right\}$
 - autonomous first integral
 - Bratu solution branch
 - Sturm-Liouville linearization
-- Pöschl-Teller equation
-- bifurcation degeneracy
+- explicit second-order kernel equation
+- fold bifurcation
