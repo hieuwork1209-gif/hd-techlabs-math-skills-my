@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-inner-product-spaces/problem.md",
+  "source_commit_sha": "323aef2ca6da4ee5a28e71118d9f58d7c650e47a",
+  "problem_blob_sha": "0c384d2fd7e09f0cef88dea92c63ea8efdb19ea7",
+  "statement_sha256": "88a45d6ecd6123d8a6225f71ace6658c8f99ae5b565f833d2b1713e599020afd",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T13:10:33+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(q=c^2\\). Fix \\(L_1=E\\), and write \\(\\mathbb R^4=E\\oplus E^\\perp\\).\n\nFor any other plane \\(L\\), the condition with \\(L_1\\) says every nonzero vector in \\(L\\) projects to \\(E\\) with norm \\(c\\) times its own norm. Since \\(c>0\\), \\(L\\) is the graph of a linear map \\(T:E\\to E^\\perp\\). The constant projection norm forces\n\n\\[\nT^T T=\\frac{1-c^2}{c^2}I.\n\\]\n\nSo each \\(L_i\\) for \\(i=2,3,4\\) has the form\n\n\\[\nL_i=\\{(u,tU_i u):u\\in E\\},\n\\qquad\nt=\\frac{\\sqrt{1-c^2}}{c},\n\\]\n\nwhere \\(U_i\\in O(2)\\).\n\nFor two such planes, using orthonormal parametrizations, the projection matrix between them is\n\n\\[\nA=c^2 I+(1-c^2)U_j^T U_i.\n\\]\n\nThe hypothesis says every vector is shortened by exactly \\(c\\), so\n\n\\[\nA^T A=c^2 I.\n\\]\n\nLet \\(W=U_j^TU_i\\). After simplifying,\n\n\\[\nW+W^T=\\left(2-\\frac1{c^2}\\right)I.\n\\]\n\nThus every relative matrix \\(U_j^TU_i\\) is a rotation by some fixed angle \\(\\theta\\), with\n\n\\[\n2\\cos\\theta=2-\\frac1{c^2},\n\\qquad\\text{so}\\qquad\n\\cos\\theta=1-\\frac1{2c^2}.\n\\]\n\nNow \\(U_2,U_3,U_4\\) give three distinct points on the rotation circle, and every pair has the same angular separation \\(\\theta\\). Three distinct equally separated points on a circle must form an equilateral triple, so\n\n\\[\n\\theta=\\frac{2\\pi}{3}\n\\quad\\Rightarrow\\quad\n\\cos\\theta=-\\frac12.\n\\]\n\nTherefore\n\n\\[\n-\\frac12=1-\\frac1{2c^2}\n\\]\n\nso\n\n\\[\n\\frac1{2c^2}=\\frac32\n\\]\n\nand hence\n\n\\[\nc^2=\\frac13.\n\\]\n\n\\[\n\\boxed{c=\\frac1{\\sqrt3}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T13:11:29+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/0c384d2fd7e0.json"
+}
