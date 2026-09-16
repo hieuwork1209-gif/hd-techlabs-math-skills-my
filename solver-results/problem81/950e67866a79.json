@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-category-theory/problem.md",
+  "source_commit_sha": "f0c276986bccff6d8ecbac219a5c9c26d40767fd",
+  "problem_blob_sha": "950e67866a79664ac89110917297438599745fa0",
+  "statement_sha256": "6ccf99d3f91cd0557e0aec5a25091be936c396cd2508347bdee5ded36d59db67",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T12:56:27+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(R=\\mathbb F_2[t]/(t^3)\\). An object of \\(\\mathcal C\\) is just a finite free \\(R\\)-module, with \\(t\\) acting as \\(N\\). Thus \\(X_n\\simeq R^n\\), and natural endomorphisms of \\(U^{\\oplus 6}\\) are exactly \\(6\\times 6\\) matrices over \\(R\\).\n\nWrite\n\\[\nP=\\Pi=\\begin{pmatrix}I_3&0\\\\0&0\\end{pmatrix},\\qquad\nE=\\begin{pmatrix}A&B\\\\ C&D\\end{pmatrix}.\n\\]\nThen\n\\[\nEP-PE=\\begin{pmatrix}0&B\\\\ C&0\\end{pmatrix},\n\\]\nso on \\(X_n\\simeq R^n\\) its \\(\\mathbb F_2\\)-rank is\n\\[\nn\\bigl(\\operatorname{rank}_{\\mathbb F_2}B+\\operatorname{rank}_{\\mathbb F_2}C\\bigr).\n\\]\n\nThe maximum possible rank is \\(18n\\), requiring both \\(B,C\\) invertible over \\(R\\). If \\(B\\) is invertible, the idempotent equations force\n\\[\nD=I+B^{-1}AB,\\qquad C=DB^{-1}A.\n\\]\nHence \\(C\\) is invertible iff \\(A\\) and \\(I+A\\) are invertible. Over the local ring \\(R\\), this depends only on reduction mod \\(t\\). In \\(M_3(\\mathbb F_2)\\), matrices \\(A_0\\) with both \\(A_0\\) and \\(I+A_0\\) invertible are exactly the \\(48\\) elements of order \\(7\\) in \\(\\mathrm{GL}_3(\\mathbb F_2)\\). Each has \\(2^{18}\\) lifts to \\(R\\), and\n\\[\n|\\mathrm{GL}_3(R)|=|\\mathrm{GL}_3(\\mathbb F_2)|2^{18}=168\\cdot 2^{18}.\n\\]\nThus\n\\[\nN_n^{(1)}=(168\\cdot 2^{18})(48\\cdot 2^{18})\n=8064\\cdot 2^{36}.\n\\]\n\nFor the second largest rank, the only possibility is \\(17n\\): one of \\(B,C\\) is invertible and the other has \\(\\mathbb F_2\\)-rank \\(8\\). By symmetry, count the case \\(B\\) invertible and double it.\n\nWith \\(B\\) invertible, after replacing \\(A\\) by \\(B^{-1}AB\\), we need\n\\[\n\\operatorname{rank}_{\\mathbb F_2}\\bigl(A(I+A)\\bigr)=8.\n\\]\nModulo \\(t\\), this requires \\(A_0(I+A_0)\\) to have rank \\(2\\). The possible rational canonical types over \\(\\mathbb F_2\\) are:\n\\[\nJ_3(0),\\quad J_3(1),\\quad [0]\\oplus C_{x^2+x+1},\\quad [1]\\oplus C_{x^2+x+1}.\n\\]\nTheir conjugacy class sizes are\n\\[\n42,\\ 42,\\ 56,\\ 56,\n\\]\nso there are \\(196\\) such reductions. For each such \\(A_0\\), exactly half of the \\(2^9\\) choices of the \\(t\\)-coefficient lift make the determinant have valuation exactly \\(1\\), and the \\(t^2\\)-coefficient is arbitrary. Hence the number of \\(A\\) with rank \\(8\\) is\n\\[\n196\\cdot 2^8\\cdot 2^9=196\\cdot 2^{17}.\n\\]\nTherefore\n\\[\nN_n^{(2)}=2(168\\cdot 2^{18})(196\\cdot 2^{17})\n=32928\\cdot 2^{36}.\n\\]\n\nSo for every \\(n\\ge 1\\),\n\\[\n\\boxed{\n\\left(R_n^{(1)},N_n^{(1)},R_n^{(2)},N_n^{(2)}\\right)\n=\n\\left(18n,\\ 8064\\cdot 2^{36},\\ 17n,\\ 32928\\cdot 2^{36}\\right).\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T12:58:27+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/950e67866a79.json"
+}
