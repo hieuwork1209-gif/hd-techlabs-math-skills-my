@@ -4,17 +4,23 @@
 
 Let
 $$
-Q=\begin{bmatrix}1&0\\0&4\end{bmatrix},
-\qquad
-R=\begin{bmatrix}\frac{5}{2}&-\frac{3}{2}\\-\frac{3}{2}&\frac{5}{2}\end{bmatrix}.
+U=\frac{1}{\sqrt{2}}\begin{bmatrix}1&-1\\1&1\end{bmatrix}.
 $$
-The common curvature scale is uncertain and is known only to lie between the two eigenvalues of $Q$. Thus, for $\mu\in[1,4]$, define
+Instead of an uncertain common curvature scale, assume the determinant is fixed while the anisotropy is uncertain. For $\mu\in[1,4]$, define
 $$
-f_{\mu}(x)=\frac{\mu}{2}x^TQx,
+Q_{\mu}=\begin{bmatrix}\mu&0\\0&4/\mu\end{bmatrix},
 \qquad
-g_{\mu}(x)=\frac{\mu}{2}x^TRx
+R_{\mu}=UQ_{\mu}U^T,
+$$
+and
+$$
+f_{\mu}(x)=\frac{1}{2}x^TQ_{\mu}x,
+\qquad
+g_{\mu}(x)=\frac{1}{2}x^TR_{\mu}x
 \qquad(x\in\mathbb{R}^2).
 $$
+Thus $\det Q_{\mu}=\det R_{\mu}=4$ for every $\mu$, while the two principal curvatures vary reciprocally between $1$ and $4$.
+
 For $\rho>0$, define
 $$
 P_{h,\rho}(v)=\operatorname*{argmin}_{x\in\mathbb{R}^2}
@@ -58,4 +64,4 @@ $$
 
 ## Domain Explanation
 
-This problem asks for robust tuning of the penalty and relaxation parameters of Douglas-Rachford splitting when the quadratic objective has an uncertain common curvature scale. The requested object is the parameter pair minimizing the worst-case contraction across the entire uncertainty interval, which is part of Optimization and Numerical Mathematics and Numerical optimization. Linear Algebra, especially singular values and matrix norms, is used only to certify the contraction bounds and is therefore subordinate to the numerical-optimization task.
+This problem asks for robust tuning of the penalty and relaxation parameters of Douglas-Rachford splitting for a fixed-determinant family of anisotropic quadratic objectives. The requested object is the parameter pair minimizing the worst-case contraction across the full anisotropy interval, which is part of Optimization and Numerical Mathematics and Numerical optimization. Linear Algebra, especially proximal reflections and matrix norms, is used only to certify the contraction bounds and is therefore subordinate to the numerical-optimization task.
