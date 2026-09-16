@@ -2,48 +2,55 @@
 
 ## LaTeX (Normalized)
 
-Let $d\ge1$, let
+Let $p$ be an odd prime, let $a\ge2$, and let $1\le r\le p-1$. Put
 $$
-M=3d+2,
+R=p(p-1)+r,
 \qquad
-X=\{1,\ldots,M\},
+N=ap^2+R,
 $$
-and regard the Boolean lattice
+and let
 $$
-\mathcal B_X=\mathcal P(X)
+\Gamma_j(p)=|GL_j(\mathbb F_p)|
+=\prod_{i=0}^{j-1}(p^j-p^i).
 $$
-as a category under inclusion.
 
-For a function $f:X\to X$ and each $1\le k\le M$, inverse image fits into the adjoint triple
-$$
-\exists_{f^k}\dashv(f^k)^{-1}\dashv\forall_{f^k}.
-$$
 Let
 $$
-C_k=(f^k)^{-1}\exists_{f^k},
+G=C_{p^2}=\langle g\rangle,
 \qquad
-D_k=\forall_{f^k}(f^k)^{-1}
+H=\langle g^p\rangle\cong C_p,
 $$
-be the induced closure monads on $\mathcal B_X$.
+and regard $BG$ and $BH$ as one-object categories. Let $k=\mathbb F_p$ and fix the vector space
+$$
+V=k^N.
+$$
+Consider functors
+$$
+F:BG\to\operatorname{Vect}_k
+$$
+with $F(*)=V$. Distinct actions of $g$ on the fixed vector space $V$ are counted as distinct functors, even when the corresponding functors are naturally isomorphic.
 
-Restrict to functions satisfying
+For a finite group $Q$ and a functor $M:BQ\to\operatorname{Vect}_k$, left and right Kan extension along $BQ\to *$ are the coinvariants $M_Q$ and invariants $M^Q$. Let
 $$
-|f(X)|=2d+2,
+\mathsf N_Q:M_Q\to M^Q,
 \qquad
-f(x)\ne x\quad\text{for every }x\in X.
+[v]\longmapsto\sum_{q\in Q}qv
 $$
-Define
+be the norm comparison.
+
+For $F$ as above, define
 $$
-F(f)=\sum_{k=1}^{M}|\{S\subseteq X:C_k(S)=S\}|,
+\alpha(F)=\operatorname{rank}(\mathsf N_G),
 $$
+and, after restricting $F$ along $BH\hookrightarrow BG$, define
 $$
-G(f)=\sum_{k=1}^{M}|\{S\subseteq X:C_k(S)=D_k(S)=S\}|.
+\beta(F)=\operatorname{rank}(\mathsf N_H).
 $$
-First minimize $F(f)$. Among all minimizers of $F$, maximize $G(f)$. Let $A_d$ be the minimum of $F$, let $B_d$ be the resulting maximum of $G$, and let $K_d$ be the number of functions attaining both extrema.
+Order the pairs $(\alpha(F),\beta(F))$ lexicographically. Let $(A_{p,a,r},B_{p,a,r})$ be the largest possible pair, and let $K_{p,a,r}$ be the number of functors attaining it.
 
 Determine exactly
 $$
-(A_d,B_d,K_d).
+(A_{p,a,r},B_{p,a,r},K_{p,a,r}).
 $$
 
 ---
@@ -61,4 +68,4 @@ $$
 
 ## Domain Explanation
 
-The problem optimizes fixed-object counts for two families of closure monads arising from the adjoint triples attached to all iterates of an endomap of a Boolean-lattice category. The categorical fixed-object formulas must first be derived for every iterate; the resulting image-layer structure then governs the extremal profile and equality cases. Thus Logic, Set Theory, and Foundations -> Category theory is primary.
+The problem optimizes the ranks of the canonical norm comparisons between left and right Kan extensions of a functor on a finite group category, simultaneously before and after restriction along a subgroup inclusion. The categorical Kan-extension data determine the two rank invariants; modular linear algebra and finite-module centralizers are then used to analyze and count the extremizing functors. Thus Logic, Set Theory, and Foundations -> Category theory is primary, with linear algebra serving as the subordinate method.
