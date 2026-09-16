@@ -2,9 +2,9 @@
 
 ## LaTeX (Normalized)
 
-Let $0\le m<1$. Among all measurable functions
+Let $0\le m\le\frac12$. Among all measurable functions
 $$
-f:[-1,1]\to[0,\infty)
+f:[-1,1]\to[0,1]
 $$
 with $f\in L^2([-1,1])$ and
 $$
@@ -32,4 +32,4 @@ $$
 
 ## Domain Explanation
 
-This problem is primarily Optimization and Numerical Mathematics and Convex optimization: it minimizes a strictly convex quadratic functional over nonnegative $L^2$ functions subject to affine mass and first-moment constraints. The nonnegativity constraint becomes active beyond a sharp parameter threshold, so determining the optimum requires identifying and certifying both regimes.
+This problem is primarily Optimization and Numerical Mathematics and Convex optimization: it minimizes a strictly convex quadratic functional over an $L^2$ box subject to affine mass and first-moment constraints. As the prescribed mean increases, the unconstrained affine projection hits both faces of the box, creating a genuine active-set transition whose sharp value requires reconstructing and certifying the clipped optimizer.
