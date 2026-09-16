@@ -1,220 +1,167 @@
 ## Steps
 
-Step 1: Reduce the scale uncertainty to one effective penalty parameter
-Let
-$$
-Q=\begin{bmatrix}1&0\\0&4\end{bmatrix},
-\qquad
-R=\begin{bmatrix}\frac{5}{2}&-\frac{3}{2}\\-\frac{3}{2}&\frac{5}{2}\end{bmatrix}.
-$$
-For a scale $\mu\in[1,4]$, the Hessians of $f_{\mu}$ and $g_{\mu}$ are $\mu Q$ and $\mu R$. If
-$$
-t=\frac{\rho}{\mu},
-$$
-then solving the proximal first-order conditions gives
-$$
-J_Q(t)=t(tI+Q)^{-1},
-\qquad
-J_R(t)=t(tI+R)^{-1}.
-$$
-Define the reflected proximal maps
-$$
-H_Q(t)=2J_Q(t)-I,
-\qquad
-H_R(t)=2J_R(t)-I.
-$$
-With $s=\theta/2$, one relaxed Douglas-Rachford step has error operator
-$$
-T_{t,s}=(1-s)I+sH_R(t)H_Q(t),
-\qquad 0<s\leq1.
-$$
-Therefore
-$$
-\mathcal C(\rho,\theta)
-=\sup_{\mu\in[1,4]}\|T_{\rho/\mu,\theta/2}\|_2,
-$$
-so for fixed $\rho$ the effective parameter $t$ ranges over $[\rho/4,\rho]$.
-
-Step 2: Derive the reciprocal symmetry of the one-scale contraction
+Step 1: Write the relaxed Douglas-Rachford error operator
 Let
 $$
 U=\frac{1}{\sqrt{2}}\begin{bmatrix}1&-1\\1&1\end{bmatrix},
 \qquad
-R=UQU^T,
-$$
-and set
-$$
-a=\frac{t-1}{t+1},
+Q_{\mu}=\begin{bmatrix}\mu&0\\0&4/\mu\end{bmatrix},
 \qquad
-b=\frac{t-4}{t+4},
+R_{\mu}=UQ_{\mu}U^T.
+$$
+For a quadratic with Hessian $H$, the proximal reflection is
+$$
+2P_{h,\rho}-I=(\rho I-H)(\rho I+H)^{-1}.
+$$
+Set
+$$
+s=\frac{\theta}{2}\in(0,1],
 \qquad
-D=\operatorname{diag}(a,b).
+a_{\mu}=\frac{\rho-\mu}{\rho+\mu},
+\qquad
+b_{\mu}=\frac{\rho-4/\mu}{\rho+4/\mu},
+$$
+and
+$$
+D_{\mu}=\operatorname{diag}(a_{\mu},b_{\mu}).
+$$
+Then the two reflected proximal maps are $D_{\mu}$ and $UD_{\mu}U^T$, so one relaxed Douglas-Rachford step is linear with
+$$
+z^+=T_{\mu,\rho,s}z,
+\qquad
+T_{\mu,\rho,s}=(1-s)I+sUD_{\mu}U^TD_{\mu}.
+$$
+Therefore
+$$
+\mathcal C(\rho,\theta)=\sup_{\mu\in[1,4]}\|T_{\mu,\rho,\theta/2}\|_2.
+$$
+
+Step 2: Obtain a global lower bound from one endpoint of the uncertainty set
+The robust supremum contains $\mu=1$. At this endpoint write
+$$
+a=\frac{\rho-1}{\rho+1},
+\qquad
+b=\frac{\rho-4}{\rho+4},
+\qquad
+D=\operatorname{diag}(a,b),
+\qquad
+M=UDU^TD.
+$$
+Direct multiplication gives
+$$
+\operatorname{tr}M=\frac{(a+b)^2}{2},
+\qquad
+\|M\|_F^2=\frac{(a^2+b^2)^2}{2}.
+$$
+For $T=(1-s)I+sM$,
+$$
+\frac{\|T\|_F^2}{2}
+=(1-s)^2+\frac{s(1-s)}{2}(a+b)^2+\frac{s^2}{4}(a^2+b^2)^2.
+$$
+Since a $2\times2$ matrix satisfies $\|T\|_2^2\geq\|T\|_F^2/2$, it remains to bound $a^2+b^2$. Here
+$$
+a^2+b^2-\frac{2}{9}
+=\frac{4(\rho-2)^2(4\rho^2+11\rho+16)}{9(\rho+1)^2(\rho+4)^2}\geq0,
+$$
+with equality only at $\rho=2$. Consequently
+$$
+\mathcal C(\rho,2s)^2
+\geq(1-s)^2+\frac{s^2}{81}.
+$$
+For every $s>0$, equality in this lower bound forces $\rho=2$.
+
+Step 3: Optimize the relaxation parameter in the lower bound
+Define
+$$
+L(s)=(1-s)^2+\frac{s^2}{81},
+\qquad 0<s\leq1.
 $$
 Then
 $$
-H_Q(t)=D,
+L'(s)=-2(1-s)+\frac{2s}{81},
+$$
+so the unique critical point is
+$$
+s_*=\frac{81}{82}.
+$$
+Because $L$ is a strictly convex quadratic, this is its unique minimum on $(0,1]$, and
+$$
+L(s_*)=\frac{1}{82}.
+$$
+Thus every admissible pair satisfies
+$$
+\mathcal C(\rho,\theta)\geq\frac{1}{\sqrt{82}},
+$$
+and equality can occur only if
+$$
+\rho=2,
 \qquad
-H_R(t)=UDU^T,
-$$
-and
-$$
-UDU^T=\frac{1}{2}
-\begin{bmatrix}
-a+b&a-b\\
-a-b&a+b
-\end{bmatrix}.
-$$
-Writing
-$$
-M(t)=H_R(t)H_Q(t)=UDU^TD,
-$$
-this multiplication gives
-$$
-\operatorname{tr}M(t)=\frac{(a+b)^2}{2},
-\qquad
-\|M(t)\|_F^2=\frac{(a^2+b^2)^2}{2},
-\qquad
-\det M(t)=a^2b^2.
-$$
-For the reciprocal parameter $t^{\vee}=4/t$,
-$$
-a(t^{\vee})=-b(t),
-\qquad
-b(t^{\vee})=-a(t),
-$$
-so the three displayed invariants are unchanged. Since
-$$
-T_{t,s}=(1-s)I+sM(t),
-$$
-we have
-$$
-\|T_{t,s}\|_F^2
-=2(1-s)^2+2s(1-s)\operatorname{tr}M(t)+s^2\|M(t)\|_F^2
-$$
-and
-$$
-\det T_{t,s}
-=(1-s)^2+s(1-s)\operatorname{tr}M(t)+s^2\det M(t).
-$$
-The squared singular values of a $2\times2$ matrix have sum $\|T\|_F^2$ and product $(\det T)^2$. Hence they are unchanged by $t\mapsto4/t$, and therefore
-$$
-\|T_{t,s}\|_2=\|T_{4/t,s}\|_2.
+\theta=2s_*=\frac{81}{41}.
 $$
 
-Step 3: Prove a sharp lower bound outside the balanced interval
-Assume first that $0<t\leq1$. From the matrix in Step 2,
-$$
-M(t)e_2
-=\frac{b}{2}
-\begin{bmatrix}
-a-b\\
-a+b
-\end{bmatrix}
-=:m.
-$$
-Thus
-$$
-\|m\|_2^2=\frac{b^2(a^2+b^2)}{2},
-\qquad
-m_2=\frac{b(a+b)}{2}.
-$$
-For
-$$
-v(s)=T_{t,s}e_2=(1-s)e_2+sm,
-$$
-the function $\|v(s)\|_2^2$ is convex in $s$. At $s=1$ its derivative divided by $2$ is
-$$
-\begin{aligned}
-\|m\|_2^2-m_2
-&=\frac{b}{2}\left(b(a^2+b^2)-(a+b)\right)\\
-&=-\frac{t(t-4)(13t^3+19t^2-16t-112)}{(t+1)^2(t+4)^4}.
-\end{aligned}
-$$
-For $0<t\leq1$,
-$$
-13t^3+19t^2-16t-112
-\leq13+19-112<0,
-$$
-so the displayed derivative is negative. Because the derivative of a convex quadratic is increasing, $\|v(s)\|_2$ decreases throughout $0<s\leq1$. Hence
-$$
-\|T_{t,s}\|_2\geq\|T_{t,s}e_2\|_2\geq\|M(t)e_2\|_2.
-$$
-On $(0,1]$ the quantities
-$$
-|a|=\frac{1-t}{1+t},
-\qquad
-|b|=\frac{4-t}{4+t}
-$$
-are both decreasing in $t$. Therefore
-$$
-\|M(t)e_2\|_2^2
-=\frac{b^2(a^2+b^2)}{2}
-\geq\frac{81}{1250},
-$$
-with equality only at $t=1$. Thus
-$$
-\|T_{t,s}\|_2\geq\frac{9}{25\sqrt{2}}
-$$
-for $0<t\leq1$, with equality only at $(t,s)=(1,1)$. By the reciprocal symmetry from Step 2, the same bound holds for $t\geq4$, with equality only at $(t,s)=(4,1)$.
-
-For any $\rho>0$, the uncertainty interval for $t$ is $[\rho/4,\rho]$. If $\rho\leq4$, then $\rho/4\leq1$; if $\rho\geq4$, then $\rho\geq4$. Consequently
-$$
-\mathcal C(\rho,\theta)\geq\frac{9}{25\sqrt{2}}.
-$$
-Equality in this robust lower bound can occur only when
-$$
-\rho=4,
-\qquad
-s=1,
-$$
-that is, only when $\rho=4$ and $\theta=2$.
-
-Step 4: Show that the balanced parameters control every uncertain scale
+Step 4: Show that the forced pair attains the lower bound for every anisotropy
 Set
 $$
-\rho=4,
+\rho=2,
 \qquad
-\theta=2.
+s=\frac{81}{82}.
 $$
-Then $s=1$ and, as $\mu$ ranges over $[1,4]$,
+For arbitrary $\mu\in[1,4]$,
 $$
-t=\frac{4}{\mu}\in[1,4].
+a_{\mu}=\frac{2-\mu}{2+\mu},
+\qquad
+b_{\mu}=\frac{2-4/\mu}{2+4/\mu}
+=\frac{\mu-2}{\mu+2}=-a_{\mu}.
 $$
-Now $T_{t,1}=M(t)$, so
+Let
 $$
-\|T_{t,1}\|_2\leq\|M(t)\|_F
-=\frac{a^2+b^2}{\sqrt{2}}.
+c_{\mu}=\frac{2-\mu}{2+\mu},
+\qquad
+Z=\begin{bmatrix}1&0\\0&-1\end{bmatrix}.
 $$
-Substituting the displayed $a$ and $b$ gives
+Then $D_{\mu}=c_{\mu}Z$. The fixed matrix
 $$
-a^2+b^2
-=\frac{(t-1)^2(t+4)^2+(t-4)^2(t+1)^2}{(t+1)^2(t+4)^2}
-=\frac{2(t^4+t^2+16)}{(t+1)^2(t+4)^2}.
+J=UZU^TZ=\begin{bmatrix}0&-1\\1&0\end{bmatrix}
 $$
-Subtracting from $9/25$ and factoring yields
+satisfies $J^T=-J$ and $J^TJ=I$, so
 $$
-\frac{9}{25}-(a^2+b^2)
-=-\frac{(t-1)(t-4)(41t^2+115t+164)}{25(t+1)^2(t+4)^2}.
+UD_{\mu}U^TD_{\mu}=c_{\mu}^2J.
 $$
-For $1\leq t\leq4$, the right-hand side is nonnegative. Therefore
+Hence
 $$
-\|T_{t,1}\|_2\leq\frac{9}{25\sqrt{2}}
+T_{\mu,2,81/82}
+=\frac{1}{82}I+\frac{81}{82}c_{\mu}^2J
 $$
-for every uncertain scale. Combined with Step 3,
+and therefore
 $$
-\mathcal C(4,2)=\frac{9}{25\sqrt{2}}.
+T_{\mu,2,81/82}^TT_{\mu,2,81/82}
+=\left(\frac{1}{82^2}+\frac{81^2}{82^2}c_{\mu}^4\right)I.
+$$
+On $\mu\in[1,4]$,
+$$
+|c_{\mu}|=\frac{|2-\mu|}{2+\mu}\leq\frac{1}{3},
+$$
+with equality at $\mu=1$ and $\mu=4$. Thus
+$$
+\|T_{\mu,2,81/82}\|_2^2
+\leq\frac{1}{82^2}+\frac{81^2}{82^2}\frac{1}{81}
+=\frac{1}{82},
+$$
+and equality is attained at the two endpoints. Hence
+$$
+\mathcal C\left(2,\frac{81}{41}\right)=\frac{1}{\sqrt{82}}.
 $$
 
-Step 5: State the unique robustly optimal parameters
-Step 3 gives the global lower bound and shows that equality forces $\rho=4$ and $\theta=2$. Step 4 proves that this pair attains the bound for the whole uncertainty interval. Hence the minimizing pair is unique.
+Step 5: State the unique robust optimum
+The lower bound in Step 2 is strict unless $\rho=2$, and the strictly convex minimization in Step 3 then forces $s=81/82$, equivalently $\theta=81/41$. Step 4 proves that this pair controls every $\mu\in[1,4]$ and attains the lower bound. The minimizing pair is therefore unique.
 
-Final Answer: $\boxed{\left(4,2,\frac{9}{25\sqrt{2}}\right)}$
+Final Answer: $\boxed{\left(2,\frac{81}{41},\frac{1}{\sqrt{82}}\right)}$
 
 ---
 
 ## Answer
 
-$\left(4,2,\frac{9}{25\sqrt{2}}\right)$
+$\left(2,\frac{81}{41},\frac{1}{\sqrt{82}}\right)$
 
 ---
 
@@ -230,6 +177,6 @@ $\left(4,2,\frac{9}{25\sqrt{2}}\right)$
 
 - robust parameter tuning
 - relaxed Douglas-Rachford splitting
-- reciprocal parameter symmetry
-- singular values and matrix norms
-- equality-case uniqueness
+- proximal reflections
+- Frobenius norm lower bounds
+- fixed-determinant anisotropy
