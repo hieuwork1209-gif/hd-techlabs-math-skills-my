@@ -7,6 +7,14 @@ S(x)=\sum_{i=1}^{12}x_i,
 \qquad
 P(x)=\prod_{i=1}^{12}x_i.
 $$
+For $A\subseteq\{1,\ldots,12\}$, let $\chi_A(x)=\prod_{i\in A}x_i$. Under $U$ these characters satisfy
+$$
+\mathbb E_U[\chi_A\chi_B]=
+\begin{cases}
+1,&A=B,\\
+0,&A\ne B.
+\end{cases}
+$$
 Consider densities with respect to $U$ of the form
 $$
 h_{a,b}(x)=1+P(x)\bigl(a+bS(x)^2\bigr).
@@ -19,11 +27,11 @@ we have
 $$
 P S^2=12P+2\sum_{i<j}\prod_{k\ne i,j}x_k.
 $$
-Thus every nonconstant Fourier character occurring in $h_{a,b}$ has degree $10$ or $12$. Also $\mathbb E_U h_{a,b}=1$. Therefore, whenever $h_{a,b}\ge0$, the probability measure $d\mu=h_{a,b}\,dU$ has
+Thus every nonconstant Fourier character occurring in $h_{a,b}$ has degree $10$ or $12$, and $\mathbb E_Uh_{a,b}=1$. Therefore, whenever $h_{a,b}\ge0$, the probability measure $d\mu=h_{a,b}\,dU$ satisfies
 $$
-\mathbb E_\mu\prod_{i\in A}X_i=0
+\mathbb E_\mu\chi_A=\mathbb E_U[h_{a,b}\chi_A]=0
 $$
-for every nonempty $A$ with $|A|\le9$: multiplying by such a character cannot match the degree-$10$ or degree-$12$ characters in $h_{a,b}$. Hence for every $J$ with $|J|\le9$ and every $\varepsilon\in\{-1,1\}^{J}$,
+for every nonempty $A$ with $|A|\le9$, by the displayed orthogonality. Hence for every $J$ with $|J|\le9$ and every $\varepsilon\in\{-1,1\}^{J}$,
 $$
 \mathbb P_\mu(X_j=\varepsilon_j\text{ for }j\in J)
 =2^{-|J|}\mathbb E_\mu\prod_{j\in J}(1+\varepsilon_jX_j)
@@ -84,7 +92,7 @@ Q(s)=\frac{(s^2-16)(s^2-36)(s^2-64)(s^2-100)}{3686400}.
 $$
 Every possible value of $S$ is an even integer between $-12$ and $12$. We have $Q(0)=1$. At $|s|=4,6,8,10$ the value is $0$; at $|s|=2$ all four factors are negative; and at $|s|=12$ all four are positive. Therefore
 $$
-Q(s)\ge \mathbf 1_{\{s=0\}}
+Q(s)\ge \mathbf{1}_{\{s=0\}}
 $$
 for every possible value of $S$.
 
@@ -124,6 +132,6 @@ $\frac{297}{640}$
 ## Solution Concepts
 
 - finite-wise independence
-- Fourier characters on the discrete cube
+- fourier characters on the discrete cube
 - probability density tilting
 - polynomial majorant certificate
