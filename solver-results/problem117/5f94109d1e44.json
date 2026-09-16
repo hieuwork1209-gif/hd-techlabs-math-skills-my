@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "0a46f750c7d9be3ccb379e37049f22e3e3ed5e12",
+  "problem_blob_sha": "5f94109d1e44db0f6d7730365ba46b28bb1a4c44",
+  "statement_sha256": "097a092de9647b1bf85475f61bb8680611e48882e8d2066ec52fc998f5e3ced6",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T08:03:38+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(A_\\mu=Q_\\mu\\). For a quadratic \\(h(x)=\\frac12x^TAx\\),\n\n\\[\nP_{h,\\rho}(v)=\\rho(A+\\rho I)^{-1}v.\n\\]\n\nSet\n\n\\[\nF=\\rho(Q_\\mu+\\rho I)^{-1}=\\begin{bmatrix}a&0\\\\0&b\\end{bmatrix},\n\\qquad \nG=\\rho(R_\\mu+\\rho I)^{-1}=UFU^T,\n\\]\n\nwhere\n\n\\[\na=\\frac{\\rho}{\\rho+\\mu},\\qquad b=\\frac{\\rho}{\\rho+4/\\mu}.\n\\]\n\nThe relaxed DR step is linear:\n\n\\[\nz^+=Mz,\\qquad M=I+\\theta\\bigl(G(2F-I)-F\\bigr).\n\\]\n\nWrite\n\n\\[\np=a+b,\\qquad m=a-b.\n\\]\n\nUsing\n\n\\[\nF=\\frac p2I+\\frac m2H,\\qquad G=\\frac p2I+\\frac m2L,\n\\]\n\nwith\n\n\\[\nH=\\begin{bmatrix}1&0\\\\0&-1\\end{bmatrix},\\qquad\nL=\\begin{bmatrix}0&1\\\\1&0\\end{bmatrix},\\qquad\nJ=LH=\\begin{bmatrix}0&-1\\\\1&0\\end{bmatrix},\n\\]\n\none obtains\n\n\\[\nG(2F-I)-F\n=\nA I+B(H+L)+D J,\n\\]\n\nwhere\n\n\\[\nA=\\frac{p(p-2)}2,\\qquad\nB=\\frac{m(p-1)}2,\\qquad\nD=\\frac{m^2}{2}.\n\\]\n\nHence\n\n\\[\nM=(1+\\theta A)I+\\theta B(H+L)+\\theta D J.\n\\]\n\nSince the operator norm is at least the root-mean-square singular value,\n\n\\[\n\\|M\\|_2^2\\ge \\frac12\\operatorname{tr}(M^TM)\n=(1+\\theta A)^2+\\theta^2(2B^2+D^2).\n\\]\n\nNow take the single worst-case test value \\(\\mu=1\\). Then\n\n\\[\na=\\frac{\\rho}{\\rho+1},\\qquad b=\\frac{\\rho}{\\rho+4},\n\\]\n\nand, with \\(d=(\\rho+1)(\\rho+4)\\),\n\n\\[\np-1=\\frac{\\rho^2-4}{d},\\qquad m=\\frac{3\\rho}{d}.\n\\]\n\nLet\n\n\\[\n\\alpha=-A=\\frac{p(2-p)}2,\\qquad E=2B^2+D^2.\n\\]\n\nThen for every \\(\\theta\\),\n\n\\[\n\\|M\\|_2^2\\ge (1-\\theta\\alpha)^2+\\theta^2E\n\\ge \\frac{E}{\\alpha^2+E}.\n\\]\n\nA direct simplification gives\n\n\\[\n81E-\\alpha^2\n=\n\\frac{\\rho^2(\\rho-2)^2(1358\\rho^2+4612\\rho+5432)}\n{4(\\rho+1)^4(\\rho+4)^4}\\ge0.\n\\]\n\nTherefore\n\n\\[\n\\frac{E}{\\alpha^2+E}\\ge \\frac1{82},\n\\]\n\nso every admissible \\((\\rho,\\theta)\\) satisfies\n\n\\[\n\\mathcal C(\\rho,\\theta)\\ge \\frac1{\\sqrt{82}}.\n\\]\n\nEquality in the bound forces \\(\\rho=2\\).\n\nNow set \\(\\rho=2\\). Then for every \\(\\mu\\),\n\n\\[\na+b=1,\n\\]\n\nso \\(B=0\\), \\(A=-\\frac12\\), and\n\n\\[\nM=\\left(1-\\frac\\theta2\\right)I+\\theta\\frac{(a-b)^2}{2}J.\n\\]\n\nThis is a scalar plus a skew-symmetric matrix, so\n\n\\[\n\\|M\\|_2^2\n=\n\\left(1-\\frac\\theta2\\right)^2\n+\\theta^2\\frac{(a-b)^4}{4}.\n\\]\n\nHere\n\n\\[\na-b=\\frac{2-\\mu}{2+\\mu},\n\\]\n\nwhose maximum absolute value on \\([1,4]\\) is \\(1/3\\). Thus\n\n\\[\n\\mathcal C(2,\\theta)^2\n=\n\\left(1-\\frac\\theta2\\right)^2+\\frac{\\theta^2}{324}.\n\\]\n\nMinimizing,\n\n\\[\n\\frac{d}{d\\theta}\n\\left[\n\\left(1-\\frac\\theta2\\right)^2+\\frac{\\theta^2}{324}\n\\right]\n=\n-1+\\theta\\left(\\frac12+\\frac1{162}\\right),\n\\]\n\nso\n\n\\[\n\\theta_*=\\frac{81}{41}.\n\\]\n\nAt this value,\n\n\\[\n\\mathcal C_*^2=\\frac1{82},\n\\qquad\n\\mathcal C_*=\\frac1{\\sqrt{82}}.\n\\]\n\nThus the unique minimizing pair is\n\n\\[\n\\boxed{\\left(\\rho_*,\\theta_*,\\mathcal C_*\\right)\n=\n\\left(2,\\frac{81}{41},\\frac1{\\sqrt{82}}\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T08:06:09+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/5f94109d1e44.json"
+}
