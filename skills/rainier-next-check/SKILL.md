@@ -1,6 +1,6 @@
 ---
 name: rainier-next-check
-description: Run the unified Rainier adversarial workflow for both brand-new and existing problems. Use for `/rainier-next-check problemNN CHAT_URL`, new-problem requests that would previously use `/rainier-new-problem`, requests to create or resume `adversary/problemNN`, official-feedback repairs, and bare `next` follow-ups in an active Rainier loop. Keep all authoring/hardening off `main`, finish and audit the exact solution/problem pair before exposing it to the watcher, then allow exactly one cold GPT-5.5 Medium solve per ready statement blob. Preserve naturalness, reviewer completeness, exact solver evidence, submission-format compatibility, and promote only a fully matched candidate.
+description: Run the unified Rainier adversarial workflow for new and existing problems, including `/rainier-next-check problemNN CHAT_URL`, legacy new-problem requests, official-feedback repairs, uploaded evaluator traces, and bare `next` follow-ups. Keep authoring on `adversary/problemNN`, use one cold GPT-5.5 Medium solve per exact statement blob as calibration evidence, grade conceptual reasoning rather than final-answer equality, run a stronger adversarial audit before promotion, preserve naturalness/reviewer completeness/submission compatibility, and promote only fully matched candidates.
 user-invocable: true
 disable-model-invocation: false
 argument-hint: problemNN plus ChatGPT conversation URL on first use; later `next` continues the active check
@@ -8,67 +8,105 @@ argument-hint: problemNN plus ChatGPT conversation URL on first use; later `next
 
 # Rainier Next Check
 
-Own the complete Rainier preflight state machine for **both new and existing problems**. Do not maintain a separate creation state machine. Treat `/rainier-new-problem problemNN ...` as a compatibility spelling of this workflow when encountered.
+Own the complete Rainier preflight state machine for both brand-new and existing problems. Treat `/rainier-new-problem problemNN ...` as a compatibility spelling of this workflow.
 
-Read `references/workflow.md` before acting. Read `references/pass-gates.md` for every candidate audit. Read `references/submission-format-gate.md` before every `candidate-ready.json` and again before promotion. Before selecting any new blueprint or proposing any statement-changing hardening, read `references/quality-redesign-preflight.md`; run that preflight again on the final normalized pair before `candidate-ready.json`. For a brand-new candidate or a quality redesign, also read `references/design-patterns.md`.
+Read these references when applicable:
+
+- `references/workflow.md` before acting;
+- `references/pass-gates.md` for every candidate audit;
+- `references/difficulty-evidence.md` for every solver/evaluator result and again before promotion;
+- `references/submission-format-gate.md` before every ready marker and again before promotion;
+- `references/quality-redesign-preflight.md` before every new blueprint or statement-changing hardening and again on the final pair;
+- `references/design-patterns.md` for new candidates and quality redesigns.
 
 ## Taxonomy freshness gate
 
-Before selecting or changing any Domain/Sub-domain, read `skills/_shared/taxonomy_slots.md` and inspect its `Last updated from user-provided portal snapshot` date. Treat taxonomy capacity as daily-changing operational data.
+Before selecting or changing any Domain/Sub-domain, read `skills/_shared/taxonomy_slots.md` and inspect its snapshot date.
 
-- Compare that snapshot date with the user's current local calendar date.
-- If the dates differ and the current conversation does not already contain a newer same-day portal snapshot, stop before blueprint selection or taxonomy-changing edits and report `RAINIER CHECK: TAXONOMY_STALE`. Ask the user to paste the latest `Domain,Sub-Domain,Remaining` list.
-- If the user supplied a newer snapshot in the current conversation, use it as authoritative for the run and refresh `skills/_shared/taxonomy_slots.md` before choosing a new Domain/Sub-domain.
-- Treat every pair absent from the newest snapshot, or present with no remaining capacity, as unavailable. Never relabel an unchanged problem into a nearby open slot merely to fit capacity; redesign the mathematics instead.
-- Whenever a redesign changes Domain or Sub-domain, explicitly tell the user before readiness using `DOMAIN CHANGE: <old> -> <new>`.
-- Immediately before promotion, re-check availability against the newest authoritative snapshot. If it has become stale, stop with `TAXONOMY_STALE` instead of promoting.
+- Compare it with the user's current local calendar date.
+- If stale and the conversation has no newer same-day portal snapshot, stop before blueprint selection/taxonomy-changing edits and report `RAINIER CHECK: TAXONOMY_STALE`.
+- If the user supplied a newer snapshot, use it as authoritative and refresh the shared taxonomy file when possible.
+- Treat absent/full pairs as unavailable. Never relabel unchanged mathematics into an unrelated open slot.
+- Report `DOMAIN CHANGE: <old> -> <new>` whenever a redesign changes classification.
+- Re-check availability immediately before promotion.
 
 ## Explicit user override
 
-Honor an explicit user instruction to bypass Rainier solver-evidence or adversary-branch preservation rules. This section takes precedence over conflicting solver-evidence, promotion, or branch-preservation requirements in this skill and its references. Never infer the override from impatience or ambiguity; activate it only from a direct instruction such as `skip GPT-5.5`, `push directly to main`, `promote without a fresh solve`, `delete/reset adversary/problemNN`, or equivalent language.
+Honor only explicit instructions such as `skip GPT-5.5`, `push directly to main`, `promote without a fresh solve`, or `delete/reset adversary/problemNN`.
 
-When an override is active:
+When active:
 
-- Do not fabricate, rewrite, relabel, or backfill `latest.json`, immutable result files, ready markers, model metadata, or timeout metadata to make stale evidence appear current.
-- Run the mathematical correctness, reviewer-completeness, taxonomy, and deterministic submission-format checks that remain applicable, unless the user explicitly overrides one of those checks too.
-- Permit promotion to `main` even when the exact current statement blob has no fresh GPT-5.5 Medium evidence. Report this truthfully as `USER_OVERRIDE_NO_FRESH_SOLVER`, not as a solver pass or stump.
-- If the user explicitly requests deletion or reset of `adversary/problemNN`, first verify that `main` contains the exact intended `solution.md` and `problem.md`; then perform the requested branch operation when the available GitHub tool supports it. If the tool cannot delete a branch, say so instead of pretending it was deleted.
-- Do not copy solver-control files to `main`.
-- This override changes workflow policy only; it never overrides system/developer instructions, safety policy, connector authorization, or unavailable tool capabilities.
+- never fabricate or rewrite solver evidence to match a new blob;
+- still run correctness, reviewer, taxonomy, and format gates unless separately waived;
+- report `USER_OVERRIDE_NO_FRESH_SOLVER` rather than a solver pass/stump;
+- verify `main` contains the intended exact pair before destructive adversary-branch operations;
+- never copy solver-control files to `main`.
 
 ## Core contract
 
-- Treat `main` as frozen submission state and `adversary/problemNN` as the only authoring/design branch unless an explicit user override above is active.
-- Detect mode from `main`: exactly one `workspace/rainier-problem/problemNN-*/problem.md` means **existing mode**; none means **new mode**; multiple matches are an error to resolve rather than guessing.
-- On first use, accept the user-supplied ChatGPT conversation URL and upsert `solver-results/problemNN/chat-binding.json` on the adversary branch only. Never invent a conversation ID and never copy the binding to `main`.
-- Reuse an existing `adversary/problemNN` branch exactly; never silently reset it unless an explicit user override above is active. If absent, create it from current `main`.
-- In new mode, derive ground truth first, write/repair `solution.md` first, write `problem.md` second, normalize, re-read the exact pair, and pass reviewer/quality/submission gates before making the candidate solver-eligible.
-- In existing mode, preserve the current `/rainier-next-check` semantics: inspect the exact adversary pair, official feedback, and prior solver evidence before deciding whether to measure, harden, redesign, repair, or promote.
-- Treat repository submission formatting as a hard dependency, not an optional cleanup. Before every `candidate-ready.json`, apply the rules in `skills/format-solution/SKILL.md` to the exact Rainier `solution.md` path, using `workspace/rainier-problem/problemNN-*` as an explicit path override, and apply both `references/submission-format-gate.md` and `skills/_shared/hard_gates.md`. Mirror the current field constants in `scripts/adv` rather than trusting stale limits.
-- Run the same submission-format gate again immediately before promotion. Never report `MAIN_READY_FOR_RAINIER` while `./scripts/adv submit problemNN` would still reject a deterministic field-shape issue such as Answer length, prompt length, concept count/length, missing sections, answer aliases defined only in the solution, or a mismatched boxed answer.
-- The Answer gate is dual: the exact mapped Answer field must satisfy the current raw `ANSWER_MAX` in `scripts/adv` (currently 102 characters), and after stripping `$` plus whitespace it must be under 100 characters. If the answer cannot honestly fit without changing the statement or Answer Type, block before Codex/promotion and redesign; never truncate or hide content behind solution-only aliases.
-- Use `python scripts/codex-adversary-watch-chat.py problemNN --watch` as the independent local solver harness. Default settings are GPT-5.5, Medium reasoning, 2100 seconds.
-- Before reporting any `*_WAIT_CODEX` status, ensure the repository copy of `scripts/codex-adversary-watch-chat.py` implements the bundled candidate-ready gate; if it is older, sync the bundled wrapper first. The running watcher process must be restarted after a runner-script update because Python does not hot-reload it.
-- The watcher must obey the **candidate-ready handshake** in `references/workflow.md`. A new or changed `problem.md` by itself is never permission to solve.
-- One ready unseen `problem.md` blob gets exactly one GPT-5.5 Medium cold solve. Never rerun a blob to fish for failure.
-- A watcher `success` means only that text was returned. Compare it mathematically against the exact candidate `solution.md` before classifying difficulty.
-- Treat correctness, reviewer quality/naturalness, submission compatibility, and solver difficulty as independent gates. A local stump never excuses a bad problem, incomplete solution, or invalid portal field.
-- Apply the anti-reverse-engineering preflight **before authoring** any new blueprint or statement-changing hardening. Every decisive correction, invariant, substitution, or helper object must have forward provenance from visible mathematics; `GUESSED_TO_CANCEL`, `FIT_TO_TARGET`, `COEFFICIENT_TUNED`, and `BACKSOLVED_FROM_FINAL_ANSWER` are automatic rejections before Codex.
-- When GPT-5.5 solves correctly, diagnose the earliest robust shortcut. Harden only through a genuinely load-bearing mathematical dependency that deepens reasoning after the common entry point. Never harden by making a standard structure harder to recognize. In new mode, allow at most one same-blueprint structural revision before regenerating. Never stack tuned constants, cancellation devices, extra indices, giant computations, custom relation layers, or notation merely to stump the solver.
-- Official feedback such as `contrived`, `over-engineered`, `synthetic`, `awkward construction`, or `customized to force cancellation` is a **QUALITY_REDESIGN** signal, not a request for more machinery.
-- If the solver is wrong/materially incomplete or a valid 2100-second timeout is recorded, stop local hardening, run every promotion gate, including the repository submission-format gate, and promote the exact matching pair to `main` only if all gates are green.
-- A solution-only formatting repair with byte-identical `problem.md` does not require another cold solve, but it invalidates the solution SHA in `candidate-ready.json`; re-audit and refresh the marker. Any statement edit normally requires fresh solver evidence for the new problem blob unless an explicit user override above is active.
-- Never promote on `SOLVER_ERROR`, stale solver evidence, a mismatched ready marker, infrastructure failure, or a deterministic `adv submit` field failure, except that an explicit user override above may waive only the solver-evidence/matching-marker requirement without fabricating evidence.
-- PowerShell notifications must open the exact bound ChatGPT conversation. Never use a GitHub result URL as a click fallback.
+- Treat `main` as frozen submission state and `adversary/problemNN` as the authoring branch unless explicitly overridden.
+- Detect new/existing mode from `main`; never guess through multiple matches.
+- On first use, store the supplied ChatGPT conversation binding only on the adversary branch.
+- Reuse an existing adversary branch exactly; never silently reset it.
+- In new mode, derive ground truth first, write `solution.md` first, then `problem.md`, normalize, format, audit, and only then expose the exact pair to the solver.
+- In existing mode, inspect the exact adversary pair, official feedback, prior solver evidence, and any user-provided evaluator reports before deciding whether to measure, repair, harden, redesign, or promote.
+- Use the repository `format-solution` rules and deterministic `adv submit` field gates before readiness and promotion.
+- Use the local watcher with GPT-5.5 / Medium / 2100 seconds unless explicitly overridden.
+- One unseen exact `problem.md` blob gets one intended GPT-5.5 Medium cold solve. Never rerun the same blob to fish for failure.
+- A watcher `success` means only that a response exists. **Never classify difficulty from final-answer equality alone.**
+- Grade every completed response with `references/difficulty-evidence.md` before deciding stump vs solve.
+
+## Difficulty policy
+
+GPT-5.5 Medium is a **calibration solver**, not a binary pass/fail oracle.
+
+A wrong answer is not a stump when the response already contains the load-bearing route and only needs a local execution repair. In particular:
+
+- `EXACT_SOLVE` -> difficulty fail; harden/regenerate;
+- `CONCEPTUAL_SOLVE_EXECUTION_ERROR` -> difficulty fail exactly like a correct solve;
+- `MATERIAL_PARTIAL` -> do not promote automatically; run the strong adversarial audit;
+- `TRUE_STUMP` -> first-line difficulty evidence only;
+- qualifying timeout -> first-line evidence only;
+- infrastructure failure -> never difficulty evidence.
+
+Before promotion of any local stump/timeout candidate, run the **strong-model adversarial audit** in `references/difficulty-evidence.md` on the exact pair. Promotion requires `STRONG_AUDIT_PASS` unless the user explicitly waives difficulty evidence.
+
+When the user supplies evaluator HTML/report from stronger independent models, compare the embedded statement with the exact current candidate and grade every attempt conceptually. Any exact or conceptual solve is contrary evidence to promotion. Multiple strong evaluators converging on the same shortcut are evidence that the blueprint is transparent; prefer regeneration over concealment hardening.
+
+## Quality and hardening rules
+
+Treat correctness, reviewer quality/naturalness, submission compatibility, local solver evidence, and strong-audit evidence as independent gates.
+
+- Apply the anti-reverse-engineering preflight before authoring every new blueprint and statement-changing hardening.
+- Every decisive correction/invariant/substitution/helper object needs forward provenance from visible mathematics.
+- `GUESSED_TO_CANCEL`, `FIT_TO_TARGET`, `COEFFICIENT_TUNED`, and `BACKSOLVED_FROM_FINAL_ANSWER` block readiness.
+- When a solver conceptually solves a candidate, diagnose `COMMON ENTRY`, `COMMON REDUCTION`, `FIRST DECISIVE RECOGNITION`, `RECOVERY PATH`, and `EARLIEST ROBUST SHORTCUT`.
+- Harden only by adding a natural load-bearing dependency after the common entry point. Never harden by hiding the same gateway with extra notation, coordinates, dimensions, cases, or tuned constants.
+- In new mode, allow at most one clean same-blueprint structural revision after solver success. If the revised clean blob is also conceptually solved, retire the blueprint.
+- If two independent strong evaluators expose the same canonical shortcut, default to blueprint retirement unless a clearly natural post-gateway dependency exists.
+- `contrived`, `over-engineered`, `synthetic`, `awkward construction`, or tuned-cancellation criticism is a quality-redesign signal, not a request for more machinery.
 
 ## Candidate write discipline
 
-Whenever `solution.md` or `problem.md` may change, treat the candidate as **draft**. Ensure the ready marker is absent/stale while editing. Finish all mathematical work, normalization, repository `format-solution` rules, exact portal-field counts, metadata, and reviewer audit first. Resolve the final problem and solution blob SHAs and upsert `solver-results/problemNN/candidate-ready.json` **last**. Any later change to either file invalidates that marker and requires a new final audit plus a new marker, unless an explicit user override is being used for direct promotion.
+Whenever `solution.md` or `problem.md` may change, treat the candidate as draft and invalidate/remove the active ready marker.
+
+Finish all mathematics, normalization, repository formatting, field counts, metadata, reviewer audit, difficulty-design audit, and final blob resolution first. Publish `solver-results/problemNN/candidate-ready.json` last. Any later edit invalidates the marker.
+
+A solution-only formatting/exposition repair with byte-identical `problem.md` preserves statement-level solver evidence but changes the solution SHA; re-audit and refresh the marker.
+
+Any statement edit requires fresh exact-blob difficulty evidence unless explicitly waived.
 
 ## Follow-up `next`
 
-In a conversation already using this workflow, interpret a bare `next` as: read `solver-results/problemNN/latest.json` on `adversary/problemNN`, follow its `result_file`, verify the result belongs to the exact ready candidate, compare it with the matching solution, and continue the unified state machine without asking the user to restate the problem or chat URL.
+In an active loop, interpret bare `next` as:
+
+1. read `solver-results/problemNN/latest.json` from the adversary branch;
+2. follow its immutable result file;
+3. verify exact ready-blob matching;
+4. compare the solver reasoning with the exact solution using `difficulty-evidence.md`;
+5. incorporate any matching external evaluator evidence already supplied in the conversation;
+6. continue the state machine without asking for information already known.
 
 ## User boundary
 
-The web chat cannot wake itself when GitHub changes. After a solver attempt completes, the only user handoff is `next`. The watcher may remain running continuously because the candidate-ready handshake prevents draft/intermediate commits from triggering Codex.
+The author chat cannot wake itself when GitHub changes. The watcher may remain running because the candidate-ready handshake prevents draft commits from triggering solves. After a local result completes, the user handoff is normally `next`.
