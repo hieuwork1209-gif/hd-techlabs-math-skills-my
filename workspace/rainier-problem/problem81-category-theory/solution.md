@@ -161,13 +161,15 @@ $$
 N_2^{(2)}=166656+448=167104.
 $$
 
-Final Answer: $\boxed{\left(\frac{8n^3+n}{3},2016,\frac{8n^3-2n}{3},\begin{cases}167104,&n=2,\\448,&n\ge3.\end{cases}\right)}$
+Let $\delta_{n,2}$ denote the Kronecker delta. Then
+
+Final Answer: $\boxed{\left(\frac{8n^3+n}{3},2016,\frac{8n^3-2n}{3},448+166656\delta_{n,2}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{8n^3+n}{3},2016,\frac{8n^3-2n}{3},\begin{cases}167104,&n=2,\\448,&n\ge3.\end{cases}\right)$
+$\left(\frac{8n^3+n}{3},2016,\frac{8n^3-2n}{3},448+166656\delta_{n,2}\right)$
 
 ---
 
