@@ -226,7 +226,11 @@ $$
 $$
 z^8=z+1\ne1.
 $$
-Since $\mathbb F_{25}^{\times}$ has order $24$, an element is a cube exactly when its eighth power is $1$. Thus $z$ is not a cube in $\mathbb F_{25}$, so $X^3-z$ has no root there and is irreducible. If $\alpha$ is any root of $g$, then $z=\alpha^3$ has degree $2$ over $\mathbb F_5$ and $\alpha$ has degree $3$ over $\mathbb F_{25}$, hence degree $6$ over $\mathbb F_5$. Therefore $g$, and hence $Q$, is irreducible. Gauss's lemma now gives irreducibility over $\mathbb Q$.
+Since $\mathbb F_{25}^{\times}$ has order $24$, an element is a cube exactly when its eighth power is $1$. Thus $z$ is not a cube in $\mathbb F_{25}$. Its conjugate $z^5$ is not a cube either, because otherwise $z=(z^5)^5$ would be a cube. Hence both $X^3-z$ and $X^3-z^5$ have no root in $\mathbb F_{25}$ and are irreducible cubics. For any root $\alpha$ of $g$, the element $\alpha^3$ is one of $z,z^5$, so $\mathbb F_5(\alpha^3)=\mathbb F_{25}$ and
+$$
+[\mathbb F_5(\alpha):\mathbb F_5]=3\cdot2=6.
+$$
+Therefore $g$, and hence $Q$, is irreducible. Gauss's lemma now gives irreducibility over $\mathbb Q$.
 
 Final Answer: $\boxed{4608T^6-17280T^5+21755T^4-33196T^3+24320T^2-6960T+669}$
 
