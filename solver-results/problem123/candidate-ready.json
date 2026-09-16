@@ -1,0 +1,9 @@
+{
+  "problem": "problem123",
+  "mode": "existing",
+  "ready": true,
+  "problem_path": "workspace/rainier-problem/problem123-approximation-theory/problem.md",
+  "problem_blob_sha": "1316e591da799f8a2b7ad519b57ef4d8ccd61fa4",
+  "solution_path": "workspace/rainier-problem/problem123-approximation-theory/solution.md",
+  "solution_blob_sha": "eaa87def95a59366a50af6dc1807bf86e65181f8"
+}
