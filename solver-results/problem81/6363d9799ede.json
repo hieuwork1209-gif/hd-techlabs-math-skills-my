@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-convex-optimization/problem.md",
+  "source_commit_sha": "634e61a984a6d18e91c43d3d6184b83d1669f7c4",
+  "problem_blob_sha": "6363d9799edef9c4014c20d14a8127ebf3c80993",
+  "statement_sha256": "a44483db175ecb69c323ccb71c210122eebbbeda674497a920733625026d67a3",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T09:51:24+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(G\\in\\mathcal F\\). Since \\(G\\) is positive semidefinite with diagonal entries \\(1\\), all entries are bounded, so \\(\\mathcal F\\) is compact and a determinant maximum exists.\n\nThe constraints are invariant under cyclic relabeling of the indices. If \\(P\\) is the cyclic permutation matrix, then\n\\[\n\\overline G=\\frac16\\sum_{k=0}^5 P^kG(P^k)^T\n\\]\nalso lies in \\(\\mathcal F\\), is symmetric circulant, and has determinant at least that of \\(G\\) by concavity of \\(\\log\\det\\) on positive definite matrices. The eventual maximizer below is positive definite, so the maximum determinant is positive; hence any maximizer is positive definite. Strict concavity then forces equality only when \\(G\\) itself is cyclically invariant. Thus the unique maximizer, if found among the circulant matrices, is the unique maximizer in all of \\(\\mathcal F\\).\n\nFor\n\\[\nC(a,b)=\\operatorname{circ}\\left(1,\\frac12,a,b,a,\\frac12\\right),\n\\]\nthe eigenvalues are\n\\[\n\\lambda_0=2+2a+b,\\qquad\n\\lambda_1=\\lambda_5=\\frac32-a-b,\n\\]\n\\[\n\\lambda_2=\\lambda_4=\\frac12-a+b,\\qquad\n\\lambda_3=2a-b.\n\\]\nWrite\n\\[\nx=\\lambda_0,\\quad u=\\lambda_1,\\quad v=\\lambda_2,\\quad y=\\lambda_3.\n\\]\nThe trace and fixed adjacent entry give\n\\[\nx+y+2u+2v=6,\\qquad x-y+u-v=3,\n\\]\nand\n\\[\n\\det C=xyu^2v^2.\n\\]\nAt the interior maximum, Lagrange multipliers for\n\\[\n\\log x+\\log y+2\\log u+2\\log v\n\\]\ngive\n\\[\n\\frac1x=\\mu+\\nu,\\quad \\frac1y=\\mu-\\nu,\\quad\n\\frac2u=2\\mu+\\nu,\\quad \\frac2v=2\\mu-\\nu.\n\\]\nLet \\(t=y/x\\). Eliminating the multipliers from the two linear constraints gives\n\\[\n\\frac1t-3-\\frac{16}{t+3}=0,\n\\]\nso\n\\[\nt^2+8t-1=0,\\qquad t=\\sqrt{17}-4.\n\\]\nSubstituting back yields\n\\[\nx=\\frac{\\sqrt{17}+7}{4},\\qquad\ny=\\frac{3\\sqrt{17}-11}{4},\\qquad\nu=1,\\qquad\nv=\\frac{5-\\sqrt{17}}2.\n\\]\nThese are all positive, so the maximum is attained in the positive definite interior.\n\nNow recover \\(a,b\\) from the inverse Fourier relations:\n\\[\na=\\frac{x+y-u-v}{6}=\\frac{\\sqrt{17}-3}{4},\n\\]\n\\[\nb=\\frac{x-y-2u+2v}{6}=\\frac{5-\\sqrt{17}}{4}.\n\\]\nFinally,\n\\[\nD=xyu^2v^2\n=\\frac{\\sqrt{17}+7}{4}\\cdot \\frac{3\\sqrt{17}-11}{4}\\cdot \\left(\\frac{5-\\sqrt{17}}2\\right)^2\n=\\frac{85\\sqrt{17}-349}{8}.\n\\]\n\n\\[\n\\boxed{\\left(\\frac{85\\sqrt{17}-349}{8},\\frac{\\sqrt{17}-3}{4},\\frac{5-\\sqrt{17}}{4}\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T09:52:56+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/6363d9799ede.json"
+}
