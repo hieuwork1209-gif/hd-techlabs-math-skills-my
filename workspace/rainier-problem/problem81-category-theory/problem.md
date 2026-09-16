@@ -2,9 +2,11 @@
 
 ## LaTeX (Normalized)
 
-Let $p$ be an odd prime, let $a\ge2$, and let $1\le r\le p-1$. Put
+Let $p$ be an odd prime and let $a\ge2$. Put
 $$
-R=p(p-1)+r,
+Q=p(p-1),
+\qquad
+R=Q+1,
 \qquad
 N=ap^2+R,
 $$
@@ -20,7 +22,7 @@ G=C_{p^2}=\langle g\rangle,
 \qquad
 H=\langle g^p\rangle\cong C_p,
 $$
-and regard $BG$ and $BH$ as one-object categories. Let $k=\mathbb F_p$ and fix the vector space
+and let $k=\mathbb F_p$. Fix the vector space
 $$
 V=k^N.
 $$
@@ -28,29 +30,48 @@ Consider functors
 $$
 F:BG\to\operatorname{Vect}_k
 $$
-with $F(*)=V$. Distinct actions of $g$ on the fixed vector space $V$ are counted as distinct functors, even when the corresponding functors are naturally isomorphic.
+with $F(*)=V$. Distinct actions of $g$ on the fixed vector space $V$ are counted as distinct functors, even when naturally isomorphic.
 
-For a finite group $Q$ and a functor $M:BQ\to\operatorname{Vect}_k$, left and right Kan extension along $BQ\to *$ are the coinvariants $M_Q$ and invariants $M^Q$. Let
+For a finite group $Q'$ and a functor $M:BQ'\to\operatorname{Vect}_k$, let
 $$
-\mathsf N_Q:M_Q\to M^Q,
-\qquad
-[v]\longmapsto\sum_{q\in Q}qv
+\mathsf N_{Q'}:M_{Q'}\to M^{Q'}
 $$
-be the norm comparison.
+be the norm comparison from left to right Kan extension along $BQ'\to *$.
 
-For $F$ as above, define
+For $F$ define
 $$
 \alpha(F)=\operatorname{rank}(\mathsf N_G),
 $$
-and, after restricting $F$ along $BH\hookrightarrow BG$, define
 $$
-\beta(F)=\operatorname{rank}(\mathsf N_H).
+\beta(F)=\operatorname{rank}(\mathsf N_H)
 $$
-Order the pairs $(\alpha(F),\beta(F))$ lexicographically. Let $(A_{p,a,r},B_{p,a,r})$ be the largest possible pair, and let $K_{p,a,r}$ be the number of functors attaining it.
+after restricting along $BH\hookrightarrow BG$, and
+$$
+\gamma(F)=\dim_k V^G,
+\qquad
+\delta(F)=\dim_k V^H.
+$$
+
+Perform the following optimization in order:
+
+1. maximize $\alpha(F)$;
+2. among those maximizers, minimize $\beta(F)$;
+3. among those minimizers, minimize $\gamma(F)$;
+4. among those minimizers, maximize $\delta(F)$.
+
+Let the resulting extremal values be
+$$
+(A_{p,a},B_{p,a},C_{p,a},D_{p,a}).
+$$
+Let $\mathcal E$ be the set of functors attaining all four extrema, and define
+$$
+K_{p,a}=\sum_{F\in\mathcal E}|\operatorname{Aut}(F)|,
+$$
+where $\operatorname{Aut}(F)$ is the group of natural automorphisms of $F$.
 
 Determine exactly
 $$
-(A_{p,a,r},B_{p,a,r},K_{p,a,r}).
+(A_{p,a},B_{p,a},C_{p,a},D_{p,a},K_{p,a}).
 $$
 
 ---
@@ -68,4 +89,4 @@ $$
 
 ## Domain Explanation
 
-The problem optimizes the ranks of the canonical norm comparisons between left and right Kan extensions of a functor on a finite group category, simultaneously before and after restriction along a subgroup inclusion. The categorical Kan-extension data determine the two rank invariants; modular linear algebra and finite-module centralizers are then used to analyze and count the extremizing functors. Thus Logic, Set Theory, and Foundations -> Category theory is primary, with linear algebra serving as the subordinate method.
+The problem performs a mixed extremal analysis of canonical norm comparisons between left and right Kan extensions of a functor on a finite group category, together with right-Kan-extension invariant dimensions before and after subgroup restriction. The final count weights extremal functors by their natural automorphism groups, so both the categorical Kan-extension data and the functor-groupoid stabilizers are essential. Thus Logic, Set Theory, and Foundations -> Category theory is primary, with modular linear algebra serving as the subordinate method.
