@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-category-theory/problem.md",
+  "source_commit_sha": "5d21d0849076dc3b6d78d876f89e44ae7a929e4a",
+  "problem_blob_sha": "cf5fc007210b6d34963687d5e24ccdc88db300c0",
+  "statement_sha256": "244e3c2c25582b2dc562c9a16c01883c8bdcfd7ca353201a15f615b511ac2a99",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T16:20:13+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(T=F(g)\\). Since \\(\\operatorname{char}k=p\\) and \\(g^{p^2}=1\\), write\n\\[\nT=1+X,\\qquad X^{p^2}=0.\n\\]\nThus \\(V\\) decomposes into Jordan blocks for \\(X\\), with block sizes at most \\(p^2\\).\n\nFor \\(G=C_{p^2}\\),\n\\[\n\\mathsf N_G=\\sum_{i=0}^{p^2-1}T^i\n=\\frac{T^{p^2}-1}{T-1}=X^{p^2-1}.\n\\]\nOn a Jordan block this contributes rank \\(1\\) exactly when the block has size \\(p^2\\), and \\(0\\) otherwise. Hence\n\\[\n\\alpha(F)=\\#\\{\\text{Jordan blocks of size }p^2\\}.\n\\]\nSince\n\\[\nN=ap^2+R,\\qquad 0<R=p(p-1)+1<p^2,\n\\]\nthe maximum is\n\\[\nA_{p,a}=a.\n\\]\n\nFor \\(H=\\langle g^p\\rangle\\), the generator acts by\n\\[\nT^p=(1+X)^p=1+X^p,\n\\]\nso\n\\[\n\\mathsf N_H=\\sum_{i=0}^{p-1}(T^p)^i=X^{p(p-1)}=X^Q.\n\\]\nOn a Jordan block of size \\(m\\), this induced map has rank\n\\[\n\\max(m-Q,0).\n\\]\nThe \\(a\\) full \\(p^2\\)-blocks therefore contribute \\(ap\\). The remaining dimension is \\(R=Q+1\\), and it can be split as \\(Q+1=Q+1\\), i.e. blocks of sizes \\(Q\\) and \\(1\\), giving no extra contribution. Thus\n\\[\nB_{p,a}=ap.\n\\]\n\nNow impose \\(\\alpha=a\\) and \\(\\beta=ap\\). The remaining \\(R=Q+1\\) dimensions must be partitioned into block sizes \\(\\le Q\\). Since \\(R>Q\\), at least two blocks are needed, and two suffice. Therefore\n\\[\nC_{p,a}=a+2.\n\\]\n\nFinally, among those, the remaining two block sizes \\(x,y\\) satisfy\n\\[\nx+y=Q+1,\\qquad 1\\le x,y\\le Q.\n\\]\nFor \\(H\\)-invariants, a block of size \\(m\\) contributes \\(\\min(m,p)\\). The \\(a\\) full blocks contribute \\(ap\\), and the two remaining blocks contribute at most \\(2p\\), attained exactly when \\(x,y\\ge p\\). Such pairs exist, e.g. \\(p\\) and \\(Q+1-p=(p-1)^2\\). Hence\n\\[\nD_{p,a}=(a+2)p.\n\\]\n\nThe extremal Jordan types are therefore\n\\[\n(p^2,\\dots,p^2,x,y),\n\\]\nwith \\(a\\) copies of \\(p^2\\), and\n\\[\np\\le x\\le y\\le Q,\\qquad x+y=Q+1.\n\\]\nThe number of unordered pairs is\n\\[\n\\frac{Q}{2}-p+1\n=\\frac{p(p-1)}2-p+1\n=\\frac{(p-1)(p-2)}2.\n\\]\n\nFor each fixed Jordan type, the number of pairs \\((F,\\eta)\\) is\n\\[\n\\frac{|GL_N(\\mathbb F_p)|}{|\\operatorname{Cent}_{GL_N}(T)|}\\cdot |\\operatorname{Cent}_{GL_N}(T)|\n=|GL_N(\\mathbb F_p)|\n=\\Gamma_N(p).\n\\]\nThus\n\\[\nK_{p,a}=\\frac{(p-1)(p-2)}2\\,\\Gamma_N(p).\n\\]\n\n\\[\n\\boxed{\n\\left(\na,\\ ap,\\ a+2,\\ (a+2)p,\\ \\frac{(p-1)(p-2)}2\\,\\Gamma_{ap^2+p(p-1)+1}(p)\n\\right)\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T16:21:18+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/cf5fc007210b.json"
+}
