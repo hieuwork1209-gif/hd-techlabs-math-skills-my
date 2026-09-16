@@ -32,11 +32,13 @@ F:BG\to\operatorname{Vect}_k
 $$
 with $F(*)=V$. Distinct actions of $g$ on the fixed vector space $V$ are counted as distinct functors, even when naturally isomorphic.
 
-For a finite group $Q'$ and a functor $M:BQ'\to\operatorname{Vect}_k$, let
+For a finite group $Q'$ and a functor $M:BQ'\to\operatorname{Vect}_k$, left and right Kan extension along $BQ'\to *$ are the coinvariants $M_{Q'}$ and invariants $M^{Q'}$. Let
 $$
-\mathsf N_{Q'}:M_{Q'}\to M^{Q'}
+\mathsf N_{Q'}:M_{Q'}\to M^{Q'},
+\qquad
+[v]\longmapsto\sum_{q\in Q'}qv
 $$
-be the norm comparison from left to right Kan extension along $BQ'\to *$.
+be the norm comparison.
 
 For $F$ define
 $$
