@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "ef06ae93097a174462a86a18f2002754fd27a5c3",
+  "problem_blob_sha": "99d2d10230072330a0aebcc4a191f65b4e46f744",
+  "statement_sha256": "879103ca633634910178b52bf9178ba90bd062972b45abedf94ec5250a4559e4",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T12:14:02+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(p(\\lambda)=\\prod(1-\\alpha_i\\lambda)\\), with \\(p(0)=1\\). The minimizer is characterized by equioscillation: five active points with alternating signs, except at the transition values where an extra contact appears.\n\nThe active sets are:\n\n- For \\(\\frac92<\\gamma<5\\):\n  \\[\n  \\mathcal A_\\gamma=\\{1,a_\\gamma,\\gamma,c_\\gamma,6\\},\n  \\]\n  with signs \\(+,-,+,-,+\\). Here the polynomial is even about \\(7/2\\), and\n  \\[\n  a_\\gamma=\\frac72-\\sqrt{\\frac{(5/2)^2+(\\gamma-7/2)^2}{2}},\n  \\qquad\n  c_\\gamma=\\frac72+\\sqrt{\\frac{(5/2)^2+(\\gamma-7/2)^2}{2}}.\n  \\]\n\n- At \\(\\gamma=5\\), the point \\(2\\) becomes active too:\n  \\[\n  \\mathcal A_5=\\left\\{1,\\frac{7-\\sqrt{17}}2,2,5,\\frac{7+\\sqrt{17}}2,6\\right\\}.\n  \\]\n\n- For\n  \\[\n  5<\\gamma<\\frac{7+\\sqrt{17}}2,\n  \\]\n  the minimizing quartic is fixed:\n  \\[\n  p(\\lambda)=\\frac{\\lambda^4-14\\lambda^3+65\\lambda^2-112\\lambda+62}{62},\n  \\]\n  with level \\(1/31\\), and\n  \\[\n  \\mathcal A_\\gamma=\n  \\left\\{1,\\frac{7-\\sqrt{17}}2,2,\\frac{7+\\sqrt{17}}2,6\\right\\}.\n  \\]\n\n- At\n  \\[\n  \\gamma=\\frac{7+\\sqrt{17}}2,\n  \\]\n  the right interior critical point coincides with the moving endpoint.\n\n- For\n  \\[\n  \\frac{7+\\sqrt{17}}2<\\gamma<\\frac{28}{5},\n  \\]\n  the active set is\n  \\[\n  \\mathcal A_\\gamma=\\{1,a_\\gamma,2,\\gamma,6\\},\n  \\]\n  with signs \\(+,-,+,-,+\\).\n\nThus the two transition values are\n\n\\[\n\\boxed{\\left(5,\\frac{7+\\sqrt{17}}2\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T12:18:36+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/99d2d1023007.json"
+}
