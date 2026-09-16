@@ -108,7 +108,7 @@ C_M(\gamma)=\frac{7\gamma-\gamma^2-6}{6+7\gamma-\gamma^2}.
 $$
 For $7/2<\gamma<6$, $D_\gamma>0$, and the discriminant of the step-size equation is
 $$
-\left(\frac{14}{D_\gamma}\right)^2-\frac8{D_\gamma}
+\left(\frac{14}{D_\gamma}\right)^2-rac8{D_\gamma}
 =\frac{4(2\gamma^2-14\gamma+37)}{D_\gamma^2}>0,
 $$
 so its positive sum and product imply that $p_M$ factors with two positive Richardson step sizes.
