@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-probability-foundations/problem.md",
+  "source_commit_sha": "18d18c0b3b079acf24bce17a1ff6f23d82307c76",
+  "problem_blob_sha": "76c58604fc3a4cb540e37bf3fed7e71a54e3c384",
+  "statement_sha256": "8907ee1faac8e226fa1b894f4b13f0bf44b4edcca2c485a5da5584ba9a7c5de4",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T07:00:08+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nh(x)=x^2-\\frac45x+\\frac1{10},\n\\qquad\nR(x)=x^2+\\frac{13}{5}x+\\frac{108}{25}.\n\\]\nOn \\([0,1]\\), \\(R(x)>0\\), so\n\\[\nq(x)=(1-x)h(x)^2R(x)\\ge 0.\n\\]\nA direct check of the top coefficients shows\n\\[\np(x):=x^7+q(x)\n\\]\nis actually a polynomial of degree at most \\(4\\). Hence for every admissible \\(X\\),\n\\[\nX^7\\le p(X),\n\\]\nso\n\\[\n\\mathbb E[X^7]\\le \\mathbb E[p(X)].\n\\]\nSince \\(p\\) has degree at most \\(4\\), its expectation is fixed by the given moments.\n\nNow take the roots of \\(h\\):\n\\[\n\\alpha=\\frac{4-\\sqrt6}{10},\\qquad \\beta=\\frac{4+\\sqrt6}{10}.\n\\]\nConsider the measure with atoms\n\\[\n\\alpha,\\ \\beta,\\ 1\n\\]\nand weights\n\\[\n\\frac49-\\frac{\\sqrt6}{36},\\qquad\n\\frac49+\\frac{\\sqrt6}{36},\\qquad\n\\frac19.\n\\]\nThese weights are positive and sum to \\(1\\). The two non-endpoint roots satisfy\n\\[\nz^2=\\frac45z-\\frac1{10},\n\\]\nso their weighted power sums obey the recurrence\n\\[\n\\mu_{k+2}=\\frac45\\mu_{k+1}-\\frac1{10}\\mu_k.\n\\]\nStarting from \\(\\mu_0=8/9,\\ \\mu_1=7/18\\), this gives\n\\[\n\\mu_2=\\frac29,\\quad \\mu_3=\\frac5{36},\\quad \\mu_4=\\frac4{45}.\n\\]\nAdding the endpoint contribution \\(1/9\\) gives\n\\[\n1,\\ \\frac12,\\ \\frac13,\\ \\frac14,\\ \\frac15,\n\\]\nso this measure is admissible.\n\nFor the seventh moment, the same recurrence gives\n\\[\n\\mu_5=\\frac{103}{1800},\\qquad\n\\mu_6=\\frac{83}{2250},\\qquad\n\\mu_7=\\frac{2141}{90000}.\n\\]\nIncluding the atom at \\(1\\),\n\\[\n\\mathbb E[X^7]=\\frac{2141}{90000}+\\frac19\n=\\frac{2141}{90000}+\\frac{10000}{90000}\n=\\frac{12141}{90000}\n=\\frac{1349}{10000}.\n\\]\n\nBecause the polynomial majorant gives this same upper bound and the atomic distribution attains it, the maximum is\n\n\\[\n\\boxed{\\frac{1349}{10000}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T07:02:02+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/76c58604fc3a.json"
+}
