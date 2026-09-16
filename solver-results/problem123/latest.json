@@ -1,9 +1,9 @@
 {
   "problem": "problem123",
   "branch": "adversary/problem123",
-  "problem_path": "workspace/rainier-problem/problem123-experimental-design-and-causal-inference/problem.md",
-  "problem_blob_sha": "9694f2373be8c85b62682157987236692e3fe585",
-  "source_commit_sha": "8ca80d67ea1e9a6956765c4fb3c7b2b84cc18500",
+  "problem_path": "workspace/rainier-problem/problem123-approximation-theory/problem.md",
+  "problem_blob_sha": "cfbc976d729eaba18fabff7fe45b6249a60c1119",
+  "source_commit_sha": "ea5d66f6713745dd0af03ae6fa74d4bd7281396a",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-16T12:07:49+00:00",
-  "result_file": "solver-results/problem123/9694f2373be8.json"
+  "completed_at": "2026-09-16T12:23:55+00:00",
+  "result_file": "solver-results/problem123/cfbc976d729e.json"
 }

@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-approximation-theory/problem.md",
+  "source_commit_sha": "ea5d66f6713745dd0af03ae6fa74d4bd7281396a",
+  "problem_blob_sha": "cfbc976d729eaba18fabff7fe45b6249a60c1119",
+  "statement_sha256": "071fc1302b0f902e6e9d303b976e44383bcea20d08af25ad1e7151eaffd3657d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T12:17:52+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(p(x)=x^4+x^3+ax^2+bx+c\\). The problem is the best uniform approximation of \\(-x^4-x^3\\) on \\([-1,1]\\) by quadratics.\n\nThe optimal polynomial has four alternating contact points\n\\[\n-1<u<v<1\n\\]\nwith\n\\[\np(-1)=p(v)=-E,\\qquad p(u)=p(1)=E,\n\\]\nand \\(p'(u)=p'(v)=0\\). Write\n\\[\nF(x)=x^4+x^3+ax^2+bx.\n\\]\nThe contact equations before choosing \\(c\\) are\n\\[\nF(v)=F(-1),\\qquad F(1)=F(u),\n\\]\nand \\(F'(u)=F'(v)=0\\), where\n\\[\nF'(x)=4x^3+3x^2+2ax+b.\n\\]\n\nFrom \\(F'(v)=0\\) and \\(F(v)=F(-1)\\),\n\\[\na=-3v^2.\n\\]\nFrom \\(F'(u)=0\\) and \\(F(1)=F(u)\\),\n\\[\na=-3u^2-4u-2.\n\\]\nAlso comparing the two roots \\(u,v\\) of \\(F'\\) gives\n\\[\n2v^2-4u^2-4uv-3u-3v=0.\n\\]\nThus\n\\[\n3v^2=3u^2+4u+2,\\qquad\nv=\\frac{-6u^2-u+4}{3(4u+3)}.\n\\]\nEliminating \\(v\\) gives\n\\[\n54u^4+198u^3+256u^2+130u+19=0.\n\\]\nThe admissible root is the unique root in \\((-1/4,-1/5)\\). For this root, the third critical point lies left of \\(-1\\), so the four contact values control the whole interval.\n\nNow\n\\[\nE=\\frac{F(u)-F(-1)}2.\n\\]\nUsing \\(a=-3u^2-4u-2\\) and \\(b=2u^3+5u^2+4u\\), this simplifies to\n\\[\nE=2u^3+5u^2+4u+1.\n\\]\nEliminating \\(u\\) from\n\\[\n54u^4+198u^3+256u^2+130u+19=0,\\qquad\nT=2u^3+5u^2+4u+1\n\\]\nyields\n\\[\n78732T^4-32076T^3+7724T^2-1476T-27=0.\n\\]\nIndeed, substituting \\(T=2u^3+5u^2+4u+1\\), this polynomial becomes a multiple of the quartic in \\(u\\).\n\nFinally, the quartic is irreducible over \\(\\mathbb Z\\): modulo \\(5\\), it becomes\n\\[\nT^4+2T^3+2T^2+2T+4,\n\\]\nwhich has no root in \\(\\mathbb F_5\\) and no quadratic factor. Hence it is primitive and irreducible.\n\n\\[\n\\boxed{78732T^4-32076T^3+7724T^2-1476T-27}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T12:23:55+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/cfbc976d729e.json"
+}
