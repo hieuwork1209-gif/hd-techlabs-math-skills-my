@@ -12,9 +12,13 @@ $$
 $$
 \mathbb P(X_1=X_2=X_3=1)=\frac14.
 $$
-Determine exactly
+Let
 $$
-\max \mathbb P(X_1+X_2+X_3+X_4+X_5+X_6=2).
+E=\max \mathbb P\left(X_7=1\mid X_1+X_2+X_3+X_4+X_5+X_6=2\right),
+$$
+where the maximum ranges over all such exchangeable sequences. Determine the primitive irreducible polynomial $P(T)\in\mathbb Z[T]$ with positive leading coefficient such that
+$$
+P(E)=0.
 $$
 
 ---
@@ -26,10 +30,10 @@ $$
 | **Domain** | Probability and Statistics |
 | **Sub-domain** | Probability foundations |
 | **Problem Type** | Optimization |
-| **Answer Type** | Exact scalar |
+| **Answer Type** | Polynomial or rational function |
 
 ---
 
 ## Domain Explanation
 
-This problem is fundamentally about infinite exchangeability and its de Finetti mixing representation for Bernoulli sequences. The given joint probabilities become constraints on the first three moments of the latent mixing variable, and the target event becomes a degree-six Bernstein polynomial whose expectation must be optimized over all admissible mixing laws. The truncated moment optimization is the secondary mechanism used after the probabilistic representation is established.
+This problem is fundamentally about infinite exchangeability and de Finetti's mixing representation for Bernoulli sequences. The given joint probabilities fix the first three moments of the latent mixing variable, while the posterior predictive probability becomes a linear-fractional functional of its law. Proving the exact optimum requires a matching moment measure and polynomial dual certificate; algebraic elimination is secondary to the probabilistic extremal structure.
