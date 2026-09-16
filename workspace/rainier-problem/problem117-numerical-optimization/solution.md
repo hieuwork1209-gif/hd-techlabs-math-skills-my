@@ -5,7 +5,7 @@ Let
 $$
 U=\frac{1}{\sqrt{2}}\begin{bmatrix}1&-1\\1&1\end{bmatrix},
 \qquad
-Q_{\mu}=\begin{bmatrix}\mu&0\\0&4/\mu\end{bmatrix},
+Q_{\mu}=\begin{bmatrix}\mu&0\\0&\frac{4}{\mu}\end{bmatrix},
 \qquad
 R_{\mu}=UQ_{\mu}U^T.
 $$
@@ -19,7 +19,7 @@ s=\frac{\theta}{2}\in(0,1],
 \qquad
 a_{\mu}=\frac{\rho-\mu}{\rho+\mu},
 \qquad
-b_{\mu}=\frac{\rho-4/\mu}{\rho+4/\mu},
+b_{\mu}=\frac{\rho-\frac{4}{\mu}}{\rho+\frac{4}{\mu}},
 $$
 and
 $$
@@ -110,7 +110,7 @@ For arbitrary $\mu\in[1,4]$,
 $$
 a_{\mu}=\frac{2-\mu}{2+\mu},
 \qquad
-b_{\mu}=\frac{2-4/\mu}{2+4/\mu}
+b_{\mu}=\frac{2-\frac{4}{\mu}}{2+\frac{4}{\mu}}
 =\frac{\mu-2}{\mu+2}=-a_{\mu}.
 $$
 Let
