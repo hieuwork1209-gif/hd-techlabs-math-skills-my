@@ -2,13 +2,13 @@
 
 ## LaTeX (Normalized)
 
-Let
+For $A,B>0$, let
 $$
-\mathcal P=\left\{x^4+x^3+ax^2+bx+c:a,b,c\in\mathbb R\right\},
+R_{A,B}(x)=\frac{Ax^2}{x^2+B},
 $$
 and define
 $$
-E=\inf_{p\in\mathcal P}\max_{-1\leq x\leq1}|p(x)|.
+E=\inf_{A,B>0}\max_{0\leq x\leq1}\left|x-R_{A,B}(x)\right|.
 $$
 Determine the primitive irreducible polynomial $P(T)\in\mathbb Z[T]$ with positive leading coefficient such that
 $$
@@ -30,4 +30,4 @@ $$
 
 ## Domain Explanation
 
-This problem asks for the exact algebraic invariant of a constrained best uniform approximation problem: the leading quartic coefficients are fixed, the remaining coefficients are optimized in the sup norm on an interval, and the optimal error is then identified algebraically. The primary subject is therefore Optimization and Numerical Mathematics and Approximation theory. Polynomial elimination and finite-field irreducibility are secondary tools used after the minimax structure determines the extremal error.
+This problem asks for the exact algebraic invariant of a nonlinear best uniform rational approximation problem. The approximating family has a free numerator scale and a free positive denominator scale, so the optimal error must be determined together with the rational contact geometry rather than by linear polynomial equioscillation alone. The primary subject is therefore Optimization and Numerical Mathematics and Approximation theory; algebraic elimination and finite-field irreducibility are secondary tools used after the minimax structure is established.
