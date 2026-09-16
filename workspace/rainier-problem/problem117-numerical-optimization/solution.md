@@ -1,196 +1,222 @@
 ## Steps
 
-Step 1: Reduce two Richardson steps to a quadratic minimax polynomial
-For a symmetric positive-definite matrix with eigenvalue $\lambda$, two Richardson steps with positive step sizes $\alpha,\beta$ multiply that eigendirection by
+Step 1: Reduce to a two-parameter rational minimax problem with one inequality constraint
+Let
 $$
-p(\lambda)=\alpha\beta\lambda^2-(\alpha+\beta)\lambda+1
-=t\lambda^2-s\lambda+1,
+A=\alpha_1+\alpha_2+\alpha_3,\qquad
+B=\alpha_1\alpha_2+\alpha_1\alpha_3+\alpha_2\alpha_3.
+$$
+Since $\alpha_1\alpha_2\alpha_3=8$, the three-step spectral factor is
+$$
+r_{A,B}(x)=\frac{x^3-Ax^2+Bx-8}{x^3+Ax^2+Bx+8},
+\qquad A\le a:=\frac{46}{5}.
+$$
+For $x>0$ put
+$$
+\phi_{A,B}(x)=\frac{1+r_{A,B}(x)}{1-r_{A,B}(x)}
+=\frac{x(x^2+B)}{Ax^2+8}.
+$$
+Minimizing $\max|r|$ is equivalent to minimizing the multiplicative envelope $K\ge1$ satisfying $K^{-1}\le\phi\le K$.
+
+For a fixed level $K$, an upper contact at $x$ has normal
+$$
+n_+(x)=(-Kx^2,x),
+$$
+and a lower contact has normal
+$$
+n_-(x)=(x^2,-Kx)
+$$
+in the $(A,B)$-plane. Thus three alternating active contacts give the usual two-parameter Farkas certificate while $A<a$. When the budget is active, the boundary normal is $n_A=(1,0)$. For a lower contact $b<8$ and an upper contact at $8$,
+$$
+n_-(b)+\frac{Kb}{8}n_+(8)+b(8K^2-b)n_A=0,
+$$
+and every coefficient is positive because $K>1$ and $b<8$. Hence the pair $\{b,8\}$ together with the active budget $A=a$ is already an exact global optimality certificate.
+
+Also
+$$
+r'_{A,B}(x)=\frac{2\left(Ax^4+(24-AB)x^2+8B\right)}{(x^3+Ax^2+Bx+8)^2}. \tag{1}
+$$
+
+Step 2: Follow the unconstrained branch until the shift budget becomes active
+As long as $A<a$, let $u\in(1,2)$ be the positive interior active point and keep $8$ as the other positive contact. Solving
+$$
+r'(u)=0,\qquad \phi(u)=\phi(8)
+$$
+gives
+$$
+A(u)=\frac{2(u+4)}{u^2},
+\qquad
+B(u)=u(u+16),
+\qquad
+\phi(u)=\phi(8)=u^2. \tag{2}
+$$
+The other stationary point is
+$$
+v(u)=2\sqrt{\frac{u(u+16)}{u+4}}.
+$$
+A negative contact $x$ at the reciprocal level is characterized by
+$$
+F(x,u)=0, \tag{3}
 $$
 where
 $$
-s=\alpha+\beta>0,
-\qquad
-t=\alpha\beta>0.
+F(x,u)=u^4x^3-2(u+4)x^2+u^5(u+16)x-8u^2.
 $$
-Hence for
-$$
-E_\gamma=[1,2]\cup[\gamma,6]
-$$
-the worst-case two-step factor is
-$$
-\mathcal C_\gamma(\alpha,\beta)=\max_{\lambda\in E_\gamma}|p(\lambda)|.
-$$
-We will compare feasible quadratic polynomials with $p(0)=1$. Suppose a candidate $p$ satisfies
-$$
-p(x_1)=C,
-\qquad
-p(x_2)=-C,
-\qquad
-p(x_3)=C
-$$
-for three points $0<x_1<x_2<x_3$ in $E_\gamma$, and $|p|\leq C$ on $E_\gamma$. If a quadratic $q$ with $q(0)=1$ had strictly smaller maximum norm, then $q-p$ would be negative at $x_1$, positive at $x_2$, and negative at $x_3$, giving two positive zeros in addition to its zero at $0$, which is impossible for a nonzero quadratic.
 
-This also gives uniqueness at the same optimal value. If $|q|\leq C$, then for $r=q-p$,
+Initially the minimizer is a plateau with active set $\{u_0,\gamma_1,8\}$, where $u_0\gamma_1=4$. Eliminating $u_0$ yields
 $$
-r(x_1)\leq0,
-\qquad
-r(x_2)\geq0,
-\qquad
-r(x_3)\leq0.
+\gamma_1^4+\gamma_1^3-64\gamma_1-16=0.
 $$
-Because $r(0)=0$, write $r(\lambda)=\lambda\ell(\lambda)$ with $\ell$ linear. On positive arguments, $r$ and $\ell$ have the same sign. A nonzero linear function cannot have the weak sign pattern nonpositive, nonnegative, nonpositive at three increasing points; any equality case would either give two distinct zeros of $\ell$ or force opposite signs on the two sides of its single zero. Hence $\ell\equiv0$ and $q=p$. Thus every three-point alternating candidate below is globally and uniquely minimax among quadratics with constant term $1$.
+Hence
+$$
+\gamma_1=\operatorname{root}_{(3,4)}(x^4+x^3-64x-16),
+\qquad u_0=\frac4{\gamma_1}.
+$$
+For $3<\gamma<\gamma_1$,
+$$
+\mathcal A_\gamma=\{u_0,\gamma_1,8\},
+$$
+and the same set is active at $\gamma=\gamma_1$.
 
-Step 2: Solve the regime before the spectral gap removes the interior extremum
-First ignore the gap and work on the full interval $[1,6]$. The natural three-point alternating quadratic uses the two endpoints and its unique interior stationary point. Imposing equal positive endpoint levels gives
+For $\gamma_1<\gamma<\gamma_2$, $u=u_\gamma$ is the unique root of
 $$
-p(1)=p(6),
-$$
-which, for $p(\lambda)=t\lambda^2-s\lambda+1$ with $t>0$, places the axis at
-$$
-\lambda_0=\frac{s}{2t}=\frac72.
-$$
-Write
-$$
-p(\lambda)=t\left(\lambda-\frac72\right)^2-C.
-$$
-Equal magnitude at the endpoints and at the vertex gives
-$$
-t\left(\frac52\right)^2-C=C,
-$$
-while $p(0)=1$ gives
-$$
-t\left(\frac72\right)^2-C=1.
-$$
-Solving yields
-$$
-C=\frac{25}{73},
-\qquad
-t=\frac8{73},
-\qquad
-s=\frac{56}{73}.
-$$
-Thus
-$$
-p_L(\lambda)=\frac8{73}\lambda^2-\frac{56}{73}\lambda+1.
-$$
-Its step sizes are
-$$
-\alpha_L=\frac{28-10\sqrt2}{73},
-\qquad
-\beta_L=\frac{28+10\sqrt2}{73},
-$$
-so the candidate is feasible. Because $p_L$ is convex, takes value $25/73$ at $1$ and $6$, and value $-25/73$ at $7/2$, it satisfies $|p_L|\leq25/73$ on all of $[1,6]$. Therefore whenever
-$$
-\gamma\leq\frac72,
-$$
-the three active points $1,7/2,6$ all lie in $E_\gamma$, and Step 1 proves that $p_L$ is the unique minimax polynomial. The first qualitative change can occur only when the moving endpoint $\gamma$ passes the stationary point $7/2$.
-
-Step 3: Solve the gap-active regime and locate its right endpoint
-Now assume $\gamma>7/2$. The vertex $7/2$ lies in the spectral gap, so the first point of the right spectral interval is the canonical replacement for the negative active point. Impose
-$$
-p(1)=C,
-\qquad
-p(\gamma)=-C,
-\qquad
-p(6)=C.
-$$
-The equality $p(1)=p(6)$ again forces the axis to be $7/2$. Solving the three displayed conditions together with $p(0)=1$ gives, with
-$$
-D_\gamma=6+7\gamma-\gamma^2,
-$$
-$$
-p_M(\lambda)
-=\frac2{D_\gamma}\lambda^2-\frac{14}{D_\gamma}\lambda+1,
+F(\gamma,u)=0,
+\qquad u_c<u<u_0,
 $$
 and
 $$
-C_M(\gamma)=\frac{7\gamma-\gamma^2-6}{6+7\gamma-\gamma^2}.
+\mathcal A_\gamma=\{u_\gamma,\gamma,8\}.
 $$
-For $7/2<\gamma<6$, $D_\gamma>0$, and the discriminant of the step-size equation is
+The budget first becomes active when $A(u)=46/5$, namely at
 $$
-\left(\frac{14}{D_\gamma}\right)^2-rac8{D_\gamma}
-=\frac{4(2\gamma^2-14\gamma+37)}{D_\gamma^2}>0,
+u_c=\frac{5+\sqrt{1865}}{46}.
 $$
-so its positive sum and product imply that $p_M$ factors with two positive Richardson step sizes.
+Therefore $\gamma_2$ is the unique root in $(5,21/4)$ of
+$$
+F(x,u_c)=0. \tag{4}
+$$
+Here $F_x(x,u_c)>0$ throughout $(5,21/4)$, while $F(5,u_c)<0<F(21/4,u_c)$, so the root is unique. Eliminating $u_c$ from (4) gives the purely rational polynomial
+$$
+\begin{aligned}
+P_2(x)={}&2645000x^6-57489075x^5+309996778x^4-401318375x^3\\
+&-79892560x^2-305502500x+223872800,
+\end{aligned}
+$$
+with $\gamma_2=\operatorname{root}_{(5,21/4)}P_2$. At the transition,
+$$
+\mathcal A_{\gamma_2}=\{u_c,\gamma_2,8\},
+\qquad A=\frac{46}{5}.
+$$
 
-On $[\gamma,6]$, the polynomial is increasing because its axis is $7/2<\gamma$, hence its values stay between $-C_M$ and $C_M$. On $[1,2]$ it is decreasing, so the only additional condition needed is
+Step 3: Solve the budget-active moving regime
+Now fix $A=a=46/5$. With only $B$ free, the two active spectral contacts are the lower endpoint $\gamma$ and the upper endpoint $8$, with opposite signs. Equivalently
 $$
-p_M(2)\geq-C_M(\gamma).
+\phi_{a,B}(\gamma)\phi_{a,B}(8)=1.
 $$
-Substitution and collection over the common denominator $D_\gamma$ gives
+After clearing denominators this becomes
 $$
-p_M(2)+C_M(\gamma)
-=\frac{2(5-\gamma)(\gamma-2)}{6+7\gamma-\gamma^2}.
+Q_\gamma(B):=
+25\gamma B^2+(25\gamma^3+1600\gamma)B
++1600\gamma^3-17158\gamma^2-14920=0. \tag{5}
 $$
-Thus the candidate is valid exactly through
+Since $\partial_BQ_\gamma>0$ for $B>0$, there is at most one positive root. Let $B_\gamma$ denote it. At $\gamma_2$ it equals
 $$
-\gamma\leq5.
+B_c=u_c(u_c+16),
 $$
-For $7/2<\gamma<5$, its alternating active points are exactly
-$$
-\{1,\gamma,6\},
-$$
-so Step 1 proves global optimality and uniqueness. At $\gamma=5$, the point $\lambda=2$ also reaches the negative level.
+and it decreases continuously as $\gamma$ increases.
 
-Step 4: Solve the final regime after the left endpoint becomes active
-For $\gamma\geq5$, the new three-point alternating pattern uses the fixed points $1,2,6$:
-$$
-p(1)=C,
-\qquad
-p(2)=-C,
-\qquad
-p(6)=C.
-$$
-Solving gives
-$$
-p_R(\lambda)=\frac18\lambda^2-\frac78\lambda+1,
-\qquad
-C_R=\frac14.
-$$
-The corresponding positive ordered step sizes are
-$$
-\alpha_R=\frac{7-\sqrt{17}}{16},
-\qquad
-\beta_R=\frac{7+\sqrt{17}}{16}.
-$$
-The axis is again $7/2$. On $[1,2]$, $p_R$ decreases from $1/4$ to $-1/4$. On the right interval it increases, and
-$$
-p_R(5)=-\frac14,
-\qquad
-p_R(6)=\frac14.
-$$
-Hence for every $\gamma\geq5$, the restriction to $[\gamma,6]$ also satisfies $|p_R|\leq1/4$. The active points on the open regime $5<\gamma<6$ are
-$$
-\{1,2,6\},
-$$
-and Step 1 proves that $p_R$ is uniquely minimax. At $\gamma=5$, both $2$ and $5$ are active at the negative level, so the middle and final formulas meet continuously.
+The derivative equation (1), with $A=a$ and $B\in(B_0,B_c)$, has two positive stationary points. The smaller lies in $(1,2)$ and the larger in $(3,4)\subset(2,\gamma)$ throughout this regime. The smaller stationary point can reach the upper level $\phi(8)$ only if simultaneously $r'(u)=0$ and $\phi(u)=\phi(8)$; by (2) this would force $A=A(u)=a$, hence $u=u_c$ and therefore $\gamma=\gamma_2$. So it is strictly inactive for $\gamma>\gamma_2$.
 
-Step 5: Identify the two phase transitions and the active-set patterns
-Step 2 shows that the interior stationary maximizer at $7/2$ remains active precisely until the moving right interval starts at that point. Step 3 shows that the moving endpoint $\gamma$ then remains active until $\gamma=5$, where the fixed point $2$ reaches the same negative extremal value. Step 4 shows that beyond this point the active triple is fixed.
+Thus the only possible next collision is the left endpoint $2$ reaching the lower level. Until that happens,
+$$
+\mathcal A_\gamma=\{\gamma,8\}
+\qquad(\gamma_2<\gamma<\gamma_3).
+$$
+The boundary Farkas identity from Step 1 proves global optimality despite there being only two spectral active points.
 
-Therefore the two transition values are
+Step 4: Locate the final plateau and verify shift feasibility
+The next transition occurs when
 $$
-\gamma_1=\frac72,
-\qquad
-\gamma_2=5,
+\phi_{a,B}(2)\phi_{a,B}(8)=1.
 $$
-and on the three open regimes the active sets are respectively
+This gives
 $$
-\left\{1,\frac72,6\right\},
-\qquad
-\{1,\gamma,6\},
-\qquad
-\{1,2,6\}.
+25B^2+1700B-35376=0,
 $$
-At $\gamma=7/2$ the stationary point is exactly the moving endpoint, while at $\gamma=5$ the active set is $\{1,2,5,6\}$.
+so the feasible root is
+$$
+B_0=-34+\frac{2\sqrt{16069}}5. \tag{6}
+$$
+Combining (5) with (6) and eliminating $B$ yields
+$$
+(\gamma-2)^2P_3(\gamma)=0,
+$$
+where
+$$
+P_3(x)=700x^4+20050x^3-167517x^2+156580x-37300.
+$$
+This quartic has exactly one root in $(23/4,6)$, so
+$$
+\gamma_3=\operatorname{root}_{(23/4,6)}P_3.
+$$
+At the transition,
+$$
+\mathcal A_{\gamma_3}=\{2,\gamma_3,8\}.
+$$
+For $\gamma_3<\gamma\le7$, keep $A=a$ and $B=B_0$. The right interval starts to the right of the second stationary point, so $\phi$ is increasing there; on $[1,2]$ the endpoint $2$ is the unique lower active contact and the interior maximum stays strictly below the upper level. Hence
+$$
+\mathcal A_\gamma=\{2,8\}
+\qquad(\gamma_3<\gamma\le7).
+$$
 
-Final Answer: $\boxed{\left(\frac{7}{2},5,\left\{1,\frac{7}{2},6\right\},\{1,\gamma,6\},\{1,2,6\}\right)}$
+It remains to check that the coefficients correspond to three positive shifts. On the unconstrained branch this follows from the discriminant calculation for (2). On the budget-active branch the shifts are the roots of
+$$
+t^3-at^2+Bt-8,
+$$
+whose discriminant is
+$$
+\Delta(B)=a^2B^2-4B^3-32a^3-1728+144aB.
+$$
+For $B_0\le B\le B_c<18$, $\Delta'(B)>0$, and
+$$
+\Delta(B_0)=\frac{224(4045669-31905\sqrt{16069})}{625}>0.
+$$
+Thus all three roots are real; since their sum, pairwise sum, and product are all positive, all three roots are positive.
+
+Step 5: Collect the phase diagram
+The exact transitions are
+$$
+\gamma_1=\operatorname{root}_{(3,4)}(x^4+x^3-64x-16),
+$$
+$$
+\gamma_2=\operatorname{root}_{(5,21/4)}P_2,
+$$
+$$
+\gamma_3=\operatorname{root}_{(23/4,6)}P_3.
+$$
+Numerically,
+$$
+\gamma_1\approx3.7787240783,
+\qquad
+\gamma_2\approx5.2442756394,
+\qquad
+\gamma_3\approx5.8746294511.
+$$
+The four open-regime active sets are respectively
+$$
+\{u_0,\gamma_1,8\},\qquad
+\{u_\gamma,\gamma,8\},\qquad
+\{\gamma,8\},\qquad
+\{2,8\}.
+$$
+
+Final Answer: $\boxed{(3.7787240783,5.2442756394,5.8746294511)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{7}{2},5,\left\{1,\frac{7}{2},6\right\},\{1,\gamma,6\},\{1,2,6\}\right)$
+$(3.7787240783,5.2442756394,5.8746294511)$
 
 ---
 
@@ -204,8 +230,7 @@ $\left(\frac{7}{2},5,\left\{1,\frac{7}{2},6\right\},\{1,\gamma,6\},\{1,2,6\}\rig
 
 ## Solution Concepts
 
-- nonstationary Richardson iteration
-- minimax polynomial tuning
-- spectral gap phase transition
-- equioscillation certificate
-- worst-case contraction
+- constrained ADI shift tuning
+- active inequality constraints
+- KKT and Farkas certificates
+- active-set phase transitions
