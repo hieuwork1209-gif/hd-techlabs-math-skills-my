@@ -1,160 +1,175 @@
 ## Steps
 
-Step 1: Locate exactly when the normalized map can fail to be defined
-For $m\ge2$ and $t>0$, define
+Step 1: Analyze the zeros of one cyclic block
+For an integer $k\ge2$, define
 $$
-P_t(z_1,\dots,z_m)
-=\bigl(z_1^2+t\overline{z_2},\ z_2^2+t\overline{z_3},\dots,\ z_m^2+t\overline{z_1}\bigr).
+B_{k,t}(w_1,\dots,w_k)
+=\bigl(w_1^2+t\overline{w_2},\dots,w_{k-1}^2+t\overline{w_k},w_k^2+t\overline{w_1}\bigr).
 $$
-Suppose $P_t(z)=0$ for some $z\in S^{2m-1}$. Write
-$$
-r_i=|z_i|.
-$$
-If one $r_i$ were $0$, then the equation
-$$
-z_i^2=-t\overline{z_{i+1}}
-$$
-would force $r_{i+1}=0$, and cyclically all coordinates would vanish, impossible on the sphere. Thus every $r_i>0$.
+Suppose $B_{k,t}(w)=0$. If one coordinate vanishes, the equations force all coordinates to vanish. Thus every nonzero zero has all coordinates nonzero.
 
-Taking absolute values gives
+Write
 $$
-r_i^2=tr_{i+1}
-$$
-for every $i$, with indices cyclic. Put
-$$
-a_i=\log\frac{r_i}{t}.
+\rho_i=|w_i|.
 $$
 Then
 $$
-a_{i+1}=2a_i.
+\rho_i^2=t\rho_{i+1}
 $$
-Going once around the cycle yields
+cyclically. Setting
 $$
-a_1=2^m a_1,
+a_i=\log\frac{\rho_i}{t}
 $$
-so $a_1=0$, and hence
+gives $a_{i+1}=2a_i$, hence $a_1=2^ka_1$ and therefore
 $$
-r_1=\cdots=r_m=t.
-$$
-Because $z$ lies on the unit sphere,
-$$
-1=\sum_{i=1}^m r_i^2=mt^2.
-$$
-Therefore a boundary zero is possible only when
-$$
-t=\frac1{\sqrt m}.
-$$
-Conversely, when $t=1/\sqrt m$, taking
-$$
-z_1=\cdots=z_m=\frac{e^{i\pi/3}}{\sqrt m}
-$$
-gives
-$$
-z_i^2+t\overline{z_{i+1}}=0
-$$
-for every $i$. Thus $P_t$ is nonzero on $S^{2m-1}$ exactly when
-$$
-t\ne\frac1{\sqrt m}.
-$$
-Under the hypothesis of the problem, the normalized map
-$$
-F_t(z)=\frac{P_t(z)}{\|P_t(z)\|}
-$$
-is therefore well-defined, and its degree is constant on each of the two intervals
-$$
-0<t<\frac1{\sqrt m}
-\qquad\text{and}\qquad
-t>\frac1{\sqrt m},
-$$
-by homotopy invariance of degree.
-
-Step 2: Compute the degree below the critical value
-If
-$$
-0<t<\frac1{\sqrt m},
-$$
-we may homotope $t$ to $0$ without encountering a boundary zero. Thus
-$$
-\deg F_t=\deg F_0.
-$$
-At $t=0$,
-$$
-P_0(z)=(z_1^2,\dots,z_m^2).
-$$
-For a continuous map $P$ on the closed unit ball with no zero on the boundary, the degree of the boundary map $P/\|P\|$ equals the Brouwer degree of $P$ at $0$ in the ball. Apply this to $P_0$.
-
-Perturb the target from $0$ to
-$$
-(\varepsilon,\dots,\varepsilon)
-$$
-with $\varepsilon>0$ sufficiently small. The equations
-$$
-z_i^2=\varepsilon
-$$
-have exactly two solutions for each coordinate, so there are exactly
-$$
-2^m
-$$
-preimages in the unit ball. At each such preimage the real Jacobian determinant of the coordinatewise squaring map is
-$$
-\prod_{i=1}^m4|z_i|^2>0.
-$$
-Hence every local degree is $+1$, and therefore
-$$
-\deg F_t=2^m
-\qquad\left(0<t<\frac1{\sqrt m}\right).
+\rho_1=\cdots=\rho_k=t.
 $$
 
-Step 3: Compute the degree above the critical value
-Now suppose
+Write $w_i=te^{i\theta_i}$. The phase equations are
 $$
-t>\frac1{\sqrt m}.
+\theta_{i+1}\equiv\pi-2\theta_i\pmod{2\pi}.
 $$
-Scale $P_t$ by the positive factor $1/t$. The normalized map is unchanged, and we obtain
+If $f(\theta)=\pi-2\theta$, then
 $$
-\left(t^{-1}z_1^2+\overline{z_2},\dots,t^{-1}z_m^2+\overline{z_1}\right).
+f^k(\theta)-\theta
+=\bigl((-2)^k-1\bigr)\left(\theta-\frac\pi3\right)
+\pmod{2\pi}.
 $$
-Put
+Hence the number of nonzero zeros is
 $$
-q=\frac1t.
+N_k=\left|(-2)^k-1\right|=2^k-(-1)^k.
 $$
-The zero calculation from Step 1, rewritten for this scaled family, shows that a boundary zero can occur only when
+Every such zero has Euclidean norm
 $$
-q=\sqrt m.
-$$
-Since here $0<q<\sqrt m$, we may homotope $q$ to $0$. Thus $F_t$ is homotopic to the orthogonal map
-$$
-A(z_1,\dots,z_m)
-=\bigl(\overline{z_2},\overline{z_3},\dots,\overline{z_1}\bigr).
+\sqrt{k}\,t.
 $$
 
-Complex conjugation on one complex coordinate has real determinant $-1$, so conjugation on $\mathbb C^m$ has determinant $(-1)^m$. The cyclic permutation of the $m$ complex coordinate blocks has real determinant $+1$, because each block has real dimension $2$. Therefore
+Step 2: Compute the local degree of every zero of a block
+At the origin,
 $$
-\det_{\mathbb R}A=(-1)^m.
+DB_{k,t}(0)(\xi_1,\dots,\xi_k)
+=t\bigl(\overline{\xi_2},\dots,\overline{\xi_k},\overline{\xi_1}\bigr).
 $$
-An orthogonal self-map of the sphere has degree equal to the sign of its real determinant, hence
+The cyclic permutation of the complex coordinate blocks has positive real determinant, while conjugation on each complex coordinate has determinant $-1$. Thus the local degree at the origin is
 $$
-\deg F_t=(-1)^m
-\qquad\left(t>\frac1{\sqrt m}\right).
-$$
-
-Step 4: Combine the two homotopy regimes
-The hypothesis that $P_t$ is nonzero on the sphere is equivalent to $t\ne1/\sqrt m$. On the two possible parameter regimes, Steps 2 and 3 give
-$$
-\deg F_t=
-\begin{cases}
-2^m,&0<t<m^{-1/2},\\
-(-1)^m,&t>m^{-1/2}.
-\end{cases}
+(-1)^k.
 $$
 
-Final Answer: $\boxed{\begin{cases}2^m,&0<t<m^{-1/2},\\(-1)^m,&t>m^{-1/2}.\end{cases}}$
+Now let $w$ be a nonzero zero and write a tangent increment as
+$$
+\delta w_i=w_i\eta_i.
+$$
+Using
+$$
+w_i^2=-t\overline{w_{i+1}},
+$$
+the derivative becomes
+$$
+DB_{k,t}(w)(\delta w)_i
+=t\overline{w_{i+1}}\bigl(-2\eta_i+\overline{\eta_{i+1}}\bigr).
+$$
+Multiplying complex input or output coordinates by nonzero complex scalars preserves real orientation, so the sign of the Jacobian equals that of
+$$
+L(\eta)_i=-2\eta_i+\overline{\eta_{i+1}}.
+$$
+Let $S$ be the cyclic shift on $\mathbb R^k$. Writing $\eta=x+iy$, the real and imaginary parts of $L$ are
+$$
+x\longmapsto(-2I_k+S)x,
+\qquad
+y\longmapsto(-2I_k-S)y.
+$$
+Since
+$$
+\det(-2I_k+S)=(-1)^k(2^k-1)
+$$
+and
+$$
+\det(-2I_k-S)=(-2)^k-1,
+$$
+these two determinants have the same sign, so
+$$
+\det_{\mathbb R}L>0.
+$$
+Therefore every nonzero zero of $B_{k,t}$ is nondegenerate and has local degree $+1$.
+
+Step 3: Classify the zeros of the two-block map relative to the unit ball
+Let
+$$
+m=r+s
+$$
+and let $P_t$ be the map from the problem. Because the permutation consists of an $r$-cycle and an $s$-cycle,
+$$
+P_t=B_{r,t}\oplus B_{s,t}.
+$$
+Thus every zero is of one of four types:
+
+$$
+(0,0),
+$$
+with local degree $(-1)^{r+s}$;
+
+$$
+(u,0),\qquad u\ne0,
+$$
+with $N_r$ choices, norm $\sqrt r\,t$, and local degree $(-1)^s$;
+
+$$
+(0,v),\qquad v\ne0,
+$$
+with $N_s$ choices, norm $\sqrt s\,t$, and local degree $(-1)^r$;
+
+and
+$$
+(u,v),\qquad u\ne0,\ v\ne0,
+$$
+with $N_rN_s$ choices, norm $\sqrt{r+s}\,t$, and local degree $+1$.
+
+The hypothesis
+$$
+(r+s)^{-1/2}<t<s^{-1/2}
+$$
+and the inequality $r<s$ imply
+$$
+\sqrt r\,t<1,
+\qquad
+\sqrt s\,t<1,
+\qquad
+\sqrt{r+s}\,t>1.
+$$
+Hence the first three types lie inside the open unit ball and the fourth lies outside it. In particular, $P_t$ has no zero on the unit sphere, so the normalized map $F_t$ is well-defined.
+
+Step 4: Sum the local degrees inside the ball
+For a smooth map with no zero on the unit sphere and only nondegenerate zeros in the ball, the degree of the normalized boundary map is the sum of the local degrees of the interior zeros. Therefore
+$$
+\deg F_t
+=(-1)^{r+s}+N_r(-1)^s+N_s(-1)^r.
+$$
+Using
+$$
+N_r=2^r-(-1)^r,
+\qquad
+N_s=2^s-(-1)^s,
+$$
+we obtain
+$$
+\deg F_t
+=(-1)^{r+s}
++\bigl(2^r-(-1)^r\bigr)(-1)^s
++\bigl(2^s-(-1)^s\bigr)(-1)^r,
+$$
+which simplifies to
+$$
+\deg F_t
+=2^r(-1)^s+2^s(-1)^r-(-1)^{r+s}.
+$$
+
+Final Answer: $\boxed{2^r(-1)^s+2^s(-1)^r-(-1)^{r+s}}$
 
 ---
 
 ## Answer
 
-$\begin{cases}2^m,&0<t<m^{-1/2},\\(-1)^m,&t>m^{-1/2}.\end{cases}$
+$2^r(-1)^s+2^s(-1)^r-(-1)^{r+s}$
 
 ---
 
@@ -169,7 +184,7 @@ $\begin{cases}2^m,&0<t<m^{-1/2},\\(-1)^m,&t>m^{-1/2}.\end{cases}$
 ## Solution Concepts
 
 - brouwer degree
-- homotopy invariance
-- cyclic modulus recurrence
-- local degree of holomorphic squaring
-- orientation of real linear maps
+- local degree
+- cyclic zero classification
+- nondegenerate jacobian signs
+- direct-sum zero bookkeeping
