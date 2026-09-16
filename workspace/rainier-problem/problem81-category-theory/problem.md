@@ -2,82 +2,42 @@
 
 ## LaTeX (Normalized)
 
-Let $p$ be an odd prime and let $a\ge2$. Put
+Let $p$ be an odd prime, let $k=\mathbb F_p$, and put
 $$
-Q=p(p-1),
-\qquad
-R=Q+1,
-\qquad
-N=ap^2+R,
+D=k[\varepsilon]/(\varepsilon^2).
 $$
-and let
+For $i=1,2,3$, let
 $$
-\Gamma_j(p)=|GL_j(\mathbb F_p)|
-=\prod_{i=0}^{j-1}(p^j-p^i).
+T_i=D\otimes_k-
 $$
+be three labeled copies of the monad on $\operatorname{Vect}_k$ induced by the algebra $D$.
 
-Let
+A distributive triple is a triple of invertible Beck distributive laws
 $$
-G=C_{p^2}=\langle g\rangle,
+\lambda_{21}:T_2T_1\Rightarrow T_1T_2,
 \qquad
-H=\langle g^p\rangle\cong C_p,
-$$
-and let $k=\mathbb F_p$. Fix the vector space
-$$
-V=k^N.
-$$
-Consider functors
-$$
-F:BG\to\operatorname{Vect}_k
-$$
-with $F(*)=V$. Distinct actions of $g$ on the fixed vector space $V$ are counted as distinct functors, even when naturally isomorphic.
-
-For a finite group $Q'$ and a functor $M:BQ'\to\operatorname{Vect}_k$, left and right Kan extension along $BQ'\to *$ are the coinvariants $M_{Q'}$ and invariants $M^{Q'}$. Let
-$$
-\mathsf N_{Q'}:M_{Q'}\to M^{Q'},
+\lambda_{31}:T_3T_1\Rightarrow T_1T_3,
 \qquad
-[v]\longmapsto\sum_{q\in Q'}qv
+\lambda_{32}:T_3T_2\Rightarrow T_2T_3,
 $$
-be the norm comparison.
+compatible with the monad units and multiplications and satisfying the Yang-Baxter equation
+$$
+(T_1\lambda_{32})(\lambda_{31}T_2)(T_3\lambda_{21})
+=(\lambda_{21}T_3)(T_2\lambda_{31})(\lambda_{32}T_1).
+$$
+Distinct triples of natural transformations are counted as distinct.
 
-For $F$ define
+For $i<j$, let $A_{ij}$ be the $4$-dimensional $k$-algebra whose tensoring monad is the pairwise composite determined by $\lambda_{ji}$. Let
 $$
-\alpha(F)=\operatorname{rank}(\mathsf N_G),
+s(\Lambda)=\#\{(i,j):A_{ij}\text{ is a simple }k\text{-algebra}\}.
 $$
-$$
-\beta(F)=\operatorname{rank}(\mathsf N_H)
-$$
-after restricting along $BH\hookrightarrow BG$, and
-$$
-\gamma(F)=\dim_k V^G,
-\qquad
-\delta(F)=\dim_k V^H.
-$$
+The Yang-Baxter condition also gives an $8$-dimensional algebra $A_\Lambda$ whose tensoring monad is the total composite $T_1T_2T_3$. Let $e(\Lambda)$ be the number of primitive central idempotents of $A_\Lambda$.
 
-Perform the following optimization in order:
-
-1. maximize $\alpha(F)$;
-2. among those maximizers, minimize $\beta(F)$;
-3. among those minimizers, minimize $\gamma(F)$;
-4. among those minimizers, maximize $\delta(F)$.
-
-Let the resulting extremal values be
-$$
-(A_{p,a},B_{p,a},C_{p,a},D_{p,a}).
-$$
-Let $\mathcal E$ be the set of functors attaining all four extrema. Let $K_{p,a}$ be the number of pairs
-$$
-(F,\eta),
-\qquad
-F\in\mathcal E,
-\quad
-\eta\in\operatorname{Aut}(F),
-$$
-where $\operatorname{Aut}(F)$ is the group of natural automorphisms of $F$.
+First maximize $s(\Lambda)$. Among all maximizers, minimize $e(\Lambda)$. Let the two extremal values be $S_p$ and $E_p$, and let $K_p$ be the number of distributive triples attaining both extrema.
 
 Determine exactly
 $$
-(A_{p,a},B_{p,a},C_{p,a},D_{p,a},K_{p,a}).
+(S_p,E_p,K_p).
 $$
 
 ---
@@ -95,4 +55,4 @@ $$
 
 ## Domain Explanation
 
-The problem performs a mixed extremal analysis of canonical norm comparisons between left and right Kan extensions of a functor on a finite group category, together with right-Kan-extension invariant dimensions before and after subgroup restriction. The final count marks each extremal functor by a natural automorphism, so both the categorical Kan-extension data and the stabilizers in the functor groupoid are essential. Thus Logic, Set Theory, and Foundations -> Category theory is primary, with modular linear algebra serving as the subordinate method.
+The problem asks for a coherent distributive series of three monads, so the Beck unit/multiplication axioms and the Yang-Baxter coherence are the primary constraints. Those categorical laws determine the pairwise and total composite monads; twisted-algebra and Clifford-algebra calculations are then used to detect simplicity, central decomposition, and the equality cases. Thus Logic, Set Theory, and Foundations -> Category theory is primary.
