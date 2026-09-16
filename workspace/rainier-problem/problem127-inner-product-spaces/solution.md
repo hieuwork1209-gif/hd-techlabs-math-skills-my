@@ -1,156 +1,154 @@
 ## Steps
 
-Step 1: Translate the basis conditions into Gram-matrix constraints
+Step 1: Convert the two orthonormal bases into an orthogonal transition matrix
 Let
 $$
-V=[v_1\ v_2\ v_3\ v_4]
-$$
-and let
-$$
-G=V^TV.
-$$
-Because the $v_i$ are unit vectors,
-$$
-G_{ii}=1
-$$
-for every $i$. If $W=[w_1\ w_2\ w_3\ w_4]$ is the matrix of the Euclidean dual basis, then
-$$
-V^TW=I_4,
-$$
-so $W=V^{-T}$ and therefore
-$$
-W^TW=G^{-1}.
-$$
-The conditions $\|w_i\|=\sqrt2$ give
-$$
-(G^{-1})_{ii}=2
-$$
-for every $i$. Hence
-$$
-\operatorname{tr}G=4,
+U=(u_{ij})_{1\leq i,j\leq3},
 \qquad
-\operatorname{tr}(G^{-1})=8.
+u_{ij}=\langle e_i,f_j\rangle.
+$$
+Because both $(e_1,e_2,e_3)$ and $(f_1,f_2,f_3)$ are orthonormal bases, $U$ is orthogonal. The hypothesis says that
+$$
+|u_{11}|=|u_{22}|=|u_{33}|.
+$$
+The desired quantity is
+$$
+M(U)=\prod_{i=1}^3\prod_{j=1}^3|u_{ij}|.
 $$
 
-Let
+There are examples with $M(U)>0$, so a maximizing matrix has no zero entry. By changing the sign of each $f_j$ separately, which only changes the sign of the $j$th column of $U$, we may assume
 $$
-x=\frac12(\varepsilon_1,\varepsilon_2,\varepsilon_3,\varepsilon_4)^T,
-\qquad
-y=\frac12(\eta_1,\eta_2,\eta_3,\eta_4)^T.
+u_{11}=u_{22}=u_{33}=t>0.
 $$
-Since the entries are signs and $\sum_i\varepsilon_i\eta_i=0$, the vectors $x,y$ are orthonormal. Moreover
-$$
-\left\|\sum_{i=1}^4\varepsilon_i v_i\right\|^2=4x^TGx,
-\qquad
-\left\|\sum_{i=1}^4\eta_i v_i\right\|^2=4y^TGy.
-$$
-Thus the target equals
-$$
-4\sqrt{(x^TGx)(y^TGy)}.
-$$
+If $\det U=1$, set $Q=U$. If $\det U=-1$, set $Q=-U$. Then $Q\in SO(3)$, the absolute values of all entries are unchanged, and the three diagonal entries of $Q$ are equal to a common number $s$, where $s=t$ in the first case and $s=-t$ in the second. Hence it suffices to maximize $M(Q)$ over matrices $Q\in SO(3)$ with constant diagonal.
 
-Step 2: Bound the two signed-sum directions by the top two eigenvalues
-Let the eigenvalues of $G$ be
+Step 2: Classify the constant-diagonal rotations
+If $Q=I_3$, then its off-diagonal entries vanish and $M(Q)=0$, so suppose $Q\neq I_3$. Since $Q\in SO(3)$, it has a unit fixed vector $n$ and acts on $n^\perp$ as a planar rotation through some angle $\theta$. Writing
 $$
-\lambda_1\geq\lambda_2\geq\lambda_3\geq\lambda_4>0.
-$$
-Because $x,y$ are orthonormal, the Ky Fan variational principle gives
-$$
-x^TGx+y^TGy\leq\lambda_1+\lambda_2.
-$$
-Using the arithmetic-geometric mean inequality,
-$$
-4\sqrt{(x^TGx)(y^TGy)}
-\leq2\bigl(x^TGx+y^TGy\bigr)
-\leq2(\lambda_1+\lambda_2).
-$$
-It remains to maximize the sum of the two largest eigenvalues under the trace constraints from Step 1.
-
-Step 3: Optimize the top-two spectral sum
-Set
-$$
-A=\lambda_1+\lambda_2,
+c=\cos\theta,
 \qquad
-B=\lambda_3+\lambda_4=4-A.
+h=\sin\theta,
 $$
-Since the first two eigenvalues are the larger pair, $A\geq2$. By Cauchy-Schwarz applied separately to the two pairs,
+its action is
 $$
-\frac1{\lambda_1}+\frac1{\lambda_2}\geq\frac4A,
-\qquad
-\frac1{\lambda_3}+\frac1{\lambda_4}\geq\frac4B.
+Q=cI_3+(1-c)nn^T+hK_n,
 $$
-Therefore
+where $K_nx=n\times x$. In particular,
 $$
-8=\sum_{i=1}^4\frac1{\lambda_i}
-\geq\frac4A+\frac4{4-A}.
+Q_{ii}=c+(1-c)n_i^2.
 $$
-Equivalently,
+Because all three diagonal entries are equal and $c\neq1$, we obtain
 $$
-A(4-A)\geq2.
+n_1^2=n_2^2=n_3^2=\frac13.
 $$
-Since $A\geq2$, this implies
+Conjugating $Q$ by a diagonal sign matrix changes only signs of entries and therefore leaves $M(Q)$ unchanged. Thus we may take
 $$
-A\leq2+\sqrt2.
+n=\frac1{\sqrt3}(1,1,1)^T.
 $$
-Combining this with Step 2 yields
+The common diagonal entry is then
 $$
-\left\|\sum_{i=1}^4\varepsilon_i v_i\right\|
-\left\|\sum_{i=1}^4\eta_i v_i\right\|
-\leq4+2\sqrt2.
-$$
-
-Step 4: Construct a Gram matrix attaining equality
-Let
-$$
-a=1+\frac1{\sqrt2},
-\qquad
-b=1-\frac1{\sqrt2},
-$$
-and let $P$ be the orthogonal projection onto $\operatorname{span}\{x,y\}$. Because every coordinate of both $x$ and $y$ has squared value $1/4$,
-$$
-P_{ii}=x_i^2+y_i^2=\frac12
-$$
-for every $i$.
-
-Define
-$$
-G=aP+b(I_4-P).
-$$
-Then $G$ is positive definite and
-$$
-G_{ii}=\frac{a+b}{2}=1.
-$$
-Also
-$$
-G^{-1}=\frac1aP+\frac1b(I_4-P).
-$$
-Since $a+b=2$ and $ab=1/2$,
-$$
-\frac1a+\frac1b=4,
+s=c+\frac{1-c}{3}=\frac{1+2c}{3},
 $$
 so
 $$
-(G^{-1})_{ii}=\frac12\left(\frac1a+\frac1b\right)=2.
+-\frac13\leq s\leq1.
 $$
-Thus $G$ is the Gram matrix of a basis satisfying both the primal and dual norm conditions.
 
-Finally, $x$ and $y$ lie in the $a$-eigenspace of $G$, so
+Step 3: Express the full nine-entry product in terms of the single parameter $s$
+For the chosen axis $n$, the six off-diagonal entries consist of three copies of
 $$
-x^TGx=y^TGy=a.
+a+b
 $$
-Hence the target value is
+and three copies of
 $$
-4a=4+2\sqrt2,
+a-b,
 $$
-and the bound is attained.
+up to signs, where
+$$
+a=\frac{1-c}{3},
+\qquad
+b=\frac{h}{\sqrt3}.
+$$
+Since $c=(3s-1)/2$,
+$$
+a=\frac{1-s}{2}.
+$$
+Also
+$$
+b^2=\frac{1-c^2}{3}
+=\frac{(1-s)(1+3s)}4.
+$$
+Therefore
+$$
+a^2-b^2
+=\frac{(1-s)^2-(1-s)(1+3s)}4
+=-s(1-s).
+$$
+The product of the three diagonal entries and the six off-diagonal entries is consequently
+$$
+M(Q)
+=|s|^3|a+b|^3|a-b|^3
+=|s|^3|a^2-b^2|^3
+=|s|^6(1-s)^3.
+$$
 
-Final Answer: $\boxed{4+2\sqrt2}$
+Step 4: Maximize the resulting one-variable function
+For $0\leq s\leq1$, set
+$$
+g(s)=s^6(1-s)^3.
+$$
+At an interior critical point,
+$$
+\frac{g'(s)}{g(s)}=\frac6s-\frac3{1-s}=0,
+$$
+which gives
+$$
+s=\frac23.
+$$
+The endpoint values are $0$, so on this interval
+$$
+g(s)\leq\left(\frac23\right)^6\left(\frac13\right)^3
+=\frac{2^6}{3^9}.
+$$
+
+For $-1/3\leq s\leq0$, write $x=-s$. Then
+$$
+g(s)=x^6(1+x)^3,
+$$
+which is strictly increasing for $x\geq0$. Hence its maximum on this interval occurs at $x=1/3$, and again
+$$
+g(s)\leq\left(\frac13\right)^6\left(\frac43\right)^3
+=\frac{2^6}{3^9}.
+$$
+Thus every admissible pair of bases satisfies
+$$
+M(U)\leq\frac{2^6}{3^9}.
+$$
+
+Step 5: Construct orthonormal bases attaining the bound
+Take $(e_1,e_2,e_3)$ to be the standard basis and let $(f_1,f_2,f_3)$ be the columns of
+$$
+Q=
+\begin{pmatrix}
+\frac23&-\frac13&\frac23\\
+\frac23&\frac23&-\frac13\\
+-\frac13&\frac23&\frac23
+\end{pmatrix}.
+$$
+A direct row check gives $QQ^T=I_3$, so the columns form an orthonormal basis. The three matched inner products all equal $2/3$ in absolute value. Among the nine entries, six have absolute value $2/3$ and three have absolute value $1/3$, so
+$$
+M(Q)=\left(\frac23\right)^6\left(\frac13\right)^3
+=\frac{2^6}{3^9}.
+$$
+Hence the upper bound is attained.
+
+Final Answer: $\boxed{\frac{2^6}{3^9}}$
 
 ---
 
 ## Answer
 
-$4+2\sqrt2$
+$\frac{2^6}{3^9}$
 
 ---
 
@@ -164,8 +162,8 @@ $4+2\sqrt2$
 
 ## Solution Concepts
 
-- dual bases
-- gram matrices
-- ky fan variational principle
-- reciprocal eigenvalue constraints
-- orthogonal projections
+- orthonormal bases
+- orthogonal change of basis
+- three-dimensional rotations
+- axis-angle representation
+- single-variable optimization
