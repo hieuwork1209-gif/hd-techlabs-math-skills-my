@@ -136,14 +136,15 @@ $$
 \dfrac{4}{9(1-m)},&\dfrac13\le m<1.
 \end{cases}
 $$
+Equivalently, the two branches cross only at $m=1/3$, and the required value is their maximum.
 
-Final Answer: $\boxed{\min\left\{\frac{1+3m^2}{2},\frac4{9(1-m)}\right\}\text{ with the switch at }m=\frac13}$
+Final Answer: $\boxed{\max\left\{\frac{1+3m^2}{2},\frac4{9(1-m)}\right\}}$
 
 ---
 
 ## Answer
 
-$\min\left\{\frac{1+3m^2}{2},\frac4{9(1-m)}\right\}\text{ with the switch at }m=\frac13$
+$\max\left\{\frac{1+3m^2}{2},\frac4{9(1-m)}\right\}$
 
 ---
 
