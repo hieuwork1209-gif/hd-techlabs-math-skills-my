@@ -2,58 +2,34 @@
 
 ## LaTeX (Normalized)
 
-For a parameter $\gamma\in[2,6]$, define the disconnected spectral set
+For a parameter $\gamma\in[\frac92,\frac{17}{3}]$, define
 $$
 E_\gamma=[1,2]\cup[\gamma,6].
 $$
-Consider two successive Richardson steps for a real symmetric positive-definite linear system,
+Consider three successive Richardson steps for a real symmetric positive-definite system,
 $$
-x^{(1)}=(I-\alpha A)x^{(0)},
-\qquad
-x^{(2)}=(I-\beta A)x^{(1)},
+x^{(1)}=(I-\alpha A)x^{(0)},\qquad
+x^{(2)}=(I-\beta A)x^{(1)},\qquad
+x^{(3)}=(I-\delta A)x^{(2)},
 $$
-with positive step sizes $\alpha,\beta>0$. For matrices whose spectrum is contained in $E_\gamma$, the worst-case two-step Euclidean contraction factor is
+with $\alpha,\beta,\delta>0$. Their worst-case three-step Euclidean contraction factor over spectra contained in $E_\gamma$ is
 $$
-\mathcal C_\gamma(\alpha,\beta)
+\mathcal C_\gamma(\alpha,\beta,\delta)
 =\max_{\lambda\in E_\gamma}
-\left|(1-\alpha\lambda)(1-\beta\lambda)\right|.
+\left|(1-\alpha\lambda)(1-\beta\lambda)(1-\delta\lambda)\right|.
 $$
-Define
+Let $\mathcal C_\gamma^*$ be the minimum over positive $\alpha,\beta,\delta$, and let $p_\gamma^*$ be the unique minimizing cubic. Define
 $$
-\mathcal C_\gamma^*
-=\min_{\alpha>0,\ \beta>0}\mathcal C_\gamma(\alpha,\beta).
-$$
-Order the unique minimizing pair so that $\alpha_\gamma^*\leq\beta_\gamma^*$, and set
-$$
-p_\gamma^*(\lambda)
-=(1-\alpha_\gamma^*\lambda)(1-\beta_\gamma^*\lambda).
-$$
-Define its active set by
-$$
-\mathcal A_\gamma
-=\left\{\lambda\in E_\gamma:
-|p_\gamma^*(\lambda)|=\mathcal C_\gamma^*\right\}.
+\mathcal A_\gamma=\{\lambda\in E_\gamma:|p_\gamma^*(\lambda)|=\mathcal C_\gamma^*\}.
 $$
 
-As the spectral gap opens, the optimal minimax polynomial passes through three distinct active-set regimes. Determine exactly the two transition values
+As $\gamma$ increases from $\frac92$ to $\frac{17}{3}$, there are exactly two interior values
 $$
-2<\gamma_1<\gamma_2<6
+\frac92<\gamma_1<\gamma_2<\frac{17}{3}
 $$
-and determine the active-set pattern on each of the three open regimes
-$$
-2<\gamma<\gamma_1,
-\qquad
-\gamma_1<\gamma<\gamma_2,
-\qquad
-\gamma_2<\gamma<6.
-$$
-Also account for what happens at the two transition values in your reasoning.
+at which the active-set pattern changes. Determine $\gamma_1$ and $\gamma_2$ exactly. Your reasoning must also identify $\mathcal A_\gamma$ on each of the three open regimes and describe the active set at each transition.
 
-Give the final answer as
-$$
-(\gamma_1,\gamma_2,\mathcal A_-,\mathcal A_0,\mathcal A_+),
-$$
-where $\mathcal A_-,\mathcal A_0,\mathcal A_+$ are the active-set formulas on the three open regimes, in that order.
+Give the final answer as $(\gamma_1,\gamma_2)$.
 
 ---
 
@@ -70,4 +46,4 @@ where $\mathcal A_-,\mathcal A_0,\mathcal A_+$ are the active-set formulas on th
 
 ## Domain Explanation
 
-This problem asks for the exact minimax tuning of a two-step nonstationary Richardson iteration under a moving spectral gap, together with the phase transitions in the extremal eigenvalues that control the worst-case contraction. The primary object is therefore algorithmic parameter tuning and sensitivity analysis in Optimization and Numerical Mathematics and Numerical optimization. Approximation-theoretic ideas about quadratic minimax polynomials are used only as proof tools and are subordinate to the numerical-optimization objective.
+This problem asks for exact minimax tuning of a three-step nonstationary Richardson iteration under a moving spectral gap and for the phase transitions in the extremal eigenvalues controlling the worst-case contraction. The primary task is algorithmic parameter optimization in Optimization and Numerical Mathematics and Numerical optimization; polynomial equioscillation is a proof tool rather than the main classification target.
