@@ -1,208 +1,199 @@
 ## Steps
 
-Step 1: Reduce the two projections to principal-angle parameters
-Let $U=\operatorname{im}P$. The operator
+Step 1: Pass from the tight frame to a two-dimensional Naimark complement
+Let
 $$
-A=(PQP)|_{U}
+V=[v_1\ \cdots\ v_6]\in\mathbb R^{4\times 6}.
 $$
-is self-adjoint and satisfies $0\leq A\leq I_{U}$. Choose an orthonormal eigenbasis $e_1,\dots,e_4$ of $U$, with
+The tight-frame hypothesis is
 $$
-Ae_i=x_i e_i,
-\qquad 0\leq x_i\leq1.
+VV^T=\frac32 I_4.
 $$
-These $x_i$ are the squared cosines of the principal angles between $\operatorname{im}P$ and $\operatorname{im}Q$.
-
-For $0<x_i<1$, write
-$$
-Qe_i=x_i e_i+\sqrt{x_i(1-x_i)}\,f_i,
-$$
-where $f_i\in U^{\perp}$ is a unit vector. If $i\neq j$, then
-$$
-\langle Qe_i,Qe_j\rangle
-=\langle e_i,Qe_j\rangle
-=\langle e_i,PQPe_j\rangle
-=0,
-$$
-so the corresponding $f_i$ are orthogonal. Since $Q^2=Q$, on $\operatorname{span}\{e_i,f_i\}$ the matrices of $P$ and $Q$ are
-$$
-P_i=
-\begin{pmatrix}
-1&0\\
-0&0
-\end{pmatrix},
-\qquad
-Q_i=
-\begin{pmatrix}
-x_i&\sqrt{x_i(1-x_i)}\\
-\sqrt{x_i(1-x_i)}&1-x_i
-\end{pmatrix}.
-$$
-The endpoint cases $x_i=0,1$ are the corresponding limiting principal-angle blocks. Therefore
-$$
-\det(P_i+Q_i)=1-x_i,
-$$
-and hence
-$$
-\det(P+Q)=\prod_{i=1}^{4}(1-x_i).
-$$
-
-Also
-$$
-\operatorname{tr}(PQ)=\operatorname{tr}(PQP)=\sum_{i=1}^{4}x_i=2,
-$$
-and, because $PQP-\frac12P$ is supported on $U$ with eigenvalues $x_i-\frac12$,
-$$
-\sum_{i=1}^{4}\left(x_i-\frac12\right)^2=\frac25.
-$$
-
-Step 2: Convert the spectral constraints to a bounded product problem
 Set
 $$
-z_i=1-x_i.
+X=\sqrt{\frac23}\,V^T\in\mathbb R^{6\times4}.
 $$
-Then $0\leq z_i\leq1$, and the two constraints become
+Then
 $$
-\sum_{i=1}^{4}z_i=2
+X^TX=I_4,
 $$
-and
+so the four columns of $X$ are orthonormal. Because each $v_i$ is a unit vector, the $i$th row $x_i^T$ of $X$ has squared norm
 $$
-\sum_{i=1}^{4}\left(z_i-\frac12\right)^2=\frac25.
+\|x_i\|^2=\frac23.
 $$
-Expanding the second identity and using $\sum z_i=2$ gives
+Choose a matrix $Y\in\mathbb R^{6\times2}$ so that
 $$
-\sum_{i=1}^{4}z_i^2=\frac75.
+O=[X\ Y]\in O(6).
 $$
-Thus the original problem is equivalent to maximizing
+The $i$th row of $O$ has norm $1$, hence the $i$th row $y_i^T$ of $Y$ satisfies
 $$
-z_1z_2z_3z_4
+\|y_i\|^2=1-\frac23=\frac13.
 $$
-over $0\leq z_i\leq1$ subject to
+Also $Y^TY=I_2$. Define
 $$
-\sum z_i=2,
-\qquad
-\sum z_i^2=\frac75.
+u_i=\sqrt3\,y_i\in\mathbb R^2.
 $$
-A feasible point with positive product is obtained by taking two coordinates equal to $\frac12+\frac1{\sqrt{10}}$ and two equal to $\frac12-\frac1{\sqrt{10}}$. Therefore a maximizer cannot have any $z_i=0$.
+Then every $u_i$ is a unit vector and
+$$
+\sum_{i=1}^6u_i u_i^T
+=3Y^TY
+=3I_2.
+$$
+Thus the original six-vector tight frame has been converted canonically into a unit-norm tight frame of six vectors in $\mathbb R^2$.
 
-Step 3: Analyze maximizers with no coordinate on the upper boundary
-Assume first that $0<z_i<1$ for every $i$. At an interior maximizer of the product, equivalently of $\sum_i\log z_i$, Lagrange multipliers give constants $\alpha,\beta$ such that
+Step 2: Express every four-dimensional subframe volume through a complementary planar area
+Fix a four-element set $I\subset\{1,\dots,6\}$ and let $J=I^c$, so $|J|=2$. We claim
 $$
-\frac1{z_i}=\alpha+2\beta z_i
+|\det X_I|=|\det Y_J|,
 $$
-for each $i$. Hence every $z_i$ is a root of the same quadratic
-$$
-2\beta t^2+\alpha t-1=0,
-$$
-so there are at most two distinct values.
+where $X_I$ denotes the $4\times4$ submatrix of $X$ formed from rows in $I$, and $Y_J$ the $2\times2$ submatrix of $Y$ formed from rows in $J$.
 
-A multiplicity split $1+3$ would have one value
+For an invertible $n\times n$ matrix $M$, Jacobi's complementary-minor identity states that for index sets $I,K$ of the same size,
 $$
-\frac12\pm\sqrt{\frac3{10}},
+\det M[I,K]
+=\pm\det(M)\,\det(M^{-1})[K^c,I^c].
 $$
-because the deviations from $\frac12$ have sum $0$ and squared sum $\frac25$. One sign is greater than $1$ and the other is negative, so no $1+3$ interior configuration is feasible.
-
-Thus the only interior possibility has multiplicities $2+2$. The two values are
+Apply this to the orthogonal matrix $O=[X\ Y]$, with $K=\{1,2,3,4\}$. Since $O^{-1}=O^T$ and $|\det O|=1$, taking absolute values gives exactly
 $$
-\frac12\pm\frac1{\sqrt{10}},
-$$
-which indeed have sum $2$ and squared sum $\frac75$. Their product is
-$$
-\left(\frac14-\frac1{10}\right)^2
-=\frac9{400}.
+|\det X_I|=|\det Y_{I^c}|.
 $$
 
-Step 4: Analyze the upper-boundary configuration
-Now suppose a maximizer has a coordinate equal to $1$. Two coordinates cannot both equal $1$, because then $\sum z_i^2\geq2>\frac75$. After relabeling, let $z_1=1$. The remaining three positive numbers $a,b,c$ satisfy
+If $V_I$ is the $4\times4$ matrix whose columns are the $v_i$ with $i\in I$, then
 $$
-a+b+c=1,
-\qquad
-a^2+b^2+c^2=\frac25.
-$$
-We must maximize $abc$. An interior Lagrange-multiplier calculation for these three variables shows that at most two distinct values occur. Since they cannot all be equal, two are equal. Write them as $u,u,v$. Then
-$$
-2u+v=1,
-\qquad
-2u^2+v^2=\frac25.
-$$
-Eliminating $v$ gives
-$$
-30u^2-20u+3=0,
+X_I=\sqrt{\frac23}\,V_I^T,
 $$
 so
 $$
-u=\frac{10\pm\sqrt{10}}{30}.
+|\det V_I|
+=\left(\sqrt{\frac32}\right)^4|\det X_I|
+=\frac94|\det Y_J|.
 $$
-For
+Write
 $$
-u=\frac{10-\sqrt{10}}{30},
-\qquad
-v=\frac{5+\sqrt{10}}{15},
+u_i=(\cos\theta_i,\sin\theta_i).
 $$
-the product is
+Since $y_i=u_i/\sqrt3$, for $J=\{i,j\}$ we get
 $$
-u^2v=\frac{35+\sqrt{10}}{1350}.
-$$
-The other sign gives
-$$
-\frac{35-\sqrt{10}}{1350},
-$$
-so the first boundary configuration is better. It also beats the only interior candidate, because
-$$
-\frac{35+\sqrt{10}}{1350}-\frac9{400}
-=\frac{37+8\sqrt{10}}{10800}>0.
+|\det Y_J|
+=\frac13|\det[u_i\ u_j]|
+=\frac13|\sin(\theta_i-\theta_j)|.
 $$
 Therefore
 $$
-\det(P+Q)\leq\frac{35+\sqrt{10}}{1350}.
+|\det V_I|=\frac34|\sin(\theta_i-\theta_j)|,
+\qquad J=I^c=\{i,j\}.
 $$
 
-Step 5: Realize the maximizing spectral data
-Let
+Step 3: Convert the global product into a Vandermonde product on the unit circle
+There are $\binom64=15$ four-element subsets, and complementing gives a bijection with the $15$ unordered pairs. Hence
 $$
-u=\frac{10-\sqrt{10}}{30},
+\prod_{|I|=4}|\det V_I|
+=\left(\frac34\right)^{15}
+\prod_{1\le i<j\le6}|\sin(\theta_i-\theta_j)|.
+$$
+
+The planar tight-frame identity
+$$
+\sum_{i=1}^6u_i u_i^T=3I_2
+$$
+is equivalent to
+$$
+\sum_{i=1}^6\cos(2\theta_i)=0,
 \qquad
-v=\frac{5+\sqrt{10}}{15},
+\sum_{i=1}^6\sin(2\theta_i)=0.
+$$
+Define
+$$
+z_i=e^{2i\theta_i}.
+$$
+Then $|z_i|=1$ and
+$$
+\sum_{i=1}^6z_i=0.
+$$
+Moreover
+$$
+|z_i-z_j|
+=2|\sin(\theta_i-\theta_j)|.
+$$
+Thus
+$$
+\prod_{i<j}|\sin(\theta_i-\theta_j)|
+=2^{-15}\prod_{i<j}|z_i-z_j|.
+$$
+
+Step 4: Maximize the Vandermonde product by Hadamard's inequality
+Consider the Vandermonde matrix
+$$
+W=
+\begin{pmatrix}
+1&1&\cdots&1\\
+z_1&z_2&\cdots&z_6\\
+z_1^2&z_2^2&\cdots&z_6^2\\
+\vdots&\vdots&&\vdots\\
+z_1^5&z_2^5&\cdots&z_6^5
+\end{pmatrix}.
+$$
+Its determinant satisfies
+$$
+|\det W|=\prod_{i<j}|z_i-z_j|.
+$$
+Every column of $W$ has Euclidean norm $\sqrt6$, because $|z_i|=1$. Hadamard's determinant inequality therefore gives
+$$
+\prod_{i<j}|z_i-z_j|
+=|\det W|
+\le (\sqrt6)^6
+=6^3.
+$$
+
+Equality in Hadamard's inequality holds exactly when the columns are pairwise orthogonal. For $i\ne j$ their inner product is
+$$
+\sum_{k=0}^5(\overline z_i z_j)^k.
+$$
+This vanishes exactly when $\overline z_i z_j$ is a nontrivial sixth root of unity. Thus equality is obtained when the six $z_i$ form a rotated regular hexagon. Such a hexagon also satisfies $\sum_i z_i=0$, so the extra tight-frame condition from Step 3 does not lower the Hadamard bound. Consequently
+$$
+\prod_{i<j}|\sin(\theta_i-\theta_j)|
+\le \frac{6^3}{2^{15}}.
+$$
+
+Step 5: Verify attainment by reconstructing a four-dimensional tight frame
+Take
+$$
+z_j=e^{2\pi i(j-1)/6},
+\qquad j=1,\dots,6,
 $$
 and choose
 $$
-(z_1,z_2,z_3,z_4)=(1,u,u,v).
+\theta_j=\frac{\pi(j-1)}6.
 $$
-Set $x_i=1-z_i$. The identities in Step 4 give
+Then $u_j=(\cos\theta_j,\sin\theta_j)$ satisfies
 $$
-\sum_{i=1}^{4}x_i=2,
-\qquad
-\sum_{i=1}^{4}\left(x_i-\frac12\right)^2=\frac25.
+\sum_{j=1}^6u_j u_j^T=3I_2.
 $$
-For each $i$, on an orthogonal two-dimensional block define
+Let $Y$ have $j$th row $u_j^T/\sqrt3$. Then $Y^TY=I_2$. Complete the columns of $Y$ to an orthogonal matrix
 $$
-P_i=
-\begin{pmatrix}
-1&0\\
-0&0
-\end{pmatrix},
-\qquad
-Q_i=
-\begin{pmatrix}
-x_i&\sqrt{x_i(1-x_i)}\\
-\sqrt{x_i(1-x_i)}&1-x_i
-\end{pmatrix}.
+O=[X\ Y]\in O(6).
 $$
-Each $P_i$ and $Q_i$ is a rank-one orthogonal projection. Taking the orthogonal direct sums of the four blocks produces rank-$4$ orthogonal projections $P,Q$ on $\mathbb{R}^{8}$ satisfying the two required constraints, and
+Every row of $X$ has squared norm $2/3$. Define
 $$
-\det(P+Q)=\prod_{i=1}^{4}(1-x_i)=u^2v
-=\frac{35+\sqrt{10}}{1350}.
+V=\sqrt{\frac32}\,X^T.
 $$
-Thus the bound is attained.
+Its six columns are unit vectors and
+$$
+VV^T=\frac32 I_4,
+$$
+so they satisfy the required tight-frame condition. For this frame equality holds in Step 4, hence
+$$
+\prod_{|I|=4}|\det V_I|
+=\left(\frac34\right)^{15}\frac{6^3}{2^{15}}
+=\frac{3^{18}}{2^{42}}.
+$$
+Therefore the upper bound is attained.
 
-Final Answer: $\boxed{\frac{35+\sqrt{10}}{1350}}$
-
----
+Final Answer: $\boxed{\frac{3^{18}}{2^{42}}}$
 
 ## Answer
 
-$\frac{35+\sqrt{10}}{1350}$
-
----
+$\frac{3^{18}}{2^{42}}$
 
 ## Classification
 
@@ -210,12 +201,10 @@ $\frac{35+\sqrt{10}}{1350}$
 
 **Answer Type:** Exact scalar
 
----
-
 ## Solution Concepts
 
-- principal angles between subspaces
-- orthogonal projections
-- spectral theorem
-- lagrange multipliers
-- constrained product optimization
+- unit-norm tight frames
+- Naimark complements
+- complementary minors of orthogonal matrices
+- Vandermonde determinants
+- Hadamard determinant inequality
