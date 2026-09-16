@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-category-theory/problem.md",
+  "source_commit_sha": "d1d882cf206cb2f425ad41f39969bebc55bf8efc",
+  "problem_blob_sha": "39bcd8badff713d45d4fd2c5cc7998f4c7580858",
+  "statement_sha256": "d4f57fe734b25d164d68dd295c3cab080390c6e56510417510943ffb6045975d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T15:50:59+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(n=m-d\\). Since \\(m\\ge d+4\\), we have \\(n\\ge4\\).\n\nFor any map \\(g:X\\to X\\),\n\n\\[\nC_g(S)=g^{-1}(g(S)),\n\\]\n\nso \\(C_g(S)=S\\) exactly when \\(S\\) is a union of fibers of \\(g\\). Also\n\n\\[\nD_g(S)=\\forall_g(g^{-1}(S))=S\\cup (X\\setminus g(X)),\n\\]\n\nso \\(D_g(S)=S\\) exactly when \\(X\\setminus g(X)\\subseteq S\\).\n\nNow take \\(g=f^k\\). The condition \\(C_k(S)=S\\) for every \\(k\\) says that \\(S\\) must be saturated for every equivalence relation\n\n\\[\nx\\sim_k y \\iff f^k(x)=f^k(y).\n\\]\n\nIn particular, for \\(k=1\\), \\(S\\) must be a union of fibers of \\(f\\), so\n\n\\[\na(f)\\le 2^{|f(X)|}=2^{m-d}=2^n.\n\\]\n\nEquality holds exactly when no higher iterate merges two different fibers of \\(f\\). Equivalently, if \\(Y=f(X)\\), then \\(f|_Y\\) is injective. Since \\(Y\\) is finite and \\(f(Y)\\subseteq Y\\), this means \\(f|_Y\\) is a permutation of \\(Y\\). The condition \\(f(x)\\ne x\\) forces that permutation to be a derangement.\n\nThus\n\n\\[\nA_{m,d}=2^{m-d}.\n\\]\n\nAssume now \\(a(f)=A_{m,d}\\). Then \\(Y=f(X)\\), \\(|Y|=n\\), \\(f|_Y\\) is a derangement, and every point of \\(X\\setminus Y\\) maps into \\(Y\\). Also \\(f^k(X)=Y\\) for every \\(k\\ge1\\), so the \\(D_k\\)-fixed condition forces\n\n\\[\nX\\setminus Y\\subseteq S.\n\\]\n\nThe \\(C_k\\)-fixed sets are just unions of the \\(n\\) fibers of \\(f\\). If the \\(d\\) points of \\(X\\setminus Y\\) map into \\(r\\) distinct points of \\(Y\\), then \\(r\\) fibers are forced to be included, and the other \\(n-r\\) fibers are optional. Hence\n\n\\[\nb(f)=2^{n-r}.\n\\]\n\nThis is maximized when all \\(d\\) missing points map to one single point of \\(Y\\), giving\n\n\\[\nB_{m,d}=2^{n-1}=2^{m-d-1}.\n\\]\n\nNow count the extremizers:\n\n- choose \\(Y=f(X)\\): \\(\\binom md\\) choices;\n- choose a derangement of \\(Y\\): \\(\\Delta_n\\) choices;\n- choose the single point \\(y_0\\in Y\\) receiving all \\(d\\) points outside \\(Y\\): \\(n\\) choices.\n\nTherefore\n\n\\[\nK_{m,d}=\\binom md (m-d)\\Delta_{m-d}.\n\\]\n\nSo the exact answer is\n\n\\[\n\\boxed{\n(A_{m,d},B_{m,d},K_{m,d})\n=\n\\left(\n2^{m-d},\n2^{m-d-1},\n\\binom md (m-d)\\Delta_{m-d}\n\\right)\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T15:52:04+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/39bcd8badff7.json"
+}
