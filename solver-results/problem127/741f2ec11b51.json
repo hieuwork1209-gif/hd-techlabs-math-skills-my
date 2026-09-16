@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-probability-foundations/problem.md",
+  "source_commit_sha": "41e122070e62b67c9a24ca37875010cdbb6dc2a5",
+  "problem_blob_sha": "741f2ec11b51d976fef142c533e85ce7450584e5",
+  "statement_sha256": "8116bd7eb6a53a2d36ff9910e69ee2b0a25e3a6def539787e0f3f4668eac3b1b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T15:24:14+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(n=m^2\\). For any such family,\n\\[\n\\mathbb E S=0,\\qquad \\mathbb E S^2=n,\\qquad \\mathbb E S^3=0,\\qquad \n\\mathbb E S^4=3n^2-2n .\n\\]\n\nConsider\n\\[\nR(s)=(s^2-m^2)\\bigl((s+2)^2-m^2\\bigr).\n\\]\nThe possible values of \\(S\\) have the same parity as \\(m\\), and the roots\n\\[\n-m-2,\\ -m,\\ m-2,\\ m\n\\]\ncome in adjacent parity pairs. Hence \\(R(s)\\ge0\\) for every possible value of \\(S\\). Also\n\\[\nR(n)=(n^2-n)(n^2+3n+4)=n(n-1)(n^2+3n+4).\n\\]\nThus\n\\[\n\\mathbf 1_{\\{S=n\\}}\\le \\frac{R(S)}{R(n)}.\n\\]\nTaking expectations,\n\\[\n\\mathbb P(S=n)\\le \\frac{\\mathbb E R(S)}{R(n)}.\n\\]\nNow\n\\[\nR(S)=(S^2-n)(S^2+4S+4-n),\n\\]\nso, using the four moment identities,\n\\[\n\\mathbb E R(S)=2n(n-1).\n\\]\nTherefore\n\\[\n\\mathbb P(X_1=\\cdots=X_n=1)=\\mathbb P(S=n)\n\\le \\frac{2}{n^2+3n+4}\n=\\frac{2}{m^4+3m^2+4}.\n\\]\n\nThis bound is sharp. Equality forces \\(R(S)=0\\) whenever \\(S\\ne n\\), so the support of \\(S\\) must be contained in\n\\[\n\\{m^2,\\ m,\\ m-2,\\ -m,\\ -m-2\\}.\n\\]\nSolving the five moment equations on these five points gives positive masses, so such a law exists; making the conditional law uniform over all sign vectors with the chosen value of \\(S\\) gives a \\(4\\)-wise independent family.\n\nHence the required ordered pair is\n\\[\n\\boxed{\\left(\\frac{2}{m^4+3m^2+4},\\ \\{m^2,\\ m,\\ m-2,\\ -m,\\ -m-2\\}\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T15:27:01+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/741f2ec11b51.json"
+}
