@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-probability-foundations/problem.md",
+  "source_commit_sha": "64604b481f33555ae4595aef90c3540232065afe",
+  "problem_blob_sha": "2ab44e31b318d03e24f73670fc50858edfd133fc",
+  "statement_sha256": "58d21f3493e01d5d48e0f68856ed96590ddde67477ae7fe570c30f3e5df541dc",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T09:40:19+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(K\\) be the number of \\(+1\\)'s, so \\(S=2K-12\\). For any admissible law, every polynomial in \\(S\\) of degree at most \\(8\\) has the same expectation as under \\(U\\).\n\nDefine\n\\[\nq(K)=\\frac{(K-1)(K-2)(K-3)(K-4)(K-8)(K-9)(K-10)(K-11)}{14400}.\n\\]\nThen \\(q(6)=1\\), while \\(q(K)\\ge 0\\) for every \\(K\\in\\{0,\\dots,12\\}\\), and \\(q(K)=0\\) except at \\(K=0,5,6,7,12\\). Hence\n\\[\n\\mathbf 1_{\\{K=6\\}}\\le q(K).\n\\]\nSince \\(q\\) has degree \\(8\\),\n\\[\n\\mu(S=0)=\\mu(K=6)\\le \\mathbb E_\\mu q(K)=\\mathbb E_U q(K).\n\\]\nNow\n\\[\n\\mathbb E_U q(K)\n=\\frac{1}{2^{12}}\\left(2\\cdot \\frac{66}{5}+2\\binom{12}{5}\\frac35+\\binom{12}{6}\\right)\n=\\frac{297}{640}.\n\\]\n\nEquality is attained by the density\n\\[\nf(x)=\\frac{d\\bar\\mu}{dU}(x)\n=1+\\frac{R(x)(74-S(x)^2)}{70}.\n\\]\nIndeed \\(f\\ge 0\\) on all possible values of \\(S\\), and\n\\[\nf-1=\\frac1{70}R(74-S^2)\n\\]\nhas Fourier degree only \\(10\\) and \\(12\\), so all Fourier coefficients of degrees \\(1,\\dots,8\\) vanish. Thus the resulting law is unbiased and \\(8\\)-wise independent.\n\nEquality in the dual bound forces the symmetrized law to put no mass on \\(K=0,5,7,12\\). Together with the nine moment constraints of degrees \\(0,\\dots,8\\), the remaining nine masses are uniquely determined, so every maximizing law has the same permutation symmetrization.\n\n\\[\n\\boxed{\\left(\\frac{297}{640},\\; x\\mapsto 1+\\frac{R(x)(74-S(x)^2)}{70}\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T09:42:32+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/2ab44e31b318.json"
+}
