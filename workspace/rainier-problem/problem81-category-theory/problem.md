@@ -2,20 +2,25 @@
 
 ## LaTeX (Normalized)
 
-Let $\mathcal C$ be the category whose objects are pairs $(W,N)$ where $W$ is a finite-dimensional vector space over $\mathbb F_2$ and every Jordan block of the nilpotent operator $N:W\to W$ has size exactly $3$. Morphisms $f:(W,N)\to(W',N')$ are the linear maps satisfying $fN=N'f$.
+Let $k=\mathbb F_3$, let $A=k[S_3]$, and let $\mathcal C$ be the category of finite-dimensional left $A$-modules with $A$-linear maps. Let
+$$
+U:\mathcal C\to\operatorname{Vect}_k
+$$
+be the forgetful functor and define
+$$
+F=U^{\oplus3}.
+$$
 
-Let $U:\mathcal C\to\mathrm{Vect}_{\mathbb F_2}$ be the forgetful functor and define
-$$
-F=U^{\oplus6}.
-$$
-Let $\Pi:F\Rightarrow F$ be the natural idempotent that projects onto the first three copies of $U$ and annihilates the last three.
+Let $r=(123)\in S_3$. Left multiplication by $r$ defines a natural automorphism $\rho:U\Rightarrow U$; write $\rho_F=\rho^{\oplus3}:F\Rightarrow F$.
 
-For a natural idempotent $E:F\Rightarrow F$, put
+For each integer $n\geq1$, let
 $$
-C_E=E\Pi-\Pi E.
+X_n=A^{\oplus n}
 $$
-For $n\ge1$, let $X_n=(\mathbb F_2^{3n},J_3^{\oplus n})$, where $J_3$ is the nilpotent $3\times3$ Jordan block.
-
+be the direct sum of $n$ copies of the left regular $A$-module. For a natural idempotent $E:F\Rightarrow F$, put
+$$
+C_E=E\rho_F-\rho_F E.
+$$
 Among all natural idempotents $E$, let
 $$
 R_n^{(1)}>R_n^{(2)}
@@ -26,11 +31,10 @@ $$
 $$
 For $j\in\{1,2\}$, let $N_n^{(j)}$ be the number of natural idempotents attaining $R_n^{(j)}$.
 
-Determine exactly
+Determine exactly, for every $n\geq1$,
 $$
-\left(R_n^{(1)},N_n^{(1)},R_n^{(2)},N_n^{(2)}\right)
+\left(R_n^{(1)},N_n^{(1)},R_n^{(2)},N_n^{(2)}\right).
 $$
-for every $n\ge1$.
 
 ---
 
@@ -47,4 +51,4 @@ for every $n\ge1$.
 
 ## Domain Explanation
 
-The problem concerns natural endomorphisms of a forgetful functor on a category of nilpotent representations and asks for an extremal invariant of natural idempotents. The key step is to reconstruct the natural-endomorphism ring of the functor from the category itself; this ring is a non-semisimple local algebra with a length-three radical filtration, and the optimization then depends on how idempotents lift through that filtration. Thus Logic, Set Theory, and Foundations -> Category theory is the best fit.
+The requested objects are idempotent natural transformations of a forgetful functor on a module category, and the key first step is to recover the natural endomorphism algebra from functoriality. The modular group-algebra structure and finite-field incidence counting are then used to analyze those natural transformations and their commutators with a fixed natural automorphism. Thus Logic, Set Theory, and Foundations -> Category theory is the best fit.
