@@ -1,196 +1,161 @@
 ## Steps
 
-Step 1: Reduce two Richardson steps to a quadratic minimax polynomial
-For a symmetric positive-definite matrix with eigenvalue $\lambda$, two Richardson steps with positive step sizes $\alpha,\beta$ multiply that eigendirection by
+Step 1: Use four-point alternation as an exact optimality certificate
+Write a three-step Richardson polynomial as
 $$
-p(\lambda)=\alpha\beta\lambda^2-(\alpha+\beta)\lambda+1
-=t\lambda^2-s\lambda+1,
+p(\lambda)=(1-\alpha\lambda)(1-\beta\lambda)(1-\delta\lambda)
+=1+a\lambda+b\lambda^2+c\lambda^3,
 $$
-where
+with $\alpha,\beta,\delta>0$. Suppose a cubic $p$ with constant term $1$ has four increasing points
 $$
-s=\alpha+\beta>0,
-\qquad
-t=\alpha\beta>0.
+0<x_1<x_2<x_3<x_4
 $$
-Hence for
+in $E_\gamma$ such that
 $$
-E_\gamma=[1,2]\cup[\gamma,6]
+p(x_1)=C,\qquad p(x_2)=-C,\qquad p(x_3)=C,\qquad p(x_4)=-C,
 $$
-the worst-case two-step factor is
-$$
-\mathcal C_\gamma(\alpha,\beta)=\max_{\lambda\in E_\gamma}|p(\lambda)|.
-$$
-We will compare feasible quadratic polynomials with $p(0)=1$. Suppose a candidate $p$ satisfies
-$$
-p(x_1)=C,
-\qquad
-p(x_2)=-C,
-\qquad
-p(x_3)=C
-$$
-for three points $0<x_1<x_2<x_3$ in $E_\gamma$, and $|p|\leq C$ on $E_\gamma$. If a quadratic $q$ with $q(0)=1$ had strictly smaller maximum norm, then $q-p$ would be negative at $x_1$, positive at $x_2$, and negative at $x_3$, giving two positive zeros in addition to its zero at $0$, which is impossible for a nonzero quadratic.
+and $|p|\le C$ on $E_\gamma$. If another cubic $q$ with $q(0)=1$ had smaller sup norm, then $q-p$ would have alternating signs at the four $x_j$, hence at least three positive zeros, in addition to its zero at $0$. That is impossible for a nonzero cubic. The same sign argument with weak inequalities gives uniqueness at norm $C$.
 
-This also gives uniqueness at the same optimal value. If $|q|\leq C$, then for $r=q-p$,
-$$
-r(x_1)\leq0,
-\qquad
-r(x_2)\geq0,
-\qquad
-r(x_3)\leq0.
-$$
-Because $r(0)=0$, write $r(\lambda)=\lambda\ell(\lambda)$ with $\ell$ linear. On positive arguments, $r$ and $\ell$ have the same sign. A nonzero linear function cannot have the weak sign pattern nonpositive, nonnegative, nonpositive at three increasing points; any equality case would either give two distinct zeros of $\ell$ or force opposite signs on the two sides of its single zero. Hence $\ell\equiv0$ and $q=p$. Thus every three-point alternating candidate below is globally and uniquely minimax among quadratics with constant term $1$.
+Thus every feasible four-point alternating candidate is the unique minimax cubic among all cubics with constant term $1$. In each candidate below the displayed alternating signs also force one root in each of three positive intervals between active points, so the cubic factors as three positive Richardson factors.
 
-Step 2: Solve the regime before the spectral gap removes the interior extremum
-First ignore the gap and work on the full interval $[1,6]$. The natural three-point alternating quadratic uses the two endpoints and its unique interior stationary point. Imposing equal positive endpoint levels gives
+Step 2: Find the first regime and its exit point
+Before the moving endpoint becomes active, the relevant pattern is
 $$
-p(1)=p(6),
+p(1)=C,\qquad p(2)=-C,\qquad p(r)=C,\qquad p(6)=-C,
 $$
-which, for $p(\lambda)=t\lambda^2-s\lambda+1$ with $t>0$, places the axis at
+where the third active point is an interior stationary point, so $p'(r)=0$. Eliminating $a,b,c,C$ from these five equations gives
 $$
-\lambda_0=\frac{s}{2t}=\frac72.
+(r-1)(r^2-14r+44)=0.
 $$
-Write
+The only root in $(\frac92,6)$ is
 $$
-p(\lambda)=t\left(\lambda-\frac72\right)^2-C.
+r=7-\sqrt5.
 $$
-Equal magnitude at the endpoints and at the vertex gives
+For this choice,
 $$
-t\left(\frac52\right)^2-C=C,
+\begin{aligned}
+p_L(\lambda)&=1-\frac{793+47\sqrt5}{739}\lambda
++\frac{845+147\sqrt5}{2956}\lambda^2
+-\frac{69+19\sqrt5}{2956}\lambda^3,\\
+C_L&=\frac{5(28-3\sqrt5)}{739}.
+\end{aligned}
 $$
-while $p(0)=1$ gives
+Its derivative factors as
 $$
-t\left(\frac72\right)^2-C=1.
+p_L'(\lambda)
+=-\frac{3(69+19\sqrt5)}{2956}
+\left(\lambda-7+\sqrt5\right)
+\left(\lambda-3+\frac{\sqrt5}{3}\right).
 $$
-Solving yields
+The smaller stationary point $3-\sqrt5/3$ lies in $(2,\frac92)$, hence in the spectral gap throughout the parameter range. Therefore, for
 $$
-C=\frac{25}{73},
-\qquad
-t=\frac8{73},
-\qquad
-s=\frac{56}{73}.
+\frac92<\gamma<7-\sqrt5,
 $$
-Thus
+we have $|p_L|\le C_L$ on both spectral intervals and
 $$
-p_L(\lambda)=\frac8{73}\lambda^2-\frac{56}{73}\lambda+1.
+\mathcal A_\gamma=\{1,2,7-\sqrt5,6\}.
 $$
-Its step sizes are
+The first transition occurs when the moving endpoint reaches that stationary active point:
 $$
-\alpha_L=\frac{28-10\sqrt2}{73},
-\qquad
-\beta_L=\frac{28+10\sqrt2}{73},
+\gamma_1=7-\sqrt5.
 $$
-so the candidate is feasible. Because $p_L$ is convex, takes value $25/73$ at $1$ and $6$, and value $-25/73$ at $7/2$, it satisfies $|p_L|\leq25/73$ on all of $[1,6]$. Therefore whenever
-$$
-\gamma\leq\frac72,
-$$
-the three active points $1,7/2,6$ all lie in $E_\gamma$, and Step 1 proves that $p_L$ is the unique minimax polynomial. The first qualitative change can occur only when the moving endpoint $\gamma$ passes the stationary point $7/2$.
+At $\gamma=\gamma_1$, the active set is still $\{1,2,\gamma_1,6\}$, with $p'(\gamma_1)=0$.
 
-Step 3: Solve the gap-active regime and locate its right endpoint
-Now assume $\gamma>7/2$. The vertex $7/2$ lies in the spectral gap, so the first point of the right spectral interval is the canonical replacement for the negative active point. Impose
+Step 3: Track the four endpoint-active regime
+For $\gamma>\gamma_1$, impose the alternating endpoint pattern
 $$
-p(1)=C,
-\qquad
-p(\gamma)=-C,
-\qquad
-p(6)=C.
+p(1)=C,\qquad p(2)=-C,\qquad p(\gamma)=C,\qquad p(6)=-C.
 $$
-The equality $p(1)=p(6)$ again forces the axis to be $7/2$. Solving the three displayed conditions together with $p(0)=1$ gives, with
+Solving the four linear equations gives, with
 $$
-D_\gamma=6+7\gamma-\gamma^2,
+D=19\gamma^2-128\gamma+60,
 $$
 $$
-p_M(\lambda)
-=\frac2{D_\gamma}\lambda^2-\frac{14}{D_\gamma}\lambda+1,
+\begin{aligned}
+a&=-\frac{8(2\gamma^2-11\gamma-11)}D,\\
+b&=\frac{2(\gamma^2+\gamma-51)}D,\\
+c&=-\frac{2(\gamma-7)}D,\\
+C&=\frac{5(\gamma-6)(\gamma-2)}D.
+\end{aligned}
+$$
+On our interval $D<0$. Two derivative values that detect the loss of feasibility are
+$$
+p'(\gamma)
+=-\frac{2(\gamma-1)(\gamma^2-14\gamma+44)}D,
 $$
 and
 $$
-C_M(\gamma)=\frac{7\gamma-\gamma^2-6}{6+7\gamma-\gamma^2}.
+p'(2)
+=-\frac{8(\gamma^2-9\gamma+19)}D.
 $$
-For $7/2<\gamma<6$, $D_\gamma>0$, and the discriminant of the step-size equation is
+For $\gamma_1<\gamma<\frac{9+\sqrt5}{2}$, the two stationary points lie strictly in the gap $(2,\gamma)$, so $p$ decreases from $C$ to $-C$ on $[1,2]$ and from $C$ to $-C$ on $[\gamma,6]$. Hence
 $$
-\left(\frac{14}{D_\gamma}\right)^2-rac8{D_\gamma}
-=\frac{4(2\gamma^2-14\gamma+37)}{D_\gamma^2}>0,
+\mathcal A_\gamma=\{1,2,\gamma,6\}.
 $$
-so its positive sum and product imply that $p_M$ factors with two positive Richardson step sizes.
+The first stationary point reaches $2$ exactly when
+$$
+\gamma^2-9\gamma+19=0.
+$$
+The root in the present parameter range is
+$$
+\gamma_2=\frac{9+\sqrt5}{2}.
+$$
+At $\gamma=\gamma_2$, the active set is $\{1,2,\gamma_2,6\}$ and $p'(2)=0$.
 
-On $[\gamma,6]$, the polynomial is increasing because its axis is $7/2<\gamma$, hence its values stay between $-C_M$ and $C_M$. On $[1,2]$ it is decreasing, so the only additional condition needed is
+Step 4: Verify the final regime and exclude another transition before $17/3$
+For $\gamma>\gamma_2$, the negative active point moves into the interior of $[1,2]$. Write it as $m$. The correct alternating system is
 $$
-p_M(2)\geq-C_M(\gamma).
+p(1)=C,\qquad p(m)=-C,\qquad p(\gamma)=C,\qquad p(6)=-C,
+\qquad p'(m)=0.
 $$
-Substitution and collection over the common denominator $D_\gamma$ gives
+Eliminating the coefficients gives
 $$
-p_M(2)+C_M(\gamma)
-=\frac{2(5-\gamma)(\gamma-2)}{6+7\gamma-\gamma^2}.
+\gamma^2-2\gamma m-5\gamma+m^2+10m-5=0.
 $$
-Thus the candidate is valid exactly through
+The branch entering $[1,2]$ at $\gamma_2$ is
 $$
-\gamma\leq5.
+m_\gamma=\gamma-5+\sqrt{5(6-\gamma)}.
 $$
-For $7/2<\gamma<5$, its alternating active points are exactly
+The other stationary point is
 $$
-\{1,\gamma,6\},
+n_\gamma=\frac{\gamma+7+\sqrt{5(6-\gamma)}}3.
 $$
-so Step 1 proves global optimality and uniqueness. At $\gamma=5$, the point $\lambda=2$ also reaches the negative level.
+For
+$$
+\gamma_2<\gamma\le\frac{17}{3},
+$$
+we have
+$$
+1<m_\gamma<2<n_\gamma<\gamma<6.
+$$
+Thus $m_\gamma$ is the only stationary point in $E_\gamma$, except that the right component is monotone decreasing. The only remaining possible obstruction is the unused endpoint $2$. Direct substitution shows that equality $p(2)=C$ can next occur only when
+$$
+(\gamma-6)(\gamma^2+6\gamma-71)=0,
+$$
+whose first root above $\gamma_2$ is
+$$
+-3+4\sqrt5>\frac{17}{3}.
+$$
+Hence no further change occurs in the prescribed range, and
+$$
+\mathcal A_\gamma=\{1,m_\gamma,\gamma,6\}
+$$
+for $\gamma_2<\gamma<17/3$.
 
-Step 4: Solve the final regime after the left endpoint becomes active
-For $\gamma\geq5$, the new three-point alternating pattern uses the fixed points $1,2,6$:
+The two and only two interior transition values are therefore
 $$
-p(1)=C,
+\gamma_1=7-\sqrt5,
 \qquad
-p(2)=-C,
-\qquad
-p(6)=C.
+\gamma_2=\frac{9+\sqrt5}{2}.
 $$
-Solving gives
-$$
-p_R(\lambda)=\frac18\lambda^2-\frac78\lambda+1,
-\qquad
-C_R=\frac14.
-$$
-The corresponding positive ordered step sizes are
-$$
-\alpha_R=\frac{7-\sqrt{17}}{16},
-\qquad
-\beta_R=\frac{7+\sqrt{17}}{16}.
-$$
-The axis is again $7/2$. On $[1,2]$, $p_R$ decreases from $1/4$ to $-1/4$. On the right interval it increases, and
-$$
-p_R(5)=-\frac14,
-\qquad
-p_R(6)=\frac14.
-$$
-Hence for every $\gamma\geq5$, the restriction to $[\gamma,6]$ also satisfies $|p_R|\leq1/4$. The active points on the open regime $5<\gamma<6$ are
-$$
-\{1,2,6\},
-$$
-and Step 1 proves that $p_R$ is uniquely minimax. At $\gamma=5$, both $2$ and $5$ are active at the negative level, so the middle and final formulas meet continuously.
 
-Step 5: Identify the two phase transitions and the active-set patterns
-Step 2 shows that the interior stationary maximizer at $7/2$ remains active precisely until the moving right interval starts at that point. Step 3 shows that the moving endpoint $\gamma$ then remains active until $\gamma=5$, where the fixed point $2$ reaches the same negative extremal value. Step 4 shows that beyond this point the active triple is fixed.
-
-Therefore the two transition values are
-$$
-\gamma_1=\frac72,
-\qquad
-\gamma_2=5,
-$$
-and on the three open regimes the active sets are respectively
-$$
-\left\{1,\frac72,6\right\},
-\qquad
-\{1,\gamma,6\},
-\qquad
-\{1,2,6\}.
-$$
-At $\gamma=7/2$ the stationary point is exactly the moving endpoint, while at $\gamma=5$ the active set is $\{1,2,5,6\}$.
-
-Final Answer: $\boxed{\left(\frac{7}{2},5,\left\{1,\frac{7}{2},6\right\},\{1,\gamma,6\},\{1,2,6\}\right)}$
+Final Answer: $\boxed{\left(7-\sqrt5,\frac{9+\sqrt5}{2}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{7}{2},5,\left\{1,\frac{7}{2},6\right\},\{1,\gamma,6\},\{1,2,6\}\right)$
+$\left(7-\sqrt5,\frac{9+\sqrt5}{2}\right)$
 
 ---
 
@@ -205,7 +170,6 @@ $\left(\frac{7}{2},5,\left\{1,\frac{7}{2},6\right\},\{1,\gamma,6\},\{1,2,6\}\rig
 ## Solution Concepts
 
 - nonstationary Richardson iteration
-- minimax polynomial tuning
-- spectral gap phase transition
-- equioscillation certificate
-- worst-case contraction
+- cubic minimax equioscillation
+- active-set phase transition
+- stationary-point migration
