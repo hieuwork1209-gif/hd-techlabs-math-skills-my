@@ -1,114 +1,168 @@
 ## Steps
 
-Step 1: Compute the two monads attached to each iterate
-Let $X=\{1,\ldots,m\}$ and let $f:X\to X$. For each $k\geq1$, direct image and inverse image satisfy
+Step 1: Compute the fixed-object counts for each iterate
+Let $X$ be a finite set and let $g:X\to X$. For the adjoint triple
 $$
-\exists_{f^k}\dashv (f^k)^{-1},
+\exists_g\dashv g^{-1}\dashv\forall_g,
 $$
-while inverse image and universal image satisfy
+put
 $$
-(f^k)^{-1}\dashv \forall_{f^k}.
-$$
-Thus the two closure monads in the problem are
-$$
-C_k=(f^k)^{-1}\exists_{f^k},
-\qquad
-D_k=\forall_{f^k}(f^k)^{-1}.
+C_g=g^{-1}\exists_g,\qquad D_g=\forall_g g^{-1}.
 $$
 For $S\subseteq X$,
 $$
-C_k(S)=(f^k)^{-1}(f^k(S)),
+C_g(S)=g^{-1}(g(S)),
 $$
-so $C_k(S)=S$ exactly when $S$ is a union of fibers of $f^k$.
+so $C_g(S)=S$ exactly when $S$ is a union of fibers of $g$. Hence
+$$
+|\operatorname{Fix}(C_g)|=2^{|g(X)|}.
+$$
+Also
+$$
+D_g(S)=S\cup(X\setminus g(X)).
+$$
+A set fixed by both $C_g$ and $D_g$ must be a union of fibers of $g$ and must contain $X\setminus g(X)$. Therefore every fiber meeting $X\setminus g(X)$ is forced, while every fiber contained in $g(X)$ is optional. If
+$$
+u(g)=\#\{y\in g(X):g^{-1}(y)\subseteq g(X)\},
+$$
+then
+$$
+|\operatorname{Fix}(C_g)\cap\operatorname{Fix}(D_g)|=2^{u(g)}.
+$$
+We apply this to $g=f^k$.
 
-Also, for $y\in X$,
+Step 2: Derive the sharp lower bounds for the image sizes of the iterates
+Let
 $$
-y\in D_k(S)
-\iff
-(f^k)^{-1}(y)\subseteq(f^k)^{-1}(S).
+M=3d+2,\qquad Y_k=f^k(X),\qquad r_k=|Y_k|.
 $$
-If $y\in\operatorname{im}(f^k)$ this is equivalent to $y\in S$, while if $y\notin\operatorname{im}(f^k)$ it is automatic. Hence
+The hypothesis gives
 $$
-D_k(S)=S\cup\bigl(X\setminus\operatorname{im}(f^k)\bigr).
+r_1=2d+2.
 $$
-
-Step 2: Express the two fixed-object counts through the functional graph
-The kernel partitions of $f,f^2,\ldots$ become successively coarser. Therefore a subset is fixed by every $C_k$, $1\leq k\leq m$, exactly when it is a union of fibers of $f^m$.
-
-After $m$ iterations, the image of $f^m$ is exactly the set $P$ of periodic points of $f$. Indeed every orbit has entered its directed cycle by time $m$, while every periodic point remains in the image. Since $f^m$ restricts to a permutation of $P$, each fiber of $f^m$ contains exactly one periodic point. Thus the number of common $C_k$-fixed subsets is
+For every $k\ge1$, each point of $Y_k\setminus Y_{k+1}$ has no preimage in $Y_k$, but it does have a preimage in $X$ because it lies in $Y_k=f^k(X)$. Hence distinct points of $Y_k\setminus Y_{k+1}$ require distinct preimages in $X\setminus Y_k$, so
 $$
-a(f)=2^{|P|}.
+r_k-r_{k+1}\le M-r_k.
 $$
-
-The images $\operatorname{im}(f^k)$ decrease with $k$, so a subset is fixed by every $D_k$, $1\leq k\leq m$, exactly when it contains
+Equivalently,
 $$
-X\setminus\operatorname{im}(f^m)=X\setminus P,
+r_{k+1}\ge2r_k-M.
 $$
-the set of transient points.
-
-Consequently a subset fixed by all $C_k$ and all $D_k$ must be a union of $f^m$-fibers and must contain every transient point. Any fiber containing a transient point is therefore forced in its entirety; a fiber consisting only of its periodic point is optional. If $u(f)$ is the number of $f^m$-fibers containing no transient point, then
+Thus
 $$
-b(f)=2^{u(f)}.
+r_2\ge2(2d+2)-(3d+2)=d+2.
 $$
-
-Step 3: Maximize the first fixed-object count
-Assume now that
+Every endomap of a finite set has a periodic point, and the condition $f(x)\ne x$ excludes $1$-cycles, so every $Y_k$ contains at least two periodic points. Hence
 $$
-|\operatorname{im}f|=m-d
+r_k\ge2\qquad(k\ge3).
 $$
-and that $f$ has no fixed points. Every periodic point belongs to $\operatorname{im}f$, so
+By Step 1,
 $$
-|P|\leq m-d.
+\sum_{k=1}^{M}|\operatorname{Fix}(C_k)|
+=\sum_{k=1}^{M}2^{r_k}
+\ge2^{2d+2}+2^{d+2}+(M-2)\cdot4.
 $$
-By Step 2,
+Therefore
 $$
-a(f)\leq2^{m-d}.
-$$
-
-Equality holds exactly when every point of $\operatorname{im}f$ is periodic. Then the $d$ points outside the image are all the transient points, and there are no transient points inside the image. Therefore these $d$ transient points have no preimages and each maps directly to a periodic point. The restriction of $f$ to the periodic set $P$ is a permutation of $m-d$ points, and the hypothesis that $f$ has no fixed points says that this permutation is a derangement.
-
-Hence the first lexicographic maximum is
-$$
-A_{m,d}=2^{m-d}.
-$$
-
-Step 4: Maximize the simultaneous fixed-object count inside the first equality class
-Fix a function attaining $A_{m,d}$. Write $P$ for its periodic set and $L=X\setminus P$ for the $d$ transient points. Let $\pi=f|_P$.
-
-For $x\in L$, put $c=f(x)\in P$. Since $x$ maps directly to $c$,
-$$
-f^m(x)=\pi^{m-1}(c).
-$$
-The unique periodic point in the same $f^m$-fiber is the point $y\in P$ satisfying
-$$
-\pi^m(y)=\pi^{m-1}(c),
-$$
-namely $y=\pi^{-1}(c)$. Thus two transient points lie in fibers forcing the same periodic point exactly when they have the same image under $f$.
-
-Therefore the number of forced periodic fibers is exactly the number of distinct targets in $f(L)$. Since $d\geq1$, at least one periodic fiber is forced, so
-$$
-u(f)\leq(m-d)-1.
-$$
-Equality holds exactly when all $d$ transient points have the same target $c\in P$. By Step 2,
-$$
-B_{m,d}=2^{m-d-1}.
+A_d\ge2^{2d+2}+2^{d+2}+12d.
 $$
 
-Step 5: Count all functions attaining both lexicographic maxima
-Let $\Delta_j$ denote the number of derangements of a $j$-element set, as in the problem statement. To construct a maximizing function, choose the $d$ transient points in $\binom{m}{d}$ ways, choose a derangement $\pi$ of the remaining $m-d$ periodic points in $\Delta_{m-d}$ ways, and choose the common target $c$ of all transient points in $m-d$ ways.
-
-These choices determine $f$ uniquely, and every function attaining both maxima has this form by Steps 3 and 4. Hence
+Step 3: Classify equality in the first optimization
+Equality requires
 $$
-K_{m,d}=\binom{m}{d}(m-d)\Delta_{m-d}.
+r_1=2d+2,\qquad r_2=d+2,\qquad r_k=2\quad(k\ge3).
+$$
+Put
+$$
+L_0=X\setminus Y_1,\qquad L_1=Y_1\setminus Y_2,\qquad L_2=Y_2\setminus Y_3,\qquad C=Y_3.
+$$
+Then
+$$
+|L_0|=|L_1|=|L_2|=d,\qquad |C|=2.
+$$
+Because $L_1$ has no preimages in $Y_1$ and $|L_0|=|L_1|$, equality in the drop bound forces
+$$
+f:L_0\to L_1
+$$
+to be a bijection. Similarly,
+$$
+f:L_1\to L_2
+$$
+is a bijection. Since $Y_4=f(Y_3)$ also has size $2$, the restriction $f|_C$ is a permutation of $C$. The global fixed-point-free hypothesis forces it to be the transposition. Finally every point of $L_2$ maps into $C$, with no further restriction.
+
+Conversely, every map with this four-layer form has image sizes
+$$
+2d+2,\ d+2,\ 2,\ 2,\ldots,
+$$
+so it attains the lower bound. Hence
+$$
+A_d=2^{2d+2}+2^{d+2}+12d.
 $$
 
-Final Answer: $\boxed{\left(2^{m-d},2^{m-d-1},\binom{m}{d}(m-d)\Delta_{m-d}\right)}$
+Step 4: Optimize the simultaneous fixed-object count inside the equality class
+Fix a first-stage minimizer. For $k=1$, the points of $L_1$ have fibers meeting $L_0$, so those $d$ fibers are forced. The fibers over $L_2$ and over the two points of $C$ lie entirely inside $Y_1$. Thus
+$$
+u(f)=d+2
+$$
+and
+$$
+|\operatorname{Fix}(C_1)\cap\operatorname{Fix}(D_1)|=2^{d+2}.
+$$
+
+For $k=2$, every fiber over $L_2$ contains a point of $L_0$, so those fibers are forced. A point $c\in C$ has an $f^2$-preimage in $L_1$ exactly when $c\in f(L_2)$. Therefore
+$$
+u(f^2)=2-|f(L_2)|.
+$$
+Since $L_2\ne\varnothing$, this is at most $1$, with equality exactly when $f$ is constant on $L_2$. Hence
+$$
+|\operatorname{Fix}(C_2)\cap\operatorname{Fix}(D_2)|\le2,
+$$
+with equality exactly in that constant case.
+
+For every $k\ge3$, we have $Y_k=C$. Pick $x\in L_2$ and let $y\in L_1$ be its unique preimage. Then
+$$
+f^k(y)=f^{k-1}(x),
+$$
+and once the orbit has entered the $2$-cycle, these two values are the two distinct points of $C$. Thus both $f^k$-fibers over $C$ contain transient points outside $Y_k$, so
+$$
+u(f^k)=0
+$$
+and the simultaneous fixed-object count is $1$.
+
+Therefore, among the first-stage minimizers,
+$$
+B_d=2^{d+2}+2+(M-2)=2^{d+2}+3d+2,
+$$
+and equality holds exactly when all points of $L_2$ have the same image in $C$.
+
+Step 5: Count all maps attaining both extrema
+Choose the $2$-cycle $C$ in
+$$
+\binom{M}{2}
+$$
+ways. Partition the remaining $3d$ points into the ordered layers $L_2,L_1,L_0$, each of size $d$, in
+$$
+\frac{(3d)!}{(d!)^3}
+$$
+ways. Choose the bijections
+$$
+L_0\to L_1,\qquad L_1\to L_2
+$$
+in $(d!)^2$ ways, and choose the common target in $C$ of all points of $L_2$ in $2$ ways. The transposition on $C$ is then forced.
+
+Hence
+$$
+K_d=\binom{3d+2}{2}\frac{(3d)!}{(d!)^3}(d!)^2\cdot2
+=\frac{(3d+2)!}{d!}.
+$$
+
+Final Answer: $\boxed{\left(2^{2d+2}+2^{d+2}+12d,\;2^{d+2}+3d+2,\;\frac{(3d+2)!}{d!}\right)}$
 
 ---
 
 ## Answer
 
-$\left(2^{m-d},2^{m-d-1},\binom{m}{d}(m-d)\Delta_{m-d}\right)$
+$\left(2^{2d+2}+2^{d+2}+12d,\;2^{d+2}+3d+2,\;\frac{(3d+2)!}{d!}\right)$
 
 ---
 
@@ -124,6 +178,6 @@ $\left(2^{m-d},2^{m-d-1},\binom{m}{d}(m-d)\Delta_{m-d}\right)$
 
 - adjoint triples on Boolean lattices
 - closure monads from iterated maps
-- Eilenberg-Moore fixed objects
-- functional graph decomposition
-- derangements
+- fixed objects of monads
+- functional graph image layers
+- extremal image-rank profiles
