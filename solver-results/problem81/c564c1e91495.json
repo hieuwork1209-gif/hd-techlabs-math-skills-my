@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-convex-optimization/problem.md",
+  "source_commit_sha": "79d119a7ac171b42aacde32b598d753e7bb6ea79",
+  "problem_blob_sha": "c564c1e914954e69f3ef3abb6cffcdb14ffa9b05",
+  "statement_sha256": "8ed7f2940d34253f2097c43a49116735180e3b3ac3781254882d337088839b40",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T10:00:04+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(G\\) be viewed as the Gram matrix of six unit vectors, and let\n\\[\nA_\\varepsilon\n\\]\nbe the signed adjacency matrix of the 6-cycle:\n\\[\n(A_\\varepsilon)_{i,i+1}=(A_\\varepsilon)_{i+1,i}=\\varepsilon_i.\n\\]\n\nFirst note the sign pattern only matters through\n\\[\n\\sigma=\\prod_{i=1}^6 \\varepsilon_i.\n\\]\nIndeed, replacing \\(G\\) by \\(SGS\\), where \\(S=\\operatorname{diag}(s_1,\\dots,s_6)\\) with \\(s_i=\\pm1\\), preserves positive semidefiniteness, diagonal entries, and determinant, while changing edge signs by\n\\[\n\\varepsilon_i\\mapsto s_i s_{i+1}\\varepsilon_i.\n\\]\nAll sign patterns with the same product are equivalent by such a switching. Hence \\(D_+\\) and \\(D_-\\) are well-defined.\n\nNow maximize \\(\\log\\det G\\). Since the feasible set contains positive definite matrices and boundary matrices have determinant \\(0\\), the maximizer is positive definite. At the maximizer, variations in the unspecified entries give\n\\[\n(G^{-1})_{ij}=0\n\\]\nfor every non-edge \\(ij\\) of the cycle. By the signed cyclic symmetry, the inverse has the form\n\\[\nG^{-1}=a(I+tA_\\varepsilon)\n\\]\nfor some \\(a>0\\). Therefore\n\\[\nG=\\frac1a(I+tA_\\varepsilon)^{-1}.\n\\]\n\nLet\n\\[\nM=(I+tA_\\varepsilon)^{-1}.\n\\]\nBy symmetry, write \\(M_{ii}=x\\) and \\(\\varepsilon_i M_{i,i+1}=y\\). The condition \\(G_{ii}=1\\) gives \\(a=x\\), while \\(G_{i,i+1}=\\varepsilon_i/2\\) gives \\(y/x=1/2\\). From\n\\[\n(I+tA_\\varepsilon)M=I\n\\]\non a diagonal entry,\n\\[\nx+2ty=1.\n\\]\nUsing \\(y=x/2\\), we get\n\\[\nx(1+t)=1,\\qquad x=\\frac1{1+t}.\n\\]\n\nThus\n\\[\nD_\\sigma=\\det G=\\frac{(1+t)^6}{\\det(I+tA_\\varepsilon)}.\n\\]\n\nThe eigenvalues of \\(A_\\varepsilon\\) depend only on \\(\\sigma\\).\n\nFor \\(\\sigma=+1\\), they are\n\\[\n2,1,1,-1,-1,-2,\n\\]\nso\n\\[\n\\det(I+tA_\\varepsilon)=(1-4t^2)(1-t^2)^2.\n\\]\nThe condition\n\\[\n\\frac16\\sum_\\lambda \\frac1{1+t\\lambda}=\\frac1{1+t}\n\\]\ngives\n\\[\nt=\\frac{1-\\sqrt{17}}8.\n\\]\nHence\n\\[\nD_+=\\frac{(1+t)^6}{(1-4t^2)(1-t^2)^2}\n=\\frac{85\\sqrt{17}-349}{8}.\n\\]\n\nFor \\(\\sigma=-1\\), the eigenvalues are\n\\[\n\\sqrt3,\\sqrt3,0,0,-\\sqrt3,-\\sqrt3,\n\\]\nso\n\\[\n\\det(I+tA_\\varepsilon)=(1-3t^2)^2.\n\\]\nThe same diagonal condition gives\n\\[\nt=1-\\sqrt2.\n\\]\nTherefore\n\\[\nD_-=\\frac{(1+t)^6}{(1-3t^2)^2}\n=3-2\\sqrt2.\n\\]\n\nSo the exact ordered pair is\n\\[\n\\boxed{\\left(D_+,D_-\\right)=\\left(\\frac{85\\sqrt{17}-349}{8},\\;3-2\\sqrt2\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T10:02:11+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/c564c1e91495.json"
+}
