@@ -1,260 +1,128 @@
 ## Steps
 
-Step 1: Encode the three pairs of orthonormal bases by compatible rotation matrices
-Let $E,F,G$ be the orthogonal matrices whose columns are $(e_1,e_2,e_3)$, $(f_1,f_2,f_3)$, and $(g_1,g_2,g_3)$, and set
+Step 1: Express the projected areas as minors of an orthonormal two-frame
+Let $L\subset\mathbb R^4$ be a two-dimensional subspace, and choose an oriented orthonormal basis $u,v$ of $L$. Write
 $$
-A=E^TF,
+u_i=\langle u,e_i\rangle,
 \qquad
-B=F^TG,
-\qquad
-C=G^TE.
+v_i=\langle v,e_i\rangle.
 $$
-Then $A,B,C\in O(3)$ and
+For $1\leq i<j\leq4$, define
 $$
-ABC=I_3.
+p_{ij}=u_i v_j-u_j v_i.
 $$
-The three hypotheses say that each of $A,B,C$ has constant diagonal. Define
+The coordinates of the orthogonal projection of $e_i$ onto $L$ in the basis $u,v$ are $(u_i,v_i)$. Therefore the area of the parallelogram spanned by the projections of $e_i$ and $e_j$ is
 $$
-M(Q)=\prod_{i=1}^3\prod_{j=1}^3|q_{ij}|.
-$$
-The quantity to maximize is
-$$
-M(A)M(B)M(C).
-$$
-
-Because $\det A\det B\det C=1$, either all three determinants are $1$ or exactly two are $-1$. Multiplying every vector of one basis by $-1$ changes the signs of exactly the two incident transition matrices, preserves constant diagonals, and does not change any absolute-value product. Hence we may assume
-$$
-A,B,C\in SO(3).
-$$
-Since $C=(AB)^{-1}$ and $M(Q)=M(Q^T)$, it is equivalent to require that $A$, $B$, and $AB$ all lie in $SO(3)$, all have constant diagonal, and then maximize
-$$
-M(A)M(B)M(AB).
-$$
-Taking $A=B$ to be a sufficiently small nonzero rotation about $(1,1,1)^T/\sqrt3$ gives a positive product, so any maximizer has positive product.
-
-Step 2: Classify positive-product constant-diagonal rotations and prove the compatibility obstruction
-Let $R\in SO(3)$ have constant diagonal and suppose $M(R)>0$. Since $R$ is a real orthogonal matrix of odd dimension and determinant $1$, it has eigenvalue $1$. Let $n$ be a unit eigenvector. On $n^\perp$, $R$ is a planar rotation through some nonzero angle $\theta$, so Rodrigues' formula gives
-$$
-R=\cos\theta\,I_3+(1-\cos\theta)nn^T+\sin\theta\,K_n,
-$$
-where $K_nx=n\times x$. Thus
-$$
-R_{ii}=\cos\theta+(1-\cos\theta)n_i^2.
-$$
-Because the three diagonal entries are equal and $R\neq I_3$,
-$$
-n_1^2=n_2^2=n_3^2=\frac13.
-$$
-Hence every positive-product constant-diagonal rotation has a body-diagonal axis.
-
-Now let $A$ and $B$ have body-diagonal axes $p$ and $q$. Suppose these axes are distinct. A simultaneous orientation-preserving signed permutation of coordinates preserves constant diagonals and all absolute entry-products, so we may take
-$$
-p=\frac1{\sqrt3}(1,1,1)^T,
-\qquad
-q=\frac1{\sqrt3}(1,1,-1)^T.
-$$
-Represent the two rotations by unit quaternions
-$$
-(a,bp),
-\qquad
-(c,dq),
-$$
-with
-$$
-a^2+b^2=c^2+d^2=1.
-$$
-The quaternion product rule
-$$
-(r,x)(s,y)=(rs-x\cdot y,\;ry+sx+x\times y)
-$$
-shows that the vector part of the quaternion for $AB$ is
-$$
-v=adq+bcp+bd\,p\times q.
-$$
-Since
-$$
-p\times q=\left(-\frac23,\frac23,0\right)^T,
-$$
-we obtain
-$$
-3v=
-\begin{pmatrix}
-\sqrt3(ad+bc)-2bd\\
-\sqrt3(ad+bc)+2bd\\
-\sqrt3(-ad+bc)
-\end{pmatrix}.
-$$
-Positive product implies $A$ and $B$ are nonidentity, so $b,d\neq0$. Since $AB$ also has positive product and constant diagonal, its axis is a body diagonal, hence the three coordinates of $v$ have equal absolute values. Equality of the squares of the first two coordinates gives
-$$
-(ad+bc)bd=0,
-$$
-so
-$$
-ad+bc=0.
-$$
-The first two coordinates of $3v$ then have absolute value $2|bd|$, while the third has absolute value $2\sqrt3|ad|$. Their equality forces
-$$
-|b|=\sqrt3|a|.
-$$
-Thus
-$$
-a^2=\frac14,
-\qquad
-b^2=\frac34.
-$$
-If $\alpha$ is the rotation angle of $A$, then
-$$
-\cos\alpha=a^2-b^2=-\frac12.
-$$
-For a body-diagonal rotation the common diagonal entry equals
-$$
-\frac{1+2\cos\alpha}{3}=0,
-$$
-contradicting $M(A)>0$. Therefore every positive-product admissible triple has $A$ and $B$ rotating about the same body-diagonal axis.
-
-Step 3: Compute the nine-entry product for one body-diagonal rotation
-Let $R_\theta$ be rotation through angle $\theta$ about a body diagonal. Its common diagonal entry is
-$$
-s=\frac{1+2\cos\theta}{3}.
-$$
-The six off-diagonal entries occur, up to signs, as three copies of
-$$
-a_0+b_0
-$$
-and three copies of
-$$
-a_0-b_0,
-$$
-where
-$$
-a_0=\frac{1-\cos\theta}{3},
-\qquad
-b_0=\frac{\sin\theta}{\sqrt3}.
-$$
-Writing $c=\cos\theta$,
-$$
-a_0^2-b_0^2
-=\frac{(1-c)^2}{9}-\frac{1-c^2}{3}
-=-\frac{2(1-c)(1+2c)}9
-=-s(1-s).
-$$
-Hence
-$$
-M(R_\theta)
-=|s|^3|a_0+b_0|^3|a_0-b_0|^3
-=|s|^6(1-s)^3
-=\bigl(s^2(1-s)\bigr)^3.
-$$
-
-Put $x=\theta/2$. Since
-$$
-1-\cos\theta=2\sin^2x
-$$
-and
-$$
-1+2\cos\theta
-=3-4\sin^2x
-=\frac{\sin3x}{\sin x},
-$$
-we obtain
-$$
-s^2(1-s)=\frac4{27}\sin^2\frac{3\theta}{2}.
-$$
-Therefore
-$$
-M(R_\theta)
-=\left(\frac4{27}\right)^3
-\sin^6\frac{3\theta}{2}.
-$$
-
-Step 4: Use the compatibility to reduce to a sharp two-variable trigonometric bound
-By Step 2, in every positive-product admissible triple, $A$ and $B$ rotate about the same body-diagonal axis. Write their signed rotation angles as $\alpha$ and $\beta$. Then $AB$ has angle $\alpha+\beta$ about the same axis. Using Step 3 and setting
-$$
-x=\frac{3\alpha}{2},
-\qquad
-y=\frac{3\beta}{2},
-$$
-we get
-$$
-M(A)M(B)M(AB)
-=\left(\frac4{27}\right)^9
-|\sin x\sin y\sin(x+y)|^6.
+A_{ij}=|p_{ij}|.
 $$
 
 Let
 $$
-\sigma=x+y,
+R=
+\begin{pmatrix}
+u_1&u_2&u_3&u_4\\
+v_1&v_2&v_3&v_4
+\end{pmatrix}.
+$$
+Because $u,v$ are orthonormal, $RR^T=I_2$. Binet-Cauchy therefore gives
+$$
+1=\det(RR^T)=\sum_{1\leq i<j\leq4}p_{ij}^2.
+$$
+
+Step 2: Derive the compatibility relation among the six areas
+Consider the $4\times4$ matrix whose first and third rows are $u^T$ and whose second and fourth rows are $v^T$. Its determinant is zero because two pairs of rows are repeated. Expanding that determinant along the first two rows gives
+$$
+2\bigl(p_{12}p_{34}-p_{13}p_{24}+p_{14}p_{23}\bigr)=0.
+$$
+Hence
+$$
+p_{12}p_{34}-p_{13}p_{24}+p_{14}p_{23}=0.
+$$
+
+If one of the six $p_{ij}$ is zero, then the required product is zero, so at a positive maximizer all six are nonzero. Set
+$$
+X=|p_{12}p_{34}|,
 \qquad
-\delta=x-y.
+Y=|p_{13}p_{24}|,
+\qquad
+Z=|p_{14}p_{23}|.
 $$
-Since
+The displayed relation is a signed sum of three nonzero real numbers with magnitudes $X,Y,Z$. Therefore one of $X,Y,Z$ equals the sum of the other two. Let the largest one be $L$ and the other two be $M,N$. Then
 $$
-\sin x\sin y=\frac{\cos\delta-\cos\sigma}{2},
+L=M+N.
 $$
-for fixed $\sigma$ we have
+
+Step 3: Optimize the product using both normalization and compatibility
+By the arithmetic-geometric mean inequality applied to each complementary pair,
 $$
-|\sin x\sin y\sin\sigma|
-\leq\frac12|\sin\sigma|\bigl(1+|\cos\sigma|\bigr).
+p_{12}^2+p_{34}^2\geq2X,
 $$
-Set $r=|\cos\sigma|$. The square of the right-hand side is
 $$
-\frac14(1-r^2)(1+r)^2
-=\frac14(1-r)(1+r)^3.
+p_{13}^2+p_{24}^2\geq2Y,
 $$
-For $0\leq r\leq1$, the derivative of $(1-r)(1+r)^3$ is
+and
 $$
-2(1+r)^2(1-2r),
+p_{14}^2+p_{23}^2\geq2Z.
 $$
-so the maximum occurs at $r=1/2$. Consequently
+Adding and using Step 1,
 $$
-|\sin x\sin y\sin(x+y)|
-\leq\frac{3\sqrt3}{8}.
+1\geq2(X+Y+Z).
+$$
+Since $L=M+N$, we have $X+Y+Z=2L$, so
+$$
+L\leq\frac14.
+$$
+
+The product to be maximized is
+$$
+\prod_{1\leq i<j\leq4}A_{ij}
+=XYZ
+=LMN.
+$$
+For fixed $L=M+N$, the product $MN$ is at most $L^2/4$. Thus
+$$
+LMN\leq\frac{L^3}{4}\leq\frac1{256}.
+$$
+
+Step 4: Construct a plane attaining equality
+Take
+$$
+u=\left(\frac12,0,-\frac12,-\frac1{\sqrt2}\right),
+\qquad
+v=\left(\frac12,\frac1{\sqrt2},\frac12,0\right).
+$$
+A direct calculation gives
+$$
+\|u\|=\|v\|=1,
+\qquad
+\langle u,v\rangle=0,
+$$
+so $u,v$ form an orthonormal basis of a two-plane $L$.
+
+For this pair,
+$$
+|p_{13}|=|p_{24}|=\frac12,
+$$
+and
+$$
+|p_{12}|=|p_{14}|=|p_{23}|=|p_{34}|=\frac1{2\sqrt2}.
 $$
 Therefore
 $$
-M(A)M(B)M(C)
-\leq
-\left(\frac4{27}\right)^9
-\left(\frac{3\sqrt3}{8}\right)^6
-=\frac1{3^{18}}.
+\prod_{1\leq i<j\leq4}A_{ij}
+=\left(\frac12\right)^2
+\left(\frac1{2\sqrt2}\right)^4
+=\frac1{256}.
 $$
+Thus the upper bound is attained.
 
-Step 5: Construct three bases attaining the bound
-Let $(e_1,e_2,e_3)$ be the standard basis, let
-$$
-n=\frac1{\sqrt3}(1,1,1)^T,
-\qquad
-\alpha=\frac{2\pi}{9},
-$$
-and let $R$ be rotation through angle $\alpha$ about $n$. Take $(f_1,f_2,f_3)$ to be the columns of $R$ and $(g_1,g_2,g_3)$ to be the columns of $R^2$.
-
-Then the three transition matrices are
-$$
-R,
-\qquad
-R,
-\qquad
-R^{-2}.
-$$
-All three are rotations about the same body diagonal, so each has constant diagonal and the hypotheses are satisfied. Here
-$$
-x=y=\frac{3\alpha}{2}=\frac\pi3,
-$$
-so
-$$
-|\sin x\sin y\sin(x+y)|
-=\left(\frac{\sqrt3}{2}\right)^3
-=\frac{3\sqrt3}{8}.
-$$
-Thus equality holds in Step 4, and the required maximum is attained.
-
-Final Answer: $\boxed{\frac1{3^{18}}}$
+Final Answer: $\boxed{\frac1{256}}$
 
 ---
 
 ## Answer
 
-$\frac1{3^{18}}$
+$\frac1{256}$
 
 ---
 
@@ -268,8 +136,8 @@ $\frac1{3^{18}}$
 
 ## Solution Concepts
 
-- orthonormal bases
-- orthogonal transition matrices
-- three-dimensional rotations
-- quaternion composition
-- trigonometric optimization
+- orthogonal projections
+- projected parallelogram areas
+- binet-cauchy identity
+- plucker relation
+- complementary minor products
