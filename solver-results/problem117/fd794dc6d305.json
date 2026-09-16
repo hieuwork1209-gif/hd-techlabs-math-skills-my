@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "fbe432178e496440af46ebe131b4b91b6f7d5b01",
+  "problem_blob_sha": "fd794dc6d305fdc4fa819411382c3eed3b77d45d",
+  "statement_sha256": "5da7a6a6f6161430997bc92eebc5ce3fb0476bf78d6f9b0a23660c9f35cc48bd",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T12:30:09+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\np(\\lambda)=\\prod_{j=1}^4(1-\\alpha_j\\lambda).\n\\]\n\nSince \\(\\sum \\alpha_j=2\\), every admissible polynomial has\n\n\\[\np(0)=1,\\qquad p'(0)=-2,\n\\]\n\nso write\n\n\\[\np(x)=1-2x+ax^2+bx^3+cx^4.\n\\]\n\nThe middle active pattern is the decisive one. In that regime the equioscillation points are\n\n\\[\nu,\\ 2,\\ v,\\ 6\n\\]\n\nwith signs\n\n\\[\np(u)=-C,\\quad p(2)=C,\\quad p(v)=-C,\\quad p(6)=C,\n\\]\n\nand \\(u,v\\) are interior critical points. Solving these equations gives\n\n\\[\nC=\\frac1{17},\n\\]\n\n\\[\np_0(x)=1-2x+\\frac{379}{306}x^2-\\frac5{18}x^3+\\frac{25}{1224}x^4.\n\\]\n\nIts derivative factors as\n\n\\[\np_0'(x)=\\frac{(5x-17)(5x^2-34x+36)}{306}.\n\\]\n\nThus the relevant critical points are\n\n\\[\nu=\\frac{17-\\sqrt{109}}5,\\qquad v=\\frac{17+\\sqrt{109}}5.\n\\]\n\nAlso\n\n\\[\np_0(x)+\\frac1{17}\n=\\frac{(5x^2-34x+36)^2}{1224},\n\\]\n\nso \\(p_0(u)=p_0(v)=-1/17\\), and\n\n\\[\np_0(x)-\\frac1{17}\n=\\frac{(x-2)(x-6)(25x^2-140x+96)}{1224}.\n\\]\n\nThe extra root in the gap is\n\n\\[\nx=\\frac{24}{5}.\n\\]\n\nHence \\(p_0(\\gamma)\\le 1/17\\) precisely once \\(\\gamma\\ge 24/5\\), and the interior right minimum remains in the interval precisely while\n\n\\[\n\\gamma<\\frac{17+\\sqrt{109}}5.\n\\]\n\nTherefore the active sets are:\n\n\\[\n\\frac92<\\gamma<\\frac{24}{5}:\n\\qquad\n\\mathcal A_\\gamma=\\{u_\\gamma,\\gamma,v_\\gamma,6\\},\n\\]\n\nwith signs \\(-,+,-,+\\).\n\n\\[\n\\frac{24}{5}<\\gamma<\\frac{17+\\sqrt{109}}5:\n\\qquad\n\\mathcal A_\\gamma=\n\\left\\{\n\\frac{17-\\sqrt{109}}5,\\ 2,\\ \\frac{17+\\sqrt{109}}5,\\ 6\n\\right\\}.\n\\]\n\n\\[\n\\frac{17+\\sqrt{109}}5<\\gamma<\\frac{11}{2}:\n\\qquad\n\\mathcal A_\\gamma=\\{u_\\gamma,2,\\gamma,6\\},\n\\]\n\nagain with signs \\(-,+,-,+\\).\n\nAt the first transition,\n\n\\[\n\\gamma=\\frac{24}{5},\n\\]\n\nthe active set is\n\n\\[\n\\left\\{\n\\frac{17-\\sqrt{109}}5,\\ 2,\\ \\frac{24}{5},\\ \\frac{17+\\sqrt{109}}5,\\ 6\n\\right\\}.\n\\]\n\nAt the second transition,\n\n\\[\n\\gamma=\\frac{17+\\sqrt{109}}5,\n\\]\n\nthe right interior minimum becomes the moving endpoint.\n\nThus the requested pair is\n\n\\[\n\\boxed{\\left(\\frac{24}{5},\\frac{17+\\sqrt{109}}5\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T12:34:26+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/fd794dc6d305.json"
+}
