@@ -1,160 +1,256 @@
 ## Steps
 
-Step 1: Convert the two orthonormal bases into an orthogonal transition matrix
-Let
+Step 1: Encode the three pairs of orthonormal bases by compatible rotation matrices
+Let $E,F,G$ be the orthogonal matrices whose columns are $(e_1,e_2,e_3)$, $(f_1,f_2,f_3)$, and $(g_1,g_2,g_3)$, and set
 $$
-U=(u_{ij})_{1\leq i,j\leq3},\qquad u_{ij}=\langle e_i,f_j\rangle.
+A=E^TF,
+\qquad
+B=F^TG,
+\qquad
+C=G^TE.
 $$
-Because both $(e_1,e_2,e_3)$ and $(f_1,f_2,f_3)$ are orthonormal bases, $U$ is orthogonal. The hypothesis says that
+Then $A,B,C\in O(3)$ and
 $$
-|u_{11}|=|u_{22}|=|u_{33}|.
+ABC=I_3.
 $$
-The desired quantity is
+The three hypotheses say that each of $A,B,C$ has constant diagonal. Define
 $$
-M(U)=\prod_{i=1}^3\prod_{j=1}^3|u_{ij}|.
+M(Q)=\prod_{i=1}^3\prod_{j=1}^3|q_{ij}|.
+$$
+The quantity to maximize is
+$$
+M(A)M(B)M(C).
 $$
 
-There are examples with $M(U)>0$, so a maximizing matrix has no zero entry. By changing the sign of each $f_j$ separately, which only changes the sign of the $j$th column of $U$, we may assume
+Because $\det A\det B\det C=1$, either all three determinants are $1$ or exactly two are $-1$. Multiplying every vector of one basis by $-1$ changes the signs of exactly the two incident transition matrices, preserves constant diagonals, and does not change any absolute-value product. Hence we may assume
 $$
-u_{11}=u_{22}=u_{33}=t>0.
+A,B,C\in SO(3).
 $$
-If $\det U=1$, set $Q=U$. If $\det U=-1$, set $Q=-U$. Then $Q\in SO(3)$, the absolute values of all entries are unchanged, and the three diagonal entries of $Q$ are equal to a common number $s$, where $s=t$ in the first case and $s=-t$ in the second. Hence it suffices to maximize $M(Q)$ over matrices $Q\in SO(3)$ with constant diagonal.
+Since $C=(AB)^{-1}$ and $M(Q)=M(Q^T)$, it is equivalent to require that $A$, $B$, and $AB$ all lie in $SO(3)$, all have constant diagonal, and then maximize
+$$
+M(A)M(B)M(AB).
+$$
 
-Step 2: Classify the constant-diagonal rotations
-If $Q=I_3$, then its off-diagonal entries vanish and $M(Q)=0$, so suppose $Q\neq I_3$. The nonreal eigenvalues of a real orthogonal matrix occur in conjugate pairs. Since $Q$ has odd dimension and determinant $1$, its remaining real eigenvalue is $1$. Choose a unit eigenvector $n$ with $Qn=n$. The plane $n^\perp$ is $Q$-invariant, and the restriction of $Q$ to this plane is a planar rotation through some angle $\theta$.
-
-Writing
+Step 2: Classify positive-product constant-diagonal rotations and prove the compatibility obstruction
+Let $R\in SO(3)$ have constant diagonal and suppose $M(R)>0$. Since $R$ is a real orthogonal matrix of odd dimension and determinant $1$, it has eigenvalue $1$. Let $n$ be a unit eigenvector. On $n^\perp$, $R$ is a planar rotation through some nonzero angle $\theta$, so Rodrigues' formula gives
 $$
-c=\cos\theta,\qquad h=\sin\theta,
+R=\cos\theta\,I_3+(1-\cos\theta)nn^T+\sin\theta\,K_n,
 $$
-the action on $\mathbb R^3$ is
+where $K_nx=n\times x$. Thus
 $$
-Q=cI_3+(1-c)nn^T+hK_n,
+R_{ii}=\cos\theta+(1-\cos\theta)n_i^2.
 $$
-where $K_nx=n\times x$. In particular,
-$$
-Q_{ii}=c+(1-c)n_i^2.
-$$
-Because all three diagonal entries are equal and $c\neq1$, we obtain
+Because the three diagonal entries are equal and $R\neq I_3$,
 $$
 n_1^2=n_2^2=n_3^2=\frac13.
 $$
-Conjugating $Q$ by a diagonal sign matrix changes only signs of entries and therefore leaves $M(Q)$ unchanged. Thus we may take
+Hence every positive-product constant-diagonal rotation has a body-diagonal axis.
+
+Now let $A$ and $B$ have body-diagonal axes $p$ and $q$. Suppose these axes are distinct. A simultaneous signed permutation of coordinates preserves constant diagonals and all absolute entry-products, so we may take
 $$
-n=\frac1{\sqrt3}(1,1,1)^T.
+p=\frac1{\sqrt3}(1,1,1)^T,
+\qquad
+q=\frac1{\sqrt3}(1,1,-1)^T.
 $$
-The common diagonal entry is then
+Represent the two rotations by unit quaternions
 $$
-s=c+\frac{1-c}{3}=\frac{1+2c}{3},
+(a,bp),
+\qquad
+(c,dq),
+$$
+with
+$$
+a^2+b^2=c^2+d^2=1.
+$$
+The quaternion product rule
+$$
+(r,x)(s,y)=(rs-x\cdot y,\;ry+sx+x\times y)
+$$
+shows that the vector part of the quaternion for $AB$ is
+$$
+v=adq+bcp+bd\,p\times q.
+$$
+Since
+$$
+p\times q=\left(-\frac23,\frac23,0\right)^T,
+$$
+we obtain
+$$
+3v=
+\begin{pmatrix}
+\sqrt3(ad+bc)-2bd\\
+\sqrt3(ad+bc)+2bd\\
+\sqrt3(-ad+bc)
+\end{pmatrix}.
+$$
+Positive product implies $A$ and $B$ are nonidentity, so $b,d\neq0$. If $AB$ also has positive product and constant diagonal, its axis is again a body diagonal, hence the three coordinates of $v$ have equal absolute values. Equality of the squares of the first two coordinates gives
+$$
+(ad+bc)bd=0,
 $$
 so
 $$
--\frac13\leq s\leq1.
+ad+bc=0.
 $$
+The first two coordinates then have absolute value $2|bd|$, while the third has absolute value $2\sqrt3|ad|$. Their equality forces
+$$
+|b|=\sqrt3|a|.
+$$
+Thus
+$$
+a^2=\frac14,
+\qquad
+b^2=\frac34.
+$$
+If $\alpha$ is the rotation angle of $A$, then
+$$
+\cos\alpha=a^2-b^2=-\frac12.
+$$
+For a body-diagonal rotation the common diagonal entry equals
+$$
+\frac{1+2\cos\alpha}{3}=0,
+$$
+contradicting $M(A)>0$. Therefore every positive-product admissible triple has $A$ and $B$ rotating about the same body-diagonal axis.
 
-Step 3: Express the full nine-entry product in terms of the single parameter $s$
-For the chosen axis $n$, the six off-diagonal entries consist of three copies of
+Step 3: Compute the nine-entry product for one body-diagonal rotation
+Let $R_\theta$ be rotation through angle $\theta$ about a body diagonal. Its common diagonal entry is
 $$
-a+b
+s=\frac{1+2\cos\theta}{3}.
+$$
+The six off-diagonal entries occur, up to signs, as three copies of
+$$
+u+v
 $$
 and three copies of
 $$
-a-b,
+u-v,
 $$
-up to signs, where
+where
 $$
-a=\frac{1-c}{3},\qquad b=\frac{h}{\sqrt3}.
+u=\frac{1-\cos\theta}{3},
+\qquad
+v=\frac{\sin\theta}{\sqrt3}.
 $$
-Since $c=(3s-1)/2$,
+A direct simplification gives
 $$
-a=\frac{1-s}{2}.
+u^2-v^2=-s(1-s).
 $$
-Also
+Hence
 $$
-b^2=\frac{1-c^2}{3}
-=\frac{(1-s)(1+3s)}4.
+M(R_\theta)
+=|s|^3|u+v|^3|u-v|^3
+=|s|^6(1-s)^3
+=\bigl(s^2(1-s)\bigr)^3.
+$$
+
+Put $x=\theta/2$. Since
+$$
+1-\cos\theta=2\sin^2x
+$$
+and
+$$
+1+2\cos\theta
+=3-4\sin^2x
+=\frac{\sin3x}{\sin x},
+$$
+we obtain
+$$
+s^2(1-s)=\frac4{27}\sin^2\frac{3\theta}{2}.
 $$
 Therefore
 $$
-a^2-b^2
-=\frac{(1-s)^2-(1-s)(1+3s)}4
-=-s(1-s).
-$$
-The product of the three diagonal entries and the six off-diagonal entries is consequently
-$$
-M(Q)
-=|s|^3|a+b|^3|a-b|^3
-=|s|^3|a^2-b^2|^3
-=|s|^6(1-s)^3.
+M(R_\theta)
+=\left(\frac4{27}\right)^3
+\sin^6\frac{3\theta}{2}.
 $$
 
-Step 4: Maximize the resulting one-variable function
-For $0\leq s\leq1$, set
+Step 4: Use the compatibility to reduce to a sharp two-variable trigonometric bound
+By Step 2, in every positive-product admissible triple, $A$ and $B$ rotate about the same body-diagonal axis. Write their signed rotation angles as $\alpha$ and $\beta$. Then $AB$ has angle $\alpha+\beta$ about the same axis. Using Step 3 and setting
 $$
-g(s)=s^6(1-s)^3.
+x=\frac{3\alpha}{2},
+\qquad
+y=\frac{3\beta}{2},
 $$
-At an interior critical point,
+we get
 $$
-\frac{g'(s)}{g(s)}=\frac6s-\frac3{1-s}=0,
-$$
-which gives
-$$
-s=\frac23.
-$$
-The endpoint values are $0$, so on this interval
-$$
-g(s)\leq\left(\frac23\right)^6\left(\frac13\right)^3
-=\frac{2^6}{3^9}.
+M(A)M(B)M(AB)
+=\left(\frac4{27}\right)^9
+|\sin x\sin y\sin(x+y)|^6.
 $$
 
-For $-1/3\leq s\leq0$, write $x=-s$. Then
+Let
 $$
-g(s)=x^6(1+x)^3,
+u=x+y,
+\qquad
+v=x-y.
 $$
-which is strictly increasing for $x\geq0$. Hence its maximum on this interval occurs at $x=1/3$, and again
+Since
 $$
-g(s)\leq\left(\frac13\right)^6\left(\frac43\right)^3
-=\frac{2^6}{3^9}.
+\sin x\sin y=\frac{\cos v-\cos u}{2},
 $$
-Thus every admissible pair of bases satisfies
+for fixed $u$ we have
 $$
-M(U)\leq\frac{2^6}{3^9}.
+|\sin x\sin y\sin u|
+\leq\frac12|\sin u|\bigl(1+|\cos u|\bigr).
+$$
+Set $r=|\cos u|$. The square of the right-hand side is
+$$
+\frac14(1-r^2)(1+r)^2
+=\frac14(1-r)(1+r)^3.
+$$
+For $0\leq r\leq1$, the derivative of $(1-r)(1+r)^3$ is
+$$
+2(1+r)^2(1-2r),
+$$
+so the maximum occurs at $r=1/2$. Consequently
+$$
+|\sin x\sin y\sin(x+y)|
+\leq\frac{3\sqrt3}{8}.
+$$
+Therefore
+$$
+M(A)M(B)M(C)
+\leq
+\left(\frac4{27}\right)^9
+\left(\frac{3\sqrt3}{8}\right)^6
+=\frac1{3^{18}}.
 $$
 
-Step 5: Construct orthonormal bases attaining the bound
-Take $(e_1,e_2,e_3)$ to be the standard basis and let $(f_1,f_2,f_3)$ be the columns of
+Step 5: Construct three bases attaining the bound
+Let $(e_1,e_2,e_3)$ be the standard basis, let
 $$
-Q=
-\begin{pmatrix}
-\frac23&-\frac13&\frac23\\
-\frac23&\frac23&-\frac13\\
--\frac13&\frac23&\frac23
-\end{pmatrix}.
+n=\frac1{\sqrt3}(1,1,1)^T,
+\qquad
+\alpha=\frac{2\pi}{9},
 $$
-Each row has squared norm
-$$
-\frac49+\frac19+\frac49=1,
-$$
-and the three pairwise row inner products are
-$$
-\frac49-\frac29-\frac29=0,\qquad
--\frac29-\frac29+\frac49=0,\qquad
--\frac29+\frac49-\frac29=0.
-$$
-Hence $QQ^T=I_3$, so the columns form an orthonormal basis. The three matched inner products all equal $2/3$ in absolute value. Among the nine entries, six have absolute value $2/3$ and three have absolute value $1/3$, so
-$$
-M(Q)=\left(\frac23\right)^6\left(\frac13\right)^3
-=\frac{2^6}{3^9}.
-$$
-Hence the upper bound is attained.
+and let $R$ be rotation through angle $\alpha$ about $n$. Take $(f_1,f_2,f_3)$ to be the columns of $R$ and $(g_1,g_2,g_3)$ to be the columns of $R^2$.
 
-Final Answer: $\boxed{\frac{2^6}{3^9}}$
+Then the three transition matrices are
+$$
+R,
+\qquad
+R,
+\qquad
+R^{-2}.
+$$
+All three are rotations about the same body diagonal, so each has constant diagonal and the hypotheses are satisfied. Here
+$$
+x=y=\frac{3\alpha}{2}=\frac\pi3,
+$$
+so
+$$
+|\sin x\sin y\sin(x+y)|
+=\left(\frac{\sqrt3}{2}\right)^3
+=\frac{3\sqrt3}{8}.
+$$
+Thus equality holds in Step 4, and the required maximum is attained.
+
+Final Answer: $\boxed{\frac1{3^{18}}}$
 
 ---
 
 ## Answer
 
-$\frac{2^6}{3^9}$
+$\frac1{3^{18}}$
 
 ---
 
@@ -169,7 +265,7 @@ $\frac{2^6}{3^9}$
 ## Solution Concepts
 
 - orthonormal bases
-- orthogonal change of basis
+- orthogonal transition matrices
 - three-dimensional rotations
-- axis-angle representation
-- single-variable optimization
+- quaternion composition
+- trigonometric optimization
