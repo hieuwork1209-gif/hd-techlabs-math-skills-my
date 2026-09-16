@@ -1,202 +1,203 @@
 ## Steps
 
-Step 1: Recover the natural endomorphism algebra and its radical coordinates
-Let $k=\mathbb F_3$ and $A=k[S_3]$. If $T:U\Rightarrow U$ is natural, put $c=T_A(1)$. For every $A$-module $M$ and $m\in M$, the map $f_m:A\to M$, $a\mapsto am$, is $A$-linear, so naturality gives
+Step 1: Recover the natural endomorphism algebra and the block form of an idempotent
+Let $k=\mathbb F_2$ and let $A$ be the algebra of upper triangular $3\times3$ matrices over $k$. Write
 $$
-T_M(m)=T_M(f_m(1))=f_m(T_A(1))=cm.
+a=e_{12},\qquad b=e_{23},\qquad c=e_{13}=ab.
 $$
-Thus $\operatorname{Nat}(U,U)\cong A$, and therefore
+Let $U$ be the forgetful functor from finite-dimensional left $A$-modules to $k$-vector spaces. If $T:U\Rightarrow U$ is natural and $d=T_A(1)$, then for every left $A$-module $M$ and $m\in M$, the $A$-linear map $f_m:A\to M$, $x\mapsto xm$, gives
 $$
-\operatorname{End}(F)\cong M_3(A).
+T_M(m)=T_M(f_m(1))=f_m(T_A(1))=dm.
+$$
+Thus $\operatorname{Nat}(U,U)\cong A$. For $F=U^{\oplus3}$,
+$$
+\operatorname{End}(F)\cong M_3(A)\cong
+\left\{
+\begin{pmatrix}
+X&U&P\\
+0&Y&V\\
+0&0&Z
+\end{pmatrix}:X,Y,Z,U,V,P\in M_3(k)
+\right\}.
+$$
+Therefore a natural idempotent $E$ has a unique block form
+$$
+E=
+\begin{pmatrix}
+X&U&P\\
+0&Y&V\\
+0&0&Z
+\end{pmatrix},
+$$
+where $E^2=E$ is equivalent to
+$$
+X^2=X,\qquad Y^2=Y,\qquad Z^2=Z,
+$$
+$$
+XU+UY=U,\qquad YV+VZ=V,
+$$
+$$
+XP+PZ+UV=P.
 $$
 
-Write $r=(123)$ and $s=(12)$. The visible relation $srs=r^{-1}$ makes it natural to split by the two $s$-eigenspaces and to use the $s$-anti-invariant part of $r$. Put
+Step 2: Express the two defect ranks using only the three diagonal projections
+Let $\rho_a,\rho_b,\rho_c$ denote left multiplication by $a,b,c$ on every module, repeated on the three summands of $F$, and put
 $$
-e_+=\frac{1+s}{2},\qquad e_-=\frac{1-s}{2},\qquad t=r-r^{-1}.
+D_a=E\rho_a-\rho_aE,\qquad
+D_b=E\rho_b-\rho_bE,\qquad
+D_c=E\rho_c-\rho_cE.
 $$
-In characteristic $3$,
+Using $a=e_{12}$, $b=e_{23}$ and $c=e_{13}$ in the block model from Step 1 gives
 $$
-t^2=1+r+r^2,\qquad t^3=0,\qquad sts=-t.
-$$
-Hence $e_+t=te_-$ and $e_-t=te_+$. Since $1,t,t^2$ are a basis of $k[\langle r\rangle]$ and $A=k[\langle r\rangle]\oplus s k[\langle r\rangle]$, the six elements
-$$
-e_+,\ e_-,\ a=e_+t,\ b=e_-t,\ p=e_+t^2,\ q=e_-t^2
-$$
-form a basis of $A$. Their nonzero products needed below include
-$$
-ab=p,\qquad ba=q,
-$$
-and every product of total $t$-degree at least $3$ is zero. Also
-$$
-r=1-t-t^2,
-$$
-while $t^2$ is central, so $[E,r]=-[E,t]$ for every $E\in M_3(A)$.
-
-Accordingly every $E\in M_3(A)$ has a unique expansion
-$$
-E=e_+X+e_-Y+aU+bV+pP+qQ,
-$$
-with $X,Y,U,V,P,Q\in M_3(k)$.
-
-Step 2: Translate idempotency into two projection layers and count the lifts
-Using the multiplication rules from Step 1, the equation $E^2=E$ is equivalent to
-$$
-X^2=X,\qquad Y^2=Y,
-$$
-$$
-XU+UY=U,\qquad YV+VX=V,
-$$
-$$
-XP+PX+UV=P,\qquad YQ+QY+VU=Q.
-$$
-Let $x=\operatorname{rank}X$ and $y=\operatorname{rank}Y$. Relative to
-$$
-k^3=\operatorname{im}X\oplus\ker X,
+D_a=
+\begin{pmatrix}
+0&X-Y&-V\\
+0&0&0\\
+0&0&0
+\end{pmatrix},
 \qquad
-k^3=\operatorname{im}Y\oplus\ker Y,
+D_b=
+\begin{pmatrix}
+0&0&U\\
+0&0&Y-Z\\
+0&0&0
+\end{pmatrix},
 $$
-the equation for $U$ says
+so
 $$
-U(\operatorname{im}Y)\subseteq\ker X,
-\qquad
-U(\ker Y)\subseteq\operatorname{im}X.
+D_aD_b=
+\begin{pmatrix}
+0&0&(X-Y)(Y-Z)\\
+0&0&0\\
+0&0&0
+\end{pmatrix}.
 $$
-Therefore its solution space has dimension
+Likewise
 $$
-d(x,y)=x(3-y)+(3-x)y.
+D_c=
+\begin{pmatrix}
+0&0&X-Z\\
+0&0&0\\
+0&0&0
+\end{pmatrix}.
 $$
-The solution space for $V$ has the same dimension.
+Left multiplication by $c=e_{13}$ on the regular module $A$ has rank $1$: it kills every standard basis element of $A$ except $e_{33}$, which it sends to $e_{13}$. Hence for $X_n=A^{\oplus n}$,
+$$
+\operatorname{rank}(D_aD_b)_{X_n}
+=n\operatorname{rank}\bigl((X-Y)(Y-Z)\bigr),
+$$
+$$
+\operatorname{rank}(D_c)_{X_n}=n\operatorname{rank}(X-Z).
+$$
+The first rank is therefore at most $3n$, with equality exactly when both $X-Y$ and $Y-Z$ are invertible.
 
-These containments imply that $UV$ preserves both $\operatorname{im}X$ and $\ker X$. On the four blocks determined by $X$, the linear map
+Step 3: Classify the projection triples that maximize the first defect and count their lifts
+For idempotents $R,S$ on $k^3$,
 $$
-P\longmapsto XP+PX-P
-$$
-has coefficients $1,0,0,-1$, respectively. Thus the prescribed block-diagonal term $-UV$ determines the two diagonal blocks of $P$, while its two off-diagonal blocks are free. Hence there are exactly
-$$
-3^{2x(3-x)}
-$$
-choices for $P$. Similarly there are $3^{2y(3-y)}$ choices for $Q$.
-
-Step 3: Convert the commutator rank into a two-level linear-algebra invariant
-Put
-$$
-H=X-Y,\qquad W=U-V.
-$$
-Step 1 gives
-$$
-[E,t]=(a-b)H+(p-q)W.
-$$
-Decompose the left regular module as $A=Ae_+\oplus Ae_-$. On $(Ae_+)^3$, with $v\in k^3$,
-$$
-[E,t](e_+v)=-bHv+pWv,
-$$
-$$
-[E,t](bv)=pHv,
-\qquad
-[E,t](pv)=0.
-$$
-Let
-$$
-r_H=\operatorname{rank}H,
-\qquad
-s_H=\dim\left(\operatorname{im}H+W(\ker H)\right).
-$$
-The degree-one projection of the image has dimension $r_H$. After that component is killed, the remaining degree-two vectors are exactly $\operatorname{im}H+W(\ker H)$, of dimension $s_H$. Thus the rank on $(Ae_+)^3$ is $r_H+s_H$. The same calculation on $(Ae_-)^3$ gives the same rank. Since $[E,r]=-[E,t]$, evaluation on $X_n=A^n$ yields
-$$
-\operatorname{rank}(C_E)_{X_n}=2n(r_H+s_H).
-$$
-Because $r_H,s_H\leq3$, the maximum is $12n$. Every smaller value is at most $10n$, with equality requiring $r_H=2$ and $s_H=3$.
-
-Step 4: Count the idempotents giving the maximal rank
-The maximum $12n$ requires $r_H=s_H=3$, so it is equivalent to $X-Y$ being invertible.
-
-For idempotents $X,Y$,
-$$
-\ker(X-Y)=\left(\operatorname{im}X\cap\operatorname{im}Y\right)
+\ker(R-S)=\left(\operatorname{im}R\cap\operatorname{im}S\right)
 \oplus
-\left(\ker X\cap\ker Y\right).
+\left(\ker R\cap\ker S\right).
 $$
-Indeed, if $Xv=Yv=w$, then $w$ lies in the common image and $v-w$ lies in the common kernel; the converse is immediate. Hence $X-Y$ is invertible exactly when both intersections vanish, which forces $x+y=3$.
+Indeed, if $Rv=Sv=w$, then $w$ lies in the common image and $v-w$ lies in the common kernel, and the converse is immediate. Therefore $R-S$ is invertible exactly when the two displayed intersections are zero.
 
-There are
+Write
 $$
-I_1=I_2=\frac{|GL_3(k)|}{|GL_1(k)|\,|GL_2(k)|}
-=\frac{11232}{2\cdot48}=117
+x=\operatorname{rank}X,\qquad y=\operatorname{rank}Y,\qquad z=\operatorname{rank}Z.
 $$
-rank-one or rank-two idempotents, and one idempotent of ranks $0$ and $3$.
-
-Fix a rank-one $X$, with $k^3=P\oplus Q$, $\dim P=1$. For a rank-two $Y$ with $X-Y$ invertible, $\operatorname{im}Y$ is the graph of a map $f:Q\to P$ and $\ker Y$ is the graph of a map $g:P\to Q$. These two graphs are complementary exactly when $1-fg\neq0$. There are $3^4=81$ pairs $(f,g)$. For each of the $3^2-1=8$ nonzero $f$, the equation $fg=1$ has $3$ solutions for $g$, so exactly
+If $X-Y$ is invertible, the common-image condition gives $x+y\leq3$, while the common-kernel condition gives $(3-x)+(3-y)\leq3$, so $x+y=3$. Similarly $y+z=3$. Hence
 $$
-81-8\cdot3=57
-$$
-rank-two $Y$ work. Therefore the number of ordered pairs $(X,Y)$ with $X-Y$ invertible is
-$$
-2+2\cdot117\cdot57=13340.
+x=z=3-y.
 $$
 
-For every such pair, $x+y=3$. Step 2 gives a total exponent
+There is one idempotent of ranks $0$ and $3$, while the number of rank-one or rank-two idempotents is
 $$
-2d(x,y)+2x(3-x)+2y(3-y)
-=12(x+y)-2(x+y)^2=18
+\frac{|GL_3(\mathbb F_2)|}{|GL_1(\mathbb F_2)|\,|GL_2(\mathbb F_2)|}
+=\frac{168}{6}=28.
 $$
-for the choices of $U,V,P,Q$. Thus
+Fix a rank-one $Y$ and write $k^3=P\oplus Q$ with $P=\operatorname{im}Y$, $Q=\ker Y$, $\dim P=1$, $\dim Q=2$. A rank-two idempotent $X$ with $X-Y$ invertible has
 $$
-N_n^{(1)}=13340\cdot3^{18}.
-$$
-
-Step 5: Count the idempotents giving the second-largest rank
-To obtain $10n$, Step 3 requires $r_H=2$ and $s_H=3$. Put
-$$
-\alpha=\dim(\operatorname{im}X\cap\operatorname{im}Y),
+\operatorname{im}X=\{(f(q),q):q\in Q\},
 \qquad
-\beta=\dim(\ker X\cap\ker Y).
+\ker X=\{(p,g(p)):p\in P\}
 $$
-The kernel formula in Step 4 gives $\alpha+\beta=1$.
+for maps $f:Q\to P$ and $g:P\to Q$. These two graphs are complementary exactly when $1-fg\neq0$. Over $\mathbb F_2$, this means $fg=0$. If $f=0$, all $4$ maps $g$ work; if $f\neq0$, there are $3$ choices for $f$ and $2$ choices of $g$ with image in $\ker f$. Thus there are
+$$
+4+3\cdot2=10
+$$
+possible $X$. By replacing every projection by its complement, the same count holds when $Y$ has rank $2$.
 
-Suppose first that $\alpha=1$. For $v$ in the common image, the first-order equations give
+It remains to count $U,V,P$ for a fixed maximizing triple $(X,Y,Z)$. For projections of ranks $r,s$, the equation
 $$
-Uv\in\ker X,\qquad Vv\in\ker Y.
+RU+US=U
 $$
-If $x+y=4$, then $K=\ker X\oplus\ker Y$ has dimension $2$. For $u\in\ker X$,
+has solution-space dimension
 $$
-Hu=-Yu=(I-Y)u-u\in K,
+d(r,s)=r(3-s)+(3-r)s,
 $$
-and for $u\in\ker Y$,
-$$
-Hu=Xu=u-(I-X)u\in K.
-$$
-The common-image line is $\ker H$ and is disjoint from $K$, so $H|_K$ is injective. Hence $K=\operatorname{im}H$, forcing $W(\ker H)\subseteq\operatorname{im}H$ and $s_H=2$. If instead $\beta=1$ and $x+y=2$, the same argument with $\operatorname{im}X+\operatorname{im}Y$ in place of $K$ again gives $s_H=2$. Therefore $s_H=3$ is possible only when $x+y=3$, so the rank pairs are $(1,2)$ and $(2,1)$.
+because precisely the blocks from $\ker S$ to $\operatorname{im}R$ and from $\operatorname{im}S$ to $\ker R$ are free. Thus $U$ and $V$ contribute $2^{d(x,y)+d(y,z)}$ choices.
 
-Fix rank-one $X$ with image $P$ and kernel $Q$. If $\alpha=1$ and $\beta=0$, choose the rank-two plane $\operatorname{im}Y$ containing $P$ in $4$ ways. It has $9$ complementary lines, of which $3$ lie in $Q$, so there are $6$ choices for $\ker Y$, giving $24$ idempotents $Y$. If $\alpha=0$ and $\beta=1$, choose the line $\ker Y\subset Q$ in $4$ ways. There are $9$ planes complementary to that line; exactly $3$ of them contain $P$, so $6$ choices remain for $\operatorname{im}Y$, again giving $24$. Thus there are $48$ choices for $Y$ per rank-one $X$, and both rank orders contribute
+The first-order equations imply
 $$
-2\cdot117\cdot48=11232
+V(\operatorname{im}Z)\subseteq\ker Y,
+\quad
+V(\ker Z)\subseteq\operatorname{im}Y,
 $$
-ordered pairs $(X,Y)$.
-
-For each such pair the solution spaces for $U$ and $V$ have dimension $5$, so there are $3^{10}$ pairs $(U,V)$. The equations are symmetric under $(X,Y,U,V)\leftrightarrow(Y,X,V,U)$, which changes $(H,W)$ to $(-H,-W)$, so it suffices to treat $x=1$, $y=2$. The condition $s_H=3$ says that the induced map
+followed by
 $$
-(U,V)\longmapsto W(\ker H)\pmod{\operatorname{im}H}
+U(\ker Y)\subseteq\operatorname{im}X,
+\quad
+U(\operatorname{im}Y)\subseteq\ker X.
 $$
-from this ten-dimensional space to a one-dimensional quotient is nonzero.
-
-For $\alpha=1$, take $0\neq v\in\ker H=\operatorname{im}X\cap\operatorname{im}Y$. Since $\beta=0$, the line $\ker Y$ is not contained in $Q=\ker X$; if $0\neq z\in\ker Y$, then $Hz=Xz$ is a nonzero vector of $\operatorname{im}X$. Hence $\operatorname{im}X\subseteq\operatorname{im}H$, so the two-dimensional space $Q$ cannot equal $\operatorname{im}H$. Choose $q_0\in Q\setminus\operatorname{im}H$. The first-order equation for $U$ allows an arbitrary map $\operatorname{im}Y\to Q$, so choose $U(v)=q_0$, set the other allowed blocks to zero, and take $V=0$. Then $W(v)\notin\operatorname{im}H$, proving that the quotient map is nonzero. The case $\alpha=0$, $\beta=1$ follows by replacing $(X,Y)$ with $(I-X,I-Y)$, which preserves the first-order solution spaces and replaces $H$ by $-H$.
-
-Therefore the quotient condition removes exactly one linear hyperplane, leaving
+Hence $UV$ sends $\operatorname{im}Z$ into $\operatorname{im}X$ and $\ker Z$ into $\ker X$. Therefore the equation
 $$
-3^{10}-3^9=2\cdot3^9
+XP+PZ-P=-UV
 $$
-choices of $(U,V)$ with $s_H=3$. Step 2 supplies $3^8$ choices for $(P,Q)$. Hence
+is solvable, and its homogeneous solution space has dimension $d(x,z)$. Since $x=z=3-y$, the number of lifts is
 $$
-N_n^{(2)}=11232\cdot2\cdot3^{17}=22464\cdot3^{17}.
+2^{d(x,y)+d(y,z)+d(x,z)}=2^{18-6y+2y^2}.
 $$
 
-Final Answer: $\boxed{\left(12n,13340\cdot3^{18},10n,22464\cdot3^{17}\right)}$
+Step 4: Maximize the composite-path defect inside the first maximizing class
+For $y=0$ or $y=3$, the conditions from Step 3 force $X=Z$, so $\operatorname{rank}(X-Z)=0$.
+
+Suppose $y=1$. Then $x=z=2$. For a fixed rank-one $Y$, the ten allowed rank-two projections are the pairs $(f,g)$ from Step 3 with $f(g)=0$. If $X$ corresponds to $(f,g)$, then for $(p,q)\in P\oplus Q$,
+$$
+X(p,q)=\left(f(q),\;gp+q+gf(q)\right).
+$$
+Let $Z$ correspond to $(f',g')$. If $f=f'$ but $g\neq g'$, then $X-Z$ has one-dimensional image spanned by $g+g'$. The same holds when $g=g'$ but $f\neq f'$. If both $f\neq f'$ and $g\neq g'$, then
+$$
+(X-Z)(1,0)=\left(0,g+g'\right)\neq0.
+$$
+Also there exists $q\in Q$ with $(f+f')(q)=1$, so $(X-Z)(0,q)$ has nonzero $P$-coordinate and is independent of $(X-Z)(1,0)$. Thus $\operatorname{rank}(X-Z)\geq2$. It cannot have rank $3$, because invertibility of the difference of two rank-two idempotents would force their ranks to sum to $3$. Therefore
+$$
+\operatorname{rank}(X-Z)=2
+$$
+exactly when $f\neq f'$ and $g\neq g'$.
+
+Among the ten pairs $(f,g)$, the number of ordered pairs with the same $f$ is
+$$
+4^2+3\cdot2^2=28.
+$$
+By symmetry, the number with the same $g$ is also $28$, and exactly $10$ ordered pairs have both the same $f$ and the same $g$. Hence the number with both coordinates different is
+$$
+10^2-(28+28-10)=54.
+$$
+The complementary case $y=2$ has the same count. Consequently the second component of the lexicographic maximum is $2n$.
+
+Step 5: Count all natural idempotents attaining both lexicographic maxima
+Only the cases $y=1$ and $y=2$ contribute. There are $28$ choices for $Y$ in each case, $54$ ordered pairs $(X,Z)$ giving $\operatorname{rank}(X-Z)=2$, and Step 3 gives $2^{14}$ lifts for each projection triple. Therefore
+$$
+N_n=2\cdot28\cdot54\cdot2^{14}=189\cdot2^{18}.
+$$
+Thus the lexicographically maximal defect profile is $(3n,2n)$, attained by exactly $189\cdot2^{18}$ natural idempotents.
+
+Final Answer: $\boxed{\left(3n,2n,189\cdot2^{18}\right)}$
 
 ---
 
 ## Answer
 
-$\left(12n,13340\cdot3^{18},10n,22464\cdot3^{17}\right)$
+$\left(3n,2n,189\cdot2^{18}\right)$
 
 ---
 
@@ -211,7 +212,7 @@ $\left(12n,13340\cdot3^{18},10n,22464\cdot3^{17}\right)$
 ## Solution Concepts
 
 - natural endomorphisms of forgetful functors
-- modular group algebras
-- radical filtration and idempotent lifting
-- commutator rank
-- finite-field subspace incidence
+- path algebras and quiver representations
+- idempotent block equations
+- complementary subspaces over finite fields
+- lexicographic rank optimization
