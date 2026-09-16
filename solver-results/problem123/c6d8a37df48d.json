@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-probability-foundations/problem.md",
+  "source_commit_sha": "8e6367f3aa8ddd97b46df90c42bff9fc273855d5",
+  "problem_blob_sha": "c6d8a37df48d6f937fb39ab0440d685c1d21cada",
+  "statement_sha256": "ec1658de97698bd90ede236dc1333935ca4375d28cbcfc9528e5ac0ef4989a68",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T13:12:07+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(\\theta\\in[0,1]\\) be the de Finetti mixing parameter. Then\n\n\\[\n\\mathbb P(X_1=\\cdots=X_k=1)=\\int_0^1 \\theta^k\\,d\\mu(\\theta),\n\\]\n\nso the conditions are\n\n\\[\n\\int 1\\,d\\mu=1,\\qquad \\int\\theta\\,d\\mu=\\frac12,\\qquad\n\\int\\theta^2\\,d\\mu=\\frac13,\\qquad\n\\int\\theta^3\\,d\\mu=\\frac14.\n\\]\n\nAlso\n\n\\[\n\\mathbb P(X_7=1\\mid X_1+\\cdots+X_6=2)\n=\n\\frac{\\int \\theta^3(1-\\theta)^4\\,d\\mu}\n{\\int \\theta^2(1-\\theta)^4\\,d\\mu}.\n\\]\n\nThe extremal moment problem reduces to a measure supported at two interior atoms \\(a<c\\) and the endpoint \\(1\\). The moment equations give\n\n\\[\nc=\\frac{1-2a}{2-6a}.\n\\]\n\nFor such a measure the ratio is\n\n\\[\nR(a)=\n\\frac{\n4374-61236a+306180a^2-472392a^3-1207224a^4+5983632a^5-9552816a^6+6928416a^7-1889568a^8\n}{\n4374-65610a+428652a^2-1583388a^3+3551688a^4-4776408a^5+3464208a^6-944784a^7\n}.\n\\]\n\nThe maximizing \\(a\\in(0,1/2)\\) is the relevant root of\n\n\\[\n\\begin{aligned}\n0={}&1-52a+870a^2-7456a^3+38536a^4-129984a^5+299808a^6\\\\\n&-489216a^7+579264a^8-498240a^9+294624a^{10}-103680a^{11}+15552a^{12}.\n\\end{aligned}\n\\]\n\nEliminating \\(a\\) between this equation and \\(T=R(a)\\), and taking the irreducible factor containing the maximizing value \\(E\\approx0.508704693012965\\), gives\n\n\\[\n\\boxed{\nP(T)=1152T^6-8640T^5+21755T^4-66392T^3+97280T^2-55680T+10704\n}.\n\\]\n\nThis polynomial is primitive, has positive leading coefficient, and is irreducible over \\(\\mathbb Z\\) since its reduction modulo \\(5\\) is irreducible.",
+  "status": "success",
+  "completed_at": "2026-09-16T13:25:01+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/c6d8a37df48d.json"
+}
