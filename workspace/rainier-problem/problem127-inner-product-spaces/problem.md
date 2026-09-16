@@ -2,13 +2,15 @@
 
 ## LaTeX (Normalized)
 
-Let $L_1,L_2,L_3,L_4$ be four distinct two-dimensional subspaces of $\mathbb R^4$. For a subspace $M$, let $P_M$ denote orthogonal projection onto $M$.
-
-Suppose there is a constant $c\in(0,1)$ such that for every pair $i\ne j$ and every vector $x\in L_i$,
+Let $(e_1,\dots,e_5)$ and $(f_1,\dots,f_5)$ be orthonormal bases of $\mathbb R^5$. Suppose there are positive real numbers $a,b$ such that
 $$
-\|P_{L_j}x\|=c\|x\|.
+|\langle e_i,f_i\rangle|=a\qquad(i=1,\dots,5)
 $$
-Determine $c$.
+and
+$$
+|\langle e_i,f_j\rangle|=b\qquad(i\ne j).
+$$
+Determine $a$.
 
 ---
 
@@ -25,4 +27,4 @@ Determine $c$.
 
 ## Domain Explanation
 
-This problem is primarily Linear Algebra and Inner product spaces: it concerns four two-dimensional subspaces whose pairwise orthogonal projections act with the same norm-scaling factor in every direction. The condition is a rigid compatibility constraint on the relative inner-product geometry of the planes. Exterior-algebra coordinates are a subordinate tool for resolving that compatibility and determining the unique possible projection factor.
+This problem is primarily Linear Algebra and Inner product spaces: the pairwise inner products between two orthonormal bases form an orthogonal transition matrix whose matched and unmatched coefficients have two common magnitudes. Orthogonality couples the signs of these coefficients globally, and determining the diagonal magnitude requires resolving that sign compatibility rather than only using row norms.
