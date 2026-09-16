@@ -1,0 +1,22 @@
+{
+  "problem": "problem124",
+  "branch": "adversary/problem124",
+  "problem_path": "workspace/rainier-problem/problem124-dynamic-programming-and-optimal-control/problem.md",
+  "source_commit_sha": "94652b8835d99cc8241fbfe140952c949631615c",
+  "problem_blob_sha": "cd014c1c3c4c590f4ce57c2729ce22c169c8f16d",
+  "statement_sha256": "6ae3c5474752ff60e2ecee1e992b3508d57794a066fed847aba0a60601d11ade",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T08:12:33+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(x=x_u\\). The problem is equivalent to maximizing\n\\[\n\\int_0^1 x(t)^3\\,dt\n\\]\nover absolutely continuous \\(x\\) such that\n\\[\nx(0)=x(1)=0,\\qquad |x'(t)|\\le 1\\text{ a.e.},\\qquad \\int_0^1x(t)\\,dt=0.\n\\]\n\nThe maximum is\n\\[\n\\boxed{\\frac1{1458}}.\n\\]\n\nThe optimal controls, up to equality a.e., are exactly the following two time-reversed controls:\n\\[\nu(t)=\n\\begin{cases}\n-1,&0<t<\\frac19,\\\\\n0,&\\frac19<t<\\frac49,\\\\\n1,&\\frac49<t<\\frac79,\\\\\n-1,&\\frac79<t<1,\n\\end{cases}\n\\]\nand\n\\[\nu(t)=\n\\begin{cases}\n1,&0<t<\\frac29,\\\\\n-1,&\\frac29<t<\\frac59,\\\\\n0,&\\frac59<t<\\frac89,\\\\\n1,&\\frac89<t<1.\n\\end{cases}\n\\]\n\nFor the first one,\n\\[\nx(t)=\n\\begin{cases}\n-t,&0\\le t\\le \\frac19,\\\\\n-\\frac19,&\\frac19\\le t\\le \\frac49,\\\\\nt-\\frac59,&\\frac49\\le t\\le \\frac79,\\\\\n1-t,&\\frac79\\le t\\le 1.\n\\end{cases}\n\\]\nThen\n\\[\n\\int_0^1 x(t)\\,dt\n=-\\frac1{81}-\\frac1{27}+\\frac4{81}=0,\n\\]\nand\n\\[\n\\int_0^1 x(t)^3\\,dt\n=\\frac{(2/9)^4}{2}-\\left(\\frac{(1/9)^4}{2}+\\frac13\\left(\\frac19\\right)^3\\right)\n=\\frac1{1458}.\n\\]\n\nHere is the sharpness argument. By the usual one-dimensional rearrangement for Lipschitz paths, an optimizer may be taken, up to time reversal, in the form\n\\[\n0\\to -b\\quad\\text{slope }-1,\\qquad\n\\text{flat at }-b,\\qquad\n-b\\to h\\quad\\text{slope }1,\\qquad\n\\text{flat at }h,\\qquad\nh\\to0\\quad\\text{slope }-1,\n\\]\nwith \\(h\\ge b\\ge0\\). This rearrangement preserves the zero-mean condition and cannot decrease \\(\\int x^3\\): positive mass is moved as high as the slope bound permits, while negative mass is spread as evenly as the slope bound permits. Equality forces this single-valley/single-peak shape.\n\nLet the flat times at \\(-b\\) and \\(h\\) be \\(\\alpha,\\beta\\). The zero-mean condition says\n\\[\nb^2+\\alpha b=h^2+\\beta h=:A.\n\\]\nThe total-time condition is\n\\[\n2b+2h+\\alpha+\\beta=1,\n\\]\nequivalently\n\\[\nA\\left(\\frac1b+\\frac1h\\right)+b+h=1.\n\\]\nThe objective equals\n\\[\nJ=\\frac{h^4-b^4}{2}+\\beta h^3-\\alpha b^3\n=(h^2-b^2)\\left(A-\\frac{h^2+b^2}{2}\\right).\n\\]\n\nWrite \\(h=rb\\), \\(r\\ge1\\), and \\(s=b+h\\). Then\n\\[\nA=\\frac{bh(1-b-h)}{b+h}\n=\\frac{rs(1-s)}{(1+r)^2}.\n\\]\nThe constraint \\(\\beta\\ge0\\) gives \\(s\\le \\frac1{1+r}\\). Substitution gives\n\\[\nJ=\\frac{s^3(r^2-1)}{(1+r)^4}\n\\left(r(1-s)-\\frac{s(r^2+1)}2\\right).\n\\]\nFor fixed \\(r\\), this is maximized at\n\\[\ns=\\frac{3r}{2(1+r)^2}\n\\]\nwhen \\(1\\le r\\le2\\), and at \\(s=\\frac1{1+r}\\) when \\(r\\ge2\\). In the first case,\n\\[\nJ\\le \\frac{27r^4(r^2-1)}{32(1+r)^{10}},\n\\]\nwhose maximum on \\([1,2]\\) occurs at \\(r=2\\). In the second case,\n\\[\nJ\\le \\frac{(r-1)^2}{2(r+1)^6},\n\\]\nwhose maximum on \\([2,\\infty)\\) also occurs at \\(r=2\\). Thus \\(r=2\\), \\(s=\\frac13\\), so\n\\[\nb=\\frac19,\\qquad h=\\frac29,\\qquad \\alpha=\\frac13,\\qquad \\beta=0.\n\\]\nThis gives exactly the two controls listed above, related by time reversal. Hence the maximum is\n\\[\n\\boxed{\\frac1{1458}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T08:16:10+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem124/cd014c1c3c4c.json"
+}
