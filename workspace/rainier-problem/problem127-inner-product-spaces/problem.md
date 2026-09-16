@@ -2,15 +2,15 @@
 
 ## LaTeX (Normalized)
 
-Let $(e_1,\dots,e_5)$ and $(f_1,\dots,f_5)$ be orthonormal bases of $\mathbb R^5$. Suppose there are positive real numbers $a,b$ such that
+Let $T_1,T_2,T_3,T_4$ be orthogonal transformations of $\mathbb R^4$. Suppose there is a constant $c\in(0,1)$ such that for every $i$ and every $x\in\mathbb R^4$,
 $$
-|\langle e_i,f_i\rangle|=a\qquad(i=1,\dots,5)
+\langle x,T_i x\rangle=c\|x\|^2,
 $$
-and
+and for every pair $i\ne j$ and every $x\in\mathbb R^4$,
 $$
-|\langle e_i,f_j\rangle|=b\qquad(i\ne j).
+\langle x,T_iT_jx\rangle=c\|x\|^2.
 $$
-Determine $a$.
+Determine $c$.
 
 ---
 
@@ -27,4 +27,4 @@ Determine $a$.
 
 ## Domain Explanation
 
-This problem is primarily Linear Algebra and Inner product spaces: the pairwise inner products between two orthonormal bases form an orthogonal transition matrix whose matched and unmatched coefficients have two common magnitudes. Orthogonality couples the signs of these coefficients globally, and determining the diagonal magnitude requires resolving that sign compatibility rather than only using row norms.
+This problem is primarily Linear Algebra and Inner product spaces: it imposes a common constant-angle condition on four orthogonal transformations and on all of their pairwise products. Polarization converts those inner-product identities into constraints on the symmetric parts of the operators, while orthogonality forces a compatible family of skew complex structures. The decisive obstruction is the dimension and Gram geometry of that family inside the Euclidean space of skew-symmetric transformations.
