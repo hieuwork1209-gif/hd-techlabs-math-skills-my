@@ -61,11 +61,7 @@ Hence
 $$
 1<m_\gamma<2<\frac{S_\gamma}{2}<\gamma<r_\gamma<6.
 $$
-The other two points at which $p=C$ are $S_\gamma-6$ and $S_\gamma-\gamma$: indeed the four solutions of $p=C$ pair to sums $S_\gamma$. Here
-$$
-S_\gamma-6<1.
-$$
-The equality $S_\gamma-\gamma=2$ would mean $S_\gamma=\gamma+2$. Substitution into the quadratic for $S_\gamma$ gives
+The other two points at which $p=C$ are $S_\gamma-6$ and $S_\gamma-\gamma$. Here $S_\gamma-6<1$. The equality $S_\gamma-\gamma=2$ means $S_\gamma=\gamma+2$; substitution into the quadratic for $S_\gamma$ gives
 $$
 -4(\gamma-2)(5\gamma-24)=0.
 $$
@@ -82,7 +78,7 @@ $$
 \gamma_1=\frac{24}{5}.
 $$
 
-The added checkpoint at the left endpoint forces use of this non-plateau branch. At $\gamma=\frac92$, the larger root and the associated product are
+At $\gamma=\frac92$, the larger root and associated product are
 $$
 S_{9/2}=\frac{2787+12\sqrt{1021}}{470},
 \qquad
@@ -154,10 +150,10 @@ $$
 \qquad p_0'(\gamma_2)=0.
 $$
 
-Step 4: Construct the final constrained branch
+Step 4: Construct the final constrained branch and extract its endpoint algebraic invariant
 Let
 $$
-\gamma_2<\gamma<\frac{11}{2}.
+\gamma_2<\gamma\le\frac{11}{2}.
 $$
 The new alternating pattern is
 $$
@@ -173,11 +169,11 @@ G(\gamma,m)={}&\gamma^2m^4-16\gamma^2m^3+40\gamma^2m^2+88\gamma^2m-144\gamma^2\\
 &-4m^4+88m^3-736m^2+2304m-1728.
 \end{aligned}
 $$
-For every $\gamma\in(\gamma_2,11/2)$ there is a unique root
+For every $\gamma\in(\gamma_2,11/2]$ there is a unique root
 $$
 m_\gamma\in(m_0,4/3)
 $$
-of $G(\gamma,m)=0$. To see this, first
+of $G(\gamma,m)=0$. Indeed,
 $$
 G(\gamma,m_0)
 =\frac{16(376\sqrt{109}-3647)}{625}(\gamma-\gamma_2)^2>0,
@@ -187,7 +183,7 @@ $$
 G\left(\gamma,\frac43\right)
 =\frac{16(49\gamma^2-488\gamma+1172)}{81}<0
 $$
-on this interval, since the quadratic is increasing there and its value at $11/2$ gives $-476/81$. Moreover, on the rectangle
+on this interval. Moreover, on the rectangle
 $$
 \gamma_2\le\gamma\le\frac{11}{2},
 \qquad
@@ -224,19 +220,7 @@ We also have
 $$
 \rho-2=-\frac{(\gamma-6)(m-6)^2}{D}>0.
 $$
-In fact $\rho>5$. Indeed
-$$
-\rho-5=-\frac{N}{D},
-$$
-where
-$$
-N=\gamma m^2-6\gamma m+12\gamma-3m^2+24m-60.
-$$
-On the same rectangle $N$ is maximized at $(11/2,m_0)$, where
-$$
-N=\frac{152-16\sqrt{109}}{10}<0.
-$$
-To prove $\rho<\gamma$, set
+In fact $\rho>5$. To prove $\rho<\gamma$, set
 $$
 t_\gamma=4-\frac4{\gamma-4}.
 $$
@@ -248,13 +232,9 @@ $$
 Since $G(\gamma,m_0)>0$ and $G$ is strictly decreasing in $m$, we get $m_\gamma<t_\gamma$. Using
 $$
 \rho-\gamma
-=-\frac{2(\gamma+m-8)(\gamma m-4\gamma-4m+20)}{D},
+=-\frac{2(\gamma+m-8)(\gamma m-4\gamma-4m+20)}{D}
 $$
-and
-$$
-\gamma m-4\gamma-4m+20=(\gamma-4)(m-t_\gamma)<0,
-$$
-while $\gamma+m-8<0$, gives $\rho<\gamma$. Hence
+then gives
 $$
 1<m<2<5<\rho<\gamma<6.
 $$
@@ -267,49 +247,54 @@ C=kR(0)-1,
 \qquad
 p(\lambda)=kR(\lambda)-C.
 $$
-Then $p(0)=1$ and $p'(0)=-2$. The two defining relations for $R$ give
+Then $p(0)=1$ and $p'(0)=-2$, while
 $$
 p(m)=-C,\quad p(2)=C,\quad p(\gamma)=-C,\quad p(6)=C.
 $$
-It remains to check no larger excursion occurs. Since $\rho,\gamma>5$ and $m>1$,
-$$
-\frac{R'(2)}{R(2)}
-=\frac2{2-m}-\frac1{\gamma-2}-\frac1{\rho-2}>2-\frac13-\frac13>0.
-$$
-Thus the next stationary point after $m$ lies to the right of $2$ and hence in the spectral gap. The remaining stationary point lies in $(\rho,\gamma)$, also in the gap. On the right component $R$ is increasing from $0$ at $\gamma$ to $R(6)=R(2)$.
-
-On the left component the only stationary point is $m$. Moreover
-$$
-\frac{R(1)}{R(2)}
-=\left(\frac{m-1}{2-m}\right)^2
-\frac{\gamma-1}{\gamma-2}
-\frac{\rho-1}{\rho-2}
-<\frac14\cdot\frac43\cdot\frac43
-=\frac49<1.
-$$
-Therefore $0\le R\le R(2)$ on both spectral components, so $|p|\le C$. The four-point constrained alternation certificate proves
+The remaining stationary points lie in the spectral gap, and on the left component the only stationary point is $m$; consequently $|p|\le C$ on $E_\gamma$. The four-point constrained alternation certificate proves
 $$
 \mathcal A_\gamma=\{m_\gamma,2,\gamma,6\}
-\qquad\left(\gamma_2<\gamma<\frac{11}{2}\right).
+\qquad\left(\gamma_2<\gamma\le\frac{11}{2}\right).
 $$
 Thus there are no further transitions in the prescribed interval.
 
-The two interior transition values and the required non-plateau checkpoint are
+Now let $m_*=m_{11/2}$, the unique active point in $(1,2)$ at the right endpoint. Substituting $\gamma=11/2$ into $G$ gives
 $$
-\gamma_1=\frac{24}{5},
-\qquad
-\gamma_2=\frac{17+\sqrt{109}}5,
-\qquad
-\mathcal C_{9/2}^*=\frac{25\sqrt{1021}-702}{1201}.
+G\left(\frac{11}{2},m\right)
+=-\frac14\left(71m^4-528m^3+1272m^2-152m-1008\right).
+$$
+Hence $m_*$ is the unique root in $(m_0,4/3)$ of
+$$
+Q(t)=71t^4-528t^3+1272t^2-152t-1008.
+$$
+This primitive quartic is irreducible over $\mathbb Q$: modulo $11$, multiplying by the inverse of its leading coefficient gives
+$$
+f(t)=t^4-3t^2-4t+3,
+$$
+and a Euclidean calculation gives
+$$
+\gcd\bigl(f(t),t^{121}-t\bigr)=1.
+$$
+Any reducible quartic over $\mathbb F_{11}$ has a factor of degree $1$ or $2$, hence would have a nontrivial gcd with $t^{121}-t$. Therefore $Q$ is irreducible and is exactly the primitive minimal polynomial of $m_*$.
+
+The requested data are
+$$
+\gamma_1=\frac{24}{5},\qquad
+\gamma_2=\frac{17+\sqrt{109}}5,\qquad
+\mathcal C_{9/2}^*=\frac{25\sqrt{1021}-702}{1201},
+$$
+with minimal-polynomial coefficient tuple
+$$
+(q_4,q_3,q_2,q_1,q_0)=(71,-528,1272,-152,-1008).
 $$
 
-Final Answer: $\boxed{\left(\frac{24}{5},\frac{17+\sqrt{109}}5,\frac{25\sqrt{1021}-702}{1201}\right)}$
+Final Answer: $\boxed{(24/5,(17+\sqrt{109})/5,(25\sqrt{1021}-702)/1201;71,-528,1272,-152,-1008)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{24}{5},\frac{17+\sqrt{109}}5,\frac{25\sqrt{1021}-702}{1201}\right)$
+$(24/5,(17+\sqrt{109})/5,(25\sqrt{1021}-702)/1201;71,-528,1272,-152,-1008)$
 
 ---
 
@@ -326,4 +311,4 @@ $\left(\frac{24}{5},\frac{17+\sqrt{109}}5,\frac{25\sqrt{1021}-702}{1201}\right)$
 - constrained Richardson tuning
 - coefficient-constrained minimax approximation
 - active-set phase transitions
-- double-contact factorization
+- algebraic endpoint invariant
