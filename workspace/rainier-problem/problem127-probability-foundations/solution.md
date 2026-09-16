@@ -33,11 +33,13 @@ To obtain a degree-four majorant with exactly these contacts, set
 $$
 q(x)-x^{7}=(1-x)h(x)^{2}(x^{2}+\alpha x+\beta).
 $$
-Since $h$ is monic, the right side has degree $7$. Requiring the coefficients of $x^{6}$ and $x^{5}$ in $q$ to vanish determines the remaining two parameters. Direct expansion of
+Since $h$ is monic, the coefficient of $x^{7}$ on the right is $-1$, cancelling the $x^{7}$ term of $q$. Expanding only the next two coefficients gives
 $$
-(1-x)\left(x^{2}-\frac45x+\frac1{10}\right)^{2}(x^{2}+\alpha x+\beta)
+[x^{6}]q=\frac{13}{5}-\alpha,
+\qquad
+[x^{5}]q=\frac{13}{5}\alpha-\beta-\frac{61}{25}.
 $$
-shows that those two coefficients vanish precisely for
+Thus the requirement $\deg q\leq4$ forces
 $$
 \alpha=\frac{13}{5},\qquad \beta=\frac{108}{25}.
 $$
@@ -82,11 +84,37 @@ $$
 \frac49+\frac{\sqrt6}{36},\qquad
 \frac19,
 $$
-respectively. These probabilities are positive and sum to $1$. Since $u$ and $v$ satisfy $10x^{2}-8x+1=0$, every power $x^{k}$ at these two points reduces recursively by
+respectively. These probabilities are positive and sum to $1$. Direct substitution gives the contributions of the two interior masses
+$$
+\left(\frac49-\frac{\sqrt6}{36}\right)u+
+\left(\frac49+\frac{\sqrt6}{36}\right)v=\frac7{18},
+$$
+$$
+\left(\frac49-\frac{\sqrt6}{36}\right)u^{2}+
+\left(\frac49+\frac{\sqrt6}{36}\right)v^{2}=\frac29.
+$$
+Adding the mass $1/9$ at $1$ yields $\mathbb E[X]=\frac12$ and $\mathbb E[X^{2}]=\frac13$.
+
+For the two interior nodes, $10x^{2}-8x+1=0$, so their contributions satisfy
 $$
 x^{k}=\frac45x^{k-1}-\frac1{10}x^{k-2}.
 $$
-A direct substitution for $k=1,2$ gives $\mathbb E[X]=\frac12$ and $\mathbb E[X^{2}]=\frac13$; applying the displayed recurrence then gives $\mathbb E[X^{3}]=\frac14$ and $\mathbb E[X^{4}]=\frac15$. Hence this distribution is admissible. Its support is contained in the zero set of $q(x)-x^{7}$, so $q(X)=X^{7}$ almost surely. Therefore
+The atom of mass $1/9$ at $1$ contributes the correction
+$$
+\frac19\left(1-\frac45+\frac1{10}\right)=\frac1{30}.
+$$
+Therefore, for $k\geq2$,
+$$
+\mathbb E[X^{k}]=\frac45\mathbb E[X^{k-1}]-\frac1{10}\mathbb E[X^{k-2}]+\frac1{30}.
+$$
+Using the already verified first two moments gives
+$$
+\mathbb E[X^{3}]=\frac45\cdot\frac13-\frac1{10}\cdot\frac12+\frac1{30}=\frac14,
+$$
+$$
+\mathbb E[X^{4}]=\frac45\cdot\frac14-\frac1{10}\cdot\frac13+\frac1{30}=\frac15.
+$$
+Hence this distribution is admissible. Its support is contained in the zero set of $q(x)-x^{7}$, so $q(X)=X^{7}$ almost surely. Therefore
 $$
 \mathbb E[X^{7}]=\mathbb E[q(X)]=\frac{1349}{10000}.
 $$
