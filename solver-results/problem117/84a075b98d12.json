@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "a4cc0726d97fa4abaf8355c40bf95ee74e38bd6a",
+  "problem_blob_sha": "84a075b98d127cd9cd2a02e5896d0fda2a68d3de",
+  "statement_sha256": "394a6b0df4f8b4906315856fa13da038960e3cd116c87743c89af2026b5b75ac",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T15:20:09+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Using \\(s=\\alpha_1+\\alpha_2+\\alpha_3\\), \\(q=\\sum_{i<j}\\alpha_i\\alpha_j\\), the rational function is\n\n\\[\nr_{s,q}(\\lambda)=\n\\frac{\\lambda^3-s\\lambda^2+q\\lambda-8}\n{\\lambda^3+s\\lambda^2+q\\lambda+8},\n\\qquad s\\le {46\\over5}.\n\\]\n\nIts stationary points on \\((0,\\infty)\\) satisfy\n\n\\[\ns\\lambda^4+(24-sq)\\lambda^2+8q=0.\n\\]\n\nThe active sets are:\n\n\\[\n\\begin{array}{c|c}\n\\text{range of }\\gamma & \\mathcal A_\\gamma\\\\ \\hline\n(3,\\gamma_1) & \\{\\xi_1,\\gamma_1,8\\}\\\\\n(\\gamma_1,\\gamma_2) & \\{\\xi(\\gamma),\\gamma,8\\}\\\\\n(\\gamma_2,\\gamma_3) & \\{\\gamma,8\\}\\\\\n(\\gamma_3,7) & \\{2,8\\}.\n\\end{array}\n\\]\n\nAt the transition points:\n\n\\[\n\\mathcal A_{\\gamma_1}=\\{\\xi_1,\\gamma_1,8\\},\\qquad\n\\mathcal A_{\\gamma_2}=\\{\\xi(\\gamma_2),\\gamma_2,8\\},\\qquad\n\\mathcal A_{\\gamma_3}=\\{2,\\gamma_3,8\\}.\n\\]\n\nThe sum constraint is inactive for \\(\\gamma<\\gamma_2\\), and becomes active exactly at \\(\\gamma_2\\). For \\(\\gamma>\\gamma_2\\), \\(s=46/5\\). The minimizing shifts remain positive because the numerator cubic has three positive zeros throughout: initially one is exactly \\(2\\), and thereafter the zeros move continuously without crossing \\(0\\).\n\nThe exact transition values are:\n\n\\[\n\\gamma_1=\\operatorname{root}_{(3,4)}(f_1),\n\\]\n\nwhere\n\n\\[\n\\begin{aligned}\nf_1(x)=\\;&16x^{12}-16x^{11}-8x^{10}-1008x^9+1529x^8-767x^7\\\\\n&+256x^6+16192x^5-28576x^4+16368x^3\\\\\n&-2048x^2-1024x+256.\n\\end{aligned}\n\\]\n\nAlso\n\n\\[\n\\gamma_2=\\operatorname{root}_{(5,11/2)}(f_2),\n\\]\n\nwhere \\(f_2\\) is the resultant polynomial obtained from the endpoint alternation \\(r(\\gamma)=-r(8)\\), the low stationary equation, and \\(r(\\xi)=r(8)\\), with \\(s=46/5\\).\n\nFinally,\n\n\\[\n\\gamma_3=\\operatorname{root}_{(11/2,6)}(f_3),\n\\]\n\nwhere\n\n\\[\nf_3(x)=700x^6+17250x^5-244917x^4+906848x^3\n-1333688x^2+775520x-149200.\n\\]\n\nNumerically,\n\n\\[\n\\boxed{(\\gamma_1,\\gamma_2,\\gamma_3)\n=(3.7787240783,\\;5.2442756394,\\;5.8746294511)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T15:27:58+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/84a075b98d12.json"
+}
