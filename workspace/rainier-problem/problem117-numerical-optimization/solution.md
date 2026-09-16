@@ -1,275 +1,238 @@
 ## Steps
 
-Step 1: Reduce the two step constraints to a two-parameter minimax family
-For four Richardson steps write
+Step 1: Reduce the three shifts to a two-parameter rational minimax problem
+Let the three positive shifts be $\alpha,\beta,\delta$ with $\alpha\beta\delta=8$, and put
 $$
-p(\lambda)=\prod_{j=1}^4(1-\alpha_j\lambda).
-$$
-The two symmetric constraints
-$$
-\sum_{j=1}^4\alpha_j=2,
+A=\alpha+\beta+\delta,
 \qquad
-\sum_{1\le i<j<k\le4}\alpha_i\alpha_j\alpha_k=\frac14
+B=\alpha\beta+\alpha\delta+\beta\delta.
 $$
-are exactly the coefficient conditions
+The three-step spectral factor is
 $$
-p(\lambda)=1-2\lambda+A\lambda^2-\frac14\lambda^3+B\lambda^4. \tag{1}
+r_{A,B}(x)
+=\prod_{s\in\{\alpha,\beta,\delta\}}\frac{x-s}{x+s}
+=\frac{x^3-Ax^2+Bx-8}{x^3+Ax^2+Bx+8}.
 $$
-Thus only $A$ and $B$ are free. If $p$ and $q$ both satisfy (1), then
+Its denominator is positive for $x>0$. Define
 $$
-q(\lambda)-p(\lambda)=\lambda^2(u+v\lambda^2),
+\phi_{A,B}(x)=\frac{1+r_{A,B}(x)}{1-r_{A,B}(x)}
+=\frac{x(x^2+B)}{Ax^2+8}.
 $$
-which has at most one positive zero unless $p=q$. Hence three increasing contacts with alternating values $-C,+C,-C$ are an exact optimality certificate: a strictly better feasible quartic would make $q-p$ alternate signs at those three contacts and therefore have at least two positive zeros, impossible. The weak-sign version gives uniqueness.
+Since $|r|=\tanh(|\log\phi|/2)$, minimizing the worst value of $|r|$ is equivalent to minimizing the multiplicative envelope $K\ge1$ for which
+$$
+K^{-1}\le \phi_{A,B}(x)\le K.
+$$
+Also
+$$
+r_{A,B}'(x)
+=\frac{2\bigl(Ax^4+(24-AB)x^2+8B\bigr)}{(x^3+Ax^2+Bx+8)^2}. \tag{1}
+$$
+Thus there are at most two positive stationary points.
 
-Every candidate below has four positive zeros. Therefore it factors as $\prod_{j=1}^4(1-\alpha_j\lambda)$ with all $\alpha_j>0$, and (1) then gives exactly the two required step constraints.
+We will repeatedly use the following exact optimality certificate. Suppose $a<b<c$ are active with signs $+,-,+$ and level $C$, and set
+$$
+K=\frac{1+C}{1-C}.
+$$
+For fixed $C$, the three inequalities $r(a)\le C$, $-r(b)\le C$, $r(c)\le C$ are half-planes in $(A,B)$. After positive rescaling their outward normals are
+$$
+n_+(x)=(-Kx^2,x),
+\qquad
+n_-(x)=(x^2,-Kx).
+$$
+The three cofactors are
+$$
+bc(b-K^2c),
+\qquad Kac(a-c),
+\qquad ab(K^2a-b).
+$$
+Hence if
+$$
+K^2a<b<K^2c, \tag{2}
+$$
+all three cofactors have the same sign. The three normals then positively span $\mathbb R^2$, so the intersection of the three active half-planes is the single point $(A,B)$. Therefore no other parameters can have norm at most $C$ even on those three points. If the candidate also satisfies the envelope on all of $E_\gamma$, it is the unique global minimizer.
 
-Step 2: Find the fixed first regime and the first transition
-For the initial regime the three alternating contacts are stationary points
+Step 2: Parametrize every moving-branch candidate and find the first transition
+Let $u\in(1,2)$ be the positive interior active point, while $8$ is the other positive active point. Imposing
 $$
-m<s<r,
+r'(u)=0,
 \qquad
-p(m)=-C,\quad p(s)=C,\quad p(r)=-C.
+\phi(u)=\phi(8)
 $$
-Since the two negative contacts are stationary,
+and using (1) gives, after eliminating $A,B$,
 $$
-p(\lambda)+C=c(\lambda-m)^2(\lambda-r)^2
-=c(\lambda^2-S\lambda+P)^2,
-$$
-where $S=m+r$ and $P=mr$. Comparing the $\lambda^3$ and $\lambda$ coefficients with (1) gives
-$$
-cS=\frac18,
+A(u)=\frac{2(u+4)}{u^2},
 \qquad
-cSP=1,
+B(u)=u(u+16). \tag{3}
 $$
-so
+For these values,
 $$
-P=8,
-\qquad
-c=\frac1{8S}.
+\phi(u)=\phi(8)=u^2. \tag{4}
 $$
-The constant term then gives
+The second stationary point is
 $$
-C=\frac{8-S}{S}.
+v(u)=2\sqrt{\frac{u(u+16)}{u+4}}, \tag{5}
 $$
-The third stationary point is the midpoint
-$$
-s=\frac S2.
-$$
-At $s$ we have
-$$
-p(s)+C
-=\frac{(S^2-32)^2}{128S}.
-$$
-Imposing $p(s)=C$ yields
-$$
-(S^2-32)^2=256(8-S).
-$$
-Writing $S=2\gamma_1$ gives
-$$
-\gamma_1^4-16\gamma_1^2+32\gamma_1-64=0. \tag{2}
-$$
-Let $\gamma_1$ be the unique root of (2) in $(3,7/2)$. Indeed the left side is negative at $3$, positive at $7/2$, and its derivative is positive throughout that interval.
+which is strictly increasing in $u$.
 
-Put
+If $b$ is the negative active point, the opposite-level condition
 $$
-S_0=2\gamma_1,
-\qquad
-m_0,r_0=\frac{S_0\mp\sqrt{S_0^2-32}}2.
+\phi(b)=u^{-2}
 $$
-Then
+is exactly
 $$
-1<m_0<2<\gamma_1<r_0<6.
-$$
-Moreover $p+C=(\lambda^2-S_0\lambda+8)^2/(8S_0)$, and the only critical values on $[1,6]$ are $-C,+C,-C$ at $m_0,\gamma_1,r_0$; the endpoint values are strictly smaller in magnitude. Therefore
-$$
-\mathcal A_\gamma=\{m_0,\gamma_1,r_0\},
-\qquad 3<\gamma<\gamma_1.
-$$
-At $\gamma=\gamma_1$, the positive stationary contact becomes the left endpoint of the right spectral interval, so the active set is still
-$$
-\mathcal A_{\gamma_1}=\{m_0,\gamma_1,r_0\},
-$$
-with $p'(\gamma_1)=0$.
-
-Step 3: Track the moving square branch and find the second transition
-For $\gamma>\gamma_1$, the alternating pattern is
-$$
-p(m)=-C,
-\qquad
-p(\gamma)=C,
-\qquad
-p(r)=-C,
-$$
-with $m,r$ stationary. The same coefficient comparison gives the one-parameter family
-$$
-p_S(\lambda)=\frac{(\lambda^2-S\lambda+8)^2}{8S}-\frac{8-S}{S}. \tag{3}
-$$
-The moving endpoint is active exactly when
-$$
-(\gamma^2-S\gamma+8)^2=16(8-S). \tag{4}
-$$
-On the branch continuing from Step 2 we have
-$$
-\gamma^2-S\gamma+8=-4\sqrt{8-S},
-$$
-which determines a unique $S=S_\gamma$ increasing from $S_0$.
-The negative contacts are
-$$
-m_\gamma,r_\gamma
-=\frac{S_\gamma\mp\sqrt{S_\gamma^2-32}}2.
-$$
-The remaining stationary point $S_\gamma/2$ lies in the gap $(2,\gamma)$, and neither $1$ nor $2$ reaches the positive level on the range considered. Hence
-$$
-\mathcal A_\gamma=\{m_\gamma,\gamma,r_\gamma\}
-$$
-until the right stationary minimum reaches the endpoint $6$.
-
-Since $m_\gamma r_\gamma=8$, the collision $r_\gamma=6$ is equivalent to
-$$
-S_\gamma=\frac{22}{3}.
-$$
-Substituting this in (4), with the negative square-root branch, gives
-$$
-3\gamma^2-22\gamma+24+4\sqrt6=0.
-$$
-Thus
-$$
-\gamma_2=\frac{11+\sqrt{49-12\sqrt6}}3. \tag{5}
-$$
-At this value $m_{\gamma_2}=4/3$ and
-$$
-\mathcal A_{\gamma_2}=\left\{\frac43,\gamma_2,6\right\},
-\qquad p'(6)=0.
-$$
-
-Step 4: Construct the final nonsquare branch and exclude another transition
-Let
-$$
-\gamma_2<\gamma\le\frac{21}{4}.
-$$
-Now the negative contacts are an interior point $m\in(1,2)$ and the endpoint $6$, while the moving endpoint remains the positive contact. Write
-$$
-p(\lambda)+C=c(\lambda-m)^2(\lambda-6)(\lambda-\rho).
-$$
-Comparing the $\lambda^3$ and $\lambda$ coefficients with (1) gives, with
-$$
-D=m^2+12m-8,
-$$
-$$
-c(m)=\frac{D}{8m(m+6)^2},
-\qquad
-\rho(m)=-\frac{2(3m^2-8m-24)}{D}. \tag{6}
-$$
-The constant term gives
-$$
-C(m)=6c(m)\rho(m)m^2-1
-=-\frac{9m^3-22m^2-48m+72}{2(m+6)^2}. \tag{7}
-$$
-Finally $p(\gamma)=C$ is equivalent, after clearing the positive denominator, to
-$$
-F(\gamma,m)=0, \tag{8}
+F(b,u)=0, \tag{6}
 $$
 where
 $$
-\begin{aligned}
-F(\gamma,m)={}&(m^2+12m-8)\gamma^4
--2m(m+6)^2\gamma^3\\
-&+(m^4+12m^3+132m^2+96m+288)\gamma^2\\
-&-16m(m+6)^2\gamma
-+4m(9m^3-20m^2-24m+144).
-\end{aligned}
+F(x,u)=u^4x^3-2(u+4)x^2+u^5(u+16)x-8u^2.
 $$
-For every $\gamma\in(\gamma_2,21/4]$ there is exactly one solution
+In the initial plateau the negative active point is the second stationary point $v$. At a stationary point $x$, equation (1) gives
 $$
-\frac{33}{25}<m_\gamma<\frac43.
+\phi(x)=\frac{2x^3}{Ax^2-8}.
 $$
-Here is a direct uniqueness check. On the rectangle
+Using the two stationary roots in (1), one finds
 $$
-\frac{257}{50}\le\gamma\le\frac{21}{4},
+\phi(u)\phi(v)=\frac{(uv)^3}{64}.
+$$
+Since the active values are reciprocal, $uv=4$. At the first transition $v=\gamma_1$, so $u_0=4/\gamma_1$. Combining $uv=4$ with (5) gives
+$$
+\gamma_1^4+\gamma_1^3-64\gamma_1-16=0. \tag{7}
+$$
+The polynomial in (7) is negative at $3$, positive at $4$, and has positive derivative on $[3,4]$, hence it has a unique root there. Thus
+$$
+\gamma_1=\mathrm{root}_{(3,4)}(x^4+x^3-64x-16),
 \qquad
-\frac{33}{25}\le m\le\frac43,
+u_0:=\frac4{\gamma_1}.
 $$
-termwise bounding the expanded derivative gives
-$$
-F_m\le-\frac{67157971213}{1875000000}<0.
-$$
-Also $F(\gamma,33/25)$ is decreasing in $\gamma$ on this interval and
-$$
-F\left(\frac{21}{4},\frac{33}{25}\right)
-=\frac{184934637}{100000000}>0,
-$$
-whereas
-$$
-F\left(\gamma,\frac43\right)
-=\frac{88}{9}
-\left(\gamma^2-\frac{22}{3}\gamma+8-\frac{4\sqrt6}{3}\right)
-\left(\gamma^2-\frac{22}{3}\gamma+8+\frac{4\sqrt6}{3}\right)<0
-$$
-for $\gamma_2<\gamma\le21/4$. Thus (8) has one and only one root in the stated $m$-interval.
+Numerically, $\gamma_1\approx3.7787240783$ and $u_0\approx1.0585583697$.
 
-For this root, $D>0$, $c>0$, $C>0$, and
+For $3\le\gamma<\gamma_1$, the parameters (3) with $u=u_0$ are fixed. The two stationary points are $u_0$ and $\gamma_1$, and
 $$
-\rho-6=-\frac{4(m+6)(3m-4)}D>0.
+\mathcal A_\gamma=\{u_0,\gamma_1,8\}
 $$
-Set
-$$
-p_\gamma(\lambda)
-=c(m_\gamma)(\lambda-m_\gamma)^2(\lambda-6)
-(\lambda-\rho(m_\gamma))-C(m_\gamma).
-$$
-Then
-$$
-p_\gamma(m_\gamma)=-C,
-\qquad
-p_\gamma(\gamma)=C,
-\qquad
-p_\gamma(6)=-C.
-$$
-The other stationary point below $6$ lies in the spectral gap. Indeed, for
-$$
-R(\lambda)=(\lambda-m)^2(\lambda-6)(\lambda-\rho),
-$$
-we have
-$$
-\frac{R'(\gamma)}{R(\gamma)}
-=\frac2{\gamma-m}+\frac1{\gamma-6}+\frac1{\gamma-\rho}<0,
-$$
-because already
-$$
-\frac2{\gamma-m}+\frac1{\gamma-6}
-\le\frac{300}{571}-\frac{50}{43}<0.
-$$
-Also $R'(2)>0$, so that stationary point lies in $(2,\gamma)$. Thus the right component decreases from $C$ to $-C$.
+with signs $+,-,+$. At $\gamma=\gamma_1$ the same set is active, with $r'(\gamma_1)=0$.
 
-On the left component the only stationary point is $m$. Directly from (6)-(7),
+Step 3: Follow the moving regime and locate the final plateau
+Define
 $$
-p(2)-C
-=\frac{5m^4-10m^3-16m^2-72m+128}{m(m+6)^2}<0,
+G(u)=u^6+16u^5+4u^4-4u^2-4u-16. \tag{8}
+$$
+Since
+$$
+G(1)=-3,
+\qquad
+G(2)=600,
 $$
 and
 $$
-p(1)-C
-=\frac{37m^4-86m^3-179m^2+36m+280}{8m(m+6)^2}<0
+G'(u)=6u^5+80u^4+16u^3-8u-4>0
+\qquad(1\le u\le2),
 $$
-for $33/25\le m\le4/3$; both numerators are already negative at $33/25$ and decrease on this interval. Hence $|p_\gamma|\le C$ on all of $E_\gamma$.
+there is a unique
+$$
+u_*:=\mathrm{root}_{(1,2)}(G). \tag{9}
+$$
+In fact $1.03<u_*<1.04<u_0<1.06$.
 
-The three-point certificate from Step 1 now proves
+For $\gamma_1<\gamma<\gamma_2$, define $u_\gamma$ by
 $$
-\mathcal A_\gamma=\{m_\gamma,\gamma,6\},
+F(\gamma,u_\gamma)=0,
 \qquad
-\gamma_2<\gamma\le\frac{21}{4}.
+u_*<u_\gamma<u_0. \tag{10}
 $$
-The strict endpoint inequalities above exclude any further transition before $21/4$.
+This root is unique: on
+$$
+3.77\le x\le6.31,
+\qquad
+1.03\le u\le1.06,
+$$
+one has $F_u>0$. At $u=u_0$, using (7),
+$$
+F(x,u_0)=\frac{128}{\gamma_1^4}(2x-1)(x-\gamma_1)^2>0
+\qquad(x>\gamma_1).
+$$
+At $u=u_*$, equation (8) gives
+$$
+F(x,u_*)=(x-2)
+\left[u_*^4x^2+2(u_*^4-u_*-4)x+4u_*^2\right]. \tag{11}
+$$
+The quadratic in (11) has one root below $1$ and one root in $(6,7)$; call the latter $\gamma_2$. Therefore (10) has exactly one solution throughout the open middle regime.
 
-Therefore the two interior transition values are exactly (2) and (5).
+The moment at which the unused endpoint $2$ reaches the negative level is
+$$
+F(2,u)=2G(u)=0,
+$$
+so it occurs precisely at $u=u_*$. Solving the quadratic in (11) gives
+$$
+\gamma_2
+=\frac{4+u_*-u_*^4+
+\sqrt{(u_*^4-u_*-4)^2-4u_*^6}}{u_*^4}. \tag{12}
+$$
+Thus $6<\gamma_2<7$ and numerically $\gamma_2\approx6.3031785765$.
 
-Final Answer: $\boxed{\left(\operatorname{root}_{(3,7/2)}(x^4-16x^2+32x-64),\frac{11+\sqrt{49-12\sqrt6}}3\right)}$
+For the middle regime, (3), (4), and (6) give
+$$
+\phi(u_\gamma)=\phi(8)=u_\gamma^2,
+\qquad
+\phi(\gamma)=u_\gamma^{-2}.
+$$
+The other stationary point $v(u_\gamma)$ lies in $(2,\gamma)$ because $u_\gamma<u_0$ and (5) is increasing. On the left interval,
+$$
+\phi(u)\phi(1)-1
+=\frac{(u-1)(u^5+17u^4+18u^3+18u^2+10u+8)}{\text{positive denominator}}>0,
+$$
+while
+$$
+\phi(u)\phi(2)-1
+=\frac{G(u)}{\text{positive denominator}}>0
+$$
+for $u>u_*$. Hence the whole left interval stays inside the envelope. On $[\gamma,8]$, $\phi$ is increasing because its second stationary point lies in the gap. Therefore
+$$
+\mathcal A_\gamma=\{u_\gamma,\gamma,8\}
+\qquad(\gamma_1<\gamma<\gamma_2).
+$$
+At $\gamma=\gamma_2$ the endpoint $2$ joins the active set:
+$$
+\mathcal A_{\gamma_2}=\{u_*,2,\gamma_2,8\}.
+$$
+
+Step 4: Verify the final plateau, shift feasibility, and optimality
+For $\gamma_2<\gamma\le7$, keep $u=u_*$ and the fixed coefficients (3). The second stationary point is
+$$
+v_*=2\sqrt{\frac{u_*(u_*+16)}{u_*+4}}<4<\gamma_2.
+$$
+The equation for the negative level factors as (11): besides $2$ and $\gamma_2$, its third crossing lies below $1$. Thus on $[1,2]$ the only active points are $u_*$ and $2$, while on $[\gamma,8]$ the function is monotone and only $8$ is active. Hence
+$$
+\mathcal A_\gamma=\{u_*,2,8\}
+\qquad(\gamma_2<\gamma\le7).
+$$
+
+It remains to check that the parameters (3) really come from three positive shifts. Their shifts are the roots of
+$$
+t^3-A(u)t^2+B(u)t-8.
+$$
+For $u_*\le u\le u_0\subset(1.03,1.06)$ its discriminant is
+$$
+-\frac{4(u-1)(u+1)(u^2+1)}{u^6}
+\left(u^8+48u^7+768u^6+4096u^5-64u^3-768u^2-3072u-4096\right)>0.
+$$
+The parenthesized factor is increasing but still negative at $1.06$. Thus there are three distinct real roots; since $A(u)>0$, $B(u)>0$, and their product is $8>0$, all three are positive.
+
+Finally, all three regimes have an active triple $a<b<8$ with signs $+,-,+$, where $a=u\in(1.03,1.06)$, $b\ge2$, and $K=\phi(u)=u^2$. Hence
+$$
+K^2a=u^5<2\le b<8u^4=K^2\cdot8.
+$$
+Condition (2) holds, so the half-plane certificate from Step 1 proves global optimality and uniqueness in every regime.
+
+Therefore the exact pair requested for the final answer is $\gamma_1$ from (7) and $u_*$ from (9); equation (12) gives the second transition exactly.
+
+Final Answer: $\boxed{\left(\mathrm{root}_{(3,4)}(x^4+x^3-64x-16),\mathrm{root}_{(1,2)}(x^6+16x^5+4x^4-4x^2-4x-16)\right)}$
 
 ---
 
 ## Answer
 
-$\left(\operatorname{root}_{(3,7/2)}(x^4-16x^2+32x-64),\frac{11+\sqrt{49-12\sqrt6}}3\right)$
+$(\mathrm{root}_{(3,4)}(x^4+x^3-64x-16),\mathrm{root}_{(1,2)}(x^6+16x^5+4x^4-4x^2-4x-16))$
 
 ---
 
@@ -283,7 +246,7 @@ $\left(\operatorname{root}_{(3,7/2)}(x^4-16x^2+32x-64),\frac{11+\sqrt{49-12\sqrt
 
 ## Solution Concepts
 
-- constrained Richardson tuning
-- elementary-symmetric step constraints
-- three-point constrained alternation
-- active-set phase transitions
+- constrained ADI shift tuning
+- rational minimax envelopes
+- Farkas active-set certificate
+- algebraic phase transitions
