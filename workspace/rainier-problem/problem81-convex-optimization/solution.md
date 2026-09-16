@@ -1,118 +1,172 @@
 ## Steps
 
-Step 1: Force every maximizer to be a circulant completion.
-Let $\mathcal F$ be the set of real symmetric positive semidefinite $6\times6$ matrices $G=(g_{ij})$ with
+Step 1: Reduce all sign patterns to two switching classes and establish uniqueness.
+For a sign vector $\varepsilon=(\varepsilon_1,\ldots,\varepsilon_6)\in\{-1,1\}^6$, let $\mathcal F_\varepsilon$ be the feasible set from the prompt. If $S=\operatorname{diag}(s_1,\ldots,s_6)$ with $s_i\in\{-1,1\}$, then $G\mapsto SGS$ preserves positive semidefiniteness, diagonal entries, and determinant, while changing the edge signs to
 $$
-g_{ii}=1,
-\qquad
-g_{12}=g_{23}=g_{34}=g_{45}=g_{56}=g_{61}=\frac12.
+\varepsilon_i'=s_i s_{i+1}\varepsilon_i
 $$
-Every entry of a matrix in $\mathcal F$ has absolute value at most $1$, by the $2\times2$ principal minors, so $\mathcal F$ is compact. The matrix with diagonal entries $1$ and every off-diagonal entry $1/2$ equals
+with cyclic indices. Hence
 $$
-\frac12 I+\frac12 J,
+\prod_{i=1}^6\varepsilon_i'=\prod_{i=1}^6\varepsilon_i.
 $$
-where $J$ is the all-ones matrix. Its eigenvalues are $7/2$ once and $1/2$ five times, so it is positive definite and belongs to $\mathcal F$. Hence the maximum determinant on $\mathcal F$ is positive, and every maximizer is positive definite.
+Conversely, if two sign patterns $\varepsilon$ and $\eta$ have the same product, set $s_1=1$ and recursively choose
+$$
+s_{i+1}=s_i\varepsilon_i\eta_i.
+$$
+The equality of the two sign products is exactly the condition $s_7=s_1$, so the two patterns are switching-equivalent. Therefore the maximum determinant depends only on
+$$
+\sigma=\prod_{i=1}^6\varepsilon_i\in\{-1,1\}.
+$$
+We may use the canonical pattern with all edges positive when $\sigma=1$, and the pattern with edges $(1,2),(2,3),\ldots,(5,6)$ positive and $(6,1)$ negative when $\sigma=-1$.
 
-Let $P$ be the permutation matrix for the cyclic shift of the six coordinates. If $G$ is a maximizer, then every $P^jG(P^j)^T$ is also feasible and has the same determinant. Their average is feasible. On the positive definite cone, along a nonzero symmetric direction $H$,
+For either canonical pattern, every feasible entry has absolute value at most $1$ by the $2\times2$ principal minors, so the feasible set is compact. There is a positive definite feasible matrix in each class. For $\sigma=1$, the matrix $\frac12 I+\frac12 J$ is feasible and has eigenvalues $7/2$ once and $1/2$ five times. For $\sigma=-1$, let $Qe_i=e_{i+1}$ for $1\le i\le5$ and $Qe_6=-e_1$, and put $A_-=Q+Q^T$. Since $Q^6=-I$, its eigenvalues are $e^{(2k+1)\pi i/6}$, so the eigenvalues of $A_-$ are
+$$
+\sqrt3,\sqrt3,0,0,-\sqrt3,-\sqrt3.
+$$
+Thus $I+\frac12A_-$ is feasible and positive definite because its least eigenvalue is $1-\sqrt3/2>0$.
+
+Hence the determinant maximum in each class is positive, so every maximizer is positive definite. On the positive definite cone,
 $$
 \frac{d^2}{ds^2}\log\det(G+sH)
 =-\operatorname{tr}\left((G+sH)^{-1}H(G+sH)^{-1}H\right)<0
 $$
-whenever the segment is positive definite. Thus $\log\det$ is strictly concave. The cyclic average would therefore have strictly larger determinant unless all six rotated matrices were equal. Hence every maximizer is invariant under cyclic shifts. Since it is also symmetric, it must be the matrix $C(a,b)$ from the prompt for some real $a,b$.
+for every nonzero symmetric $H$ along a positive definite segment. Therefore $\log\det$ is strictly concave, and each canonical feasible set has a unique maximizer.
 
-Step 2: Use first-order optimality to reconstruct the inverse matrix.
-Let $G=C(a,b)$ be a maximizer and put $K=G^{-1}$. For any nonedge pair $i\ne j$, the entry $g_{ij}$ is free in the affine constraint set. Because $G$ is positive definite, sufficiently small symmetric perturbations in that entry remain positive definite. If $E_{ij}$ denotes the matrix unit, Jacobi's formula gives
+Step 2: Use first-order optimality and signed cyclic symmetry to determine the precision matrix.
+For $\sigma\in\{-1,1\}$, define the signed cyclic shift $Q_\sigma$ by
 $$
-\left.\frac{d}{d\varepsilon}\log\det\left(G+\varepsilon(E_{ij}+E_{ji})\right)\right|_{\varepsilon=0}
-=2K_{ij}.
-$$
-At the maximum this derivative is zero. Hence $K_{ij}=0$ for every nonedge. Since the inverse of a circulant matrix is circulant, the first row of $K$ has the form
-$$
-(d,e,0,0,0,e).
-$$
-Because $K$ is positive definite, $d>0$. Write $t=-e/d$. Multiplying $GK=I$ and comparing the four cyclic distances gives
-$$
-d+e=1,
-$$
-$$
-\frac d2+e(1+a)=0,
-$$
-$$
-ad+e\left(\frac12+b\right)=0,
-$$
-$$
-bd+2ae=0.
-$$
-Thus
-$$
-d(1-t)=1,
+Q_\sigma e_i=e_{i+1}\quad(1\le i\le5),
 \qquad
-\frac12=t(1+a),
+Q_\sigma e_6=\sigma e_1,
+$$
+and set
+$$
+A_\sigma=Q_\sigma+Q_\sigma^T.
+$$
+The canonical edge constraints are exactly $g_{ij}=(A_\sigma)_{ij}/2$ on the six cycle edges. Since $Q_\sigma A_\sigma Q_\sigma^T=A_\sigma$, conjugation by $Q_\sigma$ preserves the feasible set. By uniqueness from Step 1, the maximizing matrix $G_\sigma$ satisfies
+$$
+Q_\sigma G_\sigma Q_\sigma^T=G_\sigma.
+$$
+Let $K_\sigma=G_\sigma^{-1}$. For any nonedge pair $i\ne j$, the entry $g_{ij}$ is a free affine variable. A sufficiently small symmetric perturbation in that entry remains positive definite, and Jacobi's formula gives
+$$
+\left.\frac{d}{d\delta}\log\det\left(G_\sigma+\delta(E_{ij}+E_{ji})\right)\right|_{\delta=0}
+=2(K_\sigma)_{ij}.
+$$
+Thus $(K_\sigma)_{ij}=0$ at every nonedge.
+
+The invariance under the signed shift forces all diagonal entries of $K_\sigma$ to be equal and all signed edge entries to have one common value. Therefore
+$$
+K_\sigma=d(I-tA_\sigma)
+$$
+for some $d>0$ and real $t$. Put
+$$
+B_\sigma=(I-tA_\sigma)^{-1},
+$$
+so $G_\sigma=d^{-1}B_\sigma$. If $\lambda$ runs over the six eigenvalues of $A_\sigma$, signed cyclic symmetry makes all diagonal entries of $B_\sigma$ equal, and the condition $g_{ii}=1$ gives
+$$
+d=\frac16\sum_\lambda\frac1{1-t\lambda}.
+$$
+Also
+$$
+\operatorname{tr}(A_\sigma G_\sigma)
+=2\sum_{i=1}^6\varepsilon_i g_{i,i+1}=6,
+$$
+so
+$$
+\sum_\lambda\frac{\lambda}{1-t\lambda}=6d.
+$$
+These two scalar equations determine the admissible $t$ in each switching class.
+
+Step 3: Solve the untwisted class $\sigma=1$.
+When $\sigma=1$, the eigenvalues of $Q_\sigma$ are the sixth roots of unity, so the eigenvalues of $A_+$ are
+$$
+2,1,1,-1,-1,-2.
+$$
+Hence
+$$
+d=\frac16\left(\frac1{1-2t}+\frac2{1-t}+\frac2{1+t}+\frac1{1+2t}\right)
+=\frac{1-3t^2}{(1-t^2)(1-4t^2)},
+$$
+and
+$$
+\sum_\lambda\frac{\lambda}{1-t\lambda}
+=\frac{12t(1-2t^2)}{(1-t^2)(1-4t^2)}.
+$$
+Equating this with $6d$ yields
+$$
+4t^2+t-1=0.
+$$
+Positive definiteness of $K_+$ requires $1-t\lambda>0$ for every eigenvalue, hence $|t|<1/2$. The unique admissible root is
+$$
+t_+=\frac{\sqrt{17}-1}{8}.
+$$
+Now
+$$
+\det G_+=d^{-6}\prod_\lambda(1-t_+\lambda)^{-1}.
+$$
+Using $4t_+^2+t_+-1=0$, the formula for $d$ reduces to $d=1/(1-t_+)$, and therefore
+$$
+D_+=\det G_+
+=\frac{(1-t_+)^4}{t_+(1+t_+)^2}.
+$$
+Since $t_+^2=(1-t_+)/4$,
+$$
+(1-t_+)^4=\frac{181-441t_+}{64},
 \qquad
-a=t\left(\frac12+b\right),
-\qquad
-b=2at.
+t_+(1+t_+)^2=\frac{7+13t_+}{16}.
 $$
-The second relation gives $a=1/(2t)-1$, while the last two give
+Division using the same quadratic relation gives
 $$
-a(1-2t^2)=\frac t2.
-$$
-Eliminating $a$ yields
-$$
-(t-1)(4t^2+t-1)=0.
-$$
-Let $\omega=e^{2\pi i/6}$. For the circulant matrix $K/d$, the vector
-$$
-(1,\omega^k,\omega^{2k},\ldots,\omega^{5k})
-$$
-has eigenvalue
-$$
-1-t(\omega^k+\omega^{-k})=1-2t\cos\left(\frac{k\pi}{3}\right).
-$$
-Hence the six eigenvalues are
-$$
-1-2t,\quad 1-t,\quad 1-t,\quad 1+t,\quad 1+t,\quad 1+2t.
-$$
-Positive definiteness therefore requires $|t|<1/2$. Among the three roots above, the unique admissible one is
-$$
-t=\frac{\sqrt{17}-1}{8}.
-$$
-Consequently
-$$
-a=\frac{1}{2t}-1=\frac{\sqrt{17}-3}{4},
-\qquad
-b=2at=\frac{5-\sqrt{17}}{4}.
+D_+=85t_+-33=\frac{85\sqrt{17}-349}{8}.
 $$
 
-Step 3: Evaluate the determinant and state the unique optimizer.
-The eigenvalues derived in Step 2 give
+Step 4: Solve the twisted class $\sigma=-1$ and combine the two values.
+When $\sigma=-1$, the eigenvalues of $Q_\sigma$ are the six roots of $z^6=-1$. Thus the eigenvalues of $A_-$ are
 $$
-\det K=d^6(1-4t^2)(1-t^2)^2.
+\sqrt3,\sqrt3,0,0,-\sqrt3,-\sqrt3.
 $$
-Since $d=1/(1-t)$,
+The two scalar equations from Step 2 become
 $$
-\det G=\frac{(1-t)^6}{(1-4t^2)(1-t^2)^2}
-=\frac{(1-t)^4}{(1-4t^2)(1+t)^2}.
-$$
-The relation $4t^2+t-1=0$ gives $1-4t^2=t$. Repeatedly replacing $t^2$ by $(1-t)/4$ gives
-$$
-(1-t)^4=\frac{181-441t}{64},
+d=\frac{1-t^2}{1-3t^2},
 \qquad
-t(1+t)^2=\frac{7+13t}{16}.
+\frac{12t}{1-3t^2}=6d.
 $$
-Using $4t^2+t-1=0$ once more in the quotient gives
+Therefore
 $$
-\det G=85t-33=\frac{85\sqrt{17}-349}{8}.
+t^2+2t-1=0.
 $$
-Existence of a maximizer was established in Step 1, while Steps 1 and 2 show that every maximizer must have exactly these values of $a$ and $b$. Hence the maximizing matrix is unique.
+Positive definiteness requires $|t|<1/\sqrt3$, leaving the unique root
+$$
+t_-=\sqrt2-1.
+$$
+Since
+$$
+\det(I-t_-A_-)=(1-3t_-^2)^2,
+$$
+we obtain
+$$
+D_-=\det G_-
+=\frac{(1-3t_-^2)^4}{(1-t_-^2)^6}.
+$$
+Substituting $t_-=\sqrt2-1$ gives
+$$
+1-t_-^2=2t_-,
+\qquad
+1-3t_-^2=2\sqrt2\,t_-^2,
+$$
+so
+$$
+D_-=t_-^2=3-2\sqrt2.
+$$
+By the switching equivalence in Step 1, these values apply to every original sign pattern with the corresponding sign product.
 
-Final Answer: $\boxed{\left(\frac{85\sqrt{17}-349}{8},\frac{\sqrt{17}-3}{4},\frac{5-\sqrt{17}}{4}\right)}$
+Final Answer: $\boxed{\left(\frac{85\sqrt{17}-349}{8},3-2\sqrt2\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{85\sqrt{17}-349}{8},\frac{\sqrt{17}-3}{4},\frac{5-\sqrt{17}}{4}\right)$
+$\left(\frac{85\sqrt{17}-349}{8},3-2\sqrt2\right)$
 
 ---
 
@@ -127,7 +181,7 @@ $\left(\frac{85\sqrt{17}-349}{8},\frac{\sqrt{17}-3}{4},\frac{5-\sqrt{17}}{4}\rig
 ## Solution Concepts
 
 - maximum determinant matrix completion
+- switching equivalence of signed graphs
 - strict concavity of log determinant
 - first-order optimality conditions
-- circulant matrices
-- spectral determinant evaluation
+- signed circulant spectral analysis
