@@ -128,17 +128,17 @@ adding the high-valuation solutions from Step 1 gives
 $$
 N_n(p)
 =p^{\lfloor n/2\rfloor+\lfloor2n/3\rfloor}
-+p^{n-1}\left(p^{\lceil n/6\rceil}-1\right).
++p^{n-1}(p^{\lceil n/6\rceil}-1).
 $$
 The valuation cases in Steps 1 and 2 are exhaustive and disjoint, so this counts every solution exactly once.
 
-Final Answer: $\boxed{p^{\lfloor n/2\rfloor+\lfloor2n/3\rfloor}+p^{n-1}\left(p^{\lceil n/6\rceil}-1\right)}$
+Final Answer: $\boxed{p^{\lfloor n/2\rfloor+\lfloor2n/3\rfloor}+p^{n-1}(p^{\lceil n/6\rceil}-1)}$
 
 ---
 
 ## Answer
 
-$p^{\lfloor n/2\rfloor+\lfloor2n/3\rfloor}+p^{n-1}\left(p^{\lceil n/6\rceil}-1\right)$
+$p^{\lfloor n/2\rfloor+\lfloor2n/3\rfloor}+p^{n-1}(p^{\lceil n/6\rceil}-1)$
 
 ---
 
