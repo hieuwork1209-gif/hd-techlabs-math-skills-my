@@ -1,160 +1,174 @@
 ## Steps
 
-Step 1: Pass from the tight frame to a two-dimensional Naimark complement
+Step 1: Translate the basis and dual-basis norm conditions into a Gram-matrix problem
 Let
 $$
-V=[v_1\ \cdots\ v_6]\in\mathbb R^{4\times6}.
+V=[v_1\ v_2\ v_3\ v_4]
 $$
-The tight-frame hypothesis is
+and let
 $$
-VV^T=\frac32 I_4.
+G=V^TV.
 $$
-Set
+Because the $v_i$ are unit vectors,
 $$
-X=\sqrt{\frac23}\,V^T\in\mathbb R^{6\times4}.
+G_{ii}=1
 $$
-Then $X^TX=I_4$, so the four columns of $X$ are orthonormal. Because each $v_i$ is a unit vector, the $i$th row $x_i^T$ of $X$ has squared norm
+for every $i$. If $W=[w_1\ w_2\ w_3\ w_4]$ is the matrix of the dual basis, then
 $$
-\|x_i\|^2=\frac23.
-$$
-Choose $Y\in\mathbb R^{6\times2}$ so that
-$$
-O=[X\ Y]\in O(6).
-$$
-The $i$th row of $O$ has norm $1$, hence the $i$th row $y_i^T$ of $Y$ satisfies
-$$
-\|y_i\|^2=1-\frac23=\frac13.
-$$
-Also $Y^TY=I_2$. Define $u_i=\sqrt3\,y_i\in\mathbb R^2$. Then every $u_i$ is a unit vector and
-$$
-\sum_{i=1}^6u_i u_i^T=3Y^TY=3I_2.
-$$
-Thus the original tight frame has been converted canonically into a unit-norm tight frame of six vectors in $\mathbb R^2$.
-
-Step 2: Express every four-dimensional subframe volume through a complementary planar area
-Fix a four-element set $I\subset\{1,\dots,6\}$ and let $J=I^c$, so $|J|=2$. For an invertible $n\times n$ matrix $M$, Jacobi's complementary-minor identity states that for row and column sets $R,C$ of the same size,
-$$
-\det M[R,C]=\pm\det(M)\,\det(M^{-1})[C^c,R^c].
-$$
-Apply this to the orthogonal matrix $O=[X\ Y]$, with $C=\{1,2,3,4\}$ and $R=I$. Since $O^{-1}=O^T$ and $|\det O|=1$, taking absolute values gives
-$$
-|\det X_I|=|\det Y_{I^c}|.
-$$
-If $V_I$ is the $4\times4$ matrix whose columns are the $v_i$ with $i\in I$, then
-$$
-X_I=\sqrt{\frac23}\,V_I^T,
+V^TW=I_4,
 $$
 so
 $$
-|\det V_I|=\left(\sqrt{\frac32}\right)^4|\det X_I|=\frac94|\det Y_J|.
+W=V^{-T}.
 $$
-Write $u_i=(\cos\theta_i,\sin\theta_i)$. Since $y_i=u_i/\sqrt3$, for $J=\{i,j\}$ we obtain
+Hence the Gram matrix of the dual basis is
 $$
-|\det Y_J|=\frac13|\det[u_i\ u_j]|=\frac13|\sin(\theta_i-\theta_j)|.
+W^TW=V^{-1}V^{-T}=G^{-1}.
 $$
-Therefore
+The conditions $\|w_i\|=\sqrt2$ therefore give
 $$
-|\det V_I|=\frac34|\sin(\theta_i-\theta_j)|,
-\qquad I^c=\{i,j\}.
+(G^{-1})_{ii}=2
+$$
+for every $i$.
+
+Let $\lambda_1,\dots,\lambda_4>0$ be the eigenvalues of $G$. Taking traces yields
+$$
+\sum_{i=1}^4\lambda_i=\operatorname{tr}G=4
+$$
+and
+$$
+\sum_{i=1}^4\frac1{\lambda_i}=\operatorname{tr}(G^{-1})=8.
+$$
+Moreover
+$$
+|\det V|^2=\det G=\prod_{i=1}^4\lambda_i.
+$$
+Thus it remains to maximize the product of four positive numbers with the two displayed spectral constraints.
+
+Step 2: Determine the possible spectra at a product maximizer
+The constraints imply $\lambda_i\leq4$ and $\lambda_i\geq1/8$, so the feasible spectral set is compact. At a maximizer of
+$$
+\sum_{i=1}^4\log\lambda_i,
+$$
+Lagrange multipliers give constants $\alpha,\beta$ such that
+$$
+\frac1{\lambda_i}=\alpha-\frac{\beta}{\lambda_i^2}
+$$
+for every $i$. Multiplying by $\lambda_i^2$ shows that every $\lambda_i$ is a root of the same quadratic
+$$
+\alpha t^2-t-\beta=0.
+$$
+Hence a maximizing spectrum has at most two distinct values.
+
+If the multiplicities are $2+2$, write the two values as $a,b$. Then
+$$
+a+b=2,
+\qquad
+\frac1a+\frac1b=4.
+$$
+Thus $ab=1/2$, so
+$$
+\det G=a^2b^2=\frac14.
 $$
 
-Step 3: Convert the global product into a Vandermonde product on the unit circle
-There are $\binom{6}{4}=15$ four-element subsets, and complementing gives a bijection with the $15$ unordered pairs. Hence
+For a $1+3$ split, let $a$ have multiplicity $1$ and $b$ multiplicity $3$. The constraints become
 $$
-\prod_{|I|=4}|\det V_I|
-=\left(\frac34\right)^{15}
-\prod_{1\leq i<j\leq6}|\sin(\theta_i-\theta_j)|.
-$$
-The planar tight-frame identity
-$$
-\sum_{i=1}^6u_i u_i^T=3I_2
-$$
-is equivalent to
-$$
-\sum_{i=1}^6\cos(2\theta_i)=0,
+a+3b=4,
 \qquad
-\sum_{i=1}^6\sin(2\theta_i)=0.
+\frac1a+\frac3b=8.
+$$
+Eliminating $a$ gives
+$$
+6b^2-10b+3=0,
+$$
+so
+$$
+b=\frac{5\pm\sqrt7}{6},
+\qquad
+a=\frac{3\mp\sqrt7}{2}.
+$$
+The corresponding products are
+$$
+\frac{29+4\sqrt7}{108}
+\qquad\text{and}\qquad
+\frac{29-4\sqrt7}{108}.
+$$
+Since
+$$
+\frac{29+4\sqrt7}{108}>\frac14>\frac{29-4\sqrt7}{108},
+$$
+the largest possible spectral product is
+$$
+\det G\leq\frac{29+4\sqrt7}{108}.
+$$
+
+Step 3: Show that the maximizing spectrum is compatible with both diagonal conditions
+Set
+$$
+a=\frac{3-\sqrt7}{2},
+\qquad
+b=\frac{5+\sqrt7}{6},
+$$
+and let
+$$
+u=\frac12(1,1,1,1)^T.
 $$
 Define
 $$
-z_i=e^{2\mathrm{i}\theta_i}.
+G=bI_4+(a-b)uu^T.
 $$
-Then $|z_i|=1$, $\sum_{i=1}^6z_i=0$, and
+Then $G$ has eigenvalue $a$ in the direction of $u$ and eigenvalue $b$ on $u^\perp$, so it has exactly the maximizing spectrum from Step 2.
+
+Because every coordinate of $u$ has squared value $1/4$,
 $$
-|z_i-z_j|=2|\sin(\theta_i-\theta_j)|.
+G_{ii}=b+\frac{a-b}{4}=\frac{a+3b}{4}=1.
 $$
-Thus
+Also
 $$
-\prod_{i<j}|\sin(\theta_i-\theta_j)|
-=2^{-15}\prod_{i<j}|z_i-z_j|.
+G^{-1}=\frac1b I_4+\left(\frac1a-\frac1b\right)uu^T,
+$$
+so
+$$
+(G^{-1})_{ii}
+=\frac1b+\frac14\left(\frac1a-\frac1b\right)
+=\frac14\left(\frac1a+\frac3b\right)
+=2.
+$$
+Thus the spectral optimizer is not merely formal: it is realized by a positive definite Gram matrix satisfying both the primal and dual norm constraints.
+
+Step 4: Realize the Gram matrix by a basis and evaluate the maximum volume
+Since $G$ is positive definite with diagonal entries $1$, choose an invertible matrix $V$ with
+$$
+V^TV=G.
+$$
+Its columns $v_1,\dots,v_4$ form a basis of unit vectors. For the dual basis matrix $W=V^{-T}$,
+$$
+W^TW=G^{-1},
+$$
+whose diagonal entries are all $2$, so every dual vector has norm $\sqrt2$.
+
+Therefore equality is attained, and
+$$
+|\det V|
+=\sqrt{\det G}
+=\sqrt{\frac{29+4\sqrt7}{108}}.
+$$
+Since
+$$
+29+4\sqrt7=(1+2\sqrt7)^2,
+$$
+this becomes
+$$
+|\det V|=\frac{1+2\sqrt7}{6\sqrt3}.
 $$
 
-Step 4: Maximize the Vandermonde product by Hadamard's inequality
-Consider the Vandermonde matrix
-$$
-W=
-\begin{pmatrix}
-1&1&\cdots&1\\
-z_1&z_2&\cdots&z_6\\
-z_1^2&z_2^2&\cdots&z_6^2\\
-\vdots&\vdots&&\vdots\\
-z_1^5&z_2^5&\cdots&z_6^5
-\end{pmatrix}.
-$$
-Its determinant satisfies
-$$
-|\det W|=\prod_{i<j}|z_i-z_j|.
-$$
-Every column of $W$ has Hermitian norm $\sqrt6$, because $|z_i|=1$. Hadamard's determinant inequality therefore gives
-$$
-\prod_{i<j}|z_i-z_j|=|\det W|\leq(\sqrt6)^6=6^3.
-$$
-Equality in Hadamard's inequality holds exactly when the columns are pairwise orthogonal. For $i\neq j$ their Hermitian inner product is
-$$
-\sum_{k=0}^5(\overline z_i z_j)^k.
-$$
-This vanishes exactly when $\overline z_i z_j$ is a nontrivial sixth root of unity. Hence equality occurs when the six $z_i$ form a rotated regular hexagon. Such a hexagon also has $\sum_i z_i=0$, so the tight-frame condition does not lower the Hadamard bound. Consequently
-$$
-\prod_{i<j}|\sin(\theta_i-\theta_j)|\leq\frac{6^3}{2^{15}}.
-$$
-
-Step 5: Reconstruct a four-dimensional tight frame attaining the bound
-Take
-$$
-z_j=e^{2\pi\mathrm{i}(j-1)/6},
-\qquad j=1,\dots,6,
-$$
-and choose
-$$
-\theta_j=\frac{\pi(j-1)}6.
-$$
-Then $u_j=(\cos\theta_j,\sin\theta_j)$ satisfies
-$$
-\sum_{j=1}^6u_j u_j^T=3I_2.
-$$
-Let $Y$ have $j$th row $u_j^T/\sqrt3$. Then $Y^TY=I_2$. Complete the columns of $Y$ to an orthogonal matrix $O=[X\ Y]\in O(6)$. Every row of $X$ has squared norm $2/3$. Define
-$$
-V=\sqrt{\frac32}\,X^T.
-$$
-Its six columns are unit vectors and
-$$
-VV^T=\frac32 I_4,
-$$
-so they satisfy the required tight-frame condition. Equality holds in the bound from Step 4, and therefore
-$$
-\prod_{|I|=4}|\det V_I|
-=\left(\frac34\right)^{15}\frac{6^3}{2^{15}}
-=\frac{3^{18}}{2^{42}}.
-$$
-Thus the upper bound is attained.
-
-Final Answer: $\boxed{\frac{3^{18}}{2^{42}}}$
+Final Answer: $\boxed{\frac{1+2\sqrt7}{6\sqrt3}}$
 
 ---
 
 ## Answer
 
-$\frac{3^{18}}{2^{42}}$
+$\frac{1+2\sqrt7}{6\sqrt3}$
 
 ---
 
@@ -168,8 +182,8 @@ $\frac{3^{18}}{2^{42}}$
 
 ## Solution Concepts
 
-- unit-norm tight frames
-- naimark complements
-- complementary minors of orthogonal matrices
-- vandermonde determinants
-- hadamard determinant inequality
+- dual bases
+- gram matrices
+- inverse gram matrices
+- eigenvalue optimization
+- lagrange multipliers
