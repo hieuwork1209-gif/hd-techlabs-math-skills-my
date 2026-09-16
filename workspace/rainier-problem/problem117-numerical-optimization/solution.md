@@ -1,293 +1,222 @@
 ## Steps
 
-Step 1: Reduce the three shifts to a two-parameter rational minimax problem
-Let the three positive shifts be $\alpha,\beta,\delta$ with $\alpha\beta\delta=8$, and put
+Step 1: Reduce to a two-parameter rational minimax problem with one inequality constraint
+Let
 $$
-A=\alpha+\beta+\delta,
-\qquad
-B=\alpha\beta+\alpha\delta+\beta\delta.
+A=\alpha_1+\alpha_2+\alpha_3,\qquad
+B=\alpha_1\alpha_2+\alpha_1\alpha_3+\alpha_2\alpha_3.
 $$
-The three-step spectral factor is
+Since $\alpha_1\alpha_2\alpha_3=8$, the three-step spectral factor is
 $$
-r_{A,B}(x)
-=\prod_{s\in\{\alpha,\beta,\delta\}}\frac{x-s}{x+s}
-=\frac{x^3-Ax^2+Bx-8}{x^3+Ax^2+Bx+8}.
+r_{A,B}(x)=\frac{x^3-Ax^2+Bx-8}{x^3+Ax^2+Bx+8},
+\qquad A\le a:=\frac{46}{5}.
 $$
-Its denominator is positive for $x>0$. Define
+For $x>0$ put
 $$
 \phi_{A,B}(x)=\frac{1+r_{A,B}(x)}{1-r_{A,B}(x)}
 =\frac{x(x^2+B)}{Ax^2+8}.
 $$
-Since $|r|=\tanh(|\log\phi|/2)$, minimizing the worst value of $|r|$ is equivalent to minimizing the multiplicative envelope $K\ge1$ for which
-$$
-K^{-1}\le \phi_{A,B}(x)\le K.
-$$
-Also
-$$
-r_{A,B}'(x)
-=\frac{2\bigl(Ax^4+(24-AB)x^2+8B\bigr)}{(x^3+Ax^2+Bx+8)^2}. \tag{1}
-$$
-Thus there are at most two positive stationary points.
+Minimizing $\max|r|$ is equivalent to minimizing the multiplicative envelope $K\ge1$ satisfying $K^{-1}\le\phi\le K$.
 
-We will repeatedly use the following exact optimality certificate. Suppose $a<b<c$ are active with signs $+,-,+$ and level $C$, and set
-$$
-K=\frac{1+C}{1-C}.
-$$
-For fixed $C$, the three inequalities $r(a)\le C$, $-r(b)\le C$, $r(c)\le C$ are half-planes in $(A,B)$. After positive rescaling their outward normals are
+For a fixed level $K$, an upper contact at $x$ has normal
 $$
 n_+(x)=(-Kx^2,x),
-\qquad
-n_-(x)=(x^2,-Kx).
 $$
-The three cofactors are
+and a lower contact has normal
 $$
-bc(b-K^2c),
-\qquad Kac(a-c),
-\qquad ab(K^2a-b).
+n_-(x)=(x^2,-Kx)
 $$
-Hence if
+in the $(A,B)$-plane. Thus three alternating active contacts give the usual two-parameter Farkas certificate while $A<a$. When the budget is active, the boundary normal is $n_A=(1,0)$. For a lower contact $b<8$ and an upper contact at $8$,
 $$
-K^2a<b<K^2c, \tag{2}
+n_-(b)+\frac{Kb}{8}n_+(8)+b(8K^2-b)n_A=0,
 $$
-all three cofactors have the same sign. The three normals then positively span $\mathbb R^2$, so the intersection of the three active half-planes is the single point $(A,B)$. Therefore no other parameters can have norm at most $C$ even on those three points. If the candidate also satisfies the envelope on all of $E_\gamma$, it is the unique global minimizer.
+and every coefficient is positive because $K>1$ and $b<8$. Hence the pair $\{b,8\}$ together with the active budget $A=a$ is already an exact global optimality certificate.
 
-Step 2: Parametrize every moving-branch candidate and find the first transition
-Let $u\in(1,2)$ be the positive interior active point, while $8$ is the other positive active point. Imposing
+Also
 $$
-r'(u)=0,
-\qquad
-\phi(u)=\phi(8)
+r'_{A,B}(x)=\frac{2\left(Ax^4+(24-AB)x^2+8B\right)}{(x^3+Ax^2+Bx+8)^2}. \tag{1}
 $$
-and using (1) gives, after eliminating $A,B$,
+
+Step 2: Follow the unconstrained branch until the shift budget becomes active
+As long as $A<a$, let $u\in(1,2)$ be the positive interior active point and keep $8$ as the other positive contact. Solving
+$$
+r'(u)=0,\qquad \phi(u)=\phi(8)
+$$
+gives
 $$
 A(u)=\frac{2(u+4)}{u^2},
 \qquad
-B(u)=u(u+16). \tag{3}
+B(u)=u(u+16),
+\qquad
+\phi(u)=\phi(8)=u^2. \tag{2}
 $$
-For these values,
+The other stationary point is
 $$
-\phi(u)=\phi(8)=u^2. \tag{4}
+v(u)=2\sqrt{\frac{u(u+16)}{u+4}}.
 $$
-The second stationary point is
+A negative contact $x$ at the reciprocal level is characterized by
 $$
-v(u)=2\sqrt{\frac{u(u+16)}{u+4}}, \tag{5}
-$$
-which is strictly increasing in $u$.
-
-If $b$ is the negative active point, the opposite-level condition
-$$
-\phi(b)=u^{-2}
-$$
-is exactly
-$$
-F(b,u)=0, \tag{6}
+F(x,u)=0, \tag{3}
 $$
 where
 $$
 F(x,u)=u^4x^3-2(u+4)x^2+u^5(u+16)x-8u^2.
 $$
-In the initial plateau the negative active point is the second stationary point $v$. At a stationary point $x$, equation (1) gives
-$$
-\phi(x)=\frac{2x^3}{Ax^2-8}.
-$$
-Using the two stationary roots in (1), one finds
-$$
-\phi(u)\phi(v)=\frac{(uv)^3}{64}.
-$$
-Since the active values are reciprocal, $uv=4$. At the first transition $v=\gamma_1$, so $u_0=4/\gamma_1$. Combining $uv=4$ with (5) gives
-$$
-\gamma_1^4+\gamma_1^3-64\gamma_1-16=0. \tag{7}
-$$
-The polynomial in (7) is negative at $3$, positive at $4$, and has positive derivative on $[3,4]$, hence it has a unique root there. Thus
-$$
-\gamma_1=\mathrm{root}_{(3,4)}(x^4+x^3-64x-16),
-\qquad
-u_0:=\frac4{\gamma_1}.
-$$
-Numerically, $\gamma_1\approx3.7787240783$ and $u_0\approx1.0585583697$.
 
-For $3\le\gamma<\gamma_1$, the parameters (3) with $u=u_0$ are fixed. The two stationary points are $u_0$ and $\gamma_1$, and
+Initially the minimizer is a plateau with active set $\{u_0,\gamma_1,8\}$, where $u_0\gamma_1=4$. Eliminating $u_0$ yields
 $$
-\mathcal A_\gamma=\{u_0,\gamma_1,8\}
+\gamma_1^4+\gamma_1^3-64\gamma_1-16=0.
 $$
-with signs $+,-,+$. At $\gamma=\gamma_1$ the same set is active, with $r'(\gamma_1)=0$.
+Hence
+$$
+\gamma_1=\operatorname{root}_{(3,4)}(x^4+x^3-64x-16),
+\qquad u_0=\frac4{\gamma_1}.
+$$
+For $3<\gamma<\gamma_1$,
+$$
+\mathcal A_\gamma=\{u_0,\gamma_1,8\},
+$$
+and the same set is active at $\gamma=\gamma_1$.
 
-Step 3: Follow the moving regime and locate the final plateau
-Define
+For $\gamma_1<\gamma<\gamma_2$, $u=u_\gamma$ is the unique root of
 $$
-G(u)=u^6+16u^5+4u^4-4u^2-4u-16. \tag{8}
-$$
-Since
-$$
-G(1)=-3,
-\qquad
-G(2)=600,
+F(\gamma,u)=0,
+\qquad u_c<u<u_0,
 $$
 and
 $$
-G'(u)=6u^5+80u^4+16u^3-8u-4>0
-\qquad(1\le u\le2),
+\mathcal A_\gamma=\{u_\gamma,\gamma,8\}.
 $$
-there is a unique
+The budget first becomes active when $A(u)=46/5$, namely at
 $$
-u_*:=\mathrm{root}_{(1,2)}(G). \tag{9}
+u_c=\frac{5+\sqrt{1865}}{46}.
 $$
-In fact $1.03<u_*<1.04<u_0<1.06$.
+Therefore $\gamma_2$ is the unique root in $(5,21/4)$ of
+$$
+F(x,u_c)=0. \tag{4}
+$$
+Here $F_x(x,u_c)>0$ throughout $(5,21/4)$, while $F(5,u_c)<0<F(21/4,u_c)$, so the root is unique. Eliminating $u_c$ from (4) gives the purely rational polynomial
+$$
+\begin{aligned}
+P_2(x)={}&2645000x^6-57489075x^5+309996778x^4-401318375x^3\\
+&-79892560x^2-305502500x+223872800,
+\end{aligned}
+$$
+with $\gamma_2=\operatorname{root}_{(5,21/4)}P_2$. At the transition,
+$$
+\mathcal A_{\gamma_2}=\{u_c,\gamma_2,8\},
+\qquad A=\frac{46}{5}.
+$$
 
-For $\gamma_1<\gamma<\gamma_2$, define $u_\gamma$ by
+Step 3: Solve the budget-active moving regime
+Now fix $A=a=46/5$. With only $B$ free, the two active spectral contacts are the lower endpoint $\gamma$ and the upper endpoint $8$, with opposite signs. Equivalently
 $$
-F(\gamma,u_\gamma)=0,
+\phi_{a,B}(\gamma)\phi_{a,B}(8)=1.
+$$
+After clearing denominators this becomes
+$$
+Q_\gamma(B):=
+25\gamma B^2+(25\gamma^3+1600\gamma)B
++1600\gamma^3-17158\gamma^2-14920=0. \tag{5}
+$$
+Since $\partial_BQ_\gamma>0$ for $B>0$, there is at most one positive root. Let $B_\gamma$ denote it. At $\gamma_2$ it equals
+$$
+B_c=u_c(u_c+16),
+$$
+and it decreases continuously as $\gamma$ increases.
+
+The derivative equation (1), with $A=a$ and $B\in(B_0,B_c)$, has two positive stationary points. The smaller lies in $(1,2)$ and the larger in $(3,4)\subset(2,\gamma)$ throughout this regime. The smaller stationary point can reach the upper level $\phi(8)$ only if simultaneously $r'(u)=0$ and $\phi(u)=\phi(8)$; by (2) this would force $A=A(u)=a$, hence $u=u_c$ and therefore $\gamma=\gamma_2$. So it is strictly inactive for $\gamma>\gamma_2$.
+
+Thus the only possible next collision is the left endpoint $2$ reaching the lower level. Until that happens,
+$$
+\mathcal A_\gamma=\{\gamma,8\}
+\qquad(\gamma_2<\gamma<\gamma_3).
+$$
+The boundary Farkas identity from Step 1 proves global optimality despite there being only two spectral active points.
+
+Step 4: Locate the final plateau and verify shift feasibility
+The next transition occurs when
+$$
+\phi_{a,B}(2)\phi_{a,B}(8)=1.
+$$
+This gives
+$$
+25B^2+1700B-35376=0,
+$$
+so the feasible root is
+$$
+B_0=-34+\frac{2\sqrt{16069}}5. \tag{6}
+$$
+Combining (5) with (6) and eliminating $B$ yields
+$$
+(\gamma-2)^2P_3(\gamma)=0,
+$$
+where
+$$
+P_3(x)=700x^4+20050x^3-167517x^2+156580x-37300.
+$$
+This quartic has exactly one root in $(23/4,6)$, so
+$$
+\gamma_3=\operatorname{root}_{(23/4,6)}P_3.
+$$
+At the transition,
+$$
+\mathcal A_{\gamma_3}=\{2,\gamma_3,8\}.
+$$
+For $\gamma_3<\gamma\le7$, keep $A=a$ and $B=B_0$. The right interval starts to the right of the second stationary point, so $\phi$ is increasing there; on $[1,2]$ the endpoint $2$ is the unique lower active contact and the interior maximum stays strictly below the upper level. Hence
+$$
+\mathcal A_\gamma=\{2,8\}
+\qquad(\gamma_3<\gamma\le7).
+$$
+
+It remains to check that the coefficients correspond to three positive shifts. On the unconstrained branch this follows from the discriminant calculation for (2). On the budget-active branch the shifts are the roots of
+$$
+t^3-at^2+Bt-8,
+$$
+whose discriminant is
+$$
+\Delta(B)=a^2B^2-4B^3-32a^3-1728+144aB.
+$$
+For $B_0\le B\le B_c<18$, $\Delta'(B)>0$, and
+$$
+\Delta(B_0)=\frac{224(4045669-31905\sqrt{16069})}{625}>0.
+$$
+Thus all three roots are real; since their sum, pairwise sum, and product are all positive, all three roots are positive.
+
+Step 5: Collect the phase diagram
+The exact transitions are
+$$
+\gamma_1=\operatorname{root}_{(3,4)}(x^4+x^3-64x-16),
+$$
+$$
+\gamma_2=\operatorname{root}_{(5,21/4)}P_2,
+$$
+$$
+\gamma_3=\operatorname{root}_{(23/4,6)}P_3.
+$$
+Numerically,
+$$
+\gamma_1\approx3.7787240783,
 \qquad
-u_*<u_\gamma<u_0. \tag{10}
-$$
-This root is unique: on
-$$
-3.77\le x\le6.31,
+\gamma_2\approx5.2442756394,
 \qquad
-1.03\le u\le1.06,
+\gamma_3\approx5.8746294511.
 $$
-one has $F_u>0$. At $u=u_0$, using (7),
+The four open-regime active sets are respectively
 $$
-F(x,u_0)=\frac{128}{\gamma_1^4}(2x-1)(x-\gamma_1)^2>0
-\qquad(x>\gamma_1).
-$$
-At $u=u_*$, equation (8) gives
-$$
-F(x,u_*)=(x-2)
-\left[u_*^4x^2+2(u_*^4-u_*-4)x+4u_*^2\right]. \tag{11}
-$$
-The quadratic in (11) has one root below $1$ and one root in $(6,7)$; call the latter $\gamma_2$. Therefore (10) has exactly one solution throughout the open middle regime.
-
-The moment at which the unused endpoint $2$ reaches the negative level is
-$$
-F(2,u)=2G(u)=0,
-$$
-so it occurs precisely at $u=u_*$. Solving the quadratic in (11) gives
-$$
-\gamma_2
-=\frac{4+u_*-u_*^4+
-\sqrt{(u_*^4-u_*-4)^2-4u_*^6}}{u_*^4}. \tag{12}
-$$
-Thus $6<\gamma_2<7$ and numerically $\gamma_2\approx6.3031785765$.
-
-For the middle regime, (3), (4), and (6) give
-$$
-\phi(u_\gamma)=\phi(8)=u_\gamma^2,
-\qquad
-\phi(\gamma)=u_\gamma^{-2}.
-$$
-The other stationary point $v(u_\gamma)$ lies in $(2,\gamma)$ because $u_\gamma<u_0$ and (5) is increasing. On the left interval,
-$$
-\phi(u)\phi(1)-1
-=\frac{(u-1)(u^5+17u^4+18u^3+18u^2+10u+8)}{\text{positive denominator}}>0,
-$$
-while
-$$
-\phi(u)\phi(2)-1
-=\frac{G(u)}{\text{positive denominator}}>0
-$$
-for $u>u_*$. Hence the whole left interval stays inside the envelope. On $[\gamma,8]$, $\phi$ is increasing because its second stationary point lies in the gap. Therefore
-$$
-\mathcal A_\gamma=\{u_\gamma,\gamma,8\}
-\qquad(\gamma_1<\gamma<\gamma_2).
-$$
-At $\gamma=\gamma_2$ the endpoint $2$ joins the active set:
-$$
-\mathcal A_{\gamma_2}=\{u_*,2,\gamma_2,8\}.
+\{u_0,\gamma_1,8\},\qquad
+\{u_\gamma,\gamma,8\},\qquad
+\{\gamma,8\},\qquad
+\{2,8\}.
 $$
 
-Step 4: Verify the final plateau, shift feasibility, and optimality
-For $\gamma_2<\gamma\le7$, keep $u=u_*$ and the fixed coefficients (3). The second stationary point is
-$$
-v_*=2\sqrt{\frac{u_*(u_*+16)}{u_*+4}}<4<\gamma_2.
-$$
-The equation for the negative level factors as (11): besides $2$ and $\gamma_2$, its third crossing lies below $1$. Thus on $[1,2]$ the only active points are $u_*$ and $2$, while on $[\gamma,8]$ the function is monotone and only $8$ is active. Hence
-$$
-\mathcal A_\gamma=\{u_*,2,8\}
-\qquad(\gamma_2<\gamma\le7).
-$$
-
-It remains to check that the parameters (3) really come from three positive shifts. Their shifts are the roots of
-$$
-t^3-A(u)t^2+B(u)t-8.
-$$
-For $u_*\le u\le u_0\subset(1.03,1.06)$ its discriminant is
-$$
--\frac{4(u-1)(u+1)(u^2+1)}{u^6}
-\left(u^8+48u^7+768u^6+4096u^5-64u^3-768u^2-3072u-4096\right)>0.
-$$
-The parenthesized factor is increasing but still negative at $1.06$. Thus there are three distinct real roots; since $A(u)>0$, $B(u)>0$, and their product is $8>0$, all three are positive.
-
-Finally, all three regimes have an active triple $a<b<8$ with signs $+,-,+$, where $a=u\in(1.03,1.06)$, $b\ge2$, and $K=\phi(u)=u^2$. Hence
-$$
-K^2a=u^5<2\le b<8u^4=K^2\cdot8.
-$$
-Condition (2) holds, so the half-plane certificate from Step 1 proves global optimality and uniqueness in every regime.
-
-Step 5: Determine the regularity of the optimal contraction factor at the transitions
-On the moving branch, (4) gives
-$$
-\mathcal C_\gamma^*
-=\frac{u_\gamma^2-1}{u_\gamma^2+1},
-\qquad
-F(\gamma,u_\gamma)=0. \tag{13}
-$$
-Both outer regimes are plateaus, so all one-sided derivatives from the left of $\gamma_1$ and from the right of $\gamma_2$ vanish.
-
-At $\gamma_1$, put $g=\gamma_1$ and $u_0=4/g$. The factorization in Step 3 shows
-$$
-F_x(g,u_0)=0,
-$$
-so implicit differentiation of (13) gives $u_\gamma'(g+)=0$. Hence $(\mathcal C_\gamma^*)'(g+)=0$, matching the plateau derivative on the left. Differentiating once more gives
-$$
-u_\gamma''(g+)=-\frac{F_{xx}(g,u_0)}{F_u(g,u_0)}.
-$$
-Using
-$$
-F_{xx}(g,u_0)=\frac{256(2g-1)}{g^4},
-$$
-$$
-F_u(g,u_0)
-=-\frac{2\left(g^6-128g^4+32g^3-10240g-3072\right)}{g^4},
-$$
-and
-$$
-\frac{d}{du}\frac{u^2-1}{u^2+1}\Big|_{u=4/g}
-=\frac{16g^3}{(g^2+16)^2},
-$$
-we obtain the first nonzero derivative from the moving side:
-$$
-\boxed{
-(\mathcal C_\gamma^*)''(\gamma_1+)
-=\frac{2048g^3(2g-1)}{(g^2+16)^2
-\left(g^6-128g^4+32g^3-10240g-3072\right)}
-}. \tag{14}
-$$
-This number is negative (numerically about $-0.0125006593$), whereas $(\mathcal C_\gamma^*)''(\gamma_1-)=0$. Thus $\mathcal C_\gamma^*$ is $C^1$ but not $C^2$ at $\gamma_1$.
-
-At $\gamma_2$, put $s=u_*$ and $h=\gamma_2$. From (13),
-$$
-u_\gamma'(h-)=-\frac{F_x(h,s)}{F_u(h,s)}.
-$$
-Therefore the first nonzero derivative from the moving side is
-$$
-\boxed{
-(\mathcal C_\gamma^*)'(\gamma_2-)
-=-\frac{4s\left(3s^4h^2-4(s+4)h+s^5(s+16)\right)}
-{(s^2+1)^2\left(4s^3h^3-2h^2+(6s^5+80s^4)h-16s\right)}
-}. \tag{15}
-$$
-It is nonzero and negative (numerically about $-0.0166392750$), while $(\mathcal C_\gamma^*)'(\gamma_2+)=0$ on the final plateau. Hence $\mathcal C_\gamma^*$ is continuous but not $C^1$ at $\gamma_2$.
-
-Therefore the exact pair requested for the final answer is $\gamma_1$ from (7) and $u_*$ from (9); equation (12) gives the second transition exactly, while (14)-(15) give the requested transition sensitivities.
-
-Final Answer: $\boxed{\left(\mathrm{root}_{(3,4)}(x^4+x^3-64x-16),\mathrm{root}_{(1,2)}(x^6+16x^5+4x^4-4x^2-4x-16)\right)}$
+Final Answer: $\boxed{(3.7787240783,5.2442756394,5.8746294511)}$
 
 ---
 
 ## Answer
 
-$(\mathrm{root}_{(3,4)}(x^4+x^3-64x-16),\mathrm{root}_{(1,2)}(x^6+16x^5+4x^4-4x^2-4x-16))$
+$(3.7787240783,5.2442756394,5.8746294511)$
 
 ---
 
@@ -302,6 +231,6 @@ $(\mathrm{root}_{(3,4)}(x^4+x^3-64x-16),\mathrm{root}_{(1,2)}(x^6+16x^5+4x^4-4x^
 ## Solution Concepts
 
 - constrained ADI shift tuning
-- rational minimax envelopes
-- active-set sensitivity
-- algebraic phase transitions
+- active inequality constraints
+- KKT and Farkas certificates
+- active-set phase transitions
