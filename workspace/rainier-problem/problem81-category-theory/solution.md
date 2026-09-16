@@ -18,15 +18,15 @@ In characteristic $3$,
 $$
 t^2=1+r+r^2,\qquad t^3=0,\qquad sts=-t.
 $$
-Hence $e_+t=te_-$ and $e_-t=te_+$. The six elements
+Hence $e_+t=te_-$ and $e_-t=te_+$. Since $1,t,t^2$ are a basis of $k[\langle r\rangle]$ and $A=k[\langle r\rangle]\oplus s k[\langle r\rangle]$, the six elements
 $$
 e_+,\ e_-,\ a=e_+t,\ b=e_-t,\ p=e_+t^2,\ q=e_-t^2
 $$
-form a basis of $A$, with
+form a basis of $A$. Their nonzero products needed below include
 $$
 ab=p,\qquad ba=q,
 $$
-and every product of total $t$-degree at least $3$ equal to zero. Also
+and every product of total $t$-degree at least $3$ is zero. Also
 $$
 r=1-t-t^2,
 $$
@@ -67,7 +67,7 @@ d(x,y)=x(3-y)+(3-x)y.
 $$
 The solution space for $V$ has the same dimension.
 
-The two containments also imply that $UV$ preserves both $\operatorname{im}X$ and $\ker X$. On the four blocks determined by $X$, the linear map
+These containments imply that $UV$ preserves both $\operatorname{im}X$ and $\ker X$. On the four blocks determined by $X$, the linear map
 $$
 P\longmapsto XP+PX-P
 $$
@@ -86,7 +86,7 @@ Step 1 gives
 $$
 [E,t]=(a-b)H+(p-q)W.
 $$
-Decompose the right regular module as $A=Ae_+\oplus Ae_-$. On $(Ae_+)^3$, with $v\in k^3$,
+Decompose the left regular module as $A=Ae_+\oplus Ae_-$. On $(Ae_+)^3$, with $v\in k^3$,
 $$
 [E,t](e_+v)=-bHv+pWv,
 $$
@@ -101,11 +101,11 @@ r_H=\operatorname{rank}H,
 \qquad
 s_H=\dim\left(\operatorname{im}H+W(\ker H)\right).
 $$
-The degree-one projection of the image has dimension $r_H$, while the pure degree-two part is $\operatorname{im}H+W(\ker H)$ and has dimension $s_H$. Thus the rank on $(Ae_+)^3$ is $r_H+s_H$. The same calculation on $(Ae_-)^3$ gives the same rank. Since $[E,r]=-[E,t]$, evaluation on $X_n=A^n$ yields
+The degree-one projection of the image has dimension $r_H$. After that component is killed, the remaining degree-two vectors are exactly $\operatorname{im}H+W(\ker H)$, of dimension $s_H$. Thus the rank on $(Ae_+)^3$ is $r_H+s_H$. The same calculation on $(Ae_-)^3$ gives the same rank. Since $[E,r]=-[E,t]$, evaluation on $X_n=A^n$ yields
 $$
 \operatorname{rank}(C_E)_{X_n}=2n(r_H+s_H).
 $$
-Because $r_H,s_H\leq3$, the largest possible value is $12n$. The next possible value is $10n$.
+Because $r_H,s_H\leq3$, the maximum is $12n$. Every smaller value is at most $10n$, with equality requiring $r_H=2$ and $s_H=3$.
 
 Step 4: Count the idempotents giving the maximal rank
 The maximum $12n$ requires $r_H=s_H=3$, so it is equivalent to $X-Y$ being invertible.
@@ -152,11 +152,19 @@ $$
 $$
 The kernel formula in Step 4 gives $\alpha+\beta=1$.
 
-If $\alpha=1$, then for $v$ in the common image the first-order equations give
+Suppose first that $\alpha=1$. For $v$ in the common image, the first-order equations give
 $$
 Uv\in\ker X,\qquad Vv\in\ker Y.
 $$
-When $x+y=4$, the two kernels have zero intersection and span a two-dimensional space preserved onto itself by $X-Y$; hence it equals $\operatorname{im}H$, so $Wv\in\operatorname{im}H$ and $s_H=2$. If $\beta=1$ and $x+y=2$, the dual statement holds with the two images. Therefore $s_H=3$ is possible only when $x+y=3$, so the rank pairs are $(1,2)$ and $(2,1)$.
+If $x+y=4$, then $K=\ker X\oplus\ker Y$ has dimension $2$. For $u\in\ker X$,
+$$
+Hu=-Yu=(I-Y)u-u\in K,
+$$
+and for $u\in\ker Y$,
+$$
+Hu=Xu=u-(I-X)u\in K.
+$$
+The common-image line is $\ker H$ and is disjoint from $K$, so $H|_K$ is injective. Hence $K=\operatorname{im}H$, forcing $W(\ker H)\subseteq\operatorname{im}H$ and $s_H=2$. If instead $\beta=1$ and $x+y=2$, the same argument with $\operatorname{im}X+\operatorname{im}Y$ in place of $K$ again gives $s_H=2$. Therefore $s_H=3$ is possible only when $x+y=3$, so the rank pairs are $(1,2)$ and $(2,1)$.
 
 Fix rank-one $X$ with image $P$ and kernel $Q$. For rank-two $Y$, the cases $\alpha+\beta=1$ are counted as follows. If $\alpha=1$ and $\beta=0$, choose the plane $\operatorname{im}Y$ containing $P$ in $4$ ways. It has $9$ complementary lines, of which $3$ lie in $Q$, so there are $6$ allowed choices for $\ker Y$. This gives $24$ choices. The case $\alpha=0$, $\beta=1$ also gives $24$, hence $48$ choices for $Y$ per $X$. Thus the two rank orders contribute
 $$
@@ -179,7 +187,7 @@ $$
 U=\begin{pmatrix}0&0&0\\0&0&0\\-1&0&1\end{pmatrix},
 \qquad V=0
 $$
-satisfies the first-order equations and sends $e_1$ outside $\operatorname{im}H$. Hence exactly
+satisfies the first-order equations and sends $e_1$ outside $\operatorname{im}H$. Hence the displayed quotient map is a nonzero linear functional, so exactly
 $$
 3^{10}-3^9=2\cdot3^9
 $$
