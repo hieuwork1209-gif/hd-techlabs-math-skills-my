@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "d9943b71e2cd737914e99451eaeaf10da6e8c6de",
+  "problem_blob_sha": "163de952a7940ff05b681aeb49ba279731897dc8",
+  "statement_sha256": "f11021b2dd3d44e270c9adae0ccfadb0c31a8a8c2cd8f0c0f3e7642df85a23c5",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T12:01:46+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\np(\\lambda)=1+c_1\\lambda+c_2\\lambda^2+c_3\\lambda^3.\n\\]\nThe admissible Richardson cubics are exactly the relevant minimax cubics with \\(p(0)=1\\) and three positive zeros; positivity follows in each case from the alternating signs below.\n\nFor four ordered active points \\(a<b<c<d\\), the cubic with values\n\\[\np(a)=C,\\quad p(b)=-C,\\quad p(c)=C,\\quad p(d)=-C\n\\]\nis optimal whenever its absolute value stays below \\(C\\) on \\(E_\\gamma\\). Indeed, any better cubic would differ from it by a cubic vanishing at \\(0\\) and changing sign in each of the three gaps between active points, hence would have at least four zeros.\n\nNow consider the endpoint-alternating cubic \\(h_\\gamma\\), normalized by\n\\[\nh_\\gamma(1)=1,\\quad h_\\gamma(2)=-1,\\quad h_\\gamma(\\gamma)=1,\\quad h_\\gamma(6)=-1.\n\\]\nThe actual minimizer is \\(p_\\gamma^*=h_\\gamma/h_\\gamma(0)\\) exactly while no interior extremum enters either interval.\n\nUsing the Lagrange formula for \\(h_\\gamma'\\), the two endpoint tangency tests are\n\\[\nh_\\gamma'(\\gamma)=0\n\\iff\n(\\gamma-1)^2(\\gamma^2-14\\gamma+44)=0,\n\\]\nand\n\\[\nh_\\gamma'(2)=0\n\\iff\n(\\gamma-1)(\\gamma^2-9\\gamma+19)=0.\n\\]\nIn the given range, these give\n\\[\n\\gamma_1=7-\\sqrt5,\n\\qquad\n\\gamma_2=\\frac{9+\\sqrt5}{2}.\n\\]\n\nThe active sets are therefore:\n\n\\[\n\\frac92<\\gamma<7-\\sqrt5:\n\\qquad\n\\mathcal A_\\gamma=\\{1,2,7-\\sqrt5,6\\}.\n\\]\nHere the right-interval interior maximum \\(7-\\sqrt5\\) is active, while the endpoint \\(\\gamma\\) is inactive.\n\n\\[\n7-\\sqrt5<\\gamma<\\frac{9+\\sqrt5}{2}:\n\\qquad\n\\mathcal A_\\gamma=\\{1,2,\\gamma,6\\}.\n\\]\n\n\\[\n\\frac{9+\\sqrt5}{2}<\\gamma<\\frac{17}{3}:\n\\qquad\n\\mathcal A_\\gamma=\\{1,\\tau_\\gamma,\\gamma,6\\},\n\\]\nwhere \\(\\tau_\\gamma\\in(1,2)\\) is the unique interior critical point with \\(p_\\gamma^*(\\tau_\\gamma)=-\\mathcal C_\\gamma^*\\).\n\nAt \\(\\gamma=\\gamma_1\\), the active point \\(7-\\sqrt5\\) coincides with the left endpoint of the right interval and is tangent:\n\\[\n\\mathcal A_{\\gamma_1}=\\{1,2,\\gamma_1,6\\},\\qquad (p_{\\gamma_1}^*)'(\\gamma_1)=0.\n\\]\nAt \\(\\gamma=\\gamma_2\\), the point \\(2\\) is tangent:\n\\[\n\\mathcal A_{\\gamma_2}=\\{1,2,\\gamma_2,6\\},\\qquad (p_{\\gamma_2}^*)'(2)=0.\n\\]\n\nThus the requested pair is\n\\[\n\\boxed{\\left(7-\\sqrt5,\\frac{9+\\sqrt5}{2}\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T12:05:32+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/163de952a794.json"
+}
