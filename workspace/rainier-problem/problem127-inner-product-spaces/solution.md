@@ -1,223 +1,168 @@
 ## Steps
 
-Step 1: Encode the projected areas by the minors of an orthonormal two-frame
-Let $L\subset\mathbb R^4$ be a two-dimensional subspace, and choose an oriented orthonormal basis $u,v$ of $L$. Write
+Step 1: Represent an oriented two-plane by two unit vectors in three-dimensional spaces
+Fix an orientation of $\mathbb R^4$. For an oriented two-plane $L$ with oriented orthonormal basis $a,b$, let
 $$
-u_i=\langle u,e_i\rangle,
-\qquad
-v_i=\langle v,e_i\rangle.
+\omega_L=a\wedge b\in\Lambda^2\mathbb R^4.
 $$
-For $1\leq i<j\leq4$, define
+Then $\|\omega_L\|=1$. Let $*$ be the Hodge star on $\Lambda^2\mathbb R^4$, so $*^2=I$ and
 $$
-p_{ij}=u_i v_j-u_j v_i.
+\Lambda^2\mathbb R^4=\Lambda^2_+\oplus\Lambda^2_-,
 $$
-In the basis $u,v$, the orthogonal projection of $e_i$ onto $L$ has coordinates $(u_i,v_i)$, so the area $A_{ij}$ of the parallelogram spanned by $P_Le_i$ and $P_Le_j$ is
-$$
-A_{ij}=|p_{ij}|.
-$$
+where $\Lambda^2_\pm$ are the $\pm1$ eigenspaces of $*$, each of dimension $3$.
 
-Let
-$$
-R=
-\begin{pmatrix}u_1&u_2&u_3&u_4\\
-v_1&v_2&v_3&v_4
-\end{pmatrix}.
-$$
-Because $u,v$ are orthonormal, $RR^T=I_2$. Binet-Cauchy gives
-$$
-1=\det(RR^T)=\sum_{1\leq i<j\leq4}p_{ij}^2.
-$$
-
-The six minors also satisfy the Plucker relation
-$$
-p_{12}p_{34}-p_{13}p_{24}+p_{14}p_{23}=0.
-$$
-Indeed, the $4\times4$ matrix with rows $u^T,v^T,u^T,v^T$ has determinant $0$, and expanding along its first two rows gives twice the displayed expression.
-
-Step 2: Relate the areas in $L^\perp$ to complementary minors
-Choose an oriented orthonormal basis $r,s$ of $L^\perp$ so that the matrix
-$$
-O=
-\begin{pmatrix}u^T\\ v^T\\ r^T\\ s^T
-\end{pmatrix}
-$$
-lies in $SO(4)$. Put
-$$
-q_{ij}=r_i s_j-r_j s_i.
-$$
-Then the area $B_{ij}$ of the parallelogram spanned by the projections of $e_i,e_j$ onto $L^\perp$ is
-$$
-B_{ij}=|q_{ij}|.
-$$
-
-Let $I\subset\{1,2,3,4\}$ have size $2$, let $I^c$ be its complement, and let $R_0=\{1,2\}$. Jacobi's complementary-minor identity gives
-$$
-\det O[R_0,I]
-=\pm\det(O)\,\det(O^{-1})[I^c,R_0^c].
-$$
-Here $\det O=1$, $O^{-1}=O^T$, and $R_0^c=\{3,4\}$. Therefore
-$$
-|\det O[R_0,I]|=|\det O[R_0^c,I^c]|.
-$$
-Taking $I=\{1,2\},\{1,3\},\{1,4\}$ gives
-$$
-|q_{12}|=|p_{34}|,
-\quad
-|q_{13}|=|p_{24}|,
-\quad
-|q_{14}|=|p_{23}|,
-$$
-with the remaining three identities obtained by complementing again. Hence
-$$
-B_{12}=A_{34},
-\quad
-B_{13}=A_{24},
-\quad
-B_{14}=A_{23},
-$$
-and similarly for the complementary pairs.
-
-Step 3: Convert the Plucker data into two unit vectors in $\mathbb R^3$
 Define
 $$
-a_1=p_{12}+p_{34},
+X_L=\frac{\omega_L+*\omega_L}{\sqrt2},
 \qquad
-a_2=p_{13}-p_{24},
-\qquad
-a_3=p_{14}+p_{23},
+Y_L=\frac{\omega_L-*\omega_L}{\sqrt2}.
+$$
+Because $\omega_L$ is simple, $\omega_L\wedge\omega_L=0$, equivalently
+$$
+\langle\omega_L,*\omega_L\rangle=0.
+$$
+Hence $X_L$ and $Y_L$ are unit vectors in $\Lambda^2_+$ and $\Lambda^2_-$ respectively. Reversing the orientation of $L$ changes both $X_L$ and $Y_L$ to their negatives.
+
+Step 2: Translate the common projection factor into a pairwise compatibility rule
+Let $L,M$ be two of the planes. The hypothesis
+$$
+\|P_Mx\|=c\|x\|\qquad(x\in L)
+$$
+means that the two singular values of the orthogonal projection $P_M|_L$ are both $c$. Put
+$$
+s=\sqrt{1-c^2}.
+$$
+After choosing suitable oriented orthonormal coordinates, we may write
+$$
+L=\operatorname{span}(e_1,e_2)
 $$
 and
 $$
-b_1=p_{12}-p_{34},
-\qquad
-b_2=p_{13}+p_{24},
-\qquad
-b_3=p_{14}-p_{23}.
+M=\operatorname{span}(c e_1+s e_3,\ c e_2+\varepsilon s e_4),
+\qquad \varepsilon\in\{1,-1\}.
 $$
-Using the normalization from Step 1 and the Plucker relation,
-$$
-\begin{aligned}
-\|a\|^2
-&=\sum_{i<j}p_{ij}^2
-+2\bigl(p_{12}p_{34}-p_{13}p_{24}+p_{14}p_{23}\bigr)=1,\\
-\|b\|^2
-&=\sum_{i<j}p_{ij}^2
--2\bigl(p_{12}p_{34}-p_{13}p_{24}+p_{14}p_{23}\bigr)=1.
-\end{aligned}
-$$
-Thus $a,b$ are unit vectors in $\mathbb R^3$.
+The sign $\varepsilon$ records whether the isometry from $L$ to $L^\perp$ preserves or reverses orientation.
 
-For real numbers $x,y$,
+For $L$, take $\omega_L=e_1\wedge e_2$. A direct expansion of the unit bivector of $M$ gives
 $$
-\frac{|x+y|+|x-y|}{2}=\max(|x|,|y|).
+\omega_M
+=c^2e_{12}+\varepsilon cs e_{14}-cs e_{23}+\varepsilon s^2e_{34}.
 $$
-Since
+Using
 $$
-p_{12}=\frac{a_1+b_1}{2},
-\qquad
-p_{34}=\frac{a_1-b_1}{2},
+*e_{12}=e_{34},\qquad *e_{14}=e_{23},
 $$
-we get
+we obtain, after possibly reversing the orientation of $M$,
 $$
-A_{12}+B_{12}
-=|p_{12}|+|p_{34}|
-=\max(|a_1|,|b_1|).
+\bigl(\langle X_L,X_M\rangle,\langle Y_L,Y_M\rangle\bigr)
+=
+\begin{cases}
+(1,\,2c^2-1),&\varepsilon=1,\\
+(2c^2-1,\,1),&\varepsilon=-1.
+\end{cases}
 $$
-The same calculation for the other complementary pairs gives
+Since $0<c<1$, we have $|2c^2-1|<1$. Thus for every pair of distinct planes exactly one of the following holds:
 $$
-A_{13}+B_{13}=\max(|a_2|,|b_2|),
-$$
-$$
-A_{14}+B_{14}=\max(|a_3|,|b_3|).
-$$
-Because complementary index pairs give the same sums, the required product is
-$$
-\prod_{1\leq i<j\leq4}(A_{ij}+B_{ij})
-=\prod_{k=1}^3\max(|a_k|,|b_k|)^2.
+X_{L_i}\parallel X_{L_j},
+\qquad\text{or}\qquad
+Y_{L_i}\parallel Y_{L_j}.
 $$
 
-Step 4: Prove the sharp bound for two unit vectors
-For each $k$, choose either $a$ or $b$ whose $k$th coordinate attains
+Step 3: Show that the same alternative holds for all six pairs
+Color the edge $ij$ of the complete graph on $\{1,2,3,4\}$ by $X$ if
 $$
-m_k=\max(|a_k|,|b_k|).
+X_{L_i}\parallel X_{L_j},
 $$
-Among the three coordinates, at least two maxima are attained by the same vector. Without loss of generality, suppose
+and by $Y$ otherwise. Parallelism is transitive. Therefore if two edges of a triangle have color $X$, the third edge must also have color $X$; the same is true for color $Y$.
+
+Every triangle has two edges of the same color, so every triangle is monochromatic. If the triangle on $1,2,3$ is $X$-colored, then the triangle on $1,2,4$ contains the $X$-edge $12$ and must also be $X$-colored. Hence $14$ and $24$ are $X$-edges, and then the triangle on $1,3,4$ forces $34$ to be an $X$-edge. Thus all six edges have the same color. The $Y$-colored case is identical.
+
+Consequently, after interchanging the roles of $\Lambda^2_+$ and $\Lambda^2_-$ if necessary, all four lines $\mathbb RX_{L_i}$ coincide. Reverse the orientation of individual planes so that
 $$
-m_1=|a_1|,
-\qquad
-m_2=|a_2|.
+X_{L_1}=X_{L_2}=X_{L_3}=X_{L_4}=X.
 $$
-Then
+Then Step 2 gives
 $$
-m_1^2m_2^2
-=a_1^2a_2^2
-\leq\left(\frac{a_1^2+a_2^2}{2}\right)^2
-\leq\frac14,
-$$
-while $m_3^2\leq1$. Therefore
-$$
-\prod_{k=1}^3m_k^2\leq\frac14.
-$$
-Hence
-$$
-\prod_{1\leq i<j\leq4}(A_{ij}+B_{ij})\leq\frac14.
+\langle Y_{L_i},Y_{L_j}\rangle=2c^2-1
+\qquad(i\ne j).
 $$
 
-Step 5: Construct a plane attaining equality
-Take
+Step 4: Use the rank obstruction in the remaining three-dimensional factor
+Set
 $$
-u=\left(\frac12,0,-\frac12,-\frac1{\sqrt2}\right),
-\qquad
-v=\left(\frac12,\frac1{\sqrt2},\frac12,0\right).
+d=2c^2-1.
 $$
-Then
+The four unit vectors $Y_{L_1},\dots,Y_{L_4}$ lie in the three-dimensional space $\Lambda^2_-$. Their Gram matrix is
 $$
-\|u\|=\|v\|=1,
-\qquad
-\langle u,v\rangle=0,
+G=(1-d)I_4+dJ_4.
 $$
-so $u,v$ span a two-plane $L$.
-
-Its six minors satisfy
+Its eigenvalues are
 $$
-|p_{13}|=|p_{24}|=\frac12,
+1-d\quad\text{with multiplicity }3,
 $$
 and
 $$
-|p_{12}|=|p_{14}|=|p_{23}|=|p_{34}|=\frac1{2\sqrt2}.
+1+3d\quad\text{with multiplicity }1.
 $$
-By Step 2, the areas in $L^\perp$ are the complementary ones. Therefore
+Because $0<c<1$, we have $d<1$, so $1-d>0$. But four vectors in a three-dimensional space have Gram rank at most $3$. Hence the remaining eigenvalue must vanish:
 $$
-A_{12}+B_{12}=A_{34}+B_{34}=\frac1{\sqrt2},
+1+3d=0.
 $$
+Therefore
 $$
-A_{13}+B_{13}=A_{24}+B_{24}=1,
+2c^2-1=-\frac13,
 $$
-and
+so
 $$
-A_{14}+B_{14}=A_{23}+B_{23}=\frac1{\sqrt2}.
+c^2=\frac13.
 $$
-Thus
+Since $c>0$,
 $$
-\prod_{1\leq i<j\leq4}(A_{ij}+B_{ij})
-=\left(\frac1{\sqrt2}\right)^4
-=\frac14.
+c=\frac1{\sqrt3}.
 $$
-The upper bound is attained.
 
-Final Answer: $\boxed{\frac14}$
+Step 5: Verify that the value is attainable
+Choose a unit vector $X\in\Lambda^2_+$ and choose four unit vectors $Y_1,\dots,Y_4\in\Lambda^2_-$ forming a regular tetrahedron, so
+$$
+\langle Y_i,Y_j\rangle=-\frac13
+\qquad(i\ne j).
+$$
+Define
+$$
+\omega_i=\frac{X+Y_i}{\sqrt2}.
+$$
+Then $\|\omega_i\|=1$ and
+$$
+\langle\omega_i,*\omega_i\rangle
+=\frac12(\|X\|^2-\|Y_i\|^2)=0.
+$$
+For a two-form in four dimensions, this condition is exactly the Plucker relation for decomposability, so each $\omega_i$ is the unit oriented area form of a two-plane $L_i$.
+
+For every $i\ne j$ we have
+$$
+\langle X_{L_i},X_{L_j}\rangle=1,
+\qquad
+\langle Y_{L_i},Y_{L_j}\rangle=-\frac13.
+$$
+By the calculation in Step 2, the two projection singular values between $L_i$ and $L_j$ are equal to a common number $c$ satisfying
+$$
+2c^2-1=-\frac13.
+$$
+Thus these four distinct planes realize $c=1/\sqrt3$.
+
+Final Answer: $\boxed{\frac1{\sqrt3}}$
 
 ---
 
 ## Answer
 
-$\frac14$
+$\frac1{\sqrt3}$
 
 ---
 
 ## Classification
 
-**Problem Type:** Optimization
+**Problem Type:** Exact determination
 
 **Answer Type:** Exact scalar
 
@@ -225,8 +170,8 @@ $\frac14$
 
 ## Solution Concepts
 
-- orthogonal projections
-- complementary minors
-- plucker relation
-- orthonormal two-frames
-- coordinatewise maximum inequality
+- orthogonal projections between subspaces
+- exterior algebra of two-planes
+- hodge decomposition
+- isoclinic subspaces
+- gram matrix rank
