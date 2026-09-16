@@ -260,3 +260,11 @@ $9\sqrt{\pi}(\gamma+2\log 2-1)$
 **Answer Type:** Exact scalar
 
 ---
+
+## Solution Concepts
+
+- Mellin inversion
+- beta integrals
+- symmetry reduction
+- gamma duplication formula
+- residue asymptotics
