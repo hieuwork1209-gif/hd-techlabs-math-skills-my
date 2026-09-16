@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-category-theory/problem.md",
+  "source_commit_sha": "ca6ee16cb38d50b28691415e201ddd60f0ab0e43",
+  "problem_blob_sha": "a7c4b9fc88a3c42a24642c5af80ece5315054e6b",
+  "statement_sha256": "38b182664d1da6a8b2f021f789552995e769bc06ee246a28c394e22a37a190ed",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T13:43:07+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(V=k^3\\). A natural endomorphism of \\(F=U^{\\oplus 3}\\) is the same thing as a \\(3\\times 3\\) matrix with entries in \\(A\\), acting by left multiplication. Write an idempotent \\(E\\in M_3(A)\\) as\n\n\\[\nE=P e_{11}+Q e_{22}+R e_{33}+A_1a+B_1b+C_1c,\n\\]\n\nwith \\(P,Q,R,A_1,B_1,C_1\\in M_3(k)\\). The idempotent condition gives\n\n\\[\nP^2=P,\\quad Q^2=Q,\\quad R^2=R,\n\\]\n\\[\nPA_1+A_1Q=A_1,\\qquad QB_1+B_1R=B_1,\n\\]\n\\[\nPC_1+A_1B_1+C_1R=C_1.\n\\]\n\nThe commutators simplify to\n\n\\[\nD_a=(P+Q)a+B_1c,\\qquad D_b=(Q+R)b+A_1c,\\qquad D_c=(P+R)c,\n\\]\n\nso\n\n\\[\nD_aD_b=(P+Q)(Q+R)c.\n\\]\n\nSince left multiplication by \\(c=e_{13}\\) on \\(A\\) has rank \\(1\\), evaluation on \\(X_n=A^{\\oplus n}\\) multiplies the relevant \\(3\\times3\\) matrix rank by \\(n\\). Hence\n\n\\[\n\\operatorname{rank}(D_aD_b)_{X_n}\n=n\\,\\operatorname{rank}((P+Q)(Q+R)),\n\\]\n\\[\n\\operatorname{rank}(D_c)_{X_n}\n=n\\,\\operatorname{rank}(P+R).\n\\]\n\nNow \\(P,Q,R\\) are idempotent \\(3\\times3\\) matrices over \\(\\mathbb F_2\\). The first rank is at most \\(3\\), and rank \\(3\\) is attainable exactly when both \\(P+Q\\) and \\(Q+R\\) are invertible. For idempotents this forces\n\n\\[\n\\operatorname{rank}P+\\operatorname{rank}Q=3,\\qquad\n\\operatorname{rank}Q+\\operatorname{rank}R=3,\n\\]\n\nso \\(\\operatorname{rank}P=\\operatorname{rank}R\\). Thus \\(P+R\\) cannot be invertible; the best possible second rank is \\(2\\). Therefore\n\n\\[\n(M_n,L_n)=(3n,2n).\n\\]\n\nIt remains to count.\n\nThere are \\(28\\) rank \\(1\\) idempotents and \\(28\\) rank \\(2\\) idempotents in \\(M_3(\\mathbb F_2)\\). Fix a rank \\(2\\) idempotent \\(Q\\). The number of rank \\(1\\) idempotents \\(P\\) with \\(P+Q\\) invertible is \\(10\\). Among the \\(10\\) possible \\(P\\)’s and \\(10\\) possible \\(R\\)’s, exactly \\(54\\) ordered pairs satisfy \\(\\operatorname{rank}(P+R)=2\\). Thus the rank pattern\n\n\\[\n(\\operatorname{rank}P,\\operatorname{rank}Q,\\operatorname{rank}R)=(1,2,1)\n\\]\n\ncontributes\n\n\\[\n28\\cdot 54=1512\n\\]\n\ntriples. By duality the pattern \\((2,1,2)\\) contributes another \\(1512\\). Hence there are\n\n\\[\n3024\n\\]\n\nmaximizing triples \\((P,Q,R)\\).\n\nFor each maximizing triple, the equations for \\(A_1\\) and \\(B_1\\) each have \\(2^5\\) solutions. The final equation for \\(C_1\\) has a \\(2^4\\)-dimensional homogeneous solution space, and the term \\(A_1B_1\\) always lies in its image because the first two equations force the needed image/kernel inclusions. Thus each maximizing \\((P,Q,R)\\) lifts to\n\n\\[\n2^5\\cdot 2^5\\cdot 2^4=2^{14}=16384\n\\]\n\nnatural idempotents \\(E\\). Therefore\n\n\\[\nN_n=3024\\cdot 16384=49\\,545\\,216.\n\\]\n\nSo for every \\(n\\ge 1\\),\n\n\\[\n\\boxed{(M_n,L_n,N_n)=(3n,\\;2n,\\;49\\,545\\,216)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T13:47:29+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/a7c4b9fc88a3.json"
+}
