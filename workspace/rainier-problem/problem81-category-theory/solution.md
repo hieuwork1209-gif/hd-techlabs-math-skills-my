@@ -7,26 +7,32 @@ V=\mathbb F_2^m\oplus\mathbb F_2^m,
 \qquad
 B((u,v),(u',v'))=u\cdot v'+u'\cdot v.
 $$
-For homogeneous simple objects of degrees $x,y$, the double braiding is multiplication by $(-1)^{B(x,y)}$. Hence a compatible twist has the form
+A natural automorphism of the identity acts by a scalar on every homogeneous simple degree. For a compatible twist, write that scalar as $\theta_x$. The double braiding on degrees $x,y$ is multiplication by $(-1)^{B(x,y)}$, so balancing gives
 $$
-\theta_x=(-1)^{q(x)},
+\theta_{x+y}=(-1)^{B(x,y)}\theta_x\theta_y.
 $$
-where
+Taking $y=x$ and using $2x=0$, $B(x,x)=0$, and $\theta_0=1$ gives $\theta_x^2=1$. Hence
+$$
+\theta_x=(-1)^{q(x)}
+$$
+for a function $q:V\to\mathbb F_2$, and balancing becomes
 $$
 q(x+y)=q(x)+q(y)+B(x,y).
 $$
 Thus compatible twists are precisely the quadratic refinements of $B$.
 
-Fix the refinement
+Fix the reference refinement
 $$
-q_0(u,v)=u\cdot v.
+q_*(u,v)=u\cdot v.
 $$
 Every refinement is uniquely
 $$
 q_{a,b}(u,v)=u\cdot v+a\cdot u+b\cdot v,
 \qquad a,b\in\mathbb F_2^m,
 $$
-so any two refinements differ by a linear form. Since $B$ is nondegenerate, for an ordered triple of twists there are unique $z_1,z_2\in V$ such that
+so any two refinements differ by a linear form.
+
+Now let $q_0,q_1,q_2$ be the refinements belonging to an ordered triple of twists. Since $B$ is nondegenerate, there are unique $z_1,z_2\in V$ such that
 $$
 q_1(x)=q_0(x)+B(z_1,x),
 \qquad
@@ -95,11 +101,11 @@ M_m=T_{m-2}=2\prod_{i=1}^{m-3}(2^i+1).
 $$
 
 Step 4: Count the possible first twist and the singular ordered frame
-For
+For the reference coordinates,
 $$
 q_{a,b}(u,v)=u\cdot v+a\cdot u+b\cdot v,
 $$
-the Gauss sum factors as
+and the Gauss sum factors as
 $$
 G(q_{a,b})=\prod_{i=1}^m\sum_{r,s\in\mathbb F_2}(-1)^{rs+a_ir+b_is}
 =2^m(-1)^{a\cdot b}.
