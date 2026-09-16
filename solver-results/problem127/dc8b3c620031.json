@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-inner-product-spaces/problem.md",
+  "source_commit_sha": "798b75b42d197af346569a7fe0cd9d2a83d17853",
+  "problem_blob_sha": "dc8b3c62003148c21e014b30239fae50cec64da2",
+  "statement_sha256": "26503a39a6b51fe22ede5dc73225a0c1591ffa154cae45e35ecb57acc7ced689",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T13:42:32+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let  \n\\[\nG=(\\langle v_i,v_j\\rangle)_{i,j}\n\\]\nbe the Gram matrix of the basis \\((v_i)\\), and let  \n\\[\nH=(\\langle w_i,w_j\\rangle)_{i,j}\n\\]\nbe the Gram matrix of the Euclidean dual basis. Since \\(W=V^{-T}\\), we have\n\\[\nH=G^{-1}.\n\\]\n\nNow define\n\\[\nC=(\\langle z_i,z_j\\rangle)_{i,j}.\n\\]\nThis is the correlation matrix of the \\(w_i\\)’s, so \\(C\\) is positive definite, has diagonal entries \\(1\\), and has off-diagonal entries \\(\\pm \\frac12\\).\n\nWrite\n\\[\nC_{ij}=\\frac{s_{ij}}2\\qquad (i\\ne j),\n\\]\nwhere \\(s_{ij}\\in\\{\\pm1\\}\\). For any three distinct indices \\(i,j,k\\), the corresponding \\(3\\times3\\) principal minor is\n\n\\[\n\\det\n\\begin{pmatrix}\n1 & s_{ij}/2 & s_{ik}/2\\\\\ns_{ij}/2 & 1 & s_{jk}/2\\\\\ns_{ik}/2 & s_{jk}/2 & 1\n\\end{pmatrix}\n=\n\\frac14\\left(1+s_{ij}s_{ik}s_{jk}\\right).\n\\]\n\nSince \\(C\\) is positive definite, every principal minor is positive. Hence\n\n\\[\ns_{ij}s_{ik}s_{jk}=1\n\\]\n\nfor every triple. Therefore the signs factor as\n\\[\ns_{ij}=\\varepsilon_i\\varepsilon_j\n\\]\nfor some \\(\\varepsilon_i\\in\\{\\pm1\\}\\). Changing \\(z_i\\) to \\(\\varepsilon_i z_i\\) does not affect absolute inner products, so we may assume\n\n\\[\nC_{ij}=\\frac12 \\quad (i\\ne j).\n\\]\n\nThus\n\\[\nC=\\frac12(I+J),\n\\]\nwhere \\(J\\) is the all-ones matrix. Since\n\\[\n(I+J)^{-1}=I-\\frac{1}{n+1}J,\n\\]\nwe get\n\\[\nC^{-1}=2I-\\frac{2}{n+1}J.\n\\]\n\nSo\n\\[\n(C^{-1})_{ii}=\\frac{2n}{n+1},\n\\qquad\n(C^{-1})_{ij}=-\\frac{2}{n+1}\\quad(i\\ne j).\n\\]\n\nBecause \\(G=H^{-1}\\), and \\(C\\) is obtained from \\(H\\) by normalizing the basis vectors \\(w_i\\), the off-diagonal entries of \\(G\\) are the normalized off-diagonal entries of \\(C^{-1}\\). Hence\n\n\\[\na=\n\\frac{\\left|\\,-\\frac{2}{n+1}\\right|}\n{\\frac{2n}{n+1}}\n=\n\\frac1n.\n\\]\n\n\\[\n\\boxed{\\frac1n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T13:43:22+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/dc8b3c620031.json"
+}
