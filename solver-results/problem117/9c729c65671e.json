@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "a292833ac9b038dad629482d8c7cea399f45b009",
+  "problem_blob_sha": "9c729c65671e3815757ec61bdd85c4af72c8ad5a",
+  "statement_sha256": "88ca24e958bc55b18fca842b869edc6a23634f4dba9fe63ddb1c1dfa0c017413",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T12:42:57+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\np(x)=\\prod_{j=1}^4(1-\\alpha_jx)=1-2x+ax^2+bx^3+cx^4 .\n\\]\n\nThe budget condition is exactly \\(p(0)=1,\\ p'(0)=-2\\). Thus the admissible quartics lie in a 3-dimensional affine family, so a four-point alternating extremal set gives optimality: if another polynomial were strictly smaller at those four alternating points, their difference would have three sign-change zeros there, plus a double zero at \\(0\\), impossible for a nonzero quartic.\n\nIn the middle regime the active set is\n\n\\[\n\\mathcal A_\\gamma=\\{r,2,s,6\\},\n\\qquad\nr=\\frac{17-\\sqrt{109}}5,\\quad s=\\frac{17+\\sqrt{109}}5,\n\\]\n\nwith signs \\(-,+,-,+\\). Write\n\n\\[\np(x)+C=c(x-r)^2(x-s)^2=c(x^2-mx+n)^2.\n\\]\n\nFrom \\(p(0)=1,\\ p'(0)=-2\\), one gets \\(cmn=1\\) and \\(C=n/m-1\\). The endpoint conditions \\(p(2)=p(6)=C\\) force\n\n\\[\nm=\\frac{34}{5},\\qquad n=\\frac{36}{5},\\qquad C=\\frac1{17}.\n\\]\n\nThen \\(p(x)=C\\) also occurs at \\(x=24/5\\), and \\(p(x)=-C\\) occurs at \\(x=s\\). Hence the two transitions are\n\n\\[\n\\gamma_1=\\frac{24}{5},\\qquad\n\\gamma_2=s=\\frac{17+\\sqrt{109}}5.\n\\]\n\nThe active sets are:\n\n\\[\n\\frac92<\\gamma<\\frac{24}{5}:\n\\qquad\n\\mathcal A_\\gamma=\\{\\xi_\\gamma,\\gamma,\\eta_\\gamma,6\\},\n\\]\n\nwith signs \\(-,+,-,+\\);\n\n\\[\n\\frac{24}{5}<\\gamma<\\frac{17+\\sqrt{109}}5:\n\\qquad\n\\mathcal A_\\gamma=\\left\\{\\frac{17-\\sqrt{109}}5,2,\\frac{17+\\sqrt{109}}5,6\\right\\};\n\\]\n\n\\[\n\\frac{17+\\sqrt{109}}5<\\gamma<\\frac{11}{2}:\n\\qquad\n\\mathcal A_\\gamma=\\{\\rho_\\gamma,2,\\gamma,6\\},\n\\]\n\nwith signs \\(-,+,-,+\\).\n\nAt \\(\\gamma=\\gamma_1\\), both \\(2\\) and \\(\\gamma_1=24/5\\) are active positive maxima. At \\(\\gamma=\\gamma_2\\), the negative interior active point \\(s\\) becomes the left endpoint of the second interval.\n\nFor the endpoint \\(\\gamma=9/2\\), the first-regime form gives\n\n\\[\np(x)+C=c(x^2-mx+n)^2,\n\\]\n\nand the conditions \\(p(9/2)=p(6)=C\\) give\n\n\\[\nm=\\frac{2787+12\\sqrt{1021}}{470}.\n\\]\n\nThen\n\n\\[\nC=\\frac{n}{m}-1\n=\\frac{25\\sqrt{1021}-702}{1201}.\n\\]\n\nTherefore\n\n\\[\n\\boxed{\\left(\\frac{24}{5},\\frac{17+\\sqrt{109}}{5},\\frac{25\\sqrt{1021}-702}{1201}\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T12:46:25+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/9c729c65671e.json"
+}
