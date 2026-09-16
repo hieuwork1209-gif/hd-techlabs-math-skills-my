@@ -1,120 +1,113 @@
 ## Steps
 
 Step 1: Reduce contractible model structures to right-bracketing functions
-Let $[n]=\{0<1<\cdots<n\}$. In a contractible model structure every morphism is a weak equivalence, so acyclic fibrations are exactly fibrations and acyclic cofibrations are exactly cofibrations. Hence a contractible model structure is exactly one weak factorization system $(\mathcal L,\mathcal R)$ on $[n]$, with $\mathcal R$ the fibrations.
+Let $[n]=\{0<1<\cdots<n\}$. In a contractible model structure every morphism is a weak equivalence, so acyclic fibrations are exactly fibrations and acyclic cofibrations are exactly cofibrations. Hence such a model structure is exactly one weak factorization system $(\mathcal L,\mathcal R)$, with $\mathcal R$ the fibrations.
 
 For each $i$, define
 $$
 r_i=\max\{j:i\to j\in\mathcal R\}.
 $$
-The identity gives $r_i\geq i$. Right classes are closed under pullback and composition. Since the pullback of $i\to j$ along $k\to j$, for $i\leq k\leq j$, is $i\to k$, the arrows in $\mathcal R$ with source $i$ are exactly
-$$
-i\to j\qquad(i\leq j\leq r_i).
-$$
-Composition then forces
+The identity gives $r_i\geq i$. Pullback closure shows that $i\to j\in\mathcal R$ exactly when $i\leq j\leq r_i$, and composition forces
 $$
 i<j\leq r_i\quad\Longrightarrow\quad r_j\leq r_i.
 $$
+Conversely, any tuple $(r_0,\ldots,r_n)$ with $i\leq r_i\leq n$ satisfying this implication defines a right class by $i\to j\in\mathcal R$ iff $j\leq r_i$. If $\mathcal L={}^\perp\mathcal R$, then $a\to b\in\mathcal L$ exactly when $r_x<b$ for every $a\leq x<b$. For any $a\leq b$, choose the least $c\in[a,b]$ with $r_c\geq b$. Minimality and the bracketing condition give $r_x<c$ for $a\leq x<c$, so
+$$
+a\to c\in\mathcal L,\qquad c\to b\in\mathcal R.
+$$
+Thus every arrow factors, and the retract argument gives $\mathcal R=\mathcal L^\perp$. These tuples classify the contractible model structures.
 
-Conversely, suppose a tuple $(r_0,\ldots,r_n)$ satisfies $i\leq r_i\leq n$ and the displayed implication, and define $\mathcal R$ by $i\to j\in\mathcal R$ iff $j\leq r_i$. Let $\mathcal L={}^\perp\mathcal R$. In the chain, an arrow $a\to b$ lies in $\mathcal L$ exactly when
-$$
-r_x<b\qquad\text{for every }a\leq x<b,
-$$
-because a lifting obstruction is precisely an $\mathcal R$-arrow $x\to y$ with $a\leq x<b\leq y$.
+Step 2: Translate the categorical statistics into an ordered forest
+Put $N=n+1$. Under the standard matching construction, a right-bracketing tuple is equivalent to a Dyck path of semilength $N$: the up-step $U_i$ is matched with the down-step closing the interval whose last up-step is $U_{r_i}$. Equivalently, the Dyck path is an ordered forest with $N$ vertices, one vertex for each up-step.
 
-For any $a\leq b$, choose the least $c\in[a,b]$ with $r_c\geq b$; such a $c$ exists because $r_b\geq b$. Then $c\to b\in\mathcal R$. If $a\leq x<c$ and $r_x\geq c$, the bracketing condition gives $r_c\leq r_x$, hence $r_x\geq b$, contradicting minimality of $c$. Thus $r_x<c$ for all $a\leq x<c$, so $a\to c\in\mathcal L$. Every arrow therefore factors as an $\mathcal L$-map followed by an $\mathcal R$-map, and the usual retract argument gives $\mathcal R=\mathcal L^\perp$. Hence these tuples classify the contractible model structures.
+The fibrant objects are exactly the $i$ with $r_i=n$, hence their number is the final descent length $r$. The cofibrant objects are exactly the starts of primitive Dyck components, hence their number is the number $s$ of rooted trees in the ordered forest.
 
-Step 2: Encode the bracketing functions by Dyck paths and identify the two statistics
-Put $N=n+1$. Given a Dyck path of semilength $N$, index its up-steps $U_0,\ldots,U_n$ from left to right. For each $i$, let $r_i$ be the index of the last up-step occurring before the down-step matched with $U_i$. Noncrossing of matched pairs gives
+For a vertex $i$, the interval from $U_i$ to its matching down-step contains exactly the vertices in the rooted subtree of $i$. Therefore
 $$
-i<j\leq r_i\Longrightarrow r_j\leq r_i.
+r_i-i+1=|\operatorname{subtree}(i)|.
 $$
+The total number of fibrations, including identities, is
+$$
+\nu(\mathcal M)=\sum_{i=0}^n(r_i-i+1).
+$$
+Summing subtree sizes counts each vertex once for itself and once for every proper ancestor, so
+$$
+\nu(\mathcal M)=N+\sum_v\operatorname{depth}(v).
+$$
+Thus the revised problem is an extremal total-depth problem for ordered forests with $N$ vertices, $s$ components, and final descent length $r$.
 
-Conversely, from a bracketing tuple, scan $i=0,\ldots,n$: output $U_i$, then output one down-step for each $j\leq i$ with $r_j=i$, in decreasing order of $j$. The bracketing condition makes these intervals nested or disjoint, so this is a Dyck path and the two constructions are inverse.
+Step 3: Bound the depth contribution of the last component
+The final descent length $r$ means that the rightmost leaf of the last rooted tree has depth $r-1$. Its rightmost root-to-leaf spine therefore has $r$ vertices and contributes
+$$
+0+1+\cdots+(r-1)=\binom r2
+$$
+to the depth sum.
 
-An object $i$ is fibrant exactly when $i\to n\in\mathcal R$, equivalently $r_i=n$. These are precisely the up-steps matched by the final consecutive block of down-steps. Therefore the number of fibrant objects is the final descent length of the Dyck path.
+If $r=1$, the last component is a single vertex. Assume $r\geq2$ and let $q$ be the number of other vertices in the last component. Remove the rightmost spine. Every remaining vertex lies in a subtree attached to one of the first $r-1$ spine vertices. The largest possible attachment depth is $r-2$, so after its attachment edge each remaining vertex receives an offset at most $r-1$. The internal depth sum of a forest on $q$ vertices is at most $\binom q2$, with equality only when all $q$ vertices form one chain. Hence the last component contributes at most
+$$
+\binom r2+q(r-1)+\binom q2.
+$$
+For $q>0$, equality forces a unique shape: the $q$ extra vertices form one chain attached as an earlier child of the penultimate vertex on the rightmost spine.
 
-An object $j$ is cofibrant exactly when $0\to j\in\mathcal L$, equivalently
+For the first $s-1$ components, write their sizes as $1+x_1,\ldots,1+x_{s-1}$ with $x_j\geq0$. A rooted tree on $1+x_j$ vertices has depth sum at most
 $$
-r_i<j\qquad(0\leq i<j).
+\binom{x_j+1}{2},
 $$
-This says that immediately before $U_j$ the Dyck path is at height $0$. Hence the cofibrant objects are exactly the initial up-steps of the primitive Dyck components, so their number is the number of components.
+with equality only for a chain.
 
-Thus the required model structures are in bijection with Dyck paths of semilength $N=n+1$ having exactly $s$ primitive components and final descent length $r$.
-
-Step 3: Build the generating function for both statistics simultaneously
-Let
+Since
 $$
-C(z)=\sum_{m\geq0}C_mz^m
+t=n+2-r-s=N+1-r-s,
 $$
-be the Catalan generating function. The first-return decomposition gives
+the number of vertices left after reserving one root for each earlier component and the $r$ vertices of the final spine is
 $$
-C(z)=1+zC(z)^2.
-$$
-A nonempty primitive Dyck path has the form $UPD$, with $P$ an arbitrary Dyck path, so its generating function is $zC(z)$.
-
-A primitive Dyck path whose final descent has length exactly $r$ has the unique form
-$$
-UP_1UP_2\cdots UP_{r-1}UD^r,
-$$
-where each $P_i$ is an arbitrary Dyck path. Its generating function is therefore
-$$
-z^rC(z)^{r-1}.
-$$
-
-For a path with exactly $s$ primitive components, the first $s-1$ components are arbitrary primitive paths and the last has final descent $r$. Hence the generating function for the desired paths is
-$$
-(zC(z))^{s-1}z^rC(z)^{r-1}
-=z^{r+s-1}C(z)^{r+s-2}.
-$$
-Therefore
-$$
-T_{n;r,s}=[z^{n+1}]z^{r+s-1}C(z)^{r+s-2}
-=[z^{n+2-r-s}]C(z)^{r+s-2}.
+x_1+\cdots+x_{s-1}+q=t.
 $$
 
-Step 4: Extract the coefficient exactly
-Set
+Step 4: Optimize the slack distribution and classify equality
+For $r\geq2$, the variable part of the depth sum is bounded by
 $$
-t=n+2-r-s,\qquad q=r+s-2.
+\sum_{j=1}^{s-1}\binom{x_j+1}{2}+q(r-1)+\binom q2,
+\qquad
+x_1+\cdots+x_{s-1}+q=t.
 $$
-The hypothesis $r+s\leq n+2$ gives $t\geq0$. For $q>0$, write $D=C-1$, so
+Each summand is convex in its bucket size, so a maximum places all $t$ units in one bucket. Putting all $t$ units in an earlier component contributes $\binom{t+1}{2}$, while putting all of them in the last component contributes
 $$
-D=z(1+D)^2.
+t(r-1)+\binom t2=\binom{t+1}{2}+t(r-2).
 $$
-Lagrange inversion gives, for $t\geq1$,
+For $r=1$ the last bucket is unavailable, and the same first value applies. Therefore the maximal depth sum is
 $$
-[z^t](1+D)^q
-=\frac{q}{t}[u^{t-1}](1+u)^{2t+q-1}
-=\frac{q}{2t+q}\binom{2t+q}{t}.
+\binom r2+\binom{t+1}{2}+t(r-2)_+,
 $$
-The same formula gives $1$ when $t=0$. If $q=0$, then $r=s=1$ and $t=n>0$, so the coefficient is $0$, which is also the value of the final expression below.
-
-Substituting $t=n+2-r-s$ and $q=r+s-2$ yields
+where $x_+=\max\{x,0\}$. By Step 2,
 $$
-T_{n;r,s}
-=\frac{r+s-2}{2n+2-r-s}
-\binom{2n+2-r-s}{n+2-r-s}.
+A_{n;r,s}=n+1+\binom r2+\binom{t+1}{2}+t(r-2)_+.
 $$
 
-Step 5: State the refined model-structure count
-By Steps 1 and 2, every contractible model structure is counted exactly once by the Dyck path statistic used in Steps 3 and 4. Hence the number with exactly $r$ fibrant objects and $s$ cofibrant objects is the coefficient just obtained.
+It remains to count equality cases. If $t=0$, the forest is forced, so there is one maximizer. Suppose $t>0$. If $r=1$, all slack must form a chain in exactly one of the first $s-1$ components, giving $s-1$ maximizers. If $r=2$, the earlier and last buckets tie, so either one of the first $s-1$ components carries the chain or the last component carries the unique extremal extra chain, giving $s$ maximizers. If $r\geq3$, the last bucket is strictly better, so the maximizing forest is unique. Hence
+$$
+K_{n;r,s}=1+[t>0]\bigl((s-2)[r=1]+(s-1)[r=2]\bigr),
+$$
+where $[P]$ is $1$ when $P$ holds and $0$ otherwise.
 
-Final Answer: $\boxed{\frac{r+s-2}{2n+2-r-s}\binom{2n+2-r-s}{n+2-r-s}}$
+Step 5: State the extremal categorical profile
+The Dyck-path and ordered-forest constructions are bijections, so every equality shape counted in Step 4 corresponds to exactly one contractible model structure and no others attain the same number of fibrations. Therefore the required ordered pair is the maximum total number of fibrations together with the number of model structures attaining it.
+
+Final Answer: $\boxed{\left(n+1+\binom r2+\binom{t+1}2+t(r-2)_+,1+[t>0]((s-2)[r=1]+(s-1)[r=2])\right)}$
 
 ---
 
 ## Answer
 
-$\frac{r+s-2}{2n+2-r-s}\binom{2n+2-r-s}{n+2-r-s}$
+$\left(n+1+\binom r2+\binom{t+1}2+t(r-2)_+,1+[t>0]((s-2)[r=1]+(s-1)[r=2])\right)$
 
 ---
 
 ## Classification
 
-**Problem Type:** Exact computation
+**Problem Type:** Optimization
 
-**Answer Type:** Exact scalar
+**Answer Type:** Tuple or ordered list
 
 ---
 
@@ -123,5 +116,5 @@ $\frac{r+s-2}{2n+2-r-s}\binom{2n+2-r-s}{n+2-r-s}$
 - Quillen model structures on finite posets
 - weak factorization systems
 - right-bracketing functions
-- Dyck path statistics
-- Lagrange inversion
+- Dyck paths and ordered forests
+- extremal depth in rooted forests
