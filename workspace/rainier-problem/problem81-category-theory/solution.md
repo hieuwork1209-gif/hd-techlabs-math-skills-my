@@ -95,20 +95,20 @@ B_{m,d}=2^{m-d-1}.
 $$
 
 Step 5: Count all functions attaining both lexicographic maxima
-Let $D_j$ denote the number of derangements of a $j$-element set, as in the problem statement. To construct a maximizing function, choose the $d$ transient points in $\binom{m}{d}$ ways, choose a derangement $\pi$ of the remaining $m-d$ periodic points in $D_{m-d}$ ways, and choose the common target $c$ of all transient points in $m-d$ ways.
+Let $\Delta_j$ denote the number of derangements of a $j$-element set, as in the problem statement. To construct a maximizing function, choose the $d$ transient points in $\binom{m}{d}$ ways, choose a derangement $\pi$ of the remaining $m-d$ periodic points in $\Delta_{m-d}$ ways, and choose the common target $c$ of all transient points in $m-d$ ways.
 
 These choices determine $f$ uniquely, and every function attaining both maxima has this form by Steps 3 and 4. Hence
 $$
-K_{m,d}=\binom{m}{d}(m-d)D_{m-d}.
+K_{m,d}=\binom{m}{d}(m-d)\Delta_{m-d}.
 $$
 
-Final Answer: $\boxed{\left(2^{m-d},2^{m-d-1},\binom{m}{d}(m-d)D_{m-d}\right)}$
+Final Answer: $\boxed{\left(2^{m-d},2^{m-d-1},\binom{m}{d}(m-d)\Delta_{m-d}\right)}$
 
 ---
 
 ## Answer
 
-$\left(2^{m-d},2^{m-d-1},\binom{m}{d}(m-d)D_{m-d}\right)$
+$\left(2^{m-d},2^{m-d-1},\binom{m}{d}(m-d)\Delta_{m-d}\right)$
 
 ---
 
