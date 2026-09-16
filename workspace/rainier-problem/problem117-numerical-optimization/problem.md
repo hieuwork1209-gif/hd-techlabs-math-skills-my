@@ -2,51 +2,53 @@
 
 ## LaTeX (Normalized)
 
-Let $n\geq3$ and let $A_n\in\mathbb R^{n\times n}$ be the path Hessian
+Let
 $$
-A_n=
+A_5=
 \begin{bmatrix}
-2&-1&&&\\
--1&2&-1&&\\
-&\ddots&\ddots&\ddots&\\
-&&-1&2&-1\\
-&&&-1&2
-\end{bmatrix}.
-$$
-Define
-$$
-f_n(x)=\frac12x^TA_nx
-\qquad(x\in\mathbb R^n).
+2&-1&0&0&0\\
+-1&2&-1&0&0\\
+0&-1&2&-1&0\\
+0&0&-1&2&-1\\
+0&0&0&-1&2
+\end{bmatrix},
+\qquad
+f_5(x)=\frac12x^TA_5x
+\qquad(x\in\mathbb R^5).
 $$
 
-Choose a probability vector
+Consider randomized exact adjacent-block coordinate descent. Choose a probability vector
 $$
-p=(p_1,\ldots,p_n),
+p=(p_1,p_2,p_3,p_4),
 \qquad
 p_i\geq0,
 \qquad
-\sum_{i=1}^n p_i=1.
+\sum_{i=1}^4p_i=1.
 $$
-Starting from a nonzero $x$, perform one randomized exact coordinate-descent step as follows: sample $I\in\{1,\ldots,n\}$ with $\mathbb P(I=i)=p_i$, and then exactly minimize $f_n$ along coordinate $I$. Equivalently,
+Given a current point $x$, sample $I\in\{1,2,3,4\}$ with $\mathbb P(I=i)=p_i$, and replace the adjacent pair $(x_I,x_{I+1})$ by its exact minimizer while keeping the other three coordinates fixed. Equivalently, $x^+$ is the unique vector satisfying
 $$
-x^+=x-\frac{(A_nx)_I}{2}e_I,
+x_j^+=x_j\quad(j\notin\{I,I+1\})
 $$
-where $e_I$ is the $I$th standard basis vector.
+and
+$$
+f_5(x^+)=\min\left\{f_5(y):y_j=x_j\text{ for }j\notin\{I,I+1\}\right\}.
+$$
 
-Define the worst-case expected one-step energy contraction
+Define the worst-case one-step expected contraction
 $$
-\Gamma_n(p)
-=
-\sup_{x\ne0}
-\frac{\mathbb E[f_n(x^+)\mid x]}{f_n(x)}.
+\Gamma(p)
+=\sup_{x\ne0}
+\frac{\mathbb E[f_5(x^+)\mid x]}{f_5(x)}.
 $$
-Determine the unique probability vector $p^*$ minimizing $\Gamma_n(p)$, and determine the exact optimal value
+Determine exactly
 $$
-\Gamma_n^*:=\min_p\Gamma_n(p).
+\Gamma_*:=\min_p\Gamma(p),
 $$
+determine the unique minimizing distribution $p_*$, and determine the linear span $\mathcal L_*$ of all nonzero initial vectors $x$ attaining the supremum in $\Gamma(p_*)$.
+
 Give the final answer as
 $$
-\left((p_i^*)_{i=1}^n,\Gamma_n^*\right).
+(p_*,\Gamma_*,\mathcal L_*).
 $$
 
 ---
@@ -64,4 +66,4 @@ $$
 
 ## Domain Explanation
 
-This problem asks for the optimal sampling distribution in randomized exact coordinate descent for a structured strongly convex quadratic, minimizing the worst-case expected one-step contraction in the objective energy. The primary task is therefore algorithm-parameter optimization and convergence-rate analysis in Optimization and Numerical Mathematics and Numerical optimization. Linear Algebra, through generalized Rayleigh quotients and positive-semidefinite certificates, is used to prove the sharp rate and uniqueness and is subordinate to the numerical-optimization objective.
+This problem asks for the sampling distribution that optimizes the worst-case expected one-step contraction of an exact randomized block coordinate-descent method on a structured positive-definite quadratic, together with the equality-case directions. The primary task is therefore algorithmic minimax tuning in Optimization and Numerical Mathematics and Numerical optimization. Linear Algebra, especially generalized Rayleigh quotients and positive-semidefinite certificates, supplies the proof tools and is subordinate to the optimization objective.
