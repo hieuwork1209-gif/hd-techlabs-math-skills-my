@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-convex-optimization/problem.md",
+  "source_commit_sha": "3c66c85fa598ab23a59e12f03ed270186f77fd62",
+  "problem_blob_sha": "1cdd7bca7f48c035f27c50936aa43bfcc2a6fa4c",
+  "statement_sha256": "d2a59a1a65efd27b53f0207b3cee77d18b69911a9cc7ab637b25d997ad3ad94a",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T15:56:39+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nM_3=\\begin{pmatrix}\n1&r&s\\\\\nr&1&r\\\\\ns&r&1\n\\end{pmatrix}.\n\\]\nThe hypotheses imply\n\\[\n1-r^2>0,\\qquad (1-r^2)^2-(s-r^2)^2>0,\n\\]\nso the prescribed \\(3\\times 3\\) principal Toeplitz block is positive definite.\n\nFor any admissible \\(T\\), view \\(T\\) as the covariance matrix of centered real random variables\n\\[\nX_0,\\dots,X_{n-1}.\n\\]\nThen\n\\[\n\\det T=\\prod_{j=0}^{n-1}\\operatorname{Var}(X_j\\mid X_0,\\dots,X_{j-1}),\n\\]\nwith the \\(j=0\\) factor equal to \\(\\operatorname{Var}(X_0)=1\\). This is just the repeated Schur complement formula.\n\nThe first two factors are fixed:\n\\[\n\\operatorname{Var}(X_0)=1,\\qquad\n\\operatorname{Var}(X_1\\mid X_0)=1-r^2.\n\\]\nFor every \\(j\\ge2\\), conditioning on more variables cannot increase variance, hence\n\\[\n\\operatorname{Var}(X_j\\mid X_0,\\dots,X_{j-1})\n\\le\n\\operatorname{Var}(X_j\\mid X_{j-1},X_{j-2}).\n\\]\nBy the Toeplitz condition, the covariance matrix of \\((X_j,X_{j-1},X_{j-2})\\) is always \\(M_3\\). Therefore\n\\[\n\\operatorname{Var}(X_j\\mid X_{j-1},X_{j-2})\n=\n\\frac{\\det M_3}{\\det\\begin{pmatrix}1&r\\\\ r&1\\end{pmatrix}}\n=\n\\frac{(1-r^2)^2-(s-r^2)^2}{1-r^2}.\n\\]\nThus\n\\[\n\\det T\\le\n(1-r^2)\\left(\\frac{(1-r^2)^2-(s-r^2)^2}{1-r^2}\\right)^{n-2}.\n\\]\n\nIt remains to show equality is attainable. Define\n\\[\na=\\frac{r(1-s)}{1-r^2},\\qquad\nb=\\frac{s-r^2}{1-r^2},\\qquad\nq=\\frac{(1-r^2)^2-(s-r^2)^2}{1-r^2}.\n\\]\nTake centered Gaussian \\(X_0,X_1\\) with covariance matrix\n\\[\n\\begin{pmatrix}1&r\\\\ r&1\\end{pmatrix},\n\\]\nand for \\(j\\ge2\\) set\n\\[\nX_j=aX_{j-1}+bX_{j-2}+\\varepsilon_j,\n\\]\nwhere the \\(\\varepsilon_j\\) are independent centered Gaussians of variance \\(q\\), independent of \\(X_0,X_1\\).\n\nThe choices of \\(a,b,q\\) give\n\\[\n\\operatorname{Var}(X_j)=1,\\qquad\n\\operatorname{Cov}(X_j,X_{j-1})=r,\\qquad\n\\operatorname{Cov}(X_j,X_{j-2})=s,\n\\]\nand by induction the covariance matrix is Toeplitz. Since \\(q>0\\), it is positive definite. Also\n\\[\n\\operatorname{Var}(X_j\\mid X_0,\\dots,X_{j-1})=q\n\\]\nfor every \\(j\\ge2\\), so equality holds in the upper bound.\n\nTherefore the largest possible determinant is\n\\[\n\\boxed{\\frac{\\left((1-r^2)^2-(s-r^2)^2\\right)^{\\,n-2}}{(1-r^2)^{\\,n-3}}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T15:57:51+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/1cdd7bca7f48.json"
+}
