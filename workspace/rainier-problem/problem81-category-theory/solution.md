@@ -10,7 +10,7 @@ $$
 q_r^{\otimes3}E_W(e_1\otimes e_2\otimes e_3)
 =E_W(q_re_1\otimes q_re_2\otimes q_re_3)=0.
 $$
-The basis tensors that contain no $e_r$ remain distinct after applying $q_r^{\otimes3}$, so their coefficients must vanish. Doing this for $r=1,2,3$ shows that every surviving tensor contains each of $e_1,e_2,e_3$ exactly once. Hence, after reindexing coefficients,
+The basis tensors that contain no $e_r$ remain distinct after applying $q_r^{\otimes3}$, so their coefficients must vanish. Doing this for $r=1,2,3$ shows that every surviving tensor contains each of $e_1,e_2,e_3$ exactly once. Writing the six surviving coefficients as $a_\sigma$ gives
 $$
 E_W(e_1\otimes e_2\otimes e_3)
 =\sum_{\sigma\in S_3}a_\sigma P_\sigma(e_1\otimes e_2\otimes e_3),
@@ -65,7 +65,11 @@ the element $u=1+r+r^2$ satisfies
 $$
 \Phi(u)=(1,0),
 $$
-because $\epsilon(u)=1$ in $\mathbb F_2$. Since $\rho(A)=M_2(\mathbb F_2)$, this implies that $\Phi$ is surjective: for any $M$, choose $x$ with $\rho(x)=M$ and replace $\Phi(x)$ by $\Phi(x)+\epsilon(x)\Phi(u)=(0,M)$.
+because $\epsilon(u)=1$ in $\mathbb F_2$. Since $\rho(A)=M_2(\mathbb F_2)$, the image of $\Phi$ contains every $(0,M)$: choose $x$ with $\rho(x)=M$ and use
+$$
+\Phi(x)+\epsilon(x)\Phi(u)=(0,M).
+$$
+Together with $\Phi(u)=(1,0)$, this proves that $\Phi$ is surjective.
 
 Now $A$ has dimension $6$ and the codomain of $\Phi$ has dimension $5$, so $\ker\Phi$ has dimension $1$. Let
 $$
@@ -75,7 +79,7 @@ If $s$ is any transposition outside $\langle r\rangle$, then
 $$
 z=(1+r+r^2)(1+s),
 $$
-so $\rho(z)=0$, while $\epsilon(z)=6=0$ in $\mathbb F_2$. Thus
+so $\rho(z)=0$, while $\epsilon(z)=6=0$ in $\mathbb F_2$. Since $z\ne0$, it follows that
 $$
 \ker\Phi=\mathbb F_2z.
 $$
