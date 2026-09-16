@@ -32,4 +32,4 @@ $$
 
 ## Domain Explanation
 
-This problem is primarily Linear Algebra and Inner product spaces: two rank-$4$ orthogonal projections encode two $4$-dimensional subspaces, the spectrum of $PQP$ records the squared cosines of their principal angles, and $\det(P+Q)$ factors through the same spectral data. Constrained optimization is secondary and enters only after the projection geometry has been reduced to four scalar principal-angle parameters, so it is subordinate to the inner-product-space structure.
+This problem is primarily Linear Algebra and Inner product spaces: two rank-$4$ orthogonal projections encode two $4$-dimensional subspaces, the spectrum of $PQP$ records the squared cosines of their principal angles, and $\det(P+Q)$ factors through the same spectral data. Constrained optimization is the secondary ingredient and enters only after this projection geometry has been reduced to four scalar principal-angle parameters, so it is subordinate to the inner-product-space structure.
