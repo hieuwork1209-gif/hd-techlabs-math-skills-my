@@ -36,7 +36,7 @@ $$
 r(\varepsilon_{ij}+\varepsilon_{ji})
 +\sum_{k\ne i,j}\varepsilon_{ik}\varepsilon_{jk}=0.
 $$
-The sum on the right contains three signs, so it is an odd integer. Hence $\varepsilon_{ij}+\varepsilon_{ji}$ cannot be $0$, and therefore
+The second sum contains three signs, so it is an odd integer. Hence $\varepsilon_{ij}+\varepsilon_{ji}$ cannot be $0$, and therefore
 $$
 \varepsilon_{ij}=\varepsilon_{ji}.
 $$
