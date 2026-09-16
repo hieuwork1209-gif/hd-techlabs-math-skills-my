@@ -19,7 +19,7 @@ $$
 $$
 We may use the canonical pattern with all edges positive when $\sigma=1$, and the pattern with edges $(1,2),(2,3),\ldots,(5,6)$ positive and $(6,1)$ negative when $\sigma=-1$.
 
-For either canonical pattern, every feasible entry has absolute value at most $1$ by the $2\times2$ principal minors, so the feasible set is compact. There is a positive definite feasible matrix in each class. For $\sigma=1$, the matrix $\frac12 I+\frac12 J$ is feasible and has eigenvalues $7/2$ once and $1/2$ five times. For $\sigma=-1$, let $Qe_i=e_{i+1}$ for $1\le i\le5$ and $Qe_6=-e_1$, and put $A_-=Q+Q^T$. Since $Q^6=-I$, its eigenvalues are $e^{(2k+1)\pi i/6}$, so the eigenvalues of $A_-$ are
+For either canonical pattern, every feasible entry has absolute value at most $1$ by the $2\times2$ principal minors, so the feasible set is compact. There is a positive definite feasible matrix in each class. For $\sigma=1$, the matrix $\frac12 I+\frac12 J$, where $I$ is the identity and $J$ is the all-ones matrix, is feasible and has eigenvalues $7/2$ once and $1/2$ five times. For $\sigma=-1$, let $Qe_i=e_{i+1}$ for $1\le i\le5$ and $Qe_6=-e_1$, and put $A_-=Q+Q^T$. The vectors $e_1,Qe_1,\ldots,Q^5e_1$ form a basis and $Q^6=-I$, so the characteristic polynomial of $Q$ is $z^6+1$. Hence the eigenvalues of $A_-$ are
 $$
 \sqrt3,\sqrt3,0,0,-\sqrt3,-\sqrt3.
 $$
@@ -28,9 +28,13 @@ Thus $I+\frac12A_-$ is feasible and positive definite because its least eigenval
 Hence the determinant maximum in each class is positive, so every maximizer is positive definite. On the positive definite cone,
 $$
 \frac{d^2}{ds^2}\log\det(G+sH)
-=-\operatorname{tr}\left((G+sH)^{-1}H(G+sH)^{-1}H\right)<0
+=-\operatorname{tr}\left((G+sH)^{-1}H(G+sH)^{-1}H\right).
 $$
-for every nonzero symmetric $H$ along a positive definite segment. Therefore $\log\det$ is strictly concave, and each canonical feasible set has a unique maximizer.
+The trace on the right is the squared Frobenius norm of
+$$
+(G+sH)^{-1/2}H(G+sH)^{-1/2},
+$$
+so it is positive for every nonzero symmetric $H$. Therefore $\log\det$ is strictly concave, and each canonical feasible set has a unique maximizer.
 
 Step 2: Use first-order optimality and signed cyclic symmetry to determine the precision matrix.
 For $\sigma\in\{-1,1\}$, define the signed cyclic shift $Q_\sigma$ by
@@ -43,7 +47,7 @@ and set
 $$
 A_\sigma=Q_\sigma+Q_\sigma^T.
 $$
-The canonical edge constraints are exactly $g_{ij}=(A_\sigma)_{ij}/2$ on the six cycle edges. Since $Q_\sigma A_\sigma Q_\sigma^T=A_\sigma$, conjugation by $Q_\sigma$ preserves the feasible set. By uniqueness from Step 1, the maximizing matrix $G_\sigma$ satisfies
+The vectors $e_1,Q_\sigma e_1,\ldots,Q_\sigma^5e_1$ form a basis and $Q_\sigma^6=\sigma I$, so the characteristic polynomial of $Q_\sigma$ is $z^6-\sigma$. The canonical edge constraints are exactly $g_{ij}=(A_\sigma)_{ij}/2$ on the six cycle edges. Since $Q_\sigma A_\sigma Q_\sigma^T=A_\sigma$, conjugation by $Q_\sigma$ preserves the feasible set. By uniqueness from Step 1, the maximizing matrix $G_\sigma$ satisfies
 $$
 Q_\sigma G_\sigma Q_\sigma^T=G_\sigma.
 $$
@@ -78,7 +82,7 @@ $$
 These two scalar equations determine the admissible $t$ in each switching class.
 
 Step 3: Solve the untwisted class $\sigma=1$.
-When $\sigma=1$, the eigenvalues of $Q_\sigma$ are the sixth roots of unity, so the eigenvalues of $A_+$ are
+When $\sigma=1$, the roots of the characteristic polynomial $z^6-1$ give the eigenvalues of $A_+$ as
 $$
 2,1,1,-1,-1,-2.
 $$
@@ -121,7 +125,7 @@ D_+=85t_+-33=\frac{85\sqrt{17}-349}{8}.
 $$
 
 Step 4: Solve the twisted class $\sigma=-1$ and combine the two values.
-When $\sigma=-1$, the eigenvalues of $Q_\sigma$ are the six roots of $z^6=-1$. Thus the eigenvalues of $A_-$ are
+When $\sigma=-1$, the roots of the characteristic polynomial $z^6+1$ give the eigenvalues of $A_-$ as
 $$
 \sqrt3,\sqrt3,0,0,-\sqrt3,-\sqrt3.
 $$
