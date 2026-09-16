@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "6cfd9d045cace73ba080900f316227ad0fda4964",
+  "problem_blob_sha": "62856d4e27e37b74ab7525dc46a6948b1d2f1720",
+  "statement_sha256": "467357df8ac11d46af89f490fe84a5d11f004580f28aae28b1bd787481452b8a",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T08:34:46+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(P=\\operatorname{diag}(p_1,\\dots,p_n)\\). If \\(g=A_nx\\), an exact coordinate step in coordinate \\(i\\) decreases the quadratic by\n\\[\nf_n(x)-f_n(x^+)=\\frac{g_i^2}{4},\n\\]\nbecause \\((A_n)_{ii}=2\\). Hence\n\\[\n\\frac{\\mathbb E[f_n(x^+)\\mid x]}{f_n(x)}\n=\n1-\\frac12\\frac{x^TA_nPA_nx}{x^TA_nx}.\n\\]\nSo minimizing \\(\\Gamma_n(p)\\) is equivalent to maximizing\n\\[\n\\mu(p):=\\inf_{x\\ne0}\\frac{x^TA_nPA_nx}{x^TA_nx}.\n\\]\n\nPut \\(K=A_n^{-1}\\), and write \\(q=A_nx\\). Then\n\\[\n\\mu(p)=\\inf_{q\\ne0}\\frac{\\sum_i p_iq_i^2}{q^TKq}.\n\\]\nFor every \\(p\\), testing \\(q=(1,\\dots,1)\\) gives\n\\[\n\\mu(p)\\le \\frac{1}{\\mathbf 1^TK\\mathbf 1}.\n\\]\n\nNow solve \\(A_ns=\\mathbf 1\\). The solution is\n\\[\ns_i=\\frac{i(n+1-i)}2,\n\\]\nso\n\\[\nS:=\\sum_{i=1}^n s_i=\\frac{n(n+1)(n+2)}{12}.\n\\]\nThus every \\(p\\) satisfies\n\\[\n\\mu(p)\\le \\frac1S=\\frac{12}{n(n+1)(n+2)}.\n\\]\n\nChoose\n\\[\np_i^*=\\frac{s_i}{S}\n=\n\\frac{6i(n+1-i)}{n(n+1)(n+2)}.\n\\]\nTo see this attains the bound, note that \\(K=A_n^{-1}\\) has nonnegative entries and row sums \\(s_i\\). Hence\n\\[\n\\operatorname{diag}(s)-K\\succeq0,\n\\]\nbecause\n\\[\nq^T(\\operatorname{diag}(s)-K)q\n=\n\\frac12\\sum_{i,j}K_{ij}(q_i-q_j)^2\\ge0.\n\\]\nTherefore, for \\(p=p^*\\),\n\\[\n\\sum_i p_i^*q_i^2\n=\n\\frac1S\\sum_i s_iq_i^2\n\\ge\n\\frac1S q^TKq,\n\\]\nso \\(\\mu(p^*)\\ge 1/S\\). Combined with the upper bound, \\(\\mu(p^*)=1/S\\).\n\nUniqueness: if equality holds for some \\(p\\), then \\(q=\\mathbf1\\) must be a minimizer of the Rayleigh quotient. The stationarity condition gives\n\\[\np=\\frac{K\\mathbf1}{\\mathbf1^TK\\mathbf1}=\\frac{s}{S},\n\\]\nso \\(p=p^*\\).\n\nFinally,\n\\[\n\\Gamma_n^*\n=\n1-\\frac12\\mu(p^*)\n=\n1-\\frac{6}{n(n+1)(n+2)}.\n\\]\n\n\\[\n\\boxed{\n\\left(\n\\left(\\frac{6i(n+1-i)}{n(n+1)(n+2)}\\right)_{i=1}^n,\n\\ 1-\\frac{6}{n(n+1)(n+2)}\n\\right)\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T08:36:13+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/62856d4e27e3.json"
+}
