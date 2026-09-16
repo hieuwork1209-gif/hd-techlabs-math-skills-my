@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-probability-foundations/problem.md",
+  "source_commit_sha": "91bcbde6ec262f94e1103092b525113150420527",
+  "problem_blob_sha": "234b4bf6ec8288f6e18df342e7bcb36910158aee",
+  "statement_sha256": "ce513b87eee95454d7eb4a8762903aa8aa0c4c7dd2985fbe724dc3d457dd801b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T08:52:53+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nK=\\#\\{i:X_i=1\\}.\n\\]\nThen\n\\[\nX_1+\\cdots+X_{12}=0 \\iff K=6.\n\\]\n\nFirst, we may assume the law is exchangeable: randomly permute the coordinates. This preserves unbiasedness, 8-wise independence, and the value of \\(\\mathbb P(K=6)\\). So it is enough to optimize over distributions of \\(K\\in\\{0,\\dots,12\\}\\).\n\nFor any polynomial \\(q(K)\\) of degree at most \\(8\\), 8-wise independence implies\n\\[\n\\mathbb E q(K)=\\mathbb E q(B),\n\\]\nwhere \\(B\\sim \\operatorname{Bin}(12,1/2)\\), since \\(K^d\\) is a degree \\(d\\) polynomial in the indicators \\(\\mathbf 1_{X_i=1}\\).\n\nNow define\n\\[\nq(k)=\\frac{(k-1)(k-2)(k-3)(k-4)(k-8)(k-9)(k-10)(k-11)}{14400}.\n\\]\nThis has degree \\(8\\), and\n\\[\nq(6)=1.\n\\]\nAlso, on \\(k=0,1,\\dots,12\\), it is nonnegative except it is zero at\n\\[\n1,2,3,4,8,9,10,11.\n\\]\nIn particular,\n\\[\nq(k)\\ge \\mathbf 1_{\\{k=6\\}}\n\\]\nfor all \\(k\\in\\{0,\\dots,12\\}\\). Therefore\n\\[\n\\mathbb P(K=6)\\le \\mathbb E q(K)=\\mathbb E q(B).\n\\]\nOnly \\(k=0,5,6,7,12\\) contribute to \\(\\mathbb E q(B)\\). We have\n\\[\nq(0)=q(12)=\\frac{66}{5},\\qquad q(5)=q(7)=\\frac35,\\qquad q(6)=1.\n\\]\nThus\n\\[\n\\mathbb E q(B)\n=\n\\frac{2\\cdot \\frac{66}{5}+2\\binom{12}{5}\\cdot \\frac35+\\binom{12}{6}}{2^{12}}\n=\n\\frac{2\\cdot \\frac{66}{5}+2\\cdot 792\\cdot \\frac35+924}{4096}\n=\n\\frac{297}{640}.\n\\]\nSo\n\\[\n\\mathbb P(K=6)\\le \\frac{297}{640}.\n\\]\n\nIt remains to show this is attainable. Define an exchangeable distribution by choosing \\(K\\) with probabilities\n\n\\[\n\\begin{array}{c|ccccccccc}\nk&1&2&3&4&6&8&9&10&11\\\\\n\\hline\n\\mathbb P(K=k)&\\frac9{2240}&\\frac{33}{1792}&\\frac{11}{448}&\\frac{99}{448}&\\frac{297}{640}&\\frac{99}{448}&\\frac{11}{448}&\\frac{33}{1792}&\\frac9{2240}\n\\end{array}\n\\]\nand then, conditional on \\(K=k\\), choose uniformly among all sign vectors with exactly \\(k\\) entries equal to \\(1\\).\n\nThese probabilities sum to \\(1\\). Let \\(S=X_1+\\cdots+X_{12}=2K-12\\). By symmetry all odd moments vanish, and direct calculation gives\n\\[\n\\mathbb E S^2=12,\\quad\n\\mathbb E S^4=408,\\quad\n\\mathbb E S^6=21792,\\quad\n\\mathbb E S^8=1532928.\n\\]\nThese are exactly the corresponding moments of a sum of \\(12\\) independent unbiased \\(\\{-1,1\\}\\)-variables.\n\nFor an exchangeable \\(\\{-1,1\\}\\)-vector, the averages of products over \\(j\\)-subsets are elementary symmetric polynomials in the coordinates, hence polynomials in \\(S\\) of degree \\(j\\). Therefore matching the moments of \\(S\\) through degree \\(8\\) gives\n\\[\n\\mathbb E\\prod_{i\\in A}X_i=0\n\\]\nfor every nonempty \\(A\\) with \\(|A|\\le 8\\). Thus the construction is unbiased and 8-wise independent.\n\nIn this construction,\n\\[\n\\mathbb P(X_1+\\cdots+X_{12}=0)=\\mathbb P(K=6)=\\frac{297}{640}.\n\\]\n\n\\[\n\\boxed{\\frac{297}{640}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T08:55:05+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/234b4bf6ec82.json"
+}
