@@ -1,7 +1,7 @@
 ## Steps
 
 Step 1: Compute the two monads attached to each iterate
-Let $X=[m]$ and let $f:X\to X$. For each $k\geq1$, direct image and inverse image satisfy
+Let $X=\{1,\ldots,m\}$ and let $f:X\to X$. For each $k\geq1$, direct image and inverse image satisfy
 $$
 \exists_{f^k}\dashv (f^k)^{-1},
 $$
@@ -95,11 +95,7 @@ B_{m,d}=2^{m-d-1}.
 $$
 
 Step 5: Count all functions attaining both lexicographic maxima
-Let $D_j$ denote the number of derangements of a $j$-element set, as in the problem statement. To construct a maximizing function:
-
-- choose the $d$ transient points in $\binom{m}{d}$ ways;
-- choose a derangement $\pi$ of the remaining $m-d$ periodic points in $D_{m-d}$ ways;
-- choose the common target $c$ of all transient points in $m-d$ ways.
+Let $D_j$ denote the number of derangements of a $j$-element set, as in the problem statement. To construct a maximizing function, choose the $d$ transient points in $\binom{m}{d}$ ways, choose a derangement $\pi$ of the remaining $m-d$ periodic points in $D_{m-d}$ ways, and choose the common target $c$ of all transient points in $m-d$ ways.
 
 These choices determine $f$ uniquely, and every function attaining both maxima has this form by Steps 3 and 4. Hence
 $$
