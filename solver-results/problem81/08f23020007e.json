@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-category-theory/problem.md",
+  "source_commit_sha": "fa8131b0e463071d3ec8809f550f103444850a0f",
+  "problem_blob_sha": "08f23020007e34ec1d2c48c7c63977de87510bb6",
+  "statement_sha256": "43d445dfb91217dd1a8bdc699939b7304fe0325ff3a785b017732903e31e13ee",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T15:38:14+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(F\\) be the class of fibrations. For each level \\(k=1,\\dots,n\\), define\n\\[\nh(k)=\\max\\{i<k:\\text{ some fibration }i\\to j\\text{ has }j\\ge k\\},\n\\]\nwith \\(h(k)=-1\\) if no fibration crosses level \\(k\\).\n\nAn arrow \\(i\\to j\\) is a fibration exactly when\n\\[\nh(k)\\ge i\\qquad (i<k\\le j).\n\\]\nAlso \\(0\\to k\\) is a cofibration exactly when \\(h(k)=-1\\). Hence\n\\[\nc(\\mathcal M)=1+\\#\\{k:h(k)=-1\\}.\n\\]\nThus \\(c=s\\) means there are \\(s-1\\) gaps, splitting \\([n]\\) into \\(s\\) consecutive blocks. No fibration crosses a gap, and inside a block the maximum is obtained by making every internal arrow a fibration, except where forced by the prescribed value of \\(f\\).\n\nLet the block sizes be\n\\[\na_1,\\dots,a_s,\\qquad a_1+\\cdots+a_s=n+1,\n\\]\nwith the last block containing \\(n\\).\n\nIf \\(r\\ge2\\), the last block must have size at least \\(r\\). For a last block of size \\(m\\), the maximum number of fibrations inside it with exactly \\(r\\) arrows into its top object is\n\\[\n\\binom{m+1}{2}-(m-r),\n\\]\nbecause exactly \\(m-r\\) top arrows must be missing, and this bound is attained by deleting only those top arrows.\n\nWriting\n\\[\nt=n+2-r-s,\n\\]\nthe extra \\(t\\) objects beyond the minimum sizes must be placed to maximize a convex quadratic. For \\(r\\ge3\\), all extras go in the last block. For \\(r=2\\), they may all go in the last block or all in one earlier block.\n\nIf \\(r=1\\), the last block must be a singleton, and all \\(t\\) extra objects go into one of the first \\(s-1\\) blocks.\n\nTherefore\n\\[\n\\boxed{\nA_{n;r,s}\n=\ns-1+\\binom{r+t+1}{2}-t\\,[r\\ge2]\n}\n\\]\nand\n\\[\n\\boxed{\nK_{n;r,s}\n=\n1+[t>0]\\bigl((s-2)[r=1]+(s-1)[r=2]\\bigr).\n}\n\\]\n\nSo the requested ordered pair is\n\\[\n\\boxed{\n\\left(\ns-1+\\binom{r+t+1}{2}-t\\,[r\\ge2],\n\\;\n1+[t>0]\\bigl((s-2)[r=1]+(s-1)[r=2]\\bigr)\n\\right)\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T15:41:49+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/08f23020007e.json"
+}
