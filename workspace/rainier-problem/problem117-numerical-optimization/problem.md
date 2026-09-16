@@ -33,7 +33,7 @@ $$
 $$
 at which the active-set pattern changes. In the final regime $\gamma_2<\gamma\le7$, let $u_*$ denote the unique member of $\mathcal A_\gamma\cap(1,2)$; it is independent of $\gamma$ there.
 
-Determine $\gamma_1$ and $u_*$ exactly, express $\gamma_2$ exactly in terms of $u_*$, and identify $\mathcal A_\gamma$ on all three open regimes and at both transitions.
+Determine $\gamma_1$ and $u_*$ exactly, express $\gamma_2$ exactly in terms of $u_*$, and identify $\mathcal A_\gamma$ on all three open regimes and at both transitions. Also determine the differentiability class of $\gamma\mapsto\mathcal C_\gamma^*$ at each transition and give the first nonzero one-sided derivative there exactly.
 
 For a polynomial $f$ with a unique real zero in $(a,b)$, write $\mathrm{root}_{(a,b)}(f)$ for that zero. Give the final answer as $(\gamma_1,u_*)$.
 
@@ -52,4 +52,4 @@ For a polynomial $f$ with a unique real zero in $(a,b)$, write $\mathrm{root}_{(
 
 ## Domain Explanation
 
-This problem asks for exact minimax tuning of three positive Cayley/ADI shift parameters under a fixed geometric-product budget as a spectral gap moves. The primary task is constrained algorithmic parameter optimization in Optimization and Numerical Mathematics and Numerical optimization; rational approximation and active-set geometry are the proof mechanisms.
+This problem asks for exact minimax tuning and sensitivity analysis of three positive Cayley/ADI shift parameters under a fixed geometric-product budget as a spectral gap moves. The primary task is constrained algorithmic parameter optimization in Optimization and Numerical Mathematics and Numerical optimization; rational approximation and active-set geometry are the proof mechanisms.
