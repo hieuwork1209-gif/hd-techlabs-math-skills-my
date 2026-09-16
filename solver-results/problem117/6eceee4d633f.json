@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "b12e3ee48184f4de626c4fdccb719e659444d5ca",
+  "problem_blob_sha": "6eceee4d633f22d32017e142a55d42ca6ae36d41",
+  "statement_sha256": "2b21aebbb215177fa7af7b60aecbed65f3804837c1e9e0b06e80a85db2948c71",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T09:01:10+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\np(\\lambda)=(1-\\alpha\\lambda)(1-\\beta\\lambda)\n=1-2mt\\,\\lambda+t\\lambda^2\n=1-t\\,\\lambda(2m-\\lambda),\n\\]\nwhere \\(t=\\alpha\\beta>0\\) and \\(m=(\\alpha+\\beta)/(2\\alpha\\beta)\\). Any contraction \\(<1\\) forces \\(m>3\\), since otherwise \\(p(6)\\ge 1\\).\n\nFor fixed \\(m>3\\), write\n\\[\nh_m(\\lambda)=\\lambda(2m-\\lambda).\n\\]\nThen on \\(E_\\gamma\\),\n\\[\np(\\lambda)=1-t h_m(\\lambda).\n\\]\nIf\n\\[\nL(m)=\\min_{\\lambda\\in E_\\gamma}h_m(\\lambda),\\qquad\nH(m)=\\max_{\\lambda\\in E_\\gamma}h_m(\\lambda),\n\\]\nthen the best \\(t\\) for this \\(m\\) equioscillates between \\(+C\\) and \\(-C\\):\n\\[\nt=\\frac{2}{H(m)+L(m)},\\qquad\nC=\\frac{H(m)-L(m)}{H(m)+L(m)}.\n\\]\nThus we maximize \\(L/H\\).\n\nThe decisive value is always \\(m=7/2\\). At this point\n\\[\nh(1)=h(6)=6,\\qquad h(2)=10,\\qquad h(\\gamma)=\\gamma(7-\\gamma),\\qquad h(7/2)=49/4.\n\\]\n\nNow the maximum \\(H\\) over the disconnected set changes as \\(\\gamma\\) moves:\n\n- If \\(2<\\gamma<7/2\\), the vertex \\(7/2\\in[\\gamma,6]\\), so\n  \\[\n  H=49/4,\\quad L=6,\n  \\]\n  and the active points are\n  \\[\n  \\{1,7/2,6\\}.\n  \\]\n\n- If \\(7/2<\\gamma<5\\), the vertex lies in the gap, and the largest available value of \\(h\\) is at \\(\\lambda=\\gamma\\), since\n  \\[\n  h(\\gamma)=\\gamma(7-\\gamma)>10=h(2).\n  \\]\n  The minimum is still at \\(1,6\\), so the active points are\n  \\[\n  \\{1,\\gamma,6\\}.\n  \\]\n\n- If \\(5<\\gamma<6\\), then\n  \\[\n  h(2)=10>\\gamma(7-\\gamma)=h(\\gamma),\n  \\]\n  so the largest available value is at \\(2\\), while the minimum remains at \\(1,6\\). Hence the active points are\n  \\[\n  \\{1,2,6\\}.\n  \\]\n\nAt \\(\\gamma=7/2\\), the two descriptions coincide:\n\\[\n\\mathcal A_{7/2}=\\{1,7/2,6\\}.\n\\]\nAt \\(\\gamma=5\\), the two competing maxima tie:\n\\[\nh(2)=h(5)=10,\n\\]\nso\n\\[\n\\mathcal A_5=\\{1,2,5,6\\}.\n\\]\n\nTherefore\n\\[\n\\boxed{\n\\left(\n\\frac72,\\,\n5,\\,\n\\{1,\\frac72,6\\},\\,\n\\{1,\\gamma,6\\},\\,\n\\{1,2,6\\}\n\\right)\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T09:03:19+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/6eceee4d633f.json"
+}
