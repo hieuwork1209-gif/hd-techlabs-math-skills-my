@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-category-theory/problem.md",
+  "source_commit_sha": "cb1c68a9023a6bb7c328d32b8459be52a1a3218f",
+  "problem_blob_sha": "4f1853277afb8bb975a88b10e0f40d963f34ce2c",
+  "statement_sha256": "fc23fd3cd91ebf2879a023bbed4388daa8f953b3cd90055f77295e656bfed171",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T15:47:30+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\n\\varepsilon_X:A(X)\\to \\mathbb Z,\\qquad \\varepsilon_X\\left(\\sum_x u_xe_x\\right)=\\sum_x u_x\n\\]\nbe the augmentation map.\n\nEvery natural bilinear product is forced by what it does to basis pairs. For distinct \\(x,y\\), naturality from the two-point set gives\n\\[\n\\mu_X(e_x,e_y)=a e_x+b e_y\n\\]\nfor fixed integers \\(a,b\\). For \\(x=y\\), naturality from a one-point set gives\n\\[\n\\mu_X(e_x,e_x)=c e_x.\n\\]\nNow apply the map collapsing two distinct points \\(x,y\\) to one point. Naturality requires\n\\[\n(a+b)e_z=c e_z,\n\\]\nso \\(c=a+b\\).\n\nThus every natural bilinear product has the form\n\\[\n\\mu_X(u,v)=a\\,\\varepsilon_X(v)u+b\\,\\varepsilon_X(u)v\n\\]\nfor fixed integers \\(a,b\\).\n\nNow impose associativity. Write \\(|u|=\\varepsilon_X(u)\\). Then\n\\[\n(u*v)*w\n=a^2|v||w|u+ab|u||w|v+b(a+b)|u||v|w,\n\\]\nwhile\n\\[\nu*(v*w)\n=a(a+b)|v||w|u+ab|u||w|v+b^2|u||v|w.\n\\]\nThese are equal for all \\(u,v,w\\) iff\n\\[\nab=0.\n\\]\n\nTherefore the associative natural bilinear products are exactly\n\\[\n\\boxed{\\mu_X(u,v)=\\lambda\\,\\varepsilon_X(v)u\\quad\\text{for some }\\lambda\\in\\mathbb Z}\n\\]\nor\n\\[\n\\boxed{\\mu_X(u,v)=\\lambda\\,\\varepsilon_X(u)v\\quad\\text{for some }\\lambda\\in\\mathbb Z.}\n\\]\nThe zero product occurs in both families when \\(\\lambda=0\\).",
+  "status": "success",
+  "completed_at": "2026-09-16T15:48:14+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/4f1853277afb.json"
+}
