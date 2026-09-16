@@ -1,167 +1,233 @@
 ## Steps
 
-Step 1: Write the relaxed Douglas-Rachford error operator
+Step 1: Reduce the two uncertainties to an effective penalty parameter
 Let
 $$
 U=\frac{1}{\sqrt{2}}\begin{bmatrix}1&-1\\1&1\end{bmatrix},
 \qquad
-Q_{\mu}=\begin{bmatrix}\mu&0\\0&\frac{4}{\mu}\end{bmatrix},
+Q_{\lambda,\mu}=\lambda\begin{bmatrix}\mu&0\\0&\frac{4}{\mu}\end{bmatrix},
 \qquad
-R_{\mu}=UQ_{\mu}U^T.
+R_{\lambda,\mu}=UQ_{\lambda,\mu}U^T.
 $$
-For a quadratic with Hessian $H$, the proximal reflection is
+For a quadratic with Hessian $H$, the reflected proximal map is
 $$
 2P_{h,\rho}-I=(\rho I-H)(\rho I+H)^{-1}.
 $$
 Set
 $$
+t=\frac{\rho}{\lambda},
+\qquad
 s=\frac{\theta}{2}\in(0,1],
-\qquad
-a_{\mu}=\frac{\rho-\mu}{\rho+\mu},
-\qquad
-b_{\mu}=\frac{\rho-\frac{4}{\mu}}{\rho+\frac{4}{\mu}},
 $$
 and
 $$
-D_{\mu}=\operatorname{diag}(a_{\mu},b_{\mu}).
-$$
-Then the two reflected proximal maps are $D_{\mu}$ and $UD_{\mu}U^T$, so one relaxed Douglas-Rachford step is linear with
-$$
-z^+=T_{\mu,\rho,s}z,
+a=\frac{t-\mu}{t+\mu},
 \qquad
-T_{\mu,\rho,s}=(1-s)I+sUD_{\mu}U^TD_{\mu}.
+b=\frac{t-\frac{4}{\mu}}{t+\frac{4}{\mu}},
+\qquad
+D=\operatorname{diag}(a,b).
 $$
-Therefore
+The two reflected proximal maps are $D$ and $UDU^T$, so one relaxed Douglas-Rachford step has error operator
 $$
-\mathcal C(\rho,\theta)=\sup_{\mu\in[1,4]}\|T_{\mu,\rho,\theta/2}\|_2.
+T_{t,\mu,s}=(1-s)I+sUDU^TD.
+$$
+As $\lambda$ ranges over $[1/2,2]$, the effective penalty parameter ranges over
+$$
+t\in\left[\frac{\rho}{2},2\rho\right].
+$$
+Thus the robust contraction is the supremum of $\|T_{t,\mu,s}\|_2$ over
+$$
+t\in\left[\frac{\rho}{2},2\rho\right],
+\qquad
+\mu\in[1,4].
 $$
 
-Step 2: Obtain a global lower bound from one endpoint of the uncertainty set
-The robust supremum contains $\mu=1$. At this endpoint write
+Step 2: Force the unique penalty parameter by testing scales outside the balanced interval
+Write
 $$
-a=\frac{\rho-1}{\rho+1},
-\qquad
-b=\frac{\rho-4}{\rho+4},
-\qquad
-D=\operatorname{diag}(a,b),
-\qquad
 M=UDU^TD.
 $$
-Direct multiplication gives
+If $0<t\leq1$, choose $\mu=1$. Then $a,b\leq0$. Put $x=-a$ and $y=-b$, so $0\leq x<1$, $0<y<1$, and
 $$
-\operatorname{tr}M=\frac{(a+b)^2}{2},
-\qquad
-\|M\|_F^2=\frac{(a^2+b^2)^2}{2}.
+y=\frac{4-t}{4+t}\geq\frac{3}{5}.
 $$
-For $T=(1-s)I+sM$,
+For $e_2=(0,1)^T$,
 $$
-\frac{\|T\|_F^2}{2}
-=(1-s)^2+\frac{s(1-s)}{2}(a+b)^2+\frac{s^2}{4}(a^2+b^2)^2.
-$$
-Since a $2\times2$ matrix satisfies $\|T\|_2^2\geq\|T\|_F^2/2$, it remains to bound $a^2+b^2$. Here
-$$
-a^2+b^2-\frac{2}{9}
-=\frac{4(\rho-2)^2(4\rho^2+11\rho+16)}{9(\rho+1)^2(\rho+4)^2}\geq0,
-$$
-with equality only at $\rho=2$. Consequently
-$$
-\mathcal C(\rho,2s)^2
-\geq(1-s)^2+\frac{s^2}{81}.
-$$
-For every $s>0$, equality in this lower bound forces $\rho=2$.
-
-Step 3: Optimize the relaxation parameter in the lower bound
-Define
-$$
-L(s)=(1-s)^2+\frac{s^2}{81},
-\qquad 0<s\leq1.
-$$
-Then
-$$
-L'(s)=-2(1-s)+\frac{2s}{81},
-$$
-so the unique critical point is
-$$
-s_*=\frac{81}{82}.
-$$
-Because $L$ is a strictly convex quadratic, this is its unique minimum on $(0,1]$, and
-$$
-L(s_*)=\frac{1}{82}.
-$$
-Thus every admissible pair satisfies
-$$
-\mathcal C(\rho,\theta)\geq\frac{1}{\sqrt{82}},
-$$
-and equality can occur only if
-$$
-\rho=2,
-\qquad
-\theta=2s_*=\frac{81}{41}.
-$$
-
-Step 4: Show that the forced pair attains the lower bound for every anisotropy
-Set
-$$
-\rho=2,
-\qquad
-s=\frac{81}{82}.
-$$
-For arbitrary $\mu\in[1,4]$,
-$$
-a_{\mu}=\frac{2-\mu}{2+\mu},
-\qquad
-b_{\mu}=\frac{2-\frac{4}{\mu}}{2+\frac{4}{\mu}}
-=\frac{\mu-2}{\mu+2}=-a_{\mu}.
-$$
-Let
-$$
-c_{\mu}=\frac{2-\mu}{2+\mu},
-\qquad
-Z=\begin{bmatrix}1&0\\0&-1\end{bmatrix}.
-$$
-Then $D_{\mu}=c_{\mu}Z$. The fixed matrix
-$$
-J=UZU^TZ=\begin{bmatrix}0&-1\\1&0\end{bmatrix}
-$$
-satisfies $J^T=-J$ and $J^TJ=I$, so
-$$
-UD_{\mu}U^TD_{\mu}=c_{\mu}^2J.
+Me_2=\frac{b}{2}\begin{bmatrix}a-b\\a+b\end{bmatrix}=:m.
 $$
 Hence
 $$
-T_{\mu,2,81/82}
-=\frac{1}{82}I+\frac{81}{82}c_{\mu}^2J
+\|m\|_2^2=\frac{y^2(x^2+y^2)}{2},
+\qquad
+m_2=\frac{y(x+y)}{2}.
 $$
-and therefore
+Because $x^2+y^2\leq x+y\leq(x+y)/y$, we have $\|m\|_2^2\leq m_2$. Therefore the convex quadratic
 $$
-T_{\mu,2,81/82}^TT_{\mu,2,81/82}
-=\left(\frac{1}{82^2}+\frac{81^2}{82^2}c_{\mu}^4\right)I.
+\|(1-s)e_2+sm\|_2^2
 $$
-On $\mu\in[1,4]$,
+has nonpositive derivative at $s=1$, so it decreases on $0<s\leq1$. Consequently
 $$
-|c_{\mu}|=\frac{|2-\mu|}{2+\mu}\leq\frac{1}{3},
+\|T_{t,1,s}\|_2
+\geq\|T_{t,1,s}e_2\|_2
+\geq\|Me_2\|_2
+=\frac{y\sqrt{x^2+y^2}}{\sqrt{2}}
+\geq\frac{y^2}{\sqrt{2}}
+\geq\frac{9\sqrt{2}}{50}.
 $$
-with equality at $\mu=1$ and $\mu=4$. Thus
+Equality in the last two inequalities forces $t=1$ and $x=0$.
+
+If $t\geq4$, again choose $\mu=1$. Now $0\leq b\leq a<1$ and
 $$
-\|T_{\mu,2,81/82}\|_2^2
-\leq\frac{1}{82^2}+\frac{81^2}{82^2}\frac{1}{81}
-=\frac{1}{82},
+a=\frac{t-1}{t+1}\geq\frac{3}{5}.
 $$
-and equality is attained at the two endpoints. Hence
+Using $e_1=(1,0)^T$ gives the symmetric estimate
 $$
-\mathcal C\left(2,\frac{81}{41}\right)=\frac{1}{\sqrt{82}}.
+\|T_{t,1,s}\|_2\geq\frac{a^2}{\sqrt{2}}\geq\frac{9\sqrt{2}}{50},
+$$
+with equality only at $t=4$ after the same convexity argument.
+
+Therefore a robust contraction no larger than $9\sqrt{2}/50$ requires
+$$
+\left[\frac{\rho}{2},2\rho\right]\subseteq[1,4].
+$$
+The two intervals have the same multiplicative width $4$, so this containment forces
+$$
+\rho=2.
 $$
 
-Step 5: State the unique robust optimum
-The lower bound in Step 2 is strict unless $\rho=2$, and the strictly convex minimization in Step 3 then forces $s=81/82$, equivalently $\theta=81/41$. Step 4 proves that this pair controls every $\mu\in[1,4]$ and attains the lower bound. The minimizing pair is therefore unique.
+Step 3: Force full relaxation at the balanced penalty
+Set $\rho=2$. Then $t\in[1,4]$. At the uncertainty point $t=1$, $\mu=1$,
+$$
+a=0,
+\qquad
+b=-\frac{3}{5},
+$$
+and
+$$
+Me_2=\begin{bmatrix}-\frac{9}{50}\\[1mm]\frac{9}{50}\end{bmatrix}.
+$$
+Thus
+$$
+\|T_{1,1,s}e_2\|_2^2
+=\left(\frac{9s}{50}\right)^2
++\left(1-\frac{41s}{50}\right)^2
+=1-\frac{41}{25}s+\frac{881}{1250}s^2.
+$$
+Its derivative is
+$$
+-\frac{41}{25}+\frac{881}{625}s<0
+\qquad(0<s\leq1).
+$$
+Hence this lower bound is strictly decreasing in $s$, and
+$$
+\mathcal C(2,2s)>
+\frac{9\sqrt{2}}{50}
+$$
+whenever $s<1$. Therefore any minimizer attaining the lower bound from Step 2 must satisfy
+$$
+s=1,
+\qquad
+\theta=2.
+$$
 
-Final Answer: $\boxed{\left(2,\frac{81}{41},\frac{1}{\sqrt{82}}\right)}$
+Step 4: Bound every remaining uncertainty pair by a logarithmic diamond
+It remains to evaluate the whole rectangle
+$$
+t\in[1,4],
+\qquad
+\mu\in[1,4]
+$$
+at $s=1$. Then $T_{t,\mu,1}=M$, and direct multiplication gives
+$$
+\|M\|_F^2=\frac{(a^2+b^2)^2}{2}.
+$$
+Therefore
+$$
+\|M\|_2\leq\frac{a^2+b^2}{\sqrt{2}}.
+$$
+The reflection coefficients depend on the two multiplicative coordinates $t/\mu$ and $t\mu/4$, so define their logarithms by
+$$
+x=\frac{1}{2}\log\frac{t}{\mu},
+\qquad
+y=\frac{1}{2}\log\frac{t\mu}{4}.
+$$
+Then
+$$
+a=\tanh x,
+\qquad
+b=\tanh y.
+$$
+If $X=\log t$, $Y=\log\mu$, and $L=\log4$, then
+$$
+x=\frac{X-Y}{2},
+\qquad
+y=\frac{X+Y-L}{2}.
+$$
+The square $0\leq X,Y\leq L$ is therefore equivalent to
+$$
+|x|+|y|\leq\log2.
+$$
+For $u,v\geq0$, write $p=\tanh u$ and $q=\tanh v$. The addition formula gives
+$$
+\tanh^2(u+v)-\tanh^2u-\tanh^2v
+=\frac{pq\left(2-(2+pq)(p^2+q^2)\right)}{(1+pq)^2}.
+$$
+On $0\leq u,v\leq\log2$ we have $0\leq p,q\leq3/5$, so
+$$
+(2+pq)(p^2+q^2)
+\leq\left(2+\frac{9}{25}\right)\frac{18}{25}
+=\frac{1062}{625}<2.
+$$
+Hence
+$$
+\tanh^2u+\tanh^2v\leq\tanh^2(u+v),
+$$
+with equality only when $uv=0$. Taking $u=|x|$ and $v=|y|$ yields
+$$
+a^2+b^2
+\leq\tanh^2(|x|+|y|)
+\leq\tanh^2(\log2)
+=\frac{9}{25}.
+$$
+Therefore every uncertainty pair satisfies
+$$
+\|T_{t,\mu,1}\|_2\leq\frac{9\sqrt{2}}{50}.
+$$
+
+Step 5: Determine the exact worst-case set and state the robust optimum
+Equality in Step 4 requires both
+$$
+|x|+|y|=\log2
+$$
+and equality in the hyperbolic-tangent inequality. Since its bracket is strictly positive on the stated range, equality there forces $xy=0$. Thus
+$$
+(x,y)\in\{(\log2,0),(-\log2,0),(0,\log2),(0,-\log2)\}.
+$$
+Using
+$$
+\log t=x+y+\log2,
+\qquad
+\log\mu=-x+y+\log2,
+$$
+these four points are exactly
+$$
+(t,\mu)\in\{1,4\}\times\{1,4\}.
+$$
+At each of them one of $a,b$ is $0$ and the other has magnitude $3/5$, so $M$ has rank one and its operator norm equals its Frobenius norm $9\sqrt{2}/50$. Hence the bound is attained exactly at those four points.
+
+Since $\rho=2$ and $t=\rho/\lambda$, the values $t=1,4$ correspond to $\lambda=2,1/2$, respectively. Therefore
+$$
+\mathcal W_*=\left\{\frac{1}{2},2\right\}\times\{1,4\}.
+$$
+Steps 2 and 3 also show that no other $\rho$ or $\theta$ can attain the same robust contraction, so the minimizing pair is unique.
+
+Final Answer: $\boxed{\left(2,2,\frac{9\sqrt{2}}{50},\left\{\frac{1}{2},2\right\}\times\{1,4\}\right)}$
 
 ---
 
 ## Answer
 
-$\left(2,\frac{81}{41},\frac{1}{\sqrt{82}}\right)$
+$\left(2,2,\frac{9\sqrt{2}}{50},\left\{\frac{1}{2},2\right\}\times\{1,4\}\right)$
 
 ---
 
@@ -178,5 +244,5 @@ $\left(2,\frac{81}{41},\frac{1}{\sqrt{82}}\right)$
 - robust parameter tuning
 - relaxed Douglas-Rachford splitting
 - proximal reflections
-- Frobenius norm lower bounds
-- fixed-determinant anisotropy
+- logarithmic coordinate transform
+- operator norm bounds
