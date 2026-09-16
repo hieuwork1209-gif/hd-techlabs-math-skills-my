@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-convex-optimization/problem.md",
+  "source_commit_sha": "a0fa40b651a65340e7f35888ae7f065cea5f102d",
+  "problem_blob_sha": "549cb8ea00d82e77749b5a24d379c8011f5bb93a",
+  "statement_sha256": "a5590e24b1904de72517b467647da9cd01b20c6f17821ee0effb199fb5d4c91a",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T16:21:52+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nM(m)=\\min \\int_{-1}^1 f(x)^2\\,dx .\n\\]\n\nThe answer is\n\n\\[\n\\boxed{\nM(m)=\n\\begin{cases}\n\\displaystyle \\frac12+\\frac32m^2, & 0\\le m\\le \\frac13,\\\\[6pt]\n\\displaystyle 1-\\frac16\\sqrt{12-24m}, & \\frac13\\le m\\le \\frac12.\n\\end{cases}}\n\\]\n\nFor \\(0\\le m\\le 1/3\\), the unconstrained quadratic minimizer is affine:\n\n\\[\ng(x)=\\frac12+\\frac{3m}{2}x.\n\\]\n\nIt satisfies \\(0\\le g\\le 1\\) exactly when \\(m\\le 1/3\\), and has the required moments. For any admissible \\(f\\),\n\n\\[\n\\int_{-1}^1 f^2\n=\n\\int_{-1}^1 g^2+\\int_{-1}^1 (f-g)^2\n\\ge \\int_{-1}^1 g^2,\n\\]\n\nbecause \\(g\\) is affine and \\(f-g\\) has zero zeroth and first moments. Hence\n\n\\[\nM(m)=\\int_{-1}^1\\left(\\frac12+\\frac{3m}{2}x\\right)^2dx\n=\\frac12+\\frac32m^2.\n\\]\n\nFor \\(1/3\\le m\\le 1/2\\), set\n\n\\[\nL=\\sqrt{12-24m}\\in[0,2],\n\\]\n\nand define\n\n\\[\ng(x)=\n\\begin{cases}\n0, & -1\\le x\\le -L/2,\\\\\n\\displaystyle \\frac{x+L/2}{L}, & -L/2\\le x\\le L/2,\\\\\n1, & L/2\\le x\\le 1.\n\\end{cases}\n\\]\n\nThen\n\n\\[\n\\int_{-1}^1 g(x)\\,dx=\\frac L2+\\left(1-\\frac L2\\right)=1,\n\\]\n\nand\n\n\\[\n\\int_{-1}^1 xg(x)\\,dx\n=\n\\frac{L^2}{12}+\\frac12\\left(1-\\frac{L^2}{4}\\right)\n=\n\\frac12-\\frac{L^2}{24}\n=m.\n\\]\n\nAlso\n\n\\[\n\\int_{-1}^1 g(x)^2\\,dx\n=\n\\frac L3+\\left(1-\\frac L2\\right)\n=\n1-\\frac L6.\n\\]\n\nIt remains to prove optimality. Define the affine function\n\n\\[\n\\lambda(x)=\\frac{2}{L}\\left(x+\\frac L2\\right).\n\\]\n\nFor every \\(u\\in[0,1]\\),\n\n\\[\nu^2-g(x)^2\\ge \\lambda(x)(u-g(x)).\n\\]\n\nIndeed, on the ramp this is equality to first order since \\(\\lambda=2g\\); on the left, \\(g=0\\) and \\(\\lambda\\le0\\), so \\(u^2\\ge \\lambda u\\); on the right, \\(g=1\\) and \\(\\lambda\\ge2\\), so \\(u^2-1\\ge \\lambda(u-1)\\).\n\nApplying this with \\(u=f(x)\\) and integrating,\n\n\\[\n\\int f^2-\\int g^2\n\\ge\n\\int \\lambda(x)(f(x)-g(x))\\,dx=0,\n\\]\n\nbecause \\(\\lambda\\) is affine and \\(f,g\\) have the same zeroth and first moments. Thus \\(g\\) is optimal.\n\nAt \\(m=1/3\\), both formulas give \\(2/3\\); at \\(m=1/2\\), the minimizer is \\(g=\\mathbf 1_{[0,1]}\\), giving value \\(1\\).",
+  "status": "success",
+  "completed_at": "2026-09-16T16:22:54+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/549cb8ea00d8.json"
+}
