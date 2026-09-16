@@ -1,267 +1,157 @@
 ## Steps
 
-Step 1: Reduce the two uncertainties to an effective penalty parameter
-Let
+Step 1: Express the worst-case expected decrease as a spectral minimization
+Let $A=A_n$ and $P=\operatorname{diag}(p_1,\ldots,p_n)$. The path matrix is positive definite because
 $$
-U=\frac{1}{\sqrt{2}}\begin{bmatrix}1&-1\\1&1\end{bmatrix},
-\qquad
-Q_{\lambda,\mu}=\lambda\begin{bmatrix}\mu&0\\0&\frac{4}{\mu}\end{bmatrix},
-\qquad
-R_{\lambda,\mu}=UQ_{\lambda,\mu}U^T.
+x^TAx=x_1^2+\sum_{i=1}^{n-1}(x_i-x_{i+1})^2+x_n^2>0
 $$
-For a quadratic with Hessian $H$, the reflected proximal map is
-$$
-2P_{h,\rho}-I=(\rho I-H)(\rho I+H)^{-1}.
-$$
-Set
-$$
-t=\frac{\rho}{\lambda},
-\qquad
-s=\frac{\theta}{2}\in(0,1],
-$$
-and
-$$
-a=\frac{t-\mu}{t+\mu},
-\qquad
-b=\frac{t-\frac{4}{\mu}}{t+\frac{4}{\mu}},
-\qquad
-D=\operatorname{diag}(a,b).
-$$
-The two reflected proximal maps are $D$ and $UDU^T$, so one relaxed Douglas-Rachford step has error operator
-$$
-T_{t,\mu,s}=(1-s)I+sUDU^TD.
-$$
-As $\lambda$ ranges over $[\frac{1}{2},2]$, the effective penalty parameter ranges over
-$$
-t\in\left[\frac{\rho}{2},2\rho\right].
-$$
-Thus the robust contraction is the supremum of $\|T_{t,\mu,s}\|_2$ over
-$$
-t\in\left[\frac{\rho}{2},2\rho\right],
-\qquad
-\mu\in[1,4].
-$$
+for every $x\ne0$.
 
-Step 2: Force the unique penalty parameter by testing scales outside the balanced interval
-Write
+For a fixed coordinate $i$, write $g=Ax$. Since $A_{ii}=2$,
 $$
-M=UDU^TD.
+f_n(x+te_i)=f_n(x)+t g_i+t^2.
 $$
-If $0<t\leq1$, choose $\mu=1$. Then $a,b\leq0$. Put $x=-a$ and $y=-b$, so $0\leq x<1$, $0<y<1$, and
+Thus exact minimization along coordinate $i$ uses $t=-g_i/2$ and gives
 $$
-y=\frac{4-t}{4+t}\geq\frac{3}{5}.
+f_n(x^+)=f_n(x)-\frac{g_i^2}{4}.
 $$
-For $e_2=(0,1)^T$,
+Taking expectation with respect to $I\sim p$,
 $$
-Me_2=\frac{b}{2}\begin{bmatrix}a-b\\a+b\end{bmatrix}=:m.
-$$
-Hence
-$$
-\|m\|_2^2=\frac{y^2(x^2+y^2)}{2},
-\qquad
-m_2=\frac{y(x+y)}{2}.
-$$
-Because $x^2+y^2\leq x+y\leq(x+y)/y$, we have $\|m\|_2^2\leq m_2$. Therefore the convex quadratic
-$$
-\|(1-s)e_2+sm\|_2^2
-$$
-has nonpositive derivative at $s=1$, so it decreases on $0<s\leq1$. Consequently
-$$
-\|T_{t,1,s}\|_2
-\geq\|T_{t,1,s}e_2\|_2
-\geq\|Me_2\|_2
-=\frac{y\sqrt{x^2+y^2}}{\sqrt{2}}
-\geq\frac{y^2}{\sqrt{2}}
-\geq\frac{9\sqrt{2}}{50}.
-$$
-Equality in the last two inequalities forces $t=1$ and $x=0$.
-
-If $t\geq4$, again choose $\mu=1$. Now $0\leq b\leq a<1$ and
-$$
-a=\frac{t-1}{t+1}\geq\frac{3}{5}.
-$$
-For $e_1=(1,0)^T$,
-$$
-Me_1=\frac{a}{2}\begin{bmatrix}a+b\\a-b\end{bmatrix}=:n,
-$$
-so
-$$
-\|n\|_2^2=\frac{a^2(a^2+b^2)}{2},
-\qquad
-n_1=\frac{a(a+b)}{2}.
-$$
-Since $a(a^2+b^2)\leq a^2+b^2\leq a+b$, we have $\|n\|_2^2\leq n_1$. Therefore
-$$
-\|(1-s)e_1+sn\|_2^2
-$$
-is a convex quadratic whose derivative at $s=1$ is nonpositive, so it also decreases on $0<s\leq1$. Hence
-$$
-\|T_{t,1,s}\|_2
-\geq\|Me_1\|_2
-=\frac{a\sqrt{a^2+b^2}}{\sqrt{2}}
-\geq\frac{a^2}{\sqrt{2}}
-\geq\frac{9\sqrt{2}}{50},
-$$
-with strict inequality when $t>4$.
-
-Therefore a robust contraction no larger than $9\sqrt{2}/50$ requires
-$$
-\left[\frac{\rho}{2},2\rho\right]\subseteq[1,4].
-$$
-The two intervals have the same multiplicative width $4$, so this containment forces
-$$
-\rho=2.
-$$
-
-Step 3: Force full relaxation at the balanced penalty
-Set $\rho=2$. Then $t\in[1,4]$. At the uncertainty point $t=1$, $\mu=1$,
-$$
-a=0,
-\qquad
-b=-\frac{3}{5},
-$$
-and
-$$
-Me_2=\begin{bmatrix}-\frac{9}{50}\\[1mm]\frac{9}{50}\end{bmatrix}.
-$$
-Thus
-$$
-\|T_{1,1,s}e_2\|_2^2
-=\left(\frac{9s}{50}\right)^2
-+\left(1-\frac{41s}{50}\right)^2
-=1-\frac{41}{25}s+\frac{881}{1250}s^2.
-$$
-Its derivative is
-$$
--\frac{41}{25}+\frac{881}{625}s<0
-\qquad(0<s\leq1).
-$$
-Hence this lower bound is strictly decreasing in $s$, and
-$$
-\mathcal C(2,2s)>
-\frac{9\sqrt{2}}{50}
-$$
-whenever $s<1$. Therefore any minimizer attaining the lower bound from Step 2 must satisfy
-$$
-s=1,
-\qquad
-\theta=2.
-$$
-
-Step 4: Bound every remaining uncertainty pair by a logarithmic diamond
-It remains to evaluate the whole rectangle
-$$
-t\in[1,4],
-\qquad
-\mu\in[1,4]
-$$
-at $s=1$. Then $T_{t,\mu,1}=M$, and direct multiplication gives
-$$
-\|M\|_F^2=\frac{(a^2+b^2)^2}{2}.
+\mathbb E[f_n(x^+)\mid x]
+=f_n(x)-\frac14\sum_{i=1}^n p_i(Ax)_i^2
+=f_n(x)-\frac14x^TAPA x.
 $$
 Therefore
 $$
-\|M\|_2\leq\frac{a^2+b^2}{\sqrt{2}}.
+\Gamma_n(p)
+=1-\frac12 m(p),
 $$
-The reflection coefficients depend on the two multiplicative coordinates $t/\mu$ and $t\mu/4$, so define their logarithms by
+where
 $$
-x=\frac{1}{2}\log\frac{t}{\mu},
-\qquad
-y=\frac{1}{2}\log\frac{t\mu}{4}.
+m(p):=\inf_{x\ne0}\frac{x^TAPA x}{x^TAx}.
 $$
-Then
+Hence minimizing $\Gamma_n$ is equivalent to maximizing $m(p)$.
+
+Step 2: Construct a universal sharp upper bound for $m(p)$
+Define
 $$
-a=\tanh x,
-\qquad
-b=\tanh y.
+r_i=i(n+1-i),\qquad i=1,\ldots,n,
 $$
-If $X=\log t$, $Y=\log\mu$, and $L=\log 4$, then
+and set $r_0=r_{n+1}=0$. A direct second-difference calculation gives
 $$
-x=\frac{X-Y}{2},
-\qquad
-y=\frac{X+Y-L}{2},
+2r_i-r_{i-1}-r_{i+1}=2
 $$
-so inversely
+for every $i=1,\ldots,n$. Thus, with $\mathbf 1=(1,\ldots,1)^T$,
 $$
-X=x+y+\frac{L}{2},
-\qquad
-Y=-x+y+\frac{L}{2}.
+Ar=2\mathbf 1.
 $$
-Thus $0\leq X,Y\leq L$ is equivalent to
+Let
 $$
-|x+y|\leq\frac{L}{2},
-\qquad
-|y-x|\leq\frac{L}{2}.
+S:=\sum_{i=1}^n r_i.
 $$
-Since
+For every probability vector $p$,
 $$
-\max\{|x+y|,|y-x|\}=|x|+|y|,
+r^TAPA r=(Ar)^TP(Ar)=4\mathbf 1^TP\mathbf 1=4,
 $$
-the square $0\leq X,Y\leq L$ is exactly the diamond
+while
 $$
-|x|+|y|\leq\log 2.
+r^TAr=2\sum_{i=1}^n r_i=2S.
 $$
-For $u,v\geq0$, write $p=\tanh u$ and $q=\tanh v$. The addition formula gives
+Testing the Rayleigh quotient at $x=r$ therefore yields
 $$
-\tanh^2(u+v)-\tanh^2u-\tanh^2v
-=\frac{pq\left(2-(2+pq)(p^2+q^2)\right)}{(1+pq)^2}.
+m(p)\leq\frac{2}{S}
 $$
-On $0\leq u,v\leq\log 2$ we have $0\leq p,q\leq3/5$, so
+for every admissible $p$. Consequently
 $$
-(2+pq)(p^2+q^2)
-\leq\left(2+\frac{9}{25}\right)\frac{18}{25}
-=\frac{1062}{625}<2.
-$$
-Hence
-$$
-\tanh^2u+\tanh^2v\leq\tanh^2(u+v),
-$$
-with equality only when $uv=0$. Taking $u=|x|$ and $v=|y|$ yields
-$$
-a^2+b^2
-\leq\tanh^2(|x|+|y|)
-\leq\tanh^2(\log 2)
-=\frac{9}{25}.
-$$
-Therefore every uncertainty pair satisfies
-$$
-\|T_{t,\mu,1}\|_2\leq\frac{9\sqrt{2}}{50}.
+\Gamma_n(p)\geq1-\frac1S.
 $$
 
-Step 5: Determine the exact worst-case set and state the robust optimum
-Equality in Step 4 requires both
+Step 3: Show that the Poisson-weighted sampling attains the bound
+Take
 $$
-|x|+|y|=\log 2
-$$
-and equality in the hyperbolic-tangent inequality. Since its bracket is strictly positive on the stated range, equality there forces $xy=0$. Thus
-$$
-(x,y)\in\{(\log 2,0),(-\log 2,0),(0,\log 2),(0,-\log 2)\}.
-$$
-Using
-$$
-\log t=x+y+\log 2,
+p_i^*=\frac{r_i}{S},
 \qquad
-\log\mu=-x+y+\log 2,
+P_*=\operatorname{diag}(p_1^*,\ldots,p_n^*).
 $$
-these four points are exactly
+Because $P_*$ is positive definite, if
 $$
-(t,\mu)\in\{1,4\}\times\{1,4\}.
+C=A^{1/2}P_*^{1/2},
 $$
-At each of them one of $a,b$ is $0$ and the other has magnitude $3/5$, so $M$ has rank one and its operator norm equals its Frobenius norm $9\sqrt{2}/50$. Hence the bound is attained exactly at those four points.
+then $A^{1/2}P_*A^{1/2}=CC^T$ and $P_*^{1/2}AP_*^{1/2}=C^TC$ have the same positive eigenvalues. Hence
+$$
+m(p^*)=\lambda_{\min}(P_*^{1/2}AP_*^{1/2}).
+$$
+Now
+$$
+P_*^{1/2}AP_*^{1/2}-\frac{2}{S}I
+=P_*^{1/2}\left(A-\operatorname{diag}\left(\frac{2}{r_1},\ldots,\frac{2}{r_n}\right)\right)P_*^{1/2}.
+$$
+For any $u\in\mathbb R^n$, the identity $2r_i-r_{i-1}-r_{i+1}=2$ gives
+$$
+u^T\left(A-\operatorname{diag}\left(\frac{2}{r_1},\ldots,\frac{2}{r_n}\right)\right)u
+=
+\sum_{i=1}^{n-1}r_i r_{i+1}
+\left(\frac{u_i}{r_i}-\frac{u_{i+1}}{r_{i+1}}\right)^2
+\geq0.
+$$
+Thus
+$$
+P_*^{1/2}AP_*^{1/2}\succeq\frac{2}{S}I,
+$$
+so $m(p^*)\geq2/S$. Step 2 gives the reverse inequality, hence
+$$
+m(p^*)=\frac2S
+$$
+and therefore
+$$
+\Gamma_n(p^*)=1-\frac1S.
+$$
 
-Since $\rho=2$ and $t=\rho/\lambda$, the values $t=1,4$ correspond to $\lambda=2,\frac{1}{2}$, respectively. Therefore
-$$
-\mathcal W_*=\left\{\frac{1}{2},2\right\}\times\{1,4\}.
-$$
-Steps 2 and 3 also show that no other $\rho$ or $\theta$ can attain the same robust contraction, so the minimizing pair is unique.
+Step 4: Prove uniqueness of the optimal sampling distribution
+If some $p_i=0$, then $P$ is singular, so $APA$ is singular and $m(p)=0$. Such a distribution cannot be optimal because $m(p^*)=2/S>0$.
 
-Final Answer: $\boxed{\left(2,2,\frac{9\sqrt{2}}{50},\left\{\frac{1}{2},2\right\}\times\{1,4\}\right)}$
+Now suppose $p_i>0$ for all $i$ and $p$ is optimal. Then Step 2 must be sharp, so $r$ attains the minimum in the generalized Rayleigh quotient defining $m(p)$. Therefore
+$$
+APA r=\frac{2}{S}Ar.
+$$
+Using $Ar=2\mathbf 1$ gives
+$$
+2Ap=\frac{4}{S}\mathbf 1,
+$$
+so
+$$
+Ap=\frac{2}{S}\mathbf 1=\frac1S Ar.
+$$
+Since $A$ is invertible,
+$$
+p=\frac{r}{S}.
+$$
+Thus $p^*$ is the unique minimizer of $\Gamma_n$.
+
+Step 5: Evaluate the normalization and state the optimum
+Using the standard sums of the first $n$ integers and their squares,
+$$
+S
+=\sum_{i=1}^n i(n+1-i)
+=(n+1)\frac{n(n+1)}{2}-\frac{n(n+1)(2n+1)}{6}
+=\frac{n(n+1)(n+2)}{6}.
+$$
+Therefore
+$$
+p_i^*=\frac{6i(n+1-i)}{n(n+1)(n+2)}
+$$
+and
+$$
+\Gamma_n^*=1-\frac{6}{n(n+1)(n+2)}.
+$$
+
+Final Answer: $\boxed{\left(\left(\frac{6i(n+1-i)}{n(n+1)(n+2)}\right)_{i=1}^{n},1-\frac{6}{n(n+1)(n+2)}\right)}$
 
 ---
 
 ## Answer
 
-$\left(2,2,\frac{9\sqrt{2}}{50},\left\{\frac{1}{2},2\right\}\times\{1,4\}\right)$
+$\left(\left(\frac{6i(n+1-i)}{n(n+1)(n+2)}\right)_{i=1}^{n},1-\frac{6}{n(n+1)(n+2)}\right)$
 
 ---
 
@@ -275,8 +165,8 @@ $\left(2,2,\frac{9\sqrt{2}}{50},\left\{\frac{1}{2},2\right\}\times\{1,4\}\right)
 
 ## Solution Concepts
 
-- robust parameter tuning
-- relaxed Douglas-Rachford splitting
-- proximal reflections
-- logarithmic coordinate transform
-- operator norm bounds
+- randomized coordinate descent
+- generalized Rayleigh quotient
+- discrete Poisson equation
+- ground-state factorization
+- minimax sampling
