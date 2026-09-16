@@ -17,7 +17,11 @@ Hence
 $$
 e(y):=m(y)-2(H-y)
 $$
-is nonnegative and nonincreasing. Layer cake gives
+is nonincreasing, and letting $z\uparrow H$ in the preceding inequality shows $e(y)\geq0$. By Fubini,
+$$
+B=\int_0^H m(y)\,dy,\qquad Q=\int_0^H3y^2m(y)\,dy.
+$$
+Substituting $m(y)=2(H-y)+e(y)$ gives
 $$
 B=H^2+\int_0^H e(y)\,dy
 $$
@@ -72,7 +76,7 @@ $$
 \int_0^Lw(x)^3\,dx\geq\int_0^Lv_h(x)^3\,dx
 =h^3L-\frac32h^4.
 $$
-Equality holds only for $w=v_h$. If a nonnegative function has several positive components, enumerate and concatenate those components. Their endpoints are all $0$, so the concatenated function is still $1$-Lipschitz and preserves area and cubic integral; the same lower bound applies after appending a zero interval to any larger available length. Equality with positive area forces one component and no appended zero interval.
+Equality holds only for $w=v_h$. If a nonnegative function has several positive components, enumerate and concatenate those components. Their endpoints are all $0$. Across a join, values at distances $r$ and $s$ from the join are at most $r$ and $s$, so their difference is at most $r+s$; hence the concatenation is still $1$-Lipschitz and preserves area and cubic integral. The same lower bound applies after appending a zero interval to any larger available length. Equality with positive area forces one component and no appended zero interval.
 
 Step 2: Reduce the control problem to one scalar compatibility parameter
 For an admissible control $u$, let
