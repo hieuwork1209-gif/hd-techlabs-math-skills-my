@@ -30,6 +30,7 @@ Since $C=(AB)^{-1}$ and $M(Q)=M(Q^T)$, it is equivalent to require that $A$, $B$
 $$
 M(A)M(B)M(AB).
 $$
+Taking $A=B$ to be a sufficiently small nonzero rotation about $(1,1,1)^T/\sqrt3$ gives a positive product, so any maximizer has positive product.
 
 Step 2: Classify positive-product constant-diagonal rotations and prove the compatibility obstruction
 Let $R\in SO(3)$ have constant diagonal and suppose $M(R)>0$. Since $R$ is a real orthogonal matrix of odd dimension and determinant $1$, it has eigenvalue $1$. Let $n$ be a unit eigenvector. On $n^\perp$, $R$ is a planar rotation through some nonzero angle $\theta$, so Rodrigues' formula gives
@@ -46,7 +47,7 @@ n_1^2=n_2^2=n_3^2=\frac13.
 $$
 Hence every positive-product constant-diagonal rotation has a body-diagonal axis.
 
-Now let $A$ and $B$ have body-diagonal axes $p$ and $q$. Suppose these axes are distinct. A simultaneous signed permutation of coordinates preserves constant diagonals and all absolute entry-products, so we may take
+Now let $A$ and $B$ have body-diagonal axes $p$ and $q$. Suppose these axes are distinct. A simultaneous orientation-preserving signed permutation of coordinates preserves constant diagonals and all absolute entry-products, so we may take
 $$
 p=\frac1{\sqrt3}(1,1,1)^T,
 \qquad
@@ -83,7 +84,7 @@ $$
 \sqrt3(-ad+bc)
 \end{pmatrix}.
 $$
-Positive product implies $A$ and $B$ are nonidentity, so $b,d\neq0$. If $AB$ also has positive product and constant diagonal, its axis is again a body diagonal, hence the three coordinates of $v$ have equal absolute values. Equality of the squares of the first two coordinates gives
+Positive product implies $A$ and $B$ are nonidentity, so $b,d\neq0$. Since $AB$ also has positive product and constant diagonal, its axis is a body diagonal, hence the three coordinates of $v$ have equal absolute values. Equality of the squares of the first two coordinates gives
 $$
 (ad+bc)bd=0,
 $$
@@ -91,7 +92,7 @@ so
 $$
 ad+bc=0.
 $$
-The first two coordinates then have absolute value $2|bd|$, while the third has absolute value $2\sqrt3|ad|$. Their equality forces
+The first two coordinates of $3v$ then have absolute value $2|bd|$, while the third has absolute value $2\sqrt3|ad|$. Their equality forces
 $$
 |b|=\sqrt3|a|.
 $$
@@ -130,9 +131,12 @@ u=\frac{1-\cos\theta}{3},
 \qquad
 v=\frac{\sin\theta}{\sqrt3}.
 $$
-A direct simplification gives
+Writing $c=\cos\theta$,
 $$
-u^2-v^2=-s(1-s).
+u^2-v^2
+=\frac{(1-c)^2}{9}-\frac{1-c^2}{3}
+=-\frac{2(1-c)(1+2c)}9
+=-s(1-s).
 $$
 Hence
 $$
