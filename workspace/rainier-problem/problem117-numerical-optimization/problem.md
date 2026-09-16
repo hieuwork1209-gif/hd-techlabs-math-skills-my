@@ -32,9 +32,15 @@ As $\gamma$ increases from $\frac92$ to $\frac{11}{2}$, there are exactly two in
 $$
 \frac92<\gamma_1<\gamma_2<\frac{11}{2}
 $$
-at which the active-set pattern changes. Determine $\gamma_1$ and $\gamma_2$ exactly, and also determine the exact endpoint value $\mathcal C_{9/2}^*$. Your reasoning must identify $\mathcal A_\gamma$ on each of the three open regimes and describe the active set at each transition.
+at which the active-set pattern changes. Determine $\gamma_1$ and $\gamma_2$ exactly, and also determine $\mathcal C_{9/2}^*$. Your reasoning must identify $\mathcal A_\gamma$ on each of the three open regimes and describe the active set at each transition.
 
-Give the final answer as $(\gamma_1,\gamma_2,\mathcal C_{9/2}^*)$.
+At $\gamma=\frac{11}{2}$, let $m_*$ be the unique member of $\mathcal A_{11/2}\cap(1,2)$. Let
+$$
+Q(t)=q_4t^4+q_3t^3+q_2t^2+q_1t+q_0\in\mathbb Z[t]
+$$
+be the primitive minimal polynomial of $m_*$ with $q_4>0$. Determine $(q_4,q_3,q_2,q_1,q_0)$ as well.
+
+Give the final answer as $(\gamma_1,\gamma_2,\mathcal C_{9/2}^*;q_4,q_3,q_2,q_1,q_0)$.
 
 ---
 
@@ -51,4 +57,4 @@ Give the final answer as $(\gamma_1,\gamma_2,\mathcal C_{9/2}^*)$.
 
 ## Domain Explanation
 
-This problem asks for exact minimax tuning of a budget-constrained four-step nonstationary Richardson iteration under a moving spectral gap, including phase transitions in the extremal eigenvalues controlling the worst-case contraction and an exact contraction value away from the plateau regime. The primary task is constrained algorithmic parameter optimization in Optimization and Numerical Mathematics and Numerical optimization; coefficient-constrained polynomial approximation is the proof mechanism.
+This problem asks for exact minimax tuning of a budget-constrained four-step nonstationary Richardson iteration under a moving spectral gap, including active-set phase transitions and exact algebraic endpoint data from both non-plateau branches. The primary task is constrained algorithmic parameter optimization in Optimization and Numerical Mathematics and Numerical optimization; coefficient-constrained polynomial approximation is the proof mechanism.
