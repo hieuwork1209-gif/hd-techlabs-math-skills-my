@@ -1,220 +1,196 @@
 ## Steps
 
-Step 1: Reduce the scale uncertainty to one effective penalty parameter
-Let
+Step 1: Reduce two Richardson steps to a quadratic minimax polynomial
+For a symmetric positive-definite matrix with eigenvalue $\lambda$, two Richardson steps with positive step sizes $\alpha,\beta$ multiply that eigendirection by
 $$
-Q=\begin{bmatrix}1&0\\0&4\end{bmatrix},
+p(\lambda)=\alpha\beta\lambda^2-(\alpha+\beta)\lambda+1
+=t\lambda^2-s\lambda+1,
+$$
+where
+$$
+s=\alpha+\beta>0,
 \qquad
-R=\begin{bmatrix}\frac{5}{2}&-\frac{3}{2}\\-\frac{3}{2}&\frac{5}{2}\end{bmatrix}.
+t=\alpha\beta>0.
 $$
-For a scale $\mu\in[1,4]$, the Hessians of $f_{\mu}$ and $g_{\mu}$ are $\mu Q$ and $\mu R$. If
+Hence for
 $$
-t=\frac{\rho}{\mu},
+E_\gamma=[1,2]\cup[\gamma,6]
 $$
-then solving the proximal first-order conditions gives
+the worst-case two-step factor is
 $$
-J_Q(t)=t(tI+Q)^{-1},
+\mathcal C_\gamma(\alpha,\beta)=\max_{\lambda\in E_\gamma}|p(\lambda)|.
+$$
+We will compare feasible quadratic polynomials with $p(0)=1$. Suppose a candidate $p$ satisfies
+$$
+p(x_1)=C,
 \qquad
-J_R(t)=t(tI+R)^{-1}.
-$$
-Define the reflected proximal maps
-$$
-H_Q(t)=2J_Q(t)-I,
+p(x_2)=-C,
 \qquad
-H_R(t)=2J_R(t)-I.
+p(x_3)=C
 $$
-With $s=\theta/2$, one relaxed Douglas-Rachford step has error operator
-$$
-T_{t,s}=(1-s)I+sH_R(t)H_Q(t),
-\qquad 0<s\leq1.
-$$
-Therefore
-$$
-\mathcal C(\rho,\theta)
-=\sup_{\mu\in[1,4]}\|T_{\rho/\mu,\theta/2}\|_2,
-$$
-so for fixed $\rho$ the effective parameter $t$ ranges over $[\rho/4,\rho]$.
+for three points $0<x_1<x_2<x_3$ in $E_\gamma$, and $|p|\leq C$ on $E_\gamma$. If a quadratic $q$ with $q(0)=1$ had strictly smaller maximum norm, then $q-p$ would be negative at $x_1$, positive at $x_2$, and negative at $x_3$, giving two positive zeros in addition to its zero at $0$, which is impossible for a nonzero quadratic.
 
-Step 2: Derive the reciprocal symmetry of the one-scale contraction
-Let
+This also gives uniqueness at the same optimal value. If $|q|\leq C$, then for $r=q-p$,
 $$
-U=\frac{1}{\sqrt{2}}\begin{bmatrix}1&-1\\1&1\end{bmatrix},
+r(x_1)\leq0,
 \qquad
-R=UQU^T,
-$$
-and set
-$$
-a=\frac{t-1}{t+1},
+r(x_2)\geq0,
 \qquad
-b=\frac{t-4}{t+4},
-\qquad
-D=\operatorname{diag}(a,b).
+r(x_3)\leq0.
 $$
-Then
-$$
-H_Q(t)=D,
-\qquad
-H_R(t)=UDU^T,
-$$
-and
-$$
-UDU^T=\frac{1}{2}
-\begin{bmatrix}
-a+b&a-b\\
-a-b&a+b
-\end{bmatrix}.
-$$
-Writing
-$$
-M(t)=H_R(t)H_Q(t)=UDU^TD,
-$$
-this multiplication gives
-$$
-\operatorname{tr}M(t)=\frac{(a+b)^2}{2},
-\qquad
-\|M(t)\|_F^2=\frac{(a^2+b^2)^2}{2},
-\qquad
-\det M(t)=a^2b^2.
-$$
-For the reciprocal parameter $t^{\vee}=4/t$,
-$$
-a(t^{\vee})=-b(t),
-\qquad
-b(t^{\vee})=-a(t),
-$$
-so the three displayed invariants are unchanged. Since
-$$
-T_{t,s}=(1-s)I+sM(t),
-$$
-we have
-$$
-\|T_{t,s}\|_F^2
-=2(1-s)^2+2s(1-s)\operatorname{tr}M(t)+s^2\|M(t)\|_F^2
-$$
-and
-$$
-\det T_{t,s}
-=(1-s)^2+s(1-s)\operatorname{tr}M(t)+s^2\det M(t).
-$$
-The squared singular values of a $2\times2$ matrix have sum $\|T\|_F^2$ and product $(\det T)^2$. Hence they are unchanged by $t\mapsto4/t$, and therefore
-$$
-\|T_{t,s}\|_2=\|T_{4/t,s}\|_2.
-$$
+Because $r(0)=0$, write $r(\lambda)=\lambda\ell(\lambda)$ with $\ell$ linear. On positive arguments, $r$ and $\ell$ have the same sign. A nonzero linear function cannot have the weak sign pattern nonpositive, nonnegative, nonpositive at three increasing points; any equality case would either give two distinct zeros of $\ell$ or force opposite signs on the two sides of its single zero. Hence $\ell\equiv0$ and $q=p$. Thus every three-point alternating candidate below is globally and uniquely minimax among quadratics with constant term $1$.
 
-Step 3: Prove a sharp lower bound outside the balanced interval
-Assume first that $0<t\leq1$. From the matrix in Step 2,
+Step 2: Solve the regime before the spectral gap removes the interior extremum
+First ignore the gap and work on the full interval $[1,6]$. The natural three-point alternating quadratic uses the two endpoints and its unique interior stationary point. Imposing equal positive endpoint levels gives
 $$
-M(t)e_2
-=\frac{b}{2}
-\begin{bmatrix}
-a-b\\
-a+b
-\end{bmatrix}
-=:m.
+p(1)=p(6),
+$$
+which, for $p(\lambda)=t\lambda^2-s\lambda+1$ with $t>0$, places the axis at
+$$
+\lambda_0=\frac{s}{2t}=\frac72.
+$$
+Write
+$$
+p(\lambda)=t\left(\lambda-\frac72\right)^2-C.
+$$
+Equal magnitude at the endpoints and at the vertex gives
+$$
+t\left(\frac52\right)^2-C=C,
+$$
+while $p(0)=1$ gives
+$$
+t\left(\frac72\right)^2-C=1.
+$$
+Solving yields
+$$
+C=\frac{25}{73},
+\qquad
+t=\frac8{73},
+\qquad
+s=\frac{56}{73}.
 $$
 Thus
 $$
-\|m\|_2^2=\frac{b^2(a^2+b^2)}{2},
+p_L(\lambda)=\frac8{73}\lambda^2-\frac{56}{73}\lambda+1.
+$$
+Its step sizes are
+$$
+\alpha_L=\frac{28-10\sqrt2}{73},
 \qquad
-m_2=\frac{b(a+b)}{2}.
+\beta_L=\frac{28+10\sqrt2}{73},
 $$
-For
+so the candidate is feasible. Because $p_L$ is convex, takes value $25/73$ at $1$ and $6$, and value $-25/73$ at $7/2$, it satisfies $|p_L|\leq25/73$ on all of $[1,6]$. Therefore whenever
 $$
-v(s)=T_{t,s}e_2=(1-s)e_2+sm,
+\gamma\leq\frac72,
 $$
-the function $\|v(s)\|_2^2$ is convex in $s$. At $s=1$ its derivative divided by $2$ is
+the three active points $1,7/2,6$ all lie in $E_\gamma$, and Step 1 proves that $p_L$ is the unique minimax polynomial. The first qualitative change can occur only when the moving endpoint $\gamma$ passes the stationary point $7/2$.
+
+Step 3: Solve the gap-active regime and locate its right endpoint
+Now assume $\gamma>7/2$. The vertex $7/2$ lies in the spectral gap, so the first point of the right spectral interval is the canonical replacement for the negative active point. Impose
 $$
-\begin{aligned}
-\|m\|_2^2-m_2
-&=\frac{b}{2}\left(b(a^2+b^2)-(a+b)\right)\\
-&=-\frac{t(t-4)(13t^3+19t^2-16t-112)}{(t+1)^2(t+4)^4}.
-\end{aligned}
-$$
-For $0<t\leq1$,
-$$
-13t^3+19t^2-16t-112
-\leq13+19-112<0,
-$$
-so the displayed derivative is negative. Because the derivative of a convex quadratic is increasing, $\|v(s)\|_2$ decreases throughout $0<s\leq1$. Hence
-$$
-\|T_{t,s}\|_2\geq\|T_{t,s}e_2\|_2\geq\|M(t)e_2\|_2.
-$$
-On $(0,1]$ the quantities
-$$
-|a|=\frac{1-t}{1+t},
+p(1)=C,
 \qquad
-|b|=\frac{4-t}{4+t}
-$$
-are both decreasing in $t$. Therefore
-$$
-\|M(t)e_2\|_2^2
-=\frac{b^2(a^2+b^2)}{2}
-\geq\frac{81}{1250},
-$$
-with equality only at $t=1$. Thus
-$$
-\|T_{t,s}\|_2\geq\frac{9}{25\sqrt{2}}
-$$
-for $0<t\leq1$, with equality only at $(t,s)=(1,1)$. By the reciprocal symmetry from Step 2, the same bound holds for $t\geq4$, with equality only at $(t,s)=(4,1)$.
-
-For any $\rho>0$, the uncertainty interval for $t$ is $[\rho/4,\rho]$. If $\rho\leq4$, then $\rho/4\leq1$; if $\rho\geq4$, then $\rho\geq4$. Consequently
-$$
-\mathcal C(\rho,\theta)\geq\frac{9}{25\sqrt{2}}.
-$$
-Equality in this robust lower bound can occur only when
-$$
-\rho=4,
+p(\gamma)=-C,
 \qquad
-s=1,
+p(6)=C.
 $$
-that is, only when $\rho=4$ and $\theta=2$.
+The equality $p(1)=p(6)$ again forces the axis to be $7/2$. Solving the three displayed conditions together with $p(0)=1$ gives, with
+$$
+D_\gamma=6+7\gamma-\gamma^2,
+$$
+$$
+p_M(\lambda)
+=\frac2{D_\gamma}\lambda^2-\frac{14}{D_\gamma}\lambda+1,
+$$
+and
+$$
+C_M(\gamma)=\frac{7\gamma-\gamma^2-6}{6+7\gamma-\gamma^2}.
+$$
+For $7/2<\gamma<6$, $D_\gamma>0$, and the discriminant of the step-size equation is
+$$
+\left(\frac{14}{D_\gamma}\right)^2-\frac8{D_\gamma}
+=\frac{4(2\gamma^2-14\gamma+37)}{D_\gamma^2}>0,
+$$
+so its positive sum and product imply that $p_M$ factors with two positive Richardson step sizes.
 
-Step 4: Show that the balanced parameters control every uncertain scale
-Set
+On $[\gamma,6]$, the polynomial is increasing because its axis is $7/2<\gamma$, hence its values stay between $-C_M$ and $C_M$. On $[1,2]$ it is decreasing, so the only additional condition needed is
 $$
-\rho=4,
+p_M(2)\geq-C_M(\gamma).
+$$
+Substitution and collection over the common denominator $D_\gamma$ gives
+$$
+p_M(2)+C_M(\gamma)
+=\frac{2(5-\gamma)(\gamma-2)}{6+7\gamma-\gamma^2}.
+$$
+Thus the candidate is valid exactly through
+$$
+\gamma\leq5.
+$$
+For $7/2<\gamma<5$, its alternating active points are exactly
+$$
+\{1,\gamma,6\},
+$$
+so Step 1 proves global optimality and uniqueness. At $\gamma=5$, the point $\lambda=2$ also reaches the negative level.
+
+Step 4: Solve the final regime after the left endpoint becomes active
+For $\gamma\geq5$, the new three-point alternating pattern uses the fixed points $1,2,6$:
+$$
+p(1)=C,
 \qquad
-\theta=2.
+p(2)=-C,
+\qquad
+p(6)=C.
 $$
-Then $s=1$ and, as $\mu$ ranges over $[1,4]$,
+Solving gives
 $$
-t=\frac{4}{\mu}\in[1,4].
+p_R(\lambda)=\frac18\lambda^2-\frac78\lambda+1,
+\qquad
+C_R=\frac14.
 $$
-Now $T_{t,1}=M(t)$, so
+The corresponding positive ordered step sizes are
 $$
-\|T_{t,1}\|_2\leq\|M(t)\|_F
-=\frac{a^2+b^2}{\sqrt{2}}.
+\alpha_R=\frac{7-\sqrt{17}}{16},
+\qquad
+\beta_R=\frac{7+\sqrt{17}}{16}.
 $$
-Substituting the displayed $a$ and $b$ gives
+The axis is again $7/2$. On $[1,2]$, $p_R$ decreases from $1/4$ to $-1/4$. On the right interval it increases, and
 $$
-a^2+b^2
-=\frac{(t-1)^2(t+4)^2+(t-4)^2(t+1)^2}{(t+1)^2(t+4)^2}
-=\frac{2(t^4+t^2+16)}{(t+1)^2(t+4)^2}.
+p_R(5)=-\frac14,
+\qquad
+p_R(6)=\frac14.
 $$
-Subtracting from $9/25$ and factoring yields
+Hence for every $\gamma\geq5$, the restriction to $[\gamma,6]$ also satisfies $|p_R|\leq1/4$. The active points on the open regime $5<\gamma<6$ are
 $$
-\frac{9}{25}-(a^2+b^2)
-=-\frac{(t-1)(t-4)(41t^2+115t+164)}{25(t+1)^2(t+4)^2}.
+\{1,2,6\},
 $$
-For $1\leq t\leq4$, the right-hand side is nonnegative. Therefore
-$$
-\|T_{t,1}\|_2\leq\frac{9}{25\sqrt{2}}
-$$
-for every uncertain scale. Combined with Step 3,
-$$
-\mathcal C(4,2)=\frac{9}{25\sqrt{2}}.
-$$
+and Step 1 proves that $p_R$ is uniquely minimax. At $\gamma=5$, both $2$ and $5$ are active at the negative level, so the middle and final formulas meet continuously.
 
-Step 5: State the unique robustly optimal parameters
-Step 3 gives the global lower bound and shows that equality forces $\rho=4$ and $\theta=2$. Step 4 proves that this pair attains the bound for the whole uncertainty interval. Hence the minimizing pair is unique.
+Step 5: Identify the two phase transitions and the active-set patterns
+Step 2 shows that the interior stationary maximizer at $7/2$ remains active precisely until the moving right interval starts at that point. Step 3 shows that the moving endpoint $\gamma$ then remains active until $\gamma=5$, where the fixed point $2$ reaches the same negative extremal value. Step 4 shows that beyond this point the active triple is fixed.
 
-Final Answer: $\boxed{\left(4,2,\frac{9}{25\sqrt{2}}\right)}$
+Therefore the two transition values are
+$$
+\gamma_1=\frac72,
+\qquad
+\gamma_2=5,
+$$
+and on the three open regimes the active sets are respectively
+$$
+\left\{1,\frac72,6\right\},
+\qquad
+\{1,\gamma,6\},
+\qquad
+\{1,2,6\}.
+$$
+At $\gamma=7/2$ the stationary point is exactly the moving endpoint, while at $\gamma=5$ the active set is $\{1,2,5,6\}$.
+
+Final Answer: $\boxed{\left(\frac{7}{2},5,\left\{1,\frac{7}{2},6\right\},\{1,\gamma,6\},\{1,2,6\}\right)}$
 
 ---
 
 ## Answer
 
-$\left(4,2,\frac{9}{25\sqrt{2}}\right)$
+$\left(\frac{7}{2},5,\left\{1,\frac{7}{2},6\right\},\{1,\gamma,6\},\{1,2,6\}\right)$
 
 ---
 
@@ -228,8 +204,8 @@ $\left(4,2,\frac{9}{25\sqrt{2}}\right)$
 
 ## Solution Concepts
 
-- robust parameter tuning
-- relaxed Douglas-Rachford splitting
-- reciprocal parameter symmetry
-- singular values and matrix norms
-- equality-case uniqueness
+- nonstationary Richardson iteration
+- minimax polynomial tuning
+- spectral gap phase transition
+- equioscillation certificate
+- worst-case contraction
