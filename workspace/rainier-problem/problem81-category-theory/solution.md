@@ -1,149 +1,188 @@
 ## Steps
 
-Step 1: Identify the natural endomorphism algebra of the tensor-cube functor.
-Let $E:T\Rightarrow T$ be a natural endomorphism. Put $W=\mathbb F_2^3$ with basis $e_1,e_2,e_3$. Expanding
+Step 1: Recover the natural endomorphism algebra.
+Let $T(V)=V^{\otimes3}$. The same coordinate-killing naturality argument as for a single tensor cube shows
 $$
-E_W(e_1\otimes e_2\otimes e_3)=\sum_{i,j,k=1}^3 c_{ijk}e_i\otimes e_j\otimes e_k,
+\operatorname{Nat}(T,T)\cong A:=\mathbb F_2[S_3].
 $$
-and applying naturality to the map that kills $e_r$ and fixes the other two basis vectors shows, for each $r\in\{1,2,3\}$, that every surviving basis tensor must contain $e_r$. Hence every surviving term contains each of $e_1,e_2,e_3$ exactly once. Therefore
+Since $F=T^{\oplus3}$, a natural endomorphism of $F$ is a $3\times3$ matrix of natural maps $T\Rightarrow T$, hence
 $$
-E_W(e_1\otimes e_2\otimes e_3)
-=\sum_{\sigma\in S_3}a_\sigma P_\sigma(e_1\otimes e_2\otimes e_3),
-$$
-where
-$$
-P_\sigma(v_1\otimes v_2\otimes v_3)
-=v_{\sigma^{-1}(1)}\otimes v_{\sigma^{-1}(2)}\otimes v_{\sigma^{-1}(3)}.
-$$
-For arbitrary $V$ and $v_1,v_2,v_3\in V$, choose $f:W\to V$ with $f(e_i)=v_i$. Naturality gives
-$$
-E_V(v_1\otimes v_2\otimes v_3)
-=\sum_{\sigma\in S_3}a_\sigma P_\sigma(v_1\otimes v_2\otimes v_3).
-$$
-Since pure tensors span, every natural endomorphism is uniquely of this form. Conversely each $P_\sigma$ is natural, and the six operators are linearly independent on $e_1\otimes e_2\otimes e_3$. Thus
-$$
-\operatorname{End}(T)\cong A:=\mathbb F_2[S_3].
+\operatorname{End}(F)\cong M_3(A).
 $$
 
-Step 2: Split the group algebra and classify its idempotents by matrix rank.
-Let $r=(123)$ and $s=(12)$. Define
+Let $r=(123)$ and put
 $$
 e_0=1+r+r^2,
 \qquad
 e_1=r+r^2.
 $$
-Because $srs=r^{-1}$, both are central. In characteristic $2$,
+These are complementary central idempotents. As in the tensor-cube calculation,
 $$
-e_0^2=e_0,
-\qquad e_1^2=e_1,
-\qquad e_0e_1=0,
-\qquad e_0+e_1=1.
+e_0A\cong R:=\mathbb F_2[\varepsilon]/(\varepsilon^2),
+\qquad
+e_1A\cong M_2(\mathbb F_2).
 $$
-Hence
+Therefore
 $$
-A=e_0A\oplus e_1A
+\operatorname{End}(F)
+\cong M_3(R)\times M_3(M_2(\mathbb F_2))
+\cong M_3(R)\times M_6(\mathbb F_2).
 $$
-as a product of two unital ideals.
 
-Since $e_0r=e_0=e_0r^2$, the ideal $e_0A$ is spanned by $e_0$ and $e_0s$; these are linearly independent because their group-basis supports are disjoint. Put
+Step 2: Reduce the rank of a natural idempotent to two matrix ranks.
+Fix $V=\mathbb F_2^n$ and write $M=V^{\otimes3}$. The operator $e_0$ is the projector onto the fixed space of cyclic rotation of the tensor factors. There are $n$ fixed basis tensors $v_i^{\otimes3}$, while the remaining $n^3-n$ basis tensors form $3$-cycles. Thus
 $$
-\eta=e_0(1+s)=e_0+e_0s.
-$$
-Then $e_0,\eta$ is also a basis of $e_0A$, and $\eta^2=0$. Thus every element is $ae_0+b\eta$ with $a,b\in\mathbb F_2$, and
-$$
-(ae_0+b\eta)^2=ae_0.
-$$
-It is idempotent exactly when $b=0$, so $e_0A$ has only the two idempotents $0,e_0$.
-
-For the other factor, $GL_2(\mathbb F_2)$ has six elements and acts faithfully on the three nonzero vectors of $\mathbb F_2^2$, identifying $S_3$ with $GL_2(\mathbb F_2)$. Let $\rho:A\to M_2(\mathbb F_2)$ be the induced algebra map. If $R=\rho(r)$, then $I+R+R^2=0$, so
-$$
-\rho(e_1)=R+R^2=I.
-$$
-The image contains the matrices
-$$
-I,
-\quad U=\begin{pmatrix}1&1\\0&1\end{pmatrix},
-\quad L=\begin{pmatrix}1&0\\1&1\end{pmatrix},
-\quad R=\begin{pmatrix}0&1\\1&1\end{pmatrix}.
-$$
-From $U+I=E_{12}$, $L+I=E_{21}$, $R+E_{12}+E_{21}=E_{22}$, and $I+E_{22}=E_{11}$, these span all of $M_2(\mathbb F_2)$. Since $A$ has dimension $6$ and $e_0A$ has dimension $2$, the ideal $e_1A$ has dimension $4$. Therefore the surjective restriction
-$$
-\rho:e_1A\to M_2(\mathbb F_2)
-$$
-is an isomorphism.
-
-Thus every natural idempotent corresponds to a pair $(a,P)$, where $a\in\{0,1\}$ records whether the $e_0$ component is present and $P$ is an idempotent $2\times2$ matrix. There is one matrix idempotent of rank $0$, six of rank $1$, and one of rank $2$: a rank-$1$ idempotent is the projection onto one of the three lines of $\mathbb F_2^2$ along one of the other two lines.
-
-Step 3: Compute how each algebraic idempotent acts on $V^{\otimes3}$.
-Let $V=\mathbb F_2^n$. The operator $e_0=1+r+r^2$ is the averaging idempotent for cyclic permutation of the three tensor factors, because $3=1$ in $\mathbb F_2$. Its image is exactly the fixed subspace: $e_0x$ is fixed for every $x$, while for a fixed vector $y$ one has $e_0y=3y=y$.
-
-On the basis tensors $v_i\otimes v_j\otimes v_k$, cyclic rotation has $n$ orbits of size $1$, namely $i=j=k$, while every other orbit has size $3$. A fixed vector has one freely chosen coefficient on each orbit, so
-$$
-m_0:=\operatorname{rank}(e_0|_{V^{\otimes3}})
+d_0:=\dim e_0M
 =n+\frac{n^3-n}{3}
 =\frac{n^3+2n}{3}.
 $$
-Since $e_1=1+e_0$ is the complementary central idempotent,
+Put
 $$
-m_1:=\dim e_1(V^{\otimes3})
-=n^3-m_0
-=\frac{2n^3-2n}{3}.
+h:=\frac{n^3-n}{3}.
+$$
+Then
+$$
+\dim e_1M=n^3-d_0=2h.
 $$
 
-Through the isomorphism in Step 2, $M_2(\mathbb F_2)$ acts as a unital algebra on $e_1(V^{\otimes3})$. For the standard matrix units,
+Every idempotent in $M_3(R)$ is conjugate to
 $$
-e_1(V^{\otimes3})=E_{11}e_1(V^{\otimes3})\oplus E_{22}e_1(V^{\otimes3}),
+\operatorname{diag}(I_a,0),\qquad 0\le a\le3,
 $$
-and $E_{12},E_{21}$ give inverse isomorphisms between the two summands because
+because $R$ is local and the image and kernel of an idempotent are free direct summands of $R^3$. Hence on $(e_0M)^{\oplus3}$ its $\mathbb F_2$-rank is $ad_0$.
+
+Also $e_1M$ is a direct sum of $h$ copies of the $2$-dimensional simple $M_2(\mathbb F_2)$-module. Therefore $(e_1M)^{\oplus3}$ is a direct sum of $h$ copies of the natural $6$-dimensional $M_6(\mathbb F_2)$-module. An idempotent of ordinary matrix rank $b$ in $M_6(\mathbb F_2)$ consequently contributes rank $bh$.
+
+Thus every natural idempotent has rank
 $$
-E_{12}E_{21}=E_{11},
+ad_0+bh,
+\qquad 0\le a\le3,\quad0\le b\le6.
+$$
+The zero and identity correspond to $(a,b)=(0,0)$ and $(3,6)$.
+
+Step 3: Find the two largest distinct proper ranks.
+It is cleaner to measure the deficit from the identity. Put
+$$
+\alpha=3-a,
 \qquad
-E_{21}E_{12}=E_{22}.
+\beta=6-b.
 $$
-Hence the two summands have equal dimension $m_1/2$. Every rank-$1$ idempotent in $M_2(\mathbb F_2)$ is conjugate to $E_{11}$ by a change of basis, so it acts with rank
+Since $d_0=h+n$, the deficit is
 $$
-h:=\frac{m_1}{2}=\frac{n^3-n}{3}.
+D(\alpha,\beta)
+=\alpha d_0+\beta h
+=(\alpha+\beta)h+\alpha n,
 $$
-Consequently an idempotent of type $(a,P)$, with $\operatorname{rank}P=r$, acts on $V^{\otimes3}$ with rank
+where $0\le\alpha\le3$, $0\le\beta\le6$, and $(\alpha,\beta)\ne(0,0)$.
+
+The smallest positive deficit is $h$, uniquely at
 $$
-a m_0+r h.
+(\alpha,\beta)=(0,1).
+$$
+Hence
+$$
+R_n^{(1)}=3n^3-h
+=\frac{8n^3+n}{3}.
 $$
 
-Step 4: Optimize the rank among the nonzero proper natural idempotents.
-The zero transformation has type $(0,0)$ and the identity has type $(1,2)$. For every $n\ge2$, both $m_0$ and $h$ are positive. Among all remaining pairs $(a,r)$, the largest possible rank is therefore achieved either by $(1,1)$ or by $(0,2)$. Their ranks are
+For the second-smallest distinct deficit, compare
 $$
-m_0+h=\frac{2n^3+n}{3}
+D(1,0)=h+n=d_0
 $$
-and
+with
 $$
-2h=\frac{2n^3-2n}{3},
+D(0,2)=2h.
 $$
-respectively. The first is larger by $n$.
+Now
+$$
+h-n=\frac{n(n-2)(n+2)}{3}.
+$$
+Thus $h=n$ when $n=2$, while $h>n$ when $n\ge3$. Therefore the second-smallest distinct deficit is always $d_0=h+n$, but:
 
-Thus the maximum rank is $(2n^3+n)/3$, and it occurs exactly when the $e_0$ component is present and the $M_2(\mathbb F_2)$ component is a rank-$1$ idempotent. Step 2 showed that there are exactly six such matrix idempotents, so exactly six natural idempotents attain the maximum.
+- if $n\ge3$, it is attained only by $(\alpha,\beta)=(1,0)$;
+- if $n=2$, one has $d_0=2h=4$, so it is attained by both $(1,0)$ and $(0,2)$.
 
-Final Answer: $\boxed{\left(\frac{2n^3+n}{3},6\right)}$
+Consequently
+$$
+R_n^{(2)}=3n^3-d_0
+=\frac{8n^3-2n}{3}.
+$$
+
+Step 4: Count the idempotents attaining the two ranks.
+For $M_m(\mathbb F_2)$, the number of rank-$r$ idempotents is
+$$
+\frac{|GL_m(\mathbb F_2)|}{|GL_r(\mathbb F_2)|\,|GL_{m-r}(\mathbb F_2)|},
+$$
+because an idempotent is uniquely the projection onto its image along its kernel.
+
+For $R=\mathbb F_2[\varepsilon]/(\varepsilon^2)$,
+$$
+|GL_m(R)|=2^{m^2}|GL_m(\mathbb F_2)|.
+$$
+Hence the number of rank-$a$ idempotents in $M_3(R)$ is
+$$
+C_a=
+\frac{|GL_3(R)|}{|GL_a(R)|\,|GL_{3-a}(R)|}.
+$$
+In particular
+$$
+C_3=1,
+\qquad
+C_2=C_1
+=2^4\frac{|GL_3(\mathbb F_2)|}{|GL_2(\mathbb F_2)|}
+=16\cdot28
+=448.
+$$
+
+For $R_n^{(1)}$ we need $(a,b)=(3,5)$. The number of rank-$5$ idempotents in $M_6(\mathbb F_2)$ equals the number of rank-$1$ idempotents:
+$$
+\frac{|GL_6(\mathbb F_2)|}{|GL_5(\mathbb F_2)|}
+=(2^6-1)2^5
+=2016.
+$$
+Therefore
+$$
+N_n^{(1)}=2016.
+$$
+
+For $n\ge3$, $R_n^{(2)}$ comes only from $(a,b)=(2,6)$, so
+$$
+N_n^{(2)}=448.
+$$
+
+For $n=2$, there is also the type $(a,b)=(3,4)$. The number of rank-$4$ idempotents in $M_6(\mathbb F_2)$ equals the number of rank-$2$ idempotents:
+$$
+\binom{6}{2}_2\,2^{2(6-2)}
+=651\cdot256
+=166656.
+$$
+Adding the $448$ idempotents of type $(2,6)$ gives
+$$
+N_2^{(2)}=166656+448=167104.
+$$
+
+Final Answer: $\boxed{\left(\frac{8n^3+n}{3},2016,\frac{8n^3-2n}{3},\begin{cases}167104,&n=2,\\448,&n\ge3.\end{cases}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{2n^3+n}{3},6\right)$
+$\left(\frac{8n^3+n}{3},2016,\frac{8n^3-2n}{3},\begin{cases}167104,&n=2,\\448,&n\ge3.\end{cases}\right)$
 
 ---
 
 ## Classification
 
-**Problem Type:** Optimization
+Problem Type: Optimization
 
-**Answer Type:** Tuple or ordered list
+Answer Type: Tuple or ordered list
 
 ---
 
 ## Solution Concepts
 
-- natural transformations
-- tensor permutation operators
+- natural endomorphism algebras
+- matrix rings over a local ring
 - modular group algebra decomposition
+- idempotent conjugacy and counting
 - cyclic tensor invariants
-- idempotent matrix projections
