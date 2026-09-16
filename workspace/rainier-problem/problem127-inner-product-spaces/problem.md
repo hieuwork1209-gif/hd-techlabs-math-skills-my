@@ -2,19 +2,21 @@
 
 ## LaTeX (Normalized)
 
-Let $v_1,\dots,v_6$ be unit vectors in $\mathbb R^4$ satisfying the unit-norm tight-frame identity
+Let $v_1,\dots,v_4$ be a basis of $\mathbb R^4$ such that
 $$
-\sum_{i=1}^6 v_i v_i^T=\frac32 I_4.
+\|v_i\|=1\qquad(i=1,\dots,4).
 $$
-For each $4$-element subset $I\subset\{1,\dots,6\}$, let
+Let $w_1,\dots,w_4$ be the dual basis with respect to the Euclidean inner product, so
 $$
-\Delta_I=\left|\det[v_i]_{i\in I}\right|,
+\langle v_i,w_j\rangle=\delta_{ij}.
 $$
-where the selected vectors are used as columns in increasing index order.
-
+Suppose also that
+$$
+\|w_i\|=\sqrt2\qquad(i=1,\dots,4).
+$$
 Determine the maximum possible value of
 $$
-\prod_{\substack{I\subset\{1,\dots,6\}\\|I|=4}}\Delta_I.
+\left|\det[v_1\ v_2\ v_3\ v_4]\right|.
 $$
 
 ---
@@ -32,4 +34,4 @@ $$
 
 ## Domain Explanation
 
-This problem is primarily Linear Algebra and Inner product spaces: the constraint is the unit-norm tight-frame identity, each $\Delta_I$ is a Gram-volume invariant of a four-vector subframe, and the decisive reduction uses the orthogonal complement of the analysis operator to convert complementary four-dimensional volumes into two-dimensional areas. The final extremal step uses the inner-product geometry of the planar complement, while determinant inequalities are subordinate tools.
+This problem is primarily Linear Algebra and Inner product spaces: the basis and its Euclidean dual are encoded by a positive definite Gram matrix $G$ and its inverse $G^{-1}$, while the unit-norm conditions prescribe their diagonals. The volume is $\sqrt{\det G}$, so the extremal problem couples the spectrum of a Gram matrix with the compatibility of simultaneous diagonal constraints on $G$ and $G^{-1}$. Scalar optimization is subordinate to this inner-product and dual-basis structure.
