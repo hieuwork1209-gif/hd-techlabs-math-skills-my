@@ -3,9 +3,7 @@
 Step 1: Convert the two orthonormal bases into an orthogonal transition matrix
 Let
 $$
-U=(u_{ij})_{1\leq i,j\leq3},
-\qquad
-u_{ij}=\langle e_i,f_j\rangle.
+U=(u_{ij})_{1\leq i,j\leq3},\qquad u_{ij}=\langle e_i,f_j\rangle.
 $$
 Because both $(e_1,e_2,e_3)$ and $(f_1,f_2,f_3)$ are orthonormal bases, $U$ is orthogonal. The hypothesis says that
 $$
@@ -23,13 +21,13 @@ $$
 If $\det U=1$, set $Q=U$. If $\det U=-1$, set $Q=-U$. Then $Q\in SO(3)$, the absolute values of all entries are unchanged, and the three diagonal entries of $Q$ are equal to a common number $s$, where $s=t$ in the first case and $s=-t$ in the second. Hence it suffices to maximize $M(Q)$ over matrices $Q\in SO(3)$ with constant diagonal.
 
 Step 2: Classify the constant-diagonal rotations
-If $Q=I_3$, then its off-diagonal entries vanish and $M(Q)=0$, so suppose $Q\neq I_3$. Since $Q\in SO(3)$, it has a unit fixed vector $n$ and acts on $n^\perp$ as a planar rotation through some angle $\theta$. Writing
+If $Q=I_3$, then its off-diagonal entries vanish and $M(Q)=0$, so suppose $Q\neq I_3$. The nonreal eigenvalues of a real orthogonal matrix occur in conjugate pairs. Since $Q$ has odd dimension and determinant $1$, its remaining real eigenvalue is $1$. Choose a unit eigenvector $n$ with $Qn=n$. The plane $n^\perp$ is $Q$-invariant, and the restriction of $Q$ to this plane is a planar rotation through some angle $\theta$.
+
+Writing
 $$
-c=\cos\theta,
-\qquad
-h=\sin\theta,
+c=\cos\theta,\qquad h=\sin\theta,
 $$
-its action is
+the action on $\mathbb R^3$ is
 $$
 Q=cI_3+(1-c)nn^T+hK_n,
 $$
@@ -65,9 +63,7 @@ a-b,
 $$
 up to signs, where
 $$
-a=\frac{1-c}{3},
-\qquad
-b=\frac{h}{\sqrt3}.
+a=\frac{1-c}{3},\qquad b=\frac{h}{\sqrt3}.
 $$
 Since $c=(3s-1)/2$,
 $$
@@ -135,7 +131,17 @@ Q=
 -\frac13&\frac23&\frac23
 \end{pmatrix}.
 $$
-A direct row check gives $QQ^T=I_3$, so the columns form an orthonormal basis. The three matched inner products all equal $2/3$ in absolute value. Among the nine entries, six have absolute value $2/3$ and three have absolute value $1/3$, so
+Each row has squared norm
+$$
+\frac49+\frac19+\frac49=1,
+$$
+and the three pairwise row inner products are
+$$
+\frac49-\frac29-\frac29=0,\qquad
+-\frac29-\frac29+\frac49=0,\qquad
+-\frac29+\frac49-\frac29=0.
+$$
+Hence $QQ^T=I_3$, so the columns form an orthonormal basis. The three matched inner products all equal $2/3$ in absolute value. Among the nine entries, six have absolute value $2/3$ and three have absolute value $1/3$, so
 $$
 M(Q)=\left(\frac23\right)^6\left(\frac13\right)^3
 =\frac{2^6}{3^9}.
