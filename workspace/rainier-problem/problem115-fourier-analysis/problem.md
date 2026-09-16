@@ -23,6 +23,7 @@ How many distinct functions $f_{M,g}$ satisfy
 $$
 \mathcal Ff_{M,g}=f_{M,g}?
 $$
+Express the exact count in prime-factorized form.
 
 ---
 
