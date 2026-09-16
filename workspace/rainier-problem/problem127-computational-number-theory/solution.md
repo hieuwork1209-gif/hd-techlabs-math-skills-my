@@ -1,144 +1,178 @@
 ## Steps
 
-Step 1: Separate the automatic high-valuation solutions
-Let $N_n(p)$ be the number of pairs $(x,y)\in(\mathbb Z/p^n\mathbb Z)^2$ satisfying
+Step 1: Reduce the two congruences to a single unit equation
+Let $M_n(p)$ be the number of ordered pairs $(x,y)\in(\mathbb Z/p^n\mathbb Z)^2$ satisfying
 $$
-x^2\equiv y^3\pmod{p^n}.
-$$
-For a residue class $x$, write
-$$
-a=\min(v_p(x),n),
-$$
-and similarly
-$$
-b=\min(v_p(y),n).
-$$
-If
-$$
-2a\ge n
-\qquad\text{and}\qquad
-3b\ge n,
-$$
-then both $x^2$ and $y^3$ vanish modulo $p^n$, so the congruence is automatic.
-
-There are
-$$
-p^{n-\lceil n/2\rceil}=p^{\lfloor n/2\rfloor}
-$$
-choices for $x$ divisible by $p^{\lceil n/2\rceil}$, and
-$$
-p^{n-\lceil n/3\rceil}=p^{\lfloor2n/3\rfloor}
-$$
-choices for $y$ divisible by $p^{\lceil n/3\rceil}$. Hence this high-valuation region contributes
-$$
-p^{\lfloor n/2\rfloor+\lfloor2n/3\rfloor}
-$$
-solutions.
-
-Step 2: Classify every remaining solution by its exact valuations
-Now suppose the solution is not in the region of Step 1. If one of $2a,3b$ were at least $n$ and the other were less than $n$, then $x^2-y^3$ would have valuation less than $n$, which is impossible. Therefore both are less than $n$.
-
-For two nonzero residues modulo $p^n$ whose valuations are below $n$, congruence modulo $p^n$ forces the two valuations to agree. Thus
-$$
-2a=3b<n.
-$$
-Since $\gcd(2,3)=1$, there is a unique integer $t\ge0$ such that
-$$
-a=3t,
+x^2\equiv y^3\pmod{p^n},
 \qquad
-b=2t,
+x+y\equiv2\pmod{p^n}.
 $$
-and necessarily
-$$
-6t<n.
-$$
-So the remaining solutions split disjointly into strata indexed by
-$$
-0\le t\le\left\lfloor\frac{n-1}{6}\right\rfloor.
-$$
+Because $p$ is odd, $2$ is a unit modulo $p$. Hence at least one of $x,y$ is a unit modulo $p$. The congruence $x^2\equiv y^3\pmod p$ then forces both to be units.
 
-Step 3: Count one valuation stratum by reconstructing the unit parameter
-Fix such a $t$ and put
+For a unit solution define
 $$
-m=n-6t.
-$$
-Write
-$$
-x=p^{3t}u,
-\qquad
-y=p^{2t}v,
-$$
-where $u$ and $v$ are units. The congruence becomes
-$$
-u^2\equiv v^3\pmod{p^m}.
-$$
-
-The unit solutions modulo $p^m$ are in bijection with the units $z$ modulo $p^m$ via
-$$
-z\longmapsto(z^3,z^2).
-$$
-Indeed, this map always gives $u^2=v^3$. Conversely, if $u^2=v^3$, define
-$$
-z=v^2u^{-1}.
+z=y^2x^{-1}.
 $$
 Then
 $$
-z^2=v^4u^{-2}=v,
+z^2=y^4x^{-2}=y,
+\qquad
+z^3=y^6x^{-3}=x,
 $$
-and
+using $x^2=y^3$ in the unit group. Conversely, every unit $z$ gives the cusp solution
 $$
-z^3=v^6u^{-3}=u.
+(x,y)=(z^3,z^2).
 $$
-Hence there are exactly
+Therefore the required pairs are in bijection with the roots modulo $p^n$ of
 $$
-\varphi(p^m)=p^{m-1}(p-1)
-$$
-reduced unit pairs $(u,v)$ modulo $p^m$.
-
-For each such pair, $u$ has
-$$
-p^{(n-3t)-m}=p^{3t}
-$$
-lifts to a unit modulo $p^{n-3t}$, while $v$ has
-$$
-p^{(n-2t)-m}=p^{4t}
-$$
-lifts to a unit modulo $p^{n-2t}$. Therefore the stratum indexed by $t$ contributes
-$$
-p^{7t}p^{m-1}(p-1)
-=(p-1)p^{n+t-1}
-$$
-solutions.
-
-Step 4: Sum the disjoint strata
-Let
-$$
-q=\left\lfloor\frac{n-1}{6}\right\rfloor.
-$$
-The contribution from Step 3 is
-$$
-\sum_{t=0}^{q}(p-1)p^{n+t-1}
-=p^{n-1}(p^{q+1}-1).
+f(z)=z^3+z^2-2.
 $$
 Since
 $$
-q+1=\left\lceil\frac n6\right\rceil,
+f(z)=(z-1)(z^2+2z+2)
+=(z-1)\bigl((z+1)^2+1\bigr),
 $$
-adding the high-valuation solutions from Step 1 gives
-$$
-N_n(p)
-=p^{\lfloor n/2\rfloor+\lfloor2n/3\rfloor}
-+p^{n-1}(p^{\lceil n/6\rceil}-1).
-$$
-The valuation cases in Steps 1 and 2 are exhaustive and disjoint, so this counts every solution exactly once.
+the problem is now a root-lifting problem for this factored cubic.
 
-Final Answer: $\boxed{p^{\lfloor n/2\rfloor+\lfloor2n/3\rfloor}+p^{n-1}(p^{\lceil n/6\rceil}-1)}$
+Step 2: Count the roots when $p\ne5$
+Modulo $p$, the root $z=1$ is always present. The quadratic factor has two roots exactly when $-1$ is a quadratic residue modulo $p$. Thus, writing
+$$
+L_p=\left(\frac{-1}{p}\right),
+$$
+the quadratic contributes $1+L_p$ roots.
+
+When $p\ne5$, the linear root does not coincide with a quadratic root because
+$$
+1^2+2\cdot1+2=5\not\equiv0\pmod p.
+$$
+All these roots are simple. Indeed,
+$$
+f'(1)=5\not\equiv0\pmod p,
+$$
+and a root of the quadratic factor cannot satisfy
+$$
+2z+2\equiv0\pmod p,
+$$
+because $z\equiv-1$ would make the quadratic equal to $1$.
+
+A simple root lifts uniquely through every higher power of $p$: if $r$ solves $f(r)\equiv0\pmod{p^m}$ and $f'(r)\not\equiv0\pmod p$, then among the $p$ candidates
+$$
+r+tp^m\qquad(t=0,\dots,p-1),
+$$
+Taylor expansion modulo $p^{m+1}$ gives
+$$
+f(r+tp^m)\equiv f(r)+tp^mf'(r)\pmod{p^{m+1}},
+$$
+so exactly one value of $t$ produces a root modulo $p^{m+1}$.
+
+Hence for every $n\ge1$ and every odd prime $p\ne5$,
+$$
+M_n(p)=2+L_p.
+$$
+
+Step 3: Analyze the singular prime $p=5$
+Modulo $5$,
+$$
+f(z)=(z-1)(z^2+2z+2)
+$$
+has exactly the two roots
+$$
+z\equiv1,2\pmod5.
+$$
+Thus
+$$
+M_1(5)=2.
+$$
+
+Put
+$$
+t=z-1.
+$$
+Then
+$$
+f(z)=t(t^2+4t+5).
+$$
+The class $t\equiv1\pmod5$, corresponding to $z\equiv2\pmod5$, is simple because
+$$
+2t+4\equiv1\pmod5.
+$$
+By the lifting calculation from Step 2, it contributes exactly one root modulo $5^n$ for every $n$.
+
+Now consider the branch $t\equiv0\pmod5$. Write
+$$
+t=5u.
+$$
+Then
+$$
+f(z)=25u(5u^2+4u+1).
+$$
+For $n=2$, every $u\pmod5$ gives a root, so this branch contributes $5$ roots. Together with the simple branch,
+$$
+M_2(5)=6.
+$$
+
+Assume $n\ge3$ and set
+$$
+h(u)=5u^2+4u+1.
+$$
+The condition becomes
+$$
+5^{n-2}\mid u h(u).
+$$
+Modulo $5$,
+$$
+h(u)\equiv4u+1.
+$$
+Hence a solution must satisfy either
+$$
+u\equiv0\pmod5
+$$
+or
+$$
+u\equiv1\pmod5.
+$$
+
+If $u\equiv0\pmod5$, then $h(u)$ is a unit, so we need
+$$
+u\equiv0\pmod{5^{n-2}}.
+$$
+Among the residues modulo $5^{n-1}$ there are exactly $5$ such $u$.
+
+If $u\equiv1\pmod5$, then $u$ is a unit and we need
+$$
+h(u)\equiv0\pmod{5^{n-2}}.
+$$
+Since
+$$
+h'(u)=10u+4\equiv4\pmod5,
+$$
+the same one-step lifting argument shows that the root $u\equiv1\pmod5$ has a unique lift modulo $5^{n-2}$. That single class has exactly $5$ representatives modulo $5^{n-1}$. Thus this branch also contributes $5$ roots.
+
+Therefore the branch $t\equiv0\pmod5$ contributes $10$ roots for every $n\ge3$, and the simple branch contributes one more. Hence
+$$
+M_n(5)=11
+\qquad(n\ge3).
+$$
+
+Step 4: Combine the cases
+We have shown
+$$
+M_n(p)=
+\begin{cases}
+2,&p=5,\ n=1,\\
+6,&p=5,\ n=2,\\
+11,&p=5,\ n\ge3,\\
+2+L_p,&p\ne5.
+\end{cases}
+$$
+
+Final Answer: $\boxed{\begin{cases}2,&p=5,n=1\\6,&p=5,n=2\\11,&p=5,n\ge3\\2+L_p,&p\ne5.\end{cases}}$
 
 ---
 
 ## Answer
 
-$p^{\lfloor n/2\rfloor+\lfloor2n/3\rfloor}+p^{n-1}(p^{\lceil n/6\rceil}-1)$
+$\begin{cases}2,&p=5,n=1\\6,&p=5,n=2\\11,&p=5,n\ge3\\2+L_p,&p\ne5.\end{cases}$
 
 ---
 
@@ -152,8 +186,8 @@ $p^{\lfloor n/2\rfloor+\lfloor2n/3\rfloor}+p^{n-1}(p^{\lceil n/6\rceil}-1)$
 
 ## Solution Concepts
 
-- p-adic valuations
-- modular solution counting
-- unit parametrization
-- lifting residue classes
-- geometric series
+- modular cusp parametrization
+- simple root lifting
+- quadratic residues
+- singular prime analysis
+- p-adic valuation counting
