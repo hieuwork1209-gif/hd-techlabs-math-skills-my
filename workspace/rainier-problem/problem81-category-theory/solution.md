@@ -57,7 +57,7 @@ Now let $T$ be any tree on $2n$ vertices. We prove by induction that
 $$
 \mu(T)\leq2^{n-1}+1.
 $$
-The case $n=1$ is a single edge. If $T$ is not a star, choose a penultimate vertex $v$ on a longest path. Let $v$ have $d\geq1$ leaf neighbors and one nonleaf neighbor $w$, and let $P$ be the tree left after removing $v$ and those $d$ leaves. A maximal independent set either contains all those leaves and not $v$, leaving a maximal independent set of $P$, or contains $v$, leaving a maximal independent set of $P-w$. Thus
+The case $n=1$ is a single edge. A star has only two maximal independent sets, so assume $T$ is not a star. Choose a penultimate vertex $v$ on a longest path. Let $v$ have $d\geq1$ leaf neighbors and one nonleaf neighbor $w$, and let $P$ be the tree left after removing $v$ and those $d$ leaves. A maximal independent set either contains all those leaves and not $v$, leaving a maximal independent set of $P$, or contains $v$, leaving a maximal independent set of $P-w$. Thus
 $$
 \mu(T)=\mu(P)+\mu(P-w).
 $$
