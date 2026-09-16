@@ -2,37 +2,31 @@
 
 ## LaTeX (Normalized)
 
-Let $k=\mathbb F_2$, and let $A$ be the algebra of upper triangular $3\times3$ matrices over $k$. Write
+For $n\geq2$, let $[n]=\{1,\ldots,n\}$ and let
 $$
-a=e_{12},\qquad b=e_{23},\qquad c=e_{13}=ab.
+\mathcal B_n=\mathcal P([n])
 $$
-Let $\mathcal C$ be the category of finite-dimensional left $A$-modules with $A$-linear maps, let
+be the Boolean lattice, regarded as a category under inclusion. Consider adjunctions
 $$
-U:\mathcal C\to\operatorname{Vect}_k
+L\dashv R:\mathcal B_n\rightleftarrows\mathcal B_n.
 $$
-be the forgetful functor, and put $F=U^{\oplus3}$.
+Since $L$ preserves unions, associate to $L$ a bipartite graph $G_L$ with left and right vertex sets both equal to $[n]$, joining $i$ on the left to $j$ on the right exactly when
+$$
+j\in L(\{i\}).
+$$
+Restrict to adjunctions for which $G_L$ is a tree.
 
-For $x\in\{a,b,c\}$, left multiplication by $x$ defines a natural endomorphism $\rho_x:F\Rightarrow F$. For a natural idempotent $E:F\Rightarrow F$, define
+Let $C=RL$ be the induced closure monad and define
 $$
-D_x=E\rho_x-\rho_xE.
+f(L,R)=\left|\{S\subseteq[n]:C(S)=S\}\right|.
 $$
-For each integer $n\geq1$, let $X_n=A^{\oplus n}$ and set
-$$
-\Phi_n(E)=\left(\operatorname{rank}(D_aD_b)_{X_n},\operatorname{rank}(D_c)_{X_n}\right).
-$$
-Order these pairs lexicographically.
+Let $M_n$ and $m_n$ be respectively the largest and smallest possible values of $f(L,R)$ over all such adjunctions.
 
-Determine the lexicographically largest possible value
+Determine the ordered pair
 $$
-\Phi_n^{\max}=(M_n,L_n)
+(M_n,m_n)
 $$
-and the number $N_n$ of natural idempotents $E$ satisfying $\Phi_n(E)=\Phi_n^{\max}$.
-
-Give the ordered triple
-$$
-(M_n,L_n,N_n)
-$$
-exactly for every $n\geq1$.
+exactly for every $n\geq2$.
 
 ---
 
@@ -49,4 +43,4 @@ exactly for every $n\geq1$.
 
 ## Domain Explanation
 
-The problem optimizes a defect profile attached to idempotent natural transformations of a finite direct sum of a forgetful functor on a module category. Naturality first identifies the endomorphism algebra, while the composable arrows $a,b$ and their composite $c$ impose two interacting functorial rank conditions. The subsequent path-algebra and finite-field linear algebra serve to analyze those natural transformations. Thus Logic, Set Theory, and Foundations -> Category theory is the best fit.
+The problem asks for extremal numbers of fixed objects of the closure monad arising from an adjunction on a finite poset category. The bipartite tree is the atom-level relation that canonically encodes the left adjoint, and the graph-theoretic argument is derived from the adjunction and its fixed-point condition. Thus Logic, Set Theory, and Foundations -> Category theory is the best fit.
