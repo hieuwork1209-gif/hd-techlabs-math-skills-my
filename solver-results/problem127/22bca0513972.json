@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-inner-product-spaces/problem.md",
+  "source_commit_sha": "1212ba836854b73ded7bee7f0abf66418a8c5117",
+  "problem_blob_sha": "22bca0513972a1e6ab52f266a30d969f3f98dcfc",
+  "statement_sha256": "4e756424b46030a3b40a1771fc66669eff67d969cde83c9d982b305f483c6af1",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T11:39:25+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(V\\) be the \\(4\\times 6\\) matrix with columns \\(v_i\\), and let\n\\[\nG=V^T V.\n\\]\nThen \\(G\\) is the Gram matrix of the \\(v_i\\). Since\n\\[\nVV^T=\\frac32 I_4,\n\\]\nthe nonzero eigenvalues of \\(G\\) are \\(\\frac32,\\frac32,\\frac32,\\frac32\\), and \\(G\\) has two zero eigenvalues. Also \\(G_{ii}=1\\).\n\nSet\n\\[\nP=\\frac23G.\n\\]\nThen \\(P\\) is a rank \\(4\\) orthogonal projection in \\(\\mathbb R^6\\), with diagonal entries \\(2/3\\). Hence\n\\[\nQ=I_6-P\n\\]\nis a rank \\(2\\) orthogonal projection with diagonal entries \\(1/3\\).\n\nFor a \\(4\\)-subset \\(I\\), let \\(J=I^c\\), so \\(|J|=2\\). By the complementary principal minor identity for projections,\n\\[\n\\det(P_I)=\\det(Q_J).\n\\]\nTherefore\n\\[\n\\Delta_I^2=\\det(G_I)=\\left(\\frac32\\right)^4\\det(P_I)\n=\\frac{81}{16}\\det(Q_J).\n\\]\n\nSince \\(Q\\) is a rank \\(2\\) projection with diagonal \\(1/3\\), write it as the Gram matrix of six vectors\n\\[\nu_i=\\frac1{\\sqrt3}(\\cos\\theta_i,\\sin\\theta_i)\\in \\mathbb R^2.\n\\]\nThen for \\(J=\\{a,b\\}\\),\n\\[\n\\det(Q_J)=\n\\begin{vmatrix}\n1/3 & u_a\\cdot u_b\\\\\nu_a\\cdot u_b & 1/3\n\\end{vmatrix}\n=\\frac19\\sin^2(\\theta_a-\\theta_b).\n\\]\nThus\n\\[\n\\Delta_I=\\frac34\\left|\\sin(\\theta_a-\\theta_b)\\right|.\n\\]\n\nSo the desired product is\n\\[\n\\left(\\frac34\\right)^{15}\\prod_{1\\le a<b\\le 6}\n\\left|\\sin(\\theta_a-\\theta_b)\\right|.\n\\]\n\nNow put \\(z_i=e^{2i\\theta_i}\\). Then\n\\[\n|z_a-z_b|=2|\\sin(\\theta_a-\\theta_b)|,\n\\]\nso\n\\[\n\\prod_{a<b}|\\sin(\\theta_a-\\theta_b)|\n=2^{-15}\\prod_{a<b}|z_a-z_b|.\n\\]\n\nFor six points \\(z_i\\) on the unit circle, the Vandermonde determinant gives\n\\[\n\\prod_{a<b}|z_a-z_b|\n=\n\\left|\\det(z_j^{k})_{0\\le k\\le 5,\\ 1\\le j\\le 6}\\right|.\n\\]\nEach column has norm \\(\\sqrt6\\), so by Hadamard’s inequality,\n\\[\n\\prod_{a<b}|z_a-z_b|\\le (\\sqrt6)^6=6^3=216.\n\\]\nEquality occurs exactly for a rotated regular hexagon, i.e. when the \\(z_i\\) are the sixth roots of unity. This also satisfies the tight-frame condition because\n\\[\n\\sum_{i=1}^6 e^{2i\\theta_i}=0.\n\\]\n\nHence the maximum product is\n\\[\n\\left(\\frac34\\right)^{15}2^{-15}\\cdot 216\n=216\\left(\\frac38\\right)^{15}\n=\\frac{3^{18}}{2^{42}}.\n\\]\n\n\\[\n\\boxed{\\frac{3^{18}}{2^{42}}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T11:40:21+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/22bca0513972.json"
+}
