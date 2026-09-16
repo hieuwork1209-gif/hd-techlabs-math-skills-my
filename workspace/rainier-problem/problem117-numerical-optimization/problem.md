@@ -2,40 +2,40 @@
 
 ## LaTeX (Normalized)
 
-For a parameter $\gamma\in[3,\frac{21}{4}]$, define
+For a parameter $\gamma\in[3,7]$, define
 $$
-E_\gamma=[1,2]\cup[\gamma,6].
+E_\gamma=[1,2]\cup[\gamma,8].
 $$
-Consider four successive Richardson steps for a real symmetric positive-definite system,
+Let $H$ be real symmetric positive definite with spectrum contained in $E_\gamma$. Consider three successive Cayley/ADI-type spectral steps
 $$
-x^{(j)}=(I-\alpha_jA)x^{(j-1)},\qquad j=1,2,3,4,
+x^{(j)}=(H-\alpha_jI)(H+\alpha_jI)^{-1}x^{(j-1)},
+\qquad j=1,2,3,
 $$
 with
 $$
-\alpha_j>0,\qquad
-\sum_{j=1}^4\alpha_j=2,
-\qquad
-\sum_{1\le i<j<k\le4}\alpha_i\alpha_j\alpha_k=\frac14.
+\alpha_j>0,\qquad \alpha_1\alpha_2\alpha_3=8.
 $$
-Their worst-case four-step Euclidean contraction factor over spectra contained in $E_\gamma$ is
+Their worst-case three-step Euclidean contraction factor is
 $$
-\mathcal C_\gamma(\alpha_1,\alpha_2,\alpha_3,\alpha_4)
+\mathcal C_\gamma(\alpha_1,\alpha_2,\alpha_3)
 =\max_{\lambda\in E_\gamma}
-\left|\prod_{j=1}^4(1-\alpha_j\lambda)\right|.
+\left|\prod_{j=1}^3\frac{\lambda-\alpha_j}{\lambda+\alpha_j}\right|.
 $$
-Let $\mathcal C_\gamma^*$ be the minimum under these constraints, let $p_\gamma^*$ be the unique minimizing quartic, and define
+Let $\mathcal C_\gamma^*$ be the minimum, let $r_\gamma^*$ be the unique minimizing rational function (the shifts themselves are unique only up to permutation), and define
 $$
 \mathcal A_\gamma
-=\{\lambda\in E_\gamma:|p_\gamma^*(\lambda)|=\mathcal C_\gamma^*\}.
+=\{\lambda\in E_\gamma:|r_\gamma^*(\lambda)|=\mathcal C_\gamma^*\}.
 $$
 
-As $\gamma$ increases from $3$ to $\frac{21}{4}$, there are exactly two interior values
+As $\gamma$ increases from $3$ to $7$, there are exactly two interior transition values
 $$
-3<\gamma_1<\gamma_2<\frac{21}{4}
+3<\gamma_1<\gamma_2<7
 $$
-at which the active-set pattern changes. Determine $\gamma_1$ and $\gamma_2$ exactly. Your reasoning must also identify $\mathcal A_\gamma$ on each of the three open regimes and describe the active set at each transition.
+at which the active-set pattern changes. In the final regime $\gamma_2<\gamma\le7$, let $u_*$ denote the unique member of $\mathcal A_\gamma\cap(1,2)$; it is independent of $\gamma$ there.
 
-For a polynomial $f$ having a unique real zero in $(a,b)$, write $\operatorname{root}_{(a,b)}(f)$ for that zero. Give the final answer as $(\gamma_1,\gamma_2)$.
+Determine $\gamma_1$ and $u_*$ exactly, express $\gamma_2$ exactly in terms of $u_*$, and identify $\mathcal A_\gamma$ on all three open regimes and at both transitions.
+
+For a polynomial $f$ with a unique real zero in $(a,b)$, write $\mathrm{root}_{(a,b)}(f)$ for that zero. Give the final answer as $(\gamma_1,u_*)$.
 
 ---
 
@@ -52,4 +52,4 @@ For a polynomial $f$ having a unique real zero in $(a,b)$, write $\operatorname{
 
 ## Domain Explanation
 
-This problem asks for exact minimax tuning of a four-step nonstationary Richardson schedule under two symmetric step-invariant constraints and a moving spectral gap. The primary task is constrained algorithmic parameter optimization in Optimization and Numerical Mathematics and Numerical optimization; coefficient-constrained polynomial approximation is the proof mechanism.
+This problem asks for exact minimax tuning of three positive Cayley/ADI shift parameters under a fixed geometric-product budget as a spectral gap moves. The primary task is constrained algorithmic parameter optimization in Optimization and Numerical Mathematics and Numerical optimization; rational approximation and active-set geometry are the proof mechanisms.
