@@ -23,8 +23,7 @@ $$
 $$
 Therefore
 $$
-\Gamma_n(p)
-=1-\frac12 m(p),
+\Gamma_n(p)=1-\frac12 m(p),
 $$
 where
 $$
@@ -41,9 +40,9 @@ and set $r_0=r_{n+1}=0$. A direct second-difference calculation gives
 $$
 2r_i-r_{i-1}-r_{i+1}=2
 $$
-for every $i=1,\ldots,n$. Thus, with $\mathbf 1=(1,\ldots,1)^T$,
+for every $i=1,\ldots,n$. Thus, with $\mathbf{1}=(1,\ldots,1)^T$,
 $$
-Ar=2\mathbf 1.
+Ar=2\mathbf{1}.
 $$
 Let
 $$
@@ -51,7 +50,7 @@ S:=\sum_{i=1}^n r_i.
 $$
 For every probability vector $p$,
 $$
-r^TAPA r=(Ar)^TP(Ar)=4\mathbf 1^TP\mathbf 1=4,
+r^TAPA r=(Ar)^TP(Ar)=4\mathbf{1}^TP\mathbf{1}=4,
 $$
 while
 $$
@@ -86,7 +85,17 @@ $$
 P_*^{1/2}AP_*^{1/2}-\frac{2}{S}I
 =P_*^{1/2}\left(A-\operatorname{diag}\left(\frac{2}{r_1},\ldots,\frac{2}{r_n}\right)\right)P_*^{1/2}.
 $$
-For any $u\in\mathbb R^n$, the identity $2r_i-r_{i-1}-r_{i+1}=2$ gives
+For any $u\in\mathbb R^n$, consider
+$$
+\sum_{i=1}^{n-1}r_i r_{i+1}
+\left(\frac{u_i}{r_i}-\frac{u_{i+1}}{r_{i+1}}\right)^2.
+$$
+Expanding gives the cross-term $-2\sum_{i=1}^{n-1}u_i u_{i+1}$, while the coefficient of $u_i^2$ is
+$$
+\frac{r_{i-1}+r_{i+1}}{r_i}
+=2-\frac{2}{r_i},
+$$
+where $r_0=r_{n+1}=0$ and the last equality is exactly the second-difference relation from Step 2. Therefore
 $$
 u^T\left(A-\operatorname{diag}\left(\frac{2}{r_1},\ldots,\frac{2}{r_n}\right)\right)u
 =
@@ -110,17 +119,17 @@ $$
 Step 4: Prove uniqueness of the optimal sampling distribution
 If some $p_i=0$, then $P$ is singular, so $APA$ is singular and $m(p)=0$. Such a distribution cannot be optimal because $m(p^*)=2/S>0$.
 
-Now suppose $p_i>0$ for all $i$ and $p$ is optimal. Then Step 2 must be sharp, so $r$ attains the minimum in the generalized Rayleigh quotient defining $m(p)$. Therefore
+Now suppose $p_i>0$ for all $i$ and $p$ is optimal. Then the bound from Step 2 is sharp, so $r$ attains the minimum in the generalized Rayleigh quotient defining $m(p)$. The stationarity equation for that quotient is
 $$
 APA r=\frac{2}{S}Ar.
 $$
-Using $Ar=2\mathbf 1$ gives
+Using $Ar=2\mathbf{1}$ gives
 $$
-2Ap=\frac{4}{S}\mathbf 1,
+2Ap=\frac{4}{S}\mathbf{1},
 $$
 so
 $$
-Ap=\frac{2}{S}\mathbf 1=\frac1S Ar.
+Ap=\frac{2}{S}\mathbf{1}=\frac1S Ar.
 $$
 Since $A$ is invertible,
 $$
@@ -129,7 +138,13 @@ $$
 Thus $p^*$ is the unique minimizer of $\Gamma_n$.
 
 Step 5: Evaluate the normalization and state the optimum
-Using the standard sums of the first $n$ integers and their squares,
+Using
+$$
+\sum_{i=1}^n i=\frac{n(n+1)}{2},
+\qquad
+\sum_{i=1}^n i^2=\frac{n(n+1)(2n+1)}{6},
+$$
+we obtain
 $$
 S
 =\sum_{i=1}^n i(n+1-i)
