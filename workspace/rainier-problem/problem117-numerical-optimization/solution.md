@@ -1,300 +1,205 @@
 ## Steps
 
-Step 1: Use constrained alternation
+Step 1: Reduce the budget constraint to a constrained alternation problem
 For four Richardson steps write
 $$
 p(\lambda)=\prod_{j=1}^4(1-\alpha_j\lambda).
 $$
-The budget constraint $\sum_j\alpha_j=2$ is exactly
+The condition $\sum_j\alpha_j=2$ is exactly
 $$
 p(0)=1,\qquad p'(0)=-2.
 $$
-Conversely, once a feasible quartic with these two conditions has four positive zeros, it factors into four positive Richardson factors whose step sizes sum to $2$.
+Thus the admissible quartics form a three-dimensional affine space. If a feasible quartic has four increasing active points with alternating values $\pm C$, then any strictly better feasible quartic would differ from it by a quartic having three positive sign-change zeros and also a double zero at $0$. That is impossible. Hence four-point alternation is an exact optimality certificate; the weak-sign argument gives uniqueness.
 
-The fixed derivative changes the alternation count. Suppose a feasible quartic $p$ has four increasing active points $x_1<\cdots<x_4$ in $E_\gamma$ with alternating values $\pm C$. If another feasible quartic $q$ had strictly smaller norm, then $q-p$ would change sign in each of the three gaps $(x_j,x_{j+1})$, giving three positive zeros. But $q-p$ also has a double zero at $0$ because both its value and derivative vanish there. Hence a nonzero quartic would have at least five zeros, impossible. The weak-sign version gives uniqueness. Thus four-point alternation is the exact optimality certificate for this constrained problem.
+All three regimes below have two negative interior contacts $m<r$. Put
+$$
+S=m+r,\qquad P=mr,\qquad q(\lambda)=\lambda^2-S\lambda+P.
+$$
+Since $p(m)=p(r)=-C$ and $p'(m)=p'(r)=0$,
+$$
+p(\lambda)+C=kq(\lambda)^2.
+$$
+Using $p(0)=1$ and $p'(0)=-2$ gives
+$$
+k=\frac1{PS},\qquad C=\frac{P-S}{S},
+$$
+so
+$$
+p(\lambda)=\frac{q(\lambda)^2}{PS}-\frac{P-S}{S}.
+$$
+The positive level $p=C$ is characterized by
+$$
+q(\lambda)^2=2P(P-S).
+$$
+Consequently, if two positive contacts $a,b$ satisfy $q(a)=-q(b)$, then the other two positive-level crossings are $S-a$ and $S-b$.
 
-Step 2: Construct the first regime and evaluate the left-end contraction
-For $\frac92<\gamma<\frac{24}{5}$, the active pattern is
+Step 2: First regime and the cubic transition
+Write
 $$
-p(m)=-C,\qquad p(\gamma)=C,\qquad p(r)=-C,\qquad p(6)=C,
+u=8-\gamma.
 $$
-with $1<m<2<\gamma<r<6$ and $p'(m)=p'(r)=0$.
+Initially the active pattern is
+$$
+p(m)=-C,\qquad p(\gamma)=C,\qquad p(r)=-C,\qquad p(u)=C.
+$$
+Because $q(\gamma)=-q(u)$ and $\gamma+u=8$,
+$$
+P=4S-\gamma^2+8\gamma-32.
+$$
+Substituting $p(\gamma)=C$ gives the quadratic equation
+$$
+F_1(S,\gamma)=0,
+$$
+where
+$$
+\begin{aligned}
+F_1(S,\gamma)={}&(\gamma^2-8\gamma-8)S^2
++(-2\gamma^2+16\gamma+192)S\\
+&-2(\gamma^4-16\gamma^3+96\gamma^2-256\gamma+512).
+\end{aligned}
+$$
+For $3\le\gamma\le7/2$, the relevant solution is the larger $S$-root: it lies in $(4,6)$ and is the only one for which $P>S>0$. Hence the third stationary point $S/2$ lies in the spectral gap $(2,\gamma)$.
 
-Set $S=m+r$ and $P=mr$. Since the two negative active points are double roots of $p+C$, write
+The four positive-level crossings are
 $$
-p(\lambda)=\frac{(\lambda^2-S\lambda+P)^2}{PS}-\frac{P-S}{S}.
+\gamma,\quad u,\quad S-\gamma,\quad S-u.
 $$
-Then automatically
+At $\gamma=3$ one has $S-\gamma>2$ and $S-u<1$. The first possible collision with the spectrum is therefore $S-\gamma=2$. Substituting $S=\gamma+2$ into $F_1=0$ yields
 $$
-p(0)=1,\qquad p'(0)=-2,
+-(\gamma-2)(\gamma^3-24\gamma^2+168\gamma-336)=0.
 $$
-and
+Let $\gamma_1$ be the unique root in $(3,7/2)$ of
 $$
-C=\frac{P-S}{S}>0.
+f(x)=x^3-24x^2+168x-336.
 $$
-The conditions $p(\gamma)=p(6)=C$ are equivalent to
+Indeed, $f(3)<0<f(7/2)$ and
 $$
-P=\frac{S(\gamma+6)-\gamma^2-36}{2}
+f'(x)=3x^2-48x+168>0
 $$
-and
+on that interval. The competing collision $S-u=1$ would require
 $$
-(\gamma^2+32\gamma+12)S^2
--(2\gamma^3+32\gamma^2+216\gamma+288)S
-+\gamma^4+216\gamma^2+1296=0.
+\gamma^4-8\gamma^3+9\gamma^2+40\gamma-56=0,
 $$
-Take the larger root $S=S_\gamma$ and then define
+whose left side stays positive on $[3,7/2]$; hence it occurs later.
+
+Therefore, for
 $$
-P_\gamma=\frac{S_\gamma(\gamma+6)-\gamma^2-36}{2},
+3<\gamma<\gamma_1,
 $$
+the extra positive-level crossings stay outside $E_\gamma$, so
 $$
-m_\gamma=\frac{S_\gamma-\sqrt{S_\gamma^2-4P_\gamma}}2,
+\mathcal A_\gamma=\{m_\gamma,\gamma,r_\gamma,8-\gamma\}.
+$$
+At $\gamma=\gamma_1$ we have $S=\gamma_1+2$. If $m_1<r_1$ are the roots of
+$$
+t^2-(\gamma_1+2)t+P_1=0,
 \qquad
-r_\gamma=\frac{S_\gamma+\sqrt{S_\gamma^2-4P_\gamma}}2.
+P_1=4(\gamma_1+2)-\gamma_1^2+8\gamma_1-32,
 $$
-On $\frac92\le\gamma\le\frac{24}{5}$, the explicit larger-root formula gives
+then
 $$
-\frac{67}{10}<S_\gamma\le\frac{34}{5},
-\qquad
-\frac{36}{5}\le P_\gamma<\frac{73}{10}.
-$$
-Hence
-$$
-1<m_\gamma<2<\frac{S_\gamma}{2}<\gamma<r_\gamma<6.
-$$
-The other two points at which $p=C$ are $S_\gamma-6$ and $S_\gamma-\gamma$. Here $S_\gamma-6<1$. The equality $S_\gamma-\gamma=2$ means $S_\gamma=\gamma+2$; substitution into the quadratic for $S_\gamma$ gives
-$$
--4(\gamma-2)(5\gamma-24)=0.
-$$
-Thus, throughout $\frac92<\gamma<\frac{24}{5}$,
-$$
-S_\gamma-\gamma>2.
-$$
-Therefore neither extra positive-level crossing lies in $[1,2]$. Since the vertex $S_\gamma/2$ lies in the gap and the right component runs between equal positive levels with the stationary minimum $r_\gamma$, we have $|p|\le C$ on $E_\gamma$. The constrained alternation certificate gives
-$$
-\mathcal A_\gamma=\{m_\gamma,\gamma,r_\gamma,6\}.
-$$
-The first transition is therefore
-$$
-\gamma_1=\frac{24}{5}.
+\mathcal A_{\gamma_1}
+=\{m_1,2,\gamma_1,r_1,8-\gamma_1\}.
 $$
 
-At $\gamma=\frac92$, the larger root and associated product are
+Step 3: Second regime and the quadratic transition
+After $2$ becomes active, the positive contacts are $2$ and $u=8-\gamma$, while $m,r$ remain the negative contacts. The condition $q(2)=-q(u)$ gives
 $$
-S_{9/2}=\frac{2787+12\sqrt{1021}}{470},
-\qquad
-P_{9/2}=\frac{1413+63\sqrt{1021}}{470}.
+P=\frac{(10-\gamma)S-\gamma^2+16\gamma-68}{2}.
 $$
-Therefore
+Substitution into $p(2)=C$ gives
 $$
-\mathcal C_{9/2}^*
-=\frac{P_{9/2}-S_{9/2}}{S_{9/2}}
-=\frac{25\sqrt{1021}-702}{1201}.
+F_2(S,\gamma)=0,
 $$
+where
+$$
+\begin{aligned}
+F_2(S,\gamma)={}&(\gamma^2-24\gamma+124)S^2\\
+&+(2\gamma^3-56\gamma^2+536\gamma-1728)S\\
+&+\gamma^4-32\gamma^3+408\gamma^2-2432\gamma+5648.
+\end{aligned}
+$$
+Again the relevant $S$ is the larger root in $(4,6)$, so $S/2$ remains in the gap. The four positive-level crossings are now
+$$
+2,\quad u,\quad S-2,\quad S-u.
+$$
+At $\gamma_1$ we have $S-2=\gamma_1$. For $\gamma>\gamma_1$ this crossing moves into the gap; equality $S-2=\gamma$ can occur again only at another root of the same cubic $f$, and there is none before $19/5$.
 
-Step 3: Identify the fixed middle minimizer and the second transition
-At $\gamma=\frac{24}{5}$ the first-regime polynomial becomes
+The next collision is $S-u=1$. Since $u=8-\gamma$, this means $S=9-\gamma$. Substitution into $F_2=0$ gives
 $$
-p_0(\lambda)=
-\frac{25\lambda^4-340\lambda^3+1516\lambda^2-2448\lambda+1224}{1224},
+5\gamma^2-56\gamma+140=0.
 $$
-with
+Thus
 $$
-C_0=\frac1{17}.
-$$
-Two useful factorizations are
-$$
-p_0(\lambda)-C_0
-=\frac{(\lambda-6)(\lambda-2)(5\lambda-24)(5\lambda-4)}{1224},
-$$
-$$
-p_0(\lambda)+C_0
-=\frac{(5\lambda^2-34\lambda+36)^2}{1224}.
-$$
-Thus, with
-$$
-m_0=\frac{17-\sqrt{109}}5,
-\qquad
-r_0=\frac{17+\sqrt{109}}5,
-$$
-we have
-$$
-p_0(m_0)=p_0(r_0)=-C_0,
-\qquad
-p_0(2)=p_0(6)=C_0.
-$$
-Also
-$$
-p_0'(\lambda)=\frac{(5\lambda-17)(5\lambda^2-34\lambda+36)}{306},
-$$
-so the third stationary point is $17/5$, which lies in the spectral gap.
-
-At the first transition the moving endpoint $\gamma_1=24/5$ is also active, so
-$$
-\mathcal A_{\gamma_1}=\{m_0,2,\gamma_1,r_0,6\}.
+\gamma_2=\frac{28-2\sqrt{21}}5.
 $$
 For
 $$
-\frac{24}{5}<\gamma<r_0,
+\gamma_1<\gamma<\gamma_2,
 $$
-the point $24/5$ has left the right spectral interval while $r_0$ remains in it. Hence the same fixed quartic remains feasible and has the four alternating active points
+we therefore have
 $$
-\mathcal A_\gamma=\{m_0,2,r_0,6\}.
-$$
-The second transition occurs exactly when the moving endpoint reaches $r_0$:
-$$
-\gamma_2=r_0=\frac{17+\sqrt{109}}5.
-$$
-At this transition
-$$
-\mathcal A_{\gamma_2}=\{m_0,2,\gamma_2,6\},
-\qquad p_0'(\gamma_2)=0.
+\mathcal A_\gamma=\{m_\gamma,2,r_\gamma,8-\gamma\}.
 $$
 
-Step 4: Construct the final constrained branch and extract its endpoint algebraic invariant
-Let
+Step 4: Final fixed branch and exclusion of a third transition
+Once the crossing $S-u$ reaches $1$, the positive contacts become $1$ and $2$. The relation $q(1)=-q(2)$ gives
 $$
-\gamma_2<\gamma\le\frac{11}{2}.
+P=\frac{3S-5}{2},
 $$
-The new alternating pattern is
+and $p(1)=C$ reduces to
 $$
-p(m)=-C,\qquad p(2)=C,\qquad p(\gamma)=-C,\qquad p(6)=C,
+5S^2-34S+41=0.
 $$
-with $1<m<2$.
-
-Define
+The relevant root is
 $$
-\begin{aligned}
-G(\gamma,m)={}&\gamma^2m^4-16\gamma^2m^3+40\gamma^2m^2+88\gamma^2m-144\gamma^2\\
-&-8\gamma m^4+96\gamma m^3-144\gamma m^2-896\gamma m+1152\gamma\\
-&-4m^4+88m^3-736m^2+2304m-1728.
-\end{aligned}
-$$
-For every $\gamma\in(\gamma_2,11/2]$ there is a unique root
-$$
-m_\gamma\in(m_0,4/3)
-$$
-of $G(\gamma,m)=0$. Indeed,
-$$
-G(\gamma,m_0)
-=\frac{16(376\sqrt{109}-3647)}{625}(\gamma-\gamma_2)^2>0,
-$$
-whereas
-$$
-G\left(\gamma,\frac43\right)
-=\frac{16(49\gamma^2-488\gamma+1172)}{81}<0
-$$
-on this interval. Moreover, on the rectangle
-$$
-\gamma_2\le\gamma\le\frac{11}{2},
+S_0=\frac{17+2\sqrt{21}}5,
 \qquad
-m_0\le m\le\frac43,
+P_0=\frac{13+3\sqrt{21}}5.
 $$
-direct differentiation gives $G_{mm}>0$ and $G_{m\gamma}>0$, hence
+Let $m_0<r_0$ be the roots of
 $$
-G_m(\gamma,m)
-\le G_m\left(\frac{11}{2},\frac43\right)
-=-\frac{7406}{27}<0.
-$$
-So the root is unique.
-
-Put $m=m_\gamma$ and
-$$
-D=2\gamma m-8\gamma+m^2-16m+52,
-$$
-$$
-\rho=\frac{-\gamma m^2+16\gamma m-52\gamma+8m^2-104m+320}{D}.
-$$
-On the rectangle above, $D\ge28/9>0$. The choice of $\rho$ is exactly the solution of
-$$
-R(2)=R(6),
-\qquad
-R(\lambda)=(\lambda-m)^2(\lambda-\gamma)(\lambda-\rho).
-$$
-After this substitution, the second condition
-$$
-R(2)-2R(0)=R'(0)
-$$
-is precisely $G(\gamma,m)=0$.
-
-We also have
-$$
-\rho-2=-\frac{(\gamma-6)(m-6)^2}{D}>0.
-$$
-In fact $\rho>5$. To prove $\rho<\gamma$, set
-$$
-t_\gamma=4-\frac4{\gamma-4}.
+t^2-S_0t+P_0=0.
 $$
 Then
 $$
-G(\gamma,t_\gamma)
-=\frac{16(\gamma-6)(\gamma-2)(\gamma^2-4\gamma-4)(5\gamma^2-34\gamma+36)}{(\gamma-4)^4}<0.
+1<m_0<2<\frac{S_0}{2}<\gamma_2<r_0<8-\gamma_2,
 $$
-Since $G(\gamma,m_0)>0$ and $G$ is strictly decreasing in $m$, we get $m_\gamma<t_\gamma$. Using
+and the two additional positive-level crossings are
 $$
-\rho-\gamma
-=-\frac{2(\gamma+m-8)(\gamma m-4\gamma-4m+20)}{D}
+S_0-2,\qquad S_0-1.
 $$
-then gives
+Since
 $$
-1<m<2<5<\rho<\gamma<6.
+8-\gamma_2=S_0-1,
 $$
+at the second transition
+$$
+\mathcal A_{\gamma_2}=\{1,m_0,2,r_0,8-\gamma_2\}.
+$$
+For $\gamma>\gamma_2$, both moving endpoints lie strictly between the two positive-level crossings. Moreover
+$$
+r_0\approx3.83987>\frac{19}{5},
+$$
+so throughout
+$$
+\gamma_2<\gamma\le\frac{19}{5}
+$$
+the right spectral interval still contains $r_0$. Hence the same fixed quartic remains feasible and optimal, with
+$$
+\mathcal A_\gamma=\{1,m_0,2,r_0\}.
+$$
+Thus there is no third transition in the prescribed range.
 
-Now let
-$$
-k=-\frac2{R'(0)}>0,
-\qquad
-C=kR(0)-1,
-\qquad
-p(\lambda)=kR(\lambda)-C.
-$$
-Then $p(0)=1$ and $p'(0)=-2$, while
-$$
-p(m)=-C,\quad p(2)=C,\quad p(\gamma)=-C,\quad p(6)=C.
-$$
-The remaining stationary points lie in the spectral gap, and on the left component the only stationary point is $m$; consequently $|p|\le C$ on $E_\gamma$. The four-point constrained alternation certificate proves
-$$
-\mathcal A_\gamma=\{m_\gamma,2,\gamma,6\}
-\qquad\left(\gamma_2<\gamma\le\frac{11}{2}\right).
-$$
-Thus there are no further transitions in the prescribed interval.
+The first transition is the unique root in $(3,7/2)$ of the irreducible cubic $x^3-24x^2+168x-336$, while the second is $(28-2\sqrt{21})/5$.
 
-Now let $m_*=m_{11/2}$, the unique active point in $(1,2)$ at the right endpoint. Substituting $\gamma=11/2$ into $G$ gives
-$$
-G\left(\frac{11}{2},m\right)
-=-\frac14\left(71m^4-528m^3+1272m^2-152m-1008\right).
-$$
-Hence $m_*$ is the unique root in $(m_0,4/3)$ of
-$$
-Q(t)=71t^4-528t^3+1272t^2-152t-1008.
-$$
-This primitive quartic is irreducible over $\mathbb Q$: modulo $11$, multiplying by the inverse of its leading coefficient gives
-$$
-f(t)=t^4-3t^2-4t+3,
-$$
-and a Euclidean calculation gives
-$$
-\gcd\bigl(f(t),t^{121}-t\bigr)=1.
-$$
-Any reducible quartic over $\mathbb F_{11}$ has a factor of degree $1$ or $2$, hence would have a nontrivial gcd with $t^{121}-t$. Therefore $Q$ is irreducible and is exactly the primitive minimal polynomial of $m_*$.
-
-The requested data are
-$$
-\gamma_1=\frac{24}{5},\qquad
-\gamma_2=\frac{17+\sqrt{109}}5,\qquad
-\mathcal C_{9/2}^*=\frac{25\sqrt{1021}-702}{1201},
-$$
-with minimal-polynomial coefficient tuple
-$$
-(q_4,q_3,q_2,q_1,q_0)=(71,-528,1272,-152,-1008).
-$$
-
-Final Answer: $\boxed{(24/5,(17+\sqrt{109})/5,(25\sqrt{1021}-702)/1201;71,-528,1272,-152,-1008)}$
+Final Answer: $\boxed{\left(\operatorname{root}_{(3,7/2)}(x^3-24x^2+168x-336),\frac{28-2\sqrt{21}}5\right)}$
 
 ---
 
 ## Answer
 
-$(24/5,(17+\sqrt{109})/5,(25\sqrt{1021}-702)/1201;71,-528,1272,-152,-1008)$
+$\left(\operatorname{root}_{(3,7/2)}(x^3-24x^2+168x-336),\frac{28-2\sqrt{21}}5\right)$
 
 ---
 
@@ -309,6 +214,6 @@ $(24/5,(17+\sqrt{109})/5,(25\sqrt{1021}-702)/1201;71,-528,1272,-152,-1008)$
 ## Solution Concepts
 
 - constrained Richardson tuning
-- coefficient-constrained minimax approximation
+- constrained equioscillation
+- moving spectral interval
 - active-set phase transitions
-- algebraic endpoint invariant
