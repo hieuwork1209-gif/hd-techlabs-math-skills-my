@@ -16,9 +16,11 @@ $$
 =\int_0^1 y\,T(y)\,dy
 =I.
 $$
-Applying the same change of variables with $T^2$ gives
+Since $T^2$ is also measure-preserving and $T^3(x)=x$ almost everywhere,
 $$
-\int_0^1 T^2(x)\,x\,dx=I.
+\int_0^1 T^2(x)\,x\,dx
+=\int_0^1 y\,T(y)\,dy
+=I.
 $$
 Thus all three pairwise products along an orbit have the same integral.
 
@@ -62,27 +64,35 @@ $$
 for almost every $x$.
 
 Step 3: Build a measure-preserving period-three map attaining equality
-Ignore the countable set of points with two ternary expansions. On the remaining full-measure set, write
+Let
 $$
-x=\sum_{k=1}^{\infty}\frac{a_k}{3^k},
-\qquad a_k\in\{0,1,2\}.
+\Omega=\{0,1,2\}^{\mathbb N}
 $$
-Define $T$ by adding $1$ modulo $3$ to every ternary digit:
+with the uniform product probability measure, and let
 $$
-T(x)=\sum_{k=1}^{\infty}\frac{a_k+1\pmod3}{3^k}.
+\pi((a_k))=\sum_{k=1}^{\infty}\frac{a_k}{3^k}.
 $$
-More formally, identify almost every point of $[0,1]$ with the product space $\{0,1,2\}^{\mathbb N}$ equipped with the uniform product measure. Coordinatewise addition by $1$ modulo $3$ is a measure-preserving bijection of that product space, so the induced map on $[0,1]$ is measure-preserving modulo a null set. Extend it arbitrarily on the exceptional null set.
+The coding map $\pi$ pushes product measure forward to Lebesgue measure on $[0,1]$ and is one-to-one except on the countable set of ternary rationals.
 
-Applying the digit shift three times restores every digit, hence
+Define
 $$
-T^3(x)=x
+\tau((a_k))=(a_k+1\pmod3)_{k\ge1}.
 $$
-for almost every $x$.
-For every nonexceptional $x$, the three digits appearing in the same position of
+Then $\tau$ is a measure-preserving bijection of $\Omega$ and $\tau^3$ is the identity. Remove from $\Omega$ the countable union consisting of the exceptional coding sequences and their inverse images under $\tau$ and $\tau^2$. On the remaining full-measure, $\tau$-invariant set, $\pi$ is injective throughout every three-point orbit. Hence
+$$
+T(\pi(\omega))=\pi(\tau\omega)
+$$
+defines a measurable measure-preserving map on a full-measure subset of $[0,1]$. Extend $T$ arbitrarily on the null complement; this does not change measure preservation or any almost-everywhere statement.
+
+For every point in the full-measure set, applying the digit shift three times restores every digit, so
+$$
+T^3(x)=x.
+$$
+Moreover, in each ternary place, the three digits belonging to
 $$
 x,\qquad T(x),\qquad T^2(x)
 $$
-are a permutation of $0,1,2$. Their sum is therefore $3$ in every ternary place, so
+are a permutation of $0,1,2$. Their sum is $3$, hence
 $$
 \begin{aligned}
 x+T(x)+T^2(x)
@@ -90,7 +100,7 @@ x+T(x)+T^2(x)
 &=\frac32.
 \end{aligned}
 $$
-Hence the equality condition from Step 2 is attained.
+Thus the equality condition from Step 2 is attained.
 
 Step 4: Evaluate the minimum
 For the transformation from Step 3,
