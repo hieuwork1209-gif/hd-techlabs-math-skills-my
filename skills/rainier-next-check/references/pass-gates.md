@@ -6,51 +6,40 @@ Run these as rejection gates. Do not average them into a score: one serious fail
 
 Pass only if:
 
-- the selected Domain/Sub-domain describes the primary requested object;
+- selected Domain/Sub-domain describes the primary requested object;
 - auxiliary methods do not dominate the true mathematics;
-- the classification would remain the same after removing cosmetic vocabulary;
-- the Domain Explanation is affirmative and specific, not defensive taxonomy camouflage.
+- classification would remain the same after removing cosmetic vocabulary;
+- Domain Explanation is affirmative and specific.
 
-Reject when the natural reviewer reaction is “this is really a problem about X, not the chosen sub-domain.”
+Reject when the natural reaction is “this is really a problem about X, not the chosen sub-domain.”
 
 ## Gate B — Natural statement
 
-Pass only if the mathematical object/question is worth asking independently of the target constant.
+Pass only if the object/question is worth asking independently of the target constant.
 
-Every definition, parameter, and index must have an intrinsic role. Prefer standard notation and a small number of definitions.
-
-Reject when difficulty mainly comes from:
-
-- constants tuned so several terms vanish;
-- alternating/finite-difference devices inserted to move the first nonzero coefficient;
-- nested helper symbols hiding a custom integrand or matrix;
-- many special cases/indices that only increase bookkeeping;
-- large determinants/matrices or high-degree expressions used only as computational burden;
-- long mechanical expansions after the key idea is already obvious;
-- a verbose custom presentation of a standard object whose main purpose is to conceal the standard structure;
-- families of relations or coefficients that are natural only because the intended solution later makes them cancel.
+Reject when difficulty mainly comes from tuned constants, cancellation devices, nested helper notation, mechanical casework, giant calculations, verbose encodings of standard structures, or relations that are natural only because the intended solution later makes them cancel.
 
 Diagnostic questions:
 
-1. Can the object and question be described naturally in one sentence?
-2. Would the problem still look interesting if the answer were unknown?
-3. Does each parameter have a conceptual role?
-4. Is the difficulty a new idea or just more work?
-5. Could a simpler formulation preserve the same conceptual obstacle?
-6. If the decisive hidden structure were stated directly, would meaningful difficulty remain?
+1. Can the problem be described naturally in one sentence?
+2. Would it still look interesting if the answer were unknown?
+3. Does every parameter have a conceptual role?
+4. Is the difficulty a new idea or merely more work?
+5. Could a cleaner formulation preserve the same conceptual obstacle?
+6. If the decisive structure were stated directly, would meaningful difficulty remain?
 
 Several unfavorable answers -> redesign.
 
 ## Gate C — Forward provenance / anti-reverse-engineering
 
-Pass only if every decisive non-obvious object introduced in the solution has a forward discovery path from the visible problem. Apply `quality-redesign-preflight.md`.
+Pass only if every decisive non-obvious object has a forward discovery path from visible mathematics.
 
-For each correction, substitution, invariant, auxiliary matrix/function, coefficient choice, or normal form, the solution must make clear:
+For each correction, substitution, invariant, auxiliary object, coefficient choice, or normal form, require:
 
-- what visible obstruction/equation/symmetry triggers the search for it;
-- how it is derived rather than guessed;
-- why the choice is canonical, forced, extremal, universal, or otherwise intrinsic;
-- what later reasoning node genuinely depends on it.
+- visible trigger;
+- derivation rather than guess;
+- canonicity/forcedness/intrinsic motivation;
+- a later load-bearing role.
 
 Automatic rejection signals:
 
@@ -58,127 +47,178 @@ Automatic rejection signals:
 - `FIT_TO_TARGET`;
 - `COEFFICIENT_TUNED`;
 - `BACKSOLVED_FROM_FINAL_ANSWER`;
-- a custom generators-and-relations encoding used mainly to hide a standard algebra or representation;
-- defining several special invariant combinations first and only afterwards checking that all brackets/terms cancel;
-- a hardening move whose main effect is to make the same successful representation harder to recognize.
+- a custom encoding mainly hiding a standard algebra/representation;
+- special combinations introduced only because they later cancel;
+- hardening whose main effect is making the same successful representation harder to recognize.
 
-Use the compression test: rewrite the problem using the decisive structure found in the solution. If the statement becomes dramatically shorter and the remaining mathematics becomes routine, reject the encoded version.
+Compression test: if naming the decisive structure makes the statement dramatically shorter and the remainder routine, reject the encoded version.
 
-A hidden representation may pass only when it is forced by an intrinsic obstruction and at least two load-bearing reasoning nodes remain after discovery.
+A hidden representation may pass only when it is intrinsically triggered and at least two substantial reasoning nodes remain after discovery.
 
 ## Gate D — Difficulty architecture
 
-A strong candidate should force all of:
+Require all of:
 
-- **direction discovery:** the statement does not name the decisive representation/invariant/certificate;
-- **tool construction:** the solver must build a problem-specific lemma, reduction, certificate, recursion, coupling, or normal form;
-- **idea interaction:** at least two ideas are load-bearing and neither alone finishes the problem;
-- **serial dependence:** later steps genuinely require earlier discoveries;
-- **closure:** the last stage proves uniqueness/exhaustiveness/attainment/inverse consistency rather than stopping at a plausible candidate.
+- **direction discovery** — the decisive representation/invariant/certificate is not handed to the solver;
+- **tool construction** — a problem-specific lemma, reduction, certificate, recursion, coupling, or normal form must be built;
+- **idea interaction** — at least two ideas are load-bearing and neither alone finishes the problem;
+- **serial dependence** — later steps genuinely require earlier discoveries;
+- **closure** — uniqueness/exhaustiveness/attainment/inverse consistency is proved.
 
-Reject recognize-theorem-apply-simplify problems even if the final algebra is lengthy.
+Reject recognize-theorem-apply-simplify problems even if the algebra is long.
+
+Also reject a candidate when a strong audit can summarize the solve as one standard gateway followed by routine one-variable optimization, routine diagonalization, routine coefficient extraction, or similarly canonical cleanup.
 
 ## Gate E — Ground-truth correctness
 
 Pass only if the solution independently establishes:
 
-- all objects are well-defined over the full stated parameter range;
+- well-definedness over the full stated range;
 - existence where needed;
 - uniqueness/exhaustiveness where needed;
-- no missing sign/branch/parity/boundary cases;
-- the final expression exactly matches the requested answer type;
-- every statement edit has a matching fresh solution audit.
+- all sign/branch/parity/boundary cases;
+- exact answer type;
+- consistency after every statement edit.
 
-For asymptotics/limits, check uniformity or continuity hypotheses whenever they are load-bearing.
+For asymptotics/limits, check uniformity/continuity/interchange hypotheses whenever load-bearing.
 
 ## Gate F — Reviewer completeness
 
 Use a hostile standard: if a reviewer can reasonably write “asserted without derivation,” strengthen the proof before promotion.
 
-### Named theorem/identity usage
+### Load-bearing theorem/identity usage
 
-When a named result is load-bearing:
+State the exact form, instantiate all objects/hypotheses, and show the substitution/reduction that produces the claimed conclusion.
 
-1. state the exact form being used;
-2. identify all instantiated objects and dimensions/hypotheses;
-3. show the substitution/reduction that produces the displayed conclusion.
+### Expansions and finite calculations
 
-Example pattern for matrix identities: state the determinant identity, define the actual `P,U,V` (or analogous objects), and show conformability/invertibility when required.
-
-### Taylor/endpoint/asymptotic expansions
-
-Do not merely assert coefficients that control the argument. Show enough derivatives/algebra to produce the first relevant coefficients and justify the remainder order.
-
-### Repeated Rolle / zero accumulation / multiplicity arguments
-
-If several derivatives are claimed to vanish from accumulating zeros, explicitly give the repeated Rolle/Taylor mechanism. Do not compress the entire implication into one sentence when it is load-bearing.
-
-### Quadratic/Gaussian/matrix block derivations
-
-If a posterior precision, Hessian, covariance, or block matrix is central, expand the quadratic form and collect the blocks explicitly. Do not jump directly to the final block matrix.
-
-### “Direct calculation”
-
-This phrase is acceptable only for low-risk arithmetic. If the calculation determines a determinant factor, key coefficient, sign, rank, invariant, or final constant, show reproducible intermediate work.
+Do not hide determinant factors, signs, ranks, traces, coefficients, minors, or allowed cases behind “direct calculation.” Show reproducible intermediate work or a general formula.
 
 ### Limit/interchange/continuity steps
 
-State why inversion, determinant, log, sum/integral interchange, differentiation, expectation, or limiting operations are valid in the required neighborhood/range.
+State why inversion, determinant, log, sum/integral interchange, differentiation, expectation, continuation, or limiting operations are valid where used.
 
-## Gate G — Solver evidence integrity
+## Gate G — Local solver evidence integrity
 
-Pass local difficulty only if the exact statement blob was measured once with the intended solver settings and the result is one of:
+Read `difficulty-evidence.md` before assigning a verdict.
 
-- mathematically wrong;
-- materially incomplete in a way that misses a necessary dependency;
-- valid timeout with the expected timeout metadata.
+The exact statement blob must be measured once with intended GPT-5.5 Medium settings unless explicitly waived.
+
+A completed response must be graded by **reasoning route**, not final-answer equality.
+
+Qualifying classifications:
+
+- `EXACT_SOLVE` -> difficulty FAIL;
+- `CONCEPTUAL_SOLVE_EXECUTION_ERROR` -> difficulty FAIL;
+- `MATERIAL_PARTIAL` -> not promotion-ready; requires strong audit;
+- `TRUE_STUMP` -> first-line difficulty evidence only;
+- qualifying timeout -> first-line evidence only;
+- infrastructure failure -> no evidence.
+
+### Conceptual-solve rule
+
+If the solver recovers the common entry, decisive reduction, and all load-bearing nodes, and the wrong answer can be fixed by a local arithmetic/sign/transcription/simplification correction to its own displayed work, classify `CONCEPTUAL_SOLVE_EXECUTION_ERROR`.
+
+Do **not** count it as mathematically wrong for difficulty purposes.
+
+A wrong scalar after an otherwise complete proof architecture is not a stump.
+
+### True-stump rule
+
+Use `TRUE_STUMP` only when completion requires a genuinely new load-bearing dependency absent from the response (`REPAIR_RADIUS=STRUCTURAL`).
 
 Do not count:
 
+- local execution mistakes;
 - infrastructure failures;
-- malformed output;
-- a result from an older statement blob;
+- malformed/unjudgeable output;
+- stale/mismatched blob evidence;
 - repeated attempts on the same blob;
-- a custom easier solver configuration unless the user explicitly chose it and the deviation is reported.
+- easier custom solver configurations unless explicitly chosen and reported.
 
-## Gate H — Portal format / repository submission compatibility
+## Gate H — Strong-model adversarial audit
 
-This gate must mirror the deterministic checks used by the repository, not a remembered portal rule. Read `skills/_shared/hard_gates.md` and the current constants in `scripts/adv` before reporting a candidate ready. At the time of writing, `scripts/adv` uses `PROMPT_MAX=2000`, `ANSWER_MAX=102`, `CONCEPT_MAX=100`, and `CONCEPT_LIMIT=5`; current script values outrank these cached numbers.
+A local GPT-5.5 stump/timeout is insufficient by itself.
 
-Before **candidate-ready** and again before **promotion**, require all of:
+Before promotion, run the strong audit from `difficulty-evidence.md` with the strongest reviewer reasoning available in the authoring environment on the exact statement/solution pair.
 
-- Apply `skills/format-solution/SKILL.md` to the exact candidate `solution.md`; for this workflow explicitly target `workspace/rainier-problem/problemNN-*/solution.md` even though that formatter may describe a frontier-workspace default.
-- Math Problem (Prompt) is nonempty and at most the current raw `PROMPT_MAX`.
-- `## Answer` is nonempty and contains no `\\boxed`.
-- The exact mapped Answer field is at most the current raw `ANSWER_MAX` (currently 102 characters).
-- After stripping every `$` and whitespace character from the Answer, fewer than 100 characters remain.
-- The Answer is exactly one mathematical object and uses only prompt-defined notation, except dummy indices bound locally inside the answer expression. Solution-only aliases are forbidden as a length shortcut.
-- The content inside the final `Final Answer: $\\boxed{...}$` matches the `## Answer` object character-for-character.
-- `## Steps` is under 10,000 characters as written; compression may not create black-box gaps.
-- Solution Concepts number 1-5 and each satisfies the current concept-length limit.
-- solution steps are consecutive `Step 1:`, `Step 2:`, ...;
-- Domain, Sub-domain, Problem Type, Answer Type, and Domain Explanation are present;
-- Problem Type and Answer Type agree between problem and solution/package;
-- no stale metadata remains after redesign.
+Pass only with `STRONG_AUDIT_PASS`.
 
-If a mathematically equivalent compact Answer can be written with prompt-defined notation, treat that as a solution-only formatting repair. If fitting the field requires changing `problem.md` or the Answer Type, do not truncate and do not use a solution-only alias: redesign before Codex when possible. A problem edit requires fresh solver evidence.
+Block promotion on:
 
-A solution-only format repair keeps prior difficulty evidence only when `problem.md` remains byte-identical, but the old ready marker becomes stale because the solution SHA changed. Re-audit and refresh `candidate-ready.json` before promotion.
+- `STRONG_AUDIT_CONCEPTUAL_SOLVE`;
+- `STRONG_AUDIT_CANONICAL_COLLAPSE`;
+- `STRONG_AUDIT_UNCERTAIN`.
 
-`MAIN_READY_FOR_RAINIER` is forbidden whenever the exact promoted pair would still fail the deterministic field checks mirrored by `./scripts/adv submit problemNN`.
+The strong audit must explicitly test whether:
 
-## Gate I — Originality and corpus distance
+- a standard gateway collapses the problem;
+- the GPT-5.5 miss was merely execution noise;
+- fewer than two meaningful nodes remain after the gateway;
+- the route is canonical enough that a stronger solver/reviewer is likely to recover it directly.
 
-The problem may reuse a mathematical theme, but not the distinctive statement skeleton, constants, notation, or solution sequence of an existing corpus item.
+### External evaluator evidence
 
-Prefer reusing **successful difficulty principles**, not copying accepted problems.
+When the user supplies matching HTML/report from stronger independent evaluators, grade each attempt conceptually.
+
+Any exact or conceptual solve on the exact statement is contrary evidence and blocks promotion until a new statement is measured.
+
+If two or more independent strong evaluators converge on the same canonical shortcut, mark `BLUEPRINT_TRANSPARENT` and prefer regeneration over adding concealment.
+
+Official portal evidence outranks these preflight evaluators.
+
+## Gate I — Portal format / repository submission compatibility
+
+Mirror the deterministic repository checks, not remembered portal rules. Read `skills/_shared/hard_gates.md` and current constants in `scripts/adv`.
+
+Before candidate-ready and again before promotion require at least:
+
+- apply `skills/format-solution/SKILL.md` to the exact Rainier solution path;
+- Math Problem is nonempty and within current prompt limit;
+- `## Answer` is nonempty and contains no `\\boxed`;
+- Answer is within current raw repository limit and under 100 characters after stripping `$` plus whitespace;
+- Answer is exactly one mathematical object using prompt-defined notation except locally bound dummy indices;
+- final boxed object matches `## Answer` character-for-character;
+- `## Steps` is under current solution-length cap;
+- Solution Concepts count/length pass;
+- steps are consecutive;
+- Domain, Sub-domain, Problem Type, Answer Type, Domain Explanation are present and consistent;
+- no stale metadata remains.
+
+A solution-only formatting repair preserves statement evidence only when `problem.md` is byte-identical, but requires a refreshed solution SHA/ready marker.
+
+If fitting the answer requires changing the prompt or Answer Type, treat that as a statement change requiring fresh evidence.
+
+## Gate J — Originality and corpus distance
+
+Reuse mathematical themes, not distinctive statement skeletons, constants, notation, or solution sequences.
 
 Reject a candidate that is essentially an existing problem with renamed variables, changed constants, larger dimension, or one extra constraint.
+
+## Gate K — Human-verifiable answer shape
+
+Pass only if the requested final object can be checked from the proof with modest arithmetic.
+
+Reject opaque many-digit scalars when a natural factorized/product/certificate form would expose the derivation more safely.
+
+The answer must not depend on solution-local undefined notation.
 
 ## Final promotion question
 
 Before promotion ask internally:
 
-> If GPT-5.5 had not been stumped, would I still defend this as a clean, self-contained, naturally motivated expert problem with an honest taxonomy label and a package that `adv submit` accepts deterministically?
+> If GPT-5.5 had not produced a wrong final answer, would I still defend this as a clean, self-contained, naturally motivated expert problem whose difficulty survives a stronger reviewer and whose package passes deterministic submission checks?
 
-If the answer is no, redesign or format-repair instead of promoting.
+If the answer is no, redesign rather than promote.
+
+## Promotion evidence bundle
+
+Without an explicit user waiver, promotion requires all of:
+
+1. exact-blob local verdict is `TRUE_STUMP` or qualifying timeout;
+2. `STRONG_AUDIT_PASS`;
+3. no matching strong-evaluator exact/conceptual solve;
+4. Gates A-F and I-K all pass;
+5. exact ready marker still matches both blobs.
+
+A wrong final answer alone never satisfies this bundle.
