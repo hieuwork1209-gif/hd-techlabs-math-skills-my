@@ -2,21 +2,29 @@
 
 ## LaTeX (Normalized)
 
-Let $\mathcal V$ be the category of finite-dimensional vector spaces over $\mathbb F_2$ and linear maps, and let $T:\mathcal V\to\mathcal V$ be the tensor-cube functor
+Let $\mathcal V$ be the category of finite-dimensional vector spaces over $\mathbb F_2$ and linear maps. Define the functor $F:\mathcal V\to\mathcal V$ by
 $$
-T(V)=V^{\otimes3},
+F(V)=\left(V^{\otimes3}\right)^{\oplus3},
 \qquad
-T(f)=f^{\otimes3}.
+F(f)=\left(f^{\otimes3}\right)^{\oplus3}.
 $$
-A natural endomorphism $E:T\Rightarrow T$ is called idempotent if $E_V^2=E_V$ for every $V$.
+A natural endomorphism $E:F\Rightarrow F$ is called idempotent if $E_V^2=E_V$ for every $V$.
 
-For each integer $n\ge2$, let $R_n$ be the largest possible rank of
+For each integer $n\ge2$, among all natural idempotents other than the zero and identity transformations, let
 $$
-E_{\mathbb F_2^n}:(\mathbb F_2^n)^{\otimes3}\to(\mathbb F_2^n)^{\otimes3}
+R_n^{(1)}>R_n^{(2)}
 $$
-among all natural idempotents $E$ other than $0$ and the identity transformation. Let $N_n$ be the number of natural idempotents attaining this maximum.
+be the two largest distinct values of
+$$
+\operatorname{rank}E_{\mathbb F_2^n}:F(\mathbb F_2^n)\to F(\mathbb F_2^n).
+$$
+For $j\in\{1,2\}$, let $N_n^{(j)}$ be the number of natural idempotents attaining $R_n^{(j)}$.
 
-Determine the ordered pair $(R_n,N_n)$ exactly for every $n\ge2$.
+Determine the ordered quadruple
+$$
+\left(R_n^{(1)},N_n^{(1)},R_n^{(2)},N_n^{(2)}\right)
+$$
+exactly for every $n\ge2$.
 
 ---
 
@@ -24,13 +32,13 @@ Determine the ordered pair $(R_n,N_n)$ exactly for every $n\ge2$.
 
 | Field | Value |
 |---|---|
-| **Domain** | Logic, Set Theory, and Foundations |
-| **Sub-domain** | Category theory |
-| **Problem Type** | Optimization |
-| **Answer Type** | Tuple or ordered list |
+| Domain | Logic, Set Theory, and Foundations |
+| Sub-domain | Category theory |
+| Problem Type | Optimization |
+| Answer Type | Tuple or ordered list |
 
 ---
 
 ## Domain Explanation
 
-The problem asks for an extremal property of direct-summand natural transformations of a tensor-power functor. Solving it requires first recovering the natural endomorphism algebra from naturality, then understanding how its idempotents act functorially on tensor cubes of varying dimension. Thus Logic, Set Theory, and Foundations -> Category theory is the primary classification.
+The objects being optimized are idempotent natural transformations of a finite biproduct of tensor-power functors, so the problem is fundamentally about natural endomorphism algebras and functorial direct-summand decompositions. Modular representation theory is needed to analyze the resulting endomorphism algebra, but it is subordinate to the categorical task of determining natural transformations uniformly over all finite-dimensional vector spaces. Thus Logic, Set Theory, and Foundations -> Category theory is the best fit.
