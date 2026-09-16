@@ -9,7 +9,12 @@ $$
 \mathbb E[X^{3}]=\frac14,\qquad
 \mathbb E[X^{4}]=\frac15.
 $$
-Determine the maximum possible value of $\mathbb E[X^{7}]$.
+Determine the maximum possible Pearson correlation coefficient
+$$
+\operatorname{Corr}(X^{2},X^{3})
+=\frac{\mathbb E[X^{5}]-\mathbb E[X^{2}]\mathbb E[X^{3}]}
+{\sqrt{\operatorname{Var}(X^{2})\operatorname{Var}(X^{3})}}.
+$$
 
 ---
 
@@ -26,4 +31,4 @@ Determine the maximum possible value of $\mathbb E[X^{7}]$.
 
 ## Domain Explanation
 
-This problem is a finite truncated moment extremal problem for probability measures on a compact interval. Its primary content is Probability and Statistics and Probability foundations: the prescribed moments determine expectations of quartic test polynomials, while the sharp bound is obtained by constructing a polynomial majorant and an extremal finitely supported distribution that attains it. The polynomial algebra is subordinate to the probabilistic moment problem.
+This problem is a truncated moment extremal problem for probability measures on a compact interval. Its primary content is Probability and Statistics and Probability foundations: the correlation objective couples the unknown fifth and sixth moments, and sharp bounds follow from positivity of weighted polynomial squares, least-squares projection in the moment inner product, and construction of an extremal atomic distribution. The polynomial algebra is subordinate to the probabilistic moment constraints.
