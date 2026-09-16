@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-category-theory/problem.md",
+  "source_commit_sha": "0f2f20f5b5b22eef09f1e9ede9204d0d784b6c8d",
+  "problem_blob_sha": "bc5b707a5c5b8f5346966806d45f03092a16b120",
+  "statement_sha256": "d75650858bfca8b879653366f33cf86ec1c7b0cb9abd6bfb229f4c067eb02fa7",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T16:01:14+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(h:X\\to X\\). Then\n\\[\nC_h(S)=h^{-1}(h(S)),\n\\]\nso \\(C_h(S)=S\\) exactly when \\(S\\) is a union of fibers of \\(h\\). Hence\n\\[\n|\\{S:C_h(S)=S\\}|=2^{|\\operatorname{im}h|}.\n\\]\nAlso\n\\[\nD_h(S)=\\forall_h(h^{-1}S)=(S\\cap \\operatorname{im}h)\\cup (X\\setminus \\operatorname{im}h),\n\\]\nso \\(C_h(S)=D_h(S)=S\\) iff \\(S=h^{-1}(T)\\) for some \\(T\\subseteq \\operatorname{im}h\\) and\n\\[\nh(X\\setminus \\operatorname{im}h)\\subseteq T.\n\\]\nThus the number of such sets is\n\\[\n2^{|\\operatorname{im}h|-|h(X\\setminus \\operatorname{im}h)|}.\n\\]\n\nWrite \\(r_k=|\\operatorname{im}f^k|\\). Since \\(|\\operatorname{im}f|=2d+2\\),\n\\[\nr_1=2d+2.\n\\]\n\nView \\(f\\) as a functional digraph. Since \\(f\\) has no fixed points, every cycle has length at least \\(2\\). Let \\(c\\) be the total number of cyclic vertices. Then \\(c\\ge2\\). There are exactly\n\\[\nM-|\\operatorname{im}f|=(3d+2)-(2d+2)=d\n\\]\nvertices of indegree \\(0\\). These are precisely the leaves of the rooted trees feeding into the cycles.\n\nThe eventual image size is \\(c\\), so \\(r_k\\ge c\\ge2\\) for all \\(k\\). Among noncyclic vertices, the number of non-leaves is\n\\[\n(3d+2-c)-d=2d+2-c.\n\\]\nFor \\(r_2\\), a noncyclic vertex survives into \\(\\operatorname{im}f^2\\) only if it has a descendant at distance at least \\(2\\). Since at most \\(d\\) noncyclic vertices can have height exactly \\(1\\), we get\n\\[\nr_2\\ge d+2.\n\\]\nTherefore\n\\[\nF(f)=\\sum_{k=1}^{M}2^{r_k}\n\\ge 2^{2d+2}+2^{d+2}+3d\\cdot 2^2.\n\\]\nSo\n\\[\nA_d=2^{2d+2}+2^{d+2}+12d.\n\\]\n\nEquality requires \\(c=2\\), \\(r_2=d+2\\), and \\(r_k=2\\) for every \\(k\\ge3\\). Hence the extremal maps are exactly these: a single \\(2\\)-cycle, and \\(d\\) disjoint directed chains of length \\(3\\) feeding into the cycle:\n\\[\nu_i\\mapsto v_i\\mapsto w_i\\mapsto a\\ \\text{or}\\ b,\n\\]\nwhere \\(a\\leftrightarrow b\\) is the \\(2\\)-cycle.\n\nNow compute \\(G\\) for such minimizers.\n\nFor \\(k=1\\), the missing image vertices are the \\(u_i\\), and their images are the \\(v_i\\), so\n\\[\nG_1=2^{(2d+2)-d}=2^{d+2}.\n\\]\n\nFor \\(k=2\\), \\(\\operatorname{im}f^2\\) consists of the \\(d\\) vertices \\(w_i\\) and the two cycle vertices. The missing vertices are the \\(u_i,v_i\\). Their \\(f^2\\)-images are the \\(w_i\\) and the cycle vertices hit by the chains. If all chains feed into the same cycle vertex, this image has size \\(d+1\\), giving\n\\[\nG_2=2^{(d+2)-(d+1)}=2.\n\\]\nIf chains feed into both cycle vertices, \\(G_2=1\\). Thus \\(G\\) is maximized when all \\(d\\) chains feed into the same one of the two cycle vertices.\n\nFor every \\(k\\ge3\\), the image is just the \\(2\\)-cycle, and the nonimage vertices map onto both cycle vertices, so\n\\[\nG_k=2^{2-2}=1.\n\\]\nThere are \\(3d\\) such values of \\(k\\). Hence\n\\[\nB_d=2^{d+2}+2+3d.\n\\]\n\nFinally count the extremal functions. Choose the two cycle vertices, choose which one receives all chains, then partition the remaining \\(3d\\) labeled vertices into \\(d\\) ordered triples \\((u_i,v_i,w_i)\\):\n\\[\nK_d=\\binom{3d+2}{2}\\cdot 2\\cdot \\frac{(3d)!}{d!}\n=\\frac{(3d+2)!}{d!}.\n\\]\n\nTherefore\n\\[\n\\boxed{(A_d,B_d,K_d)=\\left(2^{2d+2}+2^{d+2}+12d,\\;2^{d+2}+3d+2,\\;\\frac{(3d+2)!}{d!}\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T16:02:58+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/bc5b707a5c5b.json"
+}

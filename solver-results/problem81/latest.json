@@ -2,8 +2,8 @@
   "problem": "problem81",
   "branch": "adversary/problem81",
   "problem_path": "workspace/rainier-problem/problem81-category-theory/problem.md",
-  "problem_blob_sha": "39bcd8badff713d45d4fd2c5cc7998f4c7580858",
-  "source_commit_sha": "d1d882cf206cb2f425ad41f39969bebc55bf8efc",
+  "problem_blob_sha": "bc5b707a5c5b8f5346966806d45f03092a16b120",
+  "source_commit_sha": "0f2f20f5b5b22eef09f1e9ede9204d0d784b6c8d",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-16T15:52:04+00:00",
-  "result_file": "solver-results/problem81/39bcd8badff7.json"
+  "completed_at": "2026-09-16T16:02:58+00:00",
+  "result_file": "solver-results/problem81/bc5b707a5c5b.json"
 }
