@@ -3,9 +3,9 @@
 Step 1: Reduce naturality to one- and two-point sets
 For a set $X$, write
 $$
-A(X)=\bigoplus_{x\in X}\mathbb Z e_x
+A(X)=\bigoplus_{x\in X}\mathbb Z e_x.
 $$
-and let
+For use in the proof, define the augmentation
 $$
 \epsilon_X\left(\sum_x n_xe_x\right)=\sum_x n_x.
 $$
@@ -64,7 +64,7 @@ Therefore, for every set $X$,
 $$
 \mu_X(u,v)=a\epsilon_X(v)u+b\epsilon_X(u)v.
 $$
-Conversely, every pair $a,b\in\mathbb Z$ defines a natural bilinear family by this formula, because augmentation is preserved by every map of free abelian groups induced from a set map.
+Conversely, every pair $a,b\in\mathbb Z$ defines a natural bilinear family by this formula, because augmentation is preserved by every homomorphism induced from a set map.
 
 Step 3: Impose associativity
 Write
@@ -89,7 +89,7 @@ Their difference is
 $$
 ab\bigl(AB\,w-BC\,u\bigr).
 $$
-If the family is associative for every set, choose a two-point set and basis vectors $u\ne w$ with
+If the family is associative for every set, choose a two-point set and basis vectors $u\ne w$, together with a basis vector $v$, so that
 $$
 A=B=C=1.
 $$
@@ -102,29 +102,35 @@ Thus associativity forces either $a=0$ or $b=0$.
 Step 4: Verify the two families
 If $b=0$, then
 $$
-\mu_X(u,v)=a\epsilon_X(v)u.
+\mu_X(u,v)=a\epsilon_X(v)u,
 $$
-A direct substitution gives
+and
 $$
 \mu_X(\mu_X(u,v),w)
 =a^2\epsilon_X(v)\epsilon_X(w)u
-=\mu_X(u,\mu_X(v,w)),
+=\mu_X(u,\mu_X(v,w)).
 $$
-so the product is associative. The same calculation with the arguments reversed shows that
+Thus this family is associative for every integer $a$.
+
+If $a=0$, then
 $$
-\mu_X(u,v)=a\epsilon_X(u)v
+\mu_X(u,v)=b\epsilon_X(u)v,
 $$
-is associative when $a=0$ in the first parametrization and the remaining coefficient is arbitrary.
+and the analogous substitution shows associativity for every integer $b$. Both formulas are natural because
+$$
+\epsilon_Y(A(f)u)=\epsilon_X(u)
+$$
+for every map $f:X\to Y$.
 
 Hence these two integer families, with the zero product appearing in both, are exactly all associative natural bilinear products.
 
-Final Answer: $\boxed{\{\mu:\mu_X(u,v)=a\epsilon_X(v)u\text{ or }a\epsilon_X(u)v,\ a\in\mathbb Z\}}$
+Final Answer: $\boxed{\{\mu:\mu_X(u,v)=a(\sum_xv_x)u\text{ or }a(\sum_xu_x)v,\ a\in\mathbb Z\}}$
 
 ---
 
 ## Answer
 
-$\{\mu:\mu_X(u,v)=a\epsilon_X(v)u\text{ or }a\epsilon_X(u)v,\ a\in\mathbb Z\}$
+$\{\mu:\mu_X(u,v)=a(\sum_xv_x)u\text{ or }a(\sum_xu_x)v,\ a\in\mathbb Z\}$
 
 ---
 
