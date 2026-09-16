@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-inner-product-spaces/problem.md",
+  "source_commit_sha": "b7069f49e8fe25282cd0b8bbc26f7dfd55bb67e4",
+  "problem_blob_sha": "3dcc208f6f838e94a87035ab41a0d53281351463",
+  "statement_sha256": "63527657bdcd5046ae6245ebafc55e92a7d629b60e3448a95ab697401509345b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T12:31:16+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nu_{ij}=\\langle e_i,f_j\\rangle .\n\\]\n\nThen \\(U=(u_{ij})\\) is a real orthogonal \\(3\\times 3\\) matrix. Multiplying rows by signs does not change the desired product, so we may assume\n\n\\[\nu_{11}=u_{22}=u_{33}=a\\ge 0.\n\\]\n\nIf \\(\\det U=-1\\), replace \\(U\\) by \\(-U\\); again the absolute values are unchanged. Thus it is enough to study a rotation matrix \\(R\\in SO(3)\\) whose diagonal entries are equal.\n\nAny non-identity rotation has Rodrigues form\n\n\\[\nR_{ij}=\\cos\\theta\\,\\delta_{ij}+(1-\\cos\\theta)n_i n_j-\\sin\\theta\\,\\varepsilon_{ijk}n_k\n\\]\n\nfor a unit vector \\(n=(n_1,n_2,n_3)\\). Since the diagonal entries are equal,\n\n\\[\n\\cos\\theta+(1-\\cos\\theta)n_1^2\n=\\cos\\theta+(1-\\cos\\theta)n_2^2\n=\\cos\\theta+(1-\\cos\\theta)n_3^2.\n\\]\n\nUnless \\(R=I\\), this gives\n\n\\[\nn_1^2=n_2^2=n_3^2=\\frac13.\n\\]\n\nPut \\(t=\\cos\\theta\\). Then every diagonal entry equals\n\n\\[\nd=t+\\frac{1-t}{3}=\\frac{2t+1}{3}.\n\\]\n\nFor each off-diagonal opposite pair, for example \\((R_{12},R_{21})\\), we have\n\n\\[\n|R_{12}R_{21}|\n=\n\\left|\\left(\\frac{1-t}{3}\\right)^2-\\left(\\frac{\\sin\\theta}{\\sqrt3}\\right)^2\\right|\n=\n\\frac{2(1-t)|2t+1|}{9}.\n\\]\n\nThe three opposite pairs give the same factor, so the full product is\n\n\\[\nP\n=\n|d|^3\n\\left(\\frac{2(1-t)|2t+1|}{9}\\right)^3\n=\n\\left(\\frac{2(1-t)(2t+1)^2}{27}\\right)^3.\n\\]\n\nNow maximize\n\n\\[\n(1-t)(2t+1)^2,\\qquad -1\\le t\\le 1.\n\\]\n\nLet \\(x=2t+1\\), so \\(x\\in[-1,3]\\). Then\n\n\\[\n(1-t)(2t+1)^2=\\frac{(3-x)x^2}{2}.\n\\]\n\nIts maximum on \\([-1,3]\\) is \\(2\\), attained at \\(x=-1\\) or \\(x=2\\). Therefore\n\n\\[\nP_{\\max}\n=\n\\left(\\frac{2\\cdot 2}{27}\\right)^3\n=\n\\left(\\frac4{27}\\right)^3\n=\n\\frac{64}{19683}.\n\\]\n\nThis value is attainable, for instance by the rotation through angle \\(\\pi\\) around the axis \\((1,1,1)/\\sqrt3\\), whose matrix has diagonal entries \\(-1/3\\) and off-diagonal entries \\(2/3\\).\n\n\\[\n\\boxed{\\frac{64}{19683}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T12:32:13+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/3dcc208f6f83.json"
+}
