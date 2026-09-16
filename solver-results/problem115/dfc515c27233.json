@@ -1,0 +1,22 @@
+{
+  "problem": "problem115",
+  "branch": "adversary/problem115",
+  "problem_path": "workspace/rainier-problem/problem115-fourier-analysis/problem.md",
+  "source_commit_sha": "b69ff2292c03a7c041807909aedd0ce8f4a7e741",
+  "problem_blob_sha": "dfc515c272330a079a4257a35ae77ca1adc9921a",
+  "statement_sha256": "6ad9463208341059631013fd9d9b2d7caaca856873085716cafc5cecc6e51228",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T08:34:27+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nW_g(a)=\\sum_{y\\in E}(-1)^{g(y)+a\\cdot y}.\n\\]\n\nFor \\(f=f_{M,g}\\),\n\n\\[\n(\\mathcal Ff)(u,v)\n=2^{-8}\\sum_{x,y}(-1)^{x\\cdot My+g(y)+x\\cdot v+y\\cdot u}.\n\\]\n\nThe inner sum over \\(x\\) is \\(256\\) if \\(My=v\\), and \\(0\\) otherwise. Hence\n\n\\[\n(\\mathcal Ff)(u,v)=(-1)^{g(M^{-1}v)+(M^{-1}v)\\cdot u}.\n\\]\n\nThus \\(\\mathcal Ff=f\\) iff, for all \\(u,v\\),\n\n\\[\nM^{-1}v=Mv,\\qquad g(Mv)=g(v).\n\\]\n\nSo\n\n\\[\nM^2=I,\\qquad M\\in O(g),\\qquad Me=e.\n\\]\n\nThe Walsh assumptions say exactly that \\(g\\) is a nonsingular quadratic form of plus type on \\(\\mathbb F_2^8\\), with \\(g(e)=0\\).\n\nNow fix one such plus-type \\(g\\). The stabilizer \\(P=O^+(8,2)_e\\) has the standard parabolic form\n\n\\[\nP\\cong 2^6:O^+(6,2).\n\\]\n\nWrite \\(E=\\langle e,f\\rangle\\oplus W\\), where \\(W\\) has plus type dimension \\(6\\). Every element of \\(P\\) is determined by \\(A\\in O^+(6,2)\\) and \\(s\\in W\\), and it is an involution iff\n\n\\[\nA^2=I,\\qquad As=s.\n\\]\n\nTherefore the number of involutions in \\(P\\) is\n\n\\[\n\\sum_{\\substack{A\\in O^+(6,2)\\\\ A^2=I}}2^{\\dim\\ker(A-I)}.\n\\]\n\nUse \\(O^+(6,2)\\cong S_8\\), acting on\n\n\\[\n\\{z\\in\\mathbb F_2^8:\\sum z_i=0\\}/\\langle(1,\\dots,1)\\rangle .\n\\]\n\nFor an involution with \\(k\\) transpositions in \\(S_8\\), the class size is\n\n\\[\n\\frac{8!}{2^k k!(8-2k)!},\n\\]\n\nand the fixed-space dimensions for \\(k=0,1,2,3,4\\) are\n\n\\[\n6,5,4,3,3.\n\\]\n\nHence the weighted count is\n\n\\[\n1\\cdot 2^6+28\\cdot 2^5+210\\cdot 2^4+420\\cdot 2^3+105\\cdot 2^3=8520.\n\\]\n\nIt remains to count the possible \\(g\\). Since \\(GL(8,2)\\) acts transitively on plus-type nonsingular quadratic forms with \\(e\\) singular,\n\n\\[\n\\#g=\\frac{|GL(8,2)_e|}{|O^+(8,2)_e|}.\n\\]\n\nNow\n\n\\[\n|GL(8,2)|=2^{28}3^5 5^2 7^2 17\\cdot31\\cdot127,\n\\]\n\n\\[\n|GL(8,2)_e|=\\frac{|GL(8,2)|}{255},\n\\]\n\nand\n\n\\[\n|O^+(8,2)_e|=2^6|O^+(6,2)|\n=2^6\\cdot 40320\n=2^{13}3^2 5\\cdot7.\n\\]\n\nThus\n\n\\[\n\\#g=2^{15}3^2\\cdot7\\cdot31\\cdot127.\n\\]\n\nMultiplying by the \\(8520=2^3\\cdot3\\cdot5\\cdot71\\) allowed involutions for each \\(g\\), the total number is\n\n\\[\n\\boxed{2^{18}\\cdot 3^3\\cdot 5\\cdot 7\\cdot 31\\cdot 71\\cdot 127}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T08:36:48+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem115/dfc515c27233.json"
+}
