@@ -13,7 +13,7 @@ Conversely, once a feasible quartic with these two conditions has four positive 
 
 The fixed derivative changes the alternation count. Suppose a feasible quartic $p$ has four increasing active points $x_1<\cdots<x_4$ in $E_\gamma$ with alternating values $\pm C$. If another feasible quartic $q$ had strictly smaller norm, then $q-p$ would change sign in each of the three gaps $(x_j,x_{j+1})$, giving three positive zeros. But $q-p$ also has a double zero at $0$ because both its value and derivative vanish there. Hence a nonzero quartic would have at least five zeros, impossible. The weak-sign version gives uniqueness. Thus four-point alternation is the exact optimality certificate for this constrained problem.
 
-Step 2: Construct the first regime
+Step 2: Construct the first regime and evaluate the left-end contraction
 For $\frac92<\gamma<\frac{24}{5}$, the active pattern is
 $$
 p(m)=-C,\qquad p(\gamma)=C,\qquad p(r)=-C,\qquad p(6)=C,
@@ -80,6 +80,19 @@ $$
 The first transition is therefore
 $$
 \gamma_1=\frac{24}{5}.
+$$
+
+The added checkpoint at the left endpoint forces use of this non-plateau branch. At $\gamma=\frac92$, the larger root and the associated product are
+$$
+S_{9/2}=\frac{2787+12\sqrt{1021}}{470},
+\qquad
+P_{9/2}=\frac{1413+63\sqrt{1021}}{470}.
+$$
+Therefore
+$$
+\mathcal C_{9/2}^*
+=\frac{P_{9/2}-S_{9/2}}{S_{9/2}}
+=\frac{25\sqrt{1021}-702}{1201}.
 $$
 
 Step 3: Identify the fixed middle minimizer and the second transition
@@ -281,20 +294,22 @@ $$
 $$
 Thus there are no further transitions in the prescribed interval.
 
-The two interior transition values are
+The two interior transition values and the required non-plateau checkpoint are
 $$
 \gamma_1=\frac{24}{5},
 \qquad
-\gamma_2=\frac{17+\sqrt{109}}5.
+\gamma_2=\frac{17+\sqrt{109}}5,
+\qquad
+\mathcal C_{9/2}^*=\frac{25\sqrt{1021}-702}{1201}.
 $$
 
-Final Answer: $\boxed{\left(\frac{24}{5},\frac{17+\sqrt{109}}5\right)}$
+Final Answer: $\boxed{\left(\frac{24}{5},\frac{17+\sqrt{109}}5,\frac{25\sqrt{1021}-702}{1201}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{24}{5},\frac{17+\sqrt{109}}5\right)$
+$\left(\frac{24}{5},\frac{17+\sqrt{109}}5,\frac{25\sqrt{1021}-702}{1201}\right)$
 
 ---
 
