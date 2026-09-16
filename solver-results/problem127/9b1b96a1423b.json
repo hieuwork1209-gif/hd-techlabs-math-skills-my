@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-measure-theory/problem.md",
+  "source_commit_sha": "7f87a6239be5b21d1b271f6b3a272c710ef87544",
+  "problem_blob_sha": "9b1b96a1423b2caeb996fb0c05c49c26992c0069",
+  "statement_sha256": "e86c8a716f8dfbe040c68d84a5cb6efe2ece6640ddb80dd15598aa84dc634299",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T16:04:45+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nI=\\int_0^1 xT(x)\\,dx.\n\\]\nSince \\(T\\) preserves Lebesgue measure and \\(T^3(x)=x\\) a.e., the three functions\n\\[\nx,\\qquad T(x),\\qquad T^2(x)\n\\]\nall have the uniform distribution on \\([0,1]\\). Also, by measure preservation,\n\\[\n\\int_0^1 xT(x)\\,dx\n=\\int_0^1 T(x)T^2(x)\\,dx\n=\\int_0^1 T^2(x)x\\,dx.\n\\]\n\nSet\n\\[\nS(x)=x+T(x)+T^2(x).\n\\]\nThen\n\\[\n\\int_0^1 S(x)^2\\,dx\n=\n3\\int_0^1 x^2\\,dx+6I\n=\n1+6I.\n\\]\nBut\n\\[\n\\int_0^1 S(x)\\,dx\n=\n3\\int_0^1 x\\,dx\n=\n\\frac32,\n\\]\nso by Cauchy-Schwarz/Jensen,\n\\[\n\\int_0^1 S(x)^2\\,dx\\ge \\left(\\frac32\\right)^2=\\frac94.\n\\]\nHence\n\\[\n1+6I\\ge \\frac94,\n\\]\nso\n\\[\nI\\ge \\frac{5}{24}.\n\\]\n\nThis bound is attainable. For example, write \\(x\\) in its nonterminating ternary expansion\n\\[\nx=0.a_1a_2a_3\\cdots{}_3,\n\\]\noutside the usual null set of ambiguous expansions, and define \\(T\\) by adding \\(1\\) mod \\(3\\) to every ternary digit:\n\\[\nT(x)=0.(a_1+1)(a_2+1)(a_3+1)\\cdots{}_3 \\pmod 3.\n\\]\nThen \\(T\\) preserves Lebesgue measure, \\(T^3=\\mathrm{id}\\) a.e., and for every ternary digit position the three orbit digits are \\(0,1,2\\), so\n\\[\nx+T(x)+T^2(x)=\\sum_{n\\ge1}3\\cdot 3^{-n}=\\frac32\n\\]\na.e. Therefore equality is achieved.\n\nEquality in Jensen occurs exactly when \\(S(x)\\) is constant a.e. Thus the necessary and sufficient condition for attaining the minimum is\n\\[\nx+T(x)+T^2(x)=\\frac32\n\\quad\\text{for a.e. }x\\in[0,1].\n\\]\n\n\\[\n\\boxed{\\frac{5}{24}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T16:07:36+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/9b1b96a1423b.json"
+}
