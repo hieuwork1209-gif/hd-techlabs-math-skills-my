@@ -31,12 +31,15 @@ For a fixed nondegenerate alternating form $B$, its quadratic refinements are $q
 $$
 q(x)+B(a,x)=q(x+a)+q(a)
 $$
-implies $W_{q_a}(0)=(-1)^{q(a)}W_q(0)$. A positive refinement has $136$ zeros because its zero and one counts have sum $256$ and difference $16$. Thus exactly $136=2^3\cdot17$ refinements have positive Walsh sign. The number of nondegenerate alternating forms on an $8$-space is
+implies $W_{q_a}(0)=(-1)^{q(a)}W_q(0)$. A positive refinement has $136$ zeros because its zero and one counts have sum $256$ and difference $16$. Thus exactly $136=2^3\cdot17$ refinements have positive Walsh sign. To count nondegenerate alternating forms on a $2m$-space, choose symplectic pairs successively: when the remaining dimension is $2j$, there are $(2^{2j}-1)2^{2j-1}$ choices for the next ordered pair. Hence
 $$
-\alpha_8=\frac{|\operatorname{GL}(8,2)|}{|\operatorname{Sp}(8,2)|}
-=2^{12}\cdot7\cdot31\cdot127,
+\alpha_{2m}=\frac{|\operatorname{GL}(2m,2)|}{\prod_{j=1}^{m}(2^{2j}-1)2^{2j-1}},
 $$
-from the usual symplectic-basis count. Therefore the number of admissible $g$ is
+so
+$$
+\alpha_8=2^{12}\cdot7\cdot31\cdot127.
+$$
+Therefore the number of admissible $g$ is
 $$
 N_+=136\alpha_8=2^{15}\cdot7\cdot17\cdot31\cdot127.
 $$
@@ -76,7 +79,11 @@ so
 $$
 (I_1,I_2,I_3,I_4)=(255,5355,11475,2295).
 $$
-Let $S_r$ count totally $q$-singular $r$-spaces. If $U$ is a singular $k$-space, then $U^\perp/U$ is split of dimension $2(4-k)$ and has $(2^{3-k}+1)(2^{4-k}-1)$ nonzero singular vectors. Extending an ordered singular basis therefore gives
+Let $S_r$ count totally $q$-singular $r$-spaces. If $U$ is a singular $k$-space, then $U^\perp/U$ is split of dimension $2(4-k)$ and has $(2^{3-k}+1)(2^{4-k}-1)$ nonzero singular vectors. Thus
+$$
+S_r=\frac{\prod_{k=0}^{r-1}2^k(2^{3-k}+1)(2^{4-k}-1)}{\prod_{k=0}^{r-1}(2^r-2^k)},
+$$
+which gives
 $$
 (S_1,S_2,S_3,S_4)=(135,1575,2025,270).
 $$
@@ -85,7 +92,11 @@ Because $B|_R=0$, $q|_R$ is linear. If $q|_R=0$, admissible $\omega$ are nondege
 $$
 [\omega]=\begin{pmatrix}1&b^T\\ b&A\end{pmatrix},
 $$
-where $A$ is alternating. For odd $r$, nondegeneracy is equivalent to nondegeneracy of $A$, giving $2^{r-1}\alpha_{r-1}$ choices; for even $r$, the count is $\alpha_r$. Thus the numbers of involutions of residual type $q|_R=0$ or $q|_R\ne0$, for $r=0,1,2,3,4$, are
+where $A$ is alternating. For odd $r$, $A$ has even size and the block is nondegenerate exactly when $A$ is nondegenerate; $b$ is arbitrary, giving $2^{r-1}\alpha_{r-1}$ choices. For even $r$, $A$ has odd size; nondegeneracy requires a one-dimensional radical for $A$ and $b$ nonzero on that radical. There are $(2^{r-1}-1)\alpha_{r-2}$ such $A$ and $2^{r-2}$ such $b$, and
+$$
+(2^{r-1}-1)\alpha_{r-2}2^{r-2}=\alpha_r.
+$$
+Thus the numbers of involutions of residual type $q|_R=0$ or $q|_R\ne0$, for $r=0,1,2,3,4$, are
 $$
 (1,0),\ (0,120),\ (1575,3780),\ (0,37800),\ (7560,56700).
 $$
