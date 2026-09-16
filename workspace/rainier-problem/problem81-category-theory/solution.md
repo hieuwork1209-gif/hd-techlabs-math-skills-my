@@ -1,203 +1,129 @@
 ## Steps
 
-Step 1: Recover the natural endomorphism algebra and the block form of an idempotent
-Let $k=\mathbb F_2$ and let $A$ be the algebra of upper triangular $3\times3$ matrices over $k$. Write
+Step 1: Recover the relation encoded by the adjunction
+Write $\mathcal B_n=\mathcal P([n])$, ordered by inclusion, and let $L\dashv R$ be an adjunction $\mathcal B_n\rightleftarrows\mathcal B_n$. Since $L$ is a left adjoint, it preserves unions. Put
 $$
-a=e_{12},\qquad b=e_{23},\qquad c=e_{13}=ab.
+A_i=L(\{i\}).
 $$
-Let $U$ be the forgetful functor from finite-dimensional left $A$-modules to $k$-vector spaces. If $T:U\Rightarrow U$ is natural and $d=T_A(1)$, then for every left $A$-module $M$ and $m\in M$, the $A$-linear map $f_m:A\to M$, $x\mapsto xm$, gives
+Then for every $S\subseteq[n]$,
 $$
-T_M(m)=T_M(f_m(1))=f_m(T_A(1))=dm.
+L(S)=\bigcup_{i\in S}A_i.
 $$
-Thus $\operatorname{Nat}(U,U)\cong A$. For $F=U^{\oplus3}$,
+The adjunction condition $L(S)\subseteq T$ if and only if $S\subseteq R(T)$ now forces
 $$
-\operatorname{End}(F)\cong M_3(A)\cong
-\left\{
-\begin{pmatrix}
-X&U&P\\
-0&Y&V\\
-0&0&Z
-\end{pmatrix}:X,Y,Z,U,V,P\in M_3(k)
-\right\}.
+R(T)=\{i\in[n]:A_i\subseteq T\}.
 $$
-Therefore a natural idempotent $E$ has a unique block form
+Thus the bipartite graph $G_L$ in the prompt is exactly the relation $i_-\sim j_+$ when $j\in A_i$, and every bipartite relation arises from such an adjunction by the displayed formulas.
+
+For the closure monad $C=RL$,
 $$
-E=
-\begin{pmatrix}
-X&U&P\\
-0&Y&V\\
-0&0&Z
-\end{pmatrix},
+C(S)=\left\{i\in[n]:A_i\subseteq\bigcup_{s\in S}A_s\right\}.
 $$
-where $E^2=E$ is equivalent to
+If $N(S)$ denotes the set of right-hand neighbors of the left vertex set $S_-$ in $G_L$, then
 $$
-X^2=X,\qquad Y^2=Y,\qquad Z^2=Z,
+C(S)=S
 $$
+exactly when every left vertex $i_-\notin S_-$ has a neighbor outside $N(S)$.
+
+Step 2: Identify fixed objects with maximal independent sets
+For a fixed point $S=C(S)$ define
 $$
-XU+UY=U,\qquad YV+VZ=V,
+I_S=S_-\cup\bigl([n]_+\setminus N(S)\bigr).
 $$
+This is independent because no vertex of $S_-$ is adjacent to a right vertex outside $N(S)$. It is maximal: every right vertex in $N(S)$ is adjacent to some vertex of $S_-$, while every left vertex outside $S_-$ has, by the fixed-point condition from Step 1, a neighbor in $[n]_+\setminus N(S)$.
+
+Conversely, let $I$ be a maximal independent set of $G_L$ and put $S_-=I\cap[n]_-$, identified with $S\subseteq[n]$. Independence gives
 $$
-XP+PZ+UV=P.
+I\cap[n]_+\subseteq[n]_+\setminus N(S).
+$$
+Every right vertex outside $N(S)$ must actually lie in $I$, since otherwise it could be added to $I$. Hence
+$$
+I\cap[n]_+=[n]_+\setminus N(S).
+$$
+For each $i_-\notin S_-$, maximality gives a neighbor in this right-hand set, so $A_i\nsubseteq N(S)$. Therefore $C(S)=S$.
+
+The two constructions are inverse. Consequently
+$$
+|\{S:C(S)=S\}|=\mu(G_L),
+$$
+where $\mu(G)$ denotes the number of maximal independent sets of $G$.
+
+Step 3: Prove a uniform bound for maximal independent sets of forests
+We first show that every forest $F$ on $m$ vertices satisfies
+$$
+\mu(F)\leq2^{\lfloor m/2\rfloor}.
+$$
+Proceed by induction on $m$. If $v$ is isolated, every maximal independent set contains $v$, so
+$$
+\mu(F)=\mu(F-v),
+$$
+and the induction bound applies.
+
+Otherwise choose a leaf $u$ with neighbor $v$. Every maximal independent set contains exactly one of $u,v$. Those containing $u$ correspond bijectively to maximal independent sets of $F-\{u,v\}$, and those containing $v$ correspond bijectively to maximal independent sets of $F-N[v]$. Therefore
+$$
+\mu(F)=\mu(F-\{u,v\})+\mu(F-N[v]).
+$$
+Both forests on the right have at most $m-2$ vertices, so induction gives
+$$
+\mu(F)\leq2\cdot2^{\lfloor(m-2)/2\rfloor}=2^{\lfloor m/2\rfloor}.
 $$
 
-Step 2: Express the two defect ranks using only the three diagonal projections
-Let $\rho_a,\rho_b,\rho_c$ denote left multiplication by $a,b,c$ on every module, repeated on the three summands of $F$, and put
+Step 4: Determine the maximum and construct an extremal adjunction
+We prove by induction on $n$ that every tree $T$ on $2n$ vertices satisfies
 $$
-D_a=E\rho_a-\rho_aE,\qquad
-D_b=E\rho_b-\rho_bE,\qquad
-D_c=E\rho_c-\rho_cE.
+\mu(T)\leq2^{n-1}+1.
 $$
-Using $a=e_{12}$, $b=e_{23}$ and $c=e_{13}$ in the block model from Step 1 gives
-$$
-D_a=
-\begin{pmatrix}
-0&X-Y&-V\\
-0&0&0\\
-0&0&0
-\end{pmatrix},
-\qquad
-D_b=
-\begin{pmatrix}
-0&0&U\\
-0&0&Y-Z\\
-0&0&0
-\end{pmatrix},
-$$
-so
-$$
-D_aD_b=
-\begin{pmatrix}
-0&0&(X-Y)(Y-Z)\\
-0&0&0\\
-0&0&0
-\end{pmatrix}.
-$$
-Likewise
-$$
-D_c=
-\begin{pmatrix}
-0&0&X-Z\\
-0&0&0\\
-0&0&0
-\end{pmatrix}.
-$$
-Left multiplication by $c=e_{13}$ on the regular module $A$ has rank $1$: it kills every standard basis element of $A$ except $e_{33}$, which it sends to $e_{13}$. Hence for $X_n=A^{\oplus n}$,
-$$
-\operatorname{rank}(D_aD_b)_{X_n}
-=n\operatorname{rank}\bigl((X-Y)(Y-Z)\bigr),
-$$
-$$
-\operatorname{rank}(D_c)_{X_n}=n\operatorname{rank}(X-Z).
-$$
-The first rank is therefore at most $3n$, with equality exactly when both $X-Y$ and $Y-Z$ are invertible.
+The case $n=1$ is a single edge and has two maximal independent sets.
 
-Step 3: Classify the projection triples that maximize the first defect and count their lifts
-For idempotents $R,S$ on $k^3$,
+If $T$ is a star, then $\mu(T)=2$, so suppose it is not a star. Choose a penultimate vertex $v$ on a longest path. Then $v$ has $d\geq1$ leaf neighbors and exactly one nonleaf neighbor $w$. Remove $v$ and its $d$ leaf neighbors, and call the remaining tree $P$. A maximal independent set either contains all $d$ leaf neighbors and not $v$, leaving a maximal independent set of $P$, or contains $v$, forcing $w$ and all those leaves out and leaving a maximal independent set of $P-w$. Thus
 $$
-\ker(R-S)=\left(\operatorname{im}R\cap\operatorname{im}S\right)
-\oplus
-\left(\ker R\cap\ker S\right).
+\mu(T)=\mu(P)+\mu(P-w).
 $$
-Indeed, if $Rv=Sv=w$, then $w$ lies in the common image and $v-w$ lies in the common kernel, and the converse is immediate. Therefore $R-S$ is invertible exactly when the two displayed intersections are zero.
-
-Write
+If $d=1$, then $P$ has $2n-2$ vertices, so the tree induction and Step 3 give
 $$
-x=\operatorname{rank}X,\qquad y=\operatorname{rank}Y,\qquad z=\operatorname{rank}Z.
+\mu(T)\leq(2^{n-2}+1)+2^{n-2}=2^{n-1}+1.
 $$
-If $X-Y$ is invertible, the common-image condition gives $x+y\leq3$, while the common-kernel condition gives $(3-x)+(3-y)\leq3$, so $x+y=3$. Similarly $y+z=3$. Hence
+If $d\geq2$, then $P$ has at most $2n-3$ vertices and $P-w$ at most $2n-4$, so Step 3 gives
 $$
-x=z=3-y.
+\mu(T)\leq2^{n-2}+2^{n-2}=2^{n-1}<2^{n-1}+1.
 $$
 
-There is one idempotent of ranks $0$ and $3$, while the number of rank-one or rank-two idempotents is
+The bound is attained by a balanced bipartite tree. Take left vertices
 $$
-\frac{|GL_3(\mathbb F_2)|}{|GL_1(\mathbb F_2)|\,|GL_2(\mathbb F_2)|}
-=\frac{168}{6}=28.
+c,\ell_1,\ldots,\ell_{n-1}
 $$
-Fix a rank-one $Y$ and write $k^3=P\oplus Q$ with $P=\operatorname{im}Y$, $Q=\ker Y$, $\dim P=1$, $\dim Q=2$. A rank-two idempotent $X$ with $X-Y$ invertible has
+and right vertices
 $$
-\operatorname{im}X=\{(f(q),q):q\in Q\},
-\qquad
-\ker X=\{(p,g(p)):p\in P\}
+x,r_1,\ldots,r_{n-1},
 $$
-for maps $f:Q\to P$ and $g:P\to Q$. These two graphs are complementary exactly when $1-fg\neq0$. Over $\mathbb F_2$, this means $fg=0$. If $f=0$, all $4$ maps $g$ work; if $f\neq0$, there are $3$ choices for $f$ and $2$ choices of $g$ with image in $\ker f$. Thus there are
+with edges $c-x$, $c-r_i$, and $r_i-\ell_i$. If $c$ belongs to a maximal independent set, all $\ell_i$ are then forced in, giving one set. If $c$ does not belong, $x$ is forced in and on each edge $r_i-\ell_i$ exactly one endpoint is chosen independently, giving $2^{n-1}$ sets. Hence this tree has
 $$
-4+3\cdot2=10
+2^{n-1}+1
 $$
-possible $X$. By replacing every projection by its complement, the same count holds when $Y$ has rank $2$.
-
-It remains to count $U,V,P$ for a fixed maximizing triple $(X,Y,Z)$. For projections of ranks $r,s$, the equation
+maximal independent sets. By Step 1 it comes from an allowed adjunction. Therefore
 $$
-RU+US=U
-$$
-has solution-space dimension
-$$
-d(r,s)=r(3-s)+(3-r)s,
-$$
-because precisely the blocks from $\ker S$ to $\operatorname{im}R$ and from $\operatorname{im}S$ to $\ker R$ are free. Thus $U$ and $V$ contribute $2^{d(x,y)+d(y,z)}$ choices.
-
-The first-order equations imply
-$$
-V(\operatorname{im}Z)\subseteq\ker Y,
-\quad
-V(\ker Z)\subseteq\operatorname{im}Y,
-$$
-followed by
-$$
-U(\ker Y)\subseteq\operatorname{im}X,
-\quad
-U(\operatorname{im}Y)\subseteq\ker X.
-$$
-Hence $UV$ sends $\operatorname{im}Z$ into $\operatorname{im}X$ and $\ker Z$ into $\ker X$. Therefore the equation
-$$
-XP+PZ-P=-UV
-$$
-is solvable, and its homogeneous solution space has dimension $d(x,z)$. Since $x=z=3-y$, the number of lifts is
-$$
-2^{d(x,y)+d(y,z)+d(x,z)}=2^{18-6y+2y^2}.
+M_n=2^{n-1}+1.
 $$
 
-Step 4: Maximize the composite-path defect inside the first maximizing class
-For $y=0$ or $y=3$, the conditions from Step 3 force $X=Z$, so $\operatorname{rank}(X-Z)=0$.
+Step 5: Determine the minimum and construct an extremal adjunction
+For $n\geq2$, an allowed tree has bipartition sizes $n,n$, so it cannot be a star. Hence it contains a path on four consecutive vertices $a-b-c-d$. Any independent set in a finite graph extends to a maximal independent set. Extend each of
+$$
+\{b\},\qquad\{c\},\qquad\{a,d\}
+$$
+to a maximal independent set. The first contains $b$, the second contains $c$, and the third contains neither $b$ nor $c$, so the three extensions are distinct. Thus every allowed tree has at least three maximal independent sets.
 
-Suppose $y=1$. Then $x=z=2$. For a fixed rank-one $Y$, the ten allowed rank-two projections are the pairs $(f,g)$ from Step 3 with $f(g)=0$. If $X$ corresponds to $(f,g)$, then for $(p,q)\in P\oplus Q$,
+This is sharp. Take a central edge $u-v$ with $u$ on the left and $v$ on the right, attach $n-1$ right leaves to $u$, and attach $n-1$ left leaves to $v$. A maximal independent set either contains $u$, contains $v$, or contains neither; in the third case all leaves are forced. These are exactly three maximal independent sets. Again Step 1 realizes this tree by an allowed adjunction. Hence
 $$
-X(p,q)=\left(f(q),\;gp+q+gf(q)\right).
+m_n=3.
 $$
-Let $Z$ correspond to $(f',g')$. If $f=f'$ but $g\neq g'$, then $X-Z$ has one-dimensional image spanned by $g+g'$. The same holds when $g=g'$ but $f\neq f'$. If both $f\neq f'$ and $g\neq g'$, then
-$$
-(X-Z)(1,0)=\left(0,g+g'\right)\neq0.
-$$
-Also there exists $q\in Q$ with $(f+f')(q)=1$, so $(X-Z)(0,q)$ has nonzero $P$-coordinate and is independent of $(X-Z)(1,0)$. Thus $\operatorname{rank}(X-Z)\geq2$. It cannot have rank $3$, because invertibility of the difference of two rank-two idempotents would force their ranks to sum to $3$. Therefore
-$$
-\operatorname{rank}(X-Z)=2
-$$
-exactly when $f\neq f'$ and $g\neq g'$.
 
-Among the ten pairs $(f,g)$, the number of ordered pairs with the same $f$ is
-$$
-4^2+3\cdot2^2=28.
-$$
-By symmetry, the number with the same $g$ is also $28$, and exactly $10$ ordered pairs have both the same $f$ and the same $g$. Hence the number with both coordinates different is
-$$
-10^2-(28+28-10)=54.
-$$
-The complementary case $y=2$ has the same count. Consequently the second component of the lexicographic maximum is $2n$.
-
-Step 5: Count all natural idempotents attaining both lexicographic maxima
-Only the cases $y=1$ and $y=2$ contribute. There are $28$ choices for $Y$ in each case, $54$ ordered pairs $(X,Z)$ giving $\operatorname{rank}(X-Z)=2$, and Step 3 gives $2^{14}$ lifts for each projection triple. Therefore
-$$
-N_n=2\cdot28\cdot54\cdot2^{14}=189\cdot2^{18}.
-$$
-Thus the lexicographically maximal defect profile is $(3n,2n)$, attained by exactly $189\cdot2^{18}$ natural idempotents.
-
-Final Answer: $\boxed{\left(3n,2n,189\cdot2^{18}\right)}$
+Final Answer: $\boxed{\left(2^{n-1}+1,3\right)}$
 
 ---
 
 ## Answer
 
-$\left(3n,2n,189\cdot2^{18}\right)$
+$\left(2^{n-1}+1,3\right)$
 
 ---
 
@@ -211,8 +137,8 @@ $\left(3n,2n,189\cdot2^{18}\right)$
 
 ## Solution Concepts
 
-- natural endomorphisms of forgetful functors
-- path algebras and quiver representations
-- idempotent block equations
-- complementary subspaces over finite fields
-- lexicographic rank optimization
+- adjunctions on posets
+- closure monads
+- maximal independent sets
+- extremal tree induction
+- bipartite relation graphs
