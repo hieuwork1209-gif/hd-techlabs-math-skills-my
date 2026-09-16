@@ -69,29 +69,37 @@ Set $\alpha=1$. The previous corrections reduce to
 $$
 V_3=\frac23(u^3+v^3),\qquad V_4=-u^2v^2.
 $$
-The degree-five homological equation has the solution
+Before adding a degree-five correction, the homogeneous degree-five part of the derivative is
 $$
-V_5=-\frac{2}{15}\left(5u^5+5u^3v^2+10u^2v^3+4v^5\right).
+R_5=-2u^2v(u-v)^2.
 $$
-At degree six, the radial obstruction is isolated by taking
+The homological equation $\mathcal L V_5=-R_5$ is solved by
+$$
+V_5=-\frac{2}{15}\left(5u^5+5u^3v^2+10u^2v^3+4v^5\right),
+$$
+because
+$$
+\mathcal L V_5=2u^2v(u-v)^2.
+$$
+After this cancellation, the degree-six residual is
+$$
+R_6=-\frac23uv(u-v)\left(5u^3+6u^2v+4v^3\right).
+$$
+Take
 $$
 V_6=-\frac{v}{72}\left(15u^5-120u^4v+24u^3v^2-48u^2v^3-15uv^4+16v^5\right).
 $$
-Using
+Applying the displayed monomial formula for $\mathcal L$ gives
 $$
-\mathcal L(u^jv^{6-j})=-j u^{j-1}v^{7-j}+(6-j)u^{j+1}v^{5-j}
+R_6+\mathcal L V_6=-\frac5{24}(u^2+v^2)^3.
 $$
-and differentiating $V_2+\cdots+V_6$ along the vector field yields
+Hence
 $$
-\dot V=-\frac5{24}(u^2+v^2)^3+O\left(\|(u,v)\|^7\right).
-$$
-Thus
-$$
-2l_2=-\frac5{24},
+\dot V=-\frac5{24}(u^2+v^2)^3+O\left(\|(u,v)\|^7\right),
 $$
 so
 $$
-l_2(1)=-\frac5{48}\neq0.
+2l_2=-\frac5{24},\qquad l_2(1)=-\frac5{48}\neq0.
 $$
 
 Step 5: Identify the generalized Hopf point
