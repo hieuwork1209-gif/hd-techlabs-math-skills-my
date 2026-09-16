@@ -1,178 +1,159 @@
 ## Steps
 
-Step 1: Identify the two Kan-norm maps
-Let $k=\mathbb F_p$, let $G=C_{p^2}=\langle g\rangle$, and let $H=\langle g^p\rangle\cong C_p$. For a finite group $Q$ and a functor $M:BQ\to\operatorname{Vect}_k$, left and right Kan extension along $BQ\to *$ are
+Step 1: Translate the four categorical invariants into Jordan data
+Let $k=\mathbb F_p$, let $G=C_{p^2}=\langle g\rangle$, and let $H=\langle g^p\rangle\cong C_p$. For a functor $F:BG\to\operatorname{Vect}_k$ with $F(*)=V$, write the action of $g$ as $A$. Since $A^{p^2}=I$ and
 $$
-M_Q=M/\langle qm-m:q\in Q,m\in M\rangle,
-\qquad
-M^Q=\{m:qm=m\text{ for all }q\in Q\}.
+x^{p^2}-1=(x-1)^{p^2}
 $$
-The norm comparison is
+over $k$, write
 $$
-\mathsf N_Q:M_Q\to M^Q,
-\qquad
-[m]\longmapsto\sum_{q\in Q}qm.
+A=I+T,\qquad T^{p^2}=0.
 $$
+Thus $T$ has a nilpotent Jordan type $\lambda$ with all parts at most $p^2$.
 
-Fix a functor $F:BG\to\operatorname{Vect}_k$ with $F(*)=V$, $\dim V=N$, and write the action of $g$ as $A$. Since
-$$
-A^{p^2}=I
-$$
-and over $k$
-$$
-x^{p^2}-1=(x-1)^{p^2},
-$$
-we may write
-$$
-A=I+T,
-\qquad
-T^{p^2}=0.
-$$
-Thus $T$ has a Jordan type $\lambda$ whose parts are at most $p^2$, and conversely every such nilpotent $T$ gives a functor.
-
-For $G$, the norm operator on $V$ is
+For $G$, the norm operator is
 $$
 I+A+\cdots+A^{p^2-1}=T^{p^2-1}.
 $$
-Indeed
+Hence
 $$
-(A-I)(I+A+\cdots+A^{p^2-1})=A^{p^2}-I=T^{p^2},
+\alpha(F)=\operatorname{rank}(\mathsf N_G)
 $$
-and the polynomial identity in characteristic $p$ gives the displayed equality. On a Jordan block of size $s\le p^2$, the rank of $T^{p^2-1}$ is $1$ if $s=p^2$ and $0$ otherwise. Hence
-$$
-\alpha(F)=\operatorname{rank}\mathsf N_G
-$$
-is exactly the number of parts of $\lambda$ equal to $p^2$.
+is exactly the number of Jordan blocks of size $p^2$.
 
-Step 2: Optimize the $G$-norm rank
+For $H$, the generator $g^p$ acts as
+$$
+A^p=(I+T)^p=I+T^p,
+$$
+so the $H$-norm is
+$$
+I+A^p+\cdots+A^{(p-1)p}=T^{p(p-1)}.
+$$
 Put
-$$
-R=p(p-1)+r,
-\qquad
-N=ap^2+R,
-$$
-where $1\le r\le p-1$. Then
-$$
-0<R<p^2.
-$$
-Therefore a partition of $N$ with all parts at most $p^2$ contains at most $a$ parts equal to $p^2$. Thus
-$$
-\alpha(F)\le a.
-$$
-Equality holds exactly when
-$$
-\lambda=(p^2,\ldots,p^2)\sqcup\mu,
-$$
-with $a$ copies of $p^2$ and with $\mu$ a partition of $R$.
-
-Hence the first lexicographic maximum is
-$$
-A=a.
-$$
-
-Step 3: Compute and optimize the $H$-norm rank
-On restriction to $H$, the generator $g^p$ acts as
-$$
-A^p=(I+T)^p=I+T^p.
-$$
-Therefore the $H$-norm operator is
-$$
-I+A^p+A^{2p}+\cdots+A^{(p-1)p}
-=(T^p)^{p-1}=T^{p(p-1)}.
-$$
-Set
 $$
 Q=p(p-1).
 $$
-On a Jordan block of size $s$, this operator has rank
-$$
-(s-Q)_+=\max\{s-Q,0\}.
-$$
-In particular a block of size $p^2$ contributes $p$.
+A Jordan block of size $s$ contributes $(s-Q)_+$ to $\beta(F)=\operatorname{rank}(\mathsf N_H)$.
 
-Inside the equality class $\alpha(F)=a$, write the residual partition as
+The right Kan extensions to a point are invariants. Therefore
 $$
-\mu=(s_1,\ldots,s_t),
+\gamma(F)=\dim V^G=\dim\ker T
+$$
+is the total number of Jordan blocks, while
+$$
+\delta(F)=\dim V^H=\dim\ker T^p
+$$
+is the sum over the Jordan blocks of $\min\{s,p\}$.
+
+Step 2: Maximize the $G$-norm rank
+Set
+$$
+R=Q+1=p(p-1)+1,
 \qquad
-\sum_i s_i=R=Q+r.
+N=ap^2+R.
 $$
-Then
+Since $R<p^2$, a partition of $N$ with parts at most $p^2$ contains at most $a$ parts equal to $p^2$. Thus
 $$
-\beta(F)=ap+\sum_i(s_i-Q)_+.
+A_{p,a}=a.
 $$
-Because $R<2Q$ for odd $p$, at most one part can exceed $Q$. If no part exceeds $Q$, the residual contribution is $0$. If exactly one part $s_j$ exceeds $Q$, then
+Equality holds exactly for Jordan types
 $$
-\sum_i(s_i-Q)_+=s_j-Q\le R-Q=r.
+\lambda=(p^2)^a\sqcup\mu,
 $$
-Equality requires $s_j=R$, so there are no other residual parts. Thus the second lexicographic maximum is
-$$
-B=ap+r,
-$$
-and it is attained for one and only one Jordan type,
-$$
-\lambda_*=(p^2)^a\sqcup(R).
-$$
+where $\mu$ is a partition of $R$.
 
-Step 4: Reduce the count to one unipotent conjugacy class
-Two functors with the fixed object value $V$ are distinct here whenever the corresponding matrices $A$ are distinct, even if they are naturally isomorphic. Since every maximizing functor has Jordan type $\lambda_*$, all maximizing generator actions form one conjugacy class in $GL_N(k)$.
+Step 3: Among the first-stage maximizers, minimize the $H$-norm rank
+Each $p^2$-block contributes
+$$
+p^2-Q=p
+$$
+to the $H$-norm rank. Hence the $a$ full blocks contribute $ap$.
 
-Let
+For the residual partition $\mu=(s_1,\ldots,s_t)$, the extra contribution is
 $$
-\Gamma_j(p)=|GL_j(\mathbb F_p)|.
+\sum_i(s_i-Q)_+.
 $$
-Then
+Since $R=Q+1$, this contribution can be made zero by splitting $R$ into parts of size at most $Q$, and it is always nonnegative. Therefore
 $$
-K=\frac{\Gamma_N(p)}{|C_{GL_N(k)}(A)|}.
+B_{p,a}=ap.
 $$
-It remains to compute the centralizer.
+Equality holds exactly when every part of $\mu$ is at most $Q$.
 
-Step 5: Compute the centralizer self-containedly
-View $V$ as a $k[t]$-module with $t$ acting by $T$. For the maximizing type,
+Step 4: Among those minimizers, minimize the dimension of $G$-invariants
+The quantity $\gamma(F)$ is the total number of Jordan blocks. The $a$ full blocks are fixed, so we must minimize the number of parts of $\mu$ subject to
 $$
-V\cong U_{p^2}^{\oplus a}\oplus U_R,
+\sum_i s_i=R=Q+1,
 \qquad
-U_s=k[t]/(t^s).
+s_i\le Q.
+$$
+One part is impossible because $R>Q$, while two parts are possible. Hence
+$$
+C_{p,a}=a+2.
+$$
+Write the two residual parts as
+$$
+x\ge y>0,
+\qquad
+x+y=R.
+$$
+Because $R$ is odd, $x>y$. The condition $x\le Q$ is equivalent to $y\ge1$, so at this stage
+$$
+1\le y\le \frac Q2.
+$$
+
+Step 5: Maximize the dimension of $H$-invariants
+A $p^2$-block contributes $p$ to $\dim V^H$, so the full blocks contribute $ap$. For the residual blocks,
+$$
+\delta(F)=ap+\min\{x,p\}+\min\{y,p\}.
 $$
 Since
 $$
-\dim_k\operatorname{Hom}_{k[t]}(U_s,U_t)=\min\{s,t\},
+x>\frac R2>\frac Q2\ge p
 $$
-the endomorphism algebra
+for odd $p$, one has $\min\{x,p\}=p$. Thus
 $$
-E=\operatorname{End}_{k[t]}(V)
+\delta(F)=ap+p+\min\{y,p\}.
 $$
-has dimension
+This is maximized exactly when $y\ge p$, giving
 $$
-S=a^2p^2+(2a+1)R.
+D_{p,a}=p(a+2).
 $$
-
-The two indecomposable summand types $U_{p^2}$ and $U_R$ are nonisomorphic. Modulo the Jacobson radical, endomorphisms retain only the induced scalar maps on their simple tops, so
+Therefore the fully extremal Jordan types are exactly
 $$
-E/\operatorname{rad}E\cong M_a(k)\times k.
+\lambda_y=(p^2)^a\sqcup(R-y)\sqcup y,
+\qquad
+p\le y\le \frac Q2.
 $$
-Hence
+The number of such types is
 $$
-\dim_k\operatorname{rad}E=S-a^2-1.
-$$
-An endomorphism is invertible exactly when its image in the semisimple quotient is invertible. Therefore
-$$
-|E^\times|
-=p^{S-a^2-1}\,\Gamma_a(p)\,(p-1).
-$$
-But $E^\times$ is exactly the centralizer of $A=I+T$ in $GL_N(k)$. Consequently
-$$
-K=
-\frac{\Gamma_N(p)}
-{p^{a^2p^2+(2a+1)R-a^2-1}\Gamma_a(p)(p-1)}.
+L=\frac Q2-p+1
+=\frac{(p-1)(p-2)}2.
 $$
 
-Final Answer: $\boxed{\left(a,ap+r,\frac{\Gamma_N(p)}{p^{a^2p^2+(2a+1)R-a^2-1}\Gamma_a(p)(p-1)}\right)}$
+Step 6: Count automorphism-marked extremal functors
+Let $\mathcal E$ be the set of fully extremal functors on the fixed vector space $V$. For $F\in\mathcal E$, a natural automorphism of $F$ is exactly an invertible linear map commuting with the generator action $A$. Thus $\operatorname{Aut}(F)$ is the stabilizer of $A$ under conjugation by $GL_N(k)$.
+
+Fix one extremal Jordan type $\lambda_y$. All matrices of that type form one $GL_N(k)$-conjugacy class. If $C_y$ is the centralizer of one representative, then the number of functors of this type is
+$$
+\frac{\Gamma_N(p)}{|C_y|},
+$$
+while each such functor has exactly $|C_y|$ natural automorphisms. Hence the number of pairs $(F,\eta)$ of this Jordan type, with $\eta\in\operatorname{Aut}(F)$, is
+$$
+\frac{\Gamma_N(p)}{|C_y|}\,|C_y|=\Gamma_N(p).
+$$
+This cancellation is independent of $y$. Since there are $L$ extremal Jordan types,
+$$
+K_{p,a}=L\Gamma_N(p)
+=\frac{(p-1)(p-2)}2\,\Gamma_N(p).
+$$
+
+Final Answer: $\boxed{\left(a,ap,a+2,p(a+2),\frac{(p-1)(p-2)}2\Gamma_N(p)\right)}$
 
 ---
 
 ## Answer
 
-$\left(a,ap+r,\frac{\Gamma_N(p)}{p^{a^2p^2+(2a+1)R-a^2-1}\Gamma_a(p)(p-1)}\right)$
+$\left(a,ap,a+2,p(a+2),\frac{(p-1)(p-2)}2\Gamma_N(p)\right)$
 
 ---
 
@@ -188,6 +169,7 @@ $\left(a,ap+r,\frac{\Gamma_N(p)}{p^{a^2p^2+(2a+1)R-a^2-1}\Gamma_a(p)(p-1)}\right
 
 - left and right Kan extensions
 - norm maps from coinvariants to invariants
-- restriction along subgroup inclusions
+- subgroup restriction
 - unipotent Jordan types
-- centralizers of finite-length modules
+- invariant dimensions
+- inertia-style automorphism counting
