@@ -114,20 +114,18 @@ $$
 $$
 Equality forces $\int(f-g)^2=0$, so the minimizer is unique and equals $g$ almost everywhere.
 
-Step 4: Evaluate the active minimum
+Step 4: Evaluate and combine the two regimes
 Since
 $$
 m-a=m-(3m-2)=2(1-m),
 $$
-we obtain
+we obtain in the active regime
 $$
 \int_{-1}^1 g(x)^2\,dx
 =A(m-a)
 =\frac{4}{9(1-m)}.
 $$
-At $m=1/3$ the two formulas agree, both giving $2/3$.
-
-Hence
+Thus
 $$
 \min\int_{-1}^1 f(x)^2\,dx
 =
@@ -136,7 +134,12 @@ $$
 \dfrac{4}{9(1-m)},&\dfrac13\le m<1.
 \end{cases}
 $$
-Equivalently, the two branches cross only at $m=1/3$, and the required value is their maximum.
+The difference of the two displayed branches is
+$$
+\frac{1+3m^2}{2}-\frac4{9(1-m)}
+=-\frac{(3m-1)^3}{18(1-m)}.
+$$
+Hence the first branch is larger for $m<1/3$, the second is larger for $m>1/3$, and they agree at $m=1/3$. Therefore the piecewise expression is exactly their maximum.
 
 Final Answer: $\boxed{\max\left\{\frac{1+3m^2}{2},\frac4{9(1-m)}\right\}}$
 
