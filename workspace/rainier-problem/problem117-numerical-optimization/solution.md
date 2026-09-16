@@ -36,7 +36,11 @@ Define
 $$
 r_i=i(n+1-i),\qquad i=1,\ldots,n,
 $$
-and set $r_0=r_{n+1}=0$. A direct second-difference calculation gives
+and set $r_0=r_{n+1}=0$. For $1\leq i\leq n$,
+$$
+2i(n+1-i)-(i-1)(n+2-i)-(i+1)(n-i)=2,
+$$
+where the endpoint terms are interpreted using $r_0=r_{n+1}=0$. Hence
 $$
 2r_i-r_{i-1}-r_{i+1}=2
 $$
@@ -119,7 +123,15 @@ $$
 Step 4: Prove uniqueness of the optimal sampling distribution
 If some $p_i=0$, then $P$ is singular, so $APA$ is singular and $m(p)=0$. Such a distribution cannot be optimal because $m(p^*)=2/S>0$.
 
-Now suppose $p_i>0$ for all $i$ and $p$ is optimal. Then the bound from Step 2 is sharp, so $r$ attains the minimum in the generalized Rayleigh quotient defining $m(p)$. The stationarity equation for that quotient is
+Now suppose $p_i>0$ for all $i$ and $p$ is optimal. Then the bound from Step 2 is sharp, so $r$ attains the minimum in the generalized Rayleigh quotient defining $m(p)$. If
+$$
+q(x)=\frac{x^TAPA x}{x^TAx},
+$$
+then for every direction $h$, differentiating $q(r+th)$ at $t=0$ gives
+$$
+0=\frac{2h^T\left(APA r-m(p)Ar\right)}{r^TAr}.
+$$
+Hence
 $$
 APA r=\frac{2}{S}Ar.
 $$
