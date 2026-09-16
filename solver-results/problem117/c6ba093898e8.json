@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "1643ca4401bbea3bdf86bed2e2abdacf408cccbd",
+  "problem_blob_sha": "c6ba093898e81df6472c7227aabcf3472b2bd50a",
+  "statement_sha256": "9211ef2d2dd7abfc9dadcb4f74a1ece8eca890157cda31117fb946e6121ba869",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T08:44:06+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(g=A_5x\\). For block \\((i,i+1)\\), the local Hessian is\n\\[\nH=\\begin{bmatrix}2&-1\\\\-1&2\\end{bmatrix},\n\\qquad\nH^{-1}=\\frac13\\begin{bmatrix}2&1\\\\1&2\\end{bmatrix}.\n\\]\nThus the energy decrease from updating block \\(i\\) is\n\\[\n\\frac12(g_i,g_{i+1})H^{-1}(g_i,g_{i+1})^T\n=\\frac13(g_i^2+g_ig_{i+1}+g_{i+1}^2).\n\\]\nSince \\(f_5(x)=\\frac12x^TA_5x=\\frac12g^TA_5^{-1}g\\), if\n\\[\n\\mu(p):=\\inf_{g\\ne0}\n\\frac{\\frac23\\sum_{i=1}^4p_i(g_i^2+g_ig_{i+1}+g_{i+1}^2)}\n{g^TA_5^{-1}g},\n\\]\nthen\n\\[\n\\Gamma(p)=1-\\mu(p).\n\\]\n\nNow take\n\\[\ng_*=(2,1,2,1,2)^T.\n\\]\nSolving \\(A_5x=g_*\\) gives\n\\[\nx_*=(4,6,7,6,4)^T,\n\\]\nand\n\\[\ng_*^TA_5^{-1}g_*=g_*^Tx_*=42.\n\\]\nAlso every adjacent pair of \\(g_*\\) is either \\((2,1)\\) or \\((1,2)\\), so\n\\[\n\\frac23(g_i^2+g_ig_{i+1}+g_{i+1}^2)=\\frac{14}{3}\n\\]\nfor all \\(i\\). Hence for every probability vector \\(p\\),\n\\[\n\\mu(p)\\le \\frac{14/3}{42}=\\frac19.\n\\]\nSo \\(\\Gamma(p)\\ge 8/9\\).\n\nEquality requires \\(g_*\\) to be an eigenvector for the generalized minimum, i.e.\n\\[\nD_pg_*=\\frac19A_5^{-1}g_*=\\frac19(4,6,7,6,4)^T,\n\\]\nwhere \\(D_p\\) is the quadratic-form matrix of the expected decrease. Componentwise this gives\n\\[\n\\frac{5p_1}{3}=\\frac49,\\quad\n\\frac{4(p_1+p_2)}3=\\frac69,\\quad\n\\frac{5(p_2+p_3)}3=\\frac79,\\quad\n\\frac{4(p_3+p_4)}3=\\frac69,\\quad\n\\frac{5p_4}{3}=\\frac49.\n\\]\nThus uniquely\n\\[\np_*=\\left(\\frac4{15},\\frac7{30},\\frac7{30},\\frac4{15}\\right).\n\\]\n\nFor this \\(p_*\\), the smallest generalized eigenvalue is indeed \\(1/9\\). On the reflection-even subspace it has eigenvector \\(g_*\\); on the reflection-odd subspace the eigenvalues are \\(4/15\\) and \\(26/45\\), both larger than \\(1/9\\). The even characteristic polynomial factors as\n\\[\n-\\left(\\lambda-\\frac19\\right)\n\\left(27\\lambda^2-\\frac{141}{5}\\lambda+\\frac{168}{25}\\right),\n\\]\nso the \\(1/9\\)-eigenspace is one-dimensional. Therefore the worst-case initial vectors are exactly the nonzero multiples of\n\\[\nv_*=(4,6,7,6,4).\n\\]\n\nFinal answer:\n\\[\n\\boxed{\n\\left(\n\\left(\\frac4{15},\\frac7{30},\\frac7{30},\\frac4{15}\\right),\n\\frac89,\n(4,6,7,6,4)\n\\right)\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T08:47:02+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/c6ba093898e8.json"
+}
