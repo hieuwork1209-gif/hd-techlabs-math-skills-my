@@ -46,4 +46,4 @@ exactly for every $m\geq2$.
 
 ## Domain Explanation
 
-The problem optimizes Lagrangian tensor subcategories across compatible ribbon twists on a fixed braided pointed tensor category. The balancing axiom first converts the categorical twist data into quadratic refinements, after which finite symplectic geometry and Gauss-sum counting analyze the resulting categorical structures. Thus Logic, Set Theory, and Foundations -> Category theory is primary, with finite-field linear algebra serving as the subordinate method.
+The problem optimizes Lagrangian tensor subcategories across balancing-compatible twists on a fixed braided pointed tensor category. The balancing axiom first converts the categorical twist data into quadratic refinements, after which finite symplectic geometry and Gauss-sum counting analyze the resulting categorical structures. Thus Logic, Set Theory, and Foundations -> Category theory is primary, with finite-field linear algebra serving as the subordinate method.
