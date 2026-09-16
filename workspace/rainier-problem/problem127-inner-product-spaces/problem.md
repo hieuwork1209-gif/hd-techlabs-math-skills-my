@@ -2,32 +2,15 @@
 
 ## LaTeX (Normalized)
 
-Let $v_1,\dots,v_4$ be a basis of $\mathbb R^4$ such that
+Let $(e_1,e_2,e_3)$ and $(f_1,f_2,f_3)$ be orthonormal bases of $\mathbb R^3$. Suppose
 $$
-\|v_i\|=1\qquad(i=1,\dots,4).
-$$
-Let $w_1,\dots,w_4$ be the dual basis with respect to the Euclidean inner product, so
-$$
-\langle v_i,w_j\rangle=\delta_{ij}.
-$$
-Suppose also that
-$$
-\|w_i\|=\sqrt2\qquad(i=1,\dots,4).
-$$
-Fix two sign vectors
-$$
-\varepsilon=(\varepsilon_1,\dots,\varepsilon_4),
-\qquad
-\eta=(\eta_1,\dots,\eta_4)\in\{-1,1\}^4
-$$
-satisfying
-$$
-\sum_{i=1}^4\varepsilon_i\eta_i=0.
+|\langle e_1,f_1\rangle|
+=|\langle e_2,f_2\rangle|
+=|\langle e_3,f_3\rangle|.
 $$
 Determine the maximum possible value of
 $$
-\left\|\sum_{i=1}^4\varepsilon_i v_i\right\|
-\left\|\sum_{i=1}^4\eta_i v_i\right\|.
+\prod_{i=1}^3\prod_{j=1}^3|\langle e_i,f_j\rangle|.
 $$
 
 ---
@@ -45,4 +28,4 @@ $$
 
 ## Domain Explanation
 
-This problem is primarily Linear Algebra and Inner product spaces: the basis and Euclidean dual basis are encoded by a positive definite Gram matrix $G$ and its inverse, while the prescribed norms fix the diagonals of both matrices. The two orthogonal sign vectors select a two-dimensional subspace on which the quadratic form of $G$ must be optimized, so the problem couples dual-basis geometry with a sharp two-dimensional spectral bound. Scalar inequalities enter only after this inner-product-space reduction.
+This problem is primarily Linear Algebra and Inner product spaces: the data are two orthonormal bases and the nine transition coefficients given by their pairwise inner products. The equal matched-angle condition constrains the diagonal of the orthogonal change-of-basis matrix, while the optimization depends on the geometry of three-dimensional inner-product isometries. The final one-variable optimization is subordinate to this orthonormal-basis structure.
