@@ -32,7 +32,7 @@ Expanding with the known moments gives
 $$
 0\leq a+\frac{2u}{5}+\frac{u^{2}+2v}{4}+\frac{2uv}{3}+\frac{v^{2}}{2}.
 $$
-To make this inequality as strong as possible, minimize the known quadratic part in $u,v$. Its partial derivatives are
+To make this inequality as strong as possible, minimize the known quadratic part in $u,v$. Its Hessian is positive definite because its leading diagonal entry is $1/2>0$ and its determinant is $1/18>0$. The critical-point equations are
 $$
 \frac25+\frac{u}{2}+\frac{2v}{3}=0,
 \qquad
@@ -61,7 +61,11 @@ we have
 $$
 0\leq\mathbb E\left[(X^{3}-p(X))^{2}\right].
 $$
-For fixed $a$, the strongest lower bound on $b$ is obtained by choosing the least-squares quadratic approximation to $X^{3}$. The normal equations
+For every nonzero quadratic $r$, the prescribed moments give
+$$
+\mathbb E[r(X)^{2}]=\int_{0}^{1}r(x)^{2}\,dx>0,
+$$
+so the least-squares problem has a unique global minimizer. Its normal equations
 $$
 \mathbb E[X^{3}-p(X)]=0,
 $$
