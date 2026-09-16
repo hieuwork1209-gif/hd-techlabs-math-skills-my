@@ -81,8 +81,10 @@ $$
 Hence
 $$
 \alpha_{2m}=2^{m(m-1)}\prod_{i=1}^m(2^{2i-1}-1),
-\qquad
-\alpha_8=112881664.
+$$
+so
+$$
+\alpha_8=2^{12}\cdot7\cdot31\cdot127.
 $$
 For fixed nondegenerate $B$, all refinements are $q_a(x)=q(x)+B(a,x)$. Since
 $$
@@ -94,9 +96,9 @@ $$
 \qquad
 \#q^{-1}(0)+\#q^{-1}(1)=256,
 $$
-so exactly $136$ refinements have positive sign. Therefore
+so exactly $136=2^3\cdot17$ refinements have positive sign. Therefore the number of admissible $g$ is
 $$
-\#\{g\}=136\alpha_8=15351906304.
+2^{15}\cdot7\cdot17\cdot31\cdot127.
 $$
 
 Step 2: Parametrize the orthogonal involutions by residual data
@@ -166,23 +168,32 @@ J=1+I_2\alpha_2+I_4\alpha_4
 $$
 $$
 =1+5355+28\cdot2295+120+4\cdot9450
-=107536.
+=107536
+=2^4\cdot11\cdot13\cdot47.
 $$
 
-Step 4: Multiply the independent counts
+Step 4: Combine the independently checkable factors
 
-There are $15351906304$ admissible quadratic forms, and each has $107536$ preserving involutions. Therefore
+The admissible quadratic forms contribute
 $$
-15351906304\cdot107536=1650882596306944.
+2^{15}\cdot7\cdot17\cdot31\cdot127,
+$$
+and the preserving involutions contribute
+$$
+2^4\cdot11\cdot13\cdot47.
+$$
+Multiplying these two exact counts gives the requested prime factorization
+$$
+2^{19}\cdot7\cdot11\cdot13\cdot17\cdot31\cdot47\cdot127.
 $$
 
-Final Answer: $\boxed{1650882596306944}$
+Final Answer: $\boxed{2^{19}\cdot7\cdot11\cdot13\cdot17\cdot31\cdot47\cdot127}$
 
 ---
 
 ## Answer
 
-$1650882596306944$
+$2^{19}\cdot7\cdot11\cdot13\cdot17\cdot31\cdot47\cdot127$
 
 ---
 
