@@ -224,7 +224,62 @@ K^2a=u^5<2\le b<8u^4=K^2\cdot8.
 $$
 Condition (2) holds, so the half-plane certificate from Step 1 proves global optimality and uniqueness in every regime.
 
-Therefore the exact pair requested for the final answer is $\gamma_1$ from (7) and $u_*$ from (9); equation (12) gives the second transition exactly.
+Step 5: Determine the regularity of the optimal contraction factor at the transitions
+On the moving branch, (4) gives
+$$
+\mathcal C_\gamma^*
+=\frac{u_\gamma^2-1}{u_\gamma^2+1},
+\qquad
+F(\gamma,u_\gamma)=0. \tag{13}
+$$
+Both outer regimes are plateaus, so all one-sided derivatives from the left of $\gamma_1$ and from the right of $\gamma_2$ vanish.
+
+At $\gamma_1$, put $g=\gamma_1$ and $u_0=4/g$. The factorization in Step 3 shows
+$$
+F_x(g,u_0)=0,
+$$
+so implicit differentiation of (13) gives $u_\gamma'(g+)=0$. Hence $(\mathcal C_\gamma^*)'(g+)=0$, matching the plateau derivative on the left. Differentiating once more gives
+$$
+u_\gamma''(g+)=-\frac{F_{xx}(g,u_0)}{F_u(g,u_0)}.
+$$
+Using
+$$
+F_{xx}(g,u_0)=\frac{256(2g-1)}{g^4},
+$$
+$$
+F_u(g,u_0)
+=-\frac{2\left(g^6-128g^4+32g^3-10240g-3072\right)}{g^4},
+$$
+and
+$$
+\frac{d}{du}\frac{u^2-1}{u^2+1}\Big|_{u=4/g}
+=\frac{16g^3}{(g^2+16)^2},
+$$
+we obtain the first nonzero derivative from the moving side:
+$$
+\boxed{
+(\mathcal C_\gamma^*)''(\gamma_1+)
+=\frac{2048g^3(2g-1)}{(g^2+16)^2
+\left(g^6-128g^4+32g^3-10240g-3072\right)}
+}. \tag{14}
+$$
+This number is negative (numerically about $-0.0125006593$), whereas $(\mathcal C_\gamma^*)''(\gamma_1-)=0$. Thus $\mathcal C_\gamma^*$ is $C^1$ but not $C^2$ at $\gamma_1$.
+
+At $\gamma_2$, put $s=u_*$ and $h=\gamma_2$. From (13),
+$$
+u_\gamma'(h-)=-\frac{F_x(h,s)}{F_u(h,s)}.
+$$
+Therefore the first nonzero derivative from the moving side is
+$$
+\boxed{
+(\mathcal C_\gamma^*)'(\gamma_2-)
+=-\frac{4s\left(3s^4h^2-4(s+4)h+s^5(s+16)\right)}
+{(s^2+1)^2\left(4s^3h^3-2h^2+(6s^5+80s^4)h-16s\right)}
+}. \tag{15}
+$$
+It is nonzero and negative (numerically about $-0.0166392750$), while $(\mathcal C_\gamma^*)'(\gamma_2+)=0$ on the final plateau. Hence $\mathcal C_\gamma^*$ is continuous but not $C^1$ at $\gamma_2$.
+
+Therefore the exact pair requested for the final answer is $\gamma_1$ from (7) and $u_*$ from (9); equation (12) gives the second transition exactly, while (14)-(15) give the requested transition sensitivities.
 
 Final Answer: $\boxed{\left(\mathrm{root}_{(3,4)}(x^4+x^3-64x-16),\mathrm{root}_{(1,2)}(x^6+16x^5+4x^4-4x^2-4x-16)\right)}$
 
@@ -248,5 +303,5 @@ $(\mathrm{root}_{(3,4)}(x^4+x^3-64x-16),\mathrm{root}_{(1,2)}(x^6+16x^5+4x^4-4x^
 
 - constrained ADI shift tuning
 - rational minimax envelopes
-- Farkas active-set certificate
+- active-set sensitivity
 - algebraic phase transitions
