@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "d2e4b97e08b8e0677e74eb01c6187f6f9b71f88b",
+  "problem_blob_sha": "22ee8b2ca7083e53401e6249999fd41b55237212",
+  "statement_sha256": "a14663ba312a49b8e92e76c3b01cfcf2c725c434a5290d39dc51b3b5d620f366",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T12:50:20+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\np(\\lambda)=\\prod_{j=1}^4(1-\\alpha_j\\lambda)\n=1-2\\lambda+b\\lambda^2+c\\lambda^3+d\\lambda^4 ,\n\\]\n\nsince \\(\\sum\\alpha_j=2\\). Thus the admissible quartics have fixed \\(p(0)=1\\), \\(p'(0)=-2\\). The minimax alternation is in the three-dimensional space spanned by \\(\\lambda^2,\\lambda^3,\\lambda^4\\), so four alternating active contacts certify optimality.\n\nThe two transition values are\n\n\\[\n\\gamma_1=\\frac{24}{5},\\qquad\n\\gamma_2=\\frac{17+\\sqrt{109}}5.\n\\]\n\nThe active sets are:\n\n\\[\n\\frac92<\\gamma<\\frac{24}{5}:\n\\quad \\mathcal A_\\gamma=\\{m_\\gamma,\\gamma,n_\\gamma,6\\},\n\\]\n\nwith signs \\(-,+,-,+\\).\n\n\\[\n\\frac{24}{5}<\\gamma<\\frac{17+\\sqrt{109}}5:\n\\quad \\mathcal A_\\gamma=\n\\left\\{\\frac{17-\\sqrt{109}}5,\\ 2,\\ \\frac{17+\\sqrt{109}}5,\\ 6\\right\\}.\n\\]\n\n\\[\n\\frac{17+\\sqrt{109}}5<\\gamma<\\frac{11}{2}:\n\\quad \\mathcal A_\\gamma=\\{m_\\gamma,2,\\gamma,6\\},\n\\]\n\nagain with signs \\(-,+,-,+\\).\n\nAt \\(\\gamma_1=24/5\\), the active set is\n\n\\[\n\\left\\{\\frac{17-\\sqrt{109}}5,\\ \\frac{24}{5},\\ 2,\\ \\frac{17+\\sqrt{109}}5,\\ 6\\right\\}.\n\\]\n\nAt \\(\\gamma_2=(17+\\sqrt{109})/5\\), the high-interval interior contact collides with the left endpoint, so\n\n\\[\n\\mathcal A_{\\gamma_2}=\n\\left\\{\\frac{17-\\sqrt{109}}5,\\ 2,\\ \\frac{17+\\sqrt{109}}5,\\ 6\\right\\},\n\\]\n\nwith the contact at \\(\\gamma_2\\) also critical.\n\nFor \\(\\gamma=9/2\\), solving the first-regime equations gives\n\n\\[\n\\mathcal C_{9/2}^*\n=\\frac{25\\sqrt{1021}-702}{1201}.\n\\]\n\nFor \\(\\gamma=11/2\\), the interior active point \\(m_*\\in(1,2)\\) satisfies\n\n\\[\n71t^4-528t^3+1272t^2-152t-1008=0,\n\\]\n\nwhich is primitive and irreducible over \\(\\mathbb Q\\). Hence\n\n\\[\n(q_4,q_3,q_2,q_1,q_0)=(71,-528,1272,-152,-1008).\n\\]\n\nTherefore the requested final answer is\n\n\\[\n\\boxed{\\left(\\frac{24}{5},\\frac{17+\\sqrt{109}}5,\\frac{25\\sqrt{1021}-702}{1201};71,-528,1272,-152,-1008\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T12:54:30+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/22ee8b2ca708.json"
+}
