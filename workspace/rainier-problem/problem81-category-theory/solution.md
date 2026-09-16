@@ -167,17 +167,19 @@ Hu=Xu=u-(I-X)u\in K.
 $$
 The common-image line is $\ker H$ and is disjoint from $K$, so $H|_K$ is injective. Hence $K=\operatorname{im}H$, forcing $W(\ker H)\subseteq\operatorname{im}H$ and $s_H=2$. If instead $\beta=1$ and $x+y=2$, the same argument with $\operatorname{im}X+\operatorname{im}Y$ in place of $K$ again gives $s_H=2$. Therefore $s_H=3$ is possible only when $x+y=3$, so the rank pairs are $(1,2)$ and $(2,1)$.
 
-Fix rank-one $X$ with image $P$ and kernel $Q$. For rank-two $Y$, the cases $\alpha+\beta=1$ are counted as follows. If $\alpha=1$ and $\beta=0$, choose the plane $\operatorname{im}Y$ containing $P$ in $4$ ways. It has $9$ complementary lines, of which $3$ lie in $Q$, so there are $6$ allowed choices for $\ker Y$. This gives $24$ choices. The case $\alpha=0$, $\beta=1$ also gives $24$, hence $48$ choices for $Y$ per $X$. Thus the two rank orders contribute
+Fix rank-one $X$ with image $P$ and kernel $Q$. If $\alpha=1$ and $\beta=0$, choose the rank-two plane $\operatorname{im}Y$ containing $P$ in $4$ ways. It has $9$ complementary lines, of which $3$ lie in $Q$, so there are $6$ choices for $\ker Y$, giving $24$ idempotents $Y$. If $\alpha=0$ and $\beta=1$, choose the line $\ker Y\subset Q$ in $4$ ways. There are $9$ planes complementary to that line; exactly $3$ of them contain $P$, so $6$ choices remain for $\operatorname{im}Y$, again giving $24$. Thus there are $48$ choices for $Y$ per rank-one $X$, and both rank orders contribute
 $$
 2\cdot117\cdot48=11232
 $$
 ordered pairs $(X,Y)$.
 
-For each such pair the solution spaces for $U$ and $V$ have dimension $5$, so there are $3^{10}$ pairs $(U,V)$. The condition $s_H=3$ says that the induced map
+For each such pair the solution spaces for $U$ and $V$ have dimension $5$, so there are $3^{10}$ pairs $(U,V)$. The equations are symmetric under $(X,Y,U,V)\leftrightarrow(Y,X,V,U)$, which changes $(H,W)$ to $(-H,-W)$, so it suffices to treat $x=1$, $y=2$. The condition $s_H=3$ says that the induced map
 $$
 (U,V)\longmapsto W(\ker H)\pmod{\operatorname{im}H}
 $$
-from this ten-dimensional space to a one-dimensional quotient is nonzero. For the case $\alpha=1$, take $0\neq v\in\ker H=\operatorname{im}X\cap\operatorname{im}Y$. Here $x=1$ and $y=2$. Since $\beta=0$, the line $\ker Y$ is not contained in $Q=\ker X$; if $0\neq z\in\ker Y$, then $Hz=Xz$ is a nonzero vector of $\operatorname{im}X$. Hence $\operatorname{im}X\subseteq\operatorname{im}H$, so the two-dimensional space $Q$ cannot equal $\operatorname{im}H$. Choose $q_0\in Q\setminus\operatorname{im}H$. The first-order equation for $U$ allows an arbitrary map $\operatorname{im}Y\to Q$, so choose $U(v)=q_0$ and set the other allowed blocks to zero; take $V=0$. Then $W(v)\notin\operatorname{im}H$, proving that the displayed quotient map is nonzero. The case $\alpha=0$, $\beta=1$ follows by replacing $(X,Y)$ with $(I-X,I-Y)$, which preserves the first-order solution spaces and replaces $H$ by $-H$.
+from this ten-dimensional space to a one-dimensional quotient is nonzero.
+
+For $\alpha=1$, take $0\neq v\in\ker H=\operatorname{im}X\cap\operatorname{im}Y$. Since $\beta=0$, the line $\ker Y$ is not contained in $Q=\ker X$; if $0\neq z\in\ker Y$, then $Hz=Xz$ is a nonzero vector of $\operatorname{im}X$. Hence $\operatorname{im}X\subseteq\operatorname{im}H$, so the two-dimensional space $Q$ cannot equal $\operatorname{im}H$. Choose $q_0\in Q\setminus\operatorname{im}H$. The first-order equation for $U$ allows an arbitrary map $\operatorname{im}Y\to Q$, so choose $U(v)=q_0$, set the other allowed blocks to zero, and take $V=0$. Then $W(v)\notin\operatorname{im}H$, proving that the quotient map is nonzero. The case $\alpha=0$, $\beta=1$ follows by replacing $(X,Y)$ with $(I-X,I-Y)$, which preserves the first-order solution spaces and replaces $H$ by $-H$.
 
 Therefore the quotient condition removes exactly one linear hyperplane, leaving
 $$
