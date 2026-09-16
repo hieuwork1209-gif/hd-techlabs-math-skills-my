@@ -40,7 +40,7 @@ $$
 
 Step 2: Evaluate the Mellin transform
 
-For $a>0$, let
+For complex $a$ with $\Re a>0$, let
 $$
 K(a)=\iint_T\frac{\Delta^2(xyz)^{a-1}}{(x+y)(y+z)(z+x)}\,dx\,dy
 $$
@@ -48,6 +48,8 @@ and
 $$
 J(a)=\iiint_{(0,\infty)^3}\frac{\Delta^2(xyz)^{a-1}e^{-(x+y+z)}}{(x+y)(y+z)(z+x)}\,dx\,dy\,dz.
 $$
+Here powers of the positive variables use the real logarithm. The same boundary estimates as in Step 1, with $\Re a$ in place of the real exponent, show that these integrals converge absolutely and locally uniformly on $\Re a>0$. Thus $K$ and $J$ are holomorphic there, and the beta- and gamma-integral calculations below are valid for complex $a$ throughout this half-plane.
+
 With $(x,y,z)=r(\lambda_1,\lambda_2,\lambda_3)$, $\lambda_1+\lambda_2+\lambda_3=1$, the radial power is $r^{3a+2}$, so
 $$
 J(a)=\left(\int_0^\infty e^{-r}r^{3a+2}\,dr\right)K(a)=\Gamma(3a+3)K(a).
@@ -119,11 +121,12 @@ So
 $$
 K(a)=\frac{6\Gamma(a)\Gamma(a+1)^2}{(2a+1)(2a+3)\Gamma(3a+3)}.
 $$
-Taking $a=\frac{1}{2}-s$ yields
+For the original Mellin transform, $0<\Re s<\frac12$ implies that $a=\frac12-s$ satisfies $\Re a>0$, and $M(s)=K(\frac12-s)$. Hence
 $$
 M(s)=\frac{3\Gamma\left(\frac{1}{2}-s\right)\Gamma\left(\frac{3}{2}-s\right)^2}
 {2(1-s)(2-s)\Gamma\left(\frac{9}{2}-3s\right)}.
 $$
+The right-hand side is meromorphic in $s$ and agrees with the defining integral on $0<\Re s<\frac12$; it therefore gives the meromorphic continuation of $M(s)$ used in the contour shift below.
 
 Step 3: Extract the simple poles
 
@@ -145,7 +148,7 @@ $$
 $$
 Therefore these poles contribute
 $$
-\frac{\sqrt{\pi}}{n^{\frac{1}{2}}}-\frac{6\pi}{n}.
+\frac{\sqrt{\pi}}{n^{\frac{1}{2}}-\frac{6\pi}{n}.
 $$
 
 Step 4: Resolve the double pole at $s=\frac{3}{2}$
@@ -257,11 +260,3 @@ $9\sqrt{\pi}(\gamma+2\log 2-1)$
 **Answer Type:** Exact scalar
 
 ---
-
-## Solution Concepts
-
-- Mellin inversion
-- beta integrals
-- symmetry reduction
-- gamma duplication formula
-- residue asymptotics
