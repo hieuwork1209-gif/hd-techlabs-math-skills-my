@@ -41,7 +41,7 @@ Order the pairs $(a(f),b(f))$ lexicographically. Let $(A_{m,d},B_{m,d})$ be the 
 
 For $j\geq0$, let
 $$
-D_j=j!\sum_{i=0}^j\frac{(-1)^i}{i!}
+\Delta_j=j!\sum_{i=0}^j\frac{(-1)^i}{i!}
 $$
 be the number of derangements of a $j$-element set.
 
