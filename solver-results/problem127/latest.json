@@ -2,8 +2,8 @@
   "problem": "problem127",
   "branch": "adversary/problem127",
   "problem_path": "workspace/rainier-problem/problem127-differential-topology/problem.md",
-  "problem_blob_sha": "ddd78e24338cb9992e55252b689d135ccbfa4c1e",
-  "source_commit_sha": "6d5dcd9e214ff74aee2de35edbf4029798ffcbb2",
+  "problem_blob_sha": "621f68107d6a1bed569f9bc33ab81e99dcc0367a",
+  "source_commit_sha": "d90f00ac80d26f93b80a1ceb8099690e96546c72",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-16T14:37:25+00:00",
-  "result_file": "solver-results/problem127/ddd78e24338c.json"
+  "completed_at": "2026-09-16T15:11:16+00:00",
+  "result_file": "solver-results/problem127/621f68107d6a.json"
 }

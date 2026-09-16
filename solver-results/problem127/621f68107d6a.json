@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-differential-topology/problem.md",
+  "source_commit_sha": "d90f00ac80d26f93b80a1ceb8099690e96546c72",
+  "problem_blob_sha": "621f68107d6a1bed569f9bc33ab81e99dcc0367a",
+  "statement_sha256": "49368525bf24fb2fce822657a2e42d6a25708e5f9505f33151504f95fe39f6c4",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T15:10:03+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(B\\subset \\mathbb C^m\\) be the unit ball. Since \\(P_t\\) has no zero on \\(S^{2m-1}\\), the degree of\n\n\\[\nF_t(z)=\\frac{P_t(z)}{\\|P_t(z)\\|}\n\\]\n\nis the sum of the local degrees of \\(P_t:B\\to \\mathbb C^m\\) at its zeros in \\(B\\).\n\nFor one cycle of length \\(k\\), the equations are\n\n\\[\nz_i^2+t\\overline{z_{i+1}}=0\n\\]\n\ncyclically. Taking moduli gives either all \\(z_i=0\\), or all \\(|z_i|=t\\). In the nonzero case, writing \\(z_i=t e^{i\\theta_i}\\),\n\n\\[\n2\\theta_i+\\theta_{i+1}\\equiv \\pi \\pmod {2\\pi}.\n\\]\n\nThis cyclic affine equation has\n\n\\[\nN_k=\\left|(-2)^k-1\\right|=2^k-(-1)^k\n\\]\n\nsolutions.\n\nThus zeros of \\(P_t\\) come from choosing, independently for the \\(r\\)-cycle and \\(s\\)-cycle, either the zero solution or one of these nonzero cycle solutions. Their squared norm is:\n\n\\[\n0,\\qquad r t^2,\\qquad s t^2,\\qquad (r+s)t^2.\n\\]\n\nBecause\n\n\\[\n(r+s)^{-1/2}<t<s^{-1/2},\n\\]\n\nwe have \\(r t^2<1\\), \\(s t^2<1\\), but \\((r+s)t^2>1\\). Hence the zeros inside \\(B\\) are:\n\n- the origin,\n- \\(N_r\\) zeros with the \\(r\\)-cycle nonzero and the \\(s\\)-cycle zero,\n- \\(N_s\\) zeros with the \\(s\\)-cycle nonzero and the \\(r\\)-cycle zero.\n\nNow compute local signs. For a \\(k\\)-cycle at zero, the derivative is\n\n\\[\nh_i\\mapsto t\\overline{h_{i+1}},\n\\]\n\nwhose real determinant has sign \\((-1)^k\\).\n\nAt a nonzero \\(k\\)-cycle solution, after orientation-preserving phase changes, the derivative becomes\n\n\\[\nu_i\\mapsto 2u_i-\\overline{u_{i+1}}.\n\\]\n\nWriting \\(u_i=x_i+iy_i\\), this splits as\n\n\\[\nx\\mapsto (2I-S)x,\\qquad y\\mapsto (2I+S)y,\n\\]\n\nwhere \\(S\\) is the cyclic shift. Therefore\n\n\\[\n\\det_{\\mathbb R}=(2^k-1)(2^k-(-1)^k)>0,\n\\]\n\nso every nonzero cycle solution has local degree \\(+1\\).\n\nTherefore\n\n\\[\n\\deg(F_t)\n=\n(-1)^{r+s}\n+\n(-1)^s N_r\n+\n(-1)^r N_s.\n\\]\n\nSubstituting \\(N_k=2^k-(-1)^k\\),\n\n\\[\n\\deg(F_t)\n=\n(-1)^{r+s}\n+\n(-1)^s(2^r-(-1)^r)\n+\n(-1)^r(2^s-(-1)^s).\n\\]\n\nSo the final answer is\n\n\\[\n\\boxed{\\deg(F_t)=(-1)^s2^r+(-1)^r2^s-(-1)^{r+s}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T15:11:16+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/621f68107d6a.json"
+}
