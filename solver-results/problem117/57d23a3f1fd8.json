@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "c90921b4e69badd1423e2f693971ca86692d4df6",
+  "problem_blob_sha": "57d23a3f1fd89f8387696c802b30366b0f3ec336",
+  "statement_sha256": "c134399bc337d7083b386cdf3ca1002b33630a956ebe921899bba0ce8633ac82",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T08:19:29+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "For a quadratic \\(h(x)=\\frac12x^TAx\\),\n\n\\[\nP_{h,\\rho}(v)=\\rho(A+\\rho I)^{-1}v.\n\\]\n\nPut\n\n\\[\na=\\lambda\\mu,\\qquad b=\\frac{4\\lambda}{\\mu},\n\\qquad\np=\\frac{\\rho}{\\rho+a},\\qquad q=\\frac{\\rho}{\\rho+b}.\n\\]\n\nThen\n\n\\[\nP_{f,\\rho}=\\begin{bmatrix}p&0\\\\0&q\\end{bmatrix}=:F,\n\\qquad\nP_{g,\\rho}=UFU^T=:G.\n\\]\n\nThus the relaxed DR map is linear:\n\n\\[\nz^+=T_{\\rho,\\theta}(a,b)z,\\qquad\nT_{\\rho,\\theta}=I+\\theta\\{G(2F-I)-F\\}.\n\\]\n\nWrite \\(\\theta=2t\\), \\(0<t\\le1\\), and define the reflected resolvent eigenvalues\n\n\\[\nr_a=\\frac{\\rho-a}{\\rho+a},\\qquad r_b=\\frac{\\rho-b}{\\rho+b}.\n\\]\n\nSince \\(2F-I=\\operatorname{diag}(r_a,r_b)\\) and \\(2G-I=U\\operatorname{diag}(r_a,r_b)U^T\\),\n\n\\[\nT_{\\rho,2t}=(1-t)I+t\\left(U\\operatorname{diag}(r_a,r_b)U^T\\right)\\operatorname{diag}(r_a,r_b).\n\\]\n\nThe worst case is minimized at the full relaxation \\(t=1\\), i.e. \\(\\theta=2\\). For \\(\\theta=2\\),\n\n\\[\nT_{\\rho,2}\n=\n\\left(U\\operatorname{diag}(r_a,r_b)U^T\\right)\\operatorname{diag}(r_a,r_b).\n\\]\n\nLet \\(R=r_a^2,\\ S=r_b^2\\). Then\n\n\\[\nT_{\\rho,2}^TT_{\\rho,2}\n=\n\\operatorname{diag}(r_a,r_b)\\,\nU\\operatorname{diag}(R,S)U^T\\,\n\\operatorname{diag}(r_a,r_b),\n\\]\n\nso the squared contraction factor is\n\n\\[\n\\kappa_{\\lambda,\\mu}(\\rho,2)^2\n=\n\\frac14\\left((R+S)^2+\n\\sqrt{(R+S)^4-16R^2S^2}\\right).\n\\]\n\nThis is increasing in both \\(R,S\\). Since \\(a,b\\in[1/2,8]\\), the minimax choice of \\(\\rho\\) balances the endpoint reflected magnitudes:\n\n\\[\n\\left|\\frac{\\rho-\\frac12}{\\rho+\\frac12}\\right|\n=\n\\left|\\frac{\\rho-8}{\\rho+8}\\right|.\n\\]\n\nSolving gives\n\n\\[\n\\rho_*=2.\n\\]\n\nAt \\(\\rho=2\\),\n\n\\[\n\\left|\\frac{2-c}{2+c}\\right|\\le \\frac35\n\\qquad(c\\in[1/2,8]),\n\\]\n\nwith equality only at \\(c=1/2\\) or \\(c=8\\). The worst cases also require the other curvature to equal \\(2\\), so that its reflected eigenvalue is \\(0\\). Hence\n\n\\[\nR=\\frac{9}{25},\\qquad S=0,\n\\]\n\nand therefore\n\n\\[\n\\mathcal C_*^2=\\frac12\\left(\\frac{9}{25}\\right)^2\n=\\frac{81}{1250},\n\\qquad\n\\mathcal C_*=\\frac{9\\sqrt2}{50}.\n\\]\n\nThe equality cases are exactly\n\n\\[\n(\\lambda,\\mu)\\in\n\\left\\{\n\\left(\\frac12,1\\right),\n\\left(\\frac12,4\\right),\n(2,1),\n(2,4)\n\\right\\}.\n\\]\n\nTherefore\n\n\\[\n\\boxed{\n(\\rho_*,\\theta_*,\\mathcal C_*,\\mathcal W_*)\n=\n\\left(\n2,\\,\n2,\\,\n\\frac{9\\sqrt2}{50},\\,\n\\left\\{\n\\left(\\frac12,1\\right),\n\\left(\\frac12,4\\right),\n(2,1),\n(2,4)\n\\right\\}\n\\right).\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T08:22:58+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/57d23a3f1fd8.json"
+}
