@@ -6,13 +6,13 @@ For each set $X$, let
 $$
 A(X)=\bigoplus_{x\in X}\mathbb Z e_x
 $$
-be the free abelian group on $X$. A map of sets $f:X\to Y$ induces
+be the free abelian group on $X$, whose elements are written
+$$
+u=\sum_x u_xe_x
+$$
+with finite support. A map of sets $f:X\to Y$ induces
 $$
 A(f):A(X)\to A(Y),\qquad A(f)(e_x)=e_{f(x)}.
-$$
-Also write
-$$
-\epsilon_X\left(\sum_x n_xe_x\right)=\sum_x n_x.
 $$
 
 A natural bilinear product on $A$ is a family of bilinear maps
