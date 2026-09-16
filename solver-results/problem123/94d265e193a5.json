@@ -1,0 +1,22 @@
+{
+  "problem": "problem123",
+  "branch": "adversary/problem123",
+  "problem_path": "workspace/rainier-problem/problem123-experimental-design-and-causal-inference/problem.md",
+  "source_commit_sha": "ae9f2b3fa43aa44649b1e02397e3934e88cfa957",
+  "problem_blob_sha": "94d265e193a58a850dd2a8a4a092e4415ca8c0d3",
+  "statement_sha256": "89fd1721214b32592ba3d8db06c81e57d399fe352a627f8a3779b25c083d404c",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T11:53:40+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(m_k=\\int_0^1 x^k\\,d\\xi(x)\\). Then\n\\[\nM(\\xi)=(m_{i+j})_{0\\le i,j\\le 4}\n\\]\nis the order \\(4\\) Hankel moment matrix, with \\(m_0=1\\) and \\(m_1=\\frac13\\).\n\nUse canonical moments \\(p_k\\in[0,1]\\) for measures on \\([0,1]\\). Since \\(m_1=p_1\\), the constraint gives\n\\[\np_1=\\frac13.\n\\]\nFor the Hankel determinant one has the factorization\n\\[\n\\det(m_{i+j})_{0\\le i,j\\le n}\n=\n\\prod_{r=1}^n(\\zeta_{2r-1}\\zeta_{2r})^{n+1-r},\n\\]\nwhere\n\\[\n\\zeta_1=p_1,\\qquad \\zeta_k=(1-p_{k-1})p_k\\quad(k\\ge2).\n\\]\nThis follows inductively from the Schur-complement formula for Hankel determinants: the quotient \\(H_n/H_{n-1}\\) is the squared \\(L^2(\\xi)\\)-norm of the monic orthogonal polynomial of degree \\(n\\), and for \\([0,1]\\) these norms equal \\(\\prod_{j=1}^{2n}\\zeta_j\\).\n\nFor \\(n=4\\),\n\\[\n\\det M\n=(\\zeta_1\\zeta_2)^4(\\zeta_3\\zeta_4)^3(\\zeta_5\\zeta_6)^2(\\zeta_7\\zeta_8).\n\\]\nSubstituting \\(p_1=\\frac13\\),\n\\[\n\\det M\n=\n\\left(\\frac13\\cdot\\frac23 p_2\\right)^4\n\\left((1-p_2)p_3(1-p_3)p_4\\right)^3\n\\left((1-p_4)p_5(1-p_5)p_6\\right)^2\n\\left((1-p_6)p_7(1-p_7)p_8\\right).\n\\]\n\nNow maximize factor by factor:\n\\[\np_2^4(1-p_2)^3 \\text{ is maximized at } p_2=\\frac47,\n\\]\n\\[\np_3(1-p_3)\\text{ at }p_3=\\frac12,\n\\]\n\\[\np_4^3(1-p_4)^2\\text{ at }p_4=\\frac35,\n\\]\n\\[\np_5(1-p_5)\\text{ at }p_5=\\frac12,\n\\]\n\\[\np_6^2(1-p_6)\\text{ at }p_6=\\frac23,\n\\]\n\\[\np_7(1-p_7)\\text{ at }p_7=\\frac12,\n\\]\nand \\(p_8\\) is maximized at \\(p_8=1\\). These canonical moments are admissible, so the maximum is attained.\n\nThus\n\\[\n\\zeta_1\\zeta_2=\\frac13\\cdot\\frac23\\cdot\\frac47=\\frac8{63},\n\\]\n\\[\n\\zeta_3\\zeta_4=\\frac37\\cdot\\frac12\\cdot\\frac12\\cdot\\frac35=\\frac9{140},\n\\]\n\\[\n\\zeta_5\\zeta_6=\\frac25\\cdot\\frac12\\cdot\\frac12\\cdot\\frac23=\\frac1{15},\n\\]\n\\[\n\\zeta_7\\zeta_8=\\frac13\\cdot\\frac12\\cdot\\frac12\\cdot1=\\frac1{12}.\n\\]\nTherefore\n\\[\n\\max_\\xi \\det M(\\xi)\n=\n\\left(\\frac8{63}\\right)^4\n\\left(\\frac9{140}\\right)^3\n\\left(\\frac1{15}\\right)^2\n\\left(\\frac1{12}\\right).\n\\]\nSimplifying,\n\\[\n\\left(\\frac8{63}\\right)^4\n\\left(\\frac9{140}\\right)^3\n\\left(\\frac1{15}\\right)^2\n\\left(\\frac1{12}\\right)\n=\n\\frac{16}{3^5 5^5 7^7}.\n\\]\n\n\\[\n\\boxed{\\frac{16}{3^5 5^5 7^7}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T11:54:50+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem123/94d265e193a5.json"
+}

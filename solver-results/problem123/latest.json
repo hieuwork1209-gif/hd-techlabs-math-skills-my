@@ -1,9 +1,9 @@
 {
   "problem": "problem123",
   "branch": "adversary/problem123",
-  "problem_path": "workspace/rainier-problem/problem123-convex-geometry/problem.md",
-  "problem_blob_sha": "25b8dbd2a8f2a119e946c847ba85ab5da0129782",
-  "source_commit_sha": "04e7f128f90e7a90775b94cd0c076eded4a5ceb9",
+  "problem_path": "workspace/rainier-problem/problem123-experimental-design-and-causal-inference/problem.md",
+  "problem_blob_sha": "94d265e193a58a850dd2a8a4a092e4415ca8c0d3",
+  "source_commit_sha": "ae9f2b3fa43aa44649b1e02397e3934e88cfa957",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-13T16:23:12+00:00",
-  "result_file": "solver-results/problem123/25b8dbd2a8f2.json"
+  "completed_at": "2026-09-16T11:54:50+00:00",
+  "result_file": "solver-results/problem123/94d265e193a5.json"
 }
