@@ -10,7 +10,7 @@ $$
 \operatorname{End}(F)\cong M_3(A).
 $$
 
-Write $r=(123)$, $s=(12)$, and
+Write $r=(123)$ and $s=(12)$. The visible relation $srs=r^{-1}$ makes it natural to split by the two $s$-eigenspaces and to use the $s$-anti-invariant part of $r$. Put
 $$
 e_+=\frac{1+s}{2},\qquad e_-=\frac{1-s}{2},\qquad t=r-r^{-1}.
 $$
@@ -136,7 +136,8 @@ $$
 
 For every such pair, $x+y=3$. Step 2 gives a total exponent
 $$
-2d(x,y)+2x(3-x)+2y(3-y)=6(x+y)=18
+2d(x,y)+2x(3-x)+2y(3-y)
+=12(x+y)-2(x+y)^2=18
 $$
 for the choices of $U,V,P,Q$. Thus
 $$
@@ -176,22 +177,13 @@ For each such pair the solution spaces for $U$ and $V$ have dimension $5$, so th
 $$
 (U,V)\longmapsto W(\ker H)\pmod{\operatorname{im}H}
 $$
-from this ten-dimensional space to a one-dimensional quotient is nonzero. It is indeed nonzero: after simultaneous conjugation and, if necessary, replacing $(X,Y)$ by $(I-X,I-Y)$, use
-$$
-X=\begin{pmatrix}1&0&0\\0&0&0\\0&0&0\end{pmatrix},
-\qquad
-Y=\begin{pmatrix}1&0&-1\\0&1&0\\0&0&0\end{pmatrix}.
-$$
-Then $\ker H=\langle e_1\rangle$ and $\operatorname{im}H=\langle e_1,e_2\rangle$, while
-$$
-U=\begin{pmatrix}0&0&0\\0&0&0\\-1&0&1\end{pmatrix},
-\qquad V=0
-$$
-satisfies the first-order equations and sends $e_1$ outside $\operatorname{im}H$. Hence the displayed quotient map is a nonzero linear functional, so exactly
+from this ten-dimensional space to a one-dimensional quotient is nonzero. For the case $\alpha=1$, take $0\neq v\in\ker H=\operatorname{im}X\cap\operatorname{im}Y$. Here $x=1$ and $y=2$. Since $\beta=0$, the line $\ker Y$ is not contained in $Q=\ker X$; if $0\neq z\in\ker Y$, then $Hz=Xz$ is a nonzero vector of $\operatorname{im}X$. Hence $\operatorname{im}X\subseteq\operatorname{im}H$, so the two-dimensional space $Q$ cannot equal $\operatorname{im}H$. Choose $q_0\in Q\setminus\operatorname{im}H$. The first-order equation for $U$ allows an arbitrary map $\operatorname{im}Y\to Q$, so choose $U(v)=q_0$ and set the other allowed blocks to zero; take $V=0$. Then $W(v)\notin\operatorname{im}H$, proving that the displayed quotient map is nonzero. The case $\alpha=0$, $\beta=1$ follows by replacing $(X,Y)$ with $(I-X,I-Y)$, which preserves the first-order solution spaces and replaces $H$ by $-H$.
+
+Therefore the quotient condition removes exactly one linear hyperplane, leaving
 $$
 3^{10}-3^9=2\cdot3^9
 $$
-choices of $(U,V)$ have $s_H=3$. Step 2 supplies $3^8$ choices for $(P,Q)$. Therefore
+choices of $(U,V)$ with $s_H=3$. Step 2 supplies $3^8$ choices for $(P,Q)$. Hence
 $$
 N_n^{(2)}=11232\cdot2\cdot3^{17}=22464\cdot3^{17}.
 $$
