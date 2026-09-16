@@ -1,204 +1,181 @@
 ## Steps
 
-Step 1: Express the block-coordinate contraction as a generalized Rayleigh quotient
-Let $A=A_5$ and, for $i=1,\ldots,4$, let $E_i\in\mathbb{R}^{5\times2}$ insert a vector into coordinates $i,i+1$. Every adjacent principal block of $A$ equals
+Step 1: Reduce two Richardson steps to a quadratic minimax polynomial
+For a symmetric positive-definite matrix with eigenvalue $\lambda$, two Richardson steps with positive step sizes $\alpha,\beta$ multiply that eigendirection by
 $$
-H=\begin{bmatrix}2&-1\\-1&2\end{bmatrix},
+p(\lambda)=(1-\alpha\lambda)(1-\beta\lambda)
+=1-s\lambda+t\lambda^2,
+$$
+where
+$$
+s=\alpha+\beta>0,
 \qquad
-H^{-1}=\frac13\begin{bmatrix}2&1\\1&2\end{bmatrix}.
+t=\alpha\beta>0.
 $$
-Write $q=Ax$. If block $i$ is selected and its displacement is $d\in\mathbb{R}^{2}$, then
+Hence for
 $$
-f_5(x+E_i d)=f_5(x)+q_{\{i,i+1\}}^Td+\frac12d^THd.
+E_\gamma=[1,2]\cup[\gamma,6]
 $$
-The exact block minimizer is therefore $d=-H^{-1}q_{\{i,i+1\}}$, and its decrease is
+the worst-case two-step factor is
 $$
-f_5(x)-f_5(x^+)=\frac12q_{\{i,i+1\}}^TH^{-1}q_{\{i,i+1\}}.
+\mathcal C_\gamma(\alpha,\beta)=\max_{\lambda\in E_\gamma}|p(\lambda)|.
 $$
-For $p=(p_1,\ldots,p_4)$ define
+We will compare feasible quadratic polynomials with $p(0)=1$. The following elementary alternation observation gives global optimality whenever a candidate is found. Suppose a candidate $p$ has
 $$
-B(p)=\sum_{i=1}^4p_iE_iH^{-1}E_i^T,
+p(x_1)=C,\qquad p(x_2)=-C,\qquad p(x_3)=C
+$$
+for three points $0<x_1<x_2<x_3$ in $E_\gamma$, and $|p|\leq C$ on $E_\gamma$. If another quadratic $q$ with $q(0)=1$ satisfied $|q|<C$ on $E_\gamma$, then $q-p$ would be negative at $x_1$, positive at $x_2$, and negative at $x_3$. It would therefore have a zero in each of $(x_1,x_2)$ and $(x_2,x_3)$, in addition to the zero at $0$. A nonzero polynomial of degree at most $2$ cannot have three distinct zeros. Thus such a candidate is the unique minimax polynomial among all quadratics with constant term $1$.
+
+Step 2: Solve the regime before the spectral gap removes the interior extremum
+First ignore the gap and optimize on the full interval $[1,6]$. For a convex quadratic minimax candidate, the two endpoint values must agree, so
+$$
+p(1)=p(6).
+$$
+Since $p(\lambda)=1-s\lambda+t\lambda^2$ with $t>0$, this equality forces the axis to be the midpoint
+$$
+\lambda_0=\frac{s}{2t}=\frac72.
+$$
+Write
+$$
+p(\lambda)=t\left(\lambda-\frac72\right)^2-C.
+$$
+Equal magnitude at the endpoints and at the vertex gives
+$$
+t\left(\frac52\right)^2-C=C,
+$$
+while $p(0)=1$ gives
+$$
+t\left(\frac72\right)^2-C=1.
+$$
+Solving yields
+$$
+C=\frac{25}{73},
 \qquad
-K=A^{-1}.
-$$
-Since $f_5(x)=\frac12x^TAx=\frac12q^TKq$,
-$$
-\frac{\mathbb{E}[f_5(x^+)\mid x]}{f_5(x)}
-=1-\frac{q^TB(p)q}{q^TKq}.
+t=\frac8{73},
+\qquad
+s=\frac{56}{73}.
 $$
 Thus
 $$
-\Gamma(p)=1-m(p),
-\qquad
-m(p)=\inf_{q\ne0}\frac{q^TB(p)q}{q^TKq},
+p_L(\lambda)=1-\frac{56}{73}\lambda+\frac8{73}\lambda^2.
 $$
-and minimizing $\Gamma$ is equivalent to maximizing $m$.
+Its step sizes are
+$$
+\alpha_L=\frac{28-10\sqrt2}{73},
+\qquad
+\beta_L=\frac{28+10\sqrt2}{73},
+$$
+so the candidate is feasible. Because $p_L$ is convex, takes value $25/73$ at $1$ and $6$, and value $-25/73$ at $7/2$, it satisfies $|p_L|\leq25/73$ on all of $[1,6]$. Therefore whenever
+$$
+\gamma\leq\frac72,
+$$
+the three active points $1,7/2,6$ all lie in $E_\gamma$, and the alternation argument from Step 1 proves that $p_L$ remains the unique minimax polynomial. The first qualitative change can occur only when the moving endpoint $\gamma$ passes the stationary point $7/2$.
 
-Step 2: Derive a sampling-independent test direction and the sharp universal upper bound
-To make the numerator independent of the unknown probabilities, require all four adjacent block energies to be equal. Because $H^{-1}$ is invariant under swapping its two coordinates, every alternating vector
+Step 3: Solve the gap-active regime and locate its right endpoint
+Now assume $\gamma>7/2$. The vertex $7/2$ lies in the spectral gap, so the first point of the right spectral interval becomes the natural negative active point. Impose
 $$
-q=(u,v,u,v,u)^T
-$$
-has this property: each block contributes
-$$
-\begin{bmatrix}u&v\end{bmatrix}H^{-1}
-\begin{bmatrix}u\\v\end{bmatrix}
-=\frac23(u^2+uv+v^2).
-$$
-Hence $q^TB(p)q=\frac23(u^2+uv+v^2)$ for every probability vector $p$.
-
-Solving $Az=q$ gives
-$$
-z=Kq=
-\begin{bmatrix}
-\frac32u+v\\
-2u+2v\\
-\frac52u+2v\\
-2u+2v\\
-\frac32u+v
-\end{bmatrix},
-$$
-so
-$$
-q^TKq=\frac{11u^2+16uv+8v^2}{2}.
-$$
-For $u\ne0$ put $t=v/u$. The resulting test quotient is
-$$
-\frac{q^TB(p)q}{q^TKq}
-=\frac{4(t^2+t+1)}{3(8t^2+16t+11)}
-=\frac19+\frac{(2t-1)^2}{9(8t^2+16t+11)}.
-$$
-The denominator in the last term is $8(t+1)^2+3>0$, while the case $u=0$ gives quotient $1/6$. Therefore the smallest sampling-independent test value is $1/9$, attained uniquely in this family at $t=1/2$. With
-$$
-q_*=
-\begin{bmatrix}1&\frac12&1&\frac12&1\end{bmatrix}^T,
-$$
-we obtain the universal bound
-$$
-m(p)\leq\frac19
-$$
-for every admissible $p$.
-
-Step 3: Use equality in the upper bound to force the unique candidate sampling distribution
-If a distribution attains the best possible value $m(p)=1/9$, then $q_*$ must minimize the generalized Rayleigh quotient. Differentiating
-$$
-R(q)=\frac{q^TB(p)q}{q^TKq}
-$$
-at $q_*$ in an arbitrary direction $h$ gives
-$$
-0=\frac{2h^T\left(B(p)q_*-\frac19Kq_*\right)}{q_*^TKq_*},
-$$
-so
-$$
-B(p)q_*=\frac19Kq_*.
-$$
-From Step 2,
-$$
-Kq_*=
-\begin{bmatrix}2&3&\frac72&3&2\end{bmatrix}^T.
-$$
-Also
-$$
-H^{-1}\begin{bmatrix}1\\\frac12\end{bmatrix}
-=\begin{bmatrix}\frac56\\\frac23\end{bmatrix},
+p(1)=C,
 \qquad
-H^{-1}\begin{bmatrix}\frac12\\1\end{bmatrix}
-=\begin{bmatrix}\frac23\\\frac56\end{bmatrix}.
-$$
-Therefore
-$$
-B(p)q_*
-=\begin{bmatrix}
-\frac56p_1\\
-\frac23(p_1+p_2)\\
-\frac56(p_2+p_3)\\
-\frac23(p_3+p_4)\\
-\frac56p_4
-\end{bmatrix}.
-$$
-Equating coordinates with $\frac19Kq_*$ forces
-$$
-p_1=p_4=\frac4{15},
+p(\gamma)=-C,
 \qquad
-p_2=p_3=\frac7{30}.
+p(6)=C.
 $$
-These values are positive and sum to $1$, so any optimizer must equal
+The equality $p(1)=p(6)$ again forces the axis to be $7/2$. Solving the three displayed conditions together with $p(0)=1$ gives, with
 $$
-p_*=\left(\frac4{15},\frac7{30},\frac7{30},\frac4{15}\right).
+D_\gamma=6+7\gamma-\gamma^2,
 $$
-
-Step 4: Prove the forced distribution attains the bound and identify every worst-case direction
-For $p_*$, the matrix from Step 1 is
 $$
-B_*=
-\begin{bmatrix}
-\frac8{45}&\frac4{45}&0&0&0\\
-\frac4{45}&\frac13&\frac7{90}&0&0\\
-0&\frac7{90}&\frac{14}{45}&\frac7{90}&0\\
-0&0&\frac7{90}&\frac13&\frac4{45}\\
-0&0&0&\frac4{45}&\frac8{45}
-\end{bmatrix}.
-$$
-Because $q=Ax$,
-$$
-\frac{q^TB_*q}{q^TKq}
-=\frac{x^TAB_*Ax}{x^TAx}.
-$$
-Set
-$$
-C=AB_*A-\frac19A.
-$$
-Both $A$ and $B_*$ are invariant under reversing the five coordinates, so $C$ is also reversal-invariant. Decompose any $x$ into its reversal-symmetric and reversal-antisymmetric parts,
-$$
-x=x^++x^-,
-\qquad
-x^+=(a,b,c,b,a)^T,
-\qquad
-x^-=(u,v,0,-v,-u)^T.
-$$
-The two parts are $C$-orthogonal: if $J$ reverses the coordinates, then $JC=CJ$, $Jx^+=x^+$, and $Jx^-=-x^-$, so
-$$
-(x^+)^TCx^-=(x^+)^TJ^TCJx^-=-(x^+)^TCx^-=0.
-$$
-Substituting the displayed $A$ and $B_*$ gives
-$$
-(x^+)^TCx^+
-=\frac{14}{135}(3a-2b)^2+\frac4{135}(7b-6c)^2,
+p_M(\lambda)
+=1-\frac{14}{D_\gamma}\lambda+\frac2{D_\gamma}\lambda^2,
 $$
 and
 $$
-(x^-)^TCx^-
-=\frac{14}{15}\left((u-v)^2+v^2\right).
+C_M(\gamma)=\frac{7\gamma-\gamma^2-6}{6+7\gamma-\gamma^2}.
 $$
-Thus $C\succeq0$, so
+For $7/2<\gamma<6$, $D_\gamma>0$, and the discriminant of the step-size equation is
 $$
-m(p_*)\geq\frac19.
+\left(\frac{14}{D_\gamma}\right)^2-rac8{D_\gamma}
+=\frac{4(2\gamma^2-14\gamma+37)}{D_\gamma^2}>0,
 $$
-Together with Step 2, this gives $m(p_*)=1/9$.
+so $p_M$ factors with two positive Richardson step sizes.
 
-The same sum-of-squares identities show that equality is possible only when $u=v=0$, $3a=2b$, and $7b=6c$. Hence every nonzero worst-case initial vector is a scalar multiple of
+On $[\gamma,6]$, the polynomial is increasing because its axis is $7/2<\gamma$, hence its values stay between $-C_M$ and $C_M$. On $[1,2]$ it is decreasing, so the only additional condition needed is
 $$
-(4,6,7,6,4)^T.
+p_M(2)\geq-C_M(\gamma).
 $$
-Its primitive integer generator with first nonzero entry positive is therefore
+A direct simplification gives
 $$
-v_*=(4,6,7,6,4).
+p_M(2)+C_M(\gamma)
+=\frac{2(5-\gamma)(\gamma-2)}{6+7\gamma-\gamma^2}.
+$$
+Thus the candidate is valid exactly through
+$$
+\gamma\leq5.
+$$
+For $7/2<\gamma<5$, its alternating active points are exactly
+$$
+\{1,\gamma,6\},
+$$
+so Step 1 proves global optimality and uniqueness. At $\gamma=5$, the point $\lambda=2$ also reaches the negative level.
+
+Step 4: Solve the final regime after the left endpoint becomes active
+For $\gamma\geq5$, use the three fixed active points $1,2,6$ and impose
+$$
+p(1)=C,
+\qquad
+p(2)=-C,
+\qquad
+p(6)=C.
+$$
+Solving gives
+$$
+p_R(\lambda)=1-\frac78\lambda+\frac18\lambda^2,
+\qquad
+C_R=\frac14.
+$$
+The corresponding positive ordered step sizes are
+$$
+\alpha_R=\frac{7-\sqrt{17}}{16},
+\qquad
+\beta_R=\frac{7+\sqrt{17}}{16}.
+$$
+The axis is again $7/2$. On $[1,2]$, $p_R$ decreases from $1/4$ to $-1/4$. On the right interval it increases, and
+$$
+p_R(5)=-\frac14,
+\qquad
+p_R(6)=\frac14.
+$$
+Hence for every $\gamma\geq5$, the restriction to $[\gamma,6]$ also satisfies $|p_R|\leq1/4$. The active points on the open regime $5<\gamma\leq6$ are
+$$
+\{1,2,6\},
+$$
+and the alternation argument proves that $p_R$ is uniquely minimax. At $\gamma=5$, both $2$ and $5$ are active at the negative level, so the middle and final formulas meet continuously.
+
+Step 5: Identify the two phase transitions and the active-set patterns
+Step 2 shows that the interior stationary maximizer at $7/2$ remains active precisely until the moving right interval starts at that point. Step 3 shows that the moving endpoint $\gamma$ then remains active until $\gamma=5$, where the fixed point $2$ reaches the same negative extremal value. Step 4 shows that beyond this point the active triple is fixed.
+
+Therefore the two transition values are
+$$
+\gamma_1=\frac72,
+\qquad
+\gamma_2=5,
+$$
+and on the three open regimes the active sets are respectively
+$$
+\left\{1,\frac72,6\right\},
+\qquad
+\{1,\gamma,6\},
+\qquad
+\{1,2,6\}.
 $$
 
-Step 5: State the unique optimum
-Step 3 shows that any distribution reaching the universal upper bound must equal $p_*$, while Step 4 proves that $p_*$ reaches it. Therefore the minimizing distribution is unique. Since $\Gamma(p)=1-m(p)$,
-$$
-\Gamma_*=1-\frac19=\frac89.
-$$
-At this optimum, the worst-case line is generated by the primitive integer vector $v_*$ from Step 4.
-
-Final Answer: $\boxed{\left(\left(\frac4{15},\frac7{30},\frac7{30},\frac4{15}\right),\frac89,(4,6,7,6,4)\right)}$
+Final Answer: $\boxed{\left(\frac{7}{2},5,\left\{1,\frac{7}{2},6\right\},\{1,\gamma,6\},\{1,2,6\}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\left(\frac4{15},\frac7{30},\frac7{30},\frac4{15}\right),\frac89,(4,6,7,6,4)\right)$
+$\left(\frac{7}{2},5,\left\{1,\frac{7}{2},6\right\},\{1,\gamma,6\},\{1,2,6\}\right)$
 
 ---
 
@@ -212,8 +189,8 @@ $\left(\left(\frac4{15},\frac7{30},\frac7{30},\frac4{15}\right),\frac89,(4,6,7,6
 
 ## Solution Concepts
 
-- randomized block coordinate descent
-- generalized Rayleigh quotient
-- equality conditions
-- positive semidefinite factorization
-- symmetry decomposition
+- nonstationary Richardson iteration
+- minimax polynomial tuning
+- spectral gap phase transition
+- equioscillation certificate
+- worst-case contraction
