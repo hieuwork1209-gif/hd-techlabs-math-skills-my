@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-quadratic-residues-and-reciprocity/problem.md",
+  "source_commit_sha": "e7a4eeed5cb53be3966f89cbafc6eb22eb5b1e98",
+  "problem_blob_sha": "c6e9d02b8b59b6a0e66ebd7dbd17b7fe51dfc06d",
+  "statement_sha256": "ed06a33c7468e003e7d8fe339a6abffa1999e28809418b2cbca5c4ca39a641f9",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T07:35:26+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(p=\\ell=2r+1\\). Since \\(r\\) is an odd prime, \\(p\\equiv 3\\pmod 4\\), so\n\\[\n\\chi(-1)=-1.\n\\]\nAlso, since \\(2\\) generates \\(\\mathbb F_p^\\times\\), it is not a square, hence\n\\[\n\\chi(2)=-1.\n\\]\nThis also forces \\(p\\equiv 3\\pmod 8\\), so \\(r\\equiv 1\\pmod 4\\).\n\nFor \\(x\\in H\\setminus\\{1\\}\\), neither \\(1+x\\) nor \\(1-x\\) is zero, so\n\\[\nN_{\\varepsilon,\\delta}\n=\\frac14\\sum_{x\\in H\\setminus\\{1\\}}\n(1+\\varepsilon\\chi(1+x))(1+\\delta\\chi(1-x)).\n\\]\nThus we need\n\\[\nA=\\sum_{x\\in H\\setminus\\{1\\}}\\chi(1+x),\\quad\nB=\\sum_{x\\in H\\setminus\\{1\\}}\\chi(1-x),\\quad\nC=\\sum_{x\\in H\\setminus\\{1\\}}\\chi(1-x^2).\n\\]\n\nUse the standard quadratic character sum\n\\[\nJ=\\sum_{t\\in\\mathbb F_p}\\chi(t)\\chi(1-t)=1\n\\]\nfor \\(p\\equiv3\\pmod4\\). Then\n\\[\nB=\\frac12\\sum_{x\\ne0}(1+\\chi(x))\\chi(1-x)\n=\\frac12(-1+J)=0.\n\\]\nSimilarly,\n\\[\n\\sum_{x\\in H}\\chi(1+x)\n=\\frac12\\sum_{x\\ne0}(1+\\chi(x))\\chi(1+x)\n=\\frac12(-1-1)=-1,\n\\]\nso\n\\[\nA=-1-\\chi(2)=0.\n\\]\n\nFinally, pair \\(x\\) with \\(x^{-1}\\) in \\(H\\setminus\\{1\\}\\). There are no fixed points, and\n\\[\n\\chi(1-x^{-2})\n=\\chi\\!\\left(\\frac{x^2-1}{x^2}\\right)\n=\\chi(-(1-x^2))\n=-\\chi(1-x^2),\n\\]\nso \\(C=0\\).\n\nTherefore\n\\[\nN_{\\varepsilon,\\delta}\n=\\frac14(r-1)\n\\]\nfor every \\((\\varepsilon,\\delta)\\in\\{\\pm1\\}^2\\).\n\n\\[\n\\boxed{\\left(\\frac{r-1}{4},\\frac{r-1}{4},\\frac{r-1}{4},\\frac{r-1}{4}\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T07:36:56+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/c6e9d02b8b59.json"
+}

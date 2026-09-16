@@ -1,9 +1,9 @@
 {
   "problem": "problem81",
   "branch": "adversary/problem81",
-  "problem_path": "workspace/rainier-problem/problem81-field-theory/problem.md",
-  "problem_blob_sha": "45a70e83b7d615bd2f7be2a334e1c8db0a6b5cbd",
-  "source_commit_sha": "ca463f6ee4465067d3ebac044783e0e73a3e9746",
+  "problem_path": "workspace/rainier-problem/problem81-quadratic-residues-and-reciprocity/problem.md",
+  "problem_blob_sha": "c6e9d02b8b59b6a0e66ebd7dbd17b7fe51dfc06d",
+  "source_commit_sha": "e7a4eeed5cb53be3966f89cbafc6eb22eb5b1e98",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-06T17:03:34+00:00",
-  "result_file": "solver-results/problem81/45a70e83b7d6.json"
+  "completed_at": "2026-09-16T07:36:56+00:00",
+  "result_file": "solver-results/problem81/c6e9d02b8b59.json"
 }
