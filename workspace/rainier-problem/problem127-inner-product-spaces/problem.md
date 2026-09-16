@@ -2,15 +2,29 @@
 
 ## LaTeX (Normalized)
 
-Let $T_1,T_2,T_3,T_4$ be orthogonal transformations of $\mathbb R^4$. Suppose there is a constant $c\in(0,1)$ such that for every $i$ and every $x\in\mathbb R^4$,
+Let $n\ge4$, and let $(v_1,\dots,v_n)$ be a basis of $\mathbb R^n$ such that
 $$
-\langle x,T_i x\rangle=c\|x\|^2,
+\|v_i\|=1
 $$
-and for every pair $i\ne j$ and every $x\in\mathbb R^4$,
+for every $i$, and for some positive real number $a$,
 $$
-\langle x,T_iT_jx\rangle=c\|x\|^2.
+|\langle v_i,v_j\rangle|=a
+\qquad(i\ne j).
 $$
-Determine $c$.
+Let $(w_1,\dots,w_n)$ be the Euclidean dual basis, so
+$$
+\langle v_i,w_j\rangle=\delta_{ij},
+$$
+and define
+$$
+z_i=\frac{w_i}{\|w_i\|}.
+$$
+Suppose that
+$$
+|\langle z_i,z_j\rangle|=\frac12
+\qquad(i\ne j).
+$$
+Determine $a$ in terms of $n$.
 
 ---
 
@@ -20,11 +34,11 @@ Determine $c$.
 |---|---|
 | **Domain** | Linear Algebra |
 | **Sub-domain** | Inner product spaces |
-| **Problem Type** | Exact determination |
-| **Answer Type** | Exact scalar |
+| **Problem Type** | Parameter identification |
+| **Answer Type** | Exact symbolic expression |
 
 ---
 
 ## Domain Explanation
 
-This problem is primarily Linear Algebra and Inner product spaces: it imposes a common constant-angle condition on four orthogonal transformations and on all of their pairwise products. Polarization converts those inner-product identities into constraints on the symmetric parts of the operators, while orthogonality forces a compatible family of skew complex structures. The decisive obstruction is the dimension and Gram geometry of that family inside the Euclidean space of skew-symmetric transformations.
+This problem is primarily Linear Algebra and Inner product spaces: a unit equiangular basis and its Euclidean dual basis are linked through inverse Gram matrices, while normalizing the dual vectors turns that inverse relation into a correlation-matrix reconstruction problem. Positive definiteness imposes a global compatibility condition on the signs of the dual correlations, and resolving that compatibility determines the original common angle.
