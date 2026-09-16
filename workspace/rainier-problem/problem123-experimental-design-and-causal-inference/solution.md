@@ -41,7 +41,7 @@ For an interior node $x_i$, differentiating the logarithm of the displayed deter
 $$
 2\sum_{j\ne i}\frac1{x_i-x_j}=Bw_i=\frac{B}{A+Bx_i}.
 $$
-Write the endpoint-inclusive node polynomial as
+To construct a saturated candidate with both interval endpoints present, write
 $$
 p(x)=x(x-1)q(x),\qquad q(x)=x^3-Sx^2+Tx-U.
 $$
@@ -63,13 +63,24 @@ $$
 $$
 -2AT+18AU+7BSU-9BU=0.
 $$
-Together with $A+B/3=5$ and the normalization identity
+The weight normalization is
 $$
-\frac1A+\frac1{A+B}-\frac{q'(-A/B)}{Bq(-A/B)}=1,
+\frac1A+\frac1{A+B}-\frac{q'(-A/B)}{Bq(-A/B)}=1.
 $$
-these equations have the admissible branch
+Substitute $B=15-3A$ from $A+B/3=5$ and eliminate $T,U$ from these four equations. On the nondegenerate branch with three positive interior roots, the remaining equations reduce to
 $$
-A=3,\qquad B=6,\qquad (S,T,U)=\left(\frac{10}{7},\frac47,\frac{2}{35}\right).
+S=\frac{9A^2-77A+120}{7(A^2-9A+15)},
+$$
+$$
+A(A-3)(2A-15)^2(3A-5)=0.
+$$
+The value $A=0$ is impossible because $w_0=1/A$; $A=15/2$ gives $A+B=0$ and hence an impossible endpoint weight; and $A=5/3$ forces $T=0$, impossible for three positive roots because $T$ is their pairwise-product sum. Thus
+$$
+A=3,\qquad B=6.
+$$
+Substitution in the remainder equations gives
+$$
+(S,T,U)=\left(\frac{10}{7},\frac47,\frac{2}{35}\right).
 $$
 Hence set
 $$
@@ -79,7 +90,7 @@ Equivalently, the three interior nodes are the roots in $(0,1)$ of
 $$
 Q(x)=35x^3-50x^2+20x-2.
 $$
-There are exactly three such roots because $Q$ changes sign on each of $(0,1/4)$, $(1/4,1/2)$, and $(3/4,1)$. Let them be $r_1<r_2<r_3$, and define the five support points
+There are exactly three such roots because $Q$ changes sign on each of $(0,1/4)$, $(1/4,1/2)$, and $(3/4,1)$. Let them be $r_1<r_2<r_3$, and define
 $$
 x_0=0,\quad x_1=r_1,\quad x_2=r_2,\quad x_3=r_3,\quad x_4=1,
 $$
@@ -87,6 +98,7 @@ with
 $$
 w_i=\frac1{3+6x_i}.
 $$
+The later global certificate does not assume that every optimum is saturated; this saturated calculation is only the forward construction of the candidate.
 
 Step 3: Verify that the candidate is a feasible probability design
 Since
@@ -139,26 +151,26 @@ The stationarity equation in Step 2 makes this equal to $6$. Therefore
 $$
 h(x)=3+6x-\phi(x)
 $$
-has simple zeros at $0$ and $1$ and double zeros at $r_1,r_2,r_3$. Since $\deg h\leq8$, there is a constant $C$ such that
+has zeros at $0,1$ and double zeros at $r_1,r_2,r_3$. Since $\deg h\leq8$, there is a constant $C$ such that
 $$
 h(x)=C\,x(1-x)q(x)^2.
 $$
-The leading coefficient of $\phi$ is positive, because it is
+The leading coefficient of $\phi$ is
 $$
 \sum_{i=0}^4\frac{1}{w_i p'(x_i)^2}>0.
 $$
-Thus the leading coefficient of $h$ is negative, while the leading coefficient of $x(1-x)q(x)^2$ is $-1$, so $C>0$. Consequently
+Thus the leading coefficient of $h$ is negative, while that of $x(1-x)q(x)^2$ is $-1$, so $C>0$. Consequently
 $$
 \phi(x)\leq3+6x\qquad(0\leq x\leq1).
 $$
-Step 1 now proves that $\xi_*$ is globally optimal among all feasible Borel probability measures, not merely among five-point designs.
+Step 1 now proves that $\xi_*$ is globally optimal among all feasible Borel probability measures.
 
 Step 5: Evaluate the optimal determinant exactly
 For the monic cubic $q$,
 $$
 \prod_{j=1}^3r_j=\frac{2}{35},\qquad \prod_{j=1}^3(1-r_j)=q(1)=\frac{3}{35},
 $$
-and its discriminant is
+and
 $$
 \operatorname{disc}(q)=\prod_{1\leq i<j\leq3}(r_j-r_i)^2=\frac{44}{8575}.
 $$
@@ -171,7 +183,7 @@ Hence
 $$
 \prod_{i=0}^4w_i=\frac13\cdot\frac19\cdot\frac5{891}=\frac5{24057},
 $$
-and the squared Vandermonde product of the five support points is
+and the squared Vandermonde product is
 $$
 \frac{44}{8575}\left(\frac{2}{35}\right)^2\left(\frac{3}{35}\right)^2.
 $$
@@ -179,16 +191,16 @@ Therefore
 $$
 \det M(\xi_*)
 =\frac5{24057}\cdot\frac{44}{8575}\left(\frac{2}{35}\right)^2\left(\frac{3}{35}\right)^2
-=\frac{16}{625377965625}.
+=\frac{2^4}{3^5 5^5 7^7}.
 $$
 
-Final Answer: $\boxed{\frac{16}{625377965625}}$
+Final Answer: $\boxed{\frac{2^4}{3^5 5^5 7^7}}$
 
 ---
 
 ## Answer
 
-$\frac{16}{625377965625}$
+$\frac{2^4}{3^5 5^5 7^7}$
 
 ---
 
