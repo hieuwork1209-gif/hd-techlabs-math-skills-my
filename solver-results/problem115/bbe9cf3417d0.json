@@ -1,0 +1,22 @@
+{
+  "problem": "problem115",
+  "branch": "adversary/problem115",
+  "problem_path": "workspace/rainier-problem/problem115-harmonic-analysis/problem.md",
+  "source_commit_sha": "a46a16d4034776f86c1b6020010da73464cbf9a8",
+  "problem_blob_sha": "bbe9cf3417d0c36eb3eafddecde1ad3d1b8fb24e",
+  "statement_sha256": "89ce5f8aa3ae27a118cb702ab8246625360d4bfa903ae5ee68bd2d1bd09627e7",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T09:01:03+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nq(y)=g(y).\n\\]\nFirst compute the Fourier transform:\n\\[\n(\\mathcal F f_{M,g})(u,v)\n=2^{-8}\\sum_{x,y}(-1)^{x\\cdot My+g(y)+x\\cdot v+y\\cdot u}.\n\\]\nThe inner sum over \\(x\\) is nonzero exactly when \\(My=v\\), so\n\\[\n(\\mathcal F f_{M,g})(u,v)=(-1)^{g(M^{-1}v)+u\\cdot M^{-1}v}.\n\\]\nThus \\(\\mathcal F f_{M,g}=f_{M,g}\\) iff\n\\[\nM^{-1}=M,\\qquad g(Mv)=g(v).\n\\]\nSo \\(M\\) is an involution preserving the positive-Arf quadratic form \\(g\\).\n\nAlso\n\\[\n\\mathcal A_f(b,\\xi)\n=2^{-8}\\sum_x (-1)^{x\\cdot Mb+g(b)+\\xi\\cdot x}\n=\n\\begin{cases}\n(-1)^{g(b)},&\\xi=Mb,\\\\\n0,&\\xi\\ne Mb.\n\\end{cases}\n\\]\nHence\n\\[\n\\mathscr T(f)=\\sum_{\\substack{0\\ne b\\in E\\\\Mb=b}}(-1)^{g(b)}.\n\\]\n\nFix one positive quadratic form \\(q\\) on \\(E\\). It has\n\\[\n135\n\\]\nnonzero singular vectors \\(q(b)=0\\), and\n\\[\n120\n\\]\nnonsingular vectors \\(q(b)=1\\).\n\nFor a fixed singular nonzero \\(b\\), the number of involutions in \\(O^+(8,2)\\) fixing \\(b\\) is\n\\[\n9360.\n\\]\nFor a fixed nonsingular \\(b\\), the number is\n\\[\n10208.\n\\]\nThese come from writing an involution as \\(I+N\\), \\(N^2=0\\), with image \\(W=\\operatorname{im}N\\subset b^\\perp\\), then counting totally \\(B\\)-isotropic subspaces \\(W\\) and the compatible nondegenerate symmetric forms on \\(W\\). The resulting signed total for one fixed \\(q\\) is therefore\n\\[\n135\\cdot 9360-120\\cdot 10208=38640.\n\\]\n\nThe number of positive quadratic forms on \\(\\mathbb F_2^8\\) is\n\\[\n\\frac{|\\operatorname{GL}(8,2)|}{|O^+(8,2)|}\n=15351906304\n=2^{15}\\cdot 7\\cdot 17\\cdot 31\\cdot 127.\n\\]\nThus the requested total is\n\\[\n15351906304\\cdot 38640.\n\\]\nSince\n\\[\n38640=2^4\\cdot 3\\cdot 5\\cdot 7\\cdot 23,\n\\]\nthe prime factorization is\n\\[\n\\boxed{2^{19}\\cdot 3\\cdot 5\\cdot 7^2\\cdot 17\\cdot 23\\cdot 31\\cdot 127}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T09:04:41+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem115/bbe9cf3417d0.json"
+}
