@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-category-theory/problem.md",
+  "source_commit_sha": "1c2e9246dcfa357c40b152682ab2c1103e6959c1",
+  "problem_blob_sha": "8cef3031bb7641f9c3cd93280e864578af4a3a79",
+  "statement_sha256": "8caada1c5d400eb4b869447e9e46dacc5b6c750e4b07dc761c5633df42bfb8d6",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T10:42:32+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(P_\\sigma\\) denote the natural operation that permutes the three tensor factors by \\(\\sigma\\in S_3\\).\n\nFirst, every natural endomorphism of \\(T(V)=V^{\\otimes 3}\\) is uniquely of the form\n\\[\nE=\\sum_{\\sigma\\in S_3} c_\\sigma P_\\sigma,\\qquad c_\\sigma\\in \\mathbb F_2.\n\\]\nIndeed, apply \\(E_{\\mathbb F_2^3}\\) to \\(e_1\\otimes e_2\\otimes e_3\\). Naturality with respect to coordinate projections forces every surviving basis tensor to use all three indices \\(1,2,3\\), hence it is one of the six permutations. Naturality with respect to arbitrary maps \\(\\mathbb F_2^3\\to V\\) then gives the formula for all \\(V\\).\n\nSo the problem is the idempotents of \\(\\mathbb F_2[S_3]\\), acting by place permutations.\n\nWrite \\(S_3=\\langle r,s:r^3=s^2=1,\\ srs=r^{-1}\\rangle\\), where \\(r=(123)\\). Every element is\n\\[\na=\\alpha+\\beta s,\\qquad \\alpha,\\beta\\in \\mathbb F_2[\\langle r\\rangle].\n\\]\nLet \\(\\bar r=r^{-1}\\). Then\n\\[\na^2=a\n\\]\nis equivalent to\n\\[\n\\alpha^2+\\beta\\bar\\beta=\\alpha,\\qquad\n\\beta(\\alpha+\\bar\\alpha+1)=0.\n\\]\nSolving these equations in the eight-element algebra \\(\\mathbb F_2[r]/(r^3-1)\\) gives exactly \\(16\\) idempotents. Aside from \\(0\\) and \\(1\\), their possible ranks on the three orbit types of basis tensors are:\n\n\\[\n\\begin{array}{c|c}\n\\text{orbit type} & \\text{number of orbits}\\\\ \\hline\n(i,i,i) & n\\\\\n(i,i,j),\\ i\\ne j & n(n-1)\\\\\n(i,j,k),\\ i,j,k\\text{ distinct} & \\binom n3\n\\end{array}\n\\]\n\nThe proper idempotent rank triples \\((r_1,r_2,r_3)\\) on these orbit modules are only\n\\[\n(0,2,4),\\qquad (1,1,2),\\qquad (0,1,2),\\qquad (1,2,4).\n\\]\nThe largest is \\((1,2,4)\\). It occurs exactly \\(6\\) times among the natural idempotents.\n\nTherefore\n\\[\nR_n\n= n\\cdot 1+n(n-1)\\cdot 2+\\binom n3\\cdot 4\n= \\frac{n(2n^2+1)}{3}.\n\\]\n\nThus, for every \\(n\\ge 2\\),\n\\[\n\\boxed{(R_n,N_n)=\\left(\\frac{n(2n^2+1)}{3},\\,6\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T10:45:03+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/8cef3031bb76.json"
+}
