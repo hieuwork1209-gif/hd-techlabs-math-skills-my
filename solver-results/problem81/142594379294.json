@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-category-theory/problem.md",
+  "source_commit_sha": "4e5248f554f0418ff81c7778eca9267a06a2f15c",
+  "problem_blob_sha": "142594379294d2d8c3958a7ea8350a7a0fd73f38",
+  "statement_sha256": "e21279220e3a6f32053bf2ddd0c7970d456cdf3ac3df2c9a687102b9904c3b21",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T16:13:37+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(T=F(g)\\). Since \\(T^{p^2}=I\\) over \\(k=\\mathbb F_p\\),\n\n\\[\nx^{p^2}-1=(x-1)^{p^2},\n\\]\n\nso \\(T=I+U\\) for a nilpotent operator \\(U\\) with \\(U^{p^2}=0\\). Thus \\(F\\) is determined by the Jordan block decomposition of \\(U\\), with all block sizes at most \\(p^2\\).\n\nFor \\(G=C_{p^2}\\),\n\n\\[\n\\mathsf N_G=\\sum_{i=0}^{p^2-1}T^i\n=\\sum_{i=0}^{p^2-1}(1+U)^i\n=U^{p^2-1}.\n\\]\n\nHence \\(\\alpha(F)=\\operatorname{rank}U^{p^2-1}\\), which counts exactly the number of Jordan blocks of size \\(p^2\\).\n\nFor \\(H=\\langle g^p\\rangle\\),\n\n\\[\nT^p=(1+U)^p=1+U^p,\n\\]\n\nso\n\n\\[\n\\mathsf N_H=\\sum_{i=0}^{p-1}(T^p)^i\n=\\sum_{i=0}^{p-1}(1+U^p)^i\n=U^{p(p-1)}.\n\\]\n\nLet \\(m=p(p-1)\\). A Jordan block of size \\(s\\) contributes\n\n\\[\n\\max(s-m,0)\n\\]\n\nto \\(\\beta(F)\\).\n\nNow\n\n\\[\nN=ap^2+R,\\qquad R=p(p-1)+r=m+r,\\qquad 1\\le r\\le p-1.\n\\]\n\nSince every block has size at most \\(p^2\\), the maximum possible number of \\(p^2\\)-blocks is\n\n\\[\nA_{p,a,r}=a.\n\\]\n\nAfter taking \\(a\\) blocks of size \\(p^2\\), the remaining dimension is \\(R=m+r<p^2\\). To maximize \\(\\beta\\), the remainder must be one Jordan block of size \\(R\\), contributing \\(R-m=r\\). Thus\n\n\\[\nB_{p,a,r}=ap+r.\n\\]\n\nSo the unique Jordan type attaining the lexicographic maximum is\n\n\\[\n\\lambda=(p^2)^a,\\ R.\n\\]\n\nIt remains to count operators \\(U\\) with this Jordan type. The number is the size of the corresponding \\(GL_N(\\mathbb F_p)\\)-conjugacy class:\n\n\\[\nK_{p,a,r}\n=\\frac{\\Gamma_N(p)}{|\\operatorname{Aut}_{\\mathbb F_p[u]}(M_\\lambda)|}.\n\\]\n\nFor a nilpotent type \\(\\lambda\\),\n\n\\[\n|\\operatorname{Aut}(M_\\lambda)|\n=\np^{\\sum_i(\\lambda_i')^2-\\sum_s m_s^2}\n\\prod_s \\Gamma_{m_s}(p),\n\\]\n\nwhere \\(m_s\\) is the multiplicity of blocks of size \\(s\\). Here \\(m_{p^2}=a\\), \\(m_R=1\\), and\n\n\\[\n\\sum_i(\\lambda_i')^2\n=R(a+1)^2+(p^2-R)a^2\n=p^2a^2+(2a+1)R.\n\\]\n\nTherefore\n\n\\[\n|\\operatorname{Aut}(M_\\lambda)|\n=\np^{(p^2-1)a^2+(2a+1)R-1}\\Gamma_a(p)(p-1).\n\\]\n\nSince \\(R=p(p-1)+r\\) and \\(N=ap^2+R\\),\n\n\\[\n\\boxed{\n\\left(\na,\\,\nap+r,\\,\n\\frac{\\Gamma_N(p)}\n{p^{(p^2-1)a^2+(2a+1)(p(p-1)+r)-1}\\Gamma_a(p)(p-1)}\n\\right)\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T16:14:50+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/142594379294.json"
+}
