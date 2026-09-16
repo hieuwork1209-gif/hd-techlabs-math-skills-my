@@ -32,7 +32,7 @@ $$
 Thus natural idempotents are precisely the idempotents of $A$.
 
 Step 2: Reduce the group algebra to a five-dimensional quotient with square-zero kernel.
-The group $GL_2(\mathbb F_2)$ has
+To count idempotents in $A$ without enumerating its $64$ elements, use the two canonical linear actions of $S_3$ over $\mathbb F_2$: the trivial one-dimensional action and the faithful two-dimensional action below. The group $GL_2(\mathbb F_2)$ has
 $$
 (2^2-1)(2^2-2)=6
 $$
@@ -40,7 +40,7 @@ elements and acts faithfully on the three nonzero vectors of $\mathbb F_2^2$. He
 $$
 \rho:S_3\to GL_2(\mathbb F_2).
 $$
-Extend $\rho$ linearly to $A\to M_2(\mathbb F_2)$, and let $\epsilon:A\to\mathbb F_2$ be the augmentation map. Define
+Extend $\rho$ linearly to $A\to M_2(\mathbb F_2)$, and let $\epsilon:A\to\mathbb F_2$ be the augmentation map, which is the trivial representation. Combining these two intrinsic actions gives
 $$
 \Phi=(\epsilon,\rho):A\to\mathbb F_2\oplus M_2(\mathbb F_2).
 $$
@@ -118,7 +118,7 @@ ordered pairs $(L,K)$ with $L\ne K$. Hence $M_2(\mathbb F_2)$ has
 $$
 1+6+1=8
 $$
-idempotents. Therefore $B=\mathbb F_2\oplus M_2(\mathbb F_2)$ has
+idempotents. Idempotence in a direct product is coordinatewise, so $B=\mathbb F_2\oplus M_2(\mathbb F_2)$ has
 $$
 2\cdot8=16
 $$
