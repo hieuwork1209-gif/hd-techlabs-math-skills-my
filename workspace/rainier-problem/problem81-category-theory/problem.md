@@ -2,7 +2,11 @@
 
 ## LaTeX (Normalized)
 
-Let $m\geq d+4$ and $d\geq1$, and put $X=[m]$. Regard the Boolean lattice
+Let $m\geq d+4$ and $d\geq1$, and put
+$$
+X=\{1,\ldots,m\}.
+$$
+Regard the Boolean lattice
 $$
 \mathcal B_X=\mathcal P(X)
 $$
