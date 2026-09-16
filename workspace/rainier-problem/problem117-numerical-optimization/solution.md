@@ -31,7 +31,7 @@ The two reflected proximal maps are $D$ and $UDU^T$, so one relaxed Douglas-Rach
 $$
 T_{t,\mu,s}=(1-s)I+sUDU^TD.
 $$
-As $\lambda$ ranges over $[1/2,2]$, the effective penalty parameter ranges over
+As $\lambda$ ranges over $[\frac{1}{2},2]$, the effective penalty parameter ranges over
 $$
 t\in\left[\frac{\rho}{2},2\rho\right].
 $$
@@ -80,11 +80,25 @@ If $t\geq4$, again choose $\mu=1$. Now $0\leq b\leq a<1$ and
 $$
 a=\frac{t-1}{t+1}\geq\frac{3}{5}.
 $$
-Using $e_1=(1,0)^T$ gives the symmetric estimate
+For $e_1=(1,0)^T$,
 $$
-\|T_{t,1,s}\|_2\geq\frac{a^2}{\sqrt{2}}\geq\frac{9\sqrt{2}}{50},
+Me_1=\frac{a}{2}\begin{bmatrix}a+b\\a-b\end{bmatrix}=:n,
 $$
-with equality only at $t=4$ after the same convexity argument.
+so
+$$
+\|n\|_2^2=\frac{a^2(a^2+b^2)}{2},
+\qquad
+n_1=\frac{a(a+b)}{2}.
+$$
+Since $a(a^2+b^2)\leq a^2+b^2\leq a+b$, we have $\|n\|_2^2\leq n_1$. The same convexity argument therefore gives
+$$
+\|T_{t,1,s}\|_2
+\geq\|Me_1\|_2
+=\frac{a\sqrt{a^2+b^2}}{\sqrt{2}}
+\geq\frac{a^2}{\sqrt{2}}
+\geq\frac{9\sqrt{2}}{50},
+$$
+with strict inequality when $t>4$.
 
 Therefore a robust contraction no larger than $9\sqrt{2}/50$ requires
 $$
@@ -157,7 +171,7 @@ a=\tanh x,
 \qquad
 b=\tanh y.
 $$
-If $X=\log t$, $Y=\log\mu$, and $L=\log4$, then
+If $X=\log t$, $Y=\log\mu$, and $L=\log 4$, then
 $$
 x=\frac{X-Y}{2},
 \qquad
@@ -165,14 +179,14 @@ y=\frac{X+Y-L}{2}.
 $$
 The square $0\leq X,Y\leq L$ is therefore equivalent to
 $$
-|x|+|y|\leq\log2.
+|x|+|y|\leq\log 2.
 $$
 For $u,v\geq0$, write $p=\tanh u$ and $q=\tanh v$. The addition formula gives
 $$
 \tanh^2(u+v)-\tanh^2u-\tanh^2v
 =\frac{pq\left(2-(2+pq)(p^2+q^2)\right)}{(1+pq)^2}.
 $$
-On $0\leq u,v\leq\log2$ we have $0\leq p,q\leq3/5$, so
+On $0\leq u,v\leq\log 2$ we have $0\leq p,q\leq3/5$, so
 $$
 (2+pq)(p^2+q^2)
 \leq\left(2+\frac{9}{25}\right)\frac{18}{25}
@@ -186,7 +200,7 @@ with equality only when $uv=0$. Taking $u=|x|$ and $v=|y|$ yields
 $$
 a^2+b^2
 \leq\tanh^2(|x|+|y|)
-\leq\tanh^2(\log2)
+\leq\tanh^2(\log 2)
 =\frac{9}{25}.
 $$
 Therefore every uncertainty pair satisfies
@@ -197,17 +211,17 @@ $$
 Step 5: Determine the exact worst-case set and state the robust optimum
 Equality in Step 4 requires both
 $$
-|x|+|y|=\log2
+|x|+|y|=\log 2
 $$
 and equality in the hyperbolic-tangent inequality. Since its bracket is strictly positive on the stated range, equality there forces $xy=0$. Thus
 $$
-(x,y)\in\{(\log2,0),(-\log2,0),(0,\log2),(0,-\log2)\}.
+(x,y)\in\{(\log 2,0),(-\log 2,0),(0,\log 2),(0,-\log 2)\}.
 $$
 Using
 $$
-\log t=x+y+\log2,
+\log t=x+y+\log 2,
 \qquad
-\log\mu=-x+y+\log2,
+\log\mu=-x+y+\log 2,
 $$
 these four points are exactly
 $$
@@ -215,7 +229,7 @@ $$
 $$
 At each of them one of $a,b$ is $0$ and the other has magnitude $3/5$, so $M$ has rank one and its operator norm equals its Frobenius norm $9\sqrt{2}/50$. Hence the bound is attained exactly at those four points.
 
-Since $\rho=2$ and $t=\rho/\lambda$, the values $t=1,4$ correspond to $\lambda=2,1/2$, respectively. Therefore
+Since $\rho=2$ and $t=\rho/\lambda$, the values $t=1,4$ correspond to $\lambda=2,\frac{1}{2}$, respectively. Therefore
 $$
 \mathcal W_*=\left\{\frac{1}{2},2\right\}\times\{1,4\}.
 $$
