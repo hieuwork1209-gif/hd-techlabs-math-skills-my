@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-inner-product-spaces/problem.md",
+  "source_commit_sha": "315f0316e906103270f9812552fa611e94d2836a",
+  "problem_blob_sha": "8f6ff6f021ff7fdab969cd49183379bc5e7d2769",
+  "statement_sha256": "ef0c3743148bbe90b796f7d6523619f3f9af3223a41b762a62c749b3c8a1288f",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T13:34:38+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nT_i=cI+sJ_i,\\qquad s=\\sqrt{1-c^2}.\n\\]\nThe condition \\(\\langle x,T_i x\\rangle=c\\|x\\|^2\\) says the symmetric part of \\(T_i\\) is \\(cI\\). Since \\(T_i\\) is orthogonal, each \\(J_i\\) is skew-symmetric and satisfies\n\\[\nJ_i^2=-I.\n\\]\nSo each \\(J_i\\) is an orthogonal complex structure on \\(\\mathbb R^4\\).\n\nFor \\(i\\ne j\\),\n\\[\nT_iT_j=c^2I+cs(J_i+J_j)+s^2J_iJ_j.\n\\]\nThe middle term is skew-symmetric, so comparing symmetric parts with the condition\n\\[\n\\langle x,T_iT_jx\\rangle=c\\|x\\|^2\n\\]\ngives\n\\[\n\\frac{J_iJ_j+J_jJ_i}{2}=\\frac{c-c^2}{1-c^2}I=\\frac{c}{1+c}I.\n\\]\nSet\n\\[\na=\\frac{c}{1+c}.\n\\]\nThen\n\\[\nJ_iJ_j+J_jJ_i=2aI.\n\\]\n\nNow use the standard inner product on skew matrices\n\\[\n\\langle A,B\\rangle=-\\frac14\\operatorname{tr}(AB).\n\\]\nEach \\(J_i\\) has norm \\(1\\), and taking traces in the anticommutator identity gives\n\\[\n\\langle J_i,J_j\\rangle=-a\\qquad (i\\ne j).\n\\]\n\nIn dimension \\(4\\), orthogonal complex structures split into two \\(3\\)-dimensional families, according to orientation. If two are from opposite families, their above inner product is \\(0\\). Since here \\(-a\\ne0\\), all four \\(J_i\\) lie in the same \\(3\\)-dimensional Euclidean space.\n\nThus we have four unit vectors in a \\(3\\)-dimensional Euclidean space with constant pairwise inner product \\(-a\\). Their Gram matrix has diagonal \\(1\\) and off-diagonal \\(-a\\). Its eigenvalues are\n\\[\n1+a \\quad\\text{with multiplicity }3,\\qquad 1-3a \\quad\\text{with multiplicity }1.\n\\]\nBecause four vectors lie in a \\(3\\)-dimensional space, the Gram matrix is singular, so\n\\[\n1-3a=0.\n\\]\nHence\n\\[\na=\\frac13.\n\\]\nTherefore\n\\[\n\\frac{c}{1+c}=\\frac13,\n\\]\nso\n\\[\n3c=1+c,\\qquad 2c=1,\\qquad c=\\frac12.\n\\]\n\n\\[\n\\boxed{\\frac12}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T13:35:34+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/8f6ff6f021ff.json"
+}
