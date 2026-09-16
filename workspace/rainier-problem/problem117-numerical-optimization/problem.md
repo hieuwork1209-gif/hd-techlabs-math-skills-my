@@ -2,54 +2,58 @@
 
 ## LaTeX (Normalized)
 
-Let
+For a parameter $\gamma\in[2,6]$, define the disconnected spectral set
 $$
-A_5=
-\begin{bmatrix}
-2&-1&0&0&0\\
--1&2&-1&0&0\\
-0&-1&2&-1&0\\
-0&0&-1&2&-1\\
-0&0&0&-1&2
-\end{bmatrix},
+E_\gamma=[1,2]\cup[\gamma,6].
+$$
+Consider two successive Richardson steps for a real symmetric positive-definite linear system,
+$$
+x^{(1)}=(I-\alpha A)x^{(0)},
 \qquad
-f_5(x)=\frac12x^TA_5x
-\qquad(x\in\mathbb{R}^{5}).
+x^{(2)}=(I-\beta A)x^{(1)},
+$$
+with positive step sizes $\alpha,\beta>0$. For matrices whose spectrum is contained in $E_\gamma$, the worst-case two-step Euclidean contraction factor is
+$$
+\mathcal C_\gamma(\alpha,\beta)
+=\max_{\lambda\in E_\gamma}
+\left|(1-\alpha\lambda)(1-\beta\lambda)\right|.
+$$
+Define
+$$
+\mathcal C_\gamma^*
+=\min_{\alpha>0,\ \beta>0}\mathcal C_\gamma(\alpha,\beta).
+$$
+Order the unique minimizing pair so that $\alpha_\gamma^*\leq\beta_\gamma^*$, and set
+$$
+p_\gamma^*(\lambda)
+=(1-\alpha_\gamma^*\lambda)(1-\beta_\gamma^*\lambda).
+$$
+Define its active set by
+$$
+\mathcal A_\gamma
+=\left\{\lambda\in E_\gamma:
+|p_\gamma^*(\lambda)|=\mathcal C_\gamma^*\right\}.
 $$
 
-Consider randomized exact adjacent-block coordinate descent. Choose a probability vector
+As the spectral gap opens, the optimal minimax polynomial passes through three distinct active-set regimes. Determine exactly the two transition values
 $$
-p=(p_1,p_2,p_3,p_4),
+2<\gamma_1<\gamma_2<6
+$$
+and determine the active-set pattern on each of the three open regimes
+$$
+2<\gamma<\gamma_1,
 \qquad
-p_i\geq0,
+\gamma_1<\gamma<\gamma_2,
 \qquad
-\sum_{i=1}^4p_i=1.
+\gamma_2<\gamma<6.
 $$
-Given a current point $x$, sample $I\in\{1,2,3,4\}$ with $\mathbb{P}(I=i)=p_i$, and replace the adjacent pair $(x_I,x_{I+1})$ by its exact minimizer while keeping the other three coordinates fixed. Equivalently, $x^+$ is the unique vector satisfying
-$$
-x_j^+=x_j\quad(j\notin\{I,I+1\})
-$$
-and
-$$
-f_5(x^+)=\min\left\{f_5(y):y_j=x_j\text{ for }j\notin\{I,I+1\}\right\}.
-$$
+Also account for what happens at the two transition values in your reasoning.
 
-Define the worst-case one-step expected contraction
+Give the final answer as
 $$
-\Gamma(p)
-=\sup_{x\ne0}
-\frac{\mathbb{E}[f_5(x^+)\mid x]}{f_5(x)}.
+(\gamma_1,\gamma_2,\mathcal A_-,\mathcal A_0,\mathcal A_+),
 $$
-Determine exactly
-$$
-\Gamma_*:=\min_p\Gamma(p),
-$$
-determine the unique minimizing distribution $p_*$, and determine all nonzero initial vectors attaining the supremum in $\Gamma(p_*)$.
-
-The worst-case vectors will form a one-dimensional subspace. Report that subspace by its unique primitive integer generator $v_*$ whose first nonzero entry is positive. Give the final answer as
-$$
-(p_*,\Gamma_*,v_*).
-$$
+where $\mathcal A_-,\mathcal A_0,\mathcal A_+$ are the active-set formulas on the three open regimes, in that order.
 
 ---
 
@@ -66,4 +70,4 @@ $$
 
 ## Domain Explanation
 
-This problem asks for the sampling distribution that optimizes the worst-case expected one-step contraction of an exact randomized block coordinate-descent method on a structured positive-definite quadratic, together with the equality-case direction. The primary task is therefore algorithmic minimax tuning in Optimization and Numerical Mathematics and Numerical optimization. Linear Algebra, especially generalized Rayleigh quotients and positive-semidefinite certificates, supplies the proof tools and is subordinate to the optimization objective.
+This problem asks for the exact minimax tuning of a two-step nonstationary Richardson iteration under a moving spectral gap, together with the phase transitions in the extremal eigenvalues that control the worst-case contraction. The primary object is therefore algorithmic parameter tuning and sensitivity analysis in Optimization and Numerical Mathematics and Numerical optimization. Approximation-theoretic ideas about quadratic minimax polynomials are used only as proof tools and are subordinate to the numerical-optimization objective.
