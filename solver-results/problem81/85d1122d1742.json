@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-category-theory/problem.md",
+  "source_commit_sha": "7b86d484fcdd0ef2595a4d9778e1298c4f7791cf",
+  "problem_blob_sha": "85d1122d174264a12e46e30f1fcd2eb5bbd04c6a",
+  "statement_sha256": "331af7761e8f99d53866beb9e76218d84ddde87c9b9c78d2fa69ba19e2fad37f",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T15:16:12+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nB((u,v),(u',v'))=u\\cdot v'+u'\\cdot v\\in\\mathbb F_2 .\n\\]\nFor a compatible twist write \\(\\theta_x=(-1)^{q(x)}\\). The twist condition is exactly\n\\[\nq(x+y)=q(x)+q(y)+B(x,y),\n\\]\nso compatible twists are quadratic refinements of \\(B\\). Since\n\\[\nq_0(u,v)=u\\cdot v\n\\]\nis one such refinement and \\(B\\) is nondegenerate, every twist is uniquely\n\\[\nq_z(x)=q_0(x)+B(z,x),\\qquad z\\in V.\n\\]\n\nAn \\(m\\)-dimensional subspace \\(L\\) is Lagrangian for \\(q\\) iff \\(q|_L=0\\). Then automatically \\(B|_L=0\\), so \\(L=L^\\perp\\).\n\nNow fix an ordered triple \\((q,q_1,q_2)\\), and write\n\\[\nq_1=q+B(d_1,-),\\qquad q_2=q+B(d_2,-).\n\\]\nThe twists are pairwise distinct iff \\(d_1,d_2\\) are nonzero and distinct, hence linearly independent over \\(\\mathbb F_2\\). If \\(L\\) is common Lagrangian, then for every \\(x\\in L\\),\n\\[\nB(d_i,x)=q_i(x)+q(x)=0,\n\\]\nso \\(d_i\\in L^\\perp=L\\). Thus \\(L\\) must contain\n\\[\nW=\\langle d_1,d_2\\rangle.\n\\]\nConversely, if \\(L\\) is \\(q\\)-Lagrangian and contains \\(W\\), then \\(q_1,q_2\\) also vanish on \\(L\\). Hence the count is the number of \\(q\\)-Lagrangians containing \\(W\\).\n\nThis is possible exactly when \\(W\\) is totally \\(q\\)-singular:\n\\[\nq(d_1)=q(d_2)=q(d_1+d_2)=0,\n\\]\nequivalently \\(q(d_1)=q(d_2)=0\\) and \\(B(d_1,d_2)=0\\). Also \\(q\\) must be of plus type, i.e. must admit an \\(m\\)-dimensional totally singular subspace.\n\nFor plus type in dimension \\(2n\\), the number \\(A_n\\) of maximal totally singular \\(n\\)-subspaces is\n\\[\nA_n=2\\prod_{i=1}^{n-1}(2^i+1).\n\\]\nIndeed \\(A_1=2\\), and double-counting pairs \\((L,a)\\) with \\(0\\ne a\\in L\\) gives\n\\[\nA_n(2^n-1)\n=(2^{2n-1}+2^{n-1}-1)A_{n-1}\n=(2^n-1)(2^{n-1}+1)A_{n-1}.\n\\]\nThus \\(A_n=(2^{n-1}+1)A_{n-1}\\).\n\nHere \\(W\\) has dimension \\(2\\), so the quotient \\(W^\\perp/W\\) has plus type and dimension \\(2(m-2)\\). Therefore the maximum common count is\n\\[\nM_m=A_{m-2}=2\\prod_{i=1}^{m-3}(2^i+1).\n\\]\n\nIt remains to count ordered triples attaining this maximum.\n\nThe plus twists are exactly those \\(q_z\\) with \\(q_0(z)=0\\), so their number is\n\\[\n2^{2m-1}+2^{m-1}.\n\\]\nFor a fixed plus twist \\(q\\), the number of ordered pairs \\((d_1,d_2)\\) giving a totally singular \\(2\\)-plane is:\n\\[\n(2^{2m-1}+2^{m-1}-1)(2^{2m-2}+2^{m-1}-2).\n\\]\nThe first factor chooses a nonzero singular \\(d_1\\). For fixed \\(d_1\\), the quotient \\(d_1^\\perp/\\langle d_1\\rangle\\) is plus type of dimension \\(2m-2\\), so the number of singular \\(d_2\\in d_1^\\perp\\), excluding \\(0,d_1\\), is\n\\[\n2(2^{2m-3}+2^{m-2})-2\n=\n2^{2m-2}+2^{m-1}-2.\n\\]\n\nHence\n\\[\nN_m=\n(2^{2m-1}+2^{m-1})\n(2^{2m-1}+2^{m-1}-1)\n(2^{2m-2}+2^{m-1}-2).\n\\]\n\nTherefore\n\\[\n\\boxed{\n(M_m,N_m)=\n\\left(\n2\\prod_{i=1}^{m-3}(2^i+1),\n\\ (2^{2m-1}+2^{m-1})(2^{2m-1}+2^{m-1}-1)(2^{2m-2}+2^{m-1}-2)\n\\right)\n}\n\\]\nfor every \\(m\\ge 3\\).",
+  "status": "success",
+  "completed_at": "2026-09-16T15:17:51+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/85d1122d1742.json"
+}
