@@ -1,160 +1,206 @@
 ## Steps
 
-Step 1: Reformulate the volume as a Gram determinant
-Let $V=[v_1\ v_2\ v_3\ v_4\ v_5]$ and let
+Step 1: Reduce the two projections to principal-angle parameters
+Let $U=\operatorname{im}P$. The operator
 $$
-G=V^{T}V.
+A=(PQP)|_{U}
 $$
-Then $G$ is positive semidefinite, $g_{ii}=1$, and
+is self-adjoint and satisfies $0\leq A\leq I_{U}$. Choose an orthonormal eigenbasis $e_1,\dots,e_4$ of $U$, with
 $$
-g_{i,i+1}=g_{i+1,i}=\frac12
+Ae_i=x_i e_i,
+\qquad 0\leq x_i\leq1.
 $$
-with indices modulo $5$. Moreover
-$$
-|\det V|^{2}=\det(V^{T}V)=\det G.
-$$
-Thus it is enough to maximize $\det G$ over all positive semidefinite matrices with these prescribed entries.
+These $x_i$ are the squared cosines of the principal angles between $\operatorname{im}P$ and $\operatorname{im}Q$.
 
-The feasible set is compact: every unspecified entry satisfies $|g_{ij}|\leq1$ because each $2\times2$ principal minor is nonnegative. It is also nonempty with positive determinant. Indeed, take every unspecified entry equal to $0$. For the resulting matrix $G_0$, every real vector $z=(z_1,\dots,z_5)^{T}$ satisfies
+For $0<x_i<1$, write
 $$
-z^{T}G_0z
-=\sum_{i=1}^{5}z_i^{2}+\sum_{i=1}^{5}z_iz_{i+1}
-=\frac12\sum_{i=1}^{5}(z_i+z_{i+1})^{2}.
+Qe_i=x_i e_i+\sqrt{x_i(1-x_i)}\,f_i,
 $$
-Equality would force $z_{i+1}=-z_i$ for all $i$; going around the odd cycle then gives $z_1=-z_1$, hence $z=0$. Thus $G_0$ is positive definite. A determinant maximizer therefore exists, and every maximizer has positive determinant, so it is positive definite.
-
-Step 2: Use cyclic symmetry to reduce the completion to one parameter
-Let $P$ be the permutation matrix for the cyclic shift $1\mapsto2\mapsto\cdots\mapsto5\mapsto1$. If $G$ is feasible and positive definite, then each
+where $f_i\in U^{\perp}$ is a unit vector. If $i\neq j$, then
 $$
-P^{j}G(P^{j})^{T},\qquad j=0,1,2,3,4,
+\langle Qe_i,Qe_j\rangle
+=\langle e_i,Qe_j\rangle
+=\langle e_i,PQPe_j\rangle
+=0,
 $$
-is feasible and has the same determinant.
-
-For positive definite matrices, $\log\det$ is strictly concave. To see this directly, along an affine line $A(t)=A+tH$ inside the positive definite cone, Jacobi's formula gives
+so the corresponding $f_i$ are orthogonal. Since $Q^2=Q$, on $\operatorname{span}\{e_i,f_i\}$ the matrices of $P$ and $Q$ are
 $$
-\frac{d}{dt}\log\det A(t)=\operatorname{tr}(A(t)^{-1}H),
+P_i=
+\begin{pmatrix}
+1&0\\
+0&0
+\end{pmatrix},
+\qquad
+Q_i=
+\begin{pmatrix}
+x_i&\sqrt{x_i(1-x_i)}\\
+\sqrt{x_i(1-x_i)}&1-x_i
+\end{pmatrix}.
+$$
+The endpoint cases $x_i=0,1$ are obtained by the same orthogonal decomposition with the evident limiting blocks. Therefore
+$$
+\det(P_i+Q_i)=1-x_i,
 $$
 and hence
 $$
-\frac{d^{2}}{dt^{2}}\log\det A(t)
-=-\operatorname{tr}\left((A(t)^{-1/2}HA(t)^{-1/2})^{2}\right)\leq0,
-$$
-with equality only when $H=0$.
-
-Therefore the cyclic average
-$$
-\overline G=\frac15\sum_{j=0}^{4}P^{j}G(P^{j})^{T}
-$$
-is feasible and satisfies $\det\overline G\geq\det G$. Hence some maximizer is cyclically invariant. Its diagonal and adjacent entries are already fixed, while all five nonadjacent pairs form one cyclic orbit, so it has the form
-$$
-G(x)=
-\begin{pmatrix}
-1&\frac12&x&x&\frac12\\
-\frac12&1&\frac12&x&x\\
-x&\frac12&1&\frac12&x\\
-x&x&\frac12&1&\frac12\\
-\frac12&x&x&\frac12&1
-\end{pmatrix}.
+\det(P+Q)=\prod_{i=1}^{4}(1-x_i).
 $$
 
-Step 3: Compute the determinant and the positive-definite interval
-Let $\zeta=e^{2\pi i/5}$. For $k=0,1,2,3,4$, the vector
+Also
 $$
-w_k=(1,\zeta^{k},\zeta^{2k},\zeta^{3k},\zeta^{4k})^{T}
+\operatorname{tr}(PQ)=\operatorname{tr}(PQP)=\sum_{i=1}^{4}x_i=2,
 $$
-is an eigenvector because multiplication by the circulant matrix $G(x)$ gives
+and, because $PQP-\frac12P$ is supported on $U$ with eigenvalues $x_i-\frac12$,
 $$
-G(x)w_k=
-\left(1+\frac12(\zeta^{k}+\zeta^{-k})+x(\zeta^{2k}+\zeta^{-2k})\right)w_k.
+\sum_{i=1}^{4}\left(x_i-\frac12\right)^2=\frac25.
 $$
-Using
+
+Step 2: Convert the spectral constraints to a bounded product problem
+Set
 $$
-\cos\frac{2\pi}{5}=\frac{\sqrt5-1}{4},
-\qquad
-\cos\frac{4\pi}{5}=-\frac{\sqrt5+1}{4},
+z_i=1-x_i.
 $$
-the eigenvalues are
+Then $0\leq z_i\leq1$, and the two constraints become
 $$
-\lambda_0=2+2x,
-$$
-$$
-\lambda_1=\lambda_4=
-\frac{3+\sqrt5}{4}-\frac{\sqrt5+1}{2}x,
+\sum_{i=1}^{4}z_i=2
 $$
 and
 $$
-\lambda_2=\lambda_3=
-\frac{3-\sqrt5}{4}+\frac{\sqrt5-1}{2}x.
+\sum_{i=1}^{4}\left(z_i-\frac12\right)^2=\frac25.
 $$
-Multiplying the two distinct repeated eigenvalues gives
+Expanding the second identity and using $\sum z_i=2$ gives
 $$
-\lambda_1\lambda_2=\frac{1+2x-4x^{2}}{4}.
+\sum_{i=1}^{4}z_i^2=\frac75.
 $$
-Consequently
+Thus the original problem is equivalent to maximizing
 $$
-D(x):=\det G(x)
-=\frac{(x+1)(1+2x-4x^{2})^{2}}{8}.
+z_1z_2z_3z_4
 $$
-The conditions $\lambda_0,\lambda_1,\lambda_2>0$ reduce to
+over $0\leq z_i\leq1$ subject to
 $$
-\frac{1-\sqrt5}{4}<x<\frac{1+\sqrt5}{4}.
-$$
-At either endpoint one of the repeated eigenvalues vanishes, so the determinant is $0$ there.
-
-Step 4: Optimize the one-variable determinant
-Differentiating the displayed polynomial gives
-$$
-D'(x)=\frac58(4x^{2}-2x-1)(4x^{2}+2x-1).
-$$
-The zeros of the first quadratic are exactly the two endpoints of the feasible interval. The second quadratic has roots
-$$
-\frac{-1-\sqrt5}{4},\qquad \frac{-1+\sqrt5}{4},
-$$
-and only
-$$
-x_*:=\frac{\sqrt5-1}{4}
-$$
-lies in the feasible interval. Since $D(x)>0$ in the interior and tends to $0$ at both endpoints, this unique interior critical point is the global maximum.
-
-The relation $4x_*^{2}+2x_*-1=0$ gives
-$$
-1+2x_*-4x_*^{2}=4x_*.
-$$
-Hence
-$$
-D(x_*)=\frac{(x_*+1)(4x_*)^{2}}{8}
-=2x_*^{2}(x_*+1)=\frac14.
-$$
-
-Step 5: Verify attainment by realizing the maximizing Gram matrix
-At $x=x_*$ the three distinct eigenvalues are
-$$
-\frac{3+\sqrt5}{2},
+\sum z_i=2,
 \qquad
-\frac{1+\sqrt5}{4},
-\qquad
-\frac{3-\sqrt5}{2},
+\sum z_i^2=\frac75.
 $$
-all positive. Thus $G(x_*)$ is positive definite. Diagonalize it as
+There are feasible points with positive product, for example the two-value configuration found below, so a maximizer cannot have any $z_i=0$.
+
+Step 3: Analyze maximizers with no coordinate on the upper boundary
+Assume first that $0<z_i<1$ for every $i$. At an interior maximizer of the product, equivalently of $\sum_i\log z_i$, Lagrange multipliers give constants $\alpha,\beta$ such that
 $$
-G(x_*)=Q\Lambda Q^{T}
+\frac1{z_i}=\alpha+2\beta z_i
 $$
-with $Q$ orthogonal and $\Lambda$ positive diagonal, and set
+for each $i$. Hence every $z_i$ is a root of the same quadratic
 $$
-V=\Lambda^{1/2}Q^{T}.
+2\beta t^2+\alpha t-1=0,
 $$
-Then $V^{T}V=G(x_*)$, so the columns of $V$ are admissible vectors in $\mathbb{R}^{5}$. Therefore the determinant bound is attained, and
+so there are at most two distinct values.
+
+A multiplicity split $1+3$ would have one value
 $$
-|\det V|=\sqrt{\det G(x_*)}=\frac12.
+\frac12\pm\sqrt{\frac3{10}},
+$$
+because the deviations from $\frac12$ have sum $0$ and squared sum $\frac25$. One sign is greater than $1$ and the other is negative, so no $1+3$ interior configuration is feasible.
+
+Thus the only interior possibility has multiplicities $2+2$. The two values are
+$$
+\frac12\pm\frac1{\sqrt{10}},
+$$
+which indeed have sum $2$ and squared sum $\frac75$. Their product is
+$$
+\left(\frac14-\frac1{10}\right)^2
+=\frac9{400}.
 $$
 
-Final Answer: $\boxed{\frac12}$
+Step 4: Analyze the upper-boundary configuration
+Now suppose a maximizer has a coordinate equal to $1$. Two coordinates cannot both equal $1$, because then $\sum z_i^2\geq2>\frac75$. After relabeling, let $z_1=1$. The remaining three positive numbers $a,b,c$ satisfy
+$$
+a+b+c=1,
+\qquad
+a^2+b^2+c^2=\frac25.
+$$
+We must maximize $abc$. An interior Lagrange-multiplier calculation for these three variables again shows that at most two distinct values occur. Since they cannot all be equal, two are equal. Write them as $u,u,v$. Then
+$$
+2u+v=1,
+\qquad
+2u^2+v^2=\frac25.
+$$
+Eliminating $v$ gives
+$$
+30u^2-20u+3=0,
+$$
+so
+$$
+u=\frac{10\pm\sqrt{10}}{30}.
+$$
+For
+$$
+u=\frac{10-\sqrt{10}}{30},
+\qquad
+v=\frac{5+\sqrt{10}}{15},
+$$
+the product is
+$$
+u^2v=\frac{35+\sqrt{10}}{1350}.
+$$
+The other sign gives
+$$
+\frac{35-\sqrt{10}}{1350},
+$$
+so the first boundary configuration is better. It also beats the only interior candidate, because
+$$
+\frac{35+\sqrt{10}}{1350}-\frac9{400}
+=\frac{37+8\sqrt{10}}{10800}>0.
+$$
+Therefore
+$$
+\det(P+Q)\leq\frac{35+\sqrt{10}}{1350}.
+$$
+
+Step 5: Realize the maximizing spectral data
+Let
+$$
+u=\frac{10-\sqrt{10}}{30},
+\qquad
+v=\frac{5+\sqrt{10}}{15},
+$$
+and choose
+$$
+(z_1,z_2,z_3,z_4)=(1,u,u,v).
+$$
+Set $x_i=1-z_i$. The identities in Step 4 give
+$$
+\sum_{i=1}^{4}x_i=2,
+\qquad
+\sum_{i=1}^{4}\left(x_i-\frac12\right)^2=\frac25.
+$$
+For each $i$, on an orthogonal two-dimensional block define
+$$
+P_i=
+\begin{pmatrix}
+1&0\\
+0&0
+\end{pmatrix},
+\qquad
+Q_i=
+\begin{pmatrix}
+x_i&\sqrt{x_i(1-x_i)}\\
+\sqrt{x_i(1-x_i)}&1-x_i
+\end{pmatrix}.
+$$
+Each $P_i$ and $Q_i$ is a rank-one orthogonal projection. Taking the orthogonal direct sums of the four blocks produces rank-$4$ orthogonal projections $P,Q$ on $\mathbb{R}^{8}$ satisfying the two required constraints, and
+$$
+\det(P+Q)=\prod_{i=1}^{4}(1-x_i)=u^2v
+=\frac{35+\sqrt{10}}{1350}.
+$$
+Thus the bound is attained.
+
+Final Answer: $\boxed{\frac{35+\sqrt{10}}{1350}}$
 
 ---
 
 ## Answer
 
-$\frac12$
+$\frac{35+\sqrt{10}}{1350}$
 
 ---
 
@@ -168,7 +214,8 @@ $\frac12$
 
 ## Solution Concepts
 
-- gram matrices
-- concavity of log determinant
-- circulant matrix eigenvalues
-- positive definite matrix completion
+- principal angles between subspaces
+- orthogonal projections
+- spectral theorem
+- lagrange multipliers
+- constrained product optimization
