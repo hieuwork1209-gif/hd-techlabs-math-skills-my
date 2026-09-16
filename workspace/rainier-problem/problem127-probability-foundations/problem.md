@@ -6,12 +6,15 @@ Let $m\ge2$, and let
 $$
 X_1,\dots,X_{m^2}\in\{-1,1\}
 $$
-be fair random variables. Assume that the family is $4$-wise independent, meaning that every subfamily of at most four distinct variables is mutually independent.
+be fair random variables. Assume that the family is $4$-wise independent, meaning that every subfamily of at most four distinct variables is mutually independent. Put
+$$
+S=X_1+\cdots+X_{m^2}.
+$$
 
-Determine the largest possible value of
-$$
-\mathbb P(X_1=X_2=\cdots=X_{m^2}=1).
-$$
+Determine the ordered pair consisting of:
+
+1. the largest possible value of $\mathbb P(X_1=\cdots=X_{m^2}=1)$;
+2. the support of $S$ for any joint law attaining that largest value.
 
 ---
 
@@ -22,10 +25,10 @@ $$
 | **Domain** | Probability and Statistics |
 | **Sub-domain** | Probability foundations |
 | **Problem Type** | Optimization |
-| **Answer Type** | Exact symbolic expression |
+| **Answer Type** | Tuple or ordered list |
 
 ---
 
 ## Domain Explanation
 
-This problem is primarily Probability and Statistics and Probability foundations: it asks for the sharp probability of a joint event under fair marginals and finite-order independence. The constraints determine the first four moments of the aggregate Rademacher sum, while sharpness requires constructing a joint law that realizes the extremal moment data.
+This problem is primarily Probability and Statistics and Probability foundations: it asks for a sharp joint-event probability under fair marginals and finite-order independence, together with the equality structure of the aggregate Rademacher sum. The independence constraints fix four moments of that sum, while sharpness requires both an extremal moment certificate and reconstruction of a law attaining equality.
