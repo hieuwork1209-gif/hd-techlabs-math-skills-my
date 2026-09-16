@@ -3,8 +3,8 @@
 Step 1: Reduce two Richardson steps to a quadratic minimax polynomial
 For a symmetric positive-definite matrix with eigenvalue $\lambda$, two Richardson steps with positive step sizes $\alpha,\beta$ multiply that eigendirection by
 $$
-p(\lambda)=(1-\alpha\lambda)(1-\beta\lambda)
-=1-s\lambda+t\lambda^2,
+p(\lambda)=\alpha\beta\lambda^2-(\alpha+\beta)\lambda+1
+=t\lambda^2-s\lambda+1,
 $$
 where
 $$
@@ -20,18 +20,32 @@ the worst-case two-step factor is
 $$
 \mathcal C_\gamma(\alpha,\beta)=\max_{\lambda\in E_\gamma}|p(\lambda)|.
 $$
-We will compare feasible quadratic polynomials with $p(0)=1$. The following elementary alternation observation gives global optimality whenever a candidate is found. Suppose a candidate $p$ has
+We will compare feasible quadratic polynomials with $p(0)=1$. Suppose a candidate $p$ satisfies
 $$
-p(x_1)=C,\qquad p(x_2)=-C,\qquad p(x_3)=C
+p(x_1)=C,
+\qquad
+p(x_2)=-C,
+\qquad
+p(x_3)=C
 $$
-for three points $0<x_1<x_2<x_3$ in $E_\gamma$, and $|p|\leq C$ on $E_\gamma$. If another quadratic $q$ with $q(0)=1$ satisfied $|q|<C$ on $E_\gamma$, then $q-p$ would be negative at $x_1$, positive at $x_2$, and negative at $x_3$. It would therefore have a zero in each of $(x_1,x_2)$ and $(x_2,x_3)$, in addition to the zero at $0$. A nonzero polynomial of degree at most $2$ cannot have three distinct zeros. Thus such a candidate is the unique minimax polynomial among all quadratics with constant term $1$.
+for three points $0<x_1<x_2<x_3$ in $E_\gamma$, and $|p|\leq C$ on $E_\gamma$. If a quadratic $q$ with $q(0)=1$ had strictly smaller maximum norm, then $q-p$ would be negative at $x_1$, positive at $x_2$, and negative at $x_3$, giving two positive zeros in addition to its zero at $0$, which is impossible for a nonzero quadratic.
+
+This also gives uniqueness at the same optimal value. If $|q|\leq C$, then for $r=q-p$,
+$$
+r(x_1)\leq0,
+\qquad
+r(x_2)\geq0,
+\qquad
+r(x_3)\leq0.
+$$
+Because $r(0)=0$, write $r(\lambda)=\lambda\ell(\lambda)$ with $\ell$ linear. On positive arguments, $r$ and $\ell$ have the same sign. A nonzero linear function cannot have the weak sign pattern nonpositive, nonnegative, nonpositive at three increasing points; any equality case would either give two distinct zeros of $\ell$ or force opposite signs on the two sides of its single zero. Hence $\ell\equiv0$ and $q=p$. Thus every three-point alternating candidate below is globally and uniquely minimax among quadratics with constant term $1$.
 
 Step 2: Solve the regime before the spectral gap removes the interior extremum
 First ignore the gap and optimize on the full interval $[1,6]$. For a convex quadratic minimax candidate, the two endpoint values must agree, so
 $$
 p(1)=p(6).
 $$
-Since $p(\lambda)=1-s\lambda+t\lambda^2$ with $t>0$, this equality forces the axis to be the midpoint
+Since $p(\lambda)=t\lambda^2-s\lambda+1$ with $t>0$, this equality forces the axis to be the midpoint
 $$
 \lambda_0=\frac{s}{2t}=\frac72.
 $$
@@ -57,7 +71,7 @@ s=\frac{56}{73}.
 $$
 Thus
 $$
-p_L(\lambda)=1-\frac{56}{73}\lambda+\frac8{73}\lambda^2.
+p_L(\lambda)=\frac8{73}\lambda^2-\frac{56}{73}\lambda+1.
 $$
 Its step sizes are
 $$
@@ -69,7 +83,7 @@ so the candidate is feasible. Because $p_L$ is convex, takes value $25/73$ at $1
 $$
 \gamma\leq\frac72,
 $$
-the three active points $1,7/2,6$ all lie in $E_\gamma$, and the alternation argument from Step 1 proves that $p_L$ remains the unique minimax polynomial. The first qualitative change can occur only when the moving endpoint $\gamma$ passes the stationary point $7/2$.
+the three active points $1,7/2,6$ all lie in $E_\gamma$, and Step 1 proves that $p_L$ remains the unique minimax polynomial. The first qualitative change can occur only when the moving endpoint $\gamma$ passes the stationary point $7/2$.
 
 Step 3: Solve the gap-active regime and locate its right endpoint
 Now assume $\gamma>7/2$. The vertex $7/2$ lies in the spectral gap, so the first point of the right spectral interval becomes the natural negative active point. Impose
@@ -86,7 +100,7 @@ D_\gamma=6+7\gamma-\gamma^2,
 $$
 $$
 p_M(\lambda)
-=1-\frac{14}{D_\gamma}\lambda+\frac2{D_\gamma}\lambda^2,
+=\frac2{D_\gamma}\lambda^2-\frac{14}{D_\gamma}\lambda+1,
 $$
 and
 $$
@@ -103,7 +117,7 @@ On $[\gamma,6]$, the polynomial is increasing because its axis is $7/2<\gamma$, 
 $$
 p_M(2)\geq-C_M(\gamma).
 $$
-A direct simplification gives
+Substitution and collection over the common denominator $D_\gamma$ gives
 $$
 p_M(2)+C_M(\gamma)
 =\frac{2(5-\gamma)(\gamma-2)}{6+7\gamma-\gamma^2}.
@@ -129,7 +143,7 @@ p(6)=C.
 $$
 Solving gives
 $$
-p_R(\lambda)=1-\frac78\lambda+\frac18\lambda^2,
+p_R(\lambda)=\frac18\lambda^2-\frac78\lambda+1,
 \qquad
 C_R=\frac14.
 $$
@@ -145,11 +159,11 @@ p_R(5)=-\frac14,
 \qquad
 p_R(6)=\frac14.
 $$
-Hence for every $\gamma\geq5$, the restriction to $[\gamma,6]$ also satisfies $|p_R|\leq1/4$. The active points on the open regime $5<\gamma\leq6$ are
+Hence for every $\gamma\geq5$, the restriction to $[\gamma,6]$ also satisfies $|p_R|\leq1/4$. The active points on the open regime $5<\gamma<6$ are
 $$
 \{1,2,6\},
 $$
-and the alternation argument proves that $p_R$ is uniquely minimax. At $\gamma=5$, both $2$ and $5$ are active at the negative level, so the middle and final formulas meet continuously.
+and Step 1 proves that $p_R$ is uniquely minimax. At $\gamma=5$, both $2$ and $5$ are active at the negative level, so the middle and final formulas meet continuously.
 
 Step 5: Identify the two phase transitions and the active-set patterns
 Step 2 shows that the interior stationary maximizer at $7/2$ remains active precisely until the moving right interval starts at that point. Step 3 shows that the moving endpoint $\gamma$ then remains active until $\gamma=5$, where the fixed point $2$ reaches the same negative extremal value. Step 4 shows that beyond this point the active triple is fixed.
@@ -168,6 +182,7 @@ $$
 \qquad
 \{1,2,6\}.
 $$
+At $\gamma=7/2$ the stationary point is exactly the moving endpoint, while at $\gamma=5$ the active set is $\{1,2,5,6\}$.
 
 Final Answer: $\boxed{\left(\frac{7}{2},5,\left\{1,\frac{7}{2},6\right\},\{1,\gamma,6\},\{1,2,6\}\right)}$
 
