@@ -50,7 +50,16 @@ $$
 B_{ij}=|q_{ij}|.
 $$
 
-For an orthogonal matrix of determinant $1$, complementary $2\times2$ minors have equal absolute value. Applying this to the first two rows and last two rows of $O$ gives
+Let $I\subset\{1,2,3,4\}$ have size $2$, let $I^c$ be its complement, and let $R_0=\{1,2\}$. Jacobi's complementary-minor identity gives
+$$
+\det O[R_0,I]
+=\pm\det(O)\,\det(O^{-1})[I^c,R_0^c].
+$$
+Here $\det O=1$, $O^{-1}=O^T$, and $R_0^c=\{3,4\}$. Therefore
+$$
+|\det O[R_0,I]|=|\det O[R_0^c,I^c]|.
+$$
+Taking $I=\{1,2\},\{1,3\},\{1,4\}$ gives
 $$
 |q_{12}|=|p_{34}|,
 \quad
