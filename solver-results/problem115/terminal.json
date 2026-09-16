@@ -1,0 +1,8 @@
+{
+  "problem": "problem115",
+  "state": "MAIN_READY_FOR_RAINIER",
+  "problem_blob_sha": "f13db24b273cc365f2f0a875744c959ce4d5d48b",
+  "solution_blob_sha": "a6c6a0f4de8e5d61dc917761d92e0c4cfbedad20",
+  "solver_backend": "local_watcher",
+  "solver_evidence": "GPT-5.5 Medium returned a materially wrong solution for the exact problem blob; it incorrectly excluded rank-1 orthogonal involutions."
+}
