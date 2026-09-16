@@ -2,67 +2,51 @@
 
 ## LaTeX (Normalized)
 
-Let
+Let $n\geq3$ and let $A_n\in\mathbb R^{n\times n}$ be the path Hessian
 $$
-U=\frac{1}{\sqrt{2}}\begin{bmatrix}1&-1\\1&1\end{bmatrix}.
+A_n=
+\begin{bmatrix}
+2&-1&&&\\
+-1&2&-1&&\\
+&\ddots&\ddots&\ddots&\\
+&&-1&2&-1\\
+&&&-1&2
+\end{bmatrix}.
 $$
-There are two independent uncertainties: an overall curvature scale $\lambda\in[\frac{1}{2},2]$ and an anisotropy parameter $\mu\in[1,4]$. Define
+Define
 $$
-Q_{\lambda,\mu}
-=\lambda\begin{bmatrix}\mu&0\\0&\frac{4}{\mu}\end{bmatrix},
-\qquad
-R_{\lambda,\mu}=UQ_{\lambda,\mu}U^T,
+f_n(x)=\frac12x^TA_nx
+\qquad(x\in\mathbb R^n).
 $$
-and
-$$
-f_{\lambda,\mu}(x)=\frac{1}{2}x^TQ_{\lambda,\mu}x,
-\qquad
-g_{\lambda,\mu}(x)=\frac{1}{2}x^TR_{\lambda,\mu}x
-\qquad(x\in\mathbb{R}^2).
-$$
-Thus $\lambda$ changes the common scale while $\mu$ changes the reciprocal principal curvatures.
 
-For $\rho>0$, define
+Choose a probability vector
 $$
-P_{h,\rho}(v)=\operatorname*{argmin}_{x\in\mathbb{R}^2}
-\left(h(x)+\frac{\rho}{2}\|x-v\|_2^2\right).
-$$
-Using one common parameter pair $(\rho,\theta)$ for every $(\lambda,\mu)\in[\frac{1}{2},2]\times[1,4]$, with $0<\theta\leq2$, perform one relaxed Douglas-Rachford step
-$$
-y=P_{f_{\lambda,\mu},\rho}(z),
+p=(p_1,\ldots,p_n),
 \qquad
-w=P_{g_{\lambda,\mu},\rho}(2y-z),
+p_i\geq0,
 \qquad
-z^+=z+\theta(w-y).
+\sum_{i=1}^n p_i=1.
 $$
-For fixed $(\lambda,\mu)$ define
+Starting from a nonzero $x$, perform one randomized exact coordinate-descent step as follows: sample $I\in\{1,\ldots,n\}$ with $\mathbb P(I=i)=p_i$, and then exactly minimize $f_n$ along coordinate $I$. Equivalently,
 $$
-\kappa_{\lambda,\mu}(\rho,\theta)
-=\sup_{z\ne0}\frac{\|z^+\|_2}{\|z\|_2},
+x^+=x-\frac{(A_nx)_I}{2}e_I,
 $$
-and define the robust worst-case contraction
+where $e_I$ is the $I$th standard basis vector.
+
+Define the worst-case expected one-step energy contraction
 $$
-\mathcal C(\rho,\theta)
-=\sup_{(\lambda,\mu)\in[\frac{1}{2},2]\times[1,4]}
-\kappa_{\lambda,\mu}(\rho,\theta).
+\Gamma_n(p)
+=
+\sup_{x\ne0}
+\frac{\mathbb E[f_n(x^+)\mid x]}{f_n(x)}.
 $$
-Also define the worst-case uncertainty set
+Determine the unique probability vector $p^*$ minimizing $\Gamma_n(p)$, and determine the exact optimal value
 $$
-\mathcal W(\rho,\theta)
-=\left\{(\lambda,\mu)\in[\frac{1}{2},2]\times[1,4]:
-\kappa_{\lambda,\mu}(\rho,\theta)=\mathcal C(\rho,\theta)\right\}.
-$$
-Determine exactly
-$$
-\mathcal C_*:=\min_{\rho>0,\ 0<\theta\leq2}\mathcal C(\rho,\theta),
-$$
-determine the unique minimizing pair $(\rho_*,\theta_*)$, and determine the complete set
-$$
-\mathcal W_*:=\mathcal W(\rho_*,\theta_*).
+\Gamma_n^*:=\min_p\Gamma_n(p).
 $$
 Give the final answer as
 $$
-(\rho_*,\theta_*,\mathcal C_*,\mathcal W_*).
+\left((p_i^*)_{i=1}^n,\Gamma_n^*\right).
 $$
 
 ---
@@ -80,4 +64,4 @@ $$
 
 ## Domain Explanation
 
-This problem asks for robust parameter tuning of relaxed Douglas-Rachford splitting under simultaneous scale and anisotropy uncertainty, together with identification of all uncertainty realizations attaining the optimal worst-case contraction. The primary task is therefore a minimax tuning and extremal-set problem in Optimization and Numerical Mathematics and Numerical optimization. Linear Algebra, especially proximal reflections and operator norms, supplies the certificates for the robust bounds and is subordinate to the numerical-optimization objective.
+This problem asks for the optimal sampling distribution in randomized exact coordinate descent for a structured strongly convex quadratic, minimizing the worst-case expected one-step contraction in the objective energy. The primary task is therefore algorithm-parameter optimization and convergence-rate analysis in Optimization and Numerical Mathematics and Numerical optimization. Linear Algebra, through generalized Rayleigh quotients and positive-semidefinite certificates, is used to prove the sharp rate and uniqueness and is subordinate to the numerical-optimization objective.
