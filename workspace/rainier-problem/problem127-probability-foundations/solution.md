@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Reduce the upper bound to four moments of the Rademacher sum
+Step 1: Reduce the problem to four moments of the Rademacher sum
 Let
 $$
 n=m^2,
@@ -27,7 +27,7 @@ $$
 $$
 The event that all variables equal $1$ is exactly the event $S=n$.
 
-Step 2: Build a quartic lattice certificate
+Step 2: Build a sharp quartic lattice certificate
 Since $n=m^2$, the integers $n$ and $m$ have the same parity. Every value of $S$ therefore has the same parity as $m$. Define
 $$
 Q(s)=(s+m+2)(s+m)(s-m+2)(s-m).
@@ -53,7 +53,7 @@ $$
 \mathbb P(S=n)\le\frac{\mathbb E Q(S)}{Q(n)}.
 $$
 
-It is useful to rewrite
+Rewrite
 $$
 Q(s)=\bigl((s+1)^2-(m+1)^2\bigr)\bigl((s+1)^2-(m-1)^2\bigr).
 $$
@@ -82,9 +82,18 @@ Q(n)
 $$
 Thus every admissible law satisfies
 $$
-\mathbb P(X_1=\cdots=X_n=1)
+\mathbb P(S=n)
 \le
 \frac{2}{m^4+3m^2+4}.
+$$
+
+Moreover, if equality holds, then the nonnegative random variable
+$$
+\frac{Q(S)}{Q(n)}-\mathbf 1_{\{S=n\}}
+$$
+has expectation $0$, so it vanishes almost surely. Therefore every value of $S$ different from $n$ that has positive probability must be a zero of $Q$. Hence every maximizing law satisfies
+$$
+\operatorname{supp}(S)\subseteq\{-m-2,-m,m-2,m,n\}.
 $$
 
 Step 3: Construct a moment distribution attaining the bound
@@ -110,7 +119,7 @@ Taking expectation at $x=G$ yields
 $$
 \mathbb E h(G)=\sum_{t\in T}p_t h(t).
 $$
-In particular, the numbers $p_t$ reproduce all moments of $G$ through degree $4$.
+Thus the numbers $p_t$ reproduce all moments of $G$ through degree $4$.
 
 Using
 $$
@@ -137,7 +146,7 @@ and
 $$
 p_n=\frac{2}{m^4+3m^2+4}.
 $$
-All five numbers are nonnegative for $m\ge2$. Since the interpolation identity applied to $h\equiv1$ gives
+All five numbers are strictly positive for $m\ge2$. Since the interpolation identity applied to $h\equiv1$ gives
 $$
 \sum_{t\in T}p_t=1,
 $$
@@ -145,49 +154,54 @@ they define a probability distribution on $T$. Notice also that
 $$
 \ell_n(x)=\frac{Q(x)}{Q(n)},
 $$
-so the formula for $p_n$ agrees with the upper-bound calculation in Step 2.
+so the displayed value of $p_n$ agrees with the upper-bound calculation in Step 2.
 
-Step 4: Lift the moment distribution to an exchangeable $4$-wise independent law
+Step 4: Lift the moment distribution to a $4$-wise independent joint law and close the equality case
 Choose a random variable $S$ taking values in $T$ with probabilities $p_t$ from Step 3, and put
 $$
 K=\frac{n+S}{2}.
 $$
 Because every element of $T$ has the same parity as $n$, $K$ is integer-valued in $\{0,1,\dots,n\}$.
 
-Conditional on $K=k$, choose uniformly among all sign vectors in $\{-1,1\}^n$ having exactly $k$ coordinates equal to $1$. This produces an exchangeable law for $(X_1,\dots,X_n)$.
+Conditional on $K=k$, choose uniformly among all sign vectors in $\{-1,1\}^n$ having exactly $k$ coordinates equal to $1$. The resulting joint law is exchangeable.
 
 The distribution of $S=2K-n$ has the same moments through degree $4$ as the independent Rademacher sum $G$. Therefore $K$ has the same moments, and hence the same falling-factorial moments through degree $4$, as a $\operatorname{Bin}(n,1/2)$ random variable:
 $$
 \mathbb E(K)_j=\frac{(n)_j}{2^j}
 \qquad(0\le j\le4).
 $$
-For distinct indices $i_1,\dots,i_j$ with $j\le4$, exchangeability and the conditional uniform construction give
+For distinct indices $i_1,\dots,i_j$ with $j\le4$, the conditional uniform construction gives
 $$
 \mathbb P(X_{i_1}=\cdots=X_{i_j}=1)
 =\frac{\mathbb E(K)_j}{(n)_j}
 =2^{-j}.
 $$
-Mixed sign patterns follow by inclusion-exclusion. If among $j$ specified coordinates exactly $r$ are required to be $1$ and the other $j-r$ are required to be $-1$, then
+If among $j$ specified coordinates exactly $r$ are required to be $1$ and the other $j-r$ are required to be $-1$, inclusion-exclusion gives
 $$
 \sum_{q=0}^{j-r}(-1)^q\binom{j-r}{q}2^{-(r+q)}
 =2^{-j}.
 $$
 Thus every set of at most four coordinates is mutually independent and each coordinate is fair.
 
-Finally, all coordinates equal $1$ exactly when $S=n$, so the constructed law has
+For this law,
 $$
 \mathbb P(X_1=\cdots=X_n=1)=p_n
-=\frac{2}{m^4+3m^2+4}.
+=\frac{2}{m^4+3m^2+4},
 $$
-This attains the upper bound from Step 2.
+so the upper bound is attained and $\operatorname{supp}(S)=T$.
 
-Final Answer: $\boxed{\frac{2}{m^4+3m^2+4}}$
+Finally, Step 2 shows that every maximizing law has support contained in $T$. On five fixed nodes, the five moment equations for degrees $0,1,2,3,4$ determine the five masses uniquely: their coefficient matrix is the Vandermonde matrix of the distinct nodes in $T$, hence invertible. The unique masses are exactly the strictly positive $p_t$ displayed in Step 3. Therefore every maximizing law has
+$$
+\operatorname{supp}(S)=T.
+$$
+
+Final Answer: $\boxed{\left(\frac{2}{m^4+3m^2+4},\{-m-2,-m,m-2,m,m^2\}\right)}$
 
 ---
 
 ## Answer
 
-$\frac{2}{m^4+3m^2+4}$
+$\left(\frac{2}{m^4+3m^2+4},\{-m-2,-m,m-2,m,m^2\}\right)$
 
 ---
 
@@ -195,14 +209,14 @@ $\frac{2}{m^4+3m^2+4}$
 
 **Problem Type:** Optimization
 
-**Answer Type:** Exact symbolic expression
+**Answer Type:** Tuple or ordered list
 
 ---
 
 ## Solution Concepts
 
-- exchangeable Rademacher variables
 - four-wise independence
-- moment extremal polynomial
+- Rademacher moment method
+- extremal polynomial certificate
 - Lagrange interpolation
 - factorial moments
