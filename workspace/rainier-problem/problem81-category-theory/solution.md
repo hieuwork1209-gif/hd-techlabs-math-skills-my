@@ -1,168 +1,178 @@
 ## Steps
 
-Step 1: Compute the fixed-object counts for each iterate
-Let $X$ be a finite set and let $g:X\to X$. For the adjoint triple
+Step 1: Identify the two Kan-norm maps
+Let $k=\mathbb F_p$, let $G=C_{p^2}=\langle g\rangle$, and let $H=\langle g^p\rangle\cong C_p$. For a finite group $Q$ and a functor $M:BQ\to\operatorname{Vect}_k$, left and right Kan extension along $BQ\to *$ are
 $$
-\exists_g\dashv g^{-1}\dashv\forall_g,
+M_Q=M/\langle qm-m:q\in Q,m\in M\rangle,
+\qquad
+M^Q=\{m:qm=m\text{ for all }q\in Q\}.
 $$
-put
+The norm comparison is
 $$
-C_g=g^{-1}\exists_g,\qquad D_g=\forall_g g^{-1}.
-$$
-For $S\subseteq X$,
-$$
-C_g(S)=g^{-1}(g(S)),
-$$
-so $C_g(S)=S$ exactly when $S$ is a union of fibers of $g$. Hence
-$$
-|\operatorname{Fix}(C_g)|=2^{|g(X)|}.
-$$
-Also
-$$
-D_g(S)=S\cup(X\setminus g(X)).
-$$
-A set fixed by both $C_g$ and $D_g$ must be a union of fibers of $g$ and must contain $X\setminus g(X)$. Therefore every fiber meeting $X\setminus g(X)$ is forced, while every fiber contained in $g(X)$ is optional. Define
-$$
-u_g=\#\{y\in g(X):g^{-1}(y)\subseteq g(X)\}.
-$$
-Then
-$$
-|\operatorname{Fix}(C_g)\cap\operatorname{Fix}(D_g)|=2^{u_g}.
-$$
-We apply this to $g=f^k$.
-
-Step 2: Derive the sharp lower bounds for the image sizes of the iterates
-Let
-$$
-M=3d+2,\qquad Y_k=f^k(X),\qquad r_k=|Y_k|.
-$$
-The hypothesis gives
-$$
-r_1=2d+2.
-$$
-For every $k\ge1$, each point of $Y_k\setminus Y_{k+1}$ has no preimage in $Y_k$, but it does have a preimage in $X$ because it lies in $Y_k=f^k(X)$. Hence distinct points of $Y_k\setminus Y_{k+1}$ require distinct preimages in $X\setminus Y_k$, so
-$$
-r_k-r_{k+1}\le M-r_k.
-$$
-Equivalently,
-$$
-r_{k+1}\ge2r_k-M.
-$$
-Thus
-$$
-r_2\ge2(2d+2)-(3d+2)=d+2.
-$$
-Every endomap of a finite set has a periodic point, and the condition $f(x)\ne x$ excludes $1$-cycles, so every $Y_k$ contains at least two periodic points. Hence
-$$
-r_k\ge2\qquad(k\ge3).
-$$
-By Step 1,
-$$
-\sum_{k=1}^{M}|\operatorname{Fix}(C_k)|
-=\sum_{k=1}^{M}2^{r_k}
-\ge2^{2d+2}+2^{d+2}+(M-2)\cdot4.
-$$
-Therefore
-$$
-A_d\ge2^{2d+2}+2^{d+2}+12d.
+\mathsf N_Q:M_Q\to M^Q,
+\qquad
+[m]\longmapsto\sum_{q\in Q}qm.
 $$
 
-Step 3: Classify equality in the first optimization
-Equality requires
+Fix a functor $F:BG\to\operatorname{Vect}_k$ with $F(*)=V$, $\dim V=N$, and write the action of $g$ as $A$. Since
 $$
-r_1=2d+2,\qquad r_2=d+2,\qquad r_k=2\quad(k\ge3).
+A^{p^2}=I
 $$
+and over $k$
+$$
+x^{p^2}-1=(x-1)^{p^2},
+$$
+we may write
+$$
+A=I+T,
+\qquad
+T^{p^2}=0.
+$$
+Thus $T$ has a Jordan type $\lambda$ whose parts are at most $p^2$, and conversely every such nilpotent $T$ gives a functor.
+
+For $G$, the norm operator on $V$ is
+$$
+I+A+\cdots+A^{p^2-1}=T^{p^2-1}.
+$$
+Indeed
+$$
+(A-I)(I+A+\cdots+A^{p^2-1})=A^{p^2}-I=T^{p^2},
+$$
+and the polynomial identity in characteristic $p$ gives the displayed equality. On a Jordan block of size $s\le p^2$, the rank of $T^{p^2-1}$ is $1$ if $s=p^2$ and $0$ otherwise. Hence
+$$
+\alpha(F)=\operatorname{rank}\mathsf N_G
+$$
+is exactly the number of parts of $\lambda$ equal to $p^2$.
+
+Step 2: Optimize the $G$-norm rank
 Put
 $$
-L_0=X\setminus Y_1,\qquad L_1=Y_1\setminus Y_2,\qquad L_2=Y_2\setminus Y_3,\qquad C=Y_3.
+R=p(p-1)+r,
+\qquad
+N=ap^2+R,
+$$
+where $1\le r\le p-1$. Then
+$$
+0<R<p^2.
+$$
+Therefore a partition of $N$ with all parts at most $p^2$ contains at most $a$ parts equal to $p^2$. Thus
+$$
+\alpha(F)\le a.
+$$
+Equality holds exactly when
+$$
+\lambda=(p^2,\ldots,p^2)\sqcup\mu,
+$$
+with $a$ copies of $p^2$ and with $\mu$ a partition of $R$.
+
+Hence the first lexicographic maximum is
+$$
+A=a.
+$$
+
+Step 3: Compute and optimize the $H$-norm rank
+On restriction to $H$, the generator $g^p$ acts as
+$$
+A^p=(I+T)^p=I+T^p.
+$$
+Therefore the $H$-norm operator is
+$$
+I+A^p+A^{2p}+\cdots+A^{(p-1)p}
+=(T^p)^{p-1}=T^{p(p-1)}.
+$$
+Set
+$$
+Q=p(p-1).
+$$
+On a Jordan block of size $s$, this operator has rank
+$$
+(s-Q)_+=\max\{s-Q,0\}.
+$$
+In particular a block of size $p^2$ contributes $p$.
+
+Inside the equality class $\alpha(F)=a$, write the residual partition as
+$$
+\mu=(s_1,\ldots,s_t),
+\qquad
+\sum_i s_i=R=Q+r.
 $$
 Then
 $$
-|L_0|=|L_1|=|L_2|=d,\qquad |C|=2.
+\beta(F)=ap+\sum_i(s_i-Q)_+.
 $$
-Because $L_1$ has no preimages in $Y_1$ and $|L_0|=|L_1|$, equality in the drop bound forces
+Because $R<2Q$ for odd $p$, at most one part can exceed $Q$. If no part exceeds $Q$, the residual contribution is $0$. If exactly one part $s_j$ exceeds $Q$, then
 $$
-f:L_0\to L_1
+\sum_i(s_i-Q)_+=s_j-Q\le R-Q=r.
 $$
-to be a bijection. Similarly,
+Equality requires $s_j=R$, so there are no other residual parts. Thus the second lexicographic maximum is
 $$
-f:L_1\to L_2
+B=ap+r,
 $$
-is a bijection. Since $Y_4=f(Y_3)$ also has size $2$, the restriction $f|_C$ is a permutation of $C$. The global fixed-point-free hypothesis forces it to be the transposition. Finally every point of $L_2$ maps into $C$, with no further restriction.
-
-Conversely, every map with this four-layer form has image sizes
+and it is attained for one and only one Jordan type,
 $$
-2d+2,\ d+2,\ 2,\ 2,\ldots,
-$$
-so it attains the lower bound. Hence
-$$
-A_d=2^{2d+2}+2^{d+2}+12d.
+\lambda_*=(p^2)^a\sqcup(R).
 $$
 
-Step 4: Optimize the simultaneous fixed-object count inside the equality class
-Fix a first-stage minimizer. For $k=1$, the points of $L_1$ have fibers meeting $L_0$, so those $d$ fibers are forced. The fibers over $L_2$ and over the two points of $C$ lie entirely inside $Y_1$. Thus
+Step 4: Reduce the count to one unipotent conjugacy class
+Two functors with the fixed object value $V$ are distinct here whenever the corresponding matrices $A$ are distinct, even if they are naturally isomorphic. Since every maximizing functor has Jordan type $\lambda_*$, all maximizing generator actions form one conjugacy class in $GL_N(k)$.
+
+Let
 $$
-u_f=d+2
+\Gamma_j(p)=|GL_j(\mathbb F_p)|.
 $$
-and
+Then
 $$
-|\operatorname{Fix}(C_1)\cap\operatorname{Fix}(D_1)|=2^{d+2}.
+K=\frac{\Gamma_N(p)}{|C_{GL_N(k)}(A)|}.
+$$
+It remains to compute the centralizer.
+
+Step 5: Compute the centralizer self-containedly
+View $V$ as a $k[t]$-module with $t$ acting by $T$. For the maximizing type,
+$$
+V\cong U_{p^2}^{\oplus a}\oplus U_R,
+\qquad
+U_s=k[t]/(t^s).
+$$
+Since
+$$
+\dim_k\operatorname{Hom}_{k[t]}(U_s,U_t)=\min\{s,t\},
+$$
+the endomorphism algebra
+$$
+E=\operatorname{End}_{k[t]}(V)
+$$
+has dimension
+$$
+S=a^2p^2+(2a+1)R.
 $$
 
-For $k=2$, every fiber over $L_2$ contains a point of $L_0$, so those fibers are forced. A point $c\in C$ has an $f^2$-preimage in $L_1$ exactly when $c\in f(L_2)$. Therefore
+The two indecomposable summand types $U_{p^2}$ and $U_R$ are nonisomorphic. Modulo the Jacobson radical, endomorphisms retain only the induced scalar maps on their simple tops, so
 $$
-u_{f^2}=2-|f(L_2)|.
+E/\operatorname{rad}E\cong M_a(k)\times k.
 $$
-Since $L_2\ne\varnothing$, this is at most $1$, with equality exactly when $f$ is constant on $L_2$. Hence
-$$
-|\operatorname{Fix}(C_2)\cap\operatorname{Fix}(D_2)|\le2,
-$$
-with equality exactly in that constant case.
-
-For every $k\ge3$, we have $Y_k=C$. Pick $x\in L_2$ and let $y\in L_1$ be its unique preimage. Then
-$$
-f^k(y)=f^{k-1}(x),
-$$
-and once the orbit has entered the $2$-cycle, these two values are the two distinct points of $C$. Thus both $f^k$-fibers over $C$ contain transient points outside $Y_k$, so
-$$
-u_{f^k}=0
-$$
-and the simultaneous fixed-object count is $1$.
-
-Therefore, among the first-stage minimizers,
-$$
-B_d=2^{d+2}+2+(M-2)=2^{d+2}+3d+2,
-$$
-and equality holds exactly when all points of $L_2$ have the same image in $C$.
-
-Step 5: Count all maps attaining both extrema
-Choose the $2$-cycle $C$ in
-$$
-\binom{M}{2}
-$$
-ways. Partition the remaining $3d$ points into the ordered layers $L_2,L_1,L_0$, each of size $d$, in
-$$
-\frac{(3d)!}{(d!)^3}
-$$
-ways. Choose the bijections
-$$
-L_0\to L_1,\qquad L_1\to L_2
-$$
-in $(d!)^2$ ways, and choose the common target in $C$ of all points of $L_2$ in $2$ ways. The transposition on $C$ is then forced.
-
 Hence
 $$
-K_d=\binom{3d+2}{2}\frac{(3d)!}{(d!)^3}(d!)^2\cdot2
-=\frac{(3d+2)!}{d!}.
+\dim_k\operatorname{rad}E=S-a^2-1.
+$$
+An endomorphism is invertible exactly when its image in the semisimple quotient is invertible. Therefore
+$$
+|E^\times|
+=p^{S-a^2-1}\,\Gamma_a(p)\,(p-1).
+$$
+But $E^\times$ is exactly the centralizer of $A=I+T$ in $GL_N(k)$. Consequently
+$$
+K=
+\frac{\Gamma_N(p)}
+{p^{a^2p^2+(2a+1)R-a^2-1}\Gamma_a(p)(p-1)}.
 $$
 
-Final Answer: $\boxed{\left(2^{2d+2}+2^{d+2}+12d,\;2^{d+2}+3d+2,\;\frac{(3d+2)!}{d!}\right)}$
+Final Answer: $\boxed{\left(a,ap+r,\frac{\Gamma_N(p)}{p^{a^2p^2+(2a+1)R-a^2-1}\Gamma_a(p)(p-1)}\right)}$
 
 ---
 
 ## Answer
 
-$\left(2^{2d+2}+2^{d+2}+12d,\;2^{d+2}+3d+2,\;\frac{(3d+2)!}{d!}\right)$
+$\left(a,ap+r,\frac{\Gamma_N(p)}{p^{a^2p^2+(2a+1)R-a^2-1}\Gamma_a(p)(p-1)}\right)$
 
 ---
 
@@ -176,8 +186,8 @@ $\left(2^{2d+2}+2^{d+2}+12d,\;2^{d+2}+3d+2,\;\frac{(3d+2)!}{d!}\right)$
 
 ## Solution Concepts
 
-- adjoint triples on Boolean lattices
-- closure monads from iterated maps
-- fixed objects of monads
-- functional graph image layers
-- extremal image-rank profiles
+- left and right Kan extensions
+- norm maps from coinvariants to invariants
+- restriction along subgroup inclusions
+- unipotent Jordan types
+- centralizers of finite-length modules
