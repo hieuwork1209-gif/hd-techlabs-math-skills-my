@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-category-theory/problem.md",
+  "source_commit_sha": "ab1bd9ce29d20eddd79f15ba247b74361f5a371e",
+  "problem_blob_sha": "079a5caca0835f6891a15248447e1d6e981dcdfe",
+  "statement_sha256": "ee63c0dc1a6669585d6bfb74f621da2f4216677bc7d5622cd74a98edd5a9715a",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T14:21:00+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let the left and right parts of the tree be \\(X=[n]\\) and \\(Y=[n]\\). Since \\(L\\) preserves unions,\n\n\\[\nL(S)=\\bigcup_{i\\in S}L(\\{i\\})=N(S),\n\\]\n\nwhere \\(N(S)\\subseteq Y\\) is the right-neighborhood of \\(S\\) in the bipartite tree \\(G_L\\). The right adjoint is therefore\n\n\\[\nR(T)=\\{i\\in X:N(i)\\subseteq T\\}.\n\\]\n\nHence\n\n\\[\nC(S)=RL(S)=\\{i\\in X:N(i)\\subseteq N(S)\\}.\n\\]\n\nSo \\(S\\subseteq X\\) is closed iff every \\(i\\notin S\\) has at least one neighbor outside \\(N(S)\\).\n\nA useful reformulation: proper closed sets are exactly those \\(S\\neq X\\) for which \\(N(S)\\neq Y\\) and no outside left-vertex has all its neighbors inside \\(N(S)\\).\n\nThe extremal counting fact for bipartite trees with \\(|X|=|Y|=n\\) is:\n\n\\[\n\\#\\{S\\subsetneq X:C(S)=S\\}\\le 2^{n-1}.\n\\]\n\nOne proves this by pruning a pendant right vertex and inducting: deleting a right leaf \\(y\\) and its left neighbor \\(x\\), the remaining branches are independent once we record whether \\(x\\) is chosen. The closed-set condition says exactly that at least one boundary branch must remain “uncovered” unless the set is all of \\(X\\). This gives the recurrence\n\n\\[\ng(T)\\le 2^{n-2}+2^{n-2}=2^{n-1}\n\\]\n\nfor the number \\(g(T)\\) of proper closed sets. Equality occurs precisely in the rooted-star construction below. Since \\(X\\) itself is always closed,\n\n\\[\nf(L,R)\\le 2^{n-1}+1.\n\\]\n\nThis upper bound is sharp. Take one left vertex \\(c\\), connect it to every right vertex \\(r_1,\\dots,r_n\\), and for \\(i=1,\\dots,n-1\\), add a left leaf \\(\\ell_i\\) adjacent only to \\(r_i\\). This has\n\n\\[\nn+(n-1)=2n-1\n\\]\n\nedges and is a tree. Every subset of \\(\\{\\ell_1,\\dots,\\ell_{n-1}\\}\\) is closed, since \\(r_n\\) is not in its neighborhood, so \\(c\\) is not forced. Any closed set containing \\(c\\) has neighborhood all of \\(Y\\), so it closes to all of \\(X\\). Thus\n\n\\[\nM_n=2^{n-1}+1.\n\\]\n\nFor the minimum, \\(\\varnothing\\) and \\(X\\) are always closed. Also, because the tree has a left leaf \\(\\ell\\), the closure of \\(\\{\\ell\\}\\) is a nonempty proper closed set: it cannot be all of \\(X\\), since otherwise all left vertices would only see the single neighbor of \\(\\ell\\), contradicting connectedness with \\(n\\ge2\\). Hence always\n\n\\[\nf(L,R)\\ge 3.\n\\]\n\nThis is sharp. Let one right vertex \\(r\\) be adjacent to \\(n-1\\) left leaves \\(\\ell_1,\\dots,\\ell_{n-1}\\), and let the remaining left vertex \\(c\\) be adjacent to every right vertex. Then the only closed sets are\n\n\\[\n\\varnothing,\\qquad \\{\\ell_1,\\dots,\\ell_{n-1}\\},\\qquad X.\n\\]\n\nSo \\(m_n=3\\).\n\nTherefore, for every \\(n\\ge2\\),\n\n\\[\n\\boxed{(M_n,m_n)=\\left(2^{\\,n-1}+1,\\ 3\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T14:24:12+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/079a5caca083.json"
+}
