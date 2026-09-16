@@ -148,7 +148,7 @@ $$
 $$
 Therefore these poles contribute
 $$
-\frac{\sqrt{\pi}}{n^{\frac{1}{2}}-\frac{6\pi}{n}.
+\frac{\sqrt{\pi}}{n^{\frac{1}{2}}}-\frac{6\pi}{n}.
 $$
 
 Step 4: Resolve the double pole at $s=\frac{3}{2}$
