@@ -90,7 +90,11 @@ $$
 \qquad
 n_1=\frac{a(a+b)}{2}.
 $$
-Since $a(a^2+b^2)\leq a^2+b^2\leq a+b$, we have $\|n\|_2^2\leq n_1$. The same convexity argument therefore gives
+Since $a(a^2+b^2)\leq a^2+b^2\leq a+b$, we have $\|n\|_2^2\leq n_1$. Therefore
+$$
+\|(1-s)e_1+sn\|_2^2
+$$
+is a convex quadratic whose derivative at $s=1$ is nonpositive, so it also decreases on $0<s\leq1$. Hence
 $$
 \|T_{t,1,s}\|_2
 \geq\|Me_1\|_2
@@ -175,9 +179,25 @@ If $X=\log t$, $Y=\log\mu$, and $L=\log 4$, then
 $$
 x=\frac{X-Y}{2},
 \qquad
-y=\frac{X+Y-L}{2}.
+y=\frac{X+Y-L}{2},
 $$
-The square $0\leq X,Y\leq L$ is therefore equivalent to
+so inversely
+$$
+X=x+y+\frac{L}{2},
+\qquad
+Y=-x+y+\frac{L}{2}.
+$$
+Thus $0\leq X,Y\leq L$ is equivalent to
+$$
+|x+y|\leq\frac{L}{2},
+\qquad
+|y-x|\leq\frac{L}{2}.
+$$
+Since
+$$
+\max\{|x+y|,|y-x|\}=|x|+|y|,
+$$
+the square $0\leq X,Y\leq L$ is exactly the diamond
 $$
 |x|+|y|\leq\log 2.
 $$
