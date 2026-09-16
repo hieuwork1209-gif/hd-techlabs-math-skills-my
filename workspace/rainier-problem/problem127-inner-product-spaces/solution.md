@@ -19,8 +19,7 @@ $$
 Let
 $$
 R=
-\begin{pmatrix}
-u_1&u_2&u_3&u_4\\
+\begin{pmatrix}u_1&u_2&u_3&u_4\\
 v_1&v_2&v_3&v_4
 \end{pmatrix}.
 $$
@@ -39,8 +38,7 @@ Step 2: Relate the areas in $L^\perp$ to complementary minors
 Choose an oriented orthonormal basis $r,s$ of $L^\perp$ so that the matrix
 $$
 O=
-\begin{pmatrix}
-u^T\\ v^T\\ r^T\\ s^T
+\begin{pmatrix}u^T\\ v^T\\ r^T\\ s^T
 \end{pmatrix}
 $$
 lies in $SO(4)$. Put
