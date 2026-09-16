@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-inner-product-spaces/problem.md",
+  "source_commit_sha": "22f4c7c1976a107d23276d7d0884275ad690bd4a",
+  "problem_blob_sha": "abf10c76d9bed1eb3aefa8240829a7b2ba15e432",
+  "statement_sha256": "7261085409421dec0dca2fc07b3539bb6c5a7109bdb6dd3b64ef40fc4c6080a0",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-16T07:21:31+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(V=[v_1\\ v_2\\ v_3\\ v_4\\ v_5]\\). Then\n\\[\n|\\det V|^2=\\det(V^T V),\n\\]\nso we maximize the determinant of the Gram matrix \\(G=(\\langle v_i,v_j\\rangle)\\).\n\nThe matrix \\(G\\) has diagonal entries \\(1\\), cyclic adjacent entries \\(1/2\\), and five remaining entries\n\\[\nx_i=\\langle v_i,v_{i+2}\\rangle.\n\\]\nThe feasible set of such Gram matrices is compact, so a maximum exists. Since there is a positive definite feasible example, a determinant-maximizer may be taken positive definite. For any cyclic permutation \\(P\\), \\(PGP^T\\) has the same determinant and satisfies the same constraints. By concavity of \\(\\log\\det\\),\n\\[\n\\log\\det\\left(\\frac15\\sum_{k=0}^4 P^kG(P^T)^k\\right)\n\\ge \\frac15\\sum_{k=0}^4 \\log\\det(P^kG(P^T)^k)\n=\\log\\det G.\n\\]\nThus a maximizer exists with all distance-two inner products equal, say \\(x\\).\n\nSo \\(G\\) is the circulant matrix with first row\n\\[\n(1,\\tfrac12,x,x,\\tfrac12).\n\\]\nIts eigenvalues are\n\\[\n\\lambda_0=2+2x,\n\\]\n\\[\n\\lambda_1=\\lambda_4=\\frac{3+\\sqrt5}{4}-\\frac{\\sqrt5+1}{2}x,\n\\]\n\\[\n\\lambda_2=\\lambda_3=\\frac{3-\\sqrt5}{4}+\\frac{\\sqrt5-1}{2}x.\n\\]\nHence\n\\[\n\\det G=\\lambda_0\\lambda_1^2\\lambda_2^2.\n\\]\nPositive semidefiniteness gives\n\\[\n-\\frac{\\sqrt5-1}{4}\\le x\\le \\frac{\\sqrt5+1}{4}.\n\\]\nThe endpoints give determinant \\(0\\), so we maximize inside the interval.\n\nFor the interior maximum, differentiate:\n\\[\n\\frac{d}{dx}\\log\\det G\n=\n\\frac1{1+x}\n-\\frac{\\sqrt5+1}{\\lambda_1}\n+\\frac{\\sqrt5-1}{\\lambda_2}.\n\\]\nSetting this equal to \\(0\\) simplifies to\n\\[\n4x^2+2x-1=0,\n\\]\nso\n\\[\nx=\\frac{-1+\\sqrt5}{4}\n\\]\nis the only feasible interior critical point. At this value,\n\\[\n\\lambda_0=\\frac{3+\\sqrt5}{2},\\qquad\n\\lambda_1=\\frac{1+\\sqrt5}{4},\\qquad\n\\lambda_2=\\frac{3-\\sqrt5}{2}.\n\\]\nTherefore\n\\[\n\\det G\n=\n\\frac{3+\\sqrt5}{2}\n\\left(\\frac{1+\\sqrt5}{4}\\right)^2\n\\left(\\frac{3-\\sqrt5}{2}\\right)^2\n=\\frac1{16}.\n\\]\nThus\n\\[\n|\\det V|=\\sqrt{\\det G}=\\frac14.\n\\]\n\n\\[\n\\boxed{\\frac14}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-16T07:22:45+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/abf10c76d9be.json"
+}
