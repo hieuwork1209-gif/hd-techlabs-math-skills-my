@@ -2,58 +2,35 @@
 
 ## LaTeX (Normalized)
 
-Let $\mathcal V$ be the category of finite-dimensional vector spaces over $\mathbb F_5$ and linear maps. For $\sigma\in S_4$, let $P_\sigma$ denote the natural place-permutation operator on $V^{\otimes4}$. In $\mathbb F_5[S_4]$, define
+Let $\mathcal V$ be the category of finite-dimensional vector spaces over $\mathbb F_2$ and linear maps. Define
 $$
-p_+=4\sum_{\sigma\in S_4}\sigma,
+P(V)=V\oplus \operatorname{Sym}^2(V),
 \qquad
-p_-=4\sum_{\sigma\in S_4}\operatorname{sgn}(\sigma)\sigma,
-\qquad
-e=1-p_+-p_-.
+F(V)=P(V)^{\oplus 5},
 $$
-(Here $4=24^{-1}$ in $\mathbb F_5$.) Define the functors
-$$
-G(V)=e\bigl(V^{\otimes4}\bigr),
-\qquad
-F(V)=G(V)\oplus G(V).
-$$
+with the evident action on morphisms.
 
-The tensor pairing induces a canonical perfect pairing
-$$
-\langle\ ,\ \rangle_V:G(V^*)\times G(V)\to\mathbb F_5.
-$$
-For a natural endomorphism $A:G\Rightarrow G$, let $A^\vee$ be the adjoint natural endomorphism characterized by
-$$
-\langle x,A_Vy\rangle_V=\langle A_{V^*}x,y\rangle_V.
-$$
-If
-$$
-E=\begin{pmatrix}A&B\\ C&D\end{pmatrix}:F\Rightarrow F,
-$$
-define
-$$
-E^\dagger=
-\begin{pmatrix}
-D^\vee&B^\vee\\
-C^\vee&A^\vee
-\end{pmatrix}.
-$$
-Call $E$ hyperbolically self-dual if $E^\dagger=E$, and idempotent if $E^2=E$.
+Let $\Pi:F\Rightarrow F$ be the natural idempotent which, on each copy of $P(V)=V\oplus\operatorname{Sym}^2(V)$, projects onto the $V$-summand and then includes it back.
 
-For each integer $n\ge4$, among all hyperbolically self-dual natural idempotents other than the zero and identity transformations, let
+For a natural idempotent $E:F\Rightarrow F$, put
+$$
+C_E=E\Pi-\Pi E.
+$$
+For each integer $n\ge2$, let
 $$
 R_n^{(1)}>R_n^{(2)}
 $$
 be the two largest distinct values of
 $$
-\operatorname{rank}E_{\mathbb F_5^n}:F(\mathbb F_5^n)\to F(\mathbb F_5^n).
+\operatorname{rank}(C_E)_{\mathbb F_2^n}.
 $$
-For $j\in\{1,2\}$, let $N_n^{(j)}$ be the number of hyperbolically self-dual natural idempotents attaining $R_n^{(j)}$.
+For $j\in\{1,2\}$, let $N_n^{(j)}$ be the number of natural idempotents $E$ attaining $R_n^{(j)}$.
 
-Determine the ordered quadruple
+Determine exactly
 $$
 \left(R_n^{(1)},N_n^{(1)},R_n^{(2)},N_n^{(2)}\right)
 $$
-exactly for every $n\ge4$.
+for every $n\ge2$.
 
 ---
 
@@ -70,4 +47,4 @@ exactly for every $n\ge4$.
 
 ## Domain Explanation
 
-The problem is centered on classifying idempotent natural transformations of a tensor-power subfunctor and understanding the anti-involution induced by categorical duality on its natural endomorphism algebra. The representation-theoretic block decomposition and orthogonal-space counting are consequences of first recovering that natural-transformation algebra and its duality structure. Thus Logic, Set Theory, and Foundations -> Category theory is the best fit.
+The problem asks for a global classification and count of idempotent natural transformations of a direct sum of polynomial functors, together with the rank of their commutator with a fixed natural splitting idempotent. The decisive work is to recover the natural-transformation algebra of $\mathrm{Id}\oplus\operatorname{Sym}^2$ in characteristic $2$ and then exploit its non-semisimple extension structure. The finite-matrix counting is subordinate to this categorical reconstruction, so Logic, Set Theory, and Foundations -> Category theory is the best fit.
