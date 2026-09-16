@@ -130,7 +130,7 @@ $$
 (S_1,S_2,S_3,S_4)=(135,1575,2025,270).
 $$
 
-Because $B|_R=0$, the restriction $q|_R$ is linear. If $q|_R=0$, admissible $\omega$ are nondegenerate alternating forms, so there are $\alpha_r$ choices for even $r$ and none for odd $r$. The total number of involutions of this residual type is therefore
+Because $B|_R=0$, the restriction $q|_R$ is linear. If $q|_R=0$, admissible $\omega$ are nondegenerate alternating forms, so there are $\alpha_r$ choices for even $r$ and none for odd $r$. The total number of involutions of this residual type is
 $$
 C_0=1+S_2\alpha_2+S_4\alpha_4
 =1+1575+270\cdot28=9136.
