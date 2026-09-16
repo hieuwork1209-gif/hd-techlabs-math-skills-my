@@ -2,14 +2,13 @@
 
 ## LaTeX (Normalized)
 
-Let $(e_1,e_2,e_3,e_4)$ be an orthonormal basis of $\mathbb R^4$, and let $L$ be a two-dimensional subspace. Let $P_L$ and $P_{L^\perp}$ denote orthogonal projection onto $L$ and its orthogonal complement.
+Let $L_1,L_2,L_3,L_4$ be four distinct two-dimensional subspaces of $\mathbb R^4$. For a subspace $M$, let $P_M$ denote orthogonal projection onto $M$.
 
-For $1\leq i<j\leq4$, let $A_{ij}$ be the area of the parallelogram spanned by $P_Le_i$ and $P_Le_j$, and let $B_{ij}$ be the area of the parallelogram spanned by $P_{L^\perp}e_i$ and $P_{L^\perp}e_j$.
-
-Determine the maximum possible value of
+Suppose there is a constant $c\in(0,1)$ such that for every pair $i\ne j$ and every vector $x\in L_i$,
 $$
-\prod_{1\leq i<j\leq4}(A_{ij}+B_{ij}).
+\|P_{L_j}x\|=c\|x\|.
 $$
+Determine $c$.
 
 ---
 
@@ -19,11 +18,11 @@ $$
 |---|---|
 | **Domain** | Linear Algebra |
 | **Sub-domain** | Inner product spaces |
-| **Problem Type** | Optimization |
+| **Problem Type** | Exact determination |
 | **Answer Type** | Exact scalar |
 
 ---
 
 ## Domain Explanation
 
-This problem is primarily Linear Algebra and Inner product spaces: it compares the six pairwise projected areas of an orthonormal basis across a two-plane and its orthogonal complement. The two families of areas are coupled by complementary minors of an orthogonal change of basis, while the decomposability relation among the plane minors provides a second independent compatibility condition. The final scalar inequality is subordinate to this projection geometry.
+This problem is primarily Linear Algebra and Inner product spaces: it concerns four two-dimensional subspaces whose pairwise orthogonal projections act with the same norm-scaling factor in every direction. The condition is a rigid compatibility constraint on the relative inner-product geometry of the planes. Exterior-algebra coordinates are a subordinate tool for resolving that compatibility and determining the unique possible projection factor.
