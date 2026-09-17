@@ -26,14 +26,35 @@ Put
 $$
 B_h=e^{mh}e^{hA_1}.
 $$
-Then $\det B_h=1$, and a direct calculation gives
+Then
+$$
+B_h=
+\begin{pmatrix}
+e^{\delta h}&\frac{\kappa}{\delta}\sinh(\delta h)\\
+0&e^{-\delta h}
+\end{pmatrix},
+\qquad
+\det B_h=1.
+$$
+Therefore
 $$
 \operatorname{tr}(B_h^TB_h)
-=2+4\eta^2\sinh^2(\delta h),
+=e^{2\delta h}+e^{-2\delta h}
++\frac{\kappa^2}{\delta^2}\sinh^2(\delta h).
 $$
-where
+Using
 $$
-\eta=\sqrt{1+\frac{\kappa^2}{(\beta-\alpha)^2}}.
+e^{2x}+e^{-2x}=2+4\sinh^2x
+$$
+and
+$$
+\eta^2=1+\frac{\kappa^2}{4\delta^2}
+=1+\frac{\kappa^2}{(\beta-\alpha)^2},
+$$
+this becomes
+$$
+\operatorname{tr}(B_h^TB_h)
+=2+4\eta^2\sinh^2(\delta h).
 $$
 Define
 $$
