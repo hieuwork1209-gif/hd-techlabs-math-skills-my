@@ -133,20 +133,31 @@ Let
 $$
 W=\operatorname{span}(S-S),\qquad k=\dim W.
 $$
-The normalized row $r_\xi$ depends only on the restriction of $\xi$ to $W$. Hence $T$ uses at most two restriction characters, and each restriction class has exactly $2^{5-k}$ representatives. Also $S\subset x_0+W$. Therefore
+Because every difference $x-x_0$ with $x\in S$ lies in $W$, the normalized row $r_\xi$ depends only on the restriction $\xi|_W$. Conversely, if $r_\xi=r_\eta$, then $(\xi-\eta)(x-x_0)=0$ for every $x\in S$; these differences span $W$, so $\xi|_W=\eta|_W$. Hence the two normalized row types are exactly two distinct restriction classes on $W$. If their restrictions are represented by $\xi_1|_W$ and $\xi_2|_W$, then
+$$
+T\subset (\xi_1+W^\perp)\sqcup(\xi_2+W^\perp),
+$$
+and each restriction class has exactly $|W^\perp|=2^{5-k}$ representatives. Also $S\subset x_0+W$. Therefore
 $$
 |S|\leq2^k,
 \qquad
-|T|\leq2^{6-k}.
+|T|\leq2\cdot2^{5-k}=2^{6-k}.
 $$
-Their product is already $64$, so both inequalities are equalities. Thus
+But the product of these upper bounds is exactly $2^k2^{6-k}=64$, while by assumption $|S||T|=64$. Thus neither inequality can be strict: if either were strict, their product would be $<64$. Hence
 $$
-S=x_0+W,
+|S|=2^k,
+\qquad
+|T|=2^{6-k}.
 $$
-while for two distinct characters $\xi_1|_W,\xi_2|_W$,
+Since $S\subset x_0+W$ and both sets have cardinality $2^k$, we get the full affine coset
+$$
+S=x_0+W.
+$$
+Likewise, $T$ is contained in the disjoint union of two restriction classes, each of size $2^{5-k}$, and $|T|=2\cdot2^{5-k}$. Therefore both restriction classes occur with all of their representatives:
 $$
 T=(\xi_1+W^\perp)\sqcup(\xi_2+W^\perp).
 $$
+
 For $i=1,2$, define
 $$
 f_i(x)=(-1)^{\xi_i(x)}\mathbf{1}_{x_0+W}(x).
@@ -165,6 +176,12 @@ $$
 \mathcal L=\operatorname{span}\{f_1,f_2\}.
 $$
 Conversely every space of this form attains $64$.
+
+This description is intrinsic. Replacing an extension $\xi_i$ by $\xi_i+\omega$ with $\omega\in W^\perp$ multiplies $f_i$ on $x_0+W$ by the constant sign $(-1)^{\omega(x_0)}$, so the one-dimensional line $\mathbb R f_i$ depends only on the restriction $\xi_i|_W$. Moreover, the support set $S$ recovers the affine coset and then
+$$
+W=\operatorname{span}(S-S),
+$$
+while the Fourier support $T$ recovers the two $W^\perp$-cosets, hence the unordered pair $\{\xi_1|_W,\xi_2|_W\}$ in $W^*$. Thus two different choices of affine coset or unordered restriction pair cannot produce the same minimizing two-plane.
 
 The conditions $0\notin S$ and $0\notin T$ are exactly
 $$
@@ -189,7 +206,7 @@ for the number of $k$-dimensional subspaces $W\leq V$. For each such $W$, there 
 $$
 \binom{2^k-1}{2}
 $$
-unordered pairs of distinct nontrivial characters of $W$. The support set recovers the affine coset and $W=\operatorname{span}(S-S)$, while distinct character pairs span distinct two-planes, so there is no overcounting. Hence
+unordered pairs of distinct nontrivial characters of $W$. By the uniqueness just proved, $S$ determines the affine coset and $W$, while $T$ determines the unordered pair of nontrivial restrictions; changing the extensions of those restrictions does not change the two-plane. Hence every minimizing two-plane is counted exactly once. Therefore
 $$
 N_2^*=\sum_{k=2}^4\binom{5}{k}_2(2^{5-k}-1)\binom{2^k-1}{2}.
 $$
