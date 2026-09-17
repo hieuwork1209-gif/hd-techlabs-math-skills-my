@@ -256,19 +256,19 @@ U^TU=
 $$
 Thus every maximizing face-area configuration has the same Gram matrix, up to swapping faces of equal area.
 
-For any realizing tetrahedron with edge matrix $A=[\mathbf a\ \mathbf b\ \mathbf c]$, the cofactor identity from Step 1 gives
+For any realizing tetrahedron with edge matrix $A=[\mathbf a\ \mathbf b\ \mathbf c]$, the cofactor identity from Step 1 gives, for one common orientation sign,
 $$
-\det(A)A^{-T}=2U.
+\det(A)A^{-T}=\pm2U.
 $$
-Writing $\tau=|\det U|$, taking determinants yields
+Writing $\tau=|\det U|$, taking determinants and absolute values yields
 $$
-|\det A|=2\sqrt{2\tau},
+|\det A|=2\sqrt{2\tau}.
 $$
-so, up to the overall sign corresponding to central inversion,
+Therefore, up to an overall sign,
 $$
-A=\sqrt{2\tau}\,U^{-T}.
+A=\sqrt{2\tau}\,U^{-T},
 $$
-Therefore
+and hence
 $$
 A^TA
 =2\tau\,(U^TU)^{-1}.
