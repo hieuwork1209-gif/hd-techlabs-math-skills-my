@@ -17,7 +17,9 @@ m(a)\geq m(b)+2(b-a).
 $$
 Thus $e(a)=m(a)-2(H-a)$ is nonnegative and nonincreasing. Layer cake gives
 $$
-B=H^2+\int_0^He(a)\,da,\qquad
+B=H^2+\int_0^He(a)\,da,
+$$
+$$
 Q=\frac{H^4}{2}+\int_0^H3a^2e(a)\,da.
 $$
 Since $a^2$ is increasing and $e$ is nonincreasing,
@@ -36,23 +38,37 @@ Q\geq\Phi(B,L):=Bb^2-\frac{b^4}{2},
 $$
 with equality exactly for the capped tent $v_b$. Also $\Phi_L<0$, so for fixed area extra available length can only decrease the least possible cubic cost.
 
-Step 2: Compress the sign pattern and solve the barycenter placement
-We use the preceding estimates as a signed compression lemma. Decompose $x$ into its nonzero excursions. Replacing positive excursions by triangular extremals and merging them at their area-weighted barycenter weakly increases the positive cubic and uses no more total time because
+Step 2: Prove the signed compression and solve the barycenter placement
+Let the common positive/negative area be $A>0$, let their common barycenter be $C$, and put $h=\sqrt A$. First the positive triangle of area $A$ can be centered at $C$. Indeed, for $f=x_+$, let $H=\max f$ and use the level-set notation from Step 1. Since $f(t)\leq t$, a set $\{f>a\}$ of measure $m(a)$ has first moment at least $a m(a)+m(a)^2/2$. Writing $m(a)=2(H-a)+e(a)$ and $E=\int_0^He(a)\,da$, the reversed Chebyshev inequality and Cauchy-Schwarz give
 $$
-2\sqrt{B_1+B_2}\leq2\sqrt{B_1}+2\sqrt{B_2}.
+\int_0^1t f(t)\,dt
+\geq H^3+\frac{3H}{2}E+\frac{E^2}{2H}
+\geq(H^2+E)^{3/2}=A^{3/2}.
 $$
-The replacement preserves the positive area and its first moment. On each side of that barycenter, concatenate negative excursions and apply the capped-tent lower bound to the concatenation; this weakly decreases the negative cubic. Any freed zero time can be absorbed into a negative block, again decreasing its cubic cost because $\Phi_L<0$. The common-barycenter condition forces negative mass on both sides of the positive block. Thus every competitor is dominated by a three-block path consisting of a central positive triangle and one negative capped tent on each side; equality in the compression forces this same three-block geometry.
+The middle inequality follows after squaring from
+$$
+\left(1+\frac32r+\frac12r^2\right)^2-(1+r)^3=\frac14r^2(1+r)^2\geq0,
+$$
+where $r=E/H^2$. Hence $C\geq h$; applying the same argument to $f(1-t)$ gives $1-C\geq h$.
 
-Let the positive area be $A=h^2$, so its triangle has height $h$ and length $2h$. Let the left negative block have length $L$, the right one length
+Now perform the signed layer-set compression. Move each positive superlevel set toward $C$ and each negative superlevel set away from $C$, preserving its measure; choose the left/right portions of every moved negative level so that their first moment is $C$ times their total measure. These horizontal slides preserve the total positive and negative areas and their common barycenter. Because positive and negative level sets were disjoint before the slide, moving the positive levels inward and the negative levels outward cannot increase their total span. Nestedness is preserved, and the inequality
+$$
+m(a)\geq m(b)+2(b-a)
+$$
+shows that the reconstructed sign parts remain $1$-Lipschitz. Thus every feasible path is dominated by one with a central positive component and one negative component on each side. Applying the sharp bounds from Step 1 then replaces the positive component by its triangle and each negative component by a capped tent; any freed zero time is absorbed into a negative block because $\Phi_L<0$. Equality throughout forces exactly this three-block geometry.
+
+Let the left negative block have length $L$, the right one length
 $$
 R=1-2h-L,
 $$
-and let their areas be $B_L,B_R$. Since the three symmetric blocks tile $[0,1]$, their centers are $L/2$, $L+h$, and $L+2h+R/2$. The equations
+and let their areas be $B_L,B_R$. The three symmetric blocks tile $[0,1]$, with centers $L/2$, $L+h$, and $L+2h+R/2$. Therefore
 $$
-B_L+B_R=h^2,\qquad
-B_L\frac L2+B_R\left(L+2h+\frac R2\right)=h^2(L+h)
+B_L+B_R=h^2,
 $$
-give
+$$
+B_L\frac L2+B_R\left(L+2h+\frac R2\right)=h^2(L+h).
+$$
+Solving,
 $$
 B_L=\frac{h^2(1-L)}{1+2h},\qquad
 B_R=\frac{h^2(1-R)}{1+2h}.
@@ -61,23 +77,19 @@ Put
 $$
 k=\frac{h^2}{1+2h},\qquad B(s)=k(1-s),\qquad F_h(s)=\Phi(B(s),s).
 $$
-If $b(s)$ is the smaller root of $B(s)=b(s-b)$, implicit differentiation gives
+If $b(s)$ is the smaller root of $B(s)=b(s-b)$, then
 $$
 b'(s)=-\frac{k+b}{s-2b}<0.
 $$
-Since $F_h(s)=b^3s-\frac32b^4$, differentiation along the barycenter constraint yields the simple formula
+Since $F_h(s)=b^3s-\frac32b^4$, differentiation along the barycenter constraint gives
 $$
 F_h'(s)=-b^2(2b+3k).
 $$
-The right side is strictly increasing in $s$ because $b'(s)<0$. Hence $F_h$ is strictly convex on its feasible interval. Since $L+R=1-2h$, the total negative cubic
-$$
-F_h(L)+F_h(R)
-$$
-is uniquely minimized at
+This is strictly increasing in $s$, so $F_h$ is strictly convex on its feasible interval. As $L+R=1-2h$, the total negative cubic $F_h(L)+F_h(R)$ is uniquely minimized at
 $$
 L=R=\ell:=\frac{1-2h}{2},\qquad B_L=B_R=\frac{h^2}{2}.
 $$
-Feasibility of either cap is $h^2/2\leq\ell^2/4$, equivalently
+The cap-feasibility condition $h^2/2\leq\ell^2/4$ is equivalent to
 $$
 2h(1+\sqrt2)\leq1.
 $$
