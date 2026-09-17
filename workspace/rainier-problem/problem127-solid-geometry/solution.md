@@ -7,9 +7,9 @@ x=B-A,\qquad y=C-A,\qquad z=D-A,
 $$
 and define
 $$
-u=\frac12(y\times z),\qquad
-v=\frac12(z\times x),\qquad
-w=\frac12(x\times y).
+u=\frac{1}{2}(y\times z),\qquad
+v=\frac{1}{2}(z\times x),\qquad
+w=\frac{1}{2}(x\times y).
 $$
 These are oriented area vectors for the three faces meeting at $A$, so
 $$
@@ -17,7 +17,7 @@ $$
 $$
 The area vector of the opposite face $BCD$ is
 $$
-\frac12((y-x)\times(z-x))=u+v+w,
+\frac{1}{2}((y-x)\times(z-x))=u+v+w,
 $$
 up to orientation. Hence
 $$
@@ -32,13 +32,13 @@ E=\begin{pmatrix}x&y&z\end{pmatrix}.
 $$
 The columns of the cofactor matrix of $E$ are $y\times z$, $z\times x$, and $x\times y$, so
 $$
-U=\frac12\operatorname{cof}(E).
+U=\frac{1}{2}\operatorname{cof}(E).
 $$
 Since $|\det E|=6V$, where $V$ is the tetrahedron volume,
 $$
 |\det U|
-=\frac18|\det E|^2
-=\frac92V^2.
+=\frac{1}{8}|\det E|^2
+=\frac{9}{2}V^2.
 $$
 Therefore, for the Gram matrix
 $$
@@ -87,7 +87,7 @@ c=\frac{s^2-3}{6}.
 $$
 Since $0<s<3$, one has
 $$
--\frac12<c<1,
+-\frac{1}{2}<c<1,
 $$
 so $\overline G$ is positive definite, with eigenvalues $1-c,1-c,1+2c$.
 
@@ -107,7 +107,7 @@ $$
 If a feasible $G$ is singular, then $\det G=0<\det\overline G$. If $G$ is positive definite, apply concavity to the six permutation-conjugates of $G$. They all have determinant $\det G$, while their average is $\overline G$. Hence
 $$
 \log\det\overline G
-\geq\frac16\sum_{P}\log\det(P^TGP)
+\geq\frac{1}{6}\sum_P\log\det(P^TGP)
 =\log\det G.
 $$
 Therefore
@@ -143,7 +143,7 @@ E=\sqrt{2d}\,U^{-T}.
 $$
 Then
 $$
-\frac12\det(E)E^{-T}=U,
+\frac{1}{2}\det(E)E^{-T}=U,
 $$
 so if $x,y,z$ are the columns of $E$, their three adjacent face-area vectors are exactly $u,v,w$. The fourth face has area
 $$
@@ -158,7 +158,7 @@ $$
 we obtain
 $$
 V^4
-=\frac4{81}\cdot\frac{s^2(9-s^2)^2}{108}
+=\frac{4}{81}\cdot\frac{s^2(9-s^2)^2}{108}
 =\frac{s^2(9-s^2)^2}{3^7}.
 $$
 Since $0<s<3$, taking the positive fourth root yields the maximum volume.
