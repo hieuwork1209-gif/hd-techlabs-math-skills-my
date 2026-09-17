@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-probability-foundations/problem.md",
+  "source_commit_sha": "5b116691df48b6a706d8d2ad1e1eb5f353c013dc",
+  "problem_blob_sha": "19d6787ba139471bc41c77b050a00d4049b645a4",
+  "statement_sha256": "f6e447903b01d2dc2685e1c3cc6c73dfe27888c665f350ca0ea2c7780e576a02",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T10:26:06+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\ns_n=\\mathbb P(X_1=\\cdots=X_n=1).\n\\]\nBy de Finetti’s theorem for infinite exchangeable Bernoulli sequences, there is a random variable \\(\\Theta\\in[0,1]\\) such that, conditionally on \\(\\Theta\\), the \\(X_i\\) are i.i.d. Bernoulli\\((\\Theta)\\). Hence\n\\[\n\\mathbb P(X_1=\\cdots=X_k=1)=\\mathbb E[\\Theta^k].\n\\]\nThe assumptions give\n\\[\n\\mathbb E[\\Theta]=p,\n\\]\nand since\n\\[\n\\operatorname{Corr}(X_1,X_2)\n=\\frac{\\mathbb P(X_1=X_2=1)-p^2}{p(1-p)},\n\\]\nwe also have\n\\[\n\\mathbb E[\\Theta^2]=\\mathbb P(X_1=X_2=1)\n=p^2+\\rho p(1-p).\n\\]\nWrite\n\\[\nm_2=p^2+\\rho p(1-p),\n\\qquad\na=\\frac{p-m_2}{1-p}=p(1-\\rho).\n\\]\n\nWe must maximize \\(\\mathbb E[\\Theta^n]\\) over \\(\\Theta\\in[0,1]\\) with first two moments \\(p,m_2\\).\n\nConsider the quadratic \\(Q\\) that satisfies\n\\[\nQ(a)=a^n,\\qquad Q'(a)=n a^{n-1},\\qquad Q(1)=1.\n\\]\nEquivalently,\n\\[\nQ(x)=L(x)+K(x-a)(x-1),\n\\]\nwhere \\(L\\) is the line through \\((a,a^n)\\) and \\((1,1)\\). Since \\(x^n\\) has nonnegative third derivative on \\([0,1]\\), Hermite interpolation gives\n\\[\nQ(x)\\ge x^n\\qquad(0\\le x\\le1).\n\\]\nAlso,\n\\[\n\\mathbb E[(\\Theta-a)(\\Theta-1)]\n=\\mathbb E[\\Theta^2]-(1+a)\\mathbb E[\\Theta]+a\n=m_2-(1+a)p+a=0,\n\\]\nby the definition of \\(a\\). Therefore\n\\[\n\\mathbb E[\\Theta^n]\\le \\mathbb E[Q(\\Theta)]\n=\\mathbb E[L(\\Theta)].\n\\]\nNow\n\\[\nL(x)=a^n+\\frac{1-a^n}{1-a}(x-a),\n\\]\nso\n\\[\n\\mathbb E[L(\\Theta)]\n=a^n+\\frac{1-a^n}{1-a}(p-a)\n=\\frac{p-a+(1-p)a^n}{1-a}.\n\\]\nSince \\(a=p(1-\\rho)\\), this upper bound is\n\\[\n\\frac{p\\rho+(1-p)\\bigl(p(1-\\rho)\\bigr)^n}{1-p(1-\\rho)}.\n\\]\n\nIt remains to show this is attainable. Let \\(\\Theta\\) take the two values \\(1\\) and \\(a=p(1-\\rho)\\), with\n\\[\n\\mathbb P(\\Theta=1)=\\frac{p-a}{1-a}\n=\\frac{p\\rho}{1-p(1-\\rho)}.\n\\]\nThen \\(\\mathbb E[\\Theta]=p\\), \\(\\mathbb E[\\Theta^2]=m_2\\), so the required \\(p\\) and \\(\\rho\\) are satisfied, and\n\\[\n\\mathbb E[\\Theta^n]\n=\\frac{p\\rho+(1-p)\\bigl(p(1-\\rho)\\bigr)^n}{1-p(1-\\rho)}.\n\\]\n\nThus the largest possible value is\n\\[\n\\boxed{\\frac{p\\rho+(1-p)\\bigl(p(1-\\rho)\\bigr)^n}{1-p(1-\\rho)}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T10:27:21+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/19d6787ba139.json"
+}
