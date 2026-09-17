@@ -1,9 +1,9 @@
 {
   "problem": "problem127",
   "branch": "adversary/problem127",
-  "problem_path": "workspace/rainier-problem/problem127-dynamical-systems/problem.md",
-  "problem_blob_sha": "8f3910bfa8eef027f8f4428eaef7b3ae89d260f1",
-  "source_commit_sha": "08663a181495c6a4076f73dfac02c50f63a7b320",
+  "problem_path": "workspace/rainier-problem/problem127-quadratic-residues-and-reciprocity/problem.md",
+  "problem_blob_sha": "8e8f4fa66f619cfecd6ea7af5da8180b1d2d6fd0",
+  "source_commit_sha": "2cf9375cff7601263c093611a1f24bbec20e24b6",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-17T08:22:34+00:00",
-  "result_file": "solver-results/problem127/8f3910bfa8ee.json"
+  "completed_at": "2026-09-17T08:35:30+00:00",
+  "result_file": "solver-results/problem127/8e8f4fa66f61.json"
 }

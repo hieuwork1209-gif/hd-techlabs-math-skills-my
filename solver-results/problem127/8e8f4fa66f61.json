@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-quadratic-residues-and-reciprocity/problem.md",
+  "source_commit_sha": "2cf9375cff7601263c093611a1f24bbec20e24b6",
+  "problem_blob_sha": "8e8f4fa66f619cfecd6ea7af5da8180b1d2d6fd0",
+  "statement_sha256": "905b139ef61fe9fbd11ce511ede4cb5250a8865765092571457ed203fec5f049",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T08:34:29+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "The required integers are exactly\n\\[\n\\boxed{n\\equiv 0 \\text{ or } 1 \\pmod 4,\\quad n\\ge 2.}\n\\]\n\nLet \\(\\left(\\frac ab\\right)\\) denote the Legendre symbol. Since every \\(p_i\\equiv 3\\pmod4\\), quadratic reciprocity gives, for \\(i\\ne j\\),\n\\[\n\\left(\\frac{p_i}{p_j}\\right)\\left(\\frac{p_j}{p_i}\\right)=-1.\n\\]\n\nThe condition is\n\\[\n\\prod_{i\\ne j}\\left(\\frac{p_i}{p_j}\\right)=1\n\\]\nfor every \\(j\\). Multiplying these \\(n\\) equations over all \\(j\\), the left side factors over unordered pairs:\n\\[\n1=\\prod_{j=1}^n\\prod_{i\\ne j}\\left(\\frac{p_i}{p_j}\\right)\n=\\prod_{1\\le i<j\\le n}\n\\left(\\frac{p_i}{p_j}\\right)\\left(\\frac{p_j}{p_i}\\right)\n=(-1)^{\\binom n2}.\n\\]\nThus \\(\\binom n2\\) must be even, i.e.\n\\[\n\\frac{n(n-1)}2\\equiv0\\pmod2,\n\\]\nwhich is equivalent to\n\\[\nn\\equiv0 \\text{ or }1\\pmod4.\n\\]\n\nIt remains to prove sufficiency.\n\nWe first choose signs \\(\\varepsilon_{ij}\\in\\{\\pm1\\}\\) for \\(i\\ne j\\) such that\n\\[\n\\varepsilon_{ij}=-\\varepsilon_{ji}\n\\qquad\\text{and}\\qquad\n\\prod_{i\\ne j}\\varepsilon_{ij}=1\n\\]\nfor every \\(j\\). This is the same as orienting the complete graph \\(K_n\\) so that every vertex has even indegree: put \\(\\varepsilon_{ij}=-1\\) exactly when the edge is oriented \\(i\\to j\\).\n\nSuch an orientation exists precisely when \\(\\binom n2\\) is even.\n\nFor \\(n\\equiv1\\pmod4\\), use the regular cyclic tournament: label vertices modulo \\(n\\), and orient \\(x\\to y\\) when\n\\[\ny-x\\in\\{1,2,\\dots,(n-1)/2\\}.\n\\]\nEach vertex has indegree \\((n-1)/2\\), which is even.\n\nFor \\(n\\equiv0\\pmod4\\), let vertex \\(0\\) point to every other vertex. On the remaining \\(n-1\\) vertices, use the regular cyclic tournament. Each remaining vertex has internal indegree\n\\[\n\\frac{n-2}{2},\n\\]\nwhich is odd, and receives one additional edge from vertex \\(0\\), so its total indegree is even. Vertex \\(0\\) has indegree \\(0\\).\n\nNow we realize these signs by primes. We claim that for any such antisymmetric sign pattern \\(\\varepsilon_{ij}\\), there exist distinct primes \\(p_1,\\dots,p_n\\equiv3\\pmod4\\) such that\n\\[\n\\left(\\frac{p_i}{p_j}\\right)=\\varepsilon_{ij}.\n\\]\n\nConstruct them inductively. Suppose \\(p_1,\\dots,p_k\\) have already been chosen. To choose \\(p_{k+1}\\), pick a residue class \\(r\\pmod{4p_1\\cdots p_k}\\) satisfying\n\\[\nr\\equiv3\\pmod4\n\\]\nand, for each \\(j\\le k\\),\n\\[\n\\left(\\frac r{p_j}\\right)=\\varepsilon_{k+1,j}.\n\\]\nThis is possible by the Chinese remainder theorem, since modulo each \\(p_j\\) we may choose either a quadratic residue or a nonresidue as required. By Dirichlet’s theorem on primes in arithmetic progressions, there is a prime\n\\[\np_{k+1}\\equiv r\\pmod{4p_1\\cdots p_k}.\n\\]\nThen \\(p_{k+1}\\equiv3\\pmod4\\), and\n\\[\n\\left(\\frac{p_{k+1}}{p_j}\\right)=\\varepsilon_{k+1,j}.\n\\]\nBecause both primes are \\(3\\pmod4\\), quadratic reciprocity gives\n\\[\n\\left(\\frac{p_j}{p_{k+1}}\\right)\n=-\\left(\\frac{p_{k+1}}{p_j}\\right)\n=\\varepsilon_{j,k+1}.\n\\]\nThus the construction continues.\n\nFinally, for each \\(j\\),\n\\[\n\\left(\\frac{\\prod_{i\\ne j}p_i}{p_j}\\right)\n=\\prod_{i\\ne j}\\left(\\frac{p_i}{p_j}\\right)\n=\\prod_{i\\ne j}\\varepsilon_{ij}\n=1,\n\\]\nso the required product is a quadratic residue modulo \\(p_j\\).\n\nTherefore the exact set of integers is\n\\[\n\\boxed{\\{\\,n\\ge2:\\ n\\equiv0\\text{ or }1\\pmod4\\,\\}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T08:35:30+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/8e8f4fa66f61.json"
+}
