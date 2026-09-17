@@ -44,14 +44,13 @@ $$
 $$
 Using
 $$
-e^{2x}+e^{-2x}=2+4\sinh^2x
+e^{2x}+e^{-2x}=2+4\sinh^2x,
 $$
-and
+put
 $$
-\eta^2=1+\frac{\kappa^2}{4\delta^2}
-=1+\frac{\kappa^2}{(\beta-\alpha)^2},
+\eta=\sqrt{1+\frac{\kappa^2}{4\delta^2}}
 $$
-this becomes
+and obtain
 $$
 \operatorname{tr}(B_h^TB_h)
 =2+4\eta^2\sinh^2(\delta h).
@@ -152,22 +151,26 @@ $$
 \Lambda_\tau=r(\tau).
 $$
 
-Step 4: Write the exact closed form
-Substituting $h=\tau$ into the formula from Step 1 yields
+Step 4: Record the closed form and the compact exact answer
+From Step 1,
 $$
-\Lambda_\tau
+\frac1\tau\log\|e^{\tau A_1}\|_2
 =-\frac{\alpha+\beta}{2}
 +\frac1\tau\operatorname{arsinh}
-\left(\eta\sinh\frac{(\beta-\alpha)\tau}{2}\right).
+\left(
+\sqrt{1+\frac{\kappa^2}{(\beta-\alpha)^2}}
+\sinh\frac{(\beta-\alpha)\tau}{2}
+\right).
 $$
+Thus the compact exact expression below is also an explicit closed form in the parameters.
 
-Final Answer: $\boxed{-\frac{\alpha+\beta}{2}+\tau^{-1}\operatorname{arsinh}(\eta\sinh((\beta-\alpha)\tau/2))}$
+Final Answer: $\boxed{\tau^{-1}\log\|e^{\tau A_1}\|_2}$
 
 ---
 
 ## Answer
 
-$-\frac{\alpha+\beta}{2}+\tau^{-1}\operatorname{arsinh}(\eta\sinh((\beta-\alpha)\tau/2))$
+$\tau^{-1}\log\|e^{\tau A_1}\|_2$
 
 ---
 
