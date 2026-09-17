@@ -1,256 +1,241 @@
 ## Steps
 
-Step 1: Express the fourth moment by autocorrelations
+Step 1: Convert the sixth moment to a finite convolution energy
 
 Write
 \[
 f(\theta)=a(1+e^{6i\theta})+b(e^{i\theta}+e^{5i\theta})+c(e^{2i\theta}+e^{4i\theta}),
 \]
-with real coefficients. Its coefficient vector is
+so its coefficient vector is
 \[
 (d_0,\ldots,d_6)=(a,b,c,0,c,b,a).
 \]
-Put
-\[
-r_k=\sum_{j=0}^{6-k}d_{j+k}d_j\qquad(0\le k\le6).
-\]
-Since the Fourier coefficients of \(|f|^2\) are \(r_k\) and \(r_{-k}=r_k\), Parseval gives
-\[
-\frac1{2\pi}\int_0^{2\pi}|f(\theta)|^4\,d\theta
-=r_0^2+2\sum_{k=1}^6r_k^2.
-\tag{1}
-\]
 The normalization is
 \[
-r_0=2(a^2+b^2+c^2)=1.
+2(a^2+b^2+c^2)=1.
+\tag{1}
+\]
+Since \(|f|^6=|f^3|^2\), Parseval gives
+\[
+\frac1{2\pi}\int_0^{2\pi}|f(\theta)|^6\,d\theta
+=\sum_{k=0}^{18}\left(\sum_{i+j+\ell=k}d_i d_j d_\ell\right)^2.
 \tag{2}
 \]
-A direct calculation gives
+Expanding (2) and collecting terms gives
 \[
 \begin{aligned}
-r_1&=2ab+2bc,\\
-r_2&=2ac+c^2,\\
-r_3&=2bc,\\
-r_4&=2ac+b^2,\\
-r_5&=2ab,\\
-r_6&=a^2.
+E_6(a,b,c):={}&\frac1{2\pi}\int|f|^6\\
+={}&20a^6+180a^4b^2+180a^4c^2+360a^3b^2c+120a^3c^3\\
+&+180a^2b^4+900a^2b^2c^2+180a^2c^4\\
+&+240ab^4c+600ab^2c^3+60ac^5\\
+&+20b^6+180b^4c^2+210b^2c^4+20c^6.
 \end{aligned}
 \tag{3}
 \]
-Hence, if
+
+Step 2: Reduce the signs and isolate the boundary
+
+Every sign-sensitive term in (3) is a positive coefficient times an odd power of both \(a\) and \(c\). Hence replacing \((a,c)\) by \((|a|,|c|)\) cannot decrease the objective, while the sign of \(b\) is irrelevant. Thus at an interior maximizer we may assume
 \[
-Q=\sum_{k=1}^6r_k^2,
+a\ge0,\qquad c>0.
 \]
-then
+
+The boundary \(c=0\) is far from optimal. Indeed, with \(a^2+b^2=1/2\), (3) becomes
 \[
-Q=a^4+b^4+c^4+8a^2b^2+8a^2c^2+8b^2c^2+12ab^2c+4ac^3.
+E_6=20(a^2+b^2)(a^4+8a^2b^2+b^4)
+\le \frac{25}{4}.
 \tag{4}
 \]
-Thus the objective is
+On the other hand the admissible choice \(p=7/8,\ v=1\) introduced below gives
 \[
-1+2Q.
-\tag{5}
+E_6=\frac{59501255}{3696822}>16,
 \]
-
-Step 2: Reduce the signs
-
-The only sign-sensitive part of (4) is
-\[
-12ab^2c+4ac^3=4ac(3b^2+c^2).
-\]
-Replacing \((a,c)\) by \((|a|,|c|)\) preserves the normalization and all other terms and cannot decrease \(Q\). At a maximizer with \(c\ne0\), equality therefore forces \(ac>0\). The sign of \(b\) is irrelevant.
-
-So for the optimization we may assume
-\[
-a\ge0,\qquad c>0,
-\]
-and restore the signs at the end.
-
-The boundary case \(c=0\) is not optimal. Indeed, with \(x=a^2\), \(y=b^2\) and \(x+y=1/2\),
-\[
-Q=x^2+y^2+8xy=(x+y)^2+6xy\le\frac58,
-\]
-so the fourth moment is at most
-\[
-1+2\cdot\frac58=\frac94.
-\tag{6}
-\]
-The interior family below already gives a value larger than \(3\), so no maximizer lies on \(c=0\).
+so every global maximizer has \(c\ne0\).
 
 Step 3: Reduce to two nonnegative ratios
 
-For \(c>0\), set
+Put
 \[
 p=\frac ac\ge0,
 \qquad
 v=\frac{b^2}{c^2}\ge0.
 \]
-From (2),
+From (1),
 \[
 c^2=\frac1{2(p^2+v+1)}.
-\tag{7}
+\tag{5}
 \]
-Substitution into (4) gives
+Substitution into (3) gives
 \[
-Q=\frac14F(p,v),
+E_6=\frac54\,\frac{N(p,v)}{(p^2+v+1)^3},
+\tag{6}
 \]
 where
 \[
-F(p,v)=
-\frac{
- p^4+v^2+1+8p^2v+8p^2+8v+12pv+4p
-}{(p^2+v+1)^2}.
+\begin{aligned}
+N(p,v)={}&2p^6+18p^4v+18p^4+36p^3v+12p^3\\
+&+18p^2v^2+90p^2v+18p^2+24pv^2+60pv+6p\\
+&+2v^3+18v^2+21v+2.
+\end{aligned}
+\tag{7}
+\]
+Let
+\[
+F(p,v)=\frac{N(p,v)}{(p^2+v+1)^3}.
+\]
+
+Step 4: For each fixed \(p\), optimize uniquely in \(v\)
+
+A calculation gives
+\[
+\partial_v F=\frac{3H(p,v)}{(p^2+v+1)^4},
 \tag{8}
 \]
-Therefore
+with
 \[
-\frac1{2\pi}\int|f|^4
-=1+\frac12F(p,v).
+H(p,v)=C(p)-B(p)v-4(p+1)^2v^2,
 \tag{9}
 \]
-
-Step 4: Optimize exactly in \(v\)
-
-Differentiating (8),
+where
 \[
-\frac{\partial F}{\partial v}
-=
-\frac{2\left(3p^4+6p^3-3p^2v-6pv+2p-3v+3\right)}{(p^2+v+1)^3}.
+C(p)=4p^6+12p^5+18p^4+20p^3+19p^2+14p+5,
 \]
-Equivalently,
 \[
-\frac{\partial F}{\partial v}
-=
-\frac{6(p+1)^2\bigl(v_p-v\bigr)}{(p^2+v+1)^3},
+B(p)=8p^3+36p^2+24p+2.
+\]
+For every \(p\ge0\), both \(B(p)\) and \(C(p)\) are positive. Hence \(H(p,v)\) is strictly decreasing for \(v\ge0\), starts positive at \(v=0\), and tends to \(-\infty\). Thus there is a unique positive root \(v=v_p\), and it is the unique global maximizer of \(F(p,\cdot)\) on \([0,\infty)\).
+
+Step 5: Locate the unique admissible stationary point in \(p\)
+
+Also
+\[
+\partial_pF=-\frac{6J(p,v)}{(p^2+v+1)^4},
 \tag{10}
 \]
 where
 \[
-v_p=
-\frac{3p^4+6p^3+2p+3}{3(p+1)^2}>0.
+\begin{aligned}
+J(p,v)={}&4p^5v+4p^5+18p^4v+6p^4+36p^3v\\
+&+2p^2v^2+26p^2v-p^2-4pv^3-18pv^2-15pv-4p\\
+&-4v^3-14v^2-11v-1.
+\end{aligned}
 \tag{11}
 \]
-Hence for every fixed \(p\ge0\), \(F(p,v)\) has the unique global maximum at \(v=v_p\).
-
-Substitution gives
+Thus an interior stationary point must satisfy
 \[
-\Phi(p):=F(p,v_p)
-=
-\frac{15p^4+48p^3+60p^2+44p+15}
-{2(3p^4+6p^3+3p^2+4p+3)}.
+H(p,v)=J(p,v)=0.
 \tag{12}
 \]
-
-Step 5: Optimize exactly in \(p\)
-
-Differentiating (12),
+Eliminating \(v\) gives
 \[
-\Phi'(p)
-=
--\frac{9(p+1)^3\bigl(3p^3+6p^2-3p-4\bigr)}
-{(3p^4+6p^3+3p^2+4p+3)^2}.
+\operatorname{Res}_v(H,J)
+=-48(p+1)P_5(p)K(p),
 \tag{13}
 \]
-Let
+where
 \[
-h(p)=3p^3+6p^2-3p-4.
+P_5(p)=4p^5+14p^4+12p^3+15p^2+10p+1>0
+\qquad(p\ge0),
 \]
-By Descartes' rule of signs, \(h\) has exactly one positive root. Denote it by \(p_*\). Since
+and
 \[
-h(0)=-4,
-\qquad
-h(1)=2,
-\]
-one has \(0<p_*<1\), and (13) shows that \(\Phi\) increases on \([0,p_*]\) and decreases on \([p_*,\infty)\). Thus \(p_*\) is the unique global maximizer.
-
-More precisely,
-\[
-0.87<p_*<0.88.
+\begin{aligned}
+K(p)={}&20p^{11}+200p^{10}+786p^9+1690p^8+2013p^7+517p^6\\
+&-1924p^5-2236p^4-522p^3+504p^2+352p+68.
+\end{aligned}
 \tag{14}
 \]
-Also
+A Sturm sequence for \(K\) gives the following exact variation counts:
 \[
-v_p-1
-=
-\frac{p\bigl(3p^3+6p^2-3p-4\bigr)}{3(p+1)^2},
-\]
-so at the maximizing root,
-\[
-v_{p_*}=1.
+\begin{array}{c|cccccc}
+x&0&0.6189&0.6190&0.8725&0.8726&+\infty\\ \hline
+V(x)&5&5&4&4&3&3.
+\end{array}
 \tag{15}
 \]
-Therefore
-\[
-b^2=c^2
-\]
-at every maximizer.
+Hence \(K\) has exactly two positive roots, one in \((0.6189,0.6190)\) and one in \((0.8725,0.8726)\).
 
-Step 6: Evaluate the maximum and classify all extremizers
-
-Using \(v=1\), the maximal fourth moment is
+The degree-one subresultant of \(H,J\) is
 \[
-\boxed{
-M_*
-=
-\frac{3p_*^4+24p_*^2+16p_*+18}
-{2(p_*^2+2)^2}
-},
+\begin{aligned}
+S(p,v)={}&(p+1)^2(20p^7+68p^6+74p^5+52p^4+15p^3-12p^2-54p-32)\\
+&+2(10p^7+36p^6-6p^5-112p^4-43p^3+42p^2+4p-10)v.
+\end{aligned}
 \tag{16}
 \]
-where \(p_*\) is the unique positive root of
+Exact interval arithmetic in the first root interval of (15) gives \(v<0\), so that root cannot correspond to an admissible stationary point. In the second root interval, (12) has a unique solution with
 \[
-\boxed{3p^3+6p^2-3p-4=0.}
+0.8725<p_*<0.8726,
+\qquad
+0.921<v_*<0.923.
 \tag{17}
 \]
 Numerically,
 \[
-p_*\approx0.876490798914620,
+p_*\approx0.8725362666668867,
 \qquad
-M_*\approx3.40801158121815.
-\]
-Equivalently, \(M_*\) is the unique root in \((3.40,3.41)\) of
-\[
-3344M^3-22644M^2+47736M-32049=0.
-\tag{18}
+v_*\approx0.9218658788134108.
 \]
 
-From (7) and (15),
+There are no other stationary points on the positive maximizing branch \(v=v_p\). At \(p=0\), the positive root of \(H(0,v)=0\) gives \(\partial_pF>0\). At \(p=1\), the positive root of \(H(1,v)=0\) gives \(\partial_pF<0\). By continuity and the uniqueness just proved, the reduced one-variable function \(p\mapsto F(p,v_p)\) increases up to \(p_*\) and decreases after \(p_*\). Therefore \((p_*,v_*)\) is the unique global maximizer in the nonnegative quadrant.
+
+Step 6: Evaluate the maximum and recover all signs
+
+Define \((p_*,v_*)\) equivalently as the unique real solution of
 \[
-c^2=\frac1{2(p_*^2+2)}.
+H(p,v)=J(p,v)=0
 \]
-Restoring the allowed signs, equality in the sign reduction requires \(a\) and \(c\) to have the same sign, while the sign of \(b\) is free. Hence the complete extremizer set is
+in the isolating box (17). Then
 \[
 \boxed{
-(a,b,c)
+M_*=\frac54\,\frac{N(p_*,v_*)}{(p_*^2+v_*+1)^3}
+}.
+\tag{18}
+\]
+Numerically,
+\[
+M_*\approx16.11107890701402.
+\]
+
+By (5),
+\[
+c^2=\frac1{2(p_*^2+v_*+1)}.
+\]
+The sign reduction shows that equality requires \(a\) and \(c\) to have the same sign, while the sign of \(b\) is free. Hence the complete extremizer set is
+\[
+\boxed{
+\mathcal E_*
 =
-\frac1{\sqrt{2(p_*^2+2)}}
-\bigl(\varepsilon p_*,\delta,\varepsilon\bigr),
-\qquad
-\varepsilon,\delta\in\{\pm1\}.
+\left\{
+\frac{(\varepsilon p_*,\delta\sqrt{v_*},\varepsilon)}
+{\sqrt{2(p_*^2+v_*+1)}}:
+\varepsilon,\delta\in\{\pm1\}
+\right\}.
 }
 \tag{19}
 \]
-These four triples all attain (16), and the preceding strict one-variable maximizations show there are no others.
+There are exactly four maximizing triples.
 
 Final Answer:
 \[
 \boxed{
 \left(
-M_*,
+\frac54\frac{N(p_*,v_*)}{(p_*^2+v_*+1)^3},
 \left\{
-\frac{(\varepsilon p_*,\delta,\varepsilon)}{\sqrt{2(p_*^2+2)}}:
+\frac{(\varepsilon p_*,\delta\sqrt{v_*},\varepsilon)}
+{\sqrt{2(p_*^2+v_*+1)}}:
 \varepsilon,\delta\in\{\pm1\}
 \right\}
 \right)
 }
 \]
-with \(p_*\) characterized by (17).
+where \((p_*,v_*)\) is the unique solution of (12) in (17).
 
 ---
 
 ## Answer
 
-$\left(\dfrac{3p_*^4+24p_*^2+16p_*+18}{2(p_*^2+2)^2},\left\{\dfrac{(\varepsilon p_*,\delta,\varepsilon)}{\sqrt{2(p_*^2+2)}}:\varepsilon,\delta\in\{\pm1\}\right\}\right)$, where $p_*$ is the unique positive root of $3p^3+6p^2-3p-4=0$.
+$\left(\dfrac54\dfrac{N(p_*,v_*)}{(p_*^2+v_*+1)^3},\left\{\dfrac{(\varepsilon p_*,\delta\sqrt{v_*},\varepsilon)}{\sqrt{2(p_*^2+v_*+1)}}:\varepsilon,\delta\in\{\pm1\}\right\}\right)$, where $(p_*,v_*)$ is the unique solution with $0.8725<p_*<0.8726$ and $0.921<v_*<0.923$ of $H(p,v)=J(p,v)=0$, with $H,J,N$ defined above.
 
 ---
 
@@ -264,8 +249,8 @@ $\left(\dfrac{3p_*^4+24p_*^2+16p_*+18}{2(p_*^2+2)^2},\left\{\dfrac{(\varepsilon 
 
 ## Solution Concepts
 
-- Fourier autocorrelation and Parseval
-- exact $L^4$ extremal problem
-- sign reduction for Fourier coefficients
-- rational two-variable optimization
-- algebraic uniqueness of extremizers
+- sixth Fourier moment as triple-convolution energy
+- sign reduction for symmetric Fourier coefficients
+- exact rational optimization in two variables
+- resultant and Sturm isolation of the unique admissible stationary point
+- complete classification of extremizers
