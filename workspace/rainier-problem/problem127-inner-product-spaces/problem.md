@@ -4,9 +4,9 @@
 
 Let
 $$
-0<\rho<\cos\frac\pi5.
+0<\rho<\cos\frac{\pi}{5}.
 $$
-Let $v_1,\ldots,v_5\in\mathbb C^5$ be unit vectors, with indices taken modulo $5$, such that
+Let $v_1,\ldots,v_5\in\mathbb{C}^{5}$ be unit vectors, with indices taken modulo $5$, such that
 $$
 |\langle v_i,v_{i+1}\rangle|=\rho
 $$
