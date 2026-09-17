@@ -2,15 +2,16 @@
 
 ## LaTeX (Normalized)
 
-Let $n\ge2$ be an integer. For real $a,b$, define
+Let $n\ge2$ be an integer and let $\alpha,\beta\in\mathbb C$. Define the real trigonometric polynomial
 $$
-P_{a,b}(\theta)=1+2a\cos\theta+2b\cos(n\theta).
+P_{\alpha,\beta}(\theta)
+=1+2\operatorname{Re}\!\left(\alpha e^{i\theta}+\beta e^{in\theta}\right).
 $$
-Among all pairs $(a,b)$ for which
+Among all pairs $(\alpha,\beta)$ for which
 $$
-P_{a,b}(\theta)\ge0
+P_{\alpha,\beta}(\theta)\ge0
 $$
-for every real $\theta$, determine the largest possible value of $a$ and the corresponding value of $b$.
+for every real $\theta$, determine the largest possible value of $|\alpha|$ and, when this maximum is attained, determine $\beta$ in terms of $\alpha$.
 
 ---
 
@@ -27,4 +28,4 @@ for every real $\theta$, determine the largest possible value of $a$ and the cor
 
 ## Domain Explanation
 
-This problem is primarily Analysis and Harmonic analysis: it asks for a sharp extremal Fourier coefficient in a globally nonnegative trigonometric polynomial with prescribed frequency support. The extremizer is determined by a forced contact point and a global positivity argument for the resulting trigonometric expression.
+This problem is primarily Analysis and Harmonic analysis: it asks for a sharp extremal Fourier coefficient in a globally nonnegative trigonometric polynomial with frequency support $\{0,\pm1,\pm n\}$. The extremal magnitude is controlled by the zero lattice of the $n$th mode, while equality forces a compatible relative Fourier phase and a global positivity certificate.
