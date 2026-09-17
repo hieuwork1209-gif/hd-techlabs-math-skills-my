@@ -15,7 +15,7 @@ For every tetrahedron the outward area vectors satisfy
 $$
 \mathbf p+\mathbf q+\mathbf r+\mathbf s=0.
 $$
-To see this directly, take one vertex as the origin and let the three edge vectors be \(\mathbf a,\mathbf b,\mathbf c\). Up to a common sign, the three area vectors through that vertex are
+To see this directly, take one vertex as the origin and let the three edge vectors be $\mathbf a,\mathbf b,\mathbf c$. Up to a common sign, the three area vectors through that vertex are
 $$
 \frac12\mathbf b\times\mathbf c,
 \qquad
@@ -29,7 +29,7 @@ $$
 $$
 Hence the four vectors sum to zero.
 
-Any three faces meet at a vertex. For the three faces with area vectors \(\mathbf p,\mathbf q,\mathbf r\), let
+Any three faces meet at a vertex. For the three faces with area vectors $\mathbf p,\mathbf q,\mathbf r$, let
 $$
 A=[\mathbf a\ \mathbf b\ \mathbf c].
 $$
@@ -41,7 +41,7 @@ $$
 \quad
 \mathbf a\times\mathbf b
 $$
-is \(\det(A)A^{-T}\). Therefore its determinant is \(\det(A)^2\). Since the tetrahedron volume is
+is $\det(A)A^{-T}$. Therefore its determinant is $\det(A)^2$. Since the tetrahedron volume is
 $$
 V=\frac{|\det A|}{6},
 $$
@@ -51,7 +51,7 @@ $$
 =\frac{|\det A|^2}{8}
 =\frac92V^2.
 $$
-Thus maximizing \(V\) is equivalent to maximizing the scalar triple product of three face-area vectors.
+Thus maximizing $V$ is equivalent to maximizing the scalar triple product of three face-area vectors.
 
 Step 2: Use the equal-area pairs to reduce the geometry to one scalar
 Set
@@ -68,7 +68,7 @@ $$
 \qquad
 \mathbf q=\frac{\mathbf w}{2}-\mathbf u.
 $$
-Because \(|\mathbf p|=|\mathbf q|=1\), subtracting the two squared norms gives
+Because $|\mathbf p|=|\mathbf q|=1$, subtracting the two squared norms gives
 $$
 \mathbf u\cdot\mathbf w=0,
 $$
@@ -82,7 +82,7 @@ $$
 \qquad
 \mathbf s=-\frac{\mathbf w}{2}-\mathbf v.
 $$
-Since \(|\mathbf r|=|\mathbf s|=t\),
+Since $|\mathbf r|=|\mathbf s|=t$,
 $$
 \mathbf v\cdot\mathbf w=0,
 \qquad
@@ -104,7 +104,7 @@ $$
 \le |\mathbf u|\,|\mathbf w|\,|\mathbf v|
 =2\sqrt{y(1-y)(t^2-y)}.
 $$
-Equality holds exactly when \(\mathbf u\perp\mathbf v\).
+Equality holds exactly when $\mathbf u\perp\mathbf v$.
 
 Combining this with Step 1 gives
 $$
@@ -126,19 +126,19 @@ The two critical points are
 $$
 y_{\pm}=\frac{1+t^2\pm K}{3}.
 $$
-The smaller one lies strictly inside \((0,\min(1,t^2))\). Indeed,
+The smaller one lies strictly inside $(0,\min(1,t^2))$. Indeed,
 $$
 (1+t^2)^2-K^2=3t^2>0,
 $$
-so \(y_->0\). If \(t^2\le1\), then
+so $y_->0$. If $t^2\le1$, then
 $$
 g'(t^2)=t^2(t^2-1)\le0,
 $$
-while if \(t^2\ge1\), then
+while if $t^2\ge1$, then
 $$
 g'(1)=1-t^2\le0.
 $$
-Since \(g'(0)=t^2>0\) and the quadratic \(g'\) opens upward, \(y_-\) is the unique maximizer on the allowed interval; the second root is at or beyond the far endpoint.
+Since $g'(0)=t^2>0$ and the quadratic $g'$ opens upward, $y_-$ is the unique maximizer on the allowed interval; the second root is at or beyond the far endpoint.
 
 Let
 $$
@@ -168,7 +168,7 @@ V^4\le
 $$
 
 Step 4: Construct a tetrahedron attaining the bound
-Take an orthonormal basis \(\mathbf e_1,\mathbf e_2,\mathbf e_3\) and set
+Take an orthonormal basis $\mathbf e_1,\mathbf e_2,\mathbf e_3$ and set
 $$
 \mathbf w=2\sqrt{y_*}\,\mathbf e_1,
 \qquad
@@ -194,9 +194,9 @@ $$
 \qquad
 \mathbf p+\mathbf q+\mathbf r+\mathbf s=0,
 $$
-and \(\mathbf u\perp\mathbf v\), so the triple-product bound in Step 2 is an equality.
+and $\mathbf u\perp\mathbf v$, so the triple-product bound in Step 2 is an equality.
 
-It remains only to show that these four vectors really are face-area vectors of a tetrahedron. Put
+It remains to show that these four vectors really are face-area vectors of a tetrahedron. Put
 $$
 U=[\mathbf p\ \mathbf q\ \mathbf r],
 \qquad
@@ -214,7 +214,7 @@ and
 $$
 \det(A)A^{-T}=2U.
 $$
-Thus, if the columns of \(A\) are \(\mathbf a,\mathbf b,\mathbf c\), then
+Thus, if the columns of $A$ are $\mathbf a,\mathbf b,\mathbf c$, then
 $$
 \mathbf b\times\mathbf c=2\mathbf p,
 \qquad
@@ -222,13 +222,60 @@ $$
 \qquad
 \mathbf a\times\mathbf b=2\mathbf r.
 $$
-The tetrahedron with vertices \(0,\mathbf a,\mathbf b,\mathbf c\) therefore has three face areas \(1,1,t\), and its fourth face area is
+The tetrahedron with vertices $0,\mathbf a,\mathbf b,\mathbf c$ therefore has three face areas $1,1,t$, and its fourth face area is
 $$
 |\mathbf p+\mathbf q+\mathbf r|=|\mathbf s|=t.
 $$
 So the upper bound is attained by a nondegenerate tetrahedron.
 
-Taking the positive fourth root yields the required maximum volume.
+Step 5: Prove the maximizing tetrahedron is unique up to congruence
+Suppose a tetrahedron attains the bound. Step 3 forces
+$$
+y=y_*.
+$$
+Equality in the triple-product estimate of Step 2 forces
+$$
+\mathbf u\perp\mathbf v.
+$$
+Since $\mathbf u\perp\mathbf w$ and $\mathbf v\perp\mathbf w$ already, the three vectors $\mathbf w,\mathbf u,\mathbf v$ are pairwise orthogonal with the fixed lengths
+$$
+2\sqrt{y_*},
+\qquad
+\sqrt{1-y_*},
+\qquad
+\sqrt{t^2-y_*}.
+$$
+Consequently the Gram matrix of $U=[\mathbf p\ \mathbf q\ \mathbf r]$ is forced:
+$$
+U^TU=
+\begin{pmatrix}
+1&2y_*-1&-y_*\\
+2y_*-1&1&-y_*\\
+-y_*&-y_*&t^2
+\end{pmatrix}.
+$$
+Thus every maximizing face-area configuration has the same Gram matrix, up to swapping faces of equal area.
+
+For any realizing tetrahedron with edge matrix $A=[\mathbf a\ \mathbf b\ \mathbf c]$, the cofactor identity from Step 1 gives
+$$
+\det(A)A^{-T}=2U.
+$$
+Writing $\tau=|\det U|$, taking determinants yields
+$$
+|\det A|=2\sqrt{2\tau},
+$$
+so, up to the overall sign corresponding to central inversion,
+$$
+A=\sqrt{2\tau}\,U^{-T}.
+$$
+Therefore
+$$
+A^TA
+=2\tau\,(U^TU)^{-1}.
+$$
+The edge Gram matrix is therefore the same for every maximizer. A tetrahedron is determined up to congruence by the Gram matrix of three edge vectors from one vertex, so the maximizing tetrahedron is unique up to congruence.
+
+Taking the positive fourth root of the bound from Step 3 gives the maximum volume.
 
 Final Answer: $\boxed{\sqrt[4]{\frac{16}{2187}(1+t^2-\sqrt{t^4-t^2+1})^2(1+t^2+2\sqrt{t^4-t^2+1})}}$
 
