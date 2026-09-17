@@ -1,0 +1,22 @@
+{
+  "problem": "problem124",
+  "branch": "adversary/problem124",
+  "problem_path": "workspace/rainier-problem/problem124-dynamic-programming-and-optimal-control/problem.md",
+  "source_commit_sha": "1411f833485a6b90c2b4b337d41075f2a27766fe",
+  "problem_blob_sha": "3e34336a18f0627dd235d4890d778e2ce44ea57e",
+  "statement_sha256": "0eef4d0f92b391d082cc971a19d344af4b7926d9e23bb639484b4a056d2fcae2",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T08:43:46+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "\\[\nM(c)=\n\\begin{cases}\n\\dfrac{c^3(8-27c)}{32},&0<c\\le \\dfrac29,\\\\[6pt]\n\\dfrac1{1458},&\\dfrac29\\le c\\le \\dfrac12.\n\\end{cases}\n\\]\n\nLet\n\\[\nb=\\min\\left(c,\\frac29\\right),\\qquad a=\\frac b2 .\n\\]\nThe optimal paths use only slopes \\(-1,0,1\\), reach the positive height \\(b\\), and reach the negative height \\(-a\\).\n\nFor \\(0<c<2/9\\), so \\(b=c,a=c/2\\), the plateau lengths are\n\\[\nP=\\frac13-\\frac{3c}{2},\\qquad N=\\frac23-\\frac{3c}{2}.\n\\]\nUp to time reversal, the unique optimal path is\n\\[\n0 \\xrightarrow[\\text{slope }1]{c} c\n\\ \\xrightarrow[\\text{hold}]{P}\\ c\n\\ \\xrightarrow[\\text{slope }-1]{3c/2}\\ -\\frac c2\n\\ \\xrightarrow[\\text{hold}]{N}\\ -\\frac c2\n\\ \\xrightarrow[\\text{slope }1]{c/2}\\ 0.\n\\]\nEquivalently, the control is\n\\[\nu=1,0,-1,0,1\n\\]\non consecutive intervals of lengths\n\\[\nc,\\quad \\frac13-\\frac{3c}{2},\\quad \\frac{3c}{2},\\quad \\frac23-\\frac{3c}{2},\\quad \\frac c2,\n\\]\nor the time-reversed control. At \\(c=2/9\\), the same formula holds with \\(P=0,N=1/3\\).\n\nFor \\(2/9<c\\le1/2\\), the cap is inactive. Up to time reversal, the unique optimal path is\n\\[\n0\\xrightarrow[\\text{slope }1]{2/9}\\frac29\n\\xrightarrow[\\text{slope }-1]{1/3}-\\frac19\n\\xrightarrow[\\text{hold}]{1/3}-\\frac19\n\\xrightarrow[\\text{slope }1]{1/9}0.\n\\]\n\nProof sketch. For a path whose positive maximum is \\(b\\), rearrangement and convexity show that an optimizer must spend all positive plateau time at \\(b\\), all negative plateau time at some \\(-a\\), and use unit-speed ramps between them. Extra oscillations waste time and decrease the cubic integral. Thus every optimizer has, up to reversal, the trapezoidal form above.\n\nFor such a path the total transition time is \\(2(a+b)\\). If the plateau lengths at \\(b\\) and \\(-a\\) are \\(P,N\\), then\n\\[\nP+N=1-2(a+b),\n\\]\nand the zero-mean condition gives\n\\[\nbP-aN+b^2-a^2=0.\n\\]\nSolving,\n\\[\nP=\\frac{a-(a+b)^2}{a+b},\\qquad\nN=\\frac{b-(a+b)^2}{a+b}.\n\\]\nThe cubic integral is\n\\[\nJ(a,b)=\\frac{b^4-a^4}{2}+b^3P-a^3N\n=(b-a)\\left(ab-\\frac{(a+b)^3}{2}\\right).\n\\]\nFor fixed \\(b\\), this is maximized at \\(a=b/2\\), provided \\(P,N\\ge0\\). That feasibility condition is\n\\[\n\\frac b2\\ge \\left(\\frac{3b}{2}\\right)^2,\n\\]\ni.e.\n\\[\nb\\le \\frac29.\n\\]\nHence if \\(c\\le2/9\\), take \\(b=c,a=c/2\\), giving\n\\[\nM(c)=\\left(\\frac c2\\right)\\left(\\frac{c^2}{2}-\\frac{27c^3}{16}\\right)\n=\\frac{c^3(8-27c)}{32}.\n\\]\nIf \\(c\\ge2/9\\), the best admissible positive height is \\(b=2/9\\), \\(a=1/9\\), yielding\n\\[\nM(c)=\\frac1{1458}.\n\\]\nThe equality conditions in the rearrangement force exactly the listed bang-bang controls, up to time reversal and equality almost everywhere.",
+  "status": "success",
+  "completed_at": "2026-09-17T08:47:03+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem124/3e34336a18f0.json"
+}
