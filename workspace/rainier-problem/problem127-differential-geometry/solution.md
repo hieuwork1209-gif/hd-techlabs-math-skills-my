@@ -128,7 +128,9 @@ on $[0,1]$ and let $f=F^{-1}$. Since
 $$
 F'(x)=1+\lambda x^2>0,
 $$
-this gives a smooth increasing profile with $f(0)=0$, $f'(0)=1$, and $f(R)=1$. Substituting $(f^{-1})'(x)=1+\lambda x^2$ into the scattering integral reproduces exactly
+this gives a smooth increasing profile with $f(0)=0$, $f'(0)=1$, and $f(R)=1$. Moreover, $F$ extends to a smooth odd function with $F'(0)=1$, so its local inverse is smooth and odd. Hence $f(r)=r+O(r^3)$ with only odd powers near $0$, which is exactly the usual smooth pole condition for $dr^2+f(r)^2d\theta^2$.
+
+Finally, substituting $(f^{-1})'(x)=1+\lambda x^2$ into the scattering integral reproduces exactly
 $$
 \Phi(c)=\arccos c+\lambda c\sqrt{1-c^2}.
 $$
