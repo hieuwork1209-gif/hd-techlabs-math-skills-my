@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-inner-product-spaces/problem.md",
+  "source_commit_sha": "57db14be2107953ed966c87a38c802aaef52c771",
+  "problem_blob_sha": "5ccb22f2eb5cd85e794346cf4197475901bec359",
+  "statement_sha256": "ba6a959ee765e11186be3f7320dd6fda763afdf642a83fac847737104290aa89",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T09:08:27+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nc=\\cos\\frac{\\pi}{5},\\qquad d=\\cos\\frac{2\\pi}{5},\\qquad\n\\Delta=\\sqrt{1+2\\rho+5\\rho^2}.\n\\]\nThe largest possible value is\n\\[\n\\boxed{\n\\left(1+2c\\rho+d(\\Delta-1-\\rho)\\right)\n\\left(1-2d\\rho-c(\\Delta-1-\\rho)\\right)\n\\sqrt{\\Delta-3\\rho}\n}.\n\\]\n\nHere is the proof.\n\nLet \\(G=(\\langle v_i,v_j\\rangle)\\) be the Gram matrix. Then\n\\[\n|\\det[v_1\\ \\cdots\\ v_5]|^2=\\det G.\n\\]\nMultiplying each \\(v_i\\) by a unit complex scalar does not change \\(\\det G\\). Since\n\\[\n\\prod_{i=1}^5\\langle v_i,v_{i+1}\\rangle=-\\rho^5,\n\\]\nwe may gauge the vectors so that\n\\[\n\\langle v_i,v_{i+1}\\rangle=\\alpha:=\\rho e^{i\\pi/5}\n\\]\nfor every \\(i\\), because \\(\\alpha^5=-\\rho^5\\).\n\nNow maximize \\(\\det G\\) among positive definite Hermitian matrices with diagonal entries \\(1\\) and cyclic adjacent entries \\(\\alpha\\). The function \\(\\log\\det G\\) is strictly concave, so the maximizer is unique. Cyclic symmetry forces the maximizer to be circulant. Thus it has first row\n\\[\n(1,\\alpha,\\gamma,\\overline{\\gamma},\\overline{\\alpha}).\n\\]\nA reflection symmetry combined with a gauge transformation forces\n\\[\n\\gamma=s e^{2\\pi i/5}\n\\]\nwith \\(s\\in\\mathbb R\\).\n\nThe eigenvalues of this circulant matrix are\n\\[\nA=1+2c\\rho+2ds \\quad \\text{with multiplicity }2,\n\\]\n\\[\nB=1-2d\\rho-2cs \\quad \\text{with multiplicity }2,\n\\]\nand\n\\[\nC=1-2\\rho+2s \\quad \\text{with multiplicity }1.\n\\]\nHence\n\\[\n\\det G=A^2B^2C.\n\\]\n\nSo we maximize\n\\[\nA^2B^2C\n\\]\nover the interval where \\(A,B,C>0\\). Differentiating \\(\\log(A^2B^2C)\\) gives\n\\[\n\\frac{4d}{A}-\\frac{4c}{B}+\\frac{2}{C}=0.\n\\]\nUsing\n\\[\ncd=\\frac14,\\qquad c-d=\\frac12,\\qquad c^2+d^2=\\frac34,\n\\]\nthis reduces to\n\\[\ns^2+(1+\\rho)s-\\rho^2=0.\n\\]\nThe admissible root is\n\\[\ns=\\frac{\\Delta-1-\\rho}{2},\n\\qquad\n\\Delta=\\sqrt{1+2\\rho+5\\rho^2}.\n\\]\nThen\n\\[\nC=1-2\\rho+2s=\\Delta-3\\rho>0\n\\]\nbecause \\(\\rho<\\cos(\\pi/5)\\). Substituting this \\(s\\) into \\(A,B,C\\), we get\n\\[\n|\\det[v_1\\ \\cdots\\ v_5]|\n=\\sqrt{\\det G}\n=AB\\sqrt C,\n\\]\nwhich is exactly\n\\[\n\\boxed{\n\\left(1+2\\rho\\cos\\frac{\\pi}{5}\n+\\cos\\frac{2\\pi}{5}\\bigl(\\sqrt{1+2\\rho+5\\rho^2}-1-\\rho\\bigr)\\right)\n\\left(1-2\\rho\\cos\\frac{2\\pi}{5}\n-\\cos\\frac{\\pi}{5}\\bigl(\\sqrt{1+2\\rho+5\\rho^2}-1-\\rho\\bigr)\\right)\n\\sqrt{\\sqrt{1+2\\rho+5\\rho^2}-3\\rho}\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T09:10:23+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/5ccb22f2eb5c.json"
+}
