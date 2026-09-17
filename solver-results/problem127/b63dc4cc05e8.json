@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-probability-foundations/problem.md",
+  "source_commit_sha": "97306b661163cbd136fc4548b6458f9be2e701eb",
+  "problem_blob_sha": "b63dc4cc05e8ebf5c2eb0f05ac8e41fe4f0da458",
+  "statement_sha256": "ec63b1dc2d8942e9548cf2db52a51da62dd9431cc41e887f93f576885a9dcd68",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T10:46:27+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nS=X_1+\\cdots+X_N,\\qquad T=N-S\n\\]\nbe the number of failures. Since the vector is exchangeable, the law is determined by the distribution of \\(T\\).\n\nWe have\n\\[\n\\mathbb E[T]=N(1-p),\n\\]\nand\n\\[\n\\mathbb E[T(T-1)]\n= N(N-1)\\Big((1-p)^2+\\rho p(1-p)\\Big).\n\\]\nThus\n\\[\n\\frac{\\mathbb E[T(T-1)]}{\\mathbb E[T]}\n=(N-1)(1-p+\\rho p).\n\\]\n\nPut\n\\[\nA=(N-1)p(1-\\rho),\\qquad r=\\lfloor A\\rfloor,\\qquad h=A-r.\n\\]\nThen \\(0\\le h<1\\), and\n\\[\n(N-1)(1-p+\\rho p)=N-1-A.\n\\]\n\nNow size-bias the positive values of \\(T\\): define a probability distribution \\(W\\) on \\(\\{1,\\dots,N\\}\\) by\n\\[\n\\mathbb P(W=t)=\\frac{t\\mathbb P(T=t)}{\\mathbb E[T]}.\n\\]\nThen\n\\[\n\\mathbb E[W-1]=N-1-A,\n\\]\nso\n\\[\n\\mathbb E[W]=N-A=N-r-h.\n\\]\nThis lies between\n\\[\nN-r-1 \\quad\\text{and}\\quad N-r.\n\\]\n\nAlso\n\\[\n\\mathbb P(T>0)\n=\\sum_{t=1}^N \\mathbb P(T=t)\n=\\mathbb E[T]\\mathbb E\\!\\left[\\frac1W\\right].\n\\]\nTherefore maximizing \\(\\mathbb P(T=0)\\) is the same as minimizing\n\\[\n\\mathbb E\\!\\left[\\frac1W\\right]\n\\]\namong distributions on \\(\\{1,\\dots,N\\}\\) with mean \\(N-r-h\\).\n\nSince \\(t\\mapsto 1/t\\) is convex, the minimum occurs by placing \\(W\\) only on the two adjacent integers \\(N-r-1\\) and \\(N-r\\). The weights must be\n\\[\n\\mathbb P(W=N-r-1)=h,\\qquad\n\\mathbb P(W=N-r)=1-h.\n\\]\nHence\n\\[\n\\min \\mathbb E\\!\\left[\\frac1W\\right]\n=\n\\frac{h}{N-r-1}+\\frac{1-h}{N-r}.\n\\]\n\nThus\n\\[\n\\max \\mathbb P(T=0)\n=\n1-N(1-p)\\left(\\frac{h}{N-r-1}+\\frac{1-h}{N-r}\\right),\n\\]\nwhere\n\\[\nh=(N-1)p(1-\\rho)-r.\n\\]\n\nSince \\(T=0\\) is exactly the event \\(X_1=\\cdots=X_N=1\\), the largest possible value is\n\n\\[\n\\boxed{\n1-N(1-p)\\left(\n\\frac{(N-1)p(1-\\rho)-r}{N-r-1}\n+\n\\frac{1-(N-1)p(1-\\rho)+r}{N-r}\n\\right)\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T10:47:44+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/b63dc4cc05e8.json"
+}
