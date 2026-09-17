@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-measure-theory/problem.md",
+  "source_commit_sha": "d610c79d8b48cd9ba2547c3f73e57418f7cf0556",
+  "problem_blob_sha": "2db7a338aae40ee6a0fa248a60e79959cfc59c7b",
+  "statement_sha256": "4dda624894d626399914c8574ceb332be0b4e91706e4444cc13997d0b8e7e71a",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T14:34:14+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "All three measures are pairwise equivalent.\n\nFor one coordinate with base law \\(\\nu(X=1)=q\\), \\(\\mu(X=1)=p\\), \\(\\lambda(X=1)=r\\), the joint Mellin factor is\n\\[\np^s r^t q^{1-s-t}+(1-p)^s(1-r)^t(1-q)^{1-s-t}.\n\\]\nThus\n\\[\nM(s,t)=\\prod_{k\\ge3} A_k(s)B_k(t)C_k(s+t),\n\\]\nwhere\n\\[\nA_k(s)=a_k^s b_k^{1-s}+(1-a_k)^s(1-b_k)^{1-s},\n\\]\n\\[\nB_k(t)=d_k^t c_k^{1-t}+(1-d_k)^t(1-c_k)^{1-t},\n\\]\n\\[\nC_k(u)=e_k^u d_k^{1-u}+(1-e_k)^u(1-d_k)^{1-u},\\qquad u=s+t.\n\\]\n\nThe critical terms are\n\\[\na_k^s b_k^{1-s}=k^{-4+2s}(\\log k)^{-2s},\n\\]\n\\[\nd_k^t c_k^{1-t}=k^{-5+3t},\n\\]\n\\[\ne_k^u d_k^{1-u}=k^{-2-2u}.\n\\]\nThe remaining zero-coordinate terms differ from \\(1\\) only by summable corrections unless these displayed terms force divergence.\n\nTherefore\n\\[\n\\mathcal D\n=\\{(s,t)\\in\\mathbb R^2:s\\le\\tfrac32,\\ t<\\tfrac43,\\ s+t>-\\tfrac12\\}.\n\\]\n\nBoundary behavior:\n\n- \\(s=\\frac32\\) is included, provided \\(t<\\frac43\\) and \\(t>-2\\), because\n\\[\nk^{-4+2s}(\\log k)^{-2s}=k^{-1}(\\log k)^{-3}\n\\]\nis summable.\n- \\(t=\\frac43\\) is excluded, because \\(k^{-5+3t}=k^{-1}\\) diverges.\n- \\(s+t=-\\frac12\\) is excluded, because \\(k^{-2-2(s+t)}=k^{-1}\\) diverges.\n\nThe maximal open tube domain for holomorphic product convergence is\n\\[\n\\boxed{\n\\{(z,w)\\in\\mathbb C^2:\\operatorname{Re}z<\\tfrac32,\\ \n\\operatorname{Re}w<\\tfrac43,\\ \n\\operatorname{Re}(z+w)>-\\tfrac12\\}.\n}\n\\]\n\nThe one-variable integrability ranges are:\n\\[\n\\mathcal P_Z=\\{p>0:M(p,0)<\\infty\\}=(0,\\tfrac32],\n\\]\n\\[\n\\mathcal P_W=\\{p>0:M(0,p)<\\infty\\}=(0,\\tfrac43),\n\\]\n\\[\n\\mathcal R_\\mu\n=\\{p>0:M(1-p,0)<\\infty\\}=(0,\\tfrac32),\n\\]\n\\[\n\\mathcal R_\\lambda\n=\\{p>0:M(0,1-p)<\\infty\\}=(0,\\tfrac32).\n\\]\n\nAlso\n\\[\nZ^{-1}W^{-1}\\in L^p(\\nu)\n\\iff M(-p,-p)<\\infty\n\\iff -2p>-\\frac12,\n\\]\nso exactly\n\\[\n\\boxed{0<p<\\frac14.}\n\\]\n\nFinal tuple:\n\\[\n\\boxed{\n\\left(\n\\{(s,t):s\\le\\tfrac32,\\ t<\\tfrac43,\\ s+t>-\\tfrac12\\},\n\\ (0,\\tfrac32],\n\\ (0,\\tfrac43),\n\\ (0,\\tfrac32),\n\\ (0,\\tfrac32)\n\\right).\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T14:35:43+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/2db7a338aae4.json"
+}
