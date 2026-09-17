@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-linear-algebra/problem.md",
+  "source_commit_sha": "bd6d20f07eb7dfd5fd9ba97aa110a1abc5579d2f",
+  "problem_blob_sha": "8fc55279a7c3cddbc445444375b10ca1988e57b1",
+  "statement_sha256": "bc41f73e6f2fc7f572b9c459eded8406e0bee14d5ec3b106e9d60b0f1739e514",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T08:06:14+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nz=\\frac1\\lambda,\\qquad q=\\frac1\\mu .\n\\]\nSince \\(0<\\lambda<\\mu<1\\), we have \\(z\\ne q\\). The answer is\n\\[\n\\boxed{\n\\frac{D_n(\\lambda,\\mu)}{D_n}\n=\n\\frac{(\\lambda\\mu)^{2n}}{(q-z)^4}\\,\\mathcal C_n(z,q)\n=\n\\frac{(\\lambda\\mu)^{2n+4}}{(\\mu-\\lambda)^4}\\,\n\\mathcal C_n\\!\\left(\\frac1\\lambda,\\frac1\\mu\\right)\n}.\n\\]\n\nHere \\(\\mathcal C_n\\) is exactly the confluent Jacobi alternant from the problem statement.\n\n**Proof.** Write the inner product\n\\[\n\\langle f,g\\rangle=\\int_0^1 f(x)g(x)w(x)\\,dx.\n\\]\nThe Hankel determinant is the Gram determinant of \\(1,x,\\dots,x^{n-1}\\), hence also of the monic orthogonal polynomials \\(\\pi_0,\\dots,\\pi_{n-1}\\):\n\\[\nD_n=\\prod_{k=0}^{n-1} h_k,\\qquad h_k=\\langle \\pi_k,\\pi_k\\rangle .\n\\]\n\nFirst take four distinct complex numbers \\(y_1,\\dots,y_4\\), and set\n\\[\nR(x)=\\prod_{\\alpha=1}^4 (x-y_\\alpha).\n\\]\nUsing Andreief’s determinant identity,\n\\[\n\\det\\!\\left[\\int_0^1 x^{i+j}R(x)w(x)\\,dx\\right]_{i,j=0}^{n-1}\n=\n\\frac1{n!}\\int_{[0,1]^n}\\Delta(x)^2\\prod_{k=1}^n R(x_k)\\prod_{k=1}^n w(x_k)\\,dx_k,\n\\]\nwhere \\(\\Delta(x)=\\prod_{i<j}(x_j-x_i)\\).\n\nWith\n\\[\n\\Delta(y)=\\prod_{\\alpha<\\beta}(y_\\beta-y_\\alpha),\n\\]\none has\n\\[\n\\Delta(x)\\prod_{k=1}^n\\prod_{\\alpha=1}^4(x_k-y_\\alpha)\n=\n\\frac{\\Delta(x,y)}{\\Delta(y)}\n\\]\nbecause \\(4n\\) is even. Replacing monomials by the monic orthogonal basis \\(\\pi_0,\\pi_1,\\dots\\), expand the determinant \\(\\Delta(x,y)\\) along the four \\(y\\)-rows. Orthogonality kills every term except the one using columns \\(n,n+1,n+2,n+3\\) for the \\(y\\)-rows and columns \\(0,\\dots,n-1\\) for the \\(x\\)-rows. Therefore\n\\[\n\\frac{\\det\\!\\left[\\int_0^1 x^{i+j}R(x)w(x)\\,dx\\right]_{i,j=0}^{n-1}}{D_n}\n=\n\\frac{\n\\det[\\pi_{n+j-1}(y_\\alpha)]_{\\alpha,j=1}^4\n}{\\Delta(y)}.\n\\]\n\nNow let\n\\[\ny_1=z,\\qquad y_2\\to z,\\qquad y_3=q,\\qquad y_4\\to q.\n\\]\nThe numerator has the confluent limit\n\\[\n(y_2-z)(y_4-q)\\,\\mathcal C_n(z,q)+o\\bigl((y_2-z)(y_4-q)\\bigr),\n\\]\nwhile\n\\[\n\\Delta(y)\n=\n(y_2-z)(y_4-q)(q-z)^4+o\\bigl((y_2-z)(y_4-q)\\bigr).\n\\]\nHence\n\\[\n\\frac{\\det\\!\\left[\\int_0^1 x^{i+j}w(x)(x-z)^2(x-q)^2\\,dx\\right]_{i,j=0}^{n-1}}{D_n}\n=\n\\frac{\\mathcal C_n(z,q)}{(q-z)^4}.\n\\]\n\nFinally,\n\\[\n(1-\\lambda x)^2(1-\\mu x)^2\n=\n\\lambda^2\\mu^2(x-z)^2(x-q)^2.\n\\]\nMultiplying the weight by the scalar \\(\\lambda^2\\mu^2\\) multiplies an \\(n\\times n\\) Hankel determinant by \\((\\lambda^2\\mu^2)^n\\). Therefore\n\\[\n\\frac{D_n(\\lambda,\\mu)}{D_n}\n=\n(\\lambda\\mu)^{2n}\\frac{\\mathcal C_n(z,q)}{(q-z)^4}.\n\\]\nSubstituting \\(z=1/\\lambda\\), \\(q=1/\\mu\\) gives the stated formula.",
+  "status": "success",
+  "completed_at": "2026-09-17T08:07:41+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/8fc55279a7c3.json"
+}
