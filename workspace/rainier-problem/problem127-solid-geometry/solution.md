@@ -154,13 +154,13 @@ Therefore
 $$
 AB^2=AC^2=AD^2
 =\frac{2(1+c)}{\sqrt{1+2c}}
-=\frac{s^2+3}{\sqrt3\,s}.
+=\frac{s^2+3}{\sqrt{3}\,s}.
 $$
 Also
 $$
 BC^2=BD^2=CD^2
 =\frac{4(1+2c)}{\sqrt{1+2c}}
-=\frac{4s}{\sqrt3}.
+=\frac{4s}{\sqrt{3}}.
 $$
 
 Step 4: Prove attainment and uniqueness up to congruence
@@ -196,13 +196,13 @@ E^TE=E'^TE'=H.
 $$
 Thus $Q=E'E^{-1}$ satisfies $Q^TQ=I$, so the two tetrahedra differ only by an orthogonal transformation and translation. Hence all maximizers are congruent, with the two common edge lengths found in Step 3.
 
-Final Answer: $\boxed{\left(\sqrt{\frac{s^2+3}{\sqrt3\,s}},2\sqrt{\frac{s}{\sqrt3}}\right)}$
+Final Answer: $\boxed{\left(\sqrt{\frac{s^2+3}{\sqrt{3}\,s}},2\sqrt{\frac{s}{\sqrt{3}}}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\sqrt{\frac{s^2+3}{\sqrt3\,s}},2\sqrt{\frac{s}{\sqrt3}}\right)$
+$\left(\sqrt{\frac{s^2+3}{\sqrt{3}\,s}},2\sqrt{\frac{s}{\sqrt{3}}}\right)$
 
 ---
 
