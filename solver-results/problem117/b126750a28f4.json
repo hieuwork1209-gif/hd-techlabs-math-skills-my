@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-experimental-design-and-causal-inference/problem.md",
+  "source_commit_sha": "e70a380baaa68e497e9752a5495321890674497d",
+  "problem_blob_sha": "b126750a28f431b9fc0b584e20845d0298b7977d",
+  "statement_sha256": "700823a2a1df732acba0d6bb7d49dfccdda229ba49ae7407947b01784877b04b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T08:28:18+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(t=\\tau\\), and write\n\\[\na=f_4(t)=(t,1/3,1/3)^T,\\qquad b=f_5(t)=(1/3,t,1/3)^T.\n\\]\n\nFor any positive definite candidate \\(M=\\sum w_i f_i f_i^T\\), the standard directional concavity criterion says it is optimal iff\n\\[\nf_i^T M^{-1}f_i\\le 3\\qquad (i=1,\\dots,5),\n\\]\nwith equality on every positive-weight support point. Indeed,\n\\[\n\\frac{d}{d\\varepsilon}\\log\\det\\bigl((1-\\varepsilon)M+\\varepsilon f_if_i^T\\bigr)\\bigg|_{\\varepsilon=0}\n=f_i^TM^{-1}f_i-3.\n\\]\n\nAt\n\\[\nw^0=\\left(\\frac13,\\frac13,\\frac13,0,0\\right),\n\\qquad M_0=\\frac13 I,\n\\]\nwe have\n\\[\nf_1^TM_0^{-1}f_1=f_2^TM_0^{-1}f_2=f_3^TM_0^{-1}f_3=3,\n\\]\nand\n\\[\na^TM_0^{-1}a=b^TM_0^{-1}b\n=3\\left(t^2+\\frac29\\right)=3t^2+\\frac23.\n\\]\nThus \\(w^0\\) is optimal exactly when\n\\[\n3t^2+\\frac23\\le 3\n\\iff t^2\\le \\frac79\n\\iff t\\le \\frac{\\sqrt7}{3}.\n\\]\nSo\n\\[\n\\tau_c=\\frac{\\sqrt7}{3}.\n\\]\n\nFor uniqueness in this range: if another optimizer had the same optimal determinant, strict concavity in \\(M\\) forces the same matrix \\(M_0=I/3\\). But \\(M_0\\) has zero off-diagonal entries, while every off-diagonal contribution from \\(f_4f_4^T\\) or \\(f_5f_5^T\\) is positive when \\(t>0\\). Hence \\(w_4=w_5=0\\), and then necessarily \\(w_1=w_2=w_3=1/3\\). So the optimizer is uniquely\n\\[\n\\left(\\frac13,\\frac13,\\frac13,0,0\\right)\n\\]\nfor \\(0<t\\le \\tau_c\\).\n\nNow take \\(t=\\tau_c+h\\), \\(h>0\\) small. By the symmetry interchanging coordinates \\(1,2\\) and \\(f_4,f_5\\), the unique optimum is symmetric, so write\n\\[\nw_1=w_2=x,\\qquad w_3=z,\\qquad w_4=w_5=y,\n\\]\nwith\n\\[\n2x+z+2y=1.\n\\]\nSet\n\\[\nz=\\frac13+v,\\qquad x=\\frac13-\\frac v2-y.\n\\]\nAt \\(h=0,y=0,v=0\\), this is \\(M_0\\). Using\n\\[\n\\log\\det(M_0+\\Delta)\n=\\log\\det M_0+\\operatorname{tr}(3\\Delta)\n-\\frac12\\operatorname{tr}\\bigl((3\\Delta)^2\\bigr)+O(\\|\\Delta\\|^3),\n\\]\none obtains, uniformly for small \\(h,y,v\\),\n\\[\n\\Psi(t)+3\\log3\n=\n4\\sqrt7\\,hy-\\frac{27}{4}v^2-3vy\n-\\frac{94+8\\sqrt7}{18}y^2\n+o(h^2+y^2+v^2).\n\\]\nFor fixed \\(y\\), the quadratic part is maximized in \\(v\\) at\n\\[\nv=-\\frac29y.\n\\]\nSubstituting gives\n\\[\n\\Psi(t)+3\\log3\n=\n4\\sqrt7\\,hy-\\frac{44+4\\sqrt7}{9}y^2+o(h^2+y^2).\n\\]\nHence the maximizing \\(y\\) satisfies\n\\[\ny=\\frac{9\\sqrt7}{2(11+\\sqrt7)}h+o(h),\n\\]\nso in particular \\(y>0\\) for all sufficiently small \\(h>0\\). Therefore both \\(w_4,w_5\\) are positive just to the right of \\(\\tau_c\\).\n\nThe maximal quadratic gain is\n\\[\n\\frac{(4\\sqrt7)^2}{4\\cdot \\frac{44+4\\sqrt7}{9}}h^2\n=\n\\frac{63}{11+\\sqrt7}h^2.\n\\]\nThus\n\\[\n\\lim_{h\\downarrow0}\n\\frac{\\Psi(\\tau_c+h)-\\Psi(\\tau_c)}{h^2}\n=\n\\frac{63}{11+\\sqrt7}.\n\\]\n\n\\[\n\\boxed{\\left(\\frac{\\sqrt7}{3},\\frac{63}{11+\\sqrt7}\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T08:30:10+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/b126750a28f4.json"
+}
