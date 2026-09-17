@@ -24,7 +24,22 @@ A_*=\max_{0\le x\le1}u_*(x)
 \]
 of the unique positive solution \(u_*\) at \(\lambda=\lambda_*\).
 
-In addition, determine the exact number of positive solutions for each of the three regimes
+For any positive solution \(u\), define its Dirichlet linearization
+\[
+\mathcal L_u\phi
+=-\phi''-3\lambda(1+u)^2\phi,
+\qquad
+\phi(0)=\phi(1)=0.
+\]
+Its Morse index is the number of negative eigenvalues of \(\mathcal L_u\), counted with multiplicity, and its nullity is \(\dim\ker\mathcal L_u\).
+
+For \(0<\lambda<\lambda_*\), there are two positive solutions. Call them \(u_{\rm small}\) and \(u_{\rm large}\) according to their maximum amplitudes. Determine exactly:
+
+1. the Morse index of \(u_{\rm small}\);
+2. the Morse index of \(u_{\rm large}\);
+3. the Morse index and nullity of the fold solution \(u_*\).
+
+Also determine the exact number of positive solutions for each regime
 \[
 0<\lambda<\lambda_*,
 \qquad
@@ -35,12 +50,19 @@ In addition, determine the exact number of positive solutions for each of the th
 
 It is acceptable to specify a transcendental constant as the unique real root of an explicit one-variable integral equation together with an isolating interval.
 
-Your derivation must prove that every positive solution is symmetric about \(x=1/2\), reduce the problem to an exact one-parameter branch, and prove that this branch has exactly one fold.
+Your derivation must:
 
-Return the exact pair
+- prove that every positive solution is symmetric about \(x=1/2\);
+- reduce all positive solutions to an exact one-parameter branch;
+- prove that this branch has exactly one fold;
+- prove spectrally, rather than by a turning-point slogan alone, the Morse-index classification on both branches;
+- identify the one-dimensional kernel at the fold.
+
+Return the exact tuple
 \[
-(\lambda_*,A_*).
+(\lambda_*,A_*,m_{\rm small},m_{\rm large},\nu_*),
 \]
+where \(m_{\rm small}\), \(m_{\rm large}\) are the two branch Morse indices and \(\nu_*\) is the fold nullity.
 
 ---
 
@@ -57,4 +79,4 @@ Return the exact pair
 
 ## Domain Explanation
 
-The problem asks for the complete positive-solution bifurcation diagram of a nonlinear two-point Dirichlet boundary value problem, including the exact fold parameter, the critical solution amplitude, and the number of solutions on each side of the fold. The essential work is the phase-plane first integral, symmetry of positive solutions, an exact amplitude parameterization, and a global uniqueness proof for the turning point. Thus Differential Equations and Dynamical Systems -> Boundary value problems is primary.
+The problem asks for the complete positive-solution structure of a nonlinear two-point Dirichlet boundary value problem, including the exact fold parameter, critical amplitude, solution multiplicity, and the Dirichlet Morse index of each branch. The phase-plane reduction and boundary conditions determine the global branch, while Sturm-Liouville analysis of the boundary-value linearization provides the spectral classification. Thus Differential Equations and Dynamical Systems -> Boundary value problems is primary; the stability calculation is subordinate to the boundary-value problem itself.
