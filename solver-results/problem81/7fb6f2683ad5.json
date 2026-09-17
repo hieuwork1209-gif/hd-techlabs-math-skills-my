@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-probability-foundations/problem.md",
+  "source_commit_sha": "bfad5b7822cde66bf1309c689fb402d27d3a41b3",
+  "problem_blob_sha": "7fb6f2683ad599bdd5b7ba6bceeaa2d1a5cf8a9b",
+  "statement_sha256": "81d66a685e4f3b0651b6924f1f6a43ddedcd532faab1a7ae0752504e097b1a5b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T10:45:45+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nL(p)=\\mathbb E[p(X)]\n\\]\nfor any polynomial \\(p\\) of degree at most \\(9\\), using the given moments. Thus\n\\[\nL(x^k)=\\frac1{k+1}\\quad(0\\le k\\le 8),\\qquad\nL(x^9)=\\frac{35281}{352800}.\n\\]\n\nDefine\n\\[\nS(x)=x^4-\\frac{19}{10}x^3+\\frac{71}{60}x^2-\\frac{113}{420}x+\\frac1{60}.\n\\]\nA direct substitution gives\n\\[\nL\\!\\left(x^j x(1-x)S(x)\\right)=0\\qquad(j=0,1,2,3).\n\\]\nAlso\n\\[\nS(2)=\\frac{421}{84}.\n\\]\nNow set\n\\[\nR(x)=\\frac{3528}{177241}\\,x(1-x)S(x)^2.\n\\]\nThen \\(R(x)\\ge 0\\) on \\([0,1]\\), and\n\\[\nR(2)=\\frac{3528}{177241}\\cdot 2(-1)\\left(\\frac{421}{84}\\right)^2=-1.\n\\]\nTherefore\n\\[\nq(x):=\\frac{1+R(x)}{2-x}\n\\]\nis a polynomial of degree at most \\(9\\), and for \\(0\\le x\\le 1\\),\n\\[\nq(x)-\\frac1{2-x}=\\frac{R(x)}{2-x}\\ge 0.\n\\]\nSo every admissible law satisfies\n\\[\n\\mathbb E\\!\\left[\\frac1{2-X}\\right]\\le L(q).\n\\]\nExpanding \\(q\\) and applying the moments gives\n\\[\nL(q)=\\frac{58363}{84200}.\n\\]\n\nIt remains to see this bound is attained. The quartic\n\\[\n420S(x)=420x^4-798x^3+497x^2-113x+7\n\\]\nhas four simple roots in \\((0,1)\\), approximately\n\\[\n0.0976457,\\quad 0.3208043,\\quad 0.6115696,\\quad 0.8699804.\n\\]\nTogether with \\(0\\) and \\(1\\), these six points support the quadrature rule determined by the first six moments. Because\n\\[\nL\\!\\left(x^j x(1-x)S(x)\\right)=0\\qquad(j=0,1,2,3),\n\\]\ndivision by \\(x(1-x)S(x)\\) shows this quadrature rule matches all moments through degree \\(9\\). Its weights are positive, so it is an admissible probability law. On its support, \\(R=0\\), hence \\(q(x)=1/(2-x)\\), so equality is attained.\n\nFinally, equality in the upper bound forces \\(R(X)=0\\) almost surely, so any maximizing law must be supported on those same six points. The first six moments then determine the six weights uniquely by an invertible Vandermonde system. Hence the maximizing law is unique.\n\n\\[\n\\boxed{M=\\frac{58363}{84200}}\n\\]\n\nThe maximizing law is unique.",
+  "status": "success",
+  "completed_at": "2026-09-17T10:49:57+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/7fb6f2683ad5.json"
+}
