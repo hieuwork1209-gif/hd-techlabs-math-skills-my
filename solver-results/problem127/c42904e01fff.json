@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-differential-geometry/problem.md",
+  "source_commit_sha": "bf3266753af61f460d6f93b56b88ad16e502213f",
+  "problem_blob_sha": "c42904e01fff0a55798cfa4920f17ef70ce96f9f",
+  "statement_sha256": "20d213530e61f6bdd2fa5c5349cf441dcfd9dec14e6baf623e1868f306c05c9b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T13:31:27+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(L=f(r)^2\\dot\\theta\\) be the Clairaut constant of a unit-speed geodesic. At the boundary \\(f(R)=1\\), the tangential speed is \\(\\sin(\\arcsin c)=c\\), so \\(L=c\\). Hence\n\\[\n\\dot r^2+f(r)^2\\dot\\theta^2=1,\\qquad f(r)^2\\dot\\theta=c,\n\\]\nand along one half of the geodesic, from its turning point \\(f=c\\) to the boundary \\(f=1\\),\n\\[\n\\Phi(c)=\\int_{f=c}^{1}\\frac{c}{x\\sqrt{x^2-c^2}}\\frac{dr}{dx}\\,dx.\n\\]\nWrite\n\\[\nq(x)=\\frac{dr}{df}\\bigg|_{f=x}.\n\\]\nThen\n\\[\n\\Phi(c)=\\int_c^1 \\frac{c\\,q(x)}{x\\sqrt{x^2-c^2}}\\,dx.\n\\]\n\nFor \\(q(x)=1\\),\n\\[\n\\int_c^1 \\frac{c}{x\\sqrt{x^2-c^2}}\\,dx=\\arccos c.\n\\]\nSo the extra term must come from \\(q(x)-1\\). We claim\n\\[\nq(x)=1+\\lambda x^2.\n\\]\nIndeed,\n\\[\n\\int_c^1 \\frac{c\\,x^2}{x\\sqrt{x^2-c^2}}\\,dx\n=c\\int_c^1 \\frac{x}{\\sqrt{x^2-c^2}}\\,dx\n=c\\sqrt{1-c^2}.\n\\]\nThus\n\\[\n\\Phi(c)=\\arccos c+\\lambda c\\sqrt{1-c^2}\n\\]\nis exactly equivalent to\n\\[\n\\frac{dr}{df}=1+\\lambda f^2.\n\\]\nTherefore\n\\[\nr=f+\\frac{\\lambda}{3}f^3,\\qquad R=1+\\frac{\\lambda}{3}.\n\\]\n\nNow suppose the metric is induced by\n\\[\nX(r,\\theta)=(f(r)\\cos\\theta,f(r)\\sin\\theta,z(r)).\n\\]\nSince \\(r\\) is meridian arclength,\n\\[\nf'(r)^2+z'(r)^2=1.\n\\]\nBut\n\\[\nf'(r)=\\frac1{1+\\lambda f(r)^2}.\n\\]\nSo a real \\(z'(r)\\) exists iff\n\\[\n\\frac1{(1+\\lambda f^2)^2}\\le 1\n\\]\nfor all \\(0\\le f\\le1\\). Since \\(\\lambda\\neq0\\), this holds exactly when\n\\[\n\\lambda>0.\n\\]\nFor \\(-1<\\lambda<0\\), one has \\(1+\\lambda f^2<1\\) for \\(f>0\\), so \\(f'(r)>1\\), impossible for a Euclidean surface of revolution parametrized by arclength.\n\nFor \\(\\lambda>0\\),\n\\[\nz'(r)=\\sqrt{1-\\frac1{(1+\\lambda f^2)^2}},\n\\]\nand therefore\n\\[\nH=z(R)=\\int_0^R z'(r)\\,dr\n=\\int_0^1 \\sqrt{(1+\\lambda f^2)^2-1}\\,df.\n\\]\nThus\n\\[\nH=\\int_0^1 f\\sqrt{\\lambda(2+\\lambda f^2)}\\,df\n=\\sqrt{\\lambda}\\int_0^1 f\\sqrt{2+\\lambda f^2}\\,df.\n\\]\nUsing \\(u=2+\\lambda f^2\\), \\(du=2\\lambda f\\,df\\),\n\\[\nH=\\frac{\\sqrt{\\lambda}}{2\\lambda}\\int_2^{2+\\lambda}u^{1/2}\\,du\n=\\frac{(2+\\lambda)^{3/2}-2^{3/2}}{3\\sqrt{\\lambda}}.\n\\]\n\nHence the realizable pairs are exactly\n\\[\n\\boxed{\\left\\{\\,\\left(\\lambda,\\frac{(2+\\lambda)^{3/2}-2^{3/2}}{3\\sqrt{\\lambda}}\\right):\\lambda>0\\,\\right\\}.}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T13:32:27+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/c42904e01fff.json"
+}
