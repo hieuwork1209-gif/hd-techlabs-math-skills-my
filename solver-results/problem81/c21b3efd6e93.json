@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-numerical-analysis/problem.md",
+  "source_commit_sha": "a304862ac01983d5ba2a6e8795e39b624a030488",
+  "problem_blob_sha": "c21b3efd6e93b32778f978d049346a4ef6ad3d18",
+  "statement_sha256": "6e8aceefd1e42c51098a71a75f0f40af0804834838b038c77b6776ea43a3f5cb",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T12:53:14+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nq_a(t)=R_a(-t)=1-t+\\frac{t^2}{2}-\\frac{t^3}{6}+at^4,\\qquad t\\ge 0.\n\\]\nFor \\(t>0\\), the condition \\(-1\\le q_a(t)\\le 1\\) is equivalent to\n\\[\nA(t)\\le a\\le B(t),\n\\]\nwhere\n\\[\nA(t)=\\frac{-2+t-\\frac{t^2}{2}+\\frac{t^3}{6}}{t^4},\\qquad\nB(t)=\\frac{t-\\frac{t^2}{2}+\\frac{t^3}{6}}{t^4}\n=\\frac{t^2-3t+6}{6t^3}.\n\\]\n\nNow\n\\[\nB'(t)=-\\frac{t^2-6t+18}{6t^4}<0,\n\\]\nso on \\((0,L]\\), the strongest upper bound is \\(a\\le B(L)\\).\n\nAlso\n\\[\nA'(t)=-\\frac{t^3-6t^2+18t-48}{6t^5}.\n\\]\nThe cubic\n\\[\nh(t)=t^3-6t^2+18t-48\n\\]\nhas \\(h'(t)=3(t^2-4t+6)>0\\), hence one real root. Since \\(h(4)<0<h(5)\\), there is a unique root\n\\[\nm_*\\in(4,5).\n\\]\nThus \\(A\\) increases up to \\(m_*\\) and decreases after \\(m_*\\). Therefore, for \\(L\\ge m_*\\), feasibility is exactly\n\\[\nA(m_*)\\le B(L).\n\\]\nThe maximal endpoint occurs when equality holds:\n\\[\nB(L_*)=A(m_*).\n\\]\n\nAt the interior contact,\n\\[\nq_{a_*}(m_*)=-1,\\qquad q_{a_*}'(m_*)=0,\n\\]\nwhich gives\n\\[\na_*=\\frac{m_*^2-2m_*+2}{8m_*^3}.\n\\]\nThe endpoint \\(L_*\\) is then the unique root in \\((6,7)\\) of\n\\[\n4m_*^3(L^2-3L+6)-3L^3(m_*^2-2m_*+2)=0.\n\\]\n\nNumerically, for orientation only,\n\\[\nm_*\\approx 4.390349240174178,\\qquad\na_*\\approx 0.01845570226887281,\\qquad\nL_*\\approx 6.027259723438204.\n\\]\n\nTherefore the exact tuple is\n\\[\n\\boxed{\n\\left(\n\\frac{m_*^2-2m_*+2}{8m_*^3},\n\\ L_*,\n\\ m_*\n\\right)\n}\n\\]\nwhere \\(m_*\\) is the unique root in \\((4,5)\\) of\n\\[\nm^3-6m^2+18m-48=0,\n\\]\nand \\(L_*\\) is the unique root in \\((6,7)\\) of\n\\[\n4m_*^3(L^2-3L+6)-3L^3(m_*^2-2m_*+2)=0.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T12:55:25+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/c21b3efd6e93.json"
+}
