@@ -1,200 +1,162 @@
 ## Steps
 
-Step 1: Establish the sharp one-dimensional Lipschitz bounds
-Let $v$ be nonnegative and $1$-Lipschitz on $[0,L]$, with $v(0)=v(L)=0$. Write
+Step 1: Convert the terminal constraints to moments and prove the one-excursion bounds
+Write $x=x_u$. Since $y_u(1)=0$ and $z_u(1)=0$,
 $$
-B=\int_0^L v(t)\,dt,\qquad Q=\int_0^L v(t)^3\,dt,\qquad H=\max v.
+\int_0^1x(t)\,dt=0,\qquad \int_0^1(1-t)x(t)\,dt=0,
 $$
-For $0\leq y<H$, let $m(y)=|\{t:v(t)>y\}|$. If $0\leq y<z<H$, the $(z-y)$-neighborhood of $\{v>z\}$ lies in $\{v>y\}$, so in one dimension
-$$
-m(y)\geq m(z)+2(z-y).
-$$
-Thus $e(y)=m(y)-2(H-y)$ is nonincreasing and nonnegative. Layer cake gives
-$$
-B=H^2+\int_0^H e(y)\,dy,
-$$
-$$
-Q=\frac{H^4}{2}+\int_0^H3y^2e(y)\,dy.
-$$
-Since $y^2$ is increasing and $e$ is nonincreasing,
-$$
-\int_0^H3y^2e(y)\,dy\leq H^2\int_0^He(y)\,dy.
-$$
-Hence
-$$
-Q\leq H^2B-\frac{H^4}{2}.
-$$
-Also $v(t)\leq\min\{t,L-t,H\}$, so
-$$
-B\leq HL-H^2.
-$$
-Equality in both inequalities forces
-$$
-v(t)=\min\{t,L-t,H\},
-$$
-a single capped tent; the cap has length $L-2H$. In particular $B\geq H^2$, with equality exactly for the uncapped tent of support length $2H$.
+so also $\int_0^1t x(t)\,dt=0$. Thus $x$ is $1$-Lipschitz, $x(0)=x(1)=0$, and its positive and negative parts have the same area and the same barycenter.
 
-We also need the opposite cubic bound for fixed area and length. Assume $0<B\leq L^2/4$, and let $b\in(0,L/2]$ be the smaller root of
+We use two sharp estimates. Let $v\geq0$ be $1$-Lipschitz on an interval of length $L$, vanish at both endpoints, and set
+$$
+B=\int v,\qquad Q=\int v^3.
+$$
+If $H=\max v$, layer cake with $m(a)=|\{v>a\}|$ gives $B\geq H^2$ and
+$$
+Q\leq H^2B-\frac{H^4}{2}\leq\frac{B^2}{2}.
+$$
+Equality in the last bound holds exactly for the triangular tent of height $\sqrt B$ and length $2\sqrt B$.
+
+For the opposite direction assume $0<B\leq L^2/4$, and let $b$ be the smaller root of
 $$
 B=bL-b^2.
 $$
-Set $v_b(t)=\min\{t,L-t,b\}$. For
+For $v_b(t)=\min\{t,L-t,b\}$ and $\phi(s)=s^3-3b^2s$, one has $\phi(v)\geq\phi(v_b)$ pointwise: on $[0,b]$ the function $\phi$ is decreasing, while for $s\geq b$,
 $$
-\phi(s)=s^3-3b^2s,
+\phi(s)-\phi(b)=(s-b)^2(s+2b)\geq0.
 $$
-one has $\phi(v(t))\geq\phi(v_b(t))$ pointwise: where $\min(t,L-t)\geq b$ this is
+Since $\int v=\int v_b=B$,
 $$
-\phi(v)-\phi(b)=(v-b)^2(v+2b)\geq0,
+Q\geq\Phi(B,L):=Bb^2-\frac{b^4}{2},
 $$
-and where $\min(t,L-t)<b$, both values lie in $[0,b]$, on which $\phi$ is decreasing. Because $\int v=\int v_b=B$,
+with equality exactly for the capped tent $v_b$. Writing $D=\sqrt{L^2-4B}$, direct differentiation gives
 $$
-Q\geq b^3L-\frac32b^4,
-$$
-with equality only for $v=v_b$. Since $L\geq2b$, the relation $B=bL-b^2$ also gives $B\geq b^2$.
-
-Step 2: Reduce the constrained control problem to two geometric parameters
-For an admissible control, write $x=x_u$, and let
-$$
-A=\int_0^1x_+(t)\,dt=\int_0^1x_-(t)\,dt,
-$$
-where equality follows from $\int_0^1x=0$. If $A=0$, then $x=0$, so consider $A>0$.
-
-Concatenate the positive components of $x$ at their zero endpoints. This preserves area, cubic integral, the $1$-Lipschitz property, and the maximum height. Let their total length be $P$ and let
-$$
-H=\max x>0.
-$$
-The state constraint gives $H\leq c$. By Step 1,
-$$
-\int_0^1x_+^3\leq H^2A-\frac{H^4}{2},
-$$
-and the capped-tent area bound gives
-$$
-A\leq HP-H^2,
-$$
-so
-$$
-P\geq \frac{A}{H}+H.
-$$
-Therefore the negative components occupy total length at most
-$$
-L=1-H-\frac{A}{H}.
-$$
-Concatenate the negative components and append a zero interval if necessary to reach length $L$. The second estimate in Step 1 applies. Let $b$ be the smaller root of
-$$
-A=bL-b^2.
-$$
-Then
-$$
-\int_0^1x_-^3\geq Ab^2-\frac{b^4}{2}.
-$$
-The defining equation for $b$ becomes
-$$
-A=b\left(1-H-\frac{A}{H}-b\right),
-$$
-so
-$$
-A=\frac{bH(1-H-b)}{H+b}.
-$$
-Set $z=b/H$. Step 1 gives both $A\geq H^2$ and $A\geq b^2$. Substitution yields
-$$
-H(1+z)^2\leq z,\qquad H(1+z)^2\leq1.
-$$
-Combining the positive upper bound and negative lower bound gives
-$$
-\int_0^1x^3\leq (H^2-b^2)\left(A-\frac{H^2+b^2}{2}\right)
-=G(H,z),
-$$
-where
-$$
-G(H,z)=\frac{H^3(1-z)}{2}\left(2z-H(1+z)^3\right).
-$$
-If $z\geq1$, then the second feasibility inequality gives
-$$
-2z-H(1+z)^3\geq2z-(1+z)=z-1\geq0,
-$$
-so $G(H,z)\leq0$. On the other hand, taking $z=1/2$ and any $0<H\leq\min(c,2/9)$ produces compatible capped tents with positive value. Hence an optimizer has $0<z<1$.
-
-Step 3: Optimize the active and inactive state-constraint regimes
-For fixed feasible $H$ with $0<z<1$,
-$$
-\frac{\partial G}{\partial z}
-=H^3(2z-1)\left(H(1+z)^2-1\right).
-$$
-The feasibility inequality $H(1+z)^2\leq z<1$ makes the second factor negative. Hence $G(H,z)$ increases for $z<1/2$ and decreases for $z>1/2$ whenever $z=1/2$ is feasible.
-
-If $0<H\leq2/9$, then $z=1/2$ is feasible and
-$$
-G(H,z)\leq G\left(H,\frac12\right)
-=\frac{H^3(8-27H)}{32}.
-$$
-This expression is strictly increasing on $0<H<2/9$.
-
-If $H>2/9$, feasibility forces $z>1/2$. Since $G$ decreases with $z$ there, its maximum occurs on the boundary
-$$
-H=\frac{z}{(1+z)^2}.
-$$
-Substitution gives
-$$
-G\leq \frac{z^4(1-z)^2}{2(1+z)^6}.
-$$
-For $z>1/2$, its logarithmic derivative is
-$$
-\frac4z-\frac2{1-z}-\frac6{1+z}
-=\frac{4(1-2z)}{z(1-z^2)}<0.
-$$
-Thus every $H>2/9$ gives a value below the boundary value at $H=2/9$, namely $1/1458$.
-
-Since $H\leq c$, the maximizing height is therefore
-$$
-H_* = \min\left(c,\frac29\right),
+\Phi_{BB}=\frac{3(L-D)}{D}\geq0,\qquad \det D^2\Phi=0,
 $$
 and
 $$
-M(c)=\frac{\min(c,2/9)^3\left(8-27\min(c,2/9)\right)}{32}.
+\Phi_L=-\frac{(L-D)^3}{4}<0.
+$$
+Hence $\Phi$ is jointly convex and decreases with the available length.
+
+Step 2: Reduce every maximizer to a symmetric three-block profile
+Let
+$$
+A=\int_0^1x_+(t)\,dt=\int_0^1x_-(t)\,dt>0.
+$$
+The moment identities from Step 1 also give
+$$
+\int_0^1t x_+(t)\,dt=\int_0^1t x_-(t)\,dt.
+$$
+Put $h=\sqrt A$. Concatenating positive excursions at zero does not change their area or cubic integral. The first estimate in Step 1 therefore gives
+$$
+\int x_+^3\leq\frac{A^2}{2}=\frac{h^4}{2},
+$$
+and the comparison triangle uses the least possible positive time, namely $2h$.
+
+For fixed $A$, compress same-sign excursions before comparing their placement: replacing a positive excursion of area $B$ by its triangular extremal uses the minimum length $2\sqrt B$ and does not decrease its cubic integral, while concatenating negative excursions on the same side and replacing the concatenation by the capped-tent extremal does not increase the negative cubic integral. The block centers can then be translated while preserving the common barycenter. Thus the least-span configuration relevant to a maximizer has one positive block between one negative block on each side.
+
+Write the left and right negative areas as $Ap^2$ and $Aq^2$, where $p^2+q^2=1$. Their least possible support lengths are $2hp$ and $2hq$. Place the positive triangle of length $2h$ between them and let $g_1,g_2\geq0$ be the two intervening zero gaps. Equality of the positive and negative barycenters is then
+$$
+-p^2g_1+q^2g_2+h(q-p)(1+pq+p+q)=0.
+$$
+Assume $q\geq p$ and put $r=q/p\geq1$. For fixed $p,q$, the least total gap has $g_2=0$. The resulting total span $T$ satisfies
+$$
+\frac{T}{h}=\frac{r^3+r^2\sqrt{1+r^2}+2r+\sqrt{1+r^2}+1}{\sqrt{1+r^2}}.
+$$
+Its derivative has numerator
+$$
+2r^4+2r^3\sqrt{1+r^2}+3r^2+2r\sqrt{1+r^2}-r+2>0
+$$
+for $r\geq1$. Thus the least span occurs at $p=q=1/\sqrt2$, with no asymmetric gap. Consequently every feasible moment-balanced path satisfies
+$$
+2h(1+\sqrt2)\leq1,
+$$
+and, for maximizing the cubic, it is optimal to center the positive triangle and split the negative area equally on the two sides.
+
+The positive triangle leaves total negative time $1-2h$. Let
+$$
+\ell=\frac{1-2h}{2}.
+$$
+If the two negative sides have data $(B_1,L_1)$ and $(B_2,L_2)$, then $B_1+B_2=A$ and $L_1+L_2\leq1-2h$. By the convexity and monotonicity of $\Phi$,
+$$
+\Phi(B_1,L_1)+\Phi(B_2,L_2)
+\geq2\Phi\left(\frac A2,\frac{L_1+L_2}{2}\right)
+\geq2\Phi\left(\frac A2,\ell\right).
+$$
+Therefore a maximizer must have one central positive triangle and two congruent outer negative capped tents, with no unused time. This reduction also shows that equality forces this three-block geometry.
+
+Step 3: Optimize the two heights
+Let $b$ be the depth of either negative cap. Since each negative block has area $A/2=h^2/2$ and length $\ell=(1-2h)/2$,
+$$
+\frac{h^2}{2}=b\ell-b^2,
+$$
+so
+$$
+h^2=b(1-2h)-2b^2.
+$$
+Put $z=b/h$. Then
+$$
+h=\frac{z}{1+2z+2z^2}.
+$$
+The cap must fit in its block, $2b\leq\ell$, which is equivalent to $0<z\leq1/\sqrt2$.
+
+The positive triangle contributes $h^4/2$. The two negative caps contribute
+$$
+h^2b^2-b^4.
+$$
+Hence
+$$
+J(z)=\frac{h^4}{2}-h^2b^2+b^4
+=\frac{z^4(2z^4-2z^2+1)}{2(2z^2+2z+1)^4}.
+$$
+Differentiation gives
+$$
+J'(z)=\frac{2z^3(z+1)^2(2z-1)(2z^2-1)}{(2z^2+2z+1)^5}.
+$$
+Thus $J$ increases on $(0,1/2)$ and decreases on $(1/2,1/\sqrt2)$, so the unique maximizing ratio is
+$$
+z=\frac12.
+$$
+Therefore
+$$
+h=\frac15,\qquad b=\frac1{10},\qquad J_{\max}=\frac1{2000}.
 $$
 
-Step 4: Recover all equality cases and all optimal controls
-Equality in Step 3 forces
+Step 4: Recover the unique optimal control
+For $h=1/5$ and $b=1/10$, each negative block has length $3/10$ and its flat part has length $1/10$. The equality profile is
 $$
-z=\frac12,\qquad b=\frac{H_*}{2}.
-$$
-The common positive and negative area is then
-$$
-A=\frac{H_*}{3}-\frac{H_*^2}{2}.
-$$
-Equality in the support and cubic inequalities from Steps 1 and 2 forces exactly one positive capped tent and one negative capped tent, with no zero-time gap between them. Their flat lengths are
-$$
-\beta=\frac{A-H_*^2}{H_*}=\frac13-\frac{3H_*}{2},
-$$
-$$
-\alpha=\frac{A-b^2}{b}=\frac23-\frac{3H_*}{2}.
-$$
-Both are nonnegative because $H_*\leq2/9$.
-
-There are only two possible orders of the two sign components. Put $h=H_*$. If the negative component comes first, the control is, up to equality almost everywhere,
-$$
-u_-(t)=
+x(t)=
 \begin{cases}
--1,&0<t<\frac h2,\\
-0,&\frac h2<t<\frac23-h,\\
-1,&\frac23-h<t<\frac23+\frac h2,\\
-0,&\frac23+\frac h2<t<1-h,\\
--1,&1-h<t<1.
+-t,&0\leq t\leq\frac1{10},\\
+-\frac1{10},&\frac1{10}\leq t\leq\frac15,\\
+t-\frac3{10},&\frac15\leq t\leq\frac12,\\
+\frac7{10}-t,&\frac12\leq t\leq\frac45,\\
+-\frac1{10},&\frac45\leq t\leq\frac9{10},\\
+t-1,&\frac9{10}\leq t\leq1.
 \end{cases}
 $$
-The other optimizer is its time reverse
+Its positive area equals the total negative area, and it is symmetric about $1/2$, so both moment constraints hold. Differentiating gives, up to equality almost everywhere,
 $$
-u_+(t)=-u_-(1-t).
+u(t)=
+\begin{cases}
+-1,&0<t<\frac1{10},\\
+0,&\frac1{10}<t<\frac15,\\
+1,&\frac15<t<\frac12,\\
+-1,&\frac12<t<\frac45,\\
+0,&\frac45<t<\frac9{10},\\
+1,&\frac9{10}<t<1.
+\end{cases}
 $$
-When $c\geq2/9$, one has $h=2/9$, so the positive flat interval has length $0$ and these are exactly the two optimizers of the unconstrained problem. When $0<c<2/9$, the positive state constraint is active and the positive capped tent has a genuine boundary arc $x=c$. The equality conditions in Step 1 force the two component shapes and the no-gap tiling, so no other optimal controls exist.
+Every inequality in Steps 1 and 2 must be an equality at the optimum, so the positive triangle, equal outer areas, equal negative caps, and absence of gaps are forced. Hence this control is the unique optimizer almost everywhere.
 
-Final Answer: $\boxed{M(c)=\frac{\min(c,2/9)^3(8-27\min(c,2/9))}{32}}$
+Final Answer: $\boxed{\frac1{2000}}$
 
 ---
 
 ## Answer
 
-$M(c)=\frac{\min(c,2/9)^3(8-27\min(c,2/9))}{32}$
+$\frac1{2000}$
 
 ---
 
@@ -202,14 +164,14 @@ $M(c)=\frac{\min(c,2/9)^3(8-27\min(c,2/9))}{32}$
 
 **Problem Type:** Optimization
 
-**Answer Type:** Function or mapping
+**Answer Type:** Exact scalar
 
 ---
 
 ## Solution Concepts
 
 - layer-cake representation
-- Lipschitz extremal geometry
-- state path constraints
-- active constraint regimes
-- equality classification
+- lipschitz excursion extremals
+- moment-balanced packing
+- convexity of capped-tent cost
+- equality-case reconstruction
