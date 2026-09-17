@@ -1,210 +1,225 @@
 ## Steps
 
-Step 1: Set up the signed two-square parameter
+Step 1: Fix the signed Gaussian parameter and the basic CM trace
 
-Let $p\equiv1\pmod4$ be prime and let $\chi$ be the Legendre symbol modulo $p$, extended by $\chi(0)=0$. Put
+Let $p\equiv1\pmod8$ be prime, let $\chi$ be the Legendre symbol modulo $p$, and put
 $$
-\varepsilon=\chi(2)=(-1)^{(p^2-1)/8}\in\{\pm1\}.
+\delta=\chi(3)\in\{\pm1\}.
 $$
-By Fermat's two-square theorem there are integers $u,v$ with
+Write
 $$
 p=u^2+v^2,
 $$
-where $u$ is odd and $v$ is even. Fix the sign of the odd coordinate by
+where $u$ is odd, $v>0$ is even, and the sign of $u$ is fixed by
 $$
-\boxed{u\equiv\varepsilon\pmod4,\qquad v>0.}
+\boxed{u\equiv1\pmod4.}
 \tag{1}
 $$
-This determines $u$ uniquely.
 
-Define
+We shall use the classical CM character sum
 $$
-S_p=\sum_{x\in\mathbb F_p}\chi\bigl(x(x+1)(x+2)\bigr).
+S_0:=\sum_{x\in\mathbb F_p}\chi(x^3-x).
 $$
-After shifting $y=x+1$,
+For completeness, choose a quartic character $\psi$ with $\psi^2=\chi$. Then
 $$
-S_p=\sum_{y\in\mathbb F_p}\chi(y^3-y).
-\tag{2}
+S_0=J(\psi,\chi)+J(\overline\psi,\chi)
+=2\operatorname{Re}J(\psi,\chi).
 $$
-The decisive step is to evaluate this Jacobsthal sum with the correct sign.
-
-Step 2: Express the Jacobsthal sum as a quartic Jacobi sum
-
-Choose a quartic multiplicative character $\psi$ on $\mathbb F_p^\times$ with
+If
 $$
-\psi^2=\chi,
+J(\psi,\chi)=A+iB\in\mathbb Z[i],
 $$
-and extend it by $\psi(0)=0$. For $x\ne0$, put $z=x^2$. Because $p\equiv1\pmod4$, one has $\chi(-1)=1$, so the two square roots $\pm x$ give the same value of $\chi(x)$. Also
-$$
-\psi(z)=\psi(x^2)=\chi(x).
-$$
-Therefore
-$$
-\begin{aligned}
-S_p
-&=\sum_x\chi(x)\chi(x^2-1)\\
-&=2\sum_{\substack{z\ne0\\ \chi(z)=1}}\psi(z)\chi(z-1)\\
-&=\sum_z(1+\chi(z))\psi(z)\chi(1-z)\\
-&=J(\psi,\chi)+J(\overline\psi,\chi),
-\end{aligned}
-\tag{3}
-$$
-where
-$$
-J(\alpha,\beta)=\sum_{z\in\mathbb F_p}\alpha(z)\beta(1-z)
-$$
-is the Jacobi sum. Hence
-$$
-S_p=2\operatorname{Re}J(\psi,\chi).
-\tag{4}
-$$
-
-Write
-$$
-J(\psi,\chi)=A+iB\in\mathbb Z[i].
-$$
-The standard Gauss-sum identity
-$$
-G(\alpha)G(\beta)=J(\alpha,\beta)G(\alpha\beta)
-$$
-for nontrivial $\alpha,\beta,\alpha\beta$, together with $|G(\gamma)|^2=p$, gives
-$$
-|J(\psi,\chi)|^2=p.
-$$
-Thus
+the Gauss-sum norm identity gives
 $$
 A^2+B^2=p.
-\tag{5}
 $$
-So it remains only to determine the sign of the odd coordinate $A$.
-
-Step 3: Fix the sign of the Jacobi sum
-
-Consider the elliptic curve
+For the curve
 $$
-E:\quad Y^2=X^3-X.
-$$
-For each $X\in\mathbb F_p$, the number of $Y$ is $1+\chi(X^3-X)$, so by (2)
-$$
-\#E(\mathbb F_p)=p+1+S_p.
-\tag{6}
-$$
-We now show that
-$$
-8\mid \#E(\mathbb F_p).
-\tag{7}
-$$
-The curve has the full rational $2$-torsion
-$$
-E[2](\mathbb F_p)=\{O,(0,0),(1,0),(-1,0)\}.
-$$
-Choose $i\in\mathbb F_p$ with $i^2=-1$. Since
-$$
-\chi(i)=(-1)^{(p-1)/4}=\chi(2),
+E_0:\quad y^2=x^3-x,
 $$
 one has
 $$
-\chi(-2i)=\chi(2)\chi(i)=1.
+\#E_0(\mathbb F_p)=p+1+S_0.
 $$
-Choose $y\in\mathbb F_p$ with $y^2=-2i$ and put $P=(i,y)\in E(\mathbb F_p)$. The duplication formula gives
+Because $p\equiv1\pmod8$, the argument using the full rational $2$-torsion together with a rational point of order $4$ shows
 $$
-x(2P)
-=\left(\frac{3i^2-1}{2y}\right)^2-2i
-=\frac4{y^2}-2i
-=0.
+8\mid \#E_0(\mathbb F_p).
 $$
 Hence
 $$
-2P=(0,0),
+S_0\equiv-(p+1)\pmod8,
 $$
-so $P$ has order $4$. Together with, say, $(1,0)$, it generates a subgroup of order $8$, proving (7).
+so
+$$
+A\equiv-1\pmod4.
+$$
+Comparing with the convention (1), we get $A=-u$, and therefore
+$$
+\boxed{S_0=-2u.}
+\tag{2}
+$$
 
-Combining (6) and (7),
+Step 2: Evaluate the quartic character sum
+
+Define
 $$
-S_p\equiv-(p+1)\pmod8.
+Q_p
+:=
+\sum_{x\in\mathbb F_p}
+\chi\bigl(x(x-1)(x-3)(x+3)\bigr).
+\tag{3}
 $$
-Since $S_p=2A$ by (4),
+Consider the genus-one curve
 $$
-A\equiv-\frac{p+1}{2}\pmod4.
+C:\quad y^2=x(x-1)(x-3)(x+3).
+$$
+Since the quartic on the right is monic, the smooth projective model has two $\mathbb F_p$-rational points at infinity. Therefore
+$$
+\#C(\mathbb F_p)=p+Q_p+2.
+\tag{4}
+$$
+
+We now transform $C$ to a quadratic twist of $E_0$. For $x\ne0$, put
+$$
+r=\frac1x,
+\qquad
+Y=\frac y{x^2}.
+$$
+Then
+$$
+Y^2=(1-r)(1-3r)(1+3r).
+$$
+Set
+$$
+T=\frac{3r-1}{2}.
+$$
+A direct calculation gives
+$$
+(1-r)(1-3r)(1+3r)
+=\frac83(T^3-T).
+$$
+Thus $C$ is birational over $\mathbb F_p$ to
+$$
+E_d:\quad Y^2=d(T^3-T),
+\qquad d=\frac83.
+\tag{5}
+$$
+Because $p\equiv1\pmod8$, one has
+$$
+\chi(8)=1,
+$$
+and hence
+$$
+\chi(d)=\chi(3)=\delta.
+$$
+Using (2),
+$$
+\#E_d(\mathbb F_p)
+=p+1+\delta S_0
+=p+1-2\delta u.
+\tag{6}
+$$
+Since $C$ and $E_d$ are birational smooth projective genus-one curves, their point counts agree. Comparing (4) and (6),
+$$
+\boxed{Q_p=-1-2\delta u.}
+\tag{7}
+$$
+
+Step 3: Count points for which all four signs are equal
+
+For $x\notin\{0,1,3,-3\}$, write
+$$
+s_1=\chi(x),
+\quad
+s_2=\chi(x-1),
+\quad
+s_3=\chi(x-3),
+\quad
+s_4=\chi(x+3).
+$$
+The indicator that all four signs are equal is
+$$
+\frac18\left(
+1+\sum_{1\le i<j\le4}s_is_j+s_1s_2s_3s_4
+\right).
 \tag{8}
 $$
-If $p\equiv1\pmod8$, then $\varepsilon=1$ and (8) gives $A\equiv-1\pmod4$; if $p\equiv5\pmod8$, then $\varepsilon=-1$ and (8) gives $A\equiv1\pmod4$. Therefore in both cases
+For any distinct $a,b\in\mathbb F_p$,
 $$
-A\equiv-\varepsilon\pmod4.
+\sum_x\chi((x-a)(x-b))=-1.
 $$
-Comparing (5) with the sign convention (1), we obtain
+There are six pairs, so summing the right side of (8) over all $x\in\mathbb F_p$ gives the raw value
 $$
-A=-u.
-$$
-Consequently
-$$
-\boxed{S_p=-2u.}
+\frac{p-6+Q_p}{8}.
 \tag{9}
 $$
 
-Step 4: Count the two constant-sign patterns
+We must remove the four exceptional roots, where one Legendre symbol is $0$. At such a point, the expression in (8) equals $1/2$ exactly when the remaining three nonzero signs are all equal, and is $0$ otherwise.
 
-For $\sigma\in\{\pm1\}$ define
+The remaining sign triples are
 $$
-P_\sigma(x)
-=\prod_{j=0}^2\bigl(1+\sigma\chi(x+j)\bigr).
-$$
-Away from $x=0,-1,-2$, the quantity $P_\sigma(x)/8$ is exactly the indicator of
-$$
-\chi(x)=\chi(x+1)=\chi(x+2)=\sigma.
-$$
-Expanding and summing over all $x\in\mathbb F_p$, the three linear character sums vanish, while each of the three quadratic sums equals $-1$. Hence
-$$
-\sum_xP_\sigma(x)=p-3+\sigma S_p.
+\begin{array}{c|c}
+x&\text{three nonzero signs}\\ \hline
+0&(1,\delta,\delta)\\
+1&(1,1,1)\\
+3&(\delta,1,\delta)\\
+-3&(\delta,1,\delta).
+\end{array}
 \tag{10}
 $$
-
-We must now remove the exceptional points $0,-1,-2$. Since
+Hence all three remaining signs are equal at all four exceptional points when $\delta=1$, and only at $x=1$ when $\delta=-1$. The total exceptional contribution to subtract is therefore
 $$
-\chi(-1)=1,
-\qquad
-\chi(-2)=\chi(2)=\varepsilon,
-$$
-the total exceptional contribution is
-$$
-B_\sigma
-=2(1+\sigma)(1+\sigma\varepsilon)+(1+\sigma)^2.
+\frac{5+3\delta}{4}.
 \tag{11}
 $$
-Thus
+
+Let $A(p)$ denote the number of $x$ for which the four Legendre symbols are all $+1$ or all $-1$. Using (7), (9), and (11),
 $$
-B_{-}=0,
-\qquad
-B_{+}=8+4\varepsilon.
+\boxed{
+A(p)
+=
+\frac{p-17-6\delta-2\delta u}{8}.
+}
 \tag{12}
 $$
 
-Therefore, using (9),
+Step 4: Count the $2$-residue/$2$-nonresidue patterns
+
+Among the $p-4$ nonexceptional values of $x$, the product
 $$
-\boxed{
-N_+(p)
-=\frac{p-11-4\varepsilon-2u}{8}
-}
+s_1s_2s_3s_4
+$$
+is $+1$ exactly when the number of nonresidues is even. Therefore the number of nonexceptional $x$ with product $+1$ is
+$$
+\frac12\bigl((p-4)+Q_p\bigr)
+=
+\frac{p-5-2\delta u}{2}.
 \tag{13}
 $$
-and
+These points split into the all-equal points counted by $A(p)$ and the points with exactly two residues and two nonresidues.
+
+Let $B(p)$ denote the latter count. Subtracting (12) from (13),
 $$
 \boxed{
-N_-(p)
-=\frac{p-3+2u}{8}.
+B(p)
+=
+\frac{3\bigl(p-1+2\delta-2\delta u\bigr)}8.
 }
 \tag{14}
 $$
 
-As checks,
+Thus the exact pair is
 $$
-N_+(p)+N_-(p)=\frac{p-7-2\varepsilon}{4},
-\tag{15}
-$$
-and
-$$
-N_-(p)-N_+(p)=1+\frac{u+\varepsilon}{2}.
-\tag{16}
+\boxed{
+\left(
+A(p),B(p)
+\right)
+=
+\left(
+\frac{p-17-6\delta-2\delta u}{8},
+\frac{3(p-1+2\delta-2\delta u)}8
+\right).
+}
 $$
 
 ---
@@ -213,30 +228,34 @@ $$
 
 Let
 $$
-\varepsilon=\left(\frac2p\right)
+\delta=\left(\frac3p\right),
 $$
-and let $u$ be the unique odd integer such that
+and let $u$ be the unique odd integer for which
 $$
 p=u^2+v^2
 $$
-for some even $v>0$ and
+with $v>0$ even and
 $$
-u\equiv\varepsilon\pmod4.
+u\equiv1\pmod4.
 $$
 Then
 $$
 \boxed{
-\left(N_+(p),N_-(p)\right)
+\left(A(p),B(p)\right)
 =
 \left(
-\frac{p-11-4\varepsilon-2u}{8},
-\frac{p-3+2u}{8}
+\frac{p-17-6\delta-2\delta u}{8},
+\frac{3(p-1+2\delta-2\delta u)}8
 \right).
 }
 $$
-The decisive Jacobsthal sum is
+The decisive quartic sum is
 $$
-\sum_{x\in\mathbb F_p}\left(\frac{x(x+1)(x+2)}p\right)=-2u.
+\boxed{
+\sum_{x\in\mathbb F_p}
+\left(\frac{x(x-1)(x-3)(x+3)}p\right)
+=-1-2\delta u.
+}
 $$
 
 ---
@@ -251,8 +270,8 @@ $$
 
 ## Solution Concepts
 
-- simultaneous quadratic residue patterns
-- quartic characters and Jacobi sums
-- Gauss-sum norm identity
-- signed two-square representation of primes
-- elliptic-curve point count modulo $8$
+- quadratic-character pattern counts
+- harmonic cross-ratio and genus-one quartic curves
+- quadratic twists of the CM curve $y^2=x^3-x$
+- signed Gaussian two-square parameter
+- boundary corrections at branch points
