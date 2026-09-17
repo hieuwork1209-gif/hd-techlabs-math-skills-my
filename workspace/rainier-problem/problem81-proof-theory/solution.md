@@ -28,46 +28,60 @@ o_{b,d+1}(t)
 $$
 Because the exponents in (1) strictly decrease, this is Cantor normal form.
 
-For the depth-$2$ system in the problem, write simply
+For the depth-$2$ system, write
 $$
 o_b(t)=o_{b,2}(t).
 $$
 
-Step 2: Show that numerical order is carried to ordinal order
+Step 2: Numerical order and ordinal order agree
 
 We prove by induction on $d$ that for $s,t\in\mathcal T_d(b)$,
 $$
 \nu_b(s)<\nu_b(t)
-\quad\Longrightarrow\quad
+\quad\Longleftrightarrow\quad
 o_{b,d}(s)<o_{b,d}(t).
 \tag{2}
 $$
 For $d=0$ this is immediate.
 
-Assume it for depth $d$. Two distinct canonical depth-$(d+1)$ base-$b$ expressions are compared by their largest exponent at which they differ, and, if that exponent is the same, by the corresponding coefficient. By the induction hypothesis, numerical comparison of the exponents is exactly reflected by comparison of their ordinal images. Cantor normal form is compared by the same lexicographic rule. Hence (2) follows at depth $d+1$.
+Assume the equivalence at depth $d$. Two distinct canonical depth-$(d+1)$ base-$b$ expressions are compared by the largest exponent at which they differ and, if that exponent agrees, by the corresponding coefficient. By the induction hypothesis, the numerical ordering of exponents is exactly the ordering of their ordinal images. Cantor normal forms are compared by the same lexicographic rule. Hence (2) holds at depth $d+1$.
 
-Step 3: Base change preserves the ordinal interpretation
+Step 3: Base change preserves both canonicity and ordinal rank
 
-Let $\mathrm{BC}_b$ denote recursive base change from $b$ to $b+1$: every occurrence of the base symbol $b$ is replaced by $b+1$, while all coefficients and bottom-level digits are left unchanged.
-
-Induction on the depth gives
+Let $\mathrm{BC}_b$ denote recursive base change from $b$ to $b+1$. Induction on the depth gives
 $$
 o_{b+1,d}(\mathrm{BC}_b(t))=o_{b,d}(t).
 \tag{3}
 $$
-Indeed, this is obvious at depth $0$, and at higher depth both sides are obtained from the same Cantor-normal-form expression after using the induction hypothesis on the exponents.
+At depth $0$ this is immediate. At higher depth, the coefficients are unchanged and the induction hypothesis identifies the ordinal exponents term by term.
 
-The same induction, together with (2), shows that base change preserves the ordering of the exponents, so $\mathrm{BC}_b(t)$ is again canonical.
+If
+$$
+\nu_b(e_1)>\cdots>\nu_b(e_m),
+$$
+then by (2) and (3),
+$$
+o_{b+1,d}(\mathrm{BC}_b(e_1))>\cdots>o_{b+1,d}(\mathrm{BC}_b(e_m)),
+$$
+and applying (2) in base $b+1$ shows that their new numerical values remain strictly decreasing. Thus base change is canonical.
+
+It is also useful to note that the subtraction in the definition of $G_b$ stays inside depth $2$. Indeed, $\mathcal T_1(b+1)$ represents every integer below
+$$
+(b+1)^{b+1},
+$$
+so $\mathcal T_2(b+1)$ represents every integer below
+$$
+(b+1)^{(b+1)^{b+1}}.
+$$
+Every base-changed depth-$2$ term lies below this bound, and hence so does its predecessor.
 
 Step 4: Every Goodstein step strictly lowers the ordinal rank
 
-For $0\ne t\in\mathcal T_2(b)$, the problem defines $G_b(t)$ to be the canonical depth-$2$ base-$(b+1)$ representation of
-$$
-\nu_{b+1}(\mathrm{BC}_b(t))-1.
-$$
-Thus
+For $0\ne t\in\mathcal T_2(b)$,
 $$
 \nu_{b+1}(G_b(t))
+=
+\nu_{b+1}(\mathrm{BC}_b(t))-1
 <
 \nu_{b+1}(\mathrm{BC}_b(t)).
 $$
@@ -86,57 +100,85 @@ o_{b+1}(G_b(t))<o_b(t).
 $$
 Therefore every iterated bounded-depth Goodstein run gives a strictly descending sequence of ordinals, so every run terminates.
 
-Step 5: Compute the exact supremum for one fixed base
+Step 5: Obtain the global upper bound
 
-At depth $0$, the possible ordinal values are
+For fixed $b$, every depth-$1$ ordinal value has Cantor normal form with exponents in
 $$
-0,1,\ldots,b-1.
+\{0,1,\ldots,b-1\},
 $$
-Hence the depth-$1$ ordinal values are precisely finite Cantor sums whose exponents are $<b$ and whose finite coefficients are $<b$. Consequently they are cofinal in
+so
 $$
-\omega^b,
-$$
-and all are strictly below $\omega^b$:
-$$
-\sup_{e\in\mathcal T_1(b)}\bigl(o_{b,1}(e)+1\bigr)=\omega^b.
+o_{b,1}(e)<\omega^b
+\qquad(e\in\mathcal T_1(b)).
 \tag{5}
 $$
-
-A depth-$2$ value is a finite Cantor sum
+Consequently every depth-$2$ rank satisfies
 $$
-\omega^{\alpha_1}c_1+\cdots+\omega^{\alpha_m}c_m
-$$
-with each $\alpha_i$ drawn from the depth-$1$ values. Since those exponents are cofinal in $\omega^b$, all depth-$2$ ranks are below
-$$
-\omega^{\omega^b},
-$$
-and they are cofinal there. Therefore
-$$
-\sup_{t\in\mathcal T_2(b)}\bigl(o_b(t)+1\bigr)
-=\omega^{\omega^b}.
+o_b(t)<\omega^{\omega^b}.
 \tag{6}
 $$
-
-Step 6: Take the supremum over all bases
-
-The ordinal requested in the problem is
+Hence
 $$
 \Theta
-=\sup_{b\ge2}\sup_{t\in\mathcal T_2(b)}(o_b(t)+1).
+\le
+\sup_{b\ge2}\omega^{\omega^b}
+=
+\omega^{\omega^\omega}.
+\tag{7}
 $$
-Using (6),
+
+Step 6: Prove cofinality and therefore exactness of the bound
+
+We first show that the union of the depth-$1$ ordinal values over all bases contains every ordinal below $\omega^\omega$.
+
+Take any
 $$
-\Theta
-=\sup_{b\ge2}\omega^{\omega^b}.
+\gamma<\omega^\omega.
 $$
-Ordinal exponentiation is continuous in the exponent, so
+Write its Cantor normal form as
 $$
-\sup_{b<\omega}\omega^b=\omega^\omega,
+\gamma
+=\omega^{n_1}a_1+\cdots+\omega^{n_k}a_k,
 $$
-and hence
+where
+$$
+n_1>\cdots>n_k\ge0
+$$
+and the $a_i$ are positive integers. Choose a base $b$ larger than every $n_i$ and every $a_i$. Then
+$$
+e=a_1b^{n_1}+\cdots+a_kb^{n_k}
+$$
+is a term of $\mathcal T_1(b)$, and by definition
+$$
+o_{b,1}(e)=\gamma.
+\tag{8}
+$$
+Thus the available depth-$1$ exponents, when all bases are allowed, are cofinal in fact exhaustive below $\omega^\omega$.
+
+Now let
+$$
+\xi<\omega^{\omega^\omega}.
+$$
+If $\xi>0$, let $\gamma_0<\omega^\omega$ be the leading exponent in the Cantor normal form of $\xi$. Then
+$$
+\gamma=\gamma_0+1<\omega^\omega.
+$$
+By (8), choose $b$ and $e\in\mathcal T_1(b)$ with
+$$
+o_{b,1}(e)=\gamma.
+$$
+The depth-$2$ term
+$$
+t=b^e
+$$
+satisfies
+$$
+o_b(t)=\omega^\gamma>\xi.
+$$
+Therefore the depth-$2$ ranks over all bases are cofinal in $\omega^{\omega^\omega}$. Combining this with (7),
 $$
 \boxed{\Theta=\omega^{\omega^\omega}}.
-\tag{7}
+\tag{9}
 $$
 
 Step 7: Compute the ordinal rank of the seed
@@ -174,10 +216,10 @@ o_3(t_\star)
 &+\omega^{\omega\cdot2+1}\cdot2+1.
 \end{aligned}
 }
-\tag{8}
+\tag{10}
 $$
 
-Combining (7) and (8), the exact requested tuple is
+Combining (9) and (10),
 $$
 \boxed{
 \left(
@@ -210,5 +252,5 @@ $\left(\omega^{\omega^\omega},\omega^{\omega^2\cdot2+\omega+2}\cdot2+\omega^{\om
 - bounded-depth hereditary Goodstein notation
 - Cantor normal form ordinal assignment
 - base-change invariance of ordinal ranks
-- well-founded descent below $\omega^{\omega^\omega}$
-- cofinality of bounded-depth notation systems
+- well-founded ordinal descent
+- cofinality below $\omega^{\omega^\omega}$
