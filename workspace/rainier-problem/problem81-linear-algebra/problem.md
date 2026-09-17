@@ -27,19 +27,24 @@ D_n(\lambda,\mu)
 \right]_{i,j=0}^{n-1}.
 $$
 
-For $m\ge0$, let $P_m^{(b-1,a-1)}$ denote the Jacobi polynomial in the standard normalization, and define the monic shifted Jacobi polynomial
+For $m\ge0$, let $\pi_m$ be the unique monic polynomial proportional to
 $$
-\pi_m(x)
+P_m^{(b-1,a-1)}(2x-1),
+$$
+where $P_m^{(b-1,a-1)}$ is the Jacobi polynomial in the standard normalization. Thus $\pi_m$ is monic and orthogonal on $[0,1]$ for the weight $w$.
+
+For $z\ne q$, define the confluent Jacobi alternant
+$$
+\mathcal C_n(z,q)
 =
-\frac{P_m^{(b-1,a-1)}(2x-1)}{c_m},
+\det
+\begin{pmatrix}
+\pi_n(z)&\pi_{n+1}(z)&\pi_{n+2}(z)&\pi_{n+3}(z)\\
+\pi_n'(z)&\pi_{n+1}'(z)&\pi_{n+2}'(z)&\pi_{n+3}'(z)\\
+\pi_n(q)&\pi_{n+1}(q)&\pi_{n+2}(q)&\pi_{n+3}(q)\\
+\pi_n'(q)&\pi_{n+1}'(q)&\pi_{n+2}'(q)&\pi_{n+3}'(q)
+\end{pmatrix}.
 $$
-where
-$$
-c_m
-=
-\frac{\Gamma(2m+a+b-1)}{\Gamma(m+1)\Gamma(m+a+b-1)}.
-$$
-Thus $\pi_m$ is monic and orthogonal on $[0,1]$ for the weight $w$.
 
 Determine exactly the normalized determinant
 $$
