@@ -174,7 +174,7 @@ $$
 \qquad
 \mathbf u=\sqrt{1-y_*}\,\mathbf e_2,
 \qquad
-\mathbf v=\sqrt{t^2-y_*}\,\mathbf e_3.
+\mathbf v=-\sqrt{t^2-y_*}\,\mathbf e_3.
 $$
 Define
 $$
