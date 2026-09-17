@@ -1,9 +1,9 @@
 {
   "problem": "problem127",
   "branch": "adversary/problem127",
-  "problem_path": "workspace/rainier-problem/problem127-solid-geometry/problem.md",
-  "problem_blob_sha": "830db06b8ebe08d9a12bea22e85349e946ddf606",
-  "source_commit_sha": "d751b9cd42b8224ea07051a4c9cbdfa4e787cd13",
+  "problem_path": "workspace/rainier-problem/problem127-quadratic-residues-and-reciprocity/problem.md",
+  "problem_blob_sha": "2580c0ff971d9dde73a7427ea14e68bb05f46af3",
+  "source_commit_sha": "07db9fd365f143d26e1f68872f15c38cc1ec44ba",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-17T14:40:39+00:00",
-  "result_file": "solver-results/problem127/830db06b8ebe.json"
+  "completed_at": "2026-09-17T14:55:50+00:00",
+  "result_file": "solver-results/problem127/2580c0ff971d.json"
 }

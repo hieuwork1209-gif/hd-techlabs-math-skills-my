@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-quadratic-residues-and-reciprocity/problem.md",
+  "source_commit_sha": "07db9fd365f143d26e1f68872f15c38cc1ec44ba",
+  "problem_blob_sha": "2580c0ff971d9dde73a7427ea14e68bb05f46af3",
+  "statement_sha256": "39607d152ed12e1cc9bca22e880ee27048c216d4d0001e61ca9f0c3e92c07b87",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T14:54:29+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(\\chi\\) be the Legendre symbol on \\(\\mathbb F_p\\), extended by \\(\\chi(0)=0\\). We want the number \\(N\\) of \\(x\\) for which\n\\[\n\\chi(x-1)=\\chi(x)=\\chi(x+1)=1.\n\\]\n\nFor the moment consider\n\\[\nJ=\\frac18\\sum_{x\\in\\mathbb F_p}(1+\\chi(x-1))(1+\\chi(x))(1+\\chi(x+1)).\n\\]\nFor \\(x\\notin\\{-1,0,1\\}\\), the summand is exactly the indicator that \\(x-1,x,x+1\\) are all quadratic residues.\n\nExpanding,\n\\[\n8J=p+\\sum_x\\chi(x(x-1))+\\sum_x\\chi((x-1)(x+1))+\\sum_x\\chi(x(x+1))\n+\\sum_x\\chi(x(x-1)(x+1)).\n\\]\nEach nonconstant quadratic with nonzero discriminant contributes \\(-1\\), so\n\\[\n8J=p-3+T,\n\\qquad\nT:=\\sum_{x\\in\\mathbb F_p}\\chi(x^3-x).\n\\]\n\nNow evaluate \\(T\\). Since \\(p\\equiv1\\pmod4\\), choose a quartic character \\(\\psi\\) with \\(\\psi^2=\\chi\\) and \\(\\psi(x^2)=\\chi(x)\\). Then\n\\[\nT=\\sum_{x\\ne0}\\chi(x)\\chi(x^2-1).\n\\]\nPutting \\(t=x^2\\), the two square roots of \\(t\\) have the same Legendre symbol because \\(\\chi(-1)=1\\), hence\n\\[\nT=\\sum_{t\\in\\mathbb F_p}(1+\\chi(t))\\psi(t)\\chi(1-t)\n=J(\\psi,\\chi)+J(\\psi^3,\\chi),\n\\]\nwhere \\(J(\\alpha,\\beta)=\\sum_t\\alpha(t)\\beta(1-t)\\) is the Jacobi sum. The two terms are complex conjugates, so\n\\[\nT=2\\operatorname{Re}J(\\psi,\\chi).\n\\]\n\nThe standard quartic Jacobi-sum evaluation gives\n\\[\nJ(\\psi,\\chi)=a+bi,\n\\]\nwhere \\(p=a^2+b^2\\), \\(b\\) is even, \\(a\\) is odd, and\n\\[\na\\equiv-\\left(\\frac2p\\right)\\pmod4.\n\\]\nBy the definition of \\(a\\) in the problem, this is exactly the same \\(a\\). Therefore\n\\[\nT=2a.\n\\]\n\nSo\n\\[\nJ=\\frac{p-3+2a}{8}.\n\\]\n\nIt remains to remove the false contributions from \\(x=-1,0,1\\), where one of \\(x-1,x,x+1\\) is zero. Since \\(\\chi(-1)=1\\) and \\(\\chi(2)=\\varepsilon\\),\n\\[\nx=0 \\text{ contributes } \\frac12,\n\\]\nwhile \\(x=-1\\) and \\(x=1\\) together contribute\n\\[\n2\\cdot \\frac{1+\\varepsilon}{4}=\\frac{1+\\varepsilon}{2}.\n\\]\nThus\n\\[\nN=\\frac{p-3+2a}{8}-\\frac12-\\frac{1+\\varepsilon}{2}\n=\\frac{p+2a-11-4\\varepsilon}{8}.\n\\]\n\n\\[\n\\boxed{\\frac{p+2a-11-4\\varepsilon}{8}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T14:55:50+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/2580c0ff971d.json"
+}
