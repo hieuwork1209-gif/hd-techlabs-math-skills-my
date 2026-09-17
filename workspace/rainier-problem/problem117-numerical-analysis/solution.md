@@ -1,151 +1,153 @@
 ## Steps
 
-Step 1: Determine the three-point Gaussian nodes
-
+Step 1: Determine the Gaussian node
 Let
 $$
-d\mu_\tau(x)=dx+\tau(\delta_{-1}+\delta_1),\qquad \tau>0,
+d\mu_\tau(x)=(1+\tau x^2)\,dx+\tau(\delta_{-1}+\delta_1),\qquad \tau>0,
 $$
 and write
 $$
-m_k=\int_{-1}^1 x^k\,d\mu_\tau(x).
+m_k=\int_{-1}^1x^k\,d\mu_\tau(x).
 $$
-The measure is even, so $m_{2j+1}=0$, while
+The measure is even, so $m_{2j+1}=0$, and
 $$
-m_0=2+2\tau,
+m_{2j}=\frac{2}{2j+1}+\frac{2\tau}{2j+3}+2\tau. \tag{1}
+$$
+In particular,
+$$
+m_2=\frac{2(18\tau+5)}{15},\qquad
+m_4=\frac{2(40\tau+7)}{35}.
+$$
+The monic cubic orthogonal polynomial is odd, hence is
+$$
+g_3(x)=x(x^2-r),
+$$
+where $r=a_\tau^2$. Orthogonality to $x$ gives
+$$
+0=\int xg_3(x)\,d\mu_\tau=m_4-rm_2,
+$$
+so
+$$
+r=\frac{3(40\tau+7)}{7(18\tau+5)}. \tag{2}
+$$
+For every $\tau>0$, $0<r<1$.
+
+Step 2: Force compatibility from the two missing moments
+Assume a nested symmetric seven-node rule exists and put
+$$
+q=b^2,
 \qquad
-m_{2j}=\frac{2}{2j+1}+2\tau\quad(j\ge1). \tag{1}
+\Pi(x)=x(x^2-1)(x^2-r)(x^2-q).
 $$
-
-The monic cubic orthogonal polynomial is odd, hence has the form
-$$
-g_3(x)=x(x^2-a^2).
-$$
-Orthogonality to $x$ gives
-$$
-0=\int xg_3(x)\,d\mu_\tau(x)=m_4-a^2m_2,
-$$
-so the nonzero nodes of the three-point Gaussian rule satisfy
-$$
-a^2=\frac{m_4}{m_2}
-=\frac{\tau+1/5}{\tau+1/3}
-=\frac{3(5\tau+1)}{5(3\tau+1)}. \tag{2}
-$$
-For $\tau>0$, this lies strictly between $0$ and $1$.
-
-Step 2: Use the nested-node polynomial to force the parameter
-
-Assume there is a symmetric seven-node rule
-$$
-Q(p)=A[p(-1)+p(1)]
-+B[p(-b)+p(b)]
-+C[p(-a)+p(a)]
-+Dp(0), \tag{3}
-$$
-with
-$$
-0<b<a<1,\qquad A,B,C,D>0,
-$$
-which is exact for every polynomial of degree at most $11$. Put
-$$
-r=a^2,\qquad q=b^2.
-$$
-Its node polynomial is
-$$
-\Pi(x)=x(x^2-r)(x^2-q)(x^2-1).
-$$
-Since $\Pi$ vanishes at all seven nodes, $Q(\Pi x)=Q(\Pi x^3)=0$. Exactness therefore forces
+Because $\Pi$ vanishes at all seven nodes, exactness through degree $11$ forces
 $$
 \int \Pi(x)x\,d\mu_\tau(x)=0,
 \qquad
-\int \Pi(x)x^3\,d\mu_\tau(x)=0. \tag{4}
+\int \Pi(x)x^3\,d\mu_\tau(x)=0. \tag{3}
 $$
-Expanding the first integral gives
+Unlike the endpoint-mass-only family, the density $1+\tau x^2$ keeps the parameter in these two conditions. Expanding (3) gives
 $$
-m_8-(1+r+q)m_6+(r+q+rq)m_4-rqm_2=0, \tag{5}
-$$
-and the second gives
-$$
-m_{10}-(1+r+q)m_8+(r+q+rq)m_6-rqm_4=0. \tag{6}
-$$
-Substitute the moments from (1) and $r$ from (2). After clearing the positive denominators, (5) and (6) reduce respectively to
-$$
-(90\tau+9)q=30\tau+1, \tag{7}
+m_8-(1+r+q)m_6+(r+q+rq)m_4-rqm_2=0, \tag{4}
 $$
 $$
-(330\tau+11)q=150\tau-5. \tag{8}
+m_{10}-(1+r+q)m_8+(r+q+rq)m_6-rqm_4=0. \tag{5}
 $$
-Eliminating $q$ yields
+Substitute (1) and the Gaussian relation (2). Solving (4) for $q$ gives
 $$
-(30\tau+1)(330\tau+11)
-=(150\tau-5)(90\tau+9),
+q=\frac{1095\tau^2+2440\tau+77}
+{11(225\tau^2+700\tau+63)}, \tag{6}
 $$
-that is,
+whereas (5) gives
 $$
-450\tau^2+30\tau-7=0. \tag{9}
+q=\frac{5(1491\tau^2+2700\tau-91)}
+{13(1095\tau^2+2440\tau+77)}. \tag{7}
 $$
-The two roots are
+Thus compatibility forces
 $$
-\frac{-1\pm\sqrt{15}}{30},
+P(\tau):=
+357975\tau^4+2668650\tau^3+3550150\tau^2+120890\tau-49049=0. \tag{8}
 $$
-so there is exactly one positive candidate,
+For $\tau>0$,
 $$
-\tau_* = \frac{\sqrt{15}-1}{30}. \tag{10}
+P'(\tau)=1431900\tau^3+8005950\tau^2+7100300\tau+120890>0,
+$$
+so $P$ has at most one positive zero. Moreover
+$$
+P\!\left(\frac9{100}\right)<0,
+\qquad
+P\!\left(\frac1{10}\right)=\frac{498379}{400}>0.
+$$
+Hence there is exactly one positive candidate
+$$
+t:=\operatorname{root}_{(9/100,1/10)}P. \tag{9}
 $$
 
-At this value, (2) and (7) give
+At $\tau=t$, define
 $$
-r=\frac{15+2\sqrt{15}}{33},
+r=\frac{3(40t+7)}{7(18t+5)},
 \qquad
-q=\frac{15-2\sqrt{15}}{33}. \tag{11}
+q=\frac{1095t^2+2440t+77}{11(225t^2+700t+63)}. \tag{10}
 $$
-Hence
+Both are positive, and
+$$
+r-q=
+\frac{2(79515t^3+315105t^2+74879t+5929)}
+{77(18t+5)(225t^2+700t+63)}>0. \tag{11}
+$$
+Together with $r<1$, this gives
 $$
 0<q<r<1,
 $$
-so the extra node $b=\sqrt q$ really lies strictly between $0$ and the Gaussian node $a=\sqrt r$.
+so
+$$
+b=\sqrt q,\qquad a_t=\sqrt r
+$$
+indeed satisfy $0<b<a_t<1$.
 
-Step 3: Construct the positive degree-11 rule
+Step 3: Construct the positive degree-$11$ rule
+Match the even moments of degrees $0,2,4,6$ with
+$$
+Q(p)=A[p(-1)+p(1)]
++B[p(-\sqrt q)+p(\sqrt q)]
++C[p(-\sqrt r)+p(\sqrt r)]
++Dp(0).
+$$
+The degree-$2,4,6$ equations form a Vandermonde system because $1,q,r$ are distinct, so $A,B,C$ are unique, and the mass equation then fixes $D$. Solving and factoring gives
+$$
+A=
+\frac{11(225t^2+700t+63)^2}
+{630(3t+7)(345t^2+1315t+154)}, \tag{12}
+$$
+$$
+B=
+\frac{1331(225t^2+700t+63)^4}
+{630(345t^2+1315t+154)(1095t^2+2440t+77)
+(79515t^3+315105t^2+74879t+5929)}, \tag{13}
+$$
+$$
+C=
+\frac{686(18t+5)^4(5t^2+30t+33)}
+{135(3t+7)(40t+7)(79515t^3+315105t^2+74879t+5929)}, \tag{14}
+$$
+$$
+D=
+\frac{64(25245t^4+468090t^3+931742t^2+151410t+1617)}
+{945(40t+7)(1095t^2+2440t+77)}. \tag{15}
+$$
+Every factor in (12)-(15) is positive because $t>0$, so all four weights are positive.
 
-At $\tau=\tau_*$, match the even moments of degrees $2,4,6$ in (3):
-$$
-A+Bq+Cr=\frac{m_2}{2},
-$$
-$$
-A+Bq^2+Cr^2=\frac{m_4}{2},
-$$
-$$
-A+Bq^3+Cr^3=\frac{m_6}{2}. \tag{12}
-$$
-Because $1,q,r$ are distinct, this Vandermonde system has a unique solution. Substitution of (10)-(11) gives
-$$
-A=\frac1{70}+\frac{\sqrt{15}}{30},
-$$
-$$
-B=\frac{62}{175}+\frac{\sqrt{15}}{50},
-$$
-$$
-C=\frac{62}{175}-\frac{\sqrt{15}}{50}. \tag{13}
-$$
-The degree-$0$ moment then gives
-$$
-D=m_0-2A-2B-2C=\frac{256}{525}. \tag{14}
-$$
-All four weights in (13)-(14) are positive.
-
-The rule now matches degrees $0,2,4,6$. Equation (5) says its degree-$8$ error equals the error on $\Pi x$, hence vanishes. Once degree $8$ also matches, (6) says the degree-$10$ error equals the error on $\Pi x^3$, hence vanishes. Every odd polynomial is integrated exactly by symmetry. Therefore the rule is exact for every polynomial of degree at most $11$.
+The rule now matches degrees $0,2,4,6$. Equation (4) is exactly the vanishing of the degree-$8$ error on $\Pi x$, so degree $8$ also matches. With degree $8$ established, (5) is exactly the vanishing of the degree-$10$ error on $\Pi x^3$, so degree $10$ matches as well. Symmetry handles every odd degree. Therefore the rule is exact for all polynomials of degree at most $11$.
 
 Step 4: Prove uniqueness
+Conversely, every compatible nested rule must satisfy the Gaussian relation (2) and both annihilation identities (3). Hence its $q$ must satisfy both (6) and (7), so its parameter must satisfy $P(\tau)=0$. By Step 2, the only positive possibility is $\tau=t$. Then (10) fixes both nontrivial interior nodes, and the distinct-node moment system fixes $A,B,C,D$ uniquely. Thus the compatible parameter and the entire positive nested rule are unique.
 
-Conversely, any positive symmetric seven-node rule of the required nested form must satisfy (4), hence (7)-(9). Thus $\tau$ must equal the unique positive root (10), and then (7) fixes $q$. Equation (2) fixes the Gaussian node $r$, and the distinct-node system (12) fixes $A,B,C$, after which the mass equation fixes $D$. Therefore the compatible parameter and the entire positive nested rule are unique.
-
-Final Answer: $\boxed{(\sqrt{15}-1)/30}$
+Final Answer: $\boxed{\operatorname{root}_{(9/100,1/10)}P}$
 
 ---
 
 ## Answer
 
-$(\sqrt{15}-1)/30$
+$\operatorname{root}_{(9/100,1/10)}P$
 
 ---
 
@@ -161,6 +163,6 @@ $(\sqrt{15}-1)/30$
 
 - Gaussian quadrature nodes
 - nested quadrature compatibility
-- orthogonal-polynomial moments
+- parameterized moment equations
 - node-polynomial annihilation
 - positive quadrature weights
