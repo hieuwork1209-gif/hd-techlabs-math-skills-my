@@ -45,11 +45,7 @@ $$
 (1,1),
 (1,0).
 $$
-Hence
-$$
-(e_{n+5},e_{n+6})=(e_n,e_{n+1})
-$$
-for all $n$, and the pair $(1,0)$ occurs exactly when $n$ is a multiple of $5$.
+Because the exponent recurrence is deterministic, this five-step cycle then repeats. Hence the pair $(1,0)$ occurs exactly when the index is a multiple of $5$.
 
 If $F_a^N$ were the identity, then for every fixed $y>0$,
 $$
@@ -96,14 +92,13 @@ $$
 F_a^5(X,y)
 =\left(\frac{y+1}{a+y}X+O(1),\frac{y}{a}+O(X^{-1})\right).
 $$
-In particular, the first coordinate still tends to infinity and the second tends to $y/a$.
+The displayed rational formulas show that these estimates are uniform when $y$ ranges over a compact subset of $(0,\infty)$. In particular, if the first coordinate tends to infinity and the second tends to a positive limit $Y$, then after five more iterates the first coordinate still tends to infinity and the second tends to $Y/a$.
 
-Applying the same five-step asymptotic repeatedly gives, for every fixed positive integer $j$,
+Inducting over five-step blocks therefore gives, for every fixed positive integer $j$,
 $$
 \lim_{X\to\infty}\bigl(F_a^{5j}(X,y)\bigr)_2
 =\frac{y}{a^j}.
 $$
-This follows inductively because after each five-step block the first coordinate again tends to infinity while the second converges to a positive finite limit.
 
 Now suppose $F_a^{5k}$ is the identity. Its second coordinate equals $y$ for every $X$, so taking $X\to\infty$ yields
 $$
