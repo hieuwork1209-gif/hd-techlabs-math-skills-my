@@ -193,19 +193,19 @@ $$
 L_*\approx6.02725972343821.
 $$
 
-Therefore the unique optimal parameter and maximal real-axis stability radius are
+Therefore
 $$
 \boxed{
-(a_*,L_*)
+(a_*,L_*,m_*)
 }
 $$
-with $a_*$ and $L_*$ characterized exactly by (8)--(9), or equivalently by (7)--(9).
+is the requested tuple, with $m_*$ characterized by (7), $a_*$ by (5) or (8), and $L_*$ by (9) or (10).
 
 ---
 
 ## Answer
 
-$\left(a_*,L_*\right)$, where $a_*$ is the unique real root of $884736a^3-60048a^2+1728a-17=0$, and $L_*$ is the unique root $>m_*$ of $6a_*L^3-L^2+3L-6=0$, with $m_*$ the unique real root of $m^3-6m^2+18m-48=0$.
+$\left(a_*,L_*,m_*\right)$, where $m_*$ is the unique real root of $m^3-6m^2+18m-48=0$, $a_*=(m_*^2-2m_*+2)/(8m_*^3)$, and $L_*$ is the unique root $>m_*$ of $6a_*L^3-L^2+3L-6=0$.
 
 ---
 
