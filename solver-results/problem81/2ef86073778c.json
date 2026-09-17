@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-number-theory/problem.md",
+  "source_commit_sha": "99ff327ac844b8be94f0d0bad5cbf15439b62385",
+  "problem_blob_sha": "2ef86073778cd7f544cfbef0fbdbeee64c88574a",
+  "statement_sha256": "d9bcf40eb7df6e6a853f0acb41e90e0377f2810899806c2fd92beb60642f5856",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T07:57:25+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nC_\\alpha=\\{z^8:z\\in(\\mathbb Z/p^\\alpha\\mathbb Z)^\\times\\}\n\\]\nbe the octic-unit subgroup. Then\n\\[\n\\boxed{\nZ_{p,\\alpha}\n=\n\\frac{p^{2\\alpha-2}(p-1)}{3072}\n\\left(p-23-(6+12\\epsilon_p)x-12(1+\\epsilon_p)a\\right)\n}.\n\\]\n\nEquivalently,\n\\[\nZ_{p,\\alpha}\n=\n\\begin{cases}\n\\dfrac{p^{2\\alpha-2}(p-1)(p-23+6x)}{3072},\n& \\epsilon_p=-1,\\\\[1.1em]\n\\dfrac{p^{2\\alpha-2}(p-1)(p-23-18x-24a)}{3072},\n& \\epsilon_p=1.\n\\end{cases}\n\\]\n\nHere \\(x,a,\\epsilon_p\\) are exactly the integers defined in the problem.\n\nProof sketch, self-contained: every zero-sum triangle can be written uniquely from an ordered root \\(r\\) as\n\\[\n\\{r,r+u,r+v\\},\\qquad 3r+u+v=0,\n\\]\nwith\n\\[\nu,\\ v,\\ v-u\\in C_\\alpha .\n\\]\nSince \\(p\\ne3\\), \\(r\\) is uniquely determined by \\(u,v\\). Each unordered triangle is counted \\(6\\) times, so\n\\[\nZ_{p,\\alpha}=\\frac16\n\\#\\{(u,v)\\in C_\\alpha^2:v-u\\in C_\\alpha\\}.\n\\]\n\nWriting \\(v=uq\\), this count equals\n\\[\n|C_\\alpha|\\cdot \\#\\{q\\in C_\\alpha:q-1\\in C_\\alpha\\}.\n\\]\nReduction modulo \\(p\\) identifies \\(C_\\alpha\\) with the full inverse image of the octic subgroup \\(C_1\\subset\\mathbb F_p^\\times\\), because raising to the eighth power is an automorphism on the principal units \\(1+p\\mathbb Z/p^\\alpha\\mathbb Z\\). Hence the count lifts by \\(p^{2\\alpha-2}\\):\n\\[\n\\#\\{(u,v)\\in C_\\alpha^2:v-u\\in C_\\alpha\\}\n=\np^{2\\alpha-2}\n\\#\\{(u,v)\\in C_1^2:v-u\\in C_1\\}.\n\\]\n\nLet\n\\[\nM=\\#\\{q\\in C_1:q-1\\in C_1\\}.\n\\]\nThen the mod-\\(p\\) ordered-pair count is \\(\\frac{p-1}{8}M\\). The standard order-\\(8\\) character sum evaluation gives\n\\[\n64M=p-23-(6+12\\epsilon_p)x-12(1+\\epsilon_p)a.\n\\]\nIndeed, using an octic character \\(\\chi\\) on \\(\\mathbb F_p\\),\n\\[\nM=\\frac1{64}\\sum_{i,j=0}^7 J(\\chi^i,\\chi^j),\n\\]\nand evaluating the Jacobi sums with\n\\[\np=x^2+4y^2,\\qquad p=a^2+2b^2,\n\\]\nunder the stated congruence normalizations yields precisely the displayed value.\n\nTherefore\n\\[\nZ_{p,\\alpha}\n=\n\\frac16\\cdot p^{2\\alpha-2}\\cdot \\frac{p-1}{8}\\cdot\n\\frac{p-23-(6+12\\epsilon_p)x-12(1+\\epsilon_p)a}{64},\n\\]\nwhich simplifies to\n\\[\n\\boxed{\nZ_{p,\\alpha}\n=\n\\frac{p^{2\\alpha-2}(p-1)}{3072}\n\\left(p-23-(6+12\\epsilon_p)x-12(1+\\epsilon_p)a\\right)\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T07:59:27+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/2ef86073778c.json"
+}

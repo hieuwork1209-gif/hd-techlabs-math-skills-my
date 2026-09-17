@@ -2,8 +2,8 @@
   "problem": "problem81",
   "branch": "adversary/problem81",
   "problem_path": "workspace/rainier-problem/problem81-number-theory/problem.md",
-  "problem_blob_sha": "3fb97711d8daa6536eae79f2c149bb8db712dd64",
-  "source_commit_sha": "536ed926ceb6b662580cef29c647e389db540361",
+  "problem_blob_sha": "2ef86073778cd7f544cfbef0fbdbeee64c88574a",
+  "source_commit_sha": "99ff327ac844b8be94f0d0bad5cbf15439b62385",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-17T07:38:04+00:00",
-  "result_file": "solver-results/problem81/3fb97711d8da.json"
+  "completed_at": "2026-09-17T07:59:27+00:00",
+  "result_file": "solver-results/problem81/2ef86073778c.json"
 }
