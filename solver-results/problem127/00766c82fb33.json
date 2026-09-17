@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-harmonic-analysis/problem.md",
+  "source_commit_sha": "5ee4e121bf04e54c3e858aa583cc9ef1a30f1f5f",
+  "problem_blob_sha": "00766c82fb334a1ffa7f0be7600c3f3dcf78a194",
+  "statement_sha256": "be89611915e239b535f4bbfe51ed41c4d248dac144dd15267c271f1406486b9b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T07:32:05+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nM_n=\\frac{1}{2\\cos\\frac{\\pi}{2n}}.\n\\]\nThe largest possible value is\n\\[\n\\boxed{|\\alpha|=M_n}.\n\\]\n\nWhen equality is attained,\n\\[\n\\boxed{\\beta=\\frac{(-1)^n}{2n}\\tan\\frac{\\pi}{2n}\\left(\\frac{\\alpha}{|\\alpha|}\\right)^n}\n\\]\nwith \\(\\alpha\\ne0\\).\n\nProof sketch, self-contained:\n\nRotate \\(\\theta\\) so that \\(\\alpha=a\\ge0\\) is real. Averaging \\(P(\\theta)\\) and \\(P(-\\theta)\\) lets us assume \\(\\beta=b\\in\\mathbb R\\) without changing \\(a\\). Then\n\\[\nP(\\theta)=1+2a\\cos\\theta+2b\\cos n\\theta.\n\\]\n\nTake\n\\[\n\\theta_0=\\pi-\\frac{\\pi}{2n}.\n\\]\nThen \\(\\cos n\\theta_0=0\\) and \\(\\cos\\theta_0=-\\cos\\frac{\\pi}{2n}\\). Nonnegativity gives\n\\[\n0\\le P(\\theta_0)=1-2a\\cos\\frac{\\pi}{2n},\n\\]\nso\n\\[\na\\le \\frac{1}{2\\cos\\frac{\\pi}{2n}}.\n\\]\n\nThis bound is attained by\n\\[\na=\\frac{1}{2\\cos\\frac{\\pi}{2n}},\\qquad\nb=\\frac{(-1)^n}{2n}\\tan\\frac{\\pi}{2n}.\n\\]\nIndeed, writing \\(\\delta=\\frac{\\pi}{2n}\\), the polynomial becomes\n\\[\nP(\\theta)=1+\\frac{\\cos\\theta}{\\cos\\delta}\n+\\frac{(-1)^n}{n}\\tan\\delta\\,\\cos n\\theta,\n\\]\nand one checks by the standard inequality\n\\[\n\\cos\\delta-\\cos s+\\frac{\\sin\\delta}{n}\\cos ns\\ge0\n\\qquad(0\\le s\\le\\pi)\n\\]\nwith \\(s=\\pi-\\theta\\), that \\(P(\\theta)\\ge0\\) for all real \\(\\theta\\).\n\nFinally, at equality \\(P(\\pm\\theta_0)=0\\), forcing the rotated \\(\\beta\\) to be real; differentiating at \\(\\theta_0\\) gives\n\\[\nb=\\frac{(-1)^n}{2n}\\tan\\frac{\\pi}{2n}.\n\\]\nUndoing the rotation yields\n\\[\n\\boxed{\\beta=\\frac{(-1)^n}{2n}\\tan\\frac{\\pi}{2n}\\left(\\frac{\\alpha}{|\\alpha|}\\right)^n }.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T07:35:17+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/00766c82fb33.json"
+}
