@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-probability-foundations/problem.md",
+  "source_commit_sha": "b57fe5b4743bd2de261c5454a3ee1900acfd9aaf",
+  "problem_blob_sha": "d4b9c9961f94f46cdbe69a7736304ff1b4e91d16",
+  "statement_sha256": "3dccb31ee772ee2adc513357032d9c4e66f7fbb7d951eecd1b3643cc3a59c48d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T10:20:20+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nf(x)=\\frac1{2-x}.\n\\]\nWe use a polynomial majorant of \\(f\\) of degree \\(8\\).\n\nDefine\n\\[\nR(x)=x^4-\\frac{16}{9}x^3+x^2-\\frac{4}{21}x+\\frac1{126}.\n\\]\nThis polynomial is chosen so that\n\\[\n\\int_0^1 (1-x)R(x)x^j\\,dx=0\\qquad j=0,1,2,3.\n\\]\nAlso\n\\[\nR(2)=\\frac{227}{42}.\n\\]\n\nNow set\n\\[\nP(x)=\\frac{1+\\dfrac{(1-x)R(x)^2}{R(2)^2}}{2-x}.\n\\]\nThe numerator vanishes at \\(x=2\\), so \\(P\\) is actually a polynomial of degree \\(8\\). For \\(0\\le x\\le 1\\),\n\\[\nP(x)-\\frac1{2-x}\n=\n\\frac{(1-x)R(x)^2}{R(2)^2(2-x)}\n\\ge 0.\n\\]\nTherefore, for any admissible law \\(\\mu\\),\n\\[\n\\mathbb E_\\mu[f(X)]\\le \\mathbb E_\\mu[P(X)].\n\\]\nSince \\(P\\) has degree \\(8\\), its expectation is fixed by the given moments and equals the uniform integral:\n\\[\n\\mathbb E_\\mu[P(X)]=\\int_0^1 P(x)\\,dx.\n\\]\nA direct division and integration gives\n\\[\n\\int_0^1 P(x)\\,dx=\\frac{14161}{20430}.\n\\]\nThus\n\\[\nM\\le \\frac{14161}{20430}.\n\\]\n\nIt remains to see equality is attainable. The polynomial \\(R\\) is orthogonal to all polynomials of degree \\(\\le 3\\) with respect to the positive weight \\((1-x)\\,dx\\), so it has four simple roots in \\((0,1)\\). Let those roots be \\(r_1,\\dots,r_4\\). The Gauss-Radau quadrature rule with nodes\n\\[\nr_1,r_2,r_3,r_4,1\n\\]\nis exact for every polynomial of degree at most \\(8\\). Hence there is a probability law supported on these five points whose first eight moments are\n\\[\n\\int_0^1 x^k\\,dx=\\frac1{k+1}.\n\\]\nAt each support point, \\(P=f\\), because \\((1-x)R(x)^2=0\\). Therefore equality is attained.\n\nFinally, if equality holds for some law \\(\\mu\\), then\n\\[\n\\int_0^1 (P-f)\\,d\\mu=0.\n\\]\nSince \\(P-f\\ge 0\\) and vanishes only at \\(r_1,\\dots,r_4,1\\), the measure must be supported on exactly those nodes. The weights are then uniquely determined by the first five moments via a nonsingular Vandermonde system. So the maximizing law is unique.\n\n\\[\n\\boxed{M=\\frac{14161}{20430}}\n\\]\n\nThe maximizing law is unique.",
+  "status": "success",
+  "completed_at": "2026-09-17T10:22:11+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/d4b9c9961f94.json"
+}

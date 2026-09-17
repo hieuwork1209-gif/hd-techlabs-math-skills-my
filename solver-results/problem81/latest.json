@@ -1,9 +1,9 @@
 {
   "problem": "problem81",
   "branch": "adversary/problem81",
-  "problem_path": "workspace/rainier-problem/problem81-linear-algebra/problem.md",
-  "problem_blob_sha": "2ca6ad24d7119ae43bebce31a8a76a4e5e7972d8",
-  "source_commit_sha": "3d5718a66d4c2d1a78dede977c2a526915d216f4",
+  "problem_path": "workspace/rainier-problem/problem81-probability-foundations/problem.md",
+  "problem_blob_sha": "d4b9c9961f94f46cdbe69a7736304ff1b4e91d16",
+  "source_commit_sha": "b57fe5b4743bd2de261c5454a3ee1900acfd9aaf",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-17T09:00:11+00:00",
-  "result_file": "solver-results/problem81/2ca6ad24d711.json"
+  "completed_at": "2026-09-17T10:22:11+00:00",
+  "result_file": "solver-results/problem81/d4b9c9961f94.json"
 }
