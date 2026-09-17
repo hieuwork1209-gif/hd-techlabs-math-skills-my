@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-stability-theory/problem.md",
+  "source_commit_sha": "b48885acc107336686a85051ee2f273d92d441a0",
+  "problem_blob_sha": "4e277ce87182df68d7654fcee6e6b942d7374e77",
+  "statement_sha256": "cb709d34aa9465872e591a9ec46d49847981e2240c840aecf5135942cbf35095",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T15:20:09+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nF(\\lambda,\\tau)=\\lambda+a+(c\\lambda+b)e^{-\\lambda\\tau}.\n\\]\nAt \\(\\tau=0\\),\n\\[\nF(\\lambda,0)=(1+c)\\lambda+(a+b),\n\\]\nso the single characteristic root is\n\\[\n\\lambda=-\\frac{a+b}{1+c}<0.\n\\]\nThus stability can change only when a characteristic root crosses the imaginary axis.\n\nPut \\(\\lambda=i\\omega\\), \\(\\omega>0\\), and write \\(\\theta=\\omega\\tau\\). Then\n\\[\ni\\omega+a+(ic\\omega+b)(\\cos\\theta-i\\sin\\theta)=0.\n\\]\nSeparating real and imaginary parts gives\n\\[\na+b\\cos\\theta+c\\omega\\sin\\theta=0,\n\\]\n\\[\n\\omega+c\\omega\\cos\\theta-b\\sin\\theta=0.\n\\]\nSolving these two linear equations for \\(\\cos\\theta,\\sin\\theta\\),\n\\[\n\\cos\\theta=-\\frac{ab+c\\omega^2}{b^2+c^2\\omega^2},\n\\qquad\n\\sin\\theta=\\frac{\\omega(b-ac)}{b^2+c^2\\omega^2}.\n\\]\nSince \\(0<a<b\\) and \\(0<c<1\\), we have \\(b-ac>0\\), so \\(\\sin\\theta>0\\). Hence the relevant angle lies in \\((\\pi/2,\\pi)\\).\n\nThe identity \\(\\cos^2\\theta+\\sin^2\\theta=1\\) gives\n\\[\nc^2(1-c^2)\\omega^4+\n\\bigl(b^2(1-2c^2)+a^2c^2\\bigr)\\omega^2\n-b^2(b^2-a^2)=0.\n\\]\nThis quadratic in \\(\\omega^2\\) has exactly one positive root, because its leading coefficient is positive and its constant term is negative. Define \\(\\Omega>0\\) by\n\\[\n\\Omega^2=\n\\frac{\n-\\bigl(b^2(1-2c^2)+a^2c^2\\bigr)\n+\\sqrt{\\bigl(b^2(1-2c^2)+a^2c^2\\bigr)^2\n+4c^2(1-c^2)b^2(b^2-a^2)}\n}\n{2c^2(1-c^2)}.\n\\]\nThen the imaginary-axis crossings occur exactly at\n\\[\n\\tau_k=\\frac{\\theta+2\\pi k}{\\Omega},\n\\qquad k=0,1,2,\\dots,\n\\]\nwhere \\(\\theta\\in(\\pi/2,\\pi)\\) is determined by\n\\[\n\\cos\\theta=-\\frac{ab+c\\Omega^2}{b^2+c^2\\Omega^2},\n\\qquad\n\\sin\\theta=\\frac{\\Omega(b-ac)}{b^2+c^2\\Omega^2}.\n\\]\n\nIt remains to check the crossing direction. Differentiating \\(F(\\lambda,\\tau)=0\\) implicitly,\n\\[\n\\frac{d\\lambda}{d\\tau}\n=\n\\frac{\\lambda(c\\lambda+b)e^{-\\lambda\\tau}}\n{1+ce^{-\\lambda\\tau}-\\tau(c\\lambda+b)e^{-\\lambda\\tau}}.\n\\]\nAt \\(\\lambda=i\\Omega\\), using the crossing equations, one obtains\n\\[\n\\operatorname{Re}\\frac{d\\lambda}{d\\tau}\n\\quad\\text{has the sign of}\\quad\n\\Omega(1+c\\cos\\theta)+ac\\sin\\theta.\n\\]\nBut the imaginary-part equation gives\n\\[\n\\Omega(1+c\\cos\\theta)=b\\sin\\theta,\n\\]\nso\n\\[\n\\Omega(1+c\\cos\\theta)+ac\\sin\\theta=(b+ac)\\sin\\theta>0.\n\\]\nThus each crossing moves roots from the left half-plane into the right half-plane as \\(\\tau\\) increases.\n\nSince all roots are initially stable at \\(\\tau=0\\), stability holds precisely before the first crossing.\n\nTherefore the required delays are\n\\[\n\\boxed{\n0<\\tau<\n\\frac1{\\Omega}\n\\arccos\\!\\left(\n-\\frac{ab+c\\Omega^2}{b^2+c^2\\Omega^2}\n\\right)\n}\n\\]\nwhere\n\\[\n\\boxed{\n\\Omega^2=\n\\frac{\n-\\bigl(b^2(1-2c^2)+a^2c^2\\bigr)\n+\\sqrt{\\bigl(b^2(1-2c^2)+a^2c^2\\bigr)^2\n+4c^2(1-c^2)b^2(b^2-a^2)}\n}\n{2c^2(1-c^2)}\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T15:21:25+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/4e277ce87182.json"
+}
