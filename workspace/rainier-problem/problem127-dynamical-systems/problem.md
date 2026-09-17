@@ -2,13 +2,13 @@
 
 ## LaTeX (Normalized)
 
-For $a>0$, define
+Let $a>0$ and let $p\ge0$ be an integer. Define
 $$
-F_a:(0,\infty)^2\to(0,\infty)^2,
+F_{a,p}:(0,\infty)^2\to(0,\infty)^2,
 \qquad
-F_a(x,y)=\left(y,\frac{a+y}{x}\right).
+F_{a,p}(x,y)=\left(y,\frac{a+y^p}{x}\right).
 $$
-Determine all $a>0$ for which $F_a$ has finite order, meaning that $F_a^N$ is the identity map for some positive integer $N$. For every such $a$, determine the least possible $N$.
+Determine all pairs $(a,p)$ for which $F_{a,p}$ has finite order, meaning that $F_{a,p}^N$ is the identity map for some positive integer $N$. For every such pair, determine the least possible $N$.
 
 ---
 
@@ -19,10 +19,10 @@ Determine all $a>0$ for which $F_a$ has finite order, meaning that $F_a^N$ is th
 | **Domain** | Differential Equations and Dynamical Systems |
 | **Sub-domain** | Dynamical systems |
 | **Problem Type** | Parameter identification |
-| **Answer Type** | Tuple or ordered list |
+| **Answer Type** | Set or multiset of objects |
 
 ---
 
 ## Domain Explanation
 
-This problem is primarily Differential Equations and Dynamical Systems and Dynamical systems: it asks when a parameterized birational map of the positive quadrant is globally periodic. The decisive obstruction comes from the asymptotic dynamics of its iterates near infinity, while the exceptional parameter is verified by an exact finite orbit identity.
+This problem is primarily Differential Equations and Dynamical Systems and Dynamical systems: it classifies the globally periodic members of a parameterized family of birational maps of the positive quadrant. The exponent parameter creates distinct asymptotic dynamical regimes, and finite order is decided by combining tropical growth of iterates with an exact periodicity obstruction.
