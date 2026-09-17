@@ -1,9 +1,9 @@
 {
   "problem": "problem81",
   "branch": "adversary/problem81",
-  "problem_path": "workspace/rainier-problem/problem81-measure-theory/problem.md",
-  "problem_blob_sha": "2db7a338aae40ee6a0fa248a60e79959cfc59c7b",
-  "source_commit_sha": "d610c79d8b48cd9ba2547c3f73e57418f7cf0556",
+  "problem_path": "workspace/rainier-problem/problem81-quadratic-residues/problem.md",
+  "problem_blob_sha": "bd03ad575acba8adf474405cb905b65214f95b7a",
+  "source_commit_sha": "9684eacf02fda28c0cd9f0fa57afdeea6222e047",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-17T14:35:43+00:00",
-  "result_file": "solver-results/problem81/2db7a338aae4.json"
+  "completed_at": "2026-09-17T14:45:40+00:00",
+  "result_file": "solver-results/problem81/bd03ad575acb.json"
 }

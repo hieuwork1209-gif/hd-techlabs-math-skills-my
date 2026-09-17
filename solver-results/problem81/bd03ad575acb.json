@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-quadratic-residues/problem.md",
+  "source_commit_sha": "9684eacf02fda28c0cd9f0fa57afdeea6222e047",
+  "problem_blob_sha": "bd03ad575acba8adf474405cb905b65214f95b7a",
+  "statement_sha256": "04ab58a755ea437f6864ee64281027f0531cf5e54ce0beb625a6df44cd0693dd",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T14:43:50+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nJ_p=\\sum_{x\\in\\mathbb F_p}\\chi(x(x+1)(x+2)).\n\\]\n\nFirst shift \\(y=x+1\\). Since \\(\\chi(-1)=1\\),\n\n\\[\nJ_p=\\sum_{y\\in\\mathbb F_p}\\chi(y^3-y).\n\\]\n\nThis is the trace sum of the elliptic curve\n\n\\[\nE:\\quad Y^2=X^3-X,\n\\]\n\nbecause\n\n\\[\n\\#E(\\mathbb F_p)=p+1+\\sum_X \\chi(X^3-X)=p+1+J_p.\n\\]\n\nNow \\(E\\) has complex multiplication by \\(\\mathbb Z[i]\\), via \\((X,Y)\\mapsto(-X,iY)\\). Equivalently, using a quartic character \\(\\rho\\) modulo \\(p\\), the Frobenius eigenvalue is the quartic Jacobi sum\n\n\\[\nj(\\rho,\\rho)=\\sum_{t\\in\\mathbb F_p}\\rho(t)\\rho(1-t).\n\\]\n\nThe standard Jacobi-sum evaluation gives\n\n\\[\nj(\\rho,\\rho)=u+iv\n\\]\n\nup to conjugation, where \\(p=u^2+v^2\\), \\(v\\) is even, and \\(u+iv\\) is primary in \\(\\mathbb Z[i]\\), i.e. \\(u+v\\equiv1\\pmod4\\). This is exactly the stated sign convention \\(u\\equiv\\varepsilon\\pmod4\\), since \\(v\\equiv0\\pmod4\\) when \\(p\\equiv1\\pmod8\\), and \\(v\\equiv2\\pmod4\\) when \\(p\\equiv5\\pmod8\\). Hence the Frobenius trace is\n\n\\[\n(u+iv)+(u-iv)=2u.\n\\]\n\nTherefore\n\n\\[\n\\#E(\\mathbb F_p)=p+1-2u,\n\\]\n\nso\n\n\\[\nJ_p=-2u.\n\\]\n\nNow compute the two counts. For \\(s=\\pm1\\), let \\(N_s\\) count triples with all three Legendre symbols equal to \\(s\\). Expanding,\n\n\\[\n\\sum_x(1+s\\chi(x))(1+s\\chi(x+1))(1+s\\chi(x+2))\n=p-3+sJ_p,\n\\]\n\nbecause the three linear sums vanish and each pair sum is \\(-1\\).\n\nFor \\(s=-1\\), the exceptional points \\(x=0,-1,-2\\) contribute \\(0\\), so\n\n\\[\nN_-(p)=\\frac{p-3-J_p}{8}\n=\\frac{p-3+2u}{8}.\n\\]\n\nFor \\(s=1\\), those exceptional points contribute\n\n\\[\n(1+1)(1+\\varepsilon)+(1+1)^2+(1+\\varepsilon)(1+1)\n=8+4\\varepsilon.\n\\]\n\nThus\n\n\\[\nN_+(p)=\\frac{p-3+J_p-(8+4\\varepsilon)}8\n=\\frac{p-11-4\\varepsilon-2u}{8}.\n\\]\n\nAlso,\n\n\\[\nN_+(p)+N_-(p)=\\frac{p-7-2\\varepsilon}{4},\n\\]\n\nand\n\n\\[\nN_-(p)-N_+(p)=\\frac{u+\\varepsilon+2}{2}.\n\\]\n\nTherefore the exact pair is\n\n\\[\n\\boxed{\n\\left(\n\\frac{p-11-4\\varepsilon-2u}{8},\n\\frac{p-3+2u}{8}\n\\right)\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T14:45:40+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/bd03ad575acb.json"
+}
