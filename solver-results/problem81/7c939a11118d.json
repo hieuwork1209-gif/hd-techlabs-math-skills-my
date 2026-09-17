@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-measure-theory/problem.md",
+  "source_commit_sha": "5c8cf47a25acfab473af3b4404f0e210473e8573",
+  "problem_blob_sha": "7c939a11118d89904aa8ebdcd982ba357779822f",
+  "statement_sha256": "d15e0aa9b88a7b7e6d2c01db9b04866168aaf99c51505997da443e050d1d7060",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T14:24:43+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "By Kakutani’s product-measure criterion, \\(\\mu\\) and \\(\\nu\\) are equivalent. Indeed, only the coordinates \\(3k\\) and \\(3k+1\\) matter, and\n\n\\[\n(\\sqrt{a_k}-\\sqrt{b_k})^2\\asymp \\frac1{k^2(\\log k)^2},\\qquad\n(\\sqrt{b_k}-\\sqrt{c_k})^2\\asymp \\frac1{k^2},\n\\]\n\nboth summable, while the \\((\\sqrt{1-p}-\\sqrt{1-q})^2\\) parts are even smaller and summable.\n\nFor one Bernoulli coordinate with \\(\\mu(1)=p,\\nu(1)=q\\),\n\n\\[\n\\int \\left(\\frac{d\\mu}{d\\nu}\\right)^z\\,d\\nu\n=\np^zq^{1-z}+(1-p)^z(1-q)^{1-z}.\n\\]\n\nThus\n\n\\[\nM(z)=\\prod_{k\\ge3} A_k(z)B_k(z),\n\\]\n\nwhere\n\n\\[\nA_k(z)=a_k^zb_k^{1-z}+(1-a_k)^z(1-b_k)^{1-z},\n\\]\n\n\\[\nB_k(z)=b_k^zc_k^{1-z}+(1-b_k)^z(1-c_k)^{1-z}.\n\\]\n\nFor real \\(t\\), the decisive terms are\n\n\\[\na_k^t b_k^{1-t}\n=\nk^{t-3}(\\log k)^{-2t},\n\\]\n\nand\n\n\\[\nb_k^t c_k^{1-t}\n=\nk^{-t-2}.\n\\]\n\nThe remaining linear and quadratic corrections are summable because \\(a_k,b_k,c_k\\) are all summable. Therefore\n\n\\[\n\\sum_k(A_k(t)-1)<\\infty\n\\iff\n\\sum_k k^{t-3}(\\log k)^{-2t}<\\infty\n\\iff t\\le 2,\n\\]\n\nwith \\(t=2\\) attained since \\(\\sum k^{-1}(\\log k)^{-4}<\\infty\\). Also\n\n\\[\n\\sum_k(B_k(t)-1)<\\infty\n\\iff\n\\sum_k k^{-t-2}<\\infty\n\\iff t>-1,\n\\]\n\nand \\(t=-1\\) is not attained since then the decisive term is \\(\\sum k^{-1}\\).\n\nHence\n\n\\[\n\\mathcal I=(-1,2].\n\\]\n\nFor complex \\(z\\), the product converges locally uniformly exactly on the maximal open vertical strip\n\n\\[\n-1<\\Re z<2,\n\\]\n\nso \\(M(z)\\) is holomorphic there and represented by the above product.\n\nFinally,\n\n\\[\n\\mathcal P_\\nu=\\{p>0:M(p)<\\infty\\}=(0,2],\n\\]\n\nand\n\n\\[\n\\mathcal P_\\mu\n=\n\\left\\{p>0:\\int Z^{-p}\\,d\\mu<\\infty\\right\\}\n=\n\\{p>0:M(1-p)<\\infty\\}\n=\n(0,2).\n\\]\n\nAlso,\n\n\\[\nZ^{-1}\\in L^p(\\nu)\n\\iff M(-p)<\\infty\n\\iff 0<p<1.\n\\]\n\nSo the requested tuple is\n\n\\[\n\\boxed{\\bigl((-1,2],\\ (0,2],\\ (0,2)\\bigr)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T14:26:06+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/7c939a11118d.json"
+}

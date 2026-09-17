@@ -1,9 +1,9 @@
 {
   "problem": "problem81",
   "branch": "adversary/problem81",
-  "problem_path": "workspace/rainier-problem/problem81-analytic-number-theory/problem.md",
-  "problem_blob_sha": "0ee721f98f72b02535af4bc2d8f5ef57ef8465ec",
-  "source_commit_sha": "33969272a176f092b26566b03f380c8c72dad5f3",
+  "problem_path": "workspace/rainier-problem/problem81-measure-theory/problem.md",
+  "problem_blob_sha": "7c939a11118d89904aa8ebdcd982ba357779822f",
+  "source_commit_sha": "5c8cf47a25acfab473af3b4404f0e210473e8573",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-17T14:18:49+00:00",
-  "result_file": "solver-results/problem81/0ee721f98f72.json"
+  "completed_at": "2026-09-17T14:26:06+00:00",
+  "result_file": "solver-results/problem81/7c939a11118d.json"
 }
