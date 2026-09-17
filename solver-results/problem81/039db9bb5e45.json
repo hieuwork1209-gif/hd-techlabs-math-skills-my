@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-bifurcation-theory/problem.md",
+  "source_commit_sha": "9a3a335f375e41f39573f40b863e10cfb66ca77a",
+  "problem_blob_sha": "039db9bb5e45e2dd98d3ec19f531f12cce0a46be",
+  "statement_sha256": "442fe4c0bcf27c3451f9acf274080aa24057770d7c51176a7e6e1a5dcef8d641",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T11:03:04+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(X=\\cos x,\\ Y=\\cos y\\), and set\n\\[\nL=-\\Delta-1,\\qquad u=AX+BY+w,\\qquad w\\perp \\operatorname{span}\\{X,Y\\}.\n\\]\nThe complement equation is\n\\[\nLw=Q\\{\\delta u+\\eta u^2-u^3\\}.\n\\]\nUsing\n\\[\n\\cos mx\\cos nx=\\frac12(\\cos(m+n)x+\\cos|m-n|x),\n\\]\nand \\(L(\\cos mx\\cos ny)=(m^2+n^2-1)\\cos mx\\cos ny\\), the finite weighted expansion through the needed order gives, after substituting \\(\\eta^2=9/22\\),\n\\[\nP\\{\\delta u+\\eta u^2-u^3\\}_X\n=\nA\\left[\n\\delta-\\frac{12}{11}(A^2+B^2)\n+\\delta\\left(\\frac{19}{44}A^2+\\frac{27}{22}B^2\\right)\n-\\frac34A^4-\\frac{465}{242}A^2B^2-\\frac{465}{484}B^4\n\\right],\n\\]\nand symmetrically for the \\(Y\\)-equation. Since the displayed system is the negative of this projected residual,\n\\[\np=\\frac{19}{44},\\quad q=\\frac{27}{22},\\quad r=\\frac34,\\quad s=\\frac{465}{242},\\quad t=\\frac{465}{484}.\n\\]\n\nThe potential is\n\\[\nV=-\\frac{\\delta}{2}(A^2+B^2)+\\frac{3}{11}(A^2+B^2)^2\n-\\delta\\left[\\frac p4(A^4+B^4)+\\frac q2A^2B^2\\right]\n+\\frac r6(A^6+B^6)+\\frac s4(A^4B^2+A^2B^4).\n\\]\nWriting \\(A=\\rho\\cos\\theta,\\ B=\\rho\\sin\\theta\\), with \\(z=\\cos^2\\theta\\sin^2\\theta\\), and minimizing in \\(\\rho\\), the leading value is \\(\\rho^2=\\frac{11}{12}\\delta+O(\\delta^2)\\). Hence\n\\[\nV_{\\min}(\\theta)\n=-\\frac{11}{48}\\delta^2\n+\\delta^3\\left(\n\\frac{77}{13824}-\\frac{583}{2304}z\n\\right)+O(\\delta^4).\n\\]\nThus\n\\[\nC_0=\\frac{77}{13824},\\qquad C_1=-\\frac{583}{2304}.\n\\]\nSince \\(C_1<0\\), the energy is minimized when \\(z\\) is maximal, i.e. \\(|A|=|B|\\). The higher-order reduction selects the diagonal directions.\n\n\\[\n\\boxed{\\left(\\frac{19}{44},\\frac{27}{22},\\frac34,\\frac{465}{242},\\frac{465}{484},\\frac{77}{13824},-\\frac{583}{2304}\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T11:05:37+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/039db9bb5e45.json"
+}
