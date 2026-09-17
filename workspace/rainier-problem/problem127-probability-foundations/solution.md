@@ -79,14 +79,22 @@ y=\frac{\delta N(1-p)}{N-r-1},
 \qquad
 w=1-x-y.
 $$
-The first two weights are nonnegative. To see that $w\geq0$, let $B$ be a binomial random variable with parameters $N$ and $p$. Then
+The first two weights are nonnegative. Also,
 $$
-N(N-1)q-2rNp+r(r+1)
-=
+(N-r)(N-r-1)w
+=(N-r)(N-r-1)-N(1-p)(N-r-1+\delta).
+$$
+Using $r+\delta=a=(N-1)p(1-\rho)$, this simplifies to
+$$
+(N-r)(N-r-1)w
+=N(N-1)\bigl(p^2+\rho p(1-p)\bigr)-2rNp+r(r+1).
+$$
+Thus $w$ is exactly the upper bound from Step 2. To see that it is nonnegative, let $B$ be a binomial random variable with parameters $N$ and $p$. The numerator above equals
+$$
 \mathbb{E}[(B-r)(B-r-1)]
-+N(N-1)\rho p(1-p).
++N(N-1)\rho p(1-p),
 $$
-Both terms on the right are nonnegative, because $(B-r)(B-r-1)\geq0$ for integer $B$. Hence the bound in Step 2 is nonnegative. Directly from the definitions of $x$ and $y$, the resulting value of $w=1-x-y$ is exactly that bound, so $w\geq0$.
+which is nonnegative because $(B-r)(B-r-1)\geq0$ for integer $B$. Hence $x,y,w$ are valid probabilities.
 
 Now define $K$ by
 $$
