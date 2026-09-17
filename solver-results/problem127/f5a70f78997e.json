@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-solid-geometry/problem.md",
+  "source_commit_sha": "59ab5002a3c886272d88b877d790b658d3d678d7",
+  "problem_blob_sha": "f5a70f78997ee2ffaacc77fe305dfe2d9ec51049",
+  "statement_sha256": "1e9424f7bdb29abaa17885fc98df3388fbfea2a651f81bd637a7cff2a4d12771",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T14:29:50+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\n\\vec x=\\overrightarrow{AB},\\qquad \\vec y=\\overrightarrow{AC},\\qquad \\vec z=\\overrightarrow{AD},\n\\]\n\nand choose the orientation so\n\n\\[\nT=\\det(\\vec x,\\vec y,\\vec z)>0.\n\\]\n\nThen the volume is\n\n\\[\nV=\\frac{T}{6}.\n\\]\n\nDefine the three normal vectors\n\n\\[\n\\vec n_1=\\vec y\\times \\vec z,\\qquad\n\\vec n_2=\\vec z\\times \\vec x,\\qquad\n\\vec n_3=\\vec x\\times \\vec y.\n\\]\n\nSince the three faces through \\(A\\) each have area \\(1\\),\n\n\\[\n|\\vec n_1|=|\\vec n_2|=|\\vec n_3|=2.\n\\]\n\nAlso\n\n\\[\n(C-B)\\times(D-B)\n=(\\vec y-\\vec x)\\times(\\vec z-\\vec x)\n=\\vec n_1+\\vec n_2+\\vec n_3,\n\\]\n\nso the condition \\([BCD]=s\\) gives\n\n\\[\n|\\vec n_1+\\vec n_2+\\vec n_3|=2s.\n\\]\n\nNow set \\(\\vec u_i=\\vec n_i/2\\). Then\n\n\\[\n|\\vec u_1|=|\\vec u_2|=|\\vec u_3|=1,\\qquad\n|\\vec u_1+\\vec u_2+\\vec u_3|=s.\n\\]\n\nLet \\(G=(\\vec u_i\\cdot \\vec u_j)\\). Write the off-diagonal entries as \\(p,q,r\\). The condition above gives\n\n\\[\ns^2=3+2(p+q+r),\n\\]\n\nso\n\n\\[\np+q+r=\\frac{s^2-3}{2}.\n\\]\n\nWe need maximize the determinant of \\(G\\). For fixed diagonal entries and fixed sum \\(p+q+r\\), \\(\\det G\\) is maximized when\n\n\\[\np=q=r=\\frac{s^2-3}{6}=:t.\n\\]\n\nThis follows from concavity of \\(\\log\\det\\) on positive definite matrices: averaging over all permutations preserves the constraints and cannot decrease the determinant.\n\nThus\n\n\\[\nG=\n\\begin{pmatrix}\n1&t&t\\\\\nt&1&t\\\\\nt&t&1\n\\end{pmatrix},\n\\qquad\nt=\\frac{s^2-3}{6}.\n\\]\n\nIts determinant is\n\n\\[\n\\det G=(1-t)^2(1+2t).\n\\]\n\nSince \\(0<s<3\\), we have \\(-\\frac12<t<1\\), so this is positive. Now\n\n\\[\n1-t=\\frac{9-s^2}{6},\n\\qquad\n1+2t=\\frac{s^2}{3}.\n\\]\n\nHence\n\n\\[\n\\sqrt{\\det G}\n=\\frac{s(9-s^2)}{6\\sqrt3}.\n\\]\n\nFinally, if \\(N\\) is the matrix with columns \\(\\vec n_1,\\vec n_2,\\vec n_3\\), then\n\n\\[\n\\det N=T^2.\n\\]\n\nBut \\(N=2U\\), where \\(U\\) has columns \\(\\vec u_i\\), so\n\n\\[\nT^2=\\det N=8\\det U=8\\sqrt{\\det G}.\n\\]\n\nTherefore\n\n\\[\nV^2=\\frac{T^2}{36}\n=\\frac{8}{36}\\sqrt{\\det G}\n=\\frac{2}{9}\\cdot \\frac{s(9-s^2)}{6\\sqrt3}.\n\\]\n\nSo\n\n\\[\nV_{\\max}\n=\\sqrt{\\frac{s(9-s^2)}{27\\sqrt3}}.\n\\]\n\n\\[\n\\boxed{\\sqrt{\\frac{s(9-s^2)}{27\\sqrt3}}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T14:30:56+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/f5a70f78997e.json"
+}
