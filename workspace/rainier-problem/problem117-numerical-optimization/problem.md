@@ -2,40 +2,40 @@
 
 ## LaTeX (Normalized)
 
-For $\gamma\in[3,7]$, let
+For
 $$
-E_\gamma=[1,2]\cup[\gamma,8].
+\tau\in\left[-\frac52,-\frac{17}{7}\right],
 $$
-Let $H$ be real symmetric positive definite with spectrum in $E_\gamma$. Consider three Cayley/ADI-type steps
+define
 $$
-x^{(j)}=(H-\alpha_jI)(H+\alpha_jI)^{-1}x^{(j-1)},\qquad j=1,2,3,
-$$
-with
-$$
-\alpha_j>0,\qquad
-\alpha_1\alpha_2\alpha_3=8,
+A_\tau=
+\begin{pmatrix}
+-3&1&0&0\\
+1&0&1&0\\
+0&1&\tau&1\\
+0&0&1&4
+\end{pmatrix},
 \qquad
-\alpha_1+\alpha_2+\alpha_3\le\frac{46}{5}.
+b=\begin{pmatrix}0\\1\\1\\1\end{pmatrix}.
 $$
-Their worst-case contraction factor is
+Consider the unit trust-region problem
 $$
-\mathcal C_\gamma(\alpha_1,\alpha_2,\alpha_3)
-=\max_{\lambda\in E_\gamma}
-\left|\prod_{j=1}^3\frac{\lambda-\alpha_j}{\lambda+\alpha_j}\right|.
+m(\tau)=\min_{\|x\|_2\le1}
+\left(\frac12x^TA_\tau x+b^Tx\right),
 $$
-Let $\mathcal C_\gamma^*$ be the minimum, let $r_\gamma^*$ be the unique minimizing rational function, and define
+and let
 $$
-\mathcal A_\gamma
-=\{\lambda\in E_\gamma:|r_\gamma^*(\lambda)|=\mathcal C_\gamma^*\}.
+\mathcal X_\tau=
+\operatorname*{argmin}_{\|x\|_2\le1}
+\left(\frac12x^TA_\tau x+b^Tx\right).
 $$
+There is exactly one parameter $\tau_*$ in the stated interval for which $\mathcal X_\tau$ is not a singleton. Determine $\tau_*$ exactly.
 
-As $\gamma$ increases from $3$ to $7$, there are exactly three interior transition values
-$$
-3<\gamma_1<\gamma_2<\gamma_3<7
-$$
-at which the active-set pattern changes. Determine all three exactly. Your reasoning must identify $\mathcal A_\gamma$ on each of the four open regimes and at every transition, and must explain when the sum constraint becomes active and why the minimizing shifts remain positive.
+Your reasoning must also prove that $\mathcal X_\tau$ is a singleton for every $\tau\ne\tau_*$ in the interval, show that $|\mathcal X_{\tau_*}|=2$, and compute $m(\tau_*)$ exactly.
 
-For a polynomial $f$ with a unique real zero in $(a,b)$, write $\operatorname{root}_{(a,b)}(f)$ for that zero. Determine the transitions exactly, but report the final answer as $(\gamma_1,\gamma_2,\gamma_3)$ rounded to 10 decimal places.
+For a polynomial $f$ with a unique real zero in $(a,b)$, write $\operatorname{root}_{(a,b)}(f)$ for that zero.
+
+Give the final answer as $\tau_*$.
 
 ---
 
@@ -46,10 +46,10 @@ For a polynomial $f$ with a unique real zero in $(a,b)$, write $\operatorname{ro
 | **Domain** | Optimization and Numerical Mathematics |
 | **Sub-domain** | Numerical optimization |
 | **Problem Type** | Optimization |
-| **Answer Type** | Tuple or ordered list |
+| **Answer Type** | Exact scalar |
 
 ---
 
 ## Domain Explanation
 
-This problem asks for exact minimax tuning of three positive Cayley/ADI shifts under both a fixed geometric-product constraint and an active total-shift budget as a spectral gap moves. The primary task is constrained algorithmic parameter optimization in Optimization and Numerical Mathematics and Numerical optimization; rational approximation and KKT active-set geometry are proof mechanisms.
+This problem asks when a parameterized quadratic trust-region problem loses uniqueness and requires an exact characterization of the hard case through the shifted Hessian and the lowest eigenspace. That is a standard structural question in Optimization and Numerical Mathematics and Numerical optimization; the tridiagonal eigenvector recurrence is the linear-algebra mechanism used to locate the exceptional parameter.
