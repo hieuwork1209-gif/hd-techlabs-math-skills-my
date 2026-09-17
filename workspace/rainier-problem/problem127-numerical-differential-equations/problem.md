@@ -2,26 +2,31 @@
 
 ## LaTeX (Normalized)
 
-Let $\gamma>0$. Consider a three-stage stiffly accurate singly diagonally implicit Runge-Kutta method with
+Let $a,d>0$. Consider the two-stage diagonally implicit Runge-Kutta method
 $$
 A=
 \begin{pmatrix}
-\gamma&0&0\\
-a&\gamma&0\\
-u&v&\gamma
+a&0\\
+1-a-d&d
 \end{pmatrix},
 \qquad
-b^T=(u,v,\gamma),
+b^T=\left(\frac12,\frac12\right),
 \qquad
-c=A\mathbf1,
+c=A\mathbf1.
 $$
-where $a,u,v$ are real.
-
-Determine all $\gamma>0$ for which there exist real $a,u,v$ such that the method has classical order $3$ and is A-stable, meaning that its stability function
+Its stability function is
 $$
-R(z)=1+z\,b^T(I-zA)^{-1}\mathbf1
+R(z)=1+z\,b^T(I-zA)^{-1}\mathbf1.
 $$
-satisfies $|R(z)|\leq1$ for every $z$ with $\operatorname{Re}z\leq0$.
+Call the method L-stable if
+$$
+|R(z)|\leq1
+$$
+for every $z$ with $\operatorname{Re}z\leq0$ and, in addition,
+$$
+\lim_{x\to+\infty}R(-x)=0.
+$$
+Determine all pairs $(a,d)\in(0,\infty)^2$ for which the method is L-stable.
 
 ---
 
@@ -38,4 +43,4 @@ satisfies $|R(z)|\leq1$ for every $z$ with $\operatorname{Re}z\leq0$.
 
 ## Domain Explanation
 
-This problem is primarily Differential Equations and Dynamical Systems and Numerical differential equations: it asks for the diagonal parameter of an implicit Runge-Kutta scheme that simultaneously satisfies third-order consistency and a global stability requirement on the left half-plane. The order conditions determine a finite algebraic candidate set, while A-stability selects the admissible parameter through the method's rational stability function.
+This problem is primarily Differential Equations and Dynamical Systems and Numerical differential equations: it asks for the complete L-stability region of a two-parameter family of diagonally implicit Runge-Kutta schemes. The classification couples the asymptotic decay condition of the rational stability function with a global boundedness certificate on the left half-plane.
