@@ -1,9 +1,9 @@
 {
   "problem": "problem117",
   "branch": "adversary/problem117",
-  "problem_path": "workspace/rainier-problem/problem117-experimental-design-and-causal-inference/problem.md",
-  "problem_blob_sha": "b126750a28f431b9fc0b584e20845d0298b7977d",
-  "source_commit_sha": "e70a380baaa68e497e9752a5495321890674497d",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-analysis/problem.md",
+  "problem_blob_sha": "48332d039abcef76a4378e0e061face8a063d26a",
+  "source_commit_sha": "404b526a851baa859809aca1ee9519f007f26910",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-17T08:30:10+00:00",
-  "result_file": "solver-results/problem117/b126750a28f4.json"
+  "completed_at": "2026-09-17T08:41:12+00:00",
+  "result_file": "solver-results/problem117/48332d039abc.json"
 }
