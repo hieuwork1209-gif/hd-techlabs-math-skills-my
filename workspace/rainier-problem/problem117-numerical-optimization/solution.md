@@ -1,160 +1,232 @@
 ## Steps
 
-Step 1: A self-contained uniqueness criterion for this trust-region family
-For a symmetric matrix $A$ with simple eigenvalues $\lambda_1<\cdots<\lambda_n$ and an orthonormal eigenbasis $u_i$, write $c_i=u_i^Tb$. Assume $\lambda_1<0$. If $c_1\ne0$, then
+Step 1: Isolate the genuine trust-region hard case
+For a fixed symmetric matrix $A$ with simple eigenvalues
 $$
-h(\mu)=\sum_{i=1}^n\frac{c_i^2}{(\lambda_i+\mu)^2},\qquad \mu> -\lambda_1,
+\lambda_1<\cdots<\lambda_n
 $$
-is strictly decreasing, tends to $+\infty$ as $\mu\downarrow-\lambda_1$, and tends to $0$ as $\mu\to\infty$. Hence there is a unique $\mu> -\lambda_1$ with $h(\mu)=1$. Define
+and orthonormal eigenvectors $u_i$, write $c_i=u_i^Tb$ and put
 $$
-x=-\sum_{i=1}^n\frac{c_i}{\lambda_i+\mu}u_i.
+r=-\lambda_1>0.
 $$
-Then $\|x\|=1$, $(A+\mu I)x=-b$, and $A+\mu I\succ0$. For every $y$ with $\|y\|\le1$,
+For every $\mu>r$,
+$$
+x(\mu)=-(A+\mu I)^{-1}b,
+\qquad
+\|x(\mu)\|^2=\sum_{i=1}^n\frac{c_i^2}{(\lambda_i+\mu)^2}. \tag{1}
+$$
+The right side is strictly decreasing in $\mu$. If $c_1\ne0$, it tends to $+\infty$ as $\mu\downarrow r$ and to $0$ as $\mu\to\infty$, so there is a unique $\mu>r$ with $\|x(\mu)\|=1$.
+
+If $c_1=0$, the limit of $x(\mu)$ as $\mu\downarrow r$ is the minimum-norm solution $x_p$ of
+$$
+(A+rI)x=-b,
+\qquad x_p\perp\ker(A+rI). \tag{2}
+$$
+If $\|x_p\|>1$, (1) again gives a unique multiplier $\mu>r$ with norm $1$. If $\|x_p\|=1$, only $x_p$ is feasible at the singular multiplier. If $\|x_p\|<1$, then the affine line
+$$
+x_p+\ker(A+rI)
+$$
+meets the unit sphere in exactly two points.
+
+In all cases, if $x$ has norm $1$, $(A+\mu I)x=-b$, and $A+\mu I\succeq0$, then for every $\|y\|\le1$,
 $$
 q(y)-q(x)
 =\frac12(y-x)^T(A+\mu I)(y-x)
-+\frac\mu2(1-\|y\|^2)\ge0. \tag{1}
++\frac\mu2(1-\|y\|^2)\ge0. \tag{3}
 $$
-Both terms can vanish only at $y=x$, so the global minimizer is unique.
+Thus the two sphere intersections in the last case are exactly the two global minimizers. Consequently, nonuniqueness requires both lowest-eigenspace orthogonality and radius feasibility.
 
-For our matrix $A_\tau$, every eigenspace is one-dimensional: once the first component of an eigenvector is fixed, the tridiagonal recurrence with nonzero off-diagonal entries determines all later components, while first component $0$ forces the zero vector. Since $A_\tau$ is symmetric, all eigenvalues are simple. Also
+For our tridiagonal $A_\tau$, every eigenspace is one-dimensional: an eigenvector is determined recursively by its first component, and first component $0$ forces the zero vector. Also
 $$
 \lambda_1(A_\tau)\le e_1^TA_\tau e_1=-3<0.
 $$
-Therefore it is enough to find the parameters for which $b$ is orthogonal to the lowest eigenvector. At every other parameter, (1) gives uniqueness.
 
-Step 2: Orthogonality forces one cubic parameter equation
-Let $v=(v_1,v_2,v_3,v_4)^T$ be an eigenvector of $A_\tau$ with eigenvalue $\lambda$ and suppose
+Step 2: Find every singular positive-semidefinite candidate
+Write the singular multiplier as $r>0$ and set
 $$
-b^Tv=v_2+v_3+v_4=0.
+M=A_\tau+rI.
 $$
-Because $\lambda_1<-3$, the lowest eigenvalue is not $4$. From the fourth eigenvector equation,
+Let $v\in\ker M$ and normalize $v_1=1$. The first, second, and fourth rows give
 $$
-v_3+(4-\lambda)v_4=0,
-$$
-so $v_4\ne0$ and
-$$
-v_3=(\lambda-4)v_4,
+v_2=3-r,
 \qquad
-v_2=(3-\lambda)v_4.
-$$
-Substitute these into the third eigenvector equation:
-$$
-v_2+(\tau-\lambda)v_3+v_4=0.
-$$
-After factoring,
-$$
-(4-\lambda)(1-\tau+\lambda)=0.
-$$
-Hence
-$$
-\lambda=\tau-1. \tag{2}
-$$
-Now set $v_4=1$. Then
-$$
-v_3=\tau-5,\qquad v_2=4-\tau.
-$$
-The first equation gives
-$$
-v_1=\frac{4-\tau}{\tau+2},
-$$
-and the second equation becomes
-$$
-\frac{\tau^3-2\tau^2-10\tau+2}{\tau+2}=0.
-$$
-Thus any eigenvector orthogonal to $b$ in the stated interval forces
-$$
-P(\tau):=\tau^3-2\tau^2-10\tau+2=0. \tag{3}
-$$
-On $[-5/2,-17/7]$,
-$$
-P'(	au)=3\tau^2-4\tau-10>0,
-$$
-while
-$$
-P(-5/2)=-\frac98<0,
+v_3=d:=r^2-3r-1,
 \qquad
-P(-17/7)=\frac{57}{343}>0.
+v_4=-\frac{d}{r+4}. \tag{4}
 $$
-Therefore there is exactly one root
+For
 $$
-\tau_* = \operatorname{root}_{(-5/2,-17/7)}(P). \tag{4}
+b=(1,3,1,3)^T,
 $$
-For every $\tau\ne\tau_*$ in the interval, $b$ is not orthogonal to any eigenvector, hence in particular not to the lowest one; Step 1 proves that the trust-region minimizer is unique.
+the necessary orthogonality condition $b^Tv=0$ becomes
+$$
+1+3(3-r)+d-\frac{3d}{r+4}=0.
+$$
+Since $10-3r+d=(r-3)^2$, this is
+$$
+q(r):=r^3-5r^2-6r+39=0. \tag{5}
+$$
+A positive-semidefinite singular shift must have $r>3$. On $(3,\infty)$, $q'$ has only one zero, so $q$ has at most two roots there. The sign checks
+$$
+q\!\left(\frac{17}{5}\right)=\frac{13}{125}>0,
+\quad
+q\!\left(\frac{24}{7}\right)=-\frac{15}{343}<0,
+$$
+$$
+q\!\left(\frac{17}{4}\right)=-\frac{3}{64}<0,
+\quad
+q\!\left(\frac{30}{7}\right)=\frac{57}{343}>0
+$$
+therefore give exactly two candidates
+$$
+\rho_1\in\left(\frac{17}{5},\frac{24}{7}\right),
+\qquad
+\rho_2\in\left(\frac{17}{4},\frac{30}{7}\right). \tag{6}
+$$
 
-Step 3: At the cubic root the orthogonal eigenvector is the lowest one
-Put $r=\tau_*$ and consider
+The third row of $Mv=0$, together with $b^Tv=0$, gives
 $$
-M=A_r-(r-1)I.
-$$
-Its leading principal determinants are
-$$
-D_1=-r-2,\qquad
-D_2=r^2+r-3,\qquad
-D_3=r^2+2r-1,\qquad
-D_4=-P(r)=0.
-$$
-Throughout $[-5/2,-17/7]$, the first three displayed quantities are positive. Hence the $LDL^T$ pivots of $M$ are
-$$
-D_1,\qquad \frac{D_2}{D_1},\qquad \frac{D_3}{D_2},\qquad \frac{D_4}{D_3}=0,
+v_2+v_4=-\frac{1+d}{3}=-\frac{r(r-3)}3,
 $$
 so
 $$
-M\succeq0,\qquad \operatorname{rank}M=3. \tag{5}
+\tau=T(r):=-r+\frac{r(r-3)}{3(r^2-3r-1)}. \tag{7}
 $$
-Thus $r-1$ is the simple lowest eigenvalue of $A_r$. The eigenvector obtained in Step 2,
+For either root in (6), the leading principal determinants of $M$ are
 $$
-v=\left(\frac{4-r}{r+2},\ 4-r,\ r-5,\ 1\right)^T, \tag{6}
-$$
-spans $\ker M$ and satisfies $b^Tv=0$.
-
-Step 4: Construct all minimizers and the exact minimum value
-Let
-$$
-x_0=(0,0,-1,0)^T,
+D_1=r-3>0,
 \qquad
-\mu=1-r>0.
+D_2=d>0,
 $$
-The third column of $M$ is exactly $b$, so
 $$
-Mx_0=-b,
-\qquad \|x_0\|=1.
+D_3=(\tau+r)d-(r-3)=\frac{(r-3)^2}{3}>0,
 $$
-Because $M=A_r+\mu I\succeq0$, identity (1) becomes
+and
 $$
-q_r(y)-q_r(x_0)
-=\frac12(y-x_0)^TM(y-x_0)
-+\frac\mu2(1-\|y\|^2)\ge0
+D_4=(r+4)D_3-D_2=\frac{q(r)}3=0. \tag{8}
 $$
-for every feasible $y$. Hence $x_0$ is a global minimizer.
+Hence the $LDL^T$ pivots are positive, positive, positive, zero. Therefore
+$$
+M\succeq0,
+\qquad
+\operatorname{rank}M=3, \tag{9}
+$$
+so both $\rho_1$ and $\rho_2$ really are lowest-eigenvalue singular candidates.
 
-Equality holds exactly when $\|y\|=1$ and $y-x_0\in\ker M$. By (5), every minimizer therefore lies on the line
+Moreover
+$$
+T'(r)=-\frac{r(3r^3-18r^2+21r+20)}{3(r^2-3r-1)^2}<0
+$$
+on the two brackets in (6). Thus both $T(\rho_1)$ and $T(\rho_2)$ lie in $[-4,-2]$; in particular
+$$
+T(\rho_2)\in
+\left(-\frac{6000}{1547},-\frac{3179}{828}\right)
+\subset\left(-4,-\frac{15}{4}\right). \tag{10}
+$$
+
+Step 3: The unit radius rejects one singular candidate
+For any root $r$ of $q$ with $r>3$, a convenient particular solution of
+$$
+Mx=-b
+$$
+is
+$$
+x_0=
+\left(-\frac r d,\frac1d,-3,0\right)^T. \tag{11}
+$$
+Indeed, the only nonzero residual is the third component, equal to
+$$
+\frac{q(r)}{(r+4)d}=0.
+$$
+Hence every singular stationary point is
 $$
 x_0+s v.
 $$
-Since
+The equation $\|x_0+sv\|^2=1$ is quadratic in $s$. One quarter of its discriminant is
 $$
-x_0^Tv=5-r\ne0,
+\mathcal D(r)
+=(x_0^Tv)^2-\|v\|^2(\|x_0\|^2-1).
 $$
-the equation $\|x_0+s v\|=1$ has exactly the two roots
+Expanding gives
 $$
-s=0,
+\mathcal D(r)=\frac{N(r)}{(r+4)^2},
+$$
+where
+$$
+N(r)=r^6+2r^5-42r^4+2r^3+340r^2+216r-1593.
+$$
+The identity
+$$
+N(r)=61r^2+255r-1593+r(r^2+7r-1)q(r) \tag{12}
+$$
+shows that at either candidate,
+$$
+\operatorname{sgn}\mathcal D(r)
+=\operatorname{sgn}h(r),
 \qquad
-s=-\frac{2(5-r)}{\|v\|^2}.
+h(r)=61r^2+255r-1593. \tag{13}
 $$
-Thus $|\mathcal X_r|=2$ exactly. Finally,
+Since $h'(r)>0$ for $r>0$,
 $$
-m(r)=q_r(x_0)=\frac r2-1=\frac{r-2}{2}. \tag{7}
+h\!\left(\frac{24}{7}\right)=-\frac{81}{49}<0
 $$
-So the unique nonuniqueness parameter is the cubic root in (4), the minimizer set has exactly two points there, and the minimum value is $(\tau_*-2)/2$.
+implies $\mathcal D(\rho_1)<0$. Thus the affine singular stationary line for $\rho_1$ misses the unit sphere, so the unit trust-region minimizer there is still unique, with a multiplier strictly larger than $\rho_1$ by Step 1.
 
-Final Answer: $\boxed{\operatorname{root}_{(-5/2,-17/7)}(x^3-2x^2-10x+2)}$
+On the other hand,
+$$
+h\!\left(\frac{17}{4}\right)=\frac{9481}{16}>0
+$$
+implies $\mathcal D(\rho_2)>0$. Hence the singular affine line for $\rho_2$ meets the unit sphere in exactly two points. By (3) and (9), those two points are exactly the global minimizers. Therefore
+$$
+|\mathcal X_{T(\rho_2)}|=2, \tag{14}
+$$
+while $T(\rho_1)$ still has a singleton minimizer set. Every other $\tau\in[-4,-2]$ has no lowest-eigenspace orthogonality and is unique by Step 1.
+
+Step 4: Eliminate the hidden multiplier and state the exact parameter
+Let $t=T(r)$ with $q(r)=0$. Equation (7) is
+$$
+3(r^2-3r-1)(t+r)-r(r-3)=0.
+$$
+Using $q(r)=0$ to replace $r^3$ reduces this to
+$$
+(3t+5)r^2+(18-9t)r-3t-117=0. \tag{15}
+$$
+The Sylvester resultant of the cubic (5) and the quadratic (15) is
+$$
+\det\begin{pmatrix}
+1&-5&-6&39&0\\
+0&1&-5&-6&39\\
+3t+5&18-9t&-3t-117&0&0\\
+0&3t+5&18-9t&-3t-117&0\\
+0&0&3t+5&18-9t&-3t-117
+\end{pmatrix}
+$$
+$$
+=9\bigl(81t^3+254t^2-793t-2197\bigr). \tag{16}
+$$
+Thus the nonuniqueness parameter is a root of
+$$
+P(t)=81t^3+254t^2-793t-2197.
+$$
+By (10) it is the root in $(-4,-15/4)$. Finally,
+$$
+P(-4)=-145<0,
+\qquad
+P\!\left(-\frac{15}{4}\right)=\frac{4937}{64}>0,
+$$
+and
+$$
+P'(t)=243t^2+508t-793>0
+$$
+throughout $[-4,-15/4]$. Therefore that root is unique. Numerically it is approximately $-3.8483195359$.
+
+Final Answer: $\boxed{\operatorname{root}_{(-4,-15/4)}(81x^3+254x^2-793x-2197)}$
 
 ---
 
 ## Answer
 
-$\operatorname{root}_{(-5/2,-17/7)}(x^3-2x^2-10x+2)$
+$\operatorname{root}_{(-4,-15/4)}(81x^3+254x^2-793x-2197)$
 
 ---
 
@@ -170,5 +242,6 @@ $\operatorname{root}_{(-5/2,-17/7)}(x^3-2x^2-10x+2)$
 
 - trust-region hard case
 - Jacobi eigenvector recurrence
+- singular stationary geometry
+- radius feasibility discriminant
 - shifted positive-semidefinite certificate
-- singular optimizer geometry
