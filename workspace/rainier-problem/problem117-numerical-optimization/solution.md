@@ -1,222 +1,160 @@
 ## Steps
 
-Step 1: Reduce to a two-parameter rational minimax problem with one inequality constraint
-Let
+Step 1: A self-contained uniqueness criterion for this trust-region family
+For a symmetric matrix $A$ with simple eigenvalues $\lambda_1<\cdots<\lambda_n$ and an orthonormal eigenbasis $u_i$, write $c_i=u_i^Tb$. Assume $\lambda_1<0$. If $c_1\ne0$, then
 $$
-A=\alpha_1+\alpha_2+\alpha_3,\qquad
-B=\alpha_1\alpha_2+\alpha_1\alpha_3+\alpha_2\alpha_3.
+h(\mu)=\sum_{i=1}^n\frac{c_i^2}{(\lambda_i+\mu)^2},\qquad \mu> -\lambda_1,
 $$
-Since $\alpha_1\alpha_2\alpha_3=8$, the three-step spectral factor is
+is strictly decreasing, tends to $+\infty$ as $\mu\downarrow-\lambda_1$, and tends to $0$ as $\mu\to\infty$. Hence there is a unique $\mu> -\lambda_1$ with $h(\mu)=1$. Define
 $$
-r_{A,B}(x)=\frac{x^3-Ax^2+Bx-8}{x^3+Ax^2+Bx+8},
-\qquad A\le a:=\frac{46}{5}.
+x=-\sum_{i=1}^n\frac{c_i}{\lambda_i+\mu}u_i.
 $$
-For $x>0$ put
+Then $\|x\|=1$, $(A+\mu I)x=-b$, and $A+\mu I\succ0$. For every $y$ with $\|y\|\le1$,
 $$
-\phi_{A,B}(x)=\frac{1+r_{A,B}(x)}{1-r_{A,B}(x)}
-=\frac{x(x^2+B)}{Ax^2+8}.
+q(y)-q(x)
+=\frac12(y-x)^T(A+\mu I)(y-x)
++\frac\mu2(1-\|y\|^2)\ge0. \tag{1}
 $$
-Minimizing $\max|r|$ is equivalent to minimizing the multiplicative envelope $K\ge1$ satisfying $K^{-1}\le\phi\le K$.
+Both terms can vanish only at $y=x$, so the global minimizer is unique.
 
-For a fixed level $K$, an upper contact at $x$ has normal
+For our matrix $A_\tau$, every eigenspace is one-dimensional: once the first component of an eigenvector is fixed, the tridiagonal recurrence with nonzero off-diagonal entries determines all later components, while first component $0$ forces the zero vector. Since $A_\tau$ is symmetric, all eigenvalues are simple. Also
 $$
-n_+(x)=(-Kx^2,x),
+\lambda_1(A_\tau)\le e_1^TA_\tau e_1=-3<0.
 $$
-and a lower contact has normal
-$$
-n_-(x)=(x^2,-Kx)
-$$
-in the $(A,B)$-plane. Thus three alternating active contacts give the usual two-parameter Farkas certificate while $A<a$. When the budget is active, the boundary normal is $n_A=(1,0)$. For a lower contact $b<8$ and an upper contact at $8$,
-$$
-n_-(b)+\frac{Kb}{8}n_+(8)+b(8K^2-b)n_A=0,
-$$
-and every coefficient is positive because $K>1$ and $b<8$. Hence the pair $\{b,8\}$ together with the active budget $A=a$ is already an exact global optimality certificate.
+Therefore it is enough to find the parameters for which $b$ is orthogonal to the lowest eigenvector. At every other parameter, (1) gives uniqueness.
 
-Also
+Step 2: Orthogonality forces one cubic parameter equation
+Let $v=(v_1,v_2,v_3,v_4)^T$ be an eigenvector of $A_\tau$ with eigenvalue $\lambda$ and suppose
 $$
-r'_{A,B}(x)=\frac{2\left(Ax^4+(24-AB)x^2+8B\right)}{(x^3+Ax^2+Bx+8)^2}. \tag{1}
+b^Tv=v_2+v_3+v_4=0.
 $$
-
-Step 2: Follow the unconstrained branch until the shift budget becomes active
-As long as $A<a$, let $u\in(1,2)$ be the positive interior active point and keep $8$ as the other positive contact. Solving
+Because $\lambda_1<-3$, the lowest eigenvalue is not $4$. From the fourth eigenvector equation,
 $$
-r'(u)=0,\qquad \phi(u)=\phi(8)
+v_3+(4-\lambda)v_4=0,
 $$
-gives
+so $v_4\ne0$ and
 $$
-A(u)=\frac{2(u+4)}{u^2},
+v_3=(\lambda-4)v_4,
 \qquad
-B(u)=u(u+16),
-\qquad
-\phi(u)=\phi(8)=u^2. \tag{2}
+v_2=(3-\lambda)v_4.
 $$
-The other stationary point is
+Substitute these into the third eigenvector equation:
 $$
-v(u)=2\sqrt{\frac{u(u+16)}{u+4}}.
+v_2+(\tau-\lambda)v_3+v_4=0.
 $$
-A negative contact $x$ at the reciprocal level is characterized by
+After factoring,
 $$
-F(x,u)=0, \tag{3}
-$$
-where
-$$
-F(x,u)=u^4x^3-2(u+4)x^2+u^5(u+16)x-8u^2.
-$$
-
-Initially the minimizer is a plateau with active set $\{u_0,\gamma_1,8\}$, where $u_0\gamma_1=4$. Eliminating $u_0$ yields
-$$
-\gamma_1^4+\gamma_1^3-64\gamma_1-16=0.
+(4-\lambda)(1-\tau+\lambda)=0.
 $$
 Hence
 $$
-\gamma_1=\operatorname{root}_{(3,4)}(x^4+x^3-64x-16),
-\qquad u_0=\frac4{\gamma_1}.
+\lambda=\tau-1. \tag{2}
 $$
-For $3<\gamma<\gamma_1$,
+Now set $v_4=1$. Then
 $$
-\mathcal A_\gamma=\{u_0,\gamma_1,8\},
+v_3=\tau-5,\qquad v_2=4-\tau.
 $$
-and the same set is active at $\gamma=\gamma_1$.
-
-For $\gamma_1<\gamma<\gamma_2$, $u=u_\gamma$ is the unique root of
+The first equation gives
 $$
-F(\gamma,u)=0,
-\qquad u_c<u<u_0,
+v_1=\frac{4-\tau}{\tau+2},
 $$
-and
+and the second equation becomes
 $$
-\mathcal A_\gamma=\{u_\gamma,\gamma,8\}.
+\frac{\tau^3-2\tau^2-10\tau+2}{\tau+2}=0.
 $$
-The budget first becomes active when $A(u)=46/5$, namely at
+Thus any eigenvector orthogonal to $b$ in the stated interval forces
 $$
-u_c=\frac{5+\sqrt{1865}}{46}.
+P(\tau):=\tau^3-2\tau^2-10\tau+2=0. \tag{3}
 $$
-Therefore $\gamma_2$ is the unique root in $(5,21/4)$ of
+On $[-5/2,-17/7]$,
 $$
-F(x,u_c)=0. \tag{4}
+P'(	au)=3\tau^2-4\tau-10>0,
 $$
-Here $F_x(x,u_c)>0$ throughout $(5,21/4)$, while $F(5,u_c)<0<F(21/4,u_c)$, so the root is unique. Eliminating $u_c$ from (4) gives the purely rational polynomial
+while
 $$
-\begin{aligned}
-P_2(x)={}&2645000x^6-57489075x^5+309996778x^4-401318375x^3\\
-&-79892560x^2-305502500x+223872800,
-\end{aligned}
-$$
-with $\gamma_2=\operatorname{root}_{(5,21/4)}P_2$. At the transition,
-$$
-\mathcal A_{\gamma_2}=\{u_c,\gamma_2,8\},
-\qquad A=\frac{46}{5}.
-$$
-
-Step 3: Solve the budget-active moving regime
-Now fix $A=a=46/5$. With only $B$ free, the two active spectral contacts are the lower endpoint $\gamma$ and the upper endpoint $8$, with opposite signs. Equivalently
-$$
-\phi_{a,B}(\gamma)\phi_{a,B}(8)=1.
-$$
-After clearing denominators this becomes
-$$
-Q_\gamma(B):=
-25\gamma B^2+(25\gamma^3+1600\gamma)B
-+1600\gamma^3-17158\gamma^2-14920=0. \tag{5}
-$$
-Since $\partial_BQ_\gamma>0$ for $B>0$, there is at most one positive root. Let $B_\gamma$ denote it. At $\gamma_2$ it equals
-$$
-B_c=u_c(u_c+16),
-$$
-and it decreases continuously as $\gamma$ increases.
-
-The derivative equation (1), with $A=a$ and $B\in(B_0,B_c)$, has two positive stationary points. The smaller lies in $(1,2)$ and the larger in $(3,4)\subset(2,\gamma)$ throughout this regime. The smaller stationary point can reach the upper level $\phi(8)$ only if simultaneously $r'(u)=0$ and $\phi(u)=\phi(8)$; by (2) this would force $A=A(u)=a$, hence $u=u_c$ and therefore $\gamma=\gamma_2$. So it is strictly inactive for $\gamma>\gamma_2$.
-
-Thus the only possible next collision is the left endpoint $2$ reaching the lower level. Until that happens,
-$$
-\mathcal A_\gamma=\{\gamma,8\}
-\qquad(\gamma_2<\gamma<\gamma_3).
-$$
-The boundary Farkas identity from Step 1 proves global optimality despite there being only two spectral active points.
-
-Step 4: Locate the final plateau and verify shift feasibility
-The next transition occurs when
-$$
-\phi_{a,B}(2)\phi_{a,B}(8)=1.
-$$
-This gives
-$$
-25B^2+1700B-35376=0,
-$$
-so the feasible root is
-$$
-B_0=-34+\frac{2\sqrt{16069}}5. \tag{6}
-$$
-Combining (5) with (6) and eliminating $B$ yields
-$$
-(\gamma-2)^2P_3(\gamma)=0,
-$$
-where
-$$
-P_3(x)=700x^4+20050x^3-167517x^2+156580x-37300.
-$$
-This quartic has exactly one root in $(23/4,6)$, so
-$$
-\gamma_3=\operatorname{root}_{(23/4,6)}P_3.
-$$
-At the transition,
-$$
-\mathcal A_{\gamma_3}=\{2,\gamma_3,8\}.
-$$
-For $\gamma_3<\gamma\le7$, keep $A=a$ and $B=B_0$. The right interval starts to the right of the second stationary point, so $\phi$ is increasing there; on $[1,2]$ the endpoint $2$ is the unique lower active contact and the interior maximum stays strictly below the upper level. Hence
-$$
-\mathcal A_\gamma=\{2,8\}
-\qquad(\gamma_3<\gamma\le7).
-$$
-
-It remains to check that the coefficients correspond to three positive shifts. On the unconstrained branch this follows from the discriminant calculation for (2). On the budget-active branch the shifts are the roots of
-$$
-t^3-at^2+Bt-8,
-$$
-whose discriminant is
-$$
-\Delta(B)=a^2B^2-4B^3-32a^3-1728+144aB.
-$$
-For $B_0\le B\le B_c<18$, $\Delta'(B)>0$, and
-$$
-\Delta(B_0)=\frac{224(4045669-31905\sqrt{16069})}{625}>0.
-$$
-Thus all three roots are real; since their sum, pairwise sum, and product are all positive, all three roots are positive.
-
-Step 5: Collect the phase diagram
-The exact transitions are
-$$
-\gamma_1=\operatorname{root}_{(3,4)}(x^4+x^3-64x-16),
-$$
-$$
-\gamma_2=\operatorname{root}_{(5,21/4)}P_2,
-$$
-$$
-\gamma_3=\operatorname{root}_{(23/4,6)}P_3.
-$$
-Numerically,
-$$
-\gamma_1\approx3.7787240783,
+P(-5/2)=-\frac98<0,
 \qquad
-\gamma_2\approx5.2442756394,
-\qquad
-\gamma_3\approx5.8746294511.
+P(-17/7)=\frac{57}{343}>0.
 $$
-The four open-regime active sets are respectively
+Therefore there is exactly one root
 $$
-\{u_0,\gamma_1,8\},\qquad
-\{u_\gamma,\gamma,8\},\qquad
-\{\gamma,8\},\qquad
-\{2,8\}.
+\tau_* = \operatorname{root}_{(-5/2,-17/7)}(P). \tag{4}
 $$
+For every $\tau\ne\tau_*$ in the interval, $b$ is not orthogonal to any eigenvector, hence in particular not to the lowest one; Step 1 proves that the trust-region minimizer is unique.
 
-Final Answer: $\boxed{(3.7787240783,5.2442756394,5.8746294511)}$
+Step 3: At the cubic root the orthogonal eigenvector is the lowest one
+Put $r=\tau_*$ and consider
+$$
+M=A_r-(r-1)I.
+$$
+Its leading principal determinants are
+$$
+D_1=-r-2,\qquad
+D_2=r^2+r-3,\qquad
+D_3=r^2+2r-1,\qquad
+D_4=-P(r)=0.
+$$
+Throughout $[-5/2,-17/7]$, the first three displayed quantities are positive. Hence the $LDL^T$ pivots of $M$ are
+$$
+D_1,\qquad \frac{D_2}{D_1},\qquad \frac{D_3}{D_2},\qquad \frac{D_4}{D_3}=0,
+$$
+so
+$$
+M\succeq0,\qquad \operatorname{rank}M=3. \tag{5}
+$$
+Thus $r-1$ is the simple lowest eigenvalue of $A_r$. The eigenvector obtained in Step 2,
+$$
+v=\left(\frac{4-r}{r+2},\ 4-r,\ r-5,\ 1\right)^T, \tag{6}
+$$
+spans $\ker M$ and satisfies $b^Tv=0$.
+
+Step 4: Construct all minimizers and the exact minimum value
+Let
+$$
+x_0=(0,0,-1,0)^T,
+\qquad
+\mu=1-r>0.
+$$
+The third column of $M$ is exactly $b$, so
+$$
+Mx_0=-b,
+\qquad \|x_0\|=1.
+$$
+Because $M=A_r+\mu I\succeq0$, identity (1) becomes
+$$
+q_r(y)-q_r(x_0)
+=\frac12(y-x_0)^TM(y-x_0)
++\frac\mu2(1-\|y\|^2)\ge0
+$$
+for every feasible $y$. Hence $x_0$ is a global minimizer.
+
+Equality holds exactly when $\|y\|=1$ and $y-x_0\in\ker M$. By (5), every minimizer therefore lies on the line
+$$
+x_0+s v.
+$$
+Since
+$$
+x_0^Tv=5-r\ne0,
+$$
+the equation $\|x_0+s v\|=1$ has exactly the two roots
+$$
+s=0,
+\qquad
+s=-\frac{2(5-r)}{\|v\|^2}.
+$$
+Thus $|\mathcal X_r|=2$ exactly. Finally,
+$$
+m(r)=q_r(x_0)=\frac r2-1=\frac{r-2}{2}. \tag{7}
+$$
+So the unique nonuniqueness parameter is the cubic root in (4), the minimizer set has exactly two points there, and the minimum value is $(\tau_*-2)/2$.
+
+Final Answer: $\boxed{\operatorname{root}_{(-5/2,-17/7)}(x^3-2x^2-10x+2)}$
 
 ---
 
 ## Answer
 
-$(3.7787240783,5.2442756394,5.8746294511)$
+$\operatorname{root}_{(-5/2,-17/7)}(x^3-2x^2-10x+2)$
 
 ---
 
@@ -224,13 +162,13 @@ $(3.7787240783,5.2442756394,5.8746294511)$
 
 **Problem Type:** Optimization
 
-**Answer Type:** Tuple or ordered list
+**Answer Type:** Exact scalar
 
 ---
 
 ## Solution Concepts
 
-- constrained ADI shift tuning
-- active inequality constraints
-- KKT and Farkas certificates
-- active-set phase transitions
+- trust-region hard case
+- Jacobi eigenvector recurrence
+- shifted positive-semidefinite certificate
+- singular optimizer geometry
