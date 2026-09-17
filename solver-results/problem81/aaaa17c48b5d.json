@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-boundary-value-problems/problem.md",
+  "source_commit_sha": "fb58f4d3070793d01947121534a3ebf64ce14ce7",
+  "problem_blob_sha": "aaaa17c48b5d248f1502b221d8dc4fd76090461d",
+  "statement_sha256": "c1b50b8304dff777e4a2a2fd437e974ee971aeca0ef252b42a001113b4e6f9f9",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T15:01:05+00:00",
+  "exit_code": 0,
+  "stderr": "2026-09-17T15:01:10.847215Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit",
+  "final_answer": "Let\n\\[\ny(x)=1+u(x).\n\\]\nThen \\(y>1\\) on \\((0,1)\\), \\(y(0)=y(1)=1\\), and\n\\[\n-y''=\\lambda y^3.\n\\]\n\nSince \\(y''<0\\), \\(y\\) is strictly concave, so it has a unique interior maximum. Call it\n\\[\n\\alpha=\\max_{[0,1]}y=1+A>1\n\\]\nattained at \\(x=c\\). Then \\(y'(c)=0\\). Multiplying the ODE by \\(y'\\) gives the conserved energy\n\\[\n\\frac12(y')^2+\\frac{\\lambda}{4}y^4=\\frac{\\lambda}{4}\\alpha^4,\n\\]\nhence\n\\[\n(y')^2=\\frac{\\lambda}{2}(\\alpha^4-y^4).\n\\]\nOn the left of \\(c\\), \\(y'>0\\); on the right, \\(y'<0\\). Therefore\n\\[\nc=\\sqrt{\\frac{2}{\\lambda}}\\int_1^\\alpha \\frac{ds}{\\sqrt{\\alpha^4-s^4}},\n\\qquad\n1-c=\\sqrt{\\frac{2}{\\lambda}}\\int_1^\\alpha \\frac{ds}{\\sqrt{\\alpha^4-s^4}}.\n\\]\nThus \\(c=1/2\\). By uniqueness for the ODE with initial data \\(y(1/2)=\\alpha,\\ y'(1/2)=0\\), every positive solution is symmetric about \\(x=1/2\\).\n\nSo every solution is determined by \\(\\alpha>1\\), and the half-interval condition is\n\\[\n\\frac12=\\sqrt{\\frac{2}{\\lambda}}\\int_1^\\alpha \\frac{ds}{\\sqrt{\\alpha^4-s^4}}.\n\\]\nThus the exact solution branch is\n\\[\n\\lambda(\\alpha)=8\\left(\\int_1^\\alpha \\frac{ds}{\\sqrt{\\alpha^4-s^4}}\\right)^2.\n\\]\nWriting \\(r=1/\\alpha\\in(0,1)\\), this becomes\n\\[\n\\lambda(r)=8r^2\\left(\\int_r^1 \\frac{dt}{\\sqrt{1-t^4}}\\right)^2.\n\\]\n\nLet\n\\[\nJ(r)=\\int_r^1 \\frac{dt}{\\sqrt{1-t^4}},\n\\qquad\n\\phi(r)=\\frac1{\\sqrt{1-r^4}}.\n\\]\nThen\n\\[\n\\lambda'(r)=16rJ(r)\\bigl(J(r)-r\\phi(r)\\bigr).\n\\]\nDefine\n\\[\nH(r)=J(r)-r\\phi(r).\n\\]\nNow\n\\[\nH'(r)=-2\\phi(r)-r\\phi'(r)<0,\n\\]\nso \\(H\\) is strictly decreasing. Also\n\\[\n\\lim_{r\\to0^+}H(r)>0,\n\\qquad\n\\lim_{r\\to1^-}H(r)=-\\infty.\n\\]\nHence there is exactly one fold, at the unique \\(\\rho\\in(0,1)\\) satisfying\n\\[\n\\int_\\rho^1 \\frac{dt}{\\sqrt{1-t^4}}\n=\n\\frac{\\rho}{\\sqrt{1-\\rho^4}}.\n\\]\nNumerically,\n\\[\n\\rho\\in(0.623,0.624).\n\\]\n\nAt the fold,\n\\[\n\\lambda_*=\n8\\rho^2\\left(\\frac{\\rho}{\\sqrt{1-\\rho^4}}\\right)^2\n=\n\\frac{8\\rho^4}{1-\\rho^4},\n\\]\nand since \\(A=\\alpha-1=1/r-1\\),\n\\[\nA_*=\\frac1{\\rho}-1.\n\\]\n\nTherefore\n\\[\n\\boxed{\n(\\lambda_*,A_*)\n=\n\\left(\n\\frac{8\\rho^4}{1-\\rho^4},\n\\frac1{\\rho}-1\n\\right)\n}\n\\]\nwhere \\(\\rho\\in(0.623,0.624)\\) is the unique root of\n\\[\n\\int_\\rho^1 \\frac{dt}{\\sqrt{1-t^4}}\n=\n\\frac{\\rho}{\\sqrt{1-\\rho^4}}.\n\\]\n\nApproximately,\n\\[\n\\lambda_*\\approx 1.4273285579,\n\\qquad\nA_*\\approx 0.6031205158.\n\\]\n\nThe number of positive solutions is:\n\n\\[\n\\begin{array}{c|c}\n\\text{Regime} & \\#\\text{ positive solutions}\\\\\n\\hline\n0<\\lambda<\\lambda_* & 2\\\\\n\\lambda=\\lambda_* & 1\\\\\n\\lambda>\\lambda_* & 0\n\\end{array}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T15:03:07+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/aaaa17c48b5d.json"
+}
