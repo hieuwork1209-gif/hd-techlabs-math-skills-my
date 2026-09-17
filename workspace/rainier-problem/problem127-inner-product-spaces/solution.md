@@ -52,11 +52,26 @@ $$
 $$
 with multiplicity $1$.
 
-Thus this matrix is positive definite whenever
+If
 $$
-\rho-\frac12<t<\frac{1-2\rho B}{2A}.
+\rho-\frac12<t<\frac{1-2\rho B}{2A},
 $$
-The interval is nonempty exactly when $\rho<A=\cos(\pi/5)$. Therefore the stated range of $\rho$ contains positive definite feasible Gram matrices, so the maximum determinant is positive and every maximizing Gram matrix is positive definite.
+then $\lambda_C>0$ and $\lambda_B>0$. Also
+$$
+\lambda_A
+>1+2\rho A+2B\left(\rho-\frac12\right)
+=1-B+2\rho(A+B)>0.
+$$
+Thus the matrix is positive definite throughout this interval. Its length is positive because
+$$
+\frac{1-2\rho B}{2A}-\left(\rho-\frac12\right)
+=\frac{\sqrt5-(5-\sqrt5)\rho}{2}>0
+$$
+exactly when
+$$
+\rho<\frac{1+\sqrt5}{4}=\cos\frac\pi5.
+$$
+Therefore the stated range of $\rho$ contains positive definite feasible Gram matrices, so the maximum determinant is positive and every maximizing Gram matrix is positive definite.
 
 Step 3: Use cyclic symmetry and the negative holonomy to force a one-parameter maximizer
 On the convex set of positive definite feasible Gram matrices, $\log\det$ is strictly concave. Hence the maximizing Gram matrix is unique: two distinct maximizers would have a midpoint with strictly larger log determinant.
@@ -118,7 +133,16 @@ The two roots are
 $$
 t_{\pm}=\frac{-\rho-1\pm\Delta}{2}.
 $$
-The root $t_-$ lies below $\rho-1/2$, while
+Since
+$$
+t_--\left(\rho-\frac12\right)
+=-\frac{3\rho+\Delta}{2}<0,
+$$
+the root $t_-$ lies below the feasible interval. Also
+$$
+\Delta^2-(1+\rho)^2=4\rho^2>0,
+$$
+so
 $$
 t_*=t_+=\frac{\Delta-\rho-1}{2}>0.
 $$
@@ -135,12 +159,12 @@ $$
 \lambda_A(t_*)\lambda_B(t_*)
 =1+2\rho-\rho^2-\rho\Delta>0,
 $$
-since
+since $1+2\rho-\rho^2>0$ and
 $$
 (1+2\rho-\rho^2)^2-\rho^2\Delta^2
 =-(\rho+1)^2(4\rho^2-2\rho-1)>0.
 $$
-Thus $t_*$ lies in the positive definite interval. The determinant tends to $0$ at both endpoints of that interval, and $t_*$ is its only interior critical point, so $t_*$ is the unique global maximizer.
+Thus $\lambda_B(t_*)>0$, so $t_*$ lies in the positive definite interval. The determinant tends to $0$ at both endpoints of that interval, and $t_*$ is its only interior critical point, so $t_*$ is the unique global maximizer.
 
 Step 5: Evaluate the maximum and verify attainment
 At $t=t_*$,
@@ -170,7 +194,7 @@ $$
 \det G_{\max}
 =(1+2\rho-\rho^2-\rho\Delta)^2(\Delta-3\rho).
 $$
-The maximizing matrix is positive definite, so it is the Gram matrix of five unit vectors in $\mathbb C^5$. Hence the bound is attained. Taking the positive square root of the Gram determinant and expanding $\Delta$ gives the required maximum.
+Because the maximizing matrix is positive definite, a Cholesky factorization $G=V^*V$ gives a nonsingular $5\times5$ matrix $V$ whose columns have exactly this Gram matrix. Its diagonal entries are $1$, so those columns are unit vectors, and its adjacent entries are the prescribed $q$. Hence the bound is attained. Taking the positive square root of the Gram determinant and expanding $\Delta$ gives the required maximum.
 
 Final Answer: $\boxed{(1+2\rho-\rho^2-\rho\sqrt{5\rho^2+2\rho+1})\sqrt{\sqrt{5\rho^2+2\rho+1}-3\rho}}$
 
