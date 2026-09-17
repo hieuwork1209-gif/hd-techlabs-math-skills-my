@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-linear-algebra/problem.md",
+  "source_commit_sha": "3d5718a66d4c2d1a78dede977c2a526915d216f4",
+  "problem_blob_sha": "2ca6ad24d7119ae43bebce31a8a76a4e5e7972d8",
+  "statement_sha256": "c2b485b7056e136e256f3f5ed849e58e8317a19d22532aa461bf9a49c765e1ad",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T08:58:41+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nz=\\frac1\\lambda,\\qquad q=\\frac1\\mu .\n\\]\nSince \\(0<\\lambda<\\mu<1\\), we have \\(z>q>1\\). Also\n\\[\n\\frac{1-\\lambda x}{1-\\mu x}\n=\\frac{\\lambda}{\\mu}\\frac{z-x}{q-x}.\n\\]\nThus every moment in the modified determinant is multiplied by the common scalar \\((\\lambda/\\mu)^2\\) and by the rational factor \\(((z-x)/(q-x))^2\\). Therefore\n\\[\n\\frac{D_n^{\\rm rat}(\\lambda,\\mu)}{D_n}\n=\n\\left(\\frac{\\lambda}{\\mu}\\right)^{2n}\n\\frac{\\det\\!\\left[\\int_0^1 x^{i+j}w(x)\\left(\\frac{z-x}{q-x}\\right)^2dx\\right]_{i,j=0}^{n-1}}{D_n}.\n\\]\n\nA standard Christoffel-Geronimus determinant identity gives, for distinct \\(z_1,z_2,q_1,q_2>1\\),\n\\[\n\\frac{D_n\\!\\left[\\prod_{\\alpha=1}^2\\frac{z_\\alpha-x}{q_\\alpha-x}w\\right]}{D_n[w]}\n=\n\\frac{\\det\\!\\left[F_n(z_\\alpha,q_\\beta)\\right]_{\\alpha,\\beta=1}^2}\n{\\det\\!\\left[(q_\\beta-z_\\alpha)^{-1}\\right]_{\\alpha,\\beta=1}^2}.\n\\]\nIndeed, the one-point case is\n\\[\n\\frac{D_n\\!\\left[\\frac{z-x}{q-x}w\\right]}{D_n[w]}\n=\nR_n(z,q),\n\\]\nand the two-point formula follows by applying the same Christoffel-Geronimus transform twice; the Cauchy denominator accounts for the two external points.\n\nNow let \\(z_1,z_2\\to z\\) and \\(q_1,q_2\\to q\\). Writing \\(F=F_n\\),\n\\[\n\\det[F(z_\\alpha,q_\\beta)]\n\\sim\n(z_2-z_1)(q_2-q_1)\\bigl(F\\,F_{zq}-F_zF_q\\bigr),\n\\]\nwhile\n\\[\n\\det[(q_\\beta-z_\\alpha)^{-1}]\n\\sim\n-\\frac{(z_2-z_1)(q_2-q_1)}{(q-z)^4}.\n\\]\nHence the confluent limit is\n\\[\n(q-z)^4\\left(F_zF_q-F\\,F_{zq}\\right)\n=\n\\mathcal G_n(z,q).\n\\]\n\nSubstituting \\(z=1/\\lambda\\) and \\(q=1/\\mu\\), the required ratio is therefore\n\\[\n\\boxed{\n\\frac{D_n^{\\mathrm{rat}}(\\lambda,\\mu)}{D_n}\n=\n\\left(\\frac{\\lambda}{\\mu}\\right)^{2n}\n\\mathcal G_n\\!\\left(\\frac1\\lambda,\\frac1\\mu\\right)\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T09:00:11+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/2ca6ad24d711.json"
+}
