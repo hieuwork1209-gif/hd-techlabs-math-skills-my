@@ -169,7 +169,7 @@ $\left(0,\sqrt{\frac{1-c^2}{b^2-a^2}}\arccos\left(-\frac{a+bc}{b+ac}\right)\righ
 
 **Problem Type:** Parameter identification
 
-**Answer Type:** Set or multiset of objects
+**Answer Type:** Interval or region description
 
 ---
 
