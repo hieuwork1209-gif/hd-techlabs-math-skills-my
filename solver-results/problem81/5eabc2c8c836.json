@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-harmonic-analysis/problem.md",
+  "source_commit_sha": "838e94d451e127de4cc2dd08e49ad3ce527a93f9",
+  "problem_blob_sha": "5eabc2c8c8368060daa2d9669c54217ad39910bb",
+  "statement_sha256": "f5c98219f02f09560e1ca83a06bed10d3446986bdd63d3b2d0931820a22ece3f",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T13:57:55+00:00",
+  "exit_code": 0,
+  "stderr": "2026-09-17T14:02:13.095445Z ERROR codex_models_manager::manager: failed to refresh available models: timeout waiting for child process to exit",
+  "final_answer": "Let\n\\[\nh(u,t)=20t^6+60t^5+180t^4+120t^3+180t^2\n+210ut^4+600ut^3+900ut^2+360ut+180u\n+180u^2t^2+240u^2t+180u^2+20u^3+20.\n\\]\n\nDefine \\((u_0,t_0)\\) to be the unique real solution in\n\\[\n1.21087<u<1.21089,\\qquad 1.14608<t<1.14609\n\\]\nof\n\\[\n\\begin{aligned}\n0={}&-4u^2(t+1)^2-u(2t^4+24t^3+36t^2+8t)\\\\\n&\\qquad +5t^6+14t^5+19t^4+20t^3+18t^2+12t+4,\\\\\n0={}&4u^3(t+1)+u^2(2t^3+10t^2+18t+10)\\\\\n&\\qquad +u(-5t^5-25t^4-34t^3+6t^2+18t+6)\\\\\n&\\qquad -t^6-4t^5-t^4+6t^2+4t .\n\\end{aligned}\n\\]\n\nThen\n\\[\nA=\\frac1{\\sqrt{2(1+u_0+t_0^2)}},\\qquad\nB=A\\sqrt{u_0},\\qquad\nC=At_0,\n\\]\nand\n\\[\nM_*=\\frac{h(u_0,t_0)}{8(1+u_0+t_0^2)^3}.\n\\]\n\nNumerically,\n\\[\n(A,B,C)\\approx(0.376654488472952,\\ 0.414470409489182,\\ 0.431677745512841),\n\\]\nand\n\\[\nM_*\\approx 16.1110789070140.\n\\]\n\nThus the exact maximizing set is\n\\[\n\\boxed{\n\\mathcal E_*=\n\\{(\\varepsilon A,\\varepsilon\\delta B,\\varepsilon C):\\varepsilon,\\delta\\in\\{\\pm1\\}\\}\n}\n\\]\nand\n\\[\n\\boxed{\n\\bigl(M_*,\\mathcal E_*\\bigr)\n=\n\\left(\n\\frac{h(u_0,t_0)}{8(1+u_0+t_0^2)^3},\n\\{(\\varepsilon A,\\varepsilon\\delta B,\\varepsilon C):\\varepsilon,\\delta=\\pm1\\}\n\\right).\n}\n\\]\n\nThe reduction is as follows. Writing\n\\[\nf_{a,b,c}(\\theta)=2e^{3i\\theta}\n\\bigl(a\\cos3\\theta+b\\cos2\\theta+c\\cos\\theta\\bigr),\n\\]\nthe normalization is\n\\[\na^2+b^2+c^2=\\frac12.\n\\]\nThe sixth moment is the homogeneous polynomial\n\\[\n\\begin{aligned}\nP(a,b,c)={}&20a^6+20b^6+20c^6+180a^4b^2+180a^4c^2+180a^2b^4\\\\\n&+900a^2b^2c^2+180a^2c^4+180b^4c^2+210b^2c^4\\\\\n&+120a^3c^3+360a^3b^2c+60ac^5+600ab^2c^3+240ab^4c.\n\\end{aligned}\n\\]\nFor \\(a\\ne0\\), put \\(u=(b/a)^2\\), \\(t=c/a\\). Then\n\\[\nP=\\frac{h(u,t)}{8(1+u+t^2)^3}.\n\\]\nThe displayed two polynomial equations are exactly the stationary equations in \\(u,t\\).\n\nA Sturm/resultant check on these explicit equations gives only one stationary candidate above all boundary cases: the isolated solution \\((u_0,t_0)\\) above. The boundary cases \\(a=0\\), \\(b=0\\), and the remaining real stationary solutions all give values \\(<9.204\\), while this one gives \\(>16.111\\). Hence it is the global maximum.",
+  "status": "success",
+  "completed_at": "2026-09-17T14:03:20+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/5eabc2c8c836.json"
+}

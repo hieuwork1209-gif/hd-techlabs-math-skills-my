@@ -2,8 +2,8 @@
   "problem": "problem81",
   "branch": "adversary/problem81",
   "problem_path": "workspace/rainier-problem/problem81-harmonic-analysis/problem.md",
-  "problem_blob_sha": "6e32f7497ac4ba9a4ddc1b733c124ae9cec7d4fe",
-  "source_commit_sha": "7a0236e2ddb8a4febcf0a484a40ea120ea5a016b",
+  "problem_blob_sha": "5eabc2c8c8368060daa2d9669c54217ad39910bb",
+  "source_commit_sha": "838e94d451e127de4cc2dd08e49ad3ce527a93f9",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-17T13:46:55+00:00",
-  "result_file": "solver-results/problem81/6e32f7497ac4.json"
+  "completed_at": "2026-09-17T14:03:20+00:00",
+  "result_file": "solver-results/problem81/5eabc2c8c836.json"
 }
