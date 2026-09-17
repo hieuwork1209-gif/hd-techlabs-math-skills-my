@@ -1,75 +1,174 @@
 ## Steps
 
-Step 1: Derive the global parity obstruction from quadratic reciprocity
-Assume that distinct primes $p_1,\ldots,p_n$, all congruent to $3$ modulo $4$, satisfy the required condition. For $i\ne j$, write
+Step 1: Convert the residue conditions into a tournament score condition
+Let $m,n\ge2$. Suppose distinct primes
 $$
-\varepsilon_{ij}=\left(\frac{p_i}{p_j}\right)\in\{-1,1\}.
+p_1,\ldots,p_n\equiv3\pmod4
 $$
-The condition at $p_j$ is
+have the required property. For $i\ne j$, orient the edge between $i$ and $j$ from $i$ to $j$ exactly when
 $$
-\prod_{i\ne j}\varepsilon_{ij}=1.
+\left(\frac{p_i}{p_j}\right)=-1.
 $$
-Because $p_i\equiv p_j\equiv3\pmod4$, quadratic reciprocity gives
+Because both primes are congruent to $3$ modulo $4$, quadratic reciprocity gives
 $$
-\varepsilon_{ij}\varepsilon_{ji}
-=\left(\frac{p_i}{p_j}\right)\left(\frac{p_j}{p_i}\right)
-=-1.
+\left(\frac{p_i}{p_j}\right)
+\left(\frac{p_j}{p_i}\right)=-1.
 $$
-Multiplying the $n$ residue conditions and grouping the factors by unordered pairs yields
+Hence exactly one of the two Legendre symbols is $-1$, so this indeed defines a tournament.
+
+For a vertex $j$, its indegree is exactly the number of indices $i\ne j$ for which $p_i$ is a quadratic nonresidue modulo $p_j$. Therefore the prime problem is equivalent to asking whether there is a tournament on $n$ vertices all of whose indegrees are divisible by $m$, together with a realization of that tournament by primes.
+
+Step 2: Derive the two necessary numerical conditions
+Let the indegrees be $d_1,\ldots,d_n$. Since every edge contributes $1$ to exactly one indegree,
 $$
-1
-=\prod_{j=1}^n\prod_{i\ne j}\varepsilon_{ij}
-=\prod_{1\le i<j\le n}\varepsilon_{ij}\varepsilon_{ji}
-=(-1)^{\binom n2}.
+\sum_{j=1}^n d_j=\binom n2.
 $$
-Hence $\binom n2$ is even. Checking $n$ modulo $4$ gives the necessary condition
+If every $d_j$ is divisible by $m$, then necessarily
 $$
-n\equiv0\text{ or }1\pmod4.
+m\mid\binom n2.
 $$
 
-Step 2: Build an abstract Legendre-symbol pattern when the parity obstruction vanishes
-Suppose now that $n\equiv0$ or $1\pmod4$. We first construct signs $\varepsilon_{ij}\in\{-1,1\}$ such that
+We also claim that
 $$
-\varepsilon_{ji}=-\varepsilon_{ij}
+n\ge2m.
 $$
-for every $i\ne j$ and
-$$
-\prod_{i\ne j}\varepsilon_{ij}=1
-$$
-for every $j$.
+Suppose instead that $n<2m$. Every indegree is a multiple of $m$ lying between $0$ and $n-1$, so the only possible values are $0$ and $m$; if $m>n-1$, only $0$ is available and the positive total degree is already impossible.
 
-Interpret the signs as a tournament: orient the edge from $i$ to $j$ exactly when $\varepsilon_{ij}=-1$. Then the product in the $j$th column is $(-1)^{d_j}$, where $d_j$ is the indegree of vertex $j$. Thus it is enough to construct a tournament in which every indegree is even.
+Thus assume $m\le n-1$. Let $r$ be the number of vertices of indegree $m$. A tournament has at most one vertex of indegree $0$, because two such vertices would be joined by an edge entering one of them. Hence
+$$
+r\ge n-1.
+$$
+Therefore
+$$
+\binom n2=rm\ge(n-1)m,
+$$
+which gives $n\ge2m$, contradicting $n<2m$. So both
+$$
+n\ge2m,
+\qquad
+m\mid\binom n2
+$$
+are necessary.
 
-If $n=4k+1$, use the cyclic tournament on $\mathbb Z/n\mathbb Z$ in which $i$ points to $j$ when
+Step 3: Construct a tournament whenever the numerical conditions hold
+Assume now that
 $$
-j-i\pmod n\in\{1,2,\ldots,2k\}.
+n\ge2m,
+\qquad
+m\mid\binom n2.
 $$
-Every vertex has indegree $2k$, which is even.
+Set
+$$
+L=m\left\lfloor\frac{n-1}{2m}\right\rfloor,
+\qquad
+U=L+m,
+$$
+and
+$$
+t=n-1-2L.
+$$
+Then
+$$
+0\le t<2m.
+$$
+Define
+$$
+r=\frac{nt}{2m}.
+$$
+This is an integer, because
+$$
+\binom n2-nL=\frac{nt}{2}
+$$
+and both terms on the left are divisible by $m$. Also $0\le r<n$.
 
-If $n=4k$, first take the cyclic regular tournament on $4k-1$ vertices. Every old vertex then has indegree
+Consider the nondecreasing integer sequence consisting of $n-r$ copies of $L$ followed by $r$ copies of $U$. Its sum is
 $$
-\frac{4k-2}{2}=2k-1.
+(n-r)L+rU
+=nL+rm
+=nL+\frac{nt}{2}
+=\binom n2.
 $$
-Add one new vertex and orient every new edge from the new vertex toward an old vertex. Each old indegree becomes $2k$, while the new vertex has indegree $0$. Again all indegrees are even.
+We use the following exact form of Landau's tournament score theorem: a nondecreasing sequence
+$$
+0\le d_1\le\cdots\le d_n\le n-1
+$$
+is the indegree sequence of a tournament if and only if
+$$
+\sum_{i=1}^k d_i\ge\binom k2
+$$
+for every $1\le k<n$, with equality at $k=n$.
 
-Therefore the required abstract sign pattern exists for every $n\equiv0$ or $1\pmod4$.
+We verify these inequalities for our two-level sequence.
 
-Step 3: Realize the sign pattern by actual primes
-We now construct distinct primes $p_1,\ldots,p_n\equiv3\pmod4$ satisfying
+If $k\le n-r$, then
 $$
-\left(\frac{p_i}{p_j}\right)=\varepsilon_{ij}
+\sum_{i=1}^k d_i=kL.
 $$
-for every $i\ne j$.
+Since
+$$
+t=n-1-2L
+$$
+and
+$$
+r=\frac{nt}{2m}\ge t
+$$
+by $n\ge2m$, we have
+$$
+n-r-1\le2L.
+$$
+Thus $k-1\le2L$, and therefore
+$$
+kL\ge\binom k2.
+$$
 
-Choose any prime $p_1\equiv3\pmod4$. Suppose $p_1,\ldots,p_{j-1}$ have already been chosen. For each $i<j$, choose a nonzero residue $r_i$ modulo $p_i$ such that
+Now let $k>n-r$ and write $k=n-h$, where $0\le h<r$. Using the total sum,
 $$
-\left(\frac{r_i}{p_i}\right)=-\varepsilon_{ij}.
+\sum_{i=1}^k d_i
+=\binom n2-hU.
 $$
-Both Legendre-symbol values occur among the nonzero residue classes modulo an odd prime, so such an $r_i$ exists.
+Hence
+$$
+\sum_{i=1}^k d_i-\binom k2
+=\frac h2\bigl(2n-h-1-2U\bigr).
+$$
+It is enough to show $r\le2n-2U$. Since $n=2m+q$ for some $q\ge0$,
+$$
+2n-2U=n+1+t-2m=q+1+t,
+$$
+while
+$$
+r=\frac{nt}{2m}
+=t+\frac{qt}{2m}
+< t+q+1.
+$$
+Thus the required prefix inequalities hold. Landau's theorem therefore gives a tournament on $n$ vertices whose every indegree is either $L$ or $U$, hence divisible by $m$.
 
-By the Chinese remainder theorem there is a residue class $r$ modulo
+Step 4: Realize the tournament by primes
+Fix such a tournament $T$. We construct distinct primes
 $$
-M=4p_1p_2\cdots p_{j-1}
+p_1,\ldots,p_n\equiv3\pmod4
+$$
+so that, for $i\ne j$,
+$$
+i\to j
+\quad\Longleftrightarrow\quad
+\left(\frac{p_i}{p_j}\right)=-1.
+$$
+
+Choose any prime $p_1\equiv3\pmod4$. Suppose $p_1,\ldots,p_k$ have already been chosen with the correct Legendre-symbol relations among them. To choose $p_{k+1}$, for each $i\le k$ select a nonzero residue $r_i$ modulo $p_i$ with
+$$
+\left(\frac{r_i}{p_i}\right)
+=
+\begin{cases}
+1,& i\to k+1,\\
+-1,& k+1\to i.
+\end{cases}
+$$
+Both symbol values occur among the nonzero classes modulo an odd prime.
+
+By the Chinese remainder theorem, choose a residue class $r$ modulo
+$$
+M=4p_1\cdots p_k
 $$
 satisfying
 $$
@@ -77,39 +176,37 @@ r\equiv3\pmod4,
 \qquad
 r\equiv r_i\pmod{p_i}
 $$
-for every $i<j$. This class is coprime to $M$. Dirichlet's theorem on primes in arithmetic progressions states that if $\gcd(r,M)=1$, then the progression $r+M\mathbb Z$ contains infinitely many primes. Choose a prime $p_j$ in this progression larger than all previously chosen primes.
+for all $i\le k$. This class is coprime to $M$. Dirichlet's theorem on primes in arithmetic progressions then provides a prime
+$$
+p_{k+1}\equiv r\pmod M
+$$
+larger than all previous primes.
 
-Then $p_j\equiv3\pmod4$, and for each $i<j$,
+For each $i\le k$, if $i\to k+1$, then
 $$
-\left(\frac{p_j}{p_i}\right)
-=\left(\frac{r_i}{p_i}\right)
-=-\varepsilon_{ij}.
+\left(\frac{p_{k+1}}{p_i}\right)=1,
 $$
-Since both primes are $3$ modulo $4$, quadratic reciprocity gives
+so quadratic reciprocity gives
 $$
-\left(\frac{p_i}{p_j}\right)
-=-\left(\frac{p_j}{p_i}\right)
-=\varepsilon_{ij}.
+\left(\frac{p_i}{p_{k+1}}\right)=-1.
 $$
-Induction realizes the entire sign pattern by distinct primes.
+If $k+1\to i$, the same argument with signs reversed gives
+$$
+\left(\frac{p_{k+1}}{p_i}\right)=-1.
+$$
+Thus the tournament is realized exactly.
 
-Step 4: Verify sufficiency and conclude the classification
-For every $j$, multiplicativity of the Legendre symbol gives
-$$
-\left(\frac{\prod_{i\ne j}p_i}{p_j}\right)
-=\prod_{i\ne j}\left(\frac{p_i}{p_j}\right)
-=\prod_{i\ne j}\varepsilon_{ij}
-=1.
-$$
-Thus the complementary product is a quadratic residue modulo every $p_j$. Step 1 showed that no other congruence classes of $n$ are possible, while Steps 2 and 3 construct suitable primes whenever $n\equiv0$ or $1\pmod4$.
+At each vertex $j$, the number of indices $i\ne j$ for which $p_i$ is a quadratic nonresidue modulo $p_j$ is precisely the indegree of $j$, hence is divisible by $m$.
 
-Final Answer: $\boxed{n\equiv0\text{ or }1\pmod4}$
+Therefore the numerical conditions from Step 2 are also sufficient.
+
+Final Answer: $\boxed{n\ge2m\text{ and }m\mid\binom n2}$
 
 ---
 
 ## Answer
 
-$n\equiv0\text{ or }1\pmod4$
+$n\ge2m\text{ and }m\mid\binom n2$
 
 ---
 
@@ -124,7 +221,7 @@ $n\equiv0\text{ or }1\pmod4$
 ## Solution Concepts
 
 - quadratic reciprocity
-- Legendre symbol multiplicativity
-- tournament indegree parity
+- tournament score sequences
+- Landau score criterion
 - Chinese remainder theorem
 - primes in arithmetic progressions
