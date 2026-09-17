@@ -10,66 +10,77 @@ with its product Borel $\sigma$-algebra. For every integer $k\ge3$, define
 \[
 a_k=\frac1{k^2(\log k)^2},
 \qquad
-b_k=\frac1{k^3},
+b_k=\frac1{k^4},
 \qquad
-c_k=\frac1{k^2}.
-\]
-Let $\mu$ and $\nu$ be Bernoulli product probability measures on $\Omega$ with coordinate laws given by
-
-\[
-\mu(X_{3k}=1)=a_k,
+c_k=\frac1{k^5},
 \qquad
-\nu(X_{3k}=1)=b_k,
-\]
-
-\[
-\mu(X_{3k+1}=1)=b_k,
+d_k=\frac1{k^2},
 \qquad
-\nu(X_{3k+1}=1)=c_k,
+e_k=\frac1{k^4}.
 \]
-
-for every $k\ge3$, while at every remaining coordinate both measures are fair:
+Let $\mu,\nu,\lambda$ be Bernoulli product probability measures on $\Omega$ with coordinate laws
 \[
-\mu(X_n=1)=\nu(X_n=1)=\frac12.
+\begin{array}{c|ccc}
+\text{coordinate}&\mu(X_n=1)&\nu(X_n=1)&\lambda(X_n=1)\\ \hline
+4k&a_k&b_k&b_k\\
+4k+1&c_k&c_k&d_k\\
+4k+2&e_k&d_k&e_k
+\end{array}
+\qquad(k\ge3),
+\]
+and suppose that at every remaining coordinate all three measures are fair Bernoulli:
+\[
+\mu(X_n=1)=\nu(X_n=1)=\lambda(X_n=1)=\frac12.
 \]
 
-Determine whether $\mu$ and $\nu$ are mutually absolutely continuous or mutually singular. In the equivalent case, let
+Determine whether $\mu,\nu,\lambda$ are pairwise equivalent or whether some pair is mutually singular. In the pairwise equivalent case, put
 \[
 Z=\frac{d\mu}{d\nu},
 \qquad
-M(t)=\int_\Omega Z^t\,d\nu
-\quad(t\in\mathbb R).
+W=\frac{d\lambda}{d\nu},
+\]
+and define the joint Mellin transform
+\[
+M(s,t)=\int_\Omega Z^sW^t\,d\nu
+\qquad(s,t\in\mathbb R).
 \]
 
-Determine exactly the set
+Determine exactly the real joint-moment domain
 \[
-\mathcal I=\{t\in\mathbb R:M(t)<\infty\}.
+\mathcal D
+=\{(s,t)\in\mathbb R^2:M(s,t)<\infty\}.
 \]
-Also determine the maximal open vertical strip on which the Mellin transform
-\[
-M(z)=\int_\Omega Z^z\,d\nu
-\]
-is represented by a locally uniformly convergent product and is holomorphic.
+Your answer must specify which critical boundary faces are included and which are excluded.
 
-Finally determine exactly the two exponent sets
+Also determine the maximal open tube domain in $\mathbb C^2$ on which
 \[
-\mathcal P_\nu
-=\{p>0:Z\in L^p(\nu)\},
+M(z,w)=\int_\Omega Z^zW^w\,d\nu
+\]
+is represented by a locally uniformly convergent coordinate product and is holomorphic.
+
+Finally determine exactly
+\[
+\mathcal P_Z=\{p>0:Z\in L^p(\nu)\},
+\qquad
+\mathcal P_W=\{p>0:W\in L^p(\nu)\},
 \]
 \[
-\mathcal P_\mu
+\mathcal R_\mu
 =\left\{p>0:\frac{d\nu}{d\mu}\in L^p(\mu)\right\},
+\qquad
+\mathcal R_\lambda
+=\left\{p>0:\frac{d\nu}{d\lambda}\in L^p(\lambda)\right\},
 \]
-and state for which $p>0$ one has
+and state exactly for which $p>0$ one has
 \[
-Z^{-1}\in L^p(\nu).
+Z^{-1}W^{-1}\in L^p(\nu).
 \]
 
-Your derivation must exhibit the coordinatewise Mellin product and justify both critical endpoints, including whether each endpoint is attained.
+Your derivation must exhibit the coordinatewise joint Mellin product and justify every critical face, including endpoint attainment or failure.
 
 Return the exact tuple
 \[
-(\mathcal I,\mathcal P_\nu,\mathcal P_\mu).
+(\mathcal D,\mathcal P_Z,\mathcal P_W,\mathcal R_\mu,\mathcal R_\lambda).
 \]
 
 ---
@@ -87,4 +98,4 @@ Return the exact tuple
 
 ## Domain Explanation
 
-The problem concerns equivalence of infinite product measures, the Radon-Nikodym derivative between them, and the exact $L^p$ and Mellin-integrability thresholds of that density. The main tools are Kakutani's product-measure criterion, likelihood-ratio martingales, and convergence of products of coordinate moments, so Analysis -> Measure theory is primary.
+The problem concerns equivalence of infinite Bernoulli product measures, two Radon-Nikodym derivatives relative to a common reference measure, and the exact joint Mellin-integrability region of those densities. The main work is to combine Kakutani's criterion with coordinate likelihood products, identify three distinct critical faces with different endpoint behavior, and determine the maximal holomorphic tube domain. Thus Analysis -> Measure theory is primary.
