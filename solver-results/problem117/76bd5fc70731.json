@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-convex-optimization/problem.md",
+  "source_commit_sha": "86d86b08c3f6a66924747e67662d6afc4c05aac5",
+  "problem_blob_sha": "76bd5fc70731569e39265ad3d00505d326044479",
+  "statement_sha256": "43a47d500c1c9badb7b40a6e5cd66ddacab66af176aede891eaf314d0f2ce3ba",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T08:08:15+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(X\\) be the Gram matrix of unit vectors \\(u_1,\\dots,u_5\\). Put\n\\[\nw_i=(-1)^{i-1}u_i .\n\\]\nFor \\(i=1,\\dots,4\\), let \\(\\alpha_i\\in[0,\\pi]\\) be the spherical distance from \\(w_i\\) to \\(w_{i+1}\\), and let \\(\\phi\\) be the distance from \\(w_5\\) to \\(w_1\\). Then\n\\[\nu_i\\cdot u_{i+1}=-\\cos\\alpha_i,\\qquad u_5\\cdot u_1=\\cos\\phi,\n\\]\nso\n\\[\nV(\\tau)=\\max\\left[\n2+\\frac12\\sum_{i=1}^4\\cos\\alpha_i+\\frac{\\tau}{2}(1-\\cos\\phi)\n\\right].\n\\]\n\nThe spherical distance satisfies \\(\\phi\\le \\alpha_1+\\cdots+\\alpha_4\\), and the chord inequality gives the sharper critical estimate\n\\[\n1-\\cos\\phi\\le 4\\sum_{i=1}^4(1-\\cos\\alpha_i).\n\\]\nIndeed,\n\\[\n\\|w_5-w_1\\|\\le \\sum_{i=1}^4\\|w_{i+1}-w_i\\|,\n\\]\nso by Cauchy,\n\\[\n2(1-\\cos\\phi)\\le 4\\sum_{i=1}^4 2(1-\\cos\\alpha_i).\n\\]\nTherefore, if \\(\\tau\\le 1/4\\),\n\\[\nV(\\tau)-4\n=\n-\\frac12\\sum_{i=1}^4(1-\\cos\\alpha_i)+\\frac{\\tau}{2}(1-\\cos\\phi)\n\\le 0.\n\\]\nEquality is attained by taking\n\\[\nu_1=u_3=u_5=v,\\qquad u_2=u_4=-v,\n\\]\nso \\(V(\\tau)=4\\) for \\(\\tau\\le 1/4\\). Equality in the chord/Cauchy argument forces all chord increments to vanish, hence \\(\\alpha_i=0\\), so the optimizer has rank \\(1\\) throughout \\(\\tau\\le 1/4\\).\n\nFor \\(\\tau>1/4\\), take a planar configuration with\n\\[\n\\alpha_1=\\cdots=\\alpha_4=t,\\qquad \\phi=4t.\n\\]\nThen\n\\[\nV(\\tau)-4\n\\ge\n2(\\cos t-1)+\\frac{\\tau}{2}(1-\\cos4t)\n=\n(4\\tau-1)t^2+O(t^4),\n\\]\nwhich is positive for sufficiently small \\(t>0\\). Hence\n\\[\n\\tau_c=\\frac14.\n\\]\n\nNow put \\(\\tau=\\frac14+h\\), \\(h>0\\). Near the critical optimizer, all \\(\\alpha_i\\to0\\), so write\n\\[\nA=\\alpha_1+\\cdots+\\alpha_4.\n\\]\nSince \\(\\phi\\le A\\),\n\\[\nV\\!\\left(\\frac14+h\\right)-4\n\\le\n\\frac h2(1-\\cos A)\n-\\left[\n\\frac12\\sum_{i=1}^4(1-\\cos\\alpha_i)-\\frac18(1-\\cos A)\n\\right].\n\\]\nFor fixed small \\(A\\), the bracket is minimized, to fourth order, when\n\\(\\alpha_1=\\cdots=\\alpha_4=A/4\\). Then\n\\[\n\\frac12\\sum_{i=1}^4(1-\\cos(A/4))-\\frac18(1-\\cos A)\n=\n\\frac{5}{1024}A^4+O(A^6).\n\\]\nThus\n\\[\nV\\!\\left(\\frac14+h\\right)-4\n\\le\n\\frac h4 A^2-\\frac{5}{1024}A^4+o(h^2).\n\\]\nMaximizing the quadratic-quartic expression gives\n\\[\nA^2=\\frac{128}{5}h+o(h),\n\\]\nand therefore\n\\[\nV\\!\\left(\\frac14+h\\right)-4\n=\n\\frac{16}{5}h^2+o(h^2).\n\\]\n\nThe matching lower bound comes from the planar equal-angle construction\n\\[\n\\alpha_1=\\cdots=\\alpha_4=t,\\qquad \\phi=4t,\n\\]\nfor which\n\\[\n2(\\cos t-1)+\\left(\\frac18+\\frac h2\\right)(1-\\cos4t)\n=\n4ht^2-\\frac54t^4+O(ht^4+t^6).\n\\]\nTaking \\(t^2=\\frac85h+o(h)\\) yields the same value\n\\[\n\\frac{16}{5}h^2+o(h^2).\n\\]\n\nFor \\(h>0\\) sufficiently small, the optimizer satisfies the first-order condition\n\\[\n\\sin t=\\left(\\frac14+h\\right)\\sin4t\n\\]\nwith \\(\\alpha_1=\\cdots=\\alpha_4=t>0\\), and \\(\\phi=4t\\). Hence the five vectors lie on a common circle, so the optimizing Gram matrix has rank \\(2\\). The previous chord argument rules out any higher-rank improvement, since every feasible high-rank configuration is bounded by the same angle inequality, with equality only in the planar geodesic case.\n\nTherefore\n\\[\n\\boxed{\\left(\\frac14,\\frac{16}{5}\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T08:10:09+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/76bd5fc70731.json"
+}

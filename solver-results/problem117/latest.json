@@ -1,9 +1,9 @@
 {
   "problem": "problem117",
   "branch": "adversary/problem117",
-  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
-  "problem_blob_sha": "aef2a246d00595f1fb1197e987d6889a34269b8a",
-  "source_commit_sha": "89d27530658483d2e7c6626954269ac499533417",
+  "problem_path": "workspace/rainier-problem/problem117-convex-optimization/problem.md",
+  "problem_blob_sha": "76bd5fc70731569e39265ad3d00505d326044479",
+  "source_commit_sha": "86d86b08c3f6a66924747e67662d6afc4c05aac5",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-17T08:02:14+00:00",
-  "result_file": "solver-results/problem117/aef2a246d005.json"
+  "completed_at": "2026-09-17T08:10:09+00:00",
+  "result_file": "solver-results/problem117/76bd5fc70731.json"
 }
