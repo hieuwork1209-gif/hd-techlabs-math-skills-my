@@ -50,7 +50,7 @@ and where $\min(t,L-t)<b$, both values lie in $[0,b]$, on which $\phi$ is decrea
 $$
 Q\geq b^3L-\frac32b^4,
 $$
-with equality only for $v=v_b$.
+with equality only for $v=v_b$. Since $L\geq2b$, the relation $B=bL-b^2$ also gives $B\geq b^2$.
 
 Step 2: Reduce the constrained control problem to two geometric parameters
 For an admissible control, write $x=x_u$, and let
@@ -95,28 +95,32 @@ so
 $$
 A=\frac{bH(1-H-b)}{H+b}.
 $$
-Set $z=b/H$. Since Step 1 gives $A\geq H^2$, substitution yields
+Set $z=b/H$. Step 1 gives both $A\geq H^2$ and $A\geq b^2$. Substitution yields
 $$
-H\leq\frac{z}{(1+z)^2}.
+H(1+z)^2\leq z,\qquad H(1+z)^2\leq1.
 $$
-A positive objective requires $b<H$, so $0<z<1$.
-
 Combining the positive upper bound and negative lower bound gives
 $$
-\int_0^1x^3\leq (H^2-b^2)\left(A-\frac{H^2+b^2}{2}\right).
+\int_0^1x^3\leq (H^2-b^2)\left(A-\frac{H^2+b^2}{2}\right)
+=G(H,z),
 $$
-Using the formula for $A$ and $b=zH$, the right side is
+where
 $$
 G(H,z)=\frac{H^3(1-z)}{2}\left(2z-H(1+z)^3\right).
 $$
+If $z\geq1$, then the second feasibility inequality gives
+$$
+2z-H(1+z)^3\geq2z-(1+z)=z-1\geq0,
+$$
+so $G(H,z)\leq0$. On the other hand, taking $z=1/2$ and any $0<H\leq\min(c,2/9)$ produces compatible capped tents with positive value. Hence an optimizer has $0<z<1$.
 
 Step 3: Optimize the active and inactive state-constraint regimes
-For fixed feasible $H$,
+For fixed feasible $H$ with $0<z<1$,
 $$
 \frac{\partial G}{\partial z}
 =H^3(2z-1)\left(H(1+z)^2-1\right).
 $$
-The feasibility inequality $H\leq z/(1+z)^2$ implies $H(1+z)^2-1<0$. Hence $G(H,z)$ increases for $z<1/2$ and decreases for $z>1/2$ whenever $z=1/2$ is feasible.
+The feasibility inequality $H(1+z)^2\leq z<1$ makes the second factor negative. Hence $G(H,z)$ increases for $z<1/2$ and decreases for $z>1/2$ whenever $z=1/2$ is feasible.
 
 If $0<H\leq2/9$, then $z=1/2$ is feasible and
 $$
