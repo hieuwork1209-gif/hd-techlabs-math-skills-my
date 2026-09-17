@@ -1,7 +1,7 @@
 ## Steps
 
 Step 1: Normalize the cyclic phases without changing the determinant magnitude
-Let $0<\rho<\cos(\pi/5)$ and let $v_1,\ldots,v_5\in\mathbb C^5$ be unit vectors, with indices modulo $5$. Write
+Let $0<\rho<\cos(\pi/5)$ and let $v_1,\ldots,v_5\in\mathbb{C}^{5}$ be unit vectors, with indices modulo $5$. Write
 $$
 c_i=\langle v_i,v_{i+1}\rangle.
 $$
@@ -11,7 +11,7 @@ $$
 $$
 Set
 $$
-\alpha=\frac\pi5,
+\alpha=\frac{\pi}{5},
 \qquad
 q=\rho e^{i\alpha}.
 $$
@@ -30,7 +30,7 @@ so the problem is to maximize $\det G$ among Hermitian positive semidefinite mat
 Step 2: Exhibit an interior feasible family and record its spectrum
 Put
 $$
-A=\cos\frac\pi5=\frac{1+\sqrt5}{4},
+A=\cos\frac{\pi}{5}=\frac{1+\sqrt5}{4},
 \qquad
 B=\cos\frac{2\pi}{5}=\frac{\sqrt5-1}{4}.
 $$
@@ -54,22 +54,22 @@ with multiplicity $1$.
 
 If
 $$
-\rho-\frac12<t<\frac{1-2\rho B}{2A},
+\rho-\frac{1}{2}<t<\frac{1-2\rho B}{2A},
 $$
 then $\lambda_C>0$ and $\lambda_B>0$. Also
 $$
 \lambda_A
->1+2\rho A+2B\left(\rho-\frac12\right)
+>1+2\rho A+2B\left(\rho-\frac{1}{2}\right)
 =1-B+2\rho(A+B)>0.
 $$
 Thus the matrix is positive definite throughout this interval. Its length is positive because
 $$
-\frac{1-2\rho B}{2A}-\left(\rho-\frac12\right)
+\frac{1-2\rho B}{2A}-\left(\rho-\frac{1}{2}\right)
 =\frac{\sqrt5-(5-\sqrt5)\rho}{2}>0
 $$
 exactly when
 $$
-\rho<\frac{1+\sqrt5}{4}=\cos\frac\pi5.
+\rho<\frac{1+\sqrt5}{4}=\cos\frac{\pi}{5}.
 $$
 Therefore the stated range of $\rho$ contains positive definite feasible Gram matrices, so the maximum determinant is positive and every maximizing Gram matrix is positive definite.
 
@@ -84,7 +84,7 @@ for some complex $z$.
 
 There is a second symmetry forced by the cyclic phase. Complex conjugation changes every adjacent entry from $q$ to $\overline q$. To restore $q$, the adjacent rephasing ratio must be
 $$
-\frac q{\overline q}=e^{2i\alpha}.
+\frac{q}{\overline q}=e^{2i\alpha}.
 $$
 Because $5(2\alpha)=2\pi$, this rephasing is consistent around the whole cycle. Explicitly, with
 $$
@@ -135,7 +135,7 @@ t_{\pm}=\frac{-\rho-1\pm\Delta}{2}.
 $$
 Since
 $$
-t_--\left(\rho-\frac12\right)
+t_--\left(\rho-\frac{1}{2}\right)
 =-\frac{3\rho+\Delta}{2}<0,
 $$
 the root $t_-$ lies below the feasible interval. Also
