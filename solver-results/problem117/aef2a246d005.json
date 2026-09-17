@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-optimization/problem.md",
+  "source_commit_sha": "89d27530658483d2e7c6626954269ac499533417",
+  "problem_blob_sha": "aef2a246d00595f1fb1197e987d6889a34269b8a",
+  "statement_sha256": "d04351c4406bfffef031616ec293913d5ff6621075930c16275bf726be298817",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T07:58:53+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\n\\phi_\\tau(x)=\\frac12x^TA_\\tau x+b^Tx.\n\\]\nFor a trust-region minimizer there is a multiplier \\(s\\ge0\\) such that\n\\[\n(A_\\tau+sI)x=-b,\\qquad A_\\tau+sI\\succeq0,\\qquad s(\\|x\\|^2-1)=0.\n\\]\nNon-uniqueness can only occur in the hard case: \\(A_\\tau+sI\\) is singular positive semidefinite, \\(b\\) is orthogonal to its nullspace, and the affine solution set of \\((A_\\tau+sI)x=-b\\) meets the unit sphere in more than one point.\n\nSince \\(\\lambda_{\\min}(A_\\tau)\\le -3\\), the singular hard-case shift satisfies \\(s\\ge3\\). Put\n\\[\nM=A_\\tau+sI.\n\\]\nA null vector \\(y\\) of \\(M\\) must satisfy, after setting \\(y_1=1\\),\n\\[\ny=\\left(1,\\ 3-s,\\ s^2-3s-1,\\ -\\frac{s^2-3s-1}{s+4}\\right).\n\\]\nThe range condition \\(b\\perp y\\) gives\n\\[\n1+3(3-s)+(s^2-3s-1)-\\frac{3(s^2-3s-1)}{s+4}=0,\n\\]\nequivalently\n\\[\ng(s):=s^3-5s^2-6s+39=0.\n\\]\nThe cubic has exactly two roots with \\(s\\ge3\\): one in \\((17/5,24/7)\\) and one in \\((4,9/2)\\).\n\nFor such an \\(s\\), the third row of \\(My=0\\) determines\n\\[\n\\tau=\\frac{s-3}{s^2-3s-1}+\\frac1{s+4}-s.\n\\]\nEliminating \\(s\\) from this relation and \\(g(s)=0\\) gives\n\\[\nf(\\tau):=81\\tau^3+254\\tau^2-793\\tau-2197=0.\n\\]\nThe two corresponding \\(\\tau\\)-values in \\([-4,-2]\\) are the roots of \\(f\\) in\n\\[\n(-39/10,-19/5)\\quad\\text{and}\\quad(-12/5,-23/10).\n\\]\n\nIt remains to test the unit boundary condition. Solving \\(Mx=-b\\), every solution has the form\n\\[\nx=c+ay,\\qquad\nc=\\left(0,-1,s-3,-\\frac{s}{s+4}\\right).\n\\]\nThe minimum possible squared norm among these solutions is\n\\[\n\\|c\\|^2-\\frac{(c\\cdot y)^2}{\\|y\\|^2}.\n\\]\nA direct reduction using \\(g(s)=0\\) shows that\n\\[\n\\left(\\|c\\|^2-\\frac{(c\\cdot y)^2}{\\|y\\|^2}\\right)-1\n\\]\nhas the same sign as\n\\[\nR(s)=-7029s^2+4755s+66360.\n\\]\nFor the smaller positive root \\(s\\in(17/5,24/7)\\), \\(R(s)>0\\), so every solution of \\(Mx=-b\\) has norm \\(>1\\). Thus that candidate does not produce a trust-region minimizer.\n\nFor the larger positive root \\(s\\in(4,9/2)\\), \\(R(s)<0\\), so the minimum-norm solution has norm \\(<1\\). Since \\(\\ker M=\\mathbb R y\\) is one-dimensional, the equation\n\\[\n\\|c+ay\\|=1\n\\]\nhas exactly two real solutions for \\(a\\). Both satisfy the KKT conditions with \\(M\\succeq0\\), hence both are global minimizers. Therefore \\(\\mathcal X_\\tau\\) is non-singleton for exactly one parameter.\n\n\\[\n\\boxed{\\tau_*=\\operatorname{root}_{(-39/10,-19/5)}\\!\\left(81x^3+254x^2-793x-2197\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T08:02:14+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/aef2a246d005.json"
+}
