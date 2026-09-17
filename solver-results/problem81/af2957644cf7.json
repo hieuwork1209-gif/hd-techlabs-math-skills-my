@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-analytic-number-theory/problem.md",
+  "source_commit_sha": "c2ee68a3daa1151772a9365e5c8d72a6dc2f2ea9",
+  "problem_blob_sha": "af2957644cf7186bd8ecf2ef4a01dae5eaa07423",
+  "statement_sha256": "cd03900d052adbcdb667f9566c199597674de504e9b8d1420bc8580ae33f5b89",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T14:09:18+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\n\\beta(s)=L(s,\\chi_4),\\qquad \\ell=\\frac{\\beta'(1)}{\\beta(1)}.\n\\]\nDefine the absolutely convergent products\n\\[\nP_-=\\prod_{p\\equiv3(4)}\\frac{(1-p^{-2})^{1/2}}{1-p^{-3}},\n\\qquad\nP_+=\\prod_{p\\equiv3(4)}\\frac{(1-p^{-2})^{1/2}}{1+p^{-3}},\n\\]\nand the absolutely convergent prime sums\n\\[\na_-=\\frac{\\log2}{2}+\\sum_{p\\equiv3(4)}\n\\left(\\frac{\\log p}{p^2-1}-\\frac{3\\log p}{p^3-1}\\right),\n\\]\n\\[\na_+=\\frac{\\log2}{2}+\\sum_{p\\equiv3(4)}\n\\left(\\frac{\\log p}{p^2-1}+\\frac{3\\log p}{p^3+1}\\right).\n\\]\nThen set\n\\[\nd_-=\\frac12\\left(1-\\frac{\\gamma+\\ell}{2}-a_-\\right),\n\\qquad\nd_+=\\frac12\\left(1-\\frac{\\gamma+\\ell}{2}-a_+\\right).\n\\]\n\nFor the untwisted series,\n\\[\nF(s)=\\sum_{n\\in\\mathcal S}\\frac1{n^s}\n=\\prod_{p\\equiv1(4)}(1-p^{-s})^{-1}\n\\prod_{p\\equiv3(4)}(1-p^{-3s})^{-1}.\n\\]\nFor the twisted series,\n\\[\nG(s)=\\sum_{n\\in\\mathcal S}\\frac{\\chi_4(n)}{n^s}\n=\\prod_{p\\equiv1(4)}(1-p^{-s})^{-1}\n\\prod_{p\\equiv3(4)}(1+p^{-3s})^{-1}.\n\\]\nUsing\n\\[\n\\zeta(s)\\beta(s)\n=(1-2^{-s})^{-1}\n\\prod_{p\\equiv1(4)}(1-p^{-s})^{-2}\n\\prod_{p\\equiv3(4)}(1-p^{-2s})^{-1},\n\\]\nwe get\n\\[\nF(s)=(\\zeta(s)\\beta(s))^{1/2}A_-(s),\n\\quad\nA_-(s)=(1-2^{-s})^{1/2}\n\\prod_{p\\equiv3(4)}\n\\frac{(1-p^{-2s})^{1/2}}{1-p^{-3s}},\n\\]\n\\[\nG(s)=(\\zeta(s)\\beta(s))^{1/2}A_+(s),\n\\quad\nA_+(s)=(1-2^{-s})^{1/2}\n\\prod_{p\\equiv3(4)}\n\\frac{(1-p^{-2s})^{1/2}}{1+p^{-3s}}.\n\\]\nSince \\(\\beta(1)=\\pi/4\\),\n\\[\nA_-(1)=\\frac{P_-}{\\sqrt2},\\qquad A_+(1)=\\frac{P_+}{\\sqrt2}.\n\\]\n\nThe square-root singularity contribution is: if\n\\[\nH(s)=(s-1)^{-1/2}(b_0+b_1(s-1)+O((s-1)^2)),\n\\]\nthen\n\\[\n\\sum_{n\\le x}h_n\n=\\frac{b_0x}{\\sqrt{\\pi\\log x}}\n\\left(1+\\frac{1-b_1/b_0}{2\\log x}\n+O((\\log x)^{-2})\\right).\n\\]\nHere\n\\[\n\\frac{b_1}{b_0}\n=\\frac{\\gamma+\\ell}{2}+\\frac{A_\\pm'(1)}{A_\\pm(1)},\n\\]\nand the logarithmic derivatives are exactly \\(a_\\pm\\). Thus\n\\[\n\\sum_{\\substack{n\\le x\\\\ n\\in\\mathcal S}}1\n=\\frac{P_-}{2\\sqrt2}\\frac{x}{\\sqrt{\\log x}}\n\\left(1+\\frac{d_-}{\\log x}+O((\\log x)^{-2})\\right),\n\\]\n\\[\n\\sum_{\\substack{n\\le x\\\\ n\\in\\mathcal S}}\\chi_4(n)\n=\\frac{P_+}{2\\sqrt2}\\frac{x}{\\sqrt{\\log x}}\n\\left(1+\\frac{d_+}{\\log x}+O((\\log x)^{-2})\\right).\n\\]\nSince\n\\[\nN_1=\\frac12(F\\text{-count}+G\\text{-count}),\\qquad\nN_3=\\frac12(F\\text{-count}-G\\text{-count}),\n\\]\nwe obtain\n\\[\nC_1=\\frac{P_-+P_+}{4\\sqrt2},\n\\qquad\nC_3=\\frac{P_--P_+}{4\\sqrt2},\n\\]\n\\[\nD_1=\\frac{P_-d_-+P_+d_+}{P_-+P_+},\n\\qquad\nD_3=\\frac{P_-d_--P_+d_+}{P_--P_+}.\n\\]\nAlso,\n\\[\n\\lim_{x\\to\\infty}\\frac{N_1(x)}{N_3(x)}\n=\\frac{P_-+P_+}{P_--P_+}.\n\\]\n\nTherefore the requested tuple is\n\\[\n\\boxed{\n\\left(\n\\frac{P_-+P_+}{4\\sqrt2},\n\\frac{P_--P_+}{4\\sqrt2},\n\\frac{P_-d_-+P_+d_+}{P_-+P_+},\n\\frac{P_-d_--P_+d_+}{P_--P_+}\n\\right)\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T14:11:07+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/af2957644cf7.json"
+}

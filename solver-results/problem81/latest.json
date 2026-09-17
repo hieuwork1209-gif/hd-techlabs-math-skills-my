@@ -1,9 +1,9 @@
 {
   "problem": "problem81",
   "branch": "adversary/problem81",
-  "problem_path": "workspace/rainier-problem/problem81-harmonic-analysis/problem.md",
-  "problem_blob_sha": "5eabc2c8c8368060daa2d9669c54217ad39910bb",
-  "source_commit_sha": "838e94d451e127de4cc2dd08e49ad3ce527a93f9",
+  "problem_path": "workspace/rainier-problem/problem81-analytic-number-theory/problem.md",
+  "problem_blob_sha": "af2957644cf7186bd8ecf2ef4a01dae5eaa07423",
+  "source_commit_sha": "c2ee68a3daa1151772a9365e5c8d72a6dc2f2ea9",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-17T14:03:20+00:00",
-  "result_file": "solver-results/problem81/5eabc2c8c836.json"
+  "completed_at": "2026-09-17T14:11:07+00:00",
+  "result_file": "solver-results/problem81/af2957644cf7.json"
 }
