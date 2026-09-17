@@ -2,8 +2,8 @@
   "problem": "problem124",
   "branch": "adversary/problem124",
   "problem_path": "workspace/rainier-problem/problem124-dynamic-programming-and-optimal-control/problem.md",
-  "problem_blob_sha": "3e34336a18f0627dd235d4890d778e2ce44ea57e",
-  "source_commit_sha": "1411f833485a6b90c2b4b337d41075f2a27766fe",
+  "problem_blob_sha": "f012de9a1a2e3a6c10b75c2f29f952a59f52aef0",
+  "source_commit_sha": "5fe1fd69105bcb552321046df82922eec0a67043",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-17T08:47:03+00:00",
-  "result_file": "solver-results/problem124/3e34336a18f0.json"
+  "completed_at": "2026-09-17T09:26:40+00:00",
+  "result_file": "solver-results/problem124/f012de9a1a2e.json"
 }

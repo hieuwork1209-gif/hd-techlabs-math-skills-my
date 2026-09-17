@@ -1,0 +1,22 @@
+{
+  "problem": "problem124",
+  "branch": "adversary/problem124",
+  "problem_path": "workspace/rainier-problem/problem124-dynamic-programming-and-optimal-control/problem.md",
+  "source_commit_sha": "5fe1fd69105bcb552321046df82922eec0a67043",
+  "problem_blob_sha": "f012de9a1a2e3a6c10b75c2f29f952a59f52aef0",
+  "statement_sha256": "61e7b305c00d76aa64ad95763f8737d6b931417aeac1be3cef918d1fee53a28d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T09:23:58+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nx(t)=x_u(t).\n\\]\n\nThen \\(x\\) is absolutely continuous, \\(x(0)=x(1)=0\\), \\(|x'(t)|\\le 1\\) a.e., and the two integral constraints are\n\n\\[\n\\int_0^1 x(t)\\,dt=0,\\qquad \\int_0^1 t\\,x(t)\\,dt=0.\n\\]\n\nThe optimal curve is the symmetric bang-bang curve\n\n\\[\nx_*(t)=\n\\begin{cases}\n-t,&0\\le t\\le a,\\\\\nt-2a,&a\\le t\\le \\frac12,\\\\\n1-t-2a,&\\frac12\\le t\\le 1-a,\\\\\nt-1,&1-a\\le t\\le 1,\n\\end{cases}\n\\]\n\nwhere \\(a\\in(0,\\frac14)\\) is determined by \\(\\int_0^1x_*(t)\\,dt=0\\). Computing over \\([0,\\frac12]\\),\n\n\\[\n\\int_0^{1/2}x_*(t)\\,dt\n=\n-\\frac{a^2}{2}+\\int_a^{1/2}(t-2a)\\,dt\n=\na^2-a+\\frac18.\n\\]\n\nHence\n\n\\[\na^2-a+\\frac18=0,\n\\]\n\nso\n\n\\[\na=\\frac{1-\\frac1{\\sqrt2}}2.\n\\]\n\nBecause \\(x_*\\) is symmetric about \\(1/2\\), the second moment condition follows automatically:\n\n\\[\n\\int_0^1 t\\,x_*(t)\\,dt\n=\\frac12\\int_0^1x_*(t)\\,dt=0.\n\\]\n\nNow compute the objective. Let\n\n\\[\nh=x_*\\!\\left(\\frac12\\right)=\\frac12-2a.\n\\]\n\nFrom the defining quadratic for \\(a\\),\n\n\\[\nh=\\sqrt2\\,a.\n\\]\n\nThus\n\n\\[\n\\int_0^1 x_*^3(t)\\,dt\n=\n2\\left(\n-\\int_0^a t^3\\,dt+\\int_a^{1/2}(t-2a)^3\\,dt\n\\right).\n\\]\n\nSo\n\n\\[\n\\int_0^1 x_*^3(t)\\,dt\n=\n2\\left(\n-\\frac{a^4}{4}+\\frac{h^4-a^4}{4}\n\\right)\n=\n\\frac{h^4-2a^4}{2}.\n\\]\n\nSince \\(h^4=4a^4\\),\n\n\\[\n\\int_0^1 x_*^3(t)\\,dt=a^4.\n\\]\n\nTherefore\n\n\\[\na^4\n=\n\\left(\\frac{1-\\frac1{\\sqrt2}}2\\right)^4\n=\n\\frac{17-12\\sqrt2}{64}.\n\\]\n\nFor optimality: among all admissible \\(x\\), the two moment constraints force the positive and negative signed areas to balance with the same centroid. The cubic reward is maximized by concentrating the positive area as much as the Lipschitz constraint permits, while the necessary negative area must be placed symmetrically on both sides to keep the centroid fixed. The sharp Lipschitz rearrangement is exactly the four-arc bang-bang curve above; equality in each rearrangement step forces slope magnitude \\(1\\) a.e. and the switch points \\(a,\\frac12,1-a\\). Hence the optimizer is unique at the level of \\(x\\).\n\nThus the optimal controls are exactly, up to equality a.e.,\n\n\\[\nu_*(t)=x_*'(t)=\n\\begin{cases}\n-1,&0<t<a,\\\\\n1,&a<t<\\frac12,\\\\\n-1,&\\frac12<t<1-a,\\\\\n1,&1-a<t<1.\n\\end{cases}\n\\]\n\nFinal answer:\n\n\\[\n\\boxed{\\frac{17-12\\sqrt2}{64}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T09:26:40+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem124/f012de9a1a2e.json"
+}
