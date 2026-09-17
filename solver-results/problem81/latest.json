@@ -2,8 +2,8 @@
   "problem": "problem81",
   "branch": "adversary/problem81",
   "problem_path": "workspace/rainier-problem/problem81-quadratic-residues/problem.md",
-  "problem_blob_sha": "bd03ad575acba8adf474405cb905b65214f95b7a",
-  "source_commit_sha": "9684eacf02fda28c0cd9f0fa57afdeea6222e047",
+  "problem_blob_sha": "ec35590091afc2b3e65d04af2b40d17fb09489c6",
+  "source_commit_sha": "ca982815ebc0347795a7831e1551946045d1aa85",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-17T14:45:40+00:00",
-  "result_file": "solver-results/problem81/bd03ad575acb.json"
+  "completed_at": "2026-09-17T14:55:11+00:00",
+  "result_file": "solver-results/problem81/ec35590091af.json"
 }

@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-quadratic-residues/problem.md",
+  "source_commit_sha": "ca982815ebc0347795a7831e1551946045d1aa85",
+  "problem_blob_sha": "ec35590091afc2b3e65d04af2b40d17fb09489c6",
+  "statement_sha256": "df1d3bcb0c440e5b8315d7997e1dbcee1f0b0a5318592c37ec6f0ccf0c21e832",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T14:53:00+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\ns_0=\\chi(x),\\quad s_1=\\chi(x-1),\\quad s_3=\\chi(x-3),\\quad s_{-3}=\\chi(x+3).\n\\]\nAt the four branch points one of these symbols is \\(0\\), so neither \\(A(p)\\) nor \\(B(p)\\) counts those \\(x\\).\n\nFor non-branch \\(x\\), all four symbols are \\(\\pm1\\). If\n\\[\nQ_p=\\sum_x\\chi\\bigl(x(x-1)(x-3)(x+3)\\bigr),\n\\]\nthen\n\\[\nA+B=\\frac{p-4+Q_p}{2}.\n\\]\n\nNow compute the pairwise second moment\n\\[\nE=\\sum_{\\substack{x\\in\\mathbb F_p\\\\x\\notin\\{0,1,3,-3\\}}}\n\\sum_{a<b}s_as_b.\n\\]\nFor any two distinct branch points \\(\\alpha,\\beta\\),\n\\[\n\\sum_x\\chi((x-\\alpha)(x-\\beta))=-1,\n\\]\nso the total over all six pairs is \\(-6\\). The branch-point contributions are:\n\n\\[\nx=0:1+2\\delta,\\qquad\nx=1:3,\\qquad\nx=3:1+2\\delta,\\qquad\nx=-3:1+2\\delta.\n\\]\nThus\n\\[\nE=-6-(6+6\\delta)=-12-6\\delta.\n\\]\nFor a non-branch point, the pairwise sum is \\(6\\) if all four signs agree, \\(-2\\) if exactly two are \\(+1\\), and \\(0\\) otherwise. Hence\n\\[\n6A-2B=-12-6\\delta,\n\\]\nor\n\\[\n3A-B=-6-3\\delta.\n\\]\n\nIt remains to evaluate \\(Q_p\\). Use the Möbius change\n\\[\nt=\\frac{2x}{x-3},\\qquad x=\\frac{3t}{t-2}.\n\\]\nThen\n\\[\nx(x-1)(x-3)(x+3)\n=\n\\frac{216\\,t(t^2-1)}{(t-2)^4}.\n\\]\nSince \\(p\\equiv1\\pmod8\\), \\(\\chi(2)=1\\), so\n\\[\n\\chi(216)=\\chi(3)=\\delta.\n\\]\nThe map \\(x\\neq3\\leftrightarrow t\\neq2\\) is bijective, and \\(x=3\\) contributes \\(0\\). Therefore\n\\[\nQ_p\n=\\delta\\sum_{t\\neq2}\\chi(t^3-t)\n=\\delta\\left(\\sum_t\\chi(t^3-t)-\\chi(6)\\right).\n\\]\nNow \\(\\chi(6)=\\delta\\). For\n\\[\nE_0:y^2=t^3-t,\n\\]\nthe CM trace calculation for \\(p\\equiv1\\pmod8\\), with\n\\[\np=u^2+v^2,\\qquad u\\equiv1\\pmod4,\n\\]\ngives\n\\[\n\\sum_t\\chi(t^3-t)=-2u.\n\\]\nThus\n\\[\nQ_p=\\delta(-2u-\\delta)=-2\\delta u-1.\n\\]\n\nNow solve\n\\[\nA+B=\\frac{p-4+Q_p}{2}\n=\\frac{p-5-2\\delta u}{2},\n\\]\nand\n\\[\n3A-B=-6-3\\delta.\n\\]\nThis gives\n\\[\nA=\\frac{p-17-6\\delta-2\\delta u}{8},\n\\qquad\nB=\\frac{3p-3+6\\delta-6\\delta u}{8}.\n\\]\n\n\\[\n\\boxed{\n\\bigl(A(p),B(p)\\bigr)\n=\n\\left(\n\\frac{p-17-6\\delta-2\\delta u}{8},\n\\frac{3p-3+6\\delta-6\\delta u}{8}\n\\right)\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T14:55:11+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/ec35590091af.json"
+}
