@@ -1,9 +1,9 @@
 {
   "problem": "problem81",
   "branch": "adversary/problem81",
-  "problem_path": "workspace/rainier-problem/problem81-bifurcation-theory/problem.md",
-  "problem_blob_sha": "039db9bb5e45e2dd98d3ec19f531f12cce0a46be",
-  "source_commit_sha": "9a3a335f375e41f39573f40b863e10cfb66ca77a",
+  "problem_path": "workspace/rainier-problem/problem81-proof-theory/problem.md",
+  "problem_blob_sha": "e121be144d0e4bcc9bd98f4b7f97498df6a7f9a6",
+  "source_commit_sha": "d7981a0d817c3f7dac434488d836f7cfadc5f6a5",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-17T11:05:37+00:00",
-  "result_file": "solver-results/problem81/039db9bb5e45.json"
+  "completed_at": "2026-09-17T11:15:23+00:00",
+  "result_file": "solver-results/problem81/e121be144d0e.json"
 }

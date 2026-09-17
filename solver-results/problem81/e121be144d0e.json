@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-proof-theory/problem.md",
+  "source_commit_sha": "d7981a0d817c3f7dac434488d836f7cfadc5f6a5",
+  "problem_blob_sha": "e121be144d0e4bcc9bd98f4b7f97498df6a7f9a6",
+  "statement_sha256": "336974ffce2d008b431493c329840f4dc8f508be1dc15c5a40e356021a8aea6f",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T11:14:31+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(B=b+1\\). The key invariant is the usual Goodstein one:\n\n\\[\no_{B}\\bigl(\\mathrm{BC}_{b}(t)\\bigr)=o_b(t).\n\\]\n\nThis is immediate by induction on depth: base change replaces only the base symbol, while the ordinal interpretation replaces that symbol by \\(\\omega\\) anyway.\n\nAlso, for fixed base \\(b\\), the ordinal interpretation is strictly increasing with numerical value on canonical bounded-depth terms. At depth \\(0\\) this is clear. At higher depth, comparison of canonical base-\\(b\\) expansions is lexicographic by the largest exponent where they differ; by induction, numerical ordering of exponents agrees with ordinal ordering of their interpretations. Hence if \\(0\\le n<m\\), then the canonical term of value \\(n\\) has smaller ordinal interpretation than the canonical term of value \\(m\\).\n\nTherefore, for nonzero \\(t\\in\\mathcal T_2(b)\\),\n\n\\[\n\\nu_{b+1}(G_b(t))\n=\n\\nu_{b+1}(\\mathrm{BC}_b(t))-1\n<\n\\nu_{b+1}(\\mathrm{BC}_b(t)),\n\\]\n\nso\n\n\\[\no_{b+1}(G_b(t))\n<\no_{b+1}(\\mathrm{BC}_b(t))\n=\no_b(t).\n\\]\n\nThus every nonzero bounded-depth Goodstein step strictly decreases the associated ordinal. Since ordinals are well-founded, no infinite strictly decreasing sequence exists. Hence every iterated bounded-depth Goodstein run terminates.\n\nNow compute \\(\\Theta\\). For fixed \\(b\\), depth \\(1\\) exponent ordinals are exactly finite Cantor normal forms with exponents \\(<b\\), so their supremum is\n\n\\[\n\\omega^b.\n\\]\n\nThus depth \\(2\\) ordinals have exponents \\(<\\omega^b\\), so\n\n\\[\n\\sup_{t\\in\\mathcal T_2(b)} o_b(t)=\\omega^{\\omega^b}.\n\\]\n\nTaking the supremum over \\(b\\ge2\\),\n\n\\[\n\\Theta\n=\n\\sup_{b\\ge2}\\omega^{\\omega^b}\n=\n\\omega^{\\omega^\\omega}.\n\\]\n\nFinally, at base \\(3\\),\n\n\\[\ne_1=2\\cdot3^2+3+2\n\\quad\\Rightarrow\\quad\no_{3,1}(e_1)=\\omega^2\\cdot2+\\omega+2,\n\\]\n\n\\[\ne_2=3^2+2\n\\quad\\Rightarrow\\quad\no_{3,1}(e_2)=\\omega^2+2,\n\\]\n\n\\[\ne_3=2\\cdot3+1\n\\quad\\Rightarrow\\quad\no_{3,1}(e_3)=\\omega\\cdot2+1.\n\\]\n\nTherefore\n\n\\[\no_3(t_\\star)\n=\n\\omega^{\\omega^2\\cdot2+\\omega+2}\\cdot2\n+\n\\omega^{\\omega^2+2}\n+\n\\omega^{\\omega\\cdot2+1}\\cdot2\n+\n1.\n\\]\n\nSo the requested pair is\n\n\\[\n\\boxed{\n\\left(\n\\omega^{\\omega^\\omega},\n\\ \\omega^{\\omega^2\\cdot2+\\omega+2}\\cdot2\n+\\omega^{\\omega^2+2}\n+\\omega^{\\omega\\cdot2+1}\\cdot2\n+1\n\\right)\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T11:15:23+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/e121be144d0e.json"
+}
