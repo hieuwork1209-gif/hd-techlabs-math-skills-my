@@ -7,60 +7,74 @@ $$
 $$
 so also $\int_0^1t x(t)\,dt=0$. Thus $x$ is $1$-Lipschitz, $x(0)=x(1)=0$, and its positive and negative parts have the same area and the same barycenter.
 
-We use two sharp estimates. Let $v\geq0$ be $1$-Lipschitz on an interval of length $L$, vanish at both endpoints, and set
+We need two sharp one-excursion estimates. Let $v\geq0$ be $1$-Lipschitz on an interval of length $L$, vanish at both endpoints, and set
 $$
-B=\int v,\qquad Q=\int v^3.
+B=\int v,\qquad Q=\int v^3,\qquad H=\max v.
 $$
-If $H=\max v$, layer cake with $m(a)=|\{v>a\}|$ gives $B\geq H^2$ and
+For $0\leq a<H$, let $m(a)=|\{v>a\}|$. If $0\leq a<b<H$, the $(b-a)$-neighborhood of $\{v>b\}$ lies in $\{v>a\}$, hence
 $$
-Q\leq H^2B-\frac{H^4}{2}\leq\frac{B^2}{2}.
+m(a)\geq m(b)+2(b-a).
 $$
-Equality in the last bound holds exactly for the triangular tent of height $\sqrt B$ and length $2\sqrt B$.
+Therefore $e(a)=m(a)-2(H-a)$ is nonnegative and nonincreasing. Layer cake gives
+$$
+B=H^2+\int_0^H e(a)\,da,
+$$
+$$
+Q=\frac{H^4}{2}+\int_0^H3a^2e(a)\,da.
+$$
+Since $a^2$ is increasing and $e$ is nonincreasing,
+$$
+\int_0^H3a^2e(a)\,da\leq H^2\int_0^He(a)\,da.
+$$
+Thus
+$$
+Q\leq H^2B-\frac{H^4}{2}.
+$$
+Also $B\geq H^2$, so the right side is at most $B^2/2$. Equality holds exactly for the triangular tent of height $\sqrt B$ and length $2\sqrt B$.
 
 For the opposite direction assume $0<B\leq L^2/4$, and let $b$ be the smaller root of
 $$
 B=bL-b^2.
 $$
-For $v_b(t)=\min\{t,L-t,b\}$ and $\phi(s)=s^3-3b^2s$, one has $\phi(v)\geq\phi(v_b)$ pointwise: on $[0,b]$ the function $\phi$ is decreasing, while for $s\geq b$,
+Set $v_b(t)=\min\{t,L-t,b\}$ and $\phi(s)=s^3-3b^2s$. Where $v_b<b$, both $v$ and $v_b$ lie in $[0,b]$ and $\phi$ is decreasing; where $v_b=b$,
 $$
-\phi(s)-\phi(b)=(s-b)^2(s+2b)\geq0.
+\phi(v)-\phi(b)=(v-b)^2(v+2b)\geq0.
 $$
-Since $\int v=\int v_b=B$,
+Hence $\phi(v)\geq\phi(v_b)$ pointwise. Because $\int v=\int v_b=B$,
 $$
 Q\geq\Phi(B,L):=Bb^2-\frac{b^4}{2},
 $$
-with equality exactly for the capped tent $v_b$. Writing $D=\sqrt{L^2-4B}$, direct differentiation gives
+with equality exactly for the capped tent $v_b$. Writing $D=\sqrt{L^2-4B}$, differentiation gives
 $$
 \Phi_{BB}=\frac{3(L-D)}{D}\geq0,\qquad \det D^2\Phi=0,
 $$
-and
 $$
 \Phi_L=-\frac{(L-D)^3}{4}<0.
 $$
-Hence $\Phi$ is jointly convex and decreases with the available length.
+Thus $\Phi$ is jointly convex and decreases when more length is available.
 
-Step 2: Reduce every maximizer to a symmetric three-block profile
+Step 2: Prove the moment-balanced compression and identify the extremal geometry
 Let
 $$
-A=\int_0^1x_+(t)\,dt=\int_0^1x_-(t)\,dt>0.
+A=\int_0^1x_+(t)\,dt=\int_0^1x_-(t)\,dt>0,
 $$
-The moment identities from Step 1 also give
+so the moment identities from Step 1 give
 $$
 \int_0^1t x_+(t)\,dt=\int_0^1t x_-(t)\,dt.
 $$
-Put $h=\sqrt A$. Concatenating positive excursions at zero does not change their area or cubic integral. The first estimate in Step 1 therefore gives
-$$
-\int x_+^3\leq\frac{A^2}{2}=\frac{h^4}{2},
-$$
-and the comparison triangle uses the least possible positive time, namely $2h$.
+Put $h=\sqrt A$.
 
-For fixed $A$, compress same-sign excursions before comparing their placement: replacing a positive excursion of area $B$ by its triangular extremal uses the minimum length $2\sqrt B$ and does not decrease its cubic integral, while concatenating negative excursions on the same side and replacing the concatenation by the capped-tent extremal does not increase the negative cubic integral. The block centers can then be translated while preserving the common barycenter. Thus the least-span configuration relevant to a maximizer has one positive block between one negative block on each side.
+We first compress excursions without worsening the objective. Concatenating positive excursions at zero preserves their total area and cubic integral, and Step 1 bounds the latter by $A^2/2=h^4/2$; the equality profile is one triangle and uses the minimum possible positive length $2h$. On either side of the common barycenter, concatenate all negative excursions and use the lower estimate from Step 1 on the concatenation. This preserves the side area and available length while replacing that side by one capped tent with no larger negative cubic contribution. Zero gaps can then be translated between the three remaining blocks without changing any integral; their positions are fixed by the common-barycenter equation. Hence an extremizer may be sought among three alternating blocks: one positive triangle and one negative block on each side.
 
-Write the left and right negative areas as $Ap^2$ and $Aq^2$, where $p^2+q^2=1$. Their least possible support lengths are $2hp$ and $2hq$. Place the positive triangle of length $2h$ between them and let $g_1,g_2\geq0$ be the two intervening zero gaps. Equality of the positive and negative barycenters is then
+To solve the placement constraint, write the left and right negative areas as $Ap^2$ and $Aq^2$, where $p^2+q^2=1$. Their minimum possible lengths are $2hp$ and $2hq$. Put the positive triangle of length $2h$ between them and let $g_1,g_2\geq0$ be the two zero gaps. Taking the left endpoint as $0$, the three block centers are
+$$
+hp,\qquad 2hp+g_1+h,\qquad 2hp+g_1+2h+g_2+hq.
+$$
+Equating the area-weighted negative center to the positive center gives
 $$
 -p^2g_1+q^2g_2+h(q-p)(1+pq+p+q)=0.
 $$
-Assume $q\geq p$ and put $r=q/p\geq1$. For fixed $p,q$, the least total gap has $g_2=0$. The resulting total span $T$ satisfies
+Assume $q\geq p$ and put $r=q/p\geq1$. The least total gap has $g_2=0$, and the corresponding total span $T$ is
 $$
 \frac{T}{h}=\frac{r^3+r^2\sqrt{1+r^2}+2r+\sqrt{1+r^2}+1}{\sqrt{1+r^2}}.
 $$
@@ -68,23 +82,22 @@ Its derivative has numerator
 $$
 2r^4+2r^3\sqrt{1+r^2}+3r^2+2r\sqrt{1+r^2}-r+2>0
 $$
-for $r\geq1$. Thus the least span occurs at $p=q=1/\sqrt2$, with no asymmetric gap. Consequently every feasible moment-balanced path satisfies
+for $r\geq1$. Therefore the least span occurs only at $r=1$, so the extremal placement has equal outer areas and no asymmetric gap. In particular feasibility requires
 $$
-2h(1+\sqrt2)\leq1,
+2h(1+\sqrt2)\leq1.
 $$
-and, for maximizing the cubic, it is optimal to center the positive triangle and split the negative area equally on the two sides.
 
 The positive triangle leaves total negative time $1-2h$. Let
 $$
 \ell=\frac{1-2h}{2}.
 $$
-If the two negative sides have data $(B_1,L_1)$ and $(B_2,L_2)$, then $B_1+B_2=A$ and $L_1+L_2\leq1-2h$. By the convexity and monotonicity of $\Phi$,
+For left/right negative data $(B_1,L_1)$ and $(B_2,L_2)$, one has $B_1+B_2=A$ and $L_1+L_2\leq1-2h$. Joint convexity and monotonicity of $\Phi$ give
 $$
 \Phi(B_1,L_1)+\Phi(B_2,L_2)
 \geq2\Phi\left(\frac A2,\frac{L_1+L_2}{2}\right)
 \geq2\Phi\left(\frac A2,\ell\right).
 $$
-Therefore a maximizer must have one central positive triangle and two congruent outer negative capped tents, with no unused time. This reduction also shows that equality forces this three-block geometry.
+Thus the negative cubic is minimized by two congruent capped tents of length $\ell$, and all available time is used. Combined with the positive equality condition, every maximizer has one central positive triangle and two congruent outer negative capped tents. The equality statements in Step 1 show that no other excursion shapes can attain the same value.
 
 Step 3: Optimize the two heights
 Let $b$ be the depth of either negative cap. Since each negative block has area $A/2=h^2/2$ and length $\ell=(1-2h)/2$,
@@ -114,11 +127,7 @@ Differentiation gives
 $$
 J'(z)=\frac{2z^3(z+1)^2(2z-1)(2z^2-1)}{(2z^2+2z+1)^5}.
 $$
-Thus $J$ increases on $(0,1/2)$ and decreases on $(1/2,1/\sqrt2)$, so the unique maximizing ratio is
-$$
-z=\frac12.
-$$
-Therefore
+Thus $J$ increases on $(0,1/2)$ and decreases on $(1/2,1/\sqrt2)$, so the unique maximizing ratio is $z=1/2$. Consequently
 $$
 h=\frac15,\qquad b=\frac1{10},\qquad J_{\max}=\frac1{2000}.
 $$
@@ -136,7 +145,7 @@ t-\frac3{10},&\frac15\leq t\leq\frac12,\\
 t-1,&\frac9{10}\leq t\leq1.
 \end{cases}
 $$
-Its positive area equals the total negative area, and it is symmetric about $1/2$, so both moment constraints hold. Differentiating gives, up to equality almost everywhere,
+Its positive area is $1/25$ and its two negative areas are $1/50$ each; symmetry about $1/2$ then gives both terminal moment constraints. Differentiating yields, up to equality almost everywhere,
 $$
 u(t)=
 \begin{cases}
@@ -148,7 +157,7 @@ u(t)=
 1,&\frac9{10}<t<1.
 \end{cases}
 $$
-Every inequality in Steps 1 and 2 must be an equality at the optimum, so the positive triangle, equal outer areas, equal negative caps, and absence of gaps are forced. Hence this control is the unique optimizer almost everywhere.
+Every bound in Steps 1 and 2 is sharp only for the displayed triangle/caps and the symmetric packing, so this control is the unique optimizer almost everywhere.
 
 Final Answer: $\boxed{\frac1{2000}}$
 
