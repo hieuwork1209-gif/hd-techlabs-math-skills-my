@@ -8,7 +8,15 @@ $$
 \qquad
 [BCD]=s,
 $$
-where $[XYZ]$ denotes the area of triangle $XYZ$, determine the maximum possible volume of $ABCD$.
+where $[XYZ]$ denotes the area of triangle $XYZ$, consider those having maximum possible volume.
+
+Determine the edge-length data of every volume-maximizing tetrahedron. More precisely, prove that every maximizer satisfies
+$$
+AB=AC=AD=\ell,
+\qquad
+BC=BD=CD=m,
+$$
+and determine the ordered pair $(\ell,m)$.
 
 ---
 
@@ -19,10 +27,10 @@ where $[XYZ]$ denotes the area of triangle $XYZ$, determine the maximum possible
 | **Domain** | Euclidean, Coordinate, and Transformational Geometry |
 | **Sub-domain** | Solid geometry |
 | **Problem Type** | Optimization |
-| **Answer Type** | Exact symbolic expression |
+| **Answer Type** | Tuple or ordered list |
 
 ---
 
 ## Domain Explanation
 
-This problem is primarily Euclidean, Coordinate, and Transformational Geometry and Solid geometry: it asks for the sharp volume bound for a tetrahedron with all four face areas prescribed. The decisive structure comes from encoding the faces by oriented area vectors and optimizing the resulting Gram determinant, followed by a geometric realization of the equality case.
+This problem is primarily Euclidean, Coordinate, and Transformational Geometry and Solid geometry: it asks for the congruence class of the tetrahedron that maximizes volume under four prescribed face areas. The solution must identify the extremal geometry and then reconstruct the edge lengths from the face-area data, rather than only compute the optimal volume.
