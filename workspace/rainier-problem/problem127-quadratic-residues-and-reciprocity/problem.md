@@ -2,15 +2,11 @@
 
 ## LaTeX (Normalized)
 
-Let $n\ge2$ be an integer. Determine exactly for which $n$ there exist distinct primes
+Let $m,n\ge2$ be integers. Determine exactly for which pairs $(m,n)$ there exist distinct primes
 $$
 p_1,\ldots,p_n\equiv3\pmod4
 $$
-such that, for every $j\in\{1,\ldots,n\}$, the product
-$$
-\prod_{i\ne j}p_i
-$$
-is a quadratic residue modulo $p_j$.
+such that, for every $j\in\{1,\ldots,n\}$, the number of indices $i\ne j$ for which $p_i$ is a quadratic nonresidue modulo $p_j$ is divisible by $m$.
 
 ---
 
@@ -27,4 +23,4 @@ is a quadratic residue modulo $p_j$.
 
 ## Domain Explanation
 
-This problem is primarily Number Theory and Quadratic residues and reciprocity: it asks for the global compatibility of pairwise Legendre symbols among primes congruent to $3$ modulo $4$. Quadratic reciprocity creates the decisive parity obstruction, while a compatible residue-symbol pattern must then be realized by actual primes.
+This problem is primarily Number Theory and Quadratic residues and reciprocity: quadratic reciprocity turns the pairwise residue data among primes congruent to $3$ modulo $4$ into a tournament, while the required divisibility condition becomes a global constraint on its indegrees. Solving the problem requires both classifying the compatible score data and realizing that pattern by actual primes.
