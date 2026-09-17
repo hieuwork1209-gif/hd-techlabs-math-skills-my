@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-stability-theory/problem.md",
+  "source_commit_sha": "2a3b9aa07838b7d5a8cc51877d834219e0cfad12",
+  "problem_blob_sha": "3d49864b35167fd4a67f50c2989ba8f284e22aac",
+  "statement_sha256": "7e82defd4b1bd3f5684b052f2772f1ad13f39b59a592f7c52bb276e2baaf090c",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T14:12:50+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nE(t)=e^{A_1t}=\n\\begin{pmatrix}\ne^{-\\alpha t}&c(t)\\\\\n0&e^{-\\beta t}\n\\end{pmatrix},\n\\]\nwhere\n\\[\nc(t)=\n\\begin{cases}\n\\displaystyle \\kappa\\,\\frac{e^{-\\alpha t}-e^{-\\beta t}}{\\beta-\\alpha},&\\alpha\\ne\\beta,\\\\[6pt]\n\\displaystyle \\kappa t e^{-\\alpha t},&\\alpha=\\beta.\n\\end{cases}\n\\]\nSince \\(e^{A_2t}=E(t)^T\\), the two modes have the same Euclidean operator norm.\n\nFor a \\(2\\times 2\\) upper triangular matrix\n\\[\nM=\\begin{pmatrix}a&c\\\\0&b\\end{pmatrix},\\qquad a,b,c>0,\n\\]\nits largest singular value is\n\\[\n\\|M\\|_2=\\frac12\\left(\\sqrt{(a+b)^2+c^2}+\\sqrt{(a-b)^2+c^2}\\right).\n\\]\nThus define\n\\[\nN(t)=\\|E(t)\\|_2\n=\\frac12\\left(\n\\sqrt{(e^{-\\alpha t}+e^{-\\beta t})^2+c(t)^2}\n+\n\\sqrt{(e^{-\\alpha t}-e^{-\\beta t})^2+c(t)^2}\n\\right).\n\\]\n\nI claim\n\\[\n\\Lambda_\\tau(\\alpha,\\beta,\\kappa)=\\frac1\\tau\\log N(\\tau).\n\\]\n\nFirst, this value is attainable. Switch periodically between the two modes, spending exactly \\(\\tau\\) in each mode. Then one two-step block is\n\\[\nE(\\tau)^TE(\\tau),\n\\]\nwhose spectral radius is \\(\\|E(\\tau)\\|_2^2=N(\\tau)^2\\). Hence after \\(2n\\) dwell intervals,\n\\[\n\\|\\Phi(2n\\tau)\\|_2\\sim N(\\tau)^{2n},\n\\]\nso the exponential rate is\n\\[\n\\frac{1}{2\\tau}\\log N(\\tau)^2=\\frac1\\tau\\log N(\\tau).\n\\]\n\nIt remains to show no switching law can do better. For any product with dwell lengths \\(t_j\\ge \\tau\\),\n\\[\n\\|\\Phi(t)\\|_2\\le C\\prod_j N(t_j),\n\\]\nwhere the bounded factor \\(C\\) only accounts for the final incomplete interval and is irrelevant after division by \\(t\\).\n\nSo it is enough to know that\n\\[\n\\frac{\\log N(t)}t\n\\]\nis decreasing in \\(t>0\\). Here is the verification. If \\(\\alpha=\\beta\\), then\n\\[\nN(t)=e^{-\\alpha t}\\left(\\frac{\\sqrt{4+\\kappa^2t^2}+\\kappa t}{2}\\right)\n=e^{-\\alpha t}\\exp\\!\\left(\\operatorname{arsinh}\\frac{\\kappa t}{2}\\right),\n\\]\nand \\(\\operatorname{arsinh} x/x\\) is decreasing for \\(x>0\\).\n\nIf \\(\\alpha\\ne\\beta\\), put\n\\[\nm=\\min(\\alpha,\\beta),\\qquad \\delta=|\\alpha-\\beta|,\\qquad h=\\frac{\\kappa}{\\delta}.\n\\]\nAfter factoring out \\(e^{-mt}\\), the remaining norm is\n\\[\nB(x)=\\left\\|\n\\begin{pmatrix}\n1&h(1-e^{-x})\\\\\n0&e^{-x}\n\\end{pmatrix}\n\\right\\|_2,\\qquad x=\\delta t.\n\\]\nWith \\(u=\\tanh(x/2)\\) and \\(H=\\sqrt{1+h^2}\\),\n\\[\nB(x)=\\frac{\\sqrt{1+h^2u^2}+Hu}{1+u}.\n\\]\nWriting \\(L(x)=\\log B(x)\\), direct differentiation gives\n\\[\nL'(x)=\\frac{H-\\sqrt{1+h^2u^2}}{2\\sqrt{1+h^2u^2}},\n\\]\nwhich decreases from \\((H-1)/2\\) to \\(0\\). Hence \\(L\\) is concave with \\(L(0)=0\\), so \\(L(x)/x\\) is decreasing. Therefore \\(\\log N(t)/t\\) is decreasing in all cases.\n\nThus every dwell interval \\(t_j\\ge\\tau\\) satisfies\n\\[\n\\log N(t_j)\\le \\frac{t_j}{\\tau}\\log N(\\tau),\n\\]\nand consequently every switching law has upper Lyapunov rate at most \\(\\tau^{-1}\\log N(\\tau)\\). The alternating law above attains it.\n\nTherefore\n\\[\n\\boxed{\n\\Lambda_\\tau(\\alpha,\\beta,\\kappa)\n=\n\\frac1\\tau\\log\\!\\left[\n\\frac{\n\\sqrt{(e^{-\\alpha\\tau}+e^{-\\beta\\tau})^2+c_\\tau^2}\n+\n\\sqrt{(e^{-\\alpha\\tau}-e^{-\\beta\\tau})^2+c_\\tau^2}\n}{2}\n\\right]\n}\n\\]\nwhere\n\\[\nc_\\tau=\n\\begin{cases}\n\\displaystyle \\kappa\\,\\frac{e^{-\\alpha\\tau}-e^{-\\beta\\tau}}{\\beta-\\alpha},&\\alpha\\ne\\beta,\\\\[6pt]\n\\displaystyle \\kappa\\tau e^{-\\alpha\\tau},&\\alpha=\\beta.\n\\end{cases}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T14:15:14+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/3d49864b3516.json"
+}
