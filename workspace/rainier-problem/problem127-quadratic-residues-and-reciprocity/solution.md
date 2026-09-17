@@ -88,6 +88,12 @@ $$
 =nL+\frac{nt}{2}
 =\binom n2.
 $$
+The values lie in the tournament degree range. Clearly $L\ge0$. If $n>2m$, then $n-1\ge2m$ and
+$$
+U=L+m\le\frac{n-1}{2}+m\le n-1.
+$$
+If $n=2m$, then $L=0$ and $U=m\le n-1$.
+
 We use the following exact form of Landau's tournament score theorem: a nondecreasing sequence
 $$
 0\le d_1\le\cdots\le d_n\le n-1
