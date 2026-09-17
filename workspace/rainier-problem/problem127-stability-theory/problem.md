@@ -14,9 +14,7 @@ and define
 $$
 A_1=\begin{pmatrix}-\alpha&\kappa\\0&-\beta\end{pmatrix},
 \qquad
-A_2=A_1^T,
-\qquad
-\eta=\sqrt{1+\frac{\kappa^2}{(\beta-\alpha)^2}}.
+A_2=A_1^T.
 $$
 For every piecewise-constant switching signal $\sigma:[0,\infty)\to\{1,2\}$ whose successive switching times are separated by at least $\tau$, let $\Phi_\sigma(t)$ be the fundamental matrix of
 $$
