@@ -85,7 +85,7 @@ $$
 H(x)-x^n
 =(1-x)(x-a)^2
 \sum_{\substack{i,j,k,\ell\geq0\\i+j+k+\ell=n-3}}
-a^{i+j}x^\ell.
+a^{i+j}x^{\ell}.
 $$
 Every term on the right is nonnegative for $0\leq x\leq1$, so
 $$
@@ -157,5 +157,5 @@ $\frac{\rho p+(1-p)[p(1-\rho)]^n}{1-p+\rho p}$
 - de Finetti theorem
 - exchangeable Bernoulli mixtures
 - moment extremization
-- Hermite interpolation
+- hermite interpolation
 - equality-case analysis
