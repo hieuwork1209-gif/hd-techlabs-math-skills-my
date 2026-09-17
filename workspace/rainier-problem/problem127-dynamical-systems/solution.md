@@ -1,42 +1,56 @@
 ## Steps
 
-Step 1: Translate finite order into a recurrence
-For $a>0$, write an orbit of
+Step 1: Translate finite order into a recurrence and its growth exponents
+For $a>0$ and an integer $p\ge0$, write an orbit of
 $$
-F_a(x,y)=\left(y,\frac{a+y}{x}\right)
+F_{a,p}(x,y)=\left(y,\frac{a+y^p}{x}\right)
 $$
-as consecutive terms of the recurrence
+as consecutive terms of
 $$
-x_{n+2}=\frac{a+x_{n+1}}{x_n},
+x_{n+2}=\frac{a+x_{n+1}^p}{x_n},
 \qquad x_0=x>0,
 \qquad x_1=y>0.
 $$
 Then
 $$
-F_a^N(x,y)=(x_N,x_{N+1}).
+F_{a,p}^N(x,y)=(x_N,x_{N+1}).
 $$
-Thus $F_a^N$ is the identity on $(0,\infty)^2$ exactly when every positive initial pair produces an $N$-periodic recurrence.
-
-Step 2: Use growth exponents at infinity to force the period to be a multiple of five
-Fix $y>0$ and set $x_0=X$, $x_1=y$, with $X\to\infty$. For each fixed $n$, write
+Fix $y>0$, put $x_0=X$, and let $X\to\infty$. For each fixed $n$, write
 $$
 x_n=C_nX^{e_n}(1+o(1)),
 $$
-where $C_n>0$. Because every quantity is positive, no leading-term cancellation can occur. From
+with $C_n>0$. Positivity prevents leading-term cancellation, so
 $$
-x_{n+2}=\frac{a+x_{n+1}}{x_n}
+e_{n+2}=\max(0,pe_{n+1})-e_n,
+\qquad e_0=1,
+\qquad e_1=0.
 $$
-the exponents satisfy
+If $F_{a,p}^N$ is the identity, then $(x_N,x_{N+1})=(X,y)$ for every $X$, so necessarily
 $$
-e_{n+2}=\max(0,e_{n+1})-e_n.
+(e_N,e_{N+1})=(1,0).
 $$
-Starting from
+Thus finite order requires the exponent-pair dynamics itself to return to $(1,0)$.
+
+Step 2: Classify the exponent regimes
+If $p=0$, then
 $$
-e_0=1,
-\qquad
-e_1=0,
+e_{n+2}=-e_n,
 $$
-we obtain the cycle of exponent pairs
+so the exponent pairs cycle as
+$$
+(1,0),
+(0,-1),
+(-1,0),
+(0,1),
+(1,0).
+$$
+Hence any identity iterate must have length divisible by $4$.
+
+If $p=1$, then
+$$
+e_{n+2}=\max(0,e_{n+1})-e_n,
+$$
+and the exponent pairs cycle as
 $$
 (1,0),
 (0,-1),
@@ -45,77 +59,95 @@ $$
 (1,1),
 (1,0).
 $$
-Because the exponent recurrence is deterministic, this five-step cycle then repeats. Hence the pair $(1,0)$ occurs exactly when the index is a multiple of $5$.
+Hence any identity iterate must have length divisible by $5$.
 
-If $F_a^N$ were the identity, then for every fixed $y>0$,
+Now let $p\ge2$. The first exponents are
 $$
-x_N=X,
-\qquad
-x_{N+1}=y.
+e_0=1,
+\qquad e_1=0,
+\qquad e_2=-1,
+\qquad e_3=0,
+\qquad e_4=1,
+\qquad e_5=p.
 $$
-Their exponents in $X$ are therefore $(1,0)$, so
+Since $p>1$, we have $e_5>e_4>0$. Whenever $e_{n+1}>e_n>0$,
 $$
-5\mid N.
+e_{n+2}=pe_{n+1}-e_n
+\ge 2e_{n+1}-e_n
+>e_{n+1}.
 $$
-Write
+Therefore the exponents are strictly increasing from $e_4$ onward. The pair $(1,0)$ never returns, so $F_{a,p}$ cannot have finite order for any $p\ge2$.
+
+Step 3: Resolve the constant-exponent regime $p=0$
+For $p=0$ the recurrence becomes
 $$
-N=5k.
+x_{n+2}=\frac{a+1}{x_n}.
+$$
+Writing $c=a+1>0$,
+$$
+F_{a,0}(x,y)=\left(y,\frac{c}{x}\right),
+$$
+so
+$$
+F_{a,0}^2(x,y)=\left(\frac{c}{x},\frac{c}{y}\right),
+$$
+$$
+F_{a,0}^3(x,y)=\left(\frac{c}{y},x\right),
+$$
+and
+$$
+F_{a,0}^4(x,y)=(x,y).
+$$
+The exponent-pair argument in Step 2 shows that no positive iterate of length less than $4$ can be the identity. Thus for every $a>0$,
+$$
+\operatorname{ord}(F_{a,0})=4.
 $$
 
-Step 3: Compute the five-step drift and force the parameter
-For fixed $y>0$ and $X\to\infty$, the first few terms are
+Step 4: Resolve the Lyness regime $p=1$
+Suppose $p=1$ and $F_{a,1}$ has finite order. Step 2 gives
+$$
+N=5k
+$$
+for some positive integer $k$.
+
+Fix $y>0$ and let $X\to\infty$. Directly from
+$$
+x_{n+2}=\frac{a+x_{n+1}}{x_n}
+$$
+we obtain
 $$
 x_2=\frac{a+y}{X},
 $$
 $$
-x_3=\frac{aX+a+y}{Xy}
-=\frac{a}{y}+O(X^{-1}),
+x_3=\frac{a}{y}+O(X^{-1}),
 $$
 $$
-x_4
-=\frac{a+x_3}{x_2}
-=\frac{a(y+1)}{y(a+y)}X+O(1),
+x_4=\frac{a(y+1)}{y(a+y)}X+O(1),
 $$
 $$
-x_5
-=\frac{a+x_4}{x_3}
-=\frac{y+1}{a+y}X+O(1),
+x_5=\frac{y+1}{a+y}X+O(1),
 $$
 and
 $$
-x_6
-=\frac{a+x_5}{x_4}
-=\frac{y}{a}+O(X^{-1}).
+x_6=\frac{y}{a}+O(X^{-1}).
 $$
-Therefore
+Hence one block of five iterates sends a state whose first coordinate tends to infinity and whose second coordinate tends to a positive limit $Y$ to another such state with second-coordinate limit $Y/a$. The displayed rational formulas make this asymptotic uniform when $Y$ stays in a compact subset of $(0,\infty)$, so induction gives
 $$
-F_a^5(X,y)
-=\left(\frac{y+1}{a+y}X+O(1),\frac{y}{a}+O(X^{-1})\right).
+\lim_{X\to\infty}\bigl(F_{a,1}^{5j}(X,y)\bigr)_2
+=\frac{y}{a^j}
 $$
-The displayed rational formulas show that these estimates are uniform when $y$ ranges over a compact subset of $(0,\infty)$. In particular, if the first coordinate tends to infinity and the second tends to a positive limit $Y$, then after five more iterates the first coordinate still tends to infinity and the second tends to $Y/a$.
+for every fixed positive integer $j$.
 
-Inducting over five-step blocks therefore gives, for every fixed positive integer $j$,
+If $F_{a,1}^{5k}$ is the identity, its second coordinate equals $y$ for every $X$. Taking $X\to\infty$ yields
 $$
-\lim_{X\to\infty}\bigl(F_a^{5j}(X,y)\bigr)_2
-=\frac{y}{a^j}.
+y=\frac{y}{a^k},
 $$
-
-Now suppose $F_a^{5k}$ is the identity. Its second coordinate equals $y$ for every $X$, so taking $X\to\infty$ yields
-$$
-y=\frac{y}{a^k}.
-$$
-Since $y>0$ and $a>0$,
-$$
-a^k=1,
-$$
-which forces
+so $a^k=1$. Since $a>0$,
 $$
 a=1.
 $$
-Thus no parameter other than $a=1$ can give a finite-order map.
 
-Step 4: Verify the five-cycle at the remaining parameter
-Set $a=1$. Starting from $x_0=x$ and $x_1=y$,
+For $a=1$,
 $$
 x_2=\frac{1+y}{x},
 $$
@@ -123,36 +155,31 @@ $$
 x_3=\frac{1+x+y}{xy},
 $$
 $$
-x_4
-=\frac{1+x_3}{x_2}
-=\frac{1+x}{y},
+x_4=\frac{1+x}{y},
 $$
 $$
-x_5
-=\frac{1+x_4}{x_3}
-=x,
+x_5=x,
+\qquad
+x_6=y.
 $$
-and
+Thus
 $$
-x_6
-=\frac{1+x_5}{x_4}
-=y.
+F_{1,1}^5=\operatorname{id}.
 $$
-Hence
+Again Step 2 rules out any smaller positive identity iterate, so
 $$
-F_1^5(x,y)=(x,y)
+\operatorname{ord}(F_{1,1})=5.
 $$
-for every $x,y>0$.
 
-The exponent-pair argument from Step 2 shows that an identity iterate must have exponent length divisible by $5$, so no positive iterate smaller than $5$ can be the identity. Therefore the order of $F_1$ is exactly $5$.
+Combining all regimes gives exactly the triples $(a,p,N)$ listed below, where $N$ is the least order.
 
-Final Answer: $\boxed{(1,5)}$
+Final Answer: $\boxed{\{(a,0,4):a>0\}\cup\{(1,1,5)\}}$
 
 ---
 
 ## Answer
 
-$(1,5)$
+$\{(a,0,4):a>0\}\cup\{(1,1,5)\}$
 
 ---
 
@@ -160,14 +187,14 @@ $(1,5)$
 
 **Problem Type:** Parameter identification
 
-**Answer Type:** Tuple or ordered list
+**Answer Type:** Set or multiset of objects
 
 ---
 
 ## Solution Concepts
 
 - nonlinear recurrence dynamics
-- asymptotic growth exponents
 - tropical exponent recurrence
+- asymptotic growth regimes
 - finite-order dynamical systems
 - periodicity obstruction
