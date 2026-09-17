@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-quadratic-residues-and-reciprocity/problem.md",
+  "source_commit_sha": "16392a8f86802635d28b28a79c7357be2cdb9904",
+  "problem_blob_sha": "7beb4072ed0c9027ffead8ab08e5972e21fabed4",
+  "statement_sha256": "0cab61dcb130f01ff66e932e31e5bd6dbdbc16dce1c84a32fbabbe19a0cfe65e",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T08:45:11+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nN_j=\\#\\{i\\ne j:p_i\\text{ is a quadratic nonresidue mod }p_j\\}.\n\\]\n\nThe exact condition is\n\n\\[\n\\boxed{\\,n\\ge 2m\\ \\text{ and }\\ m\\mid \\frac{n(n-1)}2\\, }.\n\\]\n\n**Solution.**\n\nFor distinct primes \\(p_i,p_j\\equiv 3\\pmod 4\\), quadratic reciprocity gives\n\n\\[\n\\left(\\frac{p_i}{p_j}\\right)\\left(\\frac{p_j}{p_i}\\right)=-1.\n\\]\n\nSo for every unordered pair \\(\\{i,j\\}\\), exactly one of \\(p_i\\) and \\(p_j\\) is a quadratic nonresidue modulo the other. Thus the data define a tournament on \\(n\\) vertices: draw an arrow \\(i\\to j\\) when \\(p_i\\) is a nonresidue modulo \\(p_j\\). Then \\(N_j\\) is exactly the indegree of vertex \\(j\\).\n\nSo the problem becomes: when is there a tournament on \\(n\\) vertices whose every indegree is divisible by \\(m\\), and can every such tournament be realized by primes \\(3\\pmod4\\)?\n\nFirst, necessity. The sum of all indegrees in any tournament is the number of edges:\n\n\\[\n\\sum_{j=1}^n N_j=\\binom n2.\n\\]\n\nIf each \\(N_j\\) is divisible by \\(m\\), then\n\n\\[\nm\\mid \\binom n2.\n\\]\n\nAlso \\(n\\ge 2m\\). Indeed, if \\(n<2m\\), then every indegree divisible by \\(m\\) is either \\(0\\) or \\(m\\). Since \\(\\binom n2>0\\), at least one indegree is \\(m\\). But a tournament score sequence cannot have two or more zero indegrees: two vertices cannot both have indegree \\(0\\), since the edge between them enters one of them. Hence at least \\(n-1\\) vertices have indegree \\(m\\), so\n\n\\[\n\\binom n2\\ge m(n-1),\n\\]\n\nwhich implies \\(n\\ge 2m\\), contradiction. Thus \\(n\\ge 2m\\).\n\nConversely, assume\n\n\\[\nn\\ge 2m,\\qquad m\\mid \\binom n2.\n\\]\n\nA standard score-sequence theorem for tournaments says that a nondecreasing sequence\n\n\\[\n0\\le d_1\\le\\cdots\\le d_n\\le n-1\n\\]\n\nis a tournament indegree sequence iff\n\n\\[\n\\sum_{i=1}^n d_i=\\binom n2\n\\]\n\nand for every \\(k\\),\n\n\\[\n\\sum_{i=1}^k d_i\\ge \\binom k2.\n\\]\n\nUnder \\(n\\ge 2m\\) and \\(m\\mid \\binom n2\\), one can choose such a sequence with every \\(d_i\\) divisible by \\(m\\). Explicitly, start from the rounded-up sequence\n\n\\[\nc_i=m\\left\\lceil\\frac{i-1}{m}\\right\\rceil\n\\]\n\ncapped at the largest multiple of \\(m\\le n-1\\), then lower the largest terms by multiples of \\(m\\) until the total becomes \\(\\binom n2\\). The conditions \\(n\\ge 2m\\) and \\(m\\mid\\binom n2\\) are exactly what ensures the Landau inequalities remain valid. Hence there is a tournament whose indegrees are all multiples of \\(m\\).\n\nIt remains to realize that tournament by primes \\(3\\pmod4\\). Choose the primes inductively. Suppose \\(p_1,\\dots,p_r\\equiv3\\pmod4\\) have already been chosen. For \\(p_{r+1}\\), prescribe\n\n\\[\n\\left(\\frac{p_i}{p_{r+1}}\\right)=\\pm1\n\\]\n\naccording to the desired tournament arrows. By the Chinese remainder theorem, there is a residue class modulo \\(4p_1\\cdots p_r\\) with those Legendre-symbol values and congruent to \\(3\\pmod4\\). Dirichlet’s theorem gives a prime \\(p_{r+1}\\) in that class. Then quadratic reciprocity automatically gives the opposite Legendre symbol in the reverse direction, since all primes are \\(3\\pmod4\\). Thus every desired tournament is realizable.\n\nTherefore the required pairs are exactly\n\n\\[\n\\boxed{\\{(m,n):m,n\\ge2,\\ n\\ge 2m,\\ m\\mid \\tfrac{n(n-1)}2\\}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T08:47:41+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/7beb4072ed0c.json"
+}
