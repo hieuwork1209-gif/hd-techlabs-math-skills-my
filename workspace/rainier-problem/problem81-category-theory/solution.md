@@ -158,7 +158,7 @@ have exactly $(p-1)^3$ solutions in the six edge parameters. Hence it suffices t
 
 Because $\Delta$ is homogeneous, scale by $z$ and put
 $$
-u=x/z,
+uu=x/z,
 \qquad v=y/z.
 $$
 Then
@@ -167,7 +167,7 @@ $$
 $$
 is equivalent to
 $$
-u^2+v^2+1-2uv-2u-2v=0.
+uu^2+v^2+1-2uv-2u-2v=0.
 $$
 As a quadratic in $v$, this is
 $$
