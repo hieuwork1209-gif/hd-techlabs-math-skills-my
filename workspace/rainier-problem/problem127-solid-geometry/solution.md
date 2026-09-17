@@ -1,56 +1,54 @@
 ## Steps
 
-Step 1: Encode the four face areas by three oriented area vectors
+Step 1: Reduce volume maximization to a Gram determinant
 Let
 $$
 x=B-A,\qquad y=C-A,\qquad z=D-A,
 $$
-and define
+and define the oriented area vectors
 $$
 u=\frac{1}{2}(y\times z),\qquad
 v=\frac{1}{2}(z\times x),\qquad
 w=\frac{1}{2}(x\times y).
 $$
-These are oriented area vectors for the three faces meeting at $A$, so
+The three faces through $A$ have area $1$, so
 $$
 \|u\|=\|v\|=\|w\|=1.
 $$
-The area vector of the opposite face $BCD$ is
+The opposite face satisfies
 $$
 \frac{1}{2}((y-x)\times(z-x))=u+v+w,
 $$
-up to orientation. Hence
+up to orientation, hence
 $$
 \|u+v+w\|=s.
 $$
 
-Let
+Put
 $$
 U=\begin{pmatrix}u&v&w\end{pmatrix},
 \qquad
 E=\begin{pmatrix}x&y&z\end{pmatrix}.
 $$
-The columns of the cofactor matrix of $E$ are $y\times z$, $z\times x$, and $x\times y$, so
+The columns of $\operatorname{cof}(E)$ are $y\times z$, $z\times x$, and $x\times y$, so
 $$
 U=\frac{1}{2}\operatorname{cof}(E).
 $$
 Since $|\det E|=6V$, where $V$ is the tetrahedron volume,
 $$
-|\det U|
-=\frac{1}{8}|\det E|^2
-=\frac{9}{2}V^2.
+|\det U|=\frac{1}{8}|\det E|^2=\frac{9}{2}V^2.
 $$
-Therefore, for the Gram matrix
+For the Gram matrix
 $$
 G=U^TU,
 $$
-one has
+this gives
 $$
 \det G=(\det U)^2=\frac{81}{4}V^4.
 $$
-Thus maximizing $V$ is equivalent to maximizing $\det G$.
+Thus maximizing the volume is equivalent to maximizing $\det G$.
 
-Step 2: Translate the face-area constraint into a convex Gram constraint
+Step 2: Determine the unique Gram matrix of every maximizer
 Write
 $$
 G=
@@ -60,21 +58,11 @@ p&1&r\\
 q&r&1
 \end{pmatrix}.
 $$
-Because
-$$
-\|u+v+w\|^2=s^2,
-$$
-we have
-$$
-3+2(p+q+r)=s^2,
-$$
-so
+The condition $\|u+v+w\|=s$ gives
 $$
 p+q+r=\frac{s^2-3}{2}.
 $$
-The feasible Gram matrices are positive semidefinite matrices with diagonal entries $1$ and this fixed sum of off-diagonal entries.
-
-Average $G$ over all six simultaneous permutations of its rows and columns. The average is
+Average $G$ over all six simultaneous permutations of rows and columns. The average is
 $$
 \overline G=
 \begin{pmatrix}
@@ -85,57 +73,102 @@ c&c&1
 \qquad
 c=\frac{s^2-3}{6}.
 $$
-Since $0<s<3$, one has
-$$
--\frac{1}{2}<c<1,
-$$
-so $\overline G$ is positive definite, with eigenvalues $1-c,1-c,1+2c$.
+Because $0<s<3$, one has $-1/2<c<1$, so $\overline G$ is positive definite.
 
-Step 3: Prove that the symmetric Gram matrix maximizes the determinant
-For positive definite matrices, $\log\det$ is concave. Indeed, along
+On the cone of positive definite matrices, $\log\det$ is strictly concave. Along
 $$
 H(t)=(1-t)H_0+tH_1,
 $$
-we have
+its second derivative is
 $$
 \frac{d^2}{dt^2}\log\det H(t)
 =-\operatorname{tr}\left(
 \left[H(t)^{-1/2}(H_1-H_0)H(t)^{-1/2}\right]^2
-\right)\leq0.
+\right),
 $$
-
-If a feasible $G$ is singular, then $\det G=0<\det\overline G$. If $G$ is positive definite, apply concavity to the six permutation-conjugates of $G$. They all have determinant $\det G$, while their average is $\overline G$. Hence
+which is negative unless $H_0=H_1$. Therefore, if $G$ is positive definite,
 $$
 \log\det\overline G
 \geq\frac{1}{6}\sum_P\log\det(P^TGP)
 =\log\det G.
 $$
-Therefore
-$$
-\det G\leq\det\overline G.
-$$
+A singular feasible $G$ has determinant $0<\det\overline G$, so the same determinant bound holds for every feasible $G$.
 
-Now
+Moreover, equality for a positive definite $G$ forces all six permutation-conjugates $P^TGP$ to be equal. Hence
 $$
-\det\overline G
-=(1-c)^2(1+2c).
+p=q=r=c.
 $$
-Substituting $c=(s^2-3)/6$ gives
+Thus every volume-maximizing tetrahedron has the same area-vector Gram matrix $\overline G$.
+
+Step 3: Recover the edge lengths from the maximizing area-vector Gram matrix
+For a maximizing tetrahedron, let
 $$
-1-c=\frac{9-s^2}{6},
-\qquad
-1+2c=\frac{s^2}{3},
+d=\det U=\sqrt{\det\overline G}>0
+$$
+and let
+$$
+H=E^TE
+$$
+be the Gram matrix of the three edge vectors from $A$. Since
+$$
+U=\frac{1}{2}\det(E)E^{-T},
+$$
+we have
+$$
+d=\frac{1}{8}(\det E)^2
 $$
 and therefore
 $$
-\det\overline G
-=\frac{s^2(9-s^2)^2}{108}.
+G=U^TU
+=\frac{1}{4}(\det E)^2E^{-1}E^{-T}
+=2dH^{-1}.
+$$
+Hence
+$$
+H=2d\,\overline G^{-1}.
 $$
 
-Step 4: Prove attainment and recover the maximal volume
-Because $\overline G$ is positive definite, choose linearly independent vectors $u,v,w$ with Gram matrix $\overline G$, and orient them so that
+For
 $$
-d=\det U>0.
+\overline G=(1-c)I+cJ,
+$$
+where $J$ is the all-ones matrix,
+$$
+\overline G^{-1}
+=\frac{1}{1-c}I
+-\frac{c}{(1-c)(1+2c)}J,
+$$
+and
+$$
+d=(1-c)\sqrt{1+2c}.
+$$
+Thus every diagonal entry of $H$ equals
+$$
+\frac{2(1+c)}{\sqrt{1+2c}},
+$$
+while every off-diagonal entry equals
+$$
+-\frac{2c}{\sqrt{1+2c}}.
+$$
+Therefore
+$$
+AB^2=AC^2=AD^2
+=\frac{2(1+c)}{\sqrt{1+2c}}
+=\frac{s^2+3}{\sqrt3\,s}.
+$$
+Also
+$$
+BC^2=BD^2=CD^2
+=\frac{4(1+2c)}{\sqrt{1+2c}}
+=\frac{4s}{\sqrt3}.
+$$
+
+Step 4: Prove attainment and uniqueness up to congruence
+Because $\overline G$ is positive definite, choose a matrix $U$ with
+$$
+U^TU=\overline G,
+\qquad
+\det U=d>0.
 $$
 Define
 $$
@@ -143,33 +176,33 @@ E=\sqrt{2d}\,U^{-T}.
 $$
 Then
 $$
-\frac{1}{2}\det(E)E^{-T}=U,
+\det E=2\sqrt{2d},
+\qquad
+E^{-T}=\frac{1}{\sqrt{2d}}U,
 $$
-so if $x,y,z$ are the columns of $E$, their three adjacent face-area vectors are exactly $u,v,w$. The fourth face has area
+so
 $$
-\|u+v+w\|=s.
+\frac{1}{2}\det(E)E^{-T}=U.
 $$
-Thus the maximizing Gram matrix is realized by an actual nondegenerate tetrahedron.
+Hence the columns of $E$ are edge vectors of a tetrahedron whose three adjacent face-area vectors are the columns of $U$. Their norms are $1$, and
+$$
+\|u+v+w\|^2=3+6c=s^2,
+$$
+so the fourth face has area $s$. This tetrahedron realizes $\overline G$, and therefore attains the determinant bound from Step 2.
 
-Using
+Every maximizer has the same edge Gram matrix $H=2d\,\overline G^{-1}$. If $E$ and $E'$ are edge matrices of two maximizers, then
 $$
-\det G=\frac{81}{4}V^4,
+E^TE=E'^TE'=H.
 $$
-we obtain
-$$
-V^4
-=\frac{4}{81}\cdot\frac{s^2(9-s^2)^2}{108}
-=\frac{s^2(9-s^2)^2}{3^7}.
-$$
-Since $0<s<3$, taking the positive fourth root yields the maximum volume.
+Thus $Q=E'E^{-1}$ satisfies $Q^TQ=I$, so the two tetrahedra differ only by an orthogonal transformation and translation. Hence all maximizers are congruent, with the two common edge lengths found in Step 3.
 
-Final Answer: $\boxed{\frac{\sqrt{s(9-s^2)}}{3^{7/4}}}$
+Final Answer: $\boxed{\left(\sqrt{\frac{s^2+3}{\sqrt3\,s}},2\sqrt{\frac{s}{\sqrt3}}\right)}$
 
 ---
 
 ## Answer
 
-$\frac{\sqrt{s(9-s^2)}}{3^{7/4}}$
+$\left(\sqrt{\frac{s^2+3}{\sqrt3\,s}},2\sqrt{\frac{s}{\sqrt3}}\right)$
 
 ---
 
@@ -177,7 +210,7 @@ $\frac{\sqrt{s(9-s^2)}}{3^{7/4}}$
 
 **Problem Type:** Optimization
 
-**Answer Type:** Exact symbolic expression
+**Answer Type:** Tuple or ordered list
 
 ---
 
@@ -185,6 +218,6 @@ $\frac{\sqrt{s(9-s^2)}}{3^{7/4}}$
 
 - oriented face area vectors
 - Gram matrices
-- log-determinant concavity
-- cofactor identity
-- symmetry averaging
+- strict log-determinant concavity
+- cofactor reconstruction
+- congruence from edge Gram matrices
