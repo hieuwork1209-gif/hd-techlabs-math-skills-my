@@ -5,33 +5,33 @@ Let
 $$
 m=\frac{\alpha+\beta}{2},
 \qquad
-\delta=\frac{\beta-\alpha}{2}>0.
+s=\frac{\beta-\alpha}{2},
 $$
-Then
+so
 $$
 A_1=-mI+C,
 \qquad
-C=\begin{pmatrix}\delta&\kappa\\0&-\delta\end{pmatrix},
+C=\begin{pmatrix}s&\kappa\\0&-s\end{pmatrix},
 \qquad
-C^2=\delta^2I.
+C^2=s^2I.
 $$
-Hence
+First suppose $s\neq0$, and put $d=|s|$. Then
 $$
 e^{hA_1}=e^{-mh}
 \left(
-\cosh(\delta h)I+\frac{\sinh(\delta h)}{\delta}C
+\cosh(sh)I+\frac{\sinh(sh)}{s}C
 \right).
 $$
-Put
+With
 $$
-B_h=e^{mh}e^{hA_1}.
+B_h=e^{mh}e^{hA_1},
 $$
-Then
+one has
 $$
 B_h=
 \begin{pmatrix}
-e^{\delta h}&\frac{\kappa}{\delta}\sinh(\delta h)\\
-0&e^{-\delta h}
+e^{sh}&\frac{\kappa}{s}\sinh(sh)\\
+0&e^{-sh}
 \end{pmatrix},
 \qquad
 \det B_h=1.
@@ -39,49 +39,62 @@ $$
 Therefore
 $$
 \operatorname{tr}(B_h^TB_h)
-=e^{2\delta h}+e^{-2\delta h}
-+\frac{\kappa^2}{\delta^2}\sinh^2(\delta h).
+=e^{2sh}+e^{-2sh}
++\frac{\kappa^2}{s^2}\sinh^2(sh).
 $$
-Using
+Since this expression is unchanged when $s$ is replaced by $d$, define
 $$
-e^{2x}+e^{-2x}=2+4\sinh^2x,
+\eta=\sqrt{1+\frac{\kappa^2}{4d^2}},
+\qquad
+q(h)=\operatorname{arsinh}\left(\eta\sinh(dh)\right).
 $$
-put
+Using $e^{2x}+e^{-2x}=2+4\sinh^2x$ gives
 $$
-\eta=\sqrt{1+\frac{\kappa^2}{4\delta^2}}
+\operatorname{tr}(B_h^TB_h)=2\cosh(2q(h)).
 $$
-and obtain
-$$
-\operatorname{tr}(B_h^TB_h)
-=2+4\eta^2\sinh^2(\delta h).
-$$
-Define
-$$
-q(h)=\operatorname{arsinh}\left(\eta\sinh(\delta h)\right).
-$$
-Since
-$$
-2+4\eta^2\sinh^2(\delta h)=2\cosh(2q(h))
-$$
-and $\det(B_h^TB_h)=1$, the two eigenvalues of $B_h^TB_h$ are $e^{2q(h)}$ and $e^{-2q(h)}$. Therefore
+Since $\det(B_h^TB_h)=1$, its eigenvalues are $e^{2q(h)}$ and $e^{-2q(h)}$. Hence
 $$
 \|e^{hA_1}\|_2=e^{-mh+q(h)}.
 $$
-The same norm formula holds for $A_2=A_1^T$.
-
-Differentiate twice:
+Moreover,
 $$
 q''(h)=
-\frac{\eta\delta^2(1-\eta^2)\sinh(\delta h)}
-{\left(1+\eta^2\sinh^2(\delta h)\right)^{3/2}}
+\frac{\eta d^2(1-\eta^2)\sinh(dh)}
+{\left(1+\eta^2\sinh^2(dh)\right)^{3/2}}
 <0
 $$
-for $h>0$. Thus $q$ is concave and $q(0)=0$, so $q(h)/h$ is strictly decreasing on $(0,\infty)$. Consequently
+for $h>0$.
+
+If $s=0$, then $C^2=0$ and
+$$
+B_h=I+hC=
+\begin{pmatrix}1&\kappa h\\0&1\end{pmatrix}.
+$$
+Now
+$$
+\operatorname{tr}(B_h^TB_h)=2+\kappa^2h^2
+=2\cosh\left(2\operatorname{arsinh}\frac{\kappa h}{2}\right).
+$$
+Thus in this case
+$$
+\|e^{hA_1}\|_2
+=e^{-mh+q(h)},
+\qquad
+q(h)=\operatorname{arsinh}\frac{\kappa h}{2},
+$$
+and
+$$
+q''(h)=
+-\frac{(\kappa/2)^3h}{\left(1+(\kappa h/2)^2\right)^{3/2}}<0
+$$
+for $h>0$.
+
+In both cases $q$ is concave with $q(0)=0$, so $q(h)/h$ is strictly decreasing. Therefore
 $$
 r(h):=\frac1h\log\|e^{hA_1}\|_2
 =-m+\frac{q(h)}h
 $$
-is strictly decreasing.
+is strictly decreasing on $(0,\infty)$. Since $A_2=A_1^T$, the same norm formula holds for $e^{hA_2}$.
 
 Step 2: Bound every switching law with minimum dwell time
 Let a switching signal have successive switching times separated by at least $\tau$. Every completed constant-mode interval therefore has length $h\geq\tau$, and Step 1 gives
@@ -90,11 +103,11 @@ $$
 $$
 for $i=1,2$.
 
-At an arbitrary observation time there is at most one terminal piece of the currently active interval. If its elapsed length $s\geq\tau$, the same decreasing-rate bound applies directly. If $0\leq s<\tau$, use the finite constant
+At an arbitrary observation time there is at most one terminal piece of the currently active interval. If its elapsed length $u\geq\tau$, the same decreasing-rate bound applies directly. If $0\leq u<\tau$, use the finite constant
 $$
 C_\tau=
-\max_{i\in\{1,2\}}\max_{0\leq s\leq\tau}
-\left(e^{-r(\tau)s}\|e^{sA_i}\|_2\right).
+\max_{i\in\{1,2\}}\max_{0\leq u\leq\tau}
+\left(e^{-r(\tau)u}\|e^{uA_i}\|_2\right).
 $$
 Submultiplicativity therefore gives, in every case,
 $$
@@ -151,18 +164,22 @@ $$
 \Lambda_\tau=r(\tau).
 $$
 
-Step 4: Record the closed form and the compact exact answer
-From Step 1,
+Step 4: Record the exact answer and its parameter form
+The equality from Step 3 gives the compact exact answer directly. When $\alpha\neq\beta$, Step 1 also gives
 $$
-\frac1\tau\log\|e^{\tau A_1}\|_2
+\Lambda_\tau
 =-\frac{\alpha+\beta}{2}
 +\frac1\tau\operatorname{arsinh}
 \left(
 \sqrt{1+\frac{\kappa^2}{(\beta-\alpha)^2}}
-\sinh\frac{(\beta-\alpha)\tau}{2}
+\sinh\frac{|\beta-\alpha|\tau}{2}
 \right).
 $$
-Thus the compact exact expression below is also an explicit closed form in the parameters.
+When $\alpha=\beta$, the corresponding formula is
+$$
+\Lambda_\tau
+=-\alpha+\frac1\tau\operatorname{arsinh}\frac{\kappa\tau}{2}.
+$$
 
 Final Answer: $\boxed{\tau^{-1}\log\|e^{\tau A_1}\|_2}$
 
