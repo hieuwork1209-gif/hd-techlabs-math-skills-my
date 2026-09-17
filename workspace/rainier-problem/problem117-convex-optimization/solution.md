@@ -1,139 +1,142 @@
 ## Steps
 
-Step 1: Reduce the SDP exactly to an angular cycle problem
-For $\tau>0$, write
+Step 1: Convert the SDP to an exact weighted angular problem
+Let the four light-edge weights be
 $$
-V(\tau)=\max_{X\succeq0,\ X_{ii}=1}
-\left[\frac12\sum_{i=1}^4(1-X_{i,i+1})+\frac\tau2(1-X_{5,1})\right].
+w_1=w_2=1,\qquad w_3=w_4=2.
 $$
-Every feasible $X$ is a Gram matrix $X_{ij}=u_i^Tu_j$ of unit vectors. Define
+Every feasible $X$ is a Gram matrix $X_{ij}=u_i^Tu_j$ of unit vectors. Put
 $$
-\delta_i=\arccos(-u_i^Tu_{i+1})\quad(1\le i\le4),
+v_1=u_1,\quad v_2=-u_2,\quad v_3=u_3,\quad v_4=-u_4,\quad v_5=u_5,
+$$
+and define
+$$
+\alpha_i=d(v_i,v_{i+1})\quad(1\le i\le4),
 \qquad
-\delta_5=\arccos(-u_5^Tu_1),
+\phi=d(v_5,v_1).
 $$
-so $0\le\delta_i\le\pi$. Put
+Then
 $$
-v_1=u_1,\quad v_2=-u_2,\quad v_3=u_3,\quad v_4=-u_4,\quad v_5=u_5.
-$$
-Then the spherical distance from $v_i$ to $v_{i+1}$ is $\delta_i$ for $1\le i\le4$, while
-$$
-d(v_1,v_5)=\arccos(u_1^Tu_5)=\pi-\delta_5.
-$$
-The triangle inequality on the unit sphere therefore gives
-$$
-\delta_1+\delta_2+\delta_3+\delta_4+\delta_5\ge\pi. \tag{1}
-$$
-The objective is
-$$
-\frac12\sum_{i=1}^4(1+\cos\delta_i)+\frac\tau2(1+\cos\delta_5). \tag{2}
-$$
-Because every term decreases as its $\delta_i$ increases, the relaxed angular maximum under (1) occurs with equality in (1). Conversely, every $5$-tuple of nonnegative angles summing to $\pi$ is attainable: place $v_1,\dots,v_5$ consecutively on one great circle with increments $\delta_1,\dots,\delta_4$, then recover the $u_i$ by the alternating signs above. Hence (1)-(2) are an exact reformulation of the SDP.
-
-Fix $b=\delta_5$. The four light-edge angles have total $\pi-b$. For $p,q\ge0$ with $p+q\le\pi$,
-$$
-\cos p+\cos q
-=2\cos\frac{p+q}{2}\cos\frac{p-q}{2}
-\le2\cos\frac{p+q}{2}.
-$$
-Repeated averaging shows that the maximum is attained when
-$$
-\delta_1=\delta_2=\delta_3=\delta_4=a,
+X_{i,i+1}=-\cos\alpha_i\quad(1\le i\le4),
 \qquad
-\delta_5=\pi-4a,
-\qquad 0\le a\le\frac\pi4. \tag{3}
+X_{5,1}=\cos\phi.
 $$
-Thus
+The spherical triangle inequality gives
 $$
-V(\tau)=\max_{0\le a\le\pi/4}\Phi_\tau(a),
-\qquad
-\Phi_\tau(a)=2+2\cos a+\frac\tau2(1-\cos4a). \tag{4}
+\phi\le A:=\alpha_1+\alpha_2+\alpha_3+\alpha_4. \tag{1}
 $$
-Equality in the spherical triangle inequality and in the averaging step also describes all optimizers. If $a=0$, all $u_i$ are collinear and the Gram matrix has rank $1$. If $a>0$, the equality case lies on one great circle with a nonzero increment, so the optimizer Gram matrix is uniquely determined and has rank $2$.
+Near the rank-one cut, $A<\pi$. Since $1-\cos\phi$ increases with $\phi$ on $[0,\pi]$, every local maximizer must have equality in (1). Conversely, equality is attainable by placing the $v_i$ successively on one great circle with increments $\alpha_i$. Therefore, once the optimizer is known to lie near the cut,
+$$
+V(\tau)-6=
+\max_{\substack{\alpha_i\ge0\\A<\pi}}
+\left[
+-\frac12\sum_{i=1}^4w_i(1-\cos\alpha_i)
++\frac\tau2(1-\cos A)
+\right]. \tag{2}
+$$
+Any nonzero optimizer of (2) is realized on one great circle, so its Gram matrix has rank $2$.
 
-Step 2: Locate the rank transition
-Differentiate (4):
+Step 2: Find the exact threshold and the rank-one side
+For arbitrary unit vectors, the chord triangle inequality and weighted Cauchy-Schwarz give
 $$
-\Phi_\tau'(a)
-=-2\sin a+2\tau\sin4a
-=2\sin a\bigl(4\tau\cos a\cos2a-1\bigr). \tag{5}
+\|v_5-v_1\|
+\le\sum_{i=1}^4\|v_{i+1}-v_i\|,
 $$
-On $(0,\pi/4)$,
 $$
-g(a):=\cos a\cos2a
+\left(\sum_{i=1}^4\|v_{i+1}-v_i\|\right)^2
+\le
+\left(\sum_{i=1}^4\frac1{w_i}\right)
+\left(\sum_{i=1}^4w_i\|v_{i+1}-v_i\|^2\right).
 $$
-is strictly decreasing because
+Here
 $$
-g'(a)=-\sin a\cos2a-2\cos a\sin2a<0,
+S_1:=\sum_{i=1}^4\frac1{w_i}=3.
 $$
-with $g(0)=1$ and $g(\pi/4)=0$.
+Since $\|p-q\|^2=2(1-p^Tq)$ for unit vectors,
+$$
+1-\cos\phi\le3\sum_{i=1}^4w_i(1-\cos\alpha_i). \tag{3}
+$$
+Hence
+$$
+V(\tau)-6
+\le
+\frac{3\tau-1}{2}
+\sum_{i=1}^4w_i(1-\cos\alpha_i). \tag{4}
+$$
+Thus $V(\tau)=6$ for $0<\tau\le1/3$, attained by the alternating collinear vectors
+$$
+u_1=u_3=u_5=v,\qquad u_2=u_4=-v.
+$$
+At $\tau=1/3$, equality in (4) requires equality in both the chord triangle inequality and weighted Cauchy-Schwarz. The four chord increments must therefore be nonnegative parallel multiples of one vector. Since all five $v_i$ lie on the unit sphere, a line meets that sphere in at most two points; monotone parallel increments cannot visit five unit points unless every increment vanishes. Hence the Gram matrix is rank $1$ and is unique up to the common choice of $v$.
 
-If $0<\tau\le1/4$, then $4\tau g(a)<1$ for every $a>0$, so $\Phi_\tau$ is strictly decreasing and its unique maximizer is $a=0$. Hence
+For $\tau=1/3+h$ with $h>0$, choose small angles proportional to $1/w_i$ and place them on a great circle. The quadratic term in (2) is then positive, so $V(1/3+h)>6$. Therefore
 $$
-V(\tau)=4,\qquad 0<\tau\le\frac14, \tag{6}
+\tau_c=\frac13. \tag{5}
 $$
-and every optimizer has rank $1$.
+By compactness and uniqueness of the rank-one Gram matrix at $\tau_c$, every optimizer converges to that Gram matrix as $\tau\downarrow\tau_c$. Thus (2) applies to all optimizers for $\tau>\tau_c$ sufficiently close to $\tau_c$, and every such optimizer has rank $2$.
 
-If $\tau>1/4$, equation
+Step 3: Compute the weighted quartic onset
+For a fixed small total angle $A$, define
 $$
-4\tau\cos a\cos2a=1 \tag{7}
+L(A)=\min_{\substack{\alpha_i\ge0\\\sum\alpha_i=A}}
+\sum_{i=1}^4w_i(1-\cos\alpha_i). \tag{6}
 $$
-has a unique solution $a_\tau\in(0,\pi/4)$. By (5), $\Phi_\tau$ increases before $a_\tau$ and decreases after it, so this is the unique maximizer. Thus the optimizer has rank $2$ for every $\tau>1/4$. Consequently
+The minimizer is interior for small $A$. Its Lagrange equations are
 $$
-\tau_c:=\sup\{\tau>0:V(\tau)=4\}=\frac14. \tag{8}
+w_i\sin\alpha_i=\lambda.
 $$
-
-Step 3: Extract the second-order onset at the bifurcation
-Let $h>0$ and write
+Hence $\alpha_i=A/(S_1w_i)+O(A^3)$. Let
 $$
-a_h=a_{1/4+h}.
+S_3:=\sum_{i=1}^4\frac1{w_i^3}
+=1+1+\frac18+\frac18
+=\frac94.
 $$
-From (7),
+Using $1-\cos z=z^2/2-z^4/24+O(z^6)$, and noting that the $O(A^3)$ corrections do not change the quartic term because the quadratic minimizer is stationary under the constraint, we obtain
 $$
-\cos a_h\cos2a_h=\frac1{1+4h}. \tag{9}
+L(A)=\frac{A^2}{2S_1}-\frac{S_3}{24S_1^4}A^4+O(A^6)
+=\frac{A^2}{6}-\frac{A^4}{864}+O(A^6). \tag{7}
 $$
-Hence $a_h\to0$. Since
+Now put $\tau=1/3+h$. From (2), after optimizing the light-edge split for fixed $A$,
 $$
-\cos a\cos2a=1-\frac52a^2+O(a^4),
+V\left(\frac13+h\right)-6
+=
+\max_{A\ge0}
+\left[
+-\frac12L(A)+\left(\frac16+\frac h2\right)(1-\cos A)
+\right]. \tag{8}
 $$
-(9) gives
+Substituting (7) gives
 $$
-\frac{a_h^2}{h}\longrightarrow\frac85. \tag{10}
+V\left(\frac13+h\right)-6
+=
+\max_{A\ge0}
+\left[
+\frac h4A^2-\frac{11}{1728}A^4
++O(hA^4+A^6)
+\right]. \tag{9}
 $$
-Indeed,
+The maximizing angle satisfies $A^2=O(h)$; more precisely the leading quadratic-quartic balance gives
 $$
-1-\cos a_h\cos2a_h=\frac{4h}{1+4h},
+\frac{A^2}{h}\longrightarrow\frac{216}{11}. \tag{10}
 $$
-and division by $a_h^2$ followed by $h\downarrow0$ yields (10).
-
-Using (4) and $\tau=1/4+h$,
-$$
-V\left(\frac14+h\right)-4
-=2(\cos a_h-1)+\left(\frac18+\frac h2\right)(1-\cos4a_h).
-$$
-Taylor expansion at $0$ gives
-$$
-V\left(\frac14+h\right)-4
-=4h\,a_h^2-\frac54a_h^4+O(ha_h^4+a_h^6). \tag{11}
-$$
-Because $a_h^2=O(h)$ by (10), dividing (11) by $h^2$ gives
+Using (10) in (9),
 $$
 \lim_{h\downarrow0}
-\frac{V(1/4+h)-V(1/4)}{h^2}
-=4\cdot\frac85-\frac54\left(\frac85\right)^2
-=\frac{16}{5}. \tag{12}
+\frac{V(1/3+h)-V(1/3)}{h^2}
+=
+\frac{27}{11}. \tag{11}
 $$
 
-Step 4: Collect the exact pair
-Equations (8) and (12) give the threshold where the SDP leaves the rank-one cut solution and the exact quadratic onset of the optimal value.
+Step 4: Collect the transition data
+The weighted SDP stays at the rank-one cut value $6$ through $\tau=1/3$. Immediately to the right, every optimizer is rank $2$, and the excess optimal value turns on quadratically with coefficient $27/11$.
 
-Final Answer: $\boxed{(1/4,16/5)}$
+Final Answer: $\boxed{(1/3,27/11)}$
 
 ---
 
 ## Answer
 
-$(1/4,16/5)$
+$(1/3,27/11)$
 
 ---
 
@@ -147,8 +150,8 @@ $(1/4,16/5)$
 
 ## Solution Concepts
 
-- semidefinite Gram representation
-- spherical triangle inequality
+- weighted semidefinite Gram geometry
+- weighted chord inequality
 - odd-cycle angular obstruction
 - rank bifurcation
-- second-order sensitivity
+- quartic sensitivity analysis
