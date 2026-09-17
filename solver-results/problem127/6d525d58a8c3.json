@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-numerical-differential-equations/problem.md",
+  "source_commit_sha": "ef2dc9b8ae88f600b578b854166c8ef2aeba4d50",
+  "problem_blob_sha": "6d525d58a8c34e151c331f72899d4c7413c7f331",
+  "statement_sha256": "95e889d250f5771a34c44c1f1eaf461e048c4986230e9661c528ff0cce415eef",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T13:50:06+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\ns=a+d,\\qquad p=ad.\n\\]\nSince\n\\[\nI-zA=\n\\begin{pmatrix}\n1-az&0\\\\\n-z(1-a-d)&1-dz\n\\end{pmatrix},\n\\]\nsolving \\((I-zA)y=\\mathbf 1\\) gives\n\\[\ny_1=\\frac1{1-az},\\qquad\ny_2=\\frac{1+z(1-2a-d)}{(1-az)(1-dz)}.\n\\]\nHence\n\\[\nR(z)=1+\\frac z2(y_1+y_2)\n=\\frac{1+(1-s)z+\\left(p+\\frac12-s\\right)z^2}{(1-az)(1-dz)}.\n\\]\n\nFor L-stability, we must have\n\\[\n\\lim_{x\\to+\\infty}R(-x)=0.\n\\]\nSince the denominator has leading coefficient \\(ad=p>0\\), this forces the quadratic coefficient in the numerator to vanish:\n\\[\np+\\frac12-s=0,\n\\]\ni.e.\n\\[\nad-a-d+\\frac12=0.\n\\]\nEquivalently,\n\\[\n(a-1)(d-1)=\\frac12.\n\\]\n\nUnder this condition,\n\\[\nR(z)=\\frac{1+(1-a-d)z}{(1-az)(1-dz)}.\n\\]\nThe poles are at \\(z=1/a,1/d>0\\), so there are no poles in the closed left half-plane. It remains to check the imaginary axis.\n\nFor \\(z=iy\\),\n\\[\n|R(iy)|^2\n=\n\\frac{1+(1-a-d)^2y^2}{(1+a^2y^2)(1+d^2y^2)}.\n\\]\nNow from\n\\[\nad-a-d+\\frac12=0\n\\]\nwe get\n\\[\n(1-a-d)^2=a^2+d^2.\n\\]\nIndeed,\n\\[\n(1-a-d)^2-(a^2+d^2)=1-2a-2d+2ad=0.\n\\]\nTherefore\n\\[\n|R(iy)|^2\n=\n\\frac{1+(a^2+d^2)y^2}{1+(a^2+d^2)y^2+a^2d^2y^4}\n\\le 1.\n\\]\nSince \\(R\\) is analytic in \\(\\operatorname{Re}z\\le0\\), has no poles there, and tends to \\(0\\) at infinity in that half-plane, the maximum principle gives\n\\[\n|R(z)|\\le1\\qquad(\\operatorname{Re}z\\le0).\n\\]\n\nThus the method is L-stable exactly for the positive solutions of\n\\[\nad-a-d+\\frac12=0.\n\\]\n\n\\[\n\\boxed{\\{(a,d)\\in(0,\\infty)^2:\\ (a-1)(d-1)=\\tfrac12\\}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T13:51:02+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/6d525d58a8c3.json"
+}
