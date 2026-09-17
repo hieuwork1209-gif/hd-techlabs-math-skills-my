@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-stability-theory/problem.md",
+  "source_commit_sha": "c6c080180c84e18fe8add883c9b0b60f21bcf157",
+  "problem_blob_sha": "fa00944cb4553efa2ee8c010dfe847af872d3a3e",
+  "statement_sha256": "cb709d34aa9465872e591a9ec46d49847981e2240c840aecf5135942cbf35095",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T15:10:24+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\n\\Delta(\\lambda,\\tau)=\\lambda+a+(c\\lambda+b)e^{-\\lambda\\tau}.\n\\]\nWe need exactly those \\(\\tau>0\\) for which all zeros of \\(\\Delta\\) lie in the open left half-plane.\n\nFirst find possible imaginary-axis crossings. Put \\(\\lambda=i\\omega\\), \\(\\omega>0\\). Then\n\\[\ni\\omega+a=-(ic\\omega+b)e^{-i\\omega\\tau}.\n\\]\nTaking absolute values gives\n\\[\na^2+\\omega^2=b^2+c^2\\omega^2,\n\\]\nso\n\\[\n\\omega^2=\\frac{b^2-a^2}{1-c^2}.\n\\]\nThus there is only one possible positive crossing frequency:\n\\[\n\\Omega=\\sqrt{\\frac{b^2-a^2}{1-c^2}}.\n\\]\n\nWriting \\(e^{-i\\Omega\\tau}=\\cos(\\Omega\\tau)-i\\sin(\\Omega\\tau)\\), the real and imaginary parts give\n\\[\na+b\\cos(\\Omega\\tau)+c\\Omega\\sin(\\Omega\\tau)=0,\n\\]\n\\[\n\\Omega+c\\Omega\\cos(\\Omega\\tau)-b\\sin(\\Omega\\tau)=0.\n\\]\nSolving,\n\\[\n\\cos(\\Omega\\tau)=-\n\\frac{ab+c\\Omega^2}{b^2+c^2\\Omega^2},\n\\qquad\n\\sin(\\Omega\\tau)=\n\\frac{\\Omega(b-ac)}{b^2+c^2\\Omega^2}.\n\\]\nSince \\(b-ac>b-a>0\\), the sine is positive, and the corresponding angle is the unique\n\\[\n\\theta\\in(0,\\pi)\n\\]\nsatisfying\n\\[\n\\cos\\theta=-\n\\frac{ab+c\\Omega^2}{b^2+c^2\\Omega^2},\n\\qquad\n\\sin\\theta=\n\\frac{\\Omega(b-ac)}{b^2+c^2\\Omega^2}.\n\\]\nTherefore imaginary roots occur exactly when\n\\[\n\\Omega\\tau=\\theta+2\\pi k,\\qquad k=0,1,2,\\dots\n\\]\nso the first possible crossing is at\n\\[\n\\tau_*=\\frac{\\theta}{\\Omega}.\n\\]\n\nIt remains to determine the crossing direction. Differentiating\n\\[\n\\Delta(\\lambda,\\tau)=0\n\\]\nimplicitly gives\n\\[\n\\frac{d\\lambda}{d\\tau}\n=\n-\\frac{\\Delta_\\tau}{\\Delta_\\lambda}.\n\\]\nEquivalently, from\n\\[\ne^{\\lambda\\tau}=-\\frac{c\\lambda+b}{\\lambda+a},\n\\]\ndifferentiate with respect to \\(\\lambda\\):\n\\[\n-\\tau-\\lambda\\frac{d\\tau}{d\\lambda}\n=\n\\frac1{\\lambda+a}-\\frac{c}{c\\lambda+b}.\n\\]\nAt \\(\\lambda=i\\Omega\\),\n\\[\n\\operatorname{Re}\\frac{d\\tau}{d\\lambda}\n=\n\\frac1{\\Omega}\n\\operatorname{Im}\\left(\n-\\frac1{a+i\\Omega}+\\frac{c}{b+ic\\Omega}\n\\right).\n\\]\nUsing\n\\[\na^2+\\Omega^2=b^2+c^2\\Omega^2,\n\\]\nthis becomes\n\\[\n\\operatorname{Re}\\frac{d\\tau}{d\\lambda}\n=\n\\frac{1-c^2}{a^2+\\Omega^2}>0.\n\\]\nHence\n\\[\n\\operatorname{Re}\\frac{d\\lambda}{d\\tau}>0\n\\]\nat every imaginary-axis crossing. So roots cross from left to right as \\(\\tau\\) increases.\n\nAt \\(\\tau=0\\), the characteristic equation reduces to\n\\[\n(1+c)\\lambda+(a+b)=0,\n\\]\nwhose only root is\n\\[\n\\lambda=-\\frac{a+b}{1+c}<0.\n\\]\nSince \\(0<c<1\\), roots cannot enter the right half-plane except through the imaginary axis. Therefore stability holds until the first crossing and fails at and after it.\n\nThus all characteristic roots satisfy \\(\\operatorname{Re}\\lambda<0\\) exactly for\n\n\\[\n\\boxed{\n0<\\tau<\n\\frac{1}{\\Omega}\n\\arccos\\!\\left(\n-\\frac{ab+c\\Omega^2}{b^2+c^2\\Omega^2}\n\\right),\n\\qquad\n\\Omega=\\sqrt{\\frac{b^2-a^2}{1-c^2}}\n}\n\\]\n\nwhere the arccosine value is the angle in \\((0,\\pi)\\).",
+  "status": "success",
+  "completed_at": "2026-09-17T15:12:05+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/fa00944cb455.json"
+}

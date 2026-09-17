@@ -1,9 +1,9 @@
 {
   "problem": "problem127",
   "branch": "adversary/problem127",
-  "problem_path": "workspace/rainier-problem/problem127-quadratic-residues-and-reciprocity/problem.md",
-  "problem_blob_sha": "2580c0ff971d9dde73a7427ea14e68bb05f46af3",
-  "source_commit_sha": "07db9fd365f143d26e1f68872f15c38cc1ec44ba",
+  "problem_path": "workspace/rainier-problem/problem127-stability-theory/problem.md",
+  "problem_blob_sha": "fa00944cb4553efa2ee8c010dfe847af872d3a3e",
+  "source_commit_sha": "c6c080180c84e18fe8add883c9b0b60f21bcf157",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-17T14:55:50+00:00",
-  "result_file": "solver-results/problem127/2580c0ff971d.json"
+  "completed_at": "2026-09-17T15:12:05+00:00",
+  "result_file": "solver-results/problem127/fa00944cb455.json"
 }
