@@ -1,150 +1,161 @@
 ## Steps
 
-Step 1: Compute the tangent offset and tangent length
-Work in the hyperbolic plane of curvature $-1$ with polar coordinates $(r,\lambda)$ about the center $O$ of the forbidden disk. Its metric is
+Step 1: Convert the geodesic scattering data into an integral transform
+Let a unit-speed geodesic be written as $(r(s),\theta(s))$. For the rotational metric
 $$
-ds^2=dr^2+\sinh^2r\,d\lambda^2.
+ds^2=dr^2+f(r)^2d\theta^2,
 $$
-Let $T$ be a point on the circle $r=\alpha$ such that the geodesic from $P=(\beta,-\theta)$ to $T$ is tangent to that circle. Put
+rotational symmetry gives the conserved quantity
 $$
-\delta=\lambda(T)+\theta,
+J=f(r)^2\dot\theta.
 $$
-so $\delta>0$, and let $\ell=d(P,T)$. The triangle $OPT$ is right-angled at $T$. Hence
-$$
-\cosh\beta=\cosh\alpha\cosh\ell,
-$$
-which gives
-$$
-\ell=\mathrm{acosh}\left(\frac{\cosh\beta}{\cosh\alpha}\right).
-$$
-The hyperbolic law of cosines also gives
-$$
-\cosh\ell
-=\cosh\alpha\cosh\beta-\sinh\alpha\sinh\beta\cos\delta.
-$$
-Substituting the preceding value of $\cosh\ell$ yields
-$$
-\cos\delta=\frac{\tanh\alpha}{\tanh\beta}.
-$$
-Therefore
-$$
-\delta=\arccos\frac{\tanh\alpha}{\tanh\beta},
-\qquad
-0<\delta<\frac{\pi}{2}.
-$$
-The tangent segment has closest distance exactly $\alpha$ from $O$, so it lies in the complement of the open disk.
+At the boundary $r=R$, one has $f(R)=1$. If the inward unit tangent makes angle $\arcsin c$ with the inward radial direction and points toward increasing $\theta$, then its tangential speed is $c$, so $J=c$.
 
-Step 2: Lift the winding condition to the universal cover
-The exterior region $r\geq\alpha$ is an annulus. Lift its angular coordinate to the universal cover, so a curve in the prescribed class starts at
+Unit speed gives
 $$
-\widetilde P=(\beta,-\theta)
+\dot r^2+f(r)^2\dot\theta^2=1,
 $$
-and ends at
+hence
 $$
-\widetilde Q=(\beta,\theta+2\pi m).
+\dot r^2=1-\frac{c^2}{f(r)^2}.
 $$
-Thus its net lifted angular change is
+Because $f$ is strictly increasing from $0$ to $1$, the geodesic has a unique turning radius $r_c$ satisfying
 $$
-\Delta=2\theta+2\pi m.
+f(r_c)=c.
 $$
-Since $m\geq1$ and $0<\delta<\frac{\pi}{2}$,
+The two halves of the geodesic are symmetric about the turning point. Therefore, if $\Phi(c)$ is half of the total lifted angular change between the two boundary intersections,
 $$
-\Delta>2\delta.
+\Phi(c)
+=\int_{r_c}^{R}\frac{c}{f(r)\sqrt{f(r)^2-c^2}}\,dr.
 $$
 
-Consider the two lifted radial geodesics
+Step 2: Express the prescribed scattering law through the inverse radial profile
+Since $f$ is strictly increasing, let
 $$
-\lambda=-\theta+\delta
+g(x)=(f^{-1})'(x),
+\qquad 0\leq x\leq1.
+$$
+Changing variables $x=f(r)$ in the integral from Step 1 gives
+$$
+\Phi(c)
+=\int_c^1\frac{c\,g(x)}{x\sqrt{x^2-c^2}}\,dx.
+$$
+The two elementary integrals
+$$
+\int_c^1\frac{c}{x\sqrt{x^2-c^2}}\,dx=\arccos c
 $$
 and
 $$
-\lambda=\theta+2\pi m-\delta.
+\int_c^1\frac{cx}{\sqrt{x^2-c^2}}\,dx=c\sqrt{1-c^2}
 $$
-Every continuous lifted angular coordinate joining $-\theta$ to $\theta+2\pi m$ must meet both of these radial geodesics. Let $A$ be the first intersection with the first one and $B$ the last intersection with the second one.
+show that the prescribed law
+$$
+\Phi(c)=\arccos c+\lambda c\sqrt{1-c^2}
+$$
+is exactly the transform of
+$$
+g_0(x)=1+\lambda x^2.
+$$
+Thus, with
+$$
+h(x)=g(x)-1-\lambda x^2,
+$$
+we have
+$$
+\int_c^1\frac{c\,h(x)}{x\sqrt{x^2-c^2}}\,dx=0
+$$
+for every $0<c<1$.
 
-The tangent point $T$ from Step 1 is the perpendicular foot from $P$ to the first radial geodesic. Hence every point of that radial geodesic with $r\geq\alpha$ is at distance at least $\ell$ from $P$. Therefore the portion from $P$ to $A$ has length at least $\ell$. By the symmetric argument at the other endpoint, the portion from $B$ to $Q$ also has length at least $\ell$.
+Step 3: Prove injectivity of the transform by a second integration
+Fix $0<y<1$. Integrate the zero identity from Step 2 against $1/\sqrt{c^2-y^2}$ for $y<c<1$. Since $h$ is continuous and the endpoint singularities are integrable, Fubini's theorem applies and gives
+$$
+0
+=\int_y^1\frac{h(x)}{x}
+\left(
+\int_y^x\frac{c\,dc}{\sqrt{x^2-c^2}\sqrt{c^2-y^2}}
+\right)dx.
+$$
+In the inner integral set
+$$
+c^2=y^2+(x^2-y^2)t.
+$$
+Then
+$$
+c\,dc=\frac{x^2-y^2}{2}\,dt
+$$
+and
+$$
+\sqrt{x^2-c^2}\sqrt{c^2-y^2}
+=(x^2-y^2)\sqrt{t(1-t)}.
+$$
+Hence
+$$
+\int_y^x\frac{c\,dc}{\sqrt{x^2-c^2}\sqrt{c^2-y^2}}
+=\frac12\int_0^1\frac{dt}{\sqrt{t(1-t)}}
+=\frac{\pi}{2}.
+$$
+Therefore
+$$
+\int_y^1\frac{h(x)}{x}\,dx=0
+$$
+for every $0<y<1$. Differentiating with respect to $y$ yields
+$$
+\frac{h(y)}{y}=0,
+$$
+so
+$$
+g(x)=1+\lambda x^2
+$$
+throughout $[0,1]$.
 
-Step 3: Bound the middle portion by its forced angular travel
-For every admissible point one has $r\geq\alpha$, so the polar metric gives
+Step 4: Reconstruct the metric profile and verify uniqueness and existence
+Because $f^{-1}(0)=0$,
 $$
-\sqrt{dr^2+\sinh^2r\,d\lambda^2}
-\geq\sinh\alpha\,|d\lambda|.
+f^{-1}(x)
+=\int_0^x g(t)\,dt
+=x+\frac{\lambda x^3}{3}.
 $$
-Between $A$ and $B$, the lifted angular coordinate changes from
+In particular,
 $$
--\theta+\delta
-$$
-to
-$$
-\theta+2\pi m-\delta.
-$$
-Hence the total variation of $\lambda$ on that portion is at least
-$$
-\Delta-2\delta
-=2\theta+2\pi m-2\delta.
-$$
-Its length is therefore at least
-$$
-\sinh\alpha(\Delta-2\delta).
-$$
-Combining this with the two endpoint bounds from Step 2 gives, for every curve in the prescribed winding class,
-$$
-L
-\geq2\ell+\sinh\alpha(\Delta-2\delta).
-$$
-Substituting the values of $\ell$, $\Delta$, and $\delta$ gives
-$$
-L
-\geq
-2\mathrm{acosh}\left(\frac{\cosh\beta}{\cosh\alpha}\right)
-+2\sinh\alpha\left(
-\theta+\pi m-\arccos\frac{\tanh\alpha}{\tanh\beta}
-\right).
+R=f^{-1}(1)=1+\frac{\lambda}{3}.
 $$
 
-Step 4: Construct a curve attaining the lower bound
-In the universal cover, join $\widetilde P$ by the tangent geodesic to the boundary point
+Conversely, define
 $$
-T_1=(\alpha,-\theta+\delta).
+F(x)=x+\frac{\lambda x^3}{3}
 $$
-Then follow the boundary $r=\alpha$ monotonically in the positive angular direction to
+on $[0,1]$ and let $f=F^{-1}$. Since
 $$
-T_2=(\alpha,\theta+2\pi m-\delta),
+F'(x)=1+\lambda x^2>0,
 $$
-and finally follow the tangent geodesic from $T_2$ to $\widetilde Q$.
+this gives a smooth increasing profile with $f(0)=0$, $f'(0)=1$, and $f(R)=1$. Substituting $(f^{-1})'(x)=1+\lambda x^2$ into the scattering integral reproduces exactly
+$$
+\Phi(c)=\arccos c+\lambda c\sqrt{1-c^2}.
+$$
+Thus the recovered pair is both attainable and unique.
 
-Each tangent piece has length $\ell$. Along the boundary circle,
-$$
-ds=\sinh\alpha\,d\lambda,
-$$
-so the middle piece has length
-$$
-\sinh\alpha(\Delta-2\delta).
-$$
-After projection to the hyperbolic plane, this curve remains outside the open disk and its lifted angular coordinate changes by $2\theta+2\pi m$, so it lies in the required winding class. Its total length equals the lower bound from Step 3. Hence that bound is the minimum.
-
-Final Answer: $\boxed{2\mathrm{acosh}(\cosh\beta/\cosh\alpha)+2\sinh\alpha(\theta+\pi m-\arccos(\tanh\alpha/\tanh\beta))}$
+Final Answer: $\boxed{\left(1+\frac{\lambda}{3},x\mapsto x+\frac{\lambda x^3}{3}\right)}$
 
 ---
 
 ## Answer
 
-$2\mathrm{acosh}(\cosh\beta/\cosh\alpha)+2\sinh\alpha(\theta+\pi m-\arccos(\tanh\alpha/\tanh\beta))$
+$\left(1+\frac{\lambda}{3},x\mapsto x+\frac{\lambda x^3}{3}\right)$
 
 ---
 
 ## Classification
 
-**Problem Type:** Optimization
+**Problem Type:** Parameter identification
 
-**Answer Type:** Exact symbolic expression
+**Answer Type:** Tuple or ordered list
 
 ---
 
 ## Solution Concepts
 
-- hyperbolic polar metric
-- universal covers and winding classes
-- tangent geodesics
-- hyperbolic right triangles
-- metric lower bounds
+- geodesic conservation law
+- rotationally symmetric metrics
+- inverse scattering transform
+- Abel-type integral inversion
+- inverse profile reconstruction
