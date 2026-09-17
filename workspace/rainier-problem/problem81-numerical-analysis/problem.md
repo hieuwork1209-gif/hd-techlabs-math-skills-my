@@ -2,39 +2,57 @@
 
 ## LaTeX (Normalized)
 
-Consider the one-parameter family of degree-$4$ stability polynomials
+Consider the two-parameter family of degree-$5$ stability polynomials
 $$
-R_a(z)=1+z+\frac{z^2}{2}+\frac{z^3}{6}+az^4,
-\qquad a\in\mathbb R.
+R_{a,b}(z)
+=1+z+\frac{z^2}{2}+\frac{z^3}{6}+az^4+bz^5,
+\qquad a,b\in\mathbb R.
 $$
-These are precisely the degree-$4$ polynomials satisfying the classical order-$3$ conditions at the origin.
+These are precisely the degree-$5$ polynomials satisfying the classical order-$3$ conditions at the origin.
 
-For each $a$, define its negative-real-axis stability radius by
+For each pair $(a,b)$, define its negative-real-axis stability radius by
 $$
-L(a)
+L(a,b)
 =
 \sup\left\{L\ge0:
-|R_a(x)|\le1
+|R_{a,b}(x)|\le1
 \text{ for every }x\in[-L,0]
 \right\}.
 $$
 Let
 $$
-L_*=\sup_{a\in\mathbb R}L(a).
+L_*=\sup_{a,b\in\mathbb R}L(a,b).
 $$
 
-Determine exactly the unique coefficient $a_*$ attaining $L_*$ and the exact value of $L_*$. Also determine the unique interior contact point $m_*>0$ for which
+Determine exactly the unique optimizing pair
 $$
-R_{a_*}(-m_*)=-1,
+(a_*,b_*),
+$$
+the exact maximal radius $L_*$, and the two unique interior contact points
+$$
+0<m_*<n_*<L_*
+$$
+for which
+$$
+R_{a_*,b_*}(-m_*)=-1,
 \qquad
-R_{a_*}'(-m_*)=0.
+R_{a_*,b_*}'(-m_*)=0,
+$$
+$$
+R_{a_*,b_*}(-n_*)=1,
+\qquad
+R_{a_*,b_*}'(-n_*)=0.
+$$
+Also verify that
+$$
+R_{a_*,b_*}(-L_*)=-1.
 $$
 
-It is acceptable to specify algebraic numbers as unique real roots of explicit polynomial equations together with isolating inequalities.
+It is acceptable to specify algebraic numbers as the unique real solution of an explicit polynomial system together with isolating inequalities.
 
 Return the exact tuple
 $$
-(a_*,L_*,m_*).
+(a_*,b_*,L_*,m_*,n_*).
 $$
 
 ---
@@ -52,4 +70,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for the stability polynomial in a fixed order family that maximizes the interval of absolute stability on the negative real axis. The essential work is an exact stability-region optimization, including a sharp envelope argument, active stability contacts, and uniqueness of the maximizing coefficient. Thus Optimization and Numerical Mathematics -> Numerical analysis is primary.
+The problem asks for the exact degree-$5$, order-$3$ stability polynomial maximizing the interval of absolute stability on the negative real axis. The essential work is a two-parameter semi-infinite stability optimization: one must convert the uniform constraint to an affine envelope problem, identify the active supporting contacts, and prove global optimality and uniqueness from the contact geometry. Thus Optimization and Numerical Mathematics -> Numerical analysis is primary.
