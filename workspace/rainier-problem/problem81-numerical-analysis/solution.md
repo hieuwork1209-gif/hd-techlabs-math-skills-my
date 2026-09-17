@@ -191,7 +191,12 @@ $$
 of $D$, and
 $$
 D(y)\ge0
-\qquad(0<y\le L_*).
+\qquad(0<y\le L_*),
+$$
+while
+$$
+D(y)<0
+\qquad(y>L_*).
 \tag{12}
 $$
 Equivalently, $L_*$ is the unique root $>n_*$ of
@@ -275,11 +280,12 @@ An affine function with two distinct zeros is identically zero, so
 $$
 \widetilde q=q_*.
 $$
-But for every $y>L_*$ sufficiently close to $L_*$, and in fact for all $y>L_*$ until no further real crossing occurs,
+But (12) gives
 $$
-q_*(y)<A_-(y),
+q_*(y)<A_-(y)
+\qquad(y>L_*),
 $$
-so $q_*$ is not feasible beyond $L_*$. Therefore no coefficient pair can have a larger stability radius.
+so $q_*$ is not feasible on any strictly longer interval. Therefore no coefficient pair can have a larger stability radius.
 
 Thus $(a_*,b_*)$ is the unique optimizer and $L_*$ is the exact maximal radius.
 
