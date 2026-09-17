@@ -1,9 +1,9 @@
 {
   "problem": "problem81",
   "branch": "adversary/problem81",
-  "problem_path": "workspace/rainier-problem/problem81-probability-foundations/problem.md",
-  "problem_blob_sha": "7fb6f2683ad599bdd5b7ba6bceeaa2d1a5cf8a9b",
-  "source_commit_sha": "bfad5b7822cde66bf1309c689fb402d27d3a41b3",
+  "problem_path": "workspace/rainier-problem/problem81-bifurcation-theory/problem.md",
+  "problem_blob_sha": "ec9a4cfa7c57159f6513e67d1e0b9ab2552dab7a",
+  "source_commit_sha": "2a99c84c606122a826a4d2391c3394a3278e3cd4",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-17T10:49:57+00:00",
-  "result_file": "solver-results/problem81/7fb6f2683ad5.json"
+  "completed_at": "2026-09-17T10:56:24+00:00",
+  "result_file": "solver-results/problem81/ec9a4cfa7c57.json"
 }

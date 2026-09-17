@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-bifurcation-theory/problem.md",
+  "source_commit_sha": "2a99c84c606122a826a4d2391c3394a3278e3cd4",
+  "problem_blob_sha": "ec9a4cfa7c57159f6513e67d1e0b9ab2552dab7a",
+  "statement_sha256": "0e908328433599aae1e436bfcdffb8bf9761c74b1a7c3b7908bdbfdec6133124",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T10:55:11+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nX=\\cos x,\\qquad Y=\\cos y,\\qquad v=A X+B Y,\n\\]\nand write\n\\[\nu=v+w,\\qquad w\\perp \\operatorname{span}\\{X,Y\\}.\n\\]\nWith \\(\\delta=\\lambda-1\\), the equation is\n\\[\n(-\\Delta-1)u-\\delta u-\\eta u^2+u^3=0.\n\\]\nSet \\(L=-\\Delta-1\\). To cubic order, only the quadratic correction \\(w_2\\) is needed:\n\\[\nLw_2=\\eta v^2.\n\\]\nSince\n\\[\nv^2=A^2X^2+2ABXY+B^2Y^2,\n\\]\nand\n\\[\nL^{-1}(1)=-1,\\quad L^{-1}(\\cos 2x)=\\frac13\\cos2x,\\quad\nL^{-1}(XY)=XY,\n\\]\nwe get\n\\[\nw_2=\\eta\\left[\n-\\frac{A^2+B^2}{2}\n+\\frac{A^2}{6}\\cos2x\n+\\frac{B^2}{6}\\cos2y\n+2ABXY\n\\right].\n\\]\n\nProjecting the cubic-order equation onto \\(X\\), the relevant term is\n\\[\n-\\delta v+v^3-2\\eta v w_2.\n\\]\nNow\n\\[\nP_X(v^3)=A\\left(\\frac34 A^2+\\frac32 B^2\\right),\n\\]\nwhile\n\\[\nP_X(vL^{-1}v^2)\n=\nA\\left(-\\frac{5}{12}A^2+\\frac12 B^2\\right).\n\\]\nTherefore\n\\[\nP_X\\bigl(v^3-2\\eta v w_2\\bigr)\n=\nA\\left[\n\\left(\\frac34+\\frac56\\eta^2\\right)A^2\n+\n\\left(\\frac32-\\eta^2\\right)B^2\n\\right].\n\\]\nBy symmetry the \\(Y\\)-equation is obtained by swapping \\(A,B\\). Hence\n\\[\n\\boxed{\\alpha(\\eta)=\\frac34+\\frac56\\eta^2},\n\\qquad\n\\boxed{\\beta(\\eta)=\\frac32-\\eta^2}.\n\\]\n\nThe exchange value satisfies \\(\\alpha=\\beta\\):\n\\[\n\\frac34+\\frac56\\eta^2=\\frac32-\\eta^2\n\\quad\\Longrightarrow\\quad\n\\eta^2=\\frac9{22},\n\\]\nso\n\\[\n\\boxed{\\eta_{\\mathrm{ex}}=\\frac3{\\sqrt{22}}}.\n\\]\n\nThe diagonal flip value satisfies \\(\\alpha+\\beta=0\\):\n\\[\n\\frac94-\\frac16\\eta^2=0\n\\quad\\Longrightarrow\\quad\n\\eta^2=\\frac{27}{2},\n\\]\nso\n\\[\n\\boxed{\\eta_{\\mathrm{flip}}=\\frac{3\\sqrt6}{2}}.\n\\]\n\nFor the quartic reduced energy\n\\[\n\\mathcal E_4=\n-\\frac{\\delta}{2}(A^2+B^2)\n+\\frac{\\alpha}{4}(A^4+B^4)\n+\\frac{\\beta}{2}A^2B^2,\n\\]\nwith \\(0\\le \\eta<\\eta_{\\mathrm{flip}}\\) and small \\(\\delta>0\\):\n\n\\[\n\\boxed{0\\le \\eta<\\eta_{\\mathrm{ex}}:\\ \\text{the axial branches are strict local minima}.}\n\\]\n\n\\[\n\\boxed{\\eta_{\\mathrm{ex}}<\\eta<\\eta_{\\mathrm{flip}}:\\ \\text{the diagonal branches }A=\\pm B\\text{ are strict local minima}.}\n\\]\n\nAt \\(\\eta=\\eta_{\\mathrm{ex}}\\), the quartic energy is degenerate and the minima are not strict.",
+  "status": "success",
+  "completed_at": "2026-09-17T10:56:24+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/ec9a4cfa7c57.json"
+}
