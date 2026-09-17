@@ -1,129 +1,161 @@
 ## Steps
 
-Step 1: Convert the Hankel determinant ratio into a Jacobi-ensemble average
+Step 1: Convert the Hankel ratio to a ratio-of-characteristic-polynomials average
 
-Put
+Let
 $$
-w(x)=x^{a-1}(1-x)^{b-1},
+w(x)=x^{a-1}(1-x)^{b-1}
 $$
-and let
+and let $\pi_m$ be the monic Jacobi polynomial from the problem. Put
 $$
-D_n=\det\left[\int_0^1 x^{i+j}w(x)\,dx\right]_{i,j=0}^{n-1}.
+h_m=\int_0^1\pi_m(x)^2w(x)\,dx.
 $$
 By Andreief's identity,
 $$
 D_n
-=\frac1{n!}\int_{[0,1]^n}\Delta(x_1,\ldots,x_n)^2\prod_{r=1}^n w(x_r)\,dx_r,
+=\frac1{n!}\int_{[0,1]^n}\Delta(x)^2\prod_{j=1}^n w(x_j)\,dx_j.
 $$
-where
+Hence, with $\mathbb E_n$ denoting expectation for the normalized density proportional to
 $$
-\Delta(x_1,\ldots,x_n)=\prod_{1\le i<j\le n}(x_j-x_i).
-$$
-Likewise,
-$$
-\frac{D_n(\lambda,\mu)}{D_n}
-=\mathbb E_n\prod_{r=1}^n(1-\lambda x_r)^2(1-\mu x_r)^2,
-\tag{1}
-$$
-where $\mathbb E_n$ denotes expectation for the normalized density proportional to
-$$
-\Delta(x)^2\prod_{r=1}^n w(x_r)
-$$
-on $[0,1]^n$.
-
-Step 2: Derive the multi-characteristic-polynomial identity
-
-Let $\pi_m$ be the monic orthogonal polynomial of degree $m$ for $w$, and let
-$$
-h_m=\int_0^1\pi_m(x)^2w(x)\,dx.
-$$
-For pairwise distinct $z_1,\ldots,z_q$, write
-$$
-\Delta(z)=\prod_{1\le r<s\le q}(z_s-z_r).
-$$
-With the convention that the combined variables are ordered as
-$$
-x_1,\ldots,x_n,z_1,\ldots,z_q,
+\Delta(x)^2\prod_{j=1}^n w(x_j),
 $$
 one has
 $$
-\Delta(x,z)
-=\Delta(x)\Delta(z)\prod_{i=1}^n\prod_{r=1}^q(z_r-x_i).
-\tag{2}
+\frac{D_n^{\mathrm{rat}}(\lambda,\mu)}{D_n}
+=\mathbb E_n\prod_{j=1}^n\left(\frac{1-\lambda x_j}{1-\mu x_j}\right)^2.
+\tag{1}
 $$
-Because the change from monomials to the monic family $\pi_0,\pi_1,\ldots$ is unitriangular,
-$$
-\Delta(x,z)
-=\det\bigl[\pi_{j-1}(y_i)\bigr]_{i,j=1}^{n+q},
-$$
-where $y=(x_1,\ldots,x_n,z_1,\ldots,z_q)$, while
-$$
-\Delta(x)=\det\bigl[\pi_{j-1}(x_i)\bigr]_{i,j=1}^{n}.
-$$
-Substitute (2) into the integral defining $\mathbb E_n$. Expanding the $(n+q)\times(n+q)$ determinant along the first $n$ rows and applying Andreief to the $x$-variables, orthogonality kills every choice except the columns of degrees $0,1,\ldots,n-1$. The surviving factor is
-$$
-n!\prod_{j=0}^{n-1}h_j,
-$$
-which is exactly the normalization $n!D_n$. The remaining minor is the $q\times q$ determinant with degrees $n,n+1,\ldots,n+q-1$. Hence
-$$
-\mathbb E_n\prod_{r=1}^q\prod_{j=1}^n(z_r-x_j)
-=
-\frac{\det\bigl[\pi_{n+s-1}(z_r)\bigr]_{r,s=1}^q}{\Delta(z)}.
-\tag{3}
-$$
-
-Step 3: Take the confluent limit for two double factors
-
-Apply (3) with $q=4$ and let
-$$
-z_1,z_2\to z,
-\qquad
-z_3,z_4\to q,
-\qquad z\ne q.
-$$
-The denominator contains the vanishing factors
-$$
-z_2-z_1,
-\qquad
-z_4-z_3,
-$$
-and its four cross factors tend to $q-z$. Dividing the corresponding row differences in the numerator determinant by those two vanishing factors and passing to the limit gives
-$$
-\mathbb E_n\prod_{j=1}^n(z-x_j)^2(q-x_j)^2
-=
-\frac{\mathcal C_n(z,q)}{(q-z)^4}.
-\tag{4}
-$$
-
-Step 4: Return to $\lambda$ and $\mu$
-
 Put
 $$
 z=\lambda^{-1},
 \qquad
 q=\mu^{-1}.
 $$
-For each $x$,
+Since $0<\lambda<\mu<1$, one has $z>q>1$, and
 $$
-(1-\lambda x)^2(1-\mu x)^2
-=(\lambda\mu)^2(z-x)^2(q-x)^2.
+\left(\frac{1-\lambda x}{1-\mu x}\right)^2
+=\left(\frac{\lambda}{\mu}\right)^2
+\left(\frac{z-x}{q-x}\right)^2.
+\tag{2}
 $$
-Taking the product over the $n$ integration variables and using (1) and (4) yields
+Thus it remains to compute the squared ratio average.
+
+Step 2: Build the one-ratio kernel
+
+For $q>1$, define the second-kind transform
 $$
-\frac{D_n(\lambda,\mu)}{D_n}
-=
-(\lambda\mu)^{2n}
-\frac{\mathcal C_n(\lambda^{-1},\mu^{-1})}
-{(\mu^{-1}-\lambda^{-1})^4}.
+Q_m(q)=\int_0^1\frac{\pi_m(x)w(x)}{q-x}\,dx.
+$$
+For $n\ge1$, set
+$$
+R_n(z,q)
+=\frac{\pi_n(z)Q_{n-1}(q)-\pi_{n-1}(z)Q_n(q)}{h_{n-1}},
+$$
+and
+$$
+F_n(z,q)=\frac{R_n(z,q)}{q-z}.
 $$
 
-Final Answer: $\boxed{(\lambda\mu)^{2n}\frac{\mathcal C_n(\lambda^{-1},\mu^{-1})}{(\mu^{-1}-\lambda^{-1})^4}}$
+The Christoffel-Darboux identity for the monic family is
+$$
+K_n(z,x)
+=\sum_{m=0}^{n-1}\frac{\pi_m(z)\pi_m(x)}{h_m}
+=\frac{\pi_n(z)\pi_{n-1}(x)-\pi_{n-1}(z)\pi_n(x)}{h_{n-1}(z-x)}.
+\tag{3}
+$$
+Multiplying (3) by $(z-x)/(q-x)$ and integrating against $w(x)\,dx$ gives
+$$
+R_n(z,q)
+=1+(z-q)\int_0^1\frac{K_n(z,x)w(x)}{q-x}\,dx.
+\tag{4}
+$$
+A one-column Cauchy-Vandermonde expansion followed by Andreief gives the matching characteristic-polynomial ratio identity
+$$
+\mathbb E_n\prod_{j=1}^n\frac{z-x_j}{q-x_j}
+=R_n(z,q).
+\tag{5}
+$$
+For completeness, the determinant reduction behind (5) is obtained by writing the Cauchy column $(q-x)^{-1}$ together with $1,x,\ldots,x^{n-2}$, replacing the polynomial columns by $\pi_0,\ldots,\pi_{n-2}$, and applying Andreief. Orthogonality collapses the polynomial block, while the surviving $2\times2$ border is exactly the numerator in the definition of $R_n$.
+
+Step 3: Derive the two-ratio determinant
+
+Let $z_1,z_2,q_1,q_2$ be pairwise distinct with $q_1,q_2>1$. Applying the same Cauchy-Vandermonde/Andreief reduction with two Cauchy columns gives
+$$
+\mathbb E_n\prod_{j=1}^n
+\frac{(z_1-x_j)(z_2-x_j)}{(q_1-x_j)(q_2-x_j)}
+=
+\frac{\prod_{r,s=1}^2(q_s-z_r)}{(z_2-z_1)(q_1-q_2)}
+\det\begin{pmatrix}
+F_n(z_1,q_1)&F_n(z_1,q_2)\\
+F_n(z_2,q_1)&F_n(z_2,q_2)
+\end{pmatrix}.
+\tag{6}
+$$
+The sign in (6) comes from using $q_1-q_2$ for the Cauchy Vandermonde. Setting one numerator and one denominator variable aside reduces (6) to (5), so the normalization is consistent.
+
+Step 4: Take the double confluent limit
+
+Let
+$$
+z_1=z,
+\qquad z_2\to z,
+\qquad
+q_1=q,
+\qquad q_2\to q.
+$$
+Write $F=F_n(z,q)$. The determinant in (6) has first nonzero term
+$$
+(z_2-z)(q_2-q)
+\left(F\,\partial_z\partial_qF-(\partial_zF)(\partial_qF)\right).
+$$
+At the same time,
+$$
+(z_2-z)(q-q_2)
+=-(z_2-z)(q_2-q),
+$$
+and the four cross factors tend to $(q-z)^4$. Therefore
+$$
+\mathbb E_n\prod_{j=1}^n\left(\frac{z-x_j}{q-x_j}\right)^2
+=(q-z)^4
+\left(
+(\partial_zF_n)(\partial_qF_n)
+-F_n\,\partial_z\partial_qF_n
+\right).
+\tag{7}
+$$
+Define
+$$
+\mathcal G_n(z,q)
+=(q-z)^4
+\left(
+(\partial_zF_n(z,q))(\partial_qF_n(z,q))
+-F_n(z,q)\,\partial_z\partial_qF_n(z,q)
+\right).
+$$
+Then (7) reads simply
+$$
+\mathbb E_n\prod_{j=1}^n\left(\frac{z-x_j}{q-x_j}\right)^2
+=\mathcal G_n(z,q).
+\tag{8}
+$$
+
+Step 5: Return to $\lambda$ and $\mu$
+
+Combining (1), (2), and (8) gives
+$$
+\frac{D_n^{\mathrm{rat}}(\lambda,\mu)}{D_n}
+=
+\left(\frac{\lambda}{\mu}\right)^{2n}
+\mathcal G_n(\lambda^{-1},\mu^{-1}).
+$$
+
+Final Answer: $\boxed{\left(\frac{\lambda}{\mu}\right)^{2n}\mathcal G_n(\lambda^{-1},\mu^{-1})}$
 
 ---
 
 ## Answer
 
-$(\lambda\mu)^{2n}\frac{\mathcal C_n(\lambda^{-1},\mu^{-1})}{(\mu^{-1}-\lambda^{-1})^4}$
+$\left(\frac{\lambda}{\mu}\right)^{2n}\mathcal G_n(\lambda^{-1},\mu^{-1})$
 
 ---
 
@@ -137,8 +169,8 @@ $(\lambda\mu)^{2n}\frac{\mathcal C_n(\lambda^{-1},\mu^{-1})}{(\mu^{-1}-\lambda^{
 
 ## Solution Concepts
 
-- Hankel determinants of moments
+- Hankel moment determinants
 - Andreief identity
-- monic Jacobi orthogonal polynomials
-- Heine characteristic-polynomial formula
-- confluent Vandermonde limits
+- Christoffel-Darboux kernel
+- Cauchy transforms of Jacobi polynomials
+- confluent ratio-of-characteristic-polynomial determinants
