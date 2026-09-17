@@ -32,7 +32,7 @@ $$
 | **Domain** | Differential Equations and Dynamical Systems |
 | **Sub-domain** | Stability theory |
 | **Problem Type** | Parameter identification |
-| **Answer Type** | Set or multiset of objects |
+| **Answer Type** | Interval or region description |
 
 ---
 
