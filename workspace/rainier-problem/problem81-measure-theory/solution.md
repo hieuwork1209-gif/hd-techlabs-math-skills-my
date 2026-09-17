@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Define the two product measures and apply Kakutani's criterion
+Step 1: Define the three product measures and prove pairwise equivalence
 
 Let
 \[
@@ -8,284 +8,305 @@ Let
 \]
 For every integer \(k\ge3\), put
 \[
-a_k=\frac1{k^2(\log k)^2},\qquad b_k=\frac1{k^3},\qquad c_k=\frac1{k^2}.
+a_k=\frac1{k^2(\log k)^2},\qquad
+b_k=\frac1{k^4},\qquad
+c_k=\frac1{k^5},\qquad
+d_k=\frac1{k^2},\qquad
+e_k=\frac1{k^4}.
 \]
-Define Bernoulli product measures \(\mu\) and \(\nu\) as follows:
+Define Bernoulli product measures \(\mu,\nu,\lambda\) by
 
-- at coordinate \(3k\),
 \[
-\mu(X_{3k}=1)=a_k,\qquad \nu(X_{3k}=1)=b_k;
+\begin{array}{c|ccc}
+\text{coordinate}&\mu(1)&\nu(1)&\lambda(1)\\ \hline
+4k&a_k&b_k&b_k\\
+4k+1&c_k&c_k&d_k\\
+4k+2&e_k&d_k&e_k
+\end{array}
+\tag{1}
 \]
-- at coordinate \(3k+1\),
-\[
-\mu(X_{3k+1}=1)=b_k,\qquad \nu(X_{3k+1}=1)=c_k;
-\]
-- at every other coordinate, both measures give probability \(1/2\) to \(1\).
 
-For Bernoulli parameters \(p,q\in(0,1)\), the Hellinger affinity is
+for every \(k\ge3\), and let all three measures be fair Bernoulli at every remaining coordinate.
+
+For Bernoulli parameters \(p,q\), the Hellinger affinity is
 \[
 \rho(p,q)=\sqrt{pq}+\sqrt{(1-p)(1-q)}.
 \]
-Kakutani's theorem says that the two product measures are equivalent iff
-\[
-\sum_n\bigl(1-\rho(p_n,q_n)\bigr)<\infty.
-\tag{1}
-\]
-Now
+Since
 \[
 2(1-\rho(p,q))
 =(\sqrt p-\sqrt q)^2+(\sqrt{1-p}-\sqrt{1-q})^2
-\le 2|p-q|.
+\le 2|p-q|,
 \]
-Hence
+and all five sequences in (1) are summable, the Kakutani sums for every pair among \(\mu,\nu,\lambda\) converge. Hence
 \[
-\sum_{k\ge3}\bigl(1-\rho(a_k,b_k)\bigr)
-+\sum_{k\ge3}\bigl(1-\rho(b_k,c_k)\bigr)
-<\infty,
-\]
-because
-\[
-\sum_{k\ge3}(a_k+b_k+c_k)<\infty.
-\]
-Therefore
-\[
-\boxed{\mu\sim\nu.}
+\boxed{\mu\sim\nu\sim\lambda.}
 \tag{2}
 \]
-Both measures are nonatomic because infinitely many coordinates are common fair Bernoulli coordinates.
+The common fair coordinates also make all three measures nonatomic.
 
-Let
+Set
 \[
-Z=\frac{d\mu}{d\nu}.
+Z=\frac{d\mu}{d\nu},
+\qquad
+W=\frac{d\lambda}{d\nu}.
 \]
 
-Step 2: Write the Mellin product for the likelihood ratio
+Step 2: Write the joint Mellin product
 
-At coordinate \(3k\), the likelihood ratio is
+For a single Bernoulli coordinate with
 \[
-L_k^{(A)}=
-\begin{cases}
- a_k/b_k,&X_{3k}=1,\\[1mm]
- (1-a_k)/(1-b_k),&X_{3k}=0,
-\end{cases}
+\mu(1)=p,\qquad \nu(1)=q,\qquad \lambda(1)=r,
 \]
-while at coordinate \(3k+1\),
+the joint coordinate moment is
 \[
-L_k^{(B)}=
-\begin{cases}
- b_k/c_k,&X_{3k+1}=1,\\[1mm]
- (1-b_k)/(1-c_k),&X_{3k+1}=0.
-\end{cases}
-\]
-The fair coordinates contribute factor \(1\).
-
-Since
-\[
-\sum_k \mathbb E_\nu\bigl|\log L_k^{(A)}\bigr|
-+\sum_k \mathbb E_\nu\bigl|\log L_k^{(B)}\bigr|<\infty,
-\]
-the logarithmic likelihood series converges absolutely \(\nu\)-a.s., and
-\[
-Z=\prod_{k\ge3}L_k^{(A)}L_k^{(B)}.
+\Phi_{p,q,r}(s,t)
+=q\left(\frac pq\right)^s\left(\frac rq\right)^t
++(1-q)\left(\frac{1-p}{1-q}\right)^s
+\left(\frac{1-r}{1-q}\right)^t.
 \tag{3}
 \]
-
-For real \(t\), define
+Thus the finite-coordinate joint Mellin transforms factor. For the three sparse coordinate families define
 \[
-M(t)=\int_\Omega Z^t\,d\nu.
+A_k(s)=\Phi_{a_k,b_k,b_k}(s,t),
 \]
-The finite-coordinate moments factor as
+which is independent of \(t\),
 \[
-M_N(t)=\prod_{3\le k\le N}A_k(t)B_k(t),
+B_k(t)=\Phi_{c_k,c_k,d_k}(s,t),
+\]
+which is independent of \(s\), and
+\[
+C_k(s+t)=\Phi_{e_k,d_k,e_k}(s,t),
+\]
+which depends only on \(u=s+t\).
+Hence formally
+\[
+M(s,t):=\int Z^sW^t\,d\nu
+=\prod_{k\ge3}A_k(s)B_k(t)C_k(s+t).
 \tag{4}
 \]
-where
-\[
-A_k(t)
-=b_k\left(\frac{a_k}{b_k}\right)^t
-+(1-b_k)\left(\frac{1-a_k}{1-b_k}\right)^t,
-\tag{5}
-\]
-\[
-B_k(t)
-=c_k\left(\frac{b_k}{c_k}\right)^t
-+(1-c_k)\left(\frac{1-b_k}{1-c_k}\right)^t.
-\tag{6}
-\]
+We now determine exactly when this product represents a finite moment.
 
-Step 3: Analyze the upper critical exponent
+Step 3: The first critical face, \(s=3/2\)
 
 At the \(A\)-coordinates,
 \[
-\frac{a_k}{b_k}=\frac{k}{(\log k)^2}\to\infty.
+\frac{a_k}{b_k}=\frac{k^2}{(\log k)^2}.
 \]
-For fixed real \(t\), expansion of the zero-coordinate factor gives
+For fixed real \(s\), expansion of the zero-coordinate term gives
 \[
-A_k(t)-1
-=b_k\left(\frac{a_k}{b_k}\right)^t
--t a_k+(t-1)b_k+O_t(a_k^2+b_k^2).
+A_k(s)-1
+=b_k\left(\frac{a_k}{b_k}\right)^s
+-s a_k+(s-1)b_k+O_s(a_k^2+b_k^2).
+\tag{5}
+\]
+The decisive series is therefore
+\[
+\sum_k b_k\left(\frac{a_k}{b_k}\right)^s
+=
+\sum_k\frac{k^{2s-4}}{(\log k)^{2s}}.
+\tag{6}
+\]
+It converges for \(s<3/2\), and at the endpoint
+\[
+s=\frac32
+\]
+it becomes
+\[
+\sum_k\frac1{k(\log k)^3}<\infty.
+\]
+For every \(s>3/2\), the positive rare-event term in (5) dominates the summable corrections and forces divergence of the product. Thus the exact first constraint is
+\[
+\boxed{s\le\frac32,}
 \tag{7}
 \]
-Thus, for \(t\ge0\), convergence of
-\[
-\sum_k |A_k(t)-1|
-\]
-is controlled by
-\[
-\sum_k b_k\left(\frac{a_k}{b_k}\right)^t
-=
-\sum_k \frac{k^{t-3}}{(\log k)^{2t}}.
-\tag{8}
-\]
-This converges for \(t<2\), and at the endpoint \(t=2\) it becomes
-\[
-\sum_k\frac1{k(\log k)^4}<\infty.
-\]
-For every \(t>2\), the series in (8) diverges.
+with equality allowed.
 
-Moreover, for \(t>2\), the positive first term in (7) dominates the summable correction terms, so
-\[
-\sum_k\log A_k(t)=+\infty.
-\tag{9}
-\]
-Hence the \(A\)-coordinates force the upper critical exponent
-\[
-\boxed{t\le2,\ \text{with }t=2\text{ included}.}
-\tag{10}
-\]
-
-Step 4: Analyze the lower critical exponent
+Step 4: The second critical face, \(t=4/3\)
 
 At the \(B\)-coordinates,
 \[
-\frac{b_k}{c_k}=\frac1k.
+\frac{d_k}{c_k}=k^3.
 \]
-For fixed real \(t\), similarly
+The corresponding expansion is
 \[
 B_k(t)-1
-=c_k\left(\frac{b_k}{c_k}\right)^t
--t b_k+(t-1)c_k+O_t(b_k^2+c_k^2).
+=c_k\left(\frac{d_k}{c_k}\right)^t
+-t d_k+(t-1)c_k+O_t(c_k^2+d_k^2).
+\tag{8}
+\]
+Hence the decisive series is
+\[
+\sum_k c_k\left(\frac{d_k}{c_k}\right)^t
+=
+\sum_k k^{3t-5}.
+\tag{9}
+\]
+This converges exactly when
+\[
+t<\frac43.
+\]
+At \(t=4/3\) it is the harmonic series. Hence
+\[
+\boxed{t<\frac43,}
+\tag{10}
+\]
+and this face is excluded.
+
+Step 5: The diagonal critical face, \(s+t=-1/2\)
+
+At the \(C\)-coordinates, both \(\mu\) and \(\lambda\) have parameter \(e_k=k^{-4}\), while \(\nu\) has parameter \(d_k=k^{-2}\). Therefore, with
+\[
+u=s+t,
+\]
+we have
+\[
+\frac{e_k}{d_k}=k^{-2},
+\]
+and
+\[
+C_k(u)-1
+=d_k\left(\frac{e_k}{d_k}\right)^u
+-u e_k+(u-1)d_k+O_u(e_k^2+d_k^2).
 \tag{11}
 \]
-For negative \(t\), the decisive series is
+The decisive series is
 \[
-\sum_k c_k\left(\frac{b_k}{c_k}\right)^t
+\sum_k d_k\left(\frac{e_k}{d_k}\right)^u
 =
-\sum_k k^{-2-t}.
+\sum_k k^{-2-2u}.
 \tag{12}
 \]
 This converges exactly when
 \[
-t>-1.
+u>-\frac12.
 \]
-At \(t=-1\) it is the harmonic series, so the lower endpoint is excluded.
-
-The \(A\)-coordinates cause no further restriction for \(t<0\), and the \(B\)-coordinates cause no further restriction for \(t\ge0\).
-
-Therefore the only possible finite-moment interval is
+At \(u=-1/2\) it is again harmonic. Hence the exact diagonal constraint is
 \[
-(-1,2].
+\boxed{s+t>-\frac12,}
 \tag{13}
 \]
+with equality excluded.
 
-Step 5: Prove finiteness on the whole interval and divergence outside it
+Step 6: Exact real joint-moment domain
 
-For every compact interval
+Combining (7), (10), and (13), define
 \[
-I\subset(-1,2),
-\]
-the estimates above are uniform in \(t\in I\), so
-\[
-\sum_k\sup_{t\in I}igl(|A_k(t)-1|+|B_k(t)-1|\bigr)<\infty.
+\mathcal D
+=
+\left\{(s,t)\in\mathbb R^2:
+ s\le\frac32,
+\ t<\frac43,
+\ s+t>-\frac12
+\right\}.
 \tag{14}
 \]
-Hence the product in (4) converges locally uniformly there.
 
-For \(1<t\le2\), the likelihood-ratio martingale \(Z_N\) is bounded in \(L^t(\nu)\), so \(Z_N\to Z\) in \(L^t\), giving
+For every compact subset of \(\mathcal D\), the coordinate estimates above give summable majorants for
 \[
-M(t)=\prod_{k\ge3}A_k(t)B_k(t)<\infty.
+|A_k(s)-1|+|B_k(t)-1|+|C_k(s+t)-1|.
+\]
+At the allowed face \(s=3/2\), the logarithmic gain in (6) still gives absolute summability. Therefore, for every \((s,t)\in\mathcal D\), the coordinate products defining \(Z^sW^t\) converge in \(L^1(\nu)\), and
+\[
+M(s,t)=\prod_{k\ge3}A_k(s)B_k(t)C_k(s+t)<\infty.
 \tag{15}
 \]
-For \(0<t\le1\), use \(x^t\le1+x\) and the \(L^1\)-convergence of \(Z_N\). For \(-1<t<0\), choose \(\varepsilon>0\) so that
-\[
-(1+\varepsilon)t>-1.
-\]
-Then the already established product bound at \((1+\varepsilon)t\) gives uniform integrability of \(Z_N^t\), hence again (15).
 
-At \(t=2\), (8) is still summable, so \(Z_N\) is bounded in \(L^2\) and (15) remains valid.
-
-For \(t>2\) or \(t\le-1\), the partial moments in (4) diverge to \(+\infty\). Since \(x\mapsto x^t\) is convex for \(t>1\) and for \(t<0\), and
+Conversely, each violated inequality produces an infinite moment from one independent coordinate family alone. Indeed, in the \(A\)-family the rare-event likelihood jump is eventually greater than \(1\) whenever \(s>3/2\); in the \(B\)-family the same is true whenever \(t\ge4/3\); and in the \(C\)-family the reciprocal jump is greater than \(1\) whenever \(s+t\le-1/2\). The corresponding Bernoulli exponential products have expectations given by the divergent series (6), (9), or (12), so Tonelli and independence force
 \[
-Z_N=\mathbb E_\nu[Z\mid\mathcal F_N],
+M(s,t)=+\infty.
 \]
-Jensen's inequality yields
-\[
-\mathbb E_\nu Z^t\ge \mathbb E_\nu Z_N^t.
-\]
-Thus
-\[
-M(t)=+\infty
-\]
-outside the interval in (13).
-
-Therefore
+Hence
 \[
 \boxed{
-\mathcal I:=\{t\in\mathbb R:M(t)<\infty\}=(-1,2].
+\{(s,t):M(s,t)<\infty\}=\mathcal D.
 }
 \tag{16}
 \]
 
-Step 6: Holomorphic strip and the two asymmetric \(L^p\) thresholds
+Step 7: Maximal holomorphic tube domain
 
-For complex \(z\), the factors \(A_k(z),B_k(z)\) are entire in \(z\). The same estimates with \(t\) replaced by \(\Re z\) show locally uniform absolute convergence on
+For complex \((z,w)\), every factor
 \[
-\boxed{-1<\Re z<2.}
+A_k(z),\qquad B_k(w),\qquad C_k(z+w)
+\]
+is entire. On every compact subset of
+\[
+\mathcal T
+=
+\left\{(z,w)\in\mathbb C^2:
+\Re z<\frac32,
+\ \Re w<\frac43,
+\ \Re(z+w)>-\frac12
+\right\},
 \tag{17}
 \]
-Hence
+the estimates above are locally uniform and absolutely summable. Hence
 \[
-M(z)=\prod_{k\ge3}A_k(z)B_k(z)
+M(z,w)=\prod_{k\ge3}A_k(z)B_k(w)C_k(z+w)
 \]
-is holomorphic on that open vertical strip. The line \(\Re z=2\) is still pointwise absolutely convergent, but no larger open vertical strip is possible because every real \(t>2\) gives infinite moment. The lower boundary \(t=-1\) already diverges.
+is holomorphic on \(\mathcal T\).
 
-From (16),
+No strictly larger open tube domain is possible: any open enlargement across one of the three real supporting faces contains a real point outside \(\mathcal D\), where the corresponding moment is infinite. Therefore
 \[
-Z\in L^p(\nu)
-\iff 0<p\le2.
+\boxed{\mathcal T\text{ is the maximal open holomorphic tube.}}
 \tag{18}
 \]
-Also, if
+
+Step 8: Marginal and reverse \(L^p\) thresholds
+
+From (14),
 \[
-W=\frac{d\nu}{d\mu}=Z^{-1},
+Z\in L^p(\nu)
+\iff (p,0)\in\mathcal D
+\iff 0<p\le\frac32,
 \]
-then
+so
 \[
-\int W^p\,d\mu
-=\int Z^{1-p}\,d\nu
-=M(1-p).
-\]
-Therefore
-\[
-W\in L^p(\mu)
-\iff -1<1-p\le2
-\iff 0<p<2.
+\boxed{\mathcal P_Z=(0,3/2].}
 \tag{19}
 \]
-In particular,
+Similarly,
 \[
-Z\in L^2(\nu),
-\qquad
-W\notin L^2(\mu),
+W\in L^p(\nu)
+\iff (0,p)\in\mathcal D
+\iff 0<p<\frac43,
 \]
-even though \(\mu\sim\nu\).
-
-Finally,
+so
 \[
-Z^{-1}\in L^p(\nu)
-\iff M(-p)<\infty
-\iff 0<p<1.
+\boxed{\mathcal P_W=(0,4/3).}
 \tag{20}
+\]
+
+For the reverse densities,
+\[
+\int\left(\frac{d\nu}{d\mu}\right)^p d\mu
+=\int Z^{1-p}\,d\nu
+=M(1-p,0),
+\]
+which is finite exactly for
+\[
+0<p<\frac32.
+\]
+Likewise,
+\[
+\int\left(\frac{d\nu}{d\lambda}\right)^p d\lambda
+=M(0,1-p)<\infty
+\iff 0<p<\frac32.
+\]
+Thus
+\[
+\boxed{
+\mathcal R_\mu=\mathcal R_\lambda=(0,3/2).
+}
+\tag{21}
+\]
+As one further check,
+\[
+Z^{-1}W^{-1}\in L^p(\nu)
+\iff (-p,-p)\in\mathcal D
+\iff 0<p<\frac14.
+\tag{22}
 \]
 
 ---
@@ -295,19 +316,32 @@ Z^{-1}\in L^p(\nu)
 \[
 \boxed{
 \left(
-(-1,2],\ (0,2],\ (0,2)
+\mathcal D,
+(0,3/2],
+(0,4/3),
+(0,3/2),
+(0,3/2)
 \right)
 }
 \]
-where the three entries are respectively
+where
 \[
-\{t\in\mathbb R:\int Z^t\,d\nu<\infty\},
-\qquad
-\{p>0:Z\in L^p(\nu)\},
-\qquad
-\left\{p>0:\frac{d\nu}{d\mu}\in L^p(\mu)\right\}.
+\mathcal D=
+\left\{(s,t)\in\mathbb R^2:
+ s\le\frac32,
+\ t<\frac43,
+\ s+t>-\frac12
+\right\}.
 \]
-Moreover \(\mu\sim\nu\), the Mellin transform is holomorphic on the maximal open vertical strip \(-1<\Re z<2\), and \(Z^{-1}\in L^p(\nu)\) exactly for \(0<p<1\).
+The maximal holomorphic tube is
+\[
+\left\{(z,w)\in\mathbb C^2:
+\Re z<\frac32,
+\ \Re w<\frac43,
+\ \Re(z+w)>-\frac12
+\right\}.
+\]
+Moreover \(\mu\sim\nu\sim\lambda\), and \(Z^{-1}W^{-1}\in L^p(\nu)\) exactly for \(0<p<1/4\).
 
 ---
 
@@ -321,8 +355,9 @@ Moreover \(\mu\sim\nu\), the Mellin transform is holomorphic on the maximal open
 
 ## Solution Concepts
 
-- Kakutani equivalence criterion for product measures
-- Radon-Nikodym likelihood-ratio martingales
-- Mellin transforms of infinite products
-- endpoint \(L^p\) integrability
-- local uniform convergence of analytic Euler-type products
+- Kakutani equivalence of product measures
+- joint Radon-Nikodym Mellin transforms
+- coordinatewise likelihood products
+- asymmetric critical faces and endpoint inclusion
+- holomorphic tube domains
+- marginal and reverse density integrability
