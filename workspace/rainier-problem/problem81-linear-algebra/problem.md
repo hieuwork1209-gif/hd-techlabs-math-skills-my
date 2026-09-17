@@ -2,7 +2,7 @@
 
 ## LaTeX (Normalized)
 
-Let $n\ge1$, let $a,b>0$, and let
+Let $n\ge2$, let $a,b>0$, and let
 $$
 0<\lambda<\mu<1.
 $$
@@ -41,7 +41,7 @@ For $q>1$, define the second-kind transform
 $$
 Q_m(q)=\int_0^1\frac{\pi_m(x)w(x)}{q-x}\,dx.
 $$
-For $n\ge1$ and $z,q>1$ with $z\ne q$, define
+For $z,q>1$ with $z\ne q$, define
 $$
 R_n(z,q)
 =
