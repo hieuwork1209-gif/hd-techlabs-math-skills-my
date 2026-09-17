@@ -6,13 +6,16 @@ For $\tau>0$, define
 $$
 V(\tau)=\max_{\substack{X\in\mathbb S_+^5\\ X_{11}=\cdots=X_{55}=1}}
 \left[
-\frac12\sum_{i=1}^4(1-X_{i,i+1})
-+\frac\tau2(1-X_{5,1})
+\frac12(1-X_{12})
++\frac12(1-X_{23})
++(1-X_{34})
++(1-X_{45})
++\frac\tau2(1-X_{51})
 \right].
 $$
 Let
 $$
-\tau_c=\sup\{\tau>0:V(\tau)=4\}.
+\tau_c=\sup\{\tau>0:V(\tau)=6\}.
 $$
 Determine exactly
 $$
@@ -22,7 +25,7 @@ $$
 \right).
 $$
 
-Your reasoning must prove that the limit exists, characterize the optimizer ranks on both sides of $\tau_c$, and justify that no higher-rank feasible Gram matrix can improve the value.
+Your reasoning must prove that the limit exists, characterize the optimizer rank at $\tau_c$ and for $\tau>\tau_c$ sufficiently close to $\tau_c$, and justify that no higher-rank feasible Gram matrix can improve the value in that neighborhood.
 
 Give the final answer as an ordered pair.
 
@@ -41,4 +44,4 @@ Give the final answer as an ordered pair.
 
 ## Domain Explanation
 
-This problem asks for the exact parameter at which a weighted semidefinite optimization problem changes optimizer rank, together with the second-order sensitivity of its optimal value at that transition. The central object is a parameterized SDP and its optimizer geometry, so the primary classification is Optimization and Numerical Mathematics, specifically Convex optimization.
+This problem asks for the exact rank transition and second-order onset of the optimal value in a parameterized weighted semidefinite program. The main object is an SDP over correlation matrices, and the proof depends on its Gram geometry and local convex-optimization sensitivity, so the primary classification is Optimization and Numerical Mathematics and Convex optimization.
