@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-probability-foundations/problem.md",
+  "source_commit_sha": "51b80b6a2a3dba408fffba718cba565ac182e76a",
+  "problem_blob_sha": "68b98f03bcf05ff62e530c00aedb13af8be6de7d",
+  "statement_sha256": "3121403a34608d891df3a02a57fc1869b746f7a8a5cd3fe98c5dc9effece2ddd",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T15:17:43+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\n\\rho_x=\\frac{1-\\omega_x}{\\omega_x}.\n\\]\nThen\n\\[\n\\rho_x=\\begin{cases}\n1/3,& \\omega_x=3/4,\\\\\n3,& \\omega_x=1/4,\n\\end{cases}\n\\qquad\n\\mathbb E\\log\\rho_0=(1-2\\theta)\\log 3.\n\\]\n\nThe key point is that direction depends on \\(\\mathbb E\\log\\rho_0\\), while speed and first-passage means depend on moments of \\(\\rho_0\\) or \\(\\rho_0^{-1}\\), not on the averaged drift.\n\nFor a nearest-neighbor RWRE on \\(\\mathbb Z\\), the standard one-dimensional product criterion comes from solving the harmonic equation for hitting probabilities. For \\(a<x<b\\),\n\\[\nP_\\omega^x(T_b<T_a)\n=\n\\frac{\\sum_{k=a}^{x-1}\\prod_{j=a+1}^{k}\\rho_j}\n{\\sum_{k=a}^{b-1}\\prod_{j=a+1}^{k}\\rho_j}.\n\\]\nLetting \\(a\\to-\\infty\\), \\(b\\to+\\infty\\), the behavior is governed by products\n\\[\n\\prod_{j=1}^n \\rho_j\n=\n\\exp\\left(\\sum_{j=1}^n\\log\\rho_j\\right).\n\\]\nBy the law of large numbers,\n\\[\n\\frac1n\\sum_{j=1}^n\\log\\rho_j\\to \\mathbb E\\log\\rho_0=(1-2\\theta)\\log 3.\n\\]\n\nHence:\n\n\\[\n\\boxed{\n\\begin{cases}\n\\theta<1/2: & X_n\\to-\\infty,\\\\\n\\theta=1/2: & \\text{recurrent},\\\\\n\\theta>1/2: & X_n\\to+\\infty.\n\\end{cases}}\n\\]\n\nNow compute the moment criteria. We have\n\\[\n\\mathbb E\\rho_0=\\theta\\cdot\\frac13+(1-\\theta)\\cdot3\n=\\frac{9-8\\theta}{3},\n\\]\nand\n\\[\n\\mathbb E\\rho_0^{-1}\n=\\theta\\cdot3+(1-\\theta)\\cdot\\frac13\n=\\frac{1+8\\theta}{3}.\n\\]\n\nFor crossing from \\(0\\) to \\(1\\), the quenched expected time satisfies\n\\[\nE_\\omega^0T_1\n=\n1+2\\sum_{k\\le0}\\prod_{j=k}^{0}\\rho_j.\n\\]\nAveraging over the environment gives\n\\[\n\\mathbb E_\\theta T_1\n=\n1+2\\sum_{m\\ge1}(\\mathbb E\\rho_0)^m,\n\\]\nso this is finite exactly when \\(\\mathbb E\\rho_0<1\\), i.e.\n\\[\n\\frac{9-8\\theta}{3}<1\n\\iff\n\\theta>\\frac34.\n\\]\nWhen finite,\n\\[\n\\mathbb E_\\theta T_1\n=\n1+2\\frac{\\mathbb E\\rho_0}{1-\\mathbb E\\rho_0}\n=\n\\frac{1+\\mathbb E\\rho_0}{1-\\mathbb E\\rho_0}\n=\n\\frac{6-4\\theta}{4\\theta-3}.\n\\]\n\nSimilarly,\n\\[\nE_\\omega^0T_{-1}\n=\n1+2\\sum_{k\\ge0}\\prod_{j=0}^{k}\\rho_j^{-1},\n\\]\nso\n\\[\n\\mathbb E_\\theta T_{-1}\n=\n1+2\\sum_{m\\ge1}(\\mathbb E\\rho_0^{-1})^m.\n\\]\nThis is finite exactly when\n\\[\n\\mathbb E\\rho_0^{-1}<1\n\\iff\n\\frac{1+8\\theta}{3}<1\n\\iff\n\\theta<\\frac14.\n\\]\nWhen finite,\n\\[\n\\mathbb E_\\theta T_{-1}\n=\n\\frac{1+\\mathbb E\\rho_0^{-1}}{1-\\mathbb E\\rho_0^{-1}}\n=\n\\frac{2+4\\theta}{1-4\\theta}.\n\\]\n\nThus the speed is ballistic to the right if \\(\\theta>3/4\\), ballistic to the left if \\(\\theta<1/4\\), and zero otherwise. Explicitly,\n\\[\n\\boxed{\nv(\\theta)=\n\\begin{cases}\n\\dfrac{4\\theta-1}{2+4\\theta}, & 0<\\theta<\\frac14,\\\\[6pt]\n0, & \\frac14\\le \\theta\\le \\frac34,\\\\[6pt]\n\\dfrac{4\\theta-3}{6-4\\theta}, & \\frac34<\\theta<1.\n\\end{cases}}\n\\]\n\nThe walk is transient but has zero limiting speed exactly for\n\\[\n\\boxed{\\theta\\in(1/4,1/2)\\cup(1/2,3/4]}.\n\\]\nAt \\(\\theta=1/2\\) it is recurrent with zero speed.\n\nFinally, the three transition parameters are\n\\[\n\\boxed{(\\theta_-,\\theta_{\\rm dir},\\theta_+)=\\left(\\frac14,\\frac12,\\frac34\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T15:18:35+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/68b98f03bcf0.json"
+}

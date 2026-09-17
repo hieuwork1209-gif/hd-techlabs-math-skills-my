@@ -1,9 +1,9 @@
 {
   "problem": "problem81",
   "branch": "adversary/problem81",
-  "problem_path": "workspace/rainier-problem/problem81-boundary-value-problems/problem.md",
-  "problem_blob_sha": "2f54903055b68165e91619b76d57965474ff1c4f",
-  "source_commit_sha": "5263cb76a6dcdf5f8bfe488188182d20dd96b07a",
+  "problem_path": "workspace/rainier-problem/problem81-probability-foundations/problem.md",
+  "problem_blob_sha": "68b98f03bcf05ff62e530c00aedb13af8be6de7d",
+  "source_commit_sha": "51b80b6a2a3dba408fffba718cba565ac182e76a",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-17T15:11:49+00:00",
-  "result_file": "solver-results/problem81/2f54903055b6.json"
+  "completed_at": "2026-09-17T15:18:35+00:00",
+  "result_file": "solver-results/problem81/68b98f03bcf0.json"
 }
