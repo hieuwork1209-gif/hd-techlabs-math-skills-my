@@ -2,7 +2,15 @@
 
 ## LaTeX (Normalized)
 
-Let $\Omega=(0,\pi)^2$, let $\eta\ge0$, and consider the Neumann problem
+Let
+$$
+\Omega=(0,\pi)^2,
+$$
+and fix
+$$
+\eta=\frac3{\sqrt{22}}.
+$$
+Consider the Neumann problem
 $$
 -\Delta u=\lambda u+\eta u^2-u^3
 \qquad\text{in }\Omega,
@@ -11,52 +19,82 @@ $$
 \partial_\nu u=0
 \qquad\text{on }\partial\Omega.
 $$
-Study small nonzero solutions bifurcating from
-$$
-(u,\lambda)=(0,1).
-$$
 Put
 $$
 \delta=\lambda-1,
 $$
-and write the critical-mode part of $u$ as
+and write the critical-mode part of a small solution as
 $$
 A\cos x+B\cos y.
 $$
+Assign weighted degrees
+$$
+\operatorname{wt}(A)=\operatorname{wt}(B)=1,
+\qquad
+\operatorname{wt}(\delta)=2.
+$$
+At this value of $\eta$, the cubic Lyapunov-Schmidt system is radially degenerate:
+$$
+0=A\left[-\delta+\frac{12}{11}(A^2+B^2)\right]+O_{\mathrm w}(5),
+$$
+$$
+0=B\left[-\delta+\frac{12}{11}(A^2+B^2)\right]+O_{\mathrm w}(5).
+$$
 
-Derive the cubic Lyapunov-Schmidt system in the form
+Carry the Lyapunov-Schmidt reduction through weighted degree $5$ and write it in the form
 $$
-0=A\left[-\delta+\alpha(\eta)A^2+\beta(\eta)B^2\right]
-+\text{higher-order terms},
+0=A\Bigl[
+-\delta+\frac{12}{11}(A^2+B^2)
+-\delta(pA^2+qB^2)
++rA^4+sA^2B^2+tB^4
+\Bigr]
++O_{\mathrm w}(7),
 $$
 $$
-0=B\left[-\delta+\beta(\eta)A^2+\alpha(\eta)B^2\right]
-+\text{higher-order terms}.
+0=B\Bigl[
+-\delta+\frac{12}{11}(A^2+B^2)
+-\delta(qA^2+pB^2)
++tA^4+sA^2B^2+rB^4
+\Bigr]
++O_{\mathrm w}(7).
 $$
-
-Let $\eta_{\mathrm{ex}}>0$ be the value at which
-$$
-\alpha(\eta)=\beta(\eta),
-$$
-so that axial and diagonal branch selection becomes degenerate at cubic order. Let $\eta_{\mathrm{flip}}>0$ be the value at which
-$$
-\alpha(\eta)+\beta(\eta)=0,
-$$
-so that the diagonal branch changes the side of $\lambda=1$ on which it bifurcates.
-
 Determine exactly
 $$
-\bigl(\alpha(\eta),\beta(\eta),\eta_{\mathrm{ex}},\eta_{\mathrm{flip}}\bigr).
+(p,q,r,s,t).
 $$
-Also state, for $0\le\eta<\eta_{\mathrm{flip}}$ and sufficiently small $\delta>0$, whether the axial branches
+
+Let $V(A,B)$ be the normalized reduced potential whose gradient is the displayed amplitude system. For
+$$
+A=\rho\cos\theta,
+\qquad
+B=\rho\sin\theta,
+$$
+minimize $V$ with respect to $\rho$ for each fixed $\theta$ and sufficiently small $\delta>0$. Write the resulting angular energy as
+$$
+V_{\min}(\theta)
+=-\frac{11}{48}\delta^2
++\delta^3\left(
+C_0+C_1\cos^2\theta\sin^2\theta
+\right)
++O(\delta^4).
+$$
+Determine exactly
+$$
+(C_0,C_1),
+$$
+and state whether the higher-order reduction selects the axial directions
 $$
 (A,B)=(r,0),(0,r)
 $$
-or the diagonal branches
+or the diagonal directions
 $$
-A=\pm B=r
+A=\pm B=r.
 $$
-are the strict local minima of the quartic reduced energy on each side of $\eta_{\mathrm{ex}}$.
+
+Return the exact tuple
+$$
+(p,q,r,s,t,C_0,C_1).
+$$
 
 ---
 
@@ -73,4 +111,4 @@ are the strict local minima of the quartic reduced energy on each side of $\eta_
 
 ## Domain Explanation
 
-The problem asks for the local bifurcation normal form at a double Neumann eigenvalue, including the nonlinear feedback of slaved modes, the exchange of axial and diagonal branch selection, and the change of criticality of the diagonal branch. The essential work is a Lyapunov-Schmidt reduction and interpretation of the resulting $D_4$-equivariant amplitude equations, so Differential Equations and Dynamical Systems -> Bifurcation theory is primary.
+The problem sits exactly at a cubic degeneracy of a bifurcation from a double Neumann eigenvalue. The cubic normal form no longer selects a branch direction, so one must perform a weighted fifth-order Lyapunov-Schmidt reduction, including parameter-dependent slaved-mode feedback, and then compare the higher-order reduced energy along the $D_4$-symmetric axial and diagonal directions. Thus Differential Equations and Dynamical Systems -> Bifurcation theory is primary.
