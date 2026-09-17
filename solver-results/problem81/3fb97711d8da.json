@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-number-theory/problem.md",
+  "source_commit_sha": "536ed926ceb6b662580cef29c647e389db540361",
+  "problem_blob_sha": "3fb97711d8daa6536eae79f2c149bb8db712dd64",
+  "statement_sha256": "41b30e67346ba89e8f83d7ca724180b1704507e1c60494e4d14e26e90bbddd2d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T07:36:15+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(\\chi\\) be the quadratic character of \\(\\mathbb F_p\\), with \\(\\chi(0)=0\\). A unit of \\(\\mathbb Z/p^\\alpha\\mathbb Z\\) is a square iff its reduction mod \\(p\\) is a nonzero square, so adjacency in \\(G_{p,\\alpha}\\) depends only on residues mod \\(p\\).\n\nThus \\(G_{p,\\alpha}\\) is obtained from the Paley graph \\(P_p\\) on \\(\\mathbb F_p\\) by replacing each vertex by an independent fibre of size \\(p^{\\alpha-1}\\). A \\(4\\)-clique in \\(G_{p,\\alpha}\\) therefore projects to a \\(4\\)-clique in \\(P_p\\), with \\(p^{4(\\alpha-1)}\\) lifts.\n\nIt remains to count \\(4\\)-cliques in \\(P_p\\). For the Paley graph, the number of unordered \\(4\\)-cliques is\n\n\\[\nK_4(P_p)=\\frac{p(p-1)}{1536}\\Bigl((p-9)^2-16v^2\\Bigr).\n\\]\n\nHere is the relevant character-count in brief. Fix an edge \\(\\{0,1\\}\\). Its common-neighbour set is\n\n\\[\nN=\\{x\\in\\mathbb F_p:\\chi(x)=\\chi(x-1)=1\\}.\n\\]\n\nLet \\(e\\) be the number of edges inside \\(N\\). Expanding the indicator\n\n\\[\n\\frac{1+\\chi(x)}2\\frac{1+\\chi(x-1)}2\n\\]\n\nand evaluating the resulting quartic Jacobi sums gives\n\n\\[\ne=\\frac{(p-9)^2-16v^2}{64}.\n\\]\n\nSince \\(P_p\\) has \\(p(p-1)/4\\) edges and each \\(4\\)-clique contains \\(6\\) edges,\n\n\\[\nK_4(P_p)=\\frac{1}{6}\\cdot \\frac{p(p-1)}4\\cdot e\n=\\frac{p(p-1)}{1536}\\Delta_p.\n\\]\n\nTherefore\n\n\\[\nC_{p,\\alpha}\n=\np^{4(\\alpha-1)}K_4(P_p)\n=\n\\frac{p^{4\\alpha-3}(p-1)\\Delta_p}{1536}.\n\\]\n\nNow impose the zero-sum condition. Translation acts freely on the set of \\(4\\)-cliques in \\(P_p\\), and every translation orbit contains exactly one clique with sum \\(0\\), because for a clique \\(S\\),\n\n\\[\n\\sum_{x\\in(S+t)}x=\\sum_{x\\in S}x+4t,\n\\]\n\nand \\(4\\) is invertible mod \\(p\\). Hence the number of zero-sum \\(4\\)-cliques in \\(P_p\\) is \\(K_4(P_p)/p\\).\n\nFor each zero-sum residue clique, the lifts satisfy one linear congruence over \\(p^{\\alpha-1}\\), so there are \\(p^{3(\\alpha-1)}\\) zero-sum lifts. Thus\n\n\\[\nZ_{p,\\alpha}\n=\np^{3(\\alpha-1)}\\frac{K_4(P_p)}p\n=\n\\frac{p^{3\\alpha-3}(p-1)\\Delta_p}{1536}.\n\\]\n\n\\[\n\\boxed{\n(C_{p,\\alpha},Z_{p,\\alpha})\n=\n\\left(\n\\frac{p^{4\\alpha-3}(p-1)\\Delta_p}{1536},\n\\frac{p^{3\\alpha-3}(p-1)\\Delta_p}{1536}\n\\right)\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T07:38:04+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/3fb97711d8da.json"
+}
