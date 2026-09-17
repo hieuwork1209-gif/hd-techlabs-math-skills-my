@@ -42,10 +42,11 @@ Thus the geometric hypothesis in the problem is equivalent to $\theta>\delta$.
 Step 2: Obtain a global lower bound from the first and last boundary contacts
 The complement of the open disk is a proper length space, so a minimizing admissible curve exists. Since the unconstrained geodesic from $P$ to $Q$ crosses the forbidden disk, every minimizer has a first and a last contact with the boundary circle $r=\alpha$.
 
-Before the first contact and after the last contact, a minimizer is a geodesic. Let $u_1$ and $u_2$ be the circular longitude distances from $P$ and $Q$, respectively, to those two boundary contacts. A geodesic from radius $\beta$ to radius $\alpha$ can reach the boundary from the exterior only up to the tangent offset, hence
+Before the first contact and after the last contact, a minimizer is locally geodesic. Hyperbolic geodesics between two fixed points are unique, so each of those portions is the corresponding geodesic segment. Let $u_1$ and $u_2$ be the circular longitude distances from $P$ and $Q$, respectively, to the two boundary contacts. At offset $\delta$ the endpoint-to-boundary geodesic is tangent by Step 1; if the offset were larger, its closest distance to $O$ would be less than $\alpha$, so it would cross the forbidden disk before reaching the claimed first or last contact. Therefore
 $$
 0\leq u_1,u_2\leq\delta.
 $$
+
 For $0\leq u\leq\delta$, let $d(u)$ be the hyperbolic distance between points of radii $\beta$ and $\alpha$ whose longitude difference is $u$. The hyperbolic law of cosines gives
 $$
 \cosh d(u)
