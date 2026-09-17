@@ -1,9 +1,0 @@
-{
-  "problem": "problem117",
-  "state": "MAIN_READY_FOR_RAINIER",
-  "problem_blob_sha": "84a075b98d127cd9cd2a02e5896d0fda2a68d3de",
-  "solution_blob_sha": "d5f1e843d527f89a88cef9590fd43ca2df21f074",
-  "solver_result": "solver-results/problem117/84a075b98d12.json",
-  "main_solution_commit": "373fa92ab0c543b58c4d8110099b8bfd7153a7c5",
-  "main_problem_commit": "8a73f0fd71c2e902a878a06d987460c92b338b1f"
-}
