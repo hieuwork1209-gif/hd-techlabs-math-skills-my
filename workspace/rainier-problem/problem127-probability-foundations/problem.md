@@ -2,7 +2,11 @@
 
 ## LaTeX (Normalized)
 
-Let $0<p<1$, $0<\rho<1$, and let $n\geq3$ be an integer. Let $(X_k)_{k\geq1}$ be an infinite exchangeable sequence of Bernoulli random variables satisfying
+Let $N\geq3$ be an integer and let $0<p<1$, $0<\rho<1$. Define
+$$
+r=\left\lfloor (N-1)p(1-\rho)\right\rfloor.
+$$
+Let $(X_1,\ldots,X_N)$ be an exchangeable Bernoulli vector satisfying
 $$
 \mathbb{P}(X_1=1)=p
 $$
@@ -12,7 +16,7 @@ $$
 $$
 Determine the largest possible value of
 $$
-\mathbb{P}(X_1=X_2=\cdots=X_n=1).
+\mathbb{P}(X_1=X_2=\cdots=X_N=1).
 $$
 
 ---
@@ -30,4 +34,4 @@ $$
 
 ## Domain Explanation
 
-This problem is primarily Probability and Statistics and Probability foundations: infinite exchangeability converts the joint Bernoulli law into a latent mixing distribution, while the prescribed marginal probability and pairwise correlation fix its first two moments. The requested extremal joint success probability is then determined by a sharp moment bound and its equality case.
+This problem is primarily Probability and Statistics and Probability foundations: finite exchangeability reduces the joint law to the distribution of the total number of successes, while the marginal probability and pairwise correlation fix its first two factorial moments. The sharp extremum then depends on the integer-lattice geometry of those moment constraints.
