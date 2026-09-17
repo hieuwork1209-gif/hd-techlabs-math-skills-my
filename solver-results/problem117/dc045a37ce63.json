@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-experimental-design-and-causal-inference/problem.md",
+  "source_commit_sha": "80e0938be2fd48fe8d6cfde21c494684adc0d954",
+  "problem_blob_sha": "dc045a37ce6391fca4fc0db2202efd3bc58a6ba7",
+  "statement_sha256": "fed15cb304620e54b2e7e87e89a31140ba7541a259c1f66c9ef33aa7be3ad28e",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T08:21:32+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nv_\\tau=\\left(\\tau,\\frac12,\\frac13\\right)^T,\\qquad \nM_\\tau(w)=\\sum_{i=1}^3 w_i e_i e_i^T+w_4v_\\tau v_\\tau^T.\n\\]\n\nFor the equal-weight design\n\\[\nw^0=\\left(\\frac13,\\frac13,\\frac13,0\\right),\n\\qquad M_\\tau(w^0)=\\frac13 I,\n\\]\nso\n\\[\n\\log\\det M_\\tau(w^0)=-3\\log 3.\n\\]\n\nFor any positive definite \\(M\\), concavity of \\(\\log\\det\\) gives the tangent bound at \\(M_0=\\frac13I\\):\n\\[\n\\log\\det M\\le \\log\\det M_0+\\operatorname{tr}(M_0^{-1}(M-M_0)).\n\\]\nHere \\(M_0^{-1}=3I\\), so\n\\[\n\\log\\det M_\\tau(w)\\le -3\\log3+3(\\operatorname{tr}M_\\tau(w)-1).\n\\]\nNow\n\\[\n\\operatorname{tr}M_\\tau(w)\n=w_1+w_2+w_3+w_4\\left(\\tau^2+\\frac14+\\frac19\\right).\n\\]\nThus if\n\\[\n\\tau^2+\\frac14+\\frac19\\le 1,\n\\]\nthen \\(\\log\\det M_\\tau(w)\\le -3\\log3\\). Therefore\n\\[\n\\tau\\le \\sqrt{1-\\frac14-\\frac19}=\\frac{\\sqrt{23}}6\n\\]\nimplies \\(\\Psi(\\tau)=-3\\log3\\).\n\nEquality in the tangent inequality requires \\(M_\\tau(w)=M_0\\). Since \\(v_\\tau v_\\tau^T\\) has nonzero off-diagonal entries, this forces \\(w_4=0\\), and then \\(w_1=w_2=w_3=\\frac13\\). Hence the optimizer is uniquely\n\\[\n\\left(\\frac13,\\frac13,\\frac13,0\\right)\n\\]\nfor \\(0<\\tau\\le \\frac{\\sqrt{23}}6\\).\n\nNow set\n\\[\n\\tau_0=\\frac{\\sqrt{23}}6,\\qquad A=\\tau^2,\\qquad A_0=\\tau_0^2=\\frac{23}{36}.\n\\]\nWrite\n\\[\nw_1=\\frac13+\\alpha,\\quad w_2=\\frac13+\\beta,\\quad w_3=\\frac13+\\gamma,\\quad w_4=x,\n\\]\nwith\n\\[\n\\alpha+\\beta+\\gamma+x=0.\n\\]\nThe determinant is\n\\[\nD_\\tau(w)=\\det M_\\tau(w)\n=w_1w_2w_3+x\\left(Aw_2w_3+\\frac14 w_1w_3+\\frac19 w_1w_2\\right).\n\\]\nPut \\(\\delta=A-A_0\\). Expanding near \\(w^0\\), with \\(\\gamma=-x-\\alpha-\\beta\\),\n\\[\nD_\\tau(w)-\\frac1{27}\n=\n\\frac{\\delta x}{9}\n-\\frac13(\\alpha^2+\\beta^2+\\alpha\\beta)\n-\\frac{x(55\\alpha+41\\beta)}{108}\n-\\frac{8x^2}{27}\n+o(\\delta^2),\n\\]\nuniformly for \\(\\alpha,\\beta,x=O(\\delta)\\).\n\nFor fixed \\(x\\), the quadratic part is maximized at\n\\[\n\\alpha=-\\frac{23}{36}x,\\qquad \\beta=-\\frac14x,\\qquad \\gamma=-\\frac19x.\n\\]\nThen\n\\[\nD_\\tau(w)-\\frac1{27}\n=\n\\frac{\\delta x}{9}-\\frac{335}{3888}x^2+o(\\delta^2).\n\\]\nMaximizing over \\(x\\ge0\\) gives\n\\[\nx=\\frac{216}{335}\\delta+o(\\delta)>0,\n\\]\nso for \\(\\tau>\\tau_0\\) sufficiently close to \\(\\tau_0\\), the optimizer has full support. The maximal determinant satisfies\n\\[\n\\max_w D_\\tau(w)\n=\n\\frac1{27}+\\frac{12}{335}\\delta^2+o(\\delta^2).\n\\]\nSince\n\\[\n\\delta=\\tau^2-\\tau_0^2=2\\tau_0h+h^2\n\\]\nfor \\(\\tau=\\tau_0+h\\), we get\n\\[\n\\delta^2=\\frac{23}{9}h^2+o(h^2).\n\\]\nTherefore\n\\[\n\\Psi(\\tau_0+h)-\\Psi(\\tau_0)\n=\n\\log\\left(\\frac{\\frac1{27}+\\frac{12}{335}\\delta^2+o(\\delta^2)}{\\frac1{27}}\\right)\n=\n27\\cdot \\frac{12}{335}\\delta^2+o(h^2).\n\\]\nHence\n\\[\n\\lim_{h\\downarrow0}\n\\frac{\\Psi(\\tau_0+h)-\\Psi(\\tau_0)}{h^2}\n=\n27\\cdot\\frac{12}{335}\\cdot\\frac{23}{9}\n=\n\\frac{828}{335}.\n\\]\n\nFinal answer:\n\\[\n\\boxed{\\left(\\frac{\\sqrt{23}}6,\\frac{828}{335}\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T08:23:01+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/dc045a37ce63.json"
+}
