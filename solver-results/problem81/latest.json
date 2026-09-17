@@ -2,8 +2,8 @@
   "problem": "problem81",
   "branch": "adversary/problem81",
   "problem_path": "workspace/rainier-problem/problem81-numerical-analysis/problem.md",
-  "problem_blob_sha": "c21b3efd6e93b32778f978d049346a4ef6ad3d18",
-  "source_commit_sha": "a304862ac01983d5ba2a6e8795e39b624a030488",
+  "problem_blob_sha": "cbd7c30303164d0c72e33745f79ea1fcf1f8f625",
+  "source_commit_sha": "45e477ce7300994455648d4f466bb4281c4ab6a5",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-17T12:55:25+00:00",
-  "result_file": "solver-results/problem81/c21b3efd6e93.json"
+  "completed_at": "2026-09-17T13:35:44+00:00",
+  "result_file": "solver-results/problem81/cbd7c3030316.json"
 }

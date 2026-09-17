@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-numerical-analysis/problem.md",
+  "source_commit_sha": "45e477ce7300994455648d4f466bb4281c4ab6a5",
+  "problem_blob_sha": "cbd7c30303164d0c72e33745f79ea1fcf1f8f625",
+  "statement_sha256": "9044ac390794fa0c10f541606598113892bd8bb7aa82a25a6d2f48d2bc2dccf9",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T13:33:23+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nP_{a,b}(t)=R_{a,b}(-t)\n=1-t+\\frac{t^2}{2}-\\frac{t^3}{6}+at^4-bt^5 .\n\\]\n\nThe exact answer is the unique real solution\n\n\\[\n(a_*,b_*,L_*,m_*,n_*)\n\\]\n\nof the polynomial system\n\n\\[\n12-6m+3m^2-m^3+6am^4-6bm^5=0,\n\\]\n\\[\n-2+2m-m^2+8am^3-10bm^4=0,\n\\]\n\\[\n-6n+3n^2-n^3+6an^4-6bn^5=0,\n\\]\n\\[\n-2+2n-n^2+8an^3-10bn^4=0,\n\\]\n\\[\n12-6L+3L^2-L^3+6aL^4-6bL^5=0,\n\\]\n\nwith isolating inequalities\n\n\\[\n0.0237218<a<0.0237219,\n\\qquad\n0.00111187<b<0.00111188,\n\\]\n\\[\n5.31310<m<5.31311,\n\\qquad\n9.15744<n<9.15745,\n\\qquad\n10.53551<L<10.53552 .\n\\]\n\nNumerically,\n\n\\[\n\\boxed{\n(a_*,b_*,L_*,m_*,n_*)\n\\approx\n(0.0237218324617276,\\,\n0.00111187240973150,\\,\n10.5355180135286,\\,\n5.31310156787049,\\,\n9.15744734025168)\n}.\n\\]\n\nFor this solution,\n\n\\[\nP_{a_*,b_*}(m_*)=-1,\\qquad P'_{a_*,b_*}(m_*)=0,\n\\]\n\\[\nP_{a_*,b_*}(n_*)=1,\\qquad P'_{a_*,b_*}(n_*)=0,\n\\]\nand\n\n\\[\nP_{a_*,b_*}(L_*)=-1,\n\\]\n\nwhich is exactly\n\n\\[\nR_{a_*,b_*}(-m_*)=-1,\\quad\nR'_{a_*,b_*}(-m_*)=0,\n\\]\n\\[\nR_{a_*,b_*}(-n_*)=1,\\quad\nR'_{a_*,b_*}(-n_*)=0,\n\\]\n\\[\nR_{a_*,b_*}(-L_*)=-1.\n\\]\n\nThe derivative\n\n\\[\nP'(t)=-1+t-\\frac{t^2}{2}+4a_*t^3-5b_*t^4\n\\]\n\nhas exactly the two positive zeros \\(m_*,n_*\\), with sign pattern\n\n\\[\nP'<0 \\text{ on }(0,m_*),\\qquad\nP'>0 \\text{ on }(m_*,n_*),\\qquad\nP'<0 \\text{ on }(n_*,\\infty).\n\\]\n\nThus \\(P\\) decreases from \\(1\\) to \\(-1\\), rises to \\(1\\), then decreases to \\(-1\\) at \\(L_*\\). Hence \\(|P(t)|\\le1\\) on \\([0,L_*]\\).\n\nFor optimality, suppose another admissible polynomial \\(H\\) works on \\([0,L]\\) with \\(L\\ge L_*\\). Since \\(H-P\\) has the form\n\n\\[\nH(t)-P(t)=t^4(c+dt),\n\\]\n\nthe contact inequalities at \\(m_*,n_*,L_*\\) force\n\n\\[\nc+dm_*\\ge0,\\qquad c+dn_*\\le0,\\qquad c+dL_*\\ge0.\n\\]\n\nBecause \\(m_*<n_*<L_*\\), a linear function cannot satisfy these three inequalities unless it is identically zero. Therefore \\(H=P\\). But \\(P'(L_*)<0\\), so immediately to the right of \\(L_*\\), \\(P(t)<-1\\). Hence no larger interval is possible, and the optimizer is unique.\n\nSo the requested exact tuple is the unique isolated algebraic solution above.",
+  "status": "success",
+  "completed_at": "2026-09-17T13:35:44+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/cbd7c3030316.json"
+}
