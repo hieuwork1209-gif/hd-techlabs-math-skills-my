@@ -2,8 +2,8 @@
   "problem": "problem127",
   "branch": "adversary/problem127",
   "problem_path": "workspace/rainier-problem/problem127-dynamical-systems/problem.md",
-  "problem_blob_sha": "c743d46d793d1eefb3538825d6a7eb7a2d7183e1",
-  "source_commit_sha": "0a03bfc6d96a27e3009830886ef0c0494df1c9c2",
+  "problem_blob_sha": "8f3910bfa8eef027f8f4428eaef7b3ae89d260f1",
+  "source_commit_sha": "08663a181495c6a4076f73dfac02c50f63a7b320",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-17T08:16:20+00:00",
-  "result_file": "solver-results/problem127/c743d46d793d.json"
+  "completed_at": "2026-09-17T08:22:34+00:00",
+  "result_file": "solver-results/problem127/8f3910bfa8ee.json"
 }
