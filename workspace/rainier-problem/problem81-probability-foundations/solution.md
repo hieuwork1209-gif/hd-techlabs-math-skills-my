@@ -1,159 +1,222 @@
 ## Steps
 
-Step 1: Reformulate the constraints as a truncated Hausdorff moment problem
+Step 1: Encode the prescribed moments as a linear functional
 
-Let \(\mu\) be the law of \(X\) on \([0,1]\). The assumptions are
-\[
-\int_0^1 x^k\,d\mu(x)=\frac1{k+1}
-\qquad(k=0,1,\ldots,8),
-\]
-where the case \(k=0\) is the total mass condition. Thus \(\mu\) agrees with the uniform probability measure on all polynomials of degree at most \(8\).
+Let $L$ be the linear functional on polynomials of degree at most $9$ defined by
+$$
+L(x^k)=\frac1{k+1}
+\qquad(0\le k\le 8),
+$$
+and
+$$
+L(x^9)=\frac{35281}{352800}.
+$$
+Every admissible probability law $\mu$ on $[0,1]$ satisfies
+$$
+\int p(x)\,d\mu(x)=L(p)
+$$
+for every polynomial $p$ of degree at most $9$.
 
 We must maximize
-\[
-\int_0^1 \frac{d\mu(x)}{2-x}.
-\]
+$$
+\int_0^1\frac{d\mu(x)}{2-x}.
+$$
 
-Step 2: Construct the dual polynomial
+Step 2: Find the quartic controlling the extremal support
 
 Set
-\[
-q(x)=126x^4-224x^3+126x^2-24x+1.
-\]
-A direct beta-integral calculation gives
-\[
-\int_0^1 x^j(1-x)q(x)\,dx=0
+$$
+Q(x)=420x^4-798x^3+497x^2-113x+7.
+$$
+A direct substitution of the prescribed moments gives
+$$
+L\bigl(x^{j+1}(1-x)Q(x)\bigr)=0
 \qquad(j=0,1,2,3).
 \tag{1}
-\]
-Indeed, after expanding \(q\), each integral is a linear combination of
-\[
-\int_0^1 x^m(1-x)\,dx=\frac1{(m+1)(m+2)},
-\]
-and the four resulting combinations vanish.
+$$
+Indeed, each expression is a linear combination of $L(x^k)$ with $k\le9$, and all four simplify to zero.
 
-Also
-\[
-q(2)=681.
-\]
+The polynomial $Q$ has four simple roots in $(0,1)$. It is enough to note the sign changes
+$$
+Q(0)=7,
+\qquad
+Q\!\left(\frac1{10}\right)=-\frac{43}{500},
+$$
+$$
+Q\!\left(\frac3{10}\right)=-\frac{157}{500},
+\qquad
+Q\!\left(\frac13\right)=\frac5{27},
+$$
+$$
+Q\!\left(\frac35\right)=\frac{23}{125},
+\qquad
+Q\!\left(\frac58\right)=-\frac{227}{1024},
+$$
+$$
+Q\!\left(\frac45\right)=-\frac{233}{125},
+\qquad
+Q\!\left(\frac78\right)=\frac{245}{1024}.
+$$
+Thus there is one root in each of the four disjoint intervals
+$$
+\left(0,\frac1{10}\right),
+\quad
+\left(\frac3{10},\frac13\right),
+\quad
+\left(\frac35,\frac58\right),
+\quad
+\left(\frac45,\frac78\right).
+$$
+Since $Q$ has degree $4$, these are exactly its four roots; denote them by
+$$
+r_1<r_2<r_3<r_4.
+$$
+
+Step 3: Build a sharp degree-$9$ majorant
+
+One has
+$$
+Q(2)=2105.
+$$
 Define
-\[
-P(x)=\frac{1+\dfrac{(1-x)q(x)^2}{681^2}}{2-x}.
+$$
+P(x)
+=\frac{1+\dfrac{x(1-x)Q(x)^2}{2\cdot2105^2}}{2-x}.
 \tag{2}
-\]
-The numerator in (2) vanishes at \(x=2\), because
-\[
-1+\frac{(1-2)q(2)^2}{681^2}=0.
-\]
-Hence \(P\) is actually a polynomial, of degree \(8\). Moreover, for \(0\le x\le1\),
-\[
+$$
+At $x=2$, the numerator in (2) is
+$$
+1+\frac{2(1-2)Q(2)^2}{2Q(2)^2}=0,
+$$
+so $P$ is a polynomial, of degree $9$. Moreover, for $0\le x\le1$,
+$$
 P(x)-\frac1{2-x}
-=\frac{(1-x)q(x)^2}{681^2(2-x)}\ge0.
+=\frac{x(1-x)Q(x)^2}{2\cdot2105^2(2-x)}\ge0.
 \tag{3}
-\]
-Thus \(P\) is a degree-\(8\) polynomial majorant of the objective function.
+$$
 
-Expanding (2) gives
-\[
-P(x)=\frac{1}{463761}\Bigl(
-15876x^8-40572x^7+57232x^6-29960x^5+29456x^4
-+25536x^3+58396x^2+115916x+231881
+For an explicit moment evaluation, polynomial division gives
+$$
+P(x)=\frac1{8862050}\Bigl(
+176400x^9-493920x^8+736764x^7-468888x^6
++383593x^5+210455x^4
+$$
+$$
+\hspace{35mm}
++564131x^3+1106953x^2+2215537x+4431025
 \Bigr).
 \tag{4}
-\]
-
-Step 3: Obtain the sharp upper bound from the moment constraints
-
-Since \(\mu\) and the uniform measure have the same moments through degree \(8\), (4) implies
-\[
-\int_0^1 P(x)\,d\mu(x)=\int_0^1P(x)\,dx.
-\]
-Using (4),
-\[
-\int_0^1P(x)\,dx
-=\frac{14161}{20430}.
+$$
+Therefore the prescribed moments imply
+$$
+L(P)=\frac{58363}{84200}.
 \tag{5}
-\]
+$$
 Combining (3) and (5), every admissible law satisfies
-\[
-\mathbb E\frac1{2-X}\le\frac{14161}{20430}.
+$$
+\mathbb E\!\left[\frac1{2-X}\right]
+\le \frac{58363}{84200}.
 \tag{6}
-\]
+$$
 
-Step 4: Construct an admissible law attaining equality
+Step 4: Construct a probability law attaining the bound
 
-The polynomial \(q\) is orthogonal to \(1,x,x^2,x^3\) for the positive weight \((1-x)\,dx\) on \([0,1]\). Therefore its four roots
-\[
-r_1<r_2<r_3<r_4
-\]
-are simple and lie in \((0,1)\).
-
-Take the five nodes
-\[
-r_1,r_2,r_3,r_4,1.
-\]
-Let \(L_i\) be their Lagrange basis polynomials, and define
-\[
-w_i=\int_0^1L_i(x)\,dx.
-\]
-We claim the quadrature rule
-\[
-\int_0^1 f(x)\,dx=\sum_{i=1}^5w_i f(r_i)
+Use the six nodes
+$$
+0,r_1,r_2,r_3,r_4,1.
+$$
+Let $\ell_i$ be their Lagrange basis polynomials, and define weights
+$$
+w_i=L(\ell_i).
+$$
+We claim the resulting quadrature rule
+$$
+L(f)=\sum_{i=0}^5w_i f(r_i)
 \tag{7}
-\]
-is exact for every polynomial \(f\) of degree at most \(8\), where \(r_5=1\).
+$$
+is exact for every polynomial $f$ of degree at most $9$, where $r_0=0$ and $r_5=1$.
 
-Indeed, let \(R\) be the degree-at-most-\(4\) interpolant of \(f\) at the five nodes. Then
-\[
-f(x)-R(x)=(1-x)q(x)s(x)
-\]
-for some polynomial \(s\) of degree at most \(3\). By (1),
-\[
-\int_0^1(f-R)=0,
-\]
+Indeed, let $R$ be the degree-at-most-$5$ interpolant of $f$ at the six nodes. Since
+$$
+x(1-x)Q(x)
+$$
+vanishes at all six nodes, one has
+$$
+f(x)-R(x)=x(1-x)Q(x)s(x)
+$$
+for some polynomial $s$ of degree at most $3$. Equation (1) gives
+$$
+L(f-R)=0,
+$$
 which proves (7).
 
-The weights are positive. In fact, applying (7) to \(L_i^2\), whose degree is \(8\), gives
-\[
-w_i=\int_0^1L_i(x)^2\,dx>0.
-\]
-Also \(\sum_iw_i=1\). Hence
-\[
-\mu_*=\sum_{i=1}^5w_i\,\delta_{r_i}
-\]
-is a probability measure, and (7) shows that it has moments
-\[
-\int x^k\,d\mu_*(x)=\frac1{k+1}
-\qquad(k=0,1,\ldots,8).
-\]
+It remains to show the weights are positive. For an interior node $r_i$, define
+$$
+g_i(x)=x(1-x)\left(\frac{Q(x)}{x-r_i}\right)^2.
+$$
+This has degree $8$ and is nonnegative on $[0,1]$. Since $L$ agrees with the uniform integral through degree $8$,
+$$
+L(g_i)=\int_0^1g_i(x)\,dx>0.
+$$
+In the quadrature rule (7), $g_i$ vanishes at every node except $r_i$, so
+$$
+w_i g_i(r_i)=L(g_i)>0.
+$$
+Hence every interior weight is positive.
 
-By construction, every support point of \(\mu_*\) is a zero of the nonnegative error in (3): the first four satisfy \(q(r_i)=0\), and the fifth is \(1\). Therefore equality holds in (6), so
-\[
-\max\mathbb E\frac1{2-X}=\frac{14161}{20430}.
-\]
+For the two endpoints, use
+$$
+g_0(x)=(1-x)Q(x)^2,
+\qquad
+g_1(x)=xQ(x)^2.
+$$
+Directly from the prescribed moments,
+$$
+L(g_0)=\frac{77}{60}>0,
+\qquad
+L(g_1)=\frac{377}{60}>0.
+$$
+Since
+$$
+g_0(0)=Q(0)^2=49,
+\qquad
+g_1(1)=Q(1)^2=169,
+$$
+the endpoint weights are also positive. Finally, exactness for the constant polynomial gives
+$$
+\sum_iw_i=1.
+$$
+Thus
+$$
+\mu_*=\sum_{i=0}^5w_i\delta_{r_i}
+$$
+is a probability law on $[0,1]$ having exactly the prescribed moments through degree $9$.
 
-Step 5: Uniqueness of the maximizing law
+At every support point of $\mu_*$, the error term in (3) vanishes, because either $x=0$, $x=1$, or $Q(x)=0$. Hence equality holds in (6):
+$$
+\max\mathbb E\!\left[\frac1{2-X}\right]
+=\frac{58363}{84200}.
+$$
 
-If an admissible law \(\mu\) attains equality in (6), then the nonnegative function in (3) must vanish \(\mu\)-almost surely. Hence \(\mu\) is supported on
-\[
-\{r_1,r_2,r_3,r_4,1\}.
-\]
-The masses at these five distinct points are uniquely determined by the first five moment equations \(k=0,1,2,3,4\), because the corresponding Vandermonde matrix is invertible. Thus \(\mu=\mu_*\). The maximizing law is unique.
+Step 5: Prove uniqueness
 
-As a useful check, the mass at the endpoint is
-\[
-\mu_*(\{1\})=\int_0^1\frac{q(x)}{q(1)}\,dx
-=\frac1{25},
-\]
-since \(q(1)=5\) and \(\int_0^1q(x)\,dx=1/5\).
+If an admissible law $\mu$ attains equality in (6), then the nonnegative function in (3) must vanish $\mu$-almost surely. Therefore $\mu$ is supported on
+$$
+\{0,r_1,r_2,r_3,r_4,1\}.
+$$
+The six masses at these six distinct points are uniquely determined by the moment equations for degrees $0,1,\ldots,5$, because the corresponding $6\times6$ Vandermonde matrix is invertible. Hence
+$$
+\mu=\mu_*.
+$$
+The maximizing law is unique.
 
-Final Answer: $\boxed{\frac{14161}{20430}}$
+Final Answer: $\boxed{\frac{58363}{84200}}$
 
 ---
 
 ## Answer
 
-$\frac{14161}{20430}$
+$\frac{58363}{84200}$
 
 ---
 
@@ -167,8 +230,8 @@ $\frac{14161}{20430}$
 
 ## Solution Concepts
 
-- truncated Hausdorff moment problem
+- truncated Hausdorff moment problems
 - polynomial dual majorants
-- orthogonal-polynomial quadrature
-- moment matching
+- quasi-orthogonal support polynomials
+- interpolatory quadrature
 - equality and uniqueness from support zeros
