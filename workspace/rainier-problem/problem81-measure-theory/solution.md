@@ -115,7 +115,7 @@ it becomes
 \[
 \sum_k\frac1{k(\log k)^3}<\infty.
 \]
-For every \(s>3/2\), the positive rare-event term in (5) dominates the summable corrections and forces divergence of the product. Thus the exact first constraint is
+For every \(s>3/2\), the positive rare-event term in (5) dominates the summable corrections and forces divergence of the partial moments. Thus the exact first constraint is
 \[
 \boxed{s\le\frac32,}
 \tag{7}
@@ -155,11 +155,11 @@ and this face is excluded.
 
 Step 5: The diagonal critical face, \(s+t=-1/2\)
 
-At the \(C\)-coordinates, both \(\mu\) and \(\lambda\) have parameter \(e_k=k^{-4}\), while \(\nu\) has parameter \(d_k=k^{-2}\). Therefore, with
+At the \(C\)-coordinates, both \(\mu\) and \(\lambda\) have parameter \(e_k=k^{-4}\), while \(\nu\) has parameter \(d_k=k^{-2}\). Put
 \[
-u=s+t,
+u=s+t.
 \]
-we have
+Then
 \[
 \frac{e_k}{d_k}=k^{-2},
 \]
@@ -202,26 +202,52 @@ Combining (7), (10), and (13), define
 \tag{14}
 \]
 
-For every compact subset of \(\mathcal D\), the coordinate estimates above give summable majorants for
+For every \((s,t)\in\mathcal D\), the coordinate estimates above give
 \[
-|A_k(s)-1|+|B_k(t)-1|+|C_k(s+t)-1|.
+\sum_k\mathbb E_\nu|Y_k(s,t)-1|<\infty,
 \]
-At the allowed face \(s=3/2\), the logarithmic gain in (6) still gives absolute summability. Therefore, for every \((s,t)\in\mathcal D\), the coordinate products defining \(Z^sW^t\) converge in \(L^1(\nu)\), and
+where \(Y_k(s,t)\) is the corresponding coordinate factor in \(Z^sW^t\). At the allowed face \(s=3/2\), the logarithmic gain in (6) still gives summability. The standard independent-product criterion therefore gives convergence in \(L^1(\nu)\), and
 \[
 M(s,t)=\prod_{k\ge3}A_k(s)B_k(t)C_k(s+t)<\infty.
 \tag{15}
 \]
 
-Conversely, each violated inequality produces an infinite moment from one independent coordinate family alone. Indeed, in the \(A\)-family the rare-event likelihood jump is eventually greater than \(1\) whenever \(s>3/2\); in the \(B\)-family the same is true whenever \(t\ge4/3\); and in the \(C\)-family the reciprocal jump is greater than \(1\) whenever \(s+t\le-1/2\). The corresponding Bernoulli exponential products have expectations given by the divergent series (6), (9), or (12), so Tonelli and independence force
+For the converse, split the densities according to the three independent sparse coordinate families:
 \[
-M(s,t)=+\infty.
+Z=Z_AZ_C,
+\qquad
+W=W_BW_C,
+\qquad
+Z_C=W_C.
+\tag{16}
 \]
-Hence
+If \(s>3/2\), then \(s>1\). The finite-coordinate likelihood ratios \(Z_{A,N}\) form a martingale converging to \(Z_A\), so convexity of \(x\mapsto x^s\) gives
+\[
+\mathbb E_\nu Z_A^s
+\ge \mathbb E_\nu Z_{A,N}^s.
+\]
+By (6) the right-hand side tends to \(+\infty\), hence \(\mathbb E Z_A^s=\infty\).
+
+If \(t\ge4/3\), the same argument with \(W_B\) and the convex function \(x^t\) gives
+\[
+\mathbb E_\nu W_B^t=\infty.
+\]
+
+Finally, if \(u=s+t\le-1/2\), then \(u<0\) and \(x\mapsto x^u\) is convex. Applying Jensen to the finite-coordinate likelihood martingale \(Z_{C,N}=W_{C,N}\) and using (12) gives
+\[
+\mathbb E_\nu Z_C^u=\infty.
+\]
+
+The three family factors are independent and strictly positive, so Tonelli factors the extended expectation of
+\[
+Z_A^sW_B^tZ_C^{s+t}.
+\]
+If any one of the three inequalities in (14) fails, one factor has infinite expectation and the full joint moment is infinite. Consequently
 \[
 \boxed{
 \{(s,t):M(s,t)<\infty\}=\mathcal D.
 }
-\tag{16}
+\tag{17}
 \]
 
 Step 7: Maximal holomorphic tube domain
@@ -239,7 +265,7 @@ is entire. On every compact subset of
 \ \Re w<\frac43,
 \ \Re(z+w)>-\frac12
 \right\},
-\tag{17}
+\tag{18}
 \]
 the estimates above are locally uniform and absolutely summable. Hence
 \[
@@ -250,7 +276,7 @@ is holomorphic on \(\mathcal T\).
 No strictly larger open tube domain is possible: any open enlargement across one of the three real supporting faces contains a real point outside \(\mathcal D\), where the corresponding moment is infinite. Therefore
 \[
 \boxed{\mathcal T\text{ is the maximal open holomorphic tube.}}
-\tag{18}
+\tag{19}
 \]
 
 Step 8: Marginal and reverse \(L^p\) thresholds
@@ -264,7 +290,7 @@ Z\in L^p(\nu)
 so
 \[
 \boxed{\mathcal P_Z=(0,3/2].}
-\tag{19}
+\tag{20}
 \]
 Similarly,
 \[
@@ -275,7 +301,7 @@ W\in L^p(\nu)
 so
 \[
 \boxed{\mathcal P_W=(0,4/3).}
-\tag{20}
+\tag{21}
 \]
 
 For the reverse densities,
@@ -299,14 +325,14 @@ Thus
 \boxed{
 \mathcal R_\mu=\mathcal R_\lambda=(0,3/2).
 }
-\tag{21}
+\tag{22}
 \]
 As one further check,
 \[
 Z^{-1}W^{-1}\in L^p(\nu)
 \iff (-p,-p)\in\mathcal D
 \iff 0<p<\frac14.
-\tag{22}
+\tag{23}
 \]
 
 ---
