@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-differential-geometry/problem.md",
+  "source_commit_sha": "f0be3f65fa06177fccac7a7c73c57c8d288211ed",
+  "problem_blob_sha": "1266ddd3403d45f3bb022f09845b2c34dbc51c14",
+  "statement_sha256": "b002a187e57b0cfb3d63dca9dba9d6e17c96b38511ade315a8d70d43c75b250b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T11:13:22+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\n\\Delta=2\\theta+2\\pi m\n\\]\nbe the required lifted angular change. Since \\(m\\ge 1\\), we have \\(\\Delta>2\\pi\\).\n\nThe hyperbolic polar metric is\n\\[\nds^2=dr^2+\\sinh^2 r\\,d\\lambda^2.\n\\]\nThe shortest admissible curve must wind around the forbidden disk \\(r<\\alpha\\), so it consists of:\n\n1. a geodesic tangent from \\(P\\) to the circle \\(r=\\alpha\\),\n2. an arc of the boundary circle \\(r=\\alpha\\),\n3. a geodesic tangent from the boundary circle to \\(Q\\).\n\nFor the right hyperbolic triangle with vertices \\(O\\), an endpoint at radius \\(\\beta\\), and the tangent point on \\(r=\\alpha\\), let \\(\\ell\\) be the tangent segment length and \\(\\phi\\) the angle at \\(O\\). Since the tangent meets \\(r=\\alpha\\) orthogonally,\n\\[\n\\cosh \\beta=\\cosh\\alpha\\cosh\\ell,\n\\]\nso\n\\[\n\\ell=\\operatorname{arcosh}\\!\\left(\\frac{\\cosh\\beta}{\\cosh\\alpha}\\right).\n\\]\nAlso the right-triangle relation gives\n\\[\n\\cos\\phi=\\frac{\\tanh\\alpha}{\\tanh\\beta},\n\\]\nhence\n\\[\n\\phi=\\arccos\\!\\left(\\frac{\\tanh\\alpha}{\\tanh\\beta}\\right).\n\\]\n\nThe two tangent segments account for angular change \\(2\\phi\\), so the boundary arc must have angular length\n\\[\n\\Delta-2\\phi.\n\\]\nSince the boundary circle \\(r=\\alpha\\) has metric length density \\(\\sinh\\alpha\\,d\\lambda\\), that arc has length\n\\[\n\\sinh\\alpha(\\Delta-2\\phi).\n\\]\n\nTherefore the minimum length is\n\\[\n\\boxed{\n2\\operatorname{arcosh}\\!\\left(\\frac{\\cosh\\beta}{\\cosh\\alpha}\\right)\n+\\sinh\\alpha\\left(2\\theta+2\\pi m\n-2\\arccos\\!\\left(\\frac{\\tanh\\alpha}{\\tanh\\beta}\\right)\\right)\n}.\n\\]\n\nThis is attained by the two tangent geodesic segments and the positively oriented boundary arc between their tangent points.",
+  "status": "success",
+  "completed_at": "2026-09-17T11:14:51+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/1266ddd3403d.json"
+}
