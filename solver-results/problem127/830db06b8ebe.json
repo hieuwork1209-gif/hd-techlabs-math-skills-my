@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-solid-geometry/problem.md",
+  "source_commit_sha": "d751b9cd42b8224ea07051a4c9cbdfa4e787cd13",
+  "problem_blob_sha": "830db06b8ebe08d9a12bea22e85349e946ddf606",
+  "statement_sha256": "d1bae487c8cc99c7d98543ee1fc270edd678f71b38b339d64b26db516ea0a5a9",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T14:39:03+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(A\\) be the origin, and write\n\\[\nx=\\overrightarrow{AB},\\qquad y=\\overrightarrow{AC},\\qquad z=\\overrightarrow{AD}.\n\\]\nLet\n\\[\nG=(x_i\\cdot x_j)_{1\\le i,j\\le 3},\\qquad D=\\det G.\n\\]\nThen the tetrahedron volume is\n\\[\nV=\\frac{\\sqrt D}{6}.\n\\]\n\nSince\n\\[\n[ABC]=[ABD]=[ACD]=1,\n\\]\nthe three \\(2\\times2\\) principal minors of \\(G\\) are all equal to \\(4\\). Hence, for \\(H=G^{-1}\\),\n\\[\nH_{11}=H_{22}=H_{33}=\\frac4D.\n\\]\n\nNow consider the face \\(BCD\\). Let \\(e=(1,1,1)^T\\). The plane through \\(x,y,z\\) has normal proportional to \\(X^{-T}e\\), so\n\\[\n4[BCD]^2=D\\, e^T G^{-1}e.\n\\]\nThus\n\\[\nD\\,e^THe=4s^2.\n\\]\n\nDefine\n\\[\nK=\\frac D4 H.\n\\]\nThen \\(K\\) is positive definite, has diagonal entries \\(1\\), and satisfies\n\\[\ne^TKe=s^2.\n\\]\nAlso\n\\[\n\\det K=\\left(\\frac D4\\right)^3\\det H=\\frac{D^2}{64}.\n\\]\nSo maximizing volume is equivalent to maximizing \\(\\det K\\).\n\nWrite \\(u=e/\\sqrt3\\). In an orthonormal basis beginning with \\(u\\),\n\\[\nK=\\begin{pmatrix}\na & b^T\\\\\nb & C\n\\end{pmatrix},\n\\qquad a=u^TKu=\\frac{s^2}{3}.\n\\]\nSince \\(\\operatorname{tr}K=3\\), we have \\(\\operatorname{tr}C=3-a\\). By the Schur complement,\n\\[\n\\det K=a\\det\\left(C-\\frac{bb^T}{a}\\right).\n\\]\nFor a positive semidefinite \\(2\\times2\\) matrix with trace \\(T\\), the determinant is at most \\(T^2/4\\). Hence\n\\[\n\\det K\\le a\\left(\\frac{3-a}{2}\\right)^2\n=\\frac{s^2(9-s^2)^2}{108}.\n\\]\nEquality holds exactly when \\(b=0\\) and \\(C=\\frac{3-a}{2}I\\). Therefore every maximizer has\n\\[\nK_*=\\begin{pmatrix}\n1&c&c\\\\\nc&1&c\\\\\nc&c&1\n\\end{pmatrix},\n\\qquad\nc=\\frac{s^2-3}{6}.\n\\]\nThus all maximizers have the same Gram matrix up to orthogonal motion, hence the same circumradius.\n\nAt equality,\n\\[\nD^2=64\\det K_*=\\frac{16}{27}s^2(9-s^2)^2,\n\\]\nso\n\\[\nD=\\frac{4s(9-s^2)}{3\\sqrt3}.\n\\]\nSince\n\\[\nG=\\frac D4 K_*^{-1},\n\\]\nand \\(K_*\\) has eigenvalues\n\\[\n\\frac{s^2}{3},\\qquad \\frac{9-s^2}{6},\\qquad \\frac{9-s^2}{6},\n\\]\none gets\n\\[\n(G_{11},G_{22},G_{33})=\n\\frac{s^2+3}{\\sqrt3\\,s}.\n\\]\nLet \\(O\\) be the circumcenter relative to \\(A=0\\). It satisfies\n\\[\nx\\cdot O=y\\cdot O=z\\cdot O=\\frac{G_{11}}2.\n\\]\nTherefore\n\\[\nR^2=|O|^2\n=\\frac14 d^TG^{-1}d,\n\\]\nwhere \\(d=(G_{11},G_{22},G_{33})^T\\). Using \\(e^TG^{-1}e=4s^2/D\\), this gives\n\\[\nR^2=\\frac{\\sqrt3\\,(s^2+3)^2}{4s(9-s^2)}.\n\\]\n\nHence the common circumradius is\n\\[\n\\boxed{R(s)=\\frac{3^{1/4}(s^2+3)}{2\\sqrt{s(9-s^2)}}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T14:40:39+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/830db06b8ebe.json"
+}

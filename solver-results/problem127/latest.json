@@ -2,8 +2,8 @@
   "problem": "problem127",
   "branch": "adversary/problem127",
   "problem_path": "workspace/rainier-problem/problem127-solid-geometry/problem.md",
-  "problem_blob_sha": "f5a70f78997ee2ffaacc77fe305dfe2d9ec51049",
-  "source_commit_sha": "59ab5002a3c886272d88b877d790b658d3d678d7",
+  "problem_blob_sha": "830db06b8ebe08d9a12bea22e85349e946ddf606",
+  "source_commit_sha": "d751b9cd42b8224ea07051a4c9cbdfa4e787cd13",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-17T14:30:56+00:00",
-  "result_file": "solver-results/problem127/f5a70f78997e.json"
+  "completed_at": "2026-09-17T14:40:39+00:00",
+  "result_file": "solver-results/problem127/830db06b8ebe.json"
 }
