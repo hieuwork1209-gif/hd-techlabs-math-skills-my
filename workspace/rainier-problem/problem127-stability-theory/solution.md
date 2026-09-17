@@ -70,13 +70,13 @@ $$
 $$
 for $i=1,2$.
 
-At an arbitrary observation time there may be one final partial interval of length $s<\tau$. Since
+At an arbitrary observation time there is at most one terminal piece of the currently active interval. If its elapsed length $s\geq\tau$, the same decreasing-rate bound applies directly. If $0\leq s<\tau$, use the finite constant
 $$
 C_\tau=
 \max_{i\in\{1,2\}}\max_{0\leq s\leq\tau}
-\left(e^{-r(\tau)s}\|e^{sA_i}\|_2\right)
+\left(e^{-r(\tau)s}\|e^{sA_i}\|_2\right).
 $$
-is finite, submultiplicativity gives
+Submultiplicativity therefore gives, in every case,
 $$
 \|\Phi_\sigma(t)\|_2\leq C_\tau e^{r(\tau)t}
 $$
