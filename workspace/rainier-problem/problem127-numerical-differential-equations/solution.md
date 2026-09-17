@@ -1,39 +1,28 @@
 ## Steps
 
-Step 1: Verify the family is second order
-For $a,d>0$, consider
+Step 1: Compute the rational stability function
+For $a,d>0$, write
 $$
 A=\begin{pmatrix}
 a&0\\
 1-a-d&d
 \end{pmatrix},
 \qquad
-b^T=\left(\frac12,\frac12\right),
-\qquad
-c=A\mathbf1=\binom{a}{1-a}.
+b^T=\left(\frac12,\frac12\right).
 $$
-The Runge-Kutta order-two conditions are
-$$
-b^T\mathbf1=1,
-\qquad
-b^Tc=\frac12.
-$$
-Here
-$$
-b^T\mathbf1=1
-$$
-and
-$$
-b^Tc=\frac12\bigl(a+(1-a)\bigr)=\frac12,
-$$
-so every method in the stated two-parameter family has classical order two.
-
-Step 2: Compute the stability function and extract the L-stability condition
 For the test equation $y'=zy$, the stability function is
 $$
-R(z)=1+z\,b^T(I-zA)^{-1}\mathbf1.
+R(z)=1+z\,b^T(I-zA)^{-1}\mathbf{1}.
 $$
-A direct inversion gives
+Since
+$$
+I-zA=
+\begin{pmatrix}
+1-az&0\\
+-(1-a-d)z&1-dz
+\end{pmatrix},
+$$
+a direct inversion gives
 $$
 R(z)=
 \frac{1+(1-a-d)z+\frac12(2ad-2a-2d+1)z^2}
@@ -41,17 +30,19 @@ R(z)=
 $$
 Because $a,d>0$, the poles $1/a$ and $1/d$ lie in the open right half-plane.
 
-L-stability requires A-stability and
+Step 2: Extract the necessary decay equation
+L-stability requires
 $$
 \lim_{x\to+\infty}R(-x)=0.
 $$
-Since the denominator has leading coefficient $ad$, this limit vanishes exactly when the quadratic coefficient of the numerator is zero. Hence every L-stable pair must satisfy
+The denominator of $R$ has leading coefficient $ad>0$. Therefore this limit vanishes exactly when the quadratic coefficient of the numerator is zero, namely
 $$
 2ad-2a-2d+1=0.
 $$
+Thus every L-stable pair must lie on this curve.
 
-Step 3: Prove that the same equation is sufficient for A-stability
-First compute on the imaginary axis, without yet imposing the equation from Step 2:
+Step 3: Prove A-stability on the entire candidate curve
+For real $y$, expand the difference of squared moduli on the imaginary axis:
 $$
 |(1-iay)(1-idy)|^2
 -
@@ -60,11 +51,7 @@ $$
 $$
 =\frac{y^4}{4}(2a-1)(2d-1)(2a+2d-1).
 $$
-Now assume
-$$
-2ad-2a-2d+1=0.
-$$
-Then
+Now impose the necessary equation from Step 2. It gives
 $$
 2a+2d-1=2ad
 $$
@@ -74,29 +61,25 @@ $$
 =4ad-2a-2d+1
 =2ad.
 $$
-Therefore the imaginary-axis difference simplifies to
+Hence the imaginary-axis difference becomes
 $$
 a^2d^2y^4\geq0.
 $$
-Thus
+Therefore
 $$
 |R(iy)|\leq1
 $$
 for every real $y$.
 
-The poles of $R$ are in the open right half-plane, so $R$ is analytic on the closed left half-plane. Under the same equation the numerator is only linear, so $R(z)\to0$ as $|z|\to\infty$ in that half-plane. Applying the maximum-modulus principle on left half-disks and letting their radii tend to infinity gives
+The poles are in the open right half-plane, so $R$ is analytic on the closed left half-plane. On the candidate curve the numerator is linear while the denominator is quadratic, hence $R(z)\to0$ as $|z|\to\infty$ in that half-plane. Applying the maximum-modulus principle on left half-disks and letting their radii tend to infinity yields
 $$
 |R(z)|\leq1
 $$
 for every $\operatorname{Re}z\leq0$.
-Hence every positive pair satisfying the equation is A-stable, and together with Step 2 it is L-stable.
+Thus every positive point on the candidate curve is A-stable.
 
-Step 4: Close the classification
-Step 2 proved that every L-stable method in the family must lie on the curve
-$$
-2ad-2a-2d+1=0,
-$$
-while Step 3 proved that every positive point on this curve is indeed L-stable. Therefore the classification is exact.
+Step 4: Complete the L-stability classification
+Step 2 gives the necessary decay condition, and Step 3 proves A-stability whenever that condition holds. Since the same condition also makes $R(-x)\to0$, it is sufficient for L-stability as well.
 
 Final Answer: $\boxed{\{(a,d)\in(0,\infty)^2:2ad-2a-2d+1=0\}}$
 
@@ -118,8 +101,8 @@ $\{(a,d)\in(0,\infty)^2:2ad-2a-2d+1=0\}$
 
 ## Solution Concepts
 
-- implicit Runge-Kutta methods
-- Runge-Kutta order conditions
+- implicit runge-kutta methods
 - rational stability functions
-- A-stability and L-stability
+- a-stability and l-stability
+- imaginary-axis stability criterion
 - maximum-modulus principle
