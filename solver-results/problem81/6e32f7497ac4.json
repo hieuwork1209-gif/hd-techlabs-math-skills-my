@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-harmonic-analysis/problem.md",
+  "source_commit_sha": "7a0236e2ddb8a4febcf0a484a40ea120ea5a016b",
+  "problem_blob_sha": "6e32f7497ac4ba9a4ddc1b733c124ae9cec7d4fe",
+  "statement_sha256": "0f867649f2492961f93366828b2247eadeb4c007d28ebdfdd46694ea4bdb7f59",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T13:43:51+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(z=e^{i\\theta}\\), and write the coefficients of \\(f\\) as\n\\[\n(a,b,c,0,c,b,a).\n\\]\nThe \\(L^2\\) condition is\n\\[\n2(a^2+b^2+c^2)=1.\n\\]\nThe Fourier coefficients of \\(f^2\\) from degrees \\(0\\) to \\(6\\) are\n\\[\na^2,\\quad 2ab,\\quad 2ac+b^2,\\quad 2bc,\\quad 2ac+c^2,\\quad 2b(a+c),\\quad\n2(a^2+b^2+c^2)=1,\n\\]\nand the remaining ones are symmetric. Hence\n\\[\n\\|f\\|_4^4\n=\n1+2\\sum_{j=0}^5 q_j^2.\n\\]\n\nPut\n\\[\nA=\\sqrt2a,\\qquad B=\\sqrt2b,\\qquad C=\\sqrt2c,\n\\]\nso that \\(A^2+B^2+C^2=1\\). The maximization becomes\n\\[\n\\|f\\|_4^4=1+\\frac12 T(A,B,C),\n\\]\nwhere\n\\[\n\\begin{aligned}\nT={}&A^4+4A^2B^2+(2AC+B^2)^2+4B^2C^2\\\\\n&+(2AC+C^2)^2+4B^2(A+C)^2 .\n\\end{aligned}\n\\]\n\nWrite \\(C=tA\\), \\(A^2+C^2=\\rho\\), \\(B^2=1-\\rho\\). Then\n\\[\nT=1+\\rho\\frac{6(1+t)^2}{1+t^2}\n-\\rho^2\\frac{2P(t)}{(1+t^2)^2},\n\\]\nwhere\n\\[\nP(t)=3t^4+4t^3+3t^2+6t+3.\n\\]\nFor fixed \\(t\\), the optimal interior value occurs at\n\\[\n\\rho=\\frac{3(1+t)^2(1+t^2)}{2P(t)}.\n\\]\nMaximizing the corresponding one-variable expression gives\n\\[\n4t^3+3t^2-6t-3=0.\n\\]\nThe maximizing root is the unique root\n\\[\n\\tau\\in(1.1409,1.1410)\n\\]\nof\n\\[\n4\\tau^3+3\\tau^2-6\\tau-3=0.\n\\]\n\nLet\n\\[\nR=33\\tau^2+58\\tau+23.\n\\]\nUsing the cubic relation to simplify,\n\\[\nM_*=\n\\frac{3(147\\tau^2+270\\tau+101)}{4(33\\tau^2+58\\tau+23)}.\n\\]\nNumerically,\n\\[\nM_*\\approx 3.4073.\n\\]\n\nThe maximizing triples are obtained from\n\\[\na^2=\\frac{4(\\tau+1)^2}{R},\\qquad\nb^2=\\frac{25\\tau^2+42\\tau+15}{4R},\\qquad\nc=\\tau a.\n\\]\nThus\n\\[\n\\mathcal E_*=\n\\left\\{\n\\left(\n\\sigma\\frac{2(\\tau+1)}{\\sqrt R},\n\\eta\\frac{\\sqrt{25\\tau^2+42\\tau+15}}{2\\sqrt R},\n\\sigma\\frac{2\\tau(\\tau+1)}{\\sqrt R}\n\\right)\n:\\sigma,\\eta\\in\\{\\pm1\\}\n\\right\\}.\n\\]\n\nTherefore\n\\[\n\\boxed{\n\\left(\n\\frac{3(147\\tau^2+270\\tau+101)}{4(33\\tau^2+58\\tau+23)},\n\\left\\{\n\\left(\n\\sigma\\frac{2(\\tau+1)}{\\sqrt R},\n\\eta\\frac{\\sqrt{25\\tau^2+42\\tau+15}}{2\\sqrt R},\n\\sigma\\frac{2\\tau(\\tau+1)}{\\sqrt R}\n\\right)\n:\\sigma,\\eta\\in\\{\\pm1\\}\n\\right\\}\n\\right)\n}\n\\]\nwhere \\(\\tau\\) is the unique root of \\(4x^3+3x^2-6x-3\\) in \\((1.1409,1.1410)\\), and \\(R=33\\tau^2+58\\tau+23\\).",
+  "status": "success",
+  "completed_at": "2026-09-17T13:46:55+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/6e32f7497ac4.json"
+}
