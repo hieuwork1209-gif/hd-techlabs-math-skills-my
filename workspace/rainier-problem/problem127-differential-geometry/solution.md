@@ -1,132 +1,147 @@
 ## Steps
 
-Step 1: Identify when the unconstrained geodesic is blocked by the polar cap
-Let the forbidden open cap be
+Step 1: Identify the tangency threshold in the hyperbolic plane
+Work in the hyperbolic plane of curvature $-1$ with polar coordinates $(r,\lambda)$ about the center $O$ of the forbidden disk. Its metric is
 $$
-C=\{\text{colatitude}<\alpha\}.
+ds^2=dr^2+\sinh^2r\,d\lambda^2.
 $$
-The points $P$ and $Q$ have colatitude $\beta$ and longitudes $-\theta$ and $\theta$. Since $0<\theta<\frac{\pi}{2}$, the midpoint of the shorter great-circle arc from $P$ to $Q$ lies on longitude $0$. If its colatitude is $\gamma$, then from the normalized vector $P+Q$,
-$$
-\tan\gamma=\tan\beta\cos\theta.
-$$
-Hence that great-circle arc meets the interior of $C$ exactly when
-$$
-\tan\beta\cos\theta<\tan\alpha.
-$$
-Set
-$$
-\delta=\arccos\frac{\tan\alpha}{\tan\beta}.
-$$
-Because $0<\alpha<\beta<\frac{\pi}{2}$, one has $0<\delta<\frac{\pi}{2}$, and the hypothesis of the problem is equivalent to
-$$
-\theta>\delta.
-$$
-Thus every shortest admissible curve must touch the boundary circle of the cap.
+The points $P$ and $Q$ have polar coordinates $(\beta,-\theta)$ and $(\beta,\theta)$.
 
-Step 2: Reduce every shortest admissible curve to two boundary contact offsets
-The closed set $S^2\setminus C$ is compact, so a length-minimizing admissible curve exists. Before its first contact with the boundary and after its last contact, a minimizer is a great-circle segment; otherwise that interior portion could be shortened.
-
-Let the first and last boundary contacts have longitudes $\lambda_1$ and $\lambda_2$. A minimizing curve has no unnecessary longitudinal backtracking, so the contacts lie between the endpoint longitudes. Write
+Let a geodesic from $P$ be tangent to the circle $r=\alpha$ at $T$, and let
 $$
-u_1=\lambda_1+\theta,
-\qquad
-u_2=\theta-\lambda_2.
+\delta=|\lambda(T)+\theta|.
 $$
-Then $u_1,u_2\geq0$.
-
-A great-circle segment from an endpoint at colatitude $\beta$ to the boundary colatitude $\alpha$ can stay outside the open cap only until it becomes tangent to the boundary. The tangent longitude offset is $\delta$, so
+The triangle $OPT$ is right-angled at $T$. If $\ell=d(P,T)$, the hyperbolic right-triangle identity gives
 $$
-0\leq u_1,u_2\leq\delta.
+\cosh\beta=\cosh\alpha\cosh\ell,
 $$
-For $0\leq u\leq\delta$, let $d(u)$ be the spherical distance from a point of colatitude $\beta$ to a boundary point of colatitude $\alpha$ whose longitude differs by $u$. The spherical law of cosines gives
+so
 $$
-\cos d(u)=\cos\alpha\cos\beta+\sin\alpha\sin\beta\cos u.
+\ell=\mathrm{acosh}\left(\frac{\cosh\beta}{\cosh\alpha}\right).
 $$
-
-Between the two boundary contacts, use colatitude-longitude coordinates $(r,\lambda)$. Since every admissible point satisfies $r\geq\alpha$, the spherical line element gives
+The hyperbolic law of cosines also gives
 $$
-\sqrt{dr^2+\sin^2r\,d\lambda^2}\geq\sin\alpha\,|d\lambda|.
+\cosh\ell
+=\cosh\alpha\cosh\beta-\sinh\alpha\sinh\beta\cos\delta.
 $$
-Therefore the middle part of the curve has length at least
+Substituting the preceding value of $\cosh\ell$ yields
 $$
-\sin\alpha(\lambda_2-\lambda_1)
-=\sin\alpha(2\theta-u_1-u_2).
-$$
-Consequently every minimizer has length at least
-$$
-d(u_1)+d(u_2)+\sin\alpha(2\theta-u_1-u_2).
-$$
-
-Step 3: Prove that both optimal contacts are tangent contacts
-Differentiate the cosine formula for $d(u)$:
-$$
-d'(u)=\frac{\sin\alpha\sin\beta\sin u}{\sin d(u)}.
-$$
-A direct identity gives
-$$
-\sin^2d(u)-\sin^2\beta\sin^2u
-=\left(\sin\alpha\cos\beta-\cos\alpha\sin\beta\cos u\right)^2.
+\cos\delta=\frac{\tanh\alpha}{\tanh\beta}.
 $$
 Hence
 $$
-\sin d(u)\geq\sin\beta\sin u
+\delta=\arccos\frac{\tanh\alpha}{\tanh\beta}.
 $$
-for $0\leq u\leq\delta$, and therefore
+
+By symmetry, the closest point of the shorter geodesic from $P$ to $Q$ to $O$ lies on longitude $0$. Applying the same right-triangle relation to that closest point shows that this geodesic enters the disk $r<\alpha$ exactly when
 $$
-d'(u)\leq\sin\alpha.
+\theta>\delta.
 $$
-Thus the function
+Thus the geometric hypothesis in the problem is equivalent to $\theta>\delta$.
+
+Step 2: Obtain a global lower bound from the first and last boundary contacts
+The complement of the open disk is a proper length space, so a minimizing admissible curve exists. Since the unconstrained geodesic from $P$ to $Q$ crosses the forbidden disk, every minimizer has a first and a last contact with the boundary circle $r=\alpha$.
+
+Before the first contact and after the last contact, a minimizer is a geodesic. Let $u_1$ and $u_2$ be the circular longitude distances from $P$ and $Q$, respectively, to those two boundary contacts. A geodesic from radius $\beta$ to radius $\alpha$ can reach the boundary from the exterior only up to the tangent offset, hence
 $$
-d(u)-u\sin\alpha
+0\leq u_1,u_2\leq\delta.
 $$
-is nonincreasing on $[0,\delta]$. It follows that
+For $0\leq u\leq\delta$, let $d(u)$ be the hyperbolic distance between points of radii $\beta$ and $\alpha$ whose longitude difference is $u$. The hyperbolic law of cosines gives
 $$
-d(u_i)-u_i\sin\alpha
-\geq d(\delta)-\delta\sin\alpha
+\cosh d(u)
+=\cosh\alpha\cosh\beta-\sinh\alpha\sinh\beta\cos u.
+$$
+
+For the portion of the minimizing curve between the two boundary contacts, every point has $r\geq\alpha$. Therefore
+$$
+\sqrt{dr^2+\sinh^2r\,d\lambda^2}
+\geq\sinh\alpha\,|d\lambda|.
+$$
+The longitude circle has metric distance $2\theta$ between the endpoint longitudes because $0<\theta<\frac{\pi}{2}$. By the triangle inequality on that circle, the angular distance between the two boundary contacts is at least
+$$
+2\theta-u_1-u_2.
+$$
+Hence every minimizer has length
+$$
+L\geq d(u_1)+d(u_2)+\sinh\alpha(2\theta-u_1-u_2).
+$$
+
+Step 3: Show that the lower bound is minimized at tangency
+Differentiate the formula for $d(u)$:
+$$
+d'(u)
+=\frac{\sinh\alpha\sinh\beta\sin u}{\sinh d(u)}.
+$$
+The identity
+$$
+\sinh^2d(u)-\sinh^2\beta\sin^2u
+=\left(\cosh\alpha\sinh\beta\cos u-\sinh\alpha\cosh\beta\right)^2
+$$
+shows that
+$$
+\sinh d(u)\geq\sinh\beta\sin u.
+$$
+Consequently
+$$
+d'(u)\leq\sinh\alpha
+$$
+for $0\leq u\leq\delta$. Therefore
+$$
+d(u)-u\sinh\alpha
+$$
+is nonincreasing on $[0,\delta]$. Thus
+$$
+d(u_i)-u_i\sinh\alpha
+\geq d(\delta)-\delta\sinh\alpha
 $$
 for $i=1,2$.
 
-Substituting into the lower bound from Step 2 yields
+Substituting into the lower bound from Step 2 gives
 $$
-L\geq2d(\delta)+2\sin\alpha(\theta-\delta).
+L\geq2d(\delta)+2\sinh\alpha(\theta-\delta).
 $$
 Since
 $$
-\cos\delta=\frac{\tan\alpha}{\tan\beta},
+\cos\delta=\frac{\tanh\alpha}{\tanh\beta},
 $$
-the cosine formula simplifies to
+the hyperbolic cosine formula simplifies to
 $$
-\cos d(\delta)=\frac{\cos\beta}{\cos\alpha}.
+\cosh d(\delta)=\frac{\cosh\beta}{\cosh\alpha}.
 $$
-Therefore
+Hence
 $$
-d(\delta)=\arccos\frac{\cos\beta}{\cos\alpha}.
+d(\delta)
+=\mathrm{acosh}\left(\frac{\cosh\beta}{\cosh\alpha}\right).
 $$
 
-Step 4: Construct the equality path and obtain the minimum
-Take the great-circle segment from $P$ to the boundary point of longitude $-\theta+\delta$, then follow the boundary circle monotonically to longitude $\theta-\delta$, and finally take the tangent great-circle segment to $Q$.
+Step 4: Construct the path attaining the bound
+Let $T_1$ and $T_2$ be the two tangent points on $r=\alpha$ whose longitude offsets from $P$ and $Q$ are both $\delta$. Join $P$ to $T_1$ and $T_2$ to $Q$ by the tangent geodesic segments, and join $T_1$ to $T_2$ along the shorter boundary arc.
 
-The two great-circle pieces are tangent to the boundary, so they stay in $S^2\setminus C$. Each has length
+Each tangent segment has length
 $$
-\arccos\frac{\cos\beta}{\cos\alpha}.
+\mathrm{acosh}\left(\frac{\cosh\beta}{\cosh\alpha}\right).
 $$
-The boundary circle has radius $\sin\alpha$ in the induced spherical metric, and the longitude change along the boundary piece is
+The metric induced on the circle $r=\alpha$ is
+$$
+ds=\sinh\alpha\,|d\lambda|,
+$$
+while the boundary longitude difference is
 $$
 2(\theta-\delta).
 $$
-Thus its length is
+Thus the boundary piece has length
 $$
-2\sin\alpha(\theta-\delta).
+2\sinh\alpha(\theta-\delta).
 $$
-This curve attains the lower bound from Step 3, so it is globally minimizing.
+This admissible curve attains the lower bound from Step 3 and is therefore globally minimizing.
 
-Final Answer: $\boxed{2\arccos\frac{\cos\beta}{\cos\alpha}+2\sin\alpha(\theta-\arccos\frac{\tan\alpha}{\tan\beta})}$
+Final Answer: $\boxed{2\mathrm{acosh}(\cosh\beta/\cosh\alpha)+2\sinh\alpha(\theta-\arccos(\tanh\alpha/\tanh\beta))}$
 
 ---
 
 ## Answer
 
-$2\arccos\frac{\cos\beta}{\cos\alpha}+2\sin\alpha(\theta-\arccos\frac{\tan\alpha}{\tan\beta})$
+$2\mathrm{acosh}(\cosh\beta/\cosh\alpha)+2\sinh\alpha(\theta-\arccos(\tanh\alpha/\tanh\beta))$
 
 ---
 
@@ -140,8 +155,8 @@ $2\arccos\frac{\cos\beta}{\cos\alpha}+2\sin\alpha(\theta-\arccos\frac{\tan\alpha
 
 ## Solution Concepts
 
-- spherical geodesics
-- spherical law of cosines
+- hyperbolic geodesics
+- hyperbolic law of cosines
 - constrained shortest paths
 - boundary tangency
 - metric lower bounds
