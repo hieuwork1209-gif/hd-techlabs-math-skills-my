@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-analysis/problem.md",
+  "source_commit_sha": "053bea35d096e09dc41f43e98c8c3078bbbd8bd2",
+  "problem_blob_sha": "2608f82be1c36775841b67b36664f5700c462dc5",
+  "statement_sha256": "3001ac5c44edabba5b70358490ae179fb3866db84f027797e412708888835fcf",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T08:50:09+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\n\\rho=\\operatorname{root}_{(1/11,\\,1/10)}P.\n\\]\nI claim the unique compatible value is\n\\[\n\\boxed{\\tau=\\rho}.\n\\]\n\nFor even powers, write\n\\[\nr_k=\\int_{-1}^1 x^{2k}\\,d\\mu_\\tau(x)\n=\\frac2{2k+1}+\\frac{2\\tau}{2k+3}+2\\tau .\n\\]\nThe three-point Gaussian rule has nodes \\(-a_\\tau,0,a_\\tau\\). Exactness for \\(1,x^2,x^4\\) gives\n\\[\na_\\tau^2=\\frac{r_2}{r_1}\n=\\frac{21+120\\tau}{35+126\\tau}.\n\\]\nSet\n\\[\nu=a_\\tau^2,\\qquad v=b^2.\n\\]\nThe seven-node rule is exact through degree \\(11\\) iff, in the variable \\(s=x^2\\), the four-node rule at \\(0,v,u,1\\) is exact through degree \\(5\\). Hence the node polynomial\n\\[\nN(s)=s(s-1)(s-u)(s-v)\n\\]\nmust satisfy\n\\[\n\\int N(s)\\,d\\nu(s)=0,\\qquad \\int sN(s)\\,d\\nu(s)=0,\n\\]\nwhere \\(\\int s^k\\,d\\nu=r_k\\).\n\nThe first condition is linear in \\(v\\), and gives\n\\[\nv=\n\\frac{\n\\frac{56}{9}+\\frac{108688}{495}\\tau+\\frac{26344}{33}\\tau^2+\\frac{3504}{11}\\tau^3\n}{\n(35+126\\tau)\\left(\\frac85+\\frac{160}{9}\\tau+\\frac{40}{7}\\tau^2\\right)\n}.\n\\]\nSubstituting this into the second condition gives, after cancellation of a strictly nonzero factor for \\(\\tau>0\\),\n\\[\nP(\\tau)=0.\n\\]\nSince\n\\[\nP'(\\tau)=1431900\\tau^3+8005950\\tau^2+7100300\\tau+120890>0\n\\]\nfor \\(\\tau>0\\), \\(P\\) has at most one positive root. Also\n\\[\nP(1/11)<0,\\qquad P(1/10)>0,\n\\]\nso there is exactly one positive root, namely \\(\\rho=\\operatorname{root}_{(1/11,1/10)}P\\).\n\nAt this value,\n\\[\na_\\rho=\\sqrt{\\frac{21+120\\rho}{35+126\\rho}},\n\\]\nand\n\\[\nb=\\sqrt{\n\\frac{\n\\frac{56}{9}+\\frac{108688}{495}\\rho+\\frac{26344}{33}\\rho^2+\\frac{3504}{11}\\rho^3\n}{\n(35+126\\rho)\\left(\\frac85+\\frac{160}{9}\\rho+\\frac{40}{7}\\rho^2\\right)\n}}.\n\\]\nNumerically,\n\\[\n\\rho\\approx0.0986253989850833,\\quad\na_\\rho\\approx0.832064348788215,\\quad\nb\\approx0.471539666133636,\n\\]\nso \\(0<b<a_\\rho\\).\n\nIf \\(\\alpha=2A,\\beta=2B,\\gamma=2C,\\delta=D\\), then\n\\[\n\\alpha+\\beta v^k+\\gamma u^k=r_k\\qquad(k=1,2,3),\n\\]\nand \\(\\delta=r_0-\\alpha-\\beta-\\gamma\\). Equivalently,\n\\[\n\\alpha=\\frac{r_3-(u+v)r_2+uvr_1}{(1-u)(1-v)},\n\\]\n\\[\n\\beta=\\frac{r_3-(1+u)r_2+ur_1}{v(v-1)(v-u)},\n\\]\n\\[\n\\gamma=\\frac{r_3-(1+v)r_2+vr_1}{u(u-1)(u-v)},\n\\]\n\\[\n\\delta=r_0-\\alpha-\\beta-\\gamma.\n\\]\nAt \\(\\tau=\\rho\\), these are positive:\n\\[\nA\\approx0.150208804680725,\\quad\nB\\approx0.442243909413138,\\quad\nC\\approx0.293417747226698,\\quad\nD\\approx0.491260141319100.\n\\]\n\nUniqueness follows because any compatible rule forces \\(P(\\tau)=0\\), \\(P\\) has only the one positive root \\(\\rho\\), then \\(v=b^2\\) is forced by the first moment condition, and the weights are forced by the Vandermonde system above.\n\nThus the required final answer is\n\\[\n\\boxed{\\operatorname{root}_{(1/11,\\,1/10)}P}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T08:54:16+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/2608f82be1c3.json"
+}
