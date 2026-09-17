@@ -1,234 +1,163 @@
 ## Steps
 
-Step 1: Prove the two sharp cubic estimates for nonnegative Lipschitz pieces
-Let $v$ be nonnegative and $1$-Lipschitz on a positivity component $I$, with value $0$ at the two endpoints of $I$. Write
+Step 1: Convert the terminal constraints to moments and prove sharp excursion bounds
+Write $x=x_u$. From $y_u(1)=z_u(1)=0$,
 $$
-B=\int_I v(x)\,dx,\qquad Q=\int_I v(x)^3\,dx,
+\int_0^1x(t)\,dt=0,\qquad \int_0^1(1-t)x(t)\,dt=0,
 $$
-and let $H=\max_I v$. For $0\leq y<H$, put
+so also $\int_0^1t x(t)\,dt=0$. Hence $x_+$ and $x_-$ have the same area and the same barycenter.
+
+Let $v\geq0$ be $1$-Lipschitz on an interval of length $L$, vanish at its endpoints, and write
 $$
-m(y)=|\{x\in I:v(x)>y\}|.
+B=\int v,\qquad Q=\int v^3,\qquad H=\max v.
 $$
-If $0\leq y<z<H$, the $(z-y)$-neighborhood of $\{v>z\}$ lies in $\{v>y\}$ by the Lipschitz condition. In one dimension this enlarges a nonempty bounded set by at least $2(z-y)$, so
+For $0\leq a<H$, put $m(a)=|\{v>a\}|$. If $a<b<H$, the $(b-a)$-neighborhood of $\{v>b\}$ lies in $\{v>a\}$, so
 $$
-m(y)\geq m(z)+2(z-y).
+m(a)\geq m(b)+2(b-a).
 $$
-Hence
+Thus $e(a)=m(a)-2(H-a)$ is nonnegative and nonincreasing. Layer cake gives
 $$
-e(y):=m(y)-2(H-y)
+B=H^2+\int_0^He(a)\,da,
 $$
-is nonincreasing, and letting $z\uparrow H$ in the preceding inequality shows $e(y)\geq0$. By Fubini,
 $$
-B=\int_0^H m(y)\,dy,\qquad Q=\int_0^H3y^2m(y)\,dy.
+Q=\frac{H^4}{2}+\int_0^H3a^2e(a)\,da.
 $$
-Substituting $m(y)=2(H-y)+e(y)$ gives
+Since $a^2$ is increasing and $e$ is nonincreasing,
 $$
-B=H^2+\int_0^H e(y)\,dy
+Q\leq H^2B-\frac{H^4}{2}\leq\frac{B^2}{2}.
 $$
-and
+Equality holds exactly for the triangular tent of height $\sqrt B$ and length $2\sqrt B$.
+
+For the reverse cubic bound at fixed $B,L$, let $b$ be the smaller root of $B=bL-b^2$ and set $v_b(t)=\min\{t,L-t,b\}$. With $\phi(s)=s^3-3b^2s$, one has $\phi(v)\geq\phi(v_b)$ pointwise: where $v_b<b$, the endpoint Lipschitz bounds give $v\leq v_b\leq b$ and $\phi$ is decreasing, while where $v_b=b$,
 $$
-Q=\frac{H^4}{2}+\int_0^H3y^2e(y)\,dy.
-$$
-Because $y^2$ is increasing and $e$ is nonincreasing,
-$$
-\int_0^H\int_0^H(y^2-z^2)(e(y)-e(z))\,dz\,dy\leq0.
-$$
-Expanding this double integral yields
-$$
-\int_0^H3y^2e(y)\,dy\leq H^2\int_0^He(y)\,dy.
+\phi(v)-\phi(b)=(v-b)^2(v+2b)\geq0.
 $$
 Therefore
 $$
-Q\leq H^2B-\frac{H^4}{2}\leq\frac{B^2}{2},
+Q\geq\Phi(B,L):=Bb^2-\frac{b^4}{2},
 $$
-since $B\geq H^2$. Equality forces $B=H^2$ and $e=0$, hence the component has length $2H$ and $v$ is the full symmetric tent of height $H$. Applying this estimate to all positivity components and using
-$$
-\sum_i B_i^2\leq\left(\sum_iB_i\right)^2
-$$
-shows that
-$$
-\int v^3\leq\frac12\left(\int v\right)^2,
-$$
-with equality only for one full symmetric tent.
+with equality exactly for the capped tent $v_b$. Also $\Phi_L<0$, so for fixed area extra available length can only decrease the least possible cubic cost.
 
-We also need the opposite sharp estimate. Let $w$ be nonnegative and $1$-Lipschitz on $[0,L]$, with $w(0)=w(L)=0$ and
+Step 2: Prove the signed compression and solve the barycenter placement
+Let the common positive/negative area be $A>0$, let their common barycenter be $C$, and put $h=\sqrt A$. First the positive triangle of area $A$ can be centered at $C$. Indeed, for $f=x_+$, let $H=\max f$ and use the level-set notation from Step 1. Since $f(t)\leq t$, a set $\{f>a\}$ of measure $m(a)$ has first moment at least $a m(a)+m(a)^2/2$. Writing $m(a)=2(H-a)+e(a)$ and $E=\int_0^He(a)\,da$, the reversed Chebyshev inequality and Cauchy-Schwarz give
 $$
-\int_0^Lw(x)\,dx=B,\qquad 0<B\leq\frac{L^2}{4}.
+\int_0^1t f(t)\,dt
+\geq H^3+\frac{3H}{2}E+\frac{E^2}{2H}
+\geq(H^2+E)^{3/2}=A^{3/2}.
 $$
-Let $h\in(0,L/2]$ be the smaller root of
+The middle inequality follows after squaring from
 $$
-B=hL-h^2,
+\left(1+\frac32r+\frac12r^2\right)^2-(1+r)^3=\frac14r^2(1+r)^2\geq0,
 $$
-and define
-$$
-v_h(x)=\min\{x,L-x,h\}.
-$$
-Then $\int_0^Lv_h=B$. Since $w(x)\leq d(x):=\min\{x,L-x\}$, consider
-$$
-\phi(s)=s^3-3h^2s.
-$$
-On the central region $d(x)\geq h$,
-$$
-\phi(w(x))-\phi(h)=(w(x)-h)^2(w(x)+2h)\geq0.
-$$
-On the boundary region $d(x)<h$, one has $0\leq w(x)\leq d(x)=v_h(x)<h$, while $\phi$ is decreasing on $[0,h]$, so again $\phi(w(x))\geq\phi(v_h(x))$. Integrating and using $\int w=\int v_h$ gives
-$$
-\int_0^Lw(x)^3\,dx\geq\int_0^Lv_h(x)^3\,dx
-=h^3L-\frac32h^4.
-$$
-Equality holds only for $w=v_h$. If a nonnegative function has several positive components, enumerate and concatenate those components. Their endpoints are all $0$. Across a join, values at distances $r$ and $s$ from the join are at most $r$ and $s$, so their difference is at most $r+s$; hence the concatenation is still $1$-Lipschitz and preserves area and cubic integral. The same lower bound applies after appending a zero interval to any larger available length. Equality with positive area forces one component and no appended zero interval.
+where $r=E/H^2$. Hence $C\geq h$; applying the same argument to $f(1-t)$ gives $1-C\geq h$.
 
-Step 2: Reduce the control problem to one scalar compatibility parameter
-For an admissible control $u$, let
+Now perform the signed layer-set compression. Move each positive superlevel set toward $C$ and each negative superlevel set away from $C$, preserving its measure; choose the left/right portions of every moved negative level so that their first moment is $C$ times their total measure. These horizontal slides preserve the total positive and negative areas and their common barycenter. Because positive and negative level sets were disjoint before the slide, moving the positive levels inward and the negative levels outward cannot increase their total span. Nestedness is preserved, and the inequality
 $$
-x(t)=\int_0^t u(s)\,ds.
+m(a)\geq m(b)+2(b-a)
 $$
-Then $x$ is absolutely continuous, $x(0)=x(1)=0$, $|x'(t)|\leq1$ almost everywhere, and $\int_0^1x(t)\,dt=0$. Write
-$$
-x_+(t)=\max(x(t),0),\qquad x_-(t)=\max(-x(t),0).
-$$
-The integral state constraint gives a common area
-$$
-A:=\int_0^1x_+(t)\,dt=\int_0^1x_-(t)\,dt.
-$$
-Put $A=a^2$ with $a\geq0$. The case $a=0$ gives $x=0$, so assume $a>0$.
+shows that the reconstructed sign parts remain $1$-Lipschitz. Thus every feasible path is dominated by one with a central positive component and one negative component on each side. Applying the sharp bounds from Step 1 then replaces the positive component by its triangle and each negative component by a capped tent; any freed zero time is absorbed into a negative block because $\Phi_L<0$. Equality throughout forces exactly this three-block geometry.
 
-If the positive components have lengths $\ell_i$, the tent envelope on each component gives area at most $\ell_i^2/4$. Thus, with
+Let the left negative block have length $L$, the right one length
 $$
-P=|\{t\in[0,1]:x(t)>0\}|,
+R=1-2h-L,
 $$
-we have
+and let their areas be $B_L,B_R$. The three symmetric blocks tile $[0,1]$, with centers $L/2$, $L+h$, and $L+2h+R/2$. Therefore
 $$
-a^2\leq\frac14\sum_i\ell_i^2\leq\frac{P^2}{4},
+B_L+B_R=h^2,
 $$
-so $P\geq2a$. The negative components therefore occupy total length at most $1-2a$. Concatenate all negative components and append a zero interval if necessary to obtain a nonnegative $1$-Lipschitz function on
 $$
-[0,L],\qquad L=1-2a,
+B_L\frac L2+B_R\left(L+2h+\frac R2\right)=h^2(L+h).
 $$
-with endpoint values $0$, area $a^2$, and cubic integral equal to $\int_0^1x_-(t)^3\,dt$. Feasibility gives
+Solving,
 $$
-a^2\leq\frac{L^2}{4},
+B_L=\frac{h^2(1-L)}{1+2h},\qquad
+B_R=\frac{h^2(1-R)}{1+2h}.
 $$
-so $0<a\leq1/4$.
+Put
+$$
+k=\frac{h^2}{1+2h},\qquad B(s)=k(1-s),\qquad F_h(s)=\Phi(B(s),s).
+$$
+If $b(s)$ is the smaller root of $B(s)=b(s-b)$, then
+$$
+b'(s)=-\frac{k+b}{s-2b}<0.
+$$
+Since $F_h(s)=b^3s-\frac32b^4$, differentiation along the barycenter constraint gives
+$$
+F_h'(s)=-b^2(2b+3k).
+$$
+This is strictly increasing in $s$, so $F_h$ is strictly convex on its feasible interval. As $L+R=1-2h$, the total negative cubic $F_h(L)+F_h(R)$ is uniquely minimized at
+$$
+L=R=\ell:=\frac{1-2h}{2},\qquad B_L=B_R=\frac{h^2}{2}.
+$$
+The cap-feasibility condition $h^2/2\leq\ell^2/4$ is equivalent to
+$$
+2h(1+\sqrt2)\leq1.
+$$
+Thus every maximizer is symmetric about $1/2$ and has one central positive triangle and two congruent outer negative capped tents.
 
-Let $h$ be the smaller root of
+Step 3: Optimize the two heights
+Let $b$ be the depth of either negative cap. Since each cap has area $h^2/2$ and length $\ell=(1-2h)/2$,
 $$
-a^2=h(1-2a)-h^2.
+\frac{h^2}{2}=b\ell-b^2,
 $$
-The upper estimate from Step 1 gives
+so
 $$
-\int_0^1x_+(t)^3\,dt\leq\frac{a^4}{2},
+h^2=b(1-2h)-2b^2.
 $$
-while the lower estimate from Step 1 gives
+Put $z=b/h$. Then
 $$
-\int_0^1x_-(t)^3\,dt\geq h^3(1-2a)-\frac32h^4.
+h=\frac{z}{1+2z+2z^2}.
 $$
-Consequently
-$$
-\int_0^1x(t)^3\,dt
-\leq\frac{a^4}{2}-h^3(1-2a)+\frac32h^4.
-$$
+The cap-fit condition $2b\leq\ell$ is equivalent to $0<z\leq1/\sqrt2$.
 
-Step 3: Optimize the compatibility relation exactly
-Set
+The positive triangle contributes $h^4/2$, while the two negative caps contribute $h^2b^2-b^4$. Hence
 $$
-z=\frac{h}{a}.
+J(z)=\frac{h^4}{2}-h^2b^2+b^4
+=\frac{z^4(2z^4-2z^2+1)}{2(2z^2+2z+1)^4}.
 $$
-Because $L=1-2a\geq2a$ and $h$ is the smaller root of $h(L-h)=a^2$, one has $0<z\leq1$. Dividing
+Differentiation gives
 $$
-a^2=h(1-2a-h)
+J'(z)=\frac{2z^3(z+1)^2(2z-1)(2z^2-1)}{(2z^2+2z+1)^5}.
 $$
-by $a$ and substituting $h=za$ gives
+Therefore $J$ increases on $(0,1/2)$ and decreases on $(1/2,1/\sqrt2)$, so the unique maximizing ratio is $z=1/2$. Consequently
 $$
-a=\frac{z}{(1+z)^2},\qquad
-h=\frac{z^2}{(1+z)^2},\qquad
-1-2a=\frac{1+z^2}{(1+z)^2}.
-$$
-Substitution into the bound from Step 2 simplifies it to
-$$
-\int_0^1x(t)^3\,dt
-\leq F(z):=\frac{z^4(1-z)^2}{2(1+z)^6}.
-$$
-For $0<z<1$,
-$$
-\frac{F'(z)}{F(z)}
-=\frac4z-\frac2{1-z}-\frac6{1+z}
-=\frac{4(1-2z)}{z(1-z^2)}.
-$$
-Thus $F$ increases up to $z=1/2$ and decreases afterwards. Since its endpoint limits are $0$, its unique maximum occurs at
-$$
-z=\frac12.
-$$
-At that point
-$$
-a=\frac29,\qquad h=\frac19,
-$$
-and
-$$
-F\left(\frac12\right)=\frac1{1458}.
+h=\frac15,\qquad b=\frac1{10},\qquad J_{\max}=\frac1{2000}.
 $$
 
-Step 4: Reconstruct all optimal controls
-Equality requires equality at every sharp estimate used in Steps 1 and 2. The positive part of the state must therefore be one full symmetric tent. Since $a=2/9$, it has area $4/81$, height $2/9$, and support length $4/9$. The negative part must be one minimizing trapezoid. Since $h=1/9$ and its available length is $1-2a=5/9$, it has support length $5/9$, height $1/9$, and a flat portion of length $1/3$. Equality in the support bound leaves no zero interval between the two sign components.
-
-Hence the positive and negative supports tile $[0,1]$ in one of two orders. If the positive tent comes first, the state is
+Step 4: Recover the unique optimal control
+For $h=1/5$ and $b=1/10$, each negative block has length $3/10$ and flat part of length $1/10$. The equality profile is
 $$
-x_1(t)=
+x(t)=
 \begin{cases}
-t,&0\leq t\leq\frac29,\\
-\frac49-t,&\frac29\leq t\leq\frac59,\\
--\frac19,&\frac59\leq t\leq\frac89,\\
-t-1,&\frac89\leq t\leq1.
+-t,&0\leq t\leq\frac1{10},\\
+-\frac1{10},&\frac1{10}\leq t\leq\frac15,\\
+t-\frac3{10},&\frac15\leq t\leq\frac12,\\
+\frac7{10}-t,&\frac12\leq t\leq\frac45,\\
+-\frac1{10},&\frac45\leq t\leq\frac9{10},\\
+t-1,&\frac9{10}\leq t\leq1.
 \end{cases}
 $$
-If the negative trapezoid comes first, the state is
+Its positive area is $1/25$ and its two negative areas are $1/50$ each. Symmetry about $1/2$ gives both moment constraints. Differentiating yields, up to equality almost everywhere,
 $$
-x_2(t)=
+u(t)=
 \begin{cases}
--t,&0\leq t\leq\frac19,\\
--\frac19,&\frac19\leq t\leq\frac49,\\
-t-\frac59,&\frac49\leq t\leq\frac79,\\
-1-t,&\frac79\leq t\leq1.
+-1,&0<t<\frac1{10},\\
+0,&\frac1{10}<t<\frac15,\\
+1,&\frac15<t<\frac12,\\
+-1,&\frac12<t<\frac45,\\
+0,&\frac45<t<\frac9{10},\\
+1,&\frac9{10}<t<1.
 \end{cases}
 $$
-Both states satisfy the terminal and integral constraints because their positive and negative areas are each $4/81$. Their positive cubic contribution is
-$$
-\frac12\left(\frac{4}{81}\right)^2=\frac{16}{13122},
-$$
-and their negative cubic contribution in absolute value is
-$$
-\left(\frac19\right)^3\frac59-\frac32\left(\frac19\right)^4
-=\frac7{13122}.
-$$
-Thus each gives $9/13122=1/1458$. Differentiating the two states almost everywhere shows that the optimal controls are exactly
-$$
-u_1(t)=
-\begin{cases}
-1,&0<t<\frac29,\\
--1,&\frac29<t<\frac59,\\
-0,&\frac59<t<\frac89,\\
-1,&\frac89<t<1,
-\end{cases}
-$$
-and
-$$
-u_2(t)=
-\begin{cases}
--1,&0<t<\frac19,\\
-0,&\frac19<t<\frac49,\\
-1,&\frac49<t<\frac79,\\
--1,&\frac79<t<1.
-\end{cases}
-$$
-up to equality almost everywhere. Values at the finitely many switching times are irrelevant. The equality conditions in the two sharp estimates force these state shapes and the no-gap tiling, so there are no other optimal controls.
+Every inequality in Steps 1 and 2 is strict unless the excursion shapes, the three-block packing, and the left-right split are exactly those displayed. Hence this control is the unique optimizer almost everywhere.
 
-Final Answer: $\boxed{\frac{1}{1458}}$
+Final Answer: $\boxed{\frac1{2000}}$
 
 ---
 
 ## Answer
 
-$\frac{1}{1458}$
+$\frac1{2000}$
 
 ---
 
@@ -243,7 +172,7 @@ $\frac{1}{1458}$
 ## Solution Concepts
 
 - layer-cake representation
-- Lipschitz extremal geometry
-- optimal control with state constraints
-- convex integral minimization
-- equality classification
+- lipschitz excursion extremals
+- moment-balanced packing
+- barycenter-constrained convexity
+- equality-case reconstruction
