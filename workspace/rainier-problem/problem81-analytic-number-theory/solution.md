@@ -1,262 +1,336 @@
 ## Steps
 
-Step 1: Encode the two residue classes by Euler products
+Step 1: Character decomposition modulo $8$
 
-Let $\chi=\chi_4$ be the primitive character modulo $4$:
+Let
 $$
-\chi(n)=
-\begin{cases}
-0,&2\mid n,\\
-1,&n\equiv1\pmod4,\\
--1,&n\equiv3\pmod4.
-\end{cases}
+\mathcal X=\{1,\chi_{-4},\chi_8,\chi_{-8}\},
 $$
-Let $\mathcal S$ be the set of odd positive integers such that
+where the three nontrivial real primitive characters are taken modulo $8$ and
 $$
-v_p(n)\equiv0\pmod3
-\qquad\text{for every }p\equiv3\pmod4.
+\chi_{-8}=\chi_{-4}\chi_8.
 $$
-Write
+For the odd residue classes $r\in\{1,3,5,7\}$ their values are
 $$
-N_1(x)=\#\{n\le x:n\in\mathcal S,\ n\equiv1\pmod4\},
-$$
-$$
-N_3(x)=\#\{n\le x:n\in\mathcal S,\ n\equiv3\pmod4\}.
-$$
-If $a(n)=1_{\mathcal S}(n)$, then
-$$
-T(s):=\sum_{n\ge1}\frac{a(n)}{n^s}
-=\prod_{p\equiv1(4)}(1-p^{-s})^{-1}
-\prod_{p\equiv3(4)}(1-p^{-3s})^{-1},
+\begin{array}{c|rrrr}
+r&1&3&5&7\\ \hline
+1&1&1&1&1\\
+\chi_{-4}&1&-1&1&-1\\
+\chi_8&1&-1&-1&1\\
+\chi_{-8}&1&1&-1&-1
+\end{array}
 \tag{1}
 $$
-and
+
+Define
 $$
-U(s):=\sum_{n\ge1}\frac{a(n)\chi(n)}{n^s}
-=\prod_{p\equiv1(4)}(1-p^{-s})^{-1}
-\prod_{p\equiv3(4)}(1+p^{-3s})^{-1}.
+m(1)=1,\qquad m(3)=3,\qquad m(5)=5,\qquad m(7)=7.
 \tag{2}
 $$
-Therefore
+Let $a(n)$ be the indicator of the odd integers satisfying
 $$
-N_1(x)=\frac12\sum_{n\le x}a(n)+\frac12\sum_{n\le x}a(n)\chi(n),
+v_p(n)\equiv0\pmod3\quad(p\equiv3\!\!\pmod8),
 $$
 $$
-N_3(x)=\frac12\sum_{n\le x}a(n)-\frac12\sum_{n\le x}a(n)\chi(n).
+v_p(n)\equiv0\pmod5\quad(p\equiv5\!\!\pmod8),
+$$
+$$
+v_p(n)\equiv0\pmod7\quad(p\equiv7\!\!\pmod8).
+$$
+For each $\psi\in\mathcal X$, put
+$$
+F_\psi(s)=\sum_{n\ge1}\frac{a(n)\psi(n)}{n^s}.
+$$
+Since all $m(r)$ are odd,
+$$
+F_\psi(s)
+=
+\prod_{p\equiv1(8)}(1-p^{-s})^{-1}
+\prod_{r\in\{3,5,7\}}
+\prod_{p\equiv r(8)}
+\bigl(1-\psi(r)p^{-m(r)s}\bigr)^{-1}.
 \tag{3}
 $$
 
-Step 2: Factor both Dirichlet series as $\zeta(s)^{1/2}$ times analytic factors
-
-The standard Euler product identity
+If
 $$
-\zeta(s)L(s,\chi)
-=(1-2^{-s})^{-1}
-\prod_{p\equiv1(4)}(1-p^{-s})^{-2}
-\prod_{p\equiv3(4)}(1-p^{-2s})^{-1}
+N_r(x)=\#\{n\le x:a(n)=1,\ n\equiv r\pmod8\},
+$$
+then character orthogonality gives
+$$
+N_r(x)=\frac14\sum_{\psi\in\mathcal X}\psi(r)
+\sum_{n\le x}a(n)\psi(n).
 \tag{4}
 $$
-gives, for $\sigma\in\{+1,-1\}$,
+
+Step 2: Extract the common $\zeta(s)^{1/4}$ singularity
+
+For every odd prime $p$,
 $$
-F_\sigma(s):=\zeta(s)^{1/2}G_\sigma(s),
+\frac14\sum_{\xi\in\mathcal X}\xi(p)
+=
+\begin{cases}
+1,&p\equiv1\pmod8,\\
+0,&p\equiv3,5,7\pmod8.
+\end{cases}
 \tag{5}
-$$
-where $F_{+}=T$, $F_{-}=U$, and
-$$
-G_\sigma(s)
-=L(s,\chi)^{1/2}(1-2^{-s})^{1/2}
-\prod_{p\equiv3(4)}
-\frac{(1-p^{-2s})^{1/2}}{1-\sigma p^{-3s}}.
-\tag{6}
-$$
-Indeed, multiplying $\zeta(s)^{1/2}L(s,\chi)^{1/2}$ contributes
-$$
-(1-2^{-s})^{-1/2}
-\prod_{p\equiv1(4)}(1-p^{-s})^{-1}
-\prod_{p\equiv3(4)}(1-p^{-2s})^{-1/2},
-$$
-and (6) supplies the missing local factors.
-
-The Euler product in (6) converges absolutely and locally uniformly for $\Re s>1/2$, because its logarithm starts with $O(p^{-2\Re s})$. Since $L(1,\chi)=\pi/4\ne0$, each $G_\sigma$ is holomorphic and nonzero in a neighborhood of $s=1$.
-
-Step 3: Record the two-term Selberg-Delange coefficient
-
-We use the following special case of the Selberg-Delange expansion. If
-$$
-F(s)=\zeta(s)^{1/2}G(s)
-$$
-with $G$ holomorphic near $1$ and satisfying the usual continuation/growth hypotheses, then
-$$
-\sum_{n\le x}f(n)
-=
-\frac{G(1)}{\sqrt\pi}\frac{x}{\sqrt{\log x}}
-\left(
-1+\frac{d(G)}{\log x}+O\!\left(\frac1{(\log x)^2}\right)
-\right),
-\tag{7}
-$$
-where
-$$
-\boxed{
-d(G)=\frac12\left(1-\frac\gamma2-\frac{G'(1)}{G(1)}\right).
-}
-\tag{8}
-$$
-For completeness, the coefficient in (8) comes directly from the local expansion. Put $s=1+w$ and $L=\log x$. Then
-$$
-\zeta(1+w)^{1/2}=w^{-1/2}\left(1+\frac\gamma2w+O(w^2)\right),
-$$
-$$
-G(1+w)=G(1)\left(1+\frac{G'(1)}{G(1)}w+O(w^2)\right),
-$$
-and the Perron factor contributes
-$$
-\frac{x^{1+w}}{1+w}=x e^{wL}(1-w+O(w^2)).
-$$
-Thus the coefficient of $w^{1/2}$ relative to $w^{-1/2}$ is
-$$
-\frac{G'(1)}{G(1)}+\frac\gamma2-1.
-$$
-The Hankel integrals give $1/\Gamma(1/2)$ for the first term and $1/\Gamma(-1/2)=-1/(2\sqrt\pi)$ for the next, producing exactly (8).
-
-Step 4: Evaluate the leading Euler products
-
-Set
-$$
-P_\sigma
-=
-\prod_{p\equiv3(4)}
-\frac{\sqrt{1-p^{-2}}}{1-\sigma p^{-3}}
-\qquad(\sigma=\pm1).
-\tag{9}
-$$
-At $s=1$,
-$$
-G_\sigma(1)
-=
-\left(\frac\pi4\right)^{1/2}
-\left(1-\frac12\right)^{1/2}P_\sigma
-=\frac{\sqrt\pi}{2\sqrt2}P_\sigma.
 $$
 Hence
 $$
-\boxed{
-A_\sigma:=\frac{G_\sigma(1)}{\sqrt\pi}
-=\frac{P_\sigma}{2\sqrt2}.
+B(s):=
+\bigl(\zeta(s)L(s,\chi_{-4})L(s,\chi_8)L(s,\chi_{-8})\bigr)^{1/4}
+\tag{6}
+$$
+has exactly the same first-order prime contribution as $F_\psi(s)$.
+
+Define
+$$
+E_\psi(s)
+=(1-2^{-s})^{1/4}
+\prod_{p\ {m odd}}
+\left[
+\frac{
+\prod_{\xi\in\mathcal X}(1-\xi(p)p^{-s})^{1/4}
 }
+{1-\psi(p)p^{-m(p)s}}
+\right],
+\tag{7}
+$$
+where $m(p)=m(r)$ for $p\equiv r\pmod8$. Then
+$$
+F_\psi(s)=B(s)E_\psi(s)
+=\zeta(s)^{1/4}K_\psi(s),
+\tag{8}
+$$
+with
+$$
+K_\psi(s)
+=
+\bigl(L(s,\chi_{-4})L(s,\chi_8)L(s,\chi_{-8})\bigr)^{1/4}
+E_\psi(s).
+\tag{9}
+$$
+
+The logarithm of the Euler product in (7) starts at $O(p^{-2\Re s})$, so $E_\psi$ converges absolutely and locally uniformly for $\Re s>1/2$. Since the three Dirichlet $L$-functions in (9) are nonzero at $s=1$, every $K_\psi$ is holomorphic and nonzero near $1$.
+
+Step 3: Exact leading factors and logarithmic derivatives
+
+Put
+$$
+Q_\psi:=E_\psi(1)
+=2^{-1/4}
+\prod_{p\ {m odd}}
+\left[
+\frac{
+\prod_{\xi\in\mathcal X}(1-\xi(p)/p)^{1/4}
+}
+{1-\psi(p)/p^{m(p)}}
+\right].
 \tag{10}
 $$
-Note that $P_+>P_->0$, since each local factor for $P_+$ has the smaller positive denominator.
-
-Step 5: Evaluate the logarithmic derivatives
-
-Write
+Also define the common positive factor
 $$
-\lambda_\sigma:=\frac{G_\sigma'(1)}{G_\sigma(1)}.
-$$
-Differentiating the logarithm of (6) gives
-$$
-\boxed{
-\lambda_\sigma
+\mathcal A
 =
-\frac12\frac{L'}{L}(1,\chi)
-+\frac12\log2
-+\sum_{p\equiv3(4)}
-\left(
-\frac{\log p}{p^2-1}
--
-\frac{3\sigma\log p}{p^3-\sigma}
-\right).
-}
+\frac{
+\bigl(
+L(1,\chi_{-4})L(1,\chi_8)L(1,\chi_{-8})
+\bigr)^{1/4}
+}{\Gamma(1/4)}.
 \tag{11}
 $$
-The prime sum converges absolutely. Define
+Then
 $$
-\boxed{
-d_\sigma
-=\frac12\left(1-\frac\gamma2-\lambda_\sigma\right).
-}
+\frac{K_\psi(1)}{\Gamma(1/4)}=\mathcal A Q_\psi.
 \tag{12}
 $$
-Applying (7) to $T=F_+$ and $U=F_-$ yields
+
+For the derivative, write
 $$
-\sum_{n\le x}a(n)
-=A_+\frac{x}{\sqrt{\log x}}
-\left(1+\frac{d_+}{\log x}+O((\log x)^{-2})\right),
+e_\psi:=\frac{E_\psi'(1)}{E_\psi(1)}.
+$$
+Differentiating (7),
+$$
+\boxed{
+\begin{aligned}
+e_\psi={}&\frac{\log2}{4}
++\sum_{p\ {m odd}}
+\Biggl[
+-\frac{m(p)\psi(p)\log p}{p^{m(p)}-\psi(p)}\\
+&\hspace{24mm}
++\frac14\sum_{\xi\in\mathcal X}
+\frac{\xi(p)\log p}{p-\xi(p)}
+\Biggr].
+\end{aligned}
+}
 \tag{13}
 $$
+The $p\equiv1\pmod8$ summands vanish identically, and the remaining prime sum converges absolutely.
+
+Thus
 $$
-\sum_{n\le x}a(n)\chi(n)
-=A_-\frac{x}{\sqrt{\log x}}
-\left(1+\frac{d_-}{\log x}+O((\log x)^{-2})\right).
+\boxed{
+\kappa_\psi
+:=\frac{K_\psi'(1)}{K_\psi(1)}
+=
+\frac14\sum_{\xi\in\{\chi_{-4},\chi_8,\chi_{-8}\}}
+\frac{L'}{L}(1,\xi)
++e_\psi.
+}
 \tag{14}
 $$
 
-Step 6: Separate the two residue classes
+Step 4: Two-term Selberg-Delange for exponent $1/4$
 
-Combining (3), (10), (13), and (14), we obtain
+We use the following special case. If
 $$
-N_1(x)
-=C_1\frac{x}{\sqrt{\log x}}
-\left(1+\frac{D_1}{\log x}+O((\log x)^{-2})\right),
+F(s)=\zeta(s)^\alpha K(s),
+\qquad \alpha=\frac14,
+$$
+with $K$ holomorphic near $1$, then
+$$
+\sum_{n\le x}f(n)
+=
+\frac{K(1)}{\Gamma(1/4)}
+\frac{x}{(\log x)^{3/4}}
+\left(
+1+\frac{d(K)}{\log x}
++O((\log x)^{-2})
+\right),
 \tag{15}
-$$
-$$
-N_3(x)
-=C_3\frac{x}{\sqrt{\log x}}
-\left(1+\frac{D_3}{\log x}+O((\log x)^{-2})\right),
-\tag{16}
 $$
 where
 $$
 \boxed{
-C_1=\frac{P_++P_-}{4\sqrt2},
-\qquad
-C_3=\frac{P_+-P_-}{4\sqrt2},
+d(K)=\frac34\left(1-\frac\gamma4-\frac{K'(1)}{K(1)}\right).
+}
+\tag{16}
+$$
+
+Indeed, with $s=1+w$,
+$$
+\zeta(1+w)^{1/4}
+=w^{-1/4}\left(1+\frac\gamma4w+O(w^2)\right),
+$$
+and the Perron factor contributes $(1-w+O(w^2))$. Hence the coefficient multiplying $w$ before the Hankel integral is
+$$
+\frac\gamma4+\frac{K'(1)}{K(1)}-1.
+$$
+The next Hankel term is multiplied by
+$$
+\frac{\Gamma(1/4)}{\Gamma(-3/4)}=-\frac34,
+$$
+which gives (16).
+
+Define
+$$
+\boxed{
+d_\psi
+=\frac34\left(1-\frac\gamma4-\kappa_\psi\right).
 }
 \tag{17}
 $$
-and
+Then (8), (12), and (15) give
 $$
-\boxed{
-D_1=\frac{P_+d_++P_-d_-}{P_++P_-},
-\qquad
-D_3=\frac{P_+d_+-P_-d_-}{P_+-P_-}.
-}
+\sum_{n\le x}a(n)\psi(n)
+=
+\mathcal A Q_\psi
+\frac{x}{(\log x)^{3/4}}
+\left(
+1+\frac{d_\psi}{\log x}
++O((\log x)^{-2})
+\right).
 \tag{18}
 $$
-Because $P_+>P_->0$, both $C_1$ and $C_3$ are positive.
 
-In particular, the two admissible residue classes are not asymptotically equidistributed. Their limiting bias is
+Step 5: Recover the four residue classes
+
+Insert (18) into (4). For each $r\in\{1,3,5,7\}$ define
 $$
-\boxed{
-\lim_{x\to\infty}\frac{N_1(x)}{N_3(x)}
-=
-\frac{P_++P_-}{P_+-P_-}>1.
-}
+S_r:=\sum_{\psi\in\mathcal X}\psi(r)Q_\psi,
+\qquad
+T_r:=\sum_{\psi\in\mathcal X}\psi(r)Q_\psi d_\psi.
 \tag{19}
 $$
-
-Final Answer:
+Then
 $$
 \boxed{
-(C_1,C_3,D_1,D_3)
+C_r=\frac{\mathcal A}{4}S_r,
+\qquad
+D_r=\frac{T_r}{S_r}.
 }
+\tag{20}
 $$
-with $C_1,C_3$ given by (17), $D_1,D_3$ by (18), and $P_\sigma,d_\sigma$ by (9), (11), and (12). The limiting ratio is (19).
+Therefore
+$$
+\boxed{
+N_r(x)
+=C_r\frac{x}{(\log x)^{3/4}}
+\left(
+1+\frac{D_r}{\log x}
++O((\log x)^{-2})
+\right).
+}
+\tag{21}
+$$
+
+The constants $C_r$ are positive. For example, for each $r$ one may fix one admissible integer $u_r\equiv r\pmod8$ (take $u_1=1$, $u_3=3^3$, $u_5=5^5$, $u_7=7^7$) and multiply it by arbitrary integers composed only of primes $\equiv1\pmod8$; this already produces a positive-order subfamily of size $\asymp x/(\log x)^{3/4}$.
+
+Using the character table (1), the leading constants can be written explicitly as
+$$
+C_1=\frac{\mathcal A}{4}
+(Q_1+Q_{-4}+Q_8+Q_{-8}),
+$$
+$$
+C_3=\frac{\mathcal A}{4}
+(Q_1-Q_{-4}-Q_8+Q_{-8}),
+$$
+$$
+C_5=\frac{\mathcal A}{4}
+(Q_1+Q_{-4}-Q_8-Q_{-8}),
+$$
+$$
+C_7=\frac{\mathcal A}{4}
+(Q_1-Q_{-4}+Q_8-Q_{-8}),
+\tag{22}
+$$
+with the same Hadamard sign patterns for the numerators defining $D_r$ after replacing $Q_\psi$ by $Q_\psi d_\psi$.
+
+Finally, every pairwise limiting bias is exact:
+$$
+\boxed{
+\lim_{x\to\infty}\frac{N_r(x)}{N_t(x)}
+=\frac{C_r}{C_t}
+=\frac{S_r}{S_t}
+\qquad(r,t\in\{1,3,5,7\}).
+}
+\tag{23}
+$$
 
 ---
 
 ## Answer
 
-$\left(\dfrac{P_++P_-}{4\sqrt2},\dfrac{P_+-P_-}{4\sqrt2},\dfrac{P_+d_++P_-d_-}{P_++P_-},\dfrac{P_+d_+-P_-d_-}{P_+-P_-}\right)$, where
+$\left(C_1,C_3,C_5,C_7,D_1,D_3,D_5,D_7\right)$, where for $r\in\{1,3,5,7\}$
 $$
-P_\sigma=\prod_{p\equiv3\,({\rm mod}\,4)}\frac{\sqrt{1-p^{-2}}}{1-\sigma p^{-3}},
+C_r=\frac{\mathcal A}{4}\sum_{\psi\in\mathcal X}\psi(r)Q_\psi,
+\qquad
+D_r=\frac{\sum_{\psi\in\mathcal X}\psi(r)Q_\psi d_\psi}{\sum_{\psi\in\mathcal X}\psi(r)Q_\psi},
 $$
 $$
-d_\sigma=\frac12\left(1-\frac\gamma2-\frac12\frac{L'}L(1,\chi_4)-\frac12\log2-\sum_{p\equiv3\,({\rm mod}\,4)}\left(\frac{\log p}{p^2-1}-\frac{3\sigma\log p}{p^3-\sigma}\right)\right).
+\mathcal A=
+\frac{\bigl(L(1,\chi_{-4})L(1,\chi_8)L(1,\chi_{-8})\bigr)^{1/4}}{\Gamma(1/4)},
 $$
-The limiting ratio is $(P_++P_-)/(P_+-P_-)$.
+$$
+Q_\psi=2^{-1/4}\prod_{p\ {m odd}}
+\frac{\prod_{\xi\in\mathcal X}(1-\xi(p)/p)^{1/4}}
+{1-\psi(p)/p^{m(p)}},
+$$
+and
+$$
+d_\psi=\frac34\left(1-\frac\gamma4-\frac14\sum_{\xi\in\{\chi_{-4},\chi_8,\chi_{-8}\}}\frac{L'}L(1,\xi)-e_\psi\right),
+$$
+with $e_\psi$ given in (13). Moreover $\lim N_r(x)/N_t(x)=C_r/C_t$ for every pair $r,t$.
 
 ---
 
@@ -270,8 +344,8 @@ The limiting ratio is $(P_++P_-)/(P_+-P_-)$.
 
 ## Solution Concepts
 
-- Euler products in arithmetic progressions
-- Dirichlet characters modulo $4$
-- Selberg-Delange expansion
-- square-root singularities of Dirichlet series
-- arithmetic bias between residue classes
+- four-character Fourier decomposition modulo $8$
+- Euler products with residue-dependent exponent constraints
+- common quarter-power zeta singularity
+- two-term Selberg-Delange expansion
+- arithmetic bias across four residue classes
