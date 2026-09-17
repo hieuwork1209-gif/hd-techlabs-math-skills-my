@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-differential-geometry/problem.md",
+  "source_commit_sha": "8e5f03297a1e625f528e1839c0dbaab990094834",
+  "problem_blob_sha": "b510ee4cce058c573840d3078e5b789095bdfa2e",
+  "statement_sha256": "04469d1e9f6bc8fa3a68371f1708a5768a0a4639afd2aa3e869bc388a8976842",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T11:05:27+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\n\\delta=\\arccos\\!\\left(\\frac{\\tanh\\alpha}{\\tanh\\beta}\\right).\n\\]\nThe hypothesis that the geodesic segment from \\(P\\) to \\(Q\\) meets \\(C\\) is exactly\n\\[\n\\theta>\\delta.\n\\]\n\nThe minimizing curve consists of two congruent tangent geodesic segments from \\(P,Q\\) to the circle \\(r=\\alpha\\), together with the shorter boundary arc of \\(r=\\alpha\\) between the two tangency points.\n\nLet \\(T\\) be the tangency point from \\(P\\). In the right hyperbolic triangle \\(OTP\\), we have\n\\[\nOT=\\alpha,\\qquad OP=\\beta,\\qquad \\angle T=\\frac{\\pi}{2}.\n\\]\nIf \\(PT=\\ell\\), the hyperbolic right-triangle identity gives\n\\[\n\\cosh\\beta=\\cosh\\alpha\\cosh\\ell,\n\\]\nso\n\\[\n\\ell=\\operatorname{acosh}\\!\\left(\\frac{\\cosh\\beta}{\\cosh\\alpha}\\right).\n\\]\nThe angle at \\(O\\) between \\(OP\\) and \\(OT\\) is \\(\\delta\\). Using the hyperbolic cosine law,\n\\[\n\\cos\\delta=\\frac{\\tanh\\alpha}{\\tanh\\beta},\n\\]\nhence the above value of \\(\\delta\\).\n\nBy symmetry, the two tangency points have angular coordinates\n\\[\n-\\theta+\\delta,\\qquad \\theta-\\delta.\n\\]\nThus the boundary arc between them has angular width\n\\[\n2(\\theta-\\delta),\n\\]\nand since the circle \\(r=\\alpha\\) has line element \\(ds=\\sinh\\alpha\\,d\\lambda\\), that arc has length\n\\[\n2\\sinh\\alpha(\\theta-\\delta).\n\\]\n\nTherefore the minimum possible length is\n\\[\n\\boxed{\n2\\,\\operatorname{acosh}\\!\\left(\\frac{\\cosh\\beta}{\\cosh\\alpha}\\right)\n+\n2\\sinh\\alpha\\left(\n\\theta-\\arccos\\!\\left(\\frac{\\tanh\\alpha}{\\tanh\\beta}\\right)\n\\right)\n}.\n\\]\n\nThe minimum is attained by the tangent-boundary-tangent curve described above.",
+  "status": "success",
+  "completed_at": "2026-09-17T11:06:43+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/b510ee4cce05.json"
+}
