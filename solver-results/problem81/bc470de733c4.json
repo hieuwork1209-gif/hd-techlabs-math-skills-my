@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-proof-theory/problem.md",
+  "source_commit_sha": "e8ca24bb101260206c1696f5aca314745937179e",
+  "problem_blob_sha": "bc470de733c42b17692501e4ab8d9c7633041e2f",
+  "statement_sha256": "ebacac6ca109fef4ee54a7d715896d3ecfb2df9fede417fa03af4f7fe9b8fa95",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T12:21:16+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "A good way to see the process is: it is a bounded-depth Goodstein process with an extra finite “countdown” coordinate. The countdown decreases when \\(k>0\\), and when \\(k=0\\), the hereditary base-change-minus-one step decreases the associated ordinal.\n\nLet\n\\[\n\\alpha(t)=o_b(t).\n\\]\nFirst note that base change preserves ordinal interpretation:\n\\[\no_{b+1}(\\mathrm{BC}_b(t))=o_b(t),\n\\]\nbecause the ordinal interpretation replaces the base symbol by \\(\\omega\\), so changing \\(b\\) to \\(b+1\\) does not change the formal ordinal.\n\nNow we need the subtraction fact: if \\(0\\ne t\\in\\mathcal T_2(b)\\), then\n\\[\no_{b+1}(G_b(t))<o_b(t).\n\\]\nThis is the usual hereditary-base borrow argument. Write\n\\[\nt=c_1b^{e_1}+\\cdots+c_mb^{e_m},\n\\qquad\n\\nu_b(e_1)>\\cdots>\\nu_b(e_m)\\ge0.\n\\]\nAfter base change, subtracting \\(1\\) either reduces a nonzero constant coefficient, or, if the last exponent is positive, borrows from the final term. The borrowed part expands into powers with exponents numerically below \\(\\nu_{b+1}(\\mathrm{BC}_b(e_m))\\). Numerical order of canonical bounded-depth terms agrees with their ordinal order, so all those new exponents have ordinal interpretation strictly below \\(o_b(e_m)\\). Thus the Cantor normal form ordinal strictly decreases.\n\nTherefore every nonterminal step decreases\n\\[\n\\rho_b(t,k)=\\omega^{o_b(t)}(k+1).\n\\]\nIndeed, if \\(k>0\\), then\n\\[\n\\rho_{b+1}(\\mathrm{BC}_b(t),k-1)\n=\\omega^{o_b(t)}k\n<\n\\omega^{o_b(t)}(k+1).\n\\]\nIf \\(k=0\\) and \\(t\\ne0\\), then\n\\[\no_{b+1}(G_b(t))<o_b(t),\n\\]\nso\n\\[\n\\rho_{b+1}(G_b(t),b)\n=\n\\omega^{o_{b+1}(G_b(t))}(b+1)\n<\n\\omega^{o_b(t)}\n=\n\\rho_b(t,0).\n\\]\nThere is no infinite strictly decreasing sequence of ordinals, so every nested run terminates.\n\nFor \\(\\Theta\\), at fixed base \\(b\\), depth \\(1\\) exponents have ordinal supremum \\(\\omega^b\\), hence depth \\(2\\) terms have ordinal supremum\n\\[\n\\omega^{\\omega^b}.\n\\]\nTaking the supremum over all finite \\(b\\ge2\\),\n\\[\n\\sup_{b,t} o_b(t)\n=\n\\sup_{b\\ge2}\\omega^{\\omega^b}\n=\n\\omega^{\\omega^\\omega}.\n\\]\nThus\n\\[\n\\Theta\n=\n\\sup \\bigl(\\omega^{o_b(t)}(k+1)+1\\bigr)\n=\n\\omega^{\\omega^{\\omega^\\omega}}.\n\\]\n\nNow compute \\(o_3(t_\\star)\\). We have\n\\[\ne_1=2\\cdot3^2+3+2,\n\\qquad\ne_2=3^2+2,\n\\qquad\ne_3=2\\cdot3+1,\n\\]\nso\n\\[\no_{3,1}(e_1)=\\omega^2\\cdot2+\\omega+2,\n\\]\n\\[\no_{3,1}(e_2)=\\omega^2+2,\n\\]\n\\[\no_{3,1}(e_3)=\\omega\\cdot2+1.\n\\]\nTherefore\n\\[\no_3(t_\\star)\n=\n\\omega^{\\omega^2\\cdot2+\\omega+2}\\cdot2\n+\\omega^{\\omega^2+2}\n+\\omega^{\\omega\\cdot2+1}\\cdot2\n+1.\n\\]\nSince \\(k=2\\),\n\\[\n\\rho_3(t_\\star,2)\n=\n\\omega^{o_3(t_\\star)}\\cdot3.\n\\]\n\nHence the requested exact pair is\n\\[\n\\boxed{\n\\left(\n\\omega^{\\omega^{\\omega^\\omega}},\n\\;\n\\omega^{\n\\omega^{\\omega^2\\cdot2+\\omega+2}\\cdot2\n+\\omega^{\\omega^2+2}\n+\\omega^{\\omega\\cdot2+1}\\cdot2\n+1\n}\\cdot3\n\\right)\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T12:22:27+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/bc470de733c4.json"
+}
