@@ -2,7 +2,7 @@
 
 ## LaTeX (Normalized)
 
-Let $0<s<3$. Among all nondegenerate tetrahedra $ABCD$ such that
+Let $0<s<3$. Among all tetrahedra $ABCD$ such that
 $$
 [ABC]=[ABD]=[ACD]=1,
 \qquad
