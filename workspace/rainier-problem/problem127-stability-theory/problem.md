@@ -2,15 +2,7 @@
 
 ## LaTeX (Normalized)
 
-Let
-$$
-0<\alpha<\beta,
-\qquad
-\kappa>0,
-\qquad
-\tau>0,
-$$
-and define
+Let $\alpha,\beta,\kappa,\tau>0$, and define
 $$
 A_1=\begin{pmatrix}-\alpha&\kappa\\0&-\beta\end{pmatrix},
 \qquad
