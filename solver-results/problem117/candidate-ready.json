@@ -2,8 +2,8 @@
   "problem": "problem117",
   "mode": "existing",
   "ready": true,
-  "problem_path": "workspace/rainier-problem/problem117-convex-optimization/problem.md",
-  "problem_blob_sha": "9ad584f5b0de75106a4ff0bc2d6b469bee7bae41",
-  "solution_path": "workspace/rainier-problem/problem117-convex-optimization/solution.md",
-  "solution_blob_sha": "3ce54e6f549b1119c1572375ce089d9a8e98eb9a"
+  "problem_path": "workspace/rainier-problem/problem117-experimental-design-and-causal-inference/problem.md",
+  "problem_blob_sha": "dc045a37ce6391fca4fc0db2202efd3bc58a6ba7",
+  "solution_path": "workspace/rainier-problem/problem117-experimental-design-and-causal-inference/solution.md",
+  "solution_blob_sha": "ba04aeafaf1c63a743c8c94eb7e06387a8ec0a1e"
 }
