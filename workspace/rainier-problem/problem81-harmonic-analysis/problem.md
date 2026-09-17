@@ -20,11 +20,11 @@ $$
 M_*
 =
 \max_{a,b,c\in\mathbb R}
-\frac1{2\pi}\int_0^{2\pi}|f_{a,b,c}(\theta)|^4\,d\theta,
+\frac1{2\pi}\int_0^{2\pi}|f_{a,b,c}(\theta)|^6\,d\theta,
 $$
 and determine all real triples $(a,b,c)$ attaining the maximum.
 
-It is acceptable to specify an algebraic constant as the unique real root of an explicit polynomial together with an isolating interval.
+It is acceptable to specify algebraic constants as the unique real solution of an explicit polynomial system together with isolating inequalities.
 
 Return the exact pair
 $$
@@ -47,4 +47,4 @@ where $\mathcal E_*$ is the complete set of maximizing triples.
 
 ## Domain Explanation
 
-The problem is an exact Fourier-norm extremal problem for a finite analytic trigonometric family. The essential structure comes from expressing the $L^4$ norm through the autocorrelation Fourier coefficients of $|f|^2$, then optimizing the resulting additive-energy functional under the $L^2$ normalization. Thus Analysis -> Harmonic analysis is primary, with algebraic optimization serving as the subordinate tool.
+The problem is an exact higher Fourier-moment extremal problem for a finite analytic trigonometric family. The essential structure comes from writing the $L^6$ norm as the $L^2$ norm of the triple convolution of the Fourier coefficients, then proving a global two-variable algebraic optimization and classifying all equality cases. Thus Analysis -> Harmonic analysis is primary, with elimination and root isolation serving as subordinate algebraic tools.
