@@ -2,19 +2,21 @@
 
 ## LaTeX (Normalized)
 
-For $0<c\leq\frac12$, let $u:[0,1]\to[-1,1]$ be Lebesgue measurable and define
+Let $u:[0,1]\to[-1,1]$ be Lebesgue measurable and define the chained states
 $$
-x_u(t)=\int_0^t u(s)\,ds.
+x_u(t)=\int_0^t u(s)\,ds,\qquad
+y_u(t)=\int_0^t x_u(s)\,ds,\qquad
+z_u(t)=\int_0^t y_u(s)\,ds.
 $$
 Assume
 $$
-x_u(1)=0,\qquad \int_0^1x_u(t)\,dt=0,\qquad x_u(t)\leq c\quad(0\leq t\leq1).
+x_u(1)=y_u(1)=z_u(1)=0.
 $$
-Define
+Determine
 $$
-M(c)=\max_u\int_0^1x_u(t)^3\,dt.
+\max_u\int_0^1x_u(t)^3\,dt
 $$
-Determine $M(c)$ exactly for every $0<c\leq\frac12$. A complete proof must also classify all optimal controls, up to equality almost everywhere, for every $c$.
+exactly. A complete proof must also classify all optimal controls, up to equality almost everywhere.
 
 ---
 
@@ -25,10 +27,10 @@ Determine $M(c)$ exactly for every $0<c\leq\frac12$. A complete proof must also 
 | **Domain** | Optimization and Numerical Mathematics |
 | **Sub-domain** | Dynamic programming and optimal control |
 | **Problem Type** | Optimization |
-| **Answer Type** | Function or mapping |
+| **Answer Type** | Exact scalar |
 
 ---
 
 ## Domain Explanation
 
-The decision variable is a bounded measurable control, its state satisfies $x_u'=u$, and the optimization includes terminal, integral, and pointwise state constraints. The state ceiling creates an active-constraint regime and an inactive-constraint regime, while the task also requires reconstruction of every optimal control. Thus Optimization and Numerical Mathematics and Dynamic programming and optimal control remain the direct classification; the real-variable inequalities are tools for proving the sharp control result.
+The variable $u$ is a bounded measurable control for a chain of integrator states, with simultaneous terminal constraints on the first three states and a nonlinear running payoff. Solving the problem requires a sharp global compatibility argument between the terminal moment constraints and the geometry of optimal state excursions, so Optimization and Numerical Mathematics and Dynamic programming and optimal control are the direct classification.
