@@ -1,165 +1,179 @@
 ## Steps
 
-Step 1: Get a sharp upper bound from a zero of the high-frequency mode
-Fix an integer $n\ge2$. Suppose
+Step 1: Normalize the phase and obtain the sharp upper bound
+Let
 $$
-P(\theta)=1+2a\cos\theta+2b\cos(n\theta)\ge0
+P_{\alpha,\beta}(\theta)=1+2\operatorname{Re}\!\left(\alpha e^{i\theta}+\beta e^{in\theta}\right)\ge0
 $$
-for every real $\theta$.
-
+for every real $\theta$. Write
+$$
+\alpha=a e^{i\gamma},\qquad a=|\alpha|\ge0,
+$$
+and put
+$$
+B=\beta e^{-in\gamma}.
+$$
+After the change of variable $x=\theta+\gamma$,
+$$
+Q(x):=P_{\alpha,\beta}(x-\gamma)
+=1+2a\cos x+2\operatorname{Re}(Be^{inx})\ge0.
+$$
 Set
 $$
-\phi=\frac{\pi}{2n},
-\qquad
-\theta_0=\pi-\phi.
+\phi=\frac{\pi}{2n},\qquad c=\cos\phi,
+\qquad s=\sin\phi.
 $$
-Then
-$$
-\cos(n\theta_0)=\cos\left(n\pi-\frac\pi2\right)=0,
-$$
-so nonnegativity at $\theta_0$ gives
-$$
-0\le P(\theta_0)=1-2a\cos\phi.
-$$
-Hence
-$$
-a\le\frac1{2\cos\phi}.
-$$
-Thus no admissible pair can have a larger first Fourier coefficient.
+If $B=0$, then $Q(\pi)=1-2a\ge0$, so $a\le1/2<1/(2c)$.
 
-Step 2: Determine the only possible $b$ at equality
-Assume now that
+Now assume $B\ne0$ and write $B=\rho e^{i\delta}$ with $\rho>0$. The zeros of
 $$
-a=\frac1{2\cos\phi}.
+q(x)=\operatorname{Re}(Be^{inx})=\rho\cos(nx+\delta)
 $$
-Then $P(\theta_0)=0$. Since $P$ is differentiable and nonnegative everywhere, every zero is a local minimum, so
+are spaced by $\pi/n=2\phi$. Hence one zero $x_0$ has circular distance
 $$
-P'(\theta_0)=0.
+d=|x_0-\pi|\le\phi
+$$
+from $\pi$. At that point,
+$$
+0\le Q(x_0)=1+2a\cos x_0=1-2a\cos d.
+$$
+Therefore
+$$
+a\le\frac1{2\cos d}\le\frac1{2\cos\phi}.
+$$
+Thus
+$$
+|\alpha|\le\frac1{2\cos(\pi/(2n))}.
+$$
+
+Step 2: Equality forces the phase and the high-frequency coefficient
+Assume equality holds:
+$$
+a=\frac1{2c}.
+$$
+Then $B\ne0$, and equality must hold in the distance bound from Step 1. Thus the closest zeros of $q$ to $\pi$ are exactly
+$$
+\pi-\phi,\qquad \pi+\phi.
+$$
+In particular,
+$$
+0=q(\pi-\phi)
+=\rho\cos\left(n\pi-\frac\pi2+\delta\right)
+=(-1)^n\rho\sin\delta.
+$$
+Hence $\sin\delta=0$, so $B$ is real. Write $B=b$.
+
+At
+$$
+x_*=\pi-\phi
+$$
+we have $q(x_*)=0$ and
+$$
+1+2a\cos x_*=1-2ac=0,
+$$
+so $Q(x_*)=0$. Since $Q\ge0$ and is differentiable, $x_*$ is a local minimum and therefore
+$$
+Q'(x_*)=0.
 $$
 Now
 $$
-P'(\theta)=-2a\sin\theta-2bn\sin(n\theta).
+Q'(x)=-2a\sin x-2bn\sin(nx).
 $$
 Using
 $$
-\sin\theta_0=\sin\phi,
+\sin x_*=s,
 \qquad
-\sin(n\theta_0)=\sin\left(n\pi-\frac\pi2\right)=(-1)^{n+1},
+\sin(nx_*)=(-1)^{n+1},
 $$
 we obtain
 $$
-0=-2a\sin\phi-2bn(-1)^{n+1}.
-$$
-Therefore the only possible coefficient at the optimum is
-$$
-b=\frac{(-1)^n}{2n}\tan\phi.
-$$
-It remains to prove that this forced pair is actually admissible.
-
-Step 3: Prove global nonnegativity of the extremal polynomial
-Take
-$$
-a=\frac1{2\cos\phi},
-\qquad
-b=\frac{(-1)^n}{2n}\tan\phi.
-$$
-Because $P$ is even and $2\pi$-periodic, it is enough to consider $0\le\theta\le\pi$. Put
-$$
-t=\pi-\theta,
-\qquad
-c=\cos\phi,
-\qquad
-s=\sin\phi.
-$$
-Then
-$$
-\cos\theta=-\cos t,
-\qquad
-(-1)^n\cos(n\theta)=\cos(nt),
+0=-2as-2bn(-1)^{n+1},
 $$
 so
 $$
-P(\theta)=\frac{F(t)}{nc},
+b=\frac{(-1)^n}{2n}\tan\phi.
 $$
-where
+Since $B=\beta e^{-in\gamma}$,
 $$
-F(t)=n(c-\cos t)+s\cos(nt).
+\beta
+=\frac{(-1)^n}{2n}\tan\phi\,e^{in\gamma}
+=\frac{(-1)^n}{2n}\tan\phi\,e^{in\arg\alpha}.
 $$
-We prove $F(t)\ge0$ on $[0,\pi]$.
+Thus equality, if attainable, already forces the unique relative phase and magnitude of $\beta$.
 
-First, for $0<u\le\pi/2$, define
+Step 3: Prove the forced normalized pair is globally nonnegative
+It remains to prove attainability. Take
 $$
-h(u)=\frac{\sin(u/n)}{\sin u}.
+a=\frac1{2c},
+\qquad
+b=\frac{(-1)^n}{2n}\tan\phi.
 $$
-The function $x\cot x$ is strictly decreasing on $(0,\pi/2]$, because
+For the normalized polynomial
 $$
-\frac{d}{dx}(x\cot x)
-=\frac{\sin x\cos x-x}{\sin^2x}<0.
+Q(x)=1+2a\cos x+2b\cos(nx),
 $$
-Hence
+it is enough by evenness and periodicity to consider $0\le x\le\pi$. Put
 $$
-\frac{h'(u)}{h(u)}
-=\frac1n\cot\frac un-\cot u
->0.
+t=\pi-x.
 $$
-Thus $h$ is increasing, and therefore
+Then
 $$
-\frac{\sin(u/n)}{\sin u}
-\le h\left(\frac\pi2\right)
-=\sin\phi=s.
+cQ(x)=h(t):=c-\cos t+\frac{s}{n}\cos(nt).
 $$
-Taking $u=nt$ shows that for $0\le t\le\phi$,
-$$
-\sin t\le s\sin(nt).
-$$
-Since
-$$
-F'(t)=n\bigl(\sin t-s\sin(nt)\bigr),
-$$
-we have $F'(t)\le0$ on $[0,\phi]$. Also
-$$
-F(\phi)=n(c-c)+s\cos\frac\pi2=0,
-$$
-so $F\ge0$ on $[0,\phi]$.
+We show $h(t)\ge0$ on $[0,\pi]$.
 
-For $\phi\le t\le\pi-\phi$, we have $\sin t\ge s$ and $\sin(nt)\le1$, hence
+For $0<u\le\pi/2$, define
 $$
-F'(t)=n\bigl(\sin t-s\sin(nt)\bigr)\ge0.
+r(u)=\frac{\sin(u/n)}{\sin u}.
 $$
-Thus $F\ge F(\phi)=0$ throughout this interval.
+Because $x\cot x$ is strictly decreasing on $(0,\pi/2]$,
+$$
+\frac{r'(u)}{r(u)}
+=\frac1n\cot\frac un-\cot u>0.
+$$
+Hence $r$ is increasing. For $0\le t\le\phi$, taking $u=nt$ gives
+$$
+\frac{\sin t}{\sin(nt)}\le r\left(\frac\pi2\right)=s,
+$$
+so
+$$
+h'(t)=\sin t-s\sin(nt)\le0.
+$$
+Since $h(\phi)=0$, we get $h(t)\ge0$ on $[0,\phi]$.
 
-Finally let $\pi-\phi\le t\le\pi$ and put $u=\pi-t\in[0,\phi]$. If $n$ is even, then
+For $\phi\le t\le\pi-\phi$,
 $$
-\sin(nt)=-\sin(nu),
+\sin t\ge s,
+\qquad
+\sin(nt)\le1,
 $$
-so $F'(t)\ge0$. If $n$ is odd, then
-$$
-\sin(nt)=\sin(nu),
-$$
-and the inequality already proved gives $F'(t)\le0$. In that odd case the minimum on the final interval is at $t=\pi$, where
-$$
-F(\pi)=n(c+1)-s>0.
-$$
-Hence $F(t)\ge0$ for all $t\in[0,\pi]$, so $P(\theta)\ge0$ for every real $\theta$.
+so $h'(t)\ge0$. Hence again $h(t)\ge h(\phi)=0$.
 
-Step 4: Conclude sharpness and uniqueness of the extremal pair
-Step 1 proves
+Finally, for $\pi-\phi\le t\le\pi$ we have $\cos t\le-c$, and therefore
 $$
-a\le\frac1{2\cos(\pi/(2n))}.
+h(t)
+\ge 2c-\frac{s}{n}>0.
 $$
-Step 3 shows this value is attained. Step 2 shows that once equality holds, nonnegativity forces the unique corresponding coefficient
-$$
-b=\frac{(-1)^n}{2n}\tan\frac\pi{2n}.
-$$
-Therefore the requested extremal pair is unique.
+Thus $Q(x)\ge0$ for every real $x$.
 
-Final Answer: $\boxed{\left(\frac1{2\cos(\pi/(2n))},\frac{(-1)^n}{2n}\tan\frac\pi{2n}\right)}$
+Step 4: Restore the original phase and conclude uniqueness
+For any phase $\gamma$, shifting the normalized extremizer back gives
+$$
+\alpha=\frac{e^{i\gamma}}{2\cos\phi},
+\qquad
+\beta=\frac{(-1)^n}{2n}\tan\phi\,e^{in\gamma},
+$$
+and preserves nonnegativity. Hence the upper bound is attained for every phase of $\alpha$.
+
+Conversely, Step 2 shows that every extremizer must have exactly this relative phase and high-frequency coefficient. Therefore the maximum and the corresponding $\beta$ are uniquely determined once $\alpha$ is given.
+
+Final Answer: $\boxed{\left(\frac1{2\cos(\pi/(2n))},\frac{(-1)^n}{2n}\tan\frac\pi{2n}e^{in\arg\alpha}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac1{2\cos(\pi/(2n))},\frac{(-1)^n}{2n}\tan\frac\pi{2n}\right)$
+$\left(\frac1{2\cos(\pi/(2n))},\frac{(-1)^n}{2n}\tan\frac\pi{2n}e^{in\arg\alpha}\right)$
 
 ---
 
@@ -174,7 +188,7 @@ $\left(\frac1{2\cos(\pi/(2n))},\frac{(-1)^n}{2n}\tan\frac\pi{2n}\right)$
 ## Solution Concepts
 
 - nonnegative trigonometric polynomials
-- Fourier coefficient extremization
-- tangency at a forced zero
-- trigonometric monotonicity
-- equality and uniqueness
+- Fourier phase normalization
+- zero-lattice spacing
+- tangency at an extremal zero
+- global trigonometric positivity
