@@ -1,278 +1,312 @@
 ## Steps
 
-Step 1: Encode the environment by local odds ratios
+Step 1: Define the stationary Markov environment and its local odds
 
-Let \(\omega=(\omega_x)_{x\in\mathbb Z}\) be i.i.d. with
+Let \((S_x)_{x\in\mathbb Z}\) be a two-sided stationary Markov chain with state space \(\{R,L\}\), stationary law
 \[
-\mathbb P(\omega_x=3/4)=\theta,
-\qquad
-\mathbb P(\omega_x=1/4)=1-\theta,
-\qquad 0<\theta<1.
+\pi=(\theta,1-\theta),
+\qquad 0<\theta<1,
 \]
-Given \(\omega\), let \(X_n\) be the nearest-neighbor walk with
+and transition matrix
 \[
-P_\omega(X_{n+1}=x+1\mid X_n=x)=\omega_x,
+P_\theta=
+\begin{pmatrix}
+\dfrac{1+4\theta}{5} & \dfrac{4(1-\theta)}5\\[2mm]
+\dfrac{4\theta}5 & \dfrac{5-4\theta}{5}
+\end{pmatrix}.
+\tag{1}
 \]
+The detailed-balance identity
 \[
-P_\omega(X_{n+1}=x-1\mid X_n=x)=1-\omega_x.
+\theta\frac{4(1-\theta)}5
+=(1-\theta)\frac{4\theta}5
+\]
+shows that the chain is reversible.
+
+Set
+\[
+\omega_x=
+\begin{cases}
+3/4,&S_x=R,\\
+1/4,&S_x=L,
+\end{cases}
+\]
+and define the nearest-neighbor random walk in this environment by
+\[
+P_\omega(X_{n+1}=x+1\mid X_n=x)=\omega_x.
 \]
 Put
 \[
-\rho_x:=\frac{1-\omega_x}{\omega_x}.
-\]
-Then
-\[
-\rho_x=
+\rho_x=\frac{1-\omega_x}{\omega_x}
+=
 \begin{cases}
-1/3,&\omega_x=3/4,\\
-3,&\omega_x=1/4.
+1/3,&S_x=R,\\
+3,&S_x=L.
 \end{cases}
-\tag{1}
-\]
-The two quantities governing direction and speed are different:
-\[
-\mathbb E\log\rho_0
-=(1-2\theta)\log3,
 \tag{2}
 \]
-while
+Let
 \[
-m_+:=\mathbb E\rho_0
-=\frac\theta3+3(1-\theta)
-=\frac{9-8\theta}{3}.
+D=\operatorname{diag}(1/3,3),
+\qquad
+D^{-1}=\operatorname{diag}(3,1/3).
 \tag{3}
 \]
-For the reflected walk we will also need
+
+Step 2: Direction is governed by the logarithmic potential
+
+The potential increments are \(\log\rho_x\). Since the environment chain is stationary and ergodic,
 \[
-m_-:=\mathbb E\rho_0^{-1}
-=3\theta+\frac{1-\theta}{3}
-=\frac{1+8\theta}{3}.
+\frac1n\sum_{j=1}^n\log\rho_j
+\longrightarrow
+\mathbb E_\pi\log\rho_0
+\qquad\text{a.s.}
+\]
+Now
+\[
+\mathbb E_\pi\log\rho_0
+=\theta\log(1/3)+(1-\theta)\log3
+=(1-2\theta)\log3.
 \tag{4}
 \]
+The one-dimensional scale-function formula for RWRE expresses hitting probabilities through products of the \(\rho_j\), hence through exponentials of this potential. Therefore
 
-Step 2: Direction of transience and recurrence
+- if \(\theta>1/2\), the potential drifts to \(-\infty\) and the walk is transient to \(+\infty\);
+- if \(\theta<1/2\), it is transient to \(-\infty\);
+- if \(\theta=1/2\), the centered finite-state Markov additive process oscillates to both signs, so the two scale sums diverge and the walk is recurrent.
 
-Define the potential on the positive half-line by
-\[
-V(n)=\sum_{j=1}^n\log\rho_j.
-\]
-The standard one-dimensional hitting-probability formula is obtained by solving the harmonic difference equation
-\[
-h(x)=\omega_xh(x+1)+(1-\omega_x)h(x-1).
-\]
-Indeed, if \(h\) is harmonic then
-\[
-h(x+1)-h(x)=\rho_x\bigl(h(x)-h(x-1)\bigr),
-\]
-so successive increments are proportional to products of the \(\rho_j\). Thus the convergence or divergence of the corresponding scale sums is controlled by the asymptotic behavior of \(V(n)\).
-
-By the strong law,
-\[
-\frac{V(n)}n\longrightarrow \mathbb E\log\rho_0
-=(1-2\theta)\log3
-\qquad\text{a.s.}
-\tag{5}
-\]
-Hence:
-
-- if \(\theta>1/2\), then \(V(n)\to-\infty\) linearly and the walk is transient to \(+\infty\);
-- if \(\theta<1/2\), the reflected potential has negative drift and the walk is transient to \(-\infty\);
-- if \(\theta=1/2\), then \(\log\rho_x=\pm\log3\) symmetrically, so the potential oscillates to both \(+\infty\) and \(-\infty\), and the scale sums diverge in both directions. The walk is recurrent.
-
-Therefore the exact directional transition is
+Thus
 \[
 \boxed{\theta_{\rm dir}=\frac12.}
-\tag{6}
+\tag{5}
 \]
 
-Step 3: The right-transient crossing-time series
+Step 3: Rightward crossing times become a matrix product series
 
-Assume \(\theta>1/2\), so the walk is transient to the right. Let
-\[
-T_1=\inf\{n\ge0:X_n=1\}
-\]
-when the walk starts at \(0\). The quenched expected crossing time has the standard series representation
+Assume first \(\theta>1/2\), so the walk is right-transient. The quenched expected time to cross from \(0\) to \(1\) is
 \[
 E_\omega^0T_1
 =1+2\sum_{k=0}^\infty
 \rho_0\rho_{-1}\cdots\rho_{-k}.
+\tag{6}
+\]
+This is the same one-dimensional left-excursion expansion as in the i.i.d. case; the difference is that the environment products are now correlated.
+
+Because the stationary chain is reversible, the backward state chain has the same transition matrix \(P_\theta\). Hence
+\[
+\mathbb E_\theta
+\bigl[\rho_0\rho_{-1}\cdots\rho_{-k}\bigr]
+=\pi D(P_\theta D)^k\mathbf 1,
 \tag{7}
 \]
-For completeness, this follows by writing the first-step recursion for the expected number of left excursions before the first crossing of the edge \((0,1)\): every left excursion contributes two steps, and the expected number of excursions reaching successively farther left produces the products in (7).
-
-Taking annealed expectation and using independence,
+where \(\mathbf 1=(1,1)^T\). Therefore
 \[
-\mathbb E E_\omega^0T_1
-=1+2\sum_{k=0}^\infty m_+^{k+1}.
+\mathbb E_\theta T_1
+=1+2\sum_{k=0}^\infty
+\pi D(P_\theta D)^k\mathbf 1.
 \tag{8}
 \]
-Thus the mean crossing time is finite exactly when
+The series converges exactly when
 \[
-m_+<1
-\iff
-\frac{9-8\theta}{3}<1
-\iff
-\boxed{\theta>\frac34.}
+\rho(P_\theta D)<1,
 \tag{9}
 \]
-In that regime,
+with \(\rho(\cdot)\) denoting the Perron spectral radius.
+
+A direct computation gives
 \[
-\mathbb E T_1
-=1+\frac{2m_+}{1-m_+}
-=\frac{1+m_+}{1-m_+}
-=\boxed{\frac{6-4\theta}{4\theta-3}}.
+P_\theta D=
+\begin{pmatrix}
+\dfrac{1+4\theta}{15} & \dfrac{12(1-\theta)}5\\[2mm]
+\dfrac{4\theta}{15} & \dfrac{3(5-4\theta)}5
+\end{pmatrix},
+\]
+\[
+\det(P_\theta D)=\frac15,
+\qquad
+\det(I-P_\theta D)=\frac{4(8\theta-7)}{15}.
 \tag{10}
 \]
-For \(1/2<\theta\le3/4\), the walk still goes to \(+\infty\), but the annealed mean time to advance one level is infinite.
-
-The one-dimensional RWRE law of large numbers can be read from these crossing times: in the right-transient regime,
-\[
-v(\theta):=\lim_{n\to\infty}\frac{X_n}{n}
-=\begin{cases}
-\displaystyle \frac1{\mathbb ET_1},&\mathbb ET_1<\infty,\\[2mm]
-0,&\mathbb ET_1=\infty,
-\end{cases}
-\qquad\text{a.s. under the annealed law.}
-\tag{11}
-\]
-Hence
+At \(\theta=7/8\) the Perron eigenvalue is exactly \(1\); for larger \(\theta\) the trace decreases while the determinant stays \(1/5\), so the Perron eigenvalue is strictly below \(1\). Thus
 \[
 \boxed{
-v(\theta)=\frac{4\theta-3}{6-4\theta}
-\qquad\left(\frac34<\theta<1\right),
+\mathbb E_\theta T_1<\infty
+\iff \theta>\frac78.
 }
+\tag{11}
+\]
+When \(\theta>7/8\), summing the geometric matrix series gives
+\[
+\begin{aligned}
+\mathbb E_\theta T_1
+&=1+2\pi D(I-P_\theta D)^{-1}\mathbf 1\\
+&=\boxed{\frac{2(7-6\theta)}{8\theta-7}}.
+\end{aligned}
 \tag{12}
+\]
+
+The one-dimensional RWRE law of large numbers identifies the asymptotic speed in the right-transient regime as the reciprocal of the mean crossing time when that mean is finite, and as \(0\) when it is infinite. Hence
+\[
+\boxed{
+v(\theta)=\frac{8\theta-7}{2(7-6\theta)}
+\qquad\left(\frac78<\theta<1\right),
+}
+\tag{13}
 \]
 and
 \[
 \boxed{
 v(\theta)=0
-\qquad\left(\frac12<\theta\le\frac34\right).
+\qquad\left(\frac12<\theta\le\frac78\right).
 }
-\tag{13}
-\]
-
-Step 4: The left-transient regime by reflection
-
-Reflect space by replacing \(X_n\) with \(-X_n\). The reflected walk has right-jump probability \(1-\omega_{-x}\), so its odds ratio is \(\rho_x^{-1}\). Therefore the leftward crossing time has finite annealed mean exactly when
-\[
-m_-<1
-\iff
-\frac{1+8\theta}{3}<1
-\iff
-\boxed{\theta<\frac14.}
 \tag{14}
 \]
-In that regime,
+
+Step 4: Leftward crossing times by reflection
+
+For the reflected walk, the relevant local odds are \(\rho_x^{-1}\). The same reversible-Markov calculation gives
 \[
-\mathbb ET_{-1}
-=\frac{1+m_-}{1-m_-}
-=\boxed{\frac{2+4\theta}{1-4\theta}}.
+\mathbb E_\theta T_{-1}
+=1+2\sum_{k=0}^\infty
+\pi D^{-1}(P_\theta D^{-1})^k\mathbf 1.
 \tag{15}
 \]
-Consequently
+Now
+\[
+\det(P_\theta D^{-1})=\frac15,
+\qquad
+\det(I-P_\theta D^{-1})=\frac{4(1-8\theta)}{15}.
+\tag{16}
+\]
+Thus the Perron radius is below \(1\) exactly when
+\[
+\boxed{\theta<\frac18.}
+\tag{17}
+\]
+In that range,
+\[
+\begin{aligned}
+\mathbb E_\theta T_{-1}
+&=1+2\pi D^{-1}(I-P_\theta D^{-1})^{-1}\mathbf 1\\
+&=\boxed{\frac{2(1+6\theta)}{1-8\theta}}.
+\end{aligned}
+\tag{18}
+\]
+Therefore
 \[
 \boxed{
 v(\theta)
-=-\frac1{\mathbb ET_{-1}}
-=\frac{4\theta-1}{2+4\theta}
-\qquad\left(0<\theta<\frac14\right).
+=-\frac1{\mathbb E_\theta T_{-1}}
+=\frac{8\theta-1}{2(1+6\theta)}
+\qquad\left(0<\theta<\frac18\right).
 }
-\tag{16}
+\tag{19}
 \]
 For
 \[
-\frac14\le\theta<\frac12,
+\frac18\le\theta<\frac12,
 \]
-the walk is transient to \(-\infty\) but has zero limiting speed.
+the walk is still transient to \(-\infty\), but its speed is zero.
 
-At \(\theta=1/2\), recurrence also gives \(v(1/2)=0\). Thus the two ballistic thresholds are
+Step 5: Complete phase diagram
+
+Combining the directional criterion with the two transfer-matrix moment criteria,
 \[
-\boxed{\theta_-=\frac14,
-\qquad
-\theta_+=\frac34.}
-\tag{17}
+\boxed{
+(\theta_-,\theta_{\rm dir},\theta_+)
+=\left(\frac18,\frac12,\frac78\right).
+}
+\tag{20}
 \]
-Both threshold points themselves have zero speed because the relevant geometric series in (8) or its reflected analogue is then critical and diverges.
-
-Step 5: Collect the complete phase diagram
-
-The almost-sure annealed velocity exists for every \(0<\theta<1\) and is
+The limiting velocity exists almost surely under the annealed law and is
 \[
 \boxed{
 v(\theta)=
 \begin{cases}
-\displaystyle \frac{4\theta-1}{2+4\theta},
-&0<\theta<\frac14,\\[3mm]
+\displaystyle \frac{8\theta-1}{2(1+6\theta)},
+&0<\theta<\frac18,\\[3mm]
 0,
-&\frac14\le\theta\le\frac34,\\[3mm]
-\displaystyle \frac{4\theta-3}{6-4\theta},
-&\frac34<\theta<1.
+&\frac18\le\theta\le\frac78,\\[3mm]
+\displaystyle \frac{8\theta-7}{2(7-6\theta)},
+&\frac78<\theta<1.
 \end{cases}
 }
-\tag{18}
+\tag{21}
 \]
-The directional behavior is finer than the velocity:
+The directional behavior is
 \[
 \boxed{
 \begin{array}{c|c|c}
 \theta&\text{direction}&v(\theta)\\ \hline
-(0,1/4)&X_n\to-\infty&<0\\
-[1/4,1/2)&X_n\to-\infty&0\\
+(0,1/8)&X_n\to-\infty&<0\\
+[1/8,1/2)&X_n\to-\infty&0\\
 \{1/2\}&\text{recurrent}&0\\
-(1/2,3/4]&X_n\to+\infty&0\\
-(3/4,1)&X_n\to+\infty&>0
+(1/2,7/8]&X_n\to+\infty&0\\
+(7/8,1)&X_n\to+\infty&>0.
 \end{array}
 }
-\tag{19}
+\tag{22}
 \]
-In particular, there are genuine transient zero-speed regimes on both sides of recurrence.
-
-The first-passage means are
+Hence the transient zero-speed set is exactly
 \[
 \boxed{
-\mathbb ET_1<\infty
-\iff \theta>\frac34,
-\qquad
-\mathbb ET_1=\frac{6-4\theta}{4\theta-3},
+\left[\frac18,\frac12\right)
+\cup
+\left(\frac12,\frac78\right].
 }
-\tag{20}
+\tag{23}
+\]
+The threshold points \(1/8\) and \(7/8\) are included because at those values the corresponding Perron eigenvalue equals \(1\), so the matrix series diverges.
+
+Finally,
+\[
+\boxed{
+\mathbb E_\theta T_1<\infty
+\iff \theta>\frac78,
+\qquad
+\mathbb E_\theta T_1
+=\frac{2(7-6\theta)}{8\theta-7},
+}
+\tag{24}
 \]
 and
 \[
 \boxed{
-\mathbb ET_{-1}<\infty
-\iff \theta<\frac14,
+\mathbb E_\theta T_{-1}<\infty
+\iff \theta<\frac18,
 \qquad
-\mathbb ET_{-1}=\frac{2+4\theta}{1-4\theta}.
+\mathbb E_\theta T_{-1}
+=\frac{2(1+6\theta)}{1-8\theta}.
 }
-\tag{21}
+\tag{25}
 \]
-Outside those respective parameter ranges, the corresponding annealed expectation is infinite.
+Outside those respective ranges, the corresponding annealed first-passage expectation is infinite.
 
 ---
 
 ## Answer
 
-The three exact transition parameters are
 \[
 \boxed{
 (\theta_-,\theta_{\rm dir},\theta_+)
-=\left(\frac14,\frac12,\frac34\right),
+=\left(\frac18,\frac12,\frac78\right),
 }
 \]
-and the annealed almost-sure velocity is
+and
 \[
 \boxed{
 v(\theta)=
 \begin{cases}
-\displaystyle \frac{4\theta-1}{2+4\theta},&0<\theta<1/4,\\[2mm]
-0,&1/4\le\theta\le3/4,\\[2mm]
-\displaystyle \frac{4\theta-3}{6-4\theta},&3/4<\theta<1.
+\displaystyle \frac{8\theta-1}{2(1+6\theta)},&0<\theta<1/8,\\[2mm]
+0,&1/8\le\theta\le7/8,\\[2mm]
+\displaystyle \frac{8\theta-7}{2(7-6\theta)},&7/8<\theta<1.
 \end{cases}
 }
 \]
-The walk is transient to \(-\infty\) for \(\theta<1/2\), recurrent at \(\theta=1/2\), and transient to \(+\infty\) for \(\theta>1/2\). The transient regimes \([1/4,1/2)\) and \((1/2,3/4]\) have zero speed.
+The walk is transient to \(-\infty\) for \(\theta<1/2\), recurrent for \(\theta=1/2\), and transient to \(+\infty\) for \(\theta>1/2\). The transient zero-speed regime is
+\[
+\left[\frac18,\frac12\right)\cup\left(\frac12,\frac78\right].
+\]
 
 ---
 
@@ -286,8 +320,9 @@ The walk is transient to \(-\infty\) for \(\theta<1/2\), recurrent at \(\theta=1
 
 ## Solution Concepts
 
-- one-dimensional random walk in random environment
-- logarithmic potential and recurrence/transience
-- random crossing-time series
-- ballistic versus zero-speed transience
-- regeneration/renewal law of large numbers
+- one-dimensional random walk in stationary Markov random environment
+- logarithmic potential criterion
+- reversible two-state environment chain
+- matrix transfer products for crossing times
+- Perron-Frobenius ballisticity threshold
+- zero-speed transience and annealed law of large numbers
