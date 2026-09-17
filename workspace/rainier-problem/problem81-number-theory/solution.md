@@ -1,158 +1,218 @@
 ## Steps
 
-Step 1: Reduce square units modulo $p^\alpha$ to quadratic residues modulo $p$
+Step 1: Reduce octic units modulo $p^\alpha$ to eighth powers modulo $p$
 
 Let
 $$
 R_\alpha=\mathbb Z/p^\alpha\mathbb Z,
 $$
-and let $\rho:R_\alpha\to\mathbb F_p$ be reduction modulo $p$. A unit $w\in R_\alpha^\times$ is a square unit if and only if $\rho(w)$ is a nonzero square in $\mathbb F_p$. The forward implication is immediate. Conversely, if $\rho(w)=z_0^2$ with $z_0\ne0$, then Hensel lifting applied to $z^2-w$ works because $2z_0\not\equiv0\pmod p$.
+and let $\rho_\alpha:R_\alpha\to\mathbb F_p$ be reduction modulo $p$. A unit $w\in R_\alpha^\times$ is an eighth power if and only if $\rho_\alpha(w)$ is an eighth power in $\mathbb F_p^\times$.
 
-Hence a $4$-subset of $R_\alpha$ is a clique in the square-unit graph exactly when its four reductions are distinct and form a $K_4$ in the Paley graph $P_p$. For each fixed $K_4$ downstairs, each of its four vertices has $p^{\alpha-1}$ independent lifts, so the number of lifted cliques is
+The forward implication is immediate. Conversely, if
 $$
-p^{4(\alpha-1)}.
+\rho_\alpha(w)=z_0^8,
+\qquad z_0\ne0,
 $$
-Thus if $k_4(P_p)$ denotes the number of $K_4$'s in the Paley graph,
+then Hensel lifting applies to $z^8-w$, because
 $$
-C_{p,\alpha}=p^{4\alpha-4}k_4(P_p).
+8z_0^7\not\equiv0\pmod p
 $$
+for $p\equiv1\pmod{16}$.
 
-Step 2: Count $K_4$'s in the Paley graph
+Hence adjacency in the graph depends only on reduction modulo $p$.
 
-Let $\chi$ be the quadratic character of $\mathbb F_p$, extended by $\chi(0)=0$, and let
-$$
-\eta(t)=\begin{cases}
-1,&t\ne0\text{ and }\chi(t)=1,\\
-0,&\text{otherwise}.
-\end{cases}
-$$
-Since $p\equiv1\pmod4$, one has $\chi(-1)=1$. The affine maps
-$$
-x\longmapsto sx+t,
-\qquad \chi(s)=1,
-$$
-act transitively on the edges of $P_p$. Fix the edge $\{0,1\}$, and let $\kappa$ be the number of $K_4$'s containing it. Then $\kappa$ is the number of edges inside the common neighborhood of $0$ and $1$, so
-$$
-2\kappa
-=
-\sum_{x,y\in\mathbb F_p}
-\eta(x)\eta(1-x)\eta(y)\eta(1-y)\eta(x-y).
-$$
-Write $\delta(t)=1$ for $t=0$ and $0$ otherwise. Then
-$$
-\eta(t)=\frac{1+\chi(t)-\delta(t)}2.
-$$
-Expanding the product and using
-$$
-\sum_t\chi(t)=0,
-\qquad
-\sum_t\chi((t-a)(t-b))=-1\quad(a\ne b),
-$$
-together with the terms forced by the delta functions, gives
-$$
-64\kappa=p^2-20p+81+H_p,
-$$
-where the only genuinely non-elementary term is
-$$
-H_p=
-\sum_{x,y\in\mathbb F_p}
-\chi\bigl(xy(1-x)(1-y)(x-y)\bigr).
-$$
+Step 2: Reduce the prime-field triangle count to one octic cyclotomic number
 
-We now evaluate $H_p$. Let $\psi$ be a quartic character with $\psi^2=\chi$, and let
+Fix a primitive root $g$ modulo $p$, and let
 $$
-J(\psi,\psi)=\sum_{t\in\mathbb F_p}\psi(t)\psi(1-t).
+C_j=g^j\langle g^8\rangle
+\qquad (j\in\mathbb Z/8\mathbb Z)
 $$
-The finite-field Clausen identity at $1$ is obtained by expanding the defining character sums and applying multiplicative-character orthogonality; in this specialization it reads
-$$
-H_p=J(\psi,\psi)^2+\overline{J(\psi,\psi)}^{\,2}.
-$$
-For completeness, the usual Gauss-Jacobi calculation gives
-$$
-J(\psi,\psi)\overline{J(\psi,\psi)}=p,
-$$
-and the primary quartic Jacobi sum satisfies
-$$
-J(\psi,\psi)\equiv1\pmod{2+2i}.
-$$
-Therefore, after replacing $\psi$ by its conjugate if necessary,
-$$
-J(\psi,\psi)=u+2vi
-$$
-up to an overall sign, where
-$$
-p=u^2+4v^2,
-\qquad
-u\equiv1\pmod4,
-\qquad
-v>0.
-$$
-The overall sign disappears after squaring. Consequently
-$$
-H_p
-=2(u^2-4v^2)
-=2p-16v^2.
-$$
-Substituting into the formula for $\kappa$ gives
-$$
-64\kappa
-=p^2-18p+81-16v^2
-=(p-9)^2-16v^2.
-$$
+be the octic cyclotomic classes. Because $p\equiv1\pmod{16}$, one has $-1\in C_0$, so the eighth-power graph on $\mathbb F_p$ is undirected.
+
 Put
 $$
-\Delta_p=(p-9)^2-16v^2.
+N_8=(0,0)_8
+=\#\{t\in\mathbb F_p:t\in C_0,\ t+1\in C_0\}.
 $$
-Then
+Every edge is carried to $\{0,1\}$ by a translation followed by multiplication by an element of $C_0$. Therefore every edge lies in exactly $N_8$ triangles.
+
+The graph has degree $(p-1)/8$, hence
 $$
-\kappa=\frac{\Delta_p}{64}.
+E=\frac{p(p-1)}{16}
+$$
+edges. Double-counting edge-triangle incidences gives
+$$
+\tau_p
+=\frac{E N_8}{3}
+=\frac{p(p-1)}{48}N_8,
+$$
+where $\tau_p$ is the number of unordered triangles over $\mathbb F_p$.
+
+Step 3: Evaluate $(0,0)_8$
+
+Let $\varrho$ be the octic character with
+$$
+\varrho(g)=e^{2\pi i/8},
+$$
+and put
+$$
+\chi=\varrho^2,
+\qquad
+\phi=\varrho^4.
+$$
+Thus $\chi$ is quartic and $\phi$ is quadratic. Extend every multiplicative character by $0$ at $0$. Since $p\equiv1\pmod{16}$,
+$$
+\varrho(-1)=1.
 $$
 
-The Paley graph has
+For characters $A,B$, write
 $$
-\frac{p(p-1)}4
+J(A,B)=\sum_{t\in\mathbb F_p}A(t)B(1-t).
 $$
-edges, and every $K_4$ contains $6$ edges. Double-counting pairs consisting of an edge and a $K_4$ containing it gives
+The indicator of $C_0$ is
 $$
-k_4(P_p)
-=\frac1{6}\cdot\frac{p(p-1)}4\cdot\kappa
-=\frac{p(p-1)\Delta_p}{1536}.
+1_{C_0}(t)=\frac18\sum_{r=0}^7\varrho^r(t),
 $$
-
-Step 3: Lift the total clique count to $R_\alpha$
-
-By Step 1,
+so, after replacing $t$ by $-t$ in the second factor,
 $$
-C_{p,\alpha}
-=p^{4\alpha-4}\,k_4(P_p)
-=\frac{p^{4\alpha-3}(p-1)\Delta_p}{1536}.
+64N_8
+=\sum_{r,s=0}^7J(\varrho^r,\varrho^s).
+\tag{1}
 $$
 
-Step 4: Impose the zero-sum condition by translation
+We now reduce this sum without expanding sixty-four unrelated cases. Let $G(A)$ denote the Gauss sum of $A$. For nontrivial $AB$,
+$$
+J(A,B)=\frac{G(A)G(B)}{G(AB)},
+$$
+while
+$$
+J(A,\bar A)=-1,
+\qquad
+J(1,A)=J(A,1)=-1
+$$
+for nontrivial $A$. The quadratic Hasse-Davenport relation
+$$
+G(A)G(A\phi)=\bar A(4)G(A^2)G(\phi)
+\tag{2}
+$$
+follows directly by expanding the left side and using the invertible change of variables
+$$
+(u,v)=(x+y,x-y).
+$$
+Pairing Galois-conjugate terms in (1), using (2), and collecting the rational terms gives
+$$
+64N_8
+=p-23-6\operatorname{Re}J(\chi,\chi)
++12\bigl(1+\chi(2)\bigr)
+\left(
+\operatorname{Re}J(\chi,\chi)
++\operatorname{Re}J(\varrho,\varrho^3)
+\right).
+\tag{3}
+$$
+This is the only character-sum reduction needed below.
 
-The additive group of $R_\alpha$ acts on its $4$-subsets by translation. This action is free on $4$-subsets: if a nonzero translation fixed such a subset, that subset would be a union of cycles whose common length is the additive order of the translation, a positive power of the odd prime $p$ and therefore at least $5$, impossible for a set of size $4$.
+It remains to identify the two real parts. The quartic Jacobi sum lies in $\mathbb Z[i]$, has norm $p$, and its primary congruence fixes its real part; with
+$$
+p=x^2+4y^2,
+\qquad
+x\equiv1\pmod4,
+\qquad
+y>0,
+$$
+one has, after possibly conjugating $\chi$,
+$$
+J(\chi,\chi)=-x+2yi.
+\tag{4}
+$$
+Likewise $J(\varrho,\varrho^3)$ is fixed by the automorphism of $\mathbb Q(\zeta_8)$ whose fixed field is $\mathbb Q(\sqrt{-2})$, has norm $p$, and its primary congruence gives
+$$
+J(\varrho,\varrho^3)=-a+b\sqrt{-2}
+$$
+up to conjugation, where
+$$
+p=a^2+2b^2,
+\qquad
+a\equiv1\pmod4,
+\qquad b>0.
+\tag{5}
+$$
+Only the real parts matter, so the conjugation choices do not affect the answer.
 
-Translation preserves the clique property. If a clique $S$ has vertex sum $\sigma(S)$, then
+Because $p\equiv1\pmod8$, $2$ is a quadratic residue, hence the quartic character value $\chi(2)$ is $\pm1$. By definition this is exactly
 $$
-\sigma(S+t)=\sigma(S)+4t.
+\epsilon_p=2^{(p-1)/4}\pmod p\in\{\pm1\}.
 $$
-Because $4$ is invertible modulo $p^\alpha$, every translation orbit contains exactly one clique with vertex sum $0$, namely the translate by
+Substituting (4) and (5) into (3) yields
 $$
-t=-\frac{\sigma(S)}4.
+64N_8
+=p-23+6x-12(1+\epsilon_p)(x+a).
 $$
-Every orbit has $p^\alpha$ elements, so
+Therefore
 $$
-Z_{p,\alpha}=\frac{C_{p,\alpha}}{p^\alpha}
-=\frac{p^{3\alpha-3}(p-1)\Delta_p}{1536}.
+N_8
+=\frac{p-23+6x-12(1+\epsilon_p)(x+a)}{64}.
+\tag{6}
+$$
+Equivalently, if $2$ is a quartic residue this is
+$$
+\frac{p-23-18x-24a}{64},
+$$
+and otherwise it is
+$$
+\frac{p-23+6x}{64}.
 $$
 
-Final Answer: $\boxed{\left(\frac{p^{4\alpha-3}(p-1)\Delta_p}{1536},\frac{p^{3\alpha-3}(p-1)\Delta_p}{1536}\right)}$
+Step 4: Count prime-field zero-sum triangles
+
+Translation acts on the set of triangles in the eighth-power graph. The action is free: a nonzero translation of $\mathbb F_p$ has additive order $p\ge17$, so it cannot stabilize a $3$-element set.
+
+If a triangle $S$ has vertex sum $\sigma(S)$, then
+$$
+\sigma(S+t)=\sigma(S)+3t.
+$$
+Since $3$ is invertible modulo $p$, every translation orbit contains exactly one zero-sum triangle. Thus the number of zero-sum triangles over $\mathbb F_p$ is
+$$
+\frac{\tau_p}{p}
+=\frac{p-1}{48}N_8.
+\tag{7}
+$$
+
+Step 5: Lift the zero-sum condition to $R_\alpha$
+
+Fix a zero-sum triangle $\{r_1,r_2,r_3\}$ modulo $p$. Choose arbitrary lifts
+$$
+r_i+p t_i,
+\qquad
+t_i\in\mathbb Z/p^{\alpha-1}\mathbb Z.
+$$
+By Step 1 every such lift remains a triangle. The condition that the lifted vertex sum vanish modulo $p^\alpha$ is one linear congruence in $t_1,t_2,t_3$, so exactly
+$$
+p^{2(\alpha-1)}
+$$
+lifts have sum $0$.
+
+Combining this with (6) and (7),
+$$
+Z_{p,\alpha}
+=p^{2\alpha-2}\frac{p-1}{48}\cdot
+\frac{p-23+6x-12(1+\epsilon_p)(x+a)}{64}.
+$$
+Hence
+$$
+\boxed{
+Z_{p,\alpha}
+=
+\frac{p^{2\alpha-2}(p-1)\bigl(p-23+6x-12(1+\epsilon_p)(x+a)\bigr)}{3072}
+}.
+$$
 
 ---
 
 ## Answer
 
-$\left(\frac{p^{4\alpha-3}(p-1)\Delta_p}{1536},\frac{p^{3\alpha-3}(p-1)\Delta_p}{1536}\right)$
+$\frac{p^{2\alpha-2}(p-1)(p-23+6x-12(1+\epsilon_p)(x+a))}{3072}$
 
 ---
 
@@ -160,14 +220,14 @@ $\left(\frac{p^{4\alpha-3}(p-1)\Delta_p}{1536},\frac{p^{3\alpha-3}(p-1)\Delta_p}
 
 **Problem Type:** Exact computation
 
-**Answer Type:** Tuple or ordered list
+**Answer Type:** Exact symbolic expression
 
 ---
 
 ## Solution Concepts
 
-- quadratic residues modulo prime powers
-- Paley graph clique counting
-- quartic Jacobi sums
-- finite-field Clausen identity
-- translation orbits
+- octic cyclotomic numbers
+- quartic and octic Jacobi sums
+- Hasse-Davenport relation
+- quadratic representations of primes
+- Hensel lifting and translation orbits
