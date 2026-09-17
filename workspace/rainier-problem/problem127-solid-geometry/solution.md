@@ -92,24 +92,22 @@ $$
 \geq\frac{1}{6}\sum_P\log\det(P^TGP)
 =\log\det G.
 $$
-A singular feasible $G$ has determinant $0<\det\overline G$, so the same determinant bound holds for every feasible $G$.
+A singular feasible $G$ has determinant $0<\det\overline G$, so the same bound holds for every feasible $G$.
 
-Moreover, equality for a positive definite $G$ forces all six permutation-conjugates $P^TGP$ to be equal. Hence
+Equality for a positive definite $G$ forces all six permutation-conjugates $P^TGP$ to be equal. Hence
 $$
 p=q=r=c.
 $$
-Thus every volume-maximizing tetrahedron has the same area-vector Gram matrix $\overline G$.
+Thus every volume maximizer has the same area-vector Gram matrix $\overline G$.
 
-Step 3: Recover the edge lengths from the maximizing area-vector Gram matrix
+Step 3: Reconstruct the edge metric of every maximizer
 For a maximizing tetrahedron, let
 $$
-d=\det U=\sqrt{\det\overline G}>0
+d=\det U=\sqrt{\det\overline G}>0,
+\qquad
+H=E^TE.
 $$
-and let
-$$
-H=E^TE
-$$
-be the Gram matrix of the three edge vectors from $A$. Since
+Since
 $$
 U=\frac{1}{2}\det(E)E^{-T},
 $$
@@ -117,13 +115,13 @@ we have
 $$
 d=\frac{1}{8}(\det E)^2
 $$
-and therefore
+and
 $$
-G=U^TU
+\overline G=U^TU
 =\frac{1}{4}(\det E)^2E^{-1}E^{-T}
 =2dH^{-1}.
 $$
-Hence
+Therefore
 $$
 H=2d\,\overline G^{-1}.
 $$
@@ -142,67 +140,80 @@ and
 $$
 d=(1-c)\sqrt{1+2c}.
 $$
-Thus every diagonal entry of $H$ equals
+Hence the diagonal entries of $H$ are all
 $$
-\frac{2(1+c)}{\sqrt{1+2c}},
+L^2=\frac{2(1+c)}{\sqrt{1+2c}}
+=\frac{s^2+3}{\sqrt{3}\,s},
 $$
-while every off-diagonal entry equals
+while its off-diagonal entries are all
 $$
 -\frac{2c}{\sqrt{1+2c}}.
 $$
-Therefore
+It follows that
 $$
-AB^2=AC^2=AD^2
-=\frac{2(1+c)}{\sqrt{1+2c}}
-=\frac{s^2+3}{\sqrt{3}\,s}.
+AB=AC=AD=L
 $$
-Also
+and
 $$
 BC^2=BD^2=CD^2
-=\frac{4(1+2c)}{\sqrt{1+2c}}
 =\frac{4s}{\sqrt{3}}.
 $$
+Thus the base $BCD$ is equilateral. If its side length is $M$, then
+$$
+M^2=\frac{4s}{\sqrt{3}}.
+$$
 
-Step 4: Prove attainment and uniqueness up to congruence
-Because $\overline G$ is positive definite, choose a matrix $U$ with
+Step 4: Prove attainment and compute the circumradius
+Because $\overline G$ is positive definite, choose $U$ with
 $$
 U^TU=\overline G,
 \qquad
-\det U=d>0.
+\det U=d>0,
 $$
-Define
+and define
 $$
 E=\sqrt{2d}\,U^{-T}.
 $$
 Then
 $$
-\det E=2\sqrt{2d},
-\qquad
-E^{-T}=\frac{1}{\sqrt{2d}}U,
+\frac{1}{2}\det(E)E^{-T}=U,
 $$
-so
-$$
-\frac{1}{2}\det(E)E^{-T}=U.
-$$
-Hence the columns of $E$ are edge vectors of a tetrahedron whose three adjacent face-area vectors are the columns of $U$. Their norms are $1$, and
+so the columns of $E$ form a tetrahedron whose adjacent face-area vectors are the columns of $U$. Their norms are $1$, and
 $$
 \|u+v+w\|^2=3+6c=s^2,
 $$
-so the fourth face has area $s$. This tetrahedron realizes $\overline G$, and therefore attains the determinant bound from Step 2.
+so the fourth face has area $s$. This realizes $\overline G$, hence the determinant bound is attained.
 
-Every maximizer has the same edge Gram matrix $H=2d\,\overline G^{-1}$. If $E$ and $E'$ are edge matrices of two maximizers, then
-$$
-E^TE=E'^TE'=H.
-$$
-Thus $Q=E'E^{-1}$ satisfies $Q^TQ=I$, so the two tetrahedra differ only by an orthogonal transformation and translation. Hence all maximizers are congruent, with the two common edge lengths found in Step 3.
+Every maximizer has the same edge Gram matrix $H=2d\,\overline G^{-1}$. If $E$ and $E'$ are edge matrices of two maximizers, then $E^TE=E'^TE'$, so $E'E^{-1}$ is orthogonal. Therefore all maximizers are congruent and have the same circumradius.
 
-Final Answer: $\boxed{\left(\sqrt{\frac{s^2+3}{\sqrt{3}\,s}},2\sqrt{\frac{s}{\sqrt{3}}}\right)}$
+Let $O$ be the center of the equilateral base $BCD$, and let $h$ be the distance from $A$ to the base plane. Since $AB=AC=AD=L$, the point $A$ lies on the line through $O$ perpendicular to the base. The base circumradius is $M/\sqrt{3}$, so
+$$
+h^2=L^2-\frac{M^2}{3}
+=\frac{9-s^2}{3\sqrt{3}\,s}.
+$$
+The circumcenter of the tetrahedron also lies on this perpendicular line. If its signed distance from the base plane is $z_0$, equating its distances to $A$ and to a base vertex gives
+$$
+\frac{M^2}{3}+z_0^2=(h-z_0)^2.
+$$
+Hence the circumradius $R$ satisfies
+$$
+R=\frac{h^2+M^2/3}{2h}
+=\frac{L^2}{2h}.
+$$
+Substituting the formulas for $L^2$ and $h^2$ yields
+$$
+R^2
+=\frac{(s^2+3)^2\sqrt{3}}{4s(9-s^2)}.
+$$
+Since $0<s<3$, the positive square root gives the required circumradius.
+
+Final Answer: $\boxed{\frac{3^{1/4}(s^2+3)}{2\sqrt{s(9-s^2)}}}$
 
 ---
 
 ## Answer
 
-$\left(\sqrt{\frac{s^2+3}{\sqrt{3}\,s}},2\sqrt{\frac{s}{\sqrt{3}}}\right)$
+$\frac{3^{1/4}(s^2+3)}{2\sqrt{s(9-s^2)}}$
 
 ---
 
@@ -210,14 +221,14 @@ $\left(\sqrt{\frac{s^2+3}{\sqrt{3}\,s}},2\sqrt{\frac{s}{\sqrt{3}}}\right)$
 
 **Problem Type:** Optimization
 
-**Answer Type:** Tuple or ordered list
+**Answer Type:** Exact symbolic expression
 
 ---
 
 ## Solution Concepts
 
 - oriented face area vectors
-- Gram matrices
 - strict log-determinant concavity
 - cofactor reconstruction
-- congruence from edge Gram matrices
+- edge Gram matrices
+- tetrahedron circumradius
