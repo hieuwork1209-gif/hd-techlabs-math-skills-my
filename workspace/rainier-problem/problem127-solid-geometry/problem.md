@@ -10,13 +10,7 @@ $$
 $$
 where $[XYZ]$ denotes the area of triangle $XYZ$, consider those having maximum possible volume.
 
-Determine the edge-length data of every volume-maximizing tetrahedron. More precisely, prove that every maximizer satisfies
-$$
-AB=AC=AD=\ell,
-\qquad
-BC=BD=CD=m,
-$$
-and determine the ordered pair $(\ell,m)$.
+Prove that all volume-maximizing tetrahedra have the same circumradius, and determine that circumradius exactly as a function of $s$.
 
 ---
 
@@ -27,10 +21,10 @@ and determine the ordered pair $(\ell,m)$.
 | **Domain** | Euclidean, Coordinate, and Transformational Geometry |
 | **Sub-domain** | Solid geometry |
 | **Problem Type** | Optimization |
-| **Answer Type** | Tuple or ordered list |
+| **Answer Type** | Exact symbolic expression |
 
 ---
 
 ## Domain Explanation
 
-This problem is primarily Euclidean, Coordinate, and Transformational Geometry and Solid geometry: it asks for the congruence class of the tetrahedron that maximizes volume under four prescribed face areas. The solution must identify the extremal geometry and then reconstruct the edge lengths from the face-area data, rather than only compute the optimal volume.
+This problem is primarily Euclidean, Coordinate, and Transformational Geometry and Solid geometry: it asks for a geometric invariant of the tetrahedron that maximizes volume under four prescribed face areas. Solving it requires identifying the extremal face geometry, reconstructing the maximizing tetrahedron, and then determining its circumsphere.
