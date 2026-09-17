@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-stability-theory/problem.md",
+  "source_commit_sha": "c888eab8ecfe4c14dccbb9187ba2d26c6f36f3ff",
+  "problem_blob_sha": "55d22204450d0459eb205a5c381c9b79df867383",
+  "statement_sha256": "b1a3932d8ad61c528bb63dc6f23322c276b0b186daf5a3f1c6e4305e5f691ef2",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T14:01:20+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "For any nonzero solution \\(x(t)\\), write \\(r(t)=\\|x(t)\\|_2\\) and \\(u(t)=x(t)/\\|x(t)\\|_2\\). Then, whenever \\(\\sigma(t)=i\\),\n\n\\[\n\\frac{d}{dt}\\log r(t)\n= u(t)^T \\frac{A_i+A_i^T}{2}u(t).\n\\]\n\nBut\n\n\\[\n\\frac{A_1+A_1^T}{2}\n=\n\\frac{A_2+A_2^T}{2}\n=\nS\n=\n\\begin{pmatrix}\n-\\alpha & \\kappa/2\\\\\n\\kappa/2 & -\\beta\n\\end{pmatrix}.\n\\]\n\nTherefore the instantaneous Euclidean norm growth rate is independent of the chosen switch, and is always at most the largest eigenvalue of \\(S\\). Hence for every switching signal,\n\n\\[\n\\|\\Phi_\\sigma(t)\\|_2\\le e^{\\lambda_{\\max}(S)t},\n\\]\n\nso\n\n\\[\n\\Lambda(\\alpha,\\beta,\\kappa)\\le \\lambda_{\\max}(S).\n\\]\n\nThe eigenvalues of \\(S\\) are\n\n\\[\n-\\frac{\\alpha+\\beta}{2}\n\\pm\n\\frac12\\sqrt{(\\alpha-\\beta)^2+\\kappa^2}.\n\\]\n\nThus\n\n\\[\n\\lambda_{\\max}(S)\n=\n-\\frac{\\alpha+\\beta}{2}\n+\n\\frac12\\sqrt{(\\alpha-\\beta)^2+\\kappa^2}.\n\\]\n\nIt remains to see this upper bound is sharp. Switch periodically, spending time \\(h\\) in mode \\(1\\), then time \\(h\\) in mode \\(2\\). The monodromy over one period is\n\n\\[\nM_h=e^{A_2h}e^{A_1h}.\n\\]\n\nAs \\(h\\to0\\),\n\n\\[\ne^{A_2h}e^{A_1h}\n=\n\\exp\\bigl((A_1+A_2)h+O(h^2)\\bigr)\n=\n\\exp\\bigl(2Sh+O(h^2)\\bigr).\n\\]\n\nTherefore the exponential growth rate of this periodic switching tends to\n\n\\[\n\\lambda_{\\max}(S).\n\\]\n\nSince the definition takes a supremum over all admissible switchings, the upper bound is attained in the supremal sense.\n\nHence\n\n\\[\n\\boxed{\n\\Lambda(\\alpha,\\beta,\\kappa)\n=\n-\\frac{\\alpha+\\beta}{2}\n+\n\\frac12\\sqrt{(\\alpha-\\beta)^2+\\kappa^2}\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T14:01:47+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/55d22204450d.json"
+}
