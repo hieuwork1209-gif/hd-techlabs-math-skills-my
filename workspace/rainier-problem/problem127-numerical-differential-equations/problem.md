@@ -12,11 +12,11 @@ a&0\\
 \qquad
 b^T=\left(\frac12,\frac12\right),
 \qquad
-c=A\mathbf1.
+c=A\mathbf{1}.
 $$
 Its stability function is
 $$
-R(z)=1+z\,b^T(I-zA)^{-1}\mathbf1.
+R(z)=1+z\,b^T(I-zA)^{-1}\mathbf{1}.
 $$
 Call the method L-stable if
 $$
