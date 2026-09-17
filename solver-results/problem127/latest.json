@@ -2,8 +2,8 @@
   "problem": "problem127",
   "branch": "adversary/problem127",
   "problem_path": "workspace/rainier-problem/problem127-differential-geometry/problem.md",
-  "problem_blob_sha": "1266ddd3403d45f3bb022f09845b2c34dbc51c14",
-  "source_commit_sha": "f0be3f65fa06177fccac7a7c73c57c8d288211ed",
+  "problem_blob_sha": "9fe5361ac85e36c8dc82eca2c108664f06d31de7",
+  "source_commit_sha": "d1667cf2a5e6f0d5aceb92c7c546d73bf93362bc",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-17T11:14:51+00:00",
-  "result_file": "solver-results/problem127/1266ddd3403d.json"
+  "completed_at": "2026-09-17T12:53:24+00:00",
+  "result_file": "solver-results/problem127/9fe5361ac85e.json"
 }

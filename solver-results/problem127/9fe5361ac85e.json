@@ -1,0 +1,22 @@
+{
+  "problem": "problem127",
+  "branch": "adversary/problem127",
+  "problem_path": "workspace/rainier-problem/problem127-differential-geometry/problem.md",
+  "source_commit_sha": "d1667cf2a5e6f0d5aceb92c7c546d73bf93362bc",
+  "problem_blob_sha": "9fe5361ac85e36c8dc82eca2c108664f06d31de7",
+  "statement_sha256": "3f6112b5f15d625a68279cd56386de3152f62e06d40f724cbbdfddc912c7cc21",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-17T12:52:45+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "For a unit-speed geodesic, Clairaut’s constant is\n\n\\[\nf(r)^2\\dot\\theta=c,\n\\]\n\nbecause at the boundary \\(f(R)=1\\) and the tangential speed is \\(\\sin(\\arcsin c)=c\\). Also\n\n\\[\n\\dot r^2+\\frac{c^2}{f(r)^2}=1.\n\\]\n\nThe geodesic turns where \\(f(r)=c\\). Since \\(f'>0\\), write \\(x=f(r)\\) and let\n\n\\[\ng(x)=(f^{-1})'(x).\n\\]\n\nThe half-angle swept is\n\n\\[\n\\Phi(c)=\\int_{f^{-1}(c)}^R \\frac{c}{f(r)\\sqrt{f(r)^2-c^2}}\\,dr\n=\\int_c^1 \\frac{c\\,g(x)}{x\\sqrt{x^2-c^2}}\\,dx.\n\\]\n\nThe Euclidean choice \\(g(x)=1\\) gives\n\n\\[\n\\int_c^1 \\frac{c}{x\\sqrt{x^2-c^2}}\\,dx=\\arccos c.\n\\]\n\nSo the extra term must satisfy\n\n\\[\n\\int_c^1 \\frac{c\\,h(x)}{x\\sqrt{x^2-c^2}}\\,dx\n=\\lambda c\\sqrt{1-c^2}.\n\\]\n\nTaking \\(h(x)=\\lambda x^2\\),\n\n\\[\n\\int_c^1 \\frac{c\\lambda x^2}{x\\sqrt{x^2-c^2}}\\,dx\n=\\lambda c\\int_c^1 \\frac{x}{\\sqrt{x^2-c^2}}\\,dx\n=\\lambda c\\sqrt{1-c^2}.\n\\]\n\nBy Abel inversion this solution is unique, hence\n\n\\[\n(f^{-1})'(x)=1+\\lambda x^2.\n\\]\n\nSince \\(f^{-1}(0)=0\\),\n\n\\[\nf^{-1}(x)=x+\\frac{\\lambda}{3}x^3.\n\\]\n\nTherefore\n\n\\[\nR=f^{-1}(1)=1+\\frac{\\lambda}{3}.\n\\]\n\n\\[\n\\boxed{\\left(R,f^{-1}\\right)=\\left(1+\\frac{\\lambda}{3},\\ x\\mapsto x+\\frac{\\lambda}{3}x^3\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-17T12:53:24+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem127/9fe5361ac85e.json"
+}
