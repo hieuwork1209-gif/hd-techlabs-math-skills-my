@@ -2,9 +2,9 @@
 
 Step 1: Construct an integral basis and reduce the incidence maps
 
-Let $A$ be the adjacency matrix of the Johnson graph on $3$-subsets, so $L_n=3(n-3)I-A$. Call $\beta=\{b_1<\cdots<b_s\}$ standard if $b_i\geq2i$, and let $\mathcal S_s$ be the standard $s$-subsets. The usual first-bad-prefix reflection bijects nonstandard $s$-subsets with $(s-1)$-subsets, hence
+Let $A$ be the adjacency matrix of the Johnson graph on $3$-subsets, so $L_n=3(n-3)I-A$. Call $\beta=\{b_1<\cdots<b_s\}$ standard if $b_i\geq2i$, and let $\mathcal S_s$ be the standard $s$-subsets. For $1\leq s\leq3$, we have $n\geq2s$. Encode an $s$-subset by a $0$-$1$ word, with $1$ in the selected positions; standard means every prefix has at least as many $0$'s as $1$'s. For a nonstandard word, swap $0\leftrightarrow1$ through the first prefix having one more $1$ than $0$; this produces an $(s-1)$-subset. Conversely, any $(s-1)$-subset ends with at least two more $0$'s than $1$'s, so reflecting through the first prefix having one more $0$ than $1$ reverses the map. Thus
 $$
-\mu_s:=|\mathcal S_s|=\binom ns-\binom n{s-1}.
+\mu_0=1,\qquad \mu_s:=|\mathcal S_s|=\binom ns-\binom n{s-1}\quad(1\leq s\leq3).
 $$
 For $0\leq k\leq3$, let $P_k(n)$ have rows all $k$-subsets $T$, columns all standard $\beta$ with $|\beta|\leq k$, and entry $1_{\beta\subseteq T}$. Since $\sum_{s=0}^k\mu_s=\binom nk$, it is square. For $n\geq2k$, ordering rows and columns by whether they contain $n$ gives
 $$
@@ -34,11 +34,12 @@ $$
 \mathcal C_2=\{\{i,n\}:2\leq i\leq n-1\}\cup\{\{n-2,n-1\}\},\quad
 \mathcal B_2=\mathcal S_2\setminus\mathcal C_2,\quad \mathcal A_2=\mathcal A_1\cup\mathcal B_2.
 $$
-Let $E_s(\alpha,\beta)=1_{\alpha\subseteq\beta}$ for rows $\mathcal A_s$ and columns $\mathcal S_s$. Clearly $E_0$ is unimodular. For $E_1$, the singleton rows form an identity block and the $\varnothing$ row is all $1$'s. For $E_2$, ordering rows as $\mathcal B_2,\mathcal A_1$ and columns as $\mathcal B_2,\mathcal C_2$ leaves the lower-right block
+Let $E_s(\alpha,\beta)=1_{\alpha\subseteq\beta}$ for rows $\mathcal A_s$ and columns $\mathcal S_s$. Clearly $E_0$ is unimodular. For $E_1$, the singleton rows form an identity block and the $\varnothing$ row is all $1$'s. For $E_2$, order rows as $\mathcal B_2$, then $\{2\},\ldots,\{n-1\},\varnothing$, and columns as $\mathcal B_2$, then $\{i,n\}$ for $2\leq i\leq n-1$, then $\{n-2,n-1\}$. The $\mathcal B_2\times\mathcal C_2$ block is zero because these are disjoint families of $2$-sets, so
 $$
+E_2=\begin{pmatrix}I&0\\ *&F\end{pmatrix},\qquad
 F=\begin{pmatrix}I_{n-2}&u\\ \mathbf1^T&1\end{pmatrix},
 $$
-where $u$ has two $1$'s, so $\det F=1-\mathbf1^Tu=-1$.
+where $u$ has $1$ exactly in the $\{n-2\},\{n-1\}$ rows. Hence $\det E_2=\det F=1-\mathbf1^Tu=-1$.
 
 For $E_3$, let
 $$
@@ -55,9 +56,9 @@ The reduced $T$-column on $\mathcal A_1$ is
 $$
 (1-N(T))e_0+\sum_{j=2}^{n-1}(1_{j\in T}-N_j(T))e_j.
 $$
-For $T=\{i,n-2,n-1\}$, the relevant $\mathcal B_2$ pairs are $\{i,n-2\},\{i,n-1\}$, giving $-e_0-e_i$. For $T=\{n-2,n-1,n\}$ there are none, giving $e_0+e_{n-2}+e_{n-1}$. For $T=\{2,4,n-2\}$ all three internal pairs lie in $\mathcal B_2$, giving $-2e_0-e_2-e_4-e_{n-2}$; similarly $\{2,4,n-1\}$ gives $-2e_0-e_2-e_4-e_{n-1}$. After changing the three negative column signs, subtracting the $i=2,4$ columns from the last two gives $e_{n-2},e_{n-1}$; these give $e_0$ from $e_0+e_{n-2}+e_{n-1}$, and then all $e_i$. The identity columns just obtained then clear the entries below the $\mathcal B_3$ pivots, so $E_3$ reduces to the identity and is unimodular.
+For $T=\{i,n-2,n-1\}$, the relevant $\mathcal B_2$ pairs are $\{i,n-2\},\{i,n-1\}$, giving $-e_0-e_i$. For $T=\{n-2,n-1,n\}$ there are none, giving $e_0+e_{n-2}+e_{n-1}$. For $T=\{2,4,n-2\}$ all three internal pairs lie in $\mathcal B_2$, giving $-2e_0-e_2-e_4-e_{n-2}$; similarly $\{2,4,n-1\}$ gives $-2e_0-e_2-e_4-e_{n-1}$. Change signs of the $n-4$ columns $-e_0-e_i$ and of the last two negative columns, $n-2$ columns in all. Subtracting the $i=2,4$ columns from each of the last two gives $e_{n-2},e_{n-1}$; these give $e_0$, then all $e_i$. Thus the $\mathcal T$ columns are unit vectors on $\mathcal A_1$. Use them first to clear the $\mathcal A_1$ part $e_0+\sum_{j\in\beta}e_j$ of each $\mathcal P$ column. The $\mathcal P$ columns are then unit vectors on $\mathcal B_2$, so they clear the $\mathcal B_2$ entries of the $\mathcal B_3$ columns; finally the $\mathcal T$ columns clear their $\mathcal A_1$ entries. Hence $E_3$ reduces to the identity and is unimodular.
 
-For $\alpha\in\mathcal A_{s-1}$ of size $t$, the number of standard $(s-1)$-sets $\gamma$ with $\alpha\subseteq\gamma\subseteq\beta$ is $s-t$ if $\alpha\subseteq\beta$ and $0$ otherwise. Therefore $E_{s-1}W_{s-1,s}E_s^{-1}$ is diagonal with entry $s-t$ at label $\alpha$. A label first appearing in $\mathcal A_t\setminus\mathcal A_{t-1}$ gives one chain through ranks $t,\ldots,3$, with superdiagonal magnitude $(4-s)(s-t)$. Hence $L_n$ is integrally equivalent to
+Every $(s-1)$-subset of a standard $\beta=\{b_1<\cdots<b_s\}$ is standard: after deleting $b_j$, its $k$th entry is $b_k$ for $k<j$ and $b_{k+1}$ for $k\geq j$, hence at least $2k$. Thus, for $\alpha\in\mathcal A_{s-1}$ of size $t$, exactly the $s-t$ choices obtained by deleting one element of $\beta\setminus\alpha$ are standard when $\alpha\subseteq\beta$, and none occur otherwise. Therefore $E_{s-1}W_{s-1,s}E_s^{-1}$ is diagonal with entry $s-t$ at label $\alpha$. A label first appearing in $\mathcal A_t\setminus\mathcal A_{t-1}$ gives one chain through ranks $t,\ldots,3$, with superdiagonal magnitude $(4-s)(s-t)$. Hence $L_n$ is integrally equivalent to
 $$
 M_0\oplus M_1^{\oplus(n-2)}\oplus M_2^{\oplus q}\oplus M_3^{\oplus r},
 $$
@@ -109,15 +110,15 @@ Since $12\mid n$,
 $$
 v_2(c)=1,\qquad v_2(b)=2,\qquad v_2(a)=v_2(n)\geq2.
 $$
-Thus the positive $2$-primary factors are $r+2n-4$ copies of $2$, $q+1$ copies of $4$, and $n-2$ copies of $2^{v_2(a)}$. The odd-primary factors, in divisibility order, are two initial $3$-parts, then $r$ copies of the odd part of $c$, then $q$ copies of the odd part of $b$, then $n-2$ copies of the odd part of $a$. The $2$-primary rank exceeds the odd-primary rank by
+Thus the nontrivial $2$-parts number
 $$
-(r+2n-4)+(q+1)+(n-2)-(2+r+q+n-2)=2n-5.
+N_2=(r+2n-4)+(q+1)+(n-2)=r+q+3n-5.
 $$
-Therefore the first $2n-5$ nontrivial invariant factors are $2$, and the rest align as
+At $p=3$ there are $N_3=2+r+q+n-2=r+q+n$ nontrivial parts. For any other odd prime the count is smaller: it is $r+q+n-2$ if $p\mid n-2$, $q+n-2$ if $p\mid n-1$, and $n-2$ if $p\mid n$. In invariant-factor order, each prime's valuations are padded with zeros on the left and aligned from the right. Hence the first $N_2-N_3=2n-5$ nontrivial factors have no odd part and equal $2$. On the remaining slots, the $2$-adic exponents are $1$ on $r+1$ slots, $2$ on $q+1$ slots, then $v_2(a)$ on $n-2$ slots; the $3$-adic exponents are $1$ on $r+q+2$ slots, then $v_3(a)$ on $n-2$ slots. The odd primes dividing $n-2$ occur exactly through $c,b,a$, those dividing $n-1$ through $b,a$, and those dividing $n$ (apart from $3$) through $a$. Therefore the aligned factors are
 $$
-6,\ 6,\ c^{\,r-1},\ 2c,\ b^{\,q},\ a^{\,n-2}.
+6,\ 6,\ c^{\,r-1},\ 2c,\ b^{\,q},\ a^{\,n-2},
 $$
-This is a divisibility chain because $6\mid c\mid2c\mid b\mid a$.
+a divisibility chain because $6\mid c\mid2c\mid b\mid a$.
 
 Step 5: Insert the unit and zero factors
 
@@ -135,6 +136,7 @@ Final Answer: $\boxed{I_{q+2}\oplus2I_{2n-5}\oplus6I_2\oplus cI_{r-1}\oplus[2c]\
 
 ## Answer
 
+Here $\oplus$ denotes block-diagonal direct sum:
 $I_{q+2}\oplus2I_{2n-5}\oplus6I_2\oplus cI_{r-1}\oplus[2c]\oplus bI_q\oplus aI_{n-2}\oplus[0]$
 
 ---
