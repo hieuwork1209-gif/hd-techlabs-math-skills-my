@@ -219,6 +219,5 @@ $\{(r,K):0\leq r<1,\ K>0,\ 27(1+r)^3(1-3r)\leq16K^2\leq27(1-r)^3(1+3r)\}$
 - complex coordinates on the unit circle
 - self-inversive cubic
 - cubic discriminant
-- self-inversive root symmetry
 - normalized discriminant sign
 - equality-case reconstruction
