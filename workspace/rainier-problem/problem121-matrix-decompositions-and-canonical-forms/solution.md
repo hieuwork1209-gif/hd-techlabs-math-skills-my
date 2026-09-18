@@ -136,7 +136,6 @@ Final Answer: $\boxed{I_{q+2}\oplus2I_{2n-5}\oplus6I_2\oplus cI_{r-1}\oplus[2c]\
 
 ## Answer
 
-Here $\oplus$ denotes block-diagonal direct sum:
 $I_{q+2}\oplus2I_{2n-5}\oplus6I_2\oplus cI_{r-1}\oplus[2c]\oplus bI_q\oplus aI_{n-2}\oplus[0]$
 
 ---
