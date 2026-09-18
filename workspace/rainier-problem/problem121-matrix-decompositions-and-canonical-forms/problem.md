@@ -18,7 +18,7 @@ and
 $$
 c=3(n-2),\qquad b=2(n-1)c,\qquad a=\frac n4b.
 $$
-For the answer, let $I_k$ denote the $k\times k$ identity matrix, and let $[\lambda]$ denote the $1\times1$ matrix whose sole entry is $\lambda$.
+For the answer, let $I_k$ denote the $k\times k$ identity matrix, let $[\lambda]$ denote the $1\times1$ matrix whose sole entry is $\lambda$, and let $\oplus$ denote block-diagonal direct sum.
 
 Determine the Smith normal form of $L_n$ over $\mathbb Z$, with the invariant factors written in divisibility order.
 
