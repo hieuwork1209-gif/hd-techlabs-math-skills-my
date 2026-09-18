@@ -164,11 +164,19 @@ $$
 -27s^2u^2(1+sv)^2
 -18s^2u^2(3-sv)(1+sv).
 $$
-Grouping powers of $s$ and using $u^2+v^2=1$ reduces this to
-$$
+Expanding the five displayed terms and collecting powers of $s$ gives
+$
 \operatorname{disc}(H)
+=108-72s^2(u^2+v^2)
++32s^3\left(v^3-3vu^2\right)
+-4s^4(u^2+v^2)^2.
+$
+Using $u^2+v^2=1$, this becomes
+$
+\operatorname{disc}(H)
+=108-72s^2+32s^3\left(v^3-3vu^2\right)-4s^4
 =-4\left[s^4-8s^3\left(v^3-3vu^2\right)+18s^2-27\right].
-$$
+$
 Since $v^3-3vu^2=\cos(3\alpha)=\cos\phi$,
 $$
 \operatorname{disc}(H)=-4D=64K^2>0.
