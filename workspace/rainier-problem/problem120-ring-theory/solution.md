@@ -97,12 +97,12 @@ $$
 r=2,3,6.
 $$
 
-We now prove directly that all these cases occur. First, any nonsingular symmetric $8\times8$ matrix $H$ over $\mathbb F_p$ with square determinant has the form $H=G^TG$. To see this, diagonalize the associated symmetric bilinear form by repeatedly splitting off a vector $v$ with $B(v,v)\ne0$; such a vector exists because otherwise polarization would give $B=0$. After rescaling diagonal basis vectors, the diagonal entries are $1$ or a fixed nonsquare $\nu$. A square determinant means an even number of $\nu$ entries. The same counting argument used in Step 2 gives $\nu=x^2+y^2$, and
+We now prove sufficiency constructively. Let $H$ be nonsingular symmetric with square determinant. Diagonalize its bilinear form by repeatedly splitting off $v$ with $B(v,v)\ne0$; otherwise polarization gives $B=0$. If the resulting diagonal is $D=\operatorname{diag}(a_1,\ldots,a_8)$, fix a nonsquare $\nu$. Rescaling the $i$th basis vector multiplies $a_i$ by a square, so make it $1$ when $a_i$ is square and $\nu$ otherwise; in the latter case $\nu/a_i$ is square. Thus $D$ is congruent to a diagonal matrix with entries $1$ and $\nu$, and square determinant forces an even number of $\nu$ entries. Step 2 gives $\nu=x^2+y^2$, and
 $$
 Q=\begin{pmatrix}x&-y\\y&x\end{pmatrix}
 \quad\text{satisfies}\quad Q^TQ=\nu I_2.
 $$
-Pairing the $\nu$ entries therefore turns the diagonal form into $R^TR$, and undoing the diagonalizing change of basis gives $H=G^TG$. For such an $H$, direct multiplication shows
+Pairing the $\nu$ entries gives a factorization of that diagonal matrix as $R^TR$; undoing the basis changes gives $H=G^TG$. Then
 $$
 T\circ\operatorname{Ad}_G=\operatorname{Ad}_G\circ\sigma_H,
 $$
