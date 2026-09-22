@@ -114,11 +114,33 @@ Thus the nontrivial $2$-parts number
 $$
 N_2=(r+2n-4)+(q+1)+(n-2)=r+q+3n-5.
 $$
-At $p=3$ there are $N_3=2+r+q+n-2=r+q+n$ nontrivial parts. For any other odd prime the count is smaller: it is $r+q+n-2$ if $p\mid n-2$, $q+n-2$ if $p\mid n-1$, and $n-2$ if $p\mid n$. In invariant-factor order, each prime's valuations are padded with zeros on the left and aligned from the right. Hence the first $N_2-N_3=2n-5$ nontrivial factors have no odd part and equal $2$. On the remaining slots, the $2$-adic exponents are $1$ on $r+1$ slots, $2$ on $q+1$ slots, then $v_2(a)$ on $n-2$ slots; the $3$-adic exponents are $1$ on $r+q+2$ slots, then $v_3(a)$ on $n-2$ slots. The odd primes dividing $n-2$ occur exactly through $c,b,a$, those dividing $n-1$ through $b,a$, and those dividing $n$ (apart from $3$) through $a$. Therefore the aligned factors are
+At $p=3$ there are
 $$
-6,\ 6,\ c^{\,r-1},\ 2c,\ b^{\,q},\ a^{\,n-2},
+N_3=2+r+q+n-2=r+q+n
 $$
-a divisibility chain because $6\mid c\mid2c\mid b\mid a$.
+nontrivial parts. For an odd prime $p\ne3$, the number of nontrivial $p$-parts is $r+q+n-2$ if $p\mid n-2$, $q+n-2$ if $p\mid n-1$, and $n-2$ if $p\mid n$. Because consecutive integers are coprime, these three odd-prime cases are disjoint.
+
+For each prime, list the valuations in nondecreasing order, pad by zeros on the left to length $N_2$, and align the lists by their right endpoints. The resulting slots are:
+
+| aligned slot block | $2n-5$ slots | $1$ slot | $1$ slot | $r-1$ slots | $1$ slot | $q$ slots | $n-2$ slots |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| $v_2$ | $1$ | $1$ | $1$ | $1$ | $2$ | $2$ | $v_2(n)$ |
+| $v_3$ | $0$ | $1$ | $1$ | $1$ | $1$ | $1$ | $1+v_3(n)$ |
+| $v_p$, odd $p\mid n-2$ | $0$ | $0$ | $0$ | $v_p(n-2)$ | $v_p(n-2)$ | $v_p(n-2)$ | $v_p(n-2)$ |
+| $v_p$, odd $p\mid n-1$ | $0$ | $0$ | $0$ | $0$ | $0$ | $v_p(n-1)$ | $v_p(n-1)$ |
+| $v_p$, odd $p\mid n$, $p\ne3$ | $0$ | $0$ | $0$ | $0$ | $0$ | $0$ | $v_p(n)$ |
+| combined invariant factor | $2$ | $6$ | $6$ | $c$ | $2c$ | $b$ | $a$ |
+
+Indeed, $N_2-N_3=2n-5$, so the first $2n-5$ slots have no odd part and are exactly $2$. The two extra $3$-parts coming from the original factors $3$ and $12$ occupy the next two slots, giving $6,6$. The odd parts of $n-2$ begin only in the last $r+q+n-2$ slots, so they occur on $r-1$ copies of $c$, then on $2c$, $b^q$, and $a^{n-2}$. Likewise the odd parts of $n-1$ occur only on $b^q,a^{n-2}$, and the odd parts of $n$ occur only on $a^{n-2}$.
+
+Therefore the nontrivial aligned invariant factors are
+$$
+2^{\,2n-5},\quad 6,\quad 6,\quad c^{\,r-1},\quad 2c,\quad b^{\,q},\quad a^{\,n-2},
+$$
+where the exponent here denotes repetition of a factor, not a power inside one invariant factor. They form a divisibility chain because
+$$
+2\mid6\mid c\mid2c\mid b\mid a.
+$$
 
 Step 5: Insert the unit and zero factors
 
