@@ -98,14 +98,14 @@ r=2,3,6.
 $$
 
 We now prove sufficiency constructively. Let $H$ be nonsingular symmetric with square determinant. Diagonalize its bilinear form by repeatedly splitting off $v$ with $B(v,v)\ne0$; otherwise polarization gives $B=0$. If the resulting diagonal is $D=\operatorname{diag}(a_1,\ldots,a_8)$, fix a nonsquare $\nu$. Rescaling the $i$th basis vector multiplies $a_i$ by a square, so make it $1$ when $a_i$ is square and $\nu$ otherwise; in the latter case $\nu/a_i$ is square. Thus $D$ is congruent to a diagonal matrix with entries $1$ and $\nu$, and square determinant forces an even number of $\nu$ entries. Step 2 gives $\nu=x^2+y^2$, and
-$
+$$
 Q=\begin{pmatrix}x&-y\\y&x\end{pmatrix}
 \quad\text{satisfies}\quad Q^TQ=\nu I_2.
-$
+$$
 Pairing the $\nu$ entries gives a factorization of that diagonal matrix as $R^TR$; undoing the basis changes gives $H=G^TG$. Then
-$
+$$
 T\circ\operatorname{Ad}_G=\operatorname{Ad}_G\circ\sigma_H,
-$
+$$
 so $\sigma_H$ is transpose-compatible.
 
 For $r=6$, this applies to $H_8$ from Step 2. For $r=2$, let $T_0$ be the four positive-sign indices; for $r=3$, let $T_0$ be the three negative-sign indices, and put $u=\prod_{i\in T_0}e_i$. If $m=|T_0|$, anticommutation gives $\operatorname{Int}(u)(e_i)=(-1)^{m-1}e_i$ for $i\in T_0$ and $(-1)^m e_i$ otherwise. Thus for $m=4$ or $3$, respectively,
