@@ -8,7 +8,7 @@ r=OG,
 \qquad
 K=\operatorname{Area}(ABC).
 $$
-Determine exactly the set of all attainable pairs $(r,K)$. A complete proof must also classify all triangles that attain equality in either sharp area inequality describing the boundary of this set.
+Determine exactly the set of all attainable pairs $(r,K)$.
 
 ---
 
@@ -25,4 +25,4 @@ Determine exactly the set of all attainable pairs $(r,K)$. A complete proof must
 
 ## Domain Explanation
 
-The problem asks for the complete feasible region relating the centroid distance and area of a triangle inscribed in a fixed Euclidean circle, together with all equality configurations on its sharp area boundaries, so the primary classification is Euclidean, Coordinate, and Transformational Geometry and Euclidean geometry. The secondary domain is Algebra, Functions, and Trigonometry, specifically Polynomial and rational functions, because the proof uses the cubic with the three vertices as roots, its discriminant, and a rational Cayley parametrization; these tools are subordinate to the geometric feasibility and boundary-classification problem.
+The problem asks for the complete feasible region relating the centroid distance and area of a triangle inscribed in a fixed Euclidean circle, so the primary classification is Euclidean, Coordinate, and Transformational Geometry and Euclidean geometry. The secondary domain is Algebra, Functions, and Trigonometry, specifically Polynomial and rational functions, because the solution uses the cubic with the three vertices as roots, its discriminant, and a rational Cayley parametrization; these tools are subordinate to the geometric feasibility problem.
