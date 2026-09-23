@@ -65,7 +65,7 @@ Define
 $$
 g_p(\lambda)=\lambda+\frac{p}{\lambda}.
 $$
-Thus $|q(\lambda)|\leq m$ for every $\lambda\in E$ exactly when
+The condition $|q(\lambda)|\leq m$ for every $\lambda\in E$ is therefore equivalent to
 $$
 \frac{1}{k}\max_{\lambda\in E}g_p(\lambda)
 \leq s
@@ -113,7 +113,7 @@ R(p)\geq
 =
 \frac{256+p}{32+8p}.
 $$
-The last expression is strictly decreasing in $p$, hence
+The last expression is strictly decreasing in $p$, so
 $$
 R(p)\geq
 \frac{272}{160}
