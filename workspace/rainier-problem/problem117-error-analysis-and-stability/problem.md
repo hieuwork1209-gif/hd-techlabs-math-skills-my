@@ -5,7 +5,7 @@
 Consider the real degree-four order-two stability polynomials
 $$
 P(z)=1+z+\frac{z^2}{2}+az^3+bz^4,
-\qquad a,b\in\mathbb R.
+\qquad a,b\in\mathbb{R}.
 $$
 Restrict to those satisfying
 $$
