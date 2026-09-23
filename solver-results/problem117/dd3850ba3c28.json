@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-scientific-computing/problem.md",
+  "source_commit_sha": "5b65c1a90c21fb5c1c2529091b4b8920fe417c74",
+  "problem_blob_sha": "dd3850ba3c28fd7f1aeda8d1a9a32d5b89222936",
+  "statement_sha256": "288a223accef8ffbada9265ab43efe3eedb356338610bcf89b1fd59310a0bd00",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-23T15:52:25+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "For symmetric positive definite \\(A\\), the norm is controlled eigenvalue-by-eigenvalue. Thus\n\n\\[\n\\rho(p_1,p_2)=\\max_{x\\in [1,2]\\cup[8,16]}\n\\left|\\frac{(x-p_1)(x-p_2)}{(x+p_1)(x+p_2)}\\right|.\n\\]\n\nWrite\n\n\\[\nS=p_1+p_2,\\qquad P=p_1p_2.\n\\]\n\nThen the scalar rational function is\n\n\\[\nr(x)=\\frac{x^2-Sx+P}{x^2+Sx+P}.\n\\]\n\nFor a target \\(q\\), the condition \\(|r(x)|\\le q\\) for all \\(x\\in E\\) is equivalent to\n\n\\[\n\\alpha\\max_{x\\in E}\\left(x+\\frac Px\\right)\\le S\n\\le\n\\alpha^{-1}\\min_{x\\in E}\\left(x+\\frac Px\\right),\n\\qquad\n\\alpha=\\frac{1-q}{1+q}.\n\\]\n\nSo we need maximize\n\n\\[\n\\frac{\\min_E (x+P/x)}{\\max_E (x+P/x)}.\n\\]\n\nUsing only the four endpoints,\n\n\\[\n\\min_E\\left(x+\\frac Px\\right)\n\\le \\min\\left(2+\\frac P2,\\;8+\\frac P8\\right),\n\\]\n\nand\n\n\\[\n\\max_E\\left(x+\\frac Px\\right)\n\\ge \\max\\left(1+P,\\;16+\\frac P{16}\\right).\n\\]\n\nFor \\(P\\le 16\\), this gives\n\n\\[\n\\frac{\\min}{\\max}\\le\n\\frac{2+P/2}{16+P/16}\\le \\frac{10}{17},\n\\]\n\nwith equality only at \\(P=16\\). For \\(P\\ge16\\),\n\n\\[\n\\frac{\\min}{\\max}\\le\n\\frac{8+P/8}{1+P}\\le \\frac{10}{17},\n\\]\n\nagain with equality only at \\(P=16\\).\n\nThus \\(P=16\\). Then\n\n\\[\nx+\\frac{16}{x}\\in[10,17]\n\\]\n\non both intervals, and\n\n\\[\nr(x)=\\frac{x+16/x-S}{x+16/x+S}.\n\\]\n\nThe minimax choice balances the endpoint errors:\n\n\\[\n\\frac{S-10}{S+10}=\\frac{17-S}{17+S}.\n\\]\n\nThis gives\n\n\\[\nS^2=170,\\qquad S=\\sqrt{170}.\n\\]\n\nHence \\(p_1,p_2\\) are the roots of\n\n\\[\nt^2-\\sqrt{170}\\,t+16=0,\n\\]\n\nso\n\n\\[\np_1=\\frac{\\sqrt{170}-\\sqrt{106}}{2},\n\\qquad\np_2=\\frac{\\sqrt{170}+\\sqrt{106}}{2}.\n\\]\n\nThe minimum contraction factor is\n\n\\[\n\\frac{\\sqrt{170}-10}{\\sqrt{170}+10}.\n\\]\n\nFinal answer:\n\n\\[\n\\boxed{\\left(\\frac{\\sqrt{170}-\\sqrt{106}}{2},\\frac{\\sqrt{170}+\\sqrt{106}}{2}\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-23T15:53:30+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/dd3850ba3c28.json"
+}
