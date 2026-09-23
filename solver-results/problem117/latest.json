@@ -1,9 +1,9 @@
 {
   "problem": "problem117",
   "branch": "adversary/problem117",
-  "problem_path": "workspace/rainier-problem/problem117-numerical-analysis/problem.md",
-  "problem_blob_sha": "9d69f6b45473dfc462bcdbd4947a98055bebe076",
-  "source_commit_sha": "c0b8016be2946a3ae6c872e10c30d600100c3cec",
+  "problem_path": "workspace/rainier-problem/problem117-error-analysis-and-stability/problem.md",
+  "problem_blob_sha": "33ce207416ad920eb0e3a068765a722f44dfd9c3",
+  "source_commit_sha": "8176d8e8687b01f8e22ddca3b1efd366383a6536",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-23T13:56:04+00:00",
-  "result_file": "solver-results/problem117/9d69f6b45473.json"
+  "completed_at": "2026-09-23T15:08:06+00:00",
+  "result_file": "solver-results/problem117/33ce207416ad.json"
 }

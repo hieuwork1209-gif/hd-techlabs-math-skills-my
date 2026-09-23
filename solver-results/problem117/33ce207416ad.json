@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-error-analysis-and-stability/problem.md",
+  "source_commit_sha": "8176d8e8687b01f8e22ddca3b1efd366383a6536",
+  "problem_blob_sha": "33ce207416ad920eb0e3a068765a722f44dfd9c3",
+  "statement_sha256": "11f6a77512dbb13a37cbed3923f993622f2c40103f08980a12b69dd5b57a83c4",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-23T14:54:56+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(R=r^2\\) and \\(S=s^2\\), so \\(1<R<S\\). Exactness through degree \\(6\\) gives\n\\[\na_1=\\frac{RS}{(R-1)(S-1)},\\qquad\na_r=\\frac{S}{R(R-1)(R-S)},\\qquad\na_s=\\frac{R}{S(S-1)(S-R)},\n\\]\nand\n\\[\na_0=-2(a_1+a_r+a_s).\n\\]\n\nThe degree-\\(8\\) moment yields\n\\[\nT(r,s)=\\frac{RS}{20160}.\n\\]\nSince \\(a_1>0,\\ a_r<0,\\ a_s>0,\\ a_0<0\\),\n\\[\nK(r,s)=4(a_1+a_s).\n\\]\n\nMinimizing the optimized envelope is therefore equivalent to minimizing\n\\[\nRS(a_1+a_s)^3.\n\\]\nWriting \\(S=pR\\), \\(p>1\\), and setting \\(x=R\\), the stationarity equations reduce, after eliminating \\(p\\), to\n\\[\n(z+1)^2(z^2-2z-1)(z^2+2z+3)=0,\n\\qquad z=(p-1)x>0.\n\\]\nThus\n\\[\nz=1+\\sqrt2,\n\\]\nwhich gives\n\\[\nR_*=2+\\sqrt2,\\qquad S_*=3+2\\sqrt2.\n\\]\nHence\n\\[\nr_*=\\sqrt{2+\\sqrt2},\\qquad s_*=\\sqrt{3+2\\sqrt2}=1+\\sqrt2.\n\\]\n\nAt this pair,\n\\[\na_1=1+\\frac{\\sqrt2}{2},\\qquad\na_r=\\frac{1-\\sqrt2}{2},\\qquad\na_s=5-\\frac{7\\sqrt2}{2},\\qquad\na_0=-13+7\\sqrt2.\n\\]\nAlso,\n\\[\nT_*=\\frac{10+7\\sqrt2}{20160},\\qquad\nK_*=12(2-\\sqrt2),\n\\]\nand the minimizing mesh width is\n\\[\nh_*=\n\\left(\n\\frac{\\varepsilon K_*}{3MT_*}\n\\right)^{1/8}\n=\n\\left(\n\\frac{80640(17-12\\sqrt2)\\,\\varepsilon}{M}\n\\right)^{1/8}.\n\\]\n\n\\[\n\\boxed{(r_*,s_*)=\\left(\\sqrt{2+\\sqrt2},\\,1+\\sqrt2\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-23T15:08:06+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/33ce207416ad.json"
+}
