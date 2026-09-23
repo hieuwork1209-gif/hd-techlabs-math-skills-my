@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-error-analysis-and-stability/problem.md",
+  "source_commit_sha": "3d8b376bf99f966a9a17999ef783682b08d5fcef",
+  "problem_blob_sha": "30c9566aa6511fdbaa4e57fadef1aee96593dee4",
+  "statement_sha256": "aa7ba6106108108fc7a85b26dff2ac52cc2d8313b3869f0e065f760da590dbb2",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-23T16:34:04+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "A direct Floquet/Jury analysis of the alternating BDF5 recurrence gives zero-stability exactly when\n\n\\[\nr+\\frac1r \\le u_*,\n\\]\n\nwhere \\(u_*\\) is the unique root \\(>2\\) of\n\n\\[\n4u^3-8u^2-95u-127=0.\n\\]\n\nThus the complete stable interval is\n\n\\[\n\\left[\\frac{u_*-\\sqrt{u_*^2-4}}2,\\,\n      \\frac{u_*+\\sqrt{u_*^2-4}}2\\right].\n\\]\n\nAt the lower endpoint \\(r_-\\), the parasitic period multiplier on the unit circle is\n\n\\[\n-1.\n\\]\n\nTherefore the requested final answer is\n\n\\[\n\\boxed{\\operatorname{root}_{(6,7)}\\!\\left(4x^3-8x^2-95x-127\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-23T16:38:18+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/30c9566aa651.json"
+}
