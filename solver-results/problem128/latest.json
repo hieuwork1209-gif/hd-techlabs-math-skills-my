@@ -1,0 +1,17 @@
+{
+  "problem": "problem128",
+  "branch": "adversary/problem128",
+  "problem_path": "workspace/rainier-problem/problem128-numerical-optimization/problem.md",
+  "problem_blob_sha": "0008c2b922251eda5c4440333267e6a6df756a1a",
+  "source_commit_sha": "e5ef62a25ad624edf92c095d41a0240223da1da5",
+  "status": "success",
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "timeout_seconds": 2100,
+  "completed_at": "2026-09-23T13:53:57+00:00",
+  "result_file": "solver-results/problem128/0008c2b92225.json"
+}

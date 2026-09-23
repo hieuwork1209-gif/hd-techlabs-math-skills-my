@@ -1,0 +1,22 @@
+{
+  "problem": "problem128",
+  "branch": "adversary/problem128",
+  "problem_path": "workspace/rainier-problem/problem128-numerical-optimization/problem.md",
+  "source_commit_sha": "e5ef62a25ad624edf92c095d41a0240223da1da5",
+  "problem_blob_sha": "0008c2b922251eda5c4440333267e6a6df756a1a",
+  "statement_sha256": "949e1324408bd654a061fdb16fd5626571436ed164ff38206bd43a70fa50c9cb",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-23T13:47:38+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let  \n\\[\np(\\lambda)=\\prod_{j=1}^6(1-\\eta_j\\lambda).\n\\]\nThen \\(p\\) is a real polynomial of degree at most \\(6\\), satisfies \\(p(0)=1\\), and all its roots are positive.\n\nSet\n\\[\nz(\\lambda)=\\frac{(\\lambda-\\frac92)^2-\\frac{37}{4}}{3}.\n\\]\nFor \\(\\lambda\\in[1,2]\\cup[7,8]\\), one has \\(z(\\lambda)\\in[-1,1]\\). Indeed,\n\\[\nz(1)=z(8)=1,\\qquad z(2)=z(7)=-1.\n\\]\n\nLet \\(T_3(t)=4t^3-3t\\), and define\n\\[\np_*(\\lambda)=\\frac{T_3(z(\\lambda))}{T_3(11/3)}.\n\\]\nSince \\(z(0)=11/3\\), we have \\(p_*(0)=1\\). Also, for \\(z\\in[-1,1]\\),\n\\[\n|T_3(z)|\\le 1,\n\\]\nso\n\\[\n\\max_{\\lambda\\in E}|p_*(\\lambda)|\n=\\frac1{T_3(11/3)}.\n\\]\n\nNow\n\\[\nT_3\\!\\left(\\frac{11}{3}\\right)\n=4\\left(\\frac{11}{3}\\right)^3-3\\left(\\frac{11}{3}\\right)\n=\\frac{5324}{27}-\\frac{297}{27}\n=\\frac{5027}{27}.\n\\]\nTherefore\n\\[\n\\max_{\\lambda\\in E}|p_*(\\lambda)|=\\frac{27}{5027}.\n\\]\n\nIt remains to prove optimality. The extrema of \\(T_3\\) occur at\n\\[\nz=1,\\ \\frac12,\\ -\\frac12,\\ -1,\n\\]\nwhere the values are respectively\n\\[\n1,-1,1,-1.\n\\]\nTheir preimages in \\(E\\), listed increasingly, are\n\\[\n1<a<b<2<7<9-b<9-a<8,\n\\]\nwith\n\\[\np_*=\\rho,-\\rho,\\rho,-\\rho,-\\rho,\\rho,-\\rho,\\rho,\n\\qquad \\rho=\\frac{27}{5027}.\n\\]\n\nSuppose another degree-\\(\\le6\\) polynomial \\(p\\) with \\(p(0)=1\\) satisfied\n\\[\n\\max_{\\lambda\\in E}|p(\\lambda)|<\\rho.\n\\]\nThen \\(r=p-p_*\\) has alternating signs at the eight points above, producing six distinct zeros of \\(r\\), one in each of\n\\[\n(1,a),(a,b),(b,2),(7,9-b),(9-b,9-a),(9-a,8).\n\\]\nMoreover,\n\\[\nr(0)=p(0)-p_*(0)=0.\n\\]\nThus \\(r\\) has at least seven distinct zeros, impossible for a nonzero polynomial of degree at most \\(6\\). Hence every admissible polynomial satisfies\n\\[\n\\max_{\\lambda\\in E}|p(\\lambda)|\\ge \\rho.\n\\]\n\nFinally, \\(p_*\\) is admissible for the gradient iteration: the roots of \\(T_3\\) are\n\\[\n0,\\quad \\pm\\frac{\\sqrt3}{2},\n\\]\nand their six preimages under \\(z(\\lambda)\\) are positive. Thus \\(p_*\\) factors as\n\\[\np_*(\\lambda)=\\prod_{j=1}^6(1-\\eta_j\\lambda)\n\\]\nwith all \\(\\eta_j>0\\).\n\nTherefore,\n\\[\n\\boxed{\\rho_6=\\frac{27}{5027}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-23T13:53:57+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem128/0008c2b92225.json"
+}
