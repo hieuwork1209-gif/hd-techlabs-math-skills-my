@@ -1,164 +1,196 @@
 ## Steps
 
-Step 1: Fold the two spectral intervals onto one canonical interval
-The two components of
+Step 1: Fold the disconnected spectrum to one interval
+Let
 $$
-E=[1,2]\cup[7,8]
+E=[1,2]\cup[7,8].
 $$
-are exchanged by the reflection $\lambda\mapsto9-\lambda$. Thus the reflection-invariant coordinate
+The two components are exchanged by $\lambda\mapsto9-\lambda$, so use the invariant quadratic coordinate
 $$
-u=\left(\lambda-\frac92\right)^2
-$$
-identifies the two components. On either component, $u$ runs from $\frac{25}{4}$ to $\frac{49}{4}$. Affinely normalizing this range gives
-$$
-z(\lambda)=\frac{u-\frac{37}{4}}{3}
+z(\lambda)=\frac{\left(\lambda-\frac92\right)^2-\frac{37}{4}}{3}
 =\frac{\lambda^2-9\lambda+11}{3}.
 $$
-On $[1,2]$, $z$ decreases from $1$ to $-1$, while on $[7,8]$ it increases from $-1$ to $1$. Hence each component is mapped bijectively onto $[-1,1]$.
+On $[1,2]$, $z$ decreases from $1$ to $-1$, while on $[7,8]$ it increases from $-1$ to $1$. Thus each component maps bijectively onto $[-1,1]$.
 
-For positive step sizes $\eta_1,\dots,\eta_6$, the six-step error polynomial is
+For any positive step sizes,
 $$
-P(\lambda)=\prod_{j=1}^{6}(1-\eta_j\lambda),
+P(\lambda)=\prod_{j=1}^{6}(1-\eta_j\lambda)
 $$
-so $P(0)=1$ and $\deg P=6$. The folding above suggests searching among degree-six polynomials obtained by composing a cubic with $z$.
+has degree $6$ and satisfies $P(0)=1$.
 
-Step 2: Derive an alternating cubic and construct a candidate
-The folded interval is symmetric, so seek an odd cubic
+Step 2: Construct the unconstrained minimax polynomial
+Seek an odd cubic $C(t)=At^3+Bt$ whose endpoint values and interior critical values have equal magnitude and alternate in sign. If $a\in(0,1)$ is the positive critical point, normalize by
 $$
-C(t)=At^3+Bt
+C(1)=1,\qquad C(a)=-1,\qquad C'(a)=0.
 $$
-whose endpoint values and interior critical values have the same magnitude and alternate in sign. If the positive critical point is $a\in(0,1)$, normalize by
+The derivative condition gives $B=-3Aa^2$, hence
 $$
-C(1)=1,
-\qquad
-C(a)=-1,
-\qquad
-C'(a)=0.
+A(1-3a^2)=1,\qquad -2Aa^3=-1.
 $$
-The last equation gives $B=-3Aa^2$. Hence
-$$
-A(1-3a^2)=1,
-\qquad
--2Aa^3=-1.
-$$
-Eliminating $A$ yields
+Therefore
 $$
 2a^3+3a^2-1=(2a-1)(a+1)^2=0,
 $$
-so $a=\frac12$, $A=4$, and $B=-3$. Therefore
+so $a=\frac12$, $A=4$, and $B=-3$. Thus
 $$
-C(t)=4t^3-3t.
+C(t)=4t^3-3t,
 $$
-Its only interior critical points are $\pm\frac12$, and
+with
 $$
-C(-1)=-1,
-\qquad
-C\left(-\frac12\right)=1,
-\qquad
-C\left(\frac12\right)=-1,
-\qquad
-C(1)=1.
+C(-1)=-1,\quad C\left(-\frac12\right)=1,\quad
+C\left(\frac12\right)=-1,\quad C(1)=1,
 $$
-Thus $|C(t)|\leq1$ on $[-1,1]$.
+and $|C(t)|\leq1$ on $[-1,1]$.
 
 Since $z(0)=\frac{11}{3}$,
 $$
-C\left(\frac{11}{3}\right)
-=4\left(\frac{11}{3}\right)^3-3\left(\frac{11}{3}\right)
-=\frac{5027}{27}.
+C\left(\frac{11}{3}\right)=\frac{5027}{27}.
 $$
-Define
+Hence
 $$
-P_*(\lambda)=\frac{27}{5027}C(z(\lambda)).
+P_*(\lambda)=\frac{27}{5027}C(z(\lambda))
 $$
-Then $P_*(0)=1$, $\deg P_*=6$, and because $z(E)=[-1,1]$,
+satisfies $P_*(0)=1$ and
 $$
 \max_{\lambda\in E}|P_*(\lambda)|=\frac{27}{5027}.
 $$
 
-Step 3: Realize the candidate by six positive gradient steps
-The zeros of $C$ are
+Step 3: Certify the unconstrained optimum and realize positive steps
+On $[1,2]$, let $a_0<a_1<a_2<a_3$ be the preimages under $z$ of
 $$
-0,\qquad \frac{\sqrt3}{2},\qquad -\frac{\sqrt3}{2}.
+1,\quad \frac12,\quad -\frac12,\quad -1.
 $$
-Because $z$ maps each component of $E$ bijectively onto $[-1,1]$, each of these three values has one preimage in $[1,2]$ and one in $[7,8]$. Explicitly, the six zeros of $P_*$ are
+Then $P_*(a_i)$ alternates as
 $$
-\frac{9\pm\sqrt{37}}{2},
-\qquad
-\frac{9\pm\sqrt{37+6\sqrt3}}{2},
-\qquad
-\frac{9\pm\sqrt{37-6\sqrt3}}{2}.
+\frac{27}{5027}(1,-1,1,-1).
 $$
-All six are positive. If these zeros are $r_1,\dots,r_6$, then $P_*(0)=1$ implies
+On $[7,8]$, the four corresponding preimages give the alternating values
 $$
-P_*(\lambda)=\prod_{j=1}^{6}\left(1-\frac{\lambda}{r_j}\right).
-$$
-Thus the positive step sizes $\eta_j=1/r_j$ realize $P_*$. Consequently
-$$
-\rho_6\leq\frac{27}{5027}.
+\frac{27}{5027}(-1,1,-1,1).
 $$
 
-Step 4: Certify that no six positive steps can do better
-On $[1,2]$, let
+If a polynomial $P$ of degree at most $6$ with $P(0)=1$ had
 $$
-a_0<a_1<a_2<a_3
+\max_{\lambda\in E}|P(\lambda)|<\frac{27}{5027},
 $$
-be the unique points for which
-$$
-z(a_0)=1,
-\qquad
-z(a_1)=\frac12,
-\qquad
-z(a_2)=-\frac12,
-\qquad
-z(a_3)=-1.
-$$
-Then
-$$
-P_*(a_0),P_*(a_1),P_*(a_2),P_*(a_3)
-=\frac{27}{5027}(1,-1,1,-1).
-$$
-Similarly, on $[7,8]$ let
-$$
-b_0<b_1<b_2<b_3
-$$
-correspond to
-$$
-z(b_0)=-1,
-\qquad
-z(b_1)=-\frac12,
-\qquad
-z(b_2)=\frac12,
-\qquad
-z(b_3)=1.
-$$
-Then
-$$
-P_*(b_0),P_*(b_1),P_*(b_2),P_*(b_3)
-=\frac{27}{5027}(-1,1,-1,1).
-$$
+then $Q=P-P_*$ would have three zeros in $(1,2)$, three zeros in $(7,8)$, and the additional zero $Q(0)=0$. This gives at least seven distinct zeros, impossible unless $Q\equiv0$, which is incompatible with the strict inequality. Therefore every admissible six-step polynomial has norm at least $\frac{27}{5027}$.
 
-Suppose a polynomial $P$ of degree at most $6$ satisfies $P(0)=1$ and
+The zeros of $C$ are $0,\pm\frac{\sqrt3}{2}$. Each has one preimage in each component of $E$, so the six zeros of $P_*$ are positive. Since $P_*(0)=1$, it factors as
 $$
-\max_{\lambda\in E}|P(\lambda)|<\frac{27}{5027}.
+P_*(\lambda)=\prod_{j=1}^{6}\left(1-\frac{\lambda}{r_j}\right)
 $$
-For $Q=P-P_*$, the signs of $Q(a_0),\dots,Q(a_3)$ alternate, so $Q$ has at least three distinct zeros in $(1,2)$. The signs of $Q(b_0),\dots,Q(b_3)$ also alternate, so $Q$ has at least three distinct zeros in $(7,8)$. In addition,
-$$
-Q(0)=P(0)-P_*(0)=0.
-$$
-Hence $Q$ has at least seven distinct real zeros, impossible for a nonzero polynomial of degree at most $6$. The zero polynomial is also impossible under the strict inequality because $P_*$ itself has norm $\frac{27}{5027}$ on $E$.
-
-Therefore every six-step gradient polynomial has worst-case contraction at least $\frac{27}{5027}$, while Step 3 attains this value. Hence
+with $r_j>0$. Thus positive step sizes $\eta_j=1/r_j$ realize $P_*$, and
 $$
 \rho_6=\frac{27}{5027}.
 $$
-Final Answer: $\boxed{\frac{27}{5027}}$
+
+Step 4: Reduce the stepwise-stable problem to two endpoint products
+Now impose that every individual gradient step is nonexpansive on $E$:
+$$
+\max_{\lambda\in E}|1-\eta_j\lambda|\leq1
+\qquad(j=1,\dots,6).
+$$
+Because the largest spectral value is $8$ and $\eta_j>0$, this is equivalent to
+$$
+0<\eta_j\leq\frac14.
+$$
+Set
+$$
+x_j=1-\eta_j,
+$$
+so $x_j\in[\frac34,1)$. At the two outer endpoints,
+$$
+A:=P(1)=\prod_{j=1}^{6}x_j,
+$$
+and
+$$
+B:=|P(8)|=\prod_{j=1}^{6}|8x_j-7|.
+$$
+Hence every stepwise-stable schedule satisfies
+$$
+\max_{\lambda\in E}|P(\lambda)|\geq\max(A,B).
+$$
+
+If some $x_j>\frac78$, replace it by
+$$
+x_j'=\frac74-x_j.
+$$
+Then $x_j'\in(\frac34,\frac78)$,
+$$
+|8x_j'-7|=|8x_j-7|,
+$$
+and $x_j'<x_j$. Thus this replacement decreases $A$ while leaving $B$ unchanged. Therefore the endpoint minimax problem may be restricted to
+$$
+\frac34\leq x_j\leq\frac78.
+$$
+At an optimum with value below $\left(\frac34\right)^5\frac78$, no $x_j$ equals $\frac78$, because then $B=0$ and $A$ is at least that larger value. On the remaining region, $A$ increases and $B=\prod(7-8x_j)$ decreases in each variable, so a minimizer must satisfy
+$$
+A=B.
+$$
+
+Step 5: Solve the balanced endpoint problem and verify attainment
+Under $A=B$, define
+$$
+s_j=\log\frac{x_j}{7-8x_j}.
+$$
+Then
+$$
+\sum_{j=1}^{6}s_j=0,
+\qquad
+s_j\geq s_0:=\log\frac34.
+$$
+Solving for $x_j$ gives
+$$
+x_j=\frac{7e^{s_j}}{1+8e^{s_j}}.
+$$
+Therefore minimizing the common product $A=B$ is equivalent to minimizing
+$$
+\sum_{j=1}^{6}\phi(s_j),
+\qquad
+\phi(s)=\log\left(\frac{7e^s}{1+8e^s}\right),
+$$
+subject to the displayed linear constraint. Direct differentiation gives
+$$
+\phi''(s)=-\frac{8e^s}{(1+8e^s)^2}<0.
+$$
+If two variables exceed $s_0$, keep their sum fixed and transfer mass between them. Because the resulting two-variable objective is concave, its minimum occurs when one of the two reaches $s_0$. Repeating this operation shows that at a minimizer at least five variables equal $s_0$. Hence
+$$
+s_1=\cdots=s_5=s_0,
+\qquad
+s_6=-5s_0=\log\left(\frac43\right)^5.
+$$
+Thus
+$$
+x_1=\cdots=x_5=\frac34,
+\qquad
+x_6=\frac{7168}{8435}.
+$$
+Equivalently, five steps are $\eta=\frac14$ and the sixth is
+$$
+\eta_*=\frac{1267}{8435}.
+$$
+Their common endpoint magnitude is
+$$
+\left(\frac34\right)^5\frac{7168}{8435}
+=\frac{1701}{8435}.
+$$
+
+For this schedule,
+$$
+P(\lambda)=\left(1-\frac{\lambda}{4}\right)^5
+\left(1-\frac{1267}{8435}\lambda\right).
+$$
+On $[1,2]$ both factors are positive and their magnitudes decrease with $\lambda$, so the maximum is at $\lambda=1$. Since $\frac{1267}{8435}>\frac17$, on $[7,8]$ both absolute factors increase with $\lambda$, so the maximum is at $\lambda=8$. The two endpoint values are equal to $\frac{1701}{8435}$. Therefore
+$$
+\widehat\rho_6=\frac{1701}{8435}.
+$$
+Final Answer: $\boxed{\left(\frac{27}{5027},\frac{1701}{8435}\right)}$
 
 ---
 
 ## Answer
 
-$\frac{27}{5027}$
+$\left(\frac{27}{5027},\frac{1701}{8435}\right)$
 
 ---
 
@@ -166,7 +198,7 @@ $\frac{27}{5027}$
 
 **Problem Type:** Optimization
 
-**Answer Type:** Exact scalar
+**Answer Type:** Tuple or ordered list
 
 ---
 
@@ -174,6 +206,6 @@ $\frac{27}{5027}$
 
 - nonstationary gradient descent
 - spectral error polynomials
-- symmetry reduction
 - minimax alternation
-- polynomial factorization
+- endpoint balancing
+- concavity extremal argument
