@@ -188,17 +188,40 @@ G-M_*
 \qquad
 N=C(A-C)-AM_*.
 $$
-The stationarity conditions imply that $N$ has a double zero at $\omega_*$. Expanding the displayed quadratic polynomials and dividing by this double factor gives
-$$
+The stationarity conditions imply that $N$ has a double zero at $\omega_*$. To make this factorization explicit, write
+$
+C=c_2\omega^2+c_1\omega+c_0,\qquad
+A-C=d_2\omega^2+d_1\omega+d_0,
+$
+and
+$
+A=a_2\omega^2+a_1\omega+a_0.
+$
+Then the three leading coefficients of $N=C(A-C)-AM_*$ are
+$
+n_4=c_2d_2,\qquad
+n_3=c_2d_1+c_1d_2,
+$
+$
+n_2=c_2d_0+c_1d_1+c_0d_2-M_*a_2.
+$
+Since $N(\omega_*)=N'(\omega_*)=0$,
+$
 N(\omega)=(\omega-\omega_*)^2
-\left(q_2\omega^2+q_1\omega+q_0\right).
-$$
-Substitution of the exact quantities above, using only the isolating interval $0.787<a_*<0.788$, gives the rigorous coefficient bounds
-$$
+\left(q_2\omega^2+q_1\omega+q_0\right),
+$
+where
+$
+q_2=n_4,\qquad
+q_1=n_3+2\omega_*n_4,\qquad
+q_0=n_2+2\omega_*n_3+3\omega_*^2n_4.
+$
+The coefficients $a_i,c_i,d_i$ come directly from the displayed formula for $q_t(\omega)$. Substituting the isolating interval $0.787<a_*<0.788$ into these explicit expressions gives
+$
 5.85<q_2<5.92,\qquad
 -7.22<q_1<-7.15,\qquad
 2.28<q_0<2.34.
-$$
+$
 Consequently
 $$
 q_1^2-4q_2q_0<7.22^2-4(5.85)(2.28)<0,
