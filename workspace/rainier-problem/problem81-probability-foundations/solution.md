@@ -16,14 +16,15 @@ $$
 $$
 the two-state environment chain is reversible. It is also irreducible for $0<\theta<1$, hence stationary ergodic.
 
-For a nearest-neighbor walk in a fixed environment, the usual one-dimensional scale ratios are products of the local odds $\rho_x$. In particular, for $a<0<b$,
-$$
-P_\omega^0(T_b<T_a)
-=
-\frac{\displaystyle\sum_{k=a}^{-1}\prod_{j=k+1}^{0}\rho_j}
-{\displaystyle\sum_{k=a}^{b-1}\prod_{j=k+1}^{0}\rho_j},
-$$
-with the empty product interpreted as $1$. Thus the directional behavior is controlled by the exponential growth rate of products of the $\rho_j$. By the ergodic theorem,
+For a nearest-neighbor walk in a fixed environment, let $h(x)=P_\omega^x(T_b<T_a)$ for $a<x<b$. The harmonic equation
+$
+h(x)=\omega_xh(x+1)+(1-\omega_x)h(x-1)
+$
+implies, for $\Delta_x=h(x)-h(x-1)$,
+$
+\Delta_{x+1}=\rho_x\Delta_x.
+$
+Thus the scale increments are successive products of the local odds $\rho_x$, so their exponential growth rate determines which infinite scale tail diverges. By the ergodic theorem,
 $$
 \frac1n\log\prod_{j=1}^n\rho_j
 =
@@ -32,10 +33,10 @@ $$
 \theta\log\frac13+(1-\theta)\log3
 =(1-2\theta)\log3.
 $$
-Therefore the products decay exponentially to the right when $\theta>1/2$ and grow exponentially when $\theta<1/2$, giving right and left transience respectively. At $\theta=1/2$ the centered finite-state Markov additive process has zero drift and oscillates in both signs, so both scale sums diverge and the walk is recurrent. Hence
-$$
-\theta_{\rm dir}=\frac12.
-$$
+Therefore the products decay exponentially to the right when $\theta>1/2$ and grow exponentially when $\theta<1/2$, giving right and left transience respectively. At $\theta=1/2$, the state chain switches state with probability $2/5$ at every step. Its successive run lengths are therefore independent geometric random variables with the same law. Pairing an $R$-run with the following $L$-run makes the potential change by $\log 3$ times the difference of two independent identically distributed geometric variables. These paired increments are independent, symmetric, nondegenerate, and integer-valued, so their partial sums visit both signs infinitely often. Hence neither scale tail can be summable, and the walk is recurrent. Therefore
+$
+\theta_{\rm dir}=\frac{1}{2}.
+$
 
 Step 2: Find the right first-passage threshold from a transfer-matrix series
 For a right-transient environment, let $u_x=E_\omega^x T_{x+1}$. First-step decomposition gives
