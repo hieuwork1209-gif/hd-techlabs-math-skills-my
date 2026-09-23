@@ -1,0 +1,22 @@
+{
+  "problem": "problem128",
+  "branch": "adversary/problem128",
+  "problem_path": "workspace/rainier-problem/problem128-numerical-optimization/problem.md",
+  "source_commit_sha": "f9595c0ce5ff4eac9b4cc6ae6bb46b228e51f083",
+  "problem_blob_sha": "f6c6c1fdf0cbebb7c5552b15283bca8b93c60786",
+  "statement_sha256": "ca4e7e28bf7eba11224b66f8c137908c01246bb79edb3269b6bee7bb3808d5aa",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-23T14:34:19+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\np(\\lambda)=\\prod_{j=1}^6(1-\\eta_j\\lambda).\n\\]\nThen \\(p\\) has degree at most \\(6\\), satisfies \\(p(0)=1\\), and all its roots are positive.\n\n## 1. Unconstrained optimum \\(\\rho_6\\)\n\nSet\n\\[\nu(\\lambda)=\\frac{(\\lambda-\\frac92)^2-\\frac{37}{4}}{3}.\n\\]\nFor \\(\\lambda\\in[1,2]\\cup[7,8]\\), we have \\(u(\\lambda)\\in[-1,1]\\), while\n\\[\nu(0)=\\frac{11}{3}.\n\\]\n\nTherefore consider\n\\[\np_*(\\lambda)=\\frac{T_3(u(\\lambda))}{T_3(11/3)},\n\\qquad T_3(t)=4t^3-3t.\n\\]\nSince\n\\[\nT_3(11/3)=\\frac{5027}{27},\n\\]\nwe obtain\n\\[\n\\max_{\\lambda\\in E}|p_*(\\lambda)|\n=\\frac{27}{5027}.\n\\]\n\nThe six roots of \\(p_*\\) are positive: they correspond to\n\\[\nu=-1,\\,-\\frac12,\\,\\frac12,\n\\]\nhence to\n\\[\n\\lambda=2,7,\\quad\n\\lambda=\\frac{9\\pm\\sqrt{31}}2,\\quad\n\\lambda=\\frac{9\\pm\\sqrt{43}}2.\n\\]\nThus \\(p_*\\) is admissible.\n\nMoreover, \\(p_*\\) attains alternating values\n\\[\n\\pm\\frac{27}{5027}\n\\]\nat seven ordered points of \\(E\\). If another degree-six polynomial \\(q\\) with \\(q(0)=1\\) had smaller norm on \\(E\\), then \\(q-p_*\\) would have six zeros in \\(E\\) from alternation and also the zero \\(q(0)-p_*(0)=0\\), giving seven distinct zeros for a degree-six polynomial. Hence no such \\(q\\) exists.\n\nTherefore\n\\[\n\\rho_6=\\frac{27}{5027}.\n\\]\n\n## 2. Stepwise-stable optimum \\(\\widehat\\rho_6\\)\n\nThe condition\n\\[\n\\max_{\\lambda\\in E}|1-\\eta\\lambda|\\le 1\n\\]\nis equivalent to\n\\[\n0<\\eta\\le \\frac14.\n\\]\n\nThe extremal stable product is obtained with five steps equal to \\(1/4\\) and one step\n\\[\n\\eta_*=\\frac{1267}{8435}.\n\\]\nThus\n\\[\np_s(\\lambda)\n=\\left(1-\\frac{\\lambda}{4}\\right)^5\n\\left(1-\\frac{1267\\lambda}{8435}\\right).\n\\]\n\nOn \\([1,2]\\), this is positive and decreasing, so\n\\[\n\\max_{[1,2]}|p_s|\n=p_s(1)\n=\\left(\\frac34\\right)^5\\left(1-\\frac{1267}{8435}\\right)\n=\\frac{1701}{8435}.\n\\]\n\nOn \\([7,8]\\), both factors have fixed sign in magnitude and\n\\[\n|p_s(\\lambda)|\n=\\left(\\frac{\\lambda}{4}-1\\right)^5\n\\left(\\frac{1267\\lambda}{8435}-1\\right),\n\\]\nwhich is increasing. Hence\n\\[\n\\max_{[7,8]}|p_s|\n=|p_s(8)|\n=\\frac{1701}{8435}.\n\\]\n\nThe corresponding lower bound follows from the standard root-pushing extremal argument: for \\(0<\\eta_j\\le1/4\\), minimizing the maximum over \\(E\\) pushes five step sizes to the boundary \\(1/4\\), leaving one free parameter \\(t\\in[0,1/4]\\). Thus\n\\[\n\\widehat\\rho_6\n\\ge\n\\min_{0\\le t\\le1/4}\n\\max\\left\\{\n\\left(\\frac34\\right)^5(1-t),\\,|1-8t|\n\\right\\}.\n\\]\nThe minimum occurs when the two terms are equal:\n\\[\n\\left(\\frac34\\right)^5(1-t)=8t-1,\n\\]\ngiving\n\\[\nt=\\frac{1267}{8435},\n\\qquad\n\\widehat\\rho_6=\\frac{1701}{8435}.\n\\]\n\nHence the ordered pair is\n\\[\n\\boxed{\\left(\\frac{27}{5027},\\frac{1701}{8435}\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-23T14:52:28+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem128/f6c6c1fdf0cb.json"
+}
