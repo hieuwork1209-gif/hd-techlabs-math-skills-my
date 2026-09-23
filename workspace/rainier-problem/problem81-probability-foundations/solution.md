@@ -104,11 +104,11 @@ vanishes. Consequently
 $$
 \mathbb E_\theta T_1<\infty
 \quad\Longleftrightarrow\quad
-\theta>\frac78,
+\theta>\frac{7}{8},
 $$
 so
 $$
-\theta_+=\frac78.
+\theta_+=\frac{7}{8}.
 $$
 
 Step 3: Find the left first-passage threshold by the reflected transfer matrix
@@ -140,11 +140,11 @@ vanishes. Hence
 $$
 \mathbb E_\theta T_{-1}<\infty
 \quad\Longleftrightarrow\quad
-\theta<\frac18,
+\theta<\frac{1}{8},
 $$
 so
 $$
-\theta_-=\frac18.
+\theta_-=\frac{1}{8}.
 $$
 
 Step 4: Assemble the three transition parameters
@@ -152,15 +152,15 @@ The logarithmic potential changes sign at $1/2$, while the correlation-sensitive
 $$
 \left(\theta_-,\theta_{\rm dir},\theta_+\right)
 =
-\left(\frac18,\frac12,\frac78\right).
+\left(\frac{1}{8},\frac{1}{2},\frac{7}{8}\right).
 $$
-Final Answer: $\boxed{\left(\frac18,\frac12,\frac78\right)}$
+Final Answer: $\boxed{\left(\frac{1}{8},\frac{1}{2},\frac{7}{8}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac18,\frac12,\frac78\right)$
+$\left(\frac{1}{8},\frac{1}{2},\frac{7}{8}\right)$
 
 ---
 
