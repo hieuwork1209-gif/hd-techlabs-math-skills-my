@@ -12,8 +12,8 @@ and transition matrix
 $$
 P_\theta=
 \begin{pmatrix}
-\dfrac{1+4\theta}{5} & \dfrac{4(1-\theta)}5\\[2mm]
-\dfrac{4\theta}5 & \dfrac{5-4\theta}{5}
+\frac{1+4\theta}{5} & \frac{4(1-\theta)}5\\
+\frac{4\theta}5 & \frac{5-4\theta}{5}
 \end{pmatrix}.
 $$
 Define
