@@ -16,22 +16,18 @@ and define the boundary equality space
 $$
 E=\left\{c\in\mathbb R^X:\sum_xc_x=0,\ \sum_{x,y}c_xc_y\,\rho(x,y)^{\wp}=0\right\}.
 $$
-For a two-dimensional linear subspace $L\leq E$, write each $c\in L$ as $c=(u,v)$ with $u\in\mathbb R^{\mathcal P}$ and $v\in\mathbb R^{\mathcal H}$, and define
+For a two-dimensional linear subspace $L\leq E$, write each $c\in L$ as $c=(u,v)$ with $u\in\mathbb R^{\mathcal P}$ and $v\in\mathbb R^{\mathcal H}$. Define the ordered pair
 $$
-S_{\mathcal P}(L)=\{P\in\mathcal P:\text{some }(u,v)\in L\text{ has }u_P\neq0\},
-$$
-$$
-S_{\mathcal H}(L)=\{H\in\mathcal H:\text{some }(u,v)\in L\text{ has }v_H\neq0\}.
-$$
-Set
-$$
-\mathsf U_2(L)=|S_{\mathcal P}(L)|\,|S_{\mathcal H}(L)|,
-\qquad
-U_2^*=\min_{\substack{L\leq E\\ \dim L=2}}\mathsf U_2(L),
-$$
-and let
-$$
-N_2^*=\#\{L\leq E:\dim L=2,\ \mathsf U_2(L)=U_2^*\}.
+(U_2^*,N_2^*)=
+\left(
+\min_{\substack{L\leq E\\ \dim L=2}}
+\left|\{P\in\mathcal P:\text{some }(u,v)\in L\text{ has }u_P\neq0\}\right|
+\left|\{H\in\mathcal H:\text{some }(u,v)\in L\text{ has }v_H\neq0\}\right|,
+\;
+\#\operatorname*{argmin}_{\substack{L\leq E\\ \dim L=2}}
+\left|\{P\in\mathcal P:\text{some }(u,v)\in L\text{ has }u_P\neq0\}\right|
+\left|\{H\in\mathcal H:\text{some }(u,v)\in L\text{ has }v_H\neq0\}\right|
+\right).
 $$
 Determine the ordered triple $(\wp,U_2^*,N_2^*)$.
 
