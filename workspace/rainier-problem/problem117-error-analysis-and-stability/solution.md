@@ -116,16 +116,28 @@ $$
 -\frac{3}{y-x}
 +\frac{3(2y+1-x)}{D}=0.
 $$
-Let $P(x,y)$ and $Q(x,y)$ be the numerators obtained after clearing the positive denominators in these two equations. Viewing them as polynomials in $y$, the ordinary polynomial Euclidean algorithm has final constant subresultant
-$$
--108x(x-1)^2
-(x^2-4x+2)(x^2-4x+6).
-$$
-For completeness, the preceding linear subresultant is
-$$
-18(x-4)(x-1)
-(x^2-2xy-2x+6y).
-$$
+Clearing the positive denominators gives
+$
+\begin{aligned}
+P(x,y)={}&x^3y+x^3-2x^2y^2-6x^2y-2x^2+x y^3\\
+&+9xy^2+9xy+x-4y^3-4y^2-4y,
+\end{aligned}
+$
+and
+$
+Q(x,y)=x^2y-2x^2-2xy^2+4xy+2x+y^3-2y^2-5y.
+$
+Viewing $P$ and $Q$ as polynomials in $y$, the ordinary Euclidean subresultant chain continues with
+$
+-3\left(x^3-2x^2y-4x^2+xy^2+10xy+3x-4y^2-8y\right),
+$
+$
+18(x-4)(x-1)(x^2-2xy-2x+6y),
+$
+and the constant resultant
+$
+-108x(x-1)^2(x^2-4x+2)(x^2-4x+6).
+$
 A common zero of $P$ and $Q$ in $1<x<y$ must therefore satisfy
 $$
 (x^2-4x+2)(x^2-4x+6)=0.
