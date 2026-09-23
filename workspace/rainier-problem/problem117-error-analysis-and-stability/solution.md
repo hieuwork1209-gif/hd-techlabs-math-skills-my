@@ -109,33 +109,33 @@ $$
 A_4-A_0=160u^3+1444u^2+4014u+3541>0.
 $$
 Set
-$
+$$
 D=A_4-A_0,\qquad B=A_3-A_1,\qquad C=A_3+A_1,\qquad E=A_4+A_0.
-$
+$$
 Then $c=-B/(2D)$, so the real part becomes
-$
+$$
 E(2c^2-1)+Cc+A_2
 =
 \frac{EB^2-CBD+2(A_2-E)D^2}{2D^2}.
-$
+$$
 Equivalently,
-$
+$$
 E(2c^2-1)+Cc+A_2
 =
 -\frac{16H(u)}{D^2},
-$
+$$
 where the numerator identity
-$
+$$
 32H(u)=2(E-A_2)D^2+CBD-EB^2
-$
+$$
 expands to
-$
+$$
 \begin{aligned}
 H(u)={}&230400u^9+6166272u^8+72776096u^7+494393008u^6\\
 &+2124814096u^5+5986899964u^4+11062602954u^3\\
 &+12938115410u^2+8700086037u+2565772676.
 \end{aligned}
-$
+$$
 Every coefficient of $H$ is positive, so this real part cannot vanish for $u\geq2$. A parasitic multiplier can therefore meet the unit circle only at $z=1$ or $z=-1$.
 
 At those two points,
