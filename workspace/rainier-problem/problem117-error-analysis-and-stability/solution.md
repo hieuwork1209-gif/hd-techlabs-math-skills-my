@@ -66,13 +66,13 @@ $$
 The matrices $M(r)$ and $M(1/r)$ are cyclic products of the same two factors, so they have the same nonzero eigenvalues. The characteristic polynomial therefore depends on $r$ only through the reciprocal invariant $u$.
 
 Multiplying the two companion matrices from Step 1 gives the characteristic coefficients in the usual principal-minor form: the $z^3$ coefficient is $-\operatorname{tr}M$, the $z^2$ coefficient is the sum of the $2\times2$ principal minors, the $z$ coefficient is minus the sum of the $3\times3$ principal minors, and the constant term is $\det M$. For example,
-$
+$$
 \det M=\beta_4(r)\beta_4(1/r)=\frac{4(u+2)(2u+5)}{160u^3+1452u^2+4050u+3581}.
-$
+$$
 Substituting the four displayed $\beta_k$ into those coefficient formulas and collecting reciprocal pairs $r^j+r^{-j}$ gives
-$
+$$
 \det(zI-M(r))=\frac{P_u(z)}{A_4(u)},
-$
+$$
 where
 $$
 P_u(z)=A_4z^4+A_3z^3+A_2z^2+A_1z+A_0
@@ -108,23 +108,34 @@ Here
 $$
 A_4-A_0=160u^3+1444u^2+4014u+3541>0.
 $$
-Substituting this forced value of $c$ into the real part
-$$
-(A_4+A_0)(2c^2-1)+(A_3+A_1)c+A_2
-$$
-gives
-$$
--\frac{16H(u)}
-{(160u^3+1444u^2+4014u+3541)^2},
-$$
-where
-$$
+Set
+$
+D=A_4-A_0,\qquad B=A_3-A_1,\qquad C=A_3+A_1,\qquad E=A_4+A_0.
+$
+Then $c=-B/(2D)$, so the real part becomes
+$
+E(2c^2-1)+Cc+A_2
+=
+\frac{EB^2-CBD+2(A_2-E)D^2}{2D^2}.
+$
+Equivalently,
+$
+E(2c^2-1)+Cc+A_2
+=
+-\frac{16H(u)}{D^2},
+$
+where the numerator identity
+$
+32H(u)=2(E-A_2)D^2+CBD-EB^2
+$
+expands to
+$
 \begin{aligned}
 H(u)={}&230400u^9+6166272u^8+72776096u^7+494393008u^6\\
 &+2124814096u^5+5986899964u^4+11062602954u^3\\
 &+12938115410u^2+8700086037u+2565772676.
 \end{aligned}
-$$
+$
 Every coefficient of $H$ is positive, so this real part cannot vanish for $u\geq2$. A parasitic multiplier can therefore meet the unit circle only at $z=1$ or $z=-1$.
 
 At those two points,
