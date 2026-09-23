@@ -2,40 +2,40 @@
 
 ## LaTeX (Normalized)
 
-For $\tau>0$, let
-$$
-d\mu_\tau(x)=(1+\tau x^2)\,dx+\tau(\delta_{-1}+\delta_1)
-$$
-be the even positive measure on $[-1,1]$. Let
-$$
-\{-a_\tau,0,a_\tau\}
-$$
-be the nodes of its three-point Gaussian quadrature rule, i.e. the unique three-node rule exact for every polynomial of degree at most $5$.
+On the infinite one-dimensional grid, let
+\[
+(A_hu)_j=2u_j-u_{j-1}-u_{j+1}.
+\]
+For \(0<q<1\), one weighted-Jacobi step is
+\[
+S_q=I-\frac q2A_h.
+\]
+Use the standard two-grid ingredients: full-weighting restriction, linear interpolation, the Galerkin coarse operator, and an exact coarse-grid solve. One cycle has one pre-smoothing step with weight \(\omega\) and one post-smoothing step with weight \(\nu\).
 
-Call $\tau$ compatible if there exist
-$$
-0<b<a_\tau
-$$
-and positive weights $A,B,C,D$ such that the symmetric seven-node rule
-$$
-Q(p)=A[p(-1)+p(1)]
-+B[p(-b)+p(b)]
-+C[p(-a_\tau)+p(a_\tau)]
-+Dp(0)
-$$
-is exact for every polynomial of degree at most $11$.
+For each low frequency \(\theta\in[-\pi/2,\pi/2]\), let \(\widehat E_{\omega,\nu}(\theta)\) be the \(2\times2\) local-Fourier symbol of the two-grid error propagator on the harmonic pair \(\{\theta,\pi-\theta\}\), and define
+\[
+\rho(\omega,\nu)=
+\sup_{\theta\in[-\pi/2,\pi/2]}
+\|\widehat E_{\omega,\nu}(\theta)\|_2.
+\]
+Let \((\omega_*,\nu_*)\in(0,1)^2\) be the unique pair minimizing \(\rho\), and set
+\[
+\alpha=\frac{1-\omega_*}{\omega_*}.
+\]
 
 Define
-$$
-P(t)=357975t^4+2668650t^3+3550150t^2+120890t-49049,
-$$
-and write $\operatorname{root}_{(u,v)}P$ for the unique zero of $P$ in $(u,v)$ whenever it exists.
+\[
+\begin{aligned}
+R(a)={}&3a^6-(58+28\sqrt2)a^5+(544+378\sqrt2)a^4\\
+&-(2610+1866\sqrt2)a^3+(5591+3958\sqrt2)a^2\\
+&-(4104+2898\sqrt2)a+850+600\sqrt2,
+\end{aligned}
+\]
+and write \(\operatorname{root}_{(u,v)}R\) for the unique zero of \(R\) in \((u,v)\).
 
-Determine the unique compatible value of $\tau$ exactly.
+Determine \(\alpha\) exactly. Your derivation should also determine \(\omega_*\), \(\nu_*\), and the optimal convergence factor \(\rho(\omega_*,\nu_*)\).
 
-Your reasoning must also determine $a_\tau$, $b$, and all four positive weights at the compatible parameter, and must prove uniqueness of the nested rule.
-
-Give the final answer as $\tau$.
+Give the final answer as \(\alpha\).
 
 ---
 
@@ -45,11 +45,11 @@ Give the final answer as $\tau$.
 |---|---|
 | **Domain** | Optimization and Numerical Mathematics |
 | **Sub-domain** | Numerical analysis |
-| **Problem Type** | Symbolic derivation |
+| **Problem Type** | Optimization |
 | **Answer Type** | Exact scalar |
 
 ---
 
 ## Domain Explanation
 
-This problem asks when a Gaussian quadrature rule for a parameterized positive measure admits a positive nested seven-node extension of degree $11$, and requires exact determination of the compatible nodes and weights. The primary mathematics is Gaussian and nested quadrature construction through parameter-dependent moment equations, which belongs to Optimization and Numerical Mathematics, specifically Numerical analysis.
+This problem asks for the exact optimal pre- and post-smoothing parameters of a standard two-grid method for the one-dimensional Poisson operator, measured by the worst-case local-Fourier Euclidean contraction factor. The central task is the minimax convergence analysis and tuning of a multigrid iteration, which is a numerical-analysis problem.
