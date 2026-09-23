@@ -1,213 +1,210 @@
 ## Steps
 
-Step 1: Derive the BDF4 difference-transfer matrix
+Step 1: Reduce the real-axis boundary condition to one free coefficient
 
-At step $n$, let
+Write
 $$
-H_j=t_n-t_{n-j},\qquad j=1,2,3,4.
+P(z)=1+z+\frac{z^2}{2}+az^3+bz^4.
 $$
-After translating $t_n$ to $0$, the interpolation nodes are $0,-H_1,-H_2,-H_3,-H_4$. If
+The condition $P(-3)=1$ gives
 $$
-p_n'(t_n)=\sum_{j=0}^4 w_jy_{n-j},
+1-3+\frac92-27a+81b=1,
 $$
-the Lagrange basis gives
+hence
 $$
-w_0=\sum_{m=1}^4\frac1{H_m},
+a=3b+\frac1{18}.
 $$
-and, for $1\leq j\leq4$,
+So every admissible polynomial is determined by the single real parameter $b$.
+
+Step 2: Express imaginary-axis stability by a quadratic inequality
+
+For real $y$,
 $$
-w_j=
--\frac{\prod_{\substack{1\leq m\leq4\\m\ne j}}H_m}
-{H_j\prod_{\substack{1\leq m\leq4\\m\ne j}}(H_m-H_j)}.
+P(iy)=1-\frac{y^2}{2}+by^4+i(y-ay^3).
 $$
-For the test equation $y'=0$,
+Put $q=y^2$. Expanding the squared modulus gives
 $$
-\sum_{j=0}^4w_jy_{n-j}=0.
-$$
-Because the derivative formula annihilates constants, $\sum_{j=0}^4w_j=0$. Set $d_n=y_n-y_{n-1}$. Substituting
-$$
-y_{n-j}=y_{n-1}-\sum_{k=1}^{j-1}d_{n-k}
-$$
-into the recurrence gives
-$$
-\begin{bmatrix}
-d_n\\ d_{n-1}\\ d_{n-2}
-\end{bmatrix}
-=
-T(H_1,H_2,H_3,H_4)
-\begin{bmatrix}
-d_{n-1}\\ d_{n-2}\\ d_{n-3}
-\end{bmatrix},
+|P(iy)|^2-1
+=y^4H_b(q),
 $$
 where
 $$
-T=
-\begin{bmatrix}
-\beta_1&\beta_2&\beta_3\\
-1&0&0\\
-0&1&0
-\end{bmatrix},
+H_b(q)=b^2q^2+(a^2-b)q+\frac14-2a+2b.
+$$
+Using the relation from Step 1,
+$$
+324H_b(q)
+=324q(q+9)b^2-216(q+6)b+q+45.
+$$
+Therefore a polynomial is stable on $i[-R,R]$ exactly when
+$$
+H_b(q)\leq0\qquad(0\leq q\leq R^2).
+$$
+
+Step 3: Derive a global upper bound by eliminating the coefficient
+
+Fix $q>0$. The expression $324H_b(q)$ is a quadratic in $b$ with positive leading coefficient. It can be nonpositive for some real $b$ only if its discriminant is nonnegative. That discriminant equals
+$$
+\begin{aligned}
+\Delta(q)
+&=216^2(q+6)^2
+-4\cdot324q(q+9)(q+45)\\
+&=-1296C(q),
+\end{aligned}
+$$
+where
+$$
+C(q)=q^3+18q^2-27q-1296.
+$$
+Hence any admissible imaginary radius must satisfy
+$$
+C(R^2)\leq0.
+$$
+
+Now
+$$
+C'(q)=3(q^2+12q-9).
+$$
+This derivative has exactly one positive zero,
+$$
+q_0=-6+3\sqrt5.
+$$
+The polynomial decreases on $(0,q_0)$, so $C(q_0)<C(0)<0$, and then increases strictly to infinity. Thus $C$ has a unique positive zero, denoted $q_*$. Also
+$$
+C\left(\frac{15}{2}\right)=-\frac{513}{8}<0,
 \qquad
-\beta_k=\frac{\sum_{j=k+1}^4w_j}{w_0}.
-$$
-Zero-stability therefore reduces to the three parasitic Floquet multipliers of a $3\times3$ periodic transfer product.
-
-Step 2: Build the three-phase monodromy
-
-Scale the repeating steps by the common factor $h$. For the cycle
-$$
-1,\quad r,\quad r^2,
-$$
-the four cumulative backward distances in the three phases are
-$$
-H^{(0)}=(1,\ 1+r^2,\ 1+r+r^2,\ 2+r+r^2),
-$$
-$$
-H^{(1)}=(r,\ 1+r,\ 1+r+r^2,\ (1+r)^2),
-$$
-$$
-H^{(2)}=(r^2,\ r+r^2,\ 1+r+r^2,\ 1+r+2r^2).
-$$
-Let $T_k=T(H^{(k)})$. Over one full period,
-$$
-M(r)=T_2T_1T_0.
-$$
-Let
-$$
-\chi_r(z)=\det(zI-M(r)).
-$$
-Substituting the weights from Step 1 and putting the entries over the positive common denominator
-$$
-\begin{aligned}
-D(r)={}&(2r^4+7r^3+9r^2+6r+1)\\
-&\cdot(7r^5+13r^4+15r^3+10r^2+4r+1)\\
-&\cdot(r^6+2r^5+8r^4+9r^3+15r^2+8r+7)
-\end{aligned}
-$$
-gives a cubic with denominator $D(r)$. No sign information is lost because $D(r)>0$ for $r>0$.
-
-Step 3: Convert the unit-disk condition to a Hurwitz condition
-
-Use the Cayley map
-$$
-z=\frac{1+x}{1-x}.
-$$
-It maps $\operatorname{Re}x<0$ to $|z|<1$. Define
-$$
-G_r(x)=D(r)(1-x)^3\chi_r\left(\frac{1+x}{1-x}\right)
-=g_3x^3+g_2x^2+g_1x+g_0.
-$$
-Put $S=r^2+r+1$. Collecting the coefficients from the three matrices in Step 2 gives
-$$
-g_0=12S^5(r^5+5r^4+8r^3+9r^2+3r+2),
-$$
-$$
-g_3=4(r+1)Q(r),
-$$
-where $Q$ is the polynomial defined in the problem. The two differences needed for the stability test are
-$$
-\begin{aligned}
-g_1-g_0
-=4S^3(&7r^9+30r^8+89r^7+186r^6+251r^5\\
-&+270r^4+193r^3+91r^2+28r+3),
-\end{aligned}
-$$
-and
-$$
-\begin{aligned}
-g_2-g_3
-=4S^3(&7r^9+30r^8+89r^7+184r^6+249r^5\\
-&+268r^4+191r^3+91r^2+28r+3).
-\end{aligned}
-$$
-All coefficients displayed here are positive except the constant term of $Q$.
-
-For a cubic
-$$
-g_3x^3+g_2x^2+g_1x+g_0,
-$$
-the Routh table has first column
-$$
-g_3,\qquad
-g_2,\qquad
-\frac{g_2g_1-g_3g_0}{g_2},\qquad
-g_0.
-$$
-All roots have negative real part exactly when these four quantities are positive. If $Q(r)>0$, then
-$$
-g_3>0,\qquad g_2>g_3>0,\qquad g_1>g_0>0,
+C\left(\frac{31}{4}\right)=\frac{2647}{64}>0,
 $$
 so
 $$
-g_2g_1>g_3g_0.
+\frac{15}{2}<q_*<\frac{31}{4}.
 $$
-Therefore every parasitic Floquet multiplier lies strictly inside the unit disk whenever $Q(r)>0$.
+It follows that every admissible polynomial satisfies
+$$
+R^2\leq q_*.
+$$
 
-Step 4: Find the sharp threshold and handle the boundary case
+Step 4: Construct the unique polynomial attaining the bound
 
-The polynomial
+At $q=q_*$, equality in the discriminant bound forces the quadratic in $b$ from Step 3 to have a double root. Hence the only possible maximizing coefficient is
 $$
-\begin{aligned}
-Q(r)={}&4r^{14}+18r^{13}+63r^{12}+172r^{11}+371r^{10}
-+656r^9+926r^8\\
-&+1074r^7+986r^6+728r^5+399r^4+164r^3+37r^2+4r-2
-\end{aligned}
+b_*=\frac{q_*+6}{3q_*(q_*+9)},
+\qquad
+a_*=3b_*+\frac1{18}.
 $$
-has
+The function
 $$
-Q'(r)>0\qquad(r>0),
+b(q)=\frac{q+6}{3q(q+9)}
 $$
-because every coefficient of its derivative is positive. Also
+is strictly decreasing for $q>0$. Using the bounds from Step 3,
 $$
-Q\left(\frac18\right)
-=-\frac{525126457835}{1099511627776}<0,
+\frac{220}{6231}<b_*<\frac2{55}.
+$$
+In particular,
+$$
+\frac5{144}<b_*<\frac1{20}.
+$$
+
+For the imaginary axis, the discriminant equality gives
+$$
+H_{b_*}(q_*)=0,
 $$
 while
 $$
-Q\left(\frac17\right)
-=\frac{16293658784}{678223072849}>0.
+H_{b_*}(0)=\frac5{36}-4b_*<0.
+$$
+Since $H_{b_*}$ is an upward-opening quadratic in $q$ and its constant term is negative, its two real roots have opposite signs. Therefore
+$$
+H_{b_*}(q)\leq0\qquad(0\leq q\leq q_*).
+$$
+
+It remains to verify the required real interval. For $0\leq t\leq3$,
+$$
+P_*(-t)-1
+=\frac{t(t-3)}{18}\left(18b_*t^2-t+6\right).
+$$
+The quadratic factor is positive for every real $t$ because
+$$
+1-432b_*<0.
+$$
+Thus $P_*(-t)\leq1$ on $[0,3]$.
+
+For the lower bound, set $u=t/3$. In the degree-four Bernstein basis on $[0,1]$,
+$$
+\begin{aligned}
+P_*(-3u)
+={}&1(1-u)^4
++\frac14\,4u(1-u)^3
++\frac14\,6u^2(1-u)^2\\
+&+\left(\frac58-\frac{81b_*}{4}\right)4u^3(1-u)
++u^4.
+\end{aligned}
+$$
+All Bernstein basis functions are nonnegative and sum to $1$. Since $b_*<1/20$,
+$$
+\frac58-\frac{81b_*}{4}>
+-\frac{31}{80}>-1.
+$$
+Every Bernstein coefficient is therefore greater than $-1$, so
+$$
+P_*(-t)>-1\qquad(0\leq t\leq3).
+$$
+Hence $P_*$ is admissible and attains $R_*=\sqrt{q_*}$. The double-root condition also shows that the maximizing pair $(a_*,b_*)$ is unique.
+
+Step 5: Write the positive cubic root in closed form
+
+Set
+$$
+q=u-6.
+$$
+Then $C(q)=0$ becomes
+$$
+u^3-135u-702=0.
+$$
+Let
+$$
+c=\sqrt[3]{13+2\sqrt{11}}.
+$$
+Because
+$$
+(13+2\sqrt{11})(13-2\sqrt{11})=125,
+$$
+the number
+$$
+u=3c+\frac{15}{c}
+$$
+satisfies
+$$
+u^3-135u
+=27c^3+\frac{3375}{c^3}
+=702.
+$$
+By the uniqueness of the positive root from Step 3,
+$$
+q_*=-6+3\sqrt[3]{13+2\sqrt{11}}
++\frac{15}{\sqrt[3]{13+2\sqrt{11}}}.
 $$
 Therefore
-$
-r_*=\operatorname{root}_{(1/8,1/7)}Q
 $$
-is the unique positive zero of $Q$.
+R_*=
+\sqrt{-6+3\sqrt[3]{13+2\sqrt{11}}
++\frac{15}{\sqrt[3]{13+2\sqrt{11}}}}.
+$$
+Numerically, $R_*\approx2.76648049$.
 
-At $r=r_*$, one has $g_3=0$, while $g_0,g_1,g_2>0$. The finite part of the transformed polynomial is
-$$
-g_2x^2+g_1x+g_0.
-$$
-Its roots have negative real part because their sum is $-g_1/g_2<0$ and their product is $g_0/g_2>0$. Since $g_2\ne0$, exactly one root of $\chi_{r_*}$ is sent to infinity by the Cayley map, so that multiplier is
-$$
-z=-1
-$$
-and it is simple. The other two parasitic multipliers remain strictly inside the unit disk.
-
-If $0<r<r_*$, then $g_3<0$, whereas $G_r(0)=g_0>0$. Since $G_r(x)\to-\infty$ as $x\to+\infty$, $G_r$ has a positive real zero. Under the inverse Cayley map this gives a real multiplier with $|z|>1$. So zero-stability fails below $r_*$.
-
-Step 5: Translate the parasitic criterion back to the BDF4 recurrence
-
-The original four-dimensional recurrence has the constant solution as its consistency mode, with period multiplier $1$. The difference transformation in Step 1 removes only that mode, so the eigenvalues of $M(r)$ are exactly the three parasitic period multipliers.
-
-For $r_*<r\leq1$, all three have modulus less than $1$. At $r=r_*$, the only unit-modulus parasitic multiplier is the simple multiplier $-1$, distinct from the consistency multiplier $1$. Therefore all solutions of the homogeneous BDF4 recurrence remain bounded precisely for
-$$
-r_*\leq r\leq1.
-$$
-Numerically, $r_*\approx0.1420837844$.
-
-Final Answer: $\boxed{\operatorname{root}_{(1/8,1/7)}Q}$
+Final Answer: $\boxed{\sqrt{-6+3\sqrt[3]{13+2\sqrt{11}}+\frac{15}{\sqrt[3]{13+2\sqrt{11}}}}}$
 
 ---
 
 ## Answer
 
-$\operatorname{root}_{(1/8,1/7)}Q$
+$\sqrt{-6+3\sqrt[3]{13+2\sqrt{11}}+\frac{15}{\sqrt[3]{13+2\sqrt{11}}}}$
 
 ---
 
 ## Classification
 
-**Problem Type:** Parameter identification
+**Problem Type:** Optimization
 
 **Answer Type:** Exact scalar
 
@@ -215,8 +212,8 @@ $\operatorname{root}_{(1/8,1/7)}Q$
 
 ## Solution Concepts
 
-- variable-step backward differentiation formulas
-- Lagrange differentiation weights
-- Floquet monodromy
-- Cayley transform
-- Routh-Hurwitz stability criterion
+- stability-polynomial optimization
+- imaginary-axis stability
+- discriminant certificate
+- Bernstein basis bounds
+- Cardano formula
