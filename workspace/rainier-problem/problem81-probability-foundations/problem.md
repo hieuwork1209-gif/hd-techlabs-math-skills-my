@@ -20,8 +20,8 @@ Define
 $$
 \omega_x=
 \begin{cases}
-3/4,&S_x=R,\\
-1/4,&S_x=L.
+\\frac{3}{4},&S_x=R,\\
+\\frac{1}{4},&S_x=L.
 \end{cases}
 $$
 Conditioned on $\omega$, let $(X_n)_{n\ge0}$ be the nearest-neighbor random walk on $\mathbb Z$, started at $X_0=0$, with
