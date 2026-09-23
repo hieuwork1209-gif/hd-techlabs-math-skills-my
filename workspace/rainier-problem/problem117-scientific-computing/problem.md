@@ -2,25 +2,39 @@
 
 ## LaTeX (Normalized)
 
-Let $A$ range over all real symmetric positive definite matrices whose spectrum is contained in
+Let
 $$
-E=[1,2]\cup[8,16].
+J_1=
+\begin{bmatrix}
+1&1\\
+0&1
+\end{bmatrix},
+\qquad
+J_4=
+\begin{bmatrix}
+4&1\\
+0&4
+\end{bmatrix}.
 $$
-For $p>0$, define the Cayley step
+For $0<\alpha\leq\beta$, define the two-step Richardson error propagator
 $$
-C_p(A)=(A-pI)(A+pI)^{-1}.
-$$
-A two-shift cycle with $0<p_1\leq p_2$ has worst-case Euclidean contraction factor
-$$
-\rho(p_1,p_2)
+E_{\alpha,\beta}(J)
 =
-\sup_{\substack{A=A^T>0\\ \sigma(A)\subset E}}
-\left\|C_{p_2}(A)C_{p_1}(A)\right\|_2.
+(I-\beta J)(I-\alpha J),
+$$
+and the worst-case Euclidean contraction factor
+$$
+\rho(\alpha,\beta)
+=
+\max\left\{
+\|E_{\alpha,\beta}(J_1)\|_2,
+\|E_{\alpha,\beta}(J_4)\|_2
+\right\}.
 $$
 
-Determine all ordered pairs $(p_1,p_2)$ that minimize $\rho(p_1,p_2)$, and determine the minimum contraction factor.
+Determine exactly the unique ordered pair $(\alpha_*,\beta_*)$ minimizing $\rho(\alpha,\beta)$, and determine the minimum contraction factor.
 
-Give the final answer as the ordered pair $(p_1,p_2)$.
+Give the final answer as $(\alpha_*,\beta_*)$.
 
 ---
 
@@ -37,4 +51,4 @@ Give the final answer as the ordered pair $(p_1,p_2)$.
 
 ## Domain Explanation
 
-This problem optimizes the shifts in a two-step Cayley iteration for an SPD linear operator with two separated spectral clusters. The requested pair is determined by the worst-case matrix contraction over the clustered spectrum, so the primary classification is scientific computing.
+This problem optimizes two Richardson relaxation parameters for a pair of defective linear modes. Because the matrices are nonnormal, the Euclidean contraction is governed by singular values rather than eigenvalues alone, making the task a parameter-design problem in scientific computing.
