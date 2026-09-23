@@ -123,10 +123,14 @@ and $x_j'<x_j$. Thus this replacement decreases $A$ while leaving $B$ unchanged.
 $$
 \frac34\leq x_j\leq\frac78.
 $$
-At an optimum with value below $\left(\frac34\right)^5\frac78$, no $x_j$ equals $\frac78$, because then $B=0$ and $A$ is at least that larger value. On the remaining region, $A$ increases and $B=\prod(7-8x_j)$ decreases in each variable, so a minimizer must satisfy
-$$
+At an optimum with value below $\left(\frac34\right)^5\frac78$, no $x_j$ equals $\frac78$, because then $B=0$ and $A$ is at least that larger value. On the remaining region,
+$
+B=\prod_{j=1}^{6}(7-8x_j).
+$
+If $B>A$, increasing any coordinate that is below $\frac78$ raises $A$ and lowers $B$ continuously, so the larger of the two products decreases until equality is reached. If $A>B$, decrease a coordinate that is above $\frac34$; this lowers $A$ and raises $B$. If equality were never reached, repeating this would force all six coordinates to $\frac34$, where $B=1>A$. Hence equality must be reached first. Therefore every minimizer satisfies
+$
 A=B.
-$$
+$
 
 Step 5: Solve the balanced endpoint problem and verify attainment
 Under $A=B$, define
