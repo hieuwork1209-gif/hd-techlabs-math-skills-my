@@ -52,7 +52,7 @@ $$
 $$
 \beta_4=-\frac{2r(2r+1)(r+1)(r+2)}{D}.
 $$
-Let $T(r)$ be the companion matrix with first row $(\beta_1,\beta_2,\beta_3,\beta_4)$. In the other phase the cumulative distances, after division by the current step length $r$, are exactly the preceding distances with $r$ replaced by $1/r$. Hence the two-step monodromy for first differences is
+Let $T(r)$ be the companion matrix with first row $(\beta_1,\beta_2,\beta_3,\beta_4)$. In the other phase the cumulative distances, after division by the current step length $r$, are exactly the preceding distances with $r$ replaced by $1/r$. The two-step monodromy for first differences is therefore
 $$
 M(r)=T(1/r)T(r).
 $$
@@ -121,7 +121,7 @@ H(u)={}&230400u^9+6166272u^8+72776096u^7+494393008u^6\\
 &+12938115410u^2+8700086037u+2565772676.
 \end{aligned}
 $$
-Every coefficient of $H$ is positive, so this real part cannot vanish for $u\geq2$. Thus a parasitic multiplier can meet the unit circle only at $z=1$ or $z=-1$.
+Every coefficient of $H$ is positive, so this real part cannot vanish for $u\geq2$. A parasitic multiplier can therefore meet the unit circle only at $z=1$ or $z=-1$.
 
 At those two points,
 $$
@@ -172,7 +172,7 @@ Also
 $$
 F'(u)=12u^2-16u-95
 $$
-has only one positive zero before $6$, so $F$ is strictly increasing on $[6,\infty)$. Hence there is a unique
+has only one positive zero before $6$, so $F$ is strictly increasing on $[6,\infty)$. There is therefore a unique
 $$
 u_*\in(6,7)
 $$
@@ -188,7 +188,7 @@ which is negative throughout $6<u<7$. The remaining roots stay inside the disk.
 
 For $u>u_*$, $P_u(-1)<0$, while the leading coefficient $A_4$ is positive and $P_u(z)\to+\infty$ as $z\to-\infty$. Hence $P_u$ has a real root less than $-1$, and zero-stability fails.
 
-The original BDF recurrence has the constant solution as its consistency multiplier $1$. The first-difference reduction removes exactly that mode. At the boundary the only parasitic unit multiplier is the simple value $-1$, so the original recurrence remains bounded there.
+Use state coordinates consisting of one base value together with four consecutive first differences. Over one two-step period, the state matrix is block upper triangular with diagonal blocks $[1]$ and $M(r)$. Since $P_u(1)>0$, the consistency multiplier $1$ is not an eigenvalue of $M(r)$. At the boundary the only parasitic unit multiplier is the simple value $-1$, so every unit-modulus multiplier of the full recurrence is semisimple and every homogeneous solution remains bounded.
 
 Step 5: Recover the step-ratio interval and the requested exact scalar
 
