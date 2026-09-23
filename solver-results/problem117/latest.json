@@ -2,8 +2,8 @@
   "problem": "problem117",
   "branch": "adversary/problem117",
   "problem_path": "workspace/rainier-problem/problem117-error-analysis-and-stability/problem.md",
-  "problem_blob_sha": "33ce207416ad920eb0e3a068765a722f44dfd9c3",
-  "source_commit_sha": "8176d8e8687b01f8e22ddca3b1efd366383a6536",
+  "problem_blob_sha": "c700ac681aad854f6e6ce44a369e62da1f6dcf4a",
+  "source_commit_sha": "7d52b4ee641a936e1941600d2d3963e32e47e547",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-23T15:08:06+00:00",
-  "result_file": "solver-results/problem117/33ce207416ad.json"
+  "completed_at": "2026-09-23T15:30:27+00:00",
+  "result_file": "solver-results/problem117/c700ac681aad.json"
 }
