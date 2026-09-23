@@ -2,15 +2,15 @@
 
 ## LaTeX (Normalized)
 
-Let \(A\) range over all real symmetric positive definite matrices whose spectrum is contained in
+Let $A$ range over all real symmetric positive definite matrices whose spectrum is contained in
 $$
 E=[1,2]\cup[8,16].
 $$
-For \(p>0\), define the Cayley step
+For $p>0$, define the Cayley step
 $$
 C_p(A)=(A-pI)(A+pI)^{-1}.
 $$
-A two-shift cycle with \(0<p_1\leq p_2\) has worst-case Euclidean contraction factor
+A two-shift cycle with $0<p_1\leq p_2$ has worst-case Euclidean contraction factor
 $$
 \rho(p_1,p_2)
 =
@@ -18,9 +18,9 @@ $$
 \left\|C_{p_2}(A)C_{p_1}(A)\right\|_2.
 $$
 
-Determine all ordered pairs \((p_1,p_2)\) that minimize \(\rho(p_1,p_2)\), and determine the minimum contraction factor.
+Determine all ordered pairs $(p_1,p_2)$ that minimize $\rho(p_1,p_2)$, and determine the minimum contraction factor.
 
-Give the final answer as the ordered pair \((p_1,p_2)\).
+Give the final answer as the ordered pair $(p_1,p_2)$.
 
 ---
 
