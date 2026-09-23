@@ -65,7 +65,7 @@ u_x
 =
 1+\rho_x+\rho_xu_{x-1}.
 $$
-Iterating to the left yields
+Iterating this nonnegative recursion to the left and taking monotone limits gives
 $$
 E_\omega^0T_1
 =
