@@ -93,10 +93,15 @@ b_*=\frac{q_*+6}{3q_*(q_*+9)},
 a_*=3b_*+\frac1{18}.
 $$
 The function
-$$
+$
 b(q)=\frac{q+6}{3q(q+9)}
-$$
-is strictly decreasing for $q>0$. Using the bounds from Step 3,
+$
+satisfies
+$
+b'(q)=-\frac{q^2+12q+54}{3q^2(q+9)^2}<0
+\qquad(q>0).
+$
+Using the bounds from Step 3,
 $$
 \frac{220}{6231}<b_*<\frac2{55}.
 $$
