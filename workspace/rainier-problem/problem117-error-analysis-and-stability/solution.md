@@ -38,8 +38,8 @@ a_r=\frac{y}{x(x-1)(x-y)},
 \qquad
 a_s=-\frac{x}{y(x-y)(y-1)}.
 $$
-Hence
-$$
+Therefore
+$
 a_0=-2(a_1+a_r+a_s)
 =-\frac{2(xy+x+y)}{xy}.
 $$
@@ -95,7 +95,7 @@ and this is the unique minimum because $E_{x,y}(h)\to\infty$ at both ends. At th
 $$
 (xy)^{1/4}K^{3/4}.
 $$
-Thus the stencil-shape problem is equivalent to minimizing
+So the stencil-shape problem is equivalent to minimizing
 $$
 J(x,y)=xyK^3
 =\frac{64x^4D^3}{y^2(x-1)^3(y-x)^3},
@@ -175,8 +175,8 @@ For escape to infinity, Step 1 gives $a_1>1$ and $a_s>0$, so
 $$
 K=4(a_1+a_s)>4.
 $$
-Hence
-$$
+Therefore
+$
 J(x,y)=xyK^3>64xy,
 $$
 which tends to infinity whenever $x$ or $y$ tends to infinity under $1<x<y$.
@@ -185,9 +185,9 @@ Therefore $J$ attains a global minimum at an interior stationary point. Step 3 s
 $$
 (x_*,y_*)=(2+\sqrt2,3+2\sqrt2).
 $$
-Thus this point is the unique global minimizer.
+So this point is the unique global minimizer.
 
-Step 5: Recover the optimal radii, weights, and mesh width
+Step 5: Recover the minimizing radii, weights, and mesh width
 
 Since $x_*=r_*^2$ and $y_*=s_*^2$,
 $$
@@ -212,7 +212,7 @@ K_*=24-12\sqrt2,
 \qquad
 x_*y_*=10+7\sqrt2.
 $$
-Thus the optimal mesh width for the leading-order envelope is
+The minimizing mesh width for the leading-order envelope is
 $$
 h_*=
 \left(
