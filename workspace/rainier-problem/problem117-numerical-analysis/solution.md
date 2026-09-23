@@ -1,159 +1,255 @@
 ## Steps
 
-Step 1: Determine the Gaussian node
-Let
-$$
-d\mu_\tau(x)=(1+\tau x^2)\,dx+\tau(\delta_{-1}+\delta_1),\qquad \tau>0,
-$$
-and write
-$$
-m_k=\int_{-1}^1x^k\,d\mu_\tau(x).
-$$
-The measure is even, so $m_{2j+1}=0$, and
-$$
-m_{2j}=\frac{2}{2j+1}+\frac{2\tau}{2j+3}+2\tau. \tag{1}
-$$
-In particular,
-$$
-m_2=\frac{2(18\tau+5)}{15},\qquad
-m_4=\frac{2(40\tau+7)}{35}.
-$$
-The monic cubic orthogonal polynomial is odd, hence is
-$$
-g_3(x)=x(x^2-r),
-$$
-where $r=a_\tau^2$. Orthogonality to $x$ gives
-$$
-0=\int xg_3(x)\,d\mu_\tau=m_4-rm_2,
-$$
-so
-$$
-r=\frac{3(40\tau+7)}{7(18\tau+5)}. \tag{2}
-$$
-For every $\tau>0$, $0<r<1$.
+Step 1: Reduce the two-grid cycle to a scalar cubic minimax problem
 
-Step 2: Force compatibility from the two missing moments
-Assume a nested symmetric seven-node rule exists and put
-$$
-q=b^2,
+Put \(c=\cos\theta\) for \(0\leq\theta\leq\frac{\pi}{2}\), and use the harmonic basis
+\[
+\{e^{ij\theta},e^{ij(\pi-\theta)}\}.
+\]
+The fine-grid Poisson symbol is
+\[
+\widehat A_h(\theta)=\operatorname{diag}(2(1-c),2(1+c)).
+\]
+For linear interpolation the harmonic symbol is \(p=(1+c,1-c)^T\). Since full weighting is a scalar multiple of \(p^T\), the Galerkin coarse-grid correction is
+\[
+C(c)=I-p(p^T\widehat A_hp)^{-1}p^T\widehat A_h
+=\frac12
+\begin{bmatrix}
+1-c&-(1+c)\\
+-(1-c)&1+c
+\end{bmatrix}.
+\]
+Weighted Jacobi has diagonal harmonic symbol
+\[
+S_q(c)=\operatorname{diag}(1-q+qc,1-q-qc).
+\]
+Hence the two-grid symbol is the rank-one matrix \(S_\nu(c)C(c)S_\omega(c)\). Its squared Euclidean norm is
+\[
+F_{\omega,\nu}(t)
+=\bigl((1-\nu)^2+\nu^2t\bigr)
+\bigl((1-\omega)^2+(6\omega^2-6\omega+1)t+\omega^2t^2\bigr),
+\qquad t=c^2\in[0,1].
+\]
+Therefore
+\[
+\rho(\omega,\nu)^2=\max_{0\leq t\leq1}F_{\omega,\nu}(t).
+\]
+
+Step 2: Construct the two-contact candidate
+
+Introduce the odds variables
+\[
+a=\frac{1-\omega}{\omega},\qquad b=\frac{1-\nu}{\nu}.
+\]
+Then
+\[
+F_{\omega,\nu}(t)
+=\frac{f_{a,b}(t)}{(1+a)^2(1+b)^2},
 \qquad
-\Pi(x)=x(x^2-1)(x^2-r)(x^2-q).
-$$
-Because $\Pi$ vanishes at all seven nodes, exactness through degree $11$ forces
-$$
-\int \Pi(x)x\,d\mu_\tau(x)=0,
+f_{a,b}(t)=(t+b^2)\bigl(t^2+(a^2-4a+1)t+a^2\bigr).
+\]
+At the candidate, the endpoint \(t=1\) and one interior point \(t=x\) have the same maximal value, while \(x\) is stationary. Since \(f_{a,b}\) is monic cubic, this is equivalent to
+\[
+f_{a,b}(t)-m=(t-1)(t-x)^2.
+\]
+Comparing the \(t^2\) and \(t\) coefficients gives
+\[
+a^2-4a+1+b^2=-(2x+1),
+\]
+\[
+a^2+(a^2-4a+1)b^2=x^2+2x.
+\]
+Eliminating \(b^2\) yields two algebraic branches
+\[
+x=-a^2+4a\pm\sqrt2(a-1)-2.
+\]
+The branch relevant to \(0<x<1\), \(b^2>0\), and the small-contraction region is
+\[
+x=-a^2+(4+\sqrt2)a-(2+\sqrt2),
+\]
+\[
+b^2=a^2-(4+2\sqrt2)a+2+2\sqrt2.
+\]
+It is feasible for
+\[
+0.7286<a<0.8011.
+\]
+The other sign can be feasible only for \(a>1.668\). On that branch
+\[
+F_{\omega,\nu}(1)
+=2(2\omega-1)^2(2\nu^2-2\nu+1)
+\geq(2\omega-1)^2
+=\left(\frac{a-1}{a+1}\right)^2>\frac1{16},
+\]
+so it cannot compete with the candidate constructed below, whose squared factor is below \(0.019\).
+
+Step 3: Determine the exact stationary point on the feasible branch
+
+Write
+\[
+H(a)=a^2-(4+2\sqrt2)a+2+2\sqrt2,\qquad b=\sqrt{H(a)}.
+\]
+Along the equal-contact branch,
+\[
+M(a)=F_{\omega,\nu}(1)
+=\frac{2(1-a)^2(1+b^2)}{(1+a)^2(1+b)^2}.
+\]
+Differentiating \(\log M(a)\), clearing the positive denominators, and using \(b^2=H(a)\) reduces the stationary equation to
+\[
+u(a)b+2v(a)=0,
+\]
+where
+\[
+u(a)=a^2+(1-\sqrt2)a-8-5\sqrt2,
+\]
+\[
+v(a)=a^3-\left(\frac{15}{2}+4\sqrt2\right)a^2
++\left(\frac{45}{2}+\frac{33}{2}\sqrt2\right)a
+-13-\frac{19}{2}\sqrt2.
+\]
+Thus
+\[
+4v(a)^2-u(a)^2H(a)=R(a),
+\]
+with \(R\) exactly the polynomial defined in the problem. On \(0.787<a<0.788\), one has \(u(a)<0<v(a)\), so \(R(a)=0\) is equivalent to the unsquared stationary equation.
+
+Using \(1.4142<\sqrt2<1.4143\), direct interval bounds give
+\[
+R''(a)>2500,\qquad R'(0.72)>1200
+\]
+throughout \(0.72\leq a\leq0.81\). Hence \(R\) is strictly increasing there. Also
+\[
+R(0.787)<-0.51,\qquad R(0.788)>1.06.
+\]
+Therefore
+\[
+a_*=\operatorname{root}_{(787/1000,197/250)}R
+\]
+is the unique stationary point on the feasible plus branch. Define
+\[
+b_*=\sqrt{H(a_*)},\quad
+\omega_*=\frac1{1+a_*},\quad
+\nu_*=\frac1{1+b_*},
+\]
+and
+\[
+x_*=-a_*^2+(4+\sqrt2)a_*-(2+\sqrt2).
+\]
+
+Step 4: Certify global optimality and uniqueness
+
+Let \(F(t)=F_{\omega,\nu}(t)\), and let \(M_*=F_{\omega_*,\nu_*}(1)=F_{\omega_*,\nu_*}(x_*)\). Choose
+\[
+\lambda=
+\frac{Q_1(2\nu_*-1)}
+{Q_1(2\nu_*-1)-Q_x(\nu_*(1+x_*)-1)},
+\]
+where
+\[
+Q_x=(1-\omega_*)^2+(6\omega_*^2-6\omega_*+1)x_*+\omega_*^2x_*^2,
+\]
+\[
+Q_1=(1-\omega_*)^2+(6\omega_*^2-6\omega_*+1)+\omega_*^2.
+\]
+The isolating interval for \(a_*\) gives \(0.82<\lambda<0.88\). By construction,
+\[
+\lambda\nabla F_{\omega,\nu}(x_*)\big|_{(\omega_*,\nu_*)}
++(1-\lambda)\nabla F_{\omega,\nu}(1)\big|_{(\omega_*,\nu_*)}=0;
+\]
+the \(\nu\)-component is the displayed definition of \(\lambda\), and the \(\omega\)-component is the stationary equation from Step 3.
+
+For arbitrary \(0<\omega,\nu<1\), set
+\[
+G(\omega,\nu)=\lambda F_{\omega,\nu}(x_*)+(1-\lambda)F_{\omega,\nu}(1).
+\]
+Since \(G\) is a convex combination of two sampled values,
+\[
+\rho(\omega,\nu)^2\geq G(\omega,\nu).
+\]
+As a quadratic in \(\nu\),
+\[
+G=A(\omega)\nu^2-2C(\omega)\nu+C(\omega),
+\]
+where, with
+\[
+q_t(\omega)=(1-\omega)^2+(6\omega^2-6\omega+1)t+\omega^2t^2,
+\]
+\[
+A(\omega)=\lambda(1+x_*)q_{x_*}(\omega)+2(1-\lambda)q_1(\omega),
+\]
+\[
+C(\omega)=\lambda q_{x_*}(\omega)+(1-\lambda)q_1(\omega).
+\]
+Both \(A\) and \(C\) are positive. Completing the square gives
+\[
+G-M_*
+=A\left(\nu-\frac{C}{A}\right)^2
++\frac{N(\omega)}{A},
 \qquad
-\int \Pi(x)x^3\,d\mu_\tau(x)=0. \tag{3}
-$$
-Unlike the endpoint-mass-only family, the density $1+\tau x^2$ keeps the parameter in these two conditions. Expanding (3) gives
-$$
-m_8-(1+r+q)m_6+(r+q+rq)m_4-rqm_2=0, \tag{4}
-$$
-$$
-m_{10}-(1+r+q)m_8+(r+q+rq)m_6-rqm_4=0. \tag{5}
-$$
-Substitute (1) and the Gaussian relation (2). Solving (4) for $q$ gives
-$$
-q=\frac{1095\tau^2+2440\tau+77}
-{11(225\tau^2+700\tau+63)}, \tag{6}
-$$
-whereas (5) gives
-$$
-q=\frac{5(1491\tau^2+2700\tau-91)}
-{13(1095\tau^2+2440\tau+77)}. \tag{7}
-$$
-Thus compatibility forces
-$$
-P(\tau):=
-357975\tau^4+2668650\tau^3+3550150\tau^2+120890\tau-49049=0. \tag{8}
-$$
-For $\tau>0$,
-$$
-P'(\tau)=1431900\tau^3+8005950\tau^2+7100300\tau+120890>0,
-$$
-so $P$ has at most one positive zero. Moreover
-$$
-P\!\left(\frac9{100}\right)<0,
+N=C(A-C)-AM_*.
+\]
+The stationarity conditions imply that \(N\) has a double zero at \(\omega_*\). Expanding the displayed quadratic polynomials and dividing by this double factor gives
+\[
+N(\omega)=(\omega-\omega_*)^2
+\left(q_2\omega^2+q_1\omega+q_0\right).
+\]
+Substitution of the exact quantities above, using only the isolating interval \(0.787<a_*<0.788\), gives the rigorous coefficient bounds
+\[
+5.85<q_2<5.92,\qquad
+-7.22<q_1<-7.15,\qquad
+2.28<q_0<2.34.
+\]
+Consequently
+\[
+q_1^2-4q_2q_0<7.22^2-4(5.85)(2.28)<0,
+\]
+so the quadratic factor is positive for every real \(\omega\). Thus \(G\geq M_*\), with equality only at \(\omega=\omega_*\) and \(\nu=C/A=\nu_*\). Therefore
+\[
+\rho(\omega,\nu)^2\geq M_*
+\]
+for every admissible pair, and equality is attained uniquely by \((\omega_*,\nu_*)\).
+
+Step 5: Record the optimizer and convergence factor
+
+The exact optimizer is
+\[
+\omega_*=\frac1{1+a_*},
 \qquad
-P\!\left(\frac1{10}\right)=\frac{498379}{400}>0.
-$$
-Hence there is exactly one positive candidate
-$$
-t:=\operatorname{root}_{(9/100,1/10)}P. \tag{9}
-$$
-
-At $\tau=t$, define
-$$
-r=\frac{3(40t+7)}{7(18t+5)},
+\nu_*=
+\frac1{1+\sqrt{a_*^2-(4+2\sqrt2)a_*+2+2\sqrt2}},
+\]
+where
+\[
+a_*=\operatorname{root}_{(787/1000,197/250)}R.
+\]
+The exact optimal two-grid factor is
+\[
+\rho_*=
+\frac{|1-a_*|}{(1+a_*)(1+b_*)}
+\sqrt{2(1+b_*^2)},
 \qquad
-q=\frac{1095t^2+2440t+77}{11(225t^2+700t+63)}. \tag{10}
-$$
-Both are positive, and
-$$
-r-q=
-\frac{2(79515t^3+315105t^2+74879t+5929)}
-{77(18t+5)(225t^2+700t+63)}>0. \tag{11}
-$$
-Together with $r<1$, this gives
-$$
-0<q<r<1,
-$$
-so
-$$
-b=\sqrt q,\qquad a_t=\sqrt r
-$$
-indeed satisfy $0<b<a_t<1$.
-
-Step 3: Construct the positive degree-$11$ rule
-Match the even moments of degrees $0,2,4,6$ with
-$$
-Q(p)=A[p(-1)+p(1)]
-+B[p(-\sqrt q)+p(\sqrt q)]
-+C[p(-\sqrt r)+p(\sqrt r)]
-+Dp(0).
-$$
-The degree-$2,4,6$ equations form a Vandermonde system because $1,q,r$ are distinct, so $A,B,C$ are unique, and the mass equation then fixes $D$. Solving and factoring gives
-$$
-A=
-\frac{11(225t^2+700t+63)^2}
-{630(3t+7)(345t^2+1315t+154)}, \tag{12}
-$$
-$$
-B=
-\frac{1331(225t^2+700t+63)^4}
-{630(345t^2+1315t+154)(1095t^2+2440t+77)
-(79515t^3+315105t^2+74879t+5929)}, \tag{13}
-$$
-$$
-C=
-\frac{686(18t+5)^4(5t^2+30t+33)}
-{135(3t+7)(40t+7)(79515t^3+315105t^2+74879t+5929)}, \tag{14}
-$$
-$$
-D=
-\frac{64(25245t^4+468090t^3+931742t^2+151410t+1617)}
-{945(40t+7)(1095t^2+2440t+77)}. \tag{15}
-$$
-Every factor in (12)-(15) is positive because $t>0$, so all four weights are positive.
-
-The rule now matches degrees $0,2,4,6$. Equation (4) is exactly the vanishing of the degree-$8$ error on $\Pi x$, so degree $8$ also matches. With degree $8$ established, (5) is exactly the vanishing of the degree-$10$ error on $\Pi x^3$, so degree $10$ matches as well. Symmetry handles every odd degree. Therefore the rule is exact for all polynomials of degree at most $11$.
-
-Step 4: Prove uniqueness
-Conversely, every compatible nested rule must satisfy the Gaussian relation (2) and both annihilation identities (3). Hence its $q$ must satisfy both (6) and (7), so its parameter must satisfy $P(\tau)=0$. By Step 2, the only positive possibility is $\tau=t$. Then (10) fixes both nontrivial interior nodes, and the distinct-node moment system fixes $A,B,C,D$ uniquely. Thus the compatible parameter and the entire positive nested rule are unique.
-
-Final Answer: $\boxed{\operatorname{root}_{(9/100,1/10)}P}$
+b_*=\sqrt{a_*^2-(4+2\sqrt2)a_*+2+2\sqrt2}.
+\]
+Numerically,
+\[
+a_*\approx0.7873268113,\quad
+\omega_*\approx0.5594947682,\quad
+\nu_*\approx0.7883157487,\quad
+\rho_*\approx0.1373545385.
+\]
+Final Answer: $\boxed{\operatorname{root}_{(787/1000,197/250)}R}$
 
 ---
 
 ## Answer
 
-$\operatorname{root}_{(9/100,1/10)}P$
+$\operatorname{root}_{(787/1000,197/250)}R$
 
 ---
 
 ## Classification
 
-**Problem Type:** Symbolic derivation
+**Problem Type:** Optimization
 
 **Answer Type:** Exact scalar
 
@@ -161,8 +257,8 @@ $\operatorname{root}_{(9/100,1/10)}P$
 
 ## Solution Concepts
 
-- Gaussian quadrature nodes
-- nested quadrature compatibility
-- parameterized moment equations
-- node-polynomial annihilation
-- positive quadrature weights
+- local Fourier analysis
+- Galerkin coarse-grid correction
+- weighted Jacobi smoothing
+- minimax equioscillation
+- global lower-bound certificate
