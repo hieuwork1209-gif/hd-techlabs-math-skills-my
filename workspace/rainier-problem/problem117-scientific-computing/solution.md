@@ -35,7 +35,7 @@ a_\lambda=1-s\lambda+p\lambda^2,
 \qquad
 b_\lambda=-s+2p\lambda.
 $$
-Thus the two relevant error matrices are
+The two relevant error matrices are
 $$
 T_\lambda=
 \begin{bmatrix}
@@ -124,16 +124,16 @@ $$
 \qquad
 2\cdot17-5^2=9>0.
 $$
-Hence
-$$
+Therefore
+$
 K_m(s,p)\geq\frac{3m(16-3m)}{64}.
 $$
 Combining the two bounds yields
 $$
 m^2\geq\frac{3m(16-3m)}{64}.
 $$
-Since a contraction factor is positive here,
-$$
+The case $m=0$ is impossible: $b_4-b_1=6p$ would force $p=0$, then $b_1=0$ would force $s=0$, but $a_1=1$. Therefore $m>0$, and division by $m$ gives
+$
 73m\geq48.
 $$
 Therefore every pair satisfies
@@ -181,7 +181,7 @@ $$
 $$
 So the lower bound is attained.
 
-Moreover, if any pair attains $m_*$, every inequality in Step 3 must be an equality. The positive-definite quadratic form then forces exactly the same values $s=s_*$ and $p=p_*$. Thus the minimizing sum and product are unique.
+If any pair attains $m_*$, every inequality in Step 3 must be an equality. The positive-definite quadratic form then forces exactly the same values $s=s_*$ and $p=p_*$. The minimizing sum and product are therefore unique.
 
 Step 5: Recover the ordered Richardson parameters
 
@@ -201,8 +201,8 @@ s_*^2-4p_*
 =
 \frac{9\cdot1265}{292^2}.
 $$
-Hence
-$$
+Therefore
+$
 \alpha_*=
 \frac{275-3\sqrt{1265}}{584},
 \qquad
