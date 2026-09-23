@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-numerical-analysis/problem.md",
+  "source_commit_sha": "c0b8016be2946a3ae6c872e10c30d600100c3cec",
+  "problem_blob_sha": "9d69f6b45473dfc462bcdbd4947a98055bebe076",
+  "statement_sha256": "5ee5172dbc46690bec33ecb0c1ab50648840c1a4e5f1fe93334796b6c279cf5b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-23T13:48:23+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(c=\\cos\\theta\\in[0,1]\\), and set\n\\[\np=\\frac{1+c}{2},\\qquad q=\\frac{1-c}{2}.\n\\]\n\nFor Jacobi weight \\(t\\),\n\\[\ns_t(\\theta)=1-t+t\\cos\\theta,\n\\qquad\ns_t(\\theta+\\pi)=1-t-t\\cos\\theta.\n\\]\n\nUsing full weighting, linear interpolation, and the Galerkin coarse operator, the coarse-grid correction symbol on the harmonic pair is\n\\[\nC(\\theta)=\n\\begin{pmatrix}\nq&-p\\\\\n-q&p\n\\end{pmatrix}.\n\\]\nThus\n\\[\n\\widehat E_{\\omega,\\nu}\n=\n\\begin{pmatrix}\ns_\\nu(\\theta)&0\\\\\n0&s_\\nu(\\theta+\\pi)\n\\end{pmatrix}\nC(\\theta)\n\\begin{pmatrix}\ns_\\omega(\\theta)&0\\\\\n0&s_\\omega(\\theta+\\pi)\n\\end{pmatrix}.\n\\]\n\nSince this matrix has rank one, its squared spectral norm equals its squared Frobenius norm:\n\\[\n\\|\\widehat E_{\\omega,\\nu}(\\theta)\\|_2^2\n=\n\\bigl(s_\\nu(\\theta)^2+s_\\nu(\\theta+\\pi)^2\\bigr)\n\\bigl(q^2s_\\omega(\\theta)^2+p^2s_\\omega(\\theta+\\pi)^2\\bigr).\n\\]\n\nNow write\n\\[\na=\\frac{1-\\omega}{\\omega},\\qquad\nb=\\frac{1-\\nu}{\\nu},\\qquad x=c^2.\n\\]\nThen\n\\[\ns_\\omega(\\theta)=\\omega(a+c),\\qquad\ns_\\omega(\\theta+\\pi)=\\omega(a-c),\n\\]\nand similarly for \\(\\nu\\). A direct simplification gives\n\\[\n\\|\\widehat E_{\\omega,\\nu}(\\theta)\\|_2^2\n=\n\\frac{(b^2+x)\\bigl(x^2+(a^2-4a+1)x+a^2\\bigr)}\n{(1+a)^2(1+b)^2}.\n\\]\n\nTherefore\n\\[\n\\rho(\\omega,\\nu)^2\n=\n\\frac1{(1+a)^2(1+b)^2}\n\\max_{0\\le x\\le1}\n(b^2+x)\\bigl(x^2+(a^2-4a+1)x+a^2\\bigr).\n\\]\n\nAt the minimizer, the maximum is attained both at \\(x=1\\) and at an interior point \\(x=r\\in(0,1)\\). Hence\n\\[\n(b^2+r)\\bigl(r^2+(a^2-4a+1)r+a^2\\bigr)\n=\n2(1+b^2)(a-1)^2,\n\\tag{1}\n\\]\nand\n\\[\n3r^2+2(a^2-4a+1+b^2)r+a^2+(a^2-4a+1)b^2=0.\n\\tag{2}\n\\]\n\nThe two-variable minimax stationarity condition is\n\\[\nL_aM_b-L_bM_a=0,\n\\tag{3}\n\\]\nwhere\n\\[\n\\begin{aligned}\nL_a&=\n\\frac{2(a(1+r)-2r)}\n{r^2+(a^2-4a+1)r+a^2}\n-\\frac2{1+a},\\\\\nL_b&=\n\\frac{2(b-r)}{(b^2+r)(1+b)},\\\\\nM_a&=\\frac2{a-1}-\\frac2{1+a},\\\\\nM_b&=\\frac{2(b-1)}{(1+b^2)(1+b)}.\n\\end{aligned}\n\\]\n\nEliminating \\(b\\) and \\(r\\) from (1), (2), and (3), and discarding only factors that are nonzero for \\(a,b>0\\), gives\n\\[\n\\begin{aligned}\n0={}&3a^6-(58+28\\sqrt2)a^5+(544+378\\sqrt2)a^4\\\\\n&-(2610+1866\\sqrt2)a^3+(5591+3958\\sqrt2)a^2\\\\\n&-(4104+2898\\sqrt2)a+850+600\\sqrt2.\n\\end{aligned}\n\\]\nThe admissible root lies in\n\\[\n\\left(\\frac{787}{1000},\\frac{197}{250}\\right),\n\\]\nwhere the polynomial has exactly one zero.\n\nThus\n\\[\n\\alpha=\\frac{1-\\omega_*}{\\omega_*}\n=\n\\operatorname{root}_{(787/1000,\\;197/250)}R.\n\\]\n\nFor reference, the corresponding values are\n\\[\n\\alpha\\approx0.7873268113,\\qquad\n\\omega_*=\\frac1{1+\\alpha}\\approx0.5594947682,\n\\]\n\\[\n\\nu_*\\approx0.7883157487,\n\\qquad\n\\rho(\\omega_*,\\nu_*)\\approx0.1373545385.\n\\]\n\n\\[\n\\boxed{\\operatorname{root}_{(787/1000,\\;197/250)}R}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-23T13:56:04+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/9d69f6b45473.json"
+}
