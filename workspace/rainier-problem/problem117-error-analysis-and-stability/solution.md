@@ -133,7 +133,7 @@ g_2,\qquad
 \frac{g_2g_1-g_3g_0}{g_2},\qquad
 g_0.
 $$
-Hence all roots have negative real part exactly when these four quantities are positive. If $Q(r)>0$, then
+All roots have negative real part exactly when these four quantities are positive. If $Q(r)>0$, then
 $$
 g_3>0,\qquad g_2>g_3>0,\qquad g_1>g_0>0,
 $$
@@ -183,7 +183,7 @@ z=-1
 $$
 and it is simple. The other two parasitic multipliers remain strictly inside the unit disk.
 
-If $0<r<r_*$, then $g_3<0$, whereas $G_r(0)=g_0>0$. Since $G_r(x)\to-\infty$ as $x\to+\infty$, $G_r$ has a positive real zero. Under the inverse Cayley map this gives a real multiplier with $|z|>1$. Hence zero-stability fails below $r_*$.
+If $0<r<r_*$, then $g_3<0$, whereas $G_r(0)=g_0>0$. Since $G_r(x)\to-\infty$ as $x\to+\infty$, $G_r$ has a positive real zero. Under the inverse Cayley map this gives a real multiplier with $|z|>1$. So zero-stability fails below $r_*$.
 
 Step 5: Translate the parasitic criterion back to the BDF4 recurrence
 
