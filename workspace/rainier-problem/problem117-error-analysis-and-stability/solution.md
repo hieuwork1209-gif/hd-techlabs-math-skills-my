@@ -10,8 +10,8 @@ The condition $P(-3)=1$ gives
 $$
 1-3+\frac92-27a+81b=1,
 $$
-hence
-$$
+so
+$
 a=3b+\frac1{18}.
 $$
 So every admissible polynomial is determined by the single real parameter $b$.
@@ -56,7 +56,7 @@ where
 $$
 C(q)=q^3+18q^2-27q-1296.
 $$
-Hence any admissible imaginary radius must satisfy
+Any admissible imaginary radius must therefore satisfy
 $$
 C(R^2)\leq0.
 $$
@@ -69,7 +69,7 @@ This derivative has exactly one positive zero,
 $$
 q_0=-6+3\sqrt5.
 $$
-The polynomial decreases on $(0,q_0)$, so $C(q_0)<C(0)<0$, and then increases strictly to infinity. Thus $C$ has a unique positive zero, denoted $q_*$. Also
+The polynomial decreases on $(0,q_0)$, so $C(q_0)<C(0)<0$, and then increases strictly to infinity. So $C$ has a unique positive zero, denoted $q_*$. Also
 $$
 C\left(\frac{15}{2}\right)=-\frac{513}{8}<0,
 \qquad
@@ -86,7 +86,7 @@ $$
 
 Step 4: Construct the unique polynomial attaining the bound
 
-At $q=q_*$, equality in the discriminant bound forces the quadratic in $b$ from Step 3 to have a double root. Hence the only possible maximizing coefficient is
+At $q=q_*$, equality in the discriminant bound forces the quadratic in $b$ from Step 3 to have a double root. The only possible maximizing coefficient is therefore
 $$
 b_*=\frac{q_*+6}{3q_*(q_*+9)},
 \qquad
@@ -132,7 +132,7 @@ The quadratic factor is positive for every real $t$ because
 $$
 1-432b_*<0.
 $$
-Thus $P_*(-t)\leq1$ on $[0,3]$.
+So $P_*(-t)\leq1$ on $[0,3]$.
 
 For the lower bound, set $u=t/3$. In the degree-four Bernstein basis on $[0,1]$,
 $$
@@ -154,7 +154,7 @@ Every Bernstein coefficient is therefore greater than $-1$, so
 $$
 P_*(-t)>-1\qquad(0\leq t\leq3).
 $$
-Hence $P_*$ is admissible and attains $R_*=\sqrt{q_*}$. The double-root condition also shows that the maximizing pair $(a_*,b_*)$ is unique.
+So $P_*$ is admissible and attains $R_*=\sqrt{q_*}$. The double-root condition also shows that the maximizing pair $(a_*,b_*)$ is unique.
 
 Step 5: Write the positive cubic root in closed form
 
