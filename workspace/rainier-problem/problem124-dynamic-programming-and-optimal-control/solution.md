@@ -38,62 +38,151 @@ Q\geq\Phi(B,L):=Bb^2-\frac{b^4}{2},
 $$
 with equality exactly for the capped tent $v_b$. Also $\Phi_L<0$, so for fixed area extra available length can only decrease the least possible cubic cost.
 
-Step 2: Prove the signed compression and solve the barycenter placement
-Let the common positive/negative area be $A>0$, let their common barycenter be $C$, and put $h=\sqrt A$. First the positive triangle of area $A$ can be centered at $C$. Indeed, for $f=x_+$, let $H=\max f$ and use the level-set notation from Step 1. Since $f(t)\leq t$, a set $\{f>a\}$ of measure $m(a)$ has first moment at least $a m(a)+m(a)^2/2$. Writing $m(a)=2(H-a)+e(a)$ and $E=\int_0^He(a)\,da$, the reversed Chebyshev inequality and Cauchy-Schwarz give
+Step 2: Replace the informal layer slide by a moment-preserving excursion compression
+Let
 $$
-\int_0^1t f(t)\,dt
-\geq H^3+\frac{3H}{2}E+\frac{E^2}{2H}
-\geq(H^2+E)^{3/2}=A^{3/2}.
+A=\int_0^1x_+(t)\,dt=\int_0^1x_-(t)\,dt,\qquad h=\sqrt A.
 $$
-The middle inequality follows after squaring from
-$$
-\left(1+\frac32r+\frac12r^2\right)^2-(1+r)^3=\frac14r^2(1+r)^2\geq0,
-$$
-where $r=E/H^2$. Hence $C\geq h$; applying the same argument to $f(1-t)$ gives $1-C\geq h$.
+We use the following lemma. Its point is that no superlevel set is slid independently, so there is no hidden compatibility issue between nesting, disjointness, the barycenter constraint, and the Lipschitz bound.
 
-Now perform the signed layer-set compression. Move each positive superlevel set toward $C$ and each negative superlevel set away from $C$, preserving its measure; choose the left/right portions of every moved negative level so that their first moment is $C$ times their total measure. These horizontal slides preserve the total positive and negative areas and their common barycenter. Because positive and negative level sets were disjoint before the slide, moving the positive levels inward and the negative levels outward cannot increase their total span. Nestedness is preserved, and the inequality
-$$
-m(a)\geq m(b)+2(b-a)
-$$
-shows that the reconstructed sign parts remain $1$-Lipschitz. Thus every feasible path is dominated by one with a central positive component and one negative component on each side. Applying the sharp bounds from Step 1 then replaces the positive component by its triangle and each negative component by a capped tent; any freed zero time is absorbed into a negative block because $\Phi_L<0$. Equality throughout forces exactly this three-block geometry.
+**Signed excursion-compression lemma.** Suppose \(x\) is \(1\)-Lipschitz, \(x(0)=x(1)=0\), and
+\[
+\int_0^1x=0,\qquad \int_0^1t\,x(t)\,dt=0.
+\]
+If \(A>0\), then there are \(L,R>0\) and \(B_L,B_R>0\) such that
+\[
+B_L+B_R=A,\qquad 2h+L+R\leq1,
+\]
+\[
+B_L(L+2h)=B_R(R+2h),
+\tag{2.1}
+\]
+and
+\[
+\int_0^1x(t)^3\,dt
+\leq
+\frac{A^2}{2}-\Phi(B_L,L)-\Phi(B_R,R).
+\tag{2.2}
+\]
+The right side is realized by a contiguous packet consisting of a left negative capped tent of area \(B_L\) and length \(L\), then a positive triangular tent of area \(A\) and length \(2h\), then a right negative capped tent of area \(B_R\) and length \(R\). Equality in the compression part of (2.2) can occur only when the positive part of \(x\) is already one triangular excursion and the negative part consists of exactly two excursions which, after deleting zero intervals, are the two capped tents in that order.
 
-Let the left negative block have length $L$, the right one length
-$$
-R=1-2h-L,
-$$
-and let their areas be $B_L,B_R$. The three symmetric blocks tile $[0,1]$, with centers $L/2$, $L+h$, and $L+2h+R/2$. Therefore
-$$
-B_L+B_R=h^2,
-$$
-$$
-B_L\frac L2+B_R\left(L+2h+\frac R2\right)=h^2(L+h).
-$$
-Solving,
-$$
+Here is a proof with the moment bookkeeping made explicit. Since \(x\) is continuous, each component of \(\{x\neq0\}\) is an open interval on which \(x\) has one sign and vanishes at the two endpoints. Call such a component an excursion. Cutting and reassembling only at these zero endpoints never creates a jump, and rigid horizontal translation of an excursion preserves its slopes, its area, and its cubic integral. If an excursion of unsigned area \(B\) is translated by \(d\), its unsigned first moment changes by exactly \(Bd\). Thus translating a positive packet of area \(P\) by \(d_+\) and a negative packet of area \(N\) by \(d_-\) preserves equality of the two barycenters precisely when
+\[
+P\,d_+=N\,d_-.
+\tag{2.3}
+\]
+
+For a positive excursion \(I_i\), let its area be \(A_i\). Step 1 gives
+\[
+\int_{I_i}x_+^3\leq\frac{A_i^2}{2}.
+\]
+Hence
+\[
+\int_0^1x_+^3
+\leq\frac12\sum_iA_i^2
+\leq\frac12\left(\sum_iA_i\right)^2
+=\frac{A^2}{2}.
+\tag{2.4}
+\]
+Also every positive excursion of area \(A_i\) has length at least \(2\sqrt{A_i}\), so all positive excursions can be replaced by one triangular tent of area \(A\) and length \(2h\) without using more time. Both inequalities in (2.4), together with the length inequality, are equalities only when there is one positive excursion and it is exactly the triangular tent from Step 1.
+
+For the negative excursions, first retain their individual lengths and areas. If a collection \(\mathcal G\) of negative excursions has total length \(S\) and total area \(B\), concatenate those excursions at their zero endpoints. This gives a nonnegative \(1\)-Lipschitz function on an interval of length \(S\), still of area \(B\), whose cubic integral is the sum of the cubics of the excursions. The reverse inequality from Step 1 therefore gives
+\[
+\sum_{J\in\mathcal G}\int_Jx_-^3\geq\Phi(B,S).
+\tag{2.5}
+\]
+Equality in (2.5) forces the concatenated profile to be the single capped tent, so in particular there can be no nontrivial internal zero and hence only one nonzero excursion in that packet.
+
+It remains only to explain why the excursions may be packed into two negative packets around the one positive packet while preserving the common barycenter. This is a one-dimensional cut-and-paste statement. Give every excursion its signed area
+\[
+m(I)=\int_Ix(t)\,dt,
+\]
+so positive excursions have \(m(I)>0\), negative excursions have \(m(I)<0\), and \(\sum_I m(I)=0\). For a packet starting at \(s\), its signed first moment is its intrinsic signed first moment plus \(s\) times its signed area. Thus all dependence on horizontal placement is affine.
+
+For two adjacent zero-ended packets \(E,F\), of lengths \(\ell_E,\ell_F\) and signed areas \(m_E,m_F\), interchanging their order changes the total signed first moment by
+\[
+\Delta(E,F)=m_F\ell_E-m_E\ell_F.
+\tag{2.6}
+\]
+Likewise, inserting a zero interval of length \(q\) after a prefix of signed area \(M\) shifts the complementary suffix by \(q\) and changes the signed first moment by
+\[
+-qM,
+\tag{2.7}
+\]
+because the total signed area is zero. Equations (2.6) and (2.7) give an explicit balancing algorithm: bubble all positive excursions into one middle packet. Whenever an adjacent interchange changes the signed first moment, put the necessary amount of the available zero time, including the time released when the positive excursions are replaced by their single minimal triangle, at the interface whose prefix has the opposite signed area; (2.7) gives the unique nonnegative correction. If the correction exhausts that interface, continue at the next one. Because the original ordering itself has signed first moment \(0\), the running signed moment starts on one side of \(0\) in the all-left-negative ordering and ends on the other side in the all-right-negative ordering, so this finite or countable sweep must stop with signed moment exactly \(0\). No block is ever cut away from a zero: the only operations are interchange at zero endpoints, rigid translation, and replacement by the Step 1 extremal. Therefore disjointness and the \(1\)-Lipschitz bound are preserved throughout. For countably many excursions, apply the construction to the first finitely many nonzero excursions and pass to the limit; the omitted total area and cubic tend to \(0\), while the moment identities are continuous.
+
+At the end of this sweep there is one positive packet between a left and a right negative packet. Merge each negative packet by (2.5). If their areas and lengths are \(B_L,L\) and \(B_R,R\), respectively, translate the whole three-block packet as one unit so that its left endpoint is \(0\). The three block centers are then
+\[
+\frac L2,\qquad L+h,\qquad L+2h+\frac R2.
+\]
+Equality of the positive and negative first moments is therefore
+\[
+B_L\frac L2+B_R\left(L+2h+\frac R2\right)
+=A(L+h),
+\]
+which, using \(A=B_L+B_R\), is exactly (2.1). This proves the lemma and, at the same time, proves that the rearrangement is feasible rather than merely formal.
+
+We now remove the remaining zero time explicitly. Put
+\[
+\delta=1-(2h+L+R)\geq0.
+\]
+Keep \(B_L,B_R\) fixed and set
+\[
+\Delta L=\delta\,\frac{B_R}{A},\qquad
+\Delta R=\delta\,\frac{B_L}{A}.
+\tag{2.8}
+\]
+Then \(\Delta L+\Delta R=\delta\), and
+\[
+B_L\Delta L=B_R\Delta R.
+\]
+Consequently (2.1) remains true after replacing \(L,R\) by \(L+\Delta L,R+\Delta R\). Thus the extra time is absorbed into the two negative blocks while preserving both their total area and the common barycenter. Since \(\Phi_L(B,L)<0\) whenever \(B>0\), this operation strictly decreases the total negative cubic unless \(\delta=0\). Therefore every maximizer must satisfy
+\[
+L+R=1-2h.
+\tag{2.9}
+\]
+
+With (2.9), equations \(B_L+B_R=h^2\) and (2.1) give
+\[
 B_L=\frac{h^2(1-L)}{1+2h},\qquad
 B_R=\frac{h^2(1-R)}{1+2h}.
-$$
+\tag{2.10}
+\]
 Put
-$$
+\[
 k=\frac{h^2}{1+2h},\qquad B(s)=k(1-s),\qquad F_h(s)=\Phi(B(s),s).
-$$
-If $b(s)$ is the smaller root of $B(s)=b(s-b)$, then
-$$
+\]
+If \(b(s)\) is the smaller root of \(B(s)=b(s-b)\), then
+\[
 b'(s)=-\frac{k+b}{s-2b}<0.
-$$
-Since $F_h(s)=b^3s-\frac32b^4$, differentiation along the barycenter constraint gives
-$$
+\]
+Since
+\[
+F_h(s)=b^3s-\frac32b^4,
+\]
+differentiation along the constraint \(B(s)=k(1-s)\) gives
+\[
 F_h'(s)=-b^2(2b+3k).
-$$
-This is strictly increasing in $s$, so $F_h$ is strictly convex on its feasible interval. As $L+R=1-2h$, the total negative cubic $F_h(L)+F_h(R)$ is uniquely minimized at
-$$
-L=R=\ell:=\frac{1-2h}{2},\qquad B_L=B_R=\frac{h^2}{2}.
-$$
-The cap-feasibility condition $h^2/2\leq\ell^2/4$ is equivalent to
-$$
+\]
+Because \(b'(s)<0\), this derivative is strictly increasing, so \(F_h\) is strictly convex on its feasible interval. From \(L+R=1-2h\),
+\[
+F_h(L)+F_h(R)
+\geq
+2F_h\!\left(\frac{1-2h}{2}\right),
+\]
+with equality only at
+\[
+L=R=\ell:=\frac{1-2h}{2}.
+\]
+Then (2.10) gives
+\[
+B_L=B_R=\frac{h^2}{2}.
+\]
+The cap-feasibility condition \(h^2/2\leq\ell^2/4\) is equivalent to
+\[
 2h(1+\sqrt2)\leq1.
-$$
-Thus every maximizer is symmetric about $1/2$ and has one central positive triangle and two congruent outer negative capped tents.
+\]
+Thus, for fixed \(h\), equality in the sharp compression bound forces one central positive triangle and two congruent outer negative capped tents, with no zero gaps.
 
 Step 3: Optimize the two heights
 Let $b$ be the depth of either negative cap. Since each cap has area $h^2/2$ and length $\ell=(1-2h)/2$,
@@ -149,7 +238,7 @@ u(t)=
 1,&\frac9{10}<t<1.
 \end{cases}
 $$
-Every inequality in Steps 1 and 2 is strict unless the excursion shapes, the three-block packing, and the left-right split are exactly those displayed. Hence this control is the unique optimizer almost everywhere.
+The equality conditions are now explicit. Equality in (2.4) forces a single positive triangular excursion. Equality in (2.5) forces exactly one capped negative excursion in each outer packet. Equality in the zero-time step forces \(\delta=0\), and strict convexity of \(F_h\) forces \(L=R\) and \(B_L=B_R\). Finally Step 3 has the unique maximizing ratio \(z=1/2\). Hence the displayed state profile is the only equality profile; differentiating it shows that the displayed control is the unique optimizer up to equality almost everywhere.
 
 Final Answer: $\boxed{\frac1{2000}}$
 
