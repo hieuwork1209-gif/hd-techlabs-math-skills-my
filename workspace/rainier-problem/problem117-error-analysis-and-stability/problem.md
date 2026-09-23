@@ -14,8 +14,8 @@ a_0f(0)+a_1[f(h)+f(-h)]
 $$
 be the unique symmetric seven-point formula for $f''(0)$ that is exact for every polynomial of degree at most $6$.
 
-Define the leading truncation coefficient $T(r,s)$ by
-$$
+For sufficiently smooth $f$, define the leading truncation coefficient $T(r,s)$ by
+$
 D_{r,s,h}f
 =f''(0)+T(r,s)f^{(8)}(0)h^6+O(h^8),
 $$
