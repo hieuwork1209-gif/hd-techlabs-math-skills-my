@@ -2,46 +2,38 @@
 
 ## LaTeX (Normalized)
 
-For $1<r<s$ and $h>0$, let
+Fix \(0<r\leq1\). Let the time-step lengths repeat periodically as
 $$
-D_{r,s,h}f=
-\frac{1}{h^2}
-\left(
-a_0f(0)+a_1[f(h)+f(-h)]
-+a_r[f(rh)+f(-rh)]
-+a_s[f(sh)+f(-sh)]
-\right)
+h,\quad rh,\quad r^2h,\quad h,\quad rh,\quad r^2h,\ldots
 $$
-be the unique symmetric seven-point formula for $f''(0)$ that is exact for every polynomial of degree at most $6$.
-
-For sufficiently smooth $f$, define the leading truncation coefficient $T(r,s)$ by
-$
-D_{r,s,h}f
-=f''(0)+T(r,s)f^{(8)}(0)h^6+O(h^8),
+For each \(n\geq4\), let \(p_n\) be the polynomial of degree at most \(4\) interpolating
 $$
-and define the worst-case absolute-noise amplification
+(t_{n-j},y_{n-j}),\qquad j=0,1,2,3,4,
 $$
-K(r,s)=|a_0|+2(|a_1|+|a_r|+|a_s|).
+and define the variable-step BDF4 method by
+$$
+p_n'(t_n)=f(t_n,y_n).
 $$
 
-Fix arbitrary constants $M>0$ and $\varepsilon>0$. For each stencil shape define the optimized leading-order error envelope
-$$
-\mathcal E(r,s)
-=
-\min_{h>0}
-\left(
-M|T(r,s)|h^6
-+\frac{\varepsilon K(r,s)}{h^2}
-\right).
-$$
+Apply the method to the test equation \(y'=0\). Call \(r\) zero-stable if every solution of the resulting homogeneous recurrence is bounded for all \(n\geq0\).
 
-Determine exactly the unique pair
+Define
 $$
-(r_*,s_*)=\operatorname*{argmin}_{1<r<s}\mathcal E(r,s).
+\begin{aligned}
+Q(t)={}&4t^{14}+18t^{13}+63t^{12}+172t^{11}+371t^{10}
++656t^9+926t^8\\
+&+1074t^7+986t^6+728t^5+399t^4+164t^3+37t^2+4t-2,
+\end{aligned}
 $$
-Also determine the four stencil coefficients and the minimizing mesh width at this pair.
+and write \(\operatorname{root}_{(u,v)}Q\) for the unique zero of \(Q\) in \((u,v)\), whenever it exists.
 
-Give the final answer as $(r_*,s_*)$.
+Determine exactly the critical value \(r_*\) such that the method is zero-stable precisely for
+$$
+r_*\leq r\leq1.
+$$
+Also determine which parasitic period multiplier lies on the unit circle when \(r=r_*\).
+
+Give the final answer as \(r_*\).
 
 ---
 
@@ -51,11 +43,11 @@ Give the final answer as $(r_*,s_*)$.
 |---|---|
 | **Domain** | Optimization and Numerical Mathematics |
 | **Sub-domain** | Error analysis and stability |
-| **Problem Type** | Optimization |
-| **Answer Type** | Tuple or ordered list |
+| **Problem Type** | Parameter identification |
+| **Answer Type** | Exact scalar |
 
 ---
 
 ## Domain Explanation
 
-This problem optimizes a high-order finite-difference stencil by balancing its leading truncation error against worst-case amplification of evaluation noise. The requested minimizer is governed by the interaction between consistency, roundoff sensitivity, and optimal mesh selection, so the primary classification is numerical error analysis and stability.
+This problem asks for the exact step-ratio threshold at which a periodic variable-step BDF4 recurrence loses zero-stability. The main task is the stability analysis of a numerical time-stepping method through its periodic parasitic modes, so the primary classification is error analysis and stability.
