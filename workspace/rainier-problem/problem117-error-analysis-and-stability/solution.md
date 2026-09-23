@@ -186,7 +186,7 @@ $$
 $$
 which is negative throughout $6<u<7$. The remaining roots stay inside the disk.
 
-For $u>u_*$, $P_u(-1)<0$, while the leading coefficient $A_4$ is positive and $P_u(z)\to+\infty$ as $z\to-\infty$. Hence $P_u$ has a real root less than $-1$, and zero-stability fails.
+For $u>u_*$, $P_u(-1)<0$, while the leading coefficient $A_4$ is positive and $P_u(z)\to+\infty$ as $z\to-\infty$. It follows that $P_u$ has a real root less than $-1$, and zero-stability fails.
 
 Use state coordinates consisting of one base value together with four consecutive first differences. Over one two-step period, the state matrix is block upper triangular with diagonal blocks $[1]$ and $M(r)$. Since $P_u(1)>0$, the consistency multiplier $1$ is not an eigenvalue of $M(r)$. At the boundary the only parasitic unit multiplier is the simple value $-1$, so every unit-modulus multiplier of the full recurrence is semisimple and every homogeneous solution remains bounded.
 
