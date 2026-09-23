@@ -10,47 +10,62 @@ $$
 3,&S_x=L.
 \end{cases}
 $$
-The stationary law is $\pi=(\theta,1-\theta)$. Since
+The stationary law is $\pi=(\theta,1-\theta)$. The environment transition matrix is
 $$
-\theta\frac{4(1-\theta)}5=(1-\theta)\frac{4\theta}5,
-$$
-the two-state environment chain is reversible. It is also irreducible for $0<\theta<1$, hence stationary ergodic.
-
-For a nearest-neighbor walk in a fixed environment, let $h(x)=P_\omega^x(T_b<T_a)$ for $a<x<b$. The harmonic equation
-$
-h(x)=\omega_xh(x+1)+(1-\omega_x)h(x-1)
-$
-implies, for $\Delta_x=h(x)-h(x-1)$,
-$
-\Delta_{x+1}=\rho_x\Delta_x.
-$
-Thus the scale increments are successive products of the local odds $\rho_x$, so their exponential growth rate determines which infinite scale tail diverges. By the ergodic theorem,
-$$
-\frac{1}{n}\log\prod_{j=1}^n\rho_j
+P_{\alpha,\theta}
 =
+\alpha I+(1-\alpha)
+\begin{pmatrix}
+\theta&1-\theta\\
+\theta&1-\theta
+\end{pmatrix}.
+$$
+This form shows directly that $\pi P_{\alpha,\theta}=\pi$. It is also reversible, because
+$$
+\theta(1-\alpha)(1-\theta)
+=
+(1-\theta)(1-\alpha)\theta.
+$$
+For $0<\alpha<1$ and $0<\theta<1$ the state chain is irreducible, hence stationary ergodic.
+
+For a fixed environment, let $h(x)=P_\omega^x(T_b<T_a)$ for $a<x<b$. The harmonic equation
+$$
+h(x)=\omega_xh(x+1)+(1-\omega_x)h(x-1)
+$$
+implies, for $\Delta_x=h(x)-h(x-1)$,
+$$
+\Delta_{x+1}=\rho_x\Delta_x.
+$$
+Thus the scale increments are successive products of the local odds. By the ergodic theorem,
+$$
 \frac{1}{n}\sum_{j=1}^n\log\rho_j
 \longrightarrow
 \theta\log\frac{1}{3}+(1-\theta)\log3
 =(1-2\theta)\log3.
 $$
-Therefore the products decay exponentially to the right when $\theta>\frac{1}{2}$ and grow exponentially when $\theta<\frac{1}{2}$, giving right and left transience respectively. At $\theta=\frac{1}{2}$, the state chain switches state with probability $\frac{2}{5}$ at every step. Its successive run lengths are therefore independent geometric random variables with the same law. Pairing an $R$-run with the following $L$-run makes the potential change by $\log 3$ times the difference of two independent identically distributed geometric variables. These paired increments are independent, symmetric, nondegenerate, and integer-valued, so their partial sums visit both signs infinitely often. Hence neither scale tail can be summable, and the walk is recurrent. Therefore
-$
+If this limit is negative, the right scale tail is summable and the left one diverges; if it is positive, the roles reverse. Hence the walk is transient to $+\infty$ for $\theta>\frac{1}{2}$ and to $-\infty$ for $\theta<\frac{1}{2}$.
+
+At $\theta=\frac{1}{2}$, the state chain switches state with probability $(1-\alpha)/2$ at each step. Its successive run lengths are independent geometric random variables with the same law. Pairing an $R$-run with the following $L$-run makes the potential change by $\log3$ times the difference of two independent identically distributed geometric variables. These paired increments form a symmetric nondegenerate one-dimensional random walk, so their partial sums visit both signs infinitely often. Both scale tails therefore diverge, and the walk is recurrent. Thus
+$$
 \theta_{\rm dir}=\frac{1}{2}.
-$
+$$
 
 Step 2: Find the right first-passage threshold from a transfer-matrix series
-For a right-transient environment, let $u_x=E_\omega^x T_{x+1}$. First-step decomposition gives
+For a right-transient environment, let $u_x$ be the quenched expected time to hit $x+1$ starting from $x$. First-step decomposition gives
 $$
 u_x
 =
-1+\omega_x\cdot0+(1-\omega_x)(u_{x-1}+u_x),
+1+(1-\omega_x)(u_{x-1}+u_x),
 $$
 so
 $$
-u_x=\frac{1}{\omega_x}+\rho_xu_{x-1}
-=1+\rho_x+\rho_xu_{x-1}.
+u_x
+=
+\frac{1}{\omega_x}+\rho_xu_{x-1}
+=
+1+\rho_x+\rho_xu_{x-1}.
 $$
-Iterating to the left and using right transience yields
+Iterating to the left yields
 $$
 E_\omega^0T_1
 =
@@ -62,105 +77,111 @@ D=\operatorname{diag}\left(\frac{1}{3},3\right),
 \qquad
 \mathbf 1=\begin{pmatrix}1\\1\end{pmatrix}.
 $$
-Reversibility makes the backward state chain have the same transition matrix $P_\theta$, hence
+Reversibility makes the backward state chain have the same transition matrix, hence
 $$
 \mathbb E_\theta\left[\rho_0\rho_{-1}\cdots\rho_{-k}\right]
 =
-\pi D(P_\theta D)^k\mathbf 1.
+\pi D(P_{\alpha,\theta}D)^k\mathbf 1.
 $$
-Therefore
+Therefore $\mathbb E_\theta T_1$ is finite exactly when the Perron root of $P_{\alpha,\theta}D$ is less than $1$.
+
+Because $\det D=1$ and the two eigenvalues of $P_{\alpha,\theta}$ are $1$ and $\alpha$,
 $$
-\mathbb E_\theta T_1
+\det(P_{\alpha,\theta}D)=\alpha.
+$$
+Its trace is
+$$
+\operatorname{tr}(P_{\alpha,\theta}D)
 =
-1+2\sum_{k=0}^{\infty}\pi D(P_\theta D)^k\mathbf 1.
+3+\frac{\alpha}{3}
+-\frac{8(1-\alpha)\theta}{3}.
 $$
-All entries are nonnegative, so this series converges exactly when the Perron root of $P_\theta D$ is less than $1$. Direct multiplication gives
+For fixed $\alpha$, the Perron root decreases strictly with $\theta$. It equals $1$ precisely when
 $$
-P_\theta D=
-\begin{pmatrix}
-\frac{1+4\theta}{15} & \frac{12(1-\theta)}5\\
-\frac{4\theta}{15} & \frac{3(5-4\theta)}5
-\end{pmatrix},
-$$
-with
-$$
-\det(P_\theta D)=\frac{1}{5},
-\qquad
-\operatorname{tr}(P_\theta D)=\frac{46-32\theta}{15}.
-$$
-Its Perron root is the larger root of
-$$
-\lambda^2-\frac{46-32\theta}{15}\lambda+\frac{1}{5}=0,
-$$
-and therefore decreases strictly with $\theta$. It equals $1$ precisely when
-$$
-\det(I-P_\theta D)
+0
 =
-1-\operatorname{tr}(P_\theta D)+\det(P_\theta D)
+\det(I-P_{\alpha,\theta}D)
 =
-\frac{4(8\theta-7)}{15}
+1-\operatorname{tr}(P_{\alpha,\theta}D)+\alpha,
 $$
-vanishes. Consequently
+which reduces to
+$$
+8(1-\alpha)\theta=6-2\alpha.
+$$
+Thus
 $$
 \mathbb E_\theta T_1<\infty
 \quad\Longleftrightarrow\quad
-\theta>\frac{7}{8},
+\theta>\frac{3-\alpha}{4(1-\alpha)},
 $$
-so
+and
 $$
-\theta_+=\frac{7}{8}.
+\theta_+=\frac{3-\alpha}{4(1-\alpha)}.
 $$
 
-Step 3: Find the left first-passage threshold by the reflected transfer matrix
+Step 3: Find the left first-passage threshold from the reflected transfer matrix
 For left passage, reflection replaces $\rho_x$ by $\rho_x^{-1}$. Put
 $$
 D^{-1}=\operatorname{diag}\left(3,\frac{1}{3}\right).
 $$
-The same first-step iteration and reversibility argument gives
+The same first-step iteration and reversibility argument shows that $\mathbb E_\theta T_{-1}$ is finite exactly when the Perron root of $P_{\alpha,\theta}D^{-1}$ is less than $1$. Again
 $$
-\mathbb E_\theta T_{-1}
+\det(P_{\alpha,\theta}D^{-1})=\alpha,
+$$
+while
+$$
+\operatorname{tr}(P_{\alpha,\theta}D^{-1})
 =
-1+2\sum_{k=0}^{\infty}\pi D^{-1}(P_\theta D^{-1})^k\mathbf 1,
+\frac{1+9\alpha+8(1-\alpha)\theta}{3}.
 $$
-which converges exactly when the Perron root of $P_\theta D^{-1}$ is less than $1$. Here
+This Perron root increases strictly with $\theta$, and it equals $1$ exactly when
 $$
-\det(P_\theta D^{-1})=\frac{1}{5},
-\qquad
-\operatorname{tr}(P_\theta D^{-1})=\frac{14+32\theta}{15}.
-$$
-The Perron root is therefore strictly increasing in $\theta$, and it equals $1$ exactly when
-$$
-\det(I-P_\theta D^{-1})
+0
 =
-1-\operatorname{tr}(P_\theta D^{-1})+\det(P_\theta D^{-1})
+\det(I-P_{\alpha,\theta}D^{-1})
 =
-\frac{4(1-8\theta)}{15}
+1-\operatorname{tr}(P_{\alpha,\theta}D^{-1})+\alpha.
 $$
-vanishes. Hence
+Equivalently,
+$$
+8(1-\alpha)\theta=2-6\alpha.
+$$
+Hence
 $$
 \mathbb E_\theta T_{-1}<\infty
 \quad\Longleftrightarrow\quad
-\theta<\frac{1}{8},
+\theta<\frac{1-3\alpha}{4(1-\alpha)},
 $$
 so
 $$
-\theta_-=\frac{1}{8}.
+\theta_-=\frac{1-3\alpha}{4(1-\alpha)}.
 $$
+The hypothesis $0<\alpha<\frac{1}{3}$ ensures $0<\theta_-<\frac{1}{2}<\theta_+<1$.
 
-Step 4: Assemble the three transition parameters
-The logarithmic potential changes sign at $\frac{1}{2}$, while the correlation-sensitive first-passage moment thresholds occur at $\frac{1}{8}$ and $\frac{7}{8}$. Thus the unique ordered triple satisfying the three defining phase conditions is
+Step 4: Assemble the transition parameters
+The logarithmic potential gives $\theta_{\rm dir}=\frac{1}{2}$, while the two correlation-sensitive first-passage moment thresholds are
 $$
-\left(\theta_-,\theta_{\rm dir},\theta_+\right)
+\theta_- = \frac{1-3\alpha}{4(1-\alpha)},
+\qquad
+\theta_+ = \frac{3-\alpha}{4(1-\alpha)}.
+$$
+Therefore
+$$
+(\theta_-,\theta_{\rm dir},\theta_+)
 =
-\left(\frac{1}{8},\frac{1}{2},\frac{7}{8}\right).
+\left(
+\frac{1-3\alpha}{4(1-\alpha)},
+\frac{1}{2},
+\frac{3-\alpha}{4(1-\alpha)}
+\right).
 $$
-Final Answer: $\boxed{\left(\frac{1}{8},\frac{1}{2},\frac{7}{8}\right)}$
+Final Answer: $\boxed{\left(\frac{1-3\alpha}{4(1-\alpha)},\frac{1}{2},\frac{3-\alpha}{4(1-\alpha)}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{1}{8},\frac{1}{2},\frac{7}{8}\right)$
+$\left(\frac{1-3\alpha}{4(1-\alpha)},\frac{1}{2},\frac{3-\alpha}{4(1-\alpha)}\right)$
 
 ---
 
