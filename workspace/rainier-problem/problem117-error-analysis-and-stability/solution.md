@@ -1,247 +1,222 @@
 ## Steps
 
-Step 1: Derive the unique sixth-order symmetric stencil
+Step 1: Derive the BDF4 difference-transfer matrix
 
-Set
+At step \(n\), let
 $$
-x=r^2,qquad y=s^2,
+H_j=t_n-t_{n-j},\qquad j=1,2,3,4.
 $$
-so that $1<x<y$. Write the stencil as
+After translating \(t_n\) to \(0\), the interpolation nodes are \(0,-H_1,-H_2,-H_3,-H_4\). If
 $$
-D_{r,s,h}f=
-\frac{1}{h^2}
-\left(
-a_0f(0)+a_1[f(h)+f(-h)]
-+a_r[f(rh)+f(-rh)]
-+a_s[f(sh)+f(-sh)]
-\right).
+p_n'(t_n)=\sum_{j=0}^4 w_jy_{n-j},
 $$
-Exactness for $1,t^2,t^4,t^6$ gives
+the Lagrange basis gives
 $$
-a_0+2(a_1+a_r+a_s)=0,
+w_0=\sum_{m=1}^4\frac1{H_m},
 $$
+and, for \(1\leq j\leq4\),
 $$
-a_1+xa_r+ya_s=1,
+w_j=
+-\frac{\prod_{\substack{1\leq m\leq4\\m\ne j}}H_m}
+{H_j\prod_{\substack{1\leq m\leq4\\m\ne j}}(H_m-H_j)}.
 $$
+For the test equation \(y'=0\),
 $$
-a_1+x^2a_r+y^2a_s=0,
+\sum_{j=0}^4w_jy_{n-j}=0.
 $$
+Because the derivative formula annihilates constants, \(\sum_{j=0}^4w_j=0\). Set \(d_n=y_n-y_{n-1}\). Substituting
 $$
-a_1+x^3a_r+y^3a_s=0.
+y_{n-j}=y_{n-1}-\sum_{k=1}^{j-1}d_{n-k}
 $$
-The determinant of the last three equations is $xy(x-1)(y-1)(y-x)$, which is nonzero on $1<x<y$. Cramer's rule gives
+into the recurrence gives
 $$
-a_1=\frac{xy}{(x-1)(y-1)},
+\begin{bmatrix}
+d_n\\ d_{n-1}\\ d_{n-2}
+\end{bmatrix}
+=
+T(H_1,H_2,H_3,H_4)
+\begin{bmatrix}
+d_{n-1}\\ d_{n-2}\\ d_{n-3}
+\end{bmatrix},
 $$
+where
 $$
-a_r=\frac{y}{x(x-1)(x-y)},
+T=
+\begin{bmatrix}
+\beta_1&\beta_2&\beta_3\\
+1&0&0\\
+0&1&0
+\end{bmatrix},
 \qquad
-a_s=-\frac{x}{y(x-y)(y-1)}.
+\beta_k=\frac{\sum_{j=k+1}^4w_j}{w_0}.
 $$
-Therefore
-$
-a_0=-2(a_1+a_r+a_s)
-=-\frac{2(xy+x+y)}{xy}.
-$$
-In particular,
-$$
-a_1>0,qquad a_r<0,qquad a_s>0,qquad a_0<0.
-$$
+Thus zero-stability reduces to the three parasitic Floquet multipliers of a \(3\times3\) periodic transfer product.
 
-Step 2: Compute the truncation and noise factors and eliminate the mesh width
+Step 2: Build the three-phase monodromy
 
-Taylor expansion at the origin gives
+Scale the repeating steps by the common factor \(h\). For the cycle
 $$
-D_{r,s,h}f
-=f''(0)
-+\frac{2(a_1+x^4a_r+y^4a_s)}{8!}f^{(8)}(0)h^6
-+O(h^8).
+1,\quad r,\quad r^2,
 $$
-Substitution of the weights from Step 1 gives
+the four cumulative backward distances in the three phases are
 $$
-a_1+x^4a_r+y^4a_s=xy,
-$$
-so the leading truncation coefficient is
-$$
-T(r,s)=\frac{xy}{20160}.
-$$
-
-If each sampled function value carries an independent absolute perturbation bounded by $\varepsilon$, the worst-case coefficient amplification is
-$$
-K(r,s)=|a_0|+2(|a_1|+|a_r|+|a_s|).
-$$
-Using the signs from Step 1,
-$$
-K=4(a_1+a_s).
-$$
-Define
-$$
-D=y^2+y+1-x(y+1)=(y+1)(y-x)+1.
-$$
-Then
-$$
-K=\frac{4xD}{y(x-1)(y-x)}.
-$$
-
-For fixed positive $M$ and $\varepsilon$, the leading-order envelope is
-$$
-E_{x,y}(h)=\frac{Mxy}{20160}h^6+\frac{\varepsilon K}{h^2}.
-$$
-Its derivative vanishes only when
-$$
-h^8=\frac{6720\varepsilon K}{Mxy},
-$$
-and this is the unique minimum because $E_{x,y}(h)\to\infty$ at both ends. At that minimizing $h$, the shape-dependent part of the minimum is proportional to
-$$
-(xy)^{1/4}K^{3/4}.
-$$
-So the stencil-shape problem is equivalent to minimizing
-$$
-J(x,y)=xyK^3
-=\frac{64x^4D^3}{y^2(x-1)^3(y-x)^3},
-\qquad 1<x<y.
-$$
-
-Step 3: Determine every interior stationary point of the shape objective
-
-Since $J>0$, an interior stationary point is equivalently a stationary point of $\log J$. Differentiating the displayed formula in Step 2 gives
-$$
-\frac{4}{x}
--\frac{3}{x-1}
-+\frac{3}{y-x}
--\frac{3(y+1)}{D}=0,
+H^{(0)}=(1,\ 1+r^2,\ 1+r+r^2,\ 2+r+r^2),
 $$
 $$
--\frac{2}{y}
--\frac{3}{y-x}
-+\frac{3(2y+1-x)}{D}=0.
+H^{(1)}=(r,\ 1+r,\ 1+r+r^2,\ (1+r)^2),
 $$
-Clearing the positive denominators gives
-$
+$$
+H^{(2)}=(r^2,\ r+r^2,\ 1+r+r^2,\ 1+r+2r^2).
+$$
+Let \(T_k=T(H^{(k)})\). Over one full period,
+$$
+M(r)=T_2T_1T_0.
+$$
+Let
+$$
+\chi_r(z)=\det(zI-M(r)).
+$$
+Substituting the weights from Step 1 and putting the entries over the positive common denominator
+$$
 \begin{aligned}
-P(x,y)={}&x^3y+x^3-2x^2y^2-6x^2y-2x^2+x y^3\\
-&+9xy^2+9xy+x-4y^3-4y^2-4y,
+D(r)={}&(2r^4+7r^3+9r^2+6r+1)\\
+&\cdot(7r^5+13r^4+15r^3+10r^2+4r+1)\\
+&\cdot(r^6+2r^5+8r^4+9r^3+15r^2+8r+7)
 \end{aligned}
-$
+$$
+gives a cubic with denominator \(D(r)\). No sign information is lost because \(D(r)>0\) for \(r>0\).
+
+Step 3: Convert the unit-disk condition to a Hurwitz condition
+
+Use the Cayley map
+$$
+z=\frac{1+x}{1-x}.
+$$
+It maps \(\operatorname{Re}x<0\) to \(|z|<1\). Define
+$$
+G_r(x)=D(r)(1-x)^3\chi_r\left(\frac{1+x}{1-x}\right)
+=g_3x^3+g_2x^2+g_1x+g_0.
+$$
+Put \(S=r^2+r+1\). Collecting the coefficients from the three matrices in Step 2 gives
+$$
+g_0=12S^5(r^5+5r^4+8r^3+9r^2+3r+2),
+$$
+$$
+g_3=4(r+1)Q(r),
+$$
+where \(Q\) is the polynomial defined in the problem. The two differences needed for the stability test are
+$$
+\begin{aligned}
+g_1-g_0
+=4S^3(&7r^9+30r^8+89r^7+186r^6+251r^5\\
+&+270r^4+193r^3+91r^2+28r+3),
+\end{aligned}
+$$
 and
-$
-Q(x,y)=x^2y-2x^2-2xy^2+4xy+2x+y^3-2y^2-5y.
-$
-Viewing $P$ and $Q$ as polynomials in $y$, the ordinary Euclidean subresultant chain continues with
-$
--3\left(x^3-2x^2y-4x^2+xy^2+10xy+3x-4y^2-8y\right),
-$
-$
-18(x-4)(x-1)(x^2-2xy-2x+6y),
-$
-and the constant resultant
-$
--108x(x-1)^2(x^2-4x+2)(x^2-4x+6).
-$
-A common zero of $P$ and $Q$ in $1<x<y$ must therefore satisfy
 $$
-(x^2-4x+2)(x^2-4x+6)=0.
+\begin{aligned}
+g_2-g_3
+=4S^3(&7r^9+30r^8+89r^7+184r^6+249r^5\\
+&+268r^4+191r^3+91r^2+28r+3).
+\end{aligned}
 $$
-The second factor is
-$$
-x^2-4x+6=(x-2)^2+2>0,
-$$
-and the two roots of the first factor are $2\pm\sqrt2$. Only
-$$
-x_*=2+\sqrt2
-$$
-lies above $1$.
+All coefficients displayed here are positive except the constant term of \(Q\).
 
-Substituting $x_*$ into the two cleared stationarity equations gives
+For a cubic
 $$
-P(x_*,y)
-=(-2+\sqrt2)
-(y-3-2\sqrt2)(y^2+3+2\sqrt2),
+g_3x^3+g_2x^2+g_1x+g_0,
 $$
+the Routh table has first column
 $$
-Q(x_*,y)
-=(y-3-2\sqrt2)(y^2-3y+2\sqrt2).
+g_3,\qquad
+g_2,\qquad
+\frac{g_2g_1-g_3g_0}{g_2},\qquad
+g_0.
 $$
-The unique common real root with $y>x_*$ is therefore
+Hence all roots have negative real part exactly when these four quantities are positive. If \(Q(r)>0\), then
 $$
-y_*=3+2\sqrt2.
+g_3>0,\qquad g_2>g_3>0,\qquad g_1>g_0>0,
 $$
+so
+$$
+g_2g_1>g_3g_0.
+$$
+Therefore every parasitic Floquet multiplier lies strictly inside the unit disk whenever \(Q(r)>0\).
 
-Step 4: Prove that the stationary point is the unique global minimizer
+Step 4: Find the sharp threshold and handle the boundary case
 
-The objective $J$ is continuous and positive on $1<x<y$. It diverges as $x\downarrow1$ because of the factor $(x-1)^{-3}$, and it diverges as $y\downarrow x$ because $D\to1$ while $(y-x)^{-3}\to\infty$.
+The polynomial
+$$
+\begin{aligned}
+Q(r)={}&4r^{14}+18r^{13}+63r^{12}+172r^{11}+371r^{10}
++656r^9+926r^8\\
+&+1074r^7+986r^6+728r^5+399r^4+164r^3+37r^2+4r-2
+\end{aligned}
+$$
+has
+$$
+Q'(r)>0\qquad(r>0),
+$$
+because every coefficient of its derivative is positive. Also
+$$
+Q\left(\frac18\right)
+=-\frac{525126457835}{1099511627776}<0,
+$$
+while
+$$
+Q\left(\frac17\right)
+=\frac{16293658784}{678223072849}>0.
+$$
+Thus
+$$
+r_*=\operatorname{root}_{(1/8,1/7)}Q
+$$
+is the unique positive zero of \(Q\).
 
-For escape to infinity, Step 1 gives $a_1>1$ and $a_s>0$, so
+At \(r=r_*\), one has \(g_3=0\), while \(g_0,g_1,g_2>0\). The finite part of the transformed polynomial is
 $$
-K=4(a_1+a_s)>4.
+g_2x^2+g_1x+g_0.
 $$
-Therefore
-$
-J(x,y)=xyK^3>64xy,
+Its roots have negative real part because their sum is \(-g_1/g_2<0\) and their product is \(g_0/g_2>0\). Since \(g_2\ne0\), exactly one root of \(\chi_{r_*}\) is sent to infinity by the Cayley map, so that multiplier is
 $$
-which tends to infinity whenever $x$ or $y$ tends to infinity under $1<x<y$.
+z=-1
+$$
+and it is simple. The other two parasitic multipliers remain strictly inside the unit disk.
 
-Therefore $J$ attains a global minimum at an interior stationary point. Step 3 shows that there is exactly one such point, namely
-$$
-(x_*,y_*)=(2+\sqrt2,3+2\sqrt2).
-$$
-So this point is the unique global minimizer.
+If \(0<r<r_*\), then \(g_3<0\), whereas \(G_r(0)=g_0>0\). Since \(G_r(x)\to-\infty\) as \(x\to+\infty\), \(G_r\) has a positive real zero. Under the inverse Cayley map this gives a real multiplier with \(|z|>1\). Hence zero-stability fails below \(r_*\).
 
-Step 5: Recover the minimizing radii, weights, and mesh width
+Step 5: Translate the parasitic criterion back to the BDF4 recurrence
 
-Since $x_*=r_*^2$ and $y_*=s_*^2$,
+The original four-dimensional recurrence has the constant solution as its consistency mode, with period multiplier \(1\). The difference transformation in Step 1 removes only that mode, so the eigenvalues of \(M(r)\) are exactly the three parasitic period multipliers.
+
+For \(r_*<r\leq1\), all three have modulus less than \(1\). At \(r=r_*\), the only unit-modulus parasitic multiplier is the simple multiplier \(-1\), distinct from the consistency multiplier \(1\). Therefore all solutions of the homogeneous BDF4 recurrence remain bounded precisely for
 $$
-r_*=\sqrt{2+\sqrt2},
-\qquad
-s_*=1+\sqrt2.
+r_*\leq r\leq1.
 $$
-The corresponding stencil weights from Step 1 simplify to
-$$
-a_1=1+\frac{\sqrt2}{2},
-\qquad
-a_r=-1+\frac{\sqrt2}{2},
-$$
-$$
-a_s=5-\frac{7\sqrt2}{2},
-\qquad
-a_0=-10+5\sqrt2.
-$$
-Also
-$$
-K_*=24-12\sqrt2,
-\qquad
-x_*y_*=10+7\sqrt2.
-$$
-The minimizing mesh width for the leading-order envelope is
-$$
-h_*=
-\left(
-\frac{6720\varepsilon(24-12\sqrt2)}
-{M(10+7\sqrt2)}
-\right)^{1/8}.
-$$
-Final Answer: $\boxed{(\sqrt{2+\sqrt2},1+\sqrt2)}$
+Numerically, \(r_*\approx0.1420837844\).
+
+Final Answer: $\boxed{\operatorname{root}_{(1/8,1/7)}Q}$
 
 ---
 
 ## Answer
 
-$(\sqrt{2+\sqrt2},1+\sqrt2)$
+$\operatorname{root}_{(1/8,1/7)}Q$
 
 ---
 
 ## Classification
 
-**Problem Type:** Optimization
+**Problem Type:** Parameter identification
 
-**Answer Type:** Tuple or ordered list
+**Answer Type:** Exact scalar
 
 ---
 
 ## Solution Concepts
 
-- finite-difference moment conditions
-- truncation-roundoff balance
-- noise amplification
-- two-variable minimization
-- polynomial elimination
+- variable-step backward differentiation formulas
+- Lagrange differentiation weights
+- Floquet monodromy
+- Cayley transform
+- Routh-Hurwitz stability criterion
