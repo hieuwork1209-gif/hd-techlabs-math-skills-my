@@ -1,0 +1,22 @@
+{
+  "problem": "problem117",
+  "branch": "adversary/problem117",
+  "problem_path": "workspace/rainier-problem/problem117-error-analysis-and-stability/problem.md",
+  "source_commit_sha": "9b6226d7459e3aa458753a10ce9341de418e0c73",
+  "problem_blob_sha": "f53e47a7b5f6d66862ace0bd6ebe8657f966c9f3",
+  "statement_sha256": "44e8326a669190796c799c9817b6303706415406d0321c60d17cd6827c801455",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-23T15:39:28+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(x=-t\\), \\(0\\le t\\le 3\\). The condition \\(P(-3)=1\\) gives\n\\[\n1-3+\\frac92-27a+81b=1,\n\\]\nso\n\\[\na=3b+\\frac1{18}.\n\\]\nThen\n\\[\nP(-t)-1=-t+\\frac{t^2}{2}-\\left(3b+\\frac1{18}\\right)t^3+bt^4\n=t(t-3)\\left(bt^2-\\frac t{18}+\\frac13\\right).\n\\]\nFor the maximizing polynomial found below, \\(0<b<1/27\\). Hence\n\\[\nbt^2-\\frac t{18}+\\frac13>0\n\\]\non \\([0,3]\\), and also\n\\[\nt(3-t)\\left(bt^2-\\frac t{18}+\\frac13\\right)\n\\le \\frac94\\cdot \\frac12<2,\n\\]\nso the real-axis constraint is satisfied.\n\nNow put \\(s=y^2\\). Since\n\\[\nP(iy)=1-\\frac{s}{2}+bs^2+i\\left(y-ay^{{3}}\\right),\n\\]\nwe get\n\\[\n|P(iy)|^2-1\n=s^2\\left(b^2s^2+\\left(a^2-b\\right)s+\\frac14+2b-2a\\right).\n\\]\nUsing \\(a=3b+\\frac1{18}\\),\n\\[\n|P(iy)|^2-1\n=s^2\\left[\nb^2s^2+\\frac{(54b-1)^2}{324}s+\\frac5{36}-4b\n\\right].\n\\]\nThus for a nonzero imaginary interval we need the quadratic\n\\[\nG_b(s)=b^2s^2+\\frac{(54b-1)^2}{324}s+\\frac5{36}-4b\n\\]\nto be \\(\\le0\\). For fixed \\(s\\), this is possible only if its discriminant as a quadratic in \\(b\\) is nonnegative:\n\\[\n\\left(\\frac{2s}{3}+4\\right)^2\n-4(s^2+9s)\\left(\\frac{s}{324}+\\frac5{36}\\right)\\ge0.\n\\]\nAfter simplifying,\n\\[\n-s^3-18s^2+27s+1296\\ge0.\n\\]\nTherefore \\(s\\le s_*\\), where \\(s_*\\) is the unique positive root of\n\\[\ns^3+18s^2-27s-1296=0.\n\\]\nAt equality the corresponding \\(b\\) is forced:\n\\[\nb=\\frac{s_*+6}{3s_*(s_*+9)},\n\\qquad\na=3b+\\frac1{18}.\n\\]\nWriting \\(u=s_*+6\\), the cubic becomes\n\\[\nu^3-135u-702=0,\n\\]\nso\n\\[\nu=\\sqrt[3]{351+54\\sqrt{11}}+\\sqrt[3]{351-54\\sqrt{11}}.\n\\]\nHence\n\\[\ns_*=\\sqrt[3]{351+54\\sqrt{11}}\n+\\sqrt[3]{351-54\\sqrt{11}}-6.\n\\]\n\nThe unique maximizing coefficients are\n\\[\nb=\\frac{s_*+6}{3s_*(s_*+9)},\\qquad\na=\\frac{s_*^2+27s_*+108}{18s_*(s_*+9)}.\n\\]\n\n\\[\n\\boxed{R_*=\\sqrt{\\sqrt[3]{351+54\\sqrt{11}}+\\sqrt[3]{351-54\\sqrt{11}}-6}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-23T15:41:11+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem117/f53e47a7b5f6.json"
+}
