@@ -17,7 +17,7 @@ $$
 
 Apply the method to the test equation $y'=0$. Call $r$ zero-stable if every solution of the resulting homogeneous recurrence is bounded for all $n\geq0$.
 
-For a polynomial $f(x)$ having a unique zero in $(a,b)$, write $\operatorname{root}_{(a,b)}f$ for that zero.
+For a polynomial $g(x)$ having a unique zero in $(a,b)$, write $\operatorname{root}_{(a,b)}g$ for that zero.
 
 Determine the complete set of zero-stable values of $r$. If $r_-<1$ is the lower endpoint of this set, define
 $$
