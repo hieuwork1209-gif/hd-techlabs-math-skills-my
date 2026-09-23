@@ -65,10 +65,14 @@ u=r+\frac1r.
 $$
 The matrices $M(r)$ and $M(1/r)$ are cyclic products of the same two factors, so they have the same nonzero eigenvalues. The characteristic polynomial therefore depends on $r$ only through the reciprocal invariant $u$.
 
-Multiplying the two companion matrices from Step 1 and collecting powers of $z$ gives
-$$
+Multiplying the two companion matrices from Step 1 gives the characteristic coefficients in the usual principal-minor form: the $z^3$ coefficient is $-\operatorname{tr}M$, the $z^2$ coefficient is the sum of the $2\times2$ principal minors, the $z$ coefficient is minus the sum of the $3\times3$ principal minors, and the constant term is $\det M$. For example,
+$
+\det M=\beta_4(r)\beta_4(1/r)=\frac{4(u+2)(2u+5)}{160u^3+1452u^2+4050u+3581}.
+$
+Substituting the four displayed $\beta_k$ into those coefficient formulas and collecting reciprocal pairs $r^j+r^{-j}$ gives
+$
 \det(zI-M(r))=\frac{P_u(z)}{A_4(u)},
-$$
+$
 where
 $$
 P_u(z)=A_4z^4+A_3z^3+A_2z^2+A_1z+A_0
