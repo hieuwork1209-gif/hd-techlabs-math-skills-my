@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-bifurcation-theory/problem.md",
+  "source_commit_sha": "c35c0a5d9acb62bed7f0aedd9ca44d8ab9583c6e",
+  "problem_blob_sha": "1255612a8631bd2793bcd7a4fd83b87e22058caa",
+  "statement_sha256": "f5e3463bf0b4410e8884206f60f1fb315c635c5456b2ebbd81f9e9a4c57608f7",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T09:38:15+00:00",
+  "status": "timeout",
+  "exit_code": null,
+  "stderr": "timeout after 2100s; Codex process group terminated",
+  "final_answer": "",
+  "completed_at": "2026-09-24T10:13:07+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "LOCAL_STUMPED_BY_TIMEOUT",
+  "recommended_action": "PROMOTE_TO_MAIN_FOR_RAINIER",
+  "promotion_ready": true,
+  "result_file": "solver-results/problem116/1255612a8631.json"
+}
