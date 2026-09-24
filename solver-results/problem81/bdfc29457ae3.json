@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-probability-foundations/problem.md",
+  "source_commit_sha": "65f12be48d646a24490935287379f43db367bffe",
+  "problem_blob_sha": "bdfc29457ae3edc875ab8ffa14899d20e9c8eb15",
+  "statement_sha256": "8e3b5fb6c98e3bdcee672a53dec4e9c9710bbc5a1c959c07bc0df8cb5156f7ce",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T05:41:10+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\ns_r(Q)=Q_1^r+Q_2^r+Q_3^r.\n\\]\n\nThe conditions are\n\n\\[\n\\mathbb E s_2=\\frac12,\\qquad \\mathbb E s_3=\\frac{11}{36},\n\\]\n\nand we need the range of \\(\\mathbb E s_5\\).\n\nSharp cubic bounds on \\(x^5\\), summed over \\(Q_1,Q_2,Q_3\\), give\n\n\\[\n\\frac{19}{144}\\le \\mathbb E s_5\\le \\frac{251}{1296}.\n\\]\n\nFor the lower bound, equality forces every coordinate of \\(Q\\) to be either \\(1/6\\) or \\(2/3\\), hence\n\n\\[\nQ \\text{ is a permutation of } \\left(\\frac23,\\frac16,\\frac16\\right)\n\\]\n\nalmost surely. Therefore \\(K=3\\) almost surely at the lower endpoint.\n\nFor the upper bound, equality forces \\(Q\\) almost surely to be one of the following types:\n\n\\[\n(1,0,0),\\qquad \\left(\\frac12,\\frac12,0\\right),\\qquad \\left(\\frac13,\\frac13,\\frac13\\right),\n\\]\n\nup to permutation. If their total probabilities by support size are \\(p_1,p_2,p_3\\), then the constraints give\n\n\\[\n\\frac{p_3}{27}=\\frac1{54}\\implies p_3=\\frac12,\n\\]\n\nand\n\n\\[\n\\frac{p_2}{4}+\\frac{p_3}{3}=\\frac14\\implies p_2=\\frac13,\n\\]\n\nso\n\n\\[\np_1=1-\\frac13-\\frac12=\\frac16.\n\\]\n\nSince both endpoints are attainable and the feasible laws are convex, every intermediate value is attainable.\n\n\\[\n\\boxed{\\left(\\left[\\frac{19}{144},\\frac{251}{1296}\\right],\\,3,\\,\\left(\\frac16,\\frac13,\\frac12\\right)\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T05:44:42+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/bdfc29457ae3.json"
+}
