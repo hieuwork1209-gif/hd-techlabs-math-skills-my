@@ -39,18 +39,24 @@ yz&1&y\\
 z&0&1
 \end{pmatrix}.
 $$
-For any fixed choice, the solution at times $nT$ is obtained by powers of the corresponding period map. Since the evolution during one fixed period is bounded, that periodic system is exponentially stable exactly when its period map has spectral radius less than $1$.
+For any fixed choice, the solution at times $nT$ is obtained by powers of the corresponding period map. In finite dimension, Jordan form gives exponential decay of these powers exactly when the spectral radius is less than $1$. The transition on the compact interval $[0,T]$ is bounded, so the periodic system is exponentially stable exactly under the same condition.
 
 Step 2: Compare the two orderings at fixed dwell product
-Set $q=xyz$. Expanding the two $3\times3$ determinants gives
-$$
-\det(\lambda I-M_+)=(\lambda-1)^3-q\lambda
-$$
-and
-$$
-\det(\lambda I-M_-)=(\lambda-1)^3-q\lambda^2.
-$$
-If $q=0$, both matrices have spectral radius $1$. Assume $q>0$. Then $x,y,z>0$, both matrices are nonnegative and irreducible, and the Perron-Frobenius theorem gives a positive eigenvalue equal to the spectral radius.
+Set $q=xyz$ and $L=\lambda-1$. Expanding along the first row gives
+$
+\det(\lambda I-M_+)
+=L(L^2-q)-q
+=L^3-q(L+1)
+=(\lambda-1)^3-q\lambda,
+$
+while
+$
+\det(\lambda I-M_-)
+=(L-q)L^2-q(L+1)-qL
+=L^3-q(L+1)^2
+=(\lambda-1)^3-q\lambda^2.
+$
+If $q=0$, both matrices have spectral radius $1$. Assume $q>0$. Then $x,y,z>0$, both matrices are nonnegative, and their positive entries coming from $x,y,z$ contain the directed three-cycle, so both are irreducible. The Perron-Frobenius theorem gives a positive eigenvalue equal to the spectral radius.
 
 For $\lambda>1$, define
 $$
@@ -67,7 +73,7 @@ $$
 \frac{f_-'(\lambda)}{f_-(\lambda)}
 =\frac{\lambda+2}{\lambda(\lambda-1)}>0.
 $$
-Both Perron roots therefore increase with $q$. Also $f_-(\lambda)<f_+(\lambda)$ for every $\lambda>1$, so for the same $q>0$ the reverse-order Perron root is larger. Therefore the reverse order is always the worse of the two.
+Both Perron roots therefore increase with $q$. Also $f_-(\lambda)<f_+(\lambda)$ for every $\lambda>1$, so for the same $q>0$ the reverse-order Perron root is larger. The reverse order is always the worse of the two.
 
 Step 3: Optimize the dwell times for a fixed period
 For fixed $T$,
@@ -94,7 +100,11 @@ The relation in Step 3 is equivalent to
 $$
 T=\frac{3(\lambda_T-1)}{\lambda_T^{2/3}}.
 $$
-The right side is strictly increasing from $0$ to $\infty$ for $\lambda_T>1$, so every $T>0$ corresponds to exactly one $\lambda_T>1$. Put
+Its derivative with respect to $\lambda_T$ is
+$
+\frac{\lambda_T+2}{\lambda_T^{5/3}}>0.
+$
+The right side therefore increases from $0$ to $\infty$ for $\lambda_T>1$, so every $T>0$ corresponds to exactly one $\lambda_T>1$. Put
 $$
 s=\log\lambda_T.
 $$
@@ -116,12 +126,14 @@ Moreover the sign of $h'(s)$ is the sign of
 $$
 F(s)=(3-s)e^s-(3+2s).
 $$
-Indeed, differentiating $\log h$ gives
-$$
+Differentiating $\log h$ gives
+$
 \frac{h'(s)}{h(s)}
 =
-\frac{1}{s}+\frac{2}{3}-\frac{e^s}{e^s-1}.
-$$
+\frac{1}{s}+\frac{2}{3}-\frac{e^s}{e^s-1}
+=
+\frac{F(s)}{3s(e^s-1)}.
+$
 Now
 $$
 F'(s)=(2-s)e^s-2,
