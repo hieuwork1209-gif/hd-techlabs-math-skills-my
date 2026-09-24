@@ -26,7 +26,7 @@ Fix vertex $0$ as the starting vertex. For a labeled Euler tour, mark the last o
 
 Conversely, fix a directed spanning tree oriented toward $0$. At each nonroot vertex, order its outgoing edges with the marked tree edge last; order the $d$ outgoing edges from $0$ arbitrarily. Starting at $0$, always take the next unused outgoing edge in the chosen local order.
 
-This walk cannot stop at a nonroot vertex, because at such a terminal vertex all $d$ outgoing edges would have been used while one more incoming edge than outgoing edge had been used. If the walk returned to $0$ while unused edges remained, take a vertex with an unused outgoing edge. Its marked edge is unused; following the marked tree edges toward $0$ shows inductively that every marked edge on that path is unused. This yields an unused edge entering $0$. Since a closed walk at $0$ uses equally many incoming and outgoing edges there, an outgoing edge from $0$ would also be unused, contradicting termination. Thus the procedure uses every edge exactly once, and the local orders are recovered from the tour.
+This walk cannot stop at a nonroot vertex, because at such a terminal vertex all $d$ outgoing edges would have been used while one more incoming edge than outgoing edge had been used. If the walk returned to $0$ while unused edges remained, take a vertex with an unused outgoing edge. Its marked edge is unused; following the marked tree edges toward $0$ shows inductively that every marked edge on that path is unused. This yields an unused edge entering $0$. Since a closed walk at $0$ uses equally many incoming and outgoing edges there, an outgoing edge from $0$ would also be unused, contradicting termination. The procedure therefore uses every edge exactly once, and the local orders are recovered from the tour.
 
 Let $t_0$ be the number of directed spanning trees oriented toward $0$. The local orders give
 $$
@@ -53,8 +53,8 @@ m^2,
 \qquad
 (m+1)^2,
 $$
-respectively. Hence
-$$
+respectively. Therefore
+$
 t_0
 =
 3m^2+3m+1.
@@ -66,7 +66,7 @@ $$
 =
 (m!)^6((m+1)!)^3
 $$
-ways. Thus the number of rooted words with distinguished symbol $0$ is
+ways. The number of rooted words with distinguished symbol $0$ is
 $$
 \frac{t_0\,d\,(d-1)!^3}
 {(m!)^6((m+1)!)^3}.
@@ -78,7 +78,7 @@ s\mid\gcd(m,m+1)=1,
 $$
 a contradiction.
 
-Each rotation class has exactly $d$ rotations whose distinguished symbol is $0$. Hence the number of rotation classes is
+Each rotation class has exactly $d$ rotations whose distinguished symbol is $0$. Therefore the number of rotation classes is
 $$
 R
 =
@@ -111,13 +111,13 @@ $$
 \operatorname{rot}^{3t}(w)=w,
 $$
 so primitivity implies
-$$
+$
 N\mid3t.
-$$
-Thus
-$$
+$
+Hence $t\in\{0,d,2d\}$. The case $t=0$ is impossible because $\sigma$ changes every symbol. Therefore
+$
 t\in\{d,2d\}.
-$$
+$
 
 For positions modulo $N$, put
 $$
@@ -148,7 +148,7 @@ $$
 3m+1
 \equiv1\pmod3.
 $$
-But this sum also equals $w_d-w_0$. Hence the case $t=2d$ is impossible, and every fixed class satisfies
+But this sum also equals $w_d-w_0$. The case $t=2d$ is impossible, and every fixed class satisfies
 $$
 \sigma(w)=\operatorname{rot}^{d}(w).
 $$
@@ -157,7 +157,7 @@ Such an indexed word is determined by $w_0$ and the first $d$ increments. Choose
 $$
 3\frac{d!}{m!^2(m+1)!}.
 $$
-Every fixed rotation class contributes all $N=3d$ of its indexed rotations to this count. Hence the number of rotation classes fixed by $\sigma$ is
+Every fixed rotation class contributes all $N=3d$ of its indexed rotations to this count. Therefore the number of rotation classes fixed by $\sigma$ is
 $$
 F
 =
@@ -167,7 +167,7 @@ F
 =
 A.
 $$
-The same number is fixed by $\sigma^2$.
+Since an orbit under a group of order $3$ is fixed by $\sigma$ exactly when it is fixed by $\sigma^2$, the same number is fixed by $\sigma^2$.
 
 Step 5: Apply Burnside to the relabeling action
 The cyclic relabeling group has order $3$ and acts on the $R$ rotation classes. Burnside's lemma gives the number of classes modulo both rotation and cyclic relabeling as
