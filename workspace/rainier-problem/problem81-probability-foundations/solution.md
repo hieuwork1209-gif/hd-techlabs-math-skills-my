@@ -61,12 +61,20 @@ b_{n+1}
 \frac{1}{4}b_n^3.
 $$
 
-Set
-$$
+The linearization at extinction is the mean offspring matrix
+$
+M=
+\begin{pmatrix}
+\frac{3}{4}&\frac{1}{4}\\
+\frac{1}{4}&\frac{3}{4}
+\end{pmatrix}.
+$
+Its eigenvectors $(1,1)$ and $(1,-1)$ have eigenvalues $1$ and $1/2$, respectively. This forces the Perron and stable coordinates
+$
 x_n=\frac{a_n+b_n}{2},
 \qquad
 y_n=\frac{a_n-b_n}{2}.
-$$
+$
 Then $a_n=x_n+y_n$ and $b_n=x_n-y_n$. Substitution gives
 $$
 x_{n+1}
@@ -120,15 +128,18 @@ x_n-x_{n+1}
 \frac{1}{8}b_n^3.
 $$
 Since $b_n\leq1$,
-$$
+$
 x_n-x_{n+1}
 \geq
 \frac{3}{16}a_n^2
 +
 \frac{5}{16}b_n^2
-\geq0.
-$$
-Hence $(x_n)$ decreases to some limit $L\geq0$. If $L>0$, then $a_n+b_n=2x_n$ stays bounded away from zero, so the displayed decrement stays bounded below by a positive constant along a subsequence, contradicting convergence of $x_n$. Therefore
+\geq
+\frac{3}{16}(a_n^2+b_n^2)
+\geq
+\frac{3}{8}x_n^2.
+$
+Hence $(x_n)$ decreases to some limit $L\geq0$. If $L>0$, then for all large $n$ the decrement is at least $3L^2/16$, contradicting convergence of $x_n$. Therefore
 $$
 x_n\to0.
 $$
@@ -156,10 +167,23 @@ z_{n+1}
 =
 \frac{1}{2}z_n+O(x_n).
 $$
-Because $x_n\to0$, this contraction implies
-$$
+Since $|z_n|\leq1$, the recurrence implies
+$
+|z_{n+1}|
+\leq
+\left(\frac{1}{2}+o(1)\right)|z_n|+O(x_n).
+$
+Taking limit superior and using $x_n\to0$ gives
+$
+\limsup_{n\to\infty}|z_n|
+\leq
+\frac{1}{2}
+\limsup_{n\to\infty}|z_n|,
+$
+so
+$
 z_n\to0.
-$$
+$
 Thus $y_n=o(x_n)$.
 
 The $x_n$ recurrence now reduces to
@@ -206,12 +230,18 @@ Let
 $$
 t_n=\frac{y_n}{x_n^2}.
 $$
-For large $n$, the exact recurrences imply an inequality of the form
-$$
+Because $y_n=o(x_n)$ and $x_{n+1}/x_n\to1$, the exact recurrences give, for all sufficiently large $n$,
+$
 |t_{n+1}|
 \leq
-\left(\frac{1}{2}+o(1)\right)|t_n|+C,
-$$
+\frac{3}{4}|t_n|+C
+$
+for one fixed constant $C$. Iteration gives
+$
+|t_n|
+\leq
+\left(\frac{3}{4}\right)^{n-N}|t_N|+4C,
+$
 so $(t_n)$ is bounded. Since $x_{n+1}/x_n\to1$, division by $x_{n+1}^2$ gives
 $$
 t_{n+1}
@@ -315,8 +345,23 @@ $$
 =
 \frac{1}{A}\log n+o(\log n).
 $$
-Summing the reciprocal increment relation yields
-$$
+Write the remainder in the reciprocal increment as $\varepsilon_nx_n$, where $\varepsilon_n\to0$. Since $x_n\sim1/(An)$,
+$
+\sum_{k=1}^{n}x_k
+=
+\frac{1}{A}\log n+o(\log n),
+$
+and for every fixed $N$,
+$
+\left|
+\sum_{k=N}^{n}\varepsilon_kx_k
+\right|
+\leq
+\sup_{k\geq N}|\varepsilon_k|
+\sum_{k=N}^{n}x_k.
+$
+Letting first $n\to\infty$ and then $N\to\infty$ shows that the accumulated remainder is $o(\log n)$. Hence
+$
 \frac{1}{x_n}
 =
 An
@@ -324,7 +369,7 @@ An
 \frac{A^2-B}{A}\log n
 +
 o(\log n).
-$$
+$
 Since
 $$
 \frac{A^2-B}{A}
