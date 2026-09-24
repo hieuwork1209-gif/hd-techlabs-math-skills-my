@@ -284,14 +284,30 @@ x_i=1+u_i,
 \qquad
 u_1+u_2+u_3=0.
 $$
-At $\kappa=2/3$,
-$$
+For
+$
+W(x)=\frac{x^4}{4}-\frac{x^2}{2},
+$
+one has
+$
+W(1+u)-W(1)
+=
+u^2+u^3+\frac{u^4}{4}.
+$
+Also, when $u_1+u_2+u_3=0$,
+$
+\sum_{1\leq i<j\leq3}(u_i-u_j)^2
+=
+3\sum_{i=1}^3u_i^2.
+$
+At $\kappa=2/3$, the quadratic terms therefore cancel and
+$
 V(1+u)-V(1,1,1)
 =
 \sum_{i=1}^3u_i^3
 +
 \frac14\sum_{i=1}^3u_i^4.
-$$
+$
 Taking
 $$
 (u_1,u_2,u_3)=(\varepsilon,\varepsilon,-2\varepsilon)
