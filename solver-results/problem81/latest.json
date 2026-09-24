@@ -2,8 +2,8 @@
   "problem": "problem81",
   "branch": "adversary/problem81",
   "problem_path": "workspace/rainier-problem/problem81-probability-foundations/problem.md",
-  "problem_blob_sha": "363f1c737fbc86d50177603c664af683640cf321",
-  "source_commit_sha": "e801532819e49f657df9000d8b1f0927d47194a3",
+  "problem_blob_sha": "8bcfe0ba8cd6c3143736b0868e798736e03cd5e8",
+  "source_commit_sha": "76f26a7774dd60d2c79e8280333290c0ab029b1d",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-24T09:14:09+00:00",
-  "result_file": "solver-results/problem81/363f1c737fbc.json"
+  "completed_at": "2026-09-24T09:27:46+00:00",
+  "result_file": "solver-results/problem81/8bcfe0ba8cd6.json"
 }

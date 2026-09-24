@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-probability-foundations/problem.md",
+  "source_commit_sha": "76f26a7774dd60d2c79e8280333290c0ab029b1d",
+  "problem_blob_sha": "8bcfe0ba8cd6c3143736b0868e798736e03cd5e8",
+  "statement_sha256": "46cfd3941a01d715033bccad1460e5cd1d23f18b060775997966b0e87cbbdceb",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T09:22:05+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "\\[\n\\boxed{\\left(3,\\frac13\\right)}\n\\]\n\nLet the replacement matrix be\n\\[\nA=\\begin{pmatrix}\n9&3&0\\\\\n1&7&4\\\\\n2&2&8\n\\end{pmatrix}.\n\\]\nEach row sums to \\(12\\), so the total number of balls after \\(n\\) draws is\n\\[\nT_n=12(n+1).\n\\]\nThe limiting composition vector is\n\\[\n\\pi=\\left(\\frac13,\\frac13,\\frac13\\right),\n\\]\nsince \\(\\pi A=12\\pi\\). Put\n\\[\nY_n=X_n-T_n\\pi.\n\\]\nThen \\(Y_n\\) always lies in the plane \\(r+g+b=0\\), and \\(\\operatorname{Cov}(X_n)=\\operatorname{Cov}(Y_n)\\).\n\nThe eigenvalues of \\(A\\) are\n\\[\n12,\\quad 6,\\quad 6,\n\\]\nbecause\n\\[\n\\det(\\lambda I-A)=(\\lambda-12)(\\lambda-6)^2.\n\\]\nThe eigenvalue \\(6\\) is defective. Choose\n\\[\nq_1=(1,-1,0)^T,\\qquad q_2=\\left(\\frac13,0,-\\frac13\\right)^T,\n\\]\nso that\n\\[\nAq_1=6q_1,\\qquad Aq_2=6q_2+q_1.\n\\]\nDefine\n\\[\nz_{1,n}=Y_nq_1,\\qquad z_{2,n}=Y_nq_2.\n\\]\nSince \\(T_n=12(n+1)\\), the linearized recurrences are exactly\n\\[\nz_{1,n+1}=\\left(1+\\frac1{2(n+1)}\\right)z_{1,n}+e_{1,n+1},\n\\]\n\\[\nz_{2,n+1}=\\left(1+\\frac1{2(n+1)}\\right)z_{2,n}\n+\\frac1{12(n+1)}z_{1,n}+e_{2,n+1},\n\\]\nwhere \\(e_{i,n+1}\\) are centered martingale increments.\n\nAt equilibrium, the three possible replacement increments minus their mean \\((4,4,4)\\) are\n\\[\n(5,-1,-4),\\quad (-3,3,0),\\quad (-2,-2,4).\n\\]\nFor \\(q_1=(1,-1,0)^T\\), the corresponding values are\n\\[\n6,\\quad -6,\\quad 0,\n\\]\nso\n\\[\nS_{11}:=\\lim \\operatorname{Var}(e_{1,n+1}\\mid\\mathcal F_n)\n=\\frac{6^2+(-6)^2+0^2}{3}=24.\n\\]\n\nLet \\(L=\\log n\\). The defective Jordan term contributes a factor\n\\[\n\\frac1{12}\\log(n/k)\n\\]\nfrom \\(z_1\\)-noise into \\(z_2\\). Therefore\n\\[\n\\operatorname{Var}(z_{1,n})\\sim 24\\,nL,\n\\]\n\\[\n\\operatorname{Cov}(z_{1,n},z_{2,n})\\sim\n24n\\sum_{k\\le n}\\frac1k\\cdot \\frac1{12}\\log(n/k)\n\\sim nL^2,\n\\]\nand\n\\[\n\\operatorname{Var}(z_{2,n})\n\\sim\n24n\\sum_{k\\le n}\\frac1k\\cdot \\frac1{144}\\log^2(n/k)\n\\sim \\frac1{18}nL^3.\n\\]\nThus the covariance matrix of \\((z_{1,n},z_{2,n})\\) has leading form\n\\[\nK_n\\sim\n\\begin{pmatrix}\n24nL & nL^2\\\\\nnL^2 & \\frac1{18}nL^3\n\\end{pmatrix},\n\\]\nso\n\\[\n\\det K_n\\sim\n\\left(24\\cdot\\frac1{18}-1\\right)n^2L^4\n=\\frac13 n^2L^4.\n\\]\n\nNow convert back to the physical plane \\(r+g+b=0\\). The dual basis vectors satisfying \\(Y=z_1r_1+z_2r_2\\) are\n\\[\nr_1=\\left(\\frac13,-\\frac23,\\frac13\\right),\\qquad\nr_2=(1,1,-2).\n\\]\nThe largest covariance direction is \\(r_2\\), hence\n\\[\n\\lambda_n^+\\sim \\frac1{18}nL^3\\|r_2\\|^2\n=\\frac1{18}nL^3\\cdot 6\n=\\frac13 nL^3.\n\\]\nAlso\n\\[\n\\det(R^TR)=\n\\begin{vmatrix}\n\\frac23 & -1\\\\\n-1 & 6\n\\end{vmatrix}\n=3,\n\\]\nso the product of the two nonzero eigenvalues is\n\\[\n\\lambda_n^-\\lambda_n^+\n\\sim 3\\det K_n\n\\sim n^2L^4.\n\\]\nTherefore\n\\[\n\\lambda_n^-\\sim \\frac{n^2L^4}{(1/3)nL^3}=3nL.\n\\]\n\nHence\n\\[\n\\boxed{\\left(\n\\lim_{n\\to\\infty}\\frac{\\lambda_n^-}{n\\log n},\n\\;\n\\lim_{n\\to\\infty}\\frac{\\lambda_n^+}{n(\\log n)^3}\n\\right)\n=\n\\left(3,\\frac13\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T09:27:46+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/8bcfe0ba8cd6.json"
+}
