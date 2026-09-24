@@ -2,44 +2,46 @@
 
 ## LaTeX (Normalized)
 
-Consider the discrete-time random walk on an unknown connected tree with vertex set $\{1,2,3,4\}$. Each edge $\{i,j\}$ has a positive conductance $c_{ij}=c_{ji}$, and from vertex $i$ the walk moves to a neighbor $j$ with probability
-$$
-P(i,j)=\frac{c_{ij}}{\sum_{k\sim i}c_{ik}}.
-$$
+Consider a two-type Galton-Watson process with types $A$ and $B$. Different individuals reproduce independently.
 
-For $i\neq j$, let
+A type $A$ individual has offspring
 $$
-T_j=\inf\{n\geq0:X_n=j\}
+arnothing
 $$
-and define the commute time
+with probability $\frac{1}{2}$,
 $$
-C_{ij}=\mathbb E_iT_j+\mathbb E_jT_i.
+(A,A)
 $$
+with probability $\frac{3}{8}$, and
+$$
+(B,B)
+$$
+with probability $\frac{1}{8}$.
 
-Suppose
+A type $B$ individual has offspring
 $$
-C_{12}=4,
-\qquad
-C_{23}=6,
-\qquad
-C_{34}=12,
+\varnothing
 $$
+with probability $\frac{1}{2}$,
 $$
-C_{13}=10,
-\qquad
-C_{24}=18.
+(A)
 $$
+with probability $\frac{1}{4}$, and
+$$
+(B,B,B)
+$$
+with probability $\frac{1}{4}$.
 
-For a walk started at $X_0=2$, let
-$$
-\tau_{\rm cov}
-=
-\inf\{n\geq0:\{X_0,X_1,\ldots,X_n\}=\{1,2,3,4\}\}.
-$$
+Let $a_n$ be the probability that generation $n$ is nonempty when the process starts from one type $A$ individual, and let $b_n$ be the corresponding probability when it starts from one type $B$ individual.
 
 Determine exactly
 $$
-\left(C_{14},\mathbb E_2\tau_{\rm cov},\operatorname{Var}_2(\tau_{\rm cov})\right).
+\left(
+\lim_{n\to\infty}n^2(a_n-b_n),
+\;
+\lim_{n\to\infty}
+\frac{a_n^{-1}-\frac{5}{8}n}{\log n}
+\right).
 $$
 
 ---
@@ -57,4 +59,4 @@ $$
 
 ## Domain Explanation
 
-The problem is an inverse question for a reversible random walk on a weighted tree. The commute data determine the hidden tree metric and conductance ratios, after which endpoint-first decomposition and strong-Markov moment calculations determine the mean and variance of the cover time. Thus Probability and Statistics -> Probability foundations is primary.
+The problem concerns second-order survival asymptotics of a critical irreducible two-type Galton-Watson process. The mean offspring matrix controls the leading Perron mode, while the differing higher offspring laws create a stable-mode correction and a logarithmic refinement of the survival scale. Thus Probability and Statistics -> Probability foundations is primary.
