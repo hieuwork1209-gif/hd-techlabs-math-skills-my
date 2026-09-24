@@ -1,9 +1,9 @@
 {
   "problem": "problem111",
   "branch": "adversary/problem111",
-  "problem_path": "workspace/rainier-problem/problem111-harmonic-analysis/problem.md",
-  "problem_blob_sha": "03f84f8a9bcf84d43967789b24f16753fa359c77",
-  "source_commit_sha": "1759e94c50578589b7dcc455b0b9de99c496f088",
+  "problem_path": "workspace/rainier-problem/problem111-discrete-structures/problem.md",
+  "problem_blob_sha": "cff5b24db5f0ddb836bbe4606a183fed0982f248",
+  "source_commit_sha": "34a94f3864d2c7e793fa1dfacd35bf3a665525bc",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-24T09:20:36+00:00",
-  "result_file": "solver-results/problem111/03f84f8a9bcf.json"
+  "completed_at": "2026-09-24T09:43:10+00:00",
+  "result_file": "solver-results/problem111/cff5b24db5f0.json"
 }

@@ -1,0 +1,22 @@
+{
+  "problem": "problem111",
+  "branch": "adversary/problem111",
+  "problem_path": "workspace/rainier-problem/problem111-discrete-structures/problem.md",
+  "source_commit_sha": "34a94f3864d2c7e793fa1dfacd35bf3a665525bc",
+  "problem_blob_sha": "cff5b24db5f0ddb836bbe4606a183fed0982f248",
+  "statement_sha256": "ba6b8e6bd2d7d2d15073c1518706b69bbdb3c54d5d4365d91ff7698402f61a62",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T09:38:37+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let  \n\\[\nd=3m+1.\n\\]\nEach symbol has \\(d\\) outgoing transitions and \\(d\\) incoming transitions, and\n\\[\nN=3d.\n\\]\n\nInterpret the transition counts as a directed multigraph on \\(\\{0,1,2\\}\\), with \\(N_{ab}\\) labeled edges from \\(a\\) to \\(b\\).\n\nFor a fixed starting symbol \\(r\\) and a fixed first labeled edge, the BEST-tour enumeration gives\n\\[\nT_r\\prod_{v=0}^2(d-1)!\n\\]\nEuler tours, where \\(T_r\\) is the number of directed spanning trees oriented toward \\(r\\).\n\nThere are \\(d\\) choices for the first edge from \\(r\\). Thus the number of labeled tours beginning at \\(r\\) is\n\\[\nd\\,T_r\\,(d-1)!^3.\n\\]\n\nSince the graph is invariant under cyclically permuting \\(0,1,2\\), all \\(T_r\\) are equal. Compute \\(T_0\\): vertices \\(1,2\\) must choose outgoing edges so that they reach \\(0\\). The valid choices are\n\n\\[\n\\begin{aligned}\n1\\to0,\\ 2\\to0 &: m(m+1),\\\\\n1\\to0,\\ 2\\to1 &: m^2,\\\\\n1\\to2,\\ 2\\to0 &: (m+1)^2.\n\\end{aligned}\n\\]\n\nHence\n\\[\nT_0=m(m+1)+m^2+(m+1)^2\n=3m^2+3m+1.\n\\]\n\nPassing from labeled edges to transition types divides by\n\\[\n\\prod_{a,b}N_{ab}!\n=(m!)^6((m+1)!)^3.\n\\]\n\nTherefore the number of indexed cyclic words is\n\\[\n\\frac{3d(3m^2+3m+1)(3m)!^3}\n{(m!)^6((m+1)!)^3}.\n\\]\n\nFinally, no nontrivial rotation can fix such a word. Indeed, if the word were a repetition \\(q>1\\) times, then \\(q\\) would divide every transition count, but the counts include both \\(m\\) and \\(m+1\\), whose gcd is \\(1\\). Thus every rotation class has exactly \\(N=3d\\) indexed representatives.\n\nDividing by \\(3d\\), the number of rotation classes is\n\n\\[\n\\boxed{\\frac{(3m^2+3m+1)(3m)!^3}{(m!)^6((m+1)!)^3}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T09:43:10+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem111/cff5b24db5f0.json"
+}
