@@ -98,7 +98,7 @@ $$
 =
 m_4-2m_3+\frac{4}{3}m_2-\frac{1}{3}m_1+\frac{1}{36}.
 $$
-Substituting $m_1=\frac{1}{2}$, $m_2=1/3$, and $m_3=1/4$ gives
+Substituting $m_1=\frac{1}{2}$, $m_2=\frac{1}{3}$, and $m_3=\frac{1}{4}$ gives
 $$
 m_4\geq\frac{7}{36}.
 $$
