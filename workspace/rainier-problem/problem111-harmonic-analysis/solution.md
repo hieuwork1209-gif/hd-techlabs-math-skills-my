@@ -20,11 +20,11 @@ $$
 d\mu(z)
 \geq0.
 $$
-The Toeplitz matrix
+Thus
 $$
 T=(c_{j-k})_{0\leq j,k\leq r}
 $$
-is therefore positive semidefinite.
+is positive semidefinite.
 
 The constraints give
 $$
@@ -57,7 +57,7 @@ B=
 \end{pmatrix}.
 $$
 
-Step 2: Compute the sharp positive-semidefinite bound
+Step 2: Compute the sharp moment bound
 Let $P_m$ be the $m\times m$ tridiagonal matrix with diagonal $1$ and adjacent off-diagonal entries $\rho$. Expanding its determinant along the last row gives
 $$
 \det P_m=D_m,
@@ -77,11 +77,7 @@ is an eigenvector of $P_m$ with eigenvalue
 $$
 1+2\rho\cos\frac{k\pi}{m+1}.
 $$
-Since
-$$
-0<\rho<\frac{1}{2\cos(\pi/(r+1))},
-$$
-every $P_m$ with $m\leq r$ is positive definite. In particular $C=P_{r-1}$ is invertible.
+The hypothesis on $\rho$ makes every $P_m$ with $m\leq r$ positive definite. In particular $C=P_{r-1}$ is invertible.
 
 Set
 $$
@@ -95,7 +91,7 @@ $$
 \qquad
 \beta=\frac{(-\rho)^{r-2}}{D_{r-1}}.
 $$
-The first cofactor is $\det P_{r-2}$. For the second, deleting the last row and first column leaves a triangular minor with determinant $\rho^{r-2}$, while its cofactor sign is $(-1)^r$.
+The first cofactor is $\det P_{r-2}$. For the second, deleting the last row and first column leaves a triangular minor with determinant $\rho^{r-2}$, and its cofactor sign is $(-1)^r$.
 
 The Schur complement of $C$ in $T$ is
 $$
@@ -117,37 +113,51 @@ d
 \frac{D_r}{D_{r-1}}
 >0.
 $$
-Because $C$ is positive definite, $T$ is positive semidefinite exactly when $S$ is positive semidefinite. The two diagonal entries of $S$ are $d>0$, so this is equivalent to
+Because $C$ is positive definite, $T\geq0$ exactly when $S\geq0$, which is equivalent to
 $$
 |w-\rho^2\beta|\leq d.
 $$
-The center and radius of this disk are real. Therefore
+The disk has real center and radius, so
 $$
 \operatorname{Re}w
 \leq
 \rho^2\beta+d
 =
-1-\frac{\rho^2\left(D_{r-2}-(-\rho)^{r-2}\right)}{D_{r-1}}.
+\frac{D_r+(-1)^r\rho^r}{D_{r-1}}.
 $$
-Equality in the real part occurs at the unique point
+Equality occurs at the unique real point
 $$
 w_*
 =
-1-\frac{\rho^2\left(D_{r-2}-(-\rho)^{r-2}\right)}{D_{r-1}}.
+\frac{D_r+(-1)^r\rho^r}{D_{r-1}}.
 $$
 
 Step 3: Realize the extremal Toeplitz matrix by a measure
-Let $T_*$ be the Toeplitz matrix obtained by setting $c_r=w_*$. Its Schur complement has rank $1$, while $C$ has rank $r-1$. The rank formula for a block matrix with invertible $C$ gives
+Let $T_*$ be the Toeplitz matrix obtained by setting $c_r=w_*$. At equality,
+$$
+w_*-\rho^2\beta=d,
+$$
+so the Schur complement is
+$$
+S_*
+=
+d
+\begin{pmatrix}
+1&1\\
+1&1
+\end{pmatrix}.
+$$
+It has rank $1$. Since $C$ has rank $r-1$, the block rank formula gives
 $$
 \operatorname{rank}T_*=r.
 $$
 The leading $r\times r$ principal block is $P_r$, which is positive definite.
 
-Factor $T_*=XX^*$ with $X$ having $r$ columns, and let $v_0,\ldots,v_r$ be the row vectors of $X$. Use the inner product that is linear in the first slot, so
+Factor $T_*=XX^*$ with $X$ having $r$ columns, and let $v_0,\ldots,v_r$ be the row vectors of $X$. Use the inner product linear in the first slot, so
 $$
 \langle v_j,v_k\rangle=(T_*)_{jk}=c_{j-k}.
 $$
-Since $P_r$ is positive definite, $v_0,\ldots,v_{r-1}$ are a basis. The vectors $v_1,\ldots,v_r$ are also a basis because their Gram matrix is the same $P_r$.
+Since $P_r$ is positive definite, $v_0,\ldots,v_{r-1}$ form a basis. The vectors $v_1,\ldots,v_r$ also form a basis because their Gram matrix is the same $P_r$.
 
 Define
 $$
@@ -161,13 +171,11 @@ $$
 =
 \langle v_j,v_k\rangle,
 $$
-so $U$ preserves inner products on a basis and is unitary.
-
-The finite-dimensional spectral theorem gives
+so $U$ is unitary. By the finite-dimensional spectral theorem,
 $$
 U=\sum_{\zeta}\zeta E_{\zeta},
 $$
-where the distinct eigenvalues $\zeta$ lie on the unit circle and the $E_{\zeta}$ are orthogonal spectral projections. Define
+where the eigenvalues $\zeta$ lie on the unit circle and the $E_{\zeta}$ are the orthogonal spectral projections. Define
 $$
 \mu_*(\{\zeta\})
 =
@@ -181,26 +189,26 @@ $$
 =
 c_j
 $$
-for $0\leq j\leq r$. The measure $\mu_*$ satisfies the stated moment constraints and attains the bound from Step 2.
+for $0\leq j\leq r$. Hence $\mu_*$ is admissible and attains the bound from Step 2.
 
 Step 4: Determine the support size of every maximizer
 Let $\mu$ be any maximizing measure. Equality in Step 2 forces
 $$
 c_r=w_*,
 $$
-so its order-$r$ Toeplitz matrix is exactly $T_*$.
+so its order-$r$ moment matrix is exactly $T_*$.
 
-Because $\operatorname{rank}T_*=r$, the kernel is one-dimensional. Let
+Because $\operatorname{rank}T_*=r$, its kernel is one-dimensional. Let
 $$
 a=(a_0,\ldots,a_r)\neq0
 $$
-span this kernel and set
+span the kernel and set
 $$
 p(z)=\sum_{j=0}^{r}a_jz^j.
 $$
-The leading coefficient $a_r$ is nonzero, because otherwise the first $r$ coordinates of $a$ would give a nonzero kernel vector for the positive-definite principal block $P_r$. Therefore $p$ has degree exactly $r$.
+The coefficient $a_r$ is nonzero, because otherwise the first $r$ coordinates of $a$ would give a nonzero kernel vector for the positive-definite block $P_r$. Thus $\deg p=r$.
 
-For the maximizing measure,
+For every maximizing measure,
 $$
 0
 =
@@ -208,47 +216,51 @@ a^*T_*a
 =
 \int |p(z)|^2\,d\mu(z).
 $$
-It follows that $\operatorname{supp}\mu$ is contained in the zero set of $p$ on the unit circle, so
-$$
-|\operatorname{supp}\mu|\leq r.
-$$
-A measure supported on $s$ points produces a moment matrix of rank at most $s$. Since $T_*$ has rank $r$,
-$$
-|\operatorname{supp}\mu|\geq r.
-$$
-Every maximizing measure therefore has exactly $r$ support points.
+Its support is therefore contained in the zero set of $p$ on the unit circle, so it has at most $r$ points. Conversely a measure supported on $s$ points gives a moment matrix of rank at most $s$. Since $T_*$ has rank $r$, every maximizing measure has at least $r$ support points. Hence every maximizer has exactly $r$ support points, and those points are precisely the $r$ roots of $p$.
 
-Step 5: Prove uniqueness of the maximizing measure
-The measure $\mu_*$ from Step 3 is maximizing. By Step 4 it has $r$ distinct support points, all of which are roots of the degree-$r$ kernel polynomial $p$. These support points are exactly the roots of $p$.
-
-Any maximizing measure has support contained in this same root set and, by Step 4, uses all $r$ roots. Once the support points
+Step 5: Recover the unweighted sum of the support points
+Use the endpoint-first block ordering from Step 1. Since $S_*$ has kernel spanned by $(1,-1)$, the unique kernel vector of $T_*$ may be scaled so that
 $$
-\zeta_1,\ldots,\zeta_r
-$$
-are fixed, their weights are determined by the moments $c_0,\ldots,c_{r-1}$. The equations
-$$
-\sum_{m=1}^{r}\lambda_m\zeta_m^j=c_j,
+a_0=1,
 \qquad
-0\leq j\leq r-1,
+a_r=-1.
 $$
-have coefficient matrix
+The Toeplitz matrix $T_*$ is invariant under reversing the coordinate order. Its one-dimensional kernel is therefore invariant under reversal. Because reversal swaps the endpoint values $1$ and $-1$, it sends $a$ to $-a$. Thus
 $$
-(\zeta_m^j)_{0\leq j\leq r-1,\ 1\leq m\leq r}.
+a_{r-j}=-a_j
+\qquad
+(0\leq j\leq r).
 $$
-Its Vandermonde determinant is
-$$
-\prod_{1\leq i<j\leq r}(\zeta_j-\zeta_i)\neq0,
-$$
-so the weights are unique. There is exactly one maximizing measure.
 
-The requested ordered triple is the maximum real part, the support size of every maximizer, and the number of maximizing measures.
-Final Answer: $\boxed{\left(1-\frac{\rho^2(D_{r-2}-(-\rho)^{r-2})}{D_{r-1}},r,1\right)}$
+The row indexed by $0$ in $T_*a=0$ is
+$$
+a_0+\rho a_1+w_*a_r=0.
+$$
+With $a_0=1$ and $a_r=-1$,
+$$
+a_1=\frac{w_*-1}{\rho}.
+$$
+The monic polynomial $-p(z)$ has leading coefficient $1$ and coefficient of $z^{r-1}$ equal to
+$$
+-a_{r-1}=a_1.
+$$
+By Vieta's formula, the sum of its $r$ roots, which are the support points of every maximizing measure, is
+$$
+-a_1
+=
+\frac{1-w_*}{\rho}
+=
+\frac{\rho\left(D_{r-2}-(-\rho)^{r-2}\right)}{D_{r-1}}.
+$$
+
+The requested ordered triple is the maximum real part, the support size of every maximizer, and the unweighted sum of its support points.
+Final Answer: $\boxed{\left(\frac{D_r+(-1)^r\rho^r}{D_{r-1}},r,\frac{\rho(D_{r-2}-(-\rho)^{r-2})}{D_{r-1}}\right)}$
 
 ---
 
 ## Answer
 
-$\left(1-\frac{\rho^2(D_{r-2}-(-\rho)^{r-2})}{D_{r-1}},r,1\right)$
+$\left(\frac{D_r+(-1)^r\rho^r}{D_{r-1}},r,\frac{\rho(D_{r-2}-(-\rho)^{r-2})}{D_{r-1}}\right)$
 
 ---
 
@@ -264,6 +276,6 @@ $\left(1-\frac{\rho^2(D_{r-2}-(-\rho)^{r-2})}{D_{r-1}},r,1\right)$
 
 - trigonometric moment matrices
 - schur complement
-- tridiagonal determinants
-- spectral theorem for unitary maps
-- vandermonde uniqueness
+- unitary moment representation
+- kernel polynomial
+- support reconstruction
