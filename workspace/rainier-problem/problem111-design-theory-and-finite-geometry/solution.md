@@ -161,10 +161,10 @@ $$
 Therefore each line $U$ determines exactly one possible order-$\ell$ linear projection $P_U$, and every element of $P_U$ has determinant $1$.
 
 Step 5: Convert regularity into an isomorphism between two one-dimensional groups
-Fix a line $U$ and its subgroup $P_U$. For $A\in P_U$, let $C_A$ be the set of vectors $b$ such that $(A,b)\in G$. Each fiber has $\ell$ elements and is a coset of $U$. Define
-$$
+Fix a line $U$ and its subgroup $P_U$. For $A\in P_U$, let $C_A$ be the set of vectors $b$ such that $(A,b)\in G$. The projection $G\to P_U$ has kernel consisting of the translations by $U$, so every fiber has $\ell$ elements. If $b,c\in C_A$, then $(A,b)^{-1}(A,c)$ is a translation by a vector of $U$; conversely, multiplying $(A,b)$ by any translation in the kernel stays in the same fiber. Hence $C_A$ is exactly one coset of $U$. Define
+$
 \lambda(A)=C_A/U\in V/U.
-$$
+$
 
 For $A,B\in P_U$, multiplication in the affine group gives
 $$
@@ -188,7 +188,7 @@ G_{U,\lambda}
 =
 \{(A,b):A\in P_U,\ b+U=\lambda(A)\}.
 $$
-The homomorphism identity makes this a subgroup of order $\ell^2$. If $A=I$, its nonidentity elements are nonzero translations. If $A\neq I$, then $\lambda(A)\neq0$, so
+The homomorphism identity makes this set closed under multiplication, and the fiber over $I$ is precisely the translation subgroup $U$; since the set is finite and contains the identity, it is a subgroup. It has $\ell$ fibers of size $\ell$, hence order $\ell^2$. If $A=I$, its nonidentity elements are nonzero translations. If $A\neq I$, then $\lambda(A)\neq0$, so
 $$
 b\notin U=\operatorname{im}(I-A),
 $$
@@ -199,7 +199,7 @@ There are
 $$
 \frac{\ell^2-1}{\ell-1}=\ell+1
 $$
-lines $U$ in $V$. For each line, both $P_U$ and $V/U$ are cyclic groups of order $\ell$, so there are exactly $\ell-1$ isomorphisms
+lines $U$ in $V$. For each line, both $P_U$ and $V/U$ are cyclic groups of order $\ell$, so an isomorphism is determined by the nonzero image of one generator. Hence there are exactly $\ell-1$ isomorphisms
 $$
 \lambda:P_U\to V/U.
 $$
