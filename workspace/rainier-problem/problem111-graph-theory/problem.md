@@ -2,23 +2,28 @@
 
 ## LaTeX (Normalized)
 
-Let $q$ be a prime power, and let $PG(3,q)$ be the three-dimensional projective space over $\mathbb F_q$.
-
-A line spread is a set $\mathcal S$ of projective lines such that every point of $PG(3,q)$ lies on exactly one line of $\mathcal S$. Fix a line spread $\mathcal S$.
-
-Form a graph $\Gamma$ whose vertices are the projective lines of $PG(3,q)$ that do not belong to $\mathcal S$. Two distinct vertices are adjacent exactly when the corresponding projective lines intersect. Regard every edge of $\Gamma$ as a unit resistor.
-
-Let $L,M$ be distinct vertices of $\Gamma$. Define
+For $n\geq3$, let $W_n$ be the wheel graph with rim cycle
 $$
-\varepsilon=
-\begin{cases}
-1,&L\cap M\neq\varnothing,\\
-0,&L\cap M=\varnothing,
-\end{cases}
+v_0v_1\cdots v_{n-1}v_0
 $$
-and let $m$ be the number of lines of $\mathcal S$ that meet both $L$ and $M$.
+and hub $h$ adjacent to every rim vertex.
 
-Determine the effective resistance between $L$ and $M$ in terms of $q$, $m$, and $\varepsilon$.
+Let $Q_n$ be the reduced Laplacian obtained by deleting the row and column of $h$ from the Laplacian of $W_n$. The critical group of $W_n$ is
+$$
+K(W_n)=\mathbb Z^n/Q_n\mathbb Z^n.
+$$
+
+Let the Fibonacci and Lucas sequences be defined by
+$$
+F_0=0,\quad F_1=1,\quad F_{j+1}=F_j+F_{j-1},
+$$
+$$
+L_0=2,\quad L_1=1,\quad L_{j+1}=L_j+L_{j-1}.
+$$
+
+The Smith normal form of $Q_n$ has $n-2$ unit diagonal entries and two nontrivial invariant factors $d_1,d_2$, with $d_1\mid d_2$.
+
+Determine the ordered pair $(d_1,d_2)$.
 
 ---
 
@@ -28,11 +33,11 @@ Determine the effective resistance between $L$ and $M$ in terms of $q$, $m$, and
 |---|---|
 | **Domain** | Discrete Mathematics and Combinatorics |
 | **Sub-domain** | Graph theory |
-| **Problem Type** | Symbolic derivation |
-| **Answer Type** | Exact symbolic expression |
+| **Problem Type** | Canonicalization or normalization |
+| **Answer Type** | Tuple or ordered list |
 
 ---
 
 ## Domain Explanation
 
-The requested quantity is an electrical invariant of a graph defined by line intersection in projective space. The solution must derive the graph's eigenspace structure from the spread incidence matrix and then recover the relevant spectral projectors to evaluate the Laplacian pseudoinverse between two vertices.
+The requested object is the pair of nontrivial Smith invariant factors of the reduced Laplacian of a wheel graph, equivalently the canonical decomposition of its critical group. The solution uses the cyclic Laplacian relations to reduce the integer presentation to two generators, then determines the Smith invariants through a Fibonacci transfer recurrence.
