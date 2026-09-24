@@ -2,68 +2,27 @@
 
 ## LaTeX (Normalized)
 
-Let $\ell$ be a prime with $\ell\equiv1\pmod4$, and put
+Let $\ell$ be a prime with $\ell\equiv1\pmod4$, let
 $$
-V=\mathbb F_\ell^2,\qquad m=\ell^2,\qquad q=7^m.
+V=\mathbb F_\ell^2,
 $$
-Fix an $\mathbb F_7$-basis $(\beta_v)_{v\in V}$ of $\mathbb F_q$ satisfying
-$$
-\sum_{v\in V}\beta_v=1.
-$$
-Thus every $a\in\mathbb F_q$ has unique coordinates
-$$
-a=\sum_{v\in V}a_v\beta_v,\qquad a_v\in\mathbb F_7.
-$$
-Let $\chi$ be the quadratic character of $\mathbb F_\ell$, extended by $\chi(0)=0$. Let $\mathscr H$ be the set of three-element subsets $\{u,v,w\}\subset V$ satisfying
+and let $\chi$ be the quadratic character of $\mathbb F_\ell$, extended by $\chi(0)=0$.
+
+Let $\mathscr H$ be the set of three-element subsets $\{u,v,w\}\subset V$ such that
 $$
 \chi\bigl(\det(v-u,w-u)\bigr)=1.
 $$
-This is independent of the ordering because $\chi(-1)=1$.
+Because $\chi(-1)=1$, this condition is independent of the ordering of $u,v,w$.
 
-For variables $z_1,z_2,z_3$, define
+Let $\operatorname{Aut}(\mathscr H)$ be the group of all permutations $\sigma$ of $V$ satisfying
 $$
-\Psi(z_1,z_2,z_3)
-=
-\sum_{\{i,j,k\}=\{1,2,3\}}
-(z_j-z_i)^2(z_k-z_i)^4,
+\{u,v,w\}\in\mathscr H
+\iff
+\{\sigma(u),\sigma(v),\sigma(w)\}\in\mathscr H
 $$
-where the sum is over the six ordered triples of distinct indices. For $a\in\mathbb F_q$, define
-$$
-\mathcal A(a)=\sum_{v\in V}a_v^4,
-\qquad
-\mathcal C(a)=\sum_{\{u,v,w\}\in\mathscr H}\Psi(a_u,a_v,a_w).
-$$
+for every three-element subset $\{u,v,w\}\subset V$.
 
-Call $F\in\mathbb F_q[X]$ translation-admissible if
-$$
-\prod_{a\in\mathbb F_q}
-\left(Z-F(X+a)+F(X)\right)=Z^q-Z
-\quad\text{in }\mathbb F_q(X)[Z].
-$$
-For any $F\in\mathbb F_q[X]$, put
-$$
-\nu(F)=
-\left|
-\left\{v\in V:F(X+\beta_v)-F(X)=\beta_v\right\}
-\right|.
-$$
-Let $\mathscr S$ be the set of translation-admissible polynomials satisfying
-$$
-F(1)=1,
-$$
-$$
-\mathcal A(F(a))=\mathcal A(a),
-\qquad
-\mathcal C(F(a))=\mathcal C(a)
-\qquad(a\in\mathbb F_q),
-$$
-and the coupled degree condition
-$$
-\deg F<q^2\quad\text{if }\nu(F)>0,
-\qquad
-\deg F<q\quad\text{if }\nu(F)=0.
-$$
-Determine $|\mathscr S|$.
+Determine the number of $\sigma\in\operatorname{Aut}(\mathscr H)$ having no fixed point in $V$.
 
 ---
 
@@ -80,6 +39,4 @@ Determine $|\mathscr S|$.
 
 ## Domain Explanation
 
-This problem involves quadratic characters over prime fields and square classes of determinants, which are part of Number Theory and Quadratic residues and reciprocity.
-The problem also involves finite field polynomials, affine maps, and hypergraph automorphisms, which are part of algebra and combinatorics.
-However, those structures organize the counting argument, while the quadratic residue condition defines the central incidence relation.
+The defining incidence relation is determined by whether a nonzero determinant is a quadratic residue in $\mathbb F_\ell$. The solution must recover the affine structure from this square-class relation, determine exactly which affine maps preserve it, and then count the fixed-point-free maps subject to the quadratic-residue condition on the determinant.
