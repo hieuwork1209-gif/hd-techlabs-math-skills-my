@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-dynamical-systems/problem.md",
+  "source_commit_sha": "4ce6913a51ff054934ddde5f4b13a6bd7d9466b9",
+  "problem_blob_sha": "74070fb8e3b6cb10961fc73c01604f94408eaf6c",
+  "statement_sha256": "78820f80ff732cdb9e58c704d894fe90f9c1a1dd23fc620048f87c043c45ff13",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T08:47:10+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nr(\\omega)=\\left|(i\\omega)^2+a(i\\omega)+1\\right|\n=\\sqrt{(1-\\omega^2)^2+a^2\\omega^2}\\qquad(\\omega>0).\n\\]\nDefine\n\\[\nD(a,c)=\\inf_{\\omega>0}\\bigl(r(\\omega)-c\\omega\\bigr),\n\\]\nwhenever \\(c<a\\). Since\n\\[\n\\frac{r(\\omega)}{\\omega}\n=\\sqrt{\\left(\\omega-\\frac1\\omega\\right)^2+a^2}\\ge a,\n\\]\nwe have \\(r(\\omega)-c\\omega>0\\) for every \\(\\omega>0\\) if and only if \\(c<a\\), and then \\(D(a,c)>0\\).\n\nThe answer is:\n\n\\[\n\\boxed{\n\\begin{cases}\n0\\le c<a,\\quad 0\\le b<D(a,c), &\\text{or}\\\\[2mm]\nc=0,\\ a\\ge \\sqrt2,\\ 0\\le b\\le 1.\n\\end{cases}}\n\\]\n\nHere, in the second line, \\(D(a,0)=1\\), but the infimum is not attained.\n\nProof sketch, self-contained:\n\nFor \\(\\lambda=x+iy\\), \\(x\\ge0\\), write \\(\\rho=|\\lambda|\\). A direct expansion gives\n\\[\n|\\lambda^2+a\\lambda+1|^2\n=\n\\rho^4+(a^2-2)\\rho^2+1\n+4\\rho^2\\cos^2\\theta\n+2a\\rho(\\rho^2+1)\\cos\\theta,\n\\]\nwhere \\(\\lambda=\\rho e^{i\\theta}\\) and \\(\\cos\\theta=x/\\rho\\ge0\\). Hence\n\\[\n|\\lambda^2+a\\lambda+1|\\ge r(\\rho).\n\\]\nIf \\(c<a\\) and \\(b<D(a,c)\\), then for every \\(\\lambda\\ne0\\) with \\(\\Re\\lambda\\ge0\\),\n\\[\n|\\lambda^2+a\\lambda+1|\n\\ge r(|\\lambda|)\n> b+c|\\lambda|.\n\\]\nBut\n\\[\n\\left|b e^{-\\lambda\\tau}+c\\lambda e^{-\\lambda\\sigma}\\right|\n\\le b+c|\\lambda|,\n\\]\nso \\(\\Delta_{\\tau,\\sigma}(\\lambda)\\ne0\\). Also \\(\\Delta_{\\tau,\\sigma}(0)=1+b>0\\). Thus no root lies in \\(\\Re\\lambda\\ge0\\).\n\nConversely, for \\(\\lambda=i\\omega\\), \\(\\omega>0\\), the phases \\(e^{-i\\omega\\tau}\\) and \\(e^{-i\\omega\\sigma}\\) can be chosen arbitrarily on the unit circle. Therefore \\(i\\omega\\) is a root for some delays exactly when the three lengths\n\\[\nb,\\qquad c\\omega,\\qquad r(\\omega)\n\\]\ncan form a triangle:\n\\[\n|b-c\\omega|\\le r(\\omega)\\le b+c\\omega.\n\\]\nEquivalently,\n\\[\nb\\in \\bigl[\\,|r(\\omega)-c\\omega|,\\ r(\\omega)+c\\omega\\,\\bigr].\n\\]\nIf \\(c\\ge a\\), then \\(r(\\omega)=c\\omega\\) for some \\(\\omega>0\\), and the union of these intervals is all of \\([0,\\infty)\\), so every \\(b\\ge0\\) produces a nonnegative-real-part root. If \\(c<a\\), the union is \\([D(a,c),\\infty)\\), except when \\(c=0\\) and \\(a\\ge\\sqrt2\\), where it is \\((1,\\infty)\\). This gives exactly the boxed classification.",
+  "status": "success",
+  "completed_at": "2026-09-24T08:49:35+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/74070fb8e3b6.json"
+}
