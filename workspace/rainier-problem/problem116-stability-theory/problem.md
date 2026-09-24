@@ -2,30 +2,48 @@
 
 ## LaTeX (Normalized)
 
-Let $a,b>0$. Consider the transport system
+Let $\alpha>0$ and define
 $$
-u_t+u_x=0,\qquad 0<x<1,
-$$
-$$
-v_t+v_x=0,\qquad 0<x<3,
-$$
-with boundary coupling
-$$
-u(t,0)=a u(t,1)+v(t,3),
+A_1=
+\begin{pmatrix}
+-\alpha&1&0\\
+0&-\alpha&0\\
+0&0&-\alpha
+\end{pmatrix},
 \qquad
-v(t,0)=-b u(t,1).
+A_2=
+\begin{pmatrix}
+-\alpha&0&0\\
+0&-\alpha&1\\
+0&0&-\alpha
+\end{pmatrix},
+\qquad
+A_3=
+\begin{pmatrix}
+-\alpha&0&0\\
+0&-\alpha&0\\
+1&0&-\alpha
+\end{pmatrix}.
 $$
-Determine all pairs $(a,b)$ for which the zero solution is exponentially stable in
+For each $x,y,z\geq0$ with $x+y+z=1$, let $A_{x,y,z}(t)$ be the $1$-periodic matrix obtained on every interval $[n,n+1)$ by using $A_1$ for time $x$, then $A_2$ for time $y$, then $A_3$ for time $z$:
 $$
-L^2(0,1)\times L^2(0,3).
+A_{x,y,z}(t)=
+\begin{cases}
+A_1,&n\leq t<n+x,\\
+A_2,&n+x\leq t<n+x+y,\\
+A_3,&n+x+y\leq t<n+1,
+\end{cases}
+\qquad n\in\mathbb Z_{\geq0}.
 $$
-That is, determine all $(a,b)$ for which there exist constants $M,\gamma>0$ such that every solution satisfies
+Consider
 $$
-\|u(t,\cdot)\|_{L^2(0,1)}+\|v(t,\cdot)\|_{L^2(0,3)}
-\le M e^{-\gamma t}
-\left(\|u(0,\cdot)\|_{L^2(0,1)}+\|v(0,\cdot)\|_{L^2(0,3)}\right)
+X'(t)=A_{x,y,z}(t)X(t),\qquad X(t)\in\mathbb R^3.
 $$
-for all $t\ge0$.
+Determine all $\alpha>0$ for which there exist constants $M,\gamma>0$, independent of $(x,y,z)$, such that every choice $x,y,z\geq0$ with $x+y+z=1$ and every solution satisfy
+$$
+\|X(t)\|_2\leq M e^{-\gamma t}\|X(0)\|_2
+$$
+for all $t\geq0$.
 
 ---
 
@@ -42,4 +60,4 @@ for all $t\ge0$.
 
 ## Domain Explanation
 
-This is an exponential-stability problem for a transport network with static boundary feedback and unequal propagation lengths. The feedback parameters determine whether repeated boundary returns decay or amplify as signals circulate through the two transport channels.
+The requested object is the exact parameter range for uniform exponential stability of a family of periodic linear systems. Floquet monodromy is an intermediate tool, while the main task is to identify the worst dwell distribution and close the uniform stability estimate over the full parameter simplex.
