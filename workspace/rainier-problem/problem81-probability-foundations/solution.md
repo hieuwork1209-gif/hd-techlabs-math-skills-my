@@ -157,23 +157,70 @@ D_{n+1}
 +
 96.
 $$
-After dividing by $n+1$ and summing,
-$$
+Put
+$
+a_n=\frac{A_n}{n+1},
+\qquad
+c_n=\frac{C_n}{n+1},
+\qquad
+d_n=\frac{D_n}{n+1}.
+$
+Then
+$
+a_{n+1}=a_n+\frac{24}{n+2},
+$
+$
+c_{n+1}
+=
+c_n+\frac{a_n/2+24}{n+2},
+$
+and
+$
+d_{n+1}
+=
+d_n+\frac{c_n+96}{n+2}.
+$
+Since $a_0=c_0=d_0=0$,
+$
+a_n=24\log n+O(1).
+$
+Using
+$
+\sum_{k\leq n}\frac{\log k}{k}
+=
+\frac{1}{2}(\log n)^2+O(1)
+$
+and
+$
+\sum_{k\leq n}\frac{(\log k)^2}{k}
+=
+\frac{1}{3}(\log n)^3+O((\log n)^2),
+$
+the next two recurrences give
+$
+c_n=6(\log n)^2+O(\log n),
+$
+and
+$
+d_n=2(\log n)^3+O((\log n)^2).
+$
+Therefore
+$
 A_n
 =
 24n\log n+O(n),
-$$
-$$
+$
+$
 C_n
 =
 6n(\log n)^2+O(n\log n),
-$$
+$
 and
-$$
+$
 D_n
 =
 2n(\log n)^3+O(n(\log n)^2).
-$$
+$
 Therefore, with
 $$
 L_n=\log n,
@@ -304,8 +351,8 @@ $$
 \xi_{n,k}
 =
 \begin{pmatrix}
-\dfrac{P_{k+1,n}\eta_{k+1}^U}{\sqrt{nL_n}}\\[3mm]
-\dfrac{P_{k+1,n}(\eta_{k+1}^V+H_{k+1,n}\eta_{k+1}^U)}
+\frac{P_{k+1,n}\eta_{k+1}^U}{\sqrt{nL_n}}\\
+\frac{P_{k+1,n}(\eta_{k+1}^V+H_{k+1,n}\eta_{k+1}^U)}
 {\sqrt{nL_n^3}}
 \end{pmatrix}.
 $$
