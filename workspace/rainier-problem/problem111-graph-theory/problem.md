@@ -21,9 +21,7 @@ $$
 L_0=2,\quad L_1=1,\quad L_{j+1}=L_j+L_{j-1}.
 $$
 
-The Smith normal form of $Q_n$ has $n-2$ unit diagonal entries and two nontrivial invariant factors $d_1,d_2$, with $d_1\mid d_2$.
-
-Determine the ordered pair $(d_1,d_2)$.
+Determine the non-unit invariant factors of the Smith normal form of $Q_n$, listed in divisibility order as an ordered tuple.
 
 ---
 
@@ -40,4 +38,4 @@ Determine the ordered pair $(d_1,d_2)$.
 
 ## Domain Explanation
 
-The requested object is the pair of nontrivial Smith invariant factors of the reduced Laplacian of a wheel graph, equivalently the canonical decomposition of its critical group. The solution uses the cyclic Laplacian relations to reduce the integer presentation to two generators, then determines the Smith invariants through a Fibonacci transfer recurrence.
+The requested object is the non-unit Smith invariant factors of the reduced Laplacian of a wheel graph, equivalently the canonical decomposition of its critical group. The solution must compress the cyclic integer presentation and determine its invariant factors through a Fibonacci transfer recurrence.
