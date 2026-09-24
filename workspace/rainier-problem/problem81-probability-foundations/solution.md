@@ -69,7 +69,7 @@ M=
 \frac{1}{4}&\frac{3}{4}
 \end{pmatrix}.
 $
-Its eigenvectors $(1,1)$ and $(1,-1)$ have eigenvalues $1$ and $1/2$, respectively. This forces the Perron and stable coordinates
+Its eigenvectors $(1,1)$ and $(1,-1)$ have eigenvalues $1$ and $\frac{1}{2}$, respectively. This forces the Perron and stable coordinates
 $
 x_n=\frac{a_n+b_n}{2},
 \qquad
@@ -139,7 +139,7 @@ x_n-x_{n+1}
 \geq
 \frac{3}{8}x_n^2.
 $
-Hence $(x_n)$ decreases to some limit $L\geq0$. If $L>0$, then for all large $n$ the decrement is at least $3L^2/16$, contradicting convergence of $x_n$. Therefore
+Hence $(x_n)$ decreases to some limit $L\geq0$. If $L>0$, then for all large $n$ the decrement is at least $\frac{3L^2}{16}$, contradicting convergence of $x_n$. Therefore
 $$
 x_n\to0.
 $$
@@ -252,7 +252,7 @@ t_{n+1}
 +
 o(1).
 $$
-Subtracting $1/4$,
+Subtracting $\frac{1}{4}$,
 $$
 t_{n+1}-\frac{1}{4}
 =
