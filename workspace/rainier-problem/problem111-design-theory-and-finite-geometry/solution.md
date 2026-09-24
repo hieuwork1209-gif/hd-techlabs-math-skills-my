@@ -37,13 +37,21 @@ $$
 =
 \varphi_1(s)\sigma(e_1)+\varphi_2(t)\sigma(e_2).
 $$
-Applying this to the line $\mathbb F_\ell(e_1+e_2)$ shows $\varphi_1=\varphi_2=: \varphi$. Applying it to the lines through $e_1+te_2$ and using the same intersection construction gives
-$$
-\varphi(s+t)=\varphi(s)+\varphi(t),
-\qquad
+Applying this to the line $\mathbb F_\ell(e_1+e_2)$ shows $\varphi_1=\varphi_2=: \varphi$, because every image point on that line has equal coordinates relative to $\sigma(e_1),\sigma(e_2)$.
+
+Use these image vectors as coordinate axes. The line
+$
+\{se_1+(s+t)e_2:s\in\mathbb F_\ell\}
+$
+is parallel to $\mathbb F_\ell(e_1+e_2)$. Its image is therefore parallel to the line of slope $1$ and contains $(0,\varphi(t))$. Hence for every $s,t$,
+$
+\varphi(s+t)=\varphi(s)+\varphi(t).
+$
+Likewise the line $\mathbb F_\ell(e_1+te_2)$ passes through $(1,t)$, so its image is the line through the origin and $(1,\varphi(t))$. The image of the point $se_1+st e_2$ lies on this line, giving
+$
 \varphi(st)=\varphi(s)\varphi(t).
-$$
-Hence $\varphi$ is a field automorphism of the prime field $\mathbb F_\ell$, so $\varphi$ is the identity. Therefore
+$
+Thus $\varphi$ is a field automorphism of the prime field $\mathbb F_\ell$, so $\varphi$ is the identity. Therefore
 $$
 \sigma(x)=Ax+b
 $$
