@@ -127,7 +127,7 @@ $$
 $$
 T=3U_1-\frac k3+\frac{8r}{3}-\frac34V_1.
 $$
-Combining the two exponentials and again using parity gives the local expansion
+By $z\mapsto-z$ symmetry every term odd in $z$ has zero expectation, and the only surviving cross term between the two exponents is $J$. Combining the two exponentials gives the local expansion
 $$
 1+hq+\alpha q^2+\beta q^3+o(q^3),
 $$
