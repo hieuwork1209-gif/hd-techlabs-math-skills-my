@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-probability-foundations/problem.md",
+  "source_commit_sha": "22d8d69ac713f5ff0f04632557feb16a157588aa",
+  "problem_blob_sha": "b8dbd3a8d2710f38adde230743496ab15acf1092",
+  "statement_sha256": "5b8767f52c30c8dc99423d8f7c13d4fb63d5455e7d8f573b936563aa6200f91d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T04:14:32+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nA=2P-1,\\qquad R=A^2\\in[0,1].\n\\]\nBecause the law of \\(P\\) is invariant under \\(P\\mapsto 1-P\\), the sign of \\(A\\) is irrelevant for the even equality probabilities. For even \\(n\\),\n\\[\n\\mathbb P(X_1=\\cdots=X_n)=\\mathbb E\\bigl[P^n+(1-P)^n\\bigr].\n\\]\n\nFor \\(n=2\\),\n\\[\nP^2+(1-P)^2=\\frac{1+R}{2},\n\\]\nso\n\\[\n\\mathbb E[R]=\\frac12.\n\\]\n\nFor \\(n=4\\),\n\\[\nP^4+(1-P)^4=\\frac{1+6R+R^2}{8},\n\\]\nhence\n\\[\n\\frac{1+6(1/2)+\\mathbb E[R^2]}8=\\frac{13}{24},\n\\]\nso\n\\[\n\\mathbb E[R^2]=\\frac13.\n\\]\n\nFor \\(n=6\\),\n\\[\nP^6+(1-P)^6=\\frac{1+15R+15R^2+R^3}{32},\n\\]\nso\n\\[\n\\frac{1+15(1/2)+15(1/3)+\\mathbb E[R^3]}{32}=\\frac{55}{128},\n\\]\ngiving\n\\[\n\\mathbb E[R^3]=\\frac14.\n\\]\n\nNow for \\(n=8\\),\n\\[\nP^8+(1-P)^8=\\frac{1+28R+70R^2+28R^3+R^4}{128}.\n\\]\nThus the desired probability is\n\\[\n\\frac{1+28(1/2)+70(1/3)+28(1/4)+\\mathbb E[R^4]}{128}\n=\n\\frac{\\frac{136}{3}+\\mathbb E[R^4]}{128}.\n\\]\n\nIt remains to find the possible range of \\(m_4=\\mathbb E[R^4]\\), where \\(R\\in[0,1]\\) and\n\\[\n\\mathbb E[R]=\\frac12,\\quad \\mathbb E[R^2]=\\frac13,\\quad \\mathbb E[R^3]=\\frac14.\n\\]\n\nFor the lower bound,\n\\[\n0\\le \\mathbb E\\left[\\left(R^2-R+\\frac16\\right)^2\\right].\n\\]\nExpanding gives\n\\[\n0\\le m_4-2\\cdot\\frac14+\\frac43\\cdot\\frac13-\\frac13\\cdot\\frac12+\\frac1{36}\n=m_4-\\frac7{36}.\n\\]\nSo\n\\[\nm_4\\ge \\frac7{36}.\n\\]\n\nFor the upper bound, since \\(R\\in[0,1]\\),\n\\[\n0\\le \\mathbb E\\left[R(1-R)(1-2R)^2\\right].\n\\]\nExpanding,\n\\[\nR(1-R)(1-2R)^2=R-5R^2+8R^3-4R^4,\n\\]\nso\n\\[\n0\\le \\frac12-5\\cdot\\frac13+8\\cdot\\frac14-4m_4\n=\\frac56-4m_4.\n\\]\nThus\n\\[\nm_4\\le \\frac5{24}.\n\\]\n\nBoth endpoints are attainable: \\(m_4=7/36\\) by putting mass \\(1/2,1/2\\) at\n\\[\n\\frac{1-\\frac1{\\sqrt3}}2,\\quad \\frac{1+\\frac1{\\sqrt3}}2,\n\\]\nand \\(m_4=5/24\\) by putting masses\n\\[\n\\frac16,\\frac23,\\frac16\n\\]\nat \\(0,\\frac12,1\\). Any intermediate value follows by mixing these distributions. Each distribution of \\(R\\) lifts to a symmetric distribution of \\(P\\) by taking \\(P=(1\\pm\\sqrt R)/2\\) with equal signs.\n\nTherefore\n\\[\n\\mathbb P(X_1=\\cdots=X_8)\n\\in\n\\left[\n\\frac{\\frac{136}{3}+\\frac7{36}}{128},\n\\frac{\\frac{136}{3}+\\frac5{24}}{128}\n\\right].\n\\]\n\nSo the exact interval is\n\\[\n\\boxed{\\left[\\frac{1639}{4608},\\frac{1093}{3072}\\right]}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T04:15:46+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/b8dbd3a8d271.json"
+}
