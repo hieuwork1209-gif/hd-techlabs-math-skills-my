@@ -1,153 +1,67 @@
-## Steps
+# Draft solution
 
-Step 1: Reduce the transport network to a boundary recurrence
-Consider
-$$
-u_t+u_x=0,\qquad 0<x<1,
-$$
-$$
-v_t+v_x=0,\qquad 0<x<3,
-$$
-with boundary coupling
-$$
-u(t,0)=a u(t,1)+v(t,3),\qquad v(t,0)=-b u(t,1),
-$$
-where $a,b>0$.
 Let
-$$p(t)=u(t,0).$$
-By propagation along characteristics,
 $$
-u(t,1)=p(t-1),$$
-and
+A_1=\begin{pmatrix}-\alpha&1&0\\0&-\alpha&0\\0&0&-\alpha\end{pmatrix},\quad
+A_2=\begin{pmatrix}-\alpha&0&0\\0&-\alpha&1\\0&0&-\alpha\end{pmatrix},\quad
+A_3=\begin{pmatrix}-\alpha&0&0\\0&-\alpha&0\\1&0&-\alpha\end{pmatrix}.
 $$
-v(t,3)=v(t-3,0)=-b u(t-3,1)=-b p(t-4).$$
-Hence the boundary trace satisfies
+Write $A_i=-\alpha I+N_i$. Since $N_i^2=0$,
 $$
-p(t)=a p(t-1)-b p(t-4).
+e^{sA_i}=e^{-\alpha s}(I+sN_i).
 $$
-For each $s\in[0,1)$, the sequence $p_n(s)=p(s+n)$ obeys the same fourth-order recurrence
+For dwell fractions $x,y,z\geq0$ with $x+y+z=1$, the one-period matrix is
 $$
-p_n=a p_{n-1}-b p_{n-4},
-$$
-with characteristic polynomial
-$$
-P(z)=z^4-a z^3+b.
-$$
-Thus all boundary traces decay exponentially, uniformly in the phase $s$, exactly when every zero of $P$ lies in the open unit disk. Since every interior value of $u$ or $v$ is a time translate of a boundary trace along a characteristic, this is equivalent to exponential stability of the transport semigroup in $L^2(0,1)\times L^2(0,3)$.
-
-Step 2: Apply the first Schur reduction
-For a real polynomial
-$$
-R(z)=z^n+c_1z^{n-1}+\cdots+c_n
-$$
-with $|c_n|<1$, Schur reduction says that all zeros of $R$ lie in $|z|<1$ exactly when all zeros of
-$$
-\frac{R(z)-c_n z^nR(1/z)}{z}
-$$
-lie in $|z|<1$.
-Applying this to
-$$P(z)=z^4-a z^3+b$$
-first requires
-$$0<b<1.$$
-Moreover,
-$$
-P(z)-b z^4P(1/z)
-=(1-b^2)z^4-a z^3+abz.
-$$
-After dividing by $z(1-b^2)$, the reduced cubic is
-$$
-Q(z)=z^3-Az^2+B,
+\Phi(x,y,z)=e^{-\alpha}M(x,y,z),
 $$
 where
 $$
-A=\frac{a}{1-b^2},\qquad B=\frac{ab}{1-b^2}.
+M=(I+zN_3)(I+yN_2)(I+xN_1)
+=\begin{pmatrix}
+1&x&0\\
+0&1&y\\
+z&zx&1
+\end{pmatrix}.
 $$
 
-Step 3: Reduce the cubic to a quadratic
-For $Q$ to be Schur stable we need $0<B<1$, and a second Schur reduction gives
+Set $q=xyz$. Direct determinant expansion gives
 $$
-(1-B^2)z^2-Az+AB.
+\det(\lambda I-M)=(\lambda-1)^3-q\lambda.
 $$
-A real quadratic $\alpha z^2+\beta z+\gamma$ with $\alpha>0$ is Schur stable exactly when
+For $q>0$, $M$ is nonnegative and irreducible, so Perron-Frobenius gives a positive eigenvalue equal to $\rho(M)$. Writing it as $\lambda=1+r$ gives
 $$
-|\gamma|<\alpha,\qquad \alpha+\beta+\gamma>0,\qquad \alpha-\beta+\gamma>0.
+r^3=q(r+1).
 $$
-Here the last inequality is automatic. The condition
+There is a unique $r\geq0$ satisfying this equation, since
 $$
-AB<1-B^2
+q=\frac{r^3}{r+1}
 $$
-becomes
-$$
-a^2b(1+b)<(1-b^2)^2,
-$$
-that is,
-$$
-a<(1-b)\sqrt{\frac{1+b}{b}}.
-$$
-The condition
-$$
-1-B^2-A+AB>0
-$$
-becomes, after multiplying by $(1-b^2)^2$,
-$$
-(1-b)b\left(a-(1+b)\right)
-\left(a-\frac{1-b^2}{b}\right)>0.
-$$
-Also $B<1$ is
-$$
-a<\frac{1-b^2}{b}.
-$$
-Under this last inequality, the factored condition above is equivalent to
-$$
-a<1+b
-$$
-whenever it is active. Since
-$$
-(1-b)\sqrt{\frac{1+b}{b}}<\frac{1-b^2}{b},
-$$
-the $B<1$ bound is redundant once the quadratic Schur bound is imposed.
+is strictly increasing for $r\geq0$. Hence $\rho(M)$ is an increasing function of $q$. The boundary cases $q=0$ follow by continuity.
 
-Step 4: State the exact stability region
-Combining the conditions gives
+Under $x+y+z=1$, AM-GM gives $q\leq1/27$, with equality exactly at $x=y=z=1/3$. Therefore the largest possible spectral radius of $M$ is the number $\rho_*>1$ satisfying
 $$
-0<b<1,
-\qquad
-0<a<1+b,
-\qquad
-0<a<(1-b)\sqrt{\frac{1+b}{b}}.
+27(\rho_*-1)^3=\rho_*.
 $$
-Therefore the transport network is exponentially stable exactly for
+Equivalently,
 $$
-0<b<1,
-\qquad
-0<a<\min\left\{1+b,(1-b)\sqrt{\frac{1+b}{b}}\right\}.
+\rho_* = \max\{r\in\mathbb R:27(r-1)^3=r\}.
 $$
-Final Answer: $\boxed{\{(a,b):0<b<1,0<a<\min\{1+b,(1-b)\sqrt{(1+b)/b}\}\}}$
 
----
+If $e^{-\alpha}\rho_*<1$, choose $R$ with $e^{-\alpha}\rho_*<R<1$. The family
+$$
+\mathcal F=\{\Phi(x,y,z):x,y,z\geq0,\ x+y+z=1\}
+$$
+is compact and every member has spectrum in $|w|<R$. On the compact set
+$$
+\{(\Phi,w):\Phi\in\mathcal F,\ |w|=R\},
+$$
+the resolvent $(wI-\Phi)^{-1}$ is continuous and uniformly bounded. Cauchy's formula for matrix powers gives a constant $C$ independent of $x,y,z$ such that
+$$
+\|\Phi(x,y,z)^n\|_2\leq C R^n.
+$$
+The flow during the remaining fraction of a period is uniformly bounded because every active matrix has norm at most $\alpha+1$. Thus there are $M,\gamma>0$, independent of the dwell fractions, giving uniform exponential decay.
 
-## Answer
-
-$\{(a,b):0<b<1,0<a<\min\{1+b,(1-b)\sqrt{(1+b)/b}\}\}$
-
----
-
-## Classification
-
-**Problem Type:** Solve for unknowns
-
-**Answer Type:** Interval or region description
-
----
-
-## Solution Concepts
-
-- transport semigroups
-- boundary feedback systems
-- method of characteristics
-- Schur stability
-- Schur-Cohn reduction
-
----
-
-## Black-Box Audit — no issues found
+Conversely, for $x=y=z=1/3$, the monodromy matrix has eigenvalue $e^{-\alpha}\rho_*$. If this number is at least $1$, an eigenvector produces a nondecaying solution at integer times, so uniform exponential stability is impossible. Therefore the exact condition is
+$$
+\alpha>\log\max\{r\in\mathbb R:27(r-1)^3=r\}.
+$$
