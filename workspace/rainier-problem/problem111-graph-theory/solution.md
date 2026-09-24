@@ -1,37 +1,23 @@
 ## Steps
 
-Step 1: Write the critical group presentation
-Let $W_n$ have rim vertices $v_0,\ldots,v_{n-1}$ and hub $h$, with indices taken modulo $n$. Deleting the hub row and column from the Laplacian gives the reduced Laplacian
+Step 1: Reduce the wheel relations and track the marked divisor
+Let the rim generators be $x_0,\ldots,x_{n-1}$, with indices modulo $n$. Deleting the hub from the Laplacian gives the relations
 $$
-Q_n=
-\begin{pmatrix}
-3&-1&0&\cdots&0&-1\\
--1&3&-1&\ddots&&0\\
-0&-1&3&\ddots&\ddots&\vdots\\
-\vdots&\ddots&\ddots&\ddots&-1&0\\
-0&&\ddots&-1&3&-1\\
--1&0&\cdots&0&-1&3
-\end{pmatrix}.
+3x_i-x_{i-1}-x_{i+1}=0.
 $$
-The critical group is presented by generators $x_0,\ldots,x_{n-1}$ and relations
-$$
-3x_i-x_{i-1}-x_{i+1}=0
-\qquad(i\bmod n).
-$$
-
-Each relation can be rewritten as
+Thus
 $$
 x_{i+1}=3x_i-x_{i-1}.
 $$
-Introduce
+With
 $$
 M=
 \begin{pmatrix}
 3&-1\\
 1&0
-\end{pmatrix}.
+\end{pmatrix},
 $$
-Then
+the recurrence becomes
 $$
 \begin{pmatrix}
 x_{i+1}\\
@@ -45,21 +31,7 @@ x_{i-1}
 \end{pmatrix}.
 $$
 
-Step 2: Reduce the presentation to two generators
-Starting from $x_0,x_1$, the recurrence determines every $x_i$. After one full turn around the rim,
-$$
-\begin{pmatrix}
-x_{n+1}\\
-x_n
-\end{pmatrix}
-=
-M^n
-\begin{pmatrix}
-x_1\\
-x_0
-\end{pmatrix}.
-$$
-The cyclic identifications are $x_n=x_0$ and $x_{n+1}=x_1$, so the remaining two relations are
+Starting from $x_0,x_1$, the relations with indices $1,\ldots,n-2$ eliminate $x_2,\ldots,x_{n-1}$ by unimodular presentation operations. The two cyclic closure relations are
 $$
 (M^n-I)
 \begin{pmatrix}
@@ -68,120 +40,188 @@ x_0
 \end{pmatrix}
 =0.
 $$
-For $i=1,\ldots,n-2$, the relation $x_{i+1}-3x_i+x_{i-1}=0$ has coefficient $1$ on the new generator $x_{i+1}$. It can therefore be used to eliminate that generator and that relation by unimodular presentation operations. Repeating this leaves only $x_0,x_1$ and the two cyclic closure relations. This gives
-$
-K(W_n)\cong\operatorname{coker}(M^n-I).
-$
-The Smith form of $Q_n$ is therefore obtained by adjoining $n-2$ unit factors to the Smith form of $M^n-I$.
+Therefore the row lattice of $R_n=M^n-I$ presents the critical group in the basis $x_1,x_0$.
 
-Step 3: Express the transfer matrix through Fibonacci numbers
-Let $F_0=0$, $F_1=1$, and $F_{j+1}=F_j+F_{j-1}$. Two applications of the Fibonacci recurrence give
-$
-F_{m+2}=2F_m+F_{m-1}=3F_m-F_{m-2},
-$
-so in particular
-$
-F_{2j+2}=3F_{2j}-F_{2j-2}.
-$
-Using this recurrence and the case $n=1$ gives, by induction,
+Let $F_0=0$, $F_1=1$, and $F_{j+1}=F_j+F_{j-1}$. The even-indexed Fibonacci numbers satisfy
 $$
-M^n=
+F_{2j+2}=3F_{2j}-F_{2j-2},
+$$
+so induction gives
+$$
+M^m=
 \begin{pmatrix}
-F_{2n+2}&-F_{2n}\\
-F_{2n}&-F_{2n-2}
+F_{2m+2}&-F_{2m}\\
+F_{2m}&-F_{2m-2}
 \end{pmatrix}.
 $$
-Therefore
+The same recurrence gives
 $$
-M^n-I=
+x_k=F_{2k}x_1-F_{2k-2}x_0.
+$$
+Hence the class $\delta_k=[e_k-e_0]$ is represented in the basis $x_1,x_0$ by
+$$
+v_k=
 \begin{pmatrix}
-F_{2n+2}-1&-F_{2n}\\
-F_{2n}&-F_{2n-2}-1
+F_{2k}\\
+-(F_{2k-2}+1)
 \end{pmatrix}.
 $$
 
-Step 4: Determine the first invariant factor
-The first determinantal divisor of an integer matrix is the gcd of all $1\times1$ minors, hence the gcd of its entries. Set
+Step 2: Identify the row lattice when $n$ is odd
+For $m\geq2$, set
 $$
-g=\gcd(F_{2n},F_{2n-2}+1).
+c_m=\gcd(F_{2m},F_{2m-2}+1).
 $$
-The even-index recurrence gives
+Since
 $$
-F_{2n+2}-1
-=
-3F_{2n}-(F_{2n-2}+1).
+R_m=
+\begin{pmatrix}
+F_{2m+2}-1&-F_{2m}\\
+F_{2m}&-(F_{2m-2}+1)
+\end{pmatrix}
 $$
-Every entry of $M^n-I$ is divisible by $g$, and every common divisor of all four entries divides both $F_{2n}$ and $F_{2n-2}+1$. The first nontrivial invariant factor is
+and
 $$
-d_1=g
-=
-\gcd(F_{2n},F_{2n-2}+1).
+F_{2m+2}-1=3F_{2m}-(F_{2m-2}+1),
+$$
+the gcd of all entries of $R_m$ is exactly $c_m$.
+
+The identities
+$$
+F_{2m}=F_mL_m
+$$
+and
+$$
+F_{2m-2}+1=
+\begin{cases}
+F_{m-2}L_m,&m\text{ odd},\\
+F_mL_{m-2},&m\text{ even}
+\end{cases}
+$$
+follow from the Fibonacci addition formulas together with
+$$
+F_{r+1}F_{r-2}-F_rF_{r-1}=(-1)^{r+1}.
+$$
+Also $\gcd(F_m,F_{m-2})=1$, while the Lucas recurrence gives
+$$
+\gcd(L_m,L_{m-2})=\gcd(L_{m-1},L_{m-2})=1.
+$$
+It follows that
+$$
+c_m=
+\begin{cases}
+L_m,&m\text{ odd},\\
+F_m,&m\text{ even}.
+\end{cases}
 $$
 
-Step 5: Determine the determinant and the second invariant factor
-Since $\det M=1$,
+Now assume $n$ is odd. Every entry of $R_n$ is divisible by $L_n$. Since $\det M=1$,
 $$
-\det(M^n-I)
-=
-2-\operatorname{tr}(M^n).
+\det(R_n)=2-\operatorname{tr}(M^n).
 $$
-From the formula in Step 3,
+The trace formula above gives $\operatorname{tr}(M^n)=L_{2n}$. The Lucas doubling identity
 $$
-\operatorname{tr}(M^n)
-=
-F_{2n+2}-F_{2n-2}.
+L_{2n}=L_n^2-2(-1)^n
 $$
-The sequence $F_{m+1}+F_{m-1}$ has initial values $2,1$ at $m=0,1$ and satisfies the same recurrence as the Lucas sequence. It follows that
-$
-L_m=F_{m+1}+F_{m-1}.
-$
-Also
+therefore gives
 $$
-F_{m+2}-F_{m-2}
-=
-F_{m+1}+F_{m-1}
-=
-L_m.
+|\det(R_n)|=L_n^2.
 $$
-Taking $m=2n$ gives
+Thus $R_n=L_nU_n$ for an integer matrix $U_n$ with $|\det U_n|=1$. Its row lattice is
 $$
-\operatorname{tr}(M^n)=L_{2n}.
+L_n\mathbb Z^2.
 $$
-For $n\geq3$, $L_{2n}>2$, so
+Hence, in the basis $x_1,x_0$,
 $$
-|\det(M^n-I)|=L_{2n}-2.
+K(W_n)\cong(\mathbb Z/L_n\mathbb Z)^2.
 $$
 
-The gcd of the $2\times2$ minors is the absolute determinant, so the second determinantal divisor is $d_1d_2=|\det(M^n-I)|$. Therefore
+Step 3: Convert the element order to a gcd
+In $(\mathbb Z/L_n\mathbb Z)^2$, the order of a vector $(a,b)$ is
 $$
-d_2
-=
-\frac{L_{2n}-2}{d_1}
-=
-\frac{L_{2n}-2}{\gcd(F_{2n},F_{2n-2}+1)}.
+\frac{L_n}{\gcd(L_n,a,b)}.
 $$
-Final Answer: $\boxed{\left(\gcd(F_{2n},F_{2n-2}+1),\frac{L_{2n}-2}{\gcd(F_{2n},F_{2n-2}+1)}\right)}$
+Applying this to $v_k$ from Step 1 gives
+$$
+\operatorname{ord}(\delta_k)
+=
+\frac{L_n}
+{\gcd(L_n,F_{2k},F_{2k-2}+1)}
+=
+\frac{L_n}{\gcd(c_n,c_k)}.
+$$
+The last equality uses $c_n=L_n$ because $n$ is odd and the definition of $c_k$.
+
+Step 4: Prove the gcd compatibility for the transfer matrices
+Let
+$$
+d=\gcd(n,k).
+$$
+The monic polynomials $t^n-1$ and $t^k-1$ have monic gcd $t^d-1$. Euclidean division by monic polynomials stays inside $\mathbb Z[t]$, so the extended Euclidean algorithm gives $A(t),B(t)\in\mathbb Z[t]$ such that
+$$
+t^d-1=A(t)(t^n-1)+B(t)(t^k-1).
+$$
+Evaluating at $M$ gives
+$$
+R_d=A(M)R_n+B(M)R_k.
+$$
+Therefore every common divisor of the entries of $R_n$ and $R_k$ divides every entry of $R_d$, so
+$$
+\gcd(c_n,c_k)\mid c_d.
+$$
+
+Conversely, since $d\mid n$ and $d\mid k$,
+$$
+R_n
+=
+R_d\left(I+M^d+\cdots+M^{n-d}\right),
+$$
+and the analogous identity holds for $R_k$. Hence every entry of $R_n$ and $R_k$ is an integer linear combination of entries of $R_d$, giving
+$$
+c_d\mid\gcd(c_n,c_k).
+$$
+Thus
+$$
+\gcd(c_n,c_k)=c_d.
+$$
+
+Step 5: Use the oddness of $n$
+Because $n$ is odd, every divisor $d$ of $n$ is odd. Step 2 therefore gives
+$$
+c_n=L_n,
+\qquad
+c_d=L_d.
+$$
+Substituting the equality from Step 4 into Step 3 yields
+$$
+\operatorname{ord}(\delta_k)
+=
+\frac{L_n}{L_d}
+=
+\frac{L_n}{L_{\gcd(n,k)}}.
+$$
+Final Answer: $\boxed{\frac{L_n}{L_{\gcd(n,k)}}}$
 
 ---
 
 ## Answer
 
-$\left(\gcd(F_{2n},F_{2n-2}+1),\frac{L_{2n}-2}{\gcd(F_{2n},F_{2n-2}+1)}\right)$
+$\frac{L_n}{L_{\gcd(n,k)}}$
 
 ---
 
 ## Classification
 
-**Problem Type:** Canonicalization or normalization
+**Problem Type:** Symbolic derivation
 
-**Answer Type:** Tuple or ordered list
+**Answer Type:** Exact symbolic expression
 
 ---
 
 ## Solution Concepts
 
 - graph critical groups
-- smith normal form
 - integer presentations
 - transfer matrices
 - fibonacci and lucas recurrences
+- polynomial bezout identity
