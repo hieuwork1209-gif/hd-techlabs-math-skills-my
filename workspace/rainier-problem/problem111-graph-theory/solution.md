@@ -72,13 +72,17 @@ For $i=1,\ldots,n-2$, the relation $x_{i+1}-3x_i+x_{i-1}=0$ has coefficient $1$ 
 $
 K(W_n)\cong\operatorname{coker}(M^n-I).
 $
-The original Smith form consequently has $n-2$ unit factors and the two invariant factors of $M^n-I$.
+The Smith form of $Q_n$ is therefore obtained by adjoining $n-2$ unit factors to the Smith form of $M^n-I$.
 
 Step 3: Express the transfer matrix through Fibonacci numbers
-Let $F_0=0$, $F_1=1$, and $F_{j+1}=F_j+F_{j-1}$. The even-indexed Fibonacci numbers satisfy
-$$
+Let $F_0=0$, $F_1=1$, and $F_{j+1}=F_j+F_{j-1}$. Two applications of the Fibonacci recurrence give
+$
+F_{m+2}=2F_m+F_{m-1}=3F_m-F_{m-2},
+$
+so in particular
+$
 F_{2j+2}=3F_{2j}-F_{2j-2}.
-$$
+$
 Using this recurrence and the case $n=1$ gives, by induction,
 $$
 M^n=
@@ -97,7 +101,7 @@ F_{2n}&-F_{2n-2}-1
 $$
 
 Step 4: Determine the first invariant factor
-For a full-rank $2\times2$ integer matrix, the determinantal-divisor description of Smith form says that the first invariant is the gcd of all $1\times1$ minors, hence the gcd of the four entries. Set
+The first determinantal divisor of an integer matrix is the gcd of all $1\times1$ minors, hence the gcd of its entries. Set
 $$
 g=\gcd(F_{2n},F_{2n-2}+1).
 $$
@@ -127,10 +131,10 @@ $$
 =
 F_{2n+2}-F_{2n-2}.
 $$
-If $L_0=2$, $L_1=1$, and $L_{j+1}=L_j+L_{j-1}$, then
-$$
+The sequence $F_{m+1}+F_{m-1}$ has initial values $2,1$ at $m=0,1$ and satisfies the same recurrence as the Lucas sequence. Hence
+$
 L_m=F_{m+1}+F_{m-1}.
-$$
+$
 Also
 $$
 F_{m+2}-F_{m-2}
