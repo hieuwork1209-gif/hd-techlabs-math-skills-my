@@ -68,11 +68,11 @@ x_0
 \end{pmatrix}
 =0.
 $$
-Eliminating $x_2,\ldots,x_{n-1}$ by the recurrence uses only integer row and column operations on the presentation. Hence
-$$
+For $i=1,\ldots,n-2$, the relation $x_{i+1}-3x_i+x_{i-1}=0$ has coefficient $1$ on the new generator $x_{i+1}$. It can therefore be used to eliminate that generator and that relation by unimodular presentation operations. Repeating this leaves only $x_0,x_1$ and the two cyclic closure relations. Hence
+$
 K(W_n)\cong\operatorname{coker}(M^n-I).
-$$
-In particular, the Smith normal form of $Q_n$ has $n-2$ unit factors, followed by the two invariant factors of $M^n-I$.
+$
+The original Smith form consequently has $n-2$ unit factors and the two invariant factors of $M^n-I$.
 
 Step 3: Express the transfer matrix through Fibonacci numbers
 Let $F_0=0$, $F_1=1$, and $F_{j+1}=F_j+F_{j-1}$. The even-indexed Fibonacci numbers satisfy
@@ -97,7 +97,7 @@ F_{2n}&-F_{2n-2}-1
 $$
 
 Step 4: Determine the first invariant factor
-For a full-rank $2\times2$ integer matrix, the first Smith invariant is the greatest common divisor of its four entries. Set
+For a full-rank $2\times2$ integer matrix, the determinantal-divisor description of Smith form says that the first invariant is the gcd of all $1\times1$ minors, hence the gcd of the four entries. Set
 $$
 g=\gcd(F_{2n},F_{2n-2}+1).
 $$
@@ -148,7 +148,7 @@ $$
 |\det(M^n-I)|=L_{2n}-2.
 $$
 
-For a full-rank $2\times2$ presentation, the product of the two Smith invariant factors equals the absolute determinant. Therefore
+The gcd of the $2\times2$ minors is the absolute determinant, so the second determinantal divisor is $d_1d_2=|\det(M^n-I)|$. Therefore
 $$
 d_2
 =
