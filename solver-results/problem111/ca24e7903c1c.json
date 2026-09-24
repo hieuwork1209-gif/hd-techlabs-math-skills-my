@@ -1,0 +1,22 @@
+{
+  "problem": "problem111",
+  "branch": "adversary/problem111",
+  "problem_path": "workspace/rainier-problem/problem111-extremal-combinatorics/problem.md",
+  "source_commit_sha": "157348d54a09c5381bd6a0831c49a7e18f2f0f32",
+  "problem_blob_sha": "ca24e7903c1c17a67bf43739ccef699a242f1bc1",
+  "statement_sha256": "bb1892d42ebc41f9558b2d3b3c8bccd894df0e4168d9a52bfa9d15e6cbf29e2c",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T06:00:46+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "We need solve cold. Let “components” mean components of the graph whose vertices are triples in \\(\\mathcal F\\), with two triples adjacent when they intersect in \\(2\\) points.\n\nFirst, within any such component, every two triples must intersect in \\(2\\) points. Indeed, along a shortest path \\(E_0,E_1,E_2,\\dots\\), if \\(E_0=\\{1,2,3\\}\\) and \\(E_1=\\{1,2,4\\}\\), then any triple meeting \\(E_1\\) in two points either meets \\(E_0\\) in exactly one point, which is forbidden, or also meets \\(E_0\\) in two points, which shortens the path. So no distance \\(>1\\) can occur inside a component.\n\nNow classify a pairwise \\(2\\)-intersecting family of triples. Given two triples\n\\[\n\\{1,2,3\\},\\quad \\{1,2,4\\},\n\\]\nany further triple must either contain the common pair \\(\\{1,2\\}\\), or lie inside \\(\\{1,2,3,4\\}\\). Hence every component is one of two types:\n\n1. a family of triples all containing one fixed pair, say\n\\[\n\\{x,y,z\\}: z\\in S\\setminus\\{x,y\\},\n\\]\nwith at most \\(|S|-2\\) triples;\n\n2. a subfamily of the \\(4\\) triples on some \\(4\\)-set, with at most \\(4\\) triples, equality only for the full \\(\\binom{4}{3}\\).\n\nDifferent components have disjoint vertex supports, since triples from different components cannot meet in \\(2\\) points, and meeting in \\(1\\) point is forbidden.\n\nLet \\(d=(\\text{number of vertices used})-(\\text{number of triples})\\). A full \\(4\\)-set component \\(\\binom{X}{3}\\), \\(|X|=4\\), has \\(d=0\\). Every other nonempty component has \\(d\\ge2\\), and each isolated vertex contributes \\(d=1\\).\n\nSince \\(n=4q+2\\not\\equiv0,1\\pmod4\\), the total deficit must be at least \\(2\\). Therefore\n\\[\n|\\mathcal F|\\le n-2=4q.\n\\]\nThis is attainable, so the maximum size is \\(4q\\).\n\nEquality occurs exactly in the following cases.\n\n- Two isolated vertices, and the remaining \\(4q\\) vertices partitioned into \\(q\\) full \\(4\\)-set components.\n- One star component on \\(4r+2\\) vertices, \\(1\\le r\\le q\\), consisting of all triples containing a fixed center pair, and the remaining \\(4(q-r)\\) vertices partitioned into full \\(4\\)-set components.\n\nCounting labeled families:\n\nFor the first case,\n\\[\n\\binom n2\\frac{(n-2)!}{(4!)^q q!}\n=\n\\frac{n!}{2\\cdot 24^q q!}.\n\\]\n\nFor a star on \\(4r+2\\) vertices,\n\\[\n\\binom n{4r+2}\\binom{4r+2}{2}\n\\frac{(4(q-r))!}{24^{q-r}(q-r)!}\n=\n\\frac{n!}{2(4r)!24^{q-r}(q-r)!}.\n\\]\n\nThus the number of labeled maximum families is\n\\[\n\\boxed{\n\\frac{(4q+2)!}{2}\\sum_{r=0}^{q}\n\\frac{1}{(4r)!\\,24^{q-r}(q-r)!}\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T06:02:27+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem111/ca24e7903c1c.json"
+}
