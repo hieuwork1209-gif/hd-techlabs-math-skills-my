@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-probability-foundations/problem.md",
+  "source_commit_sha": "0c2d215819d2134307c3a18696976916967872e0",
+  "problem_blob_sha": "d5ed1550d2b0938f5218d268ff4f3964c2e4cce3",
+  "statement_sha256": "87abd7dd979ecd487f10ed1c5835007ec48cabecaf833d9ade754e8159b24321",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T09:49:53+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let  \n\\[\nf(z)=\\mathbb E[z^{Y_1}]\n=\\sum_{k\\ge1}\\frac{z^k}{k(k+1)}.\n\\]\nUsing \\(\\frac1{k(k+1)}=\\frac1k-\\frac1{k+1}\\),\n\\[\nf(z)=1+\\frac{1-z}{z}\\log(1-z).\n\\]\nHence, with\n\\[\nL(z)=\\log\\frac1{1-z},\n\\qquad\nQ(z)=1-f(z)=\\frac{1-z}{z}L(z),\n\\]\nwe have\n\\[\nQ(z)^{-r}=z^r(1-z)^{-r}L(z)^{-r}.\n\\]\n\nDefine\n\\[\nH_{r,n}=[z^n]Q(z)^{-r}.\n\\]\n\nWe will use the standard logarithmic coefficient estimate\n\\[\n[z^n](1-z)^{-r}L(z)^{-r}\n=\n\\frac{n^{r-1}}{\\Gamma(r)(\\log n)^r}\n\\left(\n1+\\frac{r\\psi(r)}{\\log n}\n+o\\!\\left(\\frac1{\\log n}\\right)\n\\right),\n\\]\nwhere \\(\\psi=\\Gamma'/\\Gamma\\). Since the factor \\(z^r\\) only shifts the coefficient index by \\(r\\), the same asymptotic applies to \\(H_{r,n}\\). Thus\n\\[\nH_{r,n}\n=\n\\frac{n^{r-1}}{\\Gamma(r)(\\log n)^r}\n\\left(\n1+\\frac{c_r}{\\log n}\n+o\\!\\left(\\frac1{\\log n}\\right)\n\\right),\n\\]\nwith\n\\[\nc_r=r\\psi(r).\n\\]\n\nUsing\n\\[\n\\psi(1)=-\\gamma,\\qquad\n\\psi(2)=1-\\gamma,\\qquad\n\\psi(3)=\\frac32-\\gamma,\n\\]\nwe get\n\\[\nc_1=-\\gamma,\\qquad\nc_2=2(1-\\gamma),\\qquad\nc_3=\\frac92-3\\gamma.\n\\]\n\nNow consider\n\\[\nU(z,t)=\\sum_{n,m\\ge0}\\mathbb P(\\tau_m=n)t^mz^n\n=\\frac1{1-tf(z)}.\n\\]\nTherefore\n\\[\nu_n:=\\mathbb P(n\\in\\{\\tau_m\\})=[z^n]\\frac1{1-f(z)}=H_{1,n}.\n\\]\n\nAlso,\n\\[\n\\sum_m m\\,\\mathbb P(\\tau_m=n)\n=[z^n]\\frac{f(z)}{(1-f(z))^2}\n=H_{2,n}-H_{1,n},\n\\]\nso\n\\[\nm_n=\\frac{H_{2,n}}{H_{1,n}}-1.\n\\]\nConsequently,\n\\[\nm_n\n=\n\\frac{n}{\\log n}\n\\left(\n1+\\frac{c_2-c_1}{\\log n}\n+o\\!\\left(\\frac1{\\log n}\\right)\n\\right).\n\\]\nSince\n\\[\nc_2-c_1=2-\\gamma,\n\\]\nwe obtain\n\\[\n\\lim_{n\\to\\infty}\\log n\n\\left(\\frac{\\log n}{n}m_n-1\\right)\n=2-\\gamma.\n\\]\n\nFor the factorial second moment,\n\\[\n\\sum_m m(m-1)\\mathbb P(\\tau_m=n)\n=[z^n]\\frac{2f(z)^2}{(1-f(z))^3}\n=2H_{3,n}-4H_{2,n}+2H_{1,n}.\n\\]\nHence\n\\[\nv_n\n=\n\\frac{2H_{3,n}-4H_{2,n}+2H_{1,n}}{H_{1,n}}\n+m_n-m_n^2.\n\\]\nThe terms involving \\(H_{2,n}/H_{1,n}\\) and \\(m_n\\) are \\(O(n/\\log n)\\), negligible compared with \\(n^2/(\\log n)^3\\). Thus\n\\[\nv_n\n=\n2\\frac{H_{3,n}}{H_{1,n}}\n-\\left(\\frac{H_{2,n}}{H_{1,n}}\\right)^2\n+o\\!\\left(\\frac{n^2}{(\\log n)^3}\\right).\n\\]\nUsing the expansions above,\n\\[\n2\\frac{H_{3,n}}{H_{1,n}}\n=\n\\frac{n^2}{(\\log n)^2}\n\\left(\n1+\\frac{c_3-c_1}{\\log n}\n+o\\!\\left(\\frac1{\\log n}\\right)\n\\right),\n\\]\nand\n\\[\n\\left(\\frac{H_{2,n}}{H_{1,n}}\\right)^2\n=\n\\frac{n^2}{(\\log n)^2}\n\\left(\n1+\\frac{2(c_2-c_1)}{\\log n}\n+o\\!\\left(\\frac1{\\log n}\\right)\n\\right).\n\\]\nTherefore\n\\[\n\\frac{(\\log n)^3}{n^2}v_n\n\\longrightarrow\nc_3-2c_2+c_1.\n\\]\nFinally,\n\\[\nc_3-2c_2+c_1\n=\n\\left(\\frac92-3\\gamma\\right)\n-4(1-\\gamma)-\\gamma\n=\\frac12.\n\\]\n\n\\[\n\\boxed{\\left(2-\\gamma,\\ \\frac12\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T09:51:16+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/d5ed1550d2b0.json"
+}
