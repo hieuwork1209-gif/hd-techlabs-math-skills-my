@@ -23,11 +23,11 @@ A_{2m}:=\mathbb P(X_1=\cdots=X_{2m})
 $$
 where $m_0=1$. The given values imply
 $$
-\frac{1+m_1}{2}=\frac34,
+\frac{1+m_1}{2}=\frac{3}{4},
 $$
 so
 $$
-m_1=\frac12.
+m_1=\frac{1}{2}.
 $$
 Next,
 $$
@@ -35,7 +35,7 @@ $$
 $$
 hence
 $$
-m_2=\frac13.
+m_2=\frac{1}{3}.
 $$
 Finally,
 $$
@@ -43,7 +43,7 @@ $$
 $$
 which gives
 $$
-m_3=\frac14.
+m_3=\frac{1}{4}.
 $$
 
 For eight tosses,
@@ -56,11 +56,11 @@ A_8
 $$
 Thus the problem is exactly to find the sharp possible range of $m_4=\mathbb E[Z^4]$ among random variables $Z\in[0,1]$ satisfying
 $$
-\mathbb E Z=\frac12,
+\mathbb E Z=\frac{1}{2},
 \qquad
-\mathbb E Z^2=\frac13,
+\mathbb E Z^2=\frac{1}{3},
 \qquad
-\mathbb E Z^3=\frac14.
+\mathbb E Z^3=\frac{1}{4}.
 $$
 
 Step 2: Obtain the sharp lower bound for the fourth moment
@@ -76,19 +76,19 @@ $$
 $$
 Using the three known moments gives
 $$
-\frac13-\frac{a}{2}-b=0,
+\frac{1}{3}-\frac{a}{2}-b=0,
 \qquad
-\frac14-\frac{a}{3}-\frac{b}{2}=0.
+\frac{1}{4}-\frac{a}{3}-\frac{b}{2}=0.
 $$
 Solving yields
 $$
 a=1,
 \qquad
-b=-\frac16,
+b=-\frac{1}{6},
 $$
 so
 $$
-q(z)=z^2-z+\frac16.
+q(z)=z^2-z+\frac{1}{6}.
 $$
 Since $q(Z)^2\geq0$,
 $$
@@ -96,7 +96,7 @@ $$
 \leq
 \mathbb E[q(Z)^2]
 =
-m_4-2m_3+\frac43m_2-\frac13m_1+\frac{1}{36}.
+m_4-2m_3+\frac{4}{3}m_2-\frac{1}{3}m_1+\frac{1}{36}.
 $$
 Substituting $m_1=\frac{1}{2}$, $m_2=1/3$, and $m_3=1/4$ gives
 $$
@@ -105,25 +105,36 @@ $$
 
 This bound is attainable. The two roots of $q$ are
 $$
-r_- = \frac{1-1/\sqrt{3}}{2},
+r_- = \frac{1-\frac{1}{\sqrt{3}}}{2},
 \qquad
-r_+ = \frac{1+1/\sqrt{3}}{2}.
+r_+ = \frac{1+\frac{1}{\sqrt{3}}}{2}.
 $$
 Let $Z$ take $r_-$ and $r_+$ with probability $\frac{1}{2}$ each. Because
-$$
+$
 r_-+r_+=1,
 \qquad
-r_-r_+=\frac16,
-$$
-one obtains
-$$
-\mathbb E Z=\frac12,
-\qquad
-\mathbb E Z^2=\frac13,
-\qquad
-\mathbb E Z^3=\frac14,
-$$
-and $q(Z)=0$ almost surely, so $m_4=7/36$.
+r_-r_+=\frac{1}{6},
+$
+we have
+$
+\mathbb E Z=\frac{r_-+r_+}{2}=\frac{1}{2},
+$
+$
+\mathbb E Z^2
+=
+\frac{(r_-+r_+)^2-2r_-r_+}{2}
+=
+\frac{1}{3},
+$
+and
+$
+\mathbb E Z^3
+=
+\frac{(r_-+r_+)^3-3r_-r_+(r_-+r_+)}{2}
+=
+\frac{1}{4}.
+$
+Thus $q(Z)=0$ almost surely and $m_4=\frac{7}{36}$.
 
 Step 3: Obtain the sharp upper bound for the fourth moment
 For every real $c$ and every $z\in[0,1]$,
@@ -140,7 +151,7 @@ Using the known moments,
 $$
 m_4
 \leq
-\frac14-\frac{c}{6}+\frac{c^2}{6}.
+\frac{1}{4}-\frac{c}{6}+\frac{c^2}{6}.
 $$
 The right-hand side is minimized at $c=\frac{1}{2}$, hence
 $$
@@ -149,25 +160,40 @@ $$
 
 This bound is also attainable. Let $Z$ have the law
 $$
-\mathbb P(Z=0)=\frac16,
+\mathbb P(Z=0)=\frac{1}{6},
 \qquad
-\mathbb P\left(Z=\frac12\right)=\frac23,
+\mathbb P\left(Z=\frac{1}{2}\right)=\frac{2}{3},
 \qquad
-\mathbb P(Z=1)=\frac16.
+\mathbb P(Z=1)=\frac{1}{6}.
 $$
 Then
-$$
-\mathbb E Z=\frac12,
-\qquad
-\mathbb E Z^2=\frac13,
-\qquad
-\mathbb E Z^3=\frac14,
-$$
-and $Z(1-Z)(Z-\frac{1}{2})^2=0$ almost surely, so $m_4=5/24$.
+$
+\mathbb E Z
+=
+\frac{1}{6}+\frac{2}{3}\cdot\frac{1}{2}
+=
+\frac{1}{2},
+$
+$
+\mathbb E Z^2
+=
+\frac{1}{6}+\frac{2}{3}\cdot\frac{1}{4}
+=
+\frac{1}{3},
+$
+and
+$
+\mathbb E Z^3
+=
+\frac{1}{6}+\frac{2}{3}\cdot\frac{1}{8}
+=
+\frac{1}{4}.
+$
+Also $Z(1-Z)(Z-\frac{1}{2})^2=0$ almost surely, so $m_4=\frac{5}{24}$.
 
 For either extremal law of $Z$, choose an independent fair sign $\varepsilon\in\{-1,1\}$ and set
 $$
-P=\frac{1+\varepsilon\sqrt Z}{2}.
+P=\frac{1+\varepsilon\sqrt{Z}}{2}.
 $$
 Then $P\in[0,1]$, its law is invariant under $P\mapsto1-P$, and the induced coin mixture realizes the required agreement probabilities. Hence both bounds are genuine endpoints.
 
