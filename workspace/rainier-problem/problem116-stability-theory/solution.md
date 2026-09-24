@@ -1,13 +1,28 @@
 ## Steps
 
-Step 1: Analyze the linear subfamily
+Step 1: Establish global existence and analyze the linear subfamily
 Consider
-$$
+$
 x'=y,
 \qquad
 y'=-x-(a+bx^2)y,
-$$
-with $a,b\geq0$. If $b=0$, this is the linear system
+$
+with $a,b\geq0$. The energy
+$
+E(x,y)=\frac{x^2+y^2}{2}
+$
+satisfies
+$
+E'
+=
+xx'+yy'
+=
+-(a+bx^2)y^2
+\leq0.
+$
+Thus every solution remains in its initial energy disk. Since the vector field is polynomial and the solution stays bounded, no finite-time blow-up is possible, so every solution exists for all $t\geq0$.
+
+If $b=0$, the system is linear:
 $$
 \begin{pmatrix}x\\y\end{pmatrix}'
 =
@@ -135,13 +150,13 @@ The right side tends to $0$ as $R\to\infty$, a contradiction. Hence no pair with
 
 Step 5: State the complete parameter set
 Step 1 shows that all pairs with $b=0$ and $a>0$ are globally exponentially stable, while $(a,b)=(0,0)$ is not. Step 4 excludes every pair with $b>0$. These cases exhaust $a,b\geq0$.
-Final Answer: $\boxed{\{(a,b)\in[0,\infty)^2:a>0,\ b=0\}}$
+Final Answer: $\boxed{\{(a,b):a>0,\ b=0\}}$
 
 ---
 
 ## Answer
 
-$\{(a,b)\in[0,\infty)^2:a>0,\ b=0\}$
+$\{(a,b):a>0,\ b=0\}$
 
 ---
 
@@ -159,7 +174,7 @@ $\{(a,b)\in[0,\infty)^2:a>0,\ b=0\}$
 - planar nonlinear systems
 - invariant regions
 - comparison inequalities
-- linearization of linear systems
+- Hurwitz stability
 
 ---
 
