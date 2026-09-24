@@ -114,7 +114,7 @@ so primitivity implies
 $
 N\mid3t.
 $
-Hence $t\in\{0,d,2d\}$. The case $t=0$ is impossible because $\sigma$ changes every symbol. Therefore
+It follows that $t\in\{0,d,2d\}$. The case $t=0$ is impossible because $\sigma$ changes every symbol. Therefore
 $
 t\in\{d,2d\}.
 $
