@@ -28,18 +28,18 @@ $$
 
 Build a directed multigraph $G$ on vertices $0,1,2$ having exactly $N_{ab}$ directed edges from $a$ to $b$. Reading a cyclic word around the circle gives an Euler tour of $G$, except that parallel edges have not yet been distinguished.
 
-Conversely, an Euler tour of $G$ produces a cyclic word by recording its visited vertices. Thus the desired rotation classes can be counted by first labeling all parallel edges, counting labeled Euler tours, and then removing the edge labels and the choice of starting position.
+Conversely, an Euler tour of $G$ produces a cyclic word by recording its visited vertices. The desired rotation classes can therefore be counted by first labeling all parallel edges, counting labeled Euler tours, and then removing the edge labels and the choice of starting position.
 
 Step 2: Prove the labeled Euler-tour count by a last-exit bijection
 Fix vertex $0$ as the starting vertex, and suppose all parallel edges of $G$ are distinctly labeled.
 
-For a labeled Euler tour starting at $0$, mark, for each vertex $v\neq0$, the last outgoing edge used from $v$. Following marked edges from any nonzero vertex must eventually reach $0$. Indeed, if marked edges formed a directed cycle avoiding $0$, take the first vertex of that cycle whose marked edge is used in the tour; after leaving that vertex along its marked edge, the tour could never later leave the preceding vertex of the cycle, contradicting the order in which the marked edges are supposed to be last exits. Hence the two marked edges form a directed spanning tree oriented toward $0$.
+For a labeled Euler tour starting at $0$, mark, for each vertex $v\neq0$, the last outgoing edge used from $v$. Following marked edges from any nonzero vertex must eventually reach $0$. Indeed, if marked edges formed a directed cycle avoiding $0$, take the first vertex of that cycle whose marked edge is used in the tour; after leaving that vertex along its marked edge, the tour could never later leave the preceding vertex of the cycle, contradicting the order in which the marked edges are supposed to be last exits. The two marked edges therefore form a directed spanning tree oriented toward $0$.
 
 Conversely, fix such an oriented spanning tree. At each nonzero vertex, place its marked tree edge last in a linear order of the outgoing edges. At vertex $0$, choose an arbitrary linear order of all outgoing edges. Starting at $0$, repeatedly take the next unused outgoing edge in the chosen local order.
 
 The walk cannot terminate at a nonzero vertex. If it did so at $v$, all $d$ outgoing edges of $v$ would already have been used, while reaching $v$ for the final time would make the number of used incoming edges equal to the number of used outgoing edges plus $1$, impossible because $v$ has only $d$ incoming edges.
 
-Suppose instead that the walk returns to $0$ and stops while some edge remains unused. Choose a vertex $u$ with an unused outgoing edge. Its marked tree edge is last in its local order, so that marked edge is unused. Let its head be $u_1$. If $u_1\neq0$ and the marked edge out of $u_1$ had already been used, then all $d$ outgoing edges of $u_1$ would have been used, while the unused edge entering $u_1$ would leave fewer than $d$ used incoming edges. This contradicts equality of used indegree and used outdegree at a nonroot vertex of a closed walk. Hence the marked edge out of $u_1$ is also unused. Repeating along the tree path reaches an unused edge entering $0$. But a closed walk at $0$ uses the same number of incoming and outgoing edges, so $0$ would then also have an unused outgoing edge, contradicting termination. Therefore every edge is used exactly once. The local orders are recovered uniquely from the tour.
+Suppose instead that the walk returns to $0$ and stops while some edge remains unused. Choose a vertex $u$ with an unused outgoing edge. Its marked tree edge is last in its local order, so that marked edge is unused. Let its head be $u_1$. If $u_1\neq0$ and the marked edge out of $u_1$ had already been used, then all $d$ outgoing edges of $u_1$ would have been used, while the unused edge entering $u_1$ would leave fewer than $d$ used incoming edges. This contradicts equality of used indegree and used outdegree at a nonroot vertex of a closed walk. The marked edge out of $u_1$ is also unused. Repeating along the tree path reaches an unused edge entering $0$. But a closed walk at $0$ uses the same number of incoming and outgoing edges, so $0$ would then also have an unused outgoing edge, contradicting termination. Therefore every edge is used exactly once. The local orders are recovered uniquely from the tour.
 
 If $t_0$ denotes the number of directed spanning trees oriented toward $0$, the number of labeled Euler tours starting at $0$ is therefore
 $$
@@ -89,7 +89,7 @@ $$
 $$
 choices.
 
-The remaining pattern $1\to2$, $2\to1$ is a directed cycle and is not a tree. Hence
+The remaining pattern $1\to2$, $2\to1$ is a directed cycle and is not a tree. Therefore
 $$
 t_0
 =
@@ -103,7 +103,7 @@ For a fixed cyclic word with a distinguished starting position at a symbol $0$, 
 $$
 N_{ab}!
 $$
-ways, independently for the nine ordered pairs. Hence each rooted word corresponds to
+ways, independently for the nine ordered pairs. Each rooted word corresponds to
 $$
 \prod_{a,b}N_{ab}!
 =
