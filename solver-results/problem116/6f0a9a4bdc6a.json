@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "a07c6a49c9c2bd1e3084abc81ebafadc4df6bd69",
+  "problem_blob_sha": "6f0a9a4bdc6ad3ab1635694c54e171271f435939",
+  "statement_sha256": "061627c6eb51254c16e9ab1c3eb8cc9a5a4384d86b379579405381750d1309ef",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T05:55:11+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "We need determine when\n\n\\[\nx'=y,\\qquad y'=-x-(a+bx^2)y,\\qquad a,b\\ge 0\n\\]\n\nhas a uniform estimate\n\n\\[\n\\|(x(t),y(t))\\|_2\\le M e^{-\\gamma t}\\|(x(0),y(0))\\|_2\n\\]\n\nfor all initial data.\n\nThe answer is\n\n\\[\n\\boxed{\\{(a,b):a>0,\\ b=0\\}}.\n\\]\n\n**Sufficiency: \\(a>0,\\ b=0\\).**\n\nThen the system is the linear damped oscillator\n\n\\[\nx'=y,\\qquad y'=-x-ay.\n\\]\n\nLet\n\n\\[\nV(x,y)=x^2+y^2+cxy,\\qquad c=\\frac{4a}{a^2+4}.\n\\]\n\nSince \\(0<c<2\\),\n\n\\[\n\\left(1-\\frac c2\\right)(x^2+y^2)\\le V(x,y)\\le\n\\left(1+\\frac c2\\right)(x^2+y^2).\n\\]\n\nAlong solutions,\n\n\\[\n\\begin{aligned}\nV'\n&=2xx'+2yy'+c(x'y+xy')\\\\\n&=2xy+2y(-x-ay)+c(y^2+x(-x-ay))\\\\\n&=-cx^2+(c-2a)y^2-acxy.\n\\end{aligned}\n\\]\n\nThus\n\n\\[\n-V'=cx^2+(2a-c)y^2+acxy.\n\\]\n\nThe quadratic form on the right is positive definite because\n\n\\[\nc>0\n\\]\n\nand\n\n\\[\nc(2a-c)-\\frac{a^2c^2}{4}\n=\nc\\left(2a-c\\left(1+\\frac{a^2}{4}\\right)\\right)\n=\nc(2a-a)\n=\nac>0.\n\\]\n\nTherefore there is some \\(\\lambda>0\\) such that\n\n\\[\n-V'\\ge \\lambda(x^2+y^2).\n\\]\n\nUsing the upper bound on \\(V\\), we get\n\n\\[\nV'\\le -\\frac{\\lambda}{1+c/2}V.\n\\]\n\nHence \\(V(t)\\le e^{-kt}V(0)\\) for some \\(k>0\\), and by equivalence of \\(V\\) with the Euclidean norm,\n\n\\[\n\\|(x(t),y(t))\\|_2\n\\le\n\\sqrt{\\frac{1+c/2}{1-c/2}}\\,e^{-kt/2}\\|(x(0),y(0))\\|_2.\n\\]\n\nSo the origin is globally exponentially stable.\n\n**Necessity: \\(b\\) must be zero.**\n\nAssume \\(b>0\\). Take initial data\n\n\\[\nx(0)=R>0,\\qquad y(0)=0.\n\\]\n\nAs long as \\(x>0\\), consider the strip\n\n\\[\n-\\frac{2}{bx}\\le y\\le 0.\n\\]\n\nAt \\(y=0\\),\n\n\\[\ny'=-x<0,\n\\]\n\nso the vector field points into the strip. At the lower boundary \\(y=-2/(bx)\\), define\n\n\\[\nh=y+\\frac{2}{bx}.\n\\]\n\nThen\n\n\\[\nh'=y'-\\frac{2y}{bx^2}.\n\\]\n\nOn \\(y=-2/(bx)\\),\n\n\\[\ny'=-x-(a+bx^2)y\n=-x+\\frac{2(a+bx^2)}{bx}\n=x+\\frac{2a}{bx}>0,\n\\]\n\nand also\n\n\\[\n-\\frac{2y}{bx^2}=\\frac{4}{b^2x^3}>0.\n\\]\n\nThus \\(h'>0\\), so the solution remains in the strip. Therefore\n\n\\[\n-\\frac{2}{bx}\\le x'=y\\le 0.\n\\]\n\nHence\n\n\\[\n\\frac{d}{dt}(x^2)=2xy\\ge -\\frac{4}{b}.\n\\]\n\nSo for every fixed \\(T>0\\),\n\n\\[\nx(T)^2\\ge R^2-\\frac{4T}{b}.\n\\]\n\nThus\n\n\\[\n\\frac{\\|(x(T),y(T))\\|_2}{\\|(x(0),y(0))\\|_2}\n\\ge\n\\frac{x(T)}{R}\n\\ge\n\\sqrt{1-\\frac{4T}{bR^2}}\n\\to 1\n\\qquad\\text{as }R\\to\\infty.\n\\]\n\nIf a global exponential estimate existed, then for some \\(M,\\gamma>0\\),\n\n\\[\n\\frac{\\|(x(T),y(T))\\|_2}{R}\\le M e^{-\\gamma T}.\n\\]\n\nChoose \\(T\\) so large that \\(M e^{-\\gamma T}<1/2\\), then choose \\(R\\) large enough that the lower bound above is \\(>1/2\\). Contradiction. Therefore \\(b>0\\) is impossible.\n\nFinally, if \\(a=0,b=0\\), the system is\n\n\\[\nx'=y,\\qquad y'=-x,\n\\]\n\nso \\(x^2+y^2\\) is constant and exponential decay is impossible.\n\nTherefore the origin is globally exponentially stable exactly for\n\n\\[\n\\boxed{(a,b)=(a,0)\\text{ with }a>0}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T05:56:33+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/6f0a9a4bdc6a.json"
+}
