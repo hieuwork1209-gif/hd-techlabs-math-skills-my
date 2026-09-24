@@ -86,7 +86,7 @@ Then at most two triples of $\mathcal F$ are missing from $\mathcal G$.
 
 Any full block of $\mathcal F$ that is not also a full block of $\mathcal G$ loses at least two triples from the intersection by the argument of Step 2. Therefore all but at most one full block of $\mathcal F$ are common blocks.
 
-If $j\geq2$, the star of $\mathcal F$ contains $4j\geq8$ triples, so at least $4j-2\geq6$ of them lie in $\mathcal G$. Three triples through the same pair $P$ cannot lie in a full $4$-set component, which contains at most two triples through any fixed pair. Hence they lie in the star component of $\mathcal G$, whose center must also be $P$.
+If $j\geq2$, the star of $\mathcal F$ contains $4j\geq8$ triples, so at least $4j-2\geq6$ of them lie in $\mathcal G$. Any two of these common star triples intersect in the pair $P$, so they lie in one component of $\mathcal G$. A full $4$-set component contains at most two triples through a fixed pair. Therefore this component is the star component of $\mathcal G$, and its center is also $P$.
 
 Let $a$ leaves of the star of $\mathcal F$ be omitted by the star of $\mathcal G$, and let $b$ new leaves be added. Since star sizes are multiples of $4$,
 $$
