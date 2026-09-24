@@ -1,178 +1,153 @@
 ## Steps
 
-Step 1: Compute the two possible period maps
-Write
+Step 1: Analyze the linear subfamily
+Consider
 $$
-A_i=-\alpha I+N_i,
-$$
-where $E_{ij}$ denotes the matrix unit with a single $1$ in position $(i,j)$, and $N_1=E_{12}$, $N_2=E_{23}$, $N_3=E_{31}$. Since $N_i^2=0$,
-$$
-e^{tA_i}=e^{-\alpha t}(I+tN_i).
-$$
-Fix a period $T>0$ and dwell times $x,y,z\geq0$ with $x+y+z=T$. For the order $A_1,A_2,A_3$, the period map is
-$$
-\Phi_+=e^{-\alpha T}M_+,
+x'=y,
 \qquad
-M_+=(I+zE_{31})(I+yE_{23})(I+xE_{12}),
+y'=-x-(a+bx^2)y,
 $$
-so
+with $a,b\geq0$. If $b=0$, this is the linear system
 $$
-M_+=
+\begin{pmatrix}x\\y\end{pmatrix}'
+=
 \begin{pmatrix}
-1&x&0\\
-0&1&y\\
-z&xz&1
-\end{pmatrix}.
+0&1\\
+-1&-a
+\end{pmatrix}
+\begin{pmatrix}x\\y\end{pmatrix}.
 $$
-For the reverse order $A_3,A_2,A_1$,
+Its characteristic polynomial is
 $$
-\Phi_-=e^{-\alpha T}M_-,
+\lambda^2+a\lambda+1.
+$$
+If $a>0$, both roots have negative real part, so the origin is globally exponentially stable. If $a=0$, the system is the harmonic oscillator
+$$
+x''+x=0,
+$$
+and nonzero solutions are periodic, so the origin is not exponentially stable.
+
+Step 2: Build a slow invariant region when the nonlinear damping is present
+Assume $b>0$. Fix any constant
+$$
+K>\frac{1}{b},
+$$
+and choose initial data
+$$
+x(0)=R>0,
 \qquad
-M_-=(I+xE_{12})(I+yE_{23})(I+zE_{31}),
+y(0)=0.
 $$
-and
+Set
 $$
-M_-=
-\begin{pmatrix}
-1+xyz&x&xy\\
-yz&1&y\\
-z&0&1
-\end{pmatrix}.
+v=-y.
 $$
-For any fixed choice, the solution at times $nT$ is obtained by powers of the corresponding period map. In finite dimension, Jordan form gives exponential decay of these powers exactly when the spectral radius is less than $1$. The transition on the compact interval $[0,T]$ is bounded, so the periodic system is exponentially stable exactly under the same condition.
-
-Step 2: Compare the two orderings at fixed dwell product
-Set $q=xyz$ and $L=\lambda-1$. Expanding along the first row gives
-$
-\det(\lambda I-M_+)
-=L(L^2-q)-q
-=L^3-q(L+1)
-=(\lambda-1)^3-q\lambda,
-$
-while
-$
-\det(\lambda I-M_-)
-=(L-q)L^2-q(L+1)-qL
-=L^3-q(L+1)^2
-=(\lambda-1)^3-q\lambda^2.
-$
-If $q=0$, both matrices have spectral radius $1$. Assume $q>0$. Then $x,y,z>0$, both matrices are nonnegative, and their positive entries coming from $x,y,z$ contain the directed three-cycle, so both are irreducible. The Perron-Frobenius theorem gives a positive eigenvalue equal to the spectral radius.
-
-For $\lambda>1$, define
+As long as $x>0$, the equations become
 $$
-f_+(\lambda)=\frac{(\lambda-1)^3}{\lambda},
+x'=-v,
 \qquad
-f_-(\lambda)=\frac{(\lambda-1)^3}{\lambda^2}.
+v'=x-(a+bx^2)v.
 $$
-Their logarithmic derivatives are
+Consider the region
 $$
-\frac{f_+'(\lambda)}{f_+(\lambda)}
-=\frac{2\lambda+1}{\lambda(\lambda-1)}>0,
+0\leq v\leq\frac{K}{x}.
 $$
+At the lower boundary $v=0$,
 $$
-\frac{f_-'(\lambda)}{f_-(\lambda)}
-=\frac{\lambda+2}{\lambda(\lambda-1)}>0.
+v'=x>0,
 $$
-Both Perron roots therefore increase with $q$. Also $f_-(\lambda)<f_+(\lambda)$ for every $\lambda>1$, so for the same $q>0$ the reverse-order Perron root is larger. The reverse order is always the worse of the two.
+so the vector field points into the region. For the upper boundary define
+$$
+\phi(x,v)=v-\frac{K}{x}.
+$$
+Along a solution,
+$$
+\phi'
+=
+v'+\frac{Kx'}{x^2}.
+$$
+On $v=K/x$ this becomes
+$$
+\phi'
+=
+x-(a+bx^2)\frac{K}{x}
+-\frac{K^2}{x^3}
+=
+(1-bK)x-\frac{aK}{x}-\frac{K^2}{x^3}<0,
+$$
+because $K>1/b$. Hence a solution that starts with $v=0$ cannot leave this region through either boundary while $x>0$.
 
-Step 3: Optimize the dwell times for a fixed period
-For fixed $T$,
+Step 3: Derive the slow-decay lower bound
+Inside the invariant region from Step 2,
 $$
-xyz\leq\left(\frac{x+y+z}{3}\right)^3
-=\frac{T^3}{27},
+0\leq v\leq\frac{K}{x}.
 $$
-with equality exactly at
+Therefore
 $$
-x=y=z=\frac{T}{3}.
-$$
-By Step 2, the largest period-map spectral radius for this $T$ is therefore attained by the reverse order with equal dwell times. Let its unscaled Perron root be $\lambda_T>1$. It satisfies
-$$
-(\lambda_T-1)^3
-=\frac{T^3}{27}\lambda_T^2.
-$$
-The largest logarithmic growth rate per unit time at period $T$ is
-$$
--\alpha+\frac{\log\lambda_T}{T}.
-$$
-
-Step 4: Optimize over the period length
-The relation in Step 3 is equivalent to
-$$
-T=\frac{3(\lambda_T-1)}{\lambda_T^{2/3}}.
-$$
-Its derivative with respect to $\lambda_T$ is
-$
-\frac{\lambda_T+2}{\lambda_T^{5/3}}>0.
-$
-The right side therefore increases from $0$ to $\infty$ for $\lambda_T>1$, so every $T>0$ corresponds to exactly one $\lambda_T>1$. Put
-$$
-s=\log\lambda_T.
-$$
-Then
-$$
-\frac{\log\lambda_T}{T}
+\frac{d}{dt}x^2
 =
-h(s):=
-\frac{s e^{2s/3}}{3(e^s-1)},
-\qquad s>0.
-$$
-This function satisfies
-$$
-\lim_{s\to0^+}h(s)=\frac{1}{3},
-\qquad
-\lim_{s\to\infty}h(s)=0.
-$$
-Moreover the sign of $h'(s)$ is the sign of
-$$
-F(s)=(3-s)e^s-(3+2s).
-$$
-Differentiating $\log h$ gives
-$
-\frac{h'(s)}{h(s)}
+2xx'
 =
-\frac{1}{s}+\frac{2}{3}-\frac{e^s}{e^s-1}
-=
-\frac{F(s)}{3s(e^s-1)}.
-$
-Now
+-2xv
+\geq
+-2K.
 $$
-F'(s)=(2-s)e^s-2,
-\qquad
-F''(s)=(1-s)e^s.
+Thus, for every time before $x$ reaches zero,
 $$
-The sign of $F''$ shows that $F'$ increases on $(0,1)$ and then decreases strictly. Since $F'(0)=0$, $F'(1)=e-2>0$, and $F'(2)=-2<0$, the function $F$ first increases and then decreases. Also $F(0)=0$ and $F(3)=-9$, so $F$ has exactly one positive zero. Therefore $h$ has a unique maximizer on $(0,\infty)$, and
+x(t)^2\geq R^2-2Kt.
 $$
-\max_{T>0}\frac{\log\lambda_T}{T}
-=
-\max_{s>0}\frac{s e^{2s/3}}{3(e^s-1)}.
+Set
+$$
+t_R=\frac{3R^2}{8K}.
+$$
+Then the right side is $R^2/4$, so in fact
+$$
+x(t)^2\geq\frac{R^2}{4}
+$$
+for $0\leq t\leq t_R$. In particular $x$ stays positive on this whole interval, so the argument is self-consistent, and
+$$
+\|(x(t_R),y(t_R))\|_2\geq x(t_R)\geq\frac{R}{2}.
 $$
 
-Step 5: State the exact stability condition
-Let
+Step 4: Rule out global exponential stability for every $b>0$
+Suppose that for some $a\geq0$ and $b>0$ the origin were globally exponentially stable. Then there would be constants $M,\gamma>0$ such that every solution satisfies
 $$
-\beta_*=
-\max_{s>0}\frac{s e^{2s/3}}{3(e^s-1)}.
+\|(x(t),y(t))\|_2
+\leq
+M e^{-\gamma t}
+\|(x(0),y(0))\|_2
 $$
-If $\alpha>\beta_*$, then for every period, every dwell split, and either allowed order, Steps 2 through 4 give
-$$
-\frac{1}{T}\log\rho(\Phi)<0.
-$$
-This gives $\rho(\Phi)<1$, so each corresponding periodic system is exponentially stable.
+for all $t\geq0$.
 
-If $\alpha\leq\beta_*$, take the reverse order, the equal dwell split, and the period corresponding in Step 4 to the unique maximizer of $h$. The period map then has spectral radius at least $1$, so that periodic system is not exponentially stable. This proves both necessity and sufficiency.
-Final Answer: $\boxed{\alpha>\max_{s>0}\frac{s e^{2s/3}}{3(e^s-1)}}$
+Apply this estimate to the initial data used in Step 2. Since the initial norm is $R$, Step 3 gives
+$$
+\frac{R}{2}
+\leq
+M e^{-\gamma t_R}R.
+$$
+After cancelling $R>0$,
+$$
+\frac{1}{2}
+\leq
+M\exp\left(-\frac{3\gamma R^2}{8K}\right).
+$$
+The right side tends to $0$ as $R\to\infty$, a contradiction. Hence no pair with $b>0$ gives global exponential stability.
+
+Step 5: State the complete parameter set
+Step 1 shows that all pairs with $b=0$ and $a>0$ are globally exponentially stable, while $(a,b)=(0,0)$ is not. Step 4 excludes every pair with $b>0$. These cases exhaust $a,b\geq0$.
+Final Answer: $\boxed{\{(a,b)\in[0,\infty)^2:a>0,\ b=0\}}$
 
 ---
 
 ## Answer
 
-$\alpha>\max_{s>0}\frac{s e^{2s/3}}{3(e^s-1)}$
+$\{(a,b)\in[0,\infty)^2:a>0,\ b=0\}$
 
 ---
 
 ## Classification
 
-**Problem Type:** Solve for unknowns
+**Problem Type:** Exhaustive enumeration
 
 **Answer Type:** Interval or region description
 
@@ -180,11 +155,11 @@ $\alpha>\max_{s>0}\frac{s e^{2s/3}}{3(e^s-1)}$
 
 ## Solution Concepts
 
-- periodic linear systems
-- monodromy matrices
-- Perron-Frobenius theorem
-- spectral-radius optimization
-- exponential stability
+- global exponential stability
+- planar nonlinear systems
+- invariant regions
+- comparison inequalities
+- linearization of linear systems
 
 ---
 
