@@ -11,7 +11,7 @@ The characteristic equation is
 $$
 P(\lambda)+Q(\lambda)e^{-\lambda\tau}=0.
 $$
-Because $a>0$, the two zeros of $P$ have negative real part. Hence
+Because $a>0$, the two zeros of $P$ have negative real part. Therefore
 $$
 H(\lambda)=\frac{Q(\lambda)}{P(\lambda)}
 $$
