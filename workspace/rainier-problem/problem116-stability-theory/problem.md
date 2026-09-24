@@ -34,7 +34,11 @@ For the resulting equation
 $$
 X'(t)=A(t)X(t),\qquad X(t)\in\mathbb{R}^{3},
 $$
-determine all $\alpha>0$ such that every choice of $T,x,y,z$ and either order gives an exponentially stable zero solution. The constants in the estimate may depend on the chosen periodic system.
+determine all $\alpha>0$ such that every choice of $T,x,y,z$ and either order gives an exponentially stable zero solution. For each chosen periodic system, exponential stability means that there are constants $M,\gamma>0$ such that
+$$
+\|X(t)\|_2\leq M e^{-\gamma t}\|X(0)\|_2
+$$
+for all $t\geq0$. The constants $M,\gamma$ may depend on the chosen periodic system.
 
 ---
 
