@@ -9,7 +9,7 @@ $$
 
 Suppose
 $$
-\mathbb P(X_1=X_2)=\frac34,
+\mathbb P(X_1=X_2)=\frac{3}{4},
 $$
 $$
 \mathbb P(X_1=X_2=X_3=X_4)=\frac{13}{24},
