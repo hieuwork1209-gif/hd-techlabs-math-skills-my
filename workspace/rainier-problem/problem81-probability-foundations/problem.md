@@ -53,9 +53,9 @@ G_A(z)-G_B(z)
 =
 -\alpha(1-z)
 +
-\beta(1-z)^{3/2}
+\beta(1-z)^{\frac{3}{2}}
 +
-o((1-z)^{3/2}).
+o((1-z)^{\frac{3}{2}}).
 $$
 
 Determine $(\kappa,\alpha,\beta)$ exactly.
