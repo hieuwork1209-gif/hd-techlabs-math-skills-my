@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-probability-foundations/problem.md",
+  "source_commit_sha": "cba60c60fe84556de90301bf440d3fc2dcc46325",
+  "problem_blob_sha": "b1c6272ae13acd61f634ebcd2401ae21921bd21f",
+  "statement_sha256": "2ff1fd33da9671162e0e3681e42b674ecf2ef71bc167db30dd52d1d482705ed0",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T08:55:44+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nq_n=(a_n,b_n),\n\\]\nwhere \\(a_n,b_n\\) are the probabilities that generation \\(n\\) is nonempty from one \\(A\\)- or \\(B\\)-ancestor.\n\nFrom the offspring generating functions,\n\\[\n\\begin{aligned}\na_{n+1}\n&=\\frac34a_n+\\frac14b_n-\\frac38a_n^2-\\frac18b_n^2,\\\\\nb_{n+1}\n&=\\frac14a_n+\\frac34b_n-\\frac34b_n^2+\\frac14b_n^3.\n\\end{aligned}\n\\]\n\nSet\n\\[\nu_n=\\frac{a_n+b_n}{2},\\qquad d_n=a_n-b_n.\n\\]\nThus\n\\[\na_n=u_n+\\frac{d_n}{2},\\qquad b_n=u_n-\\frac{d_n}{2}.\n\\]\n\nA direct calculation gives\n\\[\n\\begin{aligned}\nu_{n+1}\n&=u_n-\\frac58u_n^2+\\frac14u_nd_n+\\frac18u_n^3+O(u_n^2d_n+d_n^2),\\\\\nd_{n+1}\n&=\\frac12d_n+\\frac14u_n^2-u_nd_n+\\frac14d_n^2-\\frac14u_n^3+O(u_n^2d_n+u_nd_n^2+d_n^3).\n\\end{aligned}\n\\]\n\nSince survival probabilities decrease to a fixed point, and the only fixed point in \\([0,1]^2\\) is \\((0,0)\\), we have \\(u_n,d_n\\to0\\).\n\nThe second recurrence is a contraction with ratio \\(1/2\\). Since \\(u_n\\) varies slowly,\n\\[\nd_{n+1}=\\frac12d_n+\\frac14u_n^2+o(u_n^2)\n\\]\nimplies\n\\[\n\\frac{d_n}{u_n^2}\\longrightarrow\n\\frac{1/4}{1-1/2}=\\frac12.\n\\]\nHence\n\\[\nd_n\\sim \\frac12u_n^2.\n\\]\n\nSubstituting this into the recurrence for \\(u_n\\),\n\\[\nu_{n+1}\n=u_n-\\frac58u_n^2+\\frac14u_n^3+o(u_n^3).\n\\]\nTherefore\n\\[\n\\frac1{u_{n+1}}-\\frac1{u_n}\n=\\frac58+\\left(\\frac{25}{64}-\\frac14\\right)u_n+o(u_n)\n=\\frac58+\\frac9{64}u_n+o(u_n).\n\\]\n\nThe leading term gives\n\\[\nu_n\\sim \\frac{8}{5n},\n\\]\nso\n\\[\n\\sum_{k<n}u_k=\\frac85\\log n+o(\\log n).\n\\]\nSumming the reciprocal recurrence,\n\\[\n\\frac1{u_n}\n=\\frac58n+\\frac9{64}\\cdot\\frac85\\log n+o(\\log n)\n=\\frac58n+\\frac9{40}\\log n+o(\\log n).\n\\]\n\nFinally,\n\\[\na_n=u_n+\\frac{d_n}{2}\n=u_n+\\frac14u_n^2+o(u_n^2),\n\\]\nso\n\\[\n\\frac1{a_n}=\\frac1{u_n}+O(1).\n\\]\nThus the logarithmic coefficient is unchanged:\n\\[\n\\lim_{n\\to\\infty}\n\\frac{a_n^{-1}-\\frac58n}{\\log n}\n=\\frac9{40}.\n\\]\n\nAlso,\n\\[\nn^2(a_n-b_n)=n^2d_n\n\\longrightarrow \\frac12\\left(\\frac85\\right)^2\n=\\frac{32}{25}.\n\\]\n\nTherefore,\n\\[\n\\boxed{\\left(\\frac{32}{25},\\frac{9}{40}\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T08:59:42+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/b1c6272ae13a.json"
+}
