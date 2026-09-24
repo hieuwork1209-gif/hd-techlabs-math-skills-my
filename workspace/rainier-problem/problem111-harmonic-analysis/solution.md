@@ -121,7 +121,7 @@ Because $C$ is positive definite, $T$ is positive semidefinite exactly when $S$ 
 $$
 |w-\rho^2\beta|\leq d.
 $$
-The center and radius of this disk are real. Hence
+The center and radius of this disk are real. Therefore
 $$
 \operatorname{Re}w
 \leq
@@ -181,7 +181,7 @@ $$
 =
 c_j
 $$
-for $0\leq j\leq r$. Thus $\mu_*$ satisfies the stated moment constraints and attains the bound from Step 2.
+for $0\leq j\leq r$. The measure $\mu_*$ satisfies the stated moment constraints and attains the bound from Step 2.
 
 Step 4: Determine the support size of every maximizer
 Let $\mu$ be any maximizing measure. Equality in Step 2 forces
@@ -198,7 +198,7 @@ span this kernel and set
 $$
 p(z)=\sum_{j=0}^{r}a_jz^j.
 $$
-The leading coefficient $a_r$ is nonzero, because otherwise the first $r$ coordinates of $a$ would give a nonzero kernel vector for the positive-definite principal block $P_r$. Thus $p$ has degree exactly $r$.
+The leading coefficient $a_r$ is nonzero, because otherwise the first $r$ coordinates of $a$ would give a nonzero kernel vector for the positive-definite principal block $P_r$. Therefore $p$ has degree exactly $r$.
 
 For the maximizing measure,
 $$
@@ -208,7 +208,7 @@ a^*T_*a
 =
 \int |p(z)|^2\,d\mu(z).
 $$
-Hence $\operatorname{supp}\mu$ is contained in the zero set of $p$ on the unit circle, so
+It follows that $\operatorname{supp}\mu$ is contained in the zero set of $p$ on the unit circle, so
 $$
 |\operatorname{supp}\mu|\leq r.
 $$
@@ -219,7 +219,7 @@ $$
 Every maximizing measure therefore has exactly $r$ support points.
 
 Step 5: Prove uniqueness of the maximizing measure
-The measure $\mu_*$ from Step 3 is maximizing. By Step 4 it has $r$ distinct support points, all of which are roots of the degree-$r$ kernel polynomial $p$. Hence these support points are exactly the roots of $p$.
+The measure $\mu_*$ from Step 3 is maximizing. By Step 4 it has $r$ distinct support points, all of which are roots of the degree-$r$ kernel polynomial $p$. These support points are exactly the roots of $p$.
 
 Any maximizing measure has support contained in this same root set and, by Step 4, uses all $r$ roots. Once the support points
 $$
