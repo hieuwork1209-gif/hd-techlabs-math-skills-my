@@ -2,8 +2,8 @@
   "problem": "problem111",
   "branch": "adversary/problem111",
   "problem_path": "workspace/rainier-problem/problem111-design-theory-and-finite-geometry/problem.md",
-  "problem_blob_sha": "58f7179632cbb90727890d9d7d879516221c4ad0",
-  "source_commit_sha": "1844bd09fe6b681f45d5ec632891695f855c2de8",
+  "problem_blob_sha": "05b720b2fb977f7b0e3b94f069fca7f1ce447b52",
+  "source_commit_sha": "7b8b7a71f24d609b7b24cb1aee75673291370ece",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-24T03:42:42+00:00",
-  "result_file": "solver-results/problem111/58f7179632cb.json"
+  "completed_at": "2026-09-24T03:52:46+00:00",
+  "result_file": "solver-results/problem111/05b720b2fb97.json"
 }
