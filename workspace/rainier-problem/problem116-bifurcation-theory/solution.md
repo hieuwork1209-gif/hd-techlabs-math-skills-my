@@ -11,7 +11,7 @@ $$
 =
 (1+3\kappa)x_i-x_i^3-\kappa S.
 $$
-Hence every coordinate of an equilibrium is a real root of the same cubic
+Every coordinate of an equilibrium is therefore a real root of the same cubic
 $$
 p_S(z)
 =
@@ -198,7 +198,7 @@ $$
 $$
 
 Step 4: Determine which equilibrium branches are stable
-At an equilibrium the Jacobian is
+For this smooth system, the linearization criterion reduces asymptotic stability of a hyperbolic equilibrium to negativity of all Jacobian eigenvalues. At an equilibrium the Jacobian is
 $$
 J
 =
@@ -266,7 +266,7 @@ $$
 -\frac{2(t-1)(t+2)F(t)}{(t^3+2)^2}.
 $$
 
-On the negative branch $-\sqrt[3]{2}<t<-1$, Step 3 gives $F(t)>0$. There $d_p<0$, the trace is negative, and the determinant is positive. Hence all three Jacobian eigenvalues are negative, so all six equilibria on this branch are asymptotically stable.
+On the negative branch $-\sqrt[3]{2}<t<-1$, Step 3 gives $F(t)>0$. There $d_p<0$, the trace is negative, and the determinant is positive. All three Jacobian eigenvalues are negative, so all six equilibria on this branch are asymptotically stable.
 
 For $t>1$, one has $d_p>0$, so that branch is unstable. For $0<t<1$,
 $$
@@ -276,7 +276,7 @@ and therefore
 $$
 F(t)<-t-2<0.
 $$
-The displayed determinant is then negative, so this branch is also unstable. Thus the six negative-branch equilibria are the only nonsynchronized stable equilibria.
+The displayed determinant is then negative, so this branch is also unstable. The six negative-branch equilibria are the only nonsynchronized stable equilibria.
 
 Step 5: Combine multiplicity and stability
 For $0<\kappa<2/3$, the six stable negative-branch equilibria are joined by the two stable synchronized equilibria, so there are at least eight asymptotically stable equilibria. For $\kappa>2/3$, the synchronized equilibria and every positive branch are unstable, while the negative branch contributes exactly six stable equilibria.
