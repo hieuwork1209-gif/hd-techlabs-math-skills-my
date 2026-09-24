@@ -2,7 +2,7 @@
 
 ## LaTeX (Normalized)
 
-Consider the same two-type Galton-Watson process with types $A$ and $B$.
+Consider a two-type Galton-Watson process with types $A$ and $B$.
 
 A type $A$ individual has offspring
 $$
