@@ -1,0 +1,22 @@
+{
+  "problem": "problem111",
+  "branch": "adversary/problem111",
+  "problem_path": "workspace/rainier-problem/problem111-discrete-structures/problem.md",
+  "source_commit_sha": "6f78ea0b9bfa6b1fd88242a71c80b9333fa855bf",
+  "problem_blob_sha": "526f30f543ef35b2efae35969300456547c80016",
+  "statement_sha256": "43bb7579b952a1f6518f3b7798372a7f751a6da987c693c26493899e83f78bd0",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T09:51:05+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let  \n\\[\nd=3m+1,\\qquad N=3d.\n\\]\n\nWe count first modulo rotations, then modulo the cyclic relabeling \\(0\\mapsto1\\mapsto2\\mapsto0\\).\n\n**1. Counting indexed cyclic words**\n\nInterpret the prescribed numbers \\(N_{ab}\\) as edge multiplicities of a directed multigraph on \\(\\{0,1,2\\}\\). Each vertex has outdegree and indegree\n\\[\nd=3m+1.\n\\]\n\nLet\n\\[\nT=3m^2+3m+1.\n\\]\nBy the directed matrix-tree theorem, the number of arborescences oriented toward any fixed vertex is the cofactor\n\\[\n\\det\\begin{pmatrix}\n2m+1&-(m+1)\\\\\n-m&2m+1\n\\end{pmatrix}\n=(2m+1)^2-m(m+1)=T.\n\\]\n\nUsing the BEST counting formula for Euler circuits, the number of indexed words with \\(x_0=v\\) is\n\\[\n\\frac{d\\,T\\,((d-1)!)^3}\n{(m!)^6((m+1)!)^3}.\n\\]\nThere are three possible values of \\(x_0\\), so the total number \\(S\\) of indexed words is\n\\[\nS=\n\\frac{3d\\,T\\,((d-1)!)^3}\n{(m!)^6((m+1)!)^3}\n=\n\\frac{N\\,T\\,((d-1)!)^3}\n{(m!)^6((m+1)!)^3}.\n\\]\n\nNo nontrivial rotation fixes such a word: if a word had period \\(N/q\\) with \\(q>1\\), then every \\(N_{ab}\\) would be divisible by \\(q\\), impossible since both \\(m\\) and \\(m+1\\) occur. Hence the number of rotation classes is\n\\[\nA=\\frac SN\n=\n\\frac{T\\,((d-1)!)^3}\n{(m!)^6((m+1)!)^3}.\n\\]\n\n**2. Rotation classes fixed by relabeling**\n\nLet \\(L\\) denote the simultaneous relabeling \\(x_i\\mapsto x_i+1\\pmod3\\). A rotation class is fixed by \\(L\\) precisely when, for some rotation \\(r\\),\n\\[\nx_{i+r}=x_i+1.\n\\]\nSince \\(L^3\\) is the identity and rotations act freely, \\(3r\\equiv0\\pmod N\\). Thus \\(r=d\\) or \\(2d\\).\n\nThe case \\(r=2d\\) is impossible. Indeed, writing \\(y_j=x_j\\) for \\(0\\le j<d\\), the \\(d\\) transitions in one block have increments \\(0,1,2\\) occurring respectively \\(m,m+1,m\\) times. Their total increment is\n\\[\n(m+1)+2m=3m+1\\equiv1\\pmod3,\n\\]\nso the endpoint of the block must be \\(y_0+1\\), not \\(y_0+2\\).\n\nFor \\(r=d\\), choose the \\(d\\) increments freely with multiplicities \\(m,m+1,m\\), and choose \\(y_0\\) in \\(3\\) ways. Therefore the number of indexed words satisfying\n\\[\nx_{i+d}=x_i+1\n\\]\nis\n\\[\nF=3\\frac{d!}{m!(m+1)!m!}.\n\\]\nEach corresponding rotation class has \\(N=3d\\) indexed representatives, so\n\\[\nH=\\frac FN\n=\n\\frac{(d-1)!}{(m!)^2(m+1)!}.\n\\]\n\nThe relabeling \\(L\\) and its inverse have the same fixed rotation classes. Burnside’s lemma for the remaining \\(C_3\\)-action gives\n\\[\n\\#\\text{classes}=\\frac{A+2H}{3}.\n\\]\n\nSubstituting \\(d=3m+1\\) and \\(d-1=3m\\), the answer is\n\\[\n\\boxed{\n\\frac13\\left(\n\\frac{(3m^2+3m+1)\\bigl((3m)!\\bigr)^3}\n{(m!)^6\\bigl((m+1)!\\bigr)^3}\n+\n\\frac{2(3m)!}{(m!)^2(m+1)!}\n\\right)\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T10:06:47+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem111/526f30f543ef.json"
+}

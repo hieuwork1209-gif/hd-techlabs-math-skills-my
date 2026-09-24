@@ -2,8 +2,8 @@
   "problem": "problem111",
   "branch": "adversary/problem111",
   "problem_path": "workspace/rainier-problem/problem111-discrete-structures/problem.md",
-  "problem_blob_sha": "cff5b24db5f0ddb836bbe4606a183fed0982f248",
-  "source_commit_sha": "34a94f3864d2c7e793fa1dfacd35bf3a665525bc",
+  "problem_blob_sha": "526f30f543ef35b2efae35969300456547c80016",
+  "source_commit_sha": "6f78ea0b9bfa6b1fd88242a71c80b9333fa855bf",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-24T09:43:10+00:00",
-  "result_file": "solver-results/problem111/cff5b24db5f0.json"
+  "completed_at": "2026-09-24T10:06:47+00:00",
+  "result_file": "solver-results/problem111/526f30f543ef.json"
 }
