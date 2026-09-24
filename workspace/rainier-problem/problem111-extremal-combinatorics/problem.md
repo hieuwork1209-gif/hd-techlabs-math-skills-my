@@ -2,23 +2,26 @@
 
 ## LaTeX (Normalized)
 
-Let $q\geq1$, and put
+Let $q\geq1$, put
 $$
-n=4q+2.
+n=4q+2,
 $$
-Let
+and let
 $$
 \mathcal F\subseteq\binom{[n]}{3}
 $$
-be a family of $3$-element subsets such that
+satisfy
 $$
 |A\cap B|\neq1
 $$
 for every two distinct $A,B\in\mathcal F$.
 
-Among all such families, consider those having the largest possible cardinality.
+Call $\mathcal F$ extremal if it has the largest possible cardinality among all such families.
 
-Determine the number of labeled families $\mathcal F$ that attain this maximum.
+Among all unordered pairs $\{\mathcal F,\mathcal G\}$ of distinct extremal families, determine the ordered pair consisting of
+
+1. the largest possible value of $|\mathcal F\cap\mathcal G|$;
+2. the number of unordered pairs attaining that value.
 
 ---
 
@@ -29,10 +32,10 @@ Determine the number of labeled families $\mathcal F$ that attain this maximum.
 | **Domain** | Discrete Mathematics and Combinatorics |
 | **Sub-domain** | Extremal combinatorics |
 | **Problem Type** | Exact computation |
-| **Answer Type** | Exact symbolic expression |
+| **Answer Type** | Tuple or ordered list |
 
 ---
 
 ## Domain Explanation
 
-The problem asks for the number of extremal $3$-uniform set systems under a forbidden-intersection condition. The solution must first classify the possible overlap components, determine all equality structures for the maximum-size bound, and then count the labeled extremal families.
+The problem asks for the nearest-neighbor structure among extremal $3$-uniform set systems under a forbidden-intersection condition. The solution must classify the maximum families, determine the sharp overlap bound between two distinct extremal structures, characterize equality, and count all labeled equality pairs.
