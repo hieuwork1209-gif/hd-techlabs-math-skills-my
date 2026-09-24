@@ -11,8 +11,8 @@ $
 =
 (q^2+1)(q^2+q+1).
 $
-Fix a line $L$. It contains $q+1$ points, and through each point there are $q^2+q+1$ projective lines. Every line different from $L$ that meets $L$ has a unique intersection point with $L$, hence the degree is
-$$
+Fix a line $L$. It contains $q+1$ points, and through each point there are $q^2+q+1$ projective lines. Every line different from $L$ that meets $L$ has a unique intersection point with $L$,. The degree is
+$
 k=(q+1)(q^2+q)=q(q+1)^2.
 $$
 
@@ -20,8 +20,8 @@ If two adjacent lines $L,M$ meet at $P$, a common neighbor either passes through
 $$
 q^2+q-1
 $$
-lines, and the second type is determined by choosing one of the $q$ points of $L\setminus\{P\}$ and one of the $q$ points of $M\setminus\{P\}$, contributing $q^2$. Thus
-$$
+lines, and the second type is determined by choosing one of the $q$ points of $L\setminus\{P\}$ and one of the $q$ points of $M\setminus\{P\}$, contributing $q^2$. This gives
+$
 \lambda=2q^2+q-1.
 $$
 If $L,M$ are skew, a common neighbor is determined uniquely by a pair of points, one on each line, so
@@ -56,11 +56,11 @@ A=
 B^T&C
 \end{pmatrix}.
 $$
-Every line of $Y$ contains $q+1$ points, each lying on a unique spread line, and these spread lines are distinct. Hence every column of $B$ has sum
+Every line of $Y$ contains $q+1$ points, each lying on a unique spread line, and these spread lines are distinct. Each column of $B$ has sum
 $$
 d=q+1.
 $$
-Every spread line has all of its $k$ neighbors in $Y$, so every row of $B$ has sum $k$. Thus $\Gamma$ is regular of degree
+Every spread line has all of its $k$ neighbors in $Y$, so every row of $B$ has sum $k$. The graph $\Gamma$ is regular of degree
 $$
 k'=k-d=(q+1)(q^2+q-1),
 $$
@@ -165,7 +165,7 @@ s^{(q^4-1)}.
 $$
 
 Step 4: Convert the adjacency spectrum to Laplacian eigenvalues
-Since $\Gamma$ is $k'$-regular, its Laplacian is $L=k'I-C$. The nonzero Laplacian eigenvalues are therefore
+Since $\Gamma$ is $k'$-regular, its Laplacian is $L=k'I-C$. The nonzero Laplacian eigenvalues are
 $$
 k'-\alpha=(q+1)(q^2+1)
 $$
