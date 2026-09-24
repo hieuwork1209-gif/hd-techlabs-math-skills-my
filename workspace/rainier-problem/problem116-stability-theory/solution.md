@@ -5,7 +5,7 @@ Write
 $$
 A_i=-\alpha I+N_i,
 $$
-where $N_1=E_{12}$, $N_2=E_{23}$, and $N_3=E_{31}$. Since $N_i^2=0$,
+where $E_{ij}$ denotes the matrix unit with a single $1$ in position $(i,j)$, and $N_1=E_{12}$, $N_2=E_{23}$, $N_3=E_{31}$. Since $N_i^2=0$,
 $$
 e^{tA_i}=e^{-\alpha t}(I+tN_i).
 $$
@@ -67,7 +67,7 @@ $$
 \frac{f_-'(\lambda)}{f_-(\lambda)}
 =\frac{\lambda+2}{\lambda(\lambda-1)}>0.
 $$
-Thus both Perron roots increase with $q$. Also $f_-(\lambda)<f_+(\lambda)$ for every $\lambda>1$, so for the same $q>0$ the reverse-order Perron root is larger. Therefore the reverse order is always the worse of the two.
+Both Perron roots therefore increase with $q$. Also $f_-(\lambda)<f_+(\lambda)$ for every $\lambda>1$, so for the same $q>0$ the reverse-order Perron root is larger. Therefore the reverse order is always the worse of the two.
 
 Step 3: Optimize the dwell times for a fixed period
 For fixed $T$,
@@ -84,7 +84,7 @@ $$
 (\lambda_T-1)^3
 =\frac{T^3}{27}\lambda_T^2.
 $$
-Hence the largest logarithmic growth rate per unit time at period $T$ is
+The largest logarithmic growth rate per unit time at period $T$ is
 $$
 -\alpha+\frac{\log\lambda_T}{T}.
 $$
@@ -128,7 +128,7 @@ F'(s)=(2-s)e^s-2,
 \qquad
 F''(s)=(1-s)e^s.
 $$
-Thus $F'$ increases on $(0,1)$ and then decreases strictly. Since $F'(0)=0$, $F'(1)=e-2>0$, and $F'(2)=-2<0$, the function $F$ first increases and then decreases. Also $F(0)=0$ and $F(3)=-9$, so $F$ has exactly one positive zero. Therefore $h$ has a unique maximizer on $(0,\infty)$, and
+The sign of $F''$ shows that $F'$ increases on $(0,1)$ and then decreases strictly. Since $F'(0)=0$, $F'(1)=e-2>0$, and $F'(2)=-2<0$, the function $F$ first increases and then decreases. Also $F(0)=0$ and $F(3)=-9$, so $F$ has exactly one positive zero. Therefore $h$ has a unique maximizer on $(0,\infty)$, and
 $$
 \max_{T>0}\frac{\log\lambda_T}{T}
 =
@@ -145,7 +145,7 @@ If $\alpha>\beta_*$, then for every period, every dwell split, and either allowe
 $$
 \frac{1}{T}\log\rho(\Phi)<0.
 $$
-Hence $\rho(\Phi)<1$, so each corresponding periodic system is exponentially stable.
+This gives $\rho(\Phi)<1$, so each corresponding periodic system is exponentially stable.
 
 If $\alpha\leq\beta_*$, take the reverse order, the equal dwell split, and the period corresponding in Step 4 to the unique maximizer of $h$. The period map then has spectral radius at least $1$, so that periodic system is not exponentially stable. This proves both necessity and sufficiency.
 Final Answer: $\boxed{\alpha>\max_{s>0}\frac{s e^{2s/3}}{3(e^s-1)}}$
