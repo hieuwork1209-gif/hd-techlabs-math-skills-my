@@ -100,13 +100,14 @@ $$
 D=\operatorname{diag}\left(\frac{1}{3},3\right).
 $$
 Because the environment is reversible, conditional on $S_x=i$ the previous state $S_{x-1}$ is distributed by the $i$th row of $P_{\alpha,\theta}$. Define the state-conditioned vectors
-$$
+$
 m_i=\mathbb E_\theta[u_x\mid S_x=i],
 \qquad
 s_i=\mathbb E_\theta[u_x^2\mid S_x=i],
 \qquad
 t_i=\mathbb E_\theta[v_x\mid S_x=i].
-$$
+$
+For a vector $z$, write $z^{\circ2}$ for its componentwise square.
 From the recursion for $u_x$,
 $$
 m
@@ -132,10 +133,24 @@ t
 $$
 
 The decisive operator is therefore the squared-odds transfer matrix. If
-$$
+$
 r(P_{\alpha,\theta}D^2)<1,
-$$
-then the matrix series for squared products decays geometrically. Cauchy-Schwarz then gives convergence of the corresponding first-product series, so $m$ is finite; the displayed equation for $s$ has a finite nonnegative solution because $r(D^2P_{\alpha,\theta})=r(P_{\alpha,\theta}D^2)<1$, and then the equation for $t$ has a finite solution as well. Hence $\mathbb E_\theta T_1^2=\pi t<\infty$.
+$
+then there are constants $C>0$ and $0<q<1$ such that
+$
+\mathbb E_\theta\left[
+\left(\rho_0\rho_{-1}\cdots\rho_{-k}\right)^2
+\right]
+\leq Cq^k.
+$
+Cauchy-Schwarz gives
+$
+\mathbb E_\theta\left[
+\rho_0\rho_{-1}\cdots\rho_{-k}
+\right]
+\leq C^{1/2}q^{k/2},
+$
+so the first-product series also converges. Hence $m$ is finite and, by Perron-Frobenius, $r(P_{\alpha,\theta}D)<1$. The displayed equation for $s$ then has a finite nonnegative solution because $r(D^2P_{\alpha,\theta})=r(P_{\alpha,\theta}D^2)<1$, and the equation for $t$ has a finite solution because $r(DP_{\alpha,\theta})=r(P_{\alpha,\theta}D)<1$. Therefore $\mathbb E_\theta T_1^2=\pi t<\infty$.
 
 Conversely, Jensen gives $v_0\geq u_0^2$. Since all terms in the series for $u_0$ are nonnegative,
 $$
@@ -169,7 +184,7 @@ $$
 9+\frac{\alpha}{9}
 -\frac{80(1-\alpha)\theta}{9}.
 $$
-The Perron root decreases strictly with $\theta$ and equals $1$ exactly when
+The characteristic polynomial is $\lambda^2-\operatorname{tr}(P_{\alpha,\theta}D^2)\lambda+\alpha$. With fixed determinant $\alpha$, its larger root is strictly increasing in the trace, so the Perron root decreases strictly with $\theta$ and equals $1$ exactly when
 $$
 0
 =
@@ -209,7 +224,7 @@ $$
 =
 \frac{1+81\alpha+80(1-\alpha)\theta}{9}.
 $$
-This Perron root increases strictly with $\theta$. It equals $1$ exactly when
+With determinant fixed at $\alpha$, the larger root is strictly increasing in the trace, so this Perron root increases strictly with $\theta$. It equals $1$ exactly when
 $$
 0
 =
