@@ -87,7 +87,7 @@ So $B^T$ is injective there. If $u\perp\mathbf1$, then
 $
 \mathbf1^TB^Tu=(B\mathbf1)^Tu=k\mathbf1^Tu=0.
 $
-Thus $B^Tu\perp\mathbf1$. Since
+So $B^Tu\perp\mathbf1$. Since
 $
 B^T\mathbf1=(q+1)\mathbf1\neq0,
 $
