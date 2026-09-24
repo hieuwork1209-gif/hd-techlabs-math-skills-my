@@ -5,7 +5,7 @@ Let the rim generators be $x_0,\ldots,x_{n-1}$, with indices modulo $n$. Deletin
 $$
 3x_i-x_{i-1}-x_{i+1}=0.
 $$
-Thus
+This gives
 $$
 x_{i+1}=3x_i-x_{i-1}.
 $$
@@ -58,7 +58,7 @@ The same recurrence gives
 $$
 x_k=F_{2k}x_1-F_{2k-2}x_0.
 $$
-Hence the class $\delta_k=[e_k-e_0]$ is represented in the basis $x_1,x_0$ by
+The class $\delta_k=[e_k-e_0]$ is represented in the basis $x_1,x_0$ by
 $$
 v_k=
 \begin{pmatrix}
@@ -167,11 +167,11 @@ Therefore
 $$
 |\det(R_n)|=L_n^2.
 $$
-Thus $R_n=L_nU_n$ for an integer matrix $U_n$ with $|\det U_n|=1$. Its row lattice is
+Write $R_n=L_nU_n$. Then $U_n$ is an integer matrix with $|\det U_n|=1$, and the row lattice is
 $$
 L_n\mathbb Z^2.
 $$
-Hence, in the basis $x_1,x_0$,
+In the basis $x_1,x_0$,
 $$
 K(W_n)\cong(\mathbb Z/L_n\mathbb Z)^2.
 $$
@@ -216,11 +216,11 @@ R_n
 =
 R_d\left(I+M^d+\cdots+M^{n-d}\right),
 $$
-and the analogous identity holds for $R_k$. Hence every entry of $R_n$ and $R_k$ is an integer linear combination of entries of $R_d$, giving
+and the analogous identity holds for $R_k$. Every entry of $R_n$ and $R_k$ is therefore an integer linear combination of entries of $R_d$, giving
 $$
 c_d\mid\gcd(c_n,c_k).
 $$
-Thus
+This gives
 $$
 \gcd(c_n,c_k)=c_d.
 $$
