@@ -3,14 +3,14 @@
 Step 1: Determine the parameters of the line-intersection graph
 Let $X$ be the set of all projective lines of $PG(3,q)$, and let $A$ be the adjacency matrix of the graph in which two distinct lines are adjacent when they meet.
 
-A projective line is a two-dimensional subspace of $\mathbb F_q^4$, so
-$$
+A projective line is a two-dimensional subspace of $\mathbb F_q^4$. There are $(q^4-1)(q^4-q)$ ordered independent pairs in $\mathbb F_q^4$, while each two-dimensional subspace has $(q^2-1)(q^2-q)$ ordered bases. Hence
+$
 |X|
 =
 \frac{(q^4-1)(q^4-q)}{(q^2-1)(q^2-q)}
 =
 (q^2+1)(q^2+q+1).
-$$
+$
 Fix a line $L$. It contains $q+1$ points, and through each point there are $q^2+q+1$ projective lines. Every line different from $L$ that meets $L$ has a unique intersection point with $L$, hence the degree is
 $$
 k=(q+1)(q^2+q)=q(q+1)^2.
@@ -88,10 +88,10 @@ BC=\alpha B+\mu J.
 $$
 
 The matrix $BB^T$ has eigenvalue
-$$
+$
 k-\mu=(q-1)(q+1)^2
-$$
-on the subspace orthogonal to the all-ones vector, so $B^T$ is injective there. Transposing the second block identity shows that for every $u\perp\mathbf 1$,
+$
+on the subspace orthogonal to the all-ones vector, so $B^T$ is injective there. Also $B^T\mathbf1=(q+1)\mathbf1\neq0$, so $B^T$ is injective on the full $(q^2+1)$-dimensional spread-vertex space. Transposing the second block identity shows that for every $u\perp\mathbf 1$,
 $$
 C(B^Tu)=\alpha B^Tu.
 $$
@@ -132,15 +132,27 @@ $$
 m_r+m_s=(q^2+1)(q^2+q-1).
 $$
 Because $C$ has zero diagonal, its trace is zero:
-$$
+$
 k'+q^2\alpha+m_r r+m_s s=0.
-$$
-Solving these two equations yields
-$$
+$
+Substitute
+$
+m_s=(q^2+1)(q^2+q-1)-m_r
+$
+and divide the trace equation by $q+1$. This gives
+$
+q m_r
+=
+(q^2+1)(q^2+q-1)-(q^3-q^2+q-1)
+=
+q^2(q^2+1).
+$
+Hence
+$
 m_r=q(q^2+1),
 \qquad
 m_s=q^4-1.
-$$
+$
 Therefore the spectrum of $C$ is
 $$
 k'^{(1)},
