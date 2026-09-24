@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-probability-foundations/problem.md",
+  "source_commit_sha": "935e733958449e189b8105cb66ad58e71a000f25",
+  "problem_blob_sha": "7c2eaeea3fb814080e04858dbfece93318d18809",
+  "statement_sha256": "d799b373e5293ff874838db4e1af30cb3d2aebd4ce5c53f36f5e05a646177fae",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T06:00:52+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "For a reversible walk on a weighted tree,\n\n\\[\nC_{ij}=2\\Big(\\sum_{e}c_e\\Big)R_{\\rm eff}(i,j),\n\\]\n\nand on a tree the effective resistance is the sum of edge resistances along the unique path.\n\nThe given commute times behave like additive tree distances:\n\n\\[\nC_{13}=10=4+6=C_{12}+C_{23},\n\\]\nso vertex \\(2\\) lies between \\(1\\) and \\(3\\). Also,\n\n\\[\nC_{24}=18=6+12=C_{23}+C_{34},\n\\]\nso vertex \\(3\\) lies between \\(2\\) and \\(4\\). Hence the tree is the path\n\n\\[\n1-2-3-4,\n\\]\n\nwith commute-length edges \\(4,6,12\\). Therefore\n\n\\[\nC_{14}=4+6+12=22.\n\\]\n\nLet the conductances on \\(12,23,34\\) be \\(a,b,c\\). Since edge commute lengths are proportional to \\(1/a,1/b,1/c\\),\n\n\\[\na:b:c=\\frac14:\\frac16:\\frac1{12}=3:2:1.\n\\]\n\nThus\n\n\\[\nP(2,1)=\\frac35,\\quad P(2,3)=\\frac25,\n\\]\n\\[\nP(3,2)=\\frac23,\\quad P(3,4)=\\frac13.\n\\]\n\nLet \\(h_i=\\mathbb E_iT_4\\). Then\n\n\\[\nh_4=0,\\quad h_1=1+h_2,\n\\]\n\\[\nh_2=1+\\frac35h_1+\\frac25h_3,\n\\]\n\\[\nh_3=1+\\frac23h_2.\n\\]\n\nSolving gives\n\n\\[\nh_2=15,\\quad h_1=16,\\quad h_3=11.\n\\]\n\nSo\n\n\\[\n\\mathbb E_1T_4=16.\n\\]\n\nFor second moments \\(s_i=\\mathbb E_i(T_4^2)\\),\n\n\\[\ns_i=1+2\\sum_jP(i,j)h_j+\\sum_jP(i,j)s_j.\n\\]\n\nUsing \\(h_1=16,h_2=15,h_3=11\\),\n\n\\[\ns_1=1+2h_2+s_2=31+s_2,\n\\]\n\\[\ns_3=1+\\frac43h_2+\\frac23s_2=21+\\frac23s_2,\n\\]\n\\[\ns_2=1+2\\left(\\frac35h_1+\\frac25h_3\\right)+\\frac35s_1+\\frac25s_3.\n\\]\n\nThis gives \\(s_2=420\\), hence \\(s_1=451\\). Therefore\n\n\\[\n\\operatorname{Var}_1(T_4)=s_1-h_1^2=451-16^2=195.\n\\]\n\n\\[\n\\boxed{(C_{14},\\mathbb E_1T_4,\\operatorname{Var}_1(T_4))=(22,16,195)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T06:01:32+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/7c2eaeea3fb8.json"
+}
