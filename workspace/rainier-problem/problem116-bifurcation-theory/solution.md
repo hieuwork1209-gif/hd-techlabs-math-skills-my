@@ -141,7 +141,7 @@ $$
 =
 2(2s^3-3s^2+2).
 $$
-The expression in parentheses has derivative $6s(s-1)>0$ and value $1$ at $s=1$. $F(-s)>F(-1)=1$. Therefore $\kappa'(t)<0$ on the whole negative interval. Also
+The expression in parentheses has derivative $6s(s-1)>0$ and value $1$ at $s=1$. It follows that $F(-s)>F(-1)=1$. Therefore $\kappa'(t)<0$ on the whole negative interval. Also
 $$
 \lim_{t\to-\sqrt[3]{2}^{+}}\kappa(t)
 =
@@ -151,7 +151,7 @@ $$
 =
 0.
 $$
-every $\kappa>0$ has exactly one negative branch parameter, contributing six equilibria.
+Every $\kappa>0$ has exactly one negative branch parameter, contributing six equilibria.
 
 For $t>0$, one has
 $$
@@ -165,7 +165,7 @@ F'(t)=4t^3+6t^2-4,
 \qquad
 F''(t)=12t(t+1)>0.
 $$
-$F'$ is strictly increasing on $(0,\infty)$, so $F$ decreases once and then increases. It follows that $F$ has exactly one positive zero, call it $t_*$. $\kappa(t)$ increases on $(0,t_*)$ and decreases on $(t_*,\infty)$. Therefore
+The derivative $F'$ is strictly increasing on $(0,\infty)$, so $F$ decreases once and then increases. It follows that $F$ has exactly one positive zero, call it $t_*$. The branch function $\kappa(t)$ increases on $(0,t_*)$ and decreases on $(t_*,\infty)$. Therefore
 $$
 K
 :=
@@ -217,7 +217,7 @@ At $(0,0,0)$ the synchronized eigenvalue is $1>0$, so the origin is unstable. At
 $$
 -2+3\kappa.
 $$
-both nonzero synchronized equilibria are asymptotically stable for $0<\kappa<2/3$ and unstable for $\kappa>2/3$.
+Both nonzero synchronized equilibria are asymptotically stable for $0<\kappa<2/3$ and unstable for $\kappa>2/3$.
 
 Every all-distinct equilibrium has one coordinate equal to $0$. For the corresponding coordinate vector $e_i$,
 $$
