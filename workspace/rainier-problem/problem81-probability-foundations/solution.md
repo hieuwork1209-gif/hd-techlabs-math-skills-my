@@ -209,7 +209,7 @@ a_i
 =
 \mathbb E_i\left[\sigma\mathbf 1_{\{T_1<T_4\}}\right].
 $$
-A first step from $2$ hits vertex $1$ immediately with probability $3/5$, while a first step to $3$ contributes one unit of time whenever vertex $1$ is eventually reached first. Hence
+A first step from $2$ hits vertex $1$ immediately with probability $\frac{3}{5}$, while a first step to $3$ contributes one unit of time whenever vertex $1$ is eventually reached first. Hence
 $$
 a_2
 =
@@ -231,7 +231,7 @@ a_3
 +
 \frac{2}{3}a_2.
 $
-Substituting this and $p_3=6/11$ into the first equation,
+Substituting this and $p_3=\frac{6}{11}$ into the first equation,
 $
 a_2
 =
