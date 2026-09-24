@@ -43,7 +43,7 @@ $$
 $$
 If one of these latter triples occurs, then a triple $P\cup\{x\}$ is compatible with it only when $x\in\{3,4\}$. In that case every member of the component lies inside $U$.
 
-Thus a connected component is either a fixed-pair family or a subfamily of the four $3$-subsets of one $4$-set. A fixed-pair component with $t$ triples has support size $t+2$. A nontrivial component of the second kind has support size $4$ and contains $2$, $3$, or $4$ triples.
+A connected component is therefore either a fixed-pair family or a subfamily of the four $3$-subsets of one $4$-set. A fixed-pair component with $t$ triples has support size $t+2$. A nontrivial component of the second kind has support size $4$ and contains $2$, $3$, or $4$ triples.
 
 Step 2: Derive the extremal size and equality structure
 For a component $\mathcal C$, write
@@ -69,7 +69,7 @@ The right side cannot be $0$ or $1$. Deficit at most $1$ would force every compo
 $$
 4q+2-u
 $$
-is not divisible by $4$ for $u=0$ or $1$. Hence
+is not divisible by $4$ for $u=0$ or $1$. It follows that
 $$
 |\mathcal F|\leq4q.
 $$
@@ -92,7 +92,7 @@ $$
 $$
 which has $4j$ members. The remaining $4(q-j)$ elements split into $q-j$ disjoint $4$-sets, each contributing all four of its triples.
 
-In the last two distributions, every component support has size divisible by $4$, but the used ground-set size would be $4q+1$ or $4q+2$, respectively. Neither is divisible by $4$. Thus these distributions are impossible, and the two structures already described are all equality cases.
+In the last two distributions, every component support has size divisible by $4$, but the used ground-set size would be $4q+1$ or $4q+2$, respectively. Neither is divisible by $4$. These distributions are impossible, and the two structures already described are all equality cases.
 
 Step 3: Count the extremal families with two unused elements
 For the first equality type, choose the two unused elements and partition the remaining $4q$ elements into $q$ unlabeled blocks of size $4$. Each block contributes all four triples on that block. The number is
