@@ -13,7 +13,7 @@ Q_n=
 -1&0&\cdots&0&-1&3
 \end{pmatrix}.
 $$
-Thus the critical group is presented by generators $x_0,\ldots,x_{n-1}$ and relations
+The critical group is presented by generators $x_0,\ldots,x_{n-1}$ and relations
 $$
 3x_i-x_{i-1}-x_{i+1}=0
 \qquad(i\bmod n).
@@ -107,7 +107,7 @@ F_{2n+2}-1
 =
 3F_{2n}-(F_{2n-2}+1).
 $$
-Thus every entry of $M^n-I$ is divisible by $g$, and every common divisor of all four entries divides both $F_{2n}$ and $F_{2n-2}+1$. Hence the first nontrivial invariant factor is
+Every entry of $M^n-I$ is divisible by $g$, and every common divisor of all four entries divides both $F_{2n}$ and $F_{2n-2}+1$. The first nontrivial invariant factor is
 $$
 d_1=g
 =
