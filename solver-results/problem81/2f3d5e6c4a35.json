@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-probability-foundations/problem.md",
+  "source_commit_sha": "d9ff0d3b547080dda643c37b8e0ccbbcef8e10e2",
+  "problem_blob_sha": "2f3d5e6c4a351cbe13ed33342fc91c8ec5cba27d",
+  "statement_sha256": "bac78f21517edf653459a0d143e9ec30882155e30630983308d73a149492b26f",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T03:15:54+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\n\\rho_x:=\\frac{1-\\omega_x}{\\omega_x}\n=\n\\begin{cases}\n\\frac13,&S_x=R,\\\\[2mm]\n3,&S_x=L.\n\\end{cases}\n\\]\n\nThe environment chain is stationary and ergodic.\n\n### 1. Direction of transience\n\nFor a stationary ergodic one-dimensional RWRE, the direction is determined by\n\\[\n\\mathbb E_\\theta[\\log \\rho_0].\n\\]\nHere\n\\[\n\\mathbb E_\\theta[\\log\\rho_0]\n=\\theta\\log\\frac13+(1-\\theta)\\log3\n=(1-2\\theta)\\log3.\n\\]\nTherefore\n\\[\n\\theta_{\\rm dir}=\\frac12.\n\\]\n\nIndeed, the walk goes to \\(+\\infty\\) when this expectation is negative, to \\(-\\infty\\) when it is positive, and is recurrent when it is zero.\n\n### 2. Expected time to hit \\(+1\\)\n\nFor a fixed environment, the standard one-dimensional hitting-time expansion is\n\\[\nE_\\omega T_1\n=\n1+2\\sum_{n\\ge 0}\\prod_{j=0}^n \\rho_{-j}.\n\\]\nHence, by Tonelli,\n\\[\n\\mathbb E_\\theta T_1<\\infty\n\\quad\\Longleftrightarrow\\quad\n\\sum_{n\\ge0}\n\\mathbb E_\\theta\\!\\left[\\prod_{j=0}^n\\rho_{-j}\\right]<\\infty.\n\\]\n\nThe two-state stationary chain is reversible, so the reversed sequence\n\\((S_0,S_{-1},S_{-2},\\dots)\\) has transition matrix \\(P_{\\alpha,\\theta}\\).\n\nLet\n\\[\nD=\\begin{pmatrix}1/3&0\\\\0&3\\end{pmatrix}.\n\\]\nThe above series converges exactly when\n\\[\nr(P_{\\alpha,\\theta}D)<1,\n\\]\nwhere \\(r(\\cdot)\\) denotes spectral radius.\n\nWrite \\(q=1-\\alpha\\). Then\n\\[\nP_{\\alpha,\\theta}\n=\n\\begin{pmatrix}\n\\alpha+q\\theta&q(1-\\theta)\\\\\nq\\theta&\\alpha+q(1-\\theta)\n\\end{pmatrix}.\n\\]\nA direct calculation gives\n\\[\n\\det(I-P_{\\alpha,\\theta}D)\n=\n\\frac{8q\\theta+2\\alpha-6}{3}.\n\\]\nSince the matrix is positive and one diagonal entry is below \\(1\\), the condition \\(r(P_{\\alpha,\\theta}D)<1\\) is equivalent to positivity of this determinant. Thus\n\\[\n8(1-\\alpha)\\theta+2\\alpha-6>0,\n\\]\nor\n\\[\n\\theta>\\frac{3-\\alpha}{4(1-\\alpha)}.\n\\]\nTherefore\n\\[\n\\theta_+=\\frac{3-\\alpha}{4(1-\\alpha)}.\n\\]\n\n### 3. Expected time to hit \\(-1\\)\n\nSimilarly,\n\\[\nE_\\omega T_{-1}\n=\n1+2\\sum_{n\\ge0}\\prod_{j=0}^n \\rho_j^{-1}.\n\\]\nLet\n\\[\nD^{-1}=\\begin{pmatrix}3&0\\\\0&1/3\\end{pmatrix}.\n\\]\nThen\n\\[\n\\mathbb E_\\theta T_{-1}<\\infty\n\\quad\\Longleftrightarrow\\quad\nr(P_{\\alpha,\\theta}D^{-1})<1.\n\\]\nAgain,\n\\[\n\\det(I-P_{\\alpha,\\theta}D^{-1})\n=\n\\frac{2-6\\alpha-8(1-\\alpha)\\theta}{3}.\n\\]\nThus finiteness is equivalent to\n\\[\n2-6\\alpha-8(1-\\alpha)\\theta>0,\n\\]\nwhich gives\n\\[\n\\theta<\\frac{1-3\\alpha}{4(1-\\alpha)}.\n\\]\nTherefore\n\\[\n\\theta_-=\\frac{1-3\\alpha}{4(1-\\alpha)}.\n\\]\n\nSince \\(0<\\alpha<1/3\\),\n\\[\n0<\\theta_-<\\frac12<\\theta_+<1.\n\\]\n\nHence the requested triple is\n\\[\n\\boxed{\n\\left(\n\\theta_-,\n\\theta_{\\rm dir},\n\\theta_+\n\\right)\n=\n\\left(\n\\frac{1-3\\alpha}{4(1-\\alpha)},\n\\frac12,\n\\frac{3-\\alpha}{4(1-\\alpha)}\n\\right).\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T03:19:37+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/2f3d5e6c4a35.json"
+}
