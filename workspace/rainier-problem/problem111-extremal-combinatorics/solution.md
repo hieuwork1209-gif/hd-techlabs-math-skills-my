@@ -23,15 +23,27 @@ B=\{1,2,4\}.
 $$
 Put $P=\{1,2\}$ and $U=\{1,2,3,4\}$.
 
-Any member adjacent to $A$ or $B$ and compatible with both must either contain $P$ or be one of
-$$
+Every member of $\mathcal C$ intersects both $A$ and $B$ in two elements. For example, suppose some member $D$ were disjoint from $A$, and choose a shortest overlap-two path
+$
+A=T_0,T_1,\ldots,T_r=D.
+$
+By minimality, $T_{r-1}$ meets $A$ in two elements. Since $D$ is disjoint from $A$, it can contain at most the one element of $T_{r-1}$ outside $A$, so it cannot share two elements with $T_{r-1}$, a contradiction. The same argument applies to $B$.
+
+Now a triple meeting both
+$
+A=\{1,2,3\}
+\quad\text{and}\quad
+B=\{1,2,4\}
+$
+in two elements either contains $P=\{1,2\}$ or is one of
+$
 \{1,3,4\},
 \qquad
 \{2,3,4\}.
-$$
-A member disjoint from both $A$ and $B$ cannot be connected to them through an overlap-two edge: the first edge on such a path leaving the union $U$ would have to share two elements with a triple meeting $U$ while avoiding intersections of size $1$ with $A$ and $B$, which is impossible.
+$
+If one of these latter triples occurs, then a triple $P\cup\{x\}$ is compatible with it only when $x\in\{3,4\}$. Thus every member of the component lies inside $U=\{1,2,3,4\}$.
 
-Hence every connected component has one of two forms:
+Every connected component therefore has one of two forms:
 
 - all of its triples contain one fixed pair $P$;
 - all of its triples are among the four $3$-subsets of a fixed $4$-set.
