@@ -30,9 +30,16 @@ C_{13}=10,
 C_{24}=18.
 $$
 
+For a walk started at $X_0=2$, let
+$$
+\tau_{\rm cov}
+=
+\inf\{n\geq0:\{X_0,X_1,\ldots,X_n\}=\{1,2,3,4\}\}.
+$$
+
 Determine exactly
 $$
-\left(C_{14},\mathbb E_1T_4,\operatorname{Var}_1(T_4)\right).
+\left(C_{14},\mathbb E_2\tau_{\rm cov},\operatorname{Var}_2(\tau_{\rm cov})\right).
 $$
 
 ---
@@ -50,4 +57,4 @@ $$
 
 ## Domain Explanation
 
-The problem is an inverse question for a reversible random walk on a weighted tree. The commute data determine the hidden tree metric and conductance ratios, after which first- and second-moment hitting-time recursions determine the requested mean and variance. Thus Probability and Statistics -> Probability foundations is primary.
+The problem is an inverse question for a reversible random walk on a weighted tree. The commute data determine the hidden tree metric and conductance ratios, after which endpoint-first decomposition and strong-Markov moment calculations determine the mean and variance of the cover time. Thus Probability and Statistics -> Probability foundations is primary.
