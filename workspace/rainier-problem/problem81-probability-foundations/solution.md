@@ -313,33 +313,128 @@ $$
 \frac{49}{216}.
 $$
 
-Step 4: Convert the sharp product bounds to the requested interval
+Step 4: Classify the endpoint equality cases and the support-size law
+For the lower endpoint, the nonnegative gap $M$ from Step 2 must have expectation zero, so $M=0$ almost surely. In the proof of Step 2, for fixed $u>0$ the gap decreases strictly as $v$ increases, so equality requires $v$ to be maximal at that $u$. The maximizing configuration has two equal coordinates and may be written
+$$
+q=(1-2t,t,t).
+$$
+On this curve,
+$$
+M
+=
+(6t-1)^2
+\left(45-220t+336t^2-144t^3\right).
+$$
+After writing $w=2t$, the second factor becomes
+$$
+45(1-w)^4
++70w(1-w)^3
++24w^2(1-w)^2
++w^4,
+$$
+which is strictly positive for $0\leq w\leq1$. Thus equality forces
+$$
+t=\frac{1}{6},
+$$
+so every lower-endpoint latent vector is a coordinate permutation of
+$$
+\left(\frac{2}{3},\frac{1}{6},\frac{1}{6}\right).
+$$
+Hence
+$$
+K:=|\{i:Q_i>0\}|=3
+$$
+almost surely at the lower endpoint.
+
+For the upper endpoint, the nonnegative gap $N$ from Step 3 must likewise vanish almost surely. If $0\leq u\leq\frac{1}{4}$, then
+$$
+2N=3u(1-4u)+(12u+5)v
+$$
+is a sum of two nonnegative terms. Equality therefore gives either
+$$
+(u,v)=(0,0)
+$$
+or
+$$
+(u,v)=\left(\frac{1}{4},0\right),
+$$
+corresponding respectively to coordinate permutations of
+$$
+(1,0,0)
+$$
+and
+$$
+\left(\frac{1}{2},\frac{1}{2},0\right).
+$$
+If $\frac{1}{4}\leq u\leq\frac{1}{3}$, Step 3 gives
+$$
+2N
+\geq
+-\frac{5(3u-1)(4u-1)}{9}.
+$$
+Equality can occur only at $u=1/4$ or $u=1/3$. The first case is the two-point uniform vector already listed, while $u=1/3$ forces
+$$
+q=\left(\frac{1}{3},\frac{1}{3},\frac{1}{3}\right).
+$$
+Therefore every upper-endpoint latent vector has support size $1$, $2$, or $3$ and is uniform on its support.
+
+Let
+$$
+p_k=\mathbb P(K=k)
+$$
+under an upper-endpoint law. The prescribed two-fold and three-fold collision probabilities become
+$$
+p_1+p_2+p_3=1,
+$$
+$$
+p_1+\frac{p_2}{2}+\frac{p_3}{3}=\frac{1}{2},
+$$
+and
+$$
+p_1+\frac{p_2}{4}+\frac{p_3}{9}=\frac{11}{36}.
+$$
+Solving this linear system gives
+$$
+(p_1,p_2,p_3)
+=
+\left(\frac{1}{6},\frac{1}{3},\frac{1}{2}\right).
+$$
+
+Step 5: Assemble the interval and endpoint support profiles
 Using
 $$
 \mathbb P(X_1=\cdots=X_5)
 =
 \frac{5T}{6}+\frac{1}{216},
 $$
-the lower endpoint is
+the bounds from Steps 2 and 3 give
 $$
 \frac{5}{6}\cdot\frac{11}{72}+\frac{1}{216}
 =
-\frac{19}{144},
+\frac{19}{144}
 $$
-and the upper endpoint is
+and
 $$
 \frac{5}{6}\cdot\frac{49}{216}+\frac{1}{216}
 =
 \frac{251}{1296}.
 $$
-The two attaining latent laws satisfy the same prescribed two-fold and three-fold collision probabilities. Mixing those two latent laws preserves both constraints and makes the five-fold collision probability vary affinely through every intermediate value. Hence the feasible set is the full closed interval.
-Final Answer: $\boxed{\left[\frac{19}{144},\frac{251}{1296}\right]}$
+Mixing a lower-endpoint law with an upper-endpoint law preserves the two prescribed collision constraints, so every intermediate five-fold collision probability is attainable. Step 4 shows that $K=3$ almost surely at the lower endpoint and that the upper-endpoint support-size probabilities are $(1/6,1/3,1/2)$.
 
+Thus the requested tuple consisting of the feasible interval, the lower-endpoint value of $K$, and the upper-endpoint distribution $(p_1,p_2,p_3)$ is
+$$
+\left(
+\left[\frac{19}{144},\frac{251}{1296}\right],
+3,
+\left(\frac{1}{6},\frac{1}{3},\frac{1}{2}\right)
+\right).
+$$
+Final Answer: $\boxed{([\frac{19}{144},\frac{251}{1296}],3,(\frac{1}{6},\frac{1}{3},\frac{1}{2}))}$
 ---
 
 ## Answer
 
-$\left[\frac{19}{144},\frac{251}{1296}\right]$
+$([\frac{19}{144},\frac{251}{1296}],3,(\frac{1}{6},\frac{1}{3},\frac{1}{2}))$
 
 ---
 
@@ -347,7 +442,7 @@ $\left[\frac{19}{144},\frac{251}{1296}\right]$
 
 **Problem Type:** Optimization
 
-**Answer Type:** Interval or region description
+**Answer Type:** Tuple or ordered list
 
 ---
 
