@@ -2,33 +2,38 @@
 
 ## LaTeX (Normalized)
 
-Let $Q=(Q_1,Q_2,Q_3)$ be a random probability vector, so $Q_i\geq0$ and $Q_1+Q_2+Q_3=1$. Conditional on $Q$, let $X_1,X_2,\ldots$ be independent random variables taking values in $\{1,2,3\}$ with
+Consider the discrete-time random walk on an unknown connected tree with vertex set $\{1,2,3,4\}$. Each edge $\{i,j\}$ has a positive conductance $c_{ij}=c_{ji}$, and from vertex $i$ the walk moves to a neighbor $j$ with probability
 $$
-\mathbb P(X_n=i\mid Q)=Q_i.
+P(i,j)=\frac{c_{ij}}{\sum_{k\sim i}c_{ik}}.
+$$
+
+For $i\neq j$, let
+$$
+T_j=\inf\{n\geq0:X_n=j\}
+$$
+and define the commute time
+$$
+C_{ij}=\mathbb E_iT_j+\mathbb E_jT_i.
 $$
 
 Suppose
 $$
-\mathbb P(X_1=X_2)=\frac{1}{2}
+C_{12}=4,
+\qquad
+C_{23}=6,
+\qquad
+C_{34}=12,
 $$
-and
 $$
-\mathbb P(X_1=X_2=X_3)=\frac{11}{36}.
+C_{13}=10,
+\qquad
+C_{24}=18.
 $$
 
-Let
+Determine exactly
 $$
-K=|\{i:Q_i>0\}|.
+\left(C_{14},\mathbb E_1T_4,\operatorname{Var}_1(T_4)\right).
 $$
-Determine the exact interval $I$ of all possible values of
-$$
-\mathbb P(X_1=X_2=X_3=X_4=X_5).
-$$
-Also determine the support-size law forced at each endpoint. Report the result as
-$$
-(I,k_-,(p_1,p_2,p_3)),
-$$
-where $k_-$ is the almost-sure value of $K$ for any law attaining the lower endpoint, and $p_k=\mathbb P(K=k)$ for any law attaining the upper endpoint.
 
 ---
 
@@ -38,11 +43,11 @@ where $k_-$ is the almost-sure value of $K$ for any law attaining the lower endp
 |---|---|
 | **Domain** | Probability and Statistics |
 | **Sub-domain** | Probability foundations |
-| **Problem Type** | Optimization |
+| **Problem Type** | Exact computation |
 | **Answer Type** | Tuple or ordered list |
 
 ---
 
 ## Domain Explanation
 
-The problem asks for a sharp feasible range of a collision probability in a latent categorical mixture and for the equality structure of the endpoint laws. The solution converts collision probabilities to symmetric power sums, proves sharp attainable extremal certificates, and then classifies the equality cases to recover the latent support-size profiles. Thus Probability and Statistics -> Probability foundations is primary.
+The problem is an inverse question for a reversible random walk on a weighted tree. The commute data determine the hidden tree metric and conductance ratios, after which first- and second-moment hitting-time recursions determine the requested mean and variance. Thus Probability and Statistics -> Probability foundations is primary.
