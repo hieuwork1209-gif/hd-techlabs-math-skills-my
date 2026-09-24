@@ -65,7 +65,7 @@ If all coordinates are equal, say $x_1=x_2=x_3=s$, then the coupling vanishes an
 $$
 s-s^3=0.
 $$
-Thus the synchronized equilibria are
+The synchronized equilibria are
 $$
 (0,0,0),
 \qquad
@@ -122,10 +122,10 @@ The equation for a coordinate equal to $p$ is
 $$
 (1+\kappa)p-p^3-\kappa q=0.
 $$
-If $p=0$, this forces $q=0$, contrary to $p\neq q$. Thus set
-$$
+If $p=0$, this forces $q=0$, contrary to $p\neq q$. Set
+$
 t=\frac{q}{p}.
-$$
+$
 The two displayed equations become
 $$
 p^2(1+t+t^2)=1+3\kappa,
@@ -260,7 +260,7 @@ Step 4 gives $F(t)>0$ on
 $$
 \left(-\sqrt[3]{2},-1\right),
 $$
-so $\kappa(t)$ is strictly decreasing there. Moreover,
+so $\kappa(t)$ is strictly decreasing there. Also,
 $$
 \lim_{t\to-\sqrt[3]{2}^{+}}\kappa(t)=\infty,
 \qquad
