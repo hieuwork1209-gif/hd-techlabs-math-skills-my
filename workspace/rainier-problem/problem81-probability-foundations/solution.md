@@ -146,7 +146,10 @@ If a maximizer lies on the boundary, then $v=0$ and
 $
 M=864u^2-380u+45>0,
 $
-because this quadratic has negative discriminant. At an interior maximizer, Lagrange multipliers applied to $\log(q_1q_2q_3)$ show that either all three coordinates are equal or two are equal: subtracting the stationarity equations for $q_i$ and $q_j$ gives
+because its discriminant is
+$
+380^2-4\cdot864\cdot45=-11120<0.
+$ At an interior maximizer, Lagrange multipliers applied to $\log(q_1q_2q_3)$ show that either all three coordinates are equal or two are equal: subtracting the stationarity equations for $q_i$ and $q_j$ gives
 $$
 (q_i-q_j)\left(\mu-\frac{1}{q_iq_j}\right)=0.
 $$
