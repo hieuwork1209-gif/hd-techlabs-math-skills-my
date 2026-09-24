@@ -60,18 +60,65 @@ $$
 $$
 It remains to find the sharp range of $T$.
 
-Step 2: Derive a sharp lower certificate for the product of the power sums
-For one deterministic $q$, write
+Step 2: Derive a sharp lower certificate from the deterministic contact point
+A deterministic latent vector matching the two prescribed collision probabilities would have
 $$
-u=e_2,
+e_2=\frac{1-x}{2}=\frac{1}{4}
+$$
+and
+$$
+e_3=\frac{1-3x+2y}{6}=\frac{1}{54}.
+$$
+Its three coordinates must therefore be the roots of
+$$
+z^3-z^2+\frac{1}{4}z-\frac{1}{54}
+=
+\left(z-\frac{2}{3}\right)
+\left(z-\frac{1}{6}\right)^2.
+$$
+Thus the natural deterministic contact point is
+$$
+q_0=\left(\frac{2}{3},\frac{1}{6},\frac{1}{6}\right),
+$$
+up to permutation, and it has
+$$
+xy=\frac{1}{2}\cdot\frac{11}{36}=\frac{11}{72}.
+$$
+
+To certify that no latent mixing can lower this value, seek an affine minorant whose expectation depends only on the known means:
+$$
+F=xy+Ax+By+C.
+$$
+Writing $u=e_2$ and $v=e_3$ gives
+$$
+F
+=
+6u^2-6uv+(-2A-3B-5)u+(3B+3)v+A+B+C+1.
+$$
+The coefficient of $v$ should have a definite sign when $u$ is fixed. Setting
+$$
+B=-1
+$$
+removes the standalone $v$ term, leaving dependence on $v$ only through $-6uv$. To make the certificate sharp at $q_0$, impose
+$$
+F(q_0)=0
+$$
+and tangency along the two-equal boundary
+$$
+q(t)=(1-2t,t,t)
+$$
+at $t=\frac{1}{6}$. These two linear conditions give
+$$
+A=\frac{23}{72},
 \qquad
-v=e_3.
+C=-\frac{1}{144}.
 $$
-Consider
+Hence it remains to prove
 $$
-M=144xy+46x-144y-1.
+M:=144F=144xy+46x-144y-1\geq0.
 $$
-Using $x=1-2u$ and $y=1-3u+3v$ gives
+
+Using $x=1-2u$ and $y=1-3u+3v$,
 $$
 M=864u^2-864uv-380u+45.
 $$
@@ -85,13 +132,13 @@ At an interior maximizer, Lagrange multipliers applied to $\log(q_1q_2q_3)$ show
 $$
 (q_i-q_j)\left(\mu-\frac{1}{q_iq_j}\right)=0.
 $$
-Hence a maximizer may be written
+Thus a maximizing vector may be written
 $$
 (q_1,q_2,q_3)=(1-2t,t,t),
 \qquad
 0\leq t\leq\frac{1}{2},
 $$
-up to permutation. Boundary points have $v=0$ and cannot give a smaller $M$ than the maximal-$v$ point with the same $u$.
+up to permutation.
 
 Substitution gives
 $$
@@ -109,13 +156,13 @@ $$
 +24w^2(1-w)^2
 +w^4.
 $$
-Therefore $M\geq0$ for every probability vector $q$, so
+Therefore $M\geq0$ for every probability vector $q$, and
 $$
 xy
 \geq
 y-\frac{23}{72}x+\frac{1}{144}.
 $$
-Taking expectations gives
+Taking expectations yields
 $$
 T
 \geq
@@ -125,26 +172,35 @@ T
 =
 \frac{11}{72}.
 $$
+The deterministic vector $q_0$ attains equality.
 
-The bound is attainable by the deterministic latent vector
+Step 3: Derive a sharp upper certificate from the simplex support strata
+For the upper side, consider the three canonical probability vectors that are uniform on supports of sizes one, two, and three. Their $(x,y,xy)$ values are
 $$
-Q=\left(\frac{2}{3},\frac{1}{6},\frac{1}{6}\right).
-$$
-For this vector,
-$$
-s_2(Q)=\frac{1}{2},
+(1,1,1),
 \qquad
-s_3(Q)=\frac{11}{36},
+\left(\frac{1}{2},\frac{1}{4},\frac{1}{8}\right),
 \qquad
-s_2(Q)s_3(Q)=\frac{11}{72}.
+\left(\frac{1}{3},\frac{1}{9},\frac{1}{27}\right).
 $$
-
-Step 3: Derive a sharp upper certificate and an attaining latent mixture
-For one deterministic $q$, define $u=e_2$ and $v=e_3$ as in Step 2. Consider
+There is a unique affine plane
+$$
+xy=A+Bx+Cy
+$$
+through these three points. Solving the three linear interpolation equations gives
+$$
+A=\frac{1}{6},
+\qquad
+B=-1,
+\qquad
+C=\frac{11}{6}.
+$$
+Thus define the candidate majorant gap
 $$
 N=\frac{1}{6}-x+\frac{11}{6}y-xy.
 $$
-Substitution gives
+
+Write again $u=e_2$ and $v=e_3$. Substitution gives
 $$
 2N=3u(1-4u)+(12u+5)v.
 $$
@@ -180,7 +236,7 @@ $$
 -\frac{5(3u-1)(4u-1)}{9}
 \geq0,
 $$
-because $u\leq\frac{1}{3}$. Therefore, for every probability vector $q$,
+because $u\leq\frac{1}{3}$. Therefore
 $$
 xy
 \leq
@@ -197,7 +253,7 @@ T
 \frac{49}{216}.
 $$
 
-This bound is attained by the following random latent vector:
+This bound is attained by the random latent vector
 $$
 Q=
 \begin{cases}
