@@ -20,7 +20,7 @@ P_{\alpha,\theta}
 \theta&1-\theta
 \end{pmatrix}.
 $$
-This form shows directly that $\pi P_{\alpha,\theta}=\pi$. It is also reversible, because
+This form gives $\pi P_{\alpha,\theta}=\pi$. It is reversible because
 $$
 \theta(1-\alpha)(1-\theta)
 =
@@ -32,7 +32,7 @@ For a fixed environment, let $h(x)=P_\omega^x(T_b<T_a)$ for $a<x<b$. The harmoni
 $$
 h(x)=\omega_xh(x+1)+(1-\omega_x)h(x-1)
 $$
-implies, for $\Delta_x=h(x)-h(x-1)$,
+implies, with $\Delta_x=h(x)-h(x-1)$,
 $$
 \Delta_{x+1}=\rho_x\Delta_x.
 $$
@@ -43,145 +43,219 @@ $$
 \theta\log\frac{1}{3}+(1-\theta)\log3
 =(1-2\theta)\log3.
 $$
-If this limit is negative, the right scale tail is summable and the left one diverges; if it is positive, the roles reverse. Hence the walk is transient to $+\infty$ for $\theta>\frac{1}{2}$ and to $-\infty$ for $\theta<\frac{1}{2}$.
+Hence the walk is transient to $+\infty$ for $\theta>\frac{1}{2}$ and to $-\infty$ for $\theta<\frac{1}{2}$.
 
-At $\theta=\frac{1}{2}$, the state chain switches state with probability $(1-\alpha)/2$ at each step. Its successive run lengths are independent geometric random variables with the same law. Pairing an $R$-run with the following $L$-run makes the potential change by $\log3$ times the difference of two independent identically distributed geometric variables. These paired increments form a symmetric nondegenerate one-dimensional random walk, so their partial sums visit both signs infinitely often. Both scale tails therefore diverge, and the walk is recurrent. Thus
+At $\theta=\frac{1}{2}$, the state chain switches state with probability $(1-\alpha)/2$ at every step. Successive run lengths are therefore independent geometric random variables with the same law. Pairing an $R$-run with the following $L$-run makes the potential change by $\log3$ times the difference of two independent identically distributed geometric variables. These paired increments form a symmetric nondegenerate one-dimensional random walk, so their partial sums visit both signs infinitely often. Both scale tails diverge, and the walk is recurrent. Therefore
 $$
 \theta_{\rm dir}=\frac{1}{2}.
 $$
 
-Step 2: Find the right first-passage threshold from a transfer-matrix series
-For a right-transient environment, let $u_x$ be the quenched expected time to hit $x+1$ starting from $x$. First-step decomposition gives
+Step 2: Derive the right second-moment criterion
+Assume $\theta>\frac{1}{2}$, so $T_1<\infty$ almost surely. Let $\tau_x$ be the time needed to hit $x+1$ starting from $x$, and set
+$$
+u_x=E_\omega^x\tau_x,
+\qquad
+v_x=E_\omega^x\tau_x^2.
+$$
+A first-step decomposition gives
 $$
 u_x
 =
 1+(1-\omega_x)(u_{x-1}+u_x),
 $$
-so
+hence
 $$
 u_x
 =
-\frac{1}{\omega_x}+\rho_xu_{x-1}
-=
 1+\rho_x+\rho_xu_{x-1}.
 $$
-Iterating this nonnegative recursion to the left and taking monotone limits gives
+Iterating this nonnegative recursion to the left yields
 $$
-E_\omega^0T_1
+u_0
 =
 1+2\sum_{k=0}^{\infty}\rho_0\rho_{-1}\cdots\rho_{-k}.
 $$
+
+To control the second moment, condition on the first step. If the first step is left, the return time from $x-1$ to $x$ and the subsequent fresh crossing from $x$ to $x+1$ are independent under the quenched law by the strong Markov property. Thus
+$$
+v_x
+=
+1+(1-\omega_x)
+\left(
+v_{x-1}+v_x+2u_{x-1}+2u_x+2u_{x-1}u_x
+\right).
+$$
+Using $\rho_x=(1-\omega_x)/\omega_x$ and the recursion for $u_x$ gives
+$$
+v_x
+=
+\rho_xv_{x-1}
++1+3\rho_x+2\rho_x^2
++4\rho_x(1+\rho_x)u_{x-1}
++2\rho_x^2u_{x-1}^2.
+$$
+
 Let
 $$
-D=\operatorname{diag}\left(\frac{1}{3},3\right),
+D=\operatorname{diag}\left(\frac{1}{3},3\right).
+$$
+Because the environment is reversible, conditional on $S_x=i$ the previous state $S_{x-1}$ is distributed by the $i$th row of $P_{\alpha,\theta}$. Define the state-conditioned vectors
+$$
+m_i=\mathbb E_\theta[u_x\mid S_x=i],
 \qquad
-\mathbf 1=\begin{pmatrix}1\\1\end{pmatrix}.
+s_i=\mathbb E_\theta[u_x^2\mid S_x=i],
+\qquad
+t_i=\mathbb E_\theta[v_x\mid S_x=i].
 $$
-Reversibility makes the backward state chain have the same transition matrix, hence
+From the recursion for $u_x$,
 $$
-\mathbb E_\theta\left[\rho_0\rho_{-1}\cdots\rho_{-k}\right]
+m
 =
-\pi D(P_{\alpha,\theta}D)^k\mathbf 1.
+\mathbf1+d+DP_{\alpha,\theta}m,
 $$
-Therefore $\mathbb E_\theta T_1$ is finite exactly when the Perron root of $P_{\alpha,\theta}D$ is less than $1$.
+where $d=(1/3,3)^T$. Squaring the same recursion gives
+$$
+s
+=
+(\mathbf1+d)^{\circ2}
++2D(I+D)P_{\alpha,\theta}m
++D^2P_{\alpha,\theta}s.
+$$
+The displayed recursion for $v_x$ gives
+$$
+t
+=
+\mathbf1+3d+2d^{\circ2}
++4D(I+D)P_{\alpha,\theta}m
++2D^2P_{\alpha,\theta}s
++DP_{\alpha,\theta}t.
+$$
 
-Because $\det D=1$ and the two eigenvalues of $P_{\alpha,\theta}$ are $1$ and $\alpha$,
+The decisive operator is therefore the squared-odds transfer matrix. If
 $$
-\det(P_{\alpha,\theta}D)=\alpha.
+r(P_{\alpha,\theta}D^2)<1,
 $$
-Its trace is
+then the matrix series for squared products decays geometrically. Cauchy-Schwarz then gives convergence of the corresponding first-product series, so $m$ is finite; the displayed equation for $s$ has a finite nonnegative solution because $r(D^2P_{\alpha,\theta})=r(P_{\alpha,\theta}D^2)<1$, and then the equation for $t$ has a finite solution as well. Hence $\mathbb E_\theta T_1^2=\pi t<\infty$.
+
+Conversely, Jensen gives $v_0\geq u_0^2$. Since all terms in the series for $u_0$ are nonnegative,
 $$
-\operatorname{tr}(P_{\alpha,\theta}D)
-=
-3+\frac{\alpha}{3}
--\frac{8(1-\alpha)\theta}{3}.
+u_0^2
+\geq
+4\sum_{k=0}^{\infty}
+\left(\rho_0\rho_{-1}\cdots\rho_{-k}\right)^2.
 $$
-For fixed $\alpha$, the Perron root decreases strictly with $\theta$. It equals $1$ precisely when
+Averaging and using reversibility gives
 $$
-0
-=
-\det(I-P_{\alpha,\theta}D)
-=
-1-\operatorname{tr}(P_{\alpha,\theta}D)+\alpha,
+\mathbb E_\theta u_0^2
+\geq
+4\sum_{k=0}^{\infty}
+\pi D^2(P_{\alpha,\theta}D^2)^k\mathbf1.
 $$
-which reduces to
+If $r(P_{\alpha,\theta}D^2)\geq1$, this positive Perron series diverges, so $\mathbb E_\theta T_1^2=\infty$. Therefore
 $$
-8(1-\alpha)\theta=6-2\alpha.
-$$
-Thus
-$$
-\mathbb E_\theta T_1<\infty
+\mathbb E_\theta T_1^2<\infty
 \quad\Longleftrightarrow\quad
-\theta>\frac{3-\alpha}{4(1-\alpha)},
-$$
-and
-$$
-\theta_+=\frac{3-\alpha}{4(1-\alpha)}.
+r(P_{\alpha,\theta}D^2)<1.
 $$
 
-Step 3: Find the left first-passage threshold from the reflected transfer matrix
-For left passage, reflection replaces $\rho_x$ by $\rho_x^{-1}$. Put
+Now $\det D^2=1$, while the eigenvalues of $P_{\alpha,\theta}$ are $1$ and $\alpha$, so
 $$
-D^{-1}=\operatorname{diag}\left(3,\frac{1}{3}\right).
+\det(P_{\alpha,\theta}D^2)=\alpha.
 $$
-The same first-step iteration and reversibility argument shows that $\mathbb E_\theta T_{-1}$ is finite exactly when the Perron root of $P_{\alpha,\theta}D^{-1}$ is less than $1$. Again
+Also
 $$
-\det(P_{\alpha,\theta}D^{-1})=\alpha,
-$$
-while
-$$
-\operatorname{tr}(P_{\alpha,\theta}D^{-1})
+\operatorname{tr}(P_{\alpha,\theta}D^2)
 =
-\frac{1+9\alpha+8(1-\alpha)\theta}{3}.
+9+\frac{\alpha}{9}
+-\frac{80(1-\alpha)\theta}{9}.
 $$
-This Perron root increases strictly with $\theta$, and it equals $1$ exactly when
+The Perron root decreases strictly with $\theta$ and equals $1$ exactly when
 $$
 0
 =
-\det(I-P_{\alpha,\theta}D^{-1})
+\det(I-P_{\alpha,\theta}D^2)
 =
-1-\operatorname{tr}(P_{\alpha,\theta}D^{-1})+\alpha.
-$$
-Equivalently,
-$$
-8(1-\alpha)\theta=2-6\alpha.
+\frac{8\left(10(1-\alpha)\theta+\alpha-9\right)}{9}.
 $$
 Hence
 $$
-\mathbb E_\theta T_{-1}<\infty
+\mathbb E_\theta T_1^2<\infty
 \quad\Longleftrightarrow\quad
-\theta<\frac{1-3\alpha}{4(1-\alpha)},
+\theta>\frac{9-\alpha}{10(1-\alpha)},
 $$
 so
 $$
-\theta_-=\frac{1-3\alpha}{4(1-\alpha)}.
+\theta_+=\frac{9-\alpha}{10(1-\alpha)}.
 $$
-The hypothesis $0<\alpha<\frac{1}{3}$ ensures $0<\theta_-<\frac{1}{2}<\theta_+<1$.
 
-Step 4: Assemble the transition parameters
-The logarithmic potential gives $\theta_{\rm dir}=\frac{1}{2}$, while the two correlation-sensitive first-passage moment thresholds are
+Step 3: Derive the left second-moment threshold
+For left passage, reflection replaces $\rho_x$ by $\rho_x^{-1}$. The derivation in Step 2 applies with
 $$
-\theta_- = \frac{1-3\alpha}{4(1-\alpha)},
+D^{-2}=\operatorname{diag}\left(9,\frac{1}{9}\right).
+$$
+Thus
+$$
+\mathbb E_\theta T_{-1}^2<\infty
+\quad\Longleftrightarrow\quad
+r(P_{\alpha,\theta}D^{-2})<1.
+$$
+Again
+$$
+\det(P_{\alpha,\theta}D^{-2})=\alpha,
+$$
+and
+$$
+\operatorname{tr}(P_{\alpha,\theta}D^{-2})
+=
+\frac{1+81\alpha+80(1-\alpha)\theta}{9}.
+$$
+This Perron root increases strictly with $\theta$. It equals $1$ exactly when
+$$
+0
+=
+\det(I-P_{\alpha,\theta}D^{-2})
+=
+\frac{8\left(1-9\alpha-10(1-\alpha)\theta\right)}{9}.
+$$
+Therefore
+$$
+\mathbb E_\theta T_{-1}^2<\infty
+\quad\Longleftrightarrow\quad
+\theta<\frac{1-9\alpha}{10(1-\alpha)},
+$$
+so
+$$
+\theta_- = \frac{1-9\alpha}{10(1-\alpha)}.
+$$
+The hypothesis $0<\alpha<\frac{1}{9}$ ensures
+$$
+0<\theta_-<\frac{1}{2}<\theta_+<1.
+$$
+
+Step 4: Assemble the second-moment phase transitions
+The logarithmic potential gives $\theta_{\rm dir}=\frac{1}{2}$, while the squared-odds transfer operators give
+$$
+\theta_- = \frac{1-9\alpha}{10(1-\alpha)},
 \qquad
-\theta_+ = \frac{3-\alpha}{4(1-\alpha)}.
+\theta_+ = \frac{9-\alpha}{10(1-\alpha)}.
 $$
 Therefore
 $$
 (\theta_-,\theta_{\rm dir},\theta_+)
 =
 \left(
-\frac{1-3\alpha}{4(1-\alpha)},
+\frac{1-9\alpha}{10(1-\alpha)},
 \frac{1}{2},
-\frac{3-\alpha}{4(1-\alpha)}
+\frac{9-\alpha}{10(1-\alpha)}
 \right).
 $$
-Final Answer: $\boxed{\left(\frac{1-3\alpha}{4(1-\alpha)},\frac{1}{2},\frac{3-\alpha}{4(1-\alpha)}\right)}$
+Final Answer: $\boxed{\left(\frac{1-9\alpha}{10(1-\alpha)},\frac{1}{2},\frac{9-\alpha}{10(1-\alpha)}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{1-3\alpha}{4(1-\alpha)},\frac{1}{2},\frac{3-\alpha}{4(1-\alpha)}\right)$
+$\left(\frac{1-9\alpha}{10(1-\alpha)},\frac{1}{2},\frac{9-\alpha}{10(1-\alpha)}\right)$
 
 ---
 
@@ -197,6 +271,6 @@ $\left(\frac{1-3\alpha}{4(1-\alpha)},\frac{1}{2},\frac{3-\alpha}{4(1-\alpha)}\ri
 
 - stationary markov chains
 - random walk in random environment
-- logarithmic potential criterion
+- quenched crossing-time recursion
 - matrix geometric series
 - perron spectral radius
