@@ -2,26 +2,23 @@
 
 ## LaTeX (Normalized)
 
-Let $P$ be a random variable taking values in $[0,1]$, with a distribution invariant under $P\mapsto1-P$. Conditional on $P$, let $X_1,X_2,\ldots$ be independent Bernoulli random variables with
+Let $Q=(Q_1,Q_2,Q_3)$ be a random probability vector, so $Q_i\geq0$ and $Q_1+Q_2+Q_3=1$. Conditional on $Q$, let $X_1,X_2,\ldots$ be independent random variables taking values in $\{1,2,3\}$ with
 $$
-\mathbb P(X_i=1\mid P)=P.
+\mathbb P(X_n=i\mid Q)=Q_i.
 $$
 
 Suppose
 $$
-\mathbb P(X_1=X_2)=\frac{3}{4},
-$$
-$$
-\mathbb P(X_1=X_2=X_3=X_4)=\frac{13}{24},
+\mathbb P(X_1=X_2)=\frac{1}{2}
 $$
 and
 $$
-\mathbb P(X_1=X_2=X_3=X_4=X_5=X_6)=\frac{55}{128}.
+\mathbb P(X_1=X_2=X_3)=\frac{11}{36}.
 $$
 
 Determine the exact interval of all possible values of
 $$
-\mathbb P(X_1=X_2=\cdots=X_8).
+\mathbb P(X_1=X_2=X_3=X_4=X_5).
 $$
 
 ---
@@ -39,4 +36,4 @@ $$
 
 ## Domain Explanation
 
-The problem asks for the sharp feasible range of an observable probability in a symmetric latent Bernoulli-mixture model under lower-order probabilistic constraints. The solution reduces the observable constraints to a compact moment problem and requires sharp attainable moment bounds. Thus Probability and Statistics -> Probability foundations is primary.
+The problem asks for the sharp feasible range of a collision probability in a latent categorical mixture under lower-order collision constraints. The solution converts those probabilities to symmetric power sums of the latent probability vector and then solves a constrained extremal moment problem with sharp attainable certificates. Thus Probability and Statistics -> Probability foundations is primary.
