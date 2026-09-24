@@ -99,13 +99,15 @@ Let
 $$
 \pi:G\to GL_2^+(\mathbb F_\ell)
 $$
-be the linear-part homomorphism. Because
-$$
+be the linear-part homomorphism. The first column of an invertible matrix has $\ell^2-1$ choices, and the second has $\ell^2-\ell$ choices once the first is fixed. Hence
+$
 |GL_2(\mathbb F_\ell)|
 =
-\ell(\ell-1)^2(\ell+1),
-$$
-every $\ell$-subgroup of $GL_2(\mathbb F_\ell)$ has order at most $\ell$. Hence
+(\ell^2-1)(\ell^2-\ell)
+=
+\ell(\ell-1)^2(\ell+1).
+$
+Only one factor of $\ell$ occurs, so every $\ell$-subgroup of $GL_2(\mathbb F_\ell)$ has order at most $\ell$. Hence
 $$
 |\pi(G)|\in\{1,\ell\}.
 $$
@@ -188,7 +190,7 @@ G_{U,\lambda}
 =
 \{(A,b):A\in P_U,\ b+U=\lambda(A)\}.
 $$
-The homomorphism identity makes this set closed under multiplication, and the fiber over $I$ is precisely the translation subgroup $U$; since the set is finite and contains the identity, it is a subgroup. It has $\ell$ fibers of size $\ell$, hence order $\ell^2$. If $A=I$, its nonidentity elements are nonzero translations. If $A\neq I$, then $\lambda(A)\neq0$, so
+The homomorphism identity makes this set closed under multiplication, and the fiber over $I$ is precisely the translation subgroup $U$; since the set is finite and contains the identity, it is a subgroup. Every $A\in P_U$ has determinant $1$, so Step 2 places this subgroup inside $\operatorname{Aut}(\mathscr H)$. It has $\ell$ fibers of size $\ell$, hence order $\ell^2$. If $A=I$, its nonidentity elements are nonzero translations. If $A\neq I$, then $\lambda(A)\neq0$, so
 $$
 b\notin U=\operatorname{im}(I-A),
 $$
@@ -203,10 +205,10 @@ lines $U$ in $V$. For each line, both $P_U$ and $V/U$ are cyclic groups of order
 $$
 \lambda:P_U\to V/U.
 $$
-Hence the regular subgroups with nontrivial linear projection number
-$$
+Different lines give different translation kernels $G\cap V$, and for a fixed line different isomorphisms give different fibers over $P_U$, so no subgroup is counted twice. Hence the regular subgroups with nontrivial linear projection number
+$
 (\ell+1)(\ell-1)=\ell^2-1.
-$$
+$
 Adding the unique full translation subgroup gives
 $$
 1+(\ell^2-1)=\ell^2.
