@@ -105,91 +105,55 @@ Now let $0<r<1$, set $s=3r$, and suppose $K>0$ satisfies the two inequalities. D
 $$
 c=\frac{s^4+18s^2+16K^2-27}{8s^3}.
 $$
-The lower and upper inequalities are exactly $c\geq-1$ and $c\leq1$. Choose $\phi\in[0,\pi]$ with $\cos\phi=c$ and put $p=e^{i\phi}$. Then
+The lower and upper inequalities are exactly $-1\leq c\leq1$. Choose $\phi\in[0,\pi]$ with $\cos\phi=c$ and put $p=e^{i\phi}$. Then
 $$
 D=s^4-8s^3\cos\phi+18s^2-27=-16K^2<0.
 $$
-We must show that
+Consider
 $$
-f(z)=z^3-sz^2+spz-p
+f(z)=z^3-sz^2+spz-p.
 $$
-has three distinct roots on the unit circle.
+It satisfies the self-inversive identity
+$$
+f(z)=-pz^3\,\overline{f\!\left(\frac1{\bar z}\right)}.
+$$
+Hence its roots are invariant, with multiplicity, under the involution
+$$
+z\longmapsto \frac1{\bar z}.
+$$
+Because $D\neq0$, the three roots are distinct. Therefore either all three roots are fixed by this involution, hence lie on the unit circle, or exactly one root lies on the unit circle and the other two form a reciprocal-conjugate pair.
 
-If $\phi=0$, then $p=1$ and
+We rule out the second possibility directly from the sign of $D$. Suppose the roots are
 $$
-f(z)=(z-1)\left(z^2+(1-s)z+1\right).
+\eta=e^{i\psi},\qquad
+a=\rho e^{i\theta},\qquad
+b=\rho^{-1}e^{i\theta},
+\qquad \rho\neq1.
 $$
-Since $0<s<3$, $|1-s|<2$. Hence the quadratic has two distinct conjugate roots of modulus $1$, and all three roots lie on the unit circle.
+Since $z_1z_2z_3=p$,
+$$
+D=\frac{\Delta}{p^2}
+=\prod_{i<j}\frac{(z_i-z_j)^2}{z_iz_j}.
+$$
+Writing $\delta=\theta-\psi$, the factor from the reciprocal pair is
+$$
+\frac{(a-b)^2}{ab}
+=\left(\rho-\rho^{-1}\right)^2>0,
+$$
+while the product of the other two factors is
+$$
+\frac{(a-\eta)^2}{a\eta}\,
+\frac{(b-\eta)^2}{b\eta}
+=
+\left(2\cos\delta-\rho-\rho^{-1}\right)^2>0.
+$$
+Thus this off-circle configuration would force $D>0$, contradicting $D=-16K^2<0$. Hence all three roots of $f$ are distinct and lie on the unit circle.
 
-Assume now $0<\phi\leq\pi$ and set $\alpha=\phi/3$. Write $z=e^{i\alpha}w$. After division by $e^{3i\alpha}$, $f(z)=0$ becomes
+Their sum is $s$, so their centroid has distance $r=s/3$ from the origin. Finally, the area-discriminant identity from Step 1 gives
 $$
-g(w)=w^3-se^{-i\alpha}w^2+se^{i\alpha}w-1=0.
+16\operatorname{Area}(ABC)^2=-D=16K^2,
 $$
-Use the Cayley parametrization
-$$
-w=\frac{x+i}{x-i}.
-$$
-For real $x$, this has modulus $1$. The identities
-$$
-(x+i)^3-(x-i)^3=2i(3x^2-1),
-$$
-$$
-(x+i)^2(x-i)=x^3+x+i(x^2+1)
-$$
-with the conjugate identity for $(x+i)(x-i)^2$ give
-$$
-(x-i)^3g\left(\frac{x+i}{x-i}\right)=2iH(x),
-$$
-where
-$$
-H(x)=s\sin\alpha\,x^3+(3-s\cos\alpha)x^2+s\sin\alpha\,x-(1+s\cos\alpha).
-$$
-For a real cubic $Ax^3+Bx^2+Cx+D_0$, the discriminant is
-$$
-B^2C^2-4AC^3-4B^3D_0-27A^2D_0^2+18ABCD_0.
-$$
-Here
-$$
-A=C=s\sin\alpha,
-\qquad
-B=3-s\cos\alpha,
-\qquad
-D_0=-(1+s\cos\alpha).
-$$
-Writing $u=\sin\alpha$ and $v=\cos\alpha$, substitution gives
-$$
-\operatorname{disc}(H)
-=s^2u^2(3-sv)^2-4s^4u^4
-+4(3-sv)^3(1+sv)
--27s^2u^2(1+sv)^2
--18s^2u^2(3-sv)(1+sv).
-$$
-Expanding the five displayed terms and collecting powers of $s$ gives
-$
-\operatorname{disc}(H)
-=108-72s^2(u^2+v^2)
-+32s^3\left(v^3-3vu^2\right)
--4s^4(u^2+v^2)^2.
-$
-Using $u^2+v^2=1$, this becomes
-$
-\operatorname{disc}(H)
-=108-72s^2+32s^3\left(v^3-3vu^2\right)-4s^4
-=-4\left[s^4-8s^3\left(v^3-3vu^2\right)+18s^2-27\right].
-$
-Since $v^3-3vu^2=\cos(3\alpha)=\cos\phi$,
-$$
-\operatorname{disc}(H)=-4D=64K^2>0.
-$$
-If the three roots of a real cubic are $x_1,x_2,x_3$, its discriminant is
-$$
-A^4(x_1-x_2)^2(x_1-x_3)^2(x_2-x_3)^2.
-$$
-A real cubic has either three real roots or one real root and a nonreal conjugate pair; in the latter case the factor $(x_2-x_3)^2$ is a negative real number while the other two squared factors have positive product, so the discriminant is negative. Thus positive discriminant is equivalent to three distinct real roots. Hence $H$ has three distinct real roots $x_1,x_2,x_3$, producing three distinct unit-modulus roots
-$$
-z_j=e^{i\alpha}\frac{x_j+i}{x_j-i}
-$$
-of $f$. Their sum is $s$, so their centroid has distance $r=s/3$ from the origin. Finally $D=-16K^2$ and the area-discriminant identity from Step 1 show that the resulting triangle has area exactly $K$. Therefore every pair satisfying the inequalities is attainable.
+so the resulting triangle has area exactly $K$. Therefore every pair satisfying the inequalities is attainable.
 
 Step 4: Classify all triangles attaining the upper sharp boundary
 Equality in the upper inequality is equivalent to $\cos\phi=1$. After the rotation used in Step 1 this forces $p=1$, so
@@ -255,5 +219,5 @@ $\{(r,K):0\leq r<1,\ K>0,\ 27(1+r)^3(1-3r)\leq16K^2\leq27(1-r)^3(1+3r)\}$
 - complex coordinates on the unit circle
 - self-inversive cubic
 - cubic discriminant
-- Cayley transform
+- normalized discriminant sign
 - equality-case reconstruction
