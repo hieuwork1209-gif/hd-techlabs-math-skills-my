@@ -1,170 +1,170 @@
 ## Steps
 
-Step 1: Establish global existence and analyze the linear subfamily
-Consider
-$
-x'=y,
+Step 1: Reduce right-half-plane roots to a boundary modulus problem
+For a fixed delay $\tau\geq0$, write
+$$
+P(\lambda)=\lambda^2+a\lambda+1,
 \qquad
-y'=-x-(a+bx^2)y.
-$
-With $a,b\geq0$, the energy
-$
-E(x,y)=\frac{x^2+y^2}{2}
-$
-satisfies
-$
-E'
-=
-xx'+yy'
-=
--(a+bx^2)y^2
-\leq0.
-$
-Thus every solution remains in its initial energy disk. Since the vector field is polynomial and the solution stays bounded, no finite-time blow-up is possible, so every solution exists for all $t\geq0$.
+Q(\lambda)=b+c\lambda.
+$$
+The characteristic equation is
+$$
+P(\lambda)+Q(\lambda)e^{-\lambda\tau}=0.
+$$
+Because $a>0$, the two zeros of $P$ have negative real part. Hence
+$$
+H(\lambda)=\frac{Q(\lambda)}{P(\lambda)}
+$$
+is analytic on the open right half-plane and continuous on its boundary. Also $H(\lambda)\to0$ as $|\lambda|\to\infty$ in that half-plane.
 
-If $b=0$, the system is linear:
+If $\lambda$ is a characteristic root with $\operatorname{Re}\lambda\geq0$, then
 $$
-\begin{pmatrix}x\\y\end{pmatrix}'
-=
-\begin{pmatrix}
-0&1\\
--1&-a
-\end{pmatrix}
-\begin{pmatrix}x\\y\end{pmatrix}.
+H(\lambda)=-e^{\lambda\tau},
 $$
-Its characteristic polynomial is
+so
 $$
-\lambda^2+a\lambda+1.
+|H(\lambda)|=e^{\tau\operatorname{Re}\lambda}\geq1.
 $$
-If $a>0$, both roots have negative real part, so the origin is globally exponentially stable. If $a=0$, the system is the harmonic oscillator
-$$
-x''+x=0,
-$$
-and nonzero solutions are periodic, so the origin is not exponentially stable.
+Therefore a delay-independent exclusion of right-half-plane roots is controlled by the maximum of $|H|$ on the imaginary axis. On large right half-disks, the maximum modulus principle applies to $H$; letting the radius tend to infinity shows that if $|H(i\omega)|\leq1$ for all real $\omega$, then $|H(\lambda)|<1$ whenever $\operatorname{Re}\lambda>0$.
 
-Step 2: Build a slow invariant region when the nonlinear damping is present
-Assume $b>0$. Fix any constant
+Step 2: Compute the imaginary-axis modulus gap
+For real $\omega$,
 $$
-K>\frac{1}{b},
+|P(i\omega)|^2
+=
+(1-\omega^2)^2+a^2\omega^2,
 $$
-and choose initial data
+while
 $$
-x(0)=R>0,
-\qquad
-y(0)=0.
+|Q(i\omega)|^2
+=
+b^2+c^2\omega^2.
 $$
 Set
 $$
-v=-y.
+u=\omega^2\geq0.
 $$
-As long as $x>0$, the equations become
+Then
 $$
-x'=-v,
+D(u)
+:=
+|P(i\omega)|^2-|Q(i\omega)|^2
+=
+u^2+(a^2-c^2-2)u+1-b^2.
+$$
+Thus $|H(i\omega)|<1$ is equivalent to $D(u)>0$.
+
+Step 3: Characterize when the gap stays positive
+First suppose $0\leq b<1$. Then
+$$
+B:=1-b^2>0.
+$$
+Write
+$$
+A:=a^2-c^2-2,
+$$
+so
+$$
+D(u)=u^2+Au+B.
+$$
+If $A\geq0$, the minimum of $D$ on $u\geq0$ is $D(0)=B>0$. If $A<0$, the minimum occurs at $u=-A/2>0$ and equals
+$$
+B-\frac{A^2}{4}.
+$$
+Hence
+$$
+D(u)>0\quad\text{for all }u\geq0
+$$
+exactly when
+$$
+A>-2\sqrt{B},
+$$
+or
+$$
+a^2>c^2+2-2\sqrt{1-b^2}.
+$$
+
+Now suppose $b=1$. Then
+$$
+D(u)=u(u+A).
+$$
+For every $u>0$ this is positive exactly when
+$$
+A\geq0,
+$$
+that is,
+$$
+a^2\geq c^2+2.
+$$
+At $u=0$ equality gives $|H(0)|=1$, but $\lambda=0$ is not a characteristic root because
+$$
+P(0)+Q(0)=1+b=2.
+$$
+
+Step 4: Prove sufficiency of the two parameter regimes
+Assume first that
+$$
+0\leq b<1,
 \qquad
-v'=x-(a+bx^2)v.
+a^2>c^2+2-2\sqrt{1-b^2}.
 $$
-Consider the region
+Step 3 gives $D(u)>0$ for every $u\geq0$, so
 $$
-0\leq v\leq\frac{K}{x}.
+|H(i\omega)|<1
 $$
-At the lower boundary $v=0$,
-$$
-v'=x>0,
-$$
-so the vector field points into the region. For the upper boundary define
-$$
-\phi(x,v)=v-\frac{K}{x}.
-$$
-Along a solution,
-$$
-\phi'
-=
-v'+\frac{Kx'}{x^2}.
-$$
-On $v=K/x$ this becomes
-$$
-\phi'
-=
-x-(a+bx^2)\frac{K}{x}
--\frac{K^2}{x^3}
-=
-(1-bK)x-\frac{aK}{x}-\frac{K^2}{x^3}<0,
-$$
-because $K>1/b$. Hence a solution that starts with $v=0$ cannot leave this region through either boundary while $x>0$.
+for every real $\omega$. Step 1 then gives $|H(\lambda)|<1$ throughout the open right half-plane. A characteristic root there would require $|H(\lambda)|\geq1$, which is impossible. No imaginary-axis root exists either because the boundary inequality is strict.
 
-Step 3: Derive the slow-decay lower bound
-Inside the invariant region from Step 2,
+Next assume
 $$
-0\leq v\leq\frac{K}{x}.
+b=1,
+\qquad
+a^2\geq c^2+2.
 $$
-Therefore
+Then Step 3 gives
 $$
-\frac{d}{dt}x^2
+|H(i\omega)|<1
+$$
+for every $\omega\neq0$, while $|H(0)|=1$. The maximum modulus argument still gives $|H(\lambda)|<1$ in the open right half-plane, since $H$ is nonconstant and tends to $0$ at infinity. The only boundary point where equality in modulus occurs is $\lambda=0$, and that point is not a characteristic root. Hence every characteristic root has negative real part for every $\tau\geq0$.
+
+Step 5: Prove necessity by constructing a critical delay
+If $b>1$, then
+$$
+D(0)=1-b^2<0,
+$$
+while $D(u)\to\infty$ as $u\to\infty$, so $D$ has a positive zero.
+
+If $0\leq b<1$ but
+$$
+a^2\leq c^2+2-2\sqrt{1-b^2},
+$$
+then the quadratic from Step 3 has a zero at some $u>0$. If $b=1$ and $a^2<c^2+2$, then
+$$
+D(u)=u(u+A)
+$$
+has the positive zero $u=-A$.
+
+In every excluded case there is therefore some $\omega>0$ for which
+$$
+|P(i\omega)|=|Q(i\omega)|.
+$$
+The value $Q(i\omega)$ cannot vanish at such a point, because then $P(i\omega)$ would also vanish, contradicting $a>0$. Hence
+$$
+-\frac{P(i\omega)}{Q(i\omega)}
+$$
+lies on the unit circle. Choose $\tau\geq0$ so that
+$$
+e^{-i\omega\tau}
 =
-2xx'
-=
--2xv
-\geq
--2K.
+-\frac{P(i\omega)}{Q(i\omega)}.
 $$
-Thus, for every time before $x$ reaches zero,
-$
-x(t)^2\geq R^2-2Kt.
-$
-Set
-$
-t_R=\frac{3R^2}{8K}.
-$
-If $x$ had a first zero at some $\tau\leq t_R$, then the inequality valid on $[0,\tau)$ would give by continuity
-$
-0=x(\tau)^2
-\geq
-R^2-2K\tau
-\geq
-\frac{R^2}{4},
-$
-a contradiction. Hence $x$ stays positive on $[0,t_R]$, and the same inequality gives
-$
-x(t_R)^2\geq\frac{R^2}{4}.
-$
-Therefore
-$$
-\|(x(t_R),y(t_R))\|_2\geq x(t_R)\geq\frac{R}{2}.
-$$
-
-Step 4: Rule out global exponential stability for every $b>0$
-Suppose that for some $a\geq0$ and $b>0$ the origin were globally exponentially stable. Then there would be constants $M,\gamma>0$ such that every solution satisfies
-$$
-\|(x(t),y(t))\|_2
-\leq
-M e^{-\gamma t}
-\|(x(0),y(0))\|_2
-$$
-for all $t\geq0$.
-
-Apply this estimate to the initial data used in Step 2. Since the initial norm is $R$, Step 3 gives
-$$
-\frac{R}{2}
-\leq
-M e^{-\gamma t_R}R.
-$$
-After cancelling $R>0$,
-$$
-\frac{1}{2}
-\leq
-M\exp\left(-\frac{3\gamma R^2}{8K}\right).
-$$
-The right side tends to $0$ as $R\to\infty$, a contradiction. Hence no pair with $b>0$ gives global exponential stability.
-
-Step 5: State the complete parameter set
-Step 1 shows that all pairs with $b=0$ and $a>0$ are globally exponentially stable, while $(a,b)=(0,0)$ is not. Step 4 excludes every pair with $b>0$. These cases exhaust $a,b\geq0$.
-Final Answer: $\boxed{\{(a,b):a>0,\ b=0\}}$
+Then $\lambda=i\omega$ is a characteristic root, so the required strict left-half-plane property fails. Combining this with Step 4 gives the complete parameter region.
+Final Answer: $\boxed{\{(a,b,c):b<1,\ a^2>c^2+2-2\sqrt{1-b^2}\}\cup\{(a,1,c):a^2\geq c^2+2\}}$
 
 ---
 
 ## Answer
 
-$\{(a,b):a>0,\ b=0\}$
+$\{(a,b,c):b<1,\ a^2>c^2+2-2\sqrt{1-b^2}\}\cup\{(a,1,c):a^2\geq c^2+2\}$
 
 ---
 
@@ -178,11 +178,11 @@ $\{(a,b):a>0,\ b=0\}$
 
 ## Solution Concepts
 
-- global exponential stability
-- planar nonlinear systems
-- invariant regions
-- comparison inequalities
-- Hurwitz stability
+- delay-independent stability
+- characteristic quasipolynomials
+- maximum modulus principle
+- frequency-domain inequalities
+- quadratic minimization
 
 ---
 
