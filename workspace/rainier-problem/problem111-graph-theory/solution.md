@@ -83,14 +83,18 @@ with
 $$
 k-\mu=(q-1)(q+1)^2.
 $$
-Thus $B^T$ is injective there. Transposing $BC=\alpha B+\mu J$ shows that
+Thus $B^T$ is injective there. If $u\perp\mathbf1$, then
+$
+\mathbf1^TB^Tu=(B\mathbf1)^Tu=k\mathbf1^Tu=0,
+$
+so $B^Tu\perp\mathbf1$. Since $B^T\mathbf1=(q+1)\mathbf1\neq0$, the image of the all-ones direction is disjoint from the image of its orthogonal complement. Hence $B$ has rank $q^2+1$. Transposing $BC=\alpha B+\mu J$ shows that
 $$
 C(B^Tu)=\alpha B^Tu
 $$
 for every $u\perp\mathbf1$. Hence $\alpha$ is an adjacency eigenvalue.
 
-Since $B^T\mathbf1=(q+1)\mathbf1\neq0$, the matrix $B$ has rank $q^2+1$. Therefore
-$$
+Therefore
+$
 \mathbb R^Y
 =
 \operatorname{im}(B^T)\oplus\ker B.
@@ -183,9 +187,10 @@ $$
 k'-r=q^2(q+1),
 $$
 and
-$$
+$
 k'-s=q(q+1)^2.
-$$
+$
+All three are positive, so the zero Laplacian eigenvalue is simple and $\Gamma$ is connected.
 
 For a connected unit-resistance graph, the effective resistance between $L$ and $M$ is
 $$
