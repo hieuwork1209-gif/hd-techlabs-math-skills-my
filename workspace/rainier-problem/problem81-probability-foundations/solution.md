@@ -1,291 +1,216 @@
 ## Steps
 
-Step 1: Determine the directional transition from the logarithmic potential
-Set
+Step 1: Convert the agreement probabilities into moments on the unit interval
+Let
 $$
-\rho_x=\frac{1-\omega_x}{\omega_x}
-=
-\begin{cases}
-\frac{1}{3},&S_x=R,\\
-3,&S_x=L.
-\end{cases}
+Y=2P-1,
+qquad
+Z=Y^2.
 $$
-The stationary law is $\pi=(\theta,1-\theta)$. The environment transition matrix is
-$$
-P_{\alpha,\theta}
-=
-\alpha I+(1-\alpha)
-\begin{pmatrix}
-\theta&1-\theta\\
-\theta&1-\theta
-\end{pmatrix}.
-$$
-This form gives $\pi P_{\alpha,\theta}=\pi$. It is reversible because
-$$
-\theta(1-\alpha)(1-\theta)
-=
-(1-\theta)(1-\alpha)\theta.
-$$
-For $0<\alpha<1$ and $0<\theta<1$ the state chain is irreducible, hence stationary ergodic.
+The symmetry of the law of $P$ under $P\mapsto1-P$ makes the law of $Y$ symmetric under $Y\mapsto-Y$, and $0\leq Z\leq1$.
 
-For a fixed environment, let $h(x)=P_\omega^x(T_b<T_a)$ for $a<x<b$. The harmonic equation
+Conditioned on $P$, the event that the first $2m$ tosses are all equal has probability
 $$
-h(x)=\omega_xh(x+1)+(1-\omega_x)h(x-1)
+P^{2m}+(1-P)^{2m}.
 $$
-implies, with $\Delta_x=h(x)-h(x-1)$,
+Therefore, writing $m_j=\mathbb E[Z^j]$,
 $$
-\Delta_{x+1}=\rho_x\Delta_x.
-$$
-Thus the scale increments are successive products of the local odds. By the ergodic theorem,
-$$
-\frac{1}{n}\sum_{j=1}^n\log\rho_j
-\longrightarrow
-\theta\log\frac{1}{3}+(1-\theta)\log3
-=(1-2\theta)\log3.
-$$
-Hence the walk is transient to $+\infty$ for $\theta>\frac{1}{2}$ and to $-\infty$ for $\theta<\frac{1}{2}$.
-
-At $\theta=\frac{1}{2}$, the state chain switches state with probability $(1-\alpha)/2$ at every step. Successive run lengths are therefore independent geometric random variables with the same law. Pairing an $R$-run with the following $L$-run makes the potential change by $\log3$ times the difference of two independent identically distributed geometric variables. These paired increments form a symmetric nondegenerate one-dimensional random walk, so their partial sums visit both signs infinitely often. Both scale tails diverge, and the walk is recurrent. Therefore
-$$
-\theta_{\rm dir}=\frac{1}{2}.
-$$
-
-Step 2: Derive the right second-moment criterion
-Assume $\theta>\frac{1}{2}$, so $T_1<\infty$ almost surely. Let $\tau_x$ be the time needed to hit $x+1$ starting from $x$, and set
-$$
-u_x=E_\omega^x\tau_x,
-\qquad
-v_x=E_\omega^x\tau_x^2.
-$$
-A first-step decomposition gives
-$$
-u_x
+A_{2m}:=\mathbb P(X_1=\cdots=X_{2m})
 =
-1+(1-\omega_x)(u_{x-1}+u_x),
+\frac{1}{2^{2m-1}}
+\sum_{j=0}^{m}
+\binom{2m}{2j}m_j,
+$$
+where $m_0=1$. The given values imply
+$$
+\frac{1+m_1}{2}=\frac34,
+$$
+so
+$$
+m_1=\frac12.
+$$
+Next,
+$$
+\frac{1+6m_1+m_2}{8}=\frac{13}{24},
 $$
 hence
 $$
-u_x
-=
-1+\rho_x+\rho_xu_{x-1}.
+m_2=\frac13.
 $$
-Iterating this nonnegative recursion to the left yields
+Finally,
 $$
-u_0
-=
-1+2\sum_{k=0}^{\infty}\rho_0\rho_{-1}\cdots\rho_{-k}.
+\frac{1+15m_1+15m_2+m_3}{32}=\frac{55}{128},
 $$
-
-To control the second moment, condition on the first step. If the first step is left, the return time from $x-1$ to $x$ and the subsequent fresh crossing from $x$ to $x+1$ are independent under the quenched law by the strong Markov property. Thus
+which gives
 $$
-v_x
-=
-1+(1-\omega_x)
-\left(
-v_{x-1}+v_x+2u_{x-1}+2u_x+2u_{x-1}u_x
-\right).
-$$
-Using $\rho_x=(1-\omega_x)/\omega_x$ and the recursion for $u_x$ gives
-$$
-v_x
-=
-\rho_xv_{x-1}
-+1+3\rho_x+2\rho_x^2
-+4\rho_x(1+\rho_x)u_{x-1}
-+2\rho_x^2u_{x-1}^2.
+m_3=\frac14.
 $$
 
-Let
+For eight tosses,
 $$
-D=\operatorname{diag}\left(\frac{1}{3},3\right).
+A_8
+=
+\frac{1+28m_1+70m_2+28m_3+m_4}{128}
+=
+\frac{\frac{136}{3}+m_4}{128}.
 $$
-Because the environment is reversible, conditional on $S_x=i$ the previous state $S_{x-1}$ is distributed by the $i$th row of $P_{\alpha,\theta}$. Define the state-conditioned vectors
-$
-m_i=\mathbb E_\theta[u_x\mid S_x=i],
+Thus the problem is exactly to find the sharp possible range of $m_4=\mathbb E[Z^4]$ among random variables $Z\in[0,1]$ satisfying
+$$
+\mathbb E Z=\frac12,
 \qquad
-s_i=\mathbb E_\theta[u_x^2\mid S_x=i],
+\mathbb E Z^2=\frac13,
 \qquad
-t_i=\mathbb E_\theta[v_x\mid S_x=i].
-$
-For a vector $z$, write $z^{\circ2}$ for its componentwise square.
-From the recursion for $u_x$,
-$$
-m
-=
-\mathbf1+d+DP_{\alpha,\theta}m,
-$$
-where $d=(1/3,3)^T$. Squaring the same recursion gives
-$$
-s
-=
-(\mathbf1+d)^{\circ2}
-+2D(I+D)P_{\alpha,\theta}m
-+D^2P_{\alpha,\theta}s.
-$$
-The displayed recursion for $v_x$ gives
-$$
-t
-=
-\mathbf1+3d+2d^{\circ2}
-+4D(I+D)P_{\alpha,\theta}m
-+2D^2P_{\alpha,\theta}s
-+DP_{\alpha,\theta}t.
+\mathbb E Z^3=\frac14.
 $$
 
-The decisive operator is therefore the squared-odds transfer matrix. If
-$
-r(P_{\alpha,\theta}D^2)<1,
-$
-then there are constants $C>0$ and $0<q<1$ such that
-$
-\mathbb E_\theta\left[
-\left(\rho_0\rho_{-1}\cdots\rho_{-k}\right)^2
-\right]
-\leq Cq^k.
-$
-Cauchy-Schwarz gives
-$
-\mathbb E_\theta\left[
-\rho_0\rho_{-1}\cdots\rho_{-k}
-\right]
-\leq C^{1/2}q^{k/2},
-$
-so the first-product series also converges. Hence $m$ is finite and, by Perron-Frobenius, $r(P_{\alpha,\theta}D)<1$. The displayed equation for $s$ then has a finite nonnegative solution because $r(D^2P_{\alpha,\theta})=r(P_{\alpha,\theta}D^2)<1$, and the equation for $t$ has a finite solution because $r(DP_{\alpha,\theta})=r(P_{\alpha,\theta}D)<1$. Therefore $\mathbb E_\theta T_1^2=\pi t<\infty$.
-
-Conversely, Jensen gives $v_0\geq u_0^2$. Since all terms in the series for $u_0$ are nonnegative,
+Step 2: Obtain the sharp lower bound for the fourth moment
+The first three moments determine the quadratic that is orthogonal to both $1$ and $Z$. Write
 $$
-u_0^2
-\geq
-4\sum_{k=0}^{\infty}
-\left(\rho_0\rho_{-1}\cdots\rho_{-k}\right)^2.
+q(z)=z^2-az-b
 $$
-Averaging and using reversibility gives
+and impose
 $$
-\mathbb E_\theta u_0^2
-\geq
-4\sum_{k=0}^{\infty}
-\pi D^2(P_{\alpha,\theta}D^2)^k\mathbf1.
+\mathbb E q(Z)=0,
+\qquad
+\mathbb E[Zq(Z)]=0.
 $$
-If $r(P_{\alpha,\theta}D^2)\geq1$, this positive Perron series diverges, so $\mathbb E_\theta T_1^2=\infty$. Therefore
+Using the three known moments gives
 $$
-\mathbb E_\theta T_1^2<\infty
-\quad\Longleftrightarrow\quad
-r(P_{\alpha,\theta}D^2)<1.
+\frac13-\frac{a}{2}-b=0,
+\qquad
+\frac14-\frac{a}{3}-\frac{b}{2}=0.
 $$
-
-Now $\det D^2=1$, while the eigenvalues of $P_{\alpha,\theta}$ are $1$ and $\alpha$, so
+Solving yields
 $$
-\det(P_{\alpha,\theta}D^2)=\alpha.
-$$
-Also
-$$
-\operatorname{tr}(P_{\alpha,\theta}D^2)
-=
-9+\frac{\alpha}{9}
--\frac{80(1-\alpha)\theta}{9}.
-$$
-The characteristic polynomial is $\lambda^2-\operatorname{tr}(P_{\alpha,\theta}D^2)\lambda+\alpha$. With fixed determinant $\alpha$, its larger root is strictly increasing in the trace, so the Perron root decreases strictly with $\theta$ and equals $1$ exactly when
-$$
-0
-=
-\det(I-P_{\alpha,\theta}D^2)
-=
-\frac{8\left(10(1-\alpha)\theta+\alpha-9\right)}{9}.
-$$
-Hence
-$$
-\mathbb E_\theta T_1^2<\infty
-\quad\Longleftrightarrow\quad
-\theta>\frac{9-\alpha}{10(1-\alpha)},
+a=1,
+\qquad
+b=-\frac16,
 $$
 so
 $$
-\theta_+=\frac{9-\alpha}{10(1-\alpha)}.
+q(z)=z^2-z+\frac16.
 $$
-
-Step 3: Derive the left second-moment threshold
-For left passage, reflection replaces $\rho_x$ by $\rho_x^{-1}$. The derivation in Step 2 applies with
-$$
-D^{-2}=\operatorname{diag}\left(9,\frac{1}{9}\right).
-$$
-Thus
-$$
-\mathbb E_\theta T_{-1}^2<\infty
-\quad\Longleftrightarrow\quad
-r(P_{\alpha,\theta}D^{-2})<1.
-$$
-Again
-$$
-\det(P_{\alpha,\theta}D^{-2})=\alpha,
-$$
-and
-$$
-\operatorname{tr}(P_{\alpha,\theta}D^{-2})
-=
-\frac{1+81\alpha+80(1-\alpha)\theta}{9}.
-$$
-With determinant fixed at $\alpha$, the larger root is strictly increasing in the trace, so this Perron root increases strictly with $\theta$. It equals $1$ exactly when
+Since $q(Z)^2\geq0$,
 $$
 0
+\leq
+\mathbb E[q(Z)^2]
 =
-\det(I-P_{\alpha,\theta}D^{-2})
-=
-\frac{8\left(1-9\alpha-10(1-\alpha)\theta\right)}{9}.
+m_4-2m_3+\frac43m_2-\frac13m_1+\frac1{36}.
 $$
-Therefore
+Substituting $m_1=1/2$, $m_2=1/3$, and $m_3=1/4$ gives
 $$
-\mathbb E_\theta T_{-1}^2<\infty
-\quad\Longleftrightarrow\quad
-\theta<\frac{1-9\alpha}{10(1-\alpha)},
-$$
-so
-$$
-\theta_- = \frac{1-9\alpha}{10(1-\alpha)}.
-$$
-The hypothesis $0<\alpha<\frac{1}{9}$ ensures
-$$
-0<\theta_-<\frac{1}{2}<\theta_+<1.
+m_4\geq\frac7{36}.
 $$
 
-Step 4: Assemble the second-moment phase transitions
-The logarithmic potential gives $\theta_{\rm dir}=\frac{1}{2}$, while the squared-odds transfer operators give
+This bound is attainable. The two roots of $q$ are
 $$
-\theta_- = \frac{1-9\alpha}{10(1-\alpha)},
+r_- = \frac{1-1/\sqrt3}{2},
 \qquad
-\theta_+ = \frac{9-\alpha}{10(1-\alpha)}.
+r_+ = \frac{1+1/\sqrt3}{2}.
 $$
-Therefore
+Let $Z$ take $r_-$ and $r_+$ with probability $1/2$ each. Because
 $$
-(\theta_-,\theta_{\rm dir},\theta_+)
+r_-+r_+=1,
+\qquad
+r_-r_+=\frac16,
+$$
+one obtains
+$$
+\mathbb E Z=\frac12,
+\qquad
+\mathbb E Z^2=\frac13,
+\qquad
+\mathbb E Z^3=\frac14,
+$$
+and $q(Z)=0$ almost surely, so $m_4=7/36$.
+
+Step 3: Obtain the sharp upper bound for the fourth moment
+For every real $c$ and every $z\in[0,1]$,
+$$
+z(1-z)(z-c)^2\geq0.
+$$
+Taking expectations and expanding gives
+$$
+m_4
+\leq
+(1+2c)m_3-(2c+c^2)m_2+c^2m_1.
+$$
+Using the known moments,
+$$
+m_4
+\leq
+\frac14-\frac{c}{6}+\frac{c^2}{6}.
+$$
+The right-hand side is minimized at $c=1/2$, hence
+$$
+m_4\leq\frac5{24}.
+$$
+
+This bound is also attainable. Let $Z$ have the law
+$$
+\mathbb P(Z=0)=\frac16,
+\qquad
+\mathbb P\left(Z=\frac12\right)=\frac23,
+\qquad
+\mathbb P(Z=1)=\frac16.
+$$
+Then
+$$
+\mathbb E Z=\frac12,
+\qquad
+\mathbb E Z^2=\frac13,
+\qquad
+\mathbb E Z^3=\frac14,
+$$
+and $Z(1-Z)(Z-1/2)^2=0$ almost surely, so $m_4=5/24$.
+
+For either extremal law of $Z$, choose an independent fair sign $\varepsilon\in\{-1,1\}$ and set
+$$
+P=\frac{1+\varepsilon\sqrt Z}{2}.
+$$
+Then $P\in[0,1]$, its law is invariant under $P\mapsto1-P$, and the induced coin mixture realizes the required agreement probabilities. Hence both bounds are genuine endpoints.
+
+Step 4: Convert the sharp moment bounds back to the eight-toss probability
+Since
+$$
+A_8=\frac{\frac{136}{3}+m_4}{128},
+$$
+the lower endpoint is
+$$
+\frac{\frac{136}{3}+\frac7{36}}{128}
 =
-\left(
-\frac{1-9\alpha}{10(1-\alpha)},
-\frac{1}{2},
-\frac{9-\alpha}{10(1-\alpha)}
-\right).
+\frac{1639}{4608},
 $$
-Final Answer: $\boxed{\left(\frac{1-9\alpha}{10(1-\alpha)},\frac{1}{2},\frac{9-\alpha}{10(1-\alpha)}\right)}$
+and the upper endpoint is
+$$
+\frac{\frac{136}{3}+\frac5{24}}{128}
+=
+\frac{1093}{3072}.
+$$
+Every intermediate value is attainable by mixing the two extremal laws of $P$, because the three prescribed agreement probabilities and $A_8$ are all affine in the law of $P$. Therefore the exact feasible set is the whole closed interval between these endpoints.
+Final Answer: $\boxed{\left[\frac{1639}{4608},\frac{1093}{3072}\right]}$
 
 ---
 
 ## Answer
 
-$\left(\frac{1-9\alpha}{10(1-\alpha)},\frac{1}{2},\frac{9-\alpha}{10(1-\alpha)}\right)$
+$\left[\frac{1639}{4608},\frac{1093}{3072}\right]$
 
 ---
 
 ## Classification
 
-**Problem Type:** Parameter identification
+**Problem Type:** Optimization
 
-**Answer Type:** Tuple or ordered list
+**Answer Type:** Interval or region description
 
 ---
 
 ## Solution Concepts
 
-- stationary markov chains
-- random walk in random environment
-- quenched crossing-time recursion
-- matrix geometric series
-- perron spectral radius
+- latent variable conditioning
+- symmetric bernoulli mixtures
+- moment transformations
+- sharp polynomial inequalities
+- extremal moment problems
