@@ -1,9 +1,9 @@
 {
   "problem": "problem116",
   "branch": "adversary/problem116",
-  "problem_path": "workspace/rainier-problem/problem116-dynamical-systems/problem.md",
-  "problem_blob_sha": "74070fb8e3b6cb10961fc73c01604f94408eaf6c",
-  "source_commit_sha": "4ce6913a51ff054934ddde5f4b13a6bd7d9466b9",
+  "problem_path": "workspace/rainier-problem/problem116-bifurcation-theory/problem.md",
+  "problem_blob_sha": "5f958d48b3cf8e10468e1dad79dd2dad9262beec",
+  "source_commit_sha": "1d92d7698be8163deed8485dac560fbe941e83f9",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-24T08:49:35+00:00",
-  "result_file": "solver-results/problem116/74070fb8e3b6.json"
+  "completed_at": "2026-09-24T09:22:34+00:00",
+  "result_file": "solver-results/problem116/5f958d48b3cf.json"
 }
