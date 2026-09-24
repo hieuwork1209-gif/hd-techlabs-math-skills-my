@@ -75,7 +75,7 @@ Using $x=1-2u$ and $y=1-3u+3v$ gives
 $$
 M=864u^2-864uv-380u+45.
 $$
-For fixed $u$, this expression decreases as $v$ increases. Thus it is enough to check it when $v=q_1q_2q_3$ is maximal subject to
+For fixed $u$, this expression decreases as $v$ increases. When $u=0$, we have $M=45$. For $u>0$, it is enough to check $M$ when $v=q_1q_2q_3$ is maximal subject to
 $$
 q_1+q_2+q_3=1,
 \qquad
@@ -156,7 +156,7 @@ $$
 $$
 For completeness, after ordering $q_1\geq q_2\geq q_3$, its left side equals
 $$
-\sum_{\rm cyc}q_1(q_1-q_2)(q_1-q_3),
+\sum_{\mathrm{cyc}}q_1(q_1-q_2)(q_1-q_3),
 $$
 and grouping the first two terms gives
 $$
@@ -180,7 +180,7 @@ $$
 -\frac{5(3u-1)(4u-1)}{9}
 \geq0,
 $$
-because $u\leq1/3$. Therefore, for every probability vector $q$,
+because $u\leq\frac{1}{3}$. Therefore, for every probability vector $q$,
 $$
 xy
 \leq
@@ -214,7 +214,7 @@ $$
 \qquad
 \left(\frac{1}{3},\frac{1}{9}\right),
 $$
-so their weighted means are exactly $1/2$ and $11/36$, while
+so their weighted means are exactly $\frac{1}{2}$ and $\frac{11}{36}$, while
 $$
 \mathbb E[s_2(Q)s_3(Q)]
 =
