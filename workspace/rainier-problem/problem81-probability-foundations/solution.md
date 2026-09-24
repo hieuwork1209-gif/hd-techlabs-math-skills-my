@@ -1,288 +1,402 @@
 ## Steps
 
-Step 1: Derive the total-progeny generating-function system
-Let $T$ be the total number of individuals ever born, including the initial ancestor, and define
+Step 1: Find the critical Jordan coordinates
+Let
 $$
-G_A(z)=\mathbb E_A[z^T],
+X_n=(R_n,G_n,B_n)
+$$
+be the urn composition after $n$ draws, with initial state
+$$
+X_0=(4,4,4).
+$$
+The deterministic replacement matrix is
+$$
+M=
+\begin{pmatrix}
+9&3&0\\
+1&7&4\\
+2&2&8
+\end{pmatrix}.
+$$
+Every row sum is $12$, so the total number of balls is deterministic:
+$$
+S_n=R_n+G_n+B_n=12(n+1).
+$$
+
+The fluctuation directions are forced by the non-Perron part of $M$. Put
+$$
+u=
+\begin{pmatrix}
+1\\-1\\0
+\end{pmatrix},
 \qquad
-G_B(z)=\mathbb E_B[z^T],
+v=
+\begin{pmatrix}
+1\\1\\-2
+\end{pmatrix}.
+$$
+Direct multiplication gives
+$$
+Mu=6u,
 \qquad
-0\leq z<1.
+Mv=6v+6u.
 $$
-The offspring generating functions are
+Thus $u,v$ form a Jordan chain at the critical eigenvalue $6=12/2$. Define the corresponding linear statistics
 $$
-F_A(s,t)
+U_n=X_nu=R_n-G_n,
+$$
+$$
+V_n=X_nv=R_n+G_n-2B_n.
+$$
+
+If the drawn color is respectively red, green, or blue, the increments of $(U_n,V_n)$ are
+$$
+(6,12),
+\qquad
+(-6,0),
+\qquad
+(0,-12).
+$$
+Therefore, conditional on the current urn,
+$$
+\mathbb E[\Delta U_n\mid\mathcal F_n]
 =
-\frac{1}{2}
-+
-\frac{3}{8}s^2
-+
-\frac{1}{8}t^2
+\frac{6U_n}{S_n},
 $$
 and
 $$
-F_B(s,t)
+\mathbb E[\Delta V_n\mid\mathcal F_n]
 =
-\frac{1}{2}
-+
-\frac{1}{4}s
-+
-\frac{1}{4}t^3.
+\frac{6(U_n+V_n)}{S_n}.
 $$
-Conditioning on the first generation gives
+Since $U_0=V_0=0$, induction gives
 $$
-G_A(z)=zF_A(G_A(z),G_B(z)),
-\qquad
-G_B(z)=zF_B(G_A(z),G_B(z)).
+\mathbb E U_n=\mathbb E V_n=0.
 $$
 
-Because every individual has finitely many children, extinction is equivalent to $T<\infty$. The extinction-probability vector is the increasing limit of the probabilities of extinction by generation $n$, so it is a fixed point of $(F_A,F_B)$. To identify that fixed point directly, suppose $(u,v)\in[0,1]^2$ satisfies $(F_A(u,v),F_B(u,v))=(u,v)$ and put
+Step 2: Derive the coupled second-moment recurrences
+Because
 $$
-p=1-u,
-\qquad
-q=1-v.
+R_n
+=
+\frac{S_n}{3}
++
+\frac{U_n}{2}
++
+\frac{V_n}{6},
 $$
-The fixed-point equations become
 $$
-2(p-q)+3p^2+q^2=0
+G_n
+=
+\frac{S_n}{3}
+-
+\frac{U_n}{2}
++
+\frac{V_n}{6},
 $$
 and
 $$
-q-p+3q^2-q^3=0.
-$$
-The first equation gives $p\leq q$, while the second gives
-$$
-p=q+3q^2-q^3\geq q.
-$$
-Thus $p=q$, and then the first equation forces $p=q=0$. Hence $(1,1)$ is the only fixed point in $[0,1]^2$, so
-$$
-G_A(z)\to1,
-\qquad
-G_B(z)\to1
-$$
-as $z\uparrow1$.
-
-Step 2: Identify the critical and stable scales near the singular point
-Write
-$$
-z=1-t^2,
-\qquad
-p=1-G_A(z),
-\qquad
-q=1-G_B(z),
-$$
-where $t\downarrow0$, and set
-$$
-x=\frac{p+q}{2},
-\qquad
-y=\frac{p-q}{2}.
-$$
-Adding the two fixed-point equations gives the exact identity
-$$
-t^2(1-x)
+B_n
 =
-(1-t^2)
-\left(
-\frac{3}{16}p^2
-+
-\frac{7}{16}q^2
+\frac{S_n}{3}
 -
-\frac{1}{8}q^3
-\right).
+\frac{V_n}{3},
 $$
-Since $0\leq p,q\leq1$, the bracket is bounded below by
+the conditional quadratic increment moments are
 $$
-\frac{3}{16}p^2+\frac{5}{16}q^2
-\geq
-\frac{3}{8}x^2
+\mathbb E[(\Delta U_n)^2\mid\mathcal F_n]
+=
+36\frac{R_n+G_n}{S_n}
+=
+24+12\frac{V_n}{S_n},
 $$
-and above by a constant multiple of $x^2$. Therefore
 $$
-x=\Theta(t).
+\mathbb E[\Delta U_n\Delta V_n\mid\mathcal F_n]
+=
+72\frac{R_n}{S_n}
+=
+24+36\frac{U_n}{S_n}+12\frac{V_n}{S_n},
+$$
+and
+$$
+\mathbb E[(\Delta V_n)^2\mid\mathcal F_n]
+=
+144\frac{R_n+B_n}{S_n}
+=
+96+72\frac{U_n}{S_n}-24\frac{V_n}{S_n}.
 $$
 
-Subtracting the two fixed-point equations gives
+Set
 $$
-(1+t^2)y
+A_n=\mathbb E[U_n^2],
+\qquad
+C_n=\mathbb E[U_nV_n],
+\qquad
+D_n=\mathbb E[V_n^2].
+$$
+Using
+$$
+U_{n+1}=U_n+\Delta U_n,
+\qquad
+V_{n+1}=V_n+\Delta V_n
+$$
+and the conditional first moments from Step 1 gives
+$$
+A_{n+1}
 =
-(1-t^2)
-\left(
--\frac{3}{8}p^2
+\left(1+\frac{12}{S_n}\right)A_n+24,
+$$
+$$
+C_{n+1}
+=
+\left(1+\frac{12}{S_n}\right)C_n
 +
-\frac{5}{8}q^2
--
-\frac{1}{4}q^3
-\right).
+\frac{6}{S_n}A_n
++
+24,
+$$
+and
+$$
+D_{n+1}
+=
+\left(1+\frac{12}{S_n}\right)D_n
++
+\frac{12}{S_n}C_n
++
+96.
+$$
+Since $S_n=12(n+1)$, these become
+$$
+A_{n+1}
+=
+\frac{n+2}{n+1}A_n+24,
+$$
+$$
+C_{n+1}
+=
+\frac{n+2}{n+1}C_n
++
+\frac{A_n}{2(n+1)}
++
+24,
+$$
+and
+$$
+D_{n+1}
+=
+\frac{n+2}{n+1}D_n
++
+\frac{C_n}{n+1}
++
+96.
+$$
+
+Step 3: Solve the nested critical asymptotics
+Normalize by the deterministic linear factor:
+$$
+a_n=\frac{A_n}{n+1},
+\qquad
+c_n=\frac{C_n}{n+1},
+\qquad
+d_n=\frac{D_n}{n+1}.
+$$
+The three recurrences become
+$$
+a_{n+1}=a_n+\frac{24}{n+2},
+$$
+$$
+c_{n+1}
+=
+c_n
++
+\frac{a_n/2+24}{n+2},
+$$
+and
+$$
+d_{n+1}
+=
+d_n
++
+\frac{c_n+96}{n+2}.
+$$
+Since $a_0=c_0=d_0=0$,
+$$
+a_n
+=
+24\sum_{j=2}^{n+1}\frac{1}{j}
+=
+24\log n+O(1).
 $$
 Hence
 $$
-y=O(x^2)=O(t^2).
+c_n
+=
+\sum_{k=0}^{n-1}
+\frac{a_k/2+24}{k+2}
+=
+\sum_{k=2}^{n+1}
+\frac{12\log k+O(1)}{k}
+=
+6(\log n)^2+O(\log n).
 $$
-This determines the natural rescaling
+The estimate
 $$
-x=tX,
-\qquad
-y=t^2Y.
+\sum_{k\leq n}\frac{\log k}{k}
+=
+\frac{1}{2}(\log n)^2+O(1)
 $$
+follows from comparison with the integral of $(\log x)/x$.
 
-After substituting $p=tX+t^2Y$ and $q=tX-t^2Y$ into the two fixed-point equations, take their average and difference and divide by $t^2$. Because the original residuals are polynomials and every term has a factor $t^2$ under this scaling, the quotients extend to exact polynomial functions $H_1(X,Y,t)$ and $H_2(X,Y,t)$. Their Taylor expansions are
+Similarly,
 $$
-0
+d_n
 =
-1-\frac{5}{8}X^2
-+
-\frac{tX}{8}(X^2+4Y-8)
-+
-O(t^2)
-$$
-and
-$$
-0
+\sum_{k=0}^{n-1}
+\frac{c_k+96}{k+2}
 =
-\frac{X^2-4Y}{8}
--
-\frac{tX}{8}(X^2+8Y)
-+
-O(t^2).
-$$
-At $t=0$, the positive solution is
-$
-X_0=\frac{2\sqrt{10}}{5},
-\qquad
-Y_0=\frac{2}{5}.
-$
-The bounds $x=\Theta(t)$ and $y=O(t^2)$ make $X$ bounded above and away from zero and make $Y$ bounded. Every subsequential limit therefore satisfies the two $t=0$ equations, whose unique solution with $X>0$ is $(X_0,Y_0)$. Hence the physical branch satisfies
-$
-(X,Y)\to(X_0,Y_0).
-$
-
-Step 3: Justify and compute the first correction by the implicit function theorem
-Let $H_1(X,Y,t)$ and $H_2(X,Y,t)$ denote the two analytic left-hand sides from Step 2. At $(X_0,Y_0,0)$,
-$$
-\frac{\partial(H_1,H_2)}{\partial(X,Y)}
+\sum_{k=2}^{n+1}
+\frac{6(\log k)^2+O(\log k)}{k}
 =
-\begin{pmatrix}
--\frac{5X_0}{4}&0\\
-\frac{X_0}{4}&-\frac{1}{2}
-\end{pmatrix},
+2(\log n)^3+O((\log n)^2),
 $$
-whose determinant is
+using
 $$
-\frac{5X_0}{8}
+\sum_{k\leq n}\frac{(\log k)^2}{k}
 =
-\frac{\sqrt{10}}{4}
-\neq0.
-$$
-Thus the implicit function theorem gives unique analytic functions $X(t),Y(t)$ near $t=0$ corresponding to the physical branch.
-
-Write
-$$
-X(t)=X_0+X_1t+O(t^2),
-\qquad
-Y(t)=Y_0+Y_1t+O(t^2).
-$$
-The coefficient of $t$ in the first equation from Step 2 gives
-$$
--\frac{5X_0}{4}X_1
-+
-\frac{X_0}{8}(X_0^2+4Y_0-8)
-=
-0.
-$$
-Since
-$$
-X_0^2=\frac{8}{5},
-\qquad
-Y_0=\frac{2}{5},
-$$
-this becomes
-$$
--\frac{5X_0}{4}X_1
--
-\frac{3X_0}{5}
-=
-0,
-$$
-so
-$$
-X_1=-\frac{12}{25}.
-$$
-
-The coefficient of $t$ in the second equation gives
-$$
-\frac{X_0}{4}X_1
--
-\frac{1}{2}Y_1
--
-\frac{X_0}{8}(X_0^2+8Y_0)
-=
-0.
-$$
-Substituting $X_1=-\frac{12}{25}$, $X_0^2=\frac{8}{5}$, and $Y_0=\frac{2}{5}$ yields
-$$
-Y_1=-\frac{72\sqrt{10}}{125}.
-$$
-
-Step 4: Read off the two singular expansions
-Because
-$$
-p=x+y=tX(t)+t^2Y(t),
-$$
-we have
-$$
-1-G_A(z)
-=
-\frac{2\sqrt{10}}{5}\sqrt{1-z}
-+
-O(1-z).
-$$
-Thus
-$$
-\kappa=\frac{2\sqrt{10}}{5}.
-$$
-
-Also
-$$
-G_A(z)-G_B(z)
-=
-q-p
-=
--2y
-=
--2t^2Y(t).
-$$
-Using the expansion of $Y(t)$,
-$$
-G_A(z)-G_B(z)
-=
--\frac{4}{5}(1-z)
-+
-\frac{144\sqrt{10}}{125}(1-z)^{\frac{3}{2}}
-+
-O((1-z)^2).
+\frac{1}{3}(\log n)^3+O((\log n)^2).
 $$
 Therefore
 $$
-\alpha=\frac{4}{5},
-\qquad
-\beta=\frac{144\sqrt{10}}{125}.
+A_n
+\sim
+24n\log n,
+$$
+$$
+C_n
+\sim
+6n(\log n)^2,
+$$
+and
+$$
+D_n
+\sim
+2n(\log n)^3.
 $$
 
-Step 5: Assemble the requested coefficient triple
-The leading square-root singularity of $G_A$ has coefficient $\frac{2\sqrt{10}}{5}$, while the type-asymmetry expansion has coefficients $\frac{4}{5}$ and $\frac{144\sqrt{10}}{125}$ in the normalization stated in the problem.
-Final Answer: $\boxed{\left(\frac{2\sqrt{10}}{5},\frac{4}{5},\frac{144\sqrt{10}}{125}\right)}$
+Step 4: Express the covariance matrix in an orthonormal fluctuation basis
+The centered urn vector
+$$
+X_n-\mathbb E X_n
+$$
+always lies in the plane orthogonal to $(1,1,1)$ because the total $S_n$ is deterministic. The vectors
+$$
+e_1=\frac{u}{\sqrt2},
+\qquad
+e_2=\frac{v}{\sqrt6}
+$$
+form an orthonormal basis of that plane.
+
+In this basis, the covariance operator is represented by
+$$
+K_n
+=
+\begin{pmatrix}
+A_n/2&C_n/\sqrt{12}\\
+C_n/\sqrt{12}&D_n/6
+\end{pmatrix}.
+$$
+Let
+$$
+0<\lambda_n^-\leq\lambda_n^+
+$$
+be its two eigenvalues, which are exactly the two nonzero eigenvalues of the covariance matrix of $X_n$.
+
+From Step 3,
+$$
+\frac{A_n}{2}
+\sim
+12n\log n,
+$$
+$$
+\frac{C_n}{\sqrt{12}}
+\sim
+\sqrt3\,n(\log n)^2,
+$$
+and
+$$
+\frac{D_n}{6}
+\sim
+\frac{1}{3}n(\log n)^3.
+$$
+The lower-order entries are negligible relative to the bottom-right entry, so
+$$
+\lambda_n^+
+\sim
+\frac{1}{3}n(\log n)^3.
+$$
+
+Step 5: Recover the smaller covariance eigenvalue from the determinant
+The determinant of $K_n$ is
+$$
+\det K_n
+=
+\frac{A_nD_n-C_n^2}{12}.
+$$
+Using the three asymptotics from Step 3,
+$$
+A_nD_n-C_n^2
+\sim
+(24\cdot2-6^2)n^2(\log n)^4
+=
+12n^2(\log n)^4.
+$$
+Thus
+$$
+\det K_n
+\sim
+n^2(\log n)^4.
+$$
+Since
+$$
+\lambda_n^-\lambda_n^+=\det K_n
+$$
+and
+$$
+\lambda_n^+
+\sim
+\frac{1}{3}n(\log n)^3,
+$$
+we obtain
+$$
+\lambda_n^-
+\sim
+3n\log n.
+$$
+Hence the requested two limits are
+$$
+\lim_{n\to\infty}
+\frac{\lambda_n^-}{n\log n}
+=
+3,
+\qquad
+\lim_{n\to\infty}
+\frac{\lambda_n^+}{n(\log n)^3}
+=
+\frac{1}{3}.
+$$
+Final Answer: $\boxed{\left(3,\frac{1}{3}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{2\sqrt{10}}{5},\frac{4}{5},\frac{144\sqrt{10}}{125}\right)$
+$\left(3,\frac{1}{3}\right)$
 
 ---
 
 ## Classification
 
-**Problem Type:** Parameter identification
+**Problem Type:** Exact computation
 
 **Answer Type:** Tuple or ordered list
 
@@ -290,8 +404,8 @@ $\left(\frac{2\sqrt{10}}{5},\frac{4}{5},\frac{144\sqrt{10}}{125}\right)$
 
 ## Solution Concepts
 
-- multitype branching processes
-- total progeny generating functions
-- critical singularity scaling
-- implicit function theorem
-- stable mode asymptotics
+- generalized polya urns
+- jordan chain decomposition
+- conditional moment recursions
+- critical logarithmic scaling
+- covariance eigenvalue asymptotics
