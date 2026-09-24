@@ -1,0 +1,22 @@
+{
+  "problem": "problem111",
+  "branch": "adversary/problem111",
+  "problem_path": "workspace/rainier-problem/problem111-design-theory-and-finite-geometry/problem.md",
+  "source_commit_sha": "1844bd09fe6b681f45d5ec632891695f855c2de8",
+  "problem_blob_sha": "58f7179632cbb90727890d9d7d879516221c4ad0",
+  "statement_sha256": "dd0c6b16402cb61060e515a5fd4d1d3babdab5bd893a4e2cd91e1067746881f8",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T03:37:33+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let  \n\\[\nL(a,b):=\\{x\\in V:\\{a,b,x\\}\\in\\mathscr H\\}\n\\]\nfor distinct \\(a,b\\in V\\).\n\nWe first recover collinearity from the hypergraph structure.\n\nFor distinct \\(a,b,c\\), translate so that \\(a=0\\). Write\n\\[\nB(x)=\\det(b,x),\\qquad C(x)=\\det(c,x).\n\\]\n\nIf \\(a,b,c\\) are noncollinear, then \\(B,C\\) are independent linear forms, so\n\\[\nx\\longmapsto (B(x),C(x))\n\\]\nis a bijection \\(V\\to\\mathbb F_\\ell^2\\). Hence\n\\[\n|L(a,b)\\cap L(a,c)|\n=\\left(\\frac{\\ell-1}{2}\\right)^2.\n\\]\n\nIf \\(a,b,c\\) are collinear, write \\(c-a=t(b-a)\\) with \\(t\\neq0\\). Then\n\\[\nC(x)=tB(x).\n\\]\nThus\n\\[\n|L(a,b)\\cap L(a,c)|\n=\n\\begin{cases}\n\\ell(\\ell-1)/2,&\\chi(t)=1,\\\\\n0,&\\chi(t)=-1.\n\\end{cases}\n\\]\n\nSince \\(\\ell\\ge5\\), the three possible values\n\\[\n0,\\qquad \\frac{(\\ell-1)^2}{4},\\qquad \\frac{\\ell(\\ell-1)}2\n\\]\nare distinct. Therefore the relation \\(\\mathscr H\\) determines which triples are collinear. Every \\(\\sigma\\in\\operatorname{Aut}(\\mathscr H)\\) is consequently a collineation of the affine plane \\(V\\).\n\nBy the fundamental theorem of affine geometry, every bijective collineation of \\(\\mathbb F_\\ell^2\\) is affine semilinear. Since \\(\\mathbb F_\\ell\\) is prime, it has no nontrivial field automorphisms, so\n\\[\n\\sigma(x)=Ax+b\n\\]\nwith \\(A\\in\\operatorname{GL}_2(\\mathbb F_\\ell)\\), \\(b\\in V\\).\n\nFor such a map,\n\\[\n\\det\\bigl(A(v-u),A(w-u)\\bigr)\n=\\det(A)\\det(v-u,w-u).\n\\]\nThus \\(\\sigma\\) preserves \\(\\mathscr H\\) exactly when \\(\\det(A)\\) is a nonzero square. Hence\n\\[\n\\operatorname{Aut}(\\mathscr H)\n=\nV\\rtimes \\{A\\in\\operatorname{GL}_2(\\mathbb F_\\ell):\\chi(\\det A)=1\\}.\n\\]\n\nNow consider \\(f(x)=Ax+b\\). A fixed point satisfies\n\\[\n(I-A)x=b.\n\\]\n\nIf \\(1\\) is not an eigenvalue of \\(A\\), then \\(I-A\\) is invertible and \\(f\\) has exactly one fixed point.\n\nIf \\(A=I\\), then \\(f\\) is fixed-point-free precisely when \\(b\\neq0\\), giving\n\\[\n\\ell^2-1\n\\]\nmaps.\n\nIf \\(A\\neq I\\) has eigenvalue \\(1\\), then \\(\\operatorname{rank}(I-A)=1\\). Therefore \\(f\\) is fixed-point-free precisely when \\(b\\notin\\operatorname{im}(I-A)\\), giving\n\\[\n\\ell^2-\\ell=\\ell(\\ell-1)\n\\]\nchoices of \\(b\\).\n\nIt remains to count such matrices \\(A\\) with square determinant.\n\nFor each square \\(d\\neq1\\), matrices with eigenvalues \\(1,d\\) form one conjugacy class of size\n\\[\n\\frac{|\\operatorname{GL}_2(\\mathbb F_\\ell)|}{(\\ell-1)^2}\n=\\ell(\\ell+1).\n\\]\nThere are\n\\[\n\\frac{\\ell-3}{2}\n\\]\nsuch values \\(d\\).\n\nFor \\(d=1\\), the nonidentity matrices with eigenvalue \\(1\\) are the nontrivial unipotent matrices, forming one conjugacy class of size\n\\[\n\\frac{|\\operatorname{GL}_2(\\mathbb F_\\ell)|}{\\ell(\\ell-1)}\n=\\ell^2-1.\n\\]\n\nThus the number \\(N\\) of relevant nonidentity matrices is\n\\[\nN=\\ell(\\ell+1)\\frac{\\ell-3}{2}+(\\ell^2-1)\n=\\frac{(\\ell+1)^2(\\ell-2)}2.\n\\]\n\nTherefore the number of fixed-point-free automorphisms is\n\\[\n(\\ell^2-1)+\\ell(\\ell-1)N.\n\\]\nSubstituting \\(N\\),\n\\[\n\\begin{aligned}\n(\\ell^2-1)+\\ell(\\ell-1)\\frac{(\\ell+1)^2(\\ell-2)}2\n&=\\frac{(\\ell-1)^2(\\ell+1)(\\ell^2-2)}2.\n\\end{aligned}\n\\]\n\n\\[\n\\boxed{\\frac{(\\ell-1)^2(\\ell+1)(\\ell^2-2)}{2}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T03:42:42+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem111/58f7179632cb.json"
+}
