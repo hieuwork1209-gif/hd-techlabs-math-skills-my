@@ -41,7 +41,7 @@ Mu=6u,
 \qquad
 Mv=6v+6u.
 $$
-Thus $u,v$ form a Jordan chain at the critical eigenvalue $6=12/2$. Define the corresponding linear statistics
+Thus $u,v$ form a Jordan chain at the critical eigenvalue $6=\frac{12}{2}$. Define the corresponding linear statistics
 $$
 U_n=X_nu=R_n-G_n,
 $$
@@ -135,13 +135,56 @@ C_n=\mathbb E[U_nV_n],
 D_n=\mathbb E[V_n^2].
 $$
 Using
-$$
+$
 U_{n+1}=U_n+\Delta U_n,
 \qquad
-V_{n+1}=V_n+\Delta V_n
-$$
-and the conditional first moments from Step 1 gives
-$$
+V_{n+1}=V_n+\Delta V_n,
+$
+we obtain
+$
+\mathbb E[U_{n+1}^2\mid\mathcal F_n]
+=
+U_n^2
++
+\frac{12}{S_n}U_n^2
++
+24
++
+12\frac{V_n}{S_n},
+$
+$
+\mathbb E[U_{n+1}V_{n+1}\mid\mathcal F_n]
+=
+U_nV_n
++
+\frac{6}{S_n}U_n^2
++
+\frac{12}{S_n}U_nV_n
++
+24
++
+36\frac{U_n}{S_n}
++
+12\frac{V_n}{S_n},
+$
+and
+$
+\mathbb E[V_{n+1}^2\mid\mathcal F_n]
+=
+V_n^2
++
+\frac{12}{S_n}U_nV_n
++
+\frac{12}{S_n}V_n^2
++
+96
++
+72\frac{U_n}{S_n}
+-
+24\frac{V_n}{S_n}.
+$
+Taking expectations and using $\mathbb E U_n=\mathbb E V_n=0$ gives
+$
 A_{n+1}
 =
 \left(1+\frac{12}{S_n}\right)A_n+24,
@@ -290,9 +333,9 @@ X_n-\mathbb E X_n
 $$
 always lies in the plane orthogonal to $(1,1,1)$ because the total $S_n$ is deterministic. The vectors
 $$
-e_1=\frac{u}{\sqrt2},
+e_1=\frac{u}{\sqrt{2}},
 \qquad
-e_2=\frac{v}{\sqrt6}
+e_2=\frac{v}{\sqrt{6}}
 $$
 form an orthonormal basis of that plane.
 
@@ -320,7 +363,7 @@ $$
 $$
 \frac{C_n}{\sqrt{12}}
 \sim
-\sqrt3\,n(\log n)^2,
+\sqrt{3}\,n(\log n)^2,
 $$
 and
 $$
