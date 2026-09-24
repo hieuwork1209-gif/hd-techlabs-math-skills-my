@@ -68,7 +68,7 @@ x_0
 \end{pmatrix}
 =0.
 $$
-For $i=1,\ldots,n-2$, the relation $x_{i+1}-3x_i+x_{i-1}=0$ has coefficient $1$ on the new generator $x_{i+1}$. It can therefore be used to eliminate that generator and that relation by unimodular presentation operations. Repeating this leaves only $x_0,x_1$ and the two cyclic closure relations. Hence
+For $i=1,\ldots,n-2$, the relation $x_{i+1}-3x_i+x_{i-1}=0$ has coefficient $1$ on the new generator $x_{i+1}$. It can therefore be used to eliminate that generator and that relation by unimodular presentation operations. Repeating this leaves only $x_0,x_1$ and the two cyclic closure relations. This gives
 $
 K(W_n)\cong\operatorname{coker}(M^n-I).
 $
