@@ -1,0 +1,22 @@
+{
+  "problem": "problem111",
+  "branch": "adversary/problem111",
+  "problem_path": "workspace/rainier-problem/problem111-graph-theory/problem.md",
+  "source_commit_sha": "1f586fb6ae33451788781af53179f89c153f7091",
+  "problem_blob_sha": "ae16565dba3269454e6b0e5d9ab669a493ea06c5",
+  "statement_sha256": "fec4f7cf475e0c08ba9145517f0314e774149956490729c2c226d79d93004161",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T04:15:20+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(s=q^2+1\\) be the number of spread lines. The total number of lines of \\(PG(3,q)\\) is\n\n\\[\n\\binom{4}{2}_q=(q^2+1)(q^2+q+1),\n\\]\n\nso the number of vertices of \\(\\Gamma\\) is\n\n\\[\nn=(q^2+1)(q^2+q)=q(q+1)(q^2+1).\n\\]\n\nLet \\(A\\) be the adjacency matrix of the full line-intersection graph on all projective lines, and let \\(B\\) be the adjacency matrix of \\(\\Gamma\\).\n\nA line of \\(PG(3,q)\\) has \\(q+1\\) points, and through each point there are \\(q^2+q+1\\) lines. Hence the full line graph has degree\n\n\\[\nk=(q+1)(q^2+q)=q(q+1)^2.\n\\]\n\nEvery non-spread line meets exactly \\(q+1\\) spread lines, one through each of its points. Therefore \\(\\Gamma\\) is regular of degree\n\n\\[\nd=k-(q+1)=q^3+2q^2-1.\n\\]\n\nNow form the \\(s\\times n\\) matrix \\(C\\), whose rows are spread lines and whose columns are non-spread lines, with\n\n\\[\nC_{\\ell,L}=1 \\iff \\ell\\cap L\\neq \\varnothing.\n\\]\n\nEach row has sum \\(k=q(q+1)^2\\), each column has sum \\(q+1\\). For two distinct spread lines \\(\\ell_1,\\ell_2\\), the number of non-spread lines meeting both is \\((q+1)^2\\), since such a line is determined by a choice of one point on each spread line. Thus\n\n\\[\nCC^{T}=q(q+1)^2 I+(q+1)^2(J-I)\n=(q+1)^2\\bigl((q-1)I+J\\bigr).\n\\]\n\nSo \\(C\\) has full row rank \\(q^2+1\\). On vectors \\(x\\perp \\mathbf 1\\) in the spread-line space,\n\n\\[\nCC^{T}x=(q-1)(q+1)^2x.\n\\]\n\nWe next compute how \\(B\\) acts on \\(\\operatorname{im} C^T\\). Fix a spread line \\(\\ell\\) and a non-spread line \\(L\\). The number of non-spread lines meeting both \\(\\ell\\) and \\(L\\), excluding \\(L\\), is\n\n\\[\n2q^2+q-1\n\\]\n\nif \\(L\\) meets \\(\\ell\\), and is\n\n\\[\n(q+1)^2\n\\]\n\nif \\(L\\) is skew to \\(\\ell\\). Hence\n\n\\[\nCB=(q+1)^2J+\\bigl(2q^2+q-1-(q+1)^2\\bigr)C\n=(q+1)^2J+(q^2-q-2)C.\n\\]\n\nTherefore, for \\(x\\perp \\mathbf 1\\),\n\n\\[\nB(C^Tx)=(q^2-q-2)C^Tx.\n\\]\n\nThis gives eigenvalue\n\n\\[\n\\beta=q^2-q-2=(q+1)(q-2)\n\\]\n\nwith multiplicity \\(q^2\\).\n\nThe remaining space is \\(\\ker C\\), of dimension\n\n\\[\nn-(q^2+1)=(q^2+1)(q^2+q-1).\n\\]\n\nThe full line-intersection graph has spectrum obtained from point-line incidence. If \\(M\\) is the point-line incidence matrix, then\n\n\\[\nA=M^TM-(q+1)I.\n\\]\n\nAlso\n\n\\[\nMM^T=q(q+1)I+J,\n\\]\n\nso the nontrivial eigenvalues of \\(A\\) are\n\n\\[\nq^2-1,\\qquad -(q+1).\n\\]\n\nSince \\(\\ker C\\) is \\(B\\)-invariant, the remaining eigenvalues of \\(B\\) are among these two. Let their multiplicities be \\(a,b\\). We already have the eigenvalue \\(d\\) once and \\(\\beta\\) with multiplicity \\(q^2\\), so\n\n\\[\na+b=n-1-q^2=q^4+q^3+q-1.\n\\]\n\nUsing \\(\\operatorname{tr}B=0\\),\n\n\\[\nd+q^2\\beta+a(q^2-1)-b(q+1)=0.\n\\]\n\nSolving gives\n\n\\[\na=q(q^2+1),\\qquad b=q^4-1.\n\\]\n\nThus the adjacency spectrum of \\(\\Gamma\\) is\n\n\\[\n\\begin{array}{c|c}\n\\text{eigenvalue} & \\text{multiplicity}\\\\\n\\hline\nd=q^3+2q^2-1 & 1\\\\\nq^2-q-2 & q^2\\\\\nq^2-1 & q(q^2+1)\\\\\n-(q+1) & q^4-1\n\\end{array}\n\\]\n\nSince \\(\\Gamma\\) is \\(d\\)-regular, its Laplacian eigenvalues are \\(d-\\lambda\\). By Kirchhoff’s matrix-tree theorem,\n\n\\[\n\\tau(\\Gamma)=\\frac1n\n\\bigl(d-(q^2-q-2)\\bigr)^{q^2}\n\\bigl(d-(q^2-1)\\bigr)^{q(q^2+1)}\n\\bigl(d+q+1\\bigr)^{q^4-1}.\n\\]\n\nNow\n\n\\[\nd-(q^2-q-2)=q^3+q^2+q+1=(q+1)(q^2+1),\n\\]\n\n\\[\nd-(q^2-1)=q^3+q^2=q^2(q+1),\n\\]\n\nand\n\n\\[\nd+q+1=q(q+1)^2.\n\\]\n\nSince \\(n=q(q+1)(q^2+1)\\), the number of spanning trees is\n\n\\[\n\\boxed{\nq^{q^4+2q^3+2q-2}\n(q+1)^{2q^4+q^3+q^2+q-3}\n(q^2+1)^{q^2-1}\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T04:17:18+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem111/ae16565dba32.json"
+}
