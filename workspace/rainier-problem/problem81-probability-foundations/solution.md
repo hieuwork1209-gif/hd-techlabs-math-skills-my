@@ -96,20 +96,20 @@ $$
 \leq
 \mathbb E[q(Z)^2]
 =
-m_4-2m_3+\frac43m_2-\frac13m_1+\frac1{36}.
+m_4-2m_3+\frac43m_2-\frac13m_1+\frac{1}{36}.
 $$
-Substituting $m_1=1/2$, $m_2=1/3$, and $m_3=1/4$ gives
+Substituting $m_1=\frac{1}{2}$, $m_2=1/3$, and $m_3=1/4$ gives
 $$
-m_4\geq\frac7{36}.
+m_4\geq\frac{7}{36}.
 $$
 
 This bound is attainable. The two roots of $q$ are
 $$
-r_- = \frac{1-1/\sqrt3}{2},
+r_- = \frac{1-1/\sqrt{3}}{2},
 \qquad
-r_+ = \frac{1+1/\sqrt3}{2}.
+r_+ = \frac{1+1/\sqrt{3}}{2}.
 $$
-Let $Z$ take $r_-$ and $r_+$ with probability $1/2$ each. Because
+Let $Z$ take $r_-$ and $r_+$ with probability $\frac{1}{2}$ each. Because
 $$
 r_-+r_+=1,
 \qquad
@@ -142,9 +142,9 @@ m_4
 \leq
 \frac14-\frac{c}{6}+\frac{c^2}{6}.
 $$
-The right-hand side is minimized at $c=1/2$, hence
+The right-hand side is minimized at $c=\frac{1}{2}$, hence
 $$
-m_4\leq\frac5{24}.
+m_4\leq\frac{5}{24}.
 $$
 
 This bound is also attainable. Let $Z$ have the law
@@ -163,7 +163,7 @@ $$
 \qquad
 \mathbb E Z^3=\frac14,
 $$
-and $Z(1-Z)(Z-1/2)^2=0$ almost surely, so $m_4=5/24$.
+and $Z(1-Z)(Z-\frac{1}{2})^2=0$ almost surely, so $m_4=5/24$.
 
 For either extremal law of $Z$, choose an independent fair sign $\varepsilon\in\{-1,1\}$ and set
 $$
@@ -178,13 +178,13 @@ A_8=\frac{\frac{136}{3}+m_4}{128},
 $$
 the lower endpoint is
 $$
-\frac{\frac{136}{3}+\frac7{36}}{128}
+\frac{\frac{136}{3}+\frac{7}{36}}{128}
 =
 \frac{1639}{4608},
 $$
 and the upper endpoint is
 $$
-\frac{\frac{136}{3}+\frac5{24}}{128}
+\frac{\frac{136}{3}+\frac{5}{24}}{128}
 =
 \frac{1093}{3072}.
 $$
