@@ -1,170 +1,211 @@
 ## Steps
 
-Step 1: Reduce right-half-plane roots to a boundary modulus problem
-For a fixed delay $\tau\geq0$, write
+Step 1: Convert the characteristic equation to a two-channel transfer bound
+For fixed delays $\tau,\sigma\geq0$, write
 $$
 P(\lambda)=\lambda^2+a\lambda+1,
 \qquad
-Q(\lambda)=b+c\lambda.
-$$
-The characteristic equation is
-$$
-P(\lambda)+Q(\lambda)e^{-\lambda\tau}=0.
-$$
-Because $a>0$, the two zeros of $P$ have negative real part. Therefore
-$$
-H(\lambda)=\frac{Q(\lambda)}{P(\lambda)}
-$$
-is analytic on the open right half-plane and continuous on its boundary. Also $H(\lambda)\to0$ as $|\lambda|\to\infty$ in that half-plane.
-
-If $\lambda$ is a characteristic root with $\operatorname{Re}\lambda\geq0$, then
-$$
-H(\lambda)=-e^{\lambda\tau},
-$$
-so
-$$
-|H(\lambda)|=e^{\tau\operatorname{Re}\lambda}\geq1.
-$$
-Therefore a delay-independent exclusion of right-half-plane roots is controlled by the maximum of $|H|$ on the imaginary axis. On large right half-disks, the maximum modulus principle applies to $H$; letting the radius tend to infinity shows that if $|H(i\omega)|\leq1$ for all real $\omega$, then $|H(\lambda)|<1$ whenever $\operatorname{Re}\lambda>0$.
-
-Step 2: Compute the imaginary-axis modulus gap
-For real $\omega$,
-$$
-|P(i\omega)|^2
-=
-(1-\omega^2)^2+a^2\omega^2,
-$$
-while
-$$
-|Q(i\omega)|^2
-=
-b^2+c^2\omega^2.
-$$
-Set
-$$
-u=\omega^2\geq0.
-$$
-Then
-$$
-D(u)
-:=
-|P(i\omega)|^2-|Q(i\omega)|^2
-=
-u^2+(a^2-c^2-2)u+1-b^2.
-$$
-$|H(i\omega)|<1$ is therefore equivalent to $D(u)>0$.
-
-Step 3: Characterize when the gap stays positive
-First suppose $0\leq b<1$. Then
-$$
-B:=1-b^2>0.
-$$
-Write
-$$
-A:=a^2-c^2-2,
-$$
-so
-$$
-D(u)=u^2+Au+B.
-$$
-If $A\geq0$, the minimum of $D$ on $u\geq0$ is $D(0)=B>0$. If $A<0$, the minimum occurs at $u=-A/2>0$ and equals
-$$
-B-\frac{A^2}{4}.
-$$
-This gives
-$
-D(u)>0\quad\text{for all }u\geq0
-$
-exactly when
-$$
-A>-2\sqrt{B},
-$$
-or
-$$
-a^2>c^2+2-2\sqrt{1-b^2}.
-$$
-
-Now suppose $b=1$. Then
-$$
-D(u)=u(u+A).
-$$
-For every $u>0$ this is positive exactly when
-$$
-A\geq0,
-$$
-that is,
-$$
-a^2\geq c^2+2.
-$$
-At $u=0$ equality gives $|H(0)|=1$, but $\lambda=0$ is not a characteristic root because
-$$
-P(0)+Q(0)=1+b=2.
-$$
-
-Step 4: Establish sufficiency of the two parameter regimes
-Assume first that
-$$
-0\leq b<1,
+H_1(\lambda)=\frac{b}{P(\lambda)},
 \qquad
-a^2>c^2+2-2\sqrt{1-b^2}.
+H_2(\lambda)=\frac{c\lambda}{P(\lambda)}.
 $$
-Step 3 gives $D(u)>0$ for every $u\geq0$, so
-$$
-|H(i\omega)|<1
-$$
-for every real $\omega$. Step 1 then gives $|H(\lambda)|<1$ throughout the open right half-plane. A characteristic root there would require $|H(\lambda)|\geq1$, which is impossible. No imaginary-axis root exists either because the boundary inequality is strict.
+Because $a>0$, both zeros of $P$ have negative real part, so $H_1$ and $H_2$ are analytic on the open right half-plane and continuous on its boundary. They also tend to $0$ as $|\lambda|\to\infty$ there.
 
-Next assume
+A characteristic root satisfies
 $$
-b=1,
-\qquad
-a^2\geq c^2+2.
+1+H_1(\lambda)e^{-\lambda\tau}
++H_2(\lambda)e^{-\lambda\sigma}=0.
 $$
-Then Step 3 gives
+If $\operatorname{Re}\lambda\geq0$, then
 $$
-|H(i\omega)|<1
+1
+\leq
+|H_1(\lambda)|e^{-\tau\operatorname{Re}\lambda}
++
+|H_2(\lambda)|e^{-\sigma\operatorname{Re}\lambda}
+\leq
+|H_1(\lambda)|+|H_2(\lambda)|.
 $$
-for every $\omega\neq0$, while $|H(0)|=1$. The maximum modulus argument still gives $|H(\lambda)|<1$ in the open right half-plane, since $H$ is nonconstant and tends to $0$ at infinity. The only boundary point where equality in modulus occurs is $\lambda=0$, and that point is not a characteristic root. Every characteristic root therefore has negative real part for every $\tau\geq0$.
+The function
+$$
+S(\lambda)=|H_1(\lambda)|+|H_2(\lambda)|
+$$
+is subharmonic as a sum of moduli of analytic functions. The maximum principle for subharmonic functions says that on each bounded right half-disk, the maximum of $S$ is attained on the boundary. Since $S\to0$ on the large semicircle, a bound
+$$
+S(i\omega)<1
+$$
+for every real $\omega$, with a uniform gap from $1$, rules out every characteristic root in the closed right half-plane.
 
-Step 5: Establish necessity by constructing a critical delay
-If $b>1$, then
+Step 2: Identify the phase geometry on the imaginary axis
+Let $\omega>0$. Write
 $$
-D(0)=1-b^2<0,
-$$
-while $D(u)\to\infty$ as $u\to\infty$, so $D$ has a positive zero.
-
-If $0\leq b<1$ but
-$$
-a^2\leq c^2+2-2\sqrt{1-b^2},
-$$
-then the quadratic from Step 3 has a zero at some $u>0$. If $b=1$ and $a^2<c^2+2$, then
-$$
-D(u)=u(u+A)
-$$
-has the positive zero $u=-A$.
-
-In every excluded case there is therefore some $\omega>0$ for which
-$$
-|P(i\omega)|=|Q(i\omega)|.
-$$
-The value $Q(i\omega)$ cannot vanish at such a point, because then $P(i\omega)$ would also vanish, contradicting $a>0$. Therefore
-$
--\frac{P(i\omega)}{Q(i\omega)}
-$$
-lies on the unit circle. Choose $\tau\geq0$ so that
-$$
-e^{-i\omega\tau}
+R(\omega)=|P(i\omega)|
 =
--\frac{P(i\omega)}{Q(i\omega)}.
+\sqrt{(1-\omega^2)^2+a^2\omega^2}.
 $$
-Then $\lambda=i\omega$ is a characteristic root, so the required strict left-half-plane property fails. Combining this with Step 4 gives the complete parameter region.
-Final Answer: $\boxed{\{(a,b,c):b<1,\ a^2>c^2+2-2\sqrt{1-b^2}\}\cup\{(a,1,c):a^2\geq c^2+2\}}$
+For $\lambda=i\omega$, the two delayed feedback terms have magnitudes $b$ and $c\omega$. Since $\tau$ and $\sigma$ are independent, the phases
+$$
+e^{-i\omega\tau},
+\qquad
+i e^{-i\omega\sigma}
+$$
+can be chosen independently anywhere on the unit circle. Therefore the possible magnitudes of their sum fill exactly the interval
+$$
+[|b-c\omega|,\ b+c\omega].
+$$
+Indeed, if the relative angle is $\theta$, the squared magnitude is
+$$
+b^2+c^2\omega^2+2bc\omega\cos\theta,
+$$
+which runs continuously from $(b-c\omega)^2$ to $(b+c\omega)^2$.
+
+It follows that an imaginary root $i\omega$ can be produced by some pair of delays exactly when
+$$
+|b-c\omega|
+\leq
+R(\omega)
+\leq
+b+c\omega.
+$$
+
+Step 3: Reduce the regime $0\leq b<1$ to one frequency margin
+Assume $0\leq b<1$. At $\omega=0$,
+$$
+R(0)=1>b.
+$$
+Thus the root locus can reach the annulus from Step 2 only after $R$ first meets its upper boundary $b+c\omega$. Consequently, no imaginary root can occur for any delays exactly when
+$$
+R(\omega)>b+c\omega
+$$
+for every $\omega>0$.
+
+Squaring gives
+$$
+\omega^4+(a^2-c^2-2)\omega^2-2bc\omega+1-b^2>0.
+$$
+After division by $\omega^2$,
+$$
+a^2
+>
+c^2+2+
+\frac{2bc}{\omega}
+-
+\frac{1-b^2}{\omega^2}
+-
+\omega^2.
+$$
+The function
+$$
+g_{b,c}(r)
+=
+\frac{2bc}{r}
+-
+\frac{1-b^2}{r^2}
+-
+r^2,
+\qquad r>0,
+$$
+tends to $-\infty$ as $r\to0^+$ and as $r\to\infty$, so it attains a finite maximum. Hence the required condition for $0\leq b<1$ is
+$$
+a^2
+>
+c^2+2+
+\max_{r>0}
+\left(
+\frac{2bc}{r}
+-
+\frac{1-b^2}{r^2}
+-
+r^2
+\right).
+$$
+
+Under this strict inequality, the continuous function
+$$
+\frac{b+c|\omega|}{|P(i\omega)|}
+$$
+is below $1$ for all real $\omega$ and tends to $0$ as $|\omega|\to\infty$. Its maximum is therefore some $\rho<1$. Step 1 then gives $S(\lambda)\leq\rho<1$ in the open right half-plane, so no characteristic root there is possible. The strict boundary inequality also excludes imaginary roots.
+
+Step 4: Handle the boundary and excluded parameter regimes
+Suppose first that $b=1$ and $c=0$. Then
+$$
+R(\omega)^2-1
+=
+\omega^2(\omega^2+a^2-2).
+$$
+Therefore $R(\omega)>1$ for every $\omega>0$ exactly when
+$$
+a^2\geq2.
+$$
+For $a^2\geq2$, Step 1 applies to the single analytic function $H_1=1/P$. On the imaginary axis $|H_1|\leq1$, with equality only at $\omega=0$. The strong maximum principle gives $|H_1(\lambda)|<1$ in the open right half-plane. Also
+$$
+\Delta_{\tau,\sigma}(0)=2,
+$$
+so the boundary equality at $0$ is harmless.
+
+Now let $b=1$ and $c>0$. Since
+$$
+R(\omega)=1+O(\omega^2)
+$$
+as $\omega\to0^+$, while
+$$
+|1-c\omega|=1-c\omega,
+\qquad
+1+c\omega=1+c\omega
+$$
+for sufficiently small $\omega$, one has
+$$
+|1-c\omega|<R(\omega)<1+c\omega
+$$
+for all sufficiently small positive $\omega$. Step 2 then produces an imaginary root.
+
+Finally let $b>1$. At $\omega=0$,
+$$
+R(0)=1<|b-c\omega|\big|_{\omega=0}=b,
+$$
+whereas $R(\omega)\sim\omega^2$ and $|b-c\omega|=O(\omega)$ as $\omega\to\infty$. By continuity there is some $\omega>0$ with
+$$
+R(\omega)=|b-c\omega|,
+$$
+and Step 2 again produces an imaginary root.
+
+Step 5: Prove necessity in the remaining $b<1$ cases and state the region
+Assume $0\leq b<1$ but
+$$
+a^2
+\leq
+c^2+2+
+\max_{r>0}
+\left(
+\frac{2bc}{r}
+-
+\frac{1-b^2}{r^2}
+-
+r^2
+\right).
+$$
+Then the inequality from Step 3 fails at some positive frequency. Since
+$$
+R(0)>b
+$$
+and both sides are continuous, there is a first $\omega_*>0$ such that
+$$
+R(\omega_*)=b+c\omega_*.
+$$
+This is the upper endpoint of the annulus in Step 2. Choose the two delayed feedback vectors to be aligned with each other and opposite to $P(i\omega_*)$. Their two phases can be realized independently by suitable nonnegative delays $\tau$ and $\sigma$. Then
+$$
+\Delta_{\tau,\sigma}(i\omega_*)=0,
+$$
+so the closed right half-plane is reached.
+
+Combining this construction with Steps 3 and 4 gives the complete parameter region.
+Final Answer: $\boxed{\{(a,b,c):b<1,\ a^2>c^2+2+\max_{r>0}(\frac{2bc}{r}-\frac{1-b^2}{r^2}-r^2)\}\cup\{(a,1,0):a^2\geq2\}}$
 
 ---
 
 ## Answer
 
-$\{(a,b,c):b<1,\ a^2>c^2+2-2\sqrt{1-b^2}\}\cup\{(a,1,c):a^2\geq c^2+2\}$
+$\{(a,b,c):b<1,\ a^2>c^2+2+\max_{r>0}(\frac{2bc}{r}-\frac{1-b^2}{r^2}-r^2)\}\cup\{(a,1,0):a^2\geq2\}$
 
 ---
 
@@ -178,11 +219,11 @@ $\{(a,b,c):b<1,\ a^2>c^2+2-2\sqrt{1-b^2}\}\cup\{(a,1,c):a^2\geq c^2+2\}$
 
 ## Solution Concepts
 
-- delay-independent stability
-- characteristic quasipolynomials
-- maximum modulus principle
+- delay root loci
+- subharmonic maximum principle
+- phase annulus geometry
 - frequency-domain inequalities
-- quadratic minimization
+- extremal frequency margin
 
 ---
 
