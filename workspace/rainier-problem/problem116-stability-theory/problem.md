@@ -2,43 +2,20 @@
 
 ## LaTeX (Normalized)
 
-Let $\alpha>0$ and define
+Let $a,b\geq0$ and consider the nonlinear system
 $$
-A_1=
-\begin{pmatrix}
--\alpha&1&0\\
-0&-\alpha&0\\
-0&0&-\alpha
-\end{pmatrix},
+x'=y,
 \qquad
-A_2=
-\begin{pmatrix}
--\alpha&0&0\\
-0&-\alpha&1\\
-0&0&-\alpha
-\end{pmatrix},
-\qquad
-A_3=
-\begin{pmatrix}
--\alpha&0&0\\
-0&-\alpha&0\\
-1&0&-\alpha
-\end{pmatrix}.
+y'=-x-(a+bx^2)y.
 $$
-Choose any period $T>0$ and any $x,y,z\geq0$ with $x+y+z=T$. Form a $T$-periodic linear system by repeating one of the following two schedules on every period:
-
-- forward order: use $A_1$ for time $x$, then $A_2$ for time $y$, then $A_3$ for time $z$;
-- reverse order: use $A_3$ for time $z$, then $A_2$ for time $y$, then $A_1$ for time $x$.
-
-For the resulting equation
+Determine all pairs $(a,b)$ for which the origin is globally exponentially stable in the Euclidean norm. That is, determine all $(a,b)$ for which there exist constants $M,\gamma>0$ such that every solution satisfies
 $$
-X'(t)=A(t)X(t),\qquad X(t)\in\mathbb{R}^{3},
+\|(x(t),y(t))\|_2
+\leq
+M e^{-\gamma t}
+\|(x(0),y(0))\|_2
 $$
-determine all $\alpha>0$ such that every choice of $T,x,y,z$ and either order gives an exponentially stable zero solution. For each chosen periodic system, exponential stability means that there are constants $M,\gamma>0$ such that
-$$
-\|X(t)\|_2\leq M e^{-\gamma t}\|X(0)\|_2
-$$
-for all $t\geq0$. The constants $M,\gamma$ may depend on the chosen periodic system.
+for all $t\geq0$.
 
 ---
 
@@ -48,11 +25,11 @@ for all $t\geq0$. The constants $M,\gamma$ may depend on the chosen periodic sys
 |---|---|
 | **Domain** | Differential Equations and Dynamical Systems |
 | **Sub-domain** | Stability theory |
-| **Problem Type** | Solve for unknowns |
+| **Problem Type** | Exhaustive enumeration |
 | **Answer Type** | Interval or region description |
 
 ---
 
 ## Domain Explanation
 
-The problem asks for the exact damping range that guarantees exponential stability across a family of periodic linear systems with uncertain period, dwell split, and traversal order. The main stability task is to identify the worst Floquet growth rate over all of those timing choices.
+The problem asks for the complete parameter region giving global exponential stability of an equilibrium in a nonlinear second-order system. The main distinction is between local damping near the origin and the large-state decay rate required for a global exponential estimate.
