@@ -191,10 +191,10 @@ x_0\notin W,
 \qquad
 \xi_2|_W\neq0.
 $$
-The two restrictions must also be distinct. Therefore equality occurs precisely for $2\leq k\leq4$, a nonzero affine coset $x_0+W$, and an unordered pair of distinct nontrivial characters of $W$. In particular,
-$$
-U_2^*=64.
-$$
+The two restrictions must also be distinct. Therefore equality occurs precisely for $2\leq k\leq4$, a nonzero affine coset $x_0+W$, and an unordered pair of distinct nontrivial characters of $W$. In particular, the minimum support product is
+$
+64.
+$
 
 Step 5: Count the minimizing two-dimensional boundary subspaces
 
@@ -206,20 +206,20 @@ for the number of $k$-dimensional subspaces $W\leq V$. For each such $W$, there 
 $$
 \binom{2^k-1}{2}
 $$
-unordered pairs of distinct nontrivial characters of $W$. By the uniqueness just proved, $S$ determines the affine coset and $W$, while $T$ determines the unordered pair of nontrivial restrictions; changing the extensions of those restrictions does not change the two-plane. Hence every minimizing two-plane is counted exactly once. Therefore
-$$
-N_2^*=\sum_{k=2}^4\binom{5}{k}_2(2^{5-k}-1)\binom{2^k-1}{2}.
-$$
+unordered pairs of distinct nontrivial characters of $W$. By the uniqueness just proved, $S$ determines the affine coset and $W$, while $T$ determines the unordered pair of nontrivial restrictions; changing the extensions of those restrictions does not change the two-plane. Hence every minimizing two-plane is counted exactly once. Therefore the number of minimizing two-planes is
+$
+\sum_{k=2}^4\binom{5}{k}_2(2^{5-k}-1)\binom{2^k-1}{2}.
+$
 The product formula gives
 $$
 \binom{5}{2}_2=\binom{5}{3}_2=155,
 \qquad
 \binom{5}{4}_2=31,
 $$
-so
-$$
-N_2^*=155\cdot7\cdot3+155\cdot3\cdot21+31\cdot105=16275.
-$$
+so this number is
+$
+155\cdot7\cdot3+155\cdot3\cdot21+31\cdot105=16275.
+$
 Combining this with the value of $\wp$ gives the requested triple.
 
 Final Answer: $\boxed{(\min\{p>0:2^{3/2}(3^p-1)=2^p\},64,16275)}$
