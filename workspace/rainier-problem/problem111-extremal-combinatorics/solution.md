@@ -15,7 +15,7 @@ $$
 \qquad
 \{2,3,4\}.
 $$
-If one of these latter triples occurs, compatibility forces the whole component to lie inside $\{1,2,3,4\}$. Hence each component is either a fixed-pair family or a subfamily of the four triples on one $4$-set.
+If one of these latter triples occurs, compatibility forces the whole component to lie inside $\{1,2,3,4\}$. Each component is therefore either a fixed-pair family or a subfamily of the four triples on one $4$-set.
 
 For a component $\mathcal C$, let
 $$
@@ -31,10 +31,10 @@ $$
 =
 u+\sum_{\mathcal C}\Delta(\mathcal C).
 $$
-The right side cannot be $0$ or $1$, because all support sizes would then be multiples of $4$ while $4q+2-u$ is not divisible by $4$ for $u=0,1$. Thus
-$$
+The right side cannot be $0$ or $1$, because all support sizes would then be multiples of $4$ while $4q+2-u$ is not divisible by $4$ for $u=0,1$. It follows that
+$
 |\mathcal F|\leq4q.
-$$
+$
 
 Equality means total deficit $2$. If $u=2$, every component has deficit $0$, giving $q$ disjoint full $4$-set components and two unused points; call this type $0$.
 
@@ -42,9 +42,9 @@ If $u=0$, there must be one deficit-$2$ component and every other component must
 $
 s\equiv4q+2\equiv2\pmod4.
 $
-Thus $s=4j+2$ for some $1\leq j\leq q$, and the special component consists of all $4j$ triples through its center pair. Call this type $j$.
+This gives $s=4j+2$ for some $1\leq j\leq q$, and the special component consists of all $4j$ triples through its center pair. Call this type $j$.
 
-The only remaining deficit distributions are one deficit-$1$ component with one unused point or two deficit-$1$ components. Their used support sizes would be $4q+1$ and $4q+2$, respectively, but every component in either case has support size $4$. Both are impossible modulo $4$. Hence types $0,1,\ldots,q$ are exactly the maximum families.
+The only remaining deficit distributions are one deficit-$1$ component with one unused point or two deficit-$1$ components. Their used support sizes would be $4q+1$ and $4q+2$, respectively, but every component in either case has support size $4$. Both are impossible modulo $4$. The maximum families are exactly types $0,1,\ldots,q$.
 
 Step 2: Bound the overlap when one family has type 0
 Let $\mathcal F$ be type $0$, with full $4$-set blocks
@@ -69,13 +69,13 @@ $$
 
 Equality requires $c=q-1$ and exactly two common triples from the remaining block $B$. The common $q-1$ blocks use $4q-4$ points, leaving six points. On those six points, $\mathcal F$ consists of the four triples on $B$ plus two unused points.
 
-A second type-$0$ family on these six points can share at most one of the four triples on $B$, because two distinct $4$-sets have at most one common $3$-subset. Hence equality forces $\mathcal G$ to be type $1$ on these six points. Its center pair $P$ must lie inside $B$, and then the two common triples are
+A second type-$0$ family on these six points can share at most one of the four triples on $B$, because two distinct $4$-sets have at most one common $3$-subset. Equality forces $\mathcal G$ to be type $1$ on these six points. Its center pair $P$ must lie inside $B$, and then the two common triples are
 $$
 P\cup\{x\},
 \qquad
 x\in B\setminus P.
 $$
-Thus every equality pair with a type-$0$ member is obtained by replacing one full $4$-set block together with the two unused points by a six-point star centered at a pair inside that block.
+Every equality pair with a type-$0$ member is obtained by replacing one full $4$-set block together with the two unused points by a six-point star centered at a pair inside that block.
 
 Step 3: Rule out overlap $4q-2$ between two positive types
 Let $\mathcal F$ have type $j\geq1$, with star center $P$, star support $S$, and $q-j$ full $4$-set blocks. Suppose
@@ -94,11 +94,11 @@ b-a\equiv0\pmod4.
 $$
 If $a>0$ and $b=0$, the congruence forces $a\geq4$, so at least four star triples are lost. If $a>0$ and $b>0$, the star loses at least one triple and every full block of $\mathcal F$ supplying a new leaf is no longer a common block, which loses at least two more triples. The total loss is at least $3$.
 
-If $a=0$ and $b>0$, then $b\geq4$. At least one full block supplies new leaves. If all four points of such a block are absorbed into the star, none of its four old block triples is a star triple because the center pair $P$ is disjoint from that block; the loss is at least $4$. If only part of a block is used, that block ceases to be common and loses at least two triples, while another block must supply the remaining new leaves, so the total loss is again at least $4$. Thus the only way to lose at most two triples is $a=b=0$, which makes the star component identical. The same block argument then forces every full block to be identical, so $\mathcal F=\mathcal G$.
+If $a=0$ and $b>0$, then $b\geq4$. At least one full block supplies new leaves. If all four points of such a block are absorbed into the star, none of its four old block triples is a star triple because the center pair $P$ is disjoint from that block; the loss is at least $4$. If only part of a block is used, that block ceases to be common and loses at least two triples, while another block must supply the remaining new leaves, so the total loss is again at least $4$. The only way to lose at most two triples is $a=b=0$, which makes the star component identical. The complements of that common star support are then partitioned into full $4$-set blocks in both families. Two distinct full $4$-sets share at most one common triple, so any noncommon block would lose at least three triples. Therefore every full block is identical and $\mathcal F=\mathcal G$.
 
-It remains to consider $j=1$. If at least three of the four star triples are common, the same-center argument above applies and again forces equality of the families when the total loss is at most two. If exactly two star triples are common, then losing only two triples overall forces all $q-1$ full blocks of $\mathcal F$ to be common blocks of $\mathcal G$. The six remaining ground points contain the star of $\mathcal F$. Two distinct six-point stars have at most one common triple: equal center pairs give the same star, while distinct center pairs lie together in at most one triple. Therefore a different maximum family on those six points sharing exactly two star triples must be type $0$. Hence a pair with overlap $4q-2$ always consists of one type-$0$ family and one type-$1$ family.
+It remains to consider $j=1$. If at least three of the four star triples are common, the same-center argument above applies and again forces equality of the families when the total loss is at most two. If exactly two star triples are common, then losing only two triples overall forces all $q-1$ full blocks of $\mathcal F$ to be common blocks of $\mathcal G$. The six remaining ground points contain the star of $\mathcal F$. Two distinct six-point stars have at most one common triple: equal center pairs give the same star, while distinct center pairs lie together in at most one triple. Therefore a different maximum family on those six points sharing exactly two star triples must be type $0$. A pair with overlap $4q-2$ always consists of one type-$0$ family and one type-$1$ family.
 
-Therefore, for distinct maximum families,
+For distinct maximum families,
 $$
 |\mathcal F\cap\mathcal G|\leq4q-2,
 $$
@@ -121,7 +121,7 @@ q\binom42=6q
 $$
 choices.
 
-Each resulting unordered pair is counted once, because exactly one member has type $0$ and the other has type $1$. Hence the number of unordered equality pairs is
+Each resulting unordered pair is counted once, because exactly one member has type $0$ and the other has type $1$. The number of unordered equality pairs is
 $$
 N_0\cdot6q
 =
