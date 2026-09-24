@@ -15,7 +15,7 @@ Then
 $$
 \dot x_i=(1+3\kappa)x_i-x_i^3-\kappa S.
 $$
-Hence, at an equilibrium, every coordinate is a real root of
+At an equilibrium, every coordinate is therefore a real root of
 $$
 p_S(t)=t^3-(1+3\kappa)t+\kappa S.
 $$
@@ -34,11 +34,11 @@ d_i=1+3\kappa-3x_i^2.
 $$
 
 The system is also a gradient flow,
-$$
+$
 \dot x=-\nabla V(x),
-$$
+$
 for
-$$
+$
 V(x)
 =
 \sum_{i=1}^3
@@ -48,7 +48,16 @@ V(x)
 -
 \frac{\kappa}{2}
 \sum_{1\leq i<j\leq3}(x_i-x_j)^2.
-$$
+$
+Along every trajectory,
+$
+\dot V
+=
+\nabla V\cdot\dot x
+=
+-\|\nabla V\|_2^2
+\leq0.
+$
 This will be used only at the nonhyperbolic synchronized threshold.
 
 Step 2: Classify the possible equilibrium shapes
@@ -85,7 +94,7 @@ e_i^{T}Je_i
 =
 1+2\kappa>0.
 $$
-Hence every all-distinct equilibrium has a positive Jacobian eigenvalue and is unstable.
+Since $J$ is symmetric, this positive Rayleigh quotient implies a positive Jacobian eigenvalue, so every all-distinct equilibrium is unstable.
 
 The only remaining possibility is exactly two equal coordinates. By permutation symmetry write
 $$
@@ -174,17 +183,30 @@ Set
 $$
 F(t)=t^4+2t^3-4t-2.
 $$
-Substitution gives
-$$
+The trace and determinant start as
+$
+\operatorname{tr}M
+=
+d_p+d_q-3\kappa,
+$
+$
+\det M
+=
+(d_p-2\kappa)(d_q-\kappa)-2\kappa^2
+=
+d_pd_q-\kappa d_p-2\kappa d_q.
+$
+Substituting the displayed formulas for $d_p,d_q,\kappa$ and collecting the common denominator gives
+$
 \operatorname{tr}M
 =
 -\frac{t^3+3t^2+2}{t^3+2},
-$$
-$$
+$
+$
 \det M
 =
 -\frac{2(t-1)(t+2)F(t)}{(t^3+2)^2}.
-$$
+$
 
 First take
 $$
@@ -198,7 +220,7 @@ t^3+3t^2+2
 =
 3,
 $$
-hence $\operatorname{tr}M<0$.
+so $\operatorname{tr}M<0$.
 
 To determine the determinant, put $s=-t\in(1,\sqrt[3]{2})$. Then
 $$
@@ -210,7 +232,7 @@ $$
 =
 2(2s^3-3s^2+2).
 $$
-The expression in parentheses has derivative $6s(s-1)>0$ and value $1$ at $s=1$. Thus $F(-s)>F(-1)=1$. Therefore $\det M>0$, and all three Jacobian eigenvalues are negative.
+The expression in parentheses has derivative $6s(s-1)>0$ and value $1$ at $s=1$. It follows that $F(-s)>F(-1)=1$. Therefore $\det M>0$, and all three Jacobian eigenvalues are negative.
 
 Now take $t>0$. If $t>1$, then $d_p>0$, so the equilibrium is unstable. If $0<t<1$, then
 $$
@@ -222,7 +244,7 @@ F(t)<-t-2<0.
 $$
 The determinant formula then gives $\det M<0$, so this branch is also unstable.
 
-Hence a two-equal equilibrium is asymptotically stable exactly when
+A two-equal equilibrium is asymptotically stable exactly when
 $$
 -\sqrt[3]{2}<t<-1.
 $$
@@ -244,7 +266,7 @@ $$
 \qquad
 \lim_{t\to-1^{-}}\kappa(t)=0.
 $$
-Thus every $\kappa>0$ has exactly one stable two-equal branch parameter $t$. There are three choices for the exceptional coordinate $q$ and two choices for the sign of $p$, giving exactly six stable nonsynchronized equilibria for every $\kappa>0$.
+Every $\kappa>0$ therefore has exactly one stable two-equal branch parameter $t$. There are three choices for the exceptional coordinate $q$ and two choices for the sign of $p$, giving exactly six stable nonsynchronized equilibria for every $\kappa>0$.
 
 It remains to count the synchronized equilibria. At $(\pm1,\pm1,\pm1)$ the Jacobian has eigenvalue $-2$ in the synchronized direction and the double transverse eigenvalue
 $$
@@ -282,7 +304,7 @@ V(1+u)-V(1,1,1)
 $$
 for all sufficiently small $\varepsilon>0$. Since $V$ is nonincreasing along trajectories, $(1,1,1)$ cannot be asymptotically stable. By the symmetry $x\mapsto-x$, neither can $(-1,-1,-1)$.
 
-Thus there are eight asymptotically stable equilibria when $0<\kappa<2/3$ and six when $\kappa\geq2/3$.
+There are eight asymptotically stable equilibria when $0<\kappa<2/3$ and six when $\kappa\geq2/3$.
 Final Answer: $\boxed{N(\kappa)=6+2\mathbf{1}_{\{\kappa<2/3\}}}$
 
 ---
