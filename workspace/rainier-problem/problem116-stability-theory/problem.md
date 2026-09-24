@@ -25,25 +25,16 @@ A_3=
 1&0&-\alpha
 \end{pmatrix}.
 $$
-For each $x,y,z\geq0$ with $x+y+z=1$, let $A_{x,y,z}(t)$ be the $1$-periodic matrix obtained on every interval $[n,n+1)$ by using $A_1$ for time $x$, then $A_2$ for time $y$, then $A_3$ for time $z$:
+Choose any period $T>0$ and any $x,y,z\geq0$ with $x+y+z=T$. Form a $T$-periodic linear system by repeating one of the following two schedules on every period:
+
+- forward order: use $A_1$ for time $x$, then $A_2$ for time $y$, then $A_3$ for time $z$;
+- reverse order: use $A_3$ for time $z$, then $A_2$ for time $y$, then $A_1$ for time $x$.
+
+For the resulting equation
 $$
-A_{x,y,z}(t)=
-\begin{cases}
-A_1,&n\leq t<n+x,\\
-A_2,&n+x\leq t<n+x+y,\\
-A_3,&n+x+y\leq t<n+1,
-\end{cases}
-\qquad n\in\mathbb{Z}_{\geq0}.
+X'(t)=A(t)X(t),\qquad X(t)\in\mathbb{R}^{3},
 $$
-Consider
-$$
-X'(t)=A_{x,y,z}(t)X(t),\qquad X(t)\in\mathbb R^3.
-$$
-Determine all $\alpha>0$ for which there exist constants $M,\gamma>0$, independent of $(x,y,z)$, such that every choice $x,y,z\geq0$ with $x+y+z=1$ and every solution satisfy
-$$
-\|X(t)\|_2\leq M e^{-\gamma t}\|X(0)\|_2
-$$
-for all $t\geq0$.
+determine all $\alpha>0$ such that every choice of $T,x,y,z$ and either order gives an exponentially stable zero solution. The constants in the estimate may depend on the chosen periodic system.
 
 ---
 
@@ -60,4 +51,4 @@ for all $t\geq0$.
 
 ## Domain Explanation
 
-The requested object is the exact parameter range for uniform exponential stability of a family of periodic linear systems. Floquet monodromy is an intermediate tool, while the main task is to identify the worst dwell distribution and close the uniform stability estimate over the full parameter simplex.
+The problem asks for the exact damping range that guarantees exponential stability across a family of periodic linear systems with uncertain period, dwell split, and traversal order. The main stability task is to identify the worst Floquet growth rate over all of those timing choices.
