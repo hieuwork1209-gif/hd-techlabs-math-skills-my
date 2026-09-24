@@ -14,22 +14,15 @@ $$
 \end{array}
 $$
 
-Let
-$$
-X_n=(R_n,G_n,B_n)
-$$
-be the urn composition after $n$ draws, and let $\Sigma_n$ be the covariance matrix of $X_n$. Since the total number of balls is deterministic, $\Sigma_n$ has one zero eigenvalue. Let
-$$
-0<\lambda_n^-\leq\lambda_n^+
-$$
-be its other two eigenvalues.
+Let $(R_n,G_n,B_n)$ be the urn composition after $n$ draws.
 
 Determine exactly
 $$
-\left(
-\lim_{n\to\infty}\frac{\lambda_n^-}{n\log n},
-\;
-\lim_{n\to\infty}\frac{\lambda_n^+}{n(\log n)^3}
+\lim_{n\to\infty}
+\mathbb P\left(
+R_n>G_n
+\text{ and }
+R_n+G_n>2B_n
 \right).
 $$
 
@@ -42,10 +35,10 @@ $$
 | **Domain** | Probability and Statistics |
 | **Sub-domain** | Probability foundations |
 | **Problem Type** | Exact computation |
-| **Answer Type** | Tuple or ordered list |
+| **Answer Type** | Exact scalar |
 
 ---
 
 ## Domain Explanation
 
-The problem asks for critical covariance asymptotics of a balanced generalized Polya urn. The replacement matrix has a nontrivial Jordan chain at half the Perron eigenvalue, which creates nested logarithmic fluctuation scales and a nontrivial interaction between the two covariance modes. Thus Probability and Statistics -> Probability foundations is primary.
+The problem asks for a limiting joint-sign probability in a critical balanced generalized Polya urn. The defective half-Perron Jordan block creates two coupled fluctuation scales, and the target probability depends on their joint Gaussian limit rather than on covariance magnitudes alone. Thus Probability and Statistics -> Probability foundations is primary.
