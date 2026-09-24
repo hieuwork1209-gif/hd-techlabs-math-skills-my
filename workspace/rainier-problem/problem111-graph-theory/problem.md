@@ -15,10 +15,10 @@ $$
 
 Let the Fibonacci and Lucas sequences be defined by
 $$
-F_0=0,\quad F_1=1,\quad F_{j+1}=F_j+F_{j-1},
+F_0=0,\quad F_1=1,\quad F_{j+1}=F_j+F_{j-1}\quad(j\geq1),
 $$
 $$
-L_0=2,\quad L_1=1,\quad L_{j+1}=L_j+L_{j-1}.
+L_0=2,\quad L_1=1,\quad L_{j+1}=L_j+L_{j-1}\quad(j\geq1).
 $$
 
 Determine the non-unit invariant factors of the Smith normal form of $Q_n$, listed in divisibility order as an ordered tuple.
