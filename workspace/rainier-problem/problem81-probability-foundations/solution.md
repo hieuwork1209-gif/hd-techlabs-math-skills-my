@@ -1,483 +1,383 @@
 ## Steps
 
-Step 1: Turn commute times into an additive tree metric
-Let the unknown tree have positive edge conductances $c_{xy}=c_{yx}$. For a vertex $x$, write
+Step 1: Write the survival recursions and separate the two modes
+Let
 $$
-c_x=\sum_{y\sim x}c_{xy},
+a_n=mathbb P_A(Z_n>0),
+\qquad
+b_n=mathbb P_B(Z_n>0),
 $$
-and let
+where $Z_n$ is the total population in generation $n$, and the subscript records the initial type. Since survival through generation $0$ is certain,
 $$
-P(x,y)=\frac{c_{xy}}{c_x}
+a_0=b_0=1.
 $$
-for adjacent vertices. For an oriented edge $x-y$, remove that edge and let $A$ be the component containing $x$. If
+
+For a type $A$ parent, the offspring generating function is
 $$
-h(z)=\mathbb E_z T_y
-$$
-for $z\in A$, then the first-step equations are
-$$
-h(z)=1+\sum_{w\in A}P(z,w)h(w),
-$$
-where for $z=x$ the transition from $x$ to $y$ contributes zero because $h(y)=0$. Multiplying by $c_z$ and summing over $z\in A$ gives
-$$
-\sum_{z\in A}c_zh(z)
+F_A(s,t)
 =
-\sum_{z\in A}c_z
+\frac{1}{2}
 +
-\sum_{z\in A}\sum_{w\in A}c_{zw}h(w).
+\frac{3}{8}s^2
++
+\frac{1}{8}t^2.
 $$
-For every $w\neq x$, all conductance incident to $w$ stays inside $A$, while at $x$ the missing conductance is exactly $c_{xy}$. Hence
+For a type $B$ parent,
 $$
-\sum_{z\in A}\sum_{w\in A}c_{zw}h(w)
+F_B(s,t)
 =
-\sum_{w\in A}c_wh(w)-c_{xy}h(x).
+\frac{1}{2}
++
+\frac{1}{4}s
++
+\frac{1}{4}t^3.
 $$
-After cancellation,
+Thus
 $$
-\mathbb E_xT_y
+a_{n+1}
 =
-h(x)
+1-F_A(1-a_n,1-b_n)
 =
-\frac{\sum_{z\in A}c_z}{c_{xy}}.
+\frac{3}{4}a_n
++
+\frac{1}{4}b_n
+-
+\frac{3}{8}a_n^2
+-
+\frac{1}{8}b_n^2
+$$
+and
+$$
+b_{n+1}
+=
+1-F_B(1-a_n,1-b_n)
+=
+\frac{1}{4}a_n
++
+\frac{3}{4}b_n
+-
+\frac{3}{4}b_n^2
++
+\frac{1}{4}b_n^3.
 $$
 
-If $B$ is the other component, the reverse hitting time is
+Set
 $$
-\mathbb E_yT_x
+x_n=\frac{a_n+b_n}{2},
+\qquad
+y_n=\frac{a_n-b_n}{2}.
+$$
+Then $a_n=x_n+y_n$ and $b_n=x_n-y_n$. Substitution gives
+$$
+x_{n+1}
 =
-\frac{\sum_{z\in B}c_z}{c_{xy}}.
+x_n
+-
+\frac{5}{8}x_n^2
++
+\frac{1}{2}x_ny_n
+-
+\frac{5}{8}y_n^2
++
+\frac{1}{8}x_n^3
+-
+\frac{3}{8}x_n^2y_n
++
+\frac{3}{8}x_ny_n^2
+-
+\frac{1}{8}y_n^3
 $$
-Therefore the commute time across one edge is
+and
 $$
-C_{xy}
-:=
-\mathbb E_xT_y+\mathbb E_yT_x
+y_{n+1}
 =
-\frac{\sum_z c_z}{c_{xy}}.
-$$
-For any two vertices $u,v$, a walk from $u$ to $v$ must cross the vertices of the unique tree path in order, so the strong Markov property makes the directed hitting time additive along that path. Consequently the commute time is also additive:
-$$
-C_{uv}
-=
-\sum_{e\in\operatorname{path}(u,v)}\ell_e,
-$$
-where
-$$
-\ell_e=\frac{\sum_zc_z}{c_e}>0.
+\frac{1}{2}y_n
++
+\frac{1}{8}x_n^2
+-
+x_ny_n
++
+\frac{1}{8}y_n^2
+-
+\frac{1}{8}x_n^3
++
+\frac{3}{8}x_n^2y_n
+-
+\frac{3}{8}x_ny_n^2
++
+\frac{1}{8}y_n^3.
 $$
 
-Step 2: Reconstruct the tree and its transition probabilities
-The given commute times satisfy
+Step 2: Establish extinction and the leading survival scale
+Because $0\leq a_n,b_n\leq1$,
 $$
-C_{13}=C_{12}+C_{23}=4+6=10.
+x_n-x_{n+1}
+=
+\frac{3}{16}a_n^2
++
+\frac{7}{16}b_n^2
+-
+\frac{1}{8}b_n^3.
 $$
-Because all edge lengths $\ell_e$ are positive, equality in the tree metric means vertex $2$ lies on the path from $1$ to $3$. Likewise,
+Since $b_n\leq1$,
 $$
-C_{24}=C_{23}+C_{34}=6+12=18,
+x_n-x_{n+1}
+\geq
+\frac{3}{16}a_n^2
++
+\frac{5}{16}b_n^2
+\geq0.
 $$
-so vertex $3$ lies on the path from $2$ to $4$. With only four vertices, the tree is therefore the path
+Hence $(x_n)$ decreases to some limit $L\geq0$. If $L>0$, then $a_n+b_n=2x_n$ stays bounded away from zero, so the displayed decrement stays bounded below by a positive constant along a subsequence, contradicting convergence of $x_n$. Therefore
 $$
-1-2-3-4.
+x_n\to0.
 $$
-Its edge commute lengths are
+Since $|y_n|\leq x_n$, also $y_n\to0$.
+
+From the recurrence for $y_n$ and $|y_n|\leq x_n$,
 $$
-\ell_{12}=4,
-\qquad
-\ell_{23}=6,
-\qquad
-\ell_{34}=12,
+y_{n+1}
+=
+\frac{1}{2}y_n
++
+O(x_n^2).
 $$
-so
+Also the recurrence for $x_n$ gives
 $$
-C_{14}=4+6+12=22.
+x_{n+1}=x_n+O(x_n^2),
+$$
+so $x_{n+1}/x_n\to1$. Therefore, with
+$$
+z_n=\frac{y_n}{x_n},
+$$
+we have
+$$
+z_{n+1}
+=
+\frac{1}{2}z_n+O(x_n).
+$$
+Because $x_n\to0$, this contraction implies
+$$
+z_n\to0.
+$$
+Thus $y_n=o(x_n)$.
+
+The $x_n$ recurrence now reduces to
+$$
+x_{n+1}
+=
+x_n
+-
+\frac{5}{8}x_n^2
++
+o(x_n^2).
+$$
+Taking reciprocals,
+$$
+\frac{1}{x_{n+1}}
+-
+\frac{1}{x_n}
+=
+\frac{5}{8}+o(1).
+$$
+By Stolz-Cesaro,
+$$
+\frac{1/x_n}{n}\to\frac{5}{8},
+$$
+hence
+$$
+n x_n\to\frac{8}{5}.
+$$
+
+Step 3: Determine the stable-mode correction
+We next sharpen $y_n=o(x_n)$ to its exact quadratic scale. The recurrence for $y_n$ can be written
+$$
+y_{n+1}
+=
+\frac{1}{2}y_n
++
+\frac{1}{8}x_n^2
++
+o(x_n^2),
+$$
+because every omitted term contains either an extra factor $x_n$ or $y_n=o(x_n)$.
+
+Let
+$$
+t_n=\frac{y_n}{x_n^2}.
+$$
+For large $n$, the exact recurrences imply an inequality of the form
+$$
+|t_{n+1}|
+\leq
+\left(\frac{1}{2}+o(1)\right)|t_n|+C,
+$$
+so $(t_n)$ is bounded. Since $x_{n+1}/x_n\to1$, division by $x_{n+1}^2$ gives
+$$
+t_{n+1}
+=
+\frac{1}{2}t_n
++
+\frac{1}{8}
++
+o(1).
+$$
+Subtracting $1/4$,
+$$
+t_{n+1}-\frac{1}{4}
+=
+\frac{1}{2}
+\left(t_n-\frac{1}{4}\right)
++
+o(1),
+$$
+and therefore
+$$
+t_n\to\frac{1}{4}.
+$$
+Thus
+$$
+y_n
+\sim
+\frac{1}{4}x_n^2.
 $$
 
 Since
 $$
-\ell_e=\frac{\sum_zc_z}{c_e},
+a_n-b_n=2y_n,
 $$
-the edge conductances are proportional to the reciprocals of the commute lengths:
+we obtain
 $$
-c_{12}:c_{23}:c_{34}
+n^2(a_n-b_n)
 =
-\frac{1}{4}:\frac{1}{6}:\frac{1}{12}
+2\frac{y_n}{x_n^2}(n x_n)^2
+\longrightarrow
+2\cdot\frac{1}{4}\cdot\left(\frac{8}{5}\right)^2
 =
-3:2:1.
-$$
-Therefore the transition probabilities are forced:
-$$
-P(1,2)=1,
-$$
-$$
-P(2,1)=\frac{3}{5},
-\qquad
-P(2,3)=\frac{2}{5},
-$$
-$$
-P(3,2)=\frac{2}{3},
-\qquad
-P(3,4)=\frac{1}{3},
-$$
-and
-$$
-P(4,3)=1.
+\frac{32}{25}.
 $$
 
-Step 3: Analyze the first endpoint reached from vertex 2
-Let
+Step 4: Extract the logarithmic correction in the Perron mode
+Using $y_n=(1/4+o(1))x_n^2$ in the exact recurrence for $x_n$,
 $$
-\sigma=T_1\wedge T_4
-$$
-for a walk started from vertex $2$. For $i\in\{2,3\}$ define
-$$
-p_i=\mathbb P_i(T_1<T_4).
-$$
-First-step decomposition gives
-$$
-p_2=\frac{3}{5}+\frac{2}{5}p_3,
-\qquad
-p_3=\frac{2}{3}p_2.
-$$
-Thus
-$$
-p_2=\frac{9}{11},
-\qquad
-p_3=\frac{6}{11}.
-$$
-
-Let
-$$
-m_i=\mathbb E_i\sigma.
-$$
-Then
-$$
-m_2=1+\frac{2}{5}m_3,
-\qquad
-m_3=1+\frac{2}{3}m_2,
-$$
-so
-$$
-m_2=\frac{21}{11},
-\qquad
-m_3=\frac{25}{11}.
-$$
-
-For
-$$
-q_i=\mathbb E_i\sigma^2,
-$$
-conditioning on the first step gives
-$$
-q_2
+\frac{1}{2}x_ny_n
 =
-1+\frac{4}{5}m_3+\frac{2}{5}q_3
+\frac{1}{8}x_n^3+o(x_n^3),
+$$
+while every term containing $y_n^2$ or $x_n^2y_n$ is $O(x_n^4)$. Hence
+$$
+x_{n+1}
 =
-\frac{31}{11}+\frac{2}{5}q_3
-$$
-and
-$$
-q_3
-=
-1+\frac{4}{3}m_2+\frac{2}{3}q_2
-=
-\frac{39}{11}+\frac{2}{3}q_2.
-$$
-Substituting the equation for $q_3$ into that for $q_2$ gives
-$
-q_2
-=
-\frac{31}{11}
-+
-\frac{2}{5}
-\left(
-\frac{39}{11}
-+
-\frac{2}{3}q_2
-\right)
-=
-\frac{233}{55}
-+
-\frac{4}{15}q_2,
-$
-so
-$
-q_2=\frac{699}{121}.
-$
-
-The cover-time second moment also needs the correlation between $\sigma$ and which endpoint is reached first. Put
-$$
-a_i
-=
-\mathbb E_i\left[\sigma\mathbf 1_{\{T_1<T_4\}}\right].
-$$
-A first step from $2$ hits vertex $1$ immediately with probability $\frac{3}{5}$, while a first step to $3$ contributes one unit of time whenever vertex $1$ is eventually reached first. Hence
-$$
-a_2
-=
-\frac{3}{5}
-+
-\frac{2}{5}(p_3+a_3).
-$$
-Similarly,
-$$
-a_3
-=
-\frac{2}{3}(p_2+a_2).
-$$
-The second equation gives
-$
-a_3
-=
-\frac{6}{11}
-+
-\frac{2}{3}a_2.
-$
-Substituting this and $p_3=\frac{6}{11}$ into the first equation,
-$
-a_2
-=
-\frac{3}{5}
-+
-\frac{2}{5}
-\left(
-\frac{12}{11}
-+
-\frac{2}{3}a_2
-\right)
-=
-\frac{57}{55}
-+
-\frac{4}{15}a_2,
-$
-so
-$
-a_2=\frac{171}{121}.
-$
-Therefore
-$$
-\mathbb E_2\left[\sigma\mathbf 1_{\{T_4<T_1\}}\right]
-=
-m_2-a_2
-=
-\frac{60}{121}.
-$$
-
-Step 4: Compute the traversal moments between the two endpoints
-Let
-$$
-r_i=\mathbb E_iT_1
-$$
-for $i\in\{2,3,4\}$. The first-step equations are
-$$
-r_2=1+\frac{2}{5}r_3,
-$$
-$$
-r_3=1+\frac{2}{3}r_2+\frac{1}{3}r_4,
-$$
-and
-$$
-r_4=1+r_3.
-$$
-From $r_4=1+r_3$, the middle equation becomes
-$
-r_3
-=
-1+\frac{2}{3}r_2+\frac{1}{3}(1+r_3),
-$
-so
-$
-r_3=2+r_2.
-$
-Then
-$
-r_2
-=
-1+\frac{2}{5}(2+r_2),
-$
-which gives
-$
-r_2=3,
-\qquad
-r_3=5,
-\qquad
-r_4=6.
-$
-Since $C_{14}=22$ from Step 2,
-$$
-\mathbb E_1T_4=22-r_4=16.
-$$
-Writing
-$$
-h_i=\mathbb E_iT_4,
-$$
-the relations $h_1=1+h_2$ and $h_3=1+\frac{2}{3}h_2$ therefore give
-$$
-h_1=16,
-\qquad
-h_2=15,
-\qquad
-h_3=11.
-$$
-
-For second moments to vertex $4$, set
-$$
-g_i=\mathbb E_iT_4^2.
-$$
-The identity
-$$
-g_i
-=
-2h_i-1+\sum_jP(i,j)g_j
-$$
-gives
-$$
-g_1=31+g_2,
-$$
-$$
-g_2=29+\frac{3}{5}g_1+\frac{2}{5}g_3,
-$$
-and
-$$
-g_3=21+\frac{2}{3}g_2.
-$$
-Substituting the first and third equations into the second,
-$
-g_2
-=
-29
-+
-\frac{3}{5}(31+g_2)
-+
-\frac{2}{5}
-\left(
-21+\frac{2}{3}g_2
-\right)
-=
-56+\frac{13}{15}g_2.
-$
-Thus
-$
-g_2=420,
-\qquad
-g_1=451.
-$
-
-For second moments to vertex $1$, put
-$$
-s_i=\mathbb E_iT_1^2.
-$$
-Using the means $r_2=3,r_3=5,r_4=6$ gives
-$$
-s_2=5+\frac{2}{5}s_3,
-$$
-$$
-s_3=9+\frac{2}{3}s_2+\frac{1}{3}s_4,
-$$
-and
-$$
-s_4=11+s_3.
-$$
-Using $s_4=11+s_3$ in the middle equation gives
-$
-s_3=19+s_2.
-$
-Then
-$
-s_2
-=
-5+\frac{2}{5}(19+s_2),
-$
-so
-$
-s_2=21,
-\qquad
-s_3=40,
-\qquad
-s_4=51.
-$
-
-Step 5: Compute the cover-time mean and variance
-Let
-$$
-\tau_{\rm cov}
-=
-\inf\{n\geq0:\{X_0,X_1,\ldots,X_n\}=\{1,2,3,4\}\}
-$$
-for a walk started from $2$. At time $\sigma=T_1\wedge T_4$, exactly one endpoint has just been reached. If it is vertex $1$, completing the cover requires a fresh passage from $1$ to $4$; if it is vertex $4$, completing the cover requires a fresh passage from $4$ to $1$. By the strong Markov property, conditional on the first endpoint, this post-$\sigma$ passage is independent of the pre-$\sigma$ path.
-
-Therefore
-$$
-\mathbb E_2\tau_{\rm cov}
-=
-m_2
-+
-p_2\mathbb E_1T_4
-+
-(1-p_2)\mathbb E_4T_1.
-$$
-Substituting the values from Steps 3 and 4,
-$$
-\mathbb E_2\tau_{\rm cov}
-=
-\frac{21}{11}
-+
-\frac{9}{11}\cdot16
-+
-\frac{2}{11}\cdot6
-=
-\frac{177}{11}.
-$$
-
-For the second moment,
-$$
-\mathbb E_2\tau_{\rm cov}^2
-=
-q_2
-+
-2\left(
-16a_2
-+
-6(m_2-a_2)
-\right)
-+
-451p_2
-+
-51(1-p_2).
-$$
-Thus
-$$
-\mathbb E_2\tau_{\rm cov}^2
-=
-\frac{699}{121}
-+
-2\left(
-16\cdot\frac{171}{121}
-+
-6\cdot\frac{60}{121}
-\right)
-+
-451\cdot\frac{9}{11}
-+
-51\cdot\frac{2}{11}
-=
-\frac{52662}{121}.
-$$
-Hence
-$$
-\operatorname{Var}_2(\tau_{\rm cov})
-=
-\frac{52662}{121}
+x_n
 -
-\left(\frac{177}{11}\right)^2
-=
-\frac{21333}{121}.
+\frac{5}{8}x_n^2
++
+\frac{1}{4}x_n^3
++
+o(x_n^3).
 $$
-Combining this with $C_{14}=22$ gives the requested tuple.
-Final Answer: $\boxed{\left(22,\frac{177}{11},\frac{21333}{121}\right)}$
+Put
+$$
+A=\frac{5}{8},
+\qquad
+B=\frac{1}{4}.
+$$
+Then
+$$
+x_{n+1}
+=
+x_n\left(1-Ax_n+Bx_n^2+o(x_n^2)\right),
+$$
+so
+$$
+\frac{1}{x_{n+1}}
+-
+\frac{1}{x_n}
+=
+A+(A^2-B)x_n+o(x_n).
+$$
+Here
+$$
+A^2-B
+=
+\frac{25}{64}-\frac{16}{64}
+=
+\frac{9}{64}.
+$$
+
+From Step 2,
+$$
+x_n\sim\frac{1}{An},
+$$
+and therefore
+$$
+\sum_{k=1}^{n}x_k
+=
+\frac{1}{A}\log n+o(\log n).
+$$
+Summing the reciprocal increment relation yields
+$$
+\frac{1}{x_n}
+=
+An
++
+\frac{A^2-B}{A}\log n
++
+o(\log n).
+$$
+Since
+$$
+\frac{A^2-B}{A}
+=
+\frac{9}{40},
+$$
+we get
+$$
+\frac{
+\frac{1}{x_n}-\frac{5}{8}n
+}{
+\log n
+}
+\to
+\frac{9}{40}.
+$$
+
+Step 5: Transfer the logarithmic correction back to survival from type A
+Because
+$$
+a_n=x_n+y_n=x_n\left(1+t_nx_n\right)
+$$
+and $t_n\to1/4$,
+$$
+\frac{1}{a_n}
+=
+\frac{1}{x_n}
+\frac{1}{1+t_nx_n}
+=
+\frac{1}{x_n}
+-
+t_n
++
+o(1).
+$$
+Thus replacing $1/x_n$ by $1/a_n$ changes only a bounded term and does not affect the coefficient of $\log n$. Therefore
+$$
+\frac{
+\frac{1}{a_n}-\frac{5}{8}n
+}{
+\log n
+}
+\to
+\frac{9}{40}.
+$$
+Combining this with Step 3 gives the requested ordered pair.
+Final Answer: $\boxed{\left(\frac{32}{25},\frac{9}{40}\right)}$
+
 ---
 
 ## Answer
 
-$\left(22,\frac{177}{11},\frac{21333}{121}\right)$
+$\left(\frac{32}{25},\frac{9}{40}\right)$
 
 ---
 
@@ -491,8 +391,8 @@ $\left(22,\frac{177}{11},\frac{21333}{121}\right)$
 
 ## Solution Concepts
 
-- reversible markov chains
-- weighted tree random walks
-- commute time metrics
-- hitting time recursions
-- cover time decomposition
+- multitype branching processes
+- survival probability recursions
+- perron and stable modes
+- nonlinear asymptotic recurrences
+- logarithmic correction terms
