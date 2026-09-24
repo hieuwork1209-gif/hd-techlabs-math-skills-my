@@ -1,0 +1,22 @@
+{
+  "problem": "problem111",
+  "branch": "adversary/problem111",
+  "problem_path": "workspace/rainier-problem/problem111-extremal-combinatorics/problem.md",
+  "source_commit_sha": "877348271671bc51fa6f491618b70701d672ef79",
+  "problem_blob_sha": "336e07271f50b06133d38b93ec72a8204e32a3b1",
+  "statement_sha256": "16cf950184079bf9f2e0e33f69d65d3232dc90dd5e26c7e0f95b689a71a6f9c3",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T08:24:55+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(n=4q+2\\). The required ordered pair is\n\n\\[\n\\boxed{\\left(4q-2,\\ \\frac{(4q+2)!}{8\\cdot 24^{\\,q-1}(q-1)!}\\right)}.\n\\]\n\n**Solution**\n\nMake a graph whose vertices are the triples of \\(\\mathcal F\\), joining two triples when they intersect in \\(2\\) points. Distinct connected components cannot share \\(1\\) point by hypothesis, and cannot share \\(2\\) points by definition, so their ground sets are disjoint.\n\nNow look at one connected component. If it contains two triples\n\n\\[\n\\{x,y,a\\},\\qquad \\{x,y,b\\},\n\\]\n\nthen any other triple adjacent to one of them is forced either to contain the same pair \\(\\{x,y\\}\\), or to lie inside the \\(4\\)-set \\(\\{x,y,a,b\\}\\). Thus every component is one of two types:\n\n1. a full or partial \\(K_4^{(3)}\\), i.e. triples inside a fixed \\(4\\)-set;\n2. a star: all triples containing one fixed pair \\(\\{x,y\\}\\).\n\nA full \\(K_4^{(3)}\\) has \\(4\\) triples on \\(4\\) vertices. A star with \\(t\\) triples uses \\(t+2\\) vertices.\n\nHence every family has size at most \\(n-2=4q\\): if there is a star component, that component already has deficit \\(2\\) between vertices and triples; if there is no star, only full \\(K_4^{(3)}\\)-blocks can be efficient, and since \\(n\\equiv2\\pmod4\\), at least \\(2\\) vertices are unused.\n\nThis bound is attainable, so extremal families have size \\(4q\\). Equality forces exactly one of the following structures.\n\nType I: \\(q\\) disjoint \\(4\\)-sets, each carrying all \\(4\\) triples, plus \\(2\\) unused vertices.\n\nType II: one star with \\(4r\\) triples on \\(4r+2\\) vertices, for some \\(1\\le r\\le q\\), and \\(q-r\\) disjoint full \\(K_4^{(3)}\\)-blocks on the remaining vertices.\n\nNow compare two distinct extremal families.\n\nTwo Type I families differ in at least one \\(4\\)-block. A \\(4\\)-block not appearing in the other partition contributes at most one common triple, so at least \\(3\\) triples are lost. Thus their intersection is at most \\(4q-3\\).\n\nTwo Type II families cannot differ in only two triples: if their stars have the same center, changing the leaf set destroys at least one whole \\(K_4^{(3)}\\)-block, and if the leaf set is unchanged, the remaining \\(K_4\\)-partition must differ, again losing at least \\(3\\) triples. If their star centers differ, the star parts already lose too many triples, or force loss of an entire \\(K_4\\)-block.\n\nSo the only way to lose exactly \\(2\\) triples is between Type I and Type II. In a Type I family, choose one \\(4\\)-block \\(B\\) and the two unused vertices \\(u,v\\). Choose a pair \\(\\{x,y\\}\\subset B\\). Replace the full \\(K_4^{(3)}\\) on \\(B\\) by the star centered at \\(\\{x,y\\}\\) with leaves\n\n\\[\n(B\\setminus\\{x,y\\})\\cup\\{u,v\\}.\n\\]\n\nThe old \\(K_4\\) and the new star share exactly the two triples using \\(\\{x,y\\}\\) and the two other vertices of \\(B\\). All other \\(K_4\\)-blocks are unchanged. Therefore\n\n\\[\n|\\mathcal F\\cap\\mathcal G|=4(q-1)+2=4q-2.\n\\]\n\nFinally count such unordered pairs.\n\nThe number of Type I extremal families is\n\n\\[\n\\binom{4q+2}{2}\\frac{(4q)!}{(4!)^q q!}\n=\n\\frac{(4q+2)!}{2(4!)^q q!}.\n\\]\n\nFor each Type I family, there are \\(q\\) choices of the \\(4\\)-block and \\(\\binom42=6\\) choices of the center pair. Thus the number of extremal pairs attaining the maximum intersection is\n\n\\[\n6q\\cdot \\frac{(4q+2)!}{2(4!)^q q!}\n=\n\\frac{(4q+2)!}{8\\cdot 24^{q-1}(q-1)!}.\n\\]\n\nTherefore the ordered pair is\n\n\\[\n\\boxed{\\left(4q-2,\\ \\frac{(4q+2)!}{8\\cdot 24^{\\,q-1}(q-1)!}\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T08:48:19+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem111/336e07271f50.json"
+}
