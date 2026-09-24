@@ -1,18 +1,15 @@
 ## Steps
 
-Step 1: Write the survival recursions and separate the two modes
-Let
+Step 1: Derive the total-progeny generating-function system
+Let $T$ be the total number of individuals ever born, including the initial ancestor, and define
 $$
-a_n=mathbb P_A(Z_n>0),
+G_A(z)=\mathbb E_A[z^T],
 \qquad
-b_n=mathbb P_B(Z_n>0),
+G_B(z)=\mathbb E_B[z^T],
+\qquad
+0\leq z<1.
 $$
-where $Z_n$ is the total population in generation $n$, and the subscript records the initial type. Since survival through generation $0$ is certain,
-$$
-a_0=b_0=1.
-$$
-
-For a type $A$ parent, the offspring generating function is
+The offspring generating functions are
 $$
 F_A(s,t)
 =
@@ -20,9 +17,9 @@ F_A(s,t)
 +
 \frac{3}{8}s^2
 +
-\frac{1}{8}t^2.
+\frac{1}{8}t^2
 $$
-For a type $B$ parent,
+and
 $$
 F_B(s,t)
 =
@@ -32,403 +29,256 @@ F_B(s,t)
 +
 \frac{1}{4}t^3.
 $$
-Thus
+Conditioning on the first generation gives
 $$
-a_{n+1}
-=
-1-F_A(1-a_n,1-b_n)
-=
-\frac{3}{4}a_n
-+
-\frac{1}{4}b_n
--
-\frac{3}{8}a_n^2
--
-\frac{1}{8}b_n^2
-$$
-and
-$$
-b_{n+1}
-=
-1-F_B(1-a_n,1-b_n)
-=
-\frac{1}{4}a_n
-+
-\frac{3}{4}b_n
--
-\frac{3}{4}b_n^2
-+
-\frac{1}{4}b_n^3.
-$$
-
-The linearization at extinction is the mean offspring matrix
-$
-M=
-\begin{pmatrix}
-\frac{3}{4}&\frac{1}{4}\\
-\frac{1}{4}&\frac{3}{4}
-\end{pmatrix}.
-$
-Its eigenvectors $(1,1)$ and $(1,-1)$ have eigenvalues $1$ and $\frac{1}{2}$, respectively. This forces the Perron and stable coordinates
-$
-x_n=\frac{a_n+b_n}{2},
+G_A(z)=zF_A(G_A(z),G_B(z)),
 \qquad
-y_n=\frac{a_n-b_n}{2}.
-$
-Then $a_n=x_n+y_n$ and $b_n=x_n-y_n$. Substitution gives
+G_B(z)=zF_B(G_A(z),G_B(z)).
 $$
-x_{n+1}
-=
-x_n
--
-\frac{5}{8}x_n^2
-+
-\frac{1}{2}x_ny_n
--
-\frac{5}{8}y_n^2
-+
-\frac{1}{8}x_n^3
--
-\frac{3}{8}x_n^2y_n
-+
-\frac{3}{8}x_ny_n^2
--
-\frac{1}{8}y_n^3
+
+The process becomes extinct almost surely. To see this directly, suppose $(u,v)\in[0,1]^2$ is a fixed point of $(F_A,F_B)$ and put
+$$
+p=1-u,
+\qquad
+q=1-v.
+$$
+The fixed-point equations become
+$$
+2(p-q)+3p^2+q^2=0
 $$
 and
 $$
-y_{n+1}
+q-p+3q^2-q^3=0.
+$$
+The first equation gives $p\leq q$, while the second gives
+$$
+p=q+3q^2-q^3\geq q.
+$$
+Thus $p=q$, and then the first equation forces $p=q=0$. Hence $(1,1)$ is the only fixed point in $[0,1]^2$, so
+$$
+G_A(z)\to1,
+\qquad
+G_B(z)\to1
+$$
+as $z\uparrow1$.
+
+Step 2: Identify the critical and stable scales near the singular point
+Write
+$$
+z=1-t^2,
+\qquad
+p=1-G_A(z),
+\qquad
+q=1-G_B(z),
+$$
+where $t\downarrow0$, and set
+$$
+x=\frac{p+q}{2},
+\qquad
+y=\frac{p-q}{2}.
+$$
+Adding the two fixed-point equations gives the exact identity
+$$
+t^2(1-x)
 =
-\frac{1}{2}y_n
+(1-t^2)
+\left(
+\frac{3}{16}p^2
 +
-\frac{1}{8}x_n^2
+\frac{7}{16}q^2
 -
-x_ny_n
-+
-\frac{1}{8}y_n^2
--
-\frac{1}{8}x_n^3
-+
-\frac{3}{8}x_n^2y_n
--
-\frac{3}{8}x_ny_n^2
-+
-\frac{1}{8}y_n^3.
+\frac{1}{8}q^3
+\right).
+$$
+Since $0\leq p,q\leq1$, the bracket is bounded below by
+$$
+\frac{3}{16}p^2+\frac{5}{16}q^2
+\geq
+\frac{3}{8}x^2
+$$
+and above by a constant multiple of $x^2$. Therefore
+$$
+x=\Theta(t).
 $$
 
-Step 2: Establish extinction and the leading survival scale
-Because $0\leq a_n,b_n\leq1$,
+Subtracting the two fixed-point equations gives
 $$
-x_n-x_{n+1}
+(1+t^2)y
 =
-\frac{3}{16}a_n^2
+(1-t^2)
+\left(
+-\frac{3}{8}p^2
 +
-\frac{7}{16}b_n^2
+\frac{5}{8}q^2
 -
-\frac{1}{8}b_n^3.
+\frac{1}{4}q^3
+\right).
 $$
-Since $b_n\leq1$,
-$
-x_n-x_{n+1}
-\geq
-\frac{3}{16}a_n^2
-+
-\frac{5}{16}b_n^2
-\geq
-\frac{3}{16}(a_n^2+b_n^2)
-\geq
-\frac{3}{8}x_n^2.
-$
-Hence $(x_n)$ decreases to some limit $L\geq0$. If $L>0$, then for all large $n$ the decrement is at least $\frac{3L^2}{16}$, contradicting convergence of $x_n$. Therefore
+Hence
 $$
-x_n\to0.
+y=O(x^2)=O(t^2).
 $$
-Since $|y_n|\leq x_n$, also $y_n\to0$.
+This determines the natural rescaling
+$$
+x=tX,
+\qquad
+y=t^2Y.
+$$
 
-From the recurrence for $y_n$ and $|y_n|\leq x_n$,
+After substituting $p=tX+t^2Y$ and $q=tX-t^2Y$ into the two fixed-point equations, take their average and difference and divide by $t^2$. The resulting analytic equations have the expansions
 $$
-y_{n+1}
+0
 =
-\frac{1}{2}y_n
+1-\frac{5}{8}X^2
 +
-O(x_n^2).
+\frac{tX}{8}(X^2+4Y-8)
++
+O(t^2)
 $$
-Also the recurrence for $x_n$ gives
+and
 $$
-x_{n+1}=x_n+O(x_n^2),
+0
+=
+\frac{X^2-4Y}{8}
+-
+\frac{tX}{8}(X^2+8Y)
++
+O(t^2).
 $$
-so $x_{n+1}/x_n\to1$. Therefore, with
+At $t=0$, the positive solution is
 $$
-z_n=\frac{y_n}{x_n},
+X_0=\frac{2\sqrt{10}}{5},
+\qquad
+Y_0=\frac{2}{5}.
+$$
+
+Step 3: Justify and compute the first correction by the implicit function theorem
+Let $H_1(X,Y,t)$ and $H_2(X,Y,t)$ denote the two analytic left-hand sides from Step 2. At $(X_0,Y_0,0)$,
+$$
+\frac{\partial(H_1,H_2)}{\partial(X,Y)}
+=
+\begin{pmatrix}
+-\frac{5X_0}{4}&0\\
+\frac{X_0}{4}&-\frac{1}{2}
+\end{pmatrix},
+$$
+whose determinant is
+$$
+\frac{5X_0}{8}
+=
+\frac{\sqrt{10}}{4}
+\neq0.
+$$
+Thus the implicit function theorem gives unique analytic functions $X(t),Y(t)$ near $t=0$ corresponding to the physical branch.
+
+Write
+$$
+X(t)=X_0+X_1t+O(t^2),
+\qquad
+Y(t)=Y_0+Y_1t+O(t^2).
+$$
+The coefficient of $t$ in the first equation from Step 2 gives
+$$
+-\frac{5X_0}{4}X_1
++
+\frac{X_0}{8}(X_0^2+4Y_0-8)
+=
+0.
+$$
+Since
+$$
+X_0^2=\frac{8}{5},
+\qquad
+Y_0=\frac{2}{5},
+$$
+this becomes
+$$
+-\frac{5X_0}{4}X_1
+-
+\frac{3X_0}{5}
+=
+0,
+$$
+so
+$$
+X_1=-\frac{12}{25}.
+$$
+
+The coefficient of $t$ in the second equation gives
+$$
+\frac{X_0}{4}X_1
+-
+\frac{1}{2}Y_1
+-
+\frac{X_0}{8}(X_0^2+8Y_0)
+=
+0.
+$$
+Substituting $X_1=-12/25$, $X_0^2=8/5$, and $Y_0=2/5$ yields
+$$
+Y_1=-\frac{72\sqrt{10}}{125}.
+$$
+
+Step 4: Read off the two singular expansions
+Because
+$$
+p=x+y=tX(t)+t^2Y(t),
 $$
 we have
 $$
-z_{n+1}
+1-G_A(z)
 =
-\frac{1}{2}z_n+O(x_n).
-$$
-Since $|z_n|\leq1$, the recurrence implies
-$
-|z_{n+1}|
-\leq
-\left(\frac{1}{2}+o(1)\right)|z_n|+O(x_n).
-$
-Taking limit superior and using $x_n\to0$ gives
-$
-\limsup_{n\to\infty}|z_n|
-\leq
-\frac{1}{2}
-\limsup_{n\to\infty}|z_n|,
-$
-so
-$
-z_n\to0.
-$
-Thus $y_n=o(x_n)$.
-
-The $x_n$ recurrence now reduces to
-$$
-x_{n+1}
-=
-x_n
--
-\frac{5}{8}x_n^2
+\frac{2\sqrt{10}}{5}\sqrt{1-z}
 +
-o(x_n^2).
-$$
-Taking reciprocals,
-$$
-\frac{1}{x_{n+1}}
--
-\frac{1}{x_n}
-=
-\frac{5}{8}+o(1).
-$$
-By Stolz-Cesaro,
-$$
-\frac{1/x_n}{n}\to\frac{5}{8},
-$$
-hence
-$$
-n x_n\to\frac{8}{5}.
-$$
-
-Step 3: Determine the stable-mode correction
-We next sharpen $y_n=o(x_n)$ to its exact quadratic scale. The recurrence for $y_n$ can be written
-$$
-y_{n+1}
-=
-\frac{1}{2}y_n
-+
-\frac{1}{8}x_n^2
-+
-o(x_n^2),
-$$
-because every omitted term contains either an extra factor $x_n$ or $y_n=o(x_n)$.
-
-Let
-$$
-t_n=\frac{y_n}{x_n^2}.
-$$
-Because $y_n=o(x_n)$ and $x_{n+1}/x_n\to1$, the exact recurrences give, for all sufficiently large $n$,
-$
-|t_{n+1}|
-\leq
-\frac{3}{4}|t_n|+C
-$
-for one fixed constant $C$. Iteration gives
-$
-|t_n|
-\leq
-\left(\frac{3}{4}\right)^{n-N}|t_N|+4C,
-$
-so $(t_n)$ is bounded. Since $x_{n+1}/x_n\to1$, division by $x_{n+1}^2$ gives
-$$
-t_{n+1}
-=
-\frac{1}{2}t_n
-+
-\frac{1}{8}
-+
-o(1).
-$$
-Subtracting $\frac{1}{4}$,
-$$
-t_{n+1}-\frac{1}{4}
-=
-\frac{1}{2}
-\left(t_n-\frac{1}{4}\right)
-+
-o(1),
-$$
-and therefore
-$$
-t_n\to\frac{1}{4}.
+O(1-z).
 $$
 Thus
 $$
-y_n
-\sim
-\frac{1}{4}x_n^2.
+\kappa=\frac{2\sqrt{10}}{5}.
 $$
 
-Since
+Also
 $$
-a_n-b_n=2y_n,
-$$
-we obtain
-$$
-n^2(a_n-b_n)
+G_A(z)-G_B(z)
 =
-2\frac{y_n}{x_n^2}(n x_n)^2
-\longrightarrow
-2\cdot\frac{1}{4}\cdot\left(\frac{8}{5}\right)^2
+q-p
 =
-\frac{32}{25}.
-$$
-
-Step 4: Extract the logarithmic correction in the Perron mode
-Using $y_n=\left(\frac{1}{4}+o(1)\right)x_n^2$ in the exact recurrence for $x_n$,
-$$
-\frac{1}{2}x_ny_n
+-2y
 =
-\frac{1}{8}x_n^3+o(x_n^3),
+-2t^2Y(t).
 $$
-while every term containing $y_n^2$ or $x_n^2y_n$ is $O(x_n^4)$. Hence
+Using the expansion of $Y(t)$,
 $$
-x_{n+1}
+G_A(z)-G_B(z)
 =
-x_n
--
-\frac{5}{8}x_n^2
+-\frac{4}{5}(1-z)
 +
-\frac{1}{4}x_n^3
+\frac{144\sqrt{10}}{125}(1-z)^{3/2}
 +
-o(x_n^3).
+O((1-z)^2).
 $$
-Put
+Therefore
 $$
-A=\frac{5}{8},
+\alpha=\frac{4}{5},
 \qquad
-B=\frac{1}{4}.
-$$
-Then
-$$
-x_{n+1}
-=
-x_n\left(1-Ax_n+Bx_n^2+o(x_n^2)\right),
-$$
-so
-$$
-\frac{1}{x_{n+1}}
--
-\frac{1}{x_n}
-=
-A+(A^2-B)x_n+o(x_n).
-$$
-Here
-$$
-A^2-B
-=
-\frac{25}{64}-\frac{16}{64}
-=
-\frac{9}{64}.
+\beta=\frac{144\sqrt{10}}{125}.
 $$
 
-From Step 2,
-$$
-x_n\sim\frac{1}{An},
-$$
-and therefore
-$$
-\sum_{k=1}^{n}x_k
-=
-\frac{1}{A}\log n+o(\log n).
-$$
-Write the remainder in the reciprocal increment as $\varepsilon_nx_n$, where $\varepsilon_n\to0$. Since $x_n\sim1/(An)$,
-$
-\sum_{k=1}^{n}x_k
-=
-\frac{1}{A}\log n+o(\log n),
-$
-and for every fixed $N$,
-$
-\left|
-\sum_{k=N}^{n}\varepsilon_kx_k
-\right|
-\leq
-\sup_{k\geq N}|\varepsilon_k|
-\sum_{k=N}^{n}x_k.
-$
-Letting first $n\to\infty$ and then $N\to\infty$ shows that the accumulated remainder is $o(\log n)$. Hence
-$
-\frac{1}{x_n}
-=
-An
-+
-\frac{A^2-B}{A}\log n
-+
-o(\log n).
-$
-Since
-$$
-\frac{A^2-B}{A}
-=
-\frac{9}{40},
-$$
-we get
-$$
-\frac{
-\frac{1}{x_n}-\frac{5}{8}n
-}{
-\log n
-}
-\to
-\frac{9}{40}.
-$$
-
-Step 5: Transfer the logarithmic correction back to survival from type A
-Because
-$$
-a_n=x_n+y_n=x_n\left(1+t_nx_n\right)
-$$
-and $t_n\to1/4$,
-$$
-\frac{1}{a_n}
-=
-\frac{1}{x_n}
-\frac{1}{1+t_nx_n}
-=
-\frac{1}{x_n}
--
-t_n
-+
-o(1).
-$$
-Thus replacing $1/x_n$ by $1/a_n$ changes only a bounded term and does not affect the coefficient of $\log n$. Therefore
-$$
-\frac{
-\frac{1}{a_n}-\frac{5}{8}n
-}{
-\log n
-}
-\to
-\frac{9}{40}.
-$$
-Combining this with Step 3 gives the requested ordered pair.
-Final Answer: $\boxed{\left(\frac{32}{25},\frac{9}{40}\right)}$
+Step 5: Assemble the requested coefficient triple
+The leading square-root singularity of $G_A$ has coefficient $2\sqrt{10}/5$, while the type-asymmetry expansion has coefficients $4/5$ and $144\sqrt{10}/125$ in the normalization stated in the problem.
+Final Answer: $\boxed{\left(\frac{2\sqrt{10}}{5},\frac{4}{5},\frac{144\sqrt{10}}{125}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{32}{25},\frac{9}{40}\right)$
+$\left(\frac{2\sqrt{10}}{5},\frac{4}{5},\frac{144\sqrt{10}}{125}\right)$
 
 ---
 
 ## Classification
 
-**Problem Type:** Exact computation
+**Problem Type:** Parameter identification
 
 **Answer Type:** Tuple or ordered list
 
@@ -437,7 +287,7 @@ $\left(\frac{32}{25},\frac{9}{40}\right)$
 ## Solution Concepts
 
 - multitype branching processes
-- survival probability recursions
-- perron and stable modes
-- nonlinear asymptotic recurrences
-- logarithmic correction terms
+- total progeny generating functions
+- critical singularity scaling
+- implicit function theorem
+- stable mode asymptotics
