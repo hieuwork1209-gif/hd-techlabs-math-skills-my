@@ -1,519 +1,357 @@
 ## Steps
 
-Step 1: Find the critical Jordan coordinates
-Let
+Step 1: Encode the renewal event and the conditional count by generating functions
+Let $Y_1,Y_2,\ldots$ be the inter-renewal times, with
 $$
-X_n=(R_n,G_n,B_n)
+\mathbb P(Y_1=k)=\frac{1}{k(k+1)},
+\qquad
+k\geq1.
 $$
-be the urn composition after $n$ draws, with
+Write
 $$
-X_0=(4,4,4).
+\tau_0=0,
+\qquad
+\tau_m=Y_1+\cdots+Y_m,
 $$
-The replacement matrix is
+and
 $$
-M=
-\begin{pmatrix}
-9&3&0\\
-1&7&4\\
-2&2&8
-\end{pmatrix}.
+u_n=\mathbb P(n\in\{\tau_m:m\geq0\}).
 $$
-Every row sum is $12$, so the total number of balls is deterministic:
+The inter-renewal probability generating function is
 $$
-S_n=R_n+G_n+B_n=12(n+1).
+f(z)
+=
+\sum_{k\geq1}\frac{z^k}{k(k+1)}.
+$$
+Since
+$$
+\frac{1}{k(k+1)}
+=
+\frac{1}{k}-\frac{1}{k+1},
+$$
+we obtain, with
+$$
+L(z)=\log\frac{1}{1-z},
+$$
+that
+$$
+f(z)
+=
+1-\frac{1-z}{z}L(z).
+$$
+Hence the renewal generating function is
+$$
+U(z)
+=
+\sum_{n\geq0}u_nz^n
+=
+\frac{1}{1-f(z)}
+=
+\frac{z}{(1-z)L(z)}.
 $$
 
-The non-Perron part of $M$ has a Jordan chain at the critical eigenvalue $6$. Indeed, for
+On the event $n\in\{\tau_m:m\geq0\}$, let $K_n$ be the unique index such that $\tau_{K_n}=n$. Introduce
 $$
-u=
-\begin{pmatrix}
-1\\-1\\0
-\end{pmatrix},
-\qquad
-v=
-\begin{pmatrix}
-1\\1\\-2
-\end{pmatrix},
-$$
-we have
-$$
-Mu=6u,
-\qquad
-Mv=6v+6u.
-$$
-Define
-$$
-U_n=X_nu=R_n-G_n,
-\qquad
-V_n=X_nv=R_n+G_n-2B_n.
-$$
-If the drawn color is red, green, or blue, the corresponding increments of $(U_n,V_n)$ are
-$$
-(6,12),
-\qquad
-(-6,0),
-\qquad
-(0,-12).
-$$
-Hence
-$$
-\mathbb E[\Delta U_n\mid\mathcal F_n]
+U(z,s)
 =
-\frac{6U_n}{S_n},
-$$
-and
-$$
-\mathbb E[\Delta V_n\mid\mathcal F_n]
+\sum_{m\geq0}s^m f(z)^m
 =
-\frac{6(U_n+V_n)}{S_n}.
+\frac{1}{1-sf(z)}.
 $$
-Since $U_0=V_0=0$,
+Differentiating in $s$ and then setting $s=1$ gives
 $$
-\mathbb E U_n=\mathbb E V_n=0.
+\sum_{n\geq0}
+u_n\,
+\mathbb E[K_n\mid n\in\{\tau_m\}]z^n
+=
+\frac{f(z)}{(1-f(z))^2}
+=
+U(z)^2-U(z).
+$$
+Likewise,
+$$
+\sum_{n\geq0}
+u_n\,
+\mathbb E[K_n(K_n-1)\mid n\in\{\tau_m\}]z^n
+=
+\frac{2f(z)^2}{(1-f(z))^3}
+=
+2\left(U(z)^3-2U(z)^2+U(z)\right).
 $$
 
-Step 2: Obtain the covariance scales needed for normalization
-Because
+Step 2: Derive the logarithmic coefficient expansion needed for powers of the renewal function
+For $r\in\{1,2,3\}$, set
 $$
-R_n
+F_r(z)
 =
-\frac{S_n}{3}
-+
-\frac{U_n}{2}
-+
-\frac{V_n}{6},
-$$
-$$
-G_n
+U(z)^r
 =
-\frac{S_n}{3}
--
-\frac{U_n}{2}
-+
-\frac{V_n}{6},
+\frac{z^r}{(1-z)^rL(z)^r}.
 $$
-and
-$$
-B_n
-=
-\frac{S_n}{3}
--
-\frac{V_n}{3},
-$$
-the conditional quadratic increment moments are
-$$
-\mathbb E[(\Delta U_n)^2\mid\mathcal F_n]
-=
-24+12\frac{V_n}{S_n},
-$$
-$$
-\mathbb E[\Delta U_n\Delta V_n\mid\mathcal F_n]
-=
-24+36\frac{U_n}{S_n}+12\frac{V_n}{S_n},
-$$
-and
-$$
-\mathbb E[(\Delta V_n)^2\mid\mathcal F_n]
-=
-96+72\frac{U_n}{S_n}-24\frac{V_n}{S_n}.
-$$
+We need the first correction to the coefficients of $F_r$.
 
-Set
-$$
-A_n=\mathbb E[U_n^2],
-\qquad
-C_n=\mathbb E[U_nV_n],
-\qquad
-D_n=\mathbb E[V_n^2].
-$$
-Expanding
-$$
-U_{n+1}=U_n+\Delta U_n,
-\qquad
-V_{n+1}=V_n+\Delta V_n
-$$
-and taking expectations gives
-$$
-A_{n+1}
-=
-\frac{n+2}{n+1}A_n+24,
-$$
-$$
-C_{n+1}
-=
-\frac{n+2}{n+1}C_n
-+
-\frac{A_n}{2(n+1)}
-+
-24,
-$$
-and
-$$
-D_{n+1}
-=
-\frac{n+2}{n+1}D_n
-+
-\frac{C_n}{n+1}
-+
-96.
-$$
+Use the principal branch of $L(z)$ in a neighborhood of the closed unit disk slit along $[1,\infty)$. The factor $z^r/L(z)^r$ has a removable singularity at $z=0$, so $z=1$ is the only singularity on the circle of convergence. Cauchy's coefficient contour can therefore be deformed to a Hankel contour around the cut at $z=1$.
+
 Put
-$
-a_n=\frac{A_n}{n+1},
-\qquad
-c_n=\frac{C_n}{n+1},
-\qquad
-d_n=\frac{D_n}{n+1}.
-$
-Then
-$
-a_{n+1}=a_n+\frac{24}{n+2},
-$
-$
-c_{n+1}
-=
-c_n+\frac{a_n/2+24}{n+2},
-$
-and
-$
-d_{n+1}
-=
-d_n+\frac{c_n+96}{n+2}.
-$
-Since $a_0=c_0=d_0=0$,
-$
-a_n=24\log n+O(1).
-$
-Using
-$
-\sum_{k\leq n}\frac{\log k}{k}
-=
-\frac{1}{2}(\log n)^2+O(1)
-$
-and
-$
-\sum_{k\leq n}\frac{(\log k)^2}{k}
-=
-\frac{1}{3}(\log n)^3+O((\log n)^2),
-$
-the next two recurrences give
-$
-c_n=6(\log n)^2+O(\log n),
-$
-and
-$
-d_n=2(\log n)^3+O((\log n)^2).
-$
-Therefore
-$
-A_n
-=
-24n\log n+O(n),
-$
-$
-C_n
-=
-6n(\log n)^2+O(n\log n),
-$
-and
-$
-D_n
-=
-2n(\log n)^3+O(n(\log n)^2).
-$
-Therefore, with
 $$
-L_n=\log n,
+z=1-\frac{w}{n}.
 $$
-the natural normalization is
+On a truncated Hankel contour with $|w|\leq(\log n)^2$,
 $$
+z^{-n-1}
+=
+e^w\left(1+O\left(\frac{1+|w|^2}{n}\right)\right),
+$$
+$$
+(1-z)^{-r}
+=
+n^rw^{-r},
+$$
+and
+$$
+L(z)
+=
+\log n-\log w.
+$$
+Also $z^r=1+O(|w|/n)$. Writing $L_n=\log n$,
+$$
+\frac{1}{L(z)^r}
+=
+\frac{1}{L_n^r}
 \left(
-\frac{U_n}{\sqrt{nL_n}},
-\frac{V_n}{\sqrt{nL_n^3}}
-\right),
+1+\frac{r\log w}{L_n}
++O\left(\frac{(1+|\log w|)^2}{L_n^2}\right)
+\right).
 $$
-whose limiting covariance matrix, if a joint limit exists, must be
+The tails of the Hankel contour are exponentially small because of the factor $e^w$, while the part of the original contour bounded away from $z=1$ contributes exponentially less than the displayed scale. Therefore
 $$
-\Gamma=
-\begin{pmatrix}
-24&6\\
-6&2
-\end{pmatrix}.
-$$
-
-Step 3: Write the exact martingale array representation
-Define centered innovations
-$$
-\eta_{n+1}^U
+[z^n]F_r(z)
 =
-\Delta U_n
--
-\mathbb E[\Delta U_n\mid\mathcal F_n],
-$$
-$$
-\eta_{n+1}^V
-=
-\Delta V_n
--
-\mathbb E[\Delta V_n\mid\mathcal F_n].
-$$
-Then
-$$
-\begin{pmatrix}
-U_{n+1}\\
-V_{n+1}
-\end{pmatrix}
-=
-\begin{pmatrix}
-a_n&0\\
-b_n&a_n
-\end{pmatrix}
-\begin{pmatrix}
-U_n\\
-V_n
-\end{pmatrix}
+\frac{n^{r-1}}{L_n^r}
+\left(
+I_r
 +
-\begin{pmatrix}
-\eta_{n+1}^U\\
-\eta_{n+1}^V
-\end{pmatrix},
+\frac{rJ_r}{L_n}
++
+O\left(\frac{1}{L_n^2}\right)
+\right),
 $$
 where
 $$
-a_n=1+\frac{1}{2(n+1)},
-\qquad
-b_n=\frac{1}{2(n+1)}.
-$$
-For $0\leq k<n$, put
-$$
-P_{k,n}
+I_r
 =
-\prod_{j=k}^{n-1}a_j
+\frac{1}{2\pi i}
+\int_{\mathcal H}e^ww^{-r}\,dw
 $$
 and
 $$
-H_{k,n}
+J_r
 =
-\sum_{j=k}^{n-1}\frac{b_j}{a_j}.
+\frac{1}{2\pi i}
+\int_{\mathcal H}e^ww^{-r}\log w\,dw.
 $$
-Because the nilpotent part of the transition matrices squares to zero,
+
+Hankel's reciprocal-gamma formula gives
 $$
-U_n
+I_r=\frac{1}{\Gamma(r)}.
+$$
+Differentiating
+$$
+\frac{1}{\Gamma(\alpha)}
 =
-\sum_{k=0}^{n-1}
-P_{k+1,n}\eta_{k+1}^U
+\frac{1}{2\pi i}
+\int_{\mathcal H}e^ww^{-\alpha}\,dw
 $$
-and
+with respect to $\alpha$ at $\alpha=r$ yields
 $$
-V_n
+J_r
 =
-\sum_{k=0}^{n-1}
-P_{k+1,n}
+\frac{\psi(r)}{\Gamma(r)},
+$$
+where $\psi=\Gamma'/\Gamma$. For positive integers,
+$$
+\psi(r)=H_{r-1}-\gamma,
+$$
+with $H_0=0$ and $\gamma$ Euler's constant. Hence
+$$
+[z^n]U(z)^r
+=
+\frac{n^{r-1}}{\Gamma(r)L_n^r}
 \left(
-\eta_{k+1}^V
+1+
+\frac{r(H_{r-1}-\gamma)}{L_n}
 +
-H_{k+1,n}\eta_{k+1}^U
+O\left(\frac{1}{L_n^2}\right)
 \right).
 $$
 
-The products satisfy
+Step 3: Specialize the coefficient expansion to the first three powers
+Applying Step 2 with $r=1$ gives
 $$
-P_{k+1,n}^2
+u_n
 =
-\frac{n}{k+1}
+[z^n]U(z)
+=
+\frac{1}{L_n}
 \left(
-1+O\left(\frac{1}{k+1}\right)
+1-\frac{\gamma}{L_n}
++
+O\left(\frac{1}{L_n^2}\right)
+\right).
+$$
+
+For $r=2$,
+$$
+[z^n]U(z)^2
+=
+\frac{n}{L_n^2}
+\left(
+1+
+\frac{2(1-\gamma)}{L_n}
++
+O\left(\frac{1}{L_n^2}\right)
+\right).
+$$
+
+For $r=3$,
+$$
+[z^n]U(z)^3
+=
+\frac{n^2}{2L_n^3}
+\left(
+1+
+\frac{3(\frac{3}{2}-\gamma)}{L_n}
++
+O\left(\frac{1}{L_n^2}\right)
+\right).
+$$
+
+Step 4: Extract the second-order conditional mean
+Let
+$$
+m_n
+=
+\mathbb E[K_n\mid n\in\{\tau_m\}].
+$$
+From Step 1,
+$$
+u_nm_n
+=
+[z^n](U^2-U).
+$$
+The $U$ term is negligible compared with $[z^n]U^2$ at the scale needed below, so Steps 2 and 3 give
+$$
+m_n
+=
+\frac{n}{L_n}
+\frac{
+1+\frac{2(1-\gamma)}{L_n}+O(L_n^{-2})
+}{
+1-\frac{\gamma}{L_n}+O(L_n^{-2})
+}
++O(1).
+$$
+Thus
+$$
+m_n
+=
+\frac{n}{L_n}
+\left(
+1+
+\frac{2-\gamma}{L_n}
++
+O\left(\frac{1}{L_n^2}\right)
+\right).
+$$
+Therefore
+$$
+L_n
+\left(
+\frac{L_n}{n}m_n-1
 \right)
-$$
-uniformly once $k$ is large, because
-$$
-2\log P_{k+1,n}
-=
-\sum_{j=k+1}^{n-1}
-2\log\left(1+\frac{1}{2(j+1)}\right)
-=
-\log\frac{n}{k+1}
-+
-O\left(\frac{1}{k+1}\right).
-$$
-Also
-$$
-H_{k+1,n}
-=
-\frac{1}{2}\log\frac{n}{k+1}
-+
-O\left(\frac{1}{k+1}\right).
+\longrightarrow
+2-\gamma.
 $$
 
-Step 4: Prove the joint Gaussian limit
-For fixed $n$, the summands in Step 3 form a two-dimensional martingale-difference array after the deterministic normalization
+Step 5: Use the first correction to resolve the variance cancellation
+Let
 $$
-\xi_{n,k}
+v_n
 =
-\begin{pmatrix}
-\frac{P_{k+1,n}\eta_{k+1}^U}{\sqrt{nL_n}}\\
-\frac{P_{k+1,n}(\eta_{k+1}^V+H_{k+1,n}\eta_{k+1}^U)}
-{\sqrt{nL_n^3}}
-\end{pmatrix}.
+\operatorname{Var}(K_n\mid n\in\{\tau_m\}).
 $$
-The urn increments are bounded, and the estimates for $P_{k+1,n}$ and $H_{k+1,n}$ give
+From Step 1,
 $$
-\max_{0\leq k<n}\|\xi_{n,k}\|
+u_n
+\mathbb E[K_n(K_n-1)\mid n\in\{\tau_m\}]
 =
-O\left(\frac{1}{\sqrt{L_n}}\right)
-\to0.
+2[z^n](U^3-2U^2+U).
 $$
-
-The conditional variance of $\eta_{k+1}^U$ is
+After division by $u_n$, the $U^2$ and $U$ contributions are
 $$
-24+12\frac{V_k}{S_k}
--
-\left(\frac{U_k}{2(k+1)}\right)^2.
+O\left(\frac{n}{L_n}\right),
 $$
-The state-dependent correction is negligible in all three normalized quadratic-variation sums. For example,
+which is
 $$
-\mathbb E|V_k|
-\leq
-\sqrt{D_k}
-=
-O\left(\sqrt{k(\log k)^3}\right),
-$$
-so its contribution to the first coordinate is bounded in expectation by
-$$
-\frac{C}{nL_n}
-\sum_{k=1}^{n}
-\frac{n}{k}
-\frac{\sqrt{k(\log k)^3}}{k}
-=
-O\left(\frac{1}{L_n}\right).
-$$
-The same estimate with one or two additional factors of $H_{k+1,n}$ shows that the corrections vanish for the cross and second-coordinate quadratic variations as well. Terms containing $\eta^V$ without the Jordan factor have one or two fewer powers of $\log n$ and are also negligible at these scales.
-
-Therefore the conditional quadratic variation converges in probability to
-$$
-\Gamma
-=
-\begin{pmatrix}
-24&6\\
-6&2
-\end{pmatrix}.
-$$
-Indeed, the three leading sums reduce to
-$$
-\frac{24}{L_n}
-\sum_{k\leq n}\frac{1}{k}
-\to24,
-$$
-$$
-\frac{12}{L_n^2}
-\sum_{k\leq n}
-\frac{\log(n/k)}{k}
-\to6,
-$$
-and
-$$
-\frac{6}{L_n^3}
-\sum_{k\leq n}
-\frac{\log^2(n/k)}{k}
-\to2.
-$$
-
-For completeness, the needed martingale central limit step follows from conditional characteristic functions. For a fixed vector $t\in\mathbb R^2$,
-$$
-\mathbb E[
-e^{i t^T\xi_{n,k}}
-\mid\mathcal F_k]
-=
-1
--
-\frac{1}{2}
-t^T
-\mathbb E[
-\xi_{n,k}\xi_{n,k}^T
-\mid\mathcal F_k]
-t
-+
-r_{n,k},
-$$
-where bounded increments give
-$$
-\sum_k|r_{n,k}|
-\leq
-C\max_k\|\xi_{n,k}\|
-\sum_k
-\mathbb E[
-\|\xi_{n,k}\|^2
-\mid\mathcal F_k]
-\to0
-$$
-in probability. Iterating conditional expectations therefore gives convergence of characteristic functions to
-$$
-\exp\left(-\frac{1}{2}t^T\Gamma t\right).
+o\left(\frac{n^2}{L_n^3}\right).
 $$
 Hence
 $$
+\mathbb E[K_n(K_n-1)\mid n\in\{\tau_m\}]
+=
+\frac{n^2}{L_n^2}
 \left(
-\frac{U_n}{\sqrt{n\log n}},
-\frac{V_n}{\sqrt{n(\log n)^3}}
-\right)
-\Longrightarrow
-N(0,\Gamma).
+1+
+\frac{\frac{9}{2}-2\gamma}{L_n}
++
+O\left(\frac{1}{L_n^2}\right)
+\right).
 $$
-
-Step 5: Evaluate the limiting quadrant probability
-After standardizing the two coordinates of the limiting Gaussian, the correlation is
+Also Step 4 gives
 $$
-\rho
+m_n^2
 =
-\frac{6}{\sqrt{24\cdot2}}
+\frac{n^2}{L_n^2}
+\left(
+1+
+\frac{4-2\gamma}{L_n}
++
+O\left(\frac{1}{L_n^2}\right)
+\right).
+$$
+Since the additional $m_n$ term in
+$$
+v_n
 =
-\frac{\sqrt{3}}{2}.
+\mathbb E[K_n(K_n-1)\mid n\in\{\tau_m\}]
++
+m_n
+-
+m_n^2
 $$
-Let $X,Z$ be independent standard normal variables. A standard bivariate normal pair with correlation $\rho$ can be written as
+is negligible on the scale $n^2/L_n^3$, the leading terms cancel and
 $$
-(X,\rho X+\sqrt{1-\rho^2}Z).
-$$
-Here
-$$
-\rho X+\sqrt{1-\rho^2}Z
+v_n
 =
-\frac{\sqrt{3}}{2}X+\frac{1}{2}Z.
+\frac{1}{2}
+\frac{n^2}{L_n^3}
++
+o\left(\frac{n^2}{L_n^3}\right).
 $$
-Because $(X,Z)$ is rotationally symmetric in the plane, the event
+Therefore
 $$
-X>0,
-\qquad
-\frac{\sqrt{3}}{2}X+\frac{1}{2}Z>0
+\frac{L_n^3}{n^2}v_n
+\longrightarrow
+\frac{1}{2}.
 $$
-is a wedge of angle
-$$
-\frac{5\pi}{6}.
-$$
-Its probability is therefore
-$$
-\frac{5\pi/6}{2\pi}
-=
-\frac{5}{12}.
-$$
-Since the limiting Gaussian assigns probability zero to the boundary lines, convergence in distribution gives
-$$
-\mathbb P(U_n>0,V_n>0)
-\to
-\frac{5}{12}.
-$$
-In the original urn variables this is exactly the event
-$$
-R_n>G_n,
-\qquad
-R_n+G_n>2B_n.
-$$
-Final Answer: $\boxed{\frac{5}{12}}$
+Combining Steps 4 and 5 gives the requested pair.
+Final Answer: $\boxed{\left(2-\gamma,\frac{1}{2}\right)}$
 
 ---
 
 ## Answer
 
-$\frac{5}{12}$
+$\left(2-\gamma,\frac{1}{2}\right)$
 
 ---
 
@@ -521,14 +359,14 @@ $\frac{5}{12}$
 
 **Problem Type:** Exact computation
 
-**Answer Type:** Exact scalar
+**Answer Type:** Tuple or ordered list
 
 ---
 
 ## Solution Concepts
 
-- generalized polya urns
-- jordan chain decomposition
-- martingale difference arrays
-- multivariate central limit theorem
-- gaussian quadrant probabilities
+- renewal processes
+- probability generating functions
+- logarithmic singularity analysis
+- hankel contour asymptotics
+- conditional moment asymptotics
