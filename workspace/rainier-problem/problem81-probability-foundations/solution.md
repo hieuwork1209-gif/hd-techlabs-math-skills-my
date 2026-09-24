@@ -288,7 +288,7 @@ n^2(a_n-b_n)
 $$
 
 Step 4: Extract the logarithmic correction in the Perron mode
-Using $y_n=(1/4+o(1))x_n^2$ in the exact recurrence for $x_n$,
+Using $y_n=\left(\frac{1}{4}+o(1)\right)x_n^2$ in the exact recurrence for $x_n$,
 $$
 \frac{1}{2}x_ny_n
 =
