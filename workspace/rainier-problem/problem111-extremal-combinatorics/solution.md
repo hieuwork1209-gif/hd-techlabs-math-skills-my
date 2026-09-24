@@ -74,9 +74,11 @@ $$
 |\mathcal F|\leq4q.
 $$
 
-Equality means total deficit $2$. If every component has deficit $0$, then all components are full $4$-set components and exactly two ground elements are unused.
+Equality means total deficit $2$. The possible distributions are: two unused elements with all component deficits $0$; one deficit-$2$ component with no unused elements; one deficit-$1$ component with one unused element; or two deficit-$1$ components.
 
-Otherwise, there is one deficit-$2$ component, no unused elements, and every other component is a full $4$-set component. The special component must be a fixed-pair component: a singleton support has size $3$, which cannot leave a multiple of $4$ ground elements. If its support size is $s$, then
+In the first case, all components are full $4$-set components and exactly two ground elements are unused.
+
+In the second case, every other component is a full $4$-set component. The special component must be a fixed-pair component: a singleton support has size $3$, which cannot leave a multiple of $4$ ground elements. If its support size is $s$, then
 $$
 s\equiv4q+2\equiv2\pmod4,
 $$
@@ -90,7 +92,7 @@ $$
 $$
 which has $4j$ members. The remaining $4(q-j)$ elements split into $q-j$ disjoint $4$-sets, each contributing all four of its triples.
 
-The remaining formal possibility would be two deficit-$1$ components or one deficit-$1$ component together with one unused element. In either case all component supports have size divisible by $4$, contradicting the congruence of the used ground-set size modulo $4$. These are all equality cases.
+In the last two distributions, every component support has size divisible by $4$, but the used ground-set size would be $4q+1$ or $4q+2$, respectively. Neither is divisible by $4$. Thus these distributions are impossible, and the two structures already described are all equality cases.
 
 Step 3: Count the extremal families with two unused elements
 For the first equality type, choose the two unused elements and partition the remaining $4q$ elements into $q$ unlabeled blocks of size $4$. Each block contributes all four triples on that block. The number is
