@@ -184,7 +184,7 @@ we have $t_*>1$, and
 $$
 K>\kappa(1)=\frac{2}{3}.
 $$
-For $0<\kappa<K$, there are exactly two positive solutions of $\kappa(t)=\kappa$; for $\kappa=K$ there is exactly one; for $\kappa>K$ there are none. At $\kappa=2/3$, one of the two positive solutions is $t=1$, which produces only the synchronized equilibria already counted.
+For $0<\kappa<K$, there are exactly two positive solutions of $\kappa(t)=\kappa$; for $\kappa=K$ there is exactly one; for $\kappa>K$ there are none. At $\kappa=\frac{2}{3}$, one of the two positive solutions is $t=1$, which produces only the synchronized equilibria already counted.
 
 The total number of distinct equilibria is therefore
 $$
@@ -217,7 +217,7 @@ At $(0,0,0)$ the synchronized eigenvalue is $1>0$, so the origin is unstable. At
 $$
 -2+3\kappa.
 $$
-Both nonzero synchronized equilibria are asymptotically stable for $0<\kappa<2/3$ and unstable for $\kappa>2/3$.
+Both nonzero synchronized equilibria are asymptotically stable for $0<\kappa<\frac{2}{3}$ and unstable for $\kappa>\frac{2}{3}$.
 
 Every all-distinct equilibrium has one coordinate equal to $0$. For the corresponding coordinate vector $e_i$,
 $$
@@ -279,7 +279,7 @@ $$
 The displayed determinant is then negative, so this branch is also unstable. The six negative-branch equilibria are the only nonsynchronized stable equilibria.
 
 Step 5: Combine multiplicity and stability
-For $0<\kappa<2/3$, the six stable negative-branch equilibria are joined by the two stable synchronized equilibria, so there are at least eight asymptotically stable equilibria. For $\kappa>2/3$, the synchronized equilibria and every positive branch are unstable, while the negative branch contributes exactly six stable equilibria.
+For $0<\kappa<\frac{2}{3}$, the six stable negative-branch equilibria are joined by the two stable synchronized equilibria, so there are at least eight asymptotically stable equilibria. For $\kappa>\frac{2}{3}$, the synchronized equilibria and every positive branch are unstable, while the negative branch contributes exactly six stable equilibria.
 
 Step 3 shows that the system has exactly $27$ distinct equilibria exactly when
 $$
@@ -302,13 +302,13 @@ $$
 <
 K.
 $$
-Final Answer: $\boxed{\{\kappa>0:\frac23<\kappa<\max_{t>0}\frac{t(t+1)}{t^3+2}\}}$
+Final Answer: $\boxed{\{\kappa>0:\frac{2}{3}<\kappa<\max_{t>0}\frac{t(t+1)}{t^3+2}\}}$
 
 ---
 
 ## Answer
 
-$\{\kappa>0:\frac23<\kappa<\max_{t>0}\frac{t(t+1)}{t^3+2}\}$
+$\{\kappa>0:\frac{2}{3}<\kappa<\max_{t>0}\frac{t(t+1)}{t^3+2}\}$
 
 ---
 
