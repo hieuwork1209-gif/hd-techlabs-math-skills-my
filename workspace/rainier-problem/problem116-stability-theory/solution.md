@@ -91,7 +91,7 @@ Choose $R$ with
 $$
 e^{-\alpha}\rho_*<R<1.
 $$
-The simplex of triples $(x,y,z)$ is compact, and $Phi(x,y,z)$ depends continuously on the triple. Hence the family
+The simplex of triples $(x,y,z)$ is compact, and $\\Phi(x,y,z)$ depends continuously on the triple. Hence the family
 $$
 \mathcal F=\{\Phi(x,y,z):x,y,z\geq0,\ x+y+z=1\}
 $$
