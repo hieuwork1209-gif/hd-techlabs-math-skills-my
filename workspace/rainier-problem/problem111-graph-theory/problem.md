@@ -2,26 +2,29 @@
 
 ## LaTeX (Normalized)
 
-For $n\geq3$, let $W_n$ be the wheel graph with rim cycle
+Let $n\geq3$ be odd, and let $W_n$ be the wheel graph with rim cycle
 $$
 v_0v_1\cdots v_{n-1}v_0
 $$
 and hub $h$ adjacent to every rim vertex.
 
-Let $Q_n$ be the reduced Laplacian obtained by deleting the row and column of $h$ from the Laplacian of $W_n$. The critical group of $W_n$ is
+Let $Q_n$ be the reduced Laplacian obtained by deleting the row and column of $h$ from the Laplacian of $W_n$, and let
 $$
-K(W_n)=\mathbb Z^n/Q_n\mathbb Z^n.
+K(W_n)=\mathbb Z^n/Q_n\mathbb Z^n
+$$
+be the critical group.
+
+Let $e_0,\ldots,e_{n-1}$ be the standard basis of $\mathbb Z^n$. For $1\leq k\leq n-1$, let
+$$
+\delta_k=[e_k-e_0]\in K(W_n).
 $$
 
-Let the Fibonacci and Lucas sequences be defined by
-$$
-F_0=0,\quad F_1=1,\quad F_{j+1}=F_j+F_{j-1}\quad(j\geq1),
-$$
+Let the Lucas sequence be defined by
 $$
 L_0=2,\quad L_1=1,\quad L_{j+1}=L_j+L_{j-1}\quad(j\geq1).
 $$
 
-Determine the non-unit invariant factors of the Smith normal form of $Q_n$, listed in divisibility order as an ordered tuple.
+Determine the order of $\delta_k$ in $K(W_n)$.
 
 ---
 
@@ -31,11 +34,11 @@ Determine the non-unit invariant factors of the Smith normal form of $Q_n$, list
 |---|---|
 | **Domain** | Discrete Mathematics and Combinatorics |
 | **Sub-domain** | Graph theory |
-| **Problem Type** | Canonicalization or normalization |
-| **Answer Type** | Tuple or ordered list |
+| **Problem Type** | Symbolic derivation |
+| **Answer Type** | Exact symbolic expression |
 
 ---
 
 ## Domain Explanation
 
-The requested object is the non-unit Smith invariant factors of the reduced Laplacian of a wheel graph, equivalently the canonical decomposition of its critical group. The solution must compress the cyclic integer presentation and determine its invariant factors through a Fibonacci transfer recurrence.
+The requested quantity is the order of a specified divisor class in the critical group of a wheel graph. The solution must track that class through a compressed Laplacian presentation and combine the resulting transfer recurrence with a divisibility compatibility for matrix powers.
