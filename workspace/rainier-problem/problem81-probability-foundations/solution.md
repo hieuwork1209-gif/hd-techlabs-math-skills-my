@@ -1,227 +1,257 @@
 ## Steps
 
-Step 1: Convert the agreement probabilities into moments on the unit interval
-Let
+Step 1: Reduce the collision probabilities to two symmetric power sums
+Let the random latent probability vector be $Q=(Q_1,Q_2,Q_3)$, and for one realization $q=(q_1,q_2,q_3)$ define
 $$
-Y=2P-1,
-qquad
-Z=Y^2.
+s_k(q)=q_1^k+q_2^k+q_3^k.
 $$
-The symmetry of the law of $P$ under $P\mapsto1-P$ makes the law of $Y$ symmetric under $Y\mapsto-Y$, and $0\leq Z\leq1$.
-
-Conditioned on $P$, the event that the first $2m$ tosses are all equal has probability
+Conditional on $Q=q$, the probability that the first $k$ observations are all equal is $s_k(q)$. Hence, with
 $$
-P^{2m}+(1-P)^{2m}.
+x=s_2(Q),
+\qquad
+y=s_3(Q),
 $$
-Therefore, writing $m_j=\mathbb E[Z^j]$,
+the hypotheses are
 $$
-A_{2m}:=\mathbb P(X_1=\cdots=X_{2m})
-=
-\frac{1}{2^{2m-1}}
-\sum_{j=0}^{m}
-\binom{2m}{2j}m_j,
-$$
-where $m_0=1$. The given values imply
-$$
-\frac{1+m_1}{2}=\frac{3}{4},
-$$
-so
-$$
-m_1=\frac{1}{2}.
-$$
-Next,
-$$
-\frac{1+6m_1+m_2}{8}=\frac{13}{24},
-$$
-hence
-$$
-m_2=\frac{1}{3}.
-$$
-Finally,
-$$
-\frac{1+15m_1+15m_2+m_3}{32}=\frac{55}{128},
-$$
-which gives
-$$
-m_3=\frac{1}{4}.
+\mathbb E x=\frac{1}{2},
+\qquad
+\mathbb E y=\frac{11}{36}.
 $$
 
-For eight tosses,
+For a deterministic probability vector $q$, put
 $$
-A_8
-=
-\frac{1+28m_1+70m_2+28m_3+m_4}{128}
-=
-\frac{\frac{136}{3}+m_4}{128}.
-$$
-Thus the problem is exactly to find the sharp possible range of $m_4=\mathbb E[Z^4]$ among random variables $Z\in[0,1]$ satisfying
-$$
-\mathbb E Z=\frac{1}{2},
+e_2=q_1q_2+q_2q_3+q_3q_1,
 \qquad
-\mathbb E Z^2=\frac{1}{3},
+e_3=q_1q_2q_3.
+$$
+Since $q_1+q_2+q_3=1$,
+$$
+x=1-2e_2,
 \qquad
-\mathbb E Z^3=\frac{1}{4}.
+y=1-3e_2+3e_3.
 $$
-
-Step 2: Obtain the sharp lower bound for the fourth moment
-The first three moments determine the quadratic that is orthogonal to both $1$ and $Z$. Write
+Newton's identities give
 $$
-q(z)=z^2-az-b
+s_4=s_3-e_2s_2+e_3
 $$
-and impose
-$$
-\mathbb E q(Z)=0,
-\qquad
-\mathbb E[Zq(Z)]=0.
-$$
-Using the three known moments gives
-$$
-\frac{1}{3}-\frac{a}{2}-b=0,
-\qquad
-\frac{1}{4}-\frac{a}{3}-\frac{b}{2}=0.
-$$
-Solving yields
-$$
-a=1,
-\qquad
-b=-\frac{1}{6},
-$$
-so
-$$
-q(z)=z^2-z+\frac{1}{6}.
-$$
-Since $q(Z)^2\geq0$,
-$$
-0
-\leq
-\mathbb E[q(Z)^2]
-=
-m_4-2m_3+\frac{4}{3}m_2-\frac{1}{3}m_1+\frac{1}{36}.
-$$
-Substituting $m_1=\frac{1}{2}$, $m_2=\frac{1}{3}$, and $m_3=\frac{1}{4}$ gives
-$$
-m_4\geq\frac{7}{36}.
-$$
-
-This bound is attainable. The two roots of $q$ are
-$$
-r_- = \frac{1-\frac{1}{\sqrt{3}}}{2},
-\qquad
-r_+ = \frac{1+\frac{1}{\sqrt{3}}}{2}.
-$$
-Let $Z$ take $r_-$ and $r_+$ with probability $\frac{1}{2}$ each. Because
-$
-r_-+r_+=1,
-\qquad
-r_-r_+=\frac{1}{6},
-$
-we have
-$
-\mathbb E Z=\frac{r_-+r_+}{2}=\frac{1}{2},
-$
-$
-\mathbb E Z^2
-=
-\frac{(r_-+r_+)^2-2r_-r_+}{2}
-=
-\frac{1}{3},
-$
 and
-$
-\mathbb E Z^3
-=
-\frac{(r_-+r_+)^3-3r_-r_+(r_-+r_+)}{2}
-=
-\frac{1}{4}.
-$
-Thus $q(Z)=0$ almost surely and $m_4=\frac{7}{36}$.
-
-Step 3: Obtain the sharp upper bound for the fourth moment
-For every real $c$ and every $z\in[0,1]$,
 $$
-z(1-z)(z-c)^2\geq0.
+s_5=s_4-e_2s_3+e_3s_2.
 $$
-Taking expectations and expanding gives
+Substituting
 $$
-m_4
-\leq
-(1+2c)m_3-(2c+c^2)m_2+c^2m_1.
-$$
-Using the known moments,
-$$
-m_4
-\leq
-\frac{1}{4}-\frac{c}{6}+\frac{c^2}{6}.
-$$
-The right-hand side is minimized at $c=\frac{1}{2}$, hence
-$$
-m_4\leq\frac{5}{24}.
-$$
-
-This bound is also attainable. Let $Z$ have the law
-$$
-\mathbb P(Z=0)=\frac{1}{6},
+e_2=\frac{1-x}{2},
 \qquad
-\mathbb P\left(Z=\frac{1}{2}\right)=\frac{2}{3},
+e_3=\frac{1-3x+2y}{6}
+$$
+and simplifying yields
+$$
+s_5(q)=\frac{5xy-5x+5y+1}{6}.
+$$
+Therefore, if
+$$
+T=\mathbb E[xy],
+$$
+then the desired five-fold collision probability is
+$$
+\mathbb P(X_1=X_2=X_3=X_4=X_5)
+=
+\frac{5T}{6}+\frac{1}{216}.
+$$
+It remains to find the sharp range of $T$.
+
+Step 2: Derive a sharp lower certificate for the product of the power sums
+For one deterministic $q$, write
+$$
+u=e_2,
 \qquad
-\mathbb P(Z=1)=\frac{1}{6}.
+v=e_3.
 $$
-Then
-$
-\mathbb E Z
-=
-\frac{1}{6}+\frac{2}{3}\cdot\frac{1}{2}
-=
-\frac{1}{2},
-$
-$
-\mathbb E Z^2
-=
-\frac{1}{6}+\frac{2}{3}\cdot\frac{1}{4}
-=
-\frac{1}{3},
-$
-and
-$
-\mathbb E Z^3
-=
-\frac{1}{6}+\frac{2}{3}\cdot\frac{1}{8}
-=
-\frac{1}{4}.
-$
-Also $Z(1-Z)(Z-\frac{1}{2})^2=0$ almost surely, so $m_4=\frac{5}{24}$.
+Consider
+$$
+M=144xy+46x-144y-1.
+$$
+Using $x=1-2u$ and $y=1-3u+3v$ gives
+$$
+M=864u^2-864uv-380u+45.
+$$
+For fixed $u$, this expression decreases as $v$ increases. Thus it is enough to check it when $v=q_1q_2q_3$ is maximal subject to
+$$
+q_1+q_2+q_3=1,
+\qquad
+q_1q_2+q_2q_3+q_3q_1=u.
+$$
+At an interior maximizer, Lagrange multipliers applied to $\log(q_1q_2q_3)$ show that either all three coordinates are equal or two are equal: subtracting the stationarity equations for $q_i$ and $q_j$ gives
+$$
+(q_i-q_j)\left(\mu-\frac{1}{q_iq_j}\right)=0.
+$$
+Hence a maximizer may be written
+$$
+(q_1,q_2,q_3)=(1-2t,t,t),
+\qquad
+0\leq t\leq\frac{1}{2},
+$$
+up to permutation. Boundary points have $v=0$ and cannot give a smaller $M$ than the maximal-$v$ point with the same $u$.
 
-For either extremal law of $Z$, choose an independent fair sign $\varepsilon\in\{-1,1\}$ and set
+Substitution gives
 $$
-P=\frac{1+\varepsilon\sqrt{Z}}{2}.
+M
+=
+(6t-1)^2
+\left(45-220t+336t^2-144t^3\right).
 $$
-Then $P\in[0,1]$, its law is invariant under $P\mapsto1-P$, and the induced coin mixture realizes the required agreement probabilities. Hence both bounds are genuine endpoints.
+Put $w=2t$. The remaining factor has the nonnegative decomposition
+$$
+45-110w+84w^2-18w^3
+=
+45(1-w)^4
++70w(1-w)^3
++24w^2(1-w)^2
++w^4.
+$$
+Therefore $M\geq0$ for every probability vector $q$, so
+$$
+xy
+\geq
+y-\frac{23}{72}x+\frac{1}{144}.
+$$
+Taking expectations gives
+$$
+T
+\geq
+\frac{11}{36}
+-\frac{23}{72}\cdot\frac{1}{2}
++\frac{1}{144}
+=
+\frac{11}{72}.
+$$
 
-Step 4: Convert the sharp moment bounds back to the eight-toss probability
-Since
+The bound is attainable by the deterministic latent vector
 $$
-A_8=\frac{\frac{136}{3}+m_4}{128},
+Q=\left(\frac{2}{3},\frac{1}{6},\frac{1}{6}\right).
+$$
+For this vector,
+$$
+s_2(Q)=\frac{1}{2},
+\qquad
+s_3(Q)=\frac{11}{36},
+\qquad
+s_2(Q)s_3(Q)=\frac{11}{72}.
+$$
+
+Step 3: Derive a sharp upper certificate and an attaining latent mixture
+For one deterministic $q$, define $u=e_2$ and $v=e_3$ as in Step 2. Consider
+$$
+N=\frac{1}{6}-x+\frac{11}{6}y-xy.
+$$
+Substitution gives
+$$
+2N=3u(1-4u)+(12u+5)v.
+$$
+If $0\leq u\leq\frac{1}{4}$, both terms on the right are nonnegative.
+
+Now assume $\frac{1}{4}\leq u\leq\frac{1}{3}$. Schur's degree-three inequality in this setting is
+$$
+1+9v-4u\geq0.
+$$
+For completeness, after ordering $q_1\geq q_2\geq q_3$, its left side equals
+$$
+\sum_{\rm cyc}q_1(q_1-q_2)(q_1-q_3),
+$$
+and grouping the first two terms gives
+$$
+(q_1-q_2)^2(q_1+q_2-q_3)
++
+q_3(q_1-q_3)(q_2-q_3)
+\geq0.
+$$
+Thus
+$$
+v\geq\frac{4u-1}{9}.
+$$
+Since $12u+5>0$,
+$$
+2N
+\geq
+3u(1-4u)
++
+\frac{(12u+5)(4u-1)}{9}
+=
+-\frac{5(3u-1)(4u-1)}{9}
+\geq0,
+$$
+because $u\leq1/3$. Therefore, for every probability vector $q$,
+$$
+xy
+\leq
+\frac{1}{6}-x+\frac{11}{6}y.
+$$
+Taking expectations yields
+$$
+T
+\leq
+\frac{1}{6}
+-\frac{1}{2}
++\frac{11}{6}\cdot\frac{11}{36}
+=
+\frac{49}{216}.
+$$
+
+This bound is attained by the following random latent vector:
+$$
+Q=
+\begin{cases}
+(1,0,0),&\text{with probability }\frac{1}{6},\\
+\left(\frac{1}{2},\frac{1}{2},0\right),&\text{with probability }\frac{1}{3},\\
+\left(\frac{1}{3},\frac{1}{3},\frac{1}{3}\right),&\text{with probability }\frac{1}{2}.
+\end{cases}
+$$
+Indeed, the corresponding $(s_2,s_3)$ values are
+$$
+(1,1),
+\qquad
+\left(\frac{1}{2},\frac{1}{4}\right),
+\qquad
+\left(\frac{1}{3},\frac{1}{9}\right),
+$$
+so their weighted means are exactly $1/2$ and $11/36$, while
+$$
+\mathbb E[s_2(Q)s_3(Q)]
+=
+\frac{1}{6}
++\frac{1}{24}
++\frac{1}{54}
+=
+\frac{49}{216}.
+$$
+
+Step 4: Convert the sharp product bounds to the requested interval
+Using
+$$
+\mathbb P(X_1=\cdots=X_5)
+=
+\frac{5T}{6}+\frac{1}{216},
 $$
 the lower endpoint is
 $$
-\frac{\frac{136}{3}+\frac{7}{36}}{128}
+\frac{5}{6}\cdot\frac{11}{72}+\frac{1}{216}
 =
-\frac{1639}{4608},
+\frac{19}{144},
 $$
 and the upper endpoint is
 $$
-\frac{\frac{136}{3}+\frac{5}{24}}{128}
+\frac{5}{6}\cdot\frac{49}{216}+\frac{1}{216}
 =
-\frac{1093}{3072}.
+\frac{251}{1296}.
 $$
-Every intermediate value is attainable by mixing the two extremal laws of $P$, because the three prescribed agreement probabilities and $A_8$ are all affine in the law of $P$. Therefore the exact feasible set is the whole closed interval between these endpoints.
-Final Answer: $\boxed{\left[\frac{1639}{4608},\frac{1093}{3072}\right]}$
+The two attaining latent laws satisfy the same prescribed two-fold and three-fold collision probabilities. Mixing those two latent laws preserves both constraints and makes the five-fold collision probability vary affinely through every intermediate value. Hence the feasible set is the full closed interval.
+Final Answer: $\boxed{\left[\frac{19}{144},\frac{251}{1296}\right]}$
 
 ---
 
 ## Answer
 
-$\left[\frac{1639}{4608},\frac{1093}{3072}\right]$
+$\left[\frac{19}{144},\frac{251}{1296}\right]$
 
 ---
 
@@ -235,8 +265,8 @@ $\left[\frac{1639}{4608},\frac{1093}{3072}\right]$
 
 ## Solution Concepts
 
-- latent variable conditioning
-- symmetric bernoulli mixtures
-- moment transformations
-- sharp polynomial inequalities
-- extremal moment problems
+- latent categorical mixtures
+- symmetric power sums
+- newton identities
+- sharp polynomial certificates
+- constrained moment optimization
