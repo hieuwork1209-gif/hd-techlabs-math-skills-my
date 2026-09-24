@@ -2,7 +2,7 @@
 
 ## LaTeX (Normalized)
 
-For $\kappa>0$, consider the repulsively coupled bistable system
+For $\kappa>0$, consider
 $$
 \dot x_i
 =
@@ -12,9 +12,7 @@ x_i-x_i^3
 \qquad
 \{i,j,k\}=\{1,2,3\}.
 $$
-Let $N(\kappa)$ be the number of asymptotically stable equilibria in $\mathbb{R}^3$. For a condition $E$, let $\mathbf{1}_{\{E\}}$ equal $1$ when $E$ holds and $0$ otherwise.
-
-Determine $N(\kappa)$ for all $\kappa>0$.
+Determine all $\kappa>0$ for which the system has exactly $27$ distinct equilibria in $\mathbb{R}^3$, of which exactly $6$ are asymptotically stable.
 
 ---
 
@@ -24,11 +22,11 @@ Determine $N(\kappa)$ for all $\kappa>0$.
 |---|---|
 | **Domain** | Differential Equations and Dynamical Systems |
 | **Sub-domain** | Bifurcation theory |
-| **Problem Type** | Exact computation |
-| **Answer Type** | Function or mapping |
+| **Problem Type** | Solve for unknowns |
+| **Answer Type** | Interval or region description |
 
 ---
 
 ## Domain Explanation
 
-The problem asks how the number of asymptotically stable equilibria changes with the coupling strength in a symmetric nonlinear dynamical system. The change at the critical coupling is a symmetry-breaking bifurcation, and the full count requires classifying and testing every equilibrium branch.
+The problem asks for the coupling range where equilibrium multiplicity and stability meet two simultaneous conditions. Solving it requires locating the saddle-node threshold of the symmetry-broken branches and the separate stability transition of the synchronized branch.
