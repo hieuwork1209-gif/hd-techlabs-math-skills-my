@@ -146,11 +146,15 @@ $$
 O(t^2).
 $$
 At $t=0$, the positive solution is
-$$
+$
 X_0=\frac{2\sqrt{10}}{5},
 \qquad
 Y_0=\frac{2}{5}.
-$$
+$
+The bounds $x=\Theta(t)$ and $y=O(t^2)$ make $X$ bounded above and away from zero and make $Y$ bounded. Every subsequential limit therefore satisfies the two $t=0$ equations, whose unique solution with $X>0$ is $(X_0,Y_0)$. Hence the physical branch satisfies
+$
+(X,Y)\to(X_0,Y_0).
+$
 
 Step 3: Justify and compute the first correction by the implicit function theorem
 Let $H_1(X,Y,t)$ and $H_2(X,Y,t)$ denote the two analytic left-hand sides from Step 2. At $(X_0,Y_0,0)$,
