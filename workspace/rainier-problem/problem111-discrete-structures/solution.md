@@ -1,0 +1,168 @@
+## Steps
+
+Step 1: Convert cyclic words into Euler tours
+Let the alphabet be $\{0,1,2\}$. For a cyclic word
+$$
+x_0x_1\cdots x_{N-1},
+\qquad
+N=9m+3,
+$$
+write $N_{ab}$ for the number of indices $i$ modulo $N$ such that
+$$
+(x_i,x_{i+1})=(a,b).
+$$
+The prescribed transition matrix is
+$$
+(N_{ab})_{a,b\in\{0,1,2\}}
+=
+\begin{pmatrix}
+m&m+1&m\\
+m&m&m+1\\
+m+1&m&m
+\end{pmatrix}.
+$$
+Every row sum and every column sum is
+$$
+d=3m+1.
+$$
+
+Build a directed multigraph $G$ on vertices $0,1,2$ having exactly $N_{ab}$ directed edges from $a$ to $b$. Reading a cyclic word around the circle gives an Euler tour of $G$, except that parallel edges have not yet been distinguished.
+
+Conversely, an Euler tour of $G$ produces a cyclic word by recording its visited vertices. Thus the desired rotation classes can be counted by first labeling all parallel edges, counting labeled Euler tours, and then removing the edge labels and the choice of starting position.
+
+Step 2: Prove the labeled Euler-tour count by a last-exit bijection
+Fix vertex $0$ as the starting vertex, and suppose all parallel edges of $G$ are distinctly labeled.
+
+For a labeled Euler tour starting at $0$, mark, for each vertex $v\neq0$, the last outgoing edge used from $v$. Following marked edges from any nonzero vertex must eventually reach $0$. Indeed, if marked edges formed a directed cycle avoiding $0$, take the first vertex of that cycle whose marked edge is used in the tour; after leaving that vertex along its marked edge, the tour could never later leave the preceding vertex of the cycle, contradicting the order in which the marked edges are supposed to be last exits. Hence the two marked edges form a directed spanning tree oriented toward $0$.
+
+Conversely, fix such an oriented spanning tree. At each nonzero vertex, place its marked tree edge last in a linear order of the outgoing edges. At vertex $0$, choose an arbitrary linear order of all outgoing edges. Starting at $0$, repeatedly take the next unused outgoing edge in the chosen local order.
+
+This walk cannot stop away from $0$, because every nonzero vertex reserves its tree edge as its final outgoing edge. It also cannot return to $0$ and stop while some edge remains unused: if an unused edge remains, choose a vertex incident to an unused edge. Following the reserved last-exit tree edges from that vertex toward $0$ shows that some reserved edge on that path would still be unused, contradicting termination at $0$. Therefore the procedure gives one Euler tour, and the local orders are recovered uniquely from the tour.
+
+If $t_0$ denotes the number of directed spanning trees oriented toward $0$, the number of labeled Euler tours starting at $0$ is therefore
+$$
+t_0\,d!\,(d-1)!^2
+=
+t_0\,d\,(d-1)!^3.
+$$
+
+Step 3: Count the last-exit trees
+Loops cannot occur in a tree oriented toward $0$. Vertices $1$ and $2$ each choose one outgoing nonloop edge, and their choices must eventually reach $0$.
+
+There are three allowed patterns.
+
+If
+$$
+1\to0,
+\qquad
+2\to0,
+$$
+there are
+$$
+m(m+1)
+$$
+choices of labeled edges.
+
+If
+$$
+1\to0,
+\qquad
+2\to1,
+$$
+there are
+$$
+m^2
+$$
+choices.
+
+If
+$$
+1\to2,
+\qquad
+2\to0,
+$$
+there are
+$$
+(m+1)^2
+$$
+choices.
+
+The remaining pattern $1\to2$, $2\to1$ is a directed cycle and is not a tree. Hence
+$$
+t_0
+=
+m(m+1)+m^2+(m+1)^2
+=
+3m^2+3m+1.
+$$
+
+Step 4: Remove edge labels and the starting position
+For a fixed cyclic word with a distinguished starting position at a symbol $0$, the occurrences of each transition $a\to b$ can be assigned the labels of the corresponding parallel edges in
+$$
+N_{ab}!
+$$
+ways, independently for the nine ordered pairs. Hence each rooted word corresponds to
+$$
+\prod_{a,b}N_{ab}!
+=
+(m!)^6((m+1)!)^3
+$$
+labeled Euler tours.
+
+The number of rooted words whose distinguished position contains $0$ is therefore
+$$
+\frac{t_0\,d\,(d-1)!^3}
+{(m!)^6((m+1)!)^3}.
+$$
+
+Every admissible cyclic word is primitive. If it were the $s$-fold repetition of a shorter cyclic word with $s>1$, every transition count $N_{ab}$ would be divisible by $s$. Since both $m$ and $m+1$ occur among the transition counts,
+$$
+s\mid\gcd(m,m+1)=1,
+$$
+a contradiction.
+
+A primitive rotation class has exactly $d=3m+1$ rotations whose distinguished symbol is $0$, because every word has exactly $d$ occurrences of $0$. Dividing the rooted count by $d$ gives
+$$
+\frac{t_0\,(d-1)!^3}
+{(m!)^6((m+1)!)^3}.
+$$
+
+Step 5: Simplify the final expression
+Substituting
+$$
+t_0=3m^2+3m+1
+$$
+and
+$$
+d-1=3m
+$$
+gives
+$$
+\frac{(3m^2+3m+1)(3m)!^3}
+{(m!)^6((m+1)!)^3}.
+$$
+Final Answer: $\boxed{\frac{(3m^2+3m+1)(3m)!^3}{(m!)^6((m+1)!)^3}}$
+
+---
+
+## Answer
+
+$\frac{(3m^2+3m+1)(3m)!^3}{(m!)^6((m+1)!)^3}$
+
+---
+
+## Classification
+
+**Problem Type:** Exact computation
+
+**Answer Type:** Exact symbolic expression
+
+---
+
+## Solution Concepts
+
+- cyclic words
+- euler tours
+- last-exit trees
+- directed multigraphs
+- orbit counting
