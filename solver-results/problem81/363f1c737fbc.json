@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-probability-foundations/problem.md",
+  "source_commit_sha": "e801532819e49f657df9000d8b1f0927d47194a3",
+  "problem_blob_sha": "363f1c737fbc86d50177603c664af683640cf321",
+  "statement_sha256": "8bb6a0e3a6346264891a9de42f24d228170197238805e2d20352f08a58474385",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T09:10:43+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nt=1-z,\\qquad u=1-G_A(z),\\qquad v=1-G_B(z).\n\\]\nThen \\(u,v\\to0\\) as \\(t\\downarrow0\\), and\n\\[\nG_A-G_B=v-u.\n\\]\n\nThe generating-function equations are\n\\[\nG_A=z\\left(\\frac12+\\frac38G_A^2+\\frac18G_B^2\\right),\n\\]\n\\[\nG_B=z\\left(\\frac12+\\frac14G_A+\\frac14G_B^3\\right).\n\\]\n\nDefine\n\\[\ns=\\frac{u+v}{2},\\qquad \\delta=v-u=G_A-G_B.\n\\]\nThus\n\\[\nu=s-\\frac{\\delta}{2},\\qquad v=s+\\frac{\\delta}{2}.\n\\]\n\nExpanding the two equations in \\(u,v,t\\), we obtain\n\\[\nu=t+\\frac34u+\\frac14v-t\\left(\\frac34u+\\frac14v\\right)\n-\\frac38u^2-\\frac18v^2+O(tu^2),\n\\]\nand\n\\[\nv=t+\\frac14u+\\frac34v-t\\left(\\frac14u+\\frac34v\\right)\n-\\frac34v^2+\\frac14v^3+O(tv^2).\n\\]\n\nAdding and subtracting these equations gives, to the orders needed,\n\\[\n0=2t-2ts-\\frac54s^2-\\frac12s\\delta+\\frac14s^3+O(t^2),\n\\tag{1}\n\\]\nand\n\\[\n\\frac{\\delta}{2}\n=-\\frac14s^2-s\\delta+\\frac14s^3+O(t^2).\n\\tag{2}\n\\]\n\nSince \\(s=O(t^{1/2})\\) and \\(\\delta=O(t)\\), write\n\\[\ns=\\kappa t^{1/2}+a t+O(t^{3/2}).\n\\]\n\nFrom (2), using \\(\\delta=-\\frac12s^2+O(t^{3/2})\\),\n\\[\n\\delta=-\\frac12s^2+\\frac32s^3+O(t^2).\n\\tag{3}\n\\]\n\nNow substitute the expansion for \\(s\\) into (1). The coefficient of \\(t\\) gives\n\\[\n2-\\frac54\\kappa^2=0,\n\\]\nso\n\\[\n\\kappa^2=\\frac85,\\qquad \\kappa=\\sqrt{\\frac85}.\n\\]\n\nThe coefficient of \\(t^{3/2}\\) in (1) gives\n\\[\n-2\\kappa-\\frac52\\kappa a+\\frac12\\kappa^3=0,\n\\]\nhence\n\\[\na=-\\frac{12}{25}.\n\\]\n\nFinally, substituting \\(s=\\kappa t^{1/2}+at+O(t^{3/2})\\) into (3),\n\\[\n\\delta\n=-\\frac{\\kappa^2}{2}t\n+\\left(-\\kappa a+\\frac32\\kappa^3\\right)t^{3/2}\n+o(t^{3/2}).\n\\]\nTherefore\n\\[\n\\alpha=\\frac{\\kappa^2}{2}=\\frac45,\n\\]\nand\n\\[\n\\beta=-\\kappa a+\\frac32\\kappa^3\n=\\frac{72}{25}\\kappa\n=\\frac{72}{25}\\sqrt{\\frac85}.\n\\]\n\nThus\n\\[\n\\boxed{\\left(\\kappa,\\alpha,\\beta\\right)\n=\n\\left(\\sqrt{\\frac85},\\ \\frac45,\\ \\frac{72}{25}\\sqrt{\\frac85}\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T09:14:09+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/363f1c737fbc.json"
+}
