@@ -145,7 +145,7 @@ $$
 $$
 Therefore
 $$
-C_1=(I_1-S_1)+(I_2-S_2)+4(I_3-S_3)+28(I_4-S_4)=98400
+C_1=(I_1-S_1)+(I_2-S_2)+4(I_3-S_3)+28(I_4-S_4)=64380
 $$
 is the total number of involutions with $q|_R\ne0$.
 
@@ -159,8 +159,8 @@ If $q|_R\ne0$, choose $r_0\in R$ with $q(r_0)=1$. Translation by $r_0$ preserves
 
 Therefore the total diagonal ambiguity mass over all preserving involutions of the fixed split form is
 $$
-K=15C_0-C_1=15\cdot9136-98400=38640
-=2^4\cdot3\cdot5\cdot7\cdot23.
+K=15C_0-C_1=15\cdot9136-64380=72660
+=2^2\cdot3\cdot5\cdot7\cdot173.
 $$
 
 Step 5: Sum over all self-dual quadratic phases
@@ -168,20 +168,20 @@ Every admissible positive quadratic form has the same value $K$, and Step 1 show
 $$
 N_+K
 =(2^{15}\cdot7\cdot17\cdot31\cdot127)
-(2^4\cdot3\cdot5\cdot7\cdot23).
+(2^2\cdot3\cdot5\cdot7\cdot173).
 $$
 Thus
 $$
-N_+K=2^{19}\cdot3\cdot5\cdot7^2\cdot17\cdot23\cdot31\cdot127.
+N_+K=2^{17}\cdot3\cdot5\cdot7^2\cdot17\cdot31\cdot127\cdot173.
 $$
 
-Final Answer: $\boxed{2^{19}\cdot3\cdot5\cdot7^2\cdot17\cdot23\cdot31\cdot127}$
+Final Answer: $\boxed{2^{17}\cdot3\cdot5\cdot7^2\cdot17\cdot31\cdot127\cdot173}$
 
 ---
 
 ## Answer
 
-$2^{19}\cdot3\cdot5\cdot7^2\cdot17\cdot23\cdot31\cdot127$
+$2^{17}\cdot3\cdot5\cdot7^2\cdot17\cdot31\cdot127\cdot173$
 
 ---
 
