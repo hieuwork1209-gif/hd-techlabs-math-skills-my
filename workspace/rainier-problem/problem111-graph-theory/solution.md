@@ -31,7 +31,7 @@ x_{i-1}
 \end{pmatrix}.
 $$
 
-Starting from $x_0,x_1$, the relations with indices $1,\ldots,n-2$ eliminate $x_2,\ldots,x_{n-1}$ by unimodular presentation operations. The two cyclic closure relations are
+Since the reduced Laplacian is symmetric, its column quotient may be read from the same integer row relations. Starting from $x_0,x_1$, the relations with indices $1,\ldots,n-2$ eliminate $x_2,\ldots,x_{n-1}$ by unimodular presentation operations. The two cyclic closure relations are
 $$
 (M^n-I)
 \begin{pmatrix}
@@ -86,23 +86,49 @@ F_{2m+2}-1=3F_{2m}-(F_{2m-2}+1),
 $$
 the gcd of all entries of $R_m$ is exactly $c_m$.
 
-The identities
-$$
-F_{2m}=F_mL_m
-$$
-and
-$$
+The Fibonacci addition identity
+$
+F_{a+b}=F_{a-1}F_b+F_aF_{b+1}
+$
+follows by fixing $a$ and observing that both sides satisfy the same recurrence in $b$ with the same values at $b=0,1$. Also the sequence
+$
+D_r=F_{r+1}F_{r-2}-F_rF_{r-1}
+$
+satisfies $D_{r+1}=-D_r$ and $D_3=1$, so
+$
+D_r=(-1)^{r+1}.
+$
+Since $L_m=F_{m-1}+F_{m+1}$ by the Lucas recurrence and its initial values, the addition identity gives
+$
+F_{2m}=F_mL_m,
+\qquad
+F_{2m-2}=F_{m-1}L_{m-1}.
+$
+For odd $m$,
+$
+F_{m-2}L_m-F_{2m-2}
+=
+F_{m+1}F_{m-2}-F_mF_{m-1}
+=
+1,
+$
+while for even $m$,
+$
+F_mL_{m-2}-F_{2m-2}
+=
+F_mF_{m-3}-F_{m-1}F_{m-2}
+=
+1.
+$
+Therefore
+$
 F_{2m-2}+1=
 \begin{cases}
 F_{m-2}L_m,&m\text{ odd},\\
-F_mL_{m-2},&m\text{ even}
+F_mL_{m-2},&m\text{ even}.
 \end{cases}
-$$
-follow from the Fibonacci addition formulas together with
-$$
-F_{r+1}F_{r-2}-F_rF_{r-1}=(-1)^{r+1}.
-$$
-Also $\gcd(F_m,F_{m-2})=1$, while the Lucas recurrence gives
+$
+Also $\gcd(F_m,F_{m-2})=1$ by the Fibonacci recurrence, while the Lucas recurrence gives
 $$
 \gcd(L_m,L_{m-2})=\gcd(L_{m-1},L_{m-2})=1.
 $$
@@ -119,11 +145,25 @@ Now assume $n$ is odd. Every entry of $R_n$ is divisible by $L_n$. Since $\det M
 $$
 \det(R_n)=2-\operatorname{tr}(M^n).
 $$
-The trace formula above gives $\operatorname{tr}(M^n)=L_{2n}$. The Lucas doubling identity
-$$
-L_{2n}=L_n^2-2(-1)^n
-$$
-therefore gives
+From the matrix formula,
+$
+\operatorname{tr}(M^n)
+=
+F_{2n+2}-F_{2n-2}
+=
+F_{2n+1}+F_{2n-1}
+=
+L_{2n}.
+$
+The Lucas addition identity
+$
+L_{a+b}=L_aL_b-(-1)^bL_{a-b}
+$
+is proved by the same recurrence argument as the Fibonacci addition identity. Taking $a=b=n$ gives
+$
+L_{2n}=L_n^2-2(-1)^n.
+$
+Therefore
 $$
 |\det(R_n)|=L_n^2.
 $$
