@@ -1,0 +1,22 @@
+{
+  "problem": "problem111",
+  "branch": "adversary/problem111",
+  "problem_path": "workspace/rainier-problem/problem111-harmonic-analysis/problem.md",
+  "source_commit_sha": "ee763c16f0aba46efa445d957ae5c497913d7e03",
+  "problem_blob_sha": "5e93426b61ff8e51c56652ad82f2d5333d45e33a",
+  "statement_sha256": "f0dbb632166bd914845d6a27108e8ef8f63ee228a6d64d9e9181a9eb8375ca19",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T09:03:14+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nm_j=\\int z^j\\,d\\mu(z),\\qquad m_{-j}=\\overline{m_j}.\n\\]\nThe given conditions are\n\\[\nm_0=1,\\qquad m_1=\\rho,\\qquad m_2=\\cdots=m_{r-1}=0.\n\\]\nWrite \\(x=m_r\\).\n\nFor every such measure, the Toeplitz moment matrix\n\\[\nT=\n\\begin{pmatrix}\n1&\\rho&0&\\cdots&0&x\\\\\n\\rho&1&\\rho&\\cdots&0&0\\\\\n0&\\rho&1&\\ddots&0&0\\\\\n\\vdots&&\\ddots&\\ddots&\\rho&\\vdots\\\\\n0&0&0&\\rho&1&\\rho\\\\\n\\overline{x}&0&0&\\cdots&\\rho&1\n\\end{pmatrix}\n\\]\nis positive semidefinite.\n\nLet \\(A\\) be its upper-left \\(r\\times r\\) block. This is the tridiagonal matrix with diagonal entries \\(1\\) and off-diagonal entries \\(\\rho\\). Its determinant is \\(D_r\\), and the hypothesis\n\\[\n\\rho<\\frac1{2\\cos(\\pi/(r+1))}\n\\]\nensures \\(A\\) is positive definite.\n\nSet\n\\[\nb=(x,0,\\ldots,0,\\rho)^T.\n\\]\nThe Schur complement condition gives\n\\[\nb^*A^{-1}b\\le 1.\n\\]\nUsing the standard inverse formula for a tridiagonal Toeplitz matrix,\n\\[\n(A^{-1})_{00}=(A^{-1})_{r-1,r-1}=\\frac{D_{r-1}}{D_r},\n\\qquad\n(A^{-1})_{0,r-1}=\\frac{(-\\rho)^{r-1}}{D_r},\n\\]\nwe obtain\n\\[\nD_{r-1}|x|^2\n+2(-1)^{r-1}\\rho^r\\operatorname{Re}x\n+D_{r-1}\\rho^2\n\\le D_r.\n\\]\nWriting \\(u=\\operatorname{Re}x\\), this implies\n\\[\nD_{r-1}u^2+2(-1)^{r-1}\\rho^r u\n+D_{r-1}\\rho^2-D_r\\le0.\n\\]\nHence\n\\[\nu\\le\n\\frac{-(-1)^{r-1}\\rho^r+\n\\sqrt{\\rho^{2r}+D_{r-1}D_r-\\rho^2D_{r-1}^2}}\n{D_{r-1}}.\n\\]\n\nThe recurrence for \\(D_j\\) gives the identity\n\\[\nD_r^2-D_{r-1}D_r+\\rho^2D_{r-1}^2=\\rho^{2r},\n\\]\nso the square root equals \\(D_r\\). Therefore\n\\[\n\\max \\operatorname{Re}m_r\n=\n\\frac{D_r+(-1)^r\\rho^r}{D_{r-1}}.\n\\]\n\nEquality forces \\(x\\) to be real and makes the Schur complement zero. Thus \\(T\\) has rank \\(r\\). The associated null polynomial has degree \\(r\\), so every representing measure is supported on at most \\(r\\) points. Since \\(A\\) is positive definite, no nonzero polynomial of degree at most \\(r-1\\) can vanish on the support; hence the support must contain at least \\(r\\) points. Therefore every maximizing measure has exactly \\(r\\) support points.\n\nThe null polynomial, and hence the support, is uniquely determined by \\(T\\). The weights are then uniquely determined by the first \\(r\\) moments through a Vandermonde system. Thus there is exactly one maximizing measure.\n\n\\[\n\\boxed{\\left(\\frac{D_r+(-1)^r\\rho^r}{D_{r-1}},\\ r,\\ 1\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T09:08:49+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem111/5e93426b61ff.json"
+}

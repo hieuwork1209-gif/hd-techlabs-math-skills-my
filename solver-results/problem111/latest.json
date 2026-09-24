@@ -1,9 +1,9 @@
 {
   "problem": "problem111",
   "branch": "adversary/problem111",
-  "problem_path": "workspace/rainier-problem/problem111-extremal-combinatorics/problem.md",
-  "problem_blob_sha": "336e07271f50b06133d38b93ec72a8204e32a3b1",
-  "source_commit_sha": "877348271671bc51fa6f491618b70701d672ef79",
+  "problem_path": "workspace/rainier-problem/problem111-harmonic-analysis/problem.md",
+  "problem_blob_sha": "5e93426b61ff8e51c56652ad82f2d5333d45e33a",
+  "source_commit_sha": "ee763c16f0aba46efa445d957ae5c497913d7e03",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-24T08:48:19+00:00",
-  "result_file": "solver-results/problem111/336e07271f50.json"
+  "completed_at": "2026-09-24T09:08:49+00:00",
+  "result_file": "solver-results/problem111/5e93426b61ff.json"
 }
