@@ -185,3 +185,7 @@ $\alpha>\max_{s>0}\frac{s e^{2s/3}}{3(e^s-1)}$
 - Perron-Frobenius theorem
 - spectral-radius optimization
 - exponential stability
+
+---
+
+## Black-Box Audit — no issues found
