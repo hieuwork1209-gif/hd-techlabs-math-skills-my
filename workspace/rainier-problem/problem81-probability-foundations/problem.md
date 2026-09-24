@@ -16,10 +16,19 @@ $$
 \mathbb P(X_1=X_2=X_3)=\frac{11}{36}.
 $$
 
-Determine the exact interval of all possible values of
+Let
+$$
+K=|\{i:Q_i>0\}|.
+$$
+Determine the exact interval $I$ of all possible values of
 $$
 \mathbb P(X_1=X_2=X_3=X_4=X_5).
 $$
+Also determine the support-size law forced at each endpoint. Report the result as
+$$
+(I,k_-,(p_1,p_2,p_3)),
+$$
+where $k_-$ is the almost-sure value of $K$ for any law attaining the lower endpoint, and $p_k=\mathbb P(K=k)$ for any law attaining the upper endpoint.
 
 ---
 
@@ -30,10 +39,10 @@ $$
 | **Domain** | Probability and Statistics |
 | **Sub-domain** | Probability foundations |
 | **Problem Type** | Optimization |
-| **Answer Type** | Interval or region description |
+| **Answer Type** | Tuple or ordered list |
 
 ---
 
 ## Domain Explanation
 
-The problem asks for the sharp feasible range of a collision probability in a latent categorical mixture under lower-order collision constraints. The solution converts those probabilities to symmetric power sums of the latent probability vector and then solves a constrained extremal moment problem with sharp attainable certificates. Thus Probability and Statistics -> Probability foundations is primary.
+The problem asks for a sharp feasible range of a collision probability in a latent categorical mixture and for the equality structure of the endpoint laws. The solution converts collision probabilities to symmetric power sums, proves sharp attainable extremal certificates, and then classifies the equality cases to recover the latent support-size profiles. Thus Probability and Statistics -> Probability foundations is primary.
