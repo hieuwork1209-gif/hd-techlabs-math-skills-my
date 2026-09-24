@@ -58,7 +58,7 @@ $
 t_0
 =
 3m^2+3m+1.
-$$
+$
 
 For a fixed rooted word whose distinguished symbol is $0$, the occurrences of each transition type $a\to b$ can be labeled in
 $$
