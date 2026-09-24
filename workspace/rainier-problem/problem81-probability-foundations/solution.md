@@ -36,7 +36,7 @@ G_A(z)=zF_A(G_A(z),G_B(z)),
 G_B(z)=zF_B(G_A(z),G_B(z)).
 $$
 
-The process becomes extinct almost surely. To see this directly, suppose $(u,v)\in[0,1]^2$ is a fixed point of $(F_A,F_B)$ and put
+The extinction-probability vector is the increasing limit of the probabilities of extinction by generation $n$, so it is a fixed point of $(F_A,F_B)$. To identify that fixed point directly, suppose $(u,v)\in[0,1]^2$ satisfies $(F_A(u,v),F_B(u,v))=(u,v)$ and put
 $$
 p=1-u,
 \qquad
@@ -125,7 +125,7 @@ x=tX,
 y=t^2Y.
 $$
 
-After substituting $p=tX+t^2Y$ and $q=tX-t^2Y$ into the two fixed-point equations, take their average and difference and divide by $t^2$. The resulting analytic equations have the expansions
+After substituting $p=tX+t^2Y$ and $q=tX-t^2Y$ into the two fixed-point equations, take their average and difference and divide by $t^2$. Because the original residuals are polynomials and every term has a factor $t^2$ under this scaling, the quotients extend to exact polynomial functions $H_1(X,Y,t)$ and $H_2(X,Y,t)$. Their Taylor expansions are
 $$
 0
 =
@@ -214,7 +214,7 @@ $$
 =
 0.
 $$
-Substituting $X_1=-12/25$, $X_0^2=8/5$, and $Y_0=2/5$ yields
+Substituting $X_1=-\frac{12}{25}$, $X_0^2=8/5$, and $Y_0=2/5$ yields
 $$
 Y_1=-\frac{72\sqrt{10}}{125}.
 $$
