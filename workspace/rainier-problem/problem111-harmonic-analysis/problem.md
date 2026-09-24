@@ -25,14 +25,15 @@ $$
 (2\leq j\leq r-1).
 $$
 
-Determine the ordered triple consisting of
+Among the maximizing measures for
+$$
+\operatorname{Re}\int z^r\,d\mu(z),
+$$
+determine the ordered triple consisting of
 
-1. the maximum possible value of
-$$
-\operatorname{Re}\int z^r\,d\mu(z);
-$$
+1. the maximum value;
 2. the number of points in the support of every maximizing measure;
-3. the number of maximizing measures.
+3. the unweighted sum of the support points of every maximizing measure.
 
 ---
 
@@ -49,4 +50,4 @@ $$
 
 ## Domain Explanation
 
-The problem is a finite trigonometric moment extremization on the unit circle. The solution uses positivity of Toeplitz moment matrices to obtain the sharp bound, then reconstructs and classifies the extremizing measure through the associated unitary moment representation.
+The problem is a finite trigonometric moment extremization on the unit circle. The solution uses positivity of Toeplitz moment matrices for the sharp bound, realizes the boundary moment data by a unitary model, and reconstructs the geometry of the extremal support from the singular moment matrix.
