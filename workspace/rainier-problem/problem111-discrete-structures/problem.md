@@ -16,7 +16,7 @@ For $a,b\in\{0,1,2\}$, let $N_{ab}$ be the number of indices $i$ such that
 $$
 (x_i,x_{i+1})=(a,b).
 $$
-Suppose the transition counts satisfy
+Suppose
 $$
 (N_{ab})_{a,b\in\{0,1,2\}}
 =
@@ -27,9 +27,15 @@ m+1&m&m
 \end{pmatrix}.
 $$
 
-Two cyclic words are identified if one is obtained from the other by a rotation.
+Two cyclic words are identified if one can be obtained from the other by any combination of
 
-Determine the number of rotation classes.
+- a rotation of the positions;
+- the simultaneous cyclic relabeling
+$$
+0\mapsto1,\qquad1\mapsto2,\qquad2\mapsto0.
+$$
+
+Determine the number of equivalence classes.
 
 ---
 
@@ -46,4 +52,4 @@ Determine the number of rotation classes.
 
 ## Domain Explanation
 
-The problem asks for the number of cyclic words with a prescribed directed transition multiset, modulo rotation. The solution converts the words into Euler tours of a directed multigraph, counts the tours through a last-exit-tree bijection, and handles parallel-edge labels and rotational symmetry exactly.
+The problem asks for cyclic words with a prescribed directed transition multiset modulo two commuting cyclic symmetries. The solution first counts rotation classes through Euler tours and last-exit trees, then analyzes the nontrivial rotation-relabeling stabilizers and applies Burnside's lemma.
