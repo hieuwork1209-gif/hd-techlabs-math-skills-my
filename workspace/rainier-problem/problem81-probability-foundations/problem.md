@@ -2,52 +2,27 @@
 
 ## LaTeX (Normalized)
 
-Fix $0<\alpha<\frac{1}{9}$. For $0<\theta<1$, let $(S_x)_{x\in\mathbb Z}$ be a two-sided stationary Markov chain on $\{R,L\}$ with stationary law
+Let $P$ be a random variable taking values in $[0,1]$, with a distribution invariant under $P\mapsto1-P$. Conditional on $P$, let $X_1,X_2,\ldots$ be independent Bernoulli random variables with
 $$
-\mathbb P(S_x=R)=\theta,
-\qquad
-\mathbb P(S_x=L)=1-\theta,
+\mathbb P(X_i=1\mid P)=P.
 $$
-and transition matrix
-$$
-P_{\alpha,\theta}
-=
-\alpha I+(1-\alpha)
-\begin{pmatrix}
-\theta&1-\theta\\
-\theta&1-\theta
-\end{pmatrix}.
-$$
-Equivalently, at each spatial step the chain keeps its current state with probability $\alpha$ and otherwise refreshes from its stationary law.
 
-Define
+Suppose
 $$
-\omega_x=
-\begin{cases}
-\frac{3}{4},&S_x=R,\\
-\frac{1}{4},&S_x=L.
-\end{cases}
+\mathbb P(X_1=X_2)=\frac34,
 $$
-Conditioned on $\omega$, let $(X_n)_{n\geq0}$ be the nearest-neighbor random walk on $\mathbb Z$, started at $X_0=0$, with
 $$
-P_\omega(X_{n+1}=x+1\mid X_n=x)=\omega_x.
+\mathbb P(X_1=X_2=X_3=X_4)=\frac{13}{24},
 $$
-Let
+and
 $$
-T_{\pm1}=\inf\{n\geq0:X_n=\pm1\},
+\mathbb P(X_1=X_2=X_3=X_4=X_5=X_6)=\frac{55}{128}.
 $$
-and let $\mathbb P_\theta,\mathbb E_\theta$ denote annealed law and expectation.
 
-For each fixed $\alpha$, there are unique numbers
+Determine the exact interval of all possible values of
 $$
-0<\theta_-<\theta_{\rm dir}<\theta_+<1
+\mathbb P(X_1=X_2=\cdots=X_8).
 $$
-such that:
-- $X_n\to-\infty$ almost surely for $\theta<\theta_{\rm dir}$, the walk is recurrent at $\theta=\theta_{\rm dir}$, and $X_n\to+\infty$ almost surely for $\theta>\theta_{\rm dir}$;
-- $\mathbb E_\theta T_{-1}^2<\infty$ exactly for $\theta<\theta_-$;
-- $\mathbb E_\theta T_1^2<\infty$ exactly for $\theta>\theta_+$.
-
-Determine $(\theta_-,\theta_{\rm dir},\theta_+)$ exactly as a function of $\alpha$.
 
 ---
 
@@ -57,11 +32,11 @@ Determine $(\theta_-,\theta_{\rm dir},\theta_+)$ exactly as a function of $\alph
 |---|---|
 | **Domain** | Probability and Statistics |
 | **Sub-domain** | Probability foundations |
-| **Problem Type** | Parameter identification |
-| **Answer Type** | Tuple or ordered list |
+| **Problem Type** | Optimization |
+| **Answer Type** | Interval or region description |
 
 ---
 
 ## Domain Explanation
 
-The problem asks for directional and second-moment phase transitions of a one-dimensional random walk in a stationary correlated random environment. Direction is controlled by the logarithmic potential, while second passage-time moments require a quenched moment recursion and a squared-odds transfer operator. Thus Probability and Statistics -> Probability foundations is primary.
+The problem asks for the sharp feasible range of an observable probability in a symmetric latent Bernoulli-mixture model under lower-order probabilistic constraints. The solution reduces the observable constraints to a compact moment problem and requires sharp attainable moment bounds. Thus Probability and Statistics -> Probability foundations is primary.
