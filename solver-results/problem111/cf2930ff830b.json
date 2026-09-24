@@ -1,0 +1,22 @@
+{
+  "problem": "problem111",
+  "branch": "adversary/problem111",
+  "problem_path": "workspace/rainier-problem/problem111-graph-theory/problem.md",
+  "source_commit_sha": "6a5dd3664b53ebabc2598d8b62a3bc758de8e562",
+  "problem_blob_sha": "cf2930ff830b6ce30cc2ecb2daf069654354e9c1",
+  "statement_sha256": "9532ef47afc1f507c923469888969247a9fa1be7d84c170693775dc47ced7b14",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T05:47:21+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(F_0=0,F_1=1,F_{j+1}=F_j+F_{j-1}\\). The answer is\n\n\\[\n\\boxed{\\operatorname{ord}(\\delta_k)=\\frac{L_n}{L_{\\gcd(n,k)}}}.\n\\]\n\n**Proof.** Write \\(g_i=[e_i]\\in K(W_n)\\), with indices modulo \\(n\\). The reduced Laplacian gives\n\n\\[\n3g_i-g_{i-1}-g_{i+1}=0,\n\\]\n\nso\n\n\\[\ng_{j+1}=3g_j-g_{j-1}.\n\\]\n\nThe sequence satisfying \\(a_{j+1}=3a_j-a_{j-1}\\), \\(a_0=0,a_1=1\\), is \\(a_j=F_{2j}\\). Hence, for \\(j\\ge1\\),\n\n\\[\ng_j=F_{2j}g_1-F_{2j-2}g_0.\n\\]\n\nSince \\(g_n=g_0\\) and \\(g_{n+1}=g_1\\), the two relations on \\(g_0,g_1\\) are\n\n\\[\n-(F_{2n-2}+1)g_0+F_{2n}g_1=0,\n\\]\n\\[\n-F_{2n}g_0+(F_{2n+2}-1)g_1=0.\n\\]\n\nFor odd \\(n\\), using \\(F_rL_s=F_{r+s}+(-1)^sF_{r-s}\\),\n\n\\[\nF_{2n}=F_nL_n,\\qquad\nF_{2n-2}+1=F_{n-2}L_n,\\qquad\nF_{2n+2}-1=F_{n+2}L_n.\n\\]\n\nThus the relation matrix is\n\n\\[\nL_n\n\\begin{pmatrix}\n-F_{n-2} & F_n\\\\\n-F_n & F_{n+2}\n\\end{pmatrix},\n\\]\n\nwhose determinant is \\(-1\\) by Cassini’s identity. Therefore \\(K(W_n)\\cong(\\mathbb Z/L_n\\mathbb Z)^2\\) in a unimodularly changed basis.\n\nNow\n\n\\[\n\\delta_k=g_k-g_0\n=F_{2k}g_1-(F_{2k-2}+1)g_0.\n\\]\n\nSo its order is\n\n\\[\n\\frac{L_n}{\\gcd\\!\\left(L_n,F_{2k},F_{2k-2}+1\\right)}.\n\\]\n\nLet \\(d=\\gcd(n,k)\\). The standard Fibonacci-Lucas gcd identity for odd \\(n\\) gives\n\n\\[\n\\gcd(L_n,F_{2k})=L_d.\n\\]\n\nAlso \\(L_d\\mid F_{2k}\\) and \\(L_d\\mid F_{2k-2}+1\\), since \\(d\\mid k\\) and the recurrence matrix has period \\(d\\) modulo \\(L_d\\). Hence\n\n\\[\n\\gcd\\!\\left(L_n,F_{2k},F_{2k-2}+1\\right)=L_d.\n\\]\n\nTherefore\n\n\\[\n\\operatorname{ord}(\\delta_k)=\\frac{L_n}{L_d}\n=\\frac{L_n}{L_{\\gcd(n,k)}}.\n\\]\n\nFor example, when \\(n=3\\), \\(L_3=4\\) and every nonzero \\(\\delta_k\\) has order \\(4\\), matching \\(K(W_3)\\cong(\\mathbb Z/4)^2\\).",
+  "status": "success",
+  "completed_at": "2026-09-24T05:49:51+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem111/cf2930ff830b.json"
+}
