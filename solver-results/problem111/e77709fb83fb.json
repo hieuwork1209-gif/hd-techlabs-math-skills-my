@@ -1,0 +1,22 @@
+{
+  "problem": "problem111",
+  "branch": "adversary/problem111",
+  "problem_path": "workspace/rainier-problem/problem111-graph-theory/problem.md",
+  "source_commit_sha": "4b74ef6159d6b650a5f558aaaeeb7d8f934e6af0",
+  "problem_blob_sha": "e77709fb83fb8a6081751bde304ec8024239def3",
+  "statement_sha256": "9da8aa6d1b3a3a6a36ce397407a44b2e7ea33845c252e247bff2df797434879b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T05:38:11+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(Q_n\\) have generators \\(x_0,\\dots,x_{n-1}\\) with relations\n\n\\[\n3x_i-x_{i-1}-x_{i+1}=0 \\qquad (\\text{indices mod }n).\n\\]\n\nFrom the recurrence \\(x_{j+1}=3x_j-x_{j-1}\\), every \\(x_j\\) is determined by \\(x_0,x_1\\). If \\(P_0=0,P_1=1,P_{j+1}=3P_j-P_{j-1}\\), then\n\n\\[\nx_j=P_jx_1-P_{j-1}x_0.\n\\]\n\nHere \\(P_j=F_{2j}\\). The two wrap-around conditions \\(x_n=x_0\\), \\(x_{n+1}=x_1\\) therefore give an equivalent \\(2\\times2\\) presentation matrix\n\n\\[\nB=\n\\begin{pmatrix}\n-(F_{2n-2}+1)&F_{2n}\\\\\n-F_{2n}&F_{2n+2}-1\n\\end{pmatrix}.\n\\]\n\nSo the two non-unit invariant factors are\n\n\\[\nd_1=\\gcd(F_{2n-2}+1,F_{2n},F_{2n+2}-1),\n\\qquad\nd_2=\\frac{|\\det B|}{d_1}.\n\\]\n\nUsing \\(F_{2n}=F_nL_n\\) and the standard identity\n\n\\[\nF_aL_b=F_{a+b}+(-1)^bF_{a-b},\n\\]\n\none gets\n\n\\[\nd_1=\n\\begin{cases}\nL_n,& n\\text{ odd},\\\\\nF_n,& n\\text{ even}.\n\\end{cases}\n\\]\n\nAlso\n\n\\[\n|\\det Q_n|=|\\det B|=L_{2n}-2.\n\\]\n\nSince \\(L_{2n}=L_n^2-2(-1)^n\\), this becomes\n\n\\[\n|\\det Q_n|=\n\\begin{cases}\nL_n^2,& n\\text{ odd},\\\\\n5F_n^2,& n\\text{ even}.\n\\end{cases}\n\\]\n\nTherefore\n\n\\[\nd_2=\n\\begin{cases}\nL_n,& n\\text{ odd},\\\\\n5F_n,& n\\text{ even}.\n\\end{cases}\n\\]\n\nThus the non-unit invariant factors of \\(Q_n\\), in divisibility order, are\n\n\\[\n\\boxed{\n\\begin{cases}\n(L_n,\\ L_n),& n\\text{ odd},\\\\[2mm]\n(F_n,\\ 5F_n),& n\\text{ even}.\n\\end{cases}\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T05:39:18+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem111/e77709fb83fb.json"
+}
