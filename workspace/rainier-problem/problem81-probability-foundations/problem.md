@@ -2,27 +2,40 @@
 
 ## LaTeX (Normalized)
 
-A generalized Polya urn starts with $4$ red, $4$ green, and $4$ blue balls. At each step, one ball is chosen uniformly at random, returned to the urn, and additional balls are added according to the color drawn:
-
+Let $Y_1,Y_2,\ldots$ be independent positive-integer-valued random variables with
 $$
-\begin{array}{c|ccc}
-\text{drawn color}&\text{red added}&\text{green added}&\text{blue added}\\
-\hline
-\text{red}&9&3&0\\
-\text{green}&1&7&4\\
-\text{blue}&2&2&8
-\end{array}
+\mathbb P(Y_1=k)=\frac{1}{k(k+1)},
+\qquad
+k\geq1.
 $$
+Define the renewal times
+$$
+\tau_0=0,
+\qquad
+\tau_m=Y_1+\cdots+Y_m.
+$$
+For each $n$ with $n\in\{\tau_m:m\geq0\}$, let $K_n$ be the unique index such that $\tau_{K_n}=n$.
 
-Let $(R_n,G_n,B_n)$ be the urn composition after $n$ draws.
+Let
+$$
+m_n=\mathbb E[K_n\mid n\in\{\tau_m:m\geq0\}],
+$$
+$$
+v_n=\operatorname{Var}(K_n\mid n\in\{\tau_m:m\geq0\}),
+$$
+and let $\gamma$ denote Euler's constant.
 
 Determine exactly
 $$
+\left(
 \lim_{n\to\infty}
-\mathbb P\left(
-R_n>G_n
-\text{ and }
-R_n+G_n>2B_n
+\log n
+\left(
+\frac{\log n}{n}m_n-1
+\right),
+\;
+\lim_{n\to\infty}
+\frac{(\log n)^3}{n^2}v_n
 \right).
 $$
 
@@ -35,10 +48,10 @@ $$
 | **Domain** | Probability and Statistics |
 | **Sub-domain** | Probability foundations |
 | **Problem Type** | Exact computation |
-| **Answer Type** | Exact scalar |
+| **Answer Type** | Tuple or ordered list |
 
 ---
 
 ## Domain Explanation
 
-The problem asks for a limiting joint-sign probability in a critical balanced generalized Polya urn. The defective half-Perron Jordan block creates two coupled fluctuation scales, and the target probability depends on their joint Gaussian limit rather than on covariance magnitudes alone. Thus Probability and Statistics -> Probability foundations is primary.
+The problem concerns a renewal process with infinite mean inter-renewal time at the logarithmic boundary. The requested quantities require second-order conditional renewal asymptotics: the mean needs the first logarithmic correction, while the variance is determined only after cancellation of the leading conditional second-moment terms. Thus Probability and Statistics -> Probability foundations is primary.
