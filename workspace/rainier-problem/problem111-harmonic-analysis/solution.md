@@ -20,7 +20,7 @@ $$
 d\mu(z)
 \geq0.
 $$
-Thus
+Therefore
 $$
 T=(c_{j-k})_{0\leq j,k\leq r}
 $$
@@ -189,7 +189,7 @@ $$
 =
 c_j
 $$
-for $0\leq j\leq r$. Hence $\mu_*$ is admissible and attains the bound from Step 2.
+for $0\leq j\leq r$. The measure $\mu_*$ is admissible and attains the bound from Step 2.
 
 Step 4: Determine the support size of every maximizer
 Let $\mu$ be any maximizing measure. Equality in Step 2 forces
@@ -206,7 +206,7 @@ span the kernel and set
 $$
 p(z)=\sum_{j=0}^{r}a_jz^j.
 $$
-The coefficient $a_r$ is nonzero, because otherwise the first $r$ coordinates of $a$ would give a nonzero kernel vector for the positive-definite block $P_r$. Thus $\deg p=r$.
+The coefficient $a_r$ is nonzero, because otherwise the first $r$ coordinates of $a$ would give a nonzero kernel vector for the positive-definite block $P_r$. Therefore $\deg p=r$.
 
 For every maximizing measure,
 $$
@@ -216,7 +216,7 @@ a^*T_*a
 =
 \int |p(z)|^2\,d\mu(z).
 $$
-Its support is therefore contained in the zero set of $p$ on the unit circle, so it has at most $r$ points. Conversely a measure supported on $s$ points gives a moment matrix of rank at most $s$. Since $T_*$ has rank $r$, every maximizing measure has at least $r$ support points. Hence every maximizer has exactly $r$ support points, and those points are precisely the $r$ roots of $p$.
+Its support is therefore contained in the zero set of $p$ on the unit circle, so it has at most $r$ points. Conversely a measure supported on $s$ points gives a moment matrix of rank at most $s$. Since $T_*$ has rank $r$, every maximizing measure has at least $r$ support points. Every maximizer has exactly $r$ support points, and those points are precisely the $r$ roots of $p$.
 
 Step 5: Recover the unweighted sum of the support points
 Use the endpoint-first block ordering from Step 1. Since $S_*$ has kernel spanned by $(1,-1)$, the unique kernel vector of $T_*$ may be scaled so that
@@ -225,7 +225,7 @@ a_0=1,
 \qquad
 a_r=-1.
 $$
-The Toeplitz matrix $T_*$ is invariant under reversing the coordinate order. Its one-dimensional kernel is therefore invariant under reversal. Because reversal swaps the endpoint values $1$ and $-1$, it sends $a$ to $-a$. Thus
+The Toeplitz matrix $T_*$ is invariant under reversing the coordinate order. Its one-dimensional kernel is therefore invariant under reversal. Because reversal swaps the endpoint values $1$ and $-1$, it sends $a$ to $-a$. Therefore
 $$
 a_{r-j}=-a_j
 \qquad
