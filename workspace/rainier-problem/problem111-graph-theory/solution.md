@@ -51,7 +51,7 @@ B^T&C
 \end{pmatrix}.
 $$
 
-Every line in $Y$ meets exactly one spread line through each of its $q+1$ points, so every column of $B$ has sum $q+1$. Every spread line has all of its $k$ neighbors in $Y$, so every row of $B$ has sum $k$. Hence $\Gamma$ is regular of degree
+Every line in $Y$ meets exactly one spread line through each of its $q+1$ points, so every column of $B$ has sum $q+1$. Every spread line has all of its $k$ neighbors in $Y$, so every row of $B$ has sum $k$. The graph $\Gamma$ is regular of degree
 $$
 k'=k-(q+1)=(q+1)(q^2+q-1),
 $$
@@ -85,21 +85,29 @@ k-\mu=(q-1)(q+1)^2.
 $$
 So $B^T$ is injective there. If $u\perp\mathbf1$, then
 $
-\mathbf1^TB^Tu=(B\mathbf1)^Tu=k\mathbf1^Tu=0,
+\mathbf1^TB^Tu=(B\mathbf1)^Tu=k\mathbf1^Tu=0.
 $
-so $B^Tu\perp\mathbf1$. Since $B^T\mathbf1=(q+1)\mathbf1\neq0$, the image of the all-ones direction is disjoint from the image of its orthogonal complement. This proves that $B$ has rank $q^2+1$. Transposing $BC=\alpha B+\mu J$ shows that
+Thus $B^Tu\perp\mathbf1$. Since
+$
+B^T\mathbf1=(q+1)\mathbf1\neq0,
+$
+the image of the all-ones direction is disjoint from the image of its orthogonal complement. This proves that $B$ has rank $q^2+1$. Transposing $BC=\alpha B+\mu J$ shows that
 $$
 C(B^Tu)=\alpha B^Tu
 $$
-for every $u\perp\mathbf1$. Hence $\alpha$ is an adjacency eigenvalue.
+for every $u\perp\mathbf1$. So $\alpha$ is an adjacency eigenvalue.
 
-Therefore
+The orthogonal decomposition is
 $
 \mathbb R^Y
 =
 \operatorname{im}(B^T)\oplus\ker B.
-$$
-For $y\in\ker B\cap\mathbf1^\perp$, the last block identity gives
+$
+If $y\in\ker B$, then
+$
+0=\mathbf1^TBy=(B^T\mathbf1)^Ty=(q+1)\mathbf1^Ty,
+$
+so $y\perp\mathbf1$. For $y\in\ker B$, the last block identity gives
 $$
 C^2y=\alpha Cy+(k-\mu)y.
 $$
@@ -109,13 +117,13 @@ r=q^2-1,
 \qquad
 s=-(q+1).
 $$
-Thus on $\mathbf1^\perp$ the only adjacency eigenvalues are $\alpha,r,s$.
+So on $\mathbf1^\perp$ the only adjacency eigenvalues are $\alpha,r,s$.
 
 The last block identity also gives a useful projector. On $\mathbf1^\perp$,
 $$
 B^TB=(k-\mu)I+\alpha C-C^2.
 $$
-The right side vanishes on the $r$- and $s$-eigenspaces, while on the $\alpha$-eigenspace it equals $(k-\mu)I$. Therefore the orthogonal projector onto the $\alpha$-eigenspace is
+The right side vanishes on the $r$- and $s$-eigenspaces, while on the $\alpha$-eigenspace it equals $(k-\mu)I$. The orthogonal projector onto the $\alpha$-eigenspace is
 $$
 P_\alpha=\frac{B^TB}{k-\mu}.
 $$
@@ -156,10 +164,10 @@ Also
 $$
 z^TCz=-2\varepsilon,
 $$
-because the diagonal entries of $C$ vanish and $C_{LM}=\varepsilon$. Hence
-$$
+because the diagonal entries of $C$ vanish and $C_{LM}=\varepsilon$. This gives
+$
 \alpha a+rb+sc=-2\varepsilon.
-$$
+$
 Solving these two equations gives
 $$
 b
