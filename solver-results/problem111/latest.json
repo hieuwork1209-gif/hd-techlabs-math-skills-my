@@ -2,8 +2,8 @@
   "problem": "problem111",
   "branch": "adversary/problem111",
   "problem_path": "workspace/rainier-problem/problem111-graph-theory/problem.md",
-  "problem_blob_sha": "ae16565dba3269454e6b0e5d9ab669a493ea06c5",
-  "source_commit_sha": "1f586fb6ae33451788781af53179f89c153f7091",
+  "problem_blob_sha": "25c455a7197295bff621663f60386906cfff5f4c",
+  "source_commit_sha": "435fbad1d725a9e905734e97fc3af61f99e190db",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-24T04:17:18+00:00",
-  "result_file": "solver-results/problem111/ae16565dba32.json"
+  "completed_at": "2026-09-24T05:27:53+00:00",
+  "result_file": "solver-results/problem111/25c455a71972.json"
 }

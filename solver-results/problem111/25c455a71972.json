@@ -1,0 +1,22 @@
+{
+  "problem": "problem111",
+  "branch": "adversary/problem111",
+  "problem_path": "workspace/rainier-problem/problem111-graph-theory/problem.md",
+  "source_commit_sha": "435fbad1d725a9e905734e97fc3af61f99e190db",
+  "problem_blob_sha": "25c455a7197295bff621663f60386906cfff5f4c",
+  "statement_sha256": "f47df4553cecb5af518fe02f55027340f6a7dcabf3d0be3a5491c72ad7d91857",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T05:25:48+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(Y\\) be the set of non-spread lines, so \\(\\Gamma\\) has vertex set \\(Y\\). The total line-intersection graph on all lines of \\(PG(3,q)\\) is strongly regular with\n\n\\[\nk=q(q+1)^2,\\qquad \\lambda=2q^2+q-1,\\qquad \\mu=(q+1)^2.\n\\]\n\nEach non-spread line meets exactly \\(q+1\\) spread lines, so its degree inside \\(\\Gamma\\) is\n\n\\[\nd=k-(q+1)=(q+1)(q^2+q-1).\n\\]\n\nLet \\(C\\) be the incidence matrix between non-spread lines and spread lines, where \\(C_{x,s}=1\\) if \\(x\\) meets \\(s\\). Then\n\n\\[\nC^TC=(q-1)(q+1)^2I+(q+1)^2J.\n\\]\n\nOn the subspace orthogonal to the all-ones vector, the column space of \\(C\\) is an eigenspace of the adjacency matrix \\(A\\) of \\(\\Gamma\\), with eigenvalue\n\n\\[\n\\beta=\\lambda-\\mu=q^2-q-2.\n\\]\n\nThe remaining orthogonal complement has adjacency eigenvalues\n\n\\[\nr=q^2-1,\\qquad s=-(q+1).\n\\]\n\nThus the corresponding Laplacian eigenvalues are\n\n\\[\nd-\\beta=(q+1)(q^2+1),\\qquad d-r=q^2(q+1),\\qquad d-s=q(q+1)^2.\n\\]\n\nFor \\(x=e_L-e_M\\), the projection of \\(x\\) onto the \\(C\\)-column eigenspace has squared norm\n\n\\[\nu=\\frac{\\|C^Tx\\|^2}{(q-1)(q+1)^2}\n=\\frac{2(q+1-m)}{(q-1)(q+1)^2}.\n\\]\n\nUsing \\(x^TAx=-2\\varepsilon\\), the squared norm of the projection onto the \\(r=q^2-1\\) eigenspace is\n\n\\[\na=\\frac{2\\bigl((q+1)(q-\\varepsilon)+m\\bigr)}{q(q+1)^2}.\n\\]\n\nTherefore\n\n\\[\nR_{\\mathrm{eff}}(L,M)\n=\n\\frac{u}{(q+1)(q^2+1)}\n+\\frac{a}{q^2(q+1)}\n+\\frac{2-u-a}{q(q+1)^2}.\n\\]\n\nSo the effective resistance is\n\n\\[\n\\boxed{\n\\frac{2}{q(q+1)^2}\n+\\frac{2(q+1-m)}{q(q+1)^4(q^2+1)}\n+\\frac{2\\bigl((q+1)(q-\\varepsilon)+m\\bigr)}{q^3(q+1)^4}\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T05:27:53+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem111/25c455a71972.json"
+}
