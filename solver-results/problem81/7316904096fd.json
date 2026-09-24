@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-probability-foundations/problem.md",
+  "source_commit_sha": "c7f884bb81f75644cda4da800f4ccc0e93bd0b07",
+  "problem_blob_sha": "7316904096fd88daf3cf814b9b0bd126965d096d",
+  "statement_sha256": "8a74ff5572b6bcbe1c60aeba89346adddc98a4ac5115fb716e2d68da9776b547",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T08:41:21+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(r_{ij}=1/c_{ij}\\) be the resistance of edge \\(\\{i,j\\}\\), and let\n\\[\nW=\\sum_i\\sum_{j\\sim i}c_{ij}=2\\sum_{e}c_e.\n\\]\nFor a weighted tree,\n\\[\nC_{ij}=W\\sum_{e\\in[i,j]}r_e.\n\\]\nThus commute times are a positive scalar multiple of tree-path resistance distances.\n\nSince\n\\[\nC_{13}=C_{12}+C_{23},\\qquad C_{24}=C_{23}+C_{34},\n\\]\nthe tree must be the path\n\\[\n1-2-3-4.\n\\]\nMoreover, for its three edges,\n\\[\nWr_{12}=4,\\qquad Wr_{23}=6,\\qquad Wr_{34}=12.\n\\]\nHence\n\\[\nc_{12}:c_{23}:c_{34}\n=\\frac14:\\frac16:\\frac1{12}\n=3:2:1.\n\\]\nTherefore the transition probabilities are\n\\[\nP(2,1)=\\frac35,\\quad P(2,3)=\\frac25,\n\\]\n\\[\nP(3,2)=\\frac23,\\quad P(3,4)=\\frac13,\n\\]\nwith \\(1\\to2\\) and \\(4\\to3\\) deterministically.\n\nSet \\(T\\) equal to the first time the walk reaches either endpoint \\(1\\) or \\(4\\).\n\n### 1. First endpoint reached\n\nLet \\(q_i=P_i(T_1<T_4)\\). Then\n\\[\nq_2=\\frac35+\\frac25q_3,\\qquad q_3=\\frac23q_2,\n\\]\nso\n\\[\nq_2=\\frac9{11},\\qquad P_2(T_4<T_1)=\\frac2{11}.\n\\]\n\nThe first moment of \\(T\\) satisfies\n\\[\nm_2=1+\\frac25m_3,\\qquad m_3=1+\\frac23m_2,\n\\]\ngiving\n\\[\nE_2T=m_2=\\frac{21}{11}.\n\\]\n\nThe second moment satisfies\n\\[\ns_2=1+\\frac25(2m_3+s_3),\\qquad\ns_3=1+\\frac23(2m_2+s_2),\n\\]\nso\n\\[\nE_2T^2=s_2=\\frac{699}{121}.\n\\]\n\nWe also need the mixed first and second moments on the event \\(A=\\{T_1<T_4\\}\\). Solving the corresponding recurrences gives\n\\[\nE_2[T\\,1_A]=\\frac{171}{121},\\qquad\nE_2[T^2\\,1_A]=\\frac{5409}{1331}.\n\\]\nTherefore\n\\[\nE_2[T\\,1_{A^c}]\n=\\frac{21}{11}-\\frac{171}{121}\n=\\frac{60}{121},\n\\]\nand\n\\[\nE_2[T^2\\,1_{A^c}]\n=\\frac{699}{121}-\\frac{5409}{1331}\n=\\frac{2280}{1331}.\n\\]\n\n### 2. Time to reach the other endpoint\n\nIf the first endpoint is \\(1\\), let \\(S_1\\) be the time from \\(1\\) to \\(4\\). Solving the hitting-time recurrences gives\n\\[\nE_1S_1=16,\\qquad E_1S_1^2=451.\n\\]\n\nIf the first endpoint is \\(4\\), let \\(S_4\\) be the time from \\(4\\) to \\(1\\). Then\n\\[\nE_4S_4=6,\\qquad E_4S_4^2=61.\n\\]\n\nBy the strong Markov property,\n\\[\n\\tau_{\\rm cov}=T+\n\\begin{cases}\nS_1,&A,\\\\\nS_4,&A^c.\n\\end{cases}\n\\]\n\nThus\n\\[\nE_2\\tau_{\\rm cov}\n=\\frac{21}{11}+\\frac9{11}(16)+\\frac2{11}(6)\n=\\frac{177}{11}.\n\\]\n\nFor the second moment,\n\\[\n\\begin{aligned}\nE_2\\tau_{\\rm cov}^2\n&=E_2T^2\n+2\\left(16E_2[T1_A]+6E_2[T1_{A^c}]\\right)\\\\\n&\\quad+\\frac9{11}(451)+\\frac2{11}(61)\\\\\n&=\\frac{52882}{121}.\n\\end{aligned}\n\\]\nTherefore\n\\[\n\\operatorname{Var}_2(\\tau_{\\rm cov})\n=\\frac{52882}{121}-\\left(\\frac{177}{11}\\right)^2\n=\\frac{21553}{121}.\n\\]\n\n\\[\n\\boxed{\\left(C_{14},\\mathbb E_2\\tau_{\\rm cov},\\operatorname{Var}_2(\\tau_{\\rm cov})\\right)\n=\n\\left(22,\\frac{177}{11},\\frac{21553}{121}\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T08:46:49+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/7316904096fd.json"
+}
