@@ -52,7 +52,7 @@ D(u)
 =
 u^2+(a^2-c^2-2)u+1-b^2.
 $$
-Thus $|H(i\omega)|<1$ is equivalent to $D(u)>0$.
+$|H(i\omega)|<1$ is therefore equivalent to $D(u)>0$.
 
 Step 3: Characterize when the gap stays positive
 First suppose $0\leq b<1$. Then
@@ -71,10 +71,10 @@ If $A\geq0$, the minimum of $D$ on $u\geq0$ is $D(0)=B>0$. If $A<0$, the minimum
 $$
 B-\frac{A^2}{4}.
 $$
-Hence
-$$
+This gives
+$
 D(u)>0\quad\text{for all }u\geq0
-$$
+$
 exactly when
 $$
 A>-2\sqrt{B},
@@ -101,7 +101,7 @@ $$
 P(0)+Q(0)=1+b=2.
 $$
 
-Step 4: Prove sufficiency of the two parameter regimes
+Step 4: Establish sufficiency of the two parameter regimes
 Assume first that
 $$
 0\leq b<1,
@@ -124,9 +124,9 @@ Then Step 3 gives
 $$
 |H(i\omega)|<1
 $$
-for every $\omega\neq0$, while $|H(0)|=1$. The maximum modulus argument still gives $|H(\lambda)|<1$ in the open right half-plane, since $H$ is nonconstant and tends to $0$ at infinity. The only boundary point where equality in modulus occurs is $\lambda=0$, and that point is not a characteristic root. Hence every characteristic root has negative real part for every $\tau\geq0$.
+for every $\omega\neq0$, while $|H(0)|=1$. The maximum modulus argument still gives $|H(\lambda)|<1$ in the open right half-plane, since $H$ is nonconstant and tends to $0$ at infinity. The only boundary point where equality in modulus occurs is $\lambda=0$, and that point is not a characteristic root. Every characteristic root therefore has negative real part for every $\tau\geq0$.
 
-Step 5: Prove necessity by constructing a critical delay
+Step 5: Establish necessity by constructing a critical delay
 If $b>1$, then
 $$
 D(0)=1-b^2<0,
