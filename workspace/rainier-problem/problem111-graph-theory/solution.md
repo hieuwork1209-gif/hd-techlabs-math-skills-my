@@ -131,7 +131,7 @@ $$
 =
 F_{2n+2}-F_{2n-2}.
 $$
-The sequence $F_{m+1}+F_{m-1}$ has initial values $2,1$ at $m=0,1$ and satisfies the same recurrence as the Lucas sequence. Hence
+The sequence $F_{m+1}+F_{m-1}$ has initial values $2,1$ at $m=0,1$ and satisfies the same recurrence as the Lucas sequence. It follows that
 $
 L_m=F_{m+1}+F_{m-1}.
 $
