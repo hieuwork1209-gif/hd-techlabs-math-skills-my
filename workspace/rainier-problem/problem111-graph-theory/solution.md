@@ -38,7 +38,7 @@ $$
 $$
 
 Step 2: Use the spread to obtain a block matrix
-Let $\mathcal S$ be the fixed line spread. Its lines partition the points of $PG(3,q)$, and each line contains $q+1$ points. Thus
+Let $\mathcal S$ be the fixed line spread. Its lines partition the points of $PG(3,q)$, and each line contains $q+1$ points. This gives
 $$
 |\mathcal S|
 =
@@ -99,7 +99,7 @@ so $B^T$ is injective on the full $(q^2+1)$-dimensional spread-vertex space. Tra
 $$
 C(B^Tu)=\alpha B^Tu.
 $$
-Thus $C$ has eigenvalue
+So $C$ has eigenvalue
 $$
 \alpha=(q-2)(q+1)
 $$
