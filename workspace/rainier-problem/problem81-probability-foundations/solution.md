@@ -181,10 +181,27 @@ q_3
 =
 \frac{39}{11}+\frac{2}{3}q_2.
 $$
-Solving,
-$$
+Substituting the equation for $q_3$ into that for $q_2$ gives
+$
+q_2
+=
+\frac{31}{11}
++
+\frac{2}{5}
+\left(
+\frac{39}{11}
++
+\frac{2}{3}q_2
+\right)
+=
+\frac{233}{55}
++
+\frac{4}{15}q_2,
+$
+so
+$
 q_2=\frac{699}{121}.
-$$
+$
 
 The cover-time second moment also needs the correlation between $\sigma$ and which endpoint is reached first. Put
 $$
@@ -206,10 +223,35 @@ a_3
 =
 \frac{2}{3}(p_2+a_2).
 $$
-Using the values of $p_2,p_3$ gives
-$$
+The second equation gives
+$
+a_3
+=
+\frac{6}{11}
++
+\frac{2}{3}a_2.
+$
+Substituting this and $p_3=6/11$ into the first equation,
+$
+a_2
+=
+\frac{3}{5}
++
+\frac{2}{5}
+\left(
+\frac{12}{11}
++
+\frac{2}{3}a_2
+\right)
+=
+\frac{57}{55}
++
+\frac{4}{15}a_2,
+$
+so
+$
 a_2=\frac{171}{121}.
-$$
+$
 Therefore
 $$
 \mathbb E_2\left[\sigma\mathbf 1_{\{T_4<T_1\}}\right]
@@ -235,14 +277,30 @@ and
 $$
 r_4=1+r_3.
 $$
-Solving gives
-$$
+From $r_4=1+r_3$, the middle equation becomes
+$
+r_3
+=
+1+\frac{2}{3}r_2+\frac{1}{3}(1+r_3),
+$
+so
+$
+r_3=2+r_2.
+$
+Then
+$
+r_2
+=
+1+\frac{2}{5}(2+r_2),
+$
+which gives
+$
 r_2=3,
 \qquad
 r_3=5,
 \qquad
 r_4=6.
-$$
+$
 Since $C_{14}=22$ from Step 2,
 $$
 \mathbb E_1T_4=22-r_4=16.
@@ -281,10 +339,27 @@ and
 $$
 g_3=21+\frac{2}{3}g_2.
 $$
-Hence
-$$
+Substituting the first and third equations into the second,
+$
+g_2
+=
+29
++
+\frac{3}{5}(31+g_2)
++
+\frac{2}{5}
+\left(
+21+\frac{2}{3}g_2
+\right)
+=
+56+\frac{13}{15}g_2.
+$
+Thus
+$
+g_2=420,
+\qquad
 g_1=451.
-$$
+$
 
 For second moments to vertex $1$, put
 $$
@@ -301,10 +376,24 @@ and
 $$
 s_4=11+s_3.
 $$
-Solving yields
-$$
+Using $s_4=11+s_3$ in the middle equation gives
+$
+s_3=19+s_2.
+$
+Then
+$
+s_2
+=
+5+\frac{2}{5}(19+s_2),
+$
+so
+$
+s_2=21,
+\qquad
+s_3=40,
+\qquad
 s_4=51.
-$$
+$
 
 Step 5: Compute the cover-time mean and variance
 Let
