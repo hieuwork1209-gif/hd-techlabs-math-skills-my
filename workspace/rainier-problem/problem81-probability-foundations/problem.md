@@ -2,11 +2,11 @@
 
 ## LaTeX (Normalized)
 
-Consider a two-type Galton-Watson process with types $A$ and $B$. Different individuals reproduce independently.
+Consider the same two-type Galton-Watson process with types $A$ and $B$.
 
 A type $A$ individual has offspring
 $$
-arnothing
+\varnothing
 $$
 with probability $\frac{1}{2}$,
 $$
@@ -32,17 +32,33 @@ $$
 $$
 with probability $\frac{1}{4}$.
 
-Let $a_n$ be the probability that generation $n$ is nonempty when the process starts from one type $A$ individual, and let $b_n$ be the corresponding probability when it starts from one type $B$ individual.
+Let $T$ be the total number of individuals ever born, including the initial ancestor, and define
+$$
+G_A(z)=\mathbb E_A[z^T],
+\qquad
+G_B(z)=\mathbb E_B[z^T].
+$$
 
-Determine exactly
+There are unique constants $\kappa,\alpha,\beta$ such that, as $z\uparrow1$,
 $$
-\left(
-\lim_{n\to\infty}n^2(a_n-b_n),
-\;
-\lim_{n\to\infty}
-\frac{a_n^{-1}-\frac{5}{8}n}{\log n}
-\right).
+1-G_A(z)
+=
+\kappa(1-z)^{1/2}
++
+O(1-z)
 $$
+and
+$$
+G_A(z)-G_B(z)
+=
+-\alpha(1-z)
++
+\beta(1-z)^{3/2}
++
+o((1-z)^{3/2}).
+$$
+
+Determine $(\kappa,\alpha,\beta)$ exactly.
 
 ---
 
@@ -52,11 +68,11 @@ $$
 |---|---|
 | **Domain** | Probability and Statistics |
 | **Sub-domain** | Probability foundations |
-| **Problem Type** | Exact computation |
+| **Problem Type** | Parameter identification |
 | **Answer Type** | Tuple or ordered list |
 
 ---
 
 ## Domain Explanation
 
-The problem concerns second-order survival asymptotics of a critical irreducible two-type Galton-Watson process. The mean offspring matrix controls the leading Perron mode, while the differing higher offspring laws create a stable-mode correction and a logarithmic refinement of the survival scale. Thus Probability and Statistics -> Probability foundations is primary.
+The problem asks for singular coefficients of total-progeny probability generating functions in a critical irreducible multitype Galton-Watson process. The critical Perron mode creates the square-root singularity, while the stable type-difference mode controls the next asymmetric term. Thus Probability and Statistics -> Probability foundations is primary.
