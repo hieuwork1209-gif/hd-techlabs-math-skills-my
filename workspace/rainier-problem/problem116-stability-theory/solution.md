@@ -5,9 +5,9 @@ Consider
 $
 x'=y,
 \qquad
-y'=-x-(a+bx^2)y,
+y'=-x-(a+bx^2)y.
 $
-with $a,b\geq0$. The energy
+With $a,b\geq0$, the energy
 $
 E(x,y)=\frac{x^2+y^2}{2}
 $
@@ -108,18 +108,26 @@ $$
 -2K.
 $$
 Thus, for every time before $x$ reaches zero,
-$$
+$
 x(t)^2\geq R^2-2Kt.
-$$
+$
 Set
-$$
+$
 t_R=\frac{3R^2}{8K}.
-$$
-Then the right side is $R^2/4$, so in fact
-$$
-x(t)^2\geq\frac{R^2}{4}
-$$
-for $0\leq t\leq t_R$. In particular $x$ stays positive on this whole interval, so the argument is self-consistent, and
+$
+If $x$ had a first zero at some $\tau\leq t_R$, then the inequality valid on $[0,\tau)$ would give by continuity
+$
+0=x(\tau)^2
+\geq
+R^2-2K\tau
+\geq
+\frac{R^2}{4},
+$
+a contradiction. Hence $x$ stays positive on $[0,t_R]$, and the same inequality gives
+$
+x(t_R)^2\geq\frac{R^2}{4}.
+$
+Therefore
 $$
 \|(x(t_R),y(t_R))\|_2\geq x(t_R)\geq\frac{R}{2}.
 $$
