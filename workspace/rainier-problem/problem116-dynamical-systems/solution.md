@@ -73,7 +73,7 @@ Assume $0\leq b<1$. At $\omega=0$,
 $$
 R(0)=1>b.
 $$
-Thus the root locus can reach the annulus from Step 2 only after $R$ first meets its upper boundary $b+c\omega$. Consequently, no imaginary root can occur for any delays exactly when
+The root locus can therefore reach the annulus from Step 2 only after $R$ first meets its upper boundary $b+c\omega$. No imaginary root can occur for any delays exactly when
 $$
 R(\omega)>b+c\omega
 $$
@@ -105,7 +105,7 @@ g_{b,c}(r)
 r^2,
 \qquad r>0,
 $$
-tends to $-\infty$ as $r\to0^+$ and as $r\to\infty$, so it attains a finite maximum. Hence the required condition for $0\leq b<1$ is
+tends to $-\infty$ as $r\to0^+$ and as $r\to\infty$, so it attains a finite maximum. The required condition for $0\leq b<1$ is
 $$
 a^2
 >
