@@ -33,7 +33,7 @@ A_1,&n\leq t<n+x,\\
 A_2,&n+x\leq t<n+x+y,\\
 A_3,&n+x+y\leq t<n+1,
 \end{cases}
-\qquad n\in\mathbb Z_{\geq0}.
+\qquad n\in\mathbb{Z}_{\geq0}.
 $$
 Consider
 $$
