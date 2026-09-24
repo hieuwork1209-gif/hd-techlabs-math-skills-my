@@ -122,72 +122,155 @@ $$
 P(4,3)=1.
 $$
 
-Step 3: Compute the first hitting-time moments from state 1 to state 4
+Step 3: Analyze the first endpoint reached from vertex 2
 Let
 $$
-h_i=\mathbb E_iT_4.
+\sigma=T_1\wedge T_4
 $$
-Then $h_4=0$, and first-step decomposition gives
+for a walk started from vertex $2$. For $i\in\{2,3\}$ define
 $$
-h_1=1+h_2,
+p_i=\mathbb P_i(T_1<T_4).
 $$
+First-step decomposition gives
 $$
-h_2=1+\frac{3}{5}h_1+\frac{2}{5}h_3,
-$$
-and
-$$
-h_3=1+\frac{2}{3}h_2.
-$$
-Substituting the first and third equations into the second gives
-$$
-h_2
-=
-1+\frac{3}{5}(1+h_2)
-+\frac{2}{5}\left(1+\frac{2}{3}h_2\right)
-=
-2+\frac{13}{15}h_2.
-$$
-Hence
-$$
-h_2=15,
+p_2=\frac{3}{5}+\frac{2}{5}p_3,
 \qquad
-h_1=16,
-\qquad
-h_3=11.
+p_3=\frac{2}{3}p_2.
 $$
 Thus
 $$
-\mathbb E_1T_4=16.
+p_2=\frac{9}{11},
+\qquad
+p_3=\frac{6}{11}.
 $$
 
-Step 4: Compute the second moment and variance
 Let
+$$
+m_i=\mathbb E_i\sigma.
+$$
+Then
+$$
+m_2=1+\frac{2}{5}m_3,
+\qquad
+m_3=1+\frac{2}{3}m_2,
+$$
+so
+$$
+m_2=\frac{21}{11},
+\qquad
+m_3=\frac{25}{11}.
+$$
+
+For
+$$
+q_i=\mathbb E_i\sigma^2,
+$$
+conditioning on the first step gives
+$$
+q_2
+=
+1+\frac{4}{5}m_3+\frac{2}{5}q_3
+=
+\frac{31}{11}+\frac{2}{5}q_3
+$$
+and
+$$
+q_3
+=
+1+\frac{4}{3}m_2+\frac{2}{3}q_2
+=
+\frac{39}{11}+\frac{2}{3}q_2.
+$$
+Solving,
+$$
+q_2=\frac{699}{121}.
+$$
+
+The cover-time second moment also needs the correlation between $\sigma$ and which endpoint is reached first. Put
+$$
+a_i
+=
+\mathbb E_i\left[\sigma\mathbf 1_{\{T_1<T_4\}}\right].
+$$
+A first step from $2$ hits vertex $1$ immediately with probability $3/5$, while a first step to $3$ contributes one unit of time whenever vertex $1$ is eventually reached first. Hence
+$$
+a_2
+=
+\frac{3}{5}
++
+\frac{2}{5}(p_3+a_3).
+$$
+Similarly,
+$$
+a_3
+=
+\frac{2}{3}(p_2+a_2).
+$$
+Using the values of $p_2,p_3$ gives
+$$
+a_2=\frac{171}{121}.
+$$
+Therefore
+$$
+\mathbb E_2\left[\sigma\mathbf 1_{\{T_4<T_1\}}\right]
+=
+m_2-a_2
+=
+\frac{60}{121}.
+$$
+
+Step 4: Compute the traversal moments between the two endpoints
+Let
+$$
+r_i=\mathbb E_iT_1
+$$
+for $i\in\{2,3,4\}$. The first-step equations are
+$$
+r_2=1+\frac{2}{5}r_3,
+$$
+$$
+r_3=1+\frac{2}{3}r_2+\frac{1}{3}r_4,
+$$
+and
+$$
+r_4=1+r_3.
+$$
+Solving gives
+$$
+r_2=3,
+\qquad
+r_3=5,
+\qquad
+r_4=6.
+$$
+Since $C_{14}=22$ from Step 2,
+$$
+\mathbb E_1T_4=22-r_4=16.
+$$
+Writing
+$$
+h_i=\mathbb E_iT_4,
+$$
+the relations $h_1=1+h_2$ and $h_3=1+\frac{2}{3}h_2$ therefore give
+$$
+h_1=16,
+\qquad
+h_2=15,
+\qquad
+h_3=11.
+$$
+
+For second moments to vertex $4$, set
 $$
 g_i=\mathbb E_iT_4^2.
 $$
-Conditioning on the first step,
+The identity
 $$
 g_i
 =
-1
-+
-2\sum_jP(i,j)h_j
-+
-\sum_jP(i,j)g_j.
+2h_i-1+\sum_jP(i,j)g_j
 $$
-Since
-$$
-h_i=1+\sum_jP(i,j)h_j,
-$$
-this becomes
-$$
-g_i
-=
-2h_i-1
-+
-\sum_jP(i,j)g_j.
-$$
-Using the values from Step 3,
+gives
 $$
 g_1=31+g_2,
 $$
@@ -198,42 +281,114 @@ and
 $$
 g_3=21+\frac{2}{3}g_2.
 $$
-Substituting the first and third equations into the second gives
+Hence
 $$
-g_2
-=
-29
-+\frac{3}{5}(31+g_2)
-+\frac{2}{5}\left(21+\frac{2}{3}g_2\right)
-=
-56+\frac{13}{15}g_2.
+g_1=451.
 $$
+
+For second moments to vertex $1$, put
+$$
+s_i=\mathbb E_iT_1^2.
+$$
+Using the means $r_2=3,r_3=5,r_4=6$ gives
+$$
+s_2=5+\frac{2}{5}s_3,
+$$
+$$
+s_3=9+\frac{2}{3}s_2+\frac{1}{3}s_4,
+$$
+and
+$$
+s_4=11+s_3.
+$$
+Solving yields
+$$
+s_4=51.
+$$
+
+Step 5: Compute the cover-time mean and variance
+Let
+$$
+\tau_{\rm cov}
+=
+\inf\{n\geq0:\{X_0,X_1,\ldots,X_n\}=\{1,2,3,4\}\}
+$$
+for a walk started from $2$. At time $\sigma=T_1\wedge T_4$, exactly one endpoint has just been reached. If it is vertex $1$, completing the cover requires a fresh passage from $1$ to $4$; if it is vertex $4$, completing the cover requires a fresh passage from $4$ to $1$. By the strong Markov property, conditional on the first endpoint, this post-$\sigma$ passage is independent of the pre-$\sigma$ path.
+
 Therefore
 $$
-g_2=420,
-\qquad
-g_1=451.
+\mathbb E_2\tau_{\rm cov}
+=
+m_2
++
+p_2\mathbb E_1T_4
++
+(1-p_2)\mathbb E_4T_1.
+$$
+Substituting the values from Steps 3 and 4,
+$$
+\mathbb E_2\tau_{\rm cov}
+=
+\frac{21}{11}
++
+\frac{9}{11}\cdot16
++
+\frac{2}{11}\cdot6
+=
+\frac{177}{11}.
+$$
+
+For the second moment,
+$$
+\mathbb E_2\tau_{\rm cov}^2
+=
+q_2
++
+2\left(
+16a_2
++
+6(m_2-a_2)
+\right)
++
+451p_2
++
+51(1-p_2).
+$$
+Thus
+$$
+\mathbb E_2\tau_{\rm cov}^2
+=
+\frac{699}{121}
++
+2\left(
+16\cdot\frac{171}{121}
++
+6\cdot\frac{60}{121}
+\right)
++
+451\cdot\frac{9}{11}
++
+51\cdot\frac{2}{11}
+=
+\frac{52662}{121}.
 $$
 Hence
 $$
-\operatorname{Var}_1(T_4)
+\operatorname{Var}_2(\tau_{\rm cov})
 =
-g_1-h_1^2
+\frac{52662}{121}
+-
+\left(\frac{177}{11}\right)^2
 =
-451-16^2
-=
-195.
+\frac{21333}{121}.
 $$
-
-Step 5: Assemble the requested quantities
-The commute-time data force the unique tree path $1-2-3-4$, the missing commute time is $22$, the mean hitting time from $1$ to $4$ is $16$, and its variance is $195$.
-Final Answer: $\boxed{(22,16,195)}$
-
+Combining this with $C_{14}=22$ gives the requested tuple.
+Final Answer: $\boxed{\left(22,\frac{177}{11},\frac{21333}{121}\right)}$
 ---
 
 ## Answer
 
-$(22,16,195)$
+$\left(22,\frac{177}{11},\frac{21333}{121}\right)$
 
 ---
 
@@ -251,4 +406,4 @@ $(22,16,195)$
 - weighted tree random walks
 - commute time metrics
 - hitting time recursions
-- second moment recursions
+- cover time decomposition
