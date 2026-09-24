@@ -22,7 +22,9 @@ $$
 $$
 for every three-element subset $\{u,v,w\}\subset V$.
 
-Determine the number of $\sigma\in\operatorname{Aut}(\mathscr H)$ having no fixed point in $V$.
+A subgroup $G\leq\operatorname{Aut}(\mathscr H)$ is called regular on $V$ if for every $x,y\in V$ there is exactly one $g\in G$ such that $g(x)=y$.
+
+Determine the number of subgroups of $\operatorname{Aut}(\mathscr H)$ that are regular on $V$.
 
 ---
 
@@ -39,4 +41,4 @@ Determine the number of $\sigma\in\operatorname{Aut}(\mathscr H)$ having no fixe
 
 ## Domain Explanation
 
-The problem asks for the automorphism structure of a finite incidence hypergraph on the affine plane $\mathbb F_\ell^2$. Its edges are determined by a square-class orientation condition on triangle determinants, and the solution reconstructs affine collinearity from the incidence data before classifying and counting the resulting finite-geometric automorphisms.
+The problem asks for regular automorphism groups of a finite incidence hypergraph on the affine plane $\mathbb F_\ell^2$. The square-class condition on triangle determinants determines the incidence structure, while the regularity requirement forces a nontrivial classification of affine $\ell$-subgroups and their compatibility with the translation geometry.
