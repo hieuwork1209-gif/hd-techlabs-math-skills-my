@@ -2,20 +2,20 @@
 
 ## LaTeX (Normalized)
 
-Let $a,b\geq0$ and consider the nonlinear system
+Let $a>0$ and $b,c\geq0$. For each delay $\tau\geq0$, consider
 $$
-x'=y,
-\qquad
-y'=-x-(a+bx^2)y.
+x''(t)+a x'(t)+x(t)+b x(t-\tau)+c x'(t-\tau)=0.
 $$
-Determine all pairs $(a,b)$ for which the origin is globally exponentially stable in the Euclidean norm. That is, determine all $(a,b)$ for which there exist constants $M,\gamma>0$ such that every solution satisfies
+Its characteristic quasipolynomial is
 $$
-\|(x(t),y(t))\|_2
-\leq
-M e^{-\gamma t}
-\|(x(0),y(0))\|_2
+\Delta_{\tau}(\lambda)
+=
+\lambda^2+a\lambda+1+(b+c\lambda)e^{-\lambda\tau}.
 $$
-for all $t\geq0$.
+Determine all triples $(a,b,c)$ such that, for every $\tau\geq0$, every zero $\lambda\in\mathbb{C}$ of $\Delta_{\tau}$ satisfies
+$$
+\operatorname{Re}\lambda<0.
+$$
 
 ---
 
@@ -32,4 +32,4 @@ for all $t\geq0$.
 
 ## Domain Explanation
 
-The problem asks for the complete parameter region giving global exponential stability of an equilibrium in a nonlinear second-order system. The main distinction is between local damping near the origin and the large-state decay rate required for a global exponential estimate.
+The problem asks for the complete delay-independent spectral stability region of a second-order retarded differential equation. The decisive issue is whether the characteristic roots can reach the imaginary axis for some delay.
