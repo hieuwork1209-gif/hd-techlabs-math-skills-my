@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
+  "source_commit_sha": "4ef44fa7de68bef30f7042559b20c69b0f405bf9",
+  "problem_blob_sha": "ca7c2edad2b785d3b4256c484e278f4eaf6da94e",
+  "statement_sha256": "397e88d71490b0d11606f68770143205331175a5f49b67107fad7bfcc0b5c82c",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T04:09:32+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nB_1=E_{12},\\qquad B_2=E_{23},\\qquad B_3=E_{31},\n\\]\nso that\n\\[\nA_i=-\\alpha I+B_i.\n\\]\nSince the scalar part commutes with everything and \\(B_i^2=0\\),\n\\[\ne^{xA_1}=e^{-\\alpha x}(I+xE_{12}),\\quad\ne^{yA_2}=e^{-\\alpha y}(I+yE_{23}),\\quad\ne^{zA_3}=e^{-\\alpha z}(I+zE_{31}).\n\\]\nThus the one-period monodromy matrix is\n\\[\nP_{x,y,z}=e^{-\\alpha}Q_{x,y,z},\n\\]\nwhere\n\\[\nQ_{x,y,z}=(I+zE_{31})(I+yE_{23})(I+xE_{12})\n=\n\\begin{pmatrix}\n1&x&xy\\\\\n0&1&y\\\\\nz&zx&1+xyz\n\\end{pmatrix}.\n\\]\n\nSo uniform exponential stability is possible exactly when\n\\[\ne^{-\\alpha}\\sup_{x+y+z=1}\\rho(Q_{x,y,z})<1.\n\\]\n\nNow compute the characteristic polynomial of \\(Q=Q_{x,y,z}\\). Since \\(\\det Q=1\\) and a direct determinant expansion gives\n\\[\n\\chi_Q(\\lambda)\n=\\lambda^3-(3+xyz)\\lambda^2+3\\lambda-1\n=(\\lambda-1)^3-xyz\\,\\lambda^2.\n\\]\nLet \\(r=xyz\\). By AM-GM,\n\\[\n0\\le r\\le \\frac1{27},\n\\]\nwith equality only at \\(x=y=z=\\frac13\\).\n\nFor \\(r>0\\), the Perron root \\(\\lambda(r)>1\\) satisfies\n\\[\n(\\lambda-1)^3=r\\lambda^2.\n\\]\nThe function\n\\[\nf(\\lambda)=\\frac{(\\lambda-1)^3}{\\lambda^2}\n\\]\nis strictly increasing for \\(\\lambda>1\\), since\n\\[\n\\frac{f'(\\lambda)}{f(\\lambda)}\n=\\frac{3}{\\lambda-1}-\\frac{2}{\\lambda}\n=\\frac{\\lambda+2}{\\lambda(\\lambda-1)}>0.\n\\]\nTherefore \\(\\rho(Q_{x,y,z})\\) is maximized when \\(xyz\\) is maximized, i.e. at\n\\[\nx=y=z=\\frac13.\n\\]\n\nLet \\(\\lambda_*\\) denote the unique real number \\(>1\\) satisfying\n\\[\n27(\\lambda_*-1)^3=\\lambda_*^2.\n\\]\nEquivalently, \\(\\lambda_*\\) is the spectral radius of \\(Q_{1/3,1/3,1/3}\\). Hence\n\\[\n\\sup_{x+y+z=1}\\rho(Q_{x,y,z})=\\lambda_*.\n\\]\n\nThus the necessary and sufficient condition is\n\\[\ne^{-\\alpha}\\lambda_*<1,\n\\]\nor\n\\[\n\\alpha>\\log\\lambda_*.\n\\]\n\nIf \\(\\alpha\\le \\log\\lambda_*\\), taking \\(x=y=z=\\frac13\\) gives a period map with spectral radius at least \\(1\\), so no uniform exponential decay can hold. If \\(\\alpha>\\log\\lambda_*\\), all period maps have spectral radius uniformly \\(<1\\); compactness of the parameter simplex and boundedness of the within-period evolution then give constants \\(M,\\gamma>0\\) independent of \\((x,y,z)\\).\n\nTherefore the answer is\n\\[\n\\boxed{\\left\\{\\alpha>0:\\ \\alpha>\\log\\lambda_*\\right\\}},\n\\]\nwhere \\(\\lambda_*>1\\) is the unique solution of\n\\[\n\\boxed{27(\\lambda_*-1)^3=\\lambda_*^2}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T04:10:43+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/ca7c2edad2b7.json"
+}
