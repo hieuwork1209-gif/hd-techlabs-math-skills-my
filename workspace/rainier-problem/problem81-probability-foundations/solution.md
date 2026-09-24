@@ -99,20 +99,34 @@ The coefficient of $v$ should have a definite sign when $u$ is fixed. Setting
 $$
 B=-1
 $$
-removes the standalone $v$ term, leaving dependence on $v$ only through $-6uv$. To make the certificate sharp at $q_0$, impose
-$$
-F(q_0)=0
-$$
-and tangency along the two-equal boundary
-$$
+removes the standalone $v$ term, leaving dependence on $v$ only through $-6uv$. To make the certificate sharp at $q_0$, impose $F(q_0)=0$ and tangency along the two-equal boundary
+$
 q(t)=(1-2t,t,t)
-$$
-at $t=\frac{1}{6}$. These two linear conditions give
-$$
+$
+at $t=\frac{1}{6}$. Since at that point
+$
+x=\frac{1}{2},
+\qquad
+y=\frac{11}{36},
+\qquad
+x'=-2,
+\qquad
+y'=-\frac{5}{2},
+$
+the two conditions are
+$
+\frac{A}{2}+C=\frac{11}{72}
+$
+and
+$
+\frac{23}{36}-2A=0.
+$
+Thus
+$
 A=\frac{23}{72},
 \qquad
 C=-\frac{1}{144}.
-$$
+$
 Hence it remains to prove
 $$
 M:=144F=144xy+46x-144y-1\geq0.
@@ -128,7 +142,11 @@ q_1+q_2+q_3=1,
 \qquad
 q_1q_2+q_2q_3+q_3q_1=u.
 $$
-At an interior maximizer, Lagrange multipliers applied to $\log(q_1q_2q_3)$ show that either all three coordinates are equal or two are equal: subtracting the stationarity equations for $q_i$ and $q_j$ gives
+If a maximizer lies on the boundary, then $v=0$ and
+$
+M=864u^2-380u+45>0,
+$
+because this quadratic has negative discriminant. At an interior maximizer, Lagrange multipliers applied to $\log(q_1q_2q_3)$ show that either all three coordinates are equal or two are equal: subtracting the stationarity equations for $q_i$ and $q_j$ gives
 $$
 (q_i-q_j)\left(\mu-\frac{1}{q_iq_j}\right)=0.
 $$
@@ -184,10 +202,21 @@ $$
 \left(\frac{1}{3},\frac{1}{9},\frac{1}{27}\right).
 $$
 There is a unique affine plane
-$$
+$
 xy=A+Bx+Cy
-$$
-through these three points. Solving the three linear interpolation equations gives
+$
+through these three points. Its coefficients satisfy
+$
+A+B+C=1,
+$
+$
+A+\frac{B}{2}+\frac{C}{4}=\frac{1}{8},
+$
+and
+$
+A+\frac{B}{3}+\frac{C}{9}=\frac{1}{27}.
+$
+Solving gives
 $$
 A=\frac{1}{6},
 \qquad
