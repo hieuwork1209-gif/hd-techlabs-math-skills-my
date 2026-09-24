@@ -1,0 +1,22 @@
+{
+  "problem": "problem111",
+  "branch": "adversary/problem111",
+  "problem_path": "workspace/rainier-problem/problem111-harmonic-analysis/problem.md",
+  "source_commit_sha": "1759e94c50578589b7dcc455b0b9de99c496f088",
+  "problem_blob_sha": "03f84f8a9bcf84d43967789b24f16753fa359c77",
+  "statement_sha256": "05441c48d3c7a4146a38bcb3e610fca1ce1ec0f2a647a3924056593c930405b3",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T09:15:09+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nm_j=\\int z^j\\,d\\mu(z),\\qquad m_0=1,\\qquad m_1=\\rho,\\qquad m_2=\\cdots=m_{r-1}=0,\n\\]\nand write \\(m_r=w\\).\n\nConsider the Toeplitz moment matrix\n\\[\nT=\n\\begin{pmatrix}\n1&\\rho&0&\\cdots&0&\\overline w\\\\\n\\rho&1&\\rho&\\cdots&0&0\\\\\n0&\\rho&1&\\ddots&0&0\\\\\n\\vdots&&\\ddots&\\ddots&\\rho&\\vdots\\\\\n0&0&0&\\rho&1&\\rho\\\\\nw&0&0&\\cdots&\\rho&1\n\\end{pmatrix}.\n\\]\nEvery representing measure gives \\(T\\succeq0\\). Conversely, by the finite Toeplitz moment theorem, every such positive semidefinite matrix is represented by a probability measure on the unit circle.\n\nLet \\(A\\) be the upper-left \\(r\\times r\\) principal block. Its determinant is \\(D_r\\), and the hypothesis on \\(\\rho\\) implies \\(A\\succ0\\). The relevant entries of \\(A^{-1}\\) are\n\\[\n(A^{-1})_{00}=(A^{-1})_{r-1,r-1}=\\frac{D_{r-1}}{D_r},\n\\qquad\n(A^{-1})_{0,r-1}=\\frac{(-\\rho)^{r-1}}{D_r}.\n\\]\n\nWriting \\(x=\\operatorname{Re}w\\), the Schur complement condition \\(T\\succeq0\\) becomes\n\\[\nD_{r-1}|w|^2+2(-1)^{r-1}\\rho^r x+D_{r-1}\\rho^2\\le D_r.\n\\]\nFor fixed \\(x\\), the left side is minimized when \\(w=x\\) is real. Hence the maximal \\(x\\) is the larger root of\n\\[\nD_{r-1}x^2+2(-1)^{r-1}\\rho^r x+D_{r-1}\\rho^2-D_r=0.\n\\]\n\nUsing\n\\[\nD_n^2-D_{n-1}D_{n+1}=\\rho^{2n},\n\\]\nthe discriminant simplifies to \\(D_r^2\\). Therefore\n\\[\n\\max \\operatorname{Re}m_r\n=\n\\frac{D_r-(-1)^{r-1}\\rho^r}{D_{r-1}}.\n\\]\n\nAt the maximum, \\(w\\) is real and \\(T\\) has rank \\(r\\). Thus every maximizing measure has exactly \\(r\\) support points.\n\nTo compute their sum, let \\(v=(v_0,\\dots,v_r)^T\\) span \\(\\ker T\\), normalized by \\(v_r=1\\). Then\n\\[\n(v_0,\\dots,v_{r-1})^T=-A^{-1}(x,0,\\dots,0,\\rho)^T,\n\\]\nso\n\\[\nv_{r-1}\n=\n-\\frac{(-\\rho)^{r-1}x+\\rho D_{r-1}}{D_r}.\n\\]\nThe associated degree-\\(r\\) polynomial vanishes at the conjugates of the support points, so by Vieta,\n\\[\n\\sum_{\\zeta\\in\\operatorname{supp}\\mu}\\zeta\n=\n-v_{r-1}\n=\n\\frac{(-\\rho)^{r-1}x+\\rho D_{r-1}}{D_r}.\n\\]\nSubstituting the value of \\(x\\) gives the requested triple:\n\\[\n\\boxed{\n\\left(\n\\frac{D_r-(-1)^{r-1}\\rho^r}{D_{r-1}},\n\\quad\nr,\n\\quad\n\\frac{\\rho D_{r-1}^2+(-\\rho)^{r-1}\\bigl(D_r-(-1)^{r-1}\\rho^r\\bigr)}\n{D_{r-1}D_r}\n\\right)\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T09:20:36+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem111/03f84f8a9bcf.json"
+}
