@@ -1,0 +1,22 @@
+{
+  "problem": "problem81",
+  "branch": "adversary/problem81",
+  "problem_path": "workspace/rainier-problem/problem81-probability-foundations/problem.md",
+  "source_commit_sha": "66ce5e00487da98cd275d425b34111e7e7e4f31e",
+  "problem_blob_sha": "e5d334905dfb097485ae8ca0c3527891138facc1",
+  "statement_sha256": "42c8417dfa61ae1dcdfc3235caab836a93f9689db2e0058eb13056465c43a4ea",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T05:18:39+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nS_k=\\mathbb P(X_1=\\cdots=X_k)=\\mathbb E\\!\\left(\\sum_{i=1}^3 Q_i^k\\right).\n\\]\nWe are given \\(S_2=\\frac12\\) and \\(S_3=\\frac{11}{36}\\), and want the range of \\(S_5\\).\n\nFor \\(q=(q_1,q_2,q_3)\\), define\n\\[\nr=q_1q_2+q_1q_3+q_2q_3,\\qquad s=q_1q_2q_3.\n\\]\nSince \\(q_1+q_2+q_3=1\\),\n\\[\n\\sum q_i^2=1-2r,\n\\]\nso \\(\\mathbb E r=\\frac14\\). Also\n\\[\n\\sum q_i^3=1-3r+3s,\n\\]\nso\n\\[\n\\frac{11}{36}=1-3\\cdot\\frac14+3\\mathbb E s\n\\]\nand therefore\n\\[\n\\mathbb E s=\\frac1{54}.\n\\]\n\nNow\n\\[\n\\sum q_i^5=1-5r+5r^2+5s-5rs.\n\\]\n\nFor the lower bound, for every \\(x\\in[0,1]\\),\n\\[\nx^5-\\left(\\frac{67}{36}x^3-\\frac{145}{108}x^2+\\frac{8}{27}x-\\frac5{243}\\right)\n=\n\\left(x+\\frac53\\right)\\left(x-\\frac16\\right)^2\\left(x-\\frac23\\right)^2\\ge 0.\n\\]\nSumming over \\(x=q_1,q_2,q_3\\) and taking expectations gives\n\\[\nS_5\\ge\n\\frac{67}{36}S_3-\\frac{145}{108}S_2+\\frac{8}{27}\\cdot 1-\\frac{15}{243}\n=\\frac{19}{144}.\n\\]\nEquality occurs when \\(Q=(2/3,1/6,1/6)\\) up to permutation, since then \\(S_2=\\frac12\\), \\(S_3=\\frac{11}{36}\\), and \\(S_5=\\frac{19}{144}\\).\n\nFor the upper bound, one has pointwise\n\\[\n\\sum q_i^5\\le 1-\\frac{15}{4}r+\\frac{85}{12}s.\n\\]\nIndeed, subtracting the left side from the right gives\n\\[\n5\\left(r\\left(\\frac14-r\\right)+s\\left(r+\\frac5{12}\\right)\\right)\\ge0.\n\\]\nIf \\(r\\le\\frac14\\), this is immediate. If \\(r>\\frac14\\), minimizing \\(s\\) at fixed \\(r\\) occurs when two coordinates are equal; writing \\(q=(u,u,1-2u)\\), \\(u\\in[1/3,1/2]\\), the bracket becomes\n\\[\n6u\\left(u-\\frac12\\right)\\left(u-\\frac13\\right)^2\\left(u-\\frac32\\right)\\ge0.\n\\]\nThus\n\\[\nS_5\\le 1-\\frac{15}{4}\\cdot\\frac14+\\frac{85}{12}\\cdot\\frac1{54}\n=\\frac{251}{1296}.\n\\]\nEquality is attained by taking\n\\[\nQ=\\begin{cases}\n(1,0,0),&\\text{with probability }1/6,\\\\\n(1/3,1/3,1/3),&\\text{with probability }1/2,\\\\\n(1/2,1/2,0),&\\text{with probability }1/3.\n\\end{cases}\n\\]\nThis gives the required \\(S_2,S_3\\), and \\(S_5=\\frac{251}{1296}\\).\n\nTherefore the exact interval is\n\\[\n\\boxed{\\left[\\frac{19}{144},\\frac{251}{1296}\\right]}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T05:23:35+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem81/e5d334905dfb.json"
+}
