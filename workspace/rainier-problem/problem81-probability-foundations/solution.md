@@ -372,7 +372,7 @@ $$
 \geq
 -\frac{5(3u-1)(4u-1)}{9}.
 $$
-Equality can occur only at $u=1/4$ or $u=1/3$. The first case is the two-point uniform vector already listed, while $u=1/3$ forces
+Equality can occur only at $u=\frac{1}{4}$ or $u=\frac{1}{3}$. The first case is the two-point uniform vector already listed, while $u=\frac{1}{3}$ forces
 $$
 q=\left(\frac{1}{3},\frac{1}{3},\frac{1}{3}\right).
 $$
@@ -419,7 +419,7 @@ $$
 =
 \frac{251}{1296}.
 $$
-Mixing a lower-endpoint law with an upper-endpoint law preserves the two prescribed collision constraints, so every intermediate five-fold collision probability is attainable. Step 4 shows that $K=3$ almost surely at the lower endpoint and that the upper-endpoint support-size probabilities are $(1/6,1/3,1/2)$.
+Mixing a lower-endpoint law with an upper-endpoint law preserves the two prescribed collision constraints, so every intermediate five-fold collision probability is attainable. Step 4 shows that $K=3$ almost surely at the lower endpoint and that the upper-endpoint support-size probabilities are $(\frac{1}{6},\frac{1}{3},\frac{1}{2})$.
 
 Thus the requested tuple consisting of the feasible interval, the lower-endpoint value of $K$, and the upper-endpoint distribution $(p_1,p_2,p_3)$ is
 $$
@@ -452,4 +452,4 @@ $([\frac{19}{144},\frac{251}{1296}],3,(\frac{1}{6},\frac{1}{3},\frac{1}{2}))$
 - symmetric power sums
 - newton identities
 - sharp polynomial certificates
-- constrained moment optimization
+- equality case analysis
