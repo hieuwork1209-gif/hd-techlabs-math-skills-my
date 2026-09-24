@@ -1,0 +1,22 @@
+{
+  "problem": "problem116",
+  "branch": "adversary/problem116",
+  "problem_path": "workspace/rainier-problem/problem116-dynamical-systems/problem.md",
+  "source_commit_sha": "3cf91b25929a79f8022bfc63e46805de8b0ede07",
+  "problem_blob_sha": "34853c05474e034b17d5e7aa8dbd47fc57da04e7",
+  "statement_sha256": "c9e95b8078e1b8eafbb274f5f0e88dc2c7b2d233a46e82629fce1511257637c3",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-24T08:24:46+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\n\\Delta_\\tau(\\lambda)=\\lambda^2+a\\lambda+1+(b+c\\lambda)e^{-\\lambda\\tau},\n\\qquad a>0,\\ b,c\\ge 0.\n\\]\n\nWe determine when no root can lie in \\(\\{\\operatorname{Re}\\lambda\\ge 0\\}\\) for any \\(\\tau\\ge0\\).\n\nFor \\(\\lambda=i\\omega\\), \\(\\omega>0\\), write \\(\\theta=\\omega\\tau\\). Then\n\\[\n0=\\Delta_\\tau(i\\omega)\n=1-\\omega^2+ia\\omega+(b+ic\\omega)(\\cos\\theta-i\\sin\\theta).\n\\]\nEquating real and imaginary parts gives\n\\[\nb\\cos\\theta+c\\omega\\sin\\theta=\\omega^2-1,\n\\]\n\\[\nc\\omega\\cos\\theta-b\\sin\\theta=-a\\omega.\n\\]\nThe matrix of this system has squared norm \\(b^2+c^2\\omega^2\\), so such a \\(\\theta\\) exists exactly when\n\\[\n(\\omega^2-1)^2+a^2\\omega^2=b^2+c^2\\omega^2.\n\\]\nPutting \\(x=\\omega^2>0\\), this becomes\n\\[\nq(x):=x^2+(a^2-c^2-2)x+1-b^2=0. \\tag{1}\n\\]\n\nConversely, every positive solution \\(x\\) of (1) yields a suitable \\(\\theta\\), hence a delay \\(\\tau=\\theta/\\sqrt{x}\\), producing the imaginary root \\(i\\sqrt{x}\\).\n\nAlso, \\(\\lambda=0\\) is never a root since\n\\[\n\\Delta_\\tau(0)=1+b>0.\n\\]\n\nThus imaginary-axis roots occur for some delay exactly when \\(q\\) has a positive root.\n\nIt remains to note that this condition completely characterizes delay-independent stability. At \\(\\tau=0\\),\n\\[\n\\Delta_0(\\lambda)=\\lambda^2+(a+c)\\lambda+(1+b),\n\\]\nwhose roots have negative real parts because \\(a+c>0\\) and \\(1+b>0\\).\n\nMoreover, if \\(\\operatorname{Re}\\lambda\\ge0\\) and \\(\\Delta_\\tau(\\lambda)=0\\), then\n\\[\n|\\lambda^2+a\\lambda+1|\n=|b+c\\lambda|e^{-\\tau\\operatorname{Re}\\lambda}\n\\le b+c|\\lambda|.\n\\]\nSince the left side is at least \\(|\\lambda|^2-a|\\lambda|-1\\), all roots in the closed right half-plane lie in a fixed bounded region, uniformly in \\(\\tau\\). Therefore the number of right-half-plane roots can change as \\(\\tau\\) varies only through an imaginary-axis root. Hence the locus is disjoint from the closed right half-plane for every delay exactly when \\(q\\) has no positive root.\n\nNow classify this condition. Set\n\\[\nd=a^2-c^2-2.\n\\]\nThen\n\\[\nq(x)=x^2+dx+1-b^2.\n\\]\n\n- If \\(0\\le b<1\\), then \\(1-b^2>0\\). The quadratic has no positive root exactly when\n  \\[\n  d>-2\\sqrt{1-b^2},\n  \\]\n  i.e.\n  \\[\n  a^2>c^2+2-2\\sqrt{1-b^2}.\n  \\]\n\n- If \\(b=1\\), then\n  \\[\n  q(x)=x(x+d).\n  \\]\n  There is no positive root exactly when \\(d\\ge0\\), i.e.\n  \\[\n  a^2\\ge c^2+2.\n  \\]\n  The zero at \\(x=0\\) is harmless because \\(\\lambda=0\\) is not a root.\n\n- If \\(b>1\\), then \\(q(0)=1-b^2<0\\) while \\(q(x)\\to+\\infty\\), so \\(q\\) has a positive root.\n\nTherefore,\n\\[\n\\boxed{\n\\mathcal R(a,b,c)\\cap\\{\\operatorname{Re}\\lambda\\ge0\\}=\\varnothing\n\\iff\n\\begin{cases}\n0\\le b<1,\\quad a^2>c^2+2-2\\sqrt{1-b^2},\\\\[2mm]\n\\text{or}\\\\[1mm]\nb=1,\\quad a^2\\ge c^2+2.\n\\end{cases}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-24T08:29:55+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem116/34853c05474e.json"
+}

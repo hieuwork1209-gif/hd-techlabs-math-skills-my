@@ -1,9 +1,9 @@
 {
   "problem": "problem116",
   "branch": "adversary/problem116",
-  "problem_path": "workspace/rainier-problem/problem116-stability-theory/problem.md",
-  "problem_blob_sha": "6f0a9a4bdc6ad3ab1635694c54e171271f435939",
-  "source_commit_sha": "a07c6a49c9c2bd1e3084abc81ebafadc4df6bd69",
+  "problem_path": "workspace/rainier-problem/problem116-dynamical-systems/problem.md",
+  "problem_blob_sha": "34853c05474e034b17d5e7aa8dbd47fc57da04e7",
+  "source_commit_sha": "3cf91b25929a79f8022bfc63e46805de8b0ede07",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-24T05:56:33+00:00",
-  "result_file": "solver-results/problem116/6f0a9a4bdc6a.json"
+  "completed_at": "2026-09-24T08:29:55+00:00",
+  "result_file": "solver-results/problem116/34853c05474e.json"
 }
