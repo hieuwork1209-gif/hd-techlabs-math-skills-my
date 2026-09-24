@@ -91,11 +91,15 @@ The matrix $BB^T$ has eigenvalue
 $$
 k-\mu=(q-1)(q+1)^2
 $$
-on the subspace orthogonal to the all-ones vector, so $B^T$ is injective there. Also
-$$
-B^T\mathbf1=(q+1)\mathbf1\neq0,
-$$
-so $B^T$ is injective on the full $(q^2+1)$-dimensional spread-vertex space. Transposing the second block identity shows that for every $u\perp\mathbf1$,
+on the subspace orthogonal to the all-ones vector, so $B^T$ is injective there. If $u\perp\mathbf1$, then
+$
+\mathbf1^TB^Tu=(B\mathbf1)^Tu=k\mathbf1^Tu=0,
+$
+so $B^Tu\perp\mathbf1$. Also
+$
+B^T\mathbf1=(q+1)\mathbf1\neq0.
+$
+The image of the all-ones direction is therefore disjoint from the image of its orthogonal complement, and $B^T$ is injective on the full $(q^2+1)$-dimensional spread-vertex space. Transposing the second block identity shows that for every $u\perp\mathbf1$,
 $$
 C(B^Tu)=\alpha B^Tu.
 $$
