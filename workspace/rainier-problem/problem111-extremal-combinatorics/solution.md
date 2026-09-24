@@ -36,12 +36,15 @@ $$
 |\mathcal F|\leq4q.
 $$
 
-Equality has exactly two forms.
+Equality means total deficit $2$. If $u=2$, every component has deficit $0$, giving $q$ disjoint full $4$-set components and two unused points; call this type $0$.
 
-- Type $0$: $q$ disjoint $4$-sets, each contributing all four triples, and two unused points.
-- Type $j$ for $1\leq j\leq q$: one fixed-pair component on $4j+2$ points, containing all $4j$ triples through its center pair, together with $q-j$ full $4$-set components.
+If $u=0$, there must be one deficit-$2$ component and every other component must have deficit $0$. A singleton component would use $3$ points and leave a number of points not divisible by $4$, so the special component is a fixed-pair component. If its support has size $s$, then the remaining points are partitioned into $4$-sets, so
+$
+s\equiv4q+2\equiv2\pmod4.
+$
+Thus $s=4j+2$ for some $1\leq j\leq q$, and the special component consists of all $4j$ triples through its center pair. Call this type $j$.
 
-The deficit distribution and the congruence modulo $4$ exclude every other equality case.
+The only remaining deficit distributions are one deficit-$1$ component with one unused point or two deficit-$1$ components. Their used support sizes would be $4q+1$ and $4q+2$, respectively, but every component in either case has support size $4$. Both are impossible modulo $4$. Hence types $0,1,\ldots,q$ are exactly the maximum families.
 
 Step 2: Bound the overlap when one family has type 0
 Let $\mathcal F$ be type $0$, with full $4$-set blocks
@@ -89,11 +92,11 @@ Let $a$ leaves of the star of $\mathcal F$ be omitted by the star of $\mathcal G
 $$
 b-a\equiv0\pmod4.
 $$
-If $a>0$, the star already loses at least one common triple, and every source block supplying a new leaf is no longer a common full block and loses at least two more triples. This gives total loss at least $3$.
+If $a>0$ and $b=0$, the congruence forces $a\geq4$, so at least four star triples are lost. If $a>0$ and $b>0$, the star loses at least one triple and every full block of $\mathcal F$ supplying a new leaf is no longer a common block, which loses at least two more triples. The total loss is at least $3$.
 
-If $a=0$ and $b>0$, then $b\geq4$. At least one full block is absorbed into the new star, and all four triples of that block disappear from the intersection. This gives total loss at least $4$. Thus the only way to lose at most two triples is $a=b=0$, which makes the star component identical. The same block argument then forces every full block to be identical, so $\mathcal F=\mathcal G$.
+If $a=0$ and $b>0$, then $b\geq4$. At least one full block supplies new leaves. If all four points of such a block are absorbed into the star, none of its four old block triples is a star triple because the center pair $P$ is disjoint from that block; the loss is at least $4$. If only part of a block is used, that block ceases to be common and loses at least two triples, while another block must supply the remaining new leaves, so the total loss is again at least $4$. Thus the only way to lose at most two triples is $a=b=0$, which makes the star component identical. The same block argument then forces every full block to be identical, so $\mathcal F=\mathcal G$.
 
-It remains to consider $j=1$. If at least three of the four star triples are common, the same-center argument above applies and again forces equality of the families when the total loss is at most two. If exactly two star triples are common, then losing only two triples overall forces all $q-1$ full blocks of $\mathcal F$ to be common blocks of $\mathcal G$. The six remaining ground points contain the star of $\mathcal F$. A different maximum family on those six points sharing exactly two of these star triples must be type $0$, by the six-point analysis in Step 2. Hence a pair with overlap $4q-2$ always consists of one type-$0$ family and one type-$1$ family.
+It remains to consider $j=1$. If at least three of the four star triples are common, the same-center argument above applies and again forces equality of the families when the total loss is at most two. If exactly two star triples are common, then losing only two triples overall forces all $q-1$ full blocks of $\mathcal F$ to be common blocks of $\mathcal G$. The six remaining ground points contain the star of $\mathcal F$. Two distinct six-point stars have at most one common triple: equal center pairs give the same star, while distinct center pairs lie together in at most one triple. Therefore a different maximum family on those six points sharing exactly two star triples must be type $0$. Hence a pair with overlap $4q-2$ always consists of one type-$0$ family and one type-$1$ family.
 
 Therefore, for distinct maximum families,
 $$
