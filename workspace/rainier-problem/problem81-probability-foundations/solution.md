@@ -36,7 +36,7 @@ G_A(z)=zF_A(G_A(z),G_B(z)),
 G_B(z)=zF_B(G_A(z),G_B(z)).
 $$
 
-The extinction-probability vector is the increasing limit of the probabilities of extinction by generation $n$, so it is a fixed point of $(F_A,F_B)$. To identify that fixed point directly, suppose $(u,v)\in[0,1]^2$ satisfies $(F_A(u,v),F_B(u,v))=(u,v)$ and put
+Because every individual has finitely many children, extinction is equivalent to $T<\infty$. The extinction-probability vector is the increasing limit of the probabilities of extinction by generation $n$, so it is a fixed point of $(F_A,F_B)$. To identify that fixed point directly, suppose $(u,v)\in[0,1]^2$ satisfies $(F_A(u,v),F_B(u,v))=(u,v)$ and put
 $$
 p=1-u,
 \qquad
@@ -214,7 +214,7 @@ $$
 =
 0.
 $$
-Substituting $X_1=-\frac{12}{25}$, $X_0^2=8/5$, and $Y_0=2/5$ yields
+Substituting $X_1=-\frac{12}{25}$, $X_0^2=\frac{8}{5}$, and $Y_0=\frac{2}{5}$ yields
 $$
 Y_1=-\frac{72\sqrt{10}}{125}.
 $$
@@ -253,7 +253,7 @@ G_A(z)-G_B(z)
 =
 -\frac{4}{5}(1-z)
 +
-\frac{144\sqrt{10}}{125}(1-z)^{3/2}
+\frac{144\sqrt{10}}{125}(1-z)^{\frac{3}{2}}
 +
 O((1-z)^2).
 $$
@@ -265,7 +265,7 @@ $$
 $$
 
 Step 5: Assemble the requested coefficient triple
-The leading square-root singularity of $G_A$ has coefficient $2\sqrt{10}/5$, while the type-asymmetry expansion has coefficients $4/5$ and $144\sqrt{10}/125$ in the normalization stated in the problem.
+The leading square-root singularity of $G_A$ has coefficient $\frac{2\sqrt{10}}{5}$, while the type-asymmetry expansion has coefficients $\frac{4}{5}$ and $\frac{144\sqrt{10}}{125}$ in the normalization stated in the problem.
 Final Answer: $\boxed{\left(\frac{2\sqrt{10}}{5},\frac{4}{5},\frac{144\sqrt{10}}{125}\right)}$
 
 ---
