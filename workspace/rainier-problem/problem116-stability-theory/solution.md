@@ -1,152 +1,160 @@
 ## Steps
 
-Step 1: Compute the one-period matrix
+Step 1: Compute the two possible period maps
 Write
 $$
-A_i=-\alpha I+N_i.
+A_i=-\alpha I+N_i,
 $$
-The three nilpotent parts satisfy $N_i^2=0$, so for $s\geq0$,
+where $N_1=E_{12}$, $N_2=E_{23}$, and $N_3=E_{31}$. Since $N_i^2=0$,
 $$
-e^{sA_i}=e^{-\alpha s}(I+sN_i).
+e^{tA_i}=e^{-\alpha t}(I+tN_i).
 $$
-For fixed $x,y,z\geq0$ with $x+y+z=1$, the transition over one full period is
+Fix a period $T>0$ and dwell times $x,y,z\geq0$ with $x+y+z=T$. For the order $A_1,A_2,A_3$, the period map is
 $$
-\Phi(x,y,z)=e^{zA_3}e^{yA_2}e^{xA_1}
-=e^{-\alpha}M(x,y,z),
+\Phi_+=e^{-\alpha T}M_+,
+\qquad
+M_+=(I+zE_{31})(I+yE_{23})(I+xE_{12}),
 $$
-where direct multiplication gives
+so
 $$
-M(x,y,z)=
+M_+=
 \begin{pmatrix}
 1&x&0\\
 0&1&y\\
-z&zx&1
+z&xz&1
 \end{pmatrix}.
 $$
-Therefore exponential behavior at integer times is controlled by the spectral radius of this explicit three-parameter matrix.
+For the reverse order $A_3,A_2,A_1$,
+$$
+\Phi_-=e^{-\alpha T}M_-,
+\qquad
+M_-=(I+xE_{12})(I+yE_{23})(I+zE_{31}),
+$$
+and
+$$
+M_-=
+\begin{pmatrix}
+1+xyz&x&xy\\
+yz&1&y\\
+z&0&1
+\end{pmatrix}.
+$$
+For any fixed choice, the solution at times $nT$ is obtained by powers of the corresponding period map. Since the evolution during one fixed period is bounded, that periodic system is exponentially stable exactly when its period map has spectral radius less than $1$.
 
-Step 2: Reduce the spectral radius to one scalar parameter
-Set $q=xyz$. Expanding the determinant along the first row gives
+Step 2: Compare the two orderings at fixed dwell product
+Set $q=xyz$. Expanding the two $3\times3$ determinants gives
 $$
-\det(\lambda I-M)
-=(\lambda-1)^3-q\lambda.
+\det(\lambda I-M_+)=(\lambda-1)^3-q\lambda
 $$
-Assume first that $q>0$. Then $M$ is nonnegative, has positive diagonal entries, and its positive off-diagonal entries contain the directed cycle
+and
 $$
-1\to3\to2\to1.
+\det(\lambda I-M_-)=(\lambda-1)^3-q\lambda^2.
 $$
-Thus its directed graph is strongly connected, so $M$ is irreducible. The Perron-Frobenius theorem in the form used here says that an irreducible nonnegative matrix has a positive eigenvalue equal to its spectral radius, and no eigenvalue has larger modulus. Hence
-$$
-\rho(M)=1+r
-$$
-for the positive solution $r$ of
-$$
-r^3=q(r+1).
-$$
-Equivalently,
-$$
-q=\frac{r^3}{r+1}.
-$$
-For $r\geq0$,
-$$
-\frac{d}{dr}\frac{r^3}{r+1}
-=\frac{r^2(2r+3)}{(r+1)^2}\geq0,
-$$
-with strict inequality for $r>0$. Hence $r$, and therefore $\rho(M)$, increases with $q$. When $q=0$, the characteristic polynomial is $(\lambda-1)^3$, so $\rho(M)=1$, agreeing with the limiting value.
+If $q=0$, both matrices have spectral radius $1$. Assume $q>0$. Then $x,y,z>0$, both matrices are nonnegative and irreducible, and the Perron-Frobenius theorem gives a positive eigenvalue equal to the spectral radius.
 
-Step 3: Find the worst dwell distribution
-Since $x,y,z\geq0$ and $x+y+z=1$, the arithmetic-geometric mean inequality gives
+For $\lambda>1$, define
 $$
-xyz\leq\left(\frac{x+y+z}{3}\right)^3=\frac{1}{27},
+f_+(\lambda)=\frac{(\lambda-1)^3}{\lambda},
+\qquad
+f_-(\lambda)=\frac{(\lambda-1)^3}{\lambda^2}.
+$$
+Their logarithmic derivatives are
+$$
+\frac{f_+'(\lambda)}{f_+(\lambda)}
+=\frac{2\lambda+1}{\lambda(\lambda-1)}>0,
+$$
+$$
+\frac{f_-'(\lambda)}{f_-(\lambda)}
+=\frac{\lambda+2}{\lambda(\lambda-1)}>0.
+$$
+Thus both Perron roots increase with $q$. Also $f_-(\lambda)<f_+(\lambda)$ for every $\lambda>1$, so for the same $q>0$ the reverse-order Perron root is larger. Therefore the reverse order is always the worse of the two.
+
+Step 3: Optimize the dwell times for a fixed period
+For fixed $T$,
+$$
+xyz\leq\left(\frac{x+y+z}{3}\right)^3
+=\frac{T^3}{27},
 $$
 with equality exactly at
 $$
-x=y=z=\frac{1}{3}.
+x=y=z=\frac{T}{3}.
 $$
-By Step 2, the largest possible value of $\rho(M)$ is attained there. Let this value be $\rho_*$. Substituting $q=1/27$ into
+By Step 2, the largest period-map spectral radius for this $T$ is therefore attained by the reverse order with equal dwell times. Let its unscaled Perron root be $\lambda_T>1$. It satisfies
 $$
-(\lambda-1)^3-q\lambda=0
+(\lambda_T-1)^3
+=\frac{T^3}{27}\lambda_T^2.
 $$
-gives
+Hence the largest logarithmic growth rate per unit time at period $T$ is
 $$
-27(\rho_*-1)^3=\rho_*.
-$$
-Moreover $\rho_*>1$, and it is the largest real root because it is the Perron root at the maximizing dwell triple. Thus
-$$
-\rho_*=
-\max\{r\in\mathbb{R}:27(r-1)^3=r\}.
-$$
-Consequently,
-$$
-\max_{x+y+z=1}\rho(\Phi(x,y,z))
-=e^{-\alpha}\rho_*.
+-\alpha+\frac{\log\lambda_T}{T}.
 $$
 
-Step 4: Prove a uniform exponential bound when the worst multiplier is below one
-Assume
+Step 4: Optimize over the period length
+The relation in Step 3 is equivalent to
 $$
-e^{-\alpha}\rho_*<1.
+T=\frac{3(\lambda_T-1)}{\lambda_T^{2/3}}.
 $$
-Choose $R$ with
+The right side is strictly increasing from $0$ to $\infty$ for $\lambda_T>1$, so every $T>0$ corresponds to exactly one $\lambda_T>1$. Put
 $$
-e^{-\alpha}\rho_*<R<1.
+s=\log\lambda_T.
 $$
-The simplex of triples $(x,y,z)$ is compact, and $\\Phi(x,y,z)$ depends continuously on the triple. Hence the family
+Then
 $$
-\mathcal F=\{\Phi(x,y,z):x,y,z\geq0,\ x+y+z=1\}
+\frac{\log\lambda_T}{T}
+=
+h(s):=
+\frac{s e^{2s/3}}{3(e^s-1)},
+\qquad s>0.
 $$
-is compact. Step 3 shows that every spectrum lies in $|w|<R$. Therefore
+This function satisfies
 $$
-K=
-\max_{\Phi\in\mathcal F,\ |w|=R}
-\|(wI-\Phi)^{-1}\|_2
+\lim_{s\to0^+}h(s)=\frac{1}{3},
+\qquad
+\lim_{s\to\infty}h(s)=0.
 $$
-is finite, because the resolvent is continuous on this compact set. Cauchy's matrix formula gives, for every integer $n\geq0$,
+Moreover the sign of $h'(s)$ is the sign of
 $$
-\Phi^n=
-\frac{1}{2\pi i}\int_{|w|=R}
-w^n(wI-\Phi)^{-1}\,dw,
+F(s)=(3-s)e^s-(3+2s).
 $$
-and therefore
+Indeed, differentiating $\log h$ gives
 $$
-\|\Phi^n\|_2\leq K R^{n+1}.
+\frac{h'(s)}{h(s)}
+=
+\frac{1}{s}+\frac{2}{3}-\frac{e^s}{e^s-1}.
 $$
-This bound is uniform in $(x,y,z)$.
+Now
+$$
+F'(s)=(2-s)e^s-2,
+\qquad
+F''(s)=(1-s)e^s.
+$$
+Thus $F'$ increases on $(0,1)$ and then decreases strictly. Since $F'(0)=0$, $F'(1)=e-2>0$, and $F'(2)=-2<0$, the function $F$ first increases and then decreases. Also $F(0)=0$ and $F(3)=-9$, so $F$ has exactly one positive zero. Therefore $h$ has a unique maximizer on $(0,\infty)$, and
+$$
+\max_{T>0}\frac{\log\lambda_T}{T}
+=
+\max_{s>0}\frac{s e^{2s/3}}{3(e^s-1)}.
+$$
 
-For a time lying inside the next period, the remaining transition is a product of at most three factors $e^{sA_i}$ whose total elapsed time is at most $1$. Since
+Step 5: State the exact stability condition
+Let
 $$
-\|A_i\|_2\leq\alpha+1,
+\beta_*=
+\max_{s>0}\frac{s e^{2s/3}}{3(e^s-1)}.
 $$
-that transition has norm at most $e^{\alpha+1}$. Combining this with the integer-time bound yields constants $M,\gamma>0$, independent of $(x,y,z)$, such that
+If $\alpha>\beta_*$, then for every period, every dwell split, and either allowed order, Steps 2 through 4 give
 $$
-\|X(t)\|_2\leq M e^{-\gamma t}\|X(0)\|_2.
+\frac{1}{T}\log\rho(\Phi)<0.
 $$
+Hence $\rho(\Phi)<1$, so each corresponding periodic system is exponentially stable.
 
-Step 5: Prove necessity and state the parameter range
-Take the equal dwell triple
-$$
-x=y=z=\frac{1}{3}.
-$$
-Its one-period matrix has the positive eigenvalue
-$$
-e^{-\alpha}\rho_*.
-$$
-If $e^{-\alpha}\rho_*>1$, an eigenvector grows at integer times. If $e^{-\alpha}\rho_*=1$, the same eigenvector is nondecaying at integer times. Either case contradicts exponential stability. Together with Step 4, uniform exponential stability holds exactly when
-$$
-e^{-\alpha}\rho_*<1,
-$$
-or equivalently
-$$
-\alpha>\log\rho_*.
-$$
-Using the prompt-independent description of $\rho_*$ from Step 3 gives the requested region.
-Final Answer: $\boxed{\alpha>\log\max\{r\in\mathbb{R}:27(r-1)^3=r\}}$
+If $\alpha\leq\beta_*$, take the reverse order, the equal dwell split, and the period corresponding in Step 4 to the unique maximizer of $h$. The period map then has spectral radius at least $1$, so that periodic system is not exponentially stable. This proves both necessity and sufficiency.
+Final Answer: $\boxed{\alpha>\max_{s>0}\frac{s e^{2s/3}}{3(e^s-1)}}$
 
 ---
 
 ## Answer
 
-$\alpha>\log\max\{r\in\mathbb{R}:27(r-1)^3=r\}$
+$\alpha>\max_{s>0}\frac{s e^{2s/3}}{3(e^s-1)}$
 
 ---
 
@@ -163,5 +171,5 @@ $\alpha>\log\max\{r\in\mathbb{R}:27(r-1)^3=r\}$
 - periodic linear systems
 - monodromy matrices
 - Perron-Frobenius theorem
-- spectral radius
-- uniform exponential stability
+- spectral-radius optimization
+- exponential stability
