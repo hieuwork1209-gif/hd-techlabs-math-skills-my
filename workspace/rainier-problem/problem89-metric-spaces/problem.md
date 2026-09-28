@@ -24,9 +24,17 @@ $$
 \left|\{P\in\mathcal P:\text{some }(u,v)\in L\text{ has }u_P\neq0\}\right|
 \left|\{H\in\mathcal H:\text{some }(u,v)\in L\text{ has }v_H\neq0\}\right|,
 \;
-\#\operatorname*{argmin}_{\substack{L\leq E\\ \dim L=2}}
+\left|
+\left\{
+L\leq E:\dim L=2,\ 
 \left|\{P\in\mathcal P:\text{some }(u,v)\in L\text{ has }u_P\neq0\}\right|
 \left|\{H\in\mathcal H:\text{some }(u,v)\in L\text{ has }v_H\neq0\}\right|
+=
+\min_{\substack{M\leq E\\ \dim M=2}}
+\left|\{P\in\mathcal P:\text{some }(u,v)\in M\text{ has }u_P\neq0\}\right|
+\left|\{H\in\mathcal H:\text{some }(u,v)\in M\text{ has }v_H\neq0\}\right|
+\right\}
+\right|
 \right).
 $$
 Determine the ordered triple $(\wp,U_2^*,N_2^*)$.
