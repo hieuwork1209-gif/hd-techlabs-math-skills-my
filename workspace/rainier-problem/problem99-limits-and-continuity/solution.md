@@ -6,21 +6,47 @@ Put
 $$
 q=\sqrt t,\qquad \phi(x)=x(1-x)(3x-1)^2.
 $$
-The Andréief identity in the form
+For a measure $d\mu$ and functions $f_0,\ldots,f_{n-1},g_0,\ldots,g_{n-1}$ such that every $f_i g_j$ is integrable and
 $$
-\det\left(\int f_i(x)g_j(x)w(x)\,dx\right)_{i,j=0}^{n-1}
-=\frac1{n!}\int \det(f_i(x_j))\det(g_i(x_j))\prod_jw(x_j)\,dx_j
+\det(f_i(x_j))\det(g_i(x_j))
 $$
-with $f_i=g_i=x^i$ gives
+is absolutely integrable on the $n$-fold product space, Andréief's identity is
+$$
+\det\left(\int f_i(x)g_j(x)\,d\mu(x)\right)_{i,j=0}^{n-1}
+=\frac1{n!}\int
+\det(f_i(x_j))\det(g_i(x_j))
+\prod_{j=1}^{n}d\mu(x_j).
+$$
+It follows by expanding both determinants and using Fubini to interchange the finite sums and integrals. Here $n=4m+2$, $f_i(x)=g_i(x)=x^i$, and
+$$
+d\mu_t(x)=\left(1+q(3x-1)\right)e^{-\phi(x)/q^2}\,dx.
+$$
+For $0<t<1$ this density is continuous and nonnegative on $[0,1]$, while all polynomial factors are bounded there, so the required absolute integrability and determinant-integral interchange hold. Hence
 $$
 D_m(t)=\frac1{(4m+2)!}\int_{[0,1]^{4m+2}}\Delta(x)^2
 \prod_i(1+q(3x_i-1))e^{-\phi(x_i)/q^2}\,dx_i.
 $$
+
 The phase vanishes only at $0,\frac13,1$. Near these points use
 $$
 x=q^2u,\qquad x=\frac13+\frac q{\sqrt2}z,\qquad x=1-\frac{q^2}{4}v.
 $$
-If $(k,l,r)$ variables lie in the three wells, the Jacobians and internal Vandermondes contribute $t^{E(k,l,r)}$ with
+If $(k,l,r)$ variables lie in the three wells, then the Jacobian and internal Vandermonde factors are
+$$
+t^k t^{k(k-1)}=t^{k^2},
+$$
+$$
+\left(\frac t2\right)^{l/2}
+\left(\frac t2\right)^{l(l-1)/2}
+=t^{l^2/2}2^{-l^2/2},
+$$
+and
+$$
+\left(\frac t4\right)^r
+\left(\frac t4\right)^{r(r-1)}
+=t^{r^2}2^{-2r^2}.
+$$
+Thus the power of $t$ is
 $$
 E(k,l,r)=k^2+\frac{l^2}{2}+r^2,
 \qquad k+l+r=4m+2.
@@ -36,22 +62,57 @@ $$
 $$
 occur. The first two have gap $0$, and the last two have gap $1/2$, hence one extra factor $q$.
 
-The limiting Laguerre and Gaussian Vandermonde integrals are
+We next evaluate the normalized one-well Vandermonde integrals. If $p_j$ are monic orthogonal polynomials for a weight $w$ with squared norms
 $$
-L_n=\prod_{j=0}^{n-1}(j!)^2,
-\qquad
-G_n=\pi^{n/2}2^{-n(n-1)/2}\prod_{j=0}^{n-1}j!,
+h_j=\int p_j(x)^2w(x)\,dx,
 $$
-from the monic squared norms
+then replacing the monomials in the Vandermonde determinant by the monic $p_j$ does not change its determinant, and Andréief gives
 $$
-h_j^{(L)}=(j!)^2,\qquad h_j^{(G)}=\sqrt\pi\,2^{-j}j!.
+\frac1{n!}\int \Delta(x)^2\prod_{i=1}^{n}w(x_i)\,dx_i
+=\det\left(\int p_i p_jw\right)_{i,j=0}^{n-1}
+=\prod_{j=0}^{n-1}h_j.
 $$
-Including the fixed cross-well distances gives
+For $w_L(u)=e^{-u}$ on $[0,\infty)$, take the monic Laguerre polynomials
 $$
+p_j^{(L)}(u)=(-1)^j j!L_j(u),
+$$
+whose norms are $h_j^{(L)}=(j!)^2$. For $w_G(z)=e^{-z^2}$ on $\mathbb R$, take the monic physicists' Hermite polynomials
+$$
+p_j^{(G)}(z)=2^{-j}H_j(z),
+$$
+whose norms are $h_j^{(G)}=\sqrt\pi\,2^{-j}j!$. Therefore
+$$
+L_n:=\frac1{n!}\int_{[0,\infty)^n}\Delta(u)^2e^{-\sum u_i}\,du
+=\prod_{j=0}^{n-1}(j!)^2,
+$$
+and
+$$
+G_n:=\frac1{n!}\int_{\mathbb R^n}\Delta(z)^2e^{-\sum z_i^2}\,dz
+=\pi^{n/2}2^{-n(n-1)/2}\prod_{j=0}^{n-1}j!.
+$$
+
+It remains to multiply the allocation factors once. Choosing which variables occupy the three wells contributes
+$$
+\binom{4m+2}{k,l,r},
+$$
+which cancels the prefactor $1/(4m+2)!$ down to $1/(k!l!r!)$; these three factorials are exactly absorbed by the normalized definitions of $L_k,G_l,L_r$. The fixed cross-well distances are
+$$
+\left(\frac13\right)^{2kl}
+\left(\frac23\right)^{2lr}
+=2^{2lr}3^{-2l(k+r)},
+$$
+because the left-right distance tends to $1$. Hence the leading constant for allocation $(k,l,r)$ is
+$$
+\begin{aligned}
 K_{k,l,r}
-=2^{-2r^2+2rl-l^2+l/2}3^{-2l(k+r)}
+&=2^{-2r^2}\,2^{-l^2/2}\,
+2^{2lr}3^{-2l(k+r)}L_kL_rG_l\\
+&=2^{-2r^2+2rl-l^2+l/2}3^{-2l(k+r)}
 \pi^{l/2}L_kL_r\prod_{j=0}^{l-1}j!.
+\end{aligned}
 $$
+Thus the three Jacobians, the internal Vandermonde powers, the two nontrivial cross-well distances, the allocation multiplicity, and the Laguerre/Gaussian norms account explicitly for every factor in $K_{k,l,r}$.
+
 Therefore the four leading weights, after division by $C_m$, are respectively
 $$
 \frac12,\qquad \frac12,\qquad \frac{r_m}{2},\qquad \frac{s_m}{2}.
