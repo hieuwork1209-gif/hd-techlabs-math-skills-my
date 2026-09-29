@@ -45,7 +45,7 @@ A=\int_0^1x_+(t)\,dt=\int_0^1x_-(t)\,dt,\qquad h=\sqrt{A}.
 $$
 If $A=0$, then $x=0$, so assume $A>0$.
 
-We first need a barycenter margin that does not alter the shape of a packet. If $v\geq0$ is $1$-Lipschitz on an interval of length $S$, vanishes at both endpoints, has area $B>0$, and has barycenter
+If $v\geq0$ is $1$-Lipschitz on an interval of length $S$, vanishes at both endpoints, has area $B>0$, and has barycenter
 $$
 \beta=\frac{1}{B}\int_0^S t\,v(t)\,dt,
 $$
@@ -53,7 +53,7 @@ then
 $$
 \sqrt{B}\leq\beta\leq S-\sqrt{B}.
 $$
-Let $H=\max v$ and $m(a)=|\{v>a\}|$. Since $v(t)\leq t$, the level set $\{v>a\}$ lies to the right of $a$, so among sets of measure $m(a)$ its first moment is at least
+Let $H=\max v$ and $m(a)=|\{v>a\}|$. Since $v(t)\leq t$, the first moment of $\{v>a\}$ is at least
 $$
 a\,m(a)+\frac{m(a)^2}{2}.
 $$
@@ -62,18 +62,17 @@ $$
 \int_0^S t\,v(t)\,dt
 \geq H^3+\frac{3H}{2}E+\frac{E^2}{2H}.
 $$
-With $r=E/H^2$,
-$$
-\left(1+\frac32r+\frac12r^2\right)^2-(1+r)^3
-=\frac14r^2(1+r)^2\geq0,
-$$
-hence the last display is at least $(H^2+E)^{3/2}=B^{3/2}$. Thus $\beta\geq\sqrt B$. Applying the same argument to $v(S-t)$ gives $\beta\leq S-\sqrt B$. Equality forces $e=0$, hence a single triangular tent.
+The inequality
+$
+\left(1+\frac32r+\frac12r^2\right)^2\geq(1+r)^3,qquad r=E/H^2,
+$
+shows that this is at least $B^{3/2}$. Thus $\beta\geq\sqrt B$; reflection gives $\beta\leq S-\sqrt B$. Equality forces the triangular tent.
 
-Now concatenate the positive excursions, preserving their shapes and mutual order, into a zero-ended compound packet $P$. This operation is used only to describe the family of packet orders in the sweep; no moment claim is made yet. Let its occupied length be $S$ and let its intrinsic barycenter, measured from the left end of its span, be $\beta$. Applying the barycenter margin to this compound packet gives
+Concatenate the positive excursions, preserving shapes and order, into a zero-ended compound packet $P$. Let its occupied length be $S$ and let its intrinsic barycenter, measured from the left end of its span, be $\beta$. Applying the barycenter margin to this compound packet gives
 $$
 h\leq\beta\leq S-h.
 $$
-Therefore the triangular tent of area $A$ and length $2h$, centered at $\beta$, fits inside the span of $P$. Replace $P$ by this triangle. Its area and intrinsic barycenter are unchanged, so every packet order has exactly the same signed first moment before and after this replacement. Its cubic is $A^2/2$, which is at least the original positive cubic by Step 1 and
+The triangle of area $A$ and length $2h$ centered at $\beta$ therefore fits inside $P$. Replacing $P$ by it preserves area and intrinsic barycenter, hence preserves signed first moment, and raises the positive cubic at most to $A^2/2$ because
 $$
 \frac12\sum_i A_i^2\leq\frac12\left(\sum_iA_i\right)^2=\frac{A^2}{2}.
 $$
@@ -88,9 +87,9 @@ Thus, for this split, the admissible signed first moments form the whole interva
 $$
 [D-qB_R,\ D+qB_L].
 $$
-Varying $q_L$ continuously never cuts a nonzero excursion and preserves the $1$-Lipschitz condition.
+Varying $q_L$ preserves all excursion shapes and the $1$-Lipschitz bound.
 
-At the all-left split every negative point precedes every positive point, so the negative barycenter is strictly smaller than the positive barycenter and the signed first moment is positive. At the all-right split it is negative. Between consecutive splits, one negative excursion crosses the positive packet. The right endpoint of the earlier admissible interval and the left endpoint of the later interval are the two extreme placements of the same available zero time during that crossing, so the successive intervals meet. Their union is therefore connected and contains both a positive and a negative value. Hence some split and some placement of the zero time give signed first moment exactly zero. For countably many excursions, apply the argument to finite truncations and pass to the limit; the omitted area, cubic, and first moment tend to zero.
+At the all-left split the signed first moment is positive; at the all-right split it is negative. Between consecutive splits, one negative excursion crosses the positive packet. The right endpoint of the earlier admissible interval and the left endpoint of the later interval are the two extreme placements of the same available zero time during that crossing, so the successive intervals meet. Hence the union of admissible intervals is connected and crosses $0$, giving a split with zero signed first moment. Countably many excursions follow by finite truncation.
 
 Let the chosen negative packet areas be $B_L,B_R$, so
 $$
@@ -179,7 +178,7 @@ $$
 z^3-z^2r+2z^2+z-r-1
 \leq2z^2-1\leq0.
 $$
-Thus $G_h(b_0)\leq0$. Because $G_h$ is increasing and every feasible $p$ has $G_h(p)\geq0$, we obtain $p\geq b_0$. Reflection gives $q\geq b_0$. This is the moment restriction needed for the cubic optimization, and it was derived without replacing either negative packet by a symmetric shape.
+Thus $G_h(b_0)\leq0$. Because $G_h$ is increasing and every feasible $p$ has $G_h(p)\geq0$, we obtain $p\geq b_0$. Reflection gives $q\geq b_0$. No negative packet has been symmetrically replaced.
 
 Step 3: Minimize the negative cubic and optimize one scalar
 For fixed $B$, let $b(B,S)$ be the smaller root of
@@ -194,13 +193,13 @@ Differentiating at fixed $B$ gives
 $$
 \frac{\partial\Phi}{\partial S}=-2b^3.
 $$
-As $S$ increases, the smaller root $b(B,S)$ decreases, so this derivative strictly increases and $S\mapsto\Phi(B,S)$ is strictly convex.
+Since $b(B,S)$ decreases with $S$, this derivative increases, so $\Phi(B,S)$ is strictly convex in $S$.
 
 For fixed $h,p,q$ with $p^2+q^2=h^2$, minimize
 $$
 \Phi(p^2,L)+\Phi(q^2,R)
 $$
-under $L+R=1-2h$. Strict convexity shows that an interior minimum equalizes the two cap depths. The common depth $b_0$ from Step 2 is admissible because $p,q\geq b_0$, and its defining equation gives the required total length. Hence the global minimum occurs at
+under $L+R=1-2h$. Strict convexity makes the minimum equalize the two cap depths. Since $p,q\geq b_0$ and $2b_0+h^2/b_0=1-2h$, the minimum is attained at
 $$
 L=b_0+\frac{p^2}{b_0},\qquad
 R=b_0+\frac{q^2}{b_0},
@@ -277,7 +276,7 @@ u(t)=
 1,&\frac{9}{10}<t<1.
 \end{cases}
 $$
-Equality in Step 2 forces one positive triangular excursion, one capped negative excursion in each outer packet, no zero gap, and the symmetric split $L=R$, $B_L=B_R$. Step 3 then forces $z=1/2$. The displayed state profile is therefore the only equality profile, and its derivative is the unique optimizer up to equality almost everywhere.
+Equality in Step 2 forces one positive triangular excursion, one capped negative excursion in each outer packet, no zero gap, and the symmetric split $L=R$, $B_L=B_R$. Step 3 then forces $z=1/2$. Thus the displayed derivative is the unique optimizer up to equality almost everywhere.
 
 Final Answer: $\boxed{\frac{1}{2000}}$
 
