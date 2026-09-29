@@ -139,9 +139,14 @@ $$
 (2^{r-1}-1)\alpha_{r-2}2^{r-2}=\alpha_r.
 $$
 Therefore
-$$
-C_1=(I_1-S_1)+(I_2-S_2)+4(I_3-S_3)+28(I_4-S_4)=98400
-$$
+$
+\begin{aligned}
+C_1
+&=(I_1-S_1)+(I_2-S_2)+4(I_3-S_3)+28(I_4-S_4)\\
+&=120+3780+4\cdot9450+28\cdot2025\\
+&=120+3780+37800+56700=98400
+\end{aligned}
+$
 is the total number of involutions with $q|_R\ne0$.
 
 Now $\operatorname{Fix}(T)=R^\perp$. If $q|_R=0$, then $q$ descends to the split form on $R^\perp/R$. Its zero-frequency Walsh sum is $2^{4-r}$, and each quotient vector has $2^r$ lifts on which $q$ is constant. Hence
