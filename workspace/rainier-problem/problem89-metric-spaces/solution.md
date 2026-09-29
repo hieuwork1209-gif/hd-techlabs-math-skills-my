@@ -118,7 +118,7 @@ $$
 $$
 After restoring the $4-r$ inactive coordinates, a hyperplane containing at least six cube vertices can only attain the corresponding maximum.
 
-For $r=2$, equality forces the two active singleton subsets to have the same weight, so the two coefficient magnitudes are equal and $t=0$. For $r=3$, an antichain of size $3$ is either all singletons or all two-element subsets; equal weighted sums force all three coefficient magnitudes equal, with $|t|$ equal to that common magnitude. For $r=4$, equality in the Lubell bound with six sets forces all six two-element subsets, and equality of all pair sums forces all four coefficient magnitudes equal and $t=0$.
+For $r=2$, equality forces the two active singleton subsets to have the same weight, so the two coefficient magnitudes are equal and $t=0$. For $r=3$, an antichain of size $3$ cannot mix singleton and two-element subsets: a singleton excludes the two pairs containing it, leaving at most its complementary pair, so a mixed antichain has size at most $2$. Hence an antichain of size $3$ is either all singletons or all two-element subsets. Equal weighted sums then force all three coefficient magnitudes equal, with $|t|$ equal to that common magnitude. For $r=4$, equality in the Lubell bound with six sets forces all six two-element subsets, and equality of all pair sums forces all four coefficient magnitudes equal and $t=0$.
 
 Therefore the hyperplanes meeting $X$ in at least six vertices are exactly the following four families:
 
@@ -167,7 +167,7 @@ distinct minimizing supports. Their affine hulls are unique, so there is no over
 $$
 N_8=20\binom86=560.
 $$
-By Step 2 each minimizing support determines exactly one two-dimensional equality subspace. Combining the four requested quantities gives
+By Step 2 each minimizing support determines exactly one two-dimensional equality subspace. Combining the five requested quantities gives
 $$
 (\wp,\dim E,s_2^*,N_6,N_8)=(1,11,6,40,560).
 $$
