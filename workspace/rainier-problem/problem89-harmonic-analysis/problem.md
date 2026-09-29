@@ -54,7 +54,7 @@ L\leq\mathcal U:
 $$
 
 For $j=1,2,3,4$, define
-$
+$$
 d_j^-=
 \min_{\substack{\ell\leq\mathcal U,\ \dim\ell=1\\
 |S(\ell)|\,|T(\ell)|=32\\
@@ -66,7 +66,7 @@ d_j^+=
 |S(\ell)|\,|T(\ell)|=32\\
 |S(\ell)|=2^j}}
 d(\ell).
-$
+$$
 Determine the ordered tuple
 $$
 (U_2^*,N_2^*,d_1^-,d_1^+,d_2^-,d_2^+,d_3^-,d_3^+,d_4^-,d_4^+).
