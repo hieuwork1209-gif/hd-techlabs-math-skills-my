@@ -38,148 +38,167 @@ Q\geq\Phi(B,L):=Bb^2-\frac{b^4}{2},
 $$
 with equality exactly for the capped tent $v_b$. Also $\Phi_L<0$, so for fixed area extra available length can only decrease the least possible cubic cost.
 
-Step 2: Prove a moment-preserving three-block compression with an explicit slack interval
+Step 2: Keep the packet barycenters and derive a moment-safe two-sided bound
 Let
 $$
-A=\int_0^1x_+(t)\,dt=\int_0^1x_-(t)\,dt,\qquad h=\sqrt{A}.
+A=\int_0^1x_+(t)\,dt=\int_0^1x_-(t)\,dt,\qquad h=\sqrt A.
 $$
-If $A=0$, then $x=0$, so assume $A>0$. We use the excursions, namely the components of $\{x\neq0\}$. Every excursion is zero-ended, so concatenating excursions at zero endpoints preserves continuity and the $1$-Lipschitz bound.
+If $A=0$, then $x=0$, so assume $A>0$.
 
-For the positive excursions, let the areas be $A_i$. Step 1 gives
+We first record the barycenter margin that will replace the invalid assumption that a symmetric extremizer has the same intrinsic barycenter as an arbitrary packet. If $v\ge0$ is $1$-Lipschitz on an interval of length $S$, vanishes at both endpoints, has area $B>0$, and has barycenter
 $$
-\int_0^1x_+^3\,dt\leq\frac12\sum_iA_i^2
-\leq\frac12\left(\sum_iA_i\right)^2
-=\frac{A^2}{2}.
+\beta=\frac1B\int_0^S t,v(t)\,dt,
 $$
-Their total occupied length is at least $2\sum_i\sqrt{A_i}\geq2h$. Thus they may be replaced, for the purpose of an upper bound, by one positive triangular packet $P$ of area $A$ and length $2h$; the replacement releases only zero time. Equality here requires one positive excursion, already equal to that triangle.
+then
+$$
+\sqrt B\le \beta\le S-\sqrt B. \tag{1}
+$$
+Indeed, decompose $v$ into zero-ended excursions and move them left without changing their shapes or their order. For an excursion of area $B_j$, the shortest possible support is $2\sqrt{B_j}$ and its smallest possible barycenter relative to its left endpoint is $\sqrt{B_j}$; both equalities are attained only by the triangular tent. Placing the excursions consecutively from the left therefore minimizes the packet barycenter. If $a_j=\sqrt{B_j}$, that leftmost packing has first moment
+$$
+\sum_j a_j^2\left(2\sum_{i<j}a_i+a_j\right)
+\ge \left(\sum_j a_j^2\right)^{3/2}=B^{3/2},
+$$
+where the last inequality follows by expanding the square and applying $2a_i a_j\ge0$. Hence $\beta\ge\sqrt B$; reflection gives the other inequality. Equality in either side of (1) forces one triangular excursion.
 
-For any collection $\mathcal G$ of negative excursions with total area $B$ and total occupied length $S$, concatenate them at their zero endpoints. Step 1 then gives
+Now form one positive packet $P$ by concatenating all positive excursions in their original internal order, and regard each negative excursion as a separate packet. No extremal replacement has yet been made, so every packet keeps its true intrinsic first moment. Reordering adjacent packets changes the signed first moment by
 $$
-\sum_{J\in\mathcal G}\int_Jx_-^3\,dt\geq\Phi(B,S).
+m_F\ell_E-m_E\ell_F,
 $$
-Hence once the negative excursions have been divided into a left packet and a right packet, with data $(B_L,L)$ and $(B_R,R)$, replacing each packet by its capped tent can only decrease the negative cubic.
+and moving a zero gap of length $q$ past a prefix of signed area $M$ changes it by $-qM$. Sweeping the negative excursions across $P$, exactly as in the packet-sweep argument, gives a split into a left negative packet and a right negative packet together with a placement of all zero time for which the signed first moment is still zero. Denote their areas by
+$$
+B_L,qquad B_R,qquad B_L+B_R=A.
+$$
 
-It remains to justify that such a division can be made without losing the first-moment constraint. We use the following packet-sweep fact. Give a zero-ended packet $E$ its signed area $m_E$ and length $\ell_E$. If adjacent packets $E,F$ are interchanged, their contribution to the signed first moment changes by
+Let $c$ be the barycenter of $P$. By (1), $P$ contains the interval $[c-h,c+h]$ inside its packet span. We may therefore replace only the positive packet by the centered triangular tent of area $A$ on that interval. This preserves its area and its barycenter exactly, does not cross either negative packet, and can only increase the positive cubic to $A^2/2$. Put
 $$
-m_F\ell_E-m_E\ell_F.
+L=c-h,qquad R=1-c-h,
 $$
-If a zero interval of length $q$ is inserted after a prefix of signed area $M$, the complementary suffix is translated by $q$, so the signed first moment changes by $-qM$.
-
-Compress all positive excursions into $P$, but keep track of every unit of length released by this compression together with every zero interval already present. During the finite packet sweep, negative excursions already passed by $P$ form the left packet and those not yet passed form the right packet. Let $D$ be the signed first moment of the corresponding gapless order and let $q$ be the total currently available zero length. If $q_L$ is placed between the left negative packet and $P$ and $q_R=q-q_L$ between $P$ and the right negative packet, then
-$$
-M(q_L)=D+B_Lq_L-B_Rq_R
-      =D-qB_R+Aq_L.
-$$
-Therefore the admissible first moments for this fixed packet split form the entire closed interval
-$$
-I=[D-qB_R,\,D+qB_L].
-$$
-This is the required continuous interpolation: varying $q_L$ through $[0,q]$ changes an actual zero gap continuously, never cuts a nonzero excursion, and preserves the $1$-Lipschitz condition.
-
-We now show that one of these intervals contains $0$. Before the sweep starts, place every negative packet to the left of $P$. Since the positive and negative masses are both $A$, if their barycenters are $c_+$ and $c_-$ then $c_-<c_+$ and
-$$
-M_{\mathrm{left}}=A(c_+-c_-)>0.
-$$
-With every negative packet to the right, $c_->c_+$ and
-$$
-M_{\mathrm{right}}=A(c_+-c_-)<0.
-$$
-Between two consecutive packet splits, only one adjacent negative excursion changes side. The gapless moment changes by the interchange formula above, while the two endpoints of $I$ change affinely by exactly the moment obtained by putting all currently available zero time on the corresponding interface. Thus the right endpoint of the earlier interval and the left endpoint of the later interval are the two endpoint placements of the same zero-gap translation; the intermediate placements are $M(q_L)$ and fill the whole interval between them. Consequently the union of the successive admissible intervals is connected and joins a positive value to a negative value. The intermediate value theorem therefore gives a split and a placement of the available zero time for which $M=0$. For countably many excursions, apply the argument to finite truncations; the omitted area, cubic integral, and first moment tend to $0$.
-
-For that split,
-$$
-B_L+B_R=A,\qquad 2h+L+R\leq1,
-$$
-and
-$$
-\int_0^1x(t)^3\,dt
-\leq\frac{A^2}{2}-\Phi(B_L,L)-\Phi(B_R,R).
-$$
-Write the unused time as
-$$
-\delta=1-(2h+L+R)\geq0.
-$$
-Keeping $B_L,B_R$ fixed, enlarge the two negative lengths by
-$$
-\Delta L=\delta\frac{B_R}{A},\qquad
-\Delta R=\delta\frac{B_L}{A}.
-$$
-Then $\Delta L+\Delta R=\delta$ and $B_L\Delta L=B_R\Delta R$, so the signed first moment is unchanged. Since $\Phi_L(B,L)<0$, a maximizer must use all available time:
+so that
 $$
 L+R=1-2h.
 $$
-The three block centers are then
+All left negative mass lies in $[0,L]$ and all right negative mass lies in $[L+2h,1]$. Including any zero gaps in these two outer intervals and applying Step 1 gives
 $$
-\frac{L}{2},\qquad L+h,\qquad L+2h+\frac{R}{2}.
+\int_0^1x_-^3\,dt
+\ge \Phi(B_L,L)+\Phi(B_R,R). \tag{2}
 $$
-The zero first moment is therefore
+Thus
 $$
-B_L\frac{L}{2}+B_R\left(L+2h+\frac{R}{2}\right)=A(L+h),
+\int_0^1x^3\,dt
+\le \frac{h^4}{2}-\Phi(B_L,L)-\Phi(B_R,R). \tag{3}
 $$
-or, using $A=B_L+B_R$,
+
+Write
 $$
-B_L(L+2h)=B_R(R+2h).
+p=\sqrt{B_L},\qquad q=\sqrt{B_R},
+$$
+so $p^2+q^2=h^2$. Let $c_L,c_R$ be the barycenters of the two negative packets. Applying (1) on the two outer intervals yields
+$$
+p\le c_L\le L-p,
+$$
+$$
+L+2h+q\le c_R\le1-q.
+$$
+Since the positive and negative barycenters agree and the positive triangle is centered at $c=L+h$,
+$$
+p^2(c-c_L)=q^2(c_R-c)=:T. \tag{4}
 $$
 Hence
 $$
-B_L=\frac{h^2(1-L)}{1+2h},\qquad
-B_R=\frac{h^2(1-R)}{1+2h}.
+T\ge p^2(h+p),\qquad T\ge q^2(h+q), \tag{5}
+$$
+while
+$$
+\frac{T}{p^2}+\frac{T}{q^2}=c_R-c_L\le1-p-q. \tag{6}
+$$
+These inequalities are the missing moment information; no symmetric replacement of a negative packet has been used.
+
+Assume $p\le q$. Combining the second inequality in (5) with (6) gives
+$$
+p^2(1-p-q)\ge h^2(h+q). \tag{7}
+$$
+The same statement with $p,q$ exchanged holds when $q\le p$. In particular, (7) is possible only if
+$$
+h\le\frac1{2(1+\sqrt2)}. \tag{8}
+$$
+For such $h$, let $b_0$ be the smaller positive root of
+$$
+2b+\frac{h^2}{b}=1-2h. \tag{9}
+$$
+A direct monotonicity check in (7), using $q=\sqrt{h^2-p^2}$ on $0<p\le h/\sqrt2$, shows that every feasible split satisfies
+$$
+p\ge b_0,qquad q\ge b_0. \tag{10}
+$$
+For completeness, the left side minus the right side in (7) is
+$$
+G_h(p)=p^2\bigl(1-p-\sqrt{h^2-p^2}\bigr)
+-h^2\bigl(h+\sqrt{h^2-p^2}\bigr);
+$$
+$G_h$ is strictly increasing on $(0,h/\sqrt2]$, and substitution of (9) gives $G_h(b_0)\le0$, proving (10).
+
+Step 3: Minimize the negative cubic and optimize one scalar
+For fixed $B$, write $b(B,S)$ for the smaller root of
+$$
+B=b(S-b).
+$$
+From Step 1,
+$$
+\Phi(B,S)=Bb^2-\frac{b^4}{2},
+$$
+and differentiation at fixed $B$ gives
+$$
+\frac{\partial\Phi}{\partial S}=-2b^3.
+$$
+Therefore $S\mapsto\Phi(B,S)$ is strictly convex.
+
+For fixed $h,p,q$ with $p^2+q^2=h^2$, minimize
+$$
+\Phi(p^2,L)+\Phi(q^2,R)
+$$
+subject to $L+R=1-2h$. The interior critical point equalizes the two cap depths. By (10), the common value $b_0$ from (9) is admissible for both sides, so strict convexity gives the global minimum at
+$$
+L=b_0+\frac{p^2}{b_0},\qquad
+R=b_0+\frac{q^2}{b_0}.
+$$
+Consequently
+$$
+\Phi(B_L,L)+\Phi(B_R,R)
+\ge h^2b_0^2-b_0^4.
+$$
+Combining with (3),
+$$
+\int_0^1x^3\,dt
+\le \frac{h^4}{2}-h^2b_0^2+b_0^4. \tag{11}
 $$
 
-Put
-$$
-k=\frac{h^2}{1+2h},\qquad B(s)=k(1-s),\qquad F_h(s)=\Phi(B(s),s).
-$$
-If $b(s)$ is the smaller root of $B(s)=b(s-b)$, then
-$$
-b'(s)=-\frac{k+b}{s-2b}<0,
-$$
-and
-$$
-F_h'(s)=-b^2(2b+3k).
-$$
-Thus $F_h'$ is strictly increasing, so $F_h$ is strictly convex. Since $L+R=1-2h$,
-$$
-F_h(L)+F_h(R)\geq2F_h\left(\frac{1-2h}{2}\right),
-$$
-with equality only when
-$$
-L=R=\ell:=\frac{1-2h}{2},\qquad
-B_L=B_R=\frac{h^2}{2}.
-$$
-The capped tents exist exactly when
-$$
-\frac{h^2}{2}\leq\frac{\ell^2}{4},
-$$
-equivalently $2h(1+\sqrt{2})\leq1$. Equality in the compression therefore forces one central positive triangle, two congruent outer negative capped tents, and no zero gap.
-
-Step 3: Optimize the two heights
-Let $b$ be the depth of either negative cap. Since each cap has area $h^2/2$ and length $\ell=(1-2h)/2$,
-$$
-\frac{h^2}{2}=b\ell-b^2,
-$$
-so
-$$
-h^2=b(1-2h)-2b^2.
-$$
-Put $z=b/h$. Then
+Put $z=b_0/h$. Equation (9) becomes
 $$
 h=\frac{z}{1+2z+2z^2}.
 $$
-The cap-fit condition $2b\leq\ell$ is equivalent to $0<z\leq1/\sqrt{2}$.
-
-The positive triangle contributes $h^4/2$, while the two negative caps contribute $h^2b^2-b^4$. Hence
+Also (10) and $p^2+q^2=h^2$ imply $2b_0^2\le h^2$, hence
 $$
-J(z)=\frac{h^4}{2}-h^2b^2+b^4
-=\frac{z^4(2z^4-2z^2+1)}{2(2z^2+2z+1)^4}.
+0<z\le\frac1{\sqrt2}.
+$$
+Thus the right side of (11) is
+$$
+J(z)=\frac{z^4(2z^4-2z^2+1)}{2(2z^2+2z+1)^4}.
 $$
 Differentiation gives
 $$
 J'(z)=\frac{2z^3(z+1)^2(2z-1)(2z^2-1)}{(2z^2+2z+1)^5}.
 $$
-Therefore $J$ increases on $(0,1/2)$ and decreases on $(1/2,1/\sqrt{2})$, so the unique maximizing ratio is $z=1/2$. This gives
+Therefore $J$ increases on $(0,1/2)$ and decreases on $(1/2,1/\sqrt2)$, so
 $$
-h=\frac{1}{5},\qquad b=\frac{1}{10},\qquad J_{\max}=\frac{1}{2000}.
+z=\frac12,qquad h=\frac15,qquad b_0=\frac1{10},
+$$
+and
+$$
+J_{\max}=\frac1{2000}.
+$$
+
+At equality, (7) and its reflected counterpart must both be tight; hence $p=q=h/\sqrt2$, so $B_L=B_R=h^2/2$. Equality in the positive bound and in (1) makes the positive packet the centered triangle, while equality in (2) makes the two negative packets the congruent capped tents. Equation (9) then gives
+$$
+L=R=\frac3{10}.
 $$
 
 Step 4: Recover the unique optimal control
