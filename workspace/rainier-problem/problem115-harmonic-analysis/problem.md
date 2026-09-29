@@ -16,21 +16,14 @@ f_{M,g}(x,y)=(-1)^{x\cdot My+g(y)},
 \qquad (x,y)\in E\times E.
 $$
 For $h:E\times E\to\mathbb C$, define
-$$
-(\mathcal Fh)(u,v)=2^{-8}\sum_{x,y\in E}h(x,y)(-1)^{x\cdot v+y\cdot u}
-$$
-and its vertical Walsh ambiguity spectrum
-$$
-\mathcal A_h(b,\xi)=2^{-8}\sum_{x\in E}h(x,0)\overline{h(x,b)}(-1)^{\xi\cdot x}.
-$$
-Let $\mathcal S$ be the set of distinct functions $f_{M,g}$ satisfying $\mathcal Ff_{M,g}=f_{M,g}$, and put
-$$
-\mathscr T(h)=\sum_{0\ne b\in E}\mathcal A_h(b,b).
-$$
-Compute
-$$
-\sum_{f\in\mathcal S}\mathscr T(f).
-$$
+$
+(\mathcal Fh)(u,v)=2^{-8}\sum_{x,y\in E}h(x,y)(-1)^{x\cdot v+y\cdot u}.
+$
+Over all distinct functions $f_{M,g}$ satisfying $\mathcal Ff_{M,g}=f_{M,g}$, compute
+$
+\sum_f\sum_{0\ne b\in E}2^{-8}\sum_{x\in E}
+f(x,0)\overline{f(x,b)}(-1)^{b\cdot x}.
+$
 Express the exact value in prime-factorized form.
 
 ---
@@ -48,4 +41,4 @@ Express the exact value in prime-factorized form.
 
 ## Domain Explanation
 
-The requested quantity is an aggregate diagonal mass of a Walsh ambiguity spectrum over Fourier-invariant quadratic phases. The decisive harmonic-analysis steps are character orthogonality, Fourier self-duality, and the ambiguity-spectrum reduction; finite orthogonal geometry then parametrizes the symmetries needed to evaluate that harmonic statistic.
+The requested quantity is a diagonal Walsh-correlation sum over Fourier-invariant quadratic phases. The decisive harmonic-analysis steps are character orthogonality and Fourier self-duality; finite orthogonal geometry then parametrizes the symmetries needed to evaluate the resulting fixed-vector sum.
