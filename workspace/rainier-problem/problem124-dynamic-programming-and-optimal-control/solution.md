@@ -149,7 +149,7 @@ $$
 G_h'(p)
 =p\left(2-3p-q+\frac{2p^2}{q}\right)>0,
 $$
-because $3p+q\leq2\sqrt2\,h\leq\sqrt2<2$. Thus feasibility implies
+because Step 1 gives $h\leq1/2$, so $3p+q\leq2\sqrt2\,h\leq\sqrt2<2$. Thus feasibility implies
 $$
 0\leq G_h(p)\leq G_h\left(\frac{h}{\sqrt2}\right)
 =\frac{h^2}{2}\left(1-2(1+\sqrt2)h\right),
