@@ -143,10 +143,16 @@ f_\alpha(x)=(-1)^{\widetilde\alpha(x)}\mathbf 1_{x_0+W}(x),
 \qquad
 f_\beta(x)=(-1)^{\widetilde\beta(x)}\mathbf 1_{x_0+W}(x).
 $$
-Their Fourier supports are precisely the two cosets above. The full support-intersection space is the $1$-eigenspace of $A$, which has dimension $2$, so
-$$
+Their Fourier supports are precisely the two cosets above. For any $u$ supported on $S$,
+$
+\langle Au,u\rangle
+=\|P_T\mathcal Fu\|^2
+\leq\|u\|^2.
+$
+Thus $Au=u$ holds exactly when equality holds in this projection inequality, equivalently when $\mathcal Fu$ is supported on $T$. Hence the full space of functions supported on $S$ with Fourier support in $T$ is precisely the $1$-eigenspace of $A$. Since $A$ is positive semidefinite of rank $2$ and trace $2$, that eigenspace has dimension $2$. Therefore
+$
 L=\operatorname{span}\{f_\alpha,f_\beta\}.
-$$
+$
 The conditions $L\leq\mathcal U$ give
 $$
 x_0\notin W,
