@@ -38,83 +38,94 @@ Q\geq\Phi(B,L):=Bb^2-\frac{b^4}{2},
 $$
 with equality exactly for the capped tent $v_b$. Also $\Phi_L<0$, so for fixed area extra available length can only decrease the least possible cubic cost.
 
-Step 2: Compress signed excursions while preserving the moments
+Step 2: Prove a moment-preserving three-block compression with an explicit slack interval
 Let
 $$
 A=\int_0^1x_+(t)\,dt=\int_0^1x_-(t)\,dt,\qquad h=\sqrt{A}.
 $$
-We use a signed excursion-compression lemma. If $x$ is $1$-Lipschitz, $x(0)=x(1)=0$, and
-$$
-\int_0^1x(t)\,dt=\int_0^1t\,x(t)\,dt=0,
-$$
-then there are $L,R>0$ and $B_L,B_R>0$ with
-$$
-B_L+B_R=A,\qquad 2h+L+R\leq1,\qquad B_L(L+2h)=B_R(R+2h),
-$$
-such that
-$$
-\int_0^1x(t)^3\,dt\leq\frac{A^2}{2}-\Phi(B_L,L)-\Phi(B_R,R).
-$$
-The right side is attained by a left negative capped tent of area $B_L$ and length $L$, a positive triangular tent of area $A$ and length $2h$, and a right negative capped tent of area $B_R$ and length $R$.
+If $A=0$, then $x=0$, so assume $A>0$. We use the excursions, namely the components of $\{x\neq0\}$. Every excursion is zero-ended, so concatenating excursions at zero endpoints preserves continuity and the $1$-Lipschitz bound.
 
-To prove the lemma, use the components of $\{x\neq0\}$ as excursions. Each excursion has one sign and vanishes at both endpoints. Cutting and reassembling only at such endpoints preserves continuity and the $1$-Lipschitz bound. A rigid translation preserves length, area, and cubic integral. If a packet of signed area $m$ is translated by $d$, its signed first moment changes by $md$.
-
-For the positive excursions, let their areas be $A_i$. Step 1 gives
+For the positive excursions, let the areas be $A_i$. Step 1 gives
 $$
-\int_0^1x_+^3\leq\frac{1}{2}\sum_iA_i^2
-\leq\frac{1}{2}\left(\sum_iA_i\right)^2
+\int_0^1x_+^3\,dt\leq\frac12\sum_iA_i^2
+\leq\frac12\left(\sum_iA_i\right)^2
 =\frac{A^2}{2}.
 $$
-Every positive excursion of area $A_i$ has length at least $2\sqrt{A_i}$, and
-$$
-\sum_i2\sqrt{A_i}\geq2\sqrt{\sum_iA_i}=2h.
-$$
-So all positive excursions can be replaced by one triangular tent of area $A$ and length $2h$ without using more time. Equality in both positive estimates requires exactly one positive excursion, and Step 1 then forces that excursion to be the triangular tent.
+Their total occupied length is at least $2\sum_i\sqrt{A_i}\geq2h$. Thus they may be replaced, for the purpose of an upper bound, by one positive triangular packet $P$ of area $A$ and length $2h$; the replacement releases only zero time. Equality here requires one positive excursion, already equal to that triangle.
 
-For any collection $\mathcal G$ of negative excursions with total length $S$ and total area $B$, concatenate them at their zero endpoints. The result is a nonnegative $1$-Lipschitz function on an interval of length $S$. Step 1 gives
+For any collection $\mathcal G$ of negative excursions with total area $B$ and total occupied length $S$, concatenate them at their zero endpoints. Step 1 then gives
 $$
 \sum_{J\in\mathcal G}\int_Jx_-^3\,dt\geq\Phi(B,S).
 $$
-Equality requires the concatenated profile to be one capped tent, so an equality packet contains one nonzero negative excursion.
+Hence once the negative excursions have been divided into a left packet and a right packet, with data $(B_L,L)$ and $(B_R,R)$, replacing each packet by its capped tent can only decrease the negative cubic.
 
-It remains to arrange one positive packet between two negative packets without changing the signed first moment. For adjacent zero-ended packets $E,F$, with lengths $\ell_E,\ell_F$ and signed areas $m_E,m_F$, interchanging their order changes the signed first moment by
+It remains to justify that such a division can be made without losing the first-moment constraint. We use the following packet-sweep fact. Give a zero-ended packet $E$ its signed area $m_E$ and length $\ell_E$. If adjacent packets $E,F$ are interchanged, their contribution to the signed first moment changes by
 $$
 m_F\ell_E-m_E\ell_F.
 $$
-If a zero interval of length $q$ is inserted after a prefix of signed area $M$, the complementary suffix shifts by $q$, changing the signed first moment by $-qM$. Starting from the original ordering, commute positive excursions until they form one packet. After each interchange, distribute the available zero time, including the time released by replacing the positive excursions with their minimal triangle, across neighboring interfaces so that the affine moment correction cancels the interchange change. The correction varies continuously with inserted zero length. The all-left-negative and all-right-negative placements give opposite signs, while the original arrangement has signed first moment $0$, so the sweep reaches a placement with signed first moment exactly $0$. Every cut is made at a zero endpoint, so the positive and negative parts remain disjoint and the $1$-Lipschitz condition is unchanged. For countably many excursions, apply the construction to finite truncations and pass to the limit; the omitted area, cubic integral, and first moment tend to $0$.
+If a zero interval of length $q$ is inserted after a prefix of signed area $M$, the complementary suffix is translated by $q$, so the signed first moment changes by $-qM$.
 
-After the sweep, merge each negative packet into the capped tent from Step 1. Put their areas and lengths equal to $B_L,L$ and $B_R,R$. Translating the three-block packet so that its left endpoint is $0$, the block centers are
+Compress all positive excursions into $P$, but keep track of every unit of length released by this compression together with every zero interval already present. During the finite packet sweep, negative excursions already passed by $P$ form the left packet and those not yet passed form the right packet. Let $D$ be the signed first moment of the corresponding gapless order and let $q$ be the total currently available zero length. If $q_L$ is placed between the left negative packet and $P$ and $q_R=q-q_L$ between $P$ and the right negative packet, then
 $$
-\frac{L}{2},\qquad L+h,\qquad L+2h+\frac{R}{2}.
+M(q_L)=D+B_Lq_L-B_Rq_R
+      =D-qB_R+Aq_L.
 $$
-Equality of the positive and negative first moments becomes
+Therefore the admissible first moments for this fixed packet split form the entire closed interval
 $$
-B_L\frac{L}{2}+B_R\left(L+2h+\frac{R}{2}\right)=A(L+h).
+I=[D-qB_R,\,D+qB_L].
 $$
-Using $A=B_L+B_R$ reduces this to
-$$
-B_L(L+2h)=B_R(R+2h),
-$$
-which proves the stated moment balance.
+This is the required continuous interpolation: varying $q_L$ through $[0,q]$ changes an actual zero gap continuously, never cuts a nonzero excursion, and preserves the $1$-Lipschitz condition.
 
+We now show that one of these intervals contains $0$. Before the sweep starts, place every negative packet to the left of $P$. Since the positive and negative masses are both $A$, if their barycenters are $c_+$ and $c_-$ then $c_-<c_+$ and
+$$
+M_{\mathrm{left}}=A(c_+-c_-)>0.
+$$
+With every negative packet to the right, $c_->c_+$ and
+$$
+M_{\mathrm{right}}=A(c_+-c_-)<0.
+$$
+Between two consecutive packet splits, only one adjacent negative excursion changes side. The gapless moment changes by the interchange formula above, while the two endpoints of $I$ change affinely by exactly the moment obtained by putting all currently available zero time on the corresponding interface. Thus the right endpoint of the earlier interval and the left endpoint of the later interval are the two endpoint placements of the same zero-gap translation; the intermediate placements are $M(q_L)$ and fill the whole interval between them. Consequently the union of the successive admissible intervals is connected and joins a positive value to a negative value. The intermediate value theorem therefore gives a split and a placement of the available zero time for which $M=0$. For countably many excursions, apply the argument to finite truncations; the omitted area, cubic integral, and first moment tend to $0$.
+
+For that split,
+$$
+B_L+B_R=A,\qquad 2h+L+R\leq1,
+$$
+and
+$$
+\int_0^1x(t)^3\,dt
+\leq\frac{A^2}{2}-\Phi(B_L,L)-\Phi(B_R,R).
+$$
 Write the unused time as
 $$
 \delta=1-(2h+L+R)\geq0.
 $$
-Keep $B_L,B_R$ fixed and set
+Keeping $B_L,B_R$ fixed, enlarge the two negative lengths by
 $$
 \Delta L=\delta\frac{B_R}{A},\qquad
 \Delta R=\delta\frac{B_L}{A}.
 $$
-Then $\Delta L+\Delta R=\delta$ and $B_L\Delta L=B_R\Delta R$, so replacing $L,R$ by $L+\Delta L,R+\Delta R$ preserves the balance identity and uses all free time. Since $\Phi_L(B,L)<0$ for $B>0$, a maximizer must have
+Then $\Delta L+\Delta R=\delta$ and $B_L\Delta L=B_R\Delta R$, so the signed first moment is unchanged. Since $\Phi_L(B,L)<0$, a maximizer must use all available time:
 $$
 L+R=1-2h.
 $$
-Combining this with $B_L+B_R=h^2$ and the balance identity gives
+The three block centers are then
+$$
+\frac{L}{2},\qquad L+h,\qquad L+2h+\frac{R}{2}.
+$$
+The zero first moment is therefore
+$$
+B_L\frac{L}{2}+B_R\left(L+2h+\frac{R}{2}\right)=A(L+h),
+$$
+or, using $A=B_L+B_R$,
+$$
+B_L(L+2h)=B_R(R+2h).
+$$
+Hence
 $$
 B_L=\frac{h^2(1-L)}{1+2h},\qquad
 B_R=\frac{h^2(1-R)}{1+2h}.
 $$
+
 Put
 $$
 k=\frac{h^2}{1+2h},\qquad B(s)=k(1-s),\qquad F_h(s)=\Phi(B(s),s).
@@ -127,19 +138,20 @@ and
 $$
 F_h'(s)=-b^2(2b+3k).
 $$
-Because $b'(s)<0$, $F_h'$ is strictly increasing, so $F_h$ is strictly convex. Since $L+R=1-2h$,
+Thus $F_h'$ is strictly increasing, so $F_h$ is strictly convex. Since $L+R=1-2h$,
 $$
 F_h(L)+F_h(R)\geq2F_h\left(\frac{1-2h}{2}\right),
 $$
 with equality only when
 $$
-L=R=\ell:=\frac{1-2h}{2},\qquad B_L=B_R=\frac{h^2}{2}.
+L=R=\ell:=\frac{1-2h}{2},\qquad
+B_L=B_R=\frac{h^2}{2}.
 $$
 The capped tents exist exactly when
 $$
 \frac{h^2}{2}\leq\frac{\ell^2}{4},
 $$
-equivalently $2h(1+\sqrt{2})\leq1$. Equality in the compression forces one central positive triangle, two congruent outer negative capped tents, and no zero gaps.
+equivalently $2h(1+\sqrt{2})\leq1$. Equality in the compression therefore forces one central positive triangle, two congruent outer negative capped tents, and no zero gap.
 
 Step 3: Optimize the two heights
 Let $b$ be the depth of either negative cap. Since each cap has area $h^2/2$ and length $\ell=(1-2h)/2$,
