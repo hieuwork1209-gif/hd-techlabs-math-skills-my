@@ -1,9 +1,9 @@
 {
   "problem": "problem89",
   "branch": "adversary/problem89",
-  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
-  "problem_blob_sha": "4ae2452cb4703a397bd555a405691d4d7d849de2",
-  "source_commit_sha": "ba53faa3e9723c948ac2186a5e240716cadf9b4d",
+  "problem_path": "workspace/rainier-problem/problem89-harmonic-analysis/problem.md",
+  "problem_blob_sha": "40255911600130be3b1b9a146496bc7abf0642bd",
+  "source_commit_sha": "28d1bd34debb9ddcbc84849e420734ae9211165b",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-15T06:37:50+00:00",
-  "result_file": "solver-results/problem89/4ae2452cb470.json"
+  "completed_at": "2026-09-29T02:00:29+00:00",
+  "result_file": "solver-results/problem89/402559116001.json"
 }

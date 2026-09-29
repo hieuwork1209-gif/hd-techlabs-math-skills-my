@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-harmonic-analysis/problem.md",
+  "source_commit_sha": "28d1bd34debb9ddcbc84849e420734ae9211165b",
+  "problem_blob_sha": "40255911600130be3b1b9a146496bc7abf0642bd",
+  "statement_sha256": "60f90ae320f46d7ba9966b6005c9ce50ae7b9af2cea6725dd01c5b3e65c83580",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-29T01:54:57+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(N=|V|=32\\), and use the normalized Walsh transform so Fourier projection onto a set \\(T\\subseteq V^*\\) has diagonal entries \\(|T|/32\\).\n\nIf a two-dimensional space \\(L\\) has support \\(S\\) and Fourier support \\(T\\), then \\(L\\) lies in the intersection of the physical-support subspace on \\(S\\) and the Fourier-support subspace on \\(T\\). The standard projection trace argument gives\n\n\\[\n\\dim L\\le \\frac{|S||T|}{32}.\n\\]\n\nSince \\(\\dim L=2\\),\n\n\\[\n|S||T|\\ge 64.\n\\]\n\nSo \\(U_2^*\\ge 64\\).\n\nNow construct equality cases. Let \\(H\\le V\\) have dimension \\(h\\in\\{2,3,4\\}\\), let \\(A=c+H\\) be a nonzero affine coset not containing \\(0\\), and choose two distinct nonzero characters \\(\\eta_1,\\eta_2\\in H^*\\). Define \\(L\\) on \\(A\\) by\n\n\\[\nu_i(c+y)=(-1)^{\\eta_i(y)},\\qquad y\\in H,\n\\]\n\nand set \\(u_i=0\\) outside \\(A\\). Then each \\(u_i(0)=0\\), and because \\(\\eta_i\\neq0\\),\n\n\\[\n\\sum_{x\\in V}u_i(x)=0,\n\\]\n\nso \\(L=\\langle u_1,u_2\\rangle\\subseteq \\mathcal U\\). Here\n\n\\[\n|S(L)|=|A|=2^h.\n\\]\n\nThe Fourier transform of \\(u_i\\) is supported on one coset of \\(H^\\perp\\), of size \\(2^{5-h}\\). The two chosen characters give two distinct such cosets, so\n\n\\[\n|T(L)|=2\\cdot 2^{5-h}=2^{6-h}.\n\\]\n\nThus\n\n\\[\n|S(L)||T(L)|=2^h\\cdot 2^{6-h}=64.\n\\]\n\nHence \\(U_2^*=64\\).\n\nIt remains to count these equality cases. Equality in the projection trace bound forces exactly the affine-coset construction above: \\(S\\) must be an affine \\(h\\)-flat avoiding \\(0\\), and \\(T\\) must be the union of two nonzero cosets of \\(H^\\perp\\), for \\(h=2,3,4\\).\n\nFor fixed \\(h\\):\n\n\\[\n\\#H=\\binom{5}{h}_2,\n\\qquad\n\\#\\text{nonzero cosets}=2^{5-h}-1,\n\\qquad\n\\#\\{\\eta_1,\\eta_2\\}=\\binom{2^h-1}{2}.\n\\]\n\nSo the number is\n\n\\[\n\\sum_{h=2}^4\n\\binom{5}{h}_2(2^{5-h}-1)\\binom{2^h-1}{2}.\n\\]\n\nUsing\n\n\\[\n\\binom52_2=\\binom53_2=155,\\qquad \\binom54_2=31,\n\\]\n\nwe get\n\n\\[\n155\\cdot 7\\cdot 3\n+\n155\\cdot 3\\cdot 21\n+\n31\\cdot 1\\cdot 105\n=\n3255+9765+3255\n=\n16275.\n\\]\n\nTherefore\n\n\\[\n\\boxed{(U_2^*,N_2^*)=(64,16275)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-29T02:00:29+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/402559116001.json"
+}
