@@ -16,7 +16,7 @@ Determine
 $$
 \max_u\int_0^1x_u(t)^3\,dt
 $$
-exactly. A complete proof must also classify all optimal controls, up to equality almost everywhere.
+exactly.
 
 ---
 
