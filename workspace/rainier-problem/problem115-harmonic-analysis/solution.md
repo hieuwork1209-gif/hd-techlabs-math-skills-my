@@ -60,26 +60,21 @@ u_2=e_1+e_2+f_2,\quad v_2=e_1+f_1+e_2+f_2
 $$
 are singular and satisfy $B(u_i,v_j)=\delta_{ij}$, with all other pairings among them zero. Thus a positive Walsh sign means an even number of $A$-planes, which pair off, so every admissible $g$ is equivalent to the split form $H^{\perp4}$ with $H(x,y)=xy$. Fix one such split form $q$ with polar form $B$.
 
-Step 2: Convert the ambiguity trace into a signed fixed-vector sum
-For the vertical ambiguity spectrum from the prompt,
-$$
-\mathcal A_h(b,\xi)=2^{-8}\sum_{x\in E}h(x,0)\overline{h(x,b)}(-1)^{\xi\cdot x},
-$$
-we have $f_{M,g}(x,0)=1$ and
-$$
+Step 2: Convert the requested Walsh sum into a signed fixed-vector sum
+For a fixed $f_{M,g}$ and $b\in E$, we have $f_{M,g}(x,0)=1$ and
+$
 f_{M,g}(x,b)=(-1)^{x\cdot Mb+g(b)}.
-$$
-Hence character orthogonality gives the exact point-mass identity
-$$
-\mathcal A_{f_{M,g}}(b,\xi)
-=(-1)^{g(b)}\mathbf 1_{\{\xi=Mb\}}.
-$$
-Therefore the nonzero diagonal ambiguity mass is
-$$
-\mathscr T(f_{M,g})
-=\sum_{0\ne b\in E}\mathcal A_{f_{M,g}}(b,b)
-=\sum_{\substack{0\ne b\in E\\Mb=b}}(-1)^{g(b)}.
-$$
+$
+Hence character orthogonality gives
+$
+2^{-8}\sum_{x\in E}
+f_{M,g}(x,0)\overline{f_{M,g}(x,b)}(-1)^{b\cdot x}
+=(-1)^{g(b)}\mathbf 1_{\{b=Mb\}}.
+$
+Therefore the inner sum over nonzero $b$ in the problem equals
+$
+\sum_{\substack{0\ne b\in E\\Mb=b}}(-1)^{g(b)}.
+$
 For a self-dual function, Step 1 shows that $M$ is an involution preserving $g$. Thus for the fixed split $q$ it remains to sum $(-1)^{q(b)}$ over the nonzero fixed vectors of every involution in $O(q)$.
 
 Step 3: Parametrize the preserving involutions by residual data
@@ -144,23 +139,28 @@ $$
 (2^{r-1}-1)\alpha_{r-2}2^{r-2}=\alpha_r.
 $$
 Therefore
-$$
-C_1=(I_1-S_1)+(I_2-S_2)+4(I_3-S_3)+28(I_4-S_4)=64380
-$$
+$
+\begin{aligned}
+C_1
+&=(I_1-S_1)+(I_2-S_2)+4(I_3-S_3)+28(I_4-S_4)\\
+&=120+3780+4\cdot9450+28\cdot2025\\
+&=120+3780+37800+56700=98400
+\end{aligned}
+$
 is the total number of involutions with $q|_R\ne0$.
 
 Now $\operatorname{Fix}(T)=R^\perp$. If $q|_R=0$, then $q$ descends to the split form on $R^\perp/R$. Its zero-frequency Walsh sum is $2^{4-r}$, and each quotient vector has $2^r$ lifts on which $q$ is constant. Hence
 $$
 \sum_{x\in\operatorname{Fix}(T)}(-1)^{q(x)}=2^r2^{4-r}=16,
 $$
-so the nonzero fixed vectors contribute $15$ to $\mathscr T$.
+so the nonzero fixed vectors contribute $15$ to the requested inner sum.
 
 If $q|_R\ne0$, choose $r_0\in R$ with $q(r_0)=1$. Translation by $r_0$ preserves $R^\perp$ and flips $(-1)^{q(x)}$, because $B(x,r_0)=0$ on $R^\perp$. Hence the full fixed-space sum is $0$, and after removing $x=0$ the nonzero fixed vectors contribute $-1$.
 
-Therefore the total diagonal ambiguity mass over all preserving involutions of the fixed split form is
+Therefore the total requested contribution over all preserving involutions of the fixed split form is
 $$
-K=15C_0-C_1=15\cdot9136-64380=72660
-=2^2\cdot3\cdot5\cdot7\cdot173.
+K=15C_0-C_1=15\cdot9136-98400=38640
+=2^4\cdot3\cdot5\cdot7\cdot23.
 $$
 
 Step 5: Sum over all self-dual quadratic phases
@@ -168,20 +168,20 @@ Every admissible positive quadratic form has the same value $K$, and Step 1 show
 $$
 N_+K
 =(2^{15}\cdot7\cdot17\cdot31\cdot127)
-(2^2\cdot3\cdot5\cdot7\cdot173).
+(2^4\cdot3\cdot5\cdot7\cdot23).
 $$
 Thus
 $$
-N_+K=2^{17}\cdot3\cdot5\cdot7^2\cdot17\cdot31\cdot127\cdot173.
+N_+K=2^{19}\cdot3\cdot5\cdot7^2\cdot17\cdot23\cdot31\cdot127.
 $$
 
-Final Answer: $\boxed{2^{17}\cdot3\cdot5\cdot7^2\cdot17\cdot31\cdot127\cdot173}$
+Final Answer: $\boxed{2^{19}\cdot3\cdot5\cdot7^2\cdot17\cdot23\cdot31\cdot127}$
 
 ---
 
 ## Answer
 
-$2^{17}\cdot3\cdot5\cdot7^2\cdot17\cdot31\cdot127\cdot173$
+$2^{19}\cdot3\cdot5\cdot7^2\cdot17\cdot23\cdot31\cdot127$
 
 ---
 
