@@ -144,15 +144,15 @@ f_\alpha(x)=(-1)^{\widetilde\alpha(x)}\mathbf 1_{x_0+W}(x),
 f_\beta(x)=(-1)^{\widetilde\beta(x)}\mathbf 1_{x_0+W}(x).
 $$
 Their Fourier supports are precisely the two cosets above. For any $u$ supported on $S$,
-$
+$$
 \langle Au,u\rangle
 =\|P_T\mathcal Fu\|^2
 \leq\|u\|^2.
-$
+$$
 Thus $Au=u$ holds exactly when equality holds in this projection inequality, equivalently when $\mathcal Fu$ is supported on $T$. Hence the full space of functions supported on $S$ with Fourier support in $T$ is precisely the $1$-eigenspace of $A$. Since $A$ is positive semidefinite of rank $2$ and trace $2$, that eigenspace has dimension $2$. Therefore
-$
+$$
 L=\operatorname{span}\{f_\alpha,f_\beta\}.
-$
+$$
 The conditions $L\leq\mathcal U$ give
 $$
 x_0\notin W,
@@ -289,14 +289,14 @@ admissible choices of $W'$.
 For each admissible $W'$, let $\delta\in W'^*$ be the unique nonzero functional with kernel $W$. The character $\gamma$ has exactly two extensions to $W'^*$, and they differ by $\delta$. Their unordered pair is therefore uniquely determined and produces exactly one minimizing plane whose relevant half-support line is $\ell$.
 
 Thus the number of minimizing two-planes containing a rank-one equality line of physical support dimension $j$ is independent of the chosen line and equals
-$
+$$
 (2^j-2)+(2^{5-j}-2)
 =2^j+2^{5-j}-4.
-$
+$$
 Hence for $j=1,2,3,4$, respectively, both the minimum and maximum incidence counts are
-$
+$$
 14,\ 8,\ 8,\ 14.
-$
+$$
 
 Final Answer: $\boxed{(64,16275,14,14,8,8,8,8,14,14)}$
 
