@@ -41,162 +41,189 @@ with equality exactly for the capped tent $v_b$. Also $\Phi_L<0$, so for fixed a
 Step 2: Keep the packet barycenters and derive a moment-safe two-sided bound
 Let
 $$
-A=\int_0^1x_+(t)\,dt=\int_0^1x_-(t)\,dt,\qquad h=\sqrt A.
+A=\int_0^1x_+(t)\,dt=\int_0^1x_-(t)\,dt,\qquad h=\sqrt{A}.
 $$
 If $A=0$, then $x=0$, so assume $A>0$.
 
-We first record the barycenter margin that will replace the invalid assumption that a symmetric extremizer has the same intrinsic barycenter as an arbitrary packet. If $v\ge0$ is $1$-Lipschitz on an interval of length $S$, vanishes at both endpoints, has area $B>0$, and has barycenter
+We first need a barycenter margin that does not alter the shape of a packet. If $v\geq0$ is $1$-Lipschitz on an interval of length $S$, vanishes at both endpoints, has area $B>0$, and has barycenter
 $$
-\beta=\frac1B\int_0^S t,v(t)\,dt,
+\beta=\frac{1}{B}\int_0^S t\,v(t)\,dt,
 $$
 then
 $$
-\sqrt B\le \beta\le S-\sqrt B. \tag{1}
+\sqrt{B}\leq\beta\leq S-\sqrt{B}.
 $$
-Indeed, decompose $v$ into zero-ended excursions and move them left without changing their shapes or their order. For an excursion of area $B_j$, the shortest possible support is $2\sqrt{B_j}$ and its smallest possible barycenter relative to its left endpoint is $\sqrt{B_j}$; both equalities are attained only by the triangular tent. Placing the excursions consecutively from the left therefore minimizes the packet barycenter. If $a_j=\sqrt{B_j}$, that leftmost packing has first moment
+To prove the left inequality, decompose $v$ into zero-ended excursions of areas $B_j$ and write $a_j=\sqrt{B_j}$. An excursion of area $B_j$ has support length at least $2a_j$, and among such excursions its first moment relative to its left endpoint is at least $B_j a_j=a_j^3$, with equality only for the triangular tent. Moving the excursions consecutively to the left can only decrease the packet first moment. The resulting first moment is at least
 $$
-\sum_j a_j^2\left(2\sum_{i<j}a_i+a_j\right)
-\ge \left(\sum_j a_j^2\right)^{3/2}=B^{3/2},
+\sum_j a_j^2\left(2\sum_{i<j}a_i+a_j\right).
 $$
-where the last inequality follows by expanding the square and applying $2a_i a_j\ge0$. Hence $\beta\ge\sqrt B$; reflection gives the other inequality. Equality in either side of (1) forces one triangular excursion.
+For each $k$,
+$$
+\left(\sum_{j\leq k}a_j^2\right)^{3/2}
+-\left(\sum_{j<k}a_j^2\right)^{3/2}
+\leq a_k^3+2a_k^2\sum_{j<k}a_j,
+$$
+because the left side is at most
+$$
+a_k^2\sqrt{\sum_{j\leq k}a_j^2}
++a_k^2\sqrt{\sum_{j<k}a_j^2}
+\leq a_k^3+2a_k^2\sum_{j<k}a_j.
+$$
+Summing in $k$ gives a packet first moment at least $B^{3/2}$, hence $\beta\geq\sqrt B$. Reflection gives the upper bound. Equality on either side forces a single triangular excursion.
 
-Now form one positive packet $P$ by concatenating all positive excursions in their original internal order, and regard each negative excursion as a separate packet. No extremal replacement has yet been made, so every packet keeps its true intrinsic first moment. Reordering adjacent packets changes the signed first moment by
+Now concatenate the positive excursions into one packet $P$, preserving their shapes and internal order, and keep each negative excursion as a packet. No extremal replacement has been made, so all intrinsic packet first moments remain unchanged. If adjacent packets $E,F$ with signed areas $m_E,m_F$ and lengths $\ell_E,\ell_F$ are interchanged, the signed first moment changes by
 $$
-m_F\ell_E-m_E\ell_F,
+m_F\ell_E-m_E\ell_F.
 $$
-and moving a zero gap of length $q$ past a prefix of signed area $M$ changes it by $-qM$. Sweeping the negative excursions across $P$, exactly as in the packet-sweep argument, gives a split into a left negative packet and a right negative packet together with a placement of all zero time for which the signed first moment is still zero. Denote their areas by
-$$
-B_L,qquad B_R,qquad B_L+B_R=A.
-$$
+If a zero gap of length $q$ is moved past a prefix of signed area $M$, the signed first moment changes continuously by $-qM$. Sweep the negative excursions across $P$. At the all-left order the negative barycenter is left of the positive barycenter, so the signed first moment is positive; at the all-right order it is negative. During each adjacent interchange, continuously moving the available zero gap fills the whole interval between the two endpoint moments. Hence some split into a left negative packet and a right negative packet, with some placement of the zero time, preserves signed first moment zero. For countably many excursions, apply this to finite truncations and pass to the limit, since the omitted area and first moment tend to zero.
 
-Let $c$ be the barycenter of $P$. By (1), $P$ contains the interval $[c-h,c+h]$ inside its packet span. We may therefore replace only the positive packet by the centered triangular tent of area $A$ on that interval. This preserves its area and its barycenter exactly, does not cross either negative packet, and can only increase the positive cubic to $A^2/2$. Put
+Let the negative packet areas be $B_L,B_R$, so
 $$
-L=c-h,qquad R=1-c-h,
+B_L+B_R=A.
 $$
-so that
+Let $c$ be the barycenter of $P$. The barycenter margin shows that the support span of $P$ contains $[c-h,c+h]$. Replace only $P$ by the centered triangular tent of area $A$ on this interval. This replacement preserves both its area and barycenter, cannot cross either negative packet, and can only increase the positive cubic to $A^2/2$. Put
+$$
+L=c-h,\qquad R=1-c-h,
+$$
+so
 $$
 L+R=1-2h.
 $$
-All left negative mass lies in $[0,L]$ and all right negative mass lies in $[L+2h,1]$. Including any zero gaps in these two outer intervals and applying Step 1 gives
+All left negative mass lies in $[0,L]$ and all right negative mass lies in $[L+2h,1]$. Including any zero gaps in these outer intervals and applying Step 1 gives
 $$
-\int_0^1x_-^3\,dt
-\ge \Phi(B_L,L)+\Phi(B_R,R). \tag{2}
+\int_0^1x_-^3\,dt\geq\Phi(B_L,L)+\Phi(B_R,R),
 $$
-Thus
+and therefore
 $$
 \int_0^1x^3\,dt
-\le \frac{h^4}{2}-\Phi(B_L,L)-\Phi(B_R,R). \tag{3}
+\leq\frac{h^4}{2}-\Phi(B_L,L)-\Phi(B_R,R).
 $$
 
 Write
 $$
 p=\sqrt{B_L},\qquad q=\sqrt{B_R},
 $$
-so $p^2+q^2=h^2$. Let $c_L,c_R$ be the barycenters of the two negative packets. Applying (1) on the two outer intervals yields
+so $p^2+q^2=h^2$. Let $c_L,c_R$ be the barycenters of the two negative packets. The barycenter margin on the two outer intervals gives
 $$
-p\le c_L\le L-p,
-$$
-$$
-L+2h+q\le c_R\le1-q.
+p\leq c_L\leq L-p,\qquad
+L+2h+q\leq c_R\leq1-q.
 $$
 Since the positive and negative barycenters agree and the positive triangle is centered at $c=L+h$,
 $$
-p^2(c-c_L)=q^2(c_R-c)=:T. \tag{4}
+p^2(c-c_L)=q^2(c_R-c)=:T.
 $$
 Hence
 $$
-T\ge p^2(h+p),\qquad T\ge q^2(h+q), \tag{5}
+T\geq p^2(h+p),\qquad T\geq q^2(h+q),
 $$
-while
+and
 $$
-\frac{T}{p^2}+\frac{T}{q^2}=c_R-c_L\le1-p-q. \tag{6}
+\frac{T}{p^2}+\frac{T}{q^2}
+=c_R-c_L\leq1-p-q.
 $$
-These inequalities are the missing moment information; no symmetric replacement of a negative packet has been used.
 
-Assume $p\le q$. Combining the second inequality in (5) with (6) gives
+Assume $p\leq q$. Using the second lower bound for $T$ gives the necessary inequality
 $$
-p^2(1-p-q)\ge h^2(h+q). \tag{7}
+p^2(1-p-q)\geq h^2(h+q).
 $$
-The same statement with $p,q$ exchanged holds when $q\le p$. In particular, (7) is possible only if
+Set $q=\sqrt{h^2-p^2}$ and define
 $$
-h\le\frac1{2(1+\sqrt2)}. \tag{8}
+G_h(p)=p^2(1-p-q)-h^2(h+q).
 $$
+On $0<p\leq h/\sqrt2$,
+$$
+G_h'(p)
+=p\left(2-3p-q+\frac{2p^2}{q}\right)>0,
+$$
+because $3p+q\leq2\sqrt2\,h\leq\sqrt2<2$. Thus feasibility implies
+$$
+0\leq G_h(p)\leq G_h\left(\frac{h}{\sqrt2}\right)
+=\frac{h^2}{2}\left(1-2(1+\sqrt2)h\right),
+$$
+so
+$$
+h\leq\frac{1}{2(1+\sqrt2)}.
+$$
+
 For such $h$, let $b_0$ be the smaller positive root of
 $$
-2b+\frac{h^2}{b}=1-2h. \tag{9}
+2b+\frac{h^2}{b}=1-2h.
 $$
-A direct monotonicity check in (7), using $q=\sqrt{h^2-p^2}$ on $0<p\le h/\sqrt2$, shows that every feasible split satisfies
+Then $0<b_0\leq h/\sqrt2$. Write $z=b_0/h$ and $r=\sqrt{1-z^2}$. The defining equation gives
 $$
-p\ge b_0,qquad q\ge b_0. \tag{10}
+h=\frac{z}{1+2z+2z^2}.
 $$
-For completeness, the left side minus the right side in (7) is
+Substituting $p=b_0$ into $G_h$ yields
 $$
-G_h(p)=p^2\bigl(1-p-\sqrt{h^2-p^2}\bigr)
--h^2\bigl(h+\sqrt{h^2-p^2}\bigr);
+G_h(b_0)
+=\frac{z^3\left(z^3-z^2r+2z^2+z-r-1\right)}
+{(1+2z+2z^2)^3}.
 $$
-$G_h$ is strictly increasing on $(0,h/\sqrt2]$, and substitution of (9) gives $G_h(b_0)\le0$, proving (10).
+Since $0<z\leq1/\sqrt2$ gives $r\geq z$,
+$$
+z^3-z^2r+2z^2+z-r-1
+\leq2z^2-1\leq0.
+$$
+Thus $G_h(b_0)\leq0$. Because $G_h$ is increasing and every feasible $p$ has $G_h(p)\geq0$, we obtain $p\geq b_0$. Reflection gives $q\geq b_0$. This is the moment restriction needed for the cubic optimization, and it was derived without replacing either negative packet by a symmetric shape.
 
 Step 3: Minimize the negative cubic and optimize one scalar
-For fixed $B$, write $b(B,S)$ for the smaller root of
+For fixed $B$, let $b(B,S)$ be the smaller root of
 $$
 B=b(S-b).
 $$
-From Step 1,
+By Step 1,
 $$
-\Phi(B,S)=Bb^2-\frac{b^4}{2},
+\Phi(B,S)=Bb^2-\frac{b^4}{2}.
 $$
-and differentiation at fixed $B$ gives
+Differentiating at fixed $B$ gives
 $$
 \frac{\partial\Phi}{\partial S}=-2b^3.
 $$
-Therefore $S\mapsto\Phi(B,S)$ is strictly convex.
+As $S$ increases, the smaller root $b(B,S)$ decreases, so this derivative strictly increases and $S\mapsto\Phi(B,S)$ is strictly convex.
 
 For fixed $h,p,q$ with $p^2+q^2=h^2$, minimize
 $$
 \Phi(p^2,L)+\Phi(q^2,R)
 $$
-subject to $L+R=1-2h$. The interior critical point equalizes the two cap depths. By (10), the common value $b_0$ from (9) is admissible for both sides, so strict convexity gives the global minimum at
+under $L+R=1-2h$. Strict convexity shows that an interior minimum equalizes the two cap depths. The common depth $b_0$ from Step 2 is admissible because $p,q\geq b_0$, and its defining equation gives the required total length. Hence the global minimum occurs at
 $$
 L=b_0+\frac{p^2}{b_0},\qquad
-R=b_0+\frac{q^2}{b_0}.
+R=b_0+\frac{q^2}{b_0},
 $$
-Consequently
+and therefore
 $$
 \Phi(B_L,L)+\Phi(B_R,R)
-\ge h^2b_0^2-b_0^4.
+\geq h^2b_0^2-b_0^4.
 $$
-Combining with (3),
+Thus
 $$
 \int_0^1x^3\,dt
-\le \frac{h^4}{2}-h^2b_0^2+b_0^4. \tag{11}
+\leq\frac{h^4}{2}-h^2b_0^2+b_0^4.
 $$
 
-Put $z=b_0/h$. Equation (9) becomes
+Put $z=b_0/h$. The relation from Step 2 gives
 $$
-h=\frac{z}{1+2z+2z^2}.
+h=\frac{z}{1+2z+2z^2},\qquad 0<z\leq\frac{1}{\sqrt2}.
 $$
-Also (10) and $p^2+q^2=h^2$ imply $2b_0^2\le h^2$, hence
-$$
-0<z\le\frac1{\sqrt2}.
-$$
-Thus the right side of (11) is
+The upper bound becomes
 $$
 J(z)=\frac{z^4(2z^4-2z^2+1)}{2(2z^2+2z+1)^4}.
 $$
 Differentiation gives
 $$
-J'(z)=\frac{2z^3(z+1)^2(2z-1)(2z^2-1)}{(2z^2+2z+1)^5}.
+J'(z)=\frac{2z^3(z+1)^2(2z-1)(2z^2-1)}
+{(2z^2+2z+1)^5}.
 $$
 Therefore $J$ increases on $(0,1/2)$ and decreases on $(1/2,1/\sqrt2)$, so
 $$
-z=\frac12,qquad h=\frac15,qquad b_0=\frac1{10},
+z=\frac12,\qquad h=\frac15,\qquad b_0=\frac1{10},
 $$
-and
+and the maximum upper bound is
 $$
-J_{\max}=\frac1{2000}.
+\frac1{2000}.
 $$
 
-At equality, (7) and its reflected counterpart must both be tight; hence $p=q=h/\sqrt2$, so $B_L=B_R=h^2/2$. Equality in the positive bound and in (1) makes the positive packet the centered triangle, while equality in (2) makes the two negative packets the congruent capped tents. Equation (9) then gives
+Equality forces both negative packet bounds from Step 2 to be tight, so $p=q=h/\sqrt2$. Thus $B_L=B_R=h^2/2$. Equality in the positive cubic bound makes the positive packet a centered triangle, while equality in the reverse cubic bounds makes the two negative packets congruent capped tents. The length formulas then give
 $$
 L=R=\frac3{10}.
 $$
