@@ -53,24 +53,13 @@ L\leq\mathcal U:
 \right|.
 $$
 
-For $j=1,2,3,4$, define
+For each $j=1,2,3,4$, take the minimum and maximum of $d(\ell)$ over all one-dimensional subspaces $\ell\leq\mathcal U$ satisfying
 $$
-d_j^-=
-\min_{\substack{\ell\leq\mathcal U,\ \dim\ell=1\\
-|S(\ell)|\,|T(\ell)|=32\\
-|S(\ell)|=2^j}}
-d(\ell),
+|S(\ell)|\,|T(\ell)|=32,
 \qquad
-d_j^+=
-\max_{\substack{\ell\leq\mathcal U,\ \dim\ell=1\\
-|S(\ell)|\,|T(\ell)|=32\\
-|S(\ell)|=2^j}}
-d(\ell).
+|S(\ell)|=2^j.
 $$
-Determine the ordered tuple
-$$
-(U_2^*,N_2^*,d_1^-,d_1^+,d_2^-,d_2^+,d_3^-,d_3^+,d_4^-,d_4^+).
-$$
+Determine $U_2^*$, $N_2^*$, and these eight incidence extrema, returned as one ordered tuple in increasing order of $j$, with the minimum before the maximum for each $j$.
 
 ---
 
