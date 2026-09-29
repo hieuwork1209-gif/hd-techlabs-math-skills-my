@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-harmonic-analysis/problem.md",
+  "source_commit_sha": "3c60cf56701dc55889bbe25afb48a13a2ef7fa55",
+  "problem_blob_sha": "3a5e76c8698cd319e318b8bbc117f1a1a9fbc80a",
+  "statement_sha256": "0b569f70f8135ffd69cce3153cbaa55cb4b4a61328ba148dda07677586146c49",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-29T02:35:11+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "A self-contained count gives:\n\n\\[\nU_2^*=64.\n\\]\n\nThe optimal two-dimensional subspaces come in two dual types:\n\n1. one affine time coset of dimension \\(h=2,3,4\\), with two nonzero dual cosets;\n2. two nonzero affine time cosets of dimension \\(h=1,2,3\\), with one dual coset.\n\nCounting these gives\n\n\\[\n3255+9765+3255+3255+9765+3255=32550,\n\\]\n\nso\n\n\\[\nN_2^*=32550.\n\\]\n\nFor a sharp one-dimensional line \\(\\ell\\) with \\(|S(\\ell)|=2^j\\), the incidence count is constant for each \\(j\\), so the minimum and maximum agree. The values are\n\n\\[\nj=1:28,\\qquad\nj=2:16,\\qquad\nj=3:16,\\qquad\nj=4:28.\n\\]\n\nThus the requested ordered tuple is\n\n\\[\n\\boxed{(64,\\ 32550,\\ 28,\\ 28,\\ 16,\\ 16,\\ 16,\\ 16,\\ 28,\\ 28)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-29T02:38:30+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/3a5e76c8698c.json"
+}
