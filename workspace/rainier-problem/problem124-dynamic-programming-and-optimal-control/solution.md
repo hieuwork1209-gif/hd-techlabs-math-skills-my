@@ -53,23 +53,21 @@ then
 $$
 \sqrt{B}\leq\beta\leq S-\sqrt{B}.
 $$
-To prove the left inequality, decompose $v$ into zero-ended excursions of areas $B_j$ and write $a_j=\sqrt{B_j}$. An excursion of area $B_j$ has support length at least $2a_j$, and among such excursions its first moment relative to its left endpoint is at least $B_j a_j=a_j^3$, with equality only for the triangular tent. Moving the excursions consecutively to the left can only decrease the packet first moment. The resulting first moment is at least
+Let $H=\max v$ and $m(a)=|\{v>a\}|$. Since $v(t)\leq t$, the level set $\{v>a\}$ lies to the right of $a$, so among sets of measure $m(a)$ its first moment is at least
 $$
-\sum_j a_j^2\left(2\sum_{i<j}a_i+a_j\right).
+a\,m(a)+\frac{m(a)^2}{2}.
 $$
-For each $k$,
+From Step 1 write $m(a)=2(H-a)+e(a)$ with $e$ nonnegative and nonincreasing, and put $E=\int_0^H e(a)\,da$. Layer cake gives $B=H^2+E$, while integrating the preceding level-set bound gives
 $$
-\left(\sum_{j\leq k}a_j^2\right)^{3/2}
--\left(\sum_{j<k}a_j^2\right)^{3/2}
-\leq a_k^3+2a_k^2\sum_{j<k}a_j,
+\int_0^S t\,v(t)\,dt
+\geq H^3+\frac{3H}{2}E+\frac{E^2}{2H}.
 $$
-because the left side is at most
+With $r=E/H^2$,
 $$
-a_k^2\sqrt{\sum_{j\leq k}a_j^2}
-+a_k^2\sqrt{\sum_{j<k}a_j^2}
-\leq a_k^3+2a_k^2\sum_{j<k}a_j.
+\left(1+\frac32r+\frac12r^2\right)^2-(1+r)^3
+=\frac14r^2(1+r)^2\geq0,
 $$
-Summing in $k$ gives a packet first moment at least $B^{3/2}$, hence $\beta\geq\sqrt B$. Reflection gives the upper bound. Equality on either side forces a single triangular excursion.
+hence the last display is at least $(H^2+E)^{3/2}=B^{3/2}$. Thus $\beta\geq\sqrt B$. Applying the same argument to $v(S-t)$ gives $\beta\leq S-\sqrt B$. Equality forces $e=0$, hence a single triangular tent.
 
 Now concatenate the positive excursions, preserving their shapes and mutual order, into a zero-ended compound packet $P$. This operation is used only to describe the family of packet orders in the sweep; no moment claim is made yet. Let its occupied length be $S$ and let its intrinsic barycenter, measured from the left end of its span, be $\beta$. Applying the barycenter margin to this compound packet gives
 $$
@@ -94,11 +92,11 @@ Varying $q_L$ continuously never cuts a nonzero excursion and preserves the $1$-
 
 At the all-left split every negative point precedes every positive point, so the negative barycenter is strictly smaller than the positive barycenter and the signed first moment is positive. At the all-right split it is negative. Between consecutive splits, one negative excursion crosses the positive packet. The right endpoint of the earlier admissible interval and the left endpoint of the later interval are the two extreme placements of the same available zero time during that crossing, so the successive intervals meet. Their union is therefore connected and contains both a positive and a negative value. Hence some split and some placement of the zero time give signed first moment exactly zero. For countably many excursions, apply the argument to finite truncations and pass to the limit; the omitted area, cubic, and first moment tend to zero.
 
-Let the negative packet areas be $B_L,B_R$, so
+Let the chosen negative packet areas be $B_L,B_R$, so
 $$
 B_L+B_R=A.
 $$
-Let $c$ be the barycenter of $P$. The barycenter margin shows that the support span of $P$ contains $[c-h,c+h]$. Replace only $P$ by the centered triangular tent of area $A$ on this interval. This replacement preserves both its area and barycenter, cannot cross either negative packet, and can only increase the positive cubic to $A^2/2$. Put
+Let $c$ be the barycenter of the positive triangle. Put
 $$
 L=c-h,\qquad R=1-c-h,
 $$
@@ -106,11 +104,11 @@ so
 $$
 L+R=1-2h.
 $$
-All left negative mass lies in $[0,L]$ and all right negative mass lies in $[L+2h,1]$. Including any zero gaps in these outer intervals and applying Step 1 gives
+All left negative mass lies in $[0,L]$ and all right negative mass lies in $[L+2h,1]$. We do not replace either negative packet by a symmetric shape. Instead, extend each packet by zero to its whole outer interval and apply Step 1 directly:
 $$
-\int_0^1x_-^3\,dt\geq\Phi(B_L,L)+\Phi(B_R,R),
+\int_0^1x_-^3\,dt\geq\Phi(B_L,L)+\Phi(B_R,R).
 $$
-and therefore
+Therefore
 $$
 \int_0^1x^3\,dt
 \leq\frac{h^4}{2}-\Phi(B_L,L)-\Phi(B_R,R).
@@ -240,10 +238,19 @@ $$
 \frac1{2000}.
 $$
 
-Equality forces both negative packet bounds from Step 2 to be tight, so $p=q=h/\sqrt2$. Thus $B_L=B_R=h^2/2$. Equality in the positive cubic bound makes the positive packet a centered triangle, while equality in the reverse cubic bounds makes the two negative packets congruent capped tents. The length formulas then give
-$$
+At equality, the reverse cubic bounds force the two negative packets themselves to be capped tents with the common depth $b_0$. Their lengths are
+$
+L=b_0+\frac{p^2}{b_0},\qquad
+R=b_0+\frac{q^2}{b_0}.
+$
+Their barycenters are therefore the midpoints of the two outer intervals. Substituting these midpoints into the zero first-moment condition gives
+$
+0=\frac{(p-q)(p+q)\left(b_0^2+2b_0h+p^2+q^2\right)}{2b_0},
+$
+so $p=q=h/\sqrt2$. Hence $B_L=B_R=h^2/2$, and with $h=1/5$, $b_0=1/10$ the length formulas give
+$
 L=R=\frac3{10}.
-$$
+$
 
 Step 4: Recover the unique optimal control
 For $h=1/5$ and $b=1/10$, each negative block has length $3/10$ and flat part of length $1/10$. The equality profile is
