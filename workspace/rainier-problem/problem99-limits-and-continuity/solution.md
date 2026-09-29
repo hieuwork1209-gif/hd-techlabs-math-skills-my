@@ -3,9 +3,10 @@
 Step 1: Reduce the determinant to four saddle allocations
 
 Put
-$$
+$
 q=\sqrt t,\qquad \phi(x)=x(1-x)(3x-1)^2.
-$$
+$
+Let $D_m(t)$ be the determinant in the numerator of $F_m(t)$, let $C_m$ be the $t$-independent factor in its denominator, and write $b_m=\binom{2m}{m}$.
 For integrable products $f_i g_j$ such that the product of the two determinants is absolutely integrable, Andreief's identity gives
 $$
 \det\left(\int f_i g_j\,d\mu\right)_{i,j=0}^{n-1}
@@ -93,37 +94,58 @@ $$
 $$
 The four leading weights are therefore $\frac12,\frac12,\frac{r_m}{2},\frac{s_m}{2}$.
 
-Step 2: Derive the local expansion and separate the phase from the cross distances
+Step 2: Derive the local expansion and control the remainder
 
-For one allocation let $\mathbb E$ denote expectation under the normalized product of the two Laguerre ensembles and the Gaussian ensemble, and write
+For one allocation write
 $$
-U_j=\sum_{i=1}^ku_i^j,\qquad V_j=\sum_{i=1}^rv_i^j,\qquad Z_j=\sum_{i=1}^lz_i^j.
+U_j=\sum_{i=1}^ku_i^j,\qquad V_j=\sum_{i=1}^rv_i^j,\qquad Z_j=\sum_{i=1}^lz_i^j,
 $$
-The phase itself expands as
+and let $\mathbb E$ be expectation under the normalized Laguerre-Gaussian product measure. Set $R=q^{-1/16}$ and take the core
 $$
--\frac{\phi(q^2u)}{q^2}=-u+7q^2u^2+O(q^4u^3),
+0\leq u_i,v_i\leq R,\qquad |z_i|\leq R.
 $$
+There
 $$
+-\frac{\phi(q^2u)}{q^2}=-u+7q^2u^2+O(q^4u^3),\qquad
 -\frac{\phi(1-q^2v/4)}{q^2}=-v+q^2v^2+O(q^4v^3),
 $$
-while at the middle well the identity is exact:
 $$
 -\frac{\phi(1/3+qz/\sqrt2)}{q^2}
 =-z^2-\frac{3}{2\sqrt2}qz^3+\frac94q^2z^4.
 $$
-The phase contributes $-\frac{3}{2\sqrt2}Z_3$ to the coefficient of $q$ and $7U_2+V_2+\frac94Z_4$ to the coefficient of $q^2$, and it has no $q^3$ term.
-
-The three normalized cross distances are
+The normalized cross distances are
 $$
 1+\frac{3q}{\sqrt2}z-3q^2u,\qquad
 1-\frac{3q}{2\sqrt2}z-\frac{3q^2}{8}v,\qquad
 1-q^2\left(u+\frac v4\right).
 $$
-Expanding their squared Vandermonde factors with
+On the core, Taylor's formula gives
 $$
-2\log(1+y)=2y-y^2+\frac23y^3+O(y^4)
+2\log\left(1+\frac{3q}{\sqrt2}z-3q^2u\right)
+=3\sqrt2\,qz+q^2\left(-6u-\frac92z^2\right)
++q^3\left(9\sqrt2\,uz+\frac9{\sqrt2}z^3\right)+O(q^4R^4),
 $$
-gives the remaining terms. After the leading constants are removed, the logarithm is
+$$
+2\log\left(1-\frac{3q}{2\sqrt2}z-\frac{3q^2}{8}v\right)
+=-\frac3{\sqrt2}qz+q^2\left(-\frac34v-\frac98z^2\right)
+-\frac9{8\sqrt2}q^3(vz+z^3)+O(q^4R^4),
+$$
+$$
+2\log\left(1-q^2\left(u+\frac v4\right)\right)
+=-2q^2\left(u+\frac v4\right)+O(q^4R^2).
+$$
+Summing over the $kl$, $lr$, and $kr$ pairs yields
+$$
+\frac{3}{2\sqrt2}(4k-2r)Z_1
+$$
+at order $q$, and
+$$
+-(6l+2r)U_1-\left(\frac{3l}{4}+\frac{k}{2}\right)V_1
+-\left(\frac{9k}{2}+\frac{9r}{8}\right)Z_2
+$$
+at order $q^2$. In particular, $-6q^2u$ from each left-middle pair sums to $-6lU_1$. The order-$q^3$ term is odd in $z$.
+
+Adding the phase terms gives
 $$
 qA+q^2B+q^3C_{\rm odd}+O(q^4R^4),
 $$
@@ -136,34 +158,48 @@ B=7U_2+V_2-(6l+2r)U_1
 -\left(\frac{3l}{4}+\frac{k}{2}\right)V_1
 +\frac94Z_4-\left(\frac{9k}{2}+\frac{9r}{8}\right)Z_2.
 $$
-Every term in $C_{\rm odd}$ is odd under $z\mapsto-z$. The Gaussian Vandermonde measure is invariant under this map, so
+The Gaussian measure is invariant under $z\mapsto-z$, so
 $$
-\mathbb E[A]=\mathbb E[C_{\rm odd}]=\mathbb E[AB]=\mathbb E[A^3]=0.
+\mathbb E[A]=\mathbb E[C_{\rm odd}]=\mathbb E[AB]=\mathbb E[A^3]=0,
 $$
-The geometric factor is
+and the geometric factor is
 $$
-1+q^2\mathcal Q+o(q^3),\qquad \mathcal Q=\mathbb E\left[B+\frac{A^2}{2}\right].
+1+q^2\mathcal Q+o(q^3),\qquad
+\mathcal Q=\mathbb E\left[B+\frac{A^2}{2}\right].
 $$
 
-The factor $\prod_i(1+q(3x_i-1))$ has logarithm
+The remaining weight has logarithm
 $$
 qh+q^2\left(d+\frac3{\sqrt2}Z_1\right)+q^3T+O(q^4(1+R^2)),
 $$
-with
+where
 $$
 h=-k+2r,\qquad d=-\frac k2-2r,\qquad
 T=3U_1-\frac k3+\frac{8r}{3}-\frac34V_1.
 $$
-Combining the exponentials and using parity gives
+Parity gives
 $$
 1+hq+\alpha q^2+\beta q^3+o(q^3),
 $$
 $$
 \alpha=\mathcal Q+d+\frac{h^2}{2},\qquad
-\beta=\mathbb E[T]+h\mathcal Q+hd+\frac{h^3}{6}+J,
-\qquad J=\frac3{\sqrt2}\mathbb E[AZ_1].
+\beta=\mathbb E[T]+h\mathcal Q+hd+\frac{h^3}{6}+J,\qquad
+J=\frac3{\sqrt2}\mathbb E[AZ_1].
 $$
-Taking $R=q^{-1/16}$, the fourth-order logarithmic and exponential remainder is $O(q^4R^{12})=o(q^3)$ on the core. The local phase bounds give $O(e^{-cR})+O(e^{-cR^2})$ tails off the core and $O(e^{-c/q^2})$ away from the three wells.
+
+For $q^2u\leq1/6$,
+$$
+\frac{\phi(q^2u)}{q^2}\geq\frac{5u}{24}.
+$$
+For $|qz|/\sqrt2\leq1/6$, $x=1/3+qz/\sqrt2\in[1/6,1/2]$ and
+$$
+\frac{\phi(x)}{q^2}\geq\frac58z^2.
+$$
+For $y=q^2v/4\leq1/6$,
+$$
+\frac{\phi(1-y)}{q^2}\geq\frac{15}{32}v.
+$$
+The fixed-degree Vandermonde factors are absorbed by these exponential bounds, so the local tails are $O(e^{-cR})+O(e^{-cR^2})$. Away from fixed neighborhoods of the three zeros, $\phi\geq c_0>0$, giving $O(e^{-c_0/q^2})$. On the core the exponential remainder is $O(q^4R^{12})=O(q^{13/4})=o(q^3)$, proving uniform remainder control.
 
 Step 3: Evaluate the moments and the four local coefficients
 
@@ -188,18 +224,17 @@ $$
 \mathbb E[Z_1Z_3]=\frac{3l^2}{4},\qquad
 \mathbb E[Z_3^2]=\frac{3l^3}{2}+\frac{3l}{8}.
 $$
-Substitution into $B$ gives
+Hence
 $$
 \mathbb E[B]=14k^3+2r^3-6lk^2-2rk^2-\frac34lr^2-\frac12kr^2
 +\frac98l^3-\frac94kl^2-\frac9{16}rl^2+\frac9{16}l,
 $$
-while
 $$
 \frac12\mathbb E[A^2]
 =\frac92lk^2-\frac92lkr+\frac98lr^2-\frac{27}{8}kl^2
 +\frac{27}{16}rl^2+\frac{27}{32}l^3+\frac{27}{128}l.
 $$
-Now set $k=m+a$, $r=m+c$, $l=2m+2-a-c$ and use $a^2=a$, $c^2=c$. The two pieces become
+Substitute $k=m+a$, $r=m+c$, $l=2m+2-a-c$, with $a^2=a$ and $c^2=c$:
 $$
 \begin{aligned}
 \mathbb E[B]
@@ -218,32 +253,43 @@ $$
 +ac\left(\frac94m+\frac98\right).
 \end{aligned}
 $$
-The cubic and quadratic terms cancel on addition, leaving
+Thus
 $$
 128\mathcal Q
-=3942m+2214-(1912m+983)a-(1912m+1415)c+(3824m+1912)ac.
+=3942m+2214-(1912m+983)a-(1912m+1415)c+(3824m+1912)ac,
 $$
-Also
+and
 $$
-\mathbb E[T]=3k^2-\frac k3+\frac{8r}{3}-\frac34r^2,
-\qquad
+\mathbb E[T]=3k^2-\frac k3+\frac{8r}{3}-\frac34r^2,\qquad
 J=\frac9{16}l(8k-4r-3l).
 $$
-For the four allocations the five inputs to $\alpha$ and $\beta$ are
+
+For $(a,c)=(0,1)$, $k=m$, $l=2m+1$, $r=m+1$, so
 $$
-\begin{array}{c|c|c|c|c|c}
-(a,c)&h&d&\mathcal Q&\mathbb E[T]&J\\ \hline
-(0,1)&m+2&-\frac{5m+4}{2}&\frac{2030m+799}{128}&\frac{27m^2+10m+23}{12}&-\frac{9(2m+1)(2m+7)}{16}\\
-(1,0)&m-1&-\frac{5m+1}{2}&\frac{2030m+1231}{128}&\frac{27m^2+100m+32}{12}&-\frac{9(2m-5)(2m+1)}{16}\\
-(0,0)&m&-\frac{5m}{2}&\frac{27(73m+41)}{64}&\frac{m(27m+28)}{12}&-\frac{9(m+1)(m+3)}4\\
-(1,1)&m+1&-\frac{5(m+1)}2&\frac{27(73m+32)}{64}&\frac{(m+1)(27m+55)}{12}&-\frac{9m(m-2)}4
-\end{array}
+h=m+2,\qquad d=-\frac{5m+4}{2},\qquad
+\mathcal Q=\frac{2030m+799}{128},
 $$
-Putting each row into the formulas for $\alpha$ and $\beta$ gives
 $$
-\alpha(0,1)=\frac{64m^2+1966m+799}{128},\qquad
-\beta(0,1)=\frac{64m^3+5514m^2+9521m+2994}{384},
+\mathbb E[T]=\frac{27m^2+10m+23}{12},\qquad
+J=-\frac{9(2m+1)(2m+7)}{16}.
 $$
+Then
+$$
+\alpha(0,1)=\frac{2030m+799}{128}-\frac{5m+4}{2}+\frac{(m+2)^2}{2}
+=\frac{64m^2+1966m+799}{128},
+$$
+$$
+\begin{aligned}
+\beta(0,1)
+&=\frac{27m^2+10m+23}{12}
++\frac{(m+2)(2030m+799)}{128}
+-\frac{(m+2)(5m+4)}{2}\\
+&\quad+\frac{(m+2)^3}{6}
+-\frac{9(2m+1)(2m+7)}{16}
+=\frac{64m^3+5514m^2+9521m+2994}{384}.
+\end{aligned}
+$$
+The other allocations follow by the same substitution:
 $$
 \alpha(1,0)=\frac{64m^2+1582m+1231}{128},\qquad
 \beta(1,0)=\frac{64m^3+4938m^2+3491m-1461}{384},
@@ -252,7 +298,7 @@ $$
 \alpha(0,0)=\frac{32m^2+1811m+1107}{64},\qquad
 \alpha(1,1)=\frac{32m^2+1875m+736}{64}.
 $$
-Therefore, with $\mathcal D[f]=(f(0,1)+f(1,0))/2$,
+With $\mathcal D[f]=(f(0,1)+f(1,0))/2$,
 $$
 \mathcal D[h]=m+\frac12,\qquad
 \mathcal D[\alpha]=\frac{64m^2+1774m+1015}{128},
@@ -263,11 +309,10 @@ $$
 
 Step 4: Assemble the coefficient of $t^{3/2}$
 
-After division by $C_mt^{4m^2+4m+3/2}$, the dominant clusters have weights $1/2,1/2$. The two neighboring clusters have an extra factor $q$ and weights $r_m/2,s_m/2$. Therefore
-$$
-\frac{D_m(t)}{C_mt^{4m^2+4m+3/2}}
-=1+c_1q+c_2q^2+c_3q^3+o(q^3),
-$$
+The dominant clusters have weights $1/2,1/2$; the neighboring clusters have an extra factor $q$ and weights $r_m/2,s_m/2$. Therefore
+$
+F_m(t)=1+c_1q+c_2q^2+c_3q^3+o(q^3),
+$
 where
 $$
 c_1=m+\frac12+\frac{r_m+s_m}{2},
