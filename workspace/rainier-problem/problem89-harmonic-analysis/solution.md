@@ -282,21 +282,21 @@ admissible choices of $W'$.
 
 For each admissible $W'$, let $\delta\in W'^*$ be the unique nonzero functional with kernel $W$. The character $\gamma$ has exactly two extensions to $W'^*$, and they differ by $\delta$. Their unordered pair is therefore uniquely determined and produces exactly one minimizing plane whose relevant half-support line is $\ell$.
 
-Thus the number of minimizing two-planes containing any rank-one extremal line of physical support dimension $j$ is
-$$
-m_j=(2^j-2)+(2^{5-j}-2)
+Thus the number of minimizing two-planes containing a rank-one equality line of physical support dimension $j$ is independent of the chosen line and equals
+$
+(2^j-2)+(2^{5-j}-2)
 =2^j+2^{5-j}-4.
-$$
-Therefore
-$$
-(m_1,m_2,m_3,m_4)=(14,8,8,14).
-$$
+$
+Hence for $j=1,2,3,4$, respectively, both the minimum and maximum incidence counts are
+$
+14,\ 8,\ 8,\ 14.
+$
 
-Final Answer: $\boxed{(64,16275,14,8,8,14)}$
+Final Answer: $\boxed{(64,16275,14,14,8,8,8,8,14,14)}$
 
 ## Answer
 
-$(64,16275,14,8,8,14)$
+$(64,16275,14,14,8,8,8,8,14,14)$
 
 ## Classification
 
