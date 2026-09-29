@@ -7,15 +7,27 @@ d_q a\longrightarrow a^2d_q,
 \qquad
 d_qd_p\longrightarrow a d_pd_q\quad(p<q).
 $$
-Deleting all $a$'s leaves a permutation of $d_2,\ldots,d_n$. The first rule does not change that permutation, while the second rule swaps one adjacent inversion. Hence every complete reduction swaps each inverted pair exactly once.
+Deleting all $a$'s leaves a permutation of $d_2,\ldots,d_n$. The first rule does not change that permutation, while the second rule swaps one adjacent inversion.
 
-There are no $a$'s initially, so every occurrence of $a$ descends from the unique $a$ created by some swap. Suppose a swap is made at cut $k$, meaning that exactly $k$ $d$-symbols lie outside the swapped pair. Let $C_k$ be the number of future first-rule steps forced by the descendants of that one new $a$. Then
+We first identify the terminal form. If a word has no redex, then no $d_q$ is immediately outside an $a$, and no $d_q$ is immediately outside a $d_p$ with $p<q$. If some $a$ still lay inside some $d$, then at the boundary between the outer $d$-symbols and the first such $a$ there would be an adjacent pattern $d_q a$, a contradiction. Hence every $a$ lies outside every $d$. The remaining $d$-word has no adjacent inversion, so, since each $d_2,\ldots,d_n$ occurs exactly once, it must read
+$$
+d_2,d_3,\ldots,d_n
+$$
+from outside to inside. Thus every initially inverted pair of $d$-symbols must have its relative order reversed before termination. Only the second rule changes the $d$-permutation, and each such application removes exactly one inversion, so every initially inverted pair is swapped exactly once.
+
+There are no $a$'s initially, so every occurrence of $a$ descends from the unique $a$ created by some second-rule swap. Suppose a swap is made at cut $k$, meaning that exactly $k$ $d$-symbols lie outside the new seed $a$. For any occurrence in this seed's genealogy, let its outer count be the number of $d$-symbols lying outside it. A second-rule step exchanges two adjacent $d$-symbols with no $a$ between them, so it never changes the outer count of any existing $a$. A first-rule step
+$$
+d_q a\longrightarrow a^2d_q
+$$
+lowers that count by exactly one for the acted-on occurrence and replaces it by two descendants having the smaller count. By the terminal-form argument, every descendant must eventually have outer count $0$; hence every descendant must cross every $d$ that remains outside it.
+
+Let $C_k$ be the total number of future first-rule steps forced by the descendants of one seed created with outer count $k$. Then
 $$
 C_0=0,
 \qquad
 C_k=1+2C_{k-1}.
 $$
-Indeed, the innermost of the $k$ outer $d$'s crosses the seed once and creates two descendants, each still lying inside the remaining $k-1$ outer $d$'s. Therefore
+Indeed, the first crossing costs one step and creates two descendants, each with outer count $k-1$; the invariant above shows that each descendant then forces exactly $C_{k-1}$ further first-rule steps, regardless of how the $d$-$d$ swaps are interleaved. Therefore
 $$
 C_k=2^k-1.
 $$
