@@ -68,9 +68,9 @@ d_j^+=
 d(\ell).
 $
 Determine the ordered tuple
-$
+$$
 (U_2^*,N_2^*,d_1^-,d_1^+,d_2^-,d_2^+,d_3^-,d_3^+,d_4^-,d_4^+).
-$
+$$
 
 ---
 
