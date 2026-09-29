@@ -71,11 +71,28 @@ a_k^2\sqrt{\sum_{j\leq k}a_j^2}
 $$
 Summing in $k$ gives a packet first moment at least $B^{3/2}$, hence $\beta\geq\sqrt B$. Reflection gives the upper bound. Equality on either side forces a single triangular excursion.
 
-Now concatenate the positive excursions into one packet $P$, preserving their shapes and internal order, and keep each negative excursion as a packet. No extremal replacement has been made, so all intrinsic packet first moments remain unchanged. If adjacent packets $E,F$ with signed areas $m_E,m_F$ and lengths $\ell_E,\ell_F$ are interchanged, the signed first moment changes by
+Now concatenate the positive excursions, preserving their shapes and mutual order, into a zero-ended compound packet $P$. This operation is used only to describe the family of packet orders in the sweep; no moment claim is made yet. Let its occupied length be $S$ and let its intrinsic barycenter, measured from the left end of its span, be $\beta$. Applying the barycenter margin to this compound packet gives
 $$
-m_F\ell_E-m_E\ell_F.
+h\leq\beta\leq S-h.
 $$
-If a zero gap of length $q$ is moved past a prefix of signed area $M$, the signed first moment changes continuously by $-qM$. Sweep the negative excursions across $P$. At the all-left order the negative barycenter is left of the positive barycenter, so the signed first moment is positive; at the all-right order it is negative. During each adjacent interchange, continuously moving the available zero gap fills the whole interval between the two endpoint moments. Hence some split into a left negative packet and a right negative packet, with some placement of the zero time, preserves signed first moment zero. For countably many excursions, apply this to finite truncations and pass to the limit, since the omitted area and first moment tend to zero.
+Therefore the triangular tent of area $A$ and length $2h$, centered at $\beta$, fits inside the span of $P$. Replace $P$ by this triangle. Its area and intrinsic barycenter are unchanged, so every packet order has exactly the same signed first moment before and after this replacement. Its cubic is $A^2/2$, which is at least the original positive cubic by Step 1 and
+$$
+\frac12\sum_i A_i^2\leq\frac12\left(\sum_iA_i\right)^2=\frac{A^2}{2}.
+$$
+The replacement releases $S-2h$ units of zero time without changing the signed first moment.
+
+Now sweep the negative excursions across this barycenter-preserving positive triangle. For a fixed split, let $B_L$ be the unsigned area of the negative excursions already moved to the left and let $B_R=A-B_L$ be the unsigned area of those still on the right. Let $D$ be the signed first moment of the corresponding gapless packet order, and let $q$ be the total available zero time, including both the original zero intervals and the time released from $P$. If $q_L$ is placed between the left negative packet and the positive triangle, and $q_R=q-q_L$ between the triangle and the right negative packet, then translating the suffixes gives
+$$
+M(q_L)=D+B_Lq_L-B_Rq_R
+      =D-qB_R+Aq_L.
+$$
+Thus, for this split, the admissible signed first moments form the whole interval
+$$
+[D-qB_R,\ D+qB_L].
+$$
+Varying $q_L$ continuously never cuts a nonzero excursion and preserves the $1$-Lipschitz condition.
+
+At the all-left split every negative point precedes every positive point, so the negative barycenter is strictly smaller than the positive barycenter and the signed first moment is positive. At the all-right split it is negative. Between consecutive splits, one negative excursion crosses the positive packet. The right endpoint of the earlier admissible interval and the left endpoint of the later interval are the two extreme placements of the same available zero time during that crossing, so the successive intervals meet. Their union is therefore connected and contains both a positive and a negative value. Hence some split and some placement of the zero time give signed first moment exactly zero. For countably many excursions, apply the argument to finite truncations and pass to the limit; the omitted area, cubic, and first moment tend to zero.
 
 Let the negative packet areas be $B_L,B_R$, so
 $$
