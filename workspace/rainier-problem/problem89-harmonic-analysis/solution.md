@@ -226,7 +226,7 @@ g=af_\alpha+bf_\beta,
 $$
 factor on $x_0+W$ as
 $$
-g=f_\beta\bigl(a(-1)^{\delta(\,cdot-x_0\,)}+b\bigr).
+g=f_\beta\bigl(a(-1)^{\delta(\,\cdot-x_0\,)}+b\bigr).
 $$
 
 If $a=0$ or $b=0$, then $g$ is one of the two affine-character generators. Its physical support has size $2^k$, its Fourier support has size $2^{5-k}$, and the product is $32$.
@@ -300,15 +300,21 @@ $
 
 Final Answer: $\boxed{(64,16275,14,14,8,8,8,8,14,14)}$
 
+---
+
 ## Answer
 
 $(64,16275,14,14,8,8,8,8,14,14)$
+
+---
 
 ## Classification
 
 **Problem Type:** Exact computation
 
 **Answer Type:** Tuple or ordered list
+
+---
 
 ## Solution Concepts
 
