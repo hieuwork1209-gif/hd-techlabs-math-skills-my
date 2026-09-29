@@ -1,234 +1,184 @@
 ## Steps
 
-Step 1: Determine the boundary equality space from projective incidence
-
-Let $V=\mathbb{F}_2^5$. Over $\mathbb{F}_2$, the points of $\operatorname{PG}(4,2)$ are the $31$ nonzero vectors of $V$, while hyperplanes are indexed by the $31$ nonzero linear functionals. The functionals vanishing on a fixed point form a $4$-dimensional space, so each point lies in $2^4-1=15$ hyperplanes. Two distinct projective points are linearly independent over $\mathbb{F}_2$, so the functionals vanishing on both form a $3$-dimensional space; hence two distinct points lie in $2^3-1=7$ common hyperplanes. Thus the point-hyperplane incidence matrix $B$ satisfies
-$$
-BB^T=8I+7J.
-$$
-Two distinct points lie in a common hyperplane, and two distinct hyperplanes meet in a projective subspace containing a point, so same-class distances are $2$. If $P\not\subset H$, choose $R\in H$ and a hyperplane $K$ containing $P$ and $R$; then $P-K-R-H$ has length $3$, while bipartiteness excludes length $2$. Thus a point-hyperplane distance is $1$ when incident and $3$ otherwise. Therefore, with $a=2^p$ and $b=3^p$,
-$$
-D_p=
-\begin{pmatrix}
-a(J-I)&bJ+(1-b)B\\
-bJ+(1-b)B^T&a(J-I)
-\end{pmatrix}.
-$$
-Put $U=\mathbf{1}^{\perp}\subset\mathbb{R}^{31}$ and $s=\sqrt{8}=2^{3/2}$. Since $BB^T=s^2I$ on $U$,
-$$
-Q=s^{-1}B^T:U\to U
-$$
-is orthogonal. For $u\in U$,
-$$
-D_p(u,\pm Qu)=\left((-a\pm(1-b)s)u,\ \pm(-a\pm(1-b)s)Qu\right),
-$$
-so the eigenvalues on $U\oplus U$ are
-$$
-\lambda_-(p)=-2^p-(3^p-1)s<0,
-\qquad
-\lambda_+(p)=-2^p+(3^p-1)s,
-$$
-each with multiplicity $30$. The only remaining total-sum-zero direction is $z=(\mathbf{1},-\mathbf{1})$, with eigenvalue
-$$
-h(p)=30\cdot2^p-16\cdot3^p-15.
-$$
-Write $x=2^p$ and $r=\log_2 3$. Since $3^{12}>2^{19}$, we have $r>19/12$, hence
-$$
-h(p)<q(x):=-16x^{19/12}+30x-15.
-$$
-The concave function $q$ has its maximum at $x_0=(45/38)^{12/7}$. For $f(t)=(1+t)^{12/7}$, $f''(t)\leq60/49$, so
-$$
-x_0\leq1+\frac{12}{7}\frac{7}{38}+\frac{30}{49}\left(\frac{7}{38}\right)^2
-=\frac{965}{722}<\frac{19}{14}.
-$$
-Since $x_0^{7/12}=45/38$,
-$$
-q(x_0)=\frac{210}{19}x_0-15<0.
-$$
-Thus $h(p)<0$ for all $p>0$. Moreover
-$$
-g(p)=s(3^p-1)-2^p
-$$
-satisfies
-$$
-g'(p)=2^p\left(s\left(\frac32\right)^p\log3-\log2\right)>0,
-$$
-so it increases from $g(0)=-1$ to $+\infty$. Hence
-$$
-\wp=\min\{p>0:2^{3/2}(3^p-1)=2^p\},
-$$
-and at $p=\wp$ the only zero eigenspace is
-$$
-E=\{(u,-Qu):u\in U\}.
-$$
-
-Step 2: Convert two-dimensional equality subspaces into Walsh-support pairs
-
-Extend $u\in U$ to all of $V$ by $u(0)=0$, and define its Walsh transform by
-$$
-\widehat u(\xi)=\sum_{x\in V}u(x)(-1)^{\xi(x)}.
-$$
-Because $\sum_xu(x)=0$, for every nonzero $\xi\in V^*$,
-$$
-(B^Tu)_\xi
-=\sum_{\xi(x)=0}u(x)
-=\frac12\widehat u(\xi),
-$$
-while $\widehat u(0)=0$. Therefore the linear isomorphism $u\mapsto(u,-Qu)$ identifies $E$ with
-$$
-\mathcal U=\{u\in\mathbb{R}^{V}:u(0)=0,\ \widehat u(0)=0\}.
-$$
-If $L\leq E$ is two-dimensional, let $\mathcal L\leq\mathcal U$ be the corresponding two-dimensional function space and set
-$$
-S=\{x\in V:\text{some }u\in\mathcal L\text{ has }u(x)\neq0\},
-$$
-$$
-T=\{\xi\in V^*:\text{some }u\in\mathcal L\text{ has }\widehat u(\xi)\neq0\}.
-$$
-Then $0\notin S,T$ and the quantity in the problem is exactly
-$$
-\mathsf U_2(L)=|S|\,|T|.
-$$
-
-Step 3: Prove the rank-two uncertainty lower bound
-
-Use the normalized Walsh transform
-$$
-(\mathcal Fu)(\xi)=\frac1{\sqrt{32}}\widehat u(\xi).
-$$
-For $x,y\in V$,
-$$
-\sum_{\xi\in V^*}(-1)^{\xi(x)+\xi(y)}
-$$
-equals $32$ when $x=y$ and $0$ otherwise, so $\mathcal F$ is orthogonal. Let $P_S$ and $P_T$ be the coordinate projections onto $S$ and $T$, and define the positive contraction
-$$
-A=P_S\mathcal F^{-1}P_T\mathcal F P_S.
-$$
-Every $u\in\mathcal L$ is supported on $S$ and has Fourier support in $T$, so $Au=u$. Thus $A$ has eigenvalue $1$ with multiplicity at least $2$. Since every Walsh-matrix entry has squared modulus $1/32$,
-$$
-\operatorname{tr}A
-=\operatorname{tr}(P_T\mathcal F P_S\mathcal F^{-1}P_T)
-=\frac{|S||T|}{32}.
-$$
-Therefore
-$$
-\frac{|S||T|}{32}\geq2,
-$$
-so every two-dimensional boundary subspace satisfies
-$$
-\mathsf U_2(L)\geq64.
-$$
-
-Step 4: Classify every two-plane attaining equality
-
-Assume $|S||T|=64$. Then $\operatorname{tr}A=2$, while $A$ already has two eigenvalues equal to $1$. Since $A$ is positive semidefinite, all its remaining eigenvalues are $0$, so $\operatorname{rank}A=2$.
-
-Let $M$ be the $T\times S$ submatrix of the normalized Walsh matrix. Since $A=M^*M$, we have $\operatorname{rank}M=2$. Choose $x_0\in S$ and multiply each row indexed by $\xi$ by $(-1)^{\xi(x_0)}$. The normalized $\xi$-row is then
-$$
-r_\xi=\left((-1)^{\xi(x-x_0)}\right)_{x\in S},
-$$
-and every such row has first entry $1$. Choose two independent normalized rows $r_1,r_2$. Any other normalized sign row has the form $ar_1+br_2$. Its first entry gives $a+b=1$. Since $r_1,r_2$ are independent, at some coordinate they have opposite signs; at that coordinate the sign condition gives $a-b=1$ or $a-b=-1$. Hence $(a,b)=(1,0)$ or $(0,1)$. Thus there are exactly two normalized row types.
+Step 1: Determine the supremal negative type and the boundary equality space
 
 Let
 $$
-W=\operatorname{span}(S-S),\qquad k=\dim W.
+X=\{-1,1\}^{4}
 $$
-Because every difference $x-x_0$ with $x\in S$ lies in $W$, the normalized row $r_\xi$ depends only on the restriction $\xi|_W$. Conversely, if $r_\xi=r_\eta$, then $(\xi-\eta)(x-x_0)=0$ for every $x\in S$; these differences span $W$, so $\xi|_W=\eta|_W$. Hence the two normalized row types are exactly two distinct restriction classes on $W$. If their restrictions are represented by $\xi_1|_W$ and $\xi_2|_W$, then
+with Hamming distance
 $$
-T\subset (\xi_1+W^\perp)\sqcup(\xi_2+W^\perp),
+d(x,y)=|\{i:x_i\neq y_i\}|.
 $$
-and each restriction class has exactly $|W^\perp|=2^{5-k}$ representatives. Also $S\subset x_0+W$. Therefore
+For $x,y\in X$,
 $$
-|S|\leq2^k,
+d(x,y)=\frac12\sum_{i=1}^{4}(1-x_iy_i).
+$$
+Hence, for real coefficients $(c_x)_{x\in X}$ with $\sum_xc_x=0$,
+$$
+\sum_{x,y}c_xc_y d(x,y)
+=-\frac12\sum_{i=1}^{4}\left(\sum_xc_xx_i\right)^2\leq0.
+$$
+Thus $(X,d)$ has $1$-negative type.
+
+For any $p>1$, choose the four vertices
+$$
+(1,1,1,1),\quad(-1,1,1,1),\quad(-1,-1,1,1),\quad(1,-1,1,1)
+$$
+of a square face, in cyclic order, with coefficients $1,-1,1,-1$. Adjacent pairs have distance $1$ and opposite pairs have distance $2$, so their quadratic form is
+$$
+2\left(-4+2\cdot2^p\right)=4(2^p-2)>0.
+$$
+Therefore no $p>1$ has negative type, and
+$$
+\wp=1.
+$$
+
+At $p=1$, equality in the displayed sum of squares holds exactly when
+$$
+\sum_xc_x=0,
 \qquad
-|T|\leq2\cdot2^{5-k}=2^{6-k}.
+\sum_xc_xx_i=0\quad(i=1,2,3,4).
 $$
-But the product of these upper bounds is exactly $2^k2^{6-k}=64$, while by assumption $|S||T|=64$. Thus neither inequality can be strict: if either were strict, their product would be $<64$. Hence
+The five functions $1,x_1,x_2,x_3,x_4$ are linearly independent on $X$; for example, they are pairwise orthogonal under summation over the cube. Consequently
 $$
-|S|=2^k,
-\qquad
-|T|=2^{6-k}.
-$$
-Since $S\subset x_0+W$ and both sets have cardinality $2^k$, we get the full affine coset
-$$
-S=x_0+W.
-$$
-Likewise, $T$ is contained in the disjoint union of two restriction classes, each of size $2^{5-k}$, and $|T|=2\cdot2^{5-k}$. Therefore both restriction classes occur with all of their representatives:
-$$
-T=(\xi_1+W^\perp)\sqcup(\xi_2+W^\perp).
+\dim E=16-5=11.
 $$
 
-For $i=1,2$, define
-$$
-f_i(x)=(-1)^{\xi_i(x)}\mathbf{1}_{x_0+W}(x).
-$$
-Writing $x=x_0+w$ gives
-$$
-\widehat f_i(\eta)
-=(-1)^{(\eta+\xi_i)(x_0)}\sum_{w\in W}(-1)^{(\eta+\xi_i)(w)},
-$$
-which is nonzero exactly when $\eta+\xi_i\in W^\perp$. Hence
-$$
-\operatorname{supp}\widehat f_i=\xi_i+W^\perp.
-$$
-The span of $f_1,f_2$ lies in the same support intersection as $\mathcal L$. That intersection is contained in the rank-$2$ range of $A$, so it is exactly two-dimensional. Therefore
-$$
-\mathcal L=\operatorname{span}\{f_1,f_2\}.
-$$
-Conversely every space of this form attains $64$.
+Step 2: Reduce two-dimensional support minimization to affine dimension
 
-This description is intrinsic. Replacing an extension $\xi_i$ by $\xi_i+\omega$ with $\omega\in W^\perp$ multiplies $f_i$ on $x_0+W$ by the constant sign $(-1)^{\omega(x_0)}$, so the one-dimensional line $\mathbb R f_i$ depends only on the restriction $\xi_i|_W$. Moreover, the support set $S$ recovers the affine coset and then
+For $S\subseteq X$, let $\Phi_S$ be the $5\times |S|$ matrix whose column indexed by $x\in S$ is
 $$
-W=\operatorname{span}(S-S),
+\phi(x)=(1,x_1,x_2,x_3,x_4)^T.
 $$
-while the Fourier support $T$ recovers the two $W^\perp$-cosets, hence the unordered pair $\{\xi_1|_W,\xi_2|_W\}$ in $W^*$. Thus two different choices of affine coset or unordered restriction pair cannot produce the same minimizing two-plane.
-
-The conditions $0\notin S$ and $0\notin T$ are exactly
+The coefficient vectors in $E$ supported on $S$ form $\ker\Phi_S$. If $r=\dim\operatorname{aff}(S)$, then
 $$
-x_0\notin W,
-\qquad
-\xi_1|_W\neq0,
-\qquad
-\xi_2|_W\neq0.
+\operatorname{rank}\Phi_S=r+1,
 $$
-The two restrictions must also be distinct. Therefore equality occurs precisely for $2\leq k\leq4$, a nonzero affine coset $x_0+W$, and an unordered pair of distinct nontrivial characters of $W$. In particular,
+because affine relations among points of $S$ are exactly linear relations among the augmented columns $\phi(x)$. Hence
 $$
-U_2^*=64.
+\dim\ker\Phi_S=|S|-r-1.
 $$
 
-Step 5: Count the minimizing two-dimensional boundary subspaces
+We also need a cube-intersection bound. If $A\subset\mathbb R^4$ is an affine subspace of dimension $r$, then
+$$
+|A\cap X|\leq2^r.
+$$
+Indeed, if $D$ is the direction space of $A$, the four coordinate functionals span $D^*$. Choose $r$ coordinate functionals whose restrictions form a basis of $D^*$. Projection to those $r$ coordinates is injective on $A$, while points of $X$ have only $2^r$ possible sign patterns in those coordinates.
 
-For fixed $k$, counting ordered bases and dividing by the number of ordered bases of $\mathbb{F}_2^k$ gives
+Now let $L\leq E$ be two-dimensional and put $S=S(L)$. Since $L\subseteq\ker\Phi_S$,
 $$
-\binom{5}{k}_2=\prod_{i=0}^{k-1}\frac{2^5-2^i}{2^k-2^i}
+|S|-r-1\geq2,
 $$
-for the number of $k$-dimensional subspaces $W\leq V$. For each such $W$, there are $2^{5-k}-1$ affine cosets not containing $0$, and there are
+so $|S|\geq r+3$. The intersection bound gives $|S|\leq2^r$. For $r\leq2$, these inequalities are incompatible, because
 $$
-\binom{2^k-1}{2}
+r+3>2^r.
 $$
-unordered pairs of distinct nontrivial characters of $W$. By the uniqueness just proved, $S$ determines the affine coset and $W$, while $T$ determines the unordered pair of nontrivial restrictions; changing the extensions of those restrictions does not change the two-plane. Hence every minimizing two-plane is counted exactly once. Therefore
+Thus $r\geq3$ and
 $$
-N_2^*=\sum_{k=2}^4\binom{5}{k}_2(2^{5-k}-1)\binom{2^k-1}{2}.
+|S|\geq6.
 $$
-The product formula gives
-$$
-\binom{5}{2}_2=\binom{5}{3}_2=155,
-\qquad
-\binom{5}{4}_2=31,
-$$
-so
-$$
-N_2^*=155\cdot7\cdot3+155\cdot3\cdot21+31\cdot105=16275.
-$$
-Combining this with the value of $\wp$ gives the requested triple.
 
-Final Answer: $\boxed{(\min\{p>0:2^{3/2}(3^p-1)=2^p\},64,16275)}$
+Take any six vertices in a facet, for example six vertices with $x_4=1$. They cannot lie in an affine plane because an affine plane meets $X$ in at most $4$ vertices. Thus their affine dimension is $3$, so $\ker\Phi_S$ has dimension $6-4=2$.
+
+Moreover, for any one of these six vertices, the remaining five still cannot lie in an affine plane, so the remaining five augmented columns still have rank $4$. Therefore the deleted coordinate is nonzero in some vector of $\ker\Phi_S$. Hence the union of supports of the two-dimensional kernel is all six vertices. It follows that
+$$
+s_2^*=6.
+$$
+For every minimizing $L$, its support $S$ has six vertices, affine dimension $3$, and
+$$
+L=\ker\Phi_S.
+$$
+
+Step 3: Classify the affine hyperplane sections containing at least six cube vertices
+
+Let $H$ be the affine hull of a minimizing support. Since it has dimension $3$, write
+$$
+H=\left\{x\in\mathbb R^4:\sum_{i=1}^{4}a_ix_i=t\right\},
+$$
+with not all $a_i$ zero. Let $r$ be the number of nonzero coefficients. By flipping coordinate signs, assume the nonzero $a_i$ are positive.
+
+For the active coordinates, a sign vector $\varepsilon\in\{-1,1\}^r$ solves the equation exactly when the set
+$$
+A=\{i:\varepsilon_i=1\}
+$$
+has one prescribed weighted sum:
+$$
+\sum_{i\in A}a_i=\frac12\left(t+\sum_{i=1}^{r}a_i\right).
+$$
+Because all active weights are positive, sets with the same weighted sum form an antichain.
+
+For an antichain $\mathcal A\subseteq2^{[r]}$, the Lubell inequality
+$$
+\sum_{A\in\mathcal A}\frac1{\binom{r}{|A|}}\leq1
+$$
+follows by counting maximal chains: a set $A$ lies in $|A|!(r-|A|)!$ of the $r!$ maximal chains, and an antichain meets each chain at most once. Thus the maximum antichain sizes for $r=1,2,3,4$ are
+$$
+1,2,3,6.
+$$
+After restoring the $4-r$ inactive coordinates, a hyperplane containing at least six cube vertices can only attain the corresponding maximum.
+
+For $r=2$, equality forces the two active singleton subsets to have the same weight, so the two coefficient magnitudes are equal and $t=0$. For $r=3$, an antichain of size $3$ cannot mix singleton and two-element subsets: a singleton excludes the two pairs containing it, leaving at most its complementary pair, so a mixed antichain has size at most $2$. Hence an antichain of size $3$ is either all singletons or all two-element subsets. Equal weighted sums then force all three coefficient magnitudes equal, with $|t|$ equal to that common magnitude. For $r=4$, equality in the Lubell bound with six sets forces all six two-element subsets, and equality of all pair sums forces all four coefficient magnitudes equal and $t=0$.
+
+Therefore the hyperplanes meeting $X$ in at least six vertices are exactly the following four families:
+
+- $x_i=\pm1$, giving $8$ vertices;
+- $x_i=\pm x_j$, giving $8$ vertices;
+- $\sigma_ix_i+\sigma_jx_j+\sigma_kx_k=\tau$, with $\sigma_i,\sigma_j,\sigma_k,\tau\in\{-1,1\}$, giving $6$ vertices;
+- $\sigma_1x_1+\sigma_2x_2+\sigma_3x_3+\sigma_4x_4=0$, with each $\sigma_i\in\{-1,1\}$, giving $6$ vertices.
+
+Equations differing by multiplication by $-1$ define the same hyperplane.
+
+Step 4: Count the minimizing equality planes by affine-hull size
+
+There are
+$$
+4\cdot2=8
+$$
+hyperplanes of the first $8$-vertex family and
+$$
+\binom42\cdot2=12
+$$
+of the second, hence $20$ hyperplanes meeting the cube in $8$ vertices.
+
+For the first $6$-vertex family, choose the three active coordinates in $\binom43=4$ ways. The three coefficient signs and the right-hand sign give $2^4$ signed equations, and division by the common sign identifies pairs, so there are
+$$
+4\cdot\frac{2^4}{2}=32
+$$
+such hyperplanes. For the second $6$-vertex family there are
+$$
+\frac{2^4}{2}=8
+$$
+hyperplanes. Thus exactly
+$$
+40
+$$
+affine hyperplanes meet $X$ in $6$ vertices.
+
+Every minimizing support $S$ consists of six vertices and has a unique affine hull $H$. If $|H\cap X|=6$, then necessarily $S=H\cap X$, giving
+$$
+N_6=40.
+$$
+If $|H\cap X|=8$, any six of those eight vertices span $H$, because an affine plane contains at most four cube vertices. Hence each of the $20$ eight-vertex hyperplanes contributes
+$$
+\binom86=28
+$$
+distinct minimizing supports. Their affine hulls are unique, so there is no overcounting:
+$$
+N_8=20\binom86=560.
+$$
+By Step 2 each minimizing support determines exactly one two-dimensional equality subspace. Combining the five requested quantities gives
+$$
+(\wp,\dim E,s_2^*,N_6,N_8)=(1,11,6,40,560).
+$$
+
+Final Answer: $\boxed{(1,11,6,40,560)}$
 
 ---
 
 ## Answer
 
-$(\min\{p>0:2^{3/2}(3^p-1)=2^p\},64,16275)$
+$(1,11,6,40,560)$
 
 ---
 
@@ -242,8 +192,8 @@ $(\min\{p>0:2^{3/2}(3^p-1)=2^p\},64,16275)$
 
 ## Solution Concepts
 
-- conditional negative type
-- projective incidence designs
-- Walsh Fourier transform
-- rank uncertainty principle
-- Gaussian binomial counting
+- negative type metrics
+- Hamming cube geometry
+- affine dependence
+- antichain counting
+- hyperplane sections
