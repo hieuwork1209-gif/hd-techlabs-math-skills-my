@@ -30,23 +30,23 @@ $$
 \operatorname{supp}(L)=\{A\in X:\text{some }c\in L\text{ has }c_A\neq0\}.
 $$
 Define
-$
+$$
 d_4=\min_{\substack{L\leq E\\ \dim L=4}}|\operatorname{supp}(L)|,
-$
+$$
 and let $\mathcal{M}$ be the set of four-dimensional subspaces attaining $d_4$. Put
-$
+$$
 N_4=|\mathcal{M}|.
-$
+$$
 Form a graph $\Gamma$ on $\mathcal{M}$ by joining distinct $L,L'$ exactly when
-$
+$$
 L\cap L'\neq\{0\}.
-$
+$$
 Prove that $\Gamma$ is strongly regular, and let $k$ be its degree, $\lambda$ the number of common neighbors of adjacent vertices, and $\mu$ the number of common neighbors of nonadjacent vertices.
 
 Determine
-$
+$$
 (\wp,\dim E,d_4,N_4,k,\lambda,\mu).
-$
+$$
 
 ---
 
