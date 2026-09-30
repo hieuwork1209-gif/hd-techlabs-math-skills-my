@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Reduce robust gradient descent to a condition-number problem
+Step 1: Reduce the common-preconditioner problem to a condition-number problem
 Let
 $$
 H_0=
@@ -100,10 +100,16 @@ $$
 \frac{L\|x\|^2}{L^{-1}\|x\|^2}
 =L^2.
 $$
-Taking the maximum generalized Rayleigh quotient gives
-$$
+To identify the maximum generalized Rayleigh quotient, set $y=B_0^{1/2}x$. Then
+$
+\frac{x^TB_1x}{x^TB_0x}
+=
+\frac{y^T(B_0^{-1/2}B_1B_0^{-1/2})y}{y^Ty},
+$
+whose maximum is the largest eigenvalue $\mu$. Therefore
+$
 \mu\leq L^2=K(P).
-$$
+$
 Therefore every positive definite preconditioner satisfies $K(P)\geq\mu$.
 
 Step 3: Construct the unrestricted preconditioner that attains the invariant bound
@@ -133,11 +139,19 @@ P_*=H_0^{-1/2}QH_0^{-1/2}.
 $$
 Since $\det H_0=\det Q=1$, one has $\det P_*=1$.
 
-The eigenvalues of $P_*H_0$ are those of $Q$, namely
-$$
-\mu^{-1/2},\quad \mu^{1/2}.
-$$
-The eigenvalues of $P_*H_1$ are those of $QC$; since $Q$ and $C$ are diagonal in the same $U$-basis, they are again
+The similarities
+$
+H_0^{1/2}(P_*H_0)H_0^{-1/2}=Q
+$
+and
+$
+H_0^{1/2}(P_*H_1)H_0^{-1/2}=QC
+$
+show that $P_*H_0$ has eigenvalues
+$
+\mu^{-1/2},\quad \mu^{1/2},
+$
+while $P_*H_1$ has the eigenvalues of $QC$. Since $Q$ and $C$ are diagonal in the same $U$-basis, these are again
 $$
 \mu^{-1/2},\quad \mu^{1/2}.
 $$
@@ -153,7 +167,7 @@ $$
 $$
 Using $\mu=(3+\sqrt5)/2$,
 $$
-\rho_{\mathrm{full}}=\frac1{\sqrt5}.
+\rho_{\mathrm{full}}=\frac{1}{\sqrt{5}}.
 $$
 
 Step 4: Solve the diagonal-preconditioner minimax problem
@@ -227,16 +241,16 @@ $$
 =
 \frac{\mu-\mu^{-1}}{\mu+\mu^{-1}}
 =
-\frac{\sqrt5}{3}.
+\frac{\sqrt{5}}{3}.
 $$
 Combining this with the unrestricted value from Step 3 gives the required pair.
-Final Answer: $\boxed{\left(\frac1{\sqrt5},\frac{\sqrt5}{3}\right)}$
+Final Answer: $\boxed{\left(\frac{1}{\sqrt{5}},\frac{\sqrt{5}}{3}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac1{\sqrt5},\frac{\sqrt5}{3}\right)$
+$\left(\frac{1}{\sqrt{5}},\frac{\sqrt{5}}{3}\right)$
 
 ---
 
@@ -250,7 +264,7 @@ $\left(\frac1{\sqrt5},\frac{\sqrt5}{3}\right)$
 
 ## Solution Concepts
 
-- robust preconditioning
+- common preconditioning
 - generalized eigenvalues
 - condition-number optimization
 - convexity of extremal eigenvalues
