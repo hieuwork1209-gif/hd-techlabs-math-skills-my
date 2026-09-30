@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-functional-analysis/problem.md",
+  "source_commit_sha": "64329012143e5cef26bc018345bcaddc485d384e",
+  "problem_blob_sha": "eb082ec6108a316b4b45b24b9dfe8d3f7d98ccc6",
+  "statement_sha256": "ad5b2555ceccdf82ec0757e46dc2e27a9d79ec2227eed25f9dd787ce8c742d90",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T14:00:57+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(H=H_0^1(0,1)\\) with inner product\n\\[\n\\langle u,v\\rangle=\\int_0^1 u'(x)v'(x)\\,dx .\n\\]\nThe point evaluation \\(u\\mapsto u(1/2)\\) is represented by the Green function\n\\[\nG(x)=\n\\begin{cases}\nx/2,&0\\le x\\le 1/2,\\\\\n(1-x)/2,&1/2\\le x\\le 1,\n\\end{cases}\n\\]\nso that \\(u(1/2)=\\langle u,G\\rangle\\), and\n\\[\n\\|G\\|^2=G(1/2)=\\frac14.\n\\]\n\nThe two moment constraints are also inner products. If\n\\[\n-\\phi_1''=x,\\qquad -\\phi_3''=x^3,\\qquad \\phi_1(0)=\\phi_1(1)=\\phi_3(0)=\\phi_3(1)=0,\n\\]\nthen\n\\[\n\\phi_1(x)=\\frac{x-x^3}{6},\\qquad \\phi_3(x)=\\frac{x-x^5}{20},\n\\]\nand\n\\[\n\\int_0^1 xu=\\langle u,\\phi_1\\rangle,\\qquad\n\\int_0^1 x^3u=\\langle u,\\phi_3\\rangle.\n\\]\nThus \\(V=\\operatorname{span}(\\phi_1,\\phi_3)^\\perp\\).\n\nThe sharp constant is the squared norm of the projection of \\(G\\) onto \\(V\\):\n\\[\nC=\\|G\\|^2-b^T A^{-1}b,\n\\]\nwhere\n\\[\nA=\n\\begin{pmatrix}\n\\langle \\phi_1,\\phi_1\\rangle & \\langle \\phi_1,\\phi_3\\rangle\\\\\n\\langle \\phi_3,\\phi_1\\rangle & \\langle \\phi_3,\\phi_3\\rangle\n\\end{pmatrix}\n=\n\\begin{pmatrix}\n\\frac1{45} & \\frac1{105}\\\\\n\\frac1{105} & \\frac1{225}\n\\end{pmatrix},\n\\]\nand\n\\[\nb=\n\\begin{pmatrix}\n\\langle G,\\phi_1\\rangle\\\\\n\\langle G,\\phi_3\\rangle\n\\end{pmatrix}\n=\n\\begin{pmatrix}\n\\int_0^1 xG(x)\\,dx\\\\\n\\int_0^1 x^3G(x)\\,dx\n\\end{pmatrix}\n=\n\\begin{pmatrix}\n\\frac1{16}\\\\\n\\frac3{128}\n\\end{pmatrix}.\n\\]\n\nNow\n\\[\n\\det A=\\frac4{496125},\n\\]\nand\n\\[\nb^TA^{-1}b\n=\n\\frac{13545}{65536}.\n\\]\nTherefore\n\\[\nC=\\frac14-\\frac{13545}{65536}\n=\\frac{16384-13545}{65536}\n=\\frac{2839}{65536}.\n\\]\n\nSharpness holds because equality is attained by taking \\(u\\) proportional to the projection of \\(G\\) onto \\(V\\).\n\n\\[\n\\boxed{\\frac{2839}{65536}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T14:02:15+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/eb082ec6108a.json"
+}
