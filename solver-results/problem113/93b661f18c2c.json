@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-generating-functions/problem.md",
+  "source_commit_sha": "d87b8c1bfd5b4f04393089fa0424bc2252980ef2",
+  "problem_blob_sha": "93b661f18c2c70dba71c3129f2cf102e421eb8a3",
+  "statement_sha256": "da9e5e6b85a1a21abb3dcc3fd82a737f268f7d858774b60324fe063ede340583",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T09:10:57+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(s=1/q\\). Since \\(q^3-3q^2-1=0\\), we have\n\n\\[\n1-3s-s^3=0.\n\\]\n\nFirst extract the \\(z\\)-coefficient:\n\n\\[\nF(x,y,z)=\\frac{1}{1-x-y-z(1+xy)},\n\\]\n\nso\n\n\\[\n[z^n]F(x,y,z)=\\frac{(1+xy)^n}{(1-x-y)^{n+1}}.\n\\]\n\nThus\n\n\\[\na_n=[x^ny^n]\\frac{(1+xy)^n}{(1-x-y)^{n+1}}.\n\\]\n\nUse Cauchy’s formula on \\(|x|=|y|=s\\), writing \\(x=se^{i\\theta}\\), \\(y=se^{i\\phi}\\). Then\n\n\\[\na_n=\\frac1{(2\\pi)^2}\\int_{-\\pi}^{\\pi}\\int_{-\\pi}^{\\pi}\n\\left(\n\\frac{1+s^2e^{i(\\theta+\\phi)}}{s^2e^{i(\\theta+\\phi)}(1-se^{i\\theta}-se^{i\\phi})}\n\\right)^n\n\\frac{d\\theta\\,d\\phi}{1-se^{i\\theta}-se^{i\\phi}}.\n\\]\n\nAt \\((0,0)\\), the exponential base equals\n\n\\[\n\\frac{1+s^2}{s^2(1-2s)}.\n\\]\n\nUsing \\(1-3s-s^3=0\\), we get \\(1-2s=s(1+s^2)\\), hence this base is\n\n\\[\n\\frac{1+s^2}{s^3(1+s^2)}=s^{-3}=q^3.\n\\]\n\nThe phase has a unique maximum at \\((0,0)\\), and its quadratic expansion is\n\n\\[\n\\log\\left(\n\\frac{1+s^2e^{i(\\theta+\\phi)}}{s^2e^{i(\\theta+\\phi)}(1-se^{i\\theta}-se^{i\\phi})}\n\\right)\n=\n3\\log q-\\frac{1}{2}\n\\begin{pmatrix}\\theta&\\phi\\end{pmatrix}\nA\n\\begin{pmatrix}\\theta\\\\ \\phi\\end{pmatrix}\n+O(|\\theta,\\phi|^3),\n\\]\n\nwhere\n\n\\[\nA=\\frac{1}{1+s^2}\n\\begin{pmatrix}\n2&1\\\\\n1&2\n\\end{pmatrix}.\n\\]\n\nTherefore\n\n\\[\n\\det A=\\frac{3}{(1+s^2)^2},\n\\qquad\n\\sqrt{\\det A}=\\frac{\\sqrt3}{1+s^2}.\n\\]\n\nAlso the prefactor at the saddle is\n\n\\[\n\\frac1{1-2s}=\\frac1{s(1+s^2)}.\n\\]\n\nThe two-dimensional Gaussian asymptotic gives\n\n\\[\na_n\\sim q^{3n}\\cdot\n\\frac{1}{2\\pi n}\n\\cdot\n\\frac{1}{1-2s}\n\\cdot\n\\frac{1}{\\sqrt{\\det A}}.\n\\]\n\nSubstituting the values above,\n\n\\[\na_n\\sim q^{3n}\\cdot\n\\frac1{2\\pi n}\n\\cdot\n\\frac1{s(1+s^2)}\n\\cdot\n\\frac{1+s^2}{\\sqrt3}\n=\nq^{3n}\\cdot \\frac{1}{n}\\cdot \\frac{1}{2\\pi\\sqrt3\\,s}.\n\\]\n\nSince \\(s=1/q\\),\n\n\\[\n\\lim_{n\\to\\infty}\\frac{na_n}{q^{3n}}\n=\n\\frac{q}{2\\pi\\sqrt3}.\n\\]\n\n\\[\n\\boxed{\\frac{q}{2\\pi\\sqrt3}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T09:12:19+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/93b661f18c2c.json"
+}
