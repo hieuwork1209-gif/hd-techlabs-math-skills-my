@@ -1,107 +1,177 @@
 ## Steps
 
-Step 1: Characterize the shortest complete reductions
-For a term $t$, let $|t|$ be its number of leaves and let $\rho(t)$ be the number of internal nodes on its right spine, obtained by starting at the root and repeatedly taking the right child. Set
+Step 1: Derive the principal types of the right-associated terms
+For fresh type variables $a,b,c$, define
 $$
-Q(t)=|t|-1-\rho(t).
+A_0=a\to b,
+\qquad
+A_1=a\to b\to c,
+\qquad
+A_{j+1}=A_j\to A_{j-1}\quad(j\geq1).
 $$
-In a rewrite
+We claim that the right-associated term $R_n$ has principal type
 $$
-b(b(x,y),w)\longrightarrow b(x,b(y,w)),
+A_n\to A_{n-1}\to a\to c.
 $$
-the right spine is unchanged when the contracted redex is off the global right spine. If the redex root lies on the global right spine, one new internal node is inserted into that spine, so $\rho$ increases by exactly $1$. Thus every rewrite decreases $Q$ by either $0$ or $1$.
+For $n=1$, this is
+$$
+(a\to b\to c)\to(a\to b)\to a\to c,
+$$
+which is exactly the type scheme of $S$.
 
-A term is irreducible exactly when every internal node has left child $z$, so the unique normal form on $N$ leaves is the right comb and has $\rho=N-1$. Hence every complete reduction from $t$ has at least $Q(t)$ steps. If $t$ is not a right comb, some node on its right spine has an internal left child: otherwise every left subtree hanging from the right spine would be the single leaf $z$, leaving no internal node off that spine. Contracting such a redex decreases $Q$ by $1$. Repeating this choice reaches the normal form in exactly $Q(t)$ steps.
+Assume the claim for $R_n$. Take a fresh instance of the type of $S$,
+$$
+(u\to v\to w)\to(u\to v)\to u\to w.
+$$
+To type $S R_n$, its first argument type $u\to v\to w$ must unify with the principal type
+$$
+A_n\to A_{n-1}\to a\to c
+$$
+of $R_n$. The most general unifier is
+$$
+u=A_n,
+\qquad
+v=A_{n-1},
+\qquad
+w=a\to c.
+$$
+The resulting type is therefore
+$$
+(A_n\to A_{n-1})\to A_n\to a\to c
+=
+A_{n+1}\to A_n\to a\to c.
+$$
+No additional equation is imposed, so this is again principal. Hence every $R_n$ is typable.
 
-Therefore a complete reduction is shortest if and only if every contracted redex lies on the current right spine. For $T_h$, there are $2^h$ leaves and the initial right spine has $h$ internal nodes, so every shortest reduction has
+Step 2: Prove that a nontrivial right-associated term cannot be used as a function
+Let $B_0=p\to q$, $B_1=p\to q\to r$, and
 $$
-m_h=2^h-h-1
+B_{j+1}=B_j\to B_{j-1}.
 $$
-steps.
+These are the corresponding type expressions for an independent copy of a right-associated term.
 
-Step 2: Encode shortest reductions by a rooted-forest poset
-Temporarily label the internal nodes of the initial binary tree. In a rotation
+First note that for every $j\geq1$, $B_j$ cannot unify with $p\to r$. For $j=1$, unifying
 $$
-b(b(x,y),w)\longrightarrow b(x,b(y,w)),
+p\to q\to r
 $$
-preserve node identities by letting the label of the inner left node become the new root of the rotated subtree and the label of the former root become its right child. If the contracted redex is on the current right spine, this operation promotes exactly one internal node from a left subtree onto the right spine, and no internal node already on the right spine leaves it.
+with $p\to r$ would force $r=q\to r$, which fails the occurs check. For $j\geq2$, the type
+$$
+B_j=B_{j-1}\to B_{j-2}
+$$
+would have to unify with $p\to r$, so $p$ would have to unify with $B_{j-1}$. Since $p$ occurs inside every $B_{j-1}$, this again fails the occurs check.
 
-Remove the internal nodes on the initial right spine. The remaining internal nodes form a rooted forest $F(t)$, whose components are the internal-node trees of the left subtrees hanging from that spine. Order the vertices of each component by requiring every parent to precede its children.
+We now show that $R_kR_m$ is untypable whenever $k\geq2$ and $m\geq1$. Use independent variables $a,b,c$ for the principal type of $R_k$ and $p,q,r$ for that of $R_m$.
 
-At the start, precisely the roots of the components are eligible to be promoted by a shortest step. When a vertex $v$ is promoted, each internal child of $v$ becomes the root of a left subtree attached to the enlarged right spine, while descendants whose parent has not yet been promoted remain unavailable. By induction on the number of promotions, a vertex is eligible exactly when all of its ancestors in $F(t)$ have already been promoted.
+Suppose first that $k\geq3$. The domain of the principal type of $R_k$ is
+$$
+A_k=A_{k-1}\to A_{k-2},
+$$
+while the full principal type of $R_m$ is
+$$
+B_m\to B_{m-1}\to p\to r.
+$$
+For the application to type, these two types must unify, giving
+$$
+A_{k-1}=B_m,
+\qquad
+A_{k-2}=B_{m-1}\to p\to r.
+$$
+Since $A_{k-1}=A_{k-2}\to A_{k-3}$, the first equation becomes
+$$
+B_m=(B_{m-1}\to p\to r)\to A_{k-3}.
+$$
+If $m\geq2$, then $B_m=B_{m-1}\to B_{m-2}$, so the first domains would require
+$$
+B_{m-1}=B_{m-1}\to p\to r,
+$$
+which no finite simple type can satisfy. If $m=1$, comparing first domains instead forces
+$$
+p=(p\to q)\to p\to r,
+$$
+which fails the occurs check. Thus $R_kR_m$ is untypable for $k\geq3$.
 
-It follows that recording the promoted labels gives a bijection between shortest complete reductions of $t$ and linear extensions of the parent-before-child poset of $F(t)$. For the balanced term $T_h$, the left subtrees hanging from the initial right spine are
+It remains to handle $k=2$. Here
 $$
-T_{h-1},T_{h-2},\ldots,T_1.
+A_2=A_1\to A_0.
 $$
-Thus $F(T_h)$ is the disjoint union of the internal-node trees of these terms.
+Unifying $A_2$ with the principal type of $R_m$ gives
+$$
+A_1=B_m,
+\qquad
+A_0=B_{m-1}\to p\to r.
+$$
+Since $A_0=a\to b$, this forces
+$$
+a=B_{m-1},
+\qquad
+b=p\to r.
+$$
+Using $A_1=a\to b\to c$, the first equation becomes
+$$
+B_m=B_{m-1}\to(p\to r)\to c.
+$$
+For $m=1$, comparing first domains forces $p=p\to q$, impossible by occurs check. For $m\geq2$, comparison with
+$$
+B_m=B_{m-1}\to B_{m-2}
+$$
+requires
+$$
+B_{m-2}=(p\to r)\to c.
+$$
+If $m=2$ or $m=3$, the left side begins with domain $p$, so this forces $p=p\to r$. If $m\geq4$, the first domain of $B_{m-2}$ is $B_{m-3}$, so $B_{m-3}$ would have to unify with $p\to r$, contradicting the first paragraph of this step. Therefore $R_2R_m$ is also untypable.
 
-Step 3: Count linear extensions of a rooted forest
-Let $F$ be any rooted forest with $m$ vertices, ordered so that every parent precedes every child, and let $s(v)$ be the number of vertices in the rooted subtree of $F$ with root $v$. We derive
-$$
-E(F)=\frac{m!}{\prod_{v\in F}s(v)},
-$$
-where $E(F)$ is the number of linear extensions.
+Step 3: Classify all typable parenthesizations
+We prove by induction on $n$ that the only typable full parenthesization of $n$ copies of $S$ is $R_n$.
 
-First consider a rooted tree $R$ with root $r$ and child subtrees $R_1,\ldots,R_q$ of sizes $m_1,\ldots,m_q$. The root must appear first. After that, choose linear extensions inside the child subtrees and interleave them while preserving each internal order. Hence
-$$
-E(R)=\frac{(m-1)!}{m_1!\cdots m_q!}\prod_{i=1}^{q}E(R_i).
-$$
-Inductively substituting
-$$
-E(R_i)=\frac{m_i!}{\prod_{v\in R_i}s(v)}
-$$
-gives
-$$
-E(R)=\frac{(m-1)!}{\prod_{v\neq r}s(v)}
-=\frac{m!}{\prod_{v\in R}s(v)},
-$$
-because $s(r)=m$. For a forest with component sizes $n_1,\ldots,n_r$, interleaving the component extensions contributes $m!/(n_1!\cdots n_r!)$, and the same substitution gives the displayed forest formula.
+For $n=1$, the only term is $S=R_1$, which is typable.
 
-Step 4: Evaluate the hook product for the balanced forest
-The internal-node tree of $T_k$ has $2^k-1$ vertices. For $1\leq j\leq k$, exactly $2^{k-j}$ of its vertices root a descendant internal-node subtree of height $j$, and each such subtree has
+Let $n\geq2$, and suppose a full parenthesization $T$ of $n$ copies of $S$ is typable. Its root has the form
 $$
-2^j-1
+T=UV,
 $$
-vertices. Therefore the product of the subtree sizes inside the component coming from $T_k$ is
+where $U$ contains $k$ copies of $S$ and $V$ contains $m$ copies, with $k,m\geq1$ and $k+m=n$. Any typing derivation for an application includes typings of both subterms, so $U$ and $V$ are typable. By the induction hypothesis,
 $$
-\prod_{j=1}^{k}(2^j-1)^{2^{k-j}}.
+U=R_k,
+\qquad
+V=R_m.
 $$
-Since the components of $F(T_h)$ are those from $T_1,\ldots,T_{h-1}$, their total hook product is
+If $k\geq2$, Step 2 shows that $R_kR_m$ is untypable, a contradiction. Hence $k=1$, so
 $$
-\begin{aligned}
-\prod_{k=1}^{h-1}\prod_{j=1}^{k}(2^j-1)^{2^{k-j}}
-&=\prod_{j=1}^{h-1}(2^j-1)^{\sum_{k=j}^{h-1}2^{k-j}}\\
-&=\prod_{j=1}^{h-1}(2^j-1)^{2^{h-j}-1}.
-\end{aligned}
+U=S
 $$
-The forest has $m_h=2^h-h-1$ vertices by Step 1. Applying the linear-extension formula from Step 3 to the bijection from Step 2 yields the number of shortest complete reductions,
+and therefore
 $$
-\frac{(2^h-h-1)!}{\prod_{j=1}^{h-1}(2^j-1)^{2^{h-j}-1}}.
+T=SR_m=R_{m+1}=R_n.
 $$
-For $h=1$, the product is empty and equals $1$, so the formula gives the unique empty reduction.
-Final Answer: $\boxed{\frac{(2^h-h-1)!}{\prod_{j=1}^{h-1}(2^j-1)^{2^{h-j}-1}}}$
+Conversely, Step 1 shows that every $R_n$ is typable. Thus there is exactly one typable parenthesization for each $n$, namely the fully right-associated one.
+
+Step 4: State the exhaustive family
+Let $\mathcal T_n$ be the set of all typable full parenthesizations of $n$ copies of $S$. The induction in Step 3 proves that no other parenthesization can occur, while Step 1 proves that $R_n$ always occurs. Hence
+$$
+\mathcal T_n=\{R_n\}.
+$$
+Final Answer: $\boxed{\mathcal T_n=\{R_n\}}$
 
 ---
 
 ## Answer
 
-$\frac{(2^h-h-1)!}{\prod_{j=1}^{h-1}(2^j-1)^{2^{h-j}-1}}$
+$\mathcal T_n=\{R_n\}$
 
 ---
 
 ## Classification
 
-**Problem Type:** Symbolic derivation
+**Problem Type:** Exhaustive enumeration
 
-**Answer Type:** Exact symbolic expression
+**Answer Type:** Set or multiset of objects
 
 ---
 
 ## Solution Concepts
 
-- term rewriting systems
-- binary tree rotations
-- partial orders
-- linear extensions
-- rooted-tree hook formula
+- simply typed combinatory logic
+- principal types
+- type unification
+- occurs check
+- structural induction
