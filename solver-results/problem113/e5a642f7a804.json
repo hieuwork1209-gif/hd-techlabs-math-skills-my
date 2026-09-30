@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-type-theory-and-formal-systems/problem.md",
+  "source_commit_sha": "c73fa834151785acf469ac8c4a8de833aa8fdeec",
+  "problem_blob_sha": "e5a642f7a8042541572e72b3428a27c27f39cd80",
+  "statement_sha256": "00b7084b0cdfebbc17bbe37f84ea3931836120a2d32141990ec973442e7c945c",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T04:13:33+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let a term be viewed as a full binary tree whose leaves are all \\(z\\). For a term \\(t\\), define:\n\n- \\(n(t)\\): number of leaves.\n- \\(R(t)\\): length of its right spine, i.e. the number of binary nodes met by repeatedly taking the right child from the root.\n- \\(A(t)\\): total number of left edges appearing in all root-to-leaf paths, summed over all leaves.\n\nThe normal form on \\(n\\) leaves is the right comb\n\\[\nb(z,b(z,\\dots,b(z,z)\\dots)),\n\\]\nso for it\n\\[\nR=n-1,\\qquad A=n-1.\n\\]\n\nNow consider one rewrite\n\\[\nb(b(x,y),w)\\to b(x,b(y,w)).\n\\]\nIf \\(x\\) has \\(s\\) leaves, then every leaf of \\(x\\) loses one left edge and no other leaf changes its number of left edges. Hence\n\\[\nA \\text{ decreases by } s\\ge 1.\n\\]\nAlso \\(R\\) can increase by at most \\(1\\), and it increases by exactly \\(1\\) if the rewritten subterm lies on the global right spine.\n\nTherefore every complete reduction of \\(t\\) has length \\(L\\) satisfying\n\\[\nn(t)-1-R(t)\\le L\\le A(t)-(n(t)-1).\n\\]\n\nConversely, every integer in this interval is achievable. Indeed, if \\(t\\) is not normal, there is always a reducible subterm on the right spine, giving a step that increases \\(R\\) by \\(1\\). Repeating such steps gives the minimum length\n\\[\nn(t)-1-R(t).\n\\]\nThere is also always a reducible subterm of the form\n\\[\nb(b(z,y),w),\n\\]\nobtained by descending leftward inside any reducible subterm until the first component is \\(z\\). Such a step decreases \\(A\\) by exactly \\(1\\). Repeating such steps gives the maximum length\n\\[\nA(t)-(n(t)-1).\n\\]\nAn induction on \\(A(t)-(n(t)-1)\\) then shows that the attainable lengths form the whole integer interval between these two extremes: the right-spine step realizes the lower endpoint, while a \\(b(b(z,y),w)\\)-step realizes all lengths above it.\n\nFor \\(T_h\\), we have \\(n(T_h)=2^h\\). Its right spine has length\n\\[\nR(T_h)=h.\n\\]\nAlso, in the perfect binary tree \\(T_h\\), at each of the \\(h\\) levels exactly \\(2^{h-1}\\) leaves pass through a left edge, so\n\\[\nA(T_h)=h2^{h-1}.\n\\]\nThus\n\\[\n\\min \\mathcal L_h=2^h-1-h,\n\\]\nand\n\\[\n\\max \\mathcal L_h=h2^{h-1}-(2^h-1)\n=2^{h-1}(h-2)+1.\n\\]\n\nHence, for every \\(h\\ge 1\\),\n\\[\n\\boxed{\\mathcal L_h=\\left\\{\\,\\ell\\in\\mathbb Z:\\ 2^h-h-1\\le \\ell\\le 2^{h-1}(h-2)+1\\,\\right\\}.}\n\\]\n\nSmall checks: \\(h=1\\) gives \\(\\{0\\}\\), and \\(h=2\\) gives \\(\\{1\\}\\), as expected.",
+  "status": "success",
+  "completed_at": "2026-09-30T04:16:21+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/e5a642f7a804.json"
+}
