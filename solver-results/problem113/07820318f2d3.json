@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-type-theory-and-formal-systems/problem.md",
+  "source_commit_sha": "c0fcfab30fcb43b9b020782e64c22e764064f875",
+  "problem_blob_sha": "07820318f2d37c54852efc0c859fdb53ca1220c3",
+  "statement_sha256": "cf86f0c5c13c8fb73aef613b5aeddbf6cd833a86ae2dd8f1878576613158458f",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T04:36:17+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "For every \\(n\\ge 1\\),\n\\[\n\\boxed{\\mathcal T_n=\\{R_n\\}}\n\\]\nwhere\n\\[\nR_1=S,\\qquad R_{n+1}=S R_n.\n\\]\nSo the only typable parenthesization is the fully right-nested one\n\\[\nS(S(S(\\cdots (SS)\\cdots))).\n\\]\n\n**Proof.** Write the principal type of \\(R_n\\) in the form\n\\[\nR_n:A_n\\to A_{n-1}\\to C\n\\]\nwith\n\\[\nA_0=x\\to y,\\qquad A_1=x\\to y\\to z,\\qquad C=x\\to z,\n\\]\nand for \\(n\\ge 1\\),\n\\[\nA_{n+1}=A_n\\to A_{n-1}.\n\\]\nThis is true for \\(R_1=S\\), since\n\\[\nS:(x\\to y\\to z)\\to(x\\to y)\\to x\\to z=A_1\\to A_0\\to C.\n\\]\nIf \\(R_n:A_n\\to A_{n-1}\\to C\\), then\n\\[\nR_{n+1}=S R_n\n\\]\nis typable by assigning the first argument type of \\(S\\) to \\(A_n\\to A_{n-1}\\to C\\). The resulting type is\n\\[\n(A_n\\to A_{n-1})\\to A_n\\to C=A_{n+1}\\to A_n\\to C.\n\\]\nThus every \\(R_n\\) is typable.\n\nIt remains to show no other parenthesization is typable. The key obstruction is:\n\n**Lemma.** For \\(k\\ge 2\\) and \\(m\\ge 1\\), the application \\(R_kR_m\\) is not typable.\n\nIndeed, \\(R_k\\) expects an argument of type \\(A_k\\), while \\(R_m\\) has type\n\\[\nA_m'\\to A_{m-1}'\\to C'\n\\]\nwith fresh variables. Thus typability would require unifying\n\\[\nA_k \\sim A_m'\\to A_{m-1}'\\to C'.\n\\]\nSince \\(k\\ge 2\\), we have\n\\[\nA_k=A_{k-1}\\to A_{k-2}.\n\\]\nTherefore unification forces\n\\[\nA_{k-1}\\sim A_m',\\qquad A_{k-2}\\sim A_{m-1}'\\to C'.\n\\]\nIf \\(k,m\\ge 2\\), decomposing \\(A_{k-1}\\sim A_m'\\) gives\n\\[\nA_{k-2}\\sim A_{m-1}'.\n\\]\nTogether with \\(A_{k-2}\\sim A_{m-1}'\\to C'\\), this would force a finite type to unify with its own arrow extension, impossible by the occurs check.\n\nThe remaining boundary cases are the same obstruction at the end of the recurrence. If \\(m=1\\), the equations force a type variable \\(x\\) to satisfy\n\\[\nx\\sim x\\to(\\cdots),\n\\]\nand if \\(k=2\\), repeated decomposition down the chain \\(A_j=A_{j-1}\\to A_{j-2}\\) again eventually forces\n\\[\nx\\sim x\\to(\\cdots).\n\\]\nBoth violate the occurs check. Hence \\(R_kR_m\\) is untypable for all \\(k\\ge 2\\).\n\nNow prove the classification by induction on \\(n\\). For \\(n=1\\), the only term is \\(S=R_1\\). Suppose \\(n>1\\), and let a typable parenthesization split at the root as\n\\[\nUV,\n\\]\nwhere \\(U\\) uses the first \\(k\\) copies of \\(S\\) and \\(V\\) uses the remaining \\(n-k\\). Then \\(U\\) and \\(V\\) must themselves be typable, so by induction\n\\[\nU=R_k,\\qquad V=R_{n-k}.\n\\]\nIf \\(k\\ge 2\\), then \\(UV=R_kR_{n-k}\\), which is not typable by the lemma. Therefore \\(k=1\\), so\n\\[\nUV=S R_{n-1}=R_n.\n\\]\nThus the only typable parenthesization with \\(n\\) copies of \\(S\\) is \\(R_n\\).\n\nFinal answer:\n\\[\n\\boxed{\\mathcal T_n=\\{R_n\\}\\quad\\text{for every }n\\ge 1.}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T04:39:10+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/07820318f2d3.json"
+}

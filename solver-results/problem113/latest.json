@@ -2,8 +2,8 @@
   "problem": "problem113",
   "branch": "adversary/problem113",
   "problem_path": "workspace/rainier-problem/problem113-type-theory-and-formal-systems/problem.md",
-  "problem_blob_sha": "dc4ec6cc6bf9801a9f19a57e73caf68cbc25fcae",
-  "source_commit_sha": "f66b96e155ba2efedf28b7b491e1f4b9b2d3f17a",
+  "problem_blob_sha": "07820318f2d37c54852efc0c859fdb53ca1220c3",
+  "source_commit_sha": "c0fcfab30fcb43b9b020782e64c22e764064f875",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-30T04:28:37+00:00",
-  "result_file": "solver-results/problem113/dc4ec6cc6bf9.json"
+  "completed_at": "2026-09-30T04:39:10+00:00",
+  "result_file": "solver-results/problem113/07820318f2d3.json"
 }
