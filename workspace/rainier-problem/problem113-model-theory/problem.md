@@ -2,15 +2,27 @@
 
 ## LaTeX (Normalized)
 
-Fix an integer $m\geq2$. Let
+Fix an integer $m\geq2$. Let $D_n$ be the structure with universe
 $$
-A_m=C_{2^{m+1}},
+\mathbb Z/n\mathbb Z
+$$
+and one binary relation $S$, where
+$$
+S(i,j)
+$$
+holds exactly when
+$$
+j\equiv i+1\pmod n.
+$$
+Set
+$$
+A_m=D_{2^{m+1}},
 \qquad
-B_m=C_{2^m}\sqcup C_{2^m},
+B_m=D_{2^m}\sqcup D_{2^m},
 $$
-where $C_n$ denotes the cycle graph on $n$ vertices and $\sqcup$ denotes disjoint union.
+where $\sqcup$ denotes disjoint union.
 
-In the $r$-round Ehrenfeucht-Fraisse game on $A_m$ and $B_m$ in the graph language, Spoiler chooses a vertex from either graph in each round and Duplicator chooses a vertex from the other. After $r$ rounds, Duplicator wins exactly when the correspondence between the chosen vertices preserves equality and adjacency.
+In the $r$-round Ehrenfeucht-Fraisse game on $A_m$ and $B_m$, Spoiler chooses an element from either structure in each round and Duplicator chooses an element from the other. After $r$ rounds, Duplicator wins exactly when the correspondence between the chosen elements preserves equality and the relation $S$.
 
 Determine the least $r$ for which Spoiler has a winning strategy.
 
@@ -29,4 +41,4 @@ Determine the least $r$ for which Spoiler has a winning strategy.
 
 ## Domain Explanation
 
-This problem asks for the exact Ehrenfeucht-Fraisse distinguishing depth of two finite graph structures with the same number of vertices but different connectivity. The main work is to compare finite graph distances under partial isomorphisms: Duplicator needs a locality strategy on long cycles, while Spoiler needs a midpoint-halving argument that eventually detects disconnectedness. Therefore Logic, Set Theory, and Foundations / Model theory is the primary classification. Graph theory supplies the ambient structures, but the requested quantity is their model-theoretic distinguishing depth.
+This problem asks for the exact Ehrenfeucht-Fraisse distinguishing depth of two finite successor structures with the same number of elements but different connectivity. The main work is to compare truncated directed distances under partial isomorphisms: Duplicator needs a locality invariant, while Spoiler needs a midpoint-halving argument that detects the difference between a long directed cycle and two shorter components. Therefore Logic, Set Theory, and Foundations / Model theory is the primary classification. Directed graph structure supplies the examples, but the requested quantity is their model-theoretic distinguishing depth.
