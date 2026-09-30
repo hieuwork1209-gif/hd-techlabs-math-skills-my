@@ -10,7 +10,7 @@ $$
 edges. Every leave degree would be odd, because it equals $9$ minus an even covered degree, but a graph with three edges has at most six odd-degree vertices. This is impossible on ten vertices.
 
 This proves
-$
+$$
 d_x\leq13.
 $$
 The problem requires every $d_x$ to be even, so in fact
@@ -42,7 +42,7 @@ $$
 2d_{xy}\leq9,
 $$
 so
-$
+$$
 d_{xy}\leq4.
 $$
 Define
@@ -98,8 +98,8 @@ $$
 =
 6-\frac{7}{2}z_{xy}+\frac{1}{2}z_{xy}^2.
 $$
-Hence
-$$
+Therefore
+$
 N_2
 =
 55\cdot6
@@ -140,13 +140,13 @@ A_2=\{0,1,5,7\},
 A_3=\{0,1,6,9\}.
 $$
 A nonzero translation of $\mathbb{Z}_{11}$ cannot stabilize a $4$-set, so each base block has an orbit of size $11$. Their positive cyclic gap $4$-tuples are
-$
+$$
 (1,1,2,7),
 \qquad
 (1,4,2,4),
 \qquad
 (1,5,3,2),
-$
+$$
 up to cyclic rotation, so the three base blocks lie in distinct translation orbits. The family therefore has $33$ blocks.
 
 To verify the packing condition, represent a triple by its three positive cyclic gaps, up to cyclic rotation. Two triples in $\mathbb{Z}_{11}$ are translates exactly when these representatives agree. Deleting one point from each base block gives the twelve representatives
@@ -160,9 +160,9 @@ A_3:&\quad
 (1,5,5),\ (1,8,2),\ (2,6,3),\ (3,3,5).
 \end{aligned}
 $$
-They are all distinct, so no triple can occur in two translated blocks. Every point occurs four times in each translation orbit, hence twelve times in the full family, so the parity condition also holds. This is therefore a maximizing family.
+They are all distinct, so no triple can occur in two translated blocks. Every point occurs four times in each translation orbit, therefore twelve times in the full family, so the parity condition also holds. This is therefore a maximizing family.
 
-It remains to count its pair multiplicities. For an unordered pair in $\mathbb{Z}_{11}$, use its cyclic distance in $\{1,2,3,4,5\}$. Across the three base blocks, the six internal pairs have distance counts
+It remains to count its pair multiplicities. For an unordered pair in $\mathbb{Z}_{11}$, use its cyclic distance in $\{1,2,3,4,5\}$. Across the three base blocks, the eighteen internal pairs have distance counts
 $$
 (4,4,3,3,4)
 $$
