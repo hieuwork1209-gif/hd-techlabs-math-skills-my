@@ -34,19 +34,28 @@ Thus, for even $s$, $K_s(9-h)=K_s(h)$, and pairing the weights $h$ and $9-h$ giv
 $$
 \lambda_s(p)=\sum_{h=1}^4K_s(h)h^p.
 $$
-Coefficient extraction yields
-$$
+The needed coefficients are visible from
+$
+\begin{aligned}
+P_2(z)&=1+5z+8z^2-14z^4+O(z^5),\\
+P_4(z)&=1+z-4z^2-4z^3+6z^4+O(z^5),\\
+P_6(z)&=1-3z+8z^3-6z^4+O(z^5),\\
+P_8(z)&=1-7z+20z^2-28z^3+14z^4+O(z^5).
+\end{aligned}
+$
+Therefore
+$
 \lambda_2(p)=5+8\cdot2^p-14\cdot4^p,
-$$
-$$
+$
+$
 \lambda_4(p)=1-4\cdot2^p-4\cdot3^p+6\cdot4^p,
-$$
-$$
+$
+$
 \lambda_6(p)=-3+8\cdot3^p-6\cdot4^p,
-$$
-$$
+$
+$
 \lambda_8(p)=-7+20\cdot2^p-28\cdot3^p+14\cdot4^p.
-$$
+$
 
 Step 2: Determine the critical exponent and equality-space dimension
 
@@ -90,24 +99,39 @@ The remaining nonconstant eigenvalues are negative on $0\leq p\leq\frac{1}{3}$. 
 $$
 \lambda_2=5+8q-14q^2<0.
 $$
-For $\lambda_4$, one has $\lambda_4'(p)>0$ on this interval and
-$$
+For $\lambda_4$,
+$
+\lambda_4'(p)
+=-4(\log2)2^p-4(\log3)3^p+12(\log2)4^p.
+$
+Since $3^p\leq4^p$,
+$
+\lambda_4'(p)
+\geq4\cdot2^p\left((\log(8/3))2^p-\log2\right)>0.
+$
+Also
+$
 \lambda_4\left(\frac{1}{3}\right)
 <
 1-4\frac{1259}{1000}
 -4\frac{721}{500}
 +6\frac{397}{250}
-=-\frac{69}{250}<0.
-$$
+=-\frac{69}{250}<0,
+$
+so $\lambda_4(p)<0$ throughout the interval.
+
 For $\lambda_6$, convexity of $3^p$ and $e^t\geq1+t$ give
-$$
+$
 3^p\leq1+3p(3^{\frac{1}{3}}-1),\qquad
-4^p\geq1+p\log4,
-$$
-so, using $3^{\frac{1}{3}}<\frac{1443}{1000}$ and $\log4>\frac{4}{3}$,
-$$
-\lambda_6(p)<-\frac{46}{375}<0.
-$$
+4^p\geq1+p\log4.
+$
+Hence, using $3^{\frac{1}{3}}<\frac{1443}{1000}$ and $\log4>\frac{4}{3}$,
+$
+\lambda_6(p)
+\leq-1+p\left(24(3^{\frac{1}{3}}-1)-6\log4\right)
+<-1+\frac{1}{3}\frac{329}{125}
+=-\frac{46}{375}<0.
+$
 Thus
 $$
 \wp=\inf\{p>0:F(p)>0\},
@@ -145,7 +169,7 @@ $$
 
 Step 4: Find and classify the sparsest nonzero equality vectors
 
-Assume some variable coefficient $a_i$ is nonzero. Pair the $2^8$ sign vectors by flipping only $\varepsilon_i$. For fixed values of the other seven signs, the two values of $L$ are
+If every variable coefficient vanishes, a nonzero constant form has full support. Otherwise choose a variable coefficient $a_i\neq0$. Pair the $2^8$ sign vectors by flipping only $\varepsilon_i$. For fixed values of the other seven signs, the two values of $L$ are
 $$
 B+a_i,\qquad B-a_i.
 $$
