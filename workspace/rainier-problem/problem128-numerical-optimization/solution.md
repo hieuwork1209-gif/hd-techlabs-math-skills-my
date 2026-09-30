@@ -79,24 +79,30 @@ f_a'(x)=\max\{-a,\min\{x,a\}\},
 $$
 which is nondecreasing and $1$-Lipschitz. Therefore $f_a$ is convex and belongs to $\mathcal F_1$, with minimizer $0$.
 
-Choose
-$$
-a=\frac{1}{1+2h},
-\qquad
-x_0=1.
-$$
-Then
-$$
-x_1=1-ha=\frac{1+h}{1+2h}>a,
-$$
-and therefore
-$$
+Start again from $x_0=1$. If $x_1=1-ha\geq a$, then the outer branch gives
+$
 f_a(x_1)
 =
-ax_1-\frac{1}{2}a^2
+a(1-ha)-\frac{1}{2}a^2
 =
-\frac{1}{2(1+2h)}.
-$$
+a-\left(h+\frac{1}{2}\right)a^2.
+$
+This concave quadratic in $a$ is maximized at
+$
+a=\frac{1}{1+2h}.
+$
+The branch condition is valid because
+$
+\frac{1}{1+2h}<\frac{1}{1+h},
+$
+and $x_1\geq a$ is equivalent to $a\leq1/(1+h)$. For this maximizing value,
+$
+x_1=\frac{1+h}{1+2h}>a,
+$
+and
+$
+f_a(x_1)=\frac{1}{2(1+2h)}.
+$
 Therefore
 $$
 W(h)\geq
