@@ -34,7 +34,7 @@ Determine the least $r$ for which Spoiler has a winning strategy.
 |---|---|
 | **Domain** | Logic, Set Theory, and Foundations |
 | **Sub-domain** | Model theory |
-| **Problem Type** | Symbolic derivation |
+| **Problem Type** | Optimization |
 | **Answer Type** | Exact symbolic expression |
 
 ---
