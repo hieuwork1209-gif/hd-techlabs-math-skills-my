@@ -1,253 +1,173 @@
 ## Steps
 
-Step 1: Express the Johnson distance through coordinate incidences
+Step 1: Record the metric structure of the Petersen graph
 
-Let
+Let the Petersen graph have vertices
 $$
-X=\binom{[6]}{3},
+P=\{u_i,v_i:i\in\mathbb{Z}/5\mathbb{Z}\},
 $$
-with Johnson distance
+with edges
 $$
-d(A,B)=3-|A\cap B|.
+u_i u_{i+1},\qquad u_i v_i,\qquad v_i v_{i+2}.
 $$
-For a real family $c=(c_A)_{A\in X}$ with $\sum_Ac_A=0$,
-$$
-\sum_{A,B}c_Ac_Bd(A,B)
-=
-3\left(\sum_Ac_A\right)^2
--\sum_{A,B}c_Ac_B|A\cap B|.
-$$
-Since
-$$
-|A\cap B|=\sum_{i=1}^6\mathbf{1}_{\{i\in A\}}\mathbf{1}_{\{i\in B\}},
-$$
-we obtain
-$$
-\sum_{A,B}c_Ac_Bd(A,B)
-=
--\sum_{i=1}^6
-\left(\sum_{A\ni i}c_A\right)^2
-\leq0.
-$$
-Thus $(X,d)$ has $1$-negative type.
+Both the outer $u$-vertices and the inner $v$-vertices form $5$-cycles, the latter in the order of step $2$ modulo $5$.
 
-Define the incidence map
+Its shortest-path metric $d_P$ has diameter $2$. For two outer vertices this is immediate from the outer $5$-cycle, and similarly for two inner vertices. For $u_i$ and $v_j$, either $j=i$, or $j=i\pm1$ and
 $$
-T:\mathbb{R}^{X}\to\mathbb{R}^6,
+u_i-u_j-v_j
+$$
+has length $2$, or $j=i\pm2$ and
+$$
+u_i-v_i-v_j
+$$
+has length $2$. Hence, for distinct Petersen vertices,
+$$
+d_P(x,y)=
+\begin{cases}
+1,&x\sim y,\\
+2,&x\not\sim y.
+\end{cases}
+$$
+
+The Petersen graph has girth $5$. A triangle or $4$-cycle lying in one layer is impossible because each layer is a $5$-cycle. A cycle using spokes crosses between the two layers an even number of times. A triangle with two spokes would require the same pair of indices to differ by both $1$ and $2$ modulo $5$. A $4$-cycle with two spokes gives the same contradiction, while four consecutive spoke crossings are impossible because a spoke has no second endpoint in the opposite layer. Thus there are no cycles of length $3$ or $4$, while the outer $5$-cycle exists.
+
+Step 2: Show that every bijection has forward Lipschitz constant two
+
+Let $C=\mathbb{Z}/10\mathbb{Z}$ with cycle metric
+$$
+d_C(i,j)=\min\{|i-j|,10-|i-j|\}.
+$$
+For a bijection $f:C\to P$,
+$$
+\operatorname{Lip}(f)=
+\max_{i\neq j}\frac{d_P(f(i),f(j))}{d_C(i,j)}
+\leq2.
+$$
+
+The Petersen graph is not Hamiltonian. Suppose a Hamiltonian cycle used $s$ spokes. Since a cycle crosses the cut between the outer and inner layers an even positive number of times,
+$$
+s\in\{2,4\}.
+$$
+If $s=2$, at spoke indices $a,b$, the outer part and the inner part of the Hamiltonian cycle would each be spanning paths on their respective $5$-cycles. The endpoints of a spanning path in the outer cycle differ by $\pm1$ modulo $5$, while in the inner cycle they differ by $\pm2$, a contradiction.
+
+If $s=4$, let $a$ be the unique omitted spoke index. The outer edges are forced to be
+$$
+u_{a-1}u_a,\qquad u_au_{a+1},\qquad u_{a+2}u_{a-2},
+$$
+and the inner edges are forced to be
+$$
+v_{a-2}v_a,\qquad v_av_{a+2},\qquad v_{a-1}v_{a+1}.
+$$
+Together with the four used spokes these edges form two disjoint $5$-cycles, not one Hamiltonian cycle. Thus no Hamiltonian cycle exists.
+
+Therefore some consecutive pair of $C$ is sent to nonadjacent Petersen vertices, and for that pair the ratio is $2$. Hence
+$$
+\operatorname{Lip}(f)=2
+$$
+for every bijection $f$.
+
+Step 3: Reduce the inverse Lipschitz constant to a circular bandwidth
+
+For a bijection $f:C\to P$, define
+$$
+M(f)=\max\{d_C(i,j):f(i)\sim f(j)\}.
+$$
+For a Petersen edge the inverse ratio is exactly $d_C(i,j)$, while for a nonedge it is
+$$
+\frac{d_C(i,j)}{2}\leq\frac{5}{2}.
+$$
+Once $M(f)\geq3$, it follows that
+$$
+\operatorname{Lip}(f^{-1})=M(f).
+$$
+Thus the distortion becomes
+$$
+\operatorname{dist}(f)
+=\operatorname{Lip}(f)\operatorname{Lip}(f^{-1})
+=2M(f).
+$$
+
+It remains to prove that every cyclic ordering of the Petersen vertices has some Petersen edge at cyclic distance at least $3$.
+
+Step 4: Prove the circular bandwidth lower bound
+
+Assume for contradiction that $M(f)\leq2$. Pull the Petersen edges back to the ten cycle positions. The resulting graph $G$ is a copy of the Petersen graph contained in the square $C_{10}^2$, whose edges join positions at cyclic distance $1$ or $2$.
+
+The graph $C_{10}^2$ is $4$-regular, whereas $G$ is $3$-regular. Therefore
+$$
+F=E(C_{10}^2)\setminus E(G)
+$$
+is a perfect matching.
+
+The ten triangles of $C_{10}^2$ are exactly
+$$
+T_i=\{i,i+1,i+2\},
+\qquad i\in\mathbb{Z}/10\mathbb{Z}.
+$$
+Since the Petersen graph is triangle-free, every $T_i$ contains an edge of $F$. An edge of cyclic length $1$ belongs to two of these triangles, while an edge of cyclic length $2$ belongs to only one. The five edges of the matching $F$ must cover all ten triangles, so every edge of $F$ has cyclic length $1$. Hence $F$ is one of the two alternating perfect matchings of the $10$-cycle.
+
+After rotating indices, take
+$$
+F=\{01,23,45,67,89\}.
+$$
+Then the four edges
+$$
+02,\qquad21,\qquad19,\qquad90
+$$
+all belong to $G$, producing the $4$-cycle
+$$
+0-2-1-9-0.
+$$
+This contradicts the girth-$5$ property from Step 1. Therefore
+$$
+M(f)\geq3
+$$
+for every bijection.
+
+Step 5: Construct a bijection with circular bandwidth three
+
+Place the Petersen vertices around $C_{10}$ in the cyclic order
+$$
+u_0,u_1,u_2,u_4,u_3,v_2,v_4,v_3,v_0,v_1.
+$$
+The five outer edges have cyclic spans
+$$
+1,1,2,1,3.
+$$
+The five spokes have spans
+$$
+2,2,3,3,3.
+$$
+The five inner edges $v_i v_{i+2}$ have spans
+$$
+3,2,1,1,3.
+$$
+Thus every Petersen edge has cyclic span at most $3$, and some have span exactly $3$. Hence this bijection satisfies
+$$
+M(f)=3.
+$$
+
+Step 6: Evaluate the optimal distortion
+
+Step 4 gives $M(f)\geq3$ for every bijection, so Steps 2 and 3 give
+$$
+\operatorname{dist}(f)\geq2\cdot3=6.
+$$
+The cyclic ordering in Step 5 has $M(f)=3$, hence
+$$
+\operatorname{Lip}(f)=2,
 \qquad
-(Tc)_i=\sum_{A\ni i}c_A.
+\operatorname{Lip}(f^{-1})=3,
 $$
-The displayed identity shows that equality at $p=1$ is exactly
-$$
-Tc=0.
-$$
-Moreover
-$$
-\sum_{i=1}^6(Tc)_i=3\sum_Ac_A,
-$$
-so $Tc=0$ already implies the zero-sum condition.
+and its distortion is $6$. Therefore the minimum possible distortion is $6$.
 
-Step 2: Prove that the supremal exponent is exactly one and find the equality-space dimension
-
-Consider
-$$
-A=\{1,2,3\},\qquad
-B=\{1,4,5\},\qquad
-C=\{1,2,4\},\qquad
-D=\{1,3,5\}.
-$$
-Their Johnson distances satisfy
-$$
-d(A,B)=d(C,D)=2,
-$$
-while all four cross-distances between $\{A,B\}$ and $\{C,D\}$ equal $1$.
-
-For coefficients
-$$
-c_A=c_B=1,\qquad c_C=c_D=-1,
-$$
-the $p$-negative-type quadratic form equals
-$$
-2\left(2^p+2^p-4\right)
-=4\cdot2^p-8.
-$$
-This is positive for every $p>1$. Hence
-$$
-\wp=1.
-$$
-
-At the critical exponent,
-$$
-E=\ker T.
-$$
-The six row vectors of $T$ are independent. Indeed,
-$$
-TT^{T}=6I+4J,
-$$
-because a fixed point belongs to $\binom{5}{2}=10$ triples and a fixed pair belongs to $\binom{4}{1}=4$ triples. The matrix $6I+4J$ is positive definite, so
-$$
-\operatorname{rank}T=6.
-$$
-Therefore
-$$
-\dim E=20-6=14.
-$$
-
-Step 3: Convert the fourth generalized support problem into an affine-cube problem
-
-For $S\subseteq X$, let $T_S$ be the submatrix of $T$ formed by the columns indexed by $S$, and let
-$$
-E_S=\{c\in E:\operatorname{supp}(c)\subseteq S\}.
-$$
-Then
-$$
-E_S=\ker T_S,
-\qquad
-\dim E_S=|S|-\operatorname{rank}T_S.
-$$
-Thus a four-dimensional subspace of $E$ can be supported inside $S$ exactly when
-$$
-|S|-\operatorname{rank}T_S\geq4.
-$$
-
-Identify each triple $A\in X$ with its incidence vector
-$$
-v_A\in\{0,1\}^6.
-$$
-Every such vector has coordinate sum $3$. If the affine span of $\{v_A:A\in S\}$ has dimension $a$, then
-$$
-\operatorname{rank}T_S=a+1.
-$$
-To see this, fix $v_0\in S$. All differences $v_A-v_0$ lie in the hyperplane of coordinate sum $0$, while $v_0$ does not; hence the linear span is the direct sum of the $a$-dimensional difference space and the line through $v_0$.
-
-Consequently
-$$
-\dim E_S=|S|-a-1.
-$$
-
-Step 4: Bound cube vertices in an affine subspace and deduce the minimum support
-
-We use the following elementary cube lemma: an affine subspace of $\mathbb{R}^n$ of dimension $a$ contains at most $2^a$ vertices of $\{0,1\}^n$.
-
-Let $U$ be the $a$-dimensional direction space. The six coordinate functionals span $U^*$, so one can choose $a$ coordinate functionals whose restrictions form a basis of $U^*$. Projection to those coordinates is then injective on the affine subspace. Hence its cube vertices inject into $\{0,1\}^a$, proving the bound.
-
-Now suppose $\dim E_S\geq4$. With $s=|S|$ and affine dimension $a$,
-$$
-s-a-1\geq4,
-\qquad
-s\leq2^a.
-$$
-If $a\leq2$, then $s\leq4$, contradicting $s\geq a+5$. Hence $a\geq3$, and therefore
-$$
-s\geq a+5\geq8.
-$$
-So every four-dimensional subspace of $E$ has support at least $8$.
-
-This bound is attained. Partition $[6]$ into three unordered pairs
-$$
-\{x_1,y_1\},\qquad
-\{x_2,y_2\},\qquad
-\{x_3,y_3\},
-$$
-and let $S$ consist of the eight triples obtained by choosing one element from each pair. Their incidence vectors form an affine $3$-cube, so
-$$
-|S|=8,\qquad a=3,
-$$
-and therefore
-$$
-\dim E_S=8-3-1=4.
-$$
-Hence
-$$
-d_4=8.
-$$
-
-Step 5: Classify every support of size eight attaining the minimum
-
-Suppose $|S|=8$ and $\dim E_S=4$. Then the inequalities in Step 4 are equalities, so the affine span $H$ of the eight incidence vectors has dimension $3$ and contains exactly $2^3$ cube vertices.
-
-Choose affine coordinates
-$$
-(t_1,t_2,t_3)\in\{0,1\}^3
-$$
-on these eight vertices. Each of the six original coordinate functions is an affine function of $t_1,t_2,t_3$ taking only the values $0$ and $1$ on the whole cube.
-
-An affine function
-$$
-f=b_0+b_1t_1+b_2t_2+b_3t_3
-$$
-that takes only values $0$ and $1$ on $\{0,1\}^3$ is either constant, one of $t_i$, or one of $1-t_i$. Indeed, if two coefficients $b_i,b_j$ with $i\neq j$ were nonzero, then the four values obtained by varying only $t_i,t_j$ would contain at least three distinct numbers. Thus at most one variable coefficient is nonzero, and the two values force the stated possibilities.
-
-Every incidence vector in $S$ has coordinate sum $3$, so the sum of the six coordinate functions is identically $3$. The coefficient of each $t_i$ in this sum is zero, hence the number of coordinates equal to $t_i$ equals the number equal to $1-t_i$. Since the affine dimension is $3$, each variable $t_i$ occurs in at least one coordinate function, so each pair of counts contributes at least two coordinates. There are only six coordinates altogether. Hence each $t_i$ and $1-t_i$ occurs exactly once, and no constant coordinate functions occur.
-
-Thus the six ground-set elements are partitioned into three pairs, and $S$ is exactly the family of eight transversals choosing one element from each pair. This proves the equality classification.
-
-Step 6: Count the minimizing four-dimensional subspaces
-
-A partition of six labelled elements into three unordered pairs is a perfect matching of $K_6$. Their number is
-$$
-\frac{6!}{2^3\,3!}=15.
-$$
-Each such partition gives one support set $S$ of size $8$, and Step 4 gives
-$$
-\dim E_S=4.
-$$
-Hence there is exactly one four-dimensional subspace of $E$ supported inside that $S$, namely $E_S$ itself. Conversely, Step 5 shows that every minimizer arises this way. Therefore
-$$
-N_4=15.
-$$
-
-Step 7: Determine the intersection graph of the minimizers
-
-Let $L_M=E_{S_M}$ be the minimizer corresponding to a perfect matching $M$ of $K_6$. For distinct matchings $M,N$,
-$$
-L_M\cap L_N=E_{S_M\cap S_N}.
-$$
-
-If $M$ and $N$ share one edge, then on the remaining four vertices their union is an alternating $4$-cycle. There are exactly two common transversals of those four vertices, and either endpoint of the shared edge may be chosen. Thus
-$$
-|S_M\cap S_N|=4.
-$$
-These four incidence vectors form an affine square, so their affine dimension is $2$. By Step 3 their incidence rank is $3$, hence
-$$
-\dim(L_M\cap L_N)=4-3=1.
-$$
-
-If $M$ and $N$ share no edge, then $M\cup N$ is an alternating $6$-cycle. A triple is a transversal for both matchings exactly when it is one of the two bipartition classes of this cycle. Hence
-$$
-|S_M\cap S_N|=2.
-$$
-The two incidence vectors are complementary and therefore linearly independent, so the restricted incidence matrix has rank $2$. Thus
-$$
-L_M\cap L_N=\{0\}.
-$$
-
-Therefore the graph $\Gamma$ on minimizing subspaces, with adjacency defined by nonzero intersection, is the graph on perfect matchings of $K_6$ in which two matchings are adjacent exactly when they share an edge.
-
-Fix a matching $M$. For each of its three edges, there are exactly two other perfect matchings containing that edge, so every vertex has degree
-$$
-k=3\cdot2=6.
-$$
-If adjacent matchings $M,N$ share an edge $e$, then the third perfect matching containing $e$ is a common neighbor. On the remaining four vertices every edge of $M\setminus\{e\}$ meets every edge of $N\setminus\{e\}$, so there is no other common neighbor. Hence
-$$
-\lambda=1.
-$$
-If $M,N$ are nonadjacent, their union is a $6$-cycle. A common neighbor must contain one edge of $M$ and one disjoint edge of $N$; each of the three edges of $M$ has exactly one disjoint edge of $N$, and the remaining two vertices then force the third edge. Therefore
-$$
-\mu=3.
-$$
-Thus $\Gamma$ is strongly regular with parameters
-$$
-(15,6,1,3).
-$$
-
-Final Answer: $\boxed{(1,14,8,15,6,1,3)}$
+Final Answer: $\boxed{6}$
 
 ---
 
 ## Answer
 
-$(1,14,8,15,6,1,3)$
+$6$
 
 ---
 
@@ -255,14 +175,14 @@ $(1,14,8,15,6,1,3)$
 
 **Problem Type:** Exact computation
 
-**Answer Type:** Tuple or ordered list
+**Answer Type:** Exact scalar
 
 ---
 
 ## Solution Concepts
 
-- negative type metrics
-- incidence linear maps
-- generalized support weights
-- affine cube sections
-- strongly regular graphs
+- bi-Lipschitz distortion
+- graph metrics
+- circular bandwidth
+- Petersen graph
+- cycle graph squares
