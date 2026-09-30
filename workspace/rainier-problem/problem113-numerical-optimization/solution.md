@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Reduce the two-step iteration to a quadratic minimax problem
+Step 1: Reduce the problem to a quadratic minimax optimization
 For real step sizes $\alpha,\beta$, define
 $$
 p(\lambda)
@@ -15,25 +15,74 @@ t=\alpha\beta.
 $$
 Then
 $$
-p(\lambda)=1-s\lambda+t\lambda^2.
+p(\lambda)=t\lambda^2-s\lambda+1.
 $$
-The worst-case two-step contraction factor on
-$$
-E=[1,2]\cup[4,8]
-$$
-is
+The objective is
 $$
 \rho(\alpha,\beta)
 =
-\max_{\lambda\in E}|p(\lambda)|.
+\max_{\lambda\in E}|p(\lambda)|,
+\qquad
+E=[1,2]\cup[4,8].
 $$
-Thus every choice of real $\alpha,\beta$ produces a real quadratic with
+The maximum exists because $E$ is compact and $p$ is continuous. Every real pair $(\alpha,\beta)$ therefore produces a real quadratic with
 $$
 p(0)=1.
 $$
 
-Step 2: Build a sharp interpolation lower certificate
-For every polynomial $p$ of degree at most $2$, Lagrange interpolation at the three points
+Step 2: Derive a balanced candidate and its interpolation certificate
+To find a sharp candidate, balance the two outer spectral endpoints by requiring
+$$
+p(1)=p(8).
+$$
+For a nonconstant quadratic this forces its axis to be
+$$
+\lambda=\frac{1+8}{2}=\frac{9}{2}.
+$$
+A balanced minimax candidate should have the opposite value at this interior extremum, so write
+$$
+p(1)=p(8)=M,
+\qquad
+p\left(\frac{9}{2}\right)=-M.
+$$
+Because the axis is $9/2$, write
+$$
+p(\lambda)
+=
+a\left(\lambda-\frac{9}{2}\right)^2-M.
+$$
+The first equality gives
+$$
+a\left(\frac{7}{2}\right)^2=2M,
+$$
+so
+$$
+a=\frac{8M}{49}.
+$$
+Using $p(0)=1$ then gives
+$$
+1
+=
+\frac{8M}{49}\left(\frac{9}{2}\right)^2-M
+=
+\frac{113}{49}M.
+$$
+Hence
+$$
+M=\frac{49}{113},
+$$
+and the resulting candidate is
+$$
+p_*(\lambda)
+=
+\frac{8}{113}\lambda^2
+-
+\frac{72}{113}\lambda
++
+1.
+$$
+
+The same three balancing points give a lower certificate for every quadratic. Lagrange interpolation at
 $$
 1,
 \qquad
@@ -41,7 +90,7 @@ $$
 \qquad
 8
 $$
-gives its value at $0$ as
+evaluated at $0$ gives
 $$
 p(0)
 =
@@ -51,64 +100,46 @@ p(0)
 +
 \frac{9}{49}p(8).
 $$
-Indeed, the three Lagrange coefficients at $0$ are
+The coefficients follow directly from
 $$
-\frac{(0-\frac92)(0-8)}
-{(1-\frac92)(1-8)}
+\frac{(0-\frac{9}{2})(0-8)}
+{(1-\frac{9}{2})(1-8)}
 =
 \frac{72}{49},
 $$
 $$
 \frac{(0-1)(0-8)}
-{(\frac92-1)(\frac92-8)}
+{(\frac{9}{2}-1)(\frac{9}{2}-8)}
 =
 -\frac{32}{49},
 $$
 and
 $$
-\frac{(0-1)(0-\frac92)}
-{(8-1)(8-\frac92)}
+\frac{(0-1)(0-\frac{9}{2})}
+{(8-1)(8-\frac{9}{2})}
 =
 \frac{9}{49}.
 $$
-
-All three interpolation points lie in $E$. Since $p(0)=1$,
+All three nodes lie in $E$. Since $p(0)=1$,
 $$
 1
 \leq
-\left(
-\frac{72}{49}
-+
-\frac{32}{49}
-+
-\frac{9}{49}
-\right)
+\frac{113}{49}
 \max_{\lambda\in E}|p(\lambda)|.
 $$
-Therefore
+Therefore every real pair satisfies
 $$
-\rho(\alpha,\beta)\geq\frac{49}{113}
+\rho(\alpha,\beta)\geq\frac{49}{113}.
 $$
-for every real pair $(\alpha,\beta)$.
 
-Step 3: Construct a pair attaining the lower bound
-Consider
-$$
-p_*(\lambda)
-=
-1-\frac{72}{113}\lambda+\frac{8}{113}\lambda^2.
-$$
-Its derivative is
+Step 3: Verify attainment and recover the real step sizes
+The derivative of the candidate is
 $$
 p_*'(\lambda)
 =
 \frac{16\lambda-72}{113},
 $$
-so its unique critical point is
-$$
-\lambda=\frac{9}{2}.
-$$
-At the relevant points,
+so its unique critical point is $9/2$. Its relevant values are
 $$
 p_*(1)=\frac{49}{113},
 \qquad
@@ -121,23 +152,19 @@ p_*\left(\frac{9}{2}\right)=-\frac{49}{113},
 \qquad
 p_*(8)=\frac{49}{113}.
 $$
-
-On $[1,2]$, the derivative is negative, so $p_*$ decreases from $49/113$ to $1/113$. Hence
-$$
-|p_*(\lambda)|\leq\frac{49}{113}
-$$
-there.
-
-On $[4,\frac92]$, the polynomial decreases from $-47/113$ to $-49/113$. On $[\frac92,8]$, it increases from $-49/113$ to $49/113$. Hence the same bound holds throughout $[4,8]$.
-
-Therefore
+On $[1,2]$, the polynomial decreases from $49/113$ to $1/113$. On $[4,9/2]$, it decreases from $-47/113$ to $-49/113$, and on $[9/2,8]$ it increases from $-49/113$ to $49/113$. Thus
 $$
 \max_{\lambda\in E}|p_*(\lambda)|
 =
 \frac{49}{113}.
 $$
+The lower bound from Step 2 is attained.
 
-It remains to verify that $p_*$ comes from real step sizes. We need
+To factor $p_*$ as
+$$
+(1-\alpha\lambda)(1-\beta\lambda),
+$$
+we need
 $$
 \alpha+\beta=\frac{72}{113},
 \qquad
@@ -157,7 +184,7 @@ $$
 =
 \left(\frac{28\sqrt{2}}{113}\right)^2.
 $$
-Hence
+Therefore
 $$
 \{\alpha,\beta\}
 =
@@ -166,14 +193,17 @@ $$
 \frac{36+14\sqrt{2}}{113}
 \right\}.
 $$
-These real step sizes attain the lower bound.
 
-Step 4: Classify all optimal step sizes
+Step 4: Classify every optimizer
 Suppose
 $$
-\rho(\alpha,\beta)=\frac{49}{113}.
+\rho(\alpha,\beta)=\frac{49}{113},
 $$
-Let $p(\lambda)=(1-\alpha\lambda)(1-\beta\lambda)$. The interpolation identity from Step 2 gives
+and let
+$$
+p(\lambda)=(1-\alpha\lambda)(1-\beta\lambda).
+$$
+The interpolation certificate gives
 $$
 1
 =
@@ -183,7 +213,7 @@ $$
 +
 \frac{9}{49}p(8).
 $$
-Each of the three values has absolute value at most $49/113$. Equality in the triangle inequality is necessary, because the coefficient absolute values sum to $113/49$. Since the left side is positive, the signs must align with the interpolation coefficients:
+Each sampled value has absolute value at most $49/113$, while the absolute values of the three coefficients sum to $113/49$. Equality in the triangle inequality is therefore necessary. Since the left side is positive, the three signed terms must all be nonnegative at full magnitude:
 $$
 p(1)=\frac{49}{113},
 \qquad
@@ -191,19 +221,19 @@ p\left(\frac{9}{2}\right)=-\frac{49}{113},
 \qquad
 p(8)=\frac{49}{113}.
 $$
-A polynomial of degree at most $2$ is uniquely determined by these three values, so
+A polynomial of degree at most $2$ is uniquely determined by its values at three distinct points, so
 $$
 p=p_*.
 $$
-Therefore every optimizer satisfies
+Hence every optimizer has
 $$
 \alpha+\beta=\frac{72}{113},
 \qquad
 \alpha\beta=\frac{8}{113},
 $$
-and hence has the same unordered pair of step sizes found in Step 3.
+and therefore the same unordered pair from Step 3.
 
-Thus the minimum contraction factor and the complete optimizer set are
+The minimum contraction factor and complete optimizer pair are
 $$
 \frac{49}{113}
 \qquad\text{and}\qquad
@@ -234,6 +264,6 @@ $\left(\frac{49}{113},\left\{\frac{36-14\sqrt{2}}{113},\frac{36+14\sqrt{2}}{113}
 
 - minimax polynomials
 - interpolation certificates
-- richardson iteration
+- Richardson iteration
 - equality in triangle inequality
 - optimizer classification
