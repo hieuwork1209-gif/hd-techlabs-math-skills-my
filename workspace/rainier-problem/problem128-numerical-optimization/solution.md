@@ -49,31 +49,75 @@ R_A=
 0&\frac{1-4s}{1+4s}
 \end{pmatrix}.
 $$
-Since $B$ has eigenvalues $2$ and $9$ with eigenvectors at angle $\pi/4$, direct inversion gives
-$$
+The orthogonal matrix
+$
+U=\frac{1}{\sqrt{2}}
+\begin{pmatrix}
+1&1\\
+1&-1
+\end{pmatrix}
+$
+satisfies
+$
+B=U
+\begin{pmatrix}
+2&0\\
+0&9
+\end{pmatrix}
+U^T.
+$
+Therefore
+$
 R_B=
+U
+\begin{pmatrix}
+\frac{1-2s}{1+2s}&0\\
+0&\frac{1-9s}{1+9s}
+\end{pmatrix}
+U^T
+=
 \frac{1}{18s^2+11s+1}
 \begin{pmatrix}
 1-18s^2&7s\\
 7s&1-18s^2
 \end{pmatrix}.
-$$
-Set
-$$
-C_s=R_BR_A.
-$$
-Its trace and determinant are
-$$
+$
+Write
+$
+p=\frac{1-s}{1+s},
+\qquad
+q=\frac{1-4s}{1+4s},
+\qquad
+a=\frac{1-18s^2}{18s^2+11s+1},
+\qquad
+b=\frac{7s}{18s^2+11s+1}.
+$
+Then
+$
+C_s=R_BR_A=
+\begin{pmatrix}
+ap&bq\\
+bp&aq
+\end{pmatrix}.
+$
+Hence
+$
+\operatorname{tr}(C_s)=a(p+q),
+\qquad
+\det(C_s)=(a^2-b^2)pq.
+$
+Simplifying these two expressions gives
+$
 t(s)=
 \frac{2(2s-1)(18s^2-1)}
 {(s+1)(4s+1)(9s+1)},
-$$
+$
 and
-$$
+$
 d(s)=
 \frac{(s-1)(2s-1)(4s-1)(9s-1)}
 {(s+1)(2s+1)(4s+1)(9s+1)}.
-$$
+$
 
 Step 2: Use the determinant of the Douglas-Rachford map as a lower certificate
 For any $2\times2$ matrix,
@@ -144,8 +188,8 @@ $$
 \qquad
 -\frac{7439}{256}.
 $$
-Hence
-$$
+Therefore
+$
 P(s)<0
 \qquad
 \left(0<s\leq\frac{1}{4}\right).
@@ -164,7 +208,7 @@ P'\left(\frac{1}{4}+u\right)
 57888u^5+108000u^4+70904u^3+21723u^2
 +\frac{26099}{8}u+\frac{1623}{16},
 $$
-which is positive. Thus $P$ is strictly increasing on $[\frac{1}{4},\infty)$.
+which is positive. Therefore $P$ is strictly increasing on $[\frac{1}{4},\infty)$.
 
 Also,
 $$
@@ -186,7 +230,7 @@ J'(s)<0\quad(0<s<s_*),
 \qquad
 J'(s)>0\quad(s>s_*).
 $$
-Thus $s_*$ is the unique global minimizer of $J$ over $s>0$.
+Therefore $s_*$ is the unique global minimizer of $J$ over $s>0$.
 
 Step 5: Verify equality in the determinant certificate and identify the minimizing parameter
 The discriminant of the characteristic polynomial of $C_s$ is
@@ -208,8 +252,8 @@ $$
 =
 \frac{403}{9}>0.
 $$
-Hence
-$$
+Therefore
+$
 \Delta(s_*)<0.
 $$
 The eigenvalues of $C_{s_*}$ are nonreal conjugates, so the lower certificate in Step 2 is attained:
