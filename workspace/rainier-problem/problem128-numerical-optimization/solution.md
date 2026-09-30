@@ -172,7 +172,13 @@ The derivative
 $$
 C'(a)=696a^2+204a+5
 $$
-is positive for $a>0$. Since $C(0)<0$ and $C(\frac{2}{5})>0$, there is a unique $\gamma\in(0,\frac{2}{5})$ with $C(\gamma)=0$.
+is positive for $a>0$. Moreover,
+$
+C\left(\frac{3}{20}\right)=-\frac{5043}{250}<0,
+\qquad
+C\left(\frac{2}{5}\right)=\frac{1146}{125}>0.
+$
+There is therefore a unique $\gamma\in(\frac{3}{20},\frac{2}{5})$ with $C(\gamma)=0$.
 
 For $0<a\leq\frac{3}{20}$, both $C(a)$ and $20a-3$ are nonpositive, so $\lambda_+'(a)<0$. For $a\geq\gamma$, both terms in the numerator of $\lambda_+'(a)$ are nonnegative, with at least one positive, so $\lambda_+'(a)>0$.
 
@@ -211,8 +217,8 @@ and one in
 $$
 \left(\frac{2}{5},\frac{1}{2}\right).
 $$
-Because $\gamma<\frac{2}{5}$, only the first root can occur before $\gamma$. Call it $a_*$. The sign relation gives
-$$
+Because $\gamma<\frac{2}{5}$, only the first root can occur before $\gamma$. Call it $a_*$. Since $F(0)>0$ and there are no other positive roots before $a_*$, one has $F(a)>0$ for $0<a<a_*$. Between the two positive roots one has $F(a)<0$. The sign relation gives
+$
 \lambda_+'(a)<0\quad(0<a<a_*),
 \qquad
 \lambda_+'(a)>0\quad(a_*<a<\frac{1}{2}).
