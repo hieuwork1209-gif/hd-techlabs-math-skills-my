@@ -33,7 +33,7 @@ If Duplicator could match both of those distances exactly, the triangle inequali
 $$
 e\leq d,
 $$
-a contradiction. Thus one of the two new matched pebble pairs has unequal distances and smaller distance at most $2^{s-1}$. The induction hypothesis applies.
+a contradiction. Therefore one of the two new matched pebble pairs has unequal distances and smaller distance at most $2^{s-1}$. The induction hypothesis applies.
 
 Step 2: Build a locality strategy for Duplicator
 Let
@@ -51,20 +51,20 @@ $$
 rounds left.
 
 We use the following invariant with $s$ rounds remaining. For every two matched pebbles, either their graph distances are equal and less than
-$
+$$
 2^{s+1},
-$
+$$
 or both distances are at least $2^{s+1}$, where $\infty$ counts as larger than every finite number. In addition, on every overlapping family of local path neighborhoods, choose orientations consistently so that matched pebbles at distance less than $2^{s+1}$ have the same signed path coordinate, up to one common reflection on that local cluster.
 
 This local-coordinate clause makes sense because
-$$
+$
 s\leq m-1
-$$
+$
 throughout the remaining game, while every cycle in both structures has length at least
-$$
+$
 2^m\geq2^{s+1}.
-$$
-Hence every open ball of radius $2^s$ is a path.
+$
+Therefore the vertices at distance less than $2^s$ from a fixed vertex form a path. At the first state there is only one local chart, so choose its orientation arbitrarily. A near response is placed inside an existing chart and inherits its orientation. A far response creates a chart disjoint from all old radius-$(2^s-1)$ charts, so its orientation can be chosen freely. When $s$ decreases, the radii shrink, so previously disjoint charts cannot newly overlap.
 
 Assume the invariant holds with $s\geq1$ rounds remaining and Spoiler chooses a new vertex $x$. Let $\mathcal N$ be the set of old pebbles whose distance from $x$ is less than $2^s$.
 
@@ -177,7 +177,7 @@ so Step 1 applies to the pair $(a_2,a_1)$ and its mate, again with smaller dista
 $$
 \frac{q}{2}=2^{m-2}.
 $$
-Thus Spoiler wins within the remaining $m-2$ rounds.
+Spoiler therefore wins within the remaining $m-2$ rounds.
 
 Step 4: Identify the exact threshold
 Step 2 gives Duplicator a winning strategy for $m$ rounds. Step 3 gives Spoiler a winning strategy for $m+1$ rounds. Therefore the least winning length is
