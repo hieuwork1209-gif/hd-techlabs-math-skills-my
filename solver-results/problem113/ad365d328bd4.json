@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-category-theory/problem.md",
+  "source_commit_sha": "bc20e4ad49b17138ce991e91c83b50903020aa77",
+  "problem_blob_sha": "ad365d328bd4488de80c22205b7aad038b1200fe",
+  "statement_sha256": "dcad7da8f470463132988528d59a7364e472ce7e96868c816b75bb94cbf43902",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T05:15:49+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "A natural transformation \\(\\eta:W_P\\Rightarrow W_Q\\) is determined as follows. Evaluate it at \\((p,\\mathrm{id}_P)\\in P\\times P^P\\):\n\\[\n\\eta_P(p,\\mathrm{id}_P)=(\\sigma(p),\\beta_p),\n\\]\nwhere \\(\\sigma(p)\\in Q\\) and \\(\\beta_p:Q\\to P\\). By naturality, for every \\(f:P\\to X\\),\n\\[\n\\eta_X(p,f)=\\bigl(\\sigma(p),\\,q\\mapsto f(\\beta_p(q))\\bigr).\n\\]\n\nThe counit condition gives\n\\[\n\\beta_p(\\sigma(p))=p.\n\\]\nThe comultiplication condition gives, for all \\(p\\in P\\) and \\(q,r\\in Q\\),\n\\[\n\\sigma(\\beta_p(q))=q,\\qquad \\beta_{\\beta_p(q)}(r)=\\beta_p(r).\n\\]\nThus each set\n\\[\nB_p=\\{\\beta_p(q):q\\in Q\\}\n\\]\nis a block on which \\(\\sigma\\) is bijective onto \\(Q\\), and the blocks \\(B_p\\) partition \\(P\\). Conversely, any partition of \\(P\\) into blocks each mapped bijectively to \\(Q\\) defines a comonad morphism.\n\nSo a comonad morphism \\(W_P\\Rightarrow W_Q\\) is exactly a partition of \\(P\\) into \\(|P|/|Q|\\) transversal blocks over \\(Q\\).\n\nNow fix\n\\[\n\\Theta:W_S\\Rightarrow W_T.\n\\]\nSince \\(|S|=abn\\) and \\(|T|=n\\), \\(\\Theta\\) partitions \\(S\\) into \\(ab\\) blocks, each bijective to \\(T\\).\n\nFirst count possible \\(\\Psi:W_U\\Rightarrow W_T\\). Since \\(|U|=bn\\), such a morphism is a partition of \\(U\\) into \\(b\\) blocks, each bijective to \\(T\\). Temporarily label the \\(b\\) blocks: there are \\((bn)!\\) bijections \\(U\\to \\{1,\\dots,b\\}\\times T\\). Forgetting the block labels divides by \\(b!\\), so\n\\[\n\\#\\Psi=\\frac{(bn)!}{b!}.\n\\]\n\nFix such a \\(\\Psi\\). Its \\(b\\) blocks must be matched, inside each \\(\\Phi\\)-block, with \\(b\\) of the \\(ab\\) fixed \\(\\Theta\\)-blocks. A \\(\\Phi\\)-block is therefore a group of \\(b\\) \\(\\Theta\\)-blocks, one assigned to each \\(\\Psi\\)-block. Temporarily label the \\(a\\) resulting \\(\\Phi\\)-blocks. Then the \\(ab\\) \\(\\Theta\\)-blocks can be assigned to the \\(a\\cdot b\\) slots in \\((ab)!\\) ways. Forgetting the labels of the \\(a\\) \\(\\Phi\\)-blocks divides by \\(a!\\). Hence, for fixed \\(\\Psi\\),\n\\[\n\\#\\Phi=\\frac{(ab)!}{a!}.\n\\]\n\nTherefore the number of ordered factorizations is\n\\[\n\\boxed{\\frac{(bn)!(ab)!}{a!\\,b!}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T05:17:20+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/ad365d328bd4.json"
+}
