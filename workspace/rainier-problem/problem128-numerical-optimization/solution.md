@@ -35,9 +35,9 @@ f(v)+g(v)^T(u-v)
 +\frac{1}{2}\|g(u)-g(v)\|^2.
 $$
 This is the interpolation inequality needed for the one-step analysis. It also shows that the worst-case quantity is finite: $\|g(x_0)\|\leq\|x_0-x_*\|\leq1$, so $\|x_1-x_*\|\leq1+h$, while the descent inequality applied from $x_*$ to $x_1$ gives
-$
+$$
 f(x_1)-f_*\leq\frac{1}{2}\|x_1-x_*\|^2.
-$
+$$
 
 Step 2: Construct two lower-bound instances valid for every step size
 Let
@@ -100,7 +100,7 @@ ax_1-\frac{1}{2}a^2
 \frac{1}{2(1+2h)}.
 $$
 Therefore
-$
+$$
 W(h)\geq
 \frac{1}{2}
 \max\left\{(1-h)^2,\frac{1}{1+2h}\right\}.
@@ -197,7 +197,7 @@ f_1-f_*
 \frac{1}{8}.
 $$
 Therefore
-$
+$$
 W\left(\frac{3}{2}\right)\leq\frac{1}{8}.
 $$
 
