@@ -152,8 +152,8 @@ p_*\left(\frac{9}{2}\right)=-\frac{49}{113},
 \qquad
 p_*(8)=\frac{49}{113}.
 $$
-On $[1,2]$, the polynomial decreases from $49/113$ to $1/113$. On $[4,9/2]$, it decreases from $-47/113$ to $-49/113$, and on $[9/2,8]$ it increases from $-49/113$ to $49/113$. Thus
-$$
+On $[1,2]$, the polynomial decreases from $49/113$ to $1/113$. On $[4,\frac{9}{2}]$, it decreases from $-47/113$ to $-49/113$, and on $[\frac{9}{2},8]$ it increases from $-49/113$ to $49/113$. Therefore
+$
 \max_{\lambda\in E}|p_*(\lambda)|
 =
 \frac{49}{113}.
@@ -170,7 +170,7 @@ $$
 \qquad
 \alpha\beta=\frac{8}{113}.
 $$
-Thus $\alpha,\beta$ are the roots of
+Therefore $\alpha,\beta$ are the roots of
 $$
 z^2-\frac{72}{113}z+\frac{8}{113}=0.
 $$
@@ -225,7 +225,7 @@ A polynomial of degree at most $2$ is uniquely determined by its values at three
 $$
 p=p_*.
 $$
-Hence every optimizer has
+Every optimizer therefore has
 $$
 \alpha+\beta=\frac{72}{113},
 \qquad
@@ -264,6 +264,6 @@ $\left(\frac{49}{113},\left\{\frac{36-14\sqrt{2}}{113},\frac{36+14\sqrt{2}}{113}
 
 - minimax polynomials
 - interpolation certificates
-- Richardson iteration
+- richardson iteration
 - equality in triangle inequality
 - optimizer classification
