@@ -192,7 +192,7 @@ $m+1$
 
 ## Classification
 
-**Problem Type:** Symbolic derivation
+**Problem Type:** Optimization
 
 **Answer Type:** Exact symbolic expression
 
