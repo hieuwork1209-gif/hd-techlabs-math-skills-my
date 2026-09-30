@@ -129,7 +129,7 @@ Step 4: Bound cube vertices in an affine subspace and deduce the minimum support
 
 We use the following elementary cube lemma: an affine subspace of $\mathbb{R}^n$ of dimension $a$ contains at most $2^a$ vertices of $\{0,1\}^n$.
 
-Choose $a$ coordinate projections whose restrictions give an affine coordinate system on the subspace. The projection to those coordinates is injective, because two points with the same selected coordinates have zero difference in every affine coordinate. Thus the cube vertices in the subspace inject into $\{0,1\}^a$, proving the bound.
+Let $U$ be the $a$-dimensional direction space. The six coordinate functionals span $U^*$, so one can choose $a$ coordinate functionals whose restrictions form a basis of $U^*$. Projection to those coordinates is then injective on the affine subspace. Hence its cube vertices inject into $\{0,1\}^a$, proving the bound.
 
 Now suppose $\dim E_S\geq4$. With $s=|S|$ and affine dimension $a$,
 $$
