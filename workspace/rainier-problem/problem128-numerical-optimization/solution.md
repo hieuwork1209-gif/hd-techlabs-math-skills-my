@@ -14,8 +14,8 @@ so $f(x)=x^TGx$. Exact minimization in coordinate $i$ has update matrix
 $$
 T_i=I-e_ie_i^TG.
 $$
-Thus
-$$
+Therefore
+$
 T_1=
 \begin{pmatrix}
 0&-\frac{1}{2}&0\\
@@ -49,8 +49,8 @@ x_0^TN_\nu x_0,
 \qquad
 N_\nu=\sum_{\pi}\nu(\pi)T_\pi^TGT_\pi.
 $$
-Hence
-$$
+Therefore
+$
 \rho(\nu)
 =
 \max_{x\neq0}\frac{x^TN_\nu x}{x^TGx},
@@ -135,7 +135,7 @@ T_{213}=T_{231}=
 \frac{1}{4}&0&\frac{1}{4}
 \end{pmatrix}.
 $$
-Thus every reflected law has
+Every reflected law therefore has
 $$
 N=xA_0+yA_1+zA_2.
 $$
@@ -203,7 +203,7 @@ Since the largest generalized eigenvalue is at least every Rayleigh quotient,
 $$
 \rho(\nu)\geq\rho_*
 $$
-for every reflected law, and hence for every permutation law.
+for every reflected law, and therefore for every permutation law.
 
 Step 4: Construct a reshuffling law that attains the lower bound
 Equality in the certificate requires $y=0$. Set
@@ -229,7 +229,7 @@ $$
 +\frac{1}{100}
 +\frac{4\sqrt{14}}{75}=0,
 $$
-which is exactly the equation that yields the displayed value of $x_*$. Thus $\rho_*$ is a generalized eigenvalue of $(N_*,G)$.
+which is exactly the equation that yields the displayed value of $x_*$. Therefore $\rho_*$ is a generalized eigenvalue of $(N_*,G)$.
 
 It remains to show that it is the largest one. Reflection symmetry splits the generalized eigenproblem into the antisymmetric line and the symmetric plane. On the antisymmetric line the eigenvalue is
 $$
@@ -257,8 +257,8 @@ $$
 =
 \frac{9\sqrt{14}}{112}>0.
 $$
-Hence
-$$
+Therefore
+$
 \rho(\nu_*)=\rho_*.
 $$
 
