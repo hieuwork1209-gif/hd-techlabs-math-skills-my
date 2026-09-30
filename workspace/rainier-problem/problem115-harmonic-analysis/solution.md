@@ -34,14 +34,34 @@ q(x)+B(a,x)=q(x+a)+q(a)
 $$
 gives $W_{q_a}(0)=(-1)^{q(a)}W_q(0)$. A positive refinement has $136$ zeros because its zero and one counts have sum $256$ and difference $16$. Hence exactly $136=2^3\cdot17$ refinements have positive Walsh sign.
 
-To count nondegenerate alternating forms on a $2m$-space, choose symplectic pairs successively. When the remaining dimension is $2j$, there are $(2^{2j}-1)2^{2j-1}$ choices for the next ordered pair. Therefore
-$$
-\alpha_{2m}=\frac{|\operatorname{GL}(2m,2)|}{\prod_{j=1}^{m}(2^{2j}-1)2^{2j-1}},
-$$
-so
-$$
-\alpha_8=2^{12}\cdot7\cdot31\cdot127.
-$$
+To count nondegenerate alternating forms on a $2m$-space, fix the standard symplectic form. Every nondegenerate alternating form has a symplectic basis, so $\operatorname{GL}(2m,2)$ acts transitively on these forms by change of basis, with stabilizer $\operatorname{Sp}(2m,2)$. Thus orbit-stabilizer gives
+$
+\alpha_{2m}=\frac{|\operatorname{GL}(2m,2)|}{|\operatorname{Sp}(2m,2)|}.
+$
+To compute the stabilizer order, choose a symplectic basis successively. When the remaining dimension is $2j$, there are $2^{2j}-1$ choices for the first vector of the next pair and $2^{2j-1}$ choices for its partner with pairing $1$. Hence
+$
+|\operatorname{Sp}(2m,2)|=\prod_{j=1}^{m}(2^{2j}-1)2^{2j-1},
+$
+and therefore
+$
+\alpha_{2m}=\frac{|\operatorname{GL}(2m,2)|}{\prod_{j=1}^{m}(2^{2j}-1)2^{2j-1}}.
+$
+For $m=4$,
+$
+|\operatorname{GL}(8,2)|
+=\prod_{i=0}^{7}(2^8-2^i)
+=2^{28}\prod_{i=1}^{8}(2^i-1),
+$
+while
+$
+|\operatorname{Sp}(8,2)|=2^{16}(3)(15)(63)(255).
+$
+Cancelling the common factors gives
+$
+\alpha_8
+=2^{12}\frac{(1)(3)(7)(15)(31)(63)(127)(255)}{(3)(15)(63)(255)}
+=2^{12}\cdot7\cdot31\cdot127.
+$
 The number of admissible positive quadratic phases is consequently
 $$
 N_+=136\alpha_8=2^{15}\cdot7\cdot17\cdot31\cdot127.
@@ -87,20 +107,30 @@ $$
 B(Nx,y)=B(x,Ny),\qquad \ker N=R^\perp.
 $$
 For $u=Nx\in R$ define
-$$
+$
 \omega(u,v)=B(x,v)\qquad(v\in R).
-$$
-This is well-defined, symmetric, and nondegenerate. Since $q(x+Nx)=q(x)$,
-$$
+$
+If $Nx=Nx'$, then $x-x'\in\ker N=R^\perp$, so $B(x-x',v)=0$ for every $v\in R$; hence $\omega$ is well-defined. For $u=Nx$ and $v=Ny$,
+$
+\omega(u,v)=B(x,Ny)=B(Nx,y)=B(y,Nx)=\omega(v,u),
+$
+so it is symmetric. If $\omega(u,v)=0$ for every $v\in R$, writing $u=Nx$ gives $B(x,R)=0$, hence $x\in R^\perp=\ker N$ and $u=0$; thus $\omega$ is nondegenerate. Since $q(x+Nx)=q(x)$,
+$
 \omega(Nx,Nx)=B(x,Nx)=q(Nx),
-$$
+$
 so the diagonal of $\omega$ is $q|_R$.
 
-Conversely, let $R$ be $B$-isotropic and let $\omega$ be nondegenerate symmetric on $R$ with $\omega(r,r)=q(r)$. The perfect pairing identifies $E/R^\perp$ with $R^*$, so there is a unique $N:E\to R$ satisfying
-$$
-\omega(Nx,r)=B(x,r).
-$$
-Because $R$ is isotropic, $N|_R=0$, hence $N^2=0$; taking $r=Nx$ gives $q(x+Nx)=q(x)$. Thus $T=I+N$ is a preserving involution. This establishes a bijection between such involutions and residual pairs $(R,\omega)$.
+Conversely, let $R$ be $B$-isotropic and let $\omega$ be nondegenerate symmetric on $R$ with $\omega(r,r)=q(r)$. The perfect pairing identifies $E/R^\perp$ with $R^*$, while nondegeneracy identifies $R$ with $R^*$ through $u\mapsto\omega(u,\cdot)$. Hence there is a unique linear map $N:E\to R$ satisfying
+$
+\omega(Nx,r)=B(x,r)
+$
+for every $r\in R$, and this map is onto $R$. Because $R$ is isotropic, $N|_R=0$, hence $N^2=0$; taking $r=Nx$ gives $q(x+Nx)=q(x)$. Thus $T=I+N$ is a preserving involution.
+
+The constructions are inverse. Starting from an involution, its original $N$ satisfies the displayed defining equation for the resulting $\omega$, so uniqueness reconstructs the same $N$. Starting from $(R,\omega)$, surjectivity gives $\operatorname{im}N=R$, and for $u=Nx$ the recovered form satisfies
+$
+\omega_N(u,r)=B(x,r)=\omega(Nx,r)=\omega(u,r).
+$
+Thus the same pair $(R,\omega)$ is recovered, establishing the required bijection.
 
 Step 4: Count the two residual types and evaluate their fixed-space Gauss sums
 Let $I_r$ be the number of $r$-dimensional $B$-isotropic subspaces. Counting ordered isotropic bases gives
@@ -116,10 +146,14 @@ Let $S_r$ count totally $q$-singular $r$-spaces. A singular basis $u_1,\ldots,u_
 $$
 2^m+(2^m-1)2^{m-1}=2^{2m-1}+2^{m-1}
 $$
-zeros, since for $q(x,y)=x\cdot y$ there are $2^m$ choices when $x=0$ and $2^{m-1}$ choices of $y$ for each $x\ne0$. Thus it has $(2^{m-1}+1)(2^m-1)$ nonzero singular vectors. Extending ordered singular bases gives
-$$
+zeros, since for $q(x,y)=x\cdot y$ there are $2^m$ choices when $x=0$ and $2^{m-1}$ choices of $y$ for each $x\ne0$. Thus it has $(2^{m-1}+1)(2^m-1)$ nonzero singular vectors. If $U$ is a totally singular $k$-space and $z\in U^\perp$, then for every $u\in U$,
+$
+q(z+u)=q(z)+q(u)+B(z,u)=q(z).
+$
+Therefore $q$ is constant on each coset of $U$ in $U^\perp$, so every nonzero singular vector of $U^\perp/U$ has exactly $2^k$ singular lifts. This explains the factor $2^k$ at the $k$th extension step. Extending ordered singular bases gives
+$
 S_r=\frac{\prod_{k=0}^{r-1}2^k(2^{3-k}+1)(2^{4-k}-1)}{\prod_{k=0}^{r-1}(2^r-2^k)},
-$$
+$
 so
 $$
 (S_1,S_2,S_3,S_4)=(135,1575,2025,270).
@@ -131,13 +165,42 @@ C_0=1+S_2\alpha_2+S_4\alpha_4
 =1+1575+270\cdot28=9136.
 $$
 If $q|_R\ne0$, choose a basis with $q|_R=x_1$ and write
-$$
+$
 [\omega]=\begin{pmatrix}1&b^T\\ b&A\end{pmatrix},
-$$
-where $A$ is alternating. For odd $r$, $A$ has even size; the block is nondegenerate exactly when $A$ is nondegenerate, because $A^{-1}$ is alternating and the Schur complement is $1+b^TA^{-1}b=1$. This gives $2^{r-1}\alpha_{r-1}$ choices. For even $r$, $A$ has odd size; the block is nondegenerate exactly when $\operatorname{rad}A$ is one-dimensional and $b$ is nonzero on that line. There are $(2^{r-1}-1)\alpha_{r-2}$ choices for $A$ by choosing its radical line and a nondegenerate alternating form on the quotient, and $2^{r-2}$ choices for $b$. Hence the count is
-$$
+$
+where $A$ is alternating. Put $\alpha_0=1$.
+
+For odd $r$, the matrix $A$ has even size. If $A$ is nondegenerate, then $A^{-1}$ is alternating, so $b^TA^{-1}b=0$ and the Schur complement is $1$; hence the block is nondegenerate. Conversely, if $A$ is degenerate, its rank is even, so its radical has even dimension at least $2$. A linear functional cannot be nonzero on every vector of such a space, so there is some $0\ne w\in\operatorname{rad}A$ with $b^Tw=0$. Then
+$
+\begin{pmatrix}1&b^T\\ b&A\end{pmatrix}
+\binom{0}{w}=0,
+$
+and the block is degenerate. Thus nondegeneracy is equivalent to nondegeneracy of $A$, giving $2^{r-1}\alpha_{r-1}$ choices.
+
+For even $r$, the matrix $A$ has odd size, so its radical has odd dimension. If $\dim\operatorname{rad}A\geq3$, then again there is some $0\ne w\in\operatorname{rad}A$ with $b^Tw=0$, and $(0,w)$ lies in the radical of $\omega$. Thus a nondegenerate block must have $\operatorname{rad}A=\langle w\rangle$, and it must satisfy $b^Tw=1$. Conversely, assume these two conditions and suppose
+$
+\begin{pmatrix}1&b^T\\ b&A\end{pmatrix}
+\binom{c}{u}=0.
+$
+The lower block equation is $cb+Au=0$. Pairing it with $w$ gives $c\,b^Tw=0$, hence $c=0$. Then $Au=0$, so $u=\lambda w$; the upper equation gives $b^Tu=\lambda b^Tw=0$, hence $\lambda=0$. Therefore the block is nondegenerate.
+
+There are $(2^{r-1}-1)\alpha_{r-2}$ choices for $A$: choose its one-dimensional radical and then a nondegenerate alternating form on the quotient. For each such $A$, exactly $2^{r-2}$ vectors $b$ satisfy $b^Tw=1$. Hence the count is
+$
+(2^{r-1}-1)\alpha_{r-2}2^{r-2}.
+$
+Cancelling the factors in the formula from Step 1 gives
+$
+\alpha_{2m}=2^{m(m-1)}\prod_{j=1}^{m}(2^{2j-1}-1),
+$
+so for even $r$,
+$
+\frac{\alpha_r}{\alpha_{r-2}}
+=2^{r-2}(2^{r-1}-1).
+$
+Therefore
+$
 (2^{r-1}-1)\alpha_{r-2}2^{r-2}=\alpha_r.
-$$
+$
 Therefore
 $
 \begin{aligned}
