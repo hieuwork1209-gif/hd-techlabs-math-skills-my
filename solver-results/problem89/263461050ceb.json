@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "aec5051b6ffa3bfdf9f32c4e23b4718e67486b8d",
+  "problem_blob_sha": "263461050cebf6ea2195505617809d5fdc64ac39",
+  "statement_sha256": "5c00c9b899ec0f29235052b342bea8ca03734df0cda10222cef2c5201d626701",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T14:10:53+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "\\[\n\\boxed{\n(\\wp,\\dim E,m,N,m_2,N_2)\n=\n\\left(\\wp,\\,9,\\,128,\\,72,\\,192,\\,1848\\right)\n}\n\\]\nwhere \\(\\wp\\) is the unique positive root of\n\\[\n14\\cdot 4^p-28\\cdot 3^p+20\\cdot 2^p-7=0,\n\\]\nso numerically\n\\[\n\\wp\\approx 0.32326712814270475.\n\\]\n\nSketch of the computation: diagonalizing the translation-invariant kernel \\(d(0,z)^p\\) on the quotient by characters gives eigenvalues indexed by even character weights \\(r=2,4,6,8\\):\n\\[\n\\lambda_2=5+8\\cdot2^p-14\\cdot4^p,\n\\]\n\\[\n\\lambda_4=1-4\\cdot2^p-4\\cdot3^p+6\\cdot4^p,\n\\]\n\\[\n\\lambda_6=-3+8\\cdot3^p-6\\cdot4^p,\n\\]\n\\[\n\\lambda_8=-7+20\\cdot2^p-28\\cdot3^p+14\\cdot4^p.\n\\]\nThe first eigenvalue to hit \\(0\\) is \\(\\lambda_8\\), giving the equation for \\(\\wp\\). The zero eigenspace is therefore the span of the \\(9\\) weight-\\(8\\) characters, so \\(\\dim E=9\\).\n\nIdentifying this eigenspace with linear forms\n\\[\n\\sum_{i=1}^9 a_i\\varepsilon_i,\\qquad \\varepsilon_i\\in\\{\\pm1\\},\n\\]\nsupport in \\(X\\) is half the number of nonzero sign vectors. A nonzero form can vanish on at most \\(2^8\\) sign vectors, attained exactly by forms proportional to \\(\\varepsilon_i\\pm\\varepsilon_j\\). Hence\n\\[\nm=256-\\frac{2^8}{2}=128,\n\\]\nand there are\n\\[\nN=2\\binom92=72\n\\]\nminimal lines.\n\nFor a \\(2\\)-dimensional subspace, common zeros are the cube points satisfying two independent linear equations. At most \\(2^7\\) sign vectors can satisfy them, attained exactly by two independent signed coordinate identifications. Thus\n\\[\nm_2=256-\\frac{2^7}{2}=192.\n\\]\nCounting such two-equation subspaces: either the two identifications use disjoint pairs,\n\\[\n\\binom94\\cdot 3\\cdot 4=1512,\n\\]\nor they form a connected triple,\n\\[\n\\binom93\\cdot 4=336.\n\\]\nTherefore\n\\[\nN_2=1512+336=1848.\n\\]\n\nFinal answer:\n\\[\n\\boxed{\\left(\\wp,9,128,72,192,1848\\right)}\n\\]\nwith\n\\[\n\\boxed{14\\cdot 4^\\wp-28\\cdot 3^\\wp+20\\cdot 2^\\wp-7=0.}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T14:13:20+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/263461050ceb.json"
+}
