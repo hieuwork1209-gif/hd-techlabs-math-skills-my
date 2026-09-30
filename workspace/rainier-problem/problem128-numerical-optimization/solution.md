@@ -172,7 +172,7 @@ The derivative
 $$
 C'(a)=696a^2+204a+5
 $$
-is positive for $a>0$. Moreover,
+is positive for $a>0$. Also,
 $
 C\left(\frac{3}{20}\right)=-\frac{5043}{250}<0,
 \qquad
