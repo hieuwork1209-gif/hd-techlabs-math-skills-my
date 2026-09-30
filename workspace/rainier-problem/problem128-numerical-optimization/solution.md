@@ -229,7 +229,7 @@ has
 $$
 D'(\beta)=-1+\beta-\frac{2\beta}{\widehat\beta}<0
 $$
-on $[0,\widehat\beta]$, and $D(\widehat\beta)=0$. Hence $D(\beta)>0$ for $\beta<\widehat\beta$. The same increasing relation $r+\beta^2/r$ used in Step 2 gives
+on $[0,\widehat\beta]$, and $D(\widehat\beta)=0$. Therefore $D(\beta)>0$ for $\beta<\widehat\beta$. The same increasing relation $r+\beta^2/r$ used in Step 2 gives
 $$
 \max_{\lambda\in E}r(M(\lambda))\geq\widehat\beta.
 $$
