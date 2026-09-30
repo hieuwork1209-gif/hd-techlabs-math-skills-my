@@ -15,8 +15,8 @@ F(x,y,z)
 =
 \sum_{m\geq0}(x^2+y^2+z^2+xyz)^m.
 $$
-Suppose a contributing monomial uses the factor $xyz$ exactly $k$ times. The remaining exponent in each variable is $n-k$, so it must be even. Hence
-$$
+Suppose a contributing monomial uses the factor $xyz$ exactly $k$ times. The remaining exponent in each variable is $n-k$, so it must be even. Therefore
+$
 k\equiv n\pmod{2}.
 $$
 Writing
@@ -65,7 +65,7 @@ Differentiation gives
 $$
 \phi'(t)
 =
--\frac12\log\mu(t)-\log t+\frac32\log\alpha(t),
+-\frac{1}{2}\log\mu(t)-\log t+\frac{3}{2}\log\alpha(t),
 $$
 and
 $$
@@ -73,8 +73,8 @@ $$
 =
 -\frac{3}{t(1-t)(3-t)}<0
 $$
-for $0<t<1$. Therefore $\phi$ is strictly concave. Moreover,
-$$
+for $0<t<1$. Therefore $\phi$ is strictly concave. Also,
+$
 \phi'(t)\to+\infty
 \quad\text{as }t\to0^+,
 $$
@@ -135,8 +135,8 @@ and
 $$
 \mu(\tau)-\alpha(\tau)=1.
 $$
-Consequently,
-$$
+It follows that
+$
 \begin{aligned}
 \phi(\tau)
 &=
@@ -241,7 +241,7 @@ a_n
 \frac{\sqrt{n}}{2}
 \sqrt{\frac{2\pi}{-\phi''(\tau)}}.
 $$
-Therefore
+Combining the factors gives
 $
 a_n
 \sim
