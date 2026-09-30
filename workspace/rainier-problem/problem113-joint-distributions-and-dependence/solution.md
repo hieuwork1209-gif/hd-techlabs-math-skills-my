@@ -82,21 +82,21 @@ $$
 $$
 Also,
 $$
-\mathbb E[T^2]=\frac52.
+\mathbb E[T^2]=\frac{5}{2}.
 $$
 For the fourth moment, write
 $$
 B-5=\sum_{i=1}^{10}Y_i,
 \qquad
-Y_i\in\left\{-\frac12,\frac12\right\},
+Y_i\in\left\{-\frac{1}{2},\frac{1}{2}\right\},
 $$
 with the $Y_i$ independent and centered. Expanding the fourth power, only the terms $Y_i^4$ and $Y_i^2Y_j^2$ have nonzero expectation, so
 $$
 \mathbb E[T^4]
 =
-10\cdot\frac1{16}
+10\cdot\frac{1}{16}
 +
-6\binom{10}{2}\frac1{16}
+6\binom{10}{2}\frac{1}{16}
 =
 \frac{35}{2}.
 $$
@@ -117,7 +117,7 @@ $$
 &=
 \frac{45}{5040}
 =
-\frac1{112}.
+\frac{1}{112}.
 \end{aligned}
 $$
 
@@ -205,11 +205,11 @@ $$
 Step 4: Recover the unique maximizing distribution and verify attainability
 Normalization gives
 $$
-a+b+c=\frac12.
+a+b+c=\frac{1}{2}.
 $$
 The second and fourth centered moments from Step 2 give
 $$
-25a+4b+c=\frac54
+25a+4b+c=\frac{5}{4}
 $$
 and
 $$
@@ -217,19 +217,19 @@ $$
 $$
 Subtracting the normalization equation from the second-moment equation gives
 $$
-8a+b=\frac14.
+8a+b=\frac{1}{4}.
 $$
 Subtracting the second-moment equation from the fourth-moment equation gives
 $$
-50a+b=\frac58.
+50a+b=\frac{5}{8}.
 $$
 Solving gives
 $$
-a=\frac1{112},
+a=\frac{1}{112},
 \qquad
-b=\frac5{28},
+b=\frac{5}{28},
 \qquad
-c=\frac5{16}.
+c=\frac{5}{16}.
 $$
 
 Define an exchangeable law by assigning
@@ -237,9 +237,9 @@ $$
 \mathbb P(S=s)
 =
 \begin{cases}
-\frac1{112},&s\in\{0,10\},\\
-\frac5{28},&s\in\{3,7\},\\
-\frac5{16},&s\in\{4,6\},\\
+\frac{1}{112},&s\in\{0,10\},\\
+\frac{5}{28},&s\in\{3,7\},\\
+\frac{5}{16},&s\in\{4,6\},\\
 0,&\text{otherwise},
 \end{cases}
 $$
@@ -247,16 +247,16 @@ and, conditional on $S=s$, choosing uniformly among the $\binom{10}{s}$ binary v
 
 It has
 $$
-\mathbb P(S=0)=\frac1{112},
+\mathbb P(S=0)=\frac{1}{112},
 $$
 so the bound from Step 2 is attained. The equality-support and moment arguments force the same masses for every maximizing law, making the maximizing distribution unique.
-Final Answer: $\boxed{\left(\frac1{112},0,0,\frac5{28},\frac5{16},0,\frac5{16},\frac5{28},0,0,\frac1{112}\right)}$
+Final Answer: $\boxed{\frac{1}{112}\left(1,0,0,20,35,0,35,20,0,0,1\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac1{112},0,0,\frac5{28},\frac5{16},0,\frac5{16},\frac5{28},0,0,\frac1{112}\right)$
+$\frac{1}{112}\left(1,0,0,20,35,0,35,20,0,0,1\right)$
 
 ---
 
