@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "7e52dca5752b561856e898456242721ee801d60b",
+  "problem_blob_sha": "4a7b612b318f4386d97b871a8608cefaff8c89c6",
+  "statement_sha256": "e3dd40a8f9fdba4e4da1a2d18a3ebe0060a64598d7297e419e4cdccf4e65c4c0",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T15:28:03+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(A_r\\) be the \\(20\\times20\\) adjacency matrix for pairs of triples at Johnson distance \\(r\\). Then\n\\[\nD_p=(d(A,B)^p)_{A,B}=A_1+2^pA_2+3^pA_3.\n\\]\nThe Johnson scheme \\(J(6,3)\\) has four common eigenspaces of dimensions\n\\[\n1,\\ 5,\\ 9,\\ 5.\n\\]\nOn the three nonconstant eigenspaces the eigenvalues of \\(A_1,A_2,A_3\\) are\n\\[\n\\begin{array}{c|ccc}\n& A_1&A_2&A_3\\\\ \\hline\nV_1&3&-3&-1\\\\\nV_2&-1&-1&1\\\\\nV_3&-3&3&-1\n\\end{array}\n\\]\nso the eigenvalues of \\(D_p\\) on the zero-sum subspace are\n\\[\n\\theta_1=3-3\\cdot2^p-3^p,\\qquad\n\\theta_2=-1-2^p+3^p,\\qquad\n\\theta_3=-3+3\\cdot2^p-3^p.\n\\]\nFor \\(0<p\\le1\\), concavity gives \\(3^p\\le2^p+1\\), hence \\(\\theta_2\\le0\\). Also\n\\[\ng(p)=3^p-3\\cdot2^p+3\n\\]\nis decreasing on \\([0,1]\\), since \\(g'(p)=3^p\\log3-3\\cdot2^p\\log2<0\\) there, and \\(g(1)=0\\), so \\(\\theta_3\\le0\\). Finally \\(\\theta_1<0\\). For \\(p>1\\), \\(3^p>2^p+1\\), so \\(\\theta_2>0\\). Thus\n\\[\n\\wp=1.\n\\]\n\nAt \\(p=1\\), the kernel on the zero-sum subspace is\n\\[\nE=V_2\\oplus V_3,\n\\]\nso\n\\[\n\\dim E=9+5=14.\n\\]\nEquivalently, for \\(c=(c_A)\\),\n\\[\n\\sum_{A,B}c_Ac_Bd(A,B)\n=-\\sum_{i=1}^6\\left(\\sum_{A\\ni i}c_A\\right)^2,\n\\]\nso\n\\[\nE=\\left\\{c:\\sum_{A\\ni i}c_A=0\\text{ for every }i\\in[6]\\right\\}.\n\\]\n\nNow let \\(S\\subseteq X\\). A subspace of \\(E\\) supported in \\(S\\) has dimension\n\\[\n|S|-\\operatorname{rank} M_S,\n\\]\nwhere \\(M_S\\) is the \\(6\\times |S|\\) incidence matrix of the triples in \\(S\\). Hence a four-dimensional subspace supported in \\(S\\) requires\n\\[\n|S|-\\operatorname{rank}M_S\\ge4.\n\\]\n\nThe minimum is \\(8\\). Indeed, if \\([6]\\) is partitioned into three pairs, say\n\\[\n\\{1,2\\}\\sqcup\\{3,4\\}\\sqcup\\{5,6\\},\n\\]\nthen the eight triples choosing one element from each pair have incidence rank \\(4\\), so their kernel has dimension \\(8-4=4\\). Conversely, any \\(S\\) with \\(|S|\\le7\\) has \\(\\operatorname{rank}M_S\\ge |S|-3\\), so the kernel dimension is at most \\(3\\). Equality for \\(|S|=8\\) occurs exactly for these “one from each pair” supports. Therefore\n\\[\nd_4=8.\n\\]\n\nThere are\n\\[\n\\frac{6!}{2^3\\,3!}=15\n\\]\npartitions of \\([6]\\) into three unordered pairs, and each gives one extremal four-dimensional subspace. Hence\n\\[\nN_4=15.\n\\]\n\nSo \\(\\mathcal M\\) is naturally the set of perfect matchings of \\(K_6\\). Two extremal subspaces intersect nontrivially exactly when the corresponding pair partitions share one pair. Thus \\(\\Gamma\\) is the graph on perfect matchings of \\(K_6\\), adjacent when they share an edge.\n\nFor a fixed matching, choose the shared edge in \\(3\\) ways; on the remaining four vertices there are \\(2\\) matchings different from the original. Thus\n\\[\nk=3\\cdot2=6.\n\\]\nIf two matchings are adjacent, they share one edge; the only third matching adjacent to both and containing that shared edge is obtained by using the third matching on the remaining four vertices, so\n\\[\n\\lambda=1.\n\\]\nIf two matchings are nonadjacent, their union is a \\(6\\)-cycle, and exactly the three alternate perfect matchings of that cycle meet both, so\n\\[\n\\mu=3.\n\\]\nThus \\(\\Gamma\\) is strongly regular with parameters \\((15,6,1,3)\\).\n\n\\[\n\\boxed{(\\wp,\\dim E,d_4,N_4,k,\\lambda,\\mu)=(1,14,8,15,6,1,3)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T15:31:03+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/4a7b612b318f.json"
+}
