@@ -58,4 +58,4 @@ Determine exactly the number of comonad morphisms $W_S\Rightarrow W_T$.
 
 ## Domain Explanation
 
-This problem asks for the exact classification and count of comonad morphisms between two store comonads on finite sets. The main reasoning uses naturality, the comonad counit and comultiplication equations, and reconstruction of the corresponding product decomposition, so Logic, Set Theory, and Foundations / Category theory is the primary domain. The final finite counting step is secondary to the categorical classification.
+This problem asks for the exact classification and count of comonad morphisms between two store comonads on finite sets. The main reasoning uses naturality, the comonad counit and comultiplication equations, and reconstruction of the corresponding product decomposition, so Logic, Set Theory, and Foundations / Category theory is the primary domain. Although the resulting identities also resemble lawful state-update rules from type-theoretic programming, the requested objects are morphisms of comonads, so Category theory is more direct than Type theory and formal systems; the final finite counting step is secondary.
