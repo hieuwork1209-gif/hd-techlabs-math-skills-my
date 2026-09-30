@@ -23,23 +23,23 @@ Then Spoiler can force a win in at most $s$ further rounds.
 Use induction on $s$. For $s=0$, the smaller distance is $0$ or $1$. Distance $0$ detects equality, while distance $1$ detects the successor relation, so the current correspondence already fails to be a partial isomorphism.
 
 Now let $s\geq1$, and suppose without loss of generality that
-$
+$$
 d<e,
 \qquad
 d\leq2^s.
-$
+$$
 If
-$
+$$
 d\leq2^{s-1},
-$
+$$
 the induction hypothesis with $s-1$ already applies. Otherwise
-$
+$$
 2^{s-1}<d\leq2^s.
-$
+$$
 Spoiler plays an interior vertex on the directed path of length $d$ so that the two directed subpaths both have length at most
-$
+$$
 2^{s-1}.
-$
+$$
 If Duplicator matched both subpath lengths exactly, concatenating the two corresponding directed paths in the other structure would give a directed walk of length $d$ from the first endpoint to the second. Its directed distance would then be at most $d$, contradicting $e>d$. Therefore one of the two new ordered pebble pairs has unequal directed distances and smaller value at most $2^{s-1}$. The induction hypothesis applies.
 
 Step 2: Maintain a truncated-distance invariant for Duplicator
@@ -60,13 +60,13 @@ $$
 or else both directed distances are at least $2^{s+1}$, where $\infty$ is larger than every finite number.
 
 Throughout the remaining game,
-$
+$$
 s\leq m-1,
-$
+$$
 so every directed cycle has length at least
-$
+$$
 2^m\geq2^{s+1}.
-$
+$$
 Therefore every oriented arc of length below $2^{s+1}$ is unambiguous and cannot wrap around a cycle.
 
 Assume the invariant holds with $s\geq1$ rounds remaining and Spoiler chooses a new vertex $x$. Let $\mathcal N$ be the set of old pebbles $x_i$ for which
@@ -82,7 +82,7 @@ Suppose first that $\mathcal N$ is nonempty. Choose an anchor $x_i\in\mathcal N$
 
 For any other pebble $x_j\in\mathcal N$, the vertices $x_i,x_j,x$ lie on an oriented arc of length less than $2^{s+1}$. The current invariant fixes the signed offset between $x_i$ and $x_j$, because one of their two directed distances is below $2^{s+1}$. The same offset calculation shows that both directed distances between $x$ and $x_j$ are matched exactly whenever they are below $2^s$.
 
-Now take an old pebble $x_j\notin\mathcal N$. If either directed distance between $y$ and $y_j$ were less than $2^s$, then $y_i,y_j,y$ would lie on an oriented arc of length less than $2^{s+1}$. The current invariant would force the same directed offsets in the first structure, putting $x_j$ in $\mathcal N$, a contradiction. Thus all new distances to pebbles outside $\mathcal N$ are at least $2^s$. The invariant holds with $s-1$ rounds remaining.
+Now take an old pebble $x_j\notin\mathcal N$. If either directed distance between $y$ and $y_j$ were less than $2^s$, then $y_i,y_j,y$ would lie on an oriented arc of length less than $2^{s+1}$. The current invariant would force the same directed offsets in the first structure, putting $x_j$ in $\mathcal N$, a contradiction. All new distances to pebbles outside $\mathcal N$ are therefore at least $2^s$. The invariant holds with $s-1$ rounds remaining.
 
 Suppose instead that $\mathcal N$ is empty. Duplicator chooses $y$ so that both directed distances between $y$ and every old response pebble are at least $2^s$. Such a vertex exists. At this stage at most
 $$
