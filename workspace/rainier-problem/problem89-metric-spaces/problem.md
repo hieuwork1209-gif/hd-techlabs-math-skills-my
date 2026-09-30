@@ -4,14 +4,13 @@
 
 Let
 $$
-X=\mathbb{F}_2^9/\langle\mathbf{1}\rangle,
-\qquad
-\mathbf{1}=(1,\ldots,1).
+V=\mathbb{F}_2^3\setminus\{0\}.
 $$
-For a class $[x]\in X$, let $|x|$ denote Hamming weight and define the folded Hamming metric
+Form the bipartite graph with point-vertices $P_v$ and line-vertices $L_u$, indexed by $u,v\in V$, where
 $$
-d([x],[y])=\min\{|x-y|,9-|x-y|\}.
+P_v\sim L_u\iff u\cdot v=0.
 $$
+Give its $14$ vertices the shortest-path metric $d$.
 
 For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_x)_{x\in X}$ with $\sum_xc_x=0$ satisfies
 $$
@@ -27,29 +26,18 @@ E=\left\{c\in\mathbb{R}^{X}:\sum_xc_x=0,\
 \sum_{x,y\in X}c_xc_y d(x,y)^{\wp}=0\right\}.
 $$
 
-For $c\in E$, write
-$$
-\operatorname{supp}(c)=\{x\in X:c_x\neq0\}.
-$$
-Let
-$$
-m=\min_{0\neq c\in E}|\operatorname{supp}(c)|,
-$$
-and let $N$ be the number of one-dimensional subspaces of $E$ spanned by vectors whose support has size $m$.
-
 For a subspace $L\leq E$, write
 $$
 \operatorname{supp}(L)=\{x\in X:\text{some }c\in L\text{ has }c_x\neq0\}.
 $$
-Define
+For $1\leq r\leq\dim E$, define
 $$
-m_2=\min_{\substack{L\leq E\\ \dim L=2}}|\operatorname{supp}(L)|,
+d_r=\min_{\substack{L\leq E\\ \dim L=r}}|\operatorname{supp}(L)|.
 $$
-and let $N_2$ be the number of two-dimensional subspaces attaining $m_2$.
 
 Determine
 $$
-(\wp,\dim E,m,N,m_2,N_2).
+\left(\wp,\dim E,(d_1,\ldots,d_{\dim E})\right).
 $$
 
 ---
@@ -67,4 +55,4 @@ $$
 
 ## Domain Explanation
 
-The primary object is a finite quotient metric, and the problem asks for its supremal negative type together with first- and second-dimensional support extremals of the critical equality space, so Analysis / Metric spaces is the natural primary classification. Finite Fourier analysis identifies the critical equality space, while separate extremal and compatibility arguments determine and classify the minimizing vectors and planes.
+The primary object is the shortest-path metric on the Heawood graph, and the problem asks for its supremal negative type together with the generalized support hierarchy of the critical equality space, so Analysis / Metric spaces is the natural primary classification. Spectral graph methods identify the equality space, while the decisive support bounds come from the self-dual incidence geometry of the Fano plane.
