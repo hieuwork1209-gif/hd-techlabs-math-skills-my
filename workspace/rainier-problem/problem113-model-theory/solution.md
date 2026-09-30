@@ -23,16 +23,24 @@ Then Spoiler can force a win in at most $s$ further rounds.
 Use induction on $s$. For $s=0$, the smaller distance is $0$ or $1$. Distance $0$ detects equality, while distance $1$ detects the successor relation, so the current correspondence already fails to be a partial isomorphism.
 
 Now let $s\geq1$, and suppose without loss of generality that
-$$
+$
 d<e,
 \qquad
 d\leq2^s.
-$$
-Spoiler plays a midpoint vertex on the directed path of length $d$. The two directed subpaths have lengths at most
-$$
+$
+If
+$
+d\leq2^{s-1},
+$
+the induction hypothesis with $s-1$ already applies. Otherwise
+$
+2^{s-1}<d\leq2^s.
+$
+Spoiler plays an interior vertex on the directed path of length $d$ so that the two directed subpaths both have length at most
+$
 2^{s-1}.
-$$
-If Duplicator matched both subpath lengths exactly, concatenating the two corresponding directed paths in the other structure would give a directed walk of length $d$ from the first endpoint to the second. Hence its directed distance would be at most $d$, contradicting $e>d$. Therefore one of the two new ordered pebble pairs has unequal directed distances and smaller value at most $2^{s-1}$. The induction hypothesis applies.
+$
+If Duplicator matched both subpath lengths exactly, concatenating the two corresponding directed paths in the other structure would give a directed walk of length $d$ from the first endpoint to the second. Its directed distance would then be at most $d$, contradicting $e>d$. Therefore one of the two new ordered pebble pairs has unequal directed distances and smaller value at most $2^{s-1}$. The induction hypothesis applies.
 
 Step 2: Maintain a truncated-distance invariant for Duplicator
 Let
@@ -62,7 +70,7 @@ $$
 
 Suppose first that $\mathcal N$ is nonempty. Choose an anchor $x_i\in\mathcal N$. The position of $x$ relative to $x_i$ is determined uniquely by one of the two directed distances, which is less than $2^s$. Duplicator places $y$ at the same directed offset from the corresponding anchor $y_i$.
 
-For any other pebble $x_j\in\mathcal N$, the vertices $x_i,x_j,x$ lie on an oriented arc of length less than $2^{s+1}$. The current invariant fixes the directed offset from $x_i$ to $x_j$, so the same offset calculation shows that both directed distances between $x$ and $x_j$ are matched exactly whenever they are below $2^s$.
+For any other pebble $x_j\in\mathcal N$, the vertices $x_i,x_j,x$ lie on an oriented arc of length less than $2^{s+1}$. The current invariant fixes the signed offset between $x_i$ and $x_j$, because one of their two directed distances is below $2^{s+1}$. The same offset calculation shows that both directed distances between $x$ and $x_j$ are matched exactly whenever they are below $2^s$.
 
 Now take an old pebble $x_j\notin\mathcal N$. If either directed distance between $y$ and $y_j$ were less than $2^s$, then $y_i,y_j,y$ would lie on an oriented arc of length less than $2^{s+1}$. The current invariant would force the same directed offsets in the first structure, putting $x_j$ in $\mathcal N$, a contradiction. Thus all new distances to pebbles outside $\mathcal N$ are at least $2^s$. The invariant holds with $s-1$ rounds remaining.
 
@@ -74,7 +82,7 @@ vertices have already been pebbled. For one old pebble, the forbidden vertices c
 $$
 2^{s+1}-1
 $$
-vertices. Thus the total number of forbidden vertices is at most
+vertices. The total number of forbidden vertices is therefore at most
 $$
 (m-s)(2^{s+1}-1).
 $$
@@ -92,7 +100,7 @@ k(2^{m-k+1}-1)
 <
 2^{m+1},
 $$
-the total number of vertices in either structure. Hence an admissible $y$ exists, and all new ordered distances are at least $2^s$.
+the total number of vertices in either structure. Therefore an admissible $y$ exists, and all new ordered distances are at least $2^s$.
 
 After the first response the invariant is vacuous except for one pebble pair, so Duplicator maintains it through all remaining rounds. When no rounds remain, distances $0$ and $1$ have been preserved exactly, which is precisely preservation of equality and the successor relation. Therefore Duplicator wins the $m$-round game.
 
