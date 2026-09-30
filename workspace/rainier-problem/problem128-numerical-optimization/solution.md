@@ -162,26 +162,35 @@ $$
 
 Step 4: Construct data attaining every inequality in the upper bound
 Let
-$$
-r=\frac{1}{2\theta^2},
-\qquad
+$
+r=\frac{1}{2\theta^2}.
+$
+Equality in the final arithmetic-geometric mean inequality of Step 3 requires
+$
+u_2^2=\frac{2}{S}.
+$
+Then $v=1+u_2^2/2=1+1/S$. Equality in
+$
+5u_1^2+\frac{v^2}{u_1^2}\geq2\sqrt{5}\,v
+$
+requires $u_1^2=v/\sqrt{5}$, and equality in the first arithmetic-geometric mean bound requires $u_0^2=v+u_1^2$. Therefore set
+$
 u_2=\sqrt{\frac{2}{S}},
 \qquad
 v=1+\frac{1}{S},
-$$
-$$
+\qquad
 u_1=\sqrt{\frac{v}{\sqrt{5}}},
 \qquad
 u_0=\sqrt{v+u_1^2}.
-$$
-These are exactly the equality conditions in Step 3. Define
-$$
+$
+Equality in the three original lower bounds for $A_i$ then forces
+$
 A_0=2u_0,
 \qquad
 A_1=u_1+\frac{v}{u_1},
 \qquad
 A_2=\frac{1}{u_2}+\frac{u_2}{2}.
-$$
+$
 The equalities in Step 3 give
 $$
 A_0^2+A_1^2+A_2^2=2\theta^2.
@@ -238,20 +247,28 @@ $$
 F_i=a_is_i-\frac{1}{2}s_i^2
 \qquad(i=0,1,2).
 $$
-Finally set
-$$
+To choose the locations, write
+$
+x_1=x_0-\alpha g_0,
+\qquad
+x_2=x_0-\beta g_0-\gamma g_1.
+$
+Making the reverse interpolation inequalities for the pairs $(0,1)$, $(0,2)$, and $(1,2)$ tight requires, respectively,
+$
+\alpha s_0^2=s_0^2+s_1^2,
+\qquad
+\beta s_0^2=s_0^2+s_1^2+s_2^2,
+\qquad
+\gamma s_1^2=s_1^2+s_2^2.
+$
+These conditions force
+$
 \alpha=1+\frac{s_1^2}{s_0^2},
 \qquad
 \beta=1+\frac{s_1^2+s_2^2}{s_0^2},
 \qquad
-\gamma=1+\frac{s_2^2}{s_1^2},
-$$
-and
-$$
-x_1=x_0-\alpha g_0,
-\qquad
-x_2=x_0-\beta g_0-\gamma g_1.
-$$
+\gamma=1+\frac{s_2^2}{s_1^2}.
+$
 
 Step 5: Build a smooth convex interpolant and close the lower bound
 Include the minimizer data
