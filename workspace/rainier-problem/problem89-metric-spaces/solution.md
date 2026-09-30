@@ -91,15 +91,15 @@ It remains to prove that every cyclic ordering of the Petersen vertices has some
 
 Step 4: Prove the circular bandwidth lower bound
 
-Assume for contradiction that $M(f)\leq2$. Pull the Petersen edges back to the ten cycle positions. The resulting graph $G$ is a copy of the Petersen graph contained in the square $C_{10}^2$, whose edges join positions at cyclic distance $1$ or $2$.
+Assume for contradiction that $M(f)\leq2$. Pull the Petersen edges back to the ten cycle positions. The resulting graph $G$ is a copy of the Petersen graph contained in the square $C_{10}^{2}$, whose edges join positions at cyclic distance $1$ or $2$.
 
-The graph $C_{10}^2$ is $4$-regular, whereas $G$ is $3$-regular. Therefore
+The graph $C_{10}^{2}$ is $4$-regular, whereas $G$ is $3$-regular. Therefore
 $$
-F=E(C_{10}^2)\setminus E(G)
+F=E(C_{10}^{2})\setminus E(G)
 $$
 is a perfect matching.
 
-The ten triangles of $C_{10}^2$ are exactly
+The ten triangles of $C_{10}^{2}$ are exactly
 $$
 T_i=\{i,i+1,i+2\},
 \qquad i\in\mathbb{Z}/10\mathbb{Z}.
