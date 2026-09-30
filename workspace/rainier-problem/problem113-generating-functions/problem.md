@@ -4,15 +4,15 @@
 
 Let
 $$
-F(x,y,z)=\frac{1}{1-x-y-z-xyz},
+F(x,y,z)=\frac{1}{1-x^2-y^2-z^2-xyz},
 $$
 and define
 $$
 a_n=[x^ny^nz^n]F(x,y,z).
 $$
-Let $q>3$ be the unique real root of
+Let $q>1$ be the unique real root of
 $$
-q^3-3q^2-1=0.
+q^3-3q-1=0.
 $$
 
 Determine exactly
@@ -35,4 +35,4 @@ $$
 
 ## Domain Explanation
 
-This problem asks for the sharp diagonal asymptotic constant of a rational multivariate generating function. The main work starts from exact diagonal coefficient extraction and then analyzes the resulting coefficient sum to obtain its saddle and Gaussian prefactor, so Discrete Mathematics and Combinatorics / Generating functions is the primary classification. Algebra, Functions, and Trigonometry / Polynomial and rational functions is a close secondary fit because the source is rational, but the requested object is a diagonal coefficient asymptotic rather than an algebraic property of the rational function itself.
+This problem asks for the sharp diagonal asymptotic constant of a symmetric rational multivariate generating function. Exact coefficient extraction produces a parity-restricted sum, and the asymptotic evaluation requires both its saddle and the spacing of the admissible lattice. Therefore Discrete Mathematics and Combinatorics / Generating functions is the primary classification. Algebra, Functions, and Trigonometry / Polynomial and rational functions is secondary because the rational function is the source of the coefficient sequence rather than the final algebraic object being studied.
