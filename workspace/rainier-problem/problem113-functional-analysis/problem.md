@@ -2,12 +2,13 @@
 
 ## LaTeX (Normalized)
 
-Let $\mathcal H$ be the set of real-valued odd functions $f$ on $[-1,1]$ such that
-
-- $f$ is absolutely continuous;
-- $f(-1)=f(1)=0$;
-- $f'\in L^2(-1,1)$;
-- 
+Let $\mathcal H$ be the set of real-valued absolutely continuous odd functions $f$ on $[-1,1]$ such that
+$$
+f(-1)=f(1)=0,
+\qquad
+f'\in L^2(-1,1),
+$$
+and
 $$
 \int_{-1}^1xf(x)\,dx=0,
 \qquad
