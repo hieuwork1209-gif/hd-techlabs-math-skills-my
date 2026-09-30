@@ -34,7 +34,10 @@ f(u)\geq
 f(v)+g(v)^T(u-v)
 +\frac{1}{2}\|g(u)-g(v)\|^2.
 $$
-This is the interpolation inequality needed for the one-step analysis.
+This is the interpolation inequality needed for the one-step analysis. It also shows that the worst-case quantity is finite: $\|g(x_0)\|\leq\|x_0-x_*\|\leq1$, so $\|x_1-x_*\|\leq1+h$, while the descent inequality applied from $x_*$ to $x_1$ gives
+$
+f(x_1)-f_*\leq\frac{1}{2}\|x_1-x_*\|^2.
+$
 
 Step 2: Construct two lower-bound instances valid for every step size
 Let
@@ -43,7 +46,7 @@ W(h)=
 \sup\left\{
 f(x_1)-f_*:
 x_1=x_0-h\nabla f(x_0),\ 
-f\in\mathcal F,\ 
+f\in\mathcal F_d,\ 
 \|x_0-x_*\|\leq1
 \right\},
 $$
@@ -76,7 +79,7 @@ Its derivative is the clipping map
 $$
 f_a'(x)=\max\{-a,\min\{x,a\}\},
 $$
-which is nondecreasing and $1$-Lipschitz. Therefore $f_a$ is convex and belongs to $\mathcal F$, with minimizer $0$.
+which is nondecreasing and $1$-Lipschitz. Therefore $f_a$ is convex and belongs to $\mathcal F_1$, with minimizer $0$.
 
 Choose
 $$
