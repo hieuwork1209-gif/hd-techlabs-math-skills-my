@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-extremal-combinatorics/problem.md",
+  "source_commit_sha": "9fec4051db3ff1fe219e3128cbabf6badfef9de2",
+  "problem_blob_sha": "77400b8c1a81feed92d196f5ed1c324ac54994c2",
+  "statement_sha256": "020dcb5057467dc7e39cda522e7431f5755709e3279107bc76b01f50572fb7f7",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T14:25:47+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(X\\) be the set of all \\(3\\)-dimensional subspaces of \\(V=\\mathbb F_2^6\\). Put a graph on \\(X\\) by joining \\(U,W\\) when\n\\[\nU\\cap W=\\{0\\}.\n\\]\nThen \\(\\mathcal F\\) is exactly an independent set in this graph.\n\nWe will prove that every independent set has size at most \\(155\\), and then exhibit one of size \\(155\\).\n\nFirst count the graph parameters. The number of vertices is\n\\[\n|X|=\\binom{6}{3}_2\n=\\frac{(2^6-1)(2^5-1)(2^4-1)}{(2^3-1)(2^2-1)(2-1)}\n=\\frac{63\\cdot31\\cdot15}{7\\cdot3}=1395.\n\\]\nFor a fixed \\(3\\)-space \\(U\\), its complements are graphs of linear maps from a fixed complementary \\(3\\)-space to \\(U\\), so the degree is\n\\[\nd=2^{3\\cdot3}=512.\n\\]\n\nWe need the smallest eigenvalue of this disjointness graph. Let \\(A\\) be its adjacency matrix. For a point \\(p\\), meaning a \\(1\\)-dimensional subspace, let \\(v_p\\) be the indicator vector of the \\(3\\)-spaces containing \\(p\\). If \\(U\\) is a \\(3\\)-space, then\n\\[\n(A v_p)(U)=\n\\begin{cases}\n0,&p\\subset U,\\\\\n64,&p\\not\\subset U.\n\\end{cases}\n\\]\nIndeed, if \\(p\\not\\subset U\\), the complements of \\(U\\) containing \\(p\\) are graphs of linear maps killing the line \\(p\\), giving \\(2^{3(3-1)}=64\\) choices. Hence\n\\[\nA v_p=64(\\mathbf 1-v_p),\n\\]\nso on the span of point-incidence vectors modulo constants the eigenvalue is \\(-64\\).\n\nSimilarly, for a line \\(\\ell\\), meaning a \\(2\\)-dimensional subspace, let \\(v_\\ell\\) be the indicator vector of the \\(3\\)-spaces containing \\(\\ell\\). Then\n\\[\n(A v_\\ell)(U)=\n\\begin{cases}\n8,&U\\cap \\ell=\\{0\\},\\\\\n0,&U\\cap \\ell\\neq\\{0\\}.\n\\end{cases}\n\\]\nThus\n\\[\nA v_\\ell=8\\left(\\mathbf 1-\\sum_{p\\subset \\ell}v_p+2v_\\ell\\right),\n\\]\nso on the next quotient layer the eigenvalue is \\(16\\).\n\nFinally, using the incidence matrices with points and lines, for two \\(3\\)-spaces with \\(m=\\dim(U\\cap W)\\), the identity\n\\[\nA=J-B_1+2B_2-8I\n\\]\nholds entrywise, where \\(B_1(U,W)\\) counts points in \\(U\\cap W\\), and \\(B_2(U,W)\\) counts lines in \\(U\\cap W\\). Checking \\(m=0,1,2,3\\) gives respectively\n\\[\n1,\\ 0,\\ 0,\\ 0.\n\\]\nTherefore on the final orthogonal layer the eigenvalue is \\(-8\\). Hence the least eigenvalue of \\(A\\) is\n\\[\n\\lambda_{\\min}=-64.\n\\]\n\nNow apply Hoffman’s bound. If \\(\\mathcal F\\) is independent and \\(s=|\\mathcal F|\\), then for its indicator vector \\(x\\),\n\\[\nx^T A x=0.\n\\]\nWriting \\(x=\\frac{s}{1395}\\mathbf 1+y\\), with \\(y\\perp \\mathbf 1\\), gives\n\\[\n0=x^T A x\n\\ge \\frac{512s^2}{1395}-64\\left(s-\\frac{s^2}{1395}\\right).\n\\]\nThus\n\\[\n\\frac{576s^2}{1395}\\le 64s,\n\\]\nso\n\\[\ns\\le \\frac{64\\cdot1395}{576}=155.\n\\]\n\nThis bound is attained: fix a point \\(p\\subset V\\), and take all \\(3\\)-dimensional subspaces containing \\(p\\). Any two meet at least in \\(p\\). Their number is\n\\[\n\\binom{5}{2}_2\n=\\frac{(2^5-1)(2^4-1)}{(2^2-1)(2-1)}\n=\\frac{31\\cdot15}{3}=155.\n\\]\n\nTherefore the maximum possible value is\n\\[\n\\boxed{155}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T14:27:30+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/77400b8c1a81.json"
+}

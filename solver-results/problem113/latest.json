@@ -1,9 +1,9 @@
 {
   "problem": "problem113",
   "branch": "adversary/problem113",
-  "problem_path": "workspace/rainier-problem/problem113-functional-analysis/problem.md",
-  "problem_blob_sha": "eb082ec6108a316b4b45b24b9dfe8d3f7d98ccc6",
-  "source_commit_sha": "64329012143e5cef26bc018345bcaddc485d384e",
+  "problem_path": "workspace/rainier-problem/problem113-extremal-combinatorics/problem.md",
+  "problem_blob_sha": "77400b8c1a81feed92d196f5ed1c324ac54994c2",
+  "source_commit_sha": "9fec4051db3ff1fe219e3128cbabf6badfef9de2",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-30T14:02:15+00:00",
-  "result_file": "solver-results/problem113/eb082ec6108a.json"
+  "completed_at": "2026-09-30T14:27:30+00:00",
+  "result_file": "solver-results/problem113/77400b8c1a81.json"
 }
