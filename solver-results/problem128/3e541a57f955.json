@@ -1,0 +1,22 @@
+{
+  "problem": "problem128",
+  "branch": "adversary/problem128",
+  "problem_path": "workspace/rainier-problem/problem128-numerical-optimization/problem.md",
+  "source_commit_sha": "6a74635169686c54d4fdb3806298f628f17c6c1f",
+  "problem_blob_sha": "3e541a57f955503cc241373286d4a1151785cde0",
+  "statement_sha256": "e899b3a5d3044c9a0460164d195bbfbf909594062abefa429a15de3f862bd7ea",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T14:00:02+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(x_*=0\\) and \\(f_*=0\\), after translating. Write\n\n\\[\nf_i=f(x_i),\\qquad g_i=\\nabla f(x_i),\\qquad a_i=\\|g_i\\|^2 \\quad (i=0,1,2).\n\\]\n\nBecause the searches are exact, the gradients are orthogonal to the searched spaces:\n\n\\[\ng_1\\perp g_0,\\qquad g_2\\perp g_0,\\qquad g_2\\perp g_1.\n\\]\n\nAlso \\(x_i-x_0\\in \\operatorname{span}\\{g_0,\\dots,g_{i-1}\\}\\), so\n\n\\[\n\\langle g_i,x_0\\rangle=\\langle g_i,x_i\\rangle .\n\\]\n\nFor every convex \\(1\\)-smooth \\(f\\),\n\n\\[\n0=f_*\\ge f_i+\\langle g_i,-x_i\\rangle+\\frac12\\|g_i\\|^2,\n\\]\n\nhence\n\n\\[\n\\langle g_i,x_0\\rangle=\\langle g_i,x_i\\rangle\\ge f_i+\\frac12 a_i.\n\\]\n\nSince \\(g_0,g_1,g_2\\) are mutually orthogonal,\n\n\\[\n1\\ge \\|x_0\\|^2\n\\ge \\sum_{i=0}^2 \\frac{\\langle g_i,x_0\\rangle^2}{\\|g_i\\|^2}\n\\ge \\sum_{i=0}^2 \\frac{(f_i+a_i/2)^2}{a_i}.\n\\]\n\nNext, for \\(i<j\\), smooth convexity gives\n\n\\[\nf_i\\ge f_j+\\langle g_j,x_i-x_j\\rangle+\\frac12\\|g_i-g_j\\|^2.\n\\]\n\nThe inner product vanishes by exactness, so\n\n\\[\na_i+a_j\\le 2(f_i-f_j).\n\\]\n\nLet \\(s=f_2\\). Scaling by \\(s\\), the sharp minimization of the right-hand side above is attained when\n\n\\[\na_2=2s,\\qquad a_1=\\frac{2s}{\\sqrt5},\\qquad a_0=2s+\\frac{2s}{\\sqrt5},\n\\]\n\nwith\n\n\\[\nf_1=s\\left(2+\\frac1{\\sqrt5}\\right),\\qquad\nf_0=s\\left(3+\\frac3{\\sqrt5}\\right).\n\\]\n\nSubstitution gives\n\n\\[\n1\\ge s(14+4\\sqrt5).\n\\]\n\nTherefore\n\n\\[\nf(x_2)-f_*\\le \\frac1{14+4\\sqrt5}.\n\\]\n\nThis bound is sharp: the equality data above satisfy the finite smooth-convex interpolation inequalities, so they are realized by a differentiable convex \\(1\\)-smooth function in \\(\\mathbb R^3\\). Scaling the realizing construction so that \\(\\|x_0-x_*\\|=1\\) gives equality.\n\nThus\n\n\\[\n\\boxed{W_2=\\frac1{14+4\\sqrt5}}\n\\]\n\nequivalently \\(W_2=\\dfrac{7-2\\sqrt5}{58}\\).",
+  "status": "success",
+  "completed_at": "2026-09-30T14:04:27+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem128/3e541a57f955.json"
+}
