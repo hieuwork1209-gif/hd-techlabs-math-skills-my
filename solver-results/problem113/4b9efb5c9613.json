@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-generating-functions/problem.md",
+  "source_commit_sha": "a07bc17708cca143b7ef2375b3d980d2461d2079",
+  "problem_blob_sha": "4b9efb5c96138d0994c24bb364af6ad076dc52d6",
+  "statement_sha256": "f7d01e6bdf775b24c634704d9613c603b522fc8e58dea71718c24b062789c27c",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T09:33:31+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nF(x,y,z)=\\sum_{k\\ge 0}(x^2+y^2+z^2+xyz)^k .\n\\]\nTo get \\(x^ny^nz^n\\), suppose \\(x^2,y^2,z^2,xyz\\) are chosen respectively \\(m,m,m,d\\) times. Then\n\\[\n2m+d=n,\\qquad k=3m+d=n+m,\n\\]\nso\n\\[\na_n=\\sum_{m=0}^{\\lfloor n/2\\rfloor}\n\\frac{(n+m)!}{m!^3(n-2m)!}.\n\\]\n\nSet \\(t=m/n\\). Stirling’s formula gives, uniformly away from the endpoints,\n\\[\n\\frac{(n+m)!}{m!^3(n-2m)!}\n\\sim\n(2\\pi n)^{-3/2}\n\\frac{\\sqrt{1+t}}{t^{3/2}\\sqrt{1-2t}}\ne^{nf(t)},\n\\]\nwhere\n\\[\nf(t)=(1+t)\\log(1+t)-3t\\log t-(1-2t)\\log(1-2t).\n\\]\nThe maximum satisfies\n\\[\nf'(t)=\\log\\frac{(1+t)(1-2t)^2}{t^3}=0.\n\\]\nLet \\(s=1/q\\). Since \\(q^3-3q-1=0\\), we have\n\\[\n3s^2+s^3=1.\n\\]\nThe critical point is\n\\[\nt_0=\\frac{s^2}{1-s^2}=\\frac{q}{2q+1},\n\\]\nand at this point\n\\[\ne^{f(t_0)}=s^{-3}=q^3.\n\\]\nAlso\n\\[\n-f''(t_0)\n=\n\\frac{3}{t_0}+\\frac{4}{1-2t_0}-\\frac{1}{1+t_0}.\n\\]\nApplying Laplace’s method to the sum,\n\\[\na_n\\sim\n\\frac{q^{3n}}{n}\\,\n\\frac{B(t_0)}{2\\pi\\sqrt{-f''(t_0)}},\n\\]\nwhere\n\\[\nB(t)=\\frac{\\sqrt{1+t}}{t^{3/2}\\sqrt{1-2t}}.\n\\]\nSubstituting \\(t_0=q/(2q+1)\\) and simplifying,\n\\[\n\\frac{B(t_0)}{2\\pi\\sqrt{-f''(t_0)}}\n=\n\\frac{3q+1}{2\\pi\\sqrt3\\,q}.\n\\]\n\nTherefore\n\\[\n\\boxed{\\frac{3q+1}{2\\pi\\sqrt3\\,q}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T09:35:32+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/4b9efb5c9613.json"
+}
