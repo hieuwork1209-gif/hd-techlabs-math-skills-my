@@ -1,7 +1,7 @@
 ## Steps
 
 Step 1: Pass from the block family to its leave
-Let the point set be
+Relabel the point set as
 $$
 V=\{0,1,\ldots,10\},
 $$
@@ -26,7 +26,7 @@ For a point $i$, let $d_i$ be the number of blocks containing $i$, and let $r_i$
 $$
 \binom{10}{2}=45
 $$
-triples through $i$, while every block through $i$ contains exactly three of them. Hence
+triples through $i$, while every block through $i$ contains exactly three of them. Therefore
 $$
 r_i=45-3d_i.
 $$
@@ -100,30 +100,30 @@ Therefore
 $$
 3e\geq99,
 $$
-and hence
+so
 $$
 e\geq33.
 $$
 Using $e=165-4b$ gives
-$
+$$
 165-4b\geq33,
-$
+$$
 so
-$
+$$
 b\leq33.
-$
+$$
 If equality $b=33$ holds, then $e=33$ and $X=22$. Since all eleven quantities
-$
+$$
 \sum_{j\neq i}x_{ij}
-$
+$$
 are at least $4$ and their sum is $2X=44$, each equals $4$. Therefore every leave degree is
-$
+$$
 r_i=5+4=9,
-$
+$$
 and hence every block degree is
-$
+$$
 d_i=\frac{45-9}{3}=12.
-$
+$$
 Thus an extremal construction must be point-regular, which motivates seeking a translation-invariant family.
 
 Step 3: Construct a family with 33 blocks
