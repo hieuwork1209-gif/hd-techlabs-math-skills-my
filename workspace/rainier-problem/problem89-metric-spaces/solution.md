@@ -6,7 +6,7 @@ Let
 $$
 G=\mathbb{F}_2^9/\langle\mathbf{1}\rangle.
 $$
-The distance from the zero class to $[x]$ is
+The antipodal map is an isometry of the Hamming cube, so the displayed formula in the problem is its quotient metric. The distance from the zero class to $[x]$ is
 $$
 \delta(x)=\min\{|x|,9-|x|\},
 $$
@@ -35,8 +35,8 @@ $$
 Since $s$ is even, coefficient comparison gives
 $$
 K_s(9-h)=K_s(h).
-$$
-so pairing weights $h$ and $9-h$ gives
+$
+Thus pairing weights $h$ and $9-h$ gives
 $$
 \lambda_s(p)=\sum_{h=1}^4K_s(h)h^p.
 $$
