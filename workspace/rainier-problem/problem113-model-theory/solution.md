@@ -59,6 +59,16 @@ $$
 $$
 or else both directed distances are at least $2^{s+1}$, where $\infty$ is larger than every finite number.
 
+Throughout the remaining game,
+$
+s\leq m-1,
+$
+so every directed cycle has length at least
+$
+2^m\geq2^{s+1}.
+$
+Therefore every oriented arc of length below $2^{s+1}$ is unambiguous and cannot wrap around a cycle.
+
 Assume the invariant holds with $s\geq1$ rounds remaining and Spoiler chooses a new vertex $x$. Let $\mathcal N$ be the set of old pebbles $x_i$ for which
 $$
 \delta_A(x_i,x)<2^s
