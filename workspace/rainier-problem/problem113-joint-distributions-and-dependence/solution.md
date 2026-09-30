@@ -42,7 +42,7 @@ Then $T$ is integer-valued with
 $$
 -5\leq T\leq5.
 $$
-The visible lattice suggests the even quartic
+Since only moments through degree $5$ are fixed, a degree-$4$ certificate is available. On the integer lattice, take the even quartic
 $$
 P(T)=(T^2-1)(T^2-4).
 $$
@@ -86,8 +86,8 @@ $$
 =
 \frac{35}{2}.
 $$
-Thus
-$$
+Therefore
+$
 \mathbb P(S\in\{0,10\})
 =
 \mathbb P(|T|=5)
@@ -106,6 +106,7 @@ $$
 S\in\{0,3,4,6,7,10\}
 $$
 almost surely.
+
 Step 3: Use the fifth moment to force symmetry of the equality-support law
 Let
 $$
@@ -164,11 +165,11 @@ Substitution yields
 $$
 2520u=0,
 $$
-hence
-$$
+so
+$
 u=v=w=0.
 $$
-Thus every extremizer is symmetric under $S\mapsto10-S$.
+Therefore every extremizer is symmetric under $S\mapsto10-S$.
 
 Set
 $$
@@ -209,8 +210,8 @@ Subtracting the second-moment equation from the fourth-moment equation gives
 $$
 50a+b=\frac58.
 $$
-Therefore
-$$
+Solving these two linear equations gives
+$
 a=\frac1{112},
 \qquad
 b=\frac5{28},
@@ -229,7 +230,7 @@ $$
 0,&\text{otherwise},
 \end{cases}
 $$
-and, conditional on $S=s$, choosing uniformly among the $\binom{10}{s}$ binary vectors with $s$ ones. For this law, symmetry gives centered moments of orders $1,3,5$ equal to $0$, while the equations above give the same centered moments of orders $2$ and $4$ as the fair binomial law. Together with normalization, its ordinary moments through degree $5$ therefore match those of $\operatorname{Bin}(10,1/2)$, and hence so do its falling-factorial moments. Step 1 then implies that this law is 5-wise independent. It attains
+and, conditional on $S=s$, choosing uniformly among the $\binom{10}{s}$ binary vectors with $s$ ones. For this law, symmetry gives centered moments of orders $1,3,5$ equal to $0$, while the equations above give the same centered moments of orders $2$ and $4$ as the fair binomial law. Together with normalization, its ordinary moments through degree $5$ match those of $\operatorname{Bin}(10,1/2)$, so its falling-factorial moments do as well. Step 1 then implies that this law is 5-wise independent. It attains
 $$
 \mathbb P(S\in\{0,10\})
 =
