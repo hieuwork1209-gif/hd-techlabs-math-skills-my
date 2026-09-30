@@ -51,12 +51,12 @@ $$
 rounds left.
 
 We use the following invariant with $s$ rounds remaining. For every two matched pebbles, either their graph distances are equal and less than
-$$
+$
 2^{s+1},
-$$
-or both distances are at least $2^{s+1}$, where $\infty$ counts as larger than every finite number. In addition, whenever a collection of pebbles lies inside an open ball of radius $2^s$ in one graph, the corresponding pebbles occupy the same positions in the corresponding path segment of the other graph, up to reflection.
+$
+or both distances are at least $2^{s+1}$, where $\infty$ counts as larger than every finite number. In addition, on every overlapping family of local path neighborhoods, choose orientations consistently so that matched pebbles at distance less than $2^{s+1}$ have the same signed path coordinate, up to one common reflection on that local cluster.
 
-This local-path clause makes sense because
+This local-coordinate clause makes sense because
 $$
 s\leq m-1
 $$
@@ -68,9 +68,9 @@ Hence every open ball of radius $2^s$ is a path.
 
 Assume the invariant holds with $s\geq1$ rounds remaining and Spoiler chooses a new vertex $x$. Let $\mathcal N$ be the set of old pebbles whose distance from $x$ is less than $2^s$.
 
-If $\mathcal N$ is nonempty, all of its pebbles together with $x$ lie in one path segment of length less than $2^{s+1}$. The current invariant identifies the corresponding old pebbles with the same path coordinates, up to reflection. Duplicator chooses the vertex $y$ at the corresponding coordinate. Then every distance from $x$ to a pebble in $\mathcal N$ is matched exactly.
+If $\mathcal N$ is nonempty, all of its pebbles together with $x$ lie in one path segment of length less than $2^{s+1}$. Choose any pebble in $\mathcal N$ as an anchor. The current oriented local chart around that anchor identifies the corresponding old pebbles with the same signed coordinates. Duplicator chooses the vertex $y$ having the same signed coordinate as $x$. Then every distance from $x$ to a pebble in $\mathcal N$ is matched exactly.
 
-For any old pebble outside $\mathcal N$, the corresponding pebble must stay at distance at least $2^s$ from $y$. Otherwise it would lie in the same local path segment as the pebbles in $\mathcal N$, and the path-coordinate correspondence would force its original mate to lie within distance less than $2^s$ of $x$, contradicting the definition of $\mathcal N$. Thus the invariant is preserved with $s-1$ rounds remaining.
+For any old pebble outside $\mathcal N$, the corresponding pebble must stay at distance at least $2^s$ from $y$. Otherwise it and the anchor would both lie in the same oriented local chart as $y$. Their signed-coordinate differences would then force the original mate to lie within distance less than $2^s$ of $x$, contradicting the definition of $\mathcal N$. The restricted local charts for radius $2^s$ inherit the same orientations, so the invariant is preserved with $s-1$ rounds remaining.
 
 If $\mathcal N$ is empty, Duplicator chooses a vertex $y$ at distance at least $2^s$ from every old response pebble. Such a vertex always exists. At this stage at most
 $$
