@@ -1,242 +1,265 @@
 ## Steps
 
-Step 1: Shift the spectral set and reduce the unrestricted problem to a polynomial extremal problem
-Put $y=\lambda-3$. Then
+Step 1: Reduce the two-periodic heavy-ball method to trace and determinant control
+For an eigenmode with eigenvalue $\lambda$, one heavy-ball step with step size $\alpha$ has state matrix
 $$
-E=[1,2]\cup[4,5]
+A_\alpha(\lambda)=
+\begin{pmatrix}
+1+\beta-\alpha\lambda & -\beta\\
+1 & 0
+\end{pmatrix}.
 $$
-becomes
+With the two step sizes repeated periodically, the two-step monodromy is
 $$
-K=[-2,-1]\cup[1,2],
+M(\lambda)=A_{\alpha_2}(\lambda)A_{\alpha_1}(\lambda).
 $$
-and $\lambda=0$ corresponds to $y=-3$. For any five positive step sizes,
+Its determinant is
 $$
-P(\lambda)=\prod_{j=1}^{5}(1-\eta_j\lambda)
+\det M(\lambda)=\beta^2,
 $$
-has degree $5$ and satisfies $P(0)=1$. So $Q(y)=P(y+3)$ has degree at most $5$ and $Q(-3)=1$.
+and direct multiplication gives
+$$
+\tau(\lambda):=\operatorname{tr}M(\lambda)
+=1+\beta^2-(1+\beta)(\alpha_1+\alpha_2)\lambda
++\alpha_1\alpha_2\lambda^2.
+$$
+Thus the two eigenvalues of $M(\lambda)$ are the roots of
+$$
+z^2-\tau(\lambda)z+\beta^2=0.
+$$
+Consequently the spectral radius is at least $\beta$. If $|\tau(\lambda)|\leq2\beta$, both roots have modulus $\beta$. If $x:=|\tau(\lambda)|>2\beta$, the larger root modulus is
+$$
+g_\beta(x)=\frac{x+\sqrt{x^2-4\beta^2}}{2},
+$$
+which is increasing in $x$.
 
-To obtain the extremal polynomial on the symmetric set $K$, it is enough to consider odd monic quintics. Indeed, if $S$ is any monic quintic, then its odd part
+Step 2: Solve the unrestricted minimax problem
+Fix $\beta\in[0,1)$. Every possible trace polynomial has degree at most $2$ and satisfies
 $$
-S_{\mathrm{o}}(y)=\frac{S(y)-S(-y)}{2}
+\tau(0)=1+\beta^2.
 $$
-is also monic, and symmetry of $K$ gives
+The quadratic
 $$
-|S_{\mathrm{o}}(y)|\leq\frac{|S(y)|+|S(-y)|}{2}\leq\|S\|_K.
+q(\lambda)=\lambda^2-7\lambda+8
 $$
-Therefore minimizing over all monic quintics reduces to minimizing over odd monic quintics, which have the form
+takes the values
 $$
-T(y)=y^5+ay^3+by.
+q(1)=2,\qquad q(2)=-2,\qquad q(5)=-2,\qquad q(6)=2,
+$$
+and $q(0)=8$. Hence
+$$
+\tau_\beta^*(\lambda)=\frac{1+\beta^2}{8}q(\lambda)
+$$
+has norm $(1+\beta^2)/4$ on $E=[1,2]\cup[5,6]$.
+
+This norm is minimal among all degree-two polynomials with the same value at $0$. Indeed, if another polynomial $p$ had $p(0)=1+\beta^2$ and smaller norm, then $p-\tau_\beta^*$ would be negative at $1$, positive at $2$, negative at $6$, and zero at $0$. It would therefore have zeros in $(1,2)$, in $(2,6)$, and at $0$, impossible for a polynomial of degree at most $2$. Thus every trace polynomial satisfies
+$$
+\max_{\lambda\in E}|\tau(\lambda)|
+\geq m(\beta):=\frac{1+\beta^2}{4}.
 $$
 
-Step 2: Determine the odd monic minimax polynomial by equioscillation
-Seek $1<t<2$ and $L>0$ so that the odd quintic alternates with a positive interior critical point. Impose
+Let
 $$
-T(1)=L,\qquad T(t)=-L,\qquad T(2)=L,\qquad T'(t)=0.
+\beta_* =4-\sqrt{15}.
 $$
-From $T(1)=T(2)$,
+It is the smaller root of
 $$
-1+a+b=32+8a+2b,
+\beta^2-8\beta+1=0,
 $$
 so
 $$
-b=-31-7a.
+m(\beta_*)=2\beta_*.
 $$
-The derivative condition gives
+For $\beta\geq\beta_*$, the determinant bound gives
 $$
-5t^4+3at^2+b=0.
+\max_{\lambda\in E}r(M(\lambda))\geq\beta\geq\beta_*.
 $$
-After inserting $b=-31-7a$,
+For $0\leq\beta<\beta_*$, one has $m(\beta)>2\beta$. Also
 $$
-a(3t^2-7)=31-5t^4.
+m(\beta)-\left(\beta_*+\frac{\beta^2}{\beta_*}\right)
+=
+\left(\frac14-\beta_*\right)
++\left(\frac14-\frac1{\beta_*}\right)\beta^2.
 $$
-The factor $3t^2-7$ cannot vanish, because $t^2=7/3$ would make the right side equal to $34/9$. Solving for $a$ and then $b$ gives
+The coefficient of $\beta^2$ is negative, and the right side is $0$ at $\beta=\beta_*$, so it is positive for $\beta<\beta_*$. Since $r+\beta^2/r$ is increasing for $r\geq\beta$, the relation
 $$
-a=-\frac{5t^4-31}{3t^2-7},\qquad
-b=\frac{t^2(35t^2-93)}{3t^2-7}.
+m(\beta)=g_\beta(m(\beta))+\frac{\beta^2}{g_\beta(m(\beta))}
 $$
-Substituting these expressions into $T(t)+T(1)=0$ gives the explicit numerator identity
+implies
 $$
-(3t^2-7)(T(t)+T(1))
-=-2(t+1)^2(t+2)^2(t^3-6t^2+9t-3).
+g_\beta(m(\beta))\geq\beta_*.
 $$
-Since $1<t<2$, the first three factors on the right are nonzero, so
-$$
-t^3-6t^2+9t-3=0.
-$$
-Therefore $t$ is the unique root in $(1,2)$ of
-$$
-t^3-6t^2+9t-3=0.
-$$
-Indeed the cubic is strictly decreasing on $(1,2)$ because its derivative is $3(t-1)(t-3)$, and its values at $1$ and $2$ are $1$ and $-1$.
+Therefore the unrestricted two-step factor is at least $\beta_*$.
 
-Since $L=T(1)=1+a+b=-30-6a$, substitution gives
+To attain it, choose
 $$
-L=\frac{6(5t^4-15t^2+4)}{3t^2-7}.
-$$
-Also $t\in(\frac85,\frac53)$, because the cubic equals $17/125$ at $8/5$ and $-1/27$ at $5/3$. Using $T'(t)=0$, the derivative factors as
-$$
-T'(y)=5(y^2-t^2)(y^2-u_0),
+\alpha_1=\frac{1+\beta_*}{2},
 \qquad
-u_0=\frac{35t^2-93}{5(3t^2-7)}.
+\alpha_2=\frac{1+\beta_*}{5}.
 $$
-Here $3t^2-7>0$, and $u_0<1$ is equivalent to $20t^2<58$, which follows from $t^2<\frac{25}{9}<\frac{29}{10}$. Therefore $t$ is the only critical point of $T$ in $(1,2)$. The endpoint and critical values are $L,-L,L$, so monotonicity on the two subintervals gives $|T(y)|\leq L$ on $[1,2]$. Oddness gives the same bound on $K$. The six ordered points
+Because $(1+\beta_*)^2=10\beta_*$,
 $$
--2,-t,-1,1,t,2
-$$
-carry the alternating values
-$$
--L,L,-L,L,-L,L.
-$$
-
-Step 3: Normalize at the starting point, certify extremality, and evaluate $\rho_5$
-The six alternating values certify that $T$ is the monic minimax polynomial: if another monic quintic $S$ had norm smaller than $L$, then $T-S$ would have alternating signs at those six points and so at least five distinct zeros, impossible for a polynomial of degree at most $4$.
-
-Now set
-$$
-Q_*(y)=\frac{T(y)}{T(-3)}.
-$$
-Then $Q_*(-3)=1$ and $\|Q_*\|_K=L/|T(-3)|$. If another polynomial $Q$ of degree at most $5$ satisfied $Q(-3)=1$ and had smaller norm, then
-$$
-R(y)=T(y)-T(-3)Q(y)
-$$
-would satisfy $|T(-3)Q(y_i)|<L=|T(y_i)|$ at each of the six alternating points $y_i$. Therefore $R$ has the same alternating signs as $T$ there, so it has five zeros between them. It also has $R(-3)=0$. This gives six distinct zeros for a polynomial of degree at most $5$, a contradiction. Therefore $Q_*$ is the unrestricted residual minimizer.
-
-The sign changes of $T$ give two roots in $(-2,-1)$, the root $0$, and two roots in $(1,2)$. After translating back by $\lambda=y+3$, all five roots lie in $(1,2)\cup\{3\}\cup(4,5)$, so they are positive and $Q_*$ is realizable by five positive gradient steps.
-
-Using the formulas from Step 2,
-$$
-T(-3)=-243-27a-3b
-=\frac{6(5t^4-75t^2+144)}{3t^2-7}.
-$$
-The bracket $t\in(\frac85,\frac53)$ from Step 2 makes the denominator positive. Writing $z=t^2$, the numerator factor $5z^2-75z+144$ is decreasing for $z<15/2$ and at $z=64/25$ it equals $-1904/125<0$, so $T(-3)<0$. Therefore
-$$
-\rho_5=\frac{L}{|T(-3)|}
-=-\frac{5t^4-15t^2+4}{5t^4-75t^2+144}.
-$$
-Let
-$$
-c=\frac{2-t}{2}.
-$$
-Then $0<c<\frac12$, and the cubic for $t$ becomes
-$$
-8c^3-6c+1=0.
-$$
-Since $4c^3-3c=\cos(3\theta)$ when $c=\cos\theta$, the root in $(0,\frac12)$ is
-$$
-c=\cos\left(\frac{4\pi}{9}\right).
-$$
-Substituting $t=2-2c$ and using $c^3=(6c-1)/8$ and $c^4=(6c^2-c)/8$ reduces the numerator and denominator to
-$$
--480c^2+450c-64
-\quad\text{and}\quad
-240c^2+30c-36.
-$$
-The identity
-$$
-(240c^2+30c-36)(-560c^2+520c-71)-171(-480c^2+450c-64)
-=-300(56c-45)(8c^3-6c+1)
-$$
-then gives
-$$
-\rho_5=\frac{-560c^2+520c-71}{171}.
-$$
-
-Step 4: Derive a sharp lower bound for the stepwise-stable problem
-For one step, the condition
-$$
-\max_{\lambda\in E}|1-\eta\lambda|\leq1
-$$
-is equivalent to
-$$
-0<\eta\leq\frac25.
-$$
-For a stable five-step schedule define
-$$
-u_j=|1-5\eta_j|\in[0,1],\qquad s=\prod_{j=1}^{5}u_j.
-$$
-For fixed $u_j$, the two possibilities $\eta_j=(1\mp u_j)/5$ show that
-$$
-1-\eta_j\geq\frac{4-u_j}{5}.
-$$
-For $P(\lambda)=\prod_{j=1}^{5}(1-\eta_j\lambda)$,
-$$
-P(1)\geq\frac{1}{5^5}\prod_{j=1}^{5}(4-u_j),
+\alpha_1\alpha_2=\beta_*,
 \qquad
-|P(5)|=s.
+(1+\beta_*)(\alpha_1+\alpha_2)=7\beta_*.
 $$
-For $x,y\in[0,1]$,
+Hence
 $$
-(4-x)(4-y)-3(4-xy)=4(1-x)(1-y)\geq0.
+\tau(\lambda)=\beta_*(\lambda^2-7\lambda+8),
 $$
-Apply this inequality first to $u_1,u_2$, then to $u_1u_2,u_3$, and continue. Every intermediate product remains in $[0,1]$, so after four applications,
+so $|\tau(\lambda)|\leq2\beta_*$ on $E$. Every two-step monodromy therefore has spectral radius exactly $\beta_*$, and
 $$
-\prod_{j=1}^{5}(4-u_j)\geq3^4(4-s).
-$$
-Therefore every stepwise-stable schedule satisfies
-$$
-\max_{\lambda\in E}|P(\lambda)|
-\geq
-\max\left\{\frac{81}{3125}(4-s),s\right\}.
-$$
-The first term decreases and the second increases with $s\in[0,1]$, so the minimum of this lower bound occurs when they are equal:
-$$
-s=\frac{81}{3125}(4-s).
-$$
-Therefore
-$$
-s=\frac{162}{1603},
-$$
-and therefore
-$$
-\widehat\rho_5\geq\frac{162}{1603}.
+\rho_2=4-\sqrt{15}.
 $$
 
-Step 5: Attain the stable lower bound and assemble the ordered pair
-Choose four steps equal to $\frac25$ and the fifth equal to
+Step 3: Translate one-step stability into a bound on normalized step sizes
+For one step, write
 $$
-\eta_* = \frac{353}{1603}.
+t=1+\beta-\alpha\lambda.
+$$
+The characteristic polynomial is
+$$
+z^2-tz+\beta.
+$$
+For $0\leq\beta<1$, its two roots lie in the closed unit disk exactly when
+$$
+|t|\leq1+\beta.
+$$
+To see the nontrivial direction, if the roots are real then their product is $\beta\geq0$. If one root had modulus greater than $1$, the sum of the root magnitudes would exceed $1+\beta$, contradicting $|t|\leq1+\beta$; if the roots are nonreal, both have modulus $\sqrt\beta<1$.
+
+Since $\alpha>0$, the upper inequality $t\leq1+\beta$ is automatic. The lower inequality for every $\lambda\in E$ is equivalent to
+$$
+\alpha\lambda\leq2(1+\beta),
+$$
+and the largest spectral value is $6$. Thus one-step stability is exactly
+$$
+0<\alpha\leq\frac{1+\beta}{3}.
+$$
+For a stepwise-stable pair define
+$$
+x_i=\frac{\alpha_i}{1+\beta},
+\qquad
+0<x_i\leq\frac13.
 $$
 Then
 $$
-P_s(\lambda)=\left(1-\frac{2\lambda}{5}\right)^4
-\left(1-\frac{353\lambda}{1603}\right).
+\tau(\lambda)=(1+\beta)^2q(\lambda)-2\beta,
 $$
-On $[1,2]$ all factors are positive with decreasing magnitudes, so
+where
 $$
-\max_{\lambda\in[1,2]}|P_s(\lambda)|
-=P_s(1)
-=\left(\frac35\right)^4\frac{1250}{1603}
-=\frac{162}{1603}.
+q(\lambda)=(1-x_1\lambda)(1-x_2\lambda).
 $$
 
-Let $r=1603/353$, the zero of the last factor. On $[r,5]$, both absolute factors increase with $\lambda$, so the maximum there is
+Step 4: Obtain the sharp stable lower bound
+Set
 $$
-|P_s(5)|=\frac{162}{1603}.
+u_i=|1-6x_i|\in[0,1],
+\qquad
+s=u_1u_2=|q(6)|.
 $$
-On $[4,r]$, one has $r<55/12$, so
+For fixed $u_i$, the two possibilities $x_i=(1\mp u_i)/6$ give
 $$
-0\leq\frac{2\lambda}{5}-1<\frac56,
+1-x_i\geq\frac{5-u_i}{6}.
 $$
-while
+Therefore
 $$
-0\leq1-\frac{353\lambda}{1603}\leq\frac{191}{1603}<\frac{324}{1603}.
+q(1)\geq\frac{(5-u_1)(5-u_2)}{36}.
 $$
-Since $(5/6)^4<1/2$, these two bounds give
+For $u_1,u_2\in[0,1]$,
 $$
-|P_s(\lambda)|<\frac12\cdot\frac{324}{1603}=\frac{162}{1603}
+(5-u_1)(5-u_2)-4(5-u_1u_2)
+=5(1-u_1)(1-u_2)\geq0.
 $$
-throughout $[4,r]$. Therefore the lower bound is attained and
+Hence
 $$
-\widehat\rho_5=\frac{162}{1603}.
+q(1)\geq\frac{5-s}{9}.
 $$
-With $c=\cos(4\pi/9)$ in the unrestricted value from Step 3, the required pair is obtained.
-Final Answer: $\boxed{\left(\frac{-560\cos^2(4\pi/9)+520\cos(4\pi/9)-71}{171},\frac{162}{1603}\right)}$
+Since $|q(6)|=s$,
+$$
+\max_{\lambda\in E}|q(\lambda)|
+\geq
+\max\left\{\frac{5-s}{9},s\right\}
+\geq\frac12.
+$$
+
+It follows from
+$$
+\tau(\lambda)=(1+\beta)^2q(\lambda)-2\beta
+$$
+and the reverse triangle inequality that
+$$
+\max_{\lambda\in E}|\tau(\lambda)|
+\geq
+m_s(\beta):=
+\frac{(1+\beta)^2}{2}-2\beta
+=
+\frac{(1-\beta)^2}{2}.
+$$
+Let
+$$
+\widehat\beta=3-2\sqrt2.
+$$
+It is the smaller root of
+$$
+\beta^2-6\beta+1=0,
+$$
+so
+$$
+m_s(\widehat\beta)=2\widehat\beta.
+$$
+If $\beta\geq\widehat\beta$, the determinant bound gives spectral radius at least $\widehat\beta$. If $0\leq\beta<\widehat\beta$, then $m_s(\beta)>2\beta$. The function
+$$
+D(\beta)=m_s(\beta)-\widehat\beta-\frac{\beta^2}{\widehat\beta}
+$$
+has
+$$
+D'(\beta)=-1+\beta-\frac{2\beta}{\widehat\beta}<0
+$$
+on $[0,\widehat\beta]$, and $D(\widehat\beta)=0$. Hence $D(\beta)>0$ for $\beta<\widehat\beta$. The same increasing relation $r+\beta^2/r$ used in Step 2 gives
+$$
+\max_{\lambda\in E}r(M(\lambda))\geq\widehat\beta.
+$$
+
+Step 5: Attain the stable lower bound
+Take
+$$
+\beta=\widehat\beta,
+\qquad
+\alpha_1=\frac{1+\widehat\beta}{3},
+\qquad
+\alpha_2=\frac{1+\widehat\beta}{4}.
+$$
+Both one-step matrices are stable by Step 3. The normalized residual polynomial is
+$$
+q(\lambda)=\left(1-\frac{\lambda}{3}\right)
+\left(1-\frac{\lambda}{4}\right).
+$$
+It decreases from $1/2$ to $1/6$ on $[1,2]$ and increases from $1/6$ to $1/2$ on $[5,6]$, so
+$$
+\frac16\leq q(\lambda)\leq\frac12
+\qquad(\lambda\in E).
+$$
+Because $(1+\widehat\beta)^2=8\widehat\beta$,
+$$
+\tau(\lambda)=8\widehat\beta\,q(\lambda)-2\widehat\beta.
+$$
+Thus
+$$
+-\frac{2\widehat\beta}{3}
+\leq\tau(\lambda)\leq2\widehat\beta.
+$$
+Every two-step monodromy has spectral radius $\widehat\beta$, so
+$$
+\widehat\rho_2=3-2\sqrt2.
+$$
+Combining the unrestricted and stepwise-stable values gives the requested pair.
+Final Answer: $\boxed{\left(4-\sqrt{15},3-2\sqrt2\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{-560\cos^2(4\pi/9)+520\cos(4\pi/9)-71}{171},\frac{162}{1603}\right)$
+$\left(4-\sqrt{15},3-2\sqrt2\right)$
 
 ---
 
@@ -250,8 +273,8 @@ $\left(\frac{-560\cos^2(4\pi/9)+520\cos(4\pi/9)-71}{171},\frac{162}{1603}\right)
 
 ## Solution Concepts
 
-- minimax residual polynomials
-- equioscillation
-- odd polynomial symmetrization
-- nonstationary gradient descent
-- extremal product inequalities
+- heavy-ball method
+- spectral radius
+- periodic iteration matrices
+- minimax quadratic polynomials
+- stability of second-order recurrences
