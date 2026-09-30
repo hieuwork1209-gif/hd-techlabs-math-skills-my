@@ -31,15 +31,15 @@ $$
 \operatorname{supp}(L)=\{x\in X:\text{some }c\in L\text{ has }c_x\neq0\}.
 $$
 For $1\leq r\leq\dim E$, define
-$
+$$
 d_r=\min_{\substack{L\leq E\\ \dim L=r}}|\operatorname{supp}(L)|,
-$
+$$
 and let $n_r$ be the number of $r$-dimensional subspaces attaining $d_r$.
 
 Determine
-$
+$$
 \left(\wp,\dim E,(d_1,\ldots,d_{\dim E}),(n_1,\ldots,n_{\dim E})\right).
-$
+$$
 
 ---
 
