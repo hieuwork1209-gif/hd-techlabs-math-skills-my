@@ -61,8 +61,8 @@ D(c)
 +
 \frac{c}{7(8-c)}.
 $$
-Thus
-$$
+Therefore
+$
 \rho(\alpha,\beta)\geq\frac{1}{D(c)}
 $$
 for every $c\in[4,8)$.
@@ -80,7 +80,7 @@ D'(c)
 \frac{16(2c-9)}
 {(c-8)^2(c-1)^2}.
 $$
-Hence $D$ decreases on $[4,9/2]$ and increases on $[9/2,8)$. Its unique minimum occurs at
+$D$ decreases on $[4,9/2]$ and increases on $[9/2,8)$. Its unique minimum occurs at
 $$
 c=\frac{9}{2},
 $$
@@ -108,7 +108,7 @@ $$
 $$
 
 Step 3: Construct a real pair attaining the certificate
-Equality in the certificate suggests the alternating values
+To attain the lower bound from Step 2, equality in the triangle inequality there would require the alternating values
 $$
 p(1)=\frac{49}{113},
 \qquad
@@ -134,8 +134,8 @@ so
 $$
 a=\frac{8}{113}.
 $$
-Hence
-$$
+Therefore
+$
 p_*(\lambda)
 =
 \frac{8}{113}\lambda^2
@@ -195,7 +195,7 @@ $$
 =
 \left(\frac{28\sqrt{2}}{113}\right)^2.
 $$
-Thus the real step sizes
+Therefore the real step sizes
 $$
 \{\alpha,\beta\}
 =
