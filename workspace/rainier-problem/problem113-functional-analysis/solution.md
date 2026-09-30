@@ -125,7 +125,7 @@ $$
 \frac{1}{225}.
 $$
 Therefore
-$
+$$
 M=
 \begin{pmatrix}
 \frac{1}{45} & \frac{1}{105}\\
