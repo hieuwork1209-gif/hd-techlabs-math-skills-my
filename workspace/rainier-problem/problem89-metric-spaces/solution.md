@@ -15,7 +15,7 @@ $$
 
 Step 2: Determine the critical exponent and the equality space
 
-For $u=(u_1,\ldots,u_7)\in\mathbb R^7$, define
+For $u=(u_1,\ldots,u_7)\in\mathbb{R}^7$, define
 $$
 (Tu)_{\{i,j\}}=u_i+u_j.
 $$
@@ -33,7 +33,7 @@ is a $6$-dimensional eigenspace with eigenvalue $-4$.
 
 Let
 $$
-W=\left\{c\in\mathbb R^X:\sum_{j\neq i}c_{\{i,j\}}=0\text{ for every }i\right\}.
+W=\left\{c\in\mathbb{R}^X:\sum_{j\neq i}c_{\{i,j\}}=0\text{ for every }i\right\}.
 $$
 The seven row-sum equations have rank $7$ because their transpose is $T$, so $\dim W=14$. For $c\in W$,
 $$
@@ -51,12 +51,12 @@ $$
 $$
 Since $q>1$, the second is always negative, while the first is nonpositive exactly for $q\leq4/3$. Thus
 $$
-\wp=\log_2\left(\frac43\right).
+\wp=\log_2\left(\frac{4}{3}\right).
 $$
 At equality,
 $$
 E=T(V_0),\qquad
-V_0=\left\{u\in\mathbb R^7:\sum_i u_i=0\right\},
+V_0=\left\{u\in\mathbb{R}^7:\sum_i u_i=0\right\},
 $$
 so $\dim E=6$.
 
@@ -98,7 +98,7 @@ $$
 
 Step 4: Obtain the sharp upper bound for the number of missing coordinates
 
-Let $z$ be the total number of vertices in non-bipartite components and let the bipartite component sizes be $s_1,\ldots,s_b$, with total $B=7-z$. A non-bipartite part has at most $\binom z2$ edges, while a bipartite component of size $s$ has at most
+Let $z$ be the total number of vertices in non-bipartite components and let the bipartite component sizes be $s_1,\ldots,s_b$, with total $B=7-z$. A non-bipartite part has at most $\binom{z}{2}$ edges, while a bipartite component of size $s$ has at most
 $$
 f(s)=\left\lfloor\frac{s^2}{4}\right\rfloor.
 $$
@@ -113,7 +113,7 @@ $$
 
 If some $\delta_C\neq0$ and $\dim W_G\geq r$, then $b\geq r+1$, hence
 $$
-e(G)\leq \binom z2+f(7-z-r),
+e(G)\leq \binom{z}{2}+f(7-z-r),
 $$
 where either $z=0$ or $z\geq3$, and $z\leq6-r$. The unbalanced maxima are explicit:
 $
@@ -127,11 +127,11 @@ while $r=4,5,6$ give $f(3)=2$, $f(2)=1$, and $f(1)=0$.
 
 If every bipartite component is balanced, then $\dim W_G=b$. Every such component has even size, so because there are seven vertices, a non-bipartite part of odd size at least $3$ is present. This case is possible only for $r\leq2$. For $r=1$, the best choice is a $5$-vertex non-bipartite part together with one balanced $2$-vertex component, giving
 $$
-\binom52+1=11.
+\binom{5}{2}+1=11.
 $$
 For $r=2$, at least two balanced components use four vertices, leaving at most three non-bipartite vertices, so the bound is at most
 $$
-\binom32+1+1=5.
+\binom{3}{2}+1+1=5.
 $$
 Therefore, if $t_r$ denotes the largest possible number of missing coordinates for an $r$-dimensional subspace,
 $$
@@ -148,9 +148,9 @@ Moreover,
 $$
 ij\in E(G_U)\iff v_i=-v_j.
 $$
-Conversely, any seven covectors in $\mathbb R^r$ that span $\mathbb R^r$ and sum to zero define an injective map into $V_0$, hence arise from some $U$. Thus the problem is exactly to count opposite pairs among a spanning zero-sum $7$-tuple.
+Conversely, any seven covectors in $\mathbb{R}^r$ that span $\mathbb{R}^r$ and sum to zero define an injective map into $V_0$, hence arise from some $U$. Thus the problem is exactly to count opposite pairs among a spanning zero-sum $7$-tuple.
 
-For $r=5,4,3,2$, the values $0,\ldots,\min(3,6-r)$ are attained by taking that many disjoint opposite pairs and choosing the remaining covectors generically so that the whole tuple has sum zero, spans $\mathbb R^r$, and creates no further opposite pairs. The remaining extremal values are attained by the following tuples, where the displayed letters are independent:
+For $r=5,4,3,2$, every value $k$ with $0\leq k\leq\min(3,6-r)$ is attained by imposing $k$ disjoint opposite pairs. Choose the $k$ pair directions and $6-2k$ of the remaining covectors freely; the last covector is then forced by the zero-sum condition. Thus there are $6-k$ free vectors. Since $r\leq6-k$, they can be chosen to span $\mathbb{R}^{r}$, and they can simultaneously avoid the finitely many proper linear conditions that would create an additional opposite pair. Hence the tuple has exactly $k$ opposite pairs. The remaining extremal values are attained by the following tuples, where the displayed letters are independent:
 $$
 \begin{array}{c|c|c}
 r&t& (v_1,\ldots,v_7)\\
@@ -184,9 +184,9 @@ $$
 
 Count $10$ is impossible. Let $z$ be the number of zero entries. If $1\leq z\leq4$, then the number of opposite pairs is at most
 $$
-\binom z2+\left\lfloor\frac{(7-z)^2}{4}\right\rfloor<10.
+\binom{z}{2}+\left\lfloor\frac{(7-z)^2}{4}\right\rfloor<10.
 $$
-If $z=5$, the two remaining scalars must be opposites, so the count is $\binom52+1=11$. Values $z\geq6$ cannot occur in a nonzero zero-sum spanning $1$-tuple. Finally, if $z=0$, partition the seven entries into classes $\{a,-a\}$. A class of size $m$ contributes at most $\lfloor m^2/4\rfloor$ opposite pairs. Any partition of $7$ into at least two classes gives at most $9$ in total, while a single class would consist entirely of $\pm a$ and could sum to zero only with equal multiplicities, impossible for seven entries. Hence the $r=1$ counts are exactly
+If $z=5$, the two remaining scalars must be opposites, so the count is $\binom{5}{2}+1=11$. Values $z\geq6$ cannot occur in a nonzero zero-sum spanning $1$-tuple. Finally, if $z=0$, partition the seven entries into classes $\{a,-a\}$. A class of size $m$ contributes at most $\lfloor m^2/4\rfloor$ opposite pairs. Any partition of $7$ into at least two classes gives at most $9$ in total, while a single class would consist entirely of $\pm a$ and could sum to zero only with equal multiplicities, impossible for seven entries. Hence the $r=1$ counts are exactly
 $$
 \{0,1,\ldots,9,11\}.
 $$
