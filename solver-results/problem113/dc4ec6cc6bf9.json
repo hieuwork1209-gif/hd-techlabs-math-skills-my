@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-type-theory-and-formal-systems/problem.md",
+  "source_commit_sha": "f66b96e155ba2efedf28b7b491e1f4b9b2d3f17a",
+  "problem_blob_sha": "dc4ec6cc6bf9801a9f19a57e73caf68cbc25fcae",
+  "statement_sha256": "78da63ff76699b41f2b010389bba3f47f41f2b5f49b5514256767bde3f81387c",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T04:21:46+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nL_h\n\\]\nbe the minimum length of a complete reduction of \\(T_h\\). The answer is\n\\[\n\\boxed{\nM_h=\n\\prod_{k=1}^{h-1}\n\\binom{2^{k+1}-k-2}{2^k-1}\n\\prod_{k=1}^{h-1}\n\\binom{2^k-2}{2^{k-1}-1}^{\\,2^{h-k}-1}\n}\n\\]\nwith the convention that an empty product is \\(1\\). Thus \\(M_1=1\\).\n\nTo justify this, write \\(T_k\\) as a “prefix” placed before some tail \\(R\\). In a shortest reduction of\n\\[\nb(T_k,R),\n\\]\neach internal node of the prefix \\(T_k\\) must be rotated exactly once, and an internal node can be rotated only after all its ancestors in \\(T_k\\) have already been rotated. No shortest reduction ever benefits from reducing below such a node first.\n\nSo the prefix contributes a poset \\(P_k\\): the internal nodes of the complete binary tree of height \\(k\\), ordered by ancestor-before-descendant. Its size is\n\\[\na_k=2^k-1.\n\\]\nLet \\(D_k\\) be the number of linear extensions of \\(P_k\\). Since \\(P_k\\) consists of a root followed by two independent copies of \\(P_{k-1}\\),\n\\[\nD_0=1,\\qquad\nD_k=\\binom{2a_{k-1}}{a_{k-1}}D_{k-1}^2\n=\\binom{2^k-2}{2^{k-1}-1}D_{k-1}^2.\n\\]\nTherefore\n\\[\nD_k=\\prod_{i=1}^{k}\n\\binom{2^i-2}{2^{i-1}-1}^{2^{k-i}}.\n\\]\n\nNow \\(T_h=b(T_{h-1},T_{h-1})\\). The left copy contributes \\(P_{h-1}\\), while the right copy must itself be reduced optimally. These two processes can be interleaved freely. Also\n\\[\nL_1=0,\\qquad\nL_h=L_{h-1}+a_{h-1},\n\\]\nso\n\\[\nL_h=\\sum_{j=1}^{h-1}(2^j-1)=2^h-h-1.\n\\]\nThus\n\\[\nM_h=M_{h-1}D_{h-1}\\binom{L_h}{a_{h-1}}\n=\nM_{h-1}D_{h-1}\n\\binom{2^h-h-1}{2^{h-1}-1}.\n\\]\nExpanding this recurrence gives exactly\n\\[\n\\boxed{\nM_h=\n\\prod_{k=1}^{h-1}\n\\binom{2^{k+1}-k-2}{2^k-1}\n\\prod_{k=1}^{h-1}\n\\binom{2^k-2}{2^{k-1}-1}^{\\,2^{h-k}-1}\n}.\n\\]\n\nFor example,\n\\[\nM_1=1,\\quad M_2=1,\\quad M_3=8,\\quad M_4=211200.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T04:28:37+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/dc4ec6cc6bf9.json"
+}
