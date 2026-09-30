@@ -1,7 +1,13 @@
 ## Steps
 
-Step 1: Derive the principal types of the right-associated terms
-For fresh type variables $a,b,c$, define
+Step 1: Classify the typable parenthesizations made only from S
+Define
+$$
+R_1=S,
+\qquad
+R_{j+1}=S R_j.
+$$
+For fresh type variables $a,b,c$, set
 $$
 A_0=a\to b,
 \qquad
@@ -9,154 +15,193 @@ A_1=a\to b\to c,
 \qquad
 A_{j+1}=A_j\to A_{j-1}\quad(j\geq1).
 $$
-We claim that the right-associated term $R_n$ has principal type
+Then $R_j$ has principal type
 $$
-A_n\to A_{n-1}\to a\to c.
+A_j\to A_{j-1}\to a\to c.
 $$
-For $n=1$, this is
+The claim is immediate for $j=1$. If it holds for $R_j$, a fresh copy of
 $$
-(a\to b\to c)\to(a\to b)\to a\to c,
+S:(u\to v\to w)\to(u\to v)\to u\to w
 $$
-which is exactly the type scheme of $S$.
-
-Assume the claim for $R_n$. Take a fresh instance of the type of $S$,
+can take $R_j$ as its first argument with the most general unifier
 $$
-(u\to v\to w)\to(u\to v)\to u\to w.
-$$
-To type $S R_n$, its first argument type $u\to v\to w$ must unify with the principal type
-$$
-A_n\to A_{n-1}\to a\to c
-$$
-of $R_n$. The most general unifier is
-$$
-u=A_n,
+u=A_j,
 \qquad
-v=A_{n-1},
+v=A_{j-1},
 \qquad
 w=a\to c.
 $$
-The resulting type is
+The resulting principal type is
 $$
-(A_n\to A_{n-1})\to A_n\to a\to c
+(A_j\to A_{j-1})\to A_j\to a\to c
 =
-A_{n+1}\to A_n\to a\to c.
+A_{j+1}\to A_j\to a\to c.
 $$
-These equations are the most general unifier of the function domain with the principal type of $R_n$; every other typing of the application factors through a further substitution. Hence the displayed result is principal, and every $R_n$ is typable.
 
-Step 2: Prove that a nontrivial right-associated term cannot be used as a function
-Let $B_0=p\to q$, $B_1=p\to q\to r$, and
+We also need that $R_kR_m$ is untypable whenever $k\geq2$ and $m\geq1$. Use independent variables $p,q,r$ and the analogous sequence
 $$
+B_0=p\to q,
+\qquad
+B_1=p\to q\to r,
+\qquad
 B_{j+1}=B_j\to B_{j-1}.
 $$
-These are the corresponding type expressions for an independent copy of a right-associated term.
+For $j\geq1$, $B_j$ cannot unify with $p\to r$. For $j=1$, this would force $r=q\to r$. For $j\geq2$, it would force $p$ to unify with $B_{j-1}$, which contains $p$. Both violate the occurs check.
 
-For every $j\geq1$, $B_j$ cannot unify with $p\to r$. For $j=1$, unifying
-$$
-p\to q\to r
-$$
-with $p\to r$ would force $r=q\to r$, which fails the occurs check. For $j\geq2$,
-$$
-B_j=B_{j-1}\to B_{j-2}
-$$
-would have to unify with $p\to r$, so $p$ would have to unify with $B_{j-1}$. Since $p$ occurs inside every $B_{j-1}$, this also fails the occurs check.
-
-We now show that $R_kR_m$ is untypable whenever $k\geq2$ and $m\geq1$. Use independent variables $a,b,c$ for the principal type of $R_k$ and $p,q,r$ for that of $R_m$.
-
-Suppose first that $k\geq3$. The domain of the principal type of $R_k$ is
-$$
-A_k=A_{k-1}\to A_{k-2},
-$$
-while the full principal type of $R_m$ is
-$$
-B_m\to B_{m-1}\to p\to r.
-$$
-For the application to type, these two types must unify, giving
+If $k\geq3$, typing $R_kR_m$ would require
 $$
 A_{k-1}=B_m,
 \qquad
 A_{k-2}=B_{m-1}\to p\to r.
 $$
-Since $A_{k-1}=A_{k-2}\to A_{k-3}$, the first equation becomes
+Since $A_{k-1}=A_{k-2}\to A_{k-3}$, for $m\geq2$ comparison with $B_m=B_{m-1}\to B_{m-2}$ forces
 $$
-B_m=(B_{m-1}\to p\to r)\to A_{k-3}.
+B_{m-1}=B_{m-1}\to p\to r,
 $$
-If $m\geq2$, then $B_m=B_{m-1}\to B_{m-2}$, so the first domains would require
-$$
-B_{m-1}=B_{m-1}\to p\to r.
-$$
-No substitution on finite simple types can satisfy an equation $T=T\to U$: after applying any substitution, the right side is a proper arrow extension of the left side and has strictly more type-tree nodes. Hence this case is impossible. If $m=1$, comparing first domains instead forces
-$$
-p=(p\to q)\to p\to r,
-$$
-which fails the occurs check. Thus $R_kR_m$ is untypable for $k\geq3$.
+and for $m=1$ it forces $p=(p\to q)\to p\to r$. Both fail the occurs check.
 
-It remains to handle $k=2$. Here
-$$
-A_2=A_1\to A_0.
-$$
-Unifying $A_2$ with the principal type of $R_m$ gives
+For $k=2$, the same application equations give
 $$
 A_1=B_m,
 \qquad
 A_0=B_{m-1}\to p\to r.
 $$
-Since $A_0=a\to b$, this forces
-$$
-a=B_{m-1},
-\qquad
-b=p\to r.
-$$
-Using $A_1=a\to b\to c$, the first equation becomes
+Hence $a=B_{m-1}$ and $b=p\to r$, so
 $$
 B_m=B_{m-1}\to(p\to r)\to c.
 $$
-For $m=1$, comparing first domains forces $p=p\to q$, impossible by occurs check. For $m\geq2$, comparison with
-$$
-B_m=B_{m-1}\to B_{m-2}
-$$
-requires
+The case $m=1$ forces $p=p\to q$. If $m\geq2$, then
 $$
 B_{m-2}=(p\to r)\to c.
 $$
-If $m=2$ or $m=3$, the left side begins with domain $p$, so this forces $p=p\to r$. If $m\geq4$, the first domain of $B_{m-2}$ is $B_{m-3}$, so $B_{m-3}$ would have to unify with $p\to r$, contradicting the first paragraph of this step. Therefore $R_2R_m$ is also untypable.
+For $m=2$ or $m=3$, comparison of first domains again forces $p=p\to r$. For $m\geq4$, it would force $B_{m-3}$ to unify with $p\to r$, excluded above. Thus $R_kR_m$ is never typable for $k\geq2$.
 
-Step 3: Classify all typable parenthesizations
-We prove by induction on $n$ that the only typable full parenthesization of $n$ copies of $S$ is $R_n$.
+Now induct on the number of copies of $S$ in a pure-$S$ term. At a typable root $UV$, both subterms are typable, so by induction they are $R_k$ and $R_m$. The preceding obstruction forces $k=1$, and therefore the whole term is the right-associated $R_{k+m}$. Hence $R_j$ is the unique typable pure-$S$ parenthesization with $j$ copies of $S$.
 
-For $n=1$, the only term is $S=R_1$, which is typable.
+Step 2: Reduce a typable term ending in I to blocks S and SS
+Let a term ending in $I$ contain at least one $S$. We write a useful principal-type interface as
+$$
+H(Q,D,R)=(Q\to D)\to Q\to R.
+$$
+Since $I:x\to x$, typing $SI$ forces $x=y\to z$, and therefore
+$$
+SI:H(y\to z,y,z).
+$$
 
-Let $n\geq2$, and suppose a full parenthesization $T$ of $n$ copies of $S$ is typable. Its root has the form
+Consider a typable parenthesization of a word $S^nI$. At its root it has the form $UV$, where $U$ is a pure-$S$ term. Step 1 forces $U=R_k$.
+
+If the right subterm is exactly $I$, then $R_1I$ is typable, while $R_kI$ is untypable for $k\geq2$. For $k=2$, unifying the domain
 $$
-T=UV,
+A_2=A_1\to A_0
 $$
-where $U$ contains $k$ copies of $S$ and $V$ contains $m$ copies, with $k,m\geq1$ and $k+m=n$. Any typing derivation for an application includes typings of both subterms, so $U$ and $V$ are typable. By the induction hypothesis,
+with $x\to x$ would require $A_1=A_0$, hence $b\to c=b$. For $k\geq3$, it would require $A_{k-1}=A_{k-2}$, while $A_{k-1}=A_{k-2}\to A_{k-3}$. Each equation fails the occurs check. Thus the innermost block is necessarily $S$.
+
+Now suppose the right subterm $X$ has principal type $H(Q,D,R)$. If $k\geq3$, the domain of $R_k$ is
 $$
-U=R_k,
+A_k=A_{k-1}\to A_{k-2},
 \qquad
-V=R_m.
+A_{k-1}=A_{k-2}\to A_{k-3}.
 $$
-If $k\geq2$, Step 2 shows that $R_kR_m$ is untypable, a contradiction. Hence $k=1$, so
+Unifying $A_k$ with
 $$
-U=S
+H(Q,D,R)=(Q\to D)\to Q\to R
 $$
-and therefore
+would first give
 $$
-T=SR_m=R_{m+1}=R_n.
+A_{k-1}=Q\to D,
+\qquad
+A_{k-2}=Q\to R.
 $$
-Conversely, Step 1 shows that every $R_n$ is typable. Thus there is exactly one typable parenthesization for each $n$, namely the fully right-associated one.
+The relation $A_{k-1}=A_{k-2}\to A_{k-3}$ would then force the first domain $Q$ to unify with $Q\to R$, impossible by the occurs check. Hence every later left block also has size at most $2$.
 
-Step 4: State the exhaustive family
-Let $\mathcal T_n$ be the set of all typable full parenthesizations of $n$ copies of $S$. The induction in Step 3 proves that no other parenthesization can occur, while Step 1 proves that $R_n$ always occurs. Hence
+For the two possible blocks, the interface evolves canonically. If
 $$
-\mathcal T_n=\{R_n\}.
+X:H(Q,D,R),
 $$
-Final Answer: $\boxed{\{R_n\}}$
+then $SX$ is always typable and has principal type
+$$
+H(Q\to D,Q,R).
+$$
+Also, $(SS)X$ is typable exactly when $D$ unifies with $R\to E$ for a fresh $E$. In that case its principal type is
+$$
+H(Q,D,E).
+$$
+Thus every typable parenthesization of $S^nI$ is obtained by iterating the two contexts
+$$
+L_1(X)=SX,
+\qquad
+L_2(X)=(SS)X,
+$$
+and their availability is controlled by the displayed interface equations.
+
+Step 3: Solve the block-compatibility language
+Start from the mandatory innermost block
+$$
+SI:H(D\to R,D,R),
+$$
+with $D,R$ fresh. Call this state A.
+
+From state A, an outer $S$ gives
+$$
+H((D\to R)\to D,D\to R,R).
+$$
+An outer $SS$ requires $D=R\to E$ and gives, after renaming $R,E$ as fresh variables, the same principal-type pattern
+$$
+H((D\to R)\to D,D\to R,R).
+$$
+Call this state B. Therefore either a block $1$ or a block $2$ takes state A to state B.
+
+Write state B as
+$$
+H((u\to v)\to u,u\to v,v).
+$$
+An outer $SS$ is still possible: its condition
+$$
+u\to v=v\to E
+$$
+forces $u=v$ and $E=v$. The resulting state is
+$$
+H((t\to t)\to t,t\to t,t),
+$$
+which we call state C. Applying another outer $SS$ to state C leaves state C unchanged, because $t\to t=t\to E$ forces $E=t$.
+
+In contrast, once an outer $S$ is applied to state B or state C, no later outer $SS$ can occur. Indeed, in both states the result variable $R$ occurs in the domain of the current $Q$. After applying $S$, the new defect in the interface is the old $Q$. A later $SS$ would require this defect to unify with $R\to E$, which equates $R$ with a type containing $R$ and fails the occurs check. Further outer $S$ blocks preserve the same obstruction.
+
+Reading blocks from the outside inward, the typable block words are therefore exactly
+$$
+1^a2^b1^c,
+\qquad
+a,b\geq0,
+\qquad
+c\in\{1,2\}.
+$$
+The total number of copies of $S$ represented by such a block word is
+$$
+a+2b+c.
+$$
+
+Step 4: State the complete family of typable parenthesizations
+For a block word $d_1\cdots d_r$, the prompt defines
+$$
+L_{d_1\cdots d_r}(I)
+=
+L_{d_1}\bigl(L_{d_2}(\cdots L_{d_r}(I)\cdots)\bigr).
+$$
+Step 2 shows that every typable parenthesization has such a block representation, and Step 3 gives exactly the block words for which all required unifications succeed. Hence for every $n\geq1$,
+$$
+\mathcal T_n=
+\left\{
+L_{1^a2^b1^c}(I):
+a,b\geq0, c\in\{1,2\}, a+2b+c=n
+\right\}.
+$$
+Final Answer: $\boxed{\{L_{1^a2^b1^c}(I):a,b\geq0,c\in\{1,2\},a+2b+c=n\}}$
 
 ---
 
 ## Answer
 
-$\{R_n\}$
+$\{L_{1^a2^b1^c}(I):a,b\geq0,c\in\{1,2\},a+2b+c=n\}$
 
 ---
 
