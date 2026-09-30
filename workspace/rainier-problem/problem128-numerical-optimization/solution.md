@@ -1,204 +1,399 @@
 ## Steps
 
-Step 1: Fold the disconnected spectrum to one interval
+Step 1: Derive the interpolation and orthogonality constraints
+For a differentiable convex function with $1$-Lipschitz gradient, write $g(x)=\nabla f(x)$. For arbitrary $u,v$, the smooth convex interpolation inequality is
+$$
+f(u)\geq f(v)+g(v)^T(u-v)+\frac{1}{2}\|g(u)-g(v)\|^2.
+$$
+First derive the descent inequality. For $d=y-x$, the line-integral identity and the $1$-Lipschitz property give
+$$
+f(y)-f(x)-g(x)^Td
+=
+\int_0^1\bigl(g(x+td)-g(x)\bigr)^Td\,dt
+\leq
+\int_0^1 t\|d\|^2\,dt
+=
+\frac{1}{2}\|d\|^2.
+$$
+Now set $\psi(z)=f(z)-g(v)^Tz$. The function $\psi$ is convex and $1$-smooth and satisfies $\nabla\psi(v)=0$, so $v$ minimizes $\psi$. Apply the descent inequality to $\psi$ from $u$ to $u-\nabla\psi(u)$:
+$$
+\psi\bigl(u-\nabla\psi(u)\bigr)
+\leq
+\psi(u)-\frac{1}{2}\|\nabla\psi(u)\|^2.
+$$
+Since $\psi(v)$ is no larger than the left side, rearrangement gives the displayed interpolation inequality.
+
 Let
 $$
-E=[1,2]\cup[7,8].
+g_i=\nabla f(x_i),
+\qquad
+F_i=f(x_i)-f_*,
+\qquad
+d=x_0-x_*.
 $$
-The two components are exchanged by $\lambda\mapsto9-\lambda$, so use the invariant quadratic coordinate
+Exact minimization on the first affine line gives
 $$
-z(\lambda)=\frac{\left(\lambda-\frac92\right)^2-\frac{37}{4}}{3}
-=\frac{\lambda^2-9\lambda+11}{3}.
+g_1^Tg_0=0,
 $$
-On $[1,2]$, $z$ decreases from $1$ to $-1$, while on $[7,8]$ it increases from $-1$ to $1$. Thus each component maps bijectively onto $[-1,1]$.
-
-For any positive step sizes,
+and exact minimization on the second affine plane gives
 $$
-P(\lambda)=\prod_{j=1}^{6}(1-\eta_j\lambda)
+g_2^Tg_0=g_2^Tg_1=0.
 $$
-has degree $6$ and satisfies $P(0)=1$.
-
-Step 2: Construct the unconstrained minimax polynomial
-Seek an odd cubic $C(t)=At^3+Bt$ whose endpoint values and interior critical values have equal magnitude and alternate in sign. If $a\in(0,1)$ is the positive critical point, normalize by
+For $i=1,2$, the displacement $x_i-x_0$ lies in the span of the preceding gradients and is orthogonal to $g_i$. Together with the case $i=0$, this gives
 $$
-C(1)=1,\qquad C(a)=-1,\qquad C'(a)=0.
-$$
-The derivative condition gives $B=-3Aa^2$, hence
-$$
-A(1-3a^2)=1,\qquad -2Aa^3=-1.
-$$
-Therefore
-$$
-2a^3+3a^2-1=(2a-1)(a+1)^2=0,
-$$
-so $a=\frac12$, $A=4$, and $B=-3$. Thus
-$$
-C(t)=4t^3-3t,
-$$
-with
-$$
-C(-1)=-1,\quad C\left(-\frac12\right)=1,\quad
-C\left(\frac12\right)=-1,\quad C(1)=1,
-$$
-and $|C(t)|\leq1$ on $[-1,1]$.
-
-Since $z(0)=\frac{11}{3}$,
-$$
-C\left(\frac{11}{3}\right)=\frac{5027}{27}.
-$$
-Hence
-$$
-P_*(\lambda)=\frac{27}{5027}C(z(\lambda))
-$$
-satisfies $P_*(0)=1$ and
-$$
-\max_{\lambda\in E}|P_*(\lambda)|=\frac{27}{5027}.
+g_i^T(x_i-x_*)=g_i^Td
+\qquad(i=0,1,2).
 $$
 
-Step 3: Certify the unconstrained optimum and realize positive steps
-On $[1,2]$, let $a_0<a_1<a_2<a_3$ be the preimages under $z$ of
+Put $s_i=\|g_i\|$. Applying the interpolation inequality with $v=x_i$ and $u=x_*$ gives
 $$
-1,\quad \frac12,\quad -\frac12,\quad -1.
+F_i\leq g_i^Td-\frac{1}{2}s_i^2.
 $$
-Then $P_*(a_i)$ alternates as
+Applying it with $(u,v)=(x_i,x_{i+1})$ and using the orthogonality above gives
 $$
-\frac{27}{5027}(1,-1,1,-1).
-$$
-On $[7,8]$, the four corresponding preimages give the alternating values
-$$
-\frac{27}{5027}(-1,1,-1,1).
+F_i-F_{i+1}\geq\frac{1}{2}(s_i^2+s_{i+1}^2)
+\qquad(i=0,1).
 $$
 
-If a polynomial $P$ of degree at most $6$ with $P(0)=1$ had
+Step 2: Convert the upper bound to a three-variable extremal problem
+If $g_i\neq0$, define
 $$
-\max_{\lambda\in E}|P(\lambda)|<\frac{27}{5027},
+a_i=\frac{g_i^Td}{s_i}.
 $$
-then $Q=P-P_*$ would have three zeros in $(1,2)$, three zeros in $(7,8)$, and the additional zero $Q(0)=0$. This gives at least seven distinct zeros, impossible unless $Q\equiv0$, which is incompatible with the strict inequality. Therefore every admissible six-step polynomial has norm at least $\frac{27}{5027}$.
+The three gradients are mutually orthogonal, so Bessel's inequality gives
+$$
+a_0^2+a_1^2+a_2^2\leq\|d\|^2\leq1.
+$$
+If $g_0=0$, then $x_0$ is a global minimizer; if $g_1=0$, then $x_1$ is a global minimizer and belongs to the second search plane; if $g_2=0$, then $x_2$ is a global minimizer. In each case $F_2=0$. Assume $F_2>0$ and $s_0s_1s_2>0$.
 
-The zeros of $C$ are $0,\pm\frac{\sqrt3}{2}$. Each has one preimage in each component of $E$, so the six zeros of $P_*$ are positive. Since $P_*(0)=1$, it factors as
+Write $F=F_2$. The inequalities from Step 1 imply
 $$
-P_*(\lambda)=\prod_{j=1}^{6}\left(1-\frac{\lambda}{r_j}\right)
+F\leq a_2s_2-\frac{1}{2}s_2^2,
 $$
-with $r_j>0$. Thus positive step sizes $\eta_j=1/r_j$ realize $P_*$, and
 $$
-\rho_6=\frac{27}{5027}.
+F\leq a_1s_1-s_1^2-\frac{1}{2}s_2^2,
 $$
-
-Step 4: Reduce the stepwise-stable problem to two endpoint products
-Now impose that every individual gradient step is nonexpansive on $E$:
+and, after using both successive decreases,
 $$
-\max_{\lambda\in E}|1-\eta_j\lambda|\leq1
-\qquad(j=1,\dots,6).
+F\leq a_0s_0-s_0^2-s_1^2-\frac{1}{2}s_2^2.
 $$
-Because the largest spectral value is $8$ and $\eta_j>0$, this is equivalent to
+Scale
 $$
-0<\eta_j\leq\frac14.
-$$
-Set
-$$
-x_j=1-\eta_j,
-$$
-so $x_j\in[\frac34,1)$. At the two outer endpoints,
-$$
-A:=P(1)=\prod_{j=1}^{6}x_j,
-$$
-and
-$$
-B:=|P(8)|=\prod_{j=1}^{6}|8x_j-7|.
-$$
-Hence every stepwise-stable schedule satisfies
-$$
-\max_{\lambda\in E}|P(\lambda)|\geq\max(A,B).
-$$
-
-If some $x_j>\frac78$, replace it by
-$$
-x_j'=\frac74-x_j.
-$$
-Then $x_j'\in(\frac34,\frac78)$,
-$$
-|8x_j'-7|=|8x_j-7|,
-$$
-and $x_j'<x_j$. Thus this replacement decreases $A$ while leaving $B$ unchanged. Therefore the endpoint minimax problem may be restricted to
-$$
-\frac34\leq x_j\leq\frac78.
-$$
-No minimizer has $x_j=\frac78$. Indeed, then $B=0$ while $A>0$. Decreasing every coordinate equal to $\frac78$ by a sufficiently small positive amount strictly decreases $A$, while the resulting $B$ is either still $0$ or is arbitrarily small. Thus the larger endpoint product strictly decreases. Hence at a minimizer
-$$
-\frac34\leq x_j<\frac78,
-$$
-and therefore
-$$
-B=\prod_{j=1}^{6}(7-8x_j).
-$$
-If $B>A$, increasing any coordinate raises $A$ and lowers $B$ continuously, so the larger of the two products decreases until equality is reached. If $A>B$, decrease a coordinate that is above $\frac34$; this lowers $A$ and raises $B$. If equality were never reached, repeating this would force all six coordinates to $\frac34$, where $B=1>A$. Hence equality must be reached first. Therefore every minimizer satisfies
-$$
-A=B.
-$$
-
-Step 5: Solve the balanced endpoint problem and verify attainment
-Under $A=B$, define
-$$
-s_j=\log\frac{x_j}{7-8x_j}.
+u_i=\frac{s_i}{\sqrt{F}},
+\qquad
+A_i=\frac{a_i}{\sqrt{F}}.
 $$
 Then
 $$
-\sum_{j=1}^{6}s_j=0,
+\frac{1}{F}\geq A_0^2+A_1^2+A_2^2,
+$$
+while the three preceding inequalities give
+$$
+A_0\geq
+u_0+\frac{1+u_1^2+\frac{1}{2}u_2^2}{u_0},
+$$
+$$
+A_1\geq
+u_1+\frac{1+\frac{1}{2}u_2^2}{u_1},
 \qquad
-s_j\geq s_0:=\log\frac34.
-$$
-Solving for $x_j$ gives
-$$
-x_j=\frac{7e^{s_j}}{1+8e^{s_j}}.
-$$
-Therefore minimizing the common product $A=B$ is equivalent to minimizing
-$$
-\sum_{j=1}^{6}\phi(s_j),
-\qquad
-\phi(s)=\log\left(\frac{7e^s}{1+8e^s}\right),
-$$
-subject to the displayed linear constraint. Direct differentiation gives
-$$
-\phi''(s)=-\frac{8e^s}{(1+8e^s)^2}<0.
-$$
-If two variables exceed $s_0$, keep their sum fixed and transfer mass between them. Because the resulting two-variable objective is concave, its minimum occurs when one of the two reaches $s_0$. Repeating this operation shows that at a minimizer at least five variables equal $s_0$. Hence
-$$
-s_1=\cdots=s_5=s_0,
-\qquad
-s_6=-5s_0=\log\left(\frac43\right)^5.
-$$
-Thus
-$$
-x_1=\cdots=x_5=\frac34,
-\qquad
-x_6=\frac{7168}{8435}.
-$$
-Equivalently, five steps are $\eta=\frac14$ and the sixth is
-$$
-\eta_*=\frac{1267}{8435}.
-$$
-Their common endpoint magnitude is
-$$
-\left(\frac34\right)^5\frac{7168}{8435}
-=\frac{1701}{8435}.
+A_2\geq
+\frac{1}{u_2}+\frac{u_2}{2}.
 $$
 
-For this schedule,
+Step 3: Solve the nested scalar minimization exactly
+Set
 $$
-P(\lambda)=\left(1-\frac{\lambda}{4}\right)^5
-\left(1-\frac{1267}{8435}\lambda\right).
+\phi=\frac{1+\sqrt{5}}{2},
+\qquad
+v=1+\frac{u_2^2}{2}.
 $$
-On $[1,2]$ both factors are positive and their magnitudes decrease with $\lambda$, so the maximum is at $\lambda=1$. Since $\frac{1267}{8435}>\frac17$, on $[7,8]$ both absolute factors increase with $\lambda$, so the maximum is at $\lambda=8$. The two endpoint values are equal to $\frac{1701}{8435}$. Therefore
+For fixed $u_1,u_2$, the arithmetic-geometric mean inequality gives
 $$
-\widehat\rho_6=\frac{1701}{8435}.
+A_0^2
+\geq
+4(v+u_1^2).
 $$
-Final Answer: $\boxed{\left(\frac{27}{5027},\frac{1701}{8435}\right)}$
+Therefore
+$$
+A_0^2+A_1^2+A_2^2
+\geq
+6v+5u_1^2+\frac{v^2}{u_1^2}
++\left(\frac{1}{u_2}+\frac{u_2}{2}\right)^2.
+$$
+The inequality
+$$
+5u_1^2+\frac{v^2}{u_1^2}\geq2\sqrt{5}\,v
+$$
+turns the first three terms into
+$$
+(6+2\sqrt{5})v=4\phi^2v.
+$$
+Now put $y=u_2^2$. Then
+$$
+A_0^2+A_1^2+A_2^2
+\geq
+4\phi^2+1+\frac{1}{y}
++\frac{1+8\phi^2}{4}y.
+$$
+Let
+$$
+S=\sqrt{1+8\phi^2}=\sqrt{13+4\sqrt{5}}.
+$$
+Applying the arithmetic-geometric mean inequality to the last two terms gives a lower bound of $S$, so
+$$
+A_0^2+A_1^2+A_2^2
+\geq
+4\phi^2+1+S.
+$$
+With
+$$
+\theta=\frac{1+S}{2},
+$$
+the identity $S^2=1+8\phi^2$ gives
+$$
+4\phi^2+1+S=2\theta^2.
+$$
+Therefore
+$$
+F_2\leq\frac{1}{2\theta^2}
+=
+\frac{2}{(1+\sqrt{13+4\sqrt{5}})^2}.
+$$
+
+Step 4: Construct data attaining every inequality in the upper bound
+Let
+$$
+r=\frac{1}{2\theta^2}.
+$$
+Equality in the final arithmetic-geometric mean inequality of Step 3 requires
+$$
+u_2^2=\frac{2}{S}.
+$$
+Then $v=1+u_2^2/2=1+1/S$. Equality in
+$$
+5u_1^2+\frac{v^2}{u_1^2}\geq2\sqrt{5}\,v
+$$
+requires $u_1^2=v/\sqrt{5}$, and equality in the first arithmetic-geometric mean bound requires $u_0^2=v+u_1^2$. Therefore set
+$$
+u_2=\sqrt{\frac{2}{S}},
+\qquad
+v=1+\frac{1}{S},
+\qquad
+u_1=\sqrt{\frac{v}{\sqrt{5}}},
+\qquad
+u_0=\sqrt{v+u_1^2}.
+$$
+Equality in the three original lower bounds for $A_i$ then forces
+$$
+A_0=2u_0,
+\qquad
+A_1=u_1+\frac{v}{u_1},
+\qquad
+A_2=\frac{1}{u_2}+\frac{u_2}{2}.
+$$
+The equalities in Step 3 give
+$$
+A_0^2+A_1^2+A_2^2=2\theta^2.
+$$
+Set
+$$
+a_i=\sqrt{r}\,A_i,
+\qquad
+s_i=\sqrt{r}\,u_i
+\qquad(i=0,1,2).
+$$
+Then
+$$
+a_0^2+a_1^2+a_2^2=1.
+$$
+
+Let $e_0,e_1,e_2$ be the standard orthonormal basis of $\mathbb{R}^{3}$, and define
+$$
+x_*=0,
+\qquad
+x_0=a_0e_0+a_1e_1+a_2e_2,
+\qquad
+g_i=s_ie_i.
+$$
+Define the target function values by
+$$
+F_2=r,
+$$
+$$
+F_1=r+\frac{1}{2}(s_1^2+s_2^2),
+$$
+$$
+F_0=F_1+\frac{1}{2}(s_0^2+s_1^2).
+$$
+The equality conditions also give the normalized identities
+$$
+A_2u_2-\frac{1}{2}u_2^2=1,
+$$
+$$
+A_1u_1-\frac{1}{2}u_1^2
+=
+1+\frac{1}{2}(u_1^2+u_2^2),
+$$
+and, because $u_0^2=v+u_1^2$,
+$$
+A_0u_0-\frac{1}{2}u_0^2
+=
+\frac{3}{2}u_0^2
+=
+1+\frac{1}{2}u_2^2+u_1^2+\frac{1}{2}u_0^2.
+$$
+Multiplying by $r$ and comparing with the definitions of $F_0,F_1,F_2$ proves
+$$
+F_i=a_is_i-\frac{1}{2}s_i^2
+\qquad(i=0,1,2).
+$$
+To choose the locations, write
+$$
+x_1=x_0-\alpha g_0,
+\qquad
+x_2=x_0-\beta g_0-\gamma g_1.
+$$
+Making the reverse interpolation inequalities for the pairs $(0,1)$, $(0,2)$, and $(1,2)$ tight requires, respectively,
+$$
+\alpha s_0^2=s_0^2+s_1^2,
+\qquad
+\beta s_0^2=s_0^2+s_1^2+s_2^2,
+\qquad
+\gamma s_1^2=s_1^2+s_2^2.
+$$
+These conditions force
+$$
+\alpha=1+\frac{s_1^2}{s_0^2},
+\qquad
+\beta=1+\frac{s_1^2+s_2^2}{s_0^2},
+\qquad
+\gamma=1+\frac{s_2^2}{s_1^2}.
+$$
+
+Step 5: Build a smooth convex interpolant and close the lower bound
+Include the minimizer data
+$$
+F_*=0,
+\qquad
+g_*=0,
+\qquad
+x_*=0.
+$$
+For all indices $i,j\in\{*,0,1,2\}$, the data from Step 4 satisfy
+$$
+F_i\geq
+F_j+g_j^T(x_i-x_j)
++\frac{1}{2}\|g_i-g_j\|^2.
+$$
+For pairs involving $*$, the first required inequality follows from
+$$
+F_2-\frac{1}{2}s_2^2=r\left(1-\frac{1}{S}\right)>0,
+$$
+$$
+F_1-\frac{1}{2}s_1^2
+=
+r\left(1+\frac{1}{2}u_2^2\right)>0,
+$$
+and
+$$
+F_0-\frac{1}{2}s_0^2=ru_0^2>0.
+$$
+The reverse inequalities are equalities because Step 4 gives
+$$
+F_i=a_is_i-\frac{1}{2}s_i^2
+=
+g_i^Tx_i-\frac{1}{2}s_i^2.
+$$
+For the adjacent pairs $(0,1)$ and $(1,2)$, the forward inequalities are equalities because the later gradient is orthogonal to the displacement, while the reverse inequalities are equalities because
+$$
+\alpha s_0^2=s_0^2+s_1^2,
+\qquad
+\gamma s_1^2=s_1^2+s_2^2.
+$$
+For the pair $(0,2)$, the forward inequality has slack $s_1^2$, and the reverse inequality is an equality because
+$$
+\beta s_0^2=s_0^2+s_1^2+s_2^2.
+$$
+
+To realize these finite data by an actual function, Put
+$$
+y_i=x_i-g_i,
+\qquad
+H_i=F_i-\frac{1}{2}\|g_i\|^2,
+$$
+including the index $*$. The preceding inequalities are equivalent to
+$$
+H_i\geq H_j+g_j^T(y_i-y_j).
+$$
+Define
+$$
+q(y)=
+\max_j\left\{
+H_j+g_j^T(y-y_j)
+\right\},
+$$
+and its quadratic envelope
+$$
+f(x)=
+\min_y\left\{
+q(y)+\frac{1}{2}\|x-y\|^2
+\right\}.
+$$
+Because $q$ is a finite maximum of affine functions, for every $x$ the envelope objective is continuous and coercive in $y$; its quadratic term makes it strongly convex. It therefore has a unique minimizer. At $y_i$, the $i$th affine term is active, so $g_i\in\partial q(y_i)$. Since $x_i=y_i+g_i$, the point $y_i$ satisfies the first-order condition for the envelope minimization at $x_i$, and
+$$
+f(x_i)=H_i+\frac{1}{2}\|g_i\|^2=F_i.
+$$
+
+For a general $x$, let $y(x)$ be the unique minimizer and put $G(x)=x-y(x)$. The first-order condition gives $G(x)\in\partial q(y(x))$. For $x,x'$ with corresponding $y,y'$ and $G,G'$, monotonicity of $\partial q$ gives
+$$
+(G-G')^T(y-y')\geq0.
+$$
+Since $x-x'=(y-y')+(G-G')$,
+$$
+\|G-G'\|^2
+\leq
+(G-G')^T(x-x')
+\leq
+\|G-G'\|\,\|x-x'\|,
+$$
+so
+$$
+\|G-G'\|\leq\|x-x'\|.
+$$
+Using $y(x)$ as a competitor in the definition of $f(x')$ gives
+$$
+f(x')
+\leq
+f(x)+G(x)^T(x'-x)+\frac{1}{2}\|x'-x\|^2.
+$$
+The same inequality with $x,x'$ interchanged and $x'=x+h$ gives
+$$
+(G(x+h)-G(x))^Th-\frac{1}{2}\|h\|^2
+\leq
+f(x+h)-f(x)-G(x)^Th
+\leq
+\frac{1}{2}\|h\|^2.
+$$
+Since $\|G(x+h)-G(x)\|\leq\|h\|$, the middle quantity is $O(\|h\|^2)$. Therefore $f$ is differentiable with $\nabla f=G$, and its gradient is $1$-Lipschitz. To see convexity directly, let $y,y'$ be the minimizers for $x,x'$ and let $t\in[0,1]$. The point $ty+(1-t)y'$ is an admissible competitor for $tx+(1-t)x'$, and convexity of $q$ together with convexity of the squared norm gives
+$$
+f\bigl(tx+(1-t)x'\bigr)
+\leq
+tf(x)+(1-t)f(x').
+$$
+In particular, $\nabla f(x_i)=g_i$. The affine term indexed by $*$ is zero, so $q\geq0$. The interpolation inequality with $i=*$ shows every other affine term is at most $0$ at $y_*=0$, so $q(0)=0$. Taking $y=0$ in the envelope gives $f(0)=0$, which is the minimum value.
+
+The constructed $x_1$ lies in $x_0+\operatorname{span}\{g_0\}$ and has $g_1^Tg_0=0$, so convexity makes it an exact minimizer on that line. Likewise $x_2$ lies in $x_0+\operatorname{span}\{g_0,g_1\}$ and $g_2$ is orthogonal to both spanning gradients, so it is an exact minimizer on that plane. Also $\|x_0-x_*\|=1$ and
+$$
+f(x_2)-f_*=F_2=r.
+$$
+This matches the upper bound from Step 3.
+Final Answer: $\boxed{\frac{2}{(1+\sqrt{13+4\sqrt{5}})^2}}$
 
 ---
 
 ## Answer
 
-$\left(\frac{27}{5027},\frac{1701}{8435}\right)$
+$\frac{2}{(1+\sqrt{13+4\sqrt{5}})^2}$
 
 ---
 
@@ -206,14 +401,14 @@ $\left(\frac{27}{5027},\frac{1701}{8435}\right)$
 
 **Problem Type:** Optimization
 
-**Answer Type:** Tuple or ordered list
+**Answer Type:** Exact scalar
 
 ---
 
 ## Solution Concepts
 
-- nonstationary gradient descent
-- spectral error polynomials
-- minimax alternation
-- endpoint balancing
-- concavity extremal argument
+- smooth convex interpolation
+- exact span search
+- orthogonal gradients
+- nested extremal inequalities
+- quadratic envelope interpolation
