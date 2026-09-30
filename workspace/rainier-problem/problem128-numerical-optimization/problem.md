@@ -2,31 +2,32 @@
 
 ## LaTeX (Normalized)
 
-Let $H$ be a real symmetric positive definite matrix whose spectrum is contained in
+Let $\mathcal F$ be the class of differentiable convex functions
 $$
-E=[1,2]\cup[7,8].
+f:\mathbb{R}^{3}\to\mathbb R
 $$
-Consider nonstationary gradient descent on the quadratic $f(x)=\frac12x^THx$:
+whose gradients are $1$-Lipschitz and which attain their minimum value $f_*$. Consider all choices of
 $$
-x_{k+1}=(I-\eta_{k+1}H)x_k,
+f\in\mathcal F,\qquad
+x_*\in\operatorname*{argmin}f,\qquad
+\|x_0-x_*\|\leq1,
 $$
-where the six step sizes $\eta_1,\dots,\eta_6$ are positive and chosen in advance.
-
-Define
+together with points obtained by two exact span searches:
 $$
-\rho_6=\inf_{\eta_1,\dots,\eta_6>0}
-\max_{\lambda\in E}
-\left|\prod_{j=1}^{6}(1-\eta_j\lambda)\right|.
+g_0=\nabla f(x_0),
+\qquad
+x_1\in\operatorname*{argmin}_{x\in x_0+\operatorname{span}\{g_0\}}f(x),
 $$
-Also define the stepwise-stable optimum
 $$
-\widehat\rho_6=
-\inf_{\substack{\eta_1,\dots,\eta_6>0\\
-\max_{\lambda\in E}|1-\eta_j\lambda|\leq1\ (j=1,\dots,6)}}
-\max_{\lambda\in E}
-\left|\prod_{j=1}^{6}(1-\eta_j\lambda)\right|.
+g_1=\nabla f(x_1),
+\qquad
+x_2\in\operatorname*{argmin}_{x\in x_0+\operatorname{span}\{g_0,g_1\}}f(x).
 $$
-Determine the ordered pair $(\rho_6,\widehat\rho_6)$ exactly.
+The supremum below is taken over all such choices for which the displayed minimizers exist:
+$$
+W_2=\sup\bigl(f(x_2)-f_*\bigr).
+$$
+Determine $W_2$ exactly.
 
 ---
 
@@ -37,10 +38,10 @@ Determine the ordered pair $(\rho_6,\widehat\rho_6)$ exactly.
 | **Domain** | Optimization and Numerical Mathematics |
 | **Sub-domain** | Numerical optimization |
 | **Problem Type** | Optimization |
-| **Answer Type** | Tuple or ordered list |
+| **Answer Type** | Exact scalar |
 
 ---
 
 ## Domain Explanation
 
-The problem asks for two exact minimax convergence factors for nonstationary gradient descent on quadratic objectives with a disconnected spectral set: the unrestricted optimum and the optimum under per-step nonexpansiveness. Both quantities concern optimal step-size design and stability of a numerical optimization method, so the primary classification is Numerical optimization.
+The problem asks for the exact worst-case two-stage objective error of a first-order optimization scheme that minimizes over the span of the gradients collected so far. The main mathematical task is worst-case convergence analysis of an iterative numerical optimization method, so the primary sub-domain is Numerical optimization.
