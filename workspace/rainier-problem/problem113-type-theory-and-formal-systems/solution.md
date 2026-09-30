@@ -35,13 +35,13 @@ v=A_{n-1},
 \qquad
 w=a\to c.
 $$
-The resulting type is therefore
+The resulting type is
 $$
 (A_n\to A_{n-1})\to A_n\to a\to c
 =
 A_{n+1}\to A_n\to a\to c.
 $$
-These equations are exactly the most general unifier of the function domain with the principal type of $R_n$; every other typing of the application factors through a further substitution. Hence the displayed result is principal, and every $R_n$ is typable.
+These equations are the most general unifier of the function domain with the principal type of $R_n$; every other typing of the application factors through a further substitution. Hence the displayed result is principal, and every $R_n$ is typable.
 
 Step 2: Prove that a nontrivial right-associated term cannot be used as a function
 Let $B_0=p\to q$, $B_1=p\to q\to r$, and
@@ -50,15 +50,15 @@ B_{j+1}=B_j\to B_{j-1}.
 $$
 These are the corresponding type expressions for an independent copy of a right-associated term.
 
-First note that for every $j\geq1$, $B_j$ cannot unify with $p\to r$. For $j=1$, unifying
+For every $j\geq1$, $B_j$ cannot unify with $p\to r$. For $j=1$, unifying
 $$
 p\to q\to r
 $$
-with $p\to r$ would force $r=q\to r$, which fails the occurs check. For $j\geq2$, the type
+with $p\to r$ would force $r=q\to r$, which fails the occurs check. For $j\geq2$,
 $$
 B_j=B_{j-1}\to B_{j-2}
 $$
-would have to unify with $p\to r$, so $p$ would have to unify with $B_{j-1}$. Since $p$ occurs inside every $B_{j-1}$, this again fails the occurs check.
+would have to unify with $p\to r$, so $p$ would have to unify with $B_{j-1}$. Since $p$ occurs inside every $B_{j-1}$, this also fails the occurs check.
 
 We now show that $R_kR_m$ is untypable whenever $k\geq2$ and $m\geq1$. Use independent variables $a,b,c$ for the principal type of $R_k$ and $p,q,r$ for that of $R_m$.
 
@@ -81,9 +81,9 @@ $$
 B_m=(B_{m-1}\to p\to r)\to A_{k-3}.
 $$
 If $m\geq2$, then $B_m=B_{m-1}\to B_{m-2}$, so the first domains would require
-$
+$$
 B_{m-1}=B_{m-1}\to p\to r.
-$
+$$
 No substitution on finite simple types can satisfy an equation $T=T\to U$: after applying any substitution, the right side is a proper arrow extension of the left side and has strictly more type-tree nodes. Hence this case is impossible. If $m=1$, comparing first domains instead forces
 $$
 p=(p\to q)\to p\to r,
@@ -150,13 +150,13 @@ Let $\mathcal T_n$ be the set of all typable full parenthesizations of $n$ copie
 $$
 \mathcal T_n=\{R_n\}.
 $$
-Final Answer: $\boxed{\mathcal T_n=\{R_n\}}$
+Final Answer: $\boxed{\{R_n\}}$
 
 ---
 
 ## Answer
 
-$\mathcal T_n=\{R_n\}$
+$\{R_n\}$
 
 ---
 
