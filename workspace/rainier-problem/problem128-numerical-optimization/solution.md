@@ -1,291 +1,242 @@
 ## Steps
 
-Step 1: Reduce the two-periodic heavy-ball method to trace and determinant control
-For an eigenmode with eigenvalue $\lambda$, one heavy-ball step with step size $\alpha$ has state matrix
-$$
-A_\alpha(\lambda)=
-\begin{pmatrix}
-1+\beta-\alpha\lambda & -\beta\\
-1 & 0
-\end{pmatrix}.
-$$
-With the two step sizes repeated periodically, the two-step monodromy is
-$$
-M(\lambda)=A_{\alpha_2}(\lambda)A_{\alpha_1}(\lambda).
-$$
-Its determinant is
-$$
-\det M(\lambda)=\beta^2,
-$$
-and direct multiplication gives
-$$
-\tau(\lambda):=\operatorname{tr}M(\lambda)
-=1+\beta^2-(1+\beta)(\alpha_1+\alpha_2)\lambda
-+\alpha_1\alpha_2\lambda^2.
-$$
-The two eigenvalues of $M(\lambda)$ are the roots of
-$$
-z^2-\tau(\lambda)z+\beta^2=0.
-$$
-The determinant identity gives spectral radius is at least $\beta$. If $|\tau(\lambda)|\leq2\beta$, both roots have modulus $\beta$. If $x:=|\tau(\lambda)|>2\beta$, the larger root modulus is
-$$
-g_\beta(x)=\frac{x+\sqrt{x^2-4\beta^2}}{2},
-$$
-which is increasing in $x$.
-
-Step 2: Solve the unrestricted minimax problem
-Fix $\beta\in[0,1)$. Every possible trace polynomial has degree at most $2$ and satisfies
-$$
-\tau(0)=1+\beta^2.
-$$
-The quadratic
-$$
-q(\lambda)=\lambda^2-7\lambda+8
-$$
-takes the values
-$$
-q(1)=2,\qquad q(2)=-2,\qquad q(5)=-2,\qquad q(6)=2,
-$$
-and $q(0)=8$. Therefore
-$
-\tau_\beta^*(\lambda)=\frac{1+\beta^2}{8}q(\lambda)
-$$
-has norm $(1+\beta^2)/4$ on $E=[1,2]\cup[5,6]$.
-
-This norm is minimal among all degree-two polynomials with the same value at $0$. Indeed, if another polynomial $p$ had $p(0)=1+\beta^2$ and smaller norm, then $p-\tau_\beta^*$ would be negative at $1$, positive at $2$, negative at $6$, and zero at $0$. It would therefore have zeros in $(1,2)$, in $(2,6)$, and at $0$, impossible for a polynomial of degree at most $2$. Therefore every trace polynomial satisfies
-$$
-\max_{\lambda\in E}|\tau(\lambda)|
-\geq m(\beta):=\frac{1+\beta^2}{4}.
-$$
-
+Step 1: Reduce robust gradient descent to a condition-number problem
 Let
 $$
-\beta_* =4-\sqrt{15}.
+H_0=
+\begin{pmatrix}
+1&1\\
+1&2
+\end{pmatrix},
+\qquad
+H_1=
+\begin{pmatrix}
+\frac12&1\\
+1&4
+\end{pmatrix},
+\qquad
+H_t=(1-t)H_0+tH_1.
 $$
-It is the smaller root of
+For a positive definite preconditioner $P$, the matrix $PH_t$ is similar to
 $$
-\beta^2-8\beta+1=0,
+B_t=P^{1/2}H_tP^{1/2},
 $$
-so
+which is symmetric positive definite. Set
 $$
-m(\beta_*)=2\beta_*.
+m(P)=\min_{0\leq t\leq1}\lambda_{\min}(B_t),
+\qquad
+L(P)=\max_{0\leq t\leq1}\lambda_{\max}(B_t).
 $$
-For $\beta\geq\beta_*$, the determinant bound gives
+Because $B_t=(1-t)B_0+tB_1$, the function $t\mapsto\lambda_{\max}(B_t)$ is convex and $t\mapsto\lambda_{\min}(B_t)$ is concave: each is respectively the maximum or minimum, over unit vectors $v$, of the affine function $v^TB_tv$. Hence
 $$
-\max_{\lambda\in E}r(M(\lambda))\geq\beta\geq\beta_*.
+L(P)=\max\{\lambda_{\max}(B_0),\lambda_{\max}(B_1)\},
 $$
-For $0\leq\beta<\beta_*$, one has $m(\beta)>2\beta$. Also
+and
 $$
-m(\beta)-\left(\beta_*+\frac{\beta^2}{\beta_*}\right)
+m(P)=\min\{\lambda_{\min}(B_0),\lambda_{\min}(B_1)\}.
+$$
+
+For fixed $P$, all eigenvalues relevant to the iteration lie in $[m(P),L(P)]$, and both endpoints occur. Therefore
+$$
+\min_{\eta>0}\max_{0\leq t\leq1}r(I-\eta PH_t)
 =
-\left(\frac14-\beta_*\right)
-+\left(\frac14-\frac1{\beta_*}\right)\beta^2.
-$$
-The coefficient of $\beta^2$ is negative, and the right side is $0$ at $\beta=\beta_*$, so it is positive for $\beta<\beta_*$. Since $r+\beta^2/r$ is increasing for $r\geq\beta$, the relation
-$$
-m(\beta)=g_\beta(m(\beta))+\frac{\beta^2}{g_\beta(m(\beta))}
-$$
-implies
-$$
-g_\beta(m(\beta))\geq\beta_*.
-$$
-Therefore the unrestricted two-step factor is at least $\beta_*$.
-
-At $\beta=\beta_*$, the extremal trace polynomial from this step is
-$
-\tau(\lambda)=\beta_*(\lambda^2-7\lambda+8),
-$
-because $1+\beta_*^2=8\beta_*$. Matching its coefficients with the trace formula from Step 1 forces
-$
-\alpha_1\alpha_2=\beta_*,
-\qquad
-(1+\beta_*)(\alpha_1+\alpha_2)=7\beta_*.
-$
-The relation $\beta_*^2-8\beta_*+1=0$ also gives
-$
-(1+\beta_*)^2=10\beta_*.
-$
-Therefore
-$
-\alpha_1+\alpha_2=\frac{7(1+\beta_*)}{10},
-\qquad
-\alpha_1\alpha_2=\frac{(1+\beta_*)^2}{10}.
-$
-The two positive roots of the resulting quadratic in the step size are
-$
-\alpha_1=\frac{1+\beta_*}{2},
-\qquad
-\alpha_2=\frac{1+\beta_*}{5},
-$
-up to order. These values realize the displayed trace, and $|\tau(\lambda)|\leq2\beta_*$ on $E$. Every two-step monodromy therefore has spectral radius exactly $\beta_*$, and
-$$
-\rho_2=4-\sqrt{15}.
-$$
-
-Step 3: Translate one-step stability into a bound on normalized step sizes
-For one step, write
-$$
-t=1+\beta-\alpha\lambda.
-$$
-The characteristic polynomial is
-$$
-z^2-tz+\beta.
-$$
-For $0\leq\beta<1$, its two roots lie in the closed unit disk exactly when
-$$
-|t|\leq1+\beta.
-$$
-To see the nontrivial direction, suppose the roots are real. Their product is $\beta\geq0$, so they have the same sign. If one has modulus $s>1$, the other has modulus $\beta/s$, and
-$
-|t|=s+\frac{\beta}{s}>1+\beta,
-$
-because $s+\beta/s$ is increasing for $s\geq1$. This contradicts $|t|\leq1+\beta$. If the roots are nonreal, they are conjugates with modulus $\sqrt\beta<1$.
-
-Since $\alpha>0$, the upper inequality $t\leq1+\beta$ is automatic. The lower inequality for every $\lambda\in E$ is equivalent to
-$$
-\alpha\lambda\leq2(1+\beta),
-$$
-and the largest spectral value is $6$. Therefore one-step stability is exactly
-$$
-0<\alpha\leq\frac{1+\beta}{3}.
-$$
-For a stepwise-stable pair define
-$$
-x_i=\frac{\alpha_i}{1+\beta},
-\qquad
-0<x_i\leq\frac13.
-$$
-Then
-$$
-\tau(\lambda)=(1+\beta)^2q(\lambda)-2\beta,
+\min_{\eta>0}\max\{|1-\eta m(P)|,|1-\eta L(P)|\}
+=
+\frac{K(P)-1}{K(P)+1},
 $$
 where
 $$
-q(\lambda)=(1-x_1\lambda)(1-x_2\lambda).
+K(P)=\frac{L(P)}{m(P)}.
+$$
+The minimizing step is $\eta=2/(L(P)+m(P))$. Multiplying $P$ by a positive scalar does not change the optimized factor because the scalar can be absorbed into $\eta$, so impose
+$$
+\det P=1.
 $$
 
-Step 4: Obtain the sharp stable lower bound
-Set
+Step 2: Obtain the invariant lower bound for unrestricted positive definite preconditioners
+Both endpoint Hessians have determinant $1$. Under the normalization $\det P=1$,
 $$
-u_i=|1-6x_i|\in[0,1],
+\det B_0=\det B_1=1.
+$$
+If
+$$
+L=\max\{\lambda_{\max}(B_0),\lambda_{\max}(B_1)\},
+$$
+then each endpoint spectrum is contained in $[1/L,L]$. Thus $m(P)=1/L$ and
+$$
+K(P)=L^2.
+$$
+
+The generalized eigenvalues of the pair $(B_1,B_0)$ are independent of $P$, because
+$$
+B_0^{-1}B_1
+$$
+is similar to $H_0^{-1}H_1$. Here
+$$
+H_0^{-1}=
+\begin{pmatrix}
+2&-1\\
+-1&1
+\end{pmatrix},
 \qquad
-s=u_1u_2=|q(6)|.
+H_0^{-1}H_1=
+\begin{pmatrix}
+0&-2\\
+\frac12&3
+\end{pmatrix}.
 $$
-For fixed $u_i$, the two possibilities $x_i=(1\mp u_i)/6$ give
+Its characteristic polynomial is
 $$
-1-x_i\geq\frac{5-u_i}{6}.
+z^2-3z+1,
 $$
-Therefore
+so its larger eigenvalue is
 $$
-q(1)\geq\frac{(5-u_1)(5-u_2)}{36}.
+\mu=\frac{3+\sqrt5}{2}.
 $$
-For $u_1,u_2\in[0,1]$,
+For every nonzero vector $x$,
 $$
-(5-u_1)(5-u_2)-4(5-u_1u_2)
-=5(1-u_1)(1-u_2)\geq0.
+\frac{x^TB_1x}{x^TB_0x}
+\leq
+\frac{L\|x\|^2}{L^{-1}\|x\|^2}
+=L^2.
 $$
-Therefore
-$
-q(1)\geq\frac{5-s}{9}.
+Taking the maximum generalized Rayleigh quotient gives
 $$
-Since $|q(6)|=s$,
+\mu\leq L^2=K(P).
 $$
-\max_{\lambda\in E}|q(\lambda)|
-\geq
-\max\left\{\frac{5-s}{9},s\right\}
-\geq\frac12.
-$$
+Therefore every positive definite preconditioner satisfies $K(P)\geq\mu$.
 
-It follows from
-$$
-\tau(\lambda)=(1+\beta)^2q(\lambda)-2\beta
-$$
-and the reverse triangle inequality that
-$$
-\max_{\lambda\in E}|\tau(\lambda)|
-\geq
-m_s(\beta):=
-\frac{(1+\beta)^2}{2}-2\beta
-=
-\frac{(1-\beta)^2}{2}.
-$$
+Step 3: Construct the unrestricted preconditioner that attains the invariant bound
 Let
 $$
-\widehat\beta=3-2\sqrt2.
+C=H_0^{-1/2}H_1H_0^{-1/2}.
 $$
-It is the smaller root of
+It is symmetric positive definite with eigenvalues $\mu$ and $\mu^{-1}$. Choose an orthogonal matrix $U$ such that
 $$
-\beta^2-6\beta+1=0,
+C=U
+\begin{pmatrix}
+\mu&0\\
+0&\mu^{-1}
+\end{pmatrix}
+U^T,
 $$
-so
+and define
 $$
-m_s(\widehat\beta)=2\widehat\beta.
+Q=U
+\begin{pmatrix}
+\mu^{-1/2}&0\\
+0&\mu^{1/2}
+\end{pmatrix}
+U^T,
+\qquad
+P_*=H_0^{-1/2}QH_0^{-1/2}.
 $$
-If $\beta\geq\widehat\beta$, the determinant bound gives spectral radius at least $\widehat\beta$. If $0\leq\beta<\widehat\beta$, then $m_s(\beta)>2\beta$. The function
+Since $\det H_0=\det Q=1$, one has $\det P_*=1$.
+
+The eigenvalues of $P_*H_0$ are those of $Q$, namely
 $$
-D(\beta)=m_s(\beta)-\widehat\beta-\frac{\beta^2}{\widehat\beta}
+\mu^{-1/2},\quad \mu^{1/2}.
 $$
-has
+The eigenvalues of $P_*H_1$ are those of $QC$; since $Q$ and $C$ are diagonal in the same $U$-basis, they are again
 $$
-D'(\beta)=-1+\beta-\frac{2\beta}{\widehat\beta}<0
+\mu^{-1/2},\quad \mu^{1/2}.
 $$
-on $[0,\widehat\beta]$, and $D(\widehat\beta)=0$. Therefore $D(\beta)>0$ for $\beta<\widehat\beta$. The same increasing relation $r+\beta^2/r$ used in Step 2 gives
+Thus
 $$
-\max_{\lambda\in E}r(M(\lambda))\geq\widehat\beta.
+\mu^{-1/2}I\preceq B_0,B_1\preceq\mu^{1/2}I.
+$$
+The same Loewner bounds hold for every convex combination $B_t$. Hence $K(P_*)=\mu$, so the unrestricted robust factor is
+$$
+\rho_{\mathrm{full}}
+=
+\frac{\mu-1}{\mu+1}.
+$$
+Using $\mu=(3+\sqrt5)/2$,
+$$
+\rho_{\mathrm{full}}=\frac1{\sqrt5}.
 $$
 
-Step 5: Attain the stable lower bound
-Equality in the last maximum of Step 4 requires $s=1/2$. Equality in
-$
-(5-u_1)(5-u_2)\geq4(5-u_1u_2)
-$
-requires one of $u_1,u_2$ to equal $1$. Up to order, take
-$
-u_1=1,\qquad u_2=\frac12.
-$
-Equality in $1-x_i\geq(5-u_i)/6$ then selects the larger admissible $x_i$, giving
-$
-x_1=\frac13,\qquad x_2=\frac14.
-$
-Therefore set
-$
-\beta=\widehat\beta,
+Step 4: Solve the diagonal-preconditioner minimax problem
+Now restrict $P$ to be diagonal. After the same determinant normalization, write
+$$
+P=
+\begin{pmatrix}
+s&0\\
+0&s^{-1}
+\end{pmatrix},
+\qquad s>0.
+$$
+The endpoint matrices $B_0,B_1$ still have determinant $1$, while their traces are
+$$
+T_0(s)=s+\frac2s,
 \qquad
-\alpha_1=\frac{1+\widehat\beta}{3},
-\qquad
-\alpha_2=\frac{1+\widehat\beta}{4}.
-$
-Both one-step matrices are stable by Step 3. The normalized residual polynomial is
+T_1(s)=\frac{s}{2}+\frac4s.
 $$
-q(\lambda)=\left(1-\frac{\lambda}{3}\right)
-\left(1-\frac{\lambda}{4}\right).
+For a positive definite $2\times2$ matrix of determinant $1$ and trace $T\geq2$, the larger eigenvalue is
 $$
-It decreases from $1/2$ to $1/6$ on $[1,2]$ and increases from $1/6$ to $1/2$ on $[5,6]$, so
+\Phi(T)=\frac{T+\sqrt{T^2-4}}{2},
 $$
-\frac16\leq q(\lambda)\leq\frac12
-\qquad(\lambda\in E).
+which is strictly increasing in $T$. Therefore minimizing $K(P)$ is equivalent to minimizing
 $$
-Because $(1+\widehat\beta)^2=8\widehat\beta$,
+\max\{T_0(s),T_1(s)\}.
 $$
-\tau(\lambda)=8\widehat\beta\,q(\lambda)-2\widehat\beta.
+
+At $s=2$ both traces equal $3$. This value is minimal. Indeed, for $0<s\leq2$,
+$$
+T_1(s)-3
+=
+\frac{(s-2)(s-4)}{2s}
+\geq0,
+$$
+while for $s\geq2$,
+$$
+T_0(s)-3
+=
+\frac{(s-1)(s-2)}{s}
+\geq0.
+$$
+Hence the unique minimizer is $s=2$, and the largest endpoint eigenvalue is
+$$
+\Phi(3)=\frac{3+\sqrt5}{2}=\mu.
 $$
 Therefore
-$
--\frac{2\widehat\beta}{3}
-\leq\tau(\lambda)\leq2\widehat\beta.
 $$
-Every two-step monodromy has spectral radius $\widehat\beta$, so
+K_{\mathrm{diag}}=\mu^2.
 $$
-\widehat\rho_2=3-2\sqrt2.
+
+Step 5: Evaluate the diagonal factor and assemble the ordered pair
+For
 $$
-Combining the unrestricted and stepwise-stable values gives the requested pair.
-Final Answer: $\boxed{\left(4-\sqrt{15},3-2\sqrt2\right)}$
+P_{\mathrm{diag}}=
+\begin{pmatrix}
+2&0\\
+0&\frac12
+\end{pmatrix},
+$$
+both endpoint spectra lie in $[\mu^{-1},\mu]$. Since every $B_t$ is their convex combination, the same spectral enclosure holds for the full family, so the bound from Step 4 is attained.
+
+The optimized diagonal-preconditioned factor is therefore
+$$
+\rho_{\mathrm{diag}}
+=
+\frac{\mu^2-1}{\mu^2+1}.
+$$
+Because $\mu+\mu^{-1}=3$ and $\mu-\mu^{-1}=\sqrt5$,
+$$
+\rho_{\mathrm{diag}}
+=
+\frac{\mu-\mu^{-1}}{\mu+\mu^{-1}}
+=
+\frac{\sqrt5}{3}.
+$$
+Combining this with the unrestricted value from Step 3 gives the required pair.
+Final Answer: $\boxed{\left(\frac1{\sqrt5},\frac{\sqrt5}{3}\right)}$
 
 ---
 
 ## Answer
 
-$\left(4-\sqrt{15},3-2\sqrt2\right)$
+$\left(\frac1{\sqrt5},\frac{\sqrt5}{3}\right)$
 
 ---
 
@@ -299,8 +250,8 @@ $\left(4-\sqrt{15},3-2\sqrt2\right)$
 
 ## Solution Concepts
 
-- heavy-ball method
-- spectral radius
-- periodic iteration matrices
-- minimax quadratic polynomials
-- stability of second-order recurrences
+- robust preconditioning
+- generalized eigenvalues
+- condition-number optimization
+- convexity of extremal eigenvalues
+- diagonal matrix scaling
