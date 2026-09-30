@@ -4,36 +4,44 @@
 
 Let
 $$
-H=
+A=
 \begin{pmatrix}
-2&1&0\\
-1&2&1\\
-0&1&2
+1&0\\
+0&4
 \end{pmatrix},
 \qquad
-f(x)=\frac{1}{2}x^THx.
+B=
+\begin{pmatrix}
+\frac{11}{2}&-\frac{7}{2}\\
+-\frac{7}{2}&\frac{11}{2}
+\end{pmatrix},
 $$
-At the start of one epoch, choose a permutation
+and consider
 $$
-\pi=(\pi_1,\pi_2,\pi_3)
+f(x)=\frac{1}{2}x^TAx,
+\qquad
+g(x)=\frac{1}{2}x^TBx.
 $$
-of $\{1,2,3\}$ according to an arbitrary probability distribution $\nu$ on the six permutations. Then perform exact coordinate minimization in the order $\pi_1,\pi_2,\pi_3$:
+For $\gamma>0$, define the reflected proximal maps
 $$
-x^+=x-\frac{e_i^THx}{H_{ii}}e_i
+R_A(\gamma)=(I-\gamma A)(I+\gamma A)^{-1},
+\qquad
+R_B(\gamma)=(I-\gamma B)(I+\gamma B)^{-1},
 $$
-when coordinate $i$ is selected.
+and the standard Douglas-Rachford iteration matrix
+$$
+T_\gamma=
+\frac{1}{2}\left(I+R_B(\gamma)R_A(\gamma)\right).
+$$
+Let $r(\cdot)$ denote spectral radius.
 
-Define the worst-case expected one-epoch energy ratio
+For a real polynomial $F$ having exactly one zero in $(u,v)$, write
 $$
-\rho(\nu)=
-\sup_{x_0\neq0}
-\frac{\mathbb E_\nu[f(x_3)]}{f(x_0)}.
+\operatorname{root}(F;u,v)
 $$
-Determine
-$$
-\inf_\nu \rho(\nu)
-$$
-exactly.
+for that zero.
+
+Determine the unique value of $\gamma>0$ minimizing $r(T_\gamma)$.
 
 ---
 
@@ -50,4 +58,4 @@ exactly.
 
 ## Domain Explanation
 
-The problem asks for the best probability law for random reshuffling in exact coordinate descent on a quadratic objective, measured by the worst-case expected energy reduction over one full epoch. The main task is to optimize a randomized coordinate-update strategy for an iterative optimization method, so the primary sub-domain is Numerical optimization.
+The problem asks for the stepsize that gives the fastest asymptotic linear convergence of standard Douglas-Rachford splitting applied to two strongly convex quadratic terms with noncommuting Hessians. The requested object is an algorithm parameter obtained by minimizing the spectral radius of the iteration matrix, so the primary sub-domain is Numerical optimization.
