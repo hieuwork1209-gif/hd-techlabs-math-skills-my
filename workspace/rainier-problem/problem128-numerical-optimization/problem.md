@@ -12,7 +12,7 @@ H_0=
 \qquad
 H_1=
 \begin{pmatrix}
-\frac12&1\\
+\frac{1}{2}&1\\
 1&4
 \end{pmatrix},
 \qquad
