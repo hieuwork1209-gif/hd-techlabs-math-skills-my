@@ -1,0 +1,22 @@
+{
+  "problem": "problem128",
+  "branch": "adversary/problem128",
+  "problem_path": "workspace/rainier-problem/problem128-numerical-optimization/problem.md",
+  "source_commit_sha": "f7e3234b5cb776b60201ace7299dadfb709dfc93",
+  "problem_blob_sha": "368a9a5ec370ba41f83933c98af7cd2b24e7aeb5",
+  "statement_sha256": "b61d604b80c00f00fc37042feb12350a4c0697fd63ef9a0c3dd149057ed42389",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T05:08:44+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\nF(r)=r^7-14r^5-15r^4+31r^3+45r^2-12,\n\\]\n\nand let \\(r\\) be the unique root of \\(F(r)=0\\) in \\((1,2)\\). Define\n\n\\[\na=\\frac{31-5r^4}{3r^2-7}.\n\\]\n\nThen the unrestricted optimum is\n\n\\[\n\\rho_5=\\frac{5+a}{25+a}.\n\\]\n\nNumerically, this is\n\n\\[\n\\rho_5\\approx 0.0140993345430.\n\\]\n\nFor the stepwise-stable problem, each step must satisfy \\(\\eta_j\\le 2/5\\). The optimum is attained by taking four steps \\(\\eta=2/5\\) and one step\n\n\\[\n\\eta=\\frac{353}{1603},\n\\]\n\ngiving\n\n\\[\n\\widehat\\rho_5=\\frac{162}{1603}.\n\\]\n\nSo the exact ordered pair is\n\n\\[\n\\boxed{\\left(\\frac{5+a}{25+a},\\frac{162}{1603}\\right)},\n\\]\n\nwhere\n\n\\[\n\\boxed{\na=\\frac{31-5r^4}{3r^2-7},\\qquad\nr\\in(1,2),\\quad\nr^7-14r^5-15r^4+31r^3+45r^2-12=0.\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T05:14:13+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem128/368a9a5ec370.json"
+}
