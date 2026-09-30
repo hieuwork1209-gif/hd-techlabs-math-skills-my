@@ -79,14 +79,18 @@ For $m=2$ or $m=3$, comparison of first domains again forces $p=p\to r$. For $m\
 Now induct on the number of copies of $S$ in a pure-$S$ term. At a typable root $UV$, both subterms are typable, so by induction they are $R_k$ and $R_m$. The preceding obstruction forces $k=1$, and therefore the whole term is the right-associated $R_{k+m}$. Hence $R_j$ is the unique typable pure-$S$ parenthesization with $j$ copies of $S$.
 
 Step 2: Reduce a typable term ending in I to blocks S and SS
-Let a term ending in $I$ contain at least one $S$. We write a useful principal-type interface as
-$$
+Since $I:x\to x$, typing $SI$ forces $x=y\to z$. The resulting principal type is
+$
+((y\to z)\to y)\to(y\to z)\to z.
+$
+The second argument type $y\to z$ reappears as the first domain, so for the induction it is natural to record this shape as
+$
 H(Q,D,R)=(Q\to D)\to Q\to R.
-$$
-Since $I:x\to x$, typing $SI$ forces $x=y\to z$, and therefore
-$$
+$
+Thus
+$
 SI:H(y\to z,y,z).
-$$
+$
 
 We now induct on the number of copies of $S$ in a typable term ending in $I$. The one-$S$ term $SI$ has the displayed interface. For a larger typable term, write its root as $UX$, where $U$ is a pure-$S$ term and $X$ is the suffix containing $I$. Step 1 forces $U=R_k$. If $X$ still contains an $S$, then the induction hypothesis gives $X$ a principal type of the form $H(Q,D,R)$.
 
