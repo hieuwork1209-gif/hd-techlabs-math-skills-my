@@ -107,7 +107,7 @@ $$
 \qquad
 v=1+\frac{u_2^2}{2}.
 $$
-For fixed $u_1,u_2$, the first bound satisfies
+For fixed $u_1,u_2$, the arithmetic-geometric mean inequality gives
 $$
 A_0^2
 \geq
@@ -139,7 +139,7 @@ Let
 $$
 S=\sqrt{1+8\phi^2}=\sqrt{13+4\sqrt{5}}.
 $$
-The last two terms are at least $S$, so
+Applying the arithmetic-geometric mean inequality to the last two terms gives a lower bound of $S$, so
 $$
 A_0^2+A_1^2+A_2^2
 \geq
@@ -322,7 +322,7 @@ f(x)=
 q(y)+\frac{1}{2}\|x-y\|^2
 \right\}.
 $$
-At $y_i$, the $i$th affine term is active, so $g_i\in\partial q(y_i)$. Since $x_i=y_i+g_i$, the point $y_i$ satisfies the first-order condition for the envelope minimization at $x_i$. The quadratic term makes that minimizer unique, and
+Because $q$ is a finite maximum of affine functions, for every $x$ the envelope objective is continuous and coercive in $y$; its quadratic term makes it strongly convex. It therefore has a unique minimizer. At $y_i$, the $i$th affine term is active, so $g_i\in\partial q(y_i)$. Since $x_i=y_i+g_i$, the point $y_i$ satisfies the first-order condition for the envelope minimization at $x_i$, and
 $$
 f(x_i)=H_i+\frac{1}{2}\|g_i\|^2=F_i.
 $$
