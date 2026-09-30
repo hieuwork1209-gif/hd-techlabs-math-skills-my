@@ -7,15 +7,14 @@ $$
 \qquad
 \int_0^1 x^3u(x)\,dx=0.
 $$
-Let
-$$
+Let $H_0^1(0,1)$ denote the absolutely continuous functions that vanish at $0$ and $1$ and have square-integrable derivative, and set
+$
 V=
 \left\{
 u\in H_0^1(0,1):
-\int_0^1 xu(x)\,dx=0,\
-\int_0^1 x^3u(x)\,dx=0
+\int_0^1 xu(x)\,dx=0,\int_0^1 x^3u(x)\,dx=0
 \right\}.
-$$
+$
 The sharp constant is
 $$
 C=\frac{1}{\lambda_*},
@@ -70,7 +69,7 @@ $$
 \liminf_{n\to\infty}
 \int_0^1u_n'(x)^2\,dx.
 $$
-Thus a minimizer exists.
+A minimizer therefore exists.
 
 Step 2: Derive the Euler-Lagrange equation
 Let $u$ be a normalized minimizer. On the tangent space
@@ -78,8 +77,7 @@ $$
 W=
 \left\{
 v\in H_0^1(0,1):
-\int_0^1 xv(x)\,dx=0,\
-\int_0^1 x^3v(x)\,dx=0
+\int_0^1 xv(x)\,dx=0,\int_0^1 x^3v(x)\,dx=0
 \right\},
 $$
 the first variation gives
@@ -90,14 +88,26 @@ $$
 \int_0^1u(x)v(x)\,dx.
 $$
 
-The two moment functionals are linearly independent, so $W$ has codimension $2$. Therefore the linear functional
+The two moment functionals are linearly independent: if
+$
+c_1\int_0^1xv(x)\,dx
++
+c_3\int_0^1x^3v(x)\,dx
+=
+0
+$
+for every $v\in H_0^1(0,1)$, then
+$
+c_1x+c_3x^3=0
+$
+almost everywhere on $(0,1)$, which forces $c_1=c_3=0$. Hence $W$ has codimension $2$. The linear functional
 $$
 v\mapsto
 \int_0^1u'v'\,dx
 -
 \lambda_*\int_0^1uv\,dx
 $$
-is a linear combination of those two moment functionals. Hence there are real constants $a,b$ such that
+is a linear combination of those two moment functionals. There are therefore real constants $a,b$ such that
 $$
 \int_0^1u'v'\,dx
 -
@@ -154,19 +164,37 @@ A\frac{-\mu^3\cos\mu+3\mu^2\sin\mu+6\mu\cos\mu-6\sin\mu}{\mu^4}
 =0.
 $$
 
-A nonzero triple $(A,B,D)$ exists exactly when the determinant of this homogeneous system vanishes. Multiplying that determinant by
-$$
-\frac{525\mu^4}{4}
-$$
-and collecting the sine and cosine terms gives
-$$
+A nonzero triple $(A,B,D)$ exists exactly when
+$
+\det
+\begin{pmatrix}
+\sin\mu & 1 & 1\\
+\dfrac{\sin\mu-\mu\cos\mu}{\mu^2} & \dfrac{1}{3} & \dfrac{1}{5}\\
+\dfrac{-\mu^3\cos\mu+3\mu^2\sin\mu+6\mu\cos\mu-6\sin\mu}{\mu^4}
+& \dfrac{1}{5} & \dfrac{1}{7}
+\end{pmatrix}
+=
+0.
+$
+Expanding along the first column gives
+$
+\frac{4}{525}\sin\mu
++
+\frac{2}{35}
+\frac{\sin\mu-\mu\cos\mu}{\mu^2}
+-
+\frac{2}{15}
+\frac{-\mu^3\cos\mu+3\mu^2\sin\mu+6\mu\cos\mu-6\sin\mu}{\mu^4}.
+$
+After multiplying by $525\mu^4/4$, the determinant equation is
+$
 \mu^4\sin\mu
 +10\mu^3\cos\mu
 -45\mu^2\sin\mu
 -105\mu\cos\mu
 +105\sin\mu
 =0.
-$$
+$
 
 Step 4: Identify the smallest positive root with the sharp constant
 Define
@@ -202,7 +230,7 @@ $$
 =
 \mu^2\int_0^1u(x)^2\,dx.
 $$
-Hence every positive root of $g$ gives a feasible Rayleigh quotient equal to $\mu^2$.
+Every positive root therefore gives of $g$ gives a feasible Rayleigh quotient equal to $\mu^2$.
 
 If a positive root smaller than the minimizer's $\mu$ existed, it would produce a feasible quotient smaller than $\lambda_*$, which is impossible. Therefore
 $$
