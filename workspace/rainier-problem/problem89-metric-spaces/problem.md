@@ -2,38 +2,46 @@
 
 ## LaTeX (Normalized)
 
-Let $[7]=\{1,2,3,4,5,6,7\}$ and
+Let
 $$
-X=\binom{[7]}{2}.
+X=mathbb{F}_2^9/langlemathbf{1}angle,
+qquad
+mathbf{1}=(1,ldots,1).
 $$
-Give $X$ the shortest-path metric $d$ of the Kneser graph $KG(7,2)$: two distinct vertices $A,B\in X$ are adjacent exactly when $A\cap B=\varnothing$.
+For a class $[x]in X$, let $|x|$ denote Hamming weight and define the folded Hamming metric
+$$
+d([x],[y])=min{|x-y|,9-|x-y|}.
+$$
 
-For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_A)_{A\in X}$ with $\sum_Ac_A=0$ satisfies
+For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_x)_{xin X}$ with $sum_xc_x=0$ satisfies
 $$
-\sum_{A,B\in X}c_Ac_Bd(A,B)^p\leq0.
+sum_{x,yin X}c_xc_y d(x,y)^pleq0.
 $$
 Let
 $$
-\wp=\sup\{p>0:(X,d)\text{ has }p\text{-negative type}\},
+wp=sup{p>0:(X,d)	ext{ has }p	ext{-negative type}},
 $$
-and define
+and define the critical equality space
 $$
-E=\left\{c\in\mathbb R^X:\sum_Ac_A=0,\ \sum_{A,B}c_Ac_Bd(A,B)^{\wp}=0\right\}.
+E=left{cinmathbb{R}^{X}:sum_xc_x=0, 
+sum_{x,yin X}c_xc_y d(x,y)^{wp}=0ight}.
 $$
 
-For $L\leq E$, write
+For $cin E$, write
 $$
-\operatorname{supp}(L)=\{A\in X:\text{some }c\in L\text{ has }c_A\neq0\}.
+operatorname{supp}(c)={xin X:c_x
+eq0}.
 $$
-For $1\leq r\leq\dim E$, define the support spectrum
+Let
 $$
-\Sigma_r=\{|\operatorname{supp}(L)|:L\leq E,\ \dim L=r\}.
+m=min_{0
+eq cin E}|operatorname{supp}(c)|,
 $$
-Also write $I(a)=\{a,a+1,\ldots,21\}$.
+and let $N$ be the number of one-dimensional subspaces of $E$ spanned by vectors whose support has size $m$.
 
 Determine
 $$
-(\wp,\dim E,\Sigma_1,\ldots,\Sigma_{\dim E}).
+(wp,dim E,m,N).
 $$
 
 ---
@@ -51,4 +59,4 @@ $$
 
 ## Domain Explanation
 
-The primary object is a finite shortest-path metric, and the problem asks for its supremal negative type together with the full support spectrum of the equality space at the critical exponent, so Analysis / Metric spaces is the natural primary classification. Spectral graph methods and finite-dimensional linear algebra identify the equality space, while the support-spectrum determination requires an extremal and closure analysis of the induced coordinate constraints.
+The primary object is a finite quotient metric, and the problem asks for its supremal negative type together with extremal support data inside the critical equality space, so Analysis / Metric spaces is the natural primary classification. Finite Fourier analysis identifies the critical equality space, while a separate extremal argument is needed to determine and classify its sparsest nonzero vectors.
