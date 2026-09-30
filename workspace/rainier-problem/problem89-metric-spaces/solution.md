@@ -35,7 +35,7 @@ $$
 Since $s$ is even, coefficient comparison gives
 $$
 K_s(9-h)=K_s(h).
-$
+$$
 Thus pairing weights $h$ and $9-h$ gives
 $$
 \lambda_s(p)=\sum_{h=1}^4K_s(h)h^p.
