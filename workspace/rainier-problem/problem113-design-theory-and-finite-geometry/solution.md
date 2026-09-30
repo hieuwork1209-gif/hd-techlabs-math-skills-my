@@ -123,15 +123,23 @@ A_2=\{0,1,5,7\},
 A_3=\{0,1,6,9\}.
 $$
 Take all translates
-$$
+$
 A_k+a
 \qquad
 (k\in\{1,2,3\},\ a\in\mathbb Z_{11}).
-$$
-Each orbit has eleven distinct blocks, so this gives
-$$
+$
+A nonzero translation of \mathbb Z_{11} has one orbit of length $11$, so it cannot stabilize a $4$-set. Hence each base block has an orbit of size $11$. Their circular gap $4$-tuples are respectively
+$
+(1,1,2,7),
+\qquad
+(1,4,2,4),
+\qquad
+(1,5,3,2),
+$
+up to cyclic rotation, so the three translation orbits are distinct. Thus the construction has
+$
 3\cdot11=33
-$$
+$
 blocks.
 
 Every point occurs equally often in each translation orbit. Since one orbit has $11$ blocks of size $4$, it has $44$ point incidences, hence every point occurs four times in that orbit. Across the three orbits every point therefore has degree
