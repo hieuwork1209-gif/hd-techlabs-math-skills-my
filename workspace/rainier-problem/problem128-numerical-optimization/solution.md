@@ -315,7 +315,7 @@ $$
 \beta s_0^2=s_0^2+s_1^2+s_2^2.
 $$
 
-To realize these finite data by an actual function, Put
+To realize these finite data by an actual function, put
 $$
 y_i=x_i-g_i,
 \qquad
