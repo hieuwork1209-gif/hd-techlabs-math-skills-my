@@ -1,300 +1,276 @@
 ## Steps
 
-Step 1: Reduce the sharp constant to a constrained Rayleigh quotient
-For an odd function on $[-1,1]$, both the $L^2$ norm and the Dirichlet energy are twice their values on $[0,1]$. The moment conditions reduce to
-$$
-\int_0^1xu(x)\,dx=0,
-\qquad
-\int_0^1x^3u(x)\,dx=0.
-$$
-Let $H_0^1(0,1)$ denote the absolutely continuous functions that vanish at $0$ and $1$ and have square-integrable derivative, and set
+Step 1: Represent point evaluation in the Dirichlet energy space
+Let
 $$
 V=
 \left\{
 u\in H_0^1(0,1):
 \int_0^1xu(x)\,dx=0,
 \int_0^1x^3u(x)\,dx=0
-\right\}.
-$$
-The sharp constant is
-$$
-C=\frac{1}{\lambda_*},
-$$
-where
-$$
-\lambda_*
-=
-\inf_{u\in V\setminus\{0\}}
-\frac{\int_0^1u'(x)^2\,dx}
-{\int_0^1u(x)^2\,dx}.
-$$
-
-This infimum is positive because $u(0)=0$ gives
-$$
-|u(x)|
-=
-\left|
-\int_0^xu'(t)\,dt
-\right|
-\leq
-\sqrt{x}
-\left(
-\int_0^1u'(t)^2\,dt
-\right)^{1/2},
-$$
-so
-$$
-\int_0^1u(x)^2\,dx
-\leq
-\frac{1}{2}
-\int_0^1u'(x)^2\,dx.
-$$
-
-The infimum is attained. Take a minimizing sequence normalized by
-$$
-\int_0^1u_n(x)^2\,dx=1.
-$$
-Its derivative norms are bounded. The estimate
-$$
-|u_n(x)-u_n(y)|
-\leq
-\|u_n'\|_{L^2}|x-y|^{1/2}
-$$
-gives a uniformly bounded equicontinuous family, so a subsequence converges uniformly to a function $u$. A bounded sequence in the Hilbert space $L^2$ has a weakly convergent subsequence, so write
-$$
-u_n'\rightharpoonup v.
-$$
-For every $x\in[0,1]$,
-$$
-u_n(x)
-=
-\int_0^xu_n'(t)\,dt
-$$
-passes to the weak limit because the indicator of $[0,x]$ belongs to $L^2$. Therefore
-$$
-u(x)=\int_0^xv(t)\,dt,
-$$
-so $u\in H_0^1(0,1)$ and $u'=v$. Uniform convergence preserves both moment constraints and the $L^2$ normalization. Finally,
-$$
-\|u_n'\|_{L^2}^2
-=
-\|u'\|_{L^2}^2
-+
-\|u_n'-u'\|_{L^2}^2
-+
-2\langle u',u_n'-u'\rangle,
-$$
-and the last term tends to $0$ by weak convergence. Therefore
-$$
-\int_0^1u'(x)^2\,dx
-\leq
-\liminf_{n\to\infty}
-\int_0^1u_n'(x)^2\,dx.
-$$
-A minimizer exists.
-
-Step 2: Derive the Euler-Lagrange equation
-Let $u$ be a normalized minimizer. On the tangent space
-$$
-W=
-\left\{
-v\in H_0^1(0,1):
-\int_0^1xv(x)\,dx=0,
-\int_0^1x^3v(x)\,dx=0
 \right\},
 $$
-the first variation of the Rayleigh quotient gives
+with inner product
 $$
-\int_0^1u'(x)v'(x)\,dx
+\langle u,v\rangle
 =
-\lambda_*
-\int_0^1u(x)v(x)\,dx.
+\int_0^1u'(x)v'(x)\,dx.
+$$
+The requested sharp constant is the squared norm of the evaluation functional
+$$
+L(u)=u\left(\frac{1}{2}\right)
+$$
+on $V$.
+
+For $a\in(0,1)$ define
+$$
+G_a(x)
+=
+\begin{cases}
+x(1-a),&0\leq x\leq a,\\
+a(1-x),&a\leq x\leq1.
+\end{cases}
+$$
+The function $G_a$ is continuous, vanishes at $0$ and $1$, and has derivative
+$$
+G_a'(x)
+=
+\begin{cases}
+1-a,&0<x<a,\\
+-a,&a<x<1.
+\end{cases}
+$$
+For every $u\in H_0^1(0,1)$,
+$$
+\begin{aligned}
+\langle u,G_a\rangle
+&=
+(1-a)\int_0^a u'(x)\,dx
+-a\int_a^1u'(x)\,dx\\
+&=
+(1-a)u(a)+a u(a)\\
+&=
+u(a).
+\end{aligned}
+$$
+Thus $G_a$ is the energy-space representer of evaluation at $a$. In particular,
+$$
+G_{1/2}\left(\frac{1}{2}\right)
+=
+\left\|G_{1/2}\right\|^2
+=
+\frac{1}{4}.
 $$
 
-The two moment functionals are linearly independent. If
+Step 2: Represent the two moment constraints
+Let $h_1,h_3\in H_0^1(0,1)$ solve
 $$
-c_1\int_0^1xv(x)\,dx
-+
-c_3\int_0^1x^3v(x)\,dx
+-h_1''=x,
+\qquad
+-h_3''=x^3.
+$$
+Integrating twice and imposing zero boundary values gives
+$$
+h_1(x)=\frac{x(1-x^2)}{6},
+\qquad
+h_3(x)=\frac{x(1-x^4)}{20}.
+$$
+Integration by parts, with all boundary terms equal to zero, gives
+$$
+\langle u,h_1\rangle
+=
+\int_0^1xu(x)\,dx
+$$
+and
+$$
+\langle u,h_3\rangle
+=
+\int_0^1x^3u(x)\,dx.
+$$
+Therefore
+$$
+V=
+\left(\operatorname{span}\{h_1,h_3\}\right)^\perp.
+$$
+
+The Gram matrix of $h_1,h_3$ is
+$$
+M=
+\begin{pmatrix}
+\langle h_1,h_1\rangle & \langle h_1,h_3\rangle\\
+\langle h_3,h_1\rangle & \langle h_3,h_3\rangle
+\end{pmatrix}.
+$$
+Using the moment identities just obtained,
+$$
+\langle h_1,h_1\rangle
+=
+\int_0^1x h_1(x)\,dx
+=
+\frac{1}{45},
+$$
+$$
+\langle h_1,h_3\rangle
+=
+\int_0^1x h_3(x)\,dx
+=
+\frac{1}{105},
+$$
+and
+$$
+\langle h_3,h_3\rangle
+=
+\int_0^1x^3 h_3(x)\,dx
+=
+\frac{1}{225}.
+$$
+Hence
+$$
+M=
+\begin{pmatrix}
+\frac{1}{45} & \frac{1}{105}\\
+\frac{1}{105} & \frac{1}{225}
+\end{pmatrix}.
+$$
+Its determinant is
+$$
+\frac{1}{45\cdot225}-\frac{1}{105^2}
+=
+\frac{16}{496125}>0,
+$$
+so $M$ is invertible.
+
+Step 3: Project the evaluation representer onto the constrained subspace
+Set
+$$
+G=G_{1/2}.
+$$
+The vector of inner products of $G$ with the two constraint representers is
+$$
+b=
+\begin{pmatrix}
+\langle G,h_1\rangle\\
+\langle G,h_3\rangle
+\end{pmatrix}
+=
+\begin{pmatrix}
+h_1(1/2)\\
+h_3(1/2)
+\end{pmatrix}
+=
+\begin{pmatrix}
+\frac{1}{16}\\
+\frac{3}{128}
+\end{pmatrix}.
+$$
+Let
+$$
+c=M^{-1}b.
+$$
+Since
+$$
+M^{-1}
+=
+\begin{pmatrix}
+\frac{2205}{4} & -\frac{4725}{4}\\
+-\frac{4725}{4} & \frac{11025}{4}
+\end{pmatrix},
+$$
+we get
+$$
+c=
+\begin{pmatrix}
+\frac{3465}{512}\\
+-\frac{4725}{512}
+\end{pmatrix}.
+$$
+Define
+$$
+g=G-c_1h_1-c_3h_3.
+$$
+For $j\in\{1,3\}$,
+$$
+\langle g,h_j\rangle
+=
+\langle G,h_j\rangle
+-
+\sum_{k\in\{1,3\}}c_k\langle h_k,h_j\rangle
 =
 0
 $$
-for every $v\in H_0^1(0,1)$, choose
+because $Mc=b$. Hence $g\in V$.
+
+For every $u\in V$,
 $$
-v(x)=x(1-x)\left(c_1x+c_3x^3\right).
-$$
-Then
-$$
-\int_0^1x(1-x)\left(c_1x+c_3x^3\right)^2\,dx=0,
-$$
-which forces $c_1=c_3=0$. Therefore the map
-$$
-v\mapsto
-\left(
-\int_0^1xv(x)\,dx,
-\int_0^1x^3v(x)\,dx
-\right)
-$$
-has rank $2$, and $W$ is its kernel. Any linear functional that vanishes on $W$ therefore factors through this map. There are real constants $a,b$ such that
-$$
-\int_0^1u'v'\,dx
--
-\lambda_*\int_0^1uv\,dx
+u\left(\frac{1}{2}\right)
 =
-a\int_0^1xv\,dx
+\langle u,G\rangle
+=
+\langle u,g\rangle,
+$$
+because $u$ is orthogonal to $h_1$ and $h_3$. Cauchy-Schwarz now gives
+$$
+\left|u\left(\frac{1}{2}\right)\right|^2
+\leq
+\|g\|^2
+\int_0^1u'(x)^2\,dx.
+$$
+Equality holds for every nonzero scalar multiple of $g$, so the sharp constant is exactly
+$$
+C=\|g\|^2.
+$$
+
+Step 4: Compute the sharp constant
+Because $G-g=c_1h_1+c_3h_3$ is orthogonal to $g$,
+$$
+\|G\|^2
+=
+\|g\|^2
 +
-b\int_0^1x^3v\,dx
+\|G-g\|^2.
 $$
-for every $v\in H_0^1(0,1)$.
-
-In the weak sense,
+Equivalently,
 $$
--u''=\lambda_*u+ax+bx^3.
-$$
-The right side is continuous, so integrating the equation twice shows that $u$ is twice continuously differentiable. Write
-$$
-\mu=\sqrt{\lambda_*}>0.
-$$
-For $\mu>0$, the map
-$$
-(B,D)
-\mapsto
-\left(
--\mu^2B-6D,
--\mu^2D
-\right)
-$$
-is invertible, so the polynomial forcing $ax+bx^3$ has a particular solution of the form $Bx+Dx^3$. The homogeneous solutions are $\sin(\mu x)$ and $\cos(\mu x)$, and $u(0)=0$ removes the cosine term. Therefore
-$$
-u(x)=A\sin(\mu x)+Bx+Dx^3.
-$$
-
-Step 3: Convert the boundary and moment conditions into a determinant equation
-The condition $u(1)=0$ gives
-$$
-A\sin\mu+B+D=0.
-$$
-Integration by parts gives
-$$
-\int_0^1x\sin(\mu x)\,dx
+C
 =
-\frac{\sin\mu-\mu\cos\mu}{\mu^2},
+\|G\|^2-b^TM^{-1}b.
 $$
-and a second integration-by-parts calculation gives
+From Step 1,
 $$
-\int_0^1x^3\sin(\mu x)\,dx
+\|G\|^2=\frac{1}{4}.
+$$
+Also,
+$$
+b^TM^{-1}b
 =
-\frac{-\mu^3\cos\mu+3\mu^2\sin\mu+6\mu\cos\mu-6\sin\mu}{\mu^4}.
-$$
-The two moment constraints are therefore
-$$
-A\frac{\sin\mu-\mu\cos\mu}{\mu^2}
-+\frac{B}{3}
-+\frac{D}{5}
-=0
-$$
-and
-$$
-A\frac{-\mu^3\cos\mu+3\mu^2\sin\mu+6\mu\cos\mu-6\sin\mu}{\mu^4}
-+\frac{B}{5}
-+\frac{D}{7}
-=0.
-$$
-
-A nonzero triple $(A,B,D)$ exists exactly when
-$$
-\det
 \begin{pmatrix}
-\sin\mu & 1 & 1\\
-\frac{\sin\mu-\mu\cos\mu}{\mu^2} & \frac{1}{3} & \frac{1}{5}\\
-\frac{-\mu^3\cos\mu+3\mu^2\sin\mu+6\mu\cos\mu-6\sin\mu}{\mu^4}
-& \frac{1}{5} & \frac{1}{7}
+\frac{1}{16} & \frac{3}{128}
+\end{pmatrix}
+\begin{pmatrix}
+\frac{3465}{512}\\
+-\frac{4725}{512}
 \end{pmatrix}
 =
-0.
+\frac{13545}{65536}.
 $$
-Expanding along the first column gives
+Therefore
 $$
-\frac{4}{525}\sin\mu
-+
-\frac{2}{35}
-\frac{\sin\mu-\mu\cos\mu}{\mu^2}
+C
+=
+\frac{1}{4}
 -
-\frac{2}{15}
-\frac{-\mu^3\cos\mu+3\mu^2\sin\mu+6\mu\cos\mu-6\sin\mu}{\mu^4}.
-$$
-After multiplying by $525\mu^4/4$, the determinant equation is
-$$
-\mu^4\sin\mu
-+10\mu^3\cos\mu
--45\mu^2\sin\mu
--105\mu\cos\mu
-+105\sin\mu
-=0.
-$$
-
-Step 4: Identify the smallest positive root with the sharp constant
-Define
-$$
-g(x)
+\frac{13545}{65536}
 =
-x^4\sin x
-+10x^3\cos x
--45x^2\sin x
--105x\cos x
-+105\sin x.
+\frac{2839}{65536}.
 $$
-The minimizer from Step 1 produces a number $\mu>0$ with
-$$
-g(\mu)=0
-$$
-and
-$$
-\lambda_*=\mu^2.
-$$
-
-Conversely, let $\mu>0$ satisfy $g(\mu)=0$. The determinant in Step 3 vanishes, so there is a nonzero triple $(A,B,D)$ for which
-$$
-u(x)=A\sin(\mu x)+Bx+Dx^3
-$$
-satisfies the boundary condition and both moment constraints. This function is not identically zero: if it were, taking four derivatives would give $A\mu^4\sin(\mu x)=0$, so $A=0$, and then $Bx+Dx^3=0$ would force $B=D=0$. Also,
-$$
--u''-\mu^2u
-$$
-is a linear combination of $x$ and $x^3$. Multiplying by $u$, integrating over $[0,1]$, and using the two moment constraints gives
-$$
-\int_0^1u'(x)^2\,dx
-=
-\mu^2
-\int_0^1u(x)^2\,dx.
-$$
-Every positive root of $g$ therefore gives a feasible Rayleigh quotient equal to $\mu^2$.
-
-If a positive root smaller than the minimizer's $\mu$ existed, it would produce a feasible quotient smaller than $\lambda_*$, which is impossible. Therefore
-$$
-\lambda_*
-=
-\left(
-\min
-\left\{
-x>0:
-x^4\sin x
-+10x^3\cos x
--45x^2\sin x
--105x\cos x
-+105\sin x
-=0
-\right\}
-\right)^2.
-$$
-Taking the reciprocal gives the sharp constant.
-Final Answer: $\boxed{\left(\min\{x>0:x^4\sin x+10x^3\cos x-45x^2\sin x-105x\cos x+105\sin x=0\}\right)^{-2}}$
+The projected representer $g$ attains equality, so this constant is sharp.
+Final Answer: $\boxed{\frac{2839}{65536}}$
 
 ---
 
 ## Answer
 
-$\left(\min\{x>0:x^4\sin x+10x^3\cos x-45x^2\sin x-105x\cos x+105\sin x=0\}\right)^{-2}$
+$\frac{2839}{65536}$
 
 ---
 
@@ -308,8 +284,8 @@ $\left(\min\{x>0:x^4\sin x+10x^3\cos x-45x^2\sin x-105x\cos x+105\sin x=0\}\righ
 
 ## Solution Concepts
 
-- constrained Rayleigh quotients
-- variational minimizers
-- Euler-Lagrange equations
+- reproducing kernels
+- riesz representers
+- orthogonal projections
 - moment constraints
-- transcendental eigenvalue equations
+- sharp inequalities
