@@ -17,7 +17,7 @@ $$
 These $2^8$ characters form an orthogonal basis. Since the matrix $D_p=(d(x,y)^p)$ is translation-invariant on $G$, each $\chi_S$ is an eigenvector. If $s=|S|$, the eigenvalue is
 $$
 \lambda_s(p)
-=\frac12\sum_{x\in\mathbb{F}_2^9}\delta(x)^p\chi_S(x).
+=\frac{1}{2}\sum_{x\in\mathbb{F}_2^9}\delta(x)^p\chi_S(x).
 $$
 
 For
@@ -71,14 +71,30 @@ $$
 $$
 we have
 $$
-F\left(\frac13\right)
+F\left(\frac{1}{3}\right)
 >
 -7+20\frac{12599}{10000}
 -28\frac{14423}{10000}
 +14\frac{15873}{10000}
 =\frac{179}{5000}>0.
 $$
-Hence $0<\rho<1/3$. By continuity, $F(\rho)=0$, while the definition of $\rho$ gives values with $F>0$ arbitrarily close to the right of $\rho$.
+Hence $0<\rho<1/3$. In fact $F$ is strictly increasing. Put $x=2^p\geq1$ and $\alpha=\log_2 3$. The inequalities $3^7>2^{11}$ and $3^5<2^8$ give
+$
+\frac{11}{7}<\alpha<\frac{8}{5}.
+$
+With $\beta=\alpha-1\in(0,1)$, concavity gives $x^\beta\leq\beta x+1-\beta$. Therefore
+$
+\frac{1}{4}\frac{dF}{dx}
+=7x+5-7\alpha x^\beta
+\geq7x+5-7\alpha(\alpha-1)x-7\alpha(2-\alpha)>0,
+$
+because
+$
+7\alpha(\alpha-1)<\frac{168}{25}<7,
+\qquad
+7\alpha(2-\alpha)<\frac{33}{7}<5.
+$
+Thus $\rho$ is the unique positive zero of $F$, $F(p)<0$ for $p<\rho$, and $F(p)>0$ for $p>\rho$.
 
 The other nonconstant eigenvalues stay negative on $0\leq p\leq1/3$. For $\lambda_2$, writing $q=2^p\geq1$ gives
 $$
@@ -89,12 +105,12 @@ because the quadratic equals $-1$ at $q=1$ and is strictly decreasing thereon.
 For $\lambda_4$,
 $$
 \lambda_4'(p)
-=-4(\log2)2^p-4(\log3)3^p+12(\log2)4^p.
+=-4(\log 2)2^p-4(\log 3)3^p+12(\log 2)4^p.
 $$
 Since $3^p\leq4^p$,
 $$
 \lambda_4'(p)
-\geq4\cdot2^p\left((\log(8/3))2^p-\log2\right)>0.
+\geq4\cdot2^p\left((\log(8/3))2^p-\log 2\right)>0.
 $$
 Also cubing gives
 $$
@@ -104,7 +120,7 @@ $$
 $$
 so
 $$
-\lambda_4\left(\frac13\right)
+\lambda_4\left(\frac{1}{3}\right)
 <
 1-4\frac{1259}{1000}
 -4\frac{721}{500}
@@ -116,13 +132,13 @@ For $\lambda_6$, convexity of $3^p$ on $[0,1/3]$ and $e^t\geq1+t$ give
 $$
 3^p\leq1+3p(3^{1/3}-1),
 \qquad
-4^p\geq1+p\log4.
+4^p\geq1+p\log 4.
 $$
-Using $3^{1/3}<1443/1000$ and $\log4>4/3$,
+Using $3^{1/3}<1443/1000$ and $\log 4>4/3$,
 $$
 \lambda_6(p)
-\leq-1+p\left(24(3^{1/3}-1)-6\log4\right)
-<-1+\frac13\frac{329}{125}
+\leq-1+p\left(24(3^{1/3}-1)-6\log 4\right)
+<-1+\frac{1}{3}\frac{329}{125}
 =-\frac{46}{375}<0.
 $$
 
