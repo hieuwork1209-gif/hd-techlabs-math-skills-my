@@ -1,287 +1,221 @@
 ## Steps
 
-Step 1: Write the Douglas-Rachford iteration matrix
-Let
+Step 1: Derive the smooth-convex interpolation inequality used in the upper bound
+Let $f:\mathbb R^d\to\mathbb R$ be convex with $1$-Lipschitz gradient, and write $g(x)=\nabla f(x)$. The Lipschitz condition gives the descent inequality
 $$
-A=
-\begin{pmatrix}
-1&0\\
-0&4
-\end{pmatrix},
-\qquad
-B=
-\begin{pmatrix}
-\frac{11}{2}&-\frac{7}{2}\\
--\frac{7}{2}&\frac{11}{2}
-\end{pmatrix}.
+f(y)\leq f(x)+g(x)^T(y-x)+\frac{1}{2}\|y-x\|^2.
 $$
-For the quadratic functions
+Indeed, with $d=y-x$,
 $$
-f(x)=\frac{1}{2}x^TAx,
-\qquad
-g(x)=\frac{1}{2}x^TBx,
-$$
-the proximal maps with parameter $\gamma>0$ are
-$$
-J_A=(I+\gamma A)^{-1},
-\qquad
-J_B=(I+\gamma B)^{-1}.
-$$
-Their reflected proximal maps are
-$$
-R_A=2J_A-I=(I-\gamma A)(I+\gamma A)^{-1},
-$$
-$$
-R_B=2J_B-I=(I-\gamma B)(I+\gamma B)^{-1}.
-$$
-The standard Douglas-Rachford iteration is
-$$
-z_{k+1}=T_\gamma z_k,
-\qquad
-T_\gamma=\frac{1}{2}(I+R_BR_A).
+f(y)-f(x)-g(x)^Td
+=
+\int_0^1\bigl(g(x+td)-g(x)\bigr)^Td\,dt
+\leq
+\int_0^1 t\|d\|^2\,dt.
 $$
 
-For $s=\gamma$,
+For arbitrary $u,v$, set
 $$
-R_A=
-\begin{pmatrix}
-\frac{1-s}{1+s}&0\\
-0&\frac{1-4s}{1+4s}
-\end{pmatrix}.
+\psi(z)=f(z)-g(v)^Tz.
 $$
-The orthogonal matrix
+Then $\psi$ is convex and $1$-smooth, while $\nabla\psi(v)=0$, so $v$ minimizes $\psi$. Apply the descent inequality to $\psi$ at $u$ with the point
 $$
-U=\frac{1}{\sqrt{2}}
-\begin{pmatrix}
-1&1\\
-1&-1
-\end{pmatrix}
+u-\nabla\psi(u).
 $$
-satisfies
+This gives
 $$
-B=U
-\begin{pmatrix}
-2&0\\
-0&9
-\end{pmatrix}
-U^T.
+\psi\bigl(u-\nabla\psi(u)\bigr)
+\leq
+\psi(u)-\frac{1}{2}\|\nabla\psi(u)\|^2.
 $$
-Therefore
+Since $\psi(v)$ is no larger than the left side,
 $$
-R_B=
-U
-\begin{pmatrix}
-\frac{1-2s}{1+2s}&0\\
-0&\frac{1-9s}{1+9s}
-\end{pmatrix}
-U^T
-=
-\frac{1}{18s^2+11s+1}
-\begin{pmatrix}
-1-18s^2&7s\\
-7s&1-18s^2
-\end{pmatrix}.
+f(u)\geq
+f(v)+g(v)^T(u-v)
++\frac{1}{2}\|g(u)-g(v)\|^2.
 $$
-Write
+This inequality will be applied only to the three pairs of points that occur in one gradient step.
+
+Step 2: Construct two lower-bound instances valid for every step size
+Let
 $$
-p=\frac{1-s}{1+s},
+W(h)=
+\sup\left\{
+f(x_1)-f_*:
+x_1=x_0-h\nabla f(x_0),\ 
+f\in\mathcal F,\ 
+\|x_0-x_*\|\leq1
+\right\},
+$$
+where $\mathcal F$ is the class from the problem.
+
+First take the one-dimensional quadratic
+$$
+f_Q(x)=\frac{1}{2}x^2,
 \qquad
-q=\frac{1-4s}{1+4s},
+x_0=1.
+$$
+Then $x_*=0$ and
+$$
+x_1=1-h,
+$$
+so
+$$
+W(h)\geq\frac{1}{2}(1-h)^2.
+$$
+
+For the second instance, let $a\in(0,1]$ and define
+$$
+f_a(x)=
+\begin{cases}
+\frac{1}{2}x^2,& |x|\leq a,\\
+a|x|-\frac{1}{2}a^2,& |x|\geq a.
+\end{cases}
+$$
+Its derivative is the clipping map
+$$
+f_a'(x)=\max\{-a,\min\{x,a\}\},
+$$
+which is nondecreasing and $1$-Lipschitz. Hence $f_a$ is convex and belongs to $\mathcal F$, with minimizer $0$.
+
+Choose
+$$
+a=\frac{1}{1+2h},
 \qquad
-a=\frac{1-18s^2}{18s^2+11s+1},
-\qquad
-b=\frac{7s}{18s^2+11s+1}.
+x_0=1.
 $$
 Then
 $$
-C_s=R_BR_A=
-\begin{pmatrix}
-ap&bq\\
-bp&aq
-\end{pmatrix}.
+x_1=1-ha=\frac{1+h}{1+2h}>a,
 $$
-Therefore
+and therefore
 $$
-\operatorname{tr}(C_s)=a(p+q),
+f_a(x_1)
+=
+ax_1-\frac{1}{2}a^2
+=
+\frac{1}{2(1+2h)}.
+$$
+Thus
+$$
+W(h)\geq
+\frac{1}{2}
+\max\left\{(1-h)^2,\frac{1}{1+2h}\right\}.
+$$
+
+Step 3: Locate the only possible minimizing step
+The lower bound from Step 2 already forces a universal barrier. If
+$$
+0<h<\frac{3}{2},
+$$
+then
+$$
+\frac{1}{1+2h}>\frac{1}{4},
+$$
+so $W(h)>\frac{1}{8}$. If
+$$
+h>\frac{3}{2},
+$$
+then
+$$
+(1-h)^2>\frac{1}{4},
+$$
+so again $W(h)>\frac{1}{8}$.
+
+At
+$$
+h=\frac{3}{2},
+$$
+the two lower-bound branches agree:
+$$
+(1-h)^2=\frac{1}{1+2h}=\frac{1}{4}.
+$$
+Therefore every step size satisfies
+$$
+W(h)\geq\frac{1}{8},
+$$
+and equality can occur only at $h=\frac{3}{2}$. It remains to prove that this step size attains the bound for every function in the class.
+
+Step 4: Prove the matching upper bound at the candidate step
+Fix $h=\frac{3}{2}$ and an arbitrary admissible function and starting point. Write
+$$
+f_i=f(x_i),
 \qquad
-\det(C_s)=(a^2-b^2)pq.
+g_i=\nabla f(x_i),
+\qquad
+d=x_0-x_*.
 $$
-Simplifying these two expressions gives
+Since $x_*$ is a minimizer, $\nabla f(x_*)=0$, and
 $$
-t(s)=
-\frac{2(2s-1)(18s^2-1)}
-{(s+1)(4s+1)(9s+1)},
+x_1=x_0-\frac{3}{2}g_0.
+$$
+
+Apply the inequality from Step 1 to the pairs $(x_0,x_1)$, $(x_*,x_0)$, and $(x_*,x_1)$. The three quantities
+$$
+A=f_1-f_0+g_1^T(x_0-x_1)+\frac{1}{2}\|g_0-g_1\|^2,
+$$
+$$
+B=f_0-f_*+g_0^T(x_*-x_0)+\frac{1}{2}\|g_0\|^2,
 $$
 and
 $$
-d(s)=
-\frac{(s-1)(2s-1)(4s-1)(9s-1)}
-{(s+1)(2s+1)(4s+1)(9s+1)}.
+C=f_1-f_*+g_1^T(x_*-x_1)+\frac{1}{2}\|g_1\|^2
 $$
+are all nonpositive.
 
-Step 2: Use the determinant of the Douglas-Rachford map as a lower certificate
-For any $2\times2$ matrix,
+Now use $x_0-x_1=\frac{3}{2}g_0$ and
 $$
-r(T_\gamma)^2\geq|\det T_\gamma|.
+x_1-x_*=d-\frac{3}{2}g_0.
 $$
-Because
+After the function values cancel,
 $$
-T_\gamma=\frac{1}{2}(I+C_s),
-$$
-the identity
-$$
-\det(I+C_s)=1+\operatorname{tr}(C_s)+\det(C_s)
-$$
-gives
-$$
-\det T_\gamma
+\frac{1}{2}(A+B+C)-(f_1-f_*)
 =
-\frac{1+t(s)+d(s)}{4}.
+\frac{1}{2}\|g_0+g_1\|^2
+-\frac{1}{2}d^T(g_0+g_1).
 $$
-Substitution and simplification yield
+Completing the square gives the exact identity
 $$
-J(s):=\det T_\gamma
+f_1-f_*
 =
-\frac{144s^4+55s^2+2}
-{2(s+1)(2s+1)(4s+1)(9s+1)}.
+\frac{1}{2}(A+B+C)
++\frac{1}{8}\|d\|^2
+-\frac{1}{2}
+\left\|
+\frac{1}{2}d-g_0-g_1
+\right\|^2.
 $$
-Every factor in the denominator is positive for $s>0$, and the numerator is positive, so $J(s)>0$. Therefore
+Because $A,B,C\leq0$,
 $$
-r(T_\gamma)\geq\sqrt{J(s)}.
-$$
-
-This lower bound becomes exact whenever $C_s$ has nonreal conjugate eigenvalues. In that case $T_\gamma$ also has nonreal conjugate eigenvalues, and their common modulus is
-$$
-\sqrt{\det T_\gamma}=\sqrt{J(s)}.
-$$
-It remains to find the global minimizer of $J$ and verify that it lies in this nonreal-eigenvalue regime.
-
-Step 3: Reduce the scalar minimization to one polynomial
-Differentiating $J$ gives
-$$
-J'(s)=
-\frac{P(s)}
-{(s+1)^2(2s+1)^2(4s+1)^2(9s+1)^2},
-$$
-where
-$$
-P(s)=
-9648s^6+7128s^5-229s^4+38s^2-99s-16.
-$$
-The denominator is positive for $s>0$, so the sign of $J'$ is the sign of $P$.
-
-For $0<s\leq\frac{1}{4}$,
-$$
-s^6\leq\frac{s^2}{256},
-\qquad
-s^5\leq\frac{s^2}{64}.
-$$
-Dropping the negative term $-229s^4$ gives
-$$
-P(s)
+f_1-f_*
 \leq
-\frac{2993}{16}s^2-99s-16.
+\frac{1}{8}\|x_0-x_*\|^2
+\leq
+\frac{1}{8}.
 $$
-The quadratic on the right is convex, so its maximum on $[0,\frac{1}{4}]$ occurs at an endpoint. Its endpoint values are
+Hence
 $$
--16,
-\qquad
--\frac{7439}{256}.
-$$
-Therefore
-$$
-P(s)<0
-\qquad
-\left(0<s\leq\frac{1}{4}\right).
+W\left(\frac{3}{2}\right)\leq\frac{1}{8}.
 $$
 
-Step 4: Prove that the stationary point is unique and globally minimizing
-Differentiate $P$:
+Step 5: Match the lower and upper bounds
+The quadratic and clipped-quadratic instances in Step 2 both give value $\frac{1}{8}$ when $h=\frac{3}{2}$, while Step 4 proves that no admissible function can give a larger value. Therefore
 $$
-P'(s)=
-57888s^5+35640s^4-916s^3+76s-99.
+W\left(\frac{3}{2}\right)=\frac{1}{8}.
 $$
-Write $s=\frac{1}{4}+u$ with $u\geq0$. Expanding gives
+Step 3 shows that every other positive step size has strictly larger worst-case value. The requested pair is
 $$
-P'\left(\frac{1}{4}+u\right)
+\left(h_*,W_*\right)
 =
-57888u^5+108000u^4+70904u^3+21723u^2
-+\frac{26099}{8}u+\frac{1623}{16},
+\left(\frac{3}{2},\frac{1}{8}\right).
 $$
-which is positive. Therefore $P$ is strictly increasing on $[\frac{1}{4},\infty)$.
-
-Also,
-$$
-P\left(\frac{1}{3}\right)=-\frac{136}{27}<0,
-$$
-while
-$$
-P\left(\frac{7}{20}\right)
-=
-\frac{1435437}{250000}>0.
-$$
-Therefore $P$ has exactly one positive zero
-$$
-s_*\in\left(\frac{1}{3},\frac{7}{20}\right).
-$$
-The sign information from Step 3 and strict increase above $\frac{1}{4}$ show
-$$
-J'(s)<0\quad(0<s<s_*),
-\qquad
-J'(s)>0\quad(s>s_*).
-$$
-Therefore $s_*$ is the unique global minimizer of $J$ over $s>0$.
-
-Step 5: Verify equality in the determinant certificate and identify the minimizing parameter
-The discriminant of the characteristic polynomial of $C_s$ is
-$$
-\Delta(s)=t(s)^2-4d(s)
-=
-\frac{4s^2(2s-1)(925s^2-58)}
-{(s+1)^2(2s+1)(4s+1)^2(9s+1)^2}.
-$$
-For
-$$
-\frac{1}{3}<s_*<\frac{7}{20},
-$$
-one has $2s_*-1<0$. Also
-$$
-925s_*^2-58
->
-\frac{925}{9}-58
-=
-\frac{403}{9}>0.
-$$
-Therefore
-$$
-\Delta(s_*)<0.
-$$
-The eigenvalues of $C_{s_*}$ are nonreal conjugates, so the lower certificate in Step 2 is attained:
-$$
-r(T_{s_*})=\sqrt{J(s_*)}.
-$$
-Since every $\gamma>0$ satisfies
-$$
-r(T_\gamma)\geq\sqrt{J(\gamma)}
-\geq\sqrt{J(s_*)},
-$$
-the unique minimizing Douglas-Rachford parameter is $\gamma=s_*$.
-
-By the root notation in the problem statement,
-$$
-s_*=
-\operatorname{root}\left(
-9648x^6+7128x^5-229x^4+38x^2-99x-16;
-\frac{1}{3},\frac{7}{20}
-\right).
-$$
-Final Answer: $\boxed{\operatorname{root}(9648x^6+7128x^5-229x^4+38x^2-99x-16;\frac{1}{3},\frac{7}{20})}$
+Final Answer: $\boxed{\left(\frac{3}{2},\frac{1}{8}\right)}$
 
 ---
 
 ## Answer
 
-$\operatorname{root}(9648x^6+7128x^5-229x^4+38x^2-99x-16;\frac{1}{3},\frac{7}{20})$
+$\left(\frac{3}{2},\frac{1}{8}\right)$
 
 ---
 
@@ -289,14 +223,14 @@ $\operatorname{root}(9648x^6+7128x^5-229x^4+38x^2-99x-16;\frac{1}{3},\frac{7}{20
 
 **Problem Type:** Optimization
 
-**Answer Type:** Exact scalar
+**Answer Type:** Tuple or ordered list
 
 ---
 
 ## Solution Concepts
 
-- Douglas-Rachford splitting
-- proximal reflections
-- spectral radius
-- determinant lower bounds
-- polynomial root isolation
+- smooth convex optimization
+- gradient descent
+- smooth convex interpolation
+- worst-case lower bounds
+- square completion certificate
