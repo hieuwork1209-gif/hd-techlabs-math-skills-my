@@ -124,21 +124,21 @@ u+v
 $$
 
 At the other outer endpoint,
-$
+$$
 8x-7=8u-1,
 \qquad
 8y-7=8v-1,
-$
+$$
 so
-$
+$$
 p(8)
 =
 (8u-1)(8v-1)
 =
 (1-8u)(1-8v).
-$
-Thus
 $$
+Therefore
+$
 \begin{aligned}
 p(8)
 &=
@@ -232,7 +232,7 @@ p(8)
 \frac{224}{3}uv.
 $$
 Therefore
-$
+$$
 uv=0
 $$
 and
