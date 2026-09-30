@@ -18,15 +18,15 @@ p_s=\mathbb P(S=s)
 \quad(0\leq s\leq10).
 $$
 
-Among all such joint laws, maximize
-$$
-\mathbb P(S\in\{0,10\}),
-$$
-and determine the distribution vector
-$$
+Among all such joint laws, determine the distribution vector
+$
 (p_0,p_1,\ldots,p_{10})
-$$
-of $S$ for a maximizing law.
+$
+of $S$ for which
+$
+\mathbb P(S\in\{0,10\})
+$
+is maximal.
 
 ---
 
