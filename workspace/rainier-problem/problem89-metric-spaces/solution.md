@@ -29,13 +29,13 @@ $$
 \sum_{h=0}^9K_s(h)z^h=(1-z)^s(1+z)^{9-s}
 $$
 follows by choosing the $h$ coordinates of $x$ according to whether they lie in $S$. If $P_s(z)=(1-z)^s(1+z)^{9-s}$, then
-$
+$$
 z^9P_s(z^{-1})=(-1)^sP_s(z).
-$
+$$
 Since $s$ is even, coefficient comparison gives
-$
+$$
 K_s(9-h)=K_s(h).
-$
+$$
 so pairing weights $h$ and $9-h$ gives
 $$
 \lambda_s(p)=\sum_{h=1}^4K_s(h)h^p.
