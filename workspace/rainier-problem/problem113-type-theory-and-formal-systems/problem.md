@@ -2,27 +2,21 @@
 
 ## LaTeX (Normalized)
 
-Consider the following formal term-rewriting system. Terms are generated from a constant $z$, a unary constructor $a$, and unary constructors $d_q$ for $2\leq q\leq n$. Write $a^r(t)$ for the $r$-fold iterate of $a$, with $a^0(t)=t$.
+Terms are generated from a constant $z$ and a binary constructor $b$. The only reduction rule is
+$$
+b(b(x,y),w)\longrightarrow b(x,b(y,w)),
+$$
+where $x,y,w$ are arbitrary terms. A reduction may be applied to any matching subterm, and each rule application counts as one step.
 
-The only reduction rules are, for every term $t$,
+Define
 $$
-d_q(a(t))\longrightarrow a^2(d_q(t)),
-\qquad 2\leq q\leq n,
+T_0=z,
+\qquad
+T_{h+1}=b(T_h,T_h)\quad(h\geq0).
 $$
-and
-$$
-d_q(d_p(t))\longrightarrow a(d_p(d_q(t))),
-\qquad 2\leq p<q\leq n.
-$$
-A reduction may be applied to any matching subterm, and each rule application counts as one step.
+For $h\geq1$, a complete reduction of $T_h$ is a reduction sequence ending at a term with no applicable rule. Let $\mathcal L_h$ be the set of all possible lengths of complete reductions of $T_h$. Let $\mathbb Z$ denote the integers.
 
-For $n\geq2$, define
-$$
-M_n=d_n(d_{n-1}(\cdots d_2(z)\cdots)).
-$$
-A complete reduction is a reduction sequence from $M_n$ to a term with no applicable rule. Different choices of redex can give different sequence lengths. Let $L_n$ be the minimum number of steps in a complete reduction of $M_n$.
-
-Determine $L_n$ exactly as a closed-form expression in $n$.
+Determine $\mathcal L_h$ exactly for every $h\geq1$.
 
 ---
 
@@ -32,11 +26,11 @@ Determine $L_n$ exactly as a closed-form expression in $n$.
 |---|---|
 | **Domain** | Logic, Set Theory, and Foundations |
 | **Sub-domain** | Type theory and formal systems |
-| **Problem Type** | Optimization |
-| **Answer Type** | Exact symbolic expression |
+| **Problem Type** | Exhaustive enumeration |
+| **Answer Type** | Set or multiset of objects |
 
 ---
 
 ## Domain Explanation
 
-This problem asks for an exact shortest normalization in a formal term-rewriting system. Each interchange creates one new $a$, while an $a$ created deeper in the unary word is repeatedly duplicated as it moves outward. The reduction order therefore induces a genuinely weighted adjacent-swap optimization on the constructor permutation, rather than a fixed inversion count alone.
+This problem asks for the full derivation-length spectrum of a terminating term-rewriting system, so its primary content is normalization and critical-pair structure in Logic, Set Theory, and Foundations / Type theory and formal systems. The proof also uses binary-tree statistics and local rotation combinatorics, which belong to Discrete Mathematics and Combinatorics / Discrete structures, but those are secondary tools for analyzing the rewrite system.
