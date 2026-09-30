@@ -53,7 +53,7 @@ $$
 \sum_{j\neq i}\lambda_{ij}=2r_i,
 $$
 because each leave triple containing $i$ contributes to exactly two such pairs. This gives
-$
+$$
 10+2\sum_{j\neq i}x_{ij}=2r_i,
 $$
 or
@@ -82,7 +82,7 @@ $$
 2X\geq44,
 $$
 so
-$
+$$
 X\geq22.
 $$
 
