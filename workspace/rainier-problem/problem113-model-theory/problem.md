@@ -4,7 +4,7 @@
 
 Fix an integer $m\geq2$. Let $D_n$ be the structure with universe
 $$
-\mathbb Z/n\mathbb Z
+\mathbb{Z}/n\mathbb{Z}
 $$
 and one binary relation $S$, where
 $$
@@ -12,7 +12,7 @@ S(i,j)
 $$
 holds exactly when
 $$
-j\equiv i+1\pmod n.
+j\equiv i+1\pmod{n}.
 $$
 Set
 $$
