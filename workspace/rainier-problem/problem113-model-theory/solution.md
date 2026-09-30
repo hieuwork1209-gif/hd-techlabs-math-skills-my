@@ -24,7 +24,7 @@ $$
 d,e\geq T_s.
 $$
 
-Step 2: Prove that admissible gaps let Duplicator survive
+Step 2: Maintain admissible gaps for Duplicator
 We show by induction on $s$ that if every corresponding gap is admissible with $s$ rounds remaining, then Duplicator can survive those $s$ rounds.
 
 For $s=0$ there is nothing to play. Suppose $s\geq1$, and let
@@ -63,9 +63,9 @@ $$
 e-1\geq2T.
 $$
 
-Thus every new corresponding gap pair is admissible for $s-1$ remaining rounds. The induction proves Duplicator's strategy.
+Every new corresponding gap pair is therefore admissible for $s-1$ remaining rounds. The induction proves Duplicator's strategy.
 
-Step 3: Prove the converse interval strategy for Spoiler
+Step 3: Build the converse interval strategy for Spoiler
 Suppose a corresponding pair of gaps has unequal sizes
 $$
 d<e
@@ -80,7 +80,7 @@ For $s=1$, we have
 $$
 T_1=1.
 $$
-Thus $d=0<e$. Spoiler chooses any element in the larger gap. There is no element in the smaller corresponding gap, so Duplicator cannot preserve the order relation to the two endpoints.
+Therefore $d=0<e$. Spoiler chooses any element in the larger gap. There is no element in the smaller corresponding gap, so Duplicator cannot preserve the order relation to the two endpoints.
 
 Now let $s\geq2$, and put
 $$
@@ -135,7 +135,7 @@ T+(e-1-T)
 =
 e-1,
 $$
-which contradicts $d<e$. Hence in this case too, one of the new gap pairs is unequal with one size below $T$, and the induction hypothesis applies.
+which contradicts $d<e$. In this case too, one of the new gap pairs is unequal with one size below $T$, and the induction hypothesis applies.
 
 Therefore Spoiler wins within $s$ rounds whenever a corresponding gap pair violates the admissibility criterion.
 
@@ -171,7 +171,7 @@ $$
 $$
 Step 3 gives Spoiler a winning strategy in at most $m+1$ rounds.
 
-Thus Duplicator wins the $m$-round game but Spoiler wins the $(m+1)$-round game. The least winning length is
+Duplicator wins the $m$-round game, while Spoiler wins the $(m+1)$-round game. The least winning length is
 $$
 m+1.
 $$
