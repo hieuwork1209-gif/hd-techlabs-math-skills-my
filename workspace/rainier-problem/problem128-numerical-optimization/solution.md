@@ -27,8 +27,8 @@ m(P)=\min_{0\leq t\leq1}\lambda_{\min}(B_t),
 \qquad
 L(P)=\max_{0\leq t\leq1}\lambda_{\max}(B_t).
 $$
-Because $B_t=(1-t)B_0+tB_1$, the function $t\mapsto\lambda_{\max}(B_t)$ is convex and $t\mapsto\lambda_{\min}(B_t)$ is concave: each is respectively the maximum or minimum, over unit vectors $v$, of the affine function $v^TB_tv$. Hence
-$$
+Because $B_t=(1-t)B_0+tB_1$, the function $t\mapsto\lambda_{\max}(B_t)$ is convex and $t\mapsto\lambda_{\min}(B_t)$ is concave: each is respectively the maximum or minimum, over unit vectors $v$, of the affine function $v^TB_tv$. Therefore
+$
 L(P)=\max\{\lambda_{\max}(B_0),\lambda_{\max}(B_1)\},
 $$
 and
@@ -62,7 +62,7 @@ If
 $$
 L=\max\{\lambda_{\max}(B_0),\lambda_{\max}(B_1)\},
 $$
-then each endpoint spectrum is contained in $[1/L,L]$. Thus $m(P)=1/L$ and
+then each endpoint spectrum is contained in $[1/L,L]$. Therefore $m(P)=1/L$ and
 $$
 K(P)=L^2.
 $$
@@ -155,11 +155,11 @@ while $P_*H_1$ has the eigenvalues of $QC$. Since $Q$ and $C$ are diagonal in th
 $$
 \mu^{-1/2},\quad \mu^{1/2}.
 $$
-Thus
-$$
+Therefore
+$
 \mu^{-1/2}I\preceq B_0,B_1\preceq\mu^{1/2}I.
 $$
-The same Loewner bounds hold for every convex combination $B_t$. Hence $K(P_*)=\mu$, so the unrestricted robust factor is
+The same Loewner bounds hold for every convex combination $B_t$. Therefore $K(P_*)=\mu$, so the unrestricted worst-case factor is
 $$
 \rho_{\mathrm{full}}
 =
