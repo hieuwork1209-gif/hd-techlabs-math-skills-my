@@ -4,17 +4,16 @@
 
 Let
 $$
-V=\mathbb{F}_2^3\setminus\{0\}.
+X=\binom{[6]}{3},
 $$
-Form the bipartite graph with point-vertices $P_v$ and line-vertices $L_u$, indexed by $u,v\in V$, where
+equipped with the Johnson metric
 $$
-P_v\sim L_u\iff u\cdot v=0.
+d(A,B)=3-|A\cap B|.
 $$
-Let $X$ be its $14$-vertex set and give $X$ the shortest-path metric $d$.
 
-For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_x)_{x\in X}$ with $\sum_xc_x=0$ satisfies
+For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_A)_{A\in X}$ with $\sum_Ac_A=0$ satisfies
 $$
-\sum_{x,y\in X}c_xc_y d(x,y)^p\leq0.
+\sum_{A,B\in X}c_Ac_Bd(A,B)^p\leq0.
 $$
 Let
 $$
@@ -22,23 +21,23 @@ $$
 $$
 and define
 $$
-E=\left\{c\in\mathbb{R}^{X}:\sum_xc_x=0,\ 
-\sum_{x,y\in X}c_xc_y d(x,y)^{\wp}=0\right\}.
+E=\left\{c\in\mathbb{R}^{X}:\sum_Ac_A=0,\ 
+\sum_{A,B\in X}c_Ac_Bd(A,B)^{\wp}=0\right\}.
 $$
 
 For a subspace $L\leq E$, write
 $$
-\operatorname{supp}(L)=\{x\in X:\text{some }c\in L\text{ has }c_x\neq0\}.
+\operatorname{supp}(L)=\{A\in X:\text{some }c\in L\text{ has }c_A\neq0\}.
 $$
-For $1\leq r\leq\dim E$, define
+Define
 $$
-d_r=\min_{\substack{L\leq E\\ \dim L=r}}|\operatorname{supp}(L)|,
+d_4=\min_{\substack{L\leq E\\ \dim L=4}}|\operatorname{supp}(L)|,
 $$
-and let $n_r$ be the number of $r$-dimensional subspaces attaining $d_r$.
+and let $N_4$ be the number of four-dimensional subspaces attaining $d_4$.
 
 Determine
 $$
-\left(\wp,\dim E,(d_1,\ldots,d_{\dim E}),(n_1,\ldots,n_{\dim E})\right).
+(\wp,\dim E,d_4,N_4).
 $$
 
 ---
@@ -56,4 +55,4 @@ $$
 
 ## Domain Explanation
 
-The primary object is the shortest-path metric on the Heawood graph, and the problem asks for its supremal negative type together with the generalized support hierarchy and the multiplicities of its extremal subspaces, so Analysis / Metric spaces is the natural primary classification. Spectral graph methods identify the equality space, while the decisive support bounds and equality classifications come from the self-dual incidence geometry of the Fano plane.
+The primary object is the Johnson metric on the set of $3$-subsets of $[6]$, and the problem asks for its supremal negative type together with a generalized support extremal inside the critical equality space, so Analysis / Metric spaces is the natural primary classification. Incidence linear algebra identifies the equality space, while the sharp support bound and equality classification require an affine-cube argument.
