@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-type-theory-and-formal-systems/problem.md",
+  "source_commit_sha": "8d48419199df782e9621d4a89558487025ffb1e8",
+  "problem_blob_sha": "beab3a3dcd841a1fd8edaa1a424eff5c7d0811a3",
+  "statement_sha256": "e5c3d1d0c6879b752250cb381660b7950075de011b712b59d077809d61bad3df",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T04:50:38+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "For every \\(n\\ge 1\\),\n\n\\[\n\\boxed{\n\\mathcal T_n\n=\n\\left\\{\nL_{1^a2^b1^c}(I)\\;:\\; a,b\\ge 0,\\ c\\ge 1,\\ a+2b+c=n\n\\right\\}.\n}\n\\]\n\nEquivalently: the typable parenthesizations are exactly those obtained by starting from \\(I\\), applying at least one \\(L_1\\), then applying some number of \\(L_2\\)’s, and finally applying some number of \\(L_1\\)’s.\n\nSo the admissible digit words are exactly\n\n\\[\n1^a2^b1^c,\\qquad c\\ge 1,\n\\]\n\nwhere the weight is computed by \\(\\mathrm{wt}(1)=1,\\ \\mathrm{wt}(2)=2\\).\n\n**Reason.** The key typing facts are these.\n\nFirst,\n\n\\[\nL_1(X)=SX\n\\]\n\nis typable whenever \\(X\\) is typable: the type of \\(X\\) can always be unified with the first argument type \\(\\alpha\\to\\beta\\to\\gamma\\) of \\(S\\).\n\nSecond,\n\n\\[\nL_2(X)=(SS)X\n\\]\n\nis typable exactly when the type of \\(X\\) unifies with\n\n\\[\n(p\\to q\\to r)\\to(p\\to q),\n\\]\n\nbecause\n\n\\[\nSS:\n\\bigl((p\\to q\\to r)\\to(p\\to q)\\bigr)\n\\to\n(p\\to q\\to r)\\to p\\to r.\n\\]\n\nNow \\(I\\) itself does **not** unify with \\((p\\to q\\to r)\\to(p\\to q)\\), since that would force\n\n\\[\np\\to q\\to r=p\\to q,\n\\]\n\nhence \\(q=q\\to r\\), violating the occurs check. Thus \\(L_2(I)\\) is untypable.\n\nBut after one \\(L_1\\),\n\n\\[\nSI\n\\]\n\nhas type\n\n\\[\n((u\\to v)\\to u)\\to(u\\to v)\\to v,\n\\]\n\nwhich does unify with \\((p\\to q\\to r)\\to(p\\to q)\\). Therefore \\(L_2(SI)\\) is typable, and the same calculation shows inductively that\n\n\\[\nL_{2^b1^c}(I)\n\\]\n\nis typable for every \\(b\\ge0,\\ c\\ge1\\).\n\nOnce an outer \\(L_1\\) has been placed before a nonempty block of \\(2\\)’s, another \\(L_2\\) is impossible. The obstruction is exactly an occurs-check failure. For example, if \\(Y=L_{21}(I)\\), then \\(L_1(Y)\\) has a type whose attempted unification with \\((p\\to q\\to r)\\to(p\\to q)\\) forces an equation of the form\n\n\\[\nw=v\\to w,\n\\]\n\nwhich fails the occurs check. The same pattern persists inductively. Thus \\(2\\)’s may occur only in one consecutive block, and that block must be followed by at least one \\(1\\).\n\nFinally, no other root shape can occur. In any typable full parenthesization of \\(S^nI\\), the left child of the root contains only \\(S\\)’s. A direct induction on such \\(S\\)-only prefixes shows that the only prefixes which can act on a typable suffix ending in \\(I\\) are precisely \\(S\\) and \\(SS\\). Hence every typable term is obtained recursively by applying either \\(L_1\\) or \\(L_2\\), and the admissibility rule above gives exactly the words \\(1^a2^b1^c\\) with \\(c\\ge1\\).\n\nTherefore\n\n\\[\n\\boxed{\n\\mathcal T_n\n=\n\\{\\,L_{1^a2^b1^c}(I): a,b\\ge0,\\ c\\ge1,\\ a+2b+c=n\\,\\}.\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T04:52:55+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/beab3a3dcd84.json"
+}
