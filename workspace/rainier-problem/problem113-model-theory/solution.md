@@ -1,86 +1,80 @@
 ## Steps
 
-Step 1: Establish a distance-halving certificate for Spoiler
-For vertices $x,y$ in a graph, let $d(x,y)$ be their graph distance, with
+Step 1: Establish a directed-distance halving lemma
+For vertices $x,y$ in a directed cycle, let
 $$
-d(x,y)=\infty
+\delta(x,y)
 $$
-when they lie in different connected components.
+be the length of the unique directed path from $x$ to $y$. For vertices in different connected components, set
+$$
+\delta(x,y)=\infty.
+$$
 
-Suppose two already matched pebble pairs have distances
+Suppose two already matched ordered pebble pairs have directed distances
 $$
 d\neq e
 $$
-in the two structures and
+and
 $$
 \min(d,e)\leq2^s.
 $$
 Then Spoiler can force a win in at most $s$ further rounds.
 
-Use induction on $s$. For $s=0$, the smaller distance is $0$ or $1$. If it is $0$, equality is already violated; if it is $1$, adjacency is already violated.
+Use induction on $s$. For $s=0$, the smaller distance is $0$ or $1$. Distance $0$ detects equality, while distance $1$ detects the successor relation, so the current correspondence already fails to be a partial isomorphism.
 
-Now let $s\geq1$. Suppose without loss of generality that
+Now let $s\geq1$, and suppose without loss of generality that
 $$
 d<e,
 \qquad
 d\leq2^s.
 $$
-Spoiler plays a midpoint vertex on a shortest path of length $d$ in the first graph. The two new distances from this midpoint to the endpoints are at most
+Spoiler plays a midpoint vertex on the directed path of length $d$. The two directed subpaths have lengths at most
 $$
 2^{s-1}.
 $$
-If Duplicator could match both of those distances exactly, the triangle inequality in the second graph would give
-$$
-e\leq d,
-$$
-a contradiction. Therefore one of the two new matched pebble pairs has unequal distances and smaller distance at most $2^{s-1}$. The induction hypothesis applies.
+If Duplicator matched both subpath lengths exactly, concatenating the two corresponding directed paths in the other structure would give a directed walk of length $d$ from the first endpoint to the second. Hence its directed distance would be at most $d$, contradicting $e>d$. Therefore one of the two new ordered pebble pairs has unequal directed distances and smaller value at most $2^{s-1}$. The induction hypothesis applies.
 
-Step 2: Build a locality strategy for Duplicator
+Step 2: Maintain a truncated-distance invariant for Duplicator
 Let
 $$
-A=C_{2^{m+1}},
+A=D_{2^{m+1}},
 \qquad
-B=C_{2^m}\sqcup C_{2^m},
+B=D_{2^m}\sqcup D_{2^m},
 $$
-where graph distance across the two components of $B$ is $\infty$.
+where $D_n$ is a directed cycle with its successor orientation.
 
-Duplicator will survive $m$ rounds. On the first round, Duplicator answers an arbitrary chosen vertex by an arbitrary vertex of the other graph. There are then
+Duplicator will survive $m$ rounds. On the first round, Duplicator answers an arbitrary chosen vertex by an arbitrary vertex of the other structure. There are then $m-1$ rounds left.
+
+With $s$ rounds remaining, Duplicator maintains the following invariant for every ordered pair of matched pebbles:
 $$
-m-1
+\delta_A(x_i,x_j)=\delta_B(y_i,y_j)<2^{s+1},
 $$
-rounds left.
+or else both directed distances are at least $2^{s+1}$, where $\infty$ is larger than every finite number.
 
-We use the following invariant with $s$ rounds remaining. For every two matched pebbles, either their graph distances are equal and less than
+Assume the invariant holds with $s\geq1$ rounds remaining and Spoiler chooses a new vertex $x$. Let $\mathcal N$ be the set of old pebbles $x_i$ for which
 $$
-2^{s+1},
+\delta_A(x_i,x)<2^s
 $$
-or both distances are at least $2^{s+1}$, where $\infty$ counts as larger than every finite number. In addition, on every overlapping family of local path neighborhoods, choose orientations consistently so that matched pebbles at distance less than $2^{s+1}$ have the same signed path coordinate, up to one common reflection on that local cluster.
+or
+$$
+\delta_A(x,x_i)<2^s.
+$$
 
-This local-coordinate clause makes sense because
-$
-s\leq m-1
-$
-throughout the remaining game, while every cycle in both structures has length at least
-$
-2^m\geq2^{s+1}.
-$
-Therefore the vertices at distance less than $2^s$ from a fixed vertex form a path. At the first state there is only one local chart, so choose its orientation arbitrarily. A near response is placed inside an existing chart and inherits its orientation. A far response creates a chart disjoint from all old radius-$(2^s-1)$ charts, so its orientation can be chosen freely. When $s$ decreases, the radii shrink, so previously disjoint charts cannot newly overlap.
+Suppose first that $\mathcal N$ is nonempty. Choose an anchor $x_i\in\mathcal N$. The position of $x$ relative to $x_i$ is determined uniquely by one of the two directed distances, which is less than $2^s$. Duplicator places $y$ at the same directed offset from the corresponding anchor $y_i$.
 
-Assume the invariant holds with $s\geq1$ rounds remaining and Spoiler chooses a new vertex $x$. Let $\mathcal N$ be the set of old pebbles whose distance from $x$ is less than $2^s$.
+For any other pebble $x_j\in\mathcal N$, the vertices $x_i,x_j,x$ lie on an oriented arc of length less than $2^{s+1}$. The current invariant fixes the directed offset from $x_i$ to $x_j$, so the same offset calculation shows that both directed distances between $x$ and $x_j$ are matched exactly whenever they are below $2^s$.
 
-If $\mathcal N$ is nonempty, all of its pebbles together with $x$ lie in one path segment of length less than $2^{s+1}$. Choose any pebble in $\mathcal N$ as an anchor. The current oriented local chart around that anchor identifies the corresponding old pebbles with the same signed coordinates. Duplicator chooses the vertex $y$ having the same signed coordinate as $x$. Then every distance from $x$ to a pebble in $\mathcal N$ is matched exactly.
+Now take an old pebble $x_j\notin\mathcal N$. If either directed distance between $y$ and $y_j$ were less than $2^s$, then $y_i,y_j,y$ would lie on an oriented arc of length less than $2^{s+1}$. The current invariant would force the same directed offsets in the first structure, putting $x_j$ in $\mathcal N$, a contradiction. Thus all new distances to pebbles outside $\mathcal N$ are at least $2^s$. The invariant holds with $s-1$ rounds remaining.
 
-For any old pebble outside $\mathcal N$, the corresponding pebble must stay at distance at least $2^s$ from $y$. Otherwise it and the anchor would both lie in the same oriented local chart as $y$. Their signed-coordinate differences would then force the original mate to lie within distance less than $2^s$ of $x$, contradicting the definition of $\mathcal N$. The restricted local charts for radius $2^s$ inherit the same orientations, so the invariant is preserved with $s-1$ rounds remaining.
-
-If $\mathcal N$ is empty, Duplicator chooses a vertex $y$ at distance at least $2^s$ from every old response pebble. Such a vertex always exists. At this stage at most
+Suppose instead that $\mathcal N$ is empty. Duplicator chooses $y$ so that both directed distances between $y$ and every old response pebble are at least $2^s$. Such a vertex exists. At this stage at most
 $$
 m-s
 $$
-vertices have already been pebbled in either graph. A ball of radius $2^s-1$ in a cycle contains at most
+vertices have already been pebbled. For one old pebble, the forbidden vertices consist of itself, the next $2^s-1$ successors, and the previous $2^s-1$ predecessors, for at most
 $$
 2^{s+1}-1
 $$
-vertices, so the total number of forbidden vertices is at most
+vertices. Thus the total number of forbidden vertices is at most
 $$
 (m-s)(2^{s+1}-1).
 $$
@@ -98,86 +92,70 @@ k(2^{m-k+1}-1)
 <
 2^{m+1},
 $$
-which is the total number of vertices in each structure. Therefore some admissible $y$ exists. All new distances are then at least $2^s$, so the invariant again holds for $s-1$ rounds.
+the total number of vertices in either structure. Hence an admissible $y$ exists, and all new ordered distances are at least $2^s$.
 
-After the first response the invariant is vacuous except for one pebble pair, so the induction applies through all remaining $m-1$ rounds. Duplicator wins the $m$-round game.
+After the first response the invariant is vacuous except for one pebble pair, so Duplicator maintains it through all remaining rounds. When no rounds remain, distances $0$ and $1$ have been preserved exactly, which is precisely preservation of equality and the successor relation. Therefore Duplicator wins the $m$-round game.
 
 Step 3: Force a win in $m+1$ rounds
 Set
 $$
 q=2^{m-1}.
 $$
-Spoiler first plays a vertex $a_0$ of the long cycle $A$. After Duplicator responds with $b_0$, Spoiler chooses a vertex $a_1$ satisfying
+Spoiler first chooses a vertex $a_0$ of the long directed cycle $A$. After Duplicator responds with $b_0$, Spoiler chooses the vertex $a_1$ satisfying
 $$
-d_A(a_0,a_1)=q.
+\delta_A(a_0,a_1)=q.
 $$
 Let Duplicator answer with $b_1$.
 
-If
+If $b_0,b_1$ lie in different components of $B$, then
 $$
-d_B(b_0,b_1)\neq q,
+\delta_B(b_0,b_1)=\infty.
 $$
-then the two matched distances are unequal and their smaller value is at most
+The matched directed distances $q$ and $\infty$ are unequal, with
 $$
 q=2^{m-1}.
 $$
 There are $m-1$ rounds left, so Step 1 gives Spoiler a win.
 
+Suppose $b_0,b_1$ lie in the same short directed cycle. Write
+$$
+d=\delta_B(b_0,b_1).
+$$
+If
+$$
+d\neq q,
+$$
+and $d<q$, then Step 1 applies directly to the ordered pair $(a_0,a_1)$ and its mate. If
+$$
+d>q,
+$$
+consider the reversed ordered pair. In the long cycle,
+$$
+\delta_A(a_1,a_0)=4q-q=3q,
+$$
+while in the short cycle,
+$$
+\delta_B(b_1,b_0)=2q-d<q.
+$$
+Step 1 applies to this reversed pair.
+
 The only remaining case is
 $$
-d_B(b_0,b_1)=q.
+d=q.
 $$
-Then $b_0,b_1$ lie in the same short cycle and are antipodal.
-
-In the long cycle $A$, the two vertices $a_0,a_1$ cut the cycle into arcs of lengths
+Then
 $$
-q
-\qquad\text{and}\qquad
-3q.
+\delta_B(b_1,b_0)=q,
 $$
-Spoiler now chooses $a_2$ on the longer arc at distance
+whereas
 $$
-\frac{q}{2}=2^{m-2}
+\delta_A(a_1,a_0)=3q.
 $$
-from $a_0$. Therefore
+Again Step 1 applies to the reversed ordered pair, with smaller distance
 $$
-d_A(a_2,a_0)=\frac{q}{2},
-\qquad
-d_A(a_2,a_1)=\frac{3q}{2}.
+q=2^{m-1}.
 $$
-Let Duplicator respond with $b_2$.
-
-If $b_2$ lies in the other component of $B$, then
-$$
-d_B(b_2,b_0)=\infty,
-$$
-while
-$$
-d_A(a_2,a_0)=2^{m-2}.
-$$
-Step 1 gives a win in the remaining $m-2$ rounds.
-
-Suppose instead that $b_2$ lies in the same short cycle as $b_0,b_1$. If
-$$
-d_B(b_2,b_0)\neq\frac{q}{2},
-$$
-Step 1 again applies to the pair $(a_2,a_0)$ and its mate. If
-$$
-d_B(b_2,b_0)=\frac{q}{2},
-$$
-then antipodality of $b_0,b_1$ forces
-$$
-d_B(b_2,b_1)=\frac{q}{2}.
-$$
-But
-$$
-d_A(a_2,a_1)=\frac{3q}{2},
-$$
-so Step 1 applies to the pair $(a_2,a_1)$ and its mate, again with smaller distance
-$$
-\frac{q}{2}=2^{m-2}.
-$$
-Spoiler therefore wins within the remaining $m-2$ rounds.
+In every case Spoiler wins within the remaining $m-1$ rounds.
 
 Step 4: Identify the exact threshold
 Step 2 gives Duplicator a winning strategy for $m$ rounds. Step 3 gives Spoiler a winning strategy for $m+1$ rounds. Therefore the least winning length is
@@ -205,7 +183,7 @@ $m+1$
 ## Solution Concepts
 
 - Ehrenfeucht-Fraisse games
-- graph distance
-- locality invariants
+- directed graph distance
+- truncated-distance invariants
 - midpoint strategies
-- disconnected graph components
+- disconnected structures
