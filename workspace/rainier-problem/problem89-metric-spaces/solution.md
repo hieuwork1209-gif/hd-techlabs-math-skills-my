@@ -82,22 +82,26 @@ F\left(\frac{1}{3}\right)
 +14\frac{15873}{10000}
 =\frac{179}{5000}>0.
 $$
-Hence $0<\rho<\frac{1}{3}$. In fact $F$ is strictly increasing. Put $x=2^p\geq1$ and $\alpha=\log_2 3$. The inequalities $3^7>2^{11}$ and $3^5<2^8$ give
-$
+Hence $0<\rho<\frac{1}{3}$. In fact $F$ is strictly increasing. Put $x=2^p\geq1$, $\alpha=\log_2 3$, and
+$$
+\widetilde F(x)=14x^2-28x^\alpha+20x-7,
+$$
+so $F(p)=\widetilde F(2^p)$. The inequalities $3^7>2^{11}$ and $3^5<2^8$ give
+$$
 \frac{11}{7}<\alpha<\frac{8}{5}.
-$
+$$
 With $\beta=\alpha-1\in(0,1)$, concavity gives $x^\beta\leq\beta x+1-\beta$. Therefore
-$
-\frac{1}{4}\frac{dF}{dx}
+$$
+\frac{1}{4}\widetilde F'(x)
 =7x+5-7\alpha x^\beta
-\geq7x+5-7\alpha(\alpha-1)x-7\alpha(2-\alpha)>0,
-$
-because
-$
+\geq7x+5-7\alpha(\alpha-1)x-7\alpha(2-\alpha)>0.
+$$
+Indeed, $\alpha(\alpha-1)$ is increasing for $\alpha>1$, whereas $\alpha(2-\alpha)$ is decreasing there, so
+$$
 7\alpha(\alpha-1)<\frac{168}{25}<7,
 \qquad
 7\alpha(2-\alpha)<\frac{33}{7}<5.
-$
+$$
 Thus $\rho$ is the unique positive zero of $F$, $F(p)<0$ for $p<\rho$, and $F(p)>0$ for $p>\rho$.
 
 The other nonconstant eigenvalues stay negative on $0\leq p\leq\frac{1}{3}$. For $\lambda_2$, writing $q=2^p\geq1$ gives
