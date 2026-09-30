@@ -193,16 +193,23 @@ v=
 -1
 \end{pmatrix}.
 $$
-With $M=\lambda I-A-\mu B$, direct multiplication gives
-$$
-Mv=0,
+With $M=\lambda I-A-\mu B$, the first three coordinates determine the rest by reversal parity. For $v$ they are
+$
+\lambda-\lambda=0,
 \qquad
-Mu=\frac{P(\lambda)}{2\lambda}
-\begin{pmatrix}
-1\\1\\1\\1\\1
-\end{pmatrix}
-=0.
-$$
+2\lambda^2-\frac12+\mu\lambda=0,
+\qquad
+0,
+$
+because $\mu\lambda=\frac12-2\lambda^2$. For $u$, each of the first three coordinates simplifies to
+$
+\frac{8\lambda^3+4\lambda^2-4\lambda-1}{2\lambda}
+=\frac{P(\lambda)}{2\lambda}=0.
+$
+Hence
+$
+Mv=Mu=0.
+$
 The vector $u$ is symmetric under reversal and $v$ is antisymmetric. Since $B$ preserves these parity sectors,
 $$
 u^*Bv=0.
