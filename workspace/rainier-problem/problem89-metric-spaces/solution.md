@@ -6,41 +6,35 @@ Let
 $$
 G=\mathbb{F}_2^9/\langle\mathbf{1}\rangle.
 $$
-The antipodal map is an isometry of the Hamming cube, so the displayed formula in the problem is its quotient metric. The distance from the zero class to $[x]$ is
+The antipodal map is an isometry of the Hamming cube, so the metric is the quotient metric. For the zero class,
 $$
-\delta(x)=\min\{|x|,9-|x|\},
+\delta(x)=d([0],[x])=\min\{|x|,9-|x|\}.
 $$
-where $|x|$ is Hamming weight. A character of $G$ is indexed by an even subset $S\subseteq[9]$:
+A character of $G$ is indexed by an even subset $S\subseteq[9]$:
 $$
 \chi_S([x])=(-1)^{\sum_{i\in S}x_i}.
 $$
-These $2^8$ characters form an orthogonal basis. Since the matrix $D_p=(d(x,y)^p)$ is translation-invariant on $G$, each $\chi_S$ is an eigenvector. If $s=|S|$, the eigenvalue is
+Since $D_p=(d(x,y)^p)$ is translation-invariant, every $\chi_S$ is an eigenvector. If $s=|S|$, its eigenvalue is
 $$
-\lambda_s(p)
-=\frac{1}{2}\sum_{x\in\mathbb{F}_2^9}\delta(x)^p\chi_S(x).
+\lambda_s(p)=\frac{1}{2}\sum_{x\in\mathbb{F}_2^9}\delta(x)^p\chi_S(x).
 $$
-
 For
 $$
 K_s(h)=\sum_j(-1)^j\binom{s}{j}\binom{9-s}{h-j},
 $$
-the generating identity
+one has
 $$
-\sum_{h=0}^9K_s(h)z^h=(1-z)^s(1+z)^{9-s}
+\sum_{h=0}^9K_s(h)z^h=(1-z)^s(1+z)^{9-s}.
 $$
-follows by choosing the $h$ coordinates of $x$ according to whether they lie in $S$. If $P_s(z)=(1-z)^s(1+z)^{9-s}$, then
+If $P_s(z)=(1-z)^s(1+z)^{9-s}$, then
 $$
 z^9P_s(z^{-1})=(-1)^sP_s(z).
 $$
-Since $s$ is even, coefficient comparison gives
-$$
-K_s(9-h)=K_s(h).
-$$
-Thus pairing weights $h$ and $9-h$ gives
+Thus, for even $s$, $K_s(9-h)=K_s(h)$, and pairing the weights $h$ and $9-h$ gives
 $$
 \lambda_s(p)=\sum_{h=1}^4K_s(h)h^p.
 $$
-Extracting the first four coefficients from the displayed generating polynomial yields
+Coefficient extraction yields
 $$
 \lambda_2(p)=5+8\cdot2^p-14\cdot4^p,
 $$
@@ -50,83 +44,53 @@ $$
 $$
 \lambda_6(p)=-3+8\cdot3^p-6\cdot4^p,
 $$
-and
 $$
 \lambda_8(p)=-7+20\cdot2^p-28\cdot3^p+14\cdot4^p.
 $$
-The corresponding multiplicities are $\binom{9}{2},\binom{9}{4},\binom{9}{6},\binom{9}{8}$.
 
-Step 2: Locate the first nonconstant eigenvalue that reaches zero
+Step 2: Determine the critical exponent and equality-space dimension
 
 Put
 $$
-F(p)=\lambda_8(p)
-=14\cdot4^p-28\cdot3^p+20\cdot2^p-7
+F(p)=14\cdot4^p-28\cdot3^p+20\cdot2^p-7.
 $$
-and
-$$
-\rho=\inf\{p>0:F(p)>0\}.
-$$
-Since $F(0)=-1$, while cubing verifies
-$$
-\frac{12599}{10000}<2^{\frac{1}{3}},\qquad
-3^{\frac{1}{3}}<\frac{14423}{10000},\qquad
-\frac{15873}{10000}<4^{\frac{1}{3}},
-$$
-we have
+Since $F(0)=-1$ and
 $$
 F\left(\frac{1}{3}\right)
 >
 -7+20\frac{12599}{10000}
 -28\frac{14423}{10000}
 +14\frac{15873}{10000}
-=\frac{179}{5000}>0.
+=\frac{179}{5000}>0,
 $$
-Hence $0<\rho<\frac{1}{3}$. In fact $F$ is strictly increasing. Put $x=2^p\geq1$, $\alpha=\log_2 3$, and
+where the three rational bounds follow by cubing, $F$ has a positive zero below $\frac{1}{3}$.
+
+It is unique. Put $x=2^p\geq1$, $\alpha=\log_2 3$, and
 $$
-\widetilde F(x)=14x^2-28x^\alpha+20x-7,
+\widetilde F(x)=14x^2-28x^\alpha+20x-7.
 $$
-so $F(p)=\widetilde F(2^p)$. The inequalities $3^7>2^{11}$ and $3^5<2^8$ give
+The inequalities $3^7>2^{11}$ and $3^5<2^8$ give
 $$
 \frac{11}{7}<\alpha<\frac{8}{5}.
 $$
-With $\beta=\alpha-1\in(0,1)$, concavity gives $x^\beta\leq\beta x+1-\beta$. Therefore
+With $\beta=\alpha-1\in(0,1)$, concavity gives $x^\beta\leq\beta x+1-\beta$. Hence
 $$
 \frac{1}{4}\widetilde F'(x)
 =7x+5-7\alpha x^\beta
-\geq7x+5-7\alpha(\alpha-1)x-7\alpha(2-\alpha)>0.
+\geq7x+5-7\alpha(\alpha-1)x-7\alpha(2-\alpha)>0,
 $$
-Indeed, $\alpha(\alpha-1)$ is increasing for $\alpha>1$, whereas $\alpha(2-\alpha)$ is decreasing there, so
+because
 $$
-7\alpha(\alpha-1)<\frac{168}{25}<7,
-\qquad
+7\alpha(\alpha-1)<\frac{168}{25}<7,\qquad
 7\alpha(2-\alpha)<\frac{33}{7}<5.
 $$
-Thus $\rho$ is the unique positive zero of $F$, $F(p)<0$ for $p<\rho$, and $F(p)>0$ for $p>\rho$.
+Therefore $F$ is strictly increasing.
 
-The other nonconstant eigenvalues stay negative on $0\leq p\leq\frac{1}{3}$. For $\lambda_2$, writing $q=2^p\geq1$ gives
+The remaining nonconstant eigenvalues are negative on $0\leq p\leq\frac{1}{3}$. For $\lambda_2$, with $q=2^p\geq1$,
 $$
-\lambda_2=5+8q-14q^2<0
+\lambda_2=5+8q-14q^2<0.
 $$
-because the quadratic equals $-1$ at $q=1$ and is strictly decreasing thereon.
-
-For $\lambda_4$,
-$$
-\lambda_4'(p)
-=-4(\log 2)2^p-4(\log 3)3^p+12(\log 2)4^p.
-$$
-Since $3^p\leq4^p$,
-$$
-\lambda_4'(p)
-\geq4\cdot2^p\left((\log(\frac{8}{3}))2^p-\log 2\right)>0.
-$$
-Also cubing gives
-$$
-\frac{1259}{1000}<2^{\frac{1}{3}},\qquad
-\frac{721}{500}<3^{\frac{1}{3}},\qquad
-4^{\frac{1}{3}}<\frac{397}{250},
-$$
-so
+For $\lambda_4$, one has $\lambda_4'(p)>0$ on this interval and
 $$
 \lambda_4\left(\frac{1}{3}\right)
 <
@@ -135,121 +99,145 @@ $$
 +6\frac{397}{250}
 =-\frac{69}{250}<0.
 $$
-
-For $\lambda_6$, convexity of $3^p$ on $[0,\frac{1}{3}]$ and $e^t\geq1+t$ give
+For $\lambda_6$, convexity of $3^p$ and $e^t\geq1+t$ give
 $$
-3^p\leq1+3p(3^{\frac{1}{3}}-1),
-\qquad
-4^p\geq1+p\log 4.
+3^p\leq1+3p(3^{\frac{1}{3}}-1),\qquad
+4^p\geq1+p\log4,
 $$
-Using $3^{\frac{1}{3}}<\frac{1443}{1000}$ and $\log 4>\frac{4}{3}$,
+so, using $3^{\frac{1}{3}}<\frac{1443}{1000}$ and $\log4>\frac{4}{3}$,
 $$
-\lambda_6(p)
-\leq-1+p\left(24(3^{\frac{1}{3}}-1)-6\log 4\right)
-<-1+\frac{1}{3}\frac{329}{125}
-=-\frac{46}{375}<0.
+\lambda_6(p)<-\frac{46}{375}<0.
 $$
-
-Thus the first obstruction to negative type is the weight-$8$ mode, and
+Thus
 $$
-\wp=\rho
-=\inf\{p>0:14\cdot4^p-28\cdot3^p+20\cdot2^p-7>0\}.
+\wp=\inf\{p>0:F(p)>0\},
 $$
-At $p=\wp$, only the weight-$8$ characters lie in the kernel on the zero-sum subspace, so
+and only the weight-$8$ characters vanish at $p=\wp$. Therefore
 $$
 \dim E=\binom{9}{8}=9.
 $$
 
-Step 3: Rewrite the critical equality space as affine Rademacher forms
+Step 3: Put the equality space into Rademacher form
 
-Identify $G$ with $\mathbb{F}_2^8$ by choosing the representative with ninth coordinate $0$. Write
+Choose the representative with ninth coordinate $0$ and set
 $$
-\varepsilon_i=(-1)^{x_i},
-\qquad
-P(x)=\prod_{i=1}^8\varepsilon_i.
+\varepsilon_i=(-1)^{x_i},\qquad
+P=\prod_{i=1}^8\varepsilon_i.
 $$
-The nine even subsets of $[9]$ having size $8$ are the complements of one singleton. The character omitting $9$ is $P$, while the character omitting $i\leq8$ is $P\varepsilon_i$. Hence every $c\in E$ has the unique form
+The nine weight-$8$ characters are $P$ and $P\varepsilon_i$ for $1\leq i\leq8$. Hence every $c\in E$ is uniquely
 $$
-c(x)=P(x)\left(a_0+\sum_{i=1}^8a_i\varepsilon_i\right).
+c=P\left(a_0+\sum_{i=1}^8a_i\varepsilon_i\right).
 $$
-Because $P(x)\in\{-1,1\}$, the support of $c$ is exactly the support of the affine Rademacher form
+Since $P\in\{-1,1\}$, the zero set of $c$ is the zero set of the affine Rademacher form
 $$
 L(\varepsilon)=a_0+\sum_{i=1}^8a_i\varepsilon_i.
 $$
 
-Step 4: Find the minimum support and classify every equality case
+There is also a homogeneous form that will be useful later. Each antipodal class has a unique sign representative
+$$
+\eta=(\eta_1,\ldots,\eta_9)\in\{-1,1\}^9,\qquad
+\prod_{i=1}^9\eta_i=1.
+$$
+For this representative the weight-$8$ character omitting coordinate $i$ equals $\eta_i$. Thus $E$ is also identified with coefficient vectors $a\in\mathbb{R}^9$ via
+$$
+f_a(\eta)=\sum_{i=1}^9a_i\eta_i.
+$$
 
-If all $a_i$ with $i\geq1$ vanish, then a nonzero $L$ has full support. Otherwise choose $i$ with $a_i\neq0$. Pair the $2^8$ sign vectors by flipping only $\varepsilon_i$. For fixed values of the other seven signs, the two values are
+Step 4: Find and classify the sparsest nonzero equality vectors
+
+Assume some variable coefficient $a_i$ is nonzero. Pair the $2^8$ sign vectors by flipping only $\varepsilon_i$. For fixed values of the other seven signs, the two values of $L$ are
 $$
-B+a_i,\qquad B-a_i,
+B+a_i,\qquad B-a_i.
 $$
-where
-$$
-B=a_0+\sum_{j\neq i}a_j\varepsilon_j.
-$$
-They cannot both be zero, so at most one point in each pair is a zero of $L$. Therefore $L$ has at most $2^7=128$ zeros and every nonzero $c\in E$ has
+They cannot both vanish, so $L$ has at most $2^7=128$ zeros. Hence every nonzero $c\in E$ satisfies
 $$
 |\operatorname{supp}(c)|\geq128.
 $$
-The form $1+\varepsilon_1$ has exactly $128$ zeros, so the minimum support is
+The form $1+\varepsilon_1$ attains equality, so
 $$
 m=128.
 $$
 
-Equality holds precisely when each pair contains one zero. Then $B$ takes only the values $\pm a_i$, so
+If equality holds, every pair has exactly one zero, so $B$ takes only the values $\pm a_i$. Thus $B^2\equiv a_i^2$. Expanding $B^2$ on the seven-dimensional sign cube and using linear independence of its characters gives
 $$
-B^2\equiv a_i^2
+a_0a_j=0,\qquad a_ja_k=0
 $$
-on the seven-dimensional sign cube. Expanding,
-$$
-B^2
-=a_0^2+\sum_{j\neq i}a_j^2
-+2a_0\sum_{j\neq i}a_j\varepsilon_j
-+2\sum_{\substack{j<k\\j,k\neq i}}a_ja_k\varepsilon_j\varepsilon_k.
-$$
-The functions $1,\varepsilon_j,\varepsilon_j\varepsilon_k$ are distinct characters of the sign cube and are therefore linearly independent, hence
-$$
-a_0a_j=0
-\quad\text{and}\quad
-a_ja_k=0
-$$
-for all distinct $j,k\neq i$, together with
+for distinct $j,k\neq i$, together with
 $$
 a_0^2+\sum_{j\neq i}a_j^2=a_i^2.
 $$
-Thus exactly two types occur:
-
-- only $a_i$ and $a_0$ are nonzero, with $a_0=\pm a_i$;
-- exactly two variable coefficients $a_i,a_j$ are nonzero, with $a_0=0$ and $a_j=\pm a_i$.
-
-This classification is exhaustive.
-
-Step 5: Count the projective minimizers
-
-In the first type, choose $i$ in $8$ ways and choose the relative sign in $2$ ways, giving
+Consequently the minimal vectors are exactly the forms with two nonzero homogeneous coefficients of equal absolute value. In the $\mathbb{R}^9$ model they are the lines
 $$
-16
+\mathbb{R}(e_i\pm e_j),\qquad i<j.
 $$
-one-dimensional subspaces of $E$.
-
-In the second type, choose the unordered pair $\{i,j\}$ in $\binom{8}{2}=28$ ways and again choose the relative sign in $2$ ways, giving
+Therefore
 $$
-56
-$$
-one-dimensional subspaces. The two types are disjoint, so
-$$
-N=16+56=72.
+N=2\binom{9}{2}=72.
 $$
 
-Combining the critical exponent, equality-space dimension, minimum support, and projective count gives the requested tuple.
+Step 5: Bound the support of a two-dimensional subspace
 
-Final Answer: $\boxed{\left(\inf\{p>0:14\cdot4^p-28\cdot3^p+20\cdot2^p-7>0\},9,128,72\right)}$
+Let $L\leq E$ have dimension $2$. In the affine model choose independent forms
+$$
+A_0+\sum_{i=1}^8A_i\varepsilon_i,\qquad
+B_0+\sum_{i=1}^8B_i\varepsilon_i.
+$$
+A point is absent from $\operatorname{supp}(L)$ exactly when both forms vanish.
+
+If the $2\times8$ variable-coefficient matrix has rank less than $2$, independence of the two affine forms forces a nonzero constant equation after row reduction, so there are no common zeros. Otherwise choose two variable columns $i,j$ of rank $2$. Solving for $\varepsilon_i,\varepsilon_j$ shows that, for each assignment of the other six signs, there is at most one common zero. Hence there are at most
+$$
+2^6=64
+$$
+common zeros, and therefore
+$$
+m_2\geq256-64=192.
+$$
+The two equations $1+\varepsilon_1=0$ and $1+\varepsilon_2=0$ have exactly $64$ common zeros, so
+$$
+m_2=192.
+$$
+
+Step 6: Classify and count the two-dimensional minimizers
+
+Suppose a two-dimensional subspace attains $m_2$. After choosing two rank-$2$ variable columns and row-reducing, the common-zero equations have the form
+$$
+\varepsilon_i=R_1(\xi),\qquad
+\varepsilon_j=R_2(\xi),
+$$
+where $\xi\in\{-1,1\}^6$ and each $R_k$ is affine linear. Equality means that for every $\xi$, both $R_1(\xi)$ and $R_2(\xi)$ belong to $\{-1,1\}$.
+
+If an affine form
+$$
+R=b_0+\sum_\ell b_\ell\xi_\ell
+$$
+takes only the values $\pm1$, then $R^2\equiv1$. Comparing the coefficients of the distinct cube characters in $R^2$ shows that at most one among $b_0,b_1,\ldots,b_6$ is nonzero, and that nonzero coefficient has absolute value $1$. Hence each reduced equation is either $\varepsilon_i=\pm1$ or $\varepsilon_i=\pm\varepsilon_k$.
+
+In the homogeneous $\mathbb{R}^9$ model from Step 3, each such equation is represented by a root line
+$$
+\mathbb{R}(e_a\pm e_b).
+$$
+Therefore every minimizing coefficient plane is spanned by two root lines whose supports are not the same unordered pair with opposite signs. Conversely, any two such compatible root lines impose two independent signed equalities on the even sign cube, leaving exactly $2^6=64$ common zeros.
+
+There are two types. If the two root supports are disjoint, choose four coordinates, pair them in one of three ways, and choose the two signs:
+$$
+\binom{9}{4}\cdot3\cdot4=1512.
+$$
+If they share one coordinate, fix a triple of coordinates. There are $12$ unordered adjacent root pairs on that triple, while each resulting plane contains exactly three root lines, so there are $12/3=4$ planes per triple:
+$$
+4\binom{9}{3}=336.
+$$
+Thus
+$$
+N_2=1512+336=1848.
+$$
+
+Final Answer: $\boxed{\left(\inf\{p>0:14\cdot4^p-28\cdot3^p+20\cdot2^p-7>0\},9,128,72,192,1848\right)}$
 
 ---
 
 ## Answer
 
-$\left(\inf\{p>0:14\cdot4^p-28\cdot3^p+20\cdot2^p-7>0\},9,128,72\right)$
+$\left(\inf\{p>0:14\cdot4^p-28\cdot3^p+20\cdot2^p-7>0\},9,128,72,192,1848\right)$
 
 ---
 
@@ -265,6 +253,6 @@ $\left(\inf\{p>0:14\cdot4^p-28\cdot3^p+20\cdot2^p-7>0\},9,128,72\right)$
 
 - negative type metrics
 - Fourier analysis on finite groups
-- folded Hamming metric
 - Rademacher affine forms
-- equality-case classification
+- generalized support weights
+- signed root configurations
