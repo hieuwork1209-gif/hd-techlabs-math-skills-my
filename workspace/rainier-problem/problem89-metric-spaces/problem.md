@@ -4,48 +4,34 @@
 
 Let
 $$
-X=\binom{[6]}{3},
+C=\mathbb{Z}/10\mathbb{Z}
 $$
-equipped with the Johnson metric
+with the cycle metric
 $$
-d(A,B)=3-|A\cap B|.
-$$
-
-For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_A)_{A\in X}$ with $\sum_Ac_A=0$ satisfies
-$$
-\sum_{A,B\in X}c_Ac_Bd(A,B)^p\leq0.
-$$
-Let
-$$
-\wp=\sup\{p>0:(X,d)\text{ has }p\text{-negative type}\},
-$$
-and define
-$$
-E=\left\{c\in\mathbb{R}^{X}:\sum_Ac_A=0,\ 
-\sum_{A,B\in X}c_Ac_Bd(A,B)^{\wp}=0\right\}.
+d_C(i,j)=\min\{|i-j|,10-|i-j|\}.
 $$
 
-For a subspace $L\leq E$, write
+Let $P$ be the Petersen graph with vertices
 $$
-\operatorname{supp}(L)=\{A\in X:\text{some }c\in L\text{ has }c_A\neq0\}.
+\{u_i,v_i:i\in\mathbb{Z}/5\mathbb{Z}\}
 $$
-Define
+and edges
 $$
-d_4=\min_{\substack{L\leq E\\ \dim L=4}}|\operatorname{supp}(L)|,
+u_i u_{i+1},\qquad u_i v_i,\qquad v_i v_{i+2},
 $$
-and let $\mathcal{M}$ be the set of four-dimensional subspaces attaining $d_4$. Put
+with indices taken modulo $5$. Give $P$ its shortest-path metric $d_P$.
+
+For a bijection $f:C\to P$, define
 $$
-N_4=|\mathcal{M}|.
+\operatorname{dist}(f)
+=
+\left(\max_{i\neq j}\frac{d_P(f(i),f(j))}{d_C(i,j)}\right)
+\left(\max_{i\neq j}\frac{d_C(i,j)}{d_P(f(i),f(j))}\right).
 $$
-Form a graph $\Gamma$ on $\mathcal{M}$ by joining distinct $L,L'$ exactly when
-$$
-L\cap L'\neq\{0\}.
-$$
-Prove that $\Gamma$ is strongly regular, and let $k$ be its degree, $\lambda$ the number of common neighbors of adjacent vertices, and $\mu$ the number of common neighbors of nonadjacent vertices.
 
 Determine
 $$
-(\wp,\dim E,d_4,N_4,k,\lambda,\mu).
+\min_{f:C\to P\text{ bijective}}\operatorname{dist}(f).
 $$
 
 ---
@@ -57,10 +43,10 @@ $$
 | **Domain** | Analysis |
 | **Sub-domain** | Metric spaces |
 | **Problem Type** | Exact computation |
-| **Answer Type** | Tuple or ordered list |
+| **Answer Type** | Exact scalar |
 
 ---
 
 ## Domain Explanation
 
-The primary object is the Johnson metric on the set of $3$-subsets of $[6]$, and the problem asks for its supremal negative type together with a generalized support extremal and the intersection geometry of its minimizing subspaces inside the critical equality space, so Analysis / Metric spaces is the natural primary classification. Incidence linear algebra identifies the equality space, while the sharp support bound, equality classification, and minimizer-intersection graph require an affine-cube argument followed by a compatibility count on perfect matchings.
+The problem asks for the least bi-Lipschitz distortion between two explicit finite metric spaces, so Analysis / Metric spaces is the natural primary classification. The proof reduces the metric distortion to a circular-bandwidth obstruction for the Petersen graph and then constructs an optimal cyclic ordering.
