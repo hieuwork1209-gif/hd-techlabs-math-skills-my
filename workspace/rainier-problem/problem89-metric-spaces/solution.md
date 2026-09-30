@@ -166,7 +166,7 @@ B\ell_v=2p_v.
 $$
 Thus the invertible map $B:W\to W$ swaps the two seven-element families up to nonzero scalars.
 
-Step 4: Control the line vectors lying in a span of point vectors
+Step 4: Derive the quotient-trace lemma for Fano line vectors
 
 Any six vectors among the seven $p_v$ are independent. Indeed, if a linear combination supported on at most six coordinates represents a constant vector, the omitted coordinate forces that constant to be zero, and then every coefficient vanishes.
 
@@ -176,85 +176,117 @@ P_S=\operatorname{span}\{p_v:v\in S\},
 \qquad
 R=V\setminus S.
 $$
-Every vector in $P_S$ has equal coordinates on $R$. Conversely, the subspace of $W$ with equal coordinates on $R$ has dimension $s$, the same as $P_S$, so the two subspaces coincide. The vector $\ell_u$ has value $\frac{4}{7}$ on the three points of the line $L_u$ and $-\frac{3}{7}$ elsewhere. Hence
+Every vector in $P_S$ has equal coordinates on $R$. Conversely, the subspace of $W$ with equal coordinates on $R$ has dimension $s$, so it equals $P_S$.
+
+The line vector $\ell_u$ has value $\frac{4}{7}$ on the three points of the Fano line $L_u$ and $-\frac{3}{7}$ elsewhere. Hence
 $$
 \ell_u\in P_S
 $$
 exactly when either
 $$
 R\subseteq L_u
-$$
-or
-$$
+\qquad\text{or}\qquad
 R\cap L_u=\varnothing.
 $$
 
-This gives the required line counts:
-
-- if $s=1$ or $2$, no line vector lies in $P_S$;
-- if $s=3$, there is one exactly when $S$ itself is a Fano line;
-- if $s=4$, there is exactly one;
-- if $s=5$, there are exactly three.
-
-For $s=4$, if $R$ is a line it is the unique line containing $R$. If $R=\{a,b,c\}$ is not a line, then $a,b,c$ are a basis of $\mathbb{F}_2^3$, and
+To control one-dimensional extensions of $P_S$, restrict coordinates to $R$ and quotient by constant vectors. The class of $\ell_u$ is represented by the indicator of $L_u\cap R$. If $A,C$ are nonempty proper subsets of $R$, then the classes of $\mathbf{1}_A$ and $\mathbf{1}_C$ are proportional exactly when
 $$
-\{a+b,a+c,b+c\}
+A=C
+\qquad\text{or}\qquad
+A=R\setminus C.
 $$
-is the unique line disjoint from $R$. For $s=5$, the two points in $R$ lie on one common line, four lines meet exactly one of them, and the remaining two lines are disjoint from $R$, giving three in total.
+Indeed, a relation
+$$
+\mathbf{1}_A=c\mathbf{1}_C+d\mathbf{1}_R
+$$
+with $c\neq0$ has two distinct values on $C$ and its complement, and these values must be $0$ and $1$.
 
-Step 5: Determine every extremal flat size
+Now use the Fano incidence rules. For $s=2$, no line vector lies in $P_S$, and the seven remaining quotient classes are distinct. For $s=3$, if $S$ is a Fano line then $\ell_S\in P_S$ and the other six line vectors form three proportional pairs; if $S$ is not a line, all seven quotient classes are distinct. For $s=4$, exactly one line vector lies in $P_S$ and the other six form three proportional pairs. For $s=5$, exactly three line vectors lie in $P_S$.
 
-Fix $0\leq k\leq5$ and a $k$-dimensional subspace $H\leq W$. Let
+Step 5: Determine and count all extremal flats of the support configuration
+
+For a $k$-dimensional subspace $H\leq W$, put
 $$
 a=|\{v:p_v\in H\}|,
 \qquad
 b=|\{u:\ell_u\in H\}|.
 $$
-Using the self-duality from Step 3, replace $H$ by $BH$ if necessary and assume
-$$
-a\geq b.
-$$
-Since any six point vectors are independent,
+By the self-duality from Step 3, replace $H$ by $BH$ if necessary and assume $a\geq b$. Since any six point vectors are independent,
 $$
 a\leq k.
 $$
-
 If $a\leq k-1$, then
 $$
 a+b\leq2k-2.
 $$
-If $a=k$, the point vectors in $H$ span all of $H$, so Step 4 applies directly.
 
-It follows that
+For $k=1$, the configuration has $14$ distinct projective points, so
 $$
-M_0=0,\qquad M_1=1,\qquad M_2=2,\qquad M_3=4,\qquad M_4\leq6,\qquad M_5\leq8.
+M_1=1
 $$
-All these bounds are attained. For $M_3$, take the three point vectors on one Fano line together with that line vector.
+and there are $14$ extremal lines. For $k=2$, the maximum is $M_2=2$. Every unordered pair of configuration points spans a unique extremal plane, and every extremal plane contains exactly that pair, so there are
+$$
+\binom{14}{2}=91
+$$
+of them.
 
-For $M_4$, let $L$ be a Fano line, let $v\in L$, and let $L,M,N$ be the three lines through $v$. The three point vectors on $L$ are independent and span $\ell_L$. Adding $\ell_M$ raises the dimension to $4$. Also
+For $k=3$, the bound gives $M_3\leq4$. If $a=3$, then $H=P_S$, and Step 4 gives four configuration vectors exactly when $S$ is a Fano line. If $a=2$, equality would require $b=2$, but for $s=2$ a one-dimensional extension of $P_S$ contains at most one line vector. Thus the extremal $3$-spaces are the seven point-line spans and their seven duals:
 $$
-\ell_L+\ell_M+\ell_N=2p_v,
-$$
-so the same $4$-space contains the three point vectors on $L$ and all three line vectors through $v$, giving six elements of $\mathcal{A}$.
-
-For $M_5$, take any five point vectors. They span a $5$-space, and Step 4 shows that exactly three line vectors lie in that span, giving eight elements.
-
-Finally $M_6=14$. Therefore
-$$
-(M_0,M_1,M_2,M_3,M_4,M_5,M_6)
-=(0,1,2,4,6,8,14).
+M_3=4,
+\qquad
+C_3=14.
 $$
 
-Step 6: Read off the generalized support hierarchy
+For $k=4$, one has $M_4\leq6$. The case $a=4$ gives only one line vector, hence five configuration vectors. Equality therefore requires $a=b=3$. Step 4 shows that this happens exactly when the three point vectors form a Fano line and the extra dimension chooses one of the three proportional pairs of the remaining line vectors. Hence
+$$
+M_4=6,
+\qquad
+C_4=7\cdot3=21.
+$$
 
-Since
+For $k=5$, one has $M_5\leq8$. If $a=5$, then $H=P_S$ and Step 4 gives exactly three line vectors, so the bound is attained. If $a=4$, equality would require $b=4$, but a one-dimensional extension of $P_S$ contains the one line already in $P_S$ plus at most one proportional pair, so $b\leq3$. Thus the extremal $5$-spaces are the $\binom{7}{5}=21$ spans of five point vectors and their $21$ duals:
+$$
+M_5=8,
+\qquad
+C_5=42.
+$$
+
+Finally
+$$
+M_0=0,\qquad C_0=1,
+$$
+and
+$$
+M_6=14,\qquad C_6=1.
+$$
+Therefore
+$$
+(M_0,\ldots,M_6)=(0,1,2,4,6,8,14)
+$$
+and
+$$
+(C_0,\ldots,C_6)=(1,14,91,14,21,42,1).
+$$
+
+Step 6: Read off the generalized support minima and their multiplicities
+
+For an $r$-dimensional subspace $U\leq W$, the missing coordinates are $\mathcal{A}\cap U^\perp$. Orthogonal complementation is a bijection between $r$-spaces and $(6-r)$-spaces. Hence
 $$
 d_r=14-M_{6-r},
 $$
-the six generalized support minima are
+and the number $n_r$ of $r$-dimensional subspaces attaining $d_r$ is
+$$
+n_r=C_{6-r}.
+$$
+Thus
 $$
 (d_1,d_2,d_3,d_4,d_5,d_6)
-=(6,8,10,12,13,14).
+=(6,8,10,12,13,14)
+$$
+and
+$$
+(n_1,n_2,n_3,n_4,n_5,n_6)
+=(42,21,14,91,14,1).
 $$
 Together with Step 2,
 $$
@@ -263,13 +295,13 @@ $$
 \dim E=6.
 $$
 
-Final Answer: $\boxed{\left(\inf\{p>0:\sqrt{2}(3^p-1)>2^p\},6,(6,8,10,12,13,14)\right)}$
+Final Answer: $\boxed{\left(\inf\{p>0:\sqrt{2}(3^p-1)>2^p\},6,(6,8,10,12,13,14),(42,21,14,91,14,1)\right)}$
 
 ---
 
 ## Answer
 
-$\left(\inf\{p>0:\sqrt{2}(3^p-1)>2^p\},6,(6,8,10,12,13,14)\right)$
+$\left(\inf\{p>0:\sqrt{2}(3^p-1)>2^p\},6,(6,8,10,12,13,14),(42,21,14,91,14,1)\right)$
 
 ---
 
