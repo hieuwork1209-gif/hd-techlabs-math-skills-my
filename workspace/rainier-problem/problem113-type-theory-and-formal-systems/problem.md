@@ -2,21 +2,20 @@
 
 ## LaTeX (Normalized)
 
-Terms are generated from a constant $z$ and a binary constructor $b$. The only reduction rule is
+Work in Curry-style simply typed combinatory logic with one primitive combinator $S$ and binary application. Simple types are built from type variables using $\to$, which associates to the right. Every occurrence of $S$ may be assigned a fresh instance of
 $$
-b(b(x,y),w)\longrightarrow b(x,b(y,w)),
+(\alpha\to\beta\to\gamma)\to(\alpha\to\beta)\to\alpha\to\gamma.
 $$
-where $x,y,w$ are arbitrary terms. A reduction may be applied to any matching subterm, and each rule application counts as one step.
+An application $UV$ is typable exactly when the types assigned to $U$ and $V$ can be unified so that $U$ has type $\sigma\to\tau$ and $V$ has type $\sigma$ for some simple types $\sigma,\tau$. Unification is the usual finite simple-type unification with the occurs check.
 
-Define
+For $n\geq1$, let $\mathcal P_n$ be the set of all full parenthesizations of a word consisting of $n$ copies of $S$. Let $\mathcal T_n\subseteq\mathcal P_n$ be the subset of typable terms. Define
 $$
-T_0=z,
+R_1=S,
 \qquad
-T_{h+1}=b(T_h,T_h)\quad(h\geq0).
+R_{n+1}=S R_n.
 $$
-For $h\geq1$, a complete reduction of $T_h$ is a reduction sequence ending at a term with no applicable rule. Two reductions are distinct if at some step they contract different occurrences of the rule, even if the resulting terms are syntactically identical.
 
-Let $M_h$ be the number of complete reductions of $T_h$ having the minimum possible length. Determine $M_h$ exactly for every $h\geq1$.
+Determine $\mathcal T_n$ exactly for every $n\geq1$.
 
 ---
 
@@ -26,11 +25,11 @@ Let $M_h$ be the number of complete reductions of $T_h$ having the minimum possi
 |---|---|
 | **Domain** | Logic, Set Theory, and Foundations |
 | **Sub-domain** | Type theory and formal systems |
-| **Problem Type** | Symbolic derivation |
-| **Answer Type** | Exact symbolic expression |
+| **Problem Type** | Exhaustive enumeration |
+| **Answer Type** | Set or multiset of objects |
 
 ---
 
 ## Domain Explanation
 
-This problem asks for the exact number of shortest normalization sequences in a terminating term-rewriting system, so its primary content is derivational structure in Logic, Set Theory, and Foundations / Type theory and formal systems. The counting argument passes through a partial order on binary-tree rotations, which uses combinatorial ideas, but those serve the analysis of normalization rather than defining the primary object of the problem.
+This problem asks for a complete classification of typable terms in Curry-style simply typed combinatory logic, so its primary content is type assignment, principal typing, and unification in Logic, Set Theory, and Foundations / Type theory and formal systems. The binary-tree structure of parenthesizations is only the syntax on which the typing constraints act, so combinatorics is secondary.
