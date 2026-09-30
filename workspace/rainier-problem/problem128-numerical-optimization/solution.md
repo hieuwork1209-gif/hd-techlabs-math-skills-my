@@ -212,8 +212,8 @@ x_*=
 \frac{64}{75}+\frac{2\sqrt{14}}{175},
 \qquad
 z_*=1-x_*.
-$$
-Choose the law that gives total mass $x_*$ to $\mathcal O_0$, total mass $z_*$ to $\mathcal O_2$, and zero mass to $\mathcal O_1$, split equally inside each reflection pair.
+$
+Since $3<\sqrt{14}<4$, one has $0<x_*<1$ and $0<z_*<1$. Choose the law that gives total mass $x_*$ to $\mathcal O_0$, total mass $z_*$ to $\mathcal O_2$, and zero mass to $\mathcal O_1$, split equally inside each reflection pair.
 
 Let
 $$
