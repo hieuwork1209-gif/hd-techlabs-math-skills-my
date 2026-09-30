@@ -41,14 +41,14 @@ $$
 
 Step 2: Construct two lower-bound instances valid for every step size
 Using the notation of the problem,
-$
+$$
 W(h)=
 \sup_{\substack{d\geq1,\ f\in\mathcal F_d,\ x_*\in\operatorname*{argmin}f\\
 \|x_0-x_*\|\leq1}}
 \bigl(f(x_1)-f_*\bigr),
 \qquad
 x_1=x_0-h\nabla f(x_0).
-$
+$$
 
 First take the one-dimensional quadratic
 $$
