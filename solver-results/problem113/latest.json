@@ -1,9 +1,9 @@
 {
   "problem": "problem113",
   "branch": "adversary/problem113",
-  "problem_path": "workspace/rainier-problem/problem113-model-theory/problem.md",
-  "problem_blob_sha": "d7cb11cc25f5a0baf48bb55b6172438998c36243",
-  "source_commit_sha": "50220d6ce7ccf964360cfd2d5a948df3131d66af",
+  "problem_path": "workspace/rainier-problem/problem113-numerical-optimization/problem.md",
+  "problem_blob_sha": "e70692f7c81ba33796dbb3706539a4e76f5df3ea",
+  "source_commit_sha": "db95f846288e03fa0d58716a628a0d904e67a979",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-30T15:46:16+00:00",
-  "result_file": "solver-results/problem113/d7cb11cc25f5.json"
+  "completed_at": "2026-09-30T15:59:24+00:00",
+  "result_file": "solver-results/problem113/e70692f7c81b.json"
 }

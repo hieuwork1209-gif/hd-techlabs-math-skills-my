@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-numerical-optimization/problem.md",
+  "source_commit_sha": "db95f846288e03fa0d58716a628a0d904e67a979",
+  "problem_blob_sha": "e70692f7c81ba33796dbb3706539a4e76f5df3ea",
+  "statement_sha256": "105426b847d54811ef2eb7d6e15a9c14c47ce696e2aa55b4842c166a24653c9d",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T15:57:53+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\np(\\lambda)=(1-\\alpha\\lambda)(1-\\beta\\lambda)\n=1-(\\alpha+\\beta)\\lambda+\\alpha\\beta\\lambda^2.\n\\]\n\nWe need minimize \\(\\max |p(\\lambda)|\\) on \\([1,2]\\cup[4,8]\\).\n\nThe key lower bound comes from the three points \\(1,\\frac92,8\\), all in the allowed set. For every quadratic \\(p(\\lambda)=1-s\\lambda+t\\lambda^2\\),\n\n\\[\n\\frac{72}{49}p(1)-\\frac{32}{49}p\\!\\left(\\frac92\\right)+\\frac{9}{49}p(8)=1.\n\\]\n\nThus, if \\(|p|\\le r\\) on the two intervals, then\n\n\\[\n1\\le \\left(\\frac{72}{49}+\\frac{32}{49}+\\frac{9}{49}\\right)r\n=\\frac{113}{49}r,\n\\]\n\nso\n\n\\[\nr\\ge \\frac{49}{113}.\n\\]\n\nEquality forces the signs and magnitudes to align:\n\n\\[\np(1)=\\frac{49}{113},\\qquad\np\\!\\left(\\frac92\\right)=-\\frac{49}{113},\\qquad\np(8)=\\frac{49}{113}.\n\\]\n\nSolving gives\n\n\\[\np(\\lambda)=1-\\frac{72}{113}\\lambda+\\frac{8}{113}\\lambda^2.\n\\]\n\nIndeed,\n\n\\[\np(\\lambda)=\\frac{8}{113}\\left(\\lambda-\\frac92\\right)^2-\\frac{49}{113},\n\\]\n\nso on \\([1,2]\\cup[4,8]\\) its maximum absolute value is exactly \\(\\frac{49}{113}\\): it equals \\(+\\frac{49}{113}\\) at \\(\\lambda=1,8\\), and \\(-\\frac{49}{113}\\) at \\(\\lambda=\\frac92\\).\n\nNow match coefficients:\n\n\\[\n\\alpha+\\beta=\\frac{72}{113},\\qquad \\alpha\\beta=\\frac{8}{113}.\n\\]\n\nSo \\(\\alpha,\\beta\\) are the roots of\n\n\\[\nx^2-\\frac{72}{113}x+\\frac{8}{113}=0,\n\\]\n\nhence\n\n\\[\n\\alpha,\\beta\n=\n\\frac{36\\pm 14\\sqrt2}{113}.\n\\]\n\nTherefore the minimum possible value is\n\n\\[\n\\boxed{\\frac{49}{113}},\n\\]\n\nattained exactly for the unordered pair\n\n\\[\n\\boxed{\\left\\{\\frac{36+14\\sqrt2}{113},\\frac{36-14\\sqrt2}{113}\\right\\}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T15:59:24+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/e70692f7c81b.json"
+}
