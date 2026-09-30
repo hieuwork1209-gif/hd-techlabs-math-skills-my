@@ -5,13 +5,23 @@ For a differentiable convex function with $1$-Lipschitz gradient, write $g(x)=\n
 $$
 f(u)\geq f(v)+g(v)^T(u-v)+\frac{1}{2}\|g(u)-g(v)\|^2.
 $$
-To derive it, set $\psi(z)=f(z)-g(v)^Tz$. Then $\psi$ is convex and $1$-smooth and satisfies $\nabla\psi(v)=0$, so $v$ minimizes $\psi$. The descent inequality for a $1$-smooth function gives
-$$
+First derive the descent inequality. For $d=y-x$, the fundamental theorem of calculus and the $1$-Lipschitz property give
+$
+f(y)-f(x)-g(x)^Td
+=
+\int_0^1\bigl(g(x+td)-g(x)\bigr)^Td\,dt
+\leq
+\int_0^1 t\|d\|^2\,dt
+=
+\frac{1}{2}\|d\|^2.
+$
+Now set $\psi(z)=f(z)-g(v)^Tz$. The function $\psi$ is convex and $1$-smooth and satisfies $\nabla\psi(v)=0$, so $v$ minimizes $\psi$. Apply the descent inequality to $\psi$ from $u$ to $u-\nabla\psi(u)$:
+$
 \psi\bigl(u-\nabla\psi(u)\bigr)
 \leq
 \psi(u)-\frac{1}{2}\|\nabla\psi(u)\|^2.
-$$
-Since $\psi(v)$ is no larger than the left side, the displayed interpolation inequality follows.
+$
+Since $\psi(v)$ is no larger than the left side, rearrangement gives the displayed interpolation inequality.
 
 Let
 $$
@@ -29,7 +39,7 @@ and exact minimization on the second affine plane gives
 $$
 g_2^Tg_0=g_2^Tg_1=0.
 $$
-Also $x_i-x_0$ lies in the span of the preceding gradients, so
+For $i=1,2$, the displacement $x_i-x_0$ lies in the span of the preceding gradients and is orthogonal to $g_i$. Together with the case $i=0$, this gives
 $$
 g_i^T(x_i-x_*)=g_i^Td
 \qquad(i=0,1,2).
@@ -54,7 +64,7 @@ The three gradients are mutually orthogonal, so Bessel's inequality gives
 $$
 a_0^2+a_1^2+a_2^2\leq\|d\|^2\leq1.
 $$
-If one of the gradients vanishes, convexity makes the corresponding iterate a global minimizer, and the desired bound is immediate. Hence assume $F_2>0$ and $s_0s_1s_2>0$.
+If one of the gradients vanishes, convexity makes the corresponding iterate a global minimizer, and the desired bound is immediate. Assume $F_2>0$ and $s_0s_1s_2>0$.
 
 Write $F=F_2$. The inequalities from Step 1 imply
 $$
@@ -93,7 +103,7 @@ $$
 Step 3: Solve the nested scalar minimization exactly
 Set
 $$
-\phi=\frac{1+\sqrt5}{2},
+\phi=\frac{1+\sqrt{5}}{2},
 \qquad
 v=1+\frac{u_2^2}{2}.
 $$
@@ -112,11 +122,11 @@ A_0^2+A_1^2+A_2^2
 $$
 The inequality
 $$
-5u_1^2+\frac{v^2}{u_1^2}\geq2\sqrt5\,v
+5u_1^2+\frac{v^2}{u_1^2}\geq2\sqrt{5}\,v
 $$
 turns the first three terms into
 $$
-(6+2\sqrt5)v=4\phi^2v.
+(6+2\sqrt{5})v=4\phi^2v.
 $$
 Now put $y=u_2^2$. Then
 $$
@@ -127,7 +137,7 @@ A_0^2+A_1^2+A_2^2
 $$
 Let
 $$
-S=\sqrt{1+8\phi^2}=\sqrt{13+4\sqrt5}.
+S=\sqrt{1+8\phi^2}=\sqrt{13+4\sqrt{5}}.
 $$
 The last two terms are at least $S$, so
 $$
@@ -147,7 +157,7 @@ Consequently
 $$
 F_2\leq\frac{1}{2\theta^2}
 =
-\frac{2}{(1+\sqrt{13+4\sqrt5})^2}.
+\frac{2}{(1+\sqrt{13+4\sqrt{5}})^2}.
 $$
 
 Step 4: Construct data attaining every inequality in the upper bound
@@ -160,7 +170,7 @@ u_2=\sqrt{\frac{2}{S}},
 v=1+\frac{1}{S},
 $$
 $$
-u_1=\sqrt{\frac{v}{\sqrt5}},
+u_1=\sqrt{\frac{v}{\sqrt{5}}},
 \qquad
 u_0=\sqrt{v+u_1^2}.
 $$
@@ -206,11 +216,28 @@ $$
 $$
 F_0=F_1+\frac{1}{2}(s_0^2+s_1^2).
 $$
-The equality conditions above give
-$$
+The equality conditions also give the normalized identities
+$
+A_2u_2-\frac{1}{2}u_2^2=1,
+$
+$
+A_1u_1-\frac{1}{2}u_1^2
+=
+1+\frac{1}{2}(u_1^2+u_2^2),
+$
+and, because $u_0^2=v+u_1^2$,
+$
+A_0u_0-\frac{1}{2}u_0^2
+=
+\frac{3}{2}u_0^2
+=
+1+\frac{1}{2}u_2^2+u_1^2+\frac{1}{2}u_0^2.
+$
+Multiplying by $r$ and comparing with the definitions of $F_0,F_1,F_2$ proves
+$
 F_i=a_is_i-\frac{1}{2}s_i^2
 \qquad(i=0,1,2).
-$$
+$
 Finally set
 $$
 \alpha=1+\frac{s_1^2}{s_0^2},
@@ -241,16 +268,25 @@ F_i\geq
 F_j+g_j^T(x_i-x_j)
 +\frac{1}{2}\|g_i-g_j\|^2.
 $$
-Here is a direct check. For pairs involving $*$, the two required inequalities follow from
-$$
-F_i\geq\frac{1}{2}s_i^2
-$$
+For pairs involving $*$, the first required inequality follows from
+$
+F_2-\frac{1}{2}s_2^2=r\left(1-\frac{1}{S}\right)>0,
+$
+$
+F_1-\frac{1}{2}s_1^2
+=
+r\left(1+\frac{1}{2}u_2^2\right)>0,
+$
 and
-$$
+$
+F_0-\frac{1}{2}s_0^2=ru_0^2>0.
+$
+The reverse inequalities are equalities because Step 4 gives
+$
 F_i=a_is_i-\frac{1}{2}s_i^2
 =
 g_i^Tx_i-\frac{1}{2}s_i^2.
-$$
+$
 For the adjacent pairs $(0,1)$ and $(1,2)$, the forward inequalities are equalities because the later gradient is orthogonal to the displacement, while the reverse inequalities are equalities because
 $$
 \alpha s_0^2=s_0^2+s_1^2,
@@ -262,7 +298,7 @@ $$
 \beta s_0^2=s_0^2+s_1^2+s_2^2.
 $$
 
-It remains only to realize these finite data by an actual function. Put
+To realize these finite data by an actual function, Put
 $$
 y_i=x_i-g_i,
 \qquad
@@ -286,34 +322,55 @@ f(x)=
 q(y)+\frac{1}{2}\|x-y\|^2
 \right\}.
 $$
-At $y_i$, the $i$th affine term is active, so $g_i\in\partial q(y_i)$. Since $x_i=y_i+g_i$, the point $y_i$ minimizes the envelope expression at $x_i$, giving
-$$
-f(x_i)=F_i,
-\qquad
-\nabla f(x_i)=g_i.
-$$
-The minimizer in the envelope is unique. If $y,y'$ are the minimizers for $x,x'$ and $g=x-y$, $g'=x'-y'$, monotonicity of $\partial q$ gives
-$$
-(g-g')^T(y-y')\geq0.
-$$
-Using $x-x'=(y-y')+(g-g')$ yields
-$$
-\|g-g'\|\leq\|x-x'\|.
-$$
-Hence the envelope is differentiable, convex, and has $1$-Lipschitz gradient. The affine term indexed by $*$ is zero, so $q\geq0$ and $f(0)=0$ is the minimum value.
+At $y_i$, the $i$th affine term is active, so $g_i\in\partial q(y_i)$. Since $x_i=y_i+g_i$, the point $y_i$ satisfies the first-order condition for the envelope minimization at $x_i$. The quadratic term makes that minimizer unique, and
+$
+f(x_i)=H_i+\frac{1}{2}\|g_i\|^2=F_i.
+$
+
+For a general $x$, let $y(x)$ be the unique minimizer and put $G(x)=x-y(x)$. The first-order condition gives $G(x)\in\partial q(y(x))$. For $x,x'$ with corresponding $y,y'$ and $G,G'$, monotonicity of $\partial q$ gives
+$
+(G-G')^T(y-y')\geq0.
+$
+Since $x-x'=(y-y')+(G-G')$,
+$
+\|G-G'\|^2
+\leq
+(G-G')^T(x-x')
+\leq
+\|G-G'\|\,\|x-x'\|,
+$
+so
+$
+\|G-G'\|\leq\|x-x'\|.
+$
+Using $y(x)$ as a competitor in the definition of $f(x')$ gives
+$
+f(x')
+\leq
+f(x)+G(x)^T(x'-x)+\frac{1}{2}\|x'-x\|^2.
+$
+The same inequality with $x,x'$ interchanged, together with the Lipschitz bound for $G$, gives
+$
+f(x+h)-f(x)-G(x)^Th=O(\|h\|^2).
+$
+Thus $f$ is differentiable with $\nabla f=G$, and its gradient is $1$-Lipschitz. Convexity follows because $f$ is the partial minimum in $y$ of the jointly convex function
+$
+q(y)+\frac{1}{2}\|x-y\|^2.
+$
+In particular, $\nabla f(x_i)=g_i$. The affine term indexed by $*$ is zero, so $q\geq0$. At $x=0$, the choice $y=0$ gives $f(0)=0$, which is the minimum value.
 
 The constructed $x_1$ lies in $x_0+\operatorname{span}\{g_0\}$ and has $g_1^Tg_0=0$, so convexity makes it an exact minimizer on that line. Likewise $x_2$ lies in $x_0+\operatorname{span}\{g_0,g_1\}$ and $g_2$ is orthogonal to both spanning gradients, so it is an exact minimizer on that plane. Also $\|x_0-x_*\|=1$ and
 $$
 f(x_2)-f_*=F_2=r.
 $$
 This matches the upper bound from Step 3.
-Final Answer: $\boxed{\frac{2}{(1+\sqrt{13+4\sqrt5})^2}}$
+Final Answer: $\boxed{\frac{2}{(1+\sqrt{13+4\sqrt{5}})^2}}$
 
 ---
 
 ## Answer
 
-$\frac{2}{(1+\sqrt{13+4\sqrt5})^2}$
+$\frac{2}{(1+\sqrt{13+4\sqrt{5}})^2}$
 
 ---
 
