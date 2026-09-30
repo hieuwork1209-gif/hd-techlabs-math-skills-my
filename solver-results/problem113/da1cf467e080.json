@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-joint-distributions-and-dependence/problem.md",
+  "source_commit_sha": "ac912c73c642ef16dc2a35a7ebc4bfe969d1deac",
+  "problem_blob_sha": "da1cf467e08061d2a8cd1938c0edb8d3d93969d9",
+  "statement_sha256": "7b8f511a50da01b2b8d29c16842d1b75e98e1ded7a7ea7d4ef27128f0ff6d720",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T07:38:29+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(S=X_1+\\cdots+X_{10}\\). By exchangeability, the law is determined by \\(p_s=\\mathbb P(S=s)\\). Also, independence of every subfamily of size at most \\(5\\) is equivalent to\n\n\\[\n\\mathbb E\\binom Sj=\\binom{10}{j}2^{-j},\\qquad j=0,1,\\dots,5.\n\\]\n\nIndeed, these are exactly the probabilities that any fixed \\(j\\) coordinates are all \\(1\\), and by linearity they determine all pattern probabilities of size \\(\\le 5\\).\n\nNow consider\n\n\\[\nQ(s)=-\\frac{(s-3)(s-4)(s-6)(s-7)(s-10)}{5040}.\n\\]\n\nFor integer \\(s=0,1,\\dots,10\\), this satisfies\n\n\\[\nQ(0)=1,\\qquad Q(s)\\ge 0\\quad (1\\le s\\le 10).\n\\]\n\nHence\n\n\\[\n\\mathbf 1_{\\{s=0\\}}\\le Q(s),\n\\]\n\nso for every admissible law,\n\n\\[\np_0\\le \\mathbb E Q(S).\n\\]\n\nSince \\(Q\\) has degree \\(5\\), \\(\\mathbb E Q(S)\\) is fixed by the five-wise independence moments, so it equals its value for \\(B\\sim\\operatorname{Bin}(10,1/2)\\). Expanding in the binomial basis,\n\n\\[\n\\begin{aligned}\n&(s-3)(s-4)(s-6)(s-7)(s-10)\\\\\n&=-5040+3420\\binom s1-2120\\binom s2+1140\\binom s3-480\\binom s4+120\\binom s5.\n\\end{aligned}\n\\]\n\nThus\n\n\\[\n\\mathbb E Q(S)\n=\n-\\frac1{5040}\n\\left(\n-5040+3420\\cdot 5-2120\\cdot \\frac{45}{4}\n+1140\\cdot 15-480\\cdot \\frac{210}{16}\n+120\\cdot \\frac{252}{32}\n\\right)\n=\\frac1{112}.\n\\]\n\nSo \\(p_0\\le 1/112\\).\n\nEquality forces \\(p_s=0\\) whenever \\(Q(s)>0\\), namely for\n\n\\[\ns=1,2,5,8,9.\n\\]\n\nSolving the six moment equations on the remaining support \\(\\{0,3,4,6,7,10\\}\\) gives\n\n\\[\np_0=p_{10}=\\frac1{112},\\qquad\np_3=p_7=\\frac5{28},\\qquad\np_4=p_6=\\frac5{16},\n\\]\n\nand all other \\(p_s\\) are \\(0\\). This law is feasible: its generating function differs from the binomial generating function by\n\n\\[\n\\sum_{s=0}^{10}p_s z^s-\\left(\\frac{1+z}{2}\\right)^{10}\n=\n\\frac{(z-1)^6}{1024\\cdot 7}\n\\left(57+272z+462z^2+272z^3+57z^4\\right),\n\\]\n\nso its first five derivatives at \\(z=1\\) agree with those of \\(\\left(\\frac{1+z}{2}\\right)^{10}\\).\n\nTherefore the maximizing distribution vector is\n\n\\[\n\\boxed{\n\\left(\n\\frac1{112},\\,0,\\,0,\\,\\frac5{28},\\,\\frac5{16},\\,0,\\,\n\\frac5{16},\\,\\frac5{28},\\,0,\\,0,\\,\\frac1{112}\n\\right)\n}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T07:40:39+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/da1cf467e080.json"
+}
