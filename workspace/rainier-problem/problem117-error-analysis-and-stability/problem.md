@@ -19,13 +19,10 @@ Apply the method to the test equation $y'=0$. Call $r$ zero-stable if every solu
 
 For a polynomial $g(x)$ having a unique zero in $(a,b)$, write $\operatorname{root}_{(a,b)}g$ for that zero.
 
-Determine the complete set of zero-stable values of $r$. If $r_-<1$ is the lower endpoint of this set, define
-$$
+Let $r_-<1$ be the lower endpoint of the set of zero-stable values of $r$. Find
+$
 u_*=r_-+\frac1{r_-}.
-$$
-Also determine the parasitic period multiplier on the unit circle at $r=r_-$.
-
-Give the final answer as $u_*$.
+$
 
 ---
 
@@ -42,4 +39,4 @@ Give the final answer as $u_*$.
 
 ## Domain Explanation
 
-This problem asks for the exact step-ratio range in which a periodically varying BDF5 recurrence remains zero-stable. The central task is the stability analysis of a variable-step numerical time integrator through its parasitic period multipliers, so the primary classification is error analysis and stability.
+This problem asks for the exact lower zero-stability threshold of a periodically varying BDF5 recurrence. The central task is the stability analysis of a variable-step numerical time integrator through its period multipliers, so the primary classification is error analysis and stability.
