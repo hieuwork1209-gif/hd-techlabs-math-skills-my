@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-model-theory/problem.md",
+  "source_commit_sha": "fdbe80ac93650dadbba19a1183d3f4afdde3a3e8",
+  "problem_blob_sha": "e7288e34a525f372e38ff19cacd746cc4ac92560",
+  "statement_sha256": "eca714739eb5c9b441da30026826eef86dd6128510de5186468bd998f2fed4cd",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T15:12:09+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(C_n\\) denote the strict linear order with \\(n\\) elements. The key fact is:\n\n\\[\n\\text{Duplicator wins the \\(r\\)-round game on } C_p,C_q\n\\iff\np=q \\text{ or } \\min(p,q)\\ge 2^r-1.\n\\]\n\nI will prove this by induction on \\(r\\).\n\nFor \\(r=0\\), no elements are chosen, so Duplicator always wins. This matches the condition since \\(2^0-1=0\\).\n\nAssume the statement holds for \\(r-1\\). Put\n\n\\[\nT=2^{r-1}-1,\n\\qquad\n2^r-1=2T+1.\n\\]\n\nFirst suppose \\(p,q\\ge 2^r-1\\). If Spoiler chooses an element in \\(C_p\\), say with \\(L\\) elements to its left and \\(R\\) to its right, then\n\n\\[\nL+R=p-1\\ge 2T.\n\\]\n\nSo at least one of \\(L,R\\) is \\(\\ge T\\). Duplicator chooses an element in \\(C_q\\) so that any side of size \\(<T\\) is matched exactly, and every other side has size at least \\(T\\). This is possible because \\(q-1\\ge 2T\\). Then, on each side, the remaining \\((r-1)\\)-round game is either between equal finite chains or between two chains both of size at least \\(T=2^{r-1}-1\\). By the induction hypothesis, Duplicator can continue to win. The same argument applies if Spoiler starts in \\(C_q\\).\n\nNow suppose \\(p<q\\) and \\(p<2^r-1=2T+1\\). If \\(p<T\\), Spoiler already wins in \\(r-1\\) rounds by induction, hence also in \\(r\\) rounds. Otherwise \\(T\\le p\\le 2T\\). Spoiler plays the \\((T+1)\\)-st element of the longer order \\(C_q\\), leaving \\(T\\) elements on its left.\n\nIf Duplicator answers with one of the first \\(T\\) elements of \\(C_p\\), then the left intervals have unequal sizes and the smaller has size \\(<T\\), so Spoiler wins the remaining \\(r-1\\) rounds by induction.\n\nIf Duplicator answers with the \\((T+1)\\)-st element or later, then the right interval in \\(C_p\\) has size at most\n\n\\[\np-(T+1)\\le 2T-(T+1)=T-1<T,\n\\]\n\nwhile the corresponding right interval in \\(C_q\\) is strictly larger. Again Spoiler wins the remaining \\(r-1\\) rounds by induction.\n\nThus the characterization is proved.\n\nNow apply it to\n\n\\[\n|A_m|=2^m,\\qquad |B_m|=2^m+1.\n\\]\n\nFor \\(r=m\\),\n\n\\[\n2^m\\ge 2^m-1=2^r-1,\n\\]\n\nso Duplicator wins the \\(m\\)-round game.\n\nFor \\(r=m+1\\),\n\n\\[\n2^m<2^{m+1}-1=2^r-1,\n\\]\n\nand the two orders have unequal sizes, so Spoiler wins.\n\nTherefore the least such \\(r\\) is\n\n\\[\n\\boxed{m+1}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T15:13:23+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/e7288e34a525.json"
+}
