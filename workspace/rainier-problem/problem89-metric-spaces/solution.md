@@ -201,11 +201,11 @@ $$
 $$
 with $c\neq0$ has two distinct values on $C$ and its complement, and these values must be $0$ and $1$.
 
-Now use the Fano incidence rules. For $s=2$, no line vector lies in $P_S$, and the seven remaining quotient classes are distinct. For $s=3$, if $S$ is a Fano line then $\ell_S\in P_S$ and the other six line vectors form three proportional pairs; if $S$ is not a line, all seven quotient classes are distinct. For $s=4$, exactly one line vector lies in $P_S$ and the other six form three proportional pairs. For $s=5$, exactly three line vectors lie in $P_S$.
+Now use the Fano incidence rules. For $s=2$, no line vector lies in $P_S$; two distinct line traces cannot agree because the symmetric difference of two Fano lines has four points, and they cannot be complementary on the five-point set $R$, so the seven quotient classes are distinct. For $s=3$, if $S=L_u$ is a Fano line then $\ell_u\in P_S$, and the other six lines pair according to their common intersection point on $S$, giving three proportional pairs. If $S$ is not a line, equal traces are impossible and complementary traces would force $S$ to be the complement of the symmetric difference of two lines, which is itself a Fano line; hence all seven classes are distinct. For $s=4$, exactly one line vector lies in $P_S$; the other six form three proportional pairs, by equal singleton traces when $R$ is a line and by complementary traces when $R$ is not a line. For $s=5$, exactly three line vectors lie in $P_S$.
 
 Step 5: Determine and count all extremal flats of the support configuration
 
-For a $k$-dimensional subspace $H\leq W$, put
+Let $C_k$ be the number of $k$-dimensional subspaces attaining $M_k$. For a $k$-dimensional subspace $H\leq W$, put
 $$
 a=|\{v:p_v\in H\}|,
 \qquad
