@@ -105,16 +105,29 @@ $$
 e\geq33.
 $$
 Using $e=165-4b$ gives
-$$
+$
 165-4b\geq33,
-$$
+$
 so
-$$
+$
 b\leq33.
-$$
+$
+If equality $b=33$ holds, then $e=33$ and $X=22$. Since all eleven quantities
+$
+\sum_{j\neq i}x_{ij}
+$
+are at least $4$ and their sum is $2X=44$, each equals $4$. Therefore every leave degree is
+$
+r_i=5+4=9,
+$
+and hence every block degree is
+$
+d_i=\frac{45-9}{3}=12.
+$
+Thus an extremal construction must be point-regular, which motivates seeking a translation-invariant family.
 
 Step 3: Construct a family with 33 blocks
-Work in the cyclic group $\mathbb{Z}_{11}$. Start with the three base blocks
+Work in the cyclic group $\mathbb{Z}_{11}$. A union of three full translation orbits automatically gives point degree $12$, so it remains to choose three base blocks whose induced triple orbits are disjoint. Take
 $$
 A_1=\{0,1,2,4\},
 \qquad
@@ -161,7 +174,7 @@ A_3:&\quad
 (1,5,5),\ (1,8,2),\ (2,6,3),\ (3,3,5).
 \end{aligned}
 $$
-They are all distinct. Thus no triple from one translated block can occur in any other translated block: two occurrences would force the same triple to arise from two base-block deletions with the same translation class. Therefore the $33$ blocks form a valid $3$-packing.
+They are all distinct. If a triple occurred in both $A_i+a$ and $A_j+b$, translating back would give two base-block triples with the same gap representative. The list forces the same base-block triple in both cases. That $3$-set cannot be stabilized by a nonzero translation of $\mathbb{Z}_{11}$, because every nonzero translation has one orbit of length $11$. Hence $a=b$, so the two blocks are identical. Therefore the $33$ blocks form a valid $3$-packing.
 
 Step 4: Match the upper bound
 Step 2 shows that every admissible family has at most $33$ blocks. Step 3 gives an admissible family with exactly $33$ blocks. Therefore the maximum possible size is $33$.
