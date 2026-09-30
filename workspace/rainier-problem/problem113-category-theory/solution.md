@@ -26,7 +26,7 @@ g:P\to Q,
 \qquad
 r:P\times Q\to P.
 $$
-Indeed, naturality with respect to the unique map $X\to\{*\}$ makes the first coordinate depend only on $p$. For the second coordinate, define
+Naturality with respect to the unique map $X\to\{*\}$ makes the first coordinate depend only on $p$. For the second coordinate, define
 $$
 r(p,q)
 =
@@ -90,13 +90,13 @@ and setting
 $$
 r(p,q)=\phi^{-1}(q,c(p)).
 $$
-Two bijections $\phi,phi':P\to Q\times C$ induce the same comonad morphism exactly when
+Two bijections $\phi,\phi':P\to Q\times C$ induce the same comonad morphism exactly when
 $$
 \phi'
 =
 (\operatorname{id}_Q\times\sigma)\phi
 $$
-for some permutation $\sigma$ of $C$. The forward implication follows because relabeling only the complementary coordinate leaves both $g$ and $r$ unchanged. Conversely, if $g$ and $r$ agree, choose one fiber over $q_0$ and compare the $C$-labels there; the resulting permutation propagates to every other fiber through $r$.
+for some permutation $\sigma$ of $C$. Such a relabeling leaves $g$ and $r$ unchanged. Conversely, if $g$ and $r$ agree, compare the $C$-labels on the fiber over $q_0$; the resulting permutation propagates to every other fiber through $r$.
 
 Step 2: Express composition in product coordinates
 Now let
@@ -136,41 +136,41 @@ $$
 \psi:U\to T\times B.
 $$
 Write
-$
+$$
 \chi(s)=(u,a_0),
 \qquad
 \psi(u)=(t,b_0).
-$
+$$
 The morphism represented by $\chi$ has update map
-$
-r_1(s,u')=\chi^{-1}(u',a_0).
-$
+$$
+r_1(s,u')=\chi^{-1}(u',a_0),
+$$
 and the morphism represented by $\psi$ has update map
-$
+$$
 r_2(u,t')=\psi^{-1}(t',b_0).
-$
+$$
 Their composite has first coordinate $t$ and update map
-$
+$$
 r(s,t')
 =
 r_1\left(s,r_2(u,t')\right)
 =
 \chi^{-1}\left(\psi^{-1}(t',b_0),a_0\right).
-$
-Thus its complementary data are exactly the ordered pair $(b_0,a_0)$. Hence the product decomposition representing the composite is
-$
+$$
+Thus its complementary data are the ordered pair $(b_0,a_0)$. The product decomposition representing the composite is
+$$
 \kappa:S\to T\times(B\times A),
-$
-defined by
-$
+$$
+where
+$$
 \kappa(s)=\left(t,(b_0,a_0)\right).
-$
+$$
 Equivalently,
-$
+$$
 \kappa
 =
 (\psi\times\operatorname{id}_A)\chi,
-$
+$$
 after identifying $(T\times B)\times A$ with $T\times(B\times A)$.
 
 Therefore
@@ -213,7 +213,7 @@ define
 $$
 \chi(s)=\left(\psi^{-1}(t,b_0),a_0\right).
 $$
-Then the composite decomposition is exactly
+Then the composite decomposition is
 $$
 (\operatorname{id}_T\times\lambda)\phi,
 $$
@@ -231,15 +231,15 @@ $$
 $$
 Thus pairs $(\psi,\lambda)$ parametrize representative factorizations.
 
-We now determine exactly when two pairs $(\psi,\lambda)$ represent the same ordered factorization. A permutation
+A permutation
 $$
 \alpha\in\operatorname{Sym}(A)
 $$
-changes the representative of $\Phi$ but not $\Phi$ itself, while a permutation
+changes the representative of $\Phi$ but not $\Phi$, while a permutation
 $$
 \beta\in\operatorname{Sym}(B)
 $$
-changes the representative of $\Psi$ but not $\Psi$ itself. On $(\psi,\lambda)$ this acts by
+changes the representative of $\Psi$ but not $\Psi$. On $(\psi,\lambda)$ this acts by
 $$
 (\psi,\lambda)
 \longmapsto
@@ -248,7 +248,7 @@ $$
 \ (\beta\times\alpha)\lambda
 \right).
 $$
-If two representative pairs determine the same $(\Phi,\Psi)$, Step 1 gives unique permutations $\alpha$ and $\beta$ relating their $A$- and $B$-coordinates, so they differ by exactly this action. The action is free, since fixing $\psi$ forces $\beta$ to be the identity and then fixing $\lambda$ forces $\alpha$ to be the identity.
+If two representative pairs determine the same $(\Phi,\Psi)$, Step 1 gives unique permutations $\alpha$ and $\beta$ relating their $A$- and $B$-coordinates, so they differ by this action. The action is free: fixing $\psi$ forces $\beta$ to be the identity, and then fixing $\lambda$ forces $\alpha$ to be the identity.
 
 Step 4: Count the factorization orbits
 There are
@@ -273,7 +273,7 @@ $$
 $$
 representative pairs.
 
-By Step 3, each ordered factorization is represented by exactly one free orbit of
+By Step 3, each ordered factorization is one free orbit of
 $$
 \operatorname{Sym}(A)\times\operatorname{Sym}(B),
 $$
@@ -283,7 +283,7 @@ a!b!.
 $$
 Therefore the number of ordered pairs of comonad morphisms
 $$
-W_S\xRightarrow{\Phi}W_U\xRightarrow{\Psi}W_T
+W_S\xrightarrow{\Phi}W_U\xrightarrow{\Psi}W_T
 $$
 whose composite is the fixed $\Theta$ equals
 $$
