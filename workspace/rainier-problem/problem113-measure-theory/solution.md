@@ -186,7 +186,7 @@ b=\frac{128}{285},
 c=\frac{13}{150}.
 $$
 They are positive and sum to $1$. Therefore
-$
+$$
 \nu_*=
 \frac{441}{950}\delta_{1/21}
 +
@@ -237,7 +237,7 @@ The measure $\nu_*$ is supported on contact points, so
 $$
 q_*(z)=I(z)
 $$
-at every point of its support. Consequently,
+at every point of its support. Therefore,
 $$
 \begin{aligned}
 \nu\left(\left[\frac{1}{2},1\right]\right)
