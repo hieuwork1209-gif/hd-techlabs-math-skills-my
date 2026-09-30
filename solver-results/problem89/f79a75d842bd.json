@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "1221390a3a852447188184466116a8f39571e671",
+  "problem_blob_sha": "f79a75d842bd4d4fb9654facf6f3d046d01197ad",
+  "statement_sha256": "5360ac7c43b213757f86fb8d7b4f6e747075bd389ede9688cef45bef06e5c1a8",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T08:59:19+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(t=2^p\\). In \\(KG(7,2)\\), two distinct \\(2\\)-subsets are either disjoint or meet in one point, so\n\n\\[\nd(A,B)=\n\\begin{cases}\n0,&A=B,\\\\\n1,&A\\cap B=\\varnothing,\\\\\n2,&A\\cap B\\neq\\varnothing,\\ A\\neq B.\n\\end{cases}\n\\]\n\nLet \\(A\\) be the adjacency matrix of \\(KG(7,2)\\), and let \\(J\\) be the all-ones matrix. On the zero-sum subspace, \\(J=0\\), and\n\n\\[\nD_p=(d(A,B)^p)=(1-t)A-tI.\n\\]\n\nThe adjacency operator has eigenvalues on \\(\\mathbb R^{\\binom{[7]}2}\\):\n\n\\[\n10,\\qquad -4,\\qquad 1\n\\]\n\nwith multiplicities \\(1,6,14\\). Indeed, the \\(-4\\)-eigenspace consists of vectors\n\n\\[\nc_{\\{i,j\\}}=x_i+x_j,\\qquad \\sum_{i=1}^7 x_i=0,\n\\]\n\nand has dimension \\(6\\).\n\nThus on the zero-sum subspace the eigenvalues of \\(D_p\\) are\n\n\\[\n(1-t)(-4)-t=3t-4\n\\]\n\non the \\(6\\)-dimensional space above, and\n\n\\[\n(1-t)(1)-t=1-2t\n\\]\n\non the remaining \\(14\\)-dimensional space. Negative type requires both to be \\(\\le 0\\). Since \\(p>0\\), \\(t>1\\), so \\(1-2t<0\\). The critical condition is\n\n\\[\n3t-4\\le 0,\n\\]\n\nhence\n\n\\[\n2^p\\le \\frac43.\n\\]\n\nTherefore\n\n\\[\n\\wp=\\log_2\\frac43.\n\\]\n\nAt \\(p=\\wp\\), the nullspace \\(E\\) is exactly\n\n\\[\nE=\\left\\{c_{\\{i,j\\}}=x_i+x_j:\\sum_{i=1}^7x_i=0\\right\\},\n\\]\n\nso\n\n\\[\n\\dim E=6.\n\\]\n\nNow identify \\(E\\) with the \\(6\\)-dimensional space\n\n\\[\nH=\\left\\{x\\in\\mathbb R^7:\\sum_i x_i=0\\right\\}.\n\\]\n\nFor a subspace \\(U\\le H\\), the edge \\(\\{i,j\\}\\) is absent from the support exactly when\n\n\\[\nx_i+x_j=0\n\\]\n\nfor every \\(x\\in U\\). Thus minimizing support is the same as maximizing the number of pair constraints \\(x_i+x_j=0\\) that hold on an \\(r\\)-dimensional subspace.\n\nSuch constraints form a graph on \\([7]\\). In each connected bipartite component, the variables are determined by one parameter, with opposite signs on the two parts. In each non-bipartite component, all variables are forced to be \\(0\\). The global condition \\(\\sum_i x_i=0\\) removes one dimension unless every bipartite component is balanced.\n\nA finite optimization over component types gives the maximum possible number \\(M_r\\) of vanished pairs:\n\n\\[\n(M_1,M_2,M_3,M_4,M_5,M_6)=(11,6,4,2,1,0).\n\\]\n\nThese bounds are attained as follows:\n\n\\[\n\\begin{array}{c|c}\nr & \\text{vanishing-edge pattern}\\\\\n\\hline\n1 & K_5\\cup K_{1,1}\\\\\n2 & K_4\\cup 3\\text{ isolated vertices}\\\\\n3 & K_{2,2}\\cup 3\\text{ isolated vertices}\\\\\n4 & K_{1,1}\\cup K_{1,1}\\cup 3\\text{ isolated vertices}\\\\\n5 & K_{1,1}\\cup 5\\text{ isolated vertices}\\\\\n6 & \\text{empty graph}\n\\end{array}\n\\]\n\nSince \\(|X|=\\binom72=21\\),\n\n\\[\nd_r=21-M_r.\n\\]\n\nTherefore\n\n\\[\n(d_1,d_2,d_3,d_4,d_5,d_6)\n=\n(10,15,17,19,20,21).\n\\]\n\nFinal answer:\n\n\\[\n\\boxed{\\left(\\log_2\\frac43,\\ 6,\\ (10,15,17,19,20,21)\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T09:01:24+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/f79a75d842bd.json"
+}
