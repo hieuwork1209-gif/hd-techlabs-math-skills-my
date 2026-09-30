@@ -52,7 +52,7 @@ $$
 $$
 has norm $(1+\beta^2)/4$ on $E=[1,2]\cup[5,6]$.
 
-This norm is minimal among all degree-two polynomials with the same value at $0$. Indeed, if another polynomial $p$ had $p(0)=1+\beta^2$ and smaller norm, then $p-\tau_\beta^*$ would be negative at $1$, positive at $2$, negative at $6$, and zero at $0$. It would therefore have zeros in $(1,2)$, in $(2,6)$, and at $0$, impossible for a polynomial of degree at most $2$. Thus every trace polynomial satisfies
+This norm is minimal among all degree-two polynomials with the same value at $0$. Indeed, if another polynomial $p$ had $p(0)=1+\beta^2$ and smaller norm, then $p-\tau_\beta^*$ would be negative at $1$, positive at $2$, negative at $6$, and zero at $0$. It would therefore have zeros in $(1,2)$, in $(2,6)$, and at $0$, impossible for a polynomial of degree at most $2$. Therefore every trace polynomial satisfies
 $$
 \max_{\lambda\in E}|\tau(\lambda)|
 \geq m(\beta):=\frac{1+\beta^2}{4}.
@@ -146,7 +146,7 @@ Since $\alpha>0$, the upper inequality $t\leq1+\beta$ is automatic. The lower in
 $$
 \alpha\lambda\leq2(1+\beta),
 $$
-and the largest spectral value is $6$. Thus one-step stability is exactly
+and the largest spectral value is $6$. Therefore one-step stability is exactly
 $$
 0<\alpha\leq\frac{1+\beta}{3}.
 $$
