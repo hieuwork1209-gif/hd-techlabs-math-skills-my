@@ -1,0 +1,22 @@
+{
+  "problem": "problem128",
+  "branch": "adversary/problem128",
+  "problem_path": "workspace/rainier-problem/problem128-numerical-optimization/problem.md",
+  "source_commit_sha": "3fdb2c9d0d1e639ebb47a6a0c54bd69196a2c44c",
+  "problem_blob_sha": "599c2b1e5c88ff4c7ab01a8ec5e7f783b91621d7",
+  "statement_sha256": "3e160f2346edcbce2021be384e4efac07d0742b915feae1a6b7f24433a0489cf",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T08:33:32+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let the coordinate update for coordinate \\(i\\) be \\(U_i\\), so one epoch with order \\(\\pi\\) has matrix\n\\[\nT_\\pi=U_{\\pi_3}U_{\\pi_2}U_{\\pi_1}.\n\\]\nThen\n\\[\n\\frac{f(x_3)}{f(x_0)}\n=\\frac{x_0^T T_\\pi^THT_\\pi x_0}{x_0^T Hx_0}.\n\\]\n\nBy symmetry under swapping coordinates \\(1\\leftrightarrow 3\\), we may average any distribution with its reflected distribution without increasing the worst-case ratio. Thus it suffices to use three total probabilities:\n\\[\na=\\nu(123)+\\nu(321),\\quad\nb=\\nu(132)+\\nu(312),\\quad\nc=\\nu(213)+\\nu(231),\n\\]\nwith \\(a+b+c=1\\).\n\nFor \\(x=(s,u,s)\\), the even subspace gives\n\\[\nx^THx=4s^2+4su+2u^2,\n\\]\nand the expected post-epoch quadratic form is\n\\[\n\\left(c+\\frac{3a}{8}\\right)s^2+\\frac a8 su+\\left(\\frac b2+\\frac{11a}{32}\\right)u^2.\n\\]\nThe odd subspace \\(x=(s,0,-s)\\) gives ratio \\(3a/32\\), which is never the active constraint at the optimum.\n\nWriting the even numerator as \\(y^TNy\\), \\(y=(s,u)\\), with\n\\[\nN=\n\\begin{pmatrix}\nc+\\frac{3a}{8} & \\frac a{16}\\\\\n\\frac a{16} & \\frac b2+\\frac{11a}{32}\n\\end{pmatrix},\n\\qquad\nG=\n\\begin{pmatrix}\n4&2\\\\\n2&2\n\\end{pmatrix},\n\\]\nthe worst even ratio is the largest generalized eigenvalue of \\((N,G)\\). For fixed \\(a\\), minimizing this over \\(b,c\\) gives \\(b=0,\\ c=1-a\\) in the relevant range. Then the largest eigenvalue is\n\\[\n\\lambda(a)=\\frac{16-a+\\sqrt{225a^2-384a+256}}{64}.\n\\]\nDifferentiating,\n\\[\n\\lambda'(a)=0\n\\iff\n450a-384=2\\sqrt{225a^2-384a+256},\n\\]\nso\n\\[\na=\\frac{448+6\\sqrt{14}}{525}.\n\\]\nSubstitution gives\n\\[\n\\lambda_{\\min}\n=\\frac{497+84\\sqrt{14}}{2100}.\n\\]\n\nThis is attained by, for example,\n\\[\n\\nu(123)=\\nu(321)=\\frac{448+6\\sqrt{14}}{1050},\n\\]\n\\[\n\\nu(213)=\\nu(231)=\\frac{77-6\\sqrt{14}}{1050},\n\\]\nand\n\\[\n\\nu(132)=\\nu(312)=0.\n\\]\n\nTherefore\n\\[\n\\boxed{\\inf_\\nu \\rho(\\nu)=\\frac{497+84\\sqrt{14}}{2100}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T08:36:15+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem128/599c2b1e5c88.json"
+}
