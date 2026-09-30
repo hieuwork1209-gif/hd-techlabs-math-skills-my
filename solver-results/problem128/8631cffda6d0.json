@@ -1,0 +1,22 @@
+{
+  "problem": "problem128",
+  "branch": "adversary/problem128",
+  "problem_path": "workspace/rainier-problem/problem128-numerical-optimization/problem.md",
+  "source_commit_sha": "3371a438bedcc7143b8923ea8b878ea6307d2db1",
+  "problem_blob_sha": "8631cffda6d0d9a2a1f418006ddfbecbeb43cb5d",
+  "statement_sha256": "1fa9786bbd5cb546e849156b71826bb365457453d68a52978380bd0363544aed",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T07:25:07+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let the eigenvalues of \\(PH_t\\) be positive. For any fixed \\(P\\), write\n\\[\nm=\\min_{t\\in[0,1]}\\lambda_{\\min}(PH_t),\\qquad\nM=\\max_{t\\in[0,1]}\\lambda_{\\max}(PH_t).\n\\]\nThen the best step size is\n\\[\n\\eta=\\frac{2}{M+m},\n\\]\nand the resulting worst spectral radius is\n\\[\n\\frac{M-m}{M+m}=\\frac{\\kappa-1}{\\kappa+1},\\qquad \\kappa=\\frac{M}{m}.\n\\]\n\nFor the unrestricted case, the generalized eigenvalues of \\((H_1,H_0)\\) are the roots of\n\\[\n\\det(H_1-\\lambda H_0)=\\lambda^2-3\\lambda+1,\n\\]\nso\n\\[\n\\alpha=\\frac{3-\\sqrt5}{2},\\qquad \\beta=\\frac{3+\\sqrt5}{2},\\qquad \\alpha\\beta=1.\n\\]\nFor any \\(P\\), if both endpoint spectra lie in \\([m,M]\\), then the spectrum of \\(H_0^{-1}H_1\\) lies in \\([m/M,M/m]\\), forcing\n\\[\n\\kappa\\ge \\beta.\n\\]\nThis is attained by the geometric-mean preconditioner, which makes the spectra along the segment lie in\n\\[\n[\\beta^{-1/2},\\beta^{1/2}],\n\\]\nso \\(\\kappa_{\\mathrm{full}}=\\beta\\). Hence\n\\[\n\\rho_{\\mathrm{full}}\n=\\frac{\\beta-1}{\\beta+1}\n=\\frac1{\\sqrt5}.\n\\]\n\nFor diagonal \\(P\\), scale \\(P=\\operatorname{diag}(1,y)\\), \\(z=\\sqrt y\\). The endpoint preconditioned symmetric forms are\n\\[\nS_0=\\begin{pmatrix}1&z\\\\ z&2z^2\\end{pmatrix},\n\\qquad\nS_1=\\begin{pmatrix}1/2&z\\\\ z&4z^2\\end{pmatrix}.\n\\]\nBoth have determinant \\(y\\). After dividing by \\(\\sqrt y=z\\), their traces are\n\\[\n\\tau_0=\\frac1z+2z,\\qquad \\tau_1=\\frac1{2z}+4z.\n\\]\nThe largest eigenvalue is increasing in the trace because the normalized determinant is \\(1\\). Thus we minimize\n\\[\n\\max(\\tau_0,\\tau_1).\n\\]\nThe optimum occurs when \\(\\tau_0=\\tau_1\\), giving\n\\[\n\\frac1z+2z=\\frac1{2z}+4z\n\\quad\\Longrightarrow\\quad z=\\frac12,\n\\]\nand then \\(\\tau_0=\\tau_1=3\\). Therefore the normalized largest eigenvalue is\n\\[\n\\frac{3+\\sqrt5}{2}=\\beta,\n\\]\nso\n\\[\n\\kappa_{\\mathrm{diag}}=\\beta^2.\n\\]\nThus\n\\[\n\\rho_{\\mathrm{diag}}\n=\\frac{\\beta^2-1}{\\beta^2+1}\n=\\frac{\\sqrt5}{3}.\n\\]\n\n\\[\n\\boxed{\\left(\\rho_{\\mathrm{full}},\\rho_{\\mathrm{diag}}\\right)\n=\n\\left(\\frac1{\\sqrt5},\\frac{\\sqrt5}{3}\\right)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T07:26:40+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem128/8631cffda6d0.json"
+}
