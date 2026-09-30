@@ -1,9 +1,9 @@
 {
   "problem": "problem113",
   "branch": "adversary/problem113",
-  "problem_path": "workspace/rainier-problem/problem113-linear-transformations/problem.md",
-  "problem_blob_sha": "e32cff99559a86e696f56d39defbeba4a42f7e17",
-  "source_commit_sha": "7119cb14ce4b2ea197e4231e2d684372d549ef6a",
+  "problem_path": "workspace/rainier-problem/problem113-joint-distributions-and-dependence/problem.md",
+  "problem_blob_sha": "30ea3428f4944f870246ba27e9686c423766e415",
+  "source_commit_sha": "d6f124330f8c34579ec1c846190c3e24c9a6ed5d",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-30T05:33:41+00:00",
-  "result_file": "solver-results/problem113/e32cff99559a.json"
+  "completed_at": "2026-09-30T07:27:27+00:00",
+  "result_file": "solver-results/problem113/30ea3428f494.json"
 }

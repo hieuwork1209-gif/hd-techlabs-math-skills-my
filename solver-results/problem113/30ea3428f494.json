@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-joint-distributions-and-dependence/problem.md",
+  "source_commit_sha": "d6f124330f8c34579ec1c846190c3e24c9a6ed5d",
+  "problem_blob_sha": "30ea3428f4944f870246ba27e9686c423766e415",
+  "statement_sha256": "3c0a35ac60c932384e7fea714473bdc410f904b198e7d0557bb7a2c75f5e8141",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T07:25:45+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(T=S-5\\). Since the \\(X_i\\) are fair and every subfamily of at most five coordinates is independent, the first five moments of \\(S\\) agree with those of a \\(\\operatorname{Bin}(10,1/2)\\) random variable. In particular, writing \\(Y_i=2X_i-1\\), we have \\(T=\\frac12\\sum_i Y_i\\), where the \\(Y_i\\) are 5-wise independent Rademacher variables. Hence\n\\[\n\\mathbb E T^2=\\frac{10}{4}=\\frac52,\n\\]\nand\n\\[\n\\mathbb E T^4=\\frac1{16}\\mathbb E\\Big(\\sum_{i=1}^{10}Y_i\\Big)^4\n=\\frac1{16}\\left(10+6\\binom{10}{2}\\right)\n=\\frac{280}{16}\n=\\frac{35}{2}.\n\\]\n\nNow \\(S\\in\\{0,10\\}\\) is equivalent to \\(T^2=25\\). For every possible value\n\\[\nT^2\\in\\{0,1,4,9,16,25\\},\n\\]\nwe have\n\\[\n\\mathbf 1_{\\{T^2=25\\}}\n\\leq \\frac{(T^2-1)(T^2-4)}{504},\n\\]\nbecause the right side is \\(1\\) at \\(T^2=25\\), is \\(0\\) at \\(T^2=1,4\\), and is positive at \\(0,9,16\\). Therefore\n\\[\n\\mathbb P(S\\in\\{0,10\\})\n\\leq\n\\frac{\\mathbb E(T^4)-5\\mathbb E(T^2)+4}{504}\n=\n\\frac{\\frac{35}{2}-\\frac{25}{2}+4}{504}\n=\n\\frac{9}{504}\n=\n\\frac1{56}.\n\\]\n\nEquality requires \\(T^2\\in\\{1,4,25\\}\\). Let the total masses at \\(T^2=25,4,1\\) be \\(a,b,c\\). Then\n\\[\na+b+c=1,\\qquad 25a+4b+c=\\frac52,\\qquad 625a+16b+c=\\frac{35}{2}.\n\\]\nSolving gives\n\\[\na=\\frac1{56},\\qquad b=\\frac5{14},\\qquad c=\\frac58.\n\\]\n\nThe odd moments \\(\\mathbb E T,\\mathbb E T^3,\\mathbb E T^5\\) must also vanish, which forces equal splitting between \\(T=t\\) and \\(T=-t\\) for \\(t=1,2,5\\). Thus\n\\[\np_0=p_{10}=\\frac1{112},\\qquad\np_3=p_7=\\frac5{28},\\qquad\np_4=p_6=\\frac5{16},\n\\]\nand all other \\(p_s\\) are \\(0\\).\n\nSo the maximizing distribution vector is\n\\[\n\\boxed{\\left(\\frac1{112},0,0,\\frac5{28},\\frac5{16},0,\\frac5{16},\\frac5{28},0,0,\\frac1{112}\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T07:27:27+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/30ea3428f494.json"
+}
