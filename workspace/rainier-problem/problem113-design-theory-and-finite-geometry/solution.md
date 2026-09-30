@@ -114,7 +114,7 @@ b\leq33.
 $$
 
 Step 3: Construct a family with 33 blocks
-Work in the cyclic group $\mathbb Z_{11}$. Start with the three base blocks
+Work in the cyclic group $\mathbb{Z}_{11}$. Start with the three base blocks
 $$
 A_1=\{0,1,2,4\},
 \qquad
@@ -123,23 +123,23 @@ A_2=\{0,1,5,7\},
 A_3=\{0,1,6,9\}.
 $$
 Take all translates
-$
+$$
 A_k+a
 \qquad
-(k\in\{1,2,3\},\ a\in\mathbb Z_{11}).
-$
-A nonzero translation of \mathbb Z_{11} has one orbit of length $11$, so it cannot stabilize a $4$-set. Hence each base block has an orbit of size $11$. Their circular gap $4$-tuples are respectively
-$
+(k\in\{1,2,3\},\ a\in\mathbb{Z}_{11}).
+$$
+A nonzero translation of \mathbb{Z}_{11} has one orbit of length $11$, so it cannot stabilize a $4$-set. Each base block therefore has an orbit of size $11$. Their circular gap $4$-tuples are respectively
+$$
 (1,1,2,7),
 \qquad
 (1,4,2,4),
 \qquad
 (1,5,3,2),
-$
-up to cyclic rotation, so the three translation orbits are distinct. Thus the construction has
-$
+$$
+up to cyclic rotation, so the three translation orbits are distinct. The construction therefore has
+$$
 3\cdot11=33
-$
+$$
 blocks.
 
 Every point occurs equally often in each translation orbit. Since one orbit has $11$ blocks of size $4$, it has $44$ point incidences, hence every point occurs four times in that orbit. Across the three orbits every point therefore has degree
@@ -148,7 +148,7 @@ $$
 $$
 which is even.
 
-It remains to verify the packing condition. For a triple of distinct elements of $\mathbb Z_{11}$, list its three positive cyclic gaps in circular order; two triples are translates exactly when their gap triples agree up to cyclic rotation. Use the lexicographically smallest cyclic rotation as the gap representative.
+It remains to verify the packing condition. For a triple of distinct elements of $\mathbb{Z}_{11}$, list its three positive cyclic gaps in circular order; two triples are translates exactly when their gap triples agree up to cyclic rotation. Use the lexicographically smallest cyclic rotation as the gap representative.
 
 Deleting one point from each base block gives the following twelve representatives:
 $$
@@ -161,7 +161,7 @@ A_3:&\quad
 (1,5,5),\ (1,8,2),\ (2,6,3),\ (3,3,5).
 \end{aligned}
 $$
-They are all distinct. Thus no triple from one translated block can occur in any other translated block: two occurrences would force the same triple to arise from two base-block deletions with the same translation class. Hence the $33$ blocks form a valid $3$-packing.
+They are all distinct. Thus no triple from one translated block can occur in any other translated block: two occurrences would force the same triple to arise from two base-block deletions with the same translation class. Therefore the $33$ blocks form a valid $3$-packing.
 
 Step 4: Match the upper bound
 Step 2 shows that every admissible family has at most $33$ blocks. Step 3 gives an admissible family with exactly $33$ blocks. Therefore the maximum possible size is $33$.
