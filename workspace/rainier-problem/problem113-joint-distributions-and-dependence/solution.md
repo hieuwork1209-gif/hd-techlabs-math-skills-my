@@ -31,9 +31,9 @@ $$
 B\sim\operatorname{Bin}(10,1/2).
 $$
 
-Conversely, for an exchangeable $0$-$1$ vector, these factorial-moment identities through degree $5$ imply 5-wise independence. They give the correct probability $2^{-j}$ that any chosen $j$ coordinates are all $1$, and inclusion-exclusion then gives probability $2^{-j}$ for every prescribed $0$-$1$ pattern on those coordinates.
+Conversely, for an exchangeable $0$-$1$ vector, these factorial-moment identities through degree $5$ imply 5-wise independence. They give the correct probability $2^{-j}$ that any chosen $j$ coordinates are all $1$, and inclusion-exclusion gives probability $2^{-j}$ for every prescribed $0$-$1$ pattern on those coordinates.
 
-Step 2: Derive a sharp lattice-polynomial bound for the all-equal event
+Step 2: Build a degree-five certificate for the one-sided endpoint event
 Set
 $$
 T=S-5.
@@ -42,31 +42,45 @@ Then $T$ is integer-valued with
 $$
 -5\leq T\leq5.
 $$
-Since only moments through degree $5$ are fixed, a degree-$4$ certificate is available. The first two positive squared values attained by the integer lattice are $1$ and $4$, and they are adjacent in the list of possible squares. Using them as zeros keeps the product nonnegative at every allowed integer value, giving the even quartic
+The objective $S=0$ is the one-sided endpoint $T=-5$. The even quartic
 $$
-P(T)=(T^2-1)(T^2-4).
+R(T)=(T^2-1)(T^2-4)
 $$
-For every integer $T$ in this range,
+is nonnegative at every allowed integer value because
 $$
-P(T)\geq0,
+T^2\in\{0,1,4,9,16,25\}.
 $$
-because $T^2$ is one of $0,1,4,9,16,25$. At the two all-equal outcomes,
+To distinguish $T=-5$ from the opposite endpoint $T=5$ while staying within the available degree-$5$ moments, multiply by the nonnegative linear factor $5-T$. This gives
 $$
-P(\pm5)=(25-1)(25-4)=504.
+Q(T)
+=
+\frac{(5-T)(T^2-1)(T^2-4)}{5040}.
 $$
-Therefore the pointwise inequality
+For every integer $-5\leq T\leq5$,
 $$
-\mathbf 1_{\{|T|=5\}}
-\leq
-\frac{(T^2-1)(T^2-4)}{504}
+Q(T)\geq0,
 $$
-holds for every possible value of $T$.
+while
+$$
+Q(-5)=1.
+$$
+Therefore
+$$
+\mathbf 1_{\{T=-5\}}\leq Q(T)
+$$
+pointwise.
 
-By Step 1, moments through degree $5$ agree with those of
+By Step 1, the first five centered moments of $T$ agree with those of $B-5$. Symmetry of the fair binomial law gives
 $$
-B\sim\operatorname{Bin}(10,1/2).
+\mathbb E[T]
+=
+\mathbb E[T^3]
+=
+\mathbb E[T^5]
+=
+0.
 $$
-Hence
+Also,
 $$
 \mathbb E[T^2]=\frac52.
 $$
@@ -86,47 +100,42 @@ $$
 =
 \frac{35}{2}.
 $$
-Therefore
+Thus
 $$
-\mathbb P(S\in\{0,10\})
+\begin{aligned}
+\mathbb P(S=0)
+&=
+\mathbb P(T=-5)\\
+&\leq
+\mathbb E[Q(T)]\\
+&=
+\frac{
+5\left(\mathbb E[T^4]-5\mathbb E[T^2]+4\right)
+-
+\left(\mathbb E[T^5]-5\mathbb E[T^3]+4\mathbb E[T]\right)
+}{5040}\\
+&=
+\frac{45}{5040}
 =
-\mathbb P(|T|=5)
-\leq
-\frac{\mathbb E[T^4]-5\mathbb E[T^2]+4}{504}
-=
-\frac1{56}.
+\frac1{112}.
+\end{aligned}
 $$
 
-Equality in the expectation bound requires equality in the pointwise bound almost surely. Besides $T=\pm5$, equality occurs only at
+Equality requires $Q(T)=0$ whenever $T\neq-5$ has positive probability. On the allowed lattice, the zeros of $Q$ are
 $$
-T=\pm1,\pm2.
+T\in\{-2,-1,1,2,5\}.
 $$
-Therefore every extremizer satisfies
+Hence every maximizing law must satisfy
 $$
 S\in\{0,3,4,6,7,10\}
 $$
 almost surely.
 
-Step 3: Use the fifth moment to force symmetry of the equality-support law
-Let
-$$
-T=S-5.
-$$
-For an extremizer, the only possible values of $T$ are
+Step 3: Use the odd moments to determine the endpoint balance
+For a maximizing law, the only possible values of $T$ are
 $$
 -5,-2,-1,1,2,5.
 $$
-Since the first five moments of $S$ match those of $B\sim\operatorname{Bin}(10,1/2)$, the first five centered moments of $T$ match those of $B-5$. The binomial law is symmetric about $5$, so
-$$
-\mathbb E[T]
-=
-\mathbb E[T^3]
-=
-\mathbb E[T^5]
-=
-0.
-$$
-
 Write
 $$
 u=\mathbb P(T=5)-\mathbb P(T=-5),
@@ -138,7 +147,17 @@ and
 $$
 w=\mathbb P(T=1)-\mathbb P(T=-1).
 $$
-The three odd-moment equations are
+The equations
+$$
+\mathbb E[T]
+=
+\mathbb E[T^3]
+=
+\mathbb E[T^5]
+=
+0
+$$
+become
 $$
 5u+2v+w=0,
 $$
@@ -161,15 +180,15 @@ Subtracting the second equation from the third gives
 $$
 3000u+24v=0.
 $$
-Substitution yields
+Substituting $v=-20u$ gives
 $$
-2520u=0,
+2520u=0.
 $$
-so
+Therefore
 $$
-u=v=w=0.
+u=v=w=0,
 $$
-Therefore every extremizer is symmetric under $S\mapsto10-S$.
+so every maximizing law is symmetric under $S\mapsto10-S$.
 
 Set
 $$
@@ -183,18 +202,12 @@ $$
 c=\mathbb P(S=4)=\mathbb P(S=6).
 $$
 
-Step 4: Determine the unique extremal masses and verify attainability
+Step 4: Recover the unique maximizing distribution and verify attainability
 Normalization gives
 $$
 a+b+c=\frac12.
 $$
-By Step 2,
-$$
-\mathbb E[T^2]=\frac52,
-\qquad
-\mathbb E[T^4]=\frac{35}{2}.
-$$
-Using the support values $|T|=5,2,1$ gives
+The second and fourth centered moments from Step 2 give
 $$
 25a+4b+c=\frac54
 $$
@@ -210,7 +223,7 @@ Subtracting the second-moment equation from the fourth-moment equation gives
 $$
 50a+b=\frac58.
 $$
-Solving these two linear equations gives
+Solving gives
 $$
 a=\frac1{112},
 \qquad
@@ -230,13 +243,13 @@ $$
 0,&\text{otherwise},
 \end{cases}
 $$
-and, conditional on $S=s$, choosing uniformly among the $\binom{10}{s}$ binary vectors with $s$ ones. For this law, symmetry gives centered moments of orders $1,3,5$ equal to $0$, while the equations above give the same centered moments of orders $2$ and $4$ as the fair binomial law. Together with normalization, its ordinary moments through degree $5$ match those of $\operatorname{Bin}(10,1/2)$, so its falling-factorial moments do as well. Step 1 then implies that this law is 5-wise independent. It attains
+and, conditional on $S=s$, choosing uniformly among the $\binom{10}{s}$ binary vectors with $s$ ones. Symmetry gives centered moments of orders $1,3,5$ equal to $0$, while the equations above give the same centered moments of orders $2$ and $4$ as the fair binomial law. Together with normalization, its ordinary moments through degree $5$ match those of $\operatorname{Bin}(10,1/2)$, so its falling-factorial moments do as well. Step 1 then implies that the law is 5-wise independent.
+
+It has
 $$
-\mathbb P(S\in\{0,10\})
-=
-\frac1{56}.
+\mathbb P(S=0)=\frac1{112},
 $$
-The equality-support and moment arguments above show that no other exchangeable law can attain the same value. The extremal distribution of $S$ is therefore unique and equals the requested vector.
+so the bound from Step 2 is attained. The equality-support and moment arguments force the same masses for every maximizing law, making the maximizing distribution unique.
 Final Answer: $\boxed{\left(\frac1{112},0,0,\frac5{28},\frac5{16},0,\frac5{16},\frac5{28},0,0,\frac1{112}\right)}$
 
 ---
