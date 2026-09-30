@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-linear-transformations/problem.md",
+  "source_commit_sha": "7119cb14ce4b2ea197e4231e2d684372d549ef6a",
+  "problem_blob_sha": "e32cff99559a86e696f56d39defbeba4a42f7e17",
+  "statement_sha256": "3977e73984b43f19dabed3b6e11b91ef9aca936f3953138edb7fe9573adb8c4c",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T05:32:01+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\nB(x,y)=x_1y_3+x_2y_4-x_3y_1-x_4y_2\\in R.\n\\]\nThen \\(\\omega(x,y)=[t^{m-1}]B(x,y)\\).\n\nBecause \\(L\\) is \\(N\\)-stable, it is an \\(R\\)-submodule of \\(V\\). Also, \\(N|_L\\) having two Jordan blocks of size \\(m\\) means\n\\[\nL\\simeq R^2\n\\]\nas an \\(R\\)-module. Finally, \\(\\omega|_{L\\times L}=0\\) is equivalent to \\(B|_{L\\times L}=0\\): indeed, for \\(x,y\\in L\\),\n\\[\n0=\\omega(t^k x,y)=[t^{m-1}]\\,t^kB(x,y)\n\\]\nfor every \\(0\\le k\\le m-1\\), so every coefficient of \\(B(x,y)\\) is zero.\n\nThus admissible subspaces are exactly rank \\(2\\) free \\(R\\)-Lagrangian submodules of the symplectic \\(R\\)-module \\(R^4\\).\n\nFirst count admissible \\(L\\). A primitive vector in \\(R^4\\) is one not lying in \\(tR^4\\), so the number of primitive vectors is\n\\[\nq^{4m}-q^{4m-4}=q^{4m-4}(q^4-1).\n\\]\nEach rank \\(1\\) free summand has\n\\[\n|R^\\times|=q^m-q^{m-1}=q^{m-1}(q-1)\n\\]\nprimitive generators, so the number of rank \\(1\\) free summands is\n\\[\nq^{3m-3}\\frac{q^4-1}{q-1}\n=q^{3m-3}(q+1)(q^2+1).\n\\]\nFor a fixed isotropic line \\(\\ell\\), Lagrangians containing \\(\\ell\\) correspond to rank \\(1\\) free summands of a rank \\(2\\) symplectic quotient, so there are \\(|\\mathbb P^1(R)|=q^{m-1}(q+1)\\) of them. Each Lagrangian \\(R^2\\) contains the same number \\(q^{m-1}(q+1)\\) of lines, hence these factors cancel. Therefore\n\\[\n\\#\\{L\\}=q^{3m-3}(q+1)(q^2+1).\n\\]\n\nFix one admissible \\(L_1\\). The admissible \\(L_2\\) transverse to it are Lagrangian complements. After choosing one complement, every such \\(L_2\\) is the graph of a symmetric \\(2\\times2\\) matrix over \\(R\\), so there are\n\\[\n|R|^3=q^{3m}\n\\]\nchoices.\n\nNow fix a transverse pair \\(L_1,L_2\\). Any \\(L_3\\) transverse to \\(L_1\\) is the graph of a symmetric map \\(S:L_2\\to L_1\\). It is also transverse to \\(L_2\\) exactly when \\(S\\) is invertible. Thus we need the number of invertible symmetric \\(2\\times2\\) matrices over \\(R\\).\n\nSuch a matrix has form\n\\[\n\\begin{pmatrix}a&b\\\\ b&c\\end{pmatrix},\n\\]\nand is invertible iff \\(ac-b^2\\in R^\\times\\), which depends only on reduction mod \\(t\\). Over \\(\\mathbb F_q\\), the singular triples satisfy \\(ac=b^2\\). If \\(a\\ne0\\), then \\(c=b^2/a\\), giving \\(q(q-1)\\) triples; if \\(a=0\\), then \\(b=0\\), giving \\(q\\) triples. Thus there are \\(q^2\\) singular triples and\n\\[\nq^3-q^2=q^2(q-1)\n\\]\ninvertible symmetric matrices over \\(\\mathbb F_q\\). Each lifts in \\(q^{3(m-1)}\\) ways, so the number over \\(R\\) is\n\\[\nq^{3(m-1)}q^2(q-1).\n\\]\n\nTherefore the number of ordered pairwise transverse triples is\n\\[\nq^{3m-3}(q+1)(q^2+1)\\cdot q^{3m}\\cdot q^{3m-3}q^2(q-1)\n=\nq^{9m-4}(q^4-1).\n\\]\n\n\\[\n\\boxed{q^{9m-4}(q^4-1)}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T05:33:41+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/e32cff99559a.json"
+}
