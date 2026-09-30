@@ -1,266 +1,301 @@
 ## Steps
 
-Step 1: Reduce the problem to a quadratic minimax optimization
-For real step sizes $\alpha,\beta$, define
+Step 1: Convert stagewise stability into bounds on the step sizes
+For a single Richardson step with real step size $\gamma$, stagewise nonexpansiveness on $[1,8]$ means
+$$
+|1-\gamma\lambda|\leq1
+$$
+for every $\lambda\in[1,8]$.
+
+The endpoint $\lambda=1$ gives
+$$
+-1\leq1-\gamma\leq1,
+$$
+so
+$$
+0\leq\gamma\leq2.
+$$
+The endpoint $\lambda=8$ gives
+$$
+-1\leq1-8\gamma\leq1,
+$$
+so
+$$
+0\leq\gamma\leq\frac{1}{4}.
+$$
+Since $\lambda\mapsto1-\gamma\lambda$ is affine, these endpoint conditions are also sufficient on the whole interval. Therefore the admissible pairs are exactly
+$$
+0\leq\alpha,\beta\leq\frac{1}{4}.
+$$
+
+For such a pair define
 $$
 p(\lambda)
 =
 (1-\alpha\lambda)(1-\beta\lambda).
 $$
-Write
-$$
-s=\alpha+\beta,
-\qquad
-t=\alpha\beta.
-$$
-Then
-$$
-p(\lambda)=t\lambda^2-s\lambda+1.
-$$
 The objective is
 $$
 \rho(\alpha,\beta)
 =
-\max_{\lambda\in E}|p(\lambda)|,
-\qquad
-E=[1,2]\cup[4,8].
-$$
-The maximum exists because $E$ is compact and $p$ is continuous. Every real pair $(\alpha,\beta)$ produces a polynomial of degree at most $2$ with
-$$
-p(0)=1.
+\max_{\lambda\in[1,2]\cup[4,8]}|p(\lambda)|.
 $$
 
-Step 2: Optimize a family of interpolation lower certificates
-Fix
+Step 2: Derive a sharp endpoint lower bound
+Because the problem is symmetric in $\alpha,\beta$, assume
 $$
-c\in[4,8).
+\alpha\leq\beta.
 $$
-For every polynomial $p$ of degree at most $2$, Lagrange interpolation at $1,c,8$, evaluated at $0$, gives
+Set
 $$
-p(0)
+x=1-\alpha,
+\qquad
+y=1-\beta.
+$$
+Then
+$$
+\frac{3}{4}\leq y\leq x\leq1,
+$$
+and
+$$
+p(1)=xy.
+$$
+
+If
+$$
+xy\geq\frac{3}{5},
+$$
+then immediately
+$$
+\rho(\alpha,\beta)\geq\frac{3}{5}.
+$$
+It remains to treat
+$$
+xy<\frac{3}{5}.
+$$
+Since
+$$
+x\geq y\geq\frac{3}{4},
+$$
+we must have
+$$
+x<\frac{7}{8}.
+$$
+Indeed, if $x\geq7/8$, then
+$$
+xy\geq\frac{7}{8}\cdot\frac{3}{4}
 =
-\frac{8c}{7(c-1)}p(1)
-+
-\frac{8}{(c-1)(c-8)}p(c)
-+
-\frac{c}{7(8-c)}p(8).
+\frac{21}{32}
+>
+\frac{3}{5},
 $$
-The middle coefficient is negative, while the other two are positive. Since all three nodes lie in $E$ and $p(0)=1$,
+a contradiction. Hence both
 $$
-1
+x<\frac{7}{8},
+\qquad
+y<\frac{7}{8}.
+$$
+
+Write
+$$
+x=\frac{3}{4}+u,
+\qquad
+y=\frac{3}{4}+v,
+$$
+where
+$$
+u,v\geq0.
+$$
+The inequality
+$$
+xy\leq\frac{3}{5}
+$$
+is equivalent to
+$$
+\frac{3}{4}(u+v)+uv\leq\frac{3}{80}.
+$$
+Therefore
+$$
+u+v
 \leq
-D(c)\max_{\lambda\in E}|p(\lambda)|,
-$$
-where
-$$
-D(c)
-=
-\frac{8c}{7(c-1)}
-+
-\frac{8}{(c-1)(8-c)}
-+
-\frac{c}{7(8-c)}.
-$$
-Therefore
-$$
-\rho(\alpha,\beta)\geq\frac{1}{D(c)}
-$$
-for every $c\in[4,8)$.
-
-To make this certificate as strong as possible, minimize $D(c)$. Combining the three fractions gives
-$$
-D(c)
-=
-\frac{c^2-9c-8}{(c-8)(c-1)}.
-$$
-Differentiation yields
-$$
-D'(c)
-=
-\frac{16(2c-9)}
-{(c-8)^2(c-1)^2}.
-$$
-$D$ decreases on $[4,9/2]$ and increases on $[9/2,8)$. Its unique minimum occurs at
-$$
-c=\frac{9}{2},
-$$
-where
-$$
-D\left(\frac{9}{2}\right)
-=
-\frac{113}{49}.
-$$
-Therefore
-$$
-\rho(\alpha,\beta)\geq\frac{49}{113}
-$$
-for every real pair $(\alpha,\beta)$.
-
-At the minimizing node, the interpolation identity is
-$$
-1
-=
-\frac{72}{49}p(1)
+\frac{1}{20}
 -
-\frac{32}{49}p\left(\frac{9}{2}\right)
-+
-\frac{9}{49}p(8).
+\frac{4}{3}uv.
 $$
 
-Step 3: Construct a real pair attaining the certificate
-To attain the lower bound from Step 2, equality in the triangle inequality there would require the alternating values
+At the other outer endpoint,
 $$
-p(1)=\frac{49}{113},
-\qquad
-p\left(\frac{9}{2}\right)=-\frac{49}{113},
-\qquad
-p(8)=\frac{49}{113}.
+p(8)
+=
+(8x-7)(8y-7)
+=
+(1-8u)(1-8v).
 $$
-The first and third values are equal, so the axis of the interpolating quadratic is $9/2$. Write
+Thus
+$$
+\begin{aligned}
+p(8)
+&=
+1-8(u+v)+64uv\\
+&\geq
+1-8\left(
+\frac{1}{20}
+-\frac{4}{3}uv
+\right)
++64uv\\
+&=
+\frac{3}{5}
++
+\frac{224}{3}uv\\
+&\geq
+\frac{3}{5}.
+\end{aligned}
+$$
+Therefore every admissible pair satisfies
+$$
+\rho(\alpha,\beta)\geq\frac{3}{5}.
+$$
+
+Step 3: Construct an admissible pair attaining the bound
+Take
+$$
+\alpha=\frac{1}{5},
+\qquad
+\beta=\frac{1}{4}.
+$$
+Both steps are nonexpansive on $[1,8]$ by Step 1. The two-step polynomial is
 $$
 p_*(\lambda)
 =
-a\left(\lambda-\frac{9}{2}\right)^2
--
-\frac{49}{113}.
-$$
-Using $p_*(1)=49/113$ gives
-$$
-a\left(\frac{7}{2}\right)^2
+\left(1-\frac{\lambda}{5}\right)
+\left(1-\frac{\lambda}{4}\right)
 =
-\frac{98}{113},
+1-\frac{9}{20}\lambda+\frac{1}{20}\lambda^2.
 $$
-so
-$$
-a=\frac{8}{113}.
-$$
-Therefore
-$$
-p_*(\lambda)
-=
-\frac{8}{113}\lambda^2
--
-\frac{72}{113}\lambda
-+
-1.
-$$
-
 Its derivative is
 $$
 p_*'(\lambda)
 =
-\frac{16\lambda-72}{113}.
+\frac{2\lambda-9}{20},
 $$
-The relevant values are
+so the unique critical point is
 $$
-p_*(1)=\frac{49}{113},
-\qquad
-p_*(2)=\frac{1}{113},
-$$
-$$
-p_*(4)=-\frac{47}{113},
-\qquad
-p_*\left(\frac{9}{2}\right)=-\frac{49}{113},
-\qquad
-p_*(8)=\frac{49}{113}.
-$$
-On $[1,2]$, the polynomial decreases from $49/113$ to $1/113$. On $[4,\frac{9}{2}]$, it decreases from $-47/113$ to $-49/113$, and on $[\frac{9}{2},8]$ it increases from $-49/113$ to $49/113$. Therefore
-$$
-\max_{\lambda\in E}|p_*(\lambda)|
-=
-\frac{49}{113}.
+\lambda=\frac{9}{2}.
 $$
 
-To factor $p_*$ as
+The relevant values are
 $$
-(1-\alpha\lambda)(1-\beta\lambda),
-$$
-we need
-$$
-\alpha+\beta=\frac{72}{113},
+p_*(1)=\frac{3}{5},
 \qquad
-\alpha\beta=\frac{8}{113}.
+p_*(2)=\frac{3}{10},
 $$
-The discriminant of
 $$
-z^2-\frac{72}{113}z+\frac{8}{113}
+p_*(4)=0,
+\qquad
+p_*\left(\frac{9}{2}\right)=-\frac{1}{80},
+\qquad
+p_*(8)=\frac{3}{5}.
 $$
-is
+The polynomial decreases on $[1,2]$, decreases on $[4,9/2]$, and increases on $[9/2,8]$. Therefore
 $$
-\left(\frac{72}{113}\right)^2
+\max_{\lambda\in[1,2]\cup[4,8]}|p_*(\lambda)|
+=
+\frac{3}{5}.
+$$
+The lower bound from Step 2 is attained.
+
+Step 4: Classify every optimizer
+Suppose an admissible pair satisfies
+$$
+\rho(\alpha,\beta)=\frac{3}{5}.
+$$
+Using the notation from Step 2, we must have
+$$
+xy\leq\frac{3}{5}
+$$
+and
+$$
+p(8)\leq\frac{3}{5}.
+$$
+The lower-bound derivation shows
+$$
+p(8)
+\geq
+\frac{3}{5}
++
+\frac{224}{3}uv.
+$$
+Hence
+$$
+uv=0
+$$
+and
+$$
+p(8)=\frac{3}{5}.
+$$
+Equality in
+$$
+u+v
+\leq
+\frac{1}{20}
 -
-\frac{32}{113}
-=
-\frac{1568}{12769}
-=
-\left(\frac{28\sqrt{2}}{113}\right)^2.
+\frac{4}{3}uv
 $$
-Therefore the real step sizes
+then gives
+$$
+u+v=\frac{1}{20}.
+$$
+With
+$$
+u,v\geq0
+$$
+and
+$$
+uv=0,
+$$
+we obtain
+$$
+\{u,v\}
+=
+\left\{
+0,\frac{1}{20}
+\right\}.
+$$
+Therefore
+$$
+\{x,y\}
+=
+\left\{
+\frac{3}{4},
+\frac{4}{5}
+\right\},
+$$
+so
 $$
 \{\alpha,\beta\}
 =
 \left\{
-\frac{36-14\sqrt{2}}{113},
-\frac{36+14\sqrt{2}}{113}
-\right\}
-$$
-attain the lower bound.
-
-Step 4: Classify every optimizer
-Suppose
-$$
-\rho(\alpha,\beta)=\frac{49}{113},
-$$
-and let
-$$
-p(\lambda)=(1-\alpha\lambda)(1-\beta\lambda).
-$$
-At $c=9/2$, the certificate from Step 2 is an equality:
-$$
-1
-=
-\frac{72}{49}p(1)
--
-\frac{32}{49}p\left(\frac{9}{2}\right)
-+
-\frac{9}{49}p(8).
-$$
-Each sampled value has absolute value at most $49/113$, while the absolute values of the three coefficients sum to $113/49$. Equality in the triangle inequality is therefore necessary. Since the left side is positive,
-$$
-p(1)=\frac{49}{113},
-\qquad
-p\left(\frac{9}{2}\right)=-\frac{49}{113},
-\qquad
-p(8)=\frac{49}{113}.
-$$
-A polynomial of degree at most $2$ is uniquely determined by its values at three distinct points, so
-$$
-p=p_*.
-$$
-Every optimizer therefore satisfies
-$$
-\alpha+\beta=\frac{72}{113},
-\qquad
-\alpha\beta=\frac{8}{113},
-$$
-and has the same unordered pair from Step 3.
-
-The minimum contraction factor and complete optimizer pair are
-$$
-\frac{49}{113}
-\qquad\text{and}\qquad
-\left\{
-\frac{36-14\sqrt{2}}{113},
-\frac{36+14\sqrt{2}}{113}
+\frac{1}{4},
+\frac{1}{5}
 \right\}.
 $$
-Final Answer: $\boxed{\left(\frac{49}{113},\left\{\frac{36-14\sqrt{2}}{113},\frac{36+14\sqrt{2}}{113}\right\}\right)}$
+
+Thus the minimum contraction factor and the complete optimizer pair are
+$$
+\frac{3}{5}
+\qquad\text{and}\qquad
+\left\{
+\frac{1}{5},
+\frac{1}{4}
+\right\}.
+$$
+Final Answer: $\boxed{\left(\frac{3}{5},\left\{\frac{1}{5},\frac{1}{4}\right\}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{49}{113},\left\{\frac{36-14\sqrt{2}}{113},\frac{36+14\sqrt{2}}{113}\right\}\right)$
+$\left(\frac{3}{5},\left\{\frac{1}{5},\frac{1}{4}\right\}\right)$
 
 ---
 
@@ -274,8 +309,8 @@ $\left(\frac{49}{113},\left\{\frac{36-14\sqrt{2}}{113},\frac{36+14\sqrt{2}}{113}
 
 ## Solution Concepts
 
-- minimax polynomials
-- interpolation certificates
-- richardson iteration
-- equality in triangle inequality
-- optimizer classification
+- Richardson iteration
+- stagewise stability
+- endpoint lower bounds
+- quadratic error polynomials
+- equality-case classification
