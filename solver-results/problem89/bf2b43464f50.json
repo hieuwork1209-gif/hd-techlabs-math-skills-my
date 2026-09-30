@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "f97e1768e123e5b1eeac45ba2f47a02826737761",
+  "problem_blob_sha": "bf2b43464f50982835956055c38abc1dd6519606",
+  "statement_sha256": "d92754826b68c2f4c2182f343f62bf8e4871b73ec7f071503c59c1149134df32",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T09:46:46+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(G=X=\\mathbb F_2^9/\\langle \\mathbf 1\\rangle\\). Since \\(d\\) is translation-invariant, the \\(p\\)-negative type condition diagonalizes in the Fourier characters of \\(G\\).\n\nThe characters of \\(G\\) are indexed by even-weight vectors \\(a\\in\\mathbb F_2^9\\), with\n\\[\n\\chi_a([x])=(-1)^{a\\cdot x}.\n\\]\nFor a character of weight \\(j=|a|\\in\\{0,2,4,6,8\\}\\), the relevant eigenvalue is\n\\[\n\\lambda_j(p)=\\sum_{z\\in X} d(0,z)^p\\chi_a(z).\n\\]\nUsing the paired Hamming weights \\(r\\) and \\(9-r\\), one gets\n\\[\n\\lambda_j(p)=K_1(j)+2^pK_2(j)+3^pK_3(j)+4^pK_4(j),\n\\]\nwhere \\(K_r(j)\\) are binary Krawtchouk coefficients for \\(n=9\\). The four nontrivial cases are\n\\[\n\\begin{aligned}\n\\lambda_2(p)&=5+8\\cdot2^p-14\\cdot4^p,\\\\\n\\lambda_4(p)&=1-4\\cdot2^p-4\\cdot3^p+6\\cdot4^p,\\\\\n\\lambda_6(p)&=-3+8\\cdot3^p-6\\cdot4^p,\\\\\n\\lambda_8(p)&=-7+20\\cdot2^p-28\\cdot3^p+14\\cdot4^p.\n\\end{aligned}\n\\]\nNegative type requires \\(\\lambda_j(p)\\le 0\\) for every nontrivial \\(j\\). The first eigenvalue to hit \\(0\\) is \\(\\lambda_8\\), so\n\\[\n\\wp\n\\]\nis the unique positive root of\n\\[\n14\\cdot4^p-28\\cdot3^p+20\\cdot2^p-7=0.\n\\]\nNumerically,\n\\[\n\\wp\\approx 0.323267128142707.\n\\]\n\nAt \\(p=\\wp\\), only the weight-\\(8\\) characters vanish. There are \\(\\binom98=9\\) of them, hence\n\\[\n\\dim E=9.\n\\]\n\nNow identify those \\(9\\) characters. If \\(\\varepsilon_i\\in\\{\\pm1\\}\\) and \\(\\prod_i\\varepsilon_i=1\\), then \\(X\\) is naturally the even sign cube\n\\[\n\\Omega=\\{\\varepsilon\\in\\{\\pm1\\}^9:\\prod_i\\varepsilon_i=1\\}.\n\\]\nEvery \\(c\\in E\\) has the form\n\\[\nc(\\varepsilon)=\\sum_{i=1}^9 \\alpha_i\\varepsilon_i.\n\\]\nThus minimizing support means maximizing the number of even sign vectors on which a nonzero linear form vanishes. The maximal zero set has size\n\\[\n\\binom84=70,\n\\]\nattained exactly when one coefficient is \\(0\\) and the other eight have equal absolute value. Therefore\n\\[\nm=256-70=186.\n\\]\n\nFor the number \\(N\\): choose the zero coefficient in \\(9\\) ways, and choose the signs of the other \\(8\\) equal-magnitude coefficients modulo global scalar sign, giving \\(2^8/2=2^7\\) lines. Hence\n\\[\nN=9\\cdot 2^7=1152.\n\\]\n\nSo the requested tuple is\n\\[\n\\boxed{\\left(\\wp,\\dim E,m,N\\right)\n=\n\\left(\\wp,\\,9,\\,186,\\,1152\\right)}\n\\]\nwhere \\(\\wp\\) is the unique positive solution of\n\\[\n\\boxed{14\\cdot4^\\wp-28\\cdot3^\\wp+20\\cdot2^\\wp-7=0}\n\\]\nand \\(\\wp\\approx 0.323267128142707\\).",
+  "status": "success",
+  "completed_at": "2026-09-30T09:50:29+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/bf2b43464f50.json"
+}
