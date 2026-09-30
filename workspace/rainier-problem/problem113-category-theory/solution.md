@@ -136,25 +136,41 @@ $$
 \psi:U\to T\times B.
 $$
 Write
-$$
+$
 \chi(s)=(u,a_0),
 \qquad
 \psi(u)=(t,b_0).
-$$
-The composite $\Psi\circ\Phi$ has first coordinate $t$, and updating that composite while preserving its complementary data keeps the pair $(b_0,a_0)$. Hence the product decomposition representing the composite is
-$$
+$
+The morphism represented by $\chi$ has update map
+$
+r_1(s,u')=\chi^{-1}(u',a_0),
+$
+and the morphism represented by $\psi$ has update map
+$
+r_2(u,t')=\psi^{-1}(t',b_0).
+$
+Their composite has first coordinate $t$ and update map
+$
+r(s,t')
+=
+r_1\left(s,r_2(u,t')\right)
+=
+\chi^{-1}\left(\psi^{-1}(t',b_0),a_0\right).
+$
+Thus its complementary data are exactly the ordered pair $(b_0,a_0)$. Hence the product decomposition representing the composite is
+$
 \kappa:S\to T\times(B\times A),
-$$
+$
 defined by
-$$
+$
 \kappa(s)=\left(t,(b_0,a_0)\right).
-$$
+$
 Equivalently,
-$$
+$
 \kappa
 =
 (\psi\times\operatorname{id}_A)\chi,
-$$
+$
 after identifying $(T\times B)\times A$ with $T\times(B\times A)$.
 
 Therefore
