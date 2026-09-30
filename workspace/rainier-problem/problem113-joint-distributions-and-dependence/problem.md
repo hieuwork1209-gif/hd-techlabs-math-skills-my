@@ -19,13 +19,13 @@ p_s=\mathbb P(S=s)
 $$
 
 Among all such joint laws, determine the distribution vector
-$
+$$
 (p_0,p_1,\ldots,p_{10})
-$
+$$
 of $S$ for which
-$
+$$
 \mathbb P(S\in\{0,10\})
-$
+$$
 is maximal.
 
 ---
