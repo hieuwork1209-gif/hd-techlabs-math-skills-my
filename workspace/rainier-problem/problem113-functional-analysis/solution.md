@@ -70,8 +70,8 @@ u_n(x)
 =
 \int_0^xu_n'(t)\,dt
 $$
-passes to the weak limit because the indicator of $[0,x]$ belongs to $L^2$. Hence
-$$
+passes to the weak limit because the indicator of $[0,x]$ belongs to $L^2$. Therefore
+$
 u(x)=\int_0^xv(t)\,dt,
 $$
 so $u\in H_0^1(0,1)$ and $u'=v$. Uniform convergence preserves both moment constraints and the $L^2$ normalization. Finally,
@@ -127,7 +127,7 @@ Then
 $$
 \int_0^1x(1-x)\left(c_1x+c_3x^3\right)^2\,dx=0,
 $$
-which forces $c_1=c_3=0$. Thus the map
+which forces $c_1=c_3=0$. Therefore the map
 $$
 v\mapsto
 \left(
@@ -160,12 +160,12 @@ $$
 (B,D)
 \mapsto
 \left(
--\mu^2B-6D,\
+-\mu^2B-6D,
 -\mu^2D
 \right)
 $$
-is invertible, so the polynomial forcing $ax+bx^3$ has a particular solution of the form $Bx+Dx^3$. The homogeneous solutions are $\sin(\mu x)$ and $\cos(\mu x)$, and $u(0)=0$ removes the cosine term. Hence
-$$
+is invertible, so the polynomial forcing $ax+bx^3$ has a particular solution of the form $Bx+Dx^3$. The homogeneous solutions are $\sin(\mu x)$ and $\cos(\mu x)$, and $u(0)=0$ removes the cosine term. Therefore
+$
 u(x)=A\sin(\mu x)+Bx+Dx^3.
 $$
 
