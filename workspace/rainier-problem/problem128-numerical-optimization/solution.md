@@ -101,7 +101,7 @@ bp&aq
 \end{pmatrix}.
 $$
 Therefore
-$
+$$
 \operatorname{tr}(C_s)=a(p+q),
 \qquad
 \det(C_s)=(a^2-b^2)pq.
