@@ -13,11 +13,33 @@ Only the first three moments are prescribed, so a cubic polynomial can be integr
 $$
 0\leq r<\frac{1}{2},
 $$
-let $q_r$ be the cubic with a double zero at $r$ and with
+write
 $$
-q_r\left(\frac{1}{2}\right)=q_r(1)=1.
+q_r(z)=(z-r)^2(Az+B).
 $$
-Solving these four contact conditions gives
+The two remaining contact conditions
+$$
+q_r\left(\frac{1}{2}\right)=q_r(1)=1
+$$
+become
+$$
+A+B=\frac{1}{(1-r)^2},
+\qquad
+\frac{A}{2}+B=\frac{4}{(1-2r)^2}.
+$$
+Therefore
+$$
+A=
+\frac{2}{(1-r)^2}
+-
+\frac{8}{(1-2r)^2},
+\qquad
+B=
+\frac{8}{(1-2r)^2}
+-
+\frac{1}{(1-r)^2}.
+$$
+Substitution and collection of the linear factor give
 $$
 q_r(z)
 =
@@ -33,11 +55,11 @@ in $z$, so its minimum on $[0,1]$ occurs at $z=1$, where it equals
 $$
 (1-2r)^2>0.
 $$
-Hence
-$$
+Therefore
+$
 q_r(z)\geq0
 $$
-for $0\leq z\leq1$.
+for $0\leq z\leq1$, with equality only at $z=r$.
 
 Also,
 $$
@@ -57,13 +79,17 @@ $$
 -\frac{1}{2}(12r^2-16r+5)
 \leq0
 $$
-for $0\leq r<\frac{1}{2}$. Therefore
+for $0\leq r<\frac{1}{2}$. The inequality is strict there because the two roots of
+$$
+12r^2-16r+5=0
+$$
+are $1/2$ and $5/6$. Therefore the last factor is strictly negative on $[\frac{1}{2},1]$. It follows that
 $$
 q_r(z)\geq1
 $$
-throughout $[\frac{1}{2},1]$.
+throughout $[\frac{1}{2},1]$, with equality only at $z=1/2$ and $z=1$.
 
-Thus every $q_r$ is a valid cubic majorant:
+Every $q_r$ is therefore a valid cubic majorant:
 $$
 I(z)\leq q_r(z)
 $$
