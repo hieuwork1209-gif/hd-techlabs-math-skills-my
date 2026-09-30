@@ -64,7 +64,7 @@ $$
 $$
 Since $q=2^p>1$, the second is always negative. The first is nonpositive exactly when $q\leq4/3$. Thus
 $$
-\wp=\log_2\left(\frac43\right).
+\wp=\log_2\left(\frac{4}{3}\right).
 $$
 At $p=\wp$, equality occurs exactly on the $-4$ adjacency eigenspace, so
 $$
@@ -116,7 +116,7 @@ Let $z$ be the total number of vertices lying in non-bipartite components and le
 
 The non-bipartite components contain at most
 $$
-\binom z2
+\binom{z}{2}
 $$
 edges in total. A bipartite component of size $s$ has at most
 $$
@@ -133,7 +133,7 @@ $$
 
 First suppose at least one $\delta_C$ is nonzero. Then $\dim W_G=b-1\geq r$, so $b\geq r+1$. Using the smallest possible $b$ only enlarges the edge bound, hence
 $$
-e(G)\leq \binom z2+f(7-z-r),
+e(G)\leq \binom{z}{2}+f(7-z-r),
 $$
 where either $z=0$ or $z\geq3$, and also $z\leq6-r$. Evaluating these few allowed $z$ gives the maxima
 $$
@@ -143,11 +143,11 @@ for $r=1,2,3,4,5,6$, respectively.
 
 Now suppose every bipartite component is balanced, so $\dim W_G=b$. Each such component has even size at least $2$. Since the total number of vertices is odd, there must be a non-bipartite part with odd size at least $3$. Therefore this case is possible only for $r\leq2$. For $r=1$, taking five non-bipartite vertices and one balanced $2$-vertex component gives at most
 $$
-\binom52+1=11
+\binom{5}{2}+1=11
 $$
-edges; with only three non-bipartite vertices the bound is at most $\binom32+4=7$. For $r=2$, at least two balanced components use four vertices, leaving at most three non-bipartite vertices, so
+edges; with only three non-bipartite vertices the bound is at most $\binom{3}{2}+4=7$. For $r=2$, at least two balanced components use four vertices, leaving at most three non-bipartite vertices, so
 $$
-e(G)\leq \binom32+1+1=5.
+e(G)\leq \binom{3}{2}+1+1=5.
 $$
 Combining the two cases,
 $$
@@ -177,16 +177,16 @@ $$
 $$
 Together with Step 2, the requested ordered object is
 $$
-\left(\log_2\left(\frac43\right),6,(10,15,17,19,20,21)\right).
+\left(\log_2\left(\frac{4}{3}\right),6,(10,15,17,19,20,21)\right).
 $$
 
-Final Answer: $\boxed{\left(\log_2\left(\frac43\right),6,(10,15,17,19,20,21)\right)}$
+Final Answer: $\boxed{\left(\log_2\left(\frac{4}{3}\right),6,(10,15,17,19,20,21)\right)}$
 
 ---
 
 ## Answer
 
-$\left(\log_2\left(\frac43\right),6,(10,15,17,19,20,21)\right)$
+$\left(\log_2\left(\frac{4}{3}\right),6,(10,15,17,19,20,21)\right)$
 
 ---
 
