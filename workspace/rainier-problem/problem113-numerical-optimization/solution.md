@@ -89,7 +89,7 @@ xy\geq\frac{7}{8}\cdot\frac{3}{4}
 >
 \frac{3}{5},
 $$
-a contradiction. Hence both
+a contradiction. Therefore both
 $$
 x<\frac{7}{8},
 \qquad
@@ -124,13 +124,19 @@ u+v
 $$
 
 At the other outer endpoint,
-$$
+$
+8x-7=8u-1,
+\qquad
+8y-7=8v-1,
+$
+so
+$
 p(8)
 =
-(8x-7)(8y-7)
+(8u-1)(8v-1)
 =
 (1-8u)(1-8v).
-$$
+$
 Thus
 $$
 \begin{aligned}
@@ -170,7 +176,7 @@ p_*(\lambda)
 \left(1-\frac{\lambda}{5}\right)
 \left(1-\frac{\lambda}{4}\right)
 =
-1-\frac{9}{20}\lambda+\frac{1}{20}\lambda^2.
+\frac{1}{20}\lambda^2-\frac{9}{20}\lambda+1.
 $$
 Its derivative is
 $$
@@ -196,7 +202,7 @@ p_*\left(\frac{9}{2}\right)=-\frac{1}{80},
 \qquad
 p_*(8)=\frac{3}{5}.
 $$
-The polynomial decreases on $[1,2]$, decreases on $[4,9/2]$, and increases on $[9/2,8]$. Therefore
+The polynomial decreases on $[1,2]$, decreases on $[4,\frac{9}{2}]$, and increases on $[\frac{9}{2},8]$. Therefore
 $$
 \max_{\lambda\in[1,2]\cup[4,8]}|p_*(\lambda)|
 =
@@ -225,8 +231,8 @@ p(8)
 +
 \frac{224}{3}uv.
 $$
-Hence
-$$
+Therefore
+$
 uv=0
 $$
 and
@@ -280,7 +286,7 @@ $$
 \right\}.
 $$
 
-Thus the minimum contraction factor and the complete optimizer pair are
+The minimum contraction factor and the complete optimizer pair are
 $$
 \frac{3}{5}
 \qquad\text{and}\qquad
