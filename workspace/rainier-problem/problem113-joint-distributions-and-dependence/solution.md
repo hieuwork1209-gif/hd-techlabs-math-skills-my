@@ -33,77 +33,79 @@ $$
 
 Conversely, for an exchangeable $0$-$1$ vector, these factorial-moment identities through degree $5$ imply 5-wise independence. They give the correct probability $2^{-j}$ that any chosen $j$ coordinates are all $1$, and inclusion-exclusion then gives probability $2^{-j}$ for every prescribed $0$-$1$ pattern on those coordinates.
 
-Step 2: Build a sharp polynomial majorant for the all-equal event
-For integers $s\in\{0,1,\ldots,10\}$ define
+Step 2: Derive a sharp lattice-polynomial bound for the all-equal event
+Set
 $$
-Q(s)
-=
-\frac{(s-3)(s-4)(s-6)(s-7)}{504}.
+T=S-5.
 $$
-The factorization shows
+Then $T$ is integer-valued with
 $$
-Q(s)\geq0
+-5\leq T\leq5.
 $$
-for every integer $1\leq s\leq9$, while
+The visible lattice suggests the even quartic
 $$
-Q(0)=Q(10)=1.
+P(T)=(T^2-1)(T^2-4).
+$$
+For every integer $T$ in this range,
+$$
+P(T)\geq0,
+$$
+because $T^2$ is one of $0,1,4,9,16,25$. At the two all-equal outcomes,
+$$
+P(\pm5)=(25-1)(25-4)=504.
+$$
+Therefore the pointwise inequality
+$$
+\mathbf 1_{\{|T|=5\}}
+\leq
+\frac{(T^2-1)(T^2-4)}{504}
+$$
+holds for every possible value of $T$.
+
+By Step 1, moments through degree $5$ agree with those of
+$$
+B\sim\operatorname{Bin}(10,1/2).
 $$
 Hence
 $$
-\mathbf 1_{\{0,10\}}(s)\leq Q(s)
+\mathbb ET^2=\frac52.
 $$
-on the whole support of $S$.
-
-To evaluate its expectation without any numerical search, expand the numerator in falling factorials:
+For the fourth moment, write
 $$
-(s-3)(s-4)(s-6)(s-7)
+B-5=\sum_{i=1}^{10}Y_i,
+\qquad
+Y_i\in\left\{-\frac12,\frac12\right\},
+$$
+with the $Y_i$ independent and centered. Expanding the fourth power, only the terms $Y_i^4$ and $Y_i^2Y_j^2$ have nonzero expectation, so
+$$
+\mathbb ET^4
 =
-504-324(s)_1+92(s)_2-14(s)_3+(s)_4.
-$$
-The moment identities from Step 1 give
-$$
-\mathbb E(S)_1=5,
-$$
-$$
-\mathbb E(S)_2=\frac{45}{2},
-$$
-$$
-\mathbb E(S)_3=90,
-$$
-and
-$$
-\mathbb E(S)_4=315.
-$$
-Therefore
-$$
-\mathbb E Q(S)
+10\cdot\frac1{16}
++
+6\binom{10}{2}\frac1{16}
 =
-\frac{
-504-324\cdot5
-+92\cdot\frac{45}{2}
--14\cdot90
-+315
-}{504}
-=
-\frac{1}{56}.
+\frac{35}{2}.
 $$
-It follows that
+Thus
 $$
 \mathbb P(S\in\{0,10\})
+=
+\mathbb P(|T|=5)
 \leq
-\frac{1}{56}.
+\frac{\mathbb ET^4-5\mathbb ET^2+4}{504}
+=
+\frac1{56}.
 $$
 
-Equality can hold only when
+Equality in the expectation bound requires equality in the pointwise bound almost surely. Besides $T=\pm5$, equality occurs only at
 $$
-Q(S)=\mathbf 1_{\{0,10\}}(S)
+T=\pm1,\pm2.
 $$
-almost surely. The strict positivity of $Q$ at $1,2,5,8,9$ therefore forces every extremizer to satisfy
+Therefore every extremizer satisfies
 $$
 S\in\{0,3,4,6,7,10\}
 $$
 almost surely.
-
 Step 3: Use the fifth moment to force symmetry of the equality-support law
 Let
 $$
@@ -185,28 +187,12 @@ Normalization gives
 $$
 a+b+c=\frac12.
 $$
-For $T=S-5$, the independent fair-binomial moments are
-$$
-\mathbb ET^2=\frac52
-$$
-and
-$$
+By Step 2,
+$
+\mathbb ET^2=\frac52,
+\qquad
 \mathbb ET^4=\frac{35}{2}.
-$$
-The second identity follows by writing
-$$
-T=\sum_{i=1}^{10}\left(X_i-\frac12\right)
-$$
-for fully independent fair Bernoulli variables: the fourth moment is
-$$
-10\cdot\frac1{16}
-+
-6\binom{10}{2}\frac1{16}
-=
-\frac{35}{2}.
-$$
-Since our variables are 5-wise independent, these degree-$2$ and degree-$4$ moments are the same.
-
+$
 Using the support values $|T|=5,2,1$ gives
 $$
 25a+4b+c=\frac54
@@ -243,7 +229,7 @@ $$
 0,&\text{otherwise},
 \end{cases}
 $$
-and, conditional on $S=s$, choosing uniformly among the $\binom{10}{s}$ binary vectors with $s$ ones. The displayed masses satisfy the factorial-moment identities of Step 1 through degree $5$, so this law is 5-wise independent. It attains
+and, conditional on $S=s$, choosing uniformly among the $\binom{10}{s}$ binary vectors with $s$ ones. For this law, symmetry gives centered moments of orders $1,3,5$ equal to $0$, while the equations above give the same centered moments of orders $2$ and $4$ as the fair binomial law. Together with normalization, its ordinary moments through degree $5$ therefore match those of $\operatorname{Bin}(10,1/2)$, and hence so do its falling-factorial moments. Step 1 then implies that this law is 5-wise independent. It attains
 $$
 \mathbb P(S\in\{0,10\})
 =
