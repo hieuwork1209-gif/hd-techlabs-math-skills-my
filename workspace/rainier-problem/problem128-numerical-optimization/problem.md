@@ -2,10 +2,10 @@
 
 ## LaTeX (Normalized)
 
-Let $\mathcal F$ be the class of differentiable convex functions
-$$
+For each integer $d\geq1$, let $\mathcal F_d$ be the class of differentiable convex functions
+$
 f:\mathbb R^d\to\mathbb R
-$$
+$
 whose gradients are $1$-Lipschitz and which attain their minimum value $f_*$. For $h>0$, perform one gradient step
 $$
 x_1=x_0-h\nabla f(x_0).
@@ -13,7 +13,7 @@ $$
 Define
 $$
 W(h)=
-\sup_{\substack{d\geq1,\ f\in\mathcal F,\ x_*\in\operatorname*{argmin}f\\
+\sup_{\substack{d\geq1,\ f\in\mathcal F_d,\ x_*\in\operatorname*{argmin}f\\
 \|x_0-x_*\|\leq1}}
 \bigl(f(x_1)-f_*\bigr).
 $$
