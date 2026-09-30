@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-design-theory-and-finite-geometry/problem.md",
+  "source_commit_sha": "22ac82e86b4ce27928dc3530e0c9b35ca033e9af",
+  "problem_blob_sha": "ffdaf55898bb358525997f2c6f72acf232a27e77",
+  "statement_sha256": "1809cfea81308c137c6574a4acd64556b90628fd3309c367c6db8d33279c6503",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T08:56:44+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(L\\) be the set of uncovered triples of \\(V\\), i.e. the \\(3\\)-subsets not contained in any block of \\(\\mathcal B\\). If \\(r_x\\) is the number of blocks containing \\(x\\), then the number of uncovered triples containing \\(x\\) is\n\n\\[\nd_x=\\binom{10}{2}-3r_x=45-3r_x.\n\\]\n\nSince \\(r_x\\) is even, \\(d_x\\equiv 3\\pmod 6\\).\n\nFor a fixed pair \\(\\{x,y\\}\\), there are \\(9\\) triples containing it. Each block containing \\(\\{x,y\\}\\) covers exactly two of those triples, so an odd number of them remain uncovered. In particular, every pair lies in at least one uncovered triple. Thus, for each \\(x\\),\n\n\\[\n2d_x=\\sum_{y\\ne x} \\#\\{\\text{uncovered triples containing }x,y\\}\\ge 10.\n\\]\n\nTogether with \\(d_x\\equiv 3\\pmod 6\\), this gives \\(d_x\\ge 9\\). Hence\n\n\\[\n3|L|=\\sum_x d_x\\ge 11\\cdot 9=99,\n\\]\n\nso \\(|L|\\ge 33\\). Since each block covers \\(4\\) triples,\n\n\\[\n4|\\mathcal B|=165-|L|\\le 132,\n\\]\n\nso\n\n\\[\n|\\mathcal B|\\le 33.\n\\]\n\nThis bound is attainable. Take \\(V=\\mathbb Z_{11}\\) and all translates of\n\n\\[\n\\{0,1,2,4\\},\\qquad \\{0,1,5,7\\},\\qquad \\{0,1,6,9\\}.\n\\]\n\nTheir twelve internal triples represent distinct translation classes, so no triple is repeated. Each point occurs \\(4\\) times in each translate-orbit, hence \\(12\\) times total, which is even. Therefore the maximum possible cardinality is \\(33\\).\n\nNow suppose \\(|\\mathcal B|=33\\). Then equality above forces \\(d_x=9\\) and \\(r_x=12\\) for every \\(x\\).\n\nLet \\(n_i\\) be the number of unordered pairs of distinct blocks intersecting in exactly \\(i\\) points. Since no two blocks share \\(3\\) points, only \\(i=0,1,2\\) occur. We want \\(n_0\\).\n\nWe have\n\n\\[\nn_1+2n_2=\\sum_x \\binom{r_x}{2}\n=11\\binom{12}{2}=726,\n\\]\n\nand\n\n\\[\nn_0+n_1+n_2=\\binom{33}{2}=528.\n\\]\n\nThus\n\n\\[\nn_0=n_2-198.\n\\]\n\nFor a pair \\(\\{x,y\\}\\), write \\(l_{xy}\\) for the number of uncovered triples containing it. Then \\(l_{xy}\\) is positive and odd, so write\n\n\\[\nl_{xy}=1+2b_{xy}.\n\\]\n\nSince \\(d_x=9\\),\n\n\\[\n\\sum_{y\\ne x} l_{xy}=18,\n\\]\n\nso\n\n\\[\n\\sum_{y\\ne x} b_{xy}=4.\n\\]\n\nTherefore\n\n\\[\n\\sum_{\\{x,y\\}} b_{xy}=22.\n\\]\n\nThe number \\(\\lambda_{xy}\\) of blocks containing \\(\\{x,y\\}\\) is\n\n\\[\n\\lambda_{xy}=\\frac{9-l_{xy}}2=4-b_{xy}.\n\\]\n\nHence\n\n\\[\nn_2=\\sum_{\\{x,y\\}}\\binom{\\lambda_{xy}}2\n=\\sum_{\\{x,y\\}}\\binom{4-b_{xy}}2.\n\\]\n\nFor \\(b=0,1,2,3,4\\),\n\n\\[\n\\binom{4-b}{2}\\ge 6-3b.\n\\]\n\nThus\n\n\\[\nn_2\\ge 55\\cdot 6-3\\cdot 22=264,\n\\]\n\nso\n\n\\[\nn_0\\ge 264-198=66.\n\\]\n\nThe cyclic construction above attains equality: its pair multiplicities are \\(4,4,3,3,4\\) by cyclic distance \\(1,2,3,4,5\\), so exactly the equality case occurs. Therefore the minimum possible number of disjoint block pairs among maximum-size families is\n\n\\[\n\\boxed{66}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T08:59:54+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/ffdaf55898bb.json"
+}
