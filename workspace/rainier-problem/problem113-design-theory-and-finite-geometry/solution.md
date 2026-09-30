@@ -1,133 +1,137 @@
 ## Steps
 
-Step 1: Pass from the block family to its leave
-Relabel the point set as
-$$
-V=\{0,1,\ldots,10\},
-$$
-and let $\mathcal B$ be a family of $4$-subsets such that no $3$-subset lies in more than one block.
+Step 1: Determine the maximum number of blocks
+For a point $x\in V$, let $d_x$ be the number of blocks containing $x$. Fix $x$. Removing $x$ from every block through $x$ gives a family of triples on the other ten points. No pair of those ten points can occur in two of these triples, because that would make the corresponding $3$-subset of $V$ lie in two blocks.
 
-Let $\mathcal L$ be the leave: the family of $3$-subsets of $V$ that lie in no block of $\mathcal B$. Write
+Thus the blocks through $x$ give edge-disjoint triangles in $K_{10}$. Such a triangle packing has at most $13$ triangles. Indeed, $15$ triangles would use all $45$ edges, but a triangle decomposition would make every vertex degree even, whereas every vertex of $K_{10}$ has degree $9$. If there were $14$ triangles, the leave would have only
+$$
+45-3\cdot14=3
+$$
+edges. Every leave degree would be odd, because it equals $9$ minus an even covered degree, but a graph with three edges has at most six odd-degree vertices. This is impossible on ten vertices.
+
+Hence
+$$
+d_x\leq13.
+$$
+The problem requires every $d_x$ to be even, so in fact
+$$
+d_x\leq12.
+$$
+If
 $$
 b=|\mathcal B|,
-\qquad
-e=|\mathcal L|.
 $$
-Every block contains exactly four triples, and these covered triples are disjoint because of the packing condition. Since
+then
 $$
-\binom{11}{3}=165,
-$$
-we have
-$$
-e=165-4b.
-$$
-
-For a point $i$, let $d_i$ be the number of blocks containing $i$, and let $r_i$ be the number of leave triples containing $i$. There are
-$$
-\binom{10}{2}=45
-$$
-triples through $i$, while every block through $i$ contains exactly three of them. Therefore
-$$
-r_i=45-3d_i.
-$$
-The required parity condition says that every $d_i$ is even, so
-$$
-r_i\equiv3\pmod{6}.
-$$
-
-For a pair $\{i,j\}$, let $d_{ij}$ be the number of blocks containing that pair and let $\lambda_{ij}$ be the number of leave triples containing it. There are nine triples through $\{i,j\}$, and each block through the pair contains exactly two of them. Therefore
-$$
-\lambda_{ij}=9-2d_{ij},
-$$
-so every $\lambda_{ij}$ is a positive odd integer.
-
-Step 2: Derive the lower bound on the leave
-Because $\lambda_{ij}$ is positive and odd, write
-$$
-\lambda_{ij}=1+2x_{ij},
-\qquad
-x_{ij}\in\mathbb Z_{\geq0}.
-$$
-Fix a point $i$. Summing the pair codegrees over the ten pairs containing $i$ gives
-$$
-\sum_{j\neq i}\lambda_{ij}=2r_i,
-$$
-because each leave triple containing $i$ contributes to exactly two such pairs. This gives
-$$
-10+2\sum_{j\neq i}x_{ij}=2r_i,
-$$
-or
-$$
-r_i=5+\sum_{j\neq i}x_{ij}.
-$$
-Since
-$$
-r_i\equiv3\pmod{6},
-$$
-we obtain
-$$
-\sum_{j\neq i}x_{ij}\equiv4\pmod{6}.
-$$
-The left side is nonnegative, so for every $i$,
-$$
-\sum_{j\neq i}x_{ij}\geq4.
-$$
-
-Set
-$$
-X=\sum_{0\leq i<j\leq10}x_{ij}.
-$$
-Summing the last inequality over all eleven points gives
-$$
-2X\geq44,
-$$
-so
-$$
-X\geq22.
-$$
-
-Now sum all pair codegrees of the leave. Every leave triple contributes to three pairs, so
-$$
-3e
-=
-\sum_{i<j}\lambda_{ij}
-=
-\binom{11}{2}+2X
-=
-55+2X.
+4b=\sum_{x\in V}d_x\leq11\cdot12=132.
 $$
 Therefore
 $$
-3e\geq99,
-$$
-so
-$$
-e\geq33.
-$$
-Using $e=165-4b$ gives
-$$
-165-4b\geq33,
-$$
-so
-$$
 b\leq33.
 $$
-If equality $b=33$ holds, then $e=33$ and $X=22$. Since all eleven quantities
-$$
-\sum_{j\neq i}x_{ij}
-$$
-are at least $4$ and their sum is $2X=44$, each equals $4$. Therefore every leave degree is
-$$
-r_i=5+4=9,
-$$
-so every block degree is
-$$
-d_i=\frac{45-9}{3}=12.
-$$
-An extremal construction must therefore be point-regular, which motivates seeking a translation-invariant family.
 
-Step 3: Construct a family with 33 blocks
-Work in the cyclic group $\mathbb{Z}_{11}$. A union of three full translation orbits automatically gives point degree $12$, so it remains to choose three base blocks whose induced triple orbits are disjoint. Take
+Step 2: Extract the pair-multiplicity structure of a maximizing family
+Assume now that $|\mathcal B|=33$. Equality in the last bound forces
+$$
+d_x=12
+$$
+for every point $x$.
+
+For a pair $\{x,y\}$, let $d_{xy}$ be the number of blocks containing both points. Two distinct blocks containing $\{x,y\}$ cannot share either of their other points, since that would repeat a triple. There are only nine points outside $\{x,y\}$, so
+$$
+2d_{xy}\leq9,
+$$
+and hence
+$$
+d_{xy}\leq4.
+$$
+Define
+$$
+z_{xy}=4-d_{xy}.
+$$
+For a fixed point $x$,
+$$
+\sum_{y\neq x}d_{xy}=3d_x=36,
+$$
+because every block through $x$ contributes three pairs containing $x$. Therefore
+$$
+\sum_{y\neq x}z_{xy}=40-36=4.
+$$
+Summing over all eleven points gives
+$$
+2\sum_{\{x,y\}\subset V}z_{xy}=44,
+$$
+so
+$$
+\sum_{\{x,y\}\subset V}z_{xy}=22.
+$$
+
+Step 3: Bound the number of disjoint block pairs
+For a maximizing family, let $N_t$ be the number of unordered pairs of distinct blocks whose intersection has size $t$. The packing condition gives
+$$
+t\in\{0,1,2\}.
+$$
+Since there are $33$ blocks,
+$$
+N_0+N_1+N_2=\binom{33}{2}=528.
+$$
+Counting a pair of blocks once for each common point gives
+$$
+N_1+2N_2
+=
+\sum_{x\in V}\binom{d_x}{2}
+=
+11\binom{12}{2}
+=
+726.
+$$
+
+A pair of blocks has intersection size $2$ exactly when it contains some point-pair $\{x,y\}$, so
+$$
+N_2
+=
+\sum_{\{x,y\}\subset V}\binom{d_{xy}}{2}.
+$$
+Using $d_{xy}=4-z_{xy}$,
+$$
+\binom{4-z_{xy}}{2}
+=
+6-\frac{7}{2}z_{xy}+\frac{1}{2}z_{xy}^2.
+$$
+Hence
+$$
+N_2
+=
+55\cdot6
+-\frac{7}{2}\cdot22
++\frac{1}{2}\sum_{\{x,y\}}z_{xy}^2
+=
+253+\frac{1}{2}\sum_{\{x,y\}}z_{xy}^2.
+$$
+Every $z_{xy}$ is a nonnegative integer, so
+$$
+z_{xy}^2\geq z_{xy}.
+$$
+Together with the sum from Step 2, this gives
+$$
+N_2\geq253+\frac{22}{2}=264.
+$$
+Eliminating $N_1$ from the first two counting identities gives
+$$
+N_0
+=
+528-726+N_2
+=
+N_2-198.
+$$
+Therefore every maximizing family has at least
+$$
+N_0\geq66
+$$
+unordered pairs of disjoint blocks.
+
+Step 4: Construct a maximizing family attaining 66 disjoint pairs
+Identify $V$ with $\mathbb{Z}_{11}$. Take all translates of the three base blocks
 $$
 A_1=\{0,1,2,4\},
 \qquad
@@ -135,35 +139,9 @@ A_2=\{0,1,5,7\},
 \qquad
 A_3=\{0,1,6,9\}.
 $$
-Take all translates
-$$
-A_k+a
-\qquad
-(k\in\{1,2,3\},\ a\in\mathbb{Z}_{11}).
-$$
-A nonzero translation of \mathbb{Z}_{11} has one orbit of length $11$, so it cannot stabilize a $4$-set. Each base block therefore has an orbit of size $11$. Their circular gap $4$-tuples are respectively
-$$
-(1,1,2,7),
-\qquad
-(1,4,2,4),
-\qquad
-(1,5,3,2),
-$$
-up to cyclic rotation, so the three translation orbits are distinct. The construction therefore has
-$$
-3\cdot11=33
-$$
-blocks.
+A nonzero translation of $\mathbb{Z}_{11}$ cannot stabilize a $4$-set, so the three translation orbits contain $33$ blocks in total.
 
-Every point occurs equally often in each translation orbit. Since one orbit has $11$ blocks of size $4$, it has $44$ point incidences, hence every point occurs four times in that orbit. Across the three orbits every point therefore has degree
-$$
-4+4+4=12,
-$$
-which is even.
-
-It remains to verify the packing condition. For a triple of distinct elements of $\mathbb{Z}_{11}$, list its three positive cyclic gaps in circular order; two triples are translates exactly when their gap triples agree up to cyclic rotation. Use the lexicographically smallest cyclic rotation as the gap representative.
-
-Deleting one point from each base block gives the following twelve representatives:
+To verify the packing condition, represent a triple by its three positive cyclic gaps, up to cyclic rotation. Deleting one point from each base block gives the twelve representatives
 $$
 \begin{aligned}
 A_1:&\quad
@@ -174,17 +152,28 @@ A_3:&\quad
 (1,5,5),\ (1,8,2),\ (2,6,3),\ (3,3,5).
 \end{aligned}
 $$
-They are all distinct. If a triple occurred in both $A_i+a$ and $A_j+b$, translating back would give two base-block triples with the same gap representative. The list forces the same base-block triple in both cases. That $3$-set cannot be stabilized by a nonzero translation of $\mathbb{Z}_{11}$, because every nonzero translation has one orbit of length $11$. This forces $a=b$, so the two blocks are identical. Therefore the $33$ blocks form a valid $3$-packing.
+They are all distinct. Thus no triple can occur in two translated blocks. Every point occurs four times in each translation orbit, hence twelve times in the full family, so the parity condition also holds. This is therefore a maximizing family.
 
-Step 4: Match the upper bound
-Step 2 shows that every admissible family has at most $33$ blocks. Step 3 gives an admissible family with exactly $33$ blocks. Therefore the maximum possible size is $33$.
-Final Answer: $\boxed{33}$
+It remains to count its pair multiplicities. For an unordered pair in $\mathbb{Z}_{11}$, use its cyclic distance in $\{1,2,3,4,5\}$. Across the three base blocks, the six internal pairs have distance counts
+$$
+(4,4,3,3,4)
+$$
+for distances $1,2,3,4,5$, respectively. Translating a base pair of a fixed distance runs once through all eleven pairs of that distance. Hence every point-pair has block multiplicity $4$ at distances $1,2,5$, and block multiplicity $3$ at distances $3,4$.
+
+Thus every $z_{xy}=4-d_{xy}$ is either $0$ or $1$. There are exactly $22$ values equal to $1$, so equality holds in the bound from Step 3:
+$$
+N_2=264,
+\qquad
+N_0=264-198=66.
+$$
+Therefore the minimum possible number of unordered disjoint block pairs among maximum-size families is $66$.
+Final Answer: $\boxed{66}$
 
 ---
 
 ## Answer
 
-$33$
+$66$
 
 ---
 
@@ -199,7 +188,7 @@ $33$
 ## Solution Concepts
 
 - block packings
-- leave hypergraphs
-- pair codegrees
-- parity counting
+- triangle packings
+- pair multiplicities
+- double counting
 - cyclic constructions
