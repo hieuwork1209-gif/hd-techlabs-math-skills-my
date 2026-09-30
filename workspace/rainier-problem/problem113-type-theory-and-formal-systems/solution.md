@@ -1,100 +1,123 @@
 ## Steps
 
-Step 1: Charge every first-rule step to the swap that created its ancestor
-Suppress the terminal $z$ and read a term as a word in the unary symbols. The rules are
+Step 1: Prove termination and identify the unique normal form
+Write $|t|$ for the number of occurrences of $z$ in a term $t$. Define
 $$
-d_q a\longrightarrow a^2d_q,
+P(z)=0,
 \qquad
-d_qd_p\longrightarrow a d_pd_q\quad(p<q).
+P(b(u,v))=P(u)+P(v)+|u|-1.
 $$
-Deleting all $a$'s leaves a permutation of $d_2,\ldots,d_n$. The first rule does not change that permutation, while the second rule swaps one adjacent inversion.
+For one reduction
+$$
+b(b(x,y),w)\longrightarrow b(x,b(y,w)),
+$$
+the value of $P$ changes by
+$$
+\begin{aligned}
+&P(b(b(x,y),w))-P(b(x,b(y,w)))\\
+&=\bigl(P(x)+P(y)+P(w)+2|x|+|y|-2\bigr)\\
+&\qquad-\bigl(P(x)+P(y)+P(w)+|x|+|y|-2\bigr)\\
+&=|x|\geq1.
+\end{aligned}
+$$
+Thus every reduction strictly decreases the nonnegative integer $P$, so every reduction terminates.
 
-We first identify the terminal form. If a word has no redex, then no $d_q$ is immediately outside an $a$, and no $d_q$ is immediately outside a $d_p$ with $p<q$. If some $a$ still lay inside some $d$, then at the boundary between the outer $d$-symbols and the first such $a$ there would be an adjacent pattern $d_q a$, a contradiction. Hence every $a$ lies outside every $d$. The remaining $d$-word has no adjacent inversion, so, since each $d_2,\ldots,d_n$ occurs exactly once, it must read
+A term is irreducible exactly when every internal node has left child $z$. Indeed, any internal left child gives a subterm of the form $b(b(x,y),w)$, while if every left child is $z$ no rule applies. Hence a term with $N$ leaves has a unique irreducible form, the right comb
 $$
-d_2,d_3,\ldots,d_n
+b\bigl(z,b(z,\ldots,b(z,z)\ldots)\bigr).
 $$
-from outside to inside. Thus every initially inverted pair of $d$-symbols must have its relative order reversed before termination. Only the second rule changes the $d$-permutation, and each such application removes exactly one inversion, so every initially inverted pair is swapped exactly once.
+Therefore every reduction of $T_h$ can be completed and every complete reduction ends at the same normal form.
 
-There are no $a$'s initially, so every occurrence of $a$ descends from the unique $a$ created by some second-rule swap. Suppose a swap is made at cut $k$, meaning that exactly $k$ $d$-symbols lie outside the new seed $a$. For any occurrence in this seed's genealogy, let its outer count be the number of $d$-symbols lying outside it. A second-rule step exchanges two adjacent $d$-symbols with no $a$ between them, so it never changes the outer count of any existing $a$. A first-rule step
+Step 2: Determine the shortest possible complete reduction
+Let $\rho(t)$ be the number of internal nodes on the right spine of $t$, obtained by starting at the root and repeatedly taking the right child, and set
 $$
-d_q a\longrightarrow a^2d_q
+Q(t)=|t|-1-\rho(t).
 $$
-lowers that count by exactly one for the acted-on occurrence and replaces it by two descendants having the smaller count. By the terminal-form argument, every descendant must eventually have outer count $0$; hence every descendant must cross every $d$ that remains outside it.
+If a rewrite is performed at a node not on the right spine, then $\rho$ is unchanged. If it is performed at a right-spine node, then locally
+$$
+b(b(x,y),w)\longrightarrow b(x,b(y,w))
+$$
+replaces one right-spine edge into $w$ by two successive right-spine edges through $b(y,w)$, so $\rho$ increases by exactly $1$. Hence every step decreases $Q$ by either $0$ or $1$.
 
-Let $C_k$ be the total number of future first-rule steps forced by the descendants of one seed created with outer count $k$. Then
+The normal form with $N$ leaves has right-spine length $N-1$, so its $Q$-value is $0$. Thus every complete reduction from $t$ has at least $Q(t)$ steps. This bound is attained. If $t$ is not normal, then some node on its right spine has an internal left child; otherwise every right-spine node would have left child $z$, which already makes the whole tree a right comb. Reducing such a right-spine redex decreases $Q$ by exactly $1$. Repeating this choice reaches the normal form in exactly $Q(t)$ steps.
+
+For $T_h$, there are $2^h$ leaves and the right spine has $h$ internal nodes, so the minimum complete-reduction length is
 $$
-C_0=0,
+2^h-h-1.
+$$
+
+Step 3: Determine the longest possible complete reduction
+By Step 1, each rewrite decreases $P$ by $|x|\geq1$, while the normal form has $P=0$. Therefore every complete reduction from $t$ has at most $P(t)$ steps.
+
+This upper bound is also attained. If $t$ is not normal, choose any redex. If its displayed first component $x$ is not $z$, then the left child $b(x,y)$ is itself a redex; descend to that redex and continue. Since the tree is finite, this process reaches a redex of the form
+$$
+b(b(z,y),w),
+$$
+for which $|x|=1$. Reducing such a redex decreases $P$ by exactly $1$. Repeating this choice therefore gives a complete reduction of exactly $P(t)$ steps.
+
+Let $p_h=P(T_h)$. Since $T_h=b(T_{h-1},T_{h-1})$ and $|T_{h-1}|=2^{h-1}$,
+$$
+p_h=2p_{h-1}+2^{h-1}-1,
 \qquad
-C_k=1+2C_{k-1}.
+p_1=0.
 $$
-Indeed, the first crossing costs one step and creates two descendants, each with outer count $k-1$; the invariant above shows that each descendant then forces exactly $C_{k-1}$ further first-rule steps, regardless of how the $d$-$d$ swaps are interleaved. Therefore
+Induction gives
 $$
-C_k=2^k-1.
+p_h=(h-2)2^{h-1}+1.
 $$
-Including the swap that created the seed, a swap performed at cut $k$ accounts for exactly
-$$
-1+C_k=2^k
-$$
-steps. Distinct seeds have disjoint genealogies, so the total reduction length is the sum of these weights over all $d$-$d$ swaps.
+Hence this is the maximum complete-reduction length of $T_h$.
 
-Step 2: Reduce the problem to a weighted adjacent-swap sort
-Put $m=n-1$ and relabel the $d$-symbols by $m,m-1,\ldots,1$. A complete reduction induces a sequence of adjacent inversion swaps sorting
-$$
-m,m-1,\ldots,1
-$$
-into increasing order. A swap across cut $k$ (between positions $k$ and $k+1$, counted from $0$) has weight $2^k$ by Step 1.
+Step 4: Show that every intermediate length occurs
+It remains to exclude gaps between the two extremal lengths. Consider all complete reductions from a fixed term $t$. We show by induction on $P(t)$ that any two complete reductions can be connected by a chain of complete reductions in which consecutive lengths differ by at most $1$.
 
-Let $W_m$ be the minimum possible total weight of such a sorting sequence. Consider the largest label $m$. It starts in the leftmost position and ends in the rightmost position, so it must cross the other $m-1$ labels once each. Its successive swaps necessarily occur across cuts
-$$
-0,1,\ldots,m-2,
-$$
-and therefore have the fixed total weight
-$$
-1+2+\cdots+2^{m-2}=2^{m-1}-1.
-$$
+If the two reductions begin with the same redex, apply the induction hypothesis to the two tails after that common first step. Suppose their first redexes are distinct. If the two redexes are disjoint, or one lies entirely inside one of the variable subterms of the other rule instance, the rule is linear and the two contractions commute: doing them in either order reaches the same term in two steps. Appending one fixed completion from that common term gives two complete reductions of equal length, and the induction hypothesis connects each original tail to the corresponding commuting tail because the first reduct has smaller $P$.
 
-Now delete the label $m$ from an arbitrary sorting sequence and omit all swaps involving it. The remaining swaps still sort the reverse permutation on $m-1$ labels. If one of those swaps occurred at cut $k$ before deletion, then after deleting $m$ its cut is either $k$ or $k-1$. Hence its weight in the reduced $(m-1)$-label problem is at most its original weight. Consequently
+The only genuine overlap occurs, up to context, in
 $$
-W_m\ge (2^{m-1}-1)+W_{m-1}.
+b(b(b(r,s),u),v).
 $$
+Reducing the outer redex first gives
+$$
+b(b(r,s),b(u,v))\longrightarrow b(r,b(s,b(u,v)))
+$$
+in two steps total from the source. Reducing the inner redex first gives
+$$
+b(b(r,b(s,u)),v)
+\longrightarrow b(r,b(b(s,u),v))
+\longrightarrow b(r,b(s,b(u,v)))
+$$
+in three steps total. Thus the unique critical overlap is a pentagon whose two sides have lengths $2$ and $3$. As in the commuting case, append a fixed completion from the common endpoint and use induction on the smaller first reducts. This proves the connectivity claim.
 
-Step 3: Attain the recurrence and solve it
-The lower bound is attainable: first move the largest label $m$ all the way to the right, using the cuts $0,1,\ldots,m-2$, and then use an optimal sequence for the remaining reverse permutation of size $m-1$. Thus
+Take a shortest complete reduction and a longest one. Along a connecting chain, the integer-valued length changes by at most $1$ at each move. Therefore every integer between the minimum and maximum lengths is attained.
+
+Step 5: Evaluate the full length spectrum for the balanced term
+Steps 2 and 3 give the endpoints for $T_h$, and Step 4 shows that no integer between them is missing. Therefore
 $$
-W_1=0,
-\qquad
-W_m=W_{m-1}+2^{m-1}-1.
+\mathcal L_h=
+\left\{\ell\in\mathbb Z:2^h-h-1\leq\ell\leq(h-2)2^{h-1}+1\right\}.
 $$
-Summing gives
-$$
-W_m=\sum_{j=1}^{m-1}(2^j-1)
-=2^m-m-1.
-$$
-Since $m=n-1$, the minimum complete reduction length is
-$$
-L_n=W_{n-1}=2^{n-1}-n.
-$$
-Final Answer: $\boxed{2^{n-1}-n}$
+Final Answer: $\boxed{\{\ell\in\mathbb{Z}:2^h-h-1\leq\ell\leq(h-2)2^{h-1}+1\}}$
 
 ---
 
 ## Answer
 
-$2^{n-1}-n$
+$\{\ell\in\mathbb{Z}:2^h-h-1\leq\ell\leq(h-2)2^{h-1}+1\}$
 
 ---
 
 ## Classification
 
-**Problem Type:** Optimization
+**Problem Type:** Exhaustive enumeration
 
-**Answer Type:** Exact symbolic expression
+**Answer Type:** Set or multiset of objects
 
 ---
 
 ## Solution Concepts
 
 - term rewriting systems
-- weighted adjacent swaps
-- reduced decompositions
-- recurrence optimization
+- termination potentials
+- binary tree rotations
+- critical pair analysis
+- local confluence
