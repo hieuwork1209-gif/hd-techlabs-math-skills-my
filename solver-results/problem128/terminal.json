@@ -2,10 +2,10 @@
   "problem": "problem128",
   "state": "MAIN_READY_FOR_RAINIER",
   "problem_path": "workspace/rainier-problem/problem128-numerical-optimization/problem.md",
-  "problem_blob_sha": "3e541a57f955503cc241373286d4a1151785cde0",
+  "problem_blob_sha": "66bb54bc67b3e625f138f2c8e86df9d080a28e9b",
   "solution_path": "workspace/rainier-problem/problem128-numerical-optimization/solution.md",
-  "solution_blob_sha": "dfcfddffde23f7e4d1ebff7f39396e61db951781",
-  "difficulty_verdict": "TRUE_STUMP",
-  "strong_audit_verdict": "STRONG_AUDIT_PASS",
-  "main_commit_sha": "55c2aaa62cda4836c4458b923207f87095f7f240"
+  "solution_blob_sha": "828cb404e173006eb78cdb97db6485057cccf255",
+  "difficulty_verdict": "USER_OVERRIDE_NO_FRESH_SOLVER",
+  "strong_audit_verdict": "NOT_RUN_FOR_CURRENT_BLOB",
+  "main_commit_sha": "95a7e98b584e8af0b6fa08509fd532051f560093"
 }
