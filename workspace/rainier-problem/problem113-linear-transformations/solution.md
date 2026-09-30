@@ -39,29 +39,29 @@ $$
 Indeed, if an injective map $A:R^2\to R^4$ had reduction of rank less than $2$, some $u\in R^2$ with a unit coordinate would satisfy $Au\in tR^4$. Then $t^{m-1}Au=0$ but $t^{m-1}u\neq0$, contradicting injectivity. Therefore an admissible $L$ reduces to a Lagrangian plane in $\mathbb F_q^4$.
 
 Count ordered isotropic bases $(v,w)$. There are $q^4-1$ choices for $v\neq0$. Its symplectic orthogonal space has dimension $3$, so there are $q^3-q$ choices for
-$
+$$
 w\in v^\perp\setminus\operatorname{span}(v).
-$
+$$
 Each two-dimensional plane has $(q^2-1)(q^2-q)$ ordered bases. Therefore the number of Lagrangian planes is
-$
+$$
 \frac{(q^4-1)(q^3-q)}
 {(q^2-1)(q^2-q)}
 =
 (q+1)(q^2+1).
-$
+$$
 
 Fix one reduced Lagrangian plane $\overline P$ and choose a basis $e_1,e_2$ of it. Nondegeneracy gives vectors $f_1,f_2$ with
-$
+$$
 \overline\Omega(e_i,f_j)=\delta_{ij}.
-$
+$$
 If $c=\overline\Omega(f_1,f_2)$, replace $f_2$ by $f_2+ce_1$; then the span of $f_1,f_2+ce_1$ is a complementary reduced Lagrangian plane $\overline Q$. Lift these four vectors as constants in $R^4$. They span free Lagrangian submodules
-$
+$$
 P,Q\subset R^4
-$
+$$
 with
-$
+$$
 R^4=P\oplus Q.
-$
+$$
 Every admissible lift of $\overline P$ is the graph of a unique map
 $$
 X:P\to Q
@@ -79,25 +79,25 @@ $$
 
 Step 2: Count admissible complements of one fixed admissible subspace
 Fix an admissible subspace $P$ and choose an $R$-basis $p_1,p_2$ of $P$. Since $\Omega$ is nondegenerate, choose $q_1,q_2\in V$ with
-$
+$$
 \Omega(p_i,q_j)=\delta_{ij}.
-$
+$$
 Let
-$
+$$
 c=\Omega(q_1,q_2)
-$
+$$
 and replace $q_2$ by $q_2+cp_1$. Then the pairings with $p_1,p_2$ stay unchanged, while
-$
+$$
 \Omega(q_1,q_2+cp_1)=c-c=0.
-$
+$$
 Hence
-$
+$$
 Q=Rq_1\oplus R(q_2+cp_1)
-$
+$$
 is isotropic. The pairing matrix between the bases of $P$ and $Q$ is the identity, so $P\cap Q=\{0\}$ and
-$
+$$
 V=P\oplus Q.
-$
+$$
 Thus $Q$ is an admissible complement of $P$.
 
 Let $L$ be another admissible subspace with
