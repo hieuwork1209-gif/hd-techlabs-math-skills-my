@@ -12,7 +12,7 @@ $$
 V=
 \left\{
 u\in H_0^1(0,1):
-\int_0^1xu(x)\,dx=0,\
+\int_0^1xu(x)\,dx=0,
 \int_0^1x^3u(x)\,dx=0
 \right\}.
 $$
@@ -60,7 +60,7 @@ $$
 \leq
 \|u_n'\|_{L^2}|x-y|^{1/2}
 $$
-gives a uniformly bounded equicontinuous family, so a subsequence converges uniformly to a function $u$. The derivatives have a weakly convergent subsequence in $L^2$; write
+gives a uniformly bounded equicontinuous family, so a subsequence converges uniformly to a function $u$. A bounded sequence in the Hilbert space $L^2$ has a weakly convergent subsequence, so write
 $$
 u_n'\rightharpoonup v.
 $$
@@ -99,7 +99,7 @@ $$
 W=
 \left\{
 v\in H_0^1(0,1):
-\int_0^1xv(x)\,dx=0,\
+\int_0^1xv(x)\,dx=0,
 \int_0^1x^3v(x)\,dx=0
 \right\},
 $$
@@ -131,7 +131,7 @@ which forces $c_1=c_3=0$. Thus the map
 $$
 v\mapsto
 \left(
-\int_0^1xv(x)\,dx,\
+\int_0^1xv(x)\,dx,
 \int_0^1x^3v(x)\,dx
 \right)
 $$
@@ -257,7 +257,7 @@ Conversely, let $\mu>0$ satisfy $g(\mu)=0$. The determinant in Step 3 vanishes, 
 $$
 u(x)=A\sin(\mu x)+Bx+Dx^3
 $$
-satisfies the boundary condition and both moment constraints. Also,
+satisfies the boundary condition and both moment constraints. This function is not identically zero: if it were, taking four derivatives would give $A\mu^4\sin(\mu x)=0$, so $A=0$, and then $Bx+Dx^3=0$ would force $B=D=0$. Also,
 $$
 -u''-\mu^2u
 $$
