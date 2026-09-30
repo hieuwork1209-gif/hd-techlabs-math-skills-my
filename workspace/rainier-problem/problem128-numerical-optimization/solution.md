@@ -11,7 +11,7 @@ H_0=
 \qquad
 H_1=
 \begin{pmatrix}
-\frac12&1\\
+\frac{1}{2}&1\\
 1&4
 \end{pmatrix},
 \qquad
@@ -82,7 +82,7 @@ H_0^{-1}=
 H_0^{-1}H_1=
 \begin{pmatrix}
 0&-2\\
-\frac12&3
+\frac{1}{2}&3
 \end{pmatrix}.
 $$
 Its characteristic polynomial is
@@ -91,7 +91,7 @@ z^2-3z+1,
 $$
 so its larger eigenvalue is
 $$
-\mu=\frac{3+\sqrt5}{2}.
+\mu=\frac{3+\sqrt{5}}{2}.
 $$
 For every nonzero vector $x$,
 $$
@@ -165,7 +165,7 @@ $$
 =
 \frac{\mu-1}{\mu+1}.
 $$
-Using $\mu=(3+\sqrt5)/2$,
+Using $\mu=(3+\sqrt{5})/2$,
 $$
 \rho_{\mathrm{full}}=\frac{1}{\sqrt{5}}.
 $$
@@ -182,9 +182,9 @@ s&0\\
 $$
 The endpoint matrices $B_0,B_1$ still have determinant $1$, while their traces are
 $$
-T_0(s)=s+\frac2s,
+T_0(s)=s+\frac{2}{s},
 \qquad
-T_1(s)=\frac{s}{2}+\frac4s.
+T_1(s)=\frac{s}{2}+\frac{4}{s}.
 $$
 For a positive definite $2\times2$ matrix of determinant $1$ and trace $T\geq2$, the larger eigenvalue is
 $$
@@ -209,9 +209,9 @@ T_0(s)-3
 \frac{(s-1)(s-2)}{s}
 \geq0.
 $$
-Hence the unique minimizer is $s=2$, and the largest endpoint eigenvalue is
+The unique minimizer is $s=2$, and the largest endpoint eigenvalue is
 $$
-\Phi(3)=\frac{3+\sqrt5}{2}=\mu.
+\Phi(3)=\frac{3+\sqrt{5}}{2}=\mu.
 $$
 Therefore
 $$
@@ -224,7 +224,7 @@ $$
 P_{\mathrm{diag}}=
 \begin{pmatrix}
 2&0\\
-0&\frac12
+0&\frac{1}{2}
 \end{pmatrix},
 $$
 both endpoint spectra lie in $[\mu^{-1},\mu]$. Since every $B_t$ is their convex combination, the same spectral enclosure holds for the full family, so the bound from Step 4 is attained.
@@ -235,7 +235,7 @@ $$
 =
 \frac{\mu^2-1}{\mu^2+1}.
 $$
-Because $\mu+\mu^{-1}=3$ and $\mu-\mu^{-1}=\sqrt5$,
+Because $\mu+\mu^{-1}=3$ and $\mu-\mu^{-1}=\sqrt{5}$,
 $$
 \rho_{\mathrm{diag}}
 =
