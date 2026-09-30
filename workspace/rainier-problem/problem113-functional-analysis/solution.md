@@ -53,7 +53,7 @@ $$
 u(a).
 \end{aligned}
 $$
-Thus $G_a$ is the energy-space representer of evaluation at $a$. In particular,
+Therefore $G_a$ is the energy-space representer of evaluation at $a$. In particular,
 $$
 G_{1/2}\left(\frac{1}{2}\right)
 =
@@ -124,8 +124,8 @@ $$
 =
 \frac{1}{225}.
 $$
-Hence
-$$
+Therefore
+$
 M=
 \begin{pmatrix}
 \frac{1}{45} & \frac{1}{105}\\
@@ -198,7 +198,7 @@ $$
 =
 0
 $$
-because $Mc=b$. Hence $g\in V$.
+because $Mc=b$. Therefore $g\in V$.
 
 For every $u\in V$,
 $$
