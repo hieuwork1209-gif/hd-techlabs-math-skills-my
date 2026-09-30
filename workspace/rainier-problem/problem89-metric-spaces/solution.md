@@ -28,10 +28,14 @@ the generating identity
 $$
 \sum_{h=0}^9K_s(h)z^h=(1-z)^s(1+z)^{9-s}
 $$
-follows by choosing the $h$ coordinates of $x$ according to whether they lie in $S$. Since $s$ is even,
-$$
-K_s(9-h)=K_s(h),
-$$
+follows by choosing the $h$ coordinates of $x$ according to whether they lie in $S$. If $P_s(z)=(1-z)^s(1+z)^{9-s}$, then
+$
+z^9P_s(z^{-1})=(-1)^sP_s(z).
+$
+Since $s$ is even, coefficient comparison gives
+$
+K_s(9-h)=K_s(h).
+$
 so pairing weights $h$ and $9-h$ gives
 $$
 \lambda_s(p)=\sum_{h=1}^4K_s(h)h^p.
@@ -65,9 +69,9 @@ $$
 $$
 Since $F(0)=-1$, while cubing verifies
 $$
-\frac{12599}{10000}<2^{1/3},\qquad
-3^{1/3}<\frac{14423}{10000},\qquad
-\frac{15873}{10000}<4^{1/3},
+\frac{12599}{10000}<2^{\frac{1}{3}},\qquad
+3^{\frac{1}{3}}<\frac{14423}{10000},\qquad
+\frac{15873}{10000}<4^{\frac{1}{3}},
 $$
 we have
 $$
@@ -78,7 +82,7 @@ F\left(\frac{1}{3}\right)
 +14\frac{15873}{10000}
 =\frac{179}{5000}>0.
 $$
-Hence $0<\rho<1/3$. In fact $F$ is strictly increasing. Put $x=2^p\geq1$ and $\alpha=\log_2 3$. The inequalities $3^7>2^{11}$ and $3^5<2^8$ give
+Hence $0<\rho<\frac{1}{3}$. In fact $F$ is strictly increasing. Put $x=2^p\geq1$ and $\alpha=\log_2 3$. The inequalities $3^7>2^{11}$ and $3^5<2^8$ give
 $
 \frac{11}{7}<\alpha<\frac{8}{5}.
 $
@@ -96,7 +100,7 @@ $
 $
 Thus $\rho$ is the unique positive zero of $F$, $F(p)<0$ for $p<\rho$, and $F(p)>0$ for $p>\rho$.
 
-The other nonconstant eigenvalues stay negative on $0\leq p\leq1/3$. For $\lambda_2$, writing $q=2^p\geq1$ gives
+The other nonconstant eigenvalues stay negative on $0\leq p\leq\frac{1}{3}$. For $\lambda_2$, writing $q=2^p\geq1$ gives
 $$
 \lambda_2=5+8q-14q^2<0
 $$
@@ -110,13 +114,13 @@ $$
 Since $3^p\leq4^p$,
 $$
 \lambda_4'(p)
-\geq4\cdot2^p\left((\log(8/3))2^p-\log 2\right)>0.
+\geq4\cdot2^p\left((\log(\frac{8}{3}))2^p-\log 2\right)>0.
 $$
 Also cubing gives
 $$
-\frac{1259}{1000}<2^{1/3},\qquad
-\frac{721}{500}<3^{1/3},\qquad
-4^{1/3}<\frac{397}{250},
+\frac{1259}{1000}<2^{\frac{1}{3}},\qquad
+\frac{721}{500}<3^{\frac{1}{3}},\qquad
+4^{\frac{1}{3}}<\frac{397}{250},
 $$
 so
 $$
@@ -128,16 +132,16 @@ $$
 =-\frac{69}{250}<0.
 $$
 
-For $\lambda_6$, convexity of $3^p$ on $[0,1/3]$ and $e^t\geq1+t$ give
+For $\lambda_6$, convexity of $3^p$ on $[0,\frac{1}{3}]$ and $e^t\geq1+t$ give
 $$
-3^p\leq1+3p(3^{1/3}-1),
+3^p\leq1+3p(3^{\frac{1}{3}}-1),
 \qquad
 4^p\geq1+p\log 4.
 $$
-Using $3^{1/3}<1443/1000$ and $\log 4>4/3$,
+Using $3^{\frac{1}{3}}<\frac{1443}{1000}$ and $\log 4>\frac{4}{3}$,
 $$
 \lambda_6(p)
-\leq-1+p\left(24(3^{1/3}-1)-6\log 4\right)
+\leq-1+p\left(24(3^{\frac{1}{3}}-1)-6\log 4\right)
 <-1+\frac{1}{3}\frac{329}{125}
 =-\frac{46}{375}<0.
 $$
@@ -199,7 +203,7 @@ B^2
 +2a_0\sum_{j\neq i}a_j\varepsilon_j
 +2\sum_{\substack{j<k\\j,k\neq i}}a_ja_k\varepsilon_j\varepsilon_k.
 $$
-The functions $1,\varepsilon_j,\varepsilon_j\varepsilon_k$ are linearly independent, hence
+The functions $1,\varepsilon_j,\varepsilon_j\varepsilon_k$ are distinct characters of the sign cube and are therefore linearly independent, hence
 $$
 a_0a_j=0
 \quad\text{and}\quad
