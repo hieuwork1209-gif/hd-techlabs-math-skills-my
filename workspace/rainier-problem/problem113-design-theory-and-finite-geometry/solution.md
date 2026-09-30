@@ -32,7 +32,7 @@ r_i=45-3d_i.
 $$
 The required parity condition says that every $d_i$ is even, so
 $$
-r_i\equiv3\pmod6.
+r_i\equiv3\pmod{6}.
 $$
 
 For a pair $\{i,j\}$, let $d_{ij}$ be the number of blocks containing that pair and let $\lambda_{ij}$ be the number of leave triples containing it. There are nine triples through $\{i,j\}$, and each block through the pair contains exactly two of them. Therefore
@@ -52,8 +52,8 @@ Fix a point $i$. Summing the pair codegrees over the ten pairs containing $i$ gi
 $$
 \sum_{j\neq i}\lambda_{ij}=2r_i,
 $$
-because each leave triple containing $i$ contributes to exactly two such pairs. Thus
-$$
+because each leave triple containing $i$ contributes to exactly two such pairs. This gives
+$
 10+2\sum_{j\neq i}x_{ij}=2r_i,
 $$
 or
@@ -62,11 +62,11 @@ r_i=5+\sum_{j\neq i}x_{ij}.
 $$
 Since
 $$
-r_i\equiv3\pmod6,
+r_i\equiv3\pmod{6},
 $$
 we obtain
 $$
-\sum_{j\neq i}x_{ij}\equiv4\pmod6.
+\sum_{j\neq i}x_{ij}\equiv4\pmod{6}.
 $$
 The left side is nonnegative, so for every $i$,
 $$
@@ -81,8 +81,8 @@ Summing the last inequality over all eleven points gives
 $$
 2X\geq44,
 $$
-hence
-$$
+so
+$
 X\geq22.
 $$
 
@@ -120,11 +120,11 @@ are at least $4$ and their sum is $2X=44$, each equals $4$. Therefore every leav
 $$
 r_i=5+4=9,
 $$
-and hence every block degree is
+so every block degree is
 $$
 d_i=\frac{45-9}{3}=12.
 $$
-Thus an extremal construction must be point-regular, which motivates seeking a translation-invariant family.
+An extremal construction must therefore be point-regular, which motivates seeking a translation-invariant family.
 
 Step 3: Construct a family with 33 blocks
 Work in the cyclic group $\mathbb{Z}_{11}$. A union of three full translation orbits automatically gives point degree $12$, so it remains to choose three base blocks whose induced triple orbits are disjoint. Take
@@ -174,7 +174,7 @@ A_3:&\quad
 (1,5,5),\ (1,8,2),\ (2,6,3),\ (3,3,5).
 \end{aligned}
 $$
-They are all distinct. If a triple occurred in both $A_i+a$ and $A_j+b$, translating back would give two base-block triples with the same gap representative. The list forces the same base-block triple in both cases. That $3$-set cannot be stabilized by a nonzero translation of $\mathbb{Z}_{11}$, because every nonzero translation has one orbit of length $11$. Hence $a=b$, so the two blocks are identical. Therefore the $33$ blocks form a valid $3$-packing.
+They are all distinct. If a triple occurred in both $A_i+a$ and $A_j+b$, translating back would give two base-block triples with the same gap representative. The list forces the same base-block triple in both cases. That $3$-set cannot be stabilized by a nonzero translation of $\mathbb{Z}_{11}$, because every nonzero translation has one orbit of length $11$. This forces $a=b$, so the two blocks are identical. Therefore the $33$ blocks form a valid $3$-packing.
 
 Step 4: Match the upper bound
 Step 2 shows that every admissible family has at most $33$ blocks. Step 3 gives an admissible family with exactly $33$ blocks. Therefore the maximum possible size is $33$.
