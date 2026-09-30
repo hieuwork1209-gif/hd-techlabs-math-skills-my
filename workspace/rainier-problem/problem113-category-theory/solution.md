@@ -96,7 +96,7 @@ $$
 =
 (\operatorname{id}_Q\times\sigma)\phi
 $$
-for some permutation $\sigma$ of $C$. Such a relabeling leaves $g$ and $r$ unchanged. Conversely, if $g$ and $r$ agree, compare the $C$-labels on the fiber over $q_0$; the resulting permutation propagates to every other fiber through $r$.
+for some permutation $\sigma$ of $C$. Such a relabeling leaves $g$ and $r$ unchanged. Conversely, if $g$ and $r$ agree, compare the $C$-labels on the fiber over $q_0$; the resulting permutation propagates to every other fiber through $r$. More generally, if $\phi:P\to Q\times C$ and $\eta:P\to Q\times D$ use different complementary sets, they induce the same morphism exactly when there is a unique bijection $\lambda:C\to D$ such that $\eta=(\operatorname{id}_Q\times\lambda)\phi$.
 
 Step 2: Express composition in product coordinates
 Now let
