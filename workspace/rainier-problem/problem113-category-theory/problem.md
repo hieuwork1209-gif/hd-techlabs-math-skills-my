@@ -36,7 +36,7 @@ $$
 $$
 Determine exactly the number of ordered pairs of comonad morphisms
 $$
-W_S\xRightarrow{\Phi}W_U\xRightarrow{\Psi}W_T
+W_S\xrightarrow{\Phi}W_U\xrightarrow{\Psi}W_T
 $$
 such that
 $$
