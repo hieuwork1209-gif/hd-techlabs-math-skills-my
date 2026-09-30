@@ -42,20 +42,20 @@ $$
 A(t)\log A(t)-t\log t-3B(t)\log B(t).
 $$
 Use Stirling's expansion
-$
+$$
 m!
 =
 \sqrt{2\pi m}\left(\frac{m}{e}\right)^m
 \left(1+O\left(m^{-1}\right)\right).
-$
+$$
 If $t$ stays in a closed subinterval of $(0,1)$, all four factorial arguments are comparable to $n$, so the error is uniform. Substitution gives
-$
+$$
 \frac{(3n-2k)!}{k!(n-k)!^3}
 =
 \frac{1+O\left(n^{-1}\right)}{(2\pi n)^{3/2}}
 \sqrt{\frac{A(t)}{tB(t)^3}}
 \exp\!\left(n\phi(t)\right).
-$
+$$
 
 Step 2: Locate the unique saddle and identify the exponential growth
 Differentiate:
@@ -178,7 +178,7 @@ which is negligible compared with $q^{3n}/n$.
 
 On $[\tau-\varepsilon,\tau+\varepsilon]$, the third derivative of $\phi$ is bounded. Write
 $$
-k=n\tau+u\sqrt n.
+k=n\tau+u\sqrt{n}.
 $$
 For
 $$
@@ -198,34 +198,34 @@ The Stirling prefactor from Step 1 is also uniform there and tends to its value 
 
 For the remaining indices inside the $\varepsilon$-interval, with
 $$
-n^{1/10}<|u|\leq\varepsilon\sqrt n,
+n^{1/10}<|u|\leq\varepsilon\sqrt{n},
 $$
 continuity and $\phi''(\tau)<0$ give a constant $c>0$ such that
 $$
 \phi(t)\leq\phi(\tau)-c(t-\tau)^2.
 $$
 There are at most $n+1$ such indices, and the crude bound above applies to each of them. Their total contribution is therefore
-$
+$$
 O\!\left(n^3q^{3n}e^{-cn^{1/5}}\right),
-$
+$$
 again negligible compared with $q^{3n}/n$.
 
-The central lattice has $u$-spacing $n^{-1/2}$. Therefore
+The central lattice has $u$-spacing $n^{-1/2}$. For any fixed $M$, the terms with $|u|\leq M$ form an ordinary Riemann sum. Since $\phi''(\tau)<0$, the Gaussian tails beyond $M$ are uniformly summable, so letting first $n\to\infty$ and then $M\to\infty$ gives
 $
-\frac{1}{\sqrt n}
+\frac{1}{\sqrt{n}}
 \sum_{|u|\leq n^{1/10}}
 \exp\!\left(\frac{\phi''(\tau)}{2}u^2\right)
 \longrightarrow
 \int_{-\infty}^{\infty}
 \exp\!\left(\frac{\phi''(\tau)}{2}u^2\right)\,du.
-$$
+$
 Combining this Riemann sum with Step 1 gives
 $$
 a_n
 \sim
 \frac{q^{3n}}{(2\pi n)^{3/2}}
 \sqrt{\frac{3-2\tau}{\tau(1-\tau)^3}}
-\sqrt n
+\sqrt{n}
 \int_{-\infty}^{\infty}
 \exp\!\left(\frac{\phi''(\tau)}{2}u^2\right)\,du.
 $$
@@ -260,7 +260,7 @@ $$
 =
 \frac{q^2}{3}.
 $$
-Therefore
+This simplifies to
 $
 a_n
 \sim
