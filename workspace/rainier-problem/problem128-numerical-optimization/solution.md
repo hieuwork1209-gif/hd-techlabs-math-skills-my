@@ -350,13 +350,13 @@ f(x')
 f(x)+G(x)^T(x'-x)+\frac{1}{2}\|x'-x\|^2.
 $$
 The same inequality with $x,x'$ interchanged and $x'=x+h$ gives
-$
+$$
 (G(x+h)-G(x))^Th-\frac{1}{2}\|h\|^2
 \leq
 f(x+h)-f(x)-G(x)^Th
 \leq
 \frac{1}{2}\|h\|^2.
-$
+$$
 Since $\|G(x+h)-G(x)\|\leq\|h\|$, the middle quantity is $O(\|h\|^2)$. Therefore $f$ is differentiable with $\nabla f=G$, and its gradient is $1$-Lipschitz. To see convexity directly, let $y,y'$ be the minimizers for $x,x'$ and let $t\in[0,1]$. The point $ty+(1-t)y'$ is an admissible competitor for $tx+(1-t)x'$, and convexity of $q$ together with convexity of the squared norm gives
 $$
 f\bigl(tx+(1-t)x'\bigr)
