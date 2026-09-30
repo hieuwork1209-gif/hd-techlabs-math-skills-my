@@ -221,13 +221,13 @@ a+b\leq2k-2.
 $$
 
 For $k=1$, the configuration has $14$ distinct projective points, so
-$
+$$
 M_1=1,\qquad C_1=14.
-$
+$$
 For $k=2$, the maximum is $M_2=2$. Every unordered pair of configuration points spans a unique extremal plane, and every extremal plane contains exactly that pair, so
-$
+$$
 C_2=\binom{14}{2}=91.
-$
+$$
 
 For $k=3$, the bound gives $M_3\leq4$. If $a=3$, then $H=P_S$, and Step 4 gives four configuration vectors exactly when $S$ is a Fano line. If $a=2$, equality would require $b=2$, but for $s=2$ a one-dimensional extension of $P_S$ contains at most one line vector. Thus the extremal $3$-spaces are the seven point-line spans and their seven duals. The two families are disjoint because their point/line counts are $(3,1)$ and $(1,3)$:
 $$
