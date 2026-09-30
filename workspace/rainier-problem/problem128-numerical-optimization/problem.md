@@ -4,42 +4,43 @@
 
 Let
 $$
-H_0=
-\begin{pmatrix}
-1&1\\
-1&2
-\end{pmatrix},
-\qquad
-H_1=
-\begin{pmatrix}
-\frac{1}{2}&1\\
-1&4
-\end{pmatrix},
-\qquad
-H_t=(1-t)H_0+tH_1
-\quad(0\leq t\leq1).
+H=
+egin{pmatrix}
+2&1&0\
+1&2&1\
+0&1&2
+end{pmatrix},
+qquad
+f(x)=rac{1}{2}x^THx.
 $$
-For a fixed symmetric positive definite preconditioner $P$ and step size $\eta>0$, consider the gradient iteration
+At each iteration, exact randomized coordinate descent independently selects $iin{1,2,3}$ with
 $$
-x_{k+1}=(I-\eta PH_t)x_k,
+p_1=p_3=a,
+qquad
+p_2=1-2a,
+qquad
+0<a<rac{1}{2},
 $$
-where the unknown parameter $t$ is fixed but may be any value in $[0,1]$.
+and performs
+$$
+x^+=x-rac{e_i^THx}{H_{ii}}e_i,
+$$
+where $e_i$ is the $i$th standard basis vector.
 
-Define
+After two independent coordinate draws, define the worst-case expected energy ratio
 $$
-\rho_{\mathrm{full}}
-=
-\inf_{\substack{P\succ0\\ \eta>0}}
-\max_{0\leq t\leq1}r(I-\eta PH_t),
+R_2(a)=
+sup_{x_0
+eq0}
+rac{mathbb E[f(x_2)]}{f(x_0)}.
 $$
-where $r(\cdot)$ denotes spectral radius. Define also
+For a real polynomial $F$ having exactly one zero in $(u,v)$, write
 $$
-\rho_{\mathrm{diag}}
-=
-\inf_{\substack{P\succ0\ \mathrm{diagonal}\\ \eta>0}}
-\max_{0\leq t\leq1}r(I-\eta PH_t).
+operatorname{root}(F;u,v)
 $$
-Determine the ordered pair $(\rho_{\mathrm{full}},\rho_{\mathrm{diag}})$ exactly.
+for that zero.
+
+Determine the minimizing value of $a$ exactly.
 
 ---
 
@@ -50,10 +51,10 @@ Determine the ordered pair $(\rho_{\mathrm{full}},\rho_{\mathrm{diag}})$ exactly
 | **Domain** | Optimization and Numerical Mathematics |
 | **Sub-domain** | Numerical optimization |
 | **Problem Type** | Optimization |
-| **Answer Type** | Tuple or ordered list |
+| **Answer Type** | Exact symbolic expression |
 
 ---
 
 ## Domain Explanation
 
-The problem asks for the best worst-case convergence factor of preconditioned gradient descent over a continuous family of quadratic Hessians, first with an unrestricted positive definite preconditioner and then with a diagonal one. The main task is robust preconditioner and step-size design for an iterative optimization method, so the primary sub-domain is Numerical optimization.
+The problem asks for the sampling probability that minimizes a worst-case two-step convergence factor of exact randomized coordinate descent on a quadratic objective. The difficulty comes from the interaction of two independently sampled coordinate projections in the expected energy operator, so the primary sub-domain is Numerical optimization.
