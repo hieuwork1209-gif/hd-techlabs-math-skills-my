@@ -4,7 +4,7 @@
 
 Let $\mathcal F$ be the class of differentiable convex functions
 $$
-f:\mathbb R^3\to\mathbb R
+f:\mathbb{R}^{3}\to\mathbb R
 $$
 whose gradients are $1$-Lipschitz and which attain their minimum value $f_*$. Consider all choices of
 $$
