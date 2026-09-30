@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-category-theory/problem.md",
+  "source_commit_sha": "60d0da21fb0b0110a0e3aa433c83ef7534f6ac26",
+  "problem_blob_sha": "8955549332d197f831df7593cdef9d449cb8a934",
+  "statement_sha256": "a3bb8c338d593f913cbfdb90d4cf5798db21eba3685606af6518c98598a0ebd5",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T05:08:53+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Every natural transformation \\(\\Theta:W_S\\Rightarrow W_T\\) has the form\n\n\\[\n\\Theta_X(s,f)=\\bigl(\\alpha(s),\\ t\\mapsto f(\\beta(s,t))\\bigr),\n\\]\n\nfor some functions\n\n\\[\n\\alpha:S\\to T,\\qquad \\beta:S\\times T\\to S.\n\\]\n\nIndeed, the first component is forced by evaluating at \\(X=1\\), and the second component is a natural map \\(X^S\\to X\\), hence evaluation at some element of \\(S\\).\n\nThe counit condition gives\n\n\\[\nf(\\beta(s,\\alpha(s)))=f(s)\n\\]\n\nfor all \\(f\\), so\n\n\\[\n\\beta(s,\\alpha(s))=s.\n\\]\n\nNow compute the comultiplication condition. Writing \\(b_s(t)=\\beta(s,t)\\), it forces\n\n\\[\n\\alpha(b_s(t))=t\n\\]\n\nand\n\n\\[\nb_{b_s(t)}=b_s\n\\]\n\nfor all \\(s\\in S,\\ t\\in T\\). Thus each \\(b_s:T\\to S\\) is a section of \\(\\alpha\\), contains \\(s\\), and is constant on its own image.\n\nTherefore the data are exactly:\n\n1. a map \\(\\alpha:S\\to T\\) whose fibers all have size \\(q\\);\n2. a partition of \\(S\\) into \\(q\\) blocks, each block containing exactly one element from each fiber of \\(\\alpha\\).\n\nThe number of possible \\(\\alpha\\)'s is\n\n\\[\n\\frac{(qn)!}{(q!)^n}.\n\\]\n\nFor a fixed \\(\\alpha\\), the number of such transversal partitions is\n\n\\[\n\\frac{(q!)^n}{q!}=(q!)^{n-1},\n\\]\n\nsince each fiber can be bijected with \\(q\\) block labels, modulo global relabeling of the blocks.\n\nHence the total number is\n\n\\[\n\\frac{(qn)!}{(q!)^n}\\cdot (q!)^{n-1}\n=\n\\frac{(qn)!}{q!}.\n\\]\n\n\\[\n\\boxed{\\frac{(qn)!}{q!}}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T05:09:39+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/8955549332d1.json"
+}
