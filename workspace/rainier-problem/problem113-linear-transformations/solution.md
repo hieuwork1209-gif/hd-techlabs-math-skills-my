@@ -50,14 +50,18 @@ $
 (q+1)(q^2+1).
 $
 
-Fix one reduced Lagrangian plane $\overline P$. Choose a complementary reduced Lagrangian plane $\overline Q$ and lift both to free Lagrangian submodules
-$$
+Fix one reduced Lagrangian plane $\overline P$ and choose a basis $e_1,e_2$ of it. Nondegeneracy gives vectors $f_1,f_2$ with
+$
+\overline\Omega(e_i,f_j)=\delta_{ij}.
+$
+If $c=\overline\Omega(f_1,f_2)$, replace $f_2$ by $f_2+ce_1$; then the span of $f_1,f_2+ce_1$ is a complementary reduced Lagrangian plane $\overline Q$. Lift these four vectors as constants in $R^4$. They span free Lagrangian submodules
+$
 P,Q\subset R^4
-$$
+$
 with
-$$
+$
 R^4=P\oplus Q.
-$$
+$
 Every admissible lift of $\overline P$ is the graph of a unique map
 $$
 X:P\to Q
