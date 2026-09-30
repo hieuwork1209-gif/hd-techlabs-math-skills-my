@@ -63,10 +63,20 @@ $$
 R^4=P\oplus Q.
 $$
 Every admissible lift of $\overline P$ is the graph of a unique map
-$$
+$
 X:P\to Q
-$$
-with $X\equiv0\pmod t$. Via the perfect pairing between $P$ and $Q$, the graph is isotropic exactly when the corresponding $2\times2$ matrix is symmetric. Each of its three entries may be chosen arbitrarily in the ideal $tR$, which has $q^{m-1}$ elements. Hence each reduced Lagrangian plane has
+$
+with $X\equiv0\pmod t$: the projection of the lift to $P$ reduces to the identity on $\overline P$, so its determinant is a unit in $R$. Use the perfect pairing to identify $Q$ with $P^*$. If
+$
+B_X(p,p')=\Omega(p,Xp'),
+$
+then
+$
+\Omega(p+Xp,p'+Xp')
+=
+B_X(p,p')-B_X(p',p).
+$
+Hence the graph is isotropic exactly when $B_X$ is symmetric, equivalently when the corresponding $2\times2$ matrix is symmetric. Each of its three entries may be chosen arbitrarily in the ideal $tR$, which has $q^{m-1}$ elements. Hence each reduced Lagrangian plane has
 $$
 q^{3(m-1)}
 $$
