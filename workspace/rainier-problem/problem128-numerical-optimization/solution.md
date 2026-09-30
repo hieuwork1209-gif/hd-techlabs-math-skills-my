@@ -64,7 +64,7 @@ The three gradients are mutually orthogonal, so Bessel's inequality gives
 $$
 a_0^2+a_1^2+a_2^2\leq\|d\|^2\leq1.
 $$
-If one of the gradients vanishes, convexity makes the corresponding iterate a global minimizer, and the desired bound is immediate. Assume $F_2>0$ and $s_0s_1s_2>0$.
+If $g_0=0$, then $x_0$ is a global minimizer; if $g_1=0$, then $x_1$ is a global minimizer and belongs to the second search plane; if $g_2=0$, then $x_2$ is a global minimizer. In each case $F_2=0$. Assume $F_2>0$ and $s_0s_1s_2>0$.
 
 Write $F=F_2$. The inequalities from Step 1 imply
 $$
@@ -154,7 +154,7 @@ $$
 4\phi^2+1+S=2\theta^2.
 $$
 Therefore
-$
+$$
 F_2\leq\frac{1}{2\theta^2}
 =
 \frac{2}{(1+\sqrt{13+4\sqrt{5}})^2}.
@@ -349,17 +349,21 @@ f(x')
 \leq
 f(x)+G(x)^T(x'-x)+\frac{1}{2}\|x'-x\|^2.
 $$
-The same inequality with $x,x'$ interchanged, together with the Lipschitz bound for $G$, gives
-$$
-f(x+h)-f(x)-G(x)^Th=O(\|h\|^2).
-$$
-Therefore $f$ is differentiable with $\nabla f=G$, and its gradient is $1$-Lipschitz. To see convexity directly, let $y,y'$ be the minimizers for $x,x'$ and let $t\in[0,1]$. The point $ty+(1-t)y'$ is an admissible competitor for $tx+(1-t)x'$, and convexity of $q$ together with convexity of the squared norm gives
+The same inequality with $x,x'$ interchanged and $x'=x+h$ gives
 $
+(G(x+h)-G(x))^Th-\frac{1}{2}\|h\|^2
+\leq
+f(x+h)-f(x)-G(x)^Th
+\leq
+\frac{1}{2}\|h\|^2.
+$
+Since $\|G(x+h)-G(x)\|\leq\|h\|$, the middle quantity is $O(\|h\|^2)$. Therefore $f$ is differentiable with $\nabla f=G$, and its gradient is $1$-Lipschitz. To see convexity directly, let $y,y'$ be the minimizers for $x,x'$ and let $t\in[0,1]$. The point $ty+(1-t)y'$ is an admissible competitor for $tx+(1-t)x'$, and convexity of $q$ together with convexity of the squared norm gives
+$$
 f\bigl(tx+(1-t)x'\bigr)
 \leq
 tf(x)+(1-t)f(x').
-$
-In particular, $\nabla f(x_i)=g_i$. The affine term indexed by $*$ is zero, so $q\geq0$. The interpolation inequality with $i=*$ shows every other affine term is at most $0$ at $y_*=0$, hence $q(0)=0$. Taking $y=0$ in the envelope gives $f(0)=0$, which is the minimum value.
+$$
+In particular, $\nabla f(x_i)=g_i$. The affine term indexed by $*$ is zero, so $q\geq0$. The interpolation inequality with $i=*$ shows every other affine term is at most $0$ at $y_*=0$, so $q(0)=0$. Taking $y=0$ in the envelope gives $f(0)=0$, which is the minimum value.
 
 The constructed $x_1$ lies in $x_0+\operatorname{span}\{g_0\}$ and has $g_1^Tg_0=0$, so convexity makes it an exact minimizer on that line. Likewise $x_2$ lies in $x_0+\operatorname{span}\{g_0,g_1\}$ and $g_2$ is orthogonal to both spanning gradients, so it is an exact minimizer on that plane. Also $\|x_0-x_*\|=1$ and
 $$
