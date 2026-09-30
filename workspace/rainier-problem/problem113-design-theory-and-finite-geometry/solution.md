@@ -99,7 +99,7 @@ $$
 6-\frac{7}{2}z_{xy}+\frac{1}{2}z_{xy}^2.
 $$
 Therefore
-$
+$$
 N_2
 =
 55\cdot6
