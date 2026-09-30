@@ -15,7 +15,7 @@ For $0\leq a<H$, let $m(a)=|\{v>a\}|$. If $a<b$, the $(b-a)$-neighborhood of $\{
 $$
 m(a)\geq m(b)+2(b-a).
 $$
-Hence $e(a)=m(a)-2(H-a)$ is nonnegative and nonincreasing. Layer cake gives
+Therefore $e(a)=m(a)-2(H-a)$ is nonnegative and nonincreasing. Layer cake gives
 $$
 B=H^2+E,\qquad
 Q=\frac{H^4}{2}+\int_0^H3a^2e(a)\,da,
@@ -50,13 +50,13 @@ b_L=-\frac{b}{L-2b}<0,\qquad
 $$
 so $\Phi$ decreases and is strictly convex in $L$.
 
-Finally, if $\beta=B^{-1}\int_0^Lt,v(t)\,dt$ is the barycenter, then
+Finally, if $\beta=B^{-1}\int_0^Lt\,v(t)\,dt$ is the barycenter, then
 $$
 \sqrt B\leq\beta\leq L-\sqrt B.
 $$
-For the left inequality, $v(t)\leq t$ implies that the first moment of $\{v>a\}$ is at least $a,m(a)+m(a)^2/2$. Using reversed Chebyshev for $a$ and $e(a)$ and Cauchy-Schwarz for $e$,
+For the left inequality, $v(t)\leq t$ implies that the first moment of $\{v>a\}$ is at least $a\,m(a)+m(a)^2/2$. Using reversed Chebyshev for $a$ and $e(a)$ and Cauchy-Schwarz for $e$,
 $$
-\int_0^Lt,v(t)\,dt
+\int_0^Lt\,v(t)\,dt
 \geq
 H^3+\frac{3H}{2}E+\frac{E^2}{2H}
 \geq
@@ -89,7 +89,7 @@ Every positive excursion of area $A_i$ has length at least
 $$
 2\sqrt{A_i}\geq\frac{2A_i}{h},
 $$
-so their total occupied length is at least $2a/s$. Hence the negative excursions occupy total length at most
+so their total occupied length is at least $2a/s$. Therefore the negative excursions occupy total length at most
 $$
 S=1-\frac{2a}{s}.
 $$
@@ -130,7 +130,7 @@ F_s'(z)=
 \frac{2s^4z^3(2z-s)(s+z)^2(z^2-1)}
 {(sz^2+s+2z)^5}.
 $$
-Thus $F_s$ is maximized at $z=s/2$, with
+Therefore $F_s$ is maximized at $z=s/2$, with
 $$
 F_s(z)\leq\frac{s^6}{2(s^2+8)^3}.
 $$
@@ -254,7 +254,7 @@ G_s(z)
 \frac{1}{2000}.
 $$
 
-At a boundary minimizer, the boundary where the larger packet is triangular cannot minimize: its cap depth is $aw\geq ar$, while the other cap depth is at most $ar$, so transferring length toward the larger packet decreases the convex objective. Hence the smaller packet is triangular. If the larger packet has cap depth $av$, the one-sided derivative condition is
+At a boundary minimizer, the boundary where the larger packet is triangular cannot minimize: its cap depth is $aw\geq ar$, while the other cap depth is at most $ar$, so transferring length toward the larger packet decreases the convex objective. Therefore the smaller packet is triangular. If the larger packet has cap depth $av$, the one-sided derivative condition is
 $$
 -2r^3+2v^3\geq0,
 $$
@@ -277,7 +277,7 @@ K
 >
 \frac{3}{2},
 $$
-where the last inequality follows from $\sqrt{3}>19/11$ and $\sqrt{2}>7/5$. Thus $a\leq1/6$, so the objective is at most $1/2592<1/2000$.
+where the last inequality follows from $\sqrt{3}>19/11$ and $\sqrt{2}>7/5$. Therefore $a\leq1/6$, so the objective is at most $1/2592<1/2000$.
 
 For $1/2\leq r\leq5/8$, set
 $$
@@ -298,7 +298,7 @@ D\left(\frac{5}{8}\right)
 >
 \frac{113}{4320}>0,
 $$
-using $\sqrt{2}>7/5$ and $\sqrt{39}>31/5$. Thus $K\geq5r^2$, so $a\leq1/5$. Since $r^2w^2=r^2(1-r^2)$ is increasing on $r\leq1/\sqrt2$,
+using $\sqrt{2}>7/5$ and $\sqrt{39}>31/5$. Therefore $K\geq5r^2$, so $a\leq1/5$. Since $r^2w^2=r^2(1-r^2)$ is increasing on $r\leq1/\sqrt2$,
 $$
 r^2w^2\geq\frac{3}{16},
 $$
@@ -353,7 +353,7 @@ $$
 \frac{1}{2}\int_0^1x(t)\,dt
 =0.
 $$
-Thus all terminal constraints hold. The positive triangle contributes $1/1250$, while the two negative capped tents contribute $3/10000$, so
+Therefore all terminal constraints hold. The positive triangle contributes $1/1250$, while the two negative capped tents contribute $3/10000$, so
 $$
 \int_0^1x(t)^3\,dt
 =
