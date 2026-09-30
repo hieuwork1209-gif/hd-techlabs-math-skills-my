@@ -115,11 +115,15 @@ If some $\delta_C\neq0$ and $\dim W_G\geq r$, then $b\geq r+1$, hence
 $$
 e(G)\leq \binom z2+f(7-z-r),
 $$
-where either $z=0$ or $z\geq3$, and $z\leq6-r$. Checking these allowed $z$ gives
-$$
-10,6,4,2,1,0
-$$
-for $r=1,2,3,4,5,6$.
+where either $z=0$ or $z\geq3$, and $z\leq6-r$. The unbalanced maxima are explicit:
+$
+\begin{aligned}
+r=1:&\ \max\left\{f(6),\binom{3}{2}+f(3),\binom{4}{2}+f(2),\binom{5}{2}+f(1)\right\}=10,\\
+r=2:&\ \max\left\{f(5),\binom{3}{2}+f(2),\binom{4}{2}+f(1)\right\}=6,\\
+r=3:&\ \max\left\{f(4),\binom{3}{2}+f(1)\right\}=4,
+\end{aligned}
+$
+while $r=4,5,6$ give $f(3)=2$, $f(2)=1$, and $f(1)=0$.
 
 If every bipartite component is balanced, then $\dim W_G=b$. Every such component has even size, so because there are seven vertices, a non-bipartite part of odd size at least $3$ is present. This case is possible only for $r\leq2$. For $r=1$, the best choice is a $5$-vertex non-bipartite part together with one balanced $2$-vertex component, giving
 $$
@@ -167,7 +171,7 @@ $$
 $$
 for $r=5,4,3,2,6$, respectively.
 
-It remains to handle $r=1$. Now the $v_i$ are scalars. Counts $0,1,\ldots,5$ are attainable as follows: for $1\leq k\leq5$, take $k$ copies of $1$, one copy of $-1$, and choose the remaining $6-k$ scalars so that the total sum is zero and no additional opposite pair appears; for $k\leq4$ this is possible by avoiding finitely many forbidden values, and for $k=5$ the last scalar is $-4$. Count $0$ is obtained by a generic zero-sum tuple with no opposite pair. The remaining values are witnessed by
+It remains to handle $r=1$. Now the $v_i$ are scalars. Counts $0,1,\ldots,5$ are attainable as follows: for $1\leq k\leq5$, take $k$ copies of $1$, one copy of $-1$, and choose the remaining $6-k$ scalars so that the total sum is zero and no additional opposite pair appears; for $k\leq4$ the remaining affine solution space has positive dimension and finitely many forbidden hyperplanes cannot cover it, while for $k=5$ the last scalar is $-4$. Count $0$ is obtained by a generic zero-sum tuple with no opposite pair. The remaining values are witnessed by
 $$
 \begin{aligned}
 6&:(1,1,1,-1,-1,2,-3),\\
