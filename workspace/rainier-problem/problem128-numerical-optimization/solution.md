@@ -40,17 +40,15 @@ f(x_1)-f_*\leq\frac{1}{2}\|x_1-x_*\|^2.
 $$
 
 Step 2: Construct two lower-bound instances valid for every step size
-Let
-$$
+Using the notation of the problem,
+$
 W(h)=
-\sup\left\{
-f(x_1)-f_*:
-x_1=x_0-h\nabla f(x_0),\ 
-f\in\mathcal F_d,\ 
-\|x_0-x_*\|\leq1
-\right\},
-$$
-where $\mathcal F$ is the class from the problem.
+\sup_{\substack{d\geq1,\ f\in\mathcal F_d,\ x_*\in\operatorname*{argmin}f\\
+\|x_0-x_*\|\leq1}}
+\bigl(f(x_1)-f_*\bigr),
+\qquad
+x_1=x_0-h\nabla f(x_0).
+$
 
 First take the one-dimensional quadratic
 $$
