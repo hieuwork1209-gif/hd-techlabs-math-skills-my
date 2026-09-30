@@ -50,12 +50,16 @@ is nonnegative at every allowed integer value because
 $$
 T^2\in\{0,1,4,9,16,25\}.
 $$
-To distinguish $T=-5$ from the opposite endpoint $T=5$ while staying within the available degree-$5$ moments, multiply by the nonnegative linear factor $5-T$. This gives
-$$
+To distinguish $T=-5$ from the opposite endpoint $T=5$ while staying within the available degree-$5$ moments, multiply by the nonnegative linear factor $5-T$. At $T=-5$, the resulting numerator equals
+$
+10\cdot24\cdot21=5040,
+$
+so normalization at the target endpoint gives
+$
 Q(T)
 =
 \frac{(5-T)(T^2-1)(T^2-4)}{5040}.
-$$
+$
 For every integer $-5\leq T\leq5$,
 $$
 Q(T)\geq0,
@@ -100,8 +104,8 @@ $$
 =
 \frac{35}{2}.
 $$
-Thus
-$$
+Therefore
+$
 \begin{aligned}
 \mathbb P(S=0)
 &=
@@ -125,7 +129,7 @@ Equality requires $Q(T)=0$ whenever $T\neq-5$ has positive probability. On the a
 $$
 T\in\{-2,-1,1,2,5\}.
 $$
-Hence every maximizing law must satisfy
+Therefore every maximizing law must satisfy
 $$
 S\in\{0,3,4,6,7,10\}
 $$
