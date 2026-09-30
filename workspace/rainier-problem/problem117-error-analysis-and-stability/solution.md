@@ -89,7 +89,7 @@ c_0=\beta_4(r)\widehat\beta_4.
 $$
 Put
 $
-u=r+\frac1r,\qquad s=u+2.
+u=r+\frac{1}{r},\qquad s=u+2.
 $
 Let
 $
@@ -143,7 +143,7 @@ z=\frac{1+x}{1-x},\qquad q_s(x)=\frac{(1-x)^4}{8}P_s\left(\frac{1+x}{1-x}\right)
 $$
 Thus
 $$
-q_s(x)=\frac18\left[p_4(1+x)^4+p_3(1+x)^3(1-x)+p_2(1+x)^2(1-x)^2+p_1(1+x)(1-x)^3+p_0(1-x)^4\right].
+q_s(x)=\frac{1}{8}\left[p_4(1+x)^4+p_3(1+x)^3(1-x)+p_2(1+x)^2(1-x)^2+p_1(1+x)(1-x)^3+p_0(1-x)^4\right].
 $$
 Collecting powers of $x$ gives
 $$
@@ -206,7 +206,7 @@ Second,
 $$
 10B-9A=s^2(2532-244s)+772s+41>0
 $$
-because $s<17/2$. Hence $B>\frac9{10}A$, and therefore
+because $s<17/2$. Hence $B>\frac{9}{10}A$, and therefore
 $$
 CB>9DA>8DA.
 $$
@@ -244,11 +244,11 @@ a_3a_2a_1-a_4a_1^2-a_3^2a_0=2\left(CBA-2DA^2-120C^2s^3\right).
 $$
 From $CB>8DA$,
 $$
-2DA^2<\frac14 CBA,
+2DA^2<\frac{1}{4} CBA,
 $$
 and from $AB>480Cs^3$,
 $$
-120C^2s^3<\frac14 CBA.
+120C^2s^3<\frac{1}{4} CBA.
 $$
 Hence the second Hurwitz determinant is positive. All roots of $q_s$ satisfy $\operatorname{Re}x<0$. The Cayley map from Step 2 then gives $|z|<1$, so every first-difference period multiplier is strictly inside the unit disk for $2\leq u<u_*$.
 
@@ -292,7 +292,7 @@ Step 5: Recover the lower endpoint and the requested scalar
 
 For $r>0$,
 $$
-u=r+\frac1r\geq2.
+u=r+\frac{1}{r}\geq2.
 $$
 Steps 3 and 4 give zero-stability exactly when
 $$
@@ -302,7 +302,7 @@ Equivalently,
 $$
 r_-\leq r\leq r_+,
 \qquad
-r_\pm=\frac{u_*\pm\sqrt{u_*^2-4}}{2},
+r_{\pm}=\frac{u_*\pm\sqrt{u_*^2-4}}{2},
 \qquad
 r_-r_+=1.
 $$
