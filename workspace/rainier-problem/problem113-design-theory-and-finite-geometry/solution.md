@@ -162,11 +162,19 @@ A_3:&\quad
 $$
 They are all distinct, so no triple can occur in two translated blocks. Every point occurs four times in each translation orbit, therefore twelve times in the full family, so the parity condition also holds. This is therefore a maximizing family.
 
-It remains to count its pair multiplicities. For an unordered pair in $\mathbb{Z}_{11}$, use its cyclic distance in $\{1,2,3,4,5\}$. Across the three base blocks, the eighteen internal pairs have distance counts
-$$
-(4,4,3,3,4)
-$$
-for distances $1,2,3,4,5$, respectively. Translating a base pair of a fixed distance runs once through all eleven pairs of that distance. Therefore every point-pair has block multiplicity $4$ at distances $1,2,5$, and block multiplicity $3$ at distances $3,4$.
+It remains to count its pair multiplicities. For an unordered pair in $\mathbb{Z}_{11}$, use its cyclic distance in $\{1,2,3,4,5\}$. For distances $1,2,3,4,5$, the three base blocks contribute respectively
+$
+(2,2,1,1,0),
+\qquad
+(1,1,0,2,2),
+\qquad
+(1,1,2,0,2).
+$
+Adding these vectors gives the total distance-count vector
+$
+(4,4,3,3,4).
+$
+Translating a base pair of a fixed distance runs once through all eleven pairs of that distance. Therefore every point-pair has block multiplicity $4$ at distances $1,2,5$, and block multiplicity $3$ at distances $3,4$.
 
 Every $z_{xy}=4-d_{xy}$ is therefore either $0$ or $1$. There are exactly $22$ values equal to $1$, so equality holds in the bound from Step 3:
 $$
