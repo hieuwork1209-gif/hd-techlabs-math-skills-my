@@ -185,7 +185,7 @@ $$
 Since $w\geq s$ implies $r^2\leq1-s^2<1/9$,
 $$
 K_1
-=(w^3-s^3)+s(w^2-r^2)+r\bigl(2(1-s^2)-r^2\bigr)
+=s+(w^3-s^3)+s(w^2-r^2)+r\bigl(2(1-s^2)-r^2\bigr)
 \geq\frac{7s}{9}.
 $$
 Thus
