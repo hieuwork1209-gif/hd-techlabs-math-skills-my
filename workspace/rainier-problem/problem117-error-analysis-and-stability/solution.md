@@ -88,35 +88,54 @@ c_1=\beta_2(r)\widehat\beta_4+\beta_4(r)\widehat\beta_2-\beta_3(r)\widehat\beta_
 c_0=\beta_4(r)\widehat\beta_4.
 $$
 Put
-$$
-s=r+\frac1r+2.
-$$
-Using
-$$
-r+\frac1r=s-2,\qquad r^2+\frac1{r^2}=s^2-4s+2,\qquad r^3+\frac1{r^3}=s^3-6s^2+9s-2,
-$$
-one obtains
-$$
-L(s):=N(r)N(1/r)=160s^3+492s^2+162s+9>0,
-$$
-and the coefficient formulas above reduce to
-$$
-L(s)\Delta_r(z)=P_s(z)=p_4z^4+p_3z^3+p_2z^2+p_1z+p_0,
-$$
-with
-$$
+$
+u=r+\frac1r,\qquad s=u+2.
+$
+Let
+$
+L=N(r)N(1/r).
+$
+Substituting the displayed $\beta_k$ into $c_3,c_2,c_1,c_0$, putting every term over the common denominator $L$, and pairing reciprocal powers gives
+$
+L=160\left(r^3+r^{-3}\right)+1452\left(r^2+r^{-2}\right)+4530\left(r+r^{-1}\right)+6485,
+$
+$
+Lc_3=304\left(r^3+r^{-3}\right)+1348\left(r^2+r^{-2}\right)+2442\left(r+r^{-1}\right)+2781,
+$
+$
+Lc_2=16\left(r^3+r^{-3}\right)+108\left(r^2+r^{-2}\right)+362\left(r+r^{-1}\right)+547,
+$
+$
+Lc_1=-36\left(r^2+r^{-2}\right)-170\left(r+r^{-1}\right)-269,
+$
+$
+Lc_0=8\left(r^2+r^{-2}\right)+36\left(r+r^{-1}\right)+56.
+$
+Now
+$
+r^2+r^{-2}=u^2-2,\qquad r^3+r^{-3}=u^3-3u,
+$
+so, after replacing $u$ by $s-2$,
+$
+L=160s^3+492s^2+162s+9>0.
+$
+Consequently
+$
+L\Delta_r(z)=P_s(z)=p_4z^4+p_3z^3+p_2z^2+p_1z+p_0,
+$
+where
+$
 p_4=160s^3+492s^2+162s+9,
-$$
-$$
+$
+$
 p_3=304s^3-476s^2-214s-15,
-$$
-$$
+$
+$
 p_2=16s^3+12s^2+74s+7,
-$$
-$$
+$
+$
 p_1=-(36s^2+26s+1),\qquad p_0=4s(2s+1).
-$$
-For instance, $c_0=\beta_4(r)\beta_4(1/r)=4s(2s+1)/L(s)$ because $s=(r+1)^2/r$ and $2s+1=(2r+1)(r+2)/r$; the displayed formulas for $c_3,c_2,c_1$ give the other three numerators by the same substitution.
+$
 
 Now set
 $$
