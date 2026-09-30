@@ -136,7 +136,7 @@ Its determinant is
 $$
 \frac{1}{45\cdot225}-\frac{1}{105^2}
 =
-\frac{16}{496125}>0,
+\frac{4}{496125}>0,
 $$
 so $M$ is invertible.
 
