@@ -19,8 +19,8 @@ Suppose a contributing monomial uses the factor $xyz$ exactly $k$ times. Then th
 $$
 m=k+3(n-k)=3n-2k.
 $$
-Hence
-$$
+Therefore
+$
 a_n
 =
 \sum_{k=0}^n
@@ -128,7 +128,7 @@ $$
 3\log q.
 \end{aligned}
 $$
-Hence the exponential growth is
+The exponential growth is therefore
 $$
 \exp\!\left(n\phi(\tau)\right)=q^{3n}.
 $$
@@ -138,7 +138,7 @@ Choose $\varepsilon>0$ so that
 $$
 0<\tau-\varepsilon<\tau+\varepsilon<1.
 $$
-Strict concavity gives some $\eta>0$ such that
+Extend $\phi$ continuously to $[0,1]$ using $0\log0=0$. Strict concavity gives some $\eta>0$ such that
 $$
 \phi(t)\leq\phi(\tau)-\eta
 $$
@@ -146,17 +146,39 @@ whenever
 $$
 t\in[0,1]\setminus(\tau-\varepsilon,\tau+\varepsilon).
 $$
-The factorial terms grow at most exponentially on this compact range, so the part of the sum outside this interval is
+The elementary Stirling bounds
 $$
-O\!\left(q^{3n}e^{-\eta n}\operatorname{poly}(n)\right),
+c_1\sqrt{m}\left(\frac{m}{e}\right)^m
+\leq
+m!
+\leq
+c_2\sqrt{m+1}\left(\frac{m}{e}\right)^m
+$$
+for integers $m\geq1$, together with the cases where one denominator factorial is $0!$, give a constant $C$ such that every summand satisfies
+$$
+\frac{(3n-2k)!}{k!(n-k)!^3}
+\leq
+Cn^2\exp\!\left(n\phi\!\left(\frac{k}{n}\right)\right).
+$$
+Hence the part with
+$$
+\left|\frac{k}{n}-\tau\right|\geq\varepsilon
+$$
+is
+$$
+O\!\left(n^3q^{3n}e^{-\eta n}\right),
 $$
 which is negligible compared with $q^{3n}/n$.
 
-Inside the interval, write
+On $[\tau-\varepsilon,\tau+\varepsilon]$, the third derivative of $\phi$ is bounded. Write
 $$
 k=n\tau+u\sqrt n.
 $$
-Taylor expansion at the unique saddle gives, uniformly for bounded $u$,
+For
+$$
+|u|\leq n^{1/10},
+$$
+Taylor's formula gives uniformly
 $$
 n\phi\!\left(\frac{k}{n}\right)
 =
@@ -164,9 +186,34 @@ n\phi(\tau)
 +
 \frac{\phi''(\tau)}{2}u^2
 +
-O\!\left(\frac{|u|^3}{\sqrt n}\right).
+O\!\left(n^{-1/5}\right).
 $$
-The uniform Stirling estimate from Step 1 and the strict quadratic decay supplied by $\phi''(\tau)<0$ allow the central window to be enlarged to $|u|\leq n^{1/10}$, while the remaining part of the interior interval is exponentially smaller. Thus the sum is a Gaussian Riemann sum:
+The Stirling prefactor from Step 1 is also uniform there and tends to its value at $\tau$.
+
+For the remaining indices inside the $\varepsilon$-interval, with
+$$
+n^{1/10}<|u|\leq\varepsilon\sqrt n,
+$$
+continuity and $\phi''(\tau)<0$ give a constant $c>0$ such that
+$$
+\phi(t)\leq\phi(\tau)-c(t-\tau)^2.
+$$
+Their total contribution is therefore
+$$
+O\!\left(q^{3n}e^{-cn^{1/5}}\operatorname{poly}(n)\right),
+$$
+again negligible compared with $q^{3n}/n$.
+
+The central lattice has $u$-spacing $n^{-1/2}$. Thus
+$$
+\frac{1}{\sqrt n}
+\sum_{|u|\leq n^{1/10}}
+\exp\!\left(\frac{\phi''(\tau)}{2}u^2\right)
+\longrightarrow
+\int_{-\infty}^{\infty}
+\exp\!\left(\frac{\phi''(\tau)}{2}u^2\right)\,du.
+$$
+Combining this Riemann sum with Step 1 gives
 $$
 a_n
 \sim
@@ -176,14 +223,11 @@ a_n
 \int_{-\infty}^{\infty}
 \exp\!\left(\frac{\phi''(\tau)}{2}u^2\right)\,du.
 $$
-Since
+The Gaussian integral equals
 $$
-\int_{-\infty}^{\infty}
-\exp\!\left(\frac{\phi''(\tau)}{2}u^2\right)\,du
-=
-\sqrt{\frac{2\pi}{-\phi''(\tau)}},
+\sqrt{\frac{2\pi}{-\phi''(\tau)}}.
 $$
-we obtain
+Therefore
 $$
 a_n
 \sim
@@ -214,21 +258,21 @@ Hence
 $$
 a_n
 \sim
-\frac{q}{2\pi\sqrt3}\frac{q^{3n}}{n}.
+\frac{q}{2\pi\sqrt{3}}\frac{q^{3n}}{n}.
 $$
 It follows that
 $$
 \lim_{n\to\infty}\frac{na_n}{q^{3n}}
 =
-\frac{q}{2\pi\sqrt3}.
+\frac{q}{2\pi\sqrt{3}}.
 $$
-Final Answer: $\boxed{\frac{q}{2\pi\sqrt3}}$
+Final Answer: $\boxed{\frac{q}{2\pi\sqrt{3}}}$
 
 ---
 
 ## Answer
 
-$\frac{q}{2\pi\sqrt3}$
+$\frac{q}{2\pi\sqrt{3}}$
 
 ---
 
