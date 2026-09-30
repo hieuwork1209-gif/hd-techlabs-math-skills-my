@@ -1,177 +1,186 @@
 ## Steps
 
-Step 1: Set up the interval invariant
-For a finite linear order, adjoin two virtual endpoints
+Step 1: Establish a distance-halving certificate for Spoiler
+For vertices $x,y$ in a graph, let $d(x,y)$ be their graph distance, with
 $$
--\infty
-\qquad\text{and}\qquad
-+\infty.
+d(x,y)=\infty
 $$
-After some rounds, list the distinct pebbled elements in increasing order between these endpoints. Consecutive pebbled or virtual endpoints determine gaps. The size of a gap is the number of unpebbled elements strictly between its endpoints.
+when they lie in different connected components.
 
-A partial isomorphism between two linear orders must preserve the order of the pebbled elements, so corresponding pebbles determine corresponding gaps.
+Suppose two already matched pebble pairs have distances
+$$
+d\neq e
+$$
+in the two structures and
+$$
+\min(d,e)\leq2^s.
+$$
+Then Spoiler can force a win in at most $s$ further rounds.
 
-For an integer $s\geq0$, define
-$$
-T_s=2^s-1.
-$$
-With $s$ rounds remaining, call two corresponding gaps of sizes $d,e$ admissible when
-$$
-d=e
-$$
-or
-$$
-d,e\geq T_s.
-$$
+Use induction on $s$. For $s=0$, the smaller distance is $0$ or $1$. If it is $0$, equality is already violated; if it is $1$, adjacency is already violated.
 
-Step 2: Maintain admissible gaps for Duplicator
-We show by induction on $s$ that if every corresponding gap is admissible with $s$ rounds remaining, then Duplicator can survive those $s$ rounds.
+Now let $s\geq1$. Suppose without loss of generality that
+$$
+d<e,
+\qquad
+d\leq2^s.
+$$
+Spoiler plays a midpoint vertex on a shortest path of length $d$ in the first graph. The two new distances from this midpoint to the endpoints are at most
+$$
+2^{s-1}.
+$$
+If Duplicator could match both of those distances exactly, the triangle inequality in the second graph would give
+$$
+e\leq d,
+$$
+a contradiction. Thus one of the two new matched pebble pairs has unequal distances and smaller distance at most $2^{s-1}$. The induction hypothesis applies.
 
-For $s=0$ there is nothing to play. Suppose $s\geq1$, and let
+Step 2: Build a locality strategy for Duplicator
+Let
 $$
-T=T_{s-1}=2^{s-1}-1.
+A=C_{2^{m+1}},
+\qquad
+B=C_{2^m}\sqcup C_{2^m},
 $$
-Then
-$$
-T_s=2T+1.
-$$
+where graph distance across the two components of $B$ is $\infty$.
 
-If Spoiler repeats a previously chosen element, Duplicator repeats the corresponding element. Otherwise Spoiler chooses a new element inside a gap of size $d$.
+Duplicator will survive $m$ rounds. On the first round, Duplicator answers an arbitrary chosen vertex by an arbitrary vertex of the other graph. There are then
+$$
+m-1
+$$
+rounds left.
 
-If the corresponding gap has the same size $e=d$, Duplicator chooses the element in the same relative position. The two new pairs of gaps then have equal sizes.
+We use the following invariant with $s$ rounds remaining. For every two matched pebbles, either their graph distances are equal and less than
+$$
+2^{s+1},
+$$
+or both distances are at least $2^{s+1}$, where $\infty$ counts as larger than every finite number. In addition, whenever a collection of pebbles lies inside an open ball of radius $2^s$ in one graph, the corresponding pebbles occupy the same positions in the corresponding path segment of the other graph, up to reflection.
 
-Now assume
+This local-path clause makes sense because
 $$
-d,e\geq2T+1.
+s\leq m-1
 $$
-Suppose Spoiler's chosen element splits the first gap into subgaps of sizes $a,b$, so
+throughout the remaining game, while every cycle in both structures has length at least
 $$
-a+b=d-1.
+2^m\geq2^{s+1}.
 $$
-If $a<T$, Duplicator chooses the response so that the corresponding left subgap also has size $a$. Then
-$$
-b=d-1-a
-\geq
-2T-(T-1)
-=
-T+1,
-$$
-and the other new subgap in the response order also has size at least $T+1$. The case $b<T$ is symmetric.
+Hence every open ball of radius $2^s$ is a path.
 
-If both $a$ and $b$ are at least $T$, Duplicator chooses a point in the corresponding gap that leaves at least $T$ elements on each side. This is possible because
-$$
-e-1\geq2T.
-$$
+Assume the invariant holds with $s\geq1$ rounds remaining and Spoiler chooses a new vertex $x$. Let $\mathcal N$ be the set of old pebbles whose distance from $x$ is less than $2^s$.
 
-Every new corresponding gap pair is therefore admissible for $s-1$ remaining rounds. The induction proves Duplicator's strategy.
+If $\mathcal N$ is nonempty, all of its pebbles together with $x$ lie in one path segment of length less than $2^{s+1}$. The current invariant identifies the corresponding old pebbles with the same path coordinates, up to reflection. Duplicator chooses the vertex $y$ at the corresponding coordinate. Then every distance from $x$ to a pebble in $\mathcal N$ is matched exactly.
 
-Step 3: Build the converse interval strategy for Spoiler
-Suppose a corresponding pair of gaps has unequal sizes
-$$
-d<e
-$$
-and
-$$
-d<T_s.
-$$
-We show by induction on $s$ that Spoiler can force a win in at most $s$ rounds by playing inside these gaps.
+For any old pebble outside $\mathcal N$, the corresponding pebble must stay at distance at least $2^s$ from $y$. Otherwise it would lie in the same local path segment as the pebbles in $\mathcal N$, and the path-coordinate correspondence would force its original mate to lie within distance less than $2^s$ of $x$, contradicting the definition of $\mathcal N$. Thus the invariant is preserved with $s-1$ rounds remaining.
 
-For $s=1$, we have
+If $\mathcal N$ is empty, Duplicator chooses a vertex $y$ at distance at least $2^s$ from every old response pebble. Such a vertex always exists. At this stage at most
 $$
-T_1=1.
+m-s
 $$
-Therefore $d=0<e$. Spoiler chooses any element in the larger gap. There is no element in the smaller corresponding gap, so Duplicator cannot preserve the order relation to the two endpoints.
-
-Now let $s\geq2$, and put
+vertices have already been pebbled in either graph. A ball of radius $2^s-1$ in a cycle contains at most
 $$
-T=T_{s-1}.
+2^{s+1}-1
 $$
-If
+vertices, so the total number of forbidden vertices is at most
 $$
-d<T,
+(m-s)(2^{s+1}-1).
 $$
-the induction hypothesis with $s-1$ already applies.
-
-It remains to treat
+Put
 $$
-T\leq d<e
-$$
-with
-$$
-d<T_s=2T+1.
-$$
-Spoiler chooses an element in the larger gap leaving exactly $T$ elements on its left. The two subgaps there have sizes
-$$
-T
-\qquad\text{and}\qquad
-e-1-T.
-$$
-
-Duplicator must answer inside the smaller corresponding gap to preserve order. Write the resulting subgap sizes as
-$$
-a+b=d-1.
+k=m-s\geq1.
 $$
 Since
 $$
-d-1<2T,
+k\leq2^{k-1},
 $$
-at least one of $a,b$ is less than $T$.
+we have
+$$
+k(2^{m-k+1}-1)
+<
+2^{m+1},
+$$
+which is the total number of vertices in each structure. Therefore some admissible $y$ exists. All new distances are then at least $2^s$, so the invariant again holds for $s-1$ rounds.
 
-If $a<T$, then the left new gap pair has sizes $a$ and $T$, so it is unequal with one size below $T=T_{s-1}$. The induction hypothesis applies.
+After the first response the invariant is vacuous except for one pebble pair, so the induction applies through all remaining $m-1$ rounds. Duplicator wins the $m$-round game.
 
-If instead $b<T$, suppose the right new gap pair were admissible for $s-1$ rounds. Because $b<T$, admissibility would force
+Step 3: Force a win in $m+1$ rounds
+Set
 $$
-b=e-1-T.
+q=2^{m-1}.
 $$
-The left response subgap must then satisfy
+Spoiler first plays a vertex $a_0$ of the long cycle $A$. After Duplicator responds with $b_0$, Spoiler chooses a vertex $a_1$ satisfying
 $$
-a\geq T,
+d_A(a_0,a_1)=q.
 $$
-and therefore
-$$
-d-1=a+b
-\geq
-T+(e-1-T)
-=
-e-1,
-$$
-which contradicts $d<e$. In this case too, one of the new gap pairs is unequal with one size below $T$, and the induction hypothesis applies.
+Let Duplicator answer with $b_1$.
 
-Therefore Spoiler wins within $s$ rounds whenever a corresponding gap pair violates the admissibility criterion.
+If
+$$
+d_B(b_0,b_1)\neq q,
+$$
+then the two matched distances are unequal and their smaller value is at most
+$$
+q=2^{m-1}.
+$$
+There are $m-1$ rounds left, so Step 1 gives Spoiler a win.
 
-Step 4: Apply the two interval strategies to the two orders
-Let
+The only remaining case is
 $$
-A_m=\{1,\ldots,2^m\},
-\qquad
-B_m=\{1,\ldots,2^m+1\},
+d_B(b_0,b_1)=q.
 $$
-with their usual linear orders.
+Then $b_0,b_1$ lie in the same short cycle and are antipodal.
 
-Before any move, the virtual endpoints determine one gap in each structure, of sizes
+In the long cycle $A$, the two vertices $a_0,a_1$ cut the cycle into arcs of lengths
 $$
-2^m
+q
 \qquad\text{and}\qquad
-2^m+1.
+3q.
 $$
+Spoiler now chooses $a_2$ on the longer arc at distance
+$$
+\frac{q}{2}=2^{m-2}
+$$
+from $a_0$. Therefore
+$$
+d_A(a_2,a_0)=\frac{q}{2},
+\qquad
+d_A(a_2,a_1)=\frac{3q}{2}.
+$$
+Let Duplicator respond with $b_2$.
 
-For an $m$-round game,
+If $b_2$ lies in the other component of $B$, then
 $$
-T_m=2^m-1.
+d_B(b_2,b_0)=\infty,
 $$
-Both initial gaps have size at least $T_m$, so Step 2 gives Duplicator a winning strategy for all $m$ rounds.
+while
+$$
+d_A(a_2,a_0)=2^{m-2}.
+$$
+Step 1 gives a win in the remaining $m-2$ rounds.
 
-For an $(m+1)$-round game,
+Suppose instead that $b_2$ lies in the same short cycle as $b_0,b_1$. If
 $$
-T_{m+1}=2^{m+1}-1.
+d_B(b_2,b_0)\neq\frac{q}{2},
 $$
-The two initial gap sizes are unequal, and
+Step 1 again applies to the pair $(a_2,a_0)$ and its mate. If
 $$
-2^m<T_{m+1}.
+d_B(b_2,b_0)=\frac{q}{2},
 $$
-Step 3 gives Spoiler a winning strategy in at most $m+1$ rounds.
+then antipodality of $b_0,b_1$ forces
+$$
+d_B(b_2,b_1)=\frac{q}{2}.
+$$
+But
+$$
+d_A(a_2,a_1)=\frac{3q}{2},
+$$
+so Step 1 applies to the pair $(a_2,a_1)$ and its mate, again with smaller distance
+$$
+\frac{q}{2}=2^{m-2}.
+$$
+Thus Spoiler wins within the remaining $m-2$ rounds.
 
-Duplicator wins the $m$-round game, while Spoiler wins the $(m+1)$-round game. The least winning length is
+Step 4: Identify the exact threshold
+Step 2 gives Duplicator a winning strategy for $m$ rounds. Step 3 gives Spoiler a winning strategy for $m+1$ rounds. Therefore the least winning length is
 $$
 m+1.
 $$
@@ -196,7 +205,7 @@ $m+1$
 ## Solution Concepts
 
 - Ehrenfeucht-Fraisse games
-- finite linear orders
-- partial isomorphisms
-- interval splitting
-- inductive game strategies
+- graph distance
+- locality invariants
+- midpoint strategies
+- disconnected graph components
