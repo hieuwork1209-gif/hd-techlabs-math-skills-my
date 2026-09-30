@@ -2,46 +2,26 @@
 
 ## LaTeX (Normalized)
 
-Let
+Let $\mathcal F$ be the class of differentiable convex functions
 $$
-A=
-\begin{pmatrix}
-1&0\\
-0&4
-\end{pmatrix},
-\qquad
-B=
-\begin{pmatrix}
-\frac{11}{2}&-\frac{7}{2}\\
--\frac{7}{2}&\frac{11}{2}
-\end{pmatrix},
+f:\mathbb R^d\to\mathbb R
 $$
-and consider
+whose gradients are $1$-Lipschitz and which attain their minimum value $f_*$. For $h>0$, perform one gradient step
 $$
-f(x)=\frac{1}{2}x^TAx,
-\qquad
-g(x)=\frac{1}{2}x^TBx.
+x_1=x_0-h\nabla f(x_0).
 $$
-For $\gamma>0$, define the reflected proximal maps
+Define
 $$
-R_A(\gamma)=(I-\gamma A)(I+\gamma A)^{-1},
-\qquad
-R_B(\gamma)=(I-\gamma B)(I+\gamma B)^{-1},
+W(h)=
+\sup_{\substack{d\geq1,\ f\in\mathcal F,\ x_*\in\operatorname*{argmin}f\\
+\|x_0-x_*\|\leq1}}
+\bigl(f(x_1)-f_*\bigr).
 $$
-and the standard Douglas-Rachford iteration matrix
+Let $h_*$ be the unique minimizer of $W(h)$ over $h>0$, and let
 $$
-T_\gamma=
-\frac{1}{2}\left(I+R_B(\gamma)R_A(\gamma)\right).
+W_*=\min_{h>0}W(h).
 $$
-Let $r(\cdot)$ denote spectral radius.
-
-For a real polynomial $F$ having exactly one zero in $(u,v)$, write
-$$
-\operatorname{root}(F;u,v)
-$$
-for that zero.
-
-Determine the unique value of $\gamma>0$ minimizing $r(T_\gamma)$.
+Determine the ordered pair $(h_*,W_*)$ exactly.
 
 ---
 
@@ -52,10 +32,10 @@ Determine the unique value of $\gamma>0$ minimizing $r(T_\gamma)$.
 | **Domain** | Optimization and Numerical Mathematics |
 | **Sub-domain** | Numerical optimization |
 | **Problem Type** | Optimization |
-| **Answer Type** | Exact scalar |
+| **Answer Type** | Tuple or ordered list |
 
 ---
 
 ## Domain Explanation
 
-The problem asks for the stepsize that gives the fastest asymptotic linear convergence of standard Douglas-Rachford splitting applied to two strongly convex quadratic terms with noncommuting Hessians. The requested object is an algorithm parameter obtained by minimizing the spectral radius of the iteration matrix, so the primary sub-domain is Numerical optimization.
+The problem asks for the constant gradient-descent step size that minimizes the exact worst-case one-step objective error over all smooth convex objectives with a normalized initial distance. The main task is parameter tuning for a first-order optimization method under a worst-case performance criterion, so the primary sub-domain is Numerical optimization.
