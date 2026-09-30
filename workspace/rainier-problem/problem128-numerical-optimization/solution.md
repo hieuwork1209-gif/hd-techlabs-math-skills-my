@@ -91,22 +91,33 @@ g_\beta(m(\beta))\geq\beta_*.
 $$
 Therefore the unrestricted two-step factor is at least $\beta_*$.
 
-To attain it, choose
-$$
-\alpha_1=\frac{1+\beta_*}{2},
-\qquad
-\alpha_2=\frac{1+\beta_*}{5}.
-$$
-Because $(1+\beta_*)^2=10\beta_*$,
-$$
+At $\beta=\beta_*$, the extremal trace polynomial from this step is
+$
+\tau(\lambda)=\beta_*(\lambda^2-7\lambda+8),
+$
+because $1+\beta_*^2=8\beta_*$. Matching its coefficients with the trace formula from Step 1 forces
+$
 \alpha_1\alpha_2=\beta_*,
 \qquad
 (1+\beta_*)(\alpha_1+\alpha_2)=7\beta_*.
-$$
-Hence
-$$
-\tau(\lambda)=\beta_*(\lambda^2-7\lambda+8),
-$$
+$
+The relation $\beta_*^2-8\beta_*+1=0$ also gives
+$
+(1+\beta_*)^2=10\beta_*.
+$
+Therefore
+$
+\alpha_1+\alpha_2=\frac{7(1+\beta_*)}{10},
+\qquad
+\alpha_1\alpha_2=\frac{(1+\beta_*)^2}{10}.
+$
+The two positive roots of the resulting quadratic in the step size are
+$
+\alpha_1=\frac{1+\beta_*}{2},
+\qquad
+\alpha_2=\frac{1+\beta_*}{5},
+$
+up to order. These values realize the displayed trace, so
 so $|\tau(\lambda)|\leq2\beta_*$ on $E$. Every two-step monodromy therefore has spectral radius exactly $\beta_*$, and
 $$
 \rho_2=4-\sqrt{15}.
@@ -125,7 +136,11 @@ For $0\leq\beta<1$, its two roots lie in the closed unit disk exactly when
 $$
 |t|\leq1+\beta.
 $$
-To see the nontrivial direction, if the roots are real then their product is $\beta\geq0$. If one root had modulus greater than $1$, the sum of the root magnitudes would exceed $1+\beta$, contradicting $|t|\leq1+\beta$; if the roots are nonreal, both have modulus $\sqrt\beta<1$.
+To see the nontrivial direction, suppose the roots are real. Their product is $\beta\geq0$, so they have the same sign. If one has modulus $s>1$, the other has modulus $\beta/s$, and
+$
+|t|=s+\frac{\beta}{s}>1+\beta,
+$
+because $s+\beta/s$ is increasing for $s\geq1$. This contradicts $|t|\leq1+\beta$. If the roots are nonreal, they are conjugates with modulus $\sqrt\beta<1$.
 
 Since $\alpha>0$, the upper inequality $t\leq1+\beta$ is automatic. The lower inequality for every $\lambda\in E$ is equivalent to
 $$
@@ -221,14 +236,26 @@ $$
 $$
 
 Step 5: Attain the stable lower bound
-Take
-$$
+Equality in the last maximum of Step 4 requires $s=1/2$. Equality in
+$
+(5-u_1)(5-u_2)\geq4(5-u_1u_2)
+$
+requires one of $u_1,u_2$ to equal $1$. Up to order, take
+$
+u_1=1,\qquad u_2=\frac12.
+$
+Equality in $1-x_i\geq(5-u_i)/6$ then selects the larger admissible $x_i$, giving
+$
+x_1=\frac13,\qquad x_2=\frac14.
+$
+Therefore set
+$
 \beta=\widehat\beta,
 \qquad
 \alpha_1=\frac{1+\widehat\beta}{3},
 \qquad
 \alpha_2=\frac{1+\widehat\beta}{4}.
-$$
+$
 Both one-step matrices are stable by Step 3. The normalized residual polynomial is
 $$
 q(\lambda)=\left(1-\frac{\lambda}{3}\right)
