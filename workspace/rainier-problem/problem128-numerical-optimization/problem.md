@@ -2,26 +2,32 @@
 
 ## LaTeX (Normalized)
 
-For each integer $d\geq1$, let $\mathcal F_d$ be the class of differentiable convex functions
-$
-f:\mathbb R^d\to\mathbb R
-$
-whose gradients are $1$-Lipschitz and which attain their minimum value $f_*$. For $h>0$, perform one gradient step
+Let $\mathcal F$ be the class of differentiable convex functions
 $$
-x_1=x_0-h\nabla f(x_0).
+f:\mathbb R^3\to\mathbb R
 $$
-Define
+whose gradients are $1$-Lipschitz and which attain their minimum value $f_*$. Consider all choices of
 $$
-W(h)=
-\sup_{\substack{d\geq1,\ f\in\mathcal F_d,\ x_*\in\operatorname*{argmin}f\\
-\|x_0-x_*\|\leq1}}
-\bigl(f(x_1)-f_*\bigr).
+f\in\mathcal F,\qquad
+x_*\in\operatorname*{argmin}f,\qquad
+\|x_0-x_*\|\leq1,
 $$
-Let $h_*$ be the unique minimizer of $W(h)$ over $h>0$, and let
+together with points obtained by two exact span searches:
 $$
-W_*=\min_{h>0}W(h).
+g_0=\nabla f(x_0),
+\qquad
+x_1\in\operatorname*{argmin}_{x\in x_0+\operatorname{span}\{g_0\}}f(x),
 $$
-Determine the ordered pair $(h_*,W_*)$ exactly.
+$$
+g_1=\nabla f(x_1),
+\qquad
+x_2\in\operatorname*{argmin}_{x\in x_0+\operatorname{span}\{g_0,g_1\}}f(x).
+$$
+The supremum below is taken over all such choices for which the displayed minimizers exist:
+$$
+W_2=\sup\bigl(f(x_2)-f_*\bigr).
+$$
+Determine $W_2$ exactly.
 
 ---
 
@@ -32,10 +38,10 @@ Determine the ordered pair $(h_*,W_*)$ exactly.
 | **Domain** | Optimization and Numerical Mathematics |
 | **Sub-domain** | Numerical optimization |
 | **Problem Type** | Optimization |
-| **Answer Type** | Tuple or ordered list |
+| **Answer Type** | Exact scalar |
 
 ---
 
 ## Domain Explanation
 
-The problem asks for the constant gradient-descent step size that minimizes the exact worst-case one-step objective error over all smooth convex objectives with a normalized initial distance. The main task is parameter tuning for a first-order optimization method under a worst-case performance criterion, so the primary sub-domain is Numerical optimization.
+The problem asks for the exact worst-case two-stage objective error of a first-order optimization scheme that minimizes over the span of the gradients collected so far. The main mathematical task is worst-case convergence analysis of an iterative numerical optimization method, so the primary sub-domain is Numerical optimization.
