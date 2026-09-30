@@ -10,7 +10,7 @@ Form the bipartite graph with point-vertices $P_v$ and line-vertices $L_u$, inde
 $$
 P_v\sim L_u\iff u\cdot v=0.
 $$
-Give its $14$ vertices the shortest-path metric $d$.
+Let $X$ be its $14$-vertex set and give $X$ the shortest-path metric $d$.
 
 For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_x)_{x\in X}$ with $\sum_xc_x=0$ satisfies
 $$
