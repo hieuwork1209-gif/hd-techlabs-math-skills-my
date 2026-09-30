@@ -1,256 +1,239 @@
 ## Steps
 
-Step 1: Reduce the common-preconditioner problem to a condition-number problem
-Let
+Step 1: Express the two-step expected energy as a generalized eigenvalue problem
+Set
 $$
-H_0=
-\begin{pmatrix}
-1&1\\
-1&2
-\end{pmatrix},
-\qquad
-H_1=
-\begin{pmatrix}
-\frac{1}{2}&1\\
-1&4
-\end{pmatrix},
-\qquad
-H_t=(1-t)H_0+tH_1.
+G=rac{H}{2}=
+egin{pmatrix}
+1&rac{1}{2}&0\
+rac{1}{2}&1&rac{1}{2}\
+0&rac{1}{2}&1
+end{pmatrix}.
 $$
-For a positive definite preconditioner $P$, the matrix $PH_t$ is similar to
+Since $H_{ii}=2$, an exact update in coordinate $i$ is
 $$
-B_t=P^{1/2}H_tP^{1/2},
+T_i=I-e_i e_i^TG,
 $$
-which is symmetric positive definite. Set
+and $f(x)=x^TGx$. The three update matrices are
 $$
-m(P)=\min_{0\leq t\leq1}\lambda_{\min}(B_t),
-\qquad
-L(P)=\max_{0\leq t\leq1}\lambda_{\max}(B_t).
+T_1=
+egin{pmatrix}
+0&-rac{1}{2}&0\
+0&1&0\
+0&0&1
+end{pmatrix},
+quad
+T_2=
+egin{pmatrix}
+1&0&0\
+-rac{1}{2}&0&-rac{1}{2}\
+0&0&1
+end{pmatrix},
+quad
+T_3=
+egin{pmatrix}
+1&0&0\
+0&1&0\
+0&-rac{1}{2}&0
+end{pmatrix}.
 $$
-Because $B_t=(1-t)B_0+tB_1$, the function $t\mapsto\lambda_{\max}(B_t)$ is convex and $t\mapsto\lambda_{\min}(B_t)$ is concave: each is respectively the maximum or minimum, over unit vectors $v$, of the affine function $v^TB_tv$. Therefore
-$
-L(P)=\max\{\lambda_{\max}(B_0),\lambda_{\max}(B_1)\},
+They satisfy
 $$
-and
+T_i^2=T_i,
+qquad
+T_i^TG=GT_i.
 $$
-m(P)=\min\{\lambda_{\min}(B_0),\lambda_{\min}(B_1)\}.
+With
 $$
-
-For fixed $P$, all eigenvalues relevant to the iteration lie in $[m(P),L(P)]$, and both endpoints occur. Therefore
+p_1=p_3=a,
+qquad
+p_2=1-2a,
 $$
-\min_{\eta>0}\max_{0\leq t\leq1}r(I-\eta PH_t)
+two independent draws give
+$$
+mathbb E[f(x_2)]
 =
-\min_{\eta>0}\max\{|1-\eta m(P)|,|1-\eta L(P)|\}
-=
-\frac{K(P)-1}{K(P)+1},
+x_0^TN(a)x_0,
 $$
 where
 $$
-K(P)=\frac{L(P)}{m(P)}.
+N(a)=
+sum_{i,j=1}^{3}p_ip_j(T_jT_i)^TG(T_jT_i).
 $$
-The minimizing step is $\eta=2/(L(P)+m(P))$. Multiplying $P$ by a positive scalar does not change the optimized factor because the scalar can be absorbed into $\eta$, so impose
+Substituting the displayed $T_i$ gives
 $$
-\det P=1.
+8N(a)=
+egin{pmatrix}
+6a^2-11a+6&a(2a+1)&(2-3a)(2a-1)\
+a(2a+1)&a(14a+3)&a(2a+1)\
+(2-3a)(2a-1)&a(2a+1)&6a^2-11a+6
+end{pmatrix}.
 $$
-
-Step 2: Obtain the invariant lower bound for unrestricted positive definite preconditioners
-Both endpoint Hessians have determinant $1$. Under the normalization $\det P=1$,
+Therefore
 $$
-\det B_0=\det B_1=1.
-$$
-If
-$$
-L=\max\{\lambda_{\max}(B_0),\lambda_{\max}(B_1)\},
-$$
-then each endpoint spectrum is contained in $[1/L,L]$. Therefore $m(P)=1/L$ and
-$$
-K(P)=L^2.
-$$
-
-The generalized eigenvalues of the pair $(B_1,B_0)$ are independent of $P$, because
-$$
-B_0^{-1}B_1
-$$
-is similar to $H_0^{-1}H_1$. Here
-$$
-H_0^{-1}=
-\begin{pmatrix}
-2&-1\\
--1&1
-\end{pmatrix},
-\qquad
-H_0^{-1}H_1=
-\begin{pmatrix}
-0&-2\\
-\frac{1}{2}&3
-\end{pmatrix}.
-$$
-Its characteristic polynomial is
-$$
-z^2-3z+1,
-$$
-so its larger eigenvalue is
-$$
-\mu=\frac{3+\sqrt{5}}{2}.
-$$
-For every nonzero vector $x$,
-$$
-\frac{x^TB_1x}{x^TB_0x}
-\leq
-\frac{L\|x\|^2}{L^{-1}\|x\|^2}
-=L^2.
-$$
-To identify the maximum generalized Rayleigh quotient, set $y=B_0^{1/2}x$. Then
-$
-\frac{x^TB_1x}{x^TB_0x}
+R_2(a)
 =
-\frac{y^T(B_0^{-1/2}B_1B_0^{-1/2})y}{y^Ty},
-$
-whose maximum is the largest eigenvalue $\mu$. Therefore
-$
-\mu\leq L^2=K(P).
-$
-Therefore every positive definite preconditioner satisfies $K(P)\geq\mu$.
+max_{x
+eq0}rac{x^TN(a)x}{x^TGx},
+$$
+the largest generalized eigenvalue of the symmetric pencil $(N(a),G)$.
 
-Step 3: Construct the unrestricted preconditioner that attains the invariant bound
-Let
+Step 2: Use reflection symmetry to reduce the generalized spectrum
+Both $G$ and $N(a)$ are invariant under exchanging coordinates $1$ and $3$. The antisymmetric line spanned by
 $$
-C=H_0^{-1/2}H_1H_0^{-1/2}.
+u=(1,0,-1)^T
 $$
-It is symmetric positive definite with eigenvalues $\mu$ and $\mu^{-1}$. Choose an orthogonal matrix $U$ such that
+and the symmetric plane spanned by
 $$
-C=U
-\begin{pmatrix}
-\mu&0\\
-0&\mu^{-1}
-\end{pmatrix}
-U^T,
+v=(1,0,1)^T,
+qquad
+w=(0,1,0)^T
 $$
-and define
-$$
-Q=U
-\begin{pmatrix}
-\mu^{-1/2}&0\\
-0&\mu^{1/2}
-\end{pmatrix}
-U^T,
-\qquad
-P_*=H_0^{-1/2}QH_0^{-1/2}.
-$$
-Since $\det H_0=\det Q=1$, one has $\det P_*=1$.
+are therefore invariant for the generalized eigenproblem.
 
-The similarities
-$
-H_0^{1/2}(P_*H_0)H_0^{-1/2}=Q
-$
+On the antisymmetric line,
+$$
+lambda_0(a)=rac{6a^2-9a+4}{4}.
+$$
+On the symmetric plane, the matrices in the basis $(v,w)$ are
+$$
+G_s=
+egin{pmatrix}
+2&1\
+1&1
+end{pmatrix},
+qquad
+N_s=
+egin{pmatrix}
+1-a&rac{a(2a+1)}{4}\
+rac{a(2a+1)}{4}&rac{a(14a+3)}{8}
+end{pmatrix}.
+$$
+Thus the two symmetric generalized eigenvalues are the roots of
+$$
+16lambda^2-(40a^2-12a+16)lambda
+-4a^4-32a^3+21a^2+6a=0.
+$$
+Writing
+$$
+D(a)=116a^4+68a^3+5a^2-48a+16,
+$$
+the larger root is
+$$
+lambda_+(a)
+=
+rac{10a^2-3a+4+sqrt{D(a)}}{8}.
+$$
+
+Let $Q_a(lambda)$ denote the quadratic on the left side of the generalized characteristic equation. Direct substitution gives
+$$
+Q_a(lambda_0)
+=
+-a(2a-1)(14a^2+23a-18).
+$$
+For $0<a<rac{1}{2}$, the factor $14a^2+23a-18$ is negative because it is increasing and equals $-3$ at $a=rac{1}{2}$. Therefore $Q_a(lambda_0)<0$. Since $Q_a$ opens upward, $lambda_0$ lies between the two symmetric roots. It follows that
+$$
+R_2(a)=lambda_+(a).
+$$
+
+Step 3: Derive the polynomial condition for a stationary point
+Differentiate the explicit expression for $lambda_+$. If
+$$
+C(a)=232a^3+102a^2+5a-24,
+$$
+then
+$$
+lambda_+'(a)
+=
+rac{C(a)+(20a-3)sqrt{D(a)}}{8sqrt{D(a)}}.
+$$
+A stationary point with $a>rac{3}{20}$ and $C(a)<0$ must satisfy
+$$
+(20a-3)^2D(a)=C(a)^2.
+$$
+Expanding the difference gives
+$$
+(20a-3)^2D(a)-C(a)^2=-4F(a),
+$$
+where
+$$
+F(a)=
+1856a^6+8512a^5+4460a^4+2268a^3-4269a^2+528a+108.
+$$
+This polynomial is not introduced as a guess: it is the elimination condition obtained directly from the derivative equation.
+
+Step 4: Isolate the unique minimizing root
+The derivative
+$$
+C'(a)=696a^2+204a+5
+$$
+is positive for $a>0$. Since $C(0)<0$ and $C(rac{2}{5})>0$, there is a unique $gammain(0,rac{2}{5})$ with $C(gamma)=0$.
+
+For $0<aleqrac{3}{20}$, both $C(a)$ and $20a-3$ are nonpositive, so $lambda_+'(a)<0$. For $ageqgamma$, both terms in the numerator of $lambda_+'(a)$ are nonnegative, with at least one positive, so $lambda_+'(a)>0$.
+
+It remains to inspect $rac{3}{20}<a<gamma$. There
+$$
+20a-3>0,
+qquad
+-C(a)>0.
+$$
+Hence the sign of the numerator of $lambda_+'(a)$ is the sign of
+$$
+(20a-3)sqrt{D(a)}-(-C(a)),
+$$
+which is the sign of
+$$
+(20a-3)^2D(a)-C(a)^2=-4F(a).
+$$
+
+The coefficient signs of $F$ have exactly two changes, so Descartes' rule of signs gives at most two positive roots. Also,
+$$
+Fleft(rac{3}{10}ight)=rac{24831}{15625}>0,
+qquad
+Fleft(rac{1}{3}ight)=-rac{9985}{729}<0,
+$$
 and
-$
-H_0^{1/2}(P_*H_1)H_0^{-1/2}=QC
-$
-show that $P_*H_0$ has eigenvalues
-$
-\mu^{-1/2},\quad \mu^{1/2},
-$
-while $P_*H_1$ has the eigenvalues of $QC$. Since $Q$ and $C$ are diagonal in the same $U$-basis, these are again
 $$
-\mu^{-1/2},\quad \mu^{1/2}.
+Fleft(rac{2}{5}ight)=-rac{152296}{15625}<0,
+qquad
+Fleft(rac{1}{2}ight)=162>0.
 $$
-Therefore
-$
-\mu^{-1/2}I\preceq B_0,B_1\preceq\mu^{1/2}I.
+Therefore $F$ has exactly two positive roots: one in
 $$
-The same Loewner bounds hold for every convex combination $B_t$. Therefore $K(P_*)=\mu$, so the unrestricted worst-case factor is
+left(rac{3}{10},rac{1}{3}ight)
 $$
-\rho_{\mathrm{full}}
-=
-\frac{\mu-1}{\mu+1}.
+and one in
 $$
-Using $\mu=(3+\sqrt{5})/2$,
+left(rac{2}{5},rac{1}{2}ight).
 $$
-\rho_{\mathrm{full}}=\frac{1}{\sqrt{5}}.
+Because $gamma<rac{2}{5}$, only the first root can occur before $gamma$. Call it $a_*$. The sign relation above gives
 $$
+lambda_+'(a)<0quad(0<a<a_*),
+qquad
+lambda_+'(a)>0quad(a_*<a<	frac12).
+$$
+Thus $a_*$ is the unique global minimizer of $R_2$.
 
-Step 4: Solve the diagonal-preconditioner minimax problem
-Now restrict $P$ to be diagonal. After the same determinant normalization, write
+Step 5: State the minimizing sampling parameter in the requested exact form
+By the definition of the root notation in the problem statement, the unique minimizer found in Step 4 is
 $$
-P=
-\begin{pmatrix}
-s&0\\
-0&s^{-1}
-\end{pmatrix},
-\qquad s>0.
+a_*=
+operatorname{root}left(
+1856x^6+8512x^5+4460x^4+2268x^3-4269x^2+528x+108;
+rac{3}{10},rac{1}{3}
+ight).
 $$
-The endpoint matrices $B_0,B_1$ still have determinant $1$, while their traces are
+This value determines the minimizing symmetric sampling law
 $$
-T_0(s)=s+\frac{2}{s},
-\qquad
-T_1(s)=\frac{s}{2}+\frac{4}{s}.
+(p_1,p_2,p_3)=(a_*,1-2a_*,a_*).
 $$
-For a positive definite $2\times2$ matrix of determinant $1$ and trace $T\geq2$, the larger eigenvalue is
-$$
-\Phi(T)=\frac{T+\sqrt{T^2-4}}{2},
-$$
-which is strictly increasing in $T$. Therefore minimizing $K(P)$ is equivalent to minimizing
-$$
-\max\{T_0(s),T_1(s)\}.
-$$
-
-At $s=2$ both traces equal $3$. This value is minimal. Indeed, for $0<s\leq2$,
-$$
-T_1(s)-3
-=
-\frac{(s-2)(s-4)}{2s}
-\geq0,
-$$
-while for $s\geq2$,
-$$
-T_0(s)-3
-=
-\frac{(s-1)(s-2)}{s}
-\geq0.
-$$
-The unique minimizer is $s=2$, and the largest endpoint eigenvalue is
-$$
-\Phi(3)=\frac{3+\sqrt{5}}{2}=\mu.
-$$
-Therefore
-$$
-K_{\mathrm{diag}}=\mu^2.
-$$
-
-Step 5: Evaluate the diagonal factor and assemble the ordered pair
-For
-$$
-P_{\mathrm{diag}}=
-\begin{pmatrix}
-2&0\\
-0&\frac{1}{2}
-\end{pmatrix},
-$$
-both endpoint spectra lie in $[\mu^{-1},\mu]$. Since every $B_t$ is their convex combination, the same spectral enclosure holds for the full family, so the bound from Step 4 is attained.
-
-The optimized diagonal-preconditioned factor is therefore
-$$
-\rho_{\mathrm{diag}}
-=
-\frac{\mu^2-1}{\mu^2+1}.
-$$
-Because $\mu+\mu^{-1}=3$ and $\mu-\mu^{-1}=\sqrt{5}$,
-$$
-\rho_{\mathrm{diag}}
-=
-\frac{\mu-\mu^{-1}}{\mu+\mu^{-1}}
-=
-\frac{\sqrt{5}}{3}.
-$$
-Combining this with the unrestricted value from Step 3 gives the required pair.
-Final Answer: $\boxed{\left(\frac{1}{\sqrt{5}},\frac{\sqrt{5}}{3}\right)}$
+Final Answer: $oxed{operatorname{root}(1856x^6+8512x^5+4460x^4+2268x^3-4269x^2+528x+108;rac{3}{10},rac{1}{3})}$
 
 ---
 
 ## Answer
 
-$\left(\frac{1}{\sqrt{5}},\frac{\sqrt{5}}{3}\right)$
+$operatorname{root}(1856x^6+8512x^5+4460x^4+2268x^3-4269x^2+528x+108;rac{3}{10},rac{1}{3})$
 
 ---
 
@@ -258,14 +241,14 @@ $\left(\frac{1}{\sqrt{5}},\frac{\sqrt{5}}{3}\right)$
 
 **Problem Type:** Optimization
 
-**Answer Type:** Tuple or ordered list
+**Answer Type:** Exact symbolic expression
 
 ---
 
 ## Solution Concepts
 
-- common preconditioning
+- randomized coordinate descent
+- exact coordinate minimization
 - generalized eigenvalues
-- condition-number optimization
-- convexity of extremal eigenvalues
-- diagonal matrix scaling
+- reflection symmetry
+- algebraic root isolation
