@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "d8ad01ce8b276640fd241f5f6733a26d1012a05e",
+  "problem_blob_sha": "d6333e971d889673b8489704c45e0c48e23e1c07",
+  "statement_sha256": "16eb33ebdaf3fb0e104932b3b7962e52fd4e240104d59bf7e61829020cc486ae",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T15:14:16+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(D_p=(d(A,B)^p)_{A,B\\in X}\\). Since \\(X=\\binom{[6]}3\\) is an \\(S_6\\)-set, \\(\\mathbb R^X\\) splits into four Johnson eigenspaces of dimensions\n\\[\n1,\\ 5,\\ 9,\\ 5.\n\\]\nOn the three nonconstant pieces, the eigenvalues of \\(D_p\\) are\n\\[\n\\mu_1=3-3\\cdot 2^p-3^p,\\qquad\n\\mu_2=3^p-2^p-1,\\qquad\n\\mu_3=-3+3\\cdot 2^p-3^p.\n\\]\nThus \\(p\\)-negative type holds exactly while all three are \\(\\le 0\\). For \\(0<p\\le1\\), subadditivity gives \\(3^p\\le 1+2^p\\), so \\(\\mu_2\\le0\\), and one checks \\(3^p-3\\cdot 2^p+3\\ge0\\), so \\(\\mu_3\\le0\\). At \\(p=1\\),\n\\[\n\\mu_2=\\mu_3=0,\\qquad \\mu_1=-6<0.\n\\]\nFor every \\(p>1\\), strict superadditivity gives \\(3^p>1+2^p\\), so \\(\\mu_2>0\\). Hence\n\\[\n\\wp=1.\n\\]\n\nAt \\(p=1\\), the zero eigenspace is the direct sum of the \\(9\\)- and \\(5\\)-dimensional eigenspaces, so\n\\[\n\\dim E=14.\n\\]\nEquivalently,\n\\[\nE=\\left\\{c:\\sum_{A\\ni i}c_A=0\\text{ for every }i\\in[6]\\right\\},\n\\]\nthe kernel of the \\(6\\times20\\) incidence matrix of points versus triples.\n\nFor a support \\(S\\subseteq X\\), a \\(4\\)-dimensional subspace supported in \\(S\\) exists iff the incidence matrix restricted to \\(S\\) has nullity at least \\(4\\). If \\(|S|\\le7\\), then the corresponding \\(0/1\\) weight-\\(3\\) vectors lie in an affine space of dimension at most \\(2\\), but any affine \\(t\\)-space contains at most \\(2^t\\) Boolean vertices. Thus \\(|S|\\le4\\), contradiction. Hence \\(d_4\\ge8\\).\n\nEquality is attained exactly as follows: partition \\([6]\\) into three unordered pairs, and take the \\(8\\) triples obtained by choosing one element from each pair. These \\(8\\) triples form a \\(3\\)-dimensional affine cube inside the hypersimplex, so their incidence rank is \\(4\\), giving nullity \\(8-4=4\\). Conversely, any support of size \\(8\\) with nullity \\(4\\) must be such a cube. The number of such partitions is\n\\[\n\\frac{6!}{2^3\\,3!}=15.\n\\]\nEach support gives exactly one \\(4\\)-dimensional subspace, its full kernel.\n\nTherefore\n\\[\n\\boxed{(1,14,8,15)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T15:17:02+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/d6333e971d88.json"
+}
