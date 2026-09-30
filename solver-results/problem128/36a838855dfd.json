@@ -1,0 +1,22 @@
+{
+  "problem": "problem128",
+  "branch": "adversary/problem128",
+  "problem_path": "workspace/rainier-problem/problem128-numerical-optimization/problem.md",
+  "source_commit_sha": "7f9c18f0ecf2633c7b192af602cd2827cd07653b",
+  "problem_blob_sha": "36a838855dfd0dfb67e7b41e64c337a4fec7ecf7",
+  "statement_sha256": "9b374eb588ace41f941045a6a164a946503201b444ae2dd45dee374eed1dba15",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T07:44:43+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(T_i=I-\\frac12 e_i e_i^T H\\). After two draws,\n\n\\[\n\\mathbb E[f(x_2)]=\\frac12 x_0^T N(a)x_0,\\qquad\nN(a)=\\mathbb E_{i,j}\\bigl[T_i^T T_j^T H T_jT_i\\bigr].\n\\]\n\nA direct computation gives\n\n\\[\nN=\\begin{pmatrix}\n\\frac32-\\frac{11}4a+\\frac32a^2&\\frac14a+\\frac12a^2&-\\frac12+\\frac74a-\\frac32a^2\\\\\n\\frac14a+\\frac12a^2&\\frac34a+\\frac72a^2&\\frac14a+\\frac12a^2\\\\\n-\\frac12+\\frac74a-\\frac32a^2&\\frac14a+\\frac12a^2&\\frac32-\\frac{11}4a+\\frac32a^2\n\\end{pmatrix}.\n\\]\n\nThus \\(R_2(a)\\) is the largest generalized eigenvalue of \\(N\\) relative to \\(H\\).\n\nBy symmetry, split into the antisymmetric line \\((1,0,-1)\\) and the symmetric plane \\((s,t,s)\\).\n\nFor \\((1,0,-1)\\),\n\n\\[\n\\lambda_{\\rm anti}(a)=1-\\frac94a+\\frac32a^2.\n\\]\n\nOn the symmetric plane, with basis \\((1,0,1),(0,1,0)\\), the generalized eigenvalues are the roots in \\(\\lambda\\) of\n\n\\[\n4\\lambda^2+(-4+3a-10a^2)\\lambda\n+\\frac32a+\\frac{21}4a^2-8a^3-a^4=0.\n\\]\n\nThe larger symmetric root dominates the antisymmetric value for \\(0<a<\\frac12\\), so we minimize that larger root. At an interior minimizer, the polynomial and its \\(a\\)-derivative vanish simultaneously. Eliminating \\(\\lambda\\) gives\n\n\\[\nF(a)=1856a^6+8512a^5+4460a^4+2268a^3-4269a^2+528a+108.\n\\]\n\nThe relevant stationary point is the unique zero of \\(F\\) in \\((3/10,31/100)\\); the other stationary point from the elimination belongs to the smaller symmetric eigenvalue. Since the larger root is \\(1\\) at both endpoints \\(a=0,\\frac12\\), this interior point is the global minimizer.\n\n\\[\n\\boxed{\na=\\operatorname{root}\\!\\left(\n1856x^6+8512x^5+4460x^4+2268x^3-4269x^2+528x+108;\\,\n\\frac{3}{10},\\frac{31}{100}\n\\right)\n}\n\\]\n\nNumerically, \\(a\\approx 0.302839079\\).",
+  "status": "success",
+  "completed_at": "2026-09-30T07:48:13+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem128/36a838855dfd.json"
+}
