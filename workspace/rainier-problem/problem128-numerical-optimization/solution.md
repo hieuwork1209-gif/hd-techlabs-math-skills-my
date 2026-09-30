@@ -34,7 +34,7 @@ f(u)\geq
 f(v)+g(v)^T(u-v)
 +\frac{1}{2}\|g(u)-g(v)\|^2.
 $$
-This inequality will be applied only to the three pairs of points that occur in one gradient step.
+This is the interpolation inequality needed for the one-step analysis.
 
 Step 2: Construct two lower-bound instances valid for every step size
 Let
@@ -76,7 +76,7 @@ Its derivative is the clipping map
 $$
 f_a'(x)=\max\{-a,\min\{x,a\}\},
 $$
-which is nondecreasing and $1$-Lipschitz. Hence $f_a$ is convex and belongs to $\mathcal F$, with minimizer $0$.
+which is nondecreasing and $1$-Lipschitz. Therefore $f_a$ is convex and belongs to $\mathcal F$, with minimizer $0$.
 
 Choose
 $$
@@ -96,8 +96,8 @@ ax_1-\frac{1}{2}a^2
 =
 \frac{1}{2(1+2h)}.
 $$
-Thus
-$$
+Therefore
+$
 W(h)\geq
 \frac{1}{2}
 \max\left\{(1-h)^2,\frac{1}{1+2h}\right\}.
@@ -134,7 +134,7 @@ Therefore every step size satisfies
 $$
 W(h)\geq\frac{1}{8},
 $$
-and equality can occur only at $h=\frac{3}{2}$. It remains to prove that this step size attains the bound for every function in the class.
+and equality can occur only at $h=\frac{3}{2}$. The matching upper bound must hold for every function in the class.
 
 Step 4: Prove the matching upper bound at the candidate step
 Fix $h=\frac{3}{2}$ and an arbitrary admissible function and starting point. Write
@@ -193,8 +193,8 @@ f_1-f_*
 \leq
 \frac{1}{8}.
 $$
-Hence
-$$
+Therefore
+$
 W\left(\frac{3}{2}\right)\leq\frac{1}{8}.
 $$
 
