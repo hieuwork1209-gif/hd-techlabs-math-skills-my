@@ -20,7 +20,7 @@ $$
 m=k+3(n-k)=3n-2k.
 $$
 Therefore
-$
+$$
 a_n
 =
 \sum_{k=0}^n
@@ -41,15 +41,21 @@ $$
 =
 A(t)\log A(t)-t\log t-3B(t)\log B(t).
 $$
-Stirling's formula shows that for $t$ in any closed subinterval of $(0,1)$,
-$$
+Use Stirling's expansion
+$
+m!
+=
+\sqrt{2\pi m}\left(\frac{m}{e}\right)^m
+\left(1+O\left(m^{-1}\right)\right).
+$
+If $t$ stays in a closed subinterval of $(0,1)$, all four factorial arguments are comparable to $n$, so the error is uniform. Substitution gives
+$
 \frac{(3n-2k)!}{k!(n-k)!^3}
 =
-\frac{1+O(n^{-1})}{(2\pi n)^{3/2}}
+\frac{1+O\left(n^{-1}\right)}{(2\pi n)^{3/2}}
 \sqrt{\frac{A(t)}{tB(t)^3}}
-\exp\!\left(n\phi(t)\right),
-$$
-uniformly in $k$.
+\exp\!\left(n\phi(t)\right).
+$
 
 Step 2: Locate the unique saddle and identify the exponential growth
 Differentiate:
@@ -64,7 +70,7 @@ $$
 =
 -\frac{3}{t(1-t)(3-2t)}<0
 $$
-for $0<t<1$. Thus $\phi$ is strictly concave and has at most one critical point. Since
+for $0<t<1$. Therefore $\phi$ is strictly concave and has at most one critical point. Since
 $$
 \phi'(t)\to+\infty
 \quad\text{as }t\to0^+,
@@ -160,7 +166,7 @@ $$
 \leq
 Cn^2\exp\!\left(n\phi\!\left(\frac{k}{n}\right)\right).
 $$
-Hence the part with
+The part with
 $$
 \left|\frac{k}{n}-\tau\right|\geq\varepsilon
 $$
@@ -198,14 +204,14 @@ continuity and $\phi''(\tau)<0$ give a constant $c>0$ such that
 $$
 \phi(t)\leq\phi(\tau)-c(t-\tau)^2.
 $$
-Their total contribution is therefore
-$$
-O\!\left(q^{3n}e^{-cn^{1/5}}\operatorname{poly}(n)\right),
-$$
+There are at most $n+1$ such indices, and the crude bound above applies to each of them. Their total contribution is therefore
+$
+O\!\left(n^3q^{3n}e^{-cn^{1/5}}\right),
+$
 again negligible compared with $q^{3n}/n$.
 
-The central lattice has $u$-spacing $n^{-1/2}$. Thus
-$$
+The central lattice has $u$-spacing $n^{-1/2}$. Therefore
+$
 \frac{1}{\sqrt n}
 \sum_{|u|\leq n^{1/10}}
 \exp\!\left(\frac{\phi''(\tau)}{2}u^2\right)
@@ -254,8 +260,8 @@ $$
 =
 \frac{q^2}{3}.
 $$
-Hence
-$$
+Therefore
+$
 a_n
 \sim
 \frac{q}{2\pi\sqrt{3}}\frac{q^{3n}}{n}.
