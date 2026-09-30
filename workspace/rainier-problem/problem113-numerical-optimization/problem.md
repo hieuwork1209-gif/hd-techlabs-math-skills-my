@@ -2,7 +2,7 @@
 
 ## LaTeX (Normalized)
 
-For real step sizes $\alpha,\beta$, define the two-step contraction factor
+For real step sizes $\alpha,\beta$, define
 $$
 \rho(\alpha,\beta)
 =
@@ -12,7 +12,15 @@ $$
 \right|.
 $$
 
-Determine the minimum possible value of $\rho(\alpha,\beta)$ over all real $\alpha,\beta$, and determine the unordered pair $\{\alpha,\beta\}$ for every optimizer.
+Assume each individual Richardson step is nonexpansive on the full interval $[1,8]$, so
+$$
+|1-\alpha\lambda|\leq1,
+\qquad
+|1-\beta\lambda|\leq1
+$$
+for every $\lambda\in[1,8]$.
+
+Determine the minimum possible value of $\rho(\alpha,\beta)$ and determine the unordered pair $\{\alpha,\beta\}$ for every optimizer.
 
 ---
 
@@ -29,4 +37,4 @@ Determine the minimum possible value of $\rho(\alpha,\beta)$ over all real $\alp
 
 ## Domain Explanation
 
-This problem asks for the best real step sizes in a two-step stationary iteration when the admissible spectrum lies in two separated intervals. The central task is a minimax optimization of the resulting error polynomial over a disconnected spectral set, together with a classification of all best parameters. Therefore Optimization and Numerical Mathematics / Numerical optimization is the primary classification. Polynomial approximation is the main tool, but the requested object is the best iteration parameter pair and its worst-case contraction factor.
+This problem asks for the best two-step Richardson parameters under a stagewise stability constraint and a disconnected spectral uncertainty set. The objective is a worst-case contraction minimization, while the extra nonexpansiveness requirement constrains the admissible factors before their product is optimized. Therefore Optimization and Numerical Mathematics / Numerical optimization is the primary classification. Polynomial inequalities are used in the derivation, but the requested object is the stable parameter pair and its contraction factor.
