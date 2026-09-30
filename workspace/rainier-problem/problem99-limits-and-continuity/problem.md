@@ -57,4 +57,4 @@ Express the answer in closed form in terms of $m$, $r_m$ and $s_m$.
 
 ## Domain Explanation
 
-This problem asks for a small-$t$ asymptotic coefficient of a normalized Hankel determinant built from Laplace-type moments. The main work is localization at the three zeros of the phase, rescaling on their natural scales, and uniform control of the asymptotic remainder, so Analysis / Real analysis is the primary classification.
+This problem involves determining a small-$t$ asymptotic coefficient of a normalized Hankel determinant built from Laplace-type moments, including localization near multiple zeros of the phase and uniform control of the asymptotic remainder, which are part of Analysis / Real analysis. The problem also involves a Hankel determinant and its Vandermonde structure, which are part of Linear Algebra. However, the determinant is the finite-dimensional object being analyzed, while the main mathematical difficulty is obtaining and justifying its singular small-$t$ asymptotic expansion, so Linear Algebra is secondary to Analysis / Real analysis.
