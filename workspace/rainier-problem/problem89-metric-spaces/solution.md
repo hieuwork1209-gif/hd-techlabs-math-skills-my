@@ -116,13 +116,13 @@ $$
 e(G)\leq \binom{z}{2}+f(7-z-r),
 $$
 where either $z=0$ or $z\geq3$, and $z\leq6-r$. The unbalanced maxima are explicit:
-$
+$$
 \begin{aligned}
 r=1:&\ \max\left\{f(6),\binom{3}{2}+f(3),\binom{4}{2}+f(2),\binom{5}{2}+f(1)\right\}=10,\\
 r=2:&\ \max\left\{f(5),\binom{3}{2}+f(2),\binom{4}{2}+f(1)\right\}=6,\\
 r=3:&\ \max\left\{f(4),\binom{3}{2}+f(1)\right\}=4,
 \end{aligned}
-$
+$$
 while $r=4,5,6$ give $f(3)=2$, $f(2)=1$, and $f(1)=0$.
 
 If every bipartite component is balanced, then $\dim W_G=b$. Every such component has even size, so because there are seven vertices, a non-bipartite part of odd size at least $3$ is present. This case is possible only for $r\leq2$. For $r=1$, the best choice is a $5$-vertex non-bipartite part together with one balanced $2$-vertex component, giving
@@ -148,7 +148,7 @@ Moreover,
 $$
 ij\in E(G_U)\iff v_i=-v_j.
 $$
-Conversely, any seven covectors in $\mathbb{R}^r$ that span $\mathbb{R}^r$ and sum to zero define an injective map into $V_0$, hence arise from some $U$. Thus the problem is exactly to count opposite pairs among a spanning zero-sum $7$-tuple.
+Conversely, any seven covectors in $\mathbb{R}^{r}$ that span $\mathbb{R}^{r}$ and sum to zero define an injective map into $V_0$, hence arise from some $U$. Thus the problem is exactly to count opposite pairs among a spanning zero-sum $7$-tuple.
 
 For $r=5,4,3,2$, every value $k$ with $0\leq k\leq\min(3,6-r)$ is attained by imposing $k$ disjoint opposite pairs. Choose the $k$ pair directions and $6-2k$ of the remaining covectors freely; the last covector is then forced by the zero-sum condition. Thus there are $6-k$ free vectors. Since $r\leq6-k$, they can be chosen to span $\mathbb{R}^{r}$, and they can simultaneously avoid the finitely many proper linear conditions that would create an additional opposite pair. Hence the tuple has exactly $k$ opposite pairs. The remaining extremal values are attained by the following tuples, where the displayed letters are independent:
 $$
