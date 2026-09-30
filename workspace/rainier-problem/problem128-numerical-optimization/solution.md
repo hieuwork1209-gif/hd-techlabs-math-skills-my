@@ -1,6 +1,6 @@
 ## Steps
 
-Step 1: Express the two-step expected energy as a generalized eigenvalue problem
+Step 1: Write one random-reshuffling epoch as an expected quadratic form
 Set
 $$
 G=\frac{H}{2}=
@@ -8,13 +8,13 @@ G=\frac{H}{2}=
 1&\frac{1}{2}&0\\
 \frac{1}{2}&1&\frac{1}{2}\\
 0&\frac{1}{2}&1
-\end{pmatrix}.
+\end{pmatrix},
 $$
-Since $H_{ii}=2$, an exact update in coordinate $i$ is
+so $f(x)=x^TGx$. Exact minimization in coordinate $i$ has update matrix
 $$
-T_i=I-e_i e_i^TG,
+T_i=I-e_ie_i^TG.
 $$
-and $f(x)=x^TGx$. The three update matrices are
+Thus
 $$
 T_1=
 \begin{pmatrix}
@@ -37,214 +37,245 @@ T_3=
 0&-\frac{1}{2}&0
 \end{pmatrix}.
 $$
-They satisfy
+For a permutation $\pi=(\pi_1,\pi_2,\pi_3)$, one full epoch is
 $$
-T_i^2=T_i,
-\qquad
-T_i^TG=GT_i.
+T_\pi=T_{\pi_3}T_{\pi_2}T_{\pi_1}.
 $$
-With
+If the permutation law is $\nu$, then
 $$
-p_1=p_3=a,
-\qquad
-p_2=1-2a,
-$$
-two independent draws give
-$$
-\mathbb E[f(x_2)]
+\mathbb E[f(x_3)]
 =
-x_0^TN(a)x_0,
-$$
-where
-$$
-N(a)=
-\sum_{i,j=1}^{3}p_ip_j(T_jT_i)^TG(T_jT_i).
-$$
-Substituting the displayed $T_i$ gives
-$$
-8N(a)=
-\begin{pmatrix}
-6a^2-11a+6&a(2a+1)&(2-3a)(2a-1)\\
-a(2a+1)&a(14a+3)&a(2a+1)\\
-(2-3a)(2a-1)&a(2a+1)&6a^2-11a+6
-\end{pmatrix}.
-$$
-Therefore
-$$
-R_2(a)
-=
-\max_{x\neq0}\frac{x^TN(a)x}{x^TGx},
-$$
-the largest generalized eigenvalue of the symmetric pencil $(N(a),G)$.
-
-Step 2: Use reflection symmetry to reduce the generalized spectrum
-Both $G$ and $N(a)$ are invariant under exchanging coordinates $1$ and $3$. The antisymmetric line spanned by
-$$
-u=(1,0,-1)^T
-$$
-and the symmetric plane spanned by
-$$
-v=(1,0,1)^T,
+x_0^TN_\nu x_0,
 \qquad
-w=(0,1,0)^T
+N_\nu=\sum_{\pi}\nu(\pi)T_\pi^TGT_\pi.
 $$
-are therefore invariant for the generalized eigenproblem.
+Hence
+$$
+\rho(\nu)
+=
+\max_{x\neq0}\frac{x^TN_\nu x}{x^TGx},
+$$
+the largest generalized eigenvalue of $(N_\nu,G)$.
 
-On the antisymmetric line,
+Step 2: Reduce the six permutation weights to three reflection orbits
+Let $R$ exchange coordinates $1$ and $3$. Since $R^TGR=G$, reflecting a permutation preserves the value of $\rho$. The map
 $$
-\lambda_0(a)=\frac{6a^2-9a+4}{4}.
+N\longmapsto
+\max_{x\neq0}\frac{x^TNx}{x^TGx}
 $$
-On the symmetric plane, the matrices in the basis $(v,w)$ are
+is convex in $N$, being a maximum of linear functions of $N$. Therefore averaging any law with its reflected law cannot increase $\rho$. It is enough to use reflection-invariant laws.
+
+There are three reflection orbits:
 $$
-G_s=
+\mathcal O_0=\{123,321\},
+\qquad
+\mathcal O_1=\{132,312\},
+\qquad
+\mathcal O_2=\{213,231\}.
+$$
+Let their total probabilities be $x,y,z$, with $x+y+z=1$.
+
+Multiplying the displayed coordinate-update matrices gives the orbit-average epoch energy matrices
+$$
+A_0=
 \begin{pmatrix}
-2&1\\
-1&1
+\frac{3}{32}&\frac{1}{64}&0\\
+\frac{1}{64}&\frac{11}{64}&\frac{1}{64}\\
+0&\frac{1}{64}&\frac{3}{32}
+\end{pmatrix},
+$$
+$$
+A_1=
+\begin{pmatrix}
+0&0&0\\
+0&\frac{1}{4}&0\\
+0&0&0
 \end{pmatrix},
 \qquad
-N_s=
+A_2=
 \begin{pmatrix}
-1-a&\frac{a(2a+1)}{4}\\
-\frac{a(2a+1)}{4}&\frac{a(14a+3)}{8}
+\frac{1}{8}&0&\frac{1}{8}\\
+0&0&0\\
+\frac{1}{8}&0&\frac{1}{8}
 \end{pmatrix}.
 $$
-The two symmetric generalized eigenvalues are the roots of
+For example,
 $$
-16\lambda^2-(40a^2-12a+16)\lambda
--4a^4-32a^3+21a^2+6a=0.
-$$
-Writing
-$$
-D(a)=116a^4+68a^3+5a^2-48a+16,
-$$
-the larger root is
-$$
-\lambda_+(a)
-=
-\frac{10a^2-3a+4+\sqrt{D(a)}}{8}.
-$$
-
-Let $Q_a(\lambda)$ denote the quadratic on the left side of the generalized characteristic equation. Substitution gives
-$$
-Q_a(\lambda_0)
-=
--a(2a-1)(14a^2+23a-18).
-$$
-For $0<a<\frac{1}{2}$, the factor $14a^2+23a-18$ is negative because it is increasing and equals $-3$ at $a=\frac{1}{2}$. Therefore $Q_a(\lambda_0)<0$. Since $Q_a$ opens upward, $\lambda_0$ lies between the two symmetric roots. It follows that
-$$
-R_2(a)=\lambda_+(a).
-$$
-
-Step 3: Derive the polynomial condition for a stationary point
-For $0<a<\frac{1}{2}$ the two symmetric generalized eigenvalues are distinct. Indeed, a repeated generalized eigenvalue would force $N_s=\lambda G_s$; comparing the $(1,1)$ and $(1,2)$ entries would give
-$$
-\frac{1-a}{2}=\frac{a(2a+1)}{4},
-$$
-whose only nonnegative solution is $a=\frac{1}{2}$. Therefore $D(a)>0$ on the open interval.
-
-Differentiate the explicit expression for $\lambda_+$. If
-$$
-C(a)=232a^3+102a^2+5a-24,
-$$
-then
-$$
-\lambda_+'(a)
-=
-\frac{C(a)+(20a-3)\sqrt{D(a)}}{8\sqrt{D(a)}}.
-$$
-A stationary point with $a>\frac{3}{20}$ and $C(a)<0$ must satisfy
-$$
-(20a-3)^2D(a)=C(a)^2.
-$$
-Expanding the difference gives
-$$
-(20a-3)^2D(a)-C(a)^2=-4F(a),
-$$
-where
-$$
-F(a)=
-1856a^6+8512a^5+4460a^4+2268a^3-4269a^2+528a+108.
-$$
-The polynomial $F$ therefore comes directly from the derivative equation.
-
-Step 4: Isolate the unique minimizing root
-The derivative
-$$
-C'(a)=696a^2+204a+5
-$$
-is positive for $a>0$. Also,
-$
-C\left(\frac{3}{20}\right)=-\frac{5043}{250}<0,
-\qquad
-C\left(\frac{2}{5}\right)=\frac{1146}{125}>0.
-$
-There is therefore a unique $\gamma\in(\frac{3}{20},\frac{2}{5})$ with $C(\gamma)=0$.
-
-For $0<a\leq\frac{3}{20}$, both $C(a)$ and $20a-3$ are nonpositive, so $\lambda_+'(a)<0$. For $a\geq\gamma$, both terms in the numerator of $\lambda_+'(a)$ are nonnegative, with at least one positive, so $\lambda_+'(a)>0$.
-
-It remains to inspect $\frac{3}{20}<a<\gamma$. There
-$$
-20a-3>0,
-\qquad
--C(a)>0.
-$$
-The sign of the numerator of $\lambda_+'(a)$ is the sign of
-$$
-(20a-3)\sqrt{D(a)}-(-C(a)).
-$$
-Because both compared quantities are positive, this is also the sign of
-$$
-(20a-3)^2D(a)-C(a)^2=-4F(a).
-$$
-
-The coefficient signs of $F$ have exactly two changes, so Descartes' rule of signs gives at most two positive roots. Also,
-$$
-F\left(\frac{3}{10}\right)=\frac{24831}{15625}>0,
-\qquad
-F\left(\frac{1}{3}\right)=-\frac{9985}{729}<0,
+T_{123}=
+\begin{pmatrix}
+0&-\frac{1}{2}&0\\
+0&\frac{1}{4}&-\frac{1}{2}\\
+0&-\frac{1}{8}&\frac{1}{4}
+\end{pmatrix},
 $$
 and
 $$
-F\left(\frac{2}{5}\right)=-\frac{152296}{15625}<0,
-\qquad
-F\left(\frac{1}{2}\right)=162>0.
+T_{123}^TGT_{123}=
+\begin{pmatrix}
+0&0&0\\
+0&\frac{11}{64}&\frac{1}{32}\\
+0&\frac{1}{32}&\frac{3}{16}
+\end{pmatrix};
 $$
-Therefore $F$ has exactly two positive roots: one in
+averaging this with its reflected partner $321$ gives $A_0$. The other two orbit matrices follow from
 $$
-\left(\frac{3}{10},\frac{1}{3}\right)
+T_{132}=T_{312}=
+\begin{pmatrix}
+0&-\frac{1}{2}&0\\
+0&\frac{1}{2}&0\\
+0&-\frac{1}{2}&0
+\end{pmatrix},
 $$
-and one in
+and
 $$
-\left(\frac{2}{5},\frac{1}{2}\right).
+T_{213}=T_{231}=
+\begin{pmatrix}
+\frac{1}{4}&0&\frac{1}{4}\\
+-\frac{1}{2}&0&-\frac{1}{2}\\
+\frac{1}{4}&0&\frac{1}{4}
+\end{pmatrix}.
 $$
-Because $\gamma<\frac{2}{5}$, only the first root can occur before $\gamma$. Call it $a_*$. Since $F(0)>0$ and there are no other positive roots before $a_*$, one has $F(a)>0$ for $0<a<a_*$. Between the two positive roots one has $F(a)<0$. The sign relation gives
-$
-\lambda_+'(a)<0\quad(0<a<a_*),
-\qquad
-\lambda_+'(a)>0\quad(a_*<a<\frac{1}{2}).
+Thus every reflected law has
 $$
-Therefore $a_*$ is the unique global minimizer of $R_2$.
+N=xA_0+yA_1+zA_2.
+$$
 
-Step 5: State the minimizing sampling parameter in the requested exact form
-By the root notation in the problem statement, the unique minimizer from Step 4 is
+Step 3: Build a sharp Rayleigh-quotient lower-bound certificate
+For a symmetric test vector
 $$
-a_*=
-\operatorname{root}\left(
-1856x^6+8512x^5+4460x^4+2268x^3-4269x^2+528x+108;
-\frac{3}{10},\frac{1}{3}
-\right).
+u_q=(1,q,1)^T,
 $$
-This value gives the minimizing symmetric sampling law
+one has
 $$
-(p_1,p_2,p_3)=(a_*,1-2a_*,a_*).
+u_q^TGu_q=q^2+2q+2.
 $$
-Final Answer: $\boxed{\operatorname{root}(1856x^6+8512x^5+4460x^4+2268x^3-4269x^2+528x+108;\frac{3}{10},\frac{1}{3})}$
+The three orbit Rayleigh quotients are
+$$
+r_0(q)=
+\frac{11q^2+4q+12}{64(q^2+2q+2)},
+$$
+$$
+r_1(q)=
+\frac{q^2}{4(q^2+2q+2)},
+\qquad
+r_2(q)=
+\frac{1}{2(q^2+2q+2)}.
+$$
+To make one test vector certify a common lower bound for the two orbit families that will be used at equality, impose
+$$
+r_0(q)=r_2(q).
+$$
+This gives
+$$
+11q^2+4q-20=0.
+$$
+Choose the negative root
+$$
+q_*=-\frac{2+4\sqrt{14}}{11}.
+$$
+For this root,
+$$
+r_0(q_*)=r_2(q_*)
+=
+\frac{71}{300}+\frac{\sqrt{14}}{25}
+=: \rho_*,
+$$
+while
+$$
+r_1(q_*)
+=
+\frac{13}{50}+\frac{4\sqrt{14}}{75}
+=
+\rho_*+\frac{7}{300}+\frac{\sqrt{14}}{75}
+>
+\rho_*.
+$$
+
+Therefore, for every reflected law,
+$$
+\frac{u_{q_*}^TNu_{q_*}}{u_{q_*}^TGu_{q_*}}
+=
+xr_0(q_*)+yr_1(q_*)+zr_2(q_*)
+\geq
+\rho_*.
+$$
+Since the largest generalized eigenvalue is at least every Rayleigh quotient,
+$$
+\rho(\nu)\geq\rho_*
+$$
+for every reflected law, and hence for every permutation law.
+
+Step 4: Construct a reshuffling law that attains the lower bound
+Equality in the certificate requires $y=0$. Set
+$$
+x_*=
+\frac{64}{75}+\frac{2\sqrt{14}}{175},
+\qquad
+z_*=1-x_*.
+$$
+Choose the law that gives total mass $x_*$ to $\mathcal O_0$, total mass $z_*$ to $\mathcal O_2$, and zero mass to $\mathcal O_1$, split equally inside each reflection pair.
+
+Let
+$$
+N_*=x_*A_0+z_*A_2.
+$$
+Substituting $q_*$, $\rho_*$, and $x_*$ into
+$$
+(N_*-\rho_*G)u_{q_*}
+$$
+gives zero. For instance, the second coordinate is
+$$
+-\frac{\sqrt{14}}{16}x_*
++\frac{1}{100}
++\frac{4\sqrt{14}}{75}=0,
+$$
+which is exactly the equation that yields the displayed value of $x_*$. Thus $\rho_*$ is a generalized eigenvalue of $(N_*,G)$.
+
+It remains to show that it is the largest one. Reflection symmetry splits the generalized eigenproblem into the antisymmetric line and the symmetric plane. On the antisymmetric line the eigenvalue is
+$$
+\lambda_{\mathrm a}
+=
+\frac{3x_*}{32}
+=
+\frac{2}{25}+\frac{3\sqrt{14}}{2800}.
+$$
+On the symmetric plane, besides $\rho_*$ the other generalized eigenvalue is
+$$
+\lambda_{\mathrm s}
+=
+\frac{71}{300}-\frac{113\sqrt{14}}{2800}.
+$$
+Their gaps from $\rho_*$ are
+$$
+\rho_*-\lambda_{\mathrm a}
+=
+\frac{1316+327\sqrt{14}}{8400}>0,
+$$
+and
+$$
+\rho_*-\lambda_{\mathrm s}
+=
+\frac{9\sqrt{14}}{112}>0.
+$$
+Hence
+$$
+\rho(\nu_*)=\rho_*.
+$$
+
+Step 5: Evaluate the best one-epoch factor
+Step 3 gives the universal lower bound $\rho(\nu)\geq\rho_*$, while Step 4 constructs a permutation law attaining it. Therefore
+$$
+\inf_\nu \rho(\nu)
+=
+\frac{71}{300}+\frac{\sqrt{14}}{25}.
+$$
+Final Answer: $\boxed{\frac{71}{300}+\frac{\sqrt{14}}{25}}$
 
 ---
 
 ## Answer
 
-$\operatorname{root}(1856x^6+8512x^5+4460x^4+2268x^3-4269x^2+528x+108;\frac{3}{10},\frac{1}{3})$
+$\frac{71}{300}+\frac{\sqrt{14}}{25}$
 
 ---
 
@@ -252,14 +283,14 @@ $\operatorname{root}(1856x^6+8512x^5+4460x^4+2268x^3-4269x^2+528x+108;\frac{3}{1
 
 **Problem Type:** Optimization
 
-**Answer Type:** Exact symbolic expression
+**Answer Type:** Exact scalar
 
 ---
 
 ## Solution Concepts
 
 - randomized coordinate descent
-- exact coordinate minimization
+- random reshuffling
 - generalized eigenvalues
-- reflection symmetry
-- algebraic root isolation
+- symmetry averaging
+- Rayleigh quotient certificate
