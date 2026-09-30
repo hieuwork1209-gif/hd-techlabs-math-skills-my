@@ -25,53 +25,116 @@ $$
 \qquad
 E=[1,2]\cup[4,8].
 $$
-The maximum exists because $E$ is compact and $p$ is continuous. Every real pair $(\alpha,\beta)$ therefore produces a real quadratic with
+The maximum exists because $E$ is compact and $p$ is continuous. Every real pair $(\alpha,\beta)$ produces a polynomial of degree at most $2$ with
 $$
 p(0)=1.
 $$
 
-Step 2: Derive a balanced candidate and its interpolation certificate
-To find a sharp candidate, balance the two outer spectral endpoints by requiring
+Step 2: Optimize a family of interpolation lower certificates
+Fix
 $$
-p(1)=p(8).
+c\in[4,8).
 $$
-For a nonconstant quadratic this forces its axis to be
+For every polynomial $p$ of degree at most $2$, Lagrange interpolation at $1,c,8$, evaluated at $0$, gives
 $$
-\lambda=\frac{1+8}{2}=\frac{9}{2}.
-$$
-A balanced minimax candidate should have the opposite value at this interior extremum, so write
-$$
-p(1)=p(8)=M,
-\qquad
-p\left(\frac{9}{2}\right)=-M.
-$$
-Because the axis is $9/2$, write
-$$
-p(\lambda)
+p(0)
 =
-a\left(\lambda-\frac{9}{2}\right)^2-M.
+\frac{8c}{7(c-1)}p(1)
++
+\frac{8}{(c-1)(c-8)}p(c)
++
+\frac{c}{7(8-c)}p(8).
 $$
-The first equality gives
+The middle coefficient is negative, while the other two are positive. Since all three nodes lie in $E$ and $p(0)=1$,
 $$
-a\left(\frac{7}{2}\right)^2=2M,
+1
+\leq
+D(c)\max_{\lambda\in E}|p(\lambda)|,
 $$
-so
+where
 $$
-a=\frac{8M}{49}.
+D(c)
+=
+\frac{8c}{7(c-1)}
++
+\frac{8}{(c-1)(8-c)}
++
+\frac{c}{7(8-c)}.
 $$
-Using $p(0)=1$ then gives
+Thus
+$$
+\rho(\alpha,\beta)\geq\frac{1}{D(c)}
+$$
+for every $c\in[4,8)$.
+
+To make this certificate as strong as possible, minimize $D(c)$. Combining the three fractions gives
+$$
+D(c)
+=
+\frac{c^2-9c-8}{(c-8)(c-1)}.
+$$
+Differentiation yields
+$$
+D'(c)
+=
+\frac{16(2c-9)}
+{(c-8)^2(c-1)^2}.
+$$
+Hence $D$ decreases on $[4,9/2]$ and increases on $[9/2,8)$. Its unique minimum occurs at
+$$
+c=\frac{9}{2},
+$$
+where
+$$
+D\left(\frac{9}{2}\right)
+=
+\frac{113}{49}.
+$$
+Therefore
+$$
+\rho(\alpha,\beta)\geq\frac{49}{113}
+$$
+for every real pair $(\alpha,\beta)$.
+
+At the minimizing node, the interpolation identity is
 $$
 1
 =
-\frac{8M}{49}\left(\frac{9}{2}\right)^2-M
+\frac{72}{49}p(1)
+-
+\frac{32}{49}p\left(\frac{9}{2}\right)
++
+\frac{9}{49}p(8).
+$$
+
+Step 3: Construct a real pair attaining the certificate
+Equality in the certificate suggests the alternating values
+$$
+p(1)=\frac{49}{113},
+\qquad
+p\left(\frac{9}{2}\right)=-\frac{49}{113},
+\qquad
+p(8)=\frac{49}{113}.
+$$
+The first and third values are equal, so the axis of the interpolating quadratic is $9/2$. Write
+$$
+p_*(\lambda)
 =
-\frac{113}{49}M.
+a\left(\lambda-\frac{9}{2}\right)^2
+-
+\frac{49}{113}.
+$$
+Using $p_*(1)=49/113$ gives
+$$
+a\left(\frac{7}{2}\right)^2
+=
+\frac{98}{113},
+$$
+so
+$$
+a=\frac{8}{113}.
 $$
 Hence
-$$
-M=\frac{49}{113},
-$$
-and the resulting candidate is
 $$
 p_*(\lambda)
 =
@@ -82,64 +145,13 @@ p_*(\lambda)
 1.
 $$
 
-The same three balancing points give a lower certificate for every quadratic. Lagrange interpolation at
-$$
-1,
-\qquad
-\frac{9}{2},
-\qquad
-8
-$$
-evaluated at $0$ gives
-$$
-p(0)
-=
-\frac{72}{49}p(1)
--
-\frac{32}{49}p\left(\frac{9}{2}\right)
-+
-\frac{9}{49}p(8).
-$$
-The coefficients follow directly from
-$$
-\frac{(0-\frac{9}{2})(0-8)}
-{(1-\frac{9}{2})(1-8)}
-=
-\frac{72}{49},
-$$
-$$
-\frac{(0-1)(0-8)}
-{(\frac{9}{2}-1)(\frac{9}{2}-8)}
-=
--\frac{32}{49},
-$$
-and
-$$
-\frac{(0-1)(0-\frac{9}{2})}
-{(8-1)(8-\frac{9}{2})}
-=
-\frac{9}{49}.
-$$
-All three nodes lie in $E$. Since $p(0)=1$,
-$$
-1
-\leq
-\frac{113}{49}
-\max_{\lambda\in E}|p(\lambda)|.
-$$
-Therefore every real pair satisfies
-$$
-\rho(\alpha,\beta)\geq\frac{49}{113}.
-$$
-
-Step 3: Verify attainment and recover the real step sizes
-The derivative of the candidate is
+Its derivative is
 $$
 p_*'(\lambda)
 =
-\frac{16\lambda-72}{113},
+\frac{16\lambda-72}{113}.
 $$
-so its unique critical point is $9/2$. Its relevant values are
+The relevant values are
 $$
 p_*(1)=\frac{49}{113},
 \qquad
@@ -153,12 +165,11 @@ p_*\left(\frac{9}{2}\right)=-\frac{49}{113},
 p_*(8)=\frac{49}{113}.
 $$
 On $[1,2]$, the polynomial decreases from $49/113$ to $1/113$. On $[4,\frac{9}{2}]$, it decreases from $-47/113$ to $-49/113$, and on $[\frac{9}{2},8]$ it increases from $-49/113$ to $49/113$. Therefore
-$
+$$
 \max_{\lambda\in E}|p_*(\lambda)|
 =
 \frac{49}{113}.
 $$
-The lower bound from Step 2 is attained.
 
 To factor $p_*$ as
 $$
@@ -170,11 +181,11 @@ $$
 \qquad
 \alpha\beta=\frac{8}{113}.
 $$
-Therefore $\alpha,\beta$ are the roots of
+The discriminant of
 $$
-z^2-\frac{72}{113}z+\frac{8}{113}=0.
+z^2-\frac{72}{113}z+\frac{8}{113}
 $$
-The discriminant is
+is
 $$
 \left(\frac{72}{113}\right)^2
 -
@@ -184,15 +195,16 @@ $$
 =
 \left(\frac{28\sqrt{2}}{113}\right)^2.
 $$
-Therefore
+Thus the real step sizes
 $$
 \{\alpha,\beta\}
 =
 \left\{
 \frac{36-14\sqrt{2}}{113},
 \frac{36+14\sqrt{2}}{113}
-\right\}.
+\right\}
 $$
+attain the lower bound.
 
 Step 4: Classify every optimizer
 Suppose
@@ -203,7 +215,7 @@ and let
 $$
 p(\lambda)=(1-\alpha\lambda)(1-\beta\lambda).
 $$
-The interpolation certificate gives
+At $c=9/2$, the certificate from Step 2 is an equality:
 $$
 1
 =
@@ -213,7 +225,7 @@ $$
 +
 \frac{9}{49}p(8).
 $$
-Each sampled value has absolute value at most $49/113$, while the absolute values of the three coefficients sum to $113/49$. Equality in the triangle inequality is therefore necessary. Since the left side is positive, the three signed terms must all be nonnegative at full magnitude:
+Each sampled value has absolute value at most $49/113$, while the absolute values of the three coefficients sum to $113/49$. Equality in the triangle inequality is therefore necessary. Since the left side is positive,
 $$
 p(1)=\frac{49}{113},
 \qquad
@@ -225,13 +237,13 @@ A polynomial of degree at most $2$ is uniquely determined by its values at three
 $$
 p=p_*.
 $$
-Every optimizer therefore has
+Every optimizer therefore satisfies
 $$
 \alpha+\beta=\frac{72}{113},
 \qquad
 \alpha\beta=\frac{8}{113},
 $$
-and therefore the same unordered pair from Step 3.
+and has the same unordered pair from Step 3.
 
 The minimum contraction factor and complete optimizer pair are
 $$
