@@ -13,33 +13,27 @@ H=
 \qquad
 f(x)=\frac{1}{2}x^THx.
 $$
-At each iteration, exact randomized coordinate descent independently selects $i\in\{1,2,3\}$ with
+At the start of one epoch, choose a permutation
 $$
-p_1=p_3=a,
-\qquad
-p_2=1-2a,
-\qquad
-0<a<\frac{1}{2},
+\pi=(\pi_1,\pi_2,\pi_3)
 $$
-and performs
+of $\{1,2,3\}$ according to an arbitrary probability distribution $\nu$ on the six permutations. Then perform exact coordinate minimization in the order $\pi_1,\pi_2,\pi_3$:
 $$
-x^+=x-\frac{e_i^THx}{H_{ii}}e_i,
+x^+=x-\frac{e_i^THx}{H_{ii}}e_i
 $$
-where $e_i$ is the $i$th standard basis vector.
+when coordinate $i$ is selected.
 
-After two independent coordinate draws, define the worst-case expected energy ratio
+Define the worst-case expected one-epoch energy ratio
 $$
-R_2(a)=
+\rho(\nu)=
 \sup_{x_0\neq0}
-\frac{\mathbb E[f(x_2)]}{f(x_0)}.
+\frac{\mathbb E_\nu[f(x_3)]}{f(x_0)}.
 $$
-For a real polynomial $F$ having exactly one zero in $(u,v)$, write
+Determine
 $$
-\operatorname{root}(F;u,v)
+\inf_\nu \rho(\nu)
 $$
-for that zero.
-
-Determine the minimizing value of $a$ exactly.
+exactly.
 
 ---
 
@@ -50,10 +44,10 @@ Determine the minimizing value of $a$ exactly.
 | **Domain** | Optimization and Numerical Mathematics |
 | **Sub-domain** | Numerical optimization |
 | **Problem Type** | Optimization |
-| **Answer Type** | Exact symbolic expression |
+| **Answer Type** | Exact scalar |
 
 ---
 
 ## Domain Explanation
 
-The problem asks for the sampling probability that minimizes a worst-case two-step convergence factor of exact randomized coordinate descent on a quadratic objective. The main difficulty is the interaction of two independently sampled coordinate projections in the expected energy operator, so the primary sub-domain is Numerical optimization.
+The problem asks for the best probability law for random reshuffling in exact coordinate descent on a quadratic objective, measured by the worst-case expected energy reduction over one full epoch. The main task is to optimize a randomized coordinate-update strategy for an iterative optimization method, so the primary sub-domain is Numerical optimization.
