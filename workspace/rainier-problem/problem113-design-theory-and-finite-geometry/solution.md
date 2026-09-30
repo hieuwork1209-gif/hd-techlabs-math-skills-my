@@ -3,14 +3,14 @@
 Step 1: Determine the maximum number of blocks
 For a point $x\in V$, let $d_x$ be the number of blocks containing $x$. Fix $x$. Removing $x$ from every block through $x$ gives a family of triples on the other ten points. No pair of those ten points can occur in two of these triples, because that would make the corresponding $3$-subset of $V$ lie in two blocks.
 
-Thus the blocks through $x$ give edge-disjoint triangles in $K_{10}$. Such a triangle packing has at most $13$ triangles. Indeed, $15$ triangles would use all $45$ edges, but a triangle decomposition would make every vertex degree even, whereas every vertex of $K_{10}$ has degree $9$. If there were $14$ triangles, the leave would have only
+The blocks through $x$ therefore give edge-disjoint triangles in $K_{10}$. Such a triangle packing has at most $13$ triangles. Indeed, $15$ triangles would use all $45$ edges, but a triangle decomposition would make every vertex degree even, whereas every vertex of $K_{10}$ has degree $9$. If there were $14$ triangles, the leave would have only
 $$
 45-3\cdot14=3
 $$
 edges. Every leave degree would be odd, because it equals $9$ minus an even covered degree, but a graph with three edges has at most six odd-degree vertices. This is impossible on ten vertices.
 
-Hence
-$$
+This proves
+$
 d_x\leq13.
 $$
 The problem requires every $d_x$ to be even, so in fact
@@ -41,8 +41,8 @@ For a pair $\{x,y\}$, let $d_{xy}$ be the number of blocks containing both point
 $$
 2d_{xy}\leq9,
 $$
-and hence
-$$
+so
+$
 d_{xy}\leq4.
 $$
 Define
@@ -139,9 +139,17 @@ A_2=\{0,1,5,7\},
 \qquad
 A_3=\{0,1,6,9\}.
 $$
-A nonzero translation of $\mathbb{Z}_{11}$ cannot stabilize a $4$-set, so the three translation orbits contain $33$ blocks in total.
+A nonzero translation of $\mathbb{Z}_{11}$ cannot stabilize a $4$-set, so each base block has an orbit of size $11$. Their positive cyclic gap $4$-tuples are
+$
+(1,1,2,7),
+\qquad
+(1,4,2,4),
+\qquad
+(1,5,3,2),
+$
+up to cyclic rotation, so the three base blocks lie in distinct translation orbits. The family therefore has $33$ blocks.
 
-To verify the packing condition, represent a triple by its three positive cyclic gaps, up to cyclic rotation. Deleting one point from each base block gives the twelve representatives
+To verify the packing condition, represent a triple by its three positive cyclic gaps, up to cyclic rotation. Two triples in $\mathbb{Z}_{11}$ are translates exactly when these representatives agree. Deleting one point from each base block gives the twelve representatives
 $$
 \begin{aligned}
 A_1:&\quad
@@ -152,15 +160,15 @@ A_3:&\quad
 (1,5,5),\ (1,8,2),\ (2,6,3),\ (3,3,5).
 \end{aligned}
 $$
-They are all distinct. Thus no triple can occur in two translated blocks. Every point occurs four times in each translation orbit, hence twelve times in the full family, so the parity condition also holds. This is therefore a maximizing family.
+They are all distinct, so no triple can occur in two translated blocks. Every point occurs four times in each translation orbit, hence twelve times in the full family, so the parity condition also holds. This is therefore a maximizing family.
 
 It remains to count its pair multiplicities. For an unordered pair in $\mathbb{Z}_{11}$, use its cyclic distance in $\{1,2,3,4,5\}$. Across the three base blocks, the six internal pairs have distance counts
 $$
 (4,4,3,3,4)
 $$
-for distances $1,2,3,4,5$, respectively. Translating a base pair of a fixed distance runs once through all eleven pairs of that distance. Hence every point-pair has block multiplicity $4$ at distances $1,2,5$, and block multiplicity $3$ at distances $3,4$.
+for distances $1,2,3,4,5$, respectively. Translating a base pair of a fixed distance runs once through all eleven pairs of that distance. Therefore every point-pair has block multiplicity $4$ at distances $1,2,5$, and block multiplicity $3$ at distances $3,4$.
 
-Thus every $z_{xy}=4-d_{xy}$ is either $0$ or $1$. There are exactly $22$ values equal to $1$, so equality holds in the bound from Step 3:
+Every $z_{xy}=4-d_{xy}$ is therefore either $0$ or $1$. There are exactly $22$ values equal to $1$, so equality holds in the bound from Step 3:
 $$
 N_2=264,
 \qquad
