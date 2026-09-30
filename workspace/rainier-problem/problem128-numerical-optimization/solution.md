@@ -1,204 +1,242 @@
 ## Steps
 
-Step 1: Fold the disconnected spectrum to one interval
+Step 1: Shift the spectral set and reduce the unrestricted problem to a polynomial extremal problem
+Put $y=\lambda-3$. Then
+$$
+E=[1,2]\cup[4,5]
+$$
+becomes
+$$
+K=[-2,-1]\cup[1,2],
+$$
+and $\lambda=0$ corresponds to $y=-3$. For any five positive step sizes,
+$$
+P(\lambda)=\prod_{j=1}^{5}(1-\eta_j\lambda)
+$$
+has degree $5$ and satisfies $P(0)=1$. So $Q(y)=P(y+3)$ has degree at most $5$ and $Q(-3)=1$.
+
+To obtain the extremal polynomial on the symmetric set $K$, it is enough to consider odd monic quintics. Indeed, if $S$ is any monic quintic, then its odd part
+$$
+S_{\mathrm{o}}(y)=\frac{S(y)-S(-y)}{2}
+$$
+is also monic, and symmetry of $K$ gives
+$$
+|S_{\mathrm{o}}(y)|\leq\frac{|S(y)|+|S(-y)|}{2}\leq\|S\|_K.
+$$
+Therefore minimizing over all monic quintics reduces to minimizing over odd monic quintics, which have the form
+$$
+T(y)=y^5+ay^3+by.
+$$
+
+Step 2: Determine the odd monic minimax polynomial by equioscillation
+Seek $1<t<2$ and $L>0$ so that the odd quintic alternates with a positive interior critical point. Impose
+$$
+T(1)=L,\qquad T(t)=-L,\qquad T(2)=L,\qquad T'(t)=0.
+$$
+From $T(1)=T(2)$,
+$$
+1+a+b=32+8a+2b,
+$$
+so
+$$
+b=-31-7a.
+$$
+The derivative condition gives
+$$
+5t^4+3at^2+b=0.
+$$
+After inserting $b=-31-7a$,
+$$
+a(3t^2-7)=31-5t^4.
+$$
+The factor $3t^2-7$ cannot vanish, because $t^2=7/3$ would make the right side equal to $34/9$. Solving for $a$ and then $b$ gives
+$$
+a=-\frac{5t^4-31}{3t^2-7},\qquad
+b=\frac{t^2(35t^2-93)}{3t^2-7}.
+$$
+Substituting these expressions into $T(t)+T(1)=0$ gives the explicit numerator identity
+$$
+(3t^2-7)(T(t)+T(1))
+=-2(t+1)^2(t+2)^2(t^3-6t^2+9t-3).
+$$
+Since $1<t<2$, the first three factors on the right are nonzero, so
+$$
+t^3-6t^2+9t-3=0.
+$$
+Therefore $t$ is the unique root in $(1,2)$ of
+$$
+t^3-6t^2+9t-3=0.
+$$
+Indeed the cubic is strictly decreasing on $(1,2)$ because its derivative is $3(t-1)(t-3)$, and its values at $1$ and $2$ are $1$ and $-1$.
+
+Since $L=T(1)=1+a+b=-30-6a$, substitution gives
+$$
+L=\frac{6(5t^4-15t^2+4)}{3t^2-7}.
+$$
+Also $t\in(\frac85,\frac53)$, because the cubic equals $17/125$ at $8/5$ and $-1/27$ at $5/3$. Using $T'(t)=0$, the derivative factors as
+$$
+T'(y)=5(y^2-t^2)(y^2-u_0),
+\qquad
+u_0=\frac{35t^2-93}{5(3t^2-7)}.
+$$
+Here $3t^2-7>0$, and $u_0<1$ is equivalent to $20t^2<58$, which follows from $t^2<\frac{25}{9}<\frac{29}{10}$. Therefore $t$ is the only critical point of $T$ in $(1,2)$. The endpoint and critical values are $L,-L,L$, so monotonicity on the two subintervals gives $|T(y)|\leq L$ on $[1,2]$. Oddness gives the same bound on $K$. The six ordered points
+$$
+-2,-t,-1,1,t,2
+$$
+carry the alternating values
+$$
+-L,L,-L,L,-L,L.
+$$
+
+Step 3: Normalize at the starting point, certify extremality, and evaluate $\rho_5$
+The six alternating values certify that $T$ is the monic minimax polynomial: if another monic quintic $S$ had norm smaller than $L$, then $T-S$ would have alternating signs at those six points and so at least five distinct zeros, impossible for a polynomial of degree at most $4$.
+
+Now set
+$$
+Q_*(y)=\frac{T(y)}{T(-3)}.
+$$
+Then $Q_*(-3)=1$ and $\|Q_*\|_K=L/|T(-3)|$. If another polynomial $Q$ of degree at most $5$ satisfied $Q(-3)=1$ and had smaller norm, then
+$$
+R(y)=T(y)-T(-3)Q(y)
+$$
+would satisfy $|T(-3)Q(y_i)|<L=|T(y_i)|$ at each of the six alternating points $y_i$. Therefore $R$ has the same alternating signs as $T$ there, so it has five zeros between them. It also has $R(-3)=0$. This gives six distinct zeros for a polynomial of degree at most $5$, a contradiction. Therefore $Q_*$ is the unrestricted residual minimizer.
+
+The sign changes of $T$ give two roots in $(-2,-1)$, the root $0$, and two roots in $(1,2)$. After translating back by $\lambda=y+3$, all five roots lie in $(1,2)\cup\{3\}\cup(4,5)$, so they are positive and $Q_*$ is realizable by five positive gradient steps.
+
+Using the formulas from Step 2,
+$$
+T(-3)=-243-27a-3b
+=\frac{6(5t^4-75t^2+144)}{3t^2-7}.
+$$
+The bracket $t\in(\frac85,\frac53)$ from Step 2 makes the denominator positive. Writing $z=t^2$, the numerator factor $5z^2-75z+144$ is decreasing for $z<15/2$ and at $z=64/25$ it equals $-1904/125<0$, so $T(-3)<0$. Therefore
+$$
+\rho_5=\frac{L}{|T(-3)|}
+=-\frac{5t^4-15t^2+4}{5t^4-75t^2+144}.
+$$
 Let
 $$
-E=[1,2]\cup[7,8].
+c=\frac{2-t}{2}.
 $$
-The two components are exchanged by $\lambda\mapsto9-\lambda$, so use the invariant quadratic coordinate
+Then $0<c<\frac12$, and the cubic for $t$ becomes
 $$
-z(\lambda)=\frac{\left(\lambda-\frac92\right)^2-\frac{37}{4}}{3}
-=\frac{\lambda^2-9\lambda+11}{3}.
+8c^3-6c+1=0.
 $$
-On $[1,2]$, $z$ decreases from $1$ to $-1$, while on $[7,8]$ it increases from $-1$ to $1$. Thus each component maps bijectively onto $[-1,1]$.
+Since $4c^3-3c=\cos(3\theta)$ when $c=\cos\theta$, the root in $(0,\frac12)$ is
+$$
+c=\cos\left(\frac{4\pi}{9}\right).
+$$
+Substituting $t=2-2c$ and using $c^3=(6c-1)/8$ and $c^4=(6c^2-c)/8$ reduces the numerator and denominator to
+$$
+-480c^2+450c-64
+\quad\text{and}\quad
+240c^2+30c-36.
+$$
+The identity
+$$
+(240c^2+30c-36)(-560c^2+520c-71)-171(-480c^2+450c-64)
+=-300(56c-45)(8c^3-6c+1)
+$$
+then gives
+$$
+\rho_5=\frac{-560c^2+520c-71}{171}.
+$$
 
-For any positive step sizes,
+Step 4: Derive a sharp lower bound for the stepwise-stable problem
+For one step, the condition
 $$
-P(\lambda)=\prod_{j=1}^{6}(1-\eta_j\lambda)
+\max_{\lambda\in E}|1-\eta\lambda|\leq1
 $$
-has degree $6$ and satisfies $P(0)=1$.
-
-Step 2: Construct the unconstrained minimax polynomial
-Seek an odd cubic $C(t)=At^3+Bt$ whose endpoint values and interior critical values have equal magnitude and alternate in sign. If $a\in(0,1)$ is the positive critical point, normalize by
+is equivalent to
 $$
-C(1)=1,\qquad C(a)=-1,\qquad C'(a)=0.
+0<\eta\leq\frac25.
 $$
-The derivative condition gives $B=-3Aa^2$, hence
+For a stable five-step schedule define
 $$
-A(1-3a^2)=1,\qquad -2Aa^3=-1.
+u_j=|1-5\eta_j|\in[0,1],\qquad s=\prod_{j=1}^{5}u_j.
+$$
+For fixed $u_j$, the two possibilities $\eta_j=(1\mp u_j)/5$ show that
+$$
+1-\eta_j\geq\frac{4-u_j}{5}.
+$$
+For $P(\lambda)=\prod_{j=1}^{5}(1-\eta_j\lambda)$,
+$$
+P(1)\geq\frac{1}{5^5}\prod_{j=1}^{5}(4-u_j),
+\qquad
+|P(5)|=s.
+$$
+For $x,y\in[0,1]$,
+$$
+(4-x)(4-y)-3(4-xy)=4(1-x)(1-y)\geq0.
+$$
+Apply this inequality first to $u_1,u_2$, then to $u_1u_2,u_3$, and continue. Every intermediate product remains in $[0,1]$, so after four applications,
+$$
+\prod_{j=1}^{5}(4-u_j)\geq3^4(4-s).
+$$
+Therefore every stepwise-stable schedule satisfies
+$$
+\max_{\lambda\in E}|P(\lambda)|
+\geq
+\max\left\{\frac{81}{3125}(4-s),s\right\}.
+$$
+The first term decreases and the second increases with $s\in[0,1]$, so the minimum of this lower bound occurs when they are equal:
+$$
+s=\frac{81}{3125}(4-s).
 $$
 Therefore
 $$
-2a^3+3a^2-1=(2a-1)(a+1)^2=0,
-$$
-so $a=\frac12$, $A=4$, and $B=-3$. Thus
-$$
-C(t)=4t^3-3t,
-$$
-with
-$$
-C(-1)=-1,\quad C\left(-\frac12\right)=1,\quad
-C\left(\frac12\right)=-1,\quad C(1)=1,
-$$
-and $|C(t)|\leq1$ on $[-1,1]$.
-
-Since $z(0)=\frac{11}{3}$,
-$$
-C\left(\frac{11}{3}\right)=\frac{5027}{27}.
-$$
-Hence
-$$
-P_*(\lambda)=\frac{27}{5027}C(z(\lambda))
-$$
-satisfies $P_*(0)=1$ and
-$$
-\max_{\lambda\in E}|P_*(\lambda)|=\frac{27}{5027}.
-$$
-
-Step 3: Certify the unconstrained optimum and realize positive steps
-On $[1,2]$, let $a_0<a_1<a_2<a_3$ be the preimages under $z$ of
-$$
-1,\quad \frac12,\quad -\frac12,\quad -1.
-$$
-Then $P_*(a_i)$ alternates as
-$$
-\frac{27}{5027}(1,-1,1,-1).
-$$
-On $[7,8]$, the four corresponding preimages give the alternating values
-$$
-\frac{27}{5027}(-1,1,-1,1).
-$$
-
-If a polynomial $P$ of degree at most $6$ with $P(0)=1$ had
-$$
-\max_{\lambda\in E}|P(\lambda)|<\frac{27}{5027},
-$$
-then $Q=P-P_*$ would have three zeros in $(1,2)$, three zeros in $(7,8)$, and the additional zero $Q(0)=0$. This gives at least seven distinct zeros, impossible unless $Q\equiv0$, which is incompatible with the strict inequality. Therefore every admissible six-step polynomial has norm at least $\frac{27}{5027}$.
-
-The zeros of $C$ are $0,\pm\frac{\sqrt3}{2}$. Each has one preimage in each component of $E$, so the six zeros of $P_*$ are positive. Since $P_*(0)=1$, it factors as
-$$
-P_*(\lambda)=\prod_{j=1}^{6}\left(1-\frac{\lambda}{r_j}\right)
-$$
-with $r_j>0$. Thus positive step sizes $\eta_j=1/r_j$ realize $P_*$, and
-$$
-\rho_6=\frac{27}{5027}.
-$$
-
-Step 4: Reduce the stepwise-stable problem to two endpoint products
-Now impose that every individual gradient step is nonexpansive on $E$:
-$$
-\max_{\lambda\in E}|1-\eta_j\lambda|\leq1
-\qquad(j=1,\dots,6).
-$$
-Because the largest spectral value is $8$ and $\eta_j>0$, this is equivalent to
-$$
-0<\eta_j\leq\frac14.
-$$
-Set
-$$
-x_j=1-\eta_j,
-$$
-so $x_j\in[\frac34,1)$. At the two outer endpoints,
-$$
-A:=P(1)=\prod_{j=1}^{6}x_j,
-$$
-and
-$$
-B:=|P(8)|=\prod_{j=1}^{6}|8x_j-7|.
-$$
-Hence every stepwise-stable schedule satisfies
-$$
-\max_{\lambda\in E}|P(\lambda)|\geq\max(A,B).
-$$
-
-If some $x_j>\frac78$, replace it by
-$$
-x_j'=\frac74-x_j.
-$$
-Then $x_j'\in(\frac34,\frac78)$,
-$$
-|8x_j'-7|=|8x_j-7|,
-$$
-and $x_j'<x_j$. Thus this replacement decreases $A$ while leaving $B$ unchanged. Therefore the endpoint minimax problem may be restricted to
-$$
-\frac34\leq x_j\leq\frac78.
-$$
-No minimizer has $x_j=\frac78$. Indeed, then $B=0$ while $A>0$. Decreasing every coordinate equal to $\frac78$ by a sufficiently small positive amount strictly decreases $A$, while the resulting $B$ is either still $0$ or is arbitrarily small. Thus the larger endpoint product strictly decreases. Hence at a minimizer
-$$
-\frac34\leq x_j<\frac78,
+s=\frac{162}{1603},
 $$
 and therefore
 $$
-B=\prod_{j=1}^{6}(7-8x_j).
-$$
-If $B>A$, increasing any coordinate raises $A$ and lowers $B$ continuously, so the larger of the two products decreases until equality is reached. If $A>B$, decrease a coordinate that is above $\frac34$; this lowers $A$ and raises $B$. If equality were never reached, repeating this would force all six coordinates to $\frac34$, where $B=1>A$. Hence equality must be reached first. Therefore every minimizer satisfies
-$$
-A=B.
+\widehat\rho_5\geq\frac{162}{1603}.
 $$
 
-Step 5: Solve the balanced endpoint problem and verify attainment
-Under $A=B$, define
+Step 5: Attain the stable lower bound and assemble the ordered pair
+Choose four steps equal to $\frac25$ and the fifth equal to
 $$
-s_j=\log\frac{x_j}{7-8x_j}.
+\eta_* = \frac{353}{1603}.
 $$
 Then
 $$
-\sum_{j=1}^{6}s_j=0,
-\qquad
-s_j\geq s_0:=\log\frac34.
+P_s(\lambda)=\left(1-\frac{2\lambda}{5}\right)^4
+\left(1-\frac{353\lambda}{1603}\right).
 $$
-Solving for $x_j$ gives
+On $[1,2]$ all factors are positive with decreasing magnitudes, so
 $$
-x_j=\frac{7e^{s_j}}{1+8e^{s_j}}.
-$$
-Therefore minimizing the common product $A=B$ is equivalent to minimizing
-$$
-\sum_{j=1}^{6}\phi(s_j),
-\qquad
-\phi(s)=\log\left(\frac{7e^s}{1+8e^s}\right),
-$$
-subject to the displayed linear constraint. Direct differentiation gives
-$$
-\phi''(s)=-\frac{8e^s}{(1+8e^s)^2}<0.
-$$
-If two variables exceed $s_0$, keep their sum fixed and transfer mass between them. Because the resulting two-variable objective is concave, its minimum occurs when one of the two reaches $s_0$. Repeating this operation shows that at a minimizer at least five variables equal $s_0$. Hence
-$$
-s_1=\cdots=s_5=s_0,
-\qquad
-s_6=-5s_0=\log\left(\frac43\right)^5.
-$$
-Thus
-$$
-x_1=\cdots=x_5=\frac34,
-\qquad
-x_6=\frac{7168}{8435}.
-$$
-Equivalently, five steps are $\eta=\frac14$ and the sixth is
-$$
-\eta_*=\frac{1267}{8435}.
-$$
-Their common endpoint magnitude is
-$$
-\left(\frac34\right)^5\frac{7168}{8435}
-=\frac{1701}{8435}.
+\max_{\lambda\in[1,2]}|P_s(\lambda)|
+=P_s(1)
+=\left(\frac35\right)^4\frac{1250}{1603}
+=\frac{162}{1603}.
 $$
 
-For this schedule,
+Let $r=1603/353$, the zero of the last factor. On $[r,5]$, both absolute factors increase with $\lambda$, so the maximum there is
 $$
-P(\lambda)=\left(1-\frac{\lambda}{4}\right)^5
-\left(1-\frac{1267}{8435}\lambda\right).
+|P_s(5)|=\frac{162}{1603}.
 $$
-On $[1,2]$ both factors are positive and their magnitudes decrease with $\lambda$, so the maximum is at $\lambda=1$. Since $\frac{1267}{8435}>\frac17$, on $[7,8]$ both absolute factors increase with $\lambda$, so the maximum is at $\lambda=8$. The two endpoint values are equal to $\frac{1701}{8435}$. Therefore
+On $[4,r]$, one has $r<55/12$, so
 $$
-\widehat\rho_6=\frac{1701}{8435}.
+0\leq\frac{2\lambda}{5}-1<\frac56,
 $$
-Final Answer: $\boxed{\left(\frac{27}{5027},\frac{1701}{8435}\right)}$
+while
+$$
+0\leq1-\frac{353\lambda}{1603}\leq\frac{191}{1603}<\frac{324}{1603}.
+$$
+Since $(5/6)^4<1/2$, these two bounds give
+$$
+|P_s(\lambda)|<\frac12\cdot\frac{324}{1603}=\frac{162}{1603}
+$$
+throughout $[4,r]$. Therefore the lower bound is attained and
+$$
+\widehat\rho_5=\frac{162}{1603}.
+$$
+With $c=\cos(4\pi/9)$ in the unrestricted value from Step 3, the required pair is obtained.
+Final Answer: $\boxed{\left(\frac{-560\cos^2(4\pi/9)+520\cos(4\pi/9)-71}{171},\frac{162}{1603}\right)}$
 
 ---
 
 ## Answer
 
-$\left(\frac{27}{5027},\frac{1701}{8435}\right)$
+$\left(\frac{-560\cos^2(4\pi/9)+520\cos(4\pi/9)-71}{171},\frac{162}{1603}\right)$
 
 ---
 
@@ -212,8 +250,8 @@ $\left(\frac{27}{5027},\frac{1701}{8435}\right)$
 
 ## Solution Concepts
 
+- minimax residual polynomials
+- equioscillation
+- odd polynomial symmetrization
 - nonstationary gradient descent
-- spectral error polynomials
-- minimax alternation
-- endpoint balancing
-- concavity extremal argument
+- extremal product inequalities
