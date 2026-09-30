@@ -287,5 +287,5 @@ $\frac{(qn)!}{q!}$
 - natural transformations
 - store comonads
 - comonad morphisms
-- lawful lenses
+- lens laws
 - finite set decompositions
