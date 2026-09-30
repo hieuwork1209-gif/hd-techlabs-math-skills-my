@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "7a3e9d43355fcdf0c2196307e2118b093b5dc41d",
+  "problem_blob_sha": "f9e7b269cb8fe89f94c4b5d2d17edfee277e2015",
+  "statement_sha256": "4e6b1c42dc326379ab12221d018a0b10e200cfd9c8a7c324aa0753eb8f8c4147",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T14:56:40+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(\\alpha=\\wp\\). The answer is\n\n\\[\n\\boxed{\n\\left(\n\\alpha,\\ 6,\\ (6,8,10,12,13,14),\\ (42,21,14,91,14,1)\n\\right)}\n\\]\n\nwhere \\(\\alpha\\) is the unique positive solution of\n\n\\[\n\\boxed{2^\\alpha=\\sqrt2\\,(3^\\alpha-1)}\n\\]\n\nand numerically\n\n\\[\n\\alpha\\approx 0.6942800927771942.\n\\]\n\nSketch of the computation, self-contained:\n\nLet \\(A\\) be the \\(7\\times 7\\) incidence matrix\n\n\\[\nA_{v,u}=1\\iff u\\cdot v=0.\n\\]\n\nEach row has sum \\(3\\), and\n\n\\[\nA^2=2I+J.\n\\]\n\nThus \\(A\\) has eigenvalue \\(3\\) on constants, and eigenvalues \\(\\pm\\sqrt2\\), each with multiplicity \\(3\\), on the \\(6\\)-dimensional zero-sum subspace.\n\nFor \\(p>0\\), write\n\n\\[\nS=2^p(J-I),\\qquad B=3^pJ+(1-3^p)A.\n\\]\n\nThe distance matrix is\n\n\\[\nD_p=\n\\begin{pmatrix}\nS&B\\\\\nB&S\n\\end{pmatrix}.\n\\]\n\nFor \\(c=(a,b)\\), put \\(s=a+b\\), \\(t=a-b\\). The zero-sum condition is \\(1^Ts=0\\), and\n\n\\[\nc^TD_pc\n=\n\\frac12s^T(S+B)s+\\frac12t^T(S-B)t.\n\\]\n\nThe only potentially positive eigenvalue is\n\n\\[\nf(p)=\\sqrt2(3^p-1)-2^p.\n\\]\n\nHence \\(p\\)-negative type holds exactly while \\(f(p)\\le 0\\), giving\n\n\\[\n\\wp=\\alpha,\\qquad 2^\\alpha=\\sqrt2(3^\\alpha-1).\n\\]\n\nAt \\(p=\\alpha\\), the nullspace \\(E\\) consists of\n\n\\[\ns\\in \\ker(A+\\sqrt2 I),\\qquad t\\in \\ker(A-\\sqrt2 I),\n\\]\n\nso\n\n\\[\n\\dim E=3+3=6.\n\\]\n\nFinally, using an explicit basis of these two \\(3\\)-dimensional eigenspaces over \\(\\mathbb Q(\\sqrt2)\\), the coordinate-rank calculation gives the largest possible common zero set sizes\n\n\\[\n8,6,4,2,1,0\n\\]\n\nfor \\(r=1,\\ldots,6\\). Therefore\n\n\\[\n(d_1,\\ldots,d_6)=(14-8,14-6,14-4,14-2,14-1,14)\n=(6,8,10,12,13,14).\n\\]\n\nThe numbers of attaining \\(r\\)-subspaces are respectively\n\n\\[\n(n_1,\\ldots,n_6)=(42,21,14,91,14,1).\n\\]\n\nSo the requested tuple is\n\n\\[\n\\boxed{\n\\left(\n\\wp,\\dim E,(d_1,\\ldots,d_{\\dim E}),(n_1,\\ldots,n_{\\dim E})\n\\right)\n=\n\\left(\n\\alpha,6,(6,8,10,12,13,14),(42,21,14,91,14,1)\n\\right)\n}\n\\]\n\nwith \\(\\alpha\\) uniquely determined by \\(2^\\alpha=\\sqrt2(3^\\alpha-1)\\).",
+  "status": "success",
+  "completed_at": "2026-09-30T15:00:05+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/f9e7b269cb8f.json"
+}
