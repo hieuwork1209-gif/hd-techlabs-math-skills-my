@@ -1,184 +1,192 @@
 ## Steps
 
-Step 1: Determine the supremal negative type and the boundary equality space
+Step 1: Express the snowflaked distance matrix through the Kneser adjacency operator
 
-Let
+Write the vertices of $X$ as the $2$-subsets $\{i,j\}$ of $[7]$. Two distinct vertices are adjacent exactly when they are disjoint. If two distinct $2$-subsets meet, their union has size $3$, so there are four elements outside the union; choosing any two of them gives a vertex disjoint from both. Hence the graph has diameter $2$, and for distinct vertices
 $$
-X=\{-1,1\}^{4}
-$$
-with Hamming distance
-$$
-d(x,y)=|\{i:x_i\neq y_i\}|.
-$$
-For $x,y\in X$,
-$$
-d(x,y)=\frac12\sum_{i=1}^{4}(1-x_iy_i).
-$$
-Hence, for real coefficients $(c_x)_{x\in X}$ with $\sum_xc_x=0$,
-$$
-\sum_{x,y}c_xc_y d(x,y)
-=-\frac12\sum_{i=1}^{4}\left(\sum_xc_xx_i\right)^2\leq0.
-$$
-Thus $(X,d)$ has $1$-negative type.
-
-For any $p>1$, choose the four vertices
-$$
-(1,1,1,1),\quad(-1,1,1,1),\quad(-1,-1,1,1),\quad(1,-1,1,1)
-$$
-of a square face, in cyclic order, with coefficients $1,-1,1,-1$. Adjacent pairs have distance $1$ and opposite pairs have distance $2$, so their quadratic form is
-$$
-2\left(-4+2\cdot2^p\right)=4(2^p-2)>0.
-$$
-Therefore no $p>1$ has negative type, and
-$$
-\wp=1.
+d(A,B)=
+\begin{cases}
+1,&A\cap B=\varnothing,\\
+2,&|A\cap B|=1.
+\end{cases}
 $$
 
-At $p=1$, equality in the displayed sum of squares holds exactly when
+Let $M$ be the adjacency matrix of $KG(7,2)$, let $J$ be the all-ones matrix, and put $q=2^p$. The matrix of $d^p$ is
 $$
-\sum_xc_x=0,
-\qquad
-\sum_xc_xx_i=0\quad(i=1,2,3,4).
+D_p=M+q(J-I-M).
 $$
-The five functions $1,x_1,x_2,x_3,x_4$ are linearly independent on $X$; for example, they are pairwise orthogonal under summation over the cube. Consequently
+For every coefficient vector $c$ with $\sum_A c_A=0$, one has $Jc=0$, so on the zero-sum subspace
 $$
-\dim E=16-5=11.
+D_p=(1-q)M-qI.
+$$
+Thus the negative-type question reduces to the nonconstant spectrum of $M$.
+
+Step 2: Derive the adjacency spectrum and the critical exponent
+
+For $u=(u_1,\ldots,u_7)\in\mathbb R^7$, define
+$$
+(Tu)_{\{i,j\}}=u_i+u_j.
+$$
+The map $T$ is injective: if $u_i+u_j=0$ for every pair, then three distinct indices give $u_i=-u_j=u_k=-u_i$, so all coordinates vanish.
+
+Let $s=\sum_i u_i$. For a vertex $\{i,j\}$,
+$$
+(MTu)_{\{i,j\}}
+=\sum_{\{k,l\}\subset[7]\setminus\{i,j\}}(u_k+u_l)
+=4(s-u_i-u_j).
+$$
+Therefore the constant vector has adjacency eigenvalue $10$, while
+$$
+T\left(\left\{u:\sum_i u_i=0\right\}\right)
+$$
+is a $6$-dimensional eigenspace with eigenvalue $-4$.
+
+To find the remaining spectrum, let
+$$
+W=\left\{c\in\mathbb R^X:\sum_{j\neq i}c_{\{i,j\}}=0\text{ for every }i\right\}.
+$$
+The seven row-sum equations have rank $7$ because their transpose is the injective map $T$, so $\dim W=21-7=14$. If $c\in W$, then $\sum_Ac_A=0$, and
+$$
+(Mc)_{\{i,j\}}
+=\sum_{\{k,l\}\cap\{i,j\}=\varnothing}c_{\{k,l\}}
+=0-\left(\sum_{k\neq i}c_{\{i,k\}}+\sum_{k\neq j}c_{\{j,k\}}-c_{\{i,j\}}\right)
+=c_{\{i,j\}}.
+$$
+Hence the spectrum of $M$ is $10$ once, $-4$ with multiplicity $6$, and $1$ with multiplicity $14$.
+
+On the zero-sum subspace, the two eigenvalues of $D_p$ are therefore
+$$
+(1-q)(-4)-q=-4+3q
+$$
+and
+$$
+(1-q)-q=1-2q.
+$$
+Since $q=2^p>1$, the second is always negative. The first is nonpositive exactly when $q\leq4/3$. Thus
+$$
+\wp=\log_2\left(\frac43\right).
+$$
+At $p=\wp$, equality occurs exactly on the $-4$ adjacency eigenspace, so
+$$
+E=T(V_0),\qquad V_0=\left\{u\in\mathbb R^7:\sum_i u_i=0\right\},
+$$
+and $\dim E=6$.
+
+Step 3: Convert support minimization into an extremal graph problem
+
+Let $U\leq V_0$ and $L=T(U)\leq E$. Because $T$ is injective, $\dim L=\dim U$. A coordinate $\{i,j\}$ is absent from the union of supports of $L$ exactly when
+$$
+u_i+u_j=0\qquad\text{for every }u\in U.
+$$
+Define a graph $G_U$ on $[7]$ by declaring $ij$ to be an edge precisely when this identity holds. Then
+$$
+|\operatorname{supp}(L)|=21-e(G_U).
 $$
 
-Step 2: Reduce two-dimensional support minimization to affine dimension
+For an arbitrary graph $G$ on $[7]$, set
+$$
+W_G=\left\{u\in V_0:u_i+u_j=0\text{ for every }ij\in E(G)\right\}.
+$$
+On a connected bipartite component with bipartition $(P,Q)$, the edge equations force one parameter $t$: all coordinates on $P$ equal $t$ and all coordinates on $Q$ equal $-t$. On a connected non-bipartite component, an odd cycle forces $t=-t$, so every coordinate on that component is $0$.
 
-For $S\subseteq X$, let $\Phi_S$ be the $5\times |S|$ matrix whose column indexed by $x\in S$ is
+Let $b$ be the number of bipartite connected components, counting isolated vertices. For a bipartite component $C$ write
 $$
-\phi(x)=(1,x_1,x_2,x_3,x_4)^T.
+\delta_C=|P_C|-|Q_C|,
 $$
-The coefficient vectors in $E$ supported on $S$ form $\ker\Phi_S$. If $r=\dim\operatorname{aff}(S)$, then
+with $\delta_C=1$ for an isolated vertex. The global equation $\sum_i u_i=0$ becomes
 $$
-\operatorname{rank}\Phi_S=r+1,
+\sum_C\delta_C t_C=0.
 $$
-because affine relations among points of $S$ are exactly linear relations among the augmented columns $\phi(x)$. Hence
+Consequently
 $$
-\dim\ker\Phi_S=|S|-r-1.
+\dim W_G=
+\begin{cases}
+b,&\delta_C=0\text{ for every bipartite component},\\
+b-1,&\text{otherwise}.
+\end{cases}
 $$
-
-We also need a cube-intersection bound. If $A\subset\mathbb R^4$ is an affine subspace of dimension $r$, then
+Thus, if $m_r$ denotes the largest possible number of edges of a graph $G$ with $\dim W_G\geq r$, then
 $$
-|A\cap X|\leq2^r.
-$$
-Indeed, if $D$ is the direction space of $A$, the four coordinate functionals span $D^*$. Choose $r$ coordinate functionals whose restrictions form a basis of $D^*$. Projection to those $r$ coordinates is injective on $A$, while points of $X$ have only $2^r$ possible sign patterns in those coordinates.
-
-Now let $L\leq E$ be two-dimensional and put $S=S(L)$. Since $L\subseteq\ker\Phi_S$,
-$$
-|S|-r-1\geq2,
-$$
-so $|S|\geq r+3$. The intersection bound gives $|S|\leq2^r$. For $r\leq2$, these inequalities are incompatible, because
-$$
-r+3>2^r.
-$$
-Thus $r\geq3$ and
-$$
-|S|\geq6.
+d_r=21-m_r.
 $$
 
-Take any six vertices in a facet, for example six vertices with $x_4=1$. They cannot lie in an affine plane because an affine plane meets $X$ in at most $4$ vertices. Thus their affine dimension is $3$, so $\ker\Phi_S$ has dimension $6-4=2$.
+Step 4: Bound the number of zero coordinates for every dimension
 
-Moreover, for any one of these six vertices, the remaining five still cannot lie in an affine plane, so the remaining five augmented columns still have rank $4$. Therefore the deleted coordinate is nonzero in some vector of $\ker\Phi_S$. Hence the union of supports of the two-dimensional kernel is all six vertices. It follows that
-$$
-s_2^*=6.
-$$
-For every minimizing $L$, its support $S$ has six vertices, affine dimension $3$, and
-$$
-L=\ker\Phi_S.
-$$
+Let $z$ be the total number of vertices lying in non-bipartite components and let the bipartite component sizes be $s_1,\ldots,s_b$, so their total is $B=7-z$.
 
-Step 3: Classify the affine hyperplane sections containing at least six cube vertices
-
-Let $H$ be the affine hull of a minimizing support. Since it has dimension $3$, write
+The non-bipartite components contain at most
 $$
-H=\left\{x\in\mathbb R^4:\sum_{i=1}^{4}a_ix_i=t\right\},
+\binom z2
 $$
-with not all $a_i$ zero. Let $r$ be the number of nonzero coefficients. By flipping coordinate signs, assume the nonzero $a_i$ are positive.
-
-For the active coordinates, a sign vector $\varepsilon\in\{-1,1\}^r$ solves the equation exactly when the set
+edges in total. A bipartite component of size $s$ has at most
 $$
-A=\{i:\varepsilon_i=1\}
+f(s)=\left\lfloor\frac{s^2}{4}\right\rfloor
 $$
-has one prescribed weighted sum:
+edges. Also
 $$
-\sum_{i\in A}a_i=\frac12\left(t+\sum_{i=1}^{r}a_i\right).
+f(a)+f(b)\leq f(a+b-1)\qquad(a,b\geq1),
 $$
-Because all active weights are positive, sets with the same weighted sum form an antichain.
-
-For an antichain $\mathcal A\subseteq2^{[r]}$, the Lubell inequality
+which follows directly from the formula for $f$ (the case $a=1$ is equality, and for $a,b\geq2$ the quadratic difference is nonnegative before taking floors). Iterating gives
 $$
-\sum_{A\in\mathcal A}\frac1{\binom{r}{|A|}}\leq1
-$$
-follows by counting maximal chains: a set $A$ lies in $|A|!(r-|A|)!$ of the $r!$ maximal chains, and an antichain meets each chain at most once. Thus the maximum antichain sizes for $r=1,2,3,4$ are
-$$
-1,2,3,6.
-$$
-After restoring the $4-r$ inactive coordinates, a hyperplane containing at least six cube vertices can only attain the corresponding maximum.
-
-For $r=2$, equality forces the two active singleton subsets to have the same weight, so the two coefficient magnitudes are equal and $t=0$. For $r=3$, an antichain of size $3$ cannot mix singleton and two-element subsets: a singleton excludes the two pairs containing it, leaving at most its complementary pair, so a mixed antichain has size at most $2$. Hence an antichain of size $3$ is either all singletons or all two-element subsets. Equal weighted sums then force all three coefficient magnitudes equal, with $|t|$ equal to that common magnitude. For $r=4$, equality in the Lubell bound with six sets forces all six two-element subsets, and equality of all pair sums forces all four coefficient magnitudes equal and $t=0$.
-
-Therefore the hyperplanes meeting $X$ in at least six vertices are exactly the following four families:
-
-- $x_i=\pm1$, giving $8$ vertices;
-- $x_i=\pm x_j$, giving $8$ vertices;
-- $\sigma_ix_i+\sigma_jx_j+\sigma_kx_k=\tau$, with $\sigma_i,\sigma_j,\sigma_k,\tau\in\{-1,1\}$, giving $6$ vertices;
-- $\sigma_1x_1+\sigma_2x_2+\sigma_3x_3+\sigma_4x_4=0$, with each $\sigma_i\in\{-1,1\}$, giving $6$ vertices.
-
-Equations differing by multiplication by $-1$ define the same hyperplane.
-
-Step 4: Count the minimizing equality planes by affine-hull size
-
-There are
-$$
-4\cdot2=8
-$$
-hyperplanes of the first $8$-vertex family and
-$$
-\binom42\cdot2=12
-$$
-of the second, hence $20$ hyperplanes meeting the cube in $8$ vertices.
-
-For the first $6$-vertex family, choose the three active coordinates in $\binom43=4$ ways. The three coefficient signs and the right-hand sign give $2^4$ signed equations, and division by the common sign identifies pairs, so there are
-$$
-4\cdot\frac{2^4}{2}=32
-$$
-such hyperplanes. For the second $6$-vertex family there are
-$$
-\frac{2^4}{2}=8
-$$
-hyperplanes. Thus exactly
-$$
-40
-$$
-affine hyperplanes meet $X$ in $6$ vertices.
-
-Every minimizing support $S$ consists of six vertices and has a unique affine hull $H$. If $|H\cap X|=6$, then necessarily $S=H\cap X$, giving
-$$
-N_6=40.
-$$
-If $|H\cap X|=8$, any six of those eight vertices span $H$, because an affine plane contains at most four cube vertices. Hence each of the $20$ eight-vertex hyperplanes contributes
-$$
-\binom86=28
-$$
-distinct minimizing supports. Their affine hulls are unique, so there is no overcounting:
-$$
-N_8=20\binom86=560.
-$$
-By Step 2 each minimizing support determines exactly one two-dimensional equality subspace. Combining the five requested quantities gives
-$$
-(\wp,\dim E,s_2^*,N_6,N_8)=(1,11,6,40,560).
+\sum_{i=1}^b f(s_i)\leq f(B-b+1).
 $$
 
-Final Answer: $\boxed{(1,11,6,40,560)}$
+First suppose at least one $\delta_C$ is nonzero. Then $\dim W_G=b-1\geq r$, so $b\geq r+1$. Using the smallest possible $b$ only enlarges the edge bound, hence
+$$
+e(G)\leq \binom z2+f(7-z-r),
+$$
+where either $z=0$ or $z\geq3$, and also $z\leq6-r$. Evaluating these few allowed $z$ gives the maxima
+$$
+10,6,4,2,1,0
+$$
+for $r=1,2,3,4,5,6$, respectively.
+
+Now suppose every bipartite component is balanced, so $\dim W_G=b$. Each such component has even size at least $2$. Since the total number of vertices is odd, there must be a non-bipartite part with odd size at least $3$. Therefore this case is possible only for $r\leq2$. For $r=1$, taking five non-bipartite vertices and one balanced $2$-vertex component gives at most
+$$
+\binom52+1=11
+$$
+edges; with only three non-bipartite vertices the bound is at most $\binom32+4=7$. For $r=2$, at least two balanced components use four vertices, leaving at most three non-bipartite vertices, so
+$$
+e(G)\leq \binom32+1+1=5.
+$$
+Combining the two cases,
+$$
+(m_1,m_2,m_3,m_4,m_5,m_6)=(11,6,4,2,1,0).
+$$
+
+Step 5: Attain every extremal bound and compute the support profile
+
+Each bound from Step 4 is attained by a graph whose component structure is, respectively,
+$$
+K_5\sqcup K_2,\quad
+K_{2,3}\sqcup2K_1,\quad
+K_{2,2}\sqcup3K_1,\quad
+K_{1,2}\sqcup4K_1,\quad
+K_2\sqcup5K_1,\quad
+7K_1.
+$$
+Using the dimension formula from Step 3, the corresponding spaces $W_G$ have dimensions
+$$
+1,2,3,4,5,6.
+$$
+For each $r$, take $U=W_G$ and $L=T(U)$. Then $G\subseteq G_U$, so $e(G_U)\geq m_r$; the definition of $m_r$ forces equality. Hence
+$$
+(d_1,d_2,d_3,d_4,d_5,d_6)
+=(21,21,21,21,21,21)-(11,6,4,2,1,0)
+=(10,15,17,19,20,21).
+$$
+Together with Step 2, the requested ordered object is
+$$
+\left(\log_2\left(\frac43\right),6,(10,15,17,19,20,21)\right).
+$$
+
+Final Answer: $\boxed{\left(\log_2\left(\frac43\right),6,(10,15,17,19,20,21)\right)}$
 
 ---
 
 ## Answer
 
-$(1,11,6,40,560)$
+$\left(\log_2\left(\frac43\right),6,(10,15,17,19,20,21)\right)$
 
 ---
 
@@ -193,7 +201,7 @@ $(1,11,6,40,560)$
 ## Solution Concepts
 
 - negative type metrics
-- Hamming cube geometry
-- affine dependence
-- antichain counting
-- hyperplane sections
+- Kneser graph spectrum
+- incidence linear maps
+- generalized support weights
+- extremal graph decomposition
