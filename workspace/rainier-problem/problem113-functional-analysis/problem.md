@@ -2,27 +2,25 @@
 
 ## LaTeX (Normalized)
 
-Let $\mathcal H$ be the set of real-valued absolutely continuous odd functions $f$ on $[-1,1]$ such that
+Let
 $$
-f(-1)=f(1)=0,
-\qquad
-f'\in L^2(-1,1),
-$$
-and
-$$
-\int_{-1}^1xf(x)\,dx=0,
-\qquad
-\int_{-1}^1x^3f(x)\,dx=0.
+V=
+\left\{
+u\in H_0^1(0,1):
+\int_0^1xu(x)\,dx=0,
+\quad
+\int_0^1x^3u(x)\,dx=0
+\right\}.
 $$
 
 Determine the sharp constant $C$ such that
 $$
-\int_{-1}^1f(x)^2\,dx
+\left|u\left(\frac{1}{2}\right)\right|^2
 \leq
 C
-\int_{-1}^1f'(x)^2\,dx
+\int_0^1u'(x)^2\,dx
 $$
-for every $f\in\mathcal H$.
+for every $u\in V$.
 
 ---
 
@@ -39,4 +37,4 @@ for every $f\in\mathcal H$.
 
 ## Domain Explanation
 
-This problem asks for the best constant in a quadratic inequality on a closed linear subspace defined by boundary, parity, and moment constraints. The main task is to identify the constrained Rayleigh minimizer and characterize its eigenvalue through the Euler-Lagrange equation and the induced finite-dimensional compatibility condition. Therefore Analysis / Functional analysis is the primary classification. Differential Equations and Dynamical Systems / Boundary value problems is secondary because the boundary-value equation appears only after the variational reduction.
+This problem asks for the exact norm of a point-evaluation functional on a closed codimension-two subspace of the Dirichlet energy space. The decisive structure is the interaction between Riesz representation, orthogonal projection, and the two moment constraints, so Analysis / Functional analysis is the primary classification. Calculus / Integration is secondary because the required moment and Green-kernel integrals are explicit once the Hilbert-space reduction is found.
