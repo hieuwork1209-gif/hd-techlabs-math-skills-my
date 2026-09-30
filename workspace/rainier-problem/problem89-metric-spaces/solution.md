@@ -1,267 +1,275 @@
 ## Steps
 
-Step 1: Diagonalize the folded Hamming distance by quotient characters
+Step 1: Derive the distance algebra and adjacency spectrum of the Heawood graph
 
 Let
 $$
-G=\mathbb{F}_2^9/\langle\mathbf{1}\rangle.
+V=\mathbb{F}_2^3\setminus\{0\}.
 $$
-The antipodal map is an isometry of the Hamming cube, so the metric is the quotient metric. For the zero class,
+Index both the point part and the line part by $V$, with a point $P_v$ adjacent to a line $L_u$ exactly when
 $$
-\delta(x)=d([0],[x])=\min\{|x|,9-|x|\}.
+u\cdot v=0.
 $$
-A character of $G$ is indexed by an even subset $S\subseteq[9]$:
+Let $B$ be the $7\times7$ incidence matrix, so
 $$
-\chi_S([x])=(-1)^{\sum_{i\in S}x_i}.
+B_{u,v}=1_{\{u\cdot v=0\}}.
 $$
-Since $D_p=(d(x,y)^p)$ is translation-invariant, every $\chi_S$ is an eigenvector. If $s=|S|$, its eigenvalue is
+Each row contains three ones. For $u\neq v$, the equations
 $$
-\lambda_s(p)=\frac{1}{2}\sum_{x\in\mathbb{F}_2^9}\delta(x)^p\chi_S(x).
+u\cdot w=v\cdot w=0
 $$
-For
+have exactly one nonzero solution $w$, whereas for $u=v$ there are three. Hence
 $$
-K_s(h)=\sum_j(-1)^j\binom{s}{j}\binom{9-s}{h-j},
+B^2=2I+J,
+\qquad
+B\mathbf{1}=3\mathbf{1}.
 $$
-one has
+
+With the point part first and the line part second, the adjacency matrix is
 $$
-\sum_{h=0}^9K_s(h)z^h=(1-z)^s(1+z)^{9-s}.
+A=
+\begin{pmatrix}
+0&B\\
+B&0
+\end{pmatrix}.
 $$
-If $P_s(z)=(1-z)^s(1+z)^{9-s}$, then
+Thus $A$ has eigenvalues $3,-3,\sqrt{2},-\sqrt{2}$, with multiplicities $1,1,6,6$. Indeed, on
 $$
-z^9P_s(z^{-1})=(-1)^sP_s(z).
+W=\{x\in\mathbb{R}^7:\langle x,\mathbf{1}\rangle=0\},
 $$
-Thus, for even $s$, $K_s(9-h)=K_s(h)$, and pairing the weights $h$ and $9-h$ gives
+one has $B^2=2I$, and the $\pm\sqrt{2}$ eigenspaces of $A$ are
 $$
-\lambda_s(p)=\sum_{h=1}^4K_s(h)h^p.
+\left\{\left(x,\pm\frac{1}{\sqrt{2}}Bx\right):x\in W\right\}.
 $$
-The needed coefficients are visible from
+
+Let $A_j$ be the distance-$j$ matrix. Since the graph has diameter $3$,
 $$
-\begin{aligned}
-P_2(z)&=1+5z+8z^2-14z^4+O(z^5),\\
-P_4(z)&=1+z-4z^2-4z^3+6z^4+O(z^5),\\
-P_6(z)&=1-3z+8z^3-6z^4+O(z^5),\\
-P_8(z)&=1-7z+20z^2-28z^3+14z^4+O(z^5).
-\end{aligned}
+A_1=A.
+$$
+Two vertices on the same side have one common neighbor, so
+$$
+A_2=A^2-3I.
+$$
+Also a vertex at distance $1$ has two neighbors at distance $2$ from the other endpoint, while a vertex at distance $3$ has three, giving
+$$
+AA_2=2A+3A_3.
 $$
 Therefore
 $$
-\lambda_2(p)=5+8\cdot2^p-14\cdot4^p,
-$$
-$$
-\lambda_4(p)=1-4\cdot2^p-4\cdot3^p+6\cdot4^p,
-$$
-$$
-\lambda_6(p)=-3+8\cdot3^p-6\cdot4^p,
-$$
-$$
-\lambda_8(p)=-7+20\cdot2^p-28\cdot3^p+14\cdot4^p.
+A_3=\frac{A^3-5A}{3}.
 $$
 
-Step 2: Determine the critical exponent and equality-space dimension
+Step 2: Determine the supremal negative type
 
 Put
 $$
-F(p)=14\cdot4^p-28\cdot3^p+20\cdot2^p-7.
+q=2^p,\qquad r=3^p.
 $$
-Since $F(0)=-1$ and
+The matrix of $d^p$ is
 $$
-F\left(\frac{1}{3}\right)
->
--7+20\frac{12599}{10000}
--28\frac{14423}{10000}
-+14\frac{15873}{10000}
-=\frac{179}{5000}>0,
+D_p=A+qA_2+rA_3.
 $$
-where the three rational bounds follow by cubing, $F$ has a positive zero below $\frac{1}{3}$.
-
-It is unique. Put $x=2^p\geq1$, $\alpha=\log_2 3$, and
+On an adjacency eigenspace with eigenvalue $\lambda$, its eigenvalue is
 $$
-\widetilde F(x)=14x^2-28x^\alpha+20x-7.
+\mu_p(\lambda)
+=\lambda+q(\lambda^2-3)+\frac{r}{3}(\lambda^3-5\lambda).
 $$
-The inequalities $3^7>2^{11}$ and $3^5<2^8$ give
+For the three nonconstant adjacency eigenvalues,
 $$
-\frac{11}{7}<\alpha<\frac{8}{5}.
+\mu_p(-3)=-3+6\cdot2^p-4\cdot3^p,
 $$
-With $\beta=\alpha-1\in(0,1)$, concavity gives $x^\beta\leq\beta x+1-\beta$. Hence
 $$
-\frac{1}{4}\widetilde F'(x)
-=7x+5-7\alpha x^\beta
-\geq7x+5-7\alpha(\alpha-1)x-7\alpha(2-\alpha)>0,
+\mu_p(\sqrt{2})=\sqrt{2}(1-3^p)-2^p,
 $$
-because
+and
 $$
-7\alpha(\alpha-1)<\frac{168}{25}<7,\qquad
-7\alpha(2-\alpha)<\frac{33}{7}<5.
-$$
-Therefore $F$ is strictly increasing.
-
-The remaining nonconstant eigenvalues are negative on $0\leq p\leq\frac{1}{3}$. For $\lambda_2$, with $q=2^p\geq1$,
-$$
-\lambda_2=5+8q-14q^2<0.
-$$
-For $\lambda_4$,
-$$
-\lambda_4'(p)
-=-4(\log 2)2^p-4(\log 3)3^p+12(\log 2)4^p.
-$$
-Since $3^p\leq4^p$,
-$$
-\lambda_4'(p)
-\geq4\cdot2^p\left((\log\left(\frac{8}{3}\right))2^p-\log 2\right)>0.
-$$
-Also
-$$
-\lambda_4\left(\frac{1}{3}\right)
-<
-1-4\frac{1259}{1000}
--4\frac{721}{500}
-+6\frac{397}{250}
-=-\frac{69}{250}<0,
-$$
-so $\lambda_4(p)<0$ throughout the interval.
-
-For $\lambda_6$, convexity of $3^p$ and $e^t\geq1+t$ give
-$$
-3^p\leq1+3p(3^{\frac{1}{3}}-1),\qquad
-4^p\geq1+p\log 4.
-$$
-Hence, using $3^{\frac{1}{3}}<\frac{1443}{1000}$ and $\log 4>\frac{4}{3}$,
-$$
-\lambda_6(p)
-\leq-1+p\left(24(3^{\frac{1}{3}}-1)-6\log 4\right)
-<-1+\frac{1}{3}\frac{329}{125}
-=-\frac{46}{375}<0.
-$$
-Thus
-$$
-\wp=\inf\{p>0:F(p)>0\},
-$$
-and only the weight-$8$ characters vanish at $p=\wp$. Therefore
-$$
-\dim E=\binom{9}{8}=9.
+\mu_p(-\sqrt{2})=\sqrt{2}(3^p-1)-2^p.
 $$
 
-Step 3: Put the equality space into Rademacher form
+The middle expression is negative for every $p>0$. For the first, write $t=2^p$ and $\alpha=\log_2 3$. Since $3^2>2^3$, one has $\alpha>\frac{3}{2}$, and
+$$
+3+4t^\alpha-6t
+$$
+has derivative
+$$
+4\alpha t^{\alpha-1}-6>0
+$$
+for $t\geq1$. Its value at $t=1$ is $1$, so $\mu_p(-3)<0$ for every $p\geq0$.
 
-Choose the representative with ninth coordinate $0$ and set
+Finally,
 $$
-\varepsilon_i=(-1)^{x_i},\qquad
-P=\prod_{i=1}^8\varepsilon_i.
+f(p)=\sqrt{2}(3^p-1)-2^p
 $$
-The nine weight-$8$ characters are $P$ and $P\varepsilon_i$ for $1\leq i\leq8$. Hence every $c\in E$ is uniquely
+is strictly increasing. In terms of $t=2^p$,
 $$
-c=P\left(a_0+\sum_{i=1}^8a_i\varepsilon_i\right).
+f=\sqrt{2}(t^\alpha-1)-t,
 $$
-Since $P\in\{-1,1\}$, the zero set of $c$ is the zero set of the affine Rademacher form
+whose derivative is
 $$
-L(\varepsilon)=a_0+\sum_{i=1}^8a_i\varepsilon_i.
+\sqrt{2}\alpha t^{\alpha-1}-1>0.
 $$
-
-There is also a homogeneous form that will be useful later. Each antipodal class has a unique sign representative
+Moreover $f(0)=-1$ and $f(1)=2\sqrt{2}-2>0$. Hence $f$ has a unique positive zero and
 $$
-\eta=(\eta_1,\ldots,\eta_9)\in\{-1,1\}^9,\qquad
-\prod_{i=1}^9\eta_i=1.
+\wp=\inf\{p>0:\sqrt{2}(3^p-1)>2^p\}.
 $$
-For this representative the weight-$8$ character omitting coordinate $i$ equals $\eta_i$. Thus $E$ is also identified with coefficient vectors $a\in\mathbb{R}^9$ via
+At $p=\wp$, the critical equality space is exactly the $-\sqrt{2}$ eigenspace, so
 $$
-f_a(\eta)=\sum_{i=1}^9a_i\eta_i.
-$$
-
-Step 4: Find and classify the sparsest nonzero equality vectors
-
-If every variable coefficient vanishes, a nonzero constant form has full support. Otherwise choose a variable coefficient $a_i\neq0$. Pair the $2^8$ sign vectors by flipping only $\varepsilon_i$. For fixed values of the other seven signs, the two values of $L$ are
-$$
-B+a_i,\qquad B-a_i.
-$$
-They cannot both vanish, so $L$ has at most $2^7=128$ zeros. Hence every nonzero $c\in E$ satisfies
-$$
-|\operatorname{supp}(c)|\geq128.
-$$
-The form $1+\varepsilon_1$ attains equality, so
-$$
-m=128.
+\dim E=6.
 $$
 
-If equality holds, every pair has exactly one zero, so $B$ takes only the values $\pm a_i$. Thus $B^2\equiv a_i^2$. Expanding $B^2$ on the seven-dimensional sign cube and using linear independence of its characters gives
+Step 3: Identify the critical equality space as a self-dual support code
+
+Every vector in $E$ has the form
 $$
-a_0a_j=0,\qquad a_ja_k=0
+c_x=\left(x,-\frac{1}{\sqrt{2}}Bx\right),
+\qquad x\in W.
 $$
-for distinct $j,k\neq i$, together with
+Thus zeros on the point side are zeros of $x$, while zeros on the line side are zeros of $Bx$.
+
+For $v,u\in V$, define
 $$
-a_0^2+\sum_{j\neq i}a_j^2=a_i^2.
+p_v=e_v-\frac{1}{7}\mathbf{1},
 $$
-Consequently the minimal vectors are exactly the forms with two nonzero homogeneous coefficients of equal absolute value. In the $\mathbb{R}^9$ model they are the lines
+and
 $$
-\mathbb{R}(e_i\pm e_j),\qquad i<j.
+\ell_u=1_{\{v:u\cdot v=0\}}-\frac{3}{7}\mathbf{1}.
 $$
-Therefore
+For $x\in W$,
 $$
-N=2\binom{9}{2}=72.
+x_v=\langle x,p_v\rangle,
+\qquad
+(Bx)_u=\langle x,\ell_u\rangle.
+$$
+Therefore, for an $r$-dimensional subspace $U\leq W$, the coordinates missing from the support of the corresponding subspace of $E$ are precisely
+$$
+\mathcal{A}\cap U^\perp,
+\qquad
+\mathcal{A}=\{p_v:v\in V\}\cup\{\ell_u:u\in V\}.
 $$
 
-Step 5: Bound the support of a two-dimensional subspace
-
-Let $L\leq E$ have dimension $2$. In the affine model choose independent forms
+Let
 $$
-A_0+\sum_{i=1}^8A_i\varepsilon_i,\qquad
-B_0+\sum_{i=1}^8B_i\varepsilon_i.
+M_k=\max_{\substack{H\leq W\\ \dim H=k}}|\mathcal{A}\cap H|.
 $$
-A point is absent from $\operatorname{supp}(L)$ exactly when both forms vanish.
-
-If the $2\times8$ variable-coefficient matrix has rank less than $2$, independence of the two affine forms forces a nonzero constant equation after row reduction, so there are no common zeros. Otherwise choose two variable columns $i,j$ of rank $2$. Solving for $\varepsilon_i,\varepsilon_j$ shows that, for each assignment of the other six signs, there is at most one common zero. Hence there are at most
+Then
 $$
-2^6=64
-$$
-common zeros, and therefore
-$$
-m_2\geq256-64=192.
-$$
-The two equations $1+\varepsilon_1=0$ and $1+\varepsilon_2=0$ have exactly $64$ common zeros, so
-$$
-m_2=192.
+d_r=14-M_{6-r}.
 $$
 
-Step 6: Classify and count the two-dimensional minimizers
+The configuration $\mathcal{A}$ is self-dual. Since $B$ is symmetric,
+$$
+Bp_v=\ell_v,
+$$
+and, because $B^2=2I$ on $W$,
+$$
+B\ell_v=2p_v.
+$$
+Thus the invertible map $B:W\to W$ swaps the two seven-element families up to nonzero scalars.
 
-Suppose a two-dimensional subspace attains $m_2$. After choosing two rank-$2$ variable columns and row-reducing, the common-zero equations have the form
-$$
-\varepsilon_i=R_1(\xi),\qquad
-\varepsilon_j=R_2(\xi),
-$$
-where $\xi\in\{-1,1\}^6$ and each $R_k$ is affine linear. Equality means that for every $\xi$, both $R_1(\xi)$ and $R_2(\xi)$ belong to $\{-1,1\}$.
+Step 4: Control the line vectors lying in a span of point vectors
 
-If an affine form
-$$
-R=b_0+\sum_\ell b_\ell\xi_\ell
-$$
-takes only the values $\pm1$, then $R^2\equiv1$. Comparing the coefficients of the distinct cube characters in $R^2$ shows that at most one among $b_0,b_1,\ldots,b_6$ is nonzero, and that nonzero coefficient has absolute value $1$. Hence each reduced equation is either $\varepsilon_i=\pm1$ or $\varepsilon_i=\pm\varepsilon_k$.
+Any six vectors among the seven $p_v$ are independent. Indeed, if a linear combination supported on at most six coordinates represents a constant vector, the omitted coordinate forces that constant to be zero, and then every coefficient vanishes.
 
-In the homogeneous $\mathbb{R}^9$ model from Step 3, each such equation is represented by a root line
+For $S\subseteq V$ with $|S|=s\leq5$, let
 $$
-\mathbb{R}(e_a\pm e_b).
+P_S=\operatorname{span}\{p_v:v\in S\},
+\qquad
+R=V\setminus S.
 $$
-Therefore every minimizing coefficient plane is spanned by two root lines whose supports are not the same unordered pair with opposite signs. Conversely, any two such compatible root lines impose two independent signed equalities on the even sign cube, leaving exactly $2^6=64$ common zeros.
-
-There are two types. If the two root supports are disjoint, choose four coordinates, pair them in one of three ways, and choose the two signs:
+A vector of $W$ belongs to $P_S$ exactly when all its coordinates on $R$ are equal. The vector $\ell_u$ has value $\frac{4}{7}$ on the three points of the line $L_u$ and $-\frac{3}{7}$ elsewhere. Hence
 $$
-\binom{9}{4}\cdot3\cdot4=1512.
+\ell_u\in P_S
 $$
-If they share one coordinate, fix a triple of coordinates. There are $12$ unordered adjacent root pairs on that triple, while each resulting plane contains exactly three root lines, so there are four planes per triple:
+exactly when either
 $$
-4\binom{9}{3}=336.
+R\subseteq L_u
 $$
-Thus
+or
 $$
-N_2=1512+336=1848.
+R\cap L_u=\varnothing.
 $$
 
-Final Answer: $\boxed{\left(\inf\{p>0:14\cdot4^p-28\cdot3^p+20\cdot2^p-7>0\},9,128,72,192,1848\right)}$
+This gives the required line counts:
+
+- if $s=1$ or $2$, no line vector lies in $P_S$;
+- if $s=3$, there is one exactly when $S$ itself is a Fano line;
+- if $s=4$, there is exactly one;
+- if $s=5$, there are exactly three.
+
+For $s=4$, if $R$ is a line it is the unique line containing $R$. If $R=\{a,b,c\}$ is not a line, then $a,b,c$ are a basis of $\mathbb{F}_2^3$, and
+$$
+\{a+b,a+c,b+c\}
+$$
+is the unique line disjoint from $R$. For $s=5$, the two points in $R$ lie on one common line, four lines meet exactly one of them, and the remaining two lines are disjoint from $R$, giving three in total.
+
+Step 5: Determine every extremal flat size
+
+Fix $0\leq k\leq5$ and a $k$-dimensional subspace $H\leq W$. Let
+$$
+a=|\{v:p_v\in H\}|,
+\qquad
+b=|\{u:\ell_u\in H\}|.
+$$
+Using the self-duality from Step 3, replace $H$ by $BH$ if necessary and assume
+$$
+a\geq b.
+$$
+Since any six point vectors are independent,
+$$
+a\leq k.
+$$
+
+If $a\leq k-1$, then
+$$
+a+b\leq2k-2.
+$$
+If $a=k$, the point vectors in $H$ span all of $H$, so Step 4 applies directly.
+
+It follows that
+$$
+M_0=0,\qquad M_1=1,\qquad M_2=2,\qquad M_3=4,\qquad M_4\leq6,\qquad M_5\leq8.
+$$
+All these bounds are attained. For $M_3$, take the three point vectors on one Fano line together with that line vector.
+
+For $M_4$, let $L$ be a Fano line, let $v\in L$, and let $L,M,N$ be the three lines through $v$. The three point vectors on $L$ are independent and span $\ell_L$. Adding $\ell_M$ raises the dimension to $4$. Also
+$$
+\ell_L+\ell_M+\ell_N=2p_v,
+$$
+so the same $4$-space contains the three point vectors on $L$ and all three line vectors through $v$, giving six elements of $\mathcal{A}$.
+
+For $M_5$, take any five point vectors. They span a $5$-space, and Step 4 shows that exactly three line vectors lie in that span, giving eight elements.
+
+Finally $M_6=14$. Therefore
+$$
+(M_0,M_1,M_2,M_3,M_4,M_5,M_6)
+=(0,1,2,4,6,8,14).
+$$
+
+Step 6: Read off the generalized support hierarchy
+
+Since
+$$
+d_r=14-M_{6-r},
+$$
+the six generalized support minima are
+$$
+(d_1,d_2,d_3,d_4,d_5,d_6)
+=(6,8,10,12,13,14).
+$$
+Together with Step 2,
+$$
+\wp=\inf\{p>0:\sqrt{2}(3^p-1)>2^p\},
+\qquad
+\dim E=6.
+$$
+
+Final Answer: $\boxed{\left(\inf\{p>0:\sqrt{2}(3^p-1)>2^p\},6,(6,8,10,12,13,14)\right)}$
 
 ---
 
 ## Answer
 
-$\left(\inf\{p>0:14\cdot4^p-28\cdot3^p+20\cdot2^p-7>0\},9,128,72,192,1848\right)$
+$\left(\inf\{p>0:\sqrt{2}(3^p-1)>2^p\},6,(6,8,10,12,13,14)\right)$
 
 ---
 
@@ -276,7 +284,7 @@ $\left(\inf\{p>0:14\cdot4^p-28\cdot3^p+20\cdot2^p-7>0\},9,128,72,192,1848\right)
 ## Solution Concepts
 
 - negative type metrics
-- Fourier analysis on finite groups
-- Rademacher affine forms
+- distance-regular graph algebra
+- Heawood graph spectrum
 - generalized support weights
-- signed root configurations
+- Fano plane self-duality
