@@ -35,4 +35,4 @@ $$
 
 ## Domain Explanation
 
-This problem asks first for the extremal size of a uniform block packing with a parity condition and then for the sharp disjointness statistic inside the equality case. The decisive objects are block incidences, pair multiplicities, packing leaves, and an explicit finite design construction, so Discrete Mathematics and Combinatorics / Design theory and finite geometry is the primary classification. Extremal combinatorics is a close secondary fit, but the optimized objects are finite block designs and their incidence structure.
+This problem asks first for the extremal size of a uniform block packing with a parity condition and then for the sharp disjointness statistic inside the equality case. The decisive objects are block incidences, pair multiplicities, equality structure, and an explicit finite design construction, so Discrete Mathematics and Combinatorics / Design theory and finite geometry is the primary classification. Extremal combinatorics is a close secondary fit, but the optimized objects are finite block designs and their incidence structure.
