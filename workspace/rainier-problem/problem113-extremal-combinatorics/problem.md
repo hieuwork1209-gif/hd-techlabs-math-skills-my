@@ -4,7 +4,7 @@
 
 Let
 $$
-V=\mathbb F_2^6.
+V=\mathbb{F}_2^6.
 $$
 Let $\mathcal F$ be a family of $3$-dimensional subspaces of $V$ such that
 $$
