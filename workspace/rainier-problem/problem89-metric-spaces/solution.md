@@ -178,7 +178,7 @@ f=b_0+b_1t_1+b_2t_2+b_3t_3
 $$
 that takes only values $0$ and $1$ on $\{0,1\}^3$ is either constant, one of $t_i$, or one of $1-t_i$. Indeed, if two coefficients $b_i,b_j$ with $i\neq j$ were nonzero, then the four values obtained by varying only $t_i,t_j$ would contain at least three distinct numbers. Thus at most one variable coefficient is nonzero, and the two values force the stated possibilities.
 
-Every incidence vector in $S$ has coordinate sum $3$, so the sum of the six coordinate functions is identically $3$. Therefore, for each $i$, the number of coordinates equal to $t_i$ equals the number equal to $1-t_i$. Since the affine dimension is $3$, each $t_i$ occurs. The six coordinates must therefore consist of exactly one copy of $t_i$ and one copy of $1-t_i$ for each $i=1,2,3$, with no constant coordinates.
+Every incidence vector in $S$ has coordinate sum $3$, so the sum of the six coordinate functions is identically $3$. The coefficient of each $t_i$ in this sum is zero, hence the number of coordinates equal to $t_i$ equals the number equal to $1-t_i$. Since the affine dimension is $3$, each variable $t_i$ occurs in at least one coordinate function, so each pair of counts contributes at least two coordinates. There are only six coordinates altogether. Hence each $t_i$ and $1-t_i$ occurs exactly once, and no constant coordinate functions occur.
 
 Thus the six ground-set elements are partitioned into three pairs, and $S$ is exactly the family of eight transversals choosing one element from each pair. This proves the equality classification.
 
@@ -262,7 +262,7 @@ $(1,14,8,15,6,1,3)$
 ## Solution Concepts
 
 - negative type metrics
-- Johnson graph metric
 - incidence linear maps
 - generalized support weights
 - affine cube sections
+- strongly regular graphs
