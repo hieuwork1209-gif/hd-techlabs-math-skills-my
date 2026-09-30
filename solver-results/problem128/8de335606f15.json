@@ -1,0 +1,22 @@
+{
+  "problem": "problem128",
+  "branch": "adversary/problem128",
+  "problem_path": "workspace/rainier-problem/problem128-numerical-optimization/problem.md",
+  "source_commit_sha": "922c84f8c737b1c906b6de456ecde4011091b434",
+  "problem_blob_sha": "8de335606f153deff6295256c471e4ed6c29bb8c",
+  "statement_sha256": "d3d047c53e6b67eefb5d0f43b00887919d0845b61a3779853ca40378050df60f",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T05:27:09+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\n\\[\ns=1+\\beta,\\qquad c_i=\\frac{s}{\\alpha_i}>0.\n\\]\n\nThen\n\n\\[\n1+\\beta-\\alpha_i\\lambda=s\\left(1-\\frac{\\lambda}{c_i}\\right),\n\\]\n\nand\n\n\\[\n\\det M(\\lambda)=\\beta^2,\\qquad \n\\operatorname{tr}M(\\lambda)\n=s^2\\left(1-\\frac{\\lambda}{c_1}\\right)\\left(1-\\frac{\\lambda}{c_2}\\right)-2\\beta.\n\\]\n\nFor a \\(2\\times2\\) matrix with determinant \\(\\beta^2\\), if its trace \\(t\\) satisfies \\(|t|\\le 2\\beta\\), then its eigenvalues have modulus \\(\\beta\\). Thus the best possible contraction for fixed \\(\\beta\\) is \\(\\beta\\), if one can keep the trace in \\([-2\\beta,2\\beta]\\) on \\(E\\).\n\nFor the unconstrained problem, choose\n\n\\[\n\\beta=4-\\sqrt{15},\\qquad c_1=2,\\qquad c_2=5.\n\\]\n\nSince \\((1+\\beta)^2=10\\beta\\), we get\n\n\\[\ns^2\\left(1-\\frac{\\lambda}{2}\\right)\\left(1-\\frac{\\lambda}{5}\\right)\n=\\beta(\\lambda-2)(\\lambda-5),\n\\]\n\nso\n\n\\[\n\\operatorname{tr}M(\\lambda)=\\beta\\bigl((\\lambda-2)(\\lambda-5)-2\\bigr).\n\\]\n\nOn \\([1,2]\\cup[5,6]\\), \\((\\lambda-2)(\\lambda-5)\\in[0,4]\\), hence\n\n\\[\n|\\operatorname{tr}M(\\lambda)|\\le 2\\beta.\n\\]\n\nTherefore\n\n\\[\n\\rho_2\\le 4-\\sqrt{15}.\n\\]\n\nThe matching lower bound follows from the sharp quadratic minimax fact\n\n\\[\n\\max_{\\lambda\\in E}|q(\\lambda)|\\ge \\frac{q(0)}4\n\\]\n\nfor every quadratic \\(q\\). Applying this to \\(q(\\lambda)=\\operatorname{tr}M(\\lambda)\\), where \\(q(0)=1+\\beta^2\\), and using the trace bound forced by spectral radius \\(R\\), gives \\(R\\ge 4-\\sqrt{15}\\). Hence\n\n\\[\n\\rho_2=4-\\sqrt{15}.\n\\]\n\nNow impose stepwise stability. For each single-step matrix,\n\n\\[\nr(A_{\\alpha_i}(\\lambda))\\le1\n\\]\n\non \\(E\\) is equivalent to\n\n\\[\n|1+\\beta-\\alpha_i\\lambda|\\le1+\\beta\n\\]\n\nfor all \\(\\lambda\\in E\\), hence\n\n\\[\n\\alpha_i\\le \\frac{1+\\beta}{3},\n\\qquad\\text{so}\\qquad c_i\\ge3.\n\\]\n\nChoose\n\n\\[\n\\beta=3-2\\sqrt2,\\qquad c_1=3,\\qquad c_2=4.\n\\]\n\nSince \\((1+\\beta)^2=8\\beta\\),\n\n\\[\ns^2\\left(1-\\frac{\\lambda}{3}\\right)\\left(1-\\frac{\\lambda}{4}\\right)\n\\]\n\nlies between \\(0\\) and \\(4\\beta\\) on \\(E\\). Thus\n\n\\[\n-2\\beta\\le \\operatorname{tr}M(\\lambda)\\le2\\beta,\n\\]\n\nso the two-step spectral radius is at most \\(\\beta\\). Therefore\n\n\\[\n\\widehat\\rho_2\\le 3-2\\sqrt2.\n\\]\n\nFor the lower bound, with \\(c_i\\ge3\\),\n\n\\[\np(\\lambda)=\\left(1-\\frac{\\lambda}{c_1}\\right)\\left(1-\\frac{\\lambda}{c_2}\\right)\n\\]\n\nsatisfies\n\n\\[\n\\max\\{p(1),p(6)\\}\\ge \\frac12.\n\\]\n\nHence for some \\(\\lambda\\in E\\),\n\n\\[\n\\operatorname{tr}M(\\lambda)\\ge \\frac{(1+\\beta)^2}{2}-2\\beta\n=\\frac{(1-\\beta)^2}{2}.\n\\]\n\nThis forces spectral radius at least \\(3-2\\sqrt2\\), with equality exactly when \\(\\beta=3-2\\sqrt2\\). Therefore\n\n\\[\n\\widehat\\rho_2=3-2\\sqrt2.\n\\]\n\nFinal answer:\n\n\\[\n\\boxed{(\\rho_2,\\widehat\\rho_2)=\\left(4-\\sqrt{15},\\ 3-2\\sqrt2\\right)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T05:29:59+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem128/8de335606f15.json"
+}
