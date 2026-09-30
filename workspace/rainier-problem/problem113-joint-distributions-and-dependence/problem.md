@@ -19,13 +19,13 @@ p_s=\mathbb P(S=s)
 $$
 
 Among all such joint laws, determine the distribution vector
-$$
+$
 (p_0,p_1,\ldots,p_{10})
-$$
+$
 of $S$ for which
-$$
-\mathbb P(S\in\{0,10\})
-$$
+$
+\mathbb P(S=0)
+$
 is maximal.
 
 ---
@@ -43,4 +43,4 @@ is maximal.
 
 ## Domain Explanation
 
-This problem asks for an extremal exchangeable joint distribution under a limited-independence constraint. The main reasoning converts five-wise independence into moment constraints on the exchangeable sum, uses those constraints to certify the sharp probability bound, and reconstructs the unique maximizing dependence structure. Therefore Probability and Statistics / Joint distributions and dependence is the primary classification. Probability foundations is a close secondary fit, but the requested object is specifically an extremal joint law governed by dependence restrictions.
+This problem asks for an extremal exchangeable joint distribution under a limited-independence constraint. The main reasoning converts five-wise independence into moment constraints on the exchangeable sum, uses those constraints to certify a sharp one-sided endpoint bound, and reconstructs the unique maximizing dependence structure. Therefore Probability and Statistics / Joint distributions and dependence is the primary classification. Probability foundations is a close secondary fit, but the requested object is specifically an extremal joint law governed by dependence restrictions.
