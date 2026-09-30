@@ -1,123 +1,107 @@
 ## Steps
 
-Step 1: Prove termination and identify the unique normal form
-Write $|t|$ for the number of occurrences of $z$ in a term $t$. Define
-$$
-P(z)=0,
-\qquad
-P(b(u,v))=P(u)+P(v)+|u|-1.
-$$
-For one reduction
-$$
-b(b(x,y),w)\longrightarrow b(x,b(y,w)),
-$$
-the value of $P$ changes by
-$$
-\begin{aligned}
-&P(b(b(x,y),w))-P(b(x,b(y,w)))\\
-&=\bigl(P(x)+P(y)+P(w)+2|x|+|y|-2\bigr)\\
-&\qquad-\bigl(P(x)+P(y)+P(w)+|x|+|y|-2\bigr)\\
-&=|x|\geq1.
-\end{aligned}
-$$
-Thus every reduction strictly decreases the nonnegative integer $P$, so every reduction terminates.
-
-A term is irreducible exactly when every internal node has left child $z$. Indeed, any internal left child gives a subterm of the form $b(b(x,y),w)$, while if every left child is $z$ no rule applies. Hence a term with $N$ leaves has a unique irreducible form, the right comb
-$$
-b\bigl(z,b(z,\ldots,b(z,z)\ldots)\bigr).
-$$
-Therefore every reduction of $T_h$ can be completed and every complete reduction ends at the same normal form.
-
-Step 2: Determine the shortest possible complete reduction
-Let $\rho(t)$ be the number of internal nodes on the right spine of $t$, obtained by starting at the root and repeatedly taking the right child, and set
+Step 1: Characterize the shortest complete reductions
+For a term $t$, let $|t|$ be its number of leaves and let $\rho(t)$ be the number of internal nodes on its right spine, obtained by starting at the root and repeatedly taking the right child. Set
 $$
 Q(t)=|t|-1-\rho(t).
 $$
-If a rewrite is performed at a node not on the right spine, then $\rho$ is unchanged. If it is performed at a right-spine node, then locally
+In a rewrite
 $$
-b(b(x,y),w)\longrightarrow b(x,b(y,w))
+b(b(x,y),w)\longrightarrow b(x,b(y,w)),
 $$
-replaces one right-spine edge into $w$ by two successive right-spine edges through $b(y,w)$, so $\rho$ increases by exactly $1$. Hence every step decreases $Q$ by either $0$ or $1$.
+the right spine is unchanged when the contracted redex is off the global right spine. If the redex root lies on the global right spine, one new internal node is inserted into that spine, so $\rho$ increases by exactly $1$. Thus every rewrite decreases $Q$ by either $0$ or $1$.
 
-The normal form with $N$ leaves has right-spine length $N-1$, so its $Q$-value is $0$. Thus every complete reduction from $t$ has at least $Q(t)$ steps. This bound is attained. If $t$ is not normal, then some node on its right spine has an internal left child; otherwise every right-spine node would have left child $z$, which already makes the whole tree a right comb. Reducing such a right-spine redex decreases $Q$ by exactly $1$. Repeating this choice reaches the normal form in exactly $Q(t)$ steps.
+A term is irreducible exactly when every internal node has left child $z$, so the unique normal form on $N$ leaves is the right comb and has $\rho=N-1$. Hence every complete reduction from $t$ has at least $Q(t)$ steps. If $t$ is not a right comb, some node on its right spine has an internal left child: otherwise every left subtree hanging from the right spine would be the single leaf $z$, leaving no internal node off that spine. Contracting such a redex decreases $Q$ by $1$. Repeating this choice reaches the normal form in exactly $Q(t)$ steps.
 
-For $T_h$, there are $2^h$ leaves and the right spine has $h$ internal nodes, so the minimum complete-reduction length is
+Therefore a complete reduction is shortest if and only if every contracted redex lies on the current right spine. For $T_h$, there are $2^h$ leaves and the initial right spine has $h$ internal nodes, so every shortest reduction has
 $$
-2^h-h-1.
+m_h=2^h-h-1
 $$
+steps.
 
-Step 3: Determine the longest possible complete reduction
-By Step 1, each rewrite decreases $P$ by $|x|\geq1$, while the normal form has $P=0$. Therefore every complete reduction from $t$ has at most $P(t)$ steps.
+Step 2: Encode shortest reductions by a rooted-forest poset
+Temporarily label the internal nodes of the initial binary tree. In a rotation
+$$
+b(b(x,y),w)\longrightarrow b(x,b(y,w)),
+$$
+preserve node identities by letting the label of the inner left node become the new root of the rotated subtree and the label of the former root become its right child. If the contracted redex is on the current right spine, this operation promotes exactly one internal node from a left subtree onto the right spine, and no internal node already on the right spine leaves it.
 
-This upper bound is also attained. If $t$ is not normal, choose any redex. If its displayed first component $x$ is not $z$, then the left child $b(x,y)$ is itself a redex; descend to that redex and continue. Since the tree is finite, this process reaches a redex of the form
-$$
-b(b(z,y),w),
-$$
-for which $|x|=1$. Reducing such a redex decreases $P$ by exactly $1$. Repeating this choice therefore gives a complete reduction of exactly $P(t)$ steps.
+Remove the internal nodes on the initial right spine. The remaining internal nodes form a rooted forest $F(t)$, whose components are the internal-node trees of the left subtrees hanging from that spine. Order the vertices of each component by requiring every parent to precede its children.
 
-Let $p_h=P(T_h)$. Since $T_h=b(T_{h-1},T_{h-1})$ and $|T_{h-1}|=2^{h-1}$,
-$$
-p_h=2p_{h-1}+2^{h-1}-1,
-\qquad
-p_1=0.
-$$
-Induction gives
-$$
-p_h=(h-2)2^{h-1}+1.
-$$
-Hence this is the maximum complete-reduction length of $T_h$.
+At the start, precisely the roots of the components are eligible to be promoted by a shortest step. When a vertex $v$ is promoted, each internal child of $v$ becomes the root of a left subtree attached to the enlarged right spine, while descendants whose parent has not yet been promoted remain unavailable. By induction on the number of promotions, a vertex is eligible exactly when all of its ancestors in $F(t)$ have already been promoted.
 
-Step 4: Show that every intermediate length occurs
-It remains to exclude gaps between the two extremal lengths. Consider all complete reductions from a fixed term $t$. We show by induction on $P(t)$ that any two complete reductions can be connected by a chain of complete reductions in which consecutive lengths differ by at most $1$.
+It follows that recording the promoted labels gives a bijection between shortest complete reductions of $t$ and linear extensions of the parent-before-child poset of $F(t)$. For the balanced term $T_h$, the left subtrees hanging from the initial right spine are
+$$
+T_{h-1},T_{h-2},\ldots,T_1.
+$$
+Thus $F(T_h)$ is the disjoint union of the internal-node trees of these terms.
 
-If the two reductions begin with the same redex, apply the induction hypothesis to the two tails after that common first step. Suppose their first redexes are distinct. If the two redexes are disjoint, or one lies entirely inside one of the variable subterms of the other rule instance, the rule is linear and the two contractions commute: doing them in either order reaches the same term in two steps. Appending one fixed completion from that common term gives two complete reductions of equal length, and the induction hypothesis connects each original tail to the corresponding commuting tail because the first reduct has smaller $P$.
+Step 3: Count linear extensions of a rooted forest
+Let $F$ be any rooted forest with $m$ vertices, ordered so that every parent precedes every child, and let $s(v)$ be the number of vertices in the rooted subtree of $F$ with root $v$. We derive
+$$
+E(F)=\frac{m!}{\prod_{v\in F}s(v)},
+$$
+where $E(F)$ is the number of linear extensions.
 
-The only genuine overlap occurs, up to context, in
+First consider a rooted tree $R$ with root $r$ and child subtrees $R_1,\ldots,R_q$ of sizes $m_1,\ldots,m_q$. The root must appear first. After that, choose linear extensions inside the child subtrees and interleave them while preserving each internal order. Hence
 $$
-b(b(b(r,s),u),v).
+E(R)=\frac{(m-1)!}{m_1!\cdots m_q!}\prod_{i=1}^{q}E(R_i).
 $$
-Reducing the outer redex first gives
+Inductively substituting
 $$
-b(b(r,s),b(u,v))\longrightarrow b(r,b(s,b(u,v)))
+E(R_i)=\frac{m_i!}{\prod_{v\in R_i}s(v)}
 $$
-in two steps total from the source. Reducing the inner redex first gives
+gives
 $$
-b(b(r,b(s,u)),v)
-\longrightarrow b(r,b(b(s,u),v))
-\longrightarrow b(r,b(s,b(u,v)))
+E(R)=\frac{(m-1)!}{\prod_{v\neq r}s(v)}
+=\frac{m!}{\prod_{v\in R}s(v)},
 $$
-in three steps total. Thus the unique critical overlap is a pentagon whose two sides have lengths $2$ and $3$. As in the commuting case, append a fixed completion from the common endpoint and use induction on the smaller first reducts. This proves the connectivity claim.
+because $s(r)=m$. For a forest with component sizes $n_1,\ldots,n_r$, interleaving the component extensions contributes $m!/(n_1!\cdots n_r!)$, and the same substitution gives the displayed forest formula.
 
-Take a shortest complete reduction and a longest one. Along a connecting chain, the integer-valued length changes by at most $1$ at each move. Therefore every integer between the minimum and maximum lengths is attained.
-
-Step 5: Evaluate the full length spectrum for the balanced term
-Steps 2 and 3 give the endpoints for $T_h$, and Step 4 shows that no integer between them is missing. Therefore
+Step 4: Evaluate the hook product for the balanced forest
+The internal-node tree of $T_k$ has $2^k-1$ vertices. For $1\leq j\leq k$, exactly $2^{k-j}$ of its vertices root a descendant internal-node subtree of height $j$, and each such subtree has
 $$
-\mathcal L_h=
-\left\{\ell\in\mathbb Z:2^h-h-1\leq\ell\leq(h-2)2^{h-1}+1\right\}.
+2^j-1
 $$
-Final Answer: $\boxed{\{\ell\in\mathbb{Z}:2^h-h-1\leq\ell\leq(h-2)2^{h-1}+1\}}$
+vertices. Therefore the product of the subtree sizes inside the component coming from $T_k$ is
+$$
+\prod_{j=1}^{k}(2^j-1)^{2^{k-j}}.
+$$
+Since the components of $F(T_h)$ are those from $T_1,\ldots,T_{h-1}$, their total hook product is
+$$
+\begin{aligned}
+\prod_{k=1}^{h-1}\prod_{j=1}^{k}(2^j-1)^{2^{k-j}}
+&=\prod_{j=1}^{h-1}(2^j-1)^{\sum_{k=j}^{h-1}2^{k-j}}\\
+&=\prod_{j=1}^{h-1}(2^j-1)^{2^{h-j}-1}.
+\end{aligned}
+$$
+The forest has $m_h=2^h-h-1$ vertices by Step 1. Applying the linear-extension formula from Step 3 to the bijection from Step 2 yields the number of shortest complete reductions,
+$$
+\frac{(2^h-h-1)!}{\prod_{j=1}^{h-1}(2^j-1)^{2^{h-j}-1}}.
+$$
+For $h=1$, the product is empty and equals $1$, so the formula gives the unique empty reduction.
+Final Answer: $\boxed{\frac{(2^h-h-1)!}{\prod_{j=1}^{h-1}(2^j-1)^{2^{h-j}-1}}}$
 
 ---
 
 ## Answer
 
-$\{\ell\in\mathbb{Z}:2^h-h-1\leq\ell\leq(h-2)2^{h-1}+1\}$
+$\frac{(2^h-h-1)!}{\prod_{j=1}^{h-1}(2^j-1)^{2^{h-j}-1}}$
 
 ---
 
 ## Classification
 
-**Problem Type:** Exhaustive enumeration
+**Problem Type:** Symbolic derivation
 
-**Answer Type:** Set or multiset of objects
+**Answer Type:** Exact symbolic expression
 
 ---
 
 ## Solution Concepts
 
 - term rewriting systems
-- termination potentials
 - binary tree rotations
-- critical pair analysis
-- local confluence
+- partial orders
+- linear extensions
+- rooted-tree hook formula
