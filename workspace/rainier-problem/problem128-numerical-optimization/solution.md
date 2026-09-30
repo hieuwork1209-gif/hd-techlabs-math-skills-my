@@ -1,281 +1,243 @@
 ## Steps
 
-Step 1: Write one random-reshuffling epoch as an expected quadratic form
+Step 1: Write the Douglas-Rachford iteration matrix
+Let
+$$
+A=
+\begin{pmatrix}
+1&0\\
+0&4
+\end{pmatrix},
+\qquad
+B=
+\begin{pmatrix}
+\frac{11}{2}&-\frac{7}{2}\\
+-\frac{7}{2}&\frac{11}{2}
+\end{pmatrix}.
+$$
+For the quadratic functions
+$$
+f(x)=\frac{1}{2}x^TAx,
+\qquad
+g(x)=\frac{1}{2}x^TBx,
+$$
+the proximal maps with parameter $\gamma>0$ are
+$$
+J_A=(I+\gamma A)^{-1},
+\qquad
+J_B=(I+\gamma B)^{-1}.
+$$
+Their reflected proximal maps are
+$$
+R_A=2J_A-I=(I-\gamma A)(I+\gamma A)^{-1},
+$$
+$$
+R_B=2J_B-I=(I-\gamma B)(I+\gamma B)^{-1}.
+$$
+The standard Douglas-Rachford iteration is
+$$
+z_{k+1}=T_\gamma z_k,
+\qquad
+T_\gamma=\frac{1}{2}(I+R_BR_A).
+$$
+
+For $s=\gamma$,
+$$
+R_A=
+\begin{pmatrix}
+\frac{1-s}{1+s}&0\\
+0&\frac{1-4s}{1+4s}
+\end{pmatrix}.
+$$
+Since $B$ has eigenvalues $2$ and $9$ with eigenvectors at angle $\pi/4$, direct inversion gives
+$$
+R_B=
+\frac{1}{18s^2+11s+1}
+\begin{pmatrix}
+1-18s^2&7s\\
+7s&1-18s^2
+\end{pmatrix}.
+$$
 Set
 $$
-G=\frac{H}{2}=
-\begin{pmatrix}
-1&\frac{1}{2}&0\\
-\frac{1}{2}&1&\frac{1}{2}\\
-0&\frac{1}{2}&1
-\end{pmatrix},
+C_s=R_BR_A.
 $$
-so $f(x)=x^TGx$. Exact minimization in coordinate $i$ has update matrix
+Its trace and determinant are
 $$
-T_i=I-e_ie_i^TG.
-$$
-Therefore
-$
-T_1=
-\begin{pmatrix}
-0&-\frac{1}{2}&0\\
-0&1&0\\
-0&0&1
-\end{pmatrix},
-\quad
-T_2=
-\begin{pmatrix}
-1&0&0\\
--\frac{1}{2}&0&-\frac{1}{2}\\
-0&0&1
-\end{pmatrix},
-\quad
-T_3=
-\begin{pmatrix}
-1&0&0\\
-0&1&0\\
-0&-\frac{1}{2}&0
-\end{pmatrix}.
-$$
-For a permutation $\pi=(\pi_1,\pi_2,\pi_3)$, one full epoch is
-$$
-T_\pi=T_{\pi_3}T_{\pi_2}T_{\pi_1}.
-$$
-If the permutation law is $\nu$, then
-$$
-\mathbb E[f(x_3)]
-=
-x_0^TN_\nu x_0,
-\qquad
-N_\nu=\sum_{\pi}\nu(\pi)T_\pi^TGT_\pi.
-$$
-Therefore
-$
-\rho(\nu)
-=
-\max_{x\neq0}\frac{x^TN_\nu x}{x^TGx},
-$$
-the largest generalized eigenvalue of $(N_\nu,G)$.
-
-Step 2: Reduce the six permutation weights to three reflection orbits
-Let $R$ exchange coordinates $1$ and $3$. Since $R^TGR=G$, reflecting a permutation preserves the value of $\rho$. The map
-$$
-N\longmapsto
-\max_{x\neq0}\frac{x^TNx}{x^TGx}
-$$
-is convex in $N$, being a maximum of linear functions of $N$. Therefore averaging any law with its reflected law cannot increase $\rho$. It is enough to use reflection-invariant laws.
-
-There are three reflection orbits:
-$$
-\mathcal O_0=\{123,321\},
-\qquad
-\mathcal O_1=\{132,312\},
-\qquad
-\mathcal O_2=\{213,231\}.
-$$
-Let their total probabilities be $x,y,z$, with $x+y+z=1$.
-
-Multiplying the displayed coordinate-update matrices gives the orbit-average epoch energy matrices
-$$
-A_0=
-\begin{pmatrix}
-\frac{3}{32}&\frac{1}{64}&0\\
-\frac{1}{64}&\frac{11}{64}&\frac{1}{64}\\
-0&\frac{1}{64}&\frac{3}{32}
-\end{pmatrix},
-$$
-$$
-A_1=
-\begin{pmatrix}
-0&0&0\\
-0&\frac{1}{4}&0\\
-0&0&0
-\end{pmatrix},
-\qquad
-A_2=
-\begin{pmatrix}
-\frac{1}{8}&0&\frac{1}{8}\\
-0&0&0\\
-\frac{1}{8}&0&\frac{1}{8}
-\end{pmatrix}.
-$$
-For example,
-$$
-T_{123}=
-\begin{pmatrix}
-0&-\frac{1}{2}&0\\
-0&\frac{1}{4}&-\frac{1}{2}\\
-0&-\frac{1}{8}&\frac{1}{4}
-\end{pmatrix},
+t(s)=
+\frac{2(2s-1)(18s^2-1)}
+{(s+1)(4s+1)(9s+1)},
 $$
 and
 $$
-T_{123}^TGT_{123}=
-\begin{pmatrix}
-0&0&0\\
-0&\frac{11}{64}&\frac{1}{32}\\
-0&\frac{1}{32}&\frac{3}{16}
-\end{pmatrix};
-$$
-averaging this with its reflected partner $321$ gives $A_0$. The other two orbit matrices follow from
-$$
-T_{132}=T_{312}=
-\begin{pmatrix}
-0&-\frac{1}{2}&0\\
-0&\frac{1}{2}&0\\
-0&-\frac{1}{2}&0
-\end{pmatrix},
-$$
-and
-$$
-T_{213}=T_{231}=
-\begin{pmatrix}
-\frac{1}{4}&0&\frac{1}{4}\\
--\frac{1}{2}&0&-\frac{1}{2}\\
-\frac{1}{4}&0&\frac{1}{4}
-\end{pmatrix}.
-$$
-Every reflected law therefore has
-$$
-N=xA_0+yA_1+zA_2.
+d(s)=
+\frac{(s-1)(2s-1)(4s-1)(9s-1)}
+{(s+1)(2s+1)(4s+1)(9s+1)}.
 $$
 
-Step 3: Build a sharp Rayleigh-quotient lower-bound certificate
-For a symmetric test vector
+Step 2: Use the determinant of the Douglas-Rachford map as a lower certificate
+For any $2\times2$ matrix,
 $$
-u_q=(1,q,1)^T,
+r(T_\gamma)^2\geq|\det T_\gamma|.
 $$
-one has
+Because
 $$
-u_q^TGu_q=q^2+2q+2.
+T_\gamma=\frac{1}{2}(I+C_s),
 $$
-The three orbit Rayleigh quotients are
+the identity
 $$
-r_0(q)=
-\frac{11q^2+4q+12}{64(q^2+2q+2)},
+\det(I+C_s)=1+\operatorname{tr}(C_s)+\det(C_s)
 $$
+gives
 $$
-r_1(q)=
-\frac{q^2}{4(q^2+2q+2)},
-\qquad
-r_2(q)=
-\frac{1}{2(q^2+2q+2)}.
-$$
-To make one test vector certify a common lower bound for the two orbit families that will be used at equality, impose
-$$
-r_0(q)=r_2(q).
-$$
-This gives
-$$
-11q^2+4q-20=0.
-$$
-Choose the negative root
-$$
-q_*=-\frac{2+4\sqrt{14}}{11}.
-$$
-For this root,
-$$
-r_0(q_*)=r_2(q_*)
+\det T_\gamma
 =
-\frac{71}{300}+\frac{\sqrt{14}}{25}
-=: \rho_*,
+\frac{1+t(s)+d(s)}{4}.
+$$
+Substitution and simplification yield
+$$
+J(s):=\det T_\gamma
+=
+\frac{144s^4+55s^2+2}
+{2(s+1)(2s+1)(4s+1)(9s+1)}.
+$$
+Every factor in the denominator is positive for $s>0$, and the numerator is positive, so $J(s)>0$. Therefore
+$$
+r(T_\gamma)\geq\sqrt{J(s)}.
+$$
+
+This lower bound becomes exact whenever $C_s$ has nonreal conjugate eigenvalues. In that case $T_\gamma$ also has nonreal conjugate eigenvalues, and their common modulus is
+$$
+\sqrt{\det T_\gamma}=\sqrt{J(s)}.
+$$
+It remains to find the global minimizer of $J$ and verify that it lies in this nonreal-eigenvalue regime.
+
+Step 3: Reduce the scalar minimization to one polynomial
+Differentiating $J$ gives
+$$
+J'(s)=
+\frac{P(s)}
+{(s+1)^2(2s+1)^2(4s+1)^2(9s+1)^2},
+$$
+where
+$$
+P(s)=
+9648s^6+7128s^5-229s^4+38s^2-99s-16.
+$$
+The denominator is positive for $s>0$, so the sign of $J'$ is the sign of $P$.
+
+For $0<s\leq\frac{1}{4}$,
+$$
+s^6\leq\frac{s^2}{256},
+\qquad
+s^5\leq\frac{s^2}{64}.
+$$
+Dropping the negative term $-229s^4$ gives
+$$
+P(s)
+\leq
+\frac{2993}{16}s^2-99s-16.
+$$
+The quadratic on the right is convex, so its maximum on $[0,\frac{1}{4}]$ occurs at an endpoint. Its endpoint values are
+$$
+-16,
+\qquad
+-\frac{7439}{256}.
+$$
+Hence
+$$
+P(s)<0
+\qquad
+\left(0<s\leq\frac{1}{4}\right).
+$$
+
+Step 4: Prove that the stationary point is unique and globally minimizing
+Differentiate $P$:
+$$
+P'(s)=
+57888s^5+35640s^4-916s^3+76s-99.
+$$
+Write $s=\frac{1}{4}+u$ with $u\geq0$. Expanding gives
+$$
+P'\left(\frac{1}{4}+u\right)
+=
+57888u^5+108000u^4+70904u^3+21723u^2
++\frac{26099}{8}u+\frac{1623}{16},
+$$
+which is positive. Thus $P$ is strictly increasing on $[\frac{1}{4},\infty)$.
+
+Also,
+$$
+P\left(\frac{1}{3}\right)=-\frac{136}{27}<0,
 $$
 while
 $$
-r_1(q_*)
+P\left(\frac{7}{20}\right)
 =
-\frac{13}{50}+\frac{4\sqrt{14}}{75}
-=
-\rho_*+\frac{7}{300}+\frac{\sqrt{14}}{75}
->
-\rho_*.
+\frac{1435437}{250000}>0.
 $$
-
-Therefore, for every reflected law,
+Therefore $P$ has exactly one positive zero
 $$
-\frac{u_{q_*}^TNu_{q_*}}{u_{q_*}^TGu_{q_*}}
-=
-xr_0(q_*)+yr_1(q_*)+zr_2(q_*)
-\geq
-\rho_*.
+s_*\in\left(\frac{1}{3},\frac{7}{20}\right).
 $$
-Since the largest generalized eigenvalue is at least every Rayleigh quotient,
+The sign information from Step 3 and strict increase above $\frac{1}{4}$ show
 $$
-\rho(\nu)\geq\rho_*
-$$
-for every reflected law, and therefore for every permutation law.
-
-Step 4: Construct a reshuffling law that attains the lower bound
-Equality in the certificate requires $y=0$. Set
-$$
-x_*=
-\frac{64}{75}+\frac{2\sqrt{14}}{175},
+J'(s)<0\quad(0<s<s_*),
 \qquad
-z_*=1-x_*.
-$
-Since $3<\sqrt{14}<4$, one has $0<x_*<1$ and $0<z_*<1$. Choose the law that gives total mass $x_*$ to $\mathcal O_0$, total mass $z_*$ to $\mathcal O_2$, and zero mass to $\mathcal O_1$, split equally inside each reflection pair.
+J'(s)>0\quad(s>s_*).
+$$
+Thus $s_*$ is the unique global minimizer of $J$ over $s>0$.
 
-Let
+Step 5: Verify equality in the determinant certificate and identify the minimizing parameter
+The discriminant of the characteristic polynomial of $C_s$ is
 $$
-N_*=x_*A_0+z_*A_2.
+\Delta(s)=t(s)^2-4d(s)
+=
+\frac{4s^2(2s-1)(925s^2-58)}
+{(s+1)^2(2s+1)(4s+1)^2(9s+1)^2}.
 $$
-Substituting $q_*$, $\rho_*$, and $x_*$ into
+For
 $$
-(N_*-\rho_*G)u_{q_*}
+\frac{1}{3}<s_*<\frac{7}{20},
 $$
-gives zero. For instance, the second coordinate is
+one has $2s_*-1<0$. Also
 $$
--\frac{\sqrt{14}}{16}x_*
-+\frac{1}{100}
-+\frac{4\sqrt{14}}{75}=0,
+925s_*^2-58
+>
+\frac{925}{9}-58
+=
+\frac{403}{9}>0.
 $$
-which is exactly the equation that yields the displayed value of $x_*$. Therefore $\rho_*$ is a generalized eigenvalue of $(N_*,G)$.
+Hence
+$$
+\Delta(s_*)<0.
+$$
+The eigenvalues of $C_{s_*}$ are nonreal conjugates, so the lower certificate in Step 2 is attained:
+$$
+r(T_{s_*})=\sqrt{J(s_*)}.
+$$
+Since every $\gamma>0$ satisfies
+$$
+r(T_\gamma)\geq\sqrt{J(\gamma)}
+\geq\sqrt{J(s_*)},
+$$
+the unique minimizing Douglas-Rachford parameter is $\gamma=s_*$.
 
-It remains to show that it is the largest one. Reflection symmetry splits the generalized eigenproblem into the antisymmetric line and the symmetric plane. On the antisymmetric line the eigenvalue is
+By the root notation in the problem statement,
 $$
-\lambda_{\mathrm a}
-=
-\frac{3x_*}{32}
-=
-\frac{2}{25}+\frac{3\sqrt{14}}{2800}.
+s_*=
+\operatorname{root}\left(
+9648x^6+7128x^5-229x^4+38x^2-99x-16;
+\frac{1}{3},\frac{7}{20}
+\right).
 $$
-On the symmetric plane, besides $\rho_*$ the other generalized eigenvalue is
-$$
-\lambda_{\mathrm s}
-=
-\frac{71}{300}-\frac{113\sqrt{14}}{2800}.
-$$
-Their gaps from $\rho_*$ are
-$$
-\rho_*-\lambda_{\mathrm a}
-=
-\frac{1316+327\sqrt{14}}{8400}>0,
-$$
-and
-$$
-\rho_*-\lambda_{\mathrm s}
-=
-\frac{9\sqrt{14}}{112}>0.
-$$
-Therefore
-$
-\rho(\nu_*)=\rho_*.
-$$
-
-Step 5: Evaluate the best one-epoch factor
-Step 3 gives the universal lower bound $\rho(\nu)\geq\rho_*$, while Step 4 constructs a permutation law attaining it. Therefore
-$$
-\inf_\nu \rho(\nu)
-=
-\frac{71}{300}+\frac{\sqrt{14}}{25}.
-$$
-Final Answer: $\boxed{\frac{71}{300}+\frac{\sqrt{14}}{25}}$
+Final Answer: $\boxed{\operatorname{root}(9648x^6+7128x^5-229x^4+38x^2-99x-16;\frac{1}{3},\frac{7}{20})}$
 
 ---
 
 ## Answer
 
-$\frac{71}{300}+\frac{\sqrt{14}}{25}$
+$\operatorname{root}(9648x^6+7128x^5-229x^4+38x^2-99x-16;\frac{1}{3},\frac{7}{20})$
 
 ---
 
@@ -289,8 +251,8 @@ $\frac{71}{300}+\frac{\sqrt{14}}{25}$
 
 ## Solution Concepts
 
-- randomized coordinate descent
-- random reshuffling
-- generalized eigenvalues
-- symmetry averaging
-- Rayleigh quotient certificate
+- Douglas-Rachford splitting
+- proximal reflections
+- spectral radius
+- determinant lower bounds
+- polynomial root isolation
