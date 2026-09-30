@@ -56,7 +56,7 @@ $$
 (1-2r)^2>0.
 $$
 Therefore
-$
+$$
 q_r(z)\geq0
 $$
 for $0\leq z\leq1$, with equality only at $z=r$.
@@ -96,7 +96,7 @@ $$
 on $[0,1]$.
 
 Step 2: Determine the contact point forced by the moments
-If a bound coming from $q_r$ is attained, the measure must be supported where the majorant meets the indicator. For $0\leq r<1/2$, those contact points are
+If a bound coming from $q_r$ is attained, the measure must be supported where the majorant meets the indicator. For $0\leq r<\frac{1}{2}$, those contact points are
 $$
 r,
 \qquad
@@ -185,8 +185,8 @@ b=\frac{128}{285},
 \qquad
 c=\frac{13}{150}.
 $$
-They are positive and sum to $1$. Hence
-$$
+They are positive and sum to $1$. Therefore
+$
 \nu_*=
 \frac{441}{950}\delta_{1/21}
 +
@@ -255,7 +255,7 @@ $$
 \frac{509}{950}.
 \end{aligned}
 $$
-Thus the upper bound is attained by $\nu_*$.
+The upper bound is attained by $\nu_*$.
 
 Step 4: Close the equality case
 If an admissible measure $\nu$ attains the value $509/950$, then
@@ -270,7 +270,7 @@ $$
 \qquad
 1.
 $$
-Hence $\nu$ must be supported on these three points. The moment equations solved in Step 2 then force the weights to be
+Therefore $\nu$ must be supported on these three points. The moment equations solved in Step 2 then force the weights to be
 $$
 \frac{441}{950},
 \qquad
