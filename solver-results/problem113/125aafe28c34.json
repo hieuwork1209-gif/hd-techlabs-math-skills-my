@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-functional-analysis/problem.md",
+  "source_commit_sha": "b5a86b75cb56a89f6be56862bb0bd0842bcd0787",
+  "problem_blob_sha": "125aafe28c34517ad3c384b0a0244ca9aa0cf9fc",
+  "statement_sha256": "f050c69c1258394e36037629caf2786849495c4891cc2eb6e821aa61f2418d8b",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T09:51:14+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let \\(u=f|_{[0,1]}\\). Since \\(f\\) is odd, the problem is equivalent to finding the best constant for\n\\[\nu\\in H_0^1(0,1),\\qquad \\int_0^1 xu(x)\\,dx=0,\\qquad \\int_0^1 x^3u(x)\\,dx=0,\n\\]\nbecause both \\(\\int f^2\\) and \\(\\int (f')^2\\) are twice the corresponding integrals on \\([0,1]\\).\n\nLet\n\\[\n\\lambda_*=\\inf \\frac{\\int_0^1 u'(x)^2\\,dx}{\\int_0^1u(x)^2\\,dx}\n\\]\nover nonzero admissible \\(u\\). Then the sharp constant is \\(C=1/\\lambda_*\\).\n\nBy the direct method, the infimum is attained. At an extremizer, Lagrange multipliers give\n\\[\n-u''=\\lambda u+\\alpha x+\\beta x^3,\\qquad u(0)=u(1)=0.\n\\]\nWrite \\(k=\\sqrt\\lambda\\). For \\(k>0\\), every solution has the form\n\\[\nu(x)=c\\sin(kx)+Ax+Bx^3.\n\\]\nThe boundary condition \\(u(1)=0\\) and the two moment constraints give\n\\[\nc\\sin k+A+B=0,\n\\]\n\\[\nc\\int_0^1x\\sin(kx)\\,dx+\\frac A3+\\frac B5=0,\n\\]\n\\[\nc\\int_0^1x^3\\sin(kx)\\,dx+\\frac A5+\\frac B7=0.\n\\]\nA nonzero solution exists exactly when the determinant is zero. Now\n\\[\n\\int_0^1x\\sin(kx)\\,dx=-\\frac{\\cos k}{k}+\\frac{\\sin k}{k^2},\n\\]\n\\[\n\\int_0^1x^3\\sin(kx)\\,dx\n=-\\frac{\\cos k}{k}+\\frac{3\\sin k}{k^2}\n+\\frac{6\\cos k}{k^3}-\\frac{6\\sin k}{k^4}.\n\\]\nThe determinant condition simplifies to\n\\[\n(k^4-45k^2+105)\\sin k+(10k^3-105k)\\cos k=0.\n\\]\nThus the first constrained eigenvalue is\n\\[\n\\lambda_*=\\kappa^2,\n\\]\nwhere \\(\\kappa\\) is the smallest positive root of\n\\[\n(\\kappa^4-45\\kappa^2+105)\\sin\\kappa\n+(10\\kappa^3-105\\kappa)\\cos\\kappa=0.\n\\]\nNumerically,\n\\[\n\\kappa\\approx 8.182561452571242,\n\\]\nso\n\\[\nC=\\frac1{\\kappa^2}\\approx 0.014935557863974.\n\\]\n\nEquality is attained by the corresponding nonzero function\n\\[\nu(x)=c\\sin(\\kappa x)+Ax+Bx^3\n\\]\nwith \\((c,A,B)\\) in the nullspace of the above \\(3\\times3\\) linear system, extended oddly to \\([-1,1]\\).\n\nTherefore the sharp constant is\n\\[\n\\boxed{\nC=\\frac1{\\kappa^2},\n\\quad\n(\\kappa^4-45\\kappa^2+105)\\sin\\kappa+(10\\kappa^3-105\\kappa)\\cos\\kappa=0,\n\\quad\n\\kappa>0\\text{ smallest}\n}\n\\]\nwith \\(C\\approx 0.014935557863974\\).",
+  "status": "success",
+  "completed_at": "2026-09-30T09:53:42+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/125aafe28c34.json"
+}

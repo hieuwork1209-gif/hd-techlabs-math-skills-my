@@ -1,9 +1,9 @@
 {
   "problem": "problem113",
   "branch": "adversary/problem113",
-  "problem_path": "workspace/rainier-problem/problem113-generating-functions/problem.md",
-  "problem_blob_sha": "4b9efb5c96138d0994c24bb364af6ad076dc52d6",
-  "source_commit_sha": "a07bc17708cca143b7ef2375b3d980d2461d2079",
+  "problem_path": "workspace/rainier-problem/problem113-functional-analysis/problem.md",
+  "problem_blob_sha": "125aafe28c34517ad3c384b0a0244ca9aa0cf9fc",
+  "source_commit_sha": "b5a86b75cb56a89f6be56862bb0bd0842bcd0787",
   "status": "success",
   "local_verdict": "SOLVER_ANSWER_RETURNED",
   "recommended_action": "REVIEW_SOLVER_ANSWER",
@@ -12,6 +12,6 @@
   "requested_reasoning_effort": "medium",
   "runs": 1,
   "timeout_seconds": 2100,
-  "completed_at": "2026-09-30T09:35:32+00:00",
-  "result_file": "solver-results/problem113/4b9efb5c9613.json"
+  "completed_at": "2026-09-30T09:53:42+00:00",
+  "result_file": "solver-results/problem113/125aafe28c34.json"
 }
