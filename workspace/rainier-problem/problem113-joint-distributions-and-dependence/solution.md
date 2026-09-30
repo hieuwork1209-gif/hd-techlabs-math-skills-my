@@ -26,7 +26,7 @@ $$
 \qquad
 (0\leq j\leq5).
 $$
-Thus every polynomial in $S$ of degree at most $5$ has the same expectation as it would for
+It follows that every polynomial in $S$ of degree at most $5$ has the same expectation as it would for
 $$
 B\sim\operatorname{Bin}(10,1/2).
 $$
@@ -42,7 +42,7 @@ Then $T$ is integer-valued with
 $$
 -5\leq T\leq5.
 $$
-Since only moments through degree $5$ are fixed, a degree-$4$ certificate is available. On the integer lattice, take the even quartic
+Since only moments through degree $5$ are fixed, a degree-$4$ certificate is available. The first two positive squared values attained by the integer lattice are $1$ and $4$, and they are adjacent in the list of possible squares. Using them as zeros keeps the product nonnegative at every allowed integer value, giving the even quartic
 $$
 P(T)=(T^2-1)(T^2-4).
 $$
