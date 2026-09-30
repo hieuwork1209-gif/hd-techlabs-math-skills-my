@@ -34,32 +34,17 @@ q(x)+B(a,x)=q(x+a)+q(a)
 $$
 gives $W_{q_a}(0)=(-1)^{q(a)}W_q(0)$. A positive refinement has $136$ zeros because its zero and one counts have sum $256$ and difference $16$. Hence exactly $136=2^3\cdot17$ refinements have positive Walsh sign.
 
-To count nondegenerate alternating forms on a $2m$-space, fix the standard symplectic form. Every nondegenerate alternating form has a symplectic basis, so $\operatorname{GL}(2m,2)$ acts transitively on these forms by change of basis, with stabilizer $\operatorname{Sp}(2m,2)$. Thus orbit-stabilizer gives
-$
-\alpha_{2m}=\frac{|\operatorname{GL}(2m,2)|}{|\operatorname{Sp}(2m,2)|}.
-$
-To compute the stabilizer order, choose a symplectic basis successively. When the remaining dimension is $2j$, there are $2^{2j}-1$ choices for the first vector of the next pair and $2^{2j-1}$ choices for its partner with pairing $1$. Hence
-$
-|\operatorname{Sp}(2m,2)|=\prod_{j=1}^{m}(2^{2j}-1)2^{2j-1},
-$
-and therefore
+Every nondegenerate alternating form has a symplectic basis, so $\operatorname{GL}(2m,2)$ acts transitively on them with stabilizer $\operatorname{Sp}(2m,2)$. Orbit-stabilizer and successive choice of symplectic pairs give
 $
 \alpha_{2m}=\frac{|\operatorname{GL}(2m,2)|}{\prod_{j=1}^{m}(2^{2j}-1)2^{2j-1}}.
 $
 For $m=4$,
 $
-|\operatorname{GL}(8,2)|
-=\prod_{i=0}^{7}(2^8-2^i)
-=2^{28}\prod_{i=1}^{8}(2^i-1),
+|\operatorname{GL}(8,2)|=2^{28}\prod_{i=1}^{8}(2^i-1),
 $
-while
+hence
 $
-|\operatorname{Sp}(8,2)|=2^{16}(3)(15)(63)(255).
-$
-Cancelling the common factors gives
-$
-\alpha_8
-=2^{12}\frac{(1)(3)(7)(15)(31)(63)(127)(255)}{(3)(15)(63)(255)}
+\alpha_8=2^{12}\frac{(1)(3)(7)(15)(31)(63)(127)(255)}{(3)(15)(63)(255)}
 =2^{12}\cdot7\cdot31\cdot127.
 $
 The number of admissible positive quadratic phases is consequently
@@ -110,11 +95,11 @@ For $u=Nx\in R$ define
 $
 \omega(u,v)=B(x,v)\qquad(v\in R).
 $
-If $Nx=Nx'$, then $x-x'\in\ker N=R^\perp$, so $B(x-x',v)=0$ for every $v\in R$; hence $\omega$ is well-defined. For $u=Nx$ and $v=Ny$,
+It is well-defined because $\ker N=R^\perp$. For $u=Nx$ and $v=Ny$,
 $
-\omega(u,v)=B(x,Ny)=B(Nx,y)=B(y,Nx)=\omega(v,u),
+\omega(u,v)=B(x,Ny)=B(Nx,y)=\omega(v,u),
 $
-so it is symmetric. If $\omega(u,v)=0$ for every $v\in R$, writing $u=Nx$ gives $B(x,R)=0$, hence $x\in R^\perp=\ker N$ and $u=0$; thus $\omega$ is nondegenerate. Since $q(x+Nx)=q(x)$,
+so it is symmetric. If $\omega(Nx,R)=0$, then $x\in R^\perp=\ker N$, so $Nx=0$; hence it is nondegenerate. Since $q(x+Nx)=q(x)$,
 $
 \omega(Nx,Nx)=B(x,Nx)=q(Nx),
 $
@@ -126,11 +111,7 @@ $
 $
 for every $r\in R$, and this map is onto $R$. Because $R$ is isotropic, $N|_R=0$, hence $N^2=0$; taking $r=Nx$ gives $q(x+Nx)=q(x)$. Thus $T=I+N$ is a preserving involution.
 
-The constructions are inverse. Starting from an involution, its original $N$ satisfies the displayed defining equation for the resulting $\omega$, so uniqueness reconstructs the same $N$. Starting from $(R,\omega)$, surjectivity gives $\operatorname{im}N=R$, and for $u=Nx$ the recovered form satisfies
-$
-\omega_N(u,r)=B(x,r)=\omega(Nx,r)=\omega(u,r).
-$
-Thus the same pair $(R,\omega)$ is recovered, establishing the required bijection.
+They are inverse: uniqueness recovers the original $N$, while from $(R,\omega)$ the constructed map is onto $R$ and the recovered form satisfies $\omega_N(Nx,r)=B(x,r)=\omega(Nx,r)$.
 
 Step 4: Count the two residual types and evaluate their fixed-space Gauss sums
 Let $I_r$ be the number of $r$-dimensional $B$-isotropic subspaces. Counting ordered isotropic bases gives
@@ -177,12 +158,7 @@ $
 $
 and the block is degenerate. Thus nondegeneracy is equivalent to nondegeneracy of $A$, giving $2^{r-1}\alpha_{r-1}$ choices.
 
-For even $r$, the matrix $A$ has odd size, so its radical has odd dimension. If $\dim\operatorname{rad}A\geq3$, then again there is some $0\ne w\in\operatorname{rad}A$ with $b^Tw=0$, and $(0,w)$ lies in the radical of $\omega$. Thus a nondegenerate block must have $\operatorname{rad}A=\langle w\rangle$, and it must satisfy $b^Tw=1$. Conversely, assume these two conditions and suppose
-$
-\begin{pmatrix}1&b^T\\ b&A\end{pmatrix}
-\binom{c}{u}=0.
-$
-The lower block equation is $cb+Au=0$. Pairing it with $w$ gives $c\,b^Tw=0$, hence $c=0$. Then $Au=0$, so $u=\lambda w$; the upper equation gives $b^Tu=\lambda b^Tw=0$, hence $\lambda=0$. Therefore the block is nondegenerate.
+For even $r$, $A$ has odd size, so $\dim\operatorname{rad}A$ is odd. If it is at least $3$, some $0\ne w$ in the radical satisfies $b^Tw=0$, making $(0,w)$ radical for the block. Hence nondegeneracy requires $\operatorname{rad}A=\langle w\rangle$ and $b^Tw=1$. Conversely, if these hold and $(c,u)$ is radical, then $cb+Au=0$; pairing with $w$ gives $c=0$, then $u\in\langle w\rangle$, and the first row gives $u=0$. Thus the block is nondegenerate.
 
 There are $(2^{r-1}-1)\alpha_{r-2}$ choices for $A$: choose its one-dimensional radical and then a nondegenerate alternating form on the quotient. For each such $A$, exactly $2^{r-2}$ vectors $b$ satisfy $b^Tw=1$. Hence the count is
 $
