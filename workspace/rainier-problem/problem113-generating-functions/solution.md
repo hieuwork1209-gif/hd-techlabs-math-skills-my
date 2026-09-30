@@ -211,14 +211,14 @@ $$
 again negligible compared with $q^{3n}/n$.
 
 The central lattice has $u$-spacing $n^{-1/2}$. For any fixed $M$, the terms with $|u|\leq M$ form an ordinary Riemann sum. Since $\phi''(\tau)<0$, the Gaussian tails beyond $M$ are uniformly summable, so letting first $n\to\infty$ and then $M\to\infty$ gives
-$
+$$
 \frac{1}{\sqrt{n}}
 \sum_{|u|\leq n^{1/10}}
 \exp\!\left(\frac{\phi''(\tau)}{2}u^2\right)
 \longrightarrow
 \int_{-\infty}^{\infty}
 \exp\!\left(\frac{\phi''(\tau)}{2}u^2\right)\,du.
-$
+$$
 Combining this Riemann sum with Step 1 gives
 $$
 a_n
@@ -261,7 +261,7 @@ $$
 \frac{q^2}{3}.
 $$
 This simplifies to
-$
+$$
 a_n
 \sim
 \frac{q}{2\pi\sqrt{3}}\frac{q^{3n}}{n}.
