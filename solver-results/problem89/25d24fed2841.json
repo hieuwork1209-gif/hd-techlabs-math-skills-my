@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "0406ac5695308da36487bc7cd224024eab566a52",
+  "problem_blob_sha": "25d24fed28412aa75f227b6906987b71950df5fe",
+  "statement_sha256": "328c251963d9911aee342c4346002387e405a9d8d83191a43d751dafe19424eb",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T14:40:44+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let the seven nonzero vectors of \\(\\mathbb F_2^3\\) be the points of the Fano plane. The graph is its incidence graph, so distances are:\n\n\\[\nd(P_v,P_w)=d(L_v,L_w)=2\\quad(v\\ne w),\n\\]\nand\n\\[\nd(P_v,L_u)=\n\\begin{cases}\n1,&u\\cdot v=0,\\\\\n3,&u\\cdot v\\ne0.\n\\end{cases}\n\\]\n\nWrite a coefficient vector as \\((a,b)\\in \\mathbb R^7\\oplus \\mathbb R^7\\), with \\(a\\) on points and \\(b\\) on lines. Let \\(N\\) be the \\(7\\times 7\\) incidence matrix \\(N_{v,u}=1\\iff u\\cdot v=0\\). Then\n\n\\[\nN^2=2I+J,\n\\]\n\nso on \\(\\mathbf 1^\\perp\\), the eigenvalues of \\(N\\) are \\(\\pm \\sqrt2\\), each with multiplicity \\(3\\).\n\nPut \\(\\alpha=2^p\\), \\(\\beta=3^p\\). On the zero-sum subspace, the quadratic form is negative semidefinite exactly when\n\n\\[\n\\alpha\\ge \\sqrt2(\\beta-1).\n\\]\n\nThe constant direction gives only the weaker condition\n\n\\[\n6\\cdot 2^p\\le 3+4\\cdot 3^p,\n\\]\n\nwhich is always satisfied for \\(p>0\\). Hence \\(\\wp\\) is the unique positive root of\n\n\\[\n\\boxed{2^\\wp=\\sqrt2(3^\\wp-1)}.\n\\]\n\nNumerically,\n\n\\[\n\\wp\\approx 0.6944.\n\\]\n\nAt equality, the kernel comes from the six-dimensional \\(\\mathbf 1^\\perp\\) part, one null direction for each eigenvector of \\(N\\). Therefore\n\n\\[\n\\boxed{\\dim E=6}.\n\\]\n\nFor the generalized support numbers, identify \\(E\\) with\n\n\\[\nx\\in \\mathbf 1^\\perp\\longmapsto (x,-N x/\\sqrt2).\n\\]\n\nThus support means point support of \\(x\\) plus line support of \\(Nx\\). The Fano incidence geometry gives the rank-support profile\n\n\\[\nd_1=6,\\quad d_2=8,\\quad d_3=10,\\quad d_4=12,\\quad d_5=13,\\quad d_6=14.\n\\]\n\nThe extremal cases are realized as follows: for \\(d_1\\), take \\(x=e_p-e_q\\); for \\(d_2\\), take a two-dimensional subspace supported on the four-point complement of a line with one opposite-pair relation; for \\(d_3\\), take the full sum-zero space on the four-point complement of a line; and the remaining values follow from the fact that no \\(3,4,5\\)-dimensional subspace of \\(E\\) can vanish on more than \\(2,1,0\\) additional independent Fano coordinates beyond those configurations.\n\nSo the requested answer is\n\n\\[\n\\boxed{\n\\left(\n\\wp,\\dim E,(d_1,\\ldots,d_{\\dim E})\n\\right)\n=\n\\left(\n\\wp,6,(6,8,10,12,13,14)\n\\right),\n}\n\\]\n\nwhere \\(\\wp\\) is the unique positive solution of\n\n\\[\n\\boxed{2^\\wp=\\sqrt2(3^\\wp-1)}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T14:43:16+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/25d24fed2841.json"
+}
