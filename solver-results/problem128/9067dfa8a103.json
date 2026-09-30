@@ -1,0 +1,22 @@
+{
+  "problem": "problem128",
+  "branch": "adversary/problem128",
+  "problem_path": "workspace/rainier-problem/problem128-numerical-optimization/problem.md",
+  "source_commit_sha": "6187a92afbf6b0c8e1bffd64252e7d8fc90e89ce",
+  "problem_blob_sha": "9067dfa8a1037b62a490dc01a072746fabfa147b",
+  "statement_sha256": "946936b03ab3aab5a877eabbba124e87d3aa31590bcf5499b240d4ea8fb8c534",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T09:38:34+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "\\[\n\\boxed{(h_*,W_*)=\\left(\\frac32,\\frac18\\right)}\n\\]\n\nLet \\(x_*=0\\), \\(f_*=0\\), \\(\\|x_0\\|\\le 1\\), and write\n\\[\ng=\\nabla f(x_0),\\qquad x_1=x_0-\\frac32 g,\\qquad q=\\nabla f(x_1).\n\\]\n\nFor any convex \\(1\\)-smooth differentiable \\(f\\), the interpolation inequality gives\n\\[\nf(u)\\ge f(v)+\\nabla f(v)\\cdot(u-v)+\\frac12\\|\\nabla f(u)-\\nabla f(v)\\|^2.\n\\]\nUsing it between \\(x_0,x_1\\) and the minimizer gives\n\\[\nf(x_1)\\le g\\cdot x_0-\\|g\\|^2-\\frac12 q\\cdot g-\\frac12\\|q\\|^2,\n\\]\nand also\n\\[\nf(x_1)\\le q\\cdot x_0-\\frac32 q\\cdot g-\\frac12\\|q\\|^2.\n\\]\nAveraging these two bounds,\n\\[\nf(x_1)\\le \\frac12(g+q)\\cdot x_0-\\frac12\\|g+q\\|^2.\n\\]\nLet \\(v=(g+q)/2\\). Since \\(\\|x_0\\|\\le1\\),\n\\[\nf(x_1)\\le v\\cdot x_0-2\\|v\\|^2\n\\le \\|v\\|-2\\|v\\|^2\n\\le \\frac18.\n\\]\nThus \\(W(3/2)\\le 1/8\\).\n\nThis is sharp. In one dimension, take\n\\[\nf(t)=\\int_0^t \\min(\\max(s,0),1/4)\\,ds,\n\\]\nwith \\(x_0=1\\). Then \\(g=1/4\\), so for \\(h=3/2\\),\n\\[\nx_1=1-\\frac32\\cdot\\frac14=\\frac58,\n\\]\nand\n\\[\nf(x_1)=\\frac18.\n\\]\nHence \\(W(3/2)=1/8\\).\n\nTo see uniqueness, two one-dimensional examples give, for every \\(h>0\\),\n\\[\nW(h)\\ge \\frac1{2(2h+1)}\n\\]\nfrom the clipped-gradient construction with \\(g=1/(2h+1)\\), and\n\\[\nW(h)\\ge \\frac12(h-1)^2\n\\]\nfrom \\(f(t)=t^2/2\\), \\(x_0=1\\). Therefore\n\\[\nW(h)\\ge \\max\\left\\{\\frac1{2(2h+1)},\\frac12(h-1)^2\\right\\}.\n\\]\nThis lower bound is \\(>1/8\\) for every \\(h\\ne3/2\\), while at \\(h=3/2\\) it equals \\(1/8\\). So the unique minimizer is \\(h_*=3/2\\), with \\(W_*=1/8\\).",
+  "status": "success",
+  "completed_at": "2026-09-30T09:40:23+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem128/9067dfa8a103.json"
+}
