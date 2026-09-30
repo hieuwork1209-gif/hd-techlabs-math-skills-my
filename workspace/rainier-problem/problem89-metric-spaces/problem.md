@@ -30,15 +30,23 @@ $$
 \operatorname{supp}(L)=\{A\in X:\text{some }c\in L\text{ has }c_A\neq0\}.
 $$
 Define
-$$
+$
 d_4=\min_{\substack{L\leq E\\ \dim L=4}}|\operatorname{supp}(L)|,
-$$
-and let $N_4$ be the number of four-dimensional subspaces attaining $d_4$.
+$
+and let $\mathcal{M}$ be the set of four-dimensional subspaces attaining $d_4$. Put
+$
+N_4=|\mathcal{M}|.
+$
+Form a graph $\Gamma$ on $\mathcal{M}$ by joining distinct $L,L'$ exactly when
+$
+L\cap L'\neq\{0\}.
+$
+Prove that $\Gamma$ is strongly regular, and let $k$ be its degree, $\lambda$ the number of common neighbors of adjacent vertices, and $\mu$ the number of common neighbors of nonadjacent vertices.
 
 Determine
-$$
-(\wp,\dim E,d_4,N_4).
-$$
+$
+(\wp,\dim E,d_4,N_4,k,\lambda,\mu).
+$
 
 ---
 
@@ -55,4 +63,4 @@ $$
 
 ## Domain Explanation
 
-The primary object is the Johnson metric on the set of $3$-subsets of $[6]$, and the problem asks for its supremal negative type together with a generalized support extremal inside the critical equality space, so Analysis / Metric spaces is the natural primary classification. Incidence linear algebra identifies the equality space, while the sharp support bound and equality classification require an affine-cube argument.
+The primary object is the Johnson metric on the set of $3$-subsets of $[6]$, and the problem asks for its supremal negative type together with a generalized support extremal and the intersection geometry of its minimizing subspaces inside the critical equality space, so Analysis / Metric spaces is the natural primary classification. Incidence linear algebra identifies the equality space, while the sharp support bound, equality classification, and minimizer-intersection graph require an affine-cube argument followed by a compatibility count on perfect matchings.
