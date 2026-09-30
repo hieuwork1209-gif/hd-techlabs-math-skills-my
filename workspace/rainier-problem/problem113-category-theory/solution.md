@@ -1,7 +1,7 @@
 ## Steps
 
 Step 1: Classify store-comonad morphisms by product decompositions
-For finite sets $P,Q$, let
+For nonempty finite sets $P,Q$, let
 $$
 W_P(X)=P\times X^P,
 \qquad
@@ -143,7 +143,7 @@ $
 $
 The morphism represented by $\chi$ has update map
 $
-r_1(s,u')=\chi^{-1}(u',a_0),
+r_1(s,u')=\chi^{-1}(u',a_0).
 $
 and the morphism represented by $\psi$ has update map
 $
