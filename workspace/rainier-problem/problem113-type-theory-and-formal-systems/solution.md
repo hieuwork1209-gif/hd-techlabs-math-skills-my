@@ -41,7 +41,7 @@ $$
 =
 A_{n+1}\to A_n\to a\to c.
 $$
-No additional equation is imposed, so this is again principal. Hence every $R_n$ is typable.
+These equations are exactly the most general unifier of the function domain with the principal type of $R_n$; every other typing of the application factors through a further substitution. Hence the displayed result is principal, and every $R_n$ is typable.
 
 Step 2: Prove that a nontrivial right-associated term cannot be used as a function
 Let $B_0=p\to q$, $B_1=p\to q\to r$, and
@@ -81,10 +81,10 @@ $$
 B_m=(B_{m-1}\to p\to r)\to A_{k-3}.
 $$
 If $m\geq2$, then $B_m=B_{m-1}\to B_{m-2}$, so the first domains would require
-$$
-B_{m-1}=B_{m-1}\to p\to r,
-$$
-which no finite simple type can satisfy. If $m=1$, comparing first domains instead forces
+$
+B_{m-1}=B_{m-1}\to p\to r.
+$
+No substitution on finite simple types can satisfy an equation $T=T\to U$: after applying any substitution, the right side is a proper arrow extension of the left side and has strictly more type-tree nodes. Hence this case is impossible. If $m=1$, comparing first domains instead forces
 $$
 p=(p\to q)\to p\to r,
 $$
