@@ -221,16 +221,15 @@ a+b\leq2k-2.
 $$
 
 For $k=1$, the configuration has $14$ distinct projective points, so
-$$
-M_1=1
-$$
-and there are $14$ extremal lines. For $k=2$, the maximum is $M_2=2$. Every unordered pair of configuration points spans a unique extremal plane, and every extremal plane contains exactly that pair, so there are
-$$
-\binom{14}{2}=91
-$$
-of them.
+$
+M_1=1,\qquad C_1=14.
+$
+For $k=2$, the maximum is $M_2=2$. Every unordered pair of configuration points spans a unique extremal plane, and every extremal plane contains exactly that pair, so
+$
+C_2=\binom{14}{2}=91.
+$
 
-For $k=3$, the bound gives $M_3\leq4$. If $a=3$, then $H=P_S$, and Step 4 gives four configuration vectors exactly when $S$ is a Fano line. If $a=2$, equality would require $b=2$, but for $s=2$ a one-dimensional extension of $P_S$ contains at most one line vector. Thus the extremal $3$-spaces are the seven point-line spans and their seven duals:
+For $k=3$, the bound gives $M_3\leq4$. If $a=3$, then $H=P_S$, and Step 4 gives four configuration vectors exactly when $S$ is a Fano line. If $a=2$, equality would require $b=2$, but for $s=2$ a one-dimensional extension of $P_S$ contains at most one line vector. Thus the extremal $3$-spaces are the seven point-line spans and their seven duals. The two families are disjoint because their point/line counts are $(3,1)$ and $(1,3)$:
 $$
 M_3=4,
 \qquad
@@ -244,7 +243,7 @@ M_4=6,
 C_4=7\cdot3=21.
 $$
 
-For $k=5$, one has $M_5\leq8$. If $a=5$, then $H=P_S$ and Step 4 gives exactly three line vectors, so the bound is attained. If $a=4$, equality would require $b=4$, but a one-dimensional extension of $P_S$ contains the one line already in $P_S$ plus at most one proportional pair, so $b\leq3$. Thus the extremal $5$-spaces are the $\binom{7}{5}=21$ spans of five point vectors and their $21$ duals:
+For $k=5$, one has $M_5\leq8$. If $a=5$, then $H=P_S$ and Step 4 gives exactly three line vectors, so the bound is attained. If $a=4$, equality would require $b=4$, but a one-dimensional extension of $P_S$ contains the one line already in $P_S$ plus at most one proportional pair, so $b\leq3$. Thus the extremal $5$-spaces are the $\binom{7}{5}=21$ spans of five point vectors and their $21$ duals. The two families are disjoint because their point/line counts are $(5,3)$ and $(3,5)$:
 $$
 M_5=8,
 \qquad
