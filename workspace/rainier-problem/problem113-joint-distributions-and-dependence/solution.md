@@ -68,7 +68,7 @@ B\sim\operatorname{Bin}(10,1/2).
 $$
 Hence
 $$
-\mathbb ET^2=\frac52.
+\mathbb E[T^2]=\frac52.
 $$
 For the fourth moment, write
 $$
@@ -78,7 +78,7 @@ Y_i\in\left\{-\frac12,\frac12\right\},
 $$
 with the $Y_i$ independent and centered. Expanding the fourth power, only the terms $Y_i^4$ and $Y_i^2Y_j^2$ have nonzero expectation, so
 $$
-\mathbb ET^4
+\mathbb E[T^4]
 =
 10\cdot\frac1{16}
 +
@@ -87,12 +87,12 @@ $$
 \frac{35}{2}.
 $$
 Therefore
-$
+$$
 \mathbb P(S\in\{0,10\})
 =
 \mathbb P(|T|=5)
 \leq
-\frac{\mathbb ET^4-5\mathbb ET^2+4}{504}
+\frac{\mathbb E[T^4]-5\mathbb E[T^2]+4}{504}
 =
 \frac1{56}.
 $$
@@ -118,11 +118,11 @@ $$
 $$
 Since the first five moments of $S$ match those of $B\sim\operatorname{Bin}(10,1/2)$, the first five centered moments of $T$ match those of $B-5$. The binomial law is symmetric about $5$, so
 $$
-\mathbb ET
+\mathbb E[T]
 =
-\mathbb ET^3
+\mathbb E[T^3]
 =
-\mathbb ET^5
+\mathbb E[T^5]
 =
 0.
 $$
@@ -166,7 +166,7 @@ $$
 2520u=0,
 $$
 so
-$
+$$
 u=v=w=0.
 $$
 Therefore every extremizer is symmetric under $S\mapsto10-S$.
@@ -189,11 +189,11 @@ $$
 a+b+c=\frac12.
 $$
 By Step 2,
-$
-\mathbb ET^2=\frac52,
+$$
+\mathbb E[T^2]=\frac52,
 \qquad
-\mathbb ET^4=\frac{35}{2}.
-$
+\mathbb E[T^4]=\frac{35}{2}.
+$$
 Using the support values $|T|=5,2,1$ gives
 $$
 25a+4b+c=\frac54
@@ -211,7 +211,7 @@ $$
 50a+b=\frac58.
 $$
 Solving these two linear equations gives
-$
+$$
 a=\frac1{112},
 \qquad
 b=\frac5{28},
@@ -236,7 +236,7 @@ $$
 =
 \frac1{56}.
 $$
-The equality-support and moment arguments above show that no other exchangeable law can attain the same value. Hence the unique extremal distribution of $S$ is the requested vector.
+The equality-support and moment arguments above show that no other exchangeable law can attain the same value. The extremal distribution of $S$ is therefore unique and equals the requested vector.
 Final Answer: $\boxed{\left(\frac1{112},0,0,\frac5{28},\frac5{16},0,\frac5{16},\frac5{28},0,0,\frac1{112}\right)}$
 
 ---
