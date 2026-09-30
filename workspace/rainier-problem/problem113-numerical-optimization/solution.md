@@ -138,7 +138,7 @@ p(8)
 (1-8u)(1-8v).
 $$
 Therefore
-$
+$$
 \begin{aligned}
 p(8)
 &=
