@@ -1,228 +1,319 @@
 ## Steps
 
-Step 1: Derive the smooth-convex interpolation inequality used in the upper bound
-Let $f:\mathbb R^d\to\mathbb R$ be convex with $1$-Lipschitz gradient, and write $g(x)=\nabla f(x)$. The Lipschitz condition gives the descent inequality
+Step 1: Derive the interpolation and orthogonality constraints
+For a differentiable convex function with $1$-Lipschitz gradient, write $g(x)=\nabla f(x)$. For arbitrary $u,v$, the smooth convex interpolation inequality is
 $$
-f(y)\leq f(x)+g(x)^T(y-x)+\frac{1}{2}\|y-x\|^2.
+f(u)\geq f(v)+g(v)^T(u-v)+\frac{1}{2}\|g(u)-g(v)\|^2.
 $$
-Indeed, with $d=y-x$,
-$$
-f(y)-f(x)-g(x)^Td
-=
-\int_0^1\bigl(g(x+td)-g(x)\bigr)^Td\,dt
-\leq
-\int_0^1 t\|d\|^2\,dt.
-$$
-
-For arbitrary $u,v$, set
-$$
-\psi(z)=f(z)-g(v)^Tz.
-$$
-Then $\psi$ is convex and $1$-smooth, while $\nabla\psi(v)=0$, so $v$ minimizes $\psi$. Apply the descent inequality to $\psi$ at $u$ with the point
-$$
-u-\nabla\psi(u).
-$$
-This gives
+To derive it, set $\psi(z)=f(z)-g(v)^Tz$. Then $\psi$ is convex and $1$-smooth and satisfies $\nabla\psi(v)=0$, so $v$ minimizes $\psi$. The descent inequality for a $1$-smooth function gives
 $$
 \psi\bigl(u-\nabla\psi(u)\bigr)
 \leq
 \psi(u)-\frac{1}{2}\|\nabla\psi(u)\|^2.
 $$
-Since $\psi(v)$ is no larger than the left side,
-$$
-f(u)\geq
-f(v)+g(v)^T(u-v)
-+\frac{1}{2}\|g(u)-g(v)\|^2.
-$$
-This is the interpolation inequality needed for the one-step analysis. It also shows that the worst-case quantity is finite: $\|g(x_0)\|\leq\|x_0-x_*\|\leq1$, so $\|x_1-x_*\|\leq1+h$, while the descent inequality applied from $x_*$ to $x_1$ gives
-$$
-f(x_1)-f_*\leq\frac{1}{2}\|x_1-x_*\|^2.
-$$
+Since $\psi(v)$ is no larger than the left side, the displayed interpolation inequality follows.
 
-Step 2: Construct two lower-bound instances valid for every step size
-Using the notation of the problem,
+Let
 $$
-W(h)=
-\sup_{\substack{d\geq1,\ f\in\mathcal F_d,\ x_*\in\operatorname*{argmin}f\\
-\|x_0-x_*\|\leq1}}
-\bigl(f(x_1)-f_*\bigr),
-\qquad
-x_1=x_0-h\nabla f(x_0).
-$$
-
-First take the one-dimensional quadratic
-$$
-f_Q(x)=\frac{1}{2}x^2,
-\qquad
-x_0=1.
-$$
-Then $x_*=0$ and
-$$
-x_1=1-h,
-$$
-so
-$$
-W(h)\geq\frac{1}{2}(1-h)^2.
-$$
-
-For the second instance, let $a\in(0,1]$ and define
-$$
-f_a(x)=
-\begin{cases}
-\frac{1}{2}x^2,& |x|\leq a,\\
-a|x|-\frac{1}{2}a^2,& |x|\geq a.
-\end{cases}
-$$
-Its derivative is the clipping map
-$$
-f_a'(x)=\max\{-a,\min\{x,a\}\},
-$$
-which is nondecreasing and $1$-Lipschitz. Therefore $f_a$ is convex and belongs to $\mathcal F_1$, with minimizer $0$.
-
-Start again from $x_0=1$. If $x_1=1-ha\geq a$, then the outer branch gives
-$$
-f_a(x_1)
-=
-a(1-ha)-\frac{1}{2}a^2
-=
-a-\left(h+\frac{1}{2}\right)a^2.
-$$
-This concave quadratic in $a$ is maximized at
-$$
-a=\frac{1}{1+2h}.
-$$
-The branch condition is valid because
-$$
-\frac{1}{1+2h}<\frac{1}{1+h},
-$$
-and $x_1\geq a$ is equivalent to $a\leq1/(1+h)$. For this maximizing value,
-$$
-x_1=\frac{1+h}{1+2h}>a,
-$$
-and
-$$
-f_a(x_1)=\frac{1}{2(1+2h)}.
-$$
-Therefore
-$$
-W(h)\geq
-\frac{1}{2}
-\max\left\{(1-h)^2,\frac{1}{1+2h}\right\}.
-$$
-
-Step 3: Locate the only possible minimizing step
-The lower bound from Step 2 already forces a universal barrier. If
-$$
-0<h<\frac{3}{2},
-$$
-then
-$$
-\frac{1}{1+2h}>\frac{1}{4},
-$$
-so $W(h)>\frac{1}{8}$. If
-$$
-h>\frac{3}{2},
-$$
-then
-$$
-(1-h)^2>\frac{1}{4},
-$$
-so again $W(h)>\frac{1}{8}$.
-
-At
-$$
-h=\frac{3}{2},
-$$
-the two lower-bound branches agree:
-$$
-(1-h)^2=\frac{1}{1+2h}=\frac{1}{4}.
-$$
-Therefore every step size satisfies
-$$
-W(h)\geq\frac{1}{8},
-$$
-and equality can occur only at $h=\frac{3}{2}$. The matching upper bound must hold for every function in the class.
-
-Step 4: Prove the matching upper bound at the candidate step
-Fix $h=\frac{3}{2}$ and an arbitrary admissible function and starting point. Write
-$$
-f_i=f(x_i),
-\qquad
 g_i=\nabla f(x_i),
+\qquad
+F_i=f(x_i)-f_*,
 \qquad
 d=x_0-x_*.
 $$
-Since $x_*$ is a minimizer, $\nabla f(x_*)=0$, and
+Exact minimization on the first affine line gives
 $$
-x_1=x_0-\frac{3}{2}g_0.
+g_1^Tg_0=0,
+$$
+and exact minimization on the second affine plane gives
+$$
+g_2^Tg_0=g_2^Tg_1=0.
+$$
+Also $x_i-x_0$ lies in the span of the preceding gradients, so
+$$
+g_i^T(x_i-x_*)=g_i^Td
+\qquad(i=0,1,2).
 $$
 
-Apply the inequality from Step 1 to the pairs $(x_0,x_1)$, $(x_*,x_0)$, and $(x_*,x_1)$. The three quantities
+Put $s_i=\|g_i\|$. Applying the interpolation inequality with $v=x_i$ and $u=x_*$ gives
 $$
-A=f_1-f_0+g_1^T(x_0-x_1)+\frac{1}{2}\|g_0-g_1\|^2,
+F_i\leq g_i^Td-\frac{1}{2}s_i^2.
 $$
+Applying it with $(u,v)=(x_i,x_{i+1})$ and using the orthogonality above gives
 $$
-B=f_0-f_*+g_0^T(x_*-x_0)+\frac{1}{2}\|g_0\|^2,
+F_i-F_{i+1}\geq\frac{1}{2}(s_i^2+s_{i+1}^2)
+\qquad(i=0,1).
 $$
-and
-$$
-C=f_1-f_*+g_1^T(x_*-x_1)+\frac{1}{2}\|g_1\|^2
-$$
-are all nonpositive.
 
-Now use $x_0-x_1=\frac{3}{2}g_0$ and
+Step 2: Convert the upper bound to a three-variable extremal problem
+If $g_i\neq0$, define
 $$
-x_1-x_*=d-\frac{3}{2}g_0.
+a_i=\frac{g_i^Td}{s_i}.
 $$
-After the function values cancel,
+The three gradients are mutually orthogonal, so Bessel's inequality gives
 $$
-\frac{1}{2}(A+B+C)-(f_1-f_*)
-=
-\frac{1}{2}\|g_0+g_1\|^2
--\frac{1}{2}d^T(g_0+g_1).
+a_0^2+a_1^2+a_2^2\leq\|d\|^2\leq1.
 $$
-Completing the square gives the exact identity
+If one of the gradients vanishes, convexity makes the corresponding iterate a global minimizer, and the desired bound is immediate. Hence assume $F_2>0$ and $s_0s_1s_2>0$.
+
+Write $F=F_2$. The inequalities from Step 1 imply
 $$
-f_1-f_*
-=
-\frac{1}{2}(A+B+C)
-+\frac{1}{8}\|d\|^2
--\frac{1}{2}
-\left\|
-\frac{1}{2}d-g_0-g_1
-\right\|^2.
+F\leq a_2s_2-\frac{1}{2}s_2^2,
 $$
-Because $A,B,C\leq0$,
 $$
-f_1-f_*
-\leq
-\frac{1}{8}\|x_0-x_*\|^2
-\leq
-\frac{1}{8}.
+F\leq a_1s_1-s_1^2-\frac{1}{2}s_2^2,
+$$
+and, after using both successive decreases,
+$$
+F\leq a_0s_0-s_0^2-s_1^2-\frac{1}{2}s_2^2.
+$$
+Scale
+$$
+u_i=\frac{s_i}{\sqrt F},
+\qquad
+A_i=\frac{a_i}{\sqrt F}.
+$$
+Then
+$$
+\frac{1}{F}\geq A_0^2+A_1^2+A_2^2,
+$$
+while the three preceding inequalities give
+$$
+A_0\geq
+u_0+\frac{1+u_1^2+\frac{1}{2}u_2^2}{u_0},
+$$
+$$
+A_1\geq
+u_1+\frac{1+\frac{1}{2}u_2^2}{u_1},
+\qquad
+A_2\geq
+\frac{1}{u_2}+\frac{u_2}{2}.
+$$
+
+Step 3: Solve the nested scalar minimization exactly
+Set
+$$
+\phi=\frac{1+\sqrt5}{2},
+\qquad
+v=1+\frac{u_2^2}{2}.
+$$
+For fixed $u_1,u_2$, the first bound satisfies
+$$
+A_0^2
+\geq
+4(v+u_1^2).
 $$
 Therefore
 $$
-W\left(\frac{3}{2}\right)\leq\frac{1}{8}.
+A_0^2+A_1^2+A_2^2
+\geq
+6v+5u_1^2+\frac{v^2}{u_1^2}
++\left(\frac{1}{u_2}+\frac{u_2}{2}\right)^2.
+$$
+The inequality
+$$
+5u_1^2+\frac{v^2}{u_1^2}\geq2\sqrt5\,v
+$$
+turns the first three terms into
+$$
+(6+2\sqrt5)v=4\phi^2v.
+$$
+Now put $y=u_2^2$. Then
+$$
+A_0^2+A_1^2+A_2^2
+\geq
+4\phi^2+1+\frac{1}{y}
++\frac{1+8\phi^2}{4}y.
+$$
+Let
+$$
+S=\sqrt{1+8\phi^2}=\sqrt{13+4\sqrt5}.
+$$
+The last two terms are at least $S$, so
+$$
+A_0^2+A_1^2+A_2^2
+\geq
+4\phi^2+1+S.
+$$
+With
+$$
+\theta=\frac{1+S}{2},
+$$
+the identity $S^2=1+8\phi^2$ gives
+$$
+4\phi^2+1+S=2\theta^2.
+$$
+Consequently
+$$
+F_2\leq\frac{1}{2\theta^2}
+=
+\frac{2}{(1+\sqrt{13+4\sqrt5})^2}.
 $$
 
-Step 5: Match the lower and upper bounds
-The quadratic and clipped-quadratic instances in Step 2 both give value $\frac{1}{8}$ when $h=\frac{3}{2}$, while Step 4 proves that no admissible function can give a larger value. Therefore
+Step 4: Construct data attaining every inequality in the upper bound
+Let
 $$
-W\left(\frac{3}{2}\right)=\frac{1}{8}.
+r=\frac{1}{2\theta^2},
+\qquad
+u_2=\sqrt{\frac{2}{S}},
+\qquad
+v=1+\frac{1}{S},
 $$
-Step 3 shows that every other positive step size has strictly larger worst-case value. The requested pair is
 $$
-\left(h_*,W_*\right)
+u_1=\sqrt{\frac{v}{\sqrt5}},
+\qquad
+u_0=\sqrt{v+u_1^2}.
+$$
+These are exactly the equality conditions in Step 3. Define
+$$
+A_0=2u_0,
+\qquad
+A_1=u_1+\frac{v}{u_1},
+\qquad
+A_2=\frac{1}{u_2}+\frac{u_2}{2}.
+$$
+The equalities in Step 3 give
+$$
+A_0^2+A_1^2+A_2^2=2\theta^2.
+$$
+Set
+$$
+a_i=\sqrt r\,A_i,
+\qquad
+s_i=\sqrt r\,u_i
+\qquad(i=0,1,2).
+$$
+Then
+$$
+a_0^2+a_1^2+a_2^2=1.
+$$
+
+Let $e_0,e_1,e_2$ be the standard orthonormal basis of $\mathbb R^3$, and define
+$$
+x_*=0,
+\qquad
+x_0=a_0e_0+a_1e_1+a_2e_2,
+\qquad
+g_i=s_ie_i.
+$$
+Define the target function values by
+$$
+F_2=r,
+$$
+$$
+F_1=r+\frac{1}{2}(s_1^2+s_2^2),
+$$
+$$
+F_0=F_1+\frac{1}{2}(s_0^2+s_1^2).
+$$
+The equality conditions above give
+$$
+F_i=a_is_i-\frac{1}{2}s_i^2
+\qquad(i=0,1,2).
+$$
+Finally set
+$$
+\alpha=1+\frac{s_1^2}{s_0^2},
+\qquad
+\beta=1+\frac{s_1^2+s_2^2}{s_0^2},
+\qquad
+\gamma=1+\frac{s_2^2}{s_1^2},
+$$
+and
+$$
+x_1=x_0-\alpha g_0,
+\qquad
+x_2=x_0-\beta g_0-\gamma g_1.
+$$
+
+Step 5: Build a smooth convex interpolant and close the lower bound
+Include the minimizer data
+$$
+F_*=0,
+\qquad
+g_*=0,
+\qquad
+x_*=0.
+$$
+For all indices $i,j\in\{*,0,1,2\}$, the data from Step 4 satisfy
+$$
+F_i\geq
+F_j+g_j^T(x_i-x_j)
++\frac{1}{2}\|g_i-g_j\|^2.
+$$
+Here is a direct check. For pairs involving $*$, the two required inequalities follow from
+$$
+F_i\geq\frac{1}{2}s_i^2
+$$
+and
+$$
+F_i=a_is_i-\frac{1}{2}s_i^2
 =
-\left(\frac{3}{2},\frac{1}{8}\right).
+g_i^Tx_i-\frac{1}{2}s_i^2.
 $$
-Final Answer: $\boxed{\left(\frac{3}{2},\frac{1}{8}\right)}$
+For the adjacent pairs $(0,1)$ and $(1,2)$, the forward inequalities are equalities because the later gradient is orthogonal to the displacement, while the reverse inequalities are equalities because
+$$
+\alpha s_0^2=s_0^2+s_1^2,
+\qquad
+\gamma s_1^2=s_1^2+s_2^2.
+$$
+For the pair $(0,2)$, the forward inequality has slack $s_1^2$, and the reverse inequality is an equality because
+$$
+\beta s_0^2=s_0^2+s_1^2+s_2^2.
+$$
+
+It remains only to realize these finite data by an actual function. Put
+$$
+y_i=x_i-g_i,
+\qquad
+H_i=F_i-\frac{1}{2}\|g_i\|^2,
+$$
+including the index $*$. The preceding inequalities are equivalent to
+$$
+H_i\geq H_j+g_j^T(y_i-y_j).
+$$
+Define
+$$
+q(y)=
+\max_j\left\{
+H_j+g_j^T(y-y_j)
+\right\},
+$$
+and its quadratic envelope
+$$
+f(x)=
+\min_y\left\{
+q(y)+\frac{1}{2}\|x-y\|^2
+\right\}.
+$$
+At $y_i$, the $i$th affine term is active, so $g_i\in\partial q(y_i)$. Since $x_i=y_i+g_i$, the point $y_i$ minimizes the envelope expression at $x_i$, giving
+$$
+f(x_i)=F_i,
+\qquad
+\nabla f(x_i)=g_i.
+$$
+The minimizer in the envelope is unique. If $y,y'$ are the minimizers for $x,x'$ and $g=x-y$, $g'=x'-y'$, monotonicity of $\partial q$ gives
+$$
+(g-g')^T(y-y')\geq0.
+$$
+Using $x-x'=(y-y')+(g-g')$ yields
+$$
+\|g-g'\|\leq\|x-x'\|.
+$$
+Hence the envelope is differentiable, convex, and has $1$-Lipschitz gradient. The affine term indexed by $*$ is zero, so $q\geq0$ and $f(0)=0$ is the minimum value.
+
+The constructed $x_1$ lies in $x_0+\operatorname{span}\{g_0\}$ and has $g_1^Tg_0=0$, so convexity makes it an exact minimizer on that line. Likewise $x_2$ lies in $x_0+\operatorname{span}\{g_0,g_1\}$ and $g_2$ is orthogonal to both spanning gradients, so it is an exact minimizer on that plane. Also $\|x_0-x_*\|=1$ and
+$$
+f(x_2)-f_*=F_2=r.
+$$
+This matches the upper bound from Step 3.
+Final Answer: $\boxed{\frac{2}{(1+\sqrt{13+4\sqrt5})^2}}$
 
 ---
 
 ## Answer
 
-$\left(\frac{3}{2},\frac{1}{8}\right)$
+$\frac{2}{(1+\sqrt{13+4\sqrt5})^2}$
 
 ---
 
@@ -230,14 +321,14 @@ $\left(\frac{3}{2},\frac{1}{8}\right)$
 
 **Problem Type:** Optimization
 
-**Answer Type:** Tuple or ordered list
+**Answer Type:** Exact scalar
 
 ---
 
 ## Solution Concepts
 
-- smooth convex optimization
-- gradient descent
 - smooth convex interpolation
-- worst-case lower bounds
-- square completion certificate
+- exact span search
+- orthogonal gradients
+- nested extremal inequalities
+- quadratic envelope interpolation
