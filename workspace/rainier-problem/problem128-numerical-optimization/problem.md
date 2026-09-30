@@ -4,24 +4,31 @@
 
 Let $\mathcal F$ be the class of differentiable convex functions
 $$
-f:\mathbb{R}^{3}\to\mathbb R
+f:\mathbb{R}^{3}\to\mathbb{R}
 $$
-whose gradients are $1$-Lipschitz and which attain their minimum value $f_*$. Consider all choices of
+whose gradients are $1$-Lipschitz and which attain their minimum value $f_*$. Choose
 $$
-f\in\mathcal F,\qquad
-x_*\in\operatorname*{argmin}f,\qquad
-\|x_0-x_*\|\leq1,
+f\in\mathcal F,
+\qquad
+f(x_*)=f_*,
+\qquad
+\|x_0-x_*\|\leq1.
 $$
-together with points obtained by two exact span searches:
+Perform two exact span searches. First set
 $$
 g_0=\nabla f(x_0),
-\qquad
-x_1\in\operatorname*{argmin}_{x\in x_0+\operatorname{span}\{g_0\}}f(x),
 $$
+and choose $x_1$ from the affine line $x_0+\operatorname{span}\{g_0\}$ so that
+$$
+f(x_1)=\min_{x\in x_0+\operatorname{span}\{g_0\}}f(x).
+$$
+Then set
 $$
 g_1=\nabla f(x_1),
-\qquad
-x_2\in\operatorname*{argmin}_{x\in x_0+\operatorname{span}\{g_0,g_1\}}f(x).
+$$
+and choose $x_2$ from the affine plane $x_0+\operatorname{span}\{g_0,g_1\}$ so that
+$$
+f(x_2)=\min_{x\in x_0+\operatorname{span}\{g_0,g_1\}}f(x).
 $$
 The supremum below is taken over all such choices for which the displayed minimizers exist:
 $$
