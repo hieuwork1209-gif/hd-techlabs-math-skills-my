@@ -1,9 +1,9 @@
 ## Steps
 
-Step 1: Extract a one-dimensional coefficient sum
+Step 1: Extract the parity-restricted coefficient sum
 Let
 $$
-F(x,y,z)=\frac{1}{1-x-y-z-xyz}
+F(x,y,z)=\frac{1}{1-x^2-y^2-z^2-xyz}
 $$
 and
 $$
@@ -13,64 +13,67 @@ Expanding the geometric series gives
 $$
 F(x,y,z)
 =
-\sum_{m\geq0}(x+y+z+xyz)^m.
+\sum_{m\geq0}(x^2+y^2+z^2+xyz)^m.
 $$
-Suppose a contributing monomial uses the factor $xyz$ exactly $k$ times. Then the remaining exponents of $x,y,z$ must each be $n-k$, so the total number of factors is
+Suppose a contributing monomial uses the factor $xyz$ exactly $k$ times. The remaining exponent in each variable is $n-k$, so it must be even. Hence
 $$
-m=k+3(n-k)=3n-2k.
+k\equiv n\pmod{2}.
+$$
+Writing
+$$
+r=\frac{n-k}{2},
+$$
+the numbers of factors $x^2,y^2,z^2$ are all $r$, and the total number of factors is
+$$
+m=k+3r=\frac{3n-k}{2}.
 $$
 Therefore
 $$
 a_n
 =
-\sum_{k=0}^n
-\frac{(3n-2k)!}{k!(n-k)!^3}.
+\sum_{\substack{0\leq k\leq n\\ k\equiv n\pmod{2}}}
+\frac{\left(\frac{3n-k}{2}\right)!}
+{k!\left(\frac{n-k}{2}\right)!^3}.
 $$
 
-For
+Set
 $$
 t=\frac{k}{n},
 \qquad
-A(t)=3-2t,
+\mu(t)=\frac{3-t}{2},
 \qquad
-B(t)=1-t,
+\alpha(t)=\frac{1-t}{2},
 $$
-define
+and define
 $$
 \phi(t)
 =
-A(t)\log A(t)-t\log t-3B(t)\log B(t).
+\mu(t)\log\mu(t)-t\log t-3\alpha(t)\log\alpha(t).
 $$
-Use Stirling's expansion
+For $t$ in any closed subinterval of $(0,1)$, Stirling's expansion gives uniformly
 $$
-m!
-=
-\sqrt{2\pi m}\left(\frac{m}{e}\right)^m
-\left(1+O\left(m^{-1}\right)\right).
-$$
-If $t$ stays in a closed subinterval of $(0,1)$, all four factorial arguments are comparable to $n$, so the error is uniform. Substitution gives
-$$
-\frac{(3n-2k)!}{k!(n-k)!^3}
+\frac{\left(\frac{3n-k}{2}\right)!}
+{k!\left(\frac{n-k}{2}\right)!^3}
 =
 \frac{1+O\left(n^{-1}\right)}{(2\pi n)^{3/2}}
-\sqrt{\frac{A(t)}{tB(t)^3}}
+\sqrt{\frac{\mu(t)}{t\alpha(t)^3}}
 \exp\!\left(n\phi(t)\right).
 $$
 
-Step 2: Locate the unique saddle and identify the exponential growth
-Differentiate:
+Step 2: Locate the saddle and identify the exponential growth
+Differentiation gives
 $$
 \phi'(t)
 =
--2\log(3-2t)-\log t+3\log(1-t),
+-\frac12\log\mu(t)-\log t+\frac32\log\alpha(t),
 $$
 and
 $$
 \phi''(t)
 =
--\frac{3}{t(1-t)(3-2t)}<0
+-\frac{3}{t(1-t)(3-t)}<0
 $$
-for $0<t<1$. Therefore $\phi$ is strictly concave and has at most one critical point. Since
+for $0<t<1$. Thus $\phi$ is strictly concave. Moreover,
 $$
 \phi'(t)\to+\infty
 \quad\text{as }t\to0^+,
@@ -78,69 +81,81 @@ $$
 and
 $$
 \phi'(t)\to-\infty
-\quad\text{as }t\to1^-,
+\quad\text{as }t\to1^-.
 $$
-there is a unique maximizer $\tau\in(0,1)$.
+There is therefore a unique maximizer $\tau\in(0,1)$.
 
 The critical-point equation is
 $$
 (1-\tau)^3
 =
-\tau(3-2\tau)^2.
+4(3-\tau)\tau^2.
 $$
-Set
+Define
 $$
-q=\frac{3-2\tau}{1-\tau}.
+q=\frac{1-\tau}{2\tau}.
 $$
-Then
+Dividing the critical-point equation by
 $$
-1-\tau=\tau q^2,
-$$
-so
-$$
-\tau=\frac{1}{q^2+1}.
-$$
-Substituting this into the definition of $q$ gives
-$$
-q=3+\frac{1}{q^2},
-$$
-or
-$$
-q^3-3q^2-1=0.
-$$
-The function $q^3-3q^2-1$ is strictly increasing for $q>2$ and changes sign between $3$ and $4$, so this is exactly the $q>3$ specified in the problem.
-
-At the saddle, the relation
-$$
-\tau(3-2\tau)^2=(1-\tau)^3
+4\tau^2(1-\tau)
 $$
 gives
 $$
-\log\tau
+q^2
 =
-3\log(1-\tau)-2\log(3-2\tau).
+\frac{3-\tau}{1-\tau}.
 $$
-Therefore
+Since
+$$
+\tau=\frac{1}{2q+1},
+$$
+the last identity becomes
+$$
+q^2=3+\frac{1}{q},
+$$
+or
+$$
+q^3-3q-1=0.
+$$
+The polynomial $q^3-3q-1$ is strictly increasing for $q>1$ and changes sign between $1$ and $2$, so this is exactly the $q>1$ from the problem.
+
+At the saddle,
+$$
+\alpha(\tau)=q\tau
+$$
+and
+$$
+\mu(\tau)=q^3\tau.
+$$
+Also
+$$
+\mu(\tau)-\tau-3\alpha(\tau)=0
+$$
+and
+$$
+\mu(\tau)-\alpha(\tau)=1.
+$$
+Consequently,
 $$
 \begin{aligned}
 \phi(\tau)
 &=
-(3-2\tau)\log(3-2\tau)
+\mu(\tau)\log\!\left(q^3\tau\right)
 -\tau\log\tau
--3(1-\tau)\log(1-\tau)\\
+-3\alpha(\tau)\log(q\tau)\\
 &=
-3\log(3-2\tau)-3\log(1-\tau)\\
+3\left(\mu(\tau)-\alpha(\tau)\right)\log q\\
 &=
 3\log q.
 \end{aligned}
 $$
-The exponential growth is therefore
+Thus the exponential growth is
 $$
 \exp\!\left(n\phi(\tau)\right)=q^{3n}.
 $$
 
-Step 3: Evaluate the discrete Laplace prefactor
-Choose $\varepsilon>0$ so that
+Step 3: Apply the discrete Laplace method on the parity lattice
+Choose $\varepsilon>0$ with
 $$
 0<\tau-\varepsilon<\tau+\varepsilon<1.
 $$
@@ -148,35 +163,17 @@ Extend $\phi$ continuously to $[0,1]$ using $0\log0=0$. Strict concavity gives s
 $$
 \phi(t)\leq\phi(\tau)-\eta
 $$
-whenever
+outside $(\tau-\varepsilon,\tau+\varepsilon)$. Elementary Stirling bounds give a constant $C$ such that every summand is at most
 $$
-t\in[0,1]\setminus(\tau-\varepsilon,\tau+\varepsilon).
-$$
-The elementary Stirling bounds
-$$
-c_1\sqrt{m}\left(\frac{m}{e}\right)^m
-\leq
-m!
-\leq
-c_2\sqrt{m+1}\left(\frac{m}{e}\right)^m
-$$
-for integers $m\geq1$, together with the cases where one denominator factorial is $0!$, give a constant $C$ such that every summand satisfies
-$$
-\frac{(3n-2k)!}{k!(n-k)!^3}
-\leq
 Cn^2\exp\!\left(n\phi\!\left(\frac{k}{n}\right)\right).
 $$
-The part with
-$$
-\left|\frac{k}{n}-\tau\right|\geq\varepsilon
-$$
-is
+Since there are at most $n+1$ summands, the contribution outside the $\varepsilon$-interval is
 $$
 O\!\left(n^3q^{3n}e^{-\eta n}\right),
 $$
 which is negligible compared with $q^{3n}/n$.
 
-On $[\tau-\varepsilon,\tau+\varepsilon]$, the third derivative of $\phi$ is bounded. Write
+Inside the interval, write
 $$
 k=n\tau+u\sqrt{n}.
 $$
@@ -194,91 +191,108 @@ n\phi(\tau)
 +
 O\!\left(n^{-1/5}\right).
 $$
-The Stirling prefactor from Step 1 is also uniform there and tends to its value at $\tau$.
+The Stirling prefactor from Step 1 also tends uniformly to its value at $\tau$.
 
-For the remaining indices inside the $\varepsilon$-interval, with
+For
 $$
 n^{1/10}<|u|\leq\varepsilon\sqrt{n},
 $$
-continuity and $\phi''(\tau)<0$ give a constant $c>0$ such that
+the strict maximum at $\tau$ gives a constant $c>0$ such that
 $$
 \phi(t)\leq\phi(\tau)-c(t-\tau)^2.
 $$
-There are at most $n+1$ such indices, and the crude bound above applies to each of them. Their total contribution is therefore
+The contribution of these indices is
 $$
 O\!\left(n^3q^{3n}e^{-cn^{1/5}}\right),
 $$
-again negligible compared with $q^{3n}/n$.
+which is also negligible.
 
-The central lattice has $u$-spacing $n^{-1/2}$. For any fixed $M$, the terms with $|u|\leq M$ form an ordinary Riemann sum. Since $\phi''(\tau)<0$, the Gaussian tails beyond $M$ are uniformly summable, so letting first $n\to\infty$ and then $M\to\infty$ gives
+Because the allowed values of $k$ satisfy
 $$
-\frac{1}{\sqrt{n}}
-\sum_{|u|\leq n^{1/10}}
+k\equiv n\pmod{2},
+$$
+the corresponding $u$-lattice has spacing
+$$
+\frac{2}{\sqrt{n}}.
+$$
+Hence the central Gaussian sum satisfies
+$$
+\frac{2}{\sqrt{n}}
+\sum_{\substack{|u|\leq n^{1/10}\\ k\equiv n\pmod{2}}}
 \exp\!\left(\frac{\phi''(\tau)}{2}u^2\right)
 \longrightarrow
 \int_{-\infty}^{\infty}
 \exp\!\left(\frac{\phi''(\tau)}{2}u^2\right)\,du.
 $$
-Combining this Riemann sum with Step 1 gives
+Therefore
 $$
 a_n
 \sim
 \frac{q^{3n}}{(2\pi n)^{3/2}}
-\sqrt{\frac{3-2\tau}{\tau(1-\tau)^3}}
-\sqrt{n}
-\int_{-\infty}^{\infty}
-\exp\!\left(\frac{\phi''(\tau)}{2}u^2\right)\,du.
-$$
-The Gaussian integral equals
-$$
+\sqrt{\frac{\mu(\tau)}{\tau\alpha(\tau)^3}}
+\frac{\sqrt{n}}{2}
 \sqrt{\frac{2\pi}{-\phi''(\tau)}}.
 $$
-Therefore
+Thus
 $$
 a_n
 \sim
-\frac{q^{3n}}{2\pi n}
+\frac{q^{3n}}{4\pi n}
 \sqrt{
-\frac{3-2\tau}
-{\tau(1-\tau)^3(-\phi''(\tau))}
+\frac{\mu(\tau)}
+{\tau\alpha(\tau)^3(-\phi''(\tau))}
 }.
 $$
 
-Step 4: Simplify the constant
+Step 4: Simplify the prefactor
 From Step 2,
 $$
 -\phi''(\tau)
 =
-\frac{3}{\tau(1-\tau)(3-2\tau)}.
+\frac{3}{\tau(1-\tau)(3-\tau)}.
+$$
+Using
+$$
+\alpha(\tau)=\frac{1-\tau}{2}
+$$
+and
+$$
+\mu(\tau)=\frac{3-\tau}{2},
+$$
+we obtain
+$$
+\frac{\mu(\tau)}
+{\tau\alpha(\tau)^3(-\phi''(\tau))}
+=
+\frac{4(3-\tau)^2}{3(1-\tau)^2}.
+$$
+The saddle relation from Step 2 gives
+$$
+\frac{3-\tau}{1-\tau}=q^2,
+$$
+so the last expression is
+$$
+\frac{4q^4}{3}.
 $$
 Therefore
 $$
-\frac{3-2\tau}
-{\tau(1-\tau)^3(-\phi''(\tau))}
-=
-\frac{(3-2\tau)^2}{3(1-\tau)^2}
-=
-\frac{q^2}{3}.
-$$
-This simplifies to
-$$
 a_n
 \sim
-\frac{q}{2\pi\sqrt{3}}\frac{q^{3n}}{n}.
+\frac{q^2}{2\pi\sqrt{3}}\frac{q^{3n}}{n}.
 $$
 It follows that
 $$
 \lim_{n\to\infty}\frac{na_n}{q^{3n}}
 =
-\frac{q}{2\pi\sqrt{3}}.
+\frac{q^2}{2\pi\sqrt{3}}.
 $$
-Final Answer: $\boxed{\frac{q}{2\pi\sqrt{3}}}$
+Final Answer: $\boxed{\frac{q^2}{2\pi\sqrt{3}}}$
 
 ---
 
 ## Answer
 
-$\frac{q}{2\pi\sqrt{3}}$
+$\frac{q^2}{2\pi\sqrt{3}}$
 
 ---
 
@@ -293,7 +307,7 @@ $\frac{q}{2\pi\sqrt{3}}$
 ## Solution Concepts
 
 - diagonal coefficient extraction
+- parity-restricted sums
 - stirling asymptotics
 - discrete laplace method
 - saddle point analysis
-- gaussian approximation
