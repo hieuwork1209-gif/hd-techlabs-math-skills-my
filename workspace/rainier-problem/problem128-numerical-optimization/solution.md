@@ -140,7 +140,7 @@ For $0<a<\frac{1}{2}$ the two symmetric generalized eigenvalues are distinct. In
 $$
 \frac{1-a}{2}=\frac{a(2a+1)}{4},
 $$
-whose only nonnegative solution is $a=\frac{1}{2}$. Hence $D(a)>0$ on the open interval.
+whose only nonnegative solution is $a=\frac{1}{2}$. Therefore $D(a)>0$ on the open interval.
 
 Differentiate the explicit expression for $\lambda_+$. If
 $$
