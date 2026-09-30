@@ -1,0 +1,22 @@
+{
+  "problem": "problem128",
+  "branch": "adversary/problem128",
+  "problem_path": "workspace/rainier-problem/problem128-numerical-optimization/problem.md",
+  "source_commit_sha": "9633a0b1592f13c40248cf43ad57ae7da6e547e6",
+  "problem_blob_sha": "b13730e88dc15ffa7d6c5478b5a1428c9d9af0b1",
+  "statement_sha256": "b2fa6bcc11b525271d7d1449bc5e3f3c1da722109348a8c75bb4c2ecbab4da1a",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T09:19:16+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let\n\\[\na=\\frac{1-\\gamma}{1+\\gamma},\\qquad b=\\frac{1-4\\gamma}{1+4\\gamma}.\n\\]\nThen\n\\[\nR_A=\\begin{pmatrix}a&0\\\\0&b\\end{pmatrix}.\n\\]\nThe matrix \\(B\\) has eigenvalues \\(2,9\\), with eigenvectors \\((1,1)\\) and \\((1,-1)\\). Hence if\n\\[\nc=\\frac{1-2\\gamma}{1+2\\gamma},\\qquad d=\\frac{1-9\\gamma}{1+9\\gamma},\n\\]\nthen \\(R_B\\) has trace \\(c+d\\) and determinant \\(cd\\). For\n\\[\nM=R_BR_A,\n\\]\nwe get\n\\[\n\\operatorname{tr}M=\\frac{(a+b)(c+d)}2,\\qquad \\det M=abcd.\n\\]\nWriting\n\\[\nP=(1+\\gamma)(1+2\\gamma)(1+4\\gamma)(1+9\\gamma),\n\\]\none computes\n\\[\n\\operatorname{tr}M=\n\\frac{2(1-4\\gamma^2)(1-18\\gamma^2)}{P},\n\\]\nand\n\\[\n\\det M=\n\\frac{(1-\\gamma)(1-2\\gamma)(1-4\\gamma)(1-9\\gamma)}{P}.\n\\]\n\nThe eigenvalues of \\(T_\\gamma=\\frac12(I+M)\\) are \\(\\frac12(1+\\mu_1),\\frac12(1+\\mu_2)\\), where \\(\\mu_i\\) are the eigenvalues of \\(M\\). The discriminant of the characteristic polynomial of \\(M\\) is\n\\[\n(\\operatorname{tr}M)^2-4\\det M\n=\n\\frac{4\\gamma^2(3700\\gamma^4-1157\\gamma^2+58)}{P^2}.\n\\]\nSince\n\\[\n3700u^2-1157u+58\n=3700\\left(u-\\frac{58}{925}\\right)\\left(u-\\frac14\\right),\n\\]\nthe eigenvalues are complex conjugates precisely when\n\\[\n\\frac{58}{925}<\\gamma^2<\\frac14.\n\\]\nIn that interval,\n\\[\nr(T_\\gamma)^2=\\det T_\\gamma\n=\\frac{1+\\operatorname{tr}M+\\det M}{4}.\n\\]\nA simplification gives\n\\[\n\\det T_\\gamma\n=\n\\frac{4+110\\gamma^2+288\\gamma^4}{4P}.\n\\]\nLet\n\\[\nh(\\gamma)=\\det T_\\gamma.\n\\]\nThen\n\\[\nh'(\\gamma)=\\frac{F(\\gamma)}{P^2},\n\\]\nwhere\n\\[\nF(x)=9648x^6+7128x^5-229x^4+38x^2-99x-16.\n\\]\n\nWe now locate the unique critical point relevant to the minimum. For \\(0<x\\le 1/3\\),\n\\[\nF(x)<0.\n\\]\nAlso\n\\[\nF'(x)=57888x^5+35640x^4-916x^3+76x-99>0\n\\]\nfor \\(x\\ge 1/3\\). Since\n\\[\nF(1/3)<0,\\qquad F(3/8)>0,\n\\]\nthere is exactly one zero of \\(F\\) in \\((1/3,3/8)\\), and \\(h\\) decreases before it and increases after it.\n\nOutside the complex-eigenvalue interval, \\(r(T_\\gamma)\\ge \\sqrt{\\det T_\\gamma}\\), so the same critical point gives the global minimum of \\(r(T_\\gamma)\\).\n\nTherefore the unique minimizing value is\n\\[\n\\boxed{\n\\operatorname{root}\\!\\left(\n9648x^6+7128x^5-229x^4+38x^2-99x-16;\\,\n\\frac13,\\frac38\n\\right)\n}.\n\\]\nNumerically, this is approximately\n\\[\n\\gamma\\approx 0.3416258707.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T09:22:03+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem128/b13730e88dc1.json"
+}
