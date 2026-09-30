@@ -2,47 +2,36 @@
 
 ## LaTeX (Normalized)
 
-Let
+Let $[7]=\{1,2,3,4,5,6,7\}$ and
 $$
-X=\{-1,1\}^{4}
+X=\binom{[7]}{2}.
 $$
-with Hamming metric
+Give $X$ the shortest-path metric $d$ of the Kneser graph $KG(7,2)$: two distinct vertices $A,B\in X$ are adjacent exactly when $A\cap B=\varnothing$.
+
+For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_A)_{A\in X}$ with $\sum_A c_A=0$ satisfies
 $$
-d(x,y)=|\{i:x_i\neq y_i\}|.
-$$
-For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_x)_{x\in X}$ with $\sum_xc_x=0$ satisfies
-$$
-\sum_{x,y\in X}c_xc_y d(x,y)^p\leq0.
+\sum_{A,B\in X}c_Ac_B d(A,B)^p\leq0.
 $$
 Let
 $$
 \wp=\sup\{p>0:(X,d)\text{ has }p\text{-negative type}\},
 $$
-and define the boundary equality space
+and define
 $$
-E=\left\{c\in\mathbb R^X:\sum_xc_x=0,\ \sum_{x,y}c_xc_y d(x,y)^{\wp}=0\right\}.
-$$
-
-For a two-dimensional subspace $L\leq E$, set
-$$
-S(L)=\{x\in X:\text{some }c\in L\text{ has }c_x\neq0\},
-$$
-and let
-$$
-s_2^*=\min_{\substack{L\leq E\\ \dim L=2}}|S(L)|.
-$$
-For a minimizing $L$, define
-$$
-h(L)=|\operatorname{aff}(S(L))\cap X|,
-$$
-where the affine hull is taken in $\mathbb R^4$, and put
-$$
-N_m=|\{L\leq E:\dim L=2,\ |S(L)|=s_2^*,\ h(L)=m\}|.
+E=\left\{c\in\mathbb R^X:\sum_A c_A=0,\ \sum_{A,B}c_Ac_B d(A,B)^{\wp}=0\right\}.
 $$
 
-Determine the ordered tuple
+For $L\leq E$, write
 $$
-(\wp,\dim E,s_2^*,N_6,N_8).
+\operatorname{supp}(L)=\{A\in X:\text{some }c\in L\text{ has }c_A\neq0\}.
+$$
+For $1\leq r\leq\dim E$, define
+$$
+d_r=\min_{\substack{L\leq E\\ \dim L=r}}|\operatorname{supp}(L)|.
+$$
+Determine
+$$
+\left(\wp,\dim E,(d_1,\ldots,d_{\dim E})\right).
 $$
 
 ---
@@ -60,4 +49,4 @@ $$
 
 ## Domain Explanation
 
-The primary object is the Hamming metric on a finite cube, and the problem asks for its supremal negative type together with sharp structural invariants of the equality space at the critical exponent. Affine geometry and antichain counting analyze extremal equality supports, but the requested quantities are invariants of the metric's negative-type boundary. Therefore the primary classification is Analysis and Metric spaces.
+The primary object is a finite shortest-path metric, and the problem asks for its supremal negative type and the support profile of the equality space at the critical exponent, so Analysis / Metric spaces is the natural primary classification. Spectral graph methods and finite-dimensional linear algebra are secondary tools; an extremal graph argument determines the support profile.
