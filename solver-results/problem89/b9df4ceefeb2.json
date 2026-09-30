@@ -1,0 +1,22 @@
+{
+  "problem": "problem89",
+  "branch": "adversary/problem89",
+  "problem_path": "workspace/rainier-problem/problem89-metric-spaces/problem.md",
+  "source_commit_sha": "a7c4fb44269db933e73f956eabdbd0c785b05469",
+  "problem_blob_sha": "b9df4ceefeb287404ec653691579d673340e7cc8",
+  "statement_sha256": "5a5d2bc0cfd9e13f9d2323b7d77c373c569a1a9eb5051e7644f01b2b4eb6ee61",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T09:21:49+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "Let `q=2^p`. In `KG(7,2)`, two distinct 2-subsets are either disjoint, at distance `1`, or intersect, at distance `2`. Thus the distance-power matrix is\n\n\\[\nD_p=A_{\\rm disj}+qA_{\\rm int}.\n\\]\n\nOn the Johnson scheme decomposition of \\(\\mathbb R^X\\), the intersecting-pair adjacency matrix has eigenvalues\n\n\\[\n10,\\quad 3,\\quad -2\n\\]\n\nwith multiplicities \\(1,6,14\\). Since \\(A_{\\rm disj}=J-I-A_{\\rm int}\\), on the zero-sum subspace the eigenvalues of \\(D_p\\) are\n\n\\[\n-4+3q \\quad (6\\text{-dimensional}),\\qquad 1-2q \\quad (14\\text{-dimensional}).\n\\]\n\nNegative type requires both to be \\(\\le 0\\). Since \\(q=2^p\\ge 1\\), the second is always \\(<0\\), while the first gives\n\n\\[\n3q\\le 4.\n\\]\n\nHence\n\n\\[\n\\wp=\\log_2\\frac43.\n\\]\n\nAt \\(q=4/3\\), equality occurs exactly on the 6-dimensional eigenspace\n\n\\[\nE=\\{c:\\ c_{\\{i,j\\}}=x_i+x_j,\\ \\sum_{i=1}^7x_i=0\\},\n\\]\n\nso \\(\\dim E=6\\).\n\nFor an \\(r\\)-dimensional subspace \\(L\\le E\\), the missing support coordinates are the pairs \\(\\{i,j\\}\\) for which \\(x_i+x_j=0\\) for every \\(x\\) in the corresponding \\(r\\)-dimensional subspace of \\(\\sum x_i=0\\). Equivalently, they are the pair-vectors lying in a \\((6-r)\\)-dimensional subspace of the dual configuration \\(\\{e_i+e_j\\}\\).\n\nThe possible numbers of missing coordinates for dimensions \\(k=6-r\\) are:\n\n\\[\n\\begin{array}{c|c}\nk & \\text{possible missing counts}\\\\\n\\hline\n5 & \\{0,1,2,3,4,5,6,7,8,9,11\\}\\\\\n4 & \\{0,1,2,3,4,5,6\\}\\\\\n3 & \\{0,1,2,3,4\\}\\\\\n2 & \\{0,1,2\\}\\\\\n1 & \\{0,1\\}\\\\\n0 & \\{0\\}.\n\\end{array}\n\\]\n\nThe exceptional absence of \\(10\\) for \\(k=5\\) comes from the fact that a hyperplane is defined by a nonzero \\((y_1,\\dots,y_7)\\) with \\(\\sum y_i=0\\), and the missing pairs are exactly those with \\(y_i+y_j=0\\). Counting opposite-value pairs among seven numbers gives every count \\(0,\\dots,9,11\\), but never \\(10\\).\n\nTherefore, subtracting from \\(21\\),\n\n\\[\n\\Sigma_1=\\{10\\}\\cup I(12),\n\\]\n\\[\n\\Sigma_2=I(15),\\qquad\n\\Sigma_3=I(17),\\qquad\n\\Sigma_4=I(19),\\qquad\n\\Sigma_5=I(20),\\qquad\n\\Sigma_6=I(21).\n\\]\n\nFinal answer:\n\n\\[\n\\boxed{\n\\left(\n\\log_2\\frac43,\\,\n6,\\,\n\\{10\\}\\cup I(12),\\,\nI(15),\\,\nI(17),\\,\nI(19),\\,\nI(20),\\,\nI(21)\n\\right)\n}\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T09:26:21+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem89/b9df4ceefeb2.json"
+}
