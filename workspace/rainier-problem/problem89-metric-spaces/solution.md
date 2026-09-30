@@ -1,213 +1,238 @@
 ## Steps
 
-Step 1: Reduce the negative-type form to the Kneser adjacency spectrum
-
-Write the vertices of $X$ as the $2$-subsets of $[7]$. Distinct vertices are at distance $1$ when they are disjoint and at distance $2$ when they meet in one point, because any two intersecting $2$-subsets have a common disjoint $2$-subset.
-
-Let $M$ be the adjacency matrix of $KG(7,2)$, let $J$ be the all-ones matrix, and put $q=2^p$. Then
-$$
-D_p=(d(A,B)^p)_{A,B\in X}=M+q(J-I-M).
-$$
-On the zero-sum subspace $J$ vanishes, so
-$$
-D_p=(1-q)M-qI.
-$$
-
-Step 2: Determine the critical exponent and the equality space
-
-For $u=(u_1,\ldots,u_7)\in\mathbb{R}^7$, define
-$$
-(Tu)_{\{i,j\}}=u_i+u_j.
-$$
-The map $T$ is injective. If $s=\sum_i u_i$, then
-$$
-(MTu)_{\{i,j\}}
-=\sum_{\{k,l\}\subset[7]\setminus\{i,j\}}(u_k+u_l)
-=4(s-u_i-u_j).
-$$
-Hence the constant vector has adjacency eigenvalue $10$, while
-$$
-T\left(\left\{u:\sum_i u_i=0\right\}\right)
-$$
-is a $6$-dimensional eigenspace with eigenvalue $-4$.
+Step 1: Diagonalize the folded Hamming distance by quotient characters
 
 Let
 $$
-W=\left\{c\in\mathbb{R}^X:\sum_{j\neq i}c_{\{i,j\}}=0\text{ for every }i\right\}.
+G=mathbb{F}_2^9/langlemathbf{1}angle.
 $$
-The seven row-sum equations have rank $7$ because their transpose is $T$, so $\dim W=14$. For $c\in W$,
+The distance from the zero class to $[x]$ is
 $$
-(Mc)_{\{i,j\}}
-=\sum_{\{k,l\}\cap\{i,j\}=\varnothing}c_{\{k,l\}}
-=c_{\{i,j\}},
+delta(x)=min{|x|,9-|x|},
 $$
-so the remaining adjacency eigenvalue is $1$ with multiplicity $14$.
-
-Therefore the two eigenvalues of $D_p$ on the zero-sum subspace are
+where $|x|$ is Hamming weight. A character of $G$ is indexed by an even subset $Ssubseteq[9]$:
 $$
--4+3q
-\qquad\text{and}\qquad
-1-2q.
+chi_S([x])=(-1)^{sum_{iin S}x_i}.
 $$
-Since $q>1$, the second is always negative, while the first is nonpositive exactly for $q\leq4/3$. Thus
+These $2^8$ characters form an orthogonal basis. Since the matrix $D_p=(d(x,y)^p)$ is translation-invariant on $G$, each $chi_S$ is an eigenvector. If $s=|S|$, the eigenvalue is
 $$
-\wp=\log_2\left(\frac{4}{3}\right).
-$$
-At equality,
-$$
-E=T(V_0),\qquad
-V_0=\left\{u\in\mathbb{R}^7:\sum_i u_i=0\right\},
-$$
-so $\dim E=6$.
-
-Step 3: Translate missing support coordinates into a graph constraint
-
-Let $U\leq V_0$ and $L=T(U)\leq E$. Since $T$ is injective, $\dim L=\dim U$. Define $G_U$ on $[7]$ by
-$$
-ij\in E(G_U)
-\iff
-u_i+u_j=0\quad\text{for every }u\in U.
-$$
-Then
-$$
-|\operatorname{supp}(L)|=21-e(G_U).
+lambda_s(p)
+=rac12sum_{xinmathbb{F}_2^9}delta(x)^pchi_S(x).
 $$
 
-For a graph $G$ on $[7]$, put
+For
 $$
-W_G=\left\{u\in V_0:u_i+u_j=0\text{ for every }ij\in E(G)\right\}.
+K_s(h)=sum_j(-1)^jinom{s}{j}inom{9-s}{h-j},
 $$
-On a connected bipartite component with bipartition $(P,Q)$, the edge equations force one parameter $t$, with value $t$ on $P$ and $-t$ on $Q$. On a connected non-bipartite component an odd cycle forces all coordinates to be zero.
+the generating identity
+$$
+sum_{h=0}^9K_s(h)z^h=(1-z)^s(1+z)^{9-s}
+$$
+follows by choosing the $h$ coordinates of $x$ according to whether they lie in $S$. Since $s$ is even,
+$$
+K_s(9-h)=K_s(h),
+$$
+so pairing weights $h$ and $9-h$ gives
+$$
+lambda_s(p)=sum_{h=1}^4K_s(h)h^p.
+$$
+Extracting the first four coefficients from the displayed generating polynomial yields
+$$
+lambda_2(p)=5+8cdot2^p-14cdot4^p,
+$$
+$$
+lambda_4(p)=1-4cdot2^p-4cdot3^p+6cdot4^p,
+$$
+$$
+lambda_6(p)=-3+8cdot3^p-6cdot4^p,
+$$
+and
+$$
+lambda_8(p)=-7+20cdot2^p-28cdot3^p+14cdot4^p.
+$$
+The corresponding multiplicities are $inom92,inom94,inom96,inom98$.
 
-Let $b$ be the number of bipartite connected components, counting isolated vertices, and for such a component let
-$$
-\delta_C=|P_C|-|Q_C|,
-$$
-with $\delta_C=1$ for an isolated vertex. The condition $\sum_i u_i=0$ becomes
-$$
-\sum_C\delta_C t_C=0.
-$$
-Hence
-$$
-\dim W_G=
-\begin{cases}
-b,&\delta_C=0\text{ for every bipartite component},\\
-b-1,&\text{otherwise}.
-\end{cases}
-$$
+Step 2: Locate the first nonconstant eigenvalue that reaches zero
 
-Step 4: Obtain the sharp upper bound for the number of missing coordinates
+Put
+$$
+F(p)=lambda_8(p)
+=14cdot4^p-28cdot3^p+20cdot2^p-7
+$$
+and
+$$
+ho=inf{p>0:F(p)geq0}.
+$$
+Since $F(0)=-1$, while cubing verifies
+$$
+rac{12599}{10000}<2^{1/3},qquad
+3^{1/3}<rac{14423}{10000},qquad
+rac{15873}{10000}<4^{1/3},
+$$
+we have
+$$
+Fleft(rac13ight)
+>
+-7+20rac{12599}{10000}
+-28rac{14423}{10000}
++14rac{15873}{10000}
+=rac{179}{5000}>0.
+$$
+Hence $0<ho<1/3$ and continuity gives $F(ho)=0$.
 
-Let $z$ be the total number of vertices in non-bipartite components and let the bipartite component sizes be $s_1,\ldots,s_b$, with total $B=7-z$. A non-bipartite part has at most $\binom{z}{2}$ edges, while a bipartite component of size $s$ has at most
+The other nonconstant eigenvalues stay negative on $0leq pleq1/3$. For $lambda_2$, writing $q=2^pgeq1$ gives
 $$
-f(s)=\left\lfloor\frac{s^2}{4}\right\rfloor.
+lambda_2=5+8q-14q^2<0
 $$
-Also
+because the quadratic equals $-1$ at $q=1$ and is strictly decreasing thereon.
+
+For $lambda_4$,
 $$
-f(a)+f(b)\leq f(a+b-1)\qquad(a,b\geq1),
+lambda_4'(p)
+=-4(log2)2^p-4(log3)3^p+12(log2)4^p.
+$$
+Since $3^pleq4^p$,
+$$
+lambda_4'(p)
+geq4cdot2^pleft((log(8/3))2^p-log2ight)>0.
+$$
+Also cubing gives
+$$
+rac{1259}{1000}<2^{1/3},qquad
+rac{721}{500}<3^{1/3},qquad
+4^{1/3}<rac{397}{250},
 $$
 so
 $$
-\sum_{i=1}^b f(s_i)\leq f(B-b+1).
+lambda_4left(rac13ight)
+<
+1-4rac{1259}{1000}
+-4rac{721}{500}
++6rac{397}{250}
+=-rac{69}{250}<0.
 $$
 
-If some $\delta_C\neq0$ and $\dim W_G\geq r$, then $b\geq r+1$, hence
+For $lambda_6$, convexity of $3^p$ on $[0,1/3]$ and $e^tgeq1+t$ give
 $$
-e(G)\leq \binom{z}{2}+f(7-z-r),
+3^pleq1+3p(3^{1/3}-1),
+qquad
+4^pgeq1+plog4.
 $$
-where either $z=0$ or $z\geq3$, and $z\leq6-r$. The unbalanced maxima are explicit:
+Using $3^{1/3}<1443/1000$ and $log4>4/3$,
 $$
-\begin{aligned}
-r=1:&\ \max\left\{f(6),\binom{3}{2}+f(3),\binom{4}{2}+f(2),\binom{5}{2}+f(1)\right\}=10,\\
-r=2:&\ \max\left\{f(5),\binom{3}{2}+f(2),\binom{4}{2}+f(1)\right\}=6,\\
-r=3:&\ \max\left\{f(4),\binom{3}{2}+f(1)\right\}=4,
-\end{aligned}
-$$
-while $r=4,5,6$ give $f(3)=2$, $f(2)=1$, and $f(1)=0$.
-
-If every bipartite component is balanced, then $\dim W_G=b$. Every such component has even size, so because there are seven vertices, a non-bipartite part of odd size at least $3$ is present. This case is possible only for $r\leq2$. For $r=1$, the best choice is a $5$-vertex non-bipartite part together with one balanced $2$-vertex component, giving
-$$
-\binom{5}{2}+1=11.
-$$
-For $r=2$, at least two balanced components use four vertices, leaving at most three non-bipartite vertices, so the bound is at most
-$$
-\binom{3}{2}+1+1=5.
-$$
-Therefore, if $t_r$ denotes the largest possible number of missing coordinates for an $r$-dimensional subspace,
-$$
-(t_1,t_2,t_3,t_4,t_5,t_6)=(11,6,4,2,1,0).
+lambda_6(p)
+leq-1+pleft(24(3^{1/3}-1)-6log4ight)
+<-1+rac13rac{329}{125}
+=-rac{46}{375}<0.
 $$
 
-Step 5: Determine every attainable support size, not only the minima
-
-For $U\leq V_0$ with $\dim U=r$, let $v_i\in U^*$ be the coordinate functional $v_i(u)=u_i$. These seven functionals span $U^*$ and satisfy
+Thus the first nonconstant eigenvalue that can reach zero is $lambda_8$. Therefore
 $$
-v_1+\cdots+v_7=0.
+wp=ho
+=inf{p>0:14cdot4^p-28cdot3^p+20cdot2^p-7geq0}.
 $$
-Moreover,
+At $p=wp$, only the weight-$8$ characters lie in the kernel on the zero-sum subspace, so
 $$
-ij\in E(G_U)\iff v_i=-v_j.
-$$
-Conversely, any seven covectors in $\mathbb{R}^{r}$ that span $\mathbb{R}^{r}$ and sum to zero define an injective map into $V_0$, hence arise from some $U$. Thus the problem is exactly to count opposite pairs among a spanning zero-sum $7$-tuple.
-
-For $r=5,4,3,2$, every value $k$ with $0\leq k\leq\min(3,6-r)$ is attained by imposing $k$ disjoint opposite pairs. Choose the $k$ pair directions and $6-2k$ of the remaining covectors freely; the last covector is then forced by the zero-sum condition. Thus there are $6-k$ free vectors. Since $r\leq6-k$, they can be chosen to span $\mathbb{R}^{r}$, and they can simultaneously avoid the finitely many proper linear conditions that would create an additional opposite pair. Hence the tuple has exactly $k$ opposite pairs. The remaining extremal values are attained by the following tuples, where the displayed letters are independent:
-$$
-\begin{array}{c|c|c}
-r&t& (v_1,\ldots,v_7)\\
-\hline
-3&4&(a,a,-a,-a,b,c,-b-c)\\
-2&4&(a,a,-a,-a,b,b,-2b)\\
-2&5&(0,0,0,a,-a,b,-b)\\
-2&6&(0,0,0,0,a,b,-a-b).
-\end{array}
-$$
-Together with Step 4, this proves that the attainable missing-coordinate counts are
-$$
-\{0,1\},\quad
-\{0,1,2\},\quad
-\{0,1,2,3,4\},\quad
-\{0,1,2,3,4,5,6\},\quad
-\{0\}
-$$
-for $r=5,4,3,2,6$, respectively.
-
-It remains to handle $r=1$. Now the $v_i$ are scalars. Counts $0,1,\ldots,5$ are attainable as follows: for $1\leq k\leq5$, take $k$ copies of $1$, one copy of $-1$, and choose the remaining $6-k$ scalars so that the total sum is zero and no additional opposite pair appears; for $k\leq4$ the remaining affine solution space has positive dimension and finitely many forbidden hyperplanes cannot cover it, while for $k=5$ the last scalar is $-4$. Count $0$ is obtained by a generic zero-sum tuple with no opposite pair. The remaining values are witnessed by
-$$
-\begin{aligned}
-6&:(1,1,1,-1,-1,2,-3),\\
-7&:(-1,-1,0,0,0,1,1),\\
-8&:(-2,-1,-1,1,1,1,1),\\
-9&:(-1,-1,-1,0,1,1,1),\\
-11&:(-1,0,0,0,0,0,1).
-\end{aligned}
+dim E=inom98=9.
 $$
 
-Count $10$ is impossible. Let $z$ be the number of zero entries. If $1\leq z\leq4$, then the number of opposite pairs is at most
+Step 3: Rewrite the critical equality space as affine Rademacher forms
+
+Identify $G$ with $mathbb{F}_2^8$ by choosing the representative with ninth coordinate $0$. Write
 $$
-\binom{z}{2}+\left\lfloor\frac{(7-z)^2}{4}\right\rfloor<10.
+arepsilon_i=(-1)^{x_i},
+qquad
+P(x)=prod_{i=1}^8arepsilon_i.
 $$
-If $z=5$, the two remaining scalars must be opposites, so the count is $\binom{5}{2}+1=11$. Values $z\geq6$ cannot occur in a nonzero zero-sum spanning $1$-tuple. Finally, if $z=0$, partition the seven entries into classes $\{a,-a\}$. A class of size $m$ contributes at most $\lfloor m^2/4\rfloor$ opposite pairs. Any partition of $7$ into at least two classes gives at most $9$ in total, while a single class would consist entirely of $\pm a$ and could sum to zero only with equal multiplicities, impossible for seven entries. Hence the $r=1$ counts are exactly
+The nine even subsets of $[9]$ having size $8$ are the complements of one singleton. The character omitting $9$ is $P$, while the character omitting $ileq8$ is $Parepsilon_i$. Hence every $cin E$ has the unique form
 $$
-\{0,1,\ldots,9,11\}.
+c(x)=P(x)left(a_0+sum_{i=1}^8a_iarepsilon_iight).
+$$
+Because $P(x)in{-1,1}$, the support of $c$ is exactly the support of the affine Rademacher form
+$$
+L(arepsilon)=a_0+sum_{i=1}^8a_iarepsilon_i.
 $$
 
-Since support size is $21-t$, and $I(a)=\{a,a+1,\ldots,21\}$, we obtain
+Step 4: Find the minimum support and classify every equality case
+
+If all $a_i$ with $igeq1$ vanish, then a nonzero $L$ has full support. Otherwise choose $i$ with $a_i
+eq0$. Pair the $2^8$ sign vectors by flipping only $arepsilon_i$. For fixed values of the other seven signs, the two values are
 $$
-\Sigma_1=\{10\}\cup I(12),\quad
-\Sigma_2=I(15),\quad
-\Sigma_3=I(17),\quad
-\Sigma_4=I(19),\quad
-\Sigma_5=I(20),\quad
-\Sigma_6=\{21\}.
+B+a_i,qquad B-a_i,
+$$
+where
+$$
+B=a_0+sum_{j
+eq i}a_jarepsilon_j.
+$$
+They cannot both be zero, so at most one point in each pair is a zero of $L$. Therefore $L$ has at most $2^7=128$ zeros and every nonzero $cin E$ has
+$$
+|operatorname{supp}(c)|geq128.
+$$
+The form $1+arepsilon_1$ has exactly $128$ zeros, so the minimum support is
+$$
+m=128.
 $$
 
-Final Answer: $\boxed{\left(\log_2(4/3),6,\{10\}\cup I(12),I(15),I(17),I(19),I(20),\{21\}\right)}$
+Equality holds precisely when each pair contains one zero. Then $B$ takes only the values $pm a_i$, so
+$$
+B^2equiv a_i^2
+$$
+on the seven-dimensional sign cube. Expanding,
+$$
+B^2
+=a_0^2+sum_{j
+eq i}a_j^2
++2a_0sum_{j
+eq i}a_jarepsilon_j
++2sum_{substack{j<k\j,k
+eq i}}a_ja_karepsilon_jarepsilon_k.
+$$
+The functions $1,arepsilon_j,arepsilon_jarepsilon_k$ are linearly independent, hence
+$$
+a_0a_j=0
+quad	ext{and}quad
+a_ja_k=0
+$$
+for all distinct $j,k
+eq i$, together with
+$$
+a_0^2+sum_{j
+eq i}a_j^2=a_i^2.
+$$
+Thus exactly two types occur:
+
+- only $a_i$ and $a_0$ are nonzero, with $a_0=pm a_i$;
+- exactly two variable coefficients $a_i,a_j$ are nonzero, with $a_0=0$ and $a_j=pm a_i$.
+
+This classification is exhaustive.
+
+Step 5: Count the projective minimizers
+
+In the first type, choose $i$ in $8$ ways and choose the relative sign in $2$ ways, giving
+$$
+16
+$$
+one-dimensional subspaces of $E$.
+
+In the second type, choose the unordered pair ${i,j}$ in $inom82=28$ ways and again choose the relative sign in $2$ ways, giving
+$$
+56
+$$
+one-dimensional subspaces. The two types are disjoint, so
+$$
+N=16+56=72.
+$$
+
+Combining the critical exponent, equality-space dimension, minimum support, and projective count gives the requested tuple.
+
+Final Answer: $oxed{left(inf{p>0:14cdot4^p-28cdot3^p+20cdot2^p-7geq0},9,128,72ight)}$
 
 ---
 
 ## Answer
 
-$\left(\log_2(4/3),6,\{10\}\cup I(12),I(15),I(17),I(19),I(20),\{21\}\right)$
+$left(inf{p>0:14cdot4^p-28cdot3^p+20cdot2^p-7geq0},9,128,72ight)$
 
 ---
 
@@ -222,7 +247,7 @@ $\left(\log_2(4/3),6,\{10\}\cup I(12),I(15),I(17),I(19),I(20),\{21\}\right)$
 ## Solution Concepts
 
 - negative type metrics
-- Kneser graph spectrum
-- support spectra
-- signed graph constraints
-- extremal graph decomposition
+- Fourier analysis on finite groups
+- folded Hamming metric
+- Rademacher affine forms
+- equality-case classification
