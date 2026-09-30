@@ -12,7 +12,7 @@ u\cdot v=0.
 $$
 Let $B$ be the $7\times7$ incidence matrix, so
 $$
-B_{u,v}=1_{\{u\cdot v=0\}}.
+B_{u,v}=\mathbf{1}_{\{u\cdot v=0\}}.
 $$
 Each row contains three ones. For $u\neq v$, the equations
 $$
@@ -120,10 +120,10 @@ $$
 Step 3: Identify the critical equality space as a self-dual support code
 
 Every vector in $E$ has the form
-$$
-c_x=\left(x,-\frac{1}{\sqrt{2}}Bx\right),
+$
+c=\left(x,-\frac{1}{\sqrt{2}}Bx\right),
 \qquad x\in W.
-$$
+$
 Thus zeros on the point side are zeros of $x$, while zeros on the line side are zeros of $Bx$.
 
 For $v,u\in V$, define
@@ -132,7 +132,7 @@ p_v=e_v-\frac{1}{7}\mathbf{1},
 $$
 and
 $$
-\ell_u=1_{\{v:u\cdot v=0\}}-\frac{3}{7}\mathbf{1}.
+\ell_u=\mathbf{1}_{\{v:u\cdot v=0\}}-\frac{3}{7}\mathbf{1}.
 $$
 For $x\in W$,
 $$
@@ -176,7 +176,7 @@ P_S=\operatorname{span}\{p_v:v\in S\},
 \qquad
 R=V\setminus S.
 $$
-A vector of $W$ belongs to $P_S$ exactly when all its coordinates on $R$ are equal. The vector $\ell_u$ has value $\frac{4}{7}$ on the three points of the line $L_u$ and $-\frac{3}{7}$ elsewhere. Hence
+Every vector in $P_S$ has equal coordinates on $R$. Conversely, the subspace of $W$ with equal coordinates on $R$ has dimension $s$, the same as $P_S$, so the two subspaces coincide. The vector $\ell_u$ has value $\frac{4}{7}$ on the three points of the line $L_u$ and $-\frac{3}{7}$ elsewhere. Hence
 $$
 \ell_u\in P_S
 $$
