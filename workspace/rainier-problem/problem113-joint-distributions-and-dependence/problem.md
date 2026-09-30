@@ -8,7 +8,7 @@ X_1,\ldots,X_{10}\in\{0,1\}
 $$
 be exchangeable random variables such that
 $$
-\mathbb P(X_i=1)=\frac12
+\mathbb P(X_i=1)=\frac{1}{2}
 $$
 for every $i$, and every subfamily of at most five coordinates is independent. Put
 $$
@@ -19,13 +19,13 @@ p_s=\mathbb P(S=s)
 $$
 
 Among all such joint laws, determine the distribution vector
-$
+$$
 (p_0,p_1,\ldots,p_{10})
-$
+$$
 of $S$ for which
-$
+$$
 \mathbb P(S=0)
-$
+$$
 is maximal.
 
 ---
