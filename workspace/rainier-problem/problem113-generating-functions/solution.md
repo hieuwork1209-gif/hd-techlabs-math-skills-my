@@ -73,7 +73,7 @@ $$
 =
 -\frac{3}{t(1-t)(3-t)}<0
 $$
-for $0<t<1$. Thus $\phi$ is strictly concave. Moreover,
+for $0<t<1$. Therefore $\phi$ is strictly concave. Moreover,
 $$
 \phi'(t)\to+\infty
 \quad\text{as }t\to0^+,
@@ -149,7 +149,7 @@ $$
 3\log q.
 \end{aligned}
 $$
-Thus the exponential growth is
+The exponential growth is therefore
 $$
 \exp\!\left(n\phi(\tau)\right)=q^{3n}.
 $$
@@ -163,7 +163,15 @@ Extend $\phi$ continuously to $[0,1]$ using $0\log0=0$. Strict concavity gives s
 $$
 \phi(t)\leq\phi(\tau)-\eta
 $$
-outside $(\tau-\varepsilon,\tau+\varepsilon)$. Elementary Stirling bounds give a constant $C$ such that every summand is at most
+outside $(\tau-\varepsilon,\tau+\varepsilon)$. Use the bounds
+$$
+c_1\sqrt{m}\left(\frac{m}{e}\right)^m
+\leq
+m!
+\leq
+c_2\sqrt{m+1}\left(\frac{m}{e}\right)^m
+$$
+for integers $m\geq1$, together with $0!=1$. Applied to the four factorials in each summand, they give a constant $C$ such that every summand is at most
 $$
 Cn^2\exp\!\left(n\phi\!\left(\frac{k}{n}\right)\right).
 $$
@@ -215,7 +223,7 @@ the corresponding $u$-lattice has spacing
 $$
 \frac{2}{\sqrt{n}}.
 $$
-Hence the central Gaussian sum satisfies
+For any fixed $M$, the terms with $|u|\leq M$ form a shifted Riemann sum with this mesh. The shift is bounded by one mesh width and therefore vanishes as $n\to\infty$. Since $\phi''(\tau)<0$, the Gaussian tails are uniformly summable, so first letting $n\to\infty$ and then $M\to\infty$ gives
 $$
 \frac{2}{\sqrt{n}}
 \sum_{\substack{|u|\leq n^{1/10}\\ k\equiv n\pmod{2}}}
@@ -233,8 +241,8 @@ a_n
 \frac{\sqrt{n}}{2}
 \sqrt{\frac{2\pi}{-\phi''(\tau)}}.
 $$
-Thus
-$$
+Therefore
+$
 a_n
 \sim
 \frac{q^{3n}}{4\pi n}
