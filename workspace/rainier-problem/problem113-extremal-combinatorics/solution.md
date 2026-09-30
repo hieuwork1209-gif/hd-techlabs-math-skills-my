@@ -48,7 +48,7 @@ $$
 (s-t)x=0.
 $$
 Since $s-t\neq0$ in the field $\mathbb{F}_8$, this forces $x=0$. Therefore
-$
+$$
 L_s\cap L_t=\{0\}.
 $$
 Also,
@@ -121,7 +121,7 @@ $$
 V/P
 $$
 has dimension $5$ over $\mathbb{F}_2$. A $3$-dimensional subspace of $V$ containing $P$ corresponds exactly to a $2$-dimensional subspace of $V/P$. Therefore
-$
+$$
 |\mathcal F_P|
 =
 \frac{(2^5-1)(2^5-2)}{(2^2-1)(2^2-2)}
