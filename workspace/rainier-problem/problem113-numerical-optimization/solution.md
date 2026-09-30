@@ -62,7 +62,7 @@ D(c)
 \frac{c}{7(8-c)}.
 $$
 Therefore
-$
+$$
 \rho(\alpha,\beta)\geq\frac{1}{D(c)}
 $$
 for every $c\in[4,8)$.
@@ -135,7 +135,7 @@ $$
 a=\frac{8}{113}.
 $$
 Therefore
-$
+$$
 p_*(\lambda)
 =
 \frac{8}{113}\lambda^2
