@@ -4,44 +4,42 @@
 
 Let
 $$
-X=mathbb{F}_2^9/langlemathbf{1}angle,
-qquad
-mathbf{1}=(1,ldots,1).
+X=\mathbb{F}_2^9/\langle\mathbf{1}\rangle,
+\qquad
+\mathbf{1}=(1,\ldots,1).
 $$
-For a class $[x]in X$, let $|x|$ denote Hamming weight and define the folded Hamming metric
+For a class $[x]\in X$, let $|x|$ denote Hamming weight and define the folded Hamming metric
 $$
-d([x],[y])=min{|x-y|,9-|x-y|}.
+d([x],[y])=\min\{|x-y|,9-|x-y|\}.
 $$
 
-For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_x)_{xin X}$ with $sum_xc_x=0$ satisfies
+For $p>0$, say that $(X,d)$ has $p$-negative type if every real family $(c_x)_{x\in X}$ with $\sum_xc_x=0$ satisfies
 $$
-sum_{x,yin X}c_xc_y d(x,y)^pleq0.
+\sum_{x,y\in X}c_xc_y d(x,y)^p\leq0.
 $$
 Let
 $$
-wp=sup{p>0:(X,d)	ext{ has }p	ext{-negative type}},
+\wp=\sup\{p>0:(X,d)\text{ has }p\text{-negative type}\},
 $$
 and define the critical equality space
 $$
-E=left{cinmathbb{R}^{X}:sum_xc_x=0, 
-sum_{x,yin X}c_xc_y d(x,y)^{wp}=0ight}.
+E=\left\{c\in\mathbb{R}^{X}:\sum_xc_x=0,\ 
+\sum_{x,y\in X}c_xc_y d(x,y)^{\wp}=0\right\}.
 $$
 
-For $cin E$, write
+For $c\in E$, write
 $$
-operatorname{supp}(c)={xin X:c_x
-eq0}.
+\operatorname{supp}(c)=\{x\in X:c_x\neq0\}.
 $$
 Let
 $$
-m=min_{0
-eq cin E}|operatorname{supp}(c)|,
+m=\min_{0\neq c\in E}|\operatorname{supp}(c)|,
 $$
 and let $N$ be the number of one-dimensional subspaces of $E$ spanned by vectors whose support has size $m$.
 
 Determine
 $$
-(wp,dim E,m,N).
+(\wp,\dim E,m,N).
 $$
 
 ---
