@@ -2,18 +2,29 @@
 
 ## LaTeX (Normalized)
 
-Work in Curry-style simply typed combinatory logic with one primitive combinator $S$ and binary application. Simple types are built from type variables using $\to$, which associates to the right. Every occurrence of $S$ may be assigned a fresh instance of
+Work in Curry-style simply typed combinatory logic with primitive combinators $S,I$ and binary application. Simple types are built from type variables using $\to$, which associates to the right. Every occurrence may receive a fresh instance of
 $$
-(\alpha\to\beta\to\gamma)\to(\alpha\to\beta)\to\alpha\to\gamma.
-$$
-An application $UV$ is typable exactly when the types assigned to $U$ and $V$ can be unified so that $U$ has type $\sigma\to\tau$ and $V$ has type $\sigma$ for some simple types $\sigma,\tau$. Unification is the usual finite simple-type unification with the occurs check.
-
-For $n\geq1$, let $\mathcal P_n$ be the set of all full parenthesizations of a word consisting of $n$ copies of $S$. Let $\mathcal T_n\subseteq\mathcal P_n$ be the subset of typable terms. Define
-$$
-R_1=S,
+S:(\alpha\to\beta\to\gamma)\to(\alpha\to\beta)\to\alpha\to\gamma,
 \qquad
-R_{n+1}=S R_n.
+I:\delta\to\delta.
 $$
+An application $UV$ is typable exactly when the types assigned to $U$ and $V$ can be unified so that $U$ has type $\sigma\to\tau$ and $V$ has type $\sigma$. Unification is finite simple-type unification with the occurs check.
+
+For $n\geq1$, let $\mathcal P_n$ be the set of all full parenthesizations of the word consisting of $n$ copies of $S$ followed by one copy of $I$, and let $\mathcal T_n\subseteq\mathcal P_n$ be the typable terms.
+
+Define
+$$
+L_1(X)=SX,
+\qquad
+L_2(X)=(SS)X.
+$$
+For a word $d_1\cdots d_r$ over $\{1,2\}$, define
+$$
+L_{d_1\cdots d_r}(I)
+=
+L_{d_1}\bigl(L_{d_2}(\cdots L_{d_r}(I)\cdots)\bigr).
+$$
+The notation $1^a2^b1^c$ means the concatenation of $a$ symbols $1$, then $b$ symbols $2$, then $c$ symbols $1$.
 
 Determine $\mathcal T_n$ exactly for every $n\geq1$.
 
@@ -32,4 +43,4 @@ Determine $\mathcal T_n$ exactly for every $n\geq1$.
 
 ## Domain Explanation
 
-This problem asks for a complete classification of typable terms in Curry-style simply typed combinatory logic, so its primary content is type assignment, principal typing, and unification in Logic, Set Theory, and Foundations / Type theory and formal systems. The binary-tree structure of parenthesizations is only the syntax on which the typing constraints act, so combinatorics is secondary.
+This problem asks for the complete typability classification of a structured family of terms in Curry-style simply typed combinatory logic. Its main content is principal typing, simple-type unification, occurs-check obstructions, and the interaction of the standard $S$ and $I$ combinators, so Logic, Set Theory, and Foundations / Type theory and formal systems is the primary classification. The parenthesization count is only the syntax on which those typing constraints act.
