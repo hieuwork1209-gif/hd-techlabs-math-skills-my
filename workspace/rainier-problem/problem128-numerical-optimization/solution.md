@@ -23,11 +23,11 @@ $$
 =1+\beta^2-(1+\beta)(\alpha_1+\alpha_2)\lambda
 +\alpha_1\alpha_2\lambda^2.
 $$
-Thus the two eigenvalues of $M(\lambda)$ are the roots of
+The two eigenvalues of $M(\lambda)$ are the roots of
 $$
 z^2-\tau(\lambda)z+\beta^2=0.
 $$
-Consequently the spectral radius is at least $\beta$. If $|\tau(\lambda)|\leq2\beta$, both roots have modulus $\beta$. If $x:=|\tau(\lambda)|>2\beta$, the larger root modulus is
+The determinant identity gives spectral radius is at least $\beta$. If $|\tau(\lambda)|\leq2\beta$, both roots have modulus $\beta$. If $x:=|\tau(\lambda)|>2\beta$, the larger root modulus is
 $$
 g_\beta(x)=\frac{x+\sqrt{x^2-4\beta^2}}{2},
 $$
@@ -46,8 +46,8 @@ takes the values
 $$
 q(1)=2,\qquad q(2)=-2,\qquad q(5)=-2,\qquad q(6)=2,
 $$
-and $q(0)=8$. Hence
-$$
+and $q(0)=8$. Therefore
+$
 \tau_\beta^*(\lambda)=\frac{1+\beta^2}{8}q(\lambda)
 $$
 has norm $(1+\beta^2)/4$ on $E=[1,2]\cup[5,6]$.
@@ -117,8 +117,7 @@ $
 \qquad
 \alpha_2=\frac{1+\beta_*}{5},
 $
-up to order. These values realize the displayed trace, so
-so $|\tau(\lambda)|\leq2\beta_*$ on $E$. Every two-step monodromy therefore has spectral radius exactly $\beta_*$, and
+up to order. These values realize the displayed trace, and $|\tau(\lambda)|\leq2\beta_*$ on $E$. Every two-step monodromy therefore has spectral radius exactly $\beta_*$, and
 $$
 \rho_2=4-\sqrt{15}.
 $$
@@ -270,8 +269,8 @@ Because $(1+\widehat\beta)^2=8\widehat\beta$,
 $$
 \tau(\lambda)=8\widehat\beta\,q(\lambda)-2\widehat\beta.
 $$
-Thus
-$$
+Therefore
+$
 -\frac{2\widehat\beta}{3}
 \leq\tau(\lambda)\leq2\widehat\beta.
 $$
