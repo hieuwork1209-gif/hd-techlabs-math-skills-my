@@ -21,7 +21,7 @@ Let
 $$
 \wp=\sup\{p>0:(X,d)\text{ has }p\text{-negative type}\},
 $$
-and define the critical equality space
+and define
 $$
 E=\left\{c\in\mathbb{R}^{X}:\sum_xc_x=0,\ 
 \sum_{x,y\in X}c_xc_y d(x,y)^{\wp}=0\right\}.
@@ -37,9 +37,19 @@ m=\min_{0\neq c\in E}|\operatorname{supp}(c)|,
 $$
 and let $N$ be the number of one-dimensional subspaces of $E$ spanned by vectors whose support has size $m$.
 
+For a subspace $L\leq E$, write
+$$
+\operatorname{supp}(L)=\{x\in X:\text{some }c\in L\text{ has }c_x\neq0\}.
+$$
+Define
+$$
+m_2=\min_{\substack{L\leq E\\ \dim L=2}}|\operatorname{supp}(L)|,
+$$
+and let $N_2$ be the number of two-dimensional subspaces attaining $m_2$.
+
 Determine
 $$
-(\wp,\dim E,m,N).
+(\wp,\dim E,m,N,m_2,N_2).
 $$
 
 ---
@@ -57,4 +67,4 @@ $$
 
 ## Domain Explanation
 
-The primary object is a finite quotient metric, and the problem asks for its supremal negative type together with extremal support data inside the critical equality space, so Analysis / Metric spaces is the natural primary classification. Finite Fourier analysis identifies the critical equality space, while a separate extremal argument is needed to determine and classify its sparsest nonzero vectors.
+The primary object is a finite quotient metric, and the problem asks for its supremal negative type together with first- and second-dimensional support extremals of the critical equality space, so Analysis / Metric spaces is the natural primary classification. Finite Fourier analysis identifies the critical equality space, while separate extremal and compatibility arguments determine and classify the minimizing vectors and planes.
