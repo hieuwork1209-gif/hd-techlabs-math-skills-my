@@ -21,7 +21,7 @@ For a polynomial $g(x)$ having a unique zero in $(a,b)$, write $\operatorname{ro
 
 Let $r_-<1$ be the lower endpoint of the set of zero-stable values of $r$. Find
 $
-u_*=r_-+\frac1{r_-}.
+u_*=r_-+\frac{1}{r_-}.
 $
 
 ---
