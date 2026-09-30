@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-model-theory/problem.md",
+  "source_commit_sha": "50220d6ce7ccf964360cfd2d5a948df3131d66af",
+  "problem_blob_sha": "d7cb11cc25f5a0baf48bb55b6172438998c36243",
+  "statement_sha256": "5aefc70fe130547b8bbbb7a846dcfc496eb87bd3eeb20975f2eb1a8472571047",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T15:44:27+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "The least number of rounds is\n\n\\[\n\\boxed{m+1}.\n\\]\n\nLet \\(N=2^m\\). Thus \\(A_m\\) is one directed cycle of length \\(2N\\), while \\(B_m\\) is two directed cycles of length \\(N\\).\n\nDefine, for \\(t\\ge 0\\),\n\n\\[\nP_t(x,y)\n\\]\n\nto mean “following \\(S\\) exactly \\(2^t\\) times from \\(x\\) reaches \\(y\\).” Recursively:\n\n\\[\nP_0(x,y):=S(x,y),\n\\]\n\nand\n\n\\[\nP_{t+1}(x,y):=\\exists z\\bigl(P_t(x,z)\\wedge P_t(z,y)\\bigr).\n\\]\n\nThe quantifier rank of \\(P_t\\) is \\(t\\). In \\(B_m\\), every element returns to itself after \\(N=2^m\\) successor steps, so\n\n\\[\nB_m\\models \\exists x\\,P_m(x,x).\n\\]\n\nIn \\(A_m\\), no element returns to itself after \\(N\\) steps, because the unique cycle has length \\(2N\\). Hence\n\n\\[\nA_m\\models \\neg\\exists x\\,P_m(x,x).\n\\]\n\nThe sentence \\(\\exists x\\,P_m(x,x)\\) has quantifier rank \\(m+1\\), so Spoiler wins in \\(m+1\\) rounds.\n\nIt remains to see that Spoiler cannot win sooner. The key EF-game invariant is the usual distance-halving one for directed cycles: after \\(k\\) rounds, with \\(m-k\\) rounds remaining, Duplicator can ensure that every already chosen ordered pair has either the same exact directed successor-distance in both structures whenever that distance is less than\n\n\\[\n2^{m-k+1},\n\\]\n\nor else both distances are at least that large, with “different components” in \\(B_m\\) counted as infinite distance.\n\nThis invariant is initially empty. When Spoiler chooses a new point, Duplicator places the matching point in the corresponding interval between previously chosen points. If the new point is close to an old chosen point, the exact offset is copied; if it lies in a large interval, the matching point is chosen inside the corresponding large interval. Each round halves the relevant distance threshold, so the invariant persists.\n\nAfter \\(m\\) rounds the threshold is \\(2\\). Thus equality, distance \\(1\\), and non-distance \\(1\\) are all preserved. But preserving directed distance \\(1\\) is exactly preserving the relation \\(S\\), so the chosen correspondence is a partial isomorphism. Therefore Duplicator wins every \\(m\\)-round game.\n\nSo Spoiler first has a winning strategy in exactly\n\n\\[\n\\boxed{m+1}\n\\]\n\nrounds.",
+  "status": "success",
+  "completed_at": "2026-09-30T15:46:16+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/d7cb11cc25f5.json"
+}
