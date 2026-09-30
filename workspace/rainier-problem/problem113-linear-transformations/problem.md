@@ -31,7 +31,13 @@ Call a subspace $L\subset V$ admissible if
 - $\omega$ vanishes on $L\times L$;
 - the restriction $N|_L$ has exactly two Jordan blocks, both of size $m$.
 
-Determine exactly the number of admissible subspaces $L$.
+Two admissible subspaces are called transverse if their intersection is $\{0\}$.
+
+Determine exactly the number of ordered triples
+$$
+(L_1,L_2,L_3)
+$$
+of admissible subspaces that are pairwise transverse.
 
 ---
 
@@ -48,4 +54,4 @@ Determine exactly the number of admissible subspaces $L$.
 
 ## Domain Explanation
 
-This problem asks for the exact count of half-dimensional subspaces invariant under a specified nilpotent linear transformation, with a prescribed Jordan type and an alternating-form constraint. The decisive structure is the interaction between the invariant-subspace condition and the nilpotent operator, so Linear Algebra / Linear transformations is the primary classification. The symplectic pairing is also important, but it constrains the invariant subspaces rather than replacing the operator-theoretic classification, so Tensor and multilinear algebra is secondary.
+This problem asks for the exact count of ordered triples of half-dimensional subspaces invariant under a specified nilpotent linear transformation, with prescribed Jordan type, isotropy, and pairwise transversality. The main structure comes from the interaction of invariant subspaces with the nilpotent operator; the alternating form and transversality impose further compatibility conditions. Therefore Linear Algebra / Linear transformations is primary, while Tensor and multilinear algebra is secondary.
