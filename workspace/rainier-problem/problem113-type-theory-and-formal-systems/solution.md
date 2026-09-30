@@ -88,7 +88,7 @@ $$
 SI:H(y\to z,y,z).
 $$
 
-Consider a typable parenthesization of a word $S^nI$. At its root it has the form $UV$, where $U$ is a pure-$S$ term. Step 1 forces $U=R_k$.
+We now induct on the number of copies of $S$ in a typable term ending in $I$. The one-$S$ term $SI$ has the displayed interface. For a larger typable term, write its root as $UX$, where $U$ is a pure-$S$ term and $X$ is the suffix containing $I$. Step 1 forces $U=R_k$. If $X$ still contains an $S$, then the induction hypothesis gives $X$ a principal type of the form $H(Q,D,R)$.
 
 If the right subterm is exactly $I$, then $R_1I$ is typable, while $R_kI$ is untypable for $k\geq2$. For $k=2$, unifying the domain
 $$
@@ -96,7 +96,7 @@ A_2=A_1\to A_0
 $$
 with $x\to x$ would require $A_1=A_0$, hence $b\to c=b$. For $k\geq3$, it would require $A_{k-1}=A_{k-2}$, while $A_{k-1}=A_{k-2}\to A_{k-3}$. Each equation fails the occurs check. Thus the innermost block is necessarily $S$.
 
-Now suppose the right subterm $X$ has principal type $H(Q,D,R)$. If $k\geq3$, the domain of $R_k$ is
+Suppose instead that the right subterm $X$ contains an $S$, so by induction it has principal type $H(Q,D,R)$. If $k\geq3$, the domain of $R_k$ is
 $$
 A_k=A_{k-1}\to A_{k-2},
 \qquad
@@ -126,7 +126,7 @@ Also, $(SS)X$ is typable exactly when $D$ unifies with $R\to E$ for a fresh $E$.
 $$
 H(Q,D,E).
 $$
-Thus every typable parenthesization of $S^nI$ is obtained by iterating the two contexts
+The two transformations preserve the interface form, completing the induction. Thus every typable parenthesization of $S^nI$ is obtained by iterating the two contexts
 $$
 L_1(X)=SX,
 \qquad
@@ -165,7 +165,7 @@ H((t\to t)\to t,t\to t,t),
 $$
 which we call state C. Applying another outer $SS$ to state C leaves state C unchanged, because $t\to t=t\to E$ forces $E=t$.
 
-In contrast, once an outer $S$ is applied to state B or state C, no later outer $SS$ can occur. Indeed, in both states the result variable $R$ occurs in the domain of the current $Q$. After applying $S$, the new defect in the interface is the old $Q$. A later $SS$ would require this defect to unify with $R\to E$, which equates $R$ with a type containing $R$ and fails the occurs check. Further outer $S$ blocks preserve the same obstruction.
+In contrast, once an outer $S$ is applied to state B or state C, no later outer $SS$ can occur. In both states the result variable $R$ occurs in the domain of the current $Q$. After one outer $S$, the new defect is the old $Q$, so an $SS$ step would require $Q$ to unify with $R\to E$. Comparing first domains then equates $R$ with a type containing $R$, which fails the occurs check. If another outer $S$ is taken instead, the new $Q$ has the preceding $Q$ as its first domain. Hence that first domain still contains $R$. Induction on the number of further outer $S$ blocks shows that every later defect has a first domain containing $R$, so every later $SS$ attempt fails by the same occurs-check equation.
 
 Reading blocks from the outside inward, the typable block words are therefore exactly
 $$
