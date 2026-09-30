@@ -1,0 +1,22 @@
+{
+  "problem": "problem113",
+  "branch": "adversary/problem113",
+  "problem_path": "workspace/rainier-problem/problem113-numerical-optimization/problem.md",
+  "source_commit_sha": "e6ae3090ae1d8c5840a94ee6410148048bd6bd56",
+  "problem_blob_sha": "e7688d0e9909420a449c8125054a49b0f2671c1d",
+  "statement_sha256": "69e8d4e4cc1356949add364d31b94811f2d63da55d43284fcb2daceb60120512",
+  "requested_model": "gpt-5.5",
+  "requested_reasoning_effort": "medium",
+  "runs": 1,
+  "started_at": "2026-09-30T16:07:12+00:00",
+  "exit_code": 0,
+  "stderr": "",
+  "final_answer": "The nonexpansiveness condition on each step forces\n\\[\n0\\le \\alpha,\\beta\\le \\frac14,\n\\]\nbecause \\(|1-\\gamma\\lambda|\\le 1\\) for all \\(\\lambda\\in[1,8]\\) is equivalent to \\(0\\le \\gamma\\lambda\\le 2\\), hence \\(0\\le\\gamma\\le 1/4\\).\n\nLet\n\\[\np(\\lambda)=(1-\\alpha\\lambda)(1-\\beta\\lambda).\n\\]\nIf either step size is \\(0\\), then \\(p(1)\\ge 3/4\\), so such a pair cannot be optimal once we find a value below that. Thus write\n\\[\nr=\\frac1\\alpha,\\qquad q=\\frac1\\beta,\n\\]\nwith \\(4\\le r\\le q\\). Then\n\\[\np(\\lambda)=\\frac{(r-\\lambda)(q-\\lambda)}{rq}.\n\\]\n\nOn \\([1,2]\\), both factors are positive and decreasing, so the maximum there occurs at \\(\\lambda=1\\):\n\\[\np(1)=\\frac{(r-1)(q-1)}{rq}.\n\\]\n\nSuppose \\(\\rho\\le 3/5\\). Then in particular\n\\[\n\\frac{(r-1)(q-1)}{rq}\\le \\frac35.\n\\]\nWriting \\(S=r+q,\\ T=rq\\), this gives\n\\[\n5(T-S+1)\\le 3T\n\\quad\\Longrightarrow\\quad\nT\\le \\frac{5S-5}{2}.\n\\]\nAlso, since \\(r,q\\ge4\\),\n\\[\n(r-4)(q-4)\\ge0\n\\quad\\Longrightarrow\\quad\nT\\ge 4S-16.\n\\]\nCombining,\n\\[\n4S-16\\le \\frac{5S-5}{2}\n\\quad\\Longrightarrow\\quad\nS\\le 9.\n\\]\n\nIf \\(q\\ge 8\\), then already \\(p(1)>3/5\\), so we must have \\(q<8\\). Hence \\(p(8)\\ge0\\), and \\(\\rho\\le3/5\\) also gives\n\\[\n\\frac{(8-r)(8-q)}{rq}\\le \\frac35.\n\\]\nThat is\n\\[\n5(64-8S+T)\\le 3T\n\\quad\\Longrightarrow\\quad\nT\\le 20S-160.\n\\]\nTogether with \\(T\\ge4S-16\\), this yields\n\\[\n4S-16\\le 20S-160\n\\quad\\Longrightarrow\\quad\nS\\ge 9.\n\\]\nThus \\(S=9\\). Then the previous inequalities force\n\\[\nT=20.\n\\]\nSo \\(r,q\\) are the roots of\n\\[\nx^2-9x+20=0,\n\\]\nhence\n\\[\n\\{r,q\\}=\\{4,5\\}.\n\\]\nTherefore\n\\[\n\\{\\alpha,\\beta\\}=\\left\\{\\frac14,\\frac15\\right\\}.\n\\]\n\nFor this pair,\n\\[\np(\\lambda)=\\left(1-\\frac{\\lambda}{4}\\right)\\left(1-\\frac{\\lambda}{5}\\right).\n\\]\nOn \\([1,2]\\), the maximum is\n\\[\np(1)=\\frac34\\cdot\\frac45=\\frac35.\n\\]\nOn \\([4,8]\\), the endpoint values are \\(p(4)=0\\), \\(p(8)=3/5\\), and the interior minimum occurs at \\(\\lambda=9/2\\), where \\(p(9/2)=-1/80\\). Thus \\(|p(\\lambda)|\\le 3/5\\) on \\([4,8]\\).\n\nSo the minimum possible value is\n\\[\n\\boxed{\\frac35},\n\\]\nand the unique optimizing unordered pair is\n\\[\n\\boxed{\\left\\{\\alpha,\\beta\\right\\}=\\left\\{\\frac14,\\frac15\\right\\}}.\n\\]",
+  "status": "success",
+  "completed_at": "2026-09-30T16:08:50+00:00",
+  "timeout_seconds": 2100,
+  "local_verdict": "SOLVER_ANSWER_RETURNED",
+  "recommended_action": "REVIEW_SOLVER_ANSWER",
+  "promotion_ready": false,
+  "result_file": "solver-results/problem113/e7688d0e9909.json"
+}
