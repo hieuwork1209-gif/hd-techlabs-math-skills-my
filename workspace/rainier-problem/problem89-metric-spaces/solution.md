@@ -120,10 +120,10 @@ $$
 Step 3: Identify the critical equality space as a self-dual support code
 
 Every vector in $E$ has the form
-$
+$$
 c=\left(x,-\frac{1}{\sqrt{2}}Bx\right),
 \qquad x\in W.
-$
+$$
 Thus zeros on the point side are zeros of $x$, while zeros on the line side are zeros of $Bx$.
 
 For $v,u\in V$, define
