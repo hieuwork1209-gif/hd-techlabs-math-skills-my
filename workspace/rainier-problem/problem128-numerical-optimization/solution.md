@@ -315,34 +315,48 @@ $$
 \beta s_0^2=s_0^2+s_1^2+s_2^2.
 $$
 
-To realize these finite data by an actual function, put
-$$
+To realize these finite data by an actual function, first rewrite the interpolation inequalities in ordinary convex-subgradient form. Expanding the squared gradient difference and regrouping gives
+$
+F_i-\frac{1}{2}\|g_i\|^2
+\geq
+F_j-\frac{1}{2}\|g_j\|^2
++g_j^T\bigl((x_i-g_i)-(x_j-g_j)\bigr).
+$
+This forces the shifted data
+$
 y_i=x_i-g_i,
 \qquad
 H_i=F_i-\frac{1}{2}\|g_i\|^2,
-$$
-including the index $*$. The preceding inequalities are equivalent to
-$$
+$
+including the index $*$, for which
+$
 H_i\geq H_j+g_j^T(y_i-y_j).
-$$
-Define
-$$
+$
+These are exactly the supporting-plane inequalities for a convex function with value $H_i$ and subgradient $g_i$ at $y_i$. The smallest convex function containing all those planes is
+$
 q(y)=
 \max_j\left\{
 H_j+g_j^T(y-y_j)
-\right\},
-$$
-and its quadratic envelope
-$$
+\right\}.
+$
+The inequalities make the $i$th plane active at $y_i$, so
+$
+q(y_i)=H_i,
+\qquad
+g_i\in\partial q(y_i).
+$
+
+The original variables satisfy $x_i-y_i=g_i$ and $F_i-H_i=\frac{1}{2}\|g_i\|^2$. This dictates adding the quadratic whose first-order condition is $x-y\in\partial q(y)$:
+$
 f(x)=
 \min_y\left\{
 q(y)+\frac{1}{2}\|x-y\|^2
 \right\}.
-$$
-Because $q$ is a finite maximum of affine functions, for every $x$ the envelope objective is continuous and coercive in $y$; its quadratic term makes it strongly convex. It therefore has a unique minimizer. At $y_i$, the $i$th affine term is active, so $g_i\in\partial q(y_i)$. Since $x_i=y_i+g_i$, the point $y_i$ satisfies the first-order condition for the envelope minimization at $x_i$, and
-$$
+$
+Because $q$ is a finite maximum of affine functions, for every $x$ the envelope objective is continuous and coercive in $y$; its quadratic term makes it strongly convex. It therefore has a unique minimizer. At $x_i$, the relation $x_i-y_i=g_i\in\partial q(y_i)$ makes $y_i$ that minimizer, and
+$
 f(x_i)=H_i+\frac{1}{2}\|g_i\|^2=F_i.
-$$
+$
 
 For a general $x$, let $y(x)$ be the unique minimizer and put $G(x)=x-y(x)$. The first-order condition gives $G(x)\in\partial q(y(x))$. For $x,x'$ with corresponding $y,y'$ and $G,G'$, monotonicity of $\partial q$ gives
 $$
